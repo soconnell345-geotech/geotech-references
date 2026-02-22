@@ -1,0 +1,1420 @@
+{
+  "reference_id": "FHWA-NHI-16-009",
+  "reference_title": "Design and Construction of Driven Pile Foundations",
+  "volume": 1,
+  "chapter": 7,
+  "chapter_title": "Geotechnical Aspects and Limit State Design",
+  "sections": [
+    {
+      "section_id": "7.1",
+      "title": "Introduction",
+      "body": "Chapter 7 presents the geotechnical aspects of driven pile foundation design following the AASHTO (2014) LRFD Bridge Design Specifications. This chapter is the most comprehensive in GEC-12 Volume 1, covering all four LRFD limit states as they apply to driven piles: strength, service, extreme event, and fatigue. The fundamental design equation requires factored resistance Rr = phi * Rn to exceed factored loads. The chapter addresses static analysis methods for axial compression, tension, and lateral resistance; pile group behavior; settlement evaluation; downdrag; drivability; and construction considerations. Eight static analysis methods are presented for single pile axial capacity, each with AASHTO-calibrated resistance factors.",
+      "key_points": [
+        "LRFD design: factored resistance Rr = phi * Rn must exceed factored loads",
+        "Four limit states covered: strength, service, extreme event, fatigue",
+        "Eight static analysis methods for axial capacity with AASHTO-calibrated resistance factors",
+        "Resistance factors are method-specific and condition-specific per AASHTO Table 10.5.5.2.3-1",
+        "phi = 0.25 to 0.50 for static analysis methods depending on method and soil type",
+        "phi = 0.65 to 0.80 for dynamic methods (wave equation, dynamic testing, load tests)",
+        "Pile impedance EA/C is the primary parameter controlling drivability",
+        "Soil setup and relaxation must be considered in design and construction"
+      ],
+      "equations": [
+        "Eq 7-1: Rr = phi * Rn (factored geotechnical resistance)",
+        "Eq 7-2: Rn = Rs + Rp (nominal resistance = shaft + toe)",
+        "Eq 7-3: Rs = SUM(f_si * A_si) (shaft resistance from unit shaft resistance times surface area per layer)",
+        "Eq 7-4: Rp = q_p * A_t (toe resistance from unit toe resistance times toe area)",
+        "Eq 7-5: Rr = phi_stat * (Rs + Rp) (factored resistance using static analysis resistance factor)"
+      ],
+      "figures": [
+        "Figure 7-1: Soil displacement from driving in cohesionless soil (3-5 pile diameters influence zone)",
+        "Figure 7-2: Soil displacement from driving in cohesive soil (1-2 pile diameters disturbance zone)",
+        "Figure 7-3: Soil resistance components on a driven pile (shaft + toe)"
+      ],
+      "tables": [
+        "Table 7-1: AASHTO (2014) resistance factors for driven piles in compression (static and dynamic methods)",
+        "Table 7-2: AASHTO (2014) resistance factors for uplift on single piles"
+      ],
+      "cross_references": {
+        "axial_pile": "Fundamental Rn = Rs + Rp equation (Eq 7-2 through 7-5) directly implemented in axial_pile module",
+        "wave_equation": "Dynamic method resistance factors (phi = 0.65 for wave equation, 0.65-0.80 for dynamic testing)"
+      },
+      "applicability": "Framework chapter establishing LRFD methodology for all subsequent driven pile geotechnical design calculations. Resistance factors in Tables 7-1 and 7-2 govern all axial capacity analyses.",
+      "subsections": [
+        {
+          "section_id": "7.1.1",
+          "title": "Driving Point Resistance",
+          "body": "Discusses how piles develop resistance through a combination of shaft resistance along the pile perimeter and toe resistance at the pile tip. The relative contribution of shaft versus toe resistance depends on soil conditions and pile geometry."
+        },
+        {
+          "section_id": "7.1.2",
+          "title": "Resistance Factors",
+          "body": "AASHTO (2014) provides resistance factors calibrated for each static and dynamic method. Static analysis methods range from phi = 0.25 to 0.50. Dynamic methods have higher phi values (0.65-0.80) reflecting greater reliability when verified during construction."
+        },
+        {
+          "section_id": "7.1.3",
+          "title": "Soil Response to Pile Driving",
+          "body": "Pile driving causes significant soil disturbance. In cohesionless soils, the disturbed zone extends 3-5 pile diameters (Figure 7-1). In cohesive soils, the remolded zone is about 1-2 pile diameters (Figure 7-2). These disturbances result in time-dependent resistance changes (setup and relaxation)."
+        },
+        {
+          "section_id": "7.1.4",
+          "title": "Changes in Soil Resistance with Time",
+          "body": "Shaft resistance in cohesive soils typically increases after driving (soil setup) as excess pore water pressures dissipate. In some cohesionless soils, relaxation can reduce toe resistance after driving. Both phenomena must be considered."
+        },
+        {
+          "section_id": "7.1.5",
+          "title": "Static Analysis Methods Overview",
+          "body": "Eight static analysis methods are presented: Nordlund (cohesionless), Alpha/Tomlinson (cohesive), P2A/API (mixed), Beta/Effective Stress (all soils), Brown/SPT (cohesionless), Eslami-Fellenius/CPT (all soils), and Nottingham-Schmertmann/CPT (all soils)."
+        },
+        {
+          "section_id": "7.1.6",
+          "title": "Software for Static Analysis",
+          "body": "Several software programs automate static analysis calculations including APILE, UniPile, AllPile, and SPT97. APILE implements Nordlund, Alpha, P2A (API), and Schmertmann CPT methods. UniPile implements Beta and Eslami-Fellenius methods."
+        }
+      ]
+    },
+    {
+      "section_id": "7.2",
+      "title": "Strength Limit States",
+      "body": "This major section covers the strength limit state design of driven piles under axial compression, tension, and lateral loading. It presents eight static analysis methods for single pile axial capacity, pile group behavior in compression, axial tension resistance, time-dependent resistance changes (setup and relaxation), lateral resistance, pile length estimation, groundwater effects, scour, and downdrag. Each method includes step-by-step procedures, equations, design charts, and AASHTO-calibrated resistance factors.",
+      "key_points": [
+        "Eight static analysis methods for single pile axial compression capacity",
+        "Nordlund method is the primary method for cohesionless soils",
+        "Alpha (Tomlinson) method is the primary method for cohesive soils",
+        "Group capacity is the lesser of sum of individual pile capacities and block failure capacity",
+        "Tension resistance limited to 50% of skin friction for Nordlund method",
+        "Setup factors can increase long-term resistance 2-5x or more in some clays",
+        "Downdrag loads should be considered as additional load, not reduced resistance"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Core design section for driven pile axial and lateral capacity calculations under strength limit states per AASHTO LRFD.",
+      "subsections": [
+        {
+          "section_id": "7.2.1",
+          "title": "Nominal Axial Compression Resistance of Single Piles",
+          "body": "Presents eight static analysis methods for calculating the nominal axial compression resistance of single driven piles. Each method has specific applicability depending on soil type and available subsurface data. The Nordlund method is recommended for cohesionless soils using SPT data, the Alpha method for cohesive soils, the Beta method as a general effective stress approach, and CPT-based methods when cone penetration data are available.",
+          "key_points": [
+            "Nordlund method: primary method for cohesionless soils using SPT correlations",
+            "Alpha (Tomlinson) method: total stress method for cohesive soils using undrained shear strength",
+            "P2A (API RP2A) method: offshore-derived method applicable to mixed soil profiles",
+            "Beta (Effective Stress) method: general method using effective stress parameters",
+            "Brown method: SPT N60-based method for cohesionless soils",
+            "Eslami-Fellenius method: CPT-based method for all soil types",
+            "Nottingham-Schmertmann method: CPT-based method for all soil types",
+            "Rock resistance via uniaxial compressive strength (Section 7.2.1.5)",
+            "Static analysis software overview (Section 7.2.1.6)"
+          ],
+          "subsections": [
+            {
+              "section_id": "7.2.1.1",
+              "title": "Nordlund Method (Cohesionless Soils)",
+              "body": "The Nordlund (1963, 1979) method is the primary static analysis procedure for calculating the shaft and toe resistance of piles driven into cohesionless soils. It accounts for soil displacement volume, pile taper, pile material friction coefficient, and soil friction angle. The method uses four design charts (Figures 7-4 through 7-8) and provides both shaft and toe resistance components. The pile-soil friction angle delta is determined from the pile volume and soil friction angle. A limiting unit toe resistance prevents unrealistic values at depth. This is the most widely used method for driven piles in sand and gravel.",
+              "key_points": [
+                "Primary method for cohesionless soils per AASHTO; phi = 0.45",
+                "Shaft resistance depends on soil friction angle, pile displacement volume, pile taper, and pile-soil friction",
+                "Unit toe resistance limited by alpha_t coefficient to prevent unrealistic values at depth",
+                "Requires soil friction angle (from SPT N-value correlations in Chapter 5)",
+                "Step-by-step procedure with 6 design charts (Figures 7-4 through 7-8)",
+                "Applicable to timber, steel, and concrete pile types",
+                "Correction factor C_F accounts for difference between delta/phi ratio and assumed Nordlund curve"
+              ],
+              "equations": [
+                "Eq 7-6: Rs = SUM(K_delta * C_F * p_d * cos(omega) * Delta_d / cos(omega)) (shaft resistance)",
+                "Eq 7-7: K_delta from charts based on displaced soil volume V and phi",
+                "Eq 7-8: Rp = alpha_t * N'_q * A_t (toe resistance)",
+                "Eq 7-9: q_L = alpha_t * N'_q (limiting unit toe resistance)"
+              ],
+              "figures": [
+                "Figure 7-4: Nordlund design relationship for K_delta (phi = 25 deg)",
+                "Figure 7-5: Nordlund design relationship for K_delta (phi = 30 deg)",
+                "Figure 7-6: Nordlund design relationship for K_delta (phi = 35 deg)",
+                "Figure 7-7: Nordlund design relationship for K_delta (phi = 40 deg)",
+                "Figure 7-8: Nordlund alpha_t coefficient vs pile embedment depth ratio"
+              ],
+              "tables": [
+                "Table 7-3: Nordlund delta/phi ratio values by pile type and displaced volume",
+                "Table 7-4: Nordlund correction factor C_F values"
+              ]
+            },
+            {
+              "section_id": "7.2.1.2",
+              "title": "Alpha Method (Cohesive Soils)",
+              "body": "The Alpha method (Tomlinson 1957, 1971) is a total stress approach for calculating shaft and toe resistance of piles in cohesive soils. The adhesion factor alpha relates pile-soil adhesion to the soil undrained shear strength. The Alpha method accounts for pile type, soil layering, and the effect of overlying granular deposits on the adhesion of underlying clays. Adhesion values are obtained from Figures 7-9 through 7-11 based on undrained shear strength and pile embedment ratio. Toe resistance is calculated using Nc = 9 bearing capacity factor.",
+              "key_points": [
+                "Total stress method using undrained shear strength su; phi = 0.35",
+                "Adhesion factor alpha depends on su, pile type, and soil layering",
+                "Three charts for different soil/pile combinations (Figures 7-9 through 7-11)",
+                "Figure 7-9: concrete or timber piles in stiff clay without overlying sand",
+                "Figure 7-10: concrete or timber piles in stiff clay with overlying sand",
+                "Figure 7-11: steel piles in stiff clay (any overlying condition)",
+                "Toe bearing capacity factor Nc = 9 for piles penetrating >= 3B into bearing layer",
+                "Unit toe resistance: q_p = 9 * su at the pile toe"
+              ],
+              "equations": [
+                "Eq 7-10: Rs = SUM(c_a * A_si) (shaft resistance from adhesion times surface area)",
+                "Eq 7-11: Rp = 9 * s_u * A_t (toe resistance using Nc = 9)"
+              ],
+              "figures": [
+                "Figure 7-9: Adhesion for piles in stiff clays without overlying sand (Tomlinson)",
+                "Figure 7-10: Adhesion for piles in stiff clays with overlying sand (Tomlinson)",
+                "Figure 7-11: Adhesion for steel piles in stiff clays (Tomlinson)"
+              ],
+              "tables": []
+            },
+            {
+              "section_id": "7.2.1.3",
+              "title": "P2A (API RP2A) Method",
+              "body": "The P2A method follows the API Recommended Practice 2A-LRFD (1993) for fixed offshore platforms, adapted for onshore driven pile design. It provides both shaft and toe resistance calculations for cohesionless and cohesive soils. For cohesionless soils, the unit shaft resistance is the product of the lateral earth pressure coefficient K and effective overburden stress times tan(delta), with limiting values from Table 7-5. For cohesive soils, the adhesion factor alpha varies from 1.0 for low su/sigma'v ratios to a minimum of 0.5 for high ratios. Toe resistance uses Nq bearing capacity factors from Table 7-5 for sands and Nc = 9 for clays.",
+              "key_points": [
+                "Derived from offshore platform pile design, adapted for onshore use; phi = 0.25",
+                "Cohesionless shaft: f_s = K * sigma'_v * tan(delta) with limiting values",
+                "Cohesive shaft: alpha ranges from 0.5 to 1.0 based on su/sigma'_v ratio",
+                "Cohesionless toe: q_p = sigma'_v * Nq with limiting values from Table 7-5",
+                "Cohesive toe: q_p = 9 * su",
+                "Relatively low resistance factor (0.25) due to limited calibration data"
+              ],
+              "equations": [
+                "Eq 7-12: f_s = K * sigma'_v * tan(delta) (unit shaft resistance, cohesionless)",
+                "Eq 7-13: alpha = 0.5 * (su/sigma'_v)^(-0.5) for su/sigma'_v <= 1.0",
+                "Eq 7-14: alpha = 0.5 * (su/sigma'_v)^(-0.25) for su/sigma'_v > 1.0",
+                "Eq 7-15: f_s = alpha * su (unit shaft resistance, cohesive)",
+                "Eq 7-16: q_p = sigma'_v * N_q (unit toe resistance, cohesionless)",
+                "Eq 7-17: q_p = 9 * su (unit toe resistance, cohesive)",
+                "Eq 7-18: R_n = SUM(f_si * A_si) + q_p * A_t (total nominal resistance)"
+              ],
+              "figures": [],
+              "tables": [
+                "Table 7-5: P2A design parameters for cohesionless soils (delta, Nq, f_s limit, q_p limit by soil type)"
+              ]
+            },
+            {
+              "section_id": "7.2.1.4",
+              "title": "Effective Stress Methods",
+              "body": "Two effective stress approaches are presented: the Beta method and the Brown method. The Beta method (Esrig and Kirby 1979) computes shaft and toe resistance using effective stresses and is applicable to all soil types. The Brown method (2001) uses corrected SPT N60 values to estimate capacity in cohesionless soils. Additionally, two CPT-based methods are presented: Eslami-Fellenius and Nottingham-Schmertmann.",
+              "subsections": [
+                {
+                  "section_id": "7.2.1.4.1",
+                  "title": "Beta Method (Effective Stress)",
+                  "body": "The Beta method computes unit shaft resistance as the product of the Beta coefficient and the effective overburden stress. The Beta coefficient is related to the soil friction angle and OCR. For normally consolidated clays, Beta typically ranges from 0.2 to 0.3; for overconsolidated clays, Beta can exceed 1.0. Toe resistance uses Nt bearing capacity factor. The method is applicable to all soil types and is the primary method for mixed profiles.",
+                  "key_points": [
+                    "General effective stress method applicable to all soil types; phi = 0.25",
+                    "Unit shaft resistance: f_s = Beta * sigma'_v",
+                    "Beta = K_s * tan(delta), where K_s is the lateral earth pressure coefficient on pile shaft",
+                    "Normally consolidated clays: Beta = 0.2-0.3; OC clays: Beta up to 2.0",
+                    "Toe resistance: q_p = N_t * sigma'_vt (Nt from effective stress bearing capacity theory)",
+                    "Implemented in UniPile software"
+                  ],
+                  "equations": [
+                    "Eq 7-19: f_s = Beta * sigma'_v (unit shaft resistance)",
+                    "Eq 7-20: q_p = N_t * sigma'_vt (unit toe resistance)"
+                  ],
+                  "figures": [
+                    "Figure 7-12: Beta coefficient vs OCR for various soil types"
+                  ],
+                  "tables": [
+                    "Table 7-6: Nt bearing capacity factors for Beta method"
+                  ]
+                },
+                {
+                  "section_id": "7.2.1.4.2",
+                  "title": "Brown Method (SPT N60)",
+                  "body": "Brown (2001) developed a method that uses corrected SPT N60 values to estimate driven pile capacity in cohesionless soils. Unit shaft resistance is computed directly from N60 with depth-dependent coefficients. The method was calibrated against a load test database.",
+                  "key_points": [
+                    "SPT N60-based method for cohesionless soils; phi = 0.30",
+                    "Unit shaft resistance from N60 with depth-dependent coefficients",
+                    "Calibrated against pile load test database",
+                    "Separate equations for shaft and toe resistance"
+                  ],
+                  "equations": [
+                    "Eq 7-21: f_s = a * N60 (unit shaft resistance, with depth limits)",
+                    "Eq 7-22: q_p = b * N60 (unit toe resistance, with limiting value)",
+                    "Eq 7-23: Coefficients a and b from Table 7-7"
+                  ],
+                  "figures": [],
+                  "tables": [
+                    "Table 7-7: Brown method coefficients a and b for shaft and toe resistance"
+                  ]
+                },
+                {
+                  "section_id": "7.2.1.4.3",
+                  "title": "Eslami and Fellenius CPT Method",
+                  "body": "Eslami and Fellenius (1997) developed a CPT-based method that uses the effective cone tip resistance (q_E = q_c - u_2) to estimate pile capacity. Soil is classified into five types based on the relationship between q_E and sleeve friction f_s. A toe coefficient C_t is applied to the geometric average of q_E in the influence zone around the pile toe.",
+                  "key_points": [
+                    "CPT-based method using effective cone resistance q_E = q_c - u_2; phi = 0.50",
+                    "Highest resistance factor (0.50) of all static methods due to CPT reliability",
+                    "Five soil types classified by q_E vs f_s relationship",
+                    "Shaft resistance: f_s = C_s * q_E where C_s depends on soil type (Table 7-8)",
+                    "Toe resistance: q_p = C_t * q_Eg (geometric average in influence zone)",
+                    "Influence zone: 4B below to 4B above pile toe"
+                  ],
+                  "equations": [
+                    "Eq 7-24: q_E = q_c - u_2 (effective cone tip resistance)",
+                    "Eq 7-25: f_s = C_s * q_E (unit shaft resistance)",
+                    "Eq 7-26: q_Eg = (q_E1 * q_E2 * ... * q_En)^(1/n) (geometric average)",
+                    "Eq 7-27: q_p = C_t * q_Eg (unit toe resistance)",
+                    "Eq 7-28: C_t and C_s coefficients from Table 7-8"
+                  ],
+                  "figures": [
+                    "Figure 7-13: Eslami-Fellenius soil classification chart (q_E vs f_s)"
+                  ],
+                  "tables": [
+                    "Table 7-8: Eslami-Fellenius C_s shaft correlation coefficients by soil type",
+                    "Table 7-9: Eslami-Fellenius C_t toe coefficients"
+                  ]
+                },
+                {
+                  "section_id": "7.2.1.4.4",
+                  "title": "Nottingham and Schmertmann CPT Method",
+                  "body": "Nottingham and Schmertmann (1975) developed a CPT-based method using the measured cone tip resistance q_c and sleeve friction f_s to estimate pile capacity. The method uses a friction ratio approach for shaft resistance and an averaging technique for toe resistance in the influence zone around the pile toe. Different reduction factors apply to mechanical and electric cone data.",
+                  "key_points": [
+                    "CPT-based method using q_c and f_s data; phi = 0.50",
+                    "Shaft resistance uses friction ratio approach with depth-dependent K factors",
+                    "Toe resistance from cone tip averaging in influence zone (8B below to 4B above toe)",
+                    "Minimum path rule for averaging toe resistance to prevent overestimation",
+                    "Different factors for mechanical vs electric cone penetrometers",
+                    "Implemented in DRIVEN and APILE software"
+                  ],
+                  "equations": [
+                    "Eq 7-29: f_s = K * f_sc (unit shaft resistance from cone sleeve friction)",
+                    "Eq 7-30: K factor from Figure 7-14 based on depth and cone type",
+                    "Eq 7-31: q_p = (q_c1 + q_c2) / 2 * 1/(2*y) (toe resistance average path)",
+                    "Eq 7-32: q_c1 = average q_c from toe to 0.7-4B below toe (minimum path rule)",
+                    "Eq 7-33: q_c2 = average q_c from toe to 8B above toe (upward averaging)"
+                  ],
+                  "figures": [
+                    "Figure 7-14: Schmertmann K factors for shaft resistance from CPT",
+                    "Figure 7-15: Nottingham-Schmertmann toe resistance averaging procedure"
+                  ],
+                  "tables": [
+                    "Table 7-10: Nottingham-Schmertmann maximum unit toe resistance values"
+                  ]
+                }
+              ]
+            },
+            {
+              "section_id": "7.2.1.5",
+              "title": "Nominal Axial Resistance from Rock",
+              "body": "For piles driven to rock, the nominal toe resistance on rock is typically controlled by the structural capacity of the pile section rather than the rock strength. The geotechnical toe resistance in rock can be estimated from the uniaxial compressive strength. For very hard rock, the pile structural resistance controls.",
+              "key_points": [
+                "Rock toe resistance often controlled by pile structural capacity, not rock strength",
+                "q_p = 3 * q_u for highly weathered or soft rock (Eq 7-34)",
+                "For competent rock: limited by pile structural resistance",
+                "Must verify pile can be driven to rock without damage (drivability check)"
+              ],
+              "equations": [
+                "Eq 7-34: q_p = 3 * q_u (unit toe resistance on weathered/soft rock)"
+              ],
+              "figures": [],
+              "tables": []
+            },
+            {
+              "section_id": "7.2.1.6",
+              "title": "Software Overview for Static Analysis",
+              "body": "Several software programs automate static analysis calculations: APILE implements Nordlund, Alpha, P2A, and Schmertmann methods; UniPile implements Beta and Eslami-Fellenius methods; AllPile covers multiple methods; SPT97 is an SPT-based program.",
+              "key_points": [
+                "APILE: Nordlund, Alpha, P2A (API), Schmertmann CPT methods",
+                "UniPile: Beta (effective stress) and Eslami-Fellenius CPT methods",
+                "AllPile: multiple methods in a single interface",
+                "SPT97: SPT N-value based calculations",
+                "All programs require engineering judgment to verify input and output"
+              ],
+              "equations": [],
+              "figures": [
+                "Figure 7-16: Typical APILE output (resistance vs depth)"
+              ],
+              "tables": [
+                "Table 7-11: Summary of static analysis software capabilities"
+              ]
+            }
+          ]
+        },
+        {
+          "section_id": "7.2.2",
+          "title": "Pile Groups in Compression",
+          "body": "Discusses the behavior and capacity of pile groups under axial compression loads. Group capacity may be controlled by the sum of individual pile capacities (modified by group efficiency) or by block failure of the group acting as a unit. The group efficiency factor accounts for interaction effects when piles are closely spaced. AASHTO (2014) requires evaluation of both individual and block failure modes.",
+          "key_points": [
+            "Group capacity = minimum of (sum of individual capacities, block failure capacity)",
+            "AASHTO phi for group = 0.65 (individual) or method-specific phi (block failure)",
+            "Group efficiency Eg from Converse-Labarre formula for individual pile check",
+            "Block failure mode critical for cohesive soils at close spacing",
+            "Block failure shaft resistance from perimeter of group; toe from base area",
+            "For cohesionless soils, group efficiency typically >= 1.0 at typical spacings (3B c/c)",
+            "Minimum spacing 2.5B or 30 inches per AASHTO; 3B preferred"
+          ],
+          "equations": [
+            "Eq 7-35: Eg = 1 - arctan(d/s) * [(n-1)*m + (m-1)*n] / (90*m*n) (Converse-Labarre efficiency)",
+            "Eq 7-36: R_block = 2*D*(B_g+Z_g)*c_a + B_g*Z_g*c_u*N_c (block failure, cohesive soil)",
+            "Eq 7-37: R_block_sand = 2*D*(B_g+Z_g)*K*sigma'_v*tan(delta) + B_g*Z_g*alpha_t*N'_q*sigma'_vt (block failure, cohesionless)"
+          ],
+          "figures": [
+            "Figure 7-17: Block failure mode for pile group in cohesive soil",
+            "Figure 7-18: Block failure mode for pile group in cohesionless soil",
+            "Figure 7-19: Converse-Labarre group efficiency chart"
+          ],
+          "tables": [
+            "Table 7-12: AASHTO resistance factors for pile groups in compression"
+          ],
+          "subsections": [
+            {
+              "section_id": "7.2.2.1",
+              "title": "Pile Group Efficiency",
+              "body": "Group efficiency factor Eg reduces the sum of individual pile resistances to account for interaction. Converse-Labarre formula (Eq 7-35) is the standard approach."
+            },
+            {
+              "section_id": "7.2.2.2",
+              "title": "Block Failure in Cohesive Soils",
+              "body": "For closely spaced piles in cohesive soils, the group may fail as a block with shaft resistance on the perimeter and base bearing on the group footprint area."
+            },
+            {
+              "section_id": "7.2.2.3",
+              "title": "Block Failure in Cohesionless Soils",
+              "body": "Block failure in cohesionless soils uses perimeter shaft resistance and base bearing capacity on the group footprint. This mode is rarely critical for typical spacings."
+            }
+          ]
+        },
+        {
+          "section_id": "7.2.3",
+          "title": "Axial Tension Resistance of Single Piles and Pile Groups",
+          "body": "Axial tension (uplift) resistance consists only of shaft resistance; there is no toe contribution. AASHTO specifies reduced resistance factors for tension compared to compression. For groups in uplift, the resistance is the lesser of the sum of individual pile uplift capacities and the weight of the soil block enclosed by the group.",
+          "key_points": [
+            "Tension resistance = shaft resistance only (no toe component)",
+            "AASHTO resistance factors for uplift range from 0.15 to 0.35 for static methods",
+            "Nordlund method: uplift shaft resistance limited to 50% of compression shaft resistance (Eq 7-38)",
+            "Alpha method: uplift uses same adhesion values but with uplift resistance factor",
+            "Beta method: uplift shaft resistance same as compression but with uplift phi factor",
+            "Group uplift = minimum of individual pile sum and weight of enclosed soil block",
+            "Cohesive soils: group uplift includes perimeter adhesion plus soil block weight (Eq 7-41)"
+          ],
+          "equations": [
+            "Eq 7-38: R_n_uplift = 0.50 * R_s_Nordlund (Nordlund uplift = 50% of compression shaft)",
+            "Eq 7-39: R_n_uplift = R_s_Alpha (Alpha method uplift = full shaft resistance)",
+            "Eq 7-40: R_group_uplift = min(SUM(R_ni_uplift), W_block) (group uplift)",
+            "Eq 7-41: R_group_uplift_cohesive = 2*D*(B_g+Z_g)*c_a + W_g (group uplift in clay)"
+          ],
+          "figures": [
+            "Figure 7-20: Group uplift failure mechanism in cohesive soil"
+          ],
+          "tables": [
+            "Table 7-13: AASHTO resistance factors for uplift on single piles and groups"
+          ],
+          "subsections": [
+            {
+              "section_id": "7.2.3.1",
+              "title": "Single Pile Uplift",
+              "body": "Single pile uplift resistance is the shaft resistance calculated by any of the static methods, with method-specific reduction factors applied."
+            },
+            {
+              "section_id": "7.2.3.2",
+              "title": "Group Uplift",
+              "body": "Group uplift is checked against both the sum of individual pile uplift resistances and the weight of the soil block enclosed by the pile group perimeter.",
+              "subsections": [
+                {
+                  "section_id": "7.2.3.2.1",
+                  "title": "Group Uplift in Cohesionless Soils",
+                  "body": "In cohesionless soils, the group uplift resistance is typically controlled by the sum of individual pile uplift capacities."
+                },
+                {
+                  "section_id": "7.2.3.2.2",
+                  "title": "Group Uplift in Cohesive Soils",
+                  "body": "In cohesive soils, the group uplift may be controlled by the block failure mode with perimeter adhesion plus the weight of the soil block (Eq 7-41)."
+                },
+                {
+                  "section_id": "7.2.3.2.3",
+                  "title": "Tension in Cohesive Soils",
+                  "body": "The uplift resistance in cohesive soils must account for the adhesion along the pile-soil interface. The adhesion values are the same as those used for compression but the resistance factor is lower."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section_id": "7.2.4",
+          "title": "Resistance Changes After Driving",
+          "body": "This section covers time-dependent changes in pile resistance after driving, including relaxation (resistance decrease) and soil setup (resistance increase). These phenomena significantly affect the relationship between driving resistance and long-term static capacity.",
+          "key_points": [
+            "Relaxation: resistance decreases over time after driving (primarily toe resistance in dense fine-grained soils)",
+            "Setup: resistance increases over time as excess pore pressures dissipate (primarily shaft resistance in clays)",
+            "Setup factor = R_n(t)/R_n(EOD); ranges from 1.2 in sands to 5.5+ in sensitive clays",
+            "Setup primarily affects shaft resistance in clays; may take days to years",
+            "Relaxation most common in dense silts, shales, and weathered rock",
+            "AASHTO requires restrike testing when setup or relaxation is expected",
+            "Pore pressure estimation during driving from Eq 7-47 and Figure 7-35"
+          ],
+          "equations": [
+            "Eq 7-42: R_setup = R_n(t) / R_n(EOD) (setup factor definition)",
+            "Eq 7-43: R_n(t) = R_n(EOD) * [1 + A * log10(t/t_EOD)] (Skov and Denver 1988 setup equation)",
+            "Eq 7-44: A = setup rate parameter (0.2 for sand, 0.6 for clay, Table 7-16)",
+            "Eq 7-45: R_setup = (Q_t - Q_EOD) / Q_EOD (measured setup from restrike)",
+            "Eq 7-46: R_n_design = R_n(EOD) + phi_setup * R_setup (design resistance including setup)",
+            "Eq 7-47: Delta_u / sigma'_v0 = (sigma'_v0 + Delta_sigma_v) * A_f - sigma'_v0 (pore pressure from driving)"
+          ],
+          "figures": [
+            "Figure 7-21: Relaxation example: driving record showing resistance decrease over time",
+            "Figure 7-22: Setup example: restrike test showing increased resistance",
+            "Figure 7-23: Typical setup curves for different soil types",
+            "Figure 7-24: Setup factor vs time for various clay types",
+            "Figure 7-35: Pore water pressure generation during driving estimation"
+          ],
+          "tables": [
+            "Table 7-14: Typical relaxation scenarios and soil types",
+            "Table 7-15: AASHTO resistance factors for setup (phi_setup by verification method)",
+            "Table 7-16: Skov and Denver setup rate parameter A by soil type"
+          ],
+          "subsections": [
+            {
+              "section_id": "7.2.4.1",
+              "title": "Relaxation",
+              "body": "Relaxation is a decrease in pile resistance over time after driving. It is most commonly observed in dense silts, shales, and weathered rock where driving generates negative pore pressures that temporarily increase effective stresses. As the negative pore pressures dissipate, resistance decreases."
+            },
+            {
+              "section_id": "7.2.4.2",
+              "title": "Soil Setup",
+              "body": "Soil setup is the increase in pile resistance over time, primarily due to dissipation of excess positive pore water pressures generated during driving in cohesive soils. The rate and magnitude depend on soil type, sensitivity, permeability, and pile type."
+            },
+            {
+              "section_id": "7.2.4.3",
+              "title": "Design Considerations for Setup and Relaxation",
+              "body": "Designers must determine whether to rely on setup or account for relaxation. Setup can be incorporated using the Skov-Denver equation with appropriate resistance factors. Restrike testing is required to verify assumed setup values."
+            }
+          ]
+        },
+        {
+          "section_id": "7.2.5",
+          "title": "Nominal Lateral Resistance",
+          "body": "The nominal lateral resistance of driven piles is typically evaluated using p-y analysis methods as detailed in Section 7.3.7. For the strength limit state, the structural capacity of the pile under combined axial and lateral loading must be checked.",
+          "key_points": [
+            "Lateral resistance evaluation uses p-y methods (detailed in Section 7.3.7)",
+            "Strength limit state requires structural check under combined loading",
+            "Refer to Chapter 8 for structural design of piles"
+          ],
+          "equations": [],
+          "figures": [],
+          "tables": []
+        },
+        {
+          "section_id": "7.2.6",
+          "title": "Pile Length Estimates for Contract Documents",
+          "body": "Discusses procedures for estimating pile lengths for contract documents based on static analysis results. Estimated lengths should be consistent with the required factored resistance and the subsurface conditions at each substructure location.",
+          "key_points": [
+            "Estimated pile lengths based on static analysis required for plans and specifications",
+            "Order lengths should include contingency for subsurface variability",
+            "Pile length estimates should consider setup/relaxation effects",
+            "Figure 7-25: Example resistance vs depth profile for pile length estimation"
+          ],
+          "equations": [],
+          "figures": [
+            "Figure 7-25: Example resistance vs depth profile for pile length estimation",
+            "Figure 7-26: Example pile length estimation worksheet"
+          ],
+          "tables": []
+        },
+        {
+          "section_id": "7.2.7",
+          "title": "Groundwater Effects and Buoyancy",
+          "body": "Groundwater affects pile capacity through effective stress changes and buoyancy effects on the pile. Effective stress reduction below the water table reduces both shaft and toe resistance. The buoyant unit weight of the pile below the water table reduces its effective weight. Artesian conditions require special consideration.",
+          "key_points": [
+            "Effective stress below water table reduces shaft and toe resistance",
+            "Buoyant pile weight affects net downward load on pile",
+            "Artesian conditions can significantly reduce effective stresses and capacity",
+            "Perched water tables and seasonal fluctuations must be considered",
+            "Use lowest anticipated groundwater table for conservative design"
+          ],
+          "equations": [],
+          "figures": [],
+          "tables": [],
+          "subsections": [
+            {
+              "section_id": "7.2.8.1",
+              "title": "Artesian Conditions",
+              "body": "Artesian pressure conditions reduce effective stresses below the artesian pressure head elevation, significantly reducing shaft and toe resistance. Static analysis must use the reduced effective stresses."
+            }
+          ]
+        },
+        {
+          "section_id": "7.2.9",
+          "title": "Scour",
+          "body": "Scour at bridge foundations removes soil around piles, reducing shaft resistance and lateral support. Design must account for both long-term aggradation/degradation and contraction/local scour. AASHTO requires piles be designed for the full depth of scour at the design flood (100-year) for strength limit and check flood (500-year) for extreme event.",
+          "key_points": [
+            "Three scour components: long-term degradation, contraction scour, local scour",
+            "Strength limit: full scour depth at design flood (100-year)",
+            "Extreme event: full scour at check flood (500-year), see Section 7.4",
+            "Shaft resistance lost in scour zone must be subtracted from total resistance",
+            "Lateral support lost in scour zone increases pile unsupported length",
+            "Must evaluate stream migration potential",
+            "Refer to HEC-18 (Arneson et al. 2012) for scour depth calculation"
+          ],
+          "equations": [],
+          "figures": [
+            "Figure 7-36: Scour effects on pile resistance and lateral support"
+          ],
+          "tables": [
+            "Table 7-17: Design scour depths by flood event (AASHTO requirements)"
+          ]
+        },
+        {
+          "section_id": "7.2.10",
+          "title": "Downdrag",
+          "body": "Downdrag occurs when soil around a pile settles more than the pile, applying downward drag force (negative shaft resistance). The drag force acts as an additional load on the pile and must be considered in the strength limit state. Common causes include consolidation of soft clays under fill, lowering of the groundwater table, and settlement of liquefied soils after an earthquake. The neutral plane is the depth where the pile and soil settlement are equal.",
+          "key_points": [
+            "Downdrag = negative shaft resistance from soil settling more than the pile",
+            "Treated as additional factored load, NOT reduced resistance per AASHTO",
+            "Drag load computed using alpha method (cohesive) or beta method (cohesionless)",
+            "Neutral plane: depth where pile and soil settlement are equal",
+            "Common causes: fill on soft clay, GWT lowering, adjacent surcharge, liquefaction",
+            "Bitumen coatings can reduce downdrag but reduce positive shaft resistance too",
+            "See Section 7.3.6 for service limit state downdrag (settlement-based approach)"
+          ],
+          "equations": [],
+          "figures": [
+            "Figure 7-27: Downdrag mechanism on driven pile",
+            "Figure 7-28: Neutral plane concept for downdrag"
+          ],
+          "tables": []
+        }
+      ]
+    },
+    {
+      "section_id": "7.3",
+      "title": "Service Limit States",
+      "body": "This section addresses the service limit state design of driven pile foundations, focusing on deformation control. It covers tolerable deformations, load-settlement behavior (S-0 concept), construction point concept, pile group settlement estimation, downdrag-induced settlement, and lateral deflection analysis. Settlement methods include Meyerhof SPT/CPT methods for cohesionless soils, equivalent footing methods for cohesive soils, Janbu tangent modulus method, and the neutral plane method for downdrag.",
+      "key_points": [
+        "Service limit state controls deformations to tolerable levels",
+        "Angular distortion limit typically 0.004-0.008 for bridges (Table 7-18)",
+        "S-0 concept: structural load-settlement behavior including elastic compression",
+        "Construction point concept accounts for settlement occurring before loads applied",
+        "Pile group settlement typically 1.5-3x single pile settlement",
+        "Meyerhof SPT/CPT methods for cohesionless group settlement",
+        "Equivalent footing method for cohesive soil group settlement",
+        "Janbu tangent modulus method as alternative settlement approach",
+        "Neutral plane method for downdrag settlement analysis",
+        "p-y method for lateral deflection with group effects (p-multipliers)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "cross_references": {
+        "settlement": "Group settlement methods (Meyerhof, equivalent footing, Janbu) relate to settlement module concepts",
+        "downdrag": "Neutral plane method for downdrag settlement directly implemented in downdrag module",
+        "lateral_pile": "p-y method and p-multipliers for group lateral analysis implemented in lateral_pile module",
+        "pile_group": "Group settlement and lateral group effects implemented in pile_group module"
+      },
+      "applicability": "Deformation-controlled design ensuring pile foundation movements are within tolerable limits for the supported structure.",
+      "subsections": [
+        {
+          "section_id": "7.3.1",
+          "title": "Tolerable Deformations",
+          "body": "Establishes tolerable deformation criteria for pile-supported structures. Angular distortion (differential settlement / span length) is the primary criterion. For bridges, AASHTO (2014) recommends angular distortion limits. Total settlement limits depend on structure type and function.",
+          "key_points": [
+            "Angular distortion = differential settlement / span length",
+            "AASHTO bridge limit: angular distortion < 0.004 for multi-span bridges",
+            "Single span bridges more tolerant: angular distortion < 0.008",
+            "Total settlement typically 25-50 mm for bridges on piles",
+            "Lateral deflection limits depend on structural requirements and utility connections",
+            "Table 7-18 provides tolerable movement criteria for various structure types"
+          ],
+          "equations": [],
+          "figures": [
+            "Figure 7-37: Angular distortion definition and tolerable limits"
+          ],
+          "tables": [
+            "Table 7-18: Tolerable movement criteria for highway bridges and structures"
+          ]
+        },
+        {
+          "section_id": "7.3.2",
+          "title": "S-0 Concept (Load-Settlement Behavior)",
+          "body": "The S-0 (load-settlement) concept describes the relationship between applied load and pile head settlement. Settlement includes elastic compression of the pile, movement of the pile toe into the soil, and elastic compression of the soil beneath the pile toe. The shape of the S-0 curve depends on whether the pile is friction or end-bearing dominated.",
+          "key_points": [
+            "S-0 curve: complete load vs settlement relationship for a pile",
+            "Three settlement components: pile elastic compression, toe movement, soil compression below toe",
+            "Friction piles: gradual curving S-0 with large elastic compression",
+            "End-bearing piles: stiff response until toe capacity mobilized, then rapid settlement",
+            "Davisson offset method defines failure load from S-0 curve",
+            "Typical failure settlement = pile elastic compression + 4.0 mm + D/120"
+          ],
+          "equations": [],
+          "figures": [
+            "Figure 7-38: Typical S-0 curves for friction and end-bearing piles",
+            "Figure 7-39: Davisson failure criterion applied to S-0 curve"
+          ],
+          "tables": []
+        },
+        {
+          "section_id": "7.3.3",
+          "title": "Construction Point Concept",
+          "body": "The construction point concept recognizes that some settlement occurs during construction before the superstructure is connected. Settlement occurring before the connection is made does not affect the structure. Design should evaluate settlement under incremental loading at each construction stage.",
+          "key_points": [
+            "Settlement before superstructure connection does not affect angular distortion",
+            "Construction sequence timing affects how much settlement impacts the structure",
+            "Incremental loading analysis recommended for each construction stage",
+            "Figure 7-40: Construction point concept illustration",
+            "Particularly important for approach fills on soft ground"
+          ],
+          "equations": [],
+          "figures": [
+            "Figure 7-40: Construction point concept for settlement evaluation",
+            "Figure 7-41: Example construction sequence with settlement stages"
+          ],
+          "tables": []
+        },
+        {
+          "section_id": "7.3.4",
+          "title": "Recommended Procedure for Settlement Analysis",
+          "body": "Recommends a systematic procedure for evaluating pile group settlement, considering the construction sequence, load increments, and appropriate analysis methods based on soil type.",
+          "key_points": [
+            "Step 1: Determine construction sequence and load increments",
+            "Step 2: Estimate elastic compression of pile",
+            "Step 3: Estimate group settlement below pile toe using appropriate method",
+            "Step 4: Sum components and compare to tolerable limits",
+            "Select analysis method based on soil type and available data"
+          ],
+          "equations": [],
+          "figures": [],
+          "tables": []
+        },
+        {
+          "section_id": "7.3.5",
+          "title": "Pile Group Settlement",
+          "body": "Presents methods for estimating settlement of pile groups, which is generally larger than single pile settlement due to the increased zone of influence. The equivalent footing approach models the group as a shallow footing at some depth below the pile toe level. Different methods are used for cohesionless and cohesive soils.",
+          "key_points": [
+            "Group settlement typically 1.5-3x single pile settlement for friction piles",
+            "End-bearing groups on rock or dense sand may have settlement = single pile settlement",
+            "Equivalent footing concept: group modeled as footing at 2/3 pile embedment depth",
+            "Cohesionless soils: Meyerhof SPT and CPT methods (semi-empirical)",
+            "Cohesive soils: equivalent footing with consolidation analysis",
+            "Janbu tangent modulus method as general alternative",
+            "Neutral plane method for downdrag settlement"
+          ],
+          "equations": [],
+          "figures": [],
+          "tables": [],
+          "subsections": [
+            {
+              "section_id": "7.3.5.1",
+              "title": "Elastic Compression of Pile",
+              "body": "Elastic compression of the pile itself is a significant component of total pile head settlement, particularly for long piles. It depends on the load distribution along the pile, the pile cross-section, and the elastic modulus of the pile material.",
+              "key_points": [
+                "Elastic compression = P*L / (A*E) for uniform load (end-bearing)",
+                "For friction piles: 0.5 * P*L / (A*E) since load decreases linearly with depth",
+                "Composite piles: sum elastic compression of each material segment",
+                "Can be 10-30 mm or more for long piles"
+              ],
+              "equations": [
+                "Eq 7-48: delta_e = P*L / (A*E) (elastic compression, end bearing)",
+                "Eq 7-49: delta_e = 0.5 * P*L / (A*E) (elastic compression, uniform shaft resistance)"
+              ],
+              "figures": [
+                "Figure 7-42: Load distribution assumptions for elastic compression calculation"
+              ],
+              "tables": []
+            },
+            {
+              "section_id": "7.3.5.2",
+              "title": "Settlement of Pile Groups in Cohesionless Soils",
+              "body": "For pile groups in cohesionless soils, the Meyerhof (1976) SPT and CPT methods provide semi-empirical estimates of group settlement. These methods correlate group settlement to the group load, group dimensions, and in-situ test data. The SPT method uses corrected N60 values and the CPT method uses average cone tip resistance in the influence zone below the pile toe.",
+              "key_points": [
+                "Meyerhof SPT method: s = (q_net * B_g * I) / (N60_bar) (Eq 7-50)",
+                "Meyerhof CPT method: s = (q_net * B_g * I) / (2 * q_c_bar) (Eq 7-52)",
+                "Influence factor I = 1 - D / (8 * B_g) >= 0.5",
+                "Average N60 or q_c from pile toe to B_g below pile toe",
+                "Settlement increases with group width and applied stress",
+                "Typically provides reasonable estimates for normally consolidated sands"
+              ],
+              "equations": [
+                "Eq 7-50: s = q * sqrt(B_g) / (0.96 * N60_bar) (Meyerhof SPT settlement, mm)",
+                "Eq 7-51: I = 1 - D / (8 * B_g) >= 0.5 (depth influence factor)",
+                "Eq 7-52: s = q * sqrt(B_g) / (2 * q_c_bar) (Meyerhof CPT settlement, mm)",
+                "Eq 7-53: B_g = (n-1)*s + b (group width, where s = pile spacing, b = pile diameter)",
+                "Eq 7-54: q = Q_g / (B_g * Z_g) (average applied stress on equivalent footing)"
+              ],
+              "figures": [
+                "Figure 7-43: Equivalent footing concept for pile group in cohesionless soil"
+              ],
+              "tables": []
+            },
+            {
+              "section_id": "7.3.5.3",
+              "title": "Settlement of Pile Groups in Cohesive Soils",
+              "body": "For pile groups in cohesive soils, the equivalent footing method places the footing at 2/3 of the pile embedment depth. The load spreads at 2V:1H below the equivalent footing. Consolidation settlement is computed for each sublayer using the compression index Cc or recompression index Cr. The method accounts for preconsolidation pressure to distinguish between normally consolidated and overconsolidated conditions.",
+              "key_points": [
+                "Equivalent footing at 2/3 pile embedment depth (D_b = 2D/3)",
+                "Load spreads at 2V:1H below equivalent footing",
+                "Settlement computed layer by layer using Cc/(1+e0) * log10(sigma'_f/sigma'_0)",
+                "NC soils: use Cc; OC soils: use Cr up to preconsolidation pressure, then Cc",
+                "Stress distribution computed at midpoint of each sublayer",
+                "Total settlement = sum of sublayer settlements",
+                "Must check influence depth (10% of overburden stress increase)"
+              ],
+              "equations": [
+                "Eq 7-55: s = SUM[Cc_i/(1+e0_i) * H_i * log10(sigma'_f_i / sigma'_0_i)] (NC settlement)",
+                "Eq 7-56: s = SUM[Cr_i/(1+e0_i) * H_i * log10(sigma'_f_i / sigma'_0_i)] (OC settlement, sigma'_f < sigma'_p)",
+                "Eq 7-57: s = SUM[Cr_i/(1+e0_i)*H_i*log10(sigma'_p_i/sigma'_0_i) + Cc_i/(1+e0_i)*H_i*log10(sigma'_f_i/sigma'_p_i)] (OC becoming NC)",
+                "Eq 7-58: Delta_sigma_v = Q_g / ((B_g + z_i)*(Z_g + z_i)) (stress increase at depth z_i below equivalent footing)"
+              ],
+              "figures": [
+                "Figure 7-44: Equivalent footing for pile group in cohesive soil",
+                "Figure 7-45: 2V:1H load spread below equivalent footing",
+                "Figure 7-46: Compression curve showing Cc and Cr on e-log(sigma') plot",
+                "Figure 7-47: Settlement computation for layered cohesive profile"
+              ],
+              "tables": [
+                "Table 7-19: Typical compression index Cc and recompression index Cr values by soil type"
+              ]
+            },
+            {
+              "section_id": "7.3.5.4",
+              "title": "Time Rate of Settlement",
+              "body": "For cohesive soils, consolidation settlement occurs over time as excess pore water pressures dissipate. The time rate is governed by the coefficient of consolidation cv, the drainage path length, and the drainage conditions (single or double drainage).",
+              "key_points": [
+                "Degree of consolidation U(t) from Terzaghi 1-D consolidation theory",
+                "Time factor Tv = cv * t / H_dr^2",
+                "Double drainage: H_dr = H/2; single drainage: H_dr = H",
+                "90% consolidation typically used for design",
+                "Horizontal drainage (radial consolidation) can accelerate settlement",
+                "cv from laboratory consolidation tests (odometer) or back-calculated from field data"
+              ],
+              "equations": [
+                "Eq 7-59: T_v = c_v * t / H_dr^2 (time factor for consolidation)"
+              ],
+              "figures": [],
+              "tables": []
+            },
+            {
+              "section_id": "7.3.5.5",
+              "title": "Settlement in Layered Soils",
+              "body": "For layered soil profiles, settlement is computed separately for each layer and summed. The stress distribution must account for load spreading through different soil types."
+            },
+            {
+              "section_id": "7.3.5.6",
+              "title": "Janbu Tangent Modulus Method",
+              "body": "The Janbu (1963, 1967) tangent modulus method provides an alternative approach for settlement estimation using the tangent constrained modulus M = 1/mv as a function of stress level. The method is applicable to all soil types and uses a modulus number m and stress exponent j to characterize the soil compressibility.",
+              "key_points": [
+                "Alternative to Cc/Cr approach; applicable to all soil types",
+                "Tangent constrained modulus M = 1/m_v varies with stress level",
+                "Three soil types: j=0 (normally consolidated clay), j=0.5 (silt/sand), j=1 (dense sand/till)",
+                "Modulus number m from Table 7-20 based on soil type and density",
+                "Method accounts for stress-dependent compressibility",
+                "Particularly useful for mixed or non-standard soil profiles"
+              ],
+              "equations": [
+                "Eq 7-60: epsilon = integral of d_sigma / M(sigma) (strain from stress increase)",
+                "Eq 7-61: M = m * sigma_r * (sigma'_v / sigma_r)^(1-j) for j > 0 (tangent modulus)",
+                "Eq 7-62: M = m * sigma_r / (1 + e_0) for j = 0 (NC clay tangent modulus)",
+                "Eq 7-63: epsilon = (1/m) * ln(sigma'_f / sigma'_0) for j = 0 (NC clay strain)",
+                "Eq 7-64: epsilon = (2/m) * [sqrt(sigma'_f/sigma_r) - sqrt(sigma'_0/sigma_r)] for j = 0.5 (silt strain)",
+                "Eq 7-65: epsilon = (1/m) * (sigma'_f - sigma'_0) / sigma_r for j = 1 (dense sand strain)",
+                "Eq 7-66: s = SUM(epsilon_i * H_i) (total settlement from strain and layer thickness)",
+                "Eq 7-67: OC strain uses reloading modulus number m_r",
+                "Eq 7-68: For OC soil becoming NC: strain = OC part + NC part",
+                "Eq 7-69: sigma_r = 100 kPa (reference stress)"
+              ],
+              "figures": [
+                "Figure 7-48: Janbu tangent modulus concept (M vs sigma') for different soil types"
+              ],
+              "tables": [
+                "Table 7-20: Janbu modulus number m and stress exponent j by soil type"
+              ]
+            },
+            {
+              "section_id": "7.3.5.7",
+              "title": "Neutral Plane Method for Settlement",
+              "body": "The neutral plane method (Fellenius 1989, 2004) provides a rational approach for evaluating pile settlement considering the load transfer mechanism along the pile. The neutral plane is the depth where the relative pile-soil movement is zero. Above the neutral plane, the soil settles more than the pile (negative shaft resistance/downdrag). Below the neutral plane, the pile settles more than the soil (positive shaft resistance). Settlement is computed at the neutral plane depth.",
+              "key_points": [
+                "Neutral plane: depth where pile and soil settlement are equal",
+                "Above neutral plane: soil settles more than pile (negative shaft resistance)",
+                "Below neutral plane: pile settles more than soil (positive shaft resistance)",
+                "Settlement at neutral plane = pile elastic compression + toe movement",
+                "Method integrates strength and service limit states into single framework",
+                "Figure 7-49 illustrates the unified neutral plane diagram"
+              ],
+              "equations": [],
+              "figures": [
+                "Figure 7-49: Neutral plane method for downdrag settlement evaluation"
+              ],
+              "tables": []
+            }
+          ]
+        },
+        {
+          "section_id": "7.3.6",
+          "title": "Downdrag Settlement",
+          "body": "Addresses the service limit state evaluation of downdrag, where the pile settlement due to downdrag forces must be within tolerable limits. The neutral plane approach is used to compute settlement rather than treating downdrag as additional load (which is the strength limit state approach).",
+          "key_points": [
+            "Service limit state: downdrag evaluated as settlement, not additional load",
+            "Neutral plane method (Fellenius 1989, Siegel 2013) for settlement computation",
+            "Settlement = pile compression above neutral plane + toe settlement",
+            "Bitumen coatings reduce downdrag forces but also reduce positive shaft resistance",
+            "Must check both strength (drag load) and service (settlement) limit states"
+          ],
+          "equations": [
+            "Eq 7-70: s_downdrag = delta_pile + delta_toe (total downdrag settlement)",
+            "Eq 7-71: delta_pile = integral(P(z)/(A*E)) dz from 0 to neutral plane (pile elastic compression)",
+            "Eq 7-72: delta_toe = f(Q_toe, soil stiffness) (toe settlement from load transfer)"
+          ],
+          "figures": [
+            "Figure 7-50: Neutral plane method for downdrag settlement"
+          ],
+          "tables": [],
+          "subsections": [
+            {
+              "section_id": "7.3.6.1",
+              "title": "Neutral Plane Approach for Downdrag",
+              "body": "The neutral plane is found by constructing the load distribution along the pile from both the top (dead load + drag force) and bottom (toe + positive shaft resistance). The intersection defines the neutral plane depth."
+            },
+            {
+              "section_id": "7.3.6.2",
+              "title": "Settlement Computation",
+              "body": "Once the neutral plane is located, the pile settlement is computed as the sum of elastic pile compression from the pile head to the neutral plane and the toe settlement. The toe settlement can be estimated from load-transfer curves or published correlations."
+            }
+          ]
+        },
+        {
+          "section_id": "7.3.7",
+          "title": "Lateral Deflection Analysis",
+          "body": "Covers methods for evaluating lateral deflection of single piles and pile groups under lateral loads. The p-y method is the primary approach, modeling the soil-pile interaction using nonlinear springs (p-y curves) along the pile length. Group effects are accounted for using p-multipliers that reduce the p-y spring stiffness for piles within a group. The strain wedge method is also discussed as an alternative approach.",
+          "key_points": [
+            "p-y method is the primary lateral analysis approach",
+            "p-y curves model nonlinear soil-pile interaction springs",
+            "Different p-y curves for different soil types (soft clay, stiff clay, sand)",
+            "Fixed vs free head conditions significantly affect deflection and moment",
+            "Group effects via p-multipliers (0.2-1.0 depending on position and spacing)",
+            "Leading row piles have higher p-multipliers than trailing rows",
+            "Strain wedge method suitable for short stiff piles",
+            "Computer programs: LPILE, COM624P, GROUP, FB-MultiPier"
+          ],
+          "equations": [
+            "Eq 7-73: EI * d4y/dx4 + P_x * d2y/dx2 - p = 0 (beam on nonlinear foundation differential equation)"
+          ],
+          "figures": [
+            "Figure 7-51: p-y curve concept and typical shapes for different soil types",
+            "Figure 7-52: Single pile p-y model (beam on nonlinear springs)",
+            "Figure 7-53: Fixed vs free head pile deflection and moment distributions"
+          ],
+          "tables": [
+            "Table 7-21: Recommended p-y curve types by soil condition",
+            "Table 7-22: Input parameters for p-y curves by soil type"
+          ],
+          "subsections": [
+            {
+              "section_id": "7.3.7.1",
+              "title": "Pile Head Fixity",
+              "body": "The degree of rotational restraint at the pile head (fixed, free, or partial fixity) significantly affects the lateral deflection and bending moment distribution. Fixed head conditions reduce deflection but increase the negative moment at the pile head. Free head conditions allow rotation and result in larger deflection but lower pile head moments."
+            },
+            {
+              "section_id": "7.3.7.2",
+              "title": "Lateral Design Methods Overview",
+              "body": "Two primary methods for lateral pile analysis: the p-y method (most common for long flexible piles) and the strain wedge method (better for short stiff piles). The p-y method models the pile as a beam on nonlinear springs. The strain wedge method computes passive soil resistance using a 3D failure wedge."
+            },
+            {
+              "section_id": "7.3.7.3",
+              "title": "p-y Method",
+              "body": "The p-y method solves the beam-on-nonlinear-foundation differential equation (Eq 7-73) using iterative finite difference techniques. Different p-y curve formulations are used for different soil types: Matlock (1970) for soft clay, Reese et al. (1975) for stiff clay below water table, Welch and Reese (1972) for stiff clay above water table, Reese et al. (1974) for sand, and API (1993) for sand. Software programs LPILE and COM624P automate this analysis.",
+              "key_points": [
+                "Beam on nonlinear foundation: EI*d4y/dx4 + Px*d2y/dx2 - p = 0",
+                "Matlock (1970): soft clay below water table",
+                "Reese et al. (1975): stiff clay below water table",
+                "Welch and Reese (1972): stiff clay above water table",
+                "Reese et al. (1974): sand",
+                "API (1993): sand (alternative to Reese et al.)",
+                "Evans and Duncan (1982): weak rock",
+                "Iterative solution by finite difference method",
+                "Results: deflection, moment, shear, and soil reaction profiles"
+              ]
+            },
+            {
+              "section_id": "7.3.7.4",
+              "title": "Strain Wedge Method",
+              "body": "The strain wedge method (Norris 1986, Ashour et al. 1998) models the soil failure around a laterally loaded pile using a three-dimensional passive wedge. It relates the horizontal soil resistance to the horizontal strain in the passive wedge and provides p-y curves as output. The method is particularly suitable for short stiff piles and layered soils."
+            },
+            {
+              "section_id": "7.3.7.5",
+              "title": "Single Pile Lateral Analysis",
+              "body": "For single piles, the p-y analysis determines the lateral deflection, rotation, bending moment, shear force, and soil reaction distribution along the pile length. The analysis is performed for each load combination (service, strength, extreme event). Critical output includes maximum deflection (usually at pile head) and maximum bending moment (usually 3-8 pile diameters below ground)."
+            },
+            {
+              "section_id": "7.3.7.6",
+              "title": "Pile Group Lateral Analysis",
+              "body": "For pile groups under lateral loading, the p-y curves are modified using p-multipliers to account for pile-soil-pile interaction (shadowing) effects. Leading row piles have higher p-multipliers than trailing rows because they push into undisturbed soil. P-multipliers depend on pile spacing, number of rows, and row position. Brown et al. (1988) and others have developed p-multiplier values from full-scale lateral load tests.",
+              "key_points": [
+                "P-multipliers reduce p-y curves for group effects (shadowing)",
+                "Leading row: fm = 0.70-1.0; second row: fm = 0.40-0.85; third+ rows: fm = 0.30-0.70",
+                "P-multipliers depend on spacing (3D to 5D typical range)",
+                "Table 7-23: p-multiplier values from AASHTO (2014)",
+                "Table 7-24: p-multiplier values from research by Brown, Rollins, and others",
+                "Table 7-25: Summary of full-scale group lateral load tests",
+                "Programs GROUP and FB-MultiPier handle group lateral analysis",
+                "Rigid cap assumption used for most group analyses"
+              ],
+              "equations": [],
+              "figures": [
+                "Figure 7-54: p-multiplier concept for pile group lateral analysis",
+                "Figure 7-55: Row position effect on p-multipliers",
+                "Figure 7-56: Shadowing effect in pile groups under lateral load"
+              ],
+              "tables": [
+                "Table 7-23: AASHTO (2014) p-multiplier values by row position and spacing",
+                "Table 7-24: p-multiplier values from published research studies",
+                "Table 7-25: Summary of full-scale pile group lateral load test programs"
+              ]
+            }
+          ]
+        },
+        {
+          "section_id": "7.3.8",
+          "title": "Lateral Squeeze",
+          "body": "Lateral squeeze occurs when soft soils are loaded by an embankment adjacent to a pile-supported abutment, causing lateral soil movements that load the piles horizontally. This is evaluated using Eq 7-74 and 7-75 to estimate the lateral force on piles from the embankment-induced soil movement.",
+          "key_points": [
+            "Soft soil under embankment can squeeze laterally toward bridge piles",
+            "Lateral soil movement imposes horizontal forces on piles",
+            "Most critical for abutment piles adjacent to approach embankments",
+            "Checked when soft layer thickness < 3x embankment height",
+            "Factor of safety against lateral squeeze from Eq 7-74",
+            "If FOS < 1.5, lateral pile analysis including imposed soil movement required"
+          ],
+          "equations": [
+            "Eq 7-74: FOS = (2 * c_u * (1 + D_s/(B_e * sqrt(2)))) / (gamma_fill * H_fill) (FOS against lateral squeeze)",
+            "Eq 7-75: y_s = f(p, x, soil properties) (lateral soil movement profile for pile loading)"
+          ],
+          "figures": [
+            "Figure 7-57: Lateral squeeze mechanism at bridge abutment",
+            "Figure 7-58: Lateral squeeze evaluation geometry"
+          ],
+          "tables": []
+        },
+        {
+          "section_id": "7.3.9",
+          "title": "Overall Stability",
+          "body": "Overall stability of the pile-supported structure must be checked, particularly for bridge abutments on slopes, retaining structures, and piles near embankment edges. The global stability analysis includes the pile foundation and surrounding soil mass using limit equilibrium slope stability methods.",
+          "key_points": [
+            "Global stability check required per AASHTO for slopes and abutments",
+            "Limit equilibrium methods (Bishop, Spencer) used for global stability",
+            "Resistance factor phi_os = 0.65 for overall stability",
+            "Piles contribute to stability through shear and moment resistance",
+            "Must check stability during all construction stages"
+          ],
+          "equations": [],
+          "figures": [
+            "Figure 7-59: Overall stability analysis for pile-supported abutment"
+          ],
+          "tables": []
+        }
+      ]
+    },
+    {
+      "section_id": "7.4",
+      "title": "Extreme Event Limit States",
+      "body": "This section addresses pile foundation design for extreme events including scour during the check flood, seismic loading, ice loads, and vessel collision. These are low probability, high consequence events with higher resistance factors than strength limit states. The section includes detailed seismic design procedures with site classification, spectral acceleration computation, and liquefaction assessment.",
+      "key_points": [
+        "Extreme events: check flood scour, seismic, ice, vessel collision",
+        "Higher resistance factors than strength limit states (phi = 1.0 for many cases)",
+        "Seismic design: site class, spectral acceleration, liquefaction assessment",
+        "Check flood (500-year) scour depth used for extreme event",
+        "Combined extreme events evaluated per AASHTO load combinations"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "cross_references": {
+        "seismic_geotech": "Site classification (Table 7-26) and seismic response analysis directly implemented in seismic_geotech module"
+      },
+      "applicability": "Design for low-probability, high-consequence loading events per AASHTO extreme event limit state requirements.",
+      "subsections": [
+        {
+          "section_id": "7.4.1",
+          "title": "Scour During Check Flood",
+          "body": "For the extreme event limit state, the full scour depth at the check flood (500-year event) is used. All shaft resistance and lateral support in the scour zone is removed. The pile must still have adequate factored resistance below the scour depth.",
+          "key_points": [
+            "Check flood = 500-year event per AASHTO",
+            "Full scour depth at check flood for extreme event design",
+            "Remove all resistance in scour zone",
+            "Pile must develop adequate resistance below scour depth",
+            "Lateral support loss increases effective unsupported pile length"
+          ],
+          "equations": [],
+          "figures": [],
+          "tables": []
+        },
+        {
+          "section_id": "7.4.2",
+          "title": "Seismic Design",
+          "body": "Comprehensive seismic design procedures for pile foundations including site classification, seismic hazard analysis, spectral acceleration computation, and liquefaction potential assessment. Site classification per AASHTO uses shear wave velocity in the upper 30 m (Vs30), SPT N-value (N-bar), or undrained shear strength (su-bar). Site factors Fpga, Fa, and Fv modify the mapped spectral accelerations for local site conditions. Seismic zones determine the level of analysis required.",
+          "key_points": [
+            "Site classification: Class A (hard rock) through F (special study) per Table 7-26",
+            "Three site classification criteria: Vs30, average N60 in upper 30 m, average su in upper 30 m",
+            "Site factors Fpga, Fa (short period), Fv (long period) from Tables 7-27 through 7-29",
+            "Seismic zones 1-4 based on SD1 value (Table 7-30)",
+            "Zone 1: SD1 < 0.15 (low seismic); Zone 4: SD1 >= 0.50 (high seismic)",
+            "Spectral acceleration Csm from Eq 7-76 through 7-79",
+            "Liquefaction assessment required for Zones 3 and 4",
+            "Liquefaction triggers for saturated loose sand: N1_60 < 25 and PGA >= 0.10g"
+          ],
+          "equations": [
+            "Eq 7-76: As = Fpga * PGA (design peak ground acceleration)",
+            "Eq 7-77: SDS = Fa * Ss (design short-period spectral acceleration)",
+            "Eq 7-78: SD1 = Fv * S1 (design 1-second spectral acceleration)",
+            "Eq 7-79: Csm = SDS for Tm <= Ts; Csm = SD1/Tm for Tm > Ts (seismic response coefficient)",
+            "Eq 7-80: Ts = SD1/SDS (corner period between constant accel and constant velocity)"
+          ],
+          "figures": [
+            "Figure 7-60: Site classification flowchart",
+            "Figure 7-61: Design response spectrum construction",
+            "Figure 7-62: Liquefaction susceptibility chart (N1_60 vs CSR)",
+            "Figure 7-63: Spectral acceleration vs period for different site classes"
+          ],
+          "tables": [
+            "Table 7-26: AASHTO site classification definitions (Class A through F)",
+            "Table 7-27: Site factor Fpga at zero period (PGA)",
+            "Table 7-28: Site factor Fa for short-period spectral acceleration (0.2 sec)",
+            "Table 7-29: Site factor Fv for long-period spectral acceleration (1.0 sec)",
+            "Table 7-30: AASHTO seismic zone definitions by SD1 value",
+            "Table 7-31: Liquefaction analysis requirements by seismic zone"
+          ]
+        },
+        {
+          "section_id": "7.4.3",
+          "title": "Ice Loads and Vessel Collision",
+          "body": "Covers extreme event loading from ice forces and vessel collision on pile foundations. Ice forces include static thermal expansion, dynamic ice breaking, and static ice pressure. Vessel collision forces depend on vessel type, size, speed, and waterway geometry.",
+          "key_points": [
+            "Ice loads: static thermal, dynamic breaking, pressure (Eq 7-81 through 7-83)",
+            "Dynamic ice force: F = Cn * p * t * w (Eq 7-82)",
+            "Static ice pressure: F = Ca * p * t * w (Eq 7-83)",
+            "Vessel collision: F = 0.5 * m * v^2 / a (kinetic energy approach, Eq 7-84)",
+            "AASHTO LRFD Guide Specifications for Vessel Collision (AASHTO 2010)",
+            "Pier protection structures (fender systems, dolphins) can reduce collision loads"
+          ],
+          "equations": [
+            "Eq 7-81: F_ice_thermal = alpha * E_ice * t * w * Delta_T (thermal ice force)",
+            "Eq 7-82: F_ice_dynamic = C_n * p * t * w (dynamic ice breaking force)",
+            "Eq 7-83: F_ice_static = C_a * p * t * w (static ice pressure force)",
+            "Eq 7-84: F_vessel = 0.5 * m * v^2 / a (vessel collision force from kinetic energy)"
+          ],
+          "figures": [
+            "Figure 7-64: Ice loading on pile foundation",
+            "Figure 7-65: Vessel collision force determination"
+          ],
+          "tables": []
+        },
+        {
+          "section_id": "7.4.4",
+          "title": "Combined Extreme Events",
+          "body": "AASHTO load combinations for extreme events require evaluation of different combinations of extreme loads with permanent and transient loads. Load factors and resistance factors specific to extreme event limit states apply.",
+          "key_points": [
+            "Extreme Event I: earthquake + permanent loads + live load fraction",
+            "Extreme Event II: ice/collision/check flood + permanent loads + live load",
+            "Resistance factor phi = 1.0 for geotechnical resistance in extreme events",
+            "Multiple extreme events not combined simultaneously (e.g., no earthquake + vessel collision)"
+          ],
+          "equations": [],
+          "figures": [],
+          "tables": []
+        }
+      ]
+    },
+    {
+      "section_id": "7.5",
+      "title": "Minimum Pile Penetration Requirements",
+      "body": "Discusses minimum pile penetration depth requirements to ensure adequate resistance, group behavior, and protection against scour and other adverse conditions. Minimum penetration may be controlled by lateral resistance requirements, scour protection, downdrag, or liquefaction zone penetration rather than axial capacity alone.",
+      "key_points": [
+        "Minimum penetration governed by lateral resistance, not just axial capacity",
+        "Must penetrate below scour depth to develop adequate resistance",
+        "Liquefaction zones: piles must penetrate through liquefiable layers into competent material",
+        "Soft/organic soils: penetrate through soft layers to bearing stratum",
+        "Frost heave: penetrate below frost depth in heave-susceptible soils",
+        "Minimum 10 feet into competent bearing stratum recommended",
+        "Seismic zones 3-4: penetrate through potentially liquefiable layers plus 3 pile diameters"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-66: Minimum penetration requirements for various conditions"
+      ],
+      "tables": []
+    },
+    {
+      "section_id": "7.6",
+      "title": "Determination of Rndr (Nominal Driving Resistance)",
+      "body": "Presents the methodology for determining the nominal driving resistance Rndr required to ensure adequate long-term static resistance. Rndr accounts for the difference between resistance at the time of driving (end of drive or restrike) and the long-term static resistance including setup and relaxation effects. The relationship between Rndr and the required nominal resistance depends on whether setup or relaxation is expected.",
+      "key_points": [
+        "Rndr = nominal resistance to be verified during driving",
+        "Rndr accounts for setup (increases Rn over time) and relaxation (decreases Rn over time)",
+        "If no setup/relaxation: Rndr = Rn (driving resistance equals required nominal resistance)",
+        "With setup: Rndr < Rn (can accept lower driving resistance, long-term setup will increase capacity)",
+        "With relaxation: Rndr > Rn (need higher driving resistance, resistance will decrease over time)",
+        "AASHTO Table 10.5.5.2.3-1 provides resistance factors for driving with setup",
+        "Eq 7-85 and 7-86 relate Rndr to factored resistance requirements",
+        "Table 7-32 provides phi factors for Rndr determination by verification method"
+      ],
+      "equations": [
+        "Eq 7-85: R_r = phi * R_ndr + phi_setup * R_setup (factored resistance with setup)",
+        "Eq 7-86: R_ndr = (R_r - phi_setup * R_setup) / phi (required nominal driving resistance)"
+      ],
+      "figures": [
+        "Figure 7-67: Rndr determination flowchart",
+        "Figure 7-68: Relationship between Rndr, Rn, and setup"
+      ],
+      "tables": [
+        "Table 7-32: Resistance factors for Rndr by field verification method"
+      ],
+      "cross_references": {
+        "wave_equation": "Rndr is the target resistance for wave equation bearing graph analysis in the wave_equation module"
+      }
+    },
+    {
+      "section_id": "7.7",
+      "title": "Drivability Analysis",
+      "body": "This section covers the evaluation of pile drivability, which is one of the most important yet frequently overlooked aspects of driven pile design. A pile must have a drivability limit in excess of the soil resistance to be overcome during driving. The section discusses factors affecting drivability, methods for determining drivability, and the relationship between drivability and pile type. Three methods are presented: wave equation analysis, dynamic testing and analysis, and static load tests.",
+      "key_points": [
+        "Drivability evaluation is one of the most common deficiencies in driven pile design practice",
+        "Pile impedance EA/C is the primary controlling factor for drivability",
+        "Two drivability requirements: sufficient stiffness to transmit driving forces AND sufficient strength to withstand driving stresses",
+        "Three drivability evaluation methods: wave equation analysis, dynamic testing, static load tests",
+        "Wave equation is the most practical design-stage tool for drivability assessment",
+        "Must account for soil setup and relaxation effects during driving",
+        "For steel H-piles: increase flange width to improve impedance without increasing soil resistance",
+        "For pipe piles: increase wall thickness to improve impedance",
+        "Concrete piles: increasing area also increases soil resistance (solid cross section)",
+        "Inside-fitting cutting shoe for open-end pipe piles can improve drivability",
+        "AASHTO (2014) requires wave equation drivability analysis during design"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-69: Drivability analysis flowchart",
+        "Figure 7-70: Typical wave equation bearing graph for drivability assessment",
+        "Figure 7-71: Driving stress check against allowable stress limits"
+      ],
+      "tables": [],
+      "cross_references": {
+        "wave_equation": "Wave equation drivability analysis is directly implemented in the wave_equation module (bearing_graph and drivability functions)"
+      },
+      "applicability": "Essential design check to verify that the selected pile section can be driven to the required penetration depth without structural damage and with available driving equipment.",
+      "subsections": [
+        {
+          "section_id": "7.7.1",
+          "title": "Factors Affecting Drivability",
+          "body": "The primary factors affecting pile drivability include pile impedance (EA/C), pile material strength, and driving equipment characteristics. Pile impedance is the primary controlling factor: once pile material and modulus are selected, only increasing cross-sectional area improves drivability. Pile material strength is a lesser factor since it does not alter impedance, but higher strength allows higher driving stresses. Driving system characteristics (ram weight, stroke, speed) and dynamic soil response (damping, quake) also affect drivability. Installation aids (predrilling, jetting, spudding) can assist in meeting penetration requirements but do not change pile section drivability.",
+          "key_points": [
+            "Pile impedance EA/C is the primary controlling factor",
+            "E = elastic modulus, A = cross-sectional area, C = wave speed",
+            "Increasing area (for same pile type) is the most effective improvement",
+            "Steel H-piles: increase H-pile section size to increase impedance",
+            "Pipe piles: increase wall thickness to increase impedance",
+            "Pile material strength affects allowable driving stress but not impedance",
+            "Driving system: ram weight, stroke, and speed affect energy delivered",
+            "Installation aids (predrilling, jetting) assist penetration but do not change drivability",
+            "Dynamic soil response (damping, quake) can reduce drivability in some soils"
+          ]
+        },
+        {
+          "section_id": "7.7.2",
+          "title": "Methods for Determining Pile Drivability",
+          "body": "Three methods are available for predicting and/or checking pile drivability, presented in order of increasing cost and reliability: (1) Wave equation analysis, (2) Dynamic testing and analysis, and (3) Static load tests. Wave equation analysis is a computer program that accounts for pile impedance and calculates estimated driving stresses as well as blow count versus nominal resistance. It is the most practical design-stage tool. Dynamic testing provides field measurements during driving to calculate driving stresses and estimate nominal resistance. Static load tests are the most accurate but most expensive method.",
+          "key_points": [
+            "Method 1: Wave equation analysis - design stage tool, most practical",
+            "Method 2: Dynamic testing - field verification during pile installation",
+            "Method 3: Static load tests - most accurate but requires test program during design",
+            "Wave equation: calculates blow count vs resistance and driving stresses",
+            "Dynamic testing: provides actual driving stresses and resistance estimates",
+            "Static load tests: confirms drivability and resistance by actually driving and loading test pile",
+            "Methods 1 and 2 can reduce number of static load tests needed",
+            "AASHTO (2014) requires wave equation analysis during design stage"
+          ]
+        },
+        {
+          "section_id": "7.7.3",
+          "title": "Drivability versus Pile Type",
+          "body": "Drivability should be checked during the design stage of all driven piles. It is particularly important for closed end steel pipe piles where the impedance of the steel casing may limit drivability. Thin wall pipe piles may lack the drivability to develop required nominal resistance or achieve necessary penetration depth. Steel H-piles, open pipe piles, prestressed concrete piles, and timber piles are also subject to drivability limitations, particularly as extreme events and the trend to larger nominal resistances require increased penetration depths. The drivability of long prestressed concrete piles can be limited by the pile's tensile strength.",
+          "key_points": [
+            "Drivability check required for all pile types during design stage",
+            "Closed end pipe piles: steel casing impedance may limit drivability",
+            "Thin wall pipe piles: may lack drivability for required resistance or penetration",
+            "Wave equation analysis should be performed to select pile section and wall thickness",
+            "Prestressed concrete: drivability may be limited by tensile strength for long piles",
+            "Example drivability assessment presented in Section 12.5.3",
+            "Section 12.5.8 illustrates wave equation drivability for pipe pile wall thickness selection"
+          ]
+        }
+      ]
+    },
+    {
+      "section_id": "7.8",
+      "title": "Considerations for Batter Pile Design and Construction",
+      "body": "Batter (inclined) piles are driven at an inclination from vertical to resist large static lateral loads or where structural rigidity is required. A battered pile can resist larger horizontal loads and experience less deflection than a vertical counterpart at the same loading level. However, under dynamic or seismic loading, the increased structural stiffness from batter piles generates larger forces. In seismic design, earthquake-induced displacements generate load proportional to stiffness, so batter piles attract more load. Where significant downdrag forces are expected, batter piles should be avoided due to increased bending moments. Figure 7-80 illustrates the variation in foundation response depending on group configuration and batter.",
+      "key_points": [
+        "Batter piles driven at inclination from vertical to resist lateral loads",
+        "Effective under static lateral loads; problematic under seismic loading",
+        "Seismic design: increased stiffness attracts higher forces to the structure",
+        "Avoid batter piles where significant drag forces (downdrag) are expected",
+        "Batter angles greater than 1H:3V should be avoided for constructability",
+        "Horizontal component of axial load contributes to lateral resistance of the group",
+        "If no vertical load applied, batter pile has no horizontal component (behaves as vertical)",
+        "Figure 7-80: Foundation response for Cases A (single), B (two vertical), C (batter + vertical)",
+        "Group analysis with batter piles follows Section 7.3.7.5 procedures with modifications",
+        "Careful assessment of load direction relative to batter orientation is essential"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-80: Variation of foundation response with group configuration and batter (after Wilson et al. 2006)"
+      ],
+      "tables": [],
+      "cross_references": {
+        "pile_group": "Batter pile group analysis extends the rigid cap group analysis in pile_group module"
+      }
+    },
+    {
+      "section_id": "7.9",
+      "title": "Corrosion and Deterioration",
+      "body": "Corrosion and deterioration of all pile types must be considered for the respective environmental conditions. Section 6.12 of Chapter 6 provides extensive design considerations for aggressive subsurface environments. AASHTO (2014) recommends at minimum an evaluation for steel corrosion particularly in fill soils, low pH soils, and marine environments. For concrete piles, sulfate, chloride, and acid attack should be evaluated. Timber piles are subject to decay from wetting and drying cycles as well as attack from marine borers and insects.",
+      "key_points": [
+        "Steel piles: evaluate corrosion in fill soils, low pH soils, and marine environments",
+        "Concrete piles: evaluate sulfate, chloride, and acid attack",
+        "Timber piles: evaluate decay from wetting/drying, marine borers, and insects",
+        "Refer to Chapter 6 Section 6.12 for detailed corrosion design guidance",
+        "AASHTO (2014) Article 10.7.5 addresses pile deterioration requirements"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": []
+    },
+    {
+      "section_id": "7.10",
+      "title": "Additional Design and Construction Considerations",
+      "body": "This section covers additional practical design and construction considerations that influence the reliability of static analysis procedures and long-term pile resistance. Topics include minimum pile spacing and cap embedment, large pile size considerations, high rebound soils, soil and pile heave, embankment fill effects, predrilling and jetting effects, soil densification, and plugging of open pile sections. These issues bridge the gap between theoretical design calculations and actual construction performance.",
+      "key_points": [
+        "Minimum pile spacing: 2.5 pile diameters or 30 inches (AASHTO)",
+        "Recommended spacing >= 3.0 diameters to avoid construction difficulties",
+        "Pile head extends minimum 12 inches into pile cap",
+        "Minimum 6 inches concrete cover on all sides of piles in cap",
+        "Predrilling/jetting reduces shaft resistance by 50-85% in treated zone",
+        "Vibratory installation produces lower resistance than impact driving",
+        "Densification can increase friction angle 3-4 degrees in loose to medium sands",
+        "Open pipe pile plugging begins at penetration/diameter ratio of 20-35 in dense sands",
+        "H-piles more likely to be plugged than pipe piles (smaller flange distance)",
+        "Soil heave procedure from Haggerty and Peck (1971) for cohesive soils",
+        "Piles through embankments: minimum 10 ft below original grade",
+        "Install piles center-out to reduce group densification effects"
+      ],
+      "equations": [
+        "Eq 7-87: L% = (D - d) / D (percentage of pile length resisting heaving soil)",
+        "Eq 7-88: R_n = f_so * A_so + q_p * A_pp (plugged condition resistance for open-end pipe)",
+        "Eq 7-89: R_n = f_so * A_so + f_si * A_si + q_p * A_p - W_p (unplugged condition resistance)",
+        "Eq 7-90: R_n = 0.8 * C_a * A_s + 4.5 * s_u * A_p (Tomlinson equation for open-end pipe in stiff clay)"
+      ],
+      "figures": [
+        "Figure 7-81: Balance of forces on pile subject to heave (after Haggerty and Peck 1971)",
+        "Figure 7-82: Variation in expected static resistance from APILE API method (plugged, unplugged, auto)",
+        "Figure 7-83: Plugging of open end pipe piles (open vs plugged toe condition, after Paikowsky and Whitman 1990)",
+        "Figure 7-84: Plugging of H-piles (after Tomlinson 1994)"
+      ],
+      "tables": [],
+      "applicability": "Practical construction considerations that affect the reliability of design calculations and long-term pile performance. Essential for constructability review and specification preparation.",
+      "subsections": [
+        {
+          "section_id": "7.10.1",
+          "title": "Minimum Pile Spacing, Clearance, and Cap Embedment",
+          "body": "AASHTO (2014) recommends minimum center-to-center pile spacing of 2.5 pile diameters or 30 inches. Pile cap edge should be greater than 9 inches from the side of the nearest pile. Spacing less than 3.0 diameters can create construction difficulties and reduce group axial and lateral resistances. The pile head should extend a minimum of 12 inches into the pile cap. When a reinforced concrete bent cap is cast in place atop piles, the concrete cover should be a minimum of 6 inches on all sides.",
+          "key_points": [
+            "Minimum spacing: 2.5 pile diameters or 30 inches per AASHTO",
+            "Recommended spacing: >= 3.0 diameters to avoid construction difficulties",
+            "Cap edge: >= 9 inches from nearest pile side",
+            "Pile head: minimum 12 inches into pile cap (6 inches if embedded bars/strands)",
+            "Concrete cover: minimum 6 inches on all sides in cast-in-place bent caps"
+          ],
+          "subsections": [
+            {
+              "section_id": "7.10.1.1",
+              "title": "Special Considerations for Large Pile Sizes",
+              "body": "AASHTO does not address minimum pile spacing or cap embedment for large diameter open end pipe piles. Brown and Thompson (2015) present limited details. Large diameter pipe pile to cap connections use reinforcing cage and/or shear studs. Minimum spacing approximately 3 pile diameters center-to-center. Pile heads typically extend 3 feet into the pile cap for adequate structural connection."
+            }
+          ]
+        },
+        {
+          "section_id": "7.10.2",
+          "title": "Identification of High Rebound Soils",
+          "body": "During pile driving, the hammer impact causes temporary compression. In certain soil types (dense silty sand, hard silty clay, glacial tills, silt, and other fine grained saturated soils), the deformed soil can spring back close to its original position (high elastic rebound). This is generally due to increased pore water pressure near the pile toe. When pile driving is paused, pore water pressure dissipates and smaller rebound occurs. Pile driving equipment with heavy rams operating at short hammer strokes is helpful in these conditions.",
+          "key_points": [
+            "High rebound in dense silty sand, hard silty clay, glacial tills, saturated fine-grained soils",
+            "Caused by increased pore water pressure from driving near pile toe",
+            "Leads to refusal-like driving conditions despite incomplete pile penetration",
+            "Pausing driving allows pore pressure dissipation and reduced rebound",
+            "Heavy rams with short strokes recommended for high rebound soils"
+          ]
+        },
+        {
+          "section_id": "7.10.3",
+          "title": "Soil and Pile Heave",
+          "body": "When piles are driven, soil is displaced causing both upward (heave) and lateral movements of previously driven piles. Greater soil volume displaced = greater heave potential. Heave is particularly troublesome for piles supported primarily by toe resistance, as the pile may be lifted from the bearing stratum. A step-by-step procedure adapted from Haggerty and Peck (1971) for estimating soil and pile heave in saturated insensitive clay is presented. The equilibrium depth d is where upward pushing and downward resisting forces on the pile shaft are equal (Eq 7-87, Figure 7-81).",
+          "key_points": [
+            "Soil displacement from driving causes heave and lateral movements",
+            "Detrimental to resistance of previously driven piles and adjacent structures",
+            "Toe-bearing piles: heave can lift pile from bearing stratum",
+            "Saturated insensitive clays: incompressible behavior, greatest heave potential",
+            "Step-by-step heave estimation: volumetric displacement ratio, equilibrium depth d, then heave",
+            "Eq 7-87: L% = (D-d)/D for pile length resisting heave",
+            "Figure 7-81: Force balance diagram for pile heave estimation",
+            "Consider low-displacement piles or predrilling to reduce heave"
+          ]
+        },
+        {
+          "section_id": "7.10.4",
+          "title": "Piles Driven Through Embankment Fills",
+          "body": "Piles driven through approach embankment fills should penetrate a minimum of 10 feet below original grade unless refusal driving conditions are encountered on bedrock or a competent bearing layer. To minimize drag forces, piles should not be driven through embankments constructed over compressible materials until after 90% of primary settlement is complete.",
+          "key_points": [
+            "Minimum penetration: 10 feet below original grade through embankment fill",
+            "Delay driving until 90% primary settlement complete to minimize downdrag",
+            "Identify potential refusal-causing bearing layers via subsurface exploration",
+            "Alternative foundation type may be needed if refusal occurs less than 10 ft below embankment base"
+          ]
+        },
+        {
+          "section_id": "7.10.5",
+          "title": "Effect of Predrilling, Jetting, and Vibratory Installation on Nominal Resistance",
+          "body": "Predrilling, jetting, and vibratory installation methods cause greater soil disturbance than standard impact driving. Shaft resistance in the jetted zone is reduced by approximately 50% per Poulos and Davis (1980). Shaft resistance over a predrilled depth is reduced 50-85% depending on hole size per McClelland et al. (1969). Vibratory installed piles generally develop lower nominal resistance than impact driven piles. Impact driving a specific final depth of vibratory installed piles may restore resistance.",
+          "key_points": [
+            "Jetting reduces shaft resistance by ~50% in jetted zone (Poulos and Davis 1980)",
+            "Predrilling reduces shaft resistance by 50-85% depending on hole size",
+            "Vibratory installation: lower resistance than impact driving in most cases",
+            "Impact driving vibratory-installed piles can restore resistance",
+            "Time-dependent soil strength changes (setup) occur equally for both methods",
+            "Must evaluate effects on compression, uplift, and lateral resistance"
+          ]
+        },
+        {
+          "section_id": "7.10.6",
+          "title": "Densification Effects on Nominal Resistance and Installation Conditions",
+          "body": "Driving piles in cohesionless soils influences the surrounding soil to a distance of about 3 to 5 pile diameters. Soil displacement and vibrations from driving pile groups can further densify cohesionless materials. Studies indicate friction angle may increase by up to 4 degrees for piles in loose to medium dense sands. Densification can cause significant construction problems if scour, seismic, or other considerations require achieving penetration depths that cannot be achieved. Install piles from center of group outward to reduce group densification effects.",
+          "key_points": [
+            "Densification zone: 3-5 pile diameters from pile in cohesionless soils",
+            "Friction angle increase: up to 4 degrees in loose to medium dense sands",
+            "Less increase in dense sands or soils with significant fines",
+            "Can prevent achieving required penetration depths",
+            "Install from center outward to reduce group densification effects",
+            "Cofferdam confinement can further aggravate densification",
+            "May require low-displacement piles, increased spacing, or installation aids"
+          ]
+        },
+        {
+          "section_id": "7.10.7",
+          "title": "Plugging of Open Pile Sections",
+          "body": "Open pile sections (open-end pipe piles and H-piles) may behave as low displacement piles (coring through soil) or as displacement piles if a soil plug forms near the pile toe. Plugging of pipe piles in medium dense to dense sands generally begins at a penetration-to-diameter ratio of 20 (can be as high as 35). For pipe piles in soft to stiff clays, plugging can occur at ratios of 10 to 20. For large diameter open-end pipe piles (>36 inches), plugging during driving is less likely. The static resistance of an open-end pipe pile should be calculated from the lesser of plugged (Eq 7-88) and unplugged (Eq 7-89) conditions. The Tomlinson equation (Eq 7-90) applies to open-end pipe piles in stiff clays. H-piles are more likely to be plugged than pipe piles due to smaller flange distance. Static load tests are recommended for large diameter open-end pipe piles (>18 inches) due to plugging uncertainty.",
+          "key_points": [
+            "Open pipe piles: core vs plug behavior during driving and under static load",
+            "Plugging in dense sand: penetration/diameter ratio of 20-35",
+            "Plugging in soft-stiff clay: ratio of 10-20",
+            "Large diameter pipe (>36 in): less likely to plug during driving",
+            "H-piles: more likely to be plugged (smaller flange gap)",
+            "Design resistance = lesser of plugged (Eq 7-88) and unplugged (Eq 7-89) conditions",
+            "Interior shaft resistance: typically 1/3 to 1/2 of exterior shaft resistance",
+            "Tomlinson (1994): limiting unit toe resistance of 105 ksf for open-end pipes in cohesionless soils",
+            "Eq 7-90: Tomlinson equation for open-end pipe in stiff clay with confirmed plug",
+            "Forced plugging via constrictor plate (Figures 6-14, 6-15) reduces uncertainty",
+            "Figure 7-82: APILE API method comparison of plugged, unplugged, and auto plug",
+            "Figure 7-83: Open toe vs plugged toe mechanisms (Paikowsky and Whitman 1990)",
+            "Figure 7-84: H-pile plugging illustration (Tomlinson 1994)",
+            "Static load test recommended for large diameter OEP (>18 in) or shaft-resistance H-piles"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,515 @@
+{
+  "reference_id": "FHWA-NHI-16-009",
+  "reference_title": "Design and Construction of Driven Pile Foundations",
+  "volume": 1,
+  "chapter": 5,
+  "chapter_title": "Geomaterial Design Parameters and Geotechnical Reports",
+  "sections": [
+    {
+      "section_id": "5.1",
+      "title": "In-Situ Soil Testing",
+      "body": "In-situ test methods supplement conventional exploration programs and help identify key strata for further sampling and laboratory tests. Primary in-situ tests for foundation design are the Standard Penetration Test (SPT), cone penetration test (CPT), cone penetration test with pore pressure measurements (CPTu), seismic cone (SCPTu), and vane shear test (VST). Other lesser-used devices include the pressuremeter test (PMT) and flat dilatometer test (DMT). All in-situ tests are index tests that require local correlations and should be benchmarked to laboratory tests where possible. Table 5-1 summarizes field and laboratory tests for geomaterial parameter determination, and Table 5-2 summarizes in-situ method applicability, advantages, and disadvantages.",
+      "key_points": [
+        "Primary in-situ tests: SPT (ASTM D1586), CPT/CPTu (ASTM D5778), VST (ASTM D2573)",
+        "Lesser-used devices: PMT (ASTM D4719), DMT (ASTM D6635), dynamic cone",
+        "All in-situ tests are index tests requiring local correlations",
+        "In-situ tests should be benchmarked to laboratory tests where possible",
+        "Each test method applies different loading conditions (orientation, rate of strain)",
+        "In absence of adequate testing, engineer must use conservative approach with additional uncertainty"
+      ],
+      "equations": [],
+      "figures": ["Figure 5-1"],
+      "tables": ["Table 5-1", "Table 5-2"],
+      "applicability": "Overview of in-situ testing methods for driven pile foundation design parameter determination."
+    },
+    {
+      "section_id": "5.1.1",
+      "title": "Standard Penetration Test",
+      "body": "The SPT (ASTM D1586) is the most common in-situ test. A 140 lb hammer is dropped 30 inches to drive a standard split spoon sampler. The N value is the sum of blows for the second and third 6-inch increments. The SPT hammer type and energy transfer significantly influence N values; typical energy transfer for donut, safety, and automatic hammers is approximately 45%, 60%, and 80% respectively. SPT N values should be corrected to N60 values using Equation 5-1 based on measured energy ratio. The N60 value may be further normalized for overburden stress to (N1)60 using Equations 5-2 through 5-4. The Peck et al. (1974) overburden correction (Eq. 5-3) is recommended by AASHTO, while Lio and Whitman (1986) present an alternate approach (Eq. 5-4). The pile design charts in this manual use SPT N values based on safety hammer correlations (60% energy transfer).",
+      "key_points": [
+        "N value = sum of blows for 2nd and 3rd 6-inch drive increments",
+        "140 lb hammer, 30 inch drop height (ASTM D1586)",
+        "Typical energy transfer: donut ~45%, safety ~60%, automatic ~80%",
+        "SPT hammers should undergo yearly calibration per ASTM D4633",
+        "N60 = N * (ER/60) -- energy correction to 60% reference",
+        "(N1)60 = Cn * N60 -- overburden stress correction",
+        "Cn = 0.77 * log(40/sigma'vo) <= 2.0 (Peck et al. 1974, AASHTO recommended)",
+        "Cn = (pa/sigma'vo)^n (Lio and Whitman 1986; n=1 for clays, 0.5 for sands)",
+        "Correction of N values in cohesive soils is generally not necessary",
+        "Safety hammer N values can be 1.9 to 2.7 times automatic hammer N values at the same site"
+      ],
+      "equations": [
+        {
+          "id": "Eq. 5-1",
+          "expression": "N60 = N * (ER / 60)",
+          "description": "SPT N value corrected for 60% energy transfer. N = uncorrected field SPT resistance, ER = hammer efficiency as determined by ASTM D4633 energy measurements.",
+          "implementation": "geolysis_agent.spt_n60_correction"
+        },
+        {
+          "id": "Eq. 5-2",
+          "expression": "(N1)60 = Cn * N60",
+          "description": "SPT N value corrected for both energy and overburden stress. Cn = correction factor for overburden.",
+          "implementation": "geolysis_agent.spt_n1_60_correction"
+        },
+        {
+          "id": "Eq. 5-3",
+          "expression": "Cn = 0.77 * log(40 / sigma'vo) <= 2.0",
+          "description": "Overburden correction factor from Peck et al. (1974). sigma'vo in ksf. Recommended by AASHTO.",
+          "implementation": "geotech_references.dm7_1.chapter2"
+        },
+        {
+          "id": "Eq. 5-4",
+          "expression": "Cn = (pa / sigma'vo)^n",
+          "description": "Overburden correction factor from Lio and Whitman (1986). pa = atmospheric pressure (ksf), n = 1 for clays, 0.5 for sands.",
+          "implementation": "geotech_references.dm7_1.chapter2"
+        }
+      ],
+      "figures": ["Figure 5-2", "Figure 5-3", "Figure 5-4", "Figure 5-5"],
+      "tables": [],
+      "applicability": "SPT execution, energy correction, and overburden normalization for driven pile design correlations."
+    },
+    {
+      "section_id": "5.1.2",
+      "title": "Cone Penetration Test",
+      "body": "The CPT was introduced in the U.S. in 1965 and has developed into one of the most popular in-situ testing devices. A cone penetrometer with a 60-degree conical tip (1.55 or 2.33 in2 cross section) is continuously pushed into the ground at 0.8 in/sec while measuring cone tip resistance (qc), sleeve friction resistance (fs), and pore pressure (u). The corrected tip resistance is qt, and the friction ratio Rf = fs/qt is used for soil behavior type classification per Robertson (1990), shown in Figure 5-8. Modern cones include the piezocone (CPTu), seismic cone (SCPTu), and resistivity cone (RCPTu). From CPT data, evaluations of relative density (Dr), effective friction angle (phi'), undrained shear strength (su), and estimates of SPT N60 can be made. Limitations include inability to push through dense or coarse deposits (SPT N > 30-40) and the absence of soil samples for confirmation.",
+      "key_points": [
+        "60-degree conical tip, 1.55 or 2.33 in2 cross section, pushed at 0.8 in/sec",
+        "Measures cone tip resistance (qc), sleeve friction (fs), and pore pressure (u)",
+        "Corrected tip resistance qt accounts for pore pressure geometrical effects",
+        "Friction ratio Rf = fs/qt used for Robertson (1990) soil behavior type classification",
+        "CPT can provide continuous profile of subsurface stratigraphy",
+        "Correlations for Dr, phi', su, and SPT N60 from CPT data",
+        "CPT is operator independent and highly repeatable",
+        "Limitations: cannot push through dense/coarse deposits (SPT N > 30-40), no soil samples obtained",
+        "300 to 1200 ft of penetration testing per day depending on equipment and conditions",
+        "Local correlations important for data interpretation"
+      ],
+      "equations": [],
+      "figures": ["Figure 5-6", "Figure 5-7", "Figure 5-8"],
+      "tables": [],
+      "applicability": "CPT/CPTu testing and soil behavior type classification for driven pile design parameter evaluation."
+    },
+    {
+      "section_id": "5.1.3",
+      "title": "Vane Shear Test",
+      "body": "The vane shear test (VST, ASTM D2573) is an in-situ test for determining the undrained shear strength of soft to medium clays. A four-bladed vane is forced into undisturbed soil and rotated until the soil shears. Both peak and remolded shearing strengths are recorded, allowing determination of clay sensitivity. The vane shear test provides the most accurate undrained shear strength values for clays with su less than 1 ksf. The sensitivity of clay from a VST provides insight into the setup potential of the clay deposit, which can be used for pile drivability and resistance evaluations. However, the sensitivity value is qualitative and not a quantitative indicator of soil setup.",
+      "key_points": [
+        "Best suited for soft to medium clays (su < 1 ksf); not suitable in silt, sand, or gravel",
+        "Four-bladed vane forced into undisturbed soil and rotated at 6 deg/min",
+        "Measures both peak and remolded shear strengths for sensitivity determination",
+        "Sensitivity provides qualitative indication of clay setup potential for pile drivability",
+        "Rod friction must be subtracted to determine actual shear strength",
+        "Can be used to depths of 13 to 20 feet without casing bore hole",
+        "Quick and economical test; compares well with UC results at shallow depths"
+      ],
+      "equations": [],
+      "figures": ["Figure 5-9"],
+      "tables": [],
+      "applicability": "Measurement of undrained shear strength and clay sensitivity for pile design in soft to medium clays."
+    },
+    {
+      "section_id": "5.1.4",
+      "title": "Other In-Situ Tests",
+      "body": "Other in-situ tests with limited application to pile foundation design include the dilatometer (DMT, ASTM D6635), the pressuremeter (PMT, ASTM D4719), and the dynamic cone. The DMT is hydraulically pushed and provides correlations for soil type, earth pressure at rest, consolidation ratio, undrained shear strength, and dilatometer modulus; it is better suited for delineating stratigraphy than the CPT/CPTu for laterally loaded pile design. The PMT evaluates soil and rock properties by imparting lateral pressures, providing information on elastic modulus, at-rest horizontal earth pressure, creep pressure, and soil limit pressure; it is useful for lateral pile p-y curve determination but has limited value for axially loaded piles. The dynamic cone measures point resistance using a conical penetrometer but is not recommended for final design unless specific local correlations with load tests exist.",
+      "key_points": [
+        "DMT (ASTM D6635): quick, inexpensive; correlations for soil type, K0, su, dilatometer modulus",
+        "DMT may be useful for design of laterally loaded piles but limited for axially loaded piles",
+        "PMT (ASTM D4719): evaluates elastic modulus, K0, creep pressure, soil limit pressure",
+        "PMT useful for lateral pile p-y curves; limited value for vertical pile design",
+        "Dynamic cone: qualitative evaluation of soil density; not recommended for final foundation design",
+        "All have limited direct application to driven pile foundation design"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Secondary in-situ testing devices with limited direct application to driven pile design."
+    },
+    {
+      "section_id": "5.2",
+      "title": "Soil Parameters",
+      "body": "Index properties and engineering properties for geomaterials are derived from field and laboratory testing. Differing soil and rock types are segregated through index tests which aid in the division of subsurface strata for design. Engineering properties for soil and rock include shear strength, compressibility, and permeability. Shear strength values determine driven pile geotechnical resistances while compressibility information checks service limit states. Permeability is not generally quantified for pile design but knowledge of slow-draining soils can assist with drivability and constructability concerns.",
+      "key_points": [
+        "Index properties segregate soil and rock types for subsurface strata division",
+        "Engineering properties: shear strength, compressibility, permeability",
+        "Shear strength determines driven pile geotechnical resistances (strength limit state)",
+        "Compressibility checks serviceability limit states",
+        "Permeability not quantified for pile design but influences drivability",
+        "Further information in Bowles (1992), GEC-5 (Sabatini et al. 2002), and Samtani and Nowatzki (2006)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Overview of soil parameters needed for driven pile foundation design."
+    },
+    {
+      "section_id": "5.2.1",
+      "title": "Soil Classification and Index Properties",
+      "body": "Two soil classification systems are in common use: AASHTO (for pavement) and Unified Soil Classification System (USCS, ASTM D2487), which is better suited for deep foundation design and is used exclusively in this manual. Routine index tests include particle size distribution (ASTM D422), Atterberg limits (ASTM D4318), and moisture content (ASTM D2216). Additional tests include specific gravity (ASTM D854) and soil unit weight (ASTM D7263). These are summarized in Table 5-3. The relative density, gradation, and fine content of cohesionless soils provide useful information for assessing pile drivability. The sensitivity of cohesive soils (Eq. 5-5) is defined as the ratio of undisturbed to remolded shear strength. Table 5-4 provides typical sensitivity values: normally consolidated clays (2-8), marine clays (10-80), overconsolidated clays (1-4), fissured clays with sand seams (0.5-2). Remolded shear strength during pile driving is expected to range from about 1/3 to 1/2 of undisturbed shear strength.",
+      "key_points": [
+        "USCS (ASTM D2487) is the classification system for driven pile design",
+        "Index tests: particle size distribution, Atterberg limits, moisture content, specific gravity, unit weight",
+        "Fine content affects pile drivability and soil setup potential in cohesionless soils",
+        "Sensitivity St = qu(undisturbed) / qu(remolded)",
+        "Typical sensitivity: NC clays 2-8, marine clays 10-80, OC clays 1-4",
+        "Remolded strength during pile driving is approximately 1/3 to 1/2 of undisturbed strength",
+        "Cohesive soils with high fine content more likely to demonstrate soil setup"
+      ],
+      "equations": [
+        {
+          "id": "Eq. 5-5",
+          "expression": "St = qu(undisturbed) / qu(remolded)",
+          "description": "Sensitivity of cohesive soil. Used for preliminary estimates of remolded shear strength and soil setup potential.",
+          "implementation": "geolysis_agent.classify_uscs"
+        }
+      ],
+      "figures": [],
+      "tables": ["Table 5-3", "Table 5-4"],
+      "applicability": "Soil classification, index testing, and sensitivity evaluation for driven pile design and drivability assessment."
+    },
+    {
+      "section_id": "5.2.2",
+      "title": "In-Situ Stress",
+      "body": "For driven pile design, the in-situ state of stress at a given depth is needed to calculate geotechnical resistance. The effective stress (sigma') equals the difference of total stress (sigma) and pore water pressure (u), per Equation 5-6. Total stress at a given depth is the summation of unit weight times thickness for each soil stratum (Eq. 5-7). Pore water pressure is calculated as the unit weight of water times the pressure head (Eq. 5-8). The vertical effective stress is calculated using Equation 5-9. The at-rest lateral earth pressure coefficient Ko relates horizontal effective stress to vertical effective stress (Eq. 5-10). For piles in free-draining clean sands, effective stress analysis is generally appropriate; for clays or slow-draining soils, total stress analysis may be practical since pore water pressure increases are apparent immediately after loading.",
+      "key_points": [
+        "Effective stress: sigma' = sigma - u",
+        "Total stress: sigma = sum of (gamma_i * h_i) for all strata",
+        "Pore water pressure: u = gamma_w * h_w",
+        "Vertical effective stress: sigma'vo = sum(gamma_i * h_i) - gamma_w * h_w",
+        "Ko = sigma'ho / sigma'vo (at-rest lateral earth pressure coefficient)",
+        "Effective stress analysis for free-draining clean sands",
+        "Total stress analysis may be practical for clays and slow-draining soils",
+        "Accurate soil unit weights should reflect conditions in the vadose zone"
+      ],
+      "equations": [
+        {
+          "id": "Eq. 5-6",
+          "expression": "sigma' = sigma - u",
+          "description": "Effective stress equals total stress minus pore water pressure.",
+          "implementation": "geotech_common.soil_profile"
+        },
+        {
+          "id": "Eq. 5-7",
+          "expression": "sigma = sum(gamma_i * h_i)",
+          "description": "Total stress at a given depth is the summation of unit weight times thickness for each soil stratum.",
+          "implementation": "geotech_common.soil_profile"
+        },
+        {
+          "id": "Eq. 5-8",
+          "expression": "u = gamma_w * h_w",
+          "description": "Pore water pressure is a function of the unit weight of water and the pressure head.",
+          "implementation": "geotech_common.soil_profile"
+        },
+        {
+          "id": "Eq. 5-9",
+          "expression": "sigma'vo = sum(gamma_i * h_i) - gamma_w * h_w",
+          "description": "Vertical effective stress at a given depth.",
+          "implementation": "geotech_common.soil_profile"
+        },
+        {
+          "id": "Eq. 5-10",
+          "expression": "Ko = sigma'ho / sigma'vo",
+          "description": "At-rest lateral earth pressure coefficient relating horizontal to vertical effective stress.",
+          "implementation": "geotech_common.soil_profile"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Calculation of in-situ stress state for driven pile geotechnical resistance calculations."
+    },
+    {
+      "section_id": "5.2.3",
+      "title": "Shear Strength",
+      "body": "Shear strength is an internal resistance per unit area that the geomaterial can provide to resist failure along a plane. It is influenced by compositional, environmental, in-situ factors, and the manner of loading (static, dynamic, cyclic). The Mohr-Coulomb failure criterion is used: tau = c + sigma*tan(phi) for total stress analysis (Eq. 5-11), and tau = c' + sigma'*tan(phi') for effective stress analysis (Eq. 5-12). For short-term undrained loading of cohesive soils (phi = 0), tau = c = su (Eq. 5-13). Time-dependent strength increases (soil setup) are common in saturated NC to moderately OC clays, while strength decreases (relaxation) occur in heavily OC clays, dense silts, and dense fine sands. Shear strength evaluations should consider both long and short term conditions, as well as site conditions that may change in-situ effective stress (dewatering, surface loading, excavations). Three laboratory test methods measure shear strength: direct shear (ASTM D3080), unconfined compression (ASTM D2166), and triaxial compression -- UU (ASTM D2850), CU (ASTM D4767), CD (ASTM D7181).",
+      "key_points": [
+        "Mohr-Coulomb failure criterion: tau = c + sigma*tan(phi) (total stress)",
+        "Effective stress: tau = c' + sigma'*tan(phi')",
+        "Undrained cohesive soils: tau = c = su (phi = 0 condition)",
+        "Soil setup: time-dependent strength increase in saturated NC to moderately OC clays",
+        "Relaxation: strength decrease in heavily OC clays, dense silts, dense fine sands, weak laminated rock",
+        "Direct shear test primarily for recompacted granular soils",
+        "Unconfined compression test for cohesive soil and rock; su = qu/2",
+        "Triaxial tests (UU, CU, CD) provide most versatile shear strength evaluation",
+        "CU tests with pore pressure measurements provide both effective and total stress parameters",
+        "phi values from direct shear (plane strain) are approximately 1.1 times triaxial phi values"
+      ],
+      "equations": [
+        {
+          "id": "Eq. 5-11",
+          "expression": "tau = c + sigma * tan(phi)",
+          "description": "Mohr-Coulomb total stress failure criterion. c = cohesion, sigma = total normal stress, phi = angle of internal friction.",
+          "implementation": "bearing_capacity"
+        },
+        {
+          "id": "Eq. 5-12",
+          "expression": "tau = c' + sigma' * tan(phi')",
+          "description": "Mohr-Coulomb effective stress failure criterion. c' = effective cohesion, sigma' = effective normal stress, phi' = effective friction angle.",
+          "implementation": "bearing_capacity"
+        },
+        {
+          "id": "Eq. 5-13",
+          "expression": "tau = c = su",
+          "description": "Undrained shear strength for cohesive soils under short-term loading (phi = 0 condition).",
+          "implementation": "bearing_capacity"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Shear strength determination for driven pile geotechnical resistance calculations under drained and undrained conditions."
+    },
+    {
+      "section_id": "5.2.3.2",
+      "title": "Effective Stress Friction Angle Correlations, Cohesionless Soils",
+      "body": "For pile design in cohesionless soil, the effective friction angle is typically correlated from SPT N values or CPT cone resistance. The AASHTO (N1)60 correlation to phi' is presented in Table 5-5 (modified after Bowles 1997), and a Meyerhof (1956) correlation between relative density, SPT N, and phi' is in Table 5-6. Schmertmann (1975) provides a friction angle-N value-overburden stress correlation for clean sands approximated by Equation 5-14. Hatanaka and Uchida (1996) established a (N1)60 correlation in Equation 5-15. Kulhawy and Chen (2007) provided a regression relationship in Equation 5-16. For CPT data, Meyerhof (1976) correlations between relative density, cone resistance, and phi' are in Table 5-7. Robertson and Campanella (1983) provide the CPT cone resistance to phi' relationship in Equation 5-17. For rockfills, gravels, and sands with cobbles and boulders, Figure 5-10 and Table 5-8 provide friction angle estimates based on rockfill grade and effective normal stress.",
+      "key_points": [
+        "AASHTO Table 5-5: (N1)60 < 4 -> phi' 25-30; (N1)60=10 -> 30-35; (N1)60=30 -> 35-40; (N1)60=50 -> 38-43",
+        "Meyerhof Table 5-6: very loose (<4 blows, <30 deg) to very dense (>50 blows, >45 deg)",
+        "Schmertmann Eq. 5-14: phi' = atan[N60 / (12.2 + 20.3*(sigma'vo/pa))]^0.34",
+        "Hatanaka/Uchida Eq. 5-15: phi' = sqrt(20*(N1)60) + 20",
+        "Kulhawy/Chen Eq. 5-16: phi' = 27.5 + 9.2*log[(N1)60]",
+        "CPT Meyerhof Table 5-7: qc < 4 tsf (<30 deg) to qc > 50 tsf (>45 deg)",
+        "Robertson/Campanella Eq. 5-17: phi' = atan[0.1 + 0.38*log(qc/sigma'vo)]",
+        "For saturated fine sand or silty sand, N = 15 + (N'-15)/2 for N' > 15",
+        "Reduce phi' by 5 deg for clayey sand, increase by 5 deg for gravelly sand (GEC-5 recommendation)",
+        "Rockfill friction angles from Figure 5-10 using Table 5-8 rockfill grades A-E"
+      ],
+      "equations": [
+        {
+          "id": "Eq. 5-14",
+          "expression": "phi' = atan[N60 / (12.2 + 20.3*(sigma'vo/pa))]^0.34",
+          "description": "Schmertmann (1975) correlation between friction angle, SPT N60, and overburden stress for clean sands. Approximated by Kulhawy and Mayne (1990).",
+          "implementation": "geotech_references.dm7_1.chapter2"
+        },
+        {
+          "id": "Eq. 5-15",
+          "expression": "phi' = sqrt(20*(N1)60) + 20",
+          "description": "Hatanaka and Uchida (1996) correlation for effective friction angle from (N1)60 based on frozen undisturbed samples of fine and medium sands.",
+          "implementation": "geolysis_agent"
+        },
+        {
+          "id": "Eq. 5-16",
+          "expression": "phi' = 27.5 + 9.2 * log[(N1)60]",
+          "description": "Kulhawy and Chen (2007) regression relationship for friction angle from (N1)60 for sands and gravels (r2=0.356, n=57).",
+          "implementation": "geolysis_agent"
+        },
+        {
+          "id": "Eq. 5-17",
+          "expression": "phi' = atan[0.1 + 0.38 * log(qc / sigma'vo)]",
+          "description": "Robertson and Campanella (1983) / Kulhawy and Mayne (1990) CPT cone resistance to friction angle for clean quartz sands.",
+          "implementation": "geolysis_agent"
+        }
+      ],
+      "figures": ["Figure 5-10"],
+      "tables": ["Table 5-5", "Table 5-6", "Table 5-7", "Table 5-8"],
+      "applicability": "Correlating in-situ test results (SPT N and CPT qc) to effective friction angle for cohesionless soil pile design."
+    },
+    {
+      "section_id": "5.2.3.3",
+      "title": "Fully Drained Shear Strength of Fine-Grained Cohesive Soils",
+      "body": "Effective stress analysis methods may be used for fine-grained soils under fully drained loading, useful for assessing driven pile resistances a significant time after installation when pore water pressure has stabilized. AASHTO (2014) recommends laboratory testing to produce effective stress design parameters phi' and c'. Consolidated drained (CD) direct shear tests, CD triaxial tests, or consolidated undrained (CU) triaxial tests with pore pressure measurements may be used. Preliminary estimates for effective friction angle may be obtained from plasticity index (PI) using the Terzaghi et al. (1996) correlation shown in Figure 5-11. For these estimates, GEC-5 recommends using c' = 0.",
+      "key_points": [
+        "Effective stress analysis for fine-grained soils under fully drained loading",
+        "Useful for assessing pile resistances long after installation when pore pressures have stabilized",
+        "AASHTO recommends laboratory testing (CD, CU with pore pressure) for phi' and c'",
+        "Preliminary phi' estimates from plasticity index using Terzaghi et al. (1996) correlation",
+        "GEC-5 recommends c' = 0 for preliminary estimates from PI correlation",
+        "Consideration for shear rate and complete dissipation of excess pore pressure in lab testing"
+      ],
+      "equations": [],
+      "figures": ["Figure 5-11"],
+      "tables": [],
+      "applicability": "Effective stress shear strength parameters for fine-grained cohesive soils in long-term pile resistance evaluations."
+    },
+    {
+      "section_id": "5.2.3.4",
+      "title": "Undrained Shear Strength of Fine-Grained Cohesive Soils",
+      "body": "The undrained shear strength (su) of cohesive soils may be measured via laboratory testing (UC, UU, CU) or through correlations with in-situ tests. AASHTO (2014) recommends CU and UU testing where possible. A CPT correlation is provided in Equation 5-18 where su = (qc - sigma'vo)/Nk with Nk typically 14-16 (range 10-18). An SPT correlation (Eq. 5-19) uses su = f1*N60*pa/100, where f1 = 4.5 for PI=50 and 5.5 for PI=15. Table 5-9 provides empirical N value to unconfined compressive strength (qu) and saturated unit weight correlations. The undrained shear strength is one-half the unconfined compressive strength (su = qu/2). The vane shear test provides su via Equation 5-20 (su = 6Tv / 7*pi*dv^3 for hv/dv = 2) and Bjerrum's correction factor mu = 2.5*(PI)^-0.3 <= 1.1 (Eq. 5-21).",
+      "key_points": [
+        "su measured via UC, UU, CU lab tests or correlated from CPT, SPT, VST",
+        "AASHTO recommends CU and UU testing where possible",
+        "CPT correlation: su = (qc - sigma'vo) / Nk, where Nk typically 14-16",
+        "SPT correlation: su = f1 * N60 * pa / 100 (f1 = 4.5 for PI=50, 5.5 for PI=15)",
+        "su = qu / 2 (undrained shear strength is half unconfined compressive strength)",
+        "SPT N to qu correlation is crude and unreliable for final design; use for preliminary estimates only",
+        "VST: su = 6Tv / (7*pi*dv^3) for standard vane with hv/dv = 2",
+        "Bjerrum correction: mu = 2.5*(PI)^-0.3 <= 1.1"
+      ],
+      "equations": [
+        {
+          "id": "Eq. 5-18",
+          "expression": "su = (qc - sigma'vo) / Nk",
+          "description": "CPT correlation for undrained shear strength. qc = cone tip resistance, sigma'vo = vertical effective stress, Nk = cone factor (typically 14-16, range 10-18). Local calibration of Nk recommended.",
+          "implementation": "geolysis_agent"
+        },
+        {
+          "id": "Eq. 5-19",
+          "expression": "su = f1 * N60 * pa / 100",
+          "description": "SPT correlation for undrained shear strength using Stroud (1974; 1989) empirical correction factor. f1 = 4.5 for PI=50, 5.5 for PI=15. pa = atmospheric pressure.",
+          "implementation": "geolysis_agent"
+        },
+        {
+          "id": "Eq. 5-20",
+          "expression": "su = 6*Tv / (7*pi*dv^3)",
+          "description": "Vane shear test undrained shear strength for standard vane with height/diameter = 2. Tv = input torque, dv = vane diameter.",
+          "implementation": null
+        },
+        {
+          "id": "Eq. 5-21",
+          "expression": "mu = 2.5 * (PI)^(-0.3) <= 1.1",
+          "description": "Bjerrum (1972) correction factor for vane shear test undrained shear strength based on plasticity index.",
+          "implementation": null
+        }
+      ],
+      "figures": [],
+      "tables": ["Table 5-9"],
+      "applicability": "Determination of undrained shear strength from laboratory tests and in-situ test correlations for pile design in cohesive soils."
+    },
+    {
+      "section_id": "5.2.4",
+      "title": "Deformation",
+      "body": "Deformation relates to the soil response to an applied load and is relevant to the serviceability limit state for driven piles. Elastic deformation is described by Hooke's Law (sigma = E*epsilon, Eq. 5-22) and the shear modulus G = E / (2*(1+v)) (Eq. 5-23). Table 5-10 provides typical ranges of Young's modulus Es and Poisson ratio by soil type (from AASHTO 2014). Table 5-11 gives correlations for Es from SPT (N1)60 values: 8*(N1)60 for silts, 14*(N1)60 for clean fine-medium sands, 20*(N1)60 for coarse sands, 24*(N1)60 for sandy gravels (all in ksf). Table 5-12 gives Es = 2*qc for sandy soils from CPT cone resistance. Primary consolidation settlement for normally consolidated cohesive soils is calculated using Equation 5-24, for overconsolidated soils (sigma'vo + delta_sigma <= sigma_p) using Equation 5-25, and for overconsolidated soils where applied stress exceeds preconsolidation pressure using Equation 5-26. The consolidation test (AASHTO T216 / ASTM D2435) provides Cv, Cc, Cr (or Cs), and Ca parameters. Figure 5-13 illustrates the typical e-log sigma'v curve from a consolidation test.",
+      "key_points": [
+        "Hooke's Law: sigma = E * epsilon (Eq. 5-22)",
+        "Shear modulus: G = E / (2*(1+v)) (Eq. 5-23)",
+        "E50 (50% secant modulus) commonly used for soil modulus determination",
+        "Table 5-10: Clay soft sensitive Es 50-300 ksf; Sand dense Es 1000-1600 ksf; Gravel dense Es 2000-4000 ksf",
+        "Table 5-11: Es from SPT -- 8*(N1)60 ksf for silts to 24*(N1)60 ksf for sandy gravels",
+        "Table 5-12: Es = 2*qc for sandy soils from CPT",
+        "Consolidation settlement equations use Cc, Cr, e0, H0, sigma'vo, delta_sigma, sigma_p",
+        "NC soil: Sc = sum[Cc/(1+e0) * H0 * log((sigma'vo + delta_sigma)/sigma'vo)]",
+        "OC soil (within recompression): Sc = sum[Cr/(1+e0) * H0 * log((sigma'vo + delta_sigma)/sigma'vo)]",
+        "OC soil (exceeds preconsolidation): two-part equation with Cr and Cc terms"
+      ],
+      "equations": [
+        {
+          "id": "Eq. 5-22",
+          "expression": "sigma = E * epsilon",
+          "description": "Hooke's Law. E = elastic modulus, epsilon = strain.",
+          "implementation": "settlement"
+        },
+        {
+          "id": "Eq. 5-23",
+          "expression": "G = E / (2*(1+v))",
+          "description": "Shear modulus related to elastic modulus E and Poisson ratio v.",
+          "implementation": "settlement"
+        },
+        {
+          "id": "Eq. 5-24",
+          "expression": "Sc = sum[Cc/(1+e0) * H0 * log((sigma'vo + delta_sigma) / sigma'vo)]",
+          "description": "Primary consolidation settlement for normally consolidated (sigma'vo = sigma_p) cohesive soil layers.",
+          "implementation": "settlement.consolidation_settlement"
+        },
+        {
+          "id": "Eq. 5-25",
+          "expression": "Sc = sum[Cr/(1+e0) * H0 * log((sigma'vo + delta_sigma) / sigma'vo)]",
+          "description": "Primary consolidation settlement for overconsolidated soil where (sigma'vo + delta_sigma <= sigma_p).",
+          "implementation": "settlement.consolidation_settlement"
+        },
+        {
+          "id": "Eq. 5-26",
+          "expression": "Sc = sum[Cr/(1+e0) * H0 * log(sigma_p/sigma'vo) + Cc/(1+e0) * H0 * log((sigma'vo + delta_sigma)/sigma_p)]",
+          "description": "Primary consolidation settlement for overconsolidated soil where applied stress exceeds preconsolidation pressure (sigma'vo + delta_sigma > sigma_p).",
+          "implementation": "settlement.consolidation_settlement"
+        }
+      ],
+      "figures": ["Figure 5-12", "Figure 5-13"],
+      "tables": ["Table 5-10", "Table 5-11", "Table 5-12"],
+      "applicability": "Elastic modulus estimation and consolidation settlement calculations for driven pile serviceability limit state."
+    },
+    {
+      "section_id": "5.2.5",
+      "title": "Electro Chemical Properties",
+      "body": "Soil and groundwater can contain constituents detrimental to pile materials. Electro chemical classification tests determine the aggressiveness of subsurface conditions and the potential for pile deterioration. For pile design, corrosion rates for steel piles or disintegration rates for concrete may be required to evaluate long-term structural resistance. These tests include pH (AASHTO T289 / ASTM D4972), resistivity (AASHTO T288 / ASTM D1125), sulfate ion content (AASHTO T290 / ASTM D4230), and chloride ion content (AASHTO T291 / ASTM D512). Additional discussion on environmental influence on pile section selection is presented in Section 6.14.",
+      "key_points": [
+        "Electro chemical tests assess aggressiveness of subsurface conditions for pile materials",
+        "Tests: pH, resistivity, sulfate ion content, chloride ion content",
+        "Corrosion rates for steel piles and disintegration rates for concrete may be required",
+        "Results used for long-term structural resistance evaluation and pile section selection"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Assessment of subsurface chemical conditions for pile material durability and structural resistance."
+    },
+    {
+      "section_id": "5.3",
+      "title": "Rock Parameters",
+      "body": "Rock property determination is necessary for assessing end bearing resistance and long-term deformation for driven piles. A distinction between intact rock and rock mass is important: intact rock is a collection of consolidated and cemented particles forming rock material tested via core samples, while rock mass includes joints, faults, and other bedding features. Rock classification should include color, texture, lithology (igneous, metamorphic, sedimentary), field hardness, weathering, and geologic discontinuities. The slake durability test (ASTM D4644) assesses weathering potential; an Id of less than 60% correlates to rapid degradation. Rock mass shear strength is measured via uniaxial compression test (ASTM D7012), providing unconfined compressive strength qu and elastic modulus. The transition between hard soil and soft rock occurs at qu of about 20 ksf, and between soft and hard rock at 200-1000 ksf. Table 5-13 lists usual types of soft rocks by classification (sedimentary, igneous, metamorphic). Rock mass deformation properties use correlations between RQD, GSI, core recovery, and rock mass modulus.",
+      "key_points": [
+        "Distinction between intact rock (core samples) and rock mass (includes discontinuities)",
+        "Rock classification: color, texture, lithology, hardness, weathering, geologic discontinuities",
+        "Slake durability index Id < 60% indicates rapid degradation potential",
+        "Uniaxial compression test (ASTM D7012) provides qu and elastic modulus",
+        "Hard soil to soft rock transition: qu approx 20 ksf",
+        "Soft rock to hard rock transition: qu 200-1000 ksf",
+        "Soft rock defined as rock that can be penetrated by pile driving",
+        "Hard rock defined as rock that cannot be penetrated by pile driving",
+        "Rock mass modulus estimated from correlations with RQD, GSI, and core recovery",
+        "Piles cannot be driven into hard rock as pile toe damage or yielding occurs first"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": ["Table 5-13"],
+      "applicability": "Rock classification, strength, and deformation parameters for driven piles bearing on or driven to rock."
+    },
+    {
+      "section_id": "5.4",
+      "title": "Considerations for Pile Drivability",
+      "body": "AASHTO Article 10.7.8 stipulates that pile drivability evaluation should be performed during the design stage. Drivability is defined as the ability to drive the pile to the estimated nominal axial resistance at or above the required penetration depth while remaining within driving stress limits of the pile material. Subsurface issues influencing drivability include boulders above bearing strata, artesian conditions that reduce geotechnical resistance, fine content, angularity, density, and high soil plasticity. Cases of large soil quakes or high elastic rebound have been reported in dense silty sand, hard silty clay, glacial tills, and other fine-grained saturated soils. High silt content and N value changes correlate with high elastic rebound zones. Some sand deposits exhibit high dynamic resistances during driving. For weathered rock such as shale and siltstone, reduction in end bearing resistance can occur over time due to release of locked horizontal stresses.",
+      "key_points": [
+        "AASHTO Article 10.7.8 requires drivability evaluation during design stage",
+        "Drivability: ability to drive pile to required resistance and penetration within material stress limits",
+        "Boulders, artesian conditions, fine content, angularity, density, and plasticity all influence drivability",
+        "High elastic rebound (soil quakes) reported in dense silty sand, hard silty clay, glacial tills",
+        "High silt content and N value changes within strata correlate with high elastic rebound",
+        "Range of dynamic soil properties should be evaluated in drivability analyses",
+        "Highly plastic CH and MH soils may produce dynamic resistances exceeding conventional values",
+        "Weathered rock (shale, siltstone) may exhibit reduction in end bearing resistance over time",
+        "Driving adjacent piles can shatter weak rock and reduce end bearing"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identification of subsurface conditions that influence pile drivability analysis and construction planning."
+    },
+    {
+      "section_id": "5.5",
+      "title": "Selection of Parameters for Design and Construction",
+      "body": "Soil and rock parameters should be carefully selected based on site-specific in-situ and laboratory testing results and relevant design methods. In some cases, resistance factors were developed for a specific correlation approach between N and phi, or between N and su, or a design method limit on maximum friction angle. Preliminary shear strength and density estimates are often made from SPT N value correlations. In coarse granular deposits, friction angle should be selected conservatively; static analyses often overpredict shaft resistance, particularly for uniform or rounded particles. Cheney and Chassie (1993) recommended maximum phi' of 32 degrees for soft rounded gravel and 36 degrees for hard angular gravel. The subsurface profile should be established for each substructure location using three steps from Paikowsky et al. (2004): (1) determine average parameters at each boring, (2) check COV between boring locations, and (3) categorize site variability as low (COV < 25%), medium (25-40%), or high (>= 40%). Table 5-14 provides typical COV values for geotechnical properties and in-situ tests.",
+      "key_points": [
+        "Parameters selected based on site-specific testing and relevant design methods",
+        "Resistance factors may be specific to certain correlation approaches",
+        "Preliminary estimates from SPT N correlations; confirmation via in-situ and lab tests required",
+        "Coarse granular deposits: select friction angle conservatively; static analyses may overpredict shaft resistance",
+        "Maximum phi' of 32 deg for soft rounded gravel, 36 deg for hard angular gravel (Cheney and Chassie 1993)",
+        "Three steps for subsurface profile: average parameters, check COV, categorize variability",
+        "Site variability: Low (COV < 25%), Medium (25-40%), High (>= 40%)",
+        "Table 5-14 COV: unit weight 3-7%, phi' 2-13%, su 13-40%, SPT N 15-45%, CPT qc 5-15%",
+        "Statistics and sensitivity analyses recommended as minimum practice for parameter selection"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": ["Table 5-14"],
+      "applicability": "Selection of geomaterial design parameters with appropriate consideration of site variability and design method requirements."
+    },
+    {
+      "section_id": "5.6",
+      "title": "Geotechnical Reporting",
+      "body": "Upon conclusion of the site characterization program, the geotechnical engineer summarizes the factual data and prepares a geotechnical report. Three types of reports are appropriate for driven piles: (1) Geotechnical Data Reports (GDR) containing only factual exploration data without interpretations (Table 5-16), (2) Geotechnical Foundation Design Reports containing subsurface assessment plus design recommendations with analysis results and construction guidance, and (3) Geotechnical Baseline Reports (GBR) establishing a contractual baseline of expected subsurface conditions for risk allocation. GDRs are typically used for design-bid-build or design-build projects when a subcontracted consultant performs the exploration. Foundation design reports must address axial compression, uplift, lateral, settlement, and seismic design issues per limit state design methodologies. The foundation design report outline includes: table of contents, introduction, scope of explorations, interpretation of subsurface conditions, geomaterial design parameters, description of design procedures, conclusions and recommendations, pile foundations details, appendix with graphic presentations, and report distribution. Table 5-15 summarizes pile foundation decisions influenced by subsurface information.",
+      "key_points": [
+        "Three report types: Geotechnical Data Report (GDR), Foundation Design Report, Geotechnical Baseline Report (GBR)",
+        "GDR: factual exploration data only, no interpretations or design recommendations",
+        "Foundation Design Report: subsurface assessment, design parameters, analysis results, construction recommendations",
+        "GBR: contractual baseline of expected conditions for risk allocation between owner and contractor",
+        "Foundation design report must address all limit state design issues (axial, uplift, lateral, settlement, seismic)",
+        "Report should clearly distinguish factual from interpretive information",
+        "Table 5-15: subsurface information influences project constraints, pile type selection, equipment selection, construction control",
+        "Table 5-16: GDR includes background information, scope of exploration, and data presentation",
+        "Foundation report should be widely distributed to design, construction, and maintenance engineers"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": ["Table 5-15", "Table 5-16"],
+      "applicability": "Geotechnical reporting requirements for driven pile foundation design and construction projects."
+    }
+  ]
+}
