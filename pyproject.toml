@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "geotech-references"
+version = "0.1.0"
+description = "Geotechnical reference library: DM7, FHWA GEC series"
+requires-python = ">=3.10"
+
+[tool.setuptools.packages.find]
+include = ["geotech_references*", "agents*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
