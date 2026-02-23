@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geotechnical Reference Agent — Overview</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+  :root {
+    --bg: #0f172a;
+    --surface: #1e293b;
+    --surface2: #334155;
+    --accent: #3b82f6;
+    --accent2: #8b5cf6;
+    --accent3: #06b6d4;
+    --green: #10b981;
+    --orange: #f59e0b;
+    --red: #ef4444;
+    --text: #f1f5f9;
+    --text2: #94a3b8;
+    --border: #475569;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 32px;
+  }
+
+  /* ── Hero ─────────────────────────────────────── */
+  .hero {
+    text-align: center;
+    padding: 60px 0 40px;
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    background: linear-gradient(135deg, var(--accent), var(--accent2), var(--accent3));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+  }
+  .hero .subtitle {
+    font-size: 1.15rem;
+    color: var(--text2);
+    max-width: 700px;
+    margin: 0 auto 32px;
+  }
+
+  /* ── Stat Bar ─────────────────────────────────── */
+  .stats {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+    margin-bottom: 56px;
+  }
+  .stat {
+    text-align: center;
+  }
+  .stat .number {
+    font-size: 2.6rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+  .stat .label {
+    font-size: 0.85rem;
+    color: var(--text2);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 4px;
+  }
+  .stat:nth-child(1) .number { color: var(--accent); }
+  .stat:nth-child(2) .number { color: var(--accent2); }
+  .stat:nth-child(3) .number { color: var(--accent3); }
+  .stat:nth-child(4) .number { color: var(--green); }
+  .stat:nth-child(5) .number { color: var(--orange); }
+
+  /* ── Section titles ──────────────────────────── */
+  .section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--surface2);
+  }
+
+  /* ── Architecture Diagram ────────────────────── */
+  .arch {
+    margin-bottom: 56px;
+  }
+  .arch-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .arch-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .arch-flow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+
+  /* Flow diagram */
+  .flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+  }
+  .flow-step {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    min-width: 180px;
+    position: relative;
+  }
+  .flow-step h3 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text2);
+    margin-bottom: 6px;
+  }
+  .flow-step .value {
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  .flow-arrow {
+    font-size: 1.8rem;
+    color: var(--accent);
+    padding: 0 8px;
+    flex-shrink: 0;
+  }
+
+  /* ── Module Cards ────────────────────────────── */
+  .modules {
+    margin-bottom: 56px;
+  }
+  .module-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 16px;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
+  .card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+  .card .badge {
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 99px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+  .badge-blue { background: rgba(59,130,246,0.15); color: var(--accent); }
+  .badge-purple { background: rgba(139,92,246,0.15); color: var(--accent2); }
+  .badge-cyan { background: rgba(6,182,212,0.15); color: var(--accent3); }
+  .badge-green { background: rgba(16,185,129,0.15); color: var(--green); }
+  .badge-orange { background: rgba(245,158,11,0.15); color: var(--orange); }
+
+  .card .ref {
+    font-size: 0.8rem;
+    color: var(--text2);
+    margin-bottom: 10px;
+  }
+  .card .desc {
+    font-size: 0.88rem;
+    color: var(--text2);
+    margin-bottom: 14px;
+    line-height: 1.5;
+  }
+  .card-stats {
+    display: flex;
+    gap: 16px;
+    font-size: 0.8rem;
+  }
+  .card-stat {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .card-stat .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .dot-blue { background: var(--accent); }
+  .dot-green { background: var(--green); }
+  .dot-purple { background: var(--accent2); }
+
+  /* ── How It Works ────────────────────────────── */
+  .how-it-works {
+    margin-bottom: 56px;
+  }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 800px) {
+    .steps { grid-template-columns: 1fr; }
+  }
+  .step {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 24px;
+    position: relative;
+  }
+  .step-number {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1rem;
+    margin-bottom: 14px;
+  }
+  .step:nth-child(1) .step-number { background: rgba(59,130,246,0.2); color: var(--accent); }
+  .step:nth-child(2) .step-number { background: rgba(139,92,246,0.2); color: var(--accent2); }
+  .step:nth-child(3) .step-number { background: rgba(16,185,129,0.2); color: var(--green); }
+  .step h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .step p {
+    font-size: 0.88rem;
+    color: var(--text2);
+    margin-bottom: 14px;
+  }
+  .step code {
+    display: block;
+    background: var(--bg);
+    border: 1px solid var(--surface2);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.78rem;
+    line-height: 1.6;
+    overflow-x: auto;
+    white-space: pre;
+    color: var(--text2);
+  }
+  .step code .kw { color: var(--accent2); }
+  .step code .fn { color: var(--accent); }
+  .step code .str { color: var(--green); }
+  .step code .comment { color: #64748b; }
+
+  /* ── Example Workflow ────────────────────────── */
+  .workflow {
+    margin-bottom: 56px;
+  }
+  .workflow-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .workflow-header {
+    padding: 16px 24px;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .workflow-header .icon {
+    font-size: 1.1rem;
+  }
+  .workflow-body {
+    padding: 24px;
+  }
+  .wf-exchange {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 8px 16px;
+    align-items: start;
+    margin-bottom: 20px;
+  }
+  .wf-exchange:last-child { margin-bottom: 0; }
+  .wf-role {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-top: 2px;
+    white-space: nowrap;
+  }
+  .wf-role.user { background: rgba(59,130,246,0.15); color: var(--accent); }
+  .wf-role.agent { background: rgba(16,185,129,0.15); color: var(--green); }
+  .wf-role.tool { background: rgba(139,92,246,0.15); color: var(--accent2); }
+  .wf-content {
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+  .wf-content code {
+    background: var(--bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.82rem;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  }
+  .wf-content .result {
+    background: var(--bg);
+    border: 1px solid var(--surface2);
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-top: 6px;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: var(--text2);
+  }
+
+  /* ── Coverage Table ──────────────────────────── */
+  .coverage {
+    margin-bottom: 56px;
+  }
+  .coverage table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+  .coverage th {
+    text-align: left;
+    padding: 12px 16px;
+    background: var(--surface2);
+    font-weight: 600;
+    border-bottom: 2px solid var(--border);
+  }
+  .coverage td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--surface2);
+    color: var(--text2);
+  }
+  .coverage tr:hover td {
+    background: var(--surface);
+    color: var(--text);
+  }
+  .coverage td:first-child {
+    font-weight: 600;
+    color: var(--text);
+  }
+  .coverage .num {
+    text-align: center;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  .coverage .check {
+    text-align: center;
+    color: var(--green);
+  }
+
+  /* ── Footer ──────────────────────────────────── */
+  .footer {
+    text-align: center;
+    padding: 32px 0;
+    color: var(--text2);
+    font-size: 0.82rem;
+    border-top: 1px solid var(--surface2);
+  }
+  .footer a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  /* ── Responsive ──────────────────────────────── */
+  @media (max-width: 700px) {
+    .hero h1 { font-size: 2rem; }
+    .stats { gap: 24px; }
+    .stat .number { font-size: 2rem; }
+    .flow { flex-direction: column; }
+    .flow-arrow { transform: rotate(90deg); }
+    .module-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ═══════════════════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════════════════ -->
+  <div class="hero">
+    <h1>Geotechnical Reference Agent</h1>
+    <p class="subtitle">
+      A digitized library of FHWA and NAVFAC design references —
+      every equation, table, and figure callable as a tool by an LLM agent
+      on the Palantir Foundry platform.
+    </p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       KEY STATS
+       ═══════════════════════════════════════════════════════ -->
+  <div class="stats">
+    <div class="stat">
+      <div class="number">505</div>
+      <div class="label">Callable Methods</div>
+    </div>
+    <div class="stat">
+      <div class="number">8</div>
+      <div class="label">Reference Modules</div>
+    </div>
+    <div class="stat">
+      <div class="number">403</div>
+      <div class="label">Sections of Text</div>
+    </div>
+    <div class="stat">
+      <div class="number">2,810</div>
+      <div class="label">Automated Tests</div>
+    </div>
+    <div class="stat">
+      <div class="number">7</div>
+      <div class="label">FHWA References</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       HOW THE AGENT WORKS (3-Step)
+       ═══════════════════════════════════════════════════════ -->
+  <div class="how-it-works">
+    <h2 class="section-title">How the Agent Works</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3>Discover</h3>
+        <p>The agent browses available methods by category to find the right function.</p>
+        <code><span class="fn">list_methods</span>(<span class="str">"bond"</span>)
+<span class="comment">// Returns functions matching</span>
+<span class="comment">// "bond" across all tables</span></code>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3>Inspect</h3>
+        <p>Gets full parameter documentation — types, ranges, defaults, and units.</p>
+        <code><span class="fn">describe_method</span>(
+  <span class="str">"table_5_3_alpha_bond"</span>
+)
+<span class="comment">// soil_type: str (required)</span>
+<span class="comment">// micropile_type: str = "B"</span></code>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3>Execute</h3>
+        <p>Calls the function with JSON parameters and gets a structured result.</p>
+        <code><span class="fn">agent</span>(
+  <span class="str">"table_5_3_alpha_bond"</span>,
+  {<span class="str">"soil_type"</span>: <span class="str">"gravel"</span>,
+   <span class="str">"micropile_type"</span>: <span class="str">"B"</span>}
+)
+<span class="comment">// alpha_bond: 120–360 kPa</span></code>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       ARCHITECTURE FLOW
+       ═══════════════════════════════════════════════════════ -->
+  <div class="arch">
+    <h2 class="section-title">Architecture</h2>
+    <div class="flow">
+      <div class="flow-step">
+        <h3>User Question</h3>
+        <div class="value">"What is the bond strength<br>for a Type B micropile<br>in dense gravel?"</div>
+      </div>
+      <div class="flow-arrow">&rarr;</div>
+      <div class="flow-step" style="border-color: var(--accent);">
+        <h3>LLM Agent</h3>
+        <div class="value">Selects the right tool<br>from 505 methods<br>across 8 modules</div>
+      </div>
+      <div class="flow-arrow">&rarr;</div>
+      <div class="flow-step" style="border-color: var(--accent2);">
+        <h3>Reference Library</h3>
+        <div class="value">Digitized FHWA tables,<br>figures &amp; equations<br>return structured JSON</div>
+      </div>
+      <div class="flow-arrow">&rarr;</div>
+      <div class="flow-step" style="border-color: var(--green);">
+        <h3>Engineering Answer</h3>
+        <div class="value">alpha_bond = 120–360 kPa<br>with source citation<br>FHWA-NHI-05-039 Table 5-3</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       MODULE CARDS
+       ═══════════════════════════════════════════════════════ -->
+  <div class="modules">
+    <h2 class="section-title">Reference Modules</h2>
+    <div class="module-grid">
+
+      <div class="card">
+        <div class="card-header">
+          <h3>DM7: Soil Mechanics &amp; Foundations</h3>
+          <span class="badge badge-blue">382 Methods</span>
+        </div>
+        <div class="ref">UFC 3-220-10 &amp; UFC 3-220-20 (NAVFAC DM7)</div>
+        <div class="desc">Complete digitization of 15 chapters covering classification, field testing, lab testing, stresses, consolidation, seepage, slope stability, earth pressures, shallow &amp; deep foundations, bearing capacity, retaining structures.</div>
+        <div class="card-stats">
+          <div class="card-stat"><span class="dot dot-blue"></span> 15 chapters</div>
+          <div class="card-stat"><span class="dot dot-green"></span> 2,008 tests</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>GEC-12: Driven Piles</h3>
+          <span class="badge badge-purple">20 Methods</span>
+        </div>
+        <div class="ref">FHWA-NHI-16-009</div>
+        <div class="desc">Nordlund &amp; Tomlinson pile capacity figures, resistance factors, API design parameters, beta/Nt coefficients, soil setup factors. Full text retrieval across 8 chapters (109 sections).</div>
+        <div class="card-stats">
+          <div class="card-stat"><span class="dot dot-blue"></span> 8 fig + 8 tbl</div>
+          <div class="card-stat"><span class="dot dot-green"></span> 147 tests</div>
+          <div class="card-stat"><span class="dot dot-purple"></span> 109 sections</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>GEC-10: Drilled Shafts</h3>
+          <span class="badge badge-cyan">14 Methods</span>
+        </div>
+        <div class="ref">FHWA-NHI-10-016</div>
+        <div class="desc">Alpha &amp; beta method side resistance, rock socket capacity, O'Neill &amp; Reese figures, resistance factors. Text retrieval for 5 chapters (45 sections).</div>
+        <div class="card-stats">
+          <div class="card-stat"><span class="dot dot-blue"></span> 4 fig + 6 tbl</div>
+          <div class="card-stat"><span class="dot dot-green"></span> 175 tests</div>
+          <div class="card-stat"><span class="dot dot-purple"></span> 45 sections</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>GEC-7: Soil Nail Walls</h3>
+          <span class="badge badge-green">19 Methods</span>
+        </div>
+        <div class="ref">FHWA-NHI-14-007</div>
+        <div class="desc">Bond strength (coarse/fine/rock), pullout resistance, ASD &amp; LRFD resistance factors, seismic site coefficients, SPT correlations, wall displacement, basal heave Nc.</div>
+        <div class="card-stats">
+          <div class="card-stat"><span class="dot dot-blue"></span> 2 fig + 13 tbl</div>
+          <div class="card-stat"><span class="dot dot-green"></span> 101 tests</div>
+          <div class="card-stat"><span class="dot dot-purple"></span> 37 sections</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>Micropile Design</h3>
+          <span class="badge badge-orange">18 Methods</span>
+        </div>
+        <div class="ref">FHWA-NHI-05-039</div>
+        <div class="desc">Grout-to-ground bond stress (alpha_bond) for 11 soil/rock types &amp; 4 micropile types, pipe &amp; rebar properties, group efficiency, lateral loading parameters, buckling, corrosion criteria.</div>
+        <div class="card-stats">
+          <div class="card-stat"><span class="dot dot-blue"></span> 1 fig + 13 tbl</div>
+          <div class="card-stat"><span class="dot dot-green"></span> 108 tests</div>
+          <div class="card-stat"><span class="dot dot-purple"></span> 35 sections</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>GEC-11: MSE Walls &amp; Slopes</h3>
+          <span class="badge badge-blue">21 Methods</span>
+        </div>
+        <div class="ref">FHWA-NHI-10-024</div>
+        <div class="desc">Reinforcement pullout, connection strength, bearing capacity factors, default reinforcement parameters, global stability factors, seismic coefficients for MSE walls and reinforced slopes.</div>
+        <div class="card-stats">
+          <div class="card-stat"><span class="dot dot-blue"></span> 2 fig + 15 tbl</div>
+          <div class="card-stat"><span class="dot dot-green"></span> 130 tests</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>GEC-6: Shallow Foundations</h3>
+          <span class="badge badge-purple">17 Methods</span>
+        </div>
+        <div class="ref">FHWA-SA-02-054</div>
+        <div class="desc">Bearing capacity factors, shape &amp; depth correction, settlement estimation, presumptive bearing pressures, elastic modulus correlations, footing design on rock.</div>
+        <div class="card-stats">
+          <div class="card-stat"><span class="dot dot-blue"></span> 4 fig + 9 tbl</div>
+          <div class="card-stat"><span class="dot dot-green"></span> 121 tests</div>
+          <div class="card-stat"><span class="dot dot-purple"></span> 127 sections</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>GEC-13: Ground Modification</h3>
+          <span class="badge badge-cyan">14 Methods</span>
+        </div>
+        <div class="ref">FHWA-NHI-16-027</div>
+        <div class="desc">Aggregate pier design, wick drain spacing, vibro-compaction, prefabricated vertical drains, surcharge preloading, stone column parameters, grouting methods.</div>
+        <div class="card-stats">
+          <div class="card-stat"><span class="dot dot-blue"></span> 4 fig + 6 tbl</div>
+          <div class="card-stat"><span class="dot dot-green"></span> 105 tests</div>
+          <div class="card-stat"><span class="dot dot-purple"></span> 50 sections</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       EXAMPLE WORKFLOW
+       ═══════════════════════════════════════════════════════ -->
+  <div class="workflow">
+    <h2 class="section-title">Example: Micropile Bond Zone Design</h2>
+    <div class="workflow-box">
+      <div class="workflow-header">
+        Agent Conversation
+      </div>
+      <div class="workflow-body">
+
+        <div class="wf-exchange">
+          <span class="wf-role user">User</span>
+          <div class="wf-content">
+            I need to design a Type B micropile in medium-dense gravel. What bond stress should I use, and what's the required bond length for a 900 kN design load with a 178 mm drill hole?
+          </div>
+        </div>
+
+        <div class="wf-exchange">
+          <span class="wf-role tool">Tool</span>
+          <div class="wf-content">
+            <code>micropile_agent("table_5_3_alpha_bond", {"soil_type": "gravel", "micropile_type": "B"})</code>
+            <div class="result">{
+  "soil_type": "gravel",
+  "soil_description": "Gravel (some sand), medium-very dense",
+  "micropile_type": "B",
+  "alpha_bond_min_kpa": 120,
+  "alpha_bond_max_kpa": 360
+}</div>
+          </div>
+        </div>
+
+        <div class="wf-exchange">
+          <span class="wf-role agent">Agent</span>
+          <div class="wf-content">
+            Per <strong>FHWA-NHI-05-039, Table 5-3</strong>, the grout-to-ground ultimate bond stress for a Type B micropile in medium to very dense gravel is <strong>120 to 360 kPa</strong>.<br><br>
+            Using the conservative lower bound of 120 kPa with your 178 mm drill hole:<br>
+            &nbsp;&nbsp;Bond length = 900 kN / (pi &times; 0.178 m &times; 120 kPa) = <strong>13.4 m</strong><br><br>
+            Using a mid-range value of 240 kPa:<br>
+            &nbsp;&nbsp;Bond length = 900 kN / (pi &times; 0.178 m &times; 240 kPa) = <strong>6.7 m</strong><br><br>
+            I recommend using the conservative value for preliminary design and confirming with a load test. Would you like me to also check the structural capacity of the casing?
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       COVERAGE TABLE
+       ═══════════════════════════════════════════════════════ -->
+  <div class="coverage">
+    <h2 class="section-title">Reference Coverage at a Glance</h2>
+    <div style="overflow-x:auto;">
+    <table>
+      <thead>
+        <tr>
+          <th>FHWA Reference</th>
+          <th>Topic</th>
+          <th class="num">Tables</th>
+          <th class="num">Figures</th>
+          <th class="num">Text</th>
+          <th class="num">Tests</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>NAVFAC DM7</td>
+          <td>Soil Mechanics &amp; Foundations</td>
+          <td class="num">180+</td>
+          <td class="num">200+</td>
+          <td class="num">&mdash;</td>
+          <td class="num">2,008</td>
+        </tr>
+        <tr>
+          <td>GEC-6 (FHWA-SA-02-054)</td>
+          <td>Shallow Foundations</td>
+          <td class="num">9</td>
+          <td class="num">4</td>
+          <td class="check">127 sec</td>
+          <td class="num">121</td>
+        </tr>
+        <tr>
+          <td>GEC-7 (FHWA-NHI-14-007)</td>
+          <td>Soil Nail Walls</td>
+          <td class="num">13</td>
+          <td class="num">2</td>
+          <td class="check">37 sec</td>
+          <td class="num">101</td>
+        </tr>
+        <tr>
+          <td>GEC-10 (FHWA-NHI-10-016)</td>
+          <td>Drilled Shafts</td>
+          <td class="num">6</td>
+          <td class="num">4</td>
+          <td class="check">45 sec</td>
+          <td class="num">175</td>
+        </tr>
+        <tr>
+          <td>GEC-11 (FHWA-NHI-10-024)</td>
+          <td>MSE Walls &amp; Slopes</td>
+          <td class="num">15</td>
+          <td class="num">2</td>
+          <td class="num">&mdash;</td>
+          <td class="num">130</td>
+        </tr>
+        <tr>
+          <td>GEC-12 (FHWA-NHI-16-009)</td>
+          <td>Driven Piles</td>
+          <td class="num">8</td>
+          <td class="num">8</td>
+          <td class="check">109 sec</td>
+          <td class="num">147</td>
+        </tr>
+        <tr>
+          <td>GEC-13 (FHWA-NHI-16-027)</td>
+          <td>Ground Modification</td>
+          <td class="num">6</td>
+          <td class="num">4</td>
+          <td class="check">50 sec</td>
+          <td class="num">105</td>
+        </tr>
+        <tr>
+          <td>FHWA-NHI-05-039</td>
+          <td>Micropiles</td>
+          <td class="num">13</td>
+          <td class="num">1</td>
+          <td class="check">35 sec</td>
+          <td class="num">108</td>
+        </tr>
+        <tr style="font-weight:700; border-top: 2px solid var(--border);">
+          <td>Total</td>
+          <td></td>
+          <td class="num">250+</td>
+          <td class="num">225+</td>
+          <td class="check">403 sec</td>
+          <td class="num">2,810</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       WHAT MAKES THIS DIFFERENT
+       ═══════════════════════════════════════════════════════ -->
+  <div class="how-it-works">
+    <h2 class="section-title">Why This Matters</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number" style="background: rgba(239,68,68,0.2); color: var(--red);">!</div>
+        <h3>The Problem</h3>
+        <p>Engineers spend hours flipping through 500+ page FHWA manuals to find the right table, interpolate values, and double-check units. LLMs hallucinate engineering values when they don't have access to the source data.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">&#x2713;</div>
+        <h3>The Solution</h3>
+        <p>Every design table, figure, and equation from 7 FHWA references is digitized, validated with 2,810 tests, and exposed as callable tools. The agent retrieves verified values — never guesses.</p>
+      </div>
+      <div class="step">
+        <div class="step-number" style="background: rgba(16,185,129,0.2); color: var(--green);">&#x2605;</div>
+        <h3>The Impact</h3>
+        <p>Design lookups in seconds instead of minutes. Every answer traced to a specific FHWA table and section. Consistent, auditable results across every project and every engineer.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════════════════ -->
+  <div class="footer">
+    Built by Sean O'Connell &mdash; Geotechnical Reference Agent v3.0 &mdash; February 2026
+  </div>
+
+</div>
+
+</body>
+</html>
