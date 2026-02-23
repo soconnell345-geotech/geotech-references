@@ -11,5 +11,8 @@ requires-python = ">=3.10"
 [tool.setuptools.packages.find]
 include = ["geotech_references*", "agents*"]
 
+[tool.setuptools.package-data]
+geotech_references = ["*/text/*.json"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
