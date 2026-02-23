@@ -1,0 +1,235 @@
+{
+  "reference_id": "FHWA-SA-02-054",
+  "reference_title": "Shallow Foundations",
+  "chapter": 2,
+  "chapter_title": "Types of Shallow Foundations",
+  "sections": [
+    {
+      "section_id": "2.1",
+      "title": "Introduction",
+      "body": "The definition of a 'shallow foundation' varies from author to author but generally is thought of as a foundation that bears at a depth less than about two times the foundation width. The definition is less important than understanding the theoretical assumptions behind the various design procedures. It is important to recognize the theoretical limitations of a design procedure that may vary as a function of depth, such as a bearing capacity equation. Common types of shallow foundations are shown in Figures 2-1 through 2-5.",
+      "key_points": [
+        "Shallow foundation generally defined as bearing depth less than about 2 times the foundation width",
+        "Understanding theoretical assumptions behind design procedures is more important than the strict definition",
+        "Bearing capacity equations have theoretical limitations that vary as a function of depth",
+        "Common types illustrated in Figures 2-1 through 2-5"
+      ],
+      "equations": [],
+      "figures": ["Figure 2-1", "Figure 2-2", "Figure 2-3", "Figure 2-4", "Figure 2-5"],
+      "tables": [],
+      "applicability": "General classification and definition of shallow foundations for all design applications."
+    },
+    {
+      "section_id": "2.2",
+      "title": "Isolated Spread Footings",
+      "body": "Isolated spread footings (Figure 2-1) are designed to distribute the concentrated loads delivered by a single column to prevent shear failure of the bearing material beneath the footing and to minimize settlement by reducing the applied bearing stress. The forces, strength and plan dimensions of the column may govern the minimum size of an isolated spread footing. For bridge columns, isolated spread footings are typically greater than 3 m by 3 m (10 ft by 10 ft). These dimensions will increase when eccentric loads are distributed to the footing. The size of the footing is a function of the loads distributed by the supported column and the strength and compressibility characteristics of the bearing materials beneath the footing. Structural design of the footing includes consideration for moment resistance at the face of the column and in the short direction of the footing, as well as shear and punching around the column.",
+      "key_points": [
+        "Designed to distribute concentrated column loads and prevent shear failure of bearing material",
+        "Typical minimum size for bridge columns is 3 m x 3 m (10 ft x 10 ft)",
+        "Footing size increases with eccentric loads",
+        "Sizing depends on column loads and bearing material strength/compressibility",
+        "Structural design considers moment resistance at column face, shear, and punching shear"
+      ],
+      "equations": [],
+      "figures": ["Figure 2-1"],
+      "tables": [],
+      "applicability": "Single column support where loads can be distributed to adequate bearing material through an individual footing."
+    },
+    {
+      "section_id": "2.3",
+      "title": "Continuous Strip Spread Footings",
+      "body": "The most commonly used type of foundation for buildings is the continuous strip spread footing (Figure 2-2). Continuous or strip footings generally have a minimum length to width ratio of at least 5 (i.e., length > 5 x width). They support a single row of columns or a bearing wall to reduce the pressure on the bearing materials. These footings may tie columns together in one direction. Sizing and structural design considerations are similar to isolated spread footings with the exception that plane strain conditions are assumed to exist in the direction parallel to the long axis of the footing. The structural design of these footings is generally governed by beam shear and bending moments.",
+      "key_points": [
+        "Most common foundation type for buildings",
+        "Minimum length-to-width ratio of at least 5 (length > 5 x width)",
+        "Supports a single row of columns or a bearing wall",
+        "Plane strain conditions assumed parallel to the long axis",
+        "Structural design governed by beam shear and bending moments",
+        "Can tie columns together in one direction"
+      ],
+      "equations": [],
+      "figures": ["Figure 2-2"],
+      "tables": [],
+      "applicability": "Support of bearing walls or a single row of columns where continuous load distribution is needed."
+    },
+    {
+      "section_id": "2.4",
+      "title": "Spread Footings with Cantilever Stemwalls",
+      "body": "When a spread footing with a bearing wall is used to resist lateral loads applied by backfill, the foundation and the wall must perform both vertical load distribution and retaining wall functions. The foundation is designed to resist the resulting eccentric load, and the lateral earth pressures are resisted by cantilever action of the stemwall and overturning resistance provided by the footing. This section covers three sub-applications: bridge abutments, retaining structures, and building foundations.",
+      "key_points": [
+        "Combines vertical load distribution with retaining wall function",
+        "Foundation must resist eccentric loads from lateral earth pressures",
+        "Lateral pressures resisted by cantilever action of stemwall and overturning resistance of footing",
+        "Three main sub-applications: bridge abutments, retaining structures, and building foundations"
+      ],
+      "equations": [],
+      "figures": ["Figure 2-3", "Figure 2-4"],
+      "tables": [],
+      "applicability": "Situations where shallow foundations must resist both vertical loads and lateral earth pressures from backfill."
+    },
+    {
+      "section_id": "2.4.1",
+      "title": "Bridge Abutments",
+      "body": "Bridge abutments are required to perform numerous functions: retain the earthen backfill behind the abutment, support the superstructure and distribute the loads to the bearing materials below the spread footing, provide a transition to the approach fill, and depending on structure type, accommodate shrinkage and temperature movements within the superstructure. Spread footings with cantilever stemwalls are well suited to performing these multiple functions. The general arrangement of a bridge abutment with spread footing and cantilever stemwall is shown in Figure 2-3.",
+      "key_points": [
+        "Abutments must retain backfill, support superstructure, provide approach fill transition, and accommodate thermal movements",
+        "Spread footings with cantilever stemwalls are well suited for these multiple functions",
+        "Must distribute superstructure loads to bearing materials below the footing"
+      ],
+      "equations": [],
+      "figures": ["Figure 2-3"],
+      "tables": [],
+      "applicability": "Bridge abutment design where the foundation must serve both structural support and earth retention functions."
+    },
+    {
+      "section_id": "2.4.2",
+      "title": "Retaining Structures",
+      "body": "The bases of semi-gravity concrete cantilever retaining walls (inverted 'T' walls) are essentially shallow spread footings. The wall derives its ability to resist loads from a combination of the dead weight of the backfill on the heel of the wall footing and the structural cantilever of the stem (Figure 2-4).",
+      "key_points": [
+        "Semi-gravity cantilever retaining walls (inverted T-walls) use shallow spread footings as their base",
+        "Stability derives from backfill dead weight on the heel and structural cantilever of the stem",
+        "The footing acts as both foundation and stabilizing element"
+      ],
+      "equations": [],
+      "figures": ["Figure 2-4"],
+      "tables": [],
+      "applicability": "Semi-gravity concrete cantilever retaining wall design where the base footing provides foundation support and overturning resistance."
+    },
+    {
+      "section_id": "2.4.3",
+      "title": "Building Foundations",
+      "body": "When a building stemwall is buried, partially buried or acts as a basement wall, the stemwall resists the lateral earth pressures of the backfill. Unlike bridge abutments and semi-gravity cantilever walls, the tops or the ends of the stemwalls are frequently restrained by other structural members (e.g., beams, floors, transverse interior walls, etc.) to provide additional structural resistance.",
+      "key_points": [
+        "Building stemwalls resist lateral earth pressures when buried or partially buried",
+        "Tops and ends of stemwalls are often restrained by beams, floors, or interior walls",
+        "Additional structural restraint differentiates building foundations from bridge abutments and cantilever walls"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Building foundations with basement walls or buried stemwalls that must resist lateral earth pressures with additional structural restraint."
+    },
+    {
+      "section_id": "2.5",
+      "title": "Combination Footings",
+      "body": "Combination, or combined, footings are similar to isolated spread footings except that they support two or more columns and are rectangular or trapezoidal in shape (Figure 2-5). They are primarily used when the column spacing is non-uniform (Bowles, 1996) or when isolated spread footings become so closely spaced that a combination footing is simpler to form and construct. In the case of bridge abutments, an example of a combination footing is the so-called 'spill-through' type abutment (Figure 2-6). This configuration was used during some of the initial construction of the Interstate freeways on new alignments where spread footings could be founded on competent native soils. Spill-through abutments are also used at stream crossings to make sure foundations are below the scour level of the stream. Due to the frame action that develops with combination footings, they can be used to resist large overturning or rotational moments in the longitudinal direction of the column row. Design depends on available space, load distribution among columns, variations of soil properties, and economics.",
+      "key_points": [
+        "Support two or more columns on a single rectangular or trapezoidal footing",
+        "Used when column spacing is non-uniform or when isolated footings would overlap",
+        "Spill-through abutments are a bridge application of combination footings (Figure 2-6)",
+        "Frame action allows resistance to large overturning or rotational moments",
+        "Spill-through abutments used at stream crossings to place foundations below scour level",
+        "Design choice depends on available space, load distribution, soil variability, and economics"
+      ],
+      "equations": [],
+      "figures": ["Figure 2-5", "Figure 2-6"],
+      "tables": [],
+      "applicability": "Multiple-column support where individual footings would overlap or where non-uniform column spacing or large overturning moments are present."
+    },
+    {
+      "section_id": "2.6",
+      "title": "Mat Foundations",
+      "body": "A mat foundation consists of a single heavily reinforced concrete slab which underlies the entire structure or a major portion of the structure. Mat foundations are often economical when spread footings would cover more than about 50 percent of the footprint of the plan area of a structure (Peck et al. 1974). A mat (Figure 2-7) typically supports a number of columns and/or walls in either direction or a uniformly distributed load (i.e., tank). The principal advantage of a mat foundation is its ability to bridge over soft spots and reduce differential movement. Structures founded on relatively weak soils or lightweight structures may be economically supported on mat foundations. Mat foundations distribute loads over a large area, reducing contact pressures. They are designed with sufficient reinforcement and thickness to be rigid enough to distribute column and wall loads, minimizing differential settlements and tolerating larger uniform settlements. Often the mat also serves as the base floor level of building structures. Mat foundations have limited applicability for bridge support, except where large bridge piers, such as bascules or other movable bridge supports, have the opportunity to bear at relatively shallow depth without deep foundation support. Discussion of large mat foundation design is included in Section 8.6. A more common application of mat foundations to transportation structures might include lightly loaded rest or maintenance facilities such as small masonry block structures or sand storage bins or sheds, or box culverts constructed as a continuous structure.",
+      "key_points": [
+        "Single heavily reinforced concrete slab underlying the entire structure or major portion",
+        "Economical when spread footings would cover more than about 50% of the plan area (Peck et al. 1974)",
+        "Principal advantage is ability to bridge over soft spots and reduce differential movement",
+        "Suitable for relatively weak soils or lightweight structures",
+        "Limited applicability for bridge support; applicable for bascule piers and movable bridge supports",
+        "Common transportation applications include maintenance facilities, storage bins, and box culverts",
+        "Large mat foundation design discussed in Section 8.6"
+      ],
+      "equations": [],
+      "figures": ["Figure 2-7"],
+      "tables": [],
+      "applicability": "Structures where spread footings would cover more than 50% of the plan area, or where differential settlement must be minimized over weak or variable ground conditions."
+    },
+    {
+      "section_id": "2.7",
+      "title": "Shallow Foundations in Performance Applications",
+      "body": "High quality case histories regarding shallow foundations in transportation applications are difficult to obtain, largely because settlement data following construction are often not recorded. Several relevant case histories are documented in 'Performance of Highway Bridge Abutments on Spread Footings' (DiMillio, 1982). Three new case histories are included to highlight design and construction practices that take advantage of the cost savings available by constructing spread footings in compacted engineered fills and in competent natural ground.",
+      "key_points": [
+        "Case histories for shallow foundations in transportation are scarce due to lack of post-construction settlement monitoring",
+        "DiMillio (1982) documents several relevant case histories",
+        "Three new case histories demonstrate cost savings from spread footings in compacted fills and competent ground",
+        "Case histories highlight importance of thorough site investigation and construction monitoring"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Evaluation of shallow foundation performance in transportation applications through case history review."
+    },
+    {
+      "section_id": "2.7.1",
+      "title": "Case History No. 1: I-5 Kalama Interchange, Washington",
+      "body": "During Interstate construction in the 1960s-1970s, WSDOT constructed numerous bridges with shallow spread footing support on structural fills (DiMillio, 1982). The project involved a 71-m (233-ft) long by 8.5-m (28-ft) wide, four-span, prestressed concrete structure providing east-west traffic access across Interstate 5 in Kalama, southwestern Washington State. The bridge was constructed in 1968-1969. Subsurface conditions consisted of approximately 30 m (100 ft) of alluvial sediments (interbedded loose to medium dense sand, soft to medium stiff silt, and occasional peat layers) over bedrock. One-dimensional consolidation tests yielded compression indices Cc of 0.19 to 0.24 and moisture contents of 46-50%. Due to excessive depth of compressible soil and high costs of deep foundations, WSDOT used conventional spread footings with ground improvement by preloading prior to footing construction. A maximum allowable bearing pressure of 3 tsf was used (presumptive value for Gravel Borrow fills). Actual design bearing pressures were 280 kPa (2.9 tsf) for Piers 1-4 and 244 kPa (2.55 tsf) for Pier 5. Preload fill was placed in two stages: Stage 1 completed mid-October 1967 (up to 7.6 m / 25 ft of fill), Stage 2 placed 6 months after Stage 1. Total preload thickness was 13-14.6 m (43-48 ft) at abutments and 7.6 m (25 ft) at interior piers. By late June 1968, 0.34 m and 0.9 m of settlement had occurred at Piers 1 and 5 respectively. Post-deck settlement monitoring (December 1968 to April 1969) showed 37-49 mm at abutments and 21-34 mm at interior piers. Maximum angular distortion between adjacent piers was less than 0.002. The spread footings saved approximately $25,000 (about 20% of total cost) by deleting 124 timber piles.",
+      "key_points": [
+        "71-m long, four-span prestressed concrete bridge on alluvial sediments over bedrock",
+        "30 m of compressible alluvial soils with Cc = 0.19-0.24",
+        "Ground improvement by two-stage preloading prior to footing construction",
+        "Design bearing pressures: 280 kPa (Piers 1-4) and 244 kPa (Pier 5)",
+        "Post-deck settlement: 37-49 mm at abutments, 21-34 mm at interior piers",
+        "Maximum angular distortion less than 0.002 between adjacent piers",
+        "Cost savings of approximately $25,000 (20% of total cost) by eliminating 124 timber piles",
+        "Observational method used to evaluate feasibility during construction"
+      ],
+      "equations": [],
+      "figures": ["Figure 2-8", "Figure 2-9", "Figure 2-10", "Figure 2-11"],
+      "tables": ["Table 2-1", "Table 2-2"],
+      "applicability": "Bridge foundations on compressible alluvial soils where preloading can improve ground conditions and reduce post-construction settlement to acceptable levels."
+    },
+    {
+      "section_id": "2.7.2",
+      "title": "Case History No. 2: I-580 Mt. Rose Highway Interchange, Nevada",
+      "body": "This case history involves a bridge at the Mt. Rose Highway Interchange on Interstate Highway 580 in Washoe County, Nevada. The bridge is the northbound I-580 overpass over Mt. Rose Highway, constructed in 1994. The bridge is 107.6 m (353 ft) long and 25.8 m (84.5 ft) wide, a two-span concrete structure supported by two end abutments and an intermediate pier (Figure 2-12). All are supported by spread footings. The site lies within Donner Lake Glacial Outwash and Mt. Rose Alluvial Fan Deposits. Total of 10 borings were drilled. North Abutment: dense, fine- to medium-grained silty sand to sand with gravels and cobbles; SPT N-values 25-75, average 50. Center Pier: medium dense to very dense sand from 0.6-7.6 m depth with gravel layer at 1.5-3.0 m. South Abutment: dense to very dense fine- to medium-grained silty sand to sand with gravels. Groundwater greater than 30 m (100 ft) below the site. Estimated settlements of spread footings were 32 mm for abutments and 44-57 mm for center pier at a design bearing pressure of 190 kPa (2 tsf), considered within tolerable limits. Abutment footings were founded on both cuts and structural fills with maximum structural fill height of about 2.5 m (8 ft). Center pier is on natural ground. Structural fills consisted of compacted aggregate base (Type 1 Class B), placed in 200 mm lifts, compacted to 95% of maximum density per Nevada Test Method T101. Settlement was not monitored but Nevada DOT reports the structure has performed without problems. Cost savings from deleting piles at the two abutments estimated at $105,000 (at least 4% of total $2.8 million structure cost).",
+      "key_points": [
+        "107.6-m long, two-span concrete bridge on dense glacial outwash and alluvial fan deposits",
+        "SPT N-values of 25-75 (average 50) at north abutment",
+        "Design bearing pressure of 190 kPa (2 tsf); estimated settlements 32-57 mm",
+        "Groundwater deeper than 30 m below site",
+        "Abutment footings on compacted aggregate base (Type 1 Class B); lifts of 200 mm; 95% compaction",
+        "Estimated cost savings of $105,000 (4% of $2.8 million structure cost) by deleting piles",
+        "Structure has performed without problems since 1994 construction"
+      ],
+      "equations": [],
+      "figures": ["Figure 2-12", "Figure 2-13", "Figure 2-14"],
+      "tables": [],
+      "applicability": "Bridge foundations on dense granular soils where shallow foundations on structural fills provide adequate bearing capacity and acceptable settlement without ground improvement."
+    },
+    {
+      "section_id": "2.7.3",
+      "title": "Case History No. 3: Cadillac Bypass Structure S01, Michigan",
+      "body": "The Cadillac Bypass project involves extending the limited-access US-131 around Cadillac to Manton, Michigan. The project includes 24 structures, 10 of which are or will be supported on spread footings. Structure S01, the northbound US-131 relocation overpass over S-43 Road, is 77.8 m (255.4 ft) long and 14.7 m (48.3 ft) wide, a three-span concrete structure with two abutments and two piers (Figure 2-15). Subsurface conditions consist of a loose sand layer up to about 6 m (20 ft) thick, underlain by medium dense to very dense sand with trace fine gravel. Water level 2.4 m (8 ft) below ground surface in one of four borings. Abutment and pier footings were placed on structural fill (Michigan DOT designation: Structure Embankment), placed on existing ground after topsoil removal. Thickness of Structure Embankment was about 7.6 m (25 ft) under abutment footings and over 4.6 m (15 ft) under pier footings. Loose soils were removed from under pier locations and backfilled with Structure Embankment. The Structure Embankment consisted of granular material: 100% passing 150 mm (6 in) sieve, 95-100% passing 75 mm (3 in), 0-15% passing 75 um (No. 200). Placed in lifts of 230-380 mm (9-15 in) and compacted to 100% of Maximum Unit Weight (equivalent to Modified Proctor Method). Settlement has not been monitored. Estimated cost savings of about $180,000 (about 8% of the $2.3 million structure cost), based on deletion of approximately 18 piles per pier at $2,500 per in-place pile.",
+      "key_points": [
+        "77.8-m long, three-span concrete structure with 2 abutments and 2 piers",
+        "Loose sand up to 6 m thick removed and replaced with Structure Embankment",
+        "Structure Embankment: granular, 0-15% passing No. 200, compacted to 100% Modified Proctor",
+        "Fill thickness: 7.6 m under abutments, 4.6 m under piers",
+        "Placed in lifts of 230-380 mm",
+        "Estimated cost savings of $180,000 (8% of $2.3 million structure cost)",
+        "10 of 24 structures in the overall project supported on spread footings"
+      ],
+      "equations": [],
+      "figures": ["Figure 2-15", "Figure 2-16"],
+      "tables": [],
+      "applicability": "Bridge foundations where loose native soils are removed and replaced with well-compacted structural fill to support spread footings, avoiding the need for driven piles."
+    },
+    {
+      "section_id": "2.8",
+      "title": "Pre-Cast Foundation Elements, Mudsills and Temporary Footings",
+      "body": "Many bridges require temporary support, or falsework, in order to complete the permanent structure. Falsework is in turn supported on temporary foundations. Because they are temporary, these foundations do not need the same design considerations as permanent structures. For instance, frost protection is usually not required, so temporary footings can bear at shallow depth or directly on the ground surface. However, the temporary footing still must be designed to limit stress applied to the supporting soil to prevent shear failure (see Section 5.2) and to limit settlement to a tolerable amount (Section 5.3). The analytical procedures for checking performance are the same as for permanent structures (Chapters 5 and 6). Many transportation agencies require a field plate load test (ASTM Test Method 1194 and AASHTO test method 235 are identical) to confirm the load-carrying capacity and settlement of falsework foundations. Plate load test data should be used with caution when a stiff, near surface crust overlies softer, saturated soils, since the depth of influence (see Section 3.1.5) will be less for the plate than the actual falsework foundations. In this case, site-specific settlement analyses should be required.",
+      "key_points": [
+        "Temporary foundations for falsework do not require frost protection",
+        "Must still be designed against shear failure and excessive settlement",
+        "Same analytical procedures as permanent structures (Chapters 5 and 6)",
+        "ASTM 1194 / AASHTO 235 plate load test commonly required to verify capacity",
+        "Plate load test data should be used with caution when stiff crust overlies softer soils",
+        "Depth of influence for plate test is less than for actual foundations; site-specific analysis may be needed"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Temporary falsework foundations and mudsills for bridge construction where simplified design is acceptable but bearing capacity and settlement still require verification."
+    }
+  ]
+}

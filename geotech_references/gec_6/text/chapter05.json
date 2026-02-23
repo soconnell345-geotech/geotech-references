@@ -1,0 +1,879 @@
+{
+  "reference_id": "FHWA-SA-02-054",
+  "reference_title": "Shallow Foundations",
+  "chapter": 5,
+  "chapter_title": "Geotechnical Design",
+  "sections": [
+    {
+      "section_id": "5.0",
+      "title": "Geotechnical Design - Introduction",
+      "body": "The design of shallow foundations involves calculating an allowable bearing pressure that will (a) maintain an adequate factor of safety relative to shear failure of the bearing soil, and (b) limit the settlement of the foundation to meet serviceability requirements. The allowable bearing capacity of a shallow foundation is defined as the lesser of: (1) the pressure that will result in a shear failure divided by a suitable factor of safety (FS), or (2) the pressure that results in a specified limiting amount of settlement. This chapter presents the theory behind calculation of allowable bearing capacities, considering both of these important design requirements. It also presents the geotechnical procedures for computing the resistance to sliding for a shallow foundation, and the geotechnical considerations needed to ensure the foundation is stable from a global, or slope stability, perspective.",
+      "key_points": [
+        "Allowable bearing capacity is the LESSER of shear failure capacity/FS and settlement-limited pressure",
+        "Both shear failure and settlement must be checked for every shallow foundation design",
+        "Chapter also covers sliding resistance and global stability checks",
+        "Footing width B is the key dimension controlling both bearing capacity and settlement"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "All shallow foundation designs for transportation structures."
+    },
+    {
+      "section_id": "5.1",
+      "title": "Allowable Bearing Capacity",
+      "body": "The allowable bearing capacity of a spread footing historically has combined the design considerations of minimizing the potential for shear failure of the soil and limiting vertical deflection (settlement). Both of these design considerations are a function of the least footing dimension, typically called the 'footing width,' and designated as the variable, B or B_f. In general, for a footing bearing on essentially an isotropic, homogenous material, with no embedment (i.e., founded at the surface), the factor of safety against a shear failure developing beneath the footing will increase as the footing width, B, increases. However, as a footing's dimension increases, the depth of influence also increases. Stated another way, as the footing dimension, B, increases, the stress increase 'felt' by the soil extends more deeply below the bearing elevation. The effect of footing width on bearing capacity and settlement is shown conceptually in Figure 5-1. Note that the allowable bearing capacity of a footing is controlled by shear-failure considerations for narrow footing widths. But as the footing width increases, the allowable bearing capacity is limited by the settlement potential of the soils supporting the footing.",
+      "key_points": [
+        "Allowable bearing capacity combines shear failure prevention and settlement limitation",
+        "For narrow footings, shear failure controls; for wide footings, settlement controls",
+        "Footing width B is the key design variable for both criteria",
+        "As B increases, factor of safety against shear failure increases but settlement potential also increases",
+        "The depth of influence increases proportionally with footing width"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-1: Allowable Bearing Capacity Controlled by Shear Failure Considerations versus Settlement Considerations"
+      ],
+      "tables": [],
+      "applicability": "Conceptual framework for all shallow foundation bearing capacity evaluation."
+    },
+    {
+      "section_id": "5.2",
+      "title": "Bearing Capacity Theory",
+      "body": "This section discusses bearing capacity theory and its application toward computing allowable bearing capacities for shallow foundations. Methods of calculating settlement displacements are presented in Section 5.3. When a load is transferred through a footing to the foundation soil/rock, the subsurface materials experience settlement due to elastic (immediate) strains and long-term consolidation (elastic and/or plastic deformation) of the ground. The footing will penetrate into the foundation soil/rock when the intensity of applied loads is such that the load-carrying capacity of the foundation material is exceeded. A foundation failure will occur when the footing penetrates excessively into the ground or experiences excessive rotation. Excessive foundation movements such as penetration and rotation of the foundation may cause structural damage or collapse. A failure caused by the vertical and lateral displacement of foundation soils due to lack of sufficient strength is called a 'bearing capacity failure.' The load that develops this type of subsurface collapse is called the 'ultimate bearing capacity' of the soil.",
+      "key_points": [
+        "Ultimate bearing capacity is the load that causes subsurface collapse due to insufficient soil strength",
+        "Foundation failure manifests as excessive penetration or rotation",
+        "Settlement involves both immediate elastic strains and long-term consolidation",
+        "Bearing capacity theory provides the framework for preventing shear failure"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-2: Bearing Capacity Failure of Silo Foundation (Vesic, 1975, from Tschebotarioff, 1951)"
+      ],
+      "tables": [],
+      "applicability": "All shallow foundations where shear failure must be evaluated."
+    },
+    {
+      "section_id": "5.2.1",
+      "title": "Failure Mechanisms",
+      "body": "Three distinct modes of bearing capacity failure are recognized: general shear, local shear, and punching shear.\n\n5.2.1.1 General Shear: The kinematic conditions (strain states) that develop when a uniform, rigid-plastic, weightless soil (possessing cohesion c' and friction phi') reaches the ultimate bearing capacity were determined theoretically by Prandtl (1920) and Reissner (1924). When a footing is loaded to the ultimate bearing capacity, the condition of plastic flow of foundation soils develops. Terzaghi and Peck (1948) further defined the zones of plastic equilibrium after failure of soil beneath continuous footing (Figure 5-3). A triangular wedge beneath the footing, designated as Zone I, remains in an elastic state and moves down into the soil with the footing. Radial shear develops in Zone II such that radial lines extending from the footing change length based on a logarithmic spiral until the failure plane reaches Zone III. A passive state develops in Zone III at an angle of 45 - (phi'/2) from the horizontal. This configuration of the ultimate bearing capacity failure, with well-defined shear planes developing and extending to the surface, with footing rotation, and bulging of the soil on both sides of the footing, is called 'general shear.' General shear-type ultimate bearing capacity failures (Figure 5-4a) are believed to be the prevailing mode of failure for soils that are relatively incompressible and reasonably strong, or saturated, normally consolidated clays that are loaded rapidly so that undrained conditions and therefore undrained soil strength governs.\n\n5.2.1.2 Local Shear: In some cases, the bearing capacity shear planes are not well developed, and the failure planes do not extend all the way to the ground surface. This mode of ultimate bearing capacity failure (Figure 5-4b) is called 'local shear.' The deformation patterns in local shear involve vertical compression (Vesic, 1975) beneath the footing, bulging of the soil at the ground surface and essentially no rotation or tilting of the footing. Local shear failures may occur in soils that are relatively loose or soft when compared to soils susceptible to general shear failure.\n\n5.2.1.3 Punching Shear: Another type of failure observed under ultimate bearing-capacity conditions involves vertical compression of the soils beneath the footing without bulging of the soil. As shown in Figure 5-4c, the bearing load continuously increases when the footing is loaded under strain-controlled conditions ('test at greater depth'). This kinematic mode of ultimate bearing capacity failure is called 'punching shear.' Punching shear is considered a potential failure mode for shallow foundations when loose or compressible soils are loaded slowly under drained conditions. For instance, footings placed at great depth on dense sand or on dense sand underlain by soft, compressible soil can fail under punching-shear modes. A footing on soft clay can also fail under punching shear if it is loaded slowly.\n\nNote that from a perspective of bridge foundation design, soils so obviously weak as to experience local or punching shear failure modes should be avoided for supporting shallow foundations. Additional guidance on dealing with soils that fall in the intermediate, or local shear range of behavior is provided in Section 5.2.3.6.",
+      "key_points": [
+        "Three failure modes: general shear, local shear, and punching shear",
+        "General shear: well-defined failure planes extend to surface, soil bulges on both sides, footing rotates - occurs in incompressible/strong soils or rapidly loaded NC clays",
+        "Local shear: failure planes do not reach surface, vertical compression with bulging but no rotation - occurs in loose or soft soils",
+        "Punching shear: vertical compression without bulging, continuous load increase under strain control - occurs when loose soils loaded slowly under drained conditions",
+        "Zone I (elastic wedge), Zone II (radial shear, logarithmic spiral), Zone III (passive state at 45 - phi'/2)",
+        "Soils prone to local or punching shear should be avoided for bridge shallow foundations",
+        "Figure 5-8 shows conditions when local/punching shear modes develop based on relative density and Df/Bf ratio"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-3: Boundaries of Zone of Plastic Equilibrium after Failure of Soil Beneath Continuous Footing",
+        "Figure 5-4: Modes of Bearing Capacity Failure (After Vesic, 1975) (a) General Shear (b) Local Shear (c) Punching Shear"
+      ],
+      "tables": [],
+      "applicability": "Understanding failure modes is essential for selecting appropriate bearing capacity equations and correction factors."
+    },
+    {
+      "section_id": "5.2.2",
+      "title": "Bearing Capacity Equation Formulations",
+      "body": "The gross ultimate bearing pressure is equivalent to the stress applied to the soil by the footing at ultimate (failure) conditions at the bearing elevation. In theoretical formulations, Prandtl (1920) and Reissner (1924) developed an expression for the gross ultimate bearing capacity that considered both frictional and cohesion components of soil shear strength and a uniform surcharge pressure at the base of the footing due to the depth of embedment of the footing, D_f. The gross ultimate bearing pressure (q_ult gross) for this case is given by Equation 5-1.\n\nThe net ultimate bearing pressure is the difference between the gross ultimate bearing pressure and the pressure that existed due to the surcharge at the bearing depth before the footing was constructed, q = gamma*D_f. The net ultimate bearing pressure can thus be computed by subtracting the surcharge (q) from Equation 5-1. By inspection, the actual difference between q_ult net and q_ult gross is generally small for cohesionless soils (i.e., phi > 0).\n\nFurther, the structural designer will typically include the self-weight of the concrete footing and the backfill over the footing (approximately equal to gamma*D_f) in the loads that contribute to the applied bearing stress. Therefore, if the geotechnical engineer computes and reports a net ultimate bearing pressure, the effect of the surcharge directly over the footing area is counted twice. This is conservative, but generally not recommended. Therefore, it is recommended that q_ult gross be used in determination of the allowable bearing capacity of a soil (e.g., q_ult approximately equals q_ult gross).\n\nThere are no analytical solutions available to extend the bearing capacity equations to include the effects of unit weight of the foundation material. Numerous investigators have proposed relationships for the inclusion of the unit weight. They involve adding an independent term (N_gamma) to the ultimate gross bearing capacity equation. Analyses were developed by assuming the shapes of the failure surfaces and performing trial analyses until a solution was obtained. The revised ultimate gross bearing capacity equation for a centrically loaded strip footing on a foundation material with unit weight now becomes Equation 5-7.\n\nNote that a range of values has been proposed by various authors for N_gamma. The differences reported by various researchers range from about one-half to double the values presented below, depending on the friction angle selected for design. Caquot and Kerisel's (1948) equation for N_gamma is currently used by FHWA and AASHTO (Equation 5-8).\n\nThe values of N_c, N_q, and N_gamma as functions of the friction angle are included in Table 5-1 and in Figure 5-6. Note from Equation 5-7 that the ultimate bearing capacity of a soil is a function of the cohesive and frictional strength of the soil (c and phi), the effective weight of the soil above and below the footing (gamma or gamma'), and the depth and width of the footing (D_f and B_f). For cohesive soils (i.e., phi = 0, undrained loading), the last term is zero and the first term is a constant. Therefore the ultimate bearing capacity will only be a function of the cohesion and the depth of embedment of the footing. Cohesionless soils, on the other hand, will experience large changes in ultimate bearing capacity when properties and/or dimensions are changed. The embedment effect is particularly important. Removal of soil from over an embedded footing, either by excavation or scour, can substantially reduce bearing capacity and cause footing subsidence. Similarly, a rise in the ground water level will reduce the effective (buoyant) unit weight of the soil, thus reducing those terms that are a function of unit weight by essentially one-half.",
+      "key_points": [
+        "Use gross ultimate bearing pressure (q_ult gross) for determining allowable bearing capacity, NOT net",
+        "Using net bearing pressure double-counts surcharge when structural loads include footing self-weight",
+        "FHWA/AASHTO use Caquot and Kerisel (1948) equation for N_gamma: N_gamma = 2(N_q + 1)*tan(phi)",
+        "For phi = 0 (undrained clay): bearing capacity depends only on cohesion and embedment depth",
+        "For cohesionless soils: bearing capacity is very sensitive to friction angle, embedment, and water table",
+        "Scour or excavation removing overburden can substantially reduce bearing capacity",
+        "Rising water table reduces effective unit weight by approximately half"
+      ],
+      "equations": [
+        {
+          "id": "Eq 5-1",
+          "latex": "q_{ult\\ gross} = c \\cdot N_c + q \\cdot N_q",
+          "description": "Gross ultimate bearing pressure for strip footing (Prandtl/Reissner), where c = cohesion, q = gamma*D_f = surcharge at base, N_c and N_q = bearing capacity factors"
+        },
+        {
+          "id": "Eq 5-2",
+          "latex": "N_q = e^{\\pi \\tan\\phi} \\tan^2\\left(45° + \\frac{\\phi}{2}\\right)",
+          "description": "Bearing capacity factor for surcharge term"
+        },
+        {
+          "id": "Eq 5-3",
+          "latex": "N_c = (N_q - 1) \\cot\\phi \\quad \\text{for } \\phi > 0°",
+          "description": "Bearing capacity factor for cohesion term (phi > 0)"
+        },
+        {
+          "id": "Eq 5-4",
+          "latex": "N_c = 2 + \\pi = 5.14 \\quad \\text{for } \\phi = 0°",
+          "description": "Bearing capacity factor for cohesion term (undrained, phi = 0)"
+        },
+        {
+          "id": "Eq 5-5",
+          "latex": "q_{ult\\ net} = q_{ult\\ gross} - q",
+          "description": "Net ultimate bearing pressure (gross minus overburden surcharge)"
+        },
+        {
+          "id": "Eq 5-6",
+          "latex": "q_{ult\\ net} = c \\cdot N_c + q(N_q - 1)",
+          "description": "Net ultimate bearing pressure expanded form"
+        },
+        {
+          "id": "Eq 5-7",
+          "latex": "q_{ult} = c \\cdot N_c + q \\cdot N_q + 0.5 \\cdot \\gamma \\cdot B_f \\cdot N_\\gamma",
+          "description": "General bearing capacity equation for strip footing including soil unit weight term, where gamma = unit weight of soil beneath footing, B_f = footing width, N_gamma = bearing capacity factor for soil unit weight"
+        },
+        {
+          "id": "Eq 5-8",
+          "latex": "N_\\gamma = 2(N_q + 1) \\tan(\\phi)",
+          "description": "Bearing capacity factor for soil unit weight (Caquot and Kerisel, 1948) - used by FHWA and AASHTO"
+        }
+      ],
+      "figures": [
+        "Figure 5-5: Design Terminology for Spread Footing Foundation",
+        "Figure 5-6: Bearing Capacity Factors versus Friction Angle (AASHTO, 1996)"
+      ],
+      "tables": [
+        "Table 5-1: Bearing Capacity Factors (AASHTO, 1996) - N_c, N_q, N_gamma for phi = 0 to 45 degrees"
+      ],
+      "applicability": "All bearing capacity calculations for shallow foundations. Use Eq 5-7 as the base equation before applying correction factors."
+    },
+    {
+      "section_id": "5.2.3",
+      "title": "Bearing Capacity Correction Factors",
+      "body": "A number of factors influence the ultimate bearing capacity of shallow foundations that were not included in the derivations discussed earlier. Note that Equation 5-7 assumes a rigid strip (continuous) footing that is loaded through its centroid bearing on a level surface of homogeneous soil. Various correction factors have been proposed by numerous investigators to account for footing shape, location of the ground water table, embedment depth, sloping ground surface, an inclined base, the mode of shear (local or punching shear), inclined loading and soil compressibility. The general philosophy of correcting the ultimate bearing capacity involves using semi-empirical factors that are multiplied by each of the three terms in the bearing capacity equation to account for the particular effect. Each correction factor includes a subscript denoting the term to which the factor should be applied: 'c' for the cohesion term, 'gamma' for the unit weight (footing width) term and 'q' for the surcharge (embedment) term.",
+      "key_points": [
+        "Correction factors multiply each of the three bearing capacity terms (c, gamma, q) independently",
+        "Factors account for: shape, groundwater, embedment depth, sloping ground, inclined base, local/punching shear, inclined loading, soil compressibility",
+        "Subscripts c, gamma, q denote which bearing capacity term the factor applies to",
+        "Some factors should NOT be combined simultaneously (e.g., shape and inclination)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "All non-ideal footing configurations requiring corrections to the basic strip footing bearing capacity equation."
+    },
+    {
+      "section_id": "5.2.3.1",
+      "title": "Footing Shape",
+      "body": "AASHTO guidelines distinguish a strip footing as one whose length (L_f) exceeds five times the footing width (B_f). Corrections of the ultimate bearing capacity should be made for rectangular footings with L_f/B_f ratios less than 5. The shape (eccentricity) correction factors are summarized in Table 5-2. Note that for eccentrically loaded footings, AASHTO (1996) recommends using the effective footing dimensions, B'_f and L'_f, to compute the shape correction factors (refer to Section 6.4.1 for discussion of eccentricity and effective footing dimensions). However, in routine foundation design, this is not practical, since the effective dimensions will change for various load cases, and the difference in the computed shape correction factors will generally be small. Therefore the geotechnical engineer should make reasonable assumptions about the footing shape and dimensions and compute the correction factors using Table 5-2. Note: Shape (eccentricity) factors, s, should not be applied simultaneously with inclined loading factors, i (see Section 5.2.3.7).",
+      "key_points": [
+        "Strip footing defined as L_f/B_f > 5; apply shape corrections when L_f/B_f < 5",
+        "Use full footing dimensions (not effective dimensions) for routine shape factor calculation",
+        "Shape factors should NOT be combined with inclined loading factors",
+        "For phi = 0: s_c = 1 + B_f/(5*L_f), s_gamma = 1.0, s_q = 1.0",
+        "For phi > 0: s_c = 1 + (B_f/L_f)*(N_q/N_c), s_gamma = 1 - 0.4*(B_f/L_f), s_q = 1 + (B_f/L_f)*tan(phi)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 5-2: Shape Correction Factors (AASHTO 1996)"
+      ],
+      "applicability": "All rectangular or square footings where L_f/B_f < 5."
+    },
+    {
+      "section_id": "5.2.3.2",
+      "title": "Location of the Ground Water Table",
+      "body": "If the ground water table is located within the potential zone of shear below or above a footing, effective stresses will control the magnitude of overburden stress and thus the shearing resistance along that portion of the shearing surface that lies below the water table. A simplified method for accounting for the reduction in shearing resistance is to apply factors to the two terms in the bearing capacity equation that include a unit weight term. Recall that the cohesion term is neither a function of soil unit weight nor effective stress. The factors may be computed using the following equations, or by interpolating values between those provided in Table 5-3. C_W_gamma applies to the unit weight (N_gamma) term and C_W_q applies to the surcharge (N_q) term.",
+      "key_points": [
+        "Groundwater correction applies ONLY to terms containing unit weight (N_gamma and N_q terms)",
+        "Cohesion term is NOT affected by groundwater position",
+        "When water table is at surface (D_W = 0): C_W_gamma = 0.5, C_W_q = 0.5",
+        "When water table is at footing base (D_W = D_f): C_W_gamma = 0.5, C_W_q = 1.0",
+        "When water table is below zone of influence (D_W > 1.5*B_f + D_f): C_W_gamma = 1.0, C_W_q = 1.0",
+        "Interpolate for intermediate positions using Equations 5-9 and 5-10"
+      ],
+      "equations": [
+        {
+          "id": "Eq 5-9",
+          "latex": "C_{W_\\gamma} = 0.5 + 0.5 \\left(\\frac{D_W}{1.5 B_f + D_f}\\right) \\leq 1.0",
+          "description": "Groundwater correction factor for unit weight (N_gamma) term, where D_W = depth to water table"
+        },
+        {
+          "id": "Eq 5-10",
+          "latex": "C_{W_q} = 0.5 + 0.5 \\left(\\frac{D_W}{D_f}\\right) \\leq 1.0",
+          "description": "Groundwater correction factor for surcharge (N_q) term"
+        }
+      ],
+      "figures": [],
+      "tables": [
+        "Table 5-3: Correction Factor for Location of Ground Water Table (AASHTO, 1998)"
+      ],
+      "applicability": "Any footing where groundwater table is within the zone of influence (within 1.5*B_f below or above the footing base)."
+    },
+    {
+      "section_id": "5.2.3.3",
+      "title": "Embedment Depth",
+      "body": "Because the surcharge term, q, was developed considering the effect on bearing capacity as a vertical pressure applied at the footing bearing elevation, the effect of the shearing resistance as the failure surface passes through the footing embedment cover was neglected in the theory. If the backfill or cover over the footing is known to be of high-quality, compacted granular material that can be reliably assumed to remain in place over the life of the footing, this additional shearing resistance can be included by addition of the embedment depth factor, d_q, shown in Table 5-4. Otherwise, the depth correction factor can be conservatively omitted. Note: The depth correction factor should be used only when the soils above the footing bearing elevation are as competent as the soils beneath the footing level; otherwise, the depth correction factor should be taken as 1.0.",
+      "key_points": [
+        "Depth factor d_q accounts for shearing resistance of embedment cover along the failure surface",
+        "Only use when backfill above footing is competent granular material that will remain in place",
+        "If soils above bearing elevation are weaker than soils below, set d_q = 1.0",
+        "Conservative approach: omit depth correction factor entirely",
+        "Values range from 1.15 to 1.40 depending on phi and D_f/B_f ratio"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 5-4: Depth Correction Factor (Brinch Hansen, 1970) - d_q values for phi = 32, 37, 42 degrees at D_f/B_f = 1, 2, 4, 8"
+      ],
+      "applicability": "Footings with competent granular backfill above the bearing elevation where embedment effect can be reliably counted."
+    },
+    {
+      "section_id": "5.2.3.4",
+      "title": "Sloping Ground Surface",
+      "body": "Placement of footings on or adjacent to slopes requires that the designer perform calculations to ensure that both the bearing capacity and the overall slope stability are acceptable. The bearing capacity equation should include corrections recommended by AASHTO as adapted from NAVFAC (1986b) to design the footings. Calculation of overall, or global, stability is discussed in Section 5.5. The ultimate bearing capacity equation (Equation 5-7) is therefore modified to include terms N_cq and N_gamma_q that replace the N_c and N_gamma terms (Equation 5-11). Charts are provided (Figure 5-7) to determine these terms for cohesive (phi = 0) and cohesionless (c = 0) soils. Note in Figure 5-7d that beyond a distance, 'b,' of two to six times the foundation width, the bearing capacity is independent of the slope angle (identical to the horizontal ground surface). Also note that the depth of embedment term goes to zero because the surcharge effect on the slope side of the footing should be ignored. The form of the equation that includes the width term on cohesionless soils is useful for designing footings constructed within bridge approach fills. The calculation procedure involves obtaining N_gamma_q from Figure 5-7(c) or 5-7(f) and computing the ultimate bearing capacity using Equation 5-11, or the general form of the bearing capacity expression, Equation 5-14, with the N_gamma term replaced by N_gamma_q.",
+      "key_points": [
+        "For footings on or near slopes, replace N_c with N_cq and N_gamma with N_gamma_q",
+        "Beyond 2-6 times footing width from slope edge, bearing capacity equals flat-ground case",
+        "Surcharge effect on the slope side of footing should be ignored (embedment term goes to zero)",
+        "Must also check overall slope stability (Section 5.5) in addition to bearing capacity",
+        "Figure 5-7 provides modified bearing capacity factors for both cohesive and cohesionless soils on slopes"
+      ],
+      "equations": [
+        {
+          "id": "Eq 5-11",
+          "latex": "q_{ult} = c \\cdot N_{cq} + 0.5 \\cdot \\gamma \\cdot B_f \\cdot N_{\\gamma q}",
+          "description": "Modified bearing capacity equation for footings on sloping ground, where N_cq and N_gamma_q are obtained from Figure 5-7"
+        }
+      ],
+      "figures": [
+        "Figure 5-7: Modified Bearing Capacity Factors for Footing on Sloping Ground (after Meyerhof, 1957, from AASHTO, 1996) - (a) Geometry, (b) Cohesive Soil phi=0, (c) Cohesionless Soil c=0, (d) Geometry near slope, (e) Cohesive near slope, (f) Cohesionless near slope"
+      ],
+      "tables": [],
+      "applicability": "Footings located on slopes or within 2-6 footing widths of a slope crest."
+    },
+    {
+      "section_id": "5.2.3.5",
+      "title": "Inclined Base",
+      "body": "In general, inclined footings for bridges should be avoided, or limited to shallow inclinations, alpha, of less than about 8 to 10 degrees from horizontal. Steeper inclinations may require keys, dowels or anchors to provide sufficient resistance to sliding. If the footing is inclined to the horizontal, the bearing capacity equation should be modified using the factors as determined from Table 5-5. The base inclination factors b_c, b_gamma, and b_q are applied to the cohesion, unit weight, and surcharge terms respectively.",
+      "key_points": [
+        "Avoid inclined footings for bridges; limit inclination alpha to 8-10 degrees from horizontal",
+        "Steeper inclinations may require keys, dowels, or anchors for sliding resistance",
+        "For phi = 0: b_c = 1 - alpha/147.3, b_gamma = 1.0, b_q = 1.0",
+        "For phi > 0: b_gamma = (1 - 0.017*alpha*tan(phi))^2, b_q = (1 - 0.017*alpha*tan(phi))^2",
+        "alpha = footing inclination from horizontal in degrees (upward positive)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 5-5: Inclined Base Correction Factor (Brinch Hansen, 1970)"
+      ],
+      "applicability": "Footings with inclined bearing surfaces; rarely used in bridge foundations."
+    },
+    {
+      "section_id": "5.2.3.6",
+      "title": "Local or Punching Shear",
+      "body": "Several references, including AASHTO, recommend reducing the soil strength parameters if local or punching shear failure modes can develop. Figure 5-8 shows conditions when these modes can develop. The recommended reductions are shown in Equations 5-12 and 5-13. Soil types that can develop local or punching shear failure modes include loose sands, very sensitive clays [S_t > 8], metastable (collapsible) sands and silts and brittle clays (OCR > 4 to 8). These are all 'problem' soil conditions that should be identified with a thorough geotechnical investigation. In general, these problem soils will have other characteristics that make them unsuitable for support of shallow foundations for bridges.\n\nAlthough local or punching shear failure modes can develop in loose sands or when very narrow footings are used, this local condition seldom applies to bridge foundations because spread footings are not used on obviously weak soils and relatively large footing sizes are needed for structural stability.\n\nIMPORTANT EXCEPTIONS: (1) Provided that settlement potential is checked independently (Section 5.3.4) and found to be acceptable, spread footings on normally consolidated cohesionless soils falling within the local shear portion of Figure 5-8 should NOT be designed using the one-third reduction according to Equation 5-13. (2) The use of the one-third reduction should NOT be used in the design of footings on compacted structural fills constructed with good quality, granular material, since fills compacted to 95% of maximum density have relative density at or above 75%.",
+      "key_points": [
+        "Reduced strength parameters: c* = 0.67*c and phi* = arctan(0.67*tan(phi))",
+        "Applies to loose sands, sensitive clays (S_t > 8), metastable soils, brittle clays (OCR > 4-8)",
+        "Do NOT apply one-third reduction for normally consolidated cohesionless soils if settlement is checked independently",
+        "Do NOT apply one-third reduction for compacted structural fills (95% max density, D_R >= 75%)",
+        "Figure 5-8 defines failure mode boundaries as function of relative density D_r and D_f/B_f*",
+        "B_f* = B_f for square/circular; B_f* = B_f*L_f/[2(B_f+L_f)] for rectangular"
+      ],
+      "equations": [
+        {
+          "id": "Eq 5-12",
+          "latex": "c^* = 0.67c",
+          "description": "Reduced cohesion for local/punching shear conditions"
+        },
+        {
+          "id": "Eq 5-13",
+          "latex": "\\phi^* = \\tan^{-1}(0.67 \\tan \\phi)",
+          "description": "Reduced friction angle for local/punching shear conditions"
+        }
+      ],
+      "figures": [
+        "Figure 5-8: Modes of Failure of Model Footings in Sand (after Vesic, 1975) - Shows general/local/punching shear boundaries vs relative density and D_f/B_f*"
+      ],
+      "tables": [],
+      "applicability": "Footings on loose sands, sensitive clays, metastable soils, or other weak/problematic soils where local or punching shear may develop."
+    },
+    {
+      "section_id": "5.2.3.7",
+      "title": "Inclined Loading",
+      "body": "The inclined load case is the resultant formed by both axial and shear load components applied to the footing by the column or wall stem. If the components of this resultant (i.e., axial and shear forces) are checked against the available resistance in the respective direction (i.e., bearing capacity and sliding, respectively), the inclusion of the inclined loading factor in the bearing capacity equation can generally be omitted. The bearing capacity should, however, be evaluated using effective footing dimensions, as discussed in Section 6.4.1 and in the footnote to Table 5-2, since large moments can frequently be transmitted to bridge foundations by the columns or pier walls. The simultaneous application of shape and load inclination factors can result in an overly conservative design. Henceforth, the inclination factor will be omitted in calculation of bearing capacity. A check for sliding stability should be made for all footings with inclined loads.",
+      "key_points": [
+        "Inclination factor is OMITTED from bearing capacity calculation per GEC-6 recommendation",
+        "Instead, check bearing capacity and sliding resistance separately",
+        "Do NOT combine shape factors and inclination factors simultaneously - overly conservative",
+        "Use effective footing dimensions for eccentric/inclined loading",
+        "Always perform a separate sliding stability check for footings with inclined loads"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "All footings with combined vertical and horizontal loading."
+    },
+    {
+      "section_id": "5.2.3.8",
+      "title": "Soil Compressibility",
+      "body": "Vesic (1975) included correction factors for soil compressibility for footings on sands and gravels, c_q and c_gamma. These factors were developed to effectively limit the allowable bearing capacity accounting for compression settlement of granular materials. The factors are a function of soil density and applied load, and the factors do not account for soil layering or the reduction in stress with depth below a footing. The procedures recommended in this chapter directly compute the estimated compression settlement of footings on sands and granular materials. Therefore, the soil compressibility factors should NOT be used in calculation of ultimate bearing capacity of footings on granular soils when a separate settlement calculation is performed.",
+      "key_points": [
+        "Vesic (1975) compressibility factors c_q and c_gamma are NOT recommended when separate settlement calculation is performed",
+        "These factors were intended to indirectly limit settlement through reduced bearing capacity",
+        "GEC-6 recommends directly computing settlement instead (Sections 5.3.4, 5.3.5)",
+        "Factors do not account for soil layering or stress reduction with depth"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Not recommended for use; perform direct settlement calculation instead."
+    },
+    {
+      "section_id": "5.2.4",
+      "title": "Additional Considerations Regarding Bearing Capacity Correction Factors",
+      "body": "The inherent or implied factor of safety of a settlement-limited allowable bearing capacity relative to the computed ultimate bearing capacity is usually large enough to render the magnitude of the application of the individual correction factors small. Consider the following observations:\n\n- AASHTO (1996) guidelines recommend calculating the shape, s, factor using the effective footing dimensions, B'_f and L'_f. However, the original references (e.g., Vesic, 1975) do not specifically recommend using the effective dimensions to calculate the shape factor. Since the geotechnical engineer typically does not have knowledge of the loads causing eccentricity, it is recommended that the full footing dimensions be used to calculate the shape factor (Table 5-2) for use in computation of ultimate bearing capacity.\n\n- Bowles (1982) also recommends that the shape and load inclination factors (s and i) should not be combined.\n\n- In certain loading configurations, the simultaneous application of the shape factor correction, the load inclination factor correction, local shear potential, the soil compressibility factors and a suitable factor of safety can result in a computed allowable bearing capacity that is only 5 percent or less of the uncorrected ultimate bearing capacity. This emphasizes the over-conservatism resulting from the simultaneous application of all the factors.\n\nThe form of the bearing capacity equation in Equation 5-14 is therefore recommended for routine design applications.\n\nFurther, the bearing capacity correction factors were developed assuming that each correction for each of the terms involving N_c, N_gamma and N_q can be found independently. The bearing capacity theory is an idealization. Bearing capacity analysis of foundations is frequently limited by the geotechnical engineer's ability to accurately determine material properties as opposed to inadequacies in the theory used to develop the bearing capacity equations. Consider Table 5-1 and note that a one degree change in friction angle can result in a 10 to 15 percent change in the factors N_c, N_gamma and N_q. Also note that the value of N_gamma more than doubles when the friction angle increases from 35 to 40 degrees. Clearly, the uncertainties in the material properties will control the uncertainty of a bearing capacity computation to a large extent. The importance of application of the correction factors is therefore secondary to adequate assessment through field exploration and laboratory testing of the inherent strength characteristics of the foundation soils.",
+      "key_points": [
+        "Use full footing dimensions (not effective) for shape factor calculation",
+        "Do NOT combine shape and inclination factors simultaneously",
+        "Simultaneous application of all correction factors can reduce allowable capacity to 5% of uncorrected ultimate - overly conservative",
+        "A 1-degree change in friction angle causes 10-15% change in bearing capacity factors",
+        "N_gamma more than doubles from phi = 35 to 40 degrees",
+        "Accurate determination of soil strength properties is MORE important than precise correction factors",
+        "Field exploration and lab testing quality is paramount"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Guidance for rational application of correction factors in routine design."
+    },
+    {
+      "section_id": "5.2.5",
+      "title": "Bearing Capacity Calculation",
+      "body": "The general form of the resulting ultimate bearing capacity equation, including correction terms, is Equation 5-14. This is the recommended equation for routine design applications. The friction angle of the soil is needed to obtain N_c, N_q and N_gamma from either Table 5-1 or Figure 5-6. Figures 4-1 and 4-2 can be used to correlate friction angles from SPT data in cohesionless soil, or measured directly by laboratory tests or in situ testing.",
+      "key_points": [
+        "Equation 5-14 is the RECOMMENDED general bearing capacity equation for routine design",
+        "Obtain N_c, N_q, N_gamma from Table 5-1 or Figure 5-6 using friction angle",
+        "N_c and N_gamma are replaced with N_cq and N_gamma_q for the sloping ground case",
+        "All correction factors (shape, base inclination, depth, groundwater) are applied to their respective terms"
+      ],
+      "equations": [
+        {
+          "id": "Eq 5-14",
+          "latex": "q_{ult} = c N_c s_c b_c + q N_q C_{W_q} s_q b_q d_q + 0.5 \\gamma B_f N_\\gamma C_{W_\\gamma} s_\\gamma b_\\gamma",
+          "description": "General bearing capacity equation with all correction factors: s = shape, b = base inclination, d_q = depth, C_W = groundwater. This is the recommended form for routine design."
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Primary design equation for all shallow foundation bearing capacity calculations."
+    },
+    {
+      "section_id": "5.2.6",
+      "title": "Bearing Capacity Factors of Safety",
+      "body": "The minimum factor of safety applied to the calculated ultimate bearing capacity will be a function of: (1) the confidence in the design soil strength parameters (c and phi), (2) the importance of the structure, and (3) the consequence of failure. Typical minimum factors of safety for shallow foundations are in the range of 2.5 to 3.5. For most bridge foundation applications, a minimum factor of safety of 3.0 against bearing capacity failure is recommended (Cheney & Chassie, 2000). This factor of safety was selected through a combination of applied theory, experience and consensus for comparison to unfactored load combinations [allowable stress, or Service Load Design (SLD)]. As such, the uncertainty in both the magnitude of the loads and the available soil bearing strength were combined into this single factor of safety.\n\nLoad Factor Design (LFD) was first recommended by AASHTO in the late 1970s. It was not until the implementation of the AASHTO LRFD Bridge Design Specifications (AASHTO, 1994) that an attempt was made to incorporate the uncertainty of the foundation soil resistances in performance, or resistance (phi), factors. It must be emphasized that performance (resistance) factors for geotechnical design of shallow foundations were developed using a combination of reliability-based calibrations, calibration with SLD (fitting) and engineering judgment.\n\nClearly, the structural designer and the geotechnical engineer must be consistent in communication of their design criteria and methodologies. A mixed approach of SLD for foundation capacities and LFD or LRFD for load calculation can result in very conservative designs. The importance of good communication between the structural and geotechnical engineers has never been more important. Miscommunication about the SLD factors of safety used to develop allowable bearing capacities can result in overconservative designs when LFD or LRFD load factors are used to increase the design loads that are then used to size a foundation.",
+      "key_points": [
+        "Minimum FS = 3.0 recommended for most bridge foundations against bearing capacity failure",
+        "FS range is 2.5 to 3.5 depending on confidence in soil parameters, structure importance, and failure consequences",
+        "FS = 3.0 is calibrated to Service Load Design (SLD) with unfactored loads",
+        "LRFD resistance factors were calibrated to match SLD practice through fitting and reliability analysis",
+        "CRITICAL: Do not mix SLD bearing capacities with LFD/LRFD factored loads - causes excessive conservatism",
+        "Structural and geotechnical engineers must communicate clearly about which design methodology is being used"
+      ],
+      "equations": [
+        {
+          "id": "Eq 5-15",
+          "latex": "\\sum Q_i \\leq \\frac{R_n}{FS}",
+          "description": "General factor of safety equation in allowable stress (SLD), where Q_i = applied stress, R_n = ultimate bearing capacity, FS = factor of safety"
+        },
+        {
+          "id": "Eq 5-16",
+          "latex": "\\gamma \\sum \\beta_i Q_i \\leq \\varphi R_n",
+          "description": "General LFD equation, where gamma = load factor for load combination, beta_i = load factor for particular load, phi = resistance factor, R_n = nominal strength"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selection of appropriate factor of safety for all bearing capacity calculations; coordination between structural and geotechnical design methodologies."
+    },
+    {
+      "section_id": "5.2.7",
+      "title": "Presumptive Bearing Capacities",
+      "body": "5.2.7.1 Soil: The use of presumptive bearing capacities for footings bearing in soils is NOT recommended for final design of shallow foundations for transportation structures, especially bridges. Guesses about the geology and nature of a site and application of a presumptive value from generalizations in the literature are not a substitute for an adequate site-specific subsurface exploration and laboratory testing program. An exception is preliminary evaluation of shallow foundation feasibility and estimation of footing dimensions for preliminary constructability or cost evaluation. Local sources of suggested presumptive values, available in engineering geology or geotechnical literature, are generally more realistic than capacities generalized to soil classification or found in design codes such as AASHTO (1996, 1998) or the NAVFAC manuals (NAVFAC, 1986a and 1986b).\n\n5.2.7.2 Rock: For conditions of intact sound rock that is stronger and less compressible than concrete, footings on rock with small applied loads are generally stable and thus do not require extensive study of the strength and compressibility characteristics of rock behavior. However, site investigation is still required to confirm the consistency and extent of rock formations beneath a shallow foundation. Allowable bearing capacities for footings on relatively uniform and sound rock surfaces are documented in applicable building codes and engineering manuals. Table 5-6 presents allowable bearing pressures recommended in selected local building codes (Goodman, 1989). Table 5-7 presents presumptive values of allowable bearing pressures for spread foundations on rock (modified after NAVFAC, 1986b). Table 5-8 presents the allowable rock bearing pressures in accordance with the New York City Building Code (2001). In areas where building codes are not available or applicable, other recommended presumptive bearing values, such as those listed in Table 5-7, may be used. Where rock is reasonably sound but fractured, the presumptive values listed in Tables 5-6 and 5-7 should be reduced to prevent potential excessive settlement.\n\nPeck et al. (1974) presented an empirical correlation of presumptive allowable bearing pressure with Rock Quality Designation (RQD), as shown in Table 5-9. AASHTO recommends using presumptive values proposed by Peck et al. for selecting the allowable bearing pressures; but if the recommended value of allowable bearing pressure exceeds the unconfined compressive strength of the rock or allowable stress of concrete, the allowable bearing pressure should be taken as the lower of the two values. Rock Quality Designation (RQD) is defined as the total sum of pieces of rock core greater than 100 mm (4 in) in length. [Example: Rock core run sample is 1.5 m (60 inches). Summation of pieces of rock core greater than 100 mm (4 in) is 0.5 m (18 in). Therefore, the RQD = 0.5/1.5 = 0.33 or 33 percent.]",
+      "key_points": [
+        "Presumptive bearing capacities on SOIL are NOT recommended for final design of bridges",
+        "Acceptable only for preliminary feasibility and cost evaluation on soils",
+        "Presumptive values on sound ROCK are acceptable using Tables 5-6, 5-7, 5-8, or 5-9",
+        "Allowable bearing pressure on rock should not exceed unconfined compressive strength of rock or allowable stress of concrete",
+        "RQD-based correlation (Table 5-9): RQD=100% gives 29 MPa, RQD=50% gives 6 MPa, RQD=0% gives 1 MPa",
+        "For sound but fractured rock, reduce presumptive values from Tables 5-6/5-7",
+        "Average RQD within B_f depth below footing base should be used; if rock within 0.5*B_f is poorer quality, use the poorer RQD"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 5-6: Allowable Bearing Pressures for Fresh Rock of Various Types (Goodman, 1989) - 22 rock types with location-specific values in MPa",
+        "Table 5-7: Presumptive Values of Allowable Bearing Pressures for Spread Foundations on Rock (Modified After NAVFAC, 1986b)",
+        "Table 5-8: Allowable Bearing Pressures for Spread Foundations on Rock in New York City (New York City Building Code, 2001)",
+        "Table 5-9: Suggested Values of Allowable Bearing Capacity (Peck et al., 1974) - RQD-based correlation"
+      ],
+      "applicability": "Preliminary design on soils; final design on rock using presumptive values with engineering judgment."
+    },
+    {
+      "section_id": "5.2.8",
+      "title": "Allowable Bearing Capacities on Soil",
+      "body": "An acceptable and safe design can be achieved by first calculating the ultimate bearing capacity of a spread footing using the procedure in Section 5.2.5 and applying an adequate factor of safety (Section 5.2.6), then performing a settlement analysis to ensure that the foundation will function within performance limits under the applied stress (Sections 5.3.3, 5.3.4 and 5.3.5). If the settlement at the allowable bearing stress is excessive, the allowable bearing capacity must be reduced until the calculated settlement is within tolerable limits. Note that the soils within a zone about 1.5 times the footing width below the footing are the most significant when considering shear failure and settlement. It is therefore beneficial to obtain good data about the subsurface soils in this zone. SPT tests and soil sampling on 0.75-m (2.5-ft) spacing should be considered the minimum level of subsurface data obtained through this zone. Sampling intervals can be reduced to the usual 1.5 m (5-foot) spacing below this level. Borings still must be extended at least through the zone of influence for settlement considerations (two to four times the estimated least footing width), as described in Section 4.3.2.\n\nRemember that allowable bearing capacity also includes consideration for limiting the potential for the footing to settle. The design of shallow foundations for bridges is frequently governed by settlement rather than shear failure considerations, due to the large footing widths. However, an adequate margin of safety should be maintained for all expected loading conditions relative to the potential for shear failure to develop below the footing.",
+      "key_points": [
+        "Step 1: Calculate ultimate bearing capacity using Eq 5-14 with FS = 3.0",
+        "Step 2: Perform settlement analysis under the allowable bearing stress",
+        "Step 3: If settlement is excessive, reduce allowable bearing capacity until settlement is tolerable",
+        "Critical zone for both shear and settlement is within 1.5*B_f below the footing",
+        "SPT sampling at 0.75-m spacing recommended within the critical 1.5*B_f zone",
+        "Borings must extend 2-4 times the least footing width for settlement evaluation",
+        "Bridge foundations are frequently settlement-controlled due to large footing widths"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Design procedure for determining final allowable bearing capacity on soil."
+    },
+    {
+      "section_id": "5.2.9",
+      "title": "Allowable Bearing Capacities on IGMs and Rock",
+      "body": "The geotechnical engineer should use site investigation, in situ testing and lab testing to confirm material properties of IGMs and rock. Judgment must then be applied to the theoretically computed bearing capacities combined with local experience (presumptive bearing values) when selecting an allowable bearing capacity for design. To preserve stability, the geotechnical engineer must evaluate the potential for global stability or rock mass discontinuities to limit the allowable bearing capacity. Recall that the bearing capacity of some sedimentary rock can dramatically decrease when exposed to weathering and moisture.",
+      "key_points": [
+        "Combine theoretical bearing capacity with local experience and presumptive values for IGMs/rock",
+        "Must evaluate global stability and rock mass discontinuities",
+        "Sedimentary rock bearing capacity can decrease dramatically with weathering and moisture exposure",
+        "Site investigation, in situ testing, and lab testing are essential to confirm material properties"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Design of footings on intermediate geomaterials and rock."
+    },
+    {
+      "section_id": "5.2.10",
+      "title": "Allowable Bearing Capacities on Compacted Structural Fills",
+      "body": "Allowable bearing capacities for spread footings constructed on compacted structural fills will be a function of the quality of the fill (e.g., gradation, durability, drainage), the degree of compaction achieved in the field, and the strength and compressibility of the embankment foundation materials. For fill materials such as sands, the design allowable bearing capacity can be determined rationally through laboratory testing such as the direct shear test, conducted at the proper level of compaction and applied stress. The friction angle yielded from such a testing program can be used to directly calculate an allowable bearing capacity.\n\nIt is typically desirable and recommended that the compacted structural fills supporting spread footings be a select and specified material that includes sand- and gravel-sized particles. Direct shear testing of such materials requires large test equipment and is therefore not practical on a project-by-project basis. The design of spread footings on compacted sand and gravel materials is therefore a combination of experience and infrequent lab testing on specified gradations of select fill materials.\n\nTable 5-10 lists the presumptive allowable bearing capacities used by some state highway agencies for design of spread footings supported on compacted structural fills. The material and construction specifications associated with these bearing capacities are included in Appendix A.",
+      "key_points": [
+        "Bearing capacity on structural fills depends on fill quality, compaction level, and embankment foundation strength",
+        "Direct shear testing at proper compaction and stress level yields friction angle for rational design",
+        "Presumptive values from state DOTs: Washington 290 kPa, Nevada 190 kPa, Michigan 170 kPa",
+        "Fill should be select material with sand- and gravel-sized particles",
+        "Material and construction specifications are critical (see Appendix A)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 5-10: Presumptive Bearing Capacity Values for Footings Constructed on Compacted Structural Fills"
+      ],
+      "applicability": "Design of spread footings on engineered compacted structural fills, particularly bridge approach fills."
+    },
+    {
+      "section_id": "5.2.11",
+      "title": "Overstress Allowances for Bearing Stresses",
+      "body": "Under Service Load Design (AASHTO, 1996), certain load groups (e.g., seismic) are permitted to exceed the allowable bearing stress of a member (in this case the foundation bearing material) by a specified percentage that ranges from 25 to 50 percent. These overstress allowances are permitted for short-duration, infrequently occurring loads and may also be applied to calculated allowable bearing capacities.",
+      "key_points": [
+        "SLD allows 25-50% overstress for short-duration, infrequent loads (e.g., seismic, wind, ice)",
+        "Overstress allowances apply to certain AASHTO load groups",
+        "Can be applied to calculated allowable bearing capacities"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Service Load Design checks for extreme or infrequent load combinations."
+    },
+    {
+      "section_id": "5.3",
+      "title": "Settlement Estimation",
+      "body": "The two primary considerations that affect the selection and design of shallow foundations are bearing capacity (discussed in the previous section) and the settlement potential of ground within the zone of influence below the foundation. This section discusses the parameters and methods of analysis used to estimate the magnitude and time-rate of settlement for shallow foundations.\n\nTotal settlement of a shallow foundation will result from one, or more likely, a combination of the following:\n\na) Immediate Compression: This settlement may result from elastic compression of the material supporting the foundation, or from reduction in the pore space in nonsaturated soils due to expulsion of air from the void space. In cohesionless soils, nearly all the settlement that results from an increase in stress is associated with immediate, or elastic, compression.\n\nb) Primary Consolidation: Consolidation settlement occurs when saturated, fine-grained soils experience an increase in stress. The water in the pore spaces initially carries the load. Then, as the water is expelled from the pore space, the soil experiences a reduction in volume and a decrease in the pore space between soil particles. The process can be slow to rapid and is strongly a function of the permeability of the soil in the direction of drainage.\n\nc) Secondary Compression: Some soils, after first experiencing primary consolidation settlement, continue to strain after excess pore-water pressures are dissipated. This process is termed secondary compression, or 'creep.' Organic soils and some inorganic silts are soil types that can exhibit both primary consolidation and secondary compression, or creep, settlement.\n\nInitial compression accounts for the major portion of consolidation in granular soils. Primary compression accounts for the major portion of consolidation in cohesive soils. Primary and secondary compression both contribute significantly to consolidation settlement in organic soils.\n\nDifferential settlement occurs when one load-bearing member of a structure experiences total settlement of a different magnitude than an adjacent load-bearing member. Because differential settlement will introduce load and stress in the structure above the foundations, limiting differential settlement may frequently be of more interest in the design of a structure than total settlement.",
+      "key_points": [
+        "Three settlement components: immediate compression, primary consolidation, secondary compression (creep)",
+        "Granular soils: settlement is primarily immediate/elastic compression",
+        "Cohesive soils: settlement is primarily primary consolidation (time-dependent)",
+        "Organic soils: both primary and secondary compression are significant",
+        "Differential settlement often controls design more than total settlement",
+        "Settlement is frequently the governing criterion for bridge shallow foundations"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Framework for all settlement analyses of shallow foundations."
+    },
+    {
+      "section_id": "5.3.1",
+      "title": "Serviceability Criteria",
+      "body": "The tolerable movements a structure can withstand depend on the type of structure, the expected service life and the consequences of excessive movements. Tolerable movements are frequently described in terms of angular distortion between members. 'Angular distortion' is defined as the ratio of the differential settlement (delta') between footings to the span length (l), or delta'/l. The maximum angular distortion should be limited to some acceptable value to minimize structural strength and serviceability problems.\n\nEmpirical studies of the performance of bridges subjected to various maximum angular distortions between adjacent foundations concluded that the serviceability criteria would be met if the angular distortion for simple span bridges is less than 0.005 and, for continuous span bridges, less than 0.004 (Moulton et al., 1982, 1985). Using these criteria, a continuous span bridge having a span length of 30 m (100 ft) can tolerate a differential settlement of about 130 mm (5 in) between supports. In practice, bridges are typically designed for tolerable settlements much smaller than this. It is not uncommon for continuous span structures to be designed for differential settlements between adjacent piers of about 25 mm (1 in) or less, and for simply supported spans of about 38 to 50 mm (1.5 to 2 in).\n\nDiMillio (1982) reports in the FHWA research report 'Performance of Highway Abutments on Spread Footings' that moderate differential movements of 25 to 75 mm (1 to 3 in) caused very little distress in any of the structures studied. Of the 148 bridges with spread footings studied, the foundation movements observed were small, and the movements did not cause significant distress.",
+      "key_points": [
+        "Angular distortion limit: delta'/l < 0.005 for simple spans, < 0.004 for continuous spans",
+        "Practical design limits: 25 mm differential for continuous spans, 38-50 mm for simple spans",
+        "30-m continuous span bridge can theoretically tolerate 130 mm differential settlement",
+        "FHWA study: 25-75 mm differential movements caused very little distress in 148 bridges",
+        "Total movements may also be critical for ride quality even if differential is acceptable",
+        "Tolerable movement within a single pier or bent may be smaller than between adjacent piers"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Establishing settlement performance criteria for bridge foundations."
+    },
+    {
+      "section_id": "5.3.2",
+      "title": "Vertical Stress Distribution",
+      "body": "This section discusses methods to determine changes in total vertical stress (delta_sigma_v) due to foundation loading from a spread footing. The following methods for calculating total vertical stress change assume uniformly loaded foundations. Methods based on the theory of elasticity are the easiest and most commonly used methods to determine the changes in total stress due to applied foundation pressures. Most closed-form solutions based on the theory of elasticity involve the assumptions that the soil is homogeneous, isotropic and elastic. Lambe and Whitman (1969) report that the stresses predicted under these assumptions agree remarkably well with the relatively few comparisons that have been made to actual measured stresses, but the authors go on to point out that the computed stresses may be in error by as much as 25 percent or more. The charts in Figures 5-9 to 5-11 can be used to estimate the stress increases beneath circular, strip and rectangular loaded areas. The loadings are assumed to be uniform.\n\nNote that the principle of superposition may be used with Figure 5-11 to evaluate stresses resulting from irregular or multiple loaded areas.\n\nAlternatively, stress distributions can also be obtained by assuming a 2-to-1 distribution of stress below the footing, as shown in Figure 5-12. This is much simpler to compute and is a reasonably accurate approximation of the decrease in stress with depth due to an applied surficial load of limited areal extent. A comparison of the simplified 2-to-1 distribution with the actual distributed stress according to elastic theory is shown in Figure 5-13. This distribution can be computed as a function of applied stress according to Equation 5-17.",
+      "key_points": [
+        "Elastic theory methods are standard for computing stress increases beneath footings",
+        "Assumptions: homogeneous, isotropic, elastic soil - computed stresses may be in error by 25% or more",
+        "Figure 5-9: circular loaded areas; Figure 5-10: strip loads; Figure 5-11: rectangular corner stresses (Newmark chart)",
+        "Superposition can be used with Figure 5-11 for irregular or multiple loaded areas",
+        "2:1 stress distribution method (Eq 5-17) is simpler and reasonably accurate",
+        "2:1 method: delta_sigma_v/q = B_f*L_f / [(B_f+Z)(L_f+Z)]"
+      ],
+      "equations": [
+        {
+          "id": "Eq 5-17",
+          "latex": "\\frac{\\Delta\\sigma_v}{q} = \\frac{B_f L_f}{(B_f + Z)(L_f + Z)}",
+          "description": "2-to-1 stress distribution method, where Z = depth below footing bearing elevation, q = applied bearing stress, B_f = footing width, L_f = footing length"
+        }
+      ],
+      "figures": [
+        "Figure 5-9: Stresses Under Uniform Load on Circular Area (Lambe & Whitman, 1969)",
+        "Figure 5-10: Stresses Under Uniform Strip Load (Lambe & Whitman, 1969)",
+        "Figure 5-11: Chart for Use in Determining Vertical Stresses Below Corners of Loaded Rectangular Surface Areas on Elastic, Isotropic Material (From Newmark, 1942) - delta_sigma_v = delta_q_s * f(m,n)",
+        "Figure 5-12: Distribution of Vertical Stress by the 2:1 Method (Chen and McCarron, 1991)",
+        "Figure 5-13: Comparison of Vertical Stress Increase Below a Uniformly Loaded Square Area as Computed by Elastic Theory and Approximated by the 2:1 Method (Perloff, 1975)"
+      ],
+      "tables": [],
+      "applicability": "Computing stress increases for settlement calculations in both cohesive and cohesionless soils."
+    },
+    {
+      "section_id": "5.3.3",
+      "title": "Footings on Cohesive Soils",
+      "body": "Primary and secondary consolidation of clays or clayey deposits may result in substantial settlements when the structure is founded on saturated cohesive soils. Settlement resulting from primary consolidation may take weeks to years to be completed. When a foundation is wide compared to the compressible layer thickness beneath it, a large portion of the soil will settle vertically (one-dimensionally). One-dimensional consolidation theory is presented in this section and is used to calculate settlement estimates for shallow foundations on cohesive soils.\n\nOne-dimensional consolidation testing (ASTM D-2435) on undisturbed soil samples is recommended for determining the compressibility of clays. Some natural deposits of cohesive soils have undergone heavy compression in their geologic history and are called 'preconsolidated' or 'overconsolidated' (OCR > 1). Preconsolidated soils can exhibit compressibility that is up to an order of magnitude less than normally consolidated soils. Identification of preconsolidated soils through consolidation testing can allow the cost-effective use of shallow foundations on such soils.\n\nThe overconsolidation ratio (OCR) is used to distinguish overconsolidated soils from normally consolidated soils and is defined as the ratio of the preconsolidation pressure (sigma'_p) at depth z to the existing vertical normal effective pressure (sigma'_vo) at the same depth z.\n\nThe undrained shear strength (c_u) and plasticity index (PI) can be used as a check. The ratio of the undrained shear strength (c_u) and the vertical effective stress for normally consolidated clays has been correlated to plasticity index (Equation 5-19).\n\nNumerous correlations have been made between the compression index, C_c, and common index tests for normally consolidated soils and several are included in Table 5-11. Note that the values of C_c can vary by as much as a factor of 5 using the average trend line in these empirical correlations. They should not be used for final design of footings on cohesive soils.\n\nThe primary consolidation settlement, S_c, of a foundation resting on layers of normally consolidated soils (sigma'_p = sigma'_vo) can be computed from Equation 5-20 (void ratio form) or Equation 5-21 (vertical strain form). For overconsolidated soils (OCR > 1), settlements are computed from Equation 5-22 (void ratio form) or Equation 5-23 (vertical strain form).\n\nThe total settlement is computed by subdividing each compressible layer within the zone of influence, Z_I, into a sufficient number of sublayers, n, such that the initial and final stress calculated at the center of each layer is representative of the average stress for the layer, and the material properties are reasonably constant within the layer. The layers are typically 1.5 to 3 m thick in highway bridge applications.",
+      "key_points": [
+        "Use 1D consolidation theory (ASTM D-2435 oedometer test) for cohesive soil settlement",
+        "OCR = sigma'_p / sigma'_vo; OCR = 1 is normally consolidated, OCR > 1 is preconsolidated",
+        "Preconsolidated soils have ~10x less compressibility than NC soils below sigma'_p",
+        "c_u/sigma'_v = 0.10 + 0.004*PI for NC clays (Eq 5-19) - use as check for OCR",
+        "C_c correlations (Table 5-11) vary by factor of 5 - do NOT use for final design",
+        "Subdivide compressible layers into 1.5-3 m thick sublayers for settlement computation",
+        "Sum settlements from each sublayer within the zone of influence"
+      ],
+      "equations": [
+        {
+          "id": "Eq 5-18",
+          "latex": "OCR = \\frac{\\sigma'_p}{\\sigma'_{vo}}",
+          "description": "Overconsolidation ratio, where sigma'_p = preconsolidation pressure, sigma'_vo = current effective vertical stress"
+        },
+        {
+          "id": "Eq 5-19",
+          "latex": "\\frac{c_u}{\\sigma'_v} = 0.10 + 0.004 \\cdot PI",
+          "description": "Ratio of undrained shear strength to effective vertical stress for normally consolidated clays (Skempton, 1948; Bjerrum & Simons, 1960)"
+        },
+        {
+          "id": "Eq 5-20",
+          "latex": "S_c = \\sum_{i=1}^{n} \\frac{C_c}{1 + e_o} H_o \\log_{10} \\frac{\\sigma'_{vf}}{\\sigma'_{vo}}",
+          "description": "Primary consolidation settlement for normally consolidated soils (void ratio form), where C_c = compression index, e_o = initial void ratio, H_o = layer thickness, sigma'_vf = final effective stress, sigma'_vo = initial effective stress"
+        },
+        {
+          "id": "Eq 5-21",
+          "latex": "S_c = \\sum_{i=1}^{n} H_o C_{c\\varepsilon} \\log_{10}(\\sigma'_{vf} / \\sigma'_{vo})",
+          "description": "Primary consolidation settlement for normally consolidated soils (vertical strain form), where C_c_epsilon = modified compression index in terms of strain"
+        },
+        {
+          "id": "Eq 5-22",
+          "latex": "S_c = \\sum_{i=1}^{n} \\frac{H_o}{1 + e_o} \\left( C_r \\log_{10} \\frac{\\sigma'_p}{\\sigma'_{vo}} + C_c \\log_{10} \\frac{\\sigma'_{vf}}{\\sigma'_p} \\right)",
+          "description": "Primary consolidation settlement for overconsolidated soils where final stress exceeds preconsolidation pressure (void ratio form), C_r = recompression index"
+        },
+        {
+          "id": "Eq 5-23",
+          "latex": "S_c = \\sum_{i=1}^{n} H_o \\left( C_{r\\varepsilon} \\log_{10} \\frac{\\sigma'_p}{\\sigma'_{vo}} + C_{c\\varepsilon} \\log_{10} \\frac{\\sigma'_{vf}}{\\sigma'_p} \\right)",
+          "description": "Primary consolidation settlement for overconsolidated soils (vertical strain form)"
+        }
+      ],
+      "figures": [
+        "Figure 5-14: Void Ratio versus Log Effective Vertical Stress Curve from a Consolidation Test on Clay and the Casagrande Procedure for Determining the Preconsolidation Pressure (after Holtz & Kovacs, 1981)",
+        "Figure 5-15: Typical Consolidation Curve for Normally Consolidated Soil (a) Void Ratio and (b) Vertical Strain versus Vertical Effective Stress",
+        "Figure 5-16: Typical Consolidation Curve for Overconsolidated Soil (a) Void Ratio and (b) Vertical Strain versus Vertical Effective Stress"
+      ],
+      "tables": [
+        "Table 5-11: Correlations for Compression Index, C_c - includes C_c = 0.009(LL-10) for clay, C_c = 0.0115*w_n for organic soils, Hough (1959) values for sands and silts"
+      ],
+      "applicability": "Settlement estimation for footings on saturated cohesive soils (clays and clayey deposits)."
+    },
+    {
+      "section_id": "5.3.3.1",
+      "title": "Time Rate of Consolidation",
+      "body": "Consolidation occurs when a saturated compressible layer of soil is loaded and water is squeezed out of the layer. The time required for the (primary) consolidation process to end will depend on both the compressibility and the permeability of the soil. The rate of consolidation is usually of lesser concern for foundations because superstructure damage will occur once the differential settlements become excessive. Shallow foundations are designed to withstand the settlement that will ultimately occur during the life of the structure, regardless of the time it takes for the settlement to occur. It is generally much more important to predict the time rate of the settlement of an approach embankment on soft clay, particularly if the embankment is surcharged in order to allow use of a spread footing. The procedure for computing the time-rate of settlement is beyond the scope of this document.",
+      "key_points": [
+        "Time rate depends on both compressibility and permeability of the soil",
+        "For foundations, total settlement magnitude is typically more important than time rate",
+        "Time rate is more critical for approach embankment settlement management and surcharging",
+        "Detailed time-rate procedures are beyond the scope of GEC-6"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Understanding when time-rate analysis is needed versus when total settlement magnitude is sufficient."
+    },
+    {
+      "section_id": "5.3.3.2",
+      "title": "Secondary Compression",
+      "body": "Soils susceptible to secondary compression (creep) are generally too poor to consider supporting a shallow foundation on them. Even if the primary consolidation can be managed with surcharging, the uncertainty associated with predicting the magnitude of secondary compression settlements is generally too great to reliably found a spread footing on or over creep-susceptible soils.",
+      "key_points": [
+        "Creep-susceptible soils are generally unsuitable for shallow foundations",
+        "Even with surcharging for primary consolidation, secondary compression uncertainty is too large",
+        "Organic soils and some inorganic silts are most susceptible to secondary compression"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Screening criterion to avoid shallow foundations on creep-susceptible soils."
+    },
+    {
+      "section_id": "5.3.4",
+      "title": "Footings on Cohesionless Soils",
+      "body": "The design of shallow foundations on cohesionless soils (sand, gravel and non-plastic silt), either as found in situ or as engineered fill, is often controlled by settlement potential, rather than bearing capacity limitations. The method used to estimate settlement of footings on cohesionless soils should be reliable so that the predicted settlement is rarely less than the observed settlement, yet still reasonably accurate so that designs are not inefficient. Most settlement estimation methods are based on either elasticity theory or semi-empirical correlation to large databases of soil test data. Semi-empirical methods are therefore the predominant techniques used to estimate settlements of shallow foundations on cohesionless soils, correlated to large databases of SPT and CPT data.\n\nTwo major studies (Burland & Burbidge, 1984; and Gifford et al., 1987) on shallow foundations in sands included 76 independent case histories relevant to highway bridge shallow foundations. The Gifford study compiled data from 21 case histories to compare the predictive capabilities of 11 methods. The Hough method, on average, overpredicts settlement by a factor of about 2, and is thus less than desirable with respect to accuracy. However, the Hough method is relatively reliable and consistent with a relatively low standard deviation of calculated versus predicted measurements (s_o = 0.82). The D'Appolonia method was found to be the most statistically accurate method with the lowest standard deviation (s_o = 0.51).\n\nData from five full-scale load tests (Briaud & Gibbens, 1995) confirmed that the Hough method over-predicted settlement by an average factor of about 1.8 (standard deviation s_o = 0.53), and the D'Appolonia method under-predicted settlement by an average factor of about 0.77 (standard deviation s_o = 0.22).\n\nTherefore, it is currently recommended that the Hough method be used as a primary design and analysis tool. The D'Appolonia or load-settlement methods could be employed as alternates, or when a more accurate estimate of settlement is desired.",
+      "key_points": [
+        "Settlement typically controls design of footings on cohesionless soils rather than bearing capacity",
+        "Hough method is RECOMMENDED as primary design tool - conservative, reliable, easy to implement",
+        "Hough method overpredicts settlement by factor of ~2 (s_o = 0.82 from Gifford study, s_o = 0.53 from load tests)",
+        "D'Appolonia method is most statistically accurate (s_o = 0.51) but may underpredict by factor of 0.77",
+        "Both methods use SPT N-values as primary input",
+        "Load-settlement curve method (Briaud) using pressuremeter is promising alternate"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-17: Calculated versus Measured Settlements (Gifford et al., 1987) - compares Burland & Burbidge, D'Appolonia, Hough, Peck & Bazaraa, Schmertmann methods"
+      ],
+      "tables": [],
+      "applicability": "Settlement estimation for footings on sands, gravels, and non-plastic silts."
+    },
+    {
+      "section_id": "5.3.4.1",
+      "title": "Hough Method",
+      "body": "Hough (1959) developed an empirical method for predicting settlements of shallow foundations on cohesionless soils that follows the same approach as that used for calculating consolidation settlement of clay layers. Note that the method is applicable only for normally consolidated cohesionless soils. Cheney and Chassie (2000) recommend that the SPT blowcounts be corrected for overburden pressure before correlating the N-values to the bearing capacity index, C'. An overburden correction by Bazaraa (1967) was recommended by Cheney and Chassie (2000). The correction by Liao & Whitman (1986) is included here as part of the Hough procedure because it is easy to calculate and can be used without charts in simple computation spreadsheets. The correction factor is shown in Figure 5-18: N'/N = 1/(sigma'_vo/95.76)^0.5, where sigma'_vo is in kPa, with a maximum N'/N of 2.0.\n\nThe total settlement by the Hough method is calculated as follows:\n1. Correct SPT blowcounts for overburden stress using Figure 5-18 (Liao & Whitman).\n2. Determine bearing capacity index (C') from Figure 5-19 using corrected SPT blowcounts, N'.\n3. Subdivide subsurface soil profile into approximately 3-m (10-ft) layers based on stratigraphy to a depth of about three times the footing width.\n4. Calculate the effective vertical stress, sigma'_vo, at the midpoint of each layer and the average bearing capacity index for that layer.\n5. Calculate the increase in stress at the midpoint of each layer, delta_sigma_v, using either Figure 5-9, 5-10 or 5-11, or the 2:1 method (Figure 5-12).\n6. Calculate the settlement in each layer using Equation 5-24.\n7. Sum the incremental settlements to determine the total settlement.",
+      "key_points": [
+        "Applicable ONLY for normally consolidated cohesionless soils",
+        "Uses SPT N-values corrected for overburden stress (Liao & Whitman, 1986)",
+        "Overburden correction: N'/N = 1/(sigma'_vo/95.76)^0.5, maximum 2.0, sigma'_vo in kPa",
+        "Bearing capacity index C' obtained from Figure 5-19 based on corrected N' and soil type",
+        "Profile subdivided into ~3-m layers to depth of ~3*B_f",
+        "Settlement computed layer-by-layer using Equation 5-24 and summed",
+        "Figure 5-19 has curves for: clean uniform medium sand, well graded silty sand & gravel, clean well graded fine to coarse sand, sandy clay, inorganic silt"
+      ],
+      "equations": [
+        {
+          "id": "Eq 5-24",
+          "latex": "\\Delta H = H_o \\frac{1}{C'} \\log \\left( \\frac{\\sigma'_{vo} + \\Delta\\sigma_{vf}}{\\sigma'_{vo}} \\right)",
+          "description": "Hough method settlement for each layer, where H_o = layer thickness, C' = bearing capacity index from Figure 5-19, sigma'_vo = initial effective vertical stress at layer midpoint, delta_sigma_vf = stress increase at layer midpoint"
+        }
+      ],
+      "figures": [
+        "Figure 5-18: Corrected SPT (N) versus Overburden Pressure (after Liao & Whitman, 1986) - N'/N = 1/(sigma'_vo/95.76)^0.5, max 2.0",
+        "Figure 5-19: Bearing Capacity Index versus Corrected SPT (Cheney & Chassie, 2000, modified from Hough, 1959)"
+      ],
+      "tables": [],
+      "applicability": "Primary recommended method for settlement estimation on normally consolidated cohesionless soils."
+    },
+    {
+      "section_id": "5.3.4.2",
+      "title": "D'Appolonia Method",
+      "body": "The D'Appolonia method calculates settlement using Equation 5-25. The method computes settlement based on the modulus of compressibility of sand as correlated to the SPT test. It has the additional advantage of explicitly accounting for the effect of soil preloading. The modulus of compressibility (M) is obtained from Figure 5-21, which shows separate correlations for normally loaded sand/sand and gravel versus preloaded sand. Correction factors for embedment (mu_0) and sand layer thickness (mu_1) are obtained from Figure 5-20.\n\nPotential current drawbacks of the D'Appolonia method include: (1) limited application history for highway bridges compared to Hough, (2) does not expressly account for soil layering, (3) empirical correction factor without limiting depth of stress influence, (4) limited database for modulus correlation, and (5) statistically more accurate means potentially unconservative (about half of data on unconservative side).",
+      "key_points": [
+        "Settlement = (delta_sigma_v * B_f / M) * mu_0 * mu_1",
+        "M = modulus of compressibility from Figure 5-21, based on average SPT in depth B below footing",
+        "Separate M correlations for normally loaded vs preloaded sand",
+        "mu_0 = correction for embedment (D/B ratio), mu_1 = correction for finite sand layer thickness (H/B ratio)",
+        "Most statistically accurate method (s_o = 0.51) but may underpredict settlement",
+        "Limited application history for highway bridges"
+      ],
+      "equations": [
+        {
+          "id": "Eq 5-25",
+          "latex": "\\Delta H = \\left( \\frac{\\Delta\\sigma_v B_f}{M} \\right) \\mu_0 \\mu_1",
+          "description": "D'Appolonia settlement equation, where delta_sigma_v = applied stress beneath footing, B_f = footing width, M = modulus of compressibility (from Figure 5-21), mu_0 = embedment correction factor, mu_1 = layer thickness correction factor (from Figure 5-20)"
+        }
+      ],
+      "figures": [
+        "Figure 5-20: Correction Factors for Embedment and Layer Thickness (Christian & Carrier, 1978) - mu_0 vs D/B and mu_1 vs H/B for various L/B ratios",
+        "Figure 5-21: Modulus of Compressibility (D'Appolonia, 1968, 1970) - M in psi/s=tsf vs average SPT resistance, separate lines for preloaded and normally loaded sand"
+      ],
+      "tables": [],
+      "applicability": "Alternate method for settlement on cohesionless soils, especially when preloading history is known."
+    },
+    {
+      "section_id": "5.3.4.3",
+      "title": "Load-Settlement Curve Method",
+      "body": "In recent research, Briaud and colleagues (Briaud & Gibbens, 1994, Briaud & Gibbens, 1995, and Briaud et al., 2000) developed a procedure to estimate settlements of spread footings on sand using pressuremeter test (PMT) data. The procedure transforms the average pressuremeter curve point-by-point into the load-settlement curve for the footing. Equation 5-26 ensures strain compatibility between the pressuremeter cavity expansion and the footing settlement (rho/B = 0.1 corresponds to delta_R/R_0 = 0.42). Equation 5-27 transforms pressuremeter pressure p_p into footing pressure p_f through the gamma function and influence factors. The procedure is as follows:\n\n1. Perform pre-bored pressuremeter tests at depths of 0.5B, 1B and 2B below the bearing elevation.\n2. Reduce the data and average the pressuremeter curves into a single curve.\n3. Transform point-by-point using Equations 5-26 through 5-35.\n\nImportant considerations: (1) This method is new and requires parallel use with existing methods and performance measurements before being validated. (2) Pressuremeter tests are still infrequently used. (3) The method develops load-settlement relationships in normalized displacement (rho/B), which must be converted to absolute displacement for the specific footing width.",
+      "key_points": [
+        "Uses pressuremeter test (PMT) data to develop complete load-settlement curve",
+        "Strain compatibility: rho/B = (1/4.2)*(delta_R/R_0) ensures PMT and footing deformations correspond",
+        "Gamma function: Gamma = 0.9/[100*(rho/B) + 0.5] + 0.8 (conservative, mean minus one std dev)",
+        "Influence factors for shape (f_L/B), eccentricity (f_e), load inclination (f_delta), and slope (f_beta,d)",
+        "Method is promising but still considered new and needs validation on full-scale bridge projects",
+        "Pressuremeter testing is infrequent and requires specialized skills"
+      ],
+      "equations": [
+        {
+          "id": "Eq 5-26",
+          "latex": "\\frac{\\rho}{B} = \\frac{1}{4.2} \\left( \\frac{\\Delta R}{R_0} \\right)",
+          "description": "Strain compatibility between footing settlement and pressuremeter cavity expansion, where rho = footing settlement, B = footing width, delta_R/R_0 = relative increase in cavity radius"
+        },
+        {
+          "id": "Eq 5-27",
+          "latex": "p_f = f_{L/B} \\cdot f_e \\cdot f_\\delta \\cdot f_{\\beta,d} \\cdot \\Gamma(p_p)",
+          "description": "Transformation of pressuremeter pressure to footing pressure using gamma function and influence factors"
+        },
+        {
+          "id": "Eq 5-28",
+          "latex": "\\Gamma = \\frac{0.9}{100\\left(\\frac{\\rho}{B}\\right) + 0.5} + 0.8",
+          "description": "Gamma function for transforming pressuremeter pressure to footing pressure (conservative: mean minus one standard deviation)"
+        },
+        {
+          "id": "Eq 5-29",
+          "latex": "f_{L/B} = 0.8 + 0.2 \\left( \\frac{B}{L} \\right)",
+          "description": "Influence factor for footing shape, where L = footing length, B = footing width"
+        },
+        {
+          "id": "Eq 5-30",
+          "latex": "f_e = 1 - 0.33 \\left( \\frac{e}{B} \\right) \\quad \\text{at center of footing}",
+          "description": "Influence factor for load eccentricity at center of footing"
+        },
+        {
+          "id": "Eq 5-31",
+          "latex": "f_e = 1 - \\left( \\frac{e}{B} \\right)^{0.5} \\quad \\text{at edge of footing}",
+          "description": "Influence factor for load eccentricity at edge of footing"
+        },
+        {
+          "id": "Eq 5-32",
+          "latex": "f_\\delta = 1 - \\left( \\frac{\\delta}{90} \\right)^2 \\quad \\text{at center of footing}",
+          "description": "Influence factor for load inclination at center of footing, delta = inclination from vertical in degrees"
+        },
+        {
+          "id": "Eq 5-33",
+          "latex": "f_\\delta = 1 - \\left( \\frac{\\delta}{360} \\right)^{0.5} \\quad \\text{at edge of footing}",
+          "description": "Influence factor for load inclination at edge of footing"
+        },
+        {
+          "id": "Eq 5-34",
+          "latex": "f_{\\beta,d} = 0.8 \\left( 1 + \\frac{d}{B} \\right)^{0.1} \\quad \\beta = 18.4° \\text{ (3:1 slope)}",
+          "description": "Influence factor for slope proximity for 3:1 slope, d = distance from slope top to footing edge"
+        },
+        {
+          "id": "Eq 5-35",
+          "latex": "f_{\\beta,d} = 0.7 \\left( 1 + \\frac{d}{B} \\right)^{0.15} \\quad \\beta = 26.6° \\text{ (2:1 slope)}",
+          "description": "Influence factor for slope proximity for 2:1 slope"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Alternate method using pressuremeter data; promising for deformation-based design and extreme loading cases."
+    },
+    {
+      "section_id": "5.3.5",
+      "title": "Footings on Structural Fills",
+      "body": "Calculation of settlement within the structural fill due to a spread footing supported in the fill requires an assumption about the compressibility of the constructed fill material. Because structural fills should be constructed using good-quality granular materials, the estimation of settlement lends itself to application of the methods discussed in the previous section (Hough and D'Appolonia methods). To do so, an assumption must be made about the representative SPT N-value of the compacted fill.\n\nThe Gifford et al. (1987) study used a corrected (for overburden pressure) SPT N-value of 32 blows per foot as a representative value for estimating settlement in structural fills. This would correspond to a relative density, D_R, of about 85 percent at an overburden stress of about 100 kPa (1 tsf). Correlations of relative density to percent relative compaction suggest that this value of D_R is at or above 95 percent relative compaction. In the absence of other SPT data in structural fills, the settlement of a footing supported on structural fill can be estimated using an assumed corrected N-value (N') of 32 and the Hough method for computing settlement.",
+      "key_points": [
+        "Use Hough or D'Appolonia methods with assumed SPT N-value for compacted fill",
+        "Default assumption: corrected N' = 32 blows/ft for well-compacted structural fills",
+        "N' = 32 corresponds to D_R ~ 85% at 100 kPa overburden, equivalent to ~95% relative compaction",
+        "Fill should be good-quality granular material with sand- and gravel-sized particles",
+        "Also need to check settlement of embankment foundation soils below the fill"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Settlement estimation for footings supported within compacted structural fills."
+    },
+    {
+      "section_id": "5.3.6",
+      "title": "Footings on IGMs and Rock",
+      "body": "As discussed in Section 3.1.3, the assumption is made in this GEC that intermediate geomaterials (IGMs) are stiff and strong enough that bearing capacity and settlement considerations will generally not govern design of a spread footing supported on such material. If a settlement estimate is necessary for shallow foundations supported on IGM or rock, a method based on elasticity theory will generally be the best approach. A major limitation is the engineer's ability to accurately estimate the modulus parameter(s) required by the method.\n\nEquation 5-36 may be used to compute settlement on rock based on Young's modulus of the intact rock. The stress applied at the top of the rock surface can be calculated using the stress distribution methods shown in Figures 5-9 through 5-12. The shape and rigidity factors, C_d, are given in Table 5-12 for various footing shapes. Poisson's ratio values are summarized in Table 5-13, and Young's modulus values for intact rock are in Table 5-14. A modulus reduction factor, alpha_E, based on RQD is applied per Equation 5-37 to account for rock mass quality.\n\nThe elastic modulus of IGMs and some rocks may be measurable by in situ testing with equipment such as the pressuremeter, the flat dilatometer, plate load tests or flat jacks. Alternatively, some modulus values are available from various researchers based on rock type. Tables 5-13 and 5-14 summarize suggested values for Poisson's ratio and elastic modulus as presented in AASHTO (1996) and modified after Kulhawy (1978).",
+      "key_points": [
+        "IGMs are generally stiff enough that settlement rarely governs design",
+        "For rock settlement: use elastic theory with Eq 5-36",
+        "Shape and rigidity factors C_d from Table 5-12 (circle=1.00, square=1.12, rectangles up to 6.90 for L/B=10000)",
+        "Modulus reduction factor alpha_E = 0.0231*RQD - 1.32, minimum 0.15",
+        "Poisson's ratio: granite 0.20, basalt 0.23, sandstone 0.20, limestone 0.23, shale 0.09 (Table 5-13 mean values)",
+        "Young's modulus E_IR varies widely by rock type - granite mean 52.67 GPa, sandstone 14.69 GPa, shale 9.79 GPa (Table 5-14)"
+      ],
+      "equations": [
+        {
+          "id": "Eq 5-36",
+          "latex": "\\delta_v = \\frac{C_d \\Delta\\sigma_v B_f (1 - \\nu^2)}{\\alpha_E E_{IR}}",
+          "description": "Elastic settlement on rock, where C_d = shape/rigidity factor (Table 5-12), delta_sigma_v = stress increase at rock surface, B_f = footing width/diameter, nu = Poisson's ratio (Table 5-13), E_IR = Young's modulus of intact rock (Table 5-14), alpha_E = modulus reduction factor for RQD"
+        },
+        {
+          "id": "Eq 5-37",
+          "latex": "\\alpha_E = 0.0231 \\cdot RQD - 1.32 \\geq 0.15",
+          "description": "Modulus reduction factor based on Rock Quality Designation (RQD in percent)"
+        }
+      ],
+      "figures": [],
+      "tables": [
+        "Table 5-12: Shape and Rigidity Factors, C_d, for Calculating Settlements of Points on Loaded Areas at the Surface of an Elastic Half Space with Infinite Depth (After Winterkorn & Fang, 1975)",
+        "Table 5-13: Summary of Poisson's Ratio for Intact Rock (AASHTO, Modified After Kulhawy, 1978) - 14 rock types with max, min, mean, std dev",
+        "Table 5-14: Summary of Young's Modulus for Intact Rock (Modified After Kulhawy, 1978) - 17 rock types, E_IR in kPa x 10^6 with max, min, mean, std dev"
+      ],
+      "applicability": "Settlement estimation for footings on rock and intermediate geomaterials using elastic theory."
+    },
+    {
+      "section_id": "5.4",
+      "title": "Sliding and Lateral Stability",
+      "body": "A shallow foundation will resist lateral loads by a combination of the shear resistance along the base of the footing and the lateral earth pressure that develops in front of the footing in the direction of loading. The shear resistance along the base will develop its full capacity at very small deflections. The lateral earth pressure is termed 'passive resistance' and requires much larger deflections to develop the full passive capacity. By the time the passive resistance is fully developed, the shearing resistance is fully mobilized and may even by reduced to some residual value less than the peak shearing resistance. For this reason, the design of most shallow foundations conservatively ignores passive resistance.\n\nSliding resistance between the base of a shallow foundation and a granular soil will be governed by the coefficient of friction (tan delta) that develops between the foundation soil and the footing. The value of the coefficient of friction is a function of the soil type and the roughness of the footing. For concrete cast against cohesionless or granular material, the coefficient of friction, tan delta, will be equal to the tangent of the friction angle (tan phi) for the soil supporting the footing. If the bottom of the footing consists of something other than concrete cast against the ground, then the coefficient of friction (tan delta) is not solely a property of the soil but is also a function of the footing material type and roughness. In the absence of specific data, Table 5-15 may be used to estimate the coefficient of friction between soil and various footing material types.\n\nIf the base of the footing rests on clay, the sliding resistance will be limited by the adhesion, c_a, that develops between the bearing surface of the footing and the cohesive bearing material. In practice, c_a is typically taken as equal to the undrained shear strength (cohesion, c_u) of the clay.\n\nThe general equation for sliding resistance for footings with planar bearing surfaces on frictional (drained) materials is Equation 5-38. For cohesive (undrained) materials, the sliding resistance is given by Equation 5-39. Because drained and undrained conditions will not occur simultaneously, Equations 5-38 and 5-39 should not be combined for use at the same time.\n\nA minimum factor of safety (FS) of 1.5 against sliding should be used for design of bridge foundations (Equation 5-40).\n\nIf sliding resistance as determined by Equation 5-39 for a footing on clay soils is insufficient, the footing width should be increased. If impractical, consideration may be given to including a key constructed under the bearing surface of the footing. The general equation for sliding resistance of footings on cohesive soils provided with a key is given by Equation 5-41. Note that in reality, keys constructed in granular soils are not very efficient in developing passive pressures; a key in granular soils is more properly considered as increasing the effective length of the shearing surface.",
+      "key_points": [
+        "Passive earth pressure resistance is conservatively IGNORED in most shallow foundation designs",
+        "Sliding resistance on granular soil: F_R = (W + P_v) * tan(delta), where delta = friction angle at interface",
+        "For concrete cast against granular soil: tan(delta) = tan(phi) of the soil",
+        "Sliding resistance on clay: F_R = c_a * B_f, where c_a ~ c_u (undrained shear strength)",
+        "Minimum FS against sliding = 1.5 for bridge foundations",
+        "Do NOT combine drained (Eq 5-38) and undrained (Eq 5-39) sliding resistance",
+        "Keys in cohesive soils/soft rock can add resistance (Eq 5-41); keys in granular soils mainly increase shear surface length",
+        "Table 5-15 provides friction factors for various soil-footing material interfaces"
+      ],
+      "equations": [
+        {
+          "id": "Eq 5-38",
+          "latex": "F_R = (W + P_v) \\tan \\delta",
+          "description": "Sliding resistance for footings on frictional (drained) materials, where W = weight of footing and backfill, P_v = vertical load, delta = friction angle at base interface"
+        },
+        {
+          "id": "Eq 5-39",
+          "latex": "F_R = c_a B_f",
+          "description": "Sliding resistance for footings on cohesive (undrained) materials, where c_a = adhesion (~ c_u), B_f = footing width"
+        },
+        {
+          "id": "Eq 5-40",
+          "latex": "FS_{sliding} = \\frac{F_R}{F_{sliding}} \\geq 1.5",
+          "description": "Factor of safety against sliding, where F_R = ultimate sliding resistance, F_sliding = sum of horizontal loads causing sliding"
+        },
+        {
+          "id": "Eq 5-41",
+          "latex": "F_R = c_a(B_f - \\overline{a_1 b}) + c_u(\\overline{a_1 b}) + P_p",
+          "description": "Sliding resistance for keyed footing on cohesive soil, where a_1b = distance from key edge to footing edge, c_u = undrained shear strength, P_p = passive resistance force"
+        }
+      ],
+      "figures": [
+        "Figure 5-22: Resistance Against Sliding from Keyed Foundation in Cohesive Soils and Soft Rock"
+      ],
+      "tables": [
+        "Table 5-15: Ultimate Friction Factors for Dissimilar Materials (NAVFAC, 1986b) - Interface materials with coefficient of friction (tan delta) and friction angle (delta in degrees)"
+      ],
+      "applicability": "All shallow foundations subjected to lateral loads; minimum FS = 1.5 against sliding for bridge foundations."
+    },
+    {
+      "section_id": "5.5",
+      "title": "Global Stability",
+      "body": "Global stability of shallow foundations should be evaluated when the geometry of the ground surface in any direction away from the footing suggests that the assumptions associated with the bearing capacity theory used to calculate the bearing capacity of the footing are not valid, and the stress applied by the footing loads is acting to destabilize the slope geometry. Figure 5-23 depicts slope configurations and footing locations that act to either improve or degrade the global stability of the slope.\n\nIn cases where the stress applied by the footing acts to destabilize the slope, the global stability of the footing should be checked using limit equilibrium methods such as the method of slices (Bishop, 1955; or Spencer, 1967).\n\nDetailed guidance for the evaluation of slope stability is not included in this Circular. The Soils and Foundation Workshop Reference Manual (Cheney & Chassie, 2000) includes fundamental discussion of slope stability analysis methods considering the presence of a loaded footing within the slope. The reference work TRB Special Report 247: Landslides, Investigation and Mitigation (TRB, 1996) includes more detailed discussion on the analysis of global slope stability.",
+      "key_points": [
+        "Evaluate global stability when ground geometry near the footing invalidates bearing capacity theory assumptions",
+        "Footing loads can either stabilize or destabilize a slope depending on location (Figure 5-23)",
+        "Use limit equilibrium methods (Bishop or Spencer method of slices) to check global stability",
+        "Detailed slope stability guidance is in the Soils and Foundation Workshop Reference Manual and TRB SR 247",
+        "Global stability check is separate from and additional to bearing capacity and settlement checks"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-23: Global Slope Stability with Respect to Shallow Foundation Locations (a) Footing Acting to Stabilize Slope, (b) Footing Acting to Destabilize Slope"
+      ],
+      "tables": [],
+      "applicability": "All shallow foundations near slopes or on ground with non-level geometry."
+    }
+  ]
+}

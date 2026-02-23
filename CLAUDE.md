@@ -15,16 +15,38 @@ geotech_references/           # Python package (pip install -e .)
     chapter1.py ... chapter8.py
   dm7_2/                       # UFC 3-220-20 Foundations & Earth Structures (7 chapters)
     prologue.py, chapter2.py ... chapter7.py
+  gec_6/                       # FHWA-SA-02-054 Shallow Foundations
+    tables.py, figures.py
+    text/                      # Structured chapter JSON
+  gec_7/                       # FHWA-NHI-14-007 Soil Nail Walls
+    tables.py                  # 13 table lookup functions (bond, pullout, resistance factors, seismic)
+    figures.py                 # 2 figure lookup functions (friction angle vs SPT, basal heave Nc)
+    text/                      # Structured chapter JSON (5 chapters, ~37 sections)
+  gec_10/                      # FHWA-NHI-10-016 Drilled Shafts
+    tables.py, figures.py
+    text/                      # Structured chapter JSON (5 chapters)
+  gec_11/                      # FHWA-NHI-10-024 Design of MSE Walls & Slopes
+    tables.py, figures.py
   gec_12/                      # FHWA-NHI-16-009 Driven Piles
-    __init__.py
-    figures.py                 # 8 figure lookup functions (Nordlund Kd, CF, alpha_t, N'q, adhesion)
     tables.py                  # 8 table lookup functions (resistance factors, beta/Nt, setup, API)
+    figures.py                 # 8 figure lookup functions (Nordlund Kd, CF, alpha_t, N'q, adhesion)
     text/                      # Structured chapter JSON (8 chapters, ~109 sections)
-      chapter01.json ... chapter08.json
+  gec_13/                      # FHWA-NHI-16-027 Ground Modification Methods
+    tables.py, figures.py
+  micropile/                   # FHWA-NHI-05-039 Micropile Design & Construction
+    tables.py                  # 13 table lookup functions (bond stress, pipe/rebar, elastic modulus)
+    figures.py                 # 1 figure lookup function (limiting lateral modulus)
+    text/                      # Structured chapter JSON (5 chapters, ~35 sections)
 agents/
   dm7_agent.py                 # DM7 Foundry-style 3-function wrapper
+  gec6_agent.py                # GEC-6 Foundry-style 3-function wrapper
+  gec7_agent.py                # GEC-7 Foundry-style 3-function wrapper
+  gec10_agent.py               # GEC-10 Foundry-style 3-function wrapper
+  gec11_agent.py               # GEC-11 Foundry-style 3-function wrapper
   gec12_agent.py               # GEC-12 Foundry-style 3-function wrapper
-tests/                         # 2,155 tests (pytest)
+  gec13_agent.py               # GEC-13 Foundry-style 3-function wrapper
+  micropile_agent.py           # Micropile Foundry-style 3-function wrapper
+tests/                         # 2,810 tests (pytest)
 references/                    # Source PDFs (git-ignored)
 ```
 
@@ -58,17 +80,35 @@ references/                    # Source PDFs (git-ignored)
 | dm7_2 | 6 | Retaining Structures | 37 | 122 |
 | dm7_2 | 7 | Slope Stability (Earth Structures) | 16 | 71 |
 
-## GEC-12 Inventory (16 functions + 4 text retrieval, 147 tests)
+## GEC Module Inventory
 
-| Module | Type | Functions | Tests |
-|--------|------|-----------|-------|
-| figures.py | Figure lookups | 8 | 65 |
-| tables.py | Table lookups | 8 | 48 |
-| _retrieval.py | Text retrieval | 4 | 34 |
+| Module | Reference | Functions | Tests | Text Chapters |
+|--------|-----------|-----------|-------|---------------|
+| gec_6 | FHWA-SA-02-054 Shallow Foundations | 13 | 121 | yes |
+| gec_7 | FHWA-NHI-14-007 Soil Nail Walls | 15 | 101 | 5 chapters |
+| gec_10 | FHWA-NHI-10-016 Drilled Shafts | 10 | 175 | 5 chapters |
+| gec_11 | FHWA-NHI-10-024 MSE Walls & Slopes | 17 | 130 | - |
+| gec_12 | FHWA-NHI-16-009 Driven Piles | 16 | 147 | 8 chapters |
+| gec_13 | FHWA-NHI-16-027 Ground Modification | 10 | 105 | yes |
+| micropile | FHWA-NHI-05-039 Micropile Design | 14 | 108 | 5 chapters |
 
-**Figure Functions**: Nordlund Kd (Tables 7-6/7-7), CF correction factor (Fig 7-14), limiting toe resistance (Fig 7-15), alpha_t coefficient (Fig 7-16a), N'q bearing capacity (Fig 7-16b), delta/phi ratio (Fig 7-9), adhesion Ca (Fig 7-17), adhesion factor alpha (Fig 7-18)
+### GEC-7: Soil Nail Walls (15 functions, 101 tests)
 
-**Table Functions**: Resistance factors static (Table 7-1), resistance factors field (Table 7-2), static analysis methods (Table 7-3), API design parameters (Table 7-8), beta/Nt coefficients (Table 7-9), Brown's method factors (Table 7-10), Eslami-Fellenius Cs (Table 7-11), soil setup factors (Table 7-16)
+**Table Functions** (13): Bond strength coarse/fine-grained soils & rock (Tables 4.4a/b, 4.5), pullout resistance, ASD factors of safety, LRFD resistance factors (Tables 5.4-5.11), AASHTO seismic site coefficients (F_PGA, F_v), SPT correlations, elastic properties, wall displacement parameters
+
+**Figure Functions** (2): Friction angle vs SPT N60 (Fig 4.3), basal heave Nc (Fig 5.11)
+
+### Micropile: FHWA-NHI-05-039 (14 functions, 108 tests)
+
+**Table Functions** (13): Grout-to-ground bond stress alpha_bond by soil/rock type & micropile type A/B/C/D (Table 5-3), pipe casing properties API N-80 & ASTM A519/A106 (Table 4-5), reinforcing bar properties (Table 4-2), classification system (Table 2-1), group efficiency (Table 5-4), corrosion criteria (Table 5-5), epsilon_50 for clays (Tables 5-7/5-8), soil modulus k for sand/clay (Tables 5-9/5-10), fixity guidance (Table 5-11), elastic modulus by soil type & SPT (Tables 5-12/5-13)
+
+**Figure Functions** (1): Limiting lateral modulus for buckling (Fig 5-23)
+
+### GEC-12: Driven Piles (16 functions, 147 tests)
+
+**Figure Functions** (8): Nordlund Kd, CF correction factor, limiting toe resistance, alpha_t coefficient, N'q bearing capacity, delta/phi ratio, adhesion Ca, adhesion factor alpha
+
+**Table Functions** (8): Resistance factors static/field, static analysis methods, API design parameters, beta/Nt coefficients, Brown's method factors, Eslami-Fellenius Cs, soil setup factors
 
 **Text Retrieval**: `retrieve_section(reference, section_id)`, `search_sections(reference, query)`, `list_chapters(reference)`, `load_chapter(reference, chapter)`
 
@@ -76,21 +116,16 @@ references/                    # Source PDFs (git-ignored)
 
 ## Agent Pattern
 
-Both agents follow the 3-function Foundry pattern:
+All 8 agents follow the 3-function Foundry pattern:
 
 ```python
-# DM7 Agent
-dm7_agent(method: str, params_json: str) -> str
-dm7_list_methods(category: str = "") -> str
-dm7_describe_method(method: str) -> str
-
-# GEC-12 Agent
-gec12_agent(method: str, params_json: str) -> str
-gec12_list_methods(category: str = "") -> str
-gec12_describe_method(method: str) -> str
+# Pattern (replace {name} with dm7, gec6, gec7, gec10, gec11, gec12, gec13, micropile)
+{name}_agent(method: str, params_json: str) -> str
+{name}_list_methods(category: str = "") -> str
+{name}_describe_method(method: str) -> str
 ```
 
-DM7 agent auto-discovers 340+ functions via `inspect.getmembers()`. GEC-12 agent wraps text retrieval + figure/table lookup functions (20 methods in 3 categories: Text Retrieval, GEC-12 Figures, GEC-12 Tables).
+DM7 agent auto-discovers 340+ functions via `inspect.getmembers()`. GEC/micropile agents wrap text retrieval + figure/table lookup functions.
 
 ## Working on This Repo
 
@@ -103,4 +138,4 @@ DM7 agent auto-discovers 340+ functions via `inspect.getmembers()`. GEC-12 agent
 
 - Python 3.10+ (developed on 3.14.3)
 - No required dependencies (numpy/scipy/matplotlib are optional, used by some functions)
-- Tests: `pytest tests/ -q` (expect 2,155 passed)
+- Tests: `pytest tests/ -q` (expect 2,810 passed, 85 skipped)

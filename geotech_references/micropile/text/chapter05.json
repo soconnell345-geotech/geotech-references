@@ -1,0 +1,407 @@
+{
+  "reference_id": "FHWA-NHI-05-039",
+  "reference_title": "Micropile Design and Construction",
+  "chapter": 5,
+  "chapter_title": "Design of Micropiles for Structure Foundations",
+  "sections": [
+    {
+      "section_id": "5.1",
+      "title": "Introduction and Design Overview",
+      "body": "This chapter presents the design methodology for micropiles used as directly loaded structural elements (CASE 1 micropiles). The design procedure follows a 12-step process outlined in Table 5-1, supplemented by 8 additional design considerations including corrosion protection, plunge length, end bearing, downdrag, lateral loading, buckling, and seismic considerations. The design approach covers both structural (internal) and geotechnical (external) limit states. The structural design ensures that the micropile cross section has adequate capacity to resist the applied loads, while the geotechnical design ensures that the surrounding ground can develop sufficient resistance through grout-to-ground bond. The 12 design steps are: (1) evaluate feasibility, (2) review available geotechnical data, (3) determine loading conditions, (4) prepare preliminary design, (5) structural design of cased length, (6) structural design of uncased length, (7) revise design, (8) estimate geotechnical capacity, (9) estimate settlement, (10) design pile cap connections, (11) determine load testing requirements, and (12) prepare drawings and specifications.",
+      "key_points": [
+        "12-step design process for CASE 1 micropiles (Table 5-1)",
+        "8 additional design considerations beyond the 12 primary steps",
+        "Both structural (internal) and geotechnical (external) limit states must be checked",
+        "Structural design ensures cross-section capacity for applied loads",
+        "Geotechnical design ensures adequate grout-to-ground bond resistance",
+        "Design covers compression, tension, lateral loading, combined stresses, and buckling",
+        "Table 5-1 provides the complete design procedure framework"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-1: Typical Micropile Detail Showing Cased and Uncased Lengths"
+      ],
+      "tables": [
+        "Table 5-1: Summary of Design Steps and Additional Considerations for Micropiles"
+      ],
+      "applicability": "Complete design framework for CASE 1 micropile structure foundation support."
+    },
+    {
+      "section_id": "5.2",
+      "title": "Structural Design of Cased Length",
+      "body": "The cased length of the micropile is the portion where both the steel casing and grout (and optionally a center reinforcing bar) are present. The structural design of the cased length involves checking three conditions: (1) compression capacity, (2) tension capacity, and (3) combined axial load and bending. For compression (Eq. 5-1), the allowable load is the sum of contributions from the grout, casing, and center bar: P_c-allowable = 0.40*f'c_grout*A_grout + 0.47*F_y-steel*(A_bar + A_casing). For tension (Eq. 5-2), the allowable load is: P_t-allowable = 0.55*F_y-steel*(A_bar + A_casing). No tensile contribution from grout is considered. For combined axial and bending (Eq. 5-3), the interaction check uses: f_a/F_a + f_b/F_b <= 1.0, where f_a is the computed axial stress, F_a is the allowable axial stress, f_b is the computed bending stress, and F_b is the allowable bending stress. Section properties are computed using composite section analysis. The moment of inertia of the cased section (Eq. 5-4a) is: I_composite = (pi/64)*[(OD^4 - ID^4) + n_bar*(d_bar^4) + (n_grout - 1)*((ID - 2*cover)^4)], where n is the modular ratio. The section modulus (Eq. 5-4b) is S = I_composite/(OD/2). The radius of gyration (Eq. 5-4c) is r = sqrt(I_composite/A_composite). Factors of 0.40 and 0.47 are AASHTO allowable stress factors for grout and steel, respectively.",
+      "key_points": [
+        "Three structural checks: compression (Eq. 5-1), tension (Eq. 5-2), combined stress (Eq. 5-3)",
+        "Compression: P_c = 0.40*f'c*A_grout + 0.47*Fy*(A_bar + A_casing)",
+        "Tension: P_t = 0.55*Fy*(A_bar + A_casing); no grout contribution",
+        "Combined check: f_a/F_a + f_b/F_b <= 1.0 (interaction formula)",
+        "Section properties: composite I, S, and r using modular ratios (Eq. 5-4a,b,c)",
+        "Stress factors 0.40 (grout) and 0.47 (steel) from AASHTO",
+        "Center bar provides additional capacity for both compression and tension"
+      ],
+      "equations": [
+        "Eq. 5-1: P_c-allowable = 0.40*f'c_grout*A_grout + 0.47*F_y-steel*(A_bar + A_casing)",
+        "Eq. 5-2: P_t-allowable = 0.55*F_y-steel*(A_bar + A_casing)",
+        "Eq. 5-3: f_a/F_a + f_b/F_b <= 1.0",
+        "Eq. 5-4a: I_composite for cased section",
+        "Eq. 5-4b: S = I_composite / (OD/2)",
+        "Eq. 5-4c: r = sqrt(I_composite / A_composite)"
+      ],
+      "figures": [
+        "Figure 5-2: Micropile Cross Section - Cased Length",
+        "Figure 5-3: Stress Distribution in Cased Micropile Section"
+      ],
+      "tables": [
+        "Table 5-2: Minimum Rock Quality for End Bearing Micropiles"
+      ],
+      "applicability": "Structural design of the upper cased portion of micropiles for compression, tension, and combined loading."
+    },
+    {
+      "section_id": "5.3",
+      "title": "Buckling and Stability of Cased Length",
+      "body": "For micropiles that extend through air, water, or very weak soils, the cased length must be checked for Euler buckling. The Euler buckling load (Eq. 5-5) is: P_critical = pi^2*E*I / (K*L_unsupported)^2, where E is the modulus of elasticity, I is the moment of inertia of the steel casing, K is the effective length factor (typically 1.0 for pinned-pinned or 2.0 for cantilever), and L_unsupported is the unsupported length. The Richards and Rothbauer (2004) method provides an alternative approach (Eq. 5-6) that accounts for the lateral support provided by surrounding soil using subgrade reaction theory. The allowable axial stress in compression should be reduced when buckling is a concern, using the AASHTO column formula approach. In general, buckling is not a concern for micropiles that are fully embedded in soil or rock with adequate lateral support. However, buckling should be evaluated when micropiles pass through very weak or liquefiable soils, through voids (karstic terrain), or above ground/water level.",
+      "key_points": [
+        "Euler buckling check required for micropiles in air, water, or very weak soils (Eq. 5-5)",
+        "P_critical = pi^2*E*I / (K*L)^2 for unsupported sections",
+        "K = 1.0 for pinned-pinned; K = 2.0 for cantilever; K = 0.65 for fixed-fixed",
+        "Richards and Rothbauer (2004) method accounts for lateral soil support (Eq. 5-6)",
+        "Buckling generally not a concern in fully embedded micropiles with adequate lateral support",
+        "Must evaluate buckling through very weak soils, voids (karst), or above ground/water",
+        "AASHTO column formula used to reduce allowable stress when buckling governs"
+      ],
+      "equations": [
+        "Eq. 5-5: P_critical = pi^2 * E * I / (K * L_unsupported)^2 (Euler buckling)",
+        "Eq. 5-6: Richards-Rothbauer method for buckling with lateral soil support"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Stability check for micropiles with unsupported lengths in air, water, voids, or very weak/liquefiable soils."
+    },
+    {
+      "section_id": "5.4",
+      "title": "Structural Design of Uncased Length",
+      "body": "The uncased length (bond zone) of the micropile is the portion where the grout and center reinforcing bar (without steel casing) transfer load to the ground through grout-to-ground bond. The structural design of the uncased length checks compression and tension capacity of the grout-bar cross section. For compression (Eq. 5-7): P_c-allowable = 0.40*f'c_grout*A_grout + 0.47*F_y-steel*A_bar. For tension (Eq. 5-8): P_t-allowable = 0.55*F_y-steel*A_bar. Only the center reinforcing bar contributes to tensile capacity in the uncased length. The grout diameter in the uncased length is typically equal to the drilled hole diameter, which may be larger than the casing outside diameter depending on drilling method and ground conditions. If the micropile design includes a plunge length (Section 5.15), the load reaching the uncased length is reduced by the transfer load developed over the plunge length.",
+      "key_points": [
+        "Uncased length is the bond zone where load transfers through grout-to-ground bond",
+        "Compression (Eq. 5-7): P_c = 0.40*f'c*A_grout + 0.47*Fy*A_bar (no casing term)",
+        "Tension (Eq. 5-8): P_t = 0.55*Fy*A_bar (only center bar contributes)",
+        "Grout diameter equals drilled hole diameter in the uncased length",
+        "Load reaching uncased length may be reduced by plunge length transfer (Section 5.15)",
+        "No steel casing in the uncased bond zone",
+        "Structural capacity of uncased length is typically less than cased length"
+      ],
+      "equations": [
+        "Eq. 5-7: P_c-allowable = 0.40*f'c_grout*A_grout + 0.47*F_y-steel*A_bar (uncased compression)",
+        "Eq. 5-8: P_t-allowable = 0.55*F_y-steel*A_bar (uncased tension)"
+      ],
+      "figures": [
+        "Figure 5-4: Micropile Cross Section - Uncased Bond Zone"
+      ],
+      "tables": [],
+      "applicability": "Structural design of the uncased bond zone for micropiles with center reinforcing bar only."
+    },
+    {
+      "section_id": "5.5",
+      "title": "Geotechnical Capacity - Grout-to-Ground Bond",
+      "body": "The geotechnical capacity of a micropile is controlled by the grout-to-ground bond developed along the micropile bond zone. The ultimate bond resistance (Eq. 5-9) is: R_bond = alpha_bond * pi * D_b * L_bond, where alpha_bond is the unit grout-to-ground bond stress, D_b is the bond zone diameter, and L_bond is the bond length. The allowable geotechnical capacity (Eq. 5-10) is: P_G-allowable = R_bond / FS, where FS is the factor of safety (typically 2.0 to 2.5 for micropile bond). Table 5-3 provides presumptive values of alpha_bond for various soil and rock types and grouting methods (Types A, B, C, D). For Type A grouting in rock, alpha_bond ranges from 345 to 4150 kPa depending on rock quality. For Type B grouting in sand, alpha_bond ranges from 70 to 360 kPa. For Type B grouting in clay, alpha_bond ranges from 25 to 190 kPa. Higher bond values are achieved with Type C and D grouting. These values are presumptive and should be verified by site-specific load testing. For critical projects, the designer should specify verification load testing to confirm the achievable bond values for the specific site conditions and contractor methods.",
+      "key_points": [
+        "Ultimate bond: R_bond = alpha_bond * pi * D_b * L_bond (Eq. 5-9)",
+        "Allowable capacity: P_G-allowable = R_bond / FS; FS = 2.0 to 2.5 (Eq. 5-10)",
+        "Table 5-3 provides alpha_bond values by soil/rock type and grouting Type (A, B, C, D)",
+        "Type A in rock: 345-4150 kPa; Type B in sand: 70-360 kPa; Type B in clay: 25-190 kPa",
+        "Higher bond values achieved with Type C and Type D grouting",
+        "Presumptive values should be verified by site-specific load testing",
+        "Bond zone diameter D_b may differ from casing diameter depending on grouting method"
+      ],
+      "equations": [
+        "Eq. 5-9: R_bond = alpha_bond * pi * D_b * L_bond (ultimate bond resistance)",
+        "Eq. 5-10: P_G-allowable = R_bond / FS (allowable geotechnical capacity)"
+      ],
+      "figures": [
+        "Figure 5-5: Load Transfer Mechanism in Micropile Bond Zone"
+      ],
+      "tables": [
+        "Table 5-3: Presumptive Ultimate Bond Stress (alpha_bond) Values for Micropile Design"
+      ],
+      "applicability": "Estimation of micropile geotechnical capacity based on grout-to-ground bond for preliminary and final design."
+    },
+    {
+      "section_id": "5.6",
+      "title": "Group Capacity and Efficiency",
+      "body": "When micropiles are installed in groups, group effects may reduce the capacity of individual piles due to overlapping stress zones. The group efficiency factor (Eq. 5-11) is defined as the ratio of the ultimate group capacity to the sum of the individual pile ultimate capacities. For axial loading, group effects for micropiles are generally similar to those for conventional piles. Table 5-4 provides group efficiency factors based on center-to-center spacing. For micropile spacings of 3 diameters or more, group efficiency is typically 1.0 (no reduction). Block failure of the micropile group must also be evaluated. For compression block failure (Eq. 5-12), the ultimate group capacity is: Q_group = min(sum of individual capacities, block perimeter bond capacity + base bearing). For uplift block failure (Eq. 5-16/5-17), the ultimate uplift capacity is: Q_uplift = min(sum of individual uplift capacities, block weight + side resistance). Punching failure into a weak underlying layer should be checked using Eq. 5-15. The group capacity is the minimum of the individual pile capacity sum (reduced by efficiency factor) and the block failure capacity.",
+      "key_points": [
+        "Group efficiency reduces individual pile capacity due to overlapping stress zones",
+        "Group efficiency typically 1.0 for spacings of 3 diameters or more (Table 5-4)",
+        "Block failure must be checked for compression (Eq. 5-12) and uplift (Eq. 5-16/5-17)",
+        "Compression block: min of sum of individuals vs. block perimeter bond + base bearing",
+        "Uplift block: min of sum of individuals vs. block weight + side resistance",
+        "Punching failure into weak underlying layer checked via Eq. 5-15",
+        "Group capacity is minimum of efficiency-reduced sum and block failure capacity"
+      ],
+      "equations": [
+        "Eq. 5-11: Group efficiency factor definition",
+        "Eq. 5-12: Block failure capacity for compression",
+        "Eq. 5-13: Block perimeter bond resistance",
+        "Eq. 5-14: Group capacity as minimum of individual and block failure",
+        "Eq. 5-15: Punching failure into weak underlying stratum",
+        "Eq. 5-16: Uplift block failure - side resistance component",
+        "Eq. 5-17: Uplift block failure - total capacity"
+      ],
+      "figures": [
+        "Figure 5-6: Block Failure Mechanism for Micropile Group",
+        "Figure 5-7: Uplift Block Failure Mechanism"
+      ],
+      "tables": [
+        "Table 5-4: Group Efficiency Factors for Micropiles Based on Spacing"
+      ],
+      "applicability": "Design of micropile groups including efficiency factors, block failure checks, and uplift capacity."
+    },
+    {
+      "section_id": "5.7",
+      "title": "Settlement Estimation",
+      "body": "Settlement of micropile foundations must be estimated and compared to tolerable limits. Settlement of a single micropile or group includes two components: (1) elastic compression of the micropile element itself, and (2) settlement of the surrounding ground due to load transfer. The elastic compression (Eq. 5-18) of the micropile is: delta_elastic = P*L / (A*E), where P is the applied load, L is the length, A is the cross-sectional area, and E is the composite modulus. For a micropile group, the settlement is estimated using conventional methods for deep foundations. Meyerhof (1976) proposed that the settlement of a pile group in sand can be estimated as (Eq. 5-19): s_group = 0.92*q*sqrt(B_g) / N_corr, where q is the applied stress, B_g is the group width, and N_corr is the corrected SPT N value. For pile groups in clay, conventional consolidation theory is applied using the equivalent footing method where the load is assumed to act on an equivalent footing located at 2/3 of the bond length depth. Additional settlement equations (Eq. 5-20 through 5-22) address elastic shortening of the micropile under the applied load considering the composite section stiffness and load transfer distribution along the bond zone.",
+      "key_points": [
+        "Settlement includes elastic compression of micropile and ground settlement from load transfer",
+        "Elastic compression: delta = P*L/(A*E) for the micropile element (Eq. 5-18)",
+        "Meyerhof (1976) method for group settlement in sand (Eq. 5-19)",
+        "Consolidation theory with equivalent footing at 2/3 bond length for clays",
+        "Equivalent footing located at 2/3 of the depth of the bond zone",
+        "Load transfer distribution affects elastic shortening along the bond zone",
+        "Settlement typically 10-15 mm for micropile foundations at working loads"
+      ],
+      "equations": [
+        "Eq. 5-18: delta_elastic = P * L / (A * E) (elastic compression of micropile)",
+        "Eq. 5-19: s_group = 0.92 * q * sqrt(B_g) / N_corr (Meyerhof group settlement in sand)",
+        "Eq. 5-20: Elastic shortening considering composite section stiffness",
+        "Eq. 5-21: Load transfer elastic shortening with distributed bond",
+        "Eq. 5-22: Total settlement as sum of elastic and ground components"
+      ],
+      "figures": [
+        "Figure 5-8: Equivalent Footing Concept for Micropile Group Settlement",
+        "Figure 5-9: Load Distribution Below Micropile Group"
+      ],
+      "tables": [],
+      "applicability": "Estimation of micropile and micropile group settlement for comparison with tolerable structure movement limits."
+    },
+    {
+      "section_id": "5.8",
+      "title": "Pile Cap Connections",
+      "body": "The connection between the micropile and the pile cap (or existing footing for underpinning) must be designed to transfer the applied loads from the structure to the micropile. Various connection details are used depending on whether the micropile is a new installation or an underpinning element. For new construction, the micropile casing is typically embedded a minimum of 150 mm (6 inches) into the pile cap, and the center reinforcing bar extends into the cap with adequate development length. Connection details include: (1) flush-mounted casing with reinforcing bar extending into the cap, (2) casing with welded bearing plate, (3) casing with mechanical connector to the cap reinforcement, and (4) threaded bar with plate and nut bearing on the cap surface. For underpinning, micropiles are typically installed by coring through the existing footing and grouting the micropile into the cored hole. The cored hole provides confinement and load transfer through grout-to-concrete bond. The bearing plate connection is commonly used for micropiles designed to carry tension loads, where a torqued anchor plate at the top of the micropile engages the pile cap. Figures 5-10 through 5-16 illustrate various connection details for both new and retrofit applications.",
+      "key_points": [
+        "Connection transfers loads from structure to micropile through pile cap",
+        "Minimum casing embedment of 150 mm (6 inches) into pile cap for new construction",
+        "Center bar must have adequate development length into the cap",
+        "Connection types: flush casing, welded bearing plate, mechanical connector, threaded bar with plate",
+        "Underpinning: core through existing footing and grout micropile into cored hole",
+        "Bearing plate connection for tension loads with torqued anchor plate",
+        "Figures 5-10 through 5-16 illustrate connection details for new and retrofit applications"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-10: Micropile-to-Footing Connection for New Construction",
+        "Figure 5-11: Bearing Plate Connection Detail",
+        "Figure 5-12: Micropile Underpinning Connection Through Existing Footing",
+        "Figure 5-13: Cased Micropile Connection for Tension",
+        "Figure 5-14: Threadbar Connection with Plate and Nut",
+        "Figure 5-15: GEWI Pile Standard Connection Detail",
+        "Figure 5-16: Connection Detail for Seismic Retrofit Application"
+      ],
+      "tables": [],
+      "applicability": "Design and detailing of micropile-to-structure connections for both new construction and underpinning."
+    },
+    {
+      "section_id": "5.9",
+      "title": "Corrosion Protection",
+      "body": "Corrosion protection for micropiles must be evaluated based on the aggressiveness of the ground environment and the loading conditions (tension vs. compression). Table 5-5 defines aggressive ground conditions as soils with pH less than 4.5, resistivity less than 2000 ohm-cm, sulfate concentration greater than 200 ppm, or chloride concentration greater than 100 ppm. Table 5-6 provides corrosion protection recommendations for micropiles differentiated by loading (tension vs. compression) and ground aggressiveness. For casings in compression in aggressive ground, a minimum section loss of 1.6 mm (0.063 in.) on the outside is prescribed per AASHTO Section 4.5.7.4. For core steel (reinforcing bar) in tension in aggressive ground, the recommended protection includes: epoxy coating, galvanization, or encapsulation in plastic sheath, plus minimum grout cover (1 inch in soil, 0.5 inch in rock). Corrosion protection must extend 5 m (15 ft) below corrosive material. Double corrosion protection (as shown in Figure 5-17 for GEWI piles) uses a corrugated sheath between the bar and grout with inner cement grout filling the annulus. For permanent micropiles in tension, double corrosion protection is recommended in aggressive environments.",
+      "key_points": [
+        "Aggressive ground: pH < 4.5, resistivity < 2000 ohm-cm, sulfates > 200 ppm, chlorides > 100 ppm (Table 5-5)",
+        "Table 5-6: corrosion protection recommendations by loading type and aggressiveness",
+        "Casing compression in aggressive ground: minimum 1.6 mm section loss per AASHTO",
+        "Core steel in tension/aggressive: epoxy coating, galvanization, or encapsulation required",
+        "Minimum grout cover: 25 mm (1 in.) in soil, 12.5 mm (0.5 in.) in rock",
+        "Corrosion protection must extend 5 m (15 ft) below corrosive material",
+        "Double corrosion protection recommended for permanent tension micropiles in aggressive ground (Figure 5-17)"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-17: GEWI Piles with Standard and Double Corrosion Protection"
+      ],
+      "tables": [
+        "Table 5-5: Criteria for Aggressive Ground Conditions",
+        "Table 5-6: Corrosion Protection Recommendations for Micropiles (after DFI, 2004)"
+      ],
+      "applicability": "Corrosion protection design for micropiles based on ground aggressiveness and loading conditions."
+    },
+    {
+      "section_id": "5.10",
+      "title": "Plunge Length and End Bearing",
+      "body": "The casing plunge length is the portion of the steel casing that extends into the bond zone below the cased/uncased transition (see Figure 5-18). The plunge length allows a portion of the applied load to be transferred to the ground through grout-to-ground bond along the cased section, reducing the load that must be carried by the uncased bond zone. The allowable transfer load (Eq. 5-25) is: P_transfer-allowable = (alpha_bond / FS) * pi * D_b * Plunge_Length, where alpha_bond is from Table 5-3. The use of plunge length to reduce load on the uncased section should be verified by load testing. Regarding end bearing, micropiles are typically designed as friction (bond) piles, and end bearing is generally considered negligible due to the small cross-sectional area. However, micropiles founded on high-quality sound rock may develop their capacity primarily through end bearing. For end bearing on rock, a nominal rock socket length of approximately 0.6 m (2 ft) is typically used to verify that the micropile is founded on competent rock. Table 5-2 provides minimum rock quality criteria for end bearing micropiles. The capacity of end bearing micropiles on competent rock is typically controlled by the structural capacity of the micropile rather than the geotechnical resistance.",
+      "key_points": [
+        "Plunge length: casing extension into bond zone to transfer load from cased to ground",
+        "Transfer load (Eq. 5-25): P_transfer = (alpha_bond/FS) * pi * D_b * Plunge_Length",
+        "Plunge length reduces load reaching the uncased bond zone",
+        "Plunge length load transfer should be verified by load testing",
+        "End bearing generally negligible for micropiles due to small cross-sectional area",
+        "End bearing may be significant for micropiles on high-quality sound rock",
+        "Nominal rock socket of 0.6 m (2 ft) used to verify competent rock bearing",
+        "Structural capacity typically controls for end bearing micropiles on competent rock"
+      ],
+      "equations": [
+        "Eq. 5-25: P_transfer-allowable = (alpha_bond / FS) * pi * D_b * Plunge_Length"
+      ],
+      "figures": [
+        "Figure 5-18: Detail of Load Transfer Through the Casing Plunge Length"
+      ],
+      "tables": [
+        "Table 5-2: Minimum Rock Quality for End Bearing Micropiles"
+      ],
+      "applicability": "Design of plunge length for load transfer and evaluation of end bearing for micropiles on rock."
+    },
+    {
+      "section_id": "5.11",
+      "title": "Downdrag on Micropiles",
+      "body": "Micropiles may be subjected to additional axial compression loading from downdrag (negative skin friction) when soils in contact with the cased portion settle relative to the micropile. Downdrag potential exists when: (1) the site is underlain by compressible silts, clays, or peats; (2) fill has been recently placed; or (3) the groundwater has been substantially lowered. The maximum load along the micropile occurs at the top of the bond zone and equals the sum of the applied load at the pile top plus the downdrag force. To compute the downdrag force, the grout-to-ground bond stress values from Table 5-3 are used over the length of the micropile in the settling soils. The structural capacity of the micropile must be checked for this maximum load (applied load + downdrag). The small surface area of micropiles results in relatively small downdrag forces compared to larger diameter piles. Further isolation from downdrag can be achieved by installing an additional oversized outer casing through the settling soils. Battered micropiles should not be used at sites with large soil settlements because of additional bending forces.",
+      "key_points": [
+        "Downdrag occurs when soils settle relative to the micropile above the bond zone",
+        "Conditions: compressible soils, recent fill placement, or groundwater lowering",
+        "Maximum pile load = applied load + downdrag force, occurring at top of bond zone",
+        "Downdrag force computed using Table 5-3 bond stress values over settling length",
+        "Small micropile surface area results in relatively small downdrag forces",
+        "Oversized outer casing can isolate micropile from settling soils",
+        "Battered micropiles should not be used where large settlements are expected"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Evaluation and design for downdrag on micropiles at sites with compressible or settling soils."
+    },
+    {
+      "section_id": "5.12",
+      "title": "Design for Lateral Loading - Single Micropiles",
+      "body": "The design of micropiles for lateral loading uses p-y analysis methods similar to those for conventional piles. The analysis of a single vertical micropile under lateral loading is equivalent to that for a driven pile or drilled shaft using programs such as LPILE. The design procedure involves 7 steps: (1) determine pile parameters including length, modulus of elasticity, and distance from pile head to ground surface; (2) divide the micropile into segments with uniform cross-sectional properties (cased vs. uncased); (3) delineate the soil/rock profile over the anticipated penetration depth; (4) determine soil parameters for each layer including unit weight, shear strength, epsilon_50 for clays, and soil modulus k; (5) determine critical loading combinations and boundary conditions; (6) evaluate structural capacity for combined axial and lateral loading using Eq. 5-3 or 5-6; (7) check deflection acceptability. Tables 5-7 through 5-10 provide soil parameters for p-y analysis: epsilon_50 values for intact clays (Table 5-7), epsilon_50 for stiff clays (Table 5-8), k values for sands (Table 5-9), and k values for clays (Table 5-10). Table 5-11 provides guidance on pile head fixity for micropile-footing connections: 0% fixity (pinned) for 300 mm casing embedment, 50% fixity for 450 mm embedment, and 100% fixity (fixed) for 600 mm or greater embedment. The bending moment capacity at threaded casing joints should be evaluated using Eq. 5-26 (reduced section modulus at joint) and Eq. 5-27 (maximum moment at joint location).",
+      "key_points": [
+        "Lateral design uses p-y analysis methods identical to driven piles and drilled shafts",
+        "7-step design procedure for single laterally loaded micropile",
+        "Divide micropile into segments: cased (higher EI) and uncased (lower EI)",
+        "Tables 5-7/5-8: epsilon_50 values for intact and stiff clays",
+        "Table 5-9: k values for sands (kPa/m); Table 5-10: k values for clays",
+        "Table 5-11: fixity guidance - 0% at 300 mm, 50% at 450 mm, 100% at 600+ mm embedment",
+        "Threaded casing joints have reduced section modulus (Eq. 5-26) and moment capacity (Eq. 5-27)",
+        "Combined axial and bending check required using Eq. 5-3"
+      ],
+      "equations": [
+        "Eq. 5-26: S_joint = (pi/64)*((OD-t_w)^4 - ID^4) / ((OD-t_w)/2) (reduced section modulus at joint)",
+        "Eq. 5-27: M_max(joint) = S_joint * (1 - f_a/F_a) * (1 - f_a/F'e) * F_b (maximum moment at joint)"
+      ],
+      "figures": [
+        "Figure 5-19: LPILE Analysis Result for Bending Moment (Fixed/50%/Free Head)",
+        "Figure 5-20: LPILE Analysis Result for Lateral Micropile Deflection"
+      ],
+      "tables": [
+        "Table 5-7: Values of epsilon_50 for Intact Clays (after Reese et al., 2005)",
+        "Table 5-8: Values of epsilon_50 for Stiff Clays (after Reese et al., 2005)",
+        "Table 5-9: Soil-Modulus Parameter k for Sands (after Reese et al., 2005)",
+        "Table 5-10: Soil-Modulus Parameter k for Clays (after Reese et al., 2005)",
+        "Table 5-11: Guidance on Level of Fixity for Micropile-Footing Connections"
+      ],
+      "applicability": "Design of single micropiles for lateral loading using p-y analysis and combined stress checks."
+    },
+    {
+      "section_id": "5.13",
+      "title": "Lateral Resistance of Micropile Groups",
+      "body": "Micropile behavior in a group configuration under lateral loading is influenced by pile-soil-pile interaction. Piles in trailing rows have less resistance to lateral load than piles in the lead row, resulting in a group efficiency less than 1.0. The p-multiplier concept (Pm) is used to modify p-y curves for individual piles to account for group effects. Based on Brown et al. (1998) and the FOREVER project, recommended p-multiplier values for micropile groups at 3-diameter spacing are: 0.8 for the front (lead) row, 0.4 for the second row, and 0.3 for the third and subsequent rows. For in-line micropiles, group effects are negligible for spacing between 6 to 7 diameters. For micropiles perpendicular to loading direction, group effects are negligible for spacing greater than 3 diameters. The 5-step design procedure for laterally loaded micropile groups is: (1) develop p-y curves for single pile; (2) perform LPILE analyses using Pm values for each row position; (3) estimate group deflection under lateral load; (4) evaluate structural acceptability by checking maximum bending moment; (5) perform refined evaluation considering superstructure-substructure interaction. Soil-structure interaction programs such as FB-Pier and GROUP can be used for detailed group analysis.",
+      "key_points": [
+        "P-multiplier (Pm) concept accounts for group effects on p-y curves",
+        "Recommended Pm at 3D spacing: 0.8 (front row), 0.4 (2nd row), 0.3 (3rd+ rows)",
+        "In-line group effects negligible at 6-7 diameter spacing",
+        "Perpendicular group effects negligible at >3 diameter spacing",
+        "5-step design procedure for laterally loaded micropile groups",
+        "Group deflection may be 2-3 times larger than single pile deflection",
+        "FB-Pier and GROUP programs available for detailed soil-structure interaction analysis",
+        "FOREVER project confirmed Pm recommendations for micropile groups"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-21: Illustration of P-Multiplier Concept for Lateral Group Analysis",
+        "Figure 5-22: Load-Deflection and Bending Moment-Deflection for Pile Group Analysis"
+      ],
+      "tables": [],
+      "applicability": "Design of laterally loaded micropile groups using p-multiplier approach for group efficiency."
+    },
+    {
+      "section_id": "5.14",
+      "title": "Buckling Considerations for Micropiles",
+      "body": "Buckling of micropiles is a concern when piles pass through very weak or liquefiable soils, through voids (karstic terrain), or where the pile extends above ground. For micropiles surrounded by very weak or liquefiable soil, the critical buckling load (Eq. 5-28) is: P_cr = pi^2*E*I/l^2 + E_s*l^2/pi^2, where E is the casing steel modulus, I is the moment of inertia, l is the unsupported length, and E_s is the lateral reaction modulus of the soil. The limiting lateral reaction modulus for buckling (Eq. 5-29) is: E_s_LIMIT = 1 / [(4*I/A^2) * (E/Fy^2)], which defines the pile factor as the product of geometric (4I/A^2) and material (E/Fy^2) terms. If E_s_LIMIT is less than the actual E_s, buckling does not control. Tables 5-12 and 5-13 provide ranges of E_s values for various soil types (by soil type and by SPT N value, respectively). Figure 5-23 provides a chart of limiting lateral modulus values for various micropile materials. When buckling potential exists (E_s_LIMIT > E_s), the allowable compression load is modified using Eq. 5-30, with the allowable stress Fa computed from Eq. 5-31 or 5-32 depending on the slenderness ratio Kl/r relative to the critical slenderness Cc. For micropiles installed through voids (Section 5.20.3), the unsupported length equals the void thickness, and the effective length factor K depends on end conditions (pinned-pinned K=1.0 is conservative). The moment of inertia at casing joints should be used for evaluating buckling through joints (I_joint from Eq. 5-26).",
+      "key_points": [
+        "Buckling concern in very weak/liquefiable soils, voids (karst), or above ground",
+        "Critical buckling load (Eq. 5-28): P_cr = pi^2*E*I/l^2 + E_s*l^2/pi^2",
+        "Limiting soil modulus (Eq. 5-29): E_s_LIMIT defines when buckling controls",
+        "If E_s_LIMIT < actual E_s, buckling does not control the design",
+        "Tables 5-12/5-13: E_s ranges by soil type and SPT N value",
+        "Figure 5-23: chart of limiting lateral modulus for various micropile materials",
+        "Modified compression (Eq. 5-30) and allowable stress (Eq. 5-31/5-32) for buckling",
+        "FS = 2.12 per AASHTO Table 10.32.1.A for buckling checks"
+      ],
+      "equations": [
+        "Eq. 5-28: P_cr = pi^2*E*I/l^2 + E_s*l^2/pi^2 (critical buckling load in weak soil)",
+        "Eq. 5-29: E_s_LIMIT = 1 / [(4*I/A^2)*(E/Fy^2)] (limiting lateral modulus for buckling)",
+        "Eq. 5-30: P_c-allowable modified for buckling with Fa/(0.47*Fy) factor",
+        "Eq. 5-31: Fa for Kl/r_t <= Cc (inelastic buckling)",
+        "Eq. 5-32: Fa for Kl/r_t > Cc (elastic buckling, Euler formula)"
+      ],
+      "figures": [
+        "Figure 5-23: Limiting Lateral Modulus Values for Various Micropile Materials",
+        "Figure 5-24: Micropile Installed Through Voids in Karstic Terrain"
+      ],
+      "tables": [
+        "Table 5-12: Elastic Constants of Various Soils Based on Soil Type (modified after AASHTO, 2002)",
+        "Table 5-13: Elastic Constants of Various Soils Based on SPT N Value (modified after AASHTO, 2002)"
+      ],
+      "applicability": "Evaluation of buckling potential for micropiles in weak soils, voids, liquefiable zones, or above ground."
+    },
+    {
+      "section_id": "5.15",
+      "title": "Seismic Considerations",
+      "body": "Micropiles used in seismic regions must be designed to resist earthquake-induced forces including increased axial loads from overturning, lateral loads from inertial forces, and potential effects of soil liquefaction. The seismic response of a micropile foundation involves three-dimensional soil-pile interaction with axial (t-z curves), lateral (p-y curves), and torsional components. Design considerations include: (1) use of battered micropiles to resist horizontal seismic deformations, noting that vertical micropiles provide limited lateral resistance due to their relatively low stiffness; (2) evaluation of pile uplift capacity under seismic overturning with FS = 1.0 per AASHTO for uplift from seismic forces; (3) load sharing between existing and new foundations for retrofit applications; (4) increased pile cap reinforcement to ensure ductile foundation response (reinforcement ratio rho_s of about 0.5% achieves fully ductile response per Trinh et al., 2004); and (5) evaluation of liquefaction effects including reduced lateral support (0.1 to 1.0% of non-liquefied resistance per Ishihara and Cubrinovski, 1998). Battered micropiles are effective at reducing pore pressure buildup and limiting seismically-induced soil movements in the zone around the piles (FOREVER, 2003). However, battered micropiles should not be used where ground settlement around the pile is expected due to additional bending forces.",
+      "key_points": [
+        "Design for increased axial loads from overturning, lateral inertial loads, and liquefaction",
+        "Three-dimensional soil-pile interaction: t-z (axial), p-y (lateral), torsional curves",
+        "Vertical micropiles have limited lateral stiffness; battered piles preferred for lateral resistance",
+        "AASHTO: FS = 1.0 for uplift from seismic forces",
+        "Pile cap reinforcement ratio ~0.5% achieves fully ductile response (Trinh et al., 2004)",
+        "Liquefaction reduces lateral resistance to 0.1-1.0% of non-liquefied value",
+        "Battered micropiles reduce pore pressure buildup (FOREVER, 2003)",
+        "Avoid battered micropiles where ground settlement is expected"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-25: Three-Dimensional Soil-Pile Interaction (after Bryant and Matlock, 1977)",
+        "Figure 5-26: Plan View of Battered Micropile Foundation (after Trinh et al., 2004)",
+        "Figure 5-27: Lateral Response for Different Pile Cap Reinforcement Ratios"
+      ],
+      "tables": [],
+      "applicability": "Seismic design of micropile foundations including liquefaction, uplift, lateral loading, and battered pile considerations."
+    },
+    {
+      "section_id": "5.16",
+      "title": "Load Testing Requirements",
+      "body": "Load testing of micropiles is essential to verify the design assumptions, particularly the grout-to-ground bond stress values. Two types of load tests are used: (1) verification (or proof) tests performed on sacrificial micropiles to confirm the ultimate capacity, and (2) proof tests performed on production micropiles to confirm acceptable performance at the design load. For verification testing, the micropile is loaded to a minimum of 2.0 times the design load (Eq. 5-23). The ultimate geotechnical capacity (Eq. 5-24) is determined from the load-displacement curve as the load at which the micropile displacement is excessive or the load-displacement curve shows a distinct break. Acceptance criteria typically require that creep (sustained loading) at 1.5 times the design load does not exceed specified limits, and that the elastic displacement at the maximum test load is consistent with the expected elastic shortening of the micropile. Both compression and tension load tests should be performed, as the bond behavior may differ under different loading conditions. A minimum of 2 to 5 percent of production micropiles should be proof tested.",
+      "key_points": [
+        "Verification tests on sacrificial piles to confirm ultimate capacity (minimum 2.0x design load)",
+        "Proof tests on production piles to confirm performance at design load",
+        "Ultimate capacity from load-displacement curve at excessive displacement or distinct break (Eq. 5-23/5-24)",
+        "Creep criteria at 1.5x design load must not exceed specified limits",
+        "Elastic displacement must be consistent with expected elastic shortening",
+        "Both compression and tension tests recommended",
+        "2 to 5 percent of production micropiles should be proof tested"
+      ],
+      "equations": [
+        "Eq. 5-23: Verification test load = 2.0 * P_design (minimum)",
+        "Eq. 5-24: Ultimate capacity determination from load-displacement curve"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Load testing program design for verification and proof testing of micropile capacity."
+    }
+  ]
+}

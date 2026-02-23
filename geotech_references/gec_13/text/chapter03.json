@@ -1,0 +1,152 @@
+{
+  "reference_id": "FHWA-NHI-16-027",
+  "reference_title": "Ground Modification Methods Reference Manual",
+  "chapter": 3,
+  "chapter_title": "Lightweight Fills",
+  "sections": [
+    {
+      "section_id": "3.1.0",
+      "title": "Description and Types",
+      "body": "Lightweight fill materials are used to reduce the load applied to soft compressible soils beneath embankments, thereby reducing settlement and improving stability. By replacing conventional fill (unit weight 18-22 kN/m^3) with lightweight materials (unit weight 1-12 kN/m^3), the net stress increase on the foundation soil can be dramatically reduced, in some cases to near zero or even net negative (weight reduction). Lightweight fills are particularly valuable when construction over very soft soils cannot accommodate the time required for preloading and consolidation, or when adjacent structures or utilities would be adversely affected by settlement. The primary categories of lightweight fill materials used in transportation include expanded polystyrene (EPS) geofoam, foamed concrete (cellular concrete), and granular lightweight fills such as wood fiber, blast furnace slag, fly ash, expanded shale/clay/slate, and tire-derived aggregate (TDA). Material selection depends on required unit weight reduction, durability, environmental considerations, availability, and cost.",
+      "key_points": [
+        "Lightweight fills reduce load on soft soils by replacing conventional fill (18-22 kN/m^3) with lighter materials (1-12 kN/m^3)",
+        "Net stress increase can be reduced to near zero or even negative (weight reduction)",
+        "Useful when preloading time is unavailable or adjacent structures cannot tolerate settlement",
+        "Primary categories: EPS geofoam, foamed concrete, granular lightweight fills",
+        "Granular types: wood fiber, blast furnace slag, fly ash, expanded shale/clay/slate, tire-derived aggregate",
+        "Material selection depends on unit weight, durability, environmental factors, availability, and cost"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Embankments over soft compressible soils where settlement reduction or stability improvement requires reduced fill weight."
+    },
+    {
+      "section_id": "3.2.0",
+      "title": "Geofoam (EPS)",
+      "body": "Expanded polystyrene (EPS) geofoam is the lightest fill material available for transportation applications, with typical unit weights of 0.12 to 0.32 kN/m^3 (density 12-32 kg/m^3) compared to approximately 20 kN/m^3 for conventional granular fill. EPS blocks are factory-manufactured in standard sizes (typically 610 x 1220 x 2440 mm or 760 x 1220 x 4880 mm) and placed in stacked courses to form the embankment core. The compressive resistance of EPS at 1% strain ranges from 40 to 140 kPa depending on density grade (EPS12 through EPS46 per ASTM D6817). Design considerations include buoyancy (EPS will float if submerged; requires drainage or ballast), differential icing (pavement over EPS cools faster than adjacent sections), fire protection during construction, and petroleum solvent resistance (requires protective geomembrane barriers). A reinforced concrete load distribution slab is typically placed over the EPS blocks to distribute traffic loads and prevent localized overstressing. EPS geofoam has been used successfully on hundreds of highway projects worldwide, with the first US application in 1989 on I-15 in Utah.",
+      "key_points": [
+        "Lightest available fill: unit weight 0.12-0.32 kN/m^3 (density 12-32 kg/m^3) vs 20 kN/m^3 for conventional fill",
+        "Factory-manufactured blocks in standard sizes, stacked to form embankment core",
+        "Compressive resistance at 1% strain: 40-140 kPa depending on EPS grade (EPS12-EPS46 per ASTM D6817)",
+        "Design considerations: buoyancy, differential icing, fire protection, solvent resistance",
+        "Reinforced concrete load distribution slab required over EPS blocks",
+        "First US highway application: I-15 in Utah (1989); hundreds of projects worldwide since"
+      ],
+      "equations": [
+        "\\sigma_{allow} = \\sigma_{1\\%} / FS, allowable compressive stress on EPS (FS typically 1.2-1.5)",
+        "\\gamma_{EPS} = 0.12 \\text{ to } 0.32 \\text{ kN/m}^3, EPS geofoam unit weight range",
+        "\\Delta\\sigma_{net} = \\gamma_{fill} \\cdot H_{fill} - \\gamma_{EPS} \\cdot H_{EPS}, net stress change from EPS replacement"
+      ],
+      "figures": [
+        "Figure 3-1: Typical EPS geofoam embankment cross-section showing block layout, load distribution slab, and drainage provisions",
+        "Figure 3-2: EPS compressive stress-strain curves by density grade"
+      ],
+      "tables": [
+        "Table 3-1: EPS geofoam material properties by density grade (unit weight, compressive resistance, elastic modulus, flexural strength)"
+      ],
+      "applicability": "Maximum weight reduction applications over very soft soils where conventional embankment construction is infeasible."
+    },
+    {
+      "section_id": "3.3.0",
+      "title": "Foamed Concrete",
+      "body": "Foamed concrete (cellular concrete) is a cementitious lightweight fill with unit weight ranging from 3 to 8 kN/m^3, produced by introducing preformed foam into a cement-water slurry or cement-sand-water mixture. The material is mixed at a batch plant and pumped as a flowable fill into the embankment form. Unconfined compressive strengths range from 350 kPa to 3500 kPa depending on density and mix design, providing significantly higher structural capacity than EPS geofoam. Foamed concrete is self-leveling, does not require compaction, and can flow around and between existing utilities and structures. It is not susceptible to buoyancy, petroleum solvents, or biological degradation, which are concerns with EPS. Design considerations include thermal insulation effects, potential for shrinkage cracking, the need for a containment system to retain the flowable material during placement, and protection from groundwater erosion. Foamed concrete has been used for bridge approach fills, utility trench backfill, and embankments over soft ground on projects throughout the US and Europe.",
+      "key_points": [
+        "Unit weight 3-8 kN/m^3; produced by introducing preformed foam into cement slurry",
+        "UCS ranges from 350-3500 kPa depending on density and mix design",
+        "Self-leveling, no compaction required, can flow around existing utilities",
+        "Not susceptible to buoyancy, petroleum solvents, or biological degradation (advantages over EPS)",
+        "Design considerations: shrinkage cracking, containment system during placement, groundwater erosion protection",
+        "Used for bridge approach fills, utility trench backfill, and embankments over soft ground"
+      ],
+      "equations": [
+        "\\gamma_{foam} = 3 \\text{ to } 8 \\text{ kN/m}^3, foamed concrete unit weight range",
+        "q_u = 350 \\text{ to } 3500 \\text{ kPa}, unconfined compressive strength range"
+      ],
+      "figures": [
+        "Figure 3-3: Foamed concrete placement showing batch plant, pump line, and flowable fill in embankment form"
+      ],
+      "tables": [
+        "Table 3-2: Foamed concrete mix designs and properties (density, UCS, elastic modulus, thermal conductivity)"
+      ],
+      "applicability": "Bridge approach fills and embankments where moderate weight reduction is needed with higher structural capacity than EPS."
+    },
+    {
+      "section_id": "3.4.0",
+      "title": "Granular Lightweight Fills",
+      "body": "Granular lightweight fills encompass a range of natural, manufactured, and recycled materials with unit weights between 5 and 15 kN/m^3. These materials are placed and compacted using conventional earthwork equipment, making them compatible with standard construction practices. Wood fiber (shredded wood waste) has unit weight of 6-10 kN/m^3 but is susceptible to biodegradation and spontaneous combustion if placed too thick without adequate compaction and moisture control. Blast furnace slag (air-cooled or expanded) has unit weight of 11-14 kN/m^3 with excellent durability and drainage characteristics. Fly ash (Class C or F) has unit weight of 12-16 kN/m^3 and can develop cementitious properties over time. Expanded shale, clay, and slate (ESCS) are kiln-produced lightweight aggregates with unit weight of 8-12 kN/m^3 and excellent long-term durability. Tire-derived aggregate (TDA, also called tire shreds) has unit weight of 5-8 kN/m^3 and provides good thermal insulation and drainage, but is limited to maximum fill heights of 3 m in a single layer due to potential for self-heating in thicker fills (ASTM D6270). Boiler slag, scoria, and pumice are additional granular lightweight options with regional availability.",
+      "key_points": [
+        "Unit weights range from 5-15 kN/m^3; placed with conventional earthwork equipment",
+        "Wood fiber: 6-10 kN/m^3; susceptible to biodegradation and combustion if too thick",
+        "Blast furnace slag: 11-14 kN/m^3; excellent durability and drainage",
+        "Fly ash: 12-16 kN/m^3; can develop cementitious properties over time",
+        "Expanded shale/clay/slate (ESCS): 8-12 kN/m^3; excellent long-term durability",
+        "Tire-derived aggregate (TDA): 5-8 kN/m^3; limited to 3 m fill height per layer (ASTM D6270 self-heating)",
+        "Additional options: boiler slag, scoria, pumice (regional availability)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 3-3: Properties of granular lightweight fill materials (unit weight, friction angle, compressibility, durability, environmental considerations)"
+      ],
+      "applicability": "Moderate weight reduction using conventional construction methods where granular lightweight materials are regionally available."
+    },
+    {
+      "section_id": "3.5.0",
+      "title": "Design Considerations",
+      "body": "Design of lightweight fill embankments requires evaluation of global stability, settlement, bearing capacity, and interface behavior between the lightweight fill and surrounding materials. The primary design objective is to reduce the applied stress on the soft foundation soil to a level that meets settlement and stability requirements. The net stress increase at the foundation surface is the applied fill weight minus the weight of any excavated material, and must be checked against the bearing capacity and settlement tolerance. For EPS geofoam, additional design checks include block sliding at the EPS-pavement interface, hydrostatic uplift forces from groundwater, seismic inertial forces on the lightweight fill mass, and long-term creep of the EPS under sustained load. The dead load of the pavement structure and load distribution slab must be included in stress calculations. For TDA fills, self-heating potential per ASTM D6270 must be evaluated, which limits individual TDA layer thickness to 3 m with a minimum 0.5 m soil cover between TDA layers. All lightweight fill designs should include a conventional fill alternative for cost comparison.",
+      "key_points": [
+        "Design evaluates global stability, settlement, bearing capacity, and interface behavior",
+        "Net stress increase = applied fill weight - weight of excavated material",
+        "EPS checks: block sliding, hydrostatic uplift, seismic inertia, long-term creep under sustained load",
+        "Pavement and load distribution slab dead load must be included in stress calculations",
+        "TDA layer thickness limited to 3 m per ASTM D6270; minimum 0.5 m soil cover between TDA layers",
+        "Conventional fill alternative should be included for cost comparison"
+      ],
+      "equations": [
+        "\\Delta\\sigma_{net} = \\gamma_{lw} \\cdot H_{lw} + \\gamma_{soil} \\cdot H_{cover} + q_{pavement} - \\gamma_{excavated} \\cdot H_{exc}, net stress increase on foundation",
+        "FS_{sliding} = \\frac{\\mu \\cdot (W_{slab} + W_{pavement})}{F_{lateral}}, EPS block sliding factor of safety",
+        "FS_{buoyancy} = \\frac{W_{dead}}{U_{hydrostatic}}, factor of safety against hydrostatic uplift of EPS"
+      ],
+      "figures": [
+        "Figure 3-4: Design schematic for EPS geofoam embankment showing load distribution slab, drainage, and stress calculation geometry"
+      ],
+      "tables": [],
+      "applicability": "Design methodology for lightweight fill embankments including stability, settlement, and material-specific design checks."
+    },
+    {
+      "section_id": "3.6.0",
+      "title": "Specifications",
+      "body": "Specifications for lightweight fills must address material properties, placement procedures, and quality control requirements specific to each material type. EPS geofoam specifications reference ASTM D6817 for material classification and require compressive resistance testing (ASTM D1621), density testing, and dimensional tolerance verification for each block delivered. Foamed concrete specifications define target wet density, minimum unconfined compressive strength (typically at 28 days), maximum allowable shrinkage, and flowability requirements. TDA specifications reference ASTM D6270 for processing requirements (maximum particle size 300 mm for Type A, 75 mm for Type B), metal content limits, and self-heating mitigation measures including maximum layer thickness, soil separation layers, and drainage provisions. All lightweight fill specifications should include provisions for field density verification, test section construction, and instrumentation monitoring to verify design assumptions.",
+      "key_points": [
+        "EPS geofoam: ASTM D6817 classification, ASTM D1621 compressive testing, density and dimensional tolerances",
+        "Foamed concrete: target wet density, minimum 28-day UCS, maximum shrinkage, flowability requirements",
+        "TDA: ASTM D6270 processing requirements, max particle size (300 mm Type A, 75 mm Type B), self-heating limits",
+        "TDA must include maximum layer thickness, soil separation layers, and drainage provisions",
+        "All lightweight fills: field density verification, test sections, instrumentation monitoring",
+        "Specifications must be material-specific due to unique properties of each fill type"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Contract specification requirements for lightweight fill materials, placement, and quality control."
+    },
+    {
+      "section_id": "3.7.0",
+      "title": "Case Histories",
+      "body": "EPS geofoam has been used on numerous US highway projects to reduce embankment loading over soft soils. The Route 23 project in Wayne, New Jersey (2001) used 26,500 m^3 of EPS geofoam blocks for a 1.2 km embankment widening over 10-15 m of soft organic clay, reducing settlement from an estimated 600 mm (conventional fill) to less than 50 mm. The I-15 Reconstruction project in Salt Lake City, Utah used foamed concrete for bridge approach fills to eliminate the bump-at-the-bridge problem caused by differential settlement between the bridge and approach embankment. TDA has been used on several projects in Maine, Colorado, and Oregon for embankment fills and retaining wall backfill, achieving unit weight reductions of 50-70% compared to conventional granular fill. The Maine DOT Topsham project (1998) used 600 m^3 of TDA as lightweight retaining wall backfill, reducing lateral earth pressures by approximately 50%. These case histories demonstrate that lightweight fills are a mature, cost-effective technology when material availability and environmental constraints are properly addressed.",
+      "key_points": [
+        "Route 23, NJ (2001): 26,500 m^3 EPS geofoam; settlement reduced from 600 mm to < 50 mm over soft organic clay",
+        "I-15 Salt Lake City: foamed concrete bridge approach fills eliminated bump-at-the-bridge problem",
+        "TDA projects in Maine, Colorado, Oregon: 50-70% unit weight reduction vs conventional fill",
+        "Maine DOT Topsham (1998): TDA retaining wall backfill reduced lateral pressures by approximately 50%",
+        "Lightweight fills are mature and cost-effective when availability and environmental constraints are addressed",
+        "Long-term monitoring data confirm performance meets design expectations"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Documented field performance of lightweight fill technologies on US transportation projects."
+    }
+  ]
+}

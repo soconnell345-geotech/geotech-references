@@ -1,0 +1,127 @@
+{
+  "reference_id": "FHWA-NHI-10-016",
+  "reference_title": "Drilled Shafts: Construction Procedures and LRFD Design Methods",
+  "chapter": 10,
+  "chapter_title": "LRFD for Drilled Shaft Design",
+  "sections": [
+    {
+      "section_id": "10.1",
+      "title": "Introduction",
+      "body": "This chapter describes the LRFD framework as applied to drilled shaft design. The basic LRFD equation requires that factored loads not exceed factored resistances, with factors calibrated to achieve target reliability. The general equation is: sum(eta_i * gamma_i * Q_i) <= phi * R_n, where eta_i is load modifier, gamma_i is load factor, Q_i is load effect, phi is resistance factor, and R_n is nominal resistance.",
+      "key_points": [
+        "LRFD replaces ASD by using statistically calibrated load and resistance factors",
+        "Target reliability index beta = 3.0 for single drilled shafts (redundant) or beta = 3.5 (non-redundant)",
+        "Resistance factors are calibrated to AASHTO LRFD Bridge Design Specifications"
+      ],
+      "equations": [
+        "sum(eta_i * gamma_i * Q_i) <= phi * R_n"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "All drilled shaft designs using LRFD methodology"
+    },
+    {
+      "section_id": "10.2",
+      "title": "Limit States and Load Combinations",
+      "body": "Drilled shaft design must satisfy Strength, Service, and Extreme Event limit states. Strength I is the primary limit state for axial and lateral resistance under gravity and live loads. Service I governs settlement and lateral deflection. Extreme Event I addresses seismic loading and Extreme Event II covers vessel collision and scour.",
+      "key_points": [
+        "Strength I: gravity loads with load factors (DC=1.25, LL=1.75)",
+        "Service I: settlement and deflection checks at unfactored loads",
+        "Extreme Event I: seismic (gamma_EQ = 0.0 to 1.0)",
+        "Extreme Event II: vessel collision, vehicle collision, ice loads",
+        "Load modifier eta accounts for ductility, redundancy, and importance"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 10-1: Typical Load Combinations for Drilled Shaft Design"
+      ],
+      "applicability": "Identifying applicable limit states for drilled shaft design"
+    },
+    {
+      "section_id": "10.3",
+      "title": "Geotechnical Strength Limit State",
+      "body": "Geotechnical resistance factors for drilled shafts are specified in AASHTO Table 10.5.5.2.4-1 and depend on the design method, soil type, and construction quality control measures. Higher resistance factors are permitted when static load tests are used for verification. The resistance factor for combined side and base resistance uses a weighted average based on relative contributions.",
+      "key_points": [
+        "Alpha method in cohesive soil: phi = 0.45 (no load test), phi = 0.60 (with load test)",
+        "Beta method in cohesionless soil: phi = 0.55 (no load test), phi = 0.70 (with load test)",
+        "Rock socket side resistance: phi = 0.55 (no load test), phi = 0.70 (with load test)",
+        "Base resistance in cohesionless soil: phi = 0.50",
+        "Base resistance in cohesive soil: phi = 0.40",
+        "Base resistance on rock (CGS method): phi = 0.50",
+        "Static load test verification allows significant increase in resistance factors",
+        "Uplift resistance factors are lower than compression factors"
+      ],
+      "equations": [
+        "phi_combined = (phi_side * R_side + phi_base * R_base) / (R_side + R_base)"
+      ],
+      "figures": [],
+      "tables": [
+        "Table 10-5: Resistance Factors for Geotechnical Strength Limit State for Drilled Shafts (AASHTO 2007)"
+      ],
+      "applicability": "Selecting appropriate resistance factors for drilled shaft axial design"
+    },
+    {
+      "section_id": "10.4",
+      "title": "Structural Strength Limit State",
+      "body": "Structural design of drilled shafts follows reinforced concrete design per AASHTO LRFD. The structural resistance factor phi = 0.75 for axial compression and phi = 0.90 for flexure. Combined axial and flexural loading is evaluated using P-M interaction diagrams. Minimum reinforcement is 1% of gross cross-sectional area for shafts designed for lateral loading.",
+      "key_points": [
+        "phi = 0.75 for axial compression (spiral confined)",
+        "phi = 0.90 for flexure",
+        "Minimum 1% longitudinal steel for laterally loaded shafts",
+        "Maximum reinforcement limited by constructability (cage must allow concrete flow)",
+        "P-M interaction diagram governs combined loading"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Structural design checks for drilled shaft reinforcement"
+    },
+    {
+      "section_id": "10.5",
+      "title": "Service Limit State",
+      "body": "Service limit state design ensures that settlement and lateral deflection remain within tolerable limits. Tolerable settlement for bridge foundations is typically 1 inch for simple spans and 1/2 inch for continuous spans. Analytical methods for computing settlement include t-z curve methods, elastic continuum solutions, and simplified closed-form expressions. Resistance factors for service limit state are typically 1.0.",
+      "key_points": [
+        "Settlement limits: typically 1 inch (simple spans) or 0.5 inch (continuous spans)",
+        "Lateral deflection limits depend on structural requirements and p-y analysis",
+        "Resistance factor for service limit state = 1.0",
+        "Group settlement may be significantly larger than single shaft settlement",
+        "Service limit state often controls design for large-diameter shafts"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Settlement and deflection checks for drilled shaft foundations"
+    },
+    {
+      "section_id": "10.6",
+      "title": "Extreme Event Limit State",
+      "body": "Extreme event limit states address infrequent but severe loading including seismic events, vessel collision, and scour. Resistance factors for extreme events are typically 1.0 for geotechnical resistance. Scour is treated as a change in geometry (not a load) by removing soil to the design scour depth. Seismic design requires evaluation of liquefaction potential and kinematic loading from lateral spreading.",
+      "key_points": [
+        "Resistance factor phi = 1.0 for extreme event limit states",
+        "Scour removes soil to design scour depth; check flood not combined with seismic",
+        "Seismic loading includes inertial forces from superstructure and kinematic effects",
+        "Vessel collision evaluated under Extreme Event II",
+        "Liquefaction potential must be evaluated for seismic events"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Design of drilled shafts for seismic, scour, and collision events"
+    },
+    {
+      "section_id": "10.7",
+      "title": "Summary",
+      "body": "LRFD design for drilled shafts requires satisfaction of strength, service, and extreme event limit states. Resistance factors from AASHTO are calibrated to achieve target reliability and are method-specific. Static load testing provides the most reliable basis for resistance factor calibration and justifies higher resistance factors.",
+      "key_points": [
+        "Table 10-5 resistance factors are central to drilled shaft LRFD design",
+        "Load testing significantly improves design economy through higher resistance factors",
+        "Service limit state (settlement) often controls design for large shafts"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Summary of LRFD framework for drilled shaft design"
+    }
+  ]
+}

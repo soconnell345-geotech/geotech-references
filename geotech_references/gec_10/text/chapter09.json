@@ -1,0 +1,157 @@
+{
+  "reference_id": "FHWA-NHI-10-016",
+  "reference_title": "Drilled Shafts: Construction Procedures and LRFD Design Methods",
+  "chapter": 9,
+  "chapter_title": "Placement and Design of Concrete for Drilled Shafts",
+  "sections": [
+    {
+      "section_id": "9.1",
+      "title": "Introduction",
+      "body": "Construction of a drilled shaft foundation is essentially fabrication of a reinforced concrete structure in-situ, often under extremely challenging conditions with underwater placement at depths exceeding 100 ft. Concrete placement techniques and materials are critical and require thorough planning and design. The mix design and method of placement are most often delegated to the contractor with submittals required for approval.",
+      "key_points": [
+        "Concrete placement is a critical aspect of drilled shaft construction",
+        "Mix design is typically delegated to the contractor with engineer approval",
+        "Chapter focuses on workability characteristics critical for construction success"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "All drilled shaft construction projects requiring concrete placement"
+    },
+    {
+      "section_id": "9.2",
+      "title": "Basic Characteristics of Drilled Shaft Concrete",
+      "body": "Drilled shaft concrete must meet unique requirements compared to other reinforced concrete structures. The key properties are: filling ability (flow through tremie and fill excavation), passing ability (flow through reinforcement without blocking), self-weight compaction (consolidate without vibration), resistance to segregation and bleeding, resistance to leaching, controlled setting (retain workability during placement), durability, low heat of hydration (for large diameters), and appropriate strength and stiffness.",
+      "key_points": [
+        "Concrete must self-consolidate under its own weight without vibration",
+        "Must remain fluid for 4 to 8 hours under varying temperature conditions",
+        "Filling ability and passing ability are the most critical fresh properties",
+        "Compressive strengths of 4,000 to 5,000 psi are typical"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Specifying and evaluating concrete for drilled shaft construction"
+    },
+    {
+      "section_id": "9.3",
+      "title": "Placement of Concrete",
+      "body": "Concrete placement must be carefully planned for the specific construction method (dry, cased, or wet). In dry excavations, concrete can be placed by free fall up to 80 ft without problems as long as it does not strike the cage or borehole wall. In cased holes, the concrete head must exceed external fluid pressure during casing extraction. In wet excavations, tremie or pump placement is required with minimum 10 ft embedment maintained in fresh concrete.",
+      "key_points": [
+        "Free fall placement acceptable up to 80 ft if concrete does not strike cage or walls",
+        "Depth-to-cage-diameter ratio of 24 or less allows free fall without problems",
+        "Water inflow exceeding 12 inches per hour (1 inch per 5 min) requires wet method",
+        "Tremie must be embedded minimum 10 ft into fresh concrete during placement",
+        "Concrete head inside casing must exceed external fluid pressure during extraction",
+        "Bottom sediment should not exceed 3 inches prior to concrete placement"
+      ],
+      "equations": [
+        "Required: z_f * gamma_f << z_c * gamma_c (concrete pressure must exceed fluid pressure during casing extraction)"
+      ],
+      "figures": [
+        "Figure 9-1: Free Fall Concrete Placement in a Dry Excavation",
+        "Figure 9-4: Concrete Pressure Head Requirement During Casing Extraction",
+        "Figure 9-11: Control of Tremie to Establish Concrete Head",
+        "Figure 9-12: Breach of Tremie Due to Failure to Establish Concrete Head",
+        "Figure 9-13: Schematic of Concrete Vent Due to Loss of Workability",
+        "Figure 9-17: Example Concrete Volume Plots"
+      ],
+      "tables": [],
+      "applicability": "Concrete placement operations for all construction methods (dry, cased, wet)"
+    },
+    {
+      "section_id": "9.4",
+      "title": "Drilling Near a Recently Concreted Shaft",
+      "body": "Concrete in a recently placed shaft must achieve initial set before drilling or casing installation within a clear spacing of three shaft diameters. The primary concern is communication between excavations where fresh concrete could break through. A typical concrete mix achieves set within 24 hours; high-early-strength cement is not recommended for shafts exceeding 5 ft diameter due to heat of hydration concerns.",
+      "key_points": [
+        "Minimum clear spacing of three shaft diameters before nearby drilling",
+        "Concrete must achieve initial set before nearby construction",
+        "Vibro-driving of casing near fresh concrete can create elevated pore pressures",
+        "Studies show vibration from nearby construction does not normally damage fresh concrete"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction sequencing for closely-spaced drilled shafts"
+    },
+    {
+      "section_id": "9.5",
+      "title": "Base Grouting",
+      "body": "Post-grouting of the shaft base enhances end bearing and compensates for loose material at the bottom. Grout is delivered via tubes placed within the reinforcement using a neat water-cement mixture with w/c ratio of 0.40 to 0.55. Typical grouting pressures range up to 800 psi. Grouting is performed after concrete achieves at least 2500 psi compressive strength. Performance targets include achieving a minimum target pressure with a minimum grout volume and an upper limit on upward shaft movement.",
+      "key_points": [
+        "Enhances end bearing capacity and compensates for base loosening",
+        "Grout is neat water-cement mixture with w/c ratio 0.40 to 0.55",
+        "Typical grouting pressures up to 800 psi",
+        "Performed after concrete achieves minimum 2500 psi",
+        "Multiple grout circuits provide redundancy against blockage",
+        "Upper limit on shaft upward movement; excessive volume indicates hydraulic fracture"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 9-19: Sleeve Port Systems for Distribution of Grout to the Base"
+      ],
+      "tables": [],
+      "applicability": "Drilled shafts where enhanced end bearing is needed or base cleanliness is uncertain"
+    },
+    {
+      "section_id": "9.6",
+      "title": "Concrete Mix Design",
+      "body": "The concrete mix must achieve properties needed for constructability while meeting structural requirements. Fresh concrete properties (workability, passing ability) are more critical than hardened properties for drilled shaft construction. Compressive strength requirements of 4,000 to 5,000 psi are typical and easily achieved with modern materials. The section covers cementitious materials, chemical admixtures, aggregate and water, workability, temperature control, and mixture proportions.",
+      "key_points": [
+        "Type I or Type I/II Portland cement is standard; Type III should be avoided for shafts > 5 ft diameter",
+        "SCMs (fly ash, slag cement, silica fume) improve durability and reduce heat of hydration",
+        "Class C fly ash: 20-30% replacement; Class F fly ash: 15-25%; Slag: 30-50%; Silica fume: 5-8%",
+        "Slump of 6+ inches for dry method, about 9 inches for wet/casing methods",
+        "Self-consolidating concrete (SCC) uses slump flow of 18-24 inches",
+        "Water/cementitious materials ratio (w/cm) of 0.40 to 0.45 typical; HRWR can reduce to 0.35",
+        "Maximum coarse aggregate size typically 3/4 inch; many agencies use 3/8 inch",
+        "Set-controlling admixtures should allow 2+ hours beyond estimated placement time",
+        "Shafts > 5 ft diameter may experience mass concrete thermal effects (DEF risk above 158 deg F)"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 9-21: Simulated Effects of SCMs on Maximum Concrete Temperature",
+        "Figure 9-22: Effect of Initial Mixture Temperatures on Temperature Development",
+        "Figure 9-23: Slump Loss Relationship from a Trial Mixture Design"
+      ],
+      "tables": [
+        "Table 9-1: Examples of Mixture Proportions for Conventional Drilled Shaft Tremie Concrete",
+        "Table 9-2: Examples of Mixture Proportions for SCC Type Drilled Shaft Concrete",
+        "Table 9-3: Typical Proportions of Pozzolanic Additives",
+        "Table 9-4: Typical Proportions of Pre-Approved Air Entraining Chemical Admixtures"
+      ],
+      "applicability": "Specifying and designing concrete mixtures for drilled shaft construction"
+    },
+    {
+      "section_id": "9.7",
+      "title": "Concrete Tests",
+      "body": "Quality control testing includes trial mixture approval, batch plant tests, and jobsite tests. Trial batching should evaluate slump loss over time and develop full-scale technique shafts before production. Batch plant inspections verify component proportions (cementitious +/-1%, aggregates +/-2%, water +/-1%). Jobsite testing should include temperature, slump, air content (if required), and cylinder samples. For SCC, slump flow and VSI tests replace conventional slump testing.",
+      "key_points": [
+        "Trial mixtures should develop slump loss curves; maintain 4+ inch slump at 4 hours",
+        "Full-scale technique shaft recommended before production",
+        "Minimum one set of cylinders per drilled shaft for quality assurance",
+        "SCC requires slump flow test (ASTM C 1611) and VSI rating of 1.5 or less",
+        "Static segregation test (ASTM C 1610) should not exceed 10%",
+        "Addition of water at jobsite generally not recommended but sometimes necessary"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Quality control and quality assurance during drilled shaft concrete operations"
+    },
+    {
+      "section_id": "9.8",
+      "title": "Summary",
+      "body": "Concrete placement is one of the most critical aspects of drilled shaft construction. This chapter covers placement techniques, mix design emphasizing fresh concrete properties for constructability, examples of successful mix designs, and quality control testing procedures.",
+      "key_points": [
+        "Workability is the most critical concrete property for drilled shafts",
+        "Mix design should prioritize fresh properties over hardened properties",
+        "Quality control testing is essential at batch plant and jobsite"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Overview and summary of drilled shaft concrete requirements"
+    }
+  ]
+}

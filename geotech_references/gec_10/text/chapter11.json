@@ -1,0 +1,105 @@
+{
+  "reference_id": "FHWA-NHI-10-016",
+  "reference_title": "Drilled Shafts: Construction Procedures and LRFD Design Methods",
+  "chapter": 11,
+  "chapter_title": "Design Process",
+  "sections": [
+    {
+      "section_id": "11.1",
+      "title": "Introduction",
+      "body": "This chapter presents an overall design process for drilled shaft foundations using a 22-block flowchart. The process integrates geotechnical investigation, construction considerations, structural design, and LRFD methodology into a systematic framework. The flowchart guides the designer from initial site characterization through final construction specifications.",
+      "key_points": [
+        "22-block design process flowchart organizes the complete design sequence",
+        "Combines geotechnical investigation with construction and structural considerations",
+        "Iterative process with feedback loops for optimization"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 11-1: Overall Design Process Flowchart for Drilled Shafts"
+      ],
+      "tables": [],
+      "applicability": "All drilled shaft design projects from inception to construction"
+    },
+    {
+      "section_id": "11.2",
+      "title": "Blocks 1-6: Site Characterization and Preliminary Design",
+      "body": "The first six blocks cover establishing project requirements (Block 1), site characterization (Block 2), subsurface investigation (Block 3), soil/rock property evaluation (Block 4), preliminary shaft dimensions (Block 5), and constructability review (Block 6). Subsurface investigation must target depths of 2 diameters below anticipated shaft tips or to rock. Shaft length and diameter are estimated using simplified methods before detailed analysis.",
+      "key_points": [
+        "Block 1: Establish project requirements (loads, performance criteria, constraints)",
+        "Block 2: Site characterization including topography, geology, groundwater",
+        "Block 3: Borings to minimum 2D below expected shaft tip or 10 ft into rock",
+        "Block 4: Evaluate design soil/rock properties (strength, stiffness, unit weight)",
+        "Block 5: Preliminary shaft dimensions using simplified axial capacity methods",
+        "Block 6: Constructability review with contractor input on methods and equipment"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Initial phases of drilled shaft design including site investigation and preliminary sizing"
+    },
+    {
+      "section_id": "11.3",
+      "title": "Blocks 7-12: Geotechnical Design",
+      "body": "Blocks 7 through 12 address detailed geotechnical design. Block 7 computes nominal axial resistance using alpha, beta, and/or rock socket methods. Block 8 applies LRFD resistance factors and checks adequacy. Block 9 evaluates group effects. Block 10 addresses settlement (service limit state). Block 11 performs lateral loading analysis using p-y methods. Block 12 checks extreme events including seismic, scour, and downdrag.",
+      "key_points": [
+        "Block 7: Compute nominal axial resistance (side + base) using Chapter 13 methods",
+        "Block 8: Apply resistance factors from Table 10-5 and verify Strength I adequacy",
+        "Block 9: Group efficiency and group effects per Chapter 14",
+        "Block 10: Settlement analysis for Service I limit state per Chapter 13",
+        "Block 11: Lateral load analysis (p-y method) per Chapter 12",
+        "Block 12: Extreme event checks (seismic, scour, vessel collision) per Chapter 15"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Detailed geotechnical design phase for axial, lateral, and group behavior"
+    },
+    {
+      "section_id": "11.4",
+      "title": "Blocks 13-18: Structural Design and Optimization",
+      "body": "Blocks 13 through 18 cover structural design and optimization. Block 13 designs the reinforced concrete section (Chapter 16). Block 14 evaluates cost and constructability. Block 15 iterates on shaft dimensions if needed. Block 16 considers alternative foundation types for comparison. Block 17 finalizes the design. Block 18 prepares construction specifications including installation criteria and integrity testing requirements.",
+      "key_points": [
+        "Block 13: Structural design of reinforced concrete section per Chapter 16",
+        "Block 14: Cost evaluation and constructability assessment",
+        "Block 15: Iterate on dimensions (diameter, length) for optimization",
+        "Block 16: Compare with alternative foundation types if warranted",
+        "Block 17: Finalize design with all limit states satisfied",
+        "Block 18: Prepare specifications including inspection and testing requirements"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Structural design, optimization, and specification preparation"
+    },
+    {
+      "section_id": "11.5",
+      "title": "Blocks 19-22: Construction and Verification",
+      "body": "Blocks 19 through 22 address construction phase activities. Block 19 covers pre-construction meetings and technique shaft installation. Block 20 addresses construction monitoring and quality control. Block 21 covers integrity testing (CSL, thermal, gamma-gamma). Block 22 addresses load testing when specified, including static, O-cell, and rapid load tests. Post-construction evaluation confirms design assumptions.",
+      "key_points": [
+        "Block 19: Technique shaft (pre-production trial shaft) installation and evaluation",
+        "Block 20: Construction monitoring including concrete volume curves and drilling logs",
+        "Block 21: Integrity testing methods (CSL most common for large shafts)",
+        "Block 22: Load testing for verification (static, Osterberg cell, rapid load, Statnamic)",
+        "Post-construction evaluation confirms or modifies design for remaining shafts"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction phase monitoring, testing, and verification"
+    },
+    {
+      "section_id": "11.6",
+      "title": "Summary",
+      "body": "The 22-block design process provides a systematic framework for drilled shaft design from initial planning through construction verification. The iterative nature allows optimization of shaft dimensions while ensuring all LRFD limit states are satisfied. Constructability considerations are integrated throughout the process, not treated as an afterthought.",
+      "key_points": [
+        "Systematic 22-block process ensures all design aspects are addressed",
+        "Iterative optimization of dimensions balances cost and performance",
+        "Constructability is integral to the design process"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Overview of the complete drilled shaft design and construction process"
+    }
+  ]
+}

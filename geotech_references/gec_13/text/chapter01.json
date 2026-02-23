@@ -1,0 +1,303 @@
+{
+  "reference_id": "FHWA-NHI-16-027",
+  "reference_title": "Ground Modification Methods Reference Manual",
+  "chapter": 1,
+  "chapter_title": "Introduction to Ground Modification Technologies",
+  "sections": [
+    {
+      "section_id": "1.0",
+      "title": "Description and History",
+      "body": "Ground modification encompasses a broad range of technologies used to improve the engineering properties of soil and rock for transportation infrastructure. These methods have evolved over several millennia, from ancient techniques such as timber piles and woven mats to modern engineered systems including deep soil mixing, controlled modulus columns, and geosynthetic reinforcement. The FHWA has supported research and implementation of ground modification technologies since the 1970s, resulting in significant cost savings and performance improvements for highway projects across the United States. This chapter provides an overview of the full spectrum of ground modification technologies available to the transportation geotechnical engineer, establishing a framework for technology selection and project evaluation.",
+      "key_points": [
+        "Ground modification technologies improve engineering properties of problematic soils and rock",
+        "Methods range from ancient techniques (timber piles, woven mats) to modern engineered systems",
+        "FHWA has supported ground modification research since the 1970s",
+        "Technologies offer significant cost savings over conventional deep foundation alternatives",
+        "GEC-13 provides a comprehensive framework for technology selection in transportation projects"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Overview and historical context for all ground modification technologies used in transportation infrastructure."
+    },
+    {
+      "section_id": "1.1",
+      "title": "Description",
+      "body": "Ground modification refers to any method that improves the properties of a soil or rock mass to allow construction of a geotechnical feature that would otherwise be infeasible or prohibitively expensive. The modified ground may serve as a foundation, earth retaining structure, embankment, or slope. Ground modification technologies achieve improvement through one or more mechanisms: densification of loose granular soils, consolidation and strengthening of soft cohesive soils, reinforcement of weak soil masses, chemical or physical alteration of soil properties, and replacement of unsuitable materials with engineered fills. The choice of technology depends on subsurface conditions, project requirements, construction constraints, and cost-effectiveness.",
+      "key_points": [
+        "Ground modification improves soil or rock properties to enable otherwise infeasible construction",
+        "Modified ground may serve as foundations, retaining structures, embankments, or slopes",
+        "Five primary improvement mechanisms: densification, consolidation, reinforcement, alteration, and replacement",
+        "Technology selection depends on subsurface conditions, project requirements, and cost-effectiveness",
+        "Applicable to both new construction and remediation of existing facilities"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "General definition and scope of ground modification for all geotechnical applications."
+    },
+    {
+      "section_id": "1.2",
+      "title": "Historical Overview",
+      "body": "The earliest known ground modification techniques date back thousands of years, including the use of straw-reinforced earthen bricks in ancient Mesopotamia and timber corduroy roads in Roman construction. Modern ground modification began in the 1930s with the development of vibratory compaction (vibro-flotation) in Germany and preloading with vertical drains in Sweden. The 1960s through 1980s saw rapid development of deep dynamic compaction (Menard), stone columns, soil nailing, and geosynthetic reinforcement. The FHWA Demonstration Project 116 (1986-2001) promoted ground improvement technologies through 50+ demonstration projects across the US, catalyzing widespread adoption. Since 2000, newer technologies such as controlled modulus columns (CMC), bio-cementation, and rapid impact compaction have expanded the available toolkit.",
+      "key_points": [
+        "Earliest ground modification dates to ancient Mesopotamia (straw-reinforced bricks) and Roman construction (corduroy roads)",
+        "Modern era began in 1930s with vibro-flotation in Germany and preloading with vertical drains in Sweden",
+        "Rapid development in 1960s-1980s: deep dynamic compaction, stone columns, soil nailing, geosynthetics",
+        "FHWA Demonstration Project 116 (1986-2001) promoted ground improvement through 50+ US demonstration projects",
+        "Post-2000 innovations include controlled modulus columns, bio-cementation, and rapid impact compaction"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Historical context for understanding the evolution and maturity of various ground modification technologies."
+    },
+    {
+      "section_id": "1.3",
+      "title": "Focus and Scope",
+      "body": "GEC-13 Volume I focuses on five categories of ground modification technologies most commonly used in transportation projects: vertical drains and accelerated consolidation, lightweight fills, deep compaction, aggregate columns, and column-supported embankments. Volume II covers additional categories including deep mixing, grouting, soil nailing, micropiles, and geosynthetic reinforcement. The manual is intended for use by geotechnical engineers, construction engineers, and project managers within state DOTs and FHWA. Each technology chapter follows a consistent format covering description, feasibility, design concepts, construction, specifications, and case histories. The scope encompasses both performance-based and prescriptive design approaches consistent with AASHTO LRFD Bridge Design Specifications.",
+      "key_points": [
+        "Volume I covers 5 categories: vertical drains, lightweight fills, deep compaction, aggregate columns, column-supported embankments",
+        "Volume II covers deep mixing, grouting, soil nailing, micropiles, and geosynthetic reinforcement",
+        "Intended for geotechnical engineers, construction engineers, and project managers within DOTs and FHWA",
+        "Consistent chapter format: description, feasibility, design, construction, specifications, case histories",
+        "Design approaches consistent with AASHTO LRFD Bridge Design Specifications"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Defines the scope and intended audience for the GEC-13 reference manual."
+    },
+    {
+      "section_id": "2.0",
+      "title": "Basic Functions",
+      "body": "Ground modification technologies serve six basic functions in transportation construction: (1) increase bearing capacity to support structural loads, (2) reduce settlement to within tolerable limits, (3) increase shear strength for slope and embankment stability, (4) reduce lateral earth pressures on retaining structures, (5) accelerate consolidation to meet construction schedules, and (6) mitigate liquefaction potential in seismically active regions. A single project may require multiple functions simultaneously, and different technologies may be combined to address all project requirements. Understanding these basic functions is essential for matching available technologies to project needs.",
+      "key_points": [
+        "Six basic functions: increase bearing capacity, reduce settlement, increase shear strength, reduce lateral pressures, accelerate consolidation, mitigate liquefaction",
+        "Projects may require multiple functions simultaneously",
+        "Different technologies can be combined to address all project requirements",
+        "Function-based framework is essential for technology selection",
+        "Each function has associated performance metrics and acceptance criteria"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Framework for identifying the required ground modification functions for a given project."
+    },
+    {
+      "section_id": "2.1",
+      "title": "Typical Functions and Applications",
+      "body": "Table 1-1 classifies ground modification technologies into categories based on their primary function and applicable soil types. Densification technologies (dynamic compaction, vibro-compaction, blast densification) are primarily effective in granular soils with fines content less than about 15%. Consolidation technologies (preloading, vertical drains) address soft cohesive soils where time-dependent strength gain is needed. Reinforcement technologies (stone columns, aggregate piers, deep mixing, micropiles) create stiffer inclusions within soft ground to reduce settlement and increase bearing capacity. Replacement technologies (lightweight fills, over-excavation) remove unsuitable material and substitute engineered fills. Each technology has specific soil type applicability, depth range, and improvement level that must be matched to project requirements.",
+      "key_points": [
+        "Table 1-1 classifies technologies by primary function and applicable soil types",
+        "Densification effective in granular soils with fines content < 15%",
+        "Consolidation technologies address soft cohesive soils requiring time-dependent strength gain",
+        "Reinforcement technologies create stiffer inclusions (stone columns, aggregate piers, deep mixing, micropiles)",
+        "Replacement technologies remove unsuitable material and substitute engineered fills",
+        "Each technology has specific soil type, depth range, and improvement level applicability"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 1-1: Classification of ground modification technologies by category, applicable soil type, and primary function"
+      ],
+      "applicability": "Matching ground modification technologies to project soil conditions and functional requirements."
+    },
+    {
+      "section_id": "2.2",
+      "title": "Applicability Limits",
+      "body": "Each ground modification technology has limits on applicability defined by soil type, depth of treatment, groundwater conditions, proximity to existing structures, and environmental constraints. Table 1-2 summarizes applicability limits for the major technology categories. Densification methods such as deep dynamic compaction are generally limited to depths of about 10 m (33 ft) in granular soils and are not effective in saturated clays. Vibro-compaction requires less than 12-15% fines content. Stone columns can treat deposits to depths of 15-20 m but require sufficient lateral confinement. Vertical drains are effective in soft clays and silts but not in organic soils with secondary compression. Lightweight fills have no theoretical depth limit but are constrained by material availability and cost. Environmental constraints include vibration limits near existing structures, dewatering restrictions, and contaminated soil handling requirements.",
+      "key_points": [
+        "Table 1-2 summarizes applicability limits for major technology categories",
+        "Deep dynamic compaction limited to about 10 m depth in granular soils; ineffective in saturated clays",
+        "Vibro-compaction requires fines content < 12-15%",
+        "Stone columns effective to 15-20 m depth with sufficient lateral confinement",
+        "Vertical drains effective in soft clays/silts but not in highly organic soils",
+        "Environmental constraints include vibration, dewatering, and contamination handling limits"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 1-2: Applicability limits for ground modification technologies (soil type, depth, groundwater, proximity constraints)"
+      ],
+      "applicability": "Screening criteria for determining whether a ground modification technology is feasible for a given site."
+    },
+    {
+      "section_id": "2.3",
+      "title": "Feasibility Evaluations",
+      "body": "Feasibility evaluation is a preliminary assessment to determine which ground modification technologies are viable for a given project. The evaluation considers subsurface conditions (soil type, stratigraphy, groundwater), project requirements (loading, settlement tolerance, schedule), site constraints (access, proximity to structures, environmental restrictions), and cost. A three-step feasibility process is recommended: (1) identify the required ground modification function(s), (2) screen technologies against applicability limits from Table 1-2, and (3) perform preliminary cost-benefit analysis. Feasibility evaluations should be conducted early in the project development process, ideally during the alternatives analysis phase, to ensure that ground modification options are considered alongside conventional solutions such as deep foundations or realignment.",
+      "key_points": [
+        "Feasibility evaluation determines viable ground modification technologies for a project",
+        "Considers subsurface conditions, project requirements, site constraints, and cost",
+        "Three-step process: identify functions, screen against applicability limits, perform cost-benefit analysis",
+        "Should be conducted early in project development during alternatives analysis phase",
+        "Ground modification options should be considered alongside conventional solutions"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Preliminary screening and feasibility assessment for ground modification projects."
+    },
+    {
+      "section_id": "3.0",
+      "title": "Technology Classification",
+      "body": "Ground modification technologies can be classified by several organizing frameworks: by function (what the technology accomplishes), by construction method (how it is installed), by soil type (where it is applicable), and by mechanism (how improvement occurs). GEC-13 uses a dual classification system based on function and construction method. The functional classification groups technologies according to Table 1-3 into five categories: earthwork construction, densification, consolidation/surcharge, reinforcement, and fixation/admixtures. The construction classification identifies the physical elements created: area treatment (compaction, preloading), columnar inclusions (stone columns, deep mixing), horizontal reinforcement (geosynthetics), and grouting (permeation, jet, compaction). This dual framework enables systematic technology selection.",
+      "key_points": [
+        "Technologies classified by function, construction method, soil type, and mechanism",
+        "GEC-13 uses dual classification: function-based and construction-based",
+        "Table 1-3 groups technologies into 5 functional categories",
+        "Functional categories: earthwork, densification, consolidation/surcharge, reinforcement, fixation/admixtures",
+        "Construction classification: area treatment, columnar inclusions, horizontal reinforcement, grouting",
+        "Dual framework enables systematic technology selection"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 1-3: Classification of ground modification technologies by function (earthwork, densification, consolidation/surcharge, reinforcement, fixation/admixtures)"
+      ],
+      "applicability": "Systematic classification framework for organizing and selecting ground modification technologies."
+    },
+    {
+      "section_id": "3.1",
+      "title": "Classification by Function",
+      "body": "The functional classification system in Table 1-3 organizes ground modification technologies by their primary engineering purpose. Earthwork construction technologies include conventional excavation and replacement, lightweight fills, and compacted fills. Densification technologies include deep dynamic compaction, vibro-compaction, blast densification, and rapid impact compaction. Consolidation and surcharge technologies include preloading with or without vertical drains, vacuum consolidation, and electro-osmosis. Reinforcement technologies include stone columns, aggregate piers, soil nailing, mechanically stabilized earth, and micropiles. Fixation and admixture technologies include deep soil mixing, jet grouting, permeation grouting, and compaction grouting. Many technologies serve multiple functions; for example, stone columns provide both reinforcement and drainage for accelerated consolidation.",
+      "key_points": [
+        "Earthwork: excavation/replacement, lightweight fills, compacted fills",
+        "Densification: deep dynamic compaction, vibro-compaction, blast densification, rapid impact compaction",
+        "Consolidation/surcharge: preloading, vertical drains, vacuum consolidation, electro-osmosis",
+        "Reinforcement: stone columns, aggregate piers, soil nailing, MSE, micropiles",
+        "Fixation/admixtures: deep soil mixing, jet grouting, permeation grouting, compaction grouting",
+        "Many technologies serve multiple functions (e.g., stone columns provide reinforcement and drainage)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 1-3: Classification of ground modification technologies by function"
+      ],
+      "applicability": "Detailed functional classification for identifying technologies that address specific engineering needs."
+    },
+    {
+      "section_id": "3.2",
+      "title": "Elements of Construction",
+      "body": "Ground modification technologies can also be classified by the physical construction elements they create. Area treatment methods (deep dynamic compaction, vibro-compaction, preloading) improve a volume of soil without creating discrete structural elements. Columnar inclusion methods (stone columns, aggregate piers, deep soil mixing columns, controlled modulus columns) create discrete stiffer elements within the treated soil mass that transfer loads to bearing strata and reduce settlement. Horizontal reinforcement methods (geosynthetics, soil nailing) introduce tensile elements that increase stability and redistribute stresses. Grouting methods (permeation, jet, compaction) inject materials to fill voids, displace soil, or create cemented masses. The construction element type influences the design approach: area treatments use improved soil property parameters, columnar inclusions use unit cell or composite foundation models, and reinforcement uses limit equilibrium with reinforcement forces.",
+      "key_points": [
+        "Area treatment: improves soil volume without discrete structural elements (DDC, vibro-compaction, preloading)",
+        "Columnar inclusions: create discrete stiffer elements within soil (stone columns, aggregate piers, deep mixing)",
+        "Horizontal reinforcement: introduce tensile elements (geosynthetics, soil nailing)",
+        "Grouting: inject materials to fill voids or create cemented masses (permeation, jet, compaction grouting)",
+        "Construction element type determines the design approach (improved properties, unit cell, or limit equilibrium)",
+        "Columnar inclusions transfer loads to bearing strata and reduce settlement through stress concentration"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Understanding how construction element type influences design methodology selection."
+    },
+    {
+      "section_id": "4.0",
+      "title": "Constraints and Risk Management",
+      "body": "Ground modification projects involve unique risks related to subsurface variability, construction process control, and performance verification. Key constraints include vibration and noise limits near existing structures and utilities, environmental restrictions on materials and waste disposal, right-of-way limitations on treatment area extent, and construction schedule requirements. Risk management strategies include comprehensive subsurface investigation to characterize variability, test section construction to verify design assumptions and production rates, performance monitoring with instrumentation (settlement plates, piezometers, inclinometers), and contingency plans for unexpected conditions. The observational method, where design is adjusted based on monitored performance, is commonly applied to ground modification projects. Contractual risk allocation between owner and contractor must address subsurface variability and performance guarantees.",
+      "key_points": [
+        "Unique risks from subsurface variability, process control, and performance verification",
+        "Key constraints: vibration/noise limits, environmental restrictions, right-of-way limits, schedule requirements",
+        "Risk management: comprehensive investigation, test sections, performance monitoring, contingency plans",
+        "Observational method commonly applied to ground modification (design adjusted based on monitored performance)",
+        "Contractual risk allocation must address subsurface variability and performance guarantees",
+        "Instrumentation includes settlement plates, piezometers, and inclinometers"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Risk identification and management framework for ground modification projects."
+    },
+    {
+      "section_id": "5.0",
+      "title": "Contracting, Specifications, and Quality Assurance",
+      "body": "Ground modification contracts may be structured as prescriptive (method-based) or performance-based specifications, or a combination. Prescriptive specifications define the construction process, materials, and installation parameters (e.g., grid spacing, energy per drop, number of passes). Performance-based specifications define required outcomes (e.g., minimum SPT N-value, maximum settlement, minimum bearing capacity) and allow the contractor to select the means and methods. Performance-based specifications are generally preferred for ground modification because they leverage contractor expertise and innovation while focusing on engineering outcomes. Quality assurance programs typically include material testing, installation monitoring, post-improvement verification testing (SPT, CPT, PMT, full-scale load tests), and long-term performance monitoring. Pre-qualification of specialty contractors is recommended for complex ground modification technologies.",
+      "key_points": [
+        "Contract types: prescriptive (method-based), performance-based, or combination specifications",
+        "Prescriptive specs define process, materials, and installation parameters",
+        "Performance specs define required outcomes (minimum N-value, maximum settlement, minimum bearing capacity)",
+        "Performance-based specifications generally preferred for ground modification",
+        "QA includes material testing, installation monitoring, verification testing (SPT, CPT, PMT, load tests)",
+        "Pre-qualification of specialty contractors recommended for complex technologies"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Contract structure and quality assurance framework for ground modification projects."
+    },
+    {
+      "section_id": "6.0",
+      "title": "Cost Analysis",
+      "body": "Table 1-6 provides comparative unit costs for ground modification technologies as of 2016. Cost analysis for ground modification should compare the total installed cost of ground modification plus the supported structure against conventional alternatives (deep foundations, realignment, bridging over soft ground). Ground modification costs vary significantly by region, site access, treatment volume, and contractor availability. Typical unit costs include: preloading with surcharge ($2-$8 per cubic meter of fill), prefabricated vertical drains ($3-$6 per linear meter installed), deep dynamic compaction ($3-$8 per cubic meter treated), vibro-compaction ($5-$12 per cubic meter treated), stone columns ($25-$60 per linear meter installed), aggregate piers ($30-$80 per linear meter installed), and deep soil mixing ($60-$150 per cubic meter treated). Cost savings of 25-50% compared to deep foundations are commonly achieved when ground modification is feasible. Life-cycle cost analysis should include long-term maintenance and monitoring costs.",
+      "key_points": [
+        "Table 1-6 provides comparative unit costs for ground modification technologies (2016 values)",
+        "Cost analysis must compare total ground modification cost against conventional alternatives",
+        "Costs vary significantly by region, site access, treatment volume, and contractor availability",
+        "Preloading with surcharge: $2-$8/m^3; PVDs: $3-$6/lin m; DDC: $3-$8/m^3",
+        "Vibro-compaction: $5-$12/m^3; stone columns: $25-$60/lin m; aggregate piers: $30-$80/lin m",
+        "Deep soil mixing: $60-$150/m^3; cost savings of 25-50% vs deep foundations are common",
+        "Life-cycle analysis should include long-term maintenance and monitoring costs"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 1-6: Comparative unit costs for ground modification technologies (2016 dollars, per unit volume or linear meter)"
+      ],
+      "applicability": "Cost estimation and economic comparison of ground modification technologies versus conventional alternatives."
+    },
+    {
+      "section_id": "7.0",
+      "title": "GeoTechTools",
+      "body": "GeoTechTools (www.geotechtools.org) is a web-based technology selection and information resource developed through SHRP2 Project R02 in collaboration with FHWA. The system provides a catalog of 50+ ground modification technologies with technical summaries, case histories, design guidance, and a technology selection tool. The selection tool guides users through a systematic screening process based on project requirements, soil conditions, and constraints to identify potentially applicable technologies. GeoTechTools complements GEC-13 by providing up-to-date technology information, a searchable database of case histories, and an interactive selection framework. Users are encouraged to use GeoTechTools as a first step in technology screening, then refer to GEC-13 chapters for detailed design guidance.",
+      "key_points": [
+        "GeoTechTools is a web-based technology selection resource developed through SHRP2 Project R02",
+        "Catalog of 50+ ground modification technologies with summaries, case histories, and design guidance",
+        "Interactive technology selection tool screens based on project requirements, soil conditions, and constraints",
+        "Complements GEC-13 by providing up-to-date technology information and searchable case histories",
+        "Recommended as a first step in technology screening before detailed GEC-13 design"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Online resource for preliminary technology screening and case history research."
+    },
+    {
+      "section_id": "8.0",
+      "title": "Project Evaluation and Geotechnology Selection",
+      "body": "GEC-13 presents a systematic 12-step process for evaluating project needs and selecting appropriate ground modification technologies. The steps are: (1) identify project requirements (loads, settlement tolerance, schedule, design life); (2) characterize subsurface conditions through field and laboratory investigation; (3) identify problematic conditions (soft clay, loose sand, liquefiable soil, organic deposits); (4) define required ground modification functions; (5) screen candidate technologies using Table 1-2 applicability limits; (6) evaluate constructability and site constraints; (7) perform preliminary design for shortlisted technologies; (8) estimate costs using Table 1-6 unit costs; (9) perform risk assessment for each alternative; (10) evaluate environmental and social impacts; (11) select preferred technology based on combined technical, cost, and risk evaluation; (12) prepare detailed design and specifications. This process should be iterative, with feedback loops between steps as additional information becomes available. Early involvement of specialty contractors in steps 6-7 is beneficial for constructability assessment.",
+      "key_points": [
+        "12-step systematic process for technology selection",
+        "Step 1-3: Define requirements, characterize subsurface, identify problematic conditions",
+        "Step 4-5: Define required functions, screen technologies against Table 1-2 applicability limits",
+        "Step 6-8: Evaluate constructability, perform preliminary design, estimate costs from Table 1-6",
+        "Step 9-11: Risk assessment, environmental/social impacts, select preferred technology",
+        "Step 12: Prepare detailed design and specifications",
+        "Process should be iterative with feedback loops between steps",
+        "Early involvement of specialty contractors beneficial for constructability assessment"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Complete framework for systematic evaluation and selection of ground modification technologies for transportation projects."
+    },
+    {
+      "section_id": "9.0",
+      "title": "References",
+      "body": "Chapter 1 references include foundational publications on ground modification: FHWA ground improvement manuals (Elias et al., 2006; Schaefer et al., 2017), AASHTO LRFD Bridge Design Specifications (2014), ground improvement textbooks (Moseley & Kirsch, 2004; Chu et al., 2009), and key state-of-practice reports. Additional references include SHRP2 R02 GeoTechTools documentation, international ground improvement standards (EN 14731 for deep mixing, EN 15237 for vibro-compaction), and historical references including Menard & Broise (1975) on dynamic compaction and Barron (1948) on vertical drains. A complete bibliography is provided at the end of Volume II.",
+      "key_points": [
+        "Key references: FHWA ground improvement manuals (Elias et al., 2006; Schaefer et al., 2017)",
+        "AASHTO LRFD Bridge Design Specifications (2014) for design code requirements",
+        "Ground improvement textbooks: Moseley & Kirsch (2004), Chu et al. (2009)",
+        "SHRP2 R02 GeoTechTools documentation for web-based selection tool",
+        "International standards: EN 14731 (deep mixing), EN 15237 (vibro-compaction)",
+        "Historical references: Menard & Broise (1975) on DDC, Barron (1948) on vertical drains"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Bibliography and reference sources for ground modification technologies."
+    }
+  ]
+}

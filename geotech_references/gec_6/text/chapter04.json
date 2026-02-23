@@ -1,0 +1,354 @@
+{
+  "reference_id": "FHWA-SA-02-054",
+  "reference_title": "Shallow Foundations",
+  "chapter": 4,
+  "chapter_title": "Geotechnical Investigation",
+  "sections": [
+    {
+      "section_id": "4.1",
+      "title": "Preliminary Design",
+      "body": "Preliminary design activities include a terrain reconnaissance and an office study collecting existing information relevant to the project area. Sources of information include USGS topographic maps, geologic maps from USGS or state geology agencies, USDA soil survey maps, well logs from local water resource agencies, air photos, and construction records from nearby structures. The terrain reconnaissance should focus on understanding the geologic and geomorphic features (landforms) likely present at the project site. This information should be used to plan the subsurface exploration program. A field reconnaissance should be scheduled with the bridge engineer and design team to discuss foundation type alternatives and plan subsurface exploration.",
+      "key_points": [
+        "Preliminary design begins with terrain reconnaissance and office study",
+        "Key information sources: USGS topographic and geologic maps, USDA soil surveys, well logs, air photos",
+        "Construction records from nearby structures are increasingly valuable in congested areas",
+        "Review historical SPT data with judgment regarding reliability of older drilling methods",
+        "Terrain reconnaissance focuses on geologic and geomorphic features at the project site",
+        "Field reconnaissance should involve the bridge engineer and design team members"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Planning and scoping geotechnical investigations for shallow foundation projects."
+    },
+    {
+      "section_id": "4.2",
+      "title": "Field Reconnaissance",
+      "body": "The area concept of site exploration allows the geotechnical engineer to extend results from a limited number of explorations to the entire geologic deposit, reducing subsurface exploration costs. Application requires proper equipment and techniques under the direction of a knowledgeable geotechnical engineer. A site reconnaissance with the bridge engineer and design team is recommended to assess foundation conditions and foundation type selection. The field reconnaissance should include: visual assessment of nearby structures and their foundation performance; assessment of surface geology and geomorphology (slope instability, rock outcrops, erosion); inspection of water crossings for scour evidence; location of existing structures or abandoned foundations; location of subsurface and overhead utilities; and assessment of site access for exploration equipment. Upon completion, the geotechnical engineer should prepare a subsurface exploration plan or terrain reconnaissance report.",
+      "key_points": [
+        "Area concept extends limited exploration results to the entire geologic deposit",
+        "Site reconnaissance with bridge engineer and design team is recommended",
+        "Assess nearby structures for foundation performance and settlement evidence",
+        "Inspect water crossings for scour evidence and streambed materials",
+        "Identify existing structures, abandoned foundations, and utilities that may affect new foundations",
+        "Prepare a subsurface exploration plan or terrain reconnaissance report upon completion",
+        "Exploration plan should outline site suitability, proposed locations, expected conditions, and cost estimates"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Planning field investigations and site visits for shallow foundation design projects."
+    },
+    {
+      "section_id": "4.3",
+      "title": "Subsurface Explorations and In Situ Testing",
+      "body": "The procedures employed in a subsurface exploration program depend on project design objectives, expected site soil conditions, and the type of foundation being considered. For shallow foundations, the extent, location, and sampling of subsurface materials will differ from deep foundation investigations. The minimum level of subsurface exploration and sampling is discussed in the Soils and Foundations Workshop Reference Manual (Cheney & Chassie, 2000) and the Manual on Subsurface Investigations (AASHTO, 1988).",
+      "key_points": [
+        "Exploration program depends on design objectives, expected soil conditions, and foundation type",
+        "Shallow foundation exploration differs from deep foundation investigation in extent and sampling",
+        "Minimum exploration and sampling levels are defined in FHWA and AASHTO references"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "General guidance on planning subsurface exploration programs for shallow foundations."
+    },
+    {
+      "section_id": "4.3.1",
+      "title": "Standard Penetration Test",
+      "body": "The Standard Penetration Test (SPT) is the most widely used field test in the United States, standardized by AASHTO T-206 and ASTM D-1586. The test consists of driving a split-spoon sampler 0.46 m (18 in) with the 63-kg (140-lb) hammer falling through a drop of 0.76 m (30 in). The first 150-mm (6-in) increment is the seating load; the sum of the next two 150-mm increments is the Standard Penetration Value (N). N-values indicate relative density of cohesionless soils and consistency of cohesive soils as correlated in Table 4-1. SPT N-values are also used to estimate strength and compressibility of granular soils through correlations in Figures 4-1 and 4-2, which relate N-value to relative density and friction angle. If a hammer system other than a rope and cathead with 60% efficiency is used, the N-value should be corrected using Equation 4-1.",
+      "key_points": [
+        "SPT standardized by AASHTO T-206 and ASTM D-1586",
+        "63-kg hammer, 0.76 m drop; N-value = sum of blows for second and third 150-mm increments",
+        "N-values correlate with relative density (sands) and consistency (clays) per Table 4-1",
+        "Figures 4-1 and 4-2 relate N-value to relative density and friction angle for granular soils",
+        "Figure 4-1 is a function of both N-value and effective overburden stress; do not correct N for overburden",
+        "Hammer efficiency correction: N60 = (ER/60%) * N_field (Equation 4-1)",
+        "Automatic hammers typically have 70-90% efficiency; 80% commonly assumed",
+        "Correlations for gravels and clays from SPT are relatively unreliable"
+      ],
+      "equations": [
+        {
+          "id": "4-1",
+          "description": "SPT hammer efficiency correction",
+          "formula": "N60 = (ER / 60%) * N_FIELD",
+          "variables": {
+            "N60": "SPT N-value corrected to 60% hammer efficiency",
+            "ER": "Energy Ratio - efficiency or percent of theoretical free fall energy delivered",
+            "N_FIELD": "Blowcount recorded in field"
+          }
+        }
+      ],
+      "figures": [
+        {
+          "id": "4-1",
+          "title": "Correlation Between Relative Density and SPT Resistance",
+          "description": "Chart relating SPT N-value (blows/ft) to vertical effective stress (k/ft^2) with curves for relative density from 15% to 100%. After NAVFAC 1986a (Gibbs & Holtz). 1 k/ft^2 = 1 ksf = 47.88 kPa; 1 ft = 0.3 m."
+        },
+        {
+          "id": "4-2",
+          "title": "Correlation Between Relative Density, Material Classification and Angle of Internal Friction for Coarse-Grained Soils",
+          "description": "Chart relating dry unit weight (kN/m^3 and pcf) to angle of internal friction (degrees) with curves for relative density 0-100% and material type boundaries (ML, SM, SP, SW, GP, GW). After NAVFAC 1986a. Caution in shaded portion due to unreliable SPT N-values in gravels."
+        }
+      ],
+      "tables": [
+        {
+          "id": "4-1",
+          "title": "Soil Properties Correlated with Standard Penetration Test Values",
+          "description": "Sands (reliable): 0-4 = Very loose, 4-10 = Loose, 10-30 = Medium, 30-50 = Dense, Over 50 = Very dense. Clays (relatively unreliable): Below 2 = Very soft, 2-4 = Soft, 4-8 = Medium, 8-15 = Stiff, 15-30 = Very stiff, Over 30 = Hard. Measured with 9.5 mm ID / 51 mm OD sampler driven 0.3 m by 63-kg hammer falling 0.76 m."
+        }
+      ],
+      "applicability": "SPT testing procedures, N-value correlations, and hammer efficiency corrections for foundation design."
+    },
+    {
+      "section_id": "4.3.2",
+      "title": "Subsurface Exploration Program",
+      "body": "The scale of the exploration program depends on the importance and criticality of the structure, loading magnitude, budget, and schedule. The minimum foundation data program for a typical structure site includes: (1) one drill hole per pier or abutment over 9 m in length, staggered at opposite ends for adjacent footings, with one hole at each extremity for elements over 9 m; (2) boring depth estimated from terrain reconnaissance with minimum termination criteria of N >= 20 for 6 continuous meters or 3 m into rock with >= 50% recovery; (3) standard split-spoon samples at 1.5-m intervals (0.75-m intervals for 4.5-m zone beneath footing elevation), with undisturbed tube samples at 1.5-m intervals in cohesive soils; (4) SPT data recorded per ASTM D-1586; (5) rough visual analysis and proper sample handling; (6) water level observations during and after drilling. Good communication between the driller and the foundation engineer is essential during all phases of the investigation.",
+      "key_points": [
+        "Minimum one drill hole per pier or abutment over 9 m, staggered at opposite ends",
+        "Boring termination: N >= 20 for 6 continuous meters, or 3 m into rock with >= 50% recovery",
+        "Split-spoon samples at 1.5-m intervals; 0.75-m intervals for 4.5-m zone below footing elevation",
+        "Undisturbed tube samples at 1.5-m intervals in cohesive soils (3-m intervals below 9 m depth)",
+        "In situ vane shear tests at 1.5- to 3-m intervals recommended in soft clay deposits",
+        "Water level readings: during drilling, end of each day, at completion, and 24 hours after completion",
+        "Low-permeability soils may require more than 1 week for water level to stabilize; install piezometer",
+        "CPT may supplement borings but should not be the sole method at a bridge site"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Designing a subsurface exploration program for shallow foundation investigations."
+    },
+    {
+      "section_id": "4.3.3",
+      "title": "In Situ Testing",
+      "body": "The SPT is considered the minimum level of in situ testing for foundation design. The cone penetration test (CPT) is the next most common, offering nearly continuous data as the probe is pushed into the ground, providing more discrete and accurate soil layering definition than split-spoon sampling at 1.5-m intervals. CPT limitations include inability to penetrate very dense soils or cobbles/boulders, no sample recovery, and reliance on empirical correlations. The pressuremeter test (PMT) and flat dilatometer test (DMT) can measure stress-strain properties in situ and have been used to predict shallow foundation performance. Recent research by Briaud and colleagues has resulted in a new method of predicting shallow foundation settlement as a function of applied load based on PMT data, applicable for both ordinary working loads and transient loads such as earthquake or ice loads.",
+      "key_points": [
+        "SPT is the minimum level of in situ testing for foundation design",
+        "CPT provides nearly continuous data and better soil layer definition than SPT",
+        "CPT limitations: cannot penetrate very dense soils or cobbles, no sample recovery, empirical correlations",
+        "CPT should supplement, not replace, borings at bridge sites",
+        "Pressuremeter (PMT) and dilatometer (DMT) measure in situ stress-strain properties",
+        "PMT-based settlement prediction method applicable for ordinary and transient loads (Briaud et al., 2000)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selection and application of in situ testing methods for shallow foundation design."
+    },
+    {
+      "section_id": "4.3.4",
+      "title": "Rock and IGM Mass Characterization",
+      "body": "A natural rock or intermediate geomaterial (IGM) mass is rarely a continuous, isotropic, homogeneous material. A rock mass is composed of intact or weathered blocks separated by discontinuities (joints, bedding planes, sheared zones, faults). Important characteristics for shallow foundation design on rock include: lithology, IGM genesis, strength properties (qu, c, phi), deformation properties (E, nu), frequency and spacing of discontinuities (especially relative to foundation width), orientation (strike and dip), aperture and condition of discontinuities, degree of weathering, and groundwater condition. Exploration methods include field reconnaissance, geological mapping, drilling/coring, test excavation, in situ testing, geophysical methods, field load testing, and laboratory testing (Table 4-2). Design recommendations for footings on rock or IGM are commonly based on limited data: rock type, core description, core recovery percentage, RQD values, and unconfined compressive strength, combined with local geological knowledge and engineering judgment.",
+      "key_points": [
+        "Rock and IGM masses are rarely continuous, isotropic, or homogeneous",
+        "Key characterization parameters: lithology, strength (qu, c, phi), deformability (E, nu), RQD",
+        "Discontinuity properties (frequency, spacing, orientation, aperture, condition) are critical",
+        "Spacing of discontinuities relative to foundation width is especially important",
+        "Table 4-2 summarizes in situ and laboratory tests for footings on rock or IGMs",
+        "Some tests are for stronger materials (borehole jacking, unconfined compression); others for weaker IGMs (PMT, DMT)",
+        "Design recommendations often based on limited data combined with local knowledge and judgment"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        {
+          "id": "4-2",
+          "title": "Summary of Commonly Used In Situ and Laboratory Testing for Footings on Rock or IGMs",
+          "description": "Lists testing purposes (shear strength, tensile strength, bearing capacity, deformability, discontinuity study, durability, void/sinkhole detection, rock anchor resistance) with corresponding in situ/field tests and laboratory tests. After Arman et al. (1997) / Corps of Engineer Manual EM 1110-1-2908."
+        }
+      ],
+      "applicability": "Characterizing rock and IGM foundations for shallow foundation design."
+    },
+    {
+      "section_id": "4.4",
+      "title": "Laboratory Testing",
+      "body": "A useful laboratory testing program requires testing soil samples under conditions that exist in the ground or that will occur as a result of construction and loading. The stress conditions, moisture states, and load paths imposed on the representative soil sample should match field conditions. The basic concepts of laboratory testing for strength and deformation characteristics are reviewed, beginning with phase relationships, effective stress, and overburden stress, then common laboratory tests for shear strength and compressibility.",
+      "key_points": [
+        "Laboratory tests should simulate in situ stress conditions and anticipated loading",
+        "Stress conditions, moisture states, and load paths should match field conditions",
+        "Basic concepts reviewed: phase relationships, effective stress, overburden stress",
+        "Cohesionless soils can often be designed using SPT-based strength and compressibility correlations",
+        "Cohesive soils require consolidation testing for settlement prediction and shear-strength testing for bearing capacity"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "General guidance on laboratory testing programs for shallow foundation design."
+    },
+    {
+      "section_id": "4.4.1",
+      "title": "Phase and Volume Relationships",
+      "body": "Soil is a three-phase material (solid, water, gas) whose weight and volume depend on specific gravity, void/pore space size, and degree of saturation. The phase relation block diagram (Figure 4-3) shows volume components (V_A air, V_W water, V_S solids) and weight components (W_W water, W_S solids). Table 4-3 summarizes the weight-volume relationships, dimensionless ratios, and functional relationships (Equations 4-2 through 4-20). Of particular note is the void ratio, e, which is a general indicator of relative strength and compressibility: low void ratios indicate strong, incompressible soils, and high void ratios may indicate weak, compressible soils. Deformation under load depends on intergranular forces and the amount of pore water. In saturated soils with low permeability, load is initially carried by pore water (excess pore-water pressure), which dissipates over time as water is expelled and soil particles accept the load -- this process is consolidation.",
+      "key_points": [
+        "Soil is a three-phase material: solid, water, gas (air)",
+        "Phase relationships defined by specific gravity, void space, and degree of saturation",
+        "Void ratio (e) is a general indicator of relative strength and compressibility",
+        "Low void ratio indicates strong, incompressible soils; high void ratio indicates weak, compressible soils",
+        "Table 4-3 contains Equations 4-2 through 4-20 for all weight-volume and functional relationships",
+        "Consolidation occurs as excess pore-water pressure dissipates and intergranular stress increases",
+        "Spring analogy (Figure 4-4) explains consolidation: valve = permeability, spring = soil skeleton, water = pore fluid"
+      ],
+      "equations": [
+        {
+          "id": "4-2",
+          "description": "Unit weight (general definition)",
+          "formula": "gamma = W / V"
+        },
+        {
+          "id": "4-3",
+          "description": "Unit weight of saturated soil",
+          "formula": "gamma_sat = W / V"
+        },
+        {
+          "id": "4-6",
+          "description": "Dry unit weight",
+          "formula": "gamma_d = W_S / V"
+        },
+        {
+          "id": "4-7",
+          "description": "Buoyant (submerged) unit weight",
+          "formula": "gamma' = W' / V"
+        },
+        {
+          "id": "4-8",
+          "description": "Buoyant unit weight (alternate)",
+          "formula": "gamma' = gamma_sat - gamma_w"
+        },
+        {
+          "id": "4-9",
+          "description": "Specific gravity of soil solids",
+          "formula": "G_S = gamma_S / gamma_W"
+        },
+        {
+          "id": "4-10",
+          "description": "Void ratio",
+          "formula": "e = V_V / V_S"
+        },
+        {
+          "id": "4-11",
+          "description": "Porosity",
+          "formula": "n = V_V / V"
+        },
+        {
+          "id": "4-12",
+          "description": "Water content",
+          "formula": "w = W_W / W_S"
+        },
+        {
+          "id": "4-13",
+          "description": "Degree of saturation",
+          "formula": "S = V_W / V_V"
+        },
+        {
+          "id": "4-14",
+          "description": "Saturation-void ratio-specific gravity relationship",
+          "formula": "Se = wG_S"
+        },
+        {
+          "id": "4-15",
+          "description": "Porosity-void ratio relationship",
+          "formula": "n = e/(1+e); e = n/(1-n)"
+        },
+        {
+          "id": "4-16",
+          "description": "Total unit weight from Gs, S, e",
+          "formula": "gamma = (G_S + Se) * gamma_W / (1 + e)"
+        },
+        {
+          "id": "4-17",
+          "description": "Dry unit weight from Gs and e",
+          "formula": "gamma_d = G_S * gamma_W / (1 + e)"
+        },
+        {
+          "id": "4-18",
+          "description": "Dry unit weight from total unit weight and water content",
+          "formula": "gamma_d = gamma / (1 + w)"
+        },
+        {
+          "id": "4-19",
+          "description": "Weight of solids from total weight and water content",
+          "formula": "W_S = W / (1 + w)"
+        },
+        {
+          "id": "4-20",
+          "description": "Buoyant unit weight from Gs and e",
+          "formula": "gamma' = (G_S - 1) * gamma_W / (1 + e)"
+        }
+      ],
+      "figures": [
+        {
+          "id": "4-3",
+          "title": "Phase Relation Block Diagram",
+          "description": "Standard three-phase block diagram showing volume components (V_A air, V_W water, V_S solids) and weight components (0 air, W_W water, W_S solids). Subscripts: s = solids, w = water, a = air, v = voids."
+        },
+        {
+          "id": "4-4",
+          "title": "Spring Analogy as Applied to Consolidation",
+          "description": "Three-stage spring-piston-valve analogy (Holtz and Kovacs, 1981): (a) at equilibrium, (b) under applied stress with increased pore pressure and water flow, (c) at new equilibrium with settlement s and pore pressure dissipated."
+        },
+        {
+          "id": "4-5",
+          "title": "Conceptual Arrangement of Laboratory Oedometer Test",
+          "description": "Schematic of oedometer: loading plate, porous stones top and bottom, soil specimen in floating ring, base. Used for consolidation testing."
+        }
+      ],
+      "tables": [
+        {
+          "id": "4-3",
+          "title": "Weight-Volume Relationships, Dimensionless Ratios and Functional Relationships",
+          "description": "Comprehensive table of unit weight definitions (Eqs 4-2 through 4-8), dimensionless ratios (Eqs 4-9 through 4-13), and functional relationships (Eqs 4-14 through 4-20). gamma_w = 9.8 kN/m^3 (62.4 pcf)."
+        }
+      ],
+      "applicability": "Fundamental soil phase relationships and weight-volume computations for geotechnical design."
+    },
+    {
+      "section_id": "4.4.2",
+      "title": "Principle of Effective Stress",
+      "body": "Under an applied load, the total stress in a saturated soil sample is composed of pore-water pressure (neutral stress, acting equally in all directions in both water and soil) and effective stress (intergranular stress, acting at soil particle contacts). Because pore water has no shear strength, only the effective stress is effective in resisting shearing or limiting compression. The effective stress equals the total stress minus the pore water pressure (Equation 4-21). Changes in effective stress control the volumetric strain in a soil. In the oedometer test (Figure 4-5), when a saturated clay is loaded quickly, essentially zero volume change occurs initially as pore pressure increases. Over time, excess pore pressure dissipates as water drains through porous stones, and the effective stress increases to equal the new total stress.",
+      "key_points": [
+        "Total stress = pore-water pressure + effective stress (Equation 4-21: sigma' = sigma - u)",
+        "Pore-water pressure acts equally in all directions and has no shear strength",
+        "Only effective (intergranular) stress resists shearing and controls compression",
+        "Changes in effective stress control volumetric strain development",
+        "In saturated clay loaded quickly, pore pressure initially carries the entire applied load",
+        "Over time, excess pore pressure dissipates and effective stress increases (consolidation)",
+        "Oedometer test (Figure 4-5) demonstrates this principle in the laboratory"
+      ],
+      "equations": [
+        {
+          "id": "4-21",
+          "description": "Principle of effective stress",
+          "formula": "sigma' = sigma - u",
+          "variables": {
+            "sigma'": "Effective stress",
+            "sigma": "Total stress",
+            "u": "Pore-water pressure"
+          }
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Fundamental principle governing soil strength, compressibility, and consolidation behavior."
+    },
+    {
+      "section_id": "4.4.3",
+      "title": "Overburden Stress",
+      "body": "The weight of overlying soil exerts an overburden stress that is a function of unit weight and depth. When conducting laboratory tests on soil samples, it is important to reestablish the in situ stress state that existed prior to sampling. The total overburden stress is computed by summing the product of total unit weight and layer thickness for each stratigraphic layer. A 5-step procedure for constructing stress profiles: (1) Divide the subsurface into layers based on soil stratigraphy, classification, groundwater table, and unit weight changes, using increments of about half the footing width for twice the footing width below bearing depth; (2) Determine total vertical stress at each depth by multiplying unit weight by layer thickness and summing; (3) Determine pore water pressure below the water table by multiplying depth below water table by gamma_w (9.81 kN/m^3); (4) Calculate effective stress by subtracting pore water pressure from total stress; (5) Plot total and effective stresses versus depth or elevation.",
+      "key_points": [
+        "Overburden stress is a function of unit weight of overlying soil and depth",
+        "Laboratory tests require reestablishing in situ stress state as starting condition",
+        "Total overburden stress = sum of (unit weight * layer thickness) for all layers above the point",
+        "Pore water pressure = depth below water table * gamma_w (9.81 kN/m^3 = 62.4 pcf)",
+        "Effective stress = total stress - pore water pressure (below water table)",
+        "Stress profile should extend to about 2B below the bearing depth using 0.5B layer increments",
+        "Unit weight may be determined from undisturbed samples or estimated from SPT N-values and descriptions",
+        "Stress profiles are used throughout shallow foundation design and for specifying lab test starting conditions"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Computing overburden stress profiles for use in shallow foundation design and laboratory test specification."
+    }
+  ]
+}

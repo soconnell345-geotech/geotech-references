@@ -1,0 +1,113 @@
+{
+  "reference_id": "FHWA-SA-02-054",
+  "reference_title": "Shallow Foundations",
+  "chapter": 7,
+  "chapter_title": "Minor Structure Support on Shallow Foundations",
+  "sections": [
+    {
+      "section_id": "7.0",
+      "title": "Introduction",
+      "body": "Transportation projects frequently include minor structures such as signs, signals and illumination. Because these structures are both relatively tall and lightweight, the controlling load for design of their foundations is nearly always overturning due to wind loading or cantilever arms. As a result, the moments applied at the foundation connection tend to be large as compared to the axial load due to the dead weight of the structure. Spread footings must resist these moments by transferring the moment to an effective bearing area that is small due to the large eccentricity; therefore, spread footings tend to be large for support of signs, signals and illumination. Most agencies have developed standard plans for supporting minor structures on small, shaft-type foundations that are more efficient at resisting the applied lateral shears and moments than spread footings because they spread the load over a large, lateral surface area. However, there are some ground conditions, such as very soft soils, that may lend themselves to minor structure support on a spread footing. Because the axial loads are not very large for minor structures, settlement considerations may not govern the allowable bearing capacity. An example might be a deep soft clay or organic silt deposit that provides poor near-surface lateral resistance against a shaft or pile foundation. In this situation a large spread footing could be a cost-effective alternate to a pile group.",
+      "key_points": [
+        "Minor structures include signs, signals, and illumination - tall, lightweight structures",
+        "Overturning from wind loading or cantilever arms typically controls foundation design",
+        "Large moment-to-axial-load ratio results in large eccentricity and large spread footings",
+        "Shaft-type foundations are generally more efficient for minor structures than spread footings",
+        "Spread footings may be cost-effective in very soft soils where shaft/pile lateral resistance is poor",
+        "Settlement may not govern for minor structures due to low axial loads",
+        "Deep soft clay or organic silt with poor near-surface lateral resistance is a situation favoring spread footings"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "General guidance on when to consider spread footings for minor transportation structures."
+    },
+    {
+      "section_id": "7.1",
+      "title": "Geotechnical Investigation",
+      "body": "The geotechnical investigation for minor structures should include the same considerations as presented in Chapter 4, but the depth and frequency of explorations may be reduced according to identified similar geologic conditions for groups of structures.",
+      "key_points": [
+        "Follow Chapter 4 investigation procedures for minor structures",
+        "Depth and frequency of explorations may be reduced based on geologic similarity",
+        "Groups of structures in similar geologic conditions can share reduced investigation scope"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Planning subsurface investigations for minor structure foundation projects."
+    },
+    {
+      "section_id": "7.2",
+      "title": "Allowable Bearing Stresses",
+      "body": "Allowable bearing stresses for minor structure support on shallow foundations follow the same principles and procedures presented in Chapter 5.",
+      "key_points": [
+        "Same bearing stress principles and procedures as Chapter 5 apply to minor structures",
+        "Both bearing capacity and settlement criteria must still be evaluated"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Determining allowable bearing stresses for minor structure shallow foundations."
+    },
+    {
+      "section_id": "7.2.1",
+      "title": "Settlement Limitations",
+      "body": "Settlement considerations for minor structures should include determining how much the foundation might tilt when supporting a tall, slender structure. Visually perceptible tilt of signals and illumination towers, while not necessarily a problem for the function of the structure, will certainly be noticeable, and reported, by the public. As mentioned above, however, the controlling design load may be wind, which is transient and therefore not likely to be of sufficient duration to induce consolidation settlement of cohesive soils. If the structure includes a cantilever arm, however, consolidation settlement should be computed and kept within tolerable limits. The potential for differential settlement of sign bridge supports should be checked if the applied bearing stresses are sufficient to induce consolidation settlement.",
+      "key_points": [
+        "Foundation tilt of tall, slender minor structures is a key settlement concern",
+        "Visually perceptible tilt of signals and illumination towers will be reported by the public",
+        "Wind loading is transient and may not induce significant consolidation settlement in cohesive soils",
+        "Structures with cantilever arms require consolidation settlement computation within tolerable limits",
+        "Differential settlement of sign bridge supports must be checked if bearing stresses can induce consolidation"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Evaluating settlement and tilt criteria for minor structure shallow foundations."
+    },
+    {
+      "section_id": "7.2.2",
+      "title": "Bearing Capacity Limitations",
+      "body": "As mentioned in the introduction to this section, shallow foundations for minor structures may be cost-effective when deep, soft soils are present. Punching shear mechanisms can develop in these types of soils. This is a situation in which the one-third reduction in the soil strength parameters discussed in Section 5.2.3.6 should be included when computing the ultimate bearing capacity.",
+      "key_points": [
+        "Shallow foundations for minor structures may be viable even in deep soft soils",
+        "Punching shear failure mechanisms can develop in soft soils",
+        "Apply one-third reduction in soil strength parameters per Section 5.2.3.6 when punching shear is expected",
+        "Include reduced strength parameters when computing ultimate bearing capacity in soft soils"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Addressing bearing capacity limitations and punching shear potential for minor structures on soft soils."
+    },
+    {
+      "section_id": "7.3",
+      "title": "Overturning",
+      "body": "As mentioned in Section 6.4.1, the factor of safety against overturning does not need to be calculated if the eccentricity is within certain prescribed limits that ensure negative bearing stress does not occur. For lightweight structures that have large overturning moments, these design criteria may be overly conservative. Recall that the assumption of the actual distribution of stress beneath a spread footing is that the footing is perfectly rigid with respect to the soil. For wide spread footings that would be needed to withstand the overturning moment applied by, say, a signal mast arm, the assumption of perfect rigidity is not valid. Both the footing and the supporting soil will deform under the applied load, and the stresses will redistribute accordingly. If the eccentricity is allowed to exceed the limits stated in Section 6.4.1 for a minor structure foundation, then a separate computation for overturning should be performed. A minimum factor of safety against overturning (i.e., the resisting moments divided by the moments acting to overturn the structure) should be greater than about 2.0 for permanent dead loads and greater than about 1.5 for infrequent transient loads such as the maximum wind force.",
+      "key_points": [
+        "Eccentricity limits from Section 6.4.1 may be overly conservative for lightweight minor structures",
+        "Perfect rigidity assumption for wide spread footings under large overturning moments is not valid",
+        "Both footing and soil deform under load, redistributing stresses",
+        "If eccentricity exceeds Section 6.4.1 limits, separate overturning computation is required",
+        "Minimum FOS against overturning: >= 2.0 for permanent dead loads, >= 1.5 for infrequent transient loads (e.g., maximum wind)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Evaluating overturning stability for minor structure spread footings with large moment-to-axial-load ratios."
+    },
+    {
+      "section_id": "7.4",
+      "title": "Sliding",
+      "body": "The design of shallow foundations supporting minor structures should be checked, following the procedures in Sections 5.4 and 6.4, so that sliding will not occur.",
+      "key_points": [
+        "Check sliding stability per Sections 5.4 and 6.4 procedures",
+        "Ensure adequate factor of safety against sliding for all applicable load cases"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Checking sliding stability of minor structure shallow foundations."
+    }
+  ]
+}
