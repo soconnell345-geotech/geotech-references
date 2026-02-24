@@ -37,6 +37,11 @@ geotech_references/           # Python package (pip install -e .)
     tables.py                  # 13 table lookup functions (bond stress, pipe/rebar, elastic modulus)
     figures.py                 # 1 figure lookup function (limiting lateral modulus)
     text/                      # Structured chapter JSON (5 chapters, ~35 sections)
+  fema_p2192/                  # FEMA P-2192 Seismic Design Category (2024)
+    tables.py                  # 10 functions (SDC, site class, Fa/Fv, risk category)
+  noaa_frost/                  # NOAA Frost Protected Shallow Foundations
+    equations.py               # 5 physics equations (Stefan, Berggren, latent heat)
+    tables.py                  # 4 soil thermal property lookups
 agents/
   dm7_agent.py                 # DM7 Foundry-style 3-function wrapper
   gec6_agent.py                # GEC-6 Foundry-style 3-function wrapper
@@ -46,7 +51,9 @@ agents/
   gec12_agent.py               # GEC-12 Foundry-style 3-function wrapper
   gec13_agent.py               # GEC-13 Foundry-style 3-function wrapper
   micropile_agent.py           # Micropile Foundry-style 3-function wrapper
-tests/                         # 2,810 tests (pytest)
+  fema_p2192_agent.py          # FEMA P-2192 Foundry-style 3-function wrapper
+  noaa_frost_agent.py          # NOAA Frost Foundry-style 3-function wrapper
+tests/                         # 3,028 tests (pytest)
 references/                    # Source PDFs (git-ignored)
 ```
 
@@ -91,6 +98,8 @@ references/                    # Source PDFs (git-ignored)
 | gec_12 | FHWA-NHI-16-009 Driven Piles | 16 | 147 | 8 chapters |
 | gec_13 | FHWA-NHI-16-027 Ground Modification | 10 | 105 | yes |
 | micropile | FHWA-NHI-05-039 Micropile Design | 14 | 108 | 5 chapters |
+| fema_p2192 | FEMA P-2192 SDC Determination (2024) | 10 | 132 | - |
+| noaa_frost | NOAA Frost Protected Shallow Foundations | 9 | 86 | - |
 
 ### GEC-7: Soil Nail Walls (15 functions, 101 tests)
 
@@ -116,16 +125,16 @@ references/                    # Source PDFs (git-ignored)
 
 ## Agent Pattern
 
-All 8 agents follow the 3-function Foundry pattern:
+All 10 agents follow the 3-function Foundry pattern:
 
 ```python
-# Pattern (replace {name} with dm7, gec6, gec7, gec10, gec11, gec12, gec13, micropile)
+# Pattern (replace {name} with dm7, gec6, gec7, gec10, gec11, gec12, gec13, micropile, fema_p2192, noaa_frost)
 {name}_agent(method: str, params_json: str) -> str
 {name}_list_methods(category: str = "") -> str
 {name}_describe_method(method: str) -> str
 ```
 
-DM7 agent auto-discovers 340+ functions via `inspect.getmembers()`. GEC/micropile agents wrap text retrieval + figure/table lookup functions.
+DM7 agent auto-discovers 340+ functions via `inspect.getmembers()`. GEC/micropile agents wrap text retrieval + figure/table lookup functions. FEMA/NOAA agents wrap table/equation lookup functions (no text retrieval).
 
 ## Working on This Repo
 
@@ -138,4 +147,4 @@ DM7 agent auto-discovers 340+ functions via `inspect.getmembers()`. GEC/micropil
 
 - Python 3.10+ (developed on 3.14.3)
 - No required dependencies (numpy/scipy/matplotlib are optional, used by some functions)
-- Tests: `pytest tests/ -q` (expect 2,810 passed, 85 skipped)
+- Tests: `pytest tests/ -q` (expect 3,028 passed, 85 skipped)
