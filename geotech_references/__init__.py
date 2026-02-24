@@ -13,4 +13,8 @@ gec_13 : FHWA-NHI-16-027 — Ground Modification Methods
 micropile : FHWA-NHI-05-039 — Micropile Design & Construction
 fema_p2192 : FEMA P-2192 — Seismic Design Category Determination (2024)
 noaa_frost : NOAA — Frost Protected Shallow Foundation Design
+ufc_backfill : UFC 3-220-04N — Backfill for Subsurface Structures
+ufc_dewatering : UFC 3-220-05 — Dewatering and Groundwater Control
+ufc_expansive : UFC 3-220-07 — Foundations in Expansive Soils
+ufc_pavement : UFC 3-260-02 — Pavement Design for Airfields
 """

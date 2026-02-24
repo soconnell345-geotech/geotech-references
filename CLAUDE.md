@@ -42,6 +42,18 @@ geotech_references/           # Python package (pip install -e .)
   noaa_frost/                  # NOAA Frost Protected Shallow Foundations
     equations.py               # 5 physics equations (Stefan, Berggren, latent heat)
     tables.py                  # 4 soil thermal property lookups
+  ufc_backfill/                # UFC 3-220-04N Backfill for Subsurface Structures
+    equations.py               # 3 equations (compaction pressure, filter criteria, RC check)
+    tables.py                  # 5 tables (compaction, material, lift, equipment, drainage)
+  ufc_dewatering/              # UFC 3-220-05 Dewatering and Groundwater Control
+    equations.py               # 6 equations (Thiem, Dupuit, Sichardt, superposition)
+    tables.py                  # 3 tables (permeability, method selection, screen slot)
+  ufc_expansive/               # UFC 3-220-07 Foundations in Expansive Soils
+    equations.py               # 5 equations (activity, free swell, swell pressure, heave, pier)
+    tables.py                  # 4 tables (swell potential, active zone, foundation, void space)
+  ufc_pavement/                # UFC 3-260-02 Pavement Design for Airfields
+    equations.py               # 4 equations (CBR-to-k, flexible/rigid thickness, ESWL)
+    tables.py                  # 5 tables (frost susceptibility, reduction, aircraft, layers, subgrade)
 agents/
   dm7_agent.py                 # DM7 Foundry-style 3-function wrapper
   gec6_agent.py                # GEC-6 Foundry-style 3-function wrapper
@@ -53,7 +65,11 @@ agents/
   micropile_agent.py           # Micropile Foundry-style 3-function wrapper
   fema_p2192_agent.py          # FEMA P-2192 Foundry-style 3-function wrapper
   noaa_frost_agent.py          # NOAA Frost Foundry-style 3-function wrapper
-tests/                         # 3,028 tests (pytest)
+  ufc_backfill_agent.py        # UFC 3-220-04N Foundry-style 3-function wrapper
+  ufc_dewatering_agent.py      # UFC 3-220-05 Foundry-style 3-function wrapper
+  ufc_expansive_agent.py       # UFC 3-220-07 Foundry-style 3-function wrapper
+  ufc_pavement_agent.py        # UFC 3-260-02 Foundry-style 3-function wrapper
+tests/                         # 3,299 tests (pytest)
 references/                    # Source PDFs (git-ignored)
 ```
 
@@ -100,6 +116,10 @@ references/                    # Source PDFs (git-ignored)
 | micropile | FHWA-NHI-05-039 Micropile Design | 14 | 108 | 5 chapters |
 | fema_p2192 | FEMA P-2192 SDC Determination (2024) | 10 | 132 | - |
 | noaa_frost | NOAA Frost Protected Shallow Foundations | 9 | 86 | - |
+| ufc_backfill | UFC 3-220-04N Backfill | 8 | 87 | - |
+| ufc_dewatering | UFC 3-220-05 Dewatering | 9 | 75 | - |
+| ufc_expansive | UFC 3-220-07 Expansive Soils | 9 | 55 | - |
+| ufc_pavement | UFC 3-260-02 Airfield Pavement | 9 | 54 | - |
 
 ### GEC-7: Soil Nail Walls (15 functions, 101 tests)
 
@@ -125,16 +145,16 @@ references/                    # Source PDFs (git-ignored)
 
 ## Agent Pattern
 
-All 10 agents follow the 3-function Foundry pattern:
+All 14 agents follow the 3-function Foundry pattern:
 
 ```python
-# Pattern (replace {name} with dm7, gec6, gec7, gec10, gec11, gec12, gec13, micropile, fema_p2192, noaa_frost)
+# Pattern (replace {name} with dm7, gec6, gec7, gec10, gec11, gec12, gec13, micropile, fema_p2192, noaa_frost, ufc_backfill, ufc_dewatering, ufc_expansive, ufc_pavement)
 {name}_agent(method: str, params_json: str) -> str
 {name}_list_methods(category: str = "") -> str
 {name}_describe_method(method: str) -> str
 ```
 
-DM7 agent auto-discovers 340+ functions via `inspect.getmembers()`. GEC/micropile agents wrap text retrieval + figure/table lookup functions. FEMA/NOAA agents wrap table/equation lookup functions (no text retrieval).
+DM7 agent auto-discovers 340+ functions via `inspect.getmembers()`. GEC/micropile agents wrap text retrieval + figure/table lookup functions. FEMA/NOAA/UFC agents wrap table/equation lookup functions (no text retrieval).
 
 ## Working on This Repo
 
@@ -147,4 +167,4 @@ DM7 agent auto-discovers 340+ functions via `inspect.getmembers()`. GEC/micropil
 
 - Python 3.10+ (developed on 3.14.3)
 - No required dependencies (numpy/scipy/matplotlib are optional, used by some functions)
-- Tests: `pytest tests/ -q` (expect 3,028 passed, 85 skipped)
+- Tests: `pytest tests/ -q` (expect 3,299 passed, 85 skipped)
