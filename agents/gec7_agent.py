@@ -21,115 +21,14 @@ except ImportError:
         return fn
 
 # ---------------------------------------------------------------------------
-# Import GEC-7 modules
+# Lazy registry — defers geotech_references imports until first call
 # ---------------------------------------------------------------------------
-from geotech_references import _retrieval
-from geotech_references.gec_7 import figures
-from geotech_references.gec_7 import tables
-
-
-# ---------------------------------------------------------------------------
-# Build METHOD_REGISTRY and METHOD_INFO
-# ---------------------------------------------------------------------------
-METHOD_REGISTRY = {}
-METHOD_INFO = {}
-
-# --- Text retrieval functions (from _retrieval.py) ---
-
-
-def retrieve_section(section_id: str) -> dict:
-    """Retrieve a specific section from GEC-7 by its ID (e.g., '5.7.2').
-
-    Returns the section dict with title, body, key_points, equations,
-    figures, tables, and applicability fields.
-
-    Parameters
-    ----------
-    section_id : str
-        Section identifier (e.g., '5.7.2', '4.4').
-
-    Returns
-    -------
-    dict
-        The section data.
-    """
-    return _retrieval.retrieve_section("gec_7", section_id)
-
-
-def search_sections(query: str) -> list:
-    """Keyword search across all GEC-7 sections.
-
-    Searches section titles, body text, key_points, and applicability.
-    Returns matches ranked by relevance (title matches score highest).
-    Multiple words are AND-matched.
-
-    Parameters
-    ----------
-    query : str
-        Search query (case-insensitive).
-
-    Returns
-    -------
-    list of dict
-        Matching sections with chapter and chapter_title fields added.
-    """
-    return _retrieval.search_sections("gec_7", query)
-
-
-def list_chapters() -> list:
-    """List all GEC-7 chapters and their section IDs.
-
-    Returns
-    -------
-    list of dict
-        Each dict has chapter, chapter_title, reference_id, and
-        sections (list of {section_id, title}).
-    """
-    return _retrieval.list_chapters("gec_7")
-
-
-def load_chapter(chapter: int) -> dict:
-    """Load a full GEC-7 chapter JSON file.
-
-    Parameters
-    ----------
-    chapter : int
-        Chapter number (1-10).
-
-    Returns
-    -------
-    dict
-        Full chapter data including all sections.
-    """
-    return _retrieval.load_chapter("gec_7", chapter)
-
-
-# Register text retrieval functions
-_TEXT_METHODS = {
-    "retrieve_section": retrieve_section,
-    "search_sections": search_sections,
-    "list_chapters": list_chapters,
-    "load_chapter": load_chapter,
-}
-
-for _name, _func in _TEXT_METHODS.items():
-    METHOD_REGISTRY[_name] = _func
-
-# --- Figure and table lookup functions ---
-_LOOKUP_MODULES = [
-    (figures, "figures", "FHWA-NHI-14-007, Chapter 4-5 Figures"),
-    (tables, "tables", "FHWA-NHI-14-007, Chapter 4-5 Tables"),
-]
-
-for _mod, _category_prefix, _ref in _LOOKUP_MODULES:
-    for _name, _func in inspect.getmembers(_mod, inspect.isfunction):
-        if _name.startswith("_"):
-            continue
-        METHOD_REGISTRY[_name] = _func
+_METHOD_REGISTRY = None
+_METHOD_INFO = None
 
 
 # ---------------------------------------------------------------------------
-# Build METHOD_INFO with parameter details
+# Helper functions (no geotech_references dependency)
 # ---------------------------------------------------------------------------
 
 def _param_type_str(annotation) -> str:
@@ -214,19 +113,124 @@ def _extract_info(func, category: str, reference: str) -> dict:
     return info
 
 
-# Text retrieval methods
-for _name, _func in _TEXT_METHODS.items():
-    METHOD_INFO[_name] = _extract_info(
-        _func, "Text Retrieval", "FHWA-NHI-14-007"
-    )
+# ---------------------------------------------------------------------------
+# Lazy loader — imports geotech_references on first call
+# ---------------------------------------------------------------------------
 
-# Figure and table lookup methods
-for _mod, _category_prefix, _ref in _LOOKUP_MODULES:
-    for _name, _func in inspect.getmembers(_mod, inspect.isfunction):
-        if _name.startswith("_"):
-            continue
-        cat = f"GEC-7 {_category_prefix.title()}"
-        METHOD_INFO[_name] = _extract_info(_func, cat, _ref)
+def _load_registry():
+    global _METHOD_REGISTRY, _METHOD_INFO
+    if _METHOD_REGISTRY is not None:
+        return _METHOD_REGISTRY, _METHOD_INFO
+
+    from geotech_references import _retrieval
+    from geotech_references.gec_7 import figures
+    from geotech_references.gec_7 import tables
+
+    _METHOD_REGISTRY = {}
+    _METHOD_INFO = {}
+
+    # --- Text retrieval wrapper functions ---
+
+    def retrieve_section(section_id: str) -> dict:
+        """Retrieve a specific section from GEC-7 by its ID (e.g., '5.7.2').
+
+        Returns the section dict with title, body, key_points, equations,
+        figures, tables, and applicability fields.
+
+        Parameters
+        ----------
+        section_id : str
+            Section identifier (e.g., '5.7.2', '4.4').
+
+        Returns
+        -------
+        dict
+            The section data.
+        """
+        return _retrieval.retrieve_section("gec_7", section_id)
+
+    def search_sections(query: str) -> list:
+        """Keyword search across all GEC-7 sections.
+
+        Searches section titles, body text, key_points, and applicability.
+        Returns matches ranked by relevance (title matches score highest).
+        Multiple words are AND-matched.
+
+        Parameters
+        ----------
+        query : str
+            Search query (case-insensitive).
+
+        Returns
+        -------
+        list of dict
+            Matching sections with chapter and chapter_title fields added.
+        """
+        return _retrieval.search_sections("gec_7", query)
+
+    def list_chapters() -> list:
+        """List all GEC-7 chapters and their section IDs.
+
+        Returns
+        -------
+        list of dict
+            Each dict has chapter, chapter_title, reference_id, and
+            sections (list of {section_id, title}).
+        """
+        return _retrieval.list_chapters("gec_7")
+
+    def load_chapter(chapter: int) -> dict:
+        """Load a full GEC-7 chapter JSON file.
+
+        Parameters
+        ----------
+        chapter : int
+            Chapter number (1-10).
+
+        Returns
+        -------
+        dict
+            Full chapter data including all sections.
+        """
+        return _retrieval.load_chapter("gec_7", chapter)
+
+    # Register text retrieval functions
+    _TEXT_METHODS = {
+        "retrieve_section": retrieve_section,
+        "search_sections": search_sections,
+        "list_chapters": list_chapters,
+        "load_chapter": load_chapter,
+    }
+
+    for _name, _func in _TEXT_METHODS.items():
+        _METHOD_REGISTRY[_name] = _func
+
+    # --- Figure and table lookup functions ---
+    _LOOKUP_MODULES = [
+        (figures, "figures", "FHWA-NHI-14-007, Chapter 4-5 Figures"),
+        (tables, "tables", "FHWA-NHI-14-007, Chapter 4-5 Tables"),
+    ]
+
+    for _mod, _category_prefix, _ref in _LOOKUP_MODULES:
+        for _name, _func in inspect.getmembers(_mod, inspect.isfunction):
+            if _name.startswith("_"):
+                continue
+            _METHOD_REGISTRY[_name] = _func
+
+    # --- Build METHOD_INFO ---
+    for _name, _func in _TEXT_METHODS.items():
+        _METHOD_INFO[_name] = _extract_info(
+            _func, "Text Retrieval", "FHWA-NHI-14-007"
+        )
+
+    for _mod, _category_prefix, _ref in _LOOKUP_MODULES:
+        for _name, _func in inspect.getmembers(_mod, inspect.isfunction):
+            if _name.startswith("_"):
+                continue
+            cat = f"GEC-7 {_category_prefix.title()}"
+            _METHOD_INFO[_name] = _extract_info(_func, cat, _ref)
+
+    return _METHOD_REGISTRY, _METHOD_INFO
 
 
 # ---------------------------------------------------------------------------
@@ -259,6 +263,8 @@ def gec7_agent(method: str, parameters_json: str) -> str:
     Returns:
         JSON string with the result or an error message.
     """
+    METHOD_REGISTRY, METHOD_INFO = _load_registry()
+
     try:
         parameters = json.loads(parameters_json)
     except (json.JSONDecodeError, TypeError) as e:
@@ -303,6 +309,8 @@ def gec7_list_methods(category: str = "") -> str:
     Returns:
         JSON string with method names grouped by category.
     """
+    METHOD_REGISTRY, METHOD_INFO = _load_registry()
+
     result = {}
     for method_name, info in METHOD_INFO.items():
         cat = info["category"]
@@ -328,6 +336,8 @@ def gec7_describe_method(method: str) -> str:
     Returns:
         JSON string with parameters, types, defaults, and description.
     """
+    METHOD_REGISTRY, METHOD_INFO = _load_registry()
+
     if method not in METHOD_INFO:
         matches = [m for m in METHOD_INFO if method.lower() in m.lower()]
         if matches:

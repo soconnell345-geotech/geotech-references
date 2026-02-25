@@ -24,106 +24,10 @@ except ImportError:
         return fn
 
 # ---------------------------------------------------------------------------
-# Import all DM7 chapter modules from geotech_references
+# Lazy-loaded registry sentinels (populated on first call to _load_registry)
 # ---------------------------------------------------------------------------
-from geotech_references.dm7_1 import chapter1 as dm7_1_ch1
-from geotech_references.dm7_1 import chapter2 as dm7_1_ch2
-from geotech_references.dm7_1 import chapter3 as dm7_1_ch3
-from geotech_references.dm7_1 import chapter4 as dm7_1_ch4
-from geotech_references.dm7_1 import chapter5 as dm7_1_ch5
-from geotech_references.dm7_1 import chapter6 as dm7_1_ch6
-from geotech_references.dm7_1 import chapter7 as dm7_1_ch7
-from geotech_references.dm7_1 import chapter8 as dm7_1_ch8
-
-from geotech_references.dm7_2 import prologue as dm7_2_pro
-from geotech_references.dm7_2 import chapter2 as dm7_2_ch2
-from geotech_references.dm7_2 import chapter3 as dm7_2_ch3
-from geotech_references.dm7_2 import chapter4 as dm7_2_ch4
-from geotech_references.dm7_2 import chapter5 as dm7_2_ch5
-from geotech_references.dm7_2 import chapter6 as dm7_2_ch6
-from geotech_references.dm7_2 import chapter7 as dm7_2_ch7
-
-
-# ---------------------------------------------------------------------------
-# Chapter metadata for categorization
-# ---------------------------------------------------------------------------
-CHAPTER_INFO = {
-    "dm7_1_ch1": {
-        "module": dm7_1_ch1,
-        "category": "DM7.1 Ch1 - Identification & Classification",
-        "reference": "UFC 3-220-10, Chapter 1",
-    },
-    "dm7_1_ch2": {
-        "module": dm7_1_ch2,
-        "category": "DM7.1 Ch2 - Field Exploration & Testing",
-        "reference": "UFC 3-220-10, Chapter 2",
-    },
-    "dm7_1_ch3": {
-        "module": dm7_1_ch3,
-        "category": "DM7.1 Ch3 - Laboratory Testing",
-        "reference": "UFC 3-220-10, Chapter 3",
-    },
-    "dm7_1_ch4": {
-        "module": dm7_1_ch4,
-        "category": "DM7.1 Ch4 - Distribution of Stresses",
-        "reference": "UFC 3-220-10, Chapter 4",
-    },
-    "dm7_1_ch5": {
-        "module": dm7_1_ch5,
-        "category": "DM7.1 Ch5 - Consolidation & Settlement",
-        "reference": "UFC 3-220-10, Chapter 5",
-    },
-    "dm7_1_ch6": {
-        "module": dm7_1_ch6,
-        "category": "DM7.1 Ch6 - Seepage & Drainage",
-        "reference": "UFC 3-220-10, Chapter 6",
-    },
-    "dm7_1_ch7": {
-        "module": dm7_1_ch7,
-        "category": "DM7.1 Ch7 - Slope Stability",
-        "reference": "UFC 3-220-10, Chapter 7",
-    },
-    "dm7_1_ch8": {
-        "module": dm7_1_ch8,
-        "category": "DM7.1 Ch8 - Correlations for Soil Properties",
-        "reference": "UFC 3-220-10, Chapter 8",
-    },
-    "dm7_2_pro": {
-        "module": dm7_2_pro,
-        "category": "DM7.2 Prologue - Shear Strength",
-        "reference": "UFC 3-220-20, Prologue",
-    },
-    "dm7_2_ch2": {
-        "module": dm7_2_ch2,
-        "category": "DM7.2 Ch2 - Excavations & Retained Cuts",
-        "reference": "UFC 3-220-20, Chapter 2",
-    },
-    "dm7_2_ch3": {
-        "module": dm7_2_ch3,
-        "category": "DM7.2 Ch3 - Earthwork & Compaction",
-        "reference": "UFC 3-220-20, Chapter 3",
-    },
-    "dm7_2_ch4": {
-        "module": dm7_2_ch4,
-        "category": "DM7.2 Ch4 - Rigid Retaining Structures",
-        "reference": "UFC 3-220-20, Chapter 4",
-    },
-    "dm7_2_ch5": {
-        "module": dm7_2_ch5,
-        "category": "DM7.2 Ch5 - Shallow Foundations",
-        "reference": "UFC 3-220-20, Chapter 5",
-    },
-    "dm7_2_ch6": {
-        "module": dm7_2_ch6,
-        "category": "DM7.2 Ch6 - Deep Foundations",
-        "reference": "UFC 3-220-20, Chapter 6",
-    },
-    "dm7_2_ch7": {
-        "module": dm7_2_ch7,
-        "category": "DM7.2 Ch7 - Probability & Reliability",
-        "reference": "UFC 3-220-20, Chapter 7",
-    },
-}
+_METHOD_REGISTRY = None
+_METHOD_INFO = None
 
 
 # ---------------------------------------------------------------------------
@@ -170,129 +74,235 @@ def _param_type_str(annotation) -> str:
 
 
 # ---------------------------------------------------------------------------
-# Auto-build METHOD_REGISTRY and METHOD_INFO
+# Lazy registry loader — imports geotech_references only when first called
 # ---------------------------------------------------------------------------
-METHOD_REGISTRY = {}  # method_name -> callable
-METHOD_INFO = {}      # method_name -> {category, brief, reference, parameters, returns}
+def _load_registry():
+    """Import all DM7 chapter modules and auto-build METHOD_REGISTRY/METHOD_INFO."""
+    global _METHOD_REGISTRY, _METHOD_INFO
+    if _METHOD_REGISTRY is not None:
+        return _METHOD_REGISTRY, _METHOD_INFO
 
-_name_collisions = {}  # track duplicate names across chapters
+    # --- lazy imports (not available at Foundry discovery time) ---
+    from geotech_references.dm7_1 import chapter1 as dm7_1_ch1
+    from geotech_references.dm7_1 import chapter2 as dm7_1_ch2
+    from geotech_references.dm7_1 import chapter3 as dm7_1_ch3
+    from geotech_references.dm7_1 import chapter4 as dm7_1_ch4
+    from geotech_references.dm7_1 import chapter5 as dm7_1_ch5
+    from geotech_references.dm7_1 import chapter6 as dm7_1_ch6
+    from geotech_references.dm7_1 import chapter7 as dm7_1_ch7
+    from geotech_references.dm7_1 import chapter8 as dm7_1_ch8
 
-for _ch_key, _ch_meta in CHAPTER_INFO.items():
-    _mod = _ch_meta["module"]
-    _cat = _ch_meta["category"]
-    _ref = _ch_meta["reference"]
+    from geotech_references.dm7_2 import prologue as dm7_2_pro
+    from geotech_references.dm7_2 import chapter2 as dm7_2_ch2
+    from geotech_references.dm7_2 import chapter3 as dm7_2_ch3
+    from geotech_references.dm7_2 import chapter4 as dm7_2_ch4
+    from geotech_references.dm7_2 import chapter5 as dm7_2_ch5
+    from geotech_references.dm7_2 import chapter6 as dm7_2_ch6
+    from geotech_references.dm7_2 import chapter7 as dm7_2_ch7
 
-    for _name, _func in inspect.getmembers(_mod, inspect.isfunction):
-        if _name.startswith("_"):
-            continue
+    CHAPTER_INFO = {
+        "dm7_1_ch1": {
+            "module": dm7_1_ch1,
+            "category": "DM7.1 Ch1 - Identification & Classification",
+            "reference": "UFC 3-220-10, Chapter 1",
+        },
+        "dm7_1_ch2": {
+            "module": dm7_1_ch2,
+            "category": "DM7.1 Ch2 - Field Exploration & Testing",
+            "reference": "UFC 3-220-10, Chapter 2",
+        },
+        "dm7_1_ch3": {
+            "module": dm7_1_ch3,
+            "category": "DM7.1 Ch3 - Laboratory Testing",
+            "reference": "UFC 3-220-10, Chapter 3",
+        },
+        "dm7_1_ch4": {
+            "module": dm7_1_ch4,
+            "category": "DM7.1 Ch4 - Distribution of Stresses",
+            "reference": "UFC 3-220-10, Chapter 4",
+        },
+        "dm7_1_ch5": {
+            "module": dm7_1_ch5,
+            "category": "DM7.1 Ch5 - Consolidation & Settlement",
+            "reference": "UFC 3-220-10, Chapter 5",
+        },
+        "dm7_1_ch6": {
+            "module": dm7_1_ch6,
+            "category": "DM7.1 Ch6 - Seepage & Drainage",
+            "reference": "UFC 3-220-10, Chapter 6",
+        },
+        "dm7_1_ch7": {
+            "module": dm7_1_ch7,
+            "category": "DM7.1 Ch7 - Slope Stability",
+            "reference": "UFC 3-220-10, Chapter 7",
+        },
+        "dm7_1_ch8": {
+            "module": dm7_1_ch8,
+            "category": "DM7.1 Ch8 - Correlations for Soil Properties",
+            "reference": "UFC 3-220-10, Chapter 8",
+        },
+        "dm7_2_pro": {
+            "module": dm7_2_pro,
+            "category": "DM7.2 Prologue - Shear Strength",
+            "reference": "UFC 3-220-20, Prologue",
+        },
+        "dm7_2_ch2": {
+            "module": dm7_2_ch2,
+            "category": "DM7.2 Ch2 - Excavations & Retained Cuts",
+            "reference": "UFC 3-220-20, Chapter 2",
+        },
+        "dm7_2_ch3": {
+            "module": dm7_2_ch3,
+            "category": "DM7.2 Ch3 - Earthwork & Compaction",
+            "reference": "UFC 3-220-20, Chapter 3",
+        },
+        "dm7_2_ch4": {
+            "module": dm7_2_ch4,
+            "category": "DM7.2 Ch4 - Rigid Retaining Structures",
+            "reference": "UFC 3-220-20, Chapter 4",
+        },
+        "dm7_2_ch5": {
+            "module": dm7_2_ch5,
+            "category": "DM7.2 Ch5 - Shallow Foundations",
+            "reference": "UFC 3-220-20, Chapter 5",
+        },
+        "dm7_2_ch6": {
+            "module": dm7_2_ch6,
+            "category": "DM7.2 Ch6 - Deep Foundations",
+            "reference": "UFC 3-220-20, Chapter 6",
+        },
+        "dm7_2_ch7": {
+            "module": dm7_2_ch7,
+            "category": "DM7.2 Ch7 - Probability & Reliability",
+            "reference": "UFC 3-220-20, Chapter 7",
+        },
+    }
 
-        # Skip functions that take Callable parameters (can't pass via JSON)
-        if _has_callable_param(_func):
-            continue
+    # Auto-build registries
+    registry = {}   # method_name -> callable
+    info = {}       # method_name -> {category, brief, reference, parameters, returns}
+    _name_collisions = {}  # track duplicate names across chapters
 
-        # Handle name collisions by prefixing with chapter
-        if _name in METHOD_REGISTRY:
-            # Rename existing entry if not already renamed
-            if _name in _name_collisions:
-                _existing_key = _name_collisions[_name]
+    for _ch_key, _ch_meta in CHAPTER_INFO.items():
+        _mod = _ch_meta["module"]
+        _cat = _ch_meta["category"]
+        _ref = _ch_meta["reference"]
+
+        for _name, _func in inspect.getmembers(_mod, inspect.isfunction):
+            if _name.startswith("_"):
+                continue
+
+            # Skip functions that take Callable parameters (can't pass via JSON)
+            if _has_callable_param(_func):
+                continue
+
+            # Handle name collisions by prefixing with chapter
+            if _name in registry:
+                # Rename existing entry if not already renamed
+                if _name in _name_collisions:
+                    _existing_key = _name_collisions[_name]
+                else:
+                    # First collision: rename the existing entry
+                    _existing_key = _ch_key.split("_ch")[0] + "_" + _name
+                    # But we need the original chapter key... store it
+                    _existing_key = None
+                    for _prev_ch_key, _prev_meta in CHAPTER_INFO.items():
+                        if _prev_ch_key == _ch_key:
+                            break
+                        _prev_mod = _prev_meta["module"]
+                        if hasattr(_prev_mod, _name) and getattr(_prev_mod, _name) is registry[_name]:
+                            _existing_key = _prev_ch_key
+                            break
+                    if _existing_key:
+                        _new_name_existing = f"{_existing_key}_{_name}"
+                        registry[_new_name_existing] = registry.pop(_name)
+                        info[_new_name_existing] = info.pop(_name)
+                        _name_collisions[_name] = _new_name_existing
+
+                # Add new entry with chapter prefix
+                _qualified_name = f"{_ch_key}_{_name}"
+                registry[_qualified_name] = _func
             else:
-                # First collision: rename the existing entry
-                _existing_key = _ch_key.split("_ch")[0] + "_" + _name
-                # But we need the original chapter key... store it
-                _existing_key = None
-                for _prev_ch_key, _prev_meta in CHAPTER_INFO.items():
-                    if _prev_ch_key == _ch_key:
-                        break
-                    _prev_mod = _prev_meta["module"]
-                    if hasattr(_prev_mod, _name) and getattr(_prev_mod, _name) is METHOD_REGISTRY[_name]:
-                        _existing_key = _prev_ch_key
-                        break
-                if _existing_key:
-                    _new_name_existing = f"{_existing_key}_{_name}"
-                    METHOD_REGISTRY[_new_name_existing] = METHOD_REGISTRY.pop(_name)
-                    METHOD_INFO[_new_name_existing] = METHOD_INFO.pop(_name)
-                    _name_collisions[_name] = _new_name_existing
+                _qualified_name = _name
+                registry[_name] = _func
 
-            # Add new entry with chapter prefix
-            _qualified_name = f"{_ch_key}_{_name}"
-            METHOD_REGISTRY[_qualified_name] = _func
-        else:
-            _qualified_name = _name
-            METHOD_REGISTRY[_name] = _func
+            # Extract docstring
+            _doc = inspect.getdoc(_func) or ""
 
-        # Extract docstring
-        _doc = inspect.getdoc(_func) or ""
+            # Extract first paragraph as brief (handles multi-line summaries)
+            _desc_lines = []
+            for _line in _doc.split("\n"):
+                if _line.strip() == "":
+                    break
+                _desc_lines.append(_line.strip())
+            _brief = " ".join(_desc_lines) if _desc_lines else "No description available."
 
-        # Extract first paragraph as brief (handles multi-line summaries)
-        _desc_lines = []
-        for _line in _doc.split("\n"):
-            if _line.strip() == "":
-                break
-            _desc_lines.append(_line.strip())
-        _brief = " ".join(_desc_lines) if _desc_lines else "No description available."
+            # Extract parameters from signature
+            _sig = inspect.signature(_func)
+            _params = {}
 
-        # Extract parameters from signature
-        _sig = inspect.signature(_func)
-        _params = {}
+            # Parse numpy-style docstring for parameter descriptions
+            _param_descs = {}
+            _doc_lines = _doc.split("\n")
+            _in_params = False
+            _current_param = None
+            for _dline in _doc_lines:
+                _stripped = _dline.strip()
+                if _stripped.lower() in ("parameters", "parameters:", "args", "args:"):
+                    _in_params = True
+                    continue
+                if _stripped.startswith("---"):
+                    continue
+                if _stripped.lower() in ("returns", "returns:", "raises", "raises:",
+                                         "examples", "examples:", "notes", "notes:",
+                                         "references", "references:"):
+                    _in_params = False
+                    _current_param = None
+                    continue
+                if _in_params:
+                    # Check if this line declares a parameter (name : type)
+                    if " : " in _stripped:
+                        _current_param = _stripped.split(" : ")[0].strip()
+                        _param_descs[_current_param] = ""
+                    elif _current_param and _stripped:
+                        # Continuation line — append to current param description
+                        if _param_descs[_current_param]:
+                            _param_descs[_current_param] += " " + _stripped
+                        else:
+                            _param_descs[_current_param] = _stripped
 
-        # Parse numpy-style docstring for parameter descriptions
-        _param_descs = {}
-        _doc_lines = _doc.split("\n")
-        _in_params = False
-        _current_param = None
-        for _dline in _doc_lines:
-            _stripped = _dline.strip()
-            if _stripped.lower() in ("parameters", "parameters:", "args", "args:"):
-                _in_params = True
-                continue
-            if _stripped.startswith("---"):
-                continue
-            if _stripped.lower() in ("returns", "returns:", "raises", "raises:",
-                                     "examples", "examples:", "notes", "notes:",
-                                     "references", "references:"):
-                _in_params = False
-                _current_param = None
-                continue
-            if _in_params:
-                # Check if this line declares a parameter (name : type)
-                if " : " in _stripped:
-                    _current_param = _stripped.split(" : ")[0].strip()
-                    _param_descs[_current_param] = ""
-                elif _current_param and _stripped:
-                    # Continuation line — append to current param description
-                    if _param_descs[_current_param]:
-                        _param_descs[_current_param] += " " + _stripped
-                    else:
-                        _param_descs[_current_param] = _stripped
+            for _pname, _p in _sig.parameters.items():
+                _pinfo = {
+                    "type": _param_type_str(_p.annotation),
+                    "required": _p.default is inspect.Parameter.empty,
+                }
+                if _p.default is not inspect.Parameter.empty:
+                    _pinfo["default"] = _p.default
+                if _pname in _param_descs and _param_descs[_pname]:
+                    _pinfo["description"] = _param_descs[_pname]
 
-        for _pname, _p in _sig.parameters.items():
-            _pinfo = {
-                "type": _param_type_str(_p.annotation),
-                "required": _p.default is inspect.Parameter.empty,
+                _params[_pname] = _pinfo
+
+            # Extract return type from signature annotation
+            _ret_ann = _sig.return_annotation
+            _returns_str = ""
+            if _ret_ann is not inspect.Parameter.empty:
+                _returns_str = _param_type_str(_ret_ann)
+
+            _method_info = {
+                "category": _cat,
+                "brief": _brief,
+                "reference": _ref,
+                "parameters": _params,
             }
-            if _p.default is not inspect.Parameter.empty:
-                _pinfo["default"] = _p.default
-            if _pname in _param_descs and _param_descs[_pname]:
-                _pinfo["description"] = _param_descs[_pname]
+            if _returns_str:
+                _method_info["returns"] = _returns_str
 
-            _params[_pname] = _pinfo
+            info[_qualified_name] = _method_info
 
-        # Extract return type from signature annotation
-        _ret_ann = _sig.return_annotation
-        _returns_str = ""
-        if _ret_ann is not inspect.Parameter.empty:
-            _returns_str = _param_type_str(_ret_ann)
-
-        _method_info = {
-            "category": _cat,
-            "brief": _brief,
-            "reference": _ref,
-            "parameters": _params,
-        }
-        if _returns_str:
-            _method_info["returns"] = _returns_str
-
-        METHOD_INFO[_qualified_name] = _method_info
+    _METHOD_REGISTRY = registry
+    _METHOD_INFO = info
+    return _METHOD_REGISTRY, _METHOD_INFO
 
 
 # ---------------------------------------------------------------------------
@@ -340,6 +350,8 @@ def dm7_agent(method: str, parameters_json: str) -> str:
     Returns:
         JSON string with the calculation result or an error message.
     """
+    METHOD_REGISTRY, METHOD_INFO = _load_registry()
+
     try:
         parameters = json.loads(parameters_json)
     except (json.JSONDecodeError, TypeError) as e:
@@ -386,6 +398,8 @@ def dm7_list_methods(category: str = "") -> str:
     Returns:
         JSON string with method names grouped by chapter/category.
     """
+    METHOD_REGISTRY, METHOD_INFO = _load_registry()
+
     result = {}
     for method_name, info in METHOD_INFO.items():
         cat = info["category"]
@@ -409,6 +423,8 @@ def dm7_describe_method(method: str) -> str:
     Returns:
         JSON string with parameters, types, defaults, and description.
     """
+    METHOD_REGISTRY, METHOD_INFO = _load_registry()
+
     if method not in METHOD_INFO:
         matches = [m for m in METHOD_INFO if method.lower() in m.lower()]
         if matches:

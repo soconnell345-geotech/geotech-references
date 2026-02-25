@@ -21,33 +21,14 @@ except ImportError:
         return fn
 
 # ---------------------------------------------------------------------------
-# Import NOAA frost modules
+# Lazy registry — defers geotech_references imports until first call
 # ---------------------------------------------------------------------------
-from geotech_references.noaa_frost import equations
-from geotech_references.noaa_frost import tables
-
-
-# ---------------------------------------------------------------------------
-# Build METHOD_REGISTRY and METHOD_INFO
-# ---------------------------------------------------------------------------
-METHOD_REGISTRY = {}
-METHOD_INFO = {}
-
-# --- Equation and table lookup functions ---
-_LOOKUP_MODULES = [
-    (equations, "equations", "Stefan/Berggren frost depth equations"),
-    (tables, "tables", "Kersten/Farouki soil thermal properties"),
-]
-
-for _mod, _category_prefix, _ref in _LOOKUP_MODULES:
-    for _name, _func in inspect.getmembers(_mod, inspect.isfunction):
-        if _name.startswith("_"):
-            continue
-        METHOD_REGISTRY[_name] = _func
+_METHOD_REGISTRY = None
+_METHOD_INFO = None
 
 
 # ---------------------------------------------------------------------------
-# Build METHOD_INFO with parameter details
+# Helper functions (no geotech_references dependency)
 # ---------------------------------------------------------------------------
 
 def _param_type_str(annotation) -> str:
@@ -132,13 +113,32 @@ def _extract_info(func, category: str, reference: str) -> dict:
     return info
 
 
-# Equation and table methods
-for _mod, _category_prefix, _ref in _LOOKUP_MODULES:
-    for _name, _func in inspect.getmembers(_mod, inspect.isfunction):
-        if _name.startswith("_"):
-            continue
-        cat = f"NOAA Frost {_category_prefix.title()}"
-        METHOD_INFO[_name] = _extract_info(_func, cat, _ref)
+def _load_registry():
+    """Lazily import geotech_references and build registries on first call."""
+    global _METHOD_REGISTRY, _METHOD_INFO
+    if _METHOD_REGISTRY is not None:
+        return _METHOD_REGISTRY, _METHOD_INFO
+
+    from geotech_references.noaa_frost import equations
+    from geotech_references.noaa_frost import tables
+
+    _METHOD_REGISTRY = {}
+    _METHOD_INFO = {}
+
+    _lookup_modules = [
+        (equations, "equations", "Stefan/Berggren frost depth equations"),
+        (tables, "tables", "Kersten/Farouki soil thermal properties"),
+    ]
+
+    for _mod, _category_prefix, _ref in _lookup_modules:
+        for _name, _func in inspect.getmembers(_mod, inspect.isfunction):
+            if _name.startswith("_"):
+                continue
+            _METHOD_REGISTRY[_name] = _func
+            cat = f"NOAA Frost {_category_prefix.title()}"
+            _METHOD_INFO[_name] = _extract_info(_func, cat, _ref)
+
+    return _METHOD_REGISTRY, _METHOD_INFO
 
 
 # ---------------------------------------------------------------------------
@@ -171,6 +171,7 @@ def noaa_frost_agent(method: str, parameters_json: str) -> str:
     Returns:
         JSON string with the result or an error message.
     """
+    METHOD_REGISTRY, METHOD_INFO = _load_registry()
     try:
         parameters = json.loads(parameters_json)
     except (json.JSONDecodeError, TypeError) as e:
@@ -215,6 +216,7 @@ def noaa_frost_list_methods(category: str = "") -> str:
     Returns:
         JSON string with method names grouped by category.
     """
+    METHOD_REGISTRY, METHOD_INFO = _load_registry()
     result = {}
     for method_name, info in METHOD_INFO.items():
         cat = info["category"]
@@ -240,6 +242,7 @@ def noaa_frost_describe_method(method: str) -> str:
     Returns:
         JSON string with parameters, types, defaults, and description.
     """
+    METHOD_REGISTRY, METHOD_INFO = _load_registry()
     if method not in METHOD_INFO:
         matches = [m for m in METHOD_INFO if method.lower() in m.lower()]
         if matches:
