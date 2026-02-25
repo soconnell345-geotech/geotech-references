@@ -36,7 +36,8 @@ Homepage = "https://github.com/soconnell345-geotech/geotech-references"
 Repository = "https://github.com/soconnell345-geotech/geotech-references"
 
 [tool.setuptools.packages.find]
-include = ["geotech_references*", "agents*"]
+include = ["geotech_references*"]
+exclude = ["agents*"]
 
 [tool.setuptools.package-data]
 geotech_references = ["*/text/*.json"]

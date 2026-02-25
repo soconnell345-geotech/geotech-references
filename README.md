@@ -10,7 +10,7 @@ pip install geotech-references
 
 ## Overview
 
-This package provides 477 digitized functions from major geotechnical engineering references, turning published figures, tables, and equations into callable Python code.
+This package provides 559 digitized functions from major geotechnical engineering references, turning published figures, tables, and equations into callable Python code.
 
 ```python
 from geotech_references.dm7_1.chapter1 import table_1_4_uscs_classification
@@ -44,7 +44,7 @@ print(result)  # {'symbol': 'SC', 'description': 'Clayey sand'}
 | `dm7_2.chapter6` | Retaining Structures | 37 |
 | `dm7_2.chapter7` | Slope Stability (Earth Structures) | 16 |
 
-### FHWA GEC Series (95 functions, 802 tests)
+### FHWA GEC Series & Micropile (95 functions, 802 tests)
 
 | Module | Reference | Functions |
 |--------|-----------|-----------|
@@ -55,6 +55,17 @@ print(result)  # {'symbol': 'SC', 'description': 'Clayey sand'}
 | `gec_12` | Driven Piles (FHWA-NHI-16-009) | 16 |
 | `gec_13` | Ground Modification (FHWA-NHI-16-027) | 10 |
 | `micropile` | Micropile Design (FHWA-NHI-05-039) | 14 |
+
+### FEMA, NOAA & UFC Standards (54 functions, 489 tests)
+
+| Module | Reference | Functions |
+|--------|-----------|-----------|
+| `fema_p2192` | FEMA P-2192 Seismic Design Category (2024) | 10 |
+| `noaa_frost` | NOAA Frost Protected Shallow Foundations | 9 |
+| `ufc_backfill` | UFC 3-220-04N Backfill for Subsurface Structures | 8 |
+| `ufc_dewatering` | UFC 3-220-05 Dewatering and Groundwater Control | 9 |
+| `ufc_expansive` | UFC 3-220-07 Foundations in Expansive Soils | 9 |
+| `ufc_pavement` | UFC 3-260-02 Pavement Design for Airfields | 9 |
 
 ### Text Retrieval
 
@@ -70,7 +81,7 @@ for section in results:
 
 ## Agents
 
-Pre-built Foundry-style agent wrappers are included for all 8 references:
+Pre-built Foundry-style agent wrappers are included for all 14 references in the `agents/` directory. These are standalone files for Palantir Foundry AIP Agent Studio — they are **not** part of the pip-installable `geotech-references` package. Copy them into your Foundry function repository as needed.
 
 ```python
 from agents.dm7_agent import dm7_agent, dm7_list_methods
