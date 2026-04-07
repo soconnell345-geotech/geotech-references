@@ -1,0 +1,115 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Geotech Reference Chapter",
+  "description": "Schema for structured chapter text JSON files used by geotech_references._retrieval. Mirrors the format established by gec_7/text/chapterNN.json.",
+  "type": "object",
+  "required": ["reference_id", "reference_title", "chapter", "chapter_title", "sections"],
+  "properties": {
+    "reference_id": {
+      "type": "string",
+      "description": "Short reference identifier (e.g., 'UFC 3-220-10', 'FHWA-NHI-14-007')."
+    },
+    "reference_title": {
+      "type": "string",
+      "description": "Full document title."
+    },
+    "volume": {
+      "type": ["integer", "null"],
+      "description": "Volume number for multi-volume references; null if single-volume."
+    },
+    "chapter": {
+      "type": "integer",
+      "description": "Chapter number. For prologue or front-matter, use 0."
+    },
+    "chapter_title": {
+      "type": "string"
+    },
+    "sections": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["section_id", "title", "body", "key_points", "equations", "figures", "tables", "applicability"],
+        "properties": {
+          "section_id": {
+            "type": "string",
+            "pattern": "^[0-9P]+(\\.[0-9]+)*$",
+            "description": "Hierarchical section identifier (e.g., '5.7.2', '7.2.1.3.1', or 'P.1' for prologue sections)."
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "body": {
+            "type": "string",
+            "minLength": 100,
+            "description": "Long-form narrative text from the source document."
+          },
+          "key_points": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 12,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 300
+            }
+          },
+          "equations": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "required": ["id", "description"],
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Equation label as it appears in the source (e.g., 'Eq. 5-12')."
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "implemented_in": {
+                      "type": ["string", "null"],
+                      "description": "Dotted path to the digitized Python function (e.g., 'dm7_1.chapter5.primary_consolidation_settlement_nc'), or null if not yet digitized."
+                    }
+                  }
+                },
+                {
+                  "type": "string",
+                  "description": "String summary form (legacy, used by gec_12 deep subsections)."
+                }
+              ]
+            }
+          },
+          "figures": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "Figure reference and caption (e.g., 'Figure 5-3: Compression curve construction')."
+            }
+          },
+          "tables": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "Table reference and caption."
+            }
+          },
+          "applicability": {
+            "type": "string",
+            "description": "One-sentence description of when this section applies."
+          },
+          "subsections": {
+            "type": "array",
+            "description": "Optional nested subsections following the same schema (used by gec_12 for deep hierarchies).",
+            "items": {
+              "$ref": "#/properties/sections/items"
+            }
+          }
+        }
+      }
+    }
+  }
+}
