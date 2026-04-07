@@ -1,79 +1,85 @@
 #!/usr/bin/env python3
 """
-build_chapter_text.py — Generic LLM-assisted PDF → chapter JSON pipeline.
+build_chapter_text.py — Section-level, parallel, tool_use-structured extraction
+pipeline from PDF to chapter JSON.
 
-Reads a manifest describing a reference's chapters and source PDF, splits the
-PDF by chapter using PyMuPDF, sends each chapter's text to Claude, and writes
-the resulting structured JSON to geotech_references/<package>/text/chapterNN.json.
+Architecture
+------------
+1. Read a reference's manifest (chapter page ranges, PDF path).
+2. For each chapter, walk the PDF outline to discover its top-level sections
+   (e.g., 4-1, 4-2, 4-3). Each top-level section becomes one extraction chunk.
+3. For each chunk: pull the text via PyMuPDF, call Claude Sonnet with a
+   forced tool_use call that returns a list of section/subsection dicts
+   conforming to the chapter schema.
+4. Merge the per-chunk section lists back into one chapter JSON and
+   post-process equation cross-references against the digitized
+   geotech_references equation module.
+5. Validate against the schema; write chapterNN.json.
 
-The output schema matches gec_7/text/chapterNN.json and is consumed by the
-existing geotech_references._retrieval module — once these files exist, the
-retrieve_section / search_sections / list_chapters / load_chapter functions
-work automatically.
+The extraction loop uses concurrent.futures.ThreadPoolExecutor so multiple
+section chunks run in parallel, bounded by --parallel (default 8).
+
+Output JSONs go to geotech_references/<package>/text/chapterNN.json and are
+consumed automatically by the _retrieval.py / _retrieval_db.py layer.
 
 Usage
 -----
-    # Discover chapter page ranges from the PDF outline and update the manifest
+    # Discover chapter page ranges from the PDF outline.
     python build_chapter_text.py discover scripts/manifests/dm7_1.json
 
-    # Extract one chapter (smoke test)
-    python build_chapter_text.py extract scripts/manifests/dm7_1.json --chapters 1
+    # Dry-run: split a single chapter into section chunks and print stats
+    # without calling the LLM.
+    python build_chapter_text.py extract scripts/manifests/dm7_1.json \
+        --chapters 4 --dry-run
 
-    # Extract all chapters
-    python build_chapter_text.py extract scripts/manifests/dm7_1.json
+    # Extract one chapter (section-parallel).
+    python build_chapter_text.py extract scripts/manifests/dm7_1.json \
+        --chapters 4
 
-    # Dry-run (split PDF, build prompts, do NOT call the LLM)
-    python build_chapter_text.py extract scripts/manifests/dm7_1.json --dry-run
+    # Extract everything.
+    python build_chapter_text.py extract scripts/manifests/dm7_1.json \
+        --parallel 8
 
 Environment
 -----------
-    ANTHROPIC_API_KEY   required for `extract` (not for `discover` or --dry-run)
-    CHAPTER_TEXT_MODEL  optional; defaults to claude-opus-4-6
-
-Phasing
--------
-This script is Phase 1 of the DM7 chapter text effort. Phase 2 is running it
-(human, with API key). Phase 3 is splitting the dm7 adapter and wiring text
-retrieval into Funhouse + Foundry. See the plan at
-~/.claude/plans/cozy-pondering-sutton.md.
+    ANTHROPIC_API_KEY      required for `extract`
+    CHAPTER_TEXT_MODEL     default: claude-sonnet-4-6
 """
 
 from __future__ import annotations
 
 import argparse
+import concurrent.futures as cf
 import importlib
 import inspect
 import json
 import os
 import re
 import sys
-import textwrap
+import threading
 import time
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
 # ---------------------------------------------------------------------------
-# Paths
+# Paths and defaults
 # ---------------------------------------------------------------------------
 SCRIPT_DIR = Path(__file__).resolve().parent
-REPO_DIR = SCRIPT_DIR.parent  # geotech-references/
+REPO_DIR = SCRIPT_DIR.parent
 PACKAGE_DIR = REPO_DIR / "geotech_references"
-SCHEMA_PATH = SCRIPT_DIR / "chapter_schema.json"
 
-DEFAULT_MODEL = os.environ.get("CHAPTER_TEXT_MODEL", "claude-opus-4-6")
-# Char budget for the user message. Claude Opus 4.6 has a 200k-token context
-# window (~800k chars), and the 1M-context variant has 5x that. We reserve
-# headroom for the system prompt, the instructions block, and the 16k-token
-# response, which leaves ~600k chars for chapter text on the standard model.
-# Chapters exceeding this cap are truncated; the auditor will flag missing
-# sections so the user can either split the chapter via the manifest or use
-# the 1M-context model.
-MAX_PROMPT_CHARS = 600_000
+DEFAULT_MODEL = os.environ.get("CHAPTER_TEXT_MODEL", "claude-sonnet-4-6")
+DEFAULT_PARALLEL = 4
+# Maximum chunk size before we recursively subdivide using deeper outline
+# levels. Empirically, chunks much larger than ~50k chars / ~20 pages cause
+# the model to silently emit empty section arrays under tool_use forcing.
+MAX_CHUNK_CHARS = 35_000
+MAX_CHUNK_PAGES = 15
 
 
 # ---------------------------------------------------------------------------
-# Manifest loading
+# Manifest
 # ---------------------------------------------------------------------------
 
 @dataclass
@@ -83,7 +89,7 @@ class ChapterSpec:
     page_start: int | None
     page_end: int | None
     equation_module: str | None
-    filename: str | None  # override for non-numeric chapters (e.g., "prologue")
+    filename: str | None = None
 
     @property
     def output_name(self) -> str:
@@ -157,403 +163,633 @@ class Manifest:
 
 
 # ---------------------------------------------------------------------------
-# PDF helpers (PyMuPDF, optional dep)
+# PyMuPDF helpers
 # ---------------------------------------------------------------------------
 
-def _import_fitz():
+def _fitz():
     try:
-        import fitz  # PyMuPDF
+        import fitz
         return fitz
     except ImportError:
-        sys.exit(
-            "PyMuPDF is required. Install with:\n"
-            "  pip install PyMuPDF\n"
-            "(or `pip install geotech-staff-engineer[pdf]` from the main repo)"
-        )
+        sys.exit("PyMuPDF required: pip install PyMuPDF")
 
 
 def discover_chapter_ranges(manifest: Manifest) -> Manifest:
-    """Use the PDF outline (bookmarks) to fill in chapter page_start/page_end.
-
-    Falls back to None for any chapter whose title cannot be matched in the
-    outline; the user must then fill those in by hand.
-    """
-    fitz = _import_fitz()
+    """Fill chapter page_start/page_end from PDF outline (level 1-2 entries)."""
+    fitz = _fitz()
     if not manifest.pdf_path.exists():
         sys.exit(f"PDF not found: {manifest.pdf_path}")
-
     doc = fitz.open(manifest.pdf_path)
     try:
-        toc = doc.get_toc(simple=True)  # list of [level, title, page]
+        toc = doc.get_toc(simple=True)
         n_pages = doc.page_count
     finally:
         doc.close()
-
     if not toc:
-        print(
-            "WARNING: PDF has no outline/bookmarks. Page ranges must be "
-            "filled in manually in the manifest.",
-            file=sys.stderr,
-        )
+        print("WARNING: PDF has no outline; fill manifest by hand.", file=sys.stderr)
         return manifest
-
-    # Build a flat list of (title, 1-indexed page) for top-level entries.
-    entries = [(title.strip(), page) for level, title, page in toc if level <= 2]
-
-    # Try to match each chapter title against an outline entry.
+    entries = [(t.strip(), p) for lvl, t, p in toc if lvl <= 2]
     matched: list[tuple[ChapterSpec, int]] = []
     for ch in manifest.chapters:
-        page = _match_chapter_in_toc(ch, entries)
+        page = _match_in_toc(ch, entries)
         if page is not None:
             matched.append((ch, page))
-
-    # Compute end pages from the *next* matched chapter's start, falling back
-    # to total page count for the last chapter.
-    matched_sorted = sorted(matched, key=lambda mc: mc[1])
-    starts: dict[int, int] = {}
-    for i, (ch, page) in enumerate(matched_sorted):
-        starts[ch.number] = page
-    ends: dict[int, int] = {}
-    for i, (ch, page) in enumerate(matched_sorted):
-        if i + 1 < len(matched_sorted):
-            ends[ch.number] = matched_sorted[i + 1][1] - 1
-        else:
-            ends[ch.number] = n_pages
-
-    # Apply to the manifest
+    matched.sort(key=lambda mc: mc[1])
+    for i, (ch, page) in enumerate(matched):
+        ch.page_start = page
+        ch.page_end = matched[i + 1][1] - 1 if i + 1 < len(matched) else n_pages
+        print(f"  ch {ch.number}: pp. {ch.page_start}-{ch.page_end} ({ch.title})")
     for ch in manifest.chapters:
-        if ch.number in starts:
-            ch.page_start = starts[ch.number]
-            ch.page_end = ends[ch.number]
-            print(f"  ch {ch.number}: pp. {ch.page_start}-{ch.page_end} ({ch.title})")
-        else:
-            print(
-                f"  ch {ch.number}: NOT FOUND in PDF outline ({ch.title})",
-                file=sys.stderr,
-            )
-
+        if ch.page_start is None:
+            print(f"  ch {ch.number}: NOT FOUND ({ch.title})", file=sys.stderr)
     return manifest
 
 
-def _match_chapter_in_toc(
-    ch: ChapterSpec, entries: list[tuple[str, int]]
-) -> int | None:
-    """Best-effort title match between a manifest chapter and PDF outline."""
-    title_lower = ch.title.lower()
-    title_words = set(re.findall(r"[a-z]+", title_lower))
+def _match_in_toc(ch: ChapterSpec, entries: list[tuple[str, int]]) -> int | None:
+    title_words = set(re.findall(r"[a-z]+", ch.title.lower()))
     if ch.filename == "prologue":
-        for entry_title, page in entries:
-            if "prologue" in entry_title.lower() or "preface" in entry_title.lower():
-                return page
+        for t, p in entries:
+            if "prologue" in t.lower() or "preface" in t.lower():
+                return p
         return None
-
-    chapter_pat = re.compile(rf"\bchapter\s*0*{ch.number}\b", re.IGNORECASE)
+    chap_pat = re.compile(rf"\bchapter\s*0*{ch.number}\b", re.IGNORECASE)
     best_score = 0
     best_page = None
-    for entry_title, page in entries:
-        et_lower = entry_title.lower()
+    for t, p in entries:
         score = 0
-        if chapter_pat.search(et_lower):
+        if chap_pat.search(t.lower()):
             score += 5
-        entry_words = set(re.findall(r"[a-z]+", et_lower))
-        common = title_words & entry_words
+        common = title_words & set(re.findall(r"[a-z]+", t.lower()))
         score += len(common)
         if score > best_score:
             best_score = score
-            best_page = page
-    if best_score >= 3:
-        return best_page
-    return None
+            best_page = p
+    return best_page if best_score >= 3 else None
 
 
-def extract_chapter_text(manifest: Manifest, ch: ChapterSpec) -> str:
-    """Pull the raw text of a chapter from the source PDF."""
+# ---------------------------------------------------------------------------
+# Section-level chunk discovery
+# ---------------------------------------------------------------------------
+
+@dataclass
+class SectionChunk:
+    """One top-level section of a chapter, destined for a single LLM call."""
+    chapter_num: int
+    chunk_label: str      # e.g. "4-1", "4-2"
+    chunk_title: str      # e.g. "Introduction", "Stress Conditions at a Point"
+    page_start: int       # 1-indexed
+    page_end: int
+    text: str             # pulled from PDF
+
+
+def discover_chunks(manifest: Manifest, ch: ChapterSpec) -> list[SectionChunk]:
+    """Walk the PDF outline inside a chapter's page range to find section
+    boundaries, recursively subdividing any chunk that exceeds size limits.
+    """
     if ch.page_start is None or ch.page_end is None:
-        sys.exit(
-            f"Chapter {ch.number} ({ch.title}) has no page range. Run "
-            f"`discover` first or fill in the manifest manually."
-        )
-    fitz = _import_fitz()
+        sys.exit(f"Chapter {ch.number} missing page range; run `discover` first.")
+
+    fitz = _fitz()
     doc = fitz.open(manifest.pdf_path)
     try:
-        pages_text = []
-        for page_num in range(ch.page_start - 1, ch.page_end):  # 0-indexed
-            page = doc[page_num]
-            pages_text.append(f"\n\n[PAGE {page_num + 1}]\n\n{page.get_text()}")
-        text = "".join(pages_text).strip()
+        toc = doc.get_toc(simple=True)
+        chunks = _split_range(
+            doc, toc, ch, ch.page_start, ch.page_end, min_level=2
+        )
+        if not chunks:
+            text = _pull_pages(doc, ch.page_start, ch.page_end)
+            chunks = [SectionChunk(
+                chapter_num=ch.number, chunk_label=_filename_label(ch),
+                chunk_title=ch.title, page_start=ch.page_start,
+                page_end=ch.page_end, text=text,
+            )]
+        return chunks
     finally:
         doc.close()
-    return text
+
+
+def _split_range(
+    doc, toc, ch: ChapterSpec, page_start: int, page_end: int, min_level: int
+) -> list[SectionChunk]:
+    """Split a page range using outline entries at `min_level`. Recursively
+    subdivides any resulting chunk that exceeds size limits using deeper
+    levels (min_level + 1)."""
+    inside = [
+        (lvl, title.strip(), page)
+        for lvl, title, page in toc
+        if page_start <= page <= page_end and lvl >= min_level
+    ]
+    if not inside:
+        text = _pull_pages(doc, page_start, page_end)
+        return [SectionChunk(
+            chapter_num=ch.number,
+            chunk_label=f"{ch.number}_p{page_start}-{page_end}",
+            chunk_title=f"{ch.title} (pp. {page_start}-{page_end})",
+            page_start=page_start, page_end=page_end, text=text,
+        )]
+
+    chunk_level = min(lvl for lvl, _, _ in inside)
+    starts = [(title, page) for lvl, title, page in inside if lvl == chunk_level]
+
+    # Group consecutive entries that share a start page (e.g., 4-1 and 4-2
+    # both at p 211) into a single chunk.
+    groups: list[list[tuple[str, int]]] = []
+    for entry in starts:
+        if groups and groups[-1][-1][1] == entry[1]:
+            groups[-1].append(entry)
+        else:
+            groups.append([entry])
+
+    raw_chunks: list[SectionChunk] = []
+    for i, group in enumerate(groups):
+        gs_page = group[0][1]
+        if i + 1 < len(groups):
+            ge_page = groups[i + 1][0][1] - 1
+        else:
+            ge_page = page_end
+        gs_page = max(gs_page, page_start)
+        ge_page = min(ge_page, page_end)
+        if gs_page > ge_page:
+            continue
+        labels = [_extract_section_label(t, ch.number) for t, _ in group]
+        titles = [t for t, _ in group]
+        label = "+".join(labels)
+        title = " | ".join(titles)
+        text = _pull_pages(doc, gs_page, ge_page)
+        raw_chunks.append(SectionChunk(
+            chapter_num=ch.number,
+            chunk_label=label,
+            chunk_title=title,
+            page_start=gs_page,
+            page_end=ge_page,
+            text=text,
+        ))
+
+    # Subdivide any oversized chunks using the next deeper outline level.
+    final_chunks: list[SectionChunk] = []
+    for c in raw_chunks:
+        n_pages = c.page_end - c.page_start + 1
+        if (len(c.text) > MAX_CHUNK_CHARS or n_pages > MAX_CHUNK_PAGES) and chunk_level < 5:
+            sub = _split_range(
+                doc, toc, ch, c.page_start, c.page_end,
+                min_level=chunk_level + 1,
+            )
+            # Sub-splits inherit a label prefix from the parent for clarity
+            for s in sub:
+                s.chunk_label = f"{c.chunk_label}>{s.chunk_label}"
+            # If subdivision didn't actually split (one big subsection),
+            # keep the original — no point in re-running an identical chunk.
+            if len(sub) > 1:
+                final_chunks.extend(sub)
+            else:
+                final_chunks.append(c)
+        else:
+            final_chunks.append(c)
+    return final_chunks
+
+
+def _pull_pages(doc, start: int, end: int) -> str:
+    pages = []
+    for i in range(start - 1, end):
+        pages.append(f"\n\n[PAGE {i + 1}]\n\n{doc[i].get_text()}")
+    return "".join(pages).strip()
+
+
+def _extract_section_label(title: str, chapter_num: int) -> str:
+    """Try to extract '4-1' / '4.1' style label from a TOC entry."""
+    # Match patterns like "4-1 Introduction" or "4.1 Scope"
+    m = re.match(r"^\s*(\d+[-.]\d+(?:\.\d+)*)\b", title)
+    if m:
+        return m.group(1)
+    # Fallback: use chapter number + title slug
+    slug = re.sub(r"[^a-z0-9]+", "_", title.lower())[:40]
+    return f"{chapter_num}_{slug}"
+
+
+def _filename_label(ch: ChapterSpec) -> str:
+    return ch.filename or f"chapter{ch.number}"
+
+
+# ---------------------------------------------------------------------------
+# Tool schema — the model is FORCED to emit a list of sections via tool_use
+# ---------------------------------------------------------------------------
+
+SECTION_SCHEMA = {
+    "type": "object",
+    "required": [
+        "section_id", "title", "summary", "body", "key_points",
+        "equations", "figures", "tables", "applicability",
+    ],
+    "properties": {
+        "section_id": {
+            "type": "string",
+            "description": "Hierarchical section id matching the source exactly. UFC uses hyphen-then-dot form (4-1, 4-2.1, 4-2.1.3). Prologue sections use P-1, P-2, etc.",
+        },
+        "title": {"type": "string"},
+        "summary": {
+            "type": "string",
+            "description": "300-500 characters. A tight summary of this section's content, suitable as a search hit preview. Do NOT just repeat the title — explain what the section covers and why it matters.",
+        },
+        "body": {
+            "type": "string",
+            "description": "The section's actual narrative text, lightly cleaned. Preserve technical content. Plain text only. Empty string allowed if the section is purely a container for subsections.",
+        },
+        "key_points": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "3-8 concise bullet points capturing the most important takeaways. Each <= 300 chars.",
+        },
+        "equations": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": ["id", "description"],
+                "properties": {
+                    "id": {"type": "string", "description": "Equation label from the source, e.g. 'Eq. 5-12'."},
+                    "description": {"type": "string"},
+                    "implemented_in": {"type": ["string", "null"]},
+                },
+            },
+        },
+        "figures": {"type": "array", "items": {"type": "string"}},
+        "tables": {"type": "array", "items": {"type": "string"}},
+        "applicability": {
+            "type": "string",
+            "description": "One sentence describing when this section applies. Be specific.",
+        },
+    },
+}
+
+EMIT_TOOL = {
+    "name": "emit_sections",
+    "description": (
+        "Emit the structured sections extracted from this chunk of chapter "
+        "text. Call this tool exactly once with a list of all sections found "
+        "in the chunk, in document order."
+    ),
+    "input_schema": {
+        "type": "object",
+        "required": ["sections"],
+        "properties": {
+            "sections": {
+                "type": "array",
+                "items": SECTION_SCHEMA,
+            },
+        },
+    },
+}
+
+EXTRACTION_SYSTEM_PROMPT = """\
+You are a technical document extraction assistant. Convert raw PDF text from \
+a geotechnical engineering reference into structured sections by calling the \
+emit_sections tool. Preserve the source content faithfully — no \
+paraphrasing of technical material, no skipped sections, no editorial \
+commentary. You are organizing content into a navigable structure, not \
+rewriting it."""
+
+
+def build_user_prompt(manifest: Manifest, chunk: SectionChunk) -> str:
+    vol = manifest.volume if manifest.volume is not None else "N/A"
+    return f"""\
+Reference: {manifest.reference_id} ({manifest.reference_title})
+Volume: {vol}
+Chapter: {chunk.chapter_num}
+Chunk: {chunk.chunk_label} — {chunk.chunk_title}
+Pages: {chunk.page_start}-{chunk.page_end}
+
+Walk this chunk top-to-bottom. Create one section object per numbered \
+section in the source. Container sections (e.g. "4-2 Stress Conditions at \
+a Point" whose children are 4-2.1, 4-2.2, ...) should still get their own \
+object, but can have an empty body if all their content is in the \
+subsections below them.
+
+Use the SOURCE section ids exactly (e.g. "4-2.1.1"). Do not invent ids, do \
+not renumber. If the source uses "4-1" format, keep it; do not convert to \
+"4.1".
+
+Summaries must be 300-500 chars and describe what the section covers \
+SPECIFICALLY — don't just restate the title. The summary is what a search \
+result card will show an engineer.
+
+Key points: 3-8 bullets, each <= 300 chars. Crisp technical takeaways.
+
+Equations: include every NUMBERED equation that appears in the source. \
+UFC documents use several conventions — treat ALL of these as equations:
+
+  1. Prose labels: "Equation 5-12" or "Eq. 5-12" introduces the formula
+  2. Bare parenthesized trailing labels: the formula appears, and then on \
+the same or next line a label like "(3-1)" or "(5-12)" marks it
+  3. Equation-number-then-colon format: "3-1  Relative compaction: ..."
+
+ALL three forms are numbered equations that must be extracted. Use the \
+canonical form "Eq. X-Y" as the id in your output, regardless of how the \
+source formats it. Set implemented_in to null — it will be populated by \
+post-processing.
+
+IMPORTANT — equations vs tables: entries like "Table 4-2" or "Table 5-3" \
+are TABLES, not equations, even when they contain formulas or coefficient \
+values. Put tables in the `tables` array. Do NOT put "Table X-Y" strings \
+in the `equations` array.
+
+Be exhaustive: if a section contains formulas labeled (3-1), (3-2), ..., \
+(3-5), all five must appear in the output. Every numbered equation the \
+source references must make it into some section's equations array. A \
+section may contain multiple equations; a single equation may appear in \
+multiple sections if cited from more than one place.
+
+Return by calling emit_sections ONCE with the full section list for this \
+chunk.
+
+===== BEGIN CHUNK TEXT =====
+
+{chunk.text}
+
+===== END CHUNK TEXT ====="""
+
+
+# ---------------------------------------------------------------------------
+# LLM call via tool_use
+# ---------------------------------------------------------------------------
+
+_client_lock = threading.Lock()
+_client: Any = None
+
+
+def _get_client():
+    global _client
+    with _client_lock:
+        if _client is None:
+            try:
+                import anthropic
+            except ImportError:
+                sys.exit("anthropic SDK required: pip install anthropic")
+            _client = anthropic.Anthropic()
+    return _client
+
+
+def extract_chunk_sections(
+    manifest: Manifest, chunk: SectionChunk, model: str
+) -> list[dict]:
+    """Call Claude with forced tool_use, retry on overload + empty-result.
+
+    Treats three failures equivalently as transient and retries with
+    jittered exponential backoff:
+      - exception from the SDK (network, 5xx, overload, rate limit)
+      - tool_use block missing entirely
+      - tool_use block returns 0 sections from a chunk with substantive
+        input text (>5k chars) — under load Claude sometimes "succeeds"
+        with an empty array instead of erroring
+    """
+    import random
+    client = _get_client()
+    user = build_user_prompt(manifest, chunk)
+    last_error: Exception | None = None
+    for attempt in range(5):
+        try:
+            resp = client.messages.create(
+                model=model,
+                max_tokens=16_000,
+                system=EXTRACTION_SYSTEM_PROMPT,
+                tools=[EMIT_TOOL],
+                tool_choice={"type": "tool", "name": "emit_sections"},
+                messages=[{"role": "user", "content": user}],
+            )
+            tool_block = None
+            for block in resp.content:
+                if getattr(block, "type", "") == "tool_use" and block.name == "emit_sections":
+                    tool_block = block
+                    break
+            if tool_block is None:
+                raise RuntimeError("model did not return an emit_sections tool_use block")
+
+            raw = tool_block.input.get("sections", [])
+            if not isinstance(raw, list):
+                raise RuntimeError(
+                    f"emit_sections returned sections as {type(raw).__name__}, not list"
+                )
+            valid = [s for s in raw if isinstance(s, dict)]
+            if len(valid) != len(raw):
+                dump_dir = PACKAGE_DIR / "_build_debug"
+                dump_dir.mkdir(exist_ok=True)
+                safe = re.sub(r"[^A-Za-z0-9._-]+", "_", chunk.chunk_label)
+                with open(dump_dir / f"{safe}.raw.json", "w", encoding="utf-8") as f:
+                    json.dump(raw, f, indent=2, default=str)
+                print(f"    WARNING [{chunk.chunk_label}]: dropped {len(raw) - len(valid)} non-dict items")
+            # Soft failure: empty result from a substantive chunk = retry
+            if not valid and len(chunk.text) > 5000:
+                raise RuntimeError(
+                    f"empty sections from a {len(chunk.text)}-char chunk "
+                    f"(likely overload / silent truncation)"
+                )
+            return valid
+        except Exception as e:
+            last_error = e
+            if attempt < 4:
+                # Jittered exponential backoff: 2, 4, 8, 16 seconds plus random 0-3s
+                sleep = (2 ** (attempt + 1)) + random.uniform(0, 3)
+                print(f"    [{chunk.chunk_label}] retry {attempt+1}/4 after {sleep:.1f}s ({type(e).__name__}: {str(e)[:80]})")
+                time.sleep(sleep)
+                continue
+            raise
+    raise last_error  # unreachable
 
 
 # ---------------------------------------------------------------------------
 # Equation cross-reference resolution
 # ---------------------------------------------------------------------------
 
-_EQ_NUMBER_PAT = re.compile(r"Eq(?:uation|\.)?\s*([0-9]+[-\u2013][0-9]+[a-z]?)", re.IGNORECASE)
+_EQ_NUM_PAT = re.compile(
+    r"Eq(?:uation|\.)?\s*([0-9]+[-\u2013][0-9]+[a-z]?)", re.IGNORECASE
+)
 
 
-def _normalize_eq_id(raw: str) -> str:
-    """Normalize an equation id like 'Eq. 5-12' or 'Equation 5\u201312' to '5-12'."""
-    m = _EQ_NUMBER_PAT.search(raw)
-    if m:
-        return m.group(1).replace("\u2013", "-")
-    return raw.strip().lstrip("Eq.").strip().replace("\u2013", "-")
+def _norm_eq(raw: str) -> str:
+    m = _EQ_NUM_PAT.search(raw)
+    return (m.group(1) if m else raw).replace("\u2013", "-").strip()
 
 
-def build_equation_index(equation_module_path: str) -> dict[str, str]:
-    """Map equation id (e.g. '5-12') → dotted function path.
-
-    Inspects the digitized equation module, looks at each public function's
-    docstring for an equation number reference, and builds a lookup index.
-    """
-    if not equation_module_path:
+def build_equation_index(equation_module: str | None) -> dict[str, str]:
+    if not equation_module:
         return {}
     try:
-        mod = importlib.import_module(equation_module_path)
-    except ImportError as e:
-        print(f"  WARNING: cannot import {equation_module_path}: {e}", file=sys.stderr)
+        mod = importlib.import_module(equation_module)
+    except ImportError:
         return {}
-
     index: dict[str, str] = {}
     for name, func in inspect.getmembers(mod, inspect.isfunction):
-        if name.startswith("_"):
-            continue
-        if getattr(func, "__module__", "") != mod.__name__:
+        if name.startswith("_") or getattr(func, "__module__", "") != mod.__name__:
             continue
         doc = inspect.getdoc(func) or ""
-        # Find all equation numbers cited in the docstring
-        for match in _EQ_NUMBER_PAT.finditer(doc):
-            eq_id = match.group(1).replace("\u2013", "-")
-            full_path = f"{equation_module_path}.{name}"
-            # First citation wins (avoid overwriting if a function references multiple)
-            index.setdefault(eq_id, full_path)
+        for m in _EQ_NUM_PAT.finditer(doc):
+            eid = m.group(1).replace("\u2013", "-")
+            index.setdefault(eid, f"{equation_module}.{name}")
     return index
 
 
-def inject_equation_links(chapter_json: dict, eq_index: dict[str, str]) -> dict:
-    """Walk a chapter dict and fill in `implemented_in` for matched equations."""
+def inject_links(sections: list[dict], eq_index: dict[str, str]) -> None:
     if not eq_index:
-        return chapter_json
-
-    def _walk(sections: list) -> None:
-        for section in sections:
-            equations = section.get("equations", [])
-            for i, eq in enumerate(equations):
-                if isinstance(eq, str):
-                    # Legacy string form — try to extract the id and convert to dict
-                    eq_id_norm = _normalize_eq_id(eq)
-                    if eq_id_norm in eq_index:
-                        equations[i] = {
-                            "id": eq.split(":")[0].strip(),
-                            "description": eq.split(":", 1)[1].strip() if ":" in eq else eq,
-                            "implemented_in": eq_index[eq_id_norm],
-                        }
-                elif isinstance(eq, dict):
-                    if eq.get("implemented_in") is None and eq.get("id"):
-                        eq_id_norm = _normalize_eq_id(eq["id"])
-                        if eq_id_norm in eq_index:
-                            eq["implemented_in"] = eq_index[eq_id_norm]
-            if "subsections" in section:
-                _walk(section["subsections"])
-
-    _walk(chapter_json.get("sections", []))
-    return chapter_json
-
-
-# ---------------------------------------------------------------------------
-# LLM extraction
-# ---------------------------------------------------------------------------
-
-EXTRACTION_SYSTEM_PROMPT = """\
-You are a technical document extraction assistant. You convert raw PDF text \
-of a geotechnical engineering chapter into a structured JSON document \
-following an exact schema. You preserve the source content faithfully — \
-no paraphrasing into your own words, no editorializing, no skipping sections. \
-Your job is to organize the source text into a navigable structure, not to \
-rewrite it."""
-
-
-def build_extraction_prompt(
-    manifest: Manifest, ch: ChapterSpec, chapter_text: str
-) -> str:
-    """Construct the user prompt for one chapter's extraction call."""
-    if len(chapter_text) > MAX_PROMPT_CHARS:
-        # Truncate with a clear marker; the model will still produce JSON for
-        # what it sees, and the auditor will flag missing sections.
-        chapter_text = (
-            chapter_text[:MAX_PROMPT_CHARS]
-            + "\n\n[TRUNCATED — CHAPTER EXCEEDS PROMPT WINDOW]"
-        )
-
-    return textwrap.dedent(f"""
-        Extract the following chapter from {manifest.reference_title} into structured JSON.
-
-        Reference: {manifest.reference_id}
-        Volume: {manifest.volume if manifest.volume is not None else "N/A"}
-        Chapter: {ch.number}
-        Chapter title: {ch.title}
-
-        OUTPUT REQUIREMENTS
-
-        Return a single JSON object with this exact top-level structure:
-
-        {{
-          "reference_id": "{manifest.reference_id}",
-          "reference_title": "{manifest.reference_title}",
-          "volume": {json.dumps(manifest.volume)},
-          "chapter": {ch.number},
-          "chapter_title": "{ch.title}",
-          "sections": [ ... ]
-        }}
-
-        Each entry in `sections` must have:
-          - section_id      : hierarchical id ("5.1", "5.7.2", "7.2.1.3.1", or "P.1" for prologue)
-          - title           : section heading from the source
-          - body            : narrative text from the section, lightly cleaned (preserve technical content)
-          - key_points      : 3-8 bullet points capturing the most important takeaways
-          - equations       : array of {{id, description, implemented_in}} objects for each equation
-                              referenced in the section. Use the source's equation id (e.g., "Eq. 5-12").
-                              Set implemented_in to null — it will be filled in by post-processing.
-          - figures         : array of strings like "Figure 5-3: caption"
-          - tables          : array of strings like "Table 5-2: caption"
-          - applicability   : one sentence describing when this section applies
-
-        EXTRACTION RULES
-
-        1. Walk the chapter top-to-bottom. Create one section object per numbered section
-           in the source. Do NOT skip sections, even short ones.
-        2. Section IDs must match the source numbering exactly. If the source has section
-           5.7.2.3, the section_id is "5.7.2.3".
-        3. The body should be the actual text from the section, NOT a summary. You may
-           remove page headers/footers and obvious OCR artifacts, but preserve all
-           technical content. Plain text only — no markdown, no LaTeX.
-        4. Equations appearing in the source go into the `equations` array. Use the
-           source's equation label as the `id`. The `description` should be a brief
-           plain-language description of what the equation computes (NOT a re-derivation
-           or restatement of the formula).
-        5. If a section has no equations/figures/tables, use an empty array — never null.
-        6. The `applicability` field is the most important field for the audit checker.
-           Make it specific (e.g., "Saturated, normally consolidated clays under
-           one-dimensional loading"), not generic ("Used in geotechnical design").
-        7. Output JSON ONLY. No prose before or after. No markdown code fences.
-
-        ===== BEGIN CHAPTER TEXT =====
-
-        {chapter_text}
-
-        ===== END CHAPTER TEXT =====
-
-        Return the JSON object now.
-    """).strip()
-
-
-def call_claude(system: str, user: str, model: str) -> str:
-    """Call Claude via the anthropic SDK and return the text response.
-
-    Requires ANTHROPIC_API_KEY in env.
-    """
-    try:
-        import anthropic
-    except ImportError:
-        sys.exit(
-            "anthropic SDK is required for `extract`. Install with:\n"
-            "  pip install anthropic"
-        )
-    client = anthropic.Anthropic()
-    resp = client.messages.create(
-        model=model,
-        max_tokens=16_000,
-        system=system,
-        messages=[{"role": "user", "content": user}],
-    )
-    text = "".join(
-        block.text for block in resp.content if getattr(block, "type", "") == "text"
-    )
-    return text.strip()
-
-
-def parse_llm_json(raw: str) -> dict:
-    """Extract and parse a JSON object from an LLM response, tolerating fences."""
-    text = raw.strip()
-    if text.startswith("```"):
-        # strip ```json ... ``` fences
-        text = re.sub(r"^```(?:json)?\s*", "", text)
-        text = re.sub(r"\s*```$", "", text)
-    try:
-        return json.loads(text)
-    except json.JSONDecodeError as e:
-        # Try to find the first { and last } and reparse
-        first = text.find("{")
-        last = text.rfind("}")
-        if first != -1 and last != -1 and last > first:
-            return json.loads(text[first : last + 1])
-        raise RuntimeError(f"LLM did not return valid JSON: {e}\n\n{text[:500]}")
+        return
+    for sec in sections:
+        for eq in sec.get("equations", []):
+            if isinstance(eq, dict) and not eq.get("implemented_in") and eq.get("id"):
+                nid = _norm_eq(eq["id"])
+                if nid in eq_index:
+                    eq["implemented_in"] = eq_index[nid]
 
 
 # ---------------------------------------------------------------------------
 # Schema validation
 # ---------------------------------------------------------------------------
 
-def validate_against_schema(chapter_json: dict) -> list[str]:
-    """Lightweight in-process validation. Returns a list of error messages.
+def _is_container(sid: str, sections: list, index: int) -> bool:
+    if not sid:
+        return False
+    for j in range(index + 1, len(sections)):
+        s = sections[j]
+        if not isinstance(s, dict):
+            continue
+        oid = s.get("section_id", "")
+        if oid.startswith(sid + ".") or oid.startswith(sid + "-"):
+            return True
+    return False
 
-    Avoids the jsonschema dep so the script runs with stdlib only.
-    """
+
+def validate_chapter(chapter_json: dict) -> list[str]:
     errors: list[str] = []
-    required_top = ["reference_id", "reference_title", "chapter", "chapter_title", "sections"]
-    for k in required_top:
+    for k in ("reference_id", "reference_title", "chapter", "chapter_title", "sections"):
         if k not in chapter_json:
             errors.append(f"missing top-level key: {k}")
     sections = chapter_json.get("sections", [])
     if not isinstance(sections, list) or not sections:
-        errors.append("sections must be a non-empty array")
+        errors.append("sections must be non-empty")
         return errors
+    seen: dict[str, int] = {}
     for i, sec in enumerate(sections):
         loc = f"sections[{i}]"
         if not isinstance(sec, dict):
             errors.append(f"{loc}: not an object")
             continue
-        for k in (
-            "section_id",
-            "title",
-            "body",
-            "key_points",
-            "equations",
-            "figures",
-            "tables",
-            "applicability",
-        ):
+        for k in ("section_id", "title", "summary", "body", "key_points",
+                  "equations", "figures", "tables", "applicability"):
             if k not in sec:
-                errors.append(f"{loc}: missing key '{k}'")
+                errors.append(f"{loc}: missing '{k}'")
         sid = sec.get("section_id", "")
-        if sid and not re.match(r"^[0-9P]+(\.[0-9]+)*$", sid):
-            errors.append(f"{loc}: section_id '{sid}' has invalid format")
-        if isinstance(sec.get("body"), str) and len(sec["body"]) < 100:
-            errors.append(f"{loc}: body is shorter than 100 chars (likely placeholder)")
-        kp = sec.get("key_points")
+        if sid:
+            seen[sid] = seen.get(sid, 0) + 1
+            if not re.match(r"^[0-9P]+([-.][0-9]+)*$", sid):
+                errors.append(f"{loc}: invalid section_id '{sid}'")
+        summary = sec.get("summary", "")
+        if isinstance(summary, str):
+            if len(summary) < 50:
+                errors.append(f"{loc} ({sid}): summary < 50 chars")
+            if len(summary) > 700:
+                errors.append(f"{loc} ({sid}): summary > 700 chars")
+        body = sec.get("body", "")
+        kp_list = sec.get("key_points", []) if isinstance(sec.get("key_points"), list) else []
+        has_substance = (
+            _is_container(sid, sections, i)
+            or (len(sec.get("summary", "")) >= 100 and len(kp_list) >= 2)
+        )
+        if isinstance(body, str) and len(body) < 100 and not has_substance:
+            errors.append(f"{loc} ({sid}): body < 100 chars with no summary/key_points backup")
+        kp = sec.get("key_points", [])
         if isinstance(kp, list):
             if not (1 <= len(kp) <= 12):
-                errors.append(f"{loc}: key_points has {len(kp)} items (expected 1-12)")
+                errors.append(f"{loc} ({sid}): key_points has {len(kp)} items")
             for j, p in enumerate(kp):
                 if not isinstance(p, str) or len(p) > 300:
-                    errors.append(f"{loc}.key_points[{j}]: invalid")
+                    errors.append(f"{loc} ({sid}).key_points[{j}] invalid")
+    dups = [s for s, n in seen.items() if n > 1]
+    if dups:
+        errors.append(f"duplicate section_ids: {dups}")
     return errors
 
 
 # ---------------------------------------------------------------------------
-# Commands
+# Extraction driver
 # ---------------------------------------------------------------------------
 
-def cmd_discover(manifest_path: Path) -> int:
-    print(f"Discovering chapter ranges from {manifest_path.name}...")
-    manifest = Manifest.load(manifest_path)
-    print(f"  PDF: {manifest.pdf_path}")
-    manifest = discover_chapter_ranges(manifest)
-    manifest.save(manifest_path)
-    print(f"\nManifest updated: {manifest_path}")
-    print("Review the page ranges above; fill in any NOT FOUND entries by hand.")
-    return 0
+def extract_chapter(
+    manifest: Manifest,
+    ch: ChapterSpec,
+    model: str,
+    parallel: int,
+    dry_run: bool,
+) -> tuple[dict | None, list[str]]:
+    """Extract one chapter in parallel across its section chunks.
+
+    Returns (chapter_json, errors). chapter_json is None if extraction
+    failed before validation.
+    """
+    chunks = discover_chunks(manifest, ch)
+    print(f"  chunks: {len(chunks)}")
+    for c in chunks:
+        print(f"    {c.chunk_label} ({c.page_end - c.page_start + 1} pp, "
+              f"{len(c.text):,} chars): {c.chunk_title}")
+
+    if dry_run:
+        return None, []
+
+    # Parallel extract
+    results: dict[int, list[dict]] = {}
+    errors: list[str] = []
+    t0 = time.time()
+    with cf.ThreadPoolExecutor(max_workers=parallel) as ex:
+        futures = {
+            ex.submit(extract_chunk_sections, manifest, c, model): i
+            for i, c in enumerate(chunks)
+        }
+        for fut in cf.as_completed(futures):
+            idx = futures[fut]
+            chunk = chunks[idx]
+            try:
+                secs = fut.result()
+                results[idx] = secs
+                print(f"    [{chunk.chunk_label}] OK — {len(secs)} sections")
+            except Exception as e:
+                print(f"    [{chunk.chunk_label}] FAIL — {type(e).__name__}: {e}")
+                errors.append(f"chunk {chunk.chunk_label}: {e}")
+                results[idx] = []
+    elapsed = time.time() - t0
+    print(f"  chapter elapsed: {elapsed:.1f}s")
+
+    # Merge in chunk order. Deduplicate on section_id — if the same id
+    # appears twice (occasional model repetition within a large chunk),
+    # keep whichever copy has the longer body.
+    merged: list[dict] = []
+    seen: dict[str, int] = {}
+    for i in range(len(chunks)):
+        for sec in results.get(i, []):
+            sid = sec.get("section_id") if isinstance(sec, dict) else None
+            if not sid:
+                merged.append(sec)
+                continue
+            if sid in seen:
+                prev_idx = seen[sid]
+                prev = merged[prev_idx]
+                if len(sec.get("body", "")) > len(prev.get("body", "")):
+                    merged[prev_idx] = sec
+                continue
+            seen[sid] = len(merged)
+            merged.append(sec)
+
+    # Inject equation cross-references
+    eq_index = build_equation_index(ch.equation_module)
+    inject_links(merged, eq_index)
+    print(f"  equation index: {len(eq_index)} entries")
+    print(f"  merged sections: {len(merged)}")
+
+    chapter_json = {
+        "reference_id": manifest.reference_id,
+        "reference_title": manifest.reference_title,
+        "volume": manifest.volume,
+        "chapter": ch.number,
+        "chapter_title": ch.title,
+        "sections": merged,
+    }
+    verrs = validate_chapter(chapter_json)
+    errors.extend(verrs)
+    return chapter_json, errors
 
 
 def cmd_extract(
@@ -561,125 +797,89 @@ def cmd_extract(
     chapter_filter: list[int] | None,
     dry_run: bool,
     model: str,
+    parallel: int,
 ) -> int:
     manifest = Manifest.load(manifest_path)
     output_dir = PACKAGE_DIR / manifest.package / "text"
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    chapters_to_run = manifest.chapters
+    to_run = manifest.chapters
     if chapter_filter:
-        chapters_to_run = [ch for ch in chapters_to_run if ch.number in chapter_filter]
-
-    if not chapters_to_run:
-        sys.exit(f"No chapters matched filter {chapter_filter}")
+        to_run = [c for c in to_run if c.number in chapter_filter]
+    if not to_run:
+        sys.exit(f"no chapters matched filter {chapter_filter}")
 
     print(f"Reference: {manifest.reference_title}")
-    print(f"Output dir: {output_dir}")
-    print(f"Chapters to extract: {[ch.number for ch in chapters_to_run]}")
-    print(f"Mode: {'DRY RUN (no LLM calls)' if dry_run else f'LIVE (model={model})'}")
+    print(f"Output: {output_dir}")
+    print(f"Chapters: {[c.number for c in to_run]}")
+    print(f"Mode: {'DRY RUN' if dry_run else f'LIVE (model={model}, parallel={parallel})'}")
     print()
 
-    failures: list[tuple[ChapterSpec, str]] = []
-
-    for ch in chapters_to_run:
+    total_errors = 0
+    for ch in to_run:
         print(f"--- Chapter {ch.number}: {ch.title} ---")
-        try:
-            text = extract_chapter_text(manifest, ch)
-            print(f"  source text: {len(text):,} chars")
-            prompt = build_extraction_prompt(manifest, ch, text)
-            print(f"  prompt: {len(prompt):,} chars")
-
-            if dry_run:
-                print("  [dry run — skipping LLM call]")
-                continue
-
-            t0 = time.time()
-            raw = call_claude(EXTRACTION_SYSTEM_PROMPT, prompt, model)
-            elapsed = time.time() - t0
-            print(f"  LLM call: {elapsed:.1f}s, {len(raw):,} chars returned")
-
-            chapter_json = parse_llm_json(raw)
-
-            # Inject equation cross-references
-            eq_index = build_equation_index(ch.equation_module)
-            chapter_json = inject_equation_links(chapter_json, eq_index)
-            print(f"  equation index: {len(eq_index)} entries")
-
-            # Validate
-            errs = validate_against_schema(chapter_json)
-            if errs:
-                print(f"  VALIDATION FAILED ({len(errs)} errors):")
-                for e in errs[:10]:
-                    print(f"    - {e}")
-                if len(errs) > 10:
-                    print(f"    ... and {len(errs) - 10} more")
-                failures.append((ch, "schema validation"))
-                # Save the raw output to a .draft file for inspection
-                draft_path = output_dir / f"{ch.output_name}.draft"
-                with open(draft_path, "w", encoding="utf-8") as f:
-                    json.dump(chapter_json, f, indent=2, ensure_ascii=False)
-                print(f"  draft saved: {draft_path}")
-                continue
-
-            output_path = output_dir / ch.output_name
-            with open(output_path, "w", encoding="utf-8") as f:
+        chapter_json, errs = extract_chapter(manifest, ch, model, parallel, dry_run)
+        if dry_run or chapter_json is None:
+            continue
+        if errs:
+            print(f"  VALIDATION: {len(errs)} errors")
+            for e in errs[:8]:
+                print(f"    - {e}")
+            if len(errs) > 8:
+                print(f"    ... and {len(errs) - 8} more")
+            draft = output_dir / f"{ch.output_name}.draft"
+            with open(draft, "w", encoding="utf-8") as f:
                 json.dump(chapter_json, f, indent=2, ensure_ascii=False)
-                f.write("\n")
-            print(f"  WRITTEN: {output_path}")
+            print(f"  draft saved: {draft}")
+            total_errors += len(errs)
+            continue
+        out = output_dir / ch.output_name
+        with open(out, "w", encoding="utf-8") as f:
+            json.dump(chapter_json, f, indent=2, ensure_ascii=False)
+            f.write("\n")
+        print(f"  WRITTEN: {out}")
+        print()
 
-        except Exception as e:
-            print(f"  ERROR: {type(e).__name__}: {e}", file=sys.stderr)
-            failures.append((ch, str(e)))
+    print(f"Done. {total_errors} total validation errors.")
+    return 1 if total_errors else 0
 
-    print()
-    print(f"Done. {len(chapters_to_run) - len(failures)} succeeded, "
-          f"{len(failures)} failed.")
-    if failures:
-        for ch, reason in failures:
-            print(f"  ch {ch.number}: {reason}")
-        return 1
+
+def cmd_discover(manifest_path: Path) -> int:
+    print(f"Discovering from {manifest_path.name}...")
+    manifest = Manifest.load(manifest_path)
+    print(f"  PDF: {manifest.pdf_path}")
+    manifest = discover_chapter_ranges(manifest)
+    manifest.save(manifest_path)
+    print(f"\nSaved: {manifest_path}")
     return 0
 
 
-# ---------------------------------------------------------------------------
-# CLI
-# ---------------------------------------------------------------------------
-
 def main() -> int:
-    parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
-    sub = parser.add_subparsers(dest="command", required=True)
+    ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
+    sub = ap.add_subparsers(dest="command", required=True)
 
-    p_disc = sub.add_parser("discover", help="Discover chapter page ranges from PDF outline")
-    p_disc.add_argument("manifest", type=Path)
+    pd = sub.add_parser("discover")
+    pd.add_argument("manifest", type=Path)
 
-    p_ext = sub.add_parser("extract", help="Extract chapter JSON from PDF")
-    p_ext.add_argument("manifest", type=Path)
-    p_ext.add_argument(
+    pe = sub.add_parser("extract")
+    pe.add_argument("manifest", type=Path)
+    pe.add_argument(
         "--chapters",
         type=lambda s: [int(x) for x in s.split(",")],
         default=None,
-        help="Comma-separated chapter numbers to extract (default: all)",
     )
-    p_ext.add_argument("--dry-run", action="store_true", help="Skip LLM calls")
-    p_ext.add_argument("--model", default=DEFAULT_MODEL, help=f"Model name (default: {DEFAULT_MODEL})")
+    pe.add_argument("--dry-run", action="store_true")
+    pe.add_argument("--model", default=DEFAULT_MODEL)
+    pe.add_argument("--parallel", type=int, default=DEFAULT_PARALLEL)
 
-    args = parser.parse_args()
-
-    manifest_path = args.manifest.resolve()
-    if not manifest_path.exists():
-        sys.exit(f"Manifest not found: {manifest_path}")
+    args = ap.parse_args()
+    mp = args.manifest.resolve()
+    if not mp.exists():
+        sys.exit(f"manifest not found: {mp}")
 
     if args.command == "discover":
-        return cmd_discover(manifest_path)
-    elif args.command == "extract":
-        return cmd_extract(
-            manifest_path=manifest_path,
-            chapter_filter=args.chapters,
-            dry_run=args.dry_run,
-            model=args.model,
-        )
-    else:
-        parser.error(f"unknown command: {args.command}")
+        return cmd_discover(mp)
+    return cmd_extract(mp, args.chapters, args.dry_run, args.model, args.parallel)
 
 
 if __name__ == "__main__":

@@ -13,8 +13,10 @@ geotech_references/           # Python package (pip install -e .)
   _retrieval.py                # Reference text retrieval (load, search, retrieve by section)
   dm7_1/                       # UFC 3-220-10 Soil Mechanics (8 chapters)
     chapter1.py ... chapter8.py
+    text/                      # Structured chapter JSON (8 chapters, 457 sections, 2026-04-07)
   dm7_2/                       # UFC 3-220-20 Foundations & Earth Structures (7 chapters)
     prologue.py, chapter2.py ... chapter7.py
+    text/                      # Structured chapter JSON (prologue + 6 chapters, 438 sections, 2026-04-07)
   gec_6/                       # FHWA-SA-02-054 Shallow Foundations
     tables.py, figures.py
     text/                      # Structured chapter JSON

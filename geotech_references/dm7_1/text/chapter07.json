@@ -1,0 +1,975 @@
+{
+  "reference_id": "UFC 3-220-10",
+  "reference_title": "UFC 3-220-10 Soil Mechanics",
+  "volume": 1,
+  "chapter": 7,
+  "chapter_title": "Slope Stability and Protection",
+  "sections": [
+    {
+      "section_id": "7-1",
+      "title": "Introduction",
+      "summary": "Introduces slope stability analysis as a core geotechnical engineering discipline, emphasizing that it combines statics, soil/rock mechanics, and numerical methods. Notes that solution methods range from simple chart solutions to complex computer analyses, and that shear strength is the most critical parameter. Distinguishes rock slope stability from soil slope stability, noting different failure modes.",
+      "body": "Slope stability analysis is a common category of analyses in geotechnical engineering practice. The analysis contains elements of statics, rock or soil mechanics, and numerical methods. The techniques used range from simple chart solutions to complicated numerical computer solutions. Regardless of the solution method employed, the most important element in slope stability analysis is the shear strength of the soil or rock.\n\nAlthough rock slope stability and soil slope stability rely on the same basic mechanics, the modes of failure can be very different. In this chapter, rock slope stability will be discussed in a separate stand-alone section.",
+      "key_points": [
+        "Slope stability analysis integrates statics, rock/soil mechanics, and numerical methods.",
+        "Solution techniques span from simple chart solutions to complex numerical computer methods.",
+        "Shear strength of soil or rock is the single most important parameter in slope stability analysis.",
+        "Rock and soil slope stability share basic mechanics but exhibit fundamentally different modes of failure.",
+        "Rock slope stability is treated in a separate stand-alone section within the chapter."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies whenever slope stability analysis is being conducted for any soil or rock slope in geotechnical engineering practice."
+    },
+    {
+      "section_id": "7-2",
+      "title": "Types of Slopes and Modes of Failure",
+      "summary": "Classifies slopes into natural slopes, cut/excavated slopes, and compacted embankments (highway fills, dams, levees, MSE slopes). Describes three principal failure modes—rotational circular arc, translational planar, and wedge displacement—plus secondary modes such as toppling, falls, block slides, lateral spreading, and debris flows. References Figures 7-1 and 7-2 for natural and embankment failure examples.",
+      "body": "There are many different categories of slopes. Natural slopes are those that are ungraded and the slope geometry is controlled by nature. Figure 7-1 shows some general cross-sections and failure conditions for natural slopes. If the slope is steepened by grading or excavation, it is called a cut, a cut slope or an excavated slope. Dam abutments can be natural slopes or cut slopes.\n\nEmbankments constructed of compacted soil form another category of slopes. These embankments can be highway embankments, dams and levees, fill slopes, Mechanically Stabilized Earth (MSE) slopes, and others. Figure 7-2 shows cross-sections through example embankment slopes and details about the failure conditions.\n\nPrincipal modes of failure in soil or rock are (i) rotation on a curved slip surface approximated by a circular arc, (ii) translation on a planar surface whose length is large compared to depth below ground, and (iii) displacement of a wedge-shaped mass along one or more planes of weakness. Other modes of failure include toppling of rock slopes, falls, block slides, lateral spreading, earth and mud flow in clayey and silty soils, and debris flows in coarse-grained soils. Figure 7-1 and 7-2 show examples of potential slope failure problems in both natural and man-made slopes.",
+      "key_points": [
+        "Slopes are categorized as natural (ungraded), cut/excavated, or compacted embankments (dams, levees, MSE slopes, highway fills).",
+        "Three principal failure modes: (1) rotational failure on a circular arc slip surface, (2) translational failure on a planar surface, (3) wedge displacement along planes of weakness.",
+        "Secondary failure modes include toppling, falls, block slides, lateral spreading, earth/mud flows (fine-grained soils), and debris flows (coarse-grained soils).",
+        "Dam abutments may be classified as either natural slopes or cut slopes.",
+        "Figures 7-1 and 7-2 illustrate typical failure conditions for natural slopes and embankment/cut slopes, respectively."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-1: Failure Conditions for Cross-sections through Natural Slopes",
+        "Figure 7-2: Failure Conditions in Embankment Foundations and Cut Slopes"
+      ],
+      "tables": [],
+      "applicability": "Applies when identifying the slope category and anticipated failure mode for any natural slope, cut slope, or compacted embankment being evaluated for stability."
+    },
+    {
+      "section_id": "7-3",
+      "title": "Definition of Factor of Safety",
+      "summary": "Defines the factor of safety (F) for slope stability as the ratio of shear strength (s) to shear stress required for equilibrium (τ), per Eq. 7-1. Explains stability conditions relative to F=1, and notes that the shear strength s depends on the strength model, soil type, and drainage conditions. References Table 7-1 for applicable strength models.",
+      "body": "The stability of slopes is characterized by the factor of safety, F. Although there have been various methods of defining the factor of safety found in the engineering literature, the most common is shown below:\n\nF = s/τ  (7-1)\n\nwhere:\ns = shear strength,\nτ = shear stress required for equilibrium.\n\nIf the factor of safety is equal to unity, the slope is in a condition of barely stable equilibrium, right at the point of failure. As the factor of safety increases above unity, the stability of the slope increases. Slopes having a factor of safety less than one are considered unstable.\n\nThe value of s used in the calculation of factor of safety depends on the strength model used to characterize the soil, which is often associated with the drainage conditions assumed as well as the soil type. Table 7-1 shows different strength models that can be used in the analyses for different soil types and drainage conditions.\n\nThe shear stress required for equilibrium (τ) is calculated by statics along with assumptions regarding the conditions for equilibrium and other factors. The number of unknowns exceeds the number of equilibrium equations in most forms of slope stability analysis, so assumptions must be made. A major difference in the various methods used to perform slope stability analyses is the conditions of equilibrium that are satisfied.",
+      "key_points": [
+        "Factor of safety F = s/τ, where s is shear strength and τ is shear stress required for equilibrium (Eq. 7-1).",
+        "F = 1 indicates barely stable equilibrium (onset of failure); F < 1 indicates instability.",
+        "The shear strength s depends on the strength model, soil type, and assumed drainage conditions.",
+        "Unknowns exceed equilibrium equations in most slope stability analyses, requiring assumptions.",
+        "Table 7-1 provides strength models for various soil types and drainage conditions."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 7-1",
+          "description": "Factor of safety defined as ratio of shear strength (s) to shear stress required for equilibrium (τ): F = s/τ",
+          "implemented_in": "geotech_references.dm7_1.chapter7.factor_of_safety"
+        }
+      ],
+      "figures": [],
+      "tables": [
+        "Table 7-1"
+      ],
+      "applicability": "Applies whenever a factor of safety for slope stability must be defined and calculated for any soil type or drainage condition."
+    },
+    {
+      "section_id": "7-4",
+      "title": "Methods of Analysis of Soil Slopes",
+      "summary": "Introduces the three principal numerical procedures used to assess slope stability: limit equilibrium analysis, finite element/finite difference analysis, and plasticity (limit) analysis. Provides historical context for development of quantitative slope stability methods beginning in the 1920s and notes varying degrees of practical popularity for each approach.",
+      "body": "Slope stability analysis in geotechnical engineering practice has evolved over the past 100 years. Initial methods of assessing the stability of slopes involved mapping areas of instability and determining slope angles from surveys to create landslide hazard maps. These types of maps are still produced and can be useful in screening potential stability issues with natural slopes and examining regional landslide risk. Beginning in the 1920s, assessment procedures were developed that provided a more quantitative basis for determining the stability of slopes.\n\nThree numerical procedures are used, with varying degrees of popularity, to assess the stability of slopes: (1) limit equilibrium analysis, (2) finite element and finite difference analysis, and (3) plasticity analysis.",
+      "key_points": [
+        "Three main numerical methods for slope stability: limit equilibrium, finite element/finite difference, and plasticity (limit) analysis.",
+        "Landslide hazard maps based on slope mapping remain useful for screening natural slopes and regional risk.",
+        "Quantitative slope stability assessment methods have been in development since the 1920s.",
+        "Methods differ in popularity and in how they handle the failure surface and equilibrium conditions."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when selecting an appropriate numerical method to assess the stability of soil slopes in geotechnical engineering practice."
+    },
+    {
+      "section_id": "7-4.1",
+      "title": "Limit Equilibrium Analysis",
+      "summary": "Describes limit equilibrium analysis (LEA) as the most popular slope stability method, involving division of the sliding mass into free bodies and applying force/moment equilibrium to determine τ and F via Eq. 7-1. Covers failure surface types, iteration requirements, Bishop's Simplified Method, and recommended methods (Spencer's; Morgenstern-Price) that satisfy all equilibrium conditions.",
+      "body": "Limit Equilibrium Analysis is the most popular method of analysis to quantify the stability of soil slopes. The procedure involves dividing the sliding mass into one or more free bodies, and determining the forces acting on the free bodies using equations for force and/or moment equilibrium. The shear stress required for a condition of barely-stable equilibrium (τ) is determined for each free body from the analysis of the system of free bodies. These shear stresses are used with Equation 7-1 to calculate the factor of safety of the slope.\n\nFigure 7-3 shows the division of slopes into one, three, and multiple free bodies for analysis using the limit equilibrium method. For these analyses, the failure surface can be linear, circular, or a combination of linear and arc segments. For most limit equilibrium analyses, assumptions must be made so that the equilibrium equations can be satisfied. In many cases, iteration must be performed to obtain a solution, and it takes a computer program to efficiently apply the analysis method.\n\nIn general, the most common methods used in practice assume that the failure surface is circular or a surface comprised of many line segments. The methods that solve for all conditions of equilibrium (force and moment) provide the most accurate answers. These include Spencer's Method (Spencer 1967) and the Morgenstern and Price Method (Morgenstern and Price 1963). Most of the commercially available computer programs can perform these two methods.\n\nIn some cases, the potential critical failure surface may be easily identified by a feature such as a thin weak seam. In most other cases, it is necessary to search for the critical failure surface. The common slope stability programs have very robust search routines for circular and noncircular failure surfaces.\n\nFigure 7-4 shows the formulas and calculations for a slope stability analysis using Bishop's Simplified Method. In this method, the soil mass is divided into vertical slices. The free body diagram for a slice is shown on the figure. This method uses circular failure surfaces, and the side forces are assumed to be horizontal. Moment equilibrium is satisfied, but only equations for vertical force equilibrium are used. Horizontal force equilibrium is not satisfied.",
+      "key_points": [
+        "Limit equilibrium analysis divides the sliding mass into free bodies and applies force/moment equilibrium to compute F using Eq. 7-1.",
+        "Failure surfaces can be linear, circular, or combined linear-arc; iteration and computer programs are generally required.",
+        "Spencer's Method and Morgenstern-Price Method satisfy all equilibrium conditions and provide the most accurate answers.",
+        "Bishop's Simplified Method uses circular failure surfaces, vertical slices, horizontal side forces, and satisfies moment and vertical force equilibrium only.",
+        "Critical failure surfaces can often be identified from geologic features (e.g., weak seams); otherwise robust search routines are used.",
+        "Most commercial slope stability programs include Spencer's and Morgenstern-Price methods and robust failure surface search routines."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 7-1",
+          "description": "Factor of safety used with shear stresses determined from limit equilibrium to compute slope stability: F = s/τ",
+          "implemented_in": "geotech_references.dm7_1.chapter7.factor_of_safety"
+        }
+      ],
+      "figures": [
+        "Figure 7-3",
+        "Figure 7-4"
+      ],
+      "tables": [],
+      "applicability": "Applies when performing quantitative slope stability analysis using the limit equilibrium approach, including selection of method, failure surface type, and use of computer programs."
+    },
+    {
+      "section_id": "7-4.2",
+      "title": "Finite Element Analysis of Slopes",
+      "summary": "Describes the finite element (FE) and finite difference methods for slope stability, which use a strength reduction factor (SRF) instead of the traditional factor of safety. The SRF reduces cohesion and tan(φ) until the solution no longer converges. Key advantages include automatic identification of the critical failure surface and full satisfaction of equilibrium equations.",
+      "body": "Use of finite element analysis to analyze slope stability is becoming more popular in geotechnical practice. A thorough assessment of the use of the finite element method is presented by Griffiths and Lane (1999). The finite difference method is an alternative to the finite element method, and both of these assess the slope in a similar fashion. Instead of calculating a factor of safety as defined by Equation 7-1, the finite element and finite difference solutions use a strength reduction factor (SRF). The SRF is a factor by which the cohesion (c) and the tangent of the friction angle (φ) are reduced to a point where the solution no longer converges. At the critical SRF, the displacements increase rapidly and the equations for equilibrium can no longer be solved.\n\nThe finite element method has a few advantages over the more common limit equilibrium method. The failure surface does not have to be identified prior to the analysis. The FE method actively seeks out the critical failure surface automatically as part of the analysis procedure. In addition, the equations for equilibrium are satisfied.",
+      "key_points": [
+        "FE and finite difference methods use a strength reduction factor (SRF) rather than the traditional F = s/τ definition.",
+        "SRF reduces cohesion c and tan(φ) until the numerical solution no longer converges, identifying the critical state.",
+        "At critical SRF, displacements increase rapidly and equilibrium equations cannot be solved.",
+        "FE method automatically identifies the critical failure surface without pre-specification.",
+        "FE method satisfies all equilibrium equations, unlike some limit equilibrium methods.",
+        "Griffiths and Lane (1999) provide a thorough assessment of FE application to slope stability."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 7-1",
+          "description": "Factor of safety definition referenced as a contrast to the strength reduction factor (SRF) used in FE/FD analysis.",
+          "implemented_in": "geotech_references.dm7_1.chapter7.factor_of_safety"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when considering finite element or finite difference methods as alternatives to limit equilibrium for slope stability analysis."
+    },
+    {
+      "section_id": "7-4.3",
+      "title": "Limit Analysis",
+      "summary": "Introduces limit analysis for slope stability based on upper and lower bound theorems of plasticity theory. The method analyzes the failure mass using kinematically admissible velocity fields and statically admissible stress fields. Though available for over 40 years, it has seen limited use in practice; commercially available programs are now emerging and may increase its popularity.",
+      "body": "Limit analysis is based on the upper and lower bound theorems for the theory of plasticity. The process involves section of a potential failure surface, and analyzing the failure mass based on a kinematically admissible velocity field and a statically admissible stress field. The use of limit analysis for slope stability calculations has been around for over 40 years, but it has found limited use in geotechnical engineering practice. Commercially available programs that use limit analysis have recently become available, and the popularity may increase.",
+      "key_points": [
+        "Limit analysis is based on upper and lower bound theorems of plasticity theory.",
+        "Analyzes failure mass using a kinematically admissible velocity field and a statically admissible stress field.",
+        "Has been available for over 40 years but has seen limited adoption in geotechnical engineering practice.",
+        "Commercially available programs implementing limit analysis are now emerging, potentially increasing its use."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when evaluating plasticity-based limit analysis as an alternative slope stability method, particularly where upper and lower bound solutions are needed."
+    },
+    {
+      "section_id": "7-5",
+      "title": "WATER PRESSURE EFFECTS",
+      "summary": "Covers the two categories of water pressures affecting slope stability — internal (pore water) pressures and external pressures — explaining when each applies in effective stress vs. total stress analyses. Internal pressures act on the failure plane and are used only with effective stress parameters; external pressures apply to the free body surface and are included in both analysis types.",
+      "body": "Water pressures have a profound effect on the stability of slopes. As an example, many failures that occur in natural and constructed slopes occur during periods of heavy precipitation. There are two categories of water pressures in slope stability analysis: (1) internal water pressures and (2) external water pressures. Examples of these are shown in Figure 7-5.\n\nInternal water pressures are the same as pore water pressures. These are the static or dynamic water pressures that act on the failure plane within the soil mass. Internal water pressures must be included in slope stability analyses where the soil is characterized by effective stress or drained shear strength parameters (c′ and φ′). Internal water pressures are not included in the analysis where the soil is characterized by total stress or undrained shear strength parameters (su or c and φ).\n\nExternal water pressures are the pressures applied to the free body where standing water is in contact with the soil mass at locations other than the failure surface. Examples of external water pressures are the pressures applied by the reservoir on the upstream slope of a dam or water-filled tension cracks. External water pressures are included in both effective stress and total stress slope stability analyses.",
+      "key_points": [
+        "Two categories of water pressures affect slope stability: internal (pore water) pressures and external pressures.",
+        "Internal water pressures act on the failure plane and are only included when using effective stress (drained) shear strength parameters (c′ and φ′).",
+        "Internal water pressures are NOT used in total stress / undrained analyses (su or c and φ).",
+        "External water pressures act on the free body surface (e.g., reservoir on a dam upstream slope, water-filled tension cracks) and are included in BOTH effective stress and total stress analyses.",
+        "Many natural and constructed slope failures occur during heavy precipitation, highlighting the critical role of water pressure."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-5"
+      ],
+      "tables": [],
+      "applicability": "Applies whenever performing slope stability analysis where water pressures — either pore water or standing external water — are present."
+    },
+    {
+      "section_id": "7-5.1",
+      "title": "Incorporating Water Pressures in Computer Analyses",
+      "summary": "Describes how internal water pressures are specified in slope stability software, distinguishing between the water table, phreatic surface, and piezometric surface. Lists five methods for incorporating pore pressures in software (water table, piezometric surface, finite element seepage, point-by-point x-y entry, and pore pressure coefficient ru), noting that finite element seepage analysis is generally the most accurate approach.",
+      "body": "It is important that the engineer fully understand the way that water pressures are specified in computer programs that they use, and how to verify that the correct water pressures are being used. The nomenclature for inputting water pressures is not consistent between the many different programs available for slope stability analysis.\n\nThe water table or groundwater table is normally defined as a line that connects points where the pore water pressure (u) is equal to zero. Water table is often used synonymously with phreatic surface. The piezometric surface is a surface connecting the height or elevation that water would rise in a series of standpipe piezometers. For hydrostatic conditions with a horizontal water table, the water table, phreatic surface, and piezometric surface are the same. For hydrodynamic cases where water is flowing, the piezometric surface can be at a higher elevation than the water table (upward flow of water) or at a lower elevation than the water table (downward flow of water). An example of this is shown in Figure 7-6. At Point A, the vertical distance to the phreatic surface is indicated on the drawing. However, the pore water pressure is controlled by the distance to the piezometric line, which is also shown on the figure.\n\nInternal water pressures can be accommodated in slope stability software in one or more of the following methods:\n(1) Water table or phreatic surface – can be corrected to approximate the piezometric surface based on the slope of the surface above the specific point,\n(2) Piezometric surface,\n(3) Finite element seepage analysis,\n(4) Point-by-point entry in x-y coordinates with subsequent interpolation between points, and\n(5) Pore pressure coefficient, ru.\n\nOf these different methods, the finite element seepage analysis is probably the best. It allows a large density of pore water pressure points to be calculated and interpolation between these points is sufficiently accurate with most interpolation methods.",
+      "key_points": [
+        "Nomenclature for water pressure input varies among slope stability programs; engineers must verify that correct pressures are being applied.",
+        "The water table (phreatic surface) is where pore water pressure u = 0; under hydrostatic conditions it coincides with the piezometric surface.",
+        "Under hydrodynamic (seepage) conditions, the piezometric surface diverges from the phreatic surface: higher for upward flow, lower for downward flow.",
+        "Five methods exist for specifying internal pore pressures in software: (1) water table/phreatic surface, (2) piezometric surface, (3) finite element seepage, (4) point-by-point x-y entry, and (5) pore pressure coefficient ru.",
+        "Finite element seepage analysis is recommended as the best method due to high density of computed pore pressure points and accurate interpolation."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-6"
+      ],
+      "tables": [],
+      "applicability": "Applies when using computer software for slope stability analysis where internal pore water pressures must be defined and verified."
+    },
+    {
+      "section_id": "7-6",
+      "title": "STRENGTH MODELS AND ANALYSIS CASES",
+      "summary": "Introduces the framework for categorizing slope stability analysis cases as either undrained (total stress/short-term) or drained (effective stress/long-term). Explains that both effective stress and undrained strength parameters can be assigned to different soils in a cross section depending on drainage conditions during loading, and lists the general analysis cases covered in subsections 7-6.1 through 7-6.8.",
+      "body": "Slope stability analysis cases are often categorized as undrained (or total stress) or drained (effective stress) analyses. These are often called short-term and long-term analyses because their respective use is related to the amount of time required for the soil to consolidate under the changed loading. For this reason, both effective stress and undrained (total stress) strength parameters can be assigned to the different soils in a cross section depending on their drainage condition during the duration of loading.\n\nThe general analysis cases are listed below with guidance on strength models to be employed with each.",
+      "key_points": [
+        "Analysis cases are categorized as undrained (total stress, short-term) or drained (effective stress, long-term).",
+        "Soil drainage condition during loading dictates which strength parameters to assign to each layer.",
+        "Both effective stress and undrained parameters can coexist in a single cross-section analysis."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies whenever a slope stability analysis must be categorized by drainage condition and appropriate strength models selected."
+    },
+    {
+      "section_id": "7-6.1",
+      "title": "End of Construction (Short Term)",
+      "summary": "Covers post-construction slope stability analysis performed before any pore pressure dissipation in fine-grained soils. Uses compacted clay embankment over saturated foundation as the example: embankment treated as c-φ soil (UU triaxial), in situ fine-grained soils treated as φ=0 (su=c). Lists applicable test methods for measuring in situ undrained shear strength including UU triaxial, DSS, vane shear, and CPT.",
+      "body": "End of construction or post-construction analyses are performed to examine the stability after construction is completed and prior to any dissipation of pore water pressures in fine-grained soils. An example of a valid end of construction analysis is construction of a compacted clay embankment over saturated fine-grained soils. A cross section of this is shown in Figure 7-7a. For this case, the compacted clay embankment would be partially saturated, and the strength would be represented as a c-φ soil, with the strength parameters determined from UU triaxial tests. The in situ fine-grained soils would be essentially saturated, and the strength would be characterized as φ = 0, su = c. The shear strength of the in situ soils could be measured by UU triaxial tests, DSS tests, laboratory miniature vane shear tests, field vane shear tests, and under some conditions, cone penetration tests.",
+      "key_points": [
+        "Analysis is performed immediately after construction, before excess pore pressures dissipate.",
+        "Compacted clay embankment: partially saturated, c-φ model, strength from UU triaxial tests.",
+        "In situ saturated fine-grained foundation soils: φ=0 undrained model, su=c.",
+        "Applicable test methods: UU triaxial, DSS, lab/field vane shear, and CPT (under some conditions)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-7a"
+      ],
+      "tables": [],
+      "applicability": "Applies to stability analysis of embankments or fills placed over saturated fine-grained soils immediately after construction."
+    },
+    {
+      "section_id": "7-6.2",
+      "title": "Cut Slope in Clay",
+      "summary": "Addresses the critical long-term stability condition for cut slopes in stiff clay, which occurs after the phreatic surface reaches steady state. Requires effective stress (drained) strength parameters. Low-plasticity clays use peak c′ and φ′; high-plasticity, fissured, or heavily overconsolidated clays require fully softened strength measured by remolded direct shear tests. Nonlinear effective stress envelopes are recommended.",
+      "body": "The cross section of a cut slope in a stiff clay is shown in Figure 7-7b. The critical time in the performance of the cut slope occurs long after the cut is made, when the phreatic surface has reached a steady-state condition. For this type of scenario, effective stress or drained shear strengths should be used for the clay. If the clay has a relatively low plasticity (LL < 40 and PI < 20), it would be appropriate to use the peak drained strength parameters (cʹ and φʹ) determined from CU triaxial tests or CD direct shear tests. The use of a non-linear effective stress envelope for the clay would also be appropriate (Duncan et al. 2014). If the clay has a high plasticity, contains fissures, and/or is heavily overconsolidated, then the fully softened shear strength should be used to account for changes in shear strength that will likely occur over time. The fully softened shear strength can be measured using remolded test specimens in a direct shear apparatus. Again, the use of a non-linear envelope would be appropriate.",
+      "key_points": [
+        "Critical condition for cut slopes in stiff clay occurs at steady-state phreatic conditions, not immediately after cutting.",
+        "Effective stress (drained) strength parameters are required for the long-term analysis.",
+        "Low-plasticity clay (LL<40, PI<20): use peak c′ and φ′ from CU triaxial or CD direct shear.",
+        "High-plasticity, fissured, or heavily OC clay: use fully softened shear strength from remolded direct shear.",
+        "Nonlinear effective stress envelopes are recommended in both cases."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-7b"
+      ],
+      "tables": [],
+      "applicability": "Applies to long-term stability analysis of cut slopes in stiff clay after the phreatic surface reaches steady state."
+    },
+    {
+      "section_id": "7-6.3",
+      "title": "Steady State Seepage in Dams",
+      "summary": "Describes the stability analysis required for earth and rockfill dam downstream slopes under steady-state seepage conditions, where reservoir level has been constant long enough for a steady seepage pattern to develop. Effective stress parameters (c′ and φ′) are used throughout. Pore pressures are determined via finite element analysis; pressures above the phreatic surface are taken as zero. Test methods include CD direct shear, CD triaxial, and CU triaxial.",
+      "body": "One of the stability analyses required for earth and rockfill dams is the evaluation of the factor of safety for the condition of steady state seepage (Figure 7-7c). This case assumes that the reservoir has been at a relatively constant elevation for long enough that a steady-state seepage pattern has developed. The pore water pressures in the dam and foundation can be calculated using finite element analysis. The pore pressures above the phreatic surface are normally assumed to be equal to zero. Effective stress strength parameters (cʹ and φʹ) are used in the dam and foundation soils. The effect stress strength parameters for the dam materials can be measured with CD direct shear, CD triaxial, or CU triaxial tests on compacted test specimens. In the example, the strength parameters for the silty sand can be determined using in situ tests.",
+      "key_points": [
+        "Applies when reservoir has been at constant elevation long enough for steady-state seepage to develop.",
+        "Effective stress strength parameters (c′ and φ′) are used for all dam and foundation soils.",
+        "Pore water pressures calculated by finite element analysis; pressures above phreatic surface assumed zero.",
+        "Test methods: CD direct shear, CD triaxial, or CU triaxial on compacted specimens; in situ tests for foundation."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-7c"
+      ],
+      "tables": [],
+      "applicability": "Applies to stability analysis of earth and rockfill dam slopes under steady-state seepage conditions."
+    },
+    {
+      "section_id": "7-6.4",
+      "title": "Stabilizing Berm for Failed Slope",
+      "summary": "Covers stability analysis of a slope that has already failed and been stabilized with a toe berm. For slopes in fat clay where sufficient displacement has occurred on the failure surface, residual shear strength (φ′r or nonlinear residual envelope) governs. Residual strength is best determined by ring shear tests on remolded specimens. Requires an effective stress analysis with the appropriate phreatic surface.",
+      "body": "Berms are often used to stabilize failed slopes. For example, Figure 7-8 is a cross section of a slope that failed in a fat clay. A stability berm has been constructed at the toe of the slope to increase the factor of safety. It is presumed that the failure surface is known based on inclinometer readings or borings. If sufficient displacement has occurred on the failure surface, then the appropriate shear strength to use is the residual shear strength. The residual friction angle (φʹr) or a nonlinear residual effective stress envelope is best determined by ring shear tests conducted on remolded test specimens of the fat clay. This should be an effective stress analysis with the appropriate phreatic surface used in the analysis.",
+      "key_points": [
+        "When sufficient displacement has occurred, residual shear strength governs on the known failure surface.",
+        "Residual friction angle (φ′r) or nonlinear residual envelope is determined from ring shear tests on remolded specimens.",
+        "Analysis is an effective stress analysis using the appropriate phreatic surface.",
+        "Failure surface location assumed known from inclinometer readings or borings."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-8"
+      ],
+      "tables": [],
+      "applicability": "Applies to back-analysis and stability evaluation of slopes that have already failed and are stabilized with a toe berm."
+    },
+    {
+      "section_id": "7-6.5",
+      "title": "Other Analysis Cases",
+      "summary": "Describes more complex analysis cases beyond the basic examples: rapid drawdown for upstream dam slopes and earthquake loading. Rapid drawdown is a three-stage analysis using pre-drawdown effective stresses; effective stress transient seepage methods should be avoided. Earthquake analyses range from simple pseudostatic to complex numerical methods. Both cases require specialized engineering judgment and experience.",
+      "body": "Many other analysis cases are analyzed in geotechnical engineering practice that can be significantly more complex than the simple examples provided. For earth and rockfill dams, a critical case for the upstream slope is rapid drawdown. This occurs when the steady state seepage condition is changed by lowering the reservoir. If the reservoir is lowered rapidly (meaning days or weeks), the upstream slope no longer has the stabilizing support of the external water pressure. The shear strengths in the dam are based on the effective stresses prior to drawdown, and the lowering of the reservoir can cause an undrained failure. This is normally performed as a three-stage analysis, and it uses a strength model that is more complex than those used in the other cases described above (Duncan et al. 2014). These types of require considerable technical ability and they should be performed by engineers who have experience with rapid drawdown analysis. Effective stress rapid drawdown methods, such as those based on uncoupled transient seepage analyses, should be avoided.\n\nThe stability of slopes is also analyzed for cases of earthquake loading. These analyses can range from simple pseudostatic methods, where a horizontal force is applied to the free body of the limit equilibrium analysis, to very complex numerical analyses. Earthquake analyses are another category that require considerable judgment and experience to obtain meaningful results and should be conducted by engineers skilled in this branch of geotechnical engineering.",
+      "key_points": [
+        "Rapid drawdown is a critical upstream slope case for dams when reservoir is lowered in days or weeks.",
+        "Rapid drawdown uses a three-stage analysis based on effective stresses prior to drawdown; undrained failure can result.",
+        "Effective stress rapid drawdown methods using uncoupled transient seepage should be avoided.",
+        "Earthquake analyses range from simple pseudostatic (horizontal force) to complex numerical methods.",
+        "Both rapid drawdown and seismic analyses require specialized experience and engineering judgment."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when analyzing upstream dam slopes for rapid drawdown or any slope for earthquake loading conditions."
+    },
+    {
+      "section_id": "7-6.6",
+      "title": "Back-Analysis of Slopes",
+      "summary": "Explains how failed slopes can be back-analyzed to determine shear strength or pore pressure conditions at failure (F=1). For undrained failures, average undrained shear strength can be solved. For drained failures, only one effective stress parameter can be solved (c′ typically assumed zero, φ′ calculated). Requires well-defined failure surface geometry, stratigraphy, and pore pressure conditions at failure time.",
+      "body": "Failed slopes offer a unique opportunity to develop a model of the shear strengths and ground water conditions at the time of failure. This type of model can be very useful in designing slope stabilization or in analyzing nearby slopes. When performing a forward analysis, the most important unknown is the factor of safety for a specific failure surface. When conducting a back-analysis of a slope, the factor of safety is known (F = 1), so a different unknown can be calculated. Normally, the shear strength of a soil layer is the desired property to be determined from back-analysis. If the back-analysis is performed on a slope that failed in an undrained condition, then the average undrained shear strength of a soil layer can be determined from the analysis. If the back-analysis is performed on a slope that failed in a drained condition, then only one of the effective stress strength parameters (cʹ or φʹ) can be determined. Often, the effective stress cohesion is assumed to be equal to zero, and the friction angle is calculated.\n\nIt is important that the other parameters used in a forward analysis be known with confidence for back-analysis. These include the slope geometry, soil stratigraphy, shear strength parameters for layers where strengths are not back-calculated, unit weights, etc. For back-analysis of drained failures, it is important that the pore pressure conditions at the time of failure be known. The location of the failure surface should also be known to obtain the most accurate results. Often, the failure surface location may be known from the results of inclinometer readings. In other cases, the location of the failure plane can be determined by careful drilling and sampling. If only the head scarp and toe exit of the failure plane is known, then the failure surface can be determined from the computer program's search routine by only searching for surfaces which go through those two points. If the position of the failure surface is not known, it is important to search for the critical surface and not to assume the location. If the location of the failure surface is assumed, then the resulting shear strength back-calculated will be too low.",
+      "key_points": [
+        "In back-analysis, F=1 is known; the unknown solved for is typically shear strength of a specific layer.",
+        "Undrained failure back-analysis yields average undrained shear strength.",
+        "Drained failure back-analysis yields only one effective stress parameter; c′ is typically assumed zero and φ′ is solved.",
+        "Failure surface location must be known or properly searched to avoid underestimating back-calculated strength.",
+        "Pore pressure conditions at the time of failure must be known for drained back-analyses.",
+        "If failure surface location is assumed rather than searched, the back-calculated shear strength will be too low."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when back-analyzing a slope failure to determine shear strength parameters or groundwater conditions at the time of failure."
+    },
+    {
+      "section_id": "7-6.7",
+      "title": "Evaluation of Slope Stability Results",
+      "summary": "Provides guidance on verifying and validating computer-based slope stability results. Recommends using two different computer programs to cross-check results (factors of safety should agree within ~1%). Discusses the line of thrust as a diagnostic tool for identifying tensile forces, the role of tension cracks, and the importance of monitoring non-convergence in iterative methods to avoid missing critical failure surfaces.",
+      "body": "Limit equilibrium slope stability calculations involve thousands of calculations. Since the adoption of computer programs to perform these calculations, project specifications often required that hand calculations be used to verify the results of the computer analyses. While this was possible when simpler methods of slope stability were used, such as Bishop's Simplified Method and the Ordinary Method of Slices, this requirement became impractical for more complex methods, like Spencer's Method and Morgenstern and Price's Method. The time required to perform the calculations by hand for one failure surface for a cross section containing many slices and an advanced shear strength model has become excessive. In recognition of this, Wright (2013) suggested that new project specifications should require that two different slope stability computer programs should be used to verify analyses. After the minimum factor of safety for the critical failure surface is determined using one program, a different program should be used to analyze the same failure surface using the same method. If the analyses are correct, the factors of safety calculated should be within about 1% of each other.\n\nIt is important for the engineer to be able to examine the forces acting on each slice. In particular, the forces at the boundary between slices should be in compression, and the normal force at the base of the slice should be in compression. Many computer programs allow the line of thrust to be plotted on the cross section. The line of thrust is a line that is plotted at the point of application of each of the side forces. Ideally, the line of thrust should be located within the soil mass defined by the slices. If portions of the line of thrust plot outside of the free body being analyzed, it often indicates tensile forces between slices or tensile forces at the base of slices. The addition of tension cracks to the cross section can be used to prevent tensile forces between slices, and these can be readily accommodated in commercial computer programs. Further information regarding the utility of the line of thrust can be found in Whitman and Bailey (1967).\n\nThe search routines for common commercial slope stability computer programs analyze thousands to tens of thousands of failure surfaces. The stability methods that solve for all conditions of equilibrium have iterative solutions, and the solutions do not always converge. There can be various reasons why the solutions do not converge, including geometry issues with invalid failure surfaces, problems with interpolation of advanced strength models, numerical issues with the solution procedure, etc. Critical failure surfaces can be missed as a result of non-convergence. The engineer should be able to identify when convergence issues are present. The location of this information varies depending on the program that is used, and is sometimes difficult to find. Prior to performing any analyses for record, the engineer should find this information and assess the validity of their results.",
+      "key_points": [
+        "Two different computer programs should be used to verify results; factors of safety should agree within ~1%.",
+        "Hand verification is impractical for advanced methods (Spencer's, Morgenstern-Price); dual-program verification is the recommended standard.",
+        "The line of thrust should plot within the soil mass; if it falls outside, tensile inter-slice or base forces are indicated.",
+        "Tension cracks can be added to prevent tensile inter-slice forces in commercial programs.",
+        "Non-convergence in iterative equilibrium methods can cause critical failure surfaces to be missed; engineers must check convergence logs before finalizing results."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to quality assurance and validation of any computer-based limit equilibrium slope stability analysis."
+    },
+    {
+      "section_id": "7-6.8",
+      "title": "Slope Stability Charts",
+      "summary": "Describes the historical and current use of chart solutions for slope stability analysis. Charts are available for drained, undrained, rapid drawdown, infinite slope, surcharge, and tension crack cases (comprehensive set in Duncan et al. 2014). Presents an infinite slope chart example. Notes that while the speed advantage of charts over computer programs has diminished, charts remain a viable complementary method for simple soil profiles and straightforward strength interpretations.",
+      "body": "Chart solutions for slope stability analyses have been available since the 1930s. Prior to the introduction of computers into geotechnical engineering practice, slope stability charts allowed an approximate solution to be quickly obtained. The charts are also useful in estimating the critical failure circle, showing the mode of failure (toe circle vs. deep circle), and other valuable information.\n\nCharts have been developed for many different categories of slope stability analysis, including drained analyses, undrained analyses, rapid drawdown analyses, infinite slope analyses, surcharge loading at the crest, tension cracks, and other specialty cases. A comprehensive set of chart solutions can be found in Duncan et al. (2014). An example of a chart for infinite slope analysis is shown in Figure 7-9. Infinite slope analysis is useful for explaining sloughing failures for slopes having an effective stress cohesion equal to zero, and to examine the effects of seepage on the factor of safety of slopes.\n\nCharts have historically been used to obtain a quick solution to slope stability problems. Even with the advent of computer-based slope stability analyses, chart solutions still provided an approximate factor of safety in less time than required to run a computer analysis. However, the modern computer programs allow slope stability problems to be defined and solved very quickly, and the speed advantage of chart solutions has been diminished. Chart solutions are best suited for slope stability problems that have simple soil profiles and straightforward strength interpretations. As the soil profiles and strength interpretations become more complex, the accuracy of chart solutions decreases. Even so, chart solutions still offer a viable complementary analysis method to computer solutions.",
+      "key_points": [
+        "Slope stability charts have been available since the 1930s and cover drained, undrained, rapid drawdown, infinite slope, surcharge, and tension crack cases.",
+        "Infinite slope charts are useful for explaining sloughing failures (c′=0) and evaluating seepage effects on factor of safety.",
+        "The speed advantage of charts over modern computer programs has diminished but charts remain a valid complementary tool.",
+        "Charts are best suited for simple soil profiles and straightforward strength models; accuracy decreases with complexity.",
+        "Comprehensive chart solutions are available in Duncan et al. (2014)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-9"
+      ],
+      "tables": [],
+      "applicability": "Applies when a quick approximate slope stability solution is needed, particularly for simple soil profiles and straightforward strength interpretations."
+    },
+    {
+      "section_id": "7-7",
+      "title": "SLOPE STABILIZATION",
+      "summary": "Covers methods for increasing the factor of safety of existing slopes and repairing slopes that are moving or have failed. References Figure 7-10, which illustrates the various slope stabilization techniques available to engineers when addressing unstable or failing slope conditions.",
+      "body": "It is often necessary to increase the factor of safety of existing slopes or to repair slopes that are moving or have failed. Figure 7-10 shows different methods of stabilizing slopes.",
+      "key_points": [
+        "Slope stabilization is required when existing slopes have an insufficient factor of safety or when slopes are actively moving or have already failed.",
+        "Multiple stabilization methods exist; Figure 7-10 provides a visual overview of the available techniques.",
+        "Selection of an appropriate stabilization method depends on the specific failure mode and site conditions."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-10 Methods of Stabilizing Slopes"
+      ],
+      "tables": [],
+      "applicability": "Applies when an engineer must evaluate, repair, or improve the stability of an existing slope that is failing or at risk of failure."
+    },
+    {
+      "section_id": "7-8",
+      "title": "Required Factor of Safety for Soil Slopes",
+      "summary": "Covers minimum required factors of safety for soil and rockfill slopes, particularly earth dams. References USACE EM 1110-2-1902 (Table 7-2) and USBR 2011 (Table 7-3) recommended values across loading conditions including end of construction, steady-state seepage, rapid drawdown, and operational conditions. Values range from 1.1 to 1.5 depending on condition and organization.",
+      "body": "There are many different sources that specify the minimum factor of safety. Often, the design values are determined by municipal or government organizations. For earth dams, the U.S. Army Corps of Engineers' EM 1110-2-1902 (2003) recommends the values listed in Table 7-2. Other organizations dealing with earth dams, such as the U.S. Bureau of Reclamation (USBR), have specified their own values. The values recommended by USBR are given in Table 7-3.",
+      "key_points": [
+        "Minimum factors of safety for earth slopes are set by municipal, government, or agency standards — not a single universal standard.",
+        "USACE EM 1110-2-1902 requires Fmin = 1.3 (end of construction), 1.5 (steady-state seepage, downstream), 1.4 (maximum pool, downstream), and 1.1–1.3 (rapid drawdown, upstream).",
+        "USBR 2011 specifies Fmin using Spencer's Method ranging from 1.2 to 1.5 depending on loading condition, shear strength parameters, and pore pressure characteristics.",
+        "USBR requires the highest Fmin of 1.5 for steady-state seepage under active conservation pool using effective shear strength parameters.",
+        "Rapid drawdown conditions (USBR) carry Fmin of 1.2–1.3 depending on whether drawdown is from normal or maximum water surface."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 7-2 — Factors of Safety for New Earth and Rockfill Dams (USACE 2003)",
+        "Table 7-3 — Factor of Safety for Dams using Spencer's Method for Dams (USBR 2011)"
+      ],
+      "applicability": "Applies when establishing minimum required factors of safety for the design or evaluation of earth dam slopes and rockfill dam slopes under various loading and drainage conditions."
+    },
+    {
+      "section_id": "7-9",
+      "title": "Mechanically Stabilized Earth Slopes",
+      "summary": "Introduces MSE technology as applied to earth slopes, distinguishing it from MSE retaining walls. Covers the scope of the section — providing rudiments of design and analysis for evaluating outside designs — and references DM 7.2 for MSE retaining wall design. Notes that design/analysis of MSE slopes is a specialty area in geotechnical engineering.",
+      "body": "Mechanically stabilized earth (MSE) is a term that refers to soil retention structures that include both retaining walls and earth slopes. This section discusses the application of MSE technology to slopes. The design of MSE retaining walls is discussed in DM 7.2.\n\nDesign and analysis of MSE slopes is a specialty area in geotechnical engineering. There are engineering consultants who specialize in MSE walls and slopes. In this manual, the rudiments of design and analysis are presented in order that outside designs can be evaluated and not for the purpose of completing a full MSE design.",
+      "key_points": [
+        "MSE encompasses both retaining walls and earth slopes; this section focuses on slopes only.",
+        "MSE retaining wall design is covered separately in DM 7.2.",
+        "The manual presents rudiments for evaluating outside MSE designs, not for performing complete MSE design.",
+        "MSE slope design is a specialty area; engineering consultants often specialize in this work."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when an engineer needs to understand the scope and purpose of MSE slope coverage in this UFC."
+    },
+    {
+      "section_id": "7-9.1",
+      "title": "Applications of MSE",
+      "summary": "Describes the structure of MSE slopes including reinforced, retained, and foundation soil zones. Explains the roles of primary and secondary reinforcement, identifies primary limitations (constructability and utilities), and defines the FHWA face-angle threshold (θ = 70°) distinguishing MSE slopes from MSE walls, with implications for land use efficiency.",
+      "body": "Reinforced earth slopes are fill structures in which discrete layers of geosynthetic or steel elements are installed during construction at specified locations. A typical cross section of an MSE slope is shown in Figure 7-11.\n\nThe reinforced soil zone is that portion of the slope in which layers of reinforcement are installed. The retained soil zone and foundation soil zone are located behind and below the reinforced soil zone, respectively. The layers of primary reinforcement shown in Figure 7-11 resist the development of failure planes through the reinforced soil zone. The layers of secondary reinforcement prevent surficial failure at the slope face.\n\nThe primary limitations on the use of MSE slopes relate to constructability and utilities. Constructability is not typically an issue if the slope is part of a larger fill area but may be a concern when an existing hillside must be excavated to build the slope. Utilities can be significant factors in the poor performance of MSE structures, particularly if the utility is wet such as a storm sewer or water main. The malfunction of wet utilities may contribute to about one-third of the failures of MSE retaining walls (Valentine 2013).\n\nThe distinction between an MSE retaining wall and an MSE slope has been defined by the Federal Highway Administration (FHWA) based on the face angle, θ (FHWA 2009b). If θ < 70°, then the structure is a slope. If θ ≥ 70° or greater, then the structure is a wall. The distinction between an MSE retaining wall and slope has important implications for land use efficiency as illustrated in Figure 7-12. However, the increased land use efficiency of MSE walls and slopes is accompanied by complications related to facing requirements and structural deformations, as well as increased cost.",
+      "key_points": [
+        "MSE slopes consist of reinforced, retained, and foundation soil zones; primary reinforcement resists internal failure planes; secondary reinforcement prevents surficial face failure.",
+        "FHWA defines MSE slope vs. wall by face angle θ: θ < 70° is a slope; θ ≥ 70° is a wall.",
+        "Wet utility malfunctions (storm sewers, water mains) contribute to roughly one-third of MSE retaining wall failures.",
+        "Constructability is generally acceptable for fill areas but may be an issue when excavating existing hillsides.",
+        "Greater land use efficiency of steeper MSE structures comes with higher costs and facing/deformation complications."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-11",
+        "Figure 7-12"
+      ],
+      "tables": [],
+      "applicability": "Applies when selecting MSE slopes for fill or hillside construction and when distinguishing MSE slope from MSE wall configurations."
+    },
+    {
+      "section_id": "7-9.2",
+      "title": "Reinforced Slope Materials",
+      "summary": "Specifies fill soil and geosynthetic material requirements for MSE slopes. Provides grading and plasticity index criteria for reinforced fill based on slope geometry (Table 7-4), and summarizes all components — reinforcement, facing, internal drainage, and external drainage — with materials and purposes (Table 7-5). Applicable to slopes with H < 70 ft.",
+      "body": "The soil that is installed in the reinforced zone of an MSE slope is an important structural component of the slope. The properties that are required of reinforced soil should be based on the geometry of the slope and the structures that may depend on the slope for support. FHWA's recommendations for the properties of fill soil in the reinforced zone of MSE slopes permit up to 50% fines that have a PI ≤ 20 (FHWA 2009b). The fill properties shown in Table 7-4 are recommended for relatively tall or steep slopes; however, the recommendations are only applicable to slopes with a height less than 70 feet.\n\nOther important components of MSE walls and slopes include internal and external drains, filters, separators and erosion control. The use of geosynthetics for these applications is summarized in Table 7-5.",
+      "key_points": [
+        "Reinforced fill soil properties must be based on slope geometry; FHWA permits up to 50% fines with PI ≤ 20 as a general limit.",
+        "For slopes < 1.2H:1V (θ < 40°) and H < 70 ft: No. 200 sieve allows up to 50% passing, PI ≤ 20.",
+        "For slopes 1.2H:1V to 0.36H:1V (40° ≤ θ ≤ 70°) and H < 70 ft: No. 200 sieve limit is 0–35% passing, PI ≤ 10.",
+        "Table 7-4 fill recommendations apply only to slopes H < 70 ft.",
+        "PET and HDPE geosynthetics are preferred for primary reinforcement; PET, HDPE, and PP can be used for secondary reinforcement.",
+        "Internal drainage uses gravel (ASTM C33 No. 57 or No. 67) with nonwoven PP geotextile; external drainage uses TRM-lined swales located 5–10 ft behind slope crest.",
+        "Hard armor facing (θ ≥ 40°) typically uses galvanized WWF 4x4-W4.0xW4.0 with hardware cloth and gravel fill behind it."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 7-4",
+        "Table 7-5"
+      ],
+      "applicability": "Applies when selecting and specifying reinforced fill soil and geosynthetic component materials for MSE slopes with H < 70 ft."
+    },
+    {
+      "section_id": "7-9.3",
+      "title": "Geosynthetic Reinforcement Strength",
+      "summary": "Covers how the design tensile strength of geosynthetic reinforcement is established for MSE slopes. Explains MARV basis, uniaxial vs. biaxial behavior, and the application of three reduction factors (creep, durability, installation damage) to obtain the long-term allowable strength Tal per FHWA procedures.",
+      "body": "Geosynthetics that are used in soil reinforcement applications are typically designed to exhibit their maximum tensile strength in one direction. In this respect, such geosynthetics are said to be uniaxial and the design strength direction usually corresponds to the material's MD or roll-direction. Geosynthetics that exhibit significant tensile strength in both the MD and cross machine direction (XMD) are said to be biaxial.\n\nThe tensile strength of a geosynthetic that is used for the design of an MSE slope is based on a minimum average roll value (MARV) that is reported by the manufacturer. In the United States, the industry practice is to reduce the average value by two standard deviations and to define the result as the minimum average roll value (MARV). Reduction factors are then applied to the strength MARV to account for potential degradation of strength as a result of creep, environmental conditions and installation damage.",
+      "key_points": [
+        "Geosynthetic design tensile strength is based on MARV, defined as the average minus two standard deviations.",
+        "Uniaxial geosynthetics provide maximum strength in one direction (MD/roll direction); biaxial provide strength in both MD and XMD.",
+        "Three reduction factors applied to MARV: RFCR (creep), RFD (durability/environment), RFID (installation damage).",
+        "Details on determining each reduction factor are in FHWA (2009b) Appendix B."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when determining the design tensile strength of geosynthetic reinforcement for MSE slopes using FHWA procedures."
+    },
+    {
+      "section_id": "7-9.3.1",
+      "title": "Long-Term Design Strength",
+      "summary": "Defines the FHWA procedure for calculating the long-term allowable tensile strength (Tal) of geosynthetic reinforcement using Eq. 7-3. Tal is obtained by dividing the ultimate MARV strength by three reduction factors accounting for creep (RFCR), environmental degradation (RFD), and installation damage (RFID).",
+      "body": "The assessment of a geosynthetic's long-term tensile strength (Tal) for use in the design of an MSE slope follows current FHWA procedures (FHWA 2009b):\n\nTal = TULT / (RFCR × RFD × RFID)  (7-3)\n\nwhere:\nTULT = ultimate tensile strength of the geosynthetic based on the MARV,\nRFCR = reduction factor applied to account for creep under sustained tensile loading,\nRFD = reduction factor applied to account for the degradation due to environment, and\nRFID = reduction factor applied to account for damage during installation.\n\nThe reduction factors are discussed briefly in the following sections. Details regarding the determination of RFCR, RFD, and RFID for a geosynthetic can be found at Appendix B of FHWA (2009b).",
+      "key_points": [
+        "Eq. 7-3 gives Tal = TULT / (RFCR × RFD × RFID).",
+        "TULT is based on MARV (average minus two standard deviations) as reported by the manufacturer.",
+        "Three independent reduction factors are applied multiplicatively in the denominator.",
+        "Detailed reduction factor determination procedures are in FHWA (2009b) Appendix B."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 7-3",
+          "description": "Long-term allowable tensile strength of geosynthetic: Tal = TULT / (RFCR × RFD × RFID), where TULT is ultimate MARV strength, RFCR is the creep reduction factor, RFD is the durability reduction factor, and RFID is the installation damage reduction factor.",
+          "implemented_in": "geotech_references.dm7_1.chapter7.long_term_geosynthetic_strength"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when computing the allowable long-term geosynthetic tensile strength for use in MSE slope design per FHWA procedures."
+    },
+    {
+      "section_id": "7-9.3.2",
+      "title": "Reduction Factor for Creep (RFCR)",
+      "summary": "Explains creep behavior in geosynthetic reinforcement polymers (PET, HDPE, PP) and how RFCR is determined from the sustained load that induces creep rupture at end of design service period. For permanent MSE slopes, the minimum design service period is 75 years; longer periods apply to critical infrastructure.",
+      "body": "The tendency of a geosynthetic to elongate under sustained tensile loading is called creep and it is a property of materials that are manufactured using PET, HDPE, PP and other polymers. If the magnitude of the load is sufficiently great and if it is maintained for a sufficient period of time, the creep can induce rupture or result in such elongation that the material's performance is compromised.\n\nIn the United States, the standard of practice is to determine a reduction factor for creep (RFCR) that is based on the sustained load that will induce creep rupture at the end of the design service period. For permanent MSE slopes the design service period should be no less than 75 years. A longer service period may be appropriate for structures that support critical infrastructure.",
+      "key_points": [
+        "Creep is time-dependent elongation of polymeric geosynthetics under sustained load; can lead to rupture or performance loss.",
+        "RFCR is based on the sustained load inducing creep rupture at the end of the design service period.",
+        "Minimum design service period for permanent MSE slopes is 75 years; critical infrastructure may require longer.",
+        "All common reinforcement polymers (PET, HDPE, PP) are subject to creep."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when determining the creep reduction factor RFCR for geosynthetic reinforcement in permanent MSE slopes with a design life of at least 75 years."
+    },
+    {
+      "section_id": "7-9.3.3",
+      "title": "Reduction Factor for Durability (RFD)",
+      "summary": "Describes environmental degradation mechanisms for geosynthetic reinforcement: hydrolysis for PET, oxidation (including UV-oxidation) for HDPE and PP. Notes FHWA default RFD of 1.3 for PET, HDPE, and PP where certain criteria are met, with the option for lower values from product-specific testing. Protective measures to limit UV exposure are also addressed.",
+      "body": "Geosynthetics may degrade depending on their base polymer and if they are exposed to certain environmental conditions. Polyester geosynthetics may degrade as a result of hydrolysis. Geosynthetics manufactured with HDPE and PP are subject to degradation by their reaction with oxygen, particularly in the presence of elevated temperatures. Oxidation can also be initiated by exposure to UV light (i.e., UV-oxidation). The resistance of these polymers to oxidation can be significantly increased by the addition of antioxidants during the manufacturing process. Polyester is also susceptible to UV-oxidation but to a lesser degree than HDPE and PP (FHWA 2009a). Protection of PET yarns is typically provided in the form of coatings. In the case of all geosynthetics, the protective roll wraps should not be removed until the material is installed to minimize UV light exposure.\n\nThe FHWA recommends a default reduction factor for durability (RFD) of 1.3 for PET, HDPE, and PP geosynthetics provided certain criteria are satisfied. Also, a lower RFD may be used if it is indicated by product specific testing. Further details are given in FHWA (2009b).",
+      "key_points": [
+        "PET degrades primarily by hydrolysis; HDPE and PP degrade primarily by oxidation and UV-oxidation.",
+        "Antioxidant additives during manufacturing significantly increase resistance to oxidation for HDPE and PP.",
+        "FHWA default RFD = 1.3 for PET, HDPE, and PP when specified criteria are met; lower values permitted with product-specific testing.",
+        "Protective roll wraps should remain on geosynthetics until installation to minimize UV exposure.",
+        "PET yarns are typically protected from UV by coatings."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when selecting or verifying the durability reduction factor RFD for geosynthetic reinforcement exposed to environmental degradation in MSE slopes."
+    },
+    {
+      "section_id": "7-9.3.4",
+      "title": "Reduction Factor for Installation Damage (RFID)",
+      "summary": "Describes how RFID is assessed through manufacturer full-scale testing involving compaction of various soil types. Provides construction practice guidelines to minimize installation damage: minimum 8-inch soil cover for tracked equipment, rubber-tire speed limits, and proper fill placement procedures (dozer-bladed, not dumped directly on geosynthetic).",
+      "body": "The standard of practice in the United States is for the manufacturers of geosynthetic reinforcement to assess the potential for installation damage through the performance of full-scale tests. Such testing programs typically evaluate the damage induced by compaction of coarse gravel, sandy gravel and silty or clayey sand.\n\nThe geosynthetic manufacturer should be consulted to obtain its recommendation for the reduction factor for installation damage (RFID). The manufacturer should also be consulted for its recommendations regarding measures to reduce installation damage. Typical measures include the following:\n• Tracked vehicles should not traffic directly on panels of geosynthetic reinforcement. There should be no less than 8 inches of fill soil between the tracks and the geosynthetic. Sharp turns by tracked vehicles on fill soil should be avoided.\n• Rubber tire vehicles may operate directly on the geosynthetic reinforcement at speeds less than 10 miles per hour. Sudden braking and turning should be avoided.\n• Fill soil should not be dumped directly onto geosynthetic reinforcement. Rather, it should be dumped onto fill soil that has already been spread and then bladed onto the geosynthetic by a dozer.",
+      "key_points": [
+        "RFID is determined by the geosynthetic manufacturer through full-scale installation damage testing with coarse gravel, sandy gravel, and silty/clayey sand.",
+        "Tracked vehicles require ≥ 8 inches of fill soil cover over geosynthetic; sharp turns must be avoided.",
+        "Rubber-tire vehicles may operate directly on geosynthetic at speeds < 10 mph; sudden braking/turning must be avoided.",
+        "Fill must be bladed onto geosynthetic by dozer — never dumped directly onto it.",
+        "Consult manufacturer for both RFID value and specific installation damage mitigation measures."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies during construction of MSE slopes when specifying construction practices and obtaining the installation damage reduction factor RFID for geosynthetic reinforcement."
+    },
+    {
+      "section_id": "7-9.4",
+      "title": "Soil-Geosynthetic Interaction",
+      "summary": "Defines geosynthetic pullout resistance (Eq. 7-4) and the coefficient of interaction Ci (Eq. 7-5), and relates F* and Ci through Eq. 7-6. These equations underpin reinforcement length design in MSE slopes by quantifying the resistance of embedded geosynthetic layers to pullout from confining soil, with Le required to be no less than 3 ft.",
+      "body": "The determination of geosynthetic reinforcement length in the design of an MSE slope is based in part on the resistance of the reinforcement to pullout from between layers of confining soil. In FHWA (2009b) the FHWA defines a geosynthetic's resistance to pullout as:\n\nPr = F* · α · σʹv · Le · C  (7-4)\n\nwhere:\nPr = geosynthetic reinforcement's resistance to pullout,\nF* = pullout resistance factor,\nα = scale correction factor to account for nonlinear stress reduction,\nσʹv = effective vertical stress at the soil-reinforcement interface,\nLe = length of reinforcement embedded behind the trial failure surface, and\nC = number of surfaces on which pullout resistance is mobilized (i.e. 2 for geosynthetics).\n\nThe critical failure surface used to calculate Le should be that surface that exhibits the minimum F deemed acceptable. Also, Le should be no less than 3 feet to assure adequate pullout resistance.\n\nSome manufacturers of geosynthetic reinforcement have characterized soil-geosynthetic interaction in terms of a coefficient of interaction (Ci) based on pullout tests with Ci defined as:\n\nCi = tan δ / tan φʹ  (7-5)\n\nwhere:\nφʹ = the effective stress internal angle of friction, and\nδ = the effective soil-geosynthetic interface friction angle.\n\nThe values of F* and Ci are related by:\n\nF* = Ci · tan(φʹ)  (7-6)",
+      "key_points": [
+        "Pullout resistance Pr (Eq. 7-4) depends on pullout resistance factor F*, scale correction α, effective vertical stress σʹv, embedded length Le, and number of pullout surfaces C (=2 for geosynthetics).",
+        "Le must be no less than 3 ft to ensure adequate pullout resistance.",
+        "Le is calculated for the critical failure surface exhibiting the minimum acceptable F.",
+        "Coefficient of interaction Ci = tan δ / tan φʹ (Eq. 7-5); relates interface friction to soil friction.",
+        "F* and Ci are related by F* = Ci · tan(φʹ) (Eq. 7-6), allowing conversion between the two characterizations."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 7-4",
+          "description": "Geosynthetic pullout resistance: Pr = F* × α × σʹv × Le × C, where F* is the pullout resistance factor, α is the scale correction factor, σʹv is the effective vertical stress, Le is the embedded reinforcement length behind the failure surface, and C is the number of pullout surfaces (2 for geosynthetics).",
+          "implemented_in": "geotech_references.dm7_1.chapter7.geosynthetic_pullout_resistance"
+        },
+        {
+          "id": "Eq. 7-5",
+          "description": "Coefficient of interaction: Ci = tan δ / tan φʹ, where δ is the effective soil-geosynthetic interface friction angle and φʹ is the effective stress internal friction angle of the soil.",
+          "implemented_in": "geotech_references.dm7_1.chapter7.coefficient_of_interaction"
+        },
+        {
+          "id": "Eq. 7-6",
+          "description": "Relationship between pullout resistance factor and coefficient of interaction: F* = Ci × tan(φʹ).",
+          "implemented_in": "geotech_references.dm7_1.chapter7.pullout_resistance_factor"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when calculating geosynthetic reinforcement pullout resistance and determining required embedment length Le in MSE slope design."
+    },
+    {
+      "section_id": "7-9.5",
+      "title": "Analysis and Design of Reinforced Slopes",
+      "summary": "Addresses limit equilibrium analysis of MSE slopes, including selection of analysis methods (Spencer's or Morgenstern-Price preferred), failure surface types (circular, noncircular, compound, global), and two methods (A and B) for incorporating geosynthetic strength in the factor of safety equation. Provides a 15-step computer modeling procedure (Table 7-7) and references Table 7-6 for FS equation formulations.",
+      "body": "The most technically challenging aspect of the design of an MSE slope is deciding the required strength, length and vertical spacing of the layers of reinforcement. The critical failure surface for a slope with layers of horizontally-oriented geosynthetic reinforcement is frequently a combination of circular and linear segments, particularly if the critical failure surface is entirely outside of the reinforced soil zone (i.e., a global failure surface rather than a compound failure surface).\n\nMost of the software packages that are used for soil slopes can also be used for MSE slopes. There are some software packages specifically written for MSE slopes, and these are listed in Appendix B. Spencer's Method (Spencer 1967) and the Morgenstern and Price Method (Morgenstern and Price 1963) both lend themselves to the analyses of noncircular failure surfaces, solve for all conditions of equilibrium (i.e. moment and force), and provide the most accurate solutions. Either of these two methods is preferred for the analysis of MSE slopes.\n\nOne of the most important considerations in the modeling of an MSE slope in a limit equilibrium slope stability computer program is the definition of F given in Equation 7-1. However, the presence of geosynthetic reinforcement requires that its strength be applied to the right side of the equation in the numerator or the denominator (Duncan et al. 2014). Two options are available as summarized in Table 7-6. The method used by slope stability software can be determined using the simple approach suggested by Duncan et al. (2014).\n\nIf Method A is used to define F, then the strength of the geosynthetic used to calculate F is Td. To account for potential uncertainties in the geosynthetic Td should be divided by a factor of safety for geosynthetic strength (FR) of at least 1.3. If Method B is used, then Td will be reduced by F and the application of FR is not necessary.\n\nThe reinforcement force orientation assumed by limit equilibrium analysis can vary from one that is parallel to the reinforcement to one that is tangent to the slip surface. Setting the orientation parallel to the reinforcement in a slope stability computer program is common practice and tends to result in a lower F compared to setting the orientation tangent to the slip surface.\n\nA detailed discussion of the procedure to determine the reinforcement requirements of MSE slopes is provided by the FHWA (2009), particularly for the case in which Bishop's simplified method is used. The FHWA manual also considers the mechanics of internal sliding failure and locally soft foundation soil at the slope toe. The steps provided in Table 7-7 are intended to help an engineer to construct a computer model for an MSE slope design.",
+      "key_points": [
+        "Spencer's Method and Morgenstern-Price Method are preferred for MSE slope analysis due to noncircular capability and full equilibrium (moment + force) solutions.",
+        "Critical failure surfaces are often compound (circular + linear) especially for global surfaces outside the reinforced zone.",
+        "Two FS formulations exist: Method A subtracts reinforcement resistance from the denominator; Method B adds it to the numerator. Method A requires FR ≥ 1.3 applied to Td.",
+        "Reinforcement force orientation set parallel to reinforcement (common practice) yields lower F than tangent to slip surface orientation.",
+        "Initial design guidance: vertical reinforcement spacing ≤ 3 ft, reinforcement length L ≈ 0.7·H.",
+        "Design must evaluate failure surfaces exiting through slope face, compound surfaces, and global surfaces; Table 7-7 provides a 15-step computer modeling procedure.",
+        "If Ci is unknown and unsupported by test data, assume Ci = 0.67 (conservative for fill shown in Table 7-4)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 7-6",
+        "Table 7-7"
+      ],
+      "applicability": "Applies when performing limit equilibrium analysis and computer modeling for the design of geosynthetic-reinforced MSE slopes."
+    },
+    {
+      "section_id": "7-9.6",
+      "title": "Required Factor of Safety for MSE Slopes",
+      "summary": "Defines the target factor of safety (F) range for MSE slope design, balancing site condition uncertainty and failure consequences. Standard practice calls for F between 1.3 and 1.5, with 1.5 or higher required for poorly understood conditions, high-consequence failures, or FHWA-guided designs.",
+      "body": "An MSE slope should be designed to a target F that is based on considerations of the uncertainties regarding site conditions, material properties and the consequences of slope failure. In general, the standard of practice is to provide a F in the range of 1.3 to 1.5. If the site conditions and material properties are understood well and if the consequences of failure are relatively low, then a minimum F of 1.3 may be appropriate. However, if site conditions are subject to unforeseeable changes and if soil types, strengths and locations are poorly understood, then F of 1.5 or higher may be necessary. Similarly, if the proper performance of the MSE slope is required for the operation of important structures, then F of 1.5 or higher may be indicated. For MSE slopes designed in accordance with FHWA guidance, a minimum factor of safety of 1.5 is required.",
+      "key_points": [
+        "Target F for MSE slopes ranges from 1.3 to 1.5 based on site uncertainty and failure consequences.",
+        "Minimum F of 1.3 is acceptable when site conditions and material properties are well understood and failure consequences are low.",
+        "F of 1.5 or higher is required when site conditions are uncertain, soils are poorly characterized, or the structure is critical.",
+        "FHWA-guided MSE slope designs require a minimum F of 1.5.",
+        "Parametric analyses coupled with engineering judgment should address uncertainties such as groundwater location and soil shear strength."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when determining the required factor of safety for MSE slope design, especially under FHWA guidance."
+    },
+    {
+      "section_id": "7-10",
+      "title": "Rock Slope Stability",
+      "summary": "Introductory overview of rock slope stability for excavations related to roads, buildings, and infrastructure. Covers when stability issues arise during or after excavation, introduces the fundamental failure modes (sliding blocks, plane failure, wedge failure, toppling), and references stabilization measures and rock fall mitigation covered in subsequent subsections.",
+      "body": "The stability of rock slopes may become a concern during the excavation for the construction of roads, buildings and infrastructure components. Often a stability issue cannot be identified until the excavation is underway and information that is needed to assess the potential for various modes of failure becomes available. Analyses of rock slope stability may need to be performed expeditiously to avoid project delays. The potential for delays can be exacerbated by a need to design stabilization measures. In other cases, rock slope instability does not occur until well after the initial excavation and rock weathering has taken its toll.\n\nThis section provides an overview of some of the aspects of rock slopes and a more in-depth discussion of others. The fundamental mechanics of rock slope failure are covered by a discussion of sliding blocks, plane failure, wedge failure, and toppling failure. Stabilization measures for rock slopes and mitigation of rock falls are also addressed. More in-depth discussion can be found in FHWA (1998), Hoek and Bray (1981), and Rowland et al. (2007).",
+      "key_points": [
+        "Rock slope stability concerns often emerge during excavation for roads, buildings, and infrastructure.",
+        "Stability analyses may need to be performed quickly to avoid project delays.",
+        "Rock slope instability can also develop long after excavation due to weathering.",
+        "Key failure modes covered: sliding blocks, plane failure, wedge failure, toppling failure.",
+        "Key references: FHWA (1998), Hoek and Bray (1981), Rowland et al. (2007)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies as an introduction whenever rock slope stability must be evaluated for excavations or long-term slope performance."
+    },
+    {
+      "section_id": "7-10.1",
+      "title": "Modes of Rock Slope Failure",
+      "summary": "Describes six typical rock slope configurations and the failure modes associated with each, including discontinuity-driven plane/wedge/toppling failures and weak-rock circular failures. Covers how discontinuity orientation (daylighting vs. non-daylighting), freeze-thaw, weathering sequences (sandstone/shale), and joint spacing govern failure risk.",
+      "body": "Fortunately, the stresses in most rock slopes are much less than the rock strength, and for this reason most rock slopes are relatively stable. The potential for rock slope failure becomes a concern under two general conditions. First, discontinuities in the rock mass propagate and the rock separates as blocks, wedges, columns, or other types of sections. Second, rock that has already separated in the form of cobbles and boulders can translate downslope under the influence of gravity as a rock fall. In both cases, the separated rock may pose a hazard to both property and lives.\n\nThere are six typical configuration of rock slopes, some of which may pose risks of instability. Four possible configurations of rock discontinuities are shown in Figure 7-13 while rock slopes with weak and weathered rock are depicted in Figure 7-14.\n\nThe term discontinuity refers to faults, joints, bedding planes, or any other surface upon which rock may move. The pattern of discontinuities shown in Figure 7-13a is typical for sedimentary rock, such as limestone, sandstone, and shale, that has been deposited in bedded layers and later uplifted by geologic processes. The orientation of the discontinuities in Figure 7-13a is roughly parallel to the rock slope face, but they do not daylight at the slope face. In such a configuration the rock slope face is expected to remain stable. In contrast, Figure 7-13b shows a rock slope with discontinuities that daylight at the slope face. With such orientation of discontinuities, a potential for rock slope failures exists.\n\nFigure 7-13c shows a rock slope with generally favorable bedding in that the discontinuities dip into the rock slope and there is little potential for rock to slide out of the slope face. However, blocks of rock at the slope face may become instable when discontinuities daylight at the slope face. The potential for the development of such conditions are increased if blasting was performed during slope excavation.\n\nA rock slope configuration that illustrates the conditions for the toppling of rock columns is shown in Figure 7-13d. Toppling becomes a risk for rock with relatively thin bedding with steeply dipping discontinuities. The stability of rock columns can degrade relatively quickly if water seeps readily into the discontinuities from surface water runoff and increases the rate of weathering. In regions with frequent freeze-thaw cycles the rate of degradation may accelerate further because the frozen water can cause the rock columns to separate.\n\nSandstone and shale are often found with near-horizontal bedding. Excavation of such a bedding sequence generally results in a shale layers that weather faster than sandstone. In such conditions layers of sandstone may be undermined and form ledges that are prone to fracturing and failure. Such a condition is illustrated in Figure 7-14a.\n\nWeak rock slopes with closely spaced impersistent joints may fail along a circular or noncircular surface much like a soil slope as shown in Figure 7-14b.\n\nAn assessment of the potential for one of the above modes of failure to develop often requires a geologic investigation, field mapping of discontinuities, stereographic projection of geologic data, and an evaluation of rock strength.",
+      "key_points": [
+        "Rock slope failure occurs due to propagation of discontinuities forming blocks/wedges/columns, or rock fall of already-separated material.",
+        "Discontinuities that do not daylight at the slope face generally indicate a stable slope; daylighting discontinuities indicate failure potential.",
+        "Toppling risk is highest for thin-bedded rock with steeply dipping discontinuities, especially in freeze-thaw environments.",
+        "Sandstone over shale sequences can produce undermined ledges prone to fracture after excavation.",
+        "Weak rock with closely spaced impersistent joints may fail along circular/noncircular surfaces similar to soil slopes.",
+        "Assessment requires geologic investigation, field mapping, stereographic projection, and rock strength evaluation."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-13",
+        "Figure 7-14"
+      ],
+      "tables": [],
+      "applicability": "Applies when identifying which mode of rock slope failure is relevant to a specific site based on discontinuity patterns and rock type."
+    },
+    {
+      "section_id": "7-10.2",
+      "title": "Mechanics of a Sliding Block",
+      "summary": "Presents the fundamental force equilibrium for a sliding rock block, defining weight components normal (FN) and parallel (FS) to the sliding plane as functions of the dip angle ΨP. Establishes the factor of safety against sliding assuming no pore pressure, and notes that positive pore pressure reduces effective normal stress and the factor of safety.",
+      "body": "The mechanics of a sliding block are central to two types of rock slope stability analyses. Considering the rock slope depicted in Figure 7-15, the weight of the block ABC is represented by force W, which acts through the block's centroid. The component of W that acts perpendicular to the sliding plane AC is FN. The component of W that acts parallel to the sliding plane AC is FS. The relationship of these three forces is defined by the angle, or dip, of the sliding plane (ΨP) with respect to the horizontal plane.\n\nThe factor of safety against sliding on plane AC is calculated as shown in Figure 7-15. This solution assumes no pore pressure is acting on the sliding plane. Positive pore pressure will reduce the effective normal stress, shear strength, and the factor of safety.",
+      "key_points": [
+        "Block weight W is decomposed into normal (FN) and parallel (FS) components relative to the sliding plane, governed by dip angle ΨP.",
+        "Factor of safety against sliding is the ratio of resisting to driving forces along the sliding plane.",
+        "No pore pressure is assumed in the basic formulation; pore pressure reduces effective normal stress and lowers the factor of safety.",
+        "This sliding block model is foundational for both plane failure and wedge failure analyses."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-15"
+      ],
+      "tables": [],
+      "applicability": "Applies when performing a basic factor of safety calculation for a rock block sliding on a planar surface with no pore pressure."
+    },
+    {
+      "section_id": "7-10.3",
+      "title": "Plane Failure",
+      "summary": "Describes plane failure as a specific case of the sliding block model, noting it is relatively rare due to strict geometric requirements. Emphasizes its instructional value for understanding wedge failure mechanics and introduces the conditions and orientation terminology needed for plane failure analysis.",
+      "body": "The rock slope with a sliding block shown in Figure 7-15 is a simple version of a plane failure. It is not a type of failure that is often encountered because the conditions for its development rarely occur. However, the mechanics of a plane failure also apply to the more frequently encountered wedge failure. For this reason, it is instructive to further consider plane failures.",
+      "key_points": [
+        "Plane failure is a simplified and relatively rare rock slope failure mode requiring specific geometric conditions.",
+        "Understanding plane failure mechanics is essential because the same principles apply to the more common wedge failure.",
+        "Two subsections cover orientation terminology and the four geometric conditions required for plane failure."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies as a container section when studying plane failure mechanics and their relationship to wedge failure analysis."
+    },
+    {
+      "section_id": "7-10.3.1",
+      "title": "Sloped Surface Orientation Terms",
+      "summary": "Defines the three key geometric terms used to describe planar orientations in rock slope analysis: dip (Ψ), dip direction/dip azimuth (α), and strike. Establishes that strike is perpendicular to dip direction, providing the vocabulary needed for plane and wedge failure assessments.",
+      "body": "A discussion of plane failure requires the definition of three terms that are used to describe the orientation of sloped planes such as a slope face or a potential failure surface. The dip (Ψ) of a sloped plane is the inclination of that surface as measured from a horizontal plane, as shown in Figure 7-16. The dip direction or dip azimuth (α) is the direction of the horizontal trace of the line of dip measured clockwise from north.\n\nOften the term strike is used to describe the orientation of a sloped plane. It is the direction of a line that is formed by an intersection of the sloped plane with an imaginary horizontal plane. The orientation of the strike of a sloped surface is perpendicular to the dip direction of the sloped surface.",
+      "key_points": [
+        "Dip (Ψ) is the inclination of a plane measured from horizontal.",
+        "Dip direction or dip azimuth (α) is measured clockwise from north along the horizontal trace of the dip line.",
+        "Strike is the direction of intersection of the sloped plane with a horizontal plane; it is perpendicular to the dip direction.",
+        "These three terms are fundamental vocabulary for rock slope discontinuity characterization."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-16"
+      ],
+      "tables": [],
+      "applicability": "Applies whenever describing or analyzing the geometric orientation of rock discontinuities, slope faces, or failure planes."
+    },
+    {
+      "section_id": "7-10.3.2",
+      "title": "General Conditions for Plane Failure",
+      "summary": "Lists the four geometric conditions that must all be satisfied for plane failure to occur, per Hoek and Bray (1981): the failure plane must strike nearly parallel to the slope face, daylight at the slope face (ΨP < ΨF), have a dip exceeding the friction angle (φ′ < ΨP), and release surfaces with negligible resistance must exist at the lateral boundaries.",
+      "body": "For sliding to occur on a single plane the four conditions must be satisfied (Hoek and Bray 1981):\n1. The plane on which sliding occurs must strike nearly parallel (i.e., within about 20º) to the slope face.\n2. The failure plane must daylight in the slope face (i.e., intersect the slope face). Therefore, the dip of the failure plane (ΨP) must be less than the dip of the slope face, ΨF. That is, ΨP < ΨF.\n3. The dip of the failure plane must be greater than the angle of friction at the failure plane. That is, φʹ < ΨF.\n4. Release surfaces that provide negligible resistance to sliding must be present in the rock mass to define the lateral boundaries of the slide.\nThe relative positions of the planes defined by ΨF, ΨP, and φʹ are shown in Figure 7-17a. The release surfaces associated with a sliding plane are shown in Figure 7-17b.",
+      "key_points": [
+        "Failure plane strike must be within ~20° of the slope face strike.",
+        "Failure plane must daylight at slope face: ΨP < ΨF.",
+        "Failure plane dip must exceed friction angle: φ′ < ΨP.",
+        "Lateral release surfaces with negligible sliding resistance must exist to define slide boundaries.",
+        "All four conditions must be met simultaneously for plane failure to develop."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-17"
+      ],
+      "tables": [],
+      "applicability": "Applies when assessing whether geometric conditions at a rock slope site are sufficient for plane failure to occur."
+    },
+    {
+      "section_id": "7-10.4",
+      "title": "Plane Failure Analyses",
+      "summary": "Covers the factor of safety calculation for plane failure including the effects of a tension crack (above or below the slope crest) that may contain water. Defines uplift force U at the failure plane and water force V in the tension crack, as shown in Figure 7-18. Notes that computer programs improve analytical efficiency over hand calculations.",
+      "body": "Rock slopes analyzed for plane failure can also consider the presence of a tension crack, which may contain water. The crack may be located either above or below the slope crest as shown in Figure 7-18. The uplift force applied by water at the failure plane is designated as U. The force applied by water in the tension crack is designated as V. The factor of safety for such conditions can be calculated using the equation presented in Figure 7-18.\n\nFurther details regarding the stability analyses of sliding planes are described in the FHWA (1998) and by Hoek and Bray (1981). While such analyses can be practically performed using hand calculations, analytical efficiency can be significantly improved by use of computer programs.",
+      "key_points": [
+        "Plane failure analysis can incorporate tension cracks located either above or below the slope crest.",
+        "Water in the tension crack introduces force V; water on the failure plane introduces uplift force U.",
+        "Both U and V reduce the factor of safety by decreasing effective normal stress and adding a driving force.",
+        "The factor of safety equation accounting for U and V is presented graphically in Figure 7-18.",
+        "Computer programs significantly improve efficiency over hand calculations for these analyses."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-18"
+      ],
+      "tables": [],
+      "applicability": "Applies when computing the factor of safety for plane failure in rock slopes that may have tension cracks and/or water pressure on the failure plane."
+    },
+    {
+      "section_id": "7-10.5",
+      "title": "Wedge Failure",
+      "summary": "Describes wedge failure analysis for rock slopes where two intersecting discontinuity planes (Plane A and Plane B) define a sliding wedge. Introduces the wedge factor K relating wedge factor of safety FW to equivalent plane failure conditions, and notes that cohesion and water pressure require more complex analysis available in FHWA (1998) and Hoek and Bray (1981).",
+      "body": "The rock slope with a sliding wedge shown in Figure 7-19 is similar to a sliding plane, but the presence of Plane A and Plane B make it possible to model a geometry that is encountered in the field more frequently.\n\nThe convention adopted in the FHWA (1998) and by Hoek and Bray (1981) is that the release surface designated as Plane A is the flatter of the two release surfaces. The steeper release surface is designated as Plane B. These two surfaces intersect along the line of intersection.\n\nAs with a plane failure, there are certain geometrical requirements for wedge failure to occur. Specifically, ΨFi > Ψi > φʹ, where ΨFi is the inclination of the slope face as measured at right angles to the line of intersection, Ψi is the dip of the line of intersection and φʹ is the average friction angle of Plane A and Plane B. Note that ΨFi is not the same as ΨF unless the dip direction of the line of intersection is the same as the dip direction of the slope face (Hoek and Bray 1981).\n\nThe factor of safety of the wedge in Figure 7-19 may be determined by assuming that sliding is resisted only by friction at the surface of Plane A and Plane B. With this simplifying assumption, the resisting forces on these planes can be determined by calculation of the normal forces RA and RB on each plane, as illustrated in Figure 7-20a. The component forces of the weight of the wedge perpendicular and parallel to the line of intersection are shown in Figure 7-20b.\n\nHoek and Bray (1981) relate the factor of safety against wedge failure (FW) to that for a slope with a face that is inclined at ΨFi and a failure plane that is inclined at Ψi by a wedge factor K. This wedge factor can be graphically determined using a figure provided in both the FHWA (1998) and Hoek and Bray (1981).\n\nThe analysis of a wedge failure for which cohesion or water are present is more complicated than for a wedge failure in which only the friction angle at the failure planes is considered. Both the FHWA (1998) and by Hoek and Bray (1981) discuss this analytical process in detail. Such an analysis can also be performed efficiently using computer programs.",
+      "key_points": [
+        "Wedge failure involves two intersecting release planes (Plane A = flatter, Plane B = steeper) forming a sliding wedge.",
+        "Geometric requirement: ΨFi > Ψi > φ′, where ΨFi is slope face inclination perpendicular to the line of intersection and Ψi is the dip of that line.",
+        "ΨFi differs from ΨF unless the line of intersection dip direction matches the slope face dip direction.",
+        "Basic analysis assumes friction only on Plane A and Plane B; normal forces RA and RB are computed from wedge weight components.",
+        "Wedge factor K relates FW to equivalent plane failure factor of safety; K is determined graphically.",
+        "Cohesion and water pressure require more detailed analysis; computer programs are recommended."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-19",
+        "Figure 7-20"
+      ],
+      "tables": [],
+      "applicability": "Applies when evaluating factor of safety against wedge failure for a rock slope with two intersecting discontinuity planes."
+    },
+    {
+      "section_id": "7-10.6",
+      "title": "Toppling Failure",
+      "summary": "Explains toppling failure mechanics for rock columns where the center of gravity lies on the slope-face side, creating eccentric loading and tensile stress on the back face. Notes that toppling analyses are significantly more complex than plane or block failure and that hand calculation methods (FHWA 1998) may have limited applicability to field conditions.",
+      "body": "For a column of rock to be subject to toppling failure, the center of gravity of the column must be located on the side of the column at the slope face. In this way, the column is loaded eccentrically. Such loading creates tensile stress on the side of the column away from the slope face, as shown in Figure 7-21. If the tensile capacity of the column is exceeded, failure can ensue.\n\nAnalyses of rock toppling can be significantly more complicated than those for plane failure or block failure. A method for hand calculations is described in FHWA (1998) but such a procedure may have limited applicability to actual field conditions.",
+      "key_points": [
+        "Toppling occurs when the center of gravity of a rock column is on the slope-face side, creating eccentric loading.",
+        "Eccentric loading generates tensile stress on the back face of the column; failure occurs when tensile capacity is exceeded.",
+        "Toppling analyses are substantially more complex than plane or block failure analyses.",
+        "Hand calculation methods from FHWA (1998) exist but have limited applicability to real field conditions."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-21"
+      ],
+      "tables": [],
+      "applicability": "Applies when assessing the risk of toppling failure for rock columns with steeply dipping, thin-bedded discontinuities at a slope face."
+    },
+    {
+      "section_id": "7-10.7",
+      "title": "Circular Failure",
+      "summary": "Addresses circular or noncircular failure of weak rock slopes with closely spaced impersistent joints, analogous to soil slope failure. Cautions that weak intact rock can still have significant cohesion, that cohesive strength is difficult to measure accurately, and that zones of stronger rock behind weaker zones may shift the location of the critical failure surface.",
+      "body": "As described in section 7-10.1, if a rock slope consists of weak material with closely spaced, impersistent joints, then the slope may fail along a circular or noncircular surface much as a soil slope. Analyses of these types of failures can be performed using the methods previously discussed for the stability of soil slopes. However, it should be noted that even weak intact rock can exhibit significant cohesive strength. An accurate assessment of the actual cohesive strength may be difficult to make. It is also important to realize that zones of relatively strong rock may exist behind zones of relatively weak rock. The presence of the strong rock zones may significantly affect the location of the critical failure surface.",
+      "key_points": [
+        "Weak rock with closely spaced impersistent joints can fail along circular or noncircular surfaces similar to soil slopes.",
+        "Soil slope stability methods are applicable for these analyses.",
+        "Even weak intact rock may have significant cohesive strength that is difficult to measure accurately.",
+        "Zones of stronger rock behind weaker rock can significantly influence the location of the critical failure surface."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when analyzing failure of weak or closely jointed rock slopes where failure mode resembles soil slope circular failure."
+    },
+    {
+      "section_id": "7-10.8",
+      "title": "Rock Slope Stabilization and Protection",
+      "summary": "Introduces the range of measures available to mitigate hazards from unstable rock slopes, varying from simple to complex in terms of required analytical expertise, construction skill, and expense. Serves as a container section for subsections covering reinforcement, shotcrete, buttresses, drains, rock removal, rock fall protection, and rock sheds/tunnels.",
+      "body": "Several measures can be taken to mitigate the hazards presented by unstable rock slopes. These measures vary from the relatively simple to those which require considerable analytical expertise, construction skill, and expense.",
+      "key_points": [
+        "Stabilization measures range from simple (scaling, drains) to complex (active anchors, catch fences, rock sheds).",
+        "Categories include rock reinforcement, rock removal, and protective barriers.",
+        "Selection of appropriate measure depends on the failure mode, site conditions, and cost."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies as an overview container when selecting and designing rock slope stabilization or protection measures."
+    },
+    {
+      "section_id": "7-10.8.1",
+      "title": "Stabilization and Protection Options",
+      "summary": "Summarizes the three primary categories of rock slope stabilization measures — rock reinforcement, rock removal, and protective barriers — and references Figure 7-22 which enumerates specific options within each category per FHWA (1998).",
+      "body": "The range of stabilization measures that are typically available include rock reinforcement, rock removal and protective barriers. A range of options is available under each of these categories as shown in Figure 7-22.",
+      "key_points": [
+        "Three primary categories of stabilization: rock reinforcement, rock removal, and protective barriers.",
+        "Figure 7-22 (after FHWA 1998) enumerates specific options within each category."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-22"
+      ],
+      "tables": [],
+      "applicability": "Applies when identifying and comparing available stabilization and protection options for an unstable rock slope."
+    },
+    {
+      "section_id": "7-10.8.2",
+      "title": "Reinforcement",
+      "summary": "Covers passive anchors (rock bolts/dowels, soil nails) and active anchors (stressed bar or strand tendons) for rock slope stabilization. Describes installation methods, typical bar sizes (No. 8–No. 11), tensile capacities (35–500+ kips for strand), grout vs. resin bonding, corrosion protection, and references FHWA GEC No. 7 and GEC No. 4. Includes electrochemical limits for corrosive environments.",
+      "body": "Anchors have been used for many years to stabilize both soil and rock slopes. In general, anchors can be classified as passive or active. A passive anchor that is frequently used for top-down excavation stabilization is the soil nail. For rock slope stabilization it may be referred to as a rock bolt or dowel. It typically comprises a steel tendon in the form of an all-thread bar that is centered within a drill hole. A cement grout is installed in the drill hole to bond the tendon to the adjacent soil or rock. Grout is usually placed by tremie from the distal end to the anchor head. Typically, such holes are drilled at a declination of about 15° or more below the horizontal plane to prevent spilling of the grout at the excavated face.\n\nThe steel bars used for these applications typically exhibit a tensile capacity of at least 75 ksi. Higher capacity bars are readily available. Typical bar diameters correspond to standard reinforcement steel sizes of #8 (i.e. 1.0-inch nominal diameter) to #11 (i.e. 1.41-inch nominal diameter). Resistance to bar corrosion is typically provided by an epoxy coating or galvanization. The grout that surrounds the bar can also provide some protection against corrosion, but the grout is subject to cracking and may not provide complete coverage.\n\nDifferent types of liquid resins are manufactured for use with rock anchors as an alternative to cement grout. Resin cartridges include a hardener that can be selected to provide a range of hardening times. The cartridges are inserted into the drill hole and then followed by insertion of the steel bar tendon. The tendon is then spun at a prescribed rate to mix the resin and hardening agent and to distribute the mixture to both bar and rock surfaces. Unfortunately, there is some skepticism within the ground anchor contracting industry that resins can be consistently distributed to rock and tendon surfaces and can reliably provide requisite bond capacities. Also, resins do not provide the same level of corrosion protection as does cement grout.\n\nThe FHWA has published several manuals on the design of soil nail structures. The current version is Geotechnical Engineering Circular No. 7 (FHWA 2015). This manual should be consulted in the design of passive anchors for rock stabilization applications.\n\nA passive anchor does not impart a stabilization force to the adjacent rock or soil until the rock or soil tends to displace. At that point the passive anchor provides a resisting force. In contrast, an active anchor is stressed as part of its installation process. Such anchors may comprise steel bars like a soil nail. However, if a particularly long anchor or one with high tensile capacity is required, then steel strand tendons may be indicated. The installation of such an active anchor is similar to that of a passive anchor. First, a hole for the anchor is drilled and then the strand is inserted and centered within the hole. Next, the strand is grouted, but only for a certain length of the strand starting from the distal end. A length between the top of the grouted section and the anchor head is left unbonded. The reason for the unbonded section is that this portion of the tendon must be left to strain under a design stressing load to provide an active force at the anchor head. This force is transferred to a loading plate or block that is secured against the rock slope face. In this way the active force can be used to stabilize a large rock plane, wedge or unstable columns. This is perhaps the most important distinction between an active anchor and a passive anchor. Unlike a passive anchor, an active anchor does not depend on soil or rock movement to mobilize its strength.\n\nThe bonded length of the tendon is that portion which is grouted. The length of the bonded section is based on analyses that consider the load in the anchor and the bond strength between the grout and the adjacent soil or rock.\n\nSteel strand tendons are typically available in configurations that provide a working tensile capacity of about 35 to 500 kips. Tendons with considerably higher capacities can be fabricated.\n\nThe design of active anchor systems is discussed in the FHWA's Geotechnical Engineering Circular No. 4 (FHWA 1999). This manual should be consulted in the design of active anchors for rock stabilization applications.\n\nWhen anchors are designed for the stabilization of rock slopes, some consideration should be given to the potential for conditions that may cause steel corrosion. Such conditions often prevail in areas where coal and acidic runoff are present or where sodic and pyritic soils are found. The FHWA provides the electrochemical parameters in Table 7-8 as limits for the use of steel reinforcement in MSE structures. These limits should be considered when designing the corrosion protection for active and passive anchors.",
+      "key_points": [
+        "Passive anchors (rock bolts/dowels/soil nails) mobilize resistance only when rock or soil tends to displace; active anchors are pre-stressed at installation.",
+        "Typical passive anchor bars: #8–#11 steel (1.0–1.41 in. diameter), ≥75 ksi tensile capacity; drilled at ≥15° declination to prevent grout spillage.",
+        "Active anchors use bonded + unbonded strand tendons; working capacity typically 35–500 kips; unbonded section allows pre-stressing.",
+        "Cement grout provides better corrosion protection and bond reliability than resin for rock anchors.",
+        "FHWA GEC No. 7 (FHWA 2015) governs passive anchor design; FHWA GEC No. 4 (FHWA 1999) governs active anchor design.",
+        "Corrosive environments (coal, acidic runoff, pyritic soils) require corrosion-protected anchors; Table 7-8 provides electrochemical limits.",
+        "Active anchors are superior for stabilizing large rock planes, wedges, or columns because they do not require movement to mobilize force."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 7-8"
+      ],
+      "applicability": "Applies when designing passive or active anchor reinforcement systems for rock slope stabilization, especially in potentially corrosive environments."
+    },
+    {
+      "section_id": "7-10.8.3",
+      "title": "Shotcrete",
+      "summary": "Describes shotcrete application for stabilizing rock slopes subject to raveling and dislodgement of gravel, cobbles, and boulders. Covers reinforcement with WWF or bars, anchor spacing (≤6 ft), the critical role of drainage composites to prevent delamination from water pressure or freezing, and weep hole detailing.",
+      "body": "Shotcrete is essentially concrete that has little to no gravel-size particles (i.e. larger than the No. 4 sieve) that can be sprayed onto vertical and near-vertical surfaces. It is usually applied in layers to build up the total coating to a specified thickness. Both steel welded wire fabric (WWF) and bars may be used within the shotcrete to provide reinforcement.\n\nShotcrete can be used to stabilize rock slopes that are subject to raveling and dislodgement of gravel, cobble and boulders. It will tend to adhere to such unstable faces but it should be secured with relatively short passive anchors (i.e. soil nails, rock bolts or dowels). Otherwise, the shotcrete may delaminate from the rock slope in a short period of time. The length of the anchors can be 10 feet or less if they are not actually needed for stabilization of rock planes and wedges. If the rock slope surface is mostly unstable then the anchors should be spaced at intervals no greater than about 6 feet.\n\nA common cause for separation of shotcrete from the face of a rock slope is the presence of water behind the shotcrete. Water frequently seeps from rock slopes, and it should be drained using a drainage composite. Drainage is especially important in climates where the water can freeze. Drainage composites can be successfully used behind shotcrete. The composites typically are available in a width of 4 feet. They should be installed with a coverage of 50%. A drainage grate should be installed at the base of each drainage composite strip and daylighted by a weep hole through the shotcrete.",
+      "key_points": [
+        "Shotcrete contains no particles larger than No. 4 sieve and is applied in layers to vertical/near-vertical rock faces.",
+        "Must be secured with passive anchors (≤10 ft length for surface stabilization only); anchors spaced ≤6 ft on mostly unstable faces.",
+        "Water behind shotcrete is a primary cause of delamination; drainage composites must be installed.",
+        "Drainage composites (4 ft wide) should cover 50% of the shotcrete area; weep holes and drainage grates required at their base.",
+        "Drainage is especially critical in freeze-thaw climates to prevent ice-induced delamination."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when designing shotcrete face protection for rock slopes subject to raveling, dislodgement, or surface instability."
+    },
+    {
+      "section_id": "7-10.8.4",
+      "title": "Buttress",
+      "summary": "Describes buttresses as gravity structures providing passive resistance to rock slope displacement. Options include piled soil or rock, reinforced concrete structures, or MSE structures. Engineering analyses are analogous to gravity retaining wall design.",
+      "body": "Buttresses have been used for more than 1,000 years to stabilize slopes, walls and buildings. In general, a buttress is a gravity structure that provides passive resistance to displacement. For rock slope stabilization a buttress may comprise piled soil or rock, or it may be an engineered reinforced concrete structure or an MSE structure. The engineering analyses of the mass requirements of a buttress are relatively straightforward and similar to those of a gravity retaining wall.",
+      "key_points": [
+        "A buttress is a gravity structure that passively resists displacement at the base of a rock slope.",
+        "Options include piled soil/rock, reinforced concrete, or MSE structures.",
+        "Mass requirement analyses are similar to gravity retaining wall design."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when a passive gravity structure is needed at the toe of a rock slope to resist displacement."
+    },
+    {
+      "section_id": "7-10.8.5",
+      "title": "Drains",
+      "summary": "Covers relief drains for rock slopes, which are drilled at ≥2° above horizontal (opposite to anchors) to dissipate pore pressures. Notes the practical limitation that relief drains frequently become clogged by organic material and that removal of obstructions is generally not practical.",
+      "body": "Drains are often used in conjunction with rock slope reinforcement measures to counter the destabilizing effects of water that is retained behind a slope face. In general, relief drains are drilled using equipment similar to that used for anchors. However, instead of being angle below the horizontal plane relief drains are typically angle 2° or more above the horizontal plane.\n\nAn unfortunate reality of relief drains is that they often become clogged by the accumulation of organic material. Removal of the organic obstructions is generally not practical.",
+      "key_points": [
+        "Relief drains are drilled at ≥2° above horizontal to allow gravity drainage of retained water behind a slope face.",
+        "Drilling equipment is similar to anchor installation equipment.",
+        "Relief drains commonly become clogged by organic material; removal of obstructions is generally not practical — a key long-term limitation."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when installing relief drains to reduce water pressure behind a rock slope face, typically used in conjunction with reinforcement."
+    },
+    {
+      "section_id": "7-10.8.6",
+      "title": "Rock Removal",
+      "summary": "Describes three scales of rock removal for slope stabilization: mass excavation (drilling, blasting, heavy equipment), selective trimming of overhangs and problematic formations, and scaling to remove loose cobbles and boulders presenting rock fall hazards. Notes cost and disruption tradeoffs between mass excavation and trimming.",
+      "body": "The stability of rock slopes can often be improved by the removal of material. On a large scale, such removal may take the form of mass excavation using drilling and blasting measures followed by dozers, track hoes and haul trucks.\n\nOn a smaller scale trimming may be used to more selectively remove problematic formations such as overhangs (see Figure 7-14), planes, wedges and columns. Trimming may also employ drilling and blasting and may be preferable to mass excavation in terms of cost and also in terms of potential disruption of adjacent transportation or commercial operations.\n\nIf the rock slope includes loose cobbles and boulders that may present a rock fall hazard, then scaling may be the most appropriate method of rock removal. In a scaling operation, personnel traverse the slope face while secured by ropes and harnesses. They use hand tools to dislodge rock and may even remove soil deposits and vegetation.",
+      "key_points": [
+        "Mass excavation uses drilling, blasting, dozers, track hoes, and haul trucks for large-scale removal.",
+        "Trimming selectively targets overhangs, planes, wedges, and columns; may be preferred over mass excavation for cost and reduced disruption.",
+        "Scaling removes loose cobbles and boulders using rope-secured personnel with hand tools; appropriate for rock fall hazard mitigation.",
+        "Selection among mass excavation, trimming, and scaling depends on scale, hazard type, and proximity to operations."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when rock removal is the chosen stabilization strategy for overhangs, loose material, or overall slope geometry correction."
+    },
+    {
+      "section_id": "7-10.8.7",
+      "title": "Rock Fall Protection Measures",
+      "summary": "Covers protective measures against rock falls including surface restraints (steel face mesh as anchored panels or draping curtains), capture ditches, and catch fences along highways. Emphasizes that rock fall trajectory analysis is required to design any of these measures, and notes that computer modeling paired with videography/surveying is needed for meaningful accuracy.",
+      "body": "Measures to protect against rock falls may include the installation of surface restraints, barriers or ditches. However, the design of any of these measures usually requires an assessment of the risk posed by rock falls.\n\nRock fall analyses are generally beyond the capabilities of hand calculations, although some graphical aids have been developed for this purpose (FHWA 1998). When the FHWA (1998) was published, the computer-supported analysis of rock falls was at a relatively early stage. The complexity of the problem was such that computer modeling had to be paired with videography and surveying to render solutions with meaningful accuracy.\n\nAfter a rock fall analysis has been performed and a reasonable estimate of the final location of fallen rocks can be obtained, ditches can be designed to capture errant cobbles and boulders. Guidelines for the dimensioning of capture ditches are provided in FHWA (1998).\n\nSteel face mesh can be installed over rock slope surfaces to restrain material that might otherwise dislodge. The mesh may be relatively fine twisted wire or it may comprise larger diameter elements depending on strength requirements. If the mesh is placed directly on the slope face, it must be secured by anchors that are installed in a regular pattern. In a separate application, the top of the mesh can be secured to a stable section of rock slope and left suspended to drape in front of the slope at lower elevations. Rocks that dislodge from the slope and would otherwise represent a rock fall hazard are intercepted by the mesh curtain. In such applications, a ditch is usually installed below the mesh to capture fallen material. As with reinforcement anchors, steel mesh is subject to corrosion in aggressive electrochemical environments. Both the mesh and its anchor components should be designed with corrosion protection.\n\nCatch fences have become a common feature along highways that pass through mountainous terrain. In general, they are a practical and cost-effective measure to protect against rock falls. However, an assessment of rock fall trajectories is essential to determine both the proper location, height, and structural capacities of such barriers.",
+      "key_points": [
+        "Rock fall protection options include surface mesh, capture ditches, and catch fences.",
+        "Rock fall trajectory analysis is required before designing any protection measure; hand calculations have limited applicability.",
+        "Computer modeling paired with videography and surveying is needed for accurate rock fall analysis.",
+        "Steel face mesh can be anchored directly to the slope face or draped from a stable upper anchor point; a catch ditch below intercepts fallen material.",
+        "Catch fences are practical and cost-effective for highway rock fall protection; proper location, height, and capacity depend on trajectory analysis.",
+        "Steel mesh and anchors are subject to corrosion in aggressive electrochemical environments and require corrosion protection."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when designing rock fall protection measures such as mesh, ditches, or catch fences for slopes threatening roads or infrastructure."
+    },
+    {
+      "section_id": "7-10.8.8",
+      "title": "Rock Sheds and Tunnels",
+      "summary": "Describes rock sheds as a highly effective but costly last-resort protection for vehicular traffic on hillside roadways, with a downhill-sloping roof supported by benches uphill and columns downhill. Notes that tunnels may be required where rock sheds are impractical, referencing a Canadian railway example in FHWA (1998).",
+      "body": "Rock sheds are an effective method of protecting vehicular traffic from rock falls, but their use is rarely justified unless the cost of other mitigation measures is especially high. They are typically needed on roadways that have been cut into hillsides. They are designed with a roof that slopes downhill. On the uphill side of the roof, the roof support beams are secured onto benches. On the downhill side of the roof, the roof support beams can be supported by columns.\n\nIn locations where it is not practical to construct a rock shed it may be necessary to construct a tunnel. FHWA (1998) describe such an example for a railway in Canada.",
+      "key_points": [
+        "Rock sheds protect vehicular traffic from rock falls but are rarely cost-justified unless other measures are too expensive.",
+        "Rock shed roofs slope downhill; uphill beams are bench-supported and downhill beams are column-supported.",
+        "Tunnels are a last-resort alternative where rock sheds are impractical.",
+        "FHWA (1998) provides a Canadian railway tunnel example for reference."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when rock falls pose a severe and persistent hazard to a roadway cut into a hillside and other mitigation measures are cost-prohibitive."
+    },
+    {
+      "section_id": "7-11",
+      "title": "Suggested Reading",
+      "summary": "A curated bibliography of foundational and advanced references for slope stability topics covered in Chapter 7, organized by subject area: Stability Analysis (General), Limit Equilibrium Methods, Progressive Failure, Back Analysis, Geosynthetic Reinforcement, Seismic Slope Stability, Staged Construction of Slopes, and Residual/Fully-Softened Conditions. Key authors include Bishop, Janbu, Skempton, Seed, and Ladd.",
+      "body": "Topic | Reference\n\nStability Analysis - General\nBishop, A. W. and Bjerrum, L. (1960). The relevance of the triaxial test to the solution of stability problems, Proceedings of the ASCE Research Conference on the Shear Strength of Cohesive Soils, Boulder, CO.\nSkempton, A. W. (1948). The Φ = 0 analysis of stability and its theoretical basis, Proceedings of the 2nd International Conference on Soil Mechanics and Foundation Engineering, Rotterdam, Vol. 1, pp. 72–78.\nTerzaghi, K. Peck, R. B., and Mesri, G. (1996). Soil Mechanics in Engineering Practice, 3rd ed., Wiley, Hoboken, NJ, 549 pages.\n\nLimit Equilibrium Methods\nBishop, A. W. (1955). The use of slip circles in the stability analysis of earth slopes, Geotechnique, 5(1), 7–17.\nBromhead, E. N. (1992). The Stability of Slopes, 2nd ed., Blackie, New York.\nJanbu, N. (1954a). Application of composite slip surface for stability analysis, Proceedings of the European Conference on Stability of Earth Slopes, Stockholm, Vol. 3, pp. 43–49.\nJanbu, N. (1954b). Stability Analysis of Slopes with Dimensionless Parameters, Harvard Soil Mechanics Series 46, Harvard University Press, Cambridge MA.\nJanbu, N. (1968). Slope stability computations, Soil Mechanics and Foundation Engineering Report, The Technical University of Norway, Trondheim.\n\nProgressive Failure\nBjerrum, L. (1967). Progressive failure in slopes of overconsolidated plastic clay and clay shales, ASCE, Journal of the Soil Mechanics and Foundation Division, 93(5), 1–49.\n\nBack Analysis\nChandler, R. J. (1977). Back analysis techniques for slope stabilization works: a case record, Geotechnique, 27(4), 479–495.\nFilz, G. M., Brandon, T. L., and Duncan, J. M. (1992). Back Analysis of Olmsted Landslide Using Anisotropic Strengths, Transportation Research Record 1343, Transportation Research Board, National Research Council, National Academy Press, Washington, DC, pp. 72–78.\n\nGeosynthetic Reinforcement\nKoerner, R. M. (1998). Designing with Geosynthetics, 4th ed., Prentice Hall, Upper Saddle River, NJ.\n\nSeismic Slope Stability\nMakdisi, F. I., and Seed, H. B. (1978). A simplified procedure for estimating dam and embankment earthquake–induced deformations, ASCE, Journal of the Geotechnical Engineering Division, 104(7), 849–867.\nSeed, H. B. (1979). Considerations in the earthquake–resistant design of earth and rockfill dams, Nineteenth Rankine Lecture, Geotechnique, 29(3), 215–263.\n\nStaged Construction of Slopes\nLadd, C. C. (1991). Stability evaluation during staged construction, ASCE, Journal of Geotechnical Engineering, 117, 540–615.\n\nResidual and Fully-Softened Conditions\nSkempton, A. W. (1977). Slope stability of cuttings in brown London clay, Proceedings of the 9th International Conference on Soil Mechanics, Tokyo, Vol. 3, pp. 261–270.\nSkempton, A. W. (1985). Residual strength of clays in landslides, flooded strata and the laboratory, Geotechnique, 35(1), 3–18.",
+      "key_points": [
+        "General stability analysis references include foundational works by Bishop & Bjerrum (1960), Skempton (1948), and Terzaghi, Peck & Mesri (1996).",
+        "Limit equilibrium methods are addressed by Bishop (1955) on slip circles and three seminal Janbu references (1954a, 1954b, 1968) covering composite slip surfaces and dimensionless parameters.",
+        "Progressive failure in overconsolidated plastic clays and clay shales is covered by Bjerrum (1967).",
+        "Back analysis references include Chandler (1977) and Filz, Brandon & Duncan (1992) on anisotropic strength back-analysis of a real landslide.",
+        "Geosynthetic reinforcement design is referenced via Koerner (1998), Designing with Geosynthetics, 4th ed.",
+        "Seismic slope stability references include Makdisi & Seed (1978) on earthquake-induced deformations and Seed (1979) on earthquake-resistant design of earth and rockfill dams.",
+        "Staged construction stability is covered by Ladd (1991); residual and fully-softened conditions by Skempton (1977, 1985)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when practitioners seek foundational or supplemental literature on slope stability analysis methods, seismic considerations, progressive failure, back analysis, geosynthetics, staged construction, or residual strength conditions."
+    },
+    {
+      "section_id": "7-12",
+      "title": "Notation",
+      "summary": "Defines all symbols and notation used throughout Chapter 7 on slope stability and related topics. Covers variables for slice geometry, shear strength parameters, safety factors, geosynthetic reinforcement properties, pore pressure, rock block mechanics, seepage forces, wedge failure analysis, and Greek-letter symbols for stress, friction angles, dip, and inclination.",
+      "body": "Symbol | Description\nbi | Width of the slice\nc | Total stress cohesion\nC | Number of surfaces on which pullout resistance is mobilized\ncʹ | Effective stress cohesion\nF | Factor of safety\nFm | Factor of safety for Bishop's Simplified Method in effective stress example\nFN | Component of W that acts perpendicular to the rock block sliding plane\nFR | Factor of safety for geosynthetic strength\nFS | Component of W that acts parallel to the rock block sliding plane\nFW | Factor of safety against wedge failure\nF∗ | Pullout resistance factor\nHi | Average height of the slice\ni | Hydraulic gradient\nK | Wedge factor\nLe | Length of reinforcement embedded behind the trial failure surface\nMARV | Minimum average roll value\nMα | Denominator in equation for calculating normal force at the base of a slice used for assessing validity of normal force\nPr | Geosynthetic reinforcement's resistance to pullout\nRFCR | Reduction factor for creep\nRFD | Reduction factor for durability\nRFID | Reduction factor for installation damage\nru | Pore pressure coefficient\ns | Shear strength\nS | Seepage force\nSRF | Strength reduction factor\nssu | Undrained steady state shear strength\nsu | Undrained shear strength\nTal | Geosynthetic's long-term tensile strength\nTULT | Ultimate tensile strength of the geosynthetic based on the MARV\nu | Pore water pressure\nU | Uplift force applied by water at the failure plane\nV | Force applied by water in the tension crack\nW | Rock block weight\nWi | Weight of each slice\nα | Dip direction or dip azimuth\nα | Scale correction factor to account for nonlinear stress reduction\nαi | Angle between the tangent to the failure surface and the horizontal\nγ | Unit weight\nγw | Unit weight of water\nδ | Effective soil-geosynthetic interface friction angle\nθ | Face angle\nσ | Total stress\nσʹ | Effective stress\nσʹv | Effective vertical stress\nτ | Shear stress required for equilibrium\nφʹ | Effective stress friction angle\nφ | Total stress friction angle\nφʹr | Residual friction angle\nΨ | Dip\nΨFi | Inclination of the slope face as measured at right angles to the line of intersection in a wedge failure analysis\nΨi | Dip of the line of intersection in a wedge failure analysis\nΨP | Angle of a sliding block plane with respect to horizontal",
+      "key_points": [
+        "Defines safety factor variants: F (general), Fm (Bishop's Simplified), FR (geosynthetic strength), FW (wedge failure).",
+        "Geosynthetic-specific symbols include Tal (long-term tensile strength), TULT (ultimate tensile strength based on MARV), Pr (pullout resistance), Le (embedment length), and reduction factors RFCR, RFD, RFID.",
+        "Rock block mechanics symbols: FN (force perpendicular to sliding plane), FS (force parallel to sliding plane), W (block weight), U (uplift force), V (tension crack water force).",
+        "Pore pressure represented by both u (pore water pressure) and ru (pore pressure coefficient); seepage captured by S (seepage force) and i (hydraulic gradient).",
+        "Greek symbols cover stress state (σ, σʹ, σʹv, τ), friction angles (φ, φʹ, φʹr), unit weights (γ, γw), and wedge/dip geometry (Ψ, ΨFi, Ψi, ΨP, αi).",
+        "Symbol α is used for two distinct quantities: dip direction/azimuth and scale correction factor for nonlinear stress reduction.",
+        "MARV (Minimum Average Roll Value) is defined here as it underpins the TULT geosynthetic strength parameter."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies whenever interpreting symbols and notation used in Chapter 7 equations, figures, and tables covering slope stability, geosynthetic reinforcement, rock block sliding, and wedge failure analysis."
+    }
+  ]
+}

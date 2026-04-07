@@ -1,0 +1,1330 @@
+{
+  "reference_id": "UFC 3-220-10",
+  "reference_title": "UFC 3-220-10 Soil Mechanics",
+  "volume": 1,
+  "chapter": 5,
+  "chapter_title": "Analysis of Settlement and Volume Expansion",
+  "sections": [
+    {
+      "section_id": "5-1",
+      "title": "INTRODUCTION",
+      "summary": "Introduces Chapter 5 on analysis of settlement and volume expansion in soil. Covers the scope of volume change processes including compression-induced settlement and swelling-induced heave, identifies the three primary settlement mechanisms, and distinguishes behavior between fine-grained and coarse-grained soils. Sets the stage for methods and criteria discussed throughout the chapter.",
+      "body": "",
+      "key_points": [
+        "Chapter covers both settlement (compression) and heave (expansion) of soils under changed conditions.",
+        "Three primary settlement mechanisms: immediate distortion, consolidation, and secondary compression.",
+        "Fine-grained soils allow separation of settlement components due to low hydraulic conductivity and high compressibility.",
+        "Coarse-grained soils consolidate quickly, making separation from immediate deformation difficult.",
+        "Special cases such as collapsing soils are covered in DM 7.2 (UFC 3-220-20)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies as an overview section to all analyses of soil volume change, settlement, and heave addressed in Chapter 5."
+    },
+    {
+      "section_id": "5-1.1",
+      "title": "Scope",
+      "summary": "Defines the scope of Chapter 5, covering practical aspects of soil volume change including settlement from engineered fill placement, foundation loading, and groundwater lowering, as well as volume expansion (heave) in swelling soils. Both immediate and long-term settlement are addressed, including tolerable settlement criteria, rate of settlement, and methods to reduce or accelerate settlement.",
+      "body": "This chapter explains the practical aspects of the process of volume change in soil. Many of the cases relate to the compression of soil layers due to changed conditions, such as placement of an engineered fill, foundation loading, or lowering of the groundwater table. Compression of soil results in settlement, which is vertical displacement of the ground surface or a structure supported by the ground. Both immediate and long-term settlement will be considered, along with tolerable settlement criteria, the rate of settlement, and methods to reduce or accelerate settlement. Swelling soils can also change volume by expansion, which is often referred to as heave.\n\nGuidance on special cases, such as collapsing soils, is provided in DM 7.2 (UFC 3-220-20). Chapter 2 of this document provides guidance on methods for monitoring settlement.",
+      "key_points": [
+        "Scope includes compression from engineered fill, foundation loads, and groundwater table lowering.",
+        "Settlement defined as vertical displacement of ground surface or a supported structure.",
+        "Both immediate and long-term settlement are covered, including tolerable limits and acceleration/reduction methods.",
+        "Heave (volume expansion) in swelling soils is also within scope.",
+        "Special cases (e.g., collapsing soils) are deferred to DM 7.2 (UFC 3-220-20).",
+        "Chapter 2 covers field methods for monitoring settlement."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when determining the scope of analyses covered in Chapter 5 for any project involving soil volume change, settlement, or heave."
+    },
+    {
+      "section_id": "5-1.2",
+      "title": "Occurrence of Settlement",
+      "summary": "Describes the three primary mechanisms of settlement—immediate distortion, consolidation, and secondary compression—and explains how their relative contributions differ between fine-grained and coarse-grained soils. Highlights that fine-grained soils allow separation of mechanisms due to low hydraulic conductivity, while coarse-grained soils consolidate rapidly. References Table 5-1 for a summary of settlement processes and calculation methods by soil type.",
+      "body": "Settlement is the result of three primary mechanisms: (1) immediate distortion that occurs in response to the application of a new load, (2) consolidation, which is compression of the soil skeleton in response to changes in effective stress, and (3) secondary compression, which is rearrangement of the soil structure under constant effective stress. All three mechanisms will be explained in more detail in later sections of this chapter.\n\nIn saturated fine-grained soils, the settlement associated with the three mechanisms can be distinguished and separated for the practical purpose of estimating settlement magnitude. This separation is possible because these soils have low hydraulic conductivity and relatively high compressibility, which causes consolidation to occur over a measurable period of time. The processes and magnitudes of settlement typically associated with fine-grained soils are summarized in Table 5-1.\n\nCoarse-grained soils are much less compressible than fine-grained soils and have higher hydraulic conductivity. Because of these characteristics, consolidation occurs very quickly and can be difficult to separate from immediate deformation. Much of the compression of coarse-grained soil is related to particle rearrangement under changed stress. Vibrations from earthquakes, blasting, or machinery can also cause settlement of coarse-grained soil. Submergence and soaking of coarse-grained soils, particularly fill materials, can lead to settlement as discussed in Section 5-9.",
+      "key_points": [
+        "Three settlement mechanisms: (1) immediate distortion, (2) consolidation (effective stress change), (3) secondary compression (constant effective stress).",
+        "Fine-grained soils: low hydraulic conductivity allows measurable, separable consolidation over time.",
+        "Coarse-grained soils: consolidation is rapid and hard to distinguish from immediate deformation.",
+        "Particle rearrangement under changed stress dominates compression in coarse-grained soils.",
+        "Vibrations (earthquakes, blasting, machinery) and submergence/soaking can also cause settlement in coarse-grained soils.",
+        "Table 5-1 summarizes settlement processes and calculation methods by soil type."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 5-1"
+      ],
+      "applicability": "Applies when identifying and distinguishing settlement mechanisms for any soil type subjected to new loading or changed stress conditions."
+    },
+    {
+      "section_id": "5-1.3",
+      "title": "Occurrence of Heave",
+      "summary": "Describes the mechanisms causing soil heave (volume expansion), including reduction of total vertical stress (from excavation, erosion, or load removal) and reduction of matric suction (lowering effective stress and increasing void ratio). Discusses the role of soil mineralogy—especially expansive clays like montmorillonite and vermiculite—as well as ice lens formation and chemical reactions such as pyrite oxidation as additional causes of heave.",
+      "body": "Heave or swell occurs primarily due to the reduction of total vertical stress or the reduction of matric suction, which both lower the effective stress on the soil and therefore allow an increase in the void ratio. The reduction of total stress occurs as the result of excavation or erosion of soil, as well as the removal of man-made loading. The matric suction in a soil depends on the soil type and the past and present atmospheric conditions. Especially important is the degree of saturation of the soil. The factors affecting the degree of saturation include climate history, topography, vegetation, and groundwater level. The amount of swelling that occurs as a result of either mechanism depends on the size and type of minerals that comprise the soil. Clay minerals with very small particles and high specific surface area, such as montmorillonite and vermiculite, are most susceptible to swelling. Heave can also occur as a result of the formation of ice lenses in frozen soil. Volumetric expansion from chemical reactions, such as pyrite, can also cause heave.",
+      "key_points": [
+        "Heave is driven by reduction of total vertical stress (excavation, erosion, load removal) or reduction of matric suction.",
+        "Both mechanisms lower effective stress, allowing an increase in void ratio and volume expansion.",
+        "Matric suction is influenced by climate history, topography, vegetation, and groundwater level.",
+        "Expansive clay minerals with high specific surface area (montmorillonite, vermiculite) are most susceptible to swelling.",
+        "Ice lens formation in frozen soils and chemical reactions (e.g., pyrite oxidation) are additional heave mechanisms."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when evaluating potential for upward volume expansion (heave) in soils subject to stress relief, moisture change, freeze-thaw, or reactive mineralogy."
+    },
+    {
+      "section_id": "5-1.4",
+      "title": "Applicability",
+      "summary": "Defines the conditions under which the settlement analysis methods in Chapter 5 are valid. Methods apply only when shear stresses are well below the shear strength of the soil. Consolidation magnitude, rate, and secondary compression analyses additionally assume the soil is saturated. Violation of these conditions requires alternative or supplemental approaches.",
+      "body": "The methods to analyze settlement that are presented in this chapter apply to conditions where shear stresses are well below the shear strength. In addition, these analyses of consolidation magnitude and rate as well as secondary compression assume that the soil is saturated.",
+      "key_points": [
+        "Settlement methods in Chapter 5 are valid only when shear stresses are well below the shear strength.",
+        "Consolidation magnitude, rate, and secondary compression analyses assume fully saturated soil conditions.",
+        "Unsaturated or near-failure conditions require methods outside the scope of this chapter."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 5-1"
+      ],
+      "applicability": "Applies when verifying that site conditions (stress state and saturation) fall within the assumptions required for the settlement analysis methods presented in Chapter 5."
+    },
+    {
+      "section_id": "5-2",
+      "title": "Mechanics of Consolidation",
+      "summary": "Container section covering the fundamental mechanics of soil consolidation, including the consolidation process, initial stress states, stress history, evaluation of existing conditions, and change in vertical stress. Provides the conceptual and analytical framework needed to estimate both the magnitude and rate of consolidation settlement.",
+      "body": "",
+      "key_points": [
+        "Consolidation is driven by changes in effective stress resulting from dissipation of excess pore water pressure over time.",
+        "Both magnitude and rate of consolidation must be evaluated; each requires different input parameters.",
+        "Stress history (NC vs. OC vs. underconsolidated) fundamentally controls soil behavior under new loading.",
+        "Existing conditions at the start of construction must be evaluated before applying new stress changes."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies as an overarching framework whenever consolidation settlement analysis is required for a saturated soil mass."
+    },
+    {
+      "section_id": "5-2.1",
+      "title": "Consolidation Process",
+      "summary": "Explains the physical mechanism of consolidation: when total stress increases abruptly in saturated soil, excess pore water pressure (ux) develops instantly equal to Δσz, then dissipates over time as water drains, transferring stress to the soil skeleton. Covers what is needed to estimate both magnitude and rate of consolidation settlement.",
+      "body": "Consolidation of soil is caused by changes in effective stress. For this reason, it is necessary to consider the process by which effective stresses change within a soil mass. Saturated soil consists of two relatively incompressible components, the mineral particles and water. In comparison, the overall soil structure is compressible because the particles can rearrange to encompass more or less void space. The compressible soil structure must strain or deform in order to support a change in stress.\n\nWhen a soil mass experiences an abrupt change in the applied total normal stress, the soil must respond in one of two ways: (1) the compressible soil structure strains instantaneously, or (2) a pressure change occurs in the incompressible water within the soil voids. The first option is not possible because strain of the soil structure requires a change in the void ratio of the soil. The void ratio of a saturated soil can only change if the amount of water in the soil changes, and time is required for water to leave or enter the soil voids. Instead, the instantaneous soil response follows the second option, and a change in the pore water pressure occurs. This temporarily altered pressure is often referred to as excess pore water pressure, ux. For saturated, one-dimensional conditions, the magnitude of ux will be roughly equal to the change in total vertical stress, Δσz. Because Δσz is balanced by ux, the instantaneous change in effective stress is negligible, and there is no instantaneous settlement as a result of consolidation.\n\nThe excess pore water pressure in the soil creates a hydraulic gradient between the conditions within the soil and those at its boundaries. The gradient causes water to flow out of or into the soil, as time progresses following the application of Δσz. When Δσz is positive, the soil volume decreases as the water flows out and the excess pore water pressures decrease. After a relatively long period of time, the excess pore water pressure dissipates completely (i.e., ux = 0), all of the change in total vertical stress is transferred to the soil structure, and the consolidation settlement is complete. The time required to reach this state can range from seconds or minutes for thin layers of coarse-grained soils to years for thick layers of fine-grained soil.\n\nEstimates of the magnitude of consolidation require (1) knowledge of the initial vertical stress state, (2) prediction of the change in total stress caused by new loading, (3) an understanding of the stress history of the soils impacted by the changes, and (4) knowledge of the compressibility characteristics of those soils.\n\nEstimates of the rate of consolidation settlement require knowledge of (1) the hydraulic boundary conditions, (2) the thickness, (3) the compressibility, and (4) the hydraulic conductivity of the compressible soil layers.",
+      "key_points": [
+        "Saturated soil is nearly incompressible instantaneously; an abrupt load increase generates excess pore water pressure ux ≈ Δσz rather than immediate settlement.",
+        "Consolidation settlement occurs as water drains over time, ux dissipates, and effective stress increases to equal the applied total stress change.",
+        "Time to complete consolidation ranges from seconds (thin coarse-grained layers) to years (thick fine-grained layers).",
+        "Magnitude of consolidation requires: initial stress state, stress change, stress history, and compressibility characteristics.",
+        "Rate of consolidation requires: hydraulic boundary conditions, layer thickness, compressibility, and hydraulic conductivity."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies whenever a saturated soil mass is subjected to a change in total normal stress and consolidation settlement must be assessed."
+    },
+    {
+      "section_id": "5-2.2",
+      "title": "Initial Vertical Stress State",
+      "summary": "Describes how to establish the initial geostatic vertical total stress (σz0), pore water pressure (u0), and vertical effective stress (σ′z0) prior to consolidation analysis. Distinguishes hydrostatic from artesian pore water pressure conditions and their effects on effective stress calculation, referencing Figure 5-1.",
+      "body": "Consolidation analysis focuses on volume change caused by changes in vertical stress. The initial geostatic vertical total stress (σz0), pore water pressure (u0), and vertical effective stress (σʹz0) should be calculated using methods discussed in Chapter 4. Figure 5-1(a) illustrates initial vertical stress conditions for hydrostatic water conditions.\n\nArtesian water conditions are associated with confined aquifers in which higher pore water pressure is present in a more permeable soil layer below a confining stratum. Artesian conditions affect the calculation of pore water pressure within the compressible layer as well as the calculated vertical effective stress. As illustrated in Figure 5-1(b), the hydrostatic pore water pressure is labeled u0 while the artesian pressure at any depth is Δu. The artesian pressure must also be subtracted from the total vertical stress in order to obtain the correct initial effective stress.",
+      "key_points": [
+        "Initial stresses σz0, u0, and σ′z0 must be established before any consolidation calculation using Chapter 4 methods.",
+        "Hydrostatic conditions are the standard case; artesian conditions require additional correction to pore pressure and effective stress.",
+        "Under artesian conditions, excess artesian pressure Δu must be subtracted from total vertical stress to obtain correct σ′z0.",
+        "Figure 5-1 illustrates both hydrostatic and artesian initial vertical stress profiles."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-1"
+      ],
+      "tables": [],
+      "applicability": "Applies at the start of any consolidation analysis where the initial vertical stress state must be defined, including sites with artesian groundwater conditions."
+    },
+    {
+      "section_id": "5-2.3",
+      "title": "Stress History",
+      "summary": "Defines stress history concepts critical to consolidation analysis: preconsolidation stress σ′p, normally consolidated (NC), overconsolidated (OC), and underconsolidated states. Introduces the overconsolidation ratio (OCR = σ′p/σ′z0) and illustrates in-situ stress profiles for steady-state and transient conditions via Figures 5-2 and 5-3.",
+      "body": "The stress history of a soil refers to the past stress states that the soil has experienced. It will affect the structure and behavior of the soil under new loading. This is especially true for fine-grained soils. Of particular importance is the highest vertical effective stress to which the soil has been consolidated, which is known as the preconsolidation stress or maximum past pressure, σʹp. A method for determining the preconsolidation stress is shown in Figure 3-12.\n\nFor some soil deposits, the existing vertical effective stress is the highest vertical effective stress the soil has ever experienced and σʹp is equal to σʹz0. This type of soil deposit is referred to as normally consolidated and sometimes abbreviated \"NC.\"\n\nMore commonly, soil deposits have been preloaded or preconsolidated at some point in the past, and σʹz0 is less than σʹp. This type of soil is referred to as overconsolidated and sometimes abbreviated \"OC.\" The overconsolidation ratio (OCR) is a helpful measure of soil behavior and is found as:\n\nOCR = σʹp / σʹz0\n\nwhere:\nσʹp = preconsolidation stress and\nσʹz0 = current vertical effective stress.\n\nIn situ vertical stress profiles for steady state conditions are summarized in Figure 5-2. In Figure 5-2(a), the clay layer is normally consolidated because the preconsolidation stress is equal to the effective vertical stress. The clay in Figure 5-2(b) is slightly overconsolidated as a result of a higher groundwater level compared to (a), which reduces the current vertical effective stress. Similarly, overconsolidation as a result of excavation (or erosion) and previous loading are depicted in Figure 5-2(c) and (d).\n\nIn some cases, a soil layer may be encountered that has not yet finished consolidating as a result of a prior change in effective stress. This state is referred to as underconsolidated. In this case, the pore water pressures in the soil have not yet reached equilibrium following a change in stress and are higher than the hydrostatic values. Two examples are provided in Figure 5-3. In the first example, the groundwater level has been lowered in the sand layers. The decrease in pore pressure (and corresponding consolidation) of the low permeability clay layer will be time-dependent. The second example is partial consolidation under a prior applied stress. In either case, the initial pore pressure variation with depth within the clay layer must be measured or estimated in order to calculate the variation of initial vertical effective stress within the soil.",
+      "key_points": [
+        "Preconsolidation stress σ′p is the maximum past vertical effective stress; it governs whether the soil responds stiffly (OC) or compressibly (NC) to new loads.",
+        "OCR = σ′p / σ′z0; OCR = 1 for normally consolidated soils, OCR > 1 for overconsolidated soils.",
+        "Sources of overconsolidation include glaciation, erosion, excavation, prior loading, and groundwater fluctuations.",
+        "Underconsolidated soils have pore pressures above hydrostatic equilibrium, meaning consolidation from a prior event is still ongoing.",
+        "For underconsolidated soils, in-situ pore pressure profiles must be measured or estimated to establish initial effective stresses correctly."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 5-1",
+          "description": "Overconsolidation ratio: OCR = σ′p / σ′z0, where σ′p is the preconsolidation stress and σ′z0 is the current vertical effective stress.",
+          "implemented_in": "geotech_references.dm7_1.chapter5.overconsolidation_ratio"
+        }
+      ],
+      "figures": [
+        "Figure 5-2",
+        "Figure 5-3"
+      ],
+      "tables": [],
+      "applicability": "Applies whenever consolidation settlement analysis requires characterization of soil stress history, particularly for fine-grained soils subject to overconsolidation or underconsolidation."
+    },
+    {
+      "section_id": "5-2.4",
+      "title": "Evaluation of Existing Conditions",
+      "summary": "Outlines the step-by-step evaluation of existing site conditions required before settlement calculations. Steps include reviewing site/geologic data, determining preconsolidation stress from lab tests or undrained strength correlations (Eq. 5-2 and 5-3), comparing σ′p to σ′z0, and identifying underconsolidation through pore pressure measurements. References Figure 5-4.",
+      "body": "For purposes of settlement calculations, the existing conditions at the start of construction or the application of a new load must be evaluated. At a minimum, this evaluation should include the following steps:\n\n• Review the available site and geologic data. In particular, determine potential sources of overconsolidation (e.g., glaciation, erosion, human activity, groundwater fluctuations) and estimate the likely magnitude of preconsolidation and/or OCR.\n\n• Determine the variation of the preconsolidation stress with depth from laboratory consolidation tests (see Chapter 3). Measurements of undrained shear strength can also be used along with correlations to provide additional estimates of preconsolidation stress. For example, undrained strength (su) is often related to the in situ vertical stress and the OCR by:\n\nsu ≈ USRNC · σ′z0 · OCR^m\n\nwhere:\nUSRNC = the soil's normally consolidated undrained strength ratio, and\nm = an empirical coefficient (See Section 8-3).\n\nEquation 5-2 can be rearranged to obtain:\n\nσ′p ≈ σ′z0 · (su / (USRNC · σ′z0))^(1/m)\n\n• Compare estimates of preconsolidation stress to current vertical effective stress. A helpful tool for this purpose is a plot showing the subsurface profile, the laboratory test data, and the variation of effective vertical stress with depth, such as that shown in Figure 5-4.\n\n• If underconsolidation is expected or indicated, measurements of pore water pressure with depth are required to identify the extent of the underconsolidation.",
+      "key_points": [
+        "Site and geologic data review is the first step; identify potential overconsolidation sources such as glaciation, erosion, prior loading, or groundwater changes.",
+        "Preconsolidation stress should be determined from lab consolidation tests; undrained strength measurements provide a secondary estimate via Eq. 5-2.",
+        "Eq. 5-2: su ≈ USRNC · σ′z0 · OCR^m; can be rearranged (Eq. 5-3) to back-calculate σ′p from measured su.",
+        "Plot σ′p and σ′z0 versus depth (as in Figure 5-4) to visually assess consolidation state throughout the profile.",
+        "Pore pressure measurements with depth are mandatory when underconsolidation is suspected."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 5-2",
+          "description": "Undrained strength correlation: su ≈ USRNC · σ′z0 · OCR^m, where USRNC is the normally consolidated undrained strength ratio and m is an empirical coefficient.",
+          "implemented_in": "geotech_references.dm7_1.chapter5.preconsolidation_stress_from_su"
+        },
+        {
+          "id": "Eq. 5-3",
+          "description": "Rearranged form of Eq. 5-2 to estimate preconsolidation stress: σ′p ≈ σ′z0 · (su / (USRNC · σ′z0))^(1/m).",
+          "implemented_in": "geotech_references.dm7_1.chapter5.preconsolidation_stress_from_su"
+        }
+      ],
+      "figures": [
+        "Figure 5-4"
+      ],
+      "tables": [],
+      "applicability": "Applies before any settlement calculation is performed, specifically to characterize existing stress conditions and consolidation state at the start of construction or load application."
+    },
+    {
+      "section_id": "5-2.5",
+      "title": "Change in Vertical Stress",
+      "summary": "Directs the engineer to use Chapter 4 methods to compute Δσz at required depths within compressible layers. Notes that wide surcharge loads produce uniform Δσz, while most other loading conditions produce Δσz that varies with depth and lateral position, requiring the engineer to select critical settlement evaluation locations.",
+      "body": "The methods presented in Chapter 4 should be used to evaluate the change in vertical stress at the required depths within the compressible soil layer. Surcharge loads of wide lateral extent will result in constant value of Δσz. Most other loading conditions will result in Δσz that varies with both depth and lateral location below the applied load. It is the responsibility of the engineer to determine the critical locations at which settlement will be evaluated.",
+      "key_points": [
+        "Δσz within the compressible layer must be evaluated using Chapter 4 stress distribution methods.",
+        "Wide surcharge loads produce approximately uniform Δσz throughout the compressible layer.",
+        "Most loads produce Δσz varying with both depth and lateral distance from the load; the engineer must select critical evaluation points.",
+        "Selection of critical settlement evaluation locations is an engineering judgment responsibility."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when determining the change in vertical stress input needed for consolidation settlement calculations under any applied loading condition."
+    },
+    {
+      "section_id": "5-3",
+      "title": "Settlement Calculations",
+      "summary": "Top-level container section introducing the framework for settlement calculations in UFC 3-220-10. Covers the basic principle that settlement equals the sum of vertical strains across compressible soil layers, defines key geometric terms (B, L, q0), and introduces the two main approaches to defining soil layers for settlement analysis.",
+      "body": "",
+      "key_points": [
+        "Settlement is the sum of vertical strains multiplied by layer thicknesses across all compressible soil layers beneath a load.",
+        "Foundation geometry is central to many settlement methods: B = shortest dimension, L = longest dimension, q0 = applied stress at foundation base.",
+        "Most settlement calculations separate into a vertical strain component and an initial layer thickness component."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies whenever settlement calculations are being performed for any soil type using UFC 3-220-10 procedures."
+    },
+    {
+      "section_id": "5-3.1",
+      "title": "Basic Formulation",
+      "summary": "Defines the fundamental equation for settlement (Eq. 5-4): settlement s equals the sum of vertical strain εz,i times layer thickness Hi over all n compressible layers. Establishes that settlement equals the change in total thickness of underlying soil, and introduces notation for foundation geometry (B, L, q0) used throughout the chapter.",
+      "body": "At the most basic level, settlement at the ground surface is equal to the change in thickness of the soil underlying a load. The change in thickness (∆H) divided by the initial thickness (H) is equal to the vertical strain (engineering strain). Thus, settlement (s) is the sum of the vertical strain (εz) caused by ∆σz for each compressible soil layer multiplied by the initial thickness of each layer, or:\n\ns = ΣHi = Σεz,i · Hi  (5-4)\n\nwhere: Hi = thickness of each layer in same units as s.\n\nMost settlement calculations can be split into a component related to the vertical strain and a component related to the initial layer thickness. This concept can be used to understand the calculation procedures at a deeper level.\n\nMany of the settlement prediction methods in this chapter use foundation geometry to define influence factors or to select the appropriate procedure. The shortest dimension of the foundation or loaded area will be designated as B while the longest dimension is L. The applied stress at the base of the foundation is indicated by q0.",
+      "key_points": [
+        "Settlement s = Σ(εz,i × Hi), summing vertical strain times thickness for each compressible layer (Eq. 5-4).",
+        "Vertical strain εz is induced by the change in vertical stress ∆σz at each layer.",
+        "B = shortest foundation dimension, L = longest dimension, q0 = applied stress at foundation base — standard notation for this chapter.",
+        "Settlement calculations generally decompose into a strain component and a layer thickness component."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 5-4",
+          "description": "Settlement s equals the summation of vertical strain εz,i multiplied by layer thickness Hi for each of n compressible soil layers: s = Σ(εz,i · Hi).",
+          "implemented_in": "geotech_references.dm7_1.chapter5.settlement_from_strain"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to all settlement calculations where the compressible profile is subdivided into discrete layers with assigned vertical strains."
+    },
+    {
+      "section_id": "5-3.2",
+      "title": "Soil Layers in Settlement Calculations",
+      "summary": "Describes three approaches to defining soil layers for settlement calculations. Distortion settlement of fine-grained soils and total settlement of coarse-grained soils often use a single layer with built-in influence factors. Consolidation settlement typically requires multiple layers of equal or increasing thickness with depth, balancing accuracy against computational effort. Soil properties must be constant within each defined layer.",
+      "body": "Calculations of distortion settlement of fine-grained soils and total settlement of coarse-grained soils often treat the soil as one layer. In this case, the effect of the variation in strain with depth below the load is built into the calculation procedure and influence factors. This approach is illustrated by Figure 5-5(a).\n\nIn contrast, consolidation settlement of fine-grained soils is typically calculated by dividing the soil into multiple layers. The vertical strain is determined for each soil layer, which allows the effects of load geometry and changing soil conditions to be considered explicitly. Figure 5-5(b) shows a layer of compressible soil divided into many thin layers of equal thickness. This method is flexible and theoretically sound but requires a large number of calculations that may be tedious if not automated. Figure 5-5(c) illustrates an approach in which the layer thickness increases with depth. This method recognizes that conditions change most quickly near the load. Regardless of the method used to define soil layers, soil properties within a given layer should be constant. Actual layer boundaries in the subsurface profile must supersede the layer division suggestions in Figure 5-5.",
+      "key_points": [
+        "Distortion settlement (fine-grained) and total settlement (coarse-grained) often treat the soil as a single layer; strain variation with depth is embedded in influence factors.",
+        "Consolidation settlement of fine-grained soils requires multiple layers so load geometry and varying soil conditions can be modeled explicitly.",
+        "Equal-thickness sublayers (Fig. 5-5b) are flexible and theoretically rigorous but computationally intensive without automation.",
+        "Increasing layer thickness with depth (Fig. 5-5c) reflects that stress and strain change most rapidly near the applied load.",
+        "Soil properties must be constant within each defined layer; actual subsurface layer boundaries override suggested layer divisions."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-5(a)",
+        "Figure 5-5(b)",
+        "Figure 5-5(c)"
+      ],
+      "tables": [],
+      "applicability": "Applies when selecting a soil layering scheme for any settlement calculation, particularly consolidation settlement of fine-grained soils."
+    },
+    {
+      "section_id": "5-4",
+      "title": "Settlement of Coarse-Grained Soils",
+      "summary": "Introduces the overall framework for calculating settlement in coarse-grained soils. Distortion and consolidation settlement occur rapidly, so components are often combined. Multiple calculation methods are available, most relying on CPT or SPT field test results due to the difficulty of sampling coarse-grained soils. Secondary compression is typically estimated as a proportion of short-term settlement.",
+      "body": "As indicated in Table 5-1, distortion and consolidation settlement occur in coarse-grained soils in a relatively short time span. If considered, secondary compression of these soils is typically estimated as a proportion of the calculated short-term settlement. For this reason, it is common practice to combine the components of settlement for coarse-grained soils. A variety of calculation methods are available. The soil properties for most of the methods are based on the results of field tests, such as CPT or SPT, due to the variability and difficulty of sampling coarse-grained soils.",
+      "key_points": [
+        "Distortion and consolidation settlement in coarse-grained soils occur in a relatively short time span.",
+        "Secondary compression is typically estimated as a proportion of the calculated short-term settlement.",
+        "Settlement components for coarse-grained soils are commonly combined into a single calculation.",
+        "Most methods rely on CPT or SPT field test results due to the difficulty of obtaining undisturbed samples."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-5"
+      ],
+      "tables": [
+        "Table 5-1"
+      ],
+      "applicability": "Applies when estimating total settlement of foundations on coarse-grained soils using any of the available calculation methods."
+    },
+    {
+      "section_id": "5-4.1",
+      "title": "Short Term Settlement of Coarse-Grained Soil",
+      "summary": "Container section covering three approaches to calculating short-term settlement of coarse-grained soils: the Elastic Method, the Schmertmann Method, and Empirical Methods. Also includes a subsection on accuracy and reliability of the various methods based on case history evaluations.",
+      "body": "",
+      "key_points": [
+        "Short-term settlement methods for coarse-grained soils include elastic, Schmertmann, and empirical approaches.",
+        "Field test data (CPT, SPT) are the primary basis for soil property inputs across all methods.",
+        "Method selection should balance accuracy and reliability depending on project requirements."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when calculating short-term (immediate) settlement of foundations bearing on coarse-grained soils."
+    },
+    {
+      "section_id": "5-4.1.1",
+      "title": "Elastic Method",
+      "summary": "Presents the elastic settlement equation (Eq. 5-5) for coarse-grained soils modeled as an elastic medium, defining influence factors µ0 and µ1 from Figure 5-6. Discusses the role of the (1-ν²) term, appropriate H/B ratios (4–5B critical depth), and selection of Es from Table 5-2 using average SPT N60 values. Includes a correction formula (Eq. 5-6) for dense saturated silty sands.",
+      "body": "If the soil supporting a load is idealized as an elastic medium with a modulus equal to Es and Poisson's ratio of ν, the resulting settlement (s) is:\n\ns = q0 · B · µ0 · µ1 / Es  (Eq. 5-5)\n\nwhere:\nq0 = stress applied by load,\nB = width of the applied load,\nµ0 = influence factor associated with embedment of the load, and\nµ1 = influence factor associated with the problem geometry and Poisson's ratio.\n\nSome sources report Equation 5-5 with a (1-ν²) term. This term is often combined with the influence factors directly. When using charts and tables for µ1, the engineer must check carefully to determine whether or not the (1-ν²) term has been included and what value of ν has been assumed, if appropriate.\n\nThe influence factors, µ1 and µ0, can be found using Figure 5-6 for the ratios of L/B, H/B, and D/B represented by the problem geometry. Note that H/B ratios can theoretically be very high, when a significant depth of soil is present below a loaded area. However, based on the concept of critical depth (see Section 4-2.1.5), the zone that contributes to settlement typically has a thickness of 4B to 5B below the loaded area. The use of H/B ratios greater than 4 to 5 may overestimate settlement.\n\nThe settlement predicted by Equation 5-5 will be directly related to the value of Es, which is a difficult parameter to measure or obtain. General guidance for the selection of Es for coarse-grained soils is provided in Table 5-2. Most of the correlations summarized in this table are based on the results of Standard Penetration Test (SPT) blow counts. An average SPT value (Nʹ) is used to predict settlement in coarse-grained soils. In most cases, Nʹ is equal the average N60 value from the bottom of the loaded area to a depth of B below the load. In dense, saturated silty sands, the value of NʹSM is calculated as:\n\nNʹSM = 15 + 0.5(Nʹ - 15)  (Eq. 5-6)\n\nwhere:\nNʹ = average N60 value.",
+      "key_points": [
+        "Elastic settlement is calculated as s = q0·B·µ0·µ1/Es (Eq. 5-5), where µ0 and µ1 are influence factors from Figure 5-6.",
+        "Some formulations include a (1-ν²) term combined into the influence factors; engineers must verify which convention a chart uses.",
+        "The effective settlement zone is typically 4B–5B below the loaded area; H/B ratios > 4–5 may overestimate settlement.",
+        "Es for coarse-grained soils is estimated from Table 5-2 using average SPT N60 values.",
+        "For dense, saturated silty sands, the corrected SPT value NʹSM = 15 + 0.5(Nʹ – 15) per Eq. 5-6."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 5-5",
+          "description": "Elastic settlement equation: s = q0·B·µ0·µ1/Es, where µ0 and µ1 are influence factors for embedment and geometry/Poisson's ratio respectively.",
+          "implemented_in": "geotech_references.dm7_1.chapter5.immediate_settlement"
+        },
+        {
+          "id": "Eq. 5-6",
+          "description": "Corrected SPT value for dense, saturated silty sands: NʹSM = 15 + 0.5(Nʹ – 15), where Nʹ is the average N60 value.",
+          "implemented_in": "geotech_references.dm7_1.chapter5.corrected_spt_silty_sand"
+        }
+      ],
+      "figures": [
+        "Figure 5-6"
+      ],
+      "tables": [
+        "Table 5-2"
+      ],
+      "applicability": "Applies when estimating elastic short-term settlement of coarse-grained soils by treating the soil as a linear elastic medium with known or estimated modulus Es."
+    },
+    {
+      "section_id": "5-4.1.2",
+      "title": "Schmertmann Method",
+      "summary": "Describes the Schmertmann Method for computing settlement of coarse-grained soils using a strain influence factor (Iz) distribution with depth, coupled with layer moduli derived from CPT or SPT. Presents equations for total settlement (Eq. 5-7), embedment correction C1 (Eq. 5-8), and time correction C2 (Eq. 5-9). Provides CPT-to-Es multipliers and SPT-based Es correlations via Table 5-3.",
+      "body": "The Schmertmann Method is a common approach for the calculation of settlement for coarse-grained soils. This method uses typical patterns of vertical strain below a rigid foundation along with estimates of modulus based on either CPT or SPT. The variation of the strain influence factor (Iz) with depth is based on observations from model scale tests as well as numerical simulations. As shown in Figure 5-7, Iz increases with depth below the loaded area up to a peak value (Izp) and then decreases to zero at a depth of 2B for square footings and 4B for continuous footings. The magnitude of Izp is a function of the applied load and the effective vertical stress (σʹzp) at the depth of the peak influence factor.\n\nThe compressibility of the coarse-grained soil is incorporated through layer moduli estimated from CPT or SPT results. The soil profile immediately below the foundation is divided into layers with relatively constant cone tip bearing resistance, qc (or SPT blow count). Schmertmann et al. (1978) recommend that CPT qc values should be multiplied by 2.5 to obtain Es for axisymmetric (L=B) conditions. Similarly, CPT qc values should be multiplied by 3.5 to obtain Es for plane strain (L/B > 10) conditions.\n\nSchmertmann (1970) provided multipliers to estimate qc from SPT blow count, N. Robertson and Cabal (2014) found a similar correlation between CPT and SPT. Table 5-3 combines the SPT-CPT correlation with the qc–Es correlation to provide approximate correlation between N60 and Es. The general values in Table 5-3 can be replaced by regional correlations that follow the principles provided in Schmertmann (1970) and Robertson et al. (1983).\n\nThe settlement (s) is then calculated for n layers as:\n\ns = C1·C2·(q0 – σʹz0) · Σ[(Iz,i / Es,i)·Δzi]  (Eq. 5-7)\n\nwhere:\nC1 = coefficient to correct for the effects of embedment,\nC2 = coefficient to correct for the effects of time,\nq0 = applied foundation pressure,\nσʹz0 = the existing vertical effective stress at the bottom of the foundation,\nIz,i = the average strain influence factor for the layer,\nEs,i = the layer modulus, and\nΔzi = the layer thickness.\n\nThe correction for foundation embedment is found from:\n\nC1 = 1 – 0.5·(σʹz0 / (q0 – σʹz0)) ≥ 0.5  (Eq. 5-8)\n\nThe correction for time (t) in years after initial loading is:\n\nC2 = 1 + 0.2·log(t / 0.1yr)  (Eq. 5-9)",
+      "key_points": [
+        "The strain influence factor Iz peaks at depth then decreases to zero at 2B (square) or 4B (strip) below the foundation.",
+        "CPT qc is multiplied by 2.5 (axisymmetric, L=B) or 3.5 (plane strain, L/B>10) to obtain layer modulus Es.",
+        "Table 5-3 provides direct SPT N60-to-Es correlations combining the SPT-CPT and qc-Es relationships.",
+        "Total settlement is computed by Eq. 5-7, summing (Iz/Es)·Δz over all layers, scaled by C1 and C2.",
+        "C1 (Eq. 5-8) corrects for foundation embedment; minimum value is 0.5.",
+        "C2 (Eq. 5-9) corrects for time-dependent creep; increases logarithmically with years after loading."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 5-7",
+          "description": "Schmertmann settlement equation: s = C1·C2·(q0–σʹz0)·Σ[(Iz,i/Es,i)·Δzi], summing strain influence factor over n layers with embedment and time corrections.",
+          "implemented_in": "geotech_references.dm7_1.chapter5.schmertmann_settlement"
+        },
+        {
+          "id": "Eq. 5-8",
+          "description": "Embedment correction factor for Schmertmann Method: C1 = 1 – 0.5·(σʹz0/(q0–σʹz0)) ≥ 0.5.",
+          "implemented_in": "geotech_references.dm7_1.chapter5.schmertmann_embedment_correction"
+        },
+        {
+          "id": "Eq. 5-9",
+          "description": "Time correction factor for Schmertmann Method: C2 = 1 + 0.2·log(t/0.1yr), where t is time in years after initial loading.",
+          "implemented_in": "geotech_references.dm7_1.chapter5.schmertmann_time_correction"
+        }
+      ],
+      "figures": [
+        "Figure 5-7"
+      ],
+      "tables": [
+        "Table 5-3"
+      ],
+      "applicability": "Applies when calculating short-term and time-adjusted settlement of coarse-grained soils using CPT or SPT data with the Schmertmann strain influence factor approach."
+    },
+    {
+      "section_id": "5-4.1.3",
+      "title": "Empirical Methods",
+      "summary": "Summarizes three empirical SPT-based settlement equations for coarse-grained soils (Terzaghi & Peck 1967, Meyerhof 1965/Duncan & Buchiagnani 1987, and Burland & Burbridge 1985/Terzaghi et al. 1996) presented in Table 5-4. These methods replace elastic modulus and influence factors with direct SPT blow count and foundation dimension correlations derived from plate load tests and observed foundation behavior.",
+      "body": "The difficulty of obtaining representative measures of compressibility or modulus for coarse-grained soils has led to the development of many different empirical methods. These methods are based on measurements and observations of load-settlement behavior from plate load tests as well as actual foundations. The underlying basis of these methods remains the elastic theory presented in Equation 5-5 but the soil modulus and influence factors are replaced with empirical correlations to SPT blow count and foundation dimensions. Three of the more popular relationships are provided in Table 5-4.",
+      "key_points": [
+        "Empirical methods are rooted in elastic theory (Eq. 5-5) but replace Es and influence factors with SPT correlations.",
+        "Three methods are tabulated: Terzaghi & Peck (1967), Meyerhof/Duncan & Buchiagnani (1987), and Burland & Burbridge (1985).",
+        "Methods are calibrated from plate load tests and actual foundation case histories.",
+        "Burland & Burbridge method includes a shape factor Cs accounting for L/B ratio; approaches 1.56 for strip loads.",
+        "The Burland & Burbridge equation in Table 5-4 applies to ground surface loading on normally consolidated sand; corrections for embedment and overconsolidation require separate adjustments."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 5-4"
+      ],
+      "applicability": "Applies when estimating short-term settlement of coarse-grained soils using SPT blow count and foundation geometry without requiring a separately determined elastic modulus."
+    },
+    {
+      "section_id": "5-4.1.4",
+      "title": "Accuracy and Reliability",
+      "summary": "Evaluates the accuracy and reliability of 12 SPT-based settlement methods and the Schmertmann CPT Method using 90+ case histories (Tan and Duncan 1991). Defines reliability as the percentage of cases where measured settlement was less than predicted. Shows via Figure 5-8 that the most accurate methods are only conservatively correct ~50% of the time, while more reliable methods (e.g., Terzaghi & Peck) tend to over-predict significantly.",
+      "body": "Tan and Duncan (1991) provide a helpful perspective for assessing the usefulness of the various settlement methods for coarse-grained soils. They evaluated the accuracy and 'reliability' of 12 SPT-based methods and the Schmertmann CPT Method using more than 90 case histories. The most accurate methods will make a reliably conservative estimate of settlement (i.e., greater than or equal to the actual value) only about half of the time. Likewise, more reliable methods, such as Terzaghi and Peck (1967), tend to greatly over-predict settlement, which is well-documented. Figure 5-8 can be used to select an appropriate method for determining settlement for each project based on considerations of accuracy and reliability. In cases where more accuracy is required, one of the methods that plots to the lower left may be used. Where it is critical not to exceed the calculated settlement, a method with higher reliability can be used.\n\nNote: In this context, reliability was defined as the percentage of cases where the measured settlement was less than the predicted settlement. Reliability is not used in a formal probabilistic sense in this case.",
+      "key_points": [
+        "Tan and Duncan (1991) evaluated 13 settlement methods against 90+ case histories of coarse-grained soil foundations.",
+        "Reliability is defined as the percentage of cases where measured settlement was less than predicted (not a formal probabilistic measure).",
+        "The most accurate methods are conservatively correct only ~50% of the time.",
+        "More reliable methods (e.g., Terzaghi & Peck 1967) tend to substantially over-predict settlement.",
+        "Figure 5-8 provides a graphical comparison to guide method selection based on project accuracy vs. reliability requirements.",
+        "For accuracy-sensitive projects, methods plotting lower-left on Figure 5-8 are preferred; for conservative (no-exceed) requirements, use higher-reliability methods."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-8"
+      ],
+      "tables": [],
+      "applicability": "Applies when selecting among competing settlement calculation methods for coarse-grained soils based on the required balance of prediction accuracy versus conservative reliability."
+    },
+    {
+      "section_id": "5-4.2",
+      "title": "Long-Term Settlement of Coarse-Grained Soil",
+      "summary": "Covers creep (secondary compression) settlement of coarse-grained soils, estimated by multiplying short-term settlement by a time-dependent creep factor. Describes two approaches: the C2 factor from the Schmertmann Method (Eq. 5-9) and the stress-normalized creep factor Ct from Terzaghi et al. (1996) shown in Figure 5-9. Both share the same mathematical form; larger applied loads yield smaller Ct values since creep is a smaller fraction of total settlement.",
+      "body": "Creep or secondary compression of coarse-grained soil is sometimes considered by multiplying the calculated short-term settlement by a time-dependent influence factor. One suggested relationship is the creep factor (C2) included in the Schmertmann Method. This factor can also be applied to the results of other coarse-grained settlement methods. Terzaghi et al. (1996) suggest a similar approach to calculate a creep factor (Ct) which is related to the magnitude of the applied stress. The resulting values of Ct for their approach are summarized in Figure 5-9 where the applied stress (q0) is normalized by atmospheric pressure, Pa. For larger loads, this method predicts lower values of Ct because creep movements are a smaller proportion of the overall expected settlement. The creep factors for both methods have the same mathematical form. The total settlement at time (t) is found by multiplying the short-term settlement by the value of Ct.",
+      "key_points": [
+        "Long-term creep settlement in coarse-grained soils is estimated by multiplying short-term settlement by a time-dependent creep factor.",
+        "The Schmertmann C2 factor (Eq. 5-9) can be applied to any short-term settlement method, not only Schmertmann.",
+        "Terzaghi et al. (1996) provide an alternative creep factor Ct normalized by atmospheric pressure (q0/Pa), shown in Figure 5-9.",
+        "Both creep factors share the same mathematical form; larger applied loads result in smaller Ct because creep is a smaller proportion of total settlement.",
+        "Total settlement at time t equals the short-term settlement multiplied by Ct."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 5-9",
+          "description": "Time correction (creep) factor for Schmertmann Method: C2 = 1 + 0.2·log(t/0.1yr), where t is time in years after initial loading. Also referenced in Section 5-4.2 as applicable to other methods.",
+          "implemented_in": "geotech_references.dm7_1.chapter5.schmertmann_time_correction"
+        }
+      ],
+      "figures": [
+        "Figure 5-9"
+      ],
+      "tables": [],
+      "applicability": "Applies when estimating long-term creep settlement of coarse-grained soils by applying a time-dependent multiplier to the calculated short-term settlement."
+    },
+    {
+      "section_id": "5-5",
+      "title": "Settlement of Fine-Grained Soils",
+      "summary": "Top-level container section covering all aspects of settlement in fine-grained soils, including immediate settlement, primary consolidation (magnitude and time rate), and secondary compression. Organizes the four main subtopics: elastic/distortion immediate settlement, consolidation test-based primary settlement predictions, time-rate consolidation theory, and creep-based secondary compression.",
+      "body": "",
+      "key_points": [
+        "Fine-grained soil settlement has three components: immediate, primary consolidation, and secondary compression.",
+        "Each component requires different analytical methods and soil parameters.",
+        "Accurate settlement prediction depends heavily on sample quality and reliable determination of preconsolidation stress."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies whenever settlement analysis is required for fine-grained (cohesive) soil foundations."
+    },
+    {
+      "section_id": "5-5.1",
+      "title": "Immediate Settlement of Fine-Grained Soils",
+      "summary": "Covers calculation of immediate (undrained) settlement in fine-grained soils via elastic compression or distortion without volume change. Describes use of Equation 5-5 and Figure 5-6 with Poisson's ratio of 0.5 for saturated clay, guidance on undrained modulus Eu from lab/field tests, empirical OCR-based correlations, and adjustment for partial yield when FS against bearing capacity is less than 3.",
+      "body": "Immediate settlement of fine-grained soil is the result of one of two mechanisms: (1) \"elastic\" compression and volume change of the unsaturated soil or (2) distortion of saturated soil without volume change. Immediate settlement may be a significant proportion of settlement for unsaturated or heavily overconsolidated clay.\n\nSimilar to coarse-grained soil, immediate settlement of fine-grained soil can also be calculated using Equation 5-5 and the influence factors provided in Figure 5-6. For saturated clay, a Poisson's ratio of 0.5, which is the value assumed in the construction of the figure. In most cases, the undrained modulus (Eu) should be used. Values of Eu can be measured in laboratory or field tests, such as the pressuremeter. Caution should be used as laboratory tests may underestimate the magnitude of Eu. Similarly, field tests typically load the soil horizontally rather than vertically, which may lead to erroneous results. Empirical correlations, such as those in Figure 5-10, can be used for comparison or in place of test values when appropriate. OCR can be estimated from empirical correlations or measured using one-dimensional consolidation tests as described in Chapter 3.\n\nIf the factor of safety against bearing capacity failure is less than about 3 (see DM 7.2), then the immediate settlement should be modified to account for partial yield of the soil. D'Appolonia et al. (1971) can be used to determine the appropriate adjustment for this condition.",
+      "key_points": [
+        "Immediate settlement in fine-grained soils results from elastic compression (unsaturated) or undrained distortion (saturated) without volume change.",
+        "Calculate using Eq. 5-5 with influence factors from Figure 5-6; use Poisson's ratio = 0.5 for saturated clay.",
+        "Undrained modulus Eu should be used; lab tests may underestimate Eu and field tests may give erroneous results due to horizontal loading direction.",
+        "Empirical correlations (Figure 5-10) relating Eu to OCR can be used when test values are unavailable or for comparison.",
+        "When FS against bearing capacity < ~3, modify immediate settlement for partial yield using D'Appolonia et al. (1971)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-6",
+        "Figure 5-10"
+      ],
+      "tables": [],
+      "applicability": "Applies when computing immediate (undrained) settlement of fine-grained soil foundations, especially saturated or heavily overconsolidated clays."
+    },
+    {
+      "section_id": "5-5.2",
+      "title": "Primary Consolidation Settlement of Fine-Grained Soils",
+      "summary": "Container section for primary consolidation settlement of fine-grained soils. Establishes the physical mechanism (pore pressure dissipation as water flows from saturated soil) and notes that accuracy depends on reliable preconsolidation stress determination and change in total stress. Overconsolidated soil settlements carry the largest percent error, tied to sample quality.",
+      "body": "Primary consolidation occurs as water flows from saturated soil and the excess pore water pressures caused by loading are able to dissipate. The magnitude of primary consolidation settlement can be predicted with reasonable accuracy when the soil's preconsolidation stress can be determined reliably and when the change in total stress can be accurately predicted. Settlement calculations involving recompression of overconsolidated soils tend to have the largest percent error. The amount of error for overconsolidated soils is related heavily to the quality of the samples used for consolidation tests, which affects the accuracy of the predicted recompression index and preconsolidation stress.",
+      "key_points": [
+        "Primary consolidation occurs as excess pore water pressures dissipate following loading of saturated soil.",
+        "Prediction accuracy requires reliable preconsolidation stress and accurate change in total stress.",
+        "Overconsolidated soil settlements have the largest percent error, driven by sample quality affecting Cr and σ'p determination."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when estimating the magnitude of primary consolidation settlement in saturated fine-grained soils."
+    },
+    {
+      "section_id": "5-5.2.1",
+      "title": "Use of Consolidation Test Results",
+      "summary": "Describes interpretation of one-dimensional consolidation tests for predicting swell, recompression, and virgin compression. Explains void ratio vs. log effective stress and vertical strain plots (Figure 5-11), defines modified compression index Cεc (Eq. 5-11) and modified recompression index Cεr (Eq. 5-10), and provides empirical correlations for Cc (Table 5-5, Figure 5-12). Cr is typically 5–10% of Cc.",
+      "body": "One-dimensional consolidation tests are used to predict swell, recompression, and virgin compression of soils. Specific details about the testing process are described in further detail in Section 3-2.6. The results of consolidation tests are typically plotted in terms of void ratio vs. vertical effective stress or vertical strain vs. vertical effective stress. In either case, vertical effective stress (σʹz) will be plotted on a logarithmic scale.\n\nIdeally, the soil behaves in the manner depicted in Figure 5-11 with log-linear segments describing the volume change or vertical strain that occurs as the vertical effective stress changes. The initial condition corresponds to initial vertical effective stress (σʹz0) and either the initial void ratio (e0) or to zero initial vertical strain, εz = 0. From the initial condition, the loading of overconsolidated soil results in relatively elastic recompression until the preconsolidation stress is reached. Any increase in σʹz that extends beyond σʹp results in plastic deformation or virgin compression. The slopes of these two lines are defined by the recompression index (Cr) and the compression index (Cc). A normally consolidated soil (σʹz0 = σʹp) will experience virgin compression due to any increase in σʹz.\n\nInterpretation of consolidation tests in terms of vertical strain is often a more practical approach. This method emphasizes that prediction of strain is the intent of the calculations and will be used in much of the discussion in this chapter. The modified recompression index (Cεr) and the modified compression index (Cεc) are defined as Equations 5-10 and 5-11.\n\nMethods for determining Cr, Cc, and σʹp from laboratory tests are illustrated in Figure 3-12. Many useful correlations have been developed between Cc and soil index properties. Table 5-5 provides a list of some of these correlations. Azzouz et al. (1976) found that correlations to e0 produced the most accurate prediction of Cc. Nine of the correlations are compared in Figure 5-12. Additional correlations can be found in Chapter 8.\n\nThe recompression index is typically 5 to 10% of the magnitude of Cc. Typical values for Cr fall in the range of 0.015 to 0.035 with nearly all results between 0.005 and 0.05 (Leonards 1976).",
+      "key_points": [
+        "Consolidation test results are plotted as void ratio or vertical strain vs. log vertical effective stress, with log-linear segments for recompression and virgin compression.",
+        "Eq. 5-10 defines Cεr = Cr / (1 + e0); Eq. 5-11 defines Cεc = Cc / (1 + e0).",
+        "Cr is typically 5–10% of Cc; typical Cr range is 0.015–0.035 (nearly all results 0.005–0.05).",
+        "Table 5-5 lists empirical Cc correlations based on LL, e0, and wn; correlations to e0 are most accurate (Azzouz et al. 1976).",
+        "Normally consolidated soils (σ'z0 = σ'p) undergo virgin compression for any increase in vertical effective stress."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 5-10",
+          "description": "Modified recompression index: Cεr = Cr / (1 + e0)",
+          "implemented_in": "geotech_references.dm7_1.chapter5.modified_recompression_index"
+        },
+        {
+          "id": "Eq. 5-11",
+          "description": "Modified compression index: Cεc = Cc / (1 + e0)",
+          "implemented_in": "geotech_references.dm7_1.chapter5.modified_compression_index"
+        }
+      ],
+      "figures": [
+        "Figure 5-11",
+        "Figure 5-12",
+        "Figure 3-12"
+      ],
+      "tables": [
+        "Table 5-5"
+      ],
+      "applicability": "Applies when interpreting consolidation test results and selecting compression indices for fine-grained soil settlement calculations."
+    },
+    {
+      "section_id": "5-5.2.2",
+      "title": "Magnitude of Primary Consolidation",
+      "summary": "Provides the three governing equations for primary consolidation settlement depending on consolidation state. Eq. 5-12 for normally consolidated soils, Eq. 5-13 for overconsolidated soils where final stress ≤ σ'p, and Eq. 5-14 for overconsolidated soils where final stress > σ'p (stress crosses preconsolidation). Includes layer subdivision guidance and worked example in Figure 5-13.",
+      "body": "Primary consolidation settlement (sc) should be determined for each compressible layer. Thick layers should be divided into a series of sublayers (e.g., Figure 5-5b and c). For each layer, the appropriate equation for sc must be selected based on whether the soil is normally or overconsolidated and the relative magnitude of the change in vertical stress.\n\nFor normally consolidated soil (σʹz0 ≈ σʹp), calculate sc using Equation 5-12.\n\nFor overconsolidated soil layers in which the final stress is less than or equal to the preconsolidation stress (σʹz0 + ∆σz ≤ σʹp), calculate sc using Equation 5-13.\n\nFor overconsolidated soil layers in which the final stress is greater than the preconsolidation stress (σʹz0 + ∆σz > σʹp), calculate sc using Equation 5-14.\n\nEquations 5-12 to 5-14 all follow a consistent pattern in which the compression or recompression index is multiplied by the logarithm of the change in stress to obtain the vertical strain. The strain is then multiplied by the layer thickness to obtain the change in thickness or expected settlement of the layer. In each of these equations, Cεc and Cεr can be replaced with Cc and Cr along with the initial void ratio, if desired, using Equations 5-10 and 5-11. Example calculations are shown in Figure 5-13.",
+      "key_points": [
+        "Use Eq. 5-12 for normally consolidated soils (σ'z0 ≈ σ'p): sc = Cεc · H · log[(σ'z0 + Δσz) / σ'z0].",
+        "Use Eq. 5-13 for OC soils where final stress ≤ σ'p: sc = Cεr · H · log[(σ'z0 + Δσz) / σ'z0].",
+        "Use Eq. 5-14 for OC soils where final stress > σ'p: sc = H · [Cεr · log(σ'p / σ'z0) + Cεc · log((σ'z0 + Δσz) / σ'p)].",
+        "Thick layers must be subdivided into sublayers; compute sc for each sublayer at its midpoint stress.",
+        "Cεc and Cεr can be substituted with Cc and Cr using Eqs. 5-10 and 5-11 if void ratio basis is preferred."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 5-12",
+          "description": "Primary consolidation settlement for normally consolidated soil: sc = Cεc · H · log[(σ'z0 + Δσz) / σ'z0]",
+          "implemented_in": "geotech_references.dm7_1.chapter5.primary_consolidation_settlement_nc"
+        },
+        {
+          "id": "Eq. 5-13",
+          "description": "Primary consolidation settlement for overconsolidated soil with final stress ≤ σ'p: sc = Cεr · H · log[(σ'z0 + Δσz) / σ'z0]",
+          "implemented_in": "geotech_references.dm7_1.chapter5.primary_consolidation_settlement_oc_recompression"
+        },
+        {
+          "id": "Eq. 5-14",
+          "description": "Primary consolidation settlement for overconsolidated soil with final stress > σ'p: sc = H · [Cεr · log(σ'p / σ'z0) + Cεc · log((σ'z0 + Δσz) / σ'p)]",
+          "implemented_in": "geotech_references.dm7_1.chapter5.primary_consolidation_settlement_oc_beyond"
+        }
+      ],
+      "figures": [
+        "Figure 5-13",
+        "Figure 5-5"
+      ],
+      "tables": [],
+      "applicability": "Applies when computing the magnitude of primary consolidation settlement for normally or overconsolidated fine-grained soil layers."
+    },
+    {
+      "section_id": "5-5.2.3",
+      "title": "Typical Construction Process",
+      "summary": "Illustrates how a sequence of typical construction activities (groundwater lowering, basement excavation, structural loading) generates cycles of consolidation settlement and swell in overconsolidated clay. Highlights that both settlement and heave can occur during different construction phases, and that actual magnitudes depend on construction rate and pore pressure dissipation rate.",
+      "body": "An example of the primary consolidation caused by changes in stress associated with typical construction processes is illustrated in Figure 5-14. In this example, the clay is overconsolidated by past loading. The construction process involves lowering the groundwater level, excavating for a basement level, and applying the structural load. Some aspects of construction will cause increases in effective stress and settlement. Other phases, such as excavation and groundwater rise, will result in swelling. As noted, the amount of settlement or swell experienced during the first phases of construction will depend on the rate of construction as well as the rate at which pore water pressures dissipate in the clay layer.",
+      "key_points": [
+        "Groundwater lowering and structural loading increase effective stress and cause consolidation settlement.",
+        "Excavation and groundwater rebound reduce effective stress and cause swelling/heave.",
+        "The actual deformation during early construction phases depends on both construction rate and rate of pore pressure dissipation in the clay."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-14"
+      ],
+      "tables": [],
+      "applicability": "Applies when evaluating the sequence of vertical movements (settlement and heave) during a multi-phase construction project on overconsolidated clay."
+    },
+    {
+      "section_id": "5-5.2.4",
+      "title": "Corrections to the Magnitude of Consolidation Settlements",
+      "summary": "Describes a correction factor α for primary consolidation settlements in overconsolidated clay when the loaded area is narrow relative to clay layer thickness. When the load width is less than four times the clay layer thickness, one-dimensional theory overestimates settlement. The correction factor α is obtained from Figure 5-15 (after Leonards 1976) and applied to the settlements calculated by Eqs. 5-13 or 5-14.",
+      "body": "Settlement of overconsolidated clay layers may be overestimated using Equations 5-13 and 5-14 for loads of limited lateral extent. For cases where the width of the load is less than four times the thickness of the clay layer, conditions deviate significantly from one-dimensional consolidation. Leonards (1976) recommended that the corrected primary consolidation settlement can be found by multiplying the calculated value (Equation 5-13 or 5-14) by a correction factor, α. Values of α can be found using Figure 5-15.",
+      "key_points": [
+        "1D consolidation theory overestimates settlement of overconsolidated clays when load width < 4× clay layer thickness.",
+        "Apply correction factor α (Figure 5-15, after Leonards 1976) by multiplying calculated sc from Eq. 5-13 or 5-14 by α.",
+        "This correction is only needed for overconsolidated clays under narrow loads; normally consolidated soils are not addressed here."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-15"
+      ],
+      "tables": [],
+      "applicability": "Applies when the width of a structural load is less than four times the thickness of the overconsolidated clay layer being analyzed."
+    },
+    {
+      "section_id": "5-5.3",
+      "title": "Time Rate of Primary Consolidation",
+      "summary": "Introduces the theory and analytical methods for predicting the time rate of primary consolidation, including the average degree of consolidation Ūz, time factor for vertical drainage Tv (Eq. 5-15), drainage path length Hdr, and single vs. double drainage conditions. References Figure 5-16 for Tv–Ūz relationships and Figure 5-17 for depth-varying degree of compression. Notes that numerical methods offer greater accuracy and flexibility.",
+      "body": "The time rate of primary consolidation is considered for situations where predicted settlement exceeds tolerable values. In these cases, treatment of the foundation soil, such as acceleration of consolidation or placement of a surcharge to increase in preconsolidation stress, may be considered. Knowledge of the settlement rate or consolidation completed at a particular time is important for planning remedial measures for structures damaged by settlement.\n\nTime rate calculations can be performed with greater accuracy and flexibility using numerical methods, such as the finite difference method. Various computer programs are available for this purpose. The analytical methods presented in this section are useful for understanding time rate of settlement concepts and checking the results of numerical methods.\n\nThe time rate of consolidation is typically assessed starting with one-dimensional theory applied to vertical drainage. The average degree of consolidation (Ūz) is the average percentage of the excess pore pressure that has dissipated at a particular time (t) following the addition of a load. The amount of settlement experienced at the ground surface is typically assumed to be proportional to Ūz. The value of Ūz can be related to a time factor (T) for a given set of conditions. The time factor for vertical drainage (Tv) is calculated using Equation 5-15.\n\nThe relationship between Tv and Ūz is provided in Figure 5-16.\n\nTwo conditions are typically considered for vertical drainage. Single (or one-way) drainage refers to conditions where water can flow one direction to leave the consolidating soil layer as shown in the inset to Figure 5-16. Double (or two-way) drainage occurs when pervious layers lie above and below the consolidating layer, and Hdr is half of the layer thickness (H) in this case.\n\nThe degree of compression (Uz) is the amount of pore water pressure that has been dissipated at a particular depth within the soil layer. The degree of compression will vary with time and depth within the consolidating layer as illustrated in Figure 5-17. It can be used to estimate the remaining excess pore pressures at any depth and time following application of a change in vertical stress. The upper half of this figure can be used for single drainage conditions.",
+      "key_points": [
+        "Time rate of consolidation is needed when settlement exceeds tolerable limits and for planning remedial measures.",
+        "Time factor Tv = cv·t / Hdr² (Eq. 5-15); Hdr is the drainage path length (H for single drainage, H/2 for double drainage).",
+        "Average degree of consolidation Ūz is the fraction of excess pore pressure dissipated; settlement is proportional to Ūz.",
+        "Figure 5-16 gives Tv–Ūz relationship for instantaneous uniform loading; Figure 5-17 gives depth-varying degree of compression.",
+        "Numerical methods (finite difference) offer greater accuracy and are preferred for complex conditions."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 5-15",
+          "description": "Time factor for vertical drainage: Tv = cv · t / Hdr²",
+          "implemented_in": "geotech_references.dm7_1.chapter5.time_factor_vertical"
+        }
+      ],
+      "figures": [
+        "Figure 5-16",
+        "Figure 5-17"
+      ],
+      "tables": [],
+      "applicability": "Applies when predicting the rate of primary consolidation settlement in saturated fine-grained soils under vertical drainage conditions."
+    },
+    {
+      "section_id": "5-5.3.1",
+      "title": "Effect of Initial Excess Pore Pressure Distribution",
+      "summary": "Discusses how the initial distribution of excess pore water pressure affects the rate of consolidation, particularly under single drainage conditions. Uniform initial excess pore pressure (appropriate for wide loads) is handled by Figures 5-16 and 5-17. Linearly varying distributions under double drainage can also use Figure 5-16; single drainage with non-uniform distributions requires solutions from Terzaghi et al. (1996) or numerical methods.",
+      "body": "The rate of consolidation can be affected by the initial distribution of excess pore water pressure, especially for single drainage conditions. The degrees of consolidation and compression predicted in Figure 5-16 and Figure 5-17 are appropriate for a uniform distribution of initial excess pore pressure, which is a reasonable assumption for relatively wide loads, regardless of the type of drainage.\n\nOther scenarios, such as foundation loading and consolidation of hydraulic fill, can result in a distribution of initial excess pore pressure that is not constant with depth. Figure 5-16 is also appropriate for double drainage when the distribution of initial ux varies linearly. Solutions for single drainage and linearly varying distributions of initial ux can be found in Terzaghi et al. (1996). However, for these more complex loading conditions, numerical solutions are preferred.",
+      "key_points": [
+        "Figures 5-16 and 5-17 assume uniform initial excess pore pressure, valid for wide loads under any drainage condition.",
+        "Figure 5-16 also applies for double drainage with a linearly varying initial excess pore pressure distribution.",
+        "Single drainage with linearly varying initial excess pore pressure requires solutions from Terzaghi et al. (1996) or numerical methods.",
+        "Foundation loading and hydraulic fill consolidation commonly produce non-uniform initial excess pore pressure distributions."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-16",
+        "Figure 5-17"
+      ],
+      "tables": [],
+      "applicability": "Applies when the initial excess pore pressure distribution with depth is non-uniform, particularly under single drainage conditions or for non-wide loads."
+    },
+    {
+      "section_id": "5-5.3.2",
+      "title": "Accuracy of Time Rate Predictions",
+      "summary": "Explains why field-measured consolidation rates are typically faster than analytically predicted values. Key factors include: actual 2D/3D drainage vs. assumed 1D theory, presence of high-permeability sand/silt seams reducing drainage path length, horizontal hydraulic conductivity anisotropy, and sample disturbance reducing measured cv. Figure 5-18 corrects for load geometry effects; Figure 5-19 accounts for anisotropy.",
+      "body": "The time rate of primary consolidation observed in field measurements is often faster than that predicted by the methods described in this section. This discrepancy is the result of a number of effects.\n\nThe theoretical conditions of one-dimensional consolidation and vertical drainage rarely mimic the in situ conditions. In most cases, loading and subsequent drainage is actually two or three-dimensional, which tends to increase the time rate of consolidation. As the width of the loaded area becomes small with respect to the thickness of the compressible layer, consolidation proceeds much more quickly. Figure 5-18 allows the time required to reach a degree of consolidation of either 50% or 90% to be corrected for two- and three-dimensional effects. The results are plotted for soil profiles with an impermeable layer below the compressible soil and for those with an underlying permeable layer. See Davis and Poulos (1972) for further details on these effects. Numerical methods can be used to account for some of these differences; however, many of the common programs used for consolidation calculations only consider one-dimensional flow.\n\nMany clay soils contain thin seams of sand and silt, which have significantly higher permeability. These seams provide internal drainage boundaries, greatly reducing the maximum vertical drainage path length. For example, the presence of a single additional drainage layer can increase the time rate of settlement by a factor of four. In addition, soil deposits tend to have a higher horizontal hydraulic conductivity, which coupled with three-dimensional effects can increase the settlement rate. Figure 5-19 provides a simple means to account for effect of anisotropy in the coefficient of consolidation on the time required to reach 50% consolidation.\n\nFinally, disturbance of soil samples tends to decrease the coefficient of consolidation measured in laboratory tests. Even high-quality samples and tests have some degree of disturbance, leading to lower cv and slower time rate of settlement predictions.",
+      "key_points": [
+        "Field consolidation rates are typically faster than 1D analytical predictions due to 2D/3D drainage effects.",
+        "Figure 5-18 corrects predicted time to 50% or 90% consolidation for load geometry (2D/3D effects).",
+        "Thin sand/silt seams reduce drainage path length; a single extra drainage layer can increase settlement rate by a factor of 4.",
+        "Higher horizontal hydraulic conductivity combined with 3D effects accelerates consolidation; Figure 5-19 accounts for anisotropy.",
+        "Sample disturbance reduces measured cv, causing laboratory-based predictions to underestimate consolidation rates."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-18",
+        "Figure 5-19"
+      ],
+      "tables": [],
+      "applicability": "Applies when evaluating discrepancies between predicted and observed time rates of consolidation, and when correcting for 2D/3D effects or hydraulic conductivity anisotropy."
+    },
+    {
+      "section_id": "5-5.3.3",
+      "title": "Gradual Load Application",
+      "summary": "Addresses the effect of construction period duration (gradual load application) on the time rate of primary consolidation. Gradual loading modifies the Tv–Ūz relationship compared to instantaneous loading. Figure 5-20 (after Olson 1977) provides the degree of consolidation curves for gradual load application under vertical drainage conditions.",
+      "body": "The length of the construction period or the amount of time required to apply the load can also affect the time rate of primary consolidation. Gradual load application modifies the relationship between the degree of consolidation and the time factor. Figure 5-20 provides a method to account for gradual loading.",
+      "key_points": [
+        "Gradual (ramp) loading during construction modifies the standard Tv–Ūz consolidation relationship.",
+        "Figure 5-20 (after Olson 1977) provides degree of consolidation vs. time factor curves that account for gradual vertical loading.",
+        "This correction is important when construction duration is significant relative to the time required for primary consolidation."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-20"
+      ],
+      "tables": [],
+      "applicability": "Applies when the load is applied gradually over a construction period that is significant relative to the consolidation time of the soil layer."
+    },
+    {
+      "section_id": "5-5.3.4",
+      "title": "Coefficient of Consolidation",
+      "summary": "Container section covering methods to determine the coefficient of consolidation cv, including laboratory measurement from incrementally loaded consolidation tests (Casagrande and Taylor methods) and inference from field pore pressure dissipation measurements. Notes that cv can also be estimated from index property correlations (Chapter 8) or from constant rate of strain tests.",
+      "body": "The coefficient of consolidation can be estimated based on index properties (see Chapter 8), calculated from volume change vs. time measurements in laboratory tests, or inferred from field measurements of pore pressure dissipation.",
+      "key_points": [
+        "cv can be determined from lab tests (incrementally loaded or CRS consolidation tests), field pore pressure dissipation, or index property correlations.",
+        "Laboratory methods use either the Casagrande log-time or Taylor square-root-of-time method (Figure 5-21).",
+        "Field measurement uses the ratio ux/Δσv plotted on Figure 5-17 to obtain Tv, then cv is back-calculated with Eq. 5-15."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies whenever the coefficient of consolidation cv is needed for time rate of settlement calculations in fine-grained soils."
+    },
+    {
+      "section_id": "5-5.3.4.1",
+      "title": "Laboratory Measurement of Coefficient of Consolidation",
+      "summary": "Describes determination of cv from incrementally loaded one-dimensional consolidation tests using the Casagrande (log-time) or Taylor (square-root-of-time) methods, as illustrated in Figure 5-21. Notes that specimens in different orientations can yield cv in different directions, and that shear strength test volume change data can also be used. CRS tests use a single equation for cv.",
+      "body": "The vertical coefficient of consolidation, cv, is often found from data obtained using incrementally loaded one-dimensional consolidation tests on vertically oriented specimens. The coefficient of consolidation in other directions can be determined by trimming and mounting specimens in other orientations in the testing equipment. Regardless of the specimen orientation, the data is normally assessed using either the Casagrande or the Taylor method, which are described in Figure 5-21. Volume change measured during the consolidation phase of shear strength tests can also be used with these procedures. Other methods exist for determining cv from incrementally loaded consolidation tests, and a single equation can be used to determine cv from constant rate of strain consolidation tests.",
+      "key_points": [
+        "cv is typically determined from incrementally loaded 1D consolidation tests using the Casagrande (log-time) or Taylor (√t) method.",
+        "Specimens in non-vertical orientations yield cv in other directions (e.g., horizontal).",
+        "Volume change data from shear strength test consolidation phases can also be used to determine cv.",
+        "Constant rate of strain (CRS) consolidation tests use a single equation to determine cv."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-21"
+      ],
+      "tables": [],
+      "applicability": "Applies when measuring cv from laboratory consolidation test data using graphical or analytical methods."
+    },
+    {
+      "section_id": "5-5.3.4.2",
+      "title": "Use of Field Measurements",
+      "summary": "Describes back-calculation of in situ cv from field observations of excess pore pressure dissipation with time. The ratio ux/Δσv is plotted at the normalized depth on Figure 5-17 to read the time factor Tv, which is then used with Eq. 5-15 to solve for cv. An example of both lab and field cv determination is given in Figure 5-22.",
+      "body": "Field observations of excess pore pressure dissipation with time can be used to measure the in situ coefficient of consolidation. At any given time after loading, the ratio of excess pore pressure to change in vertical stress (ux/∆σv) can be measured and plotted at the appropriate normalized depth on Figure 5-17. The corresponding time factor can be estimated from the contours, and cv can be calculated using Equation 5-15.\n\nAn example of both laboratory and field determination of cv is provided in Figure 5-22.",
+      "key_points": [
+        "In situ cv is back-calculated from measured ux/Δσv ratios at known depths and times using Figure 5-17 to obtain Tv.",
+        "With Tv known, cv is calculated from Eq. 5-15: cv = Tv · Hdr² / t.",
+        "Field-measured cv typically exceeds laboratory values due to natural fabric, fissures, and drainage features.",
+        "Figure 5-22 illustrates both lab and field determination of cv for comparison."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 5-15",
+          "description": "Time factor for vertical drainage (used to back-calculate cv from field data): Tv = cv · t / Hdr²",
+          "implemented_in": "geotech_references.dm7_1.chapter5.time_factor_vertical"
+        }
+      ],
+      "figures": [
+        "Figure 5-17",
+        "Figure 5-22"
+      ],
+      "tables": [],
+      "applicability": "Applies when back-calculating in situ cv from field pore pressure dissipation measurements after load application."
+    },
+    {
+      "section_id": "5-5.3.5",
+      "title": "Time Rate of Consolidation for Layered Profiles",
+      "summary": "Provides a procedure to handle consolidating soil profiles with multiple layers having different cv values by transforming the layered system into an equivalent single layer. Uses Eq. 5-16 to transform individual layer thicknesses to an equivalent thickness with a reference cv, sums to get total equivalent thickness H't (Eq. 5-17), then applies standard single-layer methods. Example in Figure 5-23.",
+      "body": "The consolidating soil may contain layers with varying values of cv. In this situation, the behavior of a layered system can be approximated by conversion to an equivalent single layer system using the following procedure:\n1. Select any layer (i) with properties cv,i and Hi.\n2. Transform the thickness of every other layer with properties cv,n and Hn to an equivalent layer with the soil properties of layer i using Equation 5-16.\n3. Calculate the total thickness (Hʹt) of the transformed system using Equation 5-17.\n4. Treat the system as a single layer of thickness (Hʹt) with coefficient of consolidation (cv,i).\n5. Use the appropriate method, such as Figure 5-16, to determine the percent consolidation at various times.\n\nThe complexity introduced by multi-layer problems is well-suited to the use of numerical analysis for the calculation of time rate of settlement. An example of multi-layer time rate of consolidation calculation is provided in Figure 5-23.",
+      "key_points": [
+        "Layered profiles with varying cv are converted to an equivalent single layer by scaling layer thicknesses using Eq. 5-16: H'n = Hn · √(cv,i / cv,n).",
+        "Total equivalent thickness H't (Eq. 5-17) is the sum of all transformed layer thicknesses.",
+        "The equivalent system uses the reference layer's cv,i and is analyzed as a single homogeneous layer.",
+        "Numerical analysis is preferred for multi-layer problems due to complexity.",
+        "Figure 5-23 provides a worked multi-layer consolidation example."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 5-16",
+          "description": "Equivalent transformed layer thickness: H'n = Hn · √(cv,i / cv,n), converting layer n to equivalent thickness with properties of reference layer i",
+          "implemented_in": "geotech_references.dm7_1.chapter5.equivalent_layer_thickness"
+        },
+        {
+          "id": "Eq. 5-17",
+          "description": "Total thickness of transformed equivalent system: H't = Σ H'n",
+          "implemented_in": "geotech_references.dm7_1.chapter5.total_transformed_thickness"
+        }
+      ],
+      "figures": [
+        "Figure 5-16",
+        "Figure 5-23"
+      ],
+      "tables": [],
+      "applicability": "Applies when the consolidating soil profile contains multiple layers with different coefficients of consolidation."
+    },
+    {
+      "section_id": "5-5.4",
+      "title": "Secondary Compression of Fine-Grained Soils",
+      "summary": "Covers prediction of secondary compression (creep) settlement in fine-grained soils after end of primary consolidation. Defines Eq. 5-18 for settlement as a function of Cα or Cεα and log(t/tp). Provides Mesri (1973) correlation for Cεα vs. natural water content (Eq. 5-19) and Cα/Cc ratio values from Table 5-6. Notes that 24-hour consolidation test data includes some secondary compression, and EOP-based curves should be used when secondary compression is important.",
+      "body": "Secondary compression settlement (ss) occurs as soil particles rearrange and the soil structure creeps under constant vertical effective stress. For practical purposes, secondary compression can be assumed to occur after the end of primary consolidation and to follow a relatively linear trend with respect to time on a log scale using Equation 5-18.\n\nValues of Cα or Cεα can be obtained from the results of a one-dimensional consolidation test that is allowed to creep for a significant length of time past the end of primary consolidation. The magnitude of Cα is stress dependent for a particular soil and should be determined at an effective stress similar to that expected in situ. For a variety of clays, silts, and organic soils, Mesri (1973) showed that Cεα is approximately related to the natural water content, wn (in percent) using Equation 5-19.\n\nThe secondary compression index is closely linked to the compression index, Cc. For this reason, an excellent method for estimating Cα is the use of the Cα/Cc ratio. Typical values of this ratio are found in Table 5-6. Recognizing that Cc is also stress-dependent, these ratios should be used with the slope of the laboratory virgin compression curve at the effective stress of interest (Mesri and Godlewski 1977, Mesri and Castro 1987) rather than the field corrected value typically used in consolidation calculations. An example of secondary compression settlement calculations is provided in Figure 5-24.\n\nIn many cases, one-dimensional consolidation tests are presented using the void ratio or vertical strain corresponding to the end of 24-hour load increments. Some amount of secondary compression will have occurred during this time period and is thus included in the laboratory consolidation curve. The engineer should be aware that consolidation settlements calculated with such data will account for some degree of secondary compression.\n\nIf secondary compression is expected to be important in the analysis, consolidation test results should be plotted based on the void ratio or vertical strain at the end of primary (EOP) consolidation for each load increment. Primary consolidation settlement calculated using the EOP consolidation curve can be added directly to estimates of secondary compression settlement.",
+      "key_points": [
+        "Secondary compression occurs under constant effective stress after primary consolidation ends and follows a log-linear trend with time (Eq. 5-18).",
+        "Eq. 5-18: ss = Cεα · H0 · log(t / tp); or equivalently using Cα / (1 + e0).",
+        "Eq. 5-19: Cεα ≈ wn × 10⁻⁴ (Mesri 1973), where wn is natural water content in percent.",
+        "The Cα/Cc ratio is a reliable estimator of secondary compression; Table 5-6 gives typical values by soil type (0.02 for granular to 0.06 for peat).",
+        "Cα is stress-dependent; use the lab virgin compression curve slope at the relevant effective stress, not the field-corrected Cc.",
+        "24-hour increment consolidation test data includes some secondary compression; use EOP-based consolidation curves when secondary compression is to be calculated separately."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 5-18",
+          "description": "Secondary compression settlement: ss = Cεα · H0 · log(t / tp) = [Cα / (1 + e0)] · H0 · log(t / tp)",
+          "implemented_in": "geotech_references.dm7_1.chapter5.secondary_compression_settlement"
+        },
+        {
+          "id": "Eq. 5-5-19",
+          "description": "Mesri (1973) correlation for modified secondary compression index: Cεα ≈ wn × 10⁻⁴ (wn in percent)",
+          "implemented_in": "geotech_references.dm7_1.chapter5.immediate_settlement"
+        }
+      ],
+      "figures": [
+        "Figure 5-24"
+      ],
+      "tables": [
+        "Table 5-6"
+      ],
+      "applicability": "Applies when computing secondary compression (creep) settlement in fine-grained soils, especially organic soils, soft clays, and silts where long-term creep is significant."
+    },
+    {
+      "section_id": "5-6",
+      "title": "Differential and Tolerable Settlement",
+      "summary": "Top-level container section covering differential and tolerable settlement for structures. Addresses settlement patterns across a structure's footprint, quantification metrics (angular distortion and deflection ratio), tolerable limits by structure type, reduction strategies, and special considerations for mat foundations.",
+      "body": "",
+      "key_points": [
+        "Differential settlement is typically more critical than total settlement for structural distress.",
+        "Angular distortion (δ/l) and deflection ratio (Δ/L) are the best indicators of structural distress from differential settlement.",
+        "Natural soil variability makes settlement calculations highly uncertain; approximate relationships are often sufficient.",
+        "Differential settlement for footings on sand is likely ≤75% of predicted total settlement; for clays it can approach total settlement."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to any structure where differential settlement must be evaluated alongside total settlement."
+    },
+    {
+      "section_id": "5-6.1",
+      "title": "Differential Settlement",
+      "summary": "Covers methods for characterizing differential settlement across a structure, including maximum differential settlement (δmax), rigid-body tilt (ω), angular distortion (δ/l), and deflection ratio (Δ/L). Distinguishes sagging (concave up) from hogging (concave down) and provides approximate relationships between differential and total settlement for sand and clay.",
+      "body": "For important structures, settlement should be calculated for a number of points across the footprint of the structure in order to establish the expected settlement pattern. Figure 5-25 illustrates various types of settlement profiles.\n\nDifferences in settlement across a structure can be considered in multiple ways. The simplest is to consider the maximum difference in predicted settlement across the structure, which is often referred to as the differential settlement, δmax. However, it is often necessary and more informative to consider the effects of the size and flexibility of the structure when evaluating the impact of differential settlement. In some cases, a structure will tilt over an angle (ω) which causes difference in settlement between various points but does not necessarily cause structural distress.\n\nDifferential settlement that results in non-uniform deflection or non-uniform tilt causes bending and tensile strain in the structure. Differential movement that causes a concave upward shape is referred to as sagging while a concave downward shape is called hogging. This type of movement can be quantified by either the angular distortion or the deflection ratio. Angular distortion (δ / l) is the slope of the expected settlement profile or the ratio of the settlement between two points to the distance (l) separating the points. The deflection ratio (∆ / L) is the maximum expected deviation from uniform settlement divided by the overall length of the structure and is an approximate measure of the curvature caused by settlement. These two measures have been shown to provide the best indication of structural distress.\n\nNatural variation in soil deposits causes settlement calculations to be highly uncertain. For this reason, it may be sufficient to use approximate relationships to estimate differential based on magnitude of total settlement. For example, Terzaghi et al. (1996) suggest that the differential settlement for footings on sand will likely be 75% or less of the predicted total settlement. For clays, the differential settlement can sometimes approach the magnitude of the total settlement.",
+      "key_points": [
+        "Settlement should be calculated at multiple points across a structure's footprint to establish the full settlement pattern.",
+        "Rigid-body tilt (ω) can create settlement differences without causing structural distress.",
+        "Angular distortion δ/l = ratio of settlement between two points to the distance separating them; deflection ratio Δ/L = max deviation from uniform settlement divided by structure length.",
+        "Sagging = concave upward differential movement; hogging = concave downward differential movement.",
+        "For footings on sand, differential settlement is likely ≤75% of total settlement; for clays it can approach total settlement."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-25 Components of Settlement (after Duncan and Buchignani 1987, Ricceri and Soranzo 1985)"
+      ],
+      "tables": [],
+      "applicability": "Applies when evaluating differential settlement patterns for any structure founded on soil."
+    },
+    {
+      "section_id": "5-6.2",
+      "title": "Tolerable Settlement",
+      "summary": "Container section for tolerable settlement criteria and reduction strategies. Covers the basis for acceptable settlement limits drawn from field observations, angular distortion criteria by structure type (Table 5-7), and Wroth and Burland's deflection ratio approach incorporating structural stiffness and L/H ratio (Figure 5-26).",
+      "body": "",
+      "key_points": [
+        "Tolerable settlement guidance is empirically based on measured settlements and observed structural damage.",
+        "Differential settlement is the most important consideration for structural distress.",
+        "Structural design can reduce differential movement; many structures can tolerate large settlements and remain safe."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when selecting tolerable settlement limits for structural design on any soil type."
+    },
+    {
+      "section_id": "5-6.2.1",
+      "title": "Criteria",
+      "summary": "Provides criteria for tolerable angular distortion and deflection ratios. Table 5-7 lists angular distortion limits (δ/l) for a wide range of structure types. Wroth and Burland (1974) deflection ratio criteria (Figure 5-26) explicitly account for structure L/H ratio, bending type, E/G ratio, and critical strain (εcrit = 0.075%) for a more rigorous assessment.",
+      "body": "Most of the guidance regarding acceptable settlement is based on experience with measured settlement of real structures and observations of the associated damage. Wahls (1981) summarizes four important points regarding settlement: (1) settlement must be expected, (2) some form of differential settlement is the most important to consider for structural distress, (3) structural design can reduce the level of differential movement, and (4) many structures can tolerate large settlements and remain safe.\n\nTable 5-7 provides guidance for the selection of tolerable angular distortion for various types of structures. In some cases, the limits that are provided include a margin of safety to reduce or prevent cracking or damage. Most of these guidelines ignore the size and stiffness of the structure, which control the magnitude of the strains in the structure.\n\nWroth and Burland (1974) proposed a deflection ratio criterion that allow the properties of the structure to be explicitly considered in terms of the controlling type of strain, the length to height ratio of the structure, and the structure's relative stiffness, E/G. Figure 5-26 plots these criteria for three different types of bending, assuming the critical strain for structural distress (εcrit) is 0.075%. Other values of E/G and εcrit can be considered using the equations provided on the figure.",
+      "key_points": [
+        "Tolerable settlement criteria are empirically derived from real structure performance and damage observations (Wahls 1981).",
+        "Table 5-7 provides angular distortion limits (δ/l) ranging from 1/100 (slab-on-grade damage) to 1/2500 (load-bearing brick/concrete block walls, L/H ≤ 3).",
+        "Most tabulated limits ignore structure size and stiffness; the Wroth and Burland (1974) deflection ratio method explicitly incorporates L/H, E/G, and εcrit.",
+        "Default critical strain εcrit = 0.075% used in Figure 5-26; other values can be evaluated with equations on the figure.",
+        "Some limits in Table 5-7 include a safety factor to prevent cracking."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-26 Allowable Deflection Ratios Related to Structural Proportions (after Burland and Wroth 1974, Wahls 1981)"
+      ],
+      "tables": [
+        "Table 5-7 Angular Distortion Limits for Various Structures (after Skempton and MacDonald 1956, Polshin and Tokar 1957, Duncan and Buchignani 1987, and Day 1990)"
+      ],
+      "applicability": "Applies when selecting specific angular distortion or deflection ratio limits for a given structure type and material finish."
+    },
+    {
+      "section_id": "5-6.2.2",
+      "title": "Reduction of Differential Settlement",
+      "summary": "Describes strategies to reduce differential settlement, noting that total settlement reduction (Section 5-7) is the primary approach. Discusses how load sequencing relative to consolidation rate can limit distress to sensitive finishes and machinery. Notes that flexible structures (e.g., light steel frames) may tolerate large settlements, shifting the design focus to utilities and equipment.",
+      "body": "The reduction of total settlement (Section 5-7) is also the primary means of reducing differential movement. Settlement that occurs early in the construction process doesn't generally contribute to structural distress. The sequence and rate at which the load is applied can be compared to the expected rate of consolidation to estimate the total and differential settlement that will be experienced by different parts of the structure. If the consolidation rate is relatively fast, building finishes and other sensitive components may be installed after much of the total settlement has occurred and thus will experience less differential settlement than the superstructure. Estimates of this type of effect are heavily dependent on the rate of construction and consolidation and must be considered on a project-specific basis.\n\nSome buildings, such as light steel frame structures, are very flexible and can tolerate large settlements. In this case, limitation of damage to utilities and machinery housed in the facility may control design.",
+      "key_points": [
+        "Reducing total settlement (Section 5-7) is the primary means of reducing differential movement.",
+        "Settlement occurring before installation of sensitive finishes and components does not contribute to their distress.",
+        "Load application sequence vs. consolidation rate governs how much differential settlement affects various structural components.",
+        "For flexible structures (e.g., light steel frames), utility and machinery protection may govern design rather than structural distress.",
+        "Project-specific assessment of construction rate and consolidation rate is required for these estimates."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when designing construction sequences or selecting structural systems to minimize differential settlement distress."
+    },
+    {
+      "section_id": "5-6.3",
+      "title": "Differential Settlement of Mat Foundations",
+      "summary": "Addresses the particular challenges of predicting differential settlement for mat or raft foundations. Settlement calculations often assume uniform loading and stress distributions, but foundation rigidity and soil-structure interaction complicate this. Differential settlement predictions for mats are inherently less accurate than total or average settlement predictions.",
+      "body": "Settlement calculations for mat or raft foundations are often made based on changes in stress calculated assuming uniform loading. The rigidity of the foundation structure will affect the accuracy of this assumption and the distribution of settlement. The flexibility of the foundation and the soil structure interaction can be difficult to assess. Predictions of differential settlement are often less accurate than those for total or average settlement for these reasons, especially for mat foundations.",
+      "key_points": [
+        "Mat foundation settlement calculations typically assume uniform loading for stress change estimation.",
+        "Foundation rigidity affects both the validity of the uniform loading assumption and the resulting settlement distribution.",
+        "Soil-structure interaction for mat foundations is difficult to assess accurately.",
+        "Differential settlement predictions for mats are inherently less accurate than total or average settlement predictions."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when evaluating differential settlement for mat or raft foundation systems."
+    },
+    {
+      "section_id": "5-7",
+      "title": "Methods of Controlling Settlement",
+      "summary": "Overview of methods to reduce, accelerate, or prevent excess settlement in compressible soils. References Table 5-9 which categorizes techniques by primary purpose: reducing soft soil, reinforcing soft soil, improving soft soil, accelerating consolidation, and reducing applied load. Points readers to FHWA Ground Modification Vol. 1 and 2 (2017) for in-depth treatment.",
+      "body": "Methods for reducing or accelerating settlement are summarized in Table 5-9. Further details for some of the basic methods are discussed in the following sections. For a more in-depth summary of ground modification techniques that can be used to remove settlement potential, reduce excess settlement, or accelerate settlement, see FHWA's Ground Modification Vol. 1 and 2 (2017).",
+      "key_points": [
+        "Settlement control methods are grouped by primary purpose: reduce soft soil, reinforce soft soil, improve soft soil, accelerate consolidation, and reduce applied load.",
+        "Table 5-9 summarizes methods including removal/replacement, column-supported embankments, deep mixing, surcharge, PVDs, and compensated foundations.",
+        "FHWA Ground Modification Vol. 1 and 2 (2017) is the primary reference for in-depth guidance on ground modification techniques.",
+        "Mat stiffness factor (Km) from Table 5-8 guides flexible vs. rigid mat behavior before selecting a settlement control approach."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 5-8",
+        "Table 5-9"
+      ],
+      "applicability": "Applies when selecting a strategy to reduce, prevent, or accelerate settlement under fills or structures on compressible soils."
+    },
+    {
+      "section_id": "5-7.1",
+      "title": "Removal or Displacement of Compressible Soils",
+      "summary": "Covers excavation and replacement as a method for eliminating settlement when compressible strata are shallow and thin. Discusses removal of organic soils and topsoil, partial displacement using fill weight assisted by jetting or blasting, and cautions against using partial displacement in fibrous organic soils due to risk of trapped pockets and differential settlement.",
+      "body": "Excavation and replacement is a simple method of reducing or eliminating settlement for cases where the compressible stratum is shallow and relatively thin. This method is particularly useful for sites where extensive earthwork is already required.\n\nSurficial soils with low shear strength and high compressibility, such as organic soils, should be removed and replaced with engineered fill. The suitability of deeper soils to support the planned fill or structure will depend on the shear strength and compressibility of the underlying soils as judged by an appropriate subsurface exploration. A common example of removal and replacement is the removal of topsoil which occurs prior to the placement of most fills.\n\nIn some cases, partial excavation of very soft foundation soils can be accompanied by displacement caused by the weight of the new fill. The boundary between the new fill and the displaced soil should be kept as vertical as possible. This method is most applicable to the displacement of peat and muck deposits and has been used successfully for soft soils up to 65 feet deep. Jetting and blasting methods can be used in the fill and foundation to facilitate displacement of the soft soil. Caution should be used with partial displacement in fibrous organic soils, as these materials tend to resist displacement, which can result in trapped pockets and differential settlement.",
+      "key_points": [
+        "Best suited for shallow, thin compressible strata; especially effective where extensive earthwork is already planned.",
+        "Organic soils and other low-strength, high-compressibility surficial materials should be removed and replaced with engineered fill.",
+        "Partial displacement using fill weight has been successful in peat and muck up to 65 feet deep; jetting or blasting can assist displacement.",
+        "Avoid partial displacement in fibrous organic soils — resistance to displacement can create trapped pockets causing differential settlement.",
+        "Boundary between new fill and displaced soil should be kept as vertical as possible."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when compressible strata are shallow and relatively thin, or when organic/muck deposits can be displaced by fill weight."
+    },
+    {
+      "section_id": "5-7.2",
+      "title": "Balancing Load by Excavation",
+      "summary": "Describes the balanced (compensated/floating) foundation approach where permanent excavation offsets structural load, limiting net stress increase on compressible soils. Explains effects of dewatering on heave and recompression, how to compute net vertical stress (q0-net) using stress reduction (σz-red), and notes that settlement predictions follow Sections 5-3 to 5-5.",
+      "body": "The balanced load approach (a.k.a. compensated foundation or floating foundation) can sometimes be used to support heavy structures over compressible strata. In this approach, the weight of the structure is balanced, completely or partially, by soil that is permanently excavated from the building footprint. The construction of a permanent basement level is required to create stress relief. This method works particularly well for situations where a stronger surface layer overlies a compressible stratum.\n\nExcavation for the structure results in vertical stress relief and some amount of swelling or heave. If the weight of the structure is equal to or less than the weight of the excavated material, the total settlement experienced by the structure will be the result of recompression of the compressible strata. The magnitude of swelling and subsequent recompression will depend on construction and site factors, such as the amount of time between excavation and loading, the construction sequence, and the subsurface drainage conditions.\n\nDewatering may be required to facilitate the construction of a balanced foundation. If the groundwater is significantly lowered, the amount of heave and subsequent recompression will be reduced because of negative excess pore pressures in the soil.\n\nSettlement for balanced foundations can be predicted using the methods in Sections 5-3 to 5-5. The net vertical stress (q0-net) is found by subtracting the vertical stress reduction (σz-red) from the building load, q0. The final groundwater conditions affect the value of σz-red. For cases where the groundwater is not lowered or is allowed to return to its initial condition following construction, σz-red is equal to the total vertical stress at the foundation level prior to construction. If the groundwater is lowered permanently below the foundation level, σz-red is equal to the effective vertical stress at the foundation level prior to construction.",
+      "key_points": [
+        "Permanent basement excavation offsets structural weight, reducing net stress on compressible soils (compensated/floating foundation).",
+        "Works best when a stronger surface layer overlies a compressible stratum.",
+        "If structure weight ≤ excavated soil weight, settlement is only due to recompression, not virgin consolidation.",
+        "Dewatering reduces heave and recompression by generating negative excess pore pressures.",
+        "σz-red equals total vertical stress (if groundwater returns to original level) or effective vertical stress (if permanently lowered) at foundation level.",
+        "Settlement predictions use standard methods from Sections 5-3 to 5-5 applied to the net vertical stress."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when supporting heavy structures over compressible strata where permanent basement excavation can offset the structural load."
+    },
+    {
+      "section_id": "5-7.3",
+      "title": "Preconsolidation by Surcharge",
+      "summary": "Explains use of surcharge loading to induce primary consolidation and secondary compression before construction, with governing equations (Eq. 5-20 and 5-21) for the required degree of consolidation under the surcharge. Covers limitations including time, cost, and potential shear failure at surcharge edges. References Figures 5-27 and 5-28 for graphical solutions and worked examples.",
+      "body": "A surcharge causes some or all of the consolidation to occur prior to construction. This method works well for fill beneath paved areas, for large floor loadings, and for structures with relatively light column loads. For heavier structures, improvement by surcharging may not be sufficient to provide adequate bearing resistance. In this case, a portion of the surficial layer of the compressible soil may need to be replaced with a more rigid compacted fill or reinforced fill.\n\nA portion of the predicted consolidation and secondary compression can be removed by surcharging as illustrated in Figure 5-27. The calculations in this figure assume that the time rate of consolidation is the same under both the surcharge load and the final load. This should be approximately true provided the coefficient of consolidation is not significantly different under the two loading conditions. In order to eliminate the settlement due to primary consolidation under the final load, the degree of consolidation required under the surcharge (U+fs) is:\n\n(Eq. 5-20)\n\nwhere: qf = final applied load, qs = additional surcharge load, and σ′z0 = initial vertical effective stress at midpoint of the consolidating layer.\n\nIf some amount of secondary compression must also be removed by surcharging, the required degree of consolidation becomes:\n\n(Eq. 5-21)\n\nwhere: qf = final applied load, qs = additional surcharge load, σ′z0 = initial vertical effective stress at midpoint of the consolidating layer, Cα/Cc = ratio of secondary to primary compression indices, tp = time required for primary consolidation, and t = time after loading for which secondary compression is considered.\n\nAn example of the calculations for the surcharge approach is provided in Figure 5-28. The major limitations of the surcharge method are time and cost. The time required for consolidation to occur may not fit within the construction schedule. Use of vertical drains as described in the following section can alleviate this difficulty. In soft soils, shear failure can be induced at the edge of the surcharge. This should be considered using slope stability methods (Chapter 7) or bearing capacity theory (DM 7.2).",
+      "key_points": [
+        "Surcharge loading induces primary consolidation and secondary compression before construction, reducing post-construction settlement.",
+        "Eq. 5-20 gives required degree of consolidation under surcharge to eliminate primary consolidation settlement under the final load.",
+        "Eq. 5-21 extends Eq. 5-20 to also account for removal of secondary compression, incorporating the Cα/Cc ratio.",
+        "Assumes coefficient of consolidation is similar under surcharge and final load conditions.",
+        "Major limitations: time required for consolidation may not fit construction schedule; cost of surcharge material.",
+        "Shear failure at surcharge edges in soft soils must be evaluated via slope stability (Chapter 7) or bearing capacity methods.",
+        "Vertical drains (Section 5-7.4) can be combined with surcharge to overcome the time limitation."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 5-20",
+          "description": "Required degree of consolidation under surcharge (U+fs) to eliminate primary consolidation settlement under the final load, as a function of final load (qf), additional surcharge (qs), and initial vertical effective stress (σ′z0).",
+          "implemented_in": "geotech_references.dm7_1.chapter5.surcharge_degree_of_consolidation"
+        },
+        {
+          "id": "Eq. 5-21",
+          "description": "Required degree of consolidation under surcharge when secondary compression must also be removed, incorporating the ratio of secondary to primary compression indices (Cα/Cc), time for primary consolidation (tp), and time after loading (t).",
+          "implemented_in": "geotech_references.dm7_1.chapter5.surcharge_degree_of_consolidation_with_secondary"
+        }
+      ],
+      "figures": [
+        "Figure 5-27",
+        "Figure 5-28"
+      ],
+      "tables": [],
+      "applicability": "Applies when pre-construction surcharge loading is used to induce consolidation settlement before final structural loads are applied, particularly for fills, paved areas, or lightly loaded structures."
+    },
+    {
+      "section_id": "5-7.4",
+      "title": "Vertical Drains",
+      "summary": "Details the theory and design of vertical drains (especially PVDs) to accelerate consolidation by shortening drainage paths and exploiting horizontal hydraulic conductivity. Presents equations for radial time factor (Eq. 5-22), drain spacing factor (Eq. 5-23), equivalent PVD drain diameter (Eq. 5-24), smear factor (Eq. 5-25), and well resistance factor (Eq. 5-26), with references to design charts in Figures 5-29 through 5-32.",
+      "body": "Vertical drains are constructed or inserted vertically through compressible soil layers. The drains intercept horizontal water flow. The water is then transmitted to a drainage layer at the surface and/or to underlying coarse-grained soil, depending on the drainage conditions. The drains are typically installed in triangular or square patterns as shown in Figure 5-29 with spacing ranging from 3 to 6.5 feet. Drains typically shorten the maximum drainage path to 8 feet or less. While vertical drains were constructed mostly of sand prior to the 1980s, current practice is to use drains comprised of a plastic core encased in geotextile fabric, typically referred to as prefabricated vertical drains (PVD). For detailed information on PVD materials and drain construction practices, see FHWA (2017).\n\nIn addition to shortening the drainage path, vertical drains take advantage of the higher hydraulic conductivity and coefficient of consolidation often found in horizontal direction in many soils. While the vertical coefficient of consolidation can be measured in laboratory tests or estimated based on index tests (see Chapters 3 and 8), the horizontal coefficient of consolidation (ch) is rarely measured directly. More often, ch is assumed to be about 1.5 to 4 times higher than cv, depending on the amount of horizontal layering present. Higher ratios of ch to cv are encountered when layers of silt and sand are present. Asaoka (1978) presents a method for determining ch from field measurements on a test fill.\n\nMany analytical and numerical methods have been proposed for radial drainage theory, most based on Barron (1948). The differences in the methods tend to have less effect on predictions of consolidation rate than the uncertainty and variability in ch. Using the calculation method presented by FHWA (2017), the time factor (Tr) for a desired degree of radial consolidation (Ur) is found by:\n\n(Eq. 5-22)\n\nwhere: Fn = factor related to drain spacing, Fs = factor related to soil disturbance (smear), and Fr = factor related to well resistance in the drain.\n\nIf smear and well resistance are ignored, Fs and Fr are set equal to zero.\n\nFigure 5-29 illustrates the relationship between the drain configuration and the effective drainage diameter, dc. The drain spacing is often expressed in terms of the ratio (n) between the drainage diameter and the diameter of the well, dw. The drainage factor (Fn) is equal to:\n\n(Eq. 5-23)\n\nwhere: n = ratio of dc to dw. The error in the approximation is less than 10% for n greater than 4 and less than 1% for n greater than 12.\n\nMost PVDs have a rectangular cross section while the solutions to radial consolidation problem assume a circular drain. Hansbo (1979) found that the equivalent drain diameter can be approximated as:\n\n(Eq. 5-24)\n\nwhere: a and b = PVD dimensions. Values of dw for modern PVDs range from 1.5 to 5.5 inches. A diameter of 2 inches is commonly used, which results in n values in the range of 20 to 50 for typical drain spacing.\n\nGiven the uncertainties with the measurement or estimation of soil properties, the effects of soil disturbance or smear around the drains and drain resistance are often ignored (FHWA 2017). Smear tends to be important mostly for drains in high plasticity clays or sensitive soils, or where ch has been directly and accurately measured. In order to account for smear, the soil disturbance factor (Fs) can be calculated as:\n\n(Eq. 5-25)\n\nwhere: kh = hydraulic conductivity of the soil layer, ks = hydraulic conductivity of the disturbed zone, and s = ratio of the diameter of the disturbed zone to the diameter of the drain.\n\nResistance to water flow within the drain can also decrease the effectiveness of vertical drains. If desired, this effect can be estimated by:\n\n(Eq. 5-26)\n\nwhere: z = depth along the drain, Lm = maximum distance water must flow through the drain, and qw = discharge capacity of the drain.",
+      "key_points": [
+        "PVDs (plastic core with geotextile fabric) are the current standard, replacing sand drains; typical spacing is 3–6.5 ft, reducing max drainage path to ≤8 ft.",
+        "ch is typically assumed 1.5–4× cv; higher ratios occur when silt/sand interlayers are present.",
+        "Eq. 5-22 gives the radial time factor Tr as a function of desired consolidation degree and factors Fn, Fs, Fr.",
+        "Eq. 5-23 provides the drain spacing factor Fn; the approximation error is <1% for n > 12.",
+        "Eq. 5-24 converts rectangular PVD cross-section to equivalent circular drain diameter using dw = 2(a+b)/π.",
+        "Smear factor (Eq. 5-25) is important mainly in high-plasticity clays or sensitive soils where ch is accurately known.",
+        "Well resistance factor (Eq. 5-26) accounts for limited discharge capacity of the drain itself.",
+        "Radial consolidation theory is based primarily on Barron (1948); variability in ch dominates prediction uncertainty."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 5-22",
+          "description": "Radial time factor Tr for a desired degree of radial consolidation Ur, incorporating drain spacing factor Fn, smear factor Fs, and well resistance factor Fr.",
+          "implemented_in": "geotech_references.dm7_1.chapter5.figure_5_30_Tr"
+        },
+        {
+          "id": "Eq. 5-23",
+          "description": "Drain spacing factor Fn as a function of n (ratio of effective drainage diameter dc to drain diameter dw), with an approximation valid to <1% for n > 12.",
+          "implemented_in": "geotech_references.dm7_1.chapter5.drain_spacing_factor"
+        },
+        {
+          "id": "Eq. 5-24",
+          "description": "Equivalent circular drain diameter dw for rectangular PVD cross-sections, where a and b are the PVD dimensions: dw = 2(a+b)/π.",
+          "implemented_in": "geotech_references.dm7_1.chapter5.equivalent_drain_diameter"
+        },
+        {
+          "id": "Eq. 5-25",
+          "description": "Soil disturbance (smear) factor Fs, approximated as ln(s) × (kh/ks), where s is the ratio of disturbed zone diameter to drain diameter and kh/ks is the hydraulic conductivity ratio.",
+          "implemented_in": "geotech_references.dm7_1.chapter5.smear_factor"
+        },
+        {
+          "id": "Eq. 5-26",
+          "description": "Well resistance factor Fr accounting for drain discharge capacity qw, as a function of depth z, maximum drainage path length Lm, and horizontal hydraulic conductivity kh.",
+          "implemented_in": "geotech_references.dm7_1.chapter5.time_factor_radial"
+        }
+      ],
+      "figures": [
+        "Figure 5-29",
+        "Figure 5-30",
+        "Figure 5-31",
+        "Figure 5-32",
+        "Figure 5-33"
+      ],
+      "tables": [],
+      "applicability": "Applies when vertical drains are used to accelerate consolidation of compressible soils by shortening drainage paths and exploiting horizontal hydraulic conductivity."
+    },
+    {
+      "section_id": "5-7.4.1",
+      "title": "Combination of Vertical and Horizontal Drainage Effects",
+      "summary": "Presents the Carrillo (1942) method for combining radial (horizontal) and vertical drainage contributions to compute the total combined degree of consolidation (Uc). The governing equation (Eq. 5-27) shows that Uc is not simply additive but uses a multiplicative complement of the individual degrees of consolidation.",
+      "body": "Prediction of the degree of consolidation from vertical drainage can be combined with the effects of horizontal drainage to vertical drains using the method proposed by Carrillo (1942). The combined degree of consolidation (Uc) in percent is:\n\n(Eq. 5-27)\n\nwhere: Ur = degree of consolidation for radial drainage, and Uz = degree of consolidation for vertical drainage.",
+      "key_points": [
+        "Carrillo (1942) method combines radial and vertical drainage effects without simple addition.",
+        "Eq. 5-27: Uc = 100 − [(100 − Ur)(100 − Uz)/100], expressed as percent.",
+        "Both Ur (from radial drain theory) and Uz (from 1D consolidation theory) must be computed independently before combining.",
+        "Combined Uc is always greater than either component alone, reflecting parallel drainage paths."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 5-27",
+          "description": "Combined degree of consolidation Uc (%) accounting for both radial drainage (Ur) and vertical drainage (Uz) using the Carrillo (1942) method.",
+          "implemented_in": "geotech_references.dm7_1.chapter5.combined_degree_of_consolidation"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when both vertical (1D) and radial (horizontal) drainage paths are active simultaneously, as occurs with vertical drains installed through a consolidating layer."
+    },
+    {
+      "section_id": "5-7.4.2",
+      "title": "Vertical Drain Design",
+      "summary": "Describes the design procedure for selecting drain type, spacing, and construction procedures based on available time, target consolidation degree, and soil properties. Uses Eq. 5-22 or Figures 5-30/5-31 to determine radial time factor Tr, then Eq. 5-28 to compute required effective drain diameter dc. Figure 5-32 provides a direct design chart for drain spacing selection.",
+      "body": "Vertical drain design involves the selection of the appropriate drain type, drain spacing, and construction procedures based on the time available for consolidation, design degree of consolidation for that time period, and soil properties. The appropriate time factor for radial drainage (Tr) can be determined from Equation 5-22 or from Figure 5-30 or Figure 5-31. Figure 5-30 plots the relationship between Ur and Tr for a range of drain spacing for three smear conditions. Figure 5-31 provides solutions for gradual loading and radial drainage. From Tr and the time available for consolidation (t) the required effective drain diameter (dc) can be calculated as:\n\n(Eq. 5-28)\n\nwhere: ch = coefficient of consolidation in the horizontal direction.\n\nAn alternative approach is provided in the design chart in Figure 5-32. This chart allows the spacing to be selected directly based on the other properties and variables. Other drain design considerations include stability against foundation failure and provision of adequate flow in the surface drainage blanket. An example of vertical drain design is provided in Figure 5-33.",
+      "key_points": [
+        "Design inputs: time available for consolidation, target degree of consolidation, and horizontal coefficient of consolidation ch.",
+        "Tr is determined from Eq. 5-22 or graphically from Figures 5-30 (smear conditions) or 5-31 (gradual loading).",
+        "Eq. 5-28: dc = √(ch × t / Tr) — converts time factor to required effective drain spacing diameter.",
+        "Figure 5-32 design chart allows direct selection of drain spacing from project variables.",
+        "Design must also address slope stability against foundation failure and surface drainage blanket capacity.",
+        "Figure 5-33 provides a worked design example."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 5-22",
+          "description": "Radial time factor Tr used in vertical drain design to determine the required time factor for a target degree of radial consolidation (referenced from Section 5-7.4).",
+          "implemented_in": "geotech_references.dm7_1.chapter5.figure_5_30_Tr"
+        },
+        {
+          "id": "Eq. 5-28",
+          "description": "Required effective drain diameter dc calculated from the radial time factor Tr, available consolidation time t, and horizontal coefficient of consolidation ch: dc = √(ch × t / Tr).",
+          "implemented_in": "geotech_references.dm7_1.chapter5.required_drain_diameter"
+        }
+      ],
+      "figures": [
+        "Figure 5-30",
+        "Figure 5-31",
+        "Figure 5-32",
+        "Figure 5-33"
+      ],
+      "tables": [],
+      "applicability": "Applies when designing a vertical drain system, including selection of drain type, spacing, and construction approach based on consolidation time requirements."
+    },
+    {
+      "section_id": "5-7.4.3",
+      "title": "Vertical Drains with Surcharge",
+      "summary": "Discusses combining vertical drains with a surcharge load to simultaneously accelerate settlement rate and achieve greater final settlement, particularly useful in soils prone to significant secondary compression. References the surcharge consolidation framework from Figure 5-27 as directly applicable when vertical drains are also present.",
+      "body": "In some cases, a surcharge is used along with vertical drains to accelerate the rate of settlement and reach the final settlement more quickly. Surcharges are especially important for soil conditions in which a large amount of secondary compression is likely to occur. The method presented in Figure 5-27 can also be used with vertical drains.",
+      "key_points": [
+        "Combining surcharge with PVDs accelerates both the rate and total magnitude of pre-construction settlement.",
+        "Especially beneficial when significant secondary compression is expected in the soil.",
+        "Figure 5-27 surcharge calculation method (Eq. 5-20, Eq. 5-21) applies directly when vertical drains are also used.",
+        "This combination is a common approach for highway embankments over soft cohesive soils."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-27"
+      ],
+      "tables": [],
+      "applicability": "Applies when both vertical drains and a surcharge load are used together to accelerate consolidation, particularly in soils with significant secondary compression potential."
+    },
+    {
+      "section_id": "5-7.4.4",
+      "title": "Construction Control Requirements",
+      "summary": "Covers field instrumentation and quality assurance requirements for vertical drain construction. Specifies that settlement plates are sufficient for low-risk fills; piezometers are needed to track pore pressure dissipation in large embankments over soft soil; and inclinometers monitor horizontal deformation. References FHWA (2017) for specifications and installation guidance.",
+      "body": "Extensive discussion of specifications, quality assurance, site preparation, and installation procedures for vertical drains can be found in FHWA (2017). Field instrumentation should be installed to monitor performance of the drains, progress of consolidation, and horizontal deformations. The type of instrumentation required depends on the application. For cases where instability is not likely, such as a low height fill of large lateral extent, the primary purpose of instrumentation is to monitor progress of consolidation. Settlement plates are sufficient for this purpose. On the other hand, stability and pore pressure dissipation is a concern for the construction of large embankments over soft soil. Piezometers should be used to monitor the dissipation of excess pore pressure during consolidation. Inclinometers should be installed to monitor horizontal deformations in the foundation soil.",
+      "key_points": [
+        "FHWA (2017) is the primary reference for specifications, QA, and installation procedures for vertical drains.",
+        "Instrumentation type depends on risk: settlement plates suffice for low fills; piezometers and inclinometers required for large embankments.",
+        "Piezometers monitor excess pore pressure dissipation — critical for confirming consolidation progress under large embankments.",
+        "Inclinometers detect lateral deformation in foundation soil, providing early warning of instability.",
+        "Settlement plates provide direct measurement of consolidation progress for low-risk applications."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies during construction and post-construction monitoring of vertical drain systems, particularly for embankments over soft soils where stability is a concern."
+    },
+    {
+      "section_id": "5-8",
+      "title": "Volume Expansion",
+      "summary": "Top-level container section for volume expansion of soils. Covers the mechanics driving swell, effects of expansion on structures, methods for estimating heave and swell pressure (empirical and stress-strain-suction), and practical design approaches for foundations in expansive soils and rock.",
+      "body": "",
+      "key_points": [
+        "Volume expansion is driven by unloading/effective stress reduction, chemical processes, mineralogy, frost action, and oxidation of pyrite or anhydrite.",
+        "Expansive soil behavior is a critical design concern for foundations, pavements, and excavations in arid and semi-arid climates.",
+        "Both empirical and stress-strain-suction methods exist to estimate heave and swell pressure, each with differing data requirements and accuracy."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies whenever soil or rock volume expansion (swelling, frost heave) is a potential concern in foundation or pavement design."
+    },
+    {
+      "section_id": "5-8.1",
+      "title": "Mechanics of Volume Expansion",
+      "summary": "Describes the physical and chemical mechanisms that drive soil volume expansion. Key factors include effective stress reduction from unloading or rising groundwater, osmotic and water adsorption processes, clay mineralogy (especially montmorillonite and smectite), matric suction, pyrite/anhydrite oxidation in shales, and frost-related ice lens formation in silts and fine sands.",
+      "body": "Positive volume change or volume expansion of soil is controlled by a variety of factors. For fine-grained soils, these factors include physical particle interactions, chemical interactions, mineralogy, soil fabric or structure, stress history, temperature, and pore water chemistry.\n\nUnloading or reduction in effective stress is the most important physical process that causes swelling in non-frozen soils. This unloading can be the result of a decrease in the total stress, such as that caused by an excavation, or as the result of increased positive pore water pressure from a raised groundwater level.\n\nVarious theories have attempted to explain the chemical processes associated with swelling, including osmotic pressure theory and water adsorption theory (Mitchell 1993). These theories predict the swell pressure, which is the pressure exerted by the swelling soil on an unyielding boundary. While such theories have a limited degree of accuracy and are not typically useful for practical application, they provide insight into general trends in soil behavior. The osmotic pressure concept shows that pore water with low electrolyte concentration leads to higher swell pressures. Similarly, according to water adsorption theory, the specific surface area of the clay particles is the most important factor for determining the amount of water required for hydration. For this reason, clay minerals with very thin particles with high surface area, such as montmorillonite, smectite, and vermiculite, are the most susceptible to swelling. The liquid limit and clay fraction are indicators of the amount of these swelling clay minerals present in a soil (Terzaghi et al. 1996).\n\nSoil and rock that has been consolidated to a relatively low void ratio is the most susceptible to swelling. Low void ratios are the result of either high normal stresses or high levels of matric suction (ψ) under unsaturated conditions. The deformation experienced during consolidation stores energy in the soil particles. In addition, the water content in these soils may be lower than that required to fully hydrate the clay particles. If either the normal stress or the suction is lowered, the clay will tend to swell to release the stored energy and to hydrate the clay minerals. Some clay minerals, such as kaolinite, exhibit swelling mostly at the low void ratio associated with heavy overconsolidation. Clays containing more active minerals, such as sodium montmorillonite, experience similar amounts of swell regardless of void ratio because the swelling behavior is dominated by hydration.\n\nClay shales and shales containing pyrite (iron sulfide) or anhydrite (calcium sulphate) are also susceptible to swelling when exposed to water and/or air. The oxidation and hydration of pyrite and anhydrite can cause a volumetric expansion of ten times the original volume.\n\nSoils can also experience volume expansion caused by freezing and the formation of ice lenses within the soil. Silts, silty sands, and fine sands are particularly susceptible to frost-related swell. These soils have moderate hydraulic conductivity which allows water to flow easily and a small enough void space to permit a significant level of capillary rise. For design of foundations in frost-susceptible soils, see ASCE (2001).",
+      "key_points": [
+        "Reduction in effective stress (from excavation or rising groundwater) is the most important physical driver of swelling in non-frozen soils.",
+        "Clay minerals with high specific surface area (montmorillonite, smectite, vermiculite) are most susceptible to swelling; liquid limit and clay fraction are key indicators.",
+        "Low void ratios from high normal stress or high matric suction store energy that drives swell when stress or suction is reduced.",
+        "Pyrite and anhydrite oxidation in clay shales can cause volumetric expansion up to 10 times the original volume.",
+        "Silts and fine sands are most susceptible to frost heave due to moderate hydraulic conductivity and significant capillary rise potential.",
+        "Pore water with low electrolyte concentration leads to higher swell pressures per osmotic pressure theory."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when evaluating the root causes and susceptibility of fine-grained soils, shales, and frost-prone soils to volume expansion."
+    },
+    {
+      "section_id": "5-8.2",
+      "title": "Effects of Volume Expansion",
+      "summary": "Describes the structural consequences of soil volume expansion, including heave below excavations, reloading cancellation of heave, differential swell-shrink patterns in arid climates (hogging deformation), and the difficulty of predicting movements during sequential construction stages. Notes that soft clays swell immediately and over time as water content increases.",
+      "body": "Below an excavation, the total vertical stress is reduced, which initially causes a reduction in pore water pressure. As the pore water pressures return to equilibrium, the effective stress on the soil reduces and the soil swells. In most cases, excavation is followed by the construction of a building and the application of a pressure (q0) that meets or exceeds the reduction in total stress. In this case, the heave caused by stress reduction will be cancelled out by reloading. Movements during these stages of construction are typically difficult to predict.\n\nNegligible heave is observed for excavations in coarse-grained soils above the water table. Soft clays will experience immediate distortion-related swell that can be predicted using the method in Section 5-5.1. However, the required elastic modulus can be very difficult to predict. Over time, clay soils will experience an increase in water content and swell as a result of the change in effective stress.\n\nIn arid climates, changes in water content tend to vary depending on the location below a structure. The soil below the middle of the structure interacts less with the environment, and the water content in this zone tends to increase with time. This results in swell below the middle of the structure. Around the edges, the soil experiences more fluctuation in water content and can shrink, leading to perimeter settlement. The combination of these two mechanisms can result in the hogging shape of differential movement described earlier.",
+      "key_points": [
+        "Reduction in total vertical stress below an excavation initially decreases pore water pressure; as pressures equilibrate, effective stress drops and soil swells.",
+        "Reloading by subsequent structure construction (applying pressure q0) can cancel excavation-induced heave, but movements during construction stages are difficult to predict.",
+        "Coarse-grained soils above the water table experience negligible heave; soft clays exhibit both immediate distortion-related swell and long-term swell with increasing water content.",
+        "In arid climates, differential swell (center uplift) combined with perimeter shrinkage produces a hogging differential movement pattern beneath structures."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when assessing structural impacts of swelling soils beneath excavations and structures, particularly in arid climates or in clay-rich deposits."
+    },
+    {
+      "section_id": "5-8.3",
+      "title": "Estimates of Heave or Swell Pressure",
+      "summary": "Overview of methods for estimating one-dimensional heave and swell pressure, including empirical index-property approaches and more rigorous stress-strain-suction methods. Discusses the depth of influence for stress-change-driven swell versus suction-driven swell (typically 3–15 ft), and references ASTM D4546 for laboratory swell pressure measurement.",
+      "body": "Many methods have been proposed to estimate one-dimensional heave (vertical movement) or swell pressure. Some of these methods are empirical, based mostly on index properties of the soil. Other methods use theory and oedometer testing to predict swelling caused by both changes in total stress and changes in suction.\n\nMost methods predict a swell percentage or vertical strain of the soil, which must be multiplied by the thickness of soil that experiences swell. The thickness of soil that swells as a result of a change in total stress, such as an excavation, is related to the size of the excavation. This depth of influence can be estimated using the methods presented in Chapter 4. The thickness of soil that swells due to changes in suction is related to the depth of the groundwater table and the depth of seasonal water content fluctuations, which is commonly in the range of 3 to 15 feet depending on climate.\n\nIn some cases, it is helpful to consider the swell pressure that an expansive soil or rock can develop against an unyielding support or structure under a certain set of initial conditions. ASTM D4546 provides three different methods to measure the swell pressure in a one-dimensional consolidation apparatus. The swell pressure mobilized in situ is often less than that measured in the laboratory (Terzaghi et al. 1996).",
+      "key_points": [
+        "Heave estimates require multiplying the predicted swell strain by the thickness of soil that will swell; this depth differs for stress-driven versus suction-driven swell.",
+        "Suction-driven swell depth is typically 3 to 15 feet depending on climate and seasonal groundwater fluctuations.",
+        "ASTM D4546 provides three laboratory methods to measure swell pressure using a one-dimensional consolidation apparatus.",
+        "In situ swell pressure is generally less than laboratory-measured swell pressure (Terzaghi et al. 1996)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when selecting and applying methods to quantify heave or swell pressure for foundation or pavement design in expansive soils."
+    },
+    {
+      "section_id": "5-8.3.1",
+      "title": "Empirical Relationships",
+      "summary": "Summarizes empirical correlations for predicting 1D heave and swell pressure, catalogued in Table 5-10. Methods draw on Atterberg limits, clay fraction, unit weight, water content, specific gravity, and initial suction. Highlights the limitations: correlations are based on limited datasets, cannot account for initial soil conditions when only index properties are used, and cannot capture the effect of stress changes on swelling.",
+      "body": "Some of the available empirical correlations related to swelling are summarized in Table 5-10. These methods are mostly based on the Atterberg limits, clay fraction, and initial soil state as described by unit weight and water content. A few of the correlations require the soil's specific gravity or initial matric suction.\n\nCorrelations, such as those listed in Table 5-10, are useful because of their simplicity and the ready availability of input information. However, the correlations are based on limited data sets and are most appropriate for application in similar soils. In addition, correlations that are only based on Atterberg limits and clay fraction will not be able to account for differences caused by initial soil conditions. None of the correlations presented in Table 5-10 is able to account for the contribution of change in stress to heave or the effects of total normal stress on swelling.",
+      "key_points": [
+        "Table 5-10 lists over 20 empirical methods for predicting 1D heave and swell pressure, primarily using Atterberg limits, clay fraction, unit weight, and water content.",
+        "Empirical correlations are simple and use readily available data but are based on limited datasets and most reliable only for similar soils.",
+        "Index-property-only correlations cannot account for differences in initial soil conditions or the effect of stress changes on swelling.",
+        "No empirical correlation in Table 5-10 captures the contribution of total normal stress change to heave."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 5-10"
+      ],
+      "applicability": "Applies during preliminary design or screening when index property data is available but advanced laboratory testing has not been performed."
+    },
+    {
+      "section_id": "5-8.3.2",
+      "title": "Stress-Strain-Suction Relationships",
+      "summary": "Describes more rigorous one-dimensional swell prediction methods that account for both total stress changes and suction changes, requiring suction-controlled oedometer or coefficient of linear extensibility tests. Notes analogy to consolidation theory and discusses time-dependent secondary swelling. Despite theoretical soundness, these methods are often impractical due to uncertainty in initial moisture conditions and unavailability of advanced testing.",
+      "body": "More rigorous predictions of one-dimensional swelling consider the vertical strain that results both from changes in total stress and from changes in suction. These methods require measurement of the soil's stress-strain relationship, often at different levels of controlled suction. Suction-controlled oedometer tests and coefficient of linear extensibility tests are two means to obtain this data.\n\nA variety of methods have been developed to predict the swelling strain caused by changes in total stress and changes in suction (or water content). Terzaghi et al. (1996) describes how the swelling process can be described in a manner analogous to consolidation. Vanapalli and Lu (2012) summarize many different methods to account for the stress-strain-suction relationship in the calculation of vertical strain based on the results of one-dimensional swell pressure measurements, suction-controlled oedometer tests, and coefficient of linear extensibility tests. Some of the methods also require measurement of matric suction as a function of water content. Terzaghi et al. (1996) also emphasizes that the deterioration of the clay structure during swelling often leads to a significant amount of time-dependent secondary swelling.\n\nWhile theoretically sound, predictions of swell based on stress-strain-suction relationships are usually impractical. The amount of swell predicted by these methods is heavily dependent on soil moisture conditions at the start of construction, which cannot be accurately predicted during the design phase. In addition, the advanced soil testing required to use these methods is typically unavailable.",
+      "key_points": [
+        "Stress-strain-suction methods predict swell vertical strain from both total stress changes and suction changes, analogous to consolidation theory.",
+        "Required testing includes suction-controlled oedometer tests and coefficient of linear extensibility tests, which are often unavailable in practice.",
+        "Clay structure deterioration during swelling can produce significant time-dependent secondary swelling (Terzaghi et al. 1996).",
+        "Despite theoretical soundness, these methods are usually impractical because initial soil moisture conditions at start of construction cannot be reliably predicted."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies in high-consequence or research-level projects where advanced laboratory swell testing and suction measurement are feasible."
+    },
+    {
+      "section_id": "5-8.4",
+      "title": "Design in Expansive Soils",
+      "summary": "Summarizes foundation and pavement design strategies for expansive soils and rock, as catalogued in Table 5-11. Approaches include soil alteration (lime/cement admixtures), wet compaction, void zones (waffle slabs), eliminating water content changes, capillary breaks, sealing compounds for shale, designing piers to resist uplift below the active zone, and balancing swell pressure with structural loads.",
+      "body": "In many cases, heave and swell pressure estimates are used mostly to make decisions regarding remedial treatment of expansive soils and rock because of the uncertainties inherent in these estimates. Design of structures and pavements focuses on efforts to eliminate or reduce the effects of shrink-swell behavior of expansive soils and rock that are deemed to be problematic. Table 5-11 summarizes common approaches to foundation design in expansive soil and rock.",
+      "key_points": [
+        "Heave estimates are often used primarily for remediation decisions rather than direct design calculations, given inherent uncertainties.",
+        "Soil alteration with lime, cement, or kiln dust reduces clay hydration demand and increases bonding to resist swelling.",
+        "Wet compaction (degree of saturation >80–85%) reduces swell potential but lowers dry unit weight, shear strength, and stability.",
+        "Void zones (e.g., waffle slabs) allow soil to swell into free space before loading the structure.",
+        "Drilled piers extended below the active zone with a bond break along the shaft in the active zone are a common structural approach to resist swell uplift forces.",
+        "Balancing swell pressure with structural bearing loads is feasible only for heavier structures where bearing pressure meets or exceeds swell pressure."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 5-11"
+      ],
+      "applicability": "Applies during foundation and pavement design when expansive soils or rock are present and mitigation or accommodation strategies must be selected."
+    },
+    {
+      "section_id": "5-8.5",
+      "title": "Construction Practices in Expansive Soils",
+      "summary": "Covers construction and maintenance practices to mitigate swelling and shrinkage in expansive soils and rock. Topics include limiting atmospheric exposure, controlling water content, surface drainage, rock bolts, compaction strategies for high plasticity clays, and use of admixtures such as cement or lime to reduce swell potential.",
+      "body": "Good construction and maintenance practices in expansive soils and rock are primarily related to limiting exposure to the atmosphere and changes in water content. For swelling caused mostly by a temporary reduction in vertical stress, swelling can be reduced by collecting and removing surface water, pumping down groundwater, and placing a concrete mudmat immediately after excavation. Inert shale should be protected from wetting both during construction and long-term through the elimination of underdrainage, use of impervious backfill, and placement of appropriate surface drainage features. Excavations in shale should not be completed to final grade until foundation concrete is ready for placement. Some level of temporary and permanent protection can be provided through asphaltic coatings.\n\nSome structures extend below future surface water or the groundwater table. In this case, access to water is impossible to avoid. The methods described in Table 5-11 can be used to reduce or restrict swelling. Where rock is shallow, rock bolts can be used with appropriately reinforced slabs and foundations to resist swelling.\n\nFor buildings in semi-arid and arid climates, changes in suction within the soil are the major cause of shrinking and swelling. Efforts should be made to collect surface and rain water near structures to prevent wetting of the soils during wet periods. During dry periods, evaporation and transpiration remove water from soil and increase suction leading to shrinkage. These effects can be limited through the use of pavement and avoiding placement of vegetation around structures.\n\nEngineered fill constructed from high plasticity clays will tend to shrink and swell in response to the climate. In addition to deformation, this volume change results in a time-dependent reduction in shear strength that must be accounted for in slope design. If possible, high plasticity clays should not be used for the portions of embankments exposed to fluctuation in water content. Swelling of high plasticity clay fill can be avoided by compaction at high water content (i.e., wet of the line of optimums). Fill compacted wet will have lower dry unit weight, lower shear strength, and higher compressibility. High plasticity clay can be placed wet for structural fill below lightly loaded buildings provided the lower bearing capacity is considered. Consistent relative compaction is important to avoid differential settlement. Admixtures, such as cement or lime, can also be mixed with high plasticity clay fill during construction to reduce swelling potential.",
+      "key_points": [
+        "Limit atmospheric exposure and water content changes in expansive soils; use mudmats immediately after excavation to reduce stress-relief swelling.",
+        "Protect inert shale from wetting via impervious backfill, surface drainage, and asphaltic coatings; do not complete excavations to final grade until concrete is ready.",
+        "Rock bolts with reinforced slabs/foundations can resist swelling where shallow rock is present.",
+        "In semi-arid/arid climates, control suction changes by collecting surface water and avoiding vegetation near structures.",
+        "High plasticity clay fill should be compacted wet of the line of optimums to avoid swelling, accepting trade-offs in strength and compressibility.",
+        "Cement or lime admixtures can reduce swelling potential of high plasticity clay fill.",
+        "Consistent relative compaction in high plasticity clay fill is critical to prevent differential settlement."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 5-11"
+      ],
+      "applicability": "Applies during design and construction of structures on or in expansive soils and rock, particularly in climates prone to significant moisture variation."
+    },
+    {
+      "section_id": "5-9",
+      "title": "Hydrocompression",
+      "summary": "Introduces hydrocompression — the volume change (collapse settlement) of compacted soil upon wetting after construction. Particularly problematic in deep fills of sandy clays and clayey sands, this phenomenon can produce significant differential settlements, with net settlement in deep fill areas and potential net swelling elsewhere.",
+      "body": "Hydrocompression refers to the volume change of compacted soil when wetted following construction. This phenomenon is especially problematic in deep fills constructed from sandy clays and clayey sands (Brandon et al. 1990). Significant settlement can occur in the regions of deep fill while net swelling may result in areas of shallower fill.",
+      "key_points": [
+        "Hydrocompression is collapse settlement that occurs when compacted soil is wetted after construction is complete.",
+        "Deep fills of sandy clays and clayey sands are especially susceptible to hydrocompression (Brandon et al. 1990).",
+        "Differential behavior can occur across a site: significant settlement in deep fill zones versus net swelling in shallower fill areas.",
+        "Hydrocompression is distinct from swelling; it results in volume decrease (compression) rather than volume increase upon wetting."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when evaluating post-construction settlement risk in compacted fills, especially deep fills of sandy clays and clayey sands that may be inundated or wetted after construction."
+    },
+    {
+      "section_id": "5-10",
+      "title": "Suggested Reading",
+      "summary": "Provides a curated list of key references for three major topics covered in Chapter 5: settlement calculations, vertical drains, and volume expansion (heave). Each entry points engineers to authoritative manuals and journal articles for deeper study, including FHWA and Virginia Tech geotechnical resources.",
+      "body": "Topic | Reference\nSettlement Calculations | Duncan, J. M. and Buchiagnani, A. L. (1987). Engineering Manual for Settlement Studies, CGPR #2, Center for Geotechnical Practice and Research, Virginia Tech, 94 pp.\nVertical Drains | Federal Highway Administration (FHWA) (2017). Ground Modification Methods Reference Manual – Volume I, FHWA-NHI-16-027, Geotechnical Engineering Circular 13, Washington D.C.\nVolume Expansion | Vanapalli, S. K. and Lu, L. (2012). \"A state-of-the-art review of 1-D heave prediction methods for expansive soils.\" International Journal of Geotechnical Engineering, 6, 15-41.",
+      "key_points": [
+        "Settlement calculations: Duncan & Buchiagnani (1987) Engineering Manual for Settlement Studies, Virginia Tech CGPR #2.",
+        "Vertical drains: FHWA (2017) Ground Modification Methods Reference Manual – Volume I, FHWA-NHI-16-027, Geotechnical Engineering Circular 13.",
+        "Volume expansion (heave): Vanapalli & Lu (2012) state-of-the-art review of 1-D heave prediction methods for expansive soils, Int. J. Geotechnical Engineering."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when an engineer needs additional reference material on settlement calculations, vertical drain design, or expansive soil heave prediction beyond what is provided in Chapter 5."
+    },
+    {
+      "section_id": "5-11",
+      "title": "Notation",
+      "summary": "Defines all symbols and abbreviations used throughout Chapter 5 on soil mechanics and settlement. Covers geotechnical parameters including consolidation indices, drain geometry, SPT values, stress terms, time factors, degree-of-consolidation variables, and settlement correction factors — essential for interpreting equations and procedures in the chapter.",
+      "body": "Symbol | Description\nB | Shortest dimension of foundation or loaded area\nC1 | Schmertmann coefficient to correct for the effects of embedment\nC2 | Schmertmann coefficient to correct for the effects of time (creep)\nCc | Compression index\nCεc | Modified compression index\nch | Coefficient of consolidation in horizontal direction\nCr | Recompression index\nCεr | Modified recompression index\nCt | Creep factor for coarse-grained settlement methods\ncv | Coefficient of consolidation in vertical direction\nCα | Secondary compression index\nCεα | Modified secondary compression index\ndc | Effective drainage diameter\ndw | Equivalent diameter of well or PVD\ne0 | Initial void ratio\nEm | Modulus of elasticity of mat\nEs | Modulus of elasticity of soil\nEu | Undrained modulus\nE/G | Relative stiffness for structures\nFn | Radial drainage factor related to drain spacing\nFr | Radial drainage factor related to well resistance\nFs | Radial drainage factor related to soil disturbance (smear)\nH | Initial thickness in settlement calculations\nHdr | Drainage path length\nHi | Thickness of each soil layer (may be listed without subscript)\nHʹt | Total thickness of transformed soil system\nIz | Schmertmann strain influence factor\nIzp | Schmertmann peak influence factor\nkh | Hydraulic conductivity in horizontal direction\nKm | Mat stiffness factor\nks | Hydraulic conductivity of the disturbed zone\nkv | Hydraulic conductivity in vertical direction\nl | Distance between two points along a structure\nL | Longest dimension of a foundation or loaded area\nLL | Liquid limit\nLm | Maximum distance water must flow through a vertical drain\nm | Empirical exponent used to relate undrained shear strength to OCR\nN60 | Standard Penetration Test corrected blow count\nn | Vertical drain spacing ratio\nN | Standard Penetration Test blow count\nNʹ | Average Standard Penetration Test value\nNʹSM | Standard Penetration Test blow count for saturated silty sands\nOCR | Overconsolidation ratio\nPa | Atmospheric pressure\nqc | Cone tip bearing resistance\nq0 | Applied stress at the base of the foundation or structure\nq0-net | Net vertical stress applied by the structure\nqf | Applied stress following removal of surcharge\nqs | Surcharge load\nqw | Discharge capacity of the drain\ns | Ratio of the disturbed zone diameter to the diameter of the drain\ns | Settlement\nsc | Primary consolidation settlement\nss | Secondary compression settlement\nsu | Undrained shear strength\nt | Time after start of consolidation\nT | Time factor\ntm | Thickness of mat\ntp | Time required to finish primary consolidation\nTr | Time factor for radial consolidation\nTv | Time factor for vertical drainage\nu0 | Initial pore water pressure\nUc | Combined degree of consolidation\nUs+f | Degree of consolidation following surcharge application\nUr | Degree of radial consolidation\nUSRNC | Undrained strength ratio for normally consolidated conditions\nux | Excess pore water pressure\nUz | Degree of compression\nŪz | Average degree of consolidation\nwn | Natural water content\nz | Depth along vertical drain\nzi | Layer thickness for settlement calculations\nα | Settlement correction factor\nγw | Unit weight of water\nδ / l | Angular distortion\nδmax | Differential settlement\n∆H | Change in layer thickness\n∆/L | Deflection ratio\n∆σz | Change in total vertical stress\nεcrit | Critical strain for structural distress\nεz | Vertical strain\nµ0 | Influence factor associated with embedment of the load\nµ1 | Influence factor associated with problem geometry and Poisson's ratio\nν | Poisson's ratio\nνm | Poisson's ratio of mat\nνs | Poisson's ratio of soil\nσʹp | Preconsolidation stress\nσʹz | Vertical effective stress\nσʹz0 | Initial or in situ vertical effective stress\nσʹzp | Initial vertical effective stress at depth of Schmertmann peak influence factor\nσz-red | Vertical stress reduction\nψ | Matric suction\nω | Tilt angle due to differential settlement",
+      "key_points": [
+        "Schmertmann method symbols: C1 (embedment correction), C2 (creep correction), Iz (strain influence factor), Izp (peak influence factor), σʹzp (effective stress at peak Iz depth).",
+        "Consolidation indices: Cc (compression index), Cr (recompression index), Cα (secondary compression), and their modified (strain-based) counterparts Cεc, Cεr, Cεα.",
+        "Drain geometry symbols: dc (effective drainage diameter), dw (equivalent drain diameter), n (spacing ratio), s (disturbed zone ratio), qw (discharge capacity), Lm (maximum flow path).",
+        "Radial drainage factors: Fn (drain spacing), Fr (well resistance), Fs (smear/soil disturbance), used in prefabricated vertical drain (PVD) consolidation analyses.",
+        "Degree-of-consolidation terms: Uc (combined), Ur (radial), Ūz (average vertical), Uz (compression), Us+f (post-surcharge).",
+        "Structural distortion metrics: δ/l (angular distortion), δmax (differential settlement), ∆/L (deflection ratio), ω (tilt angle), εcrit (critical strain for structural distress).",
+        "Stress notation distinguishes total (σz, ∆σz, σz-red) from effective (σʹz, σʹz0, σʹzp, σʹp) vertical stresses, and includes matric suction ψ for unsaturated soil applications."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies whenever an engineer references any symbol used in Chapter 5 equations, figures, or tables and needs its precise definition and units context."
+    }
+  ]
+}

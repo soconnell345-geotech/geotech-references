@@ -1,0 +1,1032 @@
+{
+  "reference_id": "UFC 3-220-10",
+  "reference_title": "UFC 3-220-10 Soil Mechanics",
+  "volume": 1,
+  "chapter": 6,
+  "chapter_title": "Seepage and Drainage",
+  "sections": [
+    {
+      "section_id": "6-1",
+      "title": "INTRODUCTION",
+      "summary": "Introduces Chapter 6 on seepage and drainage, covering methods for analyzing seepage in soils and bedrock, design guidance for drainage elements, internal erosion mechanisms, and mitigation strategies. Establishes scope as saturated seepage only and outlines three fundamental mitigation strategies: blocking/lengthening pathways, controlled drainage, and filtering.",
+      "body": "",
+      "key_points": [
+        "Chapter covers seepage analysis methods, internal erosion mechanisms, and seepage/drainage mitigation for structures and foundations.",
+        "Seepage is driven by differential hydraulic head and flows from higher to lower potential energy.",
+        "Scope is limited to saturated flow conditions; unsaturated flow above the water table is excluded.",
+        "Undesirable seepage consequences include internal erosion, excessive water loss or accumulation, and excess pore water pressures.",
+        "Three basic mitigation strategies: (1) block/lengthen seepage pathway, (2) drain excess water pressures in a controlled manner, (3) filter seepage to prevent particle transport."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies whenever seepage analysis or drainage design is required for soils, bedrock, structures, or foundations under saturated conditions."
+    },
+    {
+      "section_id": "6-1.1",
+      "title": "Scope",
+      "summary": "Defines the scope of Chapter 6 as covering methods for analyzing seepage in soils and bedrock, design guidance for drainage elements, summaries of seepage analysis methods, descriptions of internal erosion mechanisms, and discussion of seepage and internal erosion mitigation methods.",
+      "body": "This chapter discusses methods for analyzing seepage in soils and bedrock and provides design guidance for drainage elements in structures and foundations. The chapter provides a summary of available methods for analyzing the seepage regime, descriptions and analysis methods for internal erosion mechanisms, and discussion of seepage and internal erosion mitigation methods.",
+      "key_points": [
+        "Chapter addresses both seepage analysis methods and drainage element design.",
+        "Internal erosion mechanisms are described and analysis methods are provided.",
+        "Mitigation methods for seepage and internal erosion are discussed."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies as a scope statement for all geotechnical seepage and drainage design covered in Chapter 6."
+    },
+    {
+      "section_id": "6-1.2",
+      "title": "Background",
+      "summary": "Provides background on seepage as flow through interstitial voids of soil or rock driven by differential hydraulic head. Discusses common geotechnical seepage contexts, limits scope to saturated conditions, identifies undesirable consequences (internal erosion, excessive water loss, excess pore pressures), and outlines three mitigation strategies.",
+      "body": "Seepage is the flow of water through interstitial voids of soil or rock. Seepage is driven by differential potential energy of water (i.e., hydraulic head) acting across the soil or rock mass, resulting in the flow of water from higher to lower potential energy. Seepage is a common phenomenon in geotechnical engineering applications and can occur as natural groundwater flow, seepage through dams and levees or their foundations, or flow into excavations extending below the groundwater surface. While the movement of water occurs in unsaturated soils above the groundwater table, this chapter deals only with seepage that occurs under saturated conditions. Undesirable consequences of seepage can include internal erosion, excessive water loss or accumulation, and excessive pore water pressures. Under the right conditions, seepage can result in erosion of soil or rock, or internal erosion. Several different mechanisms of internal erosion have been identified that can occur by one of several mechanisms. In cases where seepage quantities are large, problems can occur, including: excessive water loss from reservoirs, flooding of excavations, and unstable ground due to excess moisture. Seepage may also result in excess water pressures under structures leading to instability and uplift forces. This chapter also discusses a number of strategies and methods for mitigating the undesirable effects of seepage discussed in the previous paragraph. Each method utilizes one or a combination of three basic strategies: 1) blocking or lengthening the seepage pathway, 2) draining the excess water pressures in a controlled manner, and 3) filtering the seepage to block the transportation of soil particles.",
+      "key_points": [
+        "Seepage is flow through interstitial voids driven by differential hydraulic head (potential energy).",
+        "Common seepage contexts include natural groundwater flow, dams, levees, and excavations below the water table.",
+        "Chapter scope is limited to saturated seepage; unsaturated flow is excluded.",
+        "Undesirable consequences: internal erosion, excessive water loss from reservoirs, excavation flooding, excess pore pressures, uplift forces.",
+        "Three mitigation strategies: block/lengthen seepage path, controlled drainage of excess pressures, filter seepage to prevent particle transport."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies as background context for all seepage-related analyses and design decisions in Chapter 6."
+    },
+    {
+      "section_id": "6-2",
+      "title": "SEEPAGE ANALYSES",
+      "summary": "Parent section for all seepage analysis methods in Chapter 6, encompassing hydraulic head fundamentals, Darcy's Law, two-dimensional seepage theory, flow nets, closed-form equations, and numerical seepage analysis. Covers the full range of tools from graphical to advanced numerical methods for characterizing flow regimes.",
+      "body": "",
+      "key_points": [
+        "Covers the full spectrum of seepage analysis tools: hydraulic head concepts, Darcy's Law, flow nets, closed-form methods, and numerical FEA.",
+        "Methods range from hand-drawn graphical solutions to finite element analysis for complex geometries.",
+        "Graphical and analytical methods serve as important validation tools for numerical models."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies whenever a seepage regime must be analyzed for any geotechnical structure or foundation condition."
+    },
+    {
+      "section_id": "6-2.1",
+      "title": "Hydraulic Head",
+      "summary": "Defines total hydraulic head as the sum of pressure head and elevation head (velocity head negligible in geologic media), expressed in length units relative to a datum. Explains the physical meaning using piezometers and a pressurized tank example, and establishes Eq. 6-1 as the governing expression for total head used throughout all seepage analyses.",
+      "body": "Hydraulic head is a measure of the energy of the water acting on or within geologic media, expressed in terms of length units and referenced to a consistent datum. The total hydraulic head (ht) at any given point is composed of three components: the pressure head (hp), the elevation head (hz), and the velocity head (hv). In geologic media, the velocity head is typically negligible and the total head is expressed as:\n\nht = hp + hz = u/γw + z  (6-1)\n\nwhere: u = the water pressure at the point of interest, γw = the unit weight of water, and z = the elevation of the point of interest above the elevation datum.\n\nThe total hydraulic head (ht) at a point is the height above the elevation datum that water would rise in a piezometer if the tip of that piezometer were located at the point of interest as illustrated in Figure 6-1a. The total hydraulic head will vary within a flow regime unless conditions are completely static (i.e., no flow is occurring).\n\nAs an example, consider the pressurized tank in Figure 6-1b. Piezometers have been set at two points in the side of the tank and the water rises in the piezometer above the elevation of the tank due to the pressure in the tank. The pressure head (hp) is the height that the water rises above the point of interest and the elevation head (hz) is the height of the point of interest above the datum that has been set below the tank. The total head (ht) is the combined heights of hp and hz and is the total height that the water rises above the set datum. Since there is no flow within the tank, ht is constant throughout the tank although hp and hz vary with elevation.",
+      "key_points": [
+        "Total hydraulic head = pressure head + elevation head; velocity head is negligible in geologic media.",
+        "Eq. 6-1: ht = u/γw + z, where u is water pressure, γw is unit weight of water, z is elevation above datum.",
+        "Total head physically equals the height water rises in a piezometer above the elevation datum.",
+        "In static conditions (no flow), total head is constant throughout the system even though pressure and elevation heads vary.",
+        "A consistent elevation datum must be established and referenced throughout seepage analysis."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 6-1",
+          "description": "Total hydraulic head as sum of pressure head and elevation head: ht = hp + hz = u/γw + z",
+          "implemented_in": "geotech_references.dm7_1.chapter6.total_hydraulic_head"
+        }
+      ],
+      "figures": [
+        "Figure 6-1"
+      ],
+      "tables": [],
+      "applicability": "Applies whenever hydraulic head must be defined or calculated at any point within a seepage flow regime in soil or rock."
+    },
+    {
+      "section_id": "6-2.2",
+      "title": "Darcy's Law and One-Dimensional Flow",
+      "summary": "Presents Darcy's Law for one-dimensional seepage flow, defining hydraulic gradient, volumetric flow rate, discharge velocity, and seepage velocity. Establishes Equations 6-2 through 6-6 as the governing relationships. Notes that Darcy's Law is valid for laminar flow, which covers most soil seepage, but may overestimate flow in coarse open-graded gravels where turbulent conditions arise.",
+      "body": "The principles of seepage mechanics and analysis of the seepage regime are best illustrated by considering the example of one-dimensional flow illustrated schematically in Figure 6-2. A soil-filled conduit with a cross section of area (A) and a length (L) is attached to water reservoirs with different total heads. The difference in water height in piezometers at each end of the conduit indicates the differential total head (hL) or head loss across the soil. This head also represents the amount of energy that must be dissipated as the water flows through the soil. The differential head creates a hydraulic gradient (i), which is defined as:\n\ni = hL / L  (6-2)\n\nwhere: i = the hydraulic gradient, hL = the differential total head (or head loss), and L = the length over which hL occurs.\n\nThe hydraulic gradient forces the water to flow through the soil at a volumetric flow rate (q) that is sufficient to create the head loss associated with hL. The volumetric flow rate is defined as the flow volume that passes through the soil per unit of time.\n\nOne-dimensional flow is governed by Darcy's Law:\n\nq = kiA  (6-3)\n\nwhere: q = the volumetric flow rate through the soil, k = the hydraulic conductivity of the soil, i = the hydraulic gradient across the flow region, and A = the cross sectional area of the flow region perpendicular to the flow direction.\n\nIf the flow region has a constant height and an extended width (perpendicular to the page), the flow area (A) can be defined by the height of the flow region times a unit width. In this case, the flow rate per unit length of the model is:\n\nq = kiy  (6-4)\n\nwhere: q = the flow rate per unit length of the model, k = the hydraulic conductivity of the soil, i = the hydraulic gradient across the flow region, and y = the height of the flow region.\n\nThe discharge velocity (vd) can be calculated by dividing the volumetric flow rate by the cross-sectional area:\n\nvd = q/A = ki  (6-5)\n\nIt should be noted that vd is not a true particle velocity but rather the velocity based on the total area of the flow region. Since the water only flows through the pore space of a soil or rock, a water particle actually flows faster through than vd. The seepage velocity (vs) which measures how fast a water particle moves as a result of the hydraulic gradient, is calculated as:\n\nvs = vd/n = vd(1+e)/e  (6-6)\n\nwhere: n = the porosity of the soil and e = void ratio.\n\nDarcy's law is valid for conditions where the seepage flow is laminar, which includes most cases of seepage through soils. High velocity flows through coarse, open-graded gravels may fall in the transition between laminar and turbulent flow. Turbulent flow results in more resistance to seepage and thus a lower volumetric flow rate than predicted by Darcy's law.",
+      "key_points": [
+        "Hydraulic gradient i = hL/L (Eq. 6-2); represents energy dissipated per unit length of flow path.",
+        "Darcy's Law: q = kiA (Eq. 6-3); volumetric flow rate is proportional to hydraulic conductivity, gradient, and area.",
+        "For unit-width 2D models: q = kiy (Eq. 6-4), where y is the height of the flow region.",
+        "Discharge velocity vd = ki (Eq. 6-5) is NOT the true particle velocity; it is based on total cross-sectional area.",
+        "Seepage velocity vs = vd/n (Eq. 6-6) represents actual water particle movement through pore space; always greater than vd.",
+        "Darcy's Law assumes laminar flow; may overestimate flow in coarse, open-graded gravels where turbulent flow can occur."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 6-2",
+          "description": "Hydraulic gradient: i = hL / L, where hL is head loss and L is the length over which it occurs.",
+          "implemented_in": "geotech_references.dm7_1.chapter6.hydraulic_gradient"
+        },
+        {
+          "id": "Eq. 6-3",
+          "description": "Darcy's Law for volumetric flow rate: q = kiA, where k is hydraulic conductivity, i is hydraulic gradient, A is cross-sectional area.",
+          "implemented_in": "geotech_references.dm7_1.chapter6.darcy_flow_rate"
+        },
+        {
+          "id": "Eq. 6-4",
+          "description": "Flow rate per unit length of model: q = kiy, where y is the height of the flow region.",
+          "implemented_in": "geotech_references.dm7_1.chapter6.darcy_flow_rate_per_unit_width"
+        },
+        {
+          "id": "Eq. 6-5",
+          "description": "Discharge velocity: vd = q/A = ki; velocity based on total cross-sectional area, not true particle velocity.",
+          "implemented_in": "geotech_references.dm7_1.chapter6.discharge_velocity"
+        },
+        {
+          "id": "Eq. 6-6",
+          "description": "Seepage velocity: vs = vd/n = vd(1+e)/e; actual velocity of water particles through pore space.",
+          "implemented_in": "geotech_references.dm7_1.chapter6.seepage_velocity"
+        }
+      ],
+      "figures": [
+        "Figure 6-2"
+      ],
+      "tables": [],
+      "applicability": "Applies to one-dimensional seepage flow problems in soils under laminar flow conditions, including flow through conduits, layers, and simple foundation configurations."
+    },
+    {
+      "section_id": "6-2.3",
+      "title": "Two-Dimensional Seepage",
+      "summary": "Introduces the LaPlace equation (Eq. 6-7) as the governing equation for steady-state two-dimensional seepage, derived from conservation of mass applied to a soil element. Identifies three solution approaches: graphical (flow nets), closed-form (method of fragments, blanket theory), and numerical (finite element). References Bear (1979) and Freeze and Cherry (1979) for derivation details.",
+      "body": "Analysis of seepage in a two-dimensional regime requires expansion of Darcy's law. The governing equation for steady state, two-dimensional flow is the LaPlace equation:\n\n∂²h/∂x² + ∂²h/∂y² = 0  (6-7)\n\nwhere: h = total hydraulic head and x and y = coordinate directions.\n\nThe LaPlace equation is derived by applying the conservation of mass principle to an element of soil, thereby using equilibrium to spatially link changes in total head within the flow region. The first term in Equation (6-7) represents the change in hydraulic gradient in the x direction through an element of soil while the second term represents the change in gradient in the y direction in the same element. Derivation and further discussion of the LaPlace equation can be found in books on groundwater, such as Bear (1979) or Freeze and Cherry (1979).\n\nSolutions to the LaPlace equation can be performed through (1) graphical solutions such as flow nets, (2) closed-form equations such as the method of fragments or the U.S. Army Corps of Engineers blanket theory equations (USACE 2000), or (3) numerical solutions such as finite element analyses.",
+      "key_points": [
+        "Governing equation for steady-state 2D seepage is the LaPlace equation: ∂²h/∂x² + ∂²h/∂y² = 0 (Eq. 6-7).",
+        "Derived from conservation of mass applied to a soil element; spatially links total head changes.",
+        "Three solution approaches: (1) graphical flow nets, (2) closed-form (method of fragments, blanket theory), (3) numerical FEA.",
+        "LaPlace equation assumes isotropic, homogeneous permeability; modifications required for anisotropic soils."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 6-7",
+          "description": "LaPlace equation for steady-state two-dimensional seepage: ∂²h/∂x² + ∂²h/∂y² = 0.",
+          "implemented_in": "geotech_references.dm7_1.chapter6.laplace_check_2d"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies whenever seepage must be analyzed in a two-dimensional flow regime under steady-state saturated conditions."
+    },
+    {
+      "section_id": "6-2.4",
+      "title": "Flow Nets",
+      "summary": "Describes flow nets as a graphical solution tool for two-dimensional seepage analysis requiring only pencil, paper, and eraser. Introduces the concept of flow channels, equipotential lines, and flow lines using an example beneath an impermeable dam. Explains that drawing flow nets builds deeper engineering understanding than numerical analysis alone.",
+      "body": "Flow nets are a relatively quick graphical solution tool for analyzing two-dimensional flow regimes using few resources; namely a pencil, paper, and a good eraser. The act of drawing of a flow net also helps the engineer to visualize and understand the behavior of seepage flows. The understanding gained by drawing a flow net is often deeper than that gained by numerical analyses.\n\nA flow net for seepage in an isotropic soil layer beneath an impermeable dam is presented in Figure 6-3. The flow region is divided into flow elements, most of which resemble squares or are as close to square as possible. The long-short dashed lines represent equipotential lines or contours of constant total head within the soil. Note that the level upstream ground surface is an equipotential line since the reservoir level applies a constant total head along this boundary. The level downstream ground surface is also an equipotential line since the pressure is constant on the surface (equal to zero pressure head) and the elevation is constant (constant elevation head). If the downstream exit face were sloped and not submerged, the total head would not be constant and it would not be an equipotential line. The short dashed lines are flow lines, which represent average paths that water particles will follow while flowing through the soil. The bottom impervious boundary and the bottom of the impervious structure are also flow lines.",
+      "key_points": [
+        "Flow nets are a graphical solution to the LaPlace equation requiring minimal resources and building deep engineering intuition.",
+        "Flow elements in a valid flow net resemble curvilinear squares; a circle can be inscribed touching all four boundaries.",
+        "Equipotential lines are contours of constant total head; flow lines represent average particle flow paths.",
+        "Level submerged boundaries are equipotential lines; impervious boundaries act as flow lines.",
+        "Drawing flow nets helps engineers understand seepage behavior more deeply than numerical analysis alone."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-3"
+      ],
+      "tables": [],
+      "applicability": "Applies when a quick, resource-efficient graphical seepage analysis is needed for two-dimensional flow in isotropic or transformable anisotropic soils."
+    },
+    {
+      "section_id": "6-2.4.1",
+      "title": "Drawing Flow Nets",
+      "summary": "Provides the construction rules and resulting characteristics for valid flow nets, including orthogonality of flow and equipotential lines, curvilinear square flow elements, boundary conditions for impermeable surfaces and submerged boundaries, treatment of phreatic surfaces, and handling of non-homogeneous and anisotropic soil profiles including the anisotropic transformation factor (Eq. 6-8).",
+      "body": "Flow nets for seepage through soil with isotropic permeability must comply with the following rules in order to be correct:\na. Flow lines and equipotential lines should intersect at right angles.\nb. The flow elements formed between the flow lines and equipotential should resemble curvilinear squares. A circle can be inscribed in a curvilinear square and touch all four boundaries of the flow element. More guidance on the shape of admissible flow elements can be found in USACE (1986).\nc. An impermeable boundary will act as a flow line. Common examples are the top of an underlying layer and the bottom of an impermeable dam or levee.\nd. Submerged inflow or outflow boundaries through which seepage passes are equipotential lines with head equal to the water level elevation.\ne. Where the flow is unconfined (such as through an embankment) the top flow line will be the phreatic surface. Points on this line will have pressure equal to zero and, consequently, the total head is equal to the elevation of the line (see Equation 6-1).\nf. Along a phreatic surface for unconfined flow, equipotential lines will intercept the phreatic surface at equal vertical intervals.\n\nFlow nets constructed according to the above rules will have the following characteristics:\na. Each flow channel, bounded by two adjacent flow lines, will convey the same amount of flow as the other flow channels in the flow net.\nb. Each total head drop, bounded by two adjacent equipotential lines, represents the same decrease in total head as the other head drops in the flow net.\nc. The flow elements can be subdivided into regions representing partial head drops and partial flow channels.\n\nFlow nets can be drawn for flow through non-homogenous soil profiles and soil with anisotropic hydraulic conductivity. In stratified soil profiles, the flow will be dominated by the permeable layers. If the ratio of a layer's hydraulic conductivity compared to that of the most permeable layer exceeds 10 to 100, the layer can be considered impermeable. If this ratio is less than 10, the flow will be through both layers. However, the flow lines and equipotential lines will be deflected at the interface as illustrated in Figure 6-4.\n\nFlow through soil with anisotropic permeability can be transformed into an equivalent isotropic region using the transformation factor (a):\n\na = √(kmax/kmin)  (6-8)\n\nwhere: a = isotropic transformation factor, kmax = the maximum hydraulic conductivity in anisotropic soil, and kmin = the minimum hydraulic conductivity in anisotropic soil.\n\nThe dimensions of the flow region are transformed by dividing all of the dimensions of parallel to the direction of kmax by a. A flow net is drawn for the transformed system following the rules for isotropic hydraulic conductivity. For example, if k is largest in the horizontal direction, then all of the x-coordinates will be divided by a in the transformed system. If needed, the flow region and flow net can be transformed back to 'real space' by multiplying the dimensions parallel to the direction of kmax by a.",
+      "key_points": [
+        "Flow lines and equipotential lines must intersect at right angles; flow elements must be curvilinear squares.",
+        "Impermeable boundaries act as flow lines; submerged inflow/outflow boundaries are equipotential lines.",
+        "For unconfined flow, the phreatic surface is the top flow line with zero pressure; equipotential lines intercept it at equal vertical intervals.",
+        "Each flow channel carries equal flow; each head drop between equipotential lines is equal.",
+        "In stratified profiles, layers with k ratio > 10–100 relative to most permeable layer can be treated as impermeable; otherwise flow occurs in both with deflected lines at interface.",
+        "Anisotropic soils are transformed to equivalent isotropic using a = √(kmax/kmin) (Eq. 6-8); x-dimensions parallel to kmax direction are divided by a."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 6-8",
+          "description": "Anisotropic to isotropic transformation factor: a = √(kmax/kmin), used to transform flow region dimensions for flow net construction.",
+          "implemented_in": "geotech_references.dm7_1.chapter6.anisotropic_transformation_factor"
+        }
+      ],
+      "figures": [
+        "Figure 6-4"
+      ],
+      "tables": [],
+      "applicability": "Applies when constructing flow nets for two-dimensional seepage analysis in isotropic, non-homogeneous, or anisotropic soil profiles."
+    },
+    {
+      "section_id": "6-2.4.2",
+      "title": "Interpreting Flow Nets",
+      "summary": "Explains how to extract quantitative results from a completed flow net, including calculation of volumetric flow rate using the shape factor Nf/Nd (Eq. 6-9), head loss per drop (Eq. 6-10), pore water pressures (Eq. 6-11), and hydraulic gradients. Introduces the shape factor concept and references Figure 6-5 for a worked example of discharge, uplift pressure, and gradient calculations.",
+      "body": "Once drawn, flow nets can be used to calculate a number of properties including: seepage quantities, pore pressures, uplift forces, and hydraulic gradients. The volumetric flow rate through a flow net section can be calculated as:\n\nq = k · hL · (Nf/Nd) · W  (6-9)\n\nwhere: hL = the total differential head or head loss across the flow net, k = the isotropic hydraulic conductivity (use √(kmax·kmin) for transformed flow nets), Nf = the number of flow channels in the flow net, Nd = the total number of equipotential (head) drops in the flow net, and W = the width of the system perpendicular to the page, often taken as a unit width.\n\nThe ratio Nf / Nd from the flow net is sometimes referred to as the shape factor (SF). The shape factor incorporates the influence of geometry into the calculation of flow. Two flow nets with a different number of flow lines but the same value of SF will predict the same flow rates, total heads, and pore pressures.\n\nThe flow net divides the total head loss across the system into Nd equal head drops. The head loss associated with each head drop is:\n\n∆hL = hL / Nd  (6-10)\n\nwhere: ∆hL = the total differential head or head loss across one head drop, hL = the total differential head or head loss across the flow net, and Nd = the total number of head drops in the flow net.\n\nThe total head at any point within the flow net can be calculated by reference to the known total head at either the upstream or downstream boundary. The change in head from the boundary for any point is equal to the number of head drops from the boundary multiplied by ∆hL. By knowing the total head and elevation at a point of interest, the pore water pressure at any point can be calculated from the flow net as:\n\nu = hp · γw = (ht - hz) · γw  (6-11)\n\nwhere: hp = the pressure head at the point in question, ht = the total head at the point in question, hz = the elevation head at the point in question, and γw = the unit weight of water.\n\nThe hydraulic gradient can be calculated between any two points in the flow region by dividing the change in total head that occurs between two points by the distance over which the head loss occurs. When calculating gradients, it may be useful to subdivide flow net sections for more precision.\n\nFigure 6-5 presents an example flow net with example calculations for discharge, uplift pressure, and hydraulic gradient.",
+      "key_points": [
+        "Volumetric flow rate from flow net: q = k · hL · (Nf/Nd) · W (Eq. 6-9); for anisotropic transformed nets, k = √(kmax·kmin).",
+        "Shape factor SF = Nf/Nd incorporates geometry; nets with different Nf and Nd but equal SF give identical flow and pressure results.",
+        "Head loss per drop: ∆hL = hL/Nd (Eq. 6-10); total head at any point is found by counting drops from a known boundary.",
+        "Pore water pressure: u = (ht - hz) · γw (Eq. 6-11); requires knowing total head and elevation at the point.",
+        "Hydraulic gradient between two points = change in total head / distance; subdividing flow elements increases precision.",
+        "Flow nets yield seepage quantities, pore pressures, uplift forces, and hydraulic gradients from a single construction."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 6-9",
+          "description": "Volumetric flow rate from flow net: q = k · hL · (Nf/Nd) · W, where Nf is number of flow channels, Nd is number of head drops, W is width.",
+          "implemented_in": "geotech_references.dm7_1.chapter6.flow_net_flow_rate"
+        },
+        {
+          "id": "Eq. 6-10",
+          "description": "Head loss per equipotential drop: ∆hL = hL / Nd, where hL is total head loss and Nd is total number of head drops.",
+          "implemented_in": "geotech_references.dm7_1.chapter6.head_loss_per_drop"
+        },
+        {
+          "id": "Eq. 6-11",
+          "description": "Pore water pressure from total head: u = hp · γw = (ht − hz) · γw, using total head minus elevation head times unit weight of water.",
+          "implemented_in": "geotech_references.dm7_1.chapter6.pore_water_pressure"
+        }
+      ],
+      "figures": [
+        "Figure 6-5"
+      ],
+      "tables": [],
+      "applicability": "Applies when quantitative results (flow rates, pore pressures, uplift forces, hydraulic gradients) are needed from a completed two-dimensional flow net."
+    },
+    {
+      "section_id": "6-2.5",
+      "title": "Closed-Form Equations",
+      "summary": "Describes two closed-form solution methods for seepage beneath water-retaining structures: the method of fragments (Pavlovsky 1956, Harr 1977), which subdivides the flow region into standard-geometry fragments to determine shape factors and flow/pressure, and USACE blanket theory equations (USACE 2000), specifically designed for levee foundations with a low-permeability blanket over a high-permeability layer. Both can be implemented in spreadsheets.",
+      "body": "The method of fragments and blanket theory are two closed-form solutions for calculation of seepage flow below water retaining structures. The method of fragments (Pavlovsky 1956, Harr 1977) subdivides the flow region into fragments of standard geometry. Based on the geometry, the SF for each fragment is determined along with the overall SF for the problem. The overall flow rate and pore pressures at particular points can be determined from the results. The blanket theory equations are based on the method of fragments and are particularly useful for seepage analyses of levees. These equations are specifically derived for a levee foundation condition consisting of a low-permeability 'blanket' layer overlying a high-permeability 'foundation' layer. The potential for soil heave occurring on the landside of the river can be readily assessed.\n\nBoth methods can be implemented in a spreadsheet application. For further information on the method of fragments and blanket theory equations, see Holtz et al. (2011) and Appendix B of USACE (1986), respectively.\n\nOther common solutions have been developed for: (1) flow, heave potential, and exit gradients into excavations, (2) relief well design, and (3) dewatering well design. These specific solutions are presented in the later sections of this chapter.",
+      "key_points": [
+        "Method of fragments divides the flow region into standard-geometry fragments; shape factors are computed for each to obtain overall flow rate and pore pressures.",
+        "Blanket theory equations (USACE 2000) are specifically suited for levee foundations with a low-permeability blanket over a high-permeability layer.",
+        "Blanket theory readily assesses landside heave potential; both methods are spreadsheet-implementable.",
+        "Additional closed-form solutions exist for excavation flow/heave/gradients, relief well design, and dewatering well design (covered later in Chapter 6).",
+        "References: method of fragments — Holtz et al. (2011); blanket theory — USACE (1986) Appendix B."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to seepage calculations beneath water-retaining structures, particularly levees with layered foundations, where spreadsheet-based closed-form solutions are preferred over numerical analysis."
+    },
+    {
+      "section_id": "6-2.6",
+      "title": "Numerical Seepage Analysis",
+      "summary": "Introduces numerical seepage analysis (primarily finite element analysis) as the appropriate tool for most seepage problems, offering user-friendly input, complex geometry handling, and rich graphical output. Notes that FEA can extend to 3D and transient/unsaturated conditions (beyond chapter scope), and emphasizes that graphical/analytical methods remain important for validating numerical models.",
+      "body": "Numerical analysis, such as finite element or finite difference, is the appropriate tool for most seepage analysis problems. These methods are user-friendly and allow easy input of soil properties and complex geometric configurations, while providing rich graphical output. Numerical analyses also can be extended to three-dimensions and used to model unsaturated soils and transient flow conditions. However, those topics are beyond the scope of this chapter. The graphical and analytical methods discussed in Sections 6-2.4 and 6-2.5 provide an important means of validating numerical seepage models.\n\nFinite element analysis (FEA) is the most common numerical approach used for seepage analysis, and this section is written from the perspective of FEA. Other numerical approaches, such as finite difference, will also provide suitable results but may use slightly different terminology.",
+      "key_points": [
+        "Numerical analysis (FEA or finite difference) is appropriate for most seepage analysis problems due to flexibility with complex geometry and soil properties.",
+        "FEA can extend to 3D and transient/unsaturated conditions, but those topics are outside Chapter 6 scope.",
+        "Flow net and closed-form methods (Sections 6-2.4 and 6-2.5) serve as critical validation tools for numerical models.",
+        "FEA is the most common numerical approach; finite difference methods are also suitable with minor terminology differences."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when numerical seepage analysis is warranted for complex geometries, soil property variability, or when graphical methods are insufficient."
+    },
+    {
+      "section_id": "6-2.6.1",
+      "title": "General Concepts of Finite Element Seepage Analysis",
+      "summary": "Explains the fundamental concepts of FEA for seepage: subdivision of the flow domain into elements (triangles, quadrilaterals) connected at nodes, element matrices relating nodal heads to gradients and flow, assembly into a global matrix, and the nature of unknowns (head at interior/no-flow nodes; flow at specified-head boundaries). Describes linear and polynomial head variation within elements.",
+      "body": "In finite element analysis, the flow region is divided into areas or volumes (referred to as elements) within which the flow of water can be easily defined. Elements are formed by connecting points in space (referred to as nodes) with lines. Two-dimensional elements are often three-node triangles or four-node quadrilaterals. Within each element the flow is defined with a system of equations that relate the hydraulic head at each node with the hydraulic gradient and flow within the element. These equations are described in an element matrix by linking the values of the common nodes. The equations (matrices) for each of the elements are assembled into a global matrix that represents a set of equations that define the flow through the entire system. For each node there is one equation and one unknown value for each node.\n\nIn the simplest form of element, the direction and magnitude of the hydraulic gradient throughout the element are constant. This results in the hydraulic head varying linearly along the element boundaries and within the elements themselves. In more advanced element types, the head varies according to a polynomial equation. Before solving the problem, the one unknown for each node is either (1) the total head at the node or (2) the total flow into and out of the system associated with the node. In general, nodes within the body of the problem and along no-flow boundaries have unknown head and total flow of zero (i.e., flow in equals flow out). At boundaries where flow enters the system, the flow is unknown but the head is generally specified.",
+      "key_points": [
+        "Flow region is divided into elements (3-node triangles or 4-node quadrilaterals) connected at nodes.",
+        "Element matrices relate nodal hydraulic heads to gradient and flow; assembled into a global matrix for the entire system.",
+        "Each node has one equation and one unknown: either total head (interior/no-flow nodes) or nodal flow (specified-head boundaries).",
+        "Simplest elements use constant gradient and linear head variation; advanced elements use polynomial head variation.",
+        "At no-flow boundaries, head is unknown but flow is zero (flow in = flow out); at inflow/outflow boundaries, head is specified and flow is unknown."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when understanding or setting up a finite element seepage analysis model for a two-dimensional flow domain."
+    },
+    {
+      "section_id": "6-2.6.2",
+      "title": "Boundary Conditions",
+      "summary": "Describes the boundary conditions used in finite element seepage models, including constant head, constant pressure, no-flow (impermeable), nodal flow, infiltration, and unknown/variable conditions. Table 6-1 lists all common boundary condition types with descriptions and usage, and Table 6-2 shows their application to example seepage problems (impermeable dam, coffer dam, permeable dam/levee).",
+      "body": "Boundary conditions describe the head, pressure, and flow conditions at the boundaries of the model. Table 6-1 describes the most common boundary conditions used in basic finite element models. Table 6-2 illustrates the application of boundary conditions to finite element models.",
+      "key_points": [
+        "Constant head BC: nodal heads are known and fixed; nodal flow is calculated; used for submerged boundaries and horizontal seepage exits.",
+        "Constant pressure BC: pressure head held constant (often = 0); used for seepage exits and internal drains.",
+        "No-flow BC: flow across boundary is zero; used for impermeable soil, rock, or structures.",
+        "Nodal flow BC: specifies inflow/outflow rate at a node; used for injection/extraction wells.",
+        "Infiltration BC: specifies inflow rate along an external boundary; used for rainwater or surface infiltration.",
+        "Unknown/variable BC: boundary alternates between no-flow and constant pressure based on analysis results; used for phreatic surface exit zones on dam/levee slopes."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 6-1",
+        "Table 6-2"
+      ],
+      "applicability": "Applies when defining boundary conditions for finite element seepage models of dams, levees, cofferdams, and similar water-retaining or water-intersecting structures."
+    },
+    {
+      "section_id": "6-2.6.3",
+      "title": "Interpreting Output",
+      "summary": "Describes how to interpret the primary outputs of FEA seepage analysis—total hydraulic head and nodal flow at each node—and how post-processing yields hydraulic gradient, velocity, flow rate, pressure head, and uplift forces. Notes that commercial software typically automates these calculations via interpolation algorithms.",
+      "body": "The primary mathematical result of a finite element analysis are values of total hydraulic head and nodal flow for each node in the finite element mesh. By post-processing the total head and flow results from the FEA, the hydraulic gradient, hydraulic velocity, volumetric flow rate, pressure head, and uplift force along a boundary segment can be obtained. Most of the commercially available finite element seepage analysis software have post processors that will calculate these values through interpolation algorithms. Several of these interpretations are discussed below.",
+      "key_points": [
+        "Primary FEA outputs are total hydraulic head and nodal flow at each mesh node.",
+        "Post-processing derives hydraulic gradient, velocity, volumetric flow rate, pressure head, and uplift forces.",
+        "Commercial FEA software typically includes post-processors using interpolation algorithms for these calculations."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when interpreting and post-processing results from finite element seepage analyses to obtain engineering design quantities."
+    },
+    {
+      "section_id": "6-2.6.3.1",
+      "title": "Pore Water Pressure",
+      "summary": "Describes how pore water pressure is calculated in FEA output using Equation 6-11, relating total head and elevation to pressure. Notes that commercial software typically generates contour maps of hydraulic pressure throughout the flow region for each node.",
+      "body": "The pore water pressure is calculated from the total head and the elevation using Equation 6-11. Generally, commercial software will calculate the hydraulic pressure for each node and provide a contour map of the pressure throughout the flow region.",
+      "key_points": [
+        "Pore water pressure is calculated from Eq. 6-11: u = (ht − hz) · γw using nodal total head and elevation.",
+        "Commercial FEA software generates contour maps of hydraulic pressure throughout the flow region."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 6-11",
+          "description": "Pore water pressure from FEA output: u = (ht − hz) · γw; referenced here in the context of post-processing nodal results.",
+          "implemented_in": "geotech_references.dm7_1.chapter6.pore_water_pressure"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when calculating pore water pressures from finite element seepage analysis results for stability, uplift, or design evaluations."
+    },
+    {
+      "section_id": "6-2.6.3.2",
+      "title": "Uplift Force",
+      "summary": "Explains how uplift force on a structure or soil mass is calculated from FEA results by integrating hydraulic pressures along specified boundary segments. Describes a simplified approach of plotting pressure contours, assigning representative areas to each contour interval, and summing the products of interval length and representative pressure.",
+      "body": "Uplift force due to hydraulic pressure on a structure or mass of soil is calculated by integrating the hydraulic pressures along a specified set of the boundary segments in the model. A simple estimate of the uplift force can be calculated by plotting the pore water pressure contours and assigning a representative area along the boundary segment to each contour interval. The total uplift force can be calculated by summing product of the interval length and the representative pressure for each interval.",
+      "key_points": [
+        "Uplift force is calculated by integrating hydraulic pressures along specified boundary segments in the FEA model.",
+        "Simplified approach: plot pore pressure contours, assign representative area to each contour interval, sum (interval length × representative pressure).",
+        "This method applies to uplift on structures or soil masses subjected to seepage pressures."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when calculating uplift forces on structures or soil masses from finite element seepage analysis results."
+    },
+    {
+      "section_id": "6-2.6.3.3",
+      "title": "Hydraulic Gradients",
+      "summary": "Describes how hydraulic gradients are calculated in FEA seepage models, including interpolation methods for simple vs. higher-order elements, and warns about singularity effects near sharp corners where gradients can approach infinity as element size decreases. Guidance is given on appropriate gradient calculation distances near features like levee toes.",
+      "body": "Hydraulic gradients are calculated for each element based on the hydraulic heads at the element nodes. Strictly speaking for simple elements, the hydraulic gradient in a given direction should be constant within each element. However, commercial software will often interpolate contours of hydraulic gradient based on the calculated head at each node. For higher order elements, the hydraulic gradient in a given direction may vary within the element. In these cases, the calculated gradients may be interpreted by plotting its variation within the flow region.\n\nAs a note of caution, the calculated hydraulic gradient will vary depending on the size of the element used near sharp corners in the flow region (often termed singularities). In this case, the calculated hydraulic gradients will increase as the element size decreases. As the element dimension approaches zero, the calculated hydraulic gradient may approach infinity. At these locations, the hydraulic gradients should be calculated over a distance consistent with the mechanisms of concern and known ground conditions. For example, the hydraulic gradient at the toe of a levee resting on a blanket layer of low k soil should be calculated across the thickness of the blanket.",
+      "key_points": [
+        "Hydraulic gradients are computed from nodal hydraulic heads; constant within simple elements, variable within higher-order elements.",
+        "Commercial software often interpolates gradient contours from nodal head values.",
+        "Near singularities (sharp corners), computed gradients increase as element size decreases and may approach infinity at zero element dimension.",
+        "At singularities, gradients should be evaluated over a distance consistent with the failure mechanism and ground conditions (e.g., blanket layer thickness at levee toe)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when interpreting hydraulic gradient outputs from FEA seepage models, especially near geometric singularities."
+    },
+    {
+      "section_id": "6-2.6.3.4",
+      "title": "Discharge Velocity",
+      "summary": "States that discharge velocity in FEA seepage models is computed from the element hydraulic gradient and assigned hydraulic conductivity using Darcy's law (Equation 6-5). This is a brief procedural note on how FEA post-processing derives velocity from gradient and k values.",
+      "body": "Discharge velocity is calculated from the hydraulic gradient and the hydraulic conductivity assigned to the element using Equation 6-5.",
+      "key_points": [
+        "Discharge velocity = hydraulic gradient × hydraulic conductivity (Darcy's law, Eq. 6-5).",
+        "Both the gradient and k value are element-specific in FEA models."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 6-5",
+          "description": "Darcy's law: discharge velocity calculated from hydraulic gradient and hydraulic conductivity assigned to the element.",
+          "implemented_in": "geotech_references.dm7_1.chapter6.discharge_velocity"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when computing discharge velocity for individual elements in FEA seepage analyses."
+    },
+    {
+      "section_id": "6-2.6.3.5",
+      "title": "Seepage Flow Volume",
+      "summary": "Explains how seepage flow volumes are calculated in FEA models using Darcy's law (Eq. 6-3). Flow rates across model boundaries are determined from the perpendicular hydraulic gradient component, element hydraulic conductivity, and boundary area. Flow across interior lines is computed similarly using intersected element areas.",
+      "body": "Seepage volumes are calculated for elements using Darcy's law (Equation 6-3). For flow across a model boundary, the flow rate through each element is calculated, using the vector component of hydraulic gradient perpendicular to the boundary, the hydraulic conductivity assigned to the element, and the area of the element boundary along the model boundary. The flow rate across a portion of an FEA model can be assessed by calculating the flow across a line using a similar methodology applied to the area associated with the elements intersected by the line.",
+      "key_points": [
+        "Seepage flow volumes are computed element-by-element using Darcy's law (Eq. 6-3).",
+        "Boundary flow rates use the perpendicular gradient component, element k, and boundary face area.",
+        "Flow across any interior cross-section can be evaluated by summing contributions from all elements intersected by a defined line."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 6-3",
+          "description": "Darcy's law used to calculate seepage flow volume for elements and across model boundaries.",
+          "implemented_in": "geotech_references.dm7_1.chapter6.darcy_flow_rate"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when calculating seepage flow volumes or rates across boundaries and interior cross-sections in FEA seepage models."
+    },
+    {
+      "section_id": "6-3",
+      "title": "Hydraulic Conductivity (Coefficient of Permeability)",
+      "summary": "Introduces hydraulic conductivity as one of the most variable soil properties, ranging over 8 orders of magnitude (10⁻⁸ cm/sec for high-plasticity clay to >1 cm/sec for open-graded gravel). Clarifies terminology distinctions between hydraulic conductivity, coefficient of permeability, and permeability, and outlines three assessment strategies: laboratory testing, field testing, and empirical correlations.",
+      "body": "One of the most varied soil properties in geotechnical engineering is hydraulic conductivity, which can be defined as the discharge velocity of water through a unit area under a unit hydraulic gradient. Common hydraulic conductivity values can range from less 10-8 cm/sec for high plasticity clay to in excess of 1 cm/sec for open graded gravels; a range of over 8 orders of magnitude. Small changes in soil gradation, especially changes in the fines content, can result in significant variation in hydraulic conductivity.\n\nTerminology regarding hydraulic conductivity is varied across the profession. The term coefficient of permeability is used as a synonym for hydraulic conductivity in literature. The practicing geotechnical community commonly uses the term \"permeability\" interchangeably with hydraulic conductivity. However, this is technically incorrect as permeability is a property of the porous media alone and does not consider the viscosity of the permeant fluid. Hydraulic conductivity is the preferred term, but both hydraulic conductivity and permeability are used in this manual.\n\nHydraulic conductivity is most often required for in situ soil conditions. Hydraulic conductivity can be assessed for these conditions by several strategies: 1) laboratory testing, 2) field testing, and 3) empirical correlations including equations, charts, and tables. Each of these are discussed in the following subsections.",
+      "key_points": [
+        "Hydraulic conductivity ranges over 8 orders of magnitude: ~10⁻⁸ cm/sec (high-plasticity clay) to >1 cm/sec (open-graded gravel).",
+        "Small changes in gradation, especially fines content, can cause large changes in k.",
+        "'Permeability' and 'hydraulic conductivity' are used interchangeably in practice, but technically permeability is a porous media property independent of fluid viscosity.",
+        "Three assessment approaches: laboratory testing, field testing, and empirical correlations.",
+        "Hydraulic conductivity is the preferred term in this manual, though both terms are used."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies as an introduction to hydraulic conductivity assessment for any geotechnical seepage or flow analysis."
+    },
+    {
+      "section_id": "6-3.1",
+      "title": "Laboratory Testing",
+      "summary": "Discusses laboratory permeability testing on intact and reconstituted samples, referencing Section 3-2.7 for procedures. Highlights key limitations: small sample size, typically measuring vertical k, inability to capture deposit-scale anisotropy or layering, and impossibility of intact sampling of coarse-grained soils. Recommends lab testing primarily for reconstituted samples (fills, cutoff walls, pond liners, filters).",
+      "body": "Laboratory tests can be performed on intact samples or reconstituted samples. Details of laboratory testing procedures are presented in Section 3-2.7. While laboratory tests can measure the hydraulic conductivity of a wide range of soils, the limitations of laboratory testing must be acknowledged. First, laboratory tests use a small sample of soil or rock and usually test the vertical permeability because the samples are obtained from boreholes. As a result, laboratory test results may not be representative of the large-scale properties of a soil deposit if the layering and structure of the deposit is not considered. Natural soils usually exhibit anisotropy with the horizontal permeability being larger than the vertical. Thus, laboratory tests are likely to result in lower values than are appropriate for many types of analyses. Finally, intact samples of coarse-grained soils cannot be obtained using normal sampling procedures. Laboratory tests on reconstituted specimens of these materials are likely no more reliable than correlations. With the above in mind, laboratory permeability testing is most appropriately reserved for reconstituted samples for applications such as fill materials, cutoff wall backfills, pond liners, and filter materials.",
+      "key_points": [
+        "Lab tests on intact or reconstituted samples; procedures per Section 3-2.7.",
+        "Lab tests measure vertical k (borehole samples) — may underestimate horizontal k for anisotropic natural soils.",
+        "Small sample size means results may not represent deposit-scale behavior if layering is not considered.",
+        "Intact sampling of coarse-grained soils is not feasible; reconstituted lab tests are no more reliable than empirical correlations.",
+        "Lab testing is best suited for reconstituted samples: fill materials, cutoff wall backfills, pond liners, and filter materials."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when selecting laboratory permeability testing for natural or engineered soil materials, particularly for evaluating its limitations versus other methods."
+    },
+    {
+      "section_id": "6-3.2",
+      "title": "Field Testing",
+      "summary": "Identifies two classes of field hydraulic conductivity testing — borehole tests and pumping tests — with procedures referenced in Chapter 2. Borehole tests characterize soil near the borehole; pumping tests provide broader areal permeability characteristics over a larger zone of influence.",
+      "body": "Two classes of field hydraulic conductivity testing are borehole tests and field pumping tests. Details of field testing procedures are presented in Chapter 2. Borehole tests are effective in measuring the permeability of the soil in the general area of the borehole. To measure permeability characteristics over a broader area, a pumping test can be performed.",
+      "key_points": [
+        "Two field test types: borehole tests (local k) and pumping tests (areal average k).",
+        "Borehole tests measure permeability in the vicinity of the borehole only.",
+        "Pumping tests characterize hydraulic conductivity over a broader area.",
+        "Detailed procedures are in Chapter 2."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when selecting field testing methods to measure in situ hydraulic conductivity at different spatial scales."
+    },
+    {
+      "section_id": "6-3.3",
+      "title": "Empirical Relationships for Hydraulic Conductivity",
+      "summary": "Reviews empirical and semi-empirical methods for estimating hydraulic conductivity from grain-size and gradation data. Covers Figure 6-6 (k vs. soil classification), Table 6-3 (horizontal k for natural soils and rock, USBR), Table 6-4 (vertical k for compacted embankment soils, USBR), Table 6-5 (grain-size correlations), the general Eq. 6-12 power-law form, the Kozeny-Carman Eq. 6-13, the void-ratio ratio Eq. 6-14, and Figure 6-7 (k vs. fines content).",
+      "body": "Numerous empirical and semi-empirical relationships have been developed for correlating hydraulic conductivity with other soil properties (predominantly grain size and gradation). The simplest of these relationships relate soil type to typical values of ranges of k. Figure 6-6 correlates k with soil classification types for various unit systems.\n\nThe United States Bureau of Reclamation (USBR 2014) has determined typical values for the horizontal hydraulic conductivity of natural soil and rock deposits based on field testing as indicated in Table 6-3 and the vertical hydraulic conductivity of embankment fill materials based on laboratory testing as summarized in Table 6-4.\n\nThe size of the pore spaces is one of the most important factors controlling the hydraulic conductivity of a soil, especially for coarse-grained materials. The effective diameter or effective grain size (Dα) is the grain size that has the primary influence on the average pore size of the soil. In terms of the effects on hydraulic conductivity, the α refers to a particular percent passing on the grain-size distribution and typically has been assigned a value of 5, 10, 15, or 20. In other words, the effects of pore size on hydraulic conductivity has been found to correlate best with particle diameters corresponding to the 5 to 20% passing size. Correlations that relate hydraulic conductivity to an effective grain size or grain-size distribution can be expressed as (Kenney et al. 1984):\n\nk = βα × Dα^x   (6-12)\n\nwhere:\nk = hydraulic conductivity,\nβα = empirical or semi-empirical coefficient,\nDα = effective grain size,\nα = percent passing corresponding to effective grain size, and\nx = exponent - theoretically equal to 2 and empirically slightly above 2.\n\nMost of the published correlations for the hydraulic conductivity of coarse-grained soils can be expressed in terms of Equation 6-12. These correlations are summarized in Table 6-5. Some of the relationships also account for the effect of void ratio on k.\n\nThe Kozeny-Carman equation (Carrier 2003) can be used to account for the effect of the entire grain-size distribution and the particle shape:\n\nk = 1.99×10^-2 × [e^3/(1+e)] / [S × Σ(fi/(Dli^0.404 × Dsi^0.596)) / 100%]^2   (6-13)\n\nwhere:\nk = hydraulic conductivity (cm/sec),\nfi = fraction of particles (by mass) between two adjacent sieve sizes,\nDli = the particle size of the coarser sieve (mm),\nDsi = the particle size of the finer sieve (mm),\nS = surface area factor ranging from 6 for spheres to 8.5 for angular particles, and\ne = void ratio.\n\nFor a given soil, the ratio of hydraulic conductivities under two different void ratios can be considered by (Kozeny 1927):\n\nk1/k2 = [e1^3/(1+e1)] / [e2^3/(1+e2)]   (6-14)\n\nwhere:\nk1 = hydraulic conductivity for void ratio, e1, and\nk2 = hydraulic conductivity for void ratio, e2.\n\nFor fine-grained soils, the hydraulic conductivity would be expected to decrease as liquid limit, plasticity index, or fines content increase. Figure 6-7 shows that hydraulic conductivity decreases as the fine content (percent passing the No. 200 sieve) increases. For a given fines content, the range of kv is 2.5 to 3 orders of magnitude with sandy and silty soils having higher kv than clayey soils.",
+      "key_points": [
+        "Figure 6-6 provides k ranges by soil classification type across multiple unit systems.",
+        "USBR Table 6-3 gives horizontal k for natural soils and rock; Table 6-4 gives vertical k for compacted embankment materials.",
+        "Eq. 6-12: k = βα·Dα^x — general power-law correlation of k to effective grain size (D5 to D20); x ≈ 2 theoretically.",
+        "Table 6-5 summarizes published grain-size k correlations (Hazen, Slichter, Chapuis, Carrier, Sherard, Kenney), many incorporating void ratio.",
+        "Eq. 6-13 (Kozeny-Carman): accounts for full grain-size distribution and particle shape via surface area factor S (6 for spheres, 8.5 for angular).",
+        "Eq. 6-14 (Kozeny): relates k at two different void ratios; useful for compaction or consolidation effects.",
+        "Figure 6-7: k decreases with increasing fines content; at a given fines content, kv spans 2.5–3 orders of magnitude."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 6-12",
+          "description": "General power-law correlation of hydraulic conductivity to effective grain size: k = βα·Dα^x, where x ≈ 2 theoretically and βα is an empirical coefficient.",
+          "implemented_in": "geotech_references.dm7_1.chapter6.hydraulic_conductivity_effective_grain_size"
+        },
+        {
+          "id": "Eq. 6-13",
+          "description": "Kozeny-Carman equation: estimates hydraulic conductivity accounting for full grain-size distribution, particle shape (surface area factor S), and void ratio e.",
+          "implemented_in": "geotech_references.dm7_1.chapter6.kozeny_carman_hydraulic_conductivity"
+        },
+        {
+          "id": "Eq. 6-14",
+          "description": "Kozeny (1927) void-ratio correction: ratio of hydraulic conductivities at two void ratios, k1/k2 = [e1^3/(1+e1)] / [e2^3/(1+e2)].",
+          "implemented_in": "geotech_references.dm7_1.chapter6.kozeny_void_ratio_conductivity_ratio"
+        }
+      ],
+      "figures": [
+        "Figure 6-6 — Variation of Hydraulic Conductivity with Soil Type for Various Unit Systems (after Freeze and Cherry 1979)",
+        "Figure 6-7 — Variation of Hydraulic Conductivity with Fines Content (after California Department of Water Resources 2013)"
+      ],
+      "tables": [
+        "Table 6-3 — Typical Ranges of Horizontal Hydraulic Conductivity for Natural Soil and Unfractured Rock Deposits (after USBR 2014)",
+        "Table 6-4 — Typical Range of Vertical Hydraulic Conductivity for Compacted Soil in Embankments (after USBR 2014)",
+        "Table 6-5 — Estimating Hydraulic Conductivity based on Effective Grain Size"
+      ],
+      "applicability": "Applies when estimating hydraulic conductivity using empirical methods based on soil classification, grain size, gradation, or void ratio for coarse- or fine-grained soils."
+    },
+    {
+      "section_id": "6-3.4",
+      "title": "Anisotropy",
+      "summary": "Introduces the concept of hydraulic conductivity anisotropy in soils. Notes that natural soils typically exhibit horizontal k greater than vertical k due to depositional layering, but mentions that vertical cracks can create exceptions where vertical k exceeds horizontal k. Section continues beyond this chunk.",
+      "body": "More often than not soils exhibit anisotropy with respect to hydraulic conductivity. In natural soils this is usually a consequence of depositional layering of the soil and results in horizontal hydraulic conductivity greater than in the vertical direction. However, in some cases, often related to the formation and filling of vertical cracks, the vertical [section continues].",
+      "key_points": [
+        "Most natural soils exhibit hydraulic conductivity anisotropy due to depositional layering.",
+        "Horizontal k typically exceeds vertical k in naturally deposited soils.",
+        "Vertical cracking can create conditions where vertical k exceeds horizontal k."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when assessing directional differences in hydraulic conductivity for natural or engineered soil deposits."
+    },
+    {
+      "section_id": "6-4",
+      "title": "Internal Erosion",
+      "summary": "Introduces internal erosion as a leading cause of dam failures (~50%), defines the term, and explains the evolution of nomenclature culminating in the 2014 ICOLD system. Internal erosion encompasses erosion of particles by seeping water through soil/rock voids or preferential flow paths such as cracks. Covers four main sub-mechanisms: heave, erosion and stoping, and internal instability.",
+      "body": "About half of dam failures and accidents can be attributed to internal erosion through the foundation and/or through the embankment or along a penetration through the embankment (e.g., Foster et al. 2000). Internal erosion is a generic term that describes erosion of particles caused by water seeping through a body of soil or rock. The water may be seeping through the interstitial voids of a soil or rock mass, or may be flowing along pathways of preferential flow (cracks or other defects).\n\nTerminology describing the various mechanisms of internal erosion has evolved in recent years as understanding of the mechanisms of erosion have developed. Nomenclature for these mechanisms has been and continues to be inconsistent in practice and in the literature due to this rapid evolution of understanding and nomenclature. For example, the terms \"piping\" and \"seepage-related erosion\" have been used as generic terms for internal erosion, and the term \"internal erosion\" has been used to denote a specific internal erosion mechanism.\n\nIn 2014, the International Commission on Large Dams (ICOLD) adopted a system of nomenclature describing the various mechanisms of internal erosion. The ICOLD nomenclature is summarized in the following sections along with additions to the nomenclature where necessary.",
+      "key_points": [
+        "About 50% of dam failures and accidents are attributed to internal erosion through foundation, embankment, or along penetrations.",
+        "Internal erosion refers to erosion of particles caused by seeping water moving through soil/rock voids or preferential flow paths (cracks, defects).",
+        "Nomenclature has been inconsistent historically; 'piping' and 'seepage-related erosion' were used generically.",
+        "In 2014, ICOLD adopted a standardized nomenclature for the various mechanisms of internal erosion, used as the basis for this section."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when evaluating internal erosion risk in dams, levees, embankments, and their foundations."
+    },
+    {
+      "section_id": "6-4.1",
+      "title": "Heave",
+      "summary": "Describes two types of heave as internal erosion mechanisms: effective stress heave (quick condition), where high hydraulic gradients lift coarse-grained soil at an unprotected exit; and total stress heave (blowout), where high pore pressure in an underlying aquifer uplifts a low-permeability layer. Both can occur at deep excavations and hydraulic structures on sand or clay underlain by aquifers.",
+      "body": "Effective stress heave (a.k.a., quick condition) is the uplift of a mass of coarse-grained soil due to a high hydraulic gradient acting on soil particles at an unprotected exit. Seepage forces developed through viscous drag tend to lift the soil mass, resulting in uplift or a quick condition, as illustrated in Figure 6-8a.\n\nCoarse-grained soils with high vertical hydraulic exit gradients are susceptible to effective stress heave. These gradients may occur at the base of deep excavations into sand and at the toe of hydraulic structures founded on sand.\n\nTotal stress heave (a.k.a., blowout) is the uplift of a mass of low-permeability soil due to high hydraulic pressure in an underlying aquifer as shown in Figure 6-8b. When the pressure beneath a layer with low hydraulic conductivity exceeds the total weight of the layer, uplift occurs and often results in cracking of the upper layer. Total stress heave occurs in fine-grained soils with underlying aquifers, such as deep excavations into clay and fine-grained blankets.",
+      "key_points": [
+        "Effective stress heave (quick condition): uplift of coarse-grained soil mass due to high vertical hydraulic exit gradient via seepage-induced viscous drag.",
+        "Susceptible locations for effective stress heave: base of deep excavations into sand and toes of hydraulic structures on sand.",
+        "Total stress heave (blowout): uplift of low-permeability layer when underlying aquifer pressure exceeds total overburden weight, often causing cracking.",
+        "Total stress heave occurs in fine-grained soils overlying artesian aquifers, e.g., deep excavations into clay or fine-grained blankets."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-8"
+      ],
+      "tables": [],
+      "applicability": "Applies when assessing uplift risk at excavations, hydraulic structures, or embankments founded on or underlain by pressurized aquifers."
+    },
+    {
+      "section_id": "6-4.2",
+      "title": "Erosion and Stoping",
+      "summary": "Defines and distinguishes five internal erosion mechanisms involving particle removal and void propagation: backward erosion piping (classical piping with stable roof), general backward erosion (progressive sloughing without roof), stoping (vertical void collapse as sinkholes), concentrated leak erosion (shear along cracks/conduit gaps), and contact erosion (shear at permeable/erodible soil contacts). Each has distinct susceptible conditions and morphology.",
+      "body": "Backward erosion piping (a.k.a., classical piping) is the successive removal of soil particles at an unprotected exit resulting in the formation of an open pathway or pipe that progresses toward the source of the seepage. A stable roof prevents collapse of the pipe and allows its progression, as illustrated in Figure 6-9a. The toes of dams and levees are especially susceptible to backward erosion piping, along with unprotected exits, such the ground surface, internal voids or pathways, or defects in a conduit or outlet.\n\nGeneral backward erosion (a.k.a., progressive sloughing or internal migration) is the successive removal of soil particles at an unprotected exit resulting in progressive sloughing of a slope. This type of erosion initiates similar to backward erosion piping, but the lack of a \"roof\" prevents the progression of a pipe (Figure 6-9b). Slopes and embankments consisting of coarse-grained soils with high seepage flows are susceptible to general backward erosion.\n\nStoping (a.k.a., sinkhole) is the near-vertical progression of a void caused by successive collapse into a cavity as shown in Figure 6-9c. The cavity is often the result of another internal erosion mechanism. Stopes often manifest as sinkholes at the ground surface and occur in embankments with moderate to low cohesive strength.\n\nConcentrated leak erosion (a.k.a., scour) is erosion that occurs along a concentrated flow path and is caused by shear forces imposed by the flowing water (Figure 6-9d). Concentrated leaks may be cracks within the soil or rock, gaps between soil and a conduit or structure, or other pathways of low flow-resistance capable of carrying eroded soil particles. Conditions that are susceptible to concentrated leak erosion include cohesive embankments, outlet pipes and structures in embankments, and dam and levee fill placed along steep rock abutments.\n\nContact erosion (a.k.a., scour) is erosion that occurs along a contact between a highly permeable material and an erodible soil. Contact erosion is caused by shear forces imposed by high seepage velocities in the highly permeable material as illustrated in Figure 6-9e. The contacts between erodible soil and open-graded gravel or open joints in bedrock are locations susceptible to this type of erosion.",
+      "key_points": [
+        "Backward erosion piping (classical piping): pipe progresses toward seepage source at unprotected exit; requires a stable roof; toes of dams and levees are highly susceptible.",
+        "General backward erosion (progressive sloughing): similar to backward erosion piping but lacks a stable roof, so a pipe cannot form; affects coarse-grained slopes with high seepage.",
+        "Stoping (sinkhole): near-vertical void progression by successive collapse into a cavity, often initiated by another erosion mechanism; manifests as surface sinkholes.",
+        "Concentrated leak erosion (scour): shear-driven erosion along cracks, conduit gaps, or low-resistance flow paths; common in cohesive embankments and along rock abutments.",
+        "Contact erosion (scour): shear-driven erosion at the contact between highly permeable material (e.g., open-graded gravel, jointed rock) and an erodible soil due to high seepage velocities."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-9"
+      ],
+      "tables": [],
+      "applicability": "Applies when evaluating internal erosion failure modes in dams, levees, embankments, conduits, and rock-fill contacts under seepage conditions."
+    },
+    {
+      "section_id": "6-4.3",
+      "title": "Internal Instability",
+      "summary": "Describes internal instability, where fine particles erode from within a coarse-grained skeleton under seepage. Distinguishes suffusion (coarse particles in contact; no volume change) from suffosion (coarse particles not in contact; volume change possible). Relevant for gap-graded or broadly graded soils prone to selective particle migration under hydraulic gradients.",
+      "body": "Soils can be internally unstable such that fine-grained particles erode from within a framework or \"skeleton\" of coarse-grained particles as illustrated in Figure 6-10. The process is called suffusion if the coarse-grained particles are in contact with each other before erosion. Thus, no volume change results from suffusion. The process is called suffosion if the coarse-grained particles are not in contact with each other before erosion.",
+      "key_points": [
+        "Internal instability: fine particles migrate out of a coarse-grained skeleton under seepage forces.",
+        "Suffusion: coarse particles are in contact before erosion — fine particle loss causes no volume change in the soil matrix.",
+        "Suffosion: coarse particles are NOT in contact before erosion — fine particle loss can result in volume change and settlement.",
+        "Internally unstable soils are typically gap-graded or broadly graded materials susceptible to selective particle migration."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-10"
+      ],
+      "tables": [],
+      "applicability": "Applies when evaluating gap-graded or broadly graded soils in embankments, filters, or foundations for susceptibility to internal particle migration."
+    },
+    {
+      "section_id": "6-5",
+      "title": "Seepage and Internal Erosion Mitigation Methods",
+      "summary": "Top-level container section covering the full range of seepage and internal erosion mitigation methods for earthen dams, levees, excavations, and other structures subject to differential water pressure. Introduces the three main problem categories (excess flow, high pore pressure, internal erosion) and three general mitigation strategies (barriers, controlled drainage, filtration).",
+      "body": "",
+      "key_points": [
+        "Seepage problems fall into three categories: excess volumetric flow rate, high pore water pressures, and internal erosion potential.",
+        "Three general mitigation strategies: seepage barriers, controlled drainage, and filtration.",
+        "Seepage severity can be evaluated using Table 6-8 (q/hL/W thresholds) to determine if remediation is needed.",
+        "Blocking seepage can increase pressures and gradients elsewhere; engineers must assess resulting stability and internal erosion risk.",
+        "Controlled drainage reduces pore pressures but typically increases volumetric flow rate.",
+        "Sand and gravel filters are the most reliable long-term solution to halt internal erosion progression."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 6-8"
+      ],
+      "applicability": "Applies whenever seepage through or beneath earthen embankments, dams, levees, or excavations must be evaluated or mitigated."
+    },
+    {
+      "section_id": "6-5.1",
+      "title": "Problems and General Strategies",
+      "summary": "Describes the three categories of seepage problems (excess flow rate, high pore water pressures, internal erosion potential) and the three corresponding mitigation strategies (seepage barriers, controlled drainage, filtration). Introduces Table 6-8 for evaluating seepage severity and determining whether remediation is required.",
+      "body": "Seepage occurs through all earthen dam and levee embankments and their foundations, into excavations below the water table, and below other structures subjected to differential water pressure conditions. In many cases, the quantity of seepage is such that it poses no adverse consequences or risk to the structure. However, if seepage is excessive or the pressures and forces associated with the seepage are too great, mitigation of the seepage issues may be required. Problems associated with seepage can be classified into three categories:\na. Excess volumetric flow rate of seepage\nUndesirable consequences of excess flow include the loss of valuable water from a reservoir, flooded or soft ground in excavations, and wet ground conditions below a dam or levee that prevent activities or usage of the land.\nb. High pore water pressures\nHigh pore water pressures can result in unacceptable uplift forces beneath or within dams and levees that lead to instability with respect to sliding or overturning. Excessive water pressure forces can also act on buildings, retaining walls, and other appurtenant structures.\nc. Internal erosion potential\nSome seepage conditions may create a condition where internal erosion is likely through one of the mechanisms described in Section 6-4. Internal erosion problems are often tied to high pore water pressures. Assessment of internal erosion potential should be paired with an evaluation of the severity of seepage. Table 6-8 provides a means to evaluate seepage severity and assess if further investigation is required. This approach recognizes that the flow rate must be sufficiently high for problematic internal erosion to occur.\nIf one or more of the problems described above must be mitigated, the mitigation typically employs one of three general strategies:\na. Seepage barriers\nThis strategy consists of constructing an element that either directly blocks the seepage pathway or lengthens the seepage pathway. Blocking seepage can result in increased hydraulic pressures and hydraulic gradients in some locations within an embankment or foundation. When methods to block seepage are used, the engineer must assess whether the resulting pressures and gradients will be detrimental to structural stability and the internal erosion potential.\nb. Providing controlled drainage\nIn locations where high pore water pressures result in either high hydraulic gradients or uplift forces, the pressures can be reduced by providing a controlled drainage system. The control in such a system involves assuring that the water can be drained without causing internal erosion or resulting in excessive water losses. Controlled drainage typically increases the volumetric flow rate.\nc. Providing Filtration\nIn locations where there is potential for internal erosion, the progression of erosion can be halted by providing adequate filtration of the eroding soil particles. The most reliable and long-lasting filters are constructed using sands and gravels graded to specifications that provide both soil particle retention and adequate seepage flow capacity.",
+      "key_points": [
+        "Three seepage problem categories: excess flow, high pore pressures, and internal erosion potential.",
+        "Table 6-8 classifies seepage severity from Negligible to Heavy using q/hL/W (cfs per ft of head per ft of levee).",
+        "Heavy seepage (q/hL/W > 2.2×10⁻⁴) requires remediation; negligible (<2.2×10⁻⁵) does not.",
+        "Seepage barriers can increase hydraulic gradients elsewhere — must be assessed for stability and erosion risk.",
+        "Controlled drainage reduces pressures but increases flow rate.",
+        "Sand/gravel filters graded to retain base soil particles are the most reliable filtration approach."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 6-8"
+      ],
+      "applicability": "Applies to all projects involving seepage through or beneath embankments, dams, levees, and excavations where remediation may be required."
+    },
+    {
+      "section_id": "6-5.2",
+      "title": "Seepage Barriers",
+      "summary": "Container section covering the full range of seepage barrier options, including vertical cutoff walls, upstream seepage blankets, downstream seepage berms, cutoff trenches, foundation grouting, and liners. These methods either block the flow path or lengthen it to reduce seepage volume and hydraulic gradients.",
+      "body": "Seepage barriers include a range of options for (1) blocking flow through a high-permeability layer of soil or rock or (2) extending the seepage pathway to reduce seepage volume and hydraulic gradients.",
+      "key_points": [
+        "Seepage barriers either directly block flow or lengthen the seepage path to reduce gradients and volumes.",
+        "Options include vertical cutoff walls, upstream blankets, downstream berms, cutoff trenches, foundation grouting, and liners.",
+        "Selection depends on site geometry, soil/rock conditions, construction access, and acceptable risk."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when the primary mitigation strategy is to reduce seepage volume or hydraulic gradients by blocking or extending the seepage pathway."
+    },
+    {
+      "section_id": "6-5.2.1",
+      "title": "Vertical Barriers",
+      "summary": "Describes vertical seepage cutoff walls used to block seepage through permeable embankments, foundations, or aquifers. Covers all major construction methods (steel sheet piles, vinyl sheet piles, continuous slurry trench, element slurry wall, vertical membrane, deep mixing, jet grout) and backfill types (SB, CB, SCB, soil cement, plastic concrete, conventional concrete) with their characteristics and limitations.",
+      "body": "Vertical barriers or seepage cutoff walls are zones with low hydraulic conductivity that are constructed (1) through permeable dam and levee embankments, (2) through dam and levee foundations with permeable layers, (3) surrounding excavations below the ground water table, or (4) blocking aquifers to prevent the spread of groundwater contamination. Vertical barriers are generally classified based on the excavation or construction method and the backfill type.\nThe various construction methods, their application, characteristics, and requirements are summarized in Table 6-9. Continuous slurry trenches are generally backfilled using one of three material types: Soil-Bentonite (SB) backfill, Cement-Bentonite (CB) backfill, and Soil-Cement-Bentonite (SCB) backfill. Element slurry walls are generally backfilled with concrete or plastic concrete using the Tremie method that fills the element from the bottom up while displacing the slurry. The characteristics of vertical barrier backfill materials are presented in Table 6-10.",
+      "key_points": [
+        "Vertical cutoff walls are classified by construction method and backfill type; see Table 6-9 for method descriptions and Table 6-10 for backfill characteristics.",
+        "Steel and vinyl sheet piles rely on interlock integrity; corrosion (steel) and chemical stability (vinyl) must be assessed.",
+        "Continuous slurry trenches are susceptible to 'windows' from partial wall collapse or sand settling.",
+        "Element slurry walls (using clamshell or hydrocutter) allow excavation into most soils and rock with better joint control.",
+        "Deep mixing adjusts strength and permeability via slurry dosing; limited to soil and very soft rock.",
+        "Jet grout walls can seal irregular surfaces but carry high hydrofracture risk in embankments and are typically more expensive.",
+        "SB backfill is low-strength and highly compressible; CB and SCB are less prone to consolidation; conventional concrete is stiffest but may cause stress concentrations."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 6-9",
+        "Table 6-10"
+      ],
+      "applicability": "Applies when a low-hydraulic-conductivity vertical barrier is needed through permeable embankments, foundations, or to contain groundwater contamination."
+    },
+    {
+      "section_id": "6-5.2.2",
+      "title": "Required Penetration for Cutoff Walls in Supported Excavations",
+      "summary": "Provides design guidance for determining the required embedment depth of vertical cutoff walls to prevent base heave (quick condition or blowout) in supported excavations. References Figures 6-11 through 6-13 (based on Marsland 1953) for homogeneous isotropic sand, stratified sand, and sand with fine-grained layers. Recommends a factor of safety of 1.5 to 2 against effective stress heave.",
+      "body": "To prevent instability of the base of supported excavations due to heave (i.e., quick condition or blowout), the vertical cutoffs must extend deep enough to reduce hydraulic gradients or uplift pressures to acceptable levels. The first option to consider for embedment is to extend the cutoff to a low-permeability layer having considerable thickness. However, this is not always feasible.\nIn uniform pervious sands, critical hydraulic gradients may develop at the base of the excavation. The required wall penetration to provide a factor of safety against effective stress heave (quick condition) and piping in homogenous, isotropic sands can be calculated using Figure 6-11. For homogenous, anisotropic sands, the penetration depth can be reduced by the transformation factor, a (see Section 6-2.4.1 Equation 6-8). For clean sand, exit gradients greater than about 0.5 to 0.75 will cause unstable conditions for men and equipment operating on the subgrade. To avoid instability, provide sheeting penetration for a safety factor of 1.5 to 2 against effective stress heave as calculated in Figure 6-8.\nIn layered sands, variation in permeability results in a change of seepage conditions from that assumed in Figure 6-11. Figure 6-12 presents guidance for situations with layered sands. In layered soils with layers of very fine sand, silty or clayey sand, or silt and clay, the risk of bottom heave (total stress heave) must be considered. Figure 6-13 presents guidance for avoiding bottom heave in excavations. Alternatively, the conditions can be assessed using flow nets or finite element analyses, and Figure 6-11 through Figure 6-13 can be used to confirm the results.\nThe relationships presented in Figure 6-11 through Figure 6-13 were developed based on the results of laboratory modeling performed by Marsland (1953). The results were reported for loose and dense sands. Loose sands were placed 'with a water jet' while the dense sands were placed 'with an electrically vibrated' hammer. No relative densities were reported although porosities of 42 percent and 37 to 38 percent were reported for the loose and dense sands, respectively.",
+      "key_points": [
+        "Cutoff walls must penetrate deep enough to prevent quick condition or blowout at the excavation base.",
+        "Figure 6-11 gives required penetration for homogeneous isotropic sand; use the transformation factor for anisotropic sands.",
+        "Exit gradients > 0.5–0.75 in clean sand cause unstable conditions; design for FS = 1.5 to 2 against effective stress heave.",
+        "Figure 6-12 provides corrections for stratified sands; Figure 6-13 addresses sand with fine-grained layers (total stress heave risk).",
+        "Flow nets or finite element analyses can be used as alternatives, with Figures 6-11 to 6-13 for verification.",
+        "Figures based on Marsland (1953) laboratory models; loose sand porosity ~42%, dense sand ~37–38%."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-11",
+        "Figure 6-12",
+        "Figure 6-13"
+      ],
+      "tables": [],
+      "applicability": "Applies when designing the required embedment depth of vertical cutoff walls supporting excavations in pervious sands to prevent base heave or piping."
+    },
+    {
+      "section_id": "6-5.2.3",
+      "title": "Seepage Blankets and Berms",
+      "summary": "Covers upstream seepage blankets and downstream seepage berms as passive seepage control measures for dams and levees. Upstream blankets extend the seepage path to reduce flow and exit gradients. Downstream berms (impermeable, permeable, or composite) resist uplift pressures from low-permeability blanket layers. Design concerns include differential settlement, berm length, drainage capacity, and filter compatibility.",
+      "body": "Upstream seepage blankets are constructed upstream of a dam or levee to increase the seepage pathway as depicted in Figure 6-14a. Upstream blankets are constructed of compacted fill with low hydraulic conductivity or a geomembrane protected with a coarse-grained soil cover. The increased seepage pathway will tend to decrease the amount of seepage, decrease uplift pressures below the dam or levee, and decrease exit gradients. The primary design concern of seepage blankets is providing a uniform foundation for the blanket. Differential settlement of the blanket under reservoir loading can result in tearing or cracking of the blanket and concentrated leakage, decreasing the effectiveness of the blanket.\nDownstream seepage berms are designed to prevent excessive hydraulic pressures on the downstream side of a small dam or levee. Often these pressures are the result of a low hydraulic conductivity soil layer (blanket layer) that blocks the exit of seepage water. Seepage berms are usually constructed using one of three designs: (1) an impermeable berm, (2) a permeable berm, or (3) a composite berm.\nThe concept of an impermeable berm used to resist uplift pressures on a low-permeability blanket layer is presented in Figure 6-14b. The berm is constructed of generally low-permeability soils and is designed to increase the weight of the blanket layer thereby resisting total-stress heave. For blanket layers that allow some seepage, the impermeable berm will increase the resistance to seepage flow through the blanket layer, resulting in higher pressures below the levee and downstream toe. This also requires the berm to extend long distances from the levee in order to produce low uplift pressures beyond the berm.\nA permeable seepage berm is illustrated in Figure 6-14c. The permeable berm is constructed of permeable materials (generally sand) that increase the total weight on the blanket without significantly increasing seepage resistance. Where the blanket layer is sufficiently permeable to allow seepage on the landside, permeable berms can be much shorter than impermeable berms. A disadvantage of this berm type is that appropriate high-permeability soils can be very expensive in some locales.\nA composite seepage berm consists of an upper layer of undifferentiated fill underlain by a drain and filter layer (see Figure 6-14d). Thus, the berm acts similar to the permeable berm but is less expensive because less of the filter material is required. The drainage layer must be designed with adequate flow capacity to prevent the buildup of water pressure in the layer. In some cases, pipes have been included in the drainage layer to increase flow capacity. However, such pipes increase the amount of maintenance needed for the berm.",
+      "key_points": [
+        "Upstream blankets extend the seepage path, reducing flow rate, uplift pressures, and exit gradients downstream.",
+        "Differential settlement is the primary design concern for upstream blankets — cracking or tearing concentrates leakage.",
+        "Three downstream berm types: impermeable (adds weight, requires long extent), permeable (shorter but costly material), and composite (combines fill with a drainage layer).",
+        "Impermeable berms can increase subsurface pressures if the blanket layer is not fully impermeable.",
+        "Composite berms are cost-effective but require careful drain flow capacity design; embedded pipes increase maintenance.",
+        "All downstream berm designs must address filter compatibility at the drainage layer interface."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-14"
+      ],
+      "tables": [],
+      "applicability": "Applies to small dams and levees where upstream or downstream passive measures are needed to control seepage volume, uplift pressures, and exit gradients."
+    },
+    {
+      "section_id": "6-5.2.4",
+      "title": "Other Types of Seepage Barriers",
+      "summary": "Container section grouping three additional seepage barrier types: cutoff trenches (used in original dam/levee construction), foundation grouting (for reducing hydraulic conductivity of fractured bedrock), and liners (for ponds and reservoirs). Each subsection details application, construction approach, and key design considerations.",
+      "body": "",
+      "key_points": [
+        "Additional seepage barriers include cutoff trenches, foundation grouting, and liners.",
+        "Selection depends on whether the application is original construction or remedial, and whether the barrier is in soil or rock."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when vertical cutoff walls or blankets/berms are not the preferred or feasible solution for seepage control."
+    },
+    {
+      "section_id": "6-5.2.4.1",
+      "title": "Cutoff Trench",
+      "summary": "Describes cutoff trenches as broad, sloped-sidewall excavations backfilled with low-hydraulic-conductivity material, constructed in dam and levee foundations during original construction. Highlights the dual benefit of seepage control and visual inspection of subsurface conditions, and the need for filtered protection on the downstream side to prevent internal erosion.",
+      "body": "Cutoff trenches are constructed in the foundations of dams and levees as part of the original construction. The cutoffs are generally a broad trench with sloped sidewalls that is backfilled with low hydraulic conductivity material. The trench extends partially or fully through permeable soil and rock layers in the foundation. In addition to the seepage control offered, cutoff trenches provide an opportunity to visually inspect the subsurface conditions beneath the dam or levee. Care should be taken to ensure that the downstream side of the berm is properly filtered (see Section 6-5.3) to prevent internal erosion into permeable foundation soil or rock.",
+      "key_points": [
+        "Cutoff trenches are broad, sloped-wall excavations backfilled with low-k material during original dam/levee construction.",
+        "Can partially or fully penetrate permeable foundation layers.",
+        "Provide opportunity for visual subsurface inspection during construction.",
+        "Downstream side must be properly filtered to prevent internal erosion into the foundation."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies during original dam or levee construction where a broad, excavated cutoff through permeable foundation soils or rock is feasible."
+    },
+    {
+      "section_id": "6-5.2.4.2",
+      "title": "Foundation Grouting",
+      "summary": "Covers cement grouting of bedrock fractures and voids beneath dams to reduce hydraulic conductivity. Describes use of packers to isolate depth intervals, grout curtain configurations with multiple inclined lines to intercept joints, and applicability both as original construction and as a remedial measure.",
+      "body": "Foundation grouting is performed by pumping stabilized cement grout into boreholes to fill joints and voids in bedrock and reduce the effective hydraulic conductivity of the formation. Foundation grouting can be performed prior to dam construction or after construction as a remedial measure. Grout is pumped into discrete depth intervals of the boring by sealing off an interval using inflatable bladders called packers. Grout lines consisting of evenly spaced boreholes are typically aligned parallel to the axis of the dam although other configurations may be applicable for special circumstances. In many cases, multiple grout lines (grout curtains) are installed along the dam axis with the boreholes inclined in opposite directions to increase the chances of encountering all of the joints and voids in the rock.",
+      "key_points": [
+        "Cement grout is injected into bedrock joints and voids to reduce hydraulic conductivity beneath dams.",
+        "Packers isolate discrete depth intervals for controlled grouting.",
+        "Grout lines are typically parallel to the dam axis; multiple inclined lines (grout curtains) improve coverage of joints.",
+        "Applicable both during original construction and as a post-construction remedial measure."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when fractured or voided bedrock beneath a dam requires hydraulic conductivity reduction, either as original construction or remedial treatment."
+    },
+    {
+      "section_id": "6-5.2.4.3",
+      "title": "Liners",
+      "summary": "Describes liners for ponds and reservoirs to reduce leakage, including compacted clay, synthetic geomembranes, and native soils amended with bentonite. Notes that uniform foundation conditions are essential to prevent differential settlement from tearing or cracking the liner, analogous to upstream blankets.",
+      "body": "Leakage from ponds and reservoirs can be reduced by installing a liner in the base of the pond or reservoir. Such liners can consist of compacted clay, synthetic geomembrane liners, or native soils supplemented with bentonite or other materials to reduce hydraulic conductivity. Similar to upstream blankets, the foundation for the liner must be sufficiently uniform to prevent differential settlements under the reservoir loading, which could tear or crack the liner.",
+      "key_points": [
+        "Liner types: compacted clay, synthetic geomembrane, or native soil amended with bentonite.",
+        "Uniform foundation is critical — differential settlement under reservoir loading can tear or crack the liner.",
+        "Analogous design concern to upstream seepage blankets."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to ponds and reservoirs where leakage must be minimized by installing a low-permeability base liner."
+    },
+    {
+      "section_id": "6-5.3",
+      "title": "Filters and Drains",
+      "summary": "Container section covering the design of filters and drainage systems for dams, levees, excavations, and other geotechnical structures. Establishes that drainage elements must provide adequate flow capacity to relieve target pressures and must be filter-compatible with surrounding soils to prevent internal erosion. Subsections cover mineral filters, geotextile filters, surface/subsurface drainage, retaining wall drainage, embankment drains, and foundation drainage.",
+      "body": "Drainage systems provide relief of hydraulic pressures in foundations, intercept paths of concentrated seepage, and control the release of the drained water to prevent internal erosion. Properly designed drainage elements will have adequate flow capacity to reduce the pressures for which they are designed while being filter compatible with the surrounding soils to prevent internal erosion through the drainage elements.\nFilters and drains are essential components for the drainage systems of a dam, levee, excavation or other geotechnical construction. A filter prevents the migration of the base soil into another soil layer or zone, into a drain, or out of the system through surface flow. The base soil is the material from which the seepage flow is exiting. A drain removes collected water from the collection point to a suitable discharge location. Drains can consist solely of coarse-grained soil that allows rapid seepage through its interstitial voids or can include drainage pipes that collect water from the surrounding coarse-grained drain material.",
+      "key_points": [
+        "Drainage systems must provide adequate flow capacity AND be filter-compatible with adjacent soils.",
+        "A filter prevents migration of base soil particles; a drain conveys collected water to a discharge point.",
+        "Drains can be coarse-grained soil alone or include slotted/perforated collection pipes."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to all geotechnical structures requiring seepage pressure relief and/or control of internal erosion through drainage and filtration."
+    },
+    {
+      "section_id": "6-5.3.1",
+      "title": "Mineral Filter Criteria",
+      "summary": "Presents a 10-step design procedure (based on FEMA 2011) for graded sand and gravel mineral filters. Covers base soil categorization, retention criteria (maximum D15F based on D85B), flow/permeability criteria (minimum D15F based on D15B), uniformity coefficient requirements, limits on oversized material and fines, segregation criteria, and design for drainpipe perforations. Applicable to critical dam and levee drainage elements.",
+      "body": "In order to satisfy its purpose, the filter must (1) have a gradation fine enough to prevent the migration of the base soil into the filter, (2) have high enough hydraulic conductivity to not restrict flow from the base soil, and (3) have the ability to collapse so that cracks in the base soil are not propagated through the filter. Mineral filters consist of sand and gravel that are specifically graded to meet these criteria. Design procedures for mineral filters have been developed by most U.S. agencies involved in dam design. These criteria have been summarized by FEMA (2011). A brief summary of the design procedure is provided in this section.\nIn the design procedure, the soil being filtered is the base soil and characteristics of the base soil gradation will be followed by a B (e.g. the grain size of which 85 percent of the base soil is passing will be denoted: D85B). Similarly, the filter gradation will be followed by an F (e.g. D15F). Examples of the grain sizes associated with filter design are provided in Figure 6-15.\nBased on FEMA (2011), filter design is completed using the following steps:\nStep 1. Plot the grain-size distributions for the base soil and assess whether the base soils contain dispersive soils (e.g., soils that disaggregate when in contact with water). ASTM D6572 and D4647 can be used to identify dispersive soils.\nStep 2. Assess if the base soil has particles larger than the No. 4 sieve or is gap graded. Gap graded soil may be susceptible to internal instability. Special consideration should be given to a gap graded soil to insure the fine portion of the base soil is protected from erosion.\nStep 3. If the base soil contains particles larger than the No. 4 sieve, regrade the grain-size distribution to include only the portion of the distribution finer than the No. 4 sieve. FEMA (2011) provides details on the regrading procedure.\nStep 4. Determine the base soil category using Table 6-11.\nStep 5. Determine the filter criteria for base soil retention by calculating the maximum D15F based on the criteria in Table 6-12. The retention criteria are based on the principle that the larger particles in the base soil (represented by D85B) must be retained by the voids in the filter (controlled by D15F). By providing a maximum D15F, the criteria ensure that the filter voids are sufficiently small. If the base soil has a range of grain-size distributions, the smallest value of D85B should be used for the retention criteria.\nStep 6. Determine the flow criteria for the filter by calculating the minimum D15F based on the criteria in Table 6-13. The permeability criteria are based on the principle that the filter's hydraulic conductivity is strongly related to D15F. By providing a minimum D15F, the filter will have sufficient flow capacity in comparison to the base soil. If the base soil has a range of grain-size distributions, the largest value of D15B should be used for the permeability criteria. Plot the minimum and maximum D15F on a gradation plot and adjust the minimum D15F to ensure that the ratio between the minimum and maximum D15F is not greater than 5 (i.e., Min D15F / Max D15F).\nStep 7. Filters should also have a coefficient of uniformity (Cu = D60F / D10F) between 2 and 6.\nStep 8. Limit the amount of oversized material and fines in the filter. Most agencies require that the maximum particle size of the filter (D100F) be less than 2 inches (51 mm) although the USACE allows particles up to 3 inches (76 mm). The minimum particle size associated with 5% passing for the filter (D5F) is the No. 200 sieve or 0.075 mm. Any fines present in the filter soil should be non-plastic (i.e., PI = 0).\nStep 9. Limit segregation potential of the filter by determining the maximum D90F from Table 6-14. Segregation occurs more easily if a wide range of particle sizes is present.\nStep 10. Plot the criteria for minimum D5F, minimum and maximum D15F, maximum D90F, and maximum D100F on a gradation plot to create an acceptable gradation band for the filter. Compare candidate filters with the criteria and gradation band.\nDesign for Drainpipe Perforations. If the filter is to contain a drainage pipe, the filter soil around the pipe is referred to as the envelope material. The smallest value of D50E (E stands for envelope) allowed by the gradation should be larger than the size of the maximum pipe perforation.",
+      "key_points": [
+        "Mineral filters must satisfy three criteria: particle retention, adequate hydraulic conductivity, and ability to self-heal cracks in the base soil.",
+        "Four base soil categories (Table 6-11) based on percent finer than No. 200 sieve; gap-graded soils need special attention.",
+        "Retention criterion: maximum D15F controlled by D85B (Table 6-12); dispersive soils use tighter criteria.",
+        "Permeability criterion: minimum D15F ≥ (3–5)×D15B depending on agency (Table 6-13); minimum absolute value 0.1 mm.",
+        "Filter Cu should be 2–6; D100F < 2 in (51 mm); fines must be non-plastic (PI = 0).",
+        "Segregation limits set maximum D90F based on minimum D10F (Table 6-14).",
+        "Envelope material D50E must exceed maximum pipe perforation size when a drainpipe is included."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-15",
+        "Figure 6-16"
+      ],
+      "tables": [
+        "Table 6-11",
+        "Table 6-12",
+        "Table 6-13",
+        "Table 6-14"
+      ],
+      "applicability": "Applies to design of sand and gravel mineral filters for dams, levees, excavations, and other structures requiring reliable, long-term filtration of base soils."
+    },
+    {
+      "section_id": "6-5.3.2",
+      "title": "Geotextile Filter Criteria",
+      "summary": "Covers the design of geotextile filters as alternatives to mineral filters, including retention criteria based on opening size O95, permeability requirements expressed through permittivity (Eq. 6-16), and clogging considerations. Notes that major U.S. dam agencies prohibit geotextile use in critical dam zones due to clogging risk and construction damage potential.",
+      "body": "In some cases, geotextiles can be used for soil filtration and drainage in lieu of mineral filters and gravel drains. In general, the FEMA (2011) guidelines do not recommend the use of geotextiles in critical areas of dams. The term geotextiles refers to a wide variety of synthetic, fabric-like products that vary depending on the types of fibers used in the manufacturing and how these fibers are interconnected. The most common forms include woven, nonwoven, and knitted fabrics. Woven geotextiles are manufactured by weaving two perpendicular sets of synthetic fibers to form a fabric. Nonwoven geotextiles have a random orientation often resembling a felt fabric and are manufactured by either needle punching, spun bonding, or resin bonding. Knitted geotextiles consist of interlocking series of loops of fiber yarns that form a fabric.\nA common drainage and filtration application for geotextile filter fabrics is a subsurface drain such as presented in Figure 6-17. In this application the drainage is provided by the poorly-graded gravel drainage rock and the slotted outlet pipe. The role of the geotextile is to prevent migration of the surrounding soils into the drainage rock and pipe. In this way, the geotextile prevents erosion of the surrounding soil and/or clogging of the drain. Other applications include drains within retaining wall backfill and drainage blankets below embankments.\nFor the geotextile fabric in Figure 6-17 or other applications to perform adequately, the geotextile should be designed to have the ability to: (1) retain particles of the base soil to prevent migration through the fabric, (2) allow the passage of water without significant buildup of water pressure, and (3) resist clogging due to accumulation of fine soil particles, chemical precipitates, and biological precipitates.\nCriteria for retention of soil particles was proposed by Giroud (2010) based on D20B and the soil's linear coefficient of uniformity (C'u). As shown in Figure 6-18, a log-linear approximation is used to represent the base soil's gradation curve. The linear particle size (D'x) is obtained from the log-linear approximation. The values of D'100 and D'0 are defined by the ends of a straight line drawn through the middle part of the gradation plot (i.e., through D10 and D60).\nGeotextiles are designed for retention based on the geotextile opening size (O95), which indicates the size at which 95 percent of openings are smaller. According to Luettich (1992), geotextile retention criteria for soils with less than 10% fines can be selected using the base soil gradation and Table 6-15.\nFor soils with more than 10% fines and PI greater than 5, the geotextile should have O95 less than 0.21 mm, provided the soil is non-dispersive. For dispersive soils with more than 20% clay sized particles, a filter of 75 to 100 mm of sand should be placed between the base soil and the geotextile, and the geotextile should be designed to retain the filter sand. Retention of non-plastic soils with more than 10% fines can be designed using Table 6-15.\nGeotextile filters also must have a much higher hydraulic conductivity than the base soil. A filter cake of trapped particles often forms on the face of a geotextile. These particles must not reduce the hydraulic conductivity of the geotextile to the point that it restricts seepage flow out of the base soil. However, clogging is difficult to quantify. Some clogging will occur when the geotextile is put into service. The geotextile must remain sufficiently open so that accumulation of particles and chemical and biological precipitates will not reduce the hydraulic conductivity to the point where the filter cake/geotextile system becomes less permeable than the base soil. The USBR (2014) recommends the following considerations be taken to assess clogging potential:\n• Use the largest opening size that satisfies the retention criterion.\n• Do not use geotextile filters in environments where precipitates are likely to form. Avoid high alkalinity groundwater, which can form calcium, sodium, or magnesium precipitates. Also avoid acidic seepage, which can form iron and aluminum hydroxide precipitates.\n• Avoid use of geotextiles with internally unstable (Cu > 20) or dispersive soils.\n• Avoid organic-rich environments such as agricultural runoff, landfill leachates, and sites known to form iron bacteria.\n• Make sure that the geotextile filter makes intimate contact with the soil.\n• Do not place geotextile filters against cohesive soils containing voids.\nGiroud (2010) suggests that an FSg of 10 to 20 is appropriate to maintain adequate filter permeability. Others (e.g., Loudiere et al. 1983, Christopher and Fischer 1991) recommend that the FSg value be between 10 and 100.\nOver the past several decades geotextile filter fabrics have been developed to provide filtration between base soil and coarse-grained drain materials. While these fabrics are inexpensive compared to mineral filters, they are considered by many to be far less reliable than mineral filters due to their propensity to clog and the potential to be damaged during construction. For this reason, all major dam owning and regulating agencies in the U.S. (U.S. Army Corps of Engineers, U.S. Bureau of Reclamation, FEMA, and FERC) do not allow the use of filter fabrics within critical areas of dam embankments or in high-hazard structures.",
+      "key_points": [
+        "Geotextile types: woven, nonwoven (needle-punched, spun-bonded, resin-bonded), and knitted; each has different pore structure and performance.",
+        "Retention criterion uses O95 (opening size at which 95% of openings are smaller); Table 6-15 provides criteria for soils with <10% fines.",
+        "For soils with >10% fines and PI > 5, O95 < 0.21 mm required (non-dispersive); dispersive soils need an intermediate sand filter layer.",
+        "Permeability requirement: kg/ks ≥ FSg, where FSg = 10–100 (Eq. 6-16); permittivity ψg from ASTM D4491.",
+        "Clogging is difficult to quantify; avoid alkaline/acidic environments, dispersive soils, and organic-rich settings.",
+        "All major U.S. dam agencies prohibit geotextile filters in critical dam embankment zones or high-hazard structures."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 6-16",
+          "description": "Geotextile permeability requirement: kg/ks = ψg·tg / ks ≥ FSg, relating geotextile hydraulic conductivity kg, permittivity ψg, thickness tg, base soil hydraulic conductivity ks, and factor of safety FSg.",
+          "implemented_in": "geotech_references.dm7_1.chapter6.geotextile_permeability_factor_of_safety"
+        }
+      ],
+      "figures": [
+        "Figure 6-17",
+        "Figure 6-18"
+      ],
+      "tables": [
+        "Table 6-15"
+      ],
+      "applicability": "Applies when geotextile fabrics are being considered as filter elements in subsurface drains, retaining wall backfill, or drainage blankets (excluding critical dam embankment zones)."
+    },
+    {
+      "section_id": "6-5.3.3",
+      "title": "Surface and Subsurface Drainage",
+      "summary": "Container section covering drainage solutions for near-surface and surface water management, including intercepting drains for hillside seepage, surface blanket drains for pavement subgrades, drainage of ponded areas using vertical trenches, and retaining wall drainage alternatives. Provides design tools including Figure 6-21 for aggregate base drainage and Figure 6-23 for trench drainage of ponded areas.",
+      "body": "Pavements and other surface treatments can be destabilized by water ponded at the ground surface or shallow phreatic surfaces. Near-surface groundwater may be collected by intercepting drains prior or collected in the pavement base material as it exits the subgrade. Accumulation of surface water in wide flat areas, due to rainfall or other surface sources, can be mitigated using trench drains connected to deeper drainage systems.",
+      "key_points": [
+        "Near-surface groundwater and surface ponding can destabilize pavements and surface structures.",
+        "Intercepting drains, blanket drains, and vertical trench drains address different surface/subsurface drainage scenarios.",
+        "Figure 6-21 used to size aggregate base course thickness and drain spacing for pavement drainage.",
+        "Figure 6-23 provides trench spacing design for draining ponded areas based on Kirkham (1950, 1960)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to roadway, pavement, and surface structure drainage design where near-surface groundwater or ponding threatens stability or performance."
+    },
+    {
+      "section_id": "6-5.3.3.1",
+      "title": "Intercepting Drains",
+      "summary": "Describes intercepting (stability) drains — shallow trenches with collector pipes and drainage material — used to intercept horizontal seepage in upper pervious strata on hillsides or near roadways. Covers trench backfill options (mineral filter or geotextile-wrapped aggregate), notes that criticality governs backfill choice, and recommends flow net or FE analysis for drain design.",
+      "body": "Intercepting drains (a.k.a., stability trenches or stability drains) can be used in locations where water seeping from a hillside has a detrimental effect on slope stability or the performance of roadways. These drains consist of shallow trenches with collector pipes surrounded by drainage material, placed to intercept seepage moving horizontally in an upper pervious stratum as illustrated in Figure 6-19. The trench backfill can consist of a filter material compatible with the surrounding soil as shown in Figure 6-20 or a drainage aggregate wrapped in filter fabric (Figure 6-17). The type of trench backfill and filtering mechanism used will depend on the criticality of the drain. Drain designs should aim to be as simple and constructible as possible while still providing suitable filtering. The effect of intercepting drains on seepage patterns can be evaluated using flow nets or modeled by finite element analyses. Such analyses should also assess the volumetric flow rate into the drains so that the drain pipes and outlets can be properly designed.",
+      "key_points": [
+        "Intercepting drains (stability trenches) intercept horizontal seepage in upper pervious strata to improve slope stability or roadway performance.",
+        "Backfill options: mineral filter compatible with surrounding soil or geotextile-wrapped drainage aggregate.",
+        "Backfill choice depends on drain criticality; simpler designs preferred where suitable.",
+        "Flow nets or FE analyses should be used to evaluate seepage patterns and calculate flow rates for pipe/outlet sizing."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-19",
+        "Figure 6-20"
+      ],
+      "tables": [],
+      "applicability": "Applies to hillside or roadway drainage where horizontal seepage in an upper pervious stratum adversely affects slope stability or pavement performance."
+    },
+    {
+      "section_id": "6-5.3.3.2",
+      "title": "Surface Blanket Drains",
+      "summary": "Covers blanket drains used beneath pavements and structures to intercept groundwater and prevent subgrade destabilization or uplift pressure buildup. Design involves calculating flow rate into the blanket to determine outlet spacing and evaluating tolerable uplift pressure. Figure 6-21 provides drainage performance charts for aggregate base course design. Defines effective porosity and its typical range.",
+      "body": "Surface blanket drains are used to intercept ground water beneath pavements and structures to mitigate the buildup of water pressure or destabilization of subgrades. In many cases, the aggregate base layer of pavements may be assessed for its effectiveness as a blanket drain. Design of surface blanket drains should consist of: (1) assessment of the flow rate of drainage into the blanket to calculate the needed spacing for outlets and (2) assessment of the tolerable uplift pressure in the blanket to prevent damage to the overlying pavement, embankment, or structure.\nThe thickness of aggregate base course needed to provide effective drainage can be calculated using Figure 6-21. For a range of slopes, the degree of drainage is related to the porosity and hydraulic conductivity of the aggregate base, the thickness of the base layer, the subgrade slope, the drain spacing, and the time allowed for drainage. Figure 6-21 can be used to select drain spacing or evaluate suitability of base material.\nEffective porosity (also called specific yield) is the quantity of water per unit volume that is not retained in the soil by capillarity during discharge (Barber 1959). It ranges from 25 percent for a uniform material, such as medium to coarse sand, to 15 percent for a well-graded sand-gravel mixture.",
+      "key_points": [
+        "Blanket drains beneath pavements require two design checks: flow rate for outlet spacing and tolerable uplift pressure.",
+        "Figure 6-21 relates drainage degree to aggregate base porosity, hydraulic conductivity, thickness, slope, drain spacing, and drainage time.",
+        "Effective porosity (specific yield) ranges from ~15% (well-graded sand-gravel) to ~25% (uniform medium-coarse sand).",
+        "Existing aggregate base layers may be evaluated for adequacy as blanket drains."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-21"
+      ],
+      "tables": [],
+      "applicability": "Applies to design of aggregate base drainage layers beneath pavements and structures where subgrade groundwater buildup or uplift pressure is a concern."
+    },
+    {
+      "section_id": "6-5.3.3.3",
+      "title": "Drainage of Ponded Areas",
+      "summary": "Describes use of vertical drainage trenches to mitigate ponding in flat or enclosed basins. Figure 6-23 (after Kirkham 1950, 1960) provides flow rate estimates into parallel trenches for cases with fully pervious or impervious underlying zones, enabling design of trench spacing (2×S) to meet required surface infiltration. Notes that insufficient trench capacity requires surface drainage facilities.",
+      "body": "During times of heavy rainfall or runoff from adjacent areas, vertical drainage trenches can be used to mitigate ponding water in level areas or enclosed basins. The flow rate of seepage into parallel trenches can be estimated using Figure 6-23 for an underlying zone that is either completely pervious or completely impervious in comparison to the surface layer. The trench spacing (2×S) can be designed such that the calculated flow rate into the trenches meets or exceeds the required surface infiltration for an area of 1×2×S. The trench must also be designed to sustain the required flow rate and may include collector pipes. If sufficient drainage capacity cannot be provided using trenches, surface drainage facilities are required to prevent ponding.",
+      "key_points": [
+        "Vertical drainage trenches drain ponded water in flat or enclosed areas.",
+        "Figure 6-23 (Kirkham 1950, 1960) estimates seepage flow rate into parallel trenches for pervious or impervious underlying conditions.",
+        "Trench spacing (2×S) selected so calculated inflow meets required surface infiltration for each drainage area (1×2×S).",
+        "If trench capacity is insufficient, surface drainage facilities are required."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-23"
+      ],
+      "tables": [],
+      "applicability": "Applies to design of vertical trench drainage systems for mitigating ponding in flat or low-lying areas during heavy rainfall or runoff events."
+    },
+    {
+      "section_id": "6-6",
+      "title": "DEWATERING",
+      "summary": "Introduces dewatering as the practice of lowering groundwater to enable subsurface construction or protect existing facilities. Covers the three primary dewatering options—sump collection, wellpoint systems, and deep extraction wells—and notes that system selection depends on expected inflows, heave potential, and required depth of drawdown. Specialized engineering firms are available for dewatering design.",
+      "body": "Sometimes it is necessary to lower the groundwater level to allow for subsurface construction or to prevent flooding of existing facilities. Dewatering options include: (1) a collection system at the base of the excavation leading to a sump, (2) a well point system, and (3) deep extraction wells. The selection of a dewatering system depends on the expected inflows into the excavation, the potential for heave (see Section 6-4.1), and the required depth of groundwater lowering. There are engineering firms and consultants that specialize in dewatering.",
+      "key_points": [
+        "Dewatering is used to lower groundwater for subsurface construction or to protect existing facilities.",
+        "Three main dewatering options: sump collection, wellpoint systems, and deep extraction wells.",
+        "System selection is governed by expected inflow volume, heave potential, and required drawdown depth.",
+        "Specialized dewatering engineering firms and consultants are available."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies whenever groundwater must be lowered to facilitate subsurface construction or protect facilities from flooding."
+    },
+    {
+      "section_id": "6-6.1",
+      "title": "Collection and Sump",
+      "summary": "Describes the collection-and-sump dewatering method, appropriate for excavations in low-hydraulic-conductivity soils where inflow is small and heave is not a concern. Collection trenches or relief trenches channel water to a sump equipped with an electric or gasoline-powered pump. A poorly-graded gravel layer may also be placed over the excavation bottom as a temporary measure.",
+      "body": "When the volume of inflow into an excavation is low (i.e., excavation into low hydraulic conductivity soils) and the potential for heave is not a concern, a collection and sump system may be sufficient. The collection system may consist of a series of trenches on the bottom of the excavation or a system of relief trenches (see Section 6-5.3.3.1) at the base of the excavation. In some temporary cases, a layer of poorly-graded gravel can be placed over the bottom of the excavation that allows water to flow toward the sump. The collection system leads to a sump with a pump to remove the inflow. Sump pumps can be either electric or gasoline-powered (i.e., \"trash\" pumps).",
+      "key_points": [
+        "Collection-and-sump is suitable for low-inflow excavations in low-hydraulic-conductivity soils where heave is not a concern.",
+        "Collection trenches or relief trenches at the excavation base channel water to the sump.",
+        "A temporary poorly-graded gravel layer can be placed over the excavation bottom to direct flow toward the sump.",
+        "Sump pumps may be electric or gasoline-powered ('trash' pumps)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to excavations in low-hydraulic-conductivity soils with low inflow volumes and no significant heave risk."
+    },
+    {
+      "section_id": "6-6.2",
+      "title": "Wellpoint Systems",
+      "summary": "Covers wellpoint dewatering systems, which use 1-1/2- or 2-inch slotted/screened pipes connected to suction headers. Effective for soils with D10 > 0.05 mm or soils with laminated structure. Maximum drawdown is limited to 15–18 ft below the suction header due to atmospheric pressure constraints; staged installations can achieve greater depths. Spacing, discharge, and analysis methods are discussed.",
+      "body": "Wellpoints are 1-1/2- or 2-inch diameter pipes that are connected to a suction system to remove the groundwater. The lower section of each wellpoint is slotted or perforated and screened to prevent removal of the surrounding soil into the pipe. The pipes are pushed or jetted in place, or installed in predrilled holes. The wellpoints are each connected to a header leading to suction pumps.\n\nWellpoints are generally effective when the soil has D10 greater than 0.05 mm or if the soil has a structure, such as varves or laminations, for conducting groundwater horizontally. The maximum differential pressure that can be developed in wellpoints is limited by atmospheric pressure. Thus, the drawdown of the groundwater level using wellpoints is ordinarily limited to 15 to 18 feet below the center of the suction header. If a greater amount of drawdown is required, wellpoints can be installed in successive tiers or stages as excavation proceeds as illustrated in Figure 6-31.\n\nThe discharge capacity for each wellpoint is generally 15 to 30 gpm (3 to 6 m3/hour). Wellpoint spacing is typically between 3 and 10 feet (1 and 3 m). Closer spacing should be used for soils with lower hydraulic conductivity. In such soils, the effectiveness of wellpoints can be increased by predrilling the locations and backfilling with sand around the wellpoint.\n\nDue to the close spacing of wellpoints, a two-dimensional analysis is generally sufficient. The drawdown and flow into the line of wellpoints can be analyzed either with a flow net or two-dimensional finite element analysis. For soil with high k (clean fine sand or coarser), the quantity of water to be removed controls wellpoint layout. For silty soils, the flow rate is relatively small, and the number and spacing of wellpoints will be influenced by the time available to accomplish dewatering.",
+      "key_points": [
+        "Wellpoints are 1-1/2- or 2-inch slotted/screened pipes connected to suction headers; installed by pushing, jetting, or predrilling.",
+        "Effective for soils with D10 > 0.05 mm or those with laminated/varved structure allowing horizontal groundwater flow.",
+        "Atmospheric pressure limits drawdown to 15–18 ft below the suction header; staged/tiered installation required for deeper drawdown.",
+        "Discharge capacity per wellpoint: 15–30 gpm (3–6 m³/hr); typical spacing 3–10 ft (1–3 m).",
+        "Closer spacing and sand backfill around predrilled holes improves effectiveness in low-k silty soils.",
+        "Two-dimensional analysis (flow net or FEM) is generally sufficient due to close wellpoint spacing.",
+        "High-k soils: pumping quantity controls layout. Silty soils: time for dewatering controls number and spacing."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-31"
+      ],
+      "tables": [],
+      "applicability": "Applies to excavation dewatering projects where soils have D10 > 0.05 mm or laminated structure, and required drawdown is within suction limits or staged installation is feasible."
+    },
+    {
+      "section_id": "6-6.3",
+      "title": "Extraction Wells",
+      "summary": "Describes deep extraction wells for dewatering, covering their construction (bored hole, casing, screen, filter pack, turbine or submersible pump) and four key use cases: external system placement, large long-term pumping, pre-excavation drawdown, and pressure relief in confined aquifers. Also addresses ejector/eductor pumps as an alternative for lifts up to 60 ft, and references Figure 6-32 for drawdown and pumping quantity calculations.",
+      "body": "Extraction wells consist of a bored hole containing a well casing with a screened section in the aquifer, a filter pack, and a pipe column. A turbine-type pump with a motor at the surface can be used, or a submersible pump may be placed within the well casing. Extraction wells are used if (a) the dewatering system must be kept outside the excavation area, (b) large quantities of water must be pumped for a long period of time, (c) pumping must commence before excavation to obtain the necessary time for drawdown, or (d) pressures must be lowered in a confined aquifer that is below a low-permeability layer underlying an excavation. Extraction wells may be used for soils with classifications ranging from gravel to silty fine sand, and for water bearing rocks. Bored shallow wells with suction pumps can be used to replace wellpoints where pumping is required for several months or in silty soils where correct filtering is critical.\n\nEjector or eductor pumps may be utilized within wellpoints for lifts up to about 60 feet. The ejector pump has a nozzle arrangement at the bottom of two small diameter riser pipes which remove water by the Venturi principle. They are used in lieu of a multistage wellpoint system and if the large pumping capacity provided by extraction wells is not required. Their primary application is for sands, but with proper control they can also be used in silty sands and sandy silts.\n\nFigure 6-32 presents equations for analysis of drawdown and pumping quantities for single wells or a group of wells in a circular pattern. The radius of influence (R) is often defined as the radius beyond which the well has no influence. R is a function of the discharge (q) and thus changes depending on the rate of pumping. The equations presented allow the calculation of R from data in a single observation well. Once R is known, drawdown at other locations can be calculated.",
+      "key_points": [
+        "Extraction wells use a bored casing with screen, filter pack, and either a surface turbine pump or submersible pump.",
+        "Used when: system must be outside excavation, large long-term pumping needed, pre-excavation drawdown required, or confined aquifer pressure must be relieved.",
+        "Applicable for soils from gravel to silty fine sand and water-bearing rocks.",
+        "Ejector/eductor pumps (Venturi principle) provide lifts up to ~60 ft and serve as alternative to multistage wellpoints for sands, silty sands, and sandy silts.",
+        "Figure 6-32 provides equations for drawdown and pumping quantities for single wells and circular well groups.",
+        "Radius of influence (R) depends on discharge rate (q) and can be calculated from a single observation well; once known, drawdown anywhere can be determined."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-32"
+      ],
+      "tables": [],
+      "applicability": "Applies when large-scale or long-duration dewatering is needed, when the system must remain outside the excavation, or when confined aquifer pressure relief is required."
+    },
+    {
+      "section_id": "6-7",
+      "title": "Suggested Reading",
+      "summary": "Provides a curated list of reference texts for Chapter 6 topics including groundwater flow, filter design, and numerical seepage analysis. References span foundational textbooks (Cedergren 1977, Freeze & Cherry 1979), FEMA guidance on embankment dam filters (2011), and finite element analysis resources for geotechnical practice (Bradley & VandenBerge 2015; Potts & Zdravkovic 2001).",
+      "body": "Topic | Reference\nGroundwater Flow | Cedergren, H. R. 1977. Seepage, Drainage, and Flow Nets, John Wiley and Sons, Inc., New York.\nGroundwater Flow | Freeze, R. A. and Cherry, J.A. 1979. Groundwater Prentice-Hall, Englewood Cliffs, NJ.\nFilter Design | Federal Emergency Management Agency (FEMA), 2011. Filters for Embankment Dams, Best Practices for Design and Construction.\nNumerical Seepage Analysis | Bradley, N. and VandenBerge, D. R. 2015. Beginner's Guide for Geotechnical Finite Element Analyses, Center for Geotechnical Practice and Research, Virginia Tech.\nNumerical Seepage Analysis | Potts, D. M. and Zdravkovic, L. 2001. Finite Element Analysis in Geotechnical Engineering: Theory and Application ICE Publishing.",
+      "key_points": [
+        "Cedergren (1977) is the foundational reference for seepage, drainage, and flow net construction.",
+        "Freeze & Cherry (1979) is the standard reference for groundwater flow theory.",
+        "FEMA (2011) provides best practices for filter design in embankment dams.",
+        "Bradley & VandenBerge (2015) and Potts & Zdravkovic (2001) cover numerical (finite element) seepage analysis methods."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when an engineer needs authoritative references for groundwater flow theory, filter design, or numerical seepage analysis covered in Chapter 6."
+    },
+    {
+      "section_id": "6-8",
+      "title": "Notation",
+      "summary": "Defines all symbols and abbreviations used throughout Chapter 6 on seepage and groundwater flow. Covers hydraulic parameters (head, gradient, conductivity, flow rate), soil particle size descriptors used in filter and Kozeny-Carman equations, geotextile design parameters (permittivity, apparent opening size, hydraulic conductivity), and flow net quantities (Nd, Nf, equipotential drops).",
+      "body": "Symbol | Description\na | Isotropic transformation factor for flow nets\nA | Cross sectional area of the flow region perpendicular to the flow direction\nCʹu | Linear coefficient of uniformity (geotextile design)\nDli | Particle size of the coarser sieve (Kozeny-Carman equation)\nDsi | Particle size of the finer sieve (cm)\nDα | Effective grain size - α is the percent of soil particles smaller than the stated size, values of 5, 10, 15, and 20 are commonly used for α\nDx | Particle size for which X% of the soil is finer\nDʹx | Particle size for which X% of the soil is finer for linearized particle distribution (geotextile design)\nDxB | Particle size for which X% of the soil is finer for a base soil\nDxF | Particle size for which X% of the soil is finer for a filter material\ne | Void ratio of the soil\nfi | Fraction of particles between two adjacent sieve sizes (Kozeny-Carman equation)\nFSg | Factor of safety for geotextile permeability\nhL | Head loss across flow region\nhp | Pressure head\nht | Total hydraulic head\nhv | Velocity head\nhz | Elevation head\ni | Hydraulic gradient\nk | Hydraulic conductivity of soil (various subscripts)\nkg | Hydraulic conductivity of geotextile across plane of fabric\nL | Length of flow path\nn | Porosity of the soil\nNd | Number of equipotential (head) drops in the flow net\nNf | Number of flow channels in the flow net\nO95 | Geotextile apparent opening size\nq | Volumetric flow rate\nR | Radius of influence in well design\nS | Surface area factor for grain shape (Kozeny-Carman equation)\ntg | Geotextile thickness\nu | Water pressure at the point of interest\nvd | Discharge velocity\nvs | Seepage velocity\nx | Exponent on effective grain size for hydraulic conductivity correlations\nY | Height of the flow region\nZ | Elevation of a point of interest above the elevation datum\nβα | Empirical or semi-empirical coefficient relating k to Dα\nγw | Unit weight of water\n∆hl | Total head loss for one equipotential drop on a flow net\nψg | Geotextile permittivity, provided by manufacturers or from testing (ASTM D4491)",
+      "key_points": [
+        "Hydraulic head components are defined: total head (ht), pressure head (hp), elevation head (hz), and velocity head (hv).",
+        "Particle size notation distinguishes base soil (DxB), filter material (DxF), effective grain size (Dα), and linearized distribution (Dʹx) for geotextile design.",
+        "Flow net quantities Nd (number of equipotential drops) and Nf (number of flow channels) are key inputs for seepage flow rate calculations.",
+        "Geotextile-specific symbols include permittivity (ψg), apparent opening size (O95), hydraulic conductivity (kg), thickness (tg), and factor of safety (FSg).",
+        "Kozeny-Carman equation variables include Dli (coarser sieve size), Dsi (finer sieve size), fi (fraction between sieves), and S (surface area factor for grain shape).",
+        "βα is an empirical/semi-empirical coefficient used to relate hydraulic conductivity k to effective grain size Dα."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies whenever interpreting equations, figures, or tables in Chapter 6 that use symbolic notation for seepage, filter design, or geotextile analyses."
+    }
+  ]
+}

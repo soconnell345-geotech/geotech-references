@@ -134,6 +134,21 @@ def can_resolve_path(dotted_path: str) -> bool:
     return False
 
 
+def _is_container(sid: str, sections: list, index: int) -> bool:
+    """A container section has child subsections later in document order;
+    its body may legitimately be empty."""
+    if not sid:
+        return False
+    for j in range(index + 1, len(sections)):
+        other = sections[j]
+        if not isinstance(other, dict):
+            continue
+        other_id = other.get("section_id", "")
+        if other_id.startswith(sid + ".") or other_id.startswith(sid + "-"):
+            return True
+    return False
+
+
 def validate_schema(chapter_json: dict) -> list[str]:
     errors: list[str] = []
     required_top = [
@@ -160,6 +175,7 @@ def validate_schema(chapter_json: dict) -> list[str]:
         for k in (
             "section_id",
             "title",
+            "summary",
             "body",
             "key_points",
             "equations",
@@ -169,14 +185,28 @@ def validate_schema(chapter_json: dict) -> list[str]:
         ):
             if k not in sec:
                 errors.append(f"{loc}: missing key '{k}'")
+        summary = sec.get("summary", "")
+        if isinstance(summary, str):
+            if len(summary) < 50:
+                errors.append(f"{loc}: summary < 50 chars")
+            elif len(summary) > 700:
+                errors.append(f"{loc}: summary > 700 chars")
         sid = sec.get("section_id", "")
         if sid:
             seen_ids[sid] += 1
-            if not re.match(r"^[0-9P]+(\.[0-9]+)*$", sid):
+            # FHWA/GEC dot form, UFC hyphen-then-dot form, prologue P.x or P-x
+            if not re.match(r"^[0-9P]+([-.][0-9]+)*$", sid):
                 errors.append(f"{loc}: section_id '{sid}' has invalid format")
-        if isinstance(sec.get("body"), str) and len(sec["body"]) < 100:
+        body = sec.get("body", "")
+        kp_list = sec.get("key_points", []) if isinstance(sec.get("key_points"), list) else []
+        summary_ok = len(sec.get("summary", "")) >= 100
+        # Allow empty body if the section is a container OR if it has a
+        # substantive summary plus at least two key_points (a stub section
+        # that carries its content in bullets rather than prose).
+        has_substance = _is_container(sid, sections, i) or (summary_ok and len(kp_list) >= 2)
+        if isinstance(body, str) and len(body) < 100 and not has_substance:
             errors.append(
-                f"{loc} ({sid}): body is shorter than 100 chars (placeholder?)"
+                f"{loc} ({sid}): body is shorter than 100 chars with no summary/key_points backup"
             )
         kp = sec.get("key_points")
         if isinstance(kp, list):
@@ -239,7 +269,8 @@ def audit_chapter(
 
     paths = collect_implemented_in_paths(chapter_json)
     print(f"  implemented_in paths: {len(paths)}")
-    unresolved = [p for p in paths if not can_resolve_path(f"geotech_references.{p}")]
+    # Paths are stored fully qualified (e.g., geotech_references.dm7_1.chapter5.foo)
+    unresolved = [p for p in paths if not can_resolve_path(p)]
     if unresolved:
         for p in unresolved:
             errors.append(f"implemented_in path does not resolve: {p}")

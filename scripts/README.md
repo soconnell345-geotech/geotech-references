@@ -148,17 +148,118 @@ The pipeline is generic — no per-reference Python code is needed.
   minutes of wall clock time and a few dollars of API spend.
 - The auditor is free and runs in seconds.
 
+## Current state — DM7 (2026-04-07)
+
+After this commit, both UFC 3-220-10 (`dm7_1`) and UFC 3-220-20 (`dm7_2`)
+have substantially complete chapter text:
+
+| File | Sections | Equation refs | Status |
+|---|---|---|---|
+| `dm7_1/text/chapter01.json` | 65 | 6/6 | OK |
+| `dm7_1/text/chapter02.json` | 77 | 3/3 | OK |
+| `dm7_1/text/chapter03.json` | 43 | 4/5 | missing 1 eq |
+| `dm7_1/text/chapter04.json` | 58 | 11/12 | missing Eq 4-12 |
+| `dm7_1/text/chapter05.json` | 63 | 27/28 | missing Eq 5-19 |
+| `dm7_1/text/chapter06.json` | 52 | 15/15 | OK |
+| `dm7_1/text/chapter07.json` | 52 | 5/6 | missing Eq 7-2 |
+| `dm7_1/text/chapter08.json` | 47 | 45/45 | OK |
+| `dm7_2/text/prologue.json` | 40 | 3/0 | OK |
+| `dm7_2/text/chapter02.json` | 51 | 10/10 | OK |
+| `dm7_2/text/chapter03.json` | 68 | 10/10 | OK |
+| `dm7_2/text/chapter04.json` | 61 | 26/31 | missing 4-20, 4-21, 4-22, 4-29, 4-30 |
+| `dm7_2/text/chapter05.json` | 75 | 42/42 | OK |
+| `dm7_2/text/chapter06.json` | 103 | 72/74 | missing 6-38, 6-39 |
+| `dm7_2/text/chapter07.json` | 40 | 15/16 | missing 7-16; appendices NOT extracted |
+
+**Totals:** 895 sections, 295/307 equations cross-referenced (96.1%), built
+on Sonnet 4.6 with section-level chunking, parallel execution, and
+automatic recursive subdivision of oversized chunks. Chunks above 35k
+chars / 15 pages are auto-split using deeper PDF outline levels.
+
+The two original chapter-scoped extracts (Opus 4.6, ch1 and ch4 of
+`dm7_1`) are quarantined under `dm7_1/text/_v0_chapter_scoped/` for
+diffing against the section-level output. They are not loaded by the
+retrieval layer.
+
+## What's still TODO for DM7
+
+### Phase 2 leftovers (small API spend)
+
+1. **Spot-fix 12 missing equations** by re-extracting just the chunks
+   containing them. Each chunk is ~5-10 pages and runs in 30-60 s on
+   Sonnet. Total cost ~$1. Equation IDs:
+   - dm7_1: Eq 3-? (ch3), Eq 4-12, Eq 5-19, Eq 7-2
+   - dm7_2: Eqs 4-20/21/22/29/30, Eqs 6-38/39, Eq 7-16
+
+2. **Decide on UFC 3-220-20 appendices** (pp ~595-724). The PDF outline
+   doesn't have entries for the appendices, so they all got lumped
+   under the `7-6 SUGGESTED READING` chunk which failed extraction
+   (130 pages, 256k chars). Pages ~600-650 contain real engineering
+   content (Appendix B on retaining-structure analysis, glossary). Two
+   options:
+   - Skip them as out-of-scope (no API cost).
+   - Add explicit appendix entries to `manifests/dm7_2.json` with
+     manual page ranges and run them through the pipeline as
+     pseudo-chapters (~$3-5 of API).
+
+### Phase 3 (no API spend, mechanical wiring + SQL layer)
+
+This is the biggest remaining piece and is what makes the JSON files
+actually queryable by the agent.
+
+1. **Build SQLite FTS5 retrieval layer** at
+   `geotech_references/_retrieval_db.py`:
+   - Lazy build from chapter JSONs at first call (not committed as
+     binary; rebuilt on demand).
+   - Single FTS5 virtual table indexing `title`, `summary`, `body`,
+     `key_points`, `applicability` with porter stemming and BM25 ranking.
+     Structural columns (`reference`, `chapter`, `section_id`, etc.)
+     stored UNINDEXED.
+   - New tools: `reference_search(query, reference=None, chapter=None,
+     limit=5)` returns ranked summary-only hits, `reference_get(reference,
+     section_id)` returns full body, `reference_query(sql)` runs read-only
+     constrained SELECTs (URI mode read-only conn, regex SELECT-only
+     check, server-side LIMIT cap).
+   - **Crucially: search hits return `summary` only, not `body`.** This
+     is the noise-reduction lever for the agent retrieval surface.
+
+2. **Wire DM7 text retrieval into Funhouse adapters.** Split
+   `funhouse_agent/adapters/dm7_adapter.py` into `dm7_1_adapter.py` and
+   `dm7_2_adapter.py`. Each calls `add_text_retrieval(registry, info,
+   "dm7_1", "UFC 3-220-10")` etc. Update
+   `funhouse_agent/adapters/__init__.py` MODULE_REGISTRY (replace `dm7`
+   entry with `dm7_1` + `dm7_2`). Update `funhouse_agent/reviewer.py`
+   REFERENCE_MODULES.
+
+3. **Wire DM7 text retrieval into Foundry side.** Update
+   `geotech-references/agents/dm7_agent.py` analogously. Flip
+   `has_text: True` for `dm7_1` and `dm7_2` in
+   `geotech-references/agents/references_agent.py` `_REFERENCE_CATALOG`.
+
+4. **Add the new SQL tool surface to both Funhouse and Foundry agents**
+   alongside the existing four (Option A — backward-compat, no migration
+   of existing references' callers). The Foundry SQL tool is gated to
+   read-only SELECTs the same way as the Funhouse one.
+
+5. **Tests:** add `geotech-references/tests/test_dm7_text.py` and
+   `funhouse_agent/tests/test_dm7_text_retrieval.py`.
+
+6. **Fix DM7 source citation bug** (todo item 6). DESIGN.md and chapter
+   docstrings claim NAVFAC DM 7.01/7.02 (1986); the actual source is
+   UFC 3-220-10 (2022) and UFC 3-220-20 (2025). Audit and correct.
+
+7. **Bump versions.** `geotech-references/pyproject.toml` 1.1.0 → 1.2.0
+   (additive: new chapter JSONs + new retrieval module). Main repo
+   `pyproject.toml` → 4.6.0.
+
 ## Phasing of the DM7 effort
 
-This script is **Phase 1** of the DM7 chapter text plan. See
-`~/.claude/plans/cozy-pondering-sutton.md` for the full plan.
+See `~/.claude/plans/cozy-pondering-sutton.md` for the original plan and
+its mid-flight redesign notes.
 
-- **Phase 1 (this commit)**: pipeline scripts, manifests, schema. No JSON
-  files generated yet, no adapter changes.
-- **Phase 2 (manual)**: Run the pipeline against UFC 3-220-10 and
-  UFC 3-220-20 with an Anthropic API key. Audit. Spot-check.
-- **Phase 3 (next code commit)**: Split `funhouse_agent/adapters/dm7_adapter.py`
-  into `dm7_1_adapter.py` and `dm7_2_adapter.py`, wire `add_text_retrieval`
-  for both, update `_REFERENCE_CATALOG` in `references_agent.py` to flip
-  `has_text: True`, update `funhouse_agent/reviewer.py` REFERENCE_MODULES,
-  ship as `geotech-references` v1.2.0 + main repo v4.6.0.
+- **Phase 1 (DONE)**: pipeline scripts, manifests, schema.
+- **Phase 2 (~95% DONE)**: pipeline runs that produced the 895 sections
+  above. Remaining: spot-fix 12 missing equations and decide on
+  appendices.
+- **Phase 3 (NOT STARTED)**: SQLite FTS5 retrieval layer + adapter
+  wiring + version bump + Foundry/Funhouse integration.

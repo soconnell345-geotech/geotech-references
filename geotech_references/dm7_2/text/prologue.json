@@ -1,0 +1,763 @@
+{
+  "reference_id": "UFC 3-220-20",
+  "reference_title": "UFC 3-220-20 Foundations and Earth Structures",
+  "volume": 2,
+  "chapter": 0,
+  "chapter_title": "Prologue",
+  "sections": [
+    {
+      "section_id": "P-1",
+      "title": "SCOPE",
+      "summary": "Introduces the prologue's purpose: guiding designers on how to measure or estimate shear strength parameters required by the design methods in UFC 3-220-20. Covers the distinction between coarse-grained (cohesionless) and fine-grained (cohesive) soils in terms of pore pressure behavior, and outlines the prologue's organization.",
+      "body": "The design methods presented in this manual require shear strength parameters for the soil materials encountered. However, the correct methods to measure or estimate the shear strength parameters are not explained in detail in the forthcoming chapters. The purpose of this prologue is to provide the designer with suggestions on how to arrive at the parameters necessary for successful design and analysis.\n\nThe procedures included in this prologue are accepted in mainstream geotechnical engineering practice. There are more advanced theories of soil behavior that are reported in various geotechnical publications, but those are more appropriately applied to designs that are more advanced than those presented in this manual.\n\nThis prologue divides soils generally into coarse-grained or granular soils, often called cohesionless materials; and fine-grained or cohesive materials. These distinctions are useful in that coarse-grained soils do not develop significant pore pressures during normal construction loading, while fine-grained soils can show increases in pore pressures for compressive loads and decreases in pore pressures during reductions in loads or excavations.\n\nThis prologue is organized by first addressing factors that apply to both fine-grained and coarse-grained soils, and then specifically outlining the methods of arriving at design shear strength parameters.",
+      "key_points": [
+        "The prologue supplements the manual by explaining how to measure or estimate shear strength parameters needed for design.",
+        "Only mainstream, accepted geotechnical practice is covered; more advanced soil behavior theories are outside the scope.",
+        "Coarse-grained (cohesionless) soils do not develop significant pore pressures under normal construction loading.",
+        "Fine-grained (cohesive) soils can exhibit pore pressure increases under compressive loads and decreases during excavation or load reduction.",
+        "The prologue first covers factors common to both soil types, then addresses each type's design shear strength parameters separately."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies whenever a designer needs guidance on selecting or estimating shear strength parameters for any soil type addressed in UFC 3-220-20."
+    },
+    {
+      "section_id": "P-2",
+      "title": "STRENGTH ENVELOPES",
+      "summary": "Container section covering the theoretical frameworks used to define soil shear strength envelopes, including Mohr-Coulomb failure criteria and nonlinear envelope representations. Subsections address linear and nonlinear (power function) approaches used in limit equilibrium analysis for geotechnical design.",
+      "body": "",
+      "key_points": [
+        "Covers both linear (Mohr-Coulomb) and nonlinear (power function) representations of soil shear strength envelopes.",
+        "Subsections detail effective stress, total stress, and undrained (φ=0) failure criteria as well as two- and three-parameter power functions."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when selecting or defining strength envelope models for limit equilibrium geotechnical analyses."
+    },
+    {
+      "section_id": "P-2.1",
+      "title": "Mohr-Coulomb Failure Criteria",
+      "summary": "Describes the Mohr-Coulomb framework used for all limit equilibrium procedures in the manual (pile capacity, bearing capacity, retaining structure stability). Defines effective stress (drained), total stress (undrained), and saturated undrained (φ=0) failure envelopes with associated shear strength parameters and equations. Cautions on inconsistent use of the prime symbol in literature.",
+      "body": "The limit equilibrium procedures described in this manual, such as pile capacity, bearing capacity of shallow foundations, and stability of retaining structures, require shear strength parameters that are defined by Mohr-Coulomb failure criteria. In short, the Mohr-Coulomb theory relates the shear strength of the soil to the normal stress on the failure plane. For the case of drained or effective stress strengths, the shear strength is related to the effective normal stress on the failure plane. For the case of undrained or total stress strengths, the shear strength is related to the total normal stress on the failure plane. For saturated soils, there exists a special case whereby the undrained strength is independent of the stress of the failure plane (φ = 0 case). Examples of these three failure envelopes, with the simplifying assumption of a linear envelope, are shown in Figure P-1.\n\nShown in Table P-1 are the basic shear strength parameters for these three envelopes and the general equation used to calculate shear strength (s) as a function of the normal stress. In geotechnical engineering practice, the prime symbol (ʹ) is used to denote effective stress or drained parameters. In some older references and manuals, a bar above the parameter is used instead of the prime symbol (e.g., φ̄ and c̄). Unfortunately, many papers, manuals, and textbooks are not consistent in clearly indicating drained or effective stress parameters. The prime symbol is often omitted even though the shear strength parameters refer to effective stress or drained parameters, and the reader should be aware of this issue.\n\nThe strength equations shown in Table P-1 are simple equations for a line, with the σ and σʹ parameters denoting the total and effective stress normal to the failure plane. For the limit equilibrium analyses presented in this manual, the use of these equations is often embedded into the derivation of the equilibrium equation and is not readily apparent.",
+      "key_points": [
+        "Mohr-Coulomb criteria underpin all limit equilibrium methods in the manual: pile capacity, bearing capacity, and retaining structure stability.",
+        "Three failure envelope cases: drained (effective stress), undrained (total stress, S < 100%), and saturated undrained (φ = 0, S = 100%).",
+        "Drained strength equation: s = cʹ + σʹ tan φʹ; undrained: s = c + σ tan φ; saturated undrained: su = c.",
+        "The prime symbol (ʹ) denotes effective stress parameters; older references may use an overbar instead.",
+        "Literature is often inconsistent in applying the prime symbol — designers must verify whether parameters are drained or undrained.",
+        "For saturated fine-grained soils the φ = 0 envelope should always be interpreted as a horizontal linear envelope."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure P-1 Mohr-Coulomb Failure Envelopes for Effective and Total Stress Conditions"
+      ],
+      "tables": [
+        "Table P-1 Effective Stress and Total Stress Shear Strength Parameters and Associated Equation for Calculating Shear Strength on the Failure Plane"
+      ],
+      "applicability": "Applies to all limit equilibrium design analyses in UFC 3-220-20 that require Mohr-Coulomb shear strength parameters for any soil type or saturation condition."
+    },
+    {
+      "section_id": "P-2.2",
+      "title": "Nonlinear Envelopes",
+      "summary": "Explains that soil strength envelopes are commonly nonlinear and discusses when a linear approximation (single cʹ and φʹ) is adequate over a specific pressure range. Warns that outside that stress range the linear envelope will overpredict strength, and references Duncan et al. (2014) for four methods to accommodate nonlinearity.",
+      "body": "The envelopes in Figure P-1 are linear, and the equations used to calculate the shear strength use the intercept (cʹ or c) and the slope (tan φʹ or tan φ) to calculate the shear strength. Although strength envelopes for soils are commonly nonlinear, a single value of intercept and slope may be accurate enough to represent the strength of a soil over a specific pressure range. Figure P-2 shows a curved envelope, and a linear representation for the pressure range indicated. For the range of normal stresses shown, the resulting shear strength calculated from the values of cʹ and φʹ would be sufficiently accurate for design analyses. However, for normal stresses less than or greater than the range of stresses shown, the linear envelope would overpredict the shear strength. This should be kept in mind when using a design procedure or formula that requires single values of φʹ and cʹ (or φ and c). There are many ways to accommodate nonlinear failure envelopes. Examples of four different methods are outlined in Duncan et al. (2014).\n\nNote: The φ = 0 envelope experimentally determined for saturated clays using the unconsolidated-undrained triaxial test may be slightly nonlinear for a large range of cell pressures, but should always be interpreted as a horizontal linear envelope for saturated fine-grained soils.",
+      "key_points": [
+        "Soil strength envelopes are commonly nonlinear; a linear (c, φ) approximation is valid only over a specific stress range.",
+        "Outside the calibrated stress range, a linear envelope will overpredict shear strength — a critical design consideration.",
+        "Duncan et al. (2014) outlines four methods to handle nonlinear failure envelopes.",
+        "The φ = 0 envelope for saturated clays should always be treated as horizontal and linear, even if slightly nonlinear over a wide pressure range."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure P-2 Example Use of a Linear Envelope to Represent a Nonlinear Strength Envelope for a Specific Range of Stress"
+      ],
+      "tables": [],
+      "applicability": "Applies when soil strength data indicate a nonlinear failure envelope and the designer must decide whether a linear approximation is adequate for the design stress range."
+    },
+    {
+      "section_id": "P-2.2.1",
+      "title": "Two-Parameter Power Function",
+      "summary": "Presents a two-parameter power function (parameters a and b, normalized by atmospheric pressure Pa) as an alternative to linear Mohr-Coulomb parameters for representing nonlinear drained and undrained strength envelopes. Provides equations for both drained (Eq. P-1) and undrained (Eq. P-2) cases, and notes availability in some limit equilibrium slope stability programs.",
+      "body": "The use of a two-parameter power function to model the envelope is one method available in some limit equilibrium slope stability programs, which are useful for checking global stability for retaining walls and other structures. Instead of the usual shear strength parameters of φʹ and cʹ, the alternative parameters a and b can be used in the equation below:\n\ns = a·Pa·(σʹ/Pa)^b   (P-1)\n\nwhere:\na and b = power function strength parameters and\nPa = atmospheric pressure.\n\nAlthough less common, the two-parameter power function can also be used to represent undrained shear strengths. For example, as shown in Figure P-3(a), undrained strength can be related to the effective consolidation stress as:\n\nsu = au·Pa·(σ'con,1/Pa)^bu   (P-2)\n\nwhere:\nsu = undrained shear strength,\nau and bu = power function strength parameters.",
+      "key_points": [
+        "The two-parameter power function uses dimensionless parameters a and b, normalized by atmospheric pressure Pa, instead of c and φ.",
+        "Eq. P-1 applies to drained (effective stress) strength: s = a·Pa·(σʹ/Pa)^b.",
+        "Eq. P-2 extends the approach to undrained shear strength related to effective consolidation stress: su = au·Pa·(σ'con/Pa)^bu.",
+        "Available in some limit equilibrium slope stability programs for checking global stability of retaining walls and other structures.",
+        "The two-parameter form cannot model a shear strength intercept (requires the three-parameter form)."
+      ],
+      "equations": [
+        {
+          "id": "Eq. P-1",
+          "description": "Two-parameter power function for drained shear strength: s = a·Pa·(σʹ/Pa)^b, where a and b are power function strength parameters and Pa is atmospheric pressure.",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. P-2",
+          "description": "Two-parameter power function for undrained shear strength: su = au·Pa·(σ'con,1/Pa)^bu, where au and bu are power function strength parameters and Pa is atmospheric pressure.",
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure P-3 Other Types of Power Function – (a) Undrained Shear Strength and (b) Three-Parameter"
+      ],
+      "tables": [],
+      "applicability": "Applies when modeling nonlinear drained or undrained soil strength envelopes using software that supports power function parameters in limit equilibrium slope stability analyses."
+    },
+    {
+      "section_id": "P-2.2.2",
+      "title": "Three-Parameter Power Function",
+      "summary": "Introduces a three-parameter power function (Eq. A-3, after Jiang et al. 2003) for cases where a strength intercept is needed, which the two-parameter form cannot model. The third parameter t is the tensile intercept T normalized by atmospheric pressure. An alternate normalized-cohesion form by McGuire and VandenBerge (2017) is noted as practically equivalent.",
+      "body": "Equation A-1 cannot model a shear strength intercept. A three-parameter function is required for cases where an intercept is warranted. Jiang et al. (2003) suggested the following form which is plotted in Figure P-3(b):\n\ns = a·Pa·(σʹ/Pa + t)^b   (A-3)\n\nwhere:\nt = tensile intercept (T) normalized by atmospheric pressure.\n\nAn alternate method with a normalized cohesion intercept outside the parentheses was given by McGuire and VandenBerge (2017). For practical purposes, the two forms give equivalent results. A useful summary of nonlinear failure envelopes is found in VandenBerge et al. (2018).",
+      "key_points": [
+        "The two-parameter power function cannot represent a shear strength intercept; the three-parameter form (Eq. A-3) is required when an intercept exists.",
+        "Eq. A-3 (Jiang et al. 2003): s = a·Pa·(σʹ/Pa + t)^b, where t is the tensile intercept normalized by atmospheric pressure.",
+        "McGuire and VandenBerge (2017) provide an equivalent alternate form with a normalized cohesion intercept outside the parentheses.",
+        "VandenBerge et al. (2018) is cited as a comprehensive summary of nonlinear failure envelopes."
+      ],
+      "equations": [
+        {
+          "id": "Eq. A-3",
+          "description": "Three-parameter power function for shear strength with a tensile intercept: s = a·Pa·(σʹ/Pa + t)^b, where t is the tensile intercept T normalized by atmospheric pressure (Jiang et al. 2003).",
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure P-3 Other Types of Power Function – (a) Undrained Shear Strength and (b) Three-Parameter"
+      ],
+      "tables": [],
+      "applicability": "Applies when a soil's nonlinear strength envelope requires an intercept term that the two-parameter power function cannot capture."
+    },
+    {
+      "section_id": "P-2.2.3",
+      "title": "Application of Power Functions in Geotechnical Analysis",
+      "summary": "Explains practical use of power function parameters (a and b) in geotechnical analysis: software must accept these parameters directly, or they can be converted to equivalent linear Mohr-Coulomb (φʹ, cʹ) values for a specified stress range. Provides a worked example (Figure P-4) and guidance on converting between normalized and unit-based parameter forms (Figure P-5).",
+      "body": "To use a power function in analysis, the computer software must be programmed to accept the a and b parameters and correctly calculate the shear strength. Further details for using the power function can be found in VandenBerge et al. (2018).\n\nIf the parameters a and b are available, it is possible to estimate φʹ and cʹ for a range of pressures, as shown in Figure P-2 for a curved envelope. Figure P-4 shows an example for calculating the φʹ and cʹ shear strength parameters for the normal effective stress range of 2000 to 4000 psf.\n\nSome analysis methods or software that accommodate power functions may use parameters with units rather than the normalized parameters presented in Eqn. P-1 and P-2. The equivalent parameters can be determined by setting the two equations equal to each other and solving. An example is provided in Figure P-5.\n\nWorked example (Figure P-4): Given a = 0.5 and b = 0.8 (normalized, Pa = 2116 psf):\n  s at 2000 psf = 0.5 × 2116 × (2000/2116)^0.8 = 1011 psf\n  s at 4000 psf = 0.5 × 2116 × (4000/2116)^0.8 = 1761 psf\n  φʹEQ = arctan((1761-1011)/(4000-2000)) = 20.6°\n  cʹ = 1011 - 2000 × tan(20.6°) = 261 psf (≈ 0 reported as 261 psf after rounding)",
+      "key_points": [
+        "Software must be specifically programmed to accept power function parameters a and b to use them directly in analysis.",
+        "Equivalent linear Mohr-Coulomb parameters (φʹ, cʹ) can be back-calculated from a and b for any specified normal stress range.",
+        "Worked example: a=0.5, b=0.8 over σʹ = 2000–4000 psf yields φʹEQ = 20.6° and cʹ = 261 psf.",
+        "Some software uses power function parameters with units rather than the normalized forms in Eq. P-1 and P-2; conversion is done by equating the two forms and solving.",
+        "VandenBerge et al. (2018) provides further details on power function application."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure P-4 Determining Equivalent Mohr-Coulomb Parameters from Power Function Parameters",
+        "Figure P-5 Example Conversion between Normalized Parameters and Parameters with Units"
+      ],
+      "tables": [],
+      "applicability": "Applies when implementing power function strength parameters in geotechnical analysis software or when converting between power function and equivalent linear Mohr-Coulomb parameters for a defined stress range."
+    },
+    {
+      "section_id": "P-3",
+      "title": "Selection of Shear Strength Parameters",
+      "summary": "Introduces the four general methods for measuring or estimating shear strength parameters (lab tests on disturbed/undisturbed specimens, in situ tests, correlations) and organizes guidance into two deposit categories: in situ undisturbed soils and engineered/un-engineered fill materials. References DM-7.1 for detailed test procedures.",
+      "body": "The shear strength parameters for different soil types may be measured or estimated using one or more of the following:\n1. Laboratory tests on disturbed, reconstituted, or compacted test specimens\n2. Laboratory tests on \"undisturbed\" or intact test specimens\n3. In situ or field tests\n4. Correlations\n\nDetails regarding these methods can be found in DM-7.1. The selection of shear strength parameters will be discussed for two general types of deposits:\n(1) In situ undisturbed soils. These normally would be natural soils, but also can include existing fill soils.\n(2) Engineered and un-engineered fill materials. The category would include embankments, dams and levees, retaining wall backfills, dredge materials, etc.",
+      "key_points": [
+        "Four methods exist for obtaining shear strength parameters: lab tests on disturbed specimens, lab tests on undisturbed specimens, in situ/field tests, and correlations.",
+        "Guidance applies to two deposit categories: (1) in situ undisturbed soils (natural and existing fills) and (2) engineered and un-engineered fill materials.",
+        "Detailed procedures for each method are found in DM-7.1.",
+        "Selection of the appropriate method depends on soil type, deposit origin, and design condition."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when selecting a method to determine shear strength parameters for any soil deposit type encountered in foundation or earth structure design."
+    },
+    {
+      "section_id": "P-3.1",
+      "title": "In situ Deposit of Coarse-Grained Soil (Sand to Gravel)",
+      "summary": "Covers the four methods for determining the effective stress friction angle (φ′) for in situ deposits of coarse-grained soil. Lab tests on reconstituted specimens are rarely useful due to inability to replicate field aging/cementation/OCR; in situ tests (SPT, CPT, BPT) are the best approach; correlations such as Duncan et al. (2014) are often appropriate.",
+      "body": "The most common shear strength parameter used for coarse-grained soil is the drained or effective stress friction angle (φʹ). Although these materials can have nonlinear failure envelopes, particularly over a wide range of stresses, a single value of the friction angle normally is required at a specific depth for design.\n\nThe methods for arriving at an effective stress friction angle for in situ deposits of coarse-grained soils are discussed based on the four methods listed earlier.\n\nLaboratory tests on disturbed, reconstituted, or compacted test specimens – Rarely Appropriate. For in situ deposits of sands and gravel, laboratory tests on reconstituted test specimens are rarely useful. Many important field effects, such as aging, cementation, and OCR, cannot be modeled in laboratory specimens.\n\nLaboratory tests on \"undisturbed\" or intact test specimens – Rarely Appropriate. Intact samples of coarse-grained soils cannot usually be obtained. Although there are some elaborate methods, such as ground freezing, that can be used, these methods are rare in practice.\n\nIn situ or field tests – Very Appropriate. In situ and field tests are the best approach for determining the in situ friction angle of coarse-grained soils. These tests include the Standard Penetration Test (SPT), Cone Penetration Test (CPT), and Becker Hammer Test (BPT). Equations for calculating φʹ from the SPT blow count and qc from the CPT can be found in Chapter 8 of DM 7-1. Both the SPT and CPT can have testing issues for materials much coarser than sands. The BPT has been successful in testing material in very coarse granular soils (Harder and Seed 1986).\n\nCorrelations – Often Appropriate. There are many correlations to determine the drained friction angle based on a variety of parameters, such as classification, gradation, particle shape, etc. A large collection of these is found in Chapter 8 of DM-7.1. The correlation developed by Mike Duncan (Duncan et al. 2014) is particularly well-documented and useful. The input parameters are soil type (SP, SW, or GP), normal stress on the failure plane, and relative density. This correlation has an advantage in that the curvature of the strength envelope is considered. A key to applying this correlation to in situ soils is the estimate of the relative density. The relative density can be estimated using the SPT or CPT.",
+      "key_points": [
+        "Effective stress friction angle (φ′) is the primary shear strength parameter for in situ coarse-grained soils.",
+        "Lab tests on reconstituted specimens are rarely useful because aging, cementation, and OCR cannot be replicated.",
+        "Intact sampling of coarse-grained soils is generally impractical; ground freezing exists but is rarely used.",
+        "SPT, CPT, and BPT are the preferred in situ test methods; SPT and CPT can struggle with very coarse materials.",
+        "Duncan et al. (2014) correlation accounts for nonlinear failure envelope curvature; relative density is estimated from SPT or CPT.",
+        "Equations for φ′ from SPT and CPT are in Chapter 8 of DM-7.1."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table P-2"
+      ],
+      "applicability": "Applies when determining the effective stress friction angle for natural or existing in situ deposits of sand to gravel."
+    },
+    {
+      "section_id": "P-3.2",
+      "title": "Engineered Deposit of Coarse-Grained Soil (Sand to Gravel)",
+      "summary": "Discusses shear strength determination methods for engineered (compacted) coarse-grained fills. Lab tests on compacted specimens are very appropriate if particle size is within ASTM limits. In situ tests are marginally appropriate (QA/QC only). Duncan et al. (2014) correlation is especially useful for coarse soils exceeding lab apparatus limits.",
+      "body": "Again, the most common shear strength parameter used for engineered deposits is the drained or effective stress friction angle (φʹ). When it is necessary to provide a total stress friction angle (φ) for an analysis, the effective stress friction angle is commonly used since these are drained materials. The methods for determining the shear strength of engineered coarse-grained soils are summarized in Table P-3.\n\nLaboratory tests on disturbed, reconstituted, or compacted test specimens – Very Appropriate. Laboratory tests are appropriate for engineered coarse grained soils, provided that the test specimen has a maximum particle size within the limits set by the ASTM standards. Examples of triaxial test results conducted on common gravel gradations can be found in Duncan et al. (2007). Some direct shear test apparatuses are large enough to test gravel-sized material. Laboratory test specimens should be compacted to the appropriate dry unit weight expected for the field compaction or placement method. Unless the soil has a significant amount of fines (> 15%), the compaction water content for the laboratory specimens is not critical as long as the specified dry unit weight is achieved. The test specimens should be saturated, and either drained or undrained tests (with pore pressure measurements) can be conducted. Laboratory tests should be conducted at a range of stresses similar to those expected during the operation of the structure.\n\nLaboratory tests on \"undisturbed\" or intact test specimens – Rarely Appropriate. Not applicable for new fills. Existing fills have the same sampling difficulties as natural coarse-grained soils.\n\nIn situ or field tests – Marginally Appropriate. Not applicable for fills, except as used for QA/QC tests on fills. The Dynamic Cone Penetration Test (DCP) can be used for indicating the density of a fill, but no reliable correlations exist for the DCP and the effective stress friction angle. If the fill has been in place for a considerable time, then the methods outlined for in situ deposits can be followed.\n\nCorrelations – Often Appropriate. Duncan's correlation (Duncan et al. 2014) is also useful for compacted granular soils. It is especially useful for coarse soils that have maximum particle sizes too large for normal laboratory test apparatuses. The relative density required for this correlation can be determined from the compaction specifications or the compaction control testing.",
+      "key_points": [
+        "Lab tests on compacted specimens are very appropriate when maximum particle size is within ASTM test apparatus limits.",
+        "Specimens should be compacted to the target dry unit weight; compaction water content is not critical if fines content is < 15%.",
+        "Specimens must be saturated; drained or undrained (with pore pressure measurement) tests are both acceptable.",
+        "In situ tests (e.g., DCP) are only marginally useful for engineered fills and are limited to QA/QC; no reliable DCP–φ′ correlation exists.",
+        "Duncan et al. (2014) correlation is especially valuable when particle size exceeds laboratory apparatus limits.",
+        "Relative density for the Duncan correlation can be derived from compaction specifications or control testing."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table P-3"
+      ],
+      "applicability": "Applies when determining the drained friction angle for newly placed or existing compacted coarse-grained fill materials."
+    },
+    {
+      "section_id": "P-3.3",
+      "title": "In situ Deposit of Fine-Grained Soil",
+      "summary": "Container section introducing the framework for selecting shear strength parameters for in situ fine-grained soils. Distinguishes between undrained and drained strength applicability based on saturation state, loading duration, and pore pressure conditions. Refers to subsections for clayey soils and low-plasticity silts.",
+      "body": "For in situ deposits of saturated fine-grained soils, the methods used depend on whether drained or undrained strengths are appropriate. Undrained strengths are generally important when the stability for short term conditions is required, particular if the project loading increases the pore water pressure.\n\nFor partially saturated fine-grained soils, undrained strengths are often necessary for locations above the phreatic surface. The appropriate undrained strength characterization is a c-φ envelope. Often in engineering practice, the soil is characterized with an su for an assumed φ = 0 condition. This is not ideal, but as long as the value of su is interpreted using a conservative method, it should suffice.\n\nDrained strength parameters are appropriate for long-term conditions where the pore water pressures can be measured, calculated, or estimated with reasonable accuracy. An example of this would be when increases or decreases in pore water pressure caused by the project loading have dissipated, and the pore water pressures have returned to hydrostatic conditions. A second example would be when a steady-state seepage condition has been achieved, and pore water pressures can be calculated. Drained strength parameters are often assigned to partially-saturated soils above the phreatic surface.\n\nThe next two sections discuss methods to determine undrained shear strengths and drained shear strength of fine-grained soils, particularly those which behave in a clay-like manner and classify as lean clay, fat clay, or elastic silt. Nonplastic and low plasticity silts behave differently and are discussed in the third section.",
+      "key_points": [
+        "For saturated fine-grained soils, choice between undrained and drained strength depends on loading rate and pore pressure dissipation.",
+        "Undrained strength (φ=0, su) is appropriate for short-term stability or when loading increases pore pressure.",
+        "For partially saturated soils above the phreatic surface, a c-φ undrained envelope is most appropriate; using su with φ=0 is conservative.",
+        "Drained parameters apply when pore pressures have returned to hydrostatic or steady-state seepage conditions.",
+        "Clay-like soils (lean clay, fat clay, elastic silt) are addressed in P-3.3.1 and P-3.3.2; nonplastic/low plasticity silts in P-3.3.3."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when selecting between undrained and drained shear strength approaches for in situ natural fine-grained soil deposits."
+    },
+    {
+      "section_id": "P-3.3.1",
+      "title": "Undrained Shear Strength - In situ Deposit of Fine-Grained Soil",
+      "summary": "Describes methods for determining the undrained shear strength (su) distribution with depth for saturated in situ fine-grained soils using a φ=0 model. Covers lab tests on disturbed/undisturbed specimens (LMVT, fall cone, UU triaxial, DSS/SHANSEP) and field tests (VST, CPT). Correlations have limited utility except for SHANSEP and CPT-based methods.",
+      "body": "The design procedures in this manual may require the distribution of undrained strength versus depth for saturated, fine-grained deposits. This strength is associated with a φ = 0 strength model. Figure P-6 shows an example stratigraphy and shear strength distribution. The goal is often to have enough data points to represent the strength distribution with accuracy. The methods to determine the value of undrained strength versus depth are summarized in Table P-4.\n\nLaboratory tests on disturbed, reconstituted, or compacted test specimens – Marginally Appropriate. The only value of testing disturbed specimens is to determine the undrained strength for normally consolidated conditions. These tests, conducted on carefully remolded samples, could provide a lower bound undrained strength. However, the resulting strengths do not allow the undrained strength versus depth relationship to be accurately determined for in situ conditions.\n\nLaboratory tests on \"undisturbed\" or intact test specimens – Very Appropriate. Applicable tests include: (1) Laboratory miniature vane shear test (LMVT) – best for su < 1400 psf, especially soft soils (su < 500 psf). (2) Fall cone tests (FC) – works best on soft clays; no ASTM standard but Norwegian and German standards exist. (3) UU triaxial test – most common; confining pressures should bracket the minor total stress at the sample location; saturated specimens should yield a horizontal envelope. CU triaxial tests produce su values that are too high. (4) Direct Simple Shear Test (DSS) – The Bjerrum Method consolidates specimens to the vertical effective stress; the SHANSEP method (Ladd and DeGroot 2003) uses the preconsolidation pressure profile and an undrained strength ratio vs. OCR relationship.\n\nIn situ or field tests – Very Appropriate. For deposits with su < 2000 psf, the Vane Shear Test (VST) is probably the best overall test method; data should be corrected for strain-rate effects per ASTM. The CPT is often used; methods relying on tip resistance (qc or qt) are most reliable. The SPT is considered unreliable for this purpose.\n\nCorrelations – Sometimes Appropriate. Several correlations exist for remolded clays or normally consolidated state undrained strength, but have limited practical value. Correlations relying on the preconsolidation pressure profile are available. SHANSEP and CPT Nc/Nk/Nkt methods are site-specific correlations.",
+      "key_points": [
+        "Undrained strength distribution with depth (φ=0 model) is required for many design procedures for saturated fine-grained deposits.",
+        "UU triaxial tests on intact specimens are the most common lab method; CU triaxial tests overestimate su and should not be used for this purpose.",
+        "LMVT is well-suited for su < 1400 psf; especially valuable for soft soils (su < 500 psf).",
+        "DSS with the SHANSEP method links su to the preconsolidation pressure profile and OCR.",
+        "Field VST is best overall for su < 2000 psf; CPT tip resistance (qc or qt) methods are most reliable among CPT approaches.",
+        "SPT is considered unreliable for undrained strength of fine-grained soils.",
+        "Correlations are only sometimes appropriate; most useful when linked to preconsolidation pressure or interpreted via SHANSEP/CPT factor methods."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure P-6"
+      ],
+      "tables": [
+        "Table P-4"
+      ],
+      "applicability": "Applies when establishing an undrained shear strength (su) vs. depth profile for saturated in situ fine-grained deposits using a φ=0 analysis."
+    },
+    {
+      "section_id": "P-3.3.2",
+      "title": "Drained Strength - In situ Deposit of Fine-Grained Soil",
+      "summary": "Explains the three drained strength envelopes for fine-grained soils—peak (c′p, φ′p), fully softened (φ′FS), and residual (φ′r)—and specifies which envelope applies based on soil plasticity, fissuring, and stress history. Lab tests on intact or remolded specimens are appropriate; field tests are not useful for drained strength.",
+      "body": "Three sets of drained strength parameters can be measured for fine-grained soils. These are shown for direct shear test results in Figure P-7. If the soil is initially overconsolidated in situ, then an envelope results from plotting the peak strengths. This is shown as the upper envelope in Figure P-7, with the indicated shear strength parameters cʹp and φʹp. A second strength envelope can be determined if the test specimens are remolded, loaded to normally consolidated conditions, and then sheared. This results in the fully softened envelope shown with a friction angle defined as φʹFS in Figure P-7. The effective stress cohesion for the fully softened condition is normally equal to zero, or the fully softened envelope is nonlinear and passes through the origin. The third envelope is obtained by shearing undisturbed or remolded test specimens to very high displacements, and this produces the residual strength envelope, with a drained friction angle of φʹr. The residual strength envelope is expected to pass through the origin.\n\nThe peak strength envelope is often used for fine-grained soils having PI < 20 and LL < 40 that are relatively free of fissures. The peak shear strength parameters depend on the preconsolidation pressure of the test specimens.\n\nThe fully softened strength envelope is used for soils that do contain fissures and have a PI > 20 and LL > 40 (Castellanos et al. 2016). This envelope is particularly appropriate for stability assessment of in situ fine-grained soils where the stresses have been reduced due to excavation. The fully softened envelope is also used for clays that are essentially normally consolidated in situ.\n\nThe residual strength envelope is used when there has been large displacement due to a shear failure, and the residual condition has been achieved.\n\nLaboratory tests on disturbed, reconstituted, or compacted test specimens – Often Appropriate. Test specimens prepared in the laboratory are useful for determining fully softened and residual shear strengths. The best test methods for fully softened strengths are the direct shear test and the CU triaxial compression test. The best test method for residual shear strength is the ring shear test. Specimens are prepared to a water content at or above the liquid limit and consolidated to the desired test stresses prior to shearing.\n\nLaboratory tests on \"undisturbed\" or intact test specimens – Often Appropriate. Intact specimens are required to measure peak drained shear strength. The best test methods are the direct shear test and CU triaxial compression test. Test specimens should be consolidated to a range of test stresses bracketing the effective normal stresses anticipated in the analysis.\n\nIn situ or field tests – Rarely Appropriate. Field tests are not useful for drained strength of fine-grained soils. Accurate measurement of drained strength requires knowledge of pore pressure during shearing, which cannot be determined accurately by in situ test methods.\n\nCorrelations – Sometimes Appropriate. Correlations are not useful for peak drained shear strength due to dependence on preconsolidation stress. Chapter 8 of DM-7.1 presents correlations between index properties (LL, PI, clay fraction) and fully softened and residual shear strength. These are useful for preliminary analysis, checking lab results, and limited design with limited failure consequences.",
+      "key_points": [
+        "Three drained envelopes exist: peak (c′p, φ′p), fully softened (φ′FS, c′=0), and residual (φ′r, through origin).",
+        "Peak envelope applies to soils with PI < 20 and LL < 40 that are relatively free of fissures.",
+        "Fully softened envelope applies to fissured soils with PI > 20 and LL > 40, excavation-unloaded soils, and normally consolidated clays.",
+        "Residual envelope applies only after large-displacement shear failure has occurred.",
+        "Direct shear and CU triaxial tests are best for peak and fully softened strengths; ring shear is best for residual strength.",
+        "Field tests are rarely appropriate for drained strength because pore pressures during shearing cannot be accurately determined in situ.",
+        "Index property correlations (LL, PI, clay fraction) are useful for fully softened and residual strengths in preliminary analyses."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure P-7",
+        "Figure P-8"
+      ],
+      "tables": [
+        "Table P-5"
+      ],
+      "applicability": "Applies when selecting peak, fully softened, or residual drained strength parameters for in situ fine-grained soil based on plasticity, fissuring, and displacement history."
+    },
+    {
+      "section_id": "P-3.3.3",
+      "title": "In situ Deposit of Nonplastic or Low Plasticity Silt",
+      "summary": "Addresses the unique characterization challenges of low plasticity silts (PI < 10, LL < 50). These soils are dilatant, easily disturbed, and difficult to sample and test. Drainage behavior depends on cv; φ′ typically ranges 35–40°. Provides USR formulas for various failure modes assuming zero excess pore pressure at failure.",
+      "body": "Silt deposits with low plasticity (i.e., PI < 10 and LL < 50) require different types of characterization than clayey fine-grained soils. These silts are very dilatant and easily disturbed, which makes them extremely hard to sample and test in the laboratory. Compared to clays with similar liquid limit, the silts tend to be stronger and much less compressible (Brandon et al. 2006). Consolidation tests on low plasticity silts are difficult to interpret and show little effect of preconsolidation, likely due to sampling disturbance.\n\nIf it can be determined, the coefficient of consolidation can be used to determine how the silt will behave when loaded. Silts with lower cv (1 to 10 ft2/day) will retain excess pore pressures for significant time periods and behave in an undrained manner. Silts with higher values of cv (greater than 100 ft2/day) will dissipate excess pore pressures quickly and will behave mostly in a drained manner. Low plasticity silts typically have effective stress friction angles in the range of 35 to 40 degrees with little to no cohesion intercept (Duncan et al. 2014). This indicates that low plasticity silts are relatively competent soils, provided confining stress is maintained.\n\nLaboratory tests on disturbed, reconstituted, or compacted test specimens – Often Appropriate. Undrained: CU triaxial compression tests; dilative tendency creates large negative excess pore pressures requiring elevated back pressures to prevent cavitation. Recommended failure criterion: point where excess pore pressure is zero (Āf = 0). Drained: CU triaxial compression tests; effects of disturbance are less pronounced on drained strength.\n\nLaboratory tests on \"undisturbed\" or intact test specimens – Marginally Appropriate. High-quality undisturbed specimens are extremely difficult to obtain. UU triaxial tests are not advised due to substantial scatter from disturbance.\n\nIn situ or field tests – Rarely Appropriate. Intermediate cv values make it difficult to determine drainage condition during testing, making results difficult to interpret. Correlations developed for sand and clay have been shown to be unreliable for low plasticity silt.\n\nCorrelations – Marginally Appropriate. Published correlations are not available for low plasticity silts. Typical values of undrained strength ratio (USR = su / σʹvc) can sometimes be used. Assuming zero excess pore pressure at failure and cʹ = 0:\n• ICU triaxial compression: USR = sin φʹ / (1 – sin φʹ)\n• ACU triaxial compression: USR = sin φʹ\n• DSS: USR = sin φʹ – 0.5 sin2 φʹ",
+      "key_points": [
+        "Low plasticity silts (PI < 10, LL < 50) are dilatant and highly disturbance-sensitive; high-quality undisturbed sampling is extremely difficult.",
+        "Drainage behavior during loading depends on cv: cv = 1–10 ft²/day → undrained behavior; cv > 100 ft²/day → drained behavior.",
+        "Typical φ′ for low plasticity silts is 35–40° with little to no cohesion intercept.",
+        "CU triaxial tests on reconstituted specimens are often appropriate; failure criterion at Āf = 0 (zero excess pore pressure) is recommended for undrained tests.",
+        "UU triaxial tests on intact specimens are not advised due to scatter from disturbance.",
+        "Field tests are rarely appropriate due to uncertain drainage condition during testing.",
+        "USR formulas (ICU, ACU, DSS modes) allow estimation of su when φ′ is known and zero excess pore pressure at failure is assumed."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table P-6"
+      ],
+      "applicability": "Applies when characterizing shear strength of in situ nonplastic or low plasticity silt deposits (PI < 10, LL < 50) where conventional clay or sand methods are unreliable."
+    },
+    {
+      "section_id": "P-3.4",
+      "title": "Engineered Deposit of Fine-Grained Soil",
+      "summary": "Summarizes shear strength selection for compacted fine-grained fills used in embankments, dams, levees, and seepage barriers. Undrained strengths (from lab tests on compacted specimens) govern EOC, RDD, and seismic conditions. Drained strengths use peak parameters for PI < 20, LL < 40; fully softened strengths for higher plasticity soils.",
+      "body": "Fine-grained soils are used as engineered fill in many different scenarios, including embankments, dams and levees, and seepage barriers. In many ways, the considerations for shear strength are similar to those for in situ deposits of fine-grained soil. The primary cases where undrained shear strength is required for fine-grained engineered fill are end-of-construction (EOC), rapid drawdown (RDD), and seismic analysis. Drained shear strengths are used for long-term conditions with peak strengths being appropriate for compacted fine-grained soils with PI < 20 and LL < 40. For soils with higher LL or PI, fully softened shear strengths should be considered for compacted slopes (Kayyal and Wright 1991) and retaining walls (Wright 2005). Methods for determining both undrained and drained shear strength of fine-grained engineered deposits are summarized in Table P-7 and Table P-8.\n\nUndrained Shear Strength (Table P-7):\nLaboratory tests on disturbed/compacted specimens – Very Appropriate. Specimens compacted to match field conditions. EOC: at least three UU triaxial tests per compaction combination; results interpreted as c–φ envelopes. RDD and Seismic: CU triaxial compression tests after saturation and consolidation to long-term condition; amount of swelling during saturation has substantial impact.\n\nLaboratory tests on intact specimens – Often Appropriate. Intact specimens from existing fill can be tested using UU triaxial and other methods from Table P-4 for EOC parameters.\n\nIn situ or field tests – Rarely Appropriate. Not applicable except possibly for QA/QC during construction.\n\nCorrelations – Marginally Appropriate. Published correlations not useful for compacted fine-grained fill. Regional or soil-specific correlations (e.g., 15-point method) may be possible. Some correlations may apply to non-engineered fills in normally consolidated state (dredge spoils, mine tailings).\n\nDrained Shear Strength (Table P-8):\nLaboratory tests on disturbed/compacted specimens – Very Appropriate. Direct shear and CU triaxial tests on saturated specimens consolidated to a range of stresses. Drained strength parameters tend to be relatively insensitive to compaction state.\n\nLaboratory tests on intact specimens – Often Appropriate. Direct shear or CU triaxial tests on intact specimens from existing fill.\n\nIn situ or field tests – Rarely Appropriate. Not applicable for compacted fine-grained soils.\n\nCorrelations – Sometimes Appropriate. Not useful for peak drained strength. Correlations from Table P-5 can estimate fully softened and residual strength parameters in some situations.",
+      "key_points": [
+        "Undrained strength governs EOC, RDD, and seismic design cases for fine-grained engineered fills.",
+        "EOC undrained strength: at least 3 UU triaxial tests per compaction state; interpreted as c–φ envelopes.",
+        "RDD and seismic undrained strengths require CU triaxial tests after saturation and consolidation; swelling during saturation significantly affects results.",
+        "Peak drained strength is appropriate for long-term conditions when PI < 20 and LL < 40; fully softened strength should be used for higher plasticity soils.",
+        "Lab tests on compacted specimens are the primary method; in situ tests are only applicable for construction QA/QC.",
+        "Drained strength parameters for compacted fine-grained soils are relatively insensitive to compaction state.",
+        "Published correlations are generally not useful for compacted fine-grained fill, except for non-engineered fills in normally consolidated states."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table P-7",
+        "Table P-8"
+      ],
+      "applicability": "Applies when determining undrained or drained shear strength parameters for compacted fine-grained engineered fill in embankments, dams, levees, retaining walls, and seepage barriers."
+    },
+    {
+      "section_id": "P-4",
+      "title": "NOTATION",
+      "summary": "Defines all variables and symbols used throughout the UFC 3-220-20 document, covering shear strength parameters (cohesion intercepts, friction angles), pore pressure parameters, consolidation coefficients, bearing capacity factors, cone penetration resistance, undrained strength ratios, and effective/total stress notation conventions.",
+      "body": "Variable | Definition\na | Power function strength parameter defining the steepness of the curve\nA | Power function strength parameter for three-parameter function\nĀf | Skempton's pore pressure parameter at failure\nau | Power function strength parameter\nb | Power function strength parameter defining the amount of curvature\nB | Power function strength parameter for three-parameter function\nbu | Power function strength parameter\nc | Total stress or undrained cohesion intercept\ncʹ | Drained or effective stress cohesion intercept\nc̄ | Effective stress or drained cohesion intercept\ncʹp | Peak drained or effective stress cohesion intercept\ncv | Coefficient of consolidation\nNc, Nk, Nkt | Bearing capacity factors for cone penetration interpretation of undrained strength\nqc | Cone penetrometer tip resistance\ns | Shear strength\nS | Degree of saturation\nsu | Undrained shear strength for φ = 0 envelope\nt | Tensile intercept normalized by atmospheric pressure\nT | Tensile strength or attraction\nUSR | Undrained strength ratio\nφ | Total stress or undrained friction angle\nφ' | Effective stress or drained friction angle\nφ̄ | Effective stress or drained friction angle\nφʹEQ | Equivalent friction angle\nφʹFS | Fully softened friction angle\nφʹOC | Drained or effective stress friction angle for portion of strength envelope where the specimen is overconsolidated at failure\nφʹp | Peak drained or effective stress friction angle\nφʹR | Residual friction angle\nσ | Total normal stress\nσʹ | Effective normal stress\nσʹ0 | Vertical consolidation stress\nσʹ1,con | Major effective consolidation stress",
+      "key_points": [
+        "Distinguishes total stress (undrained) vs. effective stress (drained) parameters throughout — e.g., c vs. cʹ and φ vs. φʹ.",
+        "Power function strength parameters (a, A, au, b, B, bu) define the shape and curvature of nonlinear failure envelopes.",
+        "Skempton's pore pressure parameter at failure (Āf) is explicitly listed, linking shear strength to consolidation behavior.",
+        "Undrained strength ratio (USR) and undrained shear strength (su) are separately defined, reflecting distinct strength characterization approaches.",
+        "Multiple friction angle variants are defined: peak (φʹp), residual (φʹR), fully softened (φʹFS), overconsolidated (φʹOC), and equivalent (φʹEQ).",
+        "Bearing capacity factors Nc, Nk, Nkt are defined specifically in the context of cone penetration interpretation of undrained strength.",
+        "Consolidation-related terms include coefficient of consolidation (cv), vertical consolidation stress (σʹ0), and major effective consolidation stress (σʹ1,con)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies whenever any symbol or variable from the shear strength and foundation analysis sections of UFC 3-220-20 requires definition or disambiguation."
+    },
+    {
+      "section_id": "1-1",
+      "title": "INTRODUCTION",
+      "summary": "Introduces the framework for classifying soils as sand (coarse-grained, cohesionless) or clay (fine-grained, cohesive), explaining the drained/undrained and compressibility behavior of each group. Establishes that while this two-group model captures endpoint behavior, certain soils within or outside these groups exhibit special problems requiring separate treatment in subsequent chapters.",
+      "body": "Most of the design techniques that will be described in the next six chapters will generically characterize soils as sand or coarse-grained (often called \"cohesionless\") or as clay or fine-grained (often called \"cohesive\"). This is a useful expedient in that the two soil groups represent the endpoints of common soil behavior. Sands are most often drained under normal types of loading, and the strength parameters can be represented as a linear envelope with a slope equal to the effective stress friction angle, φ' (with cʹ = 0), or a curved or non-linear envelope represented by a power function or other equation. Clays can be undrained in the short term and drained in the long term; therefore, both types of strength parameters (drained and undrained) are needed for the various types of design methods presented. Sands are often considered to be relatively incompressible and/or the compression occurs quickly. Clays are considered to be much more compressible, and the compression occurs more slowly for an extended time period.\nSeparating the soils into two major groups, sands and clays, is very useful since these are the recognized endpoints for both drained vs. undrained behavior as well as relatively incompressible vs. compressible behavior. However, there are soils that fit within these two groups that can exhibit special problems. In addition, there are other soils with specific names, such as loess, that can be problematic for the design methods presented.\nThis section is organized by listing the different soils that are identified as being problematic in the upcoming chapters and, in general, geotechnical engineering practice.",
+      "key_points": [
+        "Soils are broadly classified as sand (cohesionless) or clay (cohesive), representing endpoints of drained/undrained and compressible/incompressible behavior.",
+        "Sands are typically drained; strength is represented by effective friction angle φ' (c'=0) or a non-linear envelope.",
+        "Clays may be undrained short-term and drained long-term, requiring both undrained and drained strength parameters.",
+        "Within the sand–clay framework, certain soils exhibit special behaviors that require separate treatment in subsequent chapters.",
+        "Soils with specific names (e.g., loess) that fall outside the standard model are introduced as problem soils."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when selecting a general soil classification framework for design of excavations, retaining walls, earthwork, and foundations."
+    },
+    {
+      "section_id": "1-2",
+      "title": "TYPES OF PROBLEM SOILS",
+      "summary": "Container section introducing all categories of problem soils covered in Chapter 1. States that the subsections describe problematic soil conditions affecting excavations, earthwork, retaining walls, and foundations, and that summary tables at the end of Chapters 2–6 map these conditions to specific chapter contents.",
+      "body": "The following sections describe problematic soil conditions that can affect the design of excavations, earthwork, retaining walls, and foundations. Tables are included at the conclusions of Chapters 2 through 6, which map some of these problem soil conditions to the particular contents of each chapter. For example, the tables in Section 2-7 describe how problem soil conditions relate to sloped and supported excavations.",
+      "key_points": [
+        "Problem soils are those that exhibit behaviors outside the standard sand/clay model and can adversely affect geotechnical design.",
+        "Coverage includes excavations, earthwork, retaining walls, and foundations.",
+        "Chapters 2–6 each contain tables mapping problem soil conditions to their specific chapter topics."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies as an overview when any of the problem soil types described in Chapter 1 subsections are encountered on a project."
+    },
+    {
+      "section_id": "1-2.1",
+      "title": "Stiff Fissured Clays",
+      "summary": "Describes stiff fissured clays — heavily overconsolidated clays with unconfined compressive strength ≥2000 psf containing fracture planes. Covers the mechanism of strength reduction (softening via unloading, weathering, water ingress) and explains why fully softened shear strength, equal to the normally consolidated peak strength on remolded specimens, must be used for long-term drained analyses.",
+      "body": "Stiff fissured clay is both a general and specific term. Specifically, stiff fissured clays have an unconfined compressive strength greater than or equal to 2000 psf and contain fissures that are often attributed to unloading from very high stresses. According to ASTM D2488 (ASTM 2023), the criterion for fissures is \"breaks along definite planes of fracture with little resistance to fracturing.\" Generally, the term stiff fissured clays most often refers to heavily overconsolidated clays that contain fissures, with examples being London brown clay (U.K.), Beaumont clay (Texas), and Pierre shale (North Dakota and South Dakota). According to Skempton (1964), stiff fissured clays often have a liquidity index near zero. The problematic soils generally often have liquid limit values greater than 40 and plasticity indices greater than 20 (Castellanos and Brandon 2016).\nThe main issue with stiff fissured clays is that the long-term mobilized shear strength in the field is often less than the peak shear strength measured using laboratory tests. This reduction in strength or softening results from unloading, weathering, and water ingress through the fissures. Softening is likely an artifact of progressive failure, whereby the peak shear strength is not fully mobilized on the failure surface at the same point in time. These mechanisms take time to occur, and failures in stiff-fissured clays can occur many years after a cut, excavation, or unloading has taken place. Because of these factors, the fully softened shear strength is normally used for drained or effective stress analyses for long-term conditions.\nThe fully softened shear strength is appropriate for drained or effective stress analyses of long-term conditions in stiff fissured clays where the strength is expected to decrease over time (Skempton 1970). The fully softened strength is empirically equal to the normally consolidated peak strength measured for remolded test specimens. Detailed information about measuring the fully softened strength and other engineering aspects of stiff fissured clays can be found in Castellanos et al. (2016) and Castellanos and Brandon (2017).",
+      "key_points": [
+        "Stiff fissured clays have unconfined compressive strength ≥2000 psf; fissures defined per ASTM D2488 as fracture planes with little resistance.",
+        "Examples: London brown clay, Beaumont clay (TX), Pierre shale (ND/SD); typically LL > 40 and PI > 20.",
+        "Long-term field strength is less than lab peak strength due to unloading, weathering, and water ingress through fissures — a progressive failure mechanism.",
+        "Failures can occur years after excavation or unloading; fully softened shear strength governs long-term drained design.",
+        "Fully softened strength is empirically equal to the normally consolidated peak strength measured on remolded specimens."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to long-term drained stability analyses of cuts, excavations, and unloaded slopes in heavily overconsolidated fissured clays."
+    },
+    {
+      "section_id": "1-2.2",
+      "title": "Stiff Desiccated Clays",
+      "summary": "Describes stiff desiccated clays, typically fat clays (CH) near the ground surface that are heavily overconsolidated due to desiccation-induced negative pore pressures and contain cracks up to 8 ft deep. Explains that water infiltration through cracks causes softening, and specifies when fully softened vs. peak strength governs long-term design based on LL and PI thresholds.",
+      "body": "Stiff desiccated clays exhibit many of the same characteristics as stiff fissured clays. These are often fat clays (CH) that are normally located near the ground surface, and contain cracks or fissures that can be several feet deep. Aubeny and Lytton (2003) recorded desiccation cracks up to 8 feet deep, but these cracks are typically 3 to 4 ft deep. These soils are often heavily overconsolidated due to the negative pore water pressures caused by desiccation. The cracks or fissures can allow water to seep into the soil and can cause softening. Fissures also can be problematic for excavations.\nFully softened shear strengths are normally appropriate for these soils for long-term conditions if they classify as CH soils. For stiff desiccated clays having LL < 40 and PI < 20 (CL soils), the peak strength may be applicable for long-term conditions.",
+      "key_points": [
+        "Stiff desiccated clays are typically CH (fat clay) soils near the ground surface, overconsolidated by desiccation negative pore pressures.",
+        "Desiccation cracks are typically 3–4 ft deep but can reach up to 8 ft (Aubeny and Lytton 2003).",
+        "Water infiltration through cracks causes softening; fissures create problems for excavations.",
+        "Fully softened strength governs long-term design for CH soils; peak strength may apply for CL soils (LL < 40, PI < 20)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to long-term design of excavations and slopes in stiff desiccated fat clays (CH) or lean clays (CL) near the ground surface."
+    },
+    {
+      "section_id": "1-2.3",
+      "title": "Loess",
+      "summary": "Describes loess — wind-deposited, silt-sized, low-plasticity soils that may be slightly cemented by calcium carbonate and contain vertical root casts. Highlights two main engineering hazards: erodibility of non-vertical slopes and collapsibility upon inundation, with reference to Section 5-6.3 for further details on collapse behavior.",
+      "body": "Loess is a fine-grained soil deposited by wind. These soils are often silt-sized and have little to no plasticity. They often may be slightly cemented by calcium carbonate. Cycles of deposition and plant growth result in vertical root casts, and these features impact the behavior of these soils. Loess soils can be very erodible in slopes that are non-vertical, but vertical slopes can often be stable for many years. Another issue with loess deposits is that they can be very collapsible when inundated. Large irreversible settlements can occur when these soils are flooded. More information on loess can be found in Section 5-6.3.",
+      "key_points": [
+        "Loess is wind-deposited, silt-sized, with little to no plasticity; may be slightly cemented by calcium carbonate.",
+        "Vertical root casts influence engineering behavior of loess deposits.",
+        "Non-vertical slopes in loess are highly erodible; vertical slopes can remain stable for many years.",
+        "Loess is highly susceptible to collapse (hydrocompression) upon inundation, causing large irreversible settlements.",
+        "Further details on loess collapse in the context of shallow foundations are in Section 5-6.3."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when designing slopes, embankments, or foundations in wind-deposited silt (loess) deposits, particularly where wetting or inundation is possible."
+    },
+    {
+      "section_id": "1-2.4",
+      "title": "Sensitive or Quick Clays",
+      "summary": "Defines sensitivity as the ratio of peak to remolded undrained shear strength and presents Rosenqvist (1953) sensitivity categories from insensitive (~1) to extra quick (>64). Describes the formation mechanisms of quick clays (salt leaching in Scandinavia and Canada) and other sensitive soils, noting that overconsolidated sensitive clays can yield unrealistically low SPT N-values.",
+      "body": "Sensitivity (St) is defined as the peak undrained shear strength divided by the remolded undrained shear strength. The remolded shear strength is best measured using field or laboratory vane shear tests, or laboratory fall cone tests. For soils with low values of sensitivity, soil samples can be remolded by hand kneading and formed into cylindrical specimens. The resulting specimens can be tested to determine the remolded undrained shear strength. Sensitivity values as high as 1000 have been measured (Terzaghi et al. 1996). Soils that have sensitivity values greater than 4 are considered to be very sensitive soils. Soils with sensitivities greater than 16 are considered to be quick clays. Quick clays are found in Scandinavia and parts of Canada and are formed by fresh water leaching of salt within the clays' structure. Sensitive soils can be formed by other means, such as clays formed from volcanic ash as the parent material, or other depositional or post-depositional factors that create a metastable structure. Sensitive soils are most often fine-grained materials. Table 1-1 shows general sensitivity categories. Chapter 1 of DM 7.1 contains an additional discussion of sensitive clays.\nSome sensitive clays may be overconsolidated, and these can be especially problematic. These deposits can have a high undisturbed strength and can support imposed loads without significant settlement due to their preconsolidation. Loss of strength can occur on disturbance, but it will be less dramatic than with quick clays. These soils will exhibit unrealistically low Standard Penetration Test (SPT) N values due to the sensitivity of the clay.",
+      "key_points": [
+        "Sensitivity St = peak undrained shear strength / remolded undrained shear strength; values up to 1000 have been recorded.",
+        "St > 4 = very sensitive; St > 16 = quick clay; quick clays occur in Scandinavia and Canada formed by freshwater salt leaching.",
+        "Remolded shear strength is best measured by field/lab vane shear or fall cone tests.",
+        "Overconsolidated sensitive clays exhibit high undisturbed strength but yield unrealistically low SPT N-values.",
+        "Sensitivity can also arise from volcanic ash parent material or other depositional factors creating metastable structure.",
+        "Table 1-1 provides the full Rosenqvist (1953) sensitivity classification from insensitive to extra quick."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 1-1"
+      ],
+      "applicability": "Applies when characterizing fine-grained soils in Scandinavia, Canada, or regions with volcanic ash deposits where sensitivity and potential for catastrophic strength loss upon disturbance must be assessed."
+    },
+    {
+      "section_id": "1-2.5",
+      "title": "Residual Silts and Clays",
+      "summary": "Describes residual soils formed by in-place weathering of parent rock or volcanic ash, covering their occurrence in piedmont regions and wet tropics. Highlights their heterogeneity compared to sedimentary soils and the key limitation that standard sedimentary-soil correlations (e.g., for in situ tests) do not reliably apply, requiring significant engineering judgment.",
+      "body": "Residual soils are formed by physical and chemical weathering of parent rocks in-place or from weathering of volcanic ash deposits. Residual soils can be found in many different areas, such as the piedmont regions of Virginia, North Carolina, South Carolina, and Georgia; and in wet tropical environments. The term residual soil covers a wide range of materials, ranging from clay-sized soils to sandy soils. Soils containing the relic features of the parent rock, often called saprolites, can have even larger particle sizes. An excellent reference on residual soils is Geotechnical Engineering in Residual Soils by L. Wesley (2010).\nResidual soils are more heterogeneous than alluvial soils and other soils that have been formed by sedimentary processes. Therefore, stress history does not have the same impact on strength and compressibility (Wesley 2010). One of the main problems regarding geotechnical engineering in residual soils is that correlations developed for sedimentary soils, which are commonplace in engineering practice, do not necessarily apply to residual soils. Considerable engineering judgment is required for efficient design in residual soils.",
+      "key_points": [
+        "Residual soils form by in-place weathering of bedrock or volcanic ash; saprolites retain relic rock fabric.",
+        "Found in piedmont regions (VA, NC, SC, GA) and wet tropical environments; grain sizes range from clay to sand.",
+        "More heterogeneous than sedimentary soils; stress history has less impact on strength and compressibility.",
+        "Standard sedimentary soil correlations for strength and in situ tests do not reliably apply — engineering judgment is essential.",
+        "Reference: Wesley (2010) Geotechnical Engineering in Residual Soils."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when designing foundations, slopes, or retaining structures in piedmont or tropical residual soil profiles where sedimentary-based correlations may not be valid."
+    },
+    {
+      "section_id": "1-2.6",
+      "title": "Laterites",
+      "summary": "Describes laterites as a subcategory of residual soils formed by weathering of igneous materials in tropical climates. Notes that laterites range from strongly cemented to uncemented aggregates of clay in sand-to-gravel sizes, and that the term is loosely applied. Flags them as potentially poor foundation or embankment materials under cyclic loading or flowing groundwater.",
+      "body": "Laterites are a category of residual soils formed by weathering of igneous parent materials, often in tropical climates. In many cases, laterites can be strongly cemented or can contain aggregates of clay ranging in size from sand to gravel. In geotechnical engineering nomenclature, the term laterite is not strictly defined, and it has been applied to a range of soils, both strongly cemented and not cemented (Wesley 2010). Laterites may be poor materials for the support of foundations or embankments, particularly if loaded cyclically or exposed to flowing groundwater (McCarthy 2007).",
+      "key_points": [
+        "Laterites are residual soils from igneous parent material weathering, typically in tropical climates.",
+        "Range from strongly cemented to uncemented clay aggregates of sand-to-gravel size; term is loosely defined.",
+        "May perform poorly as foundation or embankment support under cyclic loading or flowing groundwater conditions."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when evaluating tropical residual soils of igneous origin for use as foundation bearing material or embankment fill, particularly under cyclic or seepage conditions."
+    },
+    {
+      "section_id": "1-2.7",
+      "title": "Talus",
+      "summary": "Briefly describes talus as a colluvial deposit of loose rock debris at the base of a cliff, deposited by gravity. Notes that depending on the location relative to the cliff and deposit slope angle, global stability of a talus deposit may be low, making it a problem material for geotechnical projects.",
+      "body": "Talus is a loose deposit of rock debris located at the base of a cliff. Talus is a colluvial material deposited by gravity. Depending on the location with respect to the cliff and the slope of the deposit, the global stability of a talus deposit may be low.",
+      "key_points": [
+        "Talus is a colluvial, gravity-deposited loose rock debris accumulation at cliff bases.",
+        "Global stability of talus deposits can be low depending on proximity to the cliff and deposit slope angle."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when assessing global stability of structures founded on or adjacent to talus deposits at the base of cliffs or steep slopes."
+    },
+    {
+      "section_id": "1-2.8",
+      "title": "Loose Sands",
+      "summary": "Defines loose sands (relative density < 40%, SPT < 10 blows/ft) and identifies their key engineering hazards: compression under load, susceptibility to seismic and static liquefaction, and erosion/scour. Describes static liquefaction in contractive sands and the yield shear strength concept, noting catastrophic failure potential at strains often less than 1%.",
+      "body": "Sand, in general, is not considered to be a problematic soil. However, loose sands can exhibit significant compression when loaded and can liquefy in the event of seismic loading. Fine loose sands are also prone to erosion or scour. Loose sands can be defined as sand-sized soils having a relative density less than 40% and an SPT blow count less than 10 blows/ft (Duncan et al. 2014).\nBlast vibrations and equipment loading may cause settlement of loose sands. Settlement and global stability of loose sands may be evaluated using the methods of Chapters 5 and 7 of DM 7.1 for static loading conditions.\nOne behavioral condition that is unique to loose sands and non-plastic silts is static liquefaction. This can occur when excavations are made in loose contractive sand deposits that were formed by sluicing, such as for tailings or dams. An increase in stress by application of additional load can also cause static liquefaction. Saturated loose sands can fail catastrophically by liquefying under undrained loading if the in situ stress exceeds the yield shear strength as deformation occurs (Olson 2002). The yield shear strength is typically reached at very low strains, often less than 1%.",
+      "key_points": [
+        "Loose sands defined as relative density < 40% and SPT < 10 blows/ft (Duncan et al. 2014).",
+        "Hazards include settlement under static load, seismic liquefaction, static liquefaction, and erosion/scour.",
+        "Static liquefaction occurs in contractive sands (e.g., hydraulically sluiced tailings) when in situ stress exceeds yield shear strength under undrained loading.",
+        "Yield shear strength is reached at very low strains, often < 1%; failure can be catastrophic.",
+        "Blast vibrations and equipment loading can also cause settlement of loose sands."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when assessing settlement, liquefaction potential (static or seismic), and erosion risk for structures on or in loose sand deposits."
+    },
+    {
+      "section_id": "1-2.9",
+      "title": "Soft Clays",
+      "summary": "Defines soft clays by their undrained strength range (500–1000 psf), with very soft clays below 500 psf. Notes that soft clays are most often normally consolidated or slightly overconsolidated and typically have liquidity indices near one. Provides the basic classification thresholds needed to identify soft clay conditions in design.",
+      "body": "Soft clays have undrained strengths in the range of 500 psf to 1000 psf. Clays with undrained strengths less than 500 psf are termed very soft. Soft clays are most often normally consolidated or slightly overconsolidated. Soft clays often have liquidity indices near one.",
+      "key_points": [
+        "Soft clays: undrained strength 500–1000 psf; very soft clays: undrained strength < 500 psf.",
+        "Typically normally consolidated or slightly overconsolidated with liquidity index near 1."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when classifying fine-grained soils for foundation, embankment, or excavation design where low undrained shear strength governs."
+    },
+    {
+      "section_id": "1-2.10",
+      "title": "Glacial Till",
+      "summary": "Describes glacial tills as broadly graded materials (clay to boulders) that are generally good construction materials. Identifies the key exception: tills with high silt and sand fractions are prone to erosion if unprotected by a graded filter, which is the primary engineering concern for this soil type.",
+      "body": "Glacial tills can contain a range of particle sizes from clay size (0.002 mm) to boulders. In most cases, glacial tills are an excellent construction material. However, tills that contain large amounts of silt-sized and sand-sized materials can be prone to erosion, particularly if they are not protected by a graded filter.",
+      "key_points": [
+        "Glacial tills span clay size (0.002 mm) to boulders and are generally excellent construction materials.",
+        "Tills with high silt and sand content are susceptible to erosion if not protected by a graded filter."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when using glacial till as construction material or when evaluating erosion risk in till embankments or dam cores without filter protection."
+    },
+    {
+      "section_id": "1-2.11",
+      "title": "Organic Soils",
+      "summary": "Covers the full spectrum of organic soils from organic clays (OH, OL) and organic silts to peats (PT) and muskeg, with ASTM D2487/D4427 classification criteria. Details the engineering challenges of extreme compressibility (void ratios > 4), very low unit weights, decomposition-induced settlements, and the unique properties of fibrous peats including high φ', high undrained strength ratios (avg. 0.59), high strain to failure, and anisotropic shear strength.",
+      "body": "Organic soils have been the bane of conventional geotechnical engineering practice for many years. Specifications for earth fills often state that 0% organics are allowed. This strict specification is neither practical nor enforceable. There are a variety of types of organic soils, and these differ in the amount and type of problems they can cause in geotechnical projects.\nOrganic clays, as defined by ASTM D2487, are fine-grained soils with Atterberg limits plotting above the A-line and having a ratio of the oven-dried liquid limit to the not-dried liquid limit less than or equal to 0.75. These have the group symbol of OH if the liquid limit (not-dried) is greater than 50, and they have the group name of organic clay. OH soils are considered to have \"sufficient organic content to influence the soil properties.\" If the liquid limit is less than 50, the group symbol is OL, but the group name remains organic clay.\nOrganic silts are defined similarly, but the Atterberg limits plot below the A-line. The same criterion regarding the ratio of the oven-dried to not-dried liquid limit also applies. An organic silt has the same group symbol of OH as an organic clay if the not-dried liquid limit is greater than 50. Organic silts that have a liquid limit less than 50 have a group symbol of OL, and the group name is still organic silt.\nPeats, represented by the group symbol PT, are described in ASTM D2487 as \"primarily organic matter, dark in color, and organic odor.\" This classification is not based on Atterberg limits, and peats are described as having a texture from fibrous to amorphous. Muskeg is a peat soil that is found in parts of Alaska and Western Canada (Sowers 1989).\nPeats are further classified based on the measured organic content, as described in ASTM D4427 (Standard Classification of Peat Samples by Laboratory Testing). Peats have an ash content less than 25%, as determined by ASTM D2974, which means true peats have at least 75% organic material. Peats are also differentiated by the fiber content, acidity, and absorbency. More information about the classification and engineering behavior of organic soils can be found in VandenBerge et al. (2017) and Sleep et al. (2009).\nOne of the main issues with organic soils, and particularly with peats, is that they are very compressible. Organic soils can have very high in situ moisture contents – sometimes in excess of 1000% for peats. This results in very low unit weights and correspondingly low in situ effective stresses. A peat can be normally consolidated, and since the effective stresses are very low, the equilibrium void ratio can be very high – often greater than 4. If the effective stress is increased due to a geotechnical project loading, large settlements can occur. Preloading a site can help to alleviate extreme settlement magnitudes.\nOrganic soils can also decompose over time. If organics are incorporated into a fill material, the decomposition of the organics may result in settlement over time; however, there is some debate regarding the amount of decomposition possible in an anaerobic environment. Even so, there are strict limits normally placed on the organic content of structural fills, with a limit of 0% to 10% often being specified.\nAlthough peats are very compressible, research conducted on fibrous peats show that other engineering parameters are often within the range of other soil deposits (Edil and Wang 2000; Landva and La Rochelle 1983; and Landva et al. 1983). Listed below are general facts about fibrous peats:\n• Peats have a high strain to failure for both drained and undrained loading.\n• Peats develop high pore pressures during undrained loading, with Ā values at failure greater than 0.5 and often equal to 1.0.\n• K0 values of fibrous peats are around 0.3.\n• Peats normally have a cʹ close to zero and a high value of φʹ. Values reported in the literature for φʹ range from about 40 degrees to 65 degrees.\n• Peats are not weak per se. The undrained strength ratios of peats reported in the literature range from about 0.4 to 1.5, with Edil and Wang (2000) reporting an average value of 0.59. The reason that peats are often considered to be weak is that, owing to the very low unit weight, the effective stresses within peat deposits are very low. If a peat deposit is overlain by a mineral soil, the undrained shear strength can be much higher than that of a normally consolidated clay.\n• Peats have a high permeability (10-3 cm/sec) in a normally consolidated condition at low effective stresses. If a peat is consolidated by placing a fill on top of it, the permeability drastically decreases during consolidation.\n• Vane shear tests have often been used to measure the undrained shear strength of peat.\n• The shear strength of peat is highly anisotropic since the fibers are usually horizontally oriented.",
+      "key_points": [
+        "Organic clays (OH/OL): Atterberg limits above A-line, oven-dry LL / not-dried LL ≤ 0.75; organic silts plot below A-line.",
+        "Peats (PT per ASTM D2487): ash content < 25% (≥75% organic material per ASTM D4427); muskeg is peat found in Alaska/western Canada.",
+        "Peats can have moisture contents > 1000%, void ratios > 4, very low unit weights and effective stresses — making them extremely compressible.",
+        "Preloading can reduce extreme settlements; structural fill organic content limits are typically 0–10%.",
+        "Fibrous peat φ' = 40–65°, c' ≈ 0; undrained strength ratio averages 0.59 (Edil and Wang 2000); K0 ≈ 0.3.",
+        "Peat Ā at failure ≥ 0.5, often 1.0; permeability ≈ 10⁻³ cm/sec at low effective stress but drops sharply during consolidation.",
+        "Peat shear strength is highly anisotropic due to horizontally oriented fibers."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when characterizing or designing on/with organic soils (organic clays, organic silts, peats, muskeg), particularly for settlement analysis, fill specifications, and undrained shear strength assessment."
+    },
+    {
+      "section_id": "1-2.12",
+      "title": "Expansive Soils",
+      "summary": "Describes fine-grained soils that swell upon wetting, driven by five factors including saturation, unit weight, clay mineralogy (smectite/montmorillonite), plasticity, and fabric. Provides IBC threshold criteria for identifying expansive soils (PI < 15, < 10% passing No. 200, < 5% finer than 0.005 mm = non-expansive) and identifies applicable ASTM test methods (D4546, D4829, D2435) and available correlations.",
+      "body": "Certain types of fine-grained soils can expand when given access to water. The pressure developed from expansion can be large enough to cause significant damage to geotechnical structures. There are five related factors that influence the swell potential of fine-grained soils (Bursey et al. 2006):\n1) Clays at low initial degrees of saturation expand more than clays at higher degrees of saturation.\n2) The swell potential increases with increasing soil unit weight.\n3) Clays with very active soil minerals (smectite and montmorillonite) expand more than soils with less active clay minerals (kaolinite and illite).\n4) Soils with higher plasticity expand more than soils with lower plasticity.\n5) Clays with a flocculated structure swell more than clays with a dispersed structure.\nThe International Building Code (IBC) provides threshold guidelines to determine if a soil has a potential swelling problem. Soils are deemed not expansive if the plasticity index is less than 15, less than 10% passes the No. 200 mesh sieve, or less than 5% of the soil is finer than 0.005 mm. If a soil is considered to be potentially expansive, two ASTM test procedures are available to assess the swell potential:\n1) ASTM D4546 \"Standard Test Methods for One-dimensional Swell or Settlement Potential of Cohesive Soil\" and\n2) ASTM D4829 \"Standard Test Method for Expansion Index of Soil.\"\nIn addition, the conventional one-dimensional consolidation test (ASTM D2435) can be used to measure the swell pressure of soils. The swell pressure is the applied stress that prevents volume change when the test specimen is inundated. Also, many correlations are available to estimate the swell potential of soils, and these can be found in Chapter 8 of DM 7.1.\nExpansive soils can be a problem because the volume change characteristics can be reversible. Soils that expand significantly when wetted can also shrink considerably when dried. Shrink-swell issues in fine-grained soils often occur over the range of depth corresponding to seasonal moisture content variation.",
+      "key_points": [
+        "Five factors control swell potential: initial saturation (lower = more swell), unit weight, clay mineralogy (smectite/montmorillonite worst), plasticity, and fabric (flocculated > dispersed).",
+        "IBC: not expansive if PI < 15, < 10% passing No. 200 sieve, or < 5% finer than 0.005 mm.",
+        "Test methods: ASTM D4546 (1-D swell/settlement), D4829 (expansion index), D2435 (swell pressure via consolidation test).",
+        "Swell pressure = applied stress preventing volume change upon inundation.",
+        "Volume change is reversible; shrink-swell cycles occur seasonally and affect the depth zone of moisture variation.",
+        "Correlations for estimating swell potential are in DM 7.1, Chapter 8."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when evaluating foundation design, pavement subgrade, or retaining wall design in fine-grained soils that may exhibit swell or shrinkage with moisture change."
+    },
+    {
+      "section_id": "1-2.13",
+      "title": "Expansive Shale",
+      "summary": "Extends expansive soil discussion to shales containing clay minerals, with special emphasis on pyritic shales. Describes how oxidation of pyrite produces gypsum and sulfuric acid that degrade steel and concrete — a problem beyond simple heave. Identifies pyritic shales by color (dark gray to black), associated fossils, visible pyrite crystals, and chemical sulfur testing; notes prevalence in Devonian-age stratigraphy.",
+      "body": "Many types of shales can also expand when provided with access to water. Since shale usually contains clay minerals, the same basic factors that influence the swell potential of soils apply to shales, particularly if the shale is excavated and used for a structural fill.\nPyritic shales pose a particularly severe problem if they are exposed during excavation. The problems can be more severe than just ground heave since the byproducts of oxidation of pyritic shales (gypsum and sulfuric acid) can cause degradation of steel and concrete. Issues with pyritic shales are documented in the southeastern and mid-Atlantic states as well as in Canada, the United Kingdom, and many other countries. Bryant et al. (2003) summarize many case histories of issues with pyritic shales. Engineers developing sites which have Devonian age shales in the stratigraphy should be aware of the problems with pyritic shales. Problematic shales are normally dark gray to black (Bryant et al. 2003), and certain types of fossils are prevalent in these shales, which can serve to identify their age. Pyrite crystals may be visible in pyritic shales. Chemical tests can be conducted to identify the total sulfur present in shales to identify ones that are of concern.",
+      "key_points": [
+        "Shales expand upon wetting due to clay mineral content; same swelling factors as for expansive soils apply.",
+        "Pyritic shale oxidation produces gypsum and sulfuric acid, causing degradation of steel and concrete beyond simple heave.",
+        "Documented in southeastern/mid-Atlantic US, Canada, UK, and other countries; common in Devonian-age stratigraphy.",
+        "Identification: dark gray to black color, characteristic fossils, visible pyrite crystals, chemical sulfur testing.",
+        "Reference: Bryant et al. (2003) for case histories."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when excavating or using shale as structural fill, particularly where Devonian-age dark shales are present and oxidation of pyrite could damage structures or foundations."
+    },
+    {
+      "section_id": "1-2.14",
+      "title": "Collapsible Soils",
+      "summary": "Identifies soil types susceptible to hydrocompression (large irreversible volume decrease upon wetting): loess, alluvial floodplain, colluvial, residual, volcanic tuff, and lean clays/silts compacted dry of optimum. Covers test methods (ASTM D4546), mitigation strategies including pre-wetting/flooding and dynamic compaction for in situ soils, and compaction specification adjustments for fills. Notes trade-offs between collapse mitigation and strength/stiffness.",
+      "body": "Some soils can exhibit large compressive volume changes upon wetting. Types of soils that can exhibit this behavior are loess, alluvial flood plain deposits, colluvial deposits, residual soils, volcanic tuff, and lean clays and silts compacted dry of optimum (Brandon et al. 1990, Xanthakos et al. 1994).\nGeotechnical laboratory tests are available to determine the amount of compression due to wetting (hydrocompression or hydrocompaction). Basic test procedures are outlined in Brandon et al. (1990). The test procedure given in ASTM D4546 (Standard Test Method for One-Dimensional Swell or Collapse of Soil) can be used for measuring the collapse potential of compacted soils.\nThe collapse potential of compacted soils can sometimes be controlled by careful selection of the compaction specifications. The collapse potential can be reduced by compacting the soils wet of optimum at modest values of relative compaction. However, there are trade-offs in controlling collapse with compaction specifications, because other properties, such as strength and stiffness, might be compromised.\nThe collapse potential of natural in situ soils can be difficult to address. In some cases, berms have been constructed around portions of the site, and the site is flooded so that the soil is forced to collapse prior to development. In other cases, soil improvement methods, such as dynamic compaction, can be used to densify the soil and to reduce the amount of future collapse. Further discussion of collapse in the context of shallow foundations is provided in Section 5-6.3.",
+      "key_points": [
+        "Collapsible soils include loess, alluvial floodplain, colluvial, residual soils, volcanic tuff, and lean clays/silts compacted dry of optimum.",
+        "Collapse potential measured by ASTM D4546 (one-dimensional swell or collapse test).",
+        "For fills: compacting wet of optimum at modest relative compaction reduces collapse, but at the expense of strength and stiffness.",
+        "For in situ soils: pre-flooding or dynamic compaction can be used to induce or prevent collapse before development.",
+        "Further shallow foundation discussion is in Section 5-6.3."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when designing foundations or embankments on or with soils susceptible to large irreversible settlements upon wetting, particularly in arid regions or where irrigation or flooding may occur."
+    },
+    {
+      "section_id": "1-2.15",
+      "title": "Dispersive Soils",
+      "summary": "Describes dispersive clays and silts that erode rapidly by particle deflocculation in flowing water with particular chemistry, including documented dam failures. Identifies four ASTM test methods for classification (D4221 double hydrometer, D4647 pinhole test, D6572 crumb test, D4542 pore water soluble salts), and notes that interpreting results requires engineering judgment since tests yield general dispersive/slightly dispersive/non-dispersive ratings.",
+      "body": "Some fine-grained soils are prone to dispersion or deflocculation when subjected to flowing water having a particular chemistry. These types of soils are termed dispersive soils and are normally clay or silt soils. Dispersive soils can erode quickly due to separation of the particles, and some dam failures have been attributed to erosion of dispersive soils (Sherard 1986).\nOwing to the engineering importance of dispersive soils in earth dams and canals, several tests have been developed to identify these soils:\n1) ASTM D4221 \"Standard Test Method for Dispersive Characteristics of Clay Soil by Double Hydrometer,\"\n2) ASTM D4647 \"Standard Test Methods for Identification and Classification of Dispersive Clay Soils by the Pinhole Test,\"\n3) ASTM D6572 \"Standard Test Methods for Determining Dispersive Characteristics of Clayey Soils by the Crumb Test,\" and\n4) ASTM D4542 \"Standard Test Method for Pore Water Extraction and Determination of the Soluble Salt Content of Soils by Refractometer.\"\nInterpreting the results of these tests requires engineering judgment. The results of the tests are very general, in that soils can be considered dispersive, slightly dispersive, or non-dispersive (ASTM D4647). As an example, if twenty specimens are tested at a site, and two are considered to be dispersive, judgment is required to determine if dispersion is a problem or not. Dispersive soils are also discussed in Section 3-6.6.",
+      "key_points": [
+        "Dispersive soils are clays/silts that erode by particle deflocculation in flowing water; linked to dam failures (Sherard 1986).",
+        "Four ASTM identification tests: D4221 (double hydrometer), D4647 (pinhole), D6572 (crumb test), D4542 (pore water soluble salts).",
+        "Test results classify soils as dispersive, slightly dispersive, or non-dispersive — interpretation requires engineering judgment.",
+        "Particularly important for earth dams and canal linings.",
+        "Further discussion in Section 3-6.6."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when assessing erosion risk in earth dams, canal linings, or embankments where clay or silt soils may be exposed to flowing water with particular ionic chemistry."
+    },
+    {
+      "section_id": "1-2.16",
+      "title": "Dredged Soils",
+      "summary": "Describes dredged materials — typically slurried soils with very high water content, very low unit weight and shear strength — from navigable waterway maintenance and environmental dredging. Covers dewatering in confined disposal facilities, characterization challenges (low-sensitivity testing equipment, fixed-piston sampling, miniature vane/fall cone tests for undrained strength, direct shear for drained parameters), and potential reuse for land reclamation.",
+      "body": "Dredged soils are excavated or pumped materials that are obtained from below a water surface. A main source of dredged soils comes from the maintenance of navigable waterways and harbors. The US Army Corps of Engineers maintains over 25,000 miles of waterways and over 400 ports, and they are responsible for the excavation of the bulk of dredged materials in the US (ERDC 2001). Environmental dredging is another category of dredging, and it is used to remove contaminated sediments from waterways and harbors. The US Navy and Coast Guard also direct dredging projects as well as local, state, and other federal government organizations.\nIn some cases, dredged materials can be used for engineering projects, such as land reclamation, or if properly sorted, construction materials. Dredging can also be used for excavation around infrastructure projects, such as bridge abutments and pier locations. There are many different types of dredges including mechanical, hydraulic, and pneumatic dredges. In many cases, the dredged soils are mixed with water so that they can be pumped to the location of disposal.\nThe dredged soils can be deposited at onshore placement facilities (confined disposal facilities) or in nearshore or open water areas. For onshore deposition, the dredged materials need to be dewatered to transition from a slurried consistency to a semi-solid soil consistency. The slurried dredge materials are normally deposited within an area surrounded by containment dikes. Over time, the soil particles settle out and the supernatant is drained from the surface. The remaining soil materials are remolded and have very high water contents, very low densities, and very low shear strengths. The character of the dredged materials depends on the source, and the grain sizes can vary considerably from clay to gravel size. Shear strengths of dredged soils can be increased by the installation of wick drains and preloading the site.\nOwing to their experience with dredging and dredged soils, the US Army Corps of Engineers has an impressive research portfolio on many aspects of dredging. They have investigated factors that influence the dredgeability of soils, construction of containment dikes, and properties of dredged soils.\nConventional geotechnical laboratory and field test equipment can be used with dredged soils; however, the very low shear strengths mean that test interpretation is at the lower end of normal calibrations. CPTs can be used in dredged soils, but it is necessary to maximize the sensitivity of the cone tip by using a low-capacity cone or cones having larger tip areas. Special penetrometers have been developed for very soft soils. Vane shear tests have also been used with good results in fine-grained dredged deposits.\nIt is difficult to sample dredged soils, but successful sampling is possible with fixed-piston samplers. When samples are obtained, trimming triaxial test specimens may be challenging owing to the very low shear strengths. Laboratory miniature vane shear tests (ASTM D4648) or fall cone tests might be better alternatives for measuring undrained shear strengths. For drained strength parameters, trimming direct shear test specimens is often easier than triaxial specimens.",
+      "key_points": [
+        "Dredged soils are remolded with very high water contents, very low densities, and very low shear strengths after deposition in confined disposal facilities.",
+        "US Army Corps of Engineers manages > 25,000 miles of waterways and > 400 ports, dredging the bulk of US dredged materials.",
+        "Grain size ranges from clay to gravel; shear strength can be increased by wick drains and preloading.",
+        "CPT requires low-capacity or large-area cones; vane shear tests are effective in fine-grained dredged soils.",
+        "Sampling via fixed-piston samplers; miniature vane (ASTM D4648) or fall cone preferred for undrained strength; direct shear easier than triaxial for drained parameters.",
+        "Pore fluid may be leachate with unknown properties in environmental dredging sites."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when characterizing, testing, or designing with dredged soils placed in confined disposal facilities or used for land reclamation projects."
+    },
+    {
+      "section_id": "1-2.17",
+      "title": "Low Plasticity and Nonplastic Silts",
+      "summary": "Identifies problematic engineering behaviors of low-plasticity (PI < 4, LL < 25) and nonplastic silts arising from their intermediate permeability: scatter in UU triaxial tests, inapplicability of clay-based correlations for in situ tests, and absence of a clear preconsolidation break in the compression curve. Recommends CU triaxial tests or drained strength with assumed pore pressures ≥ 0 for undrained strength characterization.",
+      "body": "Silts can be characterized by their Atterberg limits or by their size. Soils that plot under the A-line with LL > 50 have the group symbol MH and the group name elastic silt. These soils are ordinarily not problematic and can be treated in the same manner as clay. Soils that plot under the A-line, with an LL < 50 and a PI < 4, have the group symbol ML and a group name of silt. Soils that have a grain size ranging from 0.002 mm to 0.075 mm are considered to be silt-sized.\nProblematic silts are those that have very low plasticity (PI < 4 and LL < 25), particularly silts that are nonplastic. According to ASTM D4318, a soil is considered to be nonplastic, if it is not possible (1) to roll out a plastic limit thread or (2) to maintain the cut groove in the liquid limit test for more than 25 blows. Low plasticity and nonplastic silts can be difficult to deal with in engineering projects because of the following issues (Brandon et al. 2006):\n1) Unconsolidated-Undrained (UU) triaxial tests conducted on saturated silts often exhibit substantial scatter.\n2) Correlations developed for clay soils (CL and CH) may not apply to silts. These include correlations for interpreting the results of in situ tests.\n3) The consolidation compression curve often does not exhibit a clear preconsolidation pressure.\nMany of the problems with these silts may be due to the fact that their grain size, and corresponding permeability, give them behavioral characteristics that are unlike clays and sands. Whereas many in situ tests in clays are considered to be undrained, these tests might be partially drained in silt. Silts may cavitate during undrained loading owing to their dilative tendencies (Skempton and Golder 1948). Also, the lack of significant plasticity may prevent their behavior from being greatly influenced by the preconsolidation pressure.\nMost of the problems with low plasticity and nonplastic silts occur when trying to characterize the undrained strength. If the undrained strength is characterized using Consolidated-Undrained triaxial tests, the issue with scatter in UU triaxial tests can be avoided. The undrained strength can also be estimated based on drained shear strength parameters combined with an assumed pore pressure at failure that is greater than or equal to zero to avoid relying on negative pore water pressures for undrained strength (Duncan et al. 2014).",
+      "key_points": [
+        "Problematic silts: PI < 4 and LL < 25 (ML group); nonplastic if plastic limit thread cannot be rolled per ASTM D4318.",
+        "UU triaxial tests on saturated silts show substantial scatter; clay-based in situ correlations do not reliably apply.",
+        "Compression curves in silts often lack a clear preconsolidation break.",
+        "Intermediate permeability means in situ tests may be partially drained rather than undrained as assumed for clays.",
+        "Silts can cavitate during undrained loading due to dilative tendencies (Skempton and Golder 1948).",
+        "Preferred approach: CU triaxial tests, or drained strength parameters with assumed failure pore pressure ≥ 0 to avoid reliance on negative pore pressures."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when characterizing undrained shear strength or interpreting in situ test results in low-plasticity or nonplastic silt deposits where standard clay-based methods may not be valid."
+    },
+    {
+      "section_id": "1-2.18",
+      "title": "Municipal Solid Waste",
+      "summary": "Covers geotechnical properties and design challenges for municipal solid waste (MSW), including highly variable composition, time-dependent decomposition, and difficulty in sampling and shear strength testing. Provides reference strength parameters: c' = 300 psf, φ' = 36° at 2000 psf normal stress (Bray et al. 2009), decreasing 5° per tenfold stress increase, with published ranges of c' = 0–1000 psf and φ' = 27–41°. Notes that in situ testing is not recommended.",
+      "body": "Municipal solid waste (MSW) is generated in huge quantities throughout the US. Research into the geotechnical properties began in earnest in the early 1990s in response to new EPA regulations. Knowledge of the properties is important for several reasons:\n1) The engineering properties of the MSW can factor into the design of the landfill, particularly the stability of landfill interior slopes and cover system.\n2) After landfills are closed, light site development is often planned for the site. Facilities such as public parks and golf courses have been constructed on top of closed landfills.\n3) MSW deposits exist in unengineered landfills that predate current regulations. Development at old landfill sites can occur both with and without initial knowledge of the presence of the existing MSW.\nIt is not possible to definitively state the properties of MSW since the engineering properties depend on a wide array of factors. The composition of the waste stream can vary for different geographical areas as well as for different seasons of the year. In addition, as the MSW decomposes, the properties change over time (Reddy et al. 2011); therefore, it is only possible to give ranges of properties.\nMeasuring the shear strength of MSW is difficult since the size of the material is larger than can be accommodated by most shear testing apparatuses that were designed for soils. Also, obtaining a representative sample of material that is so heterogeneous is very difficult. Some researchers have resorted to manufacturing \"synthetic\" test specimens of MSW to obtain repeatable test specimens for property measurement (Dixon et al. 2008; Reddy et al. 2009; Reddy et al. 2011). Other research programs have tried to back-calculate the strength parameters from failed slopes in landfills (Eid et al. 2000; Bray et al. 2008).\nThe use of in situ tests to characterize MSW is not recommended since penetration of the landfill material can be difficult, and no reliable correlations exist regarding interpretation of the tests. These factors are compounded with the fact that the pore fluid may be leachate with unknown properties instead of water.\nBray et al. (2009) suggested using an effective stress cohesion intercept of 300 psf and a drained friction angle of 36 degrees at a normal stress of 2000 psf with the friction angle decreasing by 5 degrees for each tenfold increase in normal stress. Other references cite strength parameters considerably smaller (Reddy et al. 2009). Pandey and Tiwari (2015) report published values of cʹ ranging from 0 to 1000 psf and friction angles (φʹ) ranging from 27 to 41 degrees for MSW.",
+      "key_points": [
+        "MSW properties are highly variable by geographic area, season, and decomposition stage; only ranges can be provided.",
+        "Shear strength testing is challenged by large particle size and heterogeneity; synthetic specimens and back-calculation from failures are common approaches.",
+        "In situ testing is NOT recommended due to penetration difficulty, absence of reliable correlations, and unknown leachate pore fluid.",
+        "Reference strength (Bray et al. 2009): c' = 300 psf, φ' = 36° at σ = 2000 psf, decreasing 5° per tenfold increase in normal stress.",
+        "Published range (Pandey and Tiwari 2015): c' = 0–1000 psf; φ' = 27–41°.",
+        "Applications: landfill slope and cover design, post-closure development on closed landfills, and assessment of legacy unengineered landfills."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when designing landfill slopes, cover systems, or structures on closed landfills, or when evaluating stability of legacy unengineered MSW deposits."
+    },
+    {
+      "section_id": "1-3",
+      "title": "GeoTechTools Website Interactive Selection System",
+      "summary": "Introduces the GeoTechTools website as an interactive tool for selecting ground improvement and foundation technologies across four screening categories: construction over unstable soils, construction over stable/stabilized soils, geotechnical pavement components, and working platforms. Provides a worked example showing treatment technology options for wet/weak fine-grained soils at depths of 10–30 ft.",
+      "body": "Certain technologies are applicable to a broad range of soil types while others are best suited for specific soil types. Table 1-4 presents various soil types and ground conditions paired with the general types of technologies that apply.",
+      "key_points": [
+        "GeoTechTools website provides interactive selection of ground improvement technologies across four application categories.",
+        "The four categories are: (1) construction over unstable soils, (2) construction over stable or stabilized soils, (3) geotechnical pavement components, and (4) working platforms.",
+        "Category 1 (unstable soils) includes subcategories: wet/weak fine-grained soils, unsaturated loose granular soils, saturated loose granular soils, voids/sinkholes/mines, and problem soils/sites.",
+        "For wet/weak fine-grained soils at 10–30 ft depth, 16 treatment technologies are offered including aggregate columns, jet grouting, deep mixing, micropiles, and prefabricated vertical drains.",
+        "Table 1-4 maps soil types and foundation conditions to applicable technologies, covering clays, sands, rock, and special conditions."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 1-1 Interactive Selection Categories for GeoTechTools Website"
+      ],
+      "tables": [
+        "Table 1-4 Soil Types and Foundation Conditions for Different Technologies (after FHWA 2017)"
+      ],
+      "applicability": "Applies when an engineer needs to interactively identify candidate ground improvement or foundation technologies based on soil type, ground conditions, and treatment depth."
+    },
+    {
+      "section_id": "1-3.1",
+      "title": "GeoTechTools Website Interactive Selection System",
+      "summary": "Describes the interactive selection workflow on the GeoTechTools website, detailing how users navigate the four application categories and subcategories. Uses the example of selecting wet and weak fine-grained soils with a 10–30 ft treatment depth to illustrate the 16 treatment technologies the tool recommends, including aggregate columns, jet grouting, micropiles, deep mixing methods, and vacuum preloading.",
+      "body": "The GeoTechTools website allows a user to interactively select between various technologies for four basic screening categories. The application categories are (1) construction over unstable soils, (2) construction over stable or stabilized soils, (3) geotechnical pavement components, and (4) working platforms. These four categories are shown graphically in Figure 1-1.\n\nAll of these categories have applications to the design elements presented in this manual. If category No. 1 is selected, the user has a choice of various unstable ground conditions, such as (a) wet and weak fine-grained soils, (b) unsaturated loose granular soils, (c) saturated loose granular soils, (d) voids – sinkholes and abandoned mines, and (e) problem soils and sites. If (a) wet and weak fine-grained soils are selected, the user is prompted to indicate the depth below the ground surface where treatment is required, and various treatment options are suggested based on the depth selection. For this example, if a treatment depth of 10 to 30 ft is selected, the following treatment technologies are offered:\n• Aggregate columns\n• Jet grouting\n• Column-supported embankments\n• Lightweight fill\n• Combined soil stabilization with vertical columns\n• Mass mixing methods\n• Continuous flight auger piles\n• Micropiles\n• Deep mixing methods\n• Prefabricated vertical drains and fill\n• Electro-osmosis\n• Sand compaction piles\n• Geosynthetic reinforced embankments\n• Vacuum preloading\n• Geotextile encased columns\n• Vibrocompaction",
+      "key_points": [
+        "The GeoTechTools website provides depth-dependent technology recommendations; users specify treatment depth to narrow options.",
+        "For wet and weak fine-grained soils at 10–30 ft depth, 16 technologies are suggested including aggregate columns, micropiles, deep mixing, and vacuum preloading.",
+        "Category 1 (unstable soils) covers five subconditions: wet/weak fine-grained soils, unsaturated loose granular soils, saturated loose granular soils, voids/sinkholes/mines, and problem soils/sites.",
+        "All four GeoTechTools categories are relevant to the design elements presented in UFC 3-220-20.",
+        "The interactive selection system (Figure 1-1) guides engineers from broad site condition to specific candidate technologies."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 1-1 Interactive Selection Categories for GeoTechTools Website"
+      ],
+      "tables": [],
+      "applicability": "Applies when using the GeoTechTools website to screen and select ground improvement technologies for a site with known soil conditions and required treatment depth."
+    },
+    {
+      "section_id": "1-3.2",
+      "title": "Geotechnical Site Technology Examples",
+      "summary": "Presents summary figures (Figure 1-2 through Figure 1-16) for 15 popular geotechnical site improvement technologies. Each figure covers benefits, construction process, advantages/disadvantages, favorable site conditions, key design parameters, and alternative technologies. Primary reference is FHWA (2017).",
+      "body": "In the following pages, examples of several popular geotechnical site technologies are presented. Figure 1-2 through Figure 1-16 summarize the benefits of the procedure and the basic construction process. Advantages and disadvantages are presented, along with the site conditions that are most favorable for the specific technology. The key design parameters are listed, and other alternative technologies are included. More information on most of the technologies can be found in FHWA (2017) or in the other references provided in each figure.\n\nSelecting one of the suggested technologies connects the user with both general and detailed information about the choice. There is a brief overview, a fact sheet, photographs of the technology, case histories, design guidance, QA/QC information, cost information, example specifications, and references for further study are provided.",
+      "key_points": [
+        "Figures 1-2 through 1-16 each summarize a different geotechnical site improvement technology.",
+        "Each figure covers: benefits, construction process, advantages/disadvantages, favorable site conditions, key design parameters, and alternative technologies.",
+        "Technologies covered include aggregate columns, bulk infill grouting, blast densification, chemical grouting, column supported embankments, compaction grouting, dynamic compaction, deep mixing, mass mixing, prefabricated vertical drains, sand compaction piles, soil nail walls, vacuum preloading...",
+        "Primary reference for additional detail is FHWA (2017); each figure also provides technology-specific references.",
+        "The interactive tool associated with each technology provides fact sheets, photographs, case histories, design guidance, QA/QC, cost data, and example specifications."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 1-2 Summary of Key Elements of Aggregate Columns",
+        "Figure 1-3 Summary of Key Elements of Bulk Infill Grouting",
+        "Figure 1-4 Summary of Key Elements of Blast Densification",
+        "Figure 1-5 Summary of Key Elements of Chemical Grouting",
+        "Figure 1-6 Summary of Key Elements of Column Supported Embankments",
+        "Figure 1-7 Summary of Key Elements of Compaction Grouting",
+        "Figure 1-8 Summary of Key Elements of Dynamic Compaction",
+        "Figure 1-9 Summary of Key Elements of the Deep Mixing Method",
+        "Figure 1-10 Summary of Key Elements of the Mass Mixing Method",
+        "Figure 1-11 Summary of Key Elements of Pre-Fabricated Vertical Drains",
+        "Figure 1-12 Summary of Key Elements of Sand Compaction Piles",
+        "Figure 1-13 Summary of Key Elements of Soil Nail Walls",
+        "Figure 1-14 Summary of Key Elements of Vacuum Preloading",
+        "Figure 1-15 Summary of Key Elements of Vibro-Compaction",
+        "Figure 1-16 Summary of Key Elements of Vibro-Concrete Columns"
+      ],
+      "tables": [],
+      "applicability": "Applies when selecting or evaluating ground improvement and site treatment technologies for geotechnical engineering projects, particularly where FHWA guidance is relevant."
+    },
+    {
+      "section_id": "1-4",
+      "title": "NOTATION",
+      "summary": "Defines the notation and variable symbols used in Chapter 1 of UFC 3-220-20. Covers key geotechnical parameters including Skempton's pore pressure parameter, consolidation coefficients, Atterberg limits, SPT blow count, sensitivity, lateral earth pressure coefficient, and effective stress strength parameters.",
+      "body": "Variable | Definition\nĀ | Skempton's pore pressure parameter for change in shear stress\ncʹ | Drained or effective stress cohesion intercept\nCεc | Modified compression index (in terms of strain)\nch | Coefficient of consolidation in the horizontal direction\ncv | Coefficient of consolidation in the vertical direction\nK0 | Lateral earth pressure coefficient for at-rest conditions\nLL | Liquid limit\nN | Standard penetration test blow count (uncorrected)\nPI | Plasticity index\nSt | Sensitivity\nφʹ | Drained or effective stress friction angle",
+      "key_points": [
+        "Ā is Skempton's pore pressure parameter, used to characterize pore pressure response to changes in shear stress.",
+        "cʹ and φʹ define the drained (effective stress) Mohr-Coulomb strength envelope parameters.",
+        "Cεc is the modified compression index expressed in terms of strain rather than void ratio.",
+        "ch and cv distinguish consolidation coefficients in horizontal vs. vertical drainage directions.",
+        "K0 is the at-rest lateral earth pressure coefficient, critical for in-situ stress estimation.",
+        "N is the uncorrected SPT blow count; corrections (e.g., for overburden) are applied separately.",
+        "LL and PI are Atterberg limit indices used to classify fine-grained soils; St (sensitivity) quantifies strength loss on remolding."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when interpreting variable symbols used throughout Chapter 1 of UFC 3-220-20 Volume 2."
+    }
+  ]
+}

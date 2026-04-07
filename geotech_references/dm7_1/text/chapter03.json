@@ -1,0 +1,840 @@
+{
+  "reference_id": "UFC 3-220-10",
+  "reference_title": "UFC 3-220-10 Soil Mechanics",
+  "volume": 1,
+  "chapter": 3,
+  "chapter_title": "Laboratory Testing",
+  "sections": [
+    {
+      "section_id": "3-1",
+      "title": "INTRODUCTION",
+      "summary": "Introduces Chapter 3 on laboratory testing for geotechnical engineering. Covers the scope of common lab tests, their historical evolution from early 20th-century origins through standardization by ASTM, Corps of Engineers, AASHTO, and USBR, and the importance of laboratory certification programs (MTC and AASHTO) for ensuring test quality and competency.",
+      "body": "",
+      "key_points": [
+        "Chapter is written for engineers who engage commercial labs, not those personally conducting tests.",
+        "Covers types of tests for different engineering parameters and factors influencing test results.",
+        "Triaxial test categories still used today were established in a landmark 1946 Corps of Engineers-sponsored 10-year study by Casagrande, Taylor, and Rutledge.",
+        "ASTM International (est. 1902) is the primary standards body for soil and rock testing; Committee D18 oversees these standards.",
+        "ASTM standards are reviewed every five years and may be reapproved, modified, or withdrawn.",
+        "Two organizations certify lab competency: the Corps of Engineers Materials Testing Center (MTC) and AASHTO's laboratory accreditation program.",
+        "This manual omits the date portion of ASTM standard designations as they change over the manual's useful life."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when engineers are selecting, specifying, or evaluating geotechnical laboratory tests and choosing certified testing laboratories."
+    },
+    {
+      "section_id": "3-1.1",
+      "title": "Scope",
+      "summary": "Defines the scope of Chapter 3, which covers common laboratory tests used in geotechnical engineering practice. Written for engineers who engage commercial laboratories rather than conduct tests themselves; discusses test types for various engineering parameters and key factors influencing the values obtained.",
+      "body": "This chapter discusses the common laboratory tests that are used in geotechnical engineering practice. The chapter has been written assuming that the reader will not personally be conducting the tests, but will be engaging a commercial laboratory to do the tests. The discussion considers the types of test that can be conducted for different engineering parameters and important factors influencing the values obtained.",
+      "key_points": [
+        "Targets engineers who engage commercial labs, not those personally performing tests.",
+        "Covers types of tests applicable to different engineering parameters.",
+        "Emphasizes factors influencing the values obtained from laboratory tests."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when an engineer needs to understand what laboratory tests are covered in this chapter and how the chapter is structured."
+    },
+    {
+      "section_id": "3-1.2",
+      "title": "Evolution of Laboratory Test Procedures",
+      "summary": "Traces the historical development of geotechnical laboratory testing from the early 20th century through standardization by ASTM International. Highlights key milestones including the 1946 triaxial test study, USBR Earth Manual (1951), Corps EM 1110-2-1906, AASHTO standards, and ASTM Committee D18's role in globally accepted soil and rock testing standards. Explains ASTM numbering conventions used throughout this manual.",
+      "body": "Geotechnical laboratory testing began in the early part of the last century. The test apparatuses and procedures were developed by a variety of organizations. Certain index tests used in geotechnical engineering were originally used in soil science and agronomy. Many of the compression and strength tests were initially developed by universities in the United States and Europe. An important early study published in 1946 was \"The Use of the Triaxial Test in Engineering Practice\" which was the summary report for a 10-year study sponsored by the Corps of Engineers. In this study, Professors Arthur Casagrande of Harvard, Don Taylor of MIT, and P. Rutledge of Northwestern, developed the major categories for triaxial testing of soils which are still used today.\n\nDuring the next 40 years, testing procedures and specifications were developed by organizations involved in constructing dams and highways. The U.S. Bureau of Reclamation first published the Earth Manual in 1951, and newer editions were released in subsequent years. The U.S. Army Corps of Engineers developed EM 1110-2-1906 Laboratory Soils Testing, which provided procedures for conducting and presenting the results of a variety of geotechnical tests. AASHTO has published over thirty editions of Standard Specifications for Transportation Materials and Methods of Sampling and Testing, which contains many geotechnical tests. In addition, some state departments of transportation have developed their own test specifications. The testing procedures for all of these organizations have coalesced to procedures standardized by ASTM International.\n\nASTM was initially named the American Society of Testing Materials in 1902, and the first specifications focused on tests related to the railway industry. The organization has expanded to manage the specifications for testing a variety of engineering materials and consumer products. ASTM has been very active in developing standards for soil and rock testing, and these standards have been widely adopted in U.S. and international engineering practice. Committee D18 oversees the standards for soil and rock testing, and dozens of subcommittees covering a wide array of special areas in laboratory testing. The name of the organization was changed to ASTM International to reflect that the test standards are used internationally as opposed just in the United States. ASTM International provides standards for hundreds of soil and rock tests and these standards have been adopted by most of the organizations that once produced their own standards.\n\nASTM standards for soil and rock testing usually begin with a \"C\" or \"D\" followed by a three or four digit number. In geotechnical engineering practice, engineers often refer to specific tests by the ASTM number as opposed to the test name itself. As an example, engineers will often say \"ASTM D698\" as opposed to \"standard Proctor compaction test.\" The letter and test number are also followed by a dash and a two digit number reflecting the year that the standard was adopted or last reviewed. For example, ASTM D698-12 indicates that the standard was last approved in 2012. In this manual, the date portion of the ASTM standard is omitted since these will change during the useful life of the manual.\n\nASTM standards are not static. Each standard is reviewed every five years. During review, the standard may be reapproved, modified, or withdrawn. Individuals who are actively engaged in soil and rock testing need to ensure that tests are conducted to the most recent approved version of the standard.",
+      "key_points": [
+        "The 1946 study 'The Use of the Triaxial Test in Engineering Practice' (Casagrande, Taylor, Rutledge) established triaxial test categories still in use today.",
+        "Key early standards bodies include USBR (Earth Manual, 1951), Corps of Engineers (EM 1110-2-1906), and AASHTO (30+ editions of standard specifications).",
+        "ASTM International (founded 1902 as ASTM) is now the dominant standards organization for soil and rock testing worldwide.",
+        "ASTM Committee D18 oversees soil and rock testing standards with dozens of specialized subcommittees.",
+        "ASTM geotechnical standards begin with 'C' or 'D' followed by a 3–4 digit number; engineers commonly reference tests by ASTM number (e.g., ASTM D698).",
+        "This manual omits the year suffix from ASTM designations; practitioners must consult the most current approved version.",
+        "ASTM standards are reviewed every five years and may be reapproved, modified, or withdrawn."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when understanding the historical basis and standardization context of geotechnical laboratory test procedures and ASTM designation conventions."
+    },
+    {
+      "section_id": "3-1.3",
+      "title": "Laboratory Certification",
+      "summary": "Describes the two primary laboratory certification programs that validate a commercial geotechnical lab's competency: the U.S. Army Corps of Engineers Materials Testing Center (MTC) and the AASHTO laboratory accreditation program. Both programs assess quality manuals, technician certification, equipment calibration, and on-site test performance, and maintain public online registers of accredited laboratories.",
+      "body": "The specifications and guidelines for laboratory tests are often quite complex. It takes a considerable investment of time and money for a laboratory to competently conduct many geotechnical tests and obtain reliable and repeatable results. It is often difficult for an engineer to know the competency of a laboratory to conduct high quality tests without conducting an assessment of the laboratory's past performance. Two organizations conduct routine assessments of a laboratory's ability to conduct standardized tests to a minimum level of competency.\n\nThe Materials Testing Center (MTC) of the U.S. Army Corps of Engineers inspects laboratories and validates their ability to conduct tests that follow ASTM standards. They see if the laboratory has a quality manual, certified technicians, functional equipment, and calibration procedures. Their inspection is done for specific tests, and they maintain an online register of validated labs and the tests that they are able to perform.\n\nAASHTO also has a laboratory accreditation program. They perform on-site assessments of a laboratory's prowess in conducting tests to AASHTO and ASTM standards. The laboratory must demonstrate the specific tests on the apparatuses where they will be performed. They also review the laboratory's quality management program, technician training, and calibration procedures. AASHTO maintains a register of accredited labs online.",
+      "key_points": [
+        "Geotechnical lab testing is complex and costly; engineer assessment of lab competency is difficult without a formal review process.",
+        "Two organizations certify labs: the Corps of Engineers Materials Testing Center (MTC) and AASHTO's accreditation program.",
+        "MTC validates labs against ASTM standards, checking quality manual, certified technicians, equipment functionality, and calibration.",
+        "MTC inspection is test-specific and results are published in an online register of validated labs.",
+        "AASHTO performs on-site assessments requiring live demonstration of tests on actual apparatuses, plus review of quality management, training, and calibration.",
+        "Both MTC and AASHTO maintain publicly accessible online registers of accredited/validated laboratories."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when an engineer needs to select a qualified commercial geotechnical laboratory or verify a lab's competency for specific tests."
+    },
+    {
+      "section_id": "3-2",
+      "title": "Laboratory Tests on Soils",
+      "summary": "Introduces the classification framework for the subset of ASTM standardized tests routinely used in geotechnical engineering practice. Of the hundreds of available ASTM tests, approximately 40 are commonly used and are grouped into five categories: index tests, strength tests, compression tests, dynamic tests, and permeability tests.",
+      "body": "There are hundreds of ASTM standardized tests used in geotechnical engineering. A small subset of those, perhaps 40 tests, are routinely used in geotechnical practice. In the following discussion, the tests will be categorized as: (1) index tests, (2) strength tests, (3) compression tests, (4) dynamic tests, and (5) permeability tests.",
+      "key_points": [
+        "Hundreds of ASTM standardized tests exist for geotechnical engineering, but only ~40 are routinely used in practice.",
+        "Tests are grouped into five categories: index, strength, compression, dynamic, and permeability.",
+        "Private testing labs should be checked for validation/accreditation for the specific tests to be conducted.",
+        "Even validated labs require careful review of test results to confirm proper procedure and reasonable results."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when selecting and categorizing laboratory soil tests for a geotechnical engineering project."
+    },
+    {
+      "section_id": "3-2.1",
+      "title": "Sample Selection",
+      "summary": "Covers classification of soil sample types (disturbed, undisturbed, remolded, reconstituted, compacted), the varying material quantities required for common ASTM tests (from ~100 g for ring shear to 45+ kg for compaction), proper storage standards, and the use of X-ray radiography (ASTM D4452) to identify the best portions of intact tube samples prior to extrusion for strength and compressibility testing.",
+      "body": "Soil samples normally can be categorized as disturbed or 'undisturbed.' As explained in Chapter 2, disturbed samples can be obtained by drive samplers, cuttings generated by an auger, materials excavated in test pits, etc. 'Undisturbed' or intact samples are those obtained from thin-walled samplers or excavated block samples.\n\nRemolded samples are a form of disturbed sample, and this term is normally reserved for fine-grained soils. Clays can be remolded by mixing them with a spatula or other stirring device at a high water content. A remolded sample has lost the structure of the parent material. A reconstituted sample is also a form of disturbed sample, and that term is normally reserved for coarse-grained soils. Compacted samples, which can be formed from either fine-grained or coarse-grained soils, can also be considered disturbed samples.\n\nThe amount of material needed to conduct a given test can vary greatly. Over 100 pounds of soil may be required for compaction tests (ASTM D698 or ASTM D1557), and only a few ounces of soil may be needed for ring shear tests (ASTM D6467). The individual ASTM test procedures often state the amount of material needed for a test series. Table 3-1 provides a summary of the amount of material needed for common soil tests.\n\nAs a general rule, fine-grained soils should not be allowed to dry out prior to testing unless the test procedures specifically require drying the sample. In particular, oven drying of a fine-grained soil can cause irreversible changes in mechanical properties. Correct methods of sample storage for soils is provided in ASTM D3213 (Standard Practices for Handling, Storing, and Preparing Soft Intact Marine Soil) and ASTM D4220 (Standard Practices for Preserving and Transporting Soil Samples).\n\nTests conducted to determine important strength or compressibility parameters for in situ soil conditions require high-quality intact or undisturbed samples. It has become common practice to X-ray soil samples while still in the tube (prior to extrusion) to select the best portions for test assignments. ASTM D4452 (Standard Practice for X-Ray Radiography of Soil Samples) provides guidance for X-raying soil samples.",
+      "key_points": [
+        "Soil samples are categorized as disturbed (drive samplers, auger cuttings, test pit excavations) or undisturbed/intact (thin-walled samplers, block samples).",
+        "Remolded samples (fine-grained) lose the parent material structure; reconstituted samples apply to coarse-grained soils; compacted samples are also considered disturbed.",
+        "Required sample quantities range widely: >100 lb for compaction tests (ASTM D698/D1557) down to a few ounces for ring shear (ASTM D6467).",
+        "Table 3-1 summarizes sample mass requirements for common ASTM soil tests.",
+        "Fine-grained soils must not be oven-dried before testing unless required — oven drying causes irreversible changes in mechanical properties.",
+        "Proper sample storage follows ASTM D3213 (soft intact marine soils) and ASTM D4220 (general soil sample preservation and transport).",
+        "X-ray radiography per ASTM D4452 is used on tube samples prior to extrusion to identify the highest-quality portions for strength and compressibility testing."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 3-1"
+      ],
+      "applicability": "Applies when selecting, classifying, handling, storing, and preparing soil samples for laboratory testing in support of geotechnical investigations."
+    },
+    {
+      "section_id": "3-2.2",
+      "title": "Index Property Tests",
+      "summary": "Covers the role of index property tests in soil classification, phase relationship calculations, and empirical correlations. Explains which ASTM tests are required for USCS classification (D4318, D6913), the value of water content testing on every disturbed sample, specific gravity requirements, and provides a comprehensive summary table of phase relationship calculations and a list of common ASTM index tests with associated parameters.",
+      "body": "Index properties are used to classify soils and to group soils in major strata. In general, soils with similar index properties behave similarly, so index properties are often used in empirical correlations. Index property tests are normally much more inexpensive than other types of tests, so they are conducted in greater numbers than the more complex tests. Index property tests can be conducted on both disturbed and intact samples. However, it is prudent to save intact samples for tests that specifically require them, and to use disturbed samples for index property tests. One of the simplest and least expensive index property tests is ASTM D2216 (Standard Test Methods for Laboratory Determination of Water (Moisture) Content of Soil and Rock by Mass). This test requires a relatively small sample, and it is good practice to conduct this test on every disturbed sample that is taken, particularly of fine-grained soils. Important engineering information can be gleaned from plots of water content versus depth.\n\nOther index tests are essential to obtain the parameters required for soil classification. As discussed in Chapter 1, the most common classification scheme used in U.S. geotechnical engineering practice is ASTM D2487 (Standard Practice for Classification of Soils for Engineering Purposes (Unified Soil Classification System)). In order to correctly classify fine-grained and coarse-grained soils, ASTM D4318 (Standard Test Methods for Liquid Limit, Plastic Limit, and Plasticity Index of Soils) and ASTM D6913 (Standard Test Methods for Particle-Size Distribution (Gradation) of Soils Using Sieve Analysis) must be conducted. Determination of the Atterberg limits for fine-grained soils (ASTM D4318) is especially important because they are used in many of the correlations developed for strength and compressibility properties. The parameters from the gradation curve (ASTM D6913) are frequently used in correlations with fluid flow properties of granular soils.\n\nIndex tests provide the information necessary to calculate the phase relationship parameters used to characterize various aspects of densities and saturation conditions of soils. The phase relationship parameters are import parts of almost all soil tests. A summary of the phase relationship calculations for soils and rock is given in Table 3-2.\n\nSome index tests are required for specific purposes. As an example, the specific gravity of soils (ASTM D854 - Standard Test Methods for Specific Gravity of Soil Solids by Water Pycnometer) is necessary to calculate the void ratio and porosity of a soil or rock. It is also needed as part of a hydrometer test (ASTM D7928 Standard Test Method for Particle-Size Distribution (Gradation) of Fine-Grained Soils Using the Sedimentation (Hydrometer) Analysis) in the data reduction procedure.\n\nSome commercial laboratories may include the cost of conducting certain index tests within the cost of the more elaborate strength and compressibility tests. For example, a laboratory may include a specific gravity test (ASTM D854) automatically as part of a consolidation test (ASTM D2435 Standard Test Methods for One-Dimensional Consolidation Properties of Soil Using Incremental Loading). The water content test (ASTM D2216) is normally automatically performed in many other tests. There is a separate test to measure the unit weight of soils (ASTM D7263 – Standard Test Methods for Laboratory Determination of Density (Unit Weight) of Soil Specimens), but determination of the unit weight is a by-product of most of the strength and compressibility tests on intact soil specimens.\n\nTable 3-3 includes a list of the common ASTM index tests that are available and the associated parameters that are determined.",
+      "key_points": [
+        "Index property tests classify soils and support empirical correlations; they are cheaper and more numerous than complex tests.",
+        "ASTM D2216 (water content) should be conducted on every disturbed sample, especially fine-grained soils; plots of water content vs. depth yield important engineering information.",
+        "USCS classification (ASTM D2487) requires both ASTM D4318 (Atterberg limits) and ASTM D6913 (sieve gradation) to be performed.",
+        "Atterberg limits (D4318) are critical for strength and compressibility correlations; gradation parameters (D6913) are used for fluid flow correlations in granular soils.",
+        "ASTM D854 (specific gravity) is required to calculate void ratio and porosity, and is also needed for hydrometer test (D7928) data reduction.",
+        "Phase relationship parameters (void ratio, porosity, saturation, unit weights) are summarized in Table 3-2 and are fundamental inputs to nearly all soil tests.",
+        "Many labs bundle certain index tests (e.g., D854, D2216) with more elaborate strength/compressibility tests at no additional charge.",
+        "Table 3-3 lists common ASTM index tests (D698, D854, D1140, D1557, D2216, D2487, D2488, D4221, D4253, D4254) and their associated engineering parameters."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 3-2: Summary of Phase Relationship Calculations",
+        "Table 3-3: Index Property Tests and Engineering Parameters Obtained"
+      ],
+      "applicability": "Applies when selecting, planning, and interpreting laboratory index property tests for soil classification, phase relationship calculations, and empirical correlations in geotechnical investigations."
+    },
+    {
+      "section_id": "3-2.3",
+      "title": "Compaction Tests",
+      "summary": "Covers the two primary compaction test types for characterizing soil density: impact compaction (for soils with >15% fines) and index density tests (for soils with <15% fines). Defines relative compaction (RC) and relative density (Dr) as the key characterization parameters, including their governing equations, applicable ASTM standards, and the distinction between maximum dry densities used in each method.",
+      "body": "Two types of compaction tests are available for determining the compaction characteristics of soils. For soils having greater than 15% fines, impact compaction tests are the most appropriate. Impact compaction tests provide a compaction curve for the soil, and the maximum dry density (γd-max) and optimum water content (wopt) can be determined from the curve. The as-compacted density of the soil can be characterized by relative compaction (RC). Relative compaction is defined as:\n\nRC = (γd / γd-max) · 100%   (3-1)\n\nwhere:\nγd = dry density of the soil to be characterized, and\nγd-max = maximum dry density from the compaction curve for a particular effort.\n\nFor soils having less than 15% fines, the density of a soil can be characterized by relative density (Dr). Relative density is defined as:\n\nDr = ((emax - e) / (emax - emin)) · 100% = ((γd - γd-min) / (γd-max - γd-min)) · (γd-max / γd) · 100%   (3-2)\n\nwhere:\ne = void ratio of soil to be characterized,\nemax = maximum index void ratio,\nemin = minimum index void ratio,\nγd = dry density of soil to be characterized (corresponding to e),\nγd-max = maximum index dry density (corresponding to emin), and\nγd-min = minimum index dry density (corresponding to emax).\n\nSoils in their loosest states have a relative density equal to 0% and soils in their densest state have a relative density equal to 100%. For these soils, tests must be conducted to determine the maximum and minimum index void ratios and index densities. These tests are not \"compaction tests\" in the strictest sense of the term, but are index values corresponding to the loosest and densest states of the soil. The maximum dry density used in relative density calculations is not necessarily the same as that obtained in ASTM D1557 that is described below.",
+      "key_points": [
+        "Impact compaction tests are appropriate for soils with >15% fines; index density tests are used for soils with <15% fines.",
+        "Relative compaction (RC) = (γd / γd-max) × 100%, where γd-max comes from the impact compaction curve.",
+        "Relative density (Dr) ranges from 0% (loosest state) to 100% (densest state) and can be expressed in terms of either void ratio or dry density.",
+        "The maximum dry density used in relative density (Dr) calculations is NOT the same as the γd-max obtained from ASTM D1557 impact compaction.",
+        "Index density tests determine emax, emin, γd-max, and γd-min, and are index values, not true compaction tests."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 3-1",
+          "description": "Relative compaction (RC): ratio of in-place dry density to maximum dry density from compaction curve, expressed as a percentage.",
+          "implemented_in": "geotech_references.dm7_1.chapter3.relative_compaction"
+        },
+        {
+          "id": "Eq. 3-2",
+          "description": "Relative density (Dr): defined in terms of void ratios (emax, e, emin) and equivalently in terms of dry densities (γd-max, γd, γd-min), expressed as a percentage.",
+          "implemented_in": "geotech_references.dm7_1.chapter3.relative_density_from_dry_density"
+        }
+      ],
+      "figures": [],
+      "tables": [
+        "Table 3-3"
+      ],
+      "applicability": "Applies when selecting and interpreting laboratory compaction or index density tests to characterize soil density for any geotechnical application."
+    },
+    {
+      "section_id": "3-2.3.1",
+      "title": "Impact Compaction Tests",
+      "summary": "Describes ASTM D698 (Standard Effort, 12,400 ft-lbf/ft³) and ASTM D1557 (Modified Effort, 56,000 ft-lbf/ft³) impact compaction tests. Covers applicable mold sizes (4-inch and 6-inch diameter), grain-size limits (≤30% retained on ¾-inch sieve standard, corrections up to 70%), and guidance for scaling mold and hammer for larger materials.",
+      "body": "ASTM D698 (Standard Test Methods for Laboratory Compaction Characteristics of Soil Using Standard Effort (12,400 ft-lbf/ft3)) and ASTM D1557 (Standard Test Methods for Laboratory Compaction Characteristics of Soil Using Modified Effort (56,000 ft-lbf/ft3)). These tests differ by the amount of effort that is applied to compact the soil. The ASTM standards provide test procedures for compaction molds having diameters of 4 inches and 6 inches. Following the specifications, both of these impact compaction tests should be limited to soils having no more than 30% retained on the 3/4-inch sieve, although corrections exist for materials having as much as 70% retained on the 3/4-inch sieve. However, if impact compaction test results are required for larger grain-size materials, the mold diameters and hammer weights should be scaled up to keep the compactive effort the same.",
+      "key_points": [
+        "ASTM D698 uses standard effort (12,400 ft-lbf/ft³); ASTM D1557 uses modified effort (56,000 ft-lbf/ft³).",
+        "Both tests use 4-inch or 6-inch diameter compaction molds per ASTM procedures.",
+        "Standard applicability is limited to soils with ≤30% retained on the ¾-inch sieve.",
+        "Corrections exist for soils with up to 70% retained on the ¾-inch sieve.",
+        "For larger grain-size materials, mold diameters and hammer weights should be scaled up to maintain the same compactive effort."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when performing laboratory compaction testing on soils with greater than 15% fines, particularly to obtain γd-max and wopt for relative compaction calculations."
+    },
+    {
+      "section_id": "3-2.3.2",
+      "title": "Index Density Determination",
+      "summary": "Describes laboratory procedures for determining maximum and minimum index densities for soils with less than 15% fines, enabling characterization by relative density (Dr). References ASTM D4254 (minimum index density, three methods) and ASTM D4253 (maximum index density), both applicable to soils with maximum grain sizes up to 3 inches.",
+      "body": "For soils having less than 15% fines, there are specific tests that can be conducted to determine the maximum and minimum index densities so that the soil can be characterized in terms of relative density. ASTM D4254 (Standard Test Methods for Minimum Index Density and Unit Weight of Soils and Calculation of Relative Density) provides three methods to determine emax and γd-min depending on the grain size of the soil tested. Methods are available for soils have a maximum grain size of 3 inches or less. ASTM D4253 (Test Methods for Maximum Index Density and Unit Weight of Soil) ...",
+      "key_points": [
+        "Used for soils with <15% fines to determine emax, emin, γd-max, and γd-min for relative density calculations.",
+        "ASTM D4254 provides three methods for minimum index density (emax, γd-min) based on soil grain size.",
+        "ASTM D4253 is used for maximum index density (emin, γd-max).",
+        "Both standards are applicable to soils with a maximum grain size of 3 inches or less.",
+        "These index density values feed directly into the relative density equation (Eq. 3-2)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when characterizing granular soils with less than 15% fines by relative density (Dr), requiring maximum and minimum index void ratios and dry densities."
+    },
+    {
+      "section_id": "3-2.4",
+      "title": "Strength Tests",
+      "summary": "Overview of laboratory strength tests for measuring drained (effective stress) and undrained (total stress) shear strength parameters. Covers the types of parameters obtainable (c′, φ′, su, c, φ), the variety of specimen types tested, and references Table 3-4 listing ASTM strength tests and their parameters.",
+      "body": "There are a variety of strength tests that have ASTM specifications for both drained (effective stress) strength parameters and undrained (total stress) strength parameters. The most common drained shear strength parameters are the effective stress cohesion (c′) and the effective stress friction angle (φ′). Total stress shear strength parameters are su (undrained shear strength for a φ = 0 envelope) for saturated soils, and total stress cohesion (c) and total stress friction angle (φ) for partially saturated soils.\n\nThe shear strength parameters listed above are for linear failure envelopes. It also is possible to determine parameters for non-linear failure envelopes for many of the strength tests.\n\nShear strength parameters are often needed for undisturbed or intact specimens, compacted specimens, remolded specimens, and reconstituted specimens. The different strength tests will be assessed based on their ability to accommodate these different types of test specimens. Table 3-4 lists the ASTM strength tests and the parameters obtained.",
+      "key_points": [
+        "Drained strength parameters: effective stress cohesion (c′) and friction angle (φ′).",
+        "Undrained strength parameters: su (φ=0 envelope for saturated soils), or c and φ for partially saturated soils.",
+        "Both linear and non-linear failure envelopes can be determined from many strength tests.",
+        "Tests must accommodate intact, compacted, remolded, and reconstituted specimens.",
+        "Table 3-4 lists all ASTM strength tests and the parameters each provides."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 3-4"
+      ],
+      "applicability": "Applies when selecting laboratory strength tests to obtain drained or undrained shear strength parameters for geotechnical design."
+    },
+    {
+      "section_id": "3-2.4.1",
+      "title": "Drained or Effective Stress Strength Tests",
+      "summary": "Introduces the four ASTM-recommended laboratory tests for measuring drained or effective stress shear strength parameters: Direct Shear Test, Consolidated Drained Triaxial Test, Consolidated Undrained Triaxial Test, and Ring Shear Test. Serves as a container section for subsections covering each test in detail.",
+      "body": "There are four recommended tests listed in the ASTM specifications for measuring drained or effective stress strength parameters: (1) Direct Shear Test, (2) Consolidated Drained Triaxial Test, (3) Consolidated Undrained Triaxial Test, and (4) Ring Shear Test.",
+      "key_points": [
+        "Four ASTM tests measure drained/effective stress strength parameters.",
+        "Tests include: Direct Shear (D3080), CD Triaxial (D7181), CU Triaxial (D4767), and Ring Shear (D6467)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when drained or effective stress shear strength parameters (c′, φ′) are required for geotechnical analysis."
+    },
+    {
+      "section_id": "3-2.4.1.1",
+      "title": "Direct Shear Test (ASTM D3080)",
+      "summary": "Describes the consolidated drained direct shear test (ASTM D3080), including specimen sizes, test procedure, limitations (constrained horizontal failure plane, progressive failure, anisotropy effects), and best use cases. Particularly well-suited for remolded clays and measuring fully softened shear strength. Produces stress-displacement (not stress-strain) results.",
+      "body": "The direct shear test (ASTM D3080 – Standard Test Method for Direct Shear Test of Soils Under Consolidated Drained Conditions) is one of the oldest and most common strength tests. Figure 3-1 shows the basic elements of a direct shear tests and the data collected. In U.S. engineering practice, the most common specimen cross-sections are 2 inch × 2 inch and 4 inch × 4 inch square specimens and 2.5-inch diameter circular specimens. A few commercial laboratories have direct shear apparatuses that can accommodate 12 inch × 12 inch specimens. The 2.5-inch diameter cylindrical shear box is very popular since intact specimens can be easily trimmed from the common 3-inch diameter Shelby tubes. It is also easier to compact test specimens in a cylindrical specimen container than a square specimen container. The direct shear apparatus can use intact, compacted, or remolded test specimens.\n\nThe direct shear test is most often used for clay soils and for some sandy soils. ASTM D3080 requires that the maximum grain size of the test specimen be no greater than 1/10 of the shear box width and no greater than 1/6 of the specimen height. Based on the common sizes of the shear box, it is not appropriate to test materials larger than medium sands.\n\nDirect shear tests are relatively easy to conduct. A consolidation stress is first applied to the test specimen. After all excess pore water pressures are dissipated, the sample is sheared at a constant displacement rate very slowly to ensure drained conditions are maintained. Direct shear tests do not produce stress-strain results, but rather stress-displacement results. Moduli cannot be determined from direct shear tests.\n\nSince the failure plane in a direct shear test is constrained to the horizontal plane, then the shear strength parameters measured might be lower than those measured in other tests that have an inclined shear plane for soils that exhibit horizontal layering (Duncan et al. 2014). Soils that are deposited in water; such as lacustrine, alluvial, and marine soils; may exhibit this inherent anisotropy whereby the shear strength is a function of the orientation of the failure plane. This issue of the failure plane orientation is insignificant for remolded and compacted soils. Direct shear tests also may suffer from progressive failure, whereby the shear strength is not fully mobilized on the entire failure plane at the same instant. This can also result in lower peak shear strength parameters for materials that exhibit brittle stress-displacement curves, such as heavily overconsolidated clay.\n\nDirect shear tests are especially well-suited for testing remolded clays. It is easy to form test specimens in the shear box and the device allows the application of small consolidation stresses. It is the best test available for measuring the fully softened shear strength, which is the peak shear strength of remolded, normally consolidated clays.",
+      "key_points": [
+        "ASTM D3080; measures c′ and φ′ under consolidated drained conditions.",
+        "Common specimen sizes: 2×2 in, 4×4 in square, or 2.5-in diameter circular; max grain size ≤ 1/10 box width and ≤ 1/6 specimen height.",
+        "Produces stress-displacement results only; moduli cannot be determined.",
+        "Failure plane is constrained to horizontal — may underestimate peak strength for horizontally layered or anisotropic soils.",
+        "Progressive failure can reduce measured peak strength in brittle, heavily overconsolidated clays.",
+        "Best test for measuring fully softened shear strength of remolded, normally consolidated clays.",
+        "Not appropriate for materials coarser than medium sands due to shear box size constraints."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 3-1"
+      ],
+      "tables": [],
+      "applicability": "Applies when measuring drained effective stress shear strength parameters (c′, φ′) for clay, silt, or sandy soils, especially for fully softened or remolded specimens."
+    },
+    {
+      "section_id": "3-2.4.1.2",
+      "title": "Consolidated Drained (CD) Triaxial Test (ASTM D7181)",
+      "summary": "Describes the consolidated drained (CD) triaxial test (ASTM D7181), also called the S triaxial, covering specimen sizes, test procedure including isotropic/anisotropic consolidation and back-pressure saturation, slow shear rate requirements, volume change measurement, and limitations for clay soils where test duration can extend to weeks or months.",
+      "body": "The consolidated drained (CD) triaxial test (ASTM D7181 – Standard Test Method for Consolidated Drained Triaxial Testing of Soil) is one of the oldest types of triaxial test. The procedure was defined in the Army Corps of Engineers 1930s study. This type of triaxial tests was also called an S triaxial, with S denoting slow, since this test has the slowest shear phase of the major categories of triaxial tests.\n\nCommon specimen sizes in U.S. practice are 1.4-inch diameter for fine-grained soils and 2.8-inch diameter for sandy soils or for test specimens directly extruded from Shelby tubes without trimming. Many laboratories can test 2-inch diameter and 4-inch diameter specimens as well. The larger 6-inch diameter and 12-inch diameter apparatuses are rarer in commercial laboratories. ASTM D7181 requires that the maximum grain size of the soil tested should be 1/6 of the test specimen diameter, so the diameter of the test specimen should be selected based on the grain-size distribution of the soil.\n\nFigure 3-2 shows the basic elements of a manual CD triaxial test. The test specimen is consolidated by applying a cell pressure. Most tests specimens are consolidated to isotropic stress conditions, but anisotropic consolidation is also possible. The sample is back-pressure saturated by using an elevated pore pressure (back pressure), and the final consolidation stress is the cell pressure minus the back pressure. The sample is sheared very slowly, so that excess pore pressures are not developed, by increasing the vertical stress at a constant displacement rate. The volume change of the test specimen is measured by recording the level of the burette as the load is applied. These tests require considerable skill to perform correctly.\n\nCD triaxial tests are more applicable to sandy soils because a high permeability allows the test specimen to be sheared in a reasonable time. If clayey soils are tested, the sample must be sheared very slowly, and the test may take weeks to months to complete. Some laboratories will not agree to conduct these tests on clay soils.\n\nTriaxial tests can be used to test intact, compacted, and remolded test specimens. There is some difficulty in testing very soft remolded test specimens since the soil needs to have sufficient strength to allow trimming and mounting in the triaxial cell. Remolded soils often need to be consolidated outside of the triaxial cell to allow a strength gain prior to trimming. This procedure can limit the consolidation stress that can be applied to the test specimen if normally consolidated conditions are desired.",
+      "key_points": [
+        "ASTM D7181; also called the S (slow) triaxial test; one of the oldest triaxial test types.",
+        "Common specimen diameters: 1.4 in (fine-grained), 2.8 in (sandy or Shelby tube extrusion); max grain size ≤ 1/6 specimen diameter.",
+        "Back-pressure saturation used; final consolidation stress = cell pressure minus back pressure.",
+        "Volume change measured via burette during slow shear; drainage valve open during shear.",
+        "Most applicable to sandy soils; clay specimens may require weeks to months to shear.",
+        "Isotropic consolidation is standard; anisotropic consolidation is also possible.",
+        "Difficulty testing very soft remolded specimens; may require pre-consolidation outside the triaxial cell."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 3-2"
+      ],
+      "tables": [],
+      "applicability": "Applies when measuring drained effective stress shear strength parameters (c′, φ′) for sandy soils or when long test durations are acceptable for clayey soils."
+    },
+    {
+      "section_id": "3-2.4.1.3",
+      "title": "Consolidated Undrained (CU) Triaxial Test (ASTM D4767)",
+      "summary": "Describes the CU triaxial test (ASTM D4767), historically called the R or R-bar test, explaining how it differs from the CD test: drainage is closed during shear, pore pressures are measured, and shear rates can be faster. Covers how effective stress parameters (c′, φ′) are derived from pore pressure measurements, and the practical implication that void ratio differences at failure between CU and CD tests are typically neglected.",
+      "body": "The consolidated undrained (CU) triaxial test (ASTM D4767 – Standard Test Method for Consolidated Undrained Triaxial Compression Test for Cohesive Soil) is another of the three major types of triaxial tests defined by the U.S. Army Corps of Engineers' 1946 study. This test was also called an R test if pore pressures are not measured and an R-bar if pore pressures are measured. The R test has become obsolete and it is difficult to justify a case where this test should be conducted. Figure 3-3 shows the basic elements of a CU triaxial test and example data.\n\nThe CU triaxial test is very similar to the CD triaxial test, and most of the information provided for the CD test is also true for the CU test. The test procedures are identical until it is time to shear the test specimen. In the CD test, the drainage valve is open during shear, and in the CU test, the drainage valve is closed during shear. Volume change is measured during a CD test, and pore pressure is measured during a CU test.\n\nIn a CD test, the strain rate (ε) is very slow because the pore pressures generated during shear must dissipate throughout the test specimen. In the CU tests, the strain rate is considerably greater since the goal is to allow equalization of pore pressures as opposed to dissipation. In other words, CU test specimens can be sheared much faster than CD tests test specimens, and this is a big advantage in clay soils.\n\nPore pressures are measured during shear during CU triaxial tests, and this allows the effective stresses in the sample to be determined. Since effective stress values are available, drained or effective stress strength parameters (c′ and φ′) can be determined. However, there is an important difference in the volume change of the test specimen in CU and CD tests and this can influence the shear strength parameters determined. In the CD test, volume change is allowed, and the void ratio of the test specimen can change during shear. In the CU test, there is no volume change during shear, so the test specimen has the same void ratio at failure as it did prior to shear (after consolidation). The void ratios of CU and CD test specimens can be different at failure, even though they may have started at the same consolidation pressure and void ratio, and this may cause differences in the effective stress shear strength parameters. In engineering practice, this difference is usually neglected, and results from CU and CD tests are often used interchangeably.",
+      "key_points": [
+        "ASTM D4767; historically called the R (pore pressure not measured) or R-bar (pore pressure measured) triaxial test.",
+        "Drainage valve is closed during shear; pore pressures are measured to back-calculate effective stresses.",
+        "CU tests can be sheared faster than CD tests — a significant practical advantage for clay soils.",
+        "Effective stress parameters (c′, φ′) can be derived because pore pressures are measured.",
+        "No volume change occurs during CU shear; void ratio at failure differs from CD test at the same consolidation pressure.",
+        "The void ratio difference between CU and CD tests at failure is typically neglected in practice.",
+        "The R test (CU without pore pressure measurement) is now obsolete."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 3-3"
+      ],
+      "tables": [],
+      "applicability": "Applies when measuring effective stress shear strength parameters (c′, φ′) for cohesive soils where faster shear rates are needed compared to the CD test, or when undrained strengths are also required."
+    },
+    {
+      "section_id": "3-2.4.1.4",
+      "title": "Ring Shear Test (ASTM D6467)",
+      "summary": "Describes the torsional ring shear test (ASTM D6467) for determining drained residual shear strength of cohesive soils. Covers the annular specimen geometry, staged testing capability, advantages over repeated direct shear (constant shear area, no direction reversal), and limitation to remolded clay paste specimens. Best test for residual friction angle in clays.",
+      "body": "The ring shear test (ASTM D6467 – Standard Test Method for Torsional Ring Shear Test to Determine Drained Residual Shear Strength of Soil) is similar to a direct shear test in that it is a consolidated drained test with shearing occurring on a horizontal plane. A ring shear test should be only used to determine the residual shear strength, which is the shear strength of a soil at very high strains or displacements. Residual shear strength is used in geotechnical designs for situations where a failure has already occurred and considerable movement has taken place.\n\nThe ring shear apparatus uses an annular test specimen. The specimen size used the most in the U.S. has an inside diameter of 2.8 inches, an outside diameter of 4 inches, and a thickness of 0.2 inches. The basic elements of a ring shear tests are shown in Figure 3-4. The specimen tested is markedly smaller than the other strength tests discussed. The specimen volume is equivalent to about 4 teaspoons. Only remolded clay samples are tested in common ring shear apparatuses, and these are placed in the apparatus in the form of a paste.\n\nThe ring shear apparatus allows staged tests to be conducted. A single test specimen can be reconsolidated and sheared multiple times. The normal test procedure is to place a specimen in the apparatus and consolidate it to the lowest vertical stress. The specimen is then sheared until the residual strength is achieved. Next, a higher consolidation pressure is applied, and the sample is sheared again. Normally, three different normal stresses can be used for one test specimen.\n\nIt is possible to measure residual shear strength properties using a direct shear apparatus if the direction of shear is reversed so that enough shear displacement can be accumulated to obtain residual conditions. Although this test is reported in geotechnical literature, there is not an ASTM procedure for conducting repeated direct shear tests. The ring shear tests is a better test for measuring the residual friction angle since the direction of shear does not need to be reversed during the test, and the area of the shear surface remains constant.",
+      "key_points": [
+        "ASTM D6467; measures drained residual shear strength (φ′r) of cohesive soils.",
+        "Used only when a failure has already occurred and large displacements have taken place.",
+        "Annular specimen: 2.8 in ID, 4 in OD, 0.2 in thick — very small volume (~4 teaspoons); remolded clay paste only.",
+        "Staged testing allows one specimen to be consolidated and sheared at multiple normal stresses.",
+        "No direction reversal required and shear area stays constant — superior to repeated direct shear for residual strength.",
+        "No ASTM standard exists for repeated (reversed) direct shear; ring shear is the preferred method."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 3-4"
+      ],
+      "tables": [],
+      "applicability": "Applies when determining residual shear strength (φ′r) of cohesive soils for design involving pre-existing failure surfaces or post-failure conditions."
+    },
+    {
+      "section_id": "3-2.4.2",
+      "title": "Undrained or Total Stress Strength Tests",
+      "summary": "Introduces the five ASTM laboratory tests for measuring undrained shear strength of soils, primarily fine-grained soils. Explains the two fundamental undrained strength envelopes (φ=0 for saturated soils; c-φ for partially saturated soils), the factors affecting undrained strength (OCR, consolidation stress, failure plane orientation, loading rate, disturbance), and how the goal is often to characterize undrained strength variation with depth.",
+      "body": "There are five laboratory tests with ASTM standards for measuring the undrained shear strength of soils. Since undrained strengths are normally used for fine-grained soils, owing to their low permeability, these tests mainly address clayey and silty soils. The value of undrained shear strength can vary considerably from test to test. The two fundamental undrained strength envelopes that are used for fine-grained soils are shown in Figure 3-5.\n\nFor saturated soils undergoing undrained loading, the shear strength is not a function of the normal stress on the failure plane, thus φ = 0. For partially saturated soils undergoing undrained loading, the shear strength is a function of the normal stress on the failure plane, thus φ > 0. The envelope for the partially saturated soil usually deviates from a straight line, but a linear interpretation over the appropriate range of normal stress is often used in engineering analysis.\n\nThe undrained strength of a soil can depend on many different factors. Primary factors include the major effective consolidation stress prior to undrained loading and the overconsolidation ratio (OCR). There are many secondary factors, including the orientation of the failure plane, the rate of loading, the amount of sample disturbance, the system of stresses imposed by the field loading condition or the laboratory test, etc.\n\nFor the envelopes shown in the figure, only one of the ASTM tests (D2850) provides multiple points to define the envelopes. The other ASTM tests only provide one point to define the shear strength envelope.\n\nFor layers of saturated fine-grained soils, the goal of an undrained strength testing program is often to determine the variation of undrained strength with depth, such as shown in Figure 3-6. For these cases, enough in situ or laboratory tests should be conducted so that the undrained shear strength values, shown as the squares, are determined in order that the variation with strength with depth can be estimated, shown as the dashed line.",
+      "key_points": [
+        "Five ASTM tests measure undrained shear strength, primarily for fine-grained (clayey/silty) soils.",
+        "Saturated soils: φ=0 envelope; partially saturated soils: c-φ envelope (often nonlinear but approximated as linear).",
+        "Primary factors affecting undrained strength: major effective consolidation stress and OCR.",
+        "Secondary factors: failure plane orientation, loading rate, sample disturbance, stress system imposed.",
+        "Only ASTM D2850 (UU triaxial) provides multiple points to define the undrained strength envelope.",
+        "A key goal is often to characterize undrained strength variation with depth using sufficient tests."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 3-5",
+        "Figure 3-6"
+      ],
+      "tables": [],
+      "applicability": "Applies when selecting laboratory tests to characterize undrained shear strength of fine-grained saturated or partially saturated soils for total stress analyses."
+    },
+    {
+      "section_id": "3-2.4.2.1",
+      "title": "Unconfined Compression Test (ASTM D2166)",
+      "summary": "Describes the unconfined compression test (UCT, ASTM D2166), one of the oldest and simplest strength tests. Explains the theoretical basis (su independent of confining pressure for saturated soils), its limitations (typically yields lower strengths than higher-quality tests, difficult to interpret for partially saturated soils, single-point c-φ envelope), and the recommendation to treat it as an index test rather than a primary design strength measurement.",
+      "body": "Unconfined compression tests, UCTs, (ASTM D2166) are one of the oldest and simplest strength tests. The quality and care in conducting the test can vary greatly from specimens being tested using portable load frames in the field to testing the specimen in a membrane in a temperature-controlled laboratory. The basic premise of the test is that if the soil is saturated, the undrained shear strength (su) should be the same if the soil is tested with zero confining pressure (σ3) as it would be with an elevated confining pressure. This assumption might be valid for high quality test specimens carefully tested, but actual test results can deviate from this assumption considerably. In general, UCTs provide lower strengths than would be determined from higher quality tests.\n\nIn practice, UCTs are also conducted on partially saturated soils. These tests are difficult to correctly interpret since the results would represent one shear strength value on a c-φ envelope, and one point cannot define the envelope. Shortcomings of the UCT have been recognized for over 70 years, and this test should be considered as an index test as opposed to a viable method to measure reliable shear strengths.",
+      "key_points": [
+        "ASTM D2166; measures qu (unconfined compressive strength); su = qu/2 for saturated soils.",
+        "Theoretical basis: saturated soil su is independent of confining pressure, so σ3=0 test should give same su as confined test.",
+        "In practice, UCTs generally yield lower strengths than higher-quality tests.",
+        "UCTs on partially saturated soils give only one point on the c-φ envelope — insufficient to define the envelope.",
+        "Should be treated as an index test, NOT a reliable primary design strength measurement."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when a quick index measurement of undrained shear strength of cohesive soils is needed, with recognition that results are generally conservative and not suitable as primary design values."
+    },
+    {
+      "section_id": "3-2.4.2.2",
+      "title": "Unconsolidated Undrained (UU) Triaxial Test (ASTM D2850)",
+      "summary": "Describes the UU (Q) triaxial test (ASTM D2850), the most popular undrained strength test in U.S. practice. Covers specimen sizes, fast shear rate (1%/min), requirement for three specimens from the same depth to define the φ=0 envelope, limitations for very soft soils (su < 250 psf), and use for compacted partially saturated clays in end-of-construction analyses.",
+      "body": "The unconsolidated undrained triaxial test (ASTM 2850 – Standard Test Method for Unconsolidated-Undrained Triaxial Compression Tests on Cohesive Soil) has been the most popular test for measuring undrained shear strength in U.S. geotechnical engineering practice. The basic procedure for this test was outlined in the Corps of Engineers Triaxial Test report in 1946. This test is often called a Q triaxial, with Q standing for 'quick' since this is the fastest triaxial test. The test specimen is sheared at a strain rate of 1% axial strain per minute, so the shearing phase of the test only lasts about 20 minutes.\n\nUU tests on saturated fine-grained soils are normally conducted using three test specimens to define an envelope. All three test specimens should come from the same depth, with all three having the same in situ consolidation pressure and OCR. All three specimens should have the same shear strength, which would verify the φ = 0 failure envelope. UU tests on saturated soil should always be interpreted with a φ = 0 failure envelope, regardless of any slope implied by the tests.\n\nA schematic of the basic test apparatus is shown in Figure 3-7. The sample is sealed in thin rubber membranes, but there are not any porous stones or drainage lines. Special triaxial cells are commercially available just for UU tests. UU tests are most often conducted on 1.4-inch and 2.0-inch diameter trimmed specimens or 2.8-inch directly extruded specimens.\n\nOne deficiency of the UU test is that it is challenging to test very soft soils. For soils that have an undrained shear strength less than about 250 psf, it can be very difficult to trim a test specimen, to mount the specimen in a triaxial cell, and to place a membrane over the specimen. It is very easy to disturb the specimen, and that tends to lower the shear strength even more. For very soft materials, it is best to use the laboratory miniature vane shear test (discussed below) or a fall cone test.\n\nUU tests can also be conducted on partially saturated soils, and have often been used to determine the shear strength parameters for compacted clays. UU tests are the only viable test to determine the values of c and φ for partially saturated soils for use in end-of-construction analyses. Special compaction equipment is available to form triaxial test specimens of compacted soils.\n\nThere are critics of the UU test, and many of the criticisms are valid (Ladd 1991). However, strengths resulting from UU tests have been validated by back analysis of failed slopes and found to be representative, and it remains a very popular test in engineering practice.",
+      "key_points": [
+        "ASTM D2850; also called the Q (quick) triaxial test; most popular undrained strength test in U.S. practice.",
+        "Shear rate: 1% axial strain/minute; shearing phase lasts ~20 minutes.",
+        "Three specimens from same depth required to define the φ=0 envelope for saturated soils.",
+        "UU results on saturated soils must always be interpreted with φ=0 envelope, regardless of apparent slope.",
+        "Not suitable for soils with su < ~250 psf due to handling/trimming difficulties; use miniature vane or fall cone instead.",
+        "Only viable test for c and φ of partially saturated (compacted) clays for end-of-construction analyses.",
+        "Back analyses of failed slopes have validated UU strength results despite known criticisms."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 3-7"
+      ],
+      "tables": [],
+      "applicability": "Applies when measuring undrained shear strength of cohesive soils for total stress stability analyses, including end-of-construction conditions for compacted or saturated clays."
+    },
+    {
+      "section_id": "3-2.4.2.3",
+      "title": "Consolidated Undrained (CU) Triaxial Test (ASTM D4767)",
+      "summary": "Addresses use of the CU triaxial test (ASTM D4767) for undrained strength determination. Warns that c and φ values from this test are not viable for undrained analyses and are commonly misreported by commercial labs. The correct approach is to associate su (half the deviator stress at failure) with the isotropic consolidation stress; results tend to be unconservatively high for most analyses.",
+      "body": "Since the CU triaxial test is sheared undrained, it is possible to obtain undrained or total stress strength parameters. However, this test has been misused for undrained strength determination in the past. It is not possible to determine viable values of c and φ from this test, yet these values are commonly reported by commercial laboratories. The correct way to use the CU test for undrained analyses is to associate the value of su (half the deviator stress at failure) with the isotropic consolidation stress. The CU triaxial test provides undrained shear strength values that are normally too high to be used in most analyses. Details of the use of the CU test for undrained strength determination is presented by Duncan and Wong (1983).",
+      "key_points": [
+        "CU triaxial test (ASTM D4767) can produce undrained strength parameters but is frequently misused.",
+        "Reporting c and φ from CU tests for undrained analyses is not technically valid, despite being common laboratory practice.",
+        "Correct use: associate su (= deviator stress at failure / 2) with the isotropic consolidation stress.",
+        "CU-derived undrained shear strengths are typically too high for most design analyses.",
+        "Reference: Duncan and Wong (1983) for proper interpretation."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when the CU triaxial test is used for undrained strength determination, requiring correct interpretation to avoid unconservative design values."
+    },
+    {
+      "section_id": "3-2.4.2.4",
+      "title": "Consolidated Undrained Direct Simple Shear Test (ASTM D6528)",
+      "summary": "Describes the direct simple shear (DSS) test (ASTM D6528), developed in the 1950s. Covers specimen geometry, confinement method (wire-reinforced membrane or stacked Teflon rings), constant-volume undrained shear procedure, and the resulting su measurement on the horizontal plane. Notes its comparability to field vane shear test results for the same consolidation stress and OCR, and its restriction to saturated fine-grained soils.",
+      "body": "The direct simple shear (DSS) test (ASTM D6528 – Standard Test Method for Consolidated Undrained Direct Simple Shear Testing of Fine Grain Soils) was developed in the 1950s. Commercially-available apparatuses test a cylindrical specimen that is nominally 2.5 inches in diameter and up to 1 inch tall. A schematic of the basic elements of the DSS test is shown in Figure 3-8. The specimen is confined with a wire-reinforced membrane or a set of thin, stacked rings, often coated with Teflon, located outside of an unreinforced latex membrane. The intent of the confining rings is to prevent lateral strain from occurring when the vertical consolidation stress is applied, and to allow the test specimen to deform in the manner of pure shear. After the test specimen is consolidated, it is sheared undrained (technically at constant volume) by translation of the top platen relative to the bottom platen. The undrained shear strength (su) is assumed to be the maximum value of shear stress applied to the horizontal plane of the test specimen.\n\nThe DSS test was not a common test in geotechnical engineering for fifty years after its development. Few commercial laboratories were able to conduct the test. There are valid criticisms of the DSS test (Saada and Townsend 1981). However, the popularity of this test has increased in recent years, and many more laboratories are able to run the test. The DSS apparatus provides an undrained shear strength that is comparable to that obtained with the field vane shear test (for the same vertical consolidation stress and OCR) and is appropriate for many engineering design cases. This test can only be conducted on saturated soils, and the ASTM standard only addresses fine-grained soils.",
+      "key_points": [
+        "ASTM D6528; cylindrical specimen ~2.5 in diameter, up to 1 in tall.",
+        "Specimen confined by wire-reinforced membrane or stacked Teflon rings to prevent lateral strain during consolidation.",
+        "Sheared undrained at constant volume by top platen translation; su = max shear stress on horizontal plane.",
+        "DSS su is comparable to field vane shear test su at the same vertical consolidation stress and OCR.",
+        "Restricted to saturated fine-grained soils only.",
+        "Growing in popularity; valid criticisms exist (Saada and Townsend 1981)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 3-8"
+      ],
+      "tables": [],
+      "applicability": "Applies when measuring undrained shear strength of saturated fine-grained soils, particularly when results comparable to field vane shear test are needed."
+    },
+    {
+      "section_id": "3-2.4.2.5",
+      "title": "Laboratory Miniature Vane Shear Apparatus (ASTM D4648)",
+      "summary": "Describes the laboratory miniature vane shear test (ASTM D4648), a scaled-down version of the field vane shear test. Covers vane sizes (0.5×0.5 in to 1.0×1.0 in), rotation procedure, torque measurement methods (calibrated springs preferred), and best application for very soft clays where UU triaxial trimming is impractical.",
+      "body": "The laboratory miniature vane shear apparatus (ASTM D4648 – Standard Test Methods for Laboratory Miniature Vane Shear Test for Saturated Fine-Grained Clayey Soil) is a scaled-down version of the field vane shear test. The vane sizes range from 0.5 inch × 0.5 inch to 1.0 inch × 1.0 inch. Vanes having a smaller diameter than the length can also be obtained to aid in determining anisotropic strengths. A photograph of a vane shear apparatus is shown in Figure 3-9. The vane is inserted into an intact or remolded test specimen and rotated at a constant rate while the torque is measured. The vane can be rotated by a hand crank or an electric drive unit. The torque can be measured by calibrated springs or by electronic load cells. Most legacy data for the miniature vane apparatus has been collected using the calibrated springs, and this is the preferred method.\n\nLab vane shear tests are not very common in geotechnical engineering practice, but this type of test can be especially useful in very soft clays. If a clay sample is too soft to be trimmed for a UU triaxial test, then a laboratory miniature vane test is a viable alternative.",
+      "key_points": [
+        "ASTM D4648; scaled-down field vane; vane sizes from 0.5×0.5 in to 1.0×1.0 in.",
+        "Measures su and sensitivity (St) of saturated fine-grained soils; anisotropic strengths possible with non-equidimensional vanes.",
+        "Torque measured by calibrated springs (preferred, matches legacy data) or electronic load cells.",
+        "Best application: very soft clays where UU triaxial specimen trimming is impractical.",
+        "Can be used on intact or remolded specimens."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 3-9"
+      ],
+      "tables": [],
+      "applicability": "Applies when measuring undrained shear strength of very soft saturated fine-grained clays where specimen trimming for triaxial testing is not feasible."
+    },
+    {
+      "section_id": "3-2.4.2.6",
+      "title": "Other Strength Tests",
+      "summary": "Covers non-standard or specialized strength tests without specific ASTM standards, including ACU (anisotropically consolidated undrained) triaxial tests, CK0U triaxial compression tests, stress path triaxial tests, and the fall cone test. Explains applications, equipment requirements, and key differences in undrained strengths produced compared to conventional ICU tests.",
+      "body": "There are other tests available to measure the laboratory undrained shear strength of soils that do not have specific ASTM standards available, or they are variations of the conventional ASTM tests.\n\nThere are two variations of the CU triaxial test that have limited use in geotechnical practice. The conventional CU triaxial test is normally conducted on test specimens that have been isotropically consolidated (vertical stress = horizontal stress during consolidation). These are often referred to as ICU triaxial tests. It is possible to anisotropically consolidate test specimens where the vertical stress is different than (usually greater) the horizontal stress. These are called ACU triaxial tests. The ASTM specifications address the basic components of ACU tests. ACU tests produce essentially the same effective stress strength parameters as ICU tests. ACU tests normally provide different undrained shear strengths than ICU tests, so the main usefulness of the test would be for projects where special undrained strengths are required.\n\nA separate type of ACU test can be conducted where the ratio of the effective stresses during consolidation (minor effective stress/major effective stress) is equal to the at-rest earth pressure coefficient (K0). These tests are sometimes called CK0U triaxial compression tests. For these tests, the exact stresses are not specified, but determined to be the stresses necessary for no lateral strain to occur during consolidation. It is difficult to conduct these tests on manual triaxial apparatuses, but they can be easily conducted on fully-automatic apparatuses. These tests also provide essentially the same effective stress shear strength parameters as conventional ICU triaxial tests. Their main utility would be when undrained strengths are needed for special projects.\n\nAnother special type of triaxial test that is occasionally used in engineering practice is the stress path triaxial test. While most triaxial tests involve loading a test specimen axially while the cell pressure is constant, stress path tests vary both the vertical stress and the horizontal stress simultaneously to follow prescribed loading paths. The loading path is often selected to match field loading conditions. In some cases, the intent is to measure the strains obtained in the test specimen after the loading path has been applied. In other cases, the intent is to measure the strength of the test specimen for a specified system of stress changes. Fully-automated triaxial test apparatus are normally required to conduct these types of tests.\n\nAn alternative to the miniature laboratory vane shear test (ASTM D4648) for measuring the shear strength of very soft clay is the fall cone test. Although there currently is not an ASTM standard for this test, it is very popular in Europe, and there are standards in Norway, Germany, the U.K., and other countries. A photograph for the Norwegian apparatus is shown in Figure 3-10. This test involves dropping a weight cone onto the surface of an intact or remolded soil specimen and measuring the penetration. Cones are available with different weights for different penetration depths for soils having various consistencies. This test is also used to determine the liquid limit of soils in international geotechnical engineering practice.",
+      "key_points": [
+        "ICU (isotropic consolidation) is the conventional CU triaxial test; ACU uses anisotropic consolidation with vertical stress > horizontal stress.",
+        "ACU and ICU tests produce essentially the same effective stress parameters but different undrained strengths.",
+        "CK0U test consolidates specimen at K0 stress ratio (no lateral strain); requires fully automated apparatus; same effective stress parameters as ICU.",
+        "Stress path triaxial tests vary both vertical and horizontal stresses to follow prescribed field loading paths; requires full automation.",
+        "Fall cone test: no ASTM standard; widely used in Europe; measures su of very soft clays by cone penetration; also used for liquid limit determination internationally."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 3-10"
+      ],
+      "tables": [],
+      "applicability": "Applies when specialized undrained strength measurements are needed beyond conventional ASTM tests, including anisotropic consolidation, K0-consolidated, stress path, or fall cone methods."
+    },
+    {
+      "section_id": "3-2.5",
+      "title": "Dynamic Tests",
+      "summary": "Introduces dynamic soil testing as a specialty area within geotechnical earthquake engineering. Notes the complexity of analysis and testing methods, the limited number of labs with requisite equipment, and lists the four common dynamic test standards (ASTM D3999, D4015, D5311, D8296) with parameters and comments in Table 3-5.",
+      "body": "Geotechnical earthquake engineering is a specialty area within geotechnical engineering. The methods of analysis used to predict the performance of structures during earthquakes can often be quite complex, and the tests to measure soil properties for use in these analyses can likewise be complex. Only a few geotechnical laboratories have the equipment to conduct these tests. Table 3-5 lists the common dynamic tests for soils.",
+      "key_points": [
+        "Dynamic soil testing is a specialized field; only a few labs have the necessary equipment.",
+        "Four primary ASTM standards cover dynamic tests: D3999 (cyclic triaxial modulus/damping), D4015 (resonant column), D5311 (cyclic triaxial strength), and D8296 (cyclic direct simple shear).",
+        "Tests can be stress-controlled or strain/displacement-controlled depending on the standard and apparatus.",
+        "Multiple tests at different cyclic stress ratios are required to define the number of cycles to failure for D5311 and D8296."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 3-5"
+      ],
+      "applicability": "Applies when selecting dynamic laboratory tests for soils in geotechnical earthquake engineering investigations."
+    },
+    {
+      "section_id": "3-2.5.1",
+      "title": "Cyclic Triaxial Test (ASTM D5311)",
+      "summary": "Describes the cyclic triaxial test (ASTM D5311), the most common dynamic soil test, covering its consolidated undrained procedure, sinusoidal loading at a cyclic stress ratio (CSR), recommended frequency of 1 Hz (minimum 0.1 Hz), testing at 3–4 CSR values, and failure criteria based on pore pressure ratio or axial strain (±2.5%, ±5%, ±10%).",
+      "body": "The cyclic triaxial test (ASTM D5311 – Standard Test Method for Load Controlled Cyclic Strength of Soil) is the most common of the dynamic tests, and it is one of the oldest, first being run since the 1960s or before. The cyclic triaxial test is a consolidated undrained (CU) test, and the initial portion of the test is the same as the static CU test (ASTM D4767). The back-pressure saturation and consolidation phases are essentially the same. The difference is in the manner of loading. Cyclic triaxial tests are normally loaded with a sinusoidal loading function, with the maximum stress difference specified by a cyclic stress ratio (CSR). The CSR is one-half of the applied deviator stress divided by the isotropic consolidation stress. An example of the loading function is shown in Figure 3-11. The loading frequency is ideally 1 Hz, but slower frequencies are often used owing to the difficulty of many commercial apparatuses in maintaining a constant 1 Hz throughout the test. The ASTM standard allows frequencies as slow as 0.1 Hz. Tests are normally conducted at three or four different values of CSR to determine the number of cycles until failure. A plot of the applied CSR versus the number of cycles until failure is used to define the cyclic strength of the soil.\n\nFailure in a cyclic triaxial test can be defined in several different ways. The conventional definition of cyclic tests conducted on clean sands was when a 100% pore pressure ratio was achieved (pore pressure = confining stress). Soils with a significant amount of fines may not achieve failure by this definition, so it has become common to define failure based on axial strain. Strain values of ±2.5%, ±5% and ±10% axial strain have been used to define failure.",
+      "key_points": [
+        "ASTM D5311 is the most common dynamic soil test, in use since the 1960s.",
+        "Test is a consolidated undrained (CU) procedure; saturation and consolidation phases match static CU test (ASTM D4767).",
+        "Loading is sinusoidal; CSR = (applied deviator stress / 2) / isotropic consolidation stress.",
+        "Ideal loading frequency is 1 Hz; ASTM allows as slow as 0.1 Hz.",
+        "Tests are run at 3–4 CSR values; a CSR vs. cycles-to-failure plot defines cyclic strength.",
+        "Failure for clean sands: 100% pore pressure ratio. For fines-rich soils: axial strain of ±2.5%, ±5%, or ±10%."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 3-11"
+      ],
+      "tables": [],
+      "applicability": "Applies when performing or interpreting cyclic triaxial tests (ASTM D5311) to determine the cyclic strength of soils for earthquake engineering analysis."
+    },
+    {
+      "section_id": "3-2.5.1.1",
+      "title": "Cyclic Direct Simple Shear Test",
+      "summary": "Describes the Cyclic Direct Simple Shear (CYCDSS) test per ASTM D8296, covering constant-volume testing conditions, sinusoidal horizontal loading at 1 Hz, stress- or displacement-controlled options, and the definition of cyclic stress ratio (CSR) as peak cyclic shear stress divided by vertical effective consolidation stress (Eq. 3-3).",
+      "body": "The cyclic direct simple shear test (CYCDSS) is popular in geotechnical earthquake engineering, and an ASTM standard is available (D8296). The test specimen can be loaded by either a cyclic stress or a prescribed displacement. These tests are normally performed using constant volume conditions where the height of the test specimen is not allowed to change during the test. A sinusoidal loading function is applied to the test specimen as a horizontal force to the top or bottom platen for a load-controlled test. A loading frequency of 1 Hz is desired, but some tests are conducted at much slower frequencies, particularly for fine-grained soils.\n\nCYCDSS tests are also specified in terms of cyclic stress ratio. The cyclic stress ratio is defined as:\n\nCSR = τcyc / σ'v\n\nwhere:\nτcyc = applied peak cyclic shear stress, and\nσ'v = vertical effective consolidation stress.",
+      "key_points": [
+        "CYCDSS test (ASTM D8296) is widely used in geotechnical earthquake engineering.",
+        "Tests are conducted under constant-volume conditions (specimen height held fixed during shearing).",
+        "Loading can be stress-controlled (cyclic force) or displacement-controlled (prescribed shear displacement).",
+        "Preferred loading frequency is 1 Hz; slower rates used for fine-grained soils.",
+        "CSR is defined as peak cyclic shear stress (τcyc) divided by vertical effective consolidation stress (σ'v) — Eq. 3-3."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 3-3",
+          "description": "Cyclic stress ratio for CYCDSS test: CSR = τcyc / σ'v, where τcyc is the applied peak cyclic shear stress and σ'v is the vertical effective consolidation stress.",
+          "implemented_in": "geotech_references.dm7_1.chapter3.cyclic_stress_ratio"
+        }
+      ],
+      "figures": [
+        "Figure 3-11"
+      ],
+      "tables": [],
+      "applicability": "Applies when performing or interpreting cyclic direct simple shear tests (ASTM D8296) to determine cyclic stress ratio and cyclic strength of soils."
+    },
+    {
+      "section_id": "3-2.6",
+      "title": "Compressibility Tests",
+      "summary": "Introduces the four ASTM tests used to measure volume change of soils: two consolidation tests (D2435, D4186) that measure volume change under applied stress, and two response-to-wetting tests (D4546, D4829) that measure volume change when soil is exposed to water or experiences changes in water content. References Table 3-6 and Figure 3-12 for overview.",
+      "body": "There are four ASTM tests used to measure the volume change of soils, which are summarized in Table 3-6. Two of these are categorized as consolidation tests, where the volume change of the soil is determined for a change in applied stress. The basic information obtained from a consolidation test is shown in Figure 3-12. The remaining two tests can be categorized as response to wetting tests, where the volume change of the soil is measured if the soil is given access to water or if the water content is reduced.",
+      "key_points": [
+        "Four ASTM tests cover soil volume change: D2435, D4186 (consolidation) and D4546, D4829 (response to wetting).",
+        "Consolidation tests measure volume change in response to applied stress changes.",
+        "Response-to-wetting tests measure volume change when soil is given access to water or experiences reduced water content.",
+        "Key parameters obtained include cv, mv, av, Cc, Cr, σʹp, Ca, εs, εc, and Expansion Index (EI)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 3-12"
+      ],
+      "tables": [
+        "Table 3-6"
+      ],
+      "applicability": "Applies when selecting an appropriate ASTM compressibility test method for characterizing soil volume change behavior."
+    },
+    {
+      "section_id": "3-2.6.1",
+      "title": "Incremental Loading Consolidation Test (ASTM D2435)",
+      "summary": "Describes the incremental loading (incremental stress) consolidation test per ASTM D2435, including apparatus details (fixed-ring and floating-ring consolidometers), typical specimen size (2.5-in diameter, 1-in height), load increment ratio (LIR), compression curve construction, and determination of cv, Cc, Cr, and σʹp. Covers test duration, end-of-primary consolidation, and pitfalls of automated EOP detection.",
+      "body": "The incremental loading or incremental stress consolidation test (ASTM D2435 – Standard Test Methods for One-Dimensional Consolidation Properties of Soil Using Incremental Loading) is over 80 years old and is a very common test in geotechnical engineering practice. Figure 3-13 shows the basic elements of the fixed-ring and floating-ring consolidometers. The test is normally conducted on saturated fine-grained test specimens, but it may also be conducted on partially-saturated soils, compacted soils, and remolded soils. The most common test specimen size in U.S. geotechnical engineering practice is a cylindrical specimen with a 2.5-inch diameter and 1-inch height, although other size apparatuses are commercially available. The test specimen is contained in a rigid ring that prevents lateral expansion of the soil during loading, thus all displacement is vertical. This type of test is also called a one-dimensional compression test. A porous stone is usually located above and below the test specimen to allow for double drainage. The fixed-ring consolidometer is the most common in geotechnical engineering practice, but the floating-ring consolidometer can be used if high friction between the ring and soil is anticipated (e.g. sandy clay).\n\nAs loads are applied to the test specimen, the displacement of the top platen is measured over time. Each load is normally applied for a specific time period (i.e. 24 hours) or until the end of primary consolidation (EOP) is achieved. An example time-deformation curve or time curve for one load increment is shown in Figure 3-12. The time curve is important in that the value of the coefficient of consolidation (cv) is determined from this curve. Details on calculating the value of cv from the time curve can be found in Chapter 5 or ASTM D2435.\n\nThe load applied to the test specimen is usually doubled for each load increment. The Load Increment Ratio (LIR) is used to quantify the change in load to the test specimen, and is defined below:\n\nLIR = Δσ / σ0\n\nwhere:\nΔσ = change in applied stress, and\nσ0 = initial total stress.\n\nAn LIR = 1 corresponds to doubling the load on the test specimen. For unloading, an LIR = -0.75 is often used, which means the immediately previous load is skipped. For reloading, an LIR = 4 is used, which follows the same stresses as the unloading cycle until the past load has been reached.\n\nEach load applied to the test specimen; for unloading, rebound, and reloading cycles; provides a data point for the compression curve. An example compression curve is shown in Figure 3-12. The conventional method used to plot the compression curve is using void ratio (y-axis) and the logarithm of the effective vertical stress (x-axis). The compression curve is used to determine the preconsolidation pressure or maximum past pressure (σʹp or Pp) and the compression index (Cc) and the recompression index (Cr). The compression curve can also be plotted using axial strain instead of void ratio. For plots using strain, the compression parameters are Cεc and Cεr (instead of Cc and Cr). The strain or void ratio used in plotting the compression curve can either be the value at the end of the time increment or the value at the end of primary consolidation. It is important that the method used is indicated for the plot.\n\nIf a 24-hour load cycle is used for the incremental stress consolidation test, the test can take two to three weeks to complete, depending on the value of the maximum stress and the number of unload-reload loops. Laboratories often try to decrease the amount of time required by reloading the test specimen at the end of primary (EOP) consolidation as opposed to constant time intervals. If the test is conducted using an automated apparatus, the time corresponding to EOP is often determined by a computer program. The use of computer-calculated EOP times may incur errors, especially for low stresses where strains are small. If the test specimen is reloaded too quickly at early stages of the test, the remaining data may not be useable and the quality of the test may be compromised.",
+      "key_points": [
+        "Standard specimen: 2.5-in diameter, 1-in height; confined in a rigid ring for one-dimensional (vertical) compression only.",
+        "Fixed-ring consolidometer is most common; floating-ring reduces friction effects for soils like sandy clay.",
+        "Load Increment Ratio (LIR) = Δσ/σ0; LIR=1 doubles the load; LIR=-0.75 for unloading; LIR=4 for reloading.",
+        "Compression curve (e-log p) yields preconsolidation pressure σʹp, compression index Cc, and recompression index Cr.",
+        "Coefficient of consolidation (cv) is determined from the time-deformation curve for each load increment.",
+        "24-hour load cycles can make the test take 2–3 weeks; end-of-primary (EOP) loading can shorten duration.",
+        "Automated EOP detection may introduce errors at low stresses; premature reloading can compromise test quality."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 3-4",
+          "description": "Load Increment Ratio (LIR) defined as the change in applied stress divided by the initial total stress: LIR = Δσ / σ0",
+          "implemented_in": "geotech_references.dm7_1.chapter3.load_increment_ratio"
+        }
+      ],
+      "figures": [
+        "Figure 3-12",
+        "Figure 3-13"
+      ],
+      "tables": [],
+      "applicability": "Applies when performing or interpreting incremental loading one-dimensional consolidation tests on fine-grained, partially saturated, compacted, or remolded soils per ASTM D2435."
+    },
+    {
+      "section_id": "3-2.6.2",
+      "title": "Constant Rate of Strain Consolidation Test (ASTM D4186)",
+      "summary": "Describes the Constant Rate of Strain (CRS) consolidation test (ASTM D4186) as an alternative to incremental loading. Covers back-pressure saturation requirements, single-drainage configuration with pore pressure measurement at the base, strain rate selection criterion (excess pore pressure ≤15% of applied stress), and advantages including a continuous compression curve with improved preconsolidation pressure resolution and cv determination over the full load range.",
+      "body": "The constant rate of strain (CRS) consolidation test (ASTM D4186 – Standard Test Method for One-Dimensional Consolidation Properties of Saturated Cohesive Soils Using Controlled-Strain Loading) can be used as an alternative to the incremental stress consolidation test. The test specimens for the CRS test are the same size as for the incremental stress tests. One of the main advantages of the CRS test is that the compression curve can be obtained in much less time than the incremental stress test. A schematic of the basic test elements and the data acquired is given in Figure 3-14.\n\nThe CRS consolidation test can be conducted on intact soil specimens, and also on compacted and remolded soil specimens. However, it is necessary that the test specimen be saturated prior to compression. As shown in Figure 3-14, the consolidometer for the CRS test is very similar to a triaxial cell. The test specimen is back-pressure saturated in the same manner as a triaxial specimen. The cell pressure applied in the cell serves as back pressure in the process. The test specimen is drained only at the top, and during the loading process, the excess pore water pressures are measured at the bottom. Based on an assumed parabolic distribution of pore water pressure in the test specimen, the average effective stress can be calculated.\n\nThe test specimen is loaded at a constant strain rate (ε). The strain rate is selected such that the excess pore water pressure measured at the base of the test specimen does not exceed 15% of the applied stress. The rate for unloading the test specimen is much slower than loading, and unload-reload loops may slow down the test considerably.\n\nOne advantage of the CRS consolidation test is that the compression curve is defined by many more data points than the incremental stress consolidation test. There are so many data points taken that the results are usually portrayed as a curve instead of discrete data points. This allows an increased resolution of the compression curve in the vicinity of the preconsolidation pressure, and allows a more accurate determination of its value. The CRS consolidation test also allows the determination of the coefficient of consolidation (cv) over the entire load range as long as the excess pore pressures are in an acceptable range. This method of determining cv removes some of the subjectivity involved in determining cv using time curves with the incremental stress consolidation test.",
+      "key_points": [
+        "CRS test (ASTM D4186) is faster than incremental loading (D2435) and yields a continuous compression curve.",
+        "Specimen must be fully saturated prior to compression; back-pressure saturation is used in a triaxial-like cell.",
+        "Drainage is single-ended (top only); excess pore pressure is measured at the base to compute average effective stress.",
+        "Strain rate is selected so that base excess pore pressure does not exceed 15% of applied stress.",
+        "Continuous data points provide better resolution near the preconsolidation pressure σʹp.",
+        "cv can be determined over the entire load range, reducing subjectivity compared to time-curve methods.",
+        "Unload-reload loops are slower than loading and can considerably extend test duration."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 3-14"
+      ],
+      "tables": [],
+      "applicability": "Applies when using the CRS consolidation test as a faster alternative to incremental loading for saturated cohesive soils requiring high-resolution compression curves or full-range cv determination."
+    },
+    {
+      "section_id": "3-2.6.3",
+      "title": "Swell and Collapse Test (ASTM D4546)",
+      "summary": "Describes the one-dimensional swell or collapse test (ASTM D4546) used for partially saturated natural or compacted soils that swell or collapse upon wetting. Covers free swell measurement (typically under 20 psf nominal stress), swell pressure determination, and the procedure of applying loads then inundating the specimen to measure volume change as a function of stress at inundation. Uses the same consolidometer as D2435.",
+      "body": "When a partially saturated natural soil or a compacted soil is given access to water, the soil can swell at low stresses or collapse at high stresses. ASTM D4546 (Standard Test Methods for One-Dimensional Swell or Collapse of Soils) allows the volume change of the test specimen to be measured as a function of the applied stress. If the soil has no confining stress applied, then free swell may occur. Often, free swell is measured under a nominal stress of 20 psf. If the pressure is varied to prevent any swell or volume change from occurring, this pressure is called the swell pressure for the soil. ASTM D4546 allows the amount of free swell, swell pressure, and volume change for other stresses to be determined.\n\nThe test is very similar to an incremental stress consolidation test, and the same consolidometer is used. Loads can be applied to the test specimen, and after the test specimen has achieved equilibrium under the load, the specimen is inundated. The swell or collapse volume change is measured after the test specimen achieves a new equilibrium. Shown in Figure 3-15 is an example curve that gives the volume change of the soil as a function of the stress at inundation.",
+      "key_points": [
+        "ASTM D4546 measures one-dimensional swell or collapse of partially saturated natural or compacted soils upon wetting.",
+        "Soils can swell at low stresses or collapse at high stresses when given access to water.",
+        "Free swell is typically measured under a nominal stress of 20 psf when no confining stress is applied.",
+        "Swell pressure is the stress required to prevent any volume change upon inundation.",
+        "Uses the same consolidometer as the incremental loading consolidation test (ASTM D2435).",
+        "Volume change vs. stress-at-inundation curve is the primary output (see Figure 3-15)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 3-15"
+      ],
+      "tables": [],
+      "applicability": "Applies when evaluating the swell or collapse potential of partially saturated natural or compacted soils that will be exposed to water under field conditions."
+    },
+    {
+      "section_id": "3-2.6.4",
+      "title": "Expansion Index Test (ASTM D4829)",
+      "summary": "Describes the ASTM D4829 Expansion Index Test for assessing swell potential of compacted soils. Unlike D4546, it does not yield engineering design values but provides a simple index (EI = % swell × 10) to evaluate swelling risk for structures built on compacted fill, using criteria in Table 3-7.",
+      "body": "The expansion index test (ASTM D4829 – Standard Test Method for Expansion Index of Soils) determines the swell potential of a soil, but it is less rigorous than D4546. It does not provide engineering design values to calculate volume change, but provides a simple index to assess the swelling potential of soil. This test is conducted on compacted soils. The main use of the expansion index test is to assess if a compacted fill might pose problems if structures are constructed on top of it. The compaction mold is approximately half the height of the 4-inch diameter (1/30 ft3) compaction mold used for ASTM D698 and the same compaction hammer as used for D698 is used. The goal is to compact the test specimen using a D698 effort at a degree of saturation of 50%. A vertical stress of 1 psi is applied, and the specimen is allowed to equilibrate for 10 minutes. The specimen is then inundated and allowed to swell for 24 hours or until the swell has essentially ceased. The Expansion Index (EI) is equal to the percent swell multiplied by 10. The expansion potential is assessed using the criteria shown in Table 3-7.",
+      "key_points": [
+        "ASTM D4829 is a simpler, less rigorous alternative to D4546; it does not yield engineering design values for volume change calculations.",
+        "Test is conducted on compacted soils; primary use is assessing swelling risk for structures on compacted fill.",
+        "Specimen is compacted to a D698 effort at 50% degree of saturation; 1 psi vertical stress applied for 10-minute equilibration.",
+        "Specimen is inundated and swell measured for 24 hours or until swell ceases.",
+        "Expansion Index (EI) = percent swell × 10; classified from Very Low (EI 0–20) to Very High (EI >130) per Table 3-7."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 3-15"
+      ],
+      "tables": [
+        "Table 3-7"
+      ],
+      "applicability": "Applies when a simple index of swell potential is needed for compacted soils, particularly for evaluating compacted fill beneath structures."
+    },
+    {
+      "section_id": "3-2.7",
+      "title": "Hydraulic Conductivity (Permeability) Tests",
+      "summary": "Introduces the history and general framework of hydraulic conductivity testing in soils. Notes that permeability tests have been in use since the 1930s, that correlations are more reliable for coarse-grained soils, and that two ASTM standardized tests exist, with hydraulic conductivity also derivable from consolidation tests.",
+      "body": "Test to measure the permeability or hydraulic conductivity of soils have been used since the 1930s. In general, permeability tests have been more widely used for fine-grained soils as opposed to coarse-grained soils. There are many correlations available for the permeability of coarse-grained soils, but few reliable correlations exist for fine-grained soils. Currently, there are two ASTM standardized tests for hydraulic conductivity. However, hydraulic conductivity can be calculated from incremental stress and constant rate of strain consolidation tests.",
+      "key_points": [
+        "Hydraulic conductivity testing has been practiced since the 1930s.",
+        "Many correlations exist for coarse-grained soils; few reliable correlations exist for fine-grained soils.",
+        "Two ASTM standardized tests are available for hydraulic conductivity measurement.",
+        "Hydraulic conductivity can also be derived indirectly from incremental stress and constant rate of strain (CRS) consolidation tests."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies as an introductory overview whenever hydraulic conductivity testing is being selected or discussed for any soil type."
+    },
+    {
+      "section_id": "3-2.7.1",
+      "title": "Compaction Mold Test (ASTM D5856)",
+      "summary": "Describes ASTM D5856, a rigid-wall permeameter test intended for compacted soils with hydraulic conductivity less than 10⁻³ cm/sec. Notes key deficiencies including inability to saturate specimens (resulting in potentially underestimated conductivity) and risk of side-wall leakage; best suited as a QC test for compacted clay liners.",
+      "body": "The compaction mold test (ASTM D5856 – Standard Test Method for Measurement of Hydraulic Conductivity of Porous Material using a Rigid-Wall Compaction-Mold Permeameter) is intended to be used on compacted soils having a hydraulic conductivity less than 10-3 cm/sec.\n\nThis test has a major deficiency in that the test specimen cannot be saturated, therefore the measured hydraulic conductivity may be too low. There also is a problem that leakage can occur between the compacted test specimen and the wall of the compaction mold. This test is best suited as a quality control test for compacted clay liners for landfills and reservoirs.",
+      "key_points": [
+        "ASTM D5856 uses a rigid-wall compaction-mold permeameter; applicable for soils with hydraulic conductivity < 10⁻³ cm/sec.",
+        "Major deficiency: specimens cannot be fully saturated, so measured hydraulic conductivity may be underestimated.",
+        "Side-wall leakage between specimen and mold wall is a known problem.",
+        "Best suited as a quality control test for compacted clay liners in landfills and reservoirs."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when performing quality control hydraulic conductivity testing on compacted clay liners for landfills and reservoirs, where k < 10⁻³ cm/sec."
+    },
+    {
+      "section_id": "3-2.7.2",
+      "title": "Flexible Wall Test (ASTM D5084)",
+      "summary": "Describes ASTM D5084, the most common permeability test, using a flexible membrane (triaxial permeameter) that eliminates side-wall leakage, allows back-pressure saturation, and controls effective consolidation stress. Recommended for soils with k < 10⁻⁴ cm/sec; supports intact, remolded, and compacted specimens and can measure hydraulic conductivity anisotropy.",
+      "body": "The flexible wall test (ASTM D5084 – Standard Test Methods for Measurement of Hydraulic Conductivity of Saturated Porous Materials Using a Flexible Wall Permeameter) is the most common permeability test. The apparatus used is also called a triaxial permeameter because it is essentially a triaxial cell without the loading rod. The sample is enclosed in a flexible membrane, therefore the problem of side-wall leakage experienced in D5856 is not a problem. The membrane conforms to irregularities in the sides of the test specimen. ASTM D5084 also allows for test specimens to be back-pressure saturated in the same manner as CU and CD triaxial test specimens. The flexible wall permeability test also allows control of the effective consolidation stress. This is not possible with the compaction mold test.\n\nThis method is recommended only for soils having a hydraulic conductivity less than 10-4 cm/sec, so it is best suited to fine-grained soils or soils with a significant percentage of fines. Intact, remolded, and compacted test specimens can be used for this test. The test takes considerable skill to properly conduct, and there are six different methods to promote flow though the test specimen. The test measures vertical hydraulic conductivity, but intact samples can be trimmed at different orientations to measure anisotropy of hydraulic conductivity.",
+      "key_points": [
+        "ASTM D5084 is the most common permeability test; apparatus is a triaxial cell without a loading rod (triaxial permeameter).",
+        "Flexible membrane eliminates side-wall leakage problems present in the rigid-wall D5856 test.",
+        "Back-pressure saturation is possible, same as for CU and CD triaxial tests.",
+        "Effective consolidation stress can be controlled — an advantage over the compaction mold test.",
+        "Recommended for soils with k < 10⁻⁴ cm/sec; best suited to fine-grained soils or soils with significant fines.",
+        "Intact, remolded, and compacted specimens are all permissible; six flow-promotion methods are available.",
+        "Anisotropy of hydraulic conductivity can be evaluated by trimming intact samples at different orientations."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when measuring hydraulic conductivity of fine-grained or fines-rich soils (k < 10⁻⁴ cm/sec) requiring saturation control and minimized side-wall leakage."
+    },
+    {
+      "section_id": "3-2.7.3",
+      "title": "Hydraulic Conductivity from Consolidation Tests",
+      "summary": "Introduces the method of deriving hydraulic conductivity indirectly from consolidation tests via the coefficient of consolidation (cv). For incremental stress consolidation tests, cv is obtained from time curves using various methods; for CRS consolidation tests, cv is calculated directly from test output. This section is introductory and continues beyond the chunk.",
+      "body": "One of the purposes of conducting a consolidation test is to determine the coefficient of consolidation (cv). For incremental stress consolidation tests, cv is calculated from the time curves using one of several different methods. For the CRS consolidation test, cv",
+      "key_points": [
+        "Hydraulic conductivity can be derived indirectly from consolidation tests via the coefficient of consolidation (cv).",
+        "For incremental stress consolidation tests, cv is calculated from time-settlement curves using one of several methods.",
+        "For CRS (constant rate of strain) consolidation tests, cv is computed directly from test measurements."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when hydraulic conductivity is to be estimated indirectly from consolidation test data, particularly for fine-grained soils."
+    },
+    {
+      "section_id": "3-3",
+      "title": "Laboratory Tests on Rock",
+      "summary": "Introduces ASTM laboratory tests applicable to rock specimens, noting the smaller number of rock tests compared to soils. Most common rock tests focus on compressive and tensile strength. Lists four key ASTM standards (D3967, D5607, D5731, D7012) covering splitting tensile strength, direct shear, point load index, and compressive strength/elastic moduli of intact rock core specimens.",
+      "body": "ASTM also addresses laboratory tests on rock specimens, but there are much fewer tests for rocks than for soils. Most of the common tests on rock focus on the strength in compression and tension. Table 3-8 lists the common rock tests that have ASTM standards available.",
+      "key_points": [
+        "Fewer ASTM laboratory tests exist for rock than for soils; most focus on compressive and tensile strength.",
+        "Key ASTM rock standards include D3967 (splitting tensile), D5607 (direct shear), D5731 (point load index), and D7012 (compressive strength and elastic moduli).",
+        "Parameters obtained include σt (tensile strength), c-φ/c'-φ' (shear strength), Is/Is(50) (point load index), and σu (unconfined compressive strength).",
+        "D5607 strength parameters are mainly interpreted as total stress values."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 3-8"
+      ],
+      "applicability": "Applies when selecting laboratory test methods for rock specimens per ASTM standards."
+    },
+    {
+      "section_id": "3-3.1",
+      "title": "Unconfined Compression Test (ASTM D7012)",
+      "summary": "Describes ASTM D7012 for compressive strength and elastic moduli of intact rock cores. Covers four test methods, two for unconfined compressive strength (Method C) and two for triaxial compression. Method C yields only σu without axial strain measurement. Specimens are typically 1.85-inch diameter NQ cores trimmed to ≥3.7-inch height, loaded to failure in 2–15 minutes. Multiple specimens are tested due to variability from joints, fractures, and faults.",
+      "body": "ASTM D7012 (Standard Test Methods for Compressive Strength and Elastic Moduli of Intact Rock Core Specimens under Varying States of Stress and Temperatures) encompasses more than just unconfined compression tests. There are four different methods of testing outlined in the standard, and two address the unconfined compressive strength. The other two address triaxial compression of rock, which is used less frequently than for soil.\n\nThe basic form of the unconfined compression test (Method C) does not measure axial strain during loading, and provides only the unconfined compressive strength. The resulting strength can be used for design or as an index property for the rock. The test is normally conducted on rock cores that are 1.85 inches in diameter, and they are trimmed to be at least 3.7 inches in height. This specimen diameter corresponds to an NQ core barrel, but larger rock cores can be used as well. The specimen can be loaded at a constant rate of load or a constant rate of strain which are chosen to cause failure in 2 minutes to 15 minutes. Unconfined compression tests of rock are normally conducted on many test specimens since there can be wide variations in the compressive strength due to the effects of planes of weakness (joints, fractures, and faults) and other inhomogeneities in rock. The main result of the unconfined compression test is the uniaxial compressive strength (σu).",
+      "key_points": [
+        "ASTM D7012 includes four methods: two for unconfined compressive strength and two for triaxial compression of rock.",
+        "Method C (basic unconfined compression) yields only σu — no axial strain is measured during loading.",
+        "Standard specimen size is 1.85 inches diameter (NQ core barrel) × ≥3.7 inches height (minimum 2:1 height-to-diameter ratio).",
+        "Loading rate is selected to cause failure within 2 to 15 minutes.",
+        "Multiple specimens are typically tested due to high variability caused by joints, fractures, faults, and other inhomogeneities.",
+        "Result σu can be used directly for design or as a rock index property."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when determining the uniaxial compressive strength and/or elastic moduli of intact rock core specimens."
+    },
+    {
+      "section_id": "3-3.2",
+      "title": "Split Cylinder Test (ASTM D3967)",
+      "summary": "Covers the ASTM D3967 split cylinder (Brazilian) test as an alternative to direct tensile testing of rock. The specimen is loaded diametrically between hardened steel platens; thickness ranges from 0.2 to 0.75 times the diameter. Failure is achieved in 1–10 minutes. Main result is splitting tensile strength (σt). Results are variable, so multiple specimens are routinely tested; results are conventionally distinguished from direct tension values by the 'splitting' prefix.",
+      "body": "The split cylinder test (ASTM D3967 – Standard Test Method for Splitting Tensile Strength of Intact Rock Core Specimens) is used as an alternative to the direct tensile test. The test specimen is loaded diametrically via hardened steel end platens. The test specimen thickness can range between 0.2 to 0.75 times the specimen diameter. The test specimen is loaded at a rate sufficient to obtain failure in 1 to 10 minutes. The main result of this test is the splitting tensile strength (σt). Although the tensile strength resulting from the split cylinder test should be essentially equal to that measured from direct tension tests, it is customary to preface the former with \"splitting.\" Owing to the variability in the test results, split cylinder tests are often run on numerous test specimens.",
+      "key_points": [
+        "The split cylinder test is a practical alternative to direct tensile testing of intact rock cores.",
+        "Specimen is loaded diametrically between hardened steel platens; thickness = 0.2–0.75× specimen diameter.",
+        "Loading rate targets failure in 1 to 10 minutes.",
+        "Primary result is splitting tensile strength (σt), conventionally distinguished from direct tension by the 'splitting' prefix.",
+        "High variability in results requires testing numerous specimens."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when determining the tensile strength of intact rock core specimens as an alternative to direct tension testing."
+    },
+    {
+      "section_id": "3-3.3",
+      "title": "Rock Direct Shear Test (ASTM D5607)",
+      "summary": "Describes ASTM D5607 for direct shear strength of rock specimens and discontinuities under constant normal force. Unlike the soil counterpart, the rock direct shear test is treated as undrained. Tests are run over a range of normal stresses to define the strength envelope. Specimens are typically encapsulated in super-strength gypsum cement. Apparatus must accommodate extreme load/displacement ranges: up to 50,000 lbs and displacements from <0.01 inch (intact rock) to >0.1 inch (rock joints at low normal stress).",
+      "body": "Rock direct shear tests (ASTM D5607 - Standard Test Method for Performing Laboratory Direct Shear Strength Tests of Rock Specimens Under Constant Normal Force) can be conducted on intact rock specimens, as well as on joints and discontinuities. Unlike the direct shear test conducted on soils, the rock direct shear test is normally considered to be an undrained test. The basic elements of this test are the same as for the soil direct shear tests. Rock direct shear tests are often conducted for a range of normal stresses to determine the strength envelope for the material. One major difference is that the test specimen is often encapsulated in a super strength gypsum cement to fix its position in the shear box.\n\nRock direct shear tests are more complicated than the soil counterpart because of the great variety of loads and displacements the apparatus is required to measure. For large normal stresses, it can take 50,000 lbs. to fail an intact rock direct shear test specimen, and failure may occur at very small (<0.01 inch) displacements. For rock joints at low normal stresses, the failure load might be less than 100 lbs., and the displacement at failure may be greater than 0.1 inch.",
+      "key_points": [
+        "Applicable to intact rock specimens and to joints/discontinuities under constant normal force.",
+        "Unlike soil direct shear, the rock test is normally treated as an undrained test.",
+        "Tests are conducted over a range of normal stresses to define the shear strength envelope (c-φ or c'-φ').",
+        "Specimens are often encapsulated in super-strength gypsum cement to fix position in the shear box.",
+        "Apparatus must handle wide load ranges: up to ~50,000 lbs for intact rock and as low as <100 lbs for rock joints.",
+        "Failure displacements range from <0.01 inch (intact rock at high normal stress) to >0.1 inch (joints at low normal stress)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 3-16",
+        "Figure 3-17"
+      ],
+      "tables": [],
+      "applicability": "Applies when determining direct shear strength of intact rock, rock joints, or discontinuities under constant normal force."
+    },
+    {
+      "section_id": "3-3.4",
+      "title": "Point Load Test (ASTM D5731)",
+      "summary": "Introduces the ASTM D5731 point load test for determining a rock strength index (Is or Is(50)). The test can be performed on rock cores or irregular rock pieces with diameters from 1 to 3 inches. Load platens are truncated cones with a 0.2-inch-radius semicircular arc tip. Specimen diameter is defined as the distance between platen contact points. The index is commonly corrected to a standard 50 mm specimen diameter.",
+      "body": "The point load test (ASTM D5731 – Standard Test Methods for Determination of the Point Load Strength Index of Rock and Application of Rock Strength Classifications) provides an index value of the rock strength. This test can be performed on rock cores or irregular pieces of rock having diameters in the range of 1 inch to 3 inches. A photograph of the point load apparatus is shown in Figure 3-18. The diameter of the test specimen is considered to be the thickness of the test specimen from loading platen contact points. The load platens are truncated cones, with the point being a semicircular arc of 0.2-inch radius.",
+      "key_points": [
+        "Provides a strength index (Is or Is(50)) rather than a direct strength measurement; index is often corrected to 50 mm specimen diameter.",
+        "Applicable to rock cores or irregular rock pieces with diameters ranging from 1 to 3 inches.",
+        "Specimen diameter is defined as the distance between the truncated-cone platen contact points.",
+        "Load platens are truncated cones with a semicircular arc tip of 0.2-inch radius.",
+        "Versatile field and laboratory test useful for rock strength classification."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 3-18"
+      ],
+      "tables": [],
+      "applicability": "Applies when an index of rock strength is needed for classification purposes, using rock cores or irregular rock specimens."
+    },
+    {
+      "section_id": "3-4",
+      "title": "OTHER SOIL AND ROCK TESTS",
+      "summary": "Briefly notes that while the chapter covers the most common geotechnical tests used in U.S. practice, hundreds of additional ASTM standardized tests exist. These include test groups addressing partially saturated soils, soil-cement mixtures, peats and organic soils, geosynthetics, and other engineering materials not covered in detail in this chapter.",
+      "body": "This section of the manual has addressed the tests that are the most common in geotechnical engineering practice in the U.S., but there are hundreds of other ASTM standardized tests. There are groups of tests that address partially saturated soils, soil-cement mixtures, peats and organic soils, geosynthetics, and many other materials used in engineering projects.",
+      "key_points": [
+        "The chapter focuses on the most common geotechnical tests used in U.S. practice, but is not exhaustive.",
+        "Hundreds of additional ASTM standardized tests exist beyond those covered in this chapter.",
+        "Additional test groups cover partially saturated soils, soil-cement mixtures, peats and organic soils, geosynthetics, and other engineering materials.",
+        "Engineers should consult ASTM standards directly for specialized materials or conditions not addressed in this chapter."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when an engineer needs to identify geotechnical or materials testing beyond the common tests covered in Chapter 3, particularly for specialized materials such as partially saturated soils, soil-cement, peats, or geosynthetics."
+    },
+    {
+      "section_id": "3-5",
+      "title": "Suggested Reading",
+      "summary": "Provides an annotated bibliography of key references for Chapter 3 topics, organized by subject area: General Laboratory Testing (Head, Lambe & Whitman), Shear Strength (ASTM STP 361, STP 740, ASCE conference proceedings, Saada & Townsend), and Triaxial Testing (ASTM STP 977, Bishop & Henkel, Lade). Essential for engineers seeking deeper technical grounding beyond the UFC.",
+      "body": "Topic: General Laboratory Testing\nHead, K. H. 2008. Manual of Soil Laboratory Testing, Vol. 1., 3rd Ed., Whittles, 416 pp.\nHead, K. H. and R. J. Epps 2011. Manual of Soil Laboratory Testing Vol. II, Permeability Shear Strength, and Compressibility Tests, 3rd Ed., Whittles, 512 pp.\nHead, K. H. and R. J. Epps 2014, Manual of Soil Laboratory Testing Vol. III, Effective Stress Tests, 3rd Ed., Whittles, 448 pp.\nLambe, T. W. and R. V. Whitman 1969. Soil Mechanics, John Wiley and Sons, Inc. 553 pp.\n\nTopic: Shear Strength\nLaboratory Shear Testing of Soils, ASTM STP 361, American Society for Testing and Materials, 505 pp., 1964.\nLaboratory Shear Strength of Soils, ASTM STP 740, R. N. Young and F. C. Townsend, Eds., 717 pp, 1981.\nResearch Conference on Shear Testing of Cohesive Soils, ASCE, University of Colorado, Boulder, CO, 1164 pp, 1960.\nSaada, A. S. and Townsend, F. C. 1981. \"State of the Art: Laboratory Strength Testing of Soils,\" Laboratory Shear Strength of Soils, ASTM STP 740, R. N. Yong and F. C. Townsend, Eds., ASTM, pp. 7-77.\n\nTopic: Triaxial Testing\nAdvanced Triaxial Testing of Soil and Rock, ASTM SPT 977, Robert T. Donague, Ronald C. Chaney, and Marshal L. Silver, Eds., American Society for Testing and Materials, Philadelphia, 896 pp, 1988.\nBishop, A. W. and D. J. Henkel (1957), Measurement of Soil Properties in the Triaxial Test, Edward Arnold, Ltd., London, 190 pp.\nLade, P. 2016. Triaxial Testing of Soils, John Wiley & Sons, Ltd., 500 pp.",
+      "key_points": [
+        "Three-volume Head & Epps series covers all major laboratory soil testing topics: basic testing, permeability/shear/compressibility, and effective stress tests.",
+        "Lambe & Whitman 'Soil Mechanics' (1969) is a foundational general reference for soil behavior and testing.",
+        "ASTM STP 361 and STP 740 are key compiled references for laboratory shear strength testing methods and data.",
+        "Saada & Townsend (1981) provides a state-of-the-art review of laboratory strength testing as of the early 1980s.",
+        "Bishop & Henkel (1957) remains a seminal reference for triaxial testing procedures and soil property measurement.",
+        "Lade (2016) is the most recent comprehensive triaxial testing reference listed, covering modern practice."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when an engineer needs supplemental reading on general laboratory testing, shear strength testing, or triaxial testing beyond the UFC content."
+    },
+    {
+      "section_id": "3-6",
+      "title": "Notation",
+      "summary": "Defines all symbols and abbreviations used throughout Chapter 3, covering soil index properties (e, Gs, n, S, w), unit weights (γd, γt, γsat, γb, γw), consolidation parameters (Cc, Cr, cv, mv, Pp, σʹp, σʹv), strength parameters (c, cʹ, φ, φʹ, su), compaction parameters (Dr, RC, γd-max, γd-min, wopt), stress/strain variables (σ0, σ3, Δσ, ε, τcyc), and point load index values (Is, Is(50)).",
+      "body": "Symbol | Description\nc | Total stress cohesion\nCc | Compression index\nCr | Recompression index\ncv | Coefficient of consolidation\ncʹ | Effective stress cohesion\nD | Diameter\nDr | Relative density\ne | Void ratio\nemax | Maximum index void ratio\nemin | Minimum index void ratio\nGs | Specific gravity\nH | Height\nIs | Uncorrected point load strength index\nIs(50) | Size corrected point load strength index\nk | Hydraulic conductivity or permeability\nK0 | At-rest earth pressure coefficient\nL | Length\nmv | Coefficient of volumetric compressibility\nn | Porosity\nPp | Maximum past pressure\nRC | Relative compaction\nS | Degree of saturation\nSt | Sensitivity\nsu | Undrained shear strength for a φ = 0 envelope for saturated soils\nt | Thickness\nV | Total volume\nVa | Volume of air\nVs | Volume of solids\nVv | Volume of voids\nVw | Volume of water\nw | Water content\nwopt | Optimum water content\nWs | Weight of solids\nWt | Total weight of sample\nWw | Weight of water\nγb | Buoyant unit weight or submerged unit weight\nγd | Dry unit weight\nγd-max | Maximum dry density from the compaction curve for a particular effort or maximum index dry density (corresponding to emin)\nγd-min | Minimum index dry density (corresponding to emax)\nγt | Total or wet unit weight\nγsat | Saturated unit weight\nγw | Unit weight of water\n∆σ | Change in applied stress\nε | Strain rate\nσ0 | Initial total stress\nσ3 | Confining pressure\nσʹp | Preconsolidation pressure\nσʹv | Vertical effective consolidation stress\nτcyc | Applied peak cyclic shear stress\nφ | Total stress friction angle\nφʹ | Effective stress friction angle",
+      "key_points": [
+        "Distinguishes total stress (c, φ) from effective stress (cʹ, φʹ) cohesion and friction angle — critical for correct strength analysis.",
+        "su is specifically defined as undrained shear strength for a φ = 0 envelope for saturated soils, not a general undrained strength symbol.",
+        "Relative density (Dr) and relative compaction (RC) are both listed, reflecting their distinct roles in compaction and density characterization.",
+        "γd-max corresponds to emin and γd-min corresponds to emax, linking compaction density limits to void ratio extremes.",
+        "Consolidation parameters include Cc, Cr, cv, mv, Pp, σʹp, and σʹv, covering both settlement magnitude and rate calculations.",
+        "Point load index appears in both uncorrected (Is) and size-corrected (Is(50)) forms, consistent with ASTM point load testing procedures.",
+        "τcyc is included as applied peak cyclic shear stress, indicating the chapter addresses dynamic/cyclic loading conditions.",
+        "Volume phase relationship variables (V, Va, Vs, Vv, Vw) and weight variables (Ws, Wt, Ww) provide a complete phase diagram symbol set."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies whenever a symbol used in Chapter 3 requires definition or clarification during design calculations or document review."
+    }
+  ]
+}

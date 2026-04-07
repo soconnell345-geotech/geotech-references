@@ -1,0 +1,835 @@
+{
+  "reference_id": "UFC 3-220-20",
+  "reference_title": "UFC 3-220-20 Foundations and Earth Structures",
+  "volume": 2,
+  "chapter": 7,
+  "chapter_title": "Probability and Reliability",
+  "sections": [
+    {
+      "section_id": "7-1",
+      "title": "INTRODUCTION",
+      "summary": "Introduces Chapter 7 on Probability and Reliability in Geotechnical Engineering. Covers scope and purpose: basic statistics/probability principles, sources of uncertainty, reliability indices, risk assessment, hazard analyses, and the probabilistic basis of LRFD for retaining walls and foundations. Intended to familiarize engineers with common probabilistic applications in geotechnical practice.",
+      "body": "",
+      "key_points": [
+        "Chapter covers statistics, probability, uncertainty quantification, reliability indices, risk assessment, and hazard analyses in geotechnical engineering.",
+        "Explains the probabilistic basis of LRFD to help engineers connect it to other design procedures.",
+        "Primary purpose is familiarization; additional study may be needed for full implementation.",
+        "Applications include interpreting lab/field test data and calculating reliability indices."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when engineers need an orientation to probabilistic methods and their role in geotechnical design, including LRFD."
+    },
+    {
+      "section_id": "7-1.1",
+      "title": "Scope and Purpose",
+      "summary": "Describes the chapter's scope: introducing basic statistics and probability for geotechnical engineering, quantifying uncertainty in design, and presenting probabilistic applications including reliability indices, risk assessment, hazard analyses, and the probabilistic basis of LRFD for retaining walls and foundations.",
+      "body": "This chapter introduces the basic principles of statistics and probability required to understand and begin to use these concepts in geotechnical engineering. Sources of uncertainty in geotechnical design and methods for quantifying that uncertainty are discussed. Applications of probabilistic principles are presented, including use of probability to understand and interpret laboratory and field-testing data, methods to calculate reliability indices, a review of common risk assessment procedures, and discussion of hazard analyses. In many sectors, LRFD is used to design retaining walls and foundations. The probabilistic basis of LRFD is explained to help engineers connect this approach to other design procedures. A primary purpose of this chapter is to familiarize the engineer with common applications of probability in geotechnical engineering. In many cases, additional study would be required to implement these applications fully.",
+      "key_points": [
+        "Introduces basic statistics and probability as applied to geotechnical engineering.",
+        "Covers uncertainty sources, reliability indices, risk assessment, and hazard analyses.",
+        "Explains the probabilistic basis of LRFD for retaining walls and foundations.",
+        "Intended as a familiarization resource; full implementation may require deeper study."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when engineers seek an overview of the chapter's purpose and the range of probabilistic topics addressed."
+    },
+    {
+      "section_id": "7-2",
+      "title": "PRINCIPLES OF STATISTICS AND PROBABILITY",
+      "summary": "Reviews foundational principles of statistics and probability for geotechnical engineering, covering sample vs. population concepts, common statistics, data plotting methods, probability terminology, random variables, and probability/cumulative distribution functions. References Ang and Tang (1975) and Benjamin and Cornell (1970) for deeper treatment.",
+      "body": "This section reviews basic principles of statistics and probability to provide a foundational understanding for discussions of uncertainty, reliability, and risk assessment. Deeper treatment of statistics and probability in the context of civil engineering can be found in textbooks, such as Ang and Tang (1975) and Benjamin and Cornell (1970).\n\nThe methods presented in this chapter are based on sets of observations or measurements, which are referred to as a sample. Every sample comes from a population, which is the set of all outcomes for the property being measured for a particular experiment or situation. This terminology can be confusing because geotechnical engineering also uses sampling terminology in field and laboratory testing. The common geotechnical use of the term sample is related to the more rigorous statistical definition. The distinction between the sample and population depends on how the population is defined as illustrated in the following examples. The scope of the population differs in each example.\n\n• The liquid limit below a particular shallow foundation is required for a forensic case. The corresponding population might be defined as the liquid limit at all locations within a Shelby tube of the soil from below the foundation. In this case, the sample might be a set of ten liquid limit tests on soil taken from different locations in the Shelby tube. In reality, the Shelby tube is itself a sample of the soil below the foundation.\n\n• The undrained shear strength of a clay layer at a particular site must be characterized for a foundation design. The population is the undrained shear strength at all locations within the clay layer. The sample might be a set of 30 UU triaxial compression tests on individual Shelby tube specimens of the clay.\n\n• A researcher desires to develop a general relationship for the adhesion of piles in clay using the α method (see Section 6-5.4.2). As a general relationship, the population may be defined as all piles installed in clay or could be restricted to a particular type of pile or stratigraphy. The sample used to develop the relationship might be adhesion measurements from 200 load tests on piles installed in clay.",
+      "key_points": [
+        "A sample is a set of observations drawn from a population, which represents all possible outcomes for the measured property.",
+        "The scope of the population must be explicitly defined; examples range from a single Shelby tube to all piles in clay globally.",
+        "Geotechnical use of 'sample' aligns with but is distinct from the rigorous statistical definition.",
+        "Key references for deeper study: Ang and Tang (1975); Benjamin and Cornell (1970)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies whenever engineers begin probabilistic analysis of geotechnical data and need to establish foundational statistical concepts."
+    },
+    {
+      "section_id": "7-2.1",
+      "title": "Statistics",
+      "summary": "Defines common statistics used to describe geotechnical data samples, including measures of central tendency (mean, median, mode) and dispersion (variance, standard deviation, coefficient of variation, covariance, correlation coefficient). Distinguishes between population and sample statistics using different symbols (µ vs. x̄, σ² vs. s²). All definitions and equations are tabulated in Table 7-1.",
+      "body": "For a given sample of measured data, any function of the sample data is referred to as a statistic. The most common statistics provide measures of either the central tendency or the spread (a.k.a., dispersion) of the data (Baecher and Christian 2003). Common statistics used to describe a data set and the equations for these statistics are summarized in Table 7-1. It is common to use different symbols to distinguish between statistics from the population and those obtained from a sample. For example, the population mean (average) and variance (mean-squared deviation from the mean) are commonly represented by µ and σ² while the sample mean and variance are x̄ and s².\n\nThe definitions of statistical terms used in this chapter are provided in Table 7-1. The reader may need to refer back to this table when these terms are used later in the chapter.",
+      "key_points": [
+        "Statistics are functions of sample data; central tendency and dispersion are the most important categories.",
+        "Population parameters use Greek symbols (µ, σ²); sample statistics use Roman symbols (x̄, s²).",
+        "Coefficient of Variation (COV) = standard deviation / mean; a relative dispersion measure widely used in geotechnical engineering.",
+        "Sample variance uses (n–1) in the denominator to produce an unbiased estimate.",
+        "Correlation coefficient rxy is covariance normalized by the product of standard deviations, bounded by –1 ≤ rxy ≤ 1.",
+        "Table 7-1 provides equations for all common statistics including sample/population mean, variance, standard deviation, covariance, and correlation."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 7-1"
+      ],
+      "applicability": "Applies when characterizing geotechnical data sets and selecting appropriate statistical descriptors of central tendency and dispersion."
+    },
+    {
+      "section_id": "7-2.2",
+      "title": "Methods of Plotting Data",
+      "summary": "Describes graphical methods for representing sample data in geotechnical engineering: box and whisker plots, histograms, and cumulative distribution plots. These tools enable visual interpretation of statistics such as mean, median, mode, skew, and data range, and are available in most spreadsheet and statistical software.",
+      "body": "In order to be interpreted usefully, sample observations are usually plotted. While many types of plots can be used (e.g., scatter plots, pie charts, area plots, etc.), the most common means of graphically representing sample data are box and whisker plots, histograms, and cumulative distribution plots. These are readily available in most spreadsheet applications and statistical software tools.",
+      "key_points": [
+        "Box and whisker plots, histograms, and cumulative distribution plots are the primary graphical tools for geotechnical data.",
+        "All three plot types are readily available in standard spreadsheet and statistical software.",
+        "Visual plotting enables identification of central tendency, dispersion, and skew in sample data."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-1"
+      ],
+      "tables": [],
+      "applicability": "Applies when visually summarizing and interpreting sets of geotechnical measurements from laboratory or field testing."
+    },
+    {
+      "section_id": "7-2.2.1",
+      "title": "Box and Whisker Plots",
+      "summary": "Describes box and whisker plots as a graphical depiction of the mean, median, specified percentiles, and extreme values of a data sample. The box spans the 25th to 75th percentiles with the median marked; whiskers extend to specified percentiles or min/max values. Examples are shown in Figure 7-1(a) and (b).",
+      "body": "A box and whisker plot is a depiction of the mean, median, specified percentiles, and extreme values. Two examples are provided at the bottom of Figure 7-1(a) and (b). The box portion is bounded by a lower and upper percentile, usually x0.25 and x0.75, with a line indicating the median or x0.5. A marker or line is plotted at the mean value. The whiskers are lines that extend out to bars at specified percentiles or at the maximum and minimum values, indicating the meaningful range of the data. In some cases, outliers may be identified using appropriate statistical methods. Such observations are plotted individually beyond the bounds of the whiskers.",
+      "key_points": [
+        "Box spans the interquartile range (x0.25 to x0.75); median (x0.5) is marked within the box.",
+        "Mean is shown as a separate marker or line inside the box.",
+        "Whiskers extend to specified percentiles or the min/max of the data.",
+        "Statistical outliers are plotted individually beyond the whiskers."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-1"
+      ],
+      "tables": [],
+      "applicability": "Applies when a concise graphical summary of data range, central tendency, and percentiles is needed for geotechnical samples."
+    },
+    {
+      "section_id": "7-2.2.2",
+      "title": "Histograms",
+      "summary": "Explains histograms as bar graphs dividing a data range into equal intervals (bins), with bar height representing frequency or relative frequency of observations. Describes how histograms reveal symmetry, skew, and mode. Uses liquid limit (symmetric) and clay activity (positively skewed) from Figure 7-1 as illustrative examples.",
+      "body": "The range of a property can be divided into equal intervals or bins, and the number of observations from a sample within each interval can be counted. A histogram is a bar graph with the intervals on one axis (typically the x-axis). The frequency or number of observations for each interval is represented by a bar of the appropriate height. The total height of the bars is equal to the number of observations in the sample. If the frequency for each interval is divided by the number of observations in the sample, the histogram plots relative frequency and the sum of the heights of the bars is equal to 1.0. The histograms in Figure 7-1 provide examples of both types of plots.\n\nHistograms are useful for visual interpretation of the statistics of a sample. In Figure 7-1(a), the mean and median liquid limit are both 82 while the mode also corresponds to the interval of 80 to 85. This indicates that the distribution is relatively symmetric about the mean. In contrast, the example of clay activity in Figure 7-1(b) is skewed, meaning that the peak or mode of the sample is not at the middle of the range of observations. In this case, the mode is lower than the median while the mean is higher than the median. The observations have a long upper tail, which is referred to as positive skew.",
+      "key_points": [
+        "Histograms plot frequency or relative frequency of observations within equal-width bins.",
+        "Relative frequency histograms have bar heights summing to 1.0.",
+        "Symmetric distributions have mean ≈ median ≈ mode; positively skewed distributions have mode < median < mean.",
+        "Clay activity example (Figure 7-1b) illustrates positive skew with a long upper tail.",
+        "Liquid limit example (Figure 7-1a) illustrates near-symmetric distribution."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-1"
+      ],
+      "tables": [],
+      "applicability": "Applies when visually assessing the frequency distribution and symmetry of geotechnical property measurements from a sample."
+    },
+    {
+      "section_id": "7-2.2.3",
+      "title": "Cumulative Distributions",
+      "summary": "Describes cumulative distribution plots as monotonically increasing curves showing the number (or fraction) of observations less than or equal to each value. Cumulative values are computed by progressively summing interval frequencies from the lower end of the data. Examples are shown in Figure 7-1.",
+      "body": "The cumulative distribution shows the number of observations that are less than or equal to a particular value (or interval). The cumulative values are found by progressively summing the number of observations from each interval starting at the lower end of the data. Examples of cumulative distributions are shown by the monotonically increasing curves in Figure 7-1.",
+      "key_points": [
+        "Cumulative distributions are monotonically increasing curves showing P(X ≤ x) for each value x.",
+        "Computed by progressively summing interval frequencies from the lower end of the data.",
+        "Provides direct read-off of percentile values from a data sample."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-1"
+      ],
+      "tables": [],
+      "applicability": "Applies when determining percentile values or exceedance probabilities from a geotechnical data sample."
+    },
+    {
+      "section_id": "7-2.3",
+      "title": "Probability",
+      "summary": "Introduces the concept of probability in two senses: frequentist (relative frequency of an event over many trials) and subjective (degree of belief). Notes limitations of the frequentist approach for unique occurrences and states of nature. References Baecher and Christian (2003) for deeper discussion. Provides the foundation for subsequent sections on probabilistic terminology and random variables.",
+      "body": "As discussed at length by Baecher and Christian (2003), the term probability can have many definitions. In one sense, probability refers to the relative frequency of an event. Thus, the probability of an event can be thought of as the number of times an event occurs divided by the total number of trials, usually for a large number of trials. This frequentist approach cannot be used for (1) unique occurrences, (2) conditions that cannot be statistically sampled, or (3) direct inference to probabilities on states of nature (Baecher and Christian 2003). In the other sense, probability refers to the degree of belief that an event will occur. This definition of probability can apply to unique occurrences but may be subjective. Further philosophical discussion of the meaning of probability is beyond the scope of this manual.",
+      "key_points": [
+        "Frequentist probability = number of occurrences / total trials; requires many trials.",
+        "Frequentist approach fails for unique occurrences, unsamplable conditions, or states of nature.",
+        "Subjective (Bayesian) probability = degree of belief; applicable to unique events but may be subjective.",
+        "Philosophical debate on the meaning of probability is beyond the scope of this chapter."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when engineers need to select and justify a probabilistic framework for analyzing geotechnical risk and uncertainty."
+    },
+    {
+      "section_id": "7-2.3.1",
+      "title": "Concepts and Terminology",
+      "summary": "Defines the core vocabulary of probability theory as applied to geotechnical engineering: sample space, events, unions, intersections, complements, mutually exclusive and collectively exhaustive events, conditional probability, independent/dependent events, permutations, combinations, and binomial coefficients. Illustrated with a bridge foundation loading example in Figure 7-2.",
+      "body": "In order to understand applications of probability to geotechnical engineering, it is necessary to understand the language of probability. Table 7-2 lists common terminology and provides a general description of the meaning of the terms.\n\nFigure 7-2 illustrates some of these probabilistic concepts in the context of bridge foundation loading. The sample space represents a range of loading conditions for a bridge foundation. Events A, B, and C are extreme loading conditions while Event D represents all other loading conditions. The possibility of combined high traffic, high wind, and flood loading is represented by the overlap of A, B, and C (i.e., A ∩ B ∩ C) and is illustrated by the dark shaded area. Representative probability calculations are also summarized in Figure 7-2. Event D is seen to be the complement of the extreme loadings for the Figure 7-2 example. The probability of the complement of an event is equal to unity minus the probability of the event. Thus, the probability of all other loading conditions is equal to unity minus the probability of the union of A, B, and C.",
+      "key_points": [
+        "Sample space is the set of all possible outcomes; events are subsets of the sample space.",
+        "Mutually exclusive events: A ∩ B = Ø; collectively exhaustive events: A ∪ B covers the full sample space.",
+        "P(complement of A) = 1 – P(A); the complement represents all outcomes not in event A.",
+        "Conditional probability P(A|B) is the probability of A given that B has occurred.",
+        "Independent events: P(A|B) = P(A); dependent events: P(A|B) ≠ P(A).",
+        "Bridge foundation loading example demonstrates intersection of extreme load events (traffic, wind, flood).",
+        "Permutations Pr|n = n!/(n–r)!; Combinations Cr|n = n!/[r!(n–r)!]."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-2"
+      ],
+      "tables": [
+        "Table 7-2"
+      ],
+      "applicability": "Applies when setting up probabilistic models for geotechnical events and performing calculations involving compound or conditional probabilities."
+    },
+    {
+      "section_id": "7-2.3.2",
+      "title": "Random Variables",
+      "summary": "Explains random variables (RV) as mappings from the sample space to the real line, enabling engineering calculations with numerical outcomes. Distinguishes discrete RVs (integer-valued, e.g., number of floods per year) from continuous RVs (any value within the possible range). Illustrated in Figure 7-3.",
+      "body": "Engineering applications most often are concerned with outcomes that are real numerical values. In this case, a random variable (RV) can be used to map every outcome in the sample space to the real line as depicted in Figure 7-3. The mapping may be one-to-one or one-to-many but maintains the probability rules for complements, unions, and intersections. Random variables may be either discrete or continuous. A discrete RV can only take on particular values, usually integers. An example of a discrete RV might be the number of floods larger than a given size at a location in one year. For continuous RV, any value within the range of possible outcomes is valid.",
+      "key_points": [
+        "A random variable maps every outcome in the sample space to the real number line.",
+        "Discrete RVs take only specific values (usually integers); continuous RVs can take any value in the possible range.",
+        "The mapping preserves probability rules for complements, unions, and intersections.",
+        "Example discrete RV: number of floods above a threshold in one year."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-3"
+      ],
+      "tables": [],
+      "applicability": "Applies when formulating geotechnical engineering problems in probabilistic terms using numerical random variables."
+    },
+    {
+      "section_id": "7-2.3.3",
+      "title": "Probability and Cumulative Distributions",
+      "summary": "Presents the mathematical framework for probability and cumulative distribution functions for both discrete and continuous random variables, including PMF, CMF, PDF, and CDF. Introduces equations for the CMF (Eq. 7-1), CDF (Eq. 7-2), PDF as derivative of CDF (Eq. 7-3), and interval probability for continuous RVs (Eq. 7-4). Describes six common distributions (Binomial, Uniform, Poisson, Exponential, Normal) with properties tabulated in Table 7-3 and plotted in Figure 7-4.",
+      "body": "For discrete RV, probabilities are represented by a probability mass function (PMF), which relates probability, PX(xi), to particular values of xi. For each xi, the PMF provides the probability that the random variable X takes on the value xi. The cumulative mass function (CMF) is defined as the probability that X is less than or equal to xi.\n\nFor continuous RV, the probability functions use the term density rather than mass. The cumulative density function (CDF) is the probability that X is less than or equal to x0.\n\nThe integral in the CDF is analogous to the summation for the CMF. The CMF and CDF are both non-decreasing functions as the RV increases.\n\nProbabilities of continuous RV are represented by a probability density function (PDF), fX(x). Similar to the PMF, the PDF is the rate of change of the CDF, or its first derivative. This is illustrated by the uniform distribution in Figure 7-4(b). The uniform CDF increases linearly from 0 to 1 over the interval [a, b]. The value of fX(x) is equal to the slope or derivative of the CDF. For continuous RV, probabilities are defined only over an interval. While the PDF has a value at particular values of X, the probability of a particular value of X is zero.\n\nThe probability functions (PMF or PDF) are often described by their moments about the origin or about the mean, which are analogous to area moments from mechanics. The mean is the first moment about the origin, analogous to the center of gravity. The variance is the second moment about the mean, analogous to the moment of inertia. The third and fourth moments about the mean are referred to as the skew and kurtosis, respectively. These moments can be calculated from the PMF or PDF using the equations provided in Table 7-3.\n\nTable 7-3 also defines the expected value (E[·]), which is found by multiplying any function by the PMF or PDF over the full range of the random variable. The expected value is a linear operator and can be distributed algebraically through expressions. The expected value of a constant is the constant. The mean is the expected value of x or E[x], which can be found by substituting x for g(x).\n\nAny function may serve as a PMF or PDF provided that the properties in Table 7-3 are satisfied. Six common distributions are plotted in Figure 7-4 along with equations for the PMF and CMF or PDF and CDF, if available. More information on each of these distributions follows:\n\n• Binomial – discrete distribution that results from repeated experiments with each being a Bernoulli trial (i.e., two outcomes – success or failure) with constant probability, p, for each trial. The binomial distribution uses the binomial coefficient and is useful for modeling the probability of a specified number of events (e.g., floods, earthquakes, etc.) in a certain time period.\n\n• Uniform – continuous RV with equal probability over the specified range and zero probability outside of the interval [a, b].\n\n• Poisson – discrete distribution commonly used to model the occurrence of a random event in a continuous dimension of time or space as a limiting case of the binomial distribution. The three stochastic processes represented by the Poisson distribution are (1) the number of events in a time interval, (2) the intensity of an event, and (3) the separation of the events in time or space. The second and third processes can be continuous rather than discrete.\n\n• Exponential – continuous distribution related to the third Poisson process of time between events. The exponential function is described by a single parameter, λ, which is related to the rate and is the value of the PDF at x = 0. The mean of the exponential function is also referred to as the recurrence or return period.\n\n• Normal (a.k.a., Gaussian) – symmetric, bell-shaped, continuous distribution that fits well to the distribution of many naturally occurring properties. The mean and standard deviation are conveniently the parameters of the PDF. The notation N(µX, σX) is often used as shorthand for the normal distribution. The CDF cannot be expressed in a closed form equation and must be read from tables or determined numerically. Modern spreadsheets and statistics packages can easily provide the normal CDF.",
+      "key_points": [
+        "PMF gives probability at discrete values; CMF is the cumulative sum of the PMF (Eq. 7-1).",
+        "CDF for continuous RVs is the integral of the PDF from –∞ to x0 (Eq. 7-2); PDF is the derivative of CDF (Eq. 7-3).",
+        "For continuous RVs, probability is defined only over an interval (Eq. 7-4); probability at a single point is zero.",
+        "Mean = 1st moment about origin; Variance = 2nd moment about mean; Skew = 3rd; Kurtosis = 4th.",
+        "Expected value E[g(x)] is found by multiplying g(x) by the PMF or PDF and integrating/summing over the full range.",
+        "Six common distributions: Binomial (discrete), Uniform (continuous), Poisson (discrete), Exponential (continuous), Normal/Gaussian (continuous).",
+        "Normal distribution CDF has no closed form; must be evaluated from tables or numerically.",
+        "Exponential distribution mean = recurrence/return period; described by single parameter λ."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 7-1",
+          "description": "Cumulative mass function (CMF) for a discrete random variable: F_X(x_i) = P(X ≤ x_i) = sum of P_X(x_j) for j=1 to i.",
+          "implemented_in": "geotech_references.dm7_2.chapter7.cumulative_mass_function"
+        },
+        {
+          "id": "Eq. 7-2",
+          "description": "Cumulative density function (CDF) for a continuous random variable: F_X(x_0) = P(X ≤ x_0) = integral from –∞ to x_0 of f_X(x) dx.",
+          "implemented_in": "geotech_references.dm7_2.chapter7.cumulative_density_function"
+        },
+        {
+          "id": "Eq. 7-3",
+          "description": "Probability density function (PDF) as the first derivative of the CDF: f_X(x) = d/dx [F_X(x)].",
+          "implemented_in": "geotech_references.dm7_2.chapter7.pdf_from_cdf"
+        },
+        {
+          "id": "Eq. 7-4",
+          "description": "Probability of a continuous RV falling in an interval: P(x_1 ≤ X ≤ x_2) = integral from x_1 to x_2 of f_X(x) dx.",
+          "implemented_in": "geotech_references.dm7_2.chapter7.probability_over_interval"
+        }
+      ],
+      "figures": [
+        "Figure 7-4"
+      ],
+      "tables": [
+        "Table 7-3"
+      ],
+      "applicability": "Applies when selecting and applying probability distribution functions to model geotechnical random variables including soil properties, loads, and hazard frequencies."
+    },
+    {
+      "section_id": "7-3",
+      "title": "Uncertainty in Geotechnical Engineering",
+      "summary": "Introduces the concept of uncertainty in geotechnical engineering, covering natural variation in soil and rock properties in space and time, and how calculated values (settlement, bearing capacity, lateral earth pressure) are uncertain due to both input parameter uncertainty and model uncertainty. Sets the stage for subsections on sources, correlation, and combined effects.",
+      "body": "Uncertainty refers to a condition that is completely or partially unknown, indefinite, indeterminate, or unverified (Baecher and Christian 2003). In the context of geotechnical engineering, soil and rock properties are uncertain because of natural variation in space, and possibly time, and because measurements and interpretations are required to determine these properties. Calculated values, such as settlement, bearing capacity, and lateral earth pressure, may be uncertain because of the uncertainty of both input parameters and the analytical or numerical models used.",
+      "key_points": [
+        "Uncertainty in geotechnical engineering stems from natural variability, measurement error, transformation uncertainty, and model uncertainty.",
+        "Calculated design values (settlement, bearing capacity, lateral earth pressure) inherit uncertainty from both input parameters and analytical/numerical models.",
+        "Two main groups: natural (aleatory) variability and knowledge (epistemic) uncertainty.",
+        "Social and economic uncertainty factors are outside the scope of this chapter."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to all geotechnical engineering problems where soil and rock properties or calculated design values are subject to uncertainty."
+    },
+    {
+      "section_id": "7-3.1",
+      "title": "Sources of Uncertainty",
+      "summary": "Describes the two primary groups of geotechnical uncertainty: natural (aleatory) variability from physical randomness in space and time, and knowledge (epistemic) uncertainty from lack of data, information, or understanding. Highlights that epistemic uncertainty manifests most prominently in site characterization, parameter determination, and model selection.",
+      "body": "Uncertainty in geotechnical engineering occurs mostly within two groups, which sometimes overlap. Natural variability (a.k.a., aleatory or external uncertainty) occurs from physical randomness and describes variability at various locations at the same time, or variations in both time and space. On the other hand, knowledge uncertainty (a.k.a., epistemic or internal uncertainty) occurs from a lack of knowledge, such as data, information, or understanding. As pointed out by Baecher and Christian (2003), the latter manifests most prominently in geotechnical engineering in site characterization, determination of soil and rock parameters, and selection of appropriate engineering models. Geotechnical engineering must also interact with social and economic factors, which may add uncertainties related to operations and decision-making. These are outside the scope of this chapter.",
+      "key_points": [
+        "Aleatory (natural) uncertainty arises from physical randomness in space and time and cannot be reduced by gathering more knowledge.",
+        "Epistemic (knowledge) uncertainty arises from insufficient data, information, or understanding and can potentially be reduced.",
+        "Epistemic uncertainty is most prominent in site characterization, parameter determination, and model selection per Baecher and Christian (2003).",
+        "Social and economic uncertainty factors are excluded from the scope of this chapter."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when classifying and understanding the nature of uncertainty encountered in any geotechnical engineering problem."
+    },
+    {
+      "section_id": "7-3.1.1",
+      "title": "Inherent Soil and Rock Variability",
+      "summary": "Covers the natural, stochastic variability of soil and rock properties arising from complex geological and environmental history. Discusses spatial variation in stratigraphy and properties within strata, the influence of depositional environment on COV, and provides reference data (Figure 7-6) for inherent variability COV of common soil and rock properties.",
+      "body": "Soil and rock inherently exhibit natural variability as a result of the complex natural processes by which these materials have reached their current location and condition. Inherent variability can apply to both stratigraphy and soil properties within a particular stratum as illustrated in Figure 7-5. The thickness of every soil layer varies spatially, and the soil properties, such as composition, packing, and stress state, vary within each layer. Characterization of these variations is necessarily limited, which, in reality, produces knowledge uncertainty. However, from a practical standpoint, inherent, natural variability is usually considered stochastic, which simply refers to a random variation in time or space.\n\nThe degree of inherent variability depends heavily on the geologic and environmental history. For example, coarse-grained alluvial deposits have high spatial variability as a result of the rapid changes that occur in stream morphology. In contrast, varved fine-grained lacustrine deposits have low variability in the horizontal direction and high, but predictable, variability vertically across the varves.\n\nFigure 7-6 summarizes the available data for the inherent variability of various soil and rock properties and parameters. The gray bars and dots indicate the range and mean of reported COV, respectively, for each property. The COV normalizes the standard deviation with respect to the mean. Wide gray bars indicate a wide variation in the level of uncertainty for the particular property. The range of mean values of each geotechnical property is provided. For soils with properties outside these ranges, the COVs may differ.\n\nWhile care was taken to isolate inherent variability from measurement error as much as possible, these values likely contain some uncertainty caused by the measurement technique. Because of the complexity of separating sources of uncertainty, there is a bias towards higher values of COV. The engineer should be aware that the true inherent variability may be lower than as represented by the data in Figure 7-6.",
+      "key_points": [
+        "Inherent variability affects both stratigraphy and soil/rock properties within strata, and is treated as stochastic for practical purposes.",
+        "Depositional environment strongly governs variability: coarse alluvial deposits are highly variable; varved lacustrine deposits are predictably variable.",
+        "COV data in Figure 7-6 likely contain some measurement error, biasing values toward higher COV; true inherent variability may be lower.",
+        "Inherent variability applies to composition, packing, and stress state within each soil layer."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-5",
+        "Figure 7-6"
+      ],
+      "tables": [],
+      "applicability": "Applies when evaluating the natural spatial and temporal variability of soil and rock properties for site characterization and probabilistic analysis."
+    },
+    {
+      "section_id": "7-3.1.2",
+      "title": "Measurement Error",
+      "summary": "Addresses the components of measurement error in geotechnical testing: equipment effects, operator/procedural problems, and random testing effects. References cross-laboratory studies and simulation results showing well-calibrated equipment yields COV(φ') < 1%. Provides Figure 7-7 summarizing typical laboratory and field measurement COV, noting SPT and plasticity index exhibit the highest measurement variability.",
+      "body": "According to Phoon and Kulhawy (1999a), measurement error can be attributed to equipment effects, operator or procedural problems, and random testing effects. In general, these components of measurement cannot be separated. VandenBerge et al. (2020) used simulation to show that well-calibrated equipment should result in COV(φʹ) less than 1%. It appears likely that most laboratory testing error results from operator and procedural testing error, including soil disturbance.\n\nDetermination of laboratory measurement errors requires cross-laboratory testing of the same soil, which has been performed by a few studies and by ASTM for a small number of test methods. Field measurement errors have been studied for various types of equipment by Kulhawy and Trautmann (1996). The available data on laboratory and field measurement errors are summarized in Figure 7-7. In general, the measurement uncertainty is lower than the inherent variability. Some of the highest measurement variability occurs for the SPT and the plasticity index.",
+      "key_points": [
+        "Measurement error has three components: equipment effects, operator/procedural problems, and random testing effects — these generally cannot be separated.",
+        "Simulation by VandenBerge et al. (2020) shows well-calibrated equipment yields COV(φ') < 1%; most lab error is likely from operator and procedural issues.",
+        "Measurement uncertainty is generally lower than inherent variability.",
+        "SPT and plasticity index exhibit the highest measurement variability among tested parameters."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-7"
+      ],
+      "tables": [],
+      "applicability": "Applies when quantifying the uncertainty introduced by laboratory and field testing methods in geotechnical site characterization."
+    },
+    {
+      "section_id": "7-3.1.3",
+      "title": "Transformation Uncertainty",
+      "summary": "Explains the uncertainty introduced when using empirical correlations to transform measured properties into design parameters. Transformation uncertainty is quantified from residual errors between data and empirical trends. Provides COV examples for undrained shear strength correlations from vane shear, CPT tip resistance, and SPT, ranging from 7.5% to 35%.",
+      "body": "Phoon and Kulhawy (1999b) point out that the geotechnical parameters are often obtained by transformation from a more easily measurable property to that required for design through the use of empirical correlations, such as those found in Chapter 8 of DM 7.1. Empirical correlations are based on observation and contain error, which adds an additional source of uncertainty into the assessment of geotechnical parameters.\n\nWhen an empirical correlation is developed, transformation uncertainty is determined from the residual error between the supporting data and the empirical trend, which can either be expressed in terms of coefficient of variation or standard deviation. For example, Phoon and Kulhawy (1999b) provide examples of correlations for su from corrected vane shear tests (COV of 7.5 to 15%), from corrected tip resistance (COV of 29 to 35%), and from SPT (COV of 15%). Ching and Noorzad (2021) summarize the uncertainty in common empirical correlations for soil and rock properties.",
+      "key_points": [
+        "Empirical correlations introduce transformation uncertainty, quantified from residual errors between data and the empirical trend.",
+        "COV for su from vane shear: 7.5–15%; from corrected tip resistance: 29–35%; from SPT: ~15%.",
+        "Transformation uncertainty adds to inherent variability and measurement error in total parameter uncertainty.",
+        "Ching and Noorzad (2021) provide a comprehensive summary of uncertainty in common empirical correlations."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when geotechnical design parameters are obtained by empirical correlation from more easily measured properties, such as SPT or CPT data."
+    },
+    {
+      "section_id": "7-3.1.4",
+      "title": "Model Uncertainty",
+      "summary": "Covers uncertainty introduced by the choice of shear strength model, constitutive theory, or analytical/numerical method for design calculations. Discusses how different bearing capacity theories yield different results, and how consolidation vs. SPT-based settlement estimates differ in certainty. Notes limited available data on model uncertainty, especially for theoretical solutions.",
+      "body": "The previous three sections dealt with uncertainties in the determination of geotechnical parameters. A related source of uncertainty is the selection of a shear strength model (e.g., linear vs. nonlinear) or a constitutive theory (e.g., Duncan-Chang vs. Cam Clay). None of these theories or models perfectly represent soil behavior, and each will cause uncertainty.\n\nUncertainty can also be introduced by the analytical or numerical approach selected to calculate design values. For example, consider the scenarios illustrated in Figure 7-8. The calculated bearing capacity will vary depending on which theory is used (i.e., lower bound, upper bound, etc.), and all of the theories contain empirical components. Similarly, the calculation of lateral earth pressure requires assumptions that lead to uncertainty in the calculated values.\n\nSome calculation methods are much less certain than others. Estimates of settlement magnitude from consolidation calculations can be quite accurate, if the clay has low inherent variability and can be well-characterized. In contrast, estimates of sand compression from SPT blow counts will have much higher uncertainty. The greater uncertainty results from the empirical nature of the latter prediction method as well as the greater inherent variability of most sand deposits.\n\nUnfortunately, little information is available on model uncertainty, especially for theoretical solutions. Where an analytical method is empirically based, the COV of the model can be estimated from the errors between the observed data and the trend, similar to Phoon and Kulhawy's (1999b) approach for transformation uncertainty. Additional examples in which model uncertainty is considered can be found in McGuire and VandenBerge (2017).",
+      "key_points": [
+        "Model uncertainty arises from both the choice of soil model/constitutive theory and the analytical/numerical method used for design calculations.",
+        "Different bearing capacity theories (lower bound, upper bound, etc.) yield different results, all containing empirical components.",
+        "Consolidation-based settlement estimates are more accurate than SPT-based sand compression estimates due to lower empirical content and variability.",
+        "Little quantitative information exists on model uncertainty for theoretical solutions; empirical methods allow estimation from data residuals.",
+        "McGuire and VandenBerge (2017) provide additional examples of model uncertainty consideration."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-8"
+      ],
+      "tables": [],
+      "applicability": "Applies when selecting and applying analytical or numerical models for geotechnical design, where the choice of theory or approach introduces uncertainty in calculated outcomes."
+    },
+    {
+      "section_id": "7-3.1.5",
+      "title": "Combined Uncertainty Effects",
+      "summary": "Presents a first-order approximation formula (Eq. 7-5) for combining inherent variability, measurement error, and transformation uncertainty into a single COV for a geotechnical parameter. Introduces Table 7-4 with typical combined COV values for common geotechnical parameters at low, moderate, and high uncertainty levels, and provides guidance on how to select the appropriate level.",
+      "body": "Figure 7-9 is a schematic illustration of how various sources of uncertainty combine to affect a geotechnical prediction. The example in the figure assumes that a soil layer with spatial variability is sampled at discrete locations. At these points, its properties may differ from the overall trend. Measurement of a desired property is made using sampling and/or testing, which introduces additional error. In many cases, the measured property must then be transformed into a useful engineering parameter.\n\nUsing a first-order approximation about the mean, the COV of the desired parameter can be estimated as\n\nCOV²(θ) = COV²w + COV²e + COV²t     (7-5)\n\nwhere:\nθ = generic geotechnical parameter\nCOVw = coefficient of variation of inherent variability,\nCOVe = coefficient of variation of measurement error, and\nCOVt = coefficient of variation of transformation.\n\nOne or more engineering parameters are used in an analytical model, which may have uncertainty of its own, to predict a desired outcome, such as settlement, bearing capacity, or factor of safety. The predicted outcome will be uncertain as depicted by the distribution at the bottom of Figure 7-9. The methods used to evaluate this uncertainty in engineering predictions are the subject of Section 7-4.2 on reliability analysis.\n\nFigure 7-9 and Equation 7-5 are not intended to imply that the various sources of uncertainty in geotechnical parameters can easily be separated. This is especially true for inherent variability and measurement error. Such separation may be necessary for rigorous consideration of uncertainty, particularly if the effects of correlation described in the next section are considered. However, for many applications and simplified reliability analyses, the selection of a combined COV for each parameter is appropriate.\n\nTable 7-4 contains typical values of COV for a variety of geotechnical parameters. The values can be assumed to contain the combined effects of inherent, measurement, and transformation uncertainty. The values have been divided into categories for low, moderate, and high uncertainty, corresponding approximately to the lower, middle, and upper thirds of the reported COV values for each parameter. These values provide a rational means of accounting for the engineer's knowledge of site conditions, subsurface exploration techniques, and the use of transformations (if appropriate). For example, if a retaining wall is being planned at a site with an excellent site investigation and relatively uniform clay soils (i.e., low uncertainty), a COV of 25% would be appropriate for the undrained shear strength from laboratory tests. Continuing this example, the effective friction angle for the wall's sand backfill may be estimated based on the expected compaction, and a COV of 16% might be selected due to the high uncertainty associated with this estimate.",
+      "key_points": [
+        "Total COV of a geotechnical parameter is approximated as the square root of the sum of squares of COVw, COVe, and COVt (Eq. 7-5).",
+        "Separating inherent variability from measurement error is difficult; combined COV selection from Table 7-4 is appropriate for simplified reliability analyses.",
+        "Table 7-4 provides low, moderate, and high uncertainty COV values for index, compressibility, strength, field measurement, and rock properties.",
+        "Low uncertainty level is used for well-characterized or homogeneous sites; high uncertainty for limited or highly variable conditions.",
+        "Example: COV for undrained shear strength from lab tests ranges from 25% (low) to 50% (high); friction angle of compacted sand backfill may warrant 16% (high) COV."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 7-5",
+          "description": "First-order approximation of combined COV for a geotechnical parameter: COV²(θ) = COV²w + COV²e + COV²t, where COVw = inherent variability, COVe = measurement error, COVt = transformation uncertainty.",
+          "implemented_in": "geotech_references.dm7_2.chapter7.combined_cov"
+        }
+      ],
+      "figures": [
+        "Figure 7-9"
+      ],
+      "tables": [
+        "Table 7-4"
+      ],
+      "applicability": "Applies when combining multiple sources of geotechnical parameter uncertainty into a single COV for use in reliability analysis or simplified probabilistic design."
+    },
+    {
+      "section_id": "7-3.2",
+      "title": "Effects of Correlation on Uncertainty",
+      "summary": "Introduces the concept that geotechnical parameters are often correlated with each other and with themselves spatially (autocorrelation), which affects the total uncertainty in analyses. Serves as a container section for the two subsections on parameter correlation and autocorrelation.",
+      "body": "",
+      "key_points": [
+        "Geotechnical parameters are often correlated, meaning they do not vary independently — this must be accounted for in probabilistic analyses.",
+        "Correlation between parameters and autocorrelation within the ground both affect the total uncertainty in geotechnical predictions."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to probabilistic or reliability-based geotechnical analyses where parameter interdependence and spatial correlation are relevant."
+    },
+    {
+      "section_id": "7-3.2.1",
+      "title": "Correlation between Parameters",
+      "summary": "Explains that geotechnical parameters such as c' and φ' are often correlated (non-zero covariance), meaning they do not vary independently. Provides examples of negative correlation (c' vs φ') and positive correlation (undrained shear strength vs unit weight). Notes that including correlation typically adds terms to variance calculations, substantially complicating probabilistic analyses.",
+      "body": "Geotechnical parameters are often correlated with each other (i.e., covariance is non-zero – see Table 7-1), which means that the two parameters do not vary independently. For example, when cʹ and φʹ are used to characterize shear strength, the values are negatively correlated. As cʹ increases, φʹ decreases for a given soil and condition. The variation of undrained shear strength with depth is another example. Undrained strength is a function of effective stress, which depends on the soil unit weight. Thus, the undrained shear strength should be positively correlated to the unit weight.\n\nGeotechnical applications of probability theory should account for correlation between parameters, if possible. The inclusion of correlation typically requires that additional terms be added to the calculation of the variance of the solution, which can substantially complicate the analysis.",
+      "key_points": [
+        "c' and φ' are negatively correlated: as c' increases, φ' decreases for a given soil and condition.",
+        "Undrained shear strength is positively correlated with unit weight because it depends on effective stress.",
+        "Accounting for parameter correlation adds terms to variance calculations and substantially complicates probabilistic analyses.",
+        "Correlation between parameters should be included in geotechnical probability applications whenever possible."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when performing probabilistic or reliability analyses that involve two or more correlated geotechnical parameters, such as shear strength parameters c' and φ'."
+    },
+    {
+      "section_id": "7-3.2.2",
+      "title": "Autocorrelation",
+      "summary": "Describes autocorrelation — the spatial or temporal self-correlation of a soil/rock property — and the concept of correlation length and scale of fluctuation (δv, δh). As distance between observation points increases, correlation decreases toward zero. Explains how the scale of fluctuation governs whether spatial variability averages out across a structure or failure surface, with references to Vanmarcke (1977) and random finite element methods.",
+      "body": "Within the ground, soil and rock properties vary spatially from point to point and/or with time at the same point. This is true even after removing the effects of geologic trends, such as layering or increasing stress with depth. Autocorrelation refers to the correlation of a soil or rock property with the same property at a different point in space or time (Baecher and Christian 2003). The amount of autocorrelation observed varies with the distance between the two observation points and the variability of the soil or rock. If the distance is zero, the two observation points are identical, and the correlation is perfect (r = 1). As the distance increases, the properties at the two points are no longer identical, and the correlation decreases (r approaches zero). The distance within which the property is significantly correlated with itself (perhaps |r| ≥ 0.1) is referred to as the correlation length (Fenton and Griffiths 2008). Further discussion involves the topics of random field theory and geostatistics, which are beyond the scope of this manual.\n\nAutocorrelation is sometimes presented in terms of the scale of fluctuation (δv for vertical and δh for horizontal) shown in Figure 7-5. The scale of fluctuation is the distance over which the soil properties are strongly correlated. Soils deposited in horizontal layers can have very different values of δv and δh. When δv is large, the soil properties are well-correlated and change less rapidly. As δv approaches zero, the properties become uncorrelated and can change rapidly. For small δv relative to the slip surface or structure passing through the soil, the uncertainty in the soil properties will tend to average out. A simplified method of considering the scale of fluctuation is found in Vanmarcke (1977). More rigorous consideration of fluctuation may require the use of the random finite element method (Fenton and Griffiths 2008).",
+      "key_points": [
+        "Autocorrelation is the correlation of a soil/rock property with itself at a different spatial location or time; it decreases as distance increases.",
+        "Correlation length is the distance within which |r| ≥ ~0.1; properties within this distance are significantly correlated.",
+        "Scale of fluctuation (δv vertical, δh horizontal) defines the distance over which properties are strongly correlated; can differ greatly in horizontal vs. vertical directions.",
+        "Small δv relative to structure/slip surface size causes spatial variability to average out, reducing effective uncertainty.",
+        "Simplified scale of fluctuation methods per Vanmarcke (1977); rigorous treatment requires random finite element method (Fenton and Griffiths 2008).",
+        "Random field theory and geostatistics are beyond the scope of this manual."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-5"
+      ],
+      "tables": [],
+      "applicability": "Applies when evaluating spatial variability of soil/rock properties and its effect on geotechnical design, particularly for structures or failure surfaces that average over a volume of soil."
+    },
+    {
+      "section_id": "7-3.3",
+      "title": "Designing for Uncertainty",
+      "summary": "Covers approaches geotechnical engineers use to address uncertainty in design, including deterministic methods (factor of safety), stochastic/reliability analysis methods, and risk-based approaches. Explains the trade-offs between each approach and how they relate to conservatism, probability distributions, and risk quantification in terms of probability of adverse events and consequences.",
+      "body": "Many different approaches have been taken in geotechnical engineering to address the uncertainties discussed in previous sections.\n\nDesign may implicitly account for uncertainty using a factor of safety. In this case, the design is approached in a deterministic manner, meaning that the calculations are based on a single value selected for each geotechnical parameter. Uncertainty is accounted for solely in the selection of a factor of safety, usually lumped into a single factor. The effects of uncertainty in the individual parameters or loads on the overall design cannot be determined. An alternative to this approach will be discussed further in Section 7-4.5, which describes load and resistance factor design.\n\nIn contrast, stochastic approaches explicitly consider the uncertainty associated with the design. In particular, reliability analysis provides an alternative to deterministic design that explicitly includes uncertainty as summarized in Section 7-4.2. Additional information about the probability distribution of the key geotechnical parameters must be determined or estimated to complete a reliability analysis. Duncan (2000) advocates for the use of reliability analysis alongside conventional design using factors of safety. The use of factor of safety provides continuity with past experience while the reliability analysis allows geotechnical engineers to more directly understand the impact of uncertainty on their designs. Reliability analysis is also used to inform estimates of probability for risk assessments.\n\nBoth the deterministic and stochastic approaches to geotechnical design seek to establish an appropriate level of conservatism that is in balance with direct costs (FHWA 1987). Many times, this is accomplished using specified factors of safety based on past experience.\n\nRisk is the product of the probability of an adverse event multiplied by its consequence, which is often expressed in terms of fatalities or monetary cost. The cost of failure can be quantified and compared to the cost of designing a more conservative facility. In some cases, risk must be compared to either acceptable or tolerable levels. Acceptable risk can be defined as \"a state of risk which stakeholders are willing to accept\" while tolerable risk refers to a state of risk that society will tolerate because of the broader benefit (Timchenko et al. 2021). If risk is considered explicitly during design, the level of conservatism required in the design can be selected more rationally.",
+      "key_points": [
+        "Deterministic design uses a single value per geotechnical parameter and accounts for uncertainty solely through a factor of safety, which cannot isolate the effect of individual parameter uncertainties.",
+        "Stochastic/reliability analysis explicitly incorporates uncertainty via probability distributions of geotechnical parameters, enabling engineers to quantify the impact of uncertainty on design outcomes.",
+        "Duncan (2000) recommends using reliability analysis alongside conventional factor-of-safety design: FS provides continuity with experience while reliability analysis clarifies uncertainty impacts.",
+        "Reliability analysis is also used to inform probability estimates for formal risk assessments.",
+        "Risk = probability of adverse event × consequence (fatalities or monetary cost); explicit risk consideration allows more rational selection of design conservatism.",
+        "Acceptable risk is what stakeholders willingly accept; tolerable risk is what society tolerates for broader benefit (Timchenko et al. 2021).",
+        "Load and resistance factor design (LRFD) is an alternative to lumped-factor-of-safety design, discussed in Section 7-4.5."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when selecting a geotechnical design approach under uncertainty, choosing between deterministic (factor of safety), reliability-based, or risk-based methods."
+    },
+    {
+      "section_id": "7-4",
+      "title": "Evaluation of Field and Laboratory Data",
+      "summary": "Introduces the use of statistics and probability for planning and analyzing field and laboratory data in geotechnical engineering. Serves as a container section for specific applications described in subsections, including parameter selection and reliability analysis.",
+      "body": "Principles of statistics and probability can be used to both plan and analyze field and laboratory data. The following sections describe a few specific applications but are not a comprehensive list.",
+      "key_points": [
+        "Statistics and probability are applicable tools for both planning geotechnical investigations and analyzing resulting field and laboratory data.",
+        "This section is a container for specific sub-applications; it is not a comprehensive treatment of all statistical methods.",
+        "Topics covered include parameter selection approaches and reliability analysis."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when using statistical and probabilistic methods to evaluate geotechnical field and laboratory data."
+    },
+    {
+      "section_id": "7-4.1",
+      "title": "Evaluation of Field and Laboratory Data",
+      "summary": "Introduces the use of statistics and probability for planning and analyzing field and laboratory data in geotechnical engineering. Serves as a container section for specific applications described in subsections, including parameter selection and reliability analysis.",
+      "body": "Principles of statistics and probability can be used to both plan and analyze field and laboratory data. The following sections describe a few specific applications but are not a comprehensive list.",
+      "key_points": [
+        "Statistics and probability are applicable tools for both planning geotechnical investigations and analyzing resulting field and laboratory data.",
+        "This section is a container for specific sub-applications; it is not a comprehensive treatment of all statistical methods.",
+        "Topics covered include parameter selection approaches and reliability analysis."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when using statistical and probabilistic methods to evaluate geotechnical field and laboratory data."
+    },
+    {
+      "section_id": "7-4.1.1",
+      "title": "Selection of Geotechnical Parameters",
+      "summary": "Describes three approaches for selecting geotechnical design parameters (e.g., c′, φ′, su, k, γ): (1) single deterministic estimate often with conservative bias, (2) deterministic analysis over parameter ranges, and (3) explicit probabilistic treatment using distribution statistics. Addresses handling of small sample sizes common in geotechnical practice, including use of the n-sigma rule and COV from Table 7-4.",
+      "body": "Geotechnical designs can be separated into three basic approaches with respect to the selection of parameters (i.e., c′ and φ′, su, k, γ, etc.). In the first approach, the design calculations are deterministic and based on a single estimate of each required parameter. Often, this approach implicitly recognizes uncertainty by the selection of test specimens or results that represent conservative conditions, especially when limited testing is performed. For example, specimens from the softest clay layers may be selected for the determination of compressibility. Another example is the one-third rule, which chooses a design parameter such that one-third of the data lies to the conservative side of the selected parameter (USACE 2001). Such practices introduce bias that may be appropriate for deterministic analysis.\n\nThe second approach is to use deterministic analysis for ranges of values for the important parameters. The ranges for each parameter are selected from the results of field or laboratory testing, or based on engineering judgment. This approach also implicitly recognizes uncertainty in the parameters but does not attempt to explicitly consider probability.\n\nThe third approach explicitly considers the probability distribution of the geotechnical parameters, likely for use in a reliability analysis (see Section 7-4.2). In this case, distribution statistics (usually the mean and standard deviation) of each parameter must be determined. In most cases, the type of distribution is also required for each parameter. For nearly all geotechnical projects, the sample sizes are small from a statistical viewpoint. Many parameters are selected based on the results of three or fewer tests (e.g., su from UU tests or c′ and φ′ from direct shear tests). In this case, the measured parameter(s) can be assumed to represent mean conditions unless correlations indicate the parameter(s) are unusually high or low. The COV for very small samples must be selected based on typical values (Table 7-4). As the sample size increases, improved estimates of the mean and standard deviation can be obtained directly from the data.\n\nThe standard deviation of a parameter can also be estimated using the so-called n-sigma rule. This method leverages the fact that 99.7% of all values fall within a range of three standard deviations above and below the mean for a normally distributed RV.",
+      "key_points": [
+        "Three parameter selection approaches exist: (1) single deterministic estimate with implicit conservatism, (2) deterministic analysis over a range of values, and (3) explicit probabilistic treatment with full distribution statistics.",
+        "The one-third rule selects a design parameter such that one-third of the data lies on the conservative side, introducing deliberate bias appropriate for deterministic analysis (USACE 2001).",
+        "For probabilistic approaches, both the mean and standard deviation (and usually distribution type) must be determined for each parameter.",
+        "Geotechnical sample sizes are typically very small statistically; parameters often come from three or fewer tests, in which case measured values may be assumed to represent mean conditions.",
+        "COV for very small samples should be selected from typical published values such as those in Table 7-4, not computed directly from sparse data.",
+        "The n-sigma rule can be used to estimate standard deviation, leveraging the fact that 99.7% of normally distributed values fall within ±3 standard deviations of the mean."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 7-4"
+      ],
+      "applicability": "Applies when selecting geotechnical design parameters (strength, compressibility, unit weight, permeability) for deterministic or probabilistic analyses, especially with small sample sizes."
+    },
+    {
+      "section_id": "7-4.2",
+      "title": "Reliability Analysis",
+      "summary": "Introduces probabilistic reliability analysis for geotechnical design, defining the limit state function g(X), reliability index β, and probability of unsatisfactory performance Pu. Covers four approximate methods — FOSM, Point Estimate, Hasofer-Lind, and Monte Carlo — and their application to real-world geotechnical problems where full probability distributions of parameters are uncertain.",
+      "body": "Probabilistic principles can be applied to determine the reliability of a geotechnical design problem. Reliability is the probability that the design will perform in a satisfactory manner. This concept can also be stated in a negative sense as the probability of unsatisfactory performance (a.k.a., probability of failure), Pu. The reliability and the probability of unsatisfactory performance sum to unity.\n\nIn order to estimate reliability, a design problem is written in terms of a limit state function, g(X), of random variables (X). Positive values of g(X) correspond to satisfactory performance while negative values represent unsatisfactory performance or failure. Limit state functions are commonly written in terms of a safety margin or a safety factor as illustrated in Figure 7-11. The safety margin is the difference between the capacity and the demand, resulting in a negative value if demand exceeds capacity (Cornell 1969). For example, the predicted settlement for a foundation can be subtracted from the maximum allowable settlement. In the safety factor approach, the limiting safety factor of 1 is subtracted from the capacity divided by the demand (Rosenblueth and Esteva 1972). An example of this case would be foundation bearing capacity divided by the applied stress minus one.\n\nOnce the design problem has been written as a limit state, the mean, µg(X), and standard deviation, σg(X), of g(X) must be determined. Differences in reliability analysis approaches lie mostly in the method and level of approximation involved in calculating these values. The results of limit state function will have a probability distribution that results from the distributions of the input random variables and their interactions within the limit state function. The level of difficulty associated with determining µg(X) and σg(X) depends on the complexity of the design problem, the number of random variables, and probability distributions of those variables.\n\nThe reliability index (β) can be generically defined as the number of standard deviations that separate the mean design condition from a state of failure (Cornell 1969). If the problem is defined using a limit state function, then β = µg(X) / σg(X) (Eq. 7-7). The value of β calculated for a specific problem will depend on the method used to determine the mean and standard deviation of g(X). Transformations of the limit state function (e.g., use of logarithms) may also result in changes in the value of β. Thus, the reliability index can vary depending on how it is defined. Because of the uncertainty in the statistics of the input parameters, geotechnical reliability analyses produce values of β that are also uncertain (USACE 2020).\n\nThe reliability index provides a relative measure of the reliability of the solution but not the probability of unsatisfactory performance. The value of Pu can be estimated from β based on the distribution of the results of the limit state function. Usually the distribution of g(X) is not known and must be assumed. The normal and lognormal distributions are common assumptions for the distribution of the results of g(X).\n\nApproximate methods are appropriate for application of reliability analysis to real-world problems. It is important to bear in mind the uncertainty involved in describing the probability distributions of geotechnical parameters, which will affect the calculated values of µg(X) and σg(X). Four methods are considered in this section and summarized in Table 7-5: (1) first order, second-moment, including the so-called Taylor series approximation, (2) point estimate method, (3) Hasofer-Lind, and (4) Monte Carlo simulation. These methods can accommodate correlated random variables; however, only uncorrelated solutions are presented in this section. A detailed example of the four methods is provided in Appendix B.",
+      "key_points": [
+        "Reliability is the probability of satisfactory performance; Pu (probability of unsatisfactory performance) is its complement, and they sum to unity.",
+        "Limit state function g(X) is positive for satisfactory performance and negative for failure; it can be written as a safety margin or safety factor formulation.",
+        "The reliability index β = µg(X) / σg(X) measures the number of standard deviations separating the mean condition from failure.",
+        "β is variant with respect to the form of g(X); logarithmic transformations can change its value.",
+        "Four approximate methods are covered: FOSM, Point Estimate, Hasofer-Lind, and Monte Carlo simulation (summarized in Table 7-5).",
+        "Pu is estimated from β using an assumed distribution (typically normal or lognormal) of g(X) since the true distribution is usually unknown."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 7-6",
+          "description": "Standard deviation estimated from the range of a variable: σ = (HCV − LCV) / n, where HCV and LCV are the highest and lowest conceivable values and n is typically 3, 4, or 6.",
+          "implemented_in": "geotech_references.dm7_2.chapter7.std_dev_from_range"
+        },
+        {
+          "id": "Eq. 7-7",
+          "description": "Reliability index defined as the ratio of the mean to the standard deviation of the limit state function: β = µg(X) / σg(X).",
+          "implemented_in": "geotech_references.dm7_2.chapter7.reliability_index"
+        }
+      ],
+      "figures": [
+        "Figure 7-10 Parameter Selection Using Probabilistic Concepts",
+        "Figure 7-11 Example Distributions for (a) Load and Resistance and (b) Safety Margin and Factor of Safety Formulations"
+      ],
+      "tables": [
+        "Table 7-5 Reliability Analysis Methods"
+      ],
+      "applicability": "Applies when using probabilistic methods to assess the reliability or probability of failure of a geotechnical design involving uncertain input parameters."
+    },
+    {
+      "section_id": "7-4.2.1",
+      "title": "First-Order, Second Moment Method",
+      "summary": "Describes the FOSM method for reliability analysis, which uses only the mean and variance of random variables to compute β. Covers both the analytical derivative form and the approximate central-difference (Taylor series) form of variance estimation. Also presents the lognormal reliability index formula for safety factor-based limit state functions.",
+      "body": "The first-order, second moment (FOSM) method uses only the mean (µXi) and variance (σXi) of the random variables to define β. The mean of the limit state function is simply the function evaluated at the mean values of the parameters, or:\n\nµg(X) = g(µX1, µX2, ..., µXn)  (Eq. 7-8)\n\nwhere n = number of random variables.\n\nThe variance of g(X) for uncorrelated variables can be approximated by keeping only the first-order terms as:\n\nVar[g(X)] = σ²g(X) = Σ (∂g(X)/∂Xi)² · σ²Xi  (Eq. 7-9)\n\nwhere all the derivatives are evaluated at the mean values of the random variables.\n\nThe derivatives required for the FOSM method are not always easy to obtain. In addition, the limit state function for some problems cannot be written explicitly in terms of the random variables. For example, the limit state function for a slope stability analysis generally can be written only as g(X) = F – 1, where F is calculated by a numerical procedure. To alleviate this difficulty, the derivatives can be estimated using central differences about the mean (e.g., Duncan 2000, Wolff et al. 2004).\n\nVery small increments are typically used to estimate derivatives by central difference. However, in order to simplify the calculations and capture possible nonlinearity in g(X), the increment can be set equal to the standard deviation of each random variable. Thus, for each random variable, g(X) is evaluated at values of xi that are one standard deviation (σXi) above and below the mean (µXi) with all other variables at their mean values. This results in a central difference (∆g1) of:\n\n∆g1 = g(µX1 + σX1, µX2, ..., µXn) − g(µX1 − σX1, µX2, ..., µXn)  (Eq. 7-10)\n\nfor the first random variable. A similar definition is used for the other variables. Using these central differences, the variance of g(X) is estimated as:\n\nσ²g(X) = Σ (∆gi / 2)²  (Eq. 7-11)\n\nThe mean value of g(X) is evaluated using Equation 7-8. When g(X) is defined using the safety factor format, a logarithmic distribution of the factor of safety is logical and the reliability index becomes:\n\nβLN = [ln(µg(X)) − 0.5·ln(1 + COV²g)] / √[ln(1 + COV²g)]  (Eq. 7-12)\n\nwhere COVg = coefficient of variation of the limit state function = σg(X) / µg(X).",
+      "key_points": [
+        "FOSM requires only the mean and standard deviation (not full distributions) of random variables.",
+        "The mean of g(X) is evaluated at the mean values of all random variables (Eq. 7-8).",
+        "Variance of g(X) is estimated using first-order partial derivatives with respect to each random variable, evaluated at the mean (Eq. 7-9).",
+        "When analytical derivatives are unavailable, central differences using ±1σ increments provide a numerical approximation (Eqs. 7-10, 7-11).",
+        "For safety factor-based limit state functions, a lognormal reliability index (Eq. 7-12) is more appropriate.",
+        "FOSM is variant with respect to the form of g(X); the same physical problem expressed differently may yield different β values."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 7-8",
+          "description": "Mean of the limit state function evaluated at the mean values of all n random variables: µg(X) = g(µX1, µX2, ..., µXn).",
+          "implemented_in": "geotech_references.dm7_2.chapter7.fosm_mean"
+        },
+        {
+          "id": "Eq. 7-9",
+          "description": "Variance of g(X) for uncorrelated variables using first-order partial derivatives evaluated at the mean: σ²g(X) = Σ (∂g/∂Xi)² · σ²Xi.",
+          "implemented_in": "geotech_references.dm7_2.chapter7.fosm_variance_analytical"
+        },
+        {
+          "id": "Eq. 7-10",
+          "description": "Central difference approximation for the i=1 random variable: ∆g1 = g(µX1 + σX1, µX2,...,µXn) − g(µX1 − σX1, µX2,...,µXn).",
+          "implemented_in": "geotech_references.dm7_2.chapter7.fosm_central_difference"
+        },
+        {
+          "id": "Eq. 7-11",
+          "description": "Variance of g(X) estimated from central differences: σ²g(X) = Σ (∆gi / 2)².",
+          "implemented_in": "geotech_references.dm7_2.chapter7.fosm_variance_numerical"
+        },
+        {
+          "id": "Eq. 7-12",
+          "description": "Lognormal reliability index for safety factor-based limit state functions: βLN = [ln(µg(X)) − 0.5·ln(1 + COV²g)] / √[ln(1 + COV²g)], where COVg = σg(X) / µg(X).",
+          "implemented_in": "geotech_references.dm7_2.chapter7.reliability_index_lognormal"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when computing the reliability index using first-order, second-moment approximations for geotechnical problems with explicit or numerically evaluable limit state functions."
+    },
+    {
+      "section_id": "7-4.2.2",
+      "title": "Point Estimate Method",
+      "summary": "Describes Rosenblueth's point estimate method for reliability analysis, which converts continuous random variables to two discrete points and evaluates the limit state function at 2n combinations of ±1σ perturbations. Provides equations for mean and variance of g(X), guidance on weighting factors, correlation handling, and known limitations including inaccuracy for highly nonlinear g(X).",
+      "body": "The point estimate method was introduced by Rosenblueth (1975). According to Baecher and Christian (2003), this method is based on the premise that continuous random variables can be converted to equivalent discrete RV, usually with just two points. If those points and the associated probabilities (or weights) are chosen properly, the moments of the continuous distribution are maintained. These discrete RV are used to approximate the distribution of the limit state function.\n\nWhile Rosenblueth (1975) proposed additional cases, the most common case used in geotechnical engineering allows g(X) to be a function of n symmetric RV as illustrated for two RV in Figure 7-12. The limit state function is evaluated for 2n cases with each RV either one standard deviation above or below the mean. The mean of g(X) is calculated by:\n\nµg(X) ≈ Σ Pi · g(X)i  (Eq. 7-13)\n\nwhere Pi = weighting factors (equal to 2-n for uncorrelated RV) and g(X)i = limit state function evaluated for each of i cases.\n\nThe variance of g(X) can be found as:\n\nσ²g(X) ≈ Σ Pi · g(X)²i − (Σ Pi · g(X)i)²  (Eq. 7-14)\n\nFigure 7-13 provides guidance for the combinations of plus or minus one standard deviation that make up each case for up to four RV. The cases are also illustrated in a branching format for eight cases required for three RV.\n\nThe point estimate method can accommodate correlation between the RV by changing the weighting factors. The equations for correlated Pi for two RV are shown in Figure 7-12 as an example. The method for determining weighting factors for additional correlated RV can be found in Baecher and Christian (2003) or Wolff et al. (2004).\n\nThe point estimate method cannot accurately approximate moments beyond the mean and variance (Baecher and Christian 2003). This is rarely a practical concern for reliability analysis. The method works best when the coefficients of variation of the random variables are relatively low. Inaccuracies have been shown to occur when g(X) results in substantial change in the form of the probability distribution (i.e., normal to lognormal) and when g(X) is highly nonlinear. Christian and Baecher (1999) provide additional guidance on the errors that may result for the point estimate method.",
+      "key_points": [
+        "Continuous random variables are replaced by two discrete points at ±1σ from the mean, preserving the moments of the original distribution.",
+        "The limit state function is evaluated at 2n combinations of ±1σ perturbations for n random variables.",
+        "Mean of g(X) uses equal weighting factors Pi = 2⁻ⁿ for uncorrelated variables (Eq. 7-13); variance follows from Eq. 7-14.",
+        "Correlation between variables is handled by adjusting the weighting factors (see Figure 7-12 for two-variable case).",
+        "The method is most accurate when COVs of random variables are relatively low and g(X) is not highly nonlinear.",
+        "Often more accurate than FOSM/Taylor Series but requires 2n function evaluations, which grows rapidly with n."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 7-13",
+          "description": "Mean of g(X) by point estimate method: µg(X) ≈ Σ Pi · g(X)i, where Pi = 2⁻ⁿ for uncorrelated variables and g(X)i is the limit state function evaluated at each combination of ±1σ values.",
+          "implemented_in": "geotech_references.dm7_2.chapter7.point_estimate_mean"
+        },
+        {
+          "id": "Eq. 7-14",
+          "description": "Variance of g(X) by point estimate method: σ²g(X) ≈ Σ Pi · g(X)²i − (Σ Pi · g(X)i)².",
+          "implemented_in": "geotech_references.dm7_2.chapter7.point_estimate_variance"
+        }
+      ],
+      "figures": [
+        "Figure 7-12 Point Estimate Method for Two Random Variables (after Baecher and Christian 2003)",
+        "Figure 7-13 Guides for Application of the Point Estimate Method (after Harr 1987)"
+      ],
+      "tables": [],
+      "applicability": "Applies when computing reliability for geotechnical problems with n symmetric random variables using a spreadsheet-friendly 2n evaluation approach without requiring an explicit analytical form of g(X)."
+    },
+    {
+      "section_id": "7-4.2.3",
+      "title": "Hasofer-Lind Method",
+      "summary": "Describes the Hasofer-Lind (1974) geometric interpretation of the reliability index, which is invariant to the form of g(X). β is the shortest distance from the origin to the limit state surface in standard normal space. Covers transformation of variables, design point identification, treatment of correlated variables, and the approximation error from assuming linearity of g(X) in standard normal space.",
+      "body": "The magnitude of the reliability index calculated by the first three methods can depend on how the limit state function is formulated. In other words, the safety margin and factor of safety definitions will result in different values of β. In order to overcome this limitation, Hasofer and Lind (1974) proposed a geometric interpretation of the reliability index. In their method, the value of β is defined as the shortest distance between the origin and the limit state function when all of the random variables are transformed into standard normal space. The Hasofer-Lind approach can be used most easily when the random variables are normally or lognormally distributed, both of which can be easily transformed into standard normal space. An equivalent tail approximation method is described in Ayyub and McCuen (2016) for non-normal variables.\n\nThe Hasofer-Lind method is illustrated for the case of two random variables in Figure 7-14. Each random variable is first transformed to an equivalent standard normal distribution (i.e., N(1,0)). The joint probability distribution for two uncorrelated variables is represented by circles centered on the origin in two-dimensions (Figure 7-14(b)). The point where the transformed limit state function comes closest to the origin corresponds to the design point for the analysis. This point can be found using a variety of numerical or iterative procedures. The distance between the design point and the origin is equal to β or the number of standard deviations separating the limit state function from the origin. The value of β is determined directly because the variables have been transformed to have a unit standard deviation.\n\nThe standard normal distribution is typically used to calculate Pu from β, which assumes that the limit state function is linear in the standard normal space. The potential error associated with this assumption is illustrated in Figure 7-14(c). The Hasofer-Lind method can also accommodate correlated random variables. The circles in Figure 7-14(b) become ellipses. A readily implementable spreadsheet solution to the Hasofer-Lind method is described by Low and Tang (1997), which includes the ability to consider correlated RV.",
+      "key_points": [
+        "Hasofer-Lind β is invariant to the formulation of g(X) — safety margin and safety factor formulations yield the same β.",
+        "β is defined geometrically as the shortest distance from the origin to the limit state surface in standard normal space.",
+        "All random variables are transformed to standard normal (unit variance, zero mean) before analysis.",
+        "The point of minimum distance to the origin is called the design point and is found by numerical or iterative procedures.",
+        "Pu is estimated from the standard normal CDF applied to β, assuming linearity of the limit state in standard normal space.",
+        "Correlated variables can be accommodated; the equal-probability contours become ellipses rather than circles.",
+        "A spreadsheet implementation is available via Low and Tang (1997)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-14 Hasofer-Lind Reliability Index Concept for Two Random Variables"
+      ],
+      "tables": [],
+      "applicability": "Applies when an invariant reliability index is required for geotechnical problems with normally or lognormally distributed random variables, particularly where different limit state formulations must yield consistent results."
+    },
+    {
+      "section_id": "7-4.2.4",
+      "title": "Monte Carlo Simulation",
+      "summary": "Describes Monte Carlo simulation for reliability analysis, where random values of each variable are drawn from their probability distributions over many trials and Pu is estimated as the fraction of trials yielding g(X) < 0. Covers trial number requirements for estimating mean, standard deviation, and extreme event probabilities, convergence criteria, variance reduction techniques, and random number generator quality.",
+      "body": "Monte Carlo simulation calculates the limit state function for a number of trials that is sufficiently large to define the probability of unsatisfactory performance. For each trial, Monte Carlo uses random number generation to select values from the probability distributions of each random variable in the design problem. The selected values are used to determine the value of g(X) for that trial. If the value of g(X) is negative, a failure is recorded. The number of failures divided by the total number of trials defines the probability of failure. The Monte Carlo process is repeated until the value of Pu remains stable as the number of trials increases.\n\nMonte Carlo simulation can define the probability distribution of the limit state function. A value of g(X) is generated for every trial, providing data to which a probability distribution can be fit. Limit state functions that are mostly addition and subtraction tend toward a normal distribution while those which use multiplication and division tend to be lognormally distributed.\n\nThe number of trials required for a Monte Carlo simulation depends on the problem being investigated and the information desired from the simulation. A common approach is to progressively increase the number of trials in the Monte Carlo simulation until the value of Pu is approximately constant. An example plot is provided in Figure 7-15.\n\nThe number of trials required to obtain simulated estimates of the mean and standard deviation can also be determined from Figure 7-16, based on the desired level of confidence and acceptable error in the estimates. If the acceptable error in the estimates of the mean and standard deviation is 10%, the required number of trials is in the range of 100 to 1,000. In order to reduce the error to about 1%, the number of trials increases one-hundredfold to a range of 10,000 to 100,000. In order to estimate the probability of extreme events, the required number of trials is at least 100,000. In general, the number of trials should be sufficient so that the event of interest occurs many times (perhaps 10 to 100) in the simulation. For example, the simulation of a system with a reliability index of β = 4.26 (Pu = 0.0001) would require at least 10⁶ trials.\n\nThe aforementioned requirements apply to simulations performed with random sampling implemented in a brute-force manner. In many cases, it may be necessary to reduce the number of trials in order to save computational effort as discussed in Baecher and Christian (2003). The importance sampling and controlled variates methods use a function that correlates well with the likely distribution of the solution. This concentrates the search in the area of interest. Correlated sampling is useful for comparing more than one design alternative. It recognizes that some random variables, such as those representing the soil conditions, can be used for assessment of all the design alternatives. Stratified sampling concentrates sampling in the regions that most affect the estimated variance. This approach can still lead to a large number of sampling points. The Latin hypercube method is a randomized approach that reduces the number of trials in a stratified simulation.\n\nMonte Carlo methods rely on random number generators to simulate random variables. The quality of the simulation depends on the quality of the random numbers. Engineers should be aware of the random number generator used by their software and the limitations imposed. The use of more than one type of random number generator is encouraged (Baecher and Christian 2003).",
+      "key_points": [
+        "Pu is estimated directly as the fraction of trials for which g(X) < 0; no assumption about the distribution of g(X) is needed.",
+        "Convergence is checked by progressively increasing the number of trials until Pu stabilizes (see Figure 7-15).",
+        "For 10% error in mean/standard deviation estimates, ~100–1,000 trials are needed; for 1% error, ~10,000–100,000 trials.",
+        "Estimating very low Pu (e.g., Pu = 0.0001, β = 4.26) requires at least 10⁶ trials with brute-force sampling.",
+        "Variance reduction techniques (importance sampling, controlled variates, stratified sampling, Latin hypercube) can reduce required trial counts.",
+        "The quality of random number generators directly affects simulation accuracy; use of multiple generator types is encouraged.",
+        "g(X) functions dominated by addition/subtraction tend toward normal distributions; those using multiplication/division tend toward lognormal."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-15 Convergence of Monte Carlo Simulation with Increasing Trials",
+        "Figure 7-16 Monte Carlo Simulation Trial Number Requirements"
+      ],
+      "tables": [],
+      "applicability": "Applies when full probability distributions of random variables are available and a direct estimate of Pu is required, especially for complex limit state functions that cannot be expressed analytically."
+    },
+    {
+      "section_id": "7-4.2.5",
+      "title": "Effect of Correlation on Reliability Analysis",
+      "summary": "Discusses how correlation between geotechnical parameters can either increase or decrease the reliability index depending on whether the correlation is positive or negative and how each correlated parameter influences the limit state. Provides a concrete example using undrained shear strength and unit weight for an unsupported cut (β increases) versus bearing capacity (β decreases) under positive correlation.",
+      "body": "Correlation between parameters can either increase or decrease the reliability index. The influence of correlation depends on whether the correlation is negative or positive, and on the effect that each parameter has on the solution. An example of this is provided in Figure 7-17. If undrained shear strength is positively correlated to unit weight, the correlation will reduce the uncertainty in the factor of safety for an unsupported cut. This causes the reliability index to increase as a result of the inverse relationship between a driving force related to γt and a resistance (su). In contrast, the correlation will increase the uncertainty in the bearing capacity because both parameters (γt and su) are used to determine the resistance.",
+      "key_points": [
+        "Correlation between geotechnical parameters can either increase or decrease β depending on the sign of correlation and the role of each parameter in g(X).",
+        "Positive correlation between su and γt reduces uncertainty in the factor of safety for an unsupported cut (both act in opposite directions on g(X)), increasing β.",
+        "The same positive correlation increases uncertainty in bearing capacity (both parameters act as resistance), decreasing β.",
+        "All four reliability methods covered (FOSM, Point Estimate, Hasofer-Lind, Monte Carlo) can accommodate correlated random variables, though correlated solutions are not detailed in this section."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-17 Example of Correlation Effects on Geotechnical Analysis"
+      ],
+      "tables": [],
+      "applicability": "Applies when geotechnical parameters used in a reliability analysis are statistically correlated, requiring consideration of the direction and magnitude of correlation effects on the reliability index."
+    },
+    {
+      "section_id": "7-4.2.6",
+      "title": "Use of Reliability Analysis",
+      "summary": "Explains how reliability analysis supplements traditional deterministic geotechnical design by quantifying uncertainty effects on input parameters. Covers the use of reliability index and probability of failure to deepen the meaning of factors of safety, compare designs, and provide inputs to larger-scale risk assessments including event trees.",
+      "body": "The utility of reliability analysis is the ability to understand and quantify the effects of uncertainty in the input parameters on the design. Reliability analysis can accompany traditional design and can also be incorporated in risk assessments. Duncan (2000) provides multiple examples of the application of reliability analysis to the design of foundations, retaining walls, and slopes.\n\nTraditional deterministic design can be supplemented by reliability analysis. The reliability index and/or probability failure deepen the meaning of a particular factor of safety or other geotechnical calculation. For example, two shallow foundation designs may have factors of safety of 2.5 and 3, respectively. However, if the former design is based on more certain information, the respective reliability indices might be 4 and 3. Even if the estimates of β are approximate, the relative magnitude suggests that the first design is more reliable despite the lower factor of safety. The probability of failure can also be used to help individuals without geotechnical background understand the impact of changing the factor of safety or completing additional site characterization.\n\nThe probability of failure estimated from reliability analysis can also provide a useful input to larger scale risk assessments, which are discussed in the following section. The event trees used by these assessments have branches that can be filled using reliability analysis rather than relying solely on expert judgment.",
+      "key_points": [
+        "Reliability analysis quantifies the effects of uncertainty in input parameters on geotechnical design.",
+        "Reliability index (β) and probability of failure deepen the meaning of a factor of safety — a lower FS with less uncertainty can be more reliable than a higher FS with greater uncertainty.",
+        "Two designs with FS of 2.5 and 3.0 may have reliability indices of 4 and 3, respectively, showing the first is more reliable despite the lower factor of safety.",
+        "Probability of failure helps communicate geotechnical risk to non-specialists and informs decisions on additional site characterization.",
+        "Reliability analysis outputs can populate event tree branches in larger-scale risk assessments, reducing reliance on pure expert judgment."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when supplementing traditional deterministic geotechnical design (foundations, retaining walls, slopes) with reliability-based analysis to quantify uncertainty and support risk assessments."
+    },
+    {
+      "section_id": "7-4.3",
+      "title": "Risk Assessment",
+      "summary": "Covers risk assessment methods for geotechnical structures, including system response functions, probability of unsatisfactory performance, F-N charts, event trees, fault trees, and decision trees. Explains how probability and consequences are combined, how loading frequency is incorporated, and how tools like event/fault/decision trees evaluate complex conditional probability chains.",
+      "body": "Risk assessment quantifies and describes the nature, likelihood, and magnitude of risk in a systematic, evidence-based manner. The performance of geotechnical structures and systems as a function of the applied loads is referred to as a system response function. For a given situation, risk assessment often involves determining the probabilities of unsatisfactory performance (e.g., failure, excessive settlement, etc.) over a time frame, as well as the consequences of those events. Sources of these probabilities include analytical reliability analyses, observations of past frequencies, and expert opinion (USACE 2020).\n\nThe combination of probability and consequences can be compared to specific criteria, such as F-N charts, or used for comparing multiple structures or systems. The example F-N chart in Figure 7-18 allows calculated risk to be compared to societal standards imposed by a regulatory agency (USACE 2014). In this case, the estimated probability and loss of life can be plotted, and subsequent action is based on the zone of the chart. Improvement plans are evaluated by assessing the resulting changes in probability and/or consequences (USACE 2020). Timchenko et al. (2021) have produced F-N charts in terms of both fatalities and cost, which compare geotechnical activities to other types of risk. Their study defined the low-risk threshold as either $10,000 per year (2020 US dollars) or 0.001 fatalities per year.\n\nRisk assessments require estimates of Pu over a defined time frame. The Pu calculated from reliability analysis typically starts with the assumption of a particular loading condition. Thus, the likelihood of the loading condition within the defined timeframe must be included. For example, levee stability following a flood may depend on the height of the flood. In this case, the time frequency can be incorporated by considering the return period of the particular flood level being analyzed.\n\nEvent trees, such as those shown in Figure 7-19, are another risk assessment tool, which help to evaluate complex chains of conditional probabilities. An event tree starts with an initiation event with a specified probability. At each intermediate node, the event tree will branch into two or more possible outcomes. At each node, the sum of the branch probabilities must equal 1.0. The final branches terminate at end nodes with a unique sequence of events or pathway. The probability for each pathway can be calculated by combining (i.e., multiplying) the probabilities for each branch. Fault trees are an alternate method used in risk assessment. Fault trees start from outcomes of interest and assess the events required to reach those outcomes (USACE 2020).\n\nThe decision tree is a similar risk assessment tool that combines probabilities with consequences in a graphical form (Baecher and Christian 2003). Decisions are made at some branches between options with different costs (or consequences). The other nodes represent possible events with associated probabilities and consequences.",
+      "key_points": [
+        "Risk assessment quantifies the nature, likelihood, and magnitude of risk in a systematic, evidence-based manner using a system response function.",
+        "Probabilities of unsatisfactory performance come from reliability analyses, historical frequency observations, and expert opinion.",
+        "F-N charts allow calculated risk (probability vs. loss of life) to be compared to societal/regulatory standards; Timchenko et al. (2021) set the low-risk threshold at $10,000/yr or 0.001 fatalities/yr.",
+        "Probability of unsatisfactory performance (Pu) must account for loading frequency; e.g., levee analysis incorporates flood return periods.",
+        "Event trees start from an initiation event and branch at each node; branch probabilities at each node must sum to 1.0, and pathway probability is the product of all branch probabilities along that path.",
+        "Fault trees work in reverse — starting from outcomes of interest and identifying the events required to reach them.",
+        "Decision trees combine probabilities with consequences graphically, enabling comparison of options with different costs or outcomes."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-18 Example F-N Chart",
+        "Figure 7-19 Event Trees"
+      ],
+      "tables": [],
+      "applicability": "Applies when performing formal risk assessments of geotechnical structures or systems where probability of unsatisfactory performance and consequences must be quantified, compared to standards, or evaluated using event/fault/decision trees."
+    },
+    {
+      "section_id": "7-4.4",
+      "title": "Hazard Analysis and Return Periods",
+      "summary": "Covers the definition of hazards in civil engineering, hazard functions (constant, increasing, decreasing), Poisson processes for geotechnical events like earthquakes and floods, and the quantitative relationship between return period (R) and annual rate of exceedance (λ). Introduces hazard curves relating loading parameter magnitude to annual probability of exceedance, with reference to USGS, NOAA, and ASCE databases.",
+      "body": "In the context of civil engineering, a hazard is a condition that has the potential to cause damage to or loss to personnel, equipment, or property (DoD, 2021). All of these losses can limit the usefulness of a structure or system. A hazard function defines the probability that an event occurs (per time) assuming that the event has not occurred up to the given time. Many events related to geotechnical engineering, such as earthquakes and floods, are assumed to have a constant hazard function and are referred to as Poisson processes. An increasing hazard function implies that the likelihood of the event increases with time. A decreasing hazard function implies that the likelihood of the event decreases with time (USACE 2020).\n\nMany hazards are natural processes that create uncertainty in the loading applied to geotechnical structures. The return period or mean recurrence interval (R) for these events can be estimated based on historical data. The rate of exceedance (λ), which is an annual value if R is expressed in years, can be calculated as:\n\nλ = 1/R  (7-15)\n\nThe effect of hazards on engineering design is often characterized in terms of the loading parameters that result from the hazard. Databases of these engineering parameters, including those related to seismic and climatic hazards, can be accessed through government agencies and professional organizations, such as USGS, NOAA, and ASCE. The databases provide values of R or λ for particular magnitudes of loading parameters, such as a level of peak ground acceleration, a 24-hour rainfall, or a wind speed, as illustrated in Figure 7-21(a) to (c). As the magnitude of the hazard increases, the annual probability of exceedance decreases (i.e., larger hazards are less common). This relationship is referred to as a hazard curve.",
+      "key_points": [
+        "A hazard is defined as any condition with potential to cause damage or loss to personnel, equipment, or property (DoD, 2021).",
+        "The hazard function gives the probability of event occurrence per unit time, given the event has not yet occurred; it can be constant, increasing, or decreasing.",
+        "Geotechnical events such as earthquakes and floods are typically modeled as Poisson processes with a constant hazard function.",
+        "The annual rate of exceedance (λ) is the reciprocal of the return period R: λ = 1/R (Eq. 7-15).",
+        "Hazard curves relate loading parameter magnitude (e.g., peak ground acceleration, 24-hr rainfall, wind speed) to annual probability of exceedance — larger hazards are less frequent.",
+        "Engineering hazard databases from USGS, NOAA, and ASCE provide values of R or λ for seismic and climatic loading parameters."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 7-15",
+          "description": "Rate of exceedance (λ) as the reciprocal of the return period (R): λ = 1/R. λ is annual if R is in years.",
+          "implemented_in": "geotech_references.dm7_2.chapter7.rate_of_exceedance"
+        }
+      ],
+      "figures": [
+        "Figure 7-19 Example Event Tree (after USACE 2020)",
+        "Figure 7-20 Example Decision Tree (after Baecher and Christian 2003)",
+        "Figure 7-21 Example Hazards for an Eastern US Site – (a) to (c) Hazard Curves and (d) to (f) Probability of Exceedance Curves"
+      ],
+      "tables": [],
+      "applicability": "Applies when characterizing natural hazards (earthquakes, floods, wind) for geotechnical engineering design using return periods and probability of exceedance."
+    },
+    {
+      "section_id": "7-4.5",
+      "title": "Load and Resistance Factor Design (LRFD)",
+      "summary": "Introduces LRFD as a reliability-based design approach that separately factors loads and resistances using probabilistically calibrated factors. Defines ultimate and service limit states in geotechnical context, and compares LRFD to ASD, MRFD, and full reliability analysis via Table 7-6, covering design equations and factor calibration methods.",
+      "body": "Load and resistance factor design (LRFD) is an application of reliability analysis, which separately factors both loads and resistances using probabilistically calibrated factors. LRFD uses the concept of limit states to define conditions in which a structure (used generically in this section) no longer performs its intended function. Ultimate limit states are those pertaining to collapse or safety. In geotechnical engineering, ultimate limit states are related to the shear strength of the soil, such as bearing capacity or slope stability. Service limit states are those pertaining to functionality or the ability of the structure to remain useful. Settlement criteria are a common geotechnical service limit state. Some LRFD codes, such as the AASHTO Bridge Design Code, define multiple types of ultimate and service limit states that must be considered in a particular design.\n\nThe ultimate limit state design equations and methodology for LRFD are compared in Table 7-6 to allowable stress design (ASD), multiple load and resistance factor design (MRFD), and full reliability-based analysis. With the exception of full reliability analysis, all of the methods apply factors in some combination to the nominal loads (Q) and/or the nominal resistances (R). Progressing from ASD to MRFD, the factors are applied in greater specificity, which allows more flexibility to consider uncertainty but requires additional effort in both design and development of the appropriate factors.",
+      "key_points": [
+        "LRFD separately factors loads (γ > 1) and resistances (φ < 1) using probabilistically calibrated values.",
+        "Ultimate limit states relate to collapse/safety (e.g., bearing capacity, slope stability); service limit states relate to functionality (e.g., settlement).",
+        "ASD uses a single factor of safety F; LRFD uses γ and φ; MRFD uses component-specific γi and φi; full reliability analysis computes βcalc directly.",
+        "Progressing from ASD to full reliability analysis increases specificity and flexibility but requires more effort in design and factor development.",
+        "Table 7-6 compares the four design methodologies including design equations and calibration methods."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 7-6"
+      ],
+      "applicability": "Applies when selecting a geotechnical design methodology (ASD, LRFD, MRFD, or full reliability analysis) for foundation or retaining wall design."
+    },
+    {
+      "section_id": "7-4.5.1",
+      "title": "Components of LRFD",
+      "summary": "Describes the fundamental components of LRFD, including nominal loads and resistances, load factors (γi > 1) applied to loads, and resistance factors (φi < 1) applied to resistances. Explains that the design check requires the sum of factored loads to be ≤ sum of factored resistances, evaluated separately for each limit state.",
+      "body": "The basic concept of LRFD is illustrated in Figure 7-22 in which the loads and resistances are shown along the same scale. The unfactored (nominal) loads are the lowest and plot at the left while the unfactored resistances are highest and on the right. These loads and resistances are those determined using the calculation approaches specified by the LRFD design code.\n\nIn order to account for uncertainty in load, the loads are multiplied by load factors (γi) that are greater than one to produce factored loads that are larger than the nominal values. Specific load factors are used for each type of load because of differences in the uncertainty associated with each type of load. Similarly, the resistances are multiplied by resistance factors (φi) that are less than one and produce lower factored resistances. The selection of appropriate values of γi and φi is the critical step in the development of an LRFD procedure or code.\n\nThe design equation for LRFD requires the sum of the factored loads to be less than or equal to the sum of the factored resistances, which is shown conceptually in the middle of Figure 7-22. This inequality is checked for each limit state that must be assessed for the structure or design. The details of the limit state will dictate the values of the loads, resistances, and factors. In other words, these values may change for each limit state considered.",
+      "key_points": [
+        "Nominal (unfactored) loads are the lowest values; nominal resistances are the highest values on the LRFD scale.",
+        "Load factors γi > 1 increase loads to account for load uncertainty; separate γi values are used for each load type.",
+        "Resistance factors φi < 1 reduce resistances to account for resistance uncertainty.",
+        "The LRFD design check: sum of factored loads ≤ sum of factored resistances, verified for each limit state.",
+        "Selection of appropriate γi and φi is the critical step in developing an LRFD procedure or code."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-22"
+      ],
+      "tables": [],
+      "applicability": "Applies when understanding or applying the basic LRFD design inequality for any geotechnical or structural limit state."
+    },
+    {
+      "section_id": "7-4.5.2",
+      "title": "LRFD Calibration",
+      "summary": "Explains the calibration process used to determine appropriate load (γ) and resistance (φ) factors in LRFD codes. Covers two approaches: direct fitting to ASD (Table 7-7) and reliability-based calibration targeting a specific β. Discusses bias factors, the role of statistical data, and why resistance factors are methodology-specific.",
+      "body": "The method used to determine the appropriate values for load and resistance factors is referred to as calibration. An engineer using LRFD does not perform this calibration but will benefit from understanding the general calibration process. Early efforts at calibration used direct fitting of the load factors (γ) and resistance factors (φ) to generate similar designs as those produced by ASD. An example of this approach is provided in Table 7-7. While the direct fitting approach separates the uncertainty in load from the uncertainty in resistance, it is not based on reliability theory.\n\nCurrent LRFD codes, such as ACI, AISC, and AASHTO, are calibrated to achieve a consistent reliability across a broad range of design scenarios (Nowak 1995, Kulhawy 2017). The process used to develop LRFD codes starts with the selection of a set of representative structures. Statistical data is gathered for both load and resistance parameters, from which the cumulative distribution functions for load and resistance are defined. Reliability analysis is then completed, typically in a simplified form, to adjust γ and φ to result in a specific target value of β. Commonly, the load factors are first selected so that the factored load has a predetermined probability of exceedance (Nowak 1995). LRFD codes are periodically updated as new information and methods become available.\n\nThe calibration process uses the mean and coefficient of variation of the loads and resistances. The mean values of load and resistance may differ from the nominal values calculated by a particular design method. This difference is referred to as bias. For example, mean dead loads tend to be a few percentage points higher than the design values because structural members are slightly overbuilt. The calibration process uses bias factors (λ), which are the mean value divided by the nominal value, to incorporate this difference in the reliability analyses used for calibration.\n\nThe simplifications introduced in the LRFD calibration process produce designs that on average meet the target β. Improvements to the calibration can be made by using multiple load or resistance factors to separate sources of uncertainty. For example, many codes employ multiple resistance factors for loads, such as dead, live, seismic, and wind loads. In a few cases, codes may separate geotechnical resistance into multiple types of resistance, such as tip and side resistance for piles. Future improvements to LRFD may include development of ranges of φ that depend on the expected variability of the site-specific resistance.\n\nThe calibration process is specific to each design methodology or model of resistance (e.g., Meyerhof bearing capacity for shallow foundations or the α method for deep foundations). For this reason, resistance factors are methodology specific, and careful attention must be given to selecting the appropriate φ for the design method used. The commentary section of the design codes often provides helpful information about the particular calibration process that was used (Kulhawy 2017).",
+      "key_points": [
+        "Early calibration used direct fitting to ASD; current codes (ACI, AISC, AASHTO) use reliability-based calibration targeting a specific β.",
+        "Calibration uses CDFs of load and resistance, mean values, and coefficients of variation derived from statistical data.",
+        "Bias factor λ = mean value / nominal value; accounts for systematic differences between calculated and actual values.",
+        "Resistance factors are methodology-specific — φ for Meyerhof bearing capacity cannot be used with another method.",
+        "Using multiple φ values for different resistance components (e.g., tip vs. side resistance for piles) improves calibration accuracy.",
+        "Table 7-7 shows resistance factors derived by direct fitting to ASD for various FS and dead-to-live load ratios."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 7-7"
+      ],
+      "applicability": "Applies when understanding how LRFD load and resistance factors are derived, or when selecting appropriate φ values for a specific design method."
+    },
+    {
+      "section_id": "7-4.5.3",
+      "title": "Use of LRFD in Geotechnical Engineering",
+      "summary": "Discusses practical application of LRFD in geotechnical engineering, emphasizing that specific γ and φ values are code-dependent and engineers should use the most current code. Highlights LRFD's utility in comparing reliability of multiple pile design methods (Figure 7-23), explains load factor interpretation, and identifies slope stability as a case poorly suited to LRFD.",
+      "body": "The discussion herein is intended to provide the engineer with an understanding of the LRFD process and its basis in reliability analysis. Specific values of γ and φ are intentionally not included in this chapter, because they are code-dependent and can change as codes are updated. The most recent version of the appropriate code should be used. For example, the AASHTO LRFD Bridge Design Specifications apply LRFD to most of the design procedures covered in this manual. FHWA's Geotechnical Engineering Circulars on various foundation and retaining wall topics also provide excellent guidance on the application of LRFD.\n\nSome types of geotechnical design have many different methods for determining resistance. LRFD facilitates the comparison of the reliability of these methods. An example is provided in the context of pile design in Figure 7-23. The generic resistance factors used in this example range from 0.1 to 0.9. The former represents a method that is very uncertain or unreliable. In contrast, the high value of 0.9 represents a method for predicting resistance with very low uncertainty. In this way, LRFD can be especially useful for deep foundations because of the large range of methods available for predicting the resistance.\n\nTo some extent, engineers can use differences in load factors to understand the uncertainty associated with loading. Larger load factors are typically associated with live loads, which have higher uncertainty. The load factors for extreme events may be close to 1.0. In this case, the lower load factor recognizes the small probability of occurrence associated with such events.\n\nWhile LRFD can theoretically be used for any analysis involving load and resistance, some problems are poorly suited to this approach. This is especially true for cases, such as slope stability, where the primary load and the primary resistance are both functions of the soil's self-weight. If a load factor is applied to the soil unit weight, the stresses within the slope will change, which changes the shear strength (except for undrained analysis). A better alternative for slope stability is to complete reliability analyses using the methods described earlier in this chapter.",
+      "key_points": [
+        "Specific γ and φ values are not provided in this chapter — engineers must use the most current applicable code (e.g., AASHTO LRFD Bridge Design Specifications).",
+        "LRFD is especially useful for deep foundations where φ values (0.1–0.9) can be used to compare the reliability of many available design methods.",
+        "Higher load factors (e.g., live loads) reflect greater uncertainty; extreme event load factors near 1.0 reflect low probability of occurrence.",
+        "Slope stability is poorly suited to LRFD because applying a load factor to soil unit weight changes both stresses and shear strength simultaneously.",
+        "Reliability analysis methods (from earlier in Chapter 7) are preferred over LRFD for slope stability problems.",
+        "FHWA Geotechnical Engineering Circulars provide additional guidance on LRFD application to foundations and retaining walls."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-23"
+      ],
+      "tables": [],
+      "applicability": "Applies when implementing LRFD for geotechnical design, particularly for deep foundations, and when evaluating whether LRFD is appropriate for a given problem type such as slope stability."
+    },
+    {
+      "section_id": "7-5",
+      "title": "NOTATION",
+      "summary": "Defines all variables and symbols used in Chapter 7 of UFC 3-220-20 on geotechnical reliability and variability. Covers statistical terms (mean, variance, covariance, COV), geotechnical parameters (su, φ', GSI, RQD, RMR, qc), LRFD factors (φ, γ), and probabilistic quantities (reliability index β, probability of unsatisfactory performance Pu, return period R).",
+      "body": "Variable | Definition\na, b | Limits of uniform distribution\naʹ | Tensile stress intercept of the Mohr Coulomb failure envelope\nCF | Clay fraction\ncov(x,y) | Covariance of variables x and y\nCOVX | Coefficient of variation of x\nE(X) | Expected value of a variable\nED | Dilatometer modulus\nEi | Intact rock modulus\nEm | Rock mass modulus\nF | Factor of safety\ng(X) | Limit state function\nGSI | Geological strength index\nHCV | Highest conceivable value\nIs50 | Point load index\nk | Hydraulic conductivity\nkD | Horizontal stress index from dilatometer\nLCV | Lowest conceivable value\nMk | kth moment about the mean\nN, n | Number of items\nN | Standard Penetration Test blow count\np | Probability of success in binomial trial\nPI | Plasticity index\nPu | Probability of unsatisfactory performance\nQ | Rock mass quality index\nQn | Nominal load\nqc | Cone penetration resistance\nqt | Cone penetration resistance corrected for pore pressure effects\nR | Return period\nRn | Nominal resistance\nrx | Range of a variable\nrxy | Sample correlation coefficient\nRQD | Rock quality designation\nRMR | Rock mass rating\ns | Sample standard deviation\ns2 | Sample variance\nsu | Undrained shear strength\nt | Time\nTR | Exposure period\nw | Water content\nx | Sample mean\nxmax | Maximum value\nxmin | Minimum value\nxP | Percentile value for which a fraction of the data, P, are smaller\nz | Depth below the ground surface\nβ | Reliability index\nδh, δv | Scale of fluctuation in the horizontal and vertical directions\nφ | Resistance factor for LRFD\nφʹ | Effective stress friction angle\nγ | Load factor for LRFD\nγτ | Total unit weight\nγδ | Dry unit weight\nλ | Rate for Poisson and exponential distributions\nµ | Population mean\nσ | Population standard deviation\nσ2 | Population variance",
+      "key_points": [
+        "Defines statistical descriptors: population mean (µ), population standard deviation (σ), sample mean (x), sample variance (s2), covariance cov(x,y), and coefficient of variation COVX.",
+        "Covers probabilistic/reliability quantities: reliability index (β), probability of unsatisfactory performance (Pu), limit state function g(X), and return period (R).",
+        "Includes LRFD-specific terms: nominal load (Qn), nominal resistance (Rn), resistance factor (φ), and load factor (γ).",
+        "Covers in-situ test parameters: SPT blow count (N), cone penetration resistance (qc, qt), dilatometer modulus (ED), horizontal stress index (kD), and point load index (Is50).",
+        "Rock mass characterization symbols defined: GSI (Geological Strength Index), RQD (Rock Quality Designation), RMR (Rock Mass Rating), intact rock modulus (Ei), rock mass modulus (Em), and rock mass quality index (Q).",
+        "Spatial variability parameters included: scale of fluctuation in horizontal and vertical directions (δh, δv).",
+        "Percentile value xP defined as the value below which a fraction P of the data falls, supporting probabilistic characterization of soil/rock properties."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies whenever interpreting any variable, symbol, or abbreviation used throughout Chapter 7 of UFC 3-220-20 on geotechnical variability and reliability."
+    }
+  ]
+}

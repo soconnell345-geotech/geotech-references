@@ -1,0 +1,1001 @@
+{
+  "reference_id": "UFC 3-220-20",
+  "reference_title": "UFC 3-220-20 Foundations and Earth Structures",
+  "volume": 2,
+  "chapter": 2,
+  "chapter_title": "Earth Pressures",
+  "sections": [
+    {
+      "section_id": "2-1",
+      "title": "INTRODUCTION",
+      "summary": "Introduces Chapter 2 on excavation stability, covering two fundamental excavation types: open cut (stable side slopes) and braced (laterally supported vertical/sloped sides). Lists chapter topics including trenching, deep excavation systems, rock excavation, and groundwater control. Identifies primary site conditions controlling excavation system selection: soil/rock type, stratigraphy, strength, consolidation parameters, and groundwater.",
+      "body": "This chapter covers the methods of evaluating the stability of shallow and deep excavations. There are two basic types of excavations: 1) open cut excavations where stability is achieved by providing stable side slopes and 2) braced excavations where vertical or sloped sides are supported laterally by internal or external structural elements. The topics in this chapter include:\n- Open cut excavations,\n- Trenching,\n- Deep excavation systems,\n- Rock excavation, and\n- Groundwater control.\n\nThe primary site conditions controlling the selection and design of an excavation system include soil and rock type and stratigraphy, soil and rock strength and consolidation parameters, and groundwater conditions. These can be identified using methods described in Chapters 2 and 3 of DM 7.1 and FHWA (2017). Additional considerations include the required excavation depth, side and bottom stability, construction procedures, excavation support system stability, and vertical and lateral movements of adjacent areas and existing structures.",
+      "key_points": [
+        "Two basic excavation types: open cut (stable slopes) and braced (laterally supported sides).",
+        "Chapter covers open cut, trenching, deep excavation systems, rock excavation, and groundwater control.",
+        "Key site conditions: soil/rock type, stratigraphy, strength, consolidation parameters, and groundwater.",
+        "Additional design considerations include excavation depth, bottom/side stability, construction procedures, and effects on adjacent structures.",
+        "Site investigation methods referenced from DM 7.1 Chapters 2 and 3 and FHWA (2017)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies as an introductory overview whenever evaluating or designing any type of excavation system (open cut or braced)."
+    },
+    {
+      "section_id": "2-2",
+      "title": "OPEN CUT EXCAVATIONS",
+      "summary": "Container section covering open cut excavation design, including sloped excavations, vertical excavations in clay and rock, and other design considerations. Addresses slope stability evaluation methods, failure modes by soil/rock type, and improvement strategies. References DM 7.1 Chapter 7 for stability analysis methods.",
+      "body": "",
+      "key_points": [
+        "Open cut excavations rely on stable side slopes rather than structural support elements.",
+        "Slope stability is influenced by soil/rock type, groundwater, time, and disturbance.",
+        "Stability improvement options include lowering the top of slope, reducing slope angle, and controlling surcharge loading."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when designing or evaluating open cut excavations in any soil or rock type without lateral structural support."
+    },
+    {
+      "section_id": "2-2.1",
+      "title": "Sloped Excavations",
+      "summary": "Covers evaluation of stability for sloped open cut excavations in soils and rocks using DM 7.1 Chapter 7 methods. Describes failure modes by material: side-slope failures in clays with increasing shear strength, base-extending failures in clays with constant shear strength, limited base instability in coarse-grained soils with seepage control, and joint/fault-controlled failures in rock. Warns of special considerations for problem soils and time-dependent stability reduction.",
+      "body": "The methods described in Chapter 7 of DM 7.1 may be used to evaluate the stability of sloped excavations in soils and rocks. In clay soils, instability typically involves side slopes but may also include soils below the base of the excavation. Clay soils that increase in shear strength with depth typically exhibit failures that occur on the side slopes. For clay soils that exhibit relatively constant shear strength with depth, the failure may extend into the base of the excavation. In coarse-grained soils, instability usually does not extend significantly below the base of the excavation, provided seepage is controlled. In rock, stability is often controlled by adversely orientated planes of weaknesses such as joints, foliation planes, or faults.\n\nIn some problem soils, and in rocks with adversely orientated geologic planes of weaknesses, special considerations are needed when evaluating stability of open cut excavations as discussed in Section 2-7. In any soil, the stability of excavated slopes may decrease with time, saturation, and disturbance. Some soils may not conform to common shear strength correlations used in design. For example, the properties of residual soil, which cover about half of Earth's land mass, are difficult to relate to stress history. Local knowledge may be helpful when determining the analysis approach in these problem soils.\n\nSlope stability can be improved by reducing the driving forces that cause instability. The top of a slope can be lowered, or the slope angle can be reduced, if an adequate factor of safety against instability is not achieved. Surcharge loading from equipment and/or stockpiles should be kept away from the top of an excavation when these negatively impact stability.",
+      "key_points": [
+        "Use DM 7.1 Chapter 7 methods for slope stability evaluation in soils and rock.",
+        "Clays with increasing shear strength with depth: failures typically on side slopes only.",
+        "Clays with constant shear strength: failure may extend into excavation base.",
+        "Coarse-grained soils: instability rarely extends below base if seepage is controlled.",
+        "Rock stability governed by adversely oriented joints, foliation planes, or faults.",
+        "Slope stability decreases with time, saturation, and disturbance; residual soils require local knowledge.",
+        "Mitigation: lower top of slope, reduce slope angle, keep surcharges away from excavation crest."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when evaluating or designing sloped (non-vertical) open cut excavations in any soil or rock type."
+    },
+    {
+      "section_id": "2-2.2",
+      "title": "Vertical Excavations",
+      "summary": "Container section addressing vertical open cut excavations, covering critical depth calculations for clay soils and stability considerations for rock excavations. Includes the governing equation for maximum vertical cut depth in clay and references OSHA requirements for excavations deeper than 5 ft.",
+      "body": "",
+      "key_points": [
+        "Vertical cuts in clay have a calculable critical depth (Hcrit) beyond which failure will occur.",
+        "Rock excavations may stand vertically depending on rock quality and absence of adversely oriented discontinuities.",
+        "OSHA requires sloping or support for all excavations greater than 5 ft in depth."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when considering unsupported vertical cuts in clay or rock materials."
+    },
+    {
+      "section_id": "2-2.2.1",
+      "title": "Clay Soils",
+      "summary": "Defines the critical depth (Hcrit) of an unsupported vertical cut in clay as a function of undrained shear strength and total unit weight (Eq. 2-1). Notes that progressive deterioration occurs due to shear strength changes over time and stress release from excavation. Cites OSHA requirement to slope or support all excavations greater than 5 ft deep.",
+      "body": "Many cuts in clays will stand with vertical slopes for a period of time before failure occurs. The maximum depth of a vertical cut in clay, or critical depth, (Hcrit) is defined as:\n\nHcrit = 4 * su / γt  (2-1)\n\nwhere:\nsu = undrained shear strength and\nγt = total or moist unit weight of the clay.\n\nHowever, changes in the shear strength of the clay with time and stress release resulting from the excavation can lead to progressive deterioration in stability. The Occupational Safety and Health Administration (OSHA) requires all excavations be sloped and trenches supported if greater than 5 ft in depth (OSHA 2020).",
+      "key_points": [
+        "Critical depth Hcrit = 4su/γt defines the maximum stable height for an unsupported vertical cut in clay.",
+        "Clay cuts can stand temporarily but progressive shear strength reduction and stress release cause time-dependent failure.",
+        "OSHA (2020) mandates sloping or support for all excavations > 5 ft deep regardless of calculated critical depth.",
+        "Two parameters govern: undrained shear strength (su) and total/moist unit weight (γt)."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 2-1",
+          "description": "Critical depth of a vertical cut in clay: Hcrit = 4su / γt, where su is undrained shear strength and γt is total or moist unit weight of clay.",
+          "implemented_in": "geotech_references.dm7_2.chapter2.critical_depth_vertical_cut_clay"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when assessing the maximum unsupported vertical cut depth in cohesive (clay) soils."
+    },
+    {
+      "section_id": "2-2.2.2",
+      "title": "Rock",
+      "summary": "Addresses vertical unsupported cuts in rock, noting that stability depends on rock quality, absence of adversely oriented joints and faults, and mobilized shear strength along structural features. References DM 7.1 Chapter 7 for rock slope stability analysis. Does not provide a closed-form equation; stability is assessed on a case-by-case basis.",
+      "body": "Excavations in rock can be made vertical without support (rock bolts or tieback anchors) depending on the rock quality, lack of adversely oriented joints and faults, and sufficient mobilized shear strength along structural features to provide a stable condition. The stability of rock slopes is also covered in Chapter 7 of DM 7.1.",
+      "key_points": [
+        "Rock can stand vertically without support when rock quality is high and adversely oriented discontinuities are absent.",
+        "Rock bolts or tieback anchors provide support where rock quality or discontinuity orientation is unfavorable.",
+        "Stability depends on mobilized shear strength along joints, faults, and other structural features.",
+        "DM 7.1 Chapter 7 provides the analysis framework for rock slope stability."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when evaluating unsupported vertical cuts in rock formations."
+    },
+    {
+      "section_id": "2-2.3",
+      "title": "Other Design Considerations for Open Cut Excavations",
+      "summary": "Covers ancillary design considerations for open cut excavations beyond slope stability, focusing on dewatering requirements and groundwater control. Notes that dewatering increases effective stress and can cause settlement in adjacent structures. Introduces the use of low-permeability cutoff trenches (soil-bentonite or soil-cement-bentonite) to manage groundwater between the excavation and nearby structures.",
+      "body": "Dewatering may be required to allow construction without water in the excavation (sometimes referred to as 'in the dry'). Dewatering increases effective stress and can cause settlement under nearby structures. It may be necessary to consider installation of a low permeability cutoff trench, filled with soil-bentonite or soil-cement-bentonite mixtures, between the excavation and adjacent structures to control groundwater-related settlement.",
+      "key_points": [
+        "Dewatering ('in the dry') may be required for open cut construction in groundwater-bearing soils.",
+        "Dewatering raises effective stress in surrounding soils, potentially causing settlement under adjacent structures.",
+        "Low-permeability cutoff trenches (soil-bentonite or soil-cement-bentonite) can be installed to limit groundwater drawdown effects on nearby structures."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when open cut excavations are planned in areas with shallow groundwater or adjacent to existing structures sensitive to settlement."
+    },
+    {
+      "section_id": "2-3",
+      "title": "TRENCHING",
+      "summary": "Top-level container section covering all aspects of trenching, including site exploration, trench stability factors, and the various support systems regulated by OSHA. Addresses how subsurface conditions, groundwater, surface loads, and vibrations affect trench design and worker safety.",
+      "body": "",
+      "key_points": [
+        "Trenching projects require site exploration programs to define soil and groundwater conditions over the full project extent.",
+        "OSHA (2020) regulates excavation support for trenches; principal stability factors include lateral earth pressures, bottom heave, and groundwater infiltration.",
+        "Support systems covered include trench shields, hydraulic shoring, timber shoring, and steel shoring.",
+        "Shoring and sheeting plans must be certified by a registered PE; trenches >20 ft deep require a licensed PE approval."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies whenever trenching operations are planned, designed, or constructed on DoD projects."
+    },
+    {
+      "section_id": "2-3.1",
+      "title": "Site Exploration",
+      "summary": "Describes exploration program requirements for trenching projects, which frequently extend over long distances. Emphasizes the need to characterize soil and groundwater conditions along the full project extent so the shoring system design can be adjusted for varying subsurface conditions.",
+      "body": "Individual trenching projects frequently extend over long distances. An exploration program should be performed to define the soil and groundwater conditions over the full extent of the project so that the design of the shoring system can be adjusted to accommodate varying subsurface conditions.",
+      "key_points": [
+        "Trenching projects often span long distances, requiring comprehensive exploration programs.",
+        "Exploration must cover the full project extent to capture varying subsurface conditions.",
+        "Results are used to adjust shoring system design along the project alignment."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies during the planning and design phase of any trenching project to determine shoring requirements along the alignment."
+    },
+    {
+      "section_id": "2-3.2",
+      "title": "Trench Stability",
+      "summary": "Identifies principal and external factors influencing trench stability per OSHA (2020). Principal factors are lateral earth pressures on wall support, bottom heave, and infiltrating groundwater pressure/erosion. External factors include surface surcharge, vibration, groundwater seepage, and surface water flow.",
+      "body": "Excavation support for trenches is regulated by OSHA (2020). Principal factors influencing trench stability are the lateral earth pressures (see Chapter 4) on the wall support system, bottom heave, and the pressure and erosive effects of infiltrating groundwater (see Chapter 6 of DM 7.1). Additional external factors which influence trench stability include:\n- Surface surcharge loads,\n- Vibration loads,\n- Groundwater seepage, and\n- Surface water flow.",
+      "key_points": [
+        "OSHA (2020) governs trench excavation support requirements.",
+        "Principal stability factors: lateral earth pressures, bottom heave, and groundwater infiltration pressure/erosion.",
+        "External stability factors: surface surcharge, vibrations, groundwater seepage, and surface water flow.",
+        "Lateral earth pressure guidance is in Chapter 4; groundwater/seepage guidance is in DM 7.1 Chapter 6."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when evaluating the stability of any trench excavation where external loads or groundwater conditions may affect the support system."
+    },
+    {
+      "section_id": "2-3.2.1",
+      "title": "Surface Surcharge Loads",
+      "summary": "Addresses the effect of surface loads adjacent to a trench on the support system. Loads between the excavation edge and the failure plane intersection with the ground surface must be considered. Directs the reader to Section 4-4.2 for earth pressure guidance from surface loading.",
+      "body": "Surface loads may be present adjacent to a trench and cause loading on the trench support system. The effects of surface loads should be considered if the load is between the edge of the excavation and the intersection of the ground surface with the possible failure plane. Section 4-4.2 provides additional guidance on earth pressures caused by surface loading.",
+      "key_points": [
+        "Surface surcharge loads adjacent to a trench must be assessed for their effect on the support system.",
+        "Loads are relevant if located between the trench edge and the failure plane's ground surface intersection.",
+        "See Section 4-4.2 for detailed earth pressure methodology due to surface loading."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when surface loads (equipment, stockpiles, structures) exist adjacent to an open trench excavation."
+    },
+    {
+      "section_id": "2-3.2.2",
+      "title": "Vibration Loads",
+      "summary": "Covers the effects of vibrating machinery, blasting, dynamic loads, and earthquakes on trench stability. Notes that vibration effects are cumulative, especially dangerous in soft clays and loose contractive sands/silts, which can flow after disturbance. Blasting charge size should be minimized in trenches.",
+      "body": "The effects of vibrating machinery, blasting, other dynamic loads, and earthquakes in the vicinity of the excavation must be considered. The effects of vibrations are cumulative over periods of time and can be particularly dangerous in soft clays which amplify vibrations. In addition, vibrations from earthquakes or blasting can cause loose contractive sands and silts to fail as brittle materials at low strains. Once disturbed, these materials flow, which can result in catastrophic damage. Excavations in these types of soil are very problematic. While dense coarse-grained soils are also brittle and fail at low strains, they do not flow and are not problematic for excavations. If blasting is required in a trench, the size of the charge should be as small as possible, and the effect of vibrations on settlement of or damage to adjacent structures must be considered.",
+      "key_points": [
+        "Vibration effects from machinery, blasting, and earthquakes are cumulative and must be evaluated.",
+        "Soft clays amplify vibrations; loose contractive sands and silts can flow catastrophically once disturbed at low strains.",
+        "Dense coarse-grained soils are brittle but do not flow — less problematic than loose sands/silts.",
+        "When blasting is necessary near a trench, minimize charge size and monitor effects on adjacent structures."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to trench excavations near vibration sources such as heavy equipment, blasting operations, or seismically active areas."
+    },
+    {
+      "section_id": "2-3.2.3",
+      "title": "Groundwater Seepage",
+      "summary": "Explains two groundwater-related failure modes in trenches: bottom heave (quick condition) caused by upward seepage gradient exceeding critical gradient, and internal erosion of fine sands and silts. Both result from inadequate dewatering. Design guidance for internal erosion is referenced to DM 7.1 Chapter 6.",
+      "body": "Groundwater seepage at the bottom of an excavation can result in bottom heave. Bottom heave refers to upward movement of the base of the excavation caused by a high upward gradient that exceeds the critical gradient of the soil. This is also referred to as a quick condition. Heaving or quick soils lose all or most of their shear strength because the effective stress approaches zero. Bottom heave can occur in coarse-grained soils that are improperly dewatered.\n\nIn addition to heave, seepage can result in internal erosion, which is the movement of soil particles from within the soil structure. Fine sands and silts are most susceptible to internal erosion. Prediction methods and design for internal erosion are discussed in Chapter 6 of DM 7.1.",
+      "key_points": [
+        "Bottom heave (quick condition) occurs when upward seepage gradient exceeds the critical gradient, reducing effective stress to near zero.",
+        "Bottom heave can affect coarse-grained soils when dewatering is inadequate.",
+        "Internal erosion — particle movement within the soil structure — is most likely in fine sands and silts.",
+        "See DM 7.1 Chapter 6 for internal erosion prediction methods and design guidance."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to trench excavations in high groundwater environments, particularly in fine-grained or poorly dewatered coarse-grained soils."
+    },
+    {
+      "section_id": "2-3.2.4",
+      "title": "Surface Water Flow",
+      "summary": "Addresses uncontrolled surface water intrusion into retained soil behind trench walls, which increases water content, may cause saturation, raises loads on the support system, and can reduce soil shear strength. Site drainage must divert surface water away from trenches, especially in the zone between the excavation edge and failure plane.",
+      "body": "Uncontrolled surface water can enter the retained soil, increase the water content, and potentially result in saturation. Saturation greatly increases loads on the wall support system and may reduce the shear strength of the soil. Site drainage should be designed to divert surface water away from trenches. This is especially important for the zone between the edge of the excavation and the intersection of a possible failure plane with the ground surface.",
+      "key_points": [
+        "Surface water infiltration into retained soil can saturate it, increasing wall support loads and reducing shear strength.",
+        "Site drainage must be designed to divert surface water away from the trench.",
+        "The critical zone is between the trench edge and the failure plane's ground surface intersection."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to all trench excavations where surface runoff or precipitation could enter the retained soil zone adjacent to the trench."
+    },
+    {
+      "section_id": "2-3.3",
+      "title": "Support Systems",
+      "summary": "Introduces OSHA (2020) requirements for protective measures in trenches >5 ft deep (or shallower if cave-in risk exists). Describes the role of a 'competent person,' PE certification requirements, and the suite of support systems covered: trench shields, hydraulic shoring, timber shoring, and steel shoring. Cross braces must be horizontal, vertically spaced, and secured.",
+      "body": "OSHA (2020) requires protective measures for any trench greater than 5 feet deep, except in stable rock. Protective measures are also required for some excavations at any point less than 5 feet deep where there is evidence of a potential cave-in as determined by a competent person. OSHA (2020) describes a competent person as someone capable of identifying hazards or unsafe working conditions who possesses authority to take corrective measures.\n\nShoring and sheeting plans should be certified by a registered professional engineer. For trenches greater than 20 feet deep, a licensed professional engineer must approve the design (OSHA 2020).\n\nThe commonly used excavation support systems discussed in the following sections include trench shields, hydraulic shoring, timber shoring, and steel shoring. Cross braces or trench jacks shall be placed in true horizontal position; spaced vertically; and secured to prevent sliding, falling, or kickouts.",
+      "key_points": [
+        "OSHA requires protective measures for all trenches >5 ft deep, and shallower if cave-in potential exists.",
+        "A 'competent person' must identify hazards and has authority to implement corrective measures.",
+        "Shoring/sheeting plans require PE certification; trenches >20 ft deep require licensed PE design approval.",
+        "Cross braces and trench jacks must be truly horizontal, vertically spaced, and secured against sliding or kickout.",
+        "Primary support systems: trench shields, hydraulic shoring, timber shoring, and steel shoring."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to the selection and regulatory compliance of support systems for any trench excavation on DoD projects."
+    },
+    {
+      "section_id": "2-3.3.1",
+      "title": "OSHA Soil Types",
+      "summary": "Summarizes the three OSHA soil types (A, B, C) used for trench design, including their cohesive/granular descriptions, unconfined compressive strength ranges, approximate USCS classifications, and key exclusions/inclusions. Notes that OSHA definitions do not conform to USCS (ASTM D2487).",
+      "body": "OSHA (2020) defines Soil Types A, B, and C for the design of trenches as summarized in Table 2-1. Appendix A of the OSHA manual provides definitions of terms used in defining these soil types. OSHA's definitions do not conform to the Unified Soil Classification System (ASTM D2487).",
+      "key_points": [
+        "OSHA classifies soils as Type A (strongest), B, or C (weakest) for trench design purposes.",
+        "Type A: cohesive soils with unconfined compressive strength >1.5 tsf; excludes fissured, previously disturbed, or vibration-affected soils.",
+        "Type B: cohesive soils 0.5–1.5 tsf and granular cohesionless soils; includes downgraded Type A soils.",
+        "Type C: cohesive soils <0.5 tsf and granular cohesionless soils; includes soils with layers dipping into excavation >4H:1V.",
+        "OSHA soil type definitions differ from USCS (ASTM D2487) classifications."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 2-1"
+      ],
+      "applicability": "Applies when classifying on-site soils for OSHA-compliant trench shoring and support system design."
+    },
+    {
+      "section_id": "2-3.3.2",
+      "title": "Trench Shield",
+      "summary": "Describes the trench shield — a prefabricated rigid steel support system placed within a vertical-walled excavation. Covers its use in most soils (except very dense/hard), OSHA depth limits (up to 20 ft for manufactured shields), allowance for up to 2 ft of excavation below the shield, and geometry requirements for sloped excavations.",
+      "body": "A trench shield is a rigid prefabricated steel support system used in lieu of other types of shoring, which extends from the bottom of the excavation to the ground surface. The trench shield is placed within a wider excavation with vertical walls and protects the enclosed space from trench collapse. Piping systems or other structures are constructed within the shield, which is pulled ahead, as trenching and construction proceed. Figure 2-1(a) illustrates a trench shield. This system is useful in most soils with the exception of very dense or hard soils. The trench shield must extend to the ground surface of vertical excavations. Where part of the excavation is sloped, the trench shield extends 18 inches above the toe of the slope as shown in Figure 2-1(b). The trench shield must be designed for the full height of the excavation including the sloped portion above the trench shield.\n\nExcavation depths of up to 20 feet are permitted by OSHA (2020) using manufactured trench shields designed in accordance with OSHA standards. These shields should be used in accordance with the manufacturer's specifications, recommendations, tabulated data, and limitations. Shield systems must not be subjected to loads exceeding those which the system was designed to withstand.\n\nExcavations up to 2 feet below the shield are permitted when the shield is designed to resist the forces for the full depth of the trench. This type of excavation is only permitted when there is no indication of loss of soil from behind or below the bottom of the shield. When designing for an excavation below the bottom of the shield, consideration must be given to the potential for internal erosion or heaving. During use, the excavation should be observed for evidence of these problem conditions. Surcharge loading, vibrations, or loads from adjacent structures also must be considered.",
+      "key_points": [
+        "Trench shields are prefabricated rigid steel systems pulled forward as construction progresses; useful in most soils except very dense or hard materials.",
+        "OSHA permits manufactured trench shields to 20 ft depth; must be used per manufacturer's specifications and not overloaded.",
+        "Shield must reach ground surface in vertical excavations; in sloped excavations, it must extend 18 in above the slope toe.",
+        "Up to 2 ft of excavation below the shield is permitted only if the shield is designed for full trench depth and no soil loss is occurring.",
+        "Internal erosion, heave, surcharge, and adjacent structure loads must all be evaluated when excavating below the shield bottom."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 2-1"
+      ],
+      "tables": [],
+      "applicability": "Applies when selecting trench shields as the protective system for trench excavations up to 20 ft deep in most soil types."
+    },
+    {
+      "section_id": "2-3.3.3",
+      "title": "Hydraulic Shoring",
+      "summary": "Describes hydraulic shoring consisting of aluminum hydraulic cylinder braces and heavy plywood (Finform) sheets. Covers its advantages over timber shoring (lower cost, no trench entry required), typical depth/width limits (~25 ft deep, up to 12 ft wide), and OSHA design tables for soil types A–C with and without wales.",
+      "body": "Hydraulic shoring consists of aluminum hydraulic cylinder braces and heavy plywood (Finform) sheets. It has gained popularity over timber shoring, because it is less costly and does not require workers to enter a trench to construct the shoring. Table 2-2 and Table 2-3 provide hydraulic shoring requirements from OSHA (2020). Figure 2-2 illustrates typical applications of hydraulic shoring (OSHA 2020).\n\nHydraulic shoring can typically be used to a depth of about 25 feet with trench widths up to 12 feet. The trench width can be increased with cylinder extensions referred to as steel tube oversleeves. Hydraulic shoring design guidelines are found in OSHA (2020) Appendix D, Item (g).",
+      "key_points": [
+        "Hydraulic shoring uses aluminum cylinder braces and heavy plywood (Finform); preferred over timber because workers need not enter the trench.",
+        "Applicable to depths up to ~25 ft and widths up to 12 ft; width can be extended using steel tube oversleeves.",
+        "OSHA Tables D-1.1 through D-1.4 govern cylinder spacing, diameter, and waler requirements for soil types A–C.",
+        "Trenches >20 ft deep require manufacturer's tabulated data and CFR Part 1926 Subpart P compliance.",
+        "2-inch diameter cylinders at widths 8–12 ft require structural steel tube oversleeves (3.5×3.5×0.1875 in)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 2-2"
+      ],
+      "tables": [
+        "Table 2-2",
+        "Table 2-3"
+      ],
+      "applicability": "Applies when designing or selecting hydraulic shoring for trench excavations in OSHA soil types A, B, or C up to approximately 25 ft deep."
+    },
+    {
+      "section_id": "2-3.3.4",
+      "title": "Timber Shoring",
+      "summary": "Covers four timber shoring types (skeleton, close/tight, box, telescopic) and their applicability by soil and depth conditions. Addresses OSHA minimum requirements from Table 2-4, timber quality requirements, allowable compressive stress limits, slenderness ratio limit of 50, and conditions requiring licensed PE approval including depths >20 ft and submerged conditions.",
+      "body": "Timber shoring uses a temporary structure made of wood to support a trench. The four types of timber shoring are illustrated in Figure 2-3. The systems use vertical uprights or horizontal timbers against the soil, which are supported by a system of wales and cross-braces. Skeleton shoring does not use continuous upright members and is applicable when running soils are not expected. It can be used to depths up to 20 feet. Close (tight) shoring uses continuous upright timbers to support the soil and is useful where seepage and cave-ins are expected. Box shoring uses horizontal timbers to support the soil. Box shoring is applicable to trenching in any soil and is only limited in depth by the structural strength and size of the timber. Telescopic shoring is used for very deep trenches and consists of nested trenches that decrease in width as the trench depth increases.\n\nTimbers used for shoring must be sound and free from large or loose knots. Timber shoring must be designed and installed to the bottom of the excavation. Braces and uprights for timber shoring must be installed at the same time as the excavation. Braces and diagonal shores of timber should not be subjected to compressive stresses in excess of the allowable compressive stress. The allowable compressive stress will vary by species of wood. Additional information on the structural properties of timber can be found in Section 6-7.1.1.3 as well as the Wood Handbook (USDA 2010). The allowable compressive stress will decrease as the slenderness of the shoring member increases. The ratio of length to least width is typically limited to 50 or less.\n\nTable 2-4 summarizes the OSHA (2020) minimum requirements for trench shoring. The data in the table are for nominal size timber with spacing measured center to center. A maximum of two feet of soil surcharge adjacent to the trench and a maximum equipment surcharge of 20,000 lb are assumed in the design. The region adjacent to the trench is defined as a horizontal distance on each side of the trench equal to its depth. OSHA (2020) indicates that tight sheeting, such as tongue and groove timber at least three inches thick or steel sheet piling, must be used when submerged conditions are encountered to resist the lateral water pressure and to reduce loss of fines behind the sheeting. Table 2-4 does not cover the case of submerged conditions. A licensed professional engineer must approve the design for trenches greater than 20 ft deep, submerged conditions, and other conditions as noted in Table 2-4.",
+      "key_points": [
+        "Four timber shoring types: skeleton (no running soils, ≤20 ft), close/tight (seepage and cave-in risk), box (any soil, depth limited by timber size), and telescopic (very deep trenches).",
+        "All timbers must be sound; braces and uprights must be installed concurrently with excavation.",
+        "Allowable compressive stress varies by wood species; slenderness ratio (length/least width) must not exceed 50.",
+        "Table 2-4 OSHA minimums assume 2 ft soil surcharge and 20,000 lb equipment surcharge; horizontal stress: σ'h = (25H)+72 psf (Type A), (45H)+72 psf (Type B), (80H)+72 psf (Type C).",
+        "Timber specified as Douglas fir or equivalent with bending strength ≥ 1,500 psi; manufactured equivalents may substitute.",
+        "Tight sheeting (tongue and groove ≥3 in thick or steel sheet piling) required for submerged conditions.",
+        "Licensed PE approval required for trenches >20 ft, submerged conditions, and certain depth/soil/spacing combinations in Table 2-4."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 2-3"
+      ],
+      "tables": [
+        "Table 2-4"
+      ],
+      "applicability": "Applies when designing or selecting timber shoring for trench excavations in OSHA soil types A, B, or C, including evaluation of member sizing, surcharge assumptions, and submerged conditions."
+    },
+    {
+      "section_id": "2-4",
+      "title": "Deep Excavation Systems",
+      "summary": "Introduces the topic of deep excavation support systems, covering factors that influence wall design and selection, basal heave, movement prediction of walls and adjacent soil/structures, and construction. References FHWA (2008) and Clough and O'Rourke (1990) for further detail, and directs the reader to Chapter 4 for earth pressure discussion.",
+      "body": "The discussion of deep excavation support systems includes consideration of the factors that influence wall design and selection, design against basal heave, prediction of the movement of walls and the adjacent soil and structures, and construction. Further information can be found in FHWA (2008) and Clough and O'Rourke (1990). Detailed discussion of earth pressures is included in Chapter 4.",
+      "key_points": [
+        "Deep excavation support systems are required for below-ground construction and must account for wall movement during construction.",
+        "Movement impacts on surrounding structures and the project built within the excavation must be evaluated.",
+        "Key references: FHWA (2008) and Clough and O'Rourke (1990); earth pressures detailed in Chapter 4."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when designing or selecting deep excavation support systems for below-ground construction projects."
+    },
+    {
+      "section_id": "2-4.1",
+      "title": "Types of Wall and Support Systems",
+      "summary": "Describes the major types of deep excavation wall systems (sheet piling, combined sheet piling, soldier piles and lagging, secant/tangent pile walls, deep soil mixing, concrete diaphragms) and support systems (rakers, cross-lot struts, tiebacks, soil nails, berms). Covers movement mechanisms, wall and support selection factors summarized in Tables 2-5 and 2-6, and movement profiles from Clough and O'Rourke (1990).",
+      "body": "Deep excavation support systems are sometimes required to facilitate the construction of structures below ground. Design of these support systems must consider how much they will move during construction and how this movement will impact surrounding structures and the project to be built within the excavation. Movements of deep excavation walls are a function of many variables including:\n- Soil type, strength, compressibility, permeability, and earth pressures;\n- Groundwater level and changes in the groundwater level during construction;\n- Depth and shape of excavation;\n- Type and stiffness of wall;\n- Type and stiffness of support system;\n- Method of construction of the wall;\n- Adjacent building and surcharge loads; and\n- Length of time the deep excavation support system is in place.\n\nExperience with deep excavations indicates three major types of movement during construction of braced and tied-back deep excavation walls (Clough and O'Rourke 1990). The first stage of movement occurs when the wall is unsupported or in the cantilever condition as shown in Figure 2-4(a). In this first stage, the largest movements occur near the top of the wall. As the excavation moves downward, the upper part of the wall is supported, reducing further movement. However, additional lateral and vertical movement can occur as the resistance of the support system is mobilized. Movement can also occur before the additional supports are installed, and basal movement can occur as shown in Figure 2-4(b). Clough and O'Rourke described this movement as deep inward movement. The cumulative movement is shown in Figure 2-4(c).\n\nVariation occurs in the magnitude of movement because of differences in wall stiffness, depth of excavation without support installation, and soil conditions. Clough and O'Rourke note that in sands and stiff to hard clays, cantilever movement typically dominates, and settlement behind the wall has a triangular distribution. In soft to medium clays, deep inward movement dominates, and settlement behind the wall takes on a trapezoidal distribution.\n\nThe major types of deep excavation wall systems include sheet piling, combined sheet piling with H-piles or pipe piles (See Figure 2-5), soldier piles (H-piles) and lagging, concrete diaphragms, secant and tangent pile walls, and deep soil mixing. The factors involved in the selection of a wall type are summarized in Table 2-5.\n\nSupport systems, shown in Figure 2-6, may be internal to the excavation, such as rakers, cross lot struts, or braces. External support systems include prestressed tieback anchors and soil nails. Berms can be added to any support system to help reinforce the toe of the wall. Berms used for temporary support must consider the movement required to achieve passive resistance. A berm constructed from stiff or dense soil is more effective compared to a loose berm because passive pressure is developed with less movement. A low factor of safety against basal heave may allow the berm to move with the soil and provide minimal passive resistance. Table 2-6 summarizes project conditions that influence the selection of a support system.",
+      "key_points": [
+        "Wall movements depend on soil type/strength, groundwater, excavation depth/shape, wall/support stiffness, construction method, surcharge loads, and duration of support.",
+        "Three movement stages: (1) cantilever (unsupported wall, largest movement at top), (2) deep inward movement (basal), and (3) cumulative movement.",
+        "In sands and stiff-to-hard clays, cantilever movement dominates with triangular settlement distribution; in soft-to-medium clays, deep inward movement dominates with trapezoidal settlement distribution.",
+        "Major wall types: steel sheet piling, combined sheet piling, soldier piles (H-piles) and lagging, secant pile walls, tangent pile walls, deep soil mixing, and concrete diaphragms.",
+        "Support systems include internal (rakers, cross-lot struts/braces) and external (prestressed tieback anchors, soil nails) systems; berms supplement toe resistance.",
+        "Stiff/dense berms develop passive resistance with less movement than loose berms; low FOS against basal heave reduces berm effectiveness.",
+        "Selection factors for wall types summarized in Table 2-5; project conditions influencing support system selection summarized in Table 2-6."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 2-4 — Typical Profiles of Movement for Braced and Tieback Anchor Walls (after Clough and O'Rourke 1990)",
+        "Figure 2-5 — Examples of Combined Sheet Piling Cross Sections (after DeepEX Combined Sheet Pile Walls Software 2021)",
+        "Figure 2-6 — Examples of Support Systems (after USACE 1983b and FHWA 2015)"
+      ],
+      "tables": [
+        "Table 2-5 — Types of Walls and Factors Involved with Selection",
+        "Table 2-6 — Project Conditions that Influence the Selection of a Support System"
+      ],
+      "applicability": "Applies when selecting and designing deep excavation wall and support systems for below-ground construction, particularly where adjacent structure protection and movement control are required."
+    },
+    {
+      "section_id": "2-4.2",
+      "title": "Site Considerations for Deep Excavations",
+      "summary": "Container section covering site-specific considerations that govern the selection and design of deep excavation support systems. Content is fully elaborated in subsections 2-4.2.1 (soil type influence) and 2-4.2.2 (groundwater influence), which address earth pressure conditions, wall selection, dewatering, and stability factors.",
+      "body": "",
+      "key_points": [
+        "Site conditions — primarily soil type and groundwater — are the primary drivers for selecting deep excavation wall and support systems.",
+        "Detailed guidance on soil type and groundwater influences is provided in subsections 2-4.2.1 and 2-4.2.2 respectively."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies whenever site conditions must be evaluated to select and design a deep excavation support system."
+    },
+    {
+      "section_id": "2-4.2.1",
+      "title": "Influence of Soil Type",
+      "summary": "Explains how soil type governs the choice of deep excavation wall and support system, referencing Table 2-7 as a selection guide. Covers how wall movement relative to soil determines at-rest, active, and passive earth pressure conditions; notes that active pressure mobilizes at much less movement than passive, and that restricting passive-side movement reduces mobilized resistance. Factors such as wall/support stiffness and excavation depth also affect actual pressures.",
+      "body": "The type of soil supported by a deep excavation will influence the selection of an appropriate type of wall and support system. Table 2-7 provides a guide for this selection process based on soil type.\n\nThe soil type will also control the earth pressures and forces on deep excavation systems, which are discussed in detail in Chapter 4. Earth pressures depend on wall movement relative to the soil. When little to no movement occurs, the earth pressure condition is referred to as at-rest. The stress state in the soil approaches an active condition at locations where the wall moves away from the soil. This occurs behind the wall system above the base of the excavation. The stress state in the soil approaches a passive condition at locations where the wall moves toward the soil. This occurs on an embedded portion of the wall system below the base of the excavation. Different amounts of wall movement must occur to fully mobilize active and passive pressures. The movement required to mobilize active pressure is much lower than that required for passive pressure. Restricting wall movement in the passive case greatly reduces the mobilized passive earth pressure, but this is necessary in most design cases due to movement limitations.\n\nActual earth pressures depend on wall deformation, and this in turn depends on several factors including stiffness of wall and support system, stability of the base of the excavation, and depth of excavation. These factors are discussed in more detail in Sections 2-4.3 and 2-4.4.",
+      "key_points": [
+        "Soil type governs both the wall/support system selection (Table 2-7) and the earth pressures imposed on the excavation system.",
+        "At-rest pressure applies when little to no wall movement occurs; active pressure develops as the wall moves away from the soil (above excavation base); passive pressure develops as the wall moves into the soil (embedded portion below excavation base).",
+        "Active pressure is fully mobilized at much smaller wall movements than passive pressure.",
+        "Restricting wall movement on the passive side significantly reduces mobilized passive resistance, which must be accounted for in design.",
+        "Actual earth pressures depend on wall deformation, which is controlled by wall and support stiffness, base stability, and excavation depth — covered further in Sections 2-4.3 and 2-4.4.",
+        "For soft to medium clays, high wall stiffness (e.g., concrete diaphragm) is preferred to reduce movements and basal heave; tieback anchors and soil nails may be unsuitable.",
+        "Sheet piling is difficult to drive and interlocks may separate in dense sands, gravels, and clayey sands; soils with boulders/residual floaters may require chisels, hydromills, or rock coring."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 2-7"
+      ],
+      "applicability": "Applies when selecting a deep excavation wall and support system type based on subsurface soil conditions and evaluating resulting earth pressure regimes."
+    },
+    {
+      "section_id": "2-4.2.2",
+      "title": "Influence of Groundwater",
+      "summary": "Addresses how groundwater conditions must be evaluated during selection and design of deep excavations. Covers water pressure on impervious walls, risks of excess pore pressure (heave, loss of passive resistance, seepage, internal erosion, particle erosion), and the option of dewatering adjacent soil to improve stability and reduce wall loads, with the caution that dewatering can cause settlement.",
+      "body": "Groundwater conditions must be evaluated during the selection and design of a deep excavation. Some walls are impervious and prevent seepage through the wall. Where water is retained, water pressures on the wall may be greater than earth pressure. Excess pore pressures at the base of an excavation can result in heave, loss of passive resistance, seepage, and internal erosion. Particle erosion can also occur between open pile interlocks, lagging, and gaps in tangent pile walls.\n\nIn some cases, the soil adjacent to and below an excavation can be dewatered to improve stability and reduce wall loads. Some walls are not watertight and will allow water to seep into the excavation. The adjacent water level will drop provided the water is removed from the excavation. Dewatering will tend to cause settlement that may be [continued on next page].",
+      "key_points": [
+        "Groundwater conditions must be evaluated during both selection and design of deep excavation systems.",
+        "Impervious walls (e.g., concrete diaphragm, sheet pile) retain water, potentially causing wall water pressures that exceed earth pressures.",
+        "Excess pore pressures at the excavation base can cause heave, loss of passive resistance, seepage, and internal erosion.",
+        "Particle erosion is a risk at open pile interlocks, lagging gaps, and tangent pile wall gaps.",
+        "Dewatering adjacent soil can improve stability and reduce wall loads, but carries a risk of causing ground settlement in surrounding areas.",
+        "Non-watertight walls allow seepage into the excavation; the adjacent groundwater level drops if water is continuously removed."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when evaluating groundwater impacts on deep excavation wall selection, water pressure design, seepage control, and dewatering decisions."
+    },
+    {
+      "section_id": "2-4.3",
+      "title": "Wall and Excavation Stability",
+      "summary": "Introduces the key stability considerations for deep excavation wall systems, including structural design for earth and water pressure forces, thermal effects on internal bracing, frost penetration on tiebacks and struts, wall settlement, global stability, and basal heave. References Chapter 4 for force determination methods.",
+      "body": "The deep excavation wall and supports must be designed to carry the forces from the earth and water pressures. Chapter 4 provides detail on the methods used to determine these forces so that the structural design of the wall can be completed. Those designs should also include the effects of thermal expansion and contraction on internal bracing, as well as the effects of frost penetration on tiebacks and struts. In addition, wall settlement, global stability, and basal heave must be considered.",
+      "key_points": [
+        "Walls and supports must be designed for earth and water pressure forces; see Chapter 4 for force determination methods.",
+        "Structural design must account for thermal expansion/contraction effects on internal bracing.",
+        "Frost penetration effects on tiebacks and struts must be included in design.",
+        "Wall settlement, global stability, and basal heave are all required design considerations for deep excavations."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to all deep excavation wall and support system designs where earth/water pressures, thermal effects, and stability must be evaluated."
+    },
+    {
+      "section_id": "2-4.3.1",
+      "title": "Wall Settlement",
+      "summary": "Covers the causes and control of settlement in deep excavation wall systems. Earth pressure and inclined support forces have vertical components that can cause wall settlement, destressing tiebacks, and stressing bracing. Guidance is given for bearing layer requirements for different wall types, and references Chapter 6 for movement estimates when no bearing stratum is present.",
+      "body": "Earth pressure forces and inclined support system forces have vertical components that can cause settlement of deep excavation wall systems. Wall settlement can cause destressing of tiebacks and stressing of internal bracing systems. Wall settlement must be considered and controlled, because wall design methods typically assume no vertical movement or settlement of the wall.\n\nWith the exception of sheet piling or combined sheet piling, the wall system should be driven, drilled, or excavated to a suitable bearing layer to avoid excessive wall settlement. For sheet piling or combined sheet piling, settlement can be reduced by driving or drilling sufficient sheet piles (e.g., every 5th pile) to a suitable bearing stratum. If a bearing stratum is not present, estimates of wall movement should be made using the methods of Chapter 6, and efforts should be made to reduce the vertical component of the support system forces.",
+      "key_points": [
+        "Vertical components of earth pressure and inclined support forces can cause wall settlement.",
+        "Wall settlement can destress tiebacks and increase stress in internal bracing systems.",
+        "Most wall types should be installed to a suitable bearing layer to avoid excessive settlement.",
+        "For sheet piling, driving selected piles (e.g., every 5th pile) to a bearing stratum can reduce settlement.",
+        "When no bearing stratum exists, use Chapter 6 methods to estimate wall movement and minimize vertical force components."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when designing deep excavation walls with inclined or tieback support systems where vertical force components may induce wall settlement."
+    },
+    {
+      "section_id": "2-4.3.2",
+      "title": "Global Stability",
+      "summary": "Addresses deep-seated global stability analysis for excavations, requiring evaluation of failure surfaces below the wall and behind ground anchors. Surface surcharges, adjacent building loads, berms, and slopes must all be included. References DM 7.1 Chapter 7 for analysis methods and notes that rock excavations may require toe bolting for adversely oriented discontinuities.",
+      "body": "Deep excavation design should consider the possibility of deep seated stability below the wall and behind any ground anchors. The stability analyses should consider surface loads from surcharges or adjacent buildings. If there are any berms or slopes in the system, these must also be considered. The stability analyses should be performed using the methods described in Chapter 7 of DM 7.1.\n\nExcavations in rock below the wall may require rock bolting at the toe if bedding or adversely oriented joints dip into excavation or the rock surface slopes into excavation.",
+      "key_points": [
+        "Global stability analyses must consider deep-seated failure surfaces below the wall and behind ground anchors.",
+        "Surcharges and adjacent building loads must be included in stability analyses.",
+        "Berms and slopes within or adjacent to the excavation system must also be evaluated.",
+        "Use DM 7.1 Chapter 7 methods for stability analyses.",
+        "Rock excavations may need toe rock bolting if bedding or joints dip into the excavation or the rock surface slopes inward."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to all deep excavation designs where deep-seated failure, ground anchors, surcharges, slopes, or rock discontinuities may influence stability."
+    },
+    {
+      "section_id": "2-4.3.3",
+      "title": "Basal Instability or Heave",
+      "summary": "Covers analysis of basal heave in deep excavations, primarily a concern where excavation width exceeds depth in soft to medium clays. Presents the normalized wall stiffness parameter (Kwall) from Mana and Clough (1981) for distinguishing flexible vs. stiff wall behavior, a required FS ≥ 1.5, and references Figure 2-7 for calculation methods for both coarse-grained soils and clays.",
+      "body": "Basal heave is the tendency of the bottom of an excavation to move upward because of the weight of the soil adjacent to the excavation. Basal heave in deep excavations is usually only an issue where the width of excavation (B) is greater than depth (H). It is primarily a concern for soft to medium clays that extend to significant depth.\n\nA method for calculating basal instability of braced excavations in coarse-grained soils is provided in Figure 2-7(a). Basal instability is less common in coarse-grained soils than clays.\n\nFor clays, the method used to calculate the factor of safety against basal heave (FBH) depends on the relative wall flexibility. Flexible walls (e.g., sheet piling) will deform with the soil, and the portion of the wall that penetrates below the base of the excavation is ignored. Stiff walls (e.g., concrete diaphragm) prevent the soil from deflecting toward the base of the excavation. The soil must flow beneath the wall and up towards the base of the excavation for heave to occur. Thus, for stiff walls, the wall penetration below the base is considered. A factor of safety of at least 1.5 should be used against basal heave failure as discussed by Mana and Clough (1981). The normalized wall stiffness, Kwall, as defined by Mana and Clough (1981) can be found as:\n\nKwall = EI / (γt × h^4)\n\nwhere:\nE = Young's modulus of wall,\nI = second moment of the area of the wall section (I = t³ / 12 for wall thickness t),\nγt = total unit weight of the retained soil, and\nh = vertical spacing of the support system braces or anchors.\n\nThe normalized wall stiffness is greatly influenced by the spacing of the support system, because this variable is raised to the fourth power. A secondary consideration is the movement required to mobilize the support system. Ground anchors and internal bracing can be prestressed to reduce mobilization movement. In contrast, soil nails require movement to develop support forces.\n\nThe calculation of basal heave for clays is shown in Figure 2-7(b) and (c). For flexible walls, the driving force is the weight of the soil extending a distance, B1, beyond the excavation plus the surcharge loading. The resisting force is developed along the sides of the block of soil defined by B1 and in the soil below the excavation.\n\nFor very stiff walls, the shear resistance in the clay along the inside of the wall may be included. An adhesion factor (α) between the wall and clay is multiplied by the undrained strength of the clay in this layer. Very stiff walls are much more effective at reducing lateral movement and basal heave than flexible walls, producing the higher factors of safety against basal heave.",
+      "key_points": [
+        "Basal heave is primarily a concern when excavation width (B) > depth (H) in soft to medium clays.",
+        "A minimum factor of safety of 1.5 against basal heave is required (Mana and Clough, 1981).",
+        "Normalized wall stiffness Kwall = EI/(γt·h⁴); brace/anchor spacing h has the dominant influence (raised to 4th power).",
+        "Flexible walls (e.g., sheet piling): wall penetration below excavation base is ignored in FBH calculation.",
+        "Stiff walls (e.g., concrete diaphragm): wall penetration is considered; soil must flow beneath wall for heave to occur.",
+        "Very stiff walls may include wall-clay adhesion (factor α × Su) to increase resistance against basal heave.",
+        "Soil nails require movement to develop support forces, unlike prestressed anchors or internal bracing.",
+        "Figure 2-7 provides calculation methods for both coarse-grained soils (a) and clays (b, c)."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 2-2",
+          "description": "Normalized wall stiffness Kwall = EI / (γt × h⁴), where E = Young's modulus of wall, I = second moment of area of wall section (t³/12 for thickness t), γt = total unit weight of retained soil, h = vertical spacing of support system braces or anchors.",
+          "implemented_in": "geotech_references.dm7_2.chapter2.normalized_wall_stiffness"
+        }
+      ],
+      "figures": [
+        "Figure 2-7 — Methods for Calculating Factor of Safety Against Basal Instability or Heave (after Wong and Goh 2002): (a) coarse-grained soils, (b) flexible walls in clay, (c) stiff walls in clay"
+      ],
+      "tables": [],
+      "applicability": "Applies when evaluating basal heave potential for deep excavations in soft to medium clays or coarse-grained soils, particularly where excavation width exceeds depth."
+    },
+    {
+      "section_id": "2-4.4",
+      "title": "Ground Movements Adjacent to Deep Excavations",
+      "summary": "Introduces procedures for estimating maximum horizontal and vertical movements adjacent to deep excavation support walls, profiles of movement with distance from the wall, and methods to predict damage to adjacent structures. Covers three soil categories: stiff clays/sands/residual soils, and soft to medium clays, updating Peck (1969) with Clough and O'Rourke (1990) methods.",
+      "body": "Prediction of wall movement is an important part of the design of deep excavation systems. This section presents procedures to estimate (1) the anticipated maximum horizontal or lateral movements and the maximum settlement immediately behind the excavation support wall, (2) the profile of movement with distance from the wall, and (3) methods to predict damage to structures adjacent to excavations.\n\nObservations of settlement behind sheet piling walls and soldier pile (H-pile) and lagging walls in the mid-20th century suggested the trends shown in Figure 2-8 (Peck 1969). The settlement (δV) and distance from the wall (d) are both normalized by the depth of excavation (H). The movements shown in Figure 2-8 were state of the practice in the late 1960s and can occur today with poor construction workmanship or by lowering the groundwater during construction, which may increase the load on the wall. Peck separated typical movements into three zones of interest based on soil type and basal stability:\n\n- Zone I – Sand and hard clays (limited soft clay): FBH > 2\n- Zone II – Soft clays below excavation: 1 < FBH < 2\n- Zone III – Soft clays to significant depth below excavation: FBH ≈ 1\n\nControl of movements has improved in deep excavations. New methods of support and new walls have been introduced since Peck developed Figure 2-8. Clough and O'Rourke (1990) updated Peck's approach and attempted to screen projects to remove movements that were not primarily related to the excavation support processes (O'Rourke 1981, Mana and Clough 1981, Clough et al. 1989). This section presents the subject in the following categories:\n- Maximum movements of excavation support walls in stiff clays, sands and residual soils;\n- Profiles of movements beyond excavation support walls in stiff to hard clays and sands; and\n- Maximum movements of excavation support walls and profiles of movements beyond excavation support walls in soft to medium clays.\n\nTypical values of settlement and horizontal movement at the wall are summarized in Table 2-8. The values are presented as a percentage of the excavation depth (H). The lateral extent of movement is also summarized as a ratio compared to H.",
+      "key_points": [
+        "Peck (1969) defined three settlement zones based on soil type and factor of safety against basal heave (FBH > 2, 1 < FBH < 2, FBH ≈ 1).",
+        "Clough and O'Rourke (1990) updated Peck's approach, screening out movements not related to excavation support processes.",
+        "Movements are normalized by excavation depth H; typical values of δVm/H and δHm/H are summarized in Table 2-8.",
+        "Three soil categories are addressed: stiff clays/sands/residual soils, and soft to medium clays.",
+        "Lateral extent of movement is also expressed as a ratio d/H, ranging from 1.5 to 3 depending on soil type and wall stiffness.",
+        "Poor construction workmanship or groundwater lowering can result in movements equivalent to 1960s practice."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 2-8"
+      ],
+      "tables": [
+        "Table 2-8"
+      ],
+      "applicability": "Applies when estimating ground movements and settlement profiles adjacent to any deep excavation support system, for all soil types."
+    },
+    {
+      "section_id": "2-4.4.1",
+      "title": "Movements in Stiff Clays, Sands, and Residual Soils",
+      "summary": "Presents case history-based methods for estimating maximum lateral and vertical wall movements in stiff clays, sands, and residual soils. Establishes that δVm averages 0.15%·H and δHm averages 0.2%·H, both ranging up to 0.5%·H, and that wall type has little effect on movement magnitude. Finite element analyses confirm the importance of soil modulus and K0 over wall stiffness.",
+      "body": "Based on case histories of walls in these soils, the maximum horizontal (lateral) movement (δHm) and the maximum settlement (δVm) vary approximately linearly with excavation depth as shown in Figure 2-9 (Clough and O'Rourke 1990). This suggests that the retained soil masses behave approximately as an elastic material. The maximum settlement is presented in Figure 2-9(a) and indicates that the average δVm was about 0.15%·H and ranged up to about 0.5%·H. Figure 2-9(b) presents the maximum lateral movement and indicates that the average δHm was about 0.2%·H and also ranged up to about 0.5%·H.\n\nThe points with very large movements likely relate to factors other than the support system, such as lowered groundwater or poor construction practices. Some of these points would plot in Zones II and III of Figure 2-8 at d/H = 0. The ground movements below the 0.5%H lines can be attributed to movement of the support system and not extraneous factors.\n\nTwo important concepts are illustrated in Figure 2-9. The horizontal movement data is more scattered than the settlement data. In addition, there are no significant differences in the data for different types of wall construction (e.g., sheet piling, soldier pile (H-pile) and lagging, diaphragm, drilled piers, deep soil mix).\n\nClough and O'Rourke (1990) used finite element analyses to confirm the δHm = 0.2%·H trend line indicated by the data in Figure 2-9(b). The effects of soil modulus (Es), normalized wall stiffness (Kwall), support spacing (h), and coefficient of lateral earth pressure (K0) on wall movements were also studied. K0 accounts for the higher horizontal earth pressures found in overconsolidated soils. The finite element analyses, which considered the elastic nature of these relatively stiff soils, found that:\n- Es and K0 generally had a greater impact on wall δHm than wall stiffness,\n- Higher Es and lower K0 yielded lower δHm, and\n- Lower Es and higher K0 yielded higher δHm.\n\nIn these cases, the soil was stiff enough to minimize the influence of wall stiffness. Figure 2-9 can be used to estimate δHm and δVm of new excavation support systems in stiff clays, sands, and residual soils.",
+      "key_points": [
+        "Average δVm ≈ 0.15%·H and average δHm ≈ 0.2%·H; both range up to 0.5%·H in stiff clays, sands, and residual soils.",
+        "Movements exceeding 0.5%·H are likely related to extraneous factors such as groundwater lowering or poor construction.",
+        "Wall type (sheet piling, soldier pile, diaphragm, deep soil mix) has no significant effect on δHm or δVm in these soils.",
+        "Soil modulus (Es) and K0 have greater influence on δHm than wall stiffness in stiff soils.",
+        "Higher Es and lower K0 reduce δHm; lower Es and higher K0 increase δHm.",
+        "The retained soil mass behaves approximately elastically, leading to a near-linear movement vs. depth relationship."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 2-9"
+      ],
+      "tables": [],
+      "applicability": "Applies when estimating maximum lateral and vertical wall movements for excavations in stiff clays, sands, and residual (Piedmont/Blue Ridge) soils."
+    },
+    {
+      "section_id": "2-4.4.1.1",
+      "title": "Profiles of Movement in Stiff to Hard Clays",
+      "summary": "Presents dimensionless settlement and horizontal movement profiles for excavations in stiff to hard clays, based on case histories with various wall and bracing systems. Average δVm ≈ 0.15%·H and δHm ≈ 0.2%·H; movements decrease to negligible at d/H = 3.0. High-K0 overconsolidated clays may experience large lateral stress relief and anchor movement issues.",
+      "body": "Figure 2-10 summarizes case histories for stiff to hard clays. The wall and bracing systems include soldier piles and lagging with tieback anchors, concrete diaphragm walls with tieback anchors, concrete diaphragm walls with cross lot struts, drilled shaft walls and tieback anchors, and walls with internal raker braces. For more information on specific data points, see Clough and O'Rourke (1990).\n\nSettlements: Figure 2-10 indicates that δVm ranged from 0% to 0.3%·H and averaged about 0.15%·H. This average maximum settlement is consistent with Figure 2-9(a). The settlement decreased from the wall to negligible values at d/H = 3.0 where d is the distance from the face of the excavation support wall. A few of the cases experienced heave due to stress relief experienced by the stiff to very hard clays surrounding the deep excavations. The dimensionless settlement profile (Figure 2-10(c)) may be used to estimate the vertical movement pattern adjacent to an excavation in stiff to hard clay.\n\nHorizontal Movements: Two categories of horizontal movement are shown in Figure 2-10(b). Support systems with high horizontal stiffness reduce movement, resulting in a δHm of about 0.3%·H. An average value of δHm = 0.2%·H is appropriate for most estimates, which is similar to the typical trend shown in Figure 2-9(b). Support systems with low horizontal stiffness allow increased movement, and the maximum lateral movement is up to 0.8%·H. Similar to the settlement profile, a triangular horizontal movement profile can be used to estimate the horizontal movement with δH decreasing to a negligible value at d/H = 3.0.\n\nVery stiff to hard clays and shales may have high in situ K0 in the range of 2 to 3. The value of K0 can be estimated from the overconsolidation ratio and friction angle (see Equation 4-2). Excavations in these materials may induce lateral stress relief and large lateral movement. Anchors in these materials may move with the soil if not installed beyond the zone of movement, which can conservatively be assumed to extend up from the base of the excavation at an angle of 45° from horizontal.",
+      "key_points": [
+        "δVm ranges from 0% to 0.3%·H, averaging 0.15%·H; settlements decrease to negligible at d/H = 3.0.",
+        "δHm averages 0.2%·H for most systems; high-stiffness systems yield ~0.3%·H, low-stiffness systems up to 0.8%·H.",
+        "Triangular movement profile is recommended for both settlement and horizontal movement in stiff to hard clay.",
+        "Some cases show heave due to stress relief in very stiff to hard clays surrounding deep excavations.",
+        "High-K0 overconsolidated clays (K0 = 2 to 3) may develop large lateral movements from stress relief.",
+        "Anchors must be installed beyond the zone of movement (conservatively 45° from base of excavation) to avoid moving with the soil."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 2-10"
+      ],
+      "tables": [],
+      "applicability": "Applies when estimating settlement and horizontal movement profiles adjacent to excavations in stiff to hard clay soils."
+    },
+    {
+      "section_id": "2-4.4.1.2",
+      "title": "Profiles of Movement in Sands",
+      "summary": "Presents dimensionless settlement and horizontal movement profiles for excavations in sand and sand-gravel profiles based on Clough and O'Rourke (1990) case histories. Maximum δVm is typically less than 0.3%·H, averaging 0.1–0.2%·H, and movements decrease to negligible at d/H = 2.0, which is shorter than in stiff clays.",
+      "body": "Figure 2-11 summarizes case histories for subsurface profiles consisting of sand or sand and gravel with limited clay layers (Clough and O'Rourke 1990). Groundwater was either lowered, or recharged to reduce settlement, but did not vary during construction. The wall systems include both flexible and stiff walls, including soldier piles and lagging with cross lot struts or tieback anchors, sheet piling with tieback anchors, and concrete diaphragm walls with cross lot struts.\n\nSettlements: The maximum settlement tends to be less than 0.3%·H in sand and decreases to a negligible value at d/H = 2.0. In the majority of cases, the range of δVm was about 0.1%·H to 0.2%·H and averaged about 0.15%H, which may be used to estimate the maximum settlement. The dimensionless settlement profile in Figure 2-11(b) may be used to estimate the vertical movement pattern adjacent to an excavation in sand.\n\nHorizontal Movements: Clough and O'Rourke (1990) do not give specific recommendations for horizontal movement in excavations made in sand. For sand, the average value of δHm = 0.2%·H can be used from Figure 2-9(b). Horizontal movements are expected to decrease to negligible values at d/H = 2.0 with a horizontal movement profile similar to the settlement profile in Figure 2-11(b).",
+      "key_points": [
+        "δVm is typically less than 0.3%·H in sand, averaging 0.1–0.2%·H; movements become negligible at d/H = 2.0.",
+        "The influence zone in sand (d/H = 2.0) is shorter than in stiff to hard clay (d/H = 3.0).",
+        "δHm = 0.2%·H (from Figure 2-9(b)) is recommended for sand; no specific case history recommendations exist from Clough and O'Rourke (1990).",
+        "The horizontal movement profile in sand is assumed similar to the settlement profile in Figure 2-11(b).",
+        "Groundwater control (lowering or recharging) was maintained constant during construction for the case history data."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 2-11"
+      ],
+      "tables": [],
+      "applicability": "Applies when estimating settlement and horizontal movement profiles adjacent to excavations in sand or sand-gravel profiles."
+    },
+    {
+      "section_id": "2-4.4.2",
+      "title": "Movements in Soft to Medium Clays",
+      "summary": "Presents case history-based methods for estimating maximum lateral and vertical movements adjacent to excavations in soft to medium clays. δVm is limited to 2%·H with a trapezoidal settlement profile extending to d/H = 1.5–2.0. Horizontal movements are governed by the factor of safety against basal heave and normalized wall stiffness, as shown in Figure 2-13 finite element curves.",
+      "body": "Figure 2-12 summarizes case histories of wall movements in soft to medium clays (Mana and Clough 1981, Clough et al. 1989, Clough and O'Rourke 1990). The types of wall and bracing systems were sheet piling with cross lot struts, soldier piles and lagging with cross lot struts, and concrete diaphragm walls with cross lot struts. On some projects, berms and rakers were used as full or supplemental support. The Peck (1969) zones are included on Figure 2-12(a) for reference.\n\nSettlements: The maximum settlements are limited to about 2%·H and have a trapezoidal profile behind the wall as shown in Figure 2-12(a). The trapezoidal profile extends at δVm = 2%·H from the wall to d/H = 0.75 and then slopes up to δV = 0.0 at d/H = 1.5 where settlements decreased to negligible values. In most cases, the settlement was less than 1%·H. When reasonable care is used during construction and the factor of safety against basal heave is about 2, δVm = 1%·H may be assumed. This is true for either flexible or stiff excavation support walls, provided large cantilever movements are limited. When excavation support walls are flexible and the factor of safety against basal heave is less than 1.5, δVm = 2%·H is a reasonable assumption.\n\nThe settlements are normalized by δVm in Figure 2-12(b). The settlements fall within a trapezoidal region that extends to zero at d/H of about 1.5 or can conservatively be extended to d/H = 2 as proposed by Clough and O'Rourke.\n\nHorizontal Movements: The case history data of δHm / H for soft to medium clays are plotted against normalized wall stiffness in Figure 2-13 for sheet piling and slurry concrete diaphragm walls. The overall wall stability increased as the basal factor of safety is increased as shown in Figure 2-13. For soft to medium clays, horizontal movements are highly dependent on the factor of safety against basal heave. The stiff diaphragm walls generally had a factor of safety greater than 2. The more flexible sheet piling walls had a factor of safety generally less than 1.5 except where the subsurface conditions were favorable to a stable base.\n\nFigure 2-13 also presents the results of finite element analyses by Clough and O'Rourke (1990), which match the case history data well. The finite element curves can be used to select δHm / H based on normalized wall stiffness and factor of safety against basal heave for excavations in soft to medium clays. Note that the normalized wall stiffness is greatly influenced by spacing of the bracing or anchors (h). The range of normalized wall stiffness used in the finite element analyses are shown at the top of Figure 2-13 where the bracing was set at h = 3.5 m or about 12 feet, which is a typical design spacing.\n\nThe profile of horizontal movements for soft clays is likely similar to that observed for settlements. Thus, a dimensionless horizontal movement profile similar to that shown in Figure 2-12 for settlement may be assumed for soft to medium clays.",
+      "key_points": [
+        "Maximum settlement in soft to medium clay is limited to 2%·H with a trapezoidal profile; most cases are below 1%·H.",
+        "Trapezoidal settlement profile extends at δVm from wall to d/H = 0.75, then decreases to zero at d/H = 1.5 (or 2.0 conservatively).",
+        "With FBH ≈ 2 and good construction practice, δVm = 1%·H is appropriate; with flexible walls and FBH < 1.5, assume δVm = 2%·H.",
+        "Horizontal movements are highly dependent on FBH and normalized wall stiffness (Kwall); use Figure 2-13 finite element curves to estimate δHm/H.",
+        "Stiff diaphragm walls typically achieve FBH > 2; flexible sheet piling walls typically have FBH < 1.5.",
+        "The horizontal movement profile in soft to medium clay is assumed similar to the trapezoidal settlement profile."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 2-12",
+        "Figure 2-13"
+      ],
+      "tables": [],
+      "applicability": "Applies when estimating maximum lateral and vertical movements, and their profiles, adjacent to excavations in soft to medium clay soils."
+    },
+    {
+      "section_id": "2-4.4.3",
+      "title": "Prediction of Damage to Adjacent Structures",
+      "summary": "Provides methods to assess damage potential to structures adjacent to deep excavations using angular distortion (β) and horizontal strain (εh). Introduces Equations 2-3 through 2-6 for computing β and εh and for estimating movements at any point behind the wall. Uses Figure 2-14 (after Boscardin and Cording 1989) to map predicted deformations to damage categories. Discusses underpinning methods in Table 2-9.",
+      "body": "The movements of braced or anchored deep excavation support systems should be evaluated to determine if adjacent structures supported by shallow foundations require underpinning. The distance of existing structures from the excavation support system should be compared to the movement profiles in Figure 2-10 to Figure 2-12. Tolerance of structures to movement is discussed in Chapter 5 of DM 7.1. Other factors that influence the need for underpinning include:\n- Lowering groundwater by dewatering may cause soil consolidation and settlement.\n- Soldier piles and lagging, sheet piling, and tangent piles all leak to various degrees, and this will lower groundwater.\n- Leaks in the excavation support system can also cause loss of fines, piping, and settlement if not properly filtered.\n\nThe predicted angular distortion, β, and the horizontal strain, εh, across the building can be used to assess damage potential. Angular distortion is the differential vertical movement between two points divided by distance separating the points (Eq. 2-3). Similarly, horizontal strain (εh) between two points is given by Eq. 2-4.\n\nIn most cases, β and εh will be measured across the whole building width. In this case, the movements would be estimated at the front and back of the building (compared to the excavation), and db would equal the building width. The movements may be estimated from δVm, δHm, and the movement profile behind the wall, which are found using the methods in Sections 2-4.4.1 and 2-4.4.2.\n\nFor stiff to hard clays and sands, the movements can be estimated using Eq. 2-5, where δi is the desired horizontal or vertical movement at the point of interest, δm is the maximum movement at the wall, di is the distance from wall to the point of interest, and d0 = 3H for stiff to hard clays and 2H for sand.\n\nFor soft to medium clays, movements can be estimated using Eq. 2-6, with different expressions depending on whether di/H is between 0.75 and 1.5, or between 1.5 and 0.75.\n\nA method to evaluate the severity of damage from excavations to adjacent structures based on β and εh is presented in Figure 2-14 (Clough and O'Rourke 1990). Figure 2-14 maps damage categories for masonry load-bearing wall structures to predicted values of horizontal strain and angular distortion (Boscardin and Cording 1989). The damage categories are negligible, very slight, slight, moderate to severe, and severe to very severe. This damage mapping is based on theoretical structural response to deformation, field observations of building damage, and measurement of building horizontal and vertical displacements. When β ≈ 0, the boundaries for the categories are nearly horizontal and represent horizontal tensile strains that equal the critical tensile strains. When εh ≈ 0, the boundaries are inclined at about 45° and represent diagonal tensile strains that equal the critical tensile strains.\n\nThe estimated ratio of horizontal to vertical movements at the edge of the excavation may be estimated from δHm and δVm. These ratios are expected to be uniform from the wall to a distance of d = 0.5H. Ratios of δHm / δVm are superimposed for stiff soil types in Figure 2-14(a) and for soft to medium clays in Figure 2-14(b) (Clough and O'Rourke 1990, O'Rourke 1981). The ratios are based on the data analyzed in Figure 2-10 to Figure 2-13. In sands and stiff to hard clays, damage typically is bounded by the moderate to severe level, and construction controls can diminish the severity of movement. In soft to medium clays, damage typically is bounded by severe to very severe level, and insufficiently stiff bracing can result in additional movement.\n\nIf estimated movements are too large as indicated by Figure 2-14 for the existing structure to tolerate, underpinning will be required. Underpinning methods are described in FHWA (1978). Since underpinning may be required for adjacent buildings when considering deep excavation support systems, underpinning methods are discussed in Table 2-9. Example problems considering the topic of deep excavation support systems are presented in Figure 2-15 for stiff to hard clay and in Figure 2-16 for soft to medium clay.",
+      "key_points": [
+        "Angular distortion β = (δVi − δVj) / db and horizontal strain εh = (δHi − δHj) / db are used to assess building damage potential (Eq. 2-3, Eq. 2-4).",
+        "For stiff to hard clays and sands, movement at any distance is estimated by linear interpolation from the wall (d0 = 3H for clay, 2H for sand) using Eq. 2-5.",
+        "For soft to medium clays, a trapezoidal movement profile is used with the piecewise expression in Eq. 2-6.",
+        "Figure 2-14 maps β and εh to five damage categories (negligible to severe/very severe) for masonry load-bearing structures.",
+        "In stiff soils, damage is typically bounded by moderate to severe; in soft to medium clays, damage can reach severe to very severe.",
+        "Groundwater lowering, wall leakage, and loss of fines are additional factors that may necessitate underpinning beyond what movement profiles suggest.",
+        "Common underpinning methods include micropiles, jacked H-piles/pipe piles, helical piers, and underpinning pits (Table 2-9)."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 2-3",
+          "description": "Angular distortion β between two building points i and j: β = (δVi − δVj) / db, where δVi and δVj are estimated settlements at points i and j, and db is the distance separating the points.",
+          "implemented_in": "geotech_references.dm7_2.chapter2.angular_distortion"
+        },
+        {
+          "id": "Eq. 2-4",
+          "description": "Horizontal strain εh between two building points: εh = (δHi − δHj) / db, where δHi and δHj are estimated horizontal movements at two points, and db is the distance separating the points.",
+          "implemented_in": "geotech_references.dm7_2.chapter2.horizontal_strain"
+        },
+        {
+          "id": "Eq. 2-5",
+          "description": "Movement at a point of interest for stiff to hard clays and sands: δi = δm · (1 − di/d0), where δm is the maximum movement at the wall, di is distance from wall to point of interest, and d0 = 3H for stiff to hard clays and 2H for sand.",
+          "implemented_in": "geotech_references.dm7_2.chapter2.movement_soft_to_medium_clay"
+        },
+        {
+          "id": "Eq. 2-6",
+          "description": "Movement at a point of interest for soft to medium clays: δi = δm for di/H ≤ 0.75; δi = δm · (1.5 − di/H) / (1.5 − 0.75) for 0.75 ≤ di/H ≤ 1.5 (trapezoidal profile).",
+          "implemented_in": "geotech_references.dm7_2.chapter2.movement_soft_to_medium_clay"
+        }
+      ],
+      "figures": [
+        "Figure 2-14",
+        "Figure 2-15",
+        "Figure 2-16"
+      ],
+      "tables": [
+        "Table 2-9"
+      ],
+      "applicability": "Applies when evaluating potential damage to adjacent structures due to ground movements from deep excavations, and determining whether underpinning is required."
+    },
+    {
+      "section_id": "2-4.5",
+      "title": "Construction Considerations",
+      "summary": "Covers how construction procedures affect deep excavation support system movements, referencing Table 2-10 which details construction considerations and comments for wall and support system elements including sheet piles, soldier piles and lagging, combined sheet piles, secant/tangent piles, and deep soil mixing. FHWA (2008) is cited for additional guidance.",
+      "body": "Construction procedures can have an impact on deep excavation support system movements. Table 2-10 lists many of the construction considerations for various wall and support system features. FHWA (2008) provides additional guidance.",
+      "key_points": [
+        "Construction procedures directly influence movements in deep excavation support systems.",
+        "Sheet pile driving considerations include interlock separation (primary cause of seepage/piping), groundwater lowering effects, and vibratory hammer-induced settlement in loose to medium sands.",
+        "Soldier pile and lagging systems require care in driven or predrilled installation; lagging is typically 3 inches thick and should be removed above the water table after construction.",
+        "Combined sheet pile walls require special interlocks and critical vertical alignment between sheet piles and king piles.",
+        "Secant and tangent pile walls require a reinforced concrete guide wall (3–5 ft deep) and careful concrete placement; tangent piles carry higher risk of groundwater leakage.",
+        "Deep soil mixing walls rely on in situ soil, requiring removal of obstructions, monitoring of mixing operations, and test columns; extraneous material must not enter production columns.",
+        "FHWA (2008) provides additional guidance beyond Table 2-10 for all wall types."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 2-16"
+      ],
+      "tables": [
+        "Table 2-10"
+      ],
+      "applicability": "Applies when selecting and executing construction methods for deep excavation support systems, including sheet pile, soldier pile, combined sheet pile, secant/tangent pile, and deep soil mixing walls."
+    },
+    {
+      "section_id": "2-5",
+      "title": "Rock Excavations",
+      "summary": "Covers planning, design, and construction considerations for rock excavations, including preliminary investigation requirements, assessment of excavation methods (mechanical and blasting), and blasting design/monitoring. Addresses factors such as geological structure, in situ stresses, groundwater, rippability, and effects on adjacent structures.",
+      "body": "",
+      "key_points": [
+        "Rock excavation planning requires detailed field investigations: review of available data, geological mapping, and test borings to define stratigraphy.",
+        "Infrastructure in rock should be oriented favorably with geological structure (e.g., tunnel axes perpendicular to fault strike).",
+        "Key factors include fault/fracture orientation, in situ stresses, groundwater, joint fill, slope geometry, dynamic loading, weathering rate, rippability, and blasting effects.",
+        "DM 7.1 Chapters 1–7 provide supplementary guidance on rock description, classification, testing, stress, seepage, and slope stability."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to all projects involving excavation in rock, from preliminary planning through construction."
+    },
+    {
+      "section_id": "2-5.1",
+      "title": "Preliminary Considerations",
+      "summary": "Outlines the essential preliminary steps and factors for rock excavation planning and design. Requires detailed field investigations (data review, geological mapping, test borings) and favorable orientation of infrastructure relative to geological structure. Lists ten key factors—including faults, in situ stresses, groundwater, rippability, and blasting effects—that govern excavation planning.",
+      "body": "Rock excavation planning and design must be based on detailed field investigations including: 1) review of available data for the site, 2) geological mapping of any exposed rock, and 3) test borings sufficient to define the stratigraphy. To the extent possible, infrastructure constructed in rock should be oriented favorably with the geological structure. For example, tunnels should be aligned with axis perpendicular to the strike of faults or major fracture zones. Downslope dip of discontinuities into open excavations should be avoided.\n\nIn general, factors that must be considered in planning, designing, and constructing a rock excavation are as follows:\n• Presence and orientation of faults, folds, fractures, and previous sliding surfaces;\n• In situ stresses;\n• Groundwater conditions;\n• Nature of material filling joints;\n• Depth and slope of cut surfaces;\n• Direction of potential sliding surfaces;\n• Dynamic loading;\n• Design life of cut as compared to weathering or deterioration rate of rock face;\n• Rippability and/or the need for blasting; and\n• Effect of excavation and/or blasting on adjacent structures.\n\nThe influence of most of these factors on excavations in rock is similar to that of excavations in soil.\n\nMore information on the description, classification, and testing of rock can be found in Chapters 1 to 3 of DM 7.1. In addition, DM 7.1 contains pertinent discussion of stress distributions (Chapter 4), seepage and drainage (Chapter 6), and rock slope stability (Chapter 7).",
+      "key_points": [
+        "Field investigations must include review of existing data, geological mapping of exposed rock, and test borings to define stratigraphy.",
+        "Align tunnels with axes perpendicular to fault strike; avoid downslope dip of discontinuities into open excavations.",
+        "Ten critical factors govern rock excavation design: faults/fractures, in situ stresses, groundwater, joint fill, cut geometry, sliding surfaces, dynamic loading, weathering rate, rippability, and blasting effects on adjacent structures.",
+        "DM 7.1 (Chapters 1–4, 6–7) is the primary supplementary reference for rock description, classification, testing, stress, seepage, and slope stability."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies during planning and design phases of any rock excavation project."
+    },
+    {
+      "section_id": "2-5.2",
+      "title": "Assessment of Rock Excavation Methods",
+      "summary": "Describes methods for evaluating the most appropriate rock excavation technique—excavators, rippers, hoe rams, or blasting. Covers three approaches: field test sections, GSI-based excavatability correlations, and seismic compression wave velocity correlations. Selection depends on rock mass characteristics, equipment capability, and project geometry.",
+      "body": "Rock excavation can be accomplished by excavators, rippers, hoe rams, and blasting. The following paragraphs discuss how to evaluate which of these methods are most appropriate.",
+      "key_points": [
+        "Rock excavation methods include power excavators, rippers (D8/D9/D11 tractors), hoe rams, and blasting.",
+        "Method selection is evaluated through field test sections, GSI correlations, and seismic P-wave velocity correlations.",
+        "The size and shape of the excavation area significantly affects rippability estimates.",
+        "Equipment manufacturer charts (e.g., Caterpillar) relate P-wave velocity to ripper performance for medium, heavy, and very heavy tractors."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when selecting the appropriate excavation method for a rock excavation project during design and planning."
+    },
+    {
+      "section_id": "2-5.2.1",
+      "title": "Rock Excavatability Based on Rock Test Sections",
+      "summary": "Describes the use of field rock test sections during the design phase to evaluate excavation equipment performance. Various equipment types (excavators, rippers, hoe rams) are tested on-site to determine effective depth of ripping/excavation and to identify where blasting will be required. The size and shape of the excavation area are key factors in rippability estimation.",
+      "body": "The field observation of a rock test section is helpful during the design phase of a project. Various types of equipment, such as excavators, rippers, and hoe rams, can be tested to evaluate which type of equipment would be most effective during construction. The size and shape of the area to be excavated is a significant factor in estimating the ability to rip rock. This exploration technique will provide valuable data on the depth that can be ripped or excavated with each type of equipment and will also define where and at what depth blasting will be required.",
+      "key_points": [
+        "Field test sections during the design phase allow direct comparison of excavator, ripper, and hoe ram performance.",
+        "Test sections define the maximum rippable/excavatable depth for each equipment type and identify zones requiring blasting.",
+        "The size and shape of the excavation area is a significant factor in rippability estimation."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies during the design phase of rock excavation projects where direct field evaluation of equipment performance is feasible."
+    },
+    {
+      "section_id": "2-5.2.2",
+      "title": "Rock Excavatability Based on Correlations with GSI",
+      "summary": "Presents a method for assessing rock excavatability using the Geologic Strength Index (GSI), which is assigned based on rock mass structure and surface condition. Uses Figure 2-17 (after Tsiambaos and Saroglou 2010) with shaded zones distinguishing digging, ripping, hammer/blasting, and blasting-only regions, split by point load strength index Is(50) threshold of 31 tsf (3 MPa).",
+      "body": "The excavatability of rock by various methods can be related to Geologic Strength Index (GSI) (Hoek et al. 1992, Marinos and Hoek 2000). The GSI is assigned based on the rock mass structure and the surface condition as shown by the numbered contours in Figure 2-17. Tsiambaos and Saroglou (2010) split sedimentary and metamorphic rock masses ranging from blocky to disintegrated into two groups by point load strength index (Is(50)). The region corresponding to the rock's structure and surface conditions can be determined. The shaded areas indicate different levels of excavatability. Digging means the rock can be excavated with power excavators. Ripping indicates excavation with D8 and D9 type tractors. Hammer (and blasting) means that breaking with a hoe or hydraulic ram will likely be required. Blasting indicates the need for blasting.",
+      "key_points": [
+        "GSI is determined from rock mass structure and surface condition using Figure 2-17.",
+        "Tsiambaos and Saroglou (2010) divide rock masses into two groups by point load strength index Is(50): < 31 tsf (3 MPa) and > 31 tsf (3 MPa).",
+        "Four excavatability categories: Digging (power excavators), Ripping (D8/D9 tractors), Hammer/Blasting (hoe or hydraulic ram), and Blasting.",
+        "Applies to sedimentary and metamorphic rock masses ranging from blocky to disintegrated structure."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 2-17 Excavatability of Rock Masses: a) Is(50) < 31 tsf (3 MPa) and b) Is(50) > 31 tsf (3 MPa) (after Tsiambaos and Saroglou 2010)"
+      ],
+      "tables": [],
+      "applicability": "Applies when assessing rock excavatability using GSI for sedimentary and metamorphic rock masses during design."
+    },
+    {
+      "section_id": "2-5.2.3",
+      "title": "Rippability Based on Correlations with Compression Wave Velocity",
+      "summary": "Describes assessment of rock rippability using seismic P-wave (compression wave) velocity from seismic refraction studies. Rippability depends on lithology, fracture condition and orientation, weathering, rock strength, and ripper equipment size. Figure 2-18 (Caterpillar 2000) provides example charts correlating P-wave velocity to ripper performance for D-8, D-9, and D-11 tractors.",
+      "body": "Ripping of rock materials is governed by many factors: 1) rock mass lithology including strata, fracture condition, and orientation; 2) rock weathering; 3) rock strength; and 4) rock ripper equipment size and condition. Rock rippability can be assessed from field observation and correlations with the GSI as discussed above or by using correlations with seismic wave velocity.\n\nThe most common rock rippability correlation is based on compression wave velocity, or P-wave velocity, obtained from seismic refraction studies. The velocity is based on the fracture condition of the rock. Figure 2-18 illustrates example charts for the performance of rippers mounted on medium (Caterpillar D-8 tractor), heavy (D-9 tractor), and very heavy-duty (D-11 tractor) tractors related to seismic compression wave velocity of various rock materials (Caterpillar 2000). These types of charts are available from equipment manufacturers.",
+      "key_points": [
+        "Rock rippability is governed by lithology/fracture condition, rock weathering, rock strength, and equipment size/condition.",
+        "The most common rippability correlation uses P-wave velocity from seismic refraction studies; velocity reflects the fracture condition of the rock.",
+        "Figure 2-18 provides Caterpillar charts correlating P-wave velocity to ripper performance for D-8 (medium), D-9 (heavy), and D-11 (very heavy-duty) tractors.",
+        "Equipment manufacturer charts are a standard resource for rippability assessment."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 2-18 Ripper Performance: a) Medium Tractor, b) Heavy-Duty Tractor, and c) Very Heavy Tractors (after Caterpillar 2000)"
+      ],
+      "tables": [],
+      "applicability": "Applies when assessing rippability of rock using seismic refraction P-wave velocity data during design or exploration phases."
+    },
+    {
+      "section_id": "2-5.3",
+      "title": "Blasting",
+      "summary": "Covers blasting requirements for rock excavation once mechanical methods are insufficient. Requires a pre-blasting survey including site examination, photographic record of adjacent structures, and establishment of survey control points. Includes subsections on blasting design using scaled distance and peak particle velocity (PPV) and on construction-phase monitoring protocols.",
+      "body": "Once it has been determined that blasting is required, a pre-blasting survey should be performed. As a minimum, this should include: 1) examination of the site, 2) detailed examination and a photographic record of adjacent structures, and 3) establishment of horizontal and vertical survey control points.",
+      "key_points": [
+        "A pre-blasting survey is mandatory before any blasting begins: site examination, photographic record of adjacent structures, and survey control points.",
+        "Blasting design is based on scaled distance (SD) and peak particle velocity (PPV) criteria.",
+        "PPV is the accepted criterion for evaluating potential structural damage from blasting vibration.",
+        "Construction-phase monitoring uses vibration stations with detailed records of charge weight, location, distance, delays, and structural response."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when blasting has been determined to be necessary for rock excavation on a project."
+    },
+    {
+      "section_id": "2-5.3.1",
+      "title": "Blasting Design",
+      "summary": "Presents the quantitative framework for blasting design using scaled distance (SD) and peak particle velocity (PPV). Defines SD as true distance corrected by charge weight (Eq. 2-7), and PPV as a function of SD with empirical confinement factor K (Eq. 2-8, 2-9). Figures 2-19 and 2-20 enable estimation of structural damage potential and human response to vibration.",
+      "body": "Design of blasting for a project can be estimated by considering the maximum particle velocity. The peak (or maximum) particle velocity (PPV) is the longitudinal velocity of a particle in the direction of the wave that is generated by blasting. The major concern in blasting is the influence of the blasting on adjacent structures. PPV is an accepted criterion for evaluating the potential for structural damage induced by blasting vibration. The critical level of the particle velocity depends on the rock properties, the nature of the overburden, the frequency characteristics of the structure, and the capability of the structure to withstand dynamic stresses.\n\nThe effects of a blast on a structure can be evaluated by the scaled distance (USBM 1971, Oriard 1987). The scaled distance (SD) is the true distance from the charge to the structure corrected by the weight of the charge and can be calculated as:\n\nSD = D / W^β\n\nwhere:\nD = true distance from charge to structure (ft),\nW = weight of charge (lb), and\nβ = 0.33 for near field structures (i.e., <20 ft from charge) or 0.5 further from charge.\n\nThe scaled distance is not correct dimensionally and requires use of the indicated units.\n\nUsing SD, the PPV can be estimated using:\n\nPPV = K · SD^(−1.6)\n\nwhere:\nK = confinement factor (lower bound = 20, upper bound = 242, average = 150).\n\nThe values of K are empirical and require the use of the indicated units. K may be calculated from blast data as follows:\n\nK = PPV / SD^(−1.6)\n\nFigure 2-19 can then be used to estimate potential damage to structures based on the estimated PPV. Human response to vibrations is given in Figure 2-20.",
+      "key_points": [
+        "PPV (peak particle velocity) is the accepted criterion for evaluating blasting-induced structural damage risk.",
+        "Scaled distance SD = D / W^β; β = 0.33 for near-field (<20 ft) and 0.5 for far-field (Eq. 2-7). Units are ft and lb; equation is dimensionally inconsistent.",
+        "PPV = K · SD^(−1.6), where K is the empirical confinement factor (range 20–242, average 150) (Eq. 2-8).",
+        "K can be back-calculated from blast monitoring data as K = PPV / SD^(−1.6) (Eq. 2-9).",
+        "Figure 2-19 (Blast Effects Scale) maps PPV to structural damage potential; Figure 2-20 addresses human response to vibration.",
+        "Critical PPV level depends on rock properties, overburden nature, structural frequency characteristics, and dynamic stress capacity."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 2-7",
+          "description": "Scaled distance SD = D / W^β, where D = true distance from charge to structure (ft), W = weight of charge (lb), and β = 0.33 for near-field structures (<20 ft) or 0.5 for structures further from the charge. Dimensionally inconsistent; use indicated units only.",
+          "implemented_in": "geotech_references.dm7_2.chapter2.confinement_factor_from_blast_data"
+        },
+        {
+          "id": "Eq. 2-8",
+          "description": "Peak particle velocity PPV = K · SD^(−1.6), where K is the empirical confinement factor (lower bound = 20, upper bound = 242, average = 150). Empirical; use indicated units.",
+          "implemented_in": "geotech_references.dm7_2.chapter2.confinement_factor_from_blast_data"
+        },
+        {
+          "id": "Eq. 2-9",
+          "description": "Back-calculation of confinement factor K from blast monitoring data: K = PPV / SD^(−1.6). Used to derive site-specific K values from measured PPV and scaled distance.",
+          "implemented_in": "geotech_references.dm7_2.chapter2.confinement_factor_from_blast_data"
+        }
+      ],
+      "figures": [
+        "Figure 2-19 Blast Effects Scale (after Konya and Walter 2006)",
+        "Figure 2-20 Human response to vibrations"
+      ],
+      "tables": [],
+      "applicability": "Applies during blasting design to estimate scaled distance and peak particle velocity for evaluating potential structural damage and human response."
+    },
+    {
+      "section_id": "2-5.3.2",
+      "title": "Monitoring Blasting",
+      "summary": "Specifies requirements for construction-phase blasting vibration monitoring. Monitoring stations must be established, with detailed records of charge weight, blast location, distance to structures, delays, and vibration response. Small initial charges are used to develop a site-specific charge weight–distance–PPV relationship and assess associated structural response before larger blasts are executed.",
+      "body": "During construction, vibration monitoring stations should be established, and monitoring should be performed. Detailed records should be kept of charge weight, location of blast point, distance from blast point to existing structures, delays, and response as indicated by vibration monitoring. For safety, small charges should be used initially to establish a site-specific relationship between charge weight, distance, and peak particle velocity along with the associated structural response.",
+      "key_points": [
+        "Vibration monitoring stations must be established during construction; monitoring is required throughout blasting operations.",
+        "Records must include charge weight, blast point location, distance to existing structures, delays, and measured vibration response.",
+        "Small initial charges should be used to develop a site-specific charge weight–distance–PPV relationship before full-scale blasting.",
+        "Site-specific K values derived from monitoring improve the accuracy of PPV predictions for subsequent blasts."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies during construction-phase blasting operations requiring vibration monitoring and documentation of blast parameters."
+    },
+    {
+      "section_id": "2-6",
+      "title": "GROUNDWATER CONTROL",
+      "summary": "Overview of groundwater control for excavations below the water table, covering seepage control methods, cutoff wall types, and dewatering systems. Introduces the key approaches — sumps, wellpoints, deep wells, and various cutoff walls — and references applicable design procedures in DM 7.1 and other references.",
+      "body": "",
+      "key_points": [
+        "Excavations below the groundwater table require control of seepage into the excavation and excess pore water pressures below the excavation bottom.",
+        "Primary dewatering methods include sumps, wellpoints, and deep wells; applicable limits vary with soil gradation (see Figure 2-21).",
+        "Slurry cutoff walls, concrete diaphragm walls, secant pile walls, and deep soil mix walls are most effective for reducing seepage.",
+        "Sheet piling is often considered impervious but seepage occurs through interlocks; interlock failure from hard driving can greatly increase seepage.",
+        "Design procedures for seepage analysis and dewatering are covered in Chapter 6 of DM 7.1."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 2-21",
+        "Figure 2-22",
+        "Figure 2-23",
+        "Figure 2-24"
+      ],
+      "tables": [
+        "Table 2-11"
+      ],
+      "applicability": "Applies whenever an excavation extends below the groundwater table and groundwater control measures must be selected and designed."
+    },
+    {
+      "section_id": "2-6.1",
+      "title": "Preliminary Considerations",
+      "summary": "Introduces the two primary groundwater control objectives for below-water-table excavations: controlling seepage into the excavation and controlling excess pore water pressures below the excavation bottom. Describes the most common dewatering methods (sumps, wellpoints, deep wells) and cutoff wall types, noting their relative effectiveness and limitations such as sheet pile interlock leakage.",
+      "body": "Excavations below the groundwater table require groundwater control. This typically consists of controlling seepage into the excavation and controlling excess pore water pressures below the bottom of the excavation. Sumps, wellpoints, and deep wells are most commonly used to lower groundwater in excavations. Figure 2-21 illustrates applicable limits of these dewatering methods for different soil gradations.\n\nSlurry cutoff walls (soil-bentonite or cement-soil-bentonite), concrete diaphragm walls, secant pile walls, and deep soil mix walls are the most effective walls for reducing seepage into an excavation. Concrete diaphragm walls may become part of the final structure. Sheet piling is often considered impervious but seepage occurs through the interlocks. If interlocks split due to hard driving, the rate of seepage can increase greatly. Special waterstops are available.",
+      "key_points": [
+        "Two objectives: control seepage into the excavation and control excess pore water pressures below the excavation bottom.",
+        "Sumps, wellpoints, and deep wells are the most commonly used dewatering methods; selection depends on soil gradation.",
+        "Slurry cutoff walls, concrete diaphragm walls, secant pile walls, and deep soil mix walls are most effective at reducing seepage.",
+        "Sheet piling is not truly impervious — seepage occurs through interlocks, and interlock splitting from hard driving greatly increases leakage.",
+        "Concrete diaphragm walls can serve dual purpose as part of the permanent structure."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 2-21"
+      ],
+      "tables": [],
+      "applicability": "Applies at the planning stage of any excavation that extends below the groundwater table, when selecting the type and combination of groundwater control measures."
+    },
+    {
+      "section_id": "2-6.2",
+      "title": "Permeability of Sheet Piling",
+      "summary": "Defines and explains the inverse specific resistance (ρ) of sheet pile walls per European Standard EN 12063, which characterizes interlock seepage. Provides Eq. 2-10 relating flow rate, unit weight of water, and differential pressure. Reports test data showing ρ ranges from ~10⁻³ cm/s (unsealed) to ~10⁻¹⁰ cm/s (sealed vinyl), and explains how ρ can be used to calculate flow rate through a sheet pile section.",
+      "body": "The permeability of sheet pile walls, which occurs only through the interlocks, is usually expressed in terms of the inverse specific resistance, ρ, explained in European Standard EN 12063 (1999) which is defined as follows:\n\nρ = q / (γw · Δp)  (2-10)\n\nwhere:\nq = discharge or flow rate per unit height along the interlock,\nγw = unit weight of water, and\nΔp = differential pressure.\n\nSeepage can be reduced by maintaining tension in the interlocks and/or by sealing the joints. Test sections have been performed on sheet piling sealed with various bitumen and swelling fillers (Sellmeijer et al. 1995). These tests indicate that ρ ranges from about 10⁻³ cm/sec for unsealed joints to about 10⁻⁹ cm/sec for sealed joints without tension in the joint. Bitumen sealants are slightly less effective than swelling sealants. Tests on vinyl sheet piling indicate ρ ranging from 10⁻⁵ cm/sec for unsealed joints in tension to about 10⁻¹⁰ cm/sec for sealed joints.\n\nIf ρ is known or assumed, Equation 2-10 can be rearranged to calculate the flow rate per unit length of interlock. This allows the flow rate through a section of sheet piling to be calculated. An example problem for leakage through sheet piling is shown in Figure 2-22.",
+      "key_points": [
+        "Sheet pile wall seepage is characterized by inverse specific resistance ρ = q / (γw · Δp), per EN 12063.",
+        "For steel sheet piling: ρ ≈ 10⁻³ cm/s (unsealed) to 10⁻⁹ cm/s (sealed, no tension).",
+        "For vinyl sheet piling: ρ ≈ 10⁻⁵ cm/s (unsealed, in tension) to 10⁻¹⁰ cm/s (sealed).",
+        "Swelling sealants are slightly more effective than bitumen sealants at reducing interlock leakage.",
+        "Rearranging Eq. 2-10 allows calculation of flow rate per unit length of interlock when ρ is known."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 2-10",
+          "description": "Inverse specific resistance of sheet pile interlock: ρ = q / (γw · Δp), where q is discharge per unit height, γw is unit weight of water, and Δp is differential pressure.",
+          "implemented_in": "geotech_references.dm7_2.chapter2.inverse_specific_resistance_sheet_piling"
+        }
+      ],
+      "figures": [
+        "Figure 2-22"
+      ],
+      "tables": [],
+      "applicability": "Applies when evaluating or calculating seepage through sheet pile walls, particularly when selecting sealant type or estimating flow rates into an excavation."
+    },
+    {
+      "section_id": "2-6.3",
+      "title": "Methods of Controlling Groundwater",
+      "summary": "Presents a comprehensive table (Table 2-11) of groundwater control methods covering dewatering techniques (sumps, wellpoints, deep wells, jet-eductor wells) and cutoff wall systems (sheet piling, slurry trench, concrete diaphragm, secant/tangent pile, mix-in-place, and ground freezing), listing suitable soils, uses, and key limitations for each. Also references figures showing wellpoint and deep well construction details.",
+      "body": "Table 2-11 lists methods of controlling groundwater, their applicability, and limitations. The methods represent groundwater lowering techniques including sumps, wellpoints, deep wells, and jet-eductor wells. Cutoff walls include sheet piling, slurry walls, concrete diaphragm walls, secant pile walls, and mix-in-place walls.\n\nFigure 2-23 shows details of a wellpoint system and a deep well with a submersible pump. Figure 2-24 illustrates an example of a two stage well point system and a dewatering system using deep wells.\n\nDesign procedures related to seepage analysis and dewatering control are included in Chapter 6 of DM 7.1. Other good references include Mansur and Kaufman (1961) and Cedergren (1997).",
+      "key_points": [
+        "Wellpoint systems with suction pumps are limited to ~18 ft lift; multi-stage systems at 15 ft vertical intervals are needed for greater depths.",
+        "Deep wells with submersible pumps and jet-eductor wells have no depth-of-drawdown limitation; deep wells can be sited clear of the excavation.",
+        "Cutoff walls (slurry trench, concrete diaphragm, secant/tangent pile, mix-in-place) generally need to be keyed into a less permeable stratum to reduce seepage.",
+        "Tangent pile walls leak more than secant pile walls because the piles do not overlap.",
+        "Ground freezing (ammonia/brine or liquid nitrogen) works in all saturated soils and rock; liquid nitrogen is faster but more expensive and causes some ground heave.",
+        "Properly sealed sheet pile interlocks can be as effective as slurry trench, concrete diaphragm, secant pile, and deep soil mix walls.",
+        "DM 7.1 Chapter 6 is the primary design reference for seepage analysis and dewatering control."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 2-23",
+        "Figure 2-24"
+      ],
+      "tables": [
+        "Table 2-11"
+      ],
+      "applicability": "Applies when selecting and designing a groundwater control system for a construction excavation, requiring comparison of dewatering and cutoff methods against site soil conditions, depth, and space constraints."
+    },
+    {
+      "section_id": "2-7",
+      "title": "Problem Soils and Excavations",
+      "summary": "Introduces the topic of problem soil conditions affecting foundation and earth structure design, directing the reader to Chapter 1 for a general summary and to Tables 2-12 and 2-13 for specific design considerations for excavations in problem soils such as fissured clays, loess, sensitive clays, residual soils, talus, loose sands, and rock with weak planes.",
+      "body": "Chapter 1 provides a summary of many types of problem soil conditions that can affect the design of foundations and earth structures. Table 2-12 and Table 2-13 summarize important conditions for the design of excavations in problem soils.",
+      "key_points": [
+        "Chapter 1 of the UFC provides a broader overview of problem soil types affecting foundations and earth structures.",
+        "Table 2-12 addresses sloped open cut excavations in problem soils, covering soil types including fissured stiff clays, desiccated clays, loess, sensitive clays, residual soils, talus, loose sands, and rock with weak planes.",
+        "Fissured stiff/highly plastic clays and soft shales may exhibit field shear resistance lower than lab tests; residual shear strength governs where prior failure surfaces exist.",
+        "Stiff desiccated highly plastic clays require use of fully softened drained strengths; desiccation cracks can extend up to 8 ft deep.",
+        "Loess slopes are more stable when cut near vertical to prevent infiltration; benches may be used for high slopes.",
+        "Sensitive clays can lose considerable strength upon remolding; a Liquidity Index > 1 (w > LL) indicates sensitivity.",
+        "Loose sands are susceptible to settlement under blast vibration, liquefaction under earthquake or static loading, and erosion/piping.",
+        "Rock with weak planes is susceptible to planar/wedge failures on discontinuities dipping toward the excavation and toppling of steeply dipping slabs."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 2-12 Problem Soil Considerations for Sloped Open Cut Excavations",
+        "Table 2-13"
+      ],
+      "applicability": "Applies when designing excavations or foundations in any of the identified problem soil types, including fissured clays, collapsible soils, sensitive clays, residual soils, talus, loose sands, or rock with weak planes."
+    },
+    {
+      "section_id": "2-8",
+      "title": "NOTATION",
+      "summary": "Defines all variables and symbols used in Chapter 2 of UFC 3-220-20 covering deep, supported excavations. Includes geometric parameters (B, D, H), soil properties (su, K0, KA), wall performance metrics (Kwall, FBH), blasting variables (PPV, SD, W), and movement/distortion terms (δH, β). Essential reference for interpreting equations and design procedures throughout the chapter.",
+      "body": "Variable | Definition\nB | Excavation or trench width\nB1 | Width of zone adjacent to excavation in clay that contributes to basal instability\nBs | Width of surcharge adjacent to excavation\nD | Embedded depth of wall below base of excavation\nd, di | Distance from excavation to a point of interest\nd0 | Typical distance from excavation at which no movement occurs\ndb | Distance separating two points on a structure for calculation of distortion or strain\nE | Young's modulus\nEs | Elastic modulus of soil\nFBH | Factor of safety against basal heave\nGSI | Geological strength index\nh, havg | Vertical spacing of support system braces or anchors\nH | Excavation depth\nHcrit | Critical vertical excavation depth in clay for undrained conditions\nI | Second moment of inertia\nIs(50) | Point load strength index of rock\nK | Confinement factor for blasting calculations\nKA | Lateral earth pressure coefficient for active conditions\nK0 | Lateral earth pressure coefficient for at-rest conditions\nKwall | Normalized wall stiffness\nN | Number of interlocks in a sheet pile retaining wall\nNγ | Bearing capacity factor\nPA | Active earth pressure force\nPʹH | Unbalanced earth force on embedded section of excavation retaining wall\nPPV | Peak particle velocity\nq | Discharge or flow rate of water per unit height along a sheet pile interlock\nQ | Total water flow into an excavation\nS | Spacing of structural elements for combined sheet pile walls\nSD | Scaled distance for blasting calculations\nsu | Undrained shear strength\nsu,b | Undrained shear strength below base of excavation\nsu,d | Undrained shear strength along embedded section of wall\nsu,h | Undrained shear strength above base of excavation\nW | Weight of blasting charge\nw | Gravimetric water content\nα | Adhesion factor between fine-grained soil and retaining structure\nβ | Angular distortion of a structure caused by differential movement\nδH, δHi, δHm | Horizontal movement of the ground adjacent to an excavation; m indicates maximum",
+      "key_points": [
+        "B, D, and H define the primary geometry of the excavation: width, embedded wall depth, and excavation depth, respectively.",
+        "FBH (factor of safety against basal heave) and Hcrit (critical excavation depth in clay) are key stability metrics for clay soils.",
+        "su variants (su, su,b, su,d, su,h) distinguish undrained shear strength at different locations relative to the excavation base and wall.",
+        "Kwall (normalized wall stiffness) and K0/KA (earth pressure coefficients) govern lateral earth pressure and wall deformation calculations.",
+        "Blasting variables K (confinement factor), SD (scaled distance), W (charge weight), and PPV (peak particle velocity) support vibration and blast impact assessments.",
+        "β (angular distortion) and db (point separation distance) are used together for assessing differential movement and structural distortion.",
+        "α (adhesion factor) quantifies fine-grained soil–wall interface friction, relevant to passive resistance and wall design."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 2-13"
+      ],
+      "applicability": "Applies whenever variables and symbols used in Chapter 2 deep, supported excavation design procedures need to be identified or referenced."
+    },
+    {
+      "section_id": "2-9",
+      "title": "SUGGESTED READING",
+      "summary": "A curated reference list for Chapter 2 topics, organized by subject area: Excavation Safety and Shoring (OSHA CFR Part 1926 Subpart P), Deep Excavations (FHWA NHI-07-071 and Clough & O'Rourke 1990), Dry Docks and Groundwater Control (Mazurkiewicz 1980 and USACE TM 5/818-5), and Dewatering (Mansur & Kaufman 1961; Cedergren 1997). Also includes a notation table of chapter variables and definitions.",
+      "body": "Variable definitions referenced in this chapter:\n\n∆p – Differential water pressure between the excavation and retained soil for sheet pile seepage\nδV, δVi, δVm – Vertical movement of the ground adjacent to an excavation; m indicates maximum\nεb – Horizontal strain of a structure caused by differential movement\nγ, γt – Moist or total unit weight\nγw – Unit weight of water\nφʹ – Drained or effective stress friction angle\nρ – Specific resistance of sheet pile interlocks to seepage\nσʹh – Effective horizontal stress\n\nSUGGESTED READING:\n\nExcavation Safety and Shoring:\nOccupational Safety and Health Administration (OSHA). 2020. CFR Part 1926, Subpart P, Excavations, with Appendices A - F. https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926SubpartP.\n\nDeep Excavations:\nFHWA. 2008. Earth Retaining Structures, FHWA NHI-07-071. U.S. Department of Transportation, Federal Highway Administration, Washington, DC.\nClough, G. W., and O'Rourke, T. D. 1990. \"Construction Induced Movements of In situ Walls.\" Proc. of Conf. on Design and Performance of Earth Retaining Structures. ASCE Geotechnical Special Publication No. 25.\n\nDry Docks and Groundwater Control:\nMazurkiewicz, B.K. 1980. Design and Construction of Dry Docks. Trans Tech Publications, Rockport, MA.\nUSACE. 1983. Dewatering and Groundwater Control, TM 5/818-5/AFM 88-5. Department of the Army, Washington, DC.\n\nDewatering:\nMansur, C. and Kaufman, R. 1961. \"Dewatering.\" Foundation Engineering, Ed. Leonards, McGraw Hill, 514 pp.\nCedergren, H. 1997. Seepage, Drainage, and Flow Nets, 3rd Ed., Wiley-Interscience, 496 pp.",
+      "key_points": [
+        "OSHA CFR Part 1926 Subpart P is the primary regulatory reference for excavation safety and shoring requirements.",
+        "FHWA NHI-07-071 (2008) is the key design manual for deep earth retaining structures.",
+        "Clough & O'Rourke (1990) is the foundational reference for predicting construction-induced movements of in-situ walls.",
+        "Mazurkiewicz (1980) and USACE TM 5/818-5 cover dry dock design and groundwater control, respectively.",
+        "Mansur & Kaufman (1961) and Cedergren (1997) are classic dewatering and seepage references applicable to excavation drainage design."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when practitioners need authoritative references for excavation safety, deep excavation design, groundwater control, dry docks, or dewatering covered in UFC 3-220-20 Chapter 2."
+    }
+  ]
+}

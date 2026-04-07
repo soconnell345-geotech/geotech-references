@@ -29,21 +29,26 @@
       "minItems": 1,
       "items": {
         "type": "object",
-        "required": ["section_id", "title", "body", "key_points", "equations", "figures", "tables", "applicability"],
+        "required": ["section_id", "title", "summary", "body", "key_points", "equations", "figures", "tables", "applicability"],
         "properties": {
           "section_id": {
             "type": "string",
-            "pattern": "^[0-9P]+(\\.[0-9]+)*$",
-            "description": "Hierarchical section identifier (e.g., '5.7.2', '7.2.1.3.1', or 'P.1' for prologue sections)."
+            "pattern": "^[0-9P]+([-.][0-9]+)*$",
+            "description": "Hierarchical section identifier. FHWA/GEC dot form ('5.7.2', '7.2.1.3.1'), UFC hyphen-then-dot form ('4-1', '4-2.1.1'), or prologue ('P.1', 'P-1')."
           },
           "title": {
             "type": "string",
             "minLength": 1
           },
+          "summary": {
+            "type": "string",
+            "minLength": 50,
+            "maxLength": 700,
+            "description": "300-500 char summary of the section's content, returned by default from reference_search. Engineers and agents get this compact version first; the full body is only loaded via reference_get when they commit to reading a specific section."
+          },
           "body": {
             "type": "string",
-            "minLength": 100,
-            "description": "Long-form narrative text from the source document."
+            "description": "Long-form narrative text from the source document. Container sections (whose children appear later in the same chapter) may legitimately have empty bodies."
           },
           "key_points": {
             "type": "array",

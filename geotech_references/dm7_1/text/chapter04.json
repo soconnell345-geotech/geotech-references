@@ -1,0 +1,1122 @@
+{
+  "reference_id": "UFC 3-220-10",
+  "reference_title": "UFC 3-220-10 Soil Mechanics",
+  "volume": 1,
+  "chapter": 4,
+  "chapter_title": "Distribution of Stresses",
+  "sections": [
+    {
+      "section_id": "4-1",
+      "title": "INTRODUCTION",
+      "summary": "Introduces Chapter 4 on distribution of stresses, covering stress analysis within the ground including stress at a point, load-induced stress changes, empirical methods for buried structures (pipes, conduits, shafts, tunnels), and numerical methods such as finite element analysis.",
+      "body": "",
+      "key_points": [
+        "Chapter covers stress at a point, stress changes from soil and structural loads, and empirical methods for buried pipes, conduits, shafts, and tunnels.",
+        "Numerical methods (e.g., finite element method) for stress calculation are also discussed.",
+        "Two foundational frameworks are introduced: elastic and plastic stress conditions.",
+        "Elastic solutions apply when shear stresses are well below shear strength; if shear stress < ~1/3 of ultimate shear strength, elastic theory gives reliable results.",
+        "Plastic solutions assume full mobilization of shear strength, applicable to slope stability, bearing capacity, and lateral earth pressure problems."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when an engineer needs to understand the scope and analytical frameworks of Chapter 4 stress distribution methods."
+    },
+    {
+      "section_id": "4-1.1",
+      "title": "Scope",
+      "summary": "Defines the scope of Chapter 4: analysis of stress conditions within the ground, including stress at a point, changes in stress from soil and structural loads, empirical methods for buried infrastructure, and numerical stress computation methods.",
+      "body": "This chapter describes the analysis of stress conditions within the ground, including stress at a point, changes in stress caused by the application of soil and structural loads, and empirical methods for estimating loads on buried pipes, conduits, shafts, and tunnels. The calculation of stresses and changes in stress using numerical methods, such as the finite element method, is also discussed.",
+      "key_points": [
+        "Covers stress at a point and load-induced stress changes.",
+        "Includes empirical methods for buried pipes, conduits, shafts, and tunnels.",
+        "Discusses numerical methods including the finite element method."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when determining which topics and methods are addressed within Chapter 4."
+    },
+    {
+      "section_id": "4-1.2",
+      "title": "State of Stress",
+      "summary": "Describes the two foundational stress frameworks used in geotechnical analysis: elastic solutions (appropriate when shear stress is well below shear strength, roughly < 1/3 of ultimate shear strength) and plastic solutions (full shear strength mobilization, used for slope stability, bearing capacity, lateral earth pressures). Most methods in Chapter 4 assume elastic conditions.",
+      "body": "The state of stress within the ground can be analyzed assuming that either elastic or plastic conditions prevail. Elastic solutions are most appropriate for cases in which the shear stresses throughout the soil mass are significantly below the shear strength of the soil and shear failure is not likely. If the shear stress in the soil is less than about one-third of the ultimate shear strength, the stresses within the soil mass will be roughly equal to values calculated from elastic theory (Davis and Selvadurai 1996). The stress conditions calculated using most of the methods in this chapter assume that elastic conditions prevail.\n\nPlastic solutions assume full mobilization of the soil's shear strength within a soil mass or along a specified failure surface. Plastic equilibrium is used for problems, such as slope stability (Chapter 7), foundation bearing capacity, and lateral earth pressures, where shear strength may be fully mobilized.",
+      "key_points": [
+        "Elastic solutions are appropriate when shear stress is significantly below shear strength.",
+        "If shear stress < ~1/3 of ultimate shear strength, elastic theory gives reliable stress estimates (Davis and Selvadurai 1996).",
+        "Most methods in Chapter 4 assume elastic conditions prevail.",
+        "Plastic solutions assume full mobilization of shear strength along a failure surface.",
+        "Plastic equilibrium applies to slope stability (Chapter 7), bearing capacity, and lateral earth pressure problems."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when selecting between elastic and plastic stress analysis approaches for a given geotechnical problem."
+    },
+    {
+      "section_id": "4-2",
+      "title": "STRESS CONDITIONS AT A POINT",
+      "summary": "Container section covering the analysis of stress conditions at a point within a soil mass, including total vertical stress, pore water pressure, effective vertical stress, horizontal stress, and the effects of applied loads. Subsections 4-2.1 through 4-2.1.5 contain the detailed content.",
+      "body": "",
+      "key_points": [
+        "Stress at a point is decomposed into normal and shear components on any given plane.",
+        "Total stress is divided into effective stress and pore pressure components.",
+        "Horizontal stress is related to effective vertical stress through a lateral earth pressure coefficient K."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when analyzing the complete state of stress at any point within a soil or rock mass."
+    },
+    {
+      "section_id": "4-2.1",
+      "title": "Stress Conditions in Soil",
+      "summary": "Describes the conceptual basis for stress analysis in soil: soil is idealized as a continuum despite being composed of discrete particles, water, and air. Stress is force per unit area, and for any plane it is resolved into normal and shear components. Total normal stress is divided into effective normal stress and pore pressure.",
+      "body": "Soil consists of a compilation of discrete particles, water, and air in varying proportions. Similarly, rock may contain a combination of the mineral components and any void space that may be filled with water or air. These discrete systems are idealized in stress analysis by assuming the soil acts as a continuous solid mass without holes or gaps. In this continuum manner, stress is simply conceived as force per unit area and the contact forces at the soil particle level are not considered.\n\nStress in soil is the result of forces from the self-weight of the overlying and surrounding soil plus any external loading, such as structures or ponded water. For a given plane, it can be particularly useful to consider stress in terms of its normal and shear components. The normal stress can be defined as the sum of the forces acting perpendicular to a plane divided by the area of that plane. Similarly shear stress in a particular direction is ratio of the force acting tangent to a plane divided by its area.\n\nThe total normal stress on any plane within the ground is based on the sum of all forces acting on the plane in question. The total stress may be divided into two parts: the effective normal stress and the pore pressure.",
+      "key_points": [
+        "Soil (discrete particles, water, air) is idealized as a continuum for stress analysis; particle-level contact forces are not considered.",
+        "Stress = force per unit area; resolved into normal (perpendicular) and shear (tangential) components on any plane.",
+        "Total normal stress = effective normal stress + pore pressure.",
+        "Stress arises from self-weight of overlying soil and any external loads (structures, ponded water)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when establishing the conceptual framework for stress analysis at any point within a soil or rock mass."
+    },
+    {
+      "section_id": "4-2.1.1",
+      "title": "Total Vertical Stress",
+      "summary": "Defines total vertical stress (overburden stress) as the normal stress on a horizontal plane at depth, calculated by summing the product of layer thickness and total unit weight for all overlying materials. Ponded water must be included as a layer with unit weight of water. Illustrated by Figure 4-1.",
+      "body": "The total vertical stress (or overburden stress) is the normal stress acting on a horizontal plane at some depth within the soil. The total vertical stress, σv, at a particular depth is calculated by multiplying the thickness (zi) of all overlying materials by the total unit weight (γt,i) of each material:\n\nσv = Σ(zi · γt,i)   (4-1)\n\nIt is imperative to include the weight of water resting on the ground surface (i.e., ponded water) in calculations of total vertical stress. Ponded water can be considered by adding a layer to the total stress calculations with thickness equal to the water depth and unit weight equal to the unit weight of water.\n\nThe calculation of total vertical stress is illustrated in Figure 4-1.",
+      "key_points": [
+        "Total vertical stress σv = Σ(zi · γt,i), summing thickness × total unit weight for each overlying layer.",
+        "Ponded water must be included as a layer with thickness = water depth and unit weight = unit weight of water.",
+        "This is the overburden stress on a horizontal plane at a given depth.",
+        "Figure 4-1 illustrates the calculation for hydrostatic conditions."
+      ],
+      "equations": [
+        {
+          "id": "4-1",
+          "description": "Total vertical stress at depth: σv = Σ(zi · γt,i), sum of layer thickness times total unit weight for all overlying materials.",
+          "implemented_in": "geotech_references.dm7_1.chapter4.total_vertical_stress"
+        }
+      ],
+      "figures": [
+        "Figure 4-1: Calculation of Vertical Stresses for Hydrostatic Conditions"
+      ],
+      "tables": [],
+      "applicability": "Applies when calculating the total overburden (vertical) stress at any depth within a soil profile, including cases with ponded water."
+    },
+    {
+      "section_id": "4-2.1.2",
+      "title": "Pore Water Pressure",
+      "summary": "Explains pore water pressure (u) as derived from pressure head (hp) multiplied by the unit weight of water. Distinguishes hydrostatic conditions (static water, pressure head = depth below water table) from flowing water conditions (requiring flow net or seepage analysis). Notes that pore water pressure acts equally in all directions and may be called neutral stress in older literature.",
+      "body": "The energy present in ponded water or groundwater is often expressed in terms of the total hydraulic head, which has pressure, elevation, and velocity components. The velocity component is typically ignored in most geotechnical applications. The pore water pressure (u) can be found from the pressure head (hp) as\n\nu = hp · γw   (4-2)\n\nwhere: γw = the unit weight of water (62.4 pcf or 9.81 kN/m³).\n\nWhen water is static (not flowing), the total head is constant throughout the system, and elevation head converts directly to pressure head. This is referred to as a hydrostatic condition, and the pressure head is simply equal to the distance below the groundwater table or phreatic surface.\n\nFlowing water loses energy as it flows through the soil and the total head decreases in the direction of flow. For flowing water conditions, a flow net or some other type of seepage analysis must be performed. Pore water pressure at any point can be determined by first calculating the total head and the elevation head at any point in the ground. The pressure head for flowing water is found by subtracting the elevation head from the total head. Water pressures act in all directions equally because the water does not sustain shear stress. For this reason, orientation of the pore water pressure is not important. In some older publications, pore water pressure is also called neutral stress.",
+      "key_points": [
+        "Pore water pressure u = hp · γw, where hp is the pressure head and γw = 62.4 pcf (9.81 kN/m³).",
+        "Velocity head is typically ignored in geotechnical applications; total head = pressure head + elevation head.",
+        "Hydrostatic condition: water is static, total head is constant, pressure head = depth below water table.",
+        "For flowing water: flow net or seepage analysis required; pressure head = total head − elevation head.",
+        "Pore water pressure acts equally in all directions (water cannot sustain shear stress); orientation is irrelevant.",
+        "Pore water pressure is also called neutral stress in older literature."
+      ],
+      "equations": [
+        {
+          "id": "4-2",
+          "description": "Pore water pressure from pressure head: u = hp · γw, where γw is the unit weight of water.",
+          "implemented_in": "geotech_references.dm7_1.chapter4.pore_water_pressure"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when determining pore water pressure at any point in a soil mass under either hydrostatic or seepage (flowing water) conditions."
+    },
+    {
+      "section_id": "4-2.1.3",
+      "title": "Effective Vertical Stress",
+      "summary": "Defines effective vertical stress (σ'v) as total vertical stress minus pore water pressure at the same point, following Terzaghi's effective stress principle. This is the stress carried by the soil skeleton and controls strength and compressibility behavior.",
+      "body": "The effective vertical stress (σʹv) is found by subtracting the pore water pressure at any point from the total vertical stress at the same point\n\nσʹv = σv − u   (4-3).",
+      "key_points": [
+        "Effective vertical stress σ'v = σv − u (total vertical stress minus pore water pressure).",
+        "Effective stress represents the stress carried by the soil skeleton.",
+        "Must be evaluated at the same point for both total stress and pore pressure."
+      ],
+      "equations": [
+        {
+          "id": "4-3",
+          "description": "Effective vertical stress: σ'v = σv − u (total vertical stress minus pore water pressure at the same point).",
+          "implemented_in": "geotech_references.dm7_1.chapter4.effective_vertical_stress"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when computing the effective vertical stress at any depth in a soil profile, which governs strength and compressibility."
+    },
+    {
+      "section_id": "4-2.1.4",
+      "title": "Horizontal Stress",
+      "summary": "Describes horizontal stress in soil as a function of effective vertical stress, stress history, and lateral confinement. Effective horizontal stress is computed as K·σ'v, where K is the lateral earth pressure coefficient (at-rest K0, active KA, or passive KP). Total horizontal stress adds pore water pressure back. Table 4-1 summarizes types, applications, and methods for K.",
+      "body": "Horizontal stress in a soil mass is influenced by the effective vertical stress, the geologic stress history, and lateral confinement conditions. Horizontal stress cannot be calculated directly from the soil profile and is typically calculated as a proportion of the effective vertical stress:\n\nσ'h = K · σ'v   (4-4).\n\nThe lateral earth pressure coefficient (K) depends on stress history and lateral confinement conditions. Common types, applications, and sources of lateral earth pressure coefficients are summarized in Table 4-1.\n\nThe total horizontal stress can be found by adding the pore water pressure at any point onto the effective horizontal stress\n\nσh = σ'h + u   (4-5).",
+      "key_points": [
+        "Horizontal stress is influenced by effective vertical stress, geologic stress history, and lateral confinement.",
+        "Effective horizontal stress: σ'h = K · σ'v, where K is the lateral earth pressure coefficient.",
+        "Three principal K values: at-rest (K0), active (KA), and passive (KP).",
+        "K0 applies to level natural ground and unyielding walls; KA to yielding walls/slope crests; KP to slope toes/wall toes.",
+        "Total horizontal stress: σh = σ'h + u (add pore water pressure to effective horizontal stress).",
+        "Table 4-1 summarizes K types, example applications, and methods to obtain each."
+      ],
+      "equations": [
+        {
+          "id": "4-4",
+          "description": "Effective horizontal stress: σ'h = K · σ'v, where K is the lateral earth pressure coefficient.",
+          "implemented_in": "geotech_references.dm7_1.chapter4.effective_horizontal_stress"
+        },
+        {
+          "id": "4-5",
+          "description": "Total horizontal stress: σh = σ'h + u (effective horizontal stress plus pore water pressure).",
+          "implemented_in": "geotech_references.dm7_1.chapter4.total_horizontal_stress"
+        }
+      ],
+      "figures": [],
+      "tables": [
+        "Table 4-1: Lateral Earth Pressure Coefficients"
+      ],
+      "applicability": "Applies when computing horizontal stresses in soil, including selection of the appropriate lateral earth pressure coefficient K based on stress history and boundary conditions."
+    },
+    {
+      "section_id": "4-2.1.5",
+      "title": "Applied Loads",
+      "summary": "Addresses the effect of external (non-soil) loads on stress within a soil mass. Discusses critical depth for stress influence, flexible vs. rigid foundation load distribution, and references Section 4-3 (analytical methods) and Section 4-6 (numerical methods) for stress change calculations. Rigid foundations on elastic soil shift load to edges; on sand, load decreases toward edges due to yielding.",
+      "body": "Many civil engineering applications must consider the effects of external (non-soil) loads applied at the surface or at some depth within the soil mass. The influence of existing loads must be included in total stress calculations. New loads cause changes in total stress within the soil. These load changes will cause changes in the pore water pressures as discussed in more detail in Chapter 5. The duration of the changes in pore water pressure will depend on the permeability and compressibility of the soil.\n\nAnalytical methods for calculating changes in stress are provided in Section 4-3, including methods for point loads, line loads, and uniformly loaded areas. In Section 4-6, numerical methods for calculating changes in stress are summarized.\n\nChanges in total stress caused by applied loads should be within the soil mass to at least the critical depth. The critical depth is the depth over which soil compression caused by the changes in stress contributes to significant surface settlement. The critical depth in fine-grained soils corresponds to the depth at which the change in stress is less than 10% of the existing vertical effective stress. In coarse-grained soils, the critical depth occurs when the change in stress is less than 20% of the existing vertical effective stress.\n\nInteractions between the applied load and the soil foundation must be considered, especially for changes in stress very close to the load. The flexibility of the structure that applies a distributed load to the soil affects the distribution of the change in stress. A completely flexible load, such as a soil fill, will apply a uniform stress to the soil because the load can deform in proportion to the soil. The elastic solutions presented in Section 4-3 assume that the load is completely flexible.\n\nA foundation that is completely rigid with respect to the soil must undergo a uniform deformation. When a rigid foundation deforms uniformly into an elastic solid (i.e., undrained conditions for clay), the load must shift to the edges of the foundation, resulting in a pressure distribution that increases toward the edge (see Figure 4-2). In contrast, a rigid foundation on sand will cause yielding near the edges, resulting in a pressure distribution that decreases toward the edge.",
+      "key_points": [
+        "External applied loads cause changes in total stress, which in turn cause changes in pore water pressure (details in Chapter 5).",
+        "Analytical stress change methods (point, line, uniform area loads) are in Section 4-3; numerical methods in Section 4-6.",
+        "Critical depth (fine-grained soils): stress change < 10% of existing vertical effective stress.",
+        "Critical depth (coarse-grained soils): stress change < 20% of existing vertical effective stress.",
+        "Flexible loads (e.g., soil fill) apply uniform stress; elastic solutions in Section 4-3 assume completely flexible loading.",
+        "Rigid foundations on elastic clay shift load to edges (pressure increases toward edge); on sand, pressure decreases toward edge due to edge yielding.",
+        "Figure 4-2 illustrates contact pressure variation for rigid vs. flexible foundations."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 4-2: Variation in Contact Pressure – a) Rigid Foundation and b) Completely Flexible Foundation"
+      ],
+      "tables": [],
+      "applicability": "Applies when accounting for external applied loads in soil stress calculations, selecting the critical depth for settlement analysis, and understanding load distribution differences between flexible and rigid foundations."
+    },
+    {
+      "section_id": "4-3",
+      "title": "Elastic Solutions for Stresses Due to Applied Loads",
+      "summary": "Container section covering elastic (Boussinesq and Westergaard) solutions for calculating changes in stress due to applied surface loads. Includes applicability guidance, stress distribution formulas for common load geometries, chart solutions, superposition, St. Venant's principle, and methods for layered or anisotropic foundations.",
+      "body": "",
+      "key_points": [
+        "Covers Boussinesq and Westergaard elastic solutions for stress changes due to applied loads.",
+        "Applicable for consolidation settlement analyses, stress distribution principles, and checking numerical results.",
+        "Organized into semi-infinite elastic conditions and layered/anisotropic foundation methods."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies whenever an engineer needs to estimate changes in stress beneath or around applied surface loads using classical elastic theory."
+    },
+    {
+      "section_id": "4-3.1",
+      "title": "Use and Applicability",
+      "summary": "Describes the intended uses and limitations of the elastic solutions in Section 4-3. These methods are best suited for simple analyses of stress change (e.g., consolidation settlement), for understanding stress distribution principles, and for checking numerical analyses. They are not intended for critical shear stress calculations where plasticity governs.",
+      "body": "The elastic solutions presented in this section are useful for simple analyses of changes in stress, especially consolidation settlement. These methods are also useful for understanding the principles of stress distribution and for checking more complicated numerical analyses.",
+      "key_points": [
+        "Elastic solutions are most useful for consolidation settlement analyses and stress distribution understanding.",
+        "Useful as a check against more complex numerical analyses.",
+        "Not appropriate for critical shear stress calculations where the soil approaches plastic equilibrium."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when selecting appropriate methods for stress analysis under applied loads, particularly for simple or preliminary analyses."
+    },
+    {
+      "section_id": "4-3.2",
+      "title": "Semi-Infinite Elastic Conditions",
+      "summary": "Container section grouping the Boussinesq-based methods for stress calculation in a homogeneous, semi-infinite elastic half-space. Covers assumptions, stress distribution formulas, chart solutions, superposition, and St. Venant's principle for common load geometries.",
+      "body": "",
+      "key_points": [
+        "Groups all Boussinesq-based stress calculation methods under the assumption of a homogeneous, semi-infinite, isotropic elastic medium.",
+        "Includes formulas, charts, superposition, and approximation principles for practical use."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when the soil profile can be reasonably approximated as a homogeneous, semi-infinite elastic medium for stress change calculations."
+    },
+    {
+      "section_id": "4-3.2.1",
+      "title": "Assumptions",
+      "summary": "Details the key assumptions underlying Boussinesq and related elastic stress solutions: homogeneous, elastic, isotropic soil; flexible applied loads at the surface; strictly vertical loading for embankments; and plane strain conditions for loads with L/B ≥ 5. Also notes inapplicability for plastic equilibrium and rigid foundation stress distributions.",
+      "body": "The Boussinesq and related solutions assume the soil is a homogeneous, elastic material in which continuity is maintained and static equilibrium is satisfied. The applied load is completely flexible and is applied at the surface of the material. For embankment loading, the load is strictly vertical and no shear stress is applied to the foundation by the embankment. As discussed in Section 4-2.1.5, the stress distribution below a rigid foundation is not uniform and may not conform to the assumptions of the Boussinesq solutions.\n\nLoads with a length to width ratio (L/B) of at least five are commonly assumed to result in plane strain conditions, at least near the middle of the length. Under plane strain, deformation only occurs perpendicular to the long axis of the load and the changes in stress do not depend on the elastic properties of the material.\n\nThe Boussinesq solutions are not typically applicable to the calculation of shear stress for conditions where shear stress is becoming critical. In this case, the soil is approaching a state of plastic equilibrium and the assumption of elasticity no longer applies. In such cases, stability analysis methods, such as those in Chapter 7 and in DM 7.2, should be used.",
+      "key_points": [
+        "Soil must be homogeneous, elastic, isotropic, and semi-infinite for Boussinesq solutions to apply.",
+        "Applied loads must be completely flexible and applied at the ground surface.",
+        "Embankment loads are assumed strictly vertical with no shear stress applied to the foundation.",
+        "L/B ≥ 5 justifies plane strain assumption; under plane strain, stress changes are independent of elastic properties.",
+        "Boussinesq is not applicable near plastic equilibrium; use stability analysis methods instead.",
+        "Rigid foundation stress distributions may not conform to Boussinesq assumptions (see Section 4-2.1.5)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies before using any Boussinesq-based stress formula to verify that site and loading conditions meet the required assumptions."
+    },
+    {
+      "section_id": "4-3.2.2",
+      "title": "Stress Distribution Formulas",
+      "summary": "Presents closed-form Boussinesq equations in Table 4-2 for calculating changes in vertical stress beneath eight common loading conditions: point load, uniform line load, uniform strip load, uniformly loaded rectangular area, uniformly loaded circular area, triangular load, slope load, terrace load, and semi-infinite uniform load. Formulas support hand calculations, spreadsheets, and numerical analysis verification.",
+      "body": "Formulas for homogeneous, semi-infinite, isotropic foundations are summarized in Table 4-2. These formulas can be used for hand calculations for simple computations and to check the results of more complex numerical analyses. Such formulas can also easily be programmed into a spreadsheet solution. Additional formulas for other geometric and loading conditions are summarized in Poulos and Davis (1974).\n\nHorizontal and shear stresses caused by applied loads can also be determined from elastic solutions. In many cases, these calculations require a value of Poisson's ratio (ν) for the soil. Many of the common figures assume ν = 0.5 making it important to verify the value of ν that was used. One application of horizontal stress calculations is for the loading of unyielding walls as discussed in DM 7.2. For conditions where elastic solutions are suitable, the calculation of shear stress is typically not required.",
+      "key_points": [
+        "Table 4-2 provides vertical stress equations for eight standard loading geometries under Boussinesq assumptions.",
+        "Formulas are suitable for hand calculations, spreadsheets, and as checks on numerical analyses.",
+        "Horizontal and shear stress calculations from elastic solutions often require specifying Poisson's ratio ν.",
+        "Many chart solutions assume ν = 0.5; always verify the assumed value of ν before using.",
+        "For conditions approaching plastic equilibrium, shear stress calculation via elastic solutions is not appropriate.",
+        "Poulos and Davis (1974) provides additional formulas for other geometries and loading conditions."
+      ],
+      "equations": [
+        {
+          "id": "Table 4-2 (Point Load)",
+          "description": "Vertical stress change below a point load Q at depth z and horizontal distance R from the load: σ_z = (3·Q·z³) / (2π·R⁵), where R² = x² + y² + z².",
+          "implemented_in": null
+        },
+        {
+          "id": "Table 4-2 (Uniform Line Load)",
+          "description": "Vertical stress change below a uniform line load of infinite length P at depth z: σ_z = (4·P·z³) / (π·R⁴), where R² = x² + z².",
+          "implemented_in": null
+        },
+        {
+          "id": "Table 4-2 (Uniform Strip Load)",
+          "description": "Vertical stress change below a uniform strip load of intensity q₀: σ_z = (q₀/π)·(α + sin α·cos(α + 2γ)), where α and γ are in radians.",
+          "implemented_in": null
+        },
+        {
+          "id": "Table 4-2 (Rectangular Area)",
+          "description": "Vertical stress change below the corner of a uniformly loaded rectangular area of intensity q₀: σ_z = (q₀/2π)·[2·x·y·z/R₃·(1/R₁² + 1/R₂²) + tan⁻¹(x·y/(z·R₃))], with R₁²=y²+z², R₂²=x²+z², R₃²=x²+y²+z².",
+          "implemented_in": null
+        },
+        {
+          "id": "Table 4-2 (Circular Area)",
+          "description": "Vertical stress change below the center of a uniformly loaded circular area of intensity q₀ and radius r at depth z: σ_z = q₀·[1 − 1/(1+(r/z)²)^(3/2)].",
+          "implemented_in": null
+        },
+        {
+          "id": "Table 4-2 (Triangular Load)",
+          "description": "Vertical stress change below a triangular load of maximum intensity q₀ over width a: σ_z = (q₀/π)·[(x/a)·α − β·(x/a − 1) ... (α and β in radians)].",
+          "implemented_in": null
+        },
+        {
+          "id": "Table 4-2 (Slope Load)",
+          "description": "Vertical stress change below a slope load of intensity q₀: σ_z = (q₀/π)·(β + x·z/a), where β is in radians.",
+          "implemented_in": null
+        },
+        {
+          "id": "Table 4-2 (Terrace Load)",
+          "description": "Vertical stress change below a terrace load of intensity q₀: σ_z = (q₀/π)·(a·β + α)·(x/a), where α and β are in radians.",
+          "implemented_in": null
+        },
+        {
+          "id": "Table 4-2 (Semi-infinite Uniform Load)",
+          "description": "Vertical stress change below a semi-infinite uniform load of intensity q₀: σ_z = (q₀/π)·(β + x·z/R²).",
+          "implemented_in": null
+        }
+      ],
+      "figures": [],
+      "tables": [
+        "Table 4-2"
+      ],
+      "applicability": "Applies when computing vertical stress changes beneath common load geometries using closed-form Boussinesq equations for homogeneous, semi-infinite, isotropic soil."
+    },
+    {
+      "section_id": "4-3.2.3",
+      "title": "Chart Solutions for Vertical Stress beneath Regular Loads",
+      "summary": "Describes chart-based Boussinesq solutions (Figures 4-4 through 4-7) for computing vertical stress beneath strip, square, rectangular, circular, and embankment loads. All charts assume ν = 0.5. Notes that irregularly shaped areas were historically handled with Newmark or Jimenez Salas charts but are now typically analyzed numerically.",
+      "body": "Figure 4-4 to Figure 4-7 provide chart solutions for regularly shaped loads and Boussinesq theory. These charts are all based on the assumption of ν = 0.5, where required, to determine the change in vertical stress. Example calculations are provided in Figure 4-9. Additional guidance on the calculation of changes in stress under elastic conditions can be found in Poulos and Davis (1974).\n\nIn the past, changes in stress caused by irregularly shaped loaded areas were calculated using chart solutions such as those proposed by Newmark (1942) and Jimenez Salas (1948). However, for complex loading conditions, numerical analysis has become the most common means to evaluate changes in stress.",
+      "key_points": [
+        "Figures 4-4 through 4-7 provide Boussinesq influence factor charts for strip, square, rectangular, circular, and embankment loads.",
+        "All charts assume ν = 0.5; verify this assumption before applying.",
+        "Figure 4-9 provides worked examples of stress distribution calculations.",
+        "Newmark (1942) and Jimenez Salas (1948) charts were historically used for irregular areas but numerical analysis is now preferred.",
+        "Poulos and Davis (1974) is the primary reference for additional elastic stress calculation guidance."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 4-4",
+        "Figure 4-5",
+        "Figure 4-6",
+        "Figure 4-7",
+        "Figure 4-9"
+      ],
+      "tables": [],
+      "applicability": "Applies when using graphical influence factor charts to estimate vertical stress changes beneath regularly shaped loads under Boussinesq theory."
+    },
+    {
+      "section_id": "4-3.2.4",
+      "title": "Superposition",
+      "summary": "Explains the superposition principle as applied to Boussinesq elastic stress solutions. Because linear elasticity is assumed, stress changes from multiple loads at the same point can be algebraically added or subtracted. This is particularly useful for computing stress outside or below loaded areas of non-standard shape, as illustrated by Figure 4-8.",
+      "body": "The assumption of linear elasticity inherent in the Boussinesq solutions allows for superposition of stresses that result from applied loads. This means that the change in stress from one load can be added or subtracted from those caused by other loads, provided the same point is being considered in all cases. This principle is especially useful for determining the change in stress below and outside of loaded areas as illustrated in Figure 4-8.",
+      "key_points": [
+        "Linear elasticity assumption of Boussinesq enables algebraic superposition of stress changes from multiple loads.",
+        "Stress changes from different loads can be added or subtracted at the same point.",
+        "Superposition is especially useful for determining stress below and outside of complex or irregular loaded areas.",
+        "Figure 4-8 illustrates the practical application of superposition for vertical stress determination."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 4-8"
+      ],
+      "tables": [],
+      "applicability": "Applies when computing stress changes beneath or adjacent to complex or non-standard loaded areas by combining simple standard Boussinesq solutions."
+    },
+    {
+      "section_id": "4-3.2.5",
+      "title": "St. Venant's Principle",
+      "summary": "Introduces St. Venant's principle for simplifying stress change calculations at depth. States that at sufficient distance from a load, two statically equivalent loads produce identical stress changes, allowing complex loads to be replaced with simpler equivalents (e.g., area loads treated as point or line loads). The rule of thumb is that this principle applies at depths greater than three times the load width.",
+      "body": "St. Venant's principle is another useful concept for the calculation of change in stress due to applied loads. According to this principle, the change in stress caused by two statically equivalent loads becomes equal as the distance from the load becomes sufficiently large. Practically, this means that a square or circular load can be replaced with a point load, or a strip load can be considered a line load. It is commonly assumed that St. Venant's principle can be applied to the calculation of change in vertical stress, Δσ_z, for depths greater than three times the width of the applied load.",
+      "key_points": [
+        "St. Venant's principle: at sufficient distance, two statically equivalent loads produce the same stress change.",
+        "Allows square/circular loads to be approximated as point loads, and strip loads as line loads, at depth.",
+        "Commonly applied for Δσ_z calculations at depths greater than 3× the load width.",
+        "Simplifies calculations significantly when the point of interest is deep relative to the load dimensions."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when estimating vertical stress changes at depths greater than three times the load width, where simplified point or line load approximations are acceptable."
+    },
+    {
+      "section_id": "4-3.3",
+      "title": "Layered or Anisotropic Foundations",
+      "summary": "Addresses limitations of Boussinesq theory for real soils that are not homogeneous or isotropic. Discusses that soil layers typically have differing elastic moduli and may be stiffer horizontally than vertically. Introduces Westergaard and other alternative methods developed to handle layered and anisotropic conditions more realistically.",
+      "body": "While the Boussinesq solutions offer a relatively simple means to calculate changes in stress, soil is not a homogeneous, isotropic, and semi-infinite medium. For example, different layers typically have different values of elastic modulus. Soil layers are often more rigid horizontally than vertically. These deviations from the assumptions of Boussinesq have led to the development of other methods for the calculation of changes in stress, most notably the Westergaard type of analysis.",
+      "key_points": [
+        "Real soils violate Boussinesq assumptions: layers have varying elastic moduli and may be anisotropic.",
+        "Soil often has greater horizontal than vertical rigidity, violating the isotropy assumption.",
+        "Westergaard analysis is the most notable alternative developed to address these deviations.",
+        "Layered foundation effects can cause significant differences from Boussinesq-predicted stress changes."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when the soil profile has distinct layers of differing stiffness or exhibits anisotropic behavior that invalidates Boussinesq homogeneous/isotropic assumptions."
+    },
+    {
+      "section_id": "4-3.3.1",
+      "title": "Westergaard Analysis",
+      "summary": "Describes the Westergaard method for stress calculation in soils reinforced by closely spaced horizontal layers that prevent horizontal displacement. Predicts smaller stress changes than Boussinesq and is most appropriate for alternating stiff/soft soil profiles such as soft clay with intermittent sand layers. Figure 4-10 provides influence factors for rectangular loaded areas using Westergaard theory.",
+      "body": "Westergaard analysis assumes that the soil below the load is reinforced by closely spaced horizontal layers that prevent horizontal displacement. This reinforcement effect causes the changes in stress predicted by Westergaard to be less than those calculated by the Boussinesq assumptions. The Westergaard type of analysis is most appropriate for soil profiles that have alternating layers of stiff and soft soils, such as soft clay with intermittent horizontal layers of sand. Figure 4-10 provides influence factors for points below the corner of a rectangular loaded area, assuming Westergaard theory.",
+      "key_points": [
+        "Westergaard assumes horizontal reinforcing layers prevent horizontal displacement in the soil mass.",
+        "Westergaard predicts smaller stress changes than Boussinesq for the same loading conditions.",
+        "Most appropriate for alternating stiff/soft soil profiles (e.g., soft clay with intermittent sand layers).",
+        "Figure 4-10 provides Westergaard influence factors for stress below the corner of a rectangular loaded area."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 4-10"
+      ],
+      "tables": [],
+      "applicability": "Applies when analyzing vertical stress changes in soil profiles with alternating stiff and soft horizontal layers where horizontal displacement is constrained."
+    },
+    {
+      "section_id": "4-3.3.2",
+      "title": "Layered Foundations",
+      "summary": "Addresses soil profiles with thick layers of very different elastic properties where Boussinesq significantly misestimates vertical stress changes. Notes that analytical and chart-based solutions using rigidity factors (e.g., Mehta and Veletsos 1959) exist but that numerical analysis is the preferred method for these conditions.",
+      "body": "Soil profiles may have layers of significant thickness and very different elastic properties. The changes in vertical stress induced in these cases differs significantly from that predicted by Boussinesq assumptions. Analytical and chart-based solutions have been suggested to account for such differences using rigidity factors (e.g., Mehta and Veletsos 1959). For these conditions, numerical analysis is the preferred method to determine changes in stress or as a means of comparison to simpler solutions.",
+      "key_points": [
+        "Thick layers with very different elastic properties cause significant departure from Boussinesq-predicted stress changes.",
+        "Rigidity factor approaches (e.g., Mehta and Veletsos 1959) provide analytical/chart-based corrections.",
+        "Numerical analysis is the preferred method for layered foundations with greatly differing elastic properties.",
+        "Simpler solutions can still serve as a comparison check against numerical results."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when the soil profile consists of layers with significantly different elastic moduli where Boussinesq theory alone is insufficient for accurate vertical stress estimation."
+    },
+    {
+      "section_id": "4-4",
+      "title": "Shallow Pipes and Conduits",
+      "summary": "Covers stresses on shallow buried pipes and conduits due to applied loads. Key factors include pipe rigidity relative to soil, depth of cover, loading type, pipe span, construction method, and pipe shape. Presents empirical procedures based on field observations, with references to Moser (1990) and American Lifelines Alliance (2001) for more detailed analysis.",
+      "body": "The stresses on shallow pipes and conduits due to applied loads is one important application of concepts presented in this chapter. The factors influencing these stresses include the relative rigidity of the pipe to the soil, the depth of cover, the type of loading, the maximum width (span) of the structure, the method of construction, and the shape of the pipe.\n\nThis section presents simple empirical procedures based on observations. More detailed analysis can be conducted numerically or by consulting Moser (1990) or American Lifelines Alliance (2001).",
+      "key_points": [
+        "Pipe-soil stresses depend on relative rigidity, depth of cover, load type, span, construction method, and pipe shape.",
+        "Empirical procedures from Marston, Anderson, and Spangler form the basis for load estimation.",
+        "More detailed analysis can be performed numerically or via Moser (1990) and American Lifelines Alliance (2001)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when determining stresses on shallow buried pipes and conduits from applied loads."
+    },
+    {
+      "section_id": "4-4.1",
+      "title": "General",
+      "summary": "Introduces the factors governing stresses on shallow pipes and conduits, including pipe rigidity, depth of cover, loading type, pipe span, construction method, and pipe shape. Notes that simple empirical procedures are presented in this section, with references to Moser (1990) and American Lifelines Alliance (2001) for more detailed analysis.",
+      "body": "The stresses on shallow pipes and conduits due to applied loads is one important application of concepts presented in this chapter. The factors influencing these stresses include the relative rigidity of the pipe to the soil, the depth of cover, the type of loading, the maximum width (span) of the structure, the method of construction, and the shape of the pipe.\n\nThis section presents simple empirical procedures based on observations. More detailed analysis can be conducted numerically or by consulting Moser (1990) or American Lifelines Alliance (2001).",
+      "key_points": [
+        "Pipe stress is influenced by pipe-to-soil rigidity ratio, cover depth, load type, span, construction, and shape.",
+        "Simple empirical methods are based on field observations by Marston, Anderson, and Spangler.",
+        "Numerical or reference-based approaches (Moser 1990; American Lifelines Alliance 2001) available for detailed analysis."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies as an introductory overview when beginning analysis of stress on shallow buried pipes and conduits."
+    },
+    {
+      "section_id": "4-4.2",
+      "title": "Vertical Loads on Rigid Pipe",
+      "summary": "Addresses vertical load calculation for rigid pipes (precast concrete, cast-in-place concrete, or cast iron), covering both dead and live load components using Marston-Anderson-Spangler theory and Boussinesq methods.",
+      "body": "Rigid pipes are those made of precast concrete, cast-in-place concrete, or cast iron.",
+      "key_points": [
+        "Rigid pipe materials include precast concrete, cast-in-place concrete, and cast iron.",
+        "Dead loads use the Marston-Anderson-Spangler trench load approach (Eq. 4-6 and 4-7).",
+        "Live loads are estimated with Boussinesq theory multiplied by impact factors for dynamic effects."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when calculating vertical dead and live loads on rigid buried pipes in trench conditions."
+    },
+    {
+      "section_id": "4-4.2.1",
+      "title": "Dead Load",
+      "summary": "Presents the Marston-Anderson (1913) and Spangler (1948) method for estimating dead load on rigid pipe in a trench. The load per unit length (Wd) is a function of a load coefficient (Cd), soil unit weight, and trench width. Cd depends on trench depth, lateral earth pressure, and friction coefficient, with recommended parameter values tabulated in Table 4-3.",
+      "body": "Estimates of the load caused by vertical stress on a rigid pipe can be made using the approach suggested by Marston and Anderson (1913) and subsequent work by Spangler (1948). The load per length of pipe (Wd) in a trench can be calculated as:\n\nWd = Cd × γt × Bd²\n\nwhere:\nCd = a load coefficient,\nγt = the total unit weight of the soil, and\nBd = the width of the trench.\n\nThe value of Cd can be calculated as:\n\nCd = (1 - e^(-2Kµ'H/Bd)) / (2Kµ')\n\nwhere:\nH = the depth of the trench above the top of the pipe,\nK = a lateral earth pressure coefficient, and\nµʹ = the coefficient of friction for the trench fill.\n\nRecommended values of γt, K, and µʹ for use with this equation are provided in Table 4-3 as summarized by Moser (1990).",
+      "key_points": [
+        "Dead load per unit pipe length: Wd = Cd × γt × Bd² (Eq. 4-6).",
+        "Load coefficient Cd accounts for trench geometry, lateral earth pressure (K), and friction (µʹ) per Eq. 4-7.",
+        "Table 4-3 provides recommended γt, K, and µʹ values for six soil types including clays, sands, and topsoils.",
+        "Kµʹ values range from 0.11 (saturated clay) to 0.17 (topsoil, dry sand, saturated sand).",
+        "Method is based on Marston and Anderson (1913) with refinements by Spangler (1948)."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 4-6",
+          "description": "Load per unit length of rigid pipe in a trench: Wd = Cd × γt × Bd², where Cd is the load coefficient, γt is total unit weight of soil, and Bd is trench width.",
+          "implemented_in": "geotech_references.dm7_1.chapter4.rigid_pipe_trench_load"
+        },
+        {
+          "id": "Eq. 4-7",
+          "description": "Load coefficient for rigid pipe in a trench: Cd = (1 - e^(-2Kµ'H/Bd)) / (2Kµ'), where H is depth of trench above pipe top, K is lateral earth pressure coefficient, and µʹ is coefficient of friction for trench fill.",
+          "implemented_in": "geotech_references.dm7_1.chapter4.flexible_pipe_trench_load"
+        }
+      ],
+      "figures": [],
+      "tables": [
+        "Table 4-3: Recommended Values for Trench Load Coefficient (after Moser 1990)"
+      ],
+      "applicability": "Applies when estimating dead load on rigid buried pipes in trench installations using the Marston-Spangler approach."
+    },
+    {
+      "section_id": "4-4.2.2",
+      "title": "Live Load",
+      "summary": "Describes how to estimate live loads on rigid buried pipe from vehicles (trucks, railroad, aircraft). Vertical stress at the pipe crown is calculated using Boussinesq theory (Table 4-2 equations) multiplied by impact factors from Table 4-4. Table 4-5 summarizes live load pressures (with 1.5 impact factor); stress becomes negligible below 8, 30, and 24 ft for truck, railroad, and airport loads, respectively.",
+      "body": "The primary live loads considered in the design of buried pipes are those from vehicles, including trucks, railroad, and airplanes. The stress at the top of the pipe is typically calculated using Boussinesq theory multiplied by an impact factor that accounts for dynamic effects. The equations presented in Table 4-2 can be used to estimate the vertical stress transferred to the top of the pipe from surface loading. Appropriate live load impact factors are summarized in Table 4-4.\n\nLive load pressures (including an impact factor of 1.5) are summarized in Table 4-5. The values in this table indicate that the changes in stress become negligible below depths of 8 feet, 30 feet, and 24 feet for standard truck, railroad, and airport loads, respectively.",
+      "key_points": [
+        "Live loads from trucks, railroads, and aircraft are the primary surface loads for buried pipe design.",
+        "Boussinesq theory (Table 4-2) is used to compute vertical stress at the pipe crown from surface loads.",
+        "Impact factors from Table 4-4 account for dynamic effects; highway impact factors range from 1.00 to 1.50 depending on cover depth.",
+        "Table 4-5 provides tabulated live load pressures (with 1.5 impact factor) for AASHTO HS-20 truck, Cooper E-80 railway, and 180-kip airport gear loads.",
+        "Live load stress becomes negligible below 8 ft (truck), 30 ft (railway), and 24 ft (airport)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 4-4: Impact Factors for Live Loading of Buried Pipe (from American Lifelines Alliance 2001)",
+        "Table 4-5: Live Load Pressures from Various Vehicle Loading (after American Lifelines Alliance 2001)"
+      ],
+      "applicability": "Applies when calculating live loads on rigid buried pipes from highway, railway, or airport vehicle traffic."
+    },
+    {
+      "section_id": "4-4.3",
+      "title": "Vertical Loads on Flexible Pipe",
+      "summary": "Covers vertical load behavior for flexible pipes (corrugated metal, plastic, thin-wall smooth steel). Unlike rigid pipes, flexible pipes deform under load and develop horizontal restraining pressures. Vertical pressure depends on surrounding soil compressibility; arching in coarse-grained soils can reduce overburden, while compressible soils may cause overpressure above the overburden.",
+      "body": "Flexible pipes include corrugated metal, plastic, and thin-wall smooth steel pipes. These pipes deform when loaded and develop horizontal restraining pressures on the sides that may be approximately equal to the vertical pressure if the backfill is well-compacted. The vertical pressure on the top of the pipe depends on the surrounding soil. In highly compressible soil, the vertical pressure may exceed the overburden pressure. In contrast, arching in coarse-grained soils may significantly reduce the overburden pressure.",
+      "key_points": [
+        "Flexible pipes (corrugated metal, plastic, thin-wall steel) deform under load and mobilize lateral soil restraint.",
+        "With well-compacted backfill, lateral restraining pressure may approximately equal vertical pressure.",
+        "In compressible soils, vertical pressure on the pipe can exceed the overburden pressure.",
+        "Arching in coarse-grained soils can significantly reduce the effective overburden pressure on the pipe."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when analyzing vertical loads on flexible buried pipes where pipe deformation and soil-pipe interaction are significant."
+    },
+    {
+      "section_id": "4-4.3.1",
+      "title": "Dead Load",
+      "summary": "Presents two methods for estimating dead load on flexible buried pipe: (1) the Marston flexible pipe load equation (Eq. 4-8), which uses the same Cd coefficient as rigid pipe but may be unconservative because it assumes equal pipe and soil stiffness; and (2) the more conservative prism load method (Eq. 4-9), which uses the full weight of soil above the pipe.",
+      "body": "For very flexible pipe with outside diameter (Bc) the Marston load theory predicts a load (Wc) of:\n\nWc = Cd × γt × D\n\nwhere:\nCd = the load coefficient for rigid pipe (see Equation 4-7),\nγt = the total unit weight of the trench backfill, and\nD = the outer diameter of the pipe (Moser 1990).\n\nThis method assumes that the pipe stiffness and soil stiffness are equal, which may lead to unconservative values of Wc.\n\nThe prism load is a more conservative approach for determining the dead load on a buried flexible pipe. The prism load (Wp) is simply the total weight of the soil above the pipe and is equal to:\n\nWp = γt × H × D\n\nwhere:\nγt = the backfill total unit weight,\nH = the depth of soil cover, and\nD = the outer diameter of the pipe.",
+      "key_points": [
+        "Marston flexible pipe dead load: Wc = Cd × γt × D (Eq. 4-8), using the same Cd as for rigid pipe.",
+        "Eq. 4-8 assumes equal pipe and soil stiffness, potentially yielding unconservative (low) load estimates.",
+        "Prism load (Eq. 4-9) is more conservative: Wp = γt × H × D, equaling the full weight of soil above the pipe.",
+        "Prism load is preferred when a conservative design basis is needed for flexible pipe dead load."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 4-8",
+          "description": "Marston dead load on very flexible pipe: Wc = Cd × γt × D, where Cd is the load coefficient (same as Eq. 4-7), γt is total unit weight of trench backfill, and D is the outer diameter of the pipe.",
+          "implemented_in": "geotech_references.dm7_1.chapter4.flexible_pipe_prism_load"
+        },
+        {
+          "id": "Eq. 4-9",
+          "description": "Prism load (conservative dead load) on flexible buried pipe: Wp = γt × H × D, where γt is backfill total unit weight, H is depth of soil cover, and D is outer diameter of the pipe.",
+          "implemented_in": "geotech_references.dm7_1.chapter4.flexible_pipe_prism_load"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when estimating dead load on flexible buried pipes using either the Marston method or the more conservative prism load approach."
+    },
+    {
+      "section_id": "4-4.3.2",
+      "title": "Live Load",
+      "summary": "Specifies that live loads on flexible buried pipes should be calculated using the same Boussinesq-based approach described in Section 4-4.2.2 for rigid pipes, including the use of appropriate impact factors from Table 4-4 and live load pressure values from Table 4-5.",
+      "body": "The Boussinesq approach described in Section 4-4.2.2 should also be used to calculate live loads on flexible pipes.",
+      "key_points": [
+        "Live loads on flexible pipes are calculated using the same Boussinesq method as for rigid pipes (Section 4-4.2.2).",
+        "Impact factors from Table 4-4 and live load pressures from Table 4-5 apply equally to flexible pipe design."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when calculating live loads on flexible buried pipes from vehicle traffic."
+    },
+    {
+      "section_id": "4-4.4",
+      "title": "Long Span Metal Culverts",
+      "summary": "Addresses design of long span metal culverts, for which the standard pipe load methods do not apply. FEA software (e.g., CANDE) is typically required. Distinguishes between shallow cover (cover < span/4), which requires flexural stress design for live loads, and deep cover (cover > span/4), which requires ring compression design only; negative arching causes axial ring loads to exceed those from ring compression theory alone.",
+      "body": "The previously discussed methods do not apply to the calculation of stresses and design of long span metal culverts. The use of finite element analysis software specifically formulated for culverts, such as CANDE, is likely required. For additional guidance see Duncan (1979).\n\nFor the design of long span metal culverts, the engineer must distinguish between shallow and deep cover conditions (Duncan 1979). Shallow cover conditions apply to cases where the cover is less than one-fourth of the culvert span. Culverts with shallow cover must be designed for flexural stresses caused by live loads. The factor of safety is calculated by comparing the predicted axial stresses and moment loading to the culvert capacity.\n\nIn contrast, deep cover conditions occur when the cover is greater than one-fourth of the span. Deep cover culverts only require design for ring compression, such that the seams don't collapse under the design loads. Design axial ring loads are higher than those calculated solely based on ring compression theory. This occurs because the culvert is much stiffer in ring compression than the surrounding soil and a negative arching condition occurs.",
+      "key_points": [
+        "Standard buried pipe load methods do not apply to long span metal culverts; FEA software (e.g., CANDE) is typically required.",
+        "Shallow cover condition: cover < span/4; design must account for flexural stresses from live loads.",
+        "Deep cover condition: cover > span/4; design focuses on ring compression to prevent seam collapse.",
+        "Negative arching occurs in deep cover because the culvert is stiffer in ring compression than the surrounding soil, increasing axial ring loads above theoretical values.",
+        "Factor of safety for shallow cover is based on comparing predicted axial stresses and moments to culvert capacity.",
+        "Reference: Duncan (1979) for additional design guidance."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when designing long span metal culverts where cover depth relative to span determines whether flexural or ring compression controls the design."
+    },
+    {
+      "section_id": "4-5",
+      "title": "Deep Underground Openings",
+      "summary": "Covers the analysis of stresses, loads, and deformations for deep underground openings including tunnels and shafts in rock and soil. Addresses equilibrium disturbance due to excavation, soil-structure interaction, arching effects, and the distinction between deep and shallow openings based on cover-to-diameter ratio.",
+      "body": "",
+      "key_points": [
+        "Excavation disturbs pre-existing stress equilibrium, requiring load transfer to surrounding rock, soil, or support system.",
+        "Cover-to-diameter ratio < 2: shallow opening (ignore arching); ratio > 3: deep opening (arching benefits apply).",
+        "Both immediate and time-dependent (creep/consolidation) responses must be considered, especially in saturated compressible soils.",
+        "Type of support system and tunneling method significantly affect deformations and loading on tunnel support.",
+        "Numerical methods (e.g., FEA) can provide accurate results; analytical methods in this section are useful for simple checks."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when analyzing any deep underground opening (tunnel or shaft) in rock or soil where excavation-induced stress redistribution and arching must be evaluated."
+    },
+    {
+      "section_id": "4-5.1",
+      "title": "General Factors",
+      "summary": "Describes the fundamental mechanics of stress redistribution and deformation caused by underground excavation. Discusses the role of soil-structure interaction, the importance of cover-to-diameter ratio in classifying openings as deep or shallow, and the role of arching in deep openings. References FHWA (2009) for soft ground tunneling guidance.",
+      "body": "Prior to excavation of a tunnel, the rock or soil is typically at a state of equilibrium under the stresses imposed by overburden and external loads. Excavation disturbs that equilibrium condition and requires load to transfer to surrounding rock, soil, or tunnel support system. The soil and rock will always exhibit an immediate response to the changes in stress caused by the excavation. Often a time-dependent response also occurs, especially in saturated compressible soils. A good discussion of the development of equilibrium conditions during and after tunneling in soft ground, as well as tunneling and support methods, is provided in FHWA (2009).\n\nChanges in stress are typically accompanied by displacement of the rock, soil, or support structure. Similar to retaining walls, some movement is desirable to create a suitable balance between the load carried by the structure and the load distributed to the soil. Due to the effects of this soil-structure interaction, the type of support system and tunneling method used will significantly affect the deformations experienced during and after tunneling, and therefore the loading imposed on tunnel support.\n\nThe stresses acting on an underground opening will also depend on the depth of the opening below the ground surface and the characteristics of the surrounding soil or rock. One common distinction between the terms deep and shallow compares the depth of cover to the diameter of the opening. Openings for which this ratio is less than 2 should be considered shallow and arching of the soil or rock should be ignored. Deep openings have a cover to diameter ratio greater than 3 and benefit from the effects of arching.\n\nFor deep underground openings, deformation toward the opening allows the release of stress and the development of arching in the surrounding soil or rock. For this reason, the stresses are heavily dependent on the amount of deformation allowed during construction and the degree of restraint provided by the lining.\n\nNumerical methods, such as finite element analysis, can be used to calculate stresses and deformations of underground openings. These methods can be quite accurate and account for significant complexity provided the soil and rock are characterized properly and the construction sequence is adequately modeled. The methods presented in this section are useful for simple calculations and to check the results of more complex numerical models.",
+      "key_points": [
+        "Excavation disturbs pre-existing equilibrium; load transfers to surrounding material or support system.",
+        "Both immediate and time-dependent stress responses occur; the latter is especially significant in saturated compressible soils.",
+        "Cover/diameter < 2: shallow (ignore arching); cover/diameter > 3: deep (arching benefits apply).",
+        "Stresses in deep openings are heavily dependent on deformation allowed and degree of restraint from lining.",
+        "Numerical methods (FEA) are accurate but complex; analytical methods here serve as checks and simplified calculations.",
+        "FHWA (2009) provides detailed guidance on equilibrium conditions and support methods for soft ground tunneling."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when establishing the conceptual framework for stress and deformation analysis of any deep or shallow underground opening prior to selecting a design method."
+    },
+    {
+      "section_id": "4-5.2",
+      "title": "Openings in Rock",
+      "summary": "Classifies rock into two groups for tunnel stress analysis: (1) sound, non-swelling rock capable of sustaining tensile stress, and (2) fractured, blocky, seamy, squeezing, or swelling rock. The key distinction is the rock's ability to resist tensile stress and significant deformation, which governs the applicable analysis method.",
+      "body": "Rock can be separated into two groups for the purposes of determining stresses: (1) sound, non-swelling rock that can sustain considerable tensile stress and (2) fractured, blocky, seamy, squeezing, or swelling rock. For more detailed explanations of rock properties, see Chapter 1. The behavior of these two groups is distinguished primarily by the ability of the rock to resist tensile stress and/or significant deformation.",
+      "key_points": [
+        "Rock is divided into two groups for tunnel stress analysis: sound/non-swelling versus fractured/blocky/seamy/squeezing/swelling.",
+        "The primary distinguishing factor is the rock's ability to resist tensile stress and significant deformation.",
+        "Chapter 1 provides detailed rock property explanations."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when selecting an appropriate analysis method for stresses around underground openings in rock."
+    },
+    {
+      "section_id": "4-5.2.1",
+      "title": "Sound Rock",
+      "summary": "Covers elastic analysis for tunnels in intact, isotropic rock such as crystalline igneous, homogeneous sandstone, and limestone. Notes that stresses around spheroidal cavities are lower than for tunnels with the same cross-section, and that elastic analysis can optimize opening and pillar arrangements.",
+      "body": "Elastic analysis can be used to determine stresses surrounding tunnels or openings in intact, isotropic rock (e.g., crystalline igneous, homogeneous sandstone and limestone). Analytical methods are summarized in rock mechanics texts such as Goodman (1989).\n\nFor these materials, stresses in rock surrounding spheroidal cavities are lower than those for tunnels with the same cross-section. Elastic analysis can be used to determine the best arrangement of openings and pillars, such that supports are provided at locations of stress concentration.",
+      "key_points": [
+        "Elastic analysis applies to intact, isotropic rock (crystalline igneous, homogeneous sandstone, limestone).",
+        "Spheroidal cavities induce lower stresses than tunnels with the same cross-section.",
+        "Elastic analysis can optimize pillar and opening arrangements by identifying stress concentrations.",
+        "Reference: Goodman (1989) for analytical methods."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when analyzing stresses around tunnels or underground openings in sound, intact, isotropic rock."
+    },
+    {
+      "section_id": "4-5.2.2",
+      "title": "Broken and Fractured Rock",
+      "summary": "Addresses pressure estimation for tunnels in chemically or mechanically altered rock using empirical rules from Table 4-6. Rock conditions in Table 4-6 are correlated to standard rock quality indices (RQD, Q, RMR) in Table 4-7, providing a framework for selecting appropriate rock load values.",
+      "body": "Pressure on tunnels in chemically or mechanically altered rock must be analyzed by approximate rules based on experience, such as those presented in Table 4-6. The rock conditions used in Table 4-6 are compared to other common rock quality indices in Table 4-7.",
+      "key_points": [
+        "Empirical rules (Table 4-6) are required for tunnels in chemically or mechanically altered rock.",
+        "Table 4-7 correlates Table 4-6 rock conditions to RQD, rock tunneling quality index Q, and rock mass rating RMR.",
+        "Analytical elastic methods are not appropriate for fractured or altered rock."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 4-6",
+        "Table 4-7"
+      ],
+      "applicability": "Applies when estimating tunnel support pressures in fractured, blocky, seamy, or chemically altered rock."
+    },
+    {
+      "section_id": "4-5.2.3",
+      "title": "Squeezing and Swelling Rock",
+      "summary": "Describes the behavior of squeezing and swelling rock (categories 7–9 in Tables 4-6 and 4-7), which originates from heavily preloaded clay deposits. Clay minerals, especially montmorillonite, cause expansion, water absorption, shear strength loss, and tunnel wall squeezing upon stress relief around underground openings.",
+      "body": "Rocks in categories 7 to 9 of Table 4-6 and Table 4-7 are the result of clay deposits that have been heavily preloaded during their geologic history. The transition from very dense soil to soft rock is not well-defined. In some cases, very dense clays that have not fully lithified may be included in this category.\n\nRock properties are closely tied to the properties of the minerals from which it is comprised. The rocks in this category contain significant amounts of clay minerals with properties ranging from the non-swelling kaolinite group to the highly swelling montmorillonite group. Soil and rock that has a high fraction of clay minerals will tend to expand, absorb water, and lose shear strength while undergoing stress relief. Thus, rocks with significant amounts of clay minerals will tend to swell as a result of the stress relief around an underground opening. Swelling leads to a loss of shear strength and a tendency of the tunnel walls to squeeze into the opening.",
+      "key_points": [
+        "Squeezing/swelling rock (Table 4-6 categories 7–9) originates from heavily preloaded clay deposits.",
+        "The boundary between very dense soil and soft rock is not well-defined; unlithified dense clays may be included.",
+        "Clay minerals range from non-swelling kaolinite to highly swelling montmorillonite.",
+        "Stress relief causes swelling, water absorption, and shear strength loss, leading to tunnel wall squeezing."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 4-6",
+        "Table 4-7"
+      ],
+      "applicability": "Applies when evaluating tunnel behavior in rock or soil containing significant clay mineral content that may swell or squeeze upon excavation-induced stress relief."
+    },
+    {
+      "section_id": "4-5.3",
+      "title": "Loads on Underground Openings in Rock",
+      "summary": "Parent section covering methods for estimating vertical rock loads, horizontal pressures, and alternative empirical approaches for tunnel support pressures in rock. Subsections address Terzaghi's rock load table, active wedge analysis for horizontal pressures, and rock quality index-based methods.",
+      "body": "",
+      "key_points": [
+        "Covers vertical rock load, horizontal pressure, and alternative empirical support pressure methods for tunnels in rock.",
+        "Key reference methods include Terzaghi (1946), Q-system (Barton et al. 1974), and RMR (Bieniawski 1976/1990)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when estimating loads on tunnel support systems in rock using empirical and analytical methods."
+    },
+    {
+      "section_id": "4-5.3.1",
+      "title": "Vertical Rock Load",
+      "summary": "Presents Terzaghi's (1946) empirical rock load table (Table 4-6) for estimating vertical roof pressure on tunnel linings. The design rock load height Hp depends on tunnel width B for high-quality rock and also on tunnel height Ht for lower-quality rock. Total vertical pressure equals Hp multiplied by rock unit weight.",
+      "body": "A common starting point for the estimation of vertical roof pressure is found in Table 4-6. It should be noted that the values presented in this table were largely based on observations by Terzaghi (1946) for tunnel widths in the range of 16 to 32 feet (5 to 10 meters) prior to the advent of 'modern' tunneling methods. Table 4-6 provides an approximate means of calculating the vertical pressure or rock load that must be supported by roof lining. The height of rock (Hp) that must be supported is a function of the tunnel width (B) for high quality rock and also the tunnel height (Ht) for lower quality rock. The total vertical pressure can be found by multiplying Hp by the total unit weight of the rock.",
+      "key_points": [
+        "Table 4-6 (Terzaghi 1946) is the primary empirical tool for vertical rock load estimation.",
+        "Original observations were for tunnel widths of 16–32 ft (5–10 m) using pre-modern tunneling methods.",
+        "Hp is a function of B alone for high-quality rock; also includes Ht for lower-quality rock.",
+        "Total vertical pressure = Hp × total unit weight of rock.",
+        "Rock loads apply only for tunnels at depth greater than 1.5·(B + Ht); values above water table can be reduced 50% for conditions 4–6."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 4-6",
+        "Table 4-7"
+      ],
+      "applicability": "Applies when estimating vertical roof pressure on tunnel lining in rock using Terzaghi's empirical rock load classification."
+    },
+    {
+      "section_id": "4-5.3.2",
+      "title": "Horizontal Pressures",
+      "summary": "Describes estimation of horizontal pressures on rock tunnels using an active wedge (Coulomb-type) analysis. Vertical forces include the weight of the active wedge plus the overburden rock load Hp. The critical failure plane inclination may be governed by rock shear strength or rock structure, and weak bedding planes must be considered.",
+      "body": "Horizontal pressures acting on a tunnel can be approximated using an active wedge type analysis, such as Coulomb, with the diagram shown at the bottom of Table 4-6. The vertical forces included in these calculations are the weight of the active wedge and the weight of the rock for a height (Hp) above the wedge. Shear strength parameters can be assumed or selected using guidance in Chapter 3. The critical inclination of the active wedge may be determined by either the shear strength of the rock or by the rock structure. The possibility of movement along a weak bedding plane or stratum should be considered.",
+      "key_points": [
+        "Horizontal pressures estimated using active wedge (Coulomb-type) analysis.",
+        "Vertical forces include weight of active wedge plus rock load Hp above the wedge.",
+        "Shear strength parameters selected per Chapter 3 guidance.",
+        "Critical wedge inclination may be governed by rock shear strength or rock structure (e.g., weak bedding planes)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 4-6"
+      ],
+      "applicability": "Applies when estimating horizontal earth pressures acting on tunnel sidewalls in rock using limit equilibrium methods."
+    },
+    {
+      "section_id": "4-5.3.3",
+      "title": "Other Methods for Tunnel Support Pressures",
+      "summary": "Summarizes two alternative empirical systems for tunnel support pressure estimation: the rock tunneling quality index Q (Barton et al. 1974) and the Rock Mass Rating system (Bieniawski 1976/1990). Q-based methods estimate roof pressure and support requirements; RMR relates to stand-up time, unsupported span, and roof pressure.",
+      "body": "Alternate empirical methods for estimating tunnel support pressures are available. The two most common are the rock tunneling quality index, Q, presented in Barton et al. (1974) and the rock mass rating system (e.g., Bieniawski 1976). These systems are described in more detail in Chapter 1. The roof pressure and support requirements for tunnels can be estimated from the value of Q and some of the joint properties. While not solely intended for tunneling applications, the RMR can be related to stand-up time, unsupported active span length, and roof pressure. See Bieniawski (1990) for additional comparison of methods for estimating tunnel support requirements.",
+      "key_points": [
+        "Two primary alternative methods: Q-system (Barton et al. 1974) and RMR (Bieniawski 1976/1990).",
+        "Q-system estimates roof pressure and support requirements using joint properties.",
+        "RMR relates to stand-up time, unsupported active span, and roof pressure.",
+        "Both systems are described in more detail in Chapter 1.",
+        "Bieniawski (1990) provides comparison of multiple methods for tunnel support estimation."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when using rock classification system-based empirical methods (Q or RMR) to estimate tunnel support pressures as an alternative to Terzaghi's rock load approach."
+    },
+    {
+      "section_id": "4-5.4",
+      "title": "Openings in Soft Ground (Soil)",
+      "summary": "Parent section covering ground behavior classification, support load estimation, and loss of ground for tunnels in soft ground (soil). Encompasses stand-up time assessment, stability factor calculations, and support load tables for various soil types and tunneling conditions.",
+      "body": "",
+      "key_points": [
+        "Soft ground tunnel behavior is governed by stand-up time, soil type, groundwater, and opening size.",
+        "Ground behavior is classified as firm, raveling, running, flowing, squeezing, or swelling.",
+        "Support loads and loss of ground are key design considerations in soft ground tunneling."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when designing tunnels through soil (soft ground) where stand-up time, ground behavior classification, and soil-structure interaction govern support design."
+    },
+    {
+      "section_id": "4-5.4.1",
+      "title": "Ground Behavior",
+      "summary": "Classifies soft ground tunnel behavior using Terzaghi's (1950) Tunnelman's Ground Classification (Table 4-8) and quantitative criteria for fine-grained soils via the undrained stability factor Ncrit (Eq. 4-10) and coarse-grained soils via Table 4-10. Ground behavior types range from firm to flowing and swelling.",
+      "body": "Selection of an appropriate method for tunnel construction in soft ground (i.e., soil tunneling) depends upon the response of the soil during and after excavation. This response is often referred to in terms of stand-up time, which is the amount of time the soil will support itself prior to the installation of tunnel supports. The stand-up time depends on the type of soil, the position of groundwater, and the size of the opening. Terzaghi's (1950) Tunnelman's Ground Classification provides a commonly used means of describing various types of ground response. The types of ground behavior for tunneling are summarized in Table 4-8.\n\nIn addition to the descriptions provided in Table 4-8, the behavior of fine-grained soils and silty sands above the water table can be evaluated using Table 4-9. The undrained stability factor (Ncrit) is used to assess the ground behavior as suggested by Peck (1969). This factor is defined as:\n\nNcrit = (σ'v − σt) / su\n\nwhere:\nσ'v = effective overburden pressure at the tunnel centerline,\nσt = interior applied pressure from compressed air or breasting, and\nsu = undrained shear strength.\n\nFor coarse-grained soils, the ground behavior depends on the grain-size distribution, relative density, and the amount of clayey fines (binder) as indicated in Table 4-10. Uniform, loose materials (Cu < 3 and N < 10) with round grains run more freely than well-graded, dense materials (Cu > 6 and N > 30) with angular particles. Soils with properties between those listed in Table 4-10 will tend to exhibit intermediate ground behavior. Very high flowrates should be expected in tunnels below the water table through soils with relatively large particles, such as gravel and medium to coarse sand.",
+      "key_points": [
+        "Stand-up time (time soil self-supports before lining installation) governs tunnel construction method selection.",
+        "Stand-up time depends on soil type, groundwater position, and opening size.",
+        "Terzaghi's (1950) Tunnelman's Ground Classification (Table 4-8) defines six behavior types: firm, raveling, running, flowing, squeezing, swelling.",
+        "Undrained stability factor Ncrit = (σ'v − σt) / su is used to assess fine-grained soil behavior (Table 4-9).",
+        "Coarse-grained soil behavior depends on Cu, SPT N, particle shape, and water table position (Table 4-10).",
+        "Loose, uniform, round-grained soils (Cu < 3, N < 10) run most freely; dense, angular, well-graded soils (Cu > 6, N > 30) are most stable."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 4-10",
+          "description": "Undrained stability factor Ncrit = (σ'v − σt) / su, where σ'v is effective overburden at tunnel centerline, σt is interior applied pressure (compressed air or breasting), and su is undrained shear strength. Used to assess ground behavior in fine-grained soils and silty sands.",
+          "implemented_in": "geotech_references.dm7_1.chapter4.table_4_9_tunnel_behavior"
+        }
+      ],
+      "figures": [],
+      "tables": [
+        "Table 4-8",
+        "Table 4-9",
+        "Table 4-10"
+      ],
+      "applicability": "Applies when classifying ground behavior for soft ground (soil) tunneling to select appropriate construction and support methods."
+    },
+    {
+      "section_id": "4-5.4.2",
+      "title": "Soft Ground Support Loads",
+      "summary": "Presents methods for determining support pressures on tunnels in soft ground, including arching in coarse-grained soils and undrained shear strength effects in clays. Provides simplified support load selection via Table 4-11 and detailed guidance in Table 4-12, both keyed to ground behavior type from Tables 4-8 through 4-10.",
+      "body": "Support pressures on tunnels in soft ground are governed by many factors, including the unit weight of the overlying material, the groundwater level, soil properties, the amount deformation allowed during excavation, the interaction between soil and the supports, the opening shape, and the length of time between excavation and lining installation. Other factors should also be considered include the presence of other nearby openings, superimposed loads from neighboring structures, and the possibility of changes in groundwater conditions.\n\nFigure 4-11 illustrates the loading mechanism surrounding soft ground tunnels. In coarse-grained soils, arching occurs above the tunnel. Arching transfers some of the overburden load to the surrounding ground so that only a portion of the total load above the tunnel is applied to the tunnel. In clay soils, undrained conditions tend to control. In this case, the undrained shear strength can be considered to provide support of a portion of the load above the tunnel.\n\nA simplified approach to the selection of tunnel support loads is provided in Table 4-11 (FHWA 2009). More detailed guidance for the selection of tunnel support loads is summarized in Table 4-12. These tables are used by first determining the ground behavior type using Table 4-8 to Table 4-10.",
+      "key_points": [
+        "Support pressures are governed by unit weight, groundwater, soil properties, allowed deformation, opening shape, and time to lining installation.",
+        "Nearby openings, neighboring structure loads, and groundwater changes must also be considered.",
+        "Arching in coarse-grained soils reduces the fraction of overburden applied to the tunnel.",
+        "In clays, undrained shear strength provides partial support of overburden load.",
+        "Table 4-11 provides simplified support load selection; Table 4-12 provides detailed guidance keyed to ground behavior type.",
+        "Ground behavior type is first established using Tables 4-8 through 4-10 before applying Tables 4-11 or 4-12."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 4-11"
+      ],
+      "tables": [
+        "Table 4-11",
+        "Table 4-12"
+      ],
+      "applicability": "Applies when selecting design support loads for tunnels in soft ground (soil) based on ground behavior classification and soil type."
+    },
+    {
+      "section_id": "4-5.4.3",
+      "title": "Loss of Ground",
+      "summary": "Describes ground loss mechanisms during soft ground tunneling, including stress-release-driven soil expansion and physical ground loss from raveling, runs, and flows. Explains how these lead to surface settlement and notes that stress-related loss is predictable, while loss from instability requires detailed subsurface characterization.",
+      "body": "As underground excavation is made, the surrounding ground starts to move toward the opening. These displacements occur as the soil around the opening expands due to stress release in addition to soil lost to the tunnel from raveling, runs, flows, etc. The resulting loss of ground causes settlement of the ground surface. The loss of ground associated with stress reduction can be predicted reasonably well, but the ground loss due to raveling, runs, flows, etc. requires a detailed knowledge of the subsurface conditions to avoid unacceptable amounts of settlement. A summary of methods to predict surface settlement resulting from lost ground can be found in FHWA (2009).",
+      "key_points": [
+        "Ground loss occurs from two sources: stress-release-driven soil expansion and physical loss from raveling, runs, or flows.",
+        "Both mechanisms cause ground surface settlement.",
+        "Stress-reduction-related ground loss can be predicted reasonably well analytically.",
+        "Ground loss from instability (raveling, runs, flows) requires detailed subsurface characterization.",
+        "FHWA (2009) summarizes methods to predict surface settlement from ground loss."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when evaluating ground surface settlement risk during soft ground tunneling due to excavation-induced ground loss."
+    },
+    {
+      "section_id": "4-5.5",
+      "title": "Pressure on Vertical Shafts",
+      "summary": "Covers earth pressure calculation for vertical shafts, distinguishing from the elastic stress methods in Section 4-3. Pressures on shaft walls correspond to plastic (active or passive) states. Subsections address coarse-grained soil (with horizontal arching effects and Cheng et al. 2007 solution) and clay (with critical depth formula).",
+      "body": "In contrast to the methods presented in Section 4-3, the stress calculations for vertical shafts represent either active or passive earth pressure. These limiting earth pressure conditions correspond to a plastic rather than elastic state of stress within the soil.",
+      "key_points": [
+        "Shaft wall pressures correspond to plastic (active or passive) stress states, not elastic conditions as in Section 4-3.",
+        "Active conditions develop during shaft excavation; passive conditions develop when structural walls push into soil.",
+        "Analysis method differs for coarse-grained soils (arching effects) versus clay (critical depth approach)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when calculating earth pressures on vertical shaft walls in either active or passive plastic stress states in soil."
+    },
+    {
+      "section_id": "4-5.5.1",
+      "title": "Shafts in Coarse-Grained Soil",
+      "summary": "Addresses active and passive earth pressure analysis for cylindrical vertical shafts in coarse-grained soil. Discusses the significance of horizontal arching at depth exceeding two diameters, the arching coefficient λ (ranging from 1 to K0), and presents Cheng et al.'s (2007) solution for radial stress (Figure 4-12). Notes that rigid top bracing may require at-rest pressure design.",
+      "body": "During excavation of a vertical cylindrical shaft in coarse-grained soil, the horizontal pressures around the shaft approach active earth pressure values. If outward-directed forces from a structure (e.g., buried silo) move the structure walls into the soil, the earth pressures will approach passive conditions. Earth pressures are discussed in more detail in DM 7.2.\n\nActive earth pressures for cylindrical shafts have been determined using analytical, limit equilibrium, slip line, numerical, and experimental methods. The active earth pressure coefficient depends on the shaft dimensions and the soil strength. For shallow shafts (i.e., depth ≤ two diameters), theoretical solutions tend to be applicable while the effects of horizontal arching become significant at greater depths (Tobar and Meguid 2010). Horizontal arching is taken into account in some solutions by the coefficient λ, which is the ratio of the circumferential stress to the vertical stress. The value of λ is equal to 1 in analytical solutions, such as Terzaghi (1943) but may be as low as K0. Cheng et al.'s (2007) solution is plotted in Figure 4-12 for λ = 1 and λ = K0.\n\nActive pressures must be modified if rigid bracing at the top of the shaft prevents development of an active state. For restrained vertical shafts, horizontal pressures may be as large as the at-rest pressure on a long wall with plane strain conditions.",
+      "key_points": [
+        "Shaft excavation drives horizontal pressures toward active values; outward structural loading drives them toward passive.",
+        "Horizontal arching becomes significant at depths exceeding two shaft diameters.",
+        "Arching coefficient λ = circumferential stress / vertical stress; ranges from 1 (Terzaghi 1943) down to K0.",
+        "Cheng et al. (2007) solution (Figure 4-12) provides radial stress for λ = 1 and λ = K0.",
+        "If rigid top bracing prevents active state development, design horizontal pressures may reach at-rest (plane strain) values.",
+        "Detailed earth pressure guidance in DM 7.2."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 4-12"
+      ],
+      "tables": [],
+      "applicability": "Applies when calculating earth pressures on vertical cylindrical shaft walls in coarse-grained soil, accounting for horizontal arching at depth."
+    },
+    {
+      "section_id": "4-5.5.2",
+      "title": "Shafts in Clay",
+      "summary": "Provides the formula for critical depth zcrit in clay, above which no lateral support is needed for a vertical shaft. The critical depth is zcrit = 2su / γt, where su is undrained shear strength and γt is total unit weight. This equation defines the self-supporting zone near the ground surface in clay shaft excavations.",
+      "body": "No support is needed from the ground surface to a depth of zcrit for shafts in clay. The critical depth (zcrit) is:\n\nzcrit = 2su / γt\n\nwhere:\nsu = the undrained shear strength of the soil and\nγt = the total unit weight of the soil.",
+      "key_points": [
+        "In clay, no lateral shaft support is needed from the surface down to the critical depth zcrit.",
+        "Critical depth zcrit = 2su / γt, where su is undrained shear strength and γt is total unit weight.",
+        "Below zcrit, lateral support must be provided to maintain shaft stability."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 4-11",
+          "description": "Critical depth for unsupported clay shaft: zcrit = 2su / γt, where su is undrained shear strength and γt is total unit weight of soil. Defines the depth above which no lateral support is required.",
+          "implemented_in": "geotech_references.dm7_1.chapter4.shaft_critical_depth_clay"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when determining the depth above which no lateral support is needed for a vertical shaft excavated in clay soil."
+    },
+    {
+      "section_id": "4-6",
+      "title": "Numerical Solutions for Stresses in Soil",
+      "summary": "Introduces numerical methods for evaluating stresses in soil, noting that analytical and chart-based solutions are limited by their assumptions and struggle with complex subsurface profiles. Provides an overview of computer programs and numerical approaches—including elastic-solution-based programs and continuum methods like FEM and FDM—as essential complements to classical methods in geotechnical engineering practice.",
+      "body": "The analytical and chart-based solutions presented in this chapter are an excellent starting point for evaluation of stresses within a soil mass. However, their applicability is limited by the constraints and assumptions of each. These methods also struggle to effectively model complex subsurface profiles and loading conditions.\n\nComputer programs and numerical solutions are an important part of geotechnical engineering practice. This section provides a brief overview of the application of numerical methods to the evaluation of stresses.",
+      "key_points": [
+        "Analytical and chart-based solutions are limited by their assumptions and cannot easily handle complex subsurface profiles or loading conditions.",
+        "Numerical methods and computer programs are essential tools in modern geotechnical engineering stress analysis.",
+        "Both elastic-solution-based programs and continuum methods (FEM, FDM) are covered in this section.",
+        "FEM is somewhat more popular than FDM for stress analysis problems in geotechnical engineering."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when analytical or chart solutions are insufficient for complex subsurface profiles or loading conditions and numerical stress analysis is required."
+    },
+    {
+      "section_id": "4-6.1",
+      "title": "Numerical Analysis Types",
+      "summary": "Describes categories of numerical analysis tools used in geotechnical stress analysis: (1) programs based directly on elastic solutions (e.g., Settle3D, CONSOL, SETOFF) suited for consolidation settlement, and (2) continuum-based methods such as finite element and finite difference, which divide soil/rock into elements governed by constitutive laws and failure criteria. FEA stress calculations are relatively straightforward; accurate deformation requires more expertise.",
+      "body": "Some computer programs (e.g., Settle3D, CONSOL, SETOFF) are available that directly rely upon elastic solutions, such as those presented in this chapter, to calculate changes in stress. These programs are specifically formulated for the solution of consolidation settlement problems discussed in the next chapter. The benefit provided by these programs is the automated calculation of changes in stress and the ability to consider time-dependent changes. However, the solutions depend on the same assumptions as the elastic solutions on which they are based.\n\nMany continuum-based numerical analysis techniques are available. The most common of these in geotechnical engineering are the finite element and finite difference methods, with the former being somewhat more popular for stress analysis problems. These approaches divide the soil or rock into elements or grid points. The relationships between the external and gravitational forces acting on the elements (or grid) and the corresponding displacements are defined using constitutive (stress-strain) laws and failure criteria.\n\nThe following sections provide a condensed overview focused on the calculation of stresses using the finite element method. The use of finite element analysis (FEA) to determine stresses is relatively straight-forward. Calculation of accurate deformations requires significantly more expertise and experience. For a practical introduction to the use of FEA in geotechnical engineering see Bradley and VandenBerge (2015). A more in-depth perspective can be found in the books by Potts and Zdravkovic (1999, 2001).",
+      "key_points": [
+        "Programs like Settle3D, CONSOL, and SETOFF automate elastic-solution-based stress calculations and can model time-dependent changes, but inherit the same assumptions as the underlying elastic solutions.",
+        "FEM and FDM are the most common continuum methods; FEM is more popular for stress analysis.",
+        "Continuum methods use constitutive (stress-strain) laws and failure criteria to relate forces to displacements.",
+        "FEA stress calculations are relatively straightforward; accurate deformation prediction requires significantly more expertise.",
+        "Key references: Bradley & VandenBerge (2015) for practical introduction; Potts & Zdravkovic (1999, 2001) for in-depth coverage."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when selecting a numerical analysis approach for geotechnical stress or consolidation settlement problems."
+    },
+    {
+      "section_id": "4-6.2",
+      "title": "Linear Elastic Stress Analysis",
+      "summary": "Covers the simplest FE analyses using linear elastic constitutive theory, requiring only elastic modulus E and Poisson's ratio ν. For single-material problems the calculated stresses are independent of E, but with multiple materials the relative E values affect stresses through arching and similar phenomena. Linear elastic analysis is the baseline FEA approach for stress evaluation in geotechnical engineering.",
+      "body": "The simplest FE analyses use linear elastic constitutive theory, which relates changes in stress linearly to strains (or displacements). For a linear elastic analysis, the only required material parameters are the elastic modulus, E, and Poisson's ratio, ν (or any other two elastic constants such as shear modulus or bulk modulus). For problems with only one material type (and one value of E), the calculated stresses will be independent of the value of E selected. However, when more than one material type is present, the relative values of E assigned to each material in the analysis can impact the calculated stresses because of arching and similar phenomena.",
+      "key_points": [
+        "Linear elastic FEA requires only two material parameters: elastic modulus E and Poisson's ratio ν.",
+        "For single-material problems, calculated stresses are independent of the chosen value of E.",
+        "With multiple material types, relative E values affect stress distributions due to arching and similar phenomena.",
+        "Linear elastic analysis is the simplest and most straightforward FEA approach for geotechnical stress problems."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when performing FEA stress analysis using the simplest constitutive model, particularly for single-material or preliminary multi-material problems."
+    },
+    {
+      "section_id": "4-6.3",
+      "title": "Nonlinear Elastic Stress Analysis",
+      "summary": "Describes nonlinear constitutive models for geotechnical FEA, focusing on the Duncan-Chang hyperbolic model. Covers the four key behavioral observations behind the model, its parameters (K, n, Rf, Kb, m, Kur), and their physical meaning. Research (VandenBerge et al. 2014) shows linear elastic analysis gives major principal stresses within ~10% of nonlinear results for embankments, but nonlinear models are more accurate for general use.",
+      "body": "The stress-strain behavior of geological materials is truly linear over only a small range of strains. A properly selected nonlinear constitutive model will provide a more accurate prediction of behavior but will require additional input parameters and expertise. VandenBerge et al. (2014) found that major principal effective stresses calculated for embankments with linear elastic analysis were typically within 10% of the values calculated using more rigorous and time-consuming nonlinear procedures.\n\nOne of the earliest and most common nonlinear constitutive theories for soil is the hyperbolic model proposed by Duncan and Chang (1970) and described in more detail in Duncan et al. (1980). This model can also consider stress dependent variations in Poisson's ratio (or bulk modulus). It can be used with either effective stress (drained) or total stress (undrained) problems, provided the model parameters are determined using the appropriate type of test.\n\nThe Duncan-Chang model is based on the following observations:\n• The principal stress difference (σ1 – σ3) tends to vary in a hyperbolic manner with strain,\n• The initial modulus (Ei) increases with increased confining stress in a manner that can be described by a power function,\n• The ultimate value of (σ1 – σ3) predicted by the hyperbola tends to be greater than the value measured by the test,\n• The bulk modulus (Bt) of soil increases with increased confining stress in a manner that can be described by a power function.\n\nSoil tends to respond in a stiffer, approximately linear manner with modulus (Eur) when unloaded and reloaded after some amount of shearing. The required parameters are summarized and illustrated in Table 4-13 and Figure 4-13.",
+      "key_points": [
+        "Geological materials are truly linear elastic only over a small strain range; nonlinear models provide more accurate predictions.",
+        "Linear elastic FEA gives major principal stresses within ~10% of nonlinear results for embankments (VandenBerge et al. 2014).",
+        "The Duncan-Chang hyperbolic model (1970) is one of the earliest and most common nonlinear soil constitutive models.",
+        "The model captures hyperbolic stress-strain behavior, power-function increase of initial modulus (Ei) and bulk modulus (Bt) with confining stress, and unload-reload stiffness (Eur).",
+        "Key parameters: K, n (initial modulus), Rf (failure ratio), Kb, m (bulk modulus), Kur (unload-reload modulus).",
+        "The model applies to both drained (effective stress) and undrained (total stress) problems with appropriately determined parameters."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 4-13 Parameters Used in Duncan-Chang Model"
+      ],
+      "tables": [
+        "Table 4-13 Summary of Model Parameters for Duncan-Chang Model"
+      ],
+      "applicability": "Applies when more accurate stress-strain prediction is required for soils under varying confining stress, or when linear elastic analysis is deemed insufficient."
+    },
+    {
+      "section_id": "4-6.4",
+      "title": "Numerical Modeling Best Practice",
+      "summary": "Provides guidelines for consistent and accurate stress predictions in FEA, applicable to both linear and nonlinear analyses. Recommends isoparametric elements, uniform meshes with appropriate aspect ratios, small element sizes relative to the problem domain, and inclusion of boundary water pressures. These practices are based on findings by VandenBerge et al. (2014) for geotechnical FEA.",
+      "body": "Both linear and nonlinear finite element analysis can be used to make accurate predictions of stresses. The following guidelines have been found to yield the most consistent and uniform stress predictions (VandenBerge et al. 2014).\n\n• Use isoparametric elements (i.e., 8-noded rectangles or 6-node triangles).\n• Use a uniform mesh with elements of approximately the same shape, especially within any zones of interest.\n• Use elements with an appropriate aspect ratio, preferably longest to shortest dimension, less than or equal to five.\n• Keep the element size as small as practical with respect to the overall dimensions. A maximum element height of approximately 1 to 2% of the height of the problem domain is preferred.\n• Remember to include the boundary water pressures from any impounded water present in the model.",
+      "key_points": [
+        "Use isoparametric elements: 8-noded rectangles or 6-node triangles for best stress predictions.",
+        "Mesh should be uniform with elements of similar shape, especially in zones of interest.",
+        "Element aspect ratio (longest to shortest dimension) should be ≤ 5.",
+        "Maximum element height should be ~1–2% of the overall problem domain height.",
+        "Boundary water pressures from impounded water must be included in the model."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when setting up finite element models for geotechnical stress analysis to ensure consistent and accurate results."
+    },
+    {
+      "section_id": "4-6.4.1",
+      "title": "Initial or Geostatic Stresses",
+      "summary": "Explains how initial (geostatic) stress states are established in FE models. Vertical stresses develop from gravity loading; horizontal stresses tend toward K0 conditions (K0 = ν/(1-ν) for linear elastic). Initial gravity-induced displacements are numerical artifacts and must be zeroed before applying new loads. Overconsolidated conditions (K0 > 1.0) require load-unload modeling sequences. Program-specific options should be understood by the analyst.",
+      "body": "The initial stress state in a FE model is dependent on the process used to 'turn on' gravity and stress within the model. Vertical stresses are governed mostly by gravity loading. As the mesh deforms in response to gravity, horizontal stresses will develop and tend toward at rest (K0) conditions for a level, laterally-constrained mesh. For a linear elastic model, the value of K0 will be equal to ν / (1-ν). Calculation of initial horizontal stresses in this manner will yield correct results, and K0 will be less than 1.0, which is always the case for primary loading. The calculation of initial horizontal stresses in this way will lead to initial deformation of the model and the layer thicknesses may no longer match the in situ conditions. These displacements are a numerical artifact and should be zeroed or removed prior to examining the effects of new loading conditions. Overconsolidated conditions with K0 greater than 1.0 can be modelled by loading and then unloading the model, following the process by which K0 > 1.0 conditions occur in nature.\n\nIn many cases, the details of the initial stress process are program specific. The engineer using FEA should become familiar with the various options available so that appropriate methods are applied.",
+      "key_points": [
+        "Initial vertical stresses in FE models are governed by gravity loading; horizontal stresses tend toward K0 conditions for level, laterally-constrained meshes.",
+        "For linear elastic models, K0 = ν / (1-ν), always less than 1.0 under primary loading.",
+        "Initial gravity-induced deformations are numerical artifacts and must be zeroed before applying new loads.",
+        "Overconsolidated conditions (K0 > 1.0) are modeled by simulating a load-then-unload sequence.",
+        "Initial stress procedures are often program-specific; the engineer must understand available options."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when establishing initial or geostatic stress conditions in a finite element model prior to applying new loads or construction sequences."
+    },
+    {
+      "section_id": "4-6.4.2",
+      "title": "Staged Construction or Stress History",
+      "summary": "Describes how FEA can model construction staging and geologic stress history by adding/removing elements in steps. Staged models are especially important for nonlinear analysis due to stress-dependent material properties. Required for predicting stresses and displacements around excavations and tunnels. For stress distributions only, staging is unnecessary in linear elastic analysis, but is required to predict correct displacement patterns.",
+      "body": "Finite element analysis allows the sequence of loading and construction staging to be modeled numerically. To a lesser extent, geologic stress history can also be modeled. Within the model, this occurs by adding and subtracting elements (or their weight) in steps. Staged models are especially important for nonlinear analysis because the properties of the material change with stress level.\n\nFor example, a staged approach is required to predict stresses and displacements around open excavations and tunnels. The initial ground conditions should be modeled after which the effects of removing soil or rock can be considered.\n\nFor cases where only stress distributions are required, such staging is unnecessary in linear elastic analysis. The use of a staged model is required, even for linear elasticity, to predict correct patterns of displacement.",
+      "key_points": [
+        "FEA can model construction staging and geologic stress history by adding or removing elements in steps.",
+        "Staged analysis is critical for nonlinear models because material properties change with stress level.",
+        "Open excavations and tunnels require staged modeling to predict both stresses and displacements.",
+        "For stress distributions only, staging is not necessary in linear elastic analysis.",
+        "Staged models are required even for linear elastic analysis to obtain correct displacement patterns."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when modeling construction sequences, excavations, tunnels, or stress history effects in finite element analysis."
+    },
+    {
+      "section_id": "4-6.5",
+      "title": "Evaluation of Stress Due to Applied Loads",
+      "summary": "Explains how to evaluate changes in stress from applied loads using staged FEA. Initial stages establish in situ stress conditions; subsequent stages apply loads (distributed, point, or new soil layers) and stress changes are assessed by comparing stages. Results should be checked against analytical solutions. Notes limitations: 2D FEA suits long foundations/embankments (plane strain); 3D is needed for complex geometries like rectangular foundations.",
+      "body": "Changes in stress due to applied loads can be evaluated using a staged FE model. The first stage(s) of the model are used to create the desired initial state of stress that best represents the in situ conditions. At this point, the new loading can be added to the model in various forms, including distributed loads, point loads, and new soil layers. The predicted changes in stress can then be evaluated by comparing the predicted stress at convenient points within the model between subsequent stages. Where possible, the changes in stress predicted by FE models should be checked with analytical solutions such as those presented earlier in this chapter.\n\nEngineers should be aware of the limitations of their numerical analyses. For example, two-dimensional FEA are useful for predicting changes in stress below long foundations, embankments, and large area fills because such problems can be analyzed in a plane strain manner. However, a three-dimensional program would be required to predict changes in stress below more complex conditions, such as a rectangular foundation.",
+      "key_points": [
+        "Staged FEA: first stage(s) establish initial in situ stress; subsequent stages apply loads (distributed, point, or new soil layers).",
+        "Stress changes are evaluated by comparing predicted stresses between model stages.",
+        "FEA results should always be checked against analytical solutions where possible.",
+        "2D FEA is appropriate for long foundations, embankments, and large area fills (plane strain conditions).",
+        "3D FEA is required for complex geometries such as rectangular foundations."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when using staged FEA to evaluate stress changes due to applied loads including foundations, embankments, and fills."
+    },
+    {
+      "section_id": "4-6.6",
+      "title": "Evaluation of Stress within Embankments and Slopes",
+      "summary": "Addresses the added complexity of stress calculation in slopes and embankments, where no closed-form analytical solution exists and K0 conditions do not apply near slope faces. Best practice is to start with level ground in the FE model and progressively excavate elements to form the slope, mimicking natural formation. Multiple analysis stages may be needed to properly establish initial stress conditions in slope problems.",
+      "body": "The calculation of stresses is more complex for slopes and embankments compared with relatively level ground. First, no closed-form analytical solution is available for comparison because the soil in a slope is not laterally restrained. The lack of lateral restraint also means that K0 conditions will not be present, especially close to the face of a slope.\n\nStresses near natural slopes are best evaluated by starting with level ground in the FE model and progressively removing (excavating) elements to form the slope. Multiple stages of analysis may be required to establish the initial conditions. The removal of elements mimics the process by which the slope was formed in nature.",
+      "key_points": [
+        "No closed-form analytical solution exists for stresses in slopes and embankments due to lack of lateral restraint.",
+        "K0 (at-rest) conditions do not apply near slope faces because the soil is not laterally constrained.",
+        "Best practice: start FE model with level ground and progressively excavate elements to form the slope.",
+        "Multiple analysis stages may be needed to properly establish initial stress conditions in slopes.",
+        "Progressive element removal mimics the natural geologic formation process of the slope."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when using FEA to evaluate stresses within natural slopes, cut slopes, or embankments where K0 conditions and analytical solutions are not applicable."
+    },
+    {
+      "section_id": "4-7",
+      "title": "Suggested Reading",
+      "summary": "Provides a curated list of reference texts for key topics covered in Chapter 4, including stress analysis and Mohr circles, elastic solutions for soil and rock, stress on buried pipes, underground openings and tunnels, and numerical stress analysis using finite element methods. Each entry cites a specific authoritative publication for further study.",
+      "body": "Topic | Reference\nStress and Mohr Circles | Parry, R. H. 2004. Mohr circles, stress paths and geotechnics, CRC Press, 2004.\nElastic Solutions | Poulos, H. G. and Davis, E. H. 1974. Elastic Solutions for Soil and Rock Mechanics, John Wiley & Sons Inc.\nStress on Pipes | Moser, A. P. 1990. Buried Pipe Design, McGraw-Hill Inc., (third edition also available by Moser and Folkman).\nUnderground Openings | FHWA. 2009. Technical Manual for Design and Construction of Road Tunnels – Civil Elements, FHWA-NHI-09-010, Federal Highway Administration.\nNumerical Stress Analysis | Bradley, N. and VandenBerge, D. R. 2015. Beginner's Guide for Geotechnical Finite Element Analyses, CGPR Report No. 82, Center for Geotechnical Practice and Research, Virginia Tech.\nPotts, D. M. and Zdravkovic, L. 2001. Finite Element Analysis in Geotechnical Engineering: Theory and Application, ICE Publishing.",
+      "key_points": [
+        "Parry (2004) is the recommended reference for Mohr circles and stress path concepts.",
+        "Poulos & Davis (1974) is the classic reference for elastic solutions in soil and rock mechanics.",
+        "Moser (1990) covers buried pipe design and stress on pipes; a third edition with Folkman is also available.",
+        "FHWA-NHI-09-010 (2009) is the recommended manual for underground openings and road tunnel design.",
+        "Bradley & VandenBerge (2015) provides a beginner-level guide to geotechnical finite element analyses.",
+        "Potts & Zdravkovic (2001) covers the theory and application of FE analysis in geotechnical engineering."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 4-7: Suggested Reading (Topic/Reference)"
+      ],
+      "applicability": "Applies when an engineer seeks deeper reference material on stress analysis, elastic solutions, pipe loading, tunneling, or numerical methods topics introduced in Chapter 4."
+    },
+    {
+      "section_id": "4-8",
+      "title": "Notation",
+      "summary": "Defines all symbols and notation used throughout Chapter 4, covering geometric parameters (B, Bc, Bd, H, Ht, r, z), soil and rock classification indices (Cu, N, Q, RMR, RQD), stress and modulus quantities (E, Ei, Eur, Ka, K0, Kp, σ1, σ2, σ3, σh, σv), pipe loading terms (Cd, Wc, Wd, Wp), and Greek-letter parameters for friction, unit weight, Poisson's ratio, and stress ratios.",
+      "body": "Symbol | Description\nB | Width of a foundation, loaded area, or tunnel\nBc | Diameter of a flexible pipe\nBd | Width of trench in pipe loading calculations\nBt | Bulk modulus of soil\nCd | Load coefficient in pipe loading calculations\nCu | Coefficient of uniformity (from grain-size distribution)\nD | Outer diameter of pipe\nE | Elastic modulus\nEA | Active earth pressure force\nEi | Initial tangent modulus\nEur | Unload-reload modulus for Duncan-Chang model\nhp | Pressure head\nH | Depth of soil cover or vertical distance between ground surface and tunnel roof\nHp | Design load thickness in terms of depth\nHt | Tunnel height\nI | Influence factor for change in stress calculations\nKa | Active earth pressure coefficient\nKb | Bulk modulus parameter for Duncan-Chang model\nK0 | At-rest earth pressure coefficient\nKp | Passive earth pressure coefficient\nKur | Unload-reload modulus parameter Duncan-Chang model\nN | Standard Penetration Test blow count\nNcrit | Undrained stability factor\npc | Tunnel air pressure\npʹf | Center of Mohr circle at failure (MIT stress path space)\nPa | Atmospheric pressure\nu | Pore water pressure\nqf | Radius of Mohr circle at failure\nq0 | Applied pressure or load\nQ | Rock tunneling quality index\nr | Horizontal distance from centerline of a foundation\nRf | Reduction factor for Duncan-Chang model\nRMR | Rock mass rating\nRQD | Rock quality designation\nsu | Undrained shear strength\nt | Stand up time for tunneling in raveling soils\nT | Elapsed time between excavation and completion of permanent structure\nWc | Flexible pipe load\nWd | Rigid pipe load\nWp | Prism load on pipe\nz | Depth below an applied load\nzcrit | Critical depth for unsupported shafts in clay soils\nZi | Soil layer thickness\nα | Angle between the major principal plane and the plane of interest\n∆σz | Change in vertical stress\nφʹ | Effective stress friction angle\nγʹ | Effective unit weight\nγt | Total unit weight\ngw | Unit weight of water\nλ | Ratio of the circumferential stress to the vertical stress\nµʹ | Coefficient of friction for trench backfill\nν | Poisson's ratio\nσ1 | Major principal stress\nσ2 | Intermediate principal stress\nσ3 | Minor principal stress\nσh | Total horizontal stress\nσʹh | Effective horizontal stress\nσt | Interior tunnel pressure from compressed air or breasting\nσv | Total vertical stress\nσʹv | Effective vertical stress",
+      "key_points": [
+        "Defines geometric symbols including foundation width (B), pipe diameter (Bc), trench width (Bd), tunnel height (Ht), and depth parameters (H, z, zcrit).",
+        "Lists principal stress symbols σ1, σ2, σ3 and effective/total stress components σh, σʹh, σv, σʹv used throughout stress analysis sections.",
+        "Includes Duncan-Chang constitutive model parameters: Ei, Eur, Kb, Kur, and Rf.",
+        "Pipe loading notation includes load coefficient Cd, flexible pipe load Wc, rigid pipe load Wd, and prism load Wp.",
+        "Rock and soil classification indices covered: Cu (uniformity coefficient), N (SPT blow count), Q (rock tunneling quality), RMR (rock mass rating), RQD (rock quality designation).",
+        "Greek symbols cover friction angle (φʹ), unit weights (γʹ, γt, gw), Poisson's ratio (ν), friction coefficient (µʹ), and circumferential-to-vertical stress ratio (λ)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 4-8: Notation (Symbol/Description)"
+      ],
+      "applicability": "Applies whenever a symbol used anywhere in Chapter 4 requires definition or clarification."
+    }
+  ]
+}
