@@ -737,80 +737,86 @@
     {
       "section_id": "7-4.5",
       "title": "Load and Resistance Factor Design (LRFD)",
-      "summary": "Introduces LRFD as a reliability-based design approach that separately factors loads and resistances using probabilistically calibrated factors. Defines ultimate and service limit states in geotechnical context, and compares LRFD to ASD, MRFD, and full reliability analysis via Table 7-6, covering design equations and factor calibration methods.",
+      "summary": "Introduces LRFD as a reliability-based design approach that separately factors loads and resistances using probabilistically calibrated factors. Defines ultimate and service limit states in geotechnical engineering context, and compares LRFD to ASD, MRFD, and full reliability analysis via Table 7-6, showing increasing specificity and flexibility across methods.",
       "body": "Load and resistance factor design (LRFD) is an application of reliability analysis, which separately factors both loads and resistances using probabilistically calibrated factors. LRFD uses the concept of limit states to define conditions in which a structure (used generically in this section) no longer performs its intended function. Ultimate limit states are those pertaining to collapse or safety. In geotechnical engineering, ultimate limit states are related to the shear strength of the soil, such as bearing capacity or slope stability. Service limit states are those pertaining to functionality or the ability of the structure to remain useful. Settlement criteria are a common geotechnical service limit state. Some LRFD codes, such as the AASHTO Bridge Design Code, define multiple types of ultimate and service limit states that must be considered in a particular design.\n\nThe ultimate limit state design equations and methodology for LRFD are compared in Table 7-6 to allowable stress design (ASD), multiple load and resistance factor design (MRFD), and full reliability-based analysis. With the exception of full reliability analysis, all of the methods apply factors in some combination to the nominal loads (Q) and/or the nominal resistances (R). Progressing from ASD to MRFD, the factors are applied in greater specificity, which allows more flexibility to consider uncertainty but requires additional effort in both design and development of the appropriate factors.",
       "key_points": [
-        "LRFD separately factors loads (γ > 1) and resistances (φ < 1) using probabilistically calibrated values.",
+        "LRFD applies probabilistically calibrated load factors (γ > 1) and resistance factors (φ < 1) separately to nominal loads and resistances.",
         "Ultimate limit states relate to collapse/safety (e.g., bearing capacity, slope stability); service limit states relate to functionality (e.g., settlement).",
-        "ASD uses a single factor of safety F; LRFD uses γ and φ; MRFD uses component-specific γi and φi; full reliability analysis computes βcalc directly.",
-        "Progressing from ASD to full reliability analysis increases specificity and flexibility but requires more effort in design and factor development.",
-        "Table 7-6 compares the four design methodologies including design equations and calibration methods."
+        "ASD lumps uncertainty into a single factor of safety; LRFD and MRFD separate load and resistance uncertainty with increasing specificity.",
+        "Full reliability analysis directly computes βcalc vs. βt but is not codified; LRFD is the codified compromise.",
+        "Table 7-6 compares ASD, LRFD, MRFD, and full reliability analysis design equations and calibration methods."
       ],
       "equations": [],
       "figures": [],
       "tables": [
         "Table 7-6"
       ],
-      "applicability": "Applies when selecting a geotechnical design methodology (ASD, LRFD, MRFD, or full reliability analysis) for foundation or retaining wall design."
+      "applicability": "Applies when selecting a design methodology for geotechnical structures and understanding how LRFD relates to ASD, MRFD, and full reliability analysis."
     },
     {
       "section_id": "7-4.5.1",
       "title": "Components of LRFD",
-      "summary": "Describes the fundamental components of LRFD, including nominal loads and resistances, load factors (γi > 1) applied to loads, and resistance factors (φi < 1) applied to resistances. Explains that the design check requires the sum of factored loads to be ≤ sum of factored resistances, evaluated separately for each limit state.",
+      "summary": "Explains the fundamental mechanics of LRFD: nominal loads are multiplied by load factors γi > 1 to produce factored loads, and nominal resistances are multiplied by resistance factors φi < 1 to produce factored resistances. The design inequality requires sum of factored loads ≤ sum of factored resistances, checked for each limit state. Figure 7-22 illustrates the concept.",
       "body": "The basic concept of LRFD is illustrated in Figure 7-22 in which the loads and resistances are shown along the same scale. The unfactored (nominal) loads are the lowest and plot at the left while the unfactored resistances are highest and on the right. These loads and resistances are those determined using the calculation approaches specified by the LRFD design code.\n\nIn order to account for uncertainty in load, the loads are multiplied by load factors (γi) that are greater than one to produce factored loads that are larger than the nominal values. Specific load factors are used for each type of load because of differences in the uncertainty associated with each type of load. Similarly, the resistances are multiplied by resistance factors (φi) that are less than one and produce lower factored resistances. The selection of appropriate values of γi and φi is the critical step in the development of an LRFD procedure or code.\n\nThe design equation for LRFD requires the sum of the factored loads to be less than or equal to the sum of the factored resistances, which is shown conceptually in the middle of Figure 7-22. This inequality is checked for each limit state that must be assessed for the structure or design. The details of the limit state will dictate the values of the loads, resistances, and factors. In other words, these values may change for each limit state considered.",
       "key_points": [
-        "Nominal (unfactored) loads are the lowest values; nominal resistances are the highest values on the LRFD scale.",
-        "Load factors γi > 1 increase loads to account for load uncertainty; separate γi values are used for each load type.",
-        "Resistance factors φi < 1 reduce resistances to account for resistance uncertainty.",
-        "The LRFD design check: sum of factored loads ≤ sum of factored resistances, verified for each limit state.",
-        "Selection of appropriate γi and φi is the critical step in developing an LRFD procedure or code."
+        "Load factors γi > 1 amplify nominal loads to account for load uncertainty; different load types carry different γi values.",
+        "Resistance factors φi < 1 reduce nominal resistances to account for resistance uncertainty.",
+        "The LRFD design check requires: Σ(γi·Qn,i) ≤ Σ(φi·Rn,i) for each applicable limit state.",
+        "The load-resistance scale diagram (Figure 7-22) visually shows how factoring pushes loads up and resistances down toward the design point.",
+        "Values of γi and φi may change for each limit state being evaluated."
       ],
       "equations": [],
       "figures": [
         "Figure 7-22"
       ],
       "tables": [],
-      "applicability": "Applies when understanding or applying the basic LRFD design inequality for any geotechnical or structural limit state."
+      "applicability": "Applies when understanding the structural mechanics of the LRFD design inequality and how load and resistance factors are applied to nominal values."
     },
     {
       "section_id": "7-4.5.2",
       "title": "LRFD Calibration",
-      "summary": "Explains the calibration process used to determine appropriate load (γ) and resistance (φ) factors in LRFD codes. Covers two approaches: direct fitting to ASD (Table 7-7) and reliability-based calibration targeting a specific β. Discusses bias factors, the role of statistical data, and why resistance factors are methodology-specific.",
+      "summary": "Describes the process for determining appropriate load (γ) and resistance (φ) factors in LRFD codes. Covers two approaches: direct fitting to ASD results (Table 7-7) and reliability-based calibration targeting a specific β. Introduces bias factors (λ = mean/nominal) and explains why resistance factors are methodology-specific, requiring careful matching of φ to the design method used.",
       "body": "The method used to determine the appropriate values for load and resistance factors is referred to as calibration. An engineer using LRFD does not perform this calibration but will benefit from understanding the general calibration process. Early efforts at calibration used direct fitting of the load factors (γ) and resistance factors (φ) to generate similar designs as those produced by ASD. An example of this approach is provided in Table 7-7. While the direct fitting approach separates the uncertainty in load from the uncertainty in resistance, it is not based on reliability theory.\n\nCurrent LRFD codes, such as ACI, AISC, and AASHTO, are calibrated to achieve a consistent reliability across a broad range of design scenarios (Nowak 1995, Kulhawy 2017). The process used to develop LRFD codes starts with the selection of a set of representative structures. Statistical data is gathered for both load and resistance parameters, from which the cumulative distribution functions for load and resistance are defined. Reliability analysis is then completed, typically in a simplified form, to adjust γ and φ to result in a specific target value of β. Commonly, the load factors are first selected so that the factored load has a predetermined probability of exceedance (Nowak 1995). LRFD codes are periodically updated as new information and methods become available.\n\nThe calibration process uses the mean and coefficient of variation of the loads and resistances. The mean values of load and resistance may differ from the nominal values calculated by a particular design method. This difference is referred to as bias. For example, mean dead loads tend to be a few percentage points higher than the design values because structural members are slightly overbuilt. The calibration process uses bias factors (λ), which are the mean value divided by the nominal value, to incorporate this difference in the reliability analyses used for calibration.\n\nThe simplifications introduced in the LRFD calibration process produce designs that on average meet the target β. Improvements to the calibration can be made by using multiple load or resistance factors to separate sources of uncertainty. For example, many codes employ multiple resistance factors for loads, such as dead, live, seismic, and wind loads. In a few cases, codes may separate geotechnical resistance into multiple types of resistance, such as tip and side resistance for piles. Future improvements to LRFD may include development of ranges of φ that depend on the expected variability of the site-specific resistance.\n\nThe calibration process is specific to each design methodology or model of resistance (e.g., Meyerhof bearing capacity for shallow foundations or the α method for deep foundations). For this reason, resistance factors are methodology specific, and careful attention must be given to selecting the appropriate φ for the design method used. The commentary section of the design codes often provides helpful information about the particular calibration process that was used (Kulhawy 2017).",
       "key_points": [
-        "Early calibration used direct fitting to ASD; current codes (ACI, AISC, AASHTO) use reliability-based calibration targeting a specific β.",
-        "Calibration uses CDFs of load and resistance, mean values, and coefficients of variation derived from statistical data.",
-        "Bias factor λ = mean value / nominal value; accounts for systematic differences between calculated and actual values.",
-        "Resistance factors are methodology-specific — φ for Meyerhof bearing capacity cannot be used with another method.",
-        "Using multiple φ values for different resistance components (e.g., tip vs. side resistance for piles) improves calibration accuracy.",
-        "Table 7-7 shows resistance factors derived by direct fitting to ASD for various FS and dead-to-live load ratios."
+        "Early calibration used direct ASD fitting (Table 7-7); this separates load/resistance uncertainty but is not reliability-based.",
+        "Modern LRFD codes (ACI, AISC, AASHTO) calibrate γ and φ to achieve a consistent target reliability index β across representative design scenarios.",
+        "Bias factor λ = mean value / nominal value accounts for systematic differences between calculated and actual load/resistance values.",
+        "Resistance factors are methodology-specific: φ for Meyerhof bearing capacity differs from φ for the α-method for piles.",
+        "Using multiple resistance factors (e.g., separate tip and side resistance φ for drilled shafts) improves calibration by isolating uncertainty sources.",
+        "Future LRFD improvements may include site-specific φ ranges that reflect variability in measured resistance."
       ],
-      "equations": [],
+      "equations": [
+        {
+          "id": "Eq. 7-16",
+          "description": "(force-injected from source text)",
+          "implemented_in": "geotech_references.dm7_2.chapter7.rate_of_exceedance_from_probability"
+        }
+      ],
       "figures": [],
       "tables": [
         "Table 7-7"
       ],
-      "applicability": "Applies when understanding how LRFD load and resistance factors are derived, or when selecting appropriate φ values for a specific design method."
+      "applicability": "Applies when understanding how load and resistance factors in LRFD codes are developed and why resistance factors must match the specific design method being used."
     },
     {
       "section_id": "7-4.5.3",
       "title": "Use of LRFD in Geotechnical Engineering",
-      "summary": "Discusses practical application of LRFD in geotechnical engineering, emphasizing that specific γ and φ values are code-dependent and engineers should use the most current code. Highlights LRFD's utility in comparing reliability of multiple pile design methods (Figure 7-23), explains load factor interpretation, and identifies slope stability as a case poorly suited to LRFD.",
+      "summary": "Discusses practical application of LRFD in geotechnical engineering, referencing AASHTO LRFD Bridge Design Specifications and FHWA Geotechnical Engineering Circulars. Highlights LRFD utility for comparing pile design methods across a wide φ range (0.1–0.9), explains load factor interpretation, and identifies slope stability as a case poorly suited to LRFD due to self-weight acting as both load and resistance.",
       "body": "The discussion herein is intended to provide the engineer with an understanding of the LRFD process and its basis in reliability analysis. Specific values of γ and φ are intentionally not included in this chapter, because they are code-dependent and can change as codes are updated. The most recent version of the appropriate code should be used. For example, the AASHTO LRFD Bridge Design Specifications apply LRFD to most of the design procedures covered in this manual. FHWA's Geotechnical Engineering Circulars on various foundation and retaining wall topics also provide excellent guidance on the application of LRFD.\n\nSome types of geotechnical design have many different methods for determining resistance. LRFD facilitates the comparison of the reliability of these methods. An example is provided in the context of pile design in Figure 7-23. The generic resistance factors used in this example range from 0.1 to 0.9. The former represents a method that is very uncertain or unreliable. In contrast, the high value of 0.9 represents a method for predicting resistance with very low uncertainty. In this way, LRFD can be especially useful for deep foundations because of the large range of methods available for predicting the resistance.\n\nTo some extent, engineers can use differences in load factors to understand the uncertainty associated with loading. Larger load factors are typically associated with live loads, which have higher uncertainty. The load factors for extreme events may be close to 1.0. In this case, the lower load factor recognizes the small probability of occurrence associated with such events.\n\nWhile LRFD can theoretically be used for any analysis involving load and resistance, some problems are poorly suited to this approach. This is especially true for cases, such as slope stability, where the primary load and the primary resistance are both functions of the soil's self-weight. If a load factor is applied to the soil unit weight, the stresses within the slope will change, which changes the shear strength (except for undrained analysis). A better alternative for slope stability is to complete reliability analyses using the methods described earlier in this chapter.",
       "key_points": [
-        "Specific γ and φ values are not provided in this chapter — engineers must use the most current applicable code (e.g., AASHTO LRFD Bridge Design Specifications).",
-        "LRFD is especially useful for deep foundations where φ values (0.1–0.9) can be used to compare the reliability of many available design methods.",
-        "Higher load factors (e.g., live loads) reflect greater uncertainty; extreme event load factors near 1.0 reflect low probability of occurrence.",
-        "Slope stability is poorly suited to LRFD because applying a load factor to soil unit weight changes both stresses and shear strength simultaneously.",
-        "Reliability analysis methods (from earlier in Chapter 7) are preferred over LRFD for slope stability problems.",
-        "FHWA Geotechnical Engineering Circulars provide additional guidance on LRFD application to foundations and retaining walls."
+        "Specific γ and φ values are code-dependent and intentionally omitted; always use the most current code (e.g., AASHTO LRFD Bridge Design Specifications).",
+        "LRFD is especially valuable for deep foundation design because it allows direct reliability-based comparison of many different resistance prediction methods.",
+        "Resistance factors for pile design can range from 0.1 (highly uncertain method) to 0.9 (low uncertainty method), reflecting method reliability.",
+        "Larger load factors for live loads reflect higher uncertainty; load factors near 1.0 for extreme events reflect low probability of occurrence, not low uncertainty.",
+        "Slope stability is poorly suited to LRFD because soil self-weight drives both load and resistance; applying a load factor to unit weight alters shear strength (for drained conditions).",
+        "For slope stability, reliability analyses (earlier in Chapter 7) are preferred over LRFD."
       ],
       "equations": [],
       "figures": [
         "Figure 7-23"
       ],
       "tables": [],
-      "applicability": "Applies when implementing LRFD for geotechnical design, particularly for deep foundations, and when evaluating whether LRFD is appropriate for a given problem type such as slope stability."
+      "applicability": "Applies when implementing LRFD for geotechnical foundation and retaining wall design, or when evaluating whether LRFD is appropriate for a specific problem such as slope stability."
     },
     {
       "section_id": "7-5",

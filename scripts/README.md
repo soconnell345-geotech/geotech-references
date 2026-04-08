@@ -148,6 +148,47 @@ The pipeline is generic — no per-reference Python code is needed.
   minutes of wall clock time and a few dollars of API spend.
 - The auditor is free and runs in seconds.
 
+### What DM7 actually cost (2026-04-07)
+
+DM7 extraction came to **~$21** of API ($18 Sonnet + $3 Opus) for 1,307
+pages across both volumes. Honest breakdown:
+
+- **~$8 of waste**: an early v0 chapter-scoped Opus run (later quarantined
+  and now deleted) plus a string of failed/retried chunks during pipeline
+  iteration (chunking, retries, prompt format). All of that is the cost
+  of figuring out the right design while burning real API calls.
+- **~$13 of inherent LLM cost**: Sonnet 4.6 input pricing × ~1.3M input
+  tokens for the source text. This is the floor for any approach where a
+  model has to read the source.
+
+Now that the pipeline is stable, future references should land at roughly
+**$0.008/page on Sonnet** (~$10 per 1,300-page reference) — predictable
+once you skip the iteration tax.
+
+### Where the LLM is actually load-bearing
+
+The LLM is required for `summary`, `key_points`, `applicability`, and
+`equations[].description` — these are synthesis fields. Everything else
+*could* be hard-coded:
+
+| Field | LLM-required? | Hard-coded alternative |
+|---|---|---|
+| `section_id`, `title` | No | PDF outline (free) |
+| `equations[].id` | No | Regex on `(N-M)` / `(N-M-K)` (already used as safety net via `force_inject_chunk_eqs`) |
+| `figures`, `tables` | No | Regex on `Figure X-Y:` / `Table X-Y:` captions |
+| `implemented_in` | No | Already done by `inject_links()` against equation module docstrings |
+| `body` | Marginal | Raw `page.get_text()` minus headers — ugly but free |
+| `summary` | **Yes** | True summarization |
+| `key_points` | **Yes** | Synthesis of what matters |
+| `applicability` | **Yes** | Synthesis from scattered prose |
+
+A hybrid pipeline (regex for structure, LLM only for synthesis fields)
+would cut output tokens but **input tokens still dominate** — the model
+still has to read the body to write the summary. Realistic savings
+~30-40%, not 90%. For very cost-sensitive future references, the better
+path is probably to do narrative extraction by hand (or via Claude
+CoWork) section-by-section instead of running this pipeline.
+
 ## Current state — DM7 (2026-04-07)
 
 After this commit, both UFC 3-220-10 (`dm7_1`) and UFC 3-220-20 (`dm7_2`)
@@ -157,50 +198,35 @@ have substantially complete chapter text:
 |---|---|---|---|
 | `dm7_1/text/chapter01.json` | 65 | 6/6 | OK |
 | `dm7_1/text/chapter02.json` | 77 | 3/3 | OK |
-| `dm7_1/text/chapter03.json` | 43 | 4/5 | missing 1 eq |
-| `dm7_1/text/chapter04.json` | 58 | 11/12 | missing Eq 4-12 |
-| `dm7_1/text/chapter05.json` | 63 | 27/28 | missing Eq 5-19 |
+| `dm7_1/text/chapter03.json` | 43 | 5/5 | OK |
+| `dm7_1/text/chapter04.json` | 58 | 12/12 | OK |
+| `dm7_1/text/chapter05.json` | 63 | 28/28 | OK |
 | `dm7_1/text/chapter06.json` | 52 | 15/15 | OK |
-| `dm7_1/text/chapter07.json` | 52 | 5/6 | missing Eq 7-2 |
+| `dm7_1/text/chapter07.json` | 52 | 6/6 | OK |
 | `dm7_1/text/chapter08.json` | 47 | 45/45 | OK |
 | `dm7_2/text/prologue.json` | 40 | 3/0 | OK |
 | `dm7_2/text/chapter02.json` | 51 | 10/10 | OK |
 | `dm7_2/text/chapter03.json` | 68 | 10/10 | OK |
-| `dm7_2/text/chapter04.json` | 61 | 26/31 | missing 4-20, 4-21, 4-22, 4-29, 4-30 |
+| `dm7_2/text/chapter04.json` | 61 | 31/31 | OK |
 | `dm7_2/text/chapter05.json` | 75 | 42/42 | OK |
-| `dm7_2/text/chapter06.json` | 103 | 72/74 | missing 6-38, 6-39 |
-| `dm7_2/text/chapter07.json` | 40 | 15/16 | missing 7-16; appendices NOT extracted |
+| `dm7_2/text/chapter06.json` | 103 | 74/74 | OK |
+| `dm7_2/text/chapter07.json` | 40 | 16/16 | OK (appendices skipped, out of scope) |
 
-**Totals:** 895 sections, 295/307 equations cross-referenced (96.1%), built
-on Sonnet 4.6 with section-level chunking, parallel execution, and
+**Totals:** 895 sections, **307/307 equations cross-referenced (100%)**,
+built on Sonnet 4.6 with section-level chunking, parallel execution, and
 automatic recursive subdivision of oversized chunks. Chunks above 35k
 chars / 15 pages are auto-split using deeper PDF outline levels.
 
-The two original chapter-scoped extracts (Opus 4.6, ch1 and ch4 of
-`dm7_1`) are quarantined under `dm7_1/text/_v0_chapter_scoped/` for
-diffing against the section-level output. They are not loaded by the
-retrieval layer.
+The 12 originally-missing equations were resolved via spot-fix
+re-extraction using `--chunk-labels` plus a new
+`force_inject_chunk_eqs()` safety net that scans source text for
+parenthesized eq labels (`(N-M)` and section-prefixed `(N-M-K)`) and
+injects any the model failed to tag.
 
 ## What's still TODO for DM7
 
-### Phase 2 leftovers (small API spend)
-
-1. **Spot-fix 12 missing equations** by re-extracting just the chunks
-   containing them. Each chunk is ~5-10 pages and runs in 30-60 s on
-   Sonnet. Total cost ~$1. Equation IDs:
-   - dm7_1: Eq 3-? (ch3), Eq 4-12, Eq 5-19, Eq 7-2
-   - dm7_2: Eqs 4-20/21/22/29/30, Eqs 6-38/39, Eq 7-16
-
-2. **Decide on UFC 3-220-20 appendices** (pp ~595-724). The PDF outline
-   doesn't have entries for the appendices, so they all got lumped
-   under the `7-6 SUGGESTED READING` chunk which failed extraction
-   (130 pages, 256k chars). Pages ~600-650 contain real engineering
-   content (Appendix B on retaining-structure analysis, glossary). Two
-   options:
-   - Skip them as out-of-scope (no API cost).
-   - Add explicit appendix entries to `manifests/dm7_2.json` with
-     manual page ranges and run them through the pipeline as
-     pseudo-chapters (~$3-5 of API).
+Phase 2 is complete (307/307 eqs, 895 sections). UFC 3-220-20 appendices
+(pp ~595-724) intentionally skipped as out-of-scope.
 
 ### Phase 3 (no API spend, mechanical wiring + SQL layer)
 

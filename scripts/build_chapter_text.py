@@ -637,6 +637,51 @@ def inject_links(sections: list[dict], eq_index: dict[str, str]) -> None:
                     eq["implemented_in"] = eq_index[nid]
 
 
+_PAREN_EQ_PAT = re.compile(
+    r"\(([0-9]+[-\u2013][0-9]+(?:[-\u2013][0-9]+)?[a-z]?)\)"
+)
+
+
+def force_inject_chunk_eqs(
+    sections: list[dict], chunk_text: str, eq_index: dict[str, str]
+) -> None:
+    """Safety net: scan chunk text for parenthesized eq labels (e.g. `(3-5)`)
+    and force-inject any that the model failed to tag into the largest
+    section's equations array. inject_links will then resolve them."""
+    if not eq_index or not sections:
+        return
+    found_in_text: set[str] = set()
+    for m in _PAREN_EQ_PAT.finditer(chunk_text):
+        raw = m.group(1).replace("\u2013", "-")
+        # Try full label, then trailing two-part form (e.g. 5-5-19 → 5-19)
+        candidates = [raw]
+        parts = raw.split("-")
+        if len(parts) >= 3:
+            candidates.append("-".join(parts[-2:]))
+        for nid in candidates:
+            if nid in eq_index:
+                found_in_text.add(nid)
+                break
+    if not found_in_text:
+        return
+    already_tagged: set[str] = set()
+    for sec in sections:
+        for eq in sec.get("equations", []):
+            if isinstance(eq, dict) and eq.get("id"):
+                already_tagged.add(_norm_eq(eq["id"]))
+    missing = found_in_text - already_tagged
+    if not missing:
+        return
+    target = max(sections, key=lambda s: len(s.get("body", "")))
+    target.setdefault("equations", [])
+    for nid in sorted(missing):
+        target["equations"].append({
+            "id": f"Eq. {nid}",
+            "description": "(force-injected from source text)",
+            "implemented_in": eq_index[nid],
+        })
+
+
 # ---------------------------------------------------------------------------
 # Schema validation
 # ---------------------------------------------------------------------------
@@ -715,17 +760,35 @@ def extract_chapter(
     model: str,
     parallel: int,
     dry_run: bool,
+    chunk_label_filter: list[str] | None = None,
+    existing_chapter: dict | None = None,
 ) -> tuple[dict | None, list[str]]:
     """Extract one chapter in parallel across its section chunks.
 
     Returns (chapter_json, errors). chapter_json is None if extraction
     failed before validation.
+
+    If chunk_label_filter is set, only chunks whose label contains any of
+    the given substrings are extracted, and results are merged into
+    `existing_chapter` (which must be supplied).
     """
     chunks = discover_chunks(manifest, ch)
     print(f"  chunks: {len(chunks)}")
     for c in chunks:
         print(f"    {c.chunk_label} ({c.page_end - c.page_start + 1} pp, "
               f"{len(c.text):,} chars): {c.chunk_title}")
+
+    if chunk_label_filter:
+        keep = [
+            c for c in chunks
+            if any(pat in c.chunk_label for pat in chunk_label_filter)
+        ]
+        if not keep:
+            print(f"  no chunks matched labels {chunk_label_filter}")
+            return None, [f"no chunks matched {chunk_label_filter}"]
+        print(f"  filtered to {len(keep)} chunk(s): "
+              f"{[c.chunk_label for c in keep]}")
+        chunks = keep
 
     if dry_run:
         return None, []
@@ -753,11 +816,25 @@ def extract_chapter(
     elapsed = time.time() - t0
     print(f"  chapter elapsed: {elapsed:.1f}s")
 
+    # Per-chunk safety net: scan source text for parenthesized eq labels
+    # the model may have missed and force-inject them.
+    eq_index_for_inject = build_equation_index(ch.equation_module)
+    for i, c in enumerate(chunks):
+        force_inject_chunk_eqs(results.get(i, []), c.text, eq_index_for_inject)
+
     # Merge in chunk order. Deduplicate on section_id — if the same id
     # appears twice (occasional model repetition within a large chunk),
-    # keep whichever copy has the longer body.
+    # keep whichever copy has the longer body. When merging into an
+    # existing chapter, seed `merged` with its sections so newly-extracted
+    # ids replace stale copies and unaffected sections are preserved.
     merged: list[dict] = []
     seen: dict[str, int] = {}
+    if chunk_label_filter and existing_chapter:
+        for sec in existing_chapter.get("sections", []):
+            sid = sec.get("section_id") if isinstance(sec, dict) else None
+            if sid:
+                seen[sid] = len(merged)
+            merged.append(sec)
     for i in range(len(chunks)):
         for sec in results.get(i, []):
             sid = sec.get("section_id") if isinstance(sec, dict) else None
@@ -767,7 +844,11 @@ def extract_chapter(
             if sid in seen:
                 prev_idx = seen[sid]
                 prev = merged[prev_idx]
-                if len(sec.get("body", "")) > len(prev.get("body", "")):
+                # In spot-fix mode, new extraction always wins over the
+                # existing chapter copy (we're fixing gaps).
+                if chunk_label_filter and existing_chapter:
+                    merged[prev_idx] = sec
+                elif len(sec.get("body", "")) > len(prev.get("body", "")):
                     merged[prev_idx] = sec
                 continue
             seen[sid] = len(merged)
@@ -798,6 +879,7 @@ def cmd_extract(
     dry_run: bool,
     model: str,
     parallel: int,
+    chunk_label_filter: list[str] | None = None,
 ) -> int:
     manifest = Manifest.load(manifest_path)
     output_dir = PACKAGE_DIR / manifest.package / "text"
@@ -818,7 +900,22 @@ def cmd_extract(
     total_errors = 0
     for ch in to_run:
         print(f"--- Chapter {ch.number}: {ch.title} ---")
-        chapter_json, errs = extract_chapter(manifest, ch, model, parallel, dry_run)
+        existing = None
+        if chunk_label_filter:
+            existing_path = output_dir / ch.output_name
+            if existing_path.exists():
+                with open(existing_path, "r", encoding="utf-8") as f:
+                    existing = json.load(f)
+                print(f"  loaded existing: {existing_path.name} "
+                      f"({len(existing.get('sections', []))} sections)")
+            else:
+                print(f"  WARNING: --chunk-labels set but no existing "
+                      f"{existing_path.name} found; will write fresh")
+        chapter_json, errs = extract_chapter(
+            manifest, ch, model, parallel, dry_run,
+            chunk_label_filter=chunk_label_filter,
+            existing_chapter=existing,
+        )
         if dry_run or chapter_json is None:
             continue
         if errs:
@@ -871,6 +968,13 @@ def main() -> int:
     pe.add_argument("--dry-run", action="store_true")
     pe.add_argument("--model", default=DEFAULT_MODEL)
     pe.add_argument("--parallel", type=int, default=DEFAULT_PARALLEL)
+    pe.add_argument(
+        "--chunk-labels",
+        type=lambda s: [x.strip() for x in s.split(",") if x.strip()],
+        default=None,
+        help="Comma-separated chunk label substrings. Only matching chunks "
+             "are extracted; results merge into the existing chapter JSON.",
+    )
 
     args = ap.parse_args()
     mp = args.manifest.resolve()
@@ -879,7 +983,10 @@ def main() -> int:
 
     if args.command == "discover":
         return cmd_discover(mp)
-    return cmd_extract(mp, args.chapters, args.dry_run, args.model, args.parallel)
+    return cmd_extract(
+        mp, args.chapters, args.dry_run, args.model, args.parallel,
+        chunk_label_filter=args.chunk_labels,
+    )
 
 
 if __name__ == "__main__":

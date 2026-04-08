@@ -647,84 +647,97 @@
     {
       "section_id": "4-5",
       "title": "Rigid Gravity Retaining Structures",
-      "summary": "Introduces the two fundamental categories of retaining structures—rigid gravity and flexible—and focuses on rigid walls. Covers the monolithic displacement behavior of rigid walls, construction process, and typical examples (concrete gravity, cantilever, counterfort, buttress, gabion). Directs the reader to subsequent subsections for design calculations and drainage.",
+      "summary": "Introduces the two basic categories of retaining structures — rigid gravity and flexible — and focuses on rigid gravity walls (concrete gravity, cantilever, counterfort, buttress, gabion). Explains that rigid walls displace monolithically and derive lateral resistance from self-weight and overlying soil weight. Directs readers to Sections 4-6 and 4-7 for alternative gravity and flexible wall designs.",
       "body": "The preceding sections provide the theories for calculating earth and water pressures on retaining structures. A key element in the development of earth pressures is the wall movement or displacement. For design, retaining structures are divided into two basic categories: (1) rigid gravity structures and (2) flexible structures. Alternative forms of gravity structure are presented in Section 4-6. The design of flexible walls is discussed in Section 4-7.\n\nRigid retaining walls are structures that displace (translation or rotation) monolithically, and for the most part, they develop their lateral resistance from their own weight and the weight of overlying soil. The construction process for rigid walls typically involves construction of the wall followed by the placement of backfill. Examples of rigid retaining structures are concrete gravity walls, concrete cantilever walls, counterfort walls, buttress walls, and gabion walls. The design of rigid retaining structures is discussed in this section.",
       "key_points": [
-        "Rigid gravity walls displace monolithically (translation or rotation) and resist lateral loads via self-weight and overlying soil weight.",
+        "Retaining structures are divided into rigid gravity structures and flexible structures.",
+        "Rigid walls displace (translate or rotate) monolithically and resist lateral loads via self-weight and overlying soil weight.",
         "Construction sequence: wall is built first, then backfill is placed.",
-        "Examples include concrete gravity, cantilever, counterfort, buttress, and gabion walls.",
-        "Four failure modes are evaluated: overturning, sliding, bearing capacity/settlement, and global stability.",
-        "Passive pressure on the front of the wall is typically ignored because the displacement needed to mobilize it is too large."
+        "Examples include concrete gravity walls, cantilever walls, counterfort walls, buttress walls, and gabion walls.",
+        "Alternative gravity forms are in Section 4-6; flexible wall design is in Section 4-7."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when classifying and beginning the design of rigid gravity retaining structures of any type."
+    },
+    {
+      "section_id": "4-5.1",
+      "title": "Design Calculations for Rigid Retaining Walls",
+      "summary": "Outlines the overall design calculation framework for rigid retaining walls, referencing Figure 4-27. Explains that once earth and water pressures are determined, a full free-body diagram is constructed. Four failure modes are assessed: overturning, sliding, bearing capacity/settlement, and global stability. Notes that passive pressure on the front face is typically ignored due to large displacement requirements and risk of future excavation.",
+      "body": "Examples of four rigid retaining walls are shown in Figure 4-27. The pressures acting on the face of rigid walls follow the theory, presented earlier in this chapter, that depends on the displacement or rotation of the wall. Once the earth and water pressures are determined, the forces and pressures acting on the other parts of the wall are assessed so that an entire free-body diagram can be constructed. With a knowledge of the FBD, a variety of modes of failure can be assessed. Figure 4-27 summarizes the calculations for the following modes of failure:\n1) Overturning,\n2) Sliding,\n3) Bearing capacity and settlement, and\n4) Global or overall stability.\n\nPassive forces are indicated above the toe of the retaining walls in Figure 4-27. However, the passive pressure on the front of the wall is typically ignored when assessing the stability. As shown in Figure 4-1, there is a marked difference in displacement required for developing passive pressure as compared to active pressure. By the time that full passive pressure has been developed, the wall displacement would be too great for the performance to be considered satisfactory. Also, the soil in front of the wall might be excavated at a later date, so relying on passive pressure often is not warranted.",
+      "key_points": [
+        "Design requires constructing a complete free-body diagram from calculated earth and water pressures.",
+        "Four failure modes are checked: overturning, sliding, bearing capacity/settlement, and global stability.",
+        "Passive pressure on the front face is typically ignored — full passive pressure requires displacements too large for satisfactory performance.",
+        "Future excavation in front of the wall may eliminate any passive resistance, further justifying its exclusion.",
+        "Figure 4-27 provides the calculation framework for all four failure modes."
       ],
       "equations": [],
       "figures": [
         "Figure 4-27"
       ],
       "tables": [],
-      "applicability": "Applies whenever a rigid gravity retaining structure is being designed or analyzed for lateral earth pressure resistance."
-    },
-    {
-      "section_id": "4-5.1",
-      "title": "Design Calculations for Rigid Retaining Walls",
-      "summary": "Describes the overall framework for designing rigid retaining walls using free-body diagrams. Identifies the four failure modes to be checked—overturning, sliding, bearing capacity/settlement, and global stability—and explains why passive pressure on the wall toe is typically ignored in stability assessments.",
-      "body": "Examples of four rigid retaining walls are shown in Figure 4-27. The pressures acting on the face of rigid walls follow the theory, presented earlier in this chapter, that depends on the displacement or rotation of the wall. Once the earth and water pressures are determined, the forces and pressures acting on the other parts of the wall are assessed so that an entire free-body diagram can be constructed. With a knowledge of the FBD, a variety of modes of failure can be assessed. Figure 4-27 summarizes the calculations for the following modes of failure:\n1) Overturning,\n2) Sliding,\n3) Bearing capacity and settlement, and\n4) Global or overall stability.\n\nPassive forces are indicated above the toe of the retaining walls in Figure 4-27. However, the passive pressure on the front of the wall is typically ignored when assessing the stability. As shown in Figure 4-1, there is a marked difference in displacement required for developing passive pressure as compared to active pressure. By the time that full passive pressure has been developed, the wall displacement would be too great for the performance to be considered satisfactory. Also, the soil in front of the wall might be excavated at a later date, so relying on passive pressure often is not warranted.",
-      "key_points": [
-        "Full free-body diagram must be constructed before assessing failure modes.",
-        "Four failure modes: overturning, sliding, bearing capacity/settlement, global stability.",
-        "Passive pressure at the toe is typically ignored—full mobilization requires excessive wall displacement.",
-        "Soil in front of the wall may be excavated later, making passive resistance unreliable."
-      ],
-      "equations": [],
-      "figures": [
-        "Figure 4-27",
-        "Figure 4-1"
-      ],
-      "tables": [],
-      "applicability": "Applies to all rigid retaining wall designs requiring a systematic stability assessment across multiple failure modes."
+      "applicability": "Applies when performing stability calculations for any rigid gravity retaining wall."
     },
     {
       "section_id": "4-5.1.1",
       "title": "Pressure Distribution at the Base of Walls",
-      "summary": "Defines how to calculate and interpret the pressure distribution at the base of a rigid retaining wall. Covers the resultant normal force R, eccentricity e, and provides equations for maximum and minimum bearing pressures under trapezoidal and triangular distributions, as well as a simplified uniform pressure approach when R falls outside the middle third.",
-      "body": "The pressure distribution acting on the base of retaining walls impacts the stability assessment for different failure modes. Using the equations for force equilibrium, the magnitude of the resultant normal force (R) and the shear force (T) can be determined. The location of R can be determined from moment equilibrium about the toe of the wall. The distance that R acts from the centerline or midpoint of the base of the wall is defined as the eccentricity, e. Figure 4-27 provides the method for calculating the resultant location and eccentricity.\n\nKnowledge of the magnitude and position of R allows the pressure distribution on the bottom of the wall to be calculated. Theoretically, the shape of pressure distribution is either triangular or trapezoidal as shown in Figure 4-28. If the resultant acts precisely at the one-third point of the base, a triangular pressure distribution results, with the full base of the wall under compression. If the resultant acts within the middle third of the base, a trapezoidal distribution results, and the maximum pressure, qmax, acting at the toe is given by Equation 4-23. The resultant of the pressure distribution acts at the centroid of the pressure diagram. The minimum pressure, qmin, acting on the heel side of the trapezoidal pressure distribution that provides the correct location of the resultant (R) can be calculated by Equation 4-24.\n\nIf the resultant is located outside of the middle third of the base, the maximum stress can be calculated by Equation 4-25, where x0 = B/2 – e = horizontal distance between R and the toe. When the resultant is outside of the middle third of the base, only a portion of the base is under compression. The amount of base under compression, Be, can be calculated by Equation 4-26.\n\nAs shown at the bottom of Figure 4-28, the pressure distribution can be simplified by assuming that the pressure acts uniformly over a width of 2·x0. If the pressure distribution is assumed to be uniform, its magnitude is given by Equation 4-27. For the simplified uniform distribution of pressure, the amount of the base that is under compression is given by Equation 4-28.",
+      "summary": "Covers calculation of the resultant normal force R, shear force T, and eccentricity e at the base of rigid retaining walls. Provides equations for maximum and minimum base pressures under trapezoidal or triangular distributions (when R is within the middle third) and for the case when R falls outside the middle third, including both the exact triangular and simplified uniform-pressure approaches.",
+      "body": "The pressure distribution acting on the base of retaining walls impacts the stability assessment for different failure modes. Using the equations for force equilibrium, the magnitude of the resultant normal force (R) and the shear force (T) can be determined. The location of R can be determined from moment equilibrium about the toe of the wall. The distance that R acts from the centerline or midpoint of the base of the wall is defined as the eccentricity, e. Figure 4-27 provides the method for calculating the resultant location and eccentricity.\n\nKnowledge of the magnitude and position of R allows the pressure distribution on the bottom of the wall to be calculated. Theoretically, the shape of pressure distribution is either triangular or trapezoidal as shown in Figure 4-28. If the resultant acts precisely at the one-third point of the base, a triangular pressure distribution results, with the full base of the wall under compression. If the resultant acts within the middle third of the base, a trapezoidal distribution results, and the maximum pressure, qmax, acting at the toe is given by Eq. 4-23. The minimum pressure, qmin, acting on the heel side of the trapezoidal pressure distribution is given by Eq. 4-24.\n\nIf the resultant is located outside of the middle third of the base, the maximum stress can be calculated by Eq. 4-25, where x0 = B/2 – e = horizontal distance between R and the toe. When the resultant is outside of the middle third of the base, only a portion of the base is under compression. The amount of base under compression, Be, can be calculated by Eq. 4-26.\n\nAs shown at the bottom of Figure 4-28, the pressure distribution can be simplified by assuming that the pressure acts uniformly over a width of 2·x0. If the pressure distribution is assumed to be uniform, its magnitude is given by Eq. 4-27. For the simplified uniform distribution of pressure, the amount of the base that is under compression is given by Eq. 4-28.",
       "key_points": [
-        "Eccentricity e is the distance R acts from the base centerline; determined by moment equilibrium about the toe.",
-        "Resultant within middle third → trapezoidal pressure distribution; at one-third point → triangular distribution.",
-        "qmax (toe) = R/B + 6Re/B²; qmin (heel) = R/B − 6Re/B² for trapezoidal case.",
-        "Resultant outside middle third: only portion Be = 3x0 of base is in compression; qmax = R/(2·x0·1).",
-        "Simplified uniform pressure over width 2x0 may be used when soil is ductile: Be = 2x0.",
-        "Pressure distribution choice affects bearing capacity check—triangular/trapezoidal required for brittle materials."
+        "Resultant R and eccentricity e are found from force and moment equilibrium; e is measured from the base centerline.",
+        "When R is within the middle third: trapezoidal pressure distribution; qmax at toe per Eq. 4-23, qmin at heel per Eq. 4-24.",
+        "When R is outside the middle third: only part of the base is in compression; triangular distribution with qmax per Eq. 4-25.",
+        "Effective base width Be under compression (triangular method) = 3·x0 (Eq. 4-26); simplified uniform method gives Be = 2·x0 (Eq. 4-28).",
+        "Simplified uniform pressure qmax = R/(2·x0) (Eq. 4-27) is appropriate for ductile soils; triangular/trapezoidal used for brittle materials.",
+        "Figure 4-28 illustrates all pressure distribution cases."
       ],
       "equations": [
         {
           "id": "Eq. 4-23",
-          "description": "Maximum bearing pressure qmax at the toe for trapezoidal distribution when resultant is within middle third: qmax = R/B + 6Re/B²",
+          "description": "Maximum bearing pressure qmax at the toe when resultant R acts within the middle third of the base (trapezoidal distribution): qmax = R/B + 6·R·e/B²",
           "implemented_in": "geotech_references.dm7_2.chapter4.base_pressure_max_trapezoidal"
         },
         {
           "id": "Eq. 4-24",
-          "description": "Minimum bearing pressure qmin at the heel for trapezoidal distribution: qmin = R/B − 6Re/B²",
+          "description": "Minimum bearing pressure qmin at the heel when resultant R acts within the middle third of the base (trapezoidal distribution): qmin = R/B − 6·R·e/B²",
           "implemented_in": "geotech_references.dm7_2.chapter4.base_pressure_min_trapezoidal"
         },
         {
           "id": "Eq. 4-25",
-          "description": "Maximum bearing pressure qmax when resultant is outside middle third: qmax = R / (2·x0), where x0 = B/2 − e",
+          "description": "Maximum bearing pressure qmax when resultant R is outside the middle third: qmax = R / (2·x0/3), where x0 = B/2 − e",
           "implemented_in": "geotech_references.dm7_2.chapter4.base_pressure_max_trapezoidal"
         },
         {
           "id": "Eq. 4-26",
-          "description": "Length of base under compression when resultant is outside middle third: Be = 3·x0",
+          "description": "Effective base width under compression (triangular distribution) when R is outside the middle third: Be = 3·x0",
           "implemented_in": "geotech_references.dm7_2.chapter4.effective_base_width_triangular"
         },
         {
           "id": "Eq. 4-27",
-          "description": "Maximum pressure under simplified uniform distribution: qmax = R / (2·x0)",
+          "description": "Maximum bearing pressure assuming simplified uniform pressure distribution over width 2·x0: qmax = R / (2·x0)",
           "implemented_in": "geotech_references.dm7_2.chapter4.base_pressure_uniform"
         },
         {
           "id": "Eq. 4-28",
-          "description": "Effective base width under compression for simplified uniform distribution: Be = 2·x0",
+          "description": "Effective base width under compression for simplified uniform pressure distribution: Be = 2·x0",
           "implemented_in": "geotech_references.dm7_2.chapter4.effective_base_width_uniform"
+        },
+        {
+          "id": "Eq. 4-20",
+          "description": "(force-injected from source text)",
+          "implemented_in": "geotech_references.dm7_2.chapter4.hydrodynamic_water_force"
+        },
+        {
+          "id": "Eq. 4-21",
+          "description": "(force-injected from source text)",
+          "implemented_in": "geotech_references.dm7_2.chapter4.seismic_psi_low_permeability"
+        },
+        {
+          "id": "Eq. 4-22",
+          "description": "(force-injected from source text)",
+          "implemented_in": "geotech_references.dm7_2.chapter4.seismic_adjusted_unit_weight"
         }
       ],
       "figures": [
@@ -732,36 +745,36 @@
         "Figure 4-28"
       ],
       "tables": [],
-      "applicability": "Applies when calculating base pressure distributions for rigid retaining walls to support bearing capacity, overturning, and sliding checks."
+      "applicability": "Applies when calculating base pressure distributions for stability assessment of rigid gravity retaining walls."
     },
     {
       "section_id": "4-5.1.2",
       "title": "Overturning",
-      "summary": "Describes two methods for checking overturning stability of rigid retaining walls: (1) factor of safety FOT ≥ 1.5 defined as restoring moment divided by overturning moment, and (2) resultant location check—middle third of base for soil-founded walls, middle half for rock-founded walls. Notes wider LRFD thresholds when factored loads are used.",
+      "summary": "Describes the overturning stability check for rigid gravity retaining walls. The factor of safety FOT equals restoring moment divided by overturning moment and must be ≥ 1.5. An alternative check uses the position of resultant R: for soil-founded walls R must fall within the middle third of the base; for rock-founded walls R must fall within the middle half. LRFD guidance is noted in a footnote.",
       "body": "The stability of the wall for the failure mode of overturning can be determined by defining a factor of safety equal to the restoring moment divided by the overturning moment. The factor of safety, FOT, should be greater than or equal to 1.5.\n\nAn alternative method is to examine the location of the resultant, R, relative to the width of the base of the wall. If R is in the middle one-third of the base for walls founded on soil, the wall is considered safe. For walls founded on rock, R should be located in the middle one-half of the base for the wall to be considered safe.\n\nNote: If LRFD techniques are used for design, there are wider thresholds for the location of the resultant force if factored loads are used.",
       "key_points": [
-        "FOT = restoring moment / overturning moment; minimum FOT = 1.5.",
-        "Alternative check: R must fall within middle third of base for soil-founded walls.",
-        "For rock-founded walls, R must fall within middle half of base.",
-        "LRFD design allows wider resultant location thresholds when factored loads are applied."
+        "FOT = restoring moment / overturning moment; minimum required value is 1.5.",
+        "For soil-founded walls: R must be within the middle third of the base.",
+        "For rock-founded walls: R must be within the middle half of the base.",
+        "LRFD methods allow wider resultant thresholds when factored loads are used."
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Applies when assessing overturning stability of rigid gravity retaining walls founded on either soil or rock."
+      "applicability": "Applies when checking overturning stability of rigid gravity retaining walls founded on soil or rock."
     },
     {
       "section_id": "4-5.1.3",
       "title": "Sliding",
-      "summary": "Covers the calculation of factor of safety against sliding (FSL ≥ 1.5) for rigid retaining walls, using horizontal force equilibrium. Addresses base friction, adhesion, passive resistance, layered bearing materials, and the use of a wall key to increase sliding resistance. Explains when FSL must be raised to 2.0.",
+      "summary": "Covers the sliding stability check for rigid gravity retaining walls. FSL is the ratio of resisting (friction + adhesion) to driving (horizontal earth pressure) force; minimum FSL ≥ 1.5, increasing to 2.0 if passive resistance is included. Describes use of the effective base width Be for fine-grained soils, two-location shear checks for coarse-grained bearing layers, and the use of a wall base key to add passive resistance.",
       "body": "The stability of the wall for the failure mode of sliding is normally determined by using horizontal force equilibrium. The factor of safety against sliding, FSL, is the ratio of the resisting force to the horizontal earth pressure force. The resisting force is a combination of the frictional resistance at the base of the wall and the adhesion between the base of the wall and the soil foundation. For sliding resistance on fine-grained soils, the adhesion should be multiplied by the effective width of the base (Be) found using the uniform bearing pressure method. The factor of safety should be greater than or equal to 1.5. The parameters used to calculate FSL are shown on Figure 4-27. If passive resistance is included, the minimum FSL should be increased to 2.0. Minimum FSL may also need to be increased when base adhesion is included in the resistance.\n\nIn some cases, a layer of coarse-grained soil may be placed below the wall as a bearing material. Sliding should be checked at two locations. The shear resistance, T, should be taken as the lowest of (1) the resistance at the interface between the base of the wall and the bearing material and (2) the resistance within the clay using the full undrained shear strength.\n\nIf stability against sliding is an issue, gravity retaining walls can be designed with a key to increase the sliding resistance by adding a passive resistance component. Figure 4-29 shows an outline of the analysis method to accommodate a wall base with a key. Note that the passive pressure is applied only along the depth of the key and not along the entire burial depth of the wall. It is also prudent to consider some amount of future excavation in front of the wall that would reduce passive resistance.",
       "key_points": [
-        "FSL = resisting force / horizontal earth pressure force; minimum FSL = 1.5.",
-        "Resisting force = base friction + base-soil adhesion; adhesion multiplied by effective base width Be for fine-grained soils.",
-        "If passive resistance is included, minimum FSL increases to 2.0.",
-        "For layered bearing materials, check sliding at both the wall-bearing material interface and within the clay layer.",
-        "A wall key can be added to increase passive resistance; passive pressure applies only over key depth, not full burial depth.",
-        "Future excavation in front of the wall should be anticipated, reducing passive resistance."
+        "FSL = resisting force (friction + adhesion) / horizontal earth pressure force; minimum FSL ≥ 1.5.",
+        "If passive resistance is included, minimum FSL must be raised to 2.0.",
+        "For fine-grained soils, adhesion is multiplied by the effective base width Be from the uniform pressure method.",
+        "When a coarse-grained bearing layer is used, check sliding at both the wall-material interface and within the clay.",
+        "A base key can be added to increase sliding resistance; passive pressure applies only over the key depth.",
+        "Future excavation in front of the wall should be considered, reducing assumed passive resistance."
       ],
       "equations": [],
       "figures": [
@@ -769,20 +782,20 @@
         "Figure 4-29"
       ],
       "tables": [],
-      "applicability": "Applies when evaluating sliding stability of rigid retaining walls, particularly where soil conditions or geometry make sliding a governing failure mode."
+      "applicability": "Applies when checking sliding stability of rigid gravity retaining walls, including those with base keys or coarse-grained bearing layers."
     },
     {
       "section_id": "4-5.1.4",
       "title": "Bearing Capacity and Settlement",
-      "summary": "Explains how to assess bearing capacity and settlement beneath rigid retaining walls. The wall base is treated as a strip footing with eccentric inclined loading (Chapter 5). Required factor of safety is 2.5–3. Discusses the choice between uniform vs. triangular/trapezoidal pressure distributions and the destabilizing effect of differential settlement between wall and backfill.",
+      "summary": "Addresses bearing capacity and settlement checks for rigid retaining walls. Bearing capacity is computed as for an eccentrically and inclinedly loaded strip footing (Chapter 5), with FS of 2.5–3 against qmax. Uniform pressure distribution suits ductile soils; triangular/trapezoidal is required for brittle materials. Settlement is analyzed per DM 7.1 Chapter 5, and the interaction between wall settlement and backfill is discussed as a potential destabilizing mechanism.",
       "body": "The bearing capacity of the soil below a retaining wall is calculated by assuming the wall acts as a conventional strip footing with eccentric, inclined loading, which is discussed in Chapter 5. The depth of embedment is equal to the depth on the toe side of the wall.\n\nThe bearing capacity should be compared to the maximum bearing pressure calculated as shown in Figure 4-28. A factor of safety of 2.5 to 3 is typically appropriate. A uniform pressure distribution can be used to determine qmax if the soil below the wall is relatively ductile. For more brittle materials, such as rock and sensitive clays, the triangular or trapezoidal pressure distribution should be used to find qmax. Because load inclination affects bearing capacity, the factor of safety against bearing capacity failure and sliding are often closely related.\n\nSettlement of retaining walls can be an important factor in overall stability. For the examples shown in Figure 4-27, the backfill places a downward pressure on the retaining wall. This pressure increases the contact stress at the base of the wall, thus increasing the sliding resistance. If the wall settles considerably more than the backfill, then the relative movement between the wall and backfill can be reversed, and the vertical pressure can act up instead of down. This is a destabilizing force on the wall since it decreases the resistance to sliding.\n\nSettlement analyses can be performed using the procedures outlined in Chapter 5 of DM 7.1. Settlement should consider net changes in stress by comparing the conditions before and after the wall was constructed.",
       "key_points": [
-        "Wall base treated as a strip footing with eccentric, inclined loading; embedment depth taken at the toe side.",
-        "Factor of safety against bearing capacity failure: 2.5 to 3.",
-        "Use uniform qmax for ductile soils; use triangular/trapezoidal qmax for brittle materials (rock, sensitive clays).",
-        "Bearing capacity FS and sliding FS are closely related because load inclination affects both.",
-        "Excessive wall settlement relative to backfill reverses vertical pressure, reducing sliding resistance (destabilizing).",
-        "Settlement analysis follows DM 7.1 Chapter 5; use net stress changes before vs. after construction."
+        "Bearing capacity is computed as for a strip footing with eccentric, inclined loading (Chapter 5); embedment depth is taken at the toe side.",
+        "Factor of safety against bearing capacity failure should be 2.5 to 3.",
+        "Uniform pressure distribution for qmax is appropriate for ductile soils; use triangular/trapezoidal for rock and sensitive clays.",
+        "Bearing capacity FS and sliding FS are closely related due to load inclination effects.",
+        "If the wall settles more than the backfill, the vertical backfill force can reverse direction, reducing sliding resistance — a destabilizing condition.",
+        "Settlement analyses use DM 7.1 Chapter 5 procedures and must account for net stress changes before and after construction."
       ],
       "equations": [],
       "figures": [
@@ -790,60 +803,59 @@
         "Figure 4-28"
       ],
       "tables": [],
-      "applicability": "Applies when checking bearing capacity and settlement beneath rigid retaining walls founded on soil or rock."
+      "applicability": "Applies when evaluating bearing capacity and settlement of rigid gravity retaining walls on soil or rock foundations."
     },
     {
       "section_id": "4-5.1.5",
       "title": "Overall or Global Stability",
-      "summary": "Addresses global (overall) stability of rigid retaining walls using slope stability analysis methods. The failure mechanism involves slip surfaces passing through the backfill and wall mass. Directs the designer to slope stability procedures in DM 7.1 Chapter 7.",
+      "summary": "Describes the overall (global) stability check for rigid gravity retaining walls using slope stability analysis tools. Failure surfaces are slip planes that extend from behind the wall to in front of it, encompassing the wall and backfill as a single slide mass. References DM 7.1 Chapter 7 for slope stability procedures.",
       "body": "Overall or global stability is assessed using the same tools employed for slope stability analysis. This mechanism of failure considers slip surfaces that extend from the back of the wall to the front of the wall, and the slide mass contains the wall and backfill. Slope stability is discussed in Chapter 7 of DM 7.1.",
       "key_points": [
-        "Global stability uses slope stability analysis methods (DM 7.1 Chapter 7).",
-        "Slip surfaces extend from the back to the front of the wall, encompassing the entire wall and backfill mass.",
-        "This failure mode is distinct from sliding, overturning, and bearing capacity failures."
+        "Global stability uses slope stability analysis methods (DM 7.1, Chapter 7).",
+        "Critical slip surfaces extend from behind the wall to in front of it, with the wall and backfill included in the slide mass."
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Applies when assessing the overall (global) stability of a rigid retaining wall system, especially where soft or layered foundation soils are present."
+      "applicability": "Applies when checking overall (global) stability of rigid gravity retaining walls and their surrounding soil mass."
     },
     {
       "section_id": "4-5.1.6",
       "title": "Design of Low Walls",
-      "summary": "Provides a simplified design approach for low retaining walls (under 12 feet tall) using equivalent fluid pressures when failure consequences are not significant. References Figure 4-30 for equivalent fluid unit weights by USCS soil type and notes the broken backslope accommodation. Cautions that chart origins are unclear and results should be verified by other methods.",
+      "summary": "Provides a simplified design approach for rigid retaining walls less than 12 feet tall where failure consequences are not significant. Figure 4-30 gives equivalent fluid unit weights by Unified Soil Classification System soil type and accommodates broken backslopes. Engineers are advised to verify results with other methods because the origin of the chart details is unclear.",
       "body": "For low retaining walls (less than 12 feet tall), the retaining wall loads can be calculated based on equivalent fluid pressures, provided the consequences of failure are not significant. Figure 4-30 provides a method for determining the loads on low retaining walls for three different soil categories based on the Unified Soil Classification System. This method accommodates a broken backslope, in which the backslope levels are relatively close to the wall. The equivalent fluid unit weights can be used to calculate horizontal and vertical forces applied to the wall.\n\nFigure 4-30 is based on equivalent fluid pressures associated with the different soil types listed above, and similar charts are found in several geotechnical textbooks. However, the specific details on how these charts were created are unclear. If these charts are used, it is prudent to check the results using other methods.",
       "key_points": [
-        "Simplified equivalent fluid pressure method applicable only to walls < 12 ft tall and where failure consequences are not significant.",
-        "Equivalent fluid unit weights are categorized by USCS soil type (three categories) per Figure 4-30.",
-        "Method accommodates a broken backslope geometry.",
-        "Chart origins are unclear; results should always be verified with other analytical methods."
+        "Simplified equivalent fluid pressure method applies only to walls < 12 ft tall where failure consequences are not significant.",
+        "Figure 4-30 provides equivalent fluid unit weights for three USCS soil categories.",
+        "The method accommodates broken backslopes where the slope levels near the wall.",
+        "The exact derivation of Figure 4-30 is unclear; results should be verified with independent methods."
       ],
       "equations": [],
       "figures": [
         "Figure 4-30"
       ],
       "tables": [],
-      "applicability": "Applies to low retaining walls (less than 12 feet tall) where simplified load estimation is acceptable and failure consequences are limited."
+      "applicability": "Applies when designing low rigid retaining walls (< 12 ft) with non-critical consequences of failure, using simplified equivalent fluid pressures."
     },
     {
       "section_id": "4-5.2",
       "title": "Drainage Behind Rigid Walls",
-      "summary": "Explains the critical importance of drainage systems behind rigid retaining structures. Describes how a phreatic surface in backfill reduces effective stress but increases total lateral force, making water pressure a common cause of retaining wall failures. Lists three design criteria for drainage systems and references Figure 4-31 for example drainage and filter configurations.",
+      "summary": "Discusses the critical role of drainage in rigid retaining wall design. A phreatic surface in the backfill reduces effective stress but increases net lateral force on the wall, and many retaining structure failures are attributed to unanticipated water pressures. Criteria for drainage system design are given, covering prevention of elevated water tables, safe conveyance of water away from the wall, and filter requirements to prevent erosion and migration of fines. Figure 4-31 shows example drainage and filter systems.",
       "body": "Water should not be allowed to pond behind retaining structures or within the backfill, if at all possible. The presence of a phreatic surface in the wall backfill decreases the effective stress in the soil, so the earth pressure is reduced. However, as discussed in Section 4-4.1, the water itself applies a pressure to the wall, and the net result is that lateral forces on the wall are increased. Many failures of retaining structures are due to unanticipated or unmitigated water pressures.\n\nDrainage systems should be incorporated into the design of retaining structures if there is a potential for water pressures to act on the wall. The drainage system design should satisfy several criteria:\n1) An elevated water table should not be present behind the wall, even in the case of large rainfall events.\n2) Any water that finds its way to the backfill should be safely conveyed away from the wall. The water should be drained laterally down the wall to a safe exit or through weep holes in the face of the wall.\n3) The drainage system should not allow erosion of the backfill materials or migrations of fines within the backfill. This may require the use of a graded filter or geosynthetic filter fabric.\n\nExamples of drainage and filter systems that can be incorporated into rigid wall design are shown in Figure 4-31.",
       "key_points": [
-        "Phreatic surface in backfill reduces effective stress but net lateral force on wall increases due to water pressure—a common failure cause.",
-        "Drainage systems must prevent elevated water table behind the wall even during large storms.",
-        "Water must be conveyed away from the backfill via lateral drainage to a safe exit or through weep holes.",
-        "Drainage systems must prevent erosion and migration of fines; graded filters or geosynthetic filter fabric may be required.",
-        "Figure 4-31 provides example drainage and filter system configurations for rigid walls."
+        "A phreatic surface in the backfill reduces effective stress (lowering earth pressure) but adds direct water pressure, with a net increase in lateral force on the wall.",
+        "Many retaining structure failures are caused by unanticipated or unmitigated water pressures.",
+        "Drainage systems must prevent elevated water tables behind the wall even during large rainfall events.",
+        "Water must be safely conveyed away — laterally along the wall to an exit or through weep holes.",
+        "Filter design (graded filter or geosynthetic fabric) is required to prevent erosion and migration of backfill fines into the drainage system.",
+        "Figure 4-31 provides example drainage and filter system configurations."
       ],
       "equations": [],
       "figures": [
-        "Figure 4-31",
-        "Figure 4-30"
+        "Figure 4-31"
       ],
       "tables": [],
-      "applicability": "Applies to all rigid retaining wall designs where there is any potential for water to accumulate behind or within the backfill."
+      "applicability": "Applies when designing drainage systems for rigid gravity retaining walls where water pressures may act on the wall or within the backfill."
     },
     {
       "section_id": "4-6",
@@ -918,25 +930,30 @@
     },
     {
       "section_id": "4-7",
-      "title": "Anchored Bulkhead Design — Example Scenarios Summary",
-      "summary": "Summarizes key design details illustrated across the free-earth method example scenarios for anchored sheet pile bulkheads, covering interface friction assumptions, factor of safety application to passive pressure, penetration depth increases for scour, and bending moment reduction using Rowe's diagram. Covers Scenarios 1–3 including socketed/toed pile cases.",
-      "body": "Important design details illustrated in the example scenarios are as follows:\n1) The effects of interface friction between the wall and soil are only considered for passive pressure in granular soils. Wall friction is ignored in all other cases.\n2) A factor of safety is applied to the passive pressure determination below the dredge line, and for passive pressures calculated for the anchor.\n3) The calculated depth of penetration below the dredge line (D) is increased by 20% to allow for scour, additional dredging, etc.\n4) The calculated bending moment in the sheet pile is reduced using Figure 4-36.\n\nScenario 1 is the general case for the free-earth method. The step-by-step method, indicated on Figure 4-37 would be appropriate for coarse-grained soils, with the material below the dredge line being similar to the soil retained by the wall. The soil properties used for the layers would be drained or effective stress parameters (c′ and φ′). For the calculation of the earth pressures, moist or total unit weights are used above the landside water table elevation, and effective or buoyant unit weights are used below the water table. The net water pressure applied to the landside of the wall decreases from the dredge line elevation to a value of zero at depth, D, to account for seepage effects.\n\nScenario 2 is similar, but a different method is needed to determine the design moment in the sheet pile. For this example, the sheet pile is driven into a dense granular soil. If the wall system is less flexible as reflected by the value of ρ (Figure 4-36), the moment is calculated assuming that the wall behaves like a simply-supported beam.\n\nScenario 3 in Figure 4-37 shows a case where the sheet pile is socketed or toed into a very hard material (rock or hardpan). Since no displacement occurs at the tip of the sheet pile, the passive pressure decreases to zero at the surface of the hard foundation. The moment is not reduced using Rowe's diagram (Figure 4-36).",
+      "title": "Factor of Safety for Passive Earth Pressure",
+      "summary": "Covers two methods for applying a factor of safety to passive earth pressure in wall design: (1) reducing the calculated passive force directly (F = 2–3 for coarse-grained, 1.5–2 for fine-grained), and (2) reducing the friction angle to obtain an allowable φ′ for use in computing KP, analogous to slope stability analysis with F = 1.5–2.0.",
+      "body": "PP,allow = PP / F (Eq. 4-29)\nwhere: PP = passive earth pressure force calculated using the shear strength parameters and F = factor of safety.\nAs such, the factor of safety is applied to load, which is similar to the approach used in bearing capacity analysis. In this case, the value of F should be 2 to 3 for coarse-grained soils (effective stress design). A value of F = 1.5 to 2.0 can be used for undrained analysis in fine-grained soils. These factors of safety will provide approximately equivalent factors of safety with respect to shear strength.\nAlternatively, the value of KP can be determined from an allowable effective stress friction angle (φ′allow) which is found as:\nφ′allow = arctan(tan φ′ / F) (Eq. 4-30)\nwhere: φ′ = effective stress friction angle.\nThe second method (Eqn. 4-30) provides a factor of safety on shear strength, similar to slope stability. In this case, a factor of safety of 1.5 to 2.0 is appropriate, regardless of the soil types or analysis conditions.",
       "key_points": [
-        "Interface friction between wall and soil is only considered for passive pressure in granular soils; ignored in all other cases.",
-        "A factor of safety is applied to passive pressure below the dredge line and for anchor passive pressures.",
-        "Calculated penetration depth D is increased by 20% to account for scour and additional dredging.",
-        "Bending moment in sheet pile is reduced using Rowe's diagram (Figure 4-36), except for socketed/toed piles (Scenario 3).",
-        "Scenario 1 (free-earth method): uses drained/effective stress parameters; buoyant unit weights below water table; seepage accounted for by net water pressure tapering to zero at depth D.",
-        "Scenario 2: moment calculated assuming simply-supported beam behavior when wall system is less flexible (based on ρ value).",
-        "Scenario 3: pile toed into rock/hardpan — passive pressure decreases to zero at hard foundation surface; Rowe's moment reduction not applied."
+        "Method 1 (Eq. 4-29): Apply F directly to the passive force PP; F = 2–3 for coarse-grained (effective stress), F = 1.5–2 for fine-grained (undrained).",
+        "Method 2 (Eq. 4-30): Reduce φ′ to φ′allow = arctan(tan φ′ / F) before computing KP; F = 1.5–2.0 regardless of soil type.",
+        "Method 2 is analogous to slope stability and applies a factor of safety on shear strength rather than on the resulting force.",
+        "Both methods yield approximately equivalent factors of safety with respect to shear strength."
       ],
-      "equations": [],
-      "figures": [
-        "Figure 4-36",
-        "Figure 4-37"
+      "equations": [
+        {
+          "id": "Eq. 4-29",
+          "description": "Allowable passive earth pressure force: PP,allow = PP / F, where PP is the calculated passive force and F is the factor of safety.",
+          "implemented_in": "geotech_references.dm7_2.chapter4.allowable_passive_resistance"
+        },
+        {
+          "id": "Eq. 4-30",
+          "description": "Allowable effective stress friction angle for passive resistance: φ′allow = arctan(tan φ′ / F), providing a factor of safety on shear strength.",
+          "implemented_in": "geotech_references.dm7_2.chapter4.allowable_friction_angle"
+        }
       ],
+      "figures": [],
       "tables": [],
-      "applicability": "Applies when designing anchored sheet pile bulkheads using the free-earth method across varied soil and embedment conditions (granular soils, dense granular, and rock/hardpan toe scenarios)."
+      "applicability": "Applies when designing retaining walls or sheet pile walls and selecting an appropriate factor of safety for passive earth pressure resistance."
     },
     {
       "section_id": "4-7.1",
@@ -957,21 +974,21 @@
     {
       "section_id": "4-7.2",
       "title": "Anchored Bulkheads",
-      "summary": "Covers the design of anchored bulkhead waterfront structures including sheet pile types, failure modes, earth and water pressure distributions, free vs. fixed earth support analysis methods, and Rowe's moment reduction for flexible walls. Provides equations for relative wall flexibility and design scenarios with multiple soil layers, surcharges, and differential water levels.",
-      "body": "Anchored bulkheads are waterfront structures used to allow a change in elevation for access to the water. These structures are often driven sheet piles that are restrained on the landside by some form of anchoring system. Sheet piles are often steel, but can also be made of concrete, wood, vinyl, and plastic. Excavations are made on the waterside down to the dredge line to allow sufficient draft for vessels. The dredge line is the lowest depth to which soil is removed in front of the wall.\n\nSeveral references are available that provide design guidance and construction details for anchored bulkheads. These include:\n• USACE (1995b) Design of Coastal Revetments, Seawalls, and Bulkheads, EM 1110-2-1614, CECW-EH-D.\n• USACE (1994a) Design of Sheet Pile Walls, CECW-ED, EM 1110-2-2504.\n• US Steel (1984) Steel Sheet Piling Design Manual, Updated and reprinted by the US Department of Transportation/FHWA.\n\nThe earth pressure and water pressure distributions on anchored bulkheads can be quite complex. The ground surface elevation is different on the landside and the waterside. The water level on the landside and waterside is often different as well. In addition to soil and water loads, the anchoring system applies a concentrated force on the wall. Anchored bulkheads are often constructed by excavation and dredging in natural soils or unengineered fills; therefore, the soil properties can vary greatly. An important part of the engineering design of these structures is to accurately simplify the cross section and soil parameters into relatively homogeneous layers that can be accommodated by earth pressure theory.\n\nAnchored bulkheads can be designed by determining the appropriate pressures acting on each side of the wall separately. Sometimes, it is more convenient to use net pressure diagrams, where the difference in the pressure on each side of the wall is calculated. Examples of a total pressure diagram and a net pressure diagram are shown in Figure 4-34.\n\nAnchored bulkheads can be designed using limit equilibrium methods. An important element in using limit equilibrium methods is to define the possible modes of failure. Anchored bulkheads can fail in many different ways, as shown in Figure 4-35. A proper design will examine each potential mode of failure of the different anchored bulkhead elements. Interlock failure should also be considered.\n\nMethods for the analysis of anchored bulkheads are often categorized into free earth or fixed earth support methods. The difference between these two methods involves the behavior of the wall below the dredge line. In free earth analysis, the passive resistance below the dredge line is not developed to the point that movement of the sheet pile tip is prevented. The tip of the sheet pile can deflect toward the water side. The free earth support system tends to overpredict the bending moments in the sheet pile, and techniques are available to correct the bending moment. In fixed earth analysis, which is less commonly used, the lower end of the wall is essentially fixed so that no movement is allowed.\n\nExperience and scale model testing have shown that the free earth support method overpredicts the bending moment in flexible walls (Rowe 1952). The differences from theory are explained by flexural of the wall but above and below the dredge line. Corrections to the predicted moment, often referred to as moment reduction, depend on the relative flexibility (ρ) of the wall, which is defined as Eq. 4-31.\n\nThe relative flexibility is used with Figure 4-36 to determine the ratio of the design moment to the theoretical moment. The moment is reduced for walls that penetrate into medium dense or better sand. The moment is not reduced for penetration into fine-grained soils or loose sands.\n\nThree example scenarios showing the design steps for anchored bulkheads are shown in Figure 4-37. These examples are complex in that they have the following characteristics:\n1) Two or more layers of soil,\n2) Backfill loaded by point load (Q) and surcharge area (q), and\n3) Different interior and exterior water levels. The difference in the water pressures is accommodated by a trapezoidal unbalanced water pressure distribution.",
+      "summary": "Covers the design of anchored bulkhead waterfront structures, including pressure diagrams (total and net), failure modes, free vs. fixed earth support methods, Rowe's moment reduction for flexible walls (Eq. 4-31), and three complex design scenarios involving multilayer soils, surcharges, and differential water levels.",
+      "body": "Anchored bulkheads are waterfront structures used to allow a change in elevation for access to the water. These structures are often driven sheet piles that are restrained on the landside by some form of anchoring system. Sheet piles are often steel, but can also be made of concrete, wood, vinyl, and plastic. Excavations are made on the waterside down to the dredge line to allow sufficient draft for vessels. The dredge line is the lowest depth to which soil is removed in front of the wall.\n\nSeveral references are available that provide design guidance and construction details for anchored bulkheads. These include:\n• USACE (1995b) Design of Coastal Revetments, Seawalls, and Bulkheads, EM 1110-2-1614, CECW-EH-D.\n• USACE (1994a) Design of Sheet Pile Walls, CECW-ED, EM 1110-2-2504.\n• US Steel (1984) Steel Sheet Piling Design Manual, Updated and reprinted by the US Department of Transportation/FHWA.\n\nThe earth pressure and water pressure distributions on anchored bulkheads can be quite complex. The ground surface elevation is different on the landside and the waterside. The water level on the landside and waterside is often different as well. In addition to soil and water loads, the anchoring system applies a concentrated force on the wall. Anchored bulkheads are often constructed by excavation and dredging in natural soils or unengineered fills; therefore, the soil properties can vary greatly. An important part of the engineering design of these structures is to accurately simplify the cross section and soil parameters into relatively homogeneous layers that can be accommodated by earth pressure theory.\n\nAnchored bulkheads can be designed by determining the appropriate pressures acting on each side of the wall separately. Sometimes, it is more convenient to use net pressure diagrams, where the difference in the pressure on each side of the wall is calculated. Examples of a total pressure diagram and a net pressure diagram are shown in Figure 4-34.\n\nAnchored bulkheads can be designed using limit equilibrium methods. An important element in using limit equilibrium methods is to define the possible modes of failure. Anchored bulkheads can fail in many different ways, as shown in Figure 4-35. A proper design will examine each potential mode of failure of the different anchored bulkhead elements. Interlock failure should also be considered.\n\nMethods for the analysis of anchored bulkheads are often categorized into free earth or fixed earth support methods. The difference between these two methods involves the behavior of the wall below the dredge line. In free earth analysis, the passive resistance below the dredge line is not developed to the point that movement of the sheet pile tip is prevented. The tip of the sheet pile can deflect toward the water side. The free earth support system tends to overpredict the bending moments in the sheet pile, and techniques are available to correct the bending moment. In fixed earth analysis, which is less commonly used, the lower end of the wall is essentially fixed so that no movement is allowed.\n\nExperience and scale model testing have shown that the free earth support method overpredicts the bending moment in flexible walls (Rowe 1952). The differences from theory are explained by flexural of the wall but above and below the dredge line. Corrections to the predicted moment, often referred to as moment reduction, depend on the relative flexibility (ρ) of the wall, which is defined as:\n\nρ = (H + D)^4 / EI (Eq. 4-31)\n\nwhere:\nH = exposed height of the wall (inches),\nD = depth of penetration below the dredge line (inches),\nE = Young's modulus of the wall (psi), and\nI = moment of inertia of the wall (inch⁴/ft).\n\nThe relative flexibility is used with Figure 4-36 to determine the ratio of the design moment to the theoretical moment. The moment is reduced for walls that penetrate into medium dense or better sand. The moment is not reduced for penetration into fine-grained soils or loose sands.\n\nThree example scenarios showing the design steps for anchored bulkheads are shown in Figure 4-37. These examples are complex in that they have the following characteristics:\n1) Two or more layers of soil,\n2) Backfill loaded by point load (Q) and surcharge area (q), and\n3) Different interior and exterior water levels. The difference in the water pressures is accommodated by a trapezoidal unbalanced water pressure distribution.\n\nNote: Plastic and vinyl sheet piles have exceptional corrosion resistance, but the interlock strength is much less than steel sheet piles. Plastic and vinyl sheet piles should not be used for cases where there are significant consequences of failure, especially loss of life.",
       "key_points": [
-        "Anchored bulkheads are sheet pile structures restrained by a landside anchor; sheet piles may be steel, concrete, wood, vinyl, or plastic (vinyl/plastic not suitable where failure consequences are severe).",
-        "Design must account for differing ground surface elevations, differential water levels (trapezoidal unbalanced water pressure), and concentrated anchor forces.",
-        "Pressure can be evaluated as total pressures on each side separately or as a net pressure diagram (Figure 4-34).",
-        "All failure modes must be checked: Figure 4-35 shows the full range; interlock failure must also be considered.",
-        "Free earth support (tip can deflect waterside) overpredicts bending moments in flexible walls; Rowe's moment reduction (Figure 4-36) corrects this for penetration into medium-dense or better sands.",
-        "Relative wall flexibility ρ = (H + D)⁴ / EI governs moment reduction per Eq. 4-31; no reduction applied for penetration into fine-grained soils or loose sands.",
-        "Fixed earth support (tip fixed, no movement) is less commonly used."
+        "Anchored bulkheads are driven sheet pile walls (steel, concrete, wood, vinyl, or plastic) restrained on the landside by an anchoring system; plastic/vinyl should not be used where failure consequences are severe.",
+        "Design can use total pressure diagrams (each side separately) or net pressure diagrams (difference between sides); both approaches are valid.",
+        "Limit equilibrium design must consider all failure modes shown in Figure 4-35, including interlock failure.",
+        "Free earth support method allows tip deflection toward the water side and tends to overpredict bending moments; fixed earth support (less common) prevents tip movement entirely.",
+        "Rowe's moment reduction (Eq. 4-31) corrects overpredicted bending moments based on wall relative flexibility ρ = (H+D)⁴/EI; reduction applies only for penetration into medium dense or better sand, not for fine-grained soils or loose sands.",
+        "Complex design scenarios must account for multilayer soils, point loads and surcharges, and differential water levels (trapezoidal unbalanced water pressure distribution).",
+        "Key references: USACE EM 1110-2-1614, EM 1110-2-2504, and US Steel (1984) Sheet Piling Design Manual."
       ],
       "equations": [
         {
           "id": "Eq. 4-31",
-          "description": "Relative flexibility of anchored sheet pile wall: ρ = (H + D)⁴ / EI, where H = exposed height (in), D = depth of penetration below dredge line (in), E = Young's modulus (psi), I = moment of inertia (in⁴/ft). Used with Figure 4-36 for Rowe's moment reduction.",
+          "description": "Relative flexibility of anchored bulkhead wall: ρ = (H + D)⁴ / EI, where H = exposed wall height (in), D = penetration depth below dredge line (in), E = Young's modulus (psi), I = moment of inertia (in⁴/ft). Used with Figure 4-36 for Rowe's moment reduction.",
           "implemented_in": "geotech_references.dm7_2.chapter4.figure_4_36_moment_reduction"
         }
       ],
@@ -982,7 +999,7 @@
         "Figure 4-37 Anchored Bulkhead Design Scenarios"
       ],
       "tables": [],
-      "applicability": "Applies to the design and analysis of anchored sheet pile bulkhead waterfront structures subject to differential earth and water pressures, surcharges, and anchor forces."
+      "applicability": "Applies when designing anchored sheet pile bulkhead waterfront structures subject to differential water levels, multilayer soils, and various loading conditions."
     },
     {
       "section_id": "4-7.3",

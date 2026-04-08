@@ -925,158 +925,166 @@
     {
       "section_id": "4-6",
       "title": "Numerical Solutions for Stresses in Soil",
-      "summary": "Introduces numerical methods for evaluating stresses in soil, noting that analytical and chart-based solutions are limited by their assumptions and struggle with complex subsurface profiles. Provides an overview of computer programs and numerical approaches—including elastic-solution-based programs and continuum methods like FEM and FDM—as essential complements to classical methods in geotechnical engineering practice.",
+      "summary": "Introduces numerical methods for evaluating stresses in soil as a complement to analytical and chart-based solutions. Explains that computer programs and finite element/finite difference methods are essential for handling complex subsurface profiles and loading conditions that exceed the limitations of closed-form elastic solutions.",
       "body": "The analytical and chart-based solutions presented in this chapter are an excellent starting point for evaluation of stresses within a soil mass. However, their applicability is limited by the constraints and assumptions of each. These methods also struggle to effectively model complex subsurface profiles and loading conditions.\n\nComputer programs and numerical solutions are an important part of geotechnical engineering practice. This section provides a brief overview of the application of numerical methods to the evaluation of stresses.",
       "key_points": [
-        "Analytical and chart-based solutions are limited by their assumptions and cannot easily handle complex subsurface profiles or loading conditions.",
-        "Numerical methods and computer programs are essential tools in modern geotechnical engineering stress analysis.",
-        "Both elastic-solution-based programs and continuum methods (FEM, FDM) are covered in this section.",
-        "FEM is somewhat more popular than FDM for stress analysis problems in geotechnical engineering."
+        "Analytical and chart-based solutions are useful starting points but are limited by their assumptions and cannot easily model complex subsurface profiles or loading conditions.",
+        "Numerical methods (finite element and finite difference) are widely used in geotechnical engineering for stress evaluation.",
+        "Finite element method (FEM) is somewhat more popular than finite difference for stress analysis problems.",
+        "Calculation of accurate stresses via FEA is relatively straightforward; accurate deformation prediction requires significantly more expertise."
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Applies when analytical or chart solutions are insufficient for complex subsurface profiles or loading conditions and numerical stress analysis is required."
+      "applicability": "Applies when analytical or chart-based stress solutions are insufficient due to complex geometry, loading, or subsurface conditions."
     },
     {
       "section_id": "4-6.1",
       "title": "Numerical Analysis Types",
-      "summary": "Describes categories of numerical analysis tools used in geotechnical stress analysis: (1) programs based directly on elastic solutions (e.g., Settle3D, CONSOL, SETOFF) suited for consolidation settlement, and (2) continuum-based methods such as finite element and finite difference, which divide soil/rock into elements governed by constitutive laws and failure criteria. FEA stress calculations are relatively straightforward; accurate deformation requires more expertise.",
+      "summary": "Surveys the types of numerical analysis programs used for stress evaluation in geotechnical engineering. Covers elastic-solution-based programs (Settle3D, CONSOL, SETOFF) for consolidation settlement and continuum-based methods (FEM and FDM). Notes the FEM is more popular for stress analysis; both methods divide soil/rock into elements governed by constitutive laws and failure criteria.",
       "body": "Some computer programs (e.g., Settle3D, CONSOL, SETOFF) are available that directly rely upon elastic solutions, such as those presented in this chapter, to calculate changes in stress. These programs are specifically formulated for the solution of consolidation settlement problems discussed in the next chapter. The benefit provided by these programs is the automated calculation of changes in stress and the ability to consider time-dependent changes. However, the solutions depend on the same assumptions as the elastic solutions on which they are based.\n\nMany continuum-based numerical analysis techniques are available. The most common of these in geotechnical engineering are the finite element and finite difference methods, with the former being somewhat more popular for stress analysis problems. These approaches divide the soil or rock into elements or grid points. The relationships between the external and gravitational forces acting on the elements (or grid) and the corresponding displacements are defined using constitutive (stress-strain) laws and failure criteria.\n\nThe following sections provide a condensed overview focused on the calculation of stresses using the finite element method. The use of finite element analysis (FEA) to determine stresses is relatively straight-forward. Calculation of accurate deformations requires significantly more expertise and experience. For a practical introduction to the use of FEA in geotechnical engineering see Bradley and VandenBerge (2015). A more in-depth perspective can be found in the books by Potts and Zdravkovic (1999, 2001).",
       "key_points": [
-        "Programs like Settle3D, CONSOL, and SETOFF automate elastic-solution-based stress calculations and can model time-dependent changes, but inherit the same assumptions as the underlying elastic solutions.",
-        "FEM and FDM are the most common continuum methods; FEM is more popular for stress analysis.",
-        "Continuum methods use constitutive (stress-strain) laws and failure criteria to relate forces to displacements.",
-        "FEA stress calculations are relatively straightforward; accurate deformation prediction requires significantly more expertise.",
-        "Key references: Bradley & VandenBerge (2015) for practical introduction; Potts & Zdravkovic (1999, 2001) for in-depth coverage."
+        "Programs such as Settle3D, CONSOL, and SETOFF use elastic solutions to automate stress change calculations, particularly for consolidation settlement.",
+        "These elastic-solution-based programs share the same assumptions and limitations as the underlying closed-form solutions.",
+        "FEM and FDM are the dominant continuum-based numerical methods in geotechnical engineering.",
+        "FEM is somewhat more popular than FDM for stress analysis problems.",
+        "Stress calculation via FEA is relatively straightforward; deformation prediction requires significantly more expertise.",
+        "Key references: Bradley & VandenBerge (2015) for practical FEA intro; Potts & Zdravkovic (1999, 2001) for in-depth treatment."
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Applies when selecting a numerical analysis approach for geotechnical stress or consolidation settlement problems."
+      "applicability": "Applies when selecting an appropriate numerical analysis approach for stress or consolidation problems in geotechnical engineering."
     },
     {
       "section_id": "4-6.2",
       "title": "Linear Elastic Stress Analysis",
-      "summary": "Covers the simplest FE analyses using linear elastic constitutive theory, requiring only elastic modulus E and Poisson's ratio ν. For single-material problems the calculated stresses are independent of E, but with multiple materials the relative E values affect stresses through arching and similar phenomena. Linear elastic analysis is the baseline FEA approach for stress evaluation in geotechnical engineering.",
+      "summary": "Describes the application of linear elastic constitutive theory in FEA for stress analysis. For a single-material model, stresses are independent of elastic modulus E; when multiple materials are present, relative E values affect stress distribution due to arching. Required input parameters are only E and Poisson's ratio ν (or equivalent elastic constants).",
       "body": "The simplest FE analyses use linear elastic constitutive theory, which relates changes in stress linearly to strains (or displacements). For a linear elastic analysis, the only required material parameters are the elastic modulus, E, and Poisson's ratio, ν (or any other two elastic constants such as shear modulus or bulk modulus). For problems with only one material type (and one value of E), the calculated stresses will be independent of the value of E selected. However, when more than one material type is present, the relative values of E assigned to each material in the analysis can impact the calculated stresses because of arching and similar phenomena.",
       "key_points": [
         "Linear elastic FEA requires only two material parameters: elastic modulus E and Poisson's ratio ν.",
         "For single-material problems, calculated stresses are independent of the chosen value of E.",
-        "With multiple material types, relative E values affect stress distributions due to arching and similar phenomena.",
-        "Linear elastic analysis is the simplest and most straightforward FEA approach for geotechnical stress problems."
+        "When multiple material types are present, relative E values affect stress distribution due to arching and similar phenomena.",
+        "Linear elastic analysis is the simplest FEA approach but is only strictly valid over small strain ranges."
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Applies when performing FEA stress analysis using the simplest constitutive model, particularly for single-material or preliminary multi-material problems."
+      "applicability": "Applies when performing the simplest form of FEA for stress analysis in geotechnical problems with one or more soil/rock material types."
     },
     {
       "section_id": "4-6.3",
       "title": "Nonlinear Elastic Stress Analysis",
-      "summary": "Describes nonlinear constitutive models for geotechnical FEA, focusing on the Duncan-Chang hyperbolic model. Covers the four key behavioral observations behind the model, its parameters (K, n, Rf, Kb, m, Kur), and their physical meaning. Research (VandenBerge et al. 2014) shows linear elastic analysis gives major principal stresses within ~10% of nonlinear results for embankments, but nonlinear models are more accurate for general use.",
+      "summary": "Covers nonlinear constitutive models for soil stress analysis, focusing on the Duncan-Chang hyperbolic model. Explains the model's four key observations about stress-strain behavior and summarizes its parameters (K, n, Rf, Kb, m, Kur). Notes that linear elastic analysis is typically within 10% of nonlinear results for embankment principal stresses, per VandenBerge et al. (2014).",
       "body": "The stress-strain behavior of geological materials is truly linear over only a small range of strains. A properly selected nonlinear constitutive model will provide a more accurate prediction of behavior but will require additional input parameters and expertise. VandenBerge et al. (2014) found that major principal effective stresses calculated for embankments with linear elastic analysis were typically within 10% of the values calculated using more rigorous and time-consuming nonlinear procedures.\n\nOne of the earliest and most common nonlinear constitutive theories for soil is the hyperbolic model proposed by Duncan and Chang (1970) and described in more detail in Duncan et al. (1980). This model can also consider stress dependent variations in Poisson's ratio (or bulk modulus). It can be used with either effective stress (drained) or total stress (undrained) problems, provided the model parameters are determined using the appropriate type of test.\n\nThe Duncan-Chang model is based on the following observations:\n• The principal stress difference (σ1 – σ3) tends to vary in a hyperbolic manner with strain,\n• The initial modulus (Ei) increases with increased confining stress in a manner that can be described by a power function,\n• The ultimate value of (σ1 – σ3) predicted by the hyperbola tends to be greater than the value measured by the test,\n• The bulk modulus (Bt) of soil increases with increased confining stress in a manner that can be described by a power function.\n\nSoil tends to respond in a stiffer, approximately linear manner with modulus (Eur) when unloaded and reloaded after some amount of shearing. The required parameters are summarized and illustrated in Table 4-13 and Figure 4-13.",
       "key_points": [
-        "Geological materials are truly linear elastic only over a small strain range; nonlinear models provide more accurate predictions.",
-        "Linear elastic FEA gives major principal stresses within ~10% of nonlinear results for embankments (VandenBerge et al. 2014).",
-        "The Duncan-Chang hyperbolic model (1970) is one of the earliest and most common nonlinear soil constitutive models.",
-        "The model captures hyperbolic stress-strain behavior, power-function increase of initial modulus (Ei) and bulk modulus (Bt) with confining stress, and unload-reload stiffness (Eur).",
-        "Key parameters: K, n (initial modulus), Rf (failure ratio), Kb, m (bulk modulus), Kur (unload-reload modulus).",
-        "The model applies to both drained (effective stress) and undrained (total stress) problems with appropriately determined parameters."
+        "Geological materials behave linearly only over a small strain range; nonlinear models are needed for more accurate predictions.",
+        "Linear elastic analysis of embankments typically yields major principal effective stresses within 10% of nonlinear results (VandenBerge et al. 2014).",
+        "The Duncan-Chang hyperbolic model (1970) is one of the most common nonlinear constitutive models for soil.",
+        "Key model observations: (σ1–σ3) follows a hyperbolic stress-strain curve; Ei and Bt increase with confining stress as power functions.",
+        "The model can be applied to both drained (effective stress) and undrained (total stress) problems.",
+        "Parameters K, n, Rf, Kb, m, and Kur govern the model; soil is stiffer during unload-reload with modulus Eur.",
+        "See Table 4-13 for parameter summary and Figure 4-13 for illustration."
       ],
-      "equations": [],
+      "equations": [
+        {
+          "id": "Eq. 4-12",
+          "description": "(force-injected from source text)",
+          "implemented_in": "geotech_references.dm7_1.chapter4.shaft_horizontal_pressure_clay"
+        }
+      ],
       "figures": [
-        "Figure 4-13 Parameters Used in Duncan-Chang Model"
+        "Figure 4-13"
       ],
       "tables": [
-        "Table 4-13 Summary of Model Parameters for Duncan-Chang Model"
+        "Table 4-13"
       ],
-      "applicability": "Applies when more accurate stress-strain prediction is required for soils under varying confining stress, or when linear elastic analysis is deemed insufficient."
+      "applicability": "Applies when performing nonlinear FEA of soil stress-strain behavior, particularly for embankments and problems where stress-dependent stiffness is important."
     },
     {
       "section_id": "4-6.4",
       "title": "Numerical Modeling Best Practice",
-      "summary": "Provides guidelines for consistent and accurate stress predictions in FEA, applicable to both linear and nonlinear analyses. Recommends isoparametric elements, uniform meshes with appropriate aspect ratios, small element sizes relative to the problem domain, and inclusion of boundary water pressures. These practices are based on findings by VandenBerge et al. (2014) for geotechnical FEA.",
+      "summary": "Provides guidelines for achieving consistent and accurate stress predictions in finite element analysis of geotechnical problems. Recommends use of isoparametric elements, uniform meshes, appropriate aspect ratios (≤5), small element sizes (1–2% of domain height), and inclusion of boundary water pressures. Based on findings from VandenBerge et al. (2014).",
       "body": "Both linear and nonlinear finite element analysis can be used to make accurate predictions of stresses. The following guidelines have been found to yield the most consistent and uniform stress predictions (VandenBerge et al. 2014).\n\n• Use isoparametric elements (i.e., 8-noded rectangles or 6-node triangles).\n• Use a uniform mesh with elements of approximately the same shape, especially within any zones of interest.\n• Use elements with an appropriate aspect ratio, preferably longest to shortest dimension, less than or equal to five.\n• Keep the element size as small as practical with respect to the overall dimensions. A maximum element height of approximately 1 to 2% of the height of the problem domain is preferred.\n• Remember to include the boundary water pressures from any impounded water present in the model.",
       "key_points": [
         "Use isoparametric elements: 8-noded rectangles or 6-node triangles for best stress predictions.",
-        "Mesh should be uniform with elements of similar shape, especially in zones of interest.",
+        "Maintain a uniform mesh with consistent element shapes, especially in zones of interest.",
         "Element aspect ratio (longest to shortest dimension) should be ≤ 5.",
-        "Maximum element height should be ~1–2% of the overall problem domain height.",
-        "Boundary water pressures from impounded water must be included in the model."
+        "Maximum element height should be approximately 1–2% of the total problem domain height.",
+        "Always include boundary water pressures from impounded water in the model."
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Applies when setting up finite element models for geotechnical stress analysis to ensure consistent and accurate results."
+      "applicability": "Applies when setting up finite element models for geotechnical stress analysis to ensure accurate and consistent results."
     },
     {
       "section_id": "4-6.4.1",
       "title": "Initial or Geostatic Stresses",
-      "summary": "Explains how initial (geostatic) stress states are established in FE models. Vertical stresses develop from gravity loading; horizontal stresses tend toward K0 conditions (K0 = ν/(1-ν) for linear elastic). Initial gravity-induced displacements are numerical artifacts and must be zeroed before applying new loads. Overconsolidated conditions (K0 > 1.0) require load-unload modeling sequences. Program-specific options should be understood by the analyst.",
-      "body": "The initial stress state in a FE model is dependent on the process used to 'turn on' gravity and stress within the model. Vertical stresses are governed mostly by gravity loading. As the mesh deforms in response to gravity, horizontal stresses will develop and tend toward at rest (K0) conditions for a level, laterally-constrained mesh. For a linear elastic model, the value of K0 will be equal to ν / (1-ν). Calculation of initial horizontal stresses in this manner will yield correct results, and K0 will be less than 1.0, which is always the case for primary loading. The calculation of initial horizontal stresses in this way will lead to initial deformation of the model and the layer thicknesses may no longer match the in situ conditions. These displacements are a numerical artifact and should be zeroed or removed prior to examining the effects of new loading conditions. Overconsolidated conditions with K0 greater than 1.0 can be modelled by loading and then unloading the model, following the process by which K0 > 1.0 conditions occur in nature.\n\nIn many cases, the details of the initial stress process are program specific. The engineer using FEA should become familiar with the various options available so that appropriate methods are applied.",
+      "summary": "Explains how initial (geostatic) stress states are established in FE models. Vertical stresses develop from gravity loading; horizontal stresses tend toward K0 conditions. For linear elastic models K0 = ν/(1−ν). Discusses how to handle initial deformations (numerical artifacts), and how to model overconsolidated conditions (K0 > 1.0) by load-unload cycling.",
+      "body": "The initial stress state in a FE model is dependent on the process used to \"turn on\" gravity and stress within the model. Vertical stresses are governed mostly by gravity loading. As the mesh deforms in response to gravity, horizontal stresses will develop and tend toward at rest (K0) conditions for a level, laterally-constrained mesh. For a linear elastic model, the value of K0 will be equal to ν / (1-ν). Calculation of initial horizontal stresses in this manner will yield correct results, and K0 will be less than 1.0, which is always the case for primary loading. The calculation of initial horizontal stresses in this way will lead to initial deformation of the model and the layer thicknesses may no longer match the in situ conditions. These displacements are a numerical artifact and should be zeroed or removed prior to examining the effects of new loading conditions. Overconsolidated conditions with K0 greater than 1.0 can be modelled by loading and then unloading the model, following the process by which K0 > 1.0 conditions occur in nature.\n\nIn many cases, the details of the initial stress process are program specific. The engineer using FEA should become familiar with the various options available so that appropriate methods are applied.",
       "key_points": [
-        "Initial vertical stresses in FE models are governed by gravity loading; horizontal stresses tend toward K0 conditions for level, laterally-constrained meshes.",
-        "For linear elastic models, K0 = ν / (1-ν), always less than 1.0 under primary loading.",
-        "Initial gravity-induced deformations are numerical artifacts and must be zeroed before applying new loads.",
-        "Overconsolidated conditions (K0 > 1.0) are modeled by simulating a load-then-unload sequence.",
-        "Initial stress procedures are often program-specific; the engineer must understand available options."
+        "Vertical stresses in FE models are governed by gravity loading; horizontal stresses develop toward K0 conditions in level, laterally-constrained meshes.",
+        "For linear elastic models, K0 = ν / (1 − ν), which is always less than 1.0 for primary loading.",
+        "Initial deformations from gravity loading are numerical artifacts and must be zeroed before applying new loads.",
+        "Overconsolidated conditions (K0 > 1.0) can be modeled by simulating loading followed by unloading.",
+        "Initial stress procedures are program-specific; engineers must understand the options available in their software."
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Applies when establishing initial or geostatic stress conditions in a finite element model prior to applying new loads or construction sequences."
+      "applicability": "Applies when establishing initial or geostatic stress conditions in finite element models for geotechnical analysis."
     },
     {
       "section_id": "4-6.4.2",
       "title": "Staged Construction or Stress History",
-      "summary": "Describes how FEA can model construction staging and geologic stress history by adding/removing elements in steps. Staged models are especially important for nonlinear analysis due to stress-dependent material properties. Required for predicting stresses and displacements around excavations and tunnels. For stress distributions only, staging is unnecessary in linear elastic analysis, but is required to predict correct displacement patterns.",
-      "body": "Finite element analysis allows the sequence of loading and construction staging to be modeled numerically. To a lesser extent, geologic stress history can also be modeled. Within the model, this occurs by adding and subtracting elements (or their weight) in steps. Staged models are especially important for nonlinear analysis because the properties of the material change with stress level.\n\nFor example, a staged approach is required to predict stresses and displacements around open excavations and tunnels. The initial ground conditions should be modeled after which the effects of removing soil or rock can be considered.\n\nFor cases where only stress distributions are required, such staging is unnecessary in linear elastic analysis. The use of a staged model is required, even for linear elasticity, to predict correct patterns of displacement.",
+      "summary": "Describes the use of staged finite element analysis to model construction sequencing, geologic stress history, and element addition/removal. Staged models are essential for nonlinear analysis where material properties vary with stress level, and are required for predicting displacements around excavations and tunnels. For stress-only analysis, staging is unnecessary in linear elastic models.",
+      "body": "Finite element analysis allows the sequence of loading and construction staging to be modeled numerically. To a lesser extent, geologic stress history can also be modeled. Within the model, this occurs by adding and subtracting elements (or their weight) in steps. Staged models are especially important for nonlinear analysis because the properties of the material change with stress level.\n\nFor example, a staged approach is required to predict stresses and displacements around open excavations and tunnels. The initial ground conditions should be modeled after which the effects of removing soil or rock can be considered.\n\nFor cases where only stress distributions are required, such staging is unnecessary in linear elastic analysis. The use of a staged model is required, even for linear elasticity, to predict correct patterns displacement.",
       "key_points": [
-        "FEA can model construction staging and geologic stress history by adding or removing elements in steps.",
-        "Staged analysis is critical for nonlinear models because material properties change with stress level.",
-        "Open excavations and tunnels require staged modeling to predict both stresses and displacements.",
-        "For stress distributions only, staging is not necessary in linear elastic analysis.",
-        "Staged models are required even for linear elastic analysis to obtain correct displacement patterns."
+        "Staged FEA models construction sequencing and geologic stress history by adding/removing elements in steps.",
+        "Staging is critical for nonlinear analysis because material properties vary with stress level.",
+        "A staged approach is required for modeling open excavations and tunnels (initial ground → element removal).",
+        "For linear elastic analysis, staging is not needed for stress distributions only, but IS required for correct displacement patterns.",
+        "Geologic stress history can be partially modeled through staged loading and unloading."
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Applies when modeling construction sequences, excavations, tunnels, or stress history effects in finite element analysis."
+      "applicability": "Applies when using FEA to model construction sequences, excavations, tunnels, or geologic stress history in geotechnical problems."
     },
     {
       "section_id": "4-6.5",
       "title": "Evaluation of Stress Due to Applied Loads",
-      "summary": "Explains how to evaluate changes in stress from applied loads using staged FEA. Initial stages establish in situ stress conditions; subsequent stages apply loads (distributed, point, or new soil layers) and stress changes are assessed by comparing stages. Results should be checked against analytical solutions. Notes limitations: 2D FEA suits long foundations/embankments (plane strain); 3D is needed for complex geometries like rectangular foundations.",
+      "summary": "Explains how to use staged FE models to evaluate stress changes from applied loads. The initial stage(s) establish in situ conditions; new loads (distributed, point, or soil layers) are added in subsequent stages; stress changes are computed by differencing results between stages. Emphasizes checking FEA results against analytical solutions and notes 2D vs. 3D limitations for different foundation geometries.",
       "body": "Changes in stress due to applied loads can be evaluated using a staged FE model. The first stage(s) of the model are used to create the desired initial state of stress that best represents the in situ conditions. At this point, the new loading can be added to the model in various forms, including distributed loads, point loads, and new soil layers. The predicted changes in stress can then be evaluated by comparing the predicted stress at convenient points within the model between subsequent stages. Where possible, the changes in stress predicted by FE models should be checked with analytical solutions such as those presented earlier in this chapter.\n\nEngineers should be aware of the limitations of their numerical analyses. For example, two-dimensional FEA are useful for predicting changes in stress below long foundations, embankments, and large area fills because such problems can be analyzed in a plane strain manner. However, a three-dimensional program would be required to predict changes in stress below more complex conditions, such as a rectangular foundation.",
       "key_points": [
-        "Staged FEA: first stage(s) establish initial in situ stress; subsequent stages apply loads (distributed, point, or new soil layers).",
-        "Stress changes are evaluated by comparing predicted stresses between model stages.",
-        "FEA results should always be checked against analytical solutions where possible.",
-        "2D FEA is appropriate for long foundations, embankments, and large area fills (plane strain conditions).",
-        "3D FEA is required for complex geometries such as rectangular foundations."
+        "Use staged FE models: first stage(s) establish initial in situ stress; subsequent stages add applied loads (distributed, point, or new soil layers).",
+        "Stress changes are evaluated by differencing predicted stresses between model stages.",
+        "Always check FEA stress predictions against available analytical solutions.",
+        "2D (plane strain) FEA is appropriate for long foundations, embankments, and large-area fills.",
+        "3D FEA is required for stress changes beneath complex geometries such as rectangular foundations."
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Applies when using staged FEA to evaluate stress changes due to applied loads including foundations, embankments, and fills."
+      "applicability": "Applies when using staged FEA to evaluate stress changes from applied loads in geotechnical engineering problems."
     },
     {
       "section_id": "4-6.6",
       "title": "Evaluation of Stress within Embankments and Slopes",
-      "summary": "Addresses the added complexity of stress calculation in slopes and embankments, where no closed-form analytical solution exists and K0 conditions do not apply near slope faces. Best practice is to start with level ground in the FE model and progressively excavate elements to form the slope, mimicking natural formation. Multiple analysis stages may be needed to properly establish initial stress conditions in slope problems.",
+      "summary": "Addresses the added complexity of calculating stresses in slopes and embankments where no closed-form solution exists and K0 conditions do not prevail. Recommends modeling natural slopes by starting with level ground in FEA and progressively excavating elements to form the slope geometry, using multiple analysis stages to establish correct initial stress conditions.",
       "body": "The calculation of stresses is more complex for slopes and embankments compared with relatively level ground. First, no closed-form analytical solution is available for comparison because the soil in a slope is not laterally restrained. The lack of lateral restraint also means that K0 conditions will not be present, especially close to the face of a slope.\n\nStresses near natural slopes are best evaluated by starting with level ground in the FE model and progressively removing (excavating) elements to form the slope. Multiple stages of analysis may be required to establish the initial conditions. The removal of elements mimics the process by which the slope was formed in nature.",
       "key_points": [
-        "No closed-form analytical solution exists for stresses in slopes and embankments due to lack of lateral restraint.",
-        "K0 (at-rest) conditions do not apply near slope faces because the soil is not laterally constrained.",
-        "Best practice: start FE model with level ground and progressively excavate elements to form the slope.",
-        "Multiple analysis stages may be needed to properly establish initial stress conditions in slopes.",
-        "Progressive element removal mimics the natural geologic formation process of the slope."
+        "No closed-form analytical solution exists for stresses in slopes or embankments due to lack of lateral restraint.",
+        "K0 (at-rest) conditions do not prevail near slope faces due to the absence of lateral constraint.",
+        "Model natural slope stresses by starting with level ground in FEA and progressively removing elements to form the slope.",
+        "Multiple analysis stages may be needed to establish correct initial stress conditions for slopes.",
+        "Element removal mimics the natural geologic process of slope formation."
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Applies when using FEA to evaluate stresses within natural slopes, cut slopes, or embankments where K0 conditions and analytical solutions are not applicable."
+      "applicability": "Applies when evaluating stresses within slopes, embankments, or other geometries that lack lateral restraint and cannot be analyzed using closed-form solutions."
     },
     {
       "section_id": "4-7",

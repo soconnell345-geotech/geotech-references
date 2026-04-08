@@ -692,68 +692,75 @@
     {
       "section_id": "3-3",
       "title": "Laboratory Tests on Rock",
-      "summary": "Introduces ASTM laboratory tests applicable to rock specimens, noting the smaller number of rock tests compared to soils. Most common rock tests focus on compressive and tensile strength. Lists four key ASTM standards (D3967, D5607, D5731, D7012) covering splitting tensile strength, direct shear, point load index, and compressive strength/elastic moduli of intact rock core specimens.",
+      "summary": "Introduces ASTM-standardized laboratory tests for rock specimens, noting that far fewer tests exist for rock than for soil. Most common rock tests focus on compressive and tensile strength. Lists the primary ASTM standards (D3967, D5607, D5731, D7012) with associated parameters and comments in Table 3-8.",
       "body": "ASTM also addresses laboratory tests on rock specimens, but there are much fewer tests for rocks than for soils. Most of the common tests on rock focus on the strength in compression and tension. Table 3-8 lists the common rock tests that have ASTM standards available.",
       "key_points": [
-        "Fewer ASTM laboratory tests exist for rock than for soils; most focus on compressive and tensile strength.",
-        "Key ASTM rock standards include D3967 (splitting tensile), D5607 (direct shear), D5731 (point load index), and D7012 (compressive strength and elastic moduli).",
-        "Parameters obtained include σt (tensile strength), c-φ/c'-φ' (shear strength), Is/Is(50) (point load index), and σu (unconfined compressive strength).",
-        "D5607 strength parameters are mainly interpreted as total stress values."
+        "ASTM provides standardized test methods for rock, but the number of rock tests is significantly smaller than for soils.",
+        "Common rock lab tests focus primarily on compressive and tensile strength.",
+        "Key ASTM standards include D3967 (splitting tensile), D5607 (direct shear), D5731 (point load), and D7012 (compressive strength and elastic moduli).",
+        "Table 3-8 summarizes the four primary ASTM rock strength tests, their parameters, and notable comments."
       ],
       "equations": [],
       "figures": [],
       "tables": [
         "Table 3-8"
       ],
-      "applicability": "Applies when selecting laboratory test methods for rock specimens per ASTM standards."
+      "applicability": "Applies when selecting appropriate laboratory rock strength tests and referencing applicable ASTM standards for a project."
     },
     {
       "section_id": "3-3.1",
       "title": "Unconfined Compression Test (ASTM D7012)",
-      "summary": "Describes ASTM D7012 for compressive strength and elastic moduli of intact rock cores. Covers four test methods, two for unconfined compressive strength (Method C) and two for triaxial compression. Method C yields only σu without axial strain measurement. Specimens are typically 1.85-inch diameter NQ cores trimmed to ≥3.7-inch height, loaded to failure in 2–15 minutes. Multiple specimens are tested due to variability from joints, fractures, and faults.",
+      "summary": "Covers ASTM D7012, which encompasses four test methods including two for unconfined compressive strength and two for triaxial compression of rock. Describes Method C (basic unconfined compression), specimen geometry (NQ core, ≥3.7 in height), loading rates targeting failure in 2–15 minutes, and the primary output of uniaxial compressive strength (σu). Notes wide variability due to joints, fractures, and inhomogeneities.",
       "body": "ASTM D7012 (Standard Test Methods for Compressive Strength and Elastic Moduli of Intact Rock Core Specimens under Varying States of Stress and Temperatures) encompasses more than just unconfined compression tests. There are four different methods of testing outlined in the standard, and two address the unconfined compressive strength. The other two address triaxial compression of rock, which is used less frequently than for soil.\n\nThe basic form of the unconfined compression test (Method C) does not measure axial strain during loading, and provides only the unconfined compressive strength. The resulting strength can be used for design or as an index property for the rock. The test is normally conducted on rock cores that are 1.85 inches in diameter, and they are trimmed to be at least 3.7 inches in height. This specimen diameter corresponds to an NQ core barrel, but larger rock cores can be used as well. The specimen can be loaded at a constant rate of load or a constant rate of strain which are chosen to cause failure in 2 minutes to 15 minutes. Unconfined compression tests of rock are normally conducted on many test specimens since there can be wide variations in the compressive strength due to the effects of planes of weakness (joints, fractures, and faults) and other inhomogeneities in rock. The main result of the unconfined compression test is the uniaxial compressive strength (σu).",
       "key_points": [
-        "ASTM D7012 includes four methods: two for unconfined compressive strength and two for triaxial compression of rock.",
-        "Method C (basic unconfined compression) yields only σu — no axial strain is measured during loading.",
-        "Standard specimen size is 1.85 inches diameter (NQ core barrel) × ≥3.7 inches height (minimum 2:1 height-to-diameter ratio).",
-        "Loading rate is selected to cause failure within 2 to 15 minutes.",
-        "Multiple specimens are typically tested due to high variability caused by joints, fractures, faults, and other inhomogeneities.",
-        "Result σu can be used directly for design or as a rock index property."
+        "ASTM D7012 covers four methods: two for unconfined compressive strength and two for triaxial compression of rock.",
+        "Method C (basic unconfined compression) does not measure axial strain; it provides only σu.",
+        "Standard specimen: 1.85-inch diameter (NQ core barrel), trimmed to ≥3.7 inches in height (height-to-diameter ratio ≥2).",
+        "Loading rate is chosen to produce failure in 2 to 15 minutes, either at constant load rate or constant strain rate.",
+        "Wide variability in results is expected due to joints, fractures, faults, and other inhomogeneities; multiple specimens should be tested.",
+        "Primary output is the uniaxial compressive strength (σu), usable for design or as an index property."
       ],
-      "equations": [],
+      "equations": [
+        {
+          "id": "Eq. 3-5",
+          "description": "(force-injected from source text)",
+          "implemented_in": "geotech_references.dm7_1.chapter3.hydraulic_conductivity_from_consolidation"
+        }
+      ],
       "figures": [],
       "tables": [],
-      "applicability": "Applies when determining the uniaxial compressive strength and/or elastic moduli of intact rock core specimens."
+      "applicability": "Applies when determining the unconfined (uniaxial) compressive strength or elastic moduli of intact rock core specimens per ASTM D7012."
     },
     {
       "section_id": "3-3.2",
       "title": "Split Cylinder Test (ASTM D3967)",
-      "summary": "Covers the ASTM D3967 split cylinder (Brazilian) test as an alternative to direct tensile testing of rock. The specimen is loaded diametrically between hardened steel platens; thickness ranges from 0.2 to 0.75 times the diameter. Failure is achieved in 1–10 minutes. Main result is splitting tensile strength (σt). Results are variable, so multiple specimens are routinely tested; results are conventionally distinguished from direct tension values by the 'splitting' prefix.",
+      "summary": "Describes the split cylinder test (ASTM D3967) as an indirect alternative to direct tension testing for rock. The specimen is loaded diametrically between hardened steel platens; thickness ranges from 0.2 to 0.75 times the diameter. Failure is targeted in 1–10 minutes. Primary result is the splitting tensile strength (σt). High variability necessitates testing multiple specimens.",
       "body": "The split cylinder test (ASTM D3967 – Standard Test Method for Splitting Tensile Strength of Intact Rock Core Specimens) is used as an alternative to the direct tensile test. The test specimen is loaded diametrically via hardened steel end platens. The test specimen thickness can range between 0.2 to 0.75 times the specimen diameter. The test specimen is loaded at a rate sufficient to obtain failure in 1 to 10 minutes. The main result of this test is the splitting tensile strength (σt). Although the tensile strength resulting from the split cylinder test should be essentially equal to that measured from direct tension tests, it is customary to preface the former with \"splitting.\" Owing to the variability in the test results, split cylinder tests are often run on numerous test specimens.",
       "key_points": [
-        "The split cylinder test is a practical alternative to direct tensile testing of intact rock cores.",
-        "Specimen is loaded diametrically between hardened steel platens; thickness = 0.2–0.75× specimen diameter.",
-        "Loading rate targets failure in 1 to 10 minutes.",
-        "Primary result is splitting tensile strength (σt), conventionally distinguished from direct tension by the 'splitting' prefix.",
-        "High variability in results requires testing numerous specimens."
+        "ASTM D3967 provides splitting tensile strength (σt) as an indirect alternative to direct tensile testing.",
+        "Specimen is loaded diametrically between hardened steel end platens.",
+        "Specimen thickness must be 0.2 to 0.75 times the specimen diameter.",
+        "Loading rate is chosen to cause failure in 1 to 10 minutes.",
+        "Splitting tensile strength is nominally equivalent to direct tensile strength, but is conventionally distinguished by the 'splitting' prefix.",
+        "High result variability requires testing multiple specimens."
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Applies when determining the tensile strength of intact rock core specimens as an alternative to direct tension testing."
+      "applicability": "Applies when determining the tensile strength of intact rock core specimens using the indirect splitting (Brazilian) method per ASTM D3967."
     },
     {
       "section_id": "3-3.3",
       "title": "Rock Direct Shear Test (ASTM D5607)",
-      "summary": "Describes ASTM D5607 for direct shear strength of rock specimens and discontinuities under constant normal force. Unlike the soil counterpart, the rock direct shear test is treated as undrained. Tests are run over a range of normal stresses to define the strength envelope. Specimens are typically encapsulated in super-strength gypsum cement. Apparatus must accommodate extreme load/displacement ranges: up to 50,000 lbs and displacements from <0.01 inch (intact rock) to >0.1 inch (rock joints at low normal stress).",
-      "body": "Rock direct shear tests (ASTM D5607 - Standard Test Method for Performing Laboratory Direct Shear Strength Tests of Rock Specimens Under Constant Normal Force) can be conducted on intact rock specimens, as well as on joints and discontinuities. Unlike the direct shear test conducted on soils, the rock direct shear test is normally considered to be an undrained test. The basic elements of this test are the same as for the soil direct shear tests. Rock direct shear tests are often conducted for a range of normal stresses to determine the strength envelope for the material. One major difference is that the test specimen is often encapsulated in a super strength gypsum cement to fix its position in the shear box.\n\nRock direct shear tests are more complicated than the soil counterpart because of the great variety of loads and displacements the apparatus is required to measure. For large normal stresses, it can take 50,000 lbs. to fail an intact rock direct shear test specimen, and failure may occur at very small (<0.01 inch) displacements. For rock joints at low normal stresses, the failure load might be less than 100 lbs., and the displacement at failure may be greater than 0.1 inch.",
+      "summary": "Describes the rock direct shear test (ASTM D5607) for intact rock, joints, and discontinuities under constant normal force. Unlike the soil version, this test is treated as undrained. Specimens are encapsulated in super-strength gypsum cement in the shear box. Tests are run over a range of normal stresses to define the strength envelope. Apparatus requirements vary widely depending on whether intact rock or low-stress joints are tested. Includes Figures 3-16 and 3-17.",
+      "body": "Rock direct shear tests (ASTM D5607 - Standard Test Method for Performing Laboratory Direct Shear Strength Tests of Rock Specimens Under Constant Normal Force) can be conducted on intact rock specimens, as well as on joints and discontinuities. Unlike the direct shear test conducted on soils, the rock direct shear test is normally considered to be an undrained test. The basic elements of this test are the same as for the soil direct shear tests. Rock direct shear tests are often conducted for a range of normal stresses to determine the strength envelope for the material. One major difference is that the test specimen is often encapsulated in a super strength gypsum cement to fix its position in the shear box. An example of the test fixture is shown in Figure 3-16.\n\nRock direct shear tests are more complicated than the soil counterpart because of the great variety of loads and displacements the apparatus is required to measure. For large normal stresses, it can take 50,000 lbs. to fail an intact rock direct shear test specimen, and failure may occur at very small (<0.01 inch) displacements. For rock joints at low normal stresses, the failure load might be less than 100 lbs., and the displacement at failure may be greater than 0.1 inch. Shown in Figure 3-17 is a rock direct shear apparatus for high loads and normal stresses.",
       "key_points": [
-        "Applicable to intact rock specimens and to joints/discontinuities under constant normal force.",
-        "Unlike soil direct shear, the rock test is normally treated as an undrained test.",
-        "Tests are conducted over a range of normal stresses to define the shear strength envelope (c-φ or c'-φ').",
-        "Specimens are often encapsulated in super-strength gypsum cement to fix position in the shear box.",
-        "Apparatus must handle wide load ranges: up to ~50,000 lbs for intact rock and as low as <100 lbs for rock joints.",
-        "Failure displacements range from <0.01 inch (intact rock at high normal stress) to >0.1 inch (joints at low normal stress)."
+        "ASTM D5607 applies to intact rock, joints, and discontinuities under constant normal force.",
+        "Rock direct shear tests are treated as undrained, unlike the soil direct shear test.",
+        "Specimens are encapsulated in super-strength gypsum cement to secure their position in the shear box.",
+        "Tests are run at multiple normal stress levels to define the shear strength envelope (c-φ or c'-φ' parameters).",
+        "Intact rock failure may require up to 50,000 lbs. load with displacements as small as <0.01 inch.",
+        "Rock joints at low normal stresses may fail at <100 lbs. with displacements >0.1 inch, requiring a highly versatile apparatus."
       ],
       "equations": [],
       "figures": [
@@ -761,26 +768,26 @@
         "Figure 3-17"
       ],
       "tables": [],
-      "applicability": "Applies when determining direct shear strength of intact rock, rock joints, or discontinuities under constant normal force."
+      "applicability": "Applies when determining shear strength parameters of intact rock, rock joints, or discontinuities under constant normal force per ASTM D5607."
     },
     {
       "section_id": "3-3.4",
       "title": "Point Load Test (ASTM D5731)",
-      "summary": "Introduces the ASTM D5731 point load test for determining a rock strength index (Is or Is(50)). The test can be performed on rock cores or irregular rock pieces with diameters from 1 to 3 inches. Load platens are truncated cones with a 0.2-inch-radius semicircular arc tip. Specimen diameter is defined as the distance between platen contact points. The index is commonly corrected to a standard 50 mm specimen diameter.",
+      "summary": "Describes the point load test (ASTM D5731) as a field-expedient index test for rock strength. It can be performed on cores or irregular rock pieces with diameters of 1 to 3 inches. Load platens are truncated cones with a semicircular arc tip of 0.2-inch radius. The specimen diameter is defined by the distance between platen contact points. Provides the point load strength index Is and size-corrected Is(50).",
       "body": "The point load test (ASTM D5731 – Standard Test Methods for Determination of the Point Load Strength Index of Rock and Application of Rock Strength Classifications) provides an index value of the rock strength. This test can be performed on rock cores or irregular pieces of rock having diameters in the range of 1 inch to 3 inches. A photograph of the point load apparatus is shown in Figure 3-18. The diameter of the test specimen is considered to be the thickness of the test specimen from loading platen contact points. The load platens are truncated cones, with the point being a semicircular arc of 0.2-inch radius.",
       "key_points": [
-        "Provides a strength index (Is or Is(50)) rather than a direct strength measurement; index is often corrected to 50 mm specimen diameter.",
-        "Applicable to rock cores or irregular rock pieces with diameters ranging from 1 to 3 inches.",
+        "ASTM D5731 provides the point load strength index (Is and Is(50)) as an index of rock strength, not a direct design parameter.",
+        "Can be performed on rock cores or irregular rock pieces with diameters ranging from 1 to 3 inches.",
         "Specimen diameter is defined as the distance between the truncated-cone platen contact points.",
-        "Load platens are truncated cones with a semicircular arc tip of 0.2-inch radius.",
-        "Versatile field and laboratory test useful for rock strength classification."
+        "Platen tips are truncated cones with a semicircular arc of 0.2-inch radius.",
+        "Is(50) is the strength index corrected for a 50 mm specimen diameter, enabling consistent comparison across specimen sizes."
       ],
       "equations": [],
       "figures": [
         "Figure 3-18"
       ],
       "tables": [],
-      "applicability": "Applies when an index of rock strength is needed for classification purposes, using rock cores or irregular rock specimens."
+      "applicability": "Applies when a rapid index of rock strength is needed from cores or irregular rock pieces in the field or laboratory per ASTM D5731."
     },
     {
       "section_id": "3-4",

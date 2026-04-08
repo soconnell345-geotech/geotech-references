@@ -600,17 +600,19 @@
     },
     {
       "section_id": "6-5",
-      "title": "Geotechnical Static Axial Capacity and Settlement",
-      "summary": "Top-level container section covering analysis methods for evaluating the static axial capacity and settlement of deep foundations. References Section 6-8 for static load testing and Section 6-9 for dynamic methods, which refine initial performance estimates. All detailed content is in the subsections below.",
+      "title": "Group Block Failure and Uplift Capacity",
+      "summary": "Container section covering group block failure checks and uplift capacity for deep foundation groups. Addresses nominal resistance equations for block failure in fine- and coarse-grained soils, LRFD resistance factors, and uplift design concepts including individual element and group block methods.",
       "body": "",
       "key_points": [
-        "This section presents selected analysis methods for static axial capacity and settlement of deep foundations.",
-        "Section 6-8 covers static load testing; Section 6-9 covers dynamic methods — both provide important refinements to initial capacity estimates."
+        "Block failure must be checked for groups in fine-grained soil and closely-spaced columns in coarse-grained soils underlain by weak soil.",
+        "Uplift capacity resists tensile loads from wind, earthquake, and bending moment force couples.",
+        "LRFD resistance factors from AASHTO (2020) apply to nominal side resistance from an appropriate SCA method.",
+        "For extreme limit state, a resistance factor of 0.8 can be used for uplift for all geomaterials."
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Applies when designing or analyzing deep foundations where static axial capacity and settlement must be evaluated."
+      "applicability": "Applies as the parent container for group block failure and uplift capacity subsections for deep foundations."
     },
     {
       "section_id": "6-5.1",
@@ -1160,48 +1162,61 @@
     {
       "section_id": "6-5.6",
       "title": "Uplift Capacity",
-      "summary": "Covers evaluation of uplift capacity for deep foundations including single elements and groups. Discusses five key concepts, LRFD resistance factors (Table 6-28), ASD factors of safety (Table 6-29), combined factored group uplift capacity (Eq. 6-40), block geometry for coarse-grained soils (Eq. 6-41), block weight for undrained conditions (Eq. 6-42), and block uplift capacity (Eq. 6-43).",
-      "body": "Uplift capacity is needed to resist tensile loads from the superstructure, such as from wind and earthquake loading. Uplift can also result from bending moment that is resisted through a force couple provided by multiple elements.\n\nThere are five important concepts to consider when evaluating the uplift capacity of deep foundations: 1) failure in uplift can be abrupt and result in unrestrained movement, 2) the self-weight of the foundation reduces the net uplift force, 3) the base of the foundation does not provide long-term resistance to uplift, 4) the unit shaft resistance in uplift is usually taken to equal the unit shaft resistance in compression even though this may not strictly be true, particularly for cyclic loading, and 5) in pile groups, uplift resistance is limited by the lesser of the combined uplift resistances of the individual elements and the uplift resistance of a block or wedge of soil surrounding the pile group. An important exception to the third point is suction caissons that are explicitly designed to consider suction at the base.\n\nWhen using an LRFD framework, AASHTO (2020) recommends application of the resistance factors in Table 6-28 to the nominal side resistance found using an appropriate SCA method. For the extreme limit state, a resistance factor equal to 0.8 can be used for uplift loading for all geomaterials.\n\nTable 6-29 provides recommended minimum factors of safety for uplift when using an allowable stress design framework.\n\nFor the uplift resistance of a single element, the effective weight of the individual column, Wr,e, is factored using a minimum dead load factor equal to 0.9 (AASHTO 2020). This approach is less conservative than factoring the effective weight by the resistance factor but is usually acceptable since the weight of the element is usually more certain than the side resistance. When evaluating the weight of the element, the effective material unit weight should be used to account for buoyancy effects regardless of whether a total or effective stress analysis is used. When closed-end pipe piles are driven unfilled below the water table, buoyancy should be checked considering the actual weight of the empty pile.\n\nThe combined factored uplift capacity of n individual columns, Rr,gu, is:\n\nRr,gu = min{ n·(Rr,s + Wr,e) + Wr,e,cap ; Rr,ublock }  (6-40)\n\nwhere Rr,s = factored capacity of a single column; Wr,e = factored effective weight of a single column; Wr,e,cap = factored effective weight of the cap; Rr,ublock = factored uplift capacity of the columns and block.\n\nA practical, conservative method to estimate the uplift capacity of the soil block, Rr,ublock, associated with the group of columns uses the dimensions and assumed shape shown in Figure 6-16. The uplift resistance of the block is comprised of the effective weight of the block, We,g, and, in the case of undrained conditions, the contribution of shear strength along the sides of the block. The weight of the foundation and soil between elements are calculated using effective unit weights to account for buoyancy effects. Usually, the difference between the unit weight of the foundation material and the soil may be neglected by treating all materials as having the unit weight of soil. The effective weights of the soil block and cap should be left unfactored since the group block resistance factors provided in Table 6-28 are applied to the effective weight and the side resistance for undrained conditions.\n\nFor pile groups in coarse-grained soils, the block resistance is the weight of the truncated prism having a rectangular base, shown in Figure 6-16(a), plus the weight of the cap. For a uniform soil profile, the volume of the block, Vblock, is:\n\nVblock = B·L·Z + (Z/3)·(Z/4)·(4/12)·...  (6-41)\n\n(See Eq. 6-41 for full expression.) For layered soil profiles and/or when the groundwater table is located within the block, the block can be divided into layers. The thickness of each layer should replace Z in Equation 6-41. The plan dimensions B and L should be replaced by the dimensions of the block at the bottom of each layer, calculated using the 4V:1H slope.\n\nFor deep foundations in undrained conditions, the effective weight of the block is:\n\nWe,g = γm·B·L·Z1 + γb·B·L·Z2 + Wcap  (6-42)\n\nwhere Z1 = depth of the column group above the water table; Z2 = depth of the pile group below the water table; γm = moist unit weight of the soil; γb = buoyant unit weight of the soil.\n\nThe block uplift capacity includes the undrained shear resistance on the sides of the block plus the effective weight of the block and pile cap:\n\nRn,block = 2·Z·(B + L)·su,avg + We,g  (6-43)",
+      "summary": "Covers uplift capacity evaluation for deep foundations including five key design concepts, LRFD resistance factors (Table 6-28), minimum factors of safety for tension loading (Table 6-29), and methods for computing combined factored uplift capacity of pile groups. Addresses both individual element uplift and block/wedge uplift resistance for coarse- and fine-grained soils.",
+      "body": "Block failure should be checked for groups in fine-grained soil and when closely-spaced columns in coarse-grained soils are underlain by weak soil. The nominal resistance to block failure can be estimated as:\n\nRn,gblock = 2·Z·(B + L)·fs,1 + B·L·su,2·Nc  (6-38)\n\nwhere: L, B, and Z = dimensions as defined in Figure 6-15, fs,1 = weighted average unit shaft resistance over the depth of column embedment, and su,2 = average undrained strength from the base to a depth of 2B to 3B below the base.\n\nWhen the sides of the pile group are in fine-grained soil, fs,1 should be set equal to the average undrained shear strength. When the sides of the pile group are in coarse-grained soils, fs,1 equals the average unit shaft resistance as evaluated using an SCA method. In the second term, the depth used to average su,2 should be the value that produces the lower estimate of strength. For pile groups in coarse-grained soils underlain by a weak layer, su,2 equals the undrained strength of the weak layer. The bearing capacity factor, Nc, should be evaluated as (Brinch-Hansen 1957):\n\nNc = 5(1 + 0.2·B/L)(1 + 0.2·Z/B) ≤ 9  (6-39)\n\nWhen using an LRFD framework, AASHTO (2020) recommends the resistance factors provided in Table 6-27 for group block failure. For the combined resistance of the single columns, the appropriate resistance factors provided in Table 6-11 should be used.\n\nUplift capacity is needed to resist tensile loads from the superstructure, such as from wind and earthquake loading. Uplift can also result from bending moment that is resisted through a force couple provided by multiple elements.\n\nThere are five important concepts to consider when evaluating the uplift capacity of deep foundations: 1) failure in uplift can be abrupt and result in unrestrained movement, 2) the self-weight of the foundation reduces the net uplift force, 3) the base of the foundation does not provide long-term resistance to uplift, 4) the unit shaft resistance in uplift is usually taken to equal the unit shaft resistance in compression even though this may not strictly be true, particularly for cyclic loading, and 5) in pile groups, uplift resistance is limited by the lesser of the combined uplift resistances of the individual elements and the uplift resistance of a block or wedge of soil surrounding the pile group. An important exception to the third point is suction caissons that are explicitly designed to consider suction at the base.\n\nWhen using an LRFD framework, AASHTO (2020) recommends application of the resistance factors in Table 6-28 to the nominal side resistance found using an appropriate SCA method. For the extreme limit state, a resistance factor equal to 0.8 can be used for uplift loading for all geomaterials.\n\nTable 6-29 provides recommended minimum factors of safety for uplift when using an allowable stress design framework.\n\nFor the uplift resistance of a single element, the effective weight of the individual column, Wr,e, is factored using a minimum dead load factor equal to 0.9 (AASHTO 2020). This approach is less conservative than factoring the effective weight by the resistance factor but is usually acceptable since the weight of the element is usually more certain than the side resistance. When evaluating the weight of the element, the effective material unit weight should be used to account for buoyancy effects regardless of whether a total or effective stress analysis is used. When closed-end pipe piles are driven unfilled below the water table, buoyancy should be checked considering the actual weight of the empty pile.\n\nThe combined factored uplift capacity of n individual columns, Rr,gu, is:\n\nRr,gu = min( n(Rr,s + Wr,e) + Wr,e,cap, Rr,ublock )  (6-40)\n\nwhere: Rr,s = factored capacity of a single column, Wr,e = factored effective weight of a single column, Wr,e,cap = factored effective weight of the cap, and Rr,ublock = factored uplift capacity of the columns and block.\n\nA practical, conservative method to estimate the uplift capacity of the soil block, Rr,ublock, associated with the group of columns uses the dimensions and assumed shape shown in Figure 6-16 (Tomlinson 1994, FHWA 2016). The uplift resistance of the block is comprised of the effective weight of the block, We,g, and, in the case of undrained conditions, the contribution of shear strength along the sides of the block. The weight of the foundation and soil between elements are calculated using effective unit weights, regardless of whether a total or effective stress strength analysis is used, to account for buoyancy effects for materials below the water table. Usually, the difference between the unit weight of the foundation material and the soil may be neglected by treating all materials as having the unit weight of soil. The effective weight of the pile cap, Wcap, also should account for any expected buoyancy and is included in the weight of the block. The effective weights of the soil block and cap should be left unfactored since the group block resistance factors provided in Table 6-28 are applied to the effective weight and the side resistance for undrained conditions.\n\nFor pile groups in coarse-grained soils, the block resistance is the weight of the truncated prism having a rectangular base, shown in Figure 6-16(a), plus the weight of the cap. For a uniform soil profile (with water table at the ground surface or below the block), the volume of the block, Vblock, is calculated as:\n\nVblock = B·L·Z + (Z²/3)(B + L) + Z³·4/12  (6-41)\n\nFor layered soil profiles and/or when the groundwater table is located within the block, the block can be divided into layers. The thickness of each layer should replace Z in Equation 6-41. The plan dimensions B and L should be replaced by the dimensions of the block at the bottom of each layer, calculated using the 4V:1H slope.\n\nFor deep foundations in undrained conditions, the effective weight of the block is based on the block geometry shown in Figure 6-16(b) and calculated as:\n\nWe,g = γm·B·L·Z1 + γb·B·L·Z2 + Wcap  (6-42)\n\nwhere: Z1 = depth of the column group above the water table, Z2 = depth of the pile group below the water table, γm = moist unit weight of the soil, and γb = buoyant unit weight of the soil.\n\nThe block uplift capacity includes the undrained shear resistance on the sides of the block plus the effective weight of the block and pile cap:\n\nRn,block = 2·Z·(B + L)·su,avg + We,g  (6-43)",
       "key_points": [
-        "Uplift failure can be abrupt; the base provides no long-term resistance (exception: suction caissons designed for base suction).",
-        "Unit shaft resistance in uplift is typically assumed equal to that in compression, though this may not hold under cyclic loading.",
-        "Group uplift resistance is the lesser of combined individual element resistances and the block/wedge resistance.",
-        "LRFD: effective column weight is factored with a minimum dead load factor of 0.9; resistance factors per Table 6-28 apply to side resistance.",
-        "Block volume for coarse-grained soils uses a 4V:1H truncated prism geometry (Eq. 6-41); can be divided into layers for layered profiles or variable water table.",
-        "Undrained block weight (Eq. 6-42) uses moist unit weight above and buoyant unit weight below the water table.",
-        "Block uplift capacity (Eq. 6-43) adds undrained perimeter shear resistance to effective block weight.",
-        "ASD minimum FS for tension loading ranges from 2.0 (driven piles with load tests) to 6.0 (drilled shafts per Coduto et al. 2016)."
+        "Block failure nominal resistance (Eq. 6-38) accounts for weighted average unit shaft resistance on sides and undrained bearing capacity at base; Nc capped at 9 per Brinch-Hansen (1957) (Eq. 6-39).",
+        "Five key uplift concepts: abrupt failure risk, self-weight reduction, no long-term base resistance, shaft resistance equality in uplift vs. compression, and group block/wedge governs.",
+        "LRFD uplift resistance factors (Table 6-28) range from 0.20 (driven piles, Beta method) to 0.55 (micropiles, presumptive); extreme limit state allows 0.8 for all geomaterials.",
+        "Combined factored group uplift (Eq. 6-40) is the minimum of sum of individual column resistances plus cap weight, or the block uplift resistance.",
+        "Block volume for coarse-grained soils uses truncated prism geometry with 4V:1H slope (Eq. 6-41); layered profiles divide block into sub-layers.",
+        "Effective weight of block for undrained conditions (Eq. 6-42) uses moist unit weight above water table and buoyant unit weight below.",
+        "Block uplift capacity for undrained conditions (Eq. 6-43) sums shear resistance on block sides with effective weight of block and cap.",
+        "Minimum factors of safety for tension loading (Table 6-29) range from 2.0 (with load tests) to 6.0 depending on technology and testing program."
       ],
       "equations": [
         {
+          "id": "Eq. 6-38",
+          "description": "Nominal resistance to block failure for pile groups: Rn,gblock = 2·Z·(B+L)·fs,1 + B·L·su,2·Nc, combining side shaft resistance and base bearing capacity.",
+          "implemented_in": "geotech_references.dm7_2.chapter6.block_failure_resistance"
+        },
+        {
+          "id": "Eq. 6-39",
+          "description": "Bearing capacity factor for block failure: Nc = 5(1 + 0.2·B/L)(1 + 0.2·Z/B) ≤ 9, per Brinch-Hansen (1957).",
+          "implemented_in": "geotech_references.dm7_2.chapter6.block_failure_Nc"
+        },
+        {
           "id": "Eq. 6-40",
-          "description": "Combined factored uplift capacity of n individual columns: Rr,gu = min{ n·(Rr,s + Wr,e) + Wr,e,cap ; Rr,ublock }, governing by lesser of summed individual resistances plus cap weight or block uplift resistance.",
+          "description": "Combined factored uplift capacity of n individual columns: Rr,gu = min(n(Rr,s + Wr,e) + Wr,e,cap, Rr,ublock).",
           "implemented_in": "geotech_references.dm7_2.chapter6.group_uplift_capacity"
         },
         {
           "id": "Eq. 6-41",
-          "description": "Volume of truncated prism soil block for coarse-grained soils (4V:1H slope): Vblock = B·L·Z + (Z²/3)·(B+L) + Z³·(4/12), for uniform soil profile with water table at or below the block.",
+          "description": "Volume of truncated prism block for coarse-grained soils: Vblock = B·L·Z + (Z²/3)(B+L) + 4Z³/12, for uniform soil profile with 4V:1H slope.",
           "implemented_in": "geotech_references.dm7_2.chapter6.uplift_block_volume"
         },
         {
           "id": "Eq. 6-42",
-          "description": "Effective weight of soil block for undrained conditions: We,g = γm·B·L·Z1 + γb·B·L·Z2 + Wcap, accounting for moist weight above and buoyant weight below the water table.",
+          "description": "Effective weight of soil block for undrained conditions: We,g = γm·B·L·Z1 + γb·B·L·Z2 + Wcap, accounting for moist and buoyant unit weights.",
           "implemented_in": "geotech_references.dm7_2.chapter6.uplift_block_weight_undrained"
         },
         {
           "id": "Eq. 6-43",
-          "description": "Nominal block uplift capacity for undrained conditions: Rn,block = 2·Z·(B+L)·su,avg + We,g, combining undrained perimeter shear resistance with effective block and cap weight.",
+          "description": "Block uplift capacity for undrained conditions: Rn,block = 2·Z·(B+L)·su,avg + We,g, summing side shear resistance and effective weight of block and cap.",
           "implemented_in": "geotech_references.dm7_2.chapter6.uplift_block_capacity_undrained"
         }
       ],
       "figures": [
+        "Figure 6-15",
         "Figure 6-16"
       ],
       "tables": [
+        "Table 6-27",
         "Table 6-28",
-        "Table 6-29"
+        "Table 6-29",
+        "Table 6-11"
       ],
-      "applicability": "Applies when evaluating uplift (tension) capacity of single deep foundation elements or groups subject to wind, seismic, or moment-induced tensile loads."
+      "applicability": "Applies when evaluating uplift (tensile) capacity of individual deep foundation elements or groups subjected to wind, seismic, or moment-induced tensile loading."
     },
     {
       "section_id": "6-5.7",

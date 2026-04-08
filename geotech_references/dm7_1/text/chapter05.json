@@ -584,214 +584,220 @@
     {
       "section_id": "5-5.2.4",
       "title": "Corrections to the Magnitude of Consolidation Settlements",
-      "summary": "Describes a correction factor α for primary consolidation settlements in overconsolidated clay when the loaded area is narrow relative to clay layer thickness. When the load width is less than four times the clay layer thickness, one-dimensional theory overestimates settlement. The correction factor α is obtained from Figure 5-15 (after Leonards 1976) and applied to the settlements calculated by Eqs. 5-13 or 5-14.",
+      "summary": "Describes when and how to apply a correction factor α to calculated primary consolidation settlements in overconsolidated clays when the load width is less than four times the clay layer thickness, deviating from one-dimensional consolidation assumptions. The correction factor α is obtained from Figure 5-15 per Leonards (1976).",
       "body": "Settlement of overconsolidated clay layers may be overestimated using Equations 5-13 and 5-14 for loads of limited lateral extent. For cases where the width of the load is less than four times the thickness of the clay layer, conditions deviate significantly from one-dimensional consolidation. Leonards (1976) recommended that the corrected primary consolidation settlement can be found by multiplying the calculated value (Equation 5-13 or 5-14) by a correction factor, α. Values of α can be found using Figure 5-15.",
       "key_points": [
-        "1D consolidation theory overestimates settlement of overconsolidated clays when load width < 4× clay layer thickness.",
-        "Apply correction factor α (Figure 5-15, after Leonards 1976) by multiplying calculated sc from Eq. 5-13 or 5-14 by α.",
-        "This correction is only needed for overconsolidated clays under narrow loads; normally consolidated soils are not addressed here."
+        "Applies when load width < 4× clay layer thickness; one-dimensional assumption overestimates settlement.",
+        "Corrected settlement = calculated settlement × correction factor α (from Figure 5-15).",
+        "Based on Leonards (1976) recommendation for overconsolidated clays.",
+        "α accounts for lateral extent effects not captured in standard 1D consolidation equations."
       ],
       "equations": [],
       "figures": [
-        "Figure 5-15"
+        "Figure 5-15 Correction Factor for Overconsolidated Clays and Loads of Limited Lateral Extent (after Leonards 1976)"
       ],
       "tables": [],
-      "applicability": "Applies when the width of a structural load is less than four times the thickness of the overconsolidated clay layer being analyzed."
+      "applicability": "Applies when estimating consolidation settlements in overconsolidated clays under loads of limited lateral extent (width < 4× layer thickness)."
     },
     {
       "section_id": "5-5.3",
       "title": "Time Rate of Primary Consolidation",
-      "summary": "Introduces the theory and analytical methods for predicting the time rate of primary consolidation, including the average degree of consolidation Ūz, time factor for vertical drainage Tv (Eq. 5-15), drainage path length Hdr, and single vs. double drainage conditions. References Figure 5-16 for Tv–Ūz relationships and Figure 5-17 for depth-varying degree of compression. Notes that numerical methods offer greater accuracy and flexibility.",
-      "body": "The time rate of primary consolidation is considered for situations where predicted settlement exceeds tolerable values. In these cases, treatment of the foundation soil, such as acceleration of consolidation or placement of a surcharge to increase in preconsolidation stress, may be considered. Knowledge of the settlement rate or consolidation completed at a particular time is important for planning remedial measures for structures damaged by settlement.\n\nTime rate calculations can be performed with greater accuracy and flexibility using numerical methods, such as the finite difference method. Various computer programs are available for this purpose. The analytical methods presented in this section are useful for understanding time rate of settlement concepts and checking the results of numerical methods.\n\nThe time rate of consolidation is typically assessed starting with one-dimensional theory applied to vertical drainage. The average degree of consolidation (Ūz) is the average percentage of the excess pore pressure that has dissipated at a particular time (t) following the addition of a load. The amount of settlement experienced at the ground surface is typically assumed to be proportional to Ūz. The value of Ūz can be related to a time factor (T) for a given set of conditions. The time factor for vertical drainage (Tv) is calculated using Equation 5-15.\n\nThe relationship between Tv and Ūz is provided in Figure 5-16.\n\nTwo conditions are typically considered for vertical drainage. Single (or one-way) drainage refers to conditions where water can flow one direction to leave the consolidating soil layer as shown in the inset to Figure 5-16. Double (or two-way) drainage occurs when pervious layers lie above and below the consolidating layer, and Hdr is half of the layer thickness (H) in this case.\n\nThe degree of compression (Uz) is the amount of pore water pressure that has been dissipated at a particular depth within the soil layer. The degree of compression will vary with time and depth within the consolidating layer as illustrated in Figure 5-17. It can be used to estimate the remaining excess pore pressures at any depth and time following application of a change in vertical stress. The upper half of this figure can be used for single drainage conditions.",
+      "summary": "Introduces the theory and methods for calculating the time rate of primary consolidation, including the time factor Tv for vertical drainage, average degree of consolidation Uz, and drainage path length Hdr. Covers both analytical and numerical approaches, single vs. double drainage, and the relationship between Tv and Uz via Figure 5-16.",
+      "body": "The time rate of primary consolidation is considered for situations where predicted settlement exceeds tolerable values. In these cases, treatment of the foundation soil, such as acceleration of consolidation or placement of a surcharge to increase in preconsolidation stress, may be considered. Knowledge of the settlement rate or consolidation completed at a particular time is important for planning remedial measures for structures damaged by settlement.\n\nTime rate calculations can be performed with greater accuracy and flexibility using numerical methods, such as the finite difference method. Various computer programs are available for this purpose. The analytical methods presented in this section are useful for understanding time rate of settlement concepts and checking the results of numerical methods.\n\nThe time rate of consolidation is typically assessed starting with one-dimensional theory applied to vertical drainage. The average degree of consolidation (Uz) is the average percentage of the excess pore pressure that has dissipated at a particular time (t) following the addition of a load. The amount of settlement experienced at the ground surface is typically assumed to be proportional to Uz. The value of Uz can be related to a time factor (T) for a given set of conditions. The time factor for vertical drainage (Tv) is calculated as:\n\nTv = cv·t / Hdr²   (5-15)\n\nwhere:\ncv = coefficient of consolidation for the soil layer in the vertical direction,\nt = time after application of load, and\nHdr = drainage path length.\n\nThe relationship between Tv and Uz is provided in Figure 5-16.\n\nTwo conditions are typically considered for vertical drainage. Single (or one-way) drainage refers to conditions where water can flow one direction to leave the consolidating soil layer as shown in the inset to Figure 5-16. Double (or two-way) drainage occurs when pervious layers lie above and below the consolidating layer, and Hdr is half of the layer thickness (H) in this case.\n\nThe degree of compression (Uz) is the amount of pore water pressure that has been dissipated at a particular depth within the soil layer. The degree of compression will vary with time and depth within the consolidating layer as illustrated in Figure 5-17. It can be used to estimate the remaining excess pore pressures at any depth and time following application of a change in vertical stress. The upper half of this figure can be used for single drainage conditions.",
       "key_points": [
-        "Time rate of consolidation is needed when settlement exceeds tolerable limits and for planning remedial measures.",
-        "Time factor Tv = cv·t / Hdr² (Eq. 5-15); Hdr is the drainage path length (H for single drainage, H/2 for double drainage).",
-        "Average degree of consolidation Ūz is the fraction of excess pore pressure dissipated; settlement is proportional to Ūz.",
-        "Figure 5-16 gives Tv–Ūz relationship for instantaneous uniform loading; Figure 5-17 gives depth-varying degree of compression.",
-        "Numerical methods (finite difference) offer greater accuracy and are preferred for complex conditions."
+        "Time rate of consolidation analysis is used when predicted settlements exceed tolerable limits, guiding remedial measures.",
+        "Time factor for vertical drainage: Tv = cv·t / Hdr²; relates time, soil stiffness, and drainage path length.",
+        "Average degree of consolidation Uz represents percentage of excess pore pressure dissipated; settlement is proportional to Uz.",
+        "Single drainage: Hdr = full layer thickness H; double drainage: Hdr = H/2.",
+        "Figure 5-16 gives Tv vs. Uz for instantaneous uniform loading; Figure 5-17 shows depth-varying degree of compression.",
+        "Numerical methods (e.g., finite difference) offer greater accuracy and flexibility than analytical solutions."
       ],
       "equations": [
         {
           "id": "Eq. 5-15",
-          "description": "Time factor for vertical drainage: Tv = cv · t / Hdr²",
+          "description": "Time factor for vertical drainage: Tv = cv·t / Hdr², where cv is the coefficient of consolidation, t is time after load application, and Hdr is the drainage path length.",
           "implemented_in": "geotech_references.dm7_1.chapter5.time_factor_vertical"
         }
       ],
       "figures": [
-        "Figure 5-16",
-        "Figure 5-17"
+        "Figure 5-16 Degree of Consolidation for Instantaneous Uniform Loading and One-Dimensional Flow",
+        "Figure 5-17 Degree of Compression and Excess Pore Pressure (Contours Indicate the Time Factor)"
       ],
       "tables": [],
-      "applicability": "Applies when predicting the rate of primary consolidation settlement in saturated fine-grained soils under vertical drainage conditions."
+      "applicability": "Applies when calculating the time rate of primary consolidation for foundation soils undergoing vertical drainage under applied loads."
     },
     {
       "section_id": "5-5.3.1",
       "title": "Effect of Initial Excess Pore Pressure Distribution",
-      "summary": "Discusses how the initial distribution of excess pore water pressure affects the rate of consolidation, particularly under single drainage conditions. Uniform initial excess pore pressure (appropriate for wide loads) is handled by Figures 5-16 and 5-17. Linearly varying distributions under double drainage can also use Figure 5-16; single drainage with non-uniform distributions requires solutions from Terzaghi et al. (1996) or numerical methods.",
+      "summary": "Discusses how the initial distribution of excess pore water pressure affects the rate of consolidation, particularly for single drainage conditions. Uniform distributions are covered by Figure 5-16; linearly varying distributions under double drainage are also covered, but complex cases require numerical solutions per Terzaghi et al. (1996).",
       "body": "The rate of consolidation can be affected by the initial distribution of excess pore water pressure, especially for single drainage conditions. The degrees of consolidation and compression predicted in Figure 5-16 and Figure 5-17 are appropriate for a uniform distribution of initial excess pore pressure, which is a reasonable assumption for relatively wide loads, regardless of the type of drainage.\n\nOther scenarios, such as foundation loading and consolidation of hydraulic fill, can result in a distribution of initial excess pore pressure that is not constant with depth. Figure 5-16 is also appropriate for double drainage when the distribution of initial ux varies linearly. Solutions for single drainage and linearly varying distributions of initial ux can be found in Terzaghi et al. (1996). However, for these more complex loading conditions, numerical solutions are preferred.",
       "key_points": [
-        "Figures 5-16 and 5-17 assume uniform initial excess pore pressure, valid for wide loads under any drainage condition.",
-        "Figure 5-16 also applies for double drainage with a linearly varying initial excess pore pressure distribution.",
-        "Single drainage with linearly varying initial excess pore pressure requires solutions from Terzaghi et al. (1996) or numerical methods.",
-        "Foundation loading and hydraulic fill consolidation commonly produce non-uniform initial excess pore pressure distributions."
+        "Figures 5-16 and 5-17 assume uniform initial excess pore pressure distribution — valid for wide loads with any drainage type.",
+        "Foundation loading and hydraulic fill can produce non-uniform (e.g., linearly varying) initial excess pore pressure.",
+        "Figure 5-16 also applies to double drainage with linearly varying initial ux.",
+        "For single drainage with linearly varying ux, refer to Terzaghi et al. (1996); numerical methods preferred for complex cases."
       ],
       "equations": [],
       "figures": [
-        "Figure 5-16",
-        "Figure 5-17"
+        "Figure 5-16 Degree of Consolidation for Instantaneous Uniform Loading and One-Dimensional Flow",
+        "Figure 5-17 Degree of Compression and Excess Pore Pressure (Contours Indicate the Time Factor)"
       ],
       "tables": [],
-      "applicability": "Applies when the initial excess pore pressure distribution with depth is non-uniform, particularly under single drainage conditions or for non-wide loads."
+      "applicability": "Applies when the initial distribution of excess pore water pressure is non-uniform with depth, particularly under single drainage conditions."
     },
     {
       "section_id": "5-5.3.2",
       "title": "Accuracy of Time Rate Predictions",
-      "summary": "Explains why field-measured consolidation rates are typically faster than analytically predicted values. Key factors include: actual 2D/3D drainage vs. assumed 1D theory, presence of high-permeability sand/silt seams reducing drainage path length, horizontal hydraulic conductivity anisotropy, and sample disturbance reducing measured cv. Figure 5-18 corrects for load geometry effects; Figure 5-19 accounts for anisotropy.",
+      "summary": "Explains why field-observed consolidation rates are typically faster than 1D analytical predictions, covering three key factors: multi-dimensional drainage effects (Figure 5-18), presence of thin permeable seams reducing drainage path length, and anisotropy in hydraulic conductivity/coefficient of consolidation (Figure 5-19). Sample disturbance is also noted as a source of underestimation of cv.",
       "body": "The time rate of primary consolidation observed in field measurements is often faster than that predicted by the methods described in this section. This discrepancy is the result of a number of effects.\n\nThe theoretical conditions of one-dimensional consolidation and vertical drainage rarely mimic the in situ conditions. In most cases, loading and subsequent drainage is actually two or three-dimensional, which tends to increase the time rate of consolidation. As the width of the loaded area becomes small with respect to the thickness of the compressible layer, consolidation proceeds much more quickly. Figure 5-18 allows the time required to reach a degree of consolidation of either 50% or 90% to be corrected for two- and three-dimensional effects. The results are plotted for soil profiles with an impermeable layer below the compressible soil and for those with an underlying permeable layer. See Davis and Poulos (1972) for further details on these effects. Numerical methods can be used to account for some of these differences; however, many of the common programs used for consolidation calculations only consider one-dimensional flow.\n\nMany clay soils contain thin seams of sand and silt, which have significantly higher permeability. These seams provide internal drainage boundaries, greatly reducing the maximum vertical drainage path length. For example, the presence of a single additional drainage layer can increase the time rate of settlement by a factor of four. In addition, soil deposits tend to have a higher horizontal hydraulic conductivity, which coupled with three-dimensional effects can increase the settlement rate. Figure 5-19 provides a simple means to account for effect of anisotropy in the coefficient of consolidation on the time required to reach 50% consolidation.\n\nFinally, disturbance of soil samples tends to decrease the coefficient of consolidation measured in laboratory tests. Even high-quality samples and tests have some degree of disturbance, leading to lower cv and slower time rate of settlement predictions.",
       "key_points": [
-        "Field consolidation rates are typically faster than 1D analytical predictions due to 2D/3D drainage effects.",
-        "Figure 5-18 corrects predicted time to 50% or 90% consolidation for load geometry (2D/3D effects).",
-        "Thin sand/silt seams reduce drainage path length; a single extra drainage layer can increase settlement rate by a factor of 4.",
-        "Higher horizontal hydraulic conductivity combined with 3D effects accelerates consolidation; Figure 5-19 accounts for anisotropy.",
-        "Sample disturbance reduces measured cv, causing laboratory-based predictions to underestimate consolidation rates."
+        "Field consolidation rates are typically faster than 1D analytical predictions due to several compounding factors.",
+        "2D/3D drainage effects accelerate consolidation; Figure 5-18 provides corrections for 50% and 90% consolidation times.",
+        "Thin permeable seams (sand/silt) reduce the effective drainage path; a single extra drainage layer can quadruple the settlement rate.",
+        "Higher horizontal hydraulic conductivity combined with 3D effects increases consolidation rate; Figure 5-19 corrects for anisotropy at 50% consolidation.",
+        "Sample disturbance reduces measured cv in lab tests, causing overly conservative (slow) time rate predictions.",
+        "Most common numerical programs consider only 1D flow and cannot fully capture these effects."
       ],
       "equations": [],
       "figures": [
-        "Figure 5-18",
-        "Figure 5-19"
+        "Figure 5-18 Effect of Load Geometry on Time Rate of Consolidation (after Davis and Poulos 1972)",
+        "Figure 5-19 Effect of Anisotropy on Time Rate of Consolidation (after Davis and Poulos 1972)"
       ],
       "tables": [],
-      "applicability": "Applies when evaluating discrepancies between predicted and observed time rates of consolidation, and when correcting for 2D/3D effects or hydraulic conductivity anisotropy."
+      "applicability": "Applies when evaluating the reliability of 1D time rate of consolidation predictions and comparing them to field observations."
     },
     {
       "section_id": "5-5.3.3",
       "title": "Gradual Load Application",
-      "summary": "Addresses the effect of construction period duration (gradual load application) on the time rate of primary consolidation. Gradual loading modifies the Tv–Ūz relationship compared to instantaneous loading. Figure 5-20 (after Olson 1977) provides the degree of consolidation curves for gradual load application under vertical drainage conditions.",
+      "summary": "Addresses how the duration of the construction period (gradual load application) modifies the degree of consolidation vs. time factor relationship. Figure 5-20 (after Olson 1977) provides a graphical method to account for gradual loading in vertical drainage analyses, as opposed to the instantaneous loading assumed in standard 1D theory.",
       "body": "The length of the construction period or the amount of time required to apply the load can also affect the time rate of primary consolidation. Gradual load application modifies the relationship between the degree of consolidation and the time factor. Figure 5-20 provides a method to account for gradual loading.",
       "key_points": [
-        "Gradual (ramp) loading during construction modifies the standard Tv–Ūz consolidation relationship.",
-        "Figure 5-20 (after Olson 1977) provides degree of consolidation vs. time factor curves that account for gradual vertical loading.",
-        "This correction is important when construction duration is significant relative to the time required for primary consolidation."
+        "Standard 1D consolidation theory assumes instantaneous load application; gradual loading modifies the Uz vs. Tv relationship.",
+        "Figure 5-20 (after Olson 1977) provides a correction method for gradual load application under vertical drainage conditions.",
+        "Construction period duration must be considered when predicting time rate of settlement for embankments or staged fills."
       ],
       "equations": [],
       "figures": [
-        "Figure 5-20"
+        "Figure 5-20 Degree of Consolidation for Gradual Load Application for Vertical Drainage (after Olson 1977)"
       ],
       "tables": [],
-      "applicability": "Applies when the load is applied gradually over a construction period that is significant relative to the consolidation time of the soil layer."
+      "applicability": "Applies when the load is applied gradually over a significant construction period rather than instantaneously."
     },
     {
       "section_id": "5-5.3.4",
       "title": "Coefficient of Consolidation",
-      "summary": "Container section covering methods to determine the coefficient of consolidation cv, including laboratory measurement from incrementally loaded consolidation tests (Casagrande and Taylor methods) and inference from field pore pressure dissipation measurements. Notes that cv can also be estimated from index property correlations (Chapter 8) or from constant rate of strain tests.",
+      "summary": "Overview of the three approaches for determining the coefficient of consolidation (cv): estimation from index properties (Chapter 8), laboratory measurement from incremental loading tests using Casagrande or Taylor methods, and back-calculation from field pore pressure dissipation measurements. This parent section introduces the two detailed subsections that follow.",
       "body": "The coefficient of consolidation can be estimated based on index properties (see Chapter 8), calculated from volume change vs. time measurements in laboratory tests, or inferred from field measurements of pore pressure dissipation.",
       "key_points": [
-        "cv can be determined from lab tests (incrementally loaded or CRS consolidation tests), field pore pressure dissipation, or index property correlations.",
-        "Laboratory methods use either the Casagrande log-time or Taylor square-root-of-time method (Figure 5-21).",
-        "Field measurement uses the ratio ux/Δσv plotted on Figure 5-17 to obtain Tv, then cv is back-calculated with Eq. 5-15."
+        "cv can be obtained via three methods: index property estimation, laboratory testing, or field pore pressure dissipation.",
+        "Laboratory and field methods are detailed in subsections 5-5.3.4.1 and 5-5.3.4.2 respectively.",
+        "Index property correlations for cv are covered in Chapter 8."
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Applies whenever the coefficient of consolidation cv is needed for time rate of settlement calculations in fine-grained soils."
+      "applicability": "Applies when determining the coefficient of consolidation for use in time rate of consolidation calculations."
     },
     {
       "section_id": "5-5.3.4.1",
       "title": "Laboratory Measurement of Coefficient of Consolidation",
-      "summary": "Describes determination of cv from incrementally loaded one-dimensional consolidation tests using the Casagrande (log-time) or Taylor (square-root-of-time) methods, as illustrated in Figure 5-21. Notes that specimens in different orientations can yield cv in different directions, and that shear strength test volume change data can also be used. CRS tests use a single equation for cv.",
+      "summary": "Describes laboratory procedures for measuring the vertical (and directional) coefficient of consolidation cv from incrementally loaded 1D consolidation tests. Both the Casagrande and Taylor graphical methods are described (Figure 5-21). Also notes that constant rate of strain tests use a single equation for cv determination, and that shear strength test volume change data can be used.",
       "body": "The vertical coefficient of consolidation, cv, is often found from data obtained using incrementally loaded one-dimensional consolidation tests on vertically oriented specimens. The coefficient of consolidation in other directions can be determined by trimming and mounting specimens in other orientations in the testing equipment. Regardless of the specimen orientation, the data is normally assessed using either the Casagrande or the Taylor method, which are described in Figure 5-21. Volume change measured during the consolidation phase of shear strength tests can also be used with these procedures. Other methods exist for determining cv from incrementally loaded consolidation tests, and a single equation can be used to determine cv from constant rate of strain consolidation tests.",
       "key_points": [
-        "cv is typically determined from incrementally loaded 1D consolidation tests using the Casagrande (log-time) or Taylor (√t) method.",
-        "Specimens in non-vertical orientations yield cv in other directions (e.g., horizontal).",
-        "Volume change data from shear strength test consolidation phases can also be used to determine cv.",
+        "cv is primarily determined from incrementally loaded 1D consolidation tests on vertically oriented specimens.",
+        "Specimens in other orientations yield directional coefficients of consolidation.",
+        "Casagrande and Taylor graphical methods are the standard approaches; both are illustrated in Figure 5-21.",
+        "Volume change data from shear strength test consolidation phases can also be used.",
         "Constant rate of strain (CRS) consolidation tests use a single equation to determine cv."
       ],
       "equations": [],
       "figures": [
-        "Figure 5-21"
+        "Figure 5-21 Determination of Coefficient of Consolidation from Laboratory Data (Note: the y-axis can also be plotted as volume or void ratio)"
       ],
       "tables": [],
-      "applicability": "Applies when measuring cv from laboratory consolidation test data using graphical or analytical methods."
+      "applicability": "Applies when measuring the coefficient of consolidation from laboratory consolidation or shear strength test data."
     },
     {
       "section_id": "5-5.3.4.2",
       "title": "Use of Field Measurements",
-      "summary": "Describes back-calculation of in situ cv from field observations of excess pore pressure dissipation with time. The ratio ux/Δσv is plotted at the normalized depth on Figure 5-17 to read the time factor Tv, which is then used with Eq. 5-15 to solve for cv. An example of both lab and field cv determination is given in Figure 5-22.",
+      "summary": "Explains how in situ measurements of excess pore pressure dissipation can be used to back-calculate the coefficient of consolidation cv. The ratio ux/Δσv is plotted on Figure 5-17 at the appropriate normalized depth to read off the time factor, and cv is then calculated using Eq. 5-15. Figure 5-22 illustrates both lab and field cv determination.",
       "body": "Field observations of excess pore pressure dissipation with time can be used to measure the in situ coefficient of consolidation. At any given time after loading, the ratio of excess pore pressure to change in vertical stress (ux/∆σv) can be measured and plotted at the appropriate normalized depth on Figure 5-17. The corresponding time factor can be estimated from the contours, and cv can be calculated using Equation 5-15.\n\nAn example of both laboratory and field determination of cv is provided in Figure 5-22.",
       "key_points": [
-        "In situ cv is back-calculated from measured ux/Δσv ratios at known depths and times using Figure 5-17 to obtain Tv.",
-        "With Tv known, cv is calculated from Eq. 5-15: cv = Tv · Hdr² / t.",
-        "Field-measured cv typically exceeds laboratory values due to natural fabric, fissures, and drainage features.",
-        "Figure 5-22 illustrates both lab and field determination of cv for comparison."
+        "Field cv is back-calculated from measured excess pore pressure dissipation using Figure 5-17 and Eq. 5-15.",
+        "Plot ux/Δσv at normalized depth on Figure 5-17 to read time factor Tv, then solve Tv = cv·t/Hdr² for cv.",
+        "Field-derived cv values typically capture effects missed in lab tests (3D drainage, natural fabric, sample disturbance).",
+        "Figure 5-22 provides a worked example comparing lab and field cv determination."
       ],
       "equations": [
         {
           "id": "Eq. 5-15",
-          "description": "Time factor for vertical drainage (used to back-calculate cv from field data): Tv = cv · t / Hdr²",
+          "description": "Time factor for vertical drainage: Tv = cv·t / Hdr²; used to back-calculate cv from field pore pressure dissipation data.",
           "implemented_in": "geotech_references.dm7_1.chapter5.time_factor_vertical"
         }
       ],
       "figures": [
-        "Figure 5-17",
-        "Figure 5-22"
+        "Figure 5-17 Degree of Compression and Excess Pore Pressure (Contours Indicate the Time Factor)",
+        "Figure 5-22 Determination of cv from Lab and Field Data"
       ],
       "tables": [],
-      "applicability": "Applies when back-calculating in situ cv from field pore pressure dissipation measurements after load application."
+      "applicability": "Applies when back-calculating the coefficient of consolidation from in situ pore pressure dissipation measurements after loading."
     },
     {
       "section_id": "5-5.3.5",
       "title": "Time Rate of Consolidation for Layered Profiles",
-      "summary": "Provides a procedure to handle consolidating soil profiles with multiple layers having different cv values by transforming the layered system into an equivalent single layer. Uses Eq. 5-16 to transform individual layer thicknesses to an equivalent thickness with a reference cv, sums to get total equivalent thickness H't (Eq. 5-17), then applies standard single-layer methods. Example in Figure 5-23.",
-      "body": "The consolidating soil may contain layers with varying values of cv. In this situation, the behavior of a layered system can be approximated by conversion to an equivalent single layer system using the following procedure:\n1. Select any layer (i) with properties cv,i and Hi.\n2. Transform the thickness of every other layer with properties cv,n and Hn to an equivalent layer with the soil properties of layer i using Equation 5-16.\n3. Calculate the total thickness (Hʹt) of the transformed system using Equation 5-17.\n4. Treat the system as a single layer of thickness (Hʹt) with coefficient of consolidation (cv,i).\n5. Use the appropriate method, such as Figure 5-16, to determine the percent consolidation at various times.\n\nThe complexity introduced by multi-layer problems is well-suited to the use of numerical analysis for the calculation of time rate of settlement. An example of multi-layer time rate of consolidation calculation is provided in Figure 5-23.",
+      "summary": "Presents a step-by-step procedure for handling consolidating soil profiles with multiple layers having different cv values. The method converts the multi-layer system to an equivalent single layer by transforming each layer thickness proportional to the square root of the cv ratio. The equivalent single layer is then analyzed using standard methods such as Figure 5-16. Figure 5-23 provides a worked multi-layer example.",
+      "body": "The consolidating soil may contain layers with varying values of cv. In this situation, the behavior of a layered system can be approximated by conversion to an equivalent single layer system using the following procedure:\n\n1. Select any layer (i) with properties cv,i and Hi.\n2. Transform the thickness of every other layer with properties cv,n and Hn to an equivalent layer with the soil properties of layer i as follows:\n   H'n = Hn · √(cv,i / cv,n)   (5-16)\n3. Calculate the total thickness (H't) of the transformed system as:\n   H't = Σ H'n   (5-17)\n4. Treat the system as a single layer of thickness (H't) with coefficient of consolidation (cv,i).\n5. Use the appropriate method, such as Figure 5-16, to determine the percent consolidation at various times.\n\nThe complexity introduced by multi-layer problems is well-suited to the use of numerical analysis for the calculation of time rate of settlement. An example of multi-layer time rate of consolidation calculation is provided in Figure 5-23.",
       "key_points": [
-        "Layered profiles with varying cv are converted to an equivalent single layer by scaling layer thicknesses using Eq. 5-16: H'n = Hn · √(cv,i / cv,n).",
-        "Total equivalent thickness H't (Eq. 5-17) is the sum of all transformed layer thicknesses.",
-        "The equivalent system uses the reference layer's cv,i and is analyzed as a single homogeneous layer.",
-        "Numerical analysis is preferred for multi-layer problems due to complexity.",
-        "Figure 5-23 provides a worked multi-layer consolidation example."
+        "Multi-layer profiles with varying cv values are converted to an equivalent single layer for analysis.",
+        "Each layer thickness is transformed: H'n = Hn·√(cv,i/cv,n), referencing properties of a selected reference layer i.",
+        "Total equivalent thickness H't = ΣH'n; the system is then analyzed as a single layer with cv,i.",
+        "Standard methods (e.g., Figure 5-16) apply to the transformed equivalent single layer.",
+        "Numerical analysis is preferred for multi-layer problems due to added complexity.",
+        "Figure 5-23 provides a worked example of the multi-layer consolidation calculation."
       ],
       "equations": [
         {
           "id": "Eq. 5-16",
-          "description": "Equivalent transformed layer thickness: H'n = Hn · √(cv,i / cv,n), converting layer n to equivalent thickness with properties of reference layer i",
+          "description": "Equivalent layer thickness transformation for multi-layer consolidation: H'n = Hn·√(cv,i / cv,n), converting layer n to equivalent thickness in terms of reference layer i properties.",
           "implemented_in": "geotech_references.dm7_1.chapter5.equivalent_layer_thickness"
         },
         {
           "id": "Eq. 5-17",
-          "description": "Total thickness of transformed equivalent system: H't = Σ H'n",
+          "description": "Total transformed layer thickness: H't = Σ H'n, the sum of all equivalent layer thicknesses in the transformed single-layer system.",
           "implemented_in": "geotech_references.dm7_1.chapter5.total_transformed_thickness"
         }
       ],
       "figures": [
-        "Figure 5-16",
-        "Figure 5-23"
+        "Figure 5-16 Degree of Consolidation for Instantaneous Uniform Loading and One-Dimensional Flow",
+        "Figure 5-23 Multi-layer Consolidation Example"
       ],
       "tables": [],
-      "applicability": "Applies when the consolidating soil profile contains multiple layers with different coefficients of consolidation."
+      "applicability": "Applies when the consolidating soil profile consists of multiple layers with differing coefficients of consolidation."
     },
     {
       "section_id": "5-5.4",
       "title": "Secondary Compression of Fine-Grained Soils",
-      "summary": "Covers prediction of secondary compression (creep) settlement in fine-grained soils after end of primary consolidation. Defines Eq. 5-18 for settlement as a function of Cα or Cεα and log(t/tp). Provides Mesri (1973) correlation for Cεα vs. natural water content (Eq. 5-19) and Cα/Cc ratio values from Table 5-6. Notes that 24-hour consolidation test data includes some secondary compression, and EOP-based curves should be used when secondary compression is important.",
-      "body": "Secondary compression settlement (ss) occurs as soil particles rearrange and the soil structure creeps under constant vertical effective stress. For practical purposes, secondary compression can be assumed to occur after the end of primary consolidation and to follow a relatively linear trend with respect to time on a log scale using Equation 5-18.\n\nValues of Cα or Cεα can be obtained from the results of a one-dimensional consolidation test that is allowed to creep for a significant length of time past the end of primary consolidation. The magnitude of Cα is stress dependent for a particular soil and should be determined at an effective stress similar to that expected in situ. For a variety of clays, silts, and organic soils, Mesri (1973) showed that Cεα is approximately related to the natural water content, wn (in percent) using Equation 5-19.\n\nThe secondary compression index is closely linked to the compression index, Cc. For this reason, an excellent method for estimating Cα is the use of the Cα/Cc ratio. Typical values of this ratio are found in Table 5-6. Recognizing that Cc is also stress-dependent, these ratios should be used with the slope of the laboratory virgin compression curve at the effective stress of interest (Mesri and Godlewski 1977, Mesri and Castro 1987) rather than the field corrected value typically used in consolidation calculations. An example of secondary compression settlement calculations is provided in Figure 5-24.\n\nIn many cases, one-dimensional consolidation tests are presented using the void ratio or vertical strain corresponding to the end of 24-hour load increments. Some amount of secondary compression will have occurred during this time period and is thus included in the laboratory consolidation curve. The engineer should be aware that consolidation settlements calculated with such data will account for some degree of secondary compression.\n\nIf secondary compression is expected to be important in the analysis, consolidation test results should be plotted based on the void ratio or vertical strain at the end of primary (EOP) consolidation for each load increment. Primary consolidation settlement calculated using the EOP consolidation curve can be added directly to estimates of secondary compression settlement.",
+      "summary": "Covers secondary compression settlement (ss) in fine-grained soils, which occurs due to particle rearrangement and creep under constant effective stress after primary consolidation. Presents the governing log-time equation, methods to estimate the secondary compression index Cα and modified index Cεα, the Cα/Cc ratio approach, and guidance on interpreting lab consolidation test data for secondary compression.",
+      "body": "Secondary compression settlement (ss) occurs as soil particles rearrange and the soil structure creeps under constant vertical effective stress. For practical purposes, secondary compression can be assumed to occur after the end of primary consolidation and to follow a relatively linear trend with respect to time on a log scale such that:\n\ns_s = C_εα * H_0 * log(t/t_p) = [C_α / (1 + e_0)] * H_0 * log(t/t_p)   (5-18)\n\nwhere:\nCα = secondary compression index,\nCεα = modified secondary compression index,\ne0 = initial void ratio,\nt = time after loading,\ntp = time required to finish primary consolidation, and\nH0 = initial layer thickness.\n\nValues of Cα or Cεα can be obtained from the results of a one-dimensional consolidation test that is allowed to creep for a significant length of time past the end of primary consolidation. The magnitude of Cα is stress dependent for a particular soil and should be determined at an effective stress similar to that expected in situ. For a variety of clays, silts, and organic soils, Mesri (1973) showed that Cεα is approximately related to the natural water content, wn, (in percent) by:\n\nC_εα ≈ w_n × 10^(-4)   (5-5-19)\n\nThe secondary compression index is closely linked to the compression index, Cc. For this reason, an excellent method for estimating Cα is the use of the Cα / Cc ratio. Typical values of this ratio are found in Table 5-6. Recognizing that Cc is also stress-dependent, these ratios should be used with the slope of the laboratory virgin compression curve at the effective stress of interest (Mesri and Godlewski 1977, Mesri and Castro 1987) rather than the field corrected value typically used in consolidation calculations. An example of secondary compression settlement calculations is provided in Figure 5-24.\n\nIn many cases, one-dimensional consolidation tests are presented using the void ratio or vertical strain corresponding to the end of 24-hour load increments. Some amount of secondary compression will have occurred during this time period and is thus included in the laboratory consolidation curve. The engineer should be aware that consolidation settlements calculated with such data will account for some degree of secondary compression.\n\nIf secondary compression is expected to be important in the analysis, consolidation test results should be plotted based on the void ratio or vertical strain at the end of primary (EOP) consolidation for each load increment. Primary consolidation settlement calculated using the EOP consolidation curve can be added directly to estimates of secondary compression settlement.",
       "key_points": [
-        "Secondary compression occurs under constant effective stress after primary consolidation ends and follows a log-linear trend with time (Eq. 5-18).",
-        "Eq. 5-18: ss = Cεα · H0 · log(t / tp); or equivalently using Cα / (1 + e0).",
-        "Eq. 5-19: Cεα ≈ wn × 10⁻⁴ (Mesri 1973), where wn is natural water content in percent.",
-        "The Cα/Cc ratio is a reliable estimator of secondary compression; Table 5-6 gives typical values by soil type (0.02 for granular to 0.06 for peat).",
-        "Cα is stress-dependent; use the lab virgin compression curve slope at the relevant effective stress, not the field-corrected Cc.",
-        "24-hour increment consolidation test data includes some secondary compression; use EOP-based consolidation curves when secondary compression is to be calculated separately."
+        "Secondary compression occurs after primary consolidation ends, as soil creeps under constant effective stress; it follows a linear trend on a log-time scale.",
+        "The settlement equation uses either the secondary compression index Cα or the modified index Cεα, both obtainable from long-duration consolidation tests.",
+        "Cα is stress-dependent; it should be evaluated at the effective stress expected in situ, not at a generic value.",
+        "For clays, silts, and organic soils, Cεα ≈ wn × 10⁻⁴ (Mesri 1973), providing a quick estimate from natural water content.",
+        "The Cα/Cc ratio (Table 5-6) is a reliable estimation tool; values range from ~0.02 for granular soils to ~0.06 for peat, and should be applied to the lab virgin compression curve slope at the stress of interest.",
+        "Standard 24-hour-increment consolidation tests implicitly include some secondary compression; engineers must recognize this to avoid double-counting settlements.",
+        "For rigorous analyses, consolidation curves should be plotted at end-of-primary (EOP) consolidation so that primary and secondary settlements can be summed independently."
       ],
       "equations": [
         {
           "id": "Eq. 5-18",
-          "description": "Secondary compression settlement: ss = Cεα · H0 · log(t / tp) = [Cα / (1 + e0)] · H0 · log(t / tp)",
+          "description": "Secondary compression settlement formula: ss = Cεα × H0 × log(t/tp) = [Cα/(1+e0)] × H0 × log(t/tp), relating settlement to the secondary compression indices, initial layer thickness, current time, and time to end of primary consolidation.",
           "implemented_in": "geotech_references.dm7_1.chapter5.secondary_compression_settlement"
         },
         {
-          "id": "Eq. 5-5-19",
-          "description": "Mesri (1973) correlation for modified secondary compression index: Cεα ≈ wn × 10⁻⁴ (wn in percent)",
-          "implemented_in": "geotech_references.dm7_1.chapter5.immediate_settlement"
+          "id": "Eq. 5-19",
+          "description": "(force-injected from source text)",
+          "implemented_in": "geotech_references.dm7_1.chapter5.modified_secondary_compression_index_from_wn"
         }
       ],
       "figures": [
@@ -800,7 +806,7 @@
       "tables": [
         "Table 5-6"
       ],
-      "applicability": "Applies when computing secondary compression (creep) settlement in fine-grained soils, especially organic soils, soft clays, and silts where long-term creep is significant."
+      "applicability": "Applies when estimating secondary compression (creep) settlement in fine-grained soils (clays, silts, organic soils, peat) after the end of primary consolidation."
     },
     {
       "section_id": "5-6",
