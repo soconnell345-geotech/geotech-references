@@ -79,19 +79,33 @@ def retrieve_section(reference: str, section_id: str) -> dict:
     """
     ref_dir = _reference_dir(reference)
 
-    # Determine which chapter to search based on the section_id prefix
-    chapter_num = int(section_id.split(".")[0])
-    chapter_file = ref_dir / f"chapter{chapter_num:02d}.json"
+    # Determine which chapter to search based on the section_id prefix.
+    # Handles dot form ('5.3.2'), UFC hyphen-then-dot form ('4-2.1'), and
+    # prologue ('P-1' / 'P.1' → prologue.json).
+    head = section_id.split(".")[0].split("-")[0]
+    chapter_file = None
+    if head.upper() == "P":
+        cand = ref_dir / "prologue.json"
+        if cand.exists():
+            chapter_file = cand
+    else:
+        try:
+            chapter_num = int(head)
+            cand = ref_dir / f"chapter{chapter_num:02d}.json"
+            if cand.exists():
+                chapter_file = cand
+        except ValueError:
+            pass
 
-    if chapter_file.exists():
+    if chapter_file is not None:
         with open(chapter_file, "r", encoding="utf-8") as f:
             chapter_data = json.load(f)
         for section in chapter_data.get("sections", []):
             if section.get("section_id") == section_id:
                 return section
 
-    # If not found in expected chapter, search all chapters
-    for json_file in sorted(ref_dir.glob("chapter*.json")):
+    # If not found in expected chapter, search all chapters (and prologue)
+    for json_file in sorted(ref_dir.glob("*.json")):
         with open(json_file, "r", encoding="utf-8") as f:
             chapter_data = json.load(f)
         for section in chapter_data.get("sections", []):
@@ -128,7 +142,7 @@ def search_sections(reference: str, query: str) -> list[dict]:
     query_words = query_lower.split()
     results = []
 
-    for json_file in sorted(ref_dir.glob("chapter*.json")):
+    for json_file in sorted(ref_dir.glob("*.json")):
         with open(json_file, "r", encoding="utf-8") as f:
             chapter_data = json.load(f)
 
@@ -199,7 +213,7 @@ def list_chapters(reference: str) -> list[dict]:
     ref_dir = _reference_dir(reference)
     chapters = []
 
-    for json_file in sorted(ref_dir.glob("chapter*.json")):
+    for json_file in sorted(ref_dir.glob("*.json")):
         with open(json_file, "r", encoding="utf-8") as f:
             chapter_data = json.load(f)
 

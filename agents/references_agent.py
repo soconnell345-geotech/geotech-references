@@ -34,14 +34,14 @@ _REFERENCE_CATALOG = {
     "dm7_1": {
         "submodules": ["chapter1", "chapter2", "chapter3", "chapter4",
                        "chapter5", "chapter6", "chapter7", "chapter8"],
-        "has_text": False,
-        "citation": "NAVFAC DM 7.01 — Soil Mechanics",
+        "has_text": True,
+        "citation": "UFC 3-220-10 — Soil Mechanics (2022, Change 1 2025)",
     },
     "dm7_2": {
         "submodules": ["prologue", "chapter2", "chapter3", "chapter4",
                        "chapter5", "chapter6", "chapter7"],
-        "has_text": False,
-        "citation": "NAVFAC DM 7.02 — Foundations & Earth Structures",
+        "has_text": True,
+        "citation": "UFC 3-220-20 — Foundations and Earth Structures (2025)",
     },
     "gec_6": {
         "submodules": ["tables", "figures"],
@@ -436,3 +436,104 @@ def describe_reference_method(reference: str, method: str) -> str:
                      f"Use list_reference_methods('{reference}') to browse."
         })
     return json.dumps(info[method], default=str)
+
+
+# ---------------------------------------------------------------------------
+# SQL/FTS retrieval tools (cross-reference, summary-first)
+# ---------------------------------------------------------------------------
+
+@function
+def reference_search(query: str, reference: str = "", chapter: int = 0,
+                     limit: int = 5) -> str:
+    """
+    Full-text search across all structured reference text (DM7 + GEC + micropile).
+    Returns ranked summary-only hits — call reference_get to fetch the full body.
+    This is the noise-reduction lever: use it first, then drill in.
+
+    Parameters:
+        query: FTS5 MATCH query. Plain words are AND-matched with porter
+            stemming. Use quotes for phrases ("primary consolidation"),
+            OR for alternatives, NEAR() for proximity, col:term to scope
+            to one column (title/summary/body/key_points/applicability).
+        reference: Optional reference id to scope to (e.g. 'dm7_1', 'gec_12').
+            Empty string searches all references.
+        chapter: Optional chapter number to scope to. Only meaningful when
+            reference is set. 0 means no chapter filter.
+        limit: Max hits (default 5, capped at 50).
+
+    Returns:
+        JSON list of summary hits, each with reference, reference_title,
+        chapter, chapter_title, section_id, title, and summary fields.
+        On error, returns a one-element list with an 'error' field.
+    """
+    try:
+        from geotech_references import _retrieval_db
+        ref = reference if reference else None
+        ch = int(chapter) if chapter else None
+        hits = _retrieval_db.reference_search(query, reference=ref,
+                                               chapter=ch, limit=limit)
+        return json.dumps(hits, default=str)
+    except Exception as e:
+        return json.dumps([{"error": f"{type(e).__name__}: {str(e)}"}])
+
+
+@function
+def reference_get(reference: str, section_id: str) -> str:
+    """
+    Fetch the full body of one reference section by its id.
+
+    Use after reference_search to drill into a specific hit. Returns the
+    full body text plus key_points, applicability, equations array (with
+    implemented_in pointing to Python functions), figures, and tables.
+
+    Parameters:
+        reference: Reference id (e.g. 'dm7_1', 'gec_12', 'micropile').
+        section_id: Section id as it appears in the source. Examples:
+            UFC hyphen-then-dot form: '4-2.1', '5-5.4'
+            FHWA dot form: '5.7.2', '4.4'
+            Prologue: 'P-1', 'P-2'
+
+    Returns:
+        JSON dict with the full section, or {"error": "..."} if not found.
+    """
+    try:
+        from geotech_references import _retrieval_db
+        return json.dumps(_retrieval_db.reference_get(reference, section_id),
+                          default=str)
+    except KeyError as e:
+        return json.dumps({"error": str(e)})
+    except Exception as e:
+        return json.dumps({"error": f"{type(e).__name__}: {str(e)}"})
+
+
+@function
+def reference_query(sql: str) -> str:
+    """
+    Run a read-only SELECT against the reference text database.
+
+    For advanced queries that the simple search/get tools can't express:
+    counts, GROUP BY, JOIN with FTS, custom filters, etc.
+
+    Tables available:
+      - sections: one row per section. Columns: reference, reference_title,
+        chapter, chapter_title, section_id, title, summary, body, key_points
+        (newline-joined), applicability, equations_json, figures_json,
+        tables_json.
+      - sections_fts: FTS5 virtual table over title/summary/body/key_points/
+        applicability. Use 'sections_fts MATCH ?' and 'bm25(sections_fts)'.
+
+    Only single SELECT (or WITH ... SELECT) statements are accepted. The
+    connection is opened read-only. Result set is capped at 50 rows.
+
+    Parameters:
+        sql: SELECT statement. Use ? placeholders are not available — embed
+            literal values directly. Multiple statements are rejected.
+
+    Returns:
+        JSON list of result rows as dicts, or [{"error": "..."}].
+    """
+    try:
+        from geotech_references import _retrieval_db
+        return json.dumps(_retrieval_db.reference_query(sql), default=str)
+    except Exception as e:
+        return json.dumps([{"error": f"{type(e).__name__}: {str(e)}"}])

@@ -1,6 +1,6 @@
 # geotech-references
 
-Standalone geotechnical reference library: digitized equations, figures, tables, and structured reference text from NAVFAC DM7, FHWA GEC series, and other standards.
+Standalone geotechnical reference library: digitized equations, figures, tables, and structured reference text from UFC 3-220-10/20 (the UFC successors to NAVFAC DM 7.01/7.02), FHWA GEC series, and other standards.
 
 Consumed by [GeotechStaffEngineer](https://github.com/soconnell345-geotech/GeotechStaffEngineer) as a Git submodule.
 
