@@ -14,6 +14,17 @@ The database is built lazily into a per-user temp directory at first
 call and rebuilt automatically if any source JSON has been touched
 since the build. The DB is *not* committed; it is regenerated on
 demand.
+
+Coverage caveat (2026-04-08)
+----------------------------
+Only DM7 (`dm7_1`, `dm7_2`) was extracted with the new schema, so only
+DM7 sections have populated ``summary``/``key_points``/``applicability``
+fields. Pre-existing GEC narrative (gec_6/7/10/12/13, micropile) is
+indexed body-only — search hits against those references will have
+empty ``summary`` strings, so the noise-reduction lever does not apply
+and agents should drill in via :func:`reference_get` for non-DM7 hits.
+``gec_11`` and the FEMA / NOAA / UFC references have no narrative text
+at all. See ``scripts/README.md`` "Reference text coverage status".
 """
 
 from __future__ import annotations

@@ -223,6 +223,54 @@ re-extraction using `--chunk-labels` plus a new
 parenthesized eq labels (`(N-M)` and section-prefixed `(N-M-K)`) and
 injects any the model failed to tag.
 
+## Reference text coverage status (2026-04-08)
+
+The full pipeline + new schema (with `summary` field for noise-reduced
+search) was only built for DM7. The pre-existing GEC and micropile
+narrative was carried over but **does not have the new schema fields**,
+and several references have no narrative text at all.
+
+| Reference | Sections | Summary fields | Notes |
+|---|---|---|---|
+| `dm7_1` | 457 | ✅ all | Full new pipeline (this work) |
+| `dm7_2` | 438 | ✅ all | Full new pipeline (this work) |
+| `gec_6` | 127 | ❌ none | Pre-existing, body-only |
+| `gec_7` | 37  | ❌ none | Pre-existing, body-only |
+| `gec_10` | 45 | ❌ none | **Partial** — only 5 of ~18 chapters |
+| `gec_11` | 0   | n/a   | **Empty** — text/ directory exists but no JSON |
+| `gec_12` | 109 | ❌ none | Pre-existing, body-only |
+| `gec_13` | 50  | ❌ none | Pre-existing, body-only |
+| `micropile` | 35 | ❌ none | Pre-existing, body-only |
+| `fema_p2192` | — | n/a | No text/ |
+| `noaa_frost` | — | n/a | No text/ |
+| `ufc_backfill` | — | n/a | No text/ |
+| `ufc_dewatering` | — | n/a | No text/ |
+| `ufc_expansive` | — | n/a | No text/ |
+| `ufc_pavement` | — | n/a | No text/ |
+
+**Implication for `reference_search`:** the FTS5 search hits for
+non-DM7 references will return empty `summary` strings, undermining the
+noise-reduction lever for those references. Agents should drill in via
+`reference_get` for non-DM7 hits, or rely on title matches. The DB
+itself indexes all the legacy body text fine — the gap is purely in the
+summary/key_points/applicability metadata.
+
+**Backlog options for closing the gap** (see also gse_todo item 8):
+
+1. **Fill the empty references** (gec_11, fema_p2192, noaa_frost, all
+   four ufc_*) — pure content extraction. Either run the pipeline
+   (~$0.008/page on Sonnet) or do it manually/via Claude CoWork.
+2. **Backfill summary/key_points/applicability into the legacy GEC
+   references** — needs a separate "annotate-only" mode of the pipeline
+   that loads existing JSON, walks each section, and asks the LLM to
+   write only the missing metadata fields without re-extracting body.
+   Roughly $5-10 per reference if scripted; manual work otherwise.
+3. **Finish gec_10** — same as #1 but for the 13 missing chapters.
+
+Until any of these land, treat DM7 as the only first-class
+narrative-searchable reference and keep the others as legacy
+body-text-only retrieval.
+
 ## What's still TODO for DM7
 
 Phase 2 is complete (307/307 eqs, 895 sections). UFC 3-220-20 appendices
