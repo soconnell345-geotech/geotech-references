@@ -223,24 +223,25 @@ re-extraction using `--chunk-labels` plus a new
 parenthesized eq labels (`(N-M)` and section-prefixed `(N-M-K)`) and
 injects any the model failed to tag.
 
-## Reference text coverage status (2026-04-08)
+## Reference text coverage status (2026-04-09)
 
 The full pipeline + new schema (with `summary` field for noise-reduced
-search) was only built for DM7. The pre-existing GEC and micropile
-narrative was carried over but **does not have the new schema fields**,
-and several references have no narrative text at all.
+search) was built for DM7. Micropile chapters 1-5 were subsequently
+brought up to the new schema by hand (no API). The remaining GEC
+narrative was carried over body-only, and several references have no
+narrative text at all.
 
 | Reference | Sections | Summary fields | Notes |
 |---|---|---|---|
-| `dm7_1` | 457 | ✅ all | Full new pipeline (this work) |
-| `dm7_2` | 438 | ✅ all | Full new pipeline (this work) |
+| `dm7_1` | 457 | ✅ all | Full new pipeline |
+| `dm7_2` | 438 | ✅ all | Full new pipeline |
+| `micropile` (ch 1-5) | 35 | ✅ all | **Partial** — ch 1-5 manually annotated, ch 6-10 not in `text/` at all (slope stabilization, load testing, QA, contracting, cost) |
 | `gec_6` | 127 | ❌ none | Pre-existing, body-only |
 | `gec_7` | 37  | ❌ none | Pre-existing, body-only |
 | `gec_10` | 45 | ❌ none | **Partial** — only 5 of ~18 chapters |
 | `gec_11` | 0   | n/a   | **Empty** — text/ directory exists but no JSON |
 | `gec_12` | 109 | ❌ none | Pre-existing, body-only |
 | `gec_13` | 50  | ❌ none | Pre-existing, body-only |
-| `micropile` | 35 | ❌ none | Pre-existing, body-only |
 | `fema_p2192` | — | n/a | No text/ |
 | `noaa_frost` | — | n/a | No text/ |
 | `ufc_backfill` | — | n/a | No text/ |
