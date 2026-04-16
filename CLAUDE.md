@@ -38,7 +38,7 @@ geotech_references/           # Python package (pip install -e .)
   micropile/                   # FHWA-NHI-05-039 Micropile Design & Construction
     tables.py                  # 13 table lookup functions (bond stress, pipe/rebar, elastic modulus)
     figures.py                 # 1 figure lookup function (limiting lateral modulus)
-    text/                      # Structured chapter JSON (5 chapters, ~35 sections)
+    text/                      # Structured chapter JSON (10 chapters, 70 sections, complete)
   fema_p2192/                  # FEMA P-2192 Seismic Design Category (2024)
     tables.py                  # 10 functions (SDC, site class, Fa/Fv, risk category)
   noaa_frost/                  # NOAA Frost Protected Shallow Foundations
@@ -115,7 +115,7 @@ references/                    # Source PDFs (git-ignored)
 | gec_11 | FHWA-NHI-10-024 MSE Walls & Slopes | 17 | 130 | - |
 | gec_12 | FHWA-NHI-16-009 Driven Piles | 16 | 147 | 8 chapters |
 | gec_13 | FHWA-NHI-16-027 Ground Modification | 10 | 105 | yes |
-| micropile | FHWA-NHI-05-039 Micropile Design | 14 | 108 | 5 chapters |
+| micropile | FHWA-NHI-05-039 Micropile Design | 14 | 108 | 10 chapters (complete) |
 | fema_p2192 | FEMA P-2192 SDC Determination (2024) | 10 | 132 | - |
 | noaa_frost | NOAA Frost Protected Shallow Foundations | 9 | 86 | - |
 | ufc_backfill | UFC 3-220-04N Backfill | 8 | 87 | - |
