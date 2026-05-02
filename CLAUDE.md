@@ -53,7 +53,7 @@ geotech_references/           # Python package (pip install -e .)
   ufc_expansive/               # UFC 3-220-07 Foundations in Expansive Soils
     equations.py               # 5 equations (activity, free swell, swell pressure, heave, pier)
     tables.py                  # 4 tables (swell potential, active zone, foundation, void space)
-  ufc_pavement/                # UFC 3-260-02 Pavement Design for Airfields
+  ufc_pavement/                # UFC 3-250-01 Pavement Design for Roads, Streets, Walks & Storage (NOTE: existing equations.py/tables.py were coded from UFC 3-260-02 airfield — needs audit/replacement)
     equations.py               # 4 equations (CBR-to-k, flexible/rigid thickness, ESWL)
     tables.py                  # 5 tables (frost susceptibility, reduction, aircraft, layers, subgrade)
 agents/
@@ -70,7 +70,7 @@ agents/
   ufc_backfill_agent.py        # UFC 3-220-04N Foundry-style 3-function wrapper
   ufc_dewatering_agent.py      # UFC 3-220-05 Foundry-style 3-function wrapper
   ufc_expansive_agent.py       # UFC 3-220-07 Foundry-style 3-function wrapper
-  ufc_pavement_agent.py        # UFC 3-260-02 Foundry-style 3-function wrapper
+  ufc_pavement_agent.py        # UFC 3-250-01 Foundry-style 3-function wrapper (agent references UFC 3-260-02 — update when equations.py/tables.py are audited)
 tests/                         # 3,299 tests (pytest)
 references/                    # Source PDFs (git-ignored)
 ```
@@ -121,7 +121,7 @@ references/                    # Source PDFs (git-ignored)
 | ufc_backfill | UFC 3-220-04N Backfill | 8 | 87 | - |
 | ufc_dewatering | UFC 3-220-05 Dewatering | 9 | 75 | - |
 | ufc_expansive | UFC 3-220-07 Expansive Soils | 9 | 55 | - |
-| ufc_pavement | UFC 3-260-02 Airfield Pavement | 9 | 54 | - |
+| ufc_pavement | UFC 3-250-01 Roads/Streets/Walks/Storage (**NOTE: equations.py/tables.py still from UFC 3-260-02 airfield — pending audit**) | 9 | 54 | - |
 
 ### GEC-7: Soil Nail Walls (15 functions, 101 tests)
 
