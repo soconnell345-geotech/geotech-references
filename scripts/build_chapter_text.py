@@ -69,7 +69,8 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 REPO_DIR = SCRIPT_DIR.parent
 PACKAGE_DIR = REPO_DIR / "geotech_references"
 
-DEFAULT_MODEL = os.environ.get("CHAPTER_TEXT_MODEL", "claude-sonnet-4-6")
+DEFAULT_MODEL_ANTHROPIC = os.environ.get("CHAPTER_TEXT_MODEL", "claude-sonnet-4-6")
+DEFAULT_MODEL_OPENAI = os.environ.get("CHAPTER_TEXT_MODEL_OPENAI", "gpt-4.1")
 DEFAULT_PARALLEL = 4
 # Maximum chunk size before we recursively subdivide using deeper outline
 # levels. Empirically, chunks much larger than ~50k chars / ~20 pages cause
@@ -447,6 +448,16 @@ paraphrasing of technical material, no skipped sections, no editorial \
 commentary. You are organizing content into a navigable structure, not \
 rewriting it."""
 
+# OpenAI-compatible tool format (same schema, different wrapper).
+EMIT_TOOL_OPENAI = {
+    "type": "function",
+    "function": {
+        "name": EMIT_TOOL["name"],
+        "description": EMIT_TOOL["description"],
+        "parameters": EMIT_TOOL["input_schema"],
+    },
+}
+
 
 def build_user_prompt(manifest: Manifest, chunk: SectionChunk) -> str:
     vol = manifest.volume if manifest.volume is not None else "N/A"
@@ -508,65 +519,148 @@ chunk.
 
 
 # ---------------------------------------------------------------------------
-# LLM call via tool_use
+# LLM backends — pluggable via --provider flag
 # ---------------------------------------------------------------------------
 
-_client_lock = threading.Lock()
-_client: Any = None
+class _Backend:
+    """Abstract base: call the LLM, return the raw sections list."""
+    model: str
+
+    def call(self, system: str, user: str) -> list[dict]:
+        raise NotImplementedError
 
 
-def _get_client():
-    global _client
-    with _client_lock:
-        if _client is None:
-            try:
-                import anthropic
-            except ImportError:
-                sys.exit("anthropic SDK required: pip install anthropic")
-            _client = anthropic.Anthropic()
-    return _client
+class _AnthropicBackend(_Backend):
+    """Anthropic SDK backend (default). Requires ANTHROPIC_API_KEY."""
+
+    def __init__(self, model: str):
+        self.model = model
+        self._lock = threading.Lock()
+        self._client: Any = None
+
+    def _get_client(self):
+        with self._lock:
+            if self._client is None:
+                try:
+                    import anthropic
+                except ImportError:
+                    sys.exit("anthropic SDK required: pip install anthropic")
+                self._client = anthropic.Anthropic()
+        return self._client
+
+    def call(self, system: str, user: str) -> list[dict]:
+        client = self._get_client()
+        resp = client.messages.create(
+            model=self.model,
+            max_tokens=16_000,
+            system=system,
+            tools=[EMIT_TOOL],
+            tool_choice={"type": "tool", "name": "emit_sections"},
+            messages=[{"role": "user", "content": user}],
+        )
+        tool_block = None
+        for block in resp.content:
+            if getattr(block, "type", "") == "tool_use" and block.name == "emit_sections":
+                tool_block = block
+                break
+        if tool_block is None:
+            raise RuntimeError("model did not return an emit_sections tool_use block")
+        raw = tool_block.input.get("sections", [])
+        if not isinstance(raw, list):
+            raise RuntimeError(
+                f"emit_sections returned sections as {type(raw).__name__}, not list"
+            )
+        return raw
+
+
+class _OpenAIBackend(_Backend):
+    """OpenAI-compatible backend. Works with OpenAI, Azure OpenAI, Foundry
+    AIP, or any endpoint that speaks the OpenAI chat completions API.
+
+    Set OPENAI_API_KEY (or pass --api-key) and, for non-OpenAI endpoints,
+    --base-url pointing at the provider's completions endpoint.
+
+    Foundry example:
+        --provider openai \\
+        --base-url https://<stack>.palantirfoundry.com/api/v2/aip/openai \\
+        --model gpt-4.1 \\
+        --api-key <your-foundry-token>
+    """
+
+    def __init__(
+        self,
+        model: str,
+        base_url: str | None = None,
+        api_key: str | None = None,
+    ):
+        self.model = model
+        self._base_url = base_url
+        self._api_key = api_key
+        self._lock = threading.Lock()
+        self._client: Any = None
+
+    def _get_client(self):
+        with self._lock:
+            if self._client is None:
+                try:
+                    import openai
+                except ImportError:
+                    sys.exit("openai SDK required: pip install openai")
+                kwargs: dict = {}
+                if self._base_url:
+                    kwargs["base_url"] = self._base_url
+                if self._api_key:
+                    kwargs["api_key"] = self._api_key
+                self._client = openai.OpenAI(**kwargs)
+        return self._client
+
+    def call(self, system: str, user: str) -> list[dict]:
+        client = self._get_client()
+        resp = client.chat.completions.create(
+            model=self.model,
+            max_tokens=16_000,
+            messages=[
+                {"role": "system", "content": system},
+                {"role": "user", "content": user},
+            ],
+            tools=[EMIT_TOOL_OPENAI],
+            tool_choice={"type": "function", "function": {"name": "emit_sections"}},
+        )
+        msg = resp.choices[0].message
+        if not msg.tool_calls:
+            raise RuntimeError("model did not return a tool call for emit_sections")
+        tc = next(
+            (t for t in msg.tool_calls if t.function.name == "emit_sections"),
+            None,
+        )
+        if tc is None:
+            raise RuntimeError("model did not call emit_sections")
+        raw = json.loads(tc.function.arguments).get("sections", [])
+        if not isinstance(raw, list):
+            raise RuntimeError(
+                f"emit_sections returned sections as {type(raw).__name__}, not list"
+            )
+        return raw
 
 
 def extract_chunk_sections(
-    manifest: Manifest, chunk: SectionChunk, model: str
+    manifest: Manifest, chunk: SectionChunk, backend: _Backend
 ) -> list[dict]:
-    """Call Claude with forced tool_use, retry on overload + empty-result.
+    """Call the LLM backend, retry on overload + empty-result.
 
     Treats three failures equivalently as transient and retries with
     jittered exponential backoff:
       - exception from the SDK (network, 5xx, overload, rate limit)
-      - tool_use block missing entirely
-      - tool_use block returns 0 sections from a chunk with substantive
-        input text (>5k chars) — under load Claude sometimes "succeeds"
-        with an empty array instead of erroring
+      - tool call missing entirely from the response
+      - backend returns 0 sections from a chunk with substantive input text
+        (>5k chars) — some models silently emit an empty array under load
     """
     import random
-    client = _get_client()
     user = build_user_prompt(manifest, chunk)
     last_error: Exception | None = None
     for attempt in range(5):
         try:
-            resp = client.messages.create(
-                model=model,
-                max_tokens=16_000,
-                system=EXTRACTION_SYSTEM_PROMPT,
-                tools=[EMIT_TOOL],
-                tool_choice={"type": "tool", "name": "emit_sections"},
-                messages=[{"role": "user", "content": user}],
-            )
-            tool_block = None
-            for block in resp.content:
-                if getattr(block, "type", "") == "tool_use" and block.name == "emit_sections":
-                    tool_block = block
-                    break
-            if tool_block is None:
-                raise RuntimeError("model did not return an emit_sections tool_use block")
-
-            raw = tool_block.input.get("sections", [])
-            if not isinstance(raw, list):
-                raise RuntimeError(
-                    f"emit_sections returned sections as {type(raw).__name__}, not list"
-                )
+            raw = backend.call(EXTRACTION_SYSTEM_PROMPT, user)
             valid = [s for s in raw if isinstance(s, dict)]
             if len(valid) != len(raw):
                 dump_dir = PACKAGE_DIR / "_build_debug"
@@ -757,7 +851,7 @@ def validate_chapter(chapter_json: dict) -> list[str]:
 def extract_chapter(
     manifest: Manifest,
     ch: ChapterSpec,
-    model: str,
+    backend: _Backend,
     parallel: int,
     dry_run: bool,
     chunk_label_filter: list[str] | None = None,
@@ -799,7 +893,7 @@ def extract_chapter(
     t0 = time.time()
     with cf.ThreadPoolExecutor(max_workers=parallel) as ex:
         futures = {
-            ex.submit(extract_chunk_sections, manifest, c, model): i
+            ex.submit(extract_chunk_sections, manifest, c, backend): i
             for i, c in enumerate(chunks)
         }
         for fut in cf.as_completed(futures):
@@ -877,7 +971,7 @@ def cmd_extract(
     manifest_path: Path,
     chapter_filter: list[int] | None,
     dry_run: bool,
-    model: str,
+    backend: _Backend,
     parallel: int,
     chunk_label_filter: list[str] | None = None,
 ) -> int:
@@ -891,10 +985,11 @@ def cmd_extract(
     if not to_run:
         sys.exit(f"no chapters matched filter {chapter_filter}")
 
+    provider = "openai" if isinstance(backend, _OpenAIBackend) else "anthropic"
     print(f"Reference: {manifest.reference_title}")
     print(f"Output: {output_dir}")
     print(f"Chapters: {[c.number for c in to_run]}")
-    print(f"Mode: {'DRY RUN' if dry_run else f'LIVE (model={model}, parallel={parallel})'}")
+    print(f"Mode: {'DRY RUN' if dry_run else f'LIVE (provider={provider}, model={backend.model}, parallel={parallel})'}")
     print()
 
     total_errors = 0
@@ -912,7 +1007,7 @@ def cmd_extract(
                 print(f"  WARNING: --chunk-labels set but no existing "
                       f"{existing_path.name} found; will write fresh")
         chapter_json, errs = extract_chapter(
-            manifest, ch, model, parallel, dry_run,
+            manifest, ch, backend, parallel, dry_run,
             chunk_label_filter=chunk_label_filter,
             existing_chapter=existing,
         )
@@ -966,7 +1061,32 @@ def main() -> int:
         default=None,
     )
     pe.add_argument("--dry-run", action="store_true")
-    pe.add_argument("--model", default=DEFAULT_MODEL)
+    pe.add_argument(
+        "--provider",
+        choices=["anthropic", "openai"],
+        default="anthropic",
+        help="LLM provider. 'anthropic' uses ANTHROPIC_API_KEY. 'openai' uses "
+             "OPENAI_API_KEY and works with any OpenAI-compatible endpoint "
+             "(OpenAI, Azure, Foundry AIP, etc.).",
+    )
+    pe.add_argument(
+        "--model",
+        default=None,
+        help=f"Model ID. Defaults: anthropic={DEFAULT_MODEL_ANTHROPIC}, "
+             f"openai={DEFAULT_MODEL_OPENAI}. Override for Foundry (e.g. "
+             f"--model gpt-4.1 or whatever your stack exposes).",
+    )
+    pe.add_argument(
+        "--base-url",
+        default=None,
+        help="Base URL for OpenAI-compatible endpoint. Example for Foundry: "
+             "https://<stack>.palantirfoundry.com/api/v2/aip/openai",
+    )
+    pe.add_argument(
+        "--api-key",
+        default=None,
+        help="API key override (openai provider). Defaults to OPENAI_API_KEY env var.",
+    )
     pe.add_argument("--parallel", type=int, default=DEFAULT_PARALLEL)
     pe.add_argument(
         "--chunk-labels",
@@ -983,8 +1103,19 @@ def main() -> int:
 
     if args.command == "discover":
         return cmd_discover(mp)
+
+    # Build the backend from provider + model + optional OpenAI overrides.
+    if args.provider == "openai":
+        model = args.model or DEFAULT_MODEL_OPENAI
+        backend: _Backend = _OpenAIBackend(
+            model, base_url=args.base_url, api_key=args.api_key
+        )
+    else:
+        model = args.model or DEFAULT_MODEL_ANTHROPIC
+        backend = _AnthropicBackend(model)
+
     return cmd_extract(
-        mp, args.chapters, args.dry_run, args.model, args.parallel,
+        mp, args.chapters, args.dry_run, backend, args.parallel,
         chunk_label_filter=args.chunk_labels,
     )
 
