@@ -11,6 +11,7 @@ geotech_references/           # Python package (pip install -e .)
   _interpolation.py            # Shared helpers (_linterp)
   _plotting.py                 # Shared matplotlib helpers (get_pyplot, setup_engineering_plot)
   _retrieval.py                # Reference text retrieval (load, search, retrieve by section)
+  _retrieval_db.py             # SQLite FTS5 retrieval layer — reference_search / reference_get / reference_query (v1.2.0)
   dm7_1/                       # UFC 3-220-10 Soil Mechanics (8 chapters)
     chapter1.py ... chapter8.py
     text/                      # Structured chapter JSON (8 chapters, 457 sections, 2026-04-07)
@@ -19,32 +20,34 @@ geotech_references/           # Python package (pip install -e .)
     text/                      # Structured chapter JSON (prologue + 6 chapters, 438 sections, 2026-04-07)
   gec_6/                       # FHWA-SA-02-054 Shallow Foundations
     tables.py, figures.py
-    text/                      # Structured chapter JSON
+    text/                      # Structured chapter JSON (10 chapters, body-only — manifest ready for full-schema re-extraction)
   gec_7/                       # FHWA-NHI-14-007 Soil Nail Walls
     tables.py                  # 13 table lookup functions (bond, pullout, resistance factors, seismic)
     figures.py                 # 2 figure lookup functions (friction angle vs SPT, basal heave Nc)
-    text/                      # Structured chapter JSON (5 chapters, ~37 sections)
+    text/                      # Structured chapter JSON (ch 1-5, ~37 sections, body-only; ch 6-10 not yet extracted — manifest ready)
   gec_10/                      # FHWA-NHI-10-016 Drilled Shafts
     tables.py, figures.py
-    text/                      # Structured chapter JSON (5 chapters)
+    text/                      # Structured chapter JSON (ch 9-11,17-18 only, 5 of 22 chapters, body-only — manifest ready for full extraction)
   gec_11/                      # FHWA-NHI-10-024 Design of MSE Walls & Slopes
     tables.py, figures.py
+    text/                      # Empty — manifest ready (7 chapters, 2026-05-02)
   gec_12/                      # FHWA-NHI-16-009 Driven Piles
     tables.py                  # 8 table lookup functions (resistance factors, beta/Nt, setup, API)
     figures.py                 # 8 figure lookup functions (Nordlund Kd, CF, alpha_t, N'q, adhesion)
-    text/                      # Structured chapter JSON (8 chapters, ~109 sections)
+    text/                      # Structured chapter JSON (Vol I ch 1-8 only, ~109 sections, body-only; Vol II ch 9-18 not yet extracted — manifests ready)
   gec_13/                      # FHWA-NHI-16-027 Ground Modification Methods
     tables.py, figures.py
+    text/                      # Structured chapter JSON (5 chapters, body-only — manifest ready for full-schema re-extraction)
   micropile/                   # FHWA-NHI-05-039 Micropile Design & Construction
     tables.py                  # 13 table lookup functions (bond stress, pipe/rebar, elastic modulus)
     figures.py                 # 1 figure lookup function (limiting lateral modulus)
     text/                      # Structured chapter JSON (10 chapters, 70 sections, complete)
-  fema_p2192/                  # FEMA P-2192 Seismic Design Category (2024)
+  fema_p2192/                  # FEMA P-2192 Seismic Design Category (2024) — text extraction skipped (separate ASCE 7 effort)
     tables.py                  # 10 functions (SDC, site class, Fa/Fv, risk category)
-  noaa_frost/                  # NOAA Frost Protected Shallow Foundations
+  noaa_frost/                  # NOAA Frost Protected Shallow Foundations — being superseded by USACE TM 5-852-4 (pending)
     equations.py               # 5 physics equations (Stefan, Berggren, latent heat)
     tables.py                  # 4 soil thermal property lookups
-  ufc_backfill/                # UFC 3-220-04N Backfill for Subsurface Structures
+  ufc_backfill/                # UFC 3-220-04N Backfill for Subsurface Structures — text extraction skipped (content covered by DM7)
     equations.py               # 3 equations (compaction pressure, filter criteria, RC check)
     tables.py                  # 5 tables (compaction, material, lift, equipment, drainage)
   ufc_dewatering/              # UFC 3-220-05 Dewatering and Groundwater Control
@@ -56,6 +59,15 @@ geotech_references/           # Python package (pip install -e .)
   ufc_pavement/                # UFC 3-250-01 Pavement Design for Roads, Streets, Walks & Storage (NOTE: existing equations.py/tables.py were coded from UFC 3-260-02 airfield — needs audit/replacement)
     equations.py               # 4 equations (CBR-to-k, flexible/rigid thickness, ESWL)
     tables.py                  # 5 tables (frost susceptibility, reduction, aircraft, layers, subgrade)
+scripts/                       # Content generation tools (NOT installed with the package)
+  build_chapter_text.py        # PDF → chapter JSON pipeline (Anthropic + OpenAI-compatible backends)
+  audit_chapter_text.py        # Validate generated JSON (schema, eq coverage, implemented_in links)
+  chapter_schema.json          # JSON schema for chapter files
+  manifests/                   # Per-reference manifest files (chapter page ranges + PDF paths)
+    dm7_1.json, dm7_2.json     # DM7 — page ranges pre-filled
+    gec_6.json, gec_7.json, gec_10.json, gec_11.json  # GECs — page ranges pre-filled
+    gec_12_v1.json, gec_12_v2.json, gec_13.json       # GECs — page ranges pre-filled
+  README.md                    # Pipeline usage guide
 agents/
   dm7_agent.py                 # DM7 Foundry-style 3-function wrapper
   gec6_agent.py                # GEC-6 Foundry-style 3-function wrapper
@@ -109,12 +121,12 @@ references/                    # Source PDFs (git-ignored)
 
 | Module | Reference | Functions | Tests | Text Chapters |
 |--------|-----------|-----------|-------|---------------|
-| gec_6 | FHWA-SA-02-054 Shallow Foundations | 13 | 121 | yes |
-| gec_7 | FHWA-NHI-14-007 Soil Nail Walls | 15 | 101 | 5 chapters |
-| gec_10 | FHWA-NHI-10-016 Drilled Shafts | 10 | 175 | 5 chapters |
-| gec_11 | FHWA-NHI-10-024 MSE Walls & Slopes | 17 | 130 | - |
-| gec_12 | FHWA-NHI-16-009 Driven Piles | 16 | 147 | 8 chapters |
-| gec_13 | FHWA-NHI-16-027 Ground Modification | 10 | 105 | yes |
+| gec_6 | FHWA-SA-02-054 Shallow Foundations | 13 | 121 | 10 chapters body-only; manifest ready |
+| gec_7 | FHWA-NHI-14-007 Soil Nail Walls | 15 | 101 | ch 1-5 body-only; ch 6-10 pending |
+| gec_10 | FHWA-NHI-10-016 Drilled Shafts | 10 | 175 | 5 of 22 chapters body-only; rest pending |
+| gec_11 | FHWA-NHI-10-024 MSE Walls & Slopes | 17 | 130 | manifest ready, not yet extracted |
+| gec_12 | FHWA-NHI-16-009 Driven Piles | 16 | 147 | Vol I (ch 1-8) body-only; Vol II (ch 9-18) pending |
+| gec_13 | FHWA-NHI-16-027 Ground Modification | 10 | 105 | 5 chapters body-only; manifest ready |
 | micropile | FHWA-NHI-05-039 Micropile Design | 14 | 108 | 10 chapters (complete) |
 | fema_p2192 | FEMA P-2192 SDC Determination (2024) | 10 | 132 | - |
 | noaa_frost | NOAA Frost Protected Shallow Foundations | 9 | 86 | - |
@@ -169,4 +181,4 @@ DM7 agent auto-discovers 340+ functions via `inspect.getmembers()`. GEC/micropil
 
 - Python 3.10+ (developed on 3.14.3)
 - No required dependencies (numpy/scipy/matplotlib are optional, used by some functions)
-- Tests: `pytest tests/ -q` (expect 3,299 passed, 85 skipped)
+- Tests: `pytest tests/ -q` (expect 3,313 passed, 85 skipped)
