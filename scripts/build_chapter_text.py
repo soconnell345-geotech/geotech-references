@@ -176,7 +176,9 @@ def _fitz():
 
 
 def discover_chapter_ranges(manifest: Manifest) -> Manifest:
-    """Fill chapter page_start/page_end from PDF outline (level 1-2 entries)."""
+    """Fill chapter page_start/page_end from PDF outline (level 1-2 entries).
+    Falls back to scanning page text for 'CHAPTER N' headings when the PDF
+    has no embedded outline."""
     fitz = _fitz()
     if not manifest.pdf_path.exists():
         sys.exit(f"PDF not found: {manifest.pdf_path}")
@@ -184,17 +186,60 @@ def discover_chapter_ranges(manifest: Manifest) -> Manifest:
     try:
         toc = doc.get_toc(simple=True)
         n_pages = doc.page_count
+        if not toc:
+            print("  No embedded outline — scanning page text for chapter headings...")
+            _discover_from_text(doc, manifest, n_pages)
+            return manifest
+        entries = [(t.strip(), p) for lvl, t, p in toc if lvl <= 2]
+        matched: list[tuple[ChapterSpec, int]] = []
+        for ch in manifest.chapters:
+            page = _match_in_toc(ch, entries)
+            if page is not None:
+                matched.append((ch, page))
+        matched.sort(key=lambda mc: mc[1])
+        for i, (ch, page) in enumerate(matched):
+            ch.page_start = page
+            ch.page_end = matched[i + 1][1] - 1 if i + 1 < len(matched) else n_pages
+            print(f"  ch {ch.number}: pp. {ch.page_start}-{ch.page_end} ({ch.title})")
+        for ch in manifest.chapters:
+            if ch.page_start is None:
+                print(f"  ch {ch.number}: NOT FOUND ({ch.title})", file=sys.stderr)
     finally:
         doc.close()
-    if not toc:
-        print("WARNING: PDF has no outline; fill manifest by hand.", file=sys.stderr)
-        return manifest
-    entries = [(t.strip(), p) for lvl, t, p in toc if lvl <= 2]
-    matched: list[tuple[ChapterSpec, int]] = []
-    for ch in manifest.chapters:
-        page = _match_in_toc(ch, entries)
-        if page is not None:
-            matched.append((ch, page))
+    return manifest
+
+
+def _discover_from_text(doc, manifest: Manifest, n_pages: int) -> None:
+    """Fill page_start/page_end by scanning the first 500 chars of each page
+    for 'CHAPTER N' heading lines.  Only 500 chars are read per page because
+    chapter headings in FHWA documents always appear at the very top of a new
+    page — this reads ~150 KB for a 300-page PDF rather than the full text.
+
+    Lines that look like visible-TOC entries (contain leader dots '.....' or
+    end with a chapter-section page number like '1-1') are skipped so that
+    the TOC pages themselves don't produce false matches."""
+    chapter_pages: dict[int, int] = {}
+    for i in range(n_pages):
+        snippet = doc[i].get_text()[:500]
+        for line in snippet.splitlines():
+            stripped = line.strip()
+            m = re.match(r"^CHAPTER\s+(\d+)\b", stripped, re.IGNORECASE)
+            if not m:
+                continue
+            # Skip visible-TOC lines: they contain leader dots or end with
+            # a chapter-section page number (e.g. "4-1", "1-12").
+            if "...." in stripped or re.search(r"\s\d+[-\u2013]\d+\s*$", stripped):
+                continue
+            ch_num = int(m.group(1))
+            if ch_num not in chapter_pages:
+                chapter_pages[ch_num] = i + 1  # 1-indexed
+            break  # stop at first real chapter heading on this page
+
+    matched: list[tuple[ChapterSpec, int]] = [
+        (ch, chapter_pages[ch.number])
+        for ch in manifest.chapters
+        if ch.number in chapter_pages
+    ]
     matched.sort(key=lambda mc: mc[1])
     for i, (ch, page) in enumerate(matched):
         ch.page_start = page
@@ -203,7 +248,6 @@ def discover_chapter_ranges(manifest: Manifest) -> Manifest:
     for ch in manifest.chapters:
         if ch.page_start is None:
             print(f"  ch {ch.number}: NOT FOUND ({ch.title})", file=sys.stderr)
-    return manifest
 
 
 def _match_in_toc(ch: ChapterSpec, entries: list[tuple[str, int]]) -> int | None:
@@ -269,18 +313,77 @@ def discover_chunks(manifest: Manifest, ch: ChapterSpec) -> list[SectionChunk]:
         doc.close()
 
 
+def _discover_sections_from_text(
+    doc, ch: ChapterSpec, page_start: int, page_end: int
+) -> list[tuple[str, int]]:
+    """Scan full page text within a chapter range for section heading lines.
+    Matches both hyphen (4-1) and dot (4.1) formats at the start of a line.
+    Returns [(section_label, 1-indexed-page), ...] sorted by page, deduped
+    to first occurrence of each label."""
+    sec_pat = re.compile(
+        rf"^\s*({re.escape(str(ch.number))}[.\-]\d+(?:[.\-]\d+)*)\s+\S",
+        re.MULTILINE,
+    )
+    found: dict[str, int] = {}
+    for i in range(page_start - 1, page_end):
+        text = doc[i].get_text()
+        for m in sec_pat.finditer(text):
+            label = m.group(1)
+            if label not in found:
+                found[label] = i + 1  # 1-indexed
+    return sorted(found.items(), key=lambda x: x[1])
+
+
+def _build_chunks_from_section_list(
+    doc,
+    ch: ChapterSpec,
+    sections: list[tuple[str, int]],
+    page_start: int,
+    page_end: int,
+) -> list[SectionChunk]:
+    """Convert a (label, page) list from text-scan into SectionChunk objects.
+    Each section runs from its start page to one before the next section."""
+    chunks: list[SectionChunk] = []
+    for i, (label, sec_page) in enumerate(sections):
+        sec_end = sections[i + 1][1] - 1 if i + 1 < len(sections) else page_end
+        sec_page = max(sec_page, page_start)
+        sec_end = min(sec_end, page_end)
+        if sec_page > sec_end:
+            continue
+        text = _pull_pages(doc, sec_page, sec_end)
+        chunks.append(SectionChunk(
+            chapter_num=ch.number,
+            chunk_label=label,
+            chunk_title=label,
+            page_start=sec_page,
+            page_end=sec_end,
+            text=text,
+        ))
+    return chunks
+
+
 def _split_range(
     doc, toc, ch: ChapterSpec, page_start: int, page_end: int, min_level: int
 ) -> list[SectionChunk]:
     """Split a page range using outline entries at `min_level`. Recursively
     subdivides any resulting chunk that exceeds size limits using deeper
-    levels (min_level + 1)."""
+    levels (min_level + 1).  Falls back to text-scan section discovery when
+    the PDF has no embedded outline."""
     inside = [
         (lvl, title.strip(), page)
         for lvl, title, page in toc
         if page_start <= page <= page_end and lvl >= min_level
     ]
     if not inside:
+        # Text-scan fallback: only on the first recursion level (min_level==2)
+        # so deeper recursion passes don't re-scan when the outline really is
+        # empty at finer levels.
+        if min_level == 2:
+            text_sections = _discover_sections_from_text(doc, ch, page_start, page_end)
+            if len(text_sections) > 1:
+                return _build_chunks_from_section_list(
+                    doc, ch, text_sections, page_start, page_end
+                )
         text = _pull_pages(doc, page_start, page_end)
         return [SectionChunk(
             chapter_num=ch.number,
