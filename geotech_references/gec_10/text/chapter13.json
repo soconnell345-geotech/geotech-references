@@ -1,0 +1,91 @@
+{
+  "reference_id": "FHWA-NHI-18-024",
+  "reference_title": "Drilled Shafts: Construction Procedures and LRFD Design Methods",
+  "chapter": 13,
+  "chapter_title": "Field Load Tests",
+  "sections": [
+    {
+      "section_id": "13.1",
+      "title": "General",
+      "body": "Drilled shaft behavior is highly dependent on local geology and construction procedure details, making accurate performance prediction from standardized methods difficult. Site-specific load tests performed under realistic conditions improve accuracy and reliability. Because load tests reduce prediction variability, larger resistance factors are justified when tests are performed. Two general purposes: (1) load transfer tests — obtain detailed information on side and base resistance distribution to allow improved design; best performed on test shafts constructed in advance of production installation; (2) proof tests — verify that test shaft can sustain a given load, thus verifying strength/serviceability requirements. Benefits of load testing: direct measure of resistance in project-specific geology and with project construction methods; improved reliability allows higher resistance factors; potential reduction in shaft length or rock excavation. Limitations: limited benefit in highly variable geology from single test; substantial time and money investment; may not recover cost for projects with few shafts; design may not be controlled by geotechnical strength (e.g., scour or lateral loading governs).",
+      "key_points": [
+        "Load transfer test: detailed side/base resistance distribution for improved design",
+        "Proof test: verify shaft can sustain required load — strength/serviceability verification",
+        "Load tests justify larger resistance factors — directly reduces uncertainty",
+        "Preferred: load tests on non-production test shafts in advance of production installation",
+        "Minimum recommendation: number of load tests ≥2% of total production drilled shafts"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 13-1: Kentledge static load tests compared with bi-directional and rapid load tests",
+        "Figure 13-2: Proof tests on production shafts — dynamic and rapid load tests"
+      ],
+      "tables": [
+        "Table 13-1: Benefits and limitations of design-phase field load tests",
+        "Table 13-2: Benefits and limitations of field load tests at start of construction",
+        "Table 13-3: Benefits and limitations of proof tests on production shafts"
+      ],
+      "applicability": "Load test program planning; resistance factor selection; quality assurance"
+    },
+    {
+      "section_id": "13.1.2",
+      "title": "Load Test Timing Options",
+      "body": "Design-phase tests: greatest benefit — results can be incorporated to optimize design and constructability; comparative testing of alternatives (drilled shafts vs. driven piles); reduces constructability risks for bidders; allows construction to proceed immediately to production; requires separate contract with drawings, specifications, permits. Start of construction tests: design benefits from higher resistance factors; incorporated into project contract; can include adjustments to shaft tip elevation; limited opportunity for major design changes; contractor must bid on worst-case conditions. Proof tests on production shafts: quality assurance and verification; minimal schedule impact; no separate contract; test on questionable shaft possible; AASHTO lacks established procedure/resistance factors for proof tests; unfavorable result requires expensive remediation. Multiple test locations required for large sites: when geologic character differs; when average calibrated resistance varies by factor of 2 or more from test location; when location is far from test shaft; for large number of shafts (≥2% load tests of total production shafts).",
+      "key_points": [
+        "Design-phase: greatest benefit; requires separate contract; best for schedule optimization",
+        "Start of construction: most common; incorporated in project contract; limited design flexibility",
+        "Proof tests on production shafts: QA only; AASHTO lacks established resistance factors for proof tests",
+        "Multiple tests: needed when geologic character differs or calibrated resistance varies 2× or more"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Load test program timing and scope decisions"
+    },
+    {
+      "section_id": "13.2",
+      "title": "Load Tests to Measure Axial Resistance",
+      "body": "Planning objectives: identify most critical resistance components (base vs. side; specific stratum); assess effect of construction method (slurry type, exposure time, base cleanliness, grouting); measure load-displacement relationships; verify design assumptions. Test shaft location: match geology of production shafts; consider number needed for variable sites. Test shaft construction: match production shaft diameter, length, construction method, and installation procedures as closely as possible. Test methods: (1) conventional top-loading with kentledge (dead weight) or reaction frame — practical for lower capacity shafts; very large loads impractical for high capacity shafts; (2) bi-directional load cell (O-cell) — hydraulic jack embedded in shaft; loads shaft upward and downward simultaneously; can test very high capacity shafts economically; Osterberg cell and similar devices; converts separate upward and downward test results to equivalent top-load curve; ASTM D8169/D8169M; most common method for high-capacity drilled shafts; (3) rapid compression force pulse (Statnamic) — combustion gas or drop mass applies compressive force pulse at top; ASTM D7383 Procedure A (gas) or B (drop mass); (4) high strain dynamic testing — drop weight delivers blow to top of shaft; ASTM D4945; signal matching analysis. Instrumentation: vibrating wire or resistive strain gauges on reinforcing bars at multiple elevations to determine load distribution between strata and between side and base resistance; telltales (rods) measure displacement at tip and selected elevations; accelerometers and force transducers for dynamic tests. Interpretation: strain gauge data used to construct load-transfer curves; equivalent top-load vs. displacement from O-cell test; Davisson criterion or other method for failure load from conventional test.",
+      "key_points": [
+        "Bi-directional (O-cell) method: most common for high-capacity drilled shafts; ASTM D8169/D8169M",
+        "Rapid compression force pulse (Statnamic): ASTM D7383; applicable for medium-high capacity shafts",
+        "High-strain dynamic testing: ASTM D4945; requires signal matching analysis",
+        "Instrumentation: strain gauges at multiple elevations to separate side and base resistance",
+        "O-cell converts upward/downward test results to equivalent top-load displacement curve",
+        "Load test justifies resistance factors up to φ = 0.65-0.75 vs. φ = 0.50-0.55 without testing"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 13-3: Schematic of ground conditions for Goethals Bridge Project"
+      ],
+      "tables": [],
+      "applicability": "Axial load test planning, execution, and interpretation"
+    },
+    {
+      "section_id": "13.3",
+      "title": "Load Tests to Measure Lateral Resistance",
+      "body": "Lateral load tests directly measure load-displacement response under lateral and moment loading. Most often performed as conventional lateral load test at top of shaft using a hydraulic jack reacting against an adjacent shaft or a reaction wall. Test measures lateral deflection and rotation at top. Instrumented shafts include inclinometers or slope indicators for deflection profile vs. depth; strain gauges for moment distribution. Results used to calibrate p-y curves for the site-specific soil conditions. Bi-directional lateral tests possible but less common. Important distinction: lateral tests to large displacements (>1/2 in.) can produce non-reversible structural damage to production shafts — lateral tests generally should be performed on test shafts rather than production shafts. Seismic load testing considerations: cyclic lateral load tests can simulate earthquake loading effects on p-y curves; cyclic softening of cohesive soils affects lateral resistance.",
+      "key_points": [
+        "Lateral test: hydraulic jack between test shaft and reaction shaft/wall; measure force and deflection",
+        "Inclinometers provide deflection profile vs. depth; strain gauges provide moment profile",
+        "Results calibrate p-y curves for site-specific conditions",
+        "Large lateral displacements (>1/2 in.) can damage production shafts — test on test shafts only",
+        "Cyclic lateral tests simulate seismic loading effects"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Lateral load test planning and p-y curve calibration"
+    },
+    {
+      "section_id": "13.4",
+      "title": "Summary",
+      "body": "Chapter described field load testing methods, planning considerations, and interpretation for axial and lateral loading. Load tests reduce uncertainty and justify higher resistance factors in design. Bi-directional (O-cell) testing is the most practical and economical method for high-capacity drilled shafts. Design-phase testing provides the greatest benefit; proof testing on production shafts provides minimum quality assurance. Instrumentation is essential to maximize information from test programs.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Overview"
+    }
+  ]
+}

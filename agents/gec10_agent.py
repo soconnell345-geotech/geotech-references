@@ -1,8 +1,8 @@
 """
 GEC-10 Agent — Foundry-style wrapper for GEC-10 reference text and lookups.
 
-Wraps reference text retrieval, figure lookups, and table lookups from
-FHWA-NHI-10-016 (GEC-10), Drilled Shafts: Construction Procedures
+Wraps reference text retrieval, figure/equation lookups, and table lookups from
+FHWA-NHI-18-024 (GEC-10, 2018 edition), Drilled Shafts: Construction Procedures
 and LRFD Design Methods.
 
 Three entry-point functions:
@@ -208,8 +208,8 @@ def _load_registry():
 
     # --- Figure and table lookup functions ---
     _LOOKUP_MODULES = [
-        (figures, "figures", "FHWA-NHI-10-016, Chapters 12-14 Figures"),
-        (tables, "tables", "FHWA-NHI-10-016, Chapters 10-14 Tables"),
+        (figures, "figures", "FHWA-NHI-18-024, Figures and Equations (Ch. 10-11)"),
+        (tables, "tables", "FHWA-NHI-18-024, Tables (Ch. 8-11)"),
     ]
 
     for _mod, _category_prefix, _ref in _LOOKUP_MODULES:
@@ -221,7 +221,7 @@ def _load_registry():
     # --- Build METHOD_INFO ---
     for _name, _func in _TEXT_METHODS.items():
         _METHOD_INFO[_name] = _extract_info(
-            _func, "Text Retrieval", "FHWA-NHI-10-016"
+            _func, "Text Retrieval", "FHWA-NHI-18-024"
         )
 
     for _mod, _category_prefix, _ref in _LOOKUP_MODULES:
@@ -243,18 +243,19 @@ def gec10_agent(method: str, parameters_json: str) -> str:
     """
     GEC-10 drilled shaft foundation reference and lookup tool.
 
-    Provides access to FHWA-NHI-10-016 (GEC-10) reference text and
-    design chart lookups for drilled shaft foundations. Capabilities include:
+    Provides access to FHWA-NHI-18-024 (GEC-10, 2018 edition) reference text and
+    design equation/table lookups for drilled shaft foundations. Capabilities include:
 
-    - Reference text retrieval (sections, search, chapter listing)
-    - LRFD resistance factors (Table 10-5) for side, base, group, structural
-    - Lateral resistance factors (Table 12-1) for p-y and Broms methods
-    - Group efficiency factors (Table 14-1) for various configurations
-    - P-multipliers for lateral group analysis (Table 14-2)
-    - Alpha factor for clay side resistance (Figure 13-10)
-    - Beta factor vs depth for sand (Figure 13-8)
-    - Nc* base bearing factor for clay (Figure 13-18)
-    - Rock socket side resistance (Figure 13-24)
+    - Reference text retrieval for all 18 chapters (sections, search, chapter listing)
+    - LRFD resistance factors (Table 8-4): side/base/group/structural/extreme
+    - Lateral resistance factors (Table 9-1) for p-y pushover analysis
+    - Alpha adhesion factor for cohesive side resistance (Figure 10-6, Chen 2011)
+    - su conversion from UU/UC to CIUC-equivalent (Equations 10-16, 10-17)
+    - Rock socket side resistance: normal (Eq 10-21) and caving rock (Eq 10-22)
+    - Rock socket reduction factor αE for caving rock (Table 10-3)
+    - N*c bearing capacity factor for base in clay (Table 10-2)
+    - P-multipliers for lateral group analysis (Table 11-1)
+    - Group axial efficiency for cohesionless soils (AASHTO 10.8.3.6.3)
 
     Parameters:
         method: The function name. Use gec10_list_methods() to browse.

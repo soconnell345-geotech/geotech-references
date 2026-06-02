@@ -1,0 +1,133 @@
+{
+  "reference_id": "FHWA-NHI-18-024",
+  "reference_title": "Drilled Shafts: Construction Procedures and LRFD Design Methods",
+  "chapter": 2,
+  "chapter_title": "Site Characterization",
+  "sections": [
+    {
+      "section_id": "2.1",
+      "title": "Introduction",
+      "body": "Site characterization defines subsurface soil and rock units and their physical and engineering properties. For drilled shafts it serves two purposes: (1) analyzing shaft resistance and load-deformation response for design, and (2) evaluating construction feasibility, costs, and planning. Inadequate site characterization leads to uneconomical designs, costly construction claims, and foundations that fail to meet performance expectations. Means and methods for site characterization are addressed in the AASHTO Subsurface Investigations Manual (AASHTO, 1988) and FHWA GEC 5 — Geotechnical Site Characterization (Loehr et al., 2017). GEC 5 provides comprehensive guidance for planning and executing investigations, establishing design parameters, and documenting results.",
+      "key_points": [
+        "Two purposes: design (resistance, load-deformation) and constructability (feasibility, costs)",
+        "Inadequate site characterization is a leading cause of claims and cost overruns",
+        "Refer to AASHTO Subsurface Investigations Manual and FHWA GEC 5 for general guidance",
+        "This chapter focuses on requirements specific to drilled shafts"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "All drilled shaft projects; project scoping and site investigation planning"
+    },
+    {
+      "section_id": "2.2",
+      "title": "Information Required for Design of Drilled Shafts",
+      "body": "Information needed for design falls into four categories: (1) subsurface stratigraphy — types and spatial distribution of soil and rock, identified from borings and in situ test soundings; geophysical surveys (seismic refraction, electrical resistivity) useful for rock depth interpretation; (2) groundwater conditions — needed to assess effective stress for side/tip resistance in cohesionless soils (Ch 10), p-y curves in lateral design (Ch 9), and liquefaction assessment (Ch 9); use monitoring wells and piezometers when conditions are complex or water levels respond slowly; (3) classification of soil and rock — drives interpretation of stratigraphy and dictates design methods; high plasticity clay flag for shrink-swell; (4) design parameters — established from lab tests or in situ measurements. Important: design parameters must be established using measurements consistent with the empirical design relations being used. Using SHANSEP approach for undrained shear strength removes inherent sample disturbance bias in empirical methods, potentially producing less reliable designs despite more accurate measurements.",
+      "key_points": [
+        "Four categories: stratigraphy, groundwater, classification, design parameters",
+        "Seismic refraction and electrical resistivity useful for depth to rock interpretation",
+        "Groundwater needed for effective stress, p-y curves, and liquefaction assessment",
+        "Empirical design methods incorporate bias from 'typical' sampling — use consistent measurement methods",
+        "SHANSEP approach for su may produce unreliable designs with methods calibrated to Shelby tube samples"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 2-1: Summary of information needed for drilled shaft design — stratigraphy, groundwater, classification, and design parameters for coarse-grained soils, fine-grained soils, and rock"
+      ],
+      "applicability": "Design-phase site investigation; parameter selection for all soil/rock types"
+    },
+    {
+      "section_id": "2.3",
+      "title": "Information Required for Construction of Drilled Shafts",
+      "body": "Additional information needed for contractors to select construction methods, tools, equipment, make cost estimates, and plan construction. Most frequently cited cause of drilled shaft failure is improper construction; subsurface conditions are a significant source of construction claims and cost overruns (Boeckmann and Loehr, 2016). Information categories: (1) equipment and tools selection — cobble/boulder presence and hardness, obstructions, borehole advancement rate, torque/crowd of exploration machine, rock characteristics (depth, strength, hardness, fracturing, RQD, weathering); (2) excavation support method (dry/casing/slurry) — cohesionless soils below water table, grain size including fines for polymer slurry suitability, groundwater inflow rate, artesian conditions, slurry performance at project (pH, chloride, fluid loss); (3) QA procedures — base conditions, integrity testing method, inspection tools (borehole calipers, SID, downhole cameras), need for supplemental borings during construction. For rock-bearing shafts: pre-construction coring should determine the shaft tip is not on a cobble or boulder ('floater'), evaluate rock quality (RQD, core recovery), and evaluate potential for solution cavities. Define criteria for adequate rock quality and payment provisions for additional excavation before construction begins. Technique shafts (also called method shafts or trial shafts) during design phase or at start of construction provide essential constructability data not obtainable from exploratory borings: caving/squeezing soils, cobbles/boulders, water inflow rate, base cleanout effectiveness. Can be combined with design-phase load test.",
+      "key_points": [
+        "Most frequently cited cause of drilled shaft failure: improper construction",
+        "Artesian conditions and high seepage must be clearly indicated on boring logs",
+        "For rock-bearing shafts: pre-construction coring to verify no 'floater' and evaluate rock quality",
+        "Establish rock quality criteria and payment provisions for additional excavation before construction",
+        "Technique shaft (trial shaft) during design phase reveals constructability issues not seen in borings",
+        "All constructability information must be disclosed to bidders"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 2-1: Example of extremely variable rock formation in karstic region"
+      ],
+      "tables": [
+        "Table 2-2: Information used for drilled shaft constructability — equipment/tools selection, excavation support method, QA procedure matching"
+      ],
+      "applicability": "Site investigation scoping; bid document preparation; constructability review"
+    },
+    {
+      "section_id": "2.4",
+      "title": "Recommended Minimum Scope for Geotechnical Investigations",
+      "body": "Scope depends on ground complexity, foundation loading, structure size, risk tolerance, agency experience, and constructability. AASHTO Article 10.4 requires minimum one boring per substructure ≤100 ft wide, at least two borings for substructures >100 ft wide. For drilled shafts it is often desirable to locate a boring at every shaft, especially for rock-bearing shafts. Guidance: For groups of 4+ shafts, consider borings at four corner shaft locations plus interior for larger groups. For single-shaft-per-column foundations, bore at every shaft location. For highly variable conditions (karstic limestone, degradable rock), bore at every shaft. Boring depths: extend through unsuitable strata (fill, peat, organic materials, soft clays, loose sands) to hard/dense material. For rock-bearing shafts: minimum 10 ft of rock core, or 3× shaft diameter for isolated shafts or 2× maximum group dimension below anticipated tip elevation, whichever is greater. In known uniform rock free of cavities, one diameter (10 ft minimum) below design tip may suffice. Phased investigations (preliminary + detailed) appropriate for complex sites and design-build projects.",
+      "key_points": [
+        "AASHTO minimum: 1 boring per substructure ≤100 ft wide, ≥2 for wider substructures",
+        "For drilled shafts: bore at every shaft location when rock-bearing, especially in variable conditions",
+        "Rock core minimum: 10 ft or 3× shaft diameter (isolated) or 2× group dimension, whichever greater",
+        "Probe holes during construction for highly variable bedrock instead of more pre-construction borings",
+        "Phased investigations appropriate; align investigation scope with project design stage"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 2-2: Extreme conditions at tip of drilled shafts in hard pinnacled limestone"
+      ],
+      "tables": [],
+      "applicability": "Site investigation program scoping; boring program design"
+    },
+    {
+      "section_id": "2.5",
+      "title": "Interpretation of Geotechnical Design Parameters and Reporting",
+      "body": "Design parameters should follow GEC 5 guidance. For AASHTO LRFD methods, parameters should represent the mean value within each stratigraphic unit. Uncertainty should be evaluated to ensure appropriate reliability. Where insufficient measurements exist, use conservative estimates per GEC 5. Distinguish between direct measurements (in situ test result directly input to design method, e.g., CPT tip resistance for side resistance prediction) and indirect measurements (in situ test used to infer engineering properties such as strength or stiffness). Geotechnical reports should be prepared per GEC 5 and FHWA GEC 14 (Sheahan et al., 2016). Reports must address constructability and be made available to bidders to avoid claims.",
+      "key_points": [
+        "Design parameters should represent mean value within stratigraphic unit for LRFD methods",
+        "Distinguish direct vs. indirect in situ test measurements for design method selection",
+        "Geotechnical reports per GEC 5 and GEC 14; must address constructability for bidders"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Parameter interpretation and geotechnical reporting"
+    },
+    {
+      "section_id": "2.6",
+      "title": "Differing Site Conditions",
+      "body": "Differing site conditions (DSC) clauses are required in all Federal-Aid Highway Projects by federal law. DSC clause provides contractors legal grounds for recovering costs when conditions differ materially from what could be reasonably anticipated based on bid documents. Also induces contractors to limit contingencies, promoting lower initial pricing. Best approach to reduce DSC claims is thorough site investigation and complete disclosure of all subsurface information to bidders. FHWA Geotechnical Engineering Notebook GT-15 (FHWA, 1996) provides guidance on geotechnical DSC; early recognition of geotechnical problems during design is the key. Complete disclosure of subsurface information in contract documents — or made available at central location — is critical.",
+      "key_points": [
+        "DSC clauses required on all Federal-Aid Highway Projects",
+        "Complete subsurface disclosure reduces DSC claims and contractor contingencies",
+        "Early recognition during design is key — requires adequate subsurface investigation",
+        "Establishing rock quality criteria and paying for rock excavation separately are key risk allocation strategies"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Contract preparation; risk allocation; Federal-Aid projects"
+    },
+    {
+      "section_id": "2.7",
+      "title": "Geomaterials Requiring Special Consideration",
+      "body": "Some geologic environments require adapted characterization methods: argillaceous sedimentary rock, limestone and other carbonate rocks, glacial till, Piedmont residual soils, and cemented soils. These materials may require techniques adapted to their unique characteristics for establishing engineering properties for design and construction. Detailed guidance provided in Appendix B.",
+      "key_points": [
+        "Special consideration materials: argillaceous sedimentary rock, limestone/carbonate, glacial till, Piedmont residual soils, cemented soils",
+        "Adapted characterization methods required for these materials",
+        "Detailed guidance in Appendix B with case histories from state transportation agencies"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Site characterization in geologically challenging conditions"
+    },
+    {
+      "section_id": "2.8",
+      "title": "Summary",
+      "body": "Chapter provides guidance for site characterization programs for drilled shaft projects. Information requirements for design and construction described. Differing site conditions clause requirements discussed. Geomaterials requiring special consideration identified. Use in conjunction with AASHTO Subsurface Investigations Manual, GEC 5 (Loehr et al., 2017), and GEC 14 (Sheahan et al., 2016).",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Overview"
+    }
+  ]
+}

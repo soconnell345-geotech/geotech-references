@@ -1,157 +1,123 @@
 {
-  "reference_id": "FHWA-NHI-10-016",
+  "reference_id": "FHWA-NHI-18-024",
   "reference_title": "Drilled Shafts: Construction Procedures and LRFD Design Methods",
   "chapter": 9,
-  "chapter_title": "Placement and Design of Concrete for Drilled Shafts",
+  "chapter_title": "Design for Lateral Loading",
   "sections": [
     {
       "section_id": "9.1",
       "title": "Introduction",
-      "body": "Construction of a drilled shaft foundation is essentially fabrication of a reinforced concrete structure in-situ, often under extremely challenging conditions with underwater placement at depths exceeding 100 ft. Concrete placement techniques and materials are critical and require thorough planning and design. The mix design and method of placement are most often delegated to the contractor with submittals required for approval.",
+      "body": "Lateral loading typically controls the diameter of drilled shafts for highway bridges and may also control embedded length for retaining walls, noise walls, and sign/light standard foundations. Both geotechnical and structural design are required; structural design covered in Chapter 12. For rigorous coverage of laterally loaded deep foundations see FHWA GEC 9 (Parkes et al., 2018). This chapter does not explicitly address seismic design, but the methods can be used to determine linear or nonlinear spring constants for bases of structural columns for dynamic analysis.",
       "key_points": [
-        "Concrete placement is a critical aspect of drilled shaft construction",
-        "Mix design is typically delegated to the contractor with engineer approval",
-        "Chapter focuses on workability characteristics critical for construction success"
+        "Lateral loading typically controls shaft diameter; may control embedded length for retaining walls/sign structures",
+        "For detailed treatment see FHWA GEC 9 (Parkes et al., 2018)",
+        "Methods provide spring constants for structural dynamic analysis"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "All drilled shaft construction projects requiring concrete placement"
+      "applicability": "All drilled shafts subject to lateral loading; bridge piers, retaining walls, sign structures"
     },
     {
       "section_id": "9.2",
-      "title": "Basic Characteristics of Drilled Shaft Concrete",
-      "body": "Drilled shaft concrete must meet unique requirements compared to other reinforced concrete structures. The key properties are: filling ability (flow through tremie and fill excavation), passing ability (flow through reinforcement without blocking), self-weight compaction (consolidate without vibration), resistance to segregation and bleeding, resistance to leaching, controlled setting (retain workability during placement), durability, low heat of hydration (for large diameters), and appropriate strength and stiffness.",
+      "title": "Examples of Lateral Loading Applications",
+      "body": "Sources of lateral loads: earth pressures, centrifugal forces, braking, wind, current/wave forces, ice loads, vessel impact, and earthquakes. Monoshaft (single drilled shaft supporting single column): small footprint advantage; growing use for aesthetics. Caltrans Type I: continuous cage from shaft to column. Caltrans Type II: shaft ≥18 in. larger diameter — designed to force plastic hinge at column base during seismic event rather than at depth. Groups of shafts: cap provides rotational restraint and transfers column bending moments to axial forces in shafts; better for large lateral loads from vessel impact, seismic, ice, or wind. Bridge over water: foundation must accommodate wind, current/waves, vessel impact, seismic, ice, centrifugal forces, braking plus scour. Sound walls, sign structures, high mast lighting: dominated by wind overturning; single-shaft resists moment and shear in bending; two-shaft resists moment as push-pull couple plus some bending for shear. Abutments: resist lateral forces from earth pressure, traffic surcharge, braking, thermal, seismic. Retaining structures: secant and tangent pile walls; may be tied back with anchors if cantilever is insufficient. Slope stabilization: shaft wall across slip surface increases resisting forces in soil.",
       "key_points": [
-        "Concrete must self-consolidate under its own weight without vibration",
-        "Must remain fluid for 4 to 8 hours under varying temperature conditions",
-        "Filling ability and passing ability are the most critical fresh properties",
-        "Compressive strengths of 4,000 to 5,000 psi are typical"
+        "Caltrans Type I: continuous cage shaft-to-column; Type II: shaft ≥18 in. larger to force plastic hinge at column base in seismic event",
+        "Groups with cap: rotational restraint; moment transferred as axial forces in shafts",
+        "Sound wall/sign/lighting: wind controls; two-shaft = push-pull couple for moment + bending for shear",
+        "Slope stabilization: shaft wall across slip surface increases soil resistance"
       ],
       "equations": [],
-      "figures": [],
+      "figures": [
+        "Figure 9-1: Single column piers with monoshaft foundations",
+        "Figure 9-2: Caltrans Type I and Type II monoshaft designs",
+        "Figure 9-3: Drilled shaft group foundation for bridge (8 shafts, I-35W Minneapolis style)",
+        "Figure 9-5: Overhead sign structure — two-shaft and single-shaft foundations",
+        "Figure 9-6: Bridge abutment foundation arrangements",
+        "Figure 9-9: Drilled shaft retaining walls — secant and tangent pile walls",
+        "Figure 9-11: Drilled shafts for stabilizing a slide (Reese et al., 1987)",
+        "Figure 9-12: Analysis of drilled shafts in moving soil (Loehr and Brown, 2007)"
+      ],
       "tables": [],
-      "applicability": "Specifying and evaluating concrete for drilled shaft construction"
+      "applicability": "Application identification; lateral load sources and design conditions"
     },
     {
       "section_id": "9.3",
-      "title": "Placement of Concrete",
-      "body": "Concrete placement must be carefully planned for the specific construction method (dry, cased, or wet). In dry excavations, concrete can be placed by free fall up to 80 ft without problems as long as it does not strike the cage or borehole wall. In cased holes, the concrete head must exceed external fluid pressure during casing extraction. In wet excavations, tremie or pump placement is required with minimum 10 ft embedment maintained in fresh concrete.",
+      "title": "Design for Lateral Loading",
+      "body": "Three design conditions: (1) Geotechnical Strength Limit State — sufficient size and depth to support factored loads without collapse; critical for transient wind or extreme event (vessel impact, seismic); (2) Structural Strength Limit State — sufficient size and reinforcement to resist moment, shear, and axial demands; (3) Service Limit State — deformations and rotations within tolerable limits; requires determination of foundation stiffness for structural analysis. Design is Block 10 in the overall process of Chapter 8. Design subsurface profile must consider scour and liquefaction; different profiles may be needed for different load cases.",
       "key_points": [
-        "Free fall placement acceptable up to 80 ft if concrete does not strike cage or walls",
-        "Depth-to-cage-diameter ratio of 24 or less allows free fall without problems",
-        "Water inflow exceeding 12 inches per hour (1 inch per 5 min) requires wet method",
-        "Tremie must be embedded minimum 10 ft into fresh concrete during placement",
-        "Concrete head inside casing must exceed external fluid pressure during extraction",
-        "Bottom sediment should not exceed 3 inches prior to concrete placement"
+        "Three limit states: geotechnical strength, structural strength, service (deformation control)",
+        "Design is Block 10 of overall process (Figure 8-1 in Chapter 8)",
+        "Scour and liquefaction may require different subsurface profiles for different load cases"
       ],
-      "equations": [
-        "Required: z_f * gamma_f << z_c * gamma_c (concrete pressure must exceed fluid pressure during casing extraction)"
-      ],
+      "equations": [],
       "figures": [
-        "Figure 9-1: Free Fall Concrete Placement in a Dry Excavation",
-        "Figure 9-4: Concrete Pressure Head Requirement During Casing Extraction",
-        "Figure 9-11: Control of Tremie to Establish Concrete Head",
-        "Figure 9-12: Breach of Tremie Due to Failure to Establish Concrete Head",
-        "Figure 9-13: Schematic of Concrete Vent Due to Loss of Workability",
-        "Figure 9-17: Example Concrete Volume Plots"
+        "Figure 9-13: Drilled shaft design process for lateral loads — flowchart"
       ],
       "tables": [],
-      "applicability": "Concrete placement operations for all construction methods (dry, cased, wet)"
+      "applicability": "All drilled shaft lateral load design; AASHTO LRFD limit state checks"
+    },
+    {
+      "section_id": "9.3.2",
+      "title": "Planning Stage Estimates",
+      "body": "Broms' method: simple closed-form solution for planning stage estimates. Short rigid pile in cohesive soil: passive pressure p = 9su from depth 1.5B; fails by rotation; Hu = 9suBL(0.5L - e); Mu = 0.5HuL (simplifications). Short rigid pile in cohesionless soil: Hu = 3BKpγH²/2. Long flexible pile (structural failure): moment demand used to design reinforcement. Broms method does NOT provide lateral deformations — use p-y method for service limit state. Log spiral method: rational approach for short rigid piles in rock.",
+      "key_points": [
+        "Broms method: planning stage only; does NOT compute deformations",
+        "Use p-y method for service limit state (deformation) evaluation",
+        "Short pile in clay: passive = 9su below 1.5B; Short pile in sand: Kp passive",
+        "Long flexible pile: structural failure mode — design for maximum moment"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Planning stage lateral load estimates; preliminary design"
+    },
+    {
+      "section_id": "9.3.3",
+      "title": "Computational Procedures and Design Methodology (p-y Method)",
+      "body": "P-y curve method is the standard analytical tool. Soil/rock modeled as nonlinear Winkler springs: p = lateral soil resistance per unit length (kN/m); y = lateral deflection (m). Shaft modeled as elastic beam-column. Provides shear, moment, and deflection vs. depth. Standard p-y curve formulations: (1) Soft clay below GWT (Matlock 1970): p/pu = 0.5(y/y50)^(1/3) for y ≤ 8y50; p = 0.72pu for y > 8y50 (static); p = 0.72pu plateau (cyclic); pu = min(3suB + σ'vB + JsuZ, 9suB); y50 = 2.5ε50B; (2) Stiff clay below GWT (Reese et al. 1975): different formulation for static vs. cyclic loading; (3) Sand (Reese et al. 1974 / O'Neill-Murchison 1983): A*pu/kz for small y; pu = min(C1H + C2B)γ'H, C3γ'HB) effective stress-based; k (initial modulus of subgrade reaction) tabulated vs. friction angle; (4) Weak rock (Reese 1997): p-y based on uniaxial compressive strength; (5) Strong rock (Carter & Kulhawy 1992): p-y based on mass shear modulus. Boundary conditions: free head (M=0, no rotation restraint at top — typical for monoshaft); fixed head (rotation=0 — pile cap); partial fixity via rotational spring. Computer programs: COM624P, LPILE, FB-Multipier, OpenSees, FB-Deep, SHAFT. Key outputs: maximum moment and its depth; shear force profile; lateral deflection at shaft top; rotation at shaft top.",
+      "key_points": [
+        "P-y method: soil = nonlinear Winkler springs; shaft = elastic beam-column",
+        "Soft clay (Matlock 1970): p/pu = 0.5(y/y50)^(1/3); pu = min(9suB, 3suB + σ'vB + JsuZ); y50 = 2.5ε50B",
+        "Sand p-y: k (initial modulus) tabulated vs. friction angle; effective stress-based pu",
+        "Boundary conditions: free head (M=0 at top) or fixed head (rotation=0) or rotational spring",
+        "Computer programs: COM624P, LPILE, FB-Multipier, OpenSees"
+      ],
+      "equations": [
+        "Soft clay (Matlock 1970): p/pu = 0.5(y/y50)^(1/3) for y ≤ 8y50; p = 0.72pu for y > 8y50",
+        "pu = min(9suB, 3suB + σ'vB + JsuZ) — ultimate lateral resistance per unit length of shaft",
+        "y50 = 2.5ε50B — reference deflection at 50% ultimate resistance"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Final design lateral analysis; AASHTO strength and service limit state checks"
     },
     {
       "section_id": "9.4",
-      "title": "Drilling Near a Recently Concreted Shaft",
-      "body": "Concrete in a recently placed shaft must achieve initial set before drilling or casing installation within a clear spacing of three shaft diameters. The primary concern is communication between excavations where fresh concrete could break through. A typical concrete mix achieves set within 24 hours; high-early-strength cement is not recommended for shafts exceeding 5 ft diameter due to heat of hydration concerns.",
+      "title": "Design for Seismic Loading",
+      "body": "Seismic is Extreme Event I limit state per AASHTO. Two types of loading: (1) kinematic interaction — free-field ground motions impose deformations on foundation; (2) inertial interaction — structural mass vibrates and imposes forces on foundation. Liquefaction effects: evaluate liquefaction potential; post-liquefaction residual strength; p-y curves for liquefied soil use reduced resistance; lateral spreading imposes passive forces on shaft above liquefied zone; shaft tip must extend into non-liquefiable bearing stratum. Cyclic softening of cohesive soils: modified p-y curves; cyclically softened shear strength for sensitive clays. Foundation stiffness for structural analysis: secant stiffness (force/deflection) and rotational stiffness; typically represented as 3×3 or 6×6 stiffness matrix or equivalent depth of fixity. Caltrans Type II: force plastic hinge at column base, not in shaft at depth where inspection/repair is difficult.",
       "key_points": [
-        "Minimum clear spacing of three shaft diameters before nearby drilling",
-        "Concrete must achieve initial set before nearby construction",
-        "Vibro-driving of casing near fresh concrete can create elevated pore pressures",
-        "Studies show vibration from nearby construction does not normally damage fresh concrete"
+        "Seismic: Extreme Event I limit state per AASHTO",
+        "Kinematic + inertial interaction both contribute to seismic loading",
+        "Liquefied soil: reduced p-y resistance; extend shaft below liquefiable zone",
+        "Lateral spreading: passive forces on shaft above liquefied zone",
+        "Foundation stiffness matrix or depth of fixity for structural dynamic analysis"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Construction sequencing for closely-spaced drilled shafts"
+      "applicability": "Seismic design in Zones 2, 3, and 4; liquefaction-affected sites; high seismic regions"
     },
     {
       "section_id": "9.5",
-      "title": "Base Grouting",
-      "body": "Post-grouting of the shaft base enhances end bearing and compensates for loose material at the bottom. Grout is delivered via tubes placed within the reinforcement using a neat water-cement mixture with w/c ratio of 0.40 to 0.55. Typical grouting pressures range up to 800 psi. Grouting is performed after concrete achieves at least 2500 psi compressive strength. Performance targets include achieving a minimum target pressure with a minimum grout volume and an upper limit on upward shaft movement.",
-      "key_points": [
-        "Enhances end bearing capacity and compensates for base loosening",
-        "Grout is neat water-cement mixture with w/c ratio 0.40 to 0.55",
-        "Typical grouting pressures up to 800 psi",
-        "Performed after concrete achieves minimum 2500 psi",
-        "Multiple grout circuits provide redundancy against blockage",
-        "Upper limit on shaft upward movement; excessive volume indicates hydraulic fracture"
-      ],
-      "equations": [],
-      "figures": [
-        "Figure 9-19: Sleeve Port Systems for Distribution of Grout to the Base"
-      ],
-      "tables": [],
-      "applicability": "Drilled shafts where enhanced end bearing is needed or base cleanliness is uncertain"
-    },
-    {
-      "section_id": "9.6",
-      "title": "Concrete Mix Design",
-      "body": "The concrete mix must achieve properties needed for constructability while meeting structural requirements. Fresh concrete properties (workability, passing ability) are more critical than hardened properties for drilled shaft construction. Compressive strength requirements of 4,000 to 5,000 psi are typical and easily achieved with modern materials. The section covers cementitious materials, chemical admixtures, aggregate and water, workability, temperature control, and mixture proportions.",
-      "key_points": [
-        "Type I or Type I/II Portland cement is standard; Type III should be avoided for shafts > 5 ft diameter",
-        "SCMs (fly ash, slag cement, silica fume) improve durability and reduce heat of hydration",
-        "Class C fly ash: 20-30% replacement; Class F fly ash: 15-25%; Slag: 30-50%; Silica fume: 5-8%",
-        "Slump of 6+ inches for dry method, about 9 inches for wet/casing methods",
-        "Self-consolidating concrete (SCC) uses slump flow of 18-24 inches",
-        "Water/cementitious materials ratio (w/cm) of 0.40 to 0.45 typical; HRWR can reduce to 0.35",
-        "Maximum coarse aggregate size typically 3/4 inch; many agencies use 3/8 inch",
-        "Set-controlling admixtures should allow 2+ hours beyond estimated placement time",
-        "Shafts > 5 ft diameter may experience mass concrete thermal effects (DEF risk above 158 deg F)"
-      ],
-      "equations": [],
-      "figures": [
-        "Figure 9-21: Simulated Effects of SCMs on Maximum Concrete Temperature",
-        "Figure 9-22: Effect of Initial Mixture Temperatures on Temperature Development",
-        "Figure 9-23: Slump Loss Relationship from a Trial Mixture Design"
-      ],
-      "tables": [
-        "Table 9-1: Examples of Mixture Proportions for Conventional Drilled Shaft Tremie Concrete",
-        "Table 9-2: Examples of Mixture Proportions for SCC Type Drilled Shaft Concrete",
-        "Table 9-3: Typical Proportions of Pozzolanic Additives",
-        "Table 9-4: Typical Proportions of Pre-Approved Air Entraining Chemical Admixtures"
-      ],
-      "applicability": "Specifying and designing concrete mixtures for drilled shaft construction"
-    },
-    {
-      "section_id": "9.7",
-      "title": "Concrete Tests",
-      "body": "Quality control testing includes trial mixture approval, batch plant tests, and jobsite tests. Trial batching should evaluate slump loss over time and develop full-scale technique shafts before production. Batch plant inspections verify component proportions (cementitious +/-1%, aggregates +/-2%, water +/-1%). Jobsite testing should include temperature, slump, air content (if required), and cylinder samples. For SCC, slump flow and VSI tests replace conventional slump testing.",
-      "key_points": [
-        "Trial mixtures should develop slump loss curves; maintain 4+ inch slump at 4 hours",
-        "Full-scale technique shaft recommended before production",
-        "Minimum one set of cylinders per drilled shaft for quality assurance",
-        "SCC requires slump flow test (ASTM C 1611) and VSI rating of 1.5 or less",
-        "Static segregation test (ASTM C 1610) should not exceed 10%",
-        "Addition of water at jobsite generally not recommended but sometimes necessary"
-      ],
-      "equations": [],
-      "figures": [],
-      "tables": [],
-      "applicability": "Quality control and quality assurance during drilled shaft concrete operations"
-    },
-    {
-      "section_id": "9.8",
       "title": "Summary",
-      "body": "Concrete placement is one of the most critical aspects of drilled shaft construction. This chapter covers placement techniques, mix design emphasizing fresh concrete properties for constructability, examples of successful mix designs, and quality control testing procedures.",
-      "key_points": [
-        "Workability is the most critical concrete property for drilled shafts",
-        "Mix design should prioritize fresh properties over hardened properties",
-        "Quality control testing is essential at batch plant and jobsite"
-      ],
+      "body": "Chapter provided guidance on design of drilled shafts for lateral loading including applications, design process, planning stage estimates, detailed analysis using p-y curves, and seismic considerations. P-y method is the standard analytical tool. Structural design of reinforced concrete per Chapter 12. See FHWA GEC 9 for comprehensive treatment.",
+      "key_points": [],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Overview and summary of drilled shaft concrete requirements"
+      "applicability": "Overview"
     }
   ]
 }

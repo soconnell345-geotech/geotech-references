@@ -1,190 +1,243 @@
-"""Tests for GEC-10 figure lookup functions."""
+"""Tests for GEC-10 figure and equation lookup functions (FHWA-NHI-18-024)."""
 
+import math
 import pytest
 
 from geotech_references.gec_10.figures import (
-    figure_13_10_alpha_clay,
-    figure_13_8_beta_sand,
-    figure_13_18_nc_base_clay,
-    figure_13_24_rock_socket_side,
+    figure_10_6_alpha_clay,
+    su_uu_to_ciuc,
+    su_uc_to_ciuc,
+    equation_10_21_rock_socket_side,
+    equation_10_22_caving_rock_side,
 )
 
-
-# ============================================================================
-# Figure 13-10: Alpha Factor for Clay
-# ============================================================================
-
-class TestFigure1310:
-    """Tests for figure_13_10_alpha_clay()."""
-
-    def test_low_su_returns_055(self):
-        """su <= 50 kPa should give alpha ≈ 0.55."""
-        assert abs(figure_13_10_alpha_clay(25) - 0.55) < 0.01
-        assert abs(figure_13_10_alpha_clay(50) - 0.55) < 0.01
-
-    def test_high_su_decreases(self):
-        """Alpha decreases with increasing su."""
-        alpha_100 = figure_13_10_alpha_clay(100)
-        alpha_200 = figure_13_10_alpha_clay(200)
-        assert alpha_100 > alpha_200
-
-    def test_su_100(self):
-        alpha = figure_13_10_alpha_clay(100)
-        assert abs(alpha - 0.42) < 0.02
-
-    def test_su_150(self):
-        alpha = figure_13_10_alpha_clay(150)
-        assert abs(alpha - 0.35) < 0.02
-
-    def test_su_250(self):
-        alpha = figure_13_10_alpha_clay(250)
-        assert abs(alpha - 0.31) < 0.02
-
-    def test_interpolation(self):
-        """Intermediate values interpolated smoothly."""
-        alpha_75 = figure_13_10_alpha_clay(75)
-        assert 0.42 < alpha_75 < 0.55
-
-    def test_below_range_raises(self):
-        with pytest.raises(ValueError, match="below"):
-            figure_13_10_alpha_clay(10)
-
-    def test_above_range_raises(self):
-        with pytest.raises(ValueError, match="exceeds"):
-            figure_13_10_alpha_clay(300)
+_PA = 101.325  # atmospheric pressure, kPa
 
 
 # ============================================================================
-# Figure 13-8: Beta Factor vs Depth for Sand
+# Figure 10-6: Alpha factor for cohesive side resistance (Chen et al. 2011)
+# α = 0.30 + 0.17 / (su / pa)
 # ============================================================================
 
-class TestFigure138:
-    """Tests for figure_13_8_beta_sand()."""
+class TestFigure106AlphaClay:
 
-    def test_surface_mean(self):
-        beta = figure_13_8_beta_sand(0, "mean")
-        assert abs(beta - 1.20) < 0.05
+    def test_formula_su50(self):
+        alpha = figure_10_6_alpha_clay(50.0)
+        expected = 0.30 + 0.17 / (50.0 / _PA)
+        assert abs(alpha - expected) < 1e-9
 
-    def test_10m_mean(self):
-        beta = figure_13_8_beta_sand(10, "mean")
-        assert abs(beta - 0.62) < 0.05
+    def test_formula_su100(self):
+        alpha = figure_10_6_alpha_clay(100.0)
+        expected = 0.30 + 0.17 / (100.0 / _PA)
+        assert abs(alpha - expected) < 1e-9
 
-    def test_beta_decreases_with_depth(self):
-        beta_5 = figure_13_8_beta_sand(5, "mean")
-        beta_20 = figure_13_8_beta_sand(20, "mean")
-        assert beta_5 > beta_20
+    def test_formula_su200(self):
+        alpha = figure_10_6_alpha_clay(200.0)
+        expected = 0.30 + 0.17 / (200.0 / _PA)
+        assert abs(alpha - expected) < 1e-9
 
-    def test_upper_greater_than_mean(self):
-        upper = figure_13_8_beta_sand(10, "upper")
-        mean = figure_13_8_beta_sand(10, "mean")
-        lower = figure_13_8_beta_sand(10, "lower")
-        assert upper > mean > lower
+    def test_alpha_decreases_with_su(self):
+        """Higher su → lower alpha."""
+        assert figure_10_6_alpha_clay(50) > figure_10_6_alpha_clay(100)
+        assert figure_10_6_alpha_clay(100) > figure_10_6_alpha_clay(200)
 
-    def test_lower_bound_10m(self):
-        beta = figure_13_8_beta_sand(10, "lower")
-        assert abs(beta - 0.40) < 0.05
+    def test_su50_value(self):
+        """Check representative value: su=50 kPa → α ≈ 0.64."""
+        alpha = figure_10_6_alpha_clay(50)
+        assert abs(alpha - 0.644) < 0.002
 
-    def test_upper_bound_10m(self):
-        beta = figure_13_8_beta_sand(10, "upper")
-        assert abs(beta - 0.90) < 0.05
+    def test_su100_value(self):
+        """su=100 kPa → α ≈ 0.47."""
+        alpha = figure_10_6_alpha_clay(100)
+        assert abs(alpha - 0.472) < 0.002
 
-    def test_negative_depth_raises(self):
-        with pytest.raises(ValueError, match="outside"):
-            figure_13_8_beta_sand(-1)
+    def test_su200_value(self):
+        """su=200 kPa → α ≈ 0.39."""
+        alpha = figure_10_6_alpha_clay(200)
+        assert abs(alpha - 0.386) < 0.002
 
-    def test_beyond_30m_raises(self):
-        with pytest.raises(ValueError, match="outside"):
-            figure_13_8_beta_sand(35)
+    def test_su500_value(self):
+        """su=500 kPa → α ≈ 0.33 (approaches 0.30 asymptote)."""
+        alpha = figure_10_6_alpha_clay(500)
+        assert abs(alpha - 0.334) < 0.002
 
-    def test_unknown_bound_raises(self):
-        with pytest.raises(ValueError, match="Unknown bound"):
-            figure_13_8_beta_sand(10, "invalid")
+    def test_asymptote_large_su(self):
+        """Very high su → alpha approaches 0.30."""
+        alpha = figure_10_6_alpha_clay(10000)
+        assert abs(alpha - 0.30) < 0.002
 
+    def test_zero_su_raises(self):
+        with pytest.raises(ValueError):
+            figure_10_6_alpha_clay(0)
 
-# ============================================================================
-# Figure 13-18: Nc* for Base in Clay
-# ============================================================================
-
-class TestFigure1318:
-    """Tests for figure_13_18_nc_base_clay()."""
-
-    def test_surface(self):
-        nc = figure_13_18_nc_base_clay(0)
-        assert abs(nc - 6.50) < 0.1
-
-    def test_deep(self):
-        nc = figure_13_18_nc_base_clay(5)
-        assert abs(nc - 9.0) < 0.1
-
-    def test_nc_increases_with_depth(self):
-        nc_1 = figure_13_18_nc_base_clay(1)
-        nc_3 = figure_13_18_nc_base_clay(3)
-        assert nc_3 > nc_1
-
-    def test_nc_4_db(self):
-        nc = figure_13_18_nc_base_clay(4.0)
-        assert abs(nc - 8.90) < 0.1
-
-    def test_clamped_above_5(self):
-        """D/B > 5 should return max Nc* = 9.0."""
-        nc = figure_13_18_nc_base_clay(10)
-        assert abs(nc - 9.0) < 0.01
-
-    def test_negative_raises(self):
-        with pytest.raises(ValueError, match="must be >= 0"):
-            figure_13_18_nc_base_clay(-1)
+    def test_negative_su_raises(self):
+        with pytest.raises(ValueError):
+            figure_10_6_alpha_clay(-50)
 
 
 # ============================================================================
-# Figure 13-24: Rock Socket Side Resistance
+# Equations 10-16 / 10-17: su conversion (UU / UC → CIUC)
 # ============================================================================
 
-class TestFigure1324:
-    """Tests for figure_13_24_rock_socket_side()."""
+class TestSuUuToCiuc:
+    """Equation 10-17: su_UU / su_CIUC = 0.911 + 0.499 * log10(su_UU / σ'v0)."""
 
-    def test_intermediate_1mpa(self):
-        result = figure_13_24_rock_socket_side(1.0, "intermediate")
-        assert abs(result["C"] - 0.30) < 0.01
-        assert abs(result["fs_mpa"] - 0.30) < 0.01
-        assert abs(result["fs_kpa"] - 300.0) < 1.0
+    def test_manual_example(self):
+        """Replicate the worked example in Section 10.3.5.2.
 
-    def test_smooth_lower_than_intermediate(self):
-        smooth = figure_13_24_rock_socket_side(4.0, "smooth")
-        inter = figure_13_24_rock_socket_side(4.0, "intermediate")
-        assert smooth["fs_mpa"] < inter["fs_mpa"]
+        su_UU = 2000 psf ≈ 95.76 kPa, σ'v0 = 3697 psf ≈ 177.06 kPa
+        Expected su_CIUC ≈ 2571 psf ≈ 123.1 kPa.
+        """
+        su_uu = 2000 * 0.04788  # psf → kPa
+        sigma_v0 = 3697 * 0.04788
+        result = su_uu_to_ciuc(su_uu, sigma_v0)
+        expected = 2571 * 0.04788  # ≈ 123.1 kPa
+        assert abs(result - expected) < 1.0
 
-    def test_rough_higher_than_intermediate(self):
-        rough = figure_13_24_rock_socket_side(4.0, "rough")
-        inter = figure_13_24_rock_socket_side(4.0, "intermediate")
-        assert rough["fs_mpa"] > inter["fs_mpa"]
+    def test_ciuc_larger_than_uu(self):
+        """For typical su/σ'v0 < 1, CIUC should be larger than UU."""
+        result = su_uu_to_ciuc(50, 200)
+        assert result > 50
 
-    def test_smooth_4mpa(self):
-        result = figure_13_24_rock_socket_side(4.0, "smooth")
-        expected = 0.20 * (4.0 ** 0.5)
-        assert abs(result["fs_mpa"] - expected) < 0.01
+    def test_zero_su_raises(self):
+        with pytest.raises(ValueError):
+            su_uu_to_ciuc(0, 100)
 
-    def test_rough_10mpa(self):
-        result = figure_13_24_rock_socket_side(10.0, "rough")
-        expected = 0.45 * (10.0 ** 0.5)
-        assert abs(result["fs_mpa"] - expected) < 0.01
+    def test_zero_sigma_raises(self):
+        with pytest.raises(ValueError):
+            su_uu_to_ciuc(50, 0)
 
-    def test_zero_qu(self):
-        result = figure_13_24_rock_socket_side(0.0, "intermediate")
-        assert result["fs_mpa"] == 0.0
 
-    def test_negative_qu_raises(self):
-        with pytest.raises(ValueError, match="must be >= 0"):
-            figure_13_24_rock_socket_side(-1.0)
+class TestSuUcToCiuc:
+    """Equation 10-16: su_UC / su_CIUC = 0.893 + 0.513 * log10(su_UC / σ'v0)."""
 
-    def test_unknown_roughness_raises(self):
-        with pytest.raises(ValueError, match="Unknown roughness"):
-            figure_13_24_rock_socket_side(1.0, "extreme")
+    def test_ciuc_larger_than_uc(self):
+        """CIUC typically larger than UC (UC is conservative)."""
+        result = su_uc_to_ciuc(50, 200)
+        assert result > 50
 
-    def test_result_has_all_keys(self):
-        result = figure_13_24_rock_socket_side(5.0, "intermediate")
-        assert "C" in result
-        assert "qu_mpa" in result
-        assert "fs_mpa" in result
-        assert "fs_kpa" in result
-        assert "roughness" in result
-        assert "description" in result
+    def test_formula_explicit(self):
+        su_uc, sv0 = 100.0, 200.0
+        expected = su_uc / (0.893 + 0.513 * math.log10(su_uc / sv0))
+        assert abs(su_uc_to_ciuc(su_uc, sv0) - expected) < 1e-9
+
+    def test_zero_su_raises(self):
+        with pytest.raises(ValueError):
+            su_uc_to_ciuc(0, 100)
+
+    def test_zero_sigma_raises(self):
+        with pytest.raises(ValueError):
+            su_uc_to_ciuc(50, 0)
+
+
+# ============================================================================
+# Equation 10-21: Rock socket side resistance, normal conditions
+# f_SN / pa = C * sqrt(qu / pa),  C = 1.0 default
+# ============================================================================
+
+class TestEquation1021RockSocketSide:
+
+    def test_normal_1000kpa(self):
+        """qu=1000 kPa, C=1.0: f_sn = pa * sqrt(1000/pa) ≈ 318.4 kPa."""
+        result = equation_10_21_rock_socket_side(1000.0)
+        expected = _PA * math.sqrt(1000.0 / _PA)
+        assert abs(result["f_sn_kpa"] - expected) < 0.5
+
+    def test_normal_condition_label(self):
+        result = equation_10_21_rock_socket_side(1000.0, C=1.0)
+        assert result["condition"] == "normal"
+
+    def test_roughened_condition_label(self):
+        result = equation_10_21_rock_socket_side(1000.0, C=1.9)
+        assert result["condition"] == "artificially roughened"
+
+    def test_higher_c_gives_higher_resistance(self):
+        r1 = equation_10_21_rock_socket_side(5000.0, C=1.0)
+        r2 = equation_10_21_rock_socket_side(5000.0, C=1.9)
+        assert r2["f_sn_kpa"] > r1["f_sn_kpa"]
+
+    def test_higher_qu_gives_higher_resistance(self):
+        r1 = equation_10_21_rock_socket_side(500.0)
+        r2 = equation_10_21_rock_socket_side(5000.0)
+        assert r2["f_sn_kpa"] > r1["f_sn_kpa"]
+
+    def test_result_keys(self):
+        result = equation_10_21_rock_socket_side(2000.0)
+        for key in ("C", "qu_kpa", "qu_mpa", "f_sn_kpa", "f_sn_mpa", "condition"):
+            assert key in result
+
+    def test_qu_mpa_conversion(self):
+        result = equation_10_21_rock_socket_side(5000.0)
+        assert abs(result["qu_mpa"] - 5.0) < 0.001
+
+    def test_f_sn_mpa_consistent(self):
+        result = equation_10_21_rock_socket_side(3000.0)
+        assert abs(result["f_sn_kpa"] / 1000 - result["f_sn_mpa"]) < 0.0001
+
+    def test_zero_qu_raises(self):
+        with pytest.raises(ValueError, match="positive"):
+            equation_10_21_rock_socket_side(0.0)
+
+    def test_negative_c_raises(self):
+        with pytest.raises(ValueError):
+            equation_10_21_rock_socket_side(1000.0, C=-1.0)
+
+
+# ============================================================================
+# Equation 10-22 + Table 10-3: Rock socket side resistance, caving rock
+# f_SN / pa = 0.65 * αE * sqrt(qu / pa)
+# ============================================================================
+
+class TestEquation1022CavingRockSide:
+
+    def test_rqd100_closed_gives_max_alpha(self):
+        """RQD=100%, closed joints → αE = 1.00."""
+        result = equation_10_22_caving_rock_side(1000.0, 100, "closed")
+        assert abs(result["alpha_E"] - 1.00) < 0.01
+
+    def test_rqd100_open_gives_085(self):
+        """RQD=100%, open joints → αE = 0.85."""
+        result = equation_10_22_caving_rock_side(1000.0, 100, "open")
+        assert abs(result["alpha_E"] - 0.85) < 0.01
+
+    def test_rqd20_both_045(self):
+        """RQD=20%: αE = 0.45 for both closed and open."""
+        r1 = equation_10_22_caving_rock_side(1000.0, 20, "closed")
+        r2 = equation_10_22_caving_rock_side(1000.0, 20, "open")
+        assert abs(r1["alpha_E"] - 0.45) < 0.01
+        assert abs(r2["alpha_E"] - 0.45) < 0.01
+
+    def test_rqd70_closed_vs_open(self):
+        """Closed joints stronger than open at RQD=70%."""
+        rc = equation_10_22_caving_rock_side(1000.0, 70, "closed")
+        ro = equation_10_22_caving_rock_side(1000.0, 70, "open")
+        assert rc["alpha_E"] > ro["alpha_E"]
+
+    def test_caving_lower_than_normal(self):
+        """Caving equation should give lower resistance than normal (C=1.0) for αE<1."""
+        normal = equation_10_21_rock_socket_side(1000.0, C=1.0)
+        caving = equation_10_22_caving_rock_side(1000.0, 50, "closed")
+        assert caving["f_sn_kpa"] < normal["f_sn_kpa"]
+
+    def test_result_keys(self):
+        result = equation_10_22_caving_rock_side(2000.0, 70, "closed")
+        for key in ("alpha_E", "qu_kpa", "f_sn_kpa", "f_sn_mpa",
+                    "rqd_pct", "joint_condition"):
+            assert key in result
+
+    def test_rqd_below_minimum_clamped(self):
+        """RQD below table minimum (20%) should return the minimum αE value."""
+        result = equation_10_22_caving_rock_side(1000.0, 10, "closed")
+        assert abs(result["alpha_E"] - 0.45) < 0.01
+
+    def test_zero_qu_raises(self):
+        with pytest.raises(ValueError):
+            equation_10_22_caving_rock_side(0.0, 70)
+
+    def test_rqd_out_of_range_raises(self):
+        with pytest.raises(ValueError, match="0"):
+            equation_10_22_caving_rock_side(1000.0, 120)
+
+    def test_invalid_joint_condition_raises(self):
+        with pytest.raises(ValueError, match="joint_condition"):
+            equation_10_22_caving_rock_side(1000.0, 70, "tight")

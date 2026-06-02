@@ -1,0 +1,601 @@
+{
+  "reference_id": "FHWA-NHI-10-024",
+  "reference_title": "Design and Construction of Mechanically Stabilized Earth Walls and Reinforced Soil Slopes",
+  "volume": 1,
+  "chapter": 4,
+  "chapter_title": "Design of MSE Walls",
+  "sections": [
+    {
+      "section_id": "4.1",
+      "title": "Design Methodology and Analysis Methods",
+      "body": "MSE wall design follows the LRFD framework mandated by FHWA and AASHTO as of October 1, 2010. The core analytical methods (external and internal stability evaluation) are unchanged from ASD practice — the primary change is how loads and resistances are compared and how uncertainty is incorporated. The MSE wall is assumed to act as a coherent gravity mass for external stability, and a bilinear (inextensible) or linear (extensible) failure surface is assumed for internal stability. Note: phi (φ) is used for both soil friction angle and LRFD resistance factor; gamma (γ) is used for both soil unit weight and load factor in this chapter. Current LRFD load and resistance factors for MSE walls are calibrated by fitting to ASD results, so designs should not significantly differ from past ASD designs. Strength limit states generally control member sizes; service limit states may control joint widths, construction sequence, and deformations.",
+      "key_points": [
+        "LRFD framework required as of October 1, 2010; core analytical methods unchanged from ASD",
+        "MSE wall treated as coherent gravity mass for external stability",
+        "phi and gamma symbols used for both soil properties AND LRFD factors — context-dependent",
+        "Load/resistance factors currently calibrated by fitting to ASD — minimal change from ASD designs",
+        "Strength limit states generally control; service limit states control deformations"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "All MSE wall designs using GEC-11 LRFD methodology."
+    },
+    {
+      "section_id": "4.1.1",
+      "title": "Load and Resistance Factor Design (LRFD) Platform",
+      "body": "The LRFD methodology separates load uncertainty (load factors) from resistance uncertainty (resistance factors). FHWA and AASHTO established October 1, 2010 as the implementation deadline. For MSE walls, the following LRFD limit states apply: Strength I (maximum permanent and transient loads); Extreme Event I (seismic); Extreme Event II (vehicle collision); and Service I (deformations). Strength limit states generally govern member sizes. Service limit states evaluate deformations. Extreme event limit states cover seismic and vehicle impact (see Chapter 7). The capacity-to-demand ratio (CDR = factored resistance / factored load) is used throughout to quantify how close a design is to a limit state; CDR ≥ 1.0 required.",
+      "key_points": [
+        "Four limit states: Strength I, Extreme Event I (seismic), Extreme Event II (vehicle impact), Service I",
+        "CDR = factored resistance / factored load ≥ 1.0 required for all limit states",
+        "Strength I generally governs member sizing for routine MSE walls",
+        "Service I governs deformation checks (settlement, lateral movement)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "LRFD design framework for all MSE wall structural and geotechnical checks."
+    },
+    {
+      "section_id": "4.1.2",
+      "title": "Analysis Methods",
+      "body": "The Simplified Method (also called the Simplified Coherent Gravity Method) is the primary method recommended by GEC-11 and used throughout this chapter. It is recommended for its applicability to a wide variety of reinforcement types. Other available analytical methods include: ASD Procedure and Simplified Method (AASHTO 2002); Coherent Gravity Method; NCMA Procedure (NCMA, 2009); Geosynthetic Reinforced Soil (GRS) Method (Wu et al., 2006); and K-Stiffness Method (Allen and Bathurst, 2003 et al.). LRFD permits any of these methods if appropriate resistance factors are calibrated using acceptable statistical data. The GRS method is strictly applicable to geosynthetic reinforcements; the K-Stiffness method is not universally applicable. Brief descriptions of alternative methods are in Appendix F.",
+      "key_points": [
+        "Simplified Method (Simplified Coherent Gravity Method) recommended — applicable to all reinforcement types",
+        "Simplified Method backed by extensive instrumented field data (Elias and Christopher, 1997; Allen et al., 2001)",
+        "Alternative methods: Coherent Gravity, NCMA, GRS, K-Stiffness — each has limited applicability",
+        "LRFD allows any method if resistance factors are properly calibrated"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Method selection for MSE wall internal stability analysis."
+    },
+    {
+      "section_id": "4.2",
+      "title": "Loads and Load Combinations",
+      "body": "Applicable loads for MSE walls include permanent loads (EH: horizontal earth pressure, ES: earth surcharge, EV: vertical earth pressure from dead load fill) and transient loads (CT: vehicular collision, EQ: earthquake, LL: vehicular live load, LS: live load surcharge). Table 4-1 lists applicable load combinations: Strength I (EH, ES, EV, LL, LS); Extreme Event I (seismic, with γEQ×LL); Extreme Event II (CT); Service I (unity load factors). Table 4-2 lists load factors for permanent loads: EH-active maximum 1.50/minimum 0.90; EV-retaining walls maximum 1.35/minimum 1.00; ES maximum 1.50/minimum 0.75. Maximum load factors are used when permanent loads increase driving forces; minimum load factors are used when permanent loads increase stability. For simple walls with level backfill or surcharges, use minimum EV and maximum EH for eccentricity and sliding checks; use maximum EV for internal stability. For complex geometries, all combinations of maximum and minimum factors must be investigated. Compaction-induced earth pressures are already included in the design model and specified compaction procedures; no additional design considerations are required.",
+      "key_points": [
+        "Applicable loads: EH, ES, EV (permanent) and CT, EQ, LL, LS (transient)",
+        "Strength I typically governs: EH×1.50 (driving), EV×1.35 (internal) or EV×1.00 (external resisting)",
+        "Table 4-1: Load combinations; Table 4-2: Load factors for permanent loads",
+        "Use min EV + max EH for eccentricity/sliding (critical for stability); max EV for internal stability",
+        "Traffic live load = uniform surcharge equivalent to 2.0 ft (0.6 m) of fill (heq = 2.0 ft)",
+        "Compaction stresses already incorporated — no additional consideration required"
+      ],
+      "equations": [],
+      "figures": ["Figure 4-1", "Figure 4-2", "Figure 4-3", "Figure 4-4"],
+      "tables": ["Table 4-1", "Table 4-2", "Table 4-4"],
+      "applicability": "Load definition and combination selection for all MSE wall design steps."
+    },
+    {
+      "section_id": "4.3",
+      "title": "Design of MSE Walls Using LRFD Methodology",
+      "body": "External stability evaluates the reinforced soil zone as a rigid body against sliding, limiting eccentricity, bearing resistance, and overall stability. Internal stability checks tensile rupture and pullout failure of each reinforcement layer. Global and compound stability checks are also required. The strength limit states for MSE walls include: External (limiting eccentricity, sliding, bearing resistance); Internal (tensile resistance, pullout resistance, structural resistance of face elements and connections). Service limit states include: External (vertical and lateral wall movements); Global stability. The capacity-to-demand ratio CDR = factored resistance / factored load quantifies each limit state; CDR ≥ 1.0 is required.",
+      "key_points": [
+        "External stability: rigid body assumption — checks eccentricity, sliding, bearing, global stability",
+        "Internal stability: checks tensile rupture and pullout of each reinforcement layer",
+        "Both strength (member sizing) and service (deformation) limit states must be satisfied",
+        "CDR = factored resistance / factored load ≥ 1.0 for all limit states"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Overview of LRFD design checks for all MSE walls."
+    },
+    {
+      "section_id": "4.3.1",
+      "title": "Design Steps",
+      "body": "Table 4-3 lists the 11 basic design steps for an MSE wall: Step 1 — Establish project requirements (geometry, loads, performance criteria, construction constraints); Step 2 — Establish project parameters (topography, subsurface conditions, fill properties); Step 3 — Estimate wall embedment depth, design height, and preliminary reinforcement length; Step 4 — Define nominal loads; Step 5 — Summarize load combinations, load factors, and resistance factors; Step 6 — Evaluate external stability (a. sliding, b. eccentricity, c. bearing, d. settlement); Step 7 — Evaluate internal stability (a-k substeps); Step 8 — Design facing elements; Step 9 — Assess overall/global stability; Step 10 — Assess compound stability; Step 11 — Design wall drainage systems.",
+      "key_points": [
+        "11 basic design steps for routine MSE walls (Table 4-3)",
+        "Steps 6 and 7 are the most detailed — external and internal stability",
+        "Additional steps required for complex cases (bridge abutments, Chapter 6)",
+        "Design checklist available in Section 4.6 to verify completeness"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": ["Table 4-3"],
+      "applicability": "Sequential design procedure for all routine MSE walls."
+    },
+    {
+      "section_id": "4.4.1",
+      "title": "Step 1 – Establish Project Requirements",
+      "body": "Before proceeding with design, define all geometry (wall heights, batter, backslope, toe slope), loading conditions (soil surcharges, live and dead load surcharges, loads from adjacent structures, seismic, traffic barrier impact), and performance criteria (design code, maximum tolerable differential settlement, maximum tolerable horizontal displacement, design life, construction constraints). The performance criteria should reflect site conditions and AASHTO code requirements from Chapters 2 and 3.",
+      "key_points": [
+        "Define all geometry: wall heights, batter, backslope angle, toe slope",
+        "Loading: soil and traffic surcharges, adjacent structure loads (footings, piles), seismic, barrier impact",
+        "Performance criteria: design code (AASHTO LRFD), differential settlement, lateral displacement, design life",
+        "Construction constraints should be identified at this step"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Project requirements definition before MSE wall design begins."
+    },
+    {
+      "section_id": "4.4.2",
+      "title": "Step 2 – Establish Project Parameters",
+      "body": "Establish existing and proposed topography, subsurface conditions (foundation soil properties: γf, c'f, φ'f, cu; groundwater), reinforced fill properties (γr, φ'r), and retained backfill properties (γb, c'b, φ'b). Per Article 11.10.6.2 AASHTO (2007): maximum reinforced fill friction angle = 34° in absence of testing; maximum 40° even with testing. Cohesion in reinforced fill is assumed zero. Note: GEC-11 uses subscript f for foundation soil and b for retained backfill (AASHTO uses f for both). Default foundation soil φ'f = 30° for preliminary sizing only; project-specific testing required for final design. Default retained backfill φ'b = 30° for preliminary sizing only. Project-specific fill shear strength tests are especially recommended in areas with semi-rounded uniform sands (e.g., Florida, Wisconsin, Minnesota) or micaceous soils.",
+      "key_points": [
+        "Reinforced fill: φ'r ≤ 34° default (max 40° with testing); cohesion = 0 assumed",
+        "Foundation soil: φ'f = 30° for preliminary only; project-specific testing required for design",
+        "Retained backfill: φ'b = 30° default for preliminary only",
+        "GEC-11 notation: subscript r = reinforced fill, b = retained backfill, f = foundation soil",
+        "Project-specific shear strength tests required for uniform sands, micaceous soils"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Soil parameter selection for all MSE wall stability calculations."
+    },
+    {
+      "section_id": "4.4.3",
+      "title": "Step 3 – Estimate Wall Embedment Depth and Reinforcement Length",
+      "body": "Design height H = required embedment depth + exposed wall height. Preliminary reinforcement length L = max(0.7H, 8 ft [2.5 m]). Walls with sloping surcharge or concentrated loads (e.g., bridge abutments) require L = 0.8H to 1.1H. Reinforcement length should generally be uniform throughout wall height. The top two reinforcement layers may be extended 3 ft (0.9 m) beyond other layers where post-construction movements are anticipated or seismic tension cracks behind reinforcement are possible. The 8 ft minimum accommodates typical compaction equipment; a 6 ft (1.8 m) minimum is allowed only for short landscape walls with smaller equipment and maintaining 0.7H minimum. Embedment depth requirements are per Section 2.8.3 and Table 2-2.",
+      "key_points": [
+        "Preliminary L = max(0.7H, 8 ft): minimum reinforcement length for standard wall designs",
+        "Bridge abutments and sloping fills: L = 0.8H to 1.1H",
+        "Top two layers: extend 3 ft beyond other layers where post-construction movement or seismic cracks expected",
+        "8 ft minimum based on typical compaction equipment size; 6 ft only for landscape walls",
+        "Uniform reinforcement length is the standard; exceptions addressed in Chapter 6"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": ["Table 2-2"],
+      "applicability": "Initial sizing of reinforcement length and embedment for all MSE walls."
+    },
+    {
+      "section_id": "4.4.4",
+      "title": "Step 4 – Define Nominal Loads",
+      "body": "Primary external loads: EH (horizontal earth pressure from retained backfill), EV (vertical earth pressure from reinforced fill weight), LS (live load surcharge), ES (earth surcharge from permanent fill). Seismic (EQ) and water (WA) loads apply where relevant. For near-vertical walls (batter < 10 degrees from vertical) with horizontal backfill, the Rankine active earth pressure coefficient is used: Ka = tan²(45 - φ'b/2) (Equation 4-1). For sloping backfill, Coulomb earth pressure is used with Equations 4-2 and 4-3, where β is the backfill slope and δ = β. For battered walls (batter ≥ 10 degrees), use Equations 4-2 and 4-3 with θ equal to face inclination from horizontal. Traffic loads are treated as a uniform surcharge of not less than 2.0 ft equivalent soil height (heq = 2 ft) for walls parallel to traffic. For abutments with traffic perpendicular to wall, heq is from Table 4-4 (ranging from 4.0 ft at 5 ft wall height to 2.0 ft at >20 ft height). Passive resistance at the toe due to wall embedment is ignored because of potential removal during service life.",
+      "key_points": [
+        "Rankine Ka = tan²(45 - φ'b/2) for vertical walls with horizontal backfill (Equation 4-1)",
+        "Coulomb Equations 4-2, 4-3 for sloping backfill or battered walls (≥10° from vertical)",
+        "Traffic live load surcharge: heq = 2.0 ft for walls parallel to traffic (uniform surcharge)",
+        "Abutments perpendicular to traffic: heq from Table 4-4 (2.0 to 4.0 ft based on height)",
+        "Passive toe resistance ignored — potential removal by erosion or utility installation",
+        "WA and EQ loads evaluated if applicable"
+      ],
+      "equations": [
+        "Equation 4-1: Ka = tan²(45 - φ'b/2) (Rankine, vertical wall, horizontal backfill)",
+        "Equation 4-2: Ka (Coulomb) for sloping backfill",
+        "Equation 4-3: β-angle relationship for sloping backfill Coulomb Ka",
+        "Equations 4-5, 4-6: Retained backfill and surcharge resultants, horizontal backfill",
+        "Equation 4-7: FT for sloping backfill condition"
+      ],
+      "figures": ["Figure 4-2", "Figure 4-3", "Figure 4-4", "Figure 4-5"],
+      "tables": ["Table 4-4"],
+      "applicability": "Load definition for external and internal MSE wall stability calculations."
+    },
+    {
+      "section_id": "4.4.5",
+      "title": "Step 5 – Summarize Load Combinations, Load Factors, and Resistance Factors",
+      "body": "Applicable load combinations are Strength I, Extreme Event I, Extreme Event II, and Service I per Tables 4-1 and 4-2. For simple walls, examination of the critical combination (minimum EV + maximum EH) is sufficient for eccentricity and sliding checks. For complex walls, check maximum permanent loads, minimum permanent loads, and all extremes to identify the critical loading. Live loads are not applied on specific design steps where they contribute to stability (e.g., overturning resistance). Internal stability resistance factors are listed in Table 4-7; external stability resistance factors are in Table 4-5.",
+      "key_points": [
+        "Strength I critical combination for simple walls: min EV + max EH (eccentricity/sliding)",
+        "Complex walls: check all min/max load factor combinations",
+        "Live loads excluded from checks where they add to stability (eccentricity, sliding resistance)",
+        "Table 4-5: External stability resistance factors; Table 4-7: Internal stability resistance factors"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": ["Table 4-5", "Table 4-7"],
+      "applicability": "Load combination and factor selection for all MSE wall design steps."
+    },
+    {
+      "section_id": "4.4.6",
+      "title": "Step 6 – Evaluate External Stability",
+      "body": "Four external failure mechanisms are checked (Figure 4-6): sliding on the base, limiting eccentricity (formerly overturning), bearing resistance, and overall/global stability. Resistance factors from Table 4-5: bearing resistance φ = 0.65; sliding φ = 1.0; overall stability φ = 0.75 (well-defined parameters, no structural element) or 0.65 (limited data or structural element supported). The weight and width of the wall facing is typically neglected in all external stability calculations.",
+      "key_points": [
+        "Four external failure modes: sliding, eccentricity, bearing, global stability",
+        "Table 4-5 resistance factors: bearing 0.65, sliding 1.0, global stability 0.65-0.75",
+        "Wall facing weight and width neglected in all external stability calculations",
+        "Sliding and eccentricity use minimum EV + maximum EH load factors"
+      ],
+      "equations": [],
+      "figures": ["Figure 4-6"],
+      "tables": ["Table 4-5"],
+      "applicability": "External stability checks for all routine MSE wall designs."
+    },
+    {
+      "section_id": "4.4.6.a",
+      "title": "Step 6a – Evaluate Sliding Stability",
+      "body": "Sliding is checked by comparing the factored resisting force (shear at the base of the wall) to the factored driving force (horizontal earth pressure and surcharge resultants). Live load surcharge is not included as a stabilizing force for the sliding check. Passive resistance at the toe is ignored. Procedure: (1) Calculate nominal horizontal thrust F1 (earth pressure) and F2 (surcharge) per unit width using Equations 4-5 through 4-7; (2) Calculate factored driving force Pd using maximum EH factor (1.50) per Equations 4-8 through 4-11; (3) Determine critical friction angle μ as minimum of: φ'f (foundation sliding), φ'r (reinforced fill sliding), or 2/3 tan φ'r (soil-reinforcement interface for continuous sheet reinforcement); (4) Calculate factored resisting force RR using minimum EV factor (1.00) per Equations 4-12 and 4-13; (5) Check CDR = RR/Pd ≥ 1.0; if not, increase reinforcement length L.",
+      "key_points": [
+        "Factored resistance RR = φτ × Rτ; resistance factor φτ = 1.0 (sliding soil-on-soil)",
+        "Driving force: use max EH factor (1.50); resisting force: use min EV factor (1.00)",
+        "Live load excluded from sliding resistance (conservative — live load not always present)",
+        "Passive toe resistance ignored — potential removal during service life",
+        "Critical friction: min of φ'f, φ'r, or 2/3 tan φ'r (continuous sheet reinforcement interface)",
+        "CDR = RR/Pd ≥ 1.0 required; increase L if not satisfied"
+      ],
+      "equations": [
+        "Equation 4-4: RR = φτ × Rτ (factored sliding resistance)",
+        "Equations 4-5, 4-6: F1, F2 for horizontal backfill with surcharge",
+        "Equation 4-7: FT for sloping backfill",
+        "Equations 4-8, 4-9: Factored driving force, horizontal backfill",
+        "Equations 4-10, 4-11: Factored driving force, sloping backfill",
+        "Equation 4-12: Factored resisting force, horizontal backfill",
+        "Equation 4-13: Factored resisting force, sloping backfill"
+      ],
+      "figures": ["Figure 4-2", "Figure 4-3"],
+      "tables": ["Table 4-5"],
+      "applicability": "Sliding stability check at the base of all MSE walls."
+    },
+    {
+      "section_id": "4.4.6.b",
+      "title": "Step 6b – Eccentricity Limit Check",
+      "body": "The eccentricity e is the distance between the resultant foundation load and the center of the reinforced zone (L/2). Calculated by summing overturning and resisting moments about the base center, then dividing by the vertical load. Live load surcharge is not included as a stabilizing force. Use minimum EV and maximum EH load factors. Eccentricity criteria: e ≤ L/4 (middle half of base) for soil foundations; e ≤ 3L/8 (middle three-quarters) for rock foundations. For horizontal backfill: e calculated per Equation 4-15. For sloping backfill: Equation 4-16. If e > emax, increase reinforcement length L.",
+      "key_points": [
+        "e = eccentricity = distance between resultant load and L/2",
+        "Soil foundations: e ≤ L/4 (resultant within middle half of base)",
+        "Rock foundations: e ≤ 3L/8 (resultant within middle three-quarters of base)",
+        "Use min EV + max EH; live load excluded from stabilizing side",
+        "Increase L if eccentricity criterion not met"
+      ],
+      "equations": [
+        "Equation 4-14: e = (overturning moment - resisting moment) / vertical force",
+        "Equation 4-15: e for horizontal backfill with uniform surcharge",
+        "Equation 4-16: e for sloping backfill"
+      ],
+      "figures": ["Figure 4-7", "Figure 4-8"],
+      "tables": [],
+      "applicability": "Eccentricity (overturning) check at base of MSE wall for Strength I limit state."
+    },
+    {
+      "section_id": "4.4.6.c",
+      "title": "Step 6c – Evaluate Bearing on Foundation",
+      "body": "Bearing calculations require both strength limit state (factored bearing pressure ≤ factored bearing resistance) and service limit state (nominal bearing pressure for settlement calculations). The factored vertical pressure is computed using a uniform (Meyerhof-type) distribution over the effective width (L - 2eB), where eB is the eccentricity for bearing (uses maximum EV and maximum EH load factors — different from the eccentricity check which uses minimum EV). Live load is included in the bearing check. The bearing check eccentricity eB is calculated using Equations 4-19 (horizontal backfill) or 4-20 (sloping backfill). Factored vertical pressure σv = V / (L - 2eB) (Equation 4-18). Check: σv ≤ φ × qn (Equation 4-17); φ = 0.65 for bearing resistance. Uniform distribution used for both soil and rock foundations because of MSE wall flexibility (limited moment transfer). Local shear failure should be checked for soft/loose foundation soils.",
+      "key_points": [
+        "Bearing eccentricity eB uses max EV + max EH (different from eccentricity check which uses min EV)",
+        "Live load included in bearing check (applied over full reinforced and retained zone)",
+        "Factored bearing pressure σv = V / (L - 2eB) — Meyerhof uniform distribution",
+        "Check: σv ≤ φ × qn; resistance factor φ = 0.65",
+        "Uniform distribution for both soil and rock foundations (MSE wall flexibility)",
+        "Service limit state bearing pressure used for settlement calculations"
+      ],
+      "equations": [
+        "Equation 4-17: σv ≤ φ × qn (bearing check)",
+        "Equation 4-18: σv = V / (L - 2eB) (Meyerhof distribution)",
+        "Equation 4-19: eB for horizontal backfill with surcharge",
+        "Equation 4-20: eB for sloping backfill"
+      ],
+      "figures": ["Figure 4-7", "Figure 4-8"],
+      "tables": ["Table 4-5"],
+      "applicability": "Foundation bearing resistance check for all MSE walls (Strength I and Service I)."
+    },
+    {
+      "section_id": "4.4.6.d",
+      "title": "Step 6d – Settlement Estimate",
+      "body": "Conventional settlement analyses (immediate, consolidation, secondary) are conducted using nominal bearing pressure at Service I limit state per FHWA NHI-06-088 and NHI-06-089 Soils and Foundations manuals. Significant post-construction settlements require adjustment of top-of-wall elevations, or provision of height adjustment within the coping and/or delayed casting of the top row of panels. Differential settlements greater than 1/100 require slip joints to allow independent vertical movement of adjacent precast panels. When settlements cannot be accommodated by these measures, ground improvement (wick drains, stone columns, dynamic compaction, lightweight fill) or two-stage construction (Stage 1: flexible facing) should be considered.",
+      "key_points": [
+        "Settlement analysis at Service I limit state using nominal bearing pressure",
+        "Adjust top-of-wall elevations or provide height adjustment in coping for significant settlement",
+        "Differential settlement > 1/100: provide slip joints between panels",
+        "Two-stage construction (flexible face first, rigid face later) for large settlements",
+        "Ground improvement options: wick drains, stone columns, dynamic compaction, lightweight fill"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Foundation settlement check and mitigation for all MSE walls at Service I limit state."
+    },
+    {
+      "section_id": "4.4.7",
+      "title": "Step 7 – Evaluate Internal Stability",
+      "body": "Internal failure can occur by: (1) elongation or breakage of reinforcements (tensile failure), or (2) pullout failure (tensile forces exceed pullout resistance). The design process determines maximum developed tension forces along critical slip surfaces and compares to reinforcement tensile resistance and pullout capacity. Internal stability also includes serviceability requirements for lateral movement and downdrag stress at connections.",
+      "key_points": [
+        "Two internal failure modes: tensile rupture (breakage/elongation) and pullout failure",
+        "Internal stability evaluates maximum factored tension at each reinforcement layer",
+        "Must check both tensile resistance (Tr) and pullout resistance for each layer",
+        "Serviceability checks: lateral movement and connection downdrag"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Overview of internal stability analysis for all MSE walls."
+    },
+    {
+      "section_id": "4.4.7.a",
+      "title": "Step 7a – Select Type of Soil Reinforcement",
+      "body": "Soil reinforcements are either inextensible (metallic) or extensible (geosynthetic). The design model varies by type: inextensible reinforcements use a bilinear failure surface (Figure 4-9a); extensible reinforcements use a linear Rankine failure surface (Figure 4-9b). Design implications: (1) failure surface shape and location; (2) lateral earth pressure coefficient Kr used for internal stress calculation; (3) life prediction (corrosion for steel, degradation for polymers). Inextensible: Kr/Ka decreases from top of wall to constant value at 20 ft (6 m) depth. Extensible: Ka used throughout (Kr/Ka = 1.0). Both failure surfaces pass through the toe of the wall.",
+      "key_points": [
+        "Inextensible (metallic): bilinear failure surface; Kr/Ka varies with depth (decreasing from top)",
+        "Extensible (geosynthetic): linear Rankine failure surface; Ka used throughout (Kr/Ka = 1.0)",
+        "Choice of reinforcement type determines failure surface and Kr/Ka from Figure 4-10",
+        "Both failure surfaces pass through the toe of the wall"
+      ],
+      "equations": [],
+      "figures": ["Figure 4-9", "Figure 4-10"],
+      "tables": [],
+      "applicability": "Reinforcement type selection — determines internal stability analysis model."
+    },
+    {
+      "section_id": "4.4.7.b",
+      "title": "Step 7b – Define Critical Slip Surface",
+      "body": "The critical failure surface coincides with the locus of maximum tensile force TMAX in each reinforcement layer, based on instrumented structures and theoretical studies. For inextensible reinforcements: bilinear failure surface (Figure 4-9a); for extensible reinforcements: linear failure surface through the toe (Figure 4-9b). Reinforcement rotation at the failure surface is ignored for simplified method calculations. However, rotation may be considered in compound slope stability analysis (Chapters 8 and 9). For extensible reinforcements with face batter ≥ 10 degrees, the Coulomb relationship from Figure 4-5 defines the failure surface per AASHTO Figure 11.10.6.3.1-1.",
+      "key_points": [
+        "Critical surface = locus of TMAX in each reinforcement layer",
+        "Inextensible: bilinear failure surface (Figure 4-9a)",
+        "Extensible: linear failure surface through toe (Figure 4-9b)",
+        "Reinforcement rotation ignored in simplified method; may be considered in compound stability",
+        "Battered walls (≥ 10°) with extensible reinf: use Coulomb relationship for failure surface"
+      ],
+      "equations": [],
+      "figures": ["Figure 4-9"],
+      "tables": [],
+      "applicability": "Failure surface definition for internal stability analysis of MSE walls."
+    },
+    {
+      "section_id": "4.4.7.c",
+      "title": "Step 7c – Define Unfactored Loads and Horizontal Stress",
+      "body": "The horizontal stress σH at any depth in the reinforced zone is: σH = Kr × σv + supplemental σh (Equation 4-27). Kr = Ka × (Kr/Ka ratio from Figure 4-10). The Kr/Ka ratio for inextensible reinforcements decreases from the top of the wall to a constant value at 20 ft (6 m) depth; for extensible reinforcements, Kr/Ka = 1.0 constant. For vertical walls: Ka = tan²(45 - φ'r/2) (Equation 4-25). For battered walls (≥10°): use simplified Coulomb form (Equation 4-26). Internal stability uses maximum load factor γEV = 1.35 for reinforced fill weight. Traffic surcharge is treated as EV (not LS) for internal stability, using maximum EV factor (1.35). Non-soil surcharges (spread footing, etc.) are assigned ES load type with γES = 1.50 (if unfactored loads input) or 1.00 (if factored loads input). Four worked examples illustrate σH computation: (1) level fill, no surcharge (Eq. 4-28); (2) sloping backfill (Eq. 4-29); (3) level fill with live load surcharge (Eq. 4-30); (4) bridge abutment with spread footing (Eq. 4-31).",
+      "key_points": [
+        "σH = Kr × σv + supplemental horizontal stress from surcharges (Equation 4-27)",
+        "Kr/Ka from Figure 4-10 — varies with depth for inextensible; constant 1.0 for extensible",
+        "Internal stability: γEV-MAX = 1.35 for reinforced fill; traffic treated as EV (not LS) at 1.35",
+        "Non-soil surcharges: ES type, γ = 1.50 for unfactored or 1.00 for already-factored inputs",
+        "Kr/Ka reference elevation: top of reinforced fill at wall face (not top of coping)",
+        "Four standard configurations: level fill, sloping fill, live load surcharge, abutment footing"
+      ],
+      "equations": [
+        "Equation 4-25: Ka = tan²(45 - φ'r/2) for vertical walls",
+        "Equation 4-26: Ka using simplified Coulomb for battered walls (≥10°)",
+        "Equation 4-27: σH = Kr × σv + supplemental σh",
+        "Equation 4-28: σH for level fill, no surcharge",
+        "Equation 4-29: σH for sloping backfill",
+        "Equation 4-30: σH for level fill with live load",
+        "Equation 4-31: σH for bridge abutment with spread footing"
+      ],
+      "figures": ["Figure 4-10", "Figure 4-11", "Figure 4-12", "Figure 4-13"],
+      "tables": [],
+      "applicability": "Horizontal stress calculation for internal stability analysis of all MSE wall types."
+    },
+    {
+      "section_id": "4.4.7.d",
+      "title": "Step 7d – Establish Vertical Layout of Soil Reinforcements",
+      "body": "Maximum vertical spacing of reinforcement: 32 in. (800 mm) to maintain a coherent reinforced soil zone. Two methods to vary reinforcement density with depth: (1) for strip/grid reinforcements with segmental precast panels: maintain constant vertical spacing, increase number or size of strips at lower levels; (2) for geosynthetic sheet reinforcements: vary vertical spacing Sv (typically 1, 2, or 3 times compacted lift thickness) or vary reinforcement strength Tal. For MBW-faced walls: maximum spacing = min(2 × block depth Wu, 32 in. [810 mm]); top row limited to 1.5 × block depth. For geosynthetic wrapped-face walls: maximum spacing typically 16 in. (400 mm) to minimize bulging. For gabion face units (3 ft × 3 ft): 36-in. spacing slightly exceeds limit but may be offset by face unit mass; caution for special loading or soft foundation.",
+      "key_points": [
+        "Maximum vertical reinforcement spacing: 32 in. (800 mm) for coherent MSE mass",
+        "MBW walls: max Sv = min(2 × block depth, 32 in.); top row ≤ 1.5 × block depth",
+        "Wrapped geosynthetic face: max spacing typically 16 in. (400 mm) to control bulging",
+        "Vary density by adjusting number/size (discrete reinf.) or spacing/strength (geosynthetics)",
+        "Upper portion of wall typically has more reinforcement than needed — economize by varying"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Vertical layout of reinforcement layers for all MSE wall types."
+    },
+    {
+      "section_id": "4.4.7.e",
+      "title": "Step 7e – Calculate Factored Tensile Forces in Reinforcement",
+      "body": "The maximum factored tensile force TMAX per unit wall width at each reinforcement level is: TMAX = σH × Sv (Equation 4-32a), where Sv is the vertical contributory height at the reinforcement level. For discrete reinforcements (strips, grids): PTMAX-UWR = TMAX / Rc per unit reinforcement width (Equation 4-32b), where Rc is the coverage ratio. For panels with known discrete reinforcement locations: PTMAX-D = σH × Sv × WP / NP per reinforcement element (Equation 4-32c), where WP is panel width and NP is number of reinforcements per panel. The contributory height Sv is the distance between adjacent reinforcement midpoints, except at the top (top of wall to midpoint between first and second layers) and bottom (midpoint between last two layers to base of wall). TMAX is computed using the average of stresses at the top and bottom of each contributory height (trapezoidal method) or at the midpoint.",
+      "key_points": [
+        "TMAX = σH × Sv (Equation 4-32a) — maximum factored tension per unit wall width",
+        "Sv = contributory height = midpoint-to-midpoint distance between adjacent reinforcement layers",
+        "Top and bottom layer Sv: distance from wall top/base to midpoint between first/second layers",
+        "Discrete reinf.: PTMAX-UWR = TMAX/Rc per unit reinforcement width (Eq. 4-32b)",
+        "Per panel: PTMAX-D = σH × Sv × WP/NP (Eq. 4-32c)"
+      ],
+      "equations": [
+        "Equation 4-32a: TMAX = σH × Sv",
+        "Equation 4-32b: PTMAX-UWR = TMAX / Rc",
+        "Equation 4-32c: PTMAX-D = σH × Sv × WP / NP"
+      ],
+      "figures": ["Figure 4-14"],
+      "tables": [],
+      "applicability": "Maximum factored tensile force at each reinforcement level for tensile and pullout checks."
+    },
+    {
+      "section_id": "4.4.7.f",
+      "title": "Step 7f – Calculate Soil Reinforcement Resistance",
+      "body": "The factored tensile resistance Tr = φ × Tal × Rc (Equation 4-33), where φ is the resistance factor from Table 4-7 and Tal is the nominal long-term tensile strength from Chapter 3. Table 4-7 resistance factors for tensile rupture: metallic strip, static: 0.75; metallic strip, seismic or barrier impact: 1.00; metallic grid connected to rigid facing (panel/block), static: 0.65; metallic grid, seismic or barrier impact: 0.85; geosynthetic, static: 0.90; geosynthetic, seismic or barrier impact: 1.20. Pullout resistance factors: metallic and geosynthetic, static: 0.90; seismic: 1.20; barrier impact: 1.00. Tr may be expressed per unit wall width, per reinforcement element, or per unit reinforcement width. Note: metallic grid resistance factor (0.65) applies when connected to rigid facing; if connected to flexible mat facing or continuous with facing, use strip reinforcement resistance factor (0.75).",
+      "key_points": [
+        "Tr = φ × Tal × Rc (Equation 4-33)",
+        "Metallic strip static: φ = 0.75; seismic/barrier: φ = 1.00",
+        "Metallic grid (rigid facing) static: φ = 0.65; seismic/barrier: φ = 0.85",
+        "Geosynthetic static: φ = 0.90; seismic/barrier: φ = 1.20",
+        "Pullout resistance factor: static 0.90, seismic 1.20, barrier 1.00",
+        "Table 4-7 provides all resistance factors for tensile and pullout resistance"
+      ],
+      "equations": [
+        "Equation 4-33: Tr = φ × Tal × Rc"
+      ],
+      "figures": [],
+      "tables": ["Table 4-7"],
+      "applicability": "Factored tensile resistance of steel and geosynthetic reinforcements for all MSE walls."
+    },
+    {
+      "section_id": "4.4.7.g",
+      "title": "Step 7g – Select Grade and Number of Soil Reinforcement Elements",
+      "body": "Using the reinforcement layout from Step 7d, the factored tension TMAX from Step 7e, and the factored resistance Tr from Step 7f, select suitable reinforcement grades or number of discrete elements at each level to satisfy: Tr ≥ TMAX (Equation 4-34). Then verify pullout resistance and extreme event loadings with the selected layout. Adjust if necessary. For continuous sheet reinforcements, vary strength (Tal) or spacing (Sv) to achieve Tr ≥ TMAX at every level. For discrete reinforcements (strips), adjust number per panel to achieve Tr ≥ TMAX. Reinforcement length for uniform final design is typically chosen as the maximum required length from internal and external stability checks.",
+      "key_points": [
+        "Tensile stability criterion: Tr ≥ TMAX at every reinforcement level (Equation 4-34)",
+        "For geosynthetics: vary Tal (reinforcement strength) or Sv (spacing)",
+        "For metallic strips: vary number of strips per panel width",
+        "Final reinforcement length = maximum from internal and external stability requirements"
+      ],
+      "equations": [
+        "Equation 4-34: Tr ≥ TMAX (tensile stability criterion)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Reinforcement selection and sizing for tensile stability of all MSE walls."
+    },
+    {
+      "section_id": "4.4.7.h",
+      "title": "Step 7h – Internal Stability with Respect to Pullout Failure",
+      "body": "Pullout stability requires that the factored pullout resistance exceeds TMAX at each reinforcement level. Criterion: φpo × F* × α × σv × Le × C × Rc ≥ TMAX (Equation 4-35). Le is the embedment length beyond the failure surface in the resistance zone. If TMAX includes live load surcharge, TMAX for pullout must be recomputed without the live load (per AASHTO 2009 Interims C11.10.6.2.1: traffic not included for pullout). Nominal vertical stress σv for pullout uses unfactored loads (nominal dead loads only, no traffic). F* and α are from Chapter 3. Required embedment Le = TMAX / (φpo × F* × α × σv × C × Rc) (Equation 4-36). Total reinforcement length L = La + Le (Equation 4-37), where La is the length in the active zone (from Figure 4-9). For extensible reinforcement, vertical face, horizontal fill: La = (H - z) × tan(45 - φ'r/2) (Equation 4-38). For inextensible reinforcements: bilinear approximations from Equations 4-39 and 4-40. If pullout criterion not satisfied: increase L, use higher pullout resistance reinforcement, or decrease vertical spacing.",
+      "key_points": [
+        "φpo × F* × α × σv × Le × C × Rc ≥ TMAX (Equation 4-35): pullout criterion",
+        "TMAX for pullout excludes live load (recompute without traffic per AASHTO 2009 Interims)",
+        "σv for pullout uses unfactored (nominal) vertical stress — no live load",
+        "Le = required embedment length in resistance zone beyond failure surface",
+        "L = La + Le; La from failure surface geometry (Equations 4-38 to 4-40)",
+        "If pullout not satisfied: increase L, use higher F* product, or reduce Sv"
+      ],
+      "equations": [
+        "Equation 4-35: pullout stability criterion",
+        "Equation 4-36: Le = TMAX / (φpo × F* × α × σv × C × Rc)",
+        "Equation 4-37: L = La + Le",
+        "Equation 4-38: La for extensible, vertical face, horizontal fill",
+        "Equation 4-39: La for inextensible, lower half of wall",
+        "Equation 4-40: La for inextensible, upper half of wall"
+      ],
+      "figures": ["Figure 4-9", "Figure 4-15"],
+      "tables": ["Table 4-7"],
+      "applicability": "Pullout stability check for all reinforcement layers in all MSE walls."
+    },
+    {
+      "section_id": "4.4.7.i",
+      "title": "Step 7i – Check Connection Strength",
+      "body": "Connections between reinforcement and facing must be designed for TMAX at all limit states. Resistance factors for connectors are the same as for the reinforcement strength (Table 4-7). For concrete panels: metallic reinforcement bolted or connected to cast-in tie strip or anchorage devices; capacity checked per AASHTO Article 5.11.3. HDPE geogrid may be connected via bodkin joint (PE tab cast into panel, connected to field geogrid with PE slat). PET geogrids and all geotextiles must not be cast into concrete due to chemical degradation potential. For MBW units: connection may be structural (verified per AASHTO Article 5.11.3), frictional (between geosynthetic and unit with aggregate infill), or combined. Nominal long-term connection strength Talc = (Tult / RFD) × CRcr (Equation 4-41). CRcr from long-term connection creep testing: CRcr = Tcrc / Tlot (Equation 4-42), where Tcrc is the extrapolated creep rupture strength at design life. Or from short-term testing: CRcr = Tultconn / (Tlot × RFcr) (Equation 4-43). For MBW walls with batter > 8 degrees: limit normal stress to the lesser of hinge height or wall height above the reference level for developing CRcr.",
+      "key_points": [
+        "Connection designed for TMAX; resistance factors same as for reinforcement (Table 4-7)",
+        "PET geogrids and all geotextiles must NOT be cast into concrete",
+        "MBW connection: Talc = (Tult/RFD) × CRcr (Equation 4-41)",
+        "CRcr from long-term creep testing: Tcrc/Tlot (Eq. 4-42) or short-term: Tultconn/(Tlot × RFcr) (Eq. 4-43)",
+        "MBW batter > 8°: connection strength limited by hinge height concept (Simac et al., 1993)",
+        "Short-term connection test raw data must not be used directly — requires data reduction per Appendix B"
+      ],
+      "equations": [
+        "Equation 4-41: Talc = (Tult / RFD) × CRcr",
+        "Equation 4-42: CRcr = Tcrc / Tlot (long-term testing)",
+        "Equation 4-43: CRcr = Tultconn / (Tlot × RFcr) (short-term testing)"
+      ],
+      "figures": ["Figure 4-16", "Figure 4-17"],
+      "tables": ["Table 4-7"],
+      "applicability": "Connection strength check for all reinforcement-to-facing connections (panels and MBW)."
+    },
+    {
+      "section_id": "4.4.7.j",
+      "title": "Step 7j – Lateral Movements",
+      "body": "Lateral movements are evaluated at Service I limit state. Most internal lateral deformation occurs during construction; post-construction movement may result from surcharge loads, fill settlement, or foundation settlement. Approximate lateral displacement can be estimated from empirical correlations in Figure 2-15 as a function of reinforcement length-to-height ratio (L/H). Increasing L/H from 0.5H to 0.7H decreases deformation by about 50 percent. For critical structures (bridge abutments) with precise tolerance requirements, numerical modeling is recommended. Results may affect facing type selection, facing connection details, or backfilling sequence.",
+      "key_points": [
+        "Lateral movements evaluated at Service I limit state",
+        "Most movement occurs during construction; post-construction from surcharges and foundation settlement",
+        "Empirical estimate from Figure 2-15 as function of L/H ratio",
+        "L/H from 0.5 to 0.7 reduces lateral deformation by ~50%",
+        "Numerical modeling recommended for bridge abutments requiring precise tolerances"
+      ],
+      "equations": [],
+      "figures": ["Figure 2-15"],
+      "tables": [],
+      "applicability": "Lateral deformation estimate for MSE walls at Service I limit state."
+    },
+    {
+      "section_id": "4.4.7.k",
+      "title": "Step 7k – Vertical Movement and Bearing Pads",
+      "body": "Bearing pads in horizontal joints of segmental precast panels allow panels and reinforcement connections to move down with the reinforced fill as it compresses, mitigate downdrag stress, and accommodate differential foundation settlements. Internal fill settlement is essentially immediate for granular fill; external (foundation) settlement typically controls bearing pad requirements. Bearing pad stiffness, size, and number sized so final joint opening is at least 3/4 ± 1/8 inch. Pads designed assuming vertical loading at each joint equal to 2-3 times the weight of facing panels above that level. Sandy or marginal fill with fines may produce significant internal settlement requiring additional bearing pad thickness. Immediate internal settlement can be estimated by the Schmertmann method.",
+      "key_points": [
+        "Bearing pads prevent point loads between segmental panels and accommodate settlement",
+        "Final joint opening ≥ 3/4 inch after compression",
+        "Design bearing pads for load = 2-3 × weight of facing panels above joint",
+        "External (foundation) settlement typically governs bearing pad requirements",
+        "Sand or marginal fill: calculate internal settlement separately (Schmertmann method)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": ["Table 2-3"],
+      "applicability": "Bearing pad sizing for segmental precast panel-faced MSE walls."
+    },
+    {
+      "section_id": "4.4.8",
+      "title": "Step 8 – Design of Facing Elements",
+      "body": "Concrete, steel, and timber facings are designed to resist horizontal forces developed in the internal stability analysis. Concrete facing elements follow AASHTO LRFD Sections 5, 6, and 8 for concrete, steel, and timber, respectively. Minimum temperature and shrinkage steel required for precast panels; epoxy protection or ≥ 3 in. concrete cover where salt spray is anticipated. For MBW units: maximum reinforcement spacing ≤ min(2 × Wu, 32 in. [800 mm]); maximum depth below bottom reinforcement ≤ Wu; top row ≤ 1.5 × block depth; factored inter-unit shear (ASTM D6916) must exceed factored horizontal earth pressure. For seismic zones 3 or 4, MBW connections should use mechanical shear devices (not purely frictional); at seismic conditions, frictional connection strength reduced to 80% of static value; blocks above top reinforcement must be secured against toppling. Flexible facings (WWM): limit bulging to 1-2 in. (25-50 mm) by using face panel height ≤ 18 in. (460 mm), rockfill/cobble zone behind facing, tighter reinforcement spacing, or higher section modulus; top panel must be anchored to a reinforcement layer. Geosynthetic face panels must be UV-protected for permanent walls.",
+      "key_points": [
+        "Precast panels: temperature/shrinkage steel required; epoxy coat or ≥ 3 in. cover for salt spray",
+        "MBW: Sv ≤ min(2Wu, 32 in.); inter-unit shear per ASTM D6916 ≥ factored earth pressure",
+        "Seismic zones 3-4: MBW must use mechanical shear devices; frictional Tac reduced to 80%",
+        "WWM flexible face: bulging ≤ 1-2 in.; panel height ≤ 18 in.; top panel anchored to reinforcement",
+        "Geosynthetic wrap face: must be UV-protected or shielded for permanent walls"
+      ],
+      "equations": [],
+      "figures": ["Figure 4-17"],
+      "tables": [],
+      "applicability": "Structural design of all MSE wall facing types."
+    },
+    {
+      "section_id": "4.4.9",
+      "title": "Step 9 – Assess Overall/Global Stability",
+      "body": "Global stability is evaluated at Service I limit state using rotational or wedge failure surfaces passing entirely behind and under the reinforced zone (reinforced zone treated as rigid body). Resistance factors per Article 11.6.2.3 AASHTO (2007): φ = 0.75 where parameters well-defined and slope does not support or contain a structural element; φ = 0.65 where parameters are based on limited information or slope contains/supports a structural element. Commercial slope stability programs (Bishop, Spencer, etc.) are used. Because probabilistic LRFD calibration for slope stability is still being developed, today's practice compares ASD safety factors to target values: FS = 1.30 (well-defined parameters, no structural element); FS = 1.50 (limited information or structural element supported). If global stability is inadequate: increase reinforcement length or improve foundation. Wall vendors typically exclude global stability responsibility unless required by contract documents.",
+      "key_points": [
+        "Global stability at Service I: rotational or wedge failure surfaces outside/under reinforced zone",
+        "Resistance factors: φ = 0.75 (well-defined, no structural element) or 0.65 (limited data or structural element)",
+        "LRFD resistance factors ≈ ASD target FS: 0.75 ≈ FS 1.3; 0.65 ≈ FS 1.5",
+        "Standard slope stability programs (Bishop, Spencer) used for analysis",
+        "Remedies: increase reinforcement length or improve foundation soil"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": ["Table 4-5"],
+      "applicability": "Overall/global stability check for all MSE walls at Service I limit state."
+    },
+    {
+      "section_id": "4.4.10",
+      "title": "Step 10 – Assess Compound Stability",
+      "body": "Compound failure surfaces pass through a portion of the reinforced soil zone (not entirely behind it). Required when complex conditions exist: changes in reinforcement soil types or lengths, high surcharge, seismic loading, sloped face, significant toe/top slopes, or tiered structures. For simple walls with uniform reinforcement, compound failures generally are not critical. Analysis uses programs that directly incorporate reinforcement elements (e.g., ReSSA) — the reinforced zone is not treated as a rigid body. Reinforcement layers intersected by the failure surface contribute as resisting forces in the limit equilibrium analysis. Same resistance factors as global stability: φ = 0.75 or 0.65 (target FS = 1.30 or 1.50). Three options for specifying compound stability responsibility: (1) Agency Design (full agency responsibility), (2) Vendor Design (vendor responsibility with agency providing subsurface data), or (3) Combined Design (agency defines reinforcement requirements at compound-stability-critical zone; vendor completes design). Wall vendors typically exclude compound stability from their scope unless specifically required.",
+      "key_points": [
+        "Compound failures pass through the reinforced zone — use programs with reinforcement elements (ReSSA)",
+        "Critical when: complex geometry, high surcharge, seismic, sloped face, tiered walls",
+        "Same resistance factors as global stability (φ = 0.75 or 0.65; FS = 1.3 or 1.5)",
+        "Three contracting options: Agency Design, Vendor Design, Combined Design",
+        "Agencies must perform initial assessment to determine if compound stability is a concern"
+      ],
+      "equations": [],
+      "figures": ["Figure 4-18"],
+      "tables": [],
+      "applicability": "Compound stability check for MSE walls with complex geometry, surcharges, or seismic loading."
+    },
+    {
+      "section_id": "4.4.11",
+      "title": "Step 11 – Wall Drainage Systems",
+      "body": "Drainage is critical for MSE wall performance. Water decreases soil shear strength and increases destabilizing forces. FHWA recommends drainage features in all walls unless specifically not required. Three subsections: (a) Subsurface drainage: addressed in design; MSE walls with free-draining fill still need a method to discharge collected water; walls may be designed for water loads per basic soil mechanics if drainage is not feasible. (b) Surface water runoff: prevent infiltration into wall fill through appropriate surface drainage design (Section 5.3). (c) Scour: wall embedment must extend below predicted scour depth; use riprap at base and ends; coarse stone fill for rapid drainage; wrap base of fill with geotextile filter if scour may exceed design predictions. Section 5.3 provides detailed drainage design and detailing guidance.",
+      "key_points": [
+        "Drainage required in all walls unless specifically justified otherwise",
+        "Free-draining fill still needs discharge path for collected water",
+        "Surface drainage: prevent infiltration into wall fill from runoff",
+        "Scour: embed below predicted scour depth; riprap at base/ends; geotextile filter wrap if needed",
+        "Detailed drainage design and detailing in Section 5.3"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Drainage design requirements for all MSE walls."
+    },
+    {
+      "section_id": "4.5",
+      "title": "Temporary Walls",
+      "body": "Temporary walls are those with service life of 36 months or less per Article 11.5.1 AASHTO (2007). The design method is the same as for permanent walls except for reinforcement strength calculation. Metallic reinforcements are not normally galvanized for temporary walls. Long-term nominal strength for non-galvanized black steel in non-aggressive fill: use full steel cross-section (no sacrificial steel required). Alternatively, a corrosion rate of 1.1 mils/yr (28 μm/yr) may be applied. Higher corrosion rates apply for moderately aggressive or corrosive fills; consult corrosion specialist. Galvanize steel if service life exceeds 36 months. For geosynthetic reinforcements: minimum durability reduction factor RFD = 1.0 (vs. 1.1 minimum for permanent) if products meet Table 3-12 requirements. Default RF for temporary geosynthetic walls without severe failure consequences: RF = 3.5 (vs. 7 for permanent structures).",
+      "key_points": [
+        "Temporary wall: service life ≤ 36 months per AASHTO 11.5.1",
+        "Non-galvanized (black) steel: use full cross-section with corrosion rate 28 μm/yr (1.1 mil/yr)",
+        "Galvanize if service life > 36 months",
+        "Geosynthetic RFD minimum = 1.0 (vs. 1.1 permanent) if Table 3-12 requirements met",
+        "Default RF = 3.5 for temporary geosynthetic walls (vs. 7 for permanent)",
+        "Same external and internal stability checks as permanent walls"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": ["Table 3-12"],
+      "applicability": "MSE walls with service life ≤ 36 months — modified reinforcement design approach."
+    },
+    {
+      "section_id": "4.6",
+      "title": "Design Checklist",
+      "body": "Agencies should have an established protocol for checking MSE wall designs, especially important for vendor-supplied designs. The checklist developed by the Arizona DOT covers: project information (general, materials, geometry, fill properties, drainage, corrosion), external stability (soil parameters, loads, sliding, eccentricity, bearing, settlement), internal stability (reinforcement type, failure surface, stress, tensile and pullout checks, connection strength, deformations), facing design (concrete panels, MBW units, flexible facings), global and compound stability, drainage systems, and construction specifications. The checklist is intended to be completed and sealed by the Engineer of Record. Each question receives Yes/No/NA with required comments for No or NA responses.",
+      "key_points": [
+        "Design review checklist covers all 11 design steps plus specifications and submittals",
+        "Especially important for vendor-supplied designs — assigns clear review responsibilities",
+        "Engineer of Record must complete, sign, and seal the checklist",
+        "ADOT example checklist in Section 4.6; agencies should adapt to their own standard specifications"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Quality control checklist for review of MSE wall designs (in-house and vendor-supplied)."
+    }
+  ]
+}

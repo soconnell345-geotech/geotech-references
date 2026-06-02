@@ -1,127 +1,141 @@
 {
-  "reference_id": "FHWA-NHI-10-016",
+  "reference_id": "FHWA-NHI-18-024",
   "reference_title": "Drilled Shafts: Construction Procedures and LRFD Design Methods",
   "chapter": 10,
-  "chapter_title": "LRFD for Drilled Shaft Design",
+  "chapter_title": "Geotechnical Design for Axial Loading",
   "sections": [
     {
       "section_id": "10.1",
-      "title": "Introduction",
-      "body": "This chapter describes the LRFD framework as applied to drilled shaft design. The basic LRFD equation requires that factored loads not exceed factored resistances, with factors calibrated to achieve target reliability. The general equation is: sum(eta_i * gamma_i * Q_i) <= phi * R_n, where eta_i is load modifier, gamma_i is load factor, Q_i is load effect, phi is resistance factor, and R_n is nominal resistance.",
+      "title": "Axial Load Transfer",
+      "body": "Drilled shafts transmit axial compression and uplift loads through side resistance Rs and base (tip) resistance RB. Load transfer mechanics (Kulhawy 1991, O'Neill and Reese 1972): Side resistance mobilized first at small displacements (~1/2 inch for full mobilization); base resistance mobilizes at larger displacements (~4-5% of diameter B for cohesive soil and rock; ~10% B for cohesionless soils). Three components: side resistance Rs, base resistance RB, and combined total resistance QT. Between peak side and peak base resistance, side resistance may increase or decrease depending on stress-strain behavior at shaft-soil interface (softening possible in some materials). Design for service limit states must account for differences in mobilization displacement for side vs. base resistance.",
       "key_points": [
-        "LRFD replaces ASD by using statistically calibrated load and resistance factors",
-        "Target reliability index beta = 3.0 for single drilled shafts (redundant) or beta = 3.5 (non-redundant)",
-        "Resistance factors are calibrated to AASHTO LRFD Bridge Design Specifications"
+        "Side resistance mobilizes at ~1/2 inch displacement; base resistance at ~4-10% of shaft diameter",
+        "Displacement for maximum base resistance: 4-5% B (cohesive/rock) or 10% B (cohesionless)",
+        "Side resistance mobilizes first; peak side and peak base occur at different displacements",
+        "Service limit state design must account for differences in side vs. base mobilization"
       ],
-      "equations": [
-        "sum(eta_i * gamma_i * Q_i) <= phi * R_n"
+      "equations": [],
+      "figures": [
+        "Figure 10-1: Generalized load transfer behavior of drilled shaft in compression"
       ],
-      "figures": [],
       "tables": [],
-      "applicability": "All drilled shaft designs using LRFD methodology"
+      "applicability": "Axial design of all drilled shafts; basis for step-by-step design procedure"
     },
     {
       "section_id": "10.2",
-      "title": "Limit States and Load Combinations",
-      "body": "Drilled shaft design must satisfy Strength, Service, and Extreme Event limit states. Strength I is the primary limit state for axial and lateral resistance under gravity and live loads. Service I governs settlement and lateral deflection. Extreme Event I addresses seismic loading and Extreme Event II covers vessel collision and scour.",
+      "title": "Relationship to Overall Design Process",
+      "body": "Chapter constitutes detailed treatment of Block 11 ('Establish Minimum Depth and Diameter for Axial Loads') of the overall design process (Figure 8-1, Chapter 8). AASHTO (2017a) identifies axial compression and uplift of single drilled shafts as strength limit states; settlement control as service limit state. Factored axial force effects communicated by structural engineer to foundation designer for each applicable limit state and scour condition. For cohesive soils in Service I load combination, transient loads can be omitted from settlement analysis.",
       "key_points": [
-        "Strength I: gravity loads with load factors (DC=1.25, LL=1.75)",
-        "Service I: settlement and deflection checks at unfactored loads",
-        "Extreme Event I: seismic (gamma_EQ = 0.0 to 1.0)",
-        "Extreme Event II: vessel collision, vehicle collision, ice loads",
-        "Load modifier eta accounts for ductility, redundancy, and importance"
+        "Block 11 of overall design process: minimum depth and diameter for axial loads",
+        "Strength limit states: axial compression and uplift",
+        "Service limit state: settlement control",
+        "Transient loads may be omitted from settlement analysis in cohesive soils"
       ],
       "equations": [],
       "figures": [],
-      "tables": [
-        "Table 10-1: Typical Load Combinations for Drilled Shaft Design"
-      ],
-      "applicability": "Identifying applicable limit states for drilled shaft design"
+      "tables": [],
+      "applicability": "Relates axial design to overall design process; limit state identification"
     },
     {
       "section_id": "10.3",
-      "title": "Geotechnical Strength Limit State",
-      "body": "Geotechnical resistance factors for drilled shafts are specified in AASHTO Table 10.5.5.2.4-1 and depend on the design method, soil type, and construction quality control measures. Higher resistance factors are permitted when static load tests are used for verification. The resistance factor for combined side and base resistance uses a weighted average based on relative contributions.",
+      "title": "Step-by-Step Procedure: Design for Axial Load",
+      "body": "7-step LRFD design procedure: (1) Idealize subsurface profile — divide into geomaterial layers; classify each as cohesionless (GW, GP, GM, SW, SP, SM, ML), cohesive (GC, SC, CL, CH, MH), or rock. Scour conditions must be reflected in profiles. (2) Establish limit states and factored axial loads — review applicable limit states and load combinations per Chapter 8. (3) Assign geomaterial properties — cohesionless soils: SPT N60 and (N1)60, effective stress friction angle φ', σ'v; cohesive soils: undrained shear strength su; rock: uniaxial compressive strength qu, RQD, GSI. Use mean values for LRFD; COV limits: N-values ≤45%, su ≤35%. (4) Select trial lengths and diameters — L/B typically 3-30; soil depths to 100 ft and diameters to 8 ft are routine; depths to 200 ft and diameters to 12 ft are within range of well-equipped specialty contractors; rock sockets up to 50 ft possible; in-soil overburden diameter ≥6 in. larger than rock socket to allow rock drilling tools to pass. (5) Compute nominal unit side and base resistances (Step 5 — detailed design methods per Section 10.3.5). (6) Satisfy strength limit states — check ΣηiγiFi ≤ ΣφiRi; resistance factors φ per AASHTO and agency experience; iterate on length and diameter as needed. (7) Satisfy service limit states — conduct load-deformation analysis; mobilized side and base resistance at axial displacement corresponding to tolerable deformation.",
       "key_points": [
-        "Alpha method in cohesive soil: phi = 0.45 (no load test), phi = 0.60 (with load test)",
-        "Beta method in cohesionless soil: phi = 0.55 (no load test), phi = 0.70 (with load test)",
-        "Rock socket side resistance: phi = 0.55 (no load test), phi = 0.70 (with load test)",
-        "Base resistance in cohesionless soil: phi = 0.50",
-        "Base resistance in cohesive soil: phi = 0.40",
-        "Base resistance on rock (CGS method): phi = 0.50",
-        "Static load test verification allows significant increase in resistance factors",
-        "Uplift resistance factors are lower than compression factors"
+        "7-step procedure matching Block 11 of overall design process",
+        "Geomaterial classification: cohesionless, cohesive, or rock for each layer",
+        "Routine: soil to 100 ft depth, diameter to 8 ft; specialty: to 200 ft, to 12 ft diameter",
+        "In-soil overburden diameter ≥6 in. larger than rock socket for tool passage",
+        "COV limits: N-values ≤45%; su ≤35% for applying tabulated resistance factors",
+        "LRFD: ΣηiγiFi ≤ ΣφiRi for each applicable strength limit state"
       ],
       "equations": [
-        "phi_combined = (phi_side * R_side + phi_base * R_base) / (R_side + R_base)"
+        "Eq. 10-1: ΣηiγiFi ≤ ΣφiRi — LRFD check for strength limit states"
+      ],
+      "figures": [
+        "Figure 10-2: Flow chart of recommended steps for axial load design",
+        "Figure 10-3: Idealized geomaterial profile for computation of compression resistances"
+      ],
+      "tables": [
+        "Table 10-1: Geomaterial properties required for axial resistances — SPT N60, su, qu, RQD, GSI"
+      ],
+      "applicability": "Axial compression and uplift design for all drilled shafts"
+    },
+    {
+      "section_id": "10.3.5",
+      "title": "Calculate Nominal Side and Base Resistances (Step 5)",
+      "body": "Cohesionless soils — side resistance: Beta method (effective stress): fs = βσ'v; β = K tan δ; for SPT: β = 1.5 - 0.245z^0.5 (Rollins et al. 2005) for N60 ≥ 15; limits: β ≤ 1.8 for z ≤ 5 m, β ≤ 1.2 for z > 5 m; for CPT: direct method. Cohesionless soils — base resistance: qb = Nq*σ'v (AASHTO O'Neill & Reese 1999 method); Nq based on SPT N-value; CPT-based methods also available. Cohesive soils — side resistance: Alpha (total stress) method: fs = α*su; α from O'Neill and Reese (1999): α = 0.55 for su/pa ≤ 1.5; α = 0.55 - 0.1(su/pa - 1.5) for 1.5 ≤ su/pa ≤ 2.5; FSU method from Reese and O'Neill (1988). Cohesive soils — base resistance: qb = Ncp*su; Ncp = 9 for L/B ≥ 3 (AASHTO); reduction for lower L/B. Rock — side resistance: fs = τmax based on socket diameter, rock type, and qu; Carter & Kulhawy (1988) normalized method; Horvath & Kenney (1979) for soft rock; Rowe & Armitage (1987) for rough sockets. Rock — base resistance: qb = 3qu for L/B > 0.5 (AASHTO); or qb = Ksp*qu using Rowe & Armitage bearing capacity factor. RESISTANCE FACTORS (AASHTO 2017): side resistance — with load test: 0.65 (O'Neill and Reese method); without load test: 0.45; base resistance — with load test: 0.50; without load test: 0.40; uplift side resistance — with load test: 0.60; without load test: 0.40.",
+      "key_points": [
+        "Cohesionless side: Beta method fs = βσ'v; β = 1.5 - 0.245z^0.5 for N60 ≥ 15",
+        "Cohesive side: Alpha method fs = αsu; α = 0.55 for su/pa ≤ 1.5",
+        "Cohesive base: qb = 9su for L/B ≥ 3",
+        "Rock side: Carter & Kulhawy (1988) normalized method; rough sockets increase resistance",
+        "Rock base: qb = 3qu for L/B > 0.5 (AASHTO); or Ksp*qu per Rowe & Armitage",
+        "Resistance factors: φside = 0.65 (with load test) / 0.45 (without); φbase = 0.50 (with) / 0.40 (without)"
+      ],
+      "equations": [
+        "Beta method: fs = βσ'v; β = 1.5 - 0.245z^0.5 (Rollins 2005) for cohesionless side resistance",
+        "Alpha method: fs = αsu; α = 0.55 (su/pa ≤ 1.5), α = 0.55 - 0.1(su/pa - 1.5) (1.5 ≤ su/pa ≤ 2.5)",
+        "Cohesive base: qb = Ncp*su; Ncp = 9 for L/B ≥ 3",
+        "Rock base: qb = 3qu for L/B > 0.5 (AASHTO 2017)"
       ],
       "figures": [],
-      "tables": [
-        "Table 10-5: Resistance Factors for Geotechnical Strength Limit State for Drilled Shafts (AASHTO 2007)"
-      ],
-      "applicability": "Selecting appropriate resistance factors for drilled shaft axial design"
+      "tables": [],
+      "applicability": "Computation of nominal side and base resistance for all geomaterial types"
     },
     {
       "section_id": "10.4",
-      "title": "Structural Strength Limit State",
-      "body": "Structural design of drilled shafts follows reinforced concrete design per AASHTO LRFD. The structural resistance factor phi = 0.75 for axial compression and phi = 0.90 for flexure. Combined axial and flexural loading is evaluated using P-M interaction diagrams. Minimum reinforcement is 1% of gross cross-sectional area for shafts designed for lateral loading.",
+      "title": "Design for Uplift",
+      "body": "Uplift capacity: side resistance only (base resistance = 0 for uplift). Nominal uplift resistance Rup = sum of nominal unit side resistances over shaft length (same methods as compression). AASHTO resistance factor for uplift side resistance with load test: φup = 0.60; without load test: φup = 0.40. Service limit state for uplift: control of axial deflection (extension under uplift) and progressive debonding of concrete from soil. Design check: factored uplift demand ≤ φup*Rup. For combined uplift and moment, interaction between side resistance and flexural demands must be checked.",
       "key_points": [
-        "phi = 0.75 for axial compression (spiral confined)",
-        "phi = 0.90 for flexure",
-        "Minimum 1% longitudinal steel for laterally loaded shafts",
-        "Maximum reinforcement limited by constructability (cage must allow concrete flow)",
-        "P-M interaction diagram governs combined loading"
+        "Uplift capacity: side resistance only; base resistance = 0",
+        "Resistance factors: φup = 0.60 with load test; 0.40 without",
+        "Service limit: control axial extension; check progressive debonding"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Structural design checks for drilled shaft reinforcement"
+      "applicability": "Design of drilled shafts subjected to net uplift forces"
     },
     {
       "section_id": "10.5",
-      "title": "Service Limit State",
-      "body": "Service limit state design ensures that settlement and lateral deflection remain within tolerable limits. Tolerable settlement for bridge foundations is typically 1 inch for simple spans and 1/2 inch for continuous spans. Analytical methods for computing settlement include t-z curve methods, elastic continuum solutions, and simplified closed-form expressions. Resistance factors for service limit state are typically 1.0.",
+      "title": "Design for Scour",
+      "body": "Scour reduces effective shaft length contributing to axial resistance. Design flood scour (Strength I): remove side and base resistance from scoured zone; check adequate resistance remains; also re-check lateral load resistance with reduced embedment. Scour check flood (Extreme Event II): more severe scour; check shaft tip depth provides adequate resistance. Three types of scour: general scour (entire channel cross-section), contraction scour (narrowing of flow area), local scour (around piers). Degradation scour (long-term channel bed lowering) must also be assessed. Side resistance above final scour elevation NOT counted. AASHTO: γEQ = 0.5 for Extreme Event II. Where scour controls, shaft must be extended deeper into the non-scoured stratum.",
       "key_points": [
-        "Settlement limits: typically 1 inch (simple spans) or 0.5 inch (continuous spans)",
-        "Lateral deflection limits depend on structural requirements and p-y analysis",
-        "Resistance factor for service limit state = 1.0",
-        "Group settlement may be significantly larger than single shaft settlement",
-        "Service limit state often controls design for large-diameter shafts"
+        "Scour: remove side and base resistance from scoured zone for all limit states",
+        "Design flood scour: Strength I; Check flood scour: Extreme Event II",
+        "Degradation scour (long-term) must be assessed in addition to design and check flood scour",
+        "Side resistance above final scour elevation not counted"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Settlement and deflection checks for drilled shaft foundations"
+      "applicability": "Drilled shaft design in stream environments subject to scour"
     },
     {
       "section_id": "10.6",
-      "title": "Extreme Event Limit State",
-      "body": "Extreme event limit states address infrequent but severe loading including seismic events, vessel collision, and scour. Resistance factors for extreme events are typically 1.0 for geotechnical resistance. Scour is treated as a change in geometry (not a load) by removing soil to the design scour depth. Seismic design requires evaluation of liquefaction potential and kinematic loading from lateral spreading.",
+      "title": "Downdrag",
+      "body": "Downdrag occurs when soil settles relative to shaft, reversing side resistance direction from upward (positive) to downward (negative). Common causes: consolidation of soft soils under fill or surcharge; liquefaction-induced ground settlement; drainage of soft soils. AASHTO: downdrag is a load effect (DD, factored by γDD = 1.25 for Strength I and IV); added to structural load demands. Shaft length must be sufficient that resistance below neutral plane (where side resistance reverses) equals sum of factored structural loads plus factored downdrag. Strategies to reduce downdrag: bituminous coating on shaft (reduces side adhesion in settling stratum); preloading or surcharging fill before construction; slender shafts in settling zone; use of pile isolation collar. Post-liquefaction downdrag: shaft settles with liquefied zone; combined kinematic + downdrag loading; compute using residual strength of liquefied soils.",
       "key_points": [
-        "Resistance factor phi = 1.0 for extreme event limit states",
-        "Scour removes soil to design scour depth; check flood not combined with seismic",
-        "Seismic loading includes inertial forces from superstructure and kinematic effects",
-        "Vessel collision evaluated under Extreme Event II",
-        "Liquefaction potential must be evaluated for seismic events"
+        "Downdrag: soil settles relative to shaft; reverses side resistance to downward force",
+        "AASHTO: downdrag is load DD; γDD = 1.25 for Strength I and IV",
+        "Neutral plane: depth where cumulative side resistance equals structural + downdrag loads",
+        "Mitigation: bituminous coating; preloading; slender shafts in settling zone",
+        "Post-liquefaction downdrag: kinematic + downdrag; use residual strength of liquefied soils"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Design of drilled shafts for seismic, scour, and collision events"
+      "applicability": "Drilled shafts in settling soils; fills over soft ground; post-liquefaction conditions"
     },
     {
-      "section_id": "10.7",
+      "section_id": "10.8",
       "title": "Summary",
-      "body": "LRFD design for drilled shafts requires satisfaction of strength, service, and extreme event limit states. Resistance factors from AASHTO are calibrated to achieve target reliability and are method-specific. Static load testing provides the most reliable basis for resistance factor calibration and justifies higher resistance factors.",
-      "key_points": [
-        "Table 10-5 resistance factors are central to drilled shaft LRFD design",
-        "Load testing significantly improves design economy through higher resistance factors",
-        "Service limit state (settlement) often controls design for large shafts"
-      ],
+      "body": "Chapter presented step-by-step LRFD procedure for design of drilled shafts under axial loading. Three geomaterial types (cohesionless, cohesive, rock) each with appropriate side and base resistance methods. Resistance factors depend on whether load testing is included in the project. Special considerations include scour, downdrag, and seismic effects on axial resistance. Design methods consistent with AASHTO LRFD 2017a.",
+      "key_points": [],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Summary of LRFD framework for drilled shaft design"
+      "applicability": "Overview"
     }
   ]
 }

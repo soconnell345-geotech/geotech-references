@@ -1,229 +1,270 @@
-"""GEC-10 figure lookup functions.
+"""GEC-10 figure and equation lookup functions.
 
-Digitized figures from FHWA-NHI-10-016 (GEC-10), Drilled Shafts:
-Construction Procedures and LRFD Design Methods.  Follows the DM7
-pattern: private data with ``_FIG_*`` prefix, public lookup functions
-with ``_linterp`` interpolation.
+Equations and figure correlations from FHWA-NHI-18-024 (GEC-10, 2018 edition),
+Drilled Shafts: Construction Procedures and LRFD Design Methods.
 
-Note: Core drilled shaft computation (alpha, beta, rock socket, end bearing,
-p-y curves) is implemented in GeotechStaffEngineer's drilled_shaft and
-lateral_pile modules.  This module provides supplementary lookup charts
-for design guidance not covered by the computation modules.
+Note: Several charts from the 2010 edition (e.g., beta vs. depth for sand) were
+replaced in the 2018 edition with rational analytical formulas or tables.  Those
+legacy charts are NOT reproduced here.  Core drilled shaft computation is in
+GeotechStaffEngineer's drilled_shaft and lateral_pile modules.
 """
+
+import math
 
 from geotech_references._interpolation import _linterp
 
+_PA_KPA = 101.325  # atmospheric pressure, kPa
+
 
 # ============================================================================
-# Figure 13-10: Alpha Factor vs Undrained Shear Strength (O'Neill & Reese 1999)
-# For drilled shafts in cohesive soils.
-# Alpha factor for side resistance: f_s = alpha * su
+# Section 10.3.5.2 — Cohesive Soil Side Resistance
+# Figure 10-6: Alpha Adhesion Factor (Chen et al., 2011)
 # ============================================================================
 
-_FIG_13_10_SU_KPA = [
-    25, 50, 75, 100, 125, 150, 175, 200, 250,
-]
-_FIG_13_10_ALPHA = [
-    0.55, 0.55, 0.49, 0.42, 0.38, 0.35, 0.33, 0.32, 0.31,
-]
+def figure_10_6_alpha_clay(su_ciuc_kpa: float) -> float:
+    """Alpha adhesion factor for drilled shaft side resistance in cohesive soil (Figure 10-6).
 
+    Regression equation from Chen et al. (2011) fitted to load test database:
 
-def figure_13_10_alpha_clay(su_kpa: float) -> float:
-    """Alpha factor for drilled shaft side resistance in clay (Figure 13-10).
+        α = 0.30 + 0.17 / (su_CIUC / pa)
 
-    Based on O'Neill & Reese (1999) correlation.  For drilled shafts,
-    alpha = 0.55 for su <= 50 kPa, then decreases with increasing su.
+    where pa = 101.325 kPa.  This expression supersedes the AASHTO (2017a) piecewise
+    α-method per Section 10.3.5.2 of FHWA-NHI-18-024.
+
+    Input must be CIUC-equivalent undrained shear strength.  For UC or UU lab
+    test results, first convert using su_uu_to_ciuc() or su_uc_to_ciuc().
+
+    Resistance factor (Table 8-4): φ = 0.45 (compression), 0.35 (uplift).
 
     Parameters
     ----------
-    su_kpa : float
-        Undrained shear strength in kPa, 25 to 250.
+    su_ciuc_kpa : float
+        CIUC-equivalent undrained shear strength in kPa.  Must be positive.
+        Typical range: 25 to 500 kPa.
 
     Returns
     -------
     float
-        Alpha factor (dimensionless, 0 to 0.55).
+        Adhesion factor α (dimensionless).
 
     Raises
     ------
     ValueError
-        If su_kpa is outside the chart range.
+        If su_ciuc_kpa is not positive.
     """
-    if su_kpa < 25:
+    if su_ciuc_kpa <= 0:
         raise ValueError(
-            f"su_kpa={su_kpa} is below the chart minimum of 25 kPa."
+            f"su_ciuc_kpa must be positive, got {su_ciuc_kpa}"
         )
-    if su_kpa > 250:
-        raise ValueError(
-            f"su_kpa={su_kpa} exceeds the chart range of 250 kPa. "
-            "For very stiff clay, use alpha ≈ 0.30 with engineering judgment."
-        )
-    return _linterp(su_kpa, _FIG_13_10_SU_KPA, _FIG_13_10_ALPHA)
+    return 0.30 + 0.17 / (su_ciuc_kpa / _PA_KPA)
 
 
 # ============================================================================
-# Figure 13-8: Beta Factor vs Depth for Drilled Shafts in Sand
-# (O'Neill & Reese 1999, Brown et al. 2010)
+# Equations 10-16 and 10-17 — UU / UC to CIUC conversion
+# (Chen and Kulhawy, 1993)
 # ============================================================================
 
-_FIG_13_8_DEPTH_M = [0, 5, 10, 15, 20, 25, 30]
-_FIG_13_8_BETA_UPPER = [1.80, 1.20, 0.90, 0.72, 0.60, 0.52, 0.45]
-_FIG_13_8_BETA_LOWER = [0.80, 0.55, 0.40, 0.32, 0.27, 0.23, 0.20]
-_FIG_13_8_BETA_MEAN = [1.20, 0.85, 0.62, 0.50, 0.42, 0.36, 0.32]
+def su_uu_to_ciuc(su_uu_kpa: float, sigma_v0_kpa: float) -> float:
+    """Convert UU triaxial undrained strength to CIUC-equivalent (Equation 10-17).
 
+    Chen and Kulhawy (1993):
 
-def figure_13_8_beta_sand(depth_m: float,
-                           bound: str = "mean") -> float:
-    """Beta factor vs depth for drilled shafts in sand (Figure 13-8).
+        su_UU / su_CIUC = 0.911 + 0.499 × log10(su_UU / σ'v0)
 
-    Beta = Ks * tan(delta), used for side resistance in cohesionless
-    soils: f_s = beta * sigma'_v.
+    Used to convert routine UU test results before applying the alpha method
+    in Figure 10-6.
 
     Parameters
     ----------
-    depth_m : float
-        Depth below ground surface in meters, 0 to 30.
-    bound : str
-        'upper', 'lower', or 'mean' (default).
+    su_uu_kpa : float
+        UU test undrained shear strength in kPa.  Must be positive.
+    sigma_v0_kpa : float
+        Effective vertical stress at layer mid-depth in kPa.  Must be positive.
 
     Returns
     -------
     float
-        Beta factor (dimensionless).
+        CIUC-equivalent undrained shear strength in kPa.
 
     Raises
     ------
     ValueError
-        If depth or bound is invalid.
+        If inputs are not positive.
     """
-    if depth_m < 0 or depth_m > 30:
-        raise ValueError(
-            f"depth_m={depth_m} is outside the chart range 0-30 m."
-        )
-
-    b = bound.lower().strip()
-    if b == "upper":
-        return _linterp(depth_m, _FIG_13_8_DEPTH_M, _FIG_13_8_BETA_UPPER)
-    elif b == "lower":
-        return _linterp(depth_m, _FIG_13_8_DEPTH_M, _FIG_13_8_BETA_LOWER)
-    elif b in ("mean", "average", "recommended"):
-        return _linterp(depth_m, _FIG_13_8_DEPTH_M, _FIG_13_8_BETA_MEAN)
-    else:
-        raise ValueError(
-            f"Unknown bound '{bound}'. Use: 'upper', 'lower', or 'mean'."
-        )
+    if su_uu_kpa <= 0:
+        raise ValueError(f"su_uu_kpa must be positive, got {su_uu_kpa}")
+    if sigma_v0_kpa <= 0:
+        raise ValueError(f"sigma_v0_kpa must be positive, got {sigma_v0_kpa}")
+    denom = 0.911 + 0.499 * math.log10(su_uu_kpa / sigma_v0_kpa)
+    return su_uu_kpa / denom
 
 
-# ============================================================================
-# Figure 13-18: Base Resistance Factor (qb/Nc*su) vs Depth/Diameter
-# for drilled shafts in clay (O'Neill & Reese 1999)
-#
-# The bearing capacity factor Nc* increases with D/B from about 6.5
-# to the theoretical maximum of 9.0 at D/B >= 4.
-# ============================================================================
+def su_uc_to_ciuc(su_uc_kpa: float, sigma_v0_kpa: float) -> float:
+    """Convert UC (unconfined compression) strength to CIUC-equivalent (Equation 10-16).
 
-_FIG_13_18_DB = [0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 4.0, 5.0]
-_FIG_13_18_NC = [6.50, 7.00, 7.50, 7.90, 8.20, 8.45, 8.65, 8.90, 9.00]
+    Chen and Kulhawy (1993):
 
-
-def figure_13_18_nc_base_clay(depth_over_diameter: float) -> float:
-    """Bearing capacity factor Nc* for drilled shaft base in clay (Figure 13-18).
-
-    Nc* transitions from about 6.5 at the surface to 9.0 at D/B >= 4-5.
+        su_UC / su_CIUC = 0.893 + 0.513 × log10(su_UC / σ'v0)
 
     Parameters
     ----------
-    depth_over_diameter : float
-        Ratio of shaft embedment depth to shaft diameter (D/B), 0 to 5+.
+    su_uc_kpa : float
+        UC test undrained shear strength in kPa.  Must be positive.
+    sigma_v0_kpa : float
+        Effective vertical stress at layer mid-depth in kPa.  Must be positive.
 
     Returns
     -------
     float
-        Nc* bearing capacity factor.
+        CIUC-equivalent undrained shear strength in kPa.
 
     Raises
     ------
     ValueError
-        If depth_over_diameter is negative.
+        If inputs are not positive.
     """
-    if depth_over_diameter < 0:
-        raise ValueError(
-            f"depth_over_diameter must be >= 0, got {depth_over_diameter}"
-        )
-
-    # Clamp above 5 to max Nc*
-    if depth_over_diameter >= _FIG_13_18_DB[-1]:
-        return _FIG_13_18_NC[-1]
-
-    return _linterp(depth_over_diameter, _FIG_13_18_DB, _FIG_13_18_NC)
+    if su_uc_kpa <= 0:
+        raise ValueError(f"su_uc_kpa must be positive, got {su_uc_kpa}")
+    if sigma_v0_kpa <= 0:
+        raise ValueError(f"sigma_v0_kpa must be positive, got {sigma_v0_kpa}")
+    denom = 0.893 + 0.513 * math.log10(su_uc_kpa / sigma_v0_kpa)
+    return su_uc_kpa / denom
 
 
 # ============================================================================
-# Figure 13-24: Unit Side Resistance Factor for Rock Sockets
-# (Horvath & Kenney 1979, O'Neill & Reese 1999)
-#
-# f_s = C * sqrt(qu) where qu = unconfined compressive strength (MPa)
-# and C depends on roughness class.
+# Section 10.3.5.3 — Rock Socket Side Resistance
+# Equation 10-21: normal (clean) sockets
+# Equation 10-22 + Table 10-3: caving / fractured rock
 # ============================================================================
 
-_FIG_13_24_ROUGHNESS = {
-    "smooth": {
-        "C": 0.20,
-        "description": "Smooth rock socket wall",
-    },
-    "intermediate": {
-        "C": 0.30,
-        "description": "Intermediate roughness (typical construction)",
-    },
-    "rough": {
-        "C": 0.45,
-        "description": "Artificially roughened or naturally rough socket",
-    },
-}
+def equation_10_21_rock_socket_side(qu_kpa: float, C: float = 1.0) -> dict:
+    """Unit side resistance in a rock socket — normal conditions (Equation 10-21).
 
+    For sockets with nominally clean sidewalls constructed with conventional
+    equipment:
 
-def figure_13_24_rock_socket_side(qu_mpa: float,
-                                    roughness: str = "intermediate") -> dict:
-    """Unit side resistance in rock socket (Figure 13-24).
+        f_SN / pa = C × sqrt(qu / pa)
 
-    f_s = C * sqrt(qu) where qu is unconfined compressive strength.
+    where pa = 101.325 kPa.  The mean regression coefficient from Kulhawy et al.
+    (2005) is C = 1.0, recommended for normal ("clean") sockets.  For
+    artificially roughened sockets, C = 1.9 may be used with load test
+    verification (Kulhawy and Prakoso, 2007).
+
+    Resistance factor (Table 8-4): φ = 0.50 (compression), 0.40 (uplift).
 
     Parameters
     ----------
-    qu_mpa : float
-        Unconfined compressive strength of intact rock in MPa.
-    roughness : str
-        Socket wall roughness: 'smooth', 'intermediate', or 'rough'.
+    qu_kpa : float
+        Mean uniaxial compressive strength of intact rock in kPa.  Must be
+        positive.  Should not exceed the compressive strength of the shaft
+        concrete.
+    C : float
+        Regression coefficient.  Default 1.0 for normal sockets; use 1.9 for
+        artificially roughened sockets (load test verification required).
 
     Returns
     -------
     dict
-        {'C': float, 'qu_mpa': float, 'fs_mpa': float, 'fs_kpa': float,
-         'roughness': str, 'description': str}
+        {'C': float, 'qu_kpa': float, 'qu_mpa': float,
+         'f_sn_kpa': float, 'f_sn_mpa': float, 'condition': str}
 
     Raises
     ------
     ValueError
-        If qu_mpa < 0 or roughness is invalid.
+        If qu_kpa or C is not positive.
     """
-    if qu_mpa < 0:
-        raise ValueError(f"qu_mpa must be >= 0, got {qu_mpa}")
+    if qu_kpa <= 0:
+        raise ValueError(f"qu_kpa must be positive, got {qu_kpa}")
+    if C <= 0:
+        raise ValueError(f"C must be positive, got {C}")
 
-    key = roughness.lower().strip()
-    if key not in _FIG_13_24_ROUGHNESS:
-        raise ValueError(
-            f"Unknown roughness '{roughness}'. "
-            f"Use: {', '.join(_FIG_13_24_ROUGHNESS.keys())}"
-        )
-
-    data = _FIG_13_24_ROUGHNESS[key]
-    fs_mpa = data["C"] * (qu_mpa ** 0.5)
+    f_sn_kpa = C * _PA_KPA * math.sqrt(qu_kpa / _PA_KPA)
+    if abs(C - 1.0) < 0.05:
+        condition = "normal"
+    elif C >= 1.7:
+        condition = "artificially roughened"
+    else:
+        condition = "custom"
 
     return {
-        "C": data["C"],
-        "qu_mpa": qu_mpa,
-        "fs_mpa": round(fs_mpa, 4),
-        "fs_kpa": round(fs_mpa * 1000, 1),
-        "roughness": key,
-        "description": data["description"],
+        "C": C,
+        "qu_kpa": qu_kpa,
+        "qu_mpa": round(qu_kpa / 1000, 4),
+        "f_sn_kpa": round(f_sn_kpa, 2),
+        "f_sn_mpa": round(f_sn_kpa / 1000, 5),
+        "condition": condition,
+    }
+
+
+# Table 10-3 data: αE (joint modification factor) for Equation 10-22
+_TABLE_10_3_RQD = [20, 30, 50, 70, 100]
+_TABLE_10_3_AE_CLOSED = [0.45, 0.50, 0.60, 0.85, 1.00]
+_TABLE_10_3_AE_OPEN   = [0.45, 0.50, 0.55, 0.55, 0.85]
+
+
+def equation_10_22_caving_rock_side(qu_kpa: float,
+                                     rqd_pct: float,
+                                     joint_condition: str = "closed") -> dict:
+    """Unit side resistance in a rock socket — caving or fractured rock (Equation 10-22).
+
+    For rock that requires artificial support (casing or plug-ahead) during
+    excavation (O'Neill and Reese, 1999):
+
+        f_SN / pa = 0.65 × αE × sqrt(qu / pa)
+
+    αE is the joint modification factor from Table 10-3, which depends on RQD
+    and the condition of discontinuity surfaces.
+
+    Resistance factor (Table 8-4): φ = 0.50 (compression), 0.40 (uplift).
+
+    Parameters
+    ----------
+    qu_kpa : float
+        Mean uniaxial compressive strength of intact rock in kPa.  Must be positive.
+    rqd_pct : float
+        Rock Quality Designation as a percentage (0–100).
+    joint_condition : str
+        Discontinuity condition: 'closed' (tight joints) or 'open'
+        (open or gouge-filled joints).  Default 'closed'.
+
+    Returns
+    -------
+    dict
+        {'alpha_E': float, 'qu_kpa': float, 'f_sn_kpa': float,
+         'f_sn_mpa': float, 'rqd_pct': float, 'joint_condition': str}
+
+    Raises
+    ------
+    ValueError
+        If inputs are out of range.
+    """
+    if qu_kpa <= 0:
+        raise ValueError(f"qu_kpa must be positive, got {qu_kpa}")
+    if not (0 <= rqd_pct <= 100):
+        raise ValueError(f"rqd_pct must be 0–100, got {rqd_pct}")
+
+    jc = joint_condition.lower().strip()
+    if jc not in ("closed", "open"):
+        raise ValueError(
+            f"joint_condition must be 'closed' or 'open', got '{joint_condition}'"
+        )
+
+    table = _TABLE_10_3_AE_CLOSED if jc == "closed" else _TABLE_10_3_AE_OPEN
+
+    if rqd_pct <= _TABLE_10_3_RQD[0]:
+        alpha_e = table[0]
+    elif rqd_pct >= _TABLE_10_3_RQD[-1]:
+        alpha_e = table[-1]
+    else:
+        alpha_e = _linterp(rqd_pct, _TABLE_10_3_RQD, table)
+
+    f_sn_kpa = 0.65 * alpha_e * _PA_KPA * math.sqrt(qu_kpa / _PA_KPA)
+
+    return {
+        "alpha_E": round(alpha_e, 3),
+        "qu_kpa": qu_kpa,
+        "f_sn_kpa": round(f_sn_kpa, 2),
+        "f_sn_mpa": round(f_sn_kpa / 1000, 5),
+        "rqd_pct": rqd_pct,
+        "joint_condition": jc,
     }

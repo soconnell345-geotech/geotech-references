@@ -1,0 +1,419 @@
+{
+  "reference_id": "FHWA-NHI-10-025",
+  "reference_title": "Design and Construction of Mechanically Stabilized Earth Walls and Reinforced Soil Slopes – Volume II",
+  "volume": 2,
+  "chapter": 8,
+  "chapter_title": "Reinforced Soil Slopes Project Evaluation",
+  "sections": [
+    {
+      "section_id": "8.1",
+      "title": "Introduction",
+      "body": "Where right of way is available and the cost of an MSE wall is high, a steepened slope should be considered. This chapter reviews the background and design requirements for evaluating a reinforced soil slope (RSS) alternative. Step-by-step design procedures are presented in Chapter 9.\n\nRSS systems are not covered for reinforcing the base section of an embankment over soft soils — that application is covered in the FHWA Geosynthetics Design and Construction Guidelines (Holtz et al., 2008). An extension — lengthening reinforcement at the base to improve global stability — is covered here, though steepening slopes significantly increases the potential for bearing capacity failure over soft soils, requiring rigorous analysis.",
+      "key_points": [
+        "RSS is an alternative to MSE walls where right of way permits and wall costs are high",
+        "Chapter covers: types of systems (8.2), design approach (8.3), construction (8.4), face treatment (8.5), design details (8.6), case histories (8.7), standard designs (8.8)",
+        "Embankment reinforcement over soft soils is a separate application not covered here",
+        "Steepening slopes over soft soils significantly increases bearing capacity failure risk"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Reinforced soil slopes (RSS) as an alternative to MSE retaining walls"
+    },
+    {
+      "section_id": "8.2",
+      "title": "Reinforced Soil Slope Systems",
+      "body": "Reinforced soil systems consist of planar reinforcements in nearly horizontal planes within the reinforced fill to resist outward movement. Facing treatments ranging from vegetation to flexible armor systems prevent unraveling and sloughing. Systems are generic in nature and can incorporate any variety of reinforcements and facing systems.\n\nAlternate technique: The \"Deep Patch\" method stabilizes and potentially repairs roadway fill slopes on secondary roads where removal and replacement are not feasible (e.g., mountainous terrain). Reinforcements (typically geogrids) are placed in the upper portion of the slope to tie it back. This USDA Forest Service approach (Musser and Denning, 2005) is not explicitly covered in Chapters 8–9 as it is primarily a temporary repair method; see Appendix F.",
+      "key_points": [
+        "RSS uses planar reinforcements in horizontal planes with flexible facing (vegetation to armor)",
+        "Systems are generic — any reinforcement type and facing can be combined",
+        "Deep Patch method for emergency slope repair is not explicitly covered in design chapters"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Overview of RSS system types and the Deep Patch temporary repair method"
+    },
+    {
+      "section_id": "8.2.1",
+      "title": "Types of Systems",
+      "body": "Reinforced soil systems use planar reinforcements in nearly horizontal planes. Facing treatments from vegetation to flexible armor prevent unraveling and sloughing. Systems are generic and can incorporate any of a variety of reinforcements and facing systems. Design assistance is often available from reinforcement suppliers, which frequently have proprietary computer programs.",
+      "key_points": [
+        "RSS systems are generic — applicable with any reinforcement type",
+        "Facing treatments range from vegetation (low cost) to flexible armor (high performance)",
+        "Proprietary design software is available from reinforcement suppliers"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "General RSS system types"
+    },
+    {
+      "section_id": "8.2.2",
+      "title": "Construction Materials",
+      "body": "Reinforcement types: Reinforced soil slopes can be constructed with any reinforcements described in Chapter 2. While discrete strip reinforcements can be used, the majority of systems use continuous sheets of geosynthetics (geotextiles or geogrids) or wire mesh. Small discrete micro reinforcing elements (fibers, yarns, microgrids) have also been used, but that design is based on modified unreinforced design with cohesion added (not covered here).\n\nReinforced fill requirements: Discussed in Chapter 3. Because a flexible facing is normally used, minor face distortion from settlement, freeze-thaw, or wetting-drying can be tolerated — lower quality fill than for MSE walls can be used. The recommended reinforced fill is limited to low-plasticity granular material (PI ≤ 20 and ≤ 50 percent finer than No. 200 sieve {0.075 mm}). However, with good drainage, careful evaluation of soil-reinforcement interaction, field construction control, and performance monitoring (Chapter 11), most indigenous soils can be considered.",
+      "key_points": [
+        "Any reinforcement type from Chapter 2 can be used; continuous sheet geosynthetics are most common",
+        "Lower quality fill than MSE walls is acceptable due to flexible facing tolerance of minor distortion",
+        "Standard fill limits: PI ≤ 20, ≤ 50% finer than No. 200 (0.075 mm)",
+        "Most indigenous soils may be considered with good drainage, evaluation, control, and monitoring"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Material selection for RSS construction"
+    },
+    {
+      "section_id": "8.3",
+      "title": "Design Approach",
+      "body": "The overall design requirements for reinforced slopes are similar to unreinforced slopes: a limit equilibrium, allowable stress approach is used and the factor of safety must be adequate for both short-term and long-term conditions and for all possible modes of failure. LRFD methods have not been fully developed for reinforced slopes and are thus not used.\n\nThree failure modes exist for reinforced slopes (Figure 8-1): Internal (failure plane passes through the reinforcing elements), External (failure surface passes behind and underneath the reinforced zone), and Compound (failure surface passes behind and through the reinforced soil zone). The calculated stability safety factor can be approximately equal in two or all three modes if reinforcement strengths, lengths, and vertical spacings are optimized.",
+      "key_points": [
+        "ASD (limit equilibrium, allowable stress) approach — LRFD not used for reinforced slopes",
+        "Three failure modes: internal (through reinforcement), external (behind/beneath), compound (behind and through)",
+        "Factor of safety must be adequate for short-term and long-term conditions in all failure modes"
+      ],
+      "equations": [],
+      "figures": [
+        {
+          "figure_id": "8-1",
+          "title": "Failure modes for reinforced soil slopes",
+          "description": "Graphical illustration of three failure modes: internal failure within the reinforced soil zone, external failure entirely outside the reinforced soil zone, and compound failure starting behind and passing through the reinforced soil zone"
+        }
+      ],
+      "tables": [],
+      "applicability": "All RSS design; ASD framework"
+    },
+    {
+      "section_id": "8.3.1",
+      "title": "Application Considerations",
+      "body": "Two main purposes for using reinforcement in slopes: (1) Improved stability for steepened slopes and slope repair, and (2) Compaction aids for support of construction equipment and improved face stability.\n\nDesign for improved stability is critical — failure of the reinforcement results in failure of the slope. For compaction aid applications, the design is simpler since the slope is stable without reinforcement.",
+      "key_points": [
+        "Two applications: improved stability (structural) and compaction aids (temporary/construction)",
+        "Structural reinforcement design is critical — failure = slope failure",
+        "Compaction aid design is simple if slope is inherently stable"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Distinguishing RSS application type before selecting design approach"
+    },
+    {
+      "section_id": "8.3.2",
+      "title": "Design of Reinforcement for Compaction Aid",
+      "body": "For geosynthetics as compaction aids, design is simple assuming the slope is safe without reinforcement — no reinforcement design is required. Place any geotextile or geogrid that will survive construction at every lift or every other lift in a continuous plane along the edge of the slope. Only narrow strips, about 4 to 6 ft (1.2 to 1.8 m) in width, at 8 to 18 in. (200 to 500 mm) vertical spacing are required.\n\nWhere the slope angle approaches the angle of repose of the soil, a face stability analysis using the reinforcement design method of Chapter 9 is recommended. Where reinforcement is required by analysis, the narrow strip reinforcement may serve as secondary reinforcement to improve compaction and stabilize the slope face between primary reinforcing layers.",
+      "key_points": [
+        "No reinforcement design required if slope is stable without reinforcement",
+        "Strips 4–6 ft (1.2–1.8 m) wide at 8–18 in. (200–500 mm) vertical spacing are sufficient",
+        "Face stability analysis recommended when slope angle approaches angle of repose",
+        "Compaction aid reinforcement may also serve as secondary reinforcement if primary reinforcement is needed"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Geosynthetics used as compaction aids in RSS construction"
+    },
+    {
+      "section_id": "8.3.3",
+      "title": "Design of Reinforcement for Steepening Slopes and Slope Repair",
+      "body": "For steepened reinforced slopes (face inclination up to 70 degrees) and slope repair, design is based on modified versions of classical limit equilibrium slope stability methods:\n- Circular or wedge-type potential failure surface is assumed\n- Relationship between driving and resisting forces or moments determines the slope factor of safety\n- Reinforcement layers intersecting the potential failure surface are assumed to increase the resisting force or moment based on their tensile capacity and orientation (shear and bending strengths of stiff reinforcements are typically not taken into account)\n- Tensile capacity of a reinforcement layer is taken as the minimum of: (a) allowable pullout resistance behind (or in front of) the potential failure surface, and (b) long-term allowable design strength Tal\n\nFor internal analysis, the critical slope stability factor of safety is taken from the internal unreinforced failure surface requiring the maximum reinforcement — the surface with the largest unbalanced driving moment to resisting moment ratio (not the surface with the minimum unreinforced factor of safety). This surface is equivalent to the critical reinforced failure surface with the lowest factor of safety.\n\nFor slope repair, identifying the cause of the original failure is essential. Attention to drainage and weak seams in natural soils is especially important.\n\nThe rotational slip surface approach is valid for slopes up to 70 degrees; slopes steeper than 70 degrees are defined as walls and Chapter 4 lateral earth pressure procedures apply.\n\nReinforcement orientation considerations:\n- Discrete strip reinforcements: T parallel to the reinforcements\n- Continuous sheet reinforcements: T tangent to the sliding surface\nThe increase in normal stress when reinforcement is not tangential to the failure surface is valid only for continuous and closely spaced reinforcements; it is questionable for widely spaced or discrete strip reinforcements.",
+      "key_points": [
+        "Method: modified limit equilibrium with circular or wedge failure surfaces",
+        "Reinforcement tensile capacity = minimum of allowable pullout resistance and long-term design strength Tal",
+        "Critical surface = maximum unbalanced driving-to-resisting moment ratio (not minimum unreinforced FS)",
+        "Slopes ≤ 70° use rotational slip surface; slopes > 70° are walls using Chapter 4 procedures",
+        "Discrete strips: T parallel to reinforcement; continuous sheets: T tangent to sliding surface"
+      ],
+      "equations": [],
+      "figures": [
+        {
+          "figure_id": "8-2",
+          "title": "Modified limit equilibrium analysis for reinforced slope design",
+          "description": "Graphical illustration of a modified limit equilibrium analysis for reinforced slope design showing circular failure surface, reinforcement tensile forces Tr, moment arm R, driving moment MD, and resisting moment MR"
+        }
+      ],
+      "tables": [],
+      "applicability": "RSS for steepened slopes (up to 70°) and slope repair; ASD limit equilibrium"
+    },
+    {
+      "section_id": "8.3.4",
+      "title": "Computer-Assisted Design",
+      "body": "The ideal method for reinforced slope design is a conventional slope stability computer program modified to account for the stabilizing effect of reinforcement. Such programs should account for reinforcement strength and pullout capacity, compute reinforced and unreinforced safety factors automatically, and have a searching routine to locate critical surfaces.\n\nThe FHWA-developed program ReSSA (ADAMA, 2001) specifically performs this analysis. ReSSA implicitly contains the design approach in this manual (noted as the FHWA Bishop Method in rotational stability analysis) and includes the previous version of this manual in the help screens.\n\nWhen computing the factor of safety, the method used to account for the reinforcement tension in the moment equilibrium equation matters. Two approaches:\n\nApproach 1 — Reinforcement force contributes to resisting moment (Equation 8-1):\n  FSR = (MR + TS × R) / MD\nWith this assumption, FSR is applied to both the soil and the reinforcement. The allowable reinforcement strength Tal from Eq. 3-12 must be ≥ required maximum design tension Tmax.\n\nApproach 2 — Reinforcement force is a negative driving component (Equation 8-2):\n  FS = MR / (MD - TS × R)\nWith this assumption, FS is NOT applied to TS. The allowable design strength should be Tal = TULT / (FSR × RF) to provide an equivalent factor of safety. The method used to develop design charts should be evaluated to determine the FS used to obtain Tal.",
+      "key_points": [
+        "ReSSA (ADAMA, 2001) is the FHWA-sponsored reinforced slope stability program",
+        "Reinforcement force can be treated as resisting moment (Eq 8-1) or negative driving component (Eq 8-2)",
+        "Method 1 (Eq 8-1): FSR applied to both soil and reinforcement; Tal ≥ Tmax",
+        "Method 2 (Eq 8-2): FS not applied to TS; Tal = TULT/(FSR × RF) to achieve equivalent safety",
+        "User must understand which algorithm is implemented and how it incorporates reinforcement"
+      ],
+      "equations": [
+        {
+          "equation_id": "8-1",
+          "description": "Factor of safety with reinforcement as resisting moment contributor",
+          "latex": "FS_R = \\frac{M_R + T_S \\times R}{M_D}",
+          "variables": {
+            "FS_R": "required stability factor of safety",
+            "M_R": "resisting moment provided by the strength of the soil",
+            "T_S": "sum of tensile forces per unit width in all reinforcement layers intersecting the failure surface (kN/m)",
+            "R": "moment arm of TS about the center of the failure circle (m)",
+            "M_D": "driving moment about the center of the failure circle"
+          }
+        },
+        {
+          "equation_id": "8-2",
+          "description": "Factor of safety with reinforcement as negative driving component",
+          "latex": "FS = \\frac{M_R}{M_D - T_S \\times R}",
+          "variables": {
+            "FS": "factor of safety (FS not applied to TS in this formulation)",
+            "M_R": "resisting moment from soil strength",
+            "T_S": "total tensile force in reinforcement layers intersecting the failure surface (kN/m)",
+            "R": "moment arm of TS (m)",
+            "M_D": "driving moment"
+          },
+          "notes": "With this formulation, use Tal = TULT/(FSR × RF) to achieve equivalent safety to Eq 8-1"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Computer-assisted reinforced slope design using limit equilibrium programs"
+    },
+    {
+      "section_id": "8.3.5",
+      "title": "Evaluation of External Stability",
+      "body": "The external stability of reinforced soil slopes depends on the ability of the reinforced zone to act as a stable block under all external loads. Failure possibilities (Figure 8-3) include: wedge and block type sliding, deep-seated overall instability, local bearing capacity failure at the toe (lateral squeeze type failure), and excessive settlement from short- and long-term conditions.\n\nSliding stability: The reinforced zone must be sufficiently wide at any level to resist wedge and block type sliding. Use the conventional sliding block method of analysis (Samtani and Nowatzki, 2006). ReSSA incorporates wedge analysis using force equilibrium to analyze sliding both beyond and through the reinforced section.\n\nGlobal stability: Conventional soil mechanics stability methods with rotational and wedge failure surfaces extending behind and below the structure. Identify weak soil layers in retained fill, natural soils, and foundation soil. Seepage forces are especially critical for global stability. Compound failure surfaces initiating externally and passing through or between reinforcement sections should also be evaluated.\n\nBearing capacity (lateral squeeze): For deep-seated failure, check for bearing capacity of the foundation and failure at the toe. High lateral stress in a confined soft stratum beneath the embankment could lead to lateral squeeze type failure. Compare shear forces under the embankment to shear strength of the soil (approaches by Jurgenson, 1934; Silvestri, 1983; Bonaparte et al., 1987; Holtz et al., 2008).\n\nSeismic stability: In seismically active areas, perform a simple pseudo-static analysis using a seismic coefficient from AASHTO. For free-standing abutments that can tolerate lateral displacement up to 10A in., a seismic design acceleration Am = A/2 and corresponding Kh = A/2 can be used (AASHTO Division 1A Article 6.4.3). For reinforced soil slopes (flexible, not laterally restrained), seismic design acceleration A/2 is recommended unless the slope supports structures that cannot tolerate such movements.\n\nIf external stability factors of safety are insufficient, foundation improvement options include: excavate and replace soft soil, flatten the slope, construct a berm at the toe, stage construction to allow consolidation, embed the slope below grade (>3 ft) or construct a shear key at the toe, or use ground improvement techniques (wick drains, stone columns, etc.).",
+      "key_points": [
+        "Four external failure modes: sliding, deep-seated global, bearing capacity/lateral squeeze, settlement",
+        "Seismic: use Am = A/2 for free-standing RSS that can tolerate up to 10A in. lateral displacement",
+        "Lateral squeeze failure: check shear forces vs. soil shear strength in confined soft strata",
+        "Foundation improvement options: replace, flatten, berm, stage, embed/shear key, ground improvement"
+      ],
+      "equations": [],
+      "figures": [
+        {
+          "figure_id": "8-3",
+          "title": "External failure modes for reinforced soil slopes",
+          "description": "Diagrammatic representations of external failure modes for reinforced soil slopes including wedge sliding, deep-seated instability, toe bearing failure, and settlement"
+        }
+      ],
+      "tables": [],
+      "applicability": "External stability evaluation for RSS; ASD framework"
+    },
+    {
+      "section_id": "8.4",
+      "title": "Construction Sequence",
+      "body": "Construction of reinforced slopes is very similar to normal slope construction; reinforcement layers are incorporated between compacted lifts. The basic construction elements are: placing the soil, placing the reinforcement, and constructing the face.\n\nConstruction sequence:\n1. Site Preparation: Clear and grub site; remove all slide debris for slope reinstatement projects; prepare a level subgrade for the first reinforcement level; proof-roll subgrade with a roller or rubber-tired vehicle; observe and approve foundation prior to fill placement; place drainage features (basedrain and/or backdrain) as required.\n\n2. Reinforcing Layer Placement: Place reinforcement with principal strength direction perpendicular to the slope face; secure with retaining pins to prevent movement during fill placement; minimum 6 in. (150 mm) overlap along edges perpendicular to slope for wrapped face structures (alternatively clip or tie grid edges together); where face support reinforcement is not required, no overlap is needed — butt edges.\n\n3. Reinforced Fill Placement: Place fill using front end loader or dozer operating on previously placed fill or natural ground; maintain a minimum of 6 in. (150 mm) fill between reinforcement and wheels or tracks of construction equipment; compact with vibratory roller or plate compactor (granular) or rubber-tired/smooth drum roller (cohesive); avoid deformation or movement of reinforcement during placement and compaction; use lightweight compaction equipment near slope face with welded wire mesh systems.\n\n4. Compaction Control: Compact to at least 95% of standard AASHTO T99 maximum density within 2% of optimum moisture; for coarse aggregate reinforced fill, use relative density or method-type compaction specification.\n\n5. Face Construction: Slope facing requirements depend on soil type, slope angle, and reinforcement spacing per Table 8-1. If slope facing is required to prevent sloughing (β > φsoil) or erosion, options include: wrapped face structures with sufficient reinforcement length; direct extension of reinforcements to the face without wrap (for slopes up to about 1H:1V per Figure 8-4); face treatment per Section 8.5 must be applied at sufficient intervals during construction. For wrapped or no-wrap construction, reinforcement spacing ≤ 16 in. (400 mm); for armored hard-faced systems, maximum spacing ≤ 32 in. (800 mm).\n\nFace wrap procedure: turn up reinforcement at slope face and return minimum 3 ft (1 m) into embankment below the next reinforcement layer; welded wire mesh is often used as face form (left in place — ungalvanized for temporary support, galvanized for permanent).\n\nSlopes steeper than approximately 1:1 typically require facing support during construction (removable or left-in-place WWM forms). Drainage layers should be constructed directly behind or on the sides of the reinforced section.",
+      "key_points": [
+        "Construction similar to normal slope construction; reinforcement placed between compacted lifts",
+        "Minimum 6 in. (150 mm) fill cover over reinforcement before equipment traffic",
+        "Compaction: ≥ 95% AASHTO T99, within ±2% of optimum moisture",
+        "Wrapped face: return 3 ft (1 m) minimum of reinforcement below next layer",
+        "Primary/secondary reinforcement vertical spacing: ≤ 16 in. (400 mm); hard-faced systems ≤ 32 in. (800 mm)"
+      ],
+      "equations": [],
+      "figures": [
+        {
+          "figure_id": "8-4",
+          "title": "Construction of reinforced soil slopes",
+          "description": "Diagrammatic representations of construction of reinforced soil slopes showing lift placement, face wrap technique, and no-wrap option for slopes up to 1H:1V"
+        },
+        {
+          "figure_id": "8-5",
+          "title": "Welded wire mesh face form detail",
+          "description": "Example of welded wire mesh detail for temporary (during construction) or permanent face support showing (a) smooth inclined face and (b) stepped face"
+        }
+      ],
+      "tables": [
+        {
+          "table_id": "8-1",
+          "title": "RSS slope facing options",
+          "description": "Slope facing options by slope angle and soil type, for when geosynthetic is not wrapped at face versus wrapped at face, for vegetated face and hard facing"
+        }
+      ],
+      "applicability": "RSS construction practice and sequencing"
+    },
+    {
+      "section_id": "8.5",
+      "title": "Treatment of Outward Face",
+      "body": "Erosion control and revegetation are an integral part of all RSS designs and specifications. If not otherwise protected, RSS slopes must be vegetated after construction to prevent erosion from rainfall and runoff. Three main face treatment approaches are covered.",
+      "key_points": [
+        "Face treatment required to prevent erosion and UV degradation of geosynthetic reinforcement",
+        "Three approaches: grass vegetation, soil bioengineering (woody vegetation), armored facing"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Face protection and erosion control for RSS structures"
+    },
+    {
+      "section_id": "8.5.1",
+      "title": "Grass Type Vegetation",
+      "body": "Conventional vegetated facing relies on low-growth, grass type vegetation for most RSS projects, with flexible armor used where vegetation cannot be established. Challenges with grass on steep RSS grades: steepness limits water absorption before runoff; reinforcement may restrict root growth depending on reinforcement type; grass is ineffective where slopes are impacted by waterways.\n\nA synthetic permanent erosion control mat is normally used to improve grass performance. The mat must be UV-stabilized and inert to soil-borne chemicals and bacteria. It serves to: (1) protect bare soil face against erosion until vegetation is established; (2) reduce runoff velocity to increase water absorption and promote long-term vegetative cover survival; and (3) reinforce the surficial root system.\n\nOnce established, vegetation requires protection for long-term survival including mowing, maintenance, and fire protection. Downdrag from snow loads or upland slides may strip matting and vegetation. Slope face protection should not be left to the contractor's discretion; guidance should be obtained from maintenance and regional landscaping groups.",
+      "key_points": [
+        "Permanent synthetic erosion control mat normally used with grass — UV-stable, chemically inert",
+        "Mat protects against erosion until vegetation establishes, then reinforces root system",
+        "Grass requires maintenance planning including mowing, fire protection, and snow-load protection",
+        "Face protection specification must not be left to contractor discretion"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Grass face treatment for RSS with moderate slope inclinations"
+    },
+    {
+      "section_id": "8.5.2",
+      "title": "Soil Bioengineering (Woody Vegetation)",
+      "body": "Soil bioengineering uses living vegetation purposely arranged and embedded in the ground to prevent shallow mass movement and surficial erosion (Sotir and Christopher, 2000). Combining soil bioengineering with geosynthetic reinforcement produces a durable, low-maintenance structure with exceptional aesthetic and environmental qualities. This is the Vegetated Reinforced Slope System (VRSS).\n\nWoody vegetation improves hydrology and mechanical stability through root reinforcement and surface protection. Benefits include: immediate erosion control for slopes/streams/shorelines; improved face stability through root reinforcement; reduced maintenance costs (less grass cutting); modification of soil moisture through drainage and transpiration; enhanced wildlife habitat and ecological diversity; improved aesthetic quality.\n\nVegetation for VRSS: live woody branch cuttings from adventitiously rooting species, or bare root/container plants. 6 to 12 in. (150–300 mm) protruding beyond the constructed terrace edge; 1.5 to 10 ft (0.5–3 m) embedded in reinforced fill (live cuttings) or 1 to 3 ft (0.3–1 m) for rooted plants. Installation simultaneous with construction is most cost effective but can be incorporated later.\n\nReinforcement selection for VRSS: open-mesh geogrid reinforcements allow root growth through the grid to further knit the system; geocomposites providing reinforcement and lateral drainage offer enhanced water and oxygen for healthy vegetation development. Dense woody vegetation provides UV protection within the first growing season.\n\nIn arid regions, non-woven geotextiles or geocomposites promoting moisture movement into the slope may be preferred. Drainage and moisture needs for plants must be balanced with the desire to remove water to reduce hydrostatic pressures. Plants can be installed to promote drainage toward geocomposite drainage nets placed at the back of the reinforced section.",
+      "key_points": [
+        "VRSS combines geosynthetic reinforcement with woody vegetation for durable, low-maintenance, aesthetic slopes",
+        "Woody vegetation provides root reinforcement, erosion control, drainage modification, and habitat benefits",
+        "Live branch cuttings: 6–12 in. (150–300 mm) protruding, 1.5–10 ft (0.5–3 m) embedded",
+        "Open-mesh geogrids preferred for root penetration; geocomposites improve moisture and oxygen",
+        "Dormant season or pre-rainy season construction optimizes plant establishment"
+      ],
+      "equations": [],
+      "figures": [
+        {
+          "figure_id": "8-6",
+          "title": "VRSS system cross-section",
+          "description": "Diagrammatic representation of the components of a vegetated reinforced slope (VRSS) system showing reinforcement layers, brushlayers, drainage composites, and face construction details"
+        }
+      ],
+      "tables": [],
+      "applicability": "Vegetated reinforced slope systems using soil bioengineering; aesthetic and environmentally sensitive sites"
+    },
+    {
+      "section_id": "8.5.3",
+      "title": "Armored Face Treatment",
+      "body": "A permanent facing such as gunite or emulsified asphalt may be applied to a geosynthetic reinforcement RSS slope face to provide long-term UV protection if geosynthetic UV resistance is not adequate for the design life. Other armored facing options include:\n- Galvanized welded wire mesh or facing for face construction and permanent support\n- Gabions\n- Riprap, stone veneer, articulating modular units, or fabric-formed concrete\n- Structural facing elements (similar to MSE walls): prefabricated concrete slabs, modular precast blocks, or precast slabs — especially for discrete metallic strip reinforcements",
+      "key_points": [
+        "Armored facing used where vegetation cannot be established or for long-term UV protection",
+        "Options include gunite, emulsified asphalt, gabions, riprap, wire mesh, stone veneer",
+        "Structural facing elements (precast slabs, MBW units) can be used with discrete strip reinforcements"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Armored face treatment for steeper RSS or where vegetation is not viable"
+    },
+    {
+      "section_id": "8.6",
+      "title": "Design Details",
+      "body": "Design details for RSS projects not directly connected with internal or external stability include: guardrail and traffic barriers, drainage considerations, and obstructions.",
+      "key_points": [
+        "Three key appurtenant design details: guardrails/barriers, drainage, and obstructions"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Appurtenant features for RSS design"
+    },
+    {
+      "section_id": "8.6.1",
+      "title": "Guardrail and Traffic Barriers",
+      "body": "Guardrails are usually necessary for steeper highway embankment slopes. Guardrail posts can generally be installed in their standard manner (drilling or driving) through geosynthetic reinforcements; special wedge-shaped shoes can facilitate installation without significantly impairing overall geosynthetic strength — no design adjustments required. Alternatively, post or concrete form tubes at post locations can be installed during construction. Cantilever type guardrail systems are generally used for metallic reinforcement.\n\nImpact traffic load on barriers constructed at the face of a reinforced soil slope is designed on the same basis as an unreinforced slope. Traffic barriers may be designed per AASHTO Standard Specifications Article 2.7 (AASHTO, 2002), AASHTO LRFD Section 13 (AASHTO, 2007), or the 2006 AASHTO Roadside Design Guide. Design details are covered in Chapter 9.",
+      "key_points": [
+        "Standard guardrail installation through geosynthetics does not significantly impair strength — no design adjustment",
+        "Cantilever systems used for metallic reinforcement; form tubes can be installed during construction",
+        "Traffic barrier design for RSS same as unreinforced slope basis; see AASHTO references"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Guardrail and traffic barrier installation for RSS"
+    },
+    {
+      "section_id": "8.6.2",
+      "title": "Drainage Considerations",
+      "body": "Uncontrolled subsurface water seepage can decrease stability and cause slope failure through three mechanisms:\n- Hydrostatic forces on the back of the reinforced zone decrease stability against sliding failure\n- Uncontrolled seepage into the reinforced zone increases the weight of the reinforced mass and may decrease soil shear strength\n- Seepage through the reinforced zone can reduce pullout capacity at the face and increase soil weight, creating erosion and sloughing problems\n\nAs a precaution, drainage features should be included unless detailed analysis proves drainage is not required. Drains are typically placed at the rear of the reinforced soil zone to control subsurface water seepage per Chapter 9. Surface runoff should be diverted at the top of the slope to prevent flow over the face.",
+      "key_points": [
+        "Always include drainage features unless analysis proves unnecessary",
+        "Three drainage hazards: back-of-zone hydrostatic pressure, increased weight/reduced strength, face pullout reduction",
+        "Drains placed at rear of reinforced zone; surface runoff diverted at slope crest"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Drainage design for RSS; applicable to all RSS projects"
+    },
+    {
+      "section_id": "8.6.3",
+      "title": "Obstructions",
+      "body": "If obstructions are encountered in RSS design, refer to the guidance provided in Chapter 5.",
+      "key_points": [
+        "Use Chapter 5 guidance for treatment of obstructions in reinforced soil slopes"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Obstructions within reinforced soil slopes"
+    },
+    {
+      "section_id": "8.7",
+      "title": "Case Histories",
+      "body": "Five representative case histories demonstrating cost-effective, successful reinforced slope projects:\n\n8.7.1 Dickey Lake Roadway Grade Improvement Project (Yarger and Barnes, 1993) — Northern Montana, US 93. Glacial till soils, active groundwater. FS criteria = 1.5. Reinforced concrete walls failed global stability; reinforced slope/wall achieved required FS. Slopes 30–60 ft (9–18.3 m) high; face angles 1.5H:1V to 0.84H:1V (typical 1H:1V). Primary geogrids 15–60 ft (4.6–18.3 m) long, spaced 2–4 ft (0.6–1.2 m) vertically, Tult ≈ 6850 lb/ft (100 kN/m). Secondary biaxial geogrids 5 ft (1.5 m) long at 1 ft (0.3 m) spacing at face on slopes ≤1H:1V. Subsurface drainage using geocomposite prefabricated drains and French drain. Constructed 1989 at ~$17/ft² ($180/m²) of vertical face. Performance satisfactory with no major problems.\n\n8.7.2 Salmon-Lost Trail Roadway Widening Project (Zornberg et al., 1995) — Idaho, Highway 93. 565 ft × 50 ft (172 m × 15.3 m). Converted 2H:1V slope to 1H:1V. Decomposed granite fill with geotextile reinforcement for seepage modification. Two reinforced zones: lower zone Tult = 6850 lb/ft (100 kN/m), upper zone Tult = 1370 lb/ft (20 kN/m). Field testing reduced RFID from 2.0 to 1.1 saving 40% in reinforcement. Constructed 1993. Lateral displacements 0.1–0.2% of height; max reinforcement strains = 0.2%. Cost ~$15/ft² ($160/m²) vs. $22/ft² ($240/m²) for metallic MSE walls.\n\n8.7.3 Cannon Creek Alternate Embankment Project (Hayden et al., 1991) — Arkansas, SR 16. 100,000 yd³ (77,000 m³) embankment, 75 ft (23 m) maximum height. Initial 2H:1V construction failed. HDPE geogrid at 6850 lb/ft (100 kN/m) option selected over gravelly fill option at savings of $200,000.\n\n8.7.4 Pennsylvania SR 54 Roadway Repair (Wayne and Wilcosky, 1995) — Sinkhole repair over collapsed railroad tunnel. 50 ft (15 m) embankment. PP needlepunched nonwoven geotextile used for drainage (pore pressure dissipation within ~4 days) and reinforcement at 1 ft (0.3 m) lift intervals; effective drainage path reduced from 50 ft to 0.5 ft (reduction factor 100×). Achieved 1.5H:1V side slopes. Cost: geotextile ~$1/yd² ($1.2/m²), total ~$3/yd³ ($4/m³); savings ~$200,000.\n\n8.7.5 Massachusetts Turnpike Soil Bioengineering (Sotir et al., 1998; Sotir and Stulgis, 1999) — Charlton, MA. 500 ft (150 m) section of Turnpike. Used VRSS to construct 1H:4V slopes replacing unstable 1.5H:1V slopes. Primary geogrids 20 ft (6.1 m) long at 2 ft (0.6 m) lower / 4 ft (1.2 m) upper vertical spacing. Face wrap 3 ft (0.9 m) wide at bottom / 5 ft (1.5 m) at top. Brushlayers: 8–10 ft (2.4–3 m) willow and dogwood cuttings at 1 ft (0.3 m) spacing. Geocomposite backdrain panels 3.3 ft (1 m) wide at 15 ft (4.6 m) centers into 1 ft (0.3 m) crushed stone base drain. Constructed 1995/96 at $25/ft² ($270/m²). After fourth growing season, performing as intended.\n\n8.7.6 242 ft (74 m) High 1H:1V Reinforced Slope for Airport Runway Extension (Lostumbo, 2009) — Yeager Airport, Charleston, WV. Tallest reinforced soil slope in North America at time of writing. Polyester woven geogrid Tal = 2970–3860 lb/ft (43.4–56.4 kN/m). Primary reinforcement vertical spacing: 1.5 ft (460 mm) lower / 3 ft (900 mm) upper. Embedment length: 175 ft (53 m) at bottom to 145 ft (44 m) at top. Geosynthetic drainage composite along back of excavation. Geosynthetic erosion control mat at 2 ft (0.6 m) vertical intervals, 3 ft (0.9 m) embedded, 2.5 ft (0.76 m) down face. Open mesh biaxial face wrap.",
+      "key_points": [
+        "RSS consistently cost 30–40% less than MSE walls for similar heights",
+        "Field RFID testing can dramatically reduce reinforcement quantities (Salmon-Lost Trail: 40% savings)",
+        "Geotextile drainage dramatically reduces consolidation time (PA SR54: 100× reduction in drainage path)",
+        "VRSS (soil bioengineering) provides durable, aesthetic face with reduced long-term maintenance",
+        "Tallest North American RSS: 242 ft (74 m) at Yeager Airport, WV (1H:1V)"
+      ],
+      "equations": [],
+      "figures": [
+        {
+          "figure_id": "8-7",
+          "title": "Dickey Lake project photos",
+          "description": "Two pictures of the Dickey Lake site showing the reinforced slope construction and performance"
+        },
+        {
+          "figure_id": "8-8",
+          "title": "Salmon Lost Trail site photos",
+          "description": "Two pictures of the Salmon Lost Trail reinforced geotextile slope project in Idaho"
+        },
+        {
+          "figure_id": "8-9",
+          "title": "Cannon Creek project",
+          "description": "Picture and diagram representing the Cannon Creek geogrid reinforced embankment project in Arkansas"
+        },
+        {
+          "figure_id": "8-10",
+          "title": "Pennsylvania SR54 project",
+          "description": "Two pictures of the Pennsylvania SR54 sinkhole repair project and measurements of pore pressure dissipation during construction"
+        },
+        {
+          "figure_id": "8-11",
+          "title": "Massachusetts Turnpike VRSS project",
+          "description": "Three pictures of the Massachusetts Turnpike during construction, immediately after construction, and after the second growing season"
+        },
+        {
+          "figure_id": "8-12",
+          "title": "Yeager Airport reinforced slope",
+          "description": "Four pictures of the reinforced soil slope for runway extension project at Yeager Airport, Charleston, West Virginia"
+        }
+      ],
+      "tables": [],
+      "applicability": "Case histories demonstrating RSS cost-effectiveness and performance monitoring"
+    },
+    {
+      "section_id": "8.8",
+      "title": "Standard RSS Designs",
+      "body": "RSS structures are customarily designed on a project-specific basis. Most agencies use a line-and-grade contracting approach where the contractor's RSS vendor provides the detailed design after contract bid and award. However, standard designs can be developed for RSS structures by agencies.\n\nAdvantages of standard designs over line-and-grade approach:\n- Agency more responsible for design details and integrating slope design with other components\n- Pre-evaluation and approval of materials and combinations, rather than evaluating contractor submittals post bid\n- Economy of agency design versus vendor design/stamping of small reinforced slopes\n- Agency makes design decisions rather than vendors\n- More equitable bid environment with agency responsibility for design details\n- Filters out substandard work, systems, and designs with associated approved product lists\n\nThe Minnesota Department of Transportation (Mn/DOT) developed standardized RSS designs (Berg, 2000) limited by geometric, subsurface, and economic constraints. Structures outside these constraints must be designed project-specifically. The Mn/DOT standard designs address two geometric/surcharge loadings and two reinforced soil fills for slopes up to 26.2 ft (8 m) in height. Three reinforcement Tal values: 700, 1050, and 1400 lb/ft (10, 15, and 20 kN/m). A single reinforcement type is used throughout height and length. Standard designs require agency-developed approved product lists for soil reinforcements and face erosion control materials.\n\nNote: Mn/DOT standard designs are not directly applicable to nor should be used by other agencies without modification.",
+      "key_points": [
+        "Standard designs offer advantages over line-and-grade contracting for simple, repetitive RSS projects",
+        "Mn/DOT standard designs for slopes ≤ 26.2 ft (8 m): 3 Tal values — 10, 15, 20 kN/m",
+        "Single reinforcement type throughout height and length for standard designs",
+        "Agency-specific approved product lists required for materials in standard designs",
+        "Mn/DOT designs not directly applicable to other agencies"
+      ],
+      "equations": [],
+      "figures": [
+        {
+          "figure_id": "8-13",
+          "title": "Example of standard RSS design",
+          "description": "Graphical illustration showing an example standard RSS design cross section and reinforcement layout table from Mn/DOT standard designs (Mn/DOT, 2008)"
+        }
+      ],
+      "tables": [],
+      "applicability": "Agency standard RSS design programs for repetitive, low-cost RSS projects"
+    }
+  ]
+}

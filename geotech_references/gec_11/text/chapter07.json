@@ -1,0 +1,428 @@
+{
+  "reference_id": "FHWA-NHI-10-024",
+  "reference_title": "Design and Construction of Mechanically Stabilized Earth Walls and Reinforced Soil Slopes – Volume I",
+  "volume": 1,
+  "chapter": 7,
+  "chapter_title": "Design of MSE Walls for Extreme Events",
+  "sections": [
+    {
+      "section_id": "7.0",
+      "title": "Introduction to Extreme Event Design",
+      "body": "Per AASHTO (2007), an extreme event is one whose recurrence interval can be thought to exceed design life. AASHTO (2007) has two limit states for such events: Extreme Event I and Extreme Event II. In the context of MSE walls, the extreme events requiring consideration in design are: seismic events (Extreme Event I), vehicular impact events (Extreme Event II), and superflood events and scour (Extreme Event II).",
+      "key_points": [
+        "Extreme events have recurrence intervals exceeding the structure design life",
+        "AASHTO Extreme Event I applies to seismic events",
+        "AASHTO Extreme Event II applies to vehicular impact and superflood/scour events"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "All MSE walls subject to seismic, vehicular impact, or flood/scour hazards"
+    },
+    {
+      "section_id": "7.1",
+      "title": "Seismic Events",
+      "body": "Seismic events are analyzed under the Extreme Event I limit state per AASHTO (2007). Seismic events affect both external and internal stability of MSE walls. The guidance in this section is based on Anderson et al. (2008) and Kavazanjian (2009) and represents updated procedures to those in AASHTO (2007). The design methodology uses a displacement-based approach.",
+      "key_points": [
+        "Seismic design uses Extreme Event I limit state",
+        "Guidance based on Anderson et al. (2008) and Kavazanjian (2009) — updated from AASHTO (2007)",
+        "Displacement-based approach used for external stability"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "MSE walls in seismically active areas"
+    },
+    {
+      "section_id": "7.1.1",
+      "title": "Seismic External Stability",
+      "body": "External seismic stability uses a displacement-based approach with the following 13-step procedure:\n\nStep 1: Establish initial wall design for static loading using Chapters 4, 5, and 6.\n\nStep 2: Establish seismic hazard using AASHTO (2007) Article 3.10.2. Using 1,000-yr return period seismic hazard maps, estimate: site peak ground acceleration (PGA), and spectral acceleration at 1-second period (S1).\n\nStep 3: Determine Site Effects per AASHTO (2007) Article 3.10.3. Determine Site Class per Article 3.10.3.1 and Site Factors Fpga and Fv from Tables 3.10.3.2-1 and 3.10.3.2-3. Applicable to Site Classes A, B, C, D, and E. For Site Class F, site-specific geotechnical investigations and dynamic site response analysis are required.\n\nStep 4: Determine the maximum acceleration kmax and peak ground velocity (PGV) using Equations 7-1 and 7-2:\n  kmax = Fpga × PGA\n  PGV = 38 × Fv × S1 (in/s)\n\nStep 5: Using a wall height-dependent reduction factor α, obtain the average peak ground acceleration kav within the reinforced soil zone using Equation 7-3:\n  kav = α × kmax\nFor Site Class C, D, and E (soils), Equation 7-4 gives:\n  α = 1.45 – kmax (for kmax ≤ 0.45)\nFor Site Class A and B (hard and soft rock), α values from Equation 7-4 should be increased by 20 percent. For walls less than approximately 20 ft in height on very firm ground (Site Class B or C), kav ≈ kmax. For wall heights greater than 100 ft, site-specific investigations and dynamic site response analysis are required.\n\nStep 6: Determine the total (static + dynamic) thrust PAE using one of two methods:\n\nMethod 1 — Mononobe-Okabe (M-O) formulation (Equation 7-5):\n  PAE = 0.5 × γb × h² × KAE\nwhere h is the wall height along the vertical plane within the reinforced soil mass, γb is the unit weight of the retained fill, and KAE is determined from Equation 7-6. The total thrust PAE is assumed to act at h/2 (mid-height of the vertical plane), with stress distributed uniformly over height h. The horizontal seismic coefficient kh = kmax; vertical coefficient kv = 0 (typical assumption).\n\nLimitations of M-O formulation: (1) For backfills sloped at 3H:1V or steeper, solutions may not exist for certain variable combinations; (2) Strictly applicable to homogeneous cohesionless soils — not reliable for c-φ soils, non-uniform backslope profiles, or complex surface loadings. For these cases, use the graphical Culmann method, Coulomb's trial wedge method, or Method 2.\n\nMethod 2 — Generalized Limit Equilibrium (GLE) slope stability:\n  a. Define wall geometry, nominal surface loadings, groundwater profile, and design soil properties. Model the earth pressure calculation plane as a free boundary — a vertical plane at distance h/2 from back of wall facing (Figure 7-2).\n  b. Use Spencer's method (satisfies force and moment equilibrium).\n  c. Use circular, linear, bi-linear, or block sliding surface search.\n  d. Use kh = kav and kv = 0.\n  e. Apply earth pressure PAE on the vertical plane. Examine application points between h/3 and 2h/3 from the base; determine maximum PAE at CDR = 1.0.\n  f. Verify design assumptions from output slice loads.\n  g. Apply final PAE at mid-height (h/2) for subsequent steps.\n\nStep 7: Determine the horizontal inertial force PIR of the total reinforced wall mass (Equation 7-7):\n  PIR = kav × W\nwhere W is the weight of the full reinforced soil mass and any overlying permanent slopes and/or permanent surcharges within the reinforced soil mass limits. PIR acts at the centroid of mass W.\n\nStep 8: Check sliding stability with resistance factor φ = 1.0 and full nominal weight of reinforced zone. Compute total horizontal force THF:\n  For M-O method: THF = horizontal component of PAE × cos δ + PIR + γEQ × qLS × KAE × H + other horizontal nominal forces (load factor = 1.0)\n  For GLE method: THF = horizontal component of PAE + PIR\nCompute sliding resistance R = ΣV × tan δ where δ = minimum of tan φ'r, tan φ'f, or tan δ for continuous reinforcement (see Section 4.5.6.a), and ΣV = W + PAE sin δ + permanent nominal surcharge loads.\n  CDRsliding = R / THF\nIf CDRsliding > 1.0, design is satisfactory — go to Step 11. If not, go to Step 9.\n\nStep 9: Determine the wall yield seismic coefficient ky (coefficient at which wall sliding is initiated) by iterative analysis:\n  a. Determine PAE as a function of seismic coefficient k (< kmax) — Figure 7-3a.\n  b. Plot horizontal driving and resisting forces vs. k — Figure 7-3b. ky corresponds to the point where CDR against sliding equals 1.0.\n\nStep 10: Determine wall sliding displacement d (in inches) using Equations 7-8 and 7-9, based on ky/kmax, kmax, and PGV, with separate formulas for Western United States (WUS) and Central and Eastern United States (CEUS) per Figure 7-4.\n\nStep 11: Evaluate limiting eccentricity and bearing resistance using Chapter 4 principles with all applicable Extreme Event I loads. Limit state criteria:\n  1. Limiting eccentricity: resultant within middle 2/3 of wall base for γEQ = 0.0; within middle 8/10 of wall base for γEQ = 1.0; interpolate linearly.\n  2. Bearing resistance: compare effective uniform bearing pressure to nominal bearing resistance based on full reinforced zone width. Resistance factor = 1.0 per AASHTO (2007) Article 10.5.5.3.3.\n\nStep 12: If Step 11 criteria not met, adjust wall geometry and repeat Steps 6 to 11.\n\nStep 13: If Step 11 criteria are met, assess acceptability of sliding displacement d. Typical practice limits lateral displacement to 2.0 in. (50 mm) to 4.0 in. (100 mm), assuming structures at the top or toe of the wall can tolerate such displacements.",
+      "key_points": [
+        "13-step displacement-based procedure for seismic external stability",
+        "kmax = Fpga × PGA; kav = α × kmax where α = 1.45 – kmax for soils (Site Class C/D/E); rock sites increase α by 20%",
+        "Two methods for PAE: Mononobe-Okabe (simple) and GLE slope stability (complex geometries or c-φ soils)",
+        "PIR = kav × W — inertial force of reinforced soil mass",
+        "Sliding CDR ≥ 1.0 with φ = 1.0; if not met, determine yield coefficient ky and estimate displacement d",
+        "Limiting eccentricity: middle 2/3 for γEQ = 0; middle 8/10 for γEQ = 1.0",
+        "Bearing resistance factor = 1.0 for Extreme Event I",
+        "Acceptable sliding displacement typically limited to 50–100 mm (2–4 in.)"
+      ],
+      "equations": [
+        {
+          "equation_id": "7-1",
+          "description": "Maximum seismic acceleration coefficient",
+          "latex": "k_{max} = F_{pga} \\times PGA",
+          "variables": {
+            "k_max": "maximum seismic acceleration coefficient",
+            "F_pga": "site factor for peak ground acceleration (AASHTO Table 3.10.3.2-1)",
+            "PGA": "peak ground acceleration from seismic hazard maps (1000-yr return)"
+          }
+        },
+        {
+          "equation_id": "7-2",
+          "description": "Peak ground velocity estimate",
+          "latex": "PGV = 38 \\times F_v \\times S_1 \\quad [\\text{in/s}]",
+          "variables": {
+            "PGV": "peak ground velocity (in/s)",
+            "F_v": "site factor at 1-second period (AASHTO Table 3.10.3.2-3)",
+            "S_1": "spectral acceleration at 1-second period from seismic hazard maps"
+          }
+        },
+        {
+          "equation_id": "7-3",
+          "description": "Average peak ground acceleration within reinforced soil zone",
+          "latex": "k_{av} = \\alpha \\times k_{max}",
+          "variables": {
+            "k_av": "average peak ground acceleration in reinforced zone",
+            "alpha": "wall height-dependent reduction factor",
+            "k_max": "maximum seismic acceleration coefficient (Eq 7-1)"
+          }
+        },
+        {
+          "equation_id": "7-4",
+          "description": "Wall height-dependent reduction factor α for Site Class C, D, E",
+          "latex": "\\alpha = 1.45 - k_{max} \\quad (k_{max} \\leq 0.45)",
+          "variables": {
+            "alpha": "reduction factor (dimensionless)",
+            "k_max": "maximum seismic acceleration coefficient"
+          },
+          "conditions": "Site Class C, D, or E; increase by 20% for Site Class A or B. H in feet for height-dependent modification."
+        },
+        {
+          "equation_id": "7-5",
+          "description": "Total static + dynamic thrust using Mononobe-Okabe method",
+          "latex": "P_{AE} = 0.5 \\gamma_b h^2 K_{AE}",
+          "variables": {
+            "P_AE": "total static + dynamic thrust (kN/m)",
+            "gamma_b": "unit weight of retained fill (kN/m³)",
+            "h": "height of vertical plane within reinforced soil mass (m)",
+            "K_AE": "seismic active earth pressure coefficient (Eq 7-6)"
+          }
+        },
+        {
+          "equation_id": "7-6",
+          "description": "Mononobe-Okabe seismic active earth pressure coefficient",
+          "latex": "K_{AE} = \\frac{\\cos^2(\\phi'_b - \\theta - \\psi)}{\\cos\\theta \\cos^2\\psi \\cos(\\delta + \\psi + \\theta) \\left[1 + \\sqrt{\\frac{\\sin(\\phi'_b + \\delta)\\sin(\\phi'_b - \\theta - I)}{\\cos(\\delta + \\psi + \\theta)\\cos(I - \\psi)}}\\right]^2}",
+          "variables": {
+            "phi'_b": "angle of internal friction for retained backfill (degrees)",
+            "theta": "arctan(k_h / (1 - k_v))",
+            "psi": "slope angle of wall face from vertical (degrees)",
+            "delta": "angle of wall friction = lesser of φ'r and φ'b (degrees)",
+            "I": "backfill slope angle = β (degrees)",
+            "k_h": "horizontal seismic coefficient = k_max",
+            "k_v": "vertical seismic coefficient (typically = 0)"
+          }
+        },
+        {
+          "equation_id": "7-7",
+          "description": "Horizontal inertial force of reinforced soil mass",
+          "latex": "P_{IR} = k_{av} \\times W",
+          "variables": {
+            "P_IR": "horizontal inertial force of reinforced zone (kN/m)",
+            "k_av": "average peak ground acceleration in reinforced zone (Eq 7-3)",
+            "W": "weight of reinforced soil mass plus overlying permanent surcharges (kN/m)"
+          }
+        }
+      ],
+      "figures": [
+        {
+          "figure_id": "7-1",
+          "title": "Height definitions for seismic analyses",
+          "description": "Diagrammatical illustration showing definition of wall height H and vertical plane height h for seismic analysis of MSE walls"
+        },
+        {
+          "figure_id": "7-2",
+          "title": "GLE slope stability approach for seismic earth pressure",
+          "description": "Diagrammatical illustration of the use of a slope stability approach to compute seismic earth pressure with free boundary vertical plane at h/2 from wall face"
+        },
+        {
+          "figure_id": "7-3",
+          "title": "Procedure for determination of ky",
+          "description": "Graphical illustration showing (a) PAE vs. seismic coefficient k, and (b) horizontal driving and resisting forces vs. k, with ky at CDR = 1.0"
+        },
+        {
+          "figure_id": "7-4",
+          "title": "WUS/CEUS boundary and sliding displacement relationships",
+          "description": "Boundary between Western United States (WUS) and Central and Eastern United States (CEUS) for use in determining wall sliding displacement d from ky/kmax and PGV (Anderson et al., 2008)"
+        }
+      ],
+      "tables": [],
+      "applicability": "MSE wall seismic external stability design; Extreme Event I limit state; AASHTO LRFD 2007"
+    },
+    {
+      "section_id": "7.1.2",
+      "title": "Seismic Internal Stability",
+      "body": "For internal stability, the active wedge is assumed to develop an internal dynamic force Pi equal to the product of the mass in the active zone and the wall height-dependent average seismic coefficient kav (Equation 7-10):\n  Pi = kav × Wa\nwhere Wa is the soil weight of the active zone (shaded area in Figure 7-5) and kav is from Equation 7-3. Pi acts at the centroid of the active zone. If the weight of the facing is significant, include it in Wa.\n\nThe supplementary inertial force Pi leads to dynamic increases in maximum tensile forces. Reinforcements must resist horizontal forces from Pi in addition to static forces. During seismic internal stability evaluation, the location and maximum tensile force lines are assumed not to change under seismic loading.\n\nThe inertial force Pi is distributed equally to all n reinforcement layers (Equation 7-11):\n  Tmd = Pi / n\nwhere Tmd is the factored incremental dynamic inertia force at layer i.\n\nThe load factor for seismic forces is 1.0. Total factored load per unit wall width is (Equation 7-12):\n  Ttotal = Tmax + Tmd\nwhere Tmax is the factored static load from Chapters 4 and 6.",
+      "key_points": [
+        "Internal dynamic force Pi = kav × Wa; distributed equally among all n reinforcement layers as Tmd = Pi/n",
+        "Total factored seismic load: Ttotal = Tmax + Tmd",
+        "Load factor for seismic forces = 1.0",
+        "Location and maximum tensile force lines are assumed unchanged during seismic loading"
+      ],
+      "equations": [
+        {
+          "equation_id": "7-10",
+          "description": "Internal dynamic force in active zone",
+          "latex": "P_i = k_{av} \\times W_a",
+          "variables": {
+            "P_i": "internal dynamic inertia force (kN/m)",
+            "k_av": "average peak ground acceleration coefficient (Eq 7-3)",
+            "W_a": "soil weight of the active zone (kN/m)"
+          }
+        },
+        {
+          "equation_id": "7-11",
+          "description": "Dynamic inertia force per reinforcement layer",
+          "latex": "T_{md} = \\frac{P_i}{n}",
+          "variables": {
+            "T_md": "factored incremental dynamic inertia force at layer i (kN/m)",
+            "P_i": "total internal dynamic inertia force (kN/m)",
+            "n": "number of soil reinforcement layers in the reinforced soil zone"
+          }
+        },
+        {
+          "equation_id": "7-12",
+          "description": "Total factored seismic reinforcement load",
+          "latex": "T_{total} = T_{max} + T_{md}",
+          "variables": {
+            "T_total": "total factored load (static + dynamic) per unit wall width (kN/m)",
+            "T_max": "factored static reinforcement load from Chapters 4 and 6 (kN/m)",
+            "T_md": "factored incremental dynamic inertia force at layer i (kN/m)"
+          }
+        }
+      ],
+      "figures": [
+        {
+          "figure_id": "7-5",
+          "title": "Seismic internal stability of MSE wall",
+          "description": "Diagrammatical illustrations of seismic internal stability showing the active zone mass Wa (shaded) used for computing inertial force Pi and its distribution to reinforcement layers"
+        }
+      ],
+      "tables": [],
+      "applicability": "Seismic internal stability of MSE walls; Extreme Event I"
+    },
+    {
+      "section_id": "7.1.2.a",
+      "title": "Tensile Failure — Seismic",
+      "body": "Metallic reinforcement corrosion loss adjustments for seismic are identical to static analysis. Seismic resistance factors for metallic reinforcements (AASHTO Table 11.5.6-1) for combined static + earthquake loading:\n  Strip reinforcements: φ = 1.00\n  Grid reinforcements: φ = 0.85\n\nFor geosynthetic reinforcements, no creep reduction is applied for the short-duration dynamic component since creep requires long-term sustained loading. The static component Tmax must include creep reduction, but the dynamic component Tmd does not. Geosynthetic reinforcement is designed as follows:\n\nFor the static component (Equation 7-13):\n  Srs = (Tmax × RF) / (φ × Rc)\nwhere RF = RFCR × RFID × RFD, φ = 1.20 (AASHTO Table 11.5.6-1), Rc = reinforcement coverage ratio.\n\nFor the dynamic component (Equation 7-14):\n  Srt = (Tmd × RFID × RFD) / (φ × Rc)\n(creep reduction factor RFCR excluded from dynamic component)\n\nRequired ultimate tensile resistance (Equation 7-15):\n  Tult ≥ Srs + Srt",
+      "key_points": [
+        "Metallic seismic resistance factors: strip φ = 1.00, grid φ = 0.85",
+        "Geosynthetic seismic: no creep reduction (RFCR) for dynamic component Tmd — creep requires sustained loading",
+        "Static component Srs includes full RF = RFCR × RFID × RFD; dynamic Srt excludes RFCR",
+        "Resistance factor φ = 1.20 for combined static/earthquake geosynthetic loading",
+        "Required Tult ≥ Srs + Srt"
+      ],
+      "equations": [
+        {
+          "equation_id": "7-13",
+          "description": "Ultimate tensile resistance required for static seismic component — geosynthetic",
+          "latex": "S_{rs} = \\frac{T_{max} \\times RF}{\\phi \\times R_c}",
+          "variables": {
+            "S_rs": "ultimate tensile resistance for static load component (kN/m)",
+            "T_max": "factored static reinforcement load (kN/m)",
+            "RF": "combined strength reduction factor = RFCR × RFID × RFD",
+            "phi": "resistance factor = 1.20 (AASHTO Table 11.5.6-1)",
+            "R_c": "reinforcement coverage ratio"
+          }
+        },
+        {
+          "equation_id": "7-14",
+          "description": "Ultimate tensile resistance required for dynamic seismic component — geosynthetic",
+          "latex": "S_{rt} = \\frac{T_{md} \\times RF_{ID} \\times RF_D}{\\phi \\times R_c}",
+          "variables": {
+            "S_rt": "ultimate tensile resistance for dynamic load component (kN/m)",
+            "T_md": "factored dynamic inertia force (kN/m)",
+            "RF_ID": "installation damage strength reduction factor",
+            "RF_D": "chemical/biological degradation strength reduction factor",
+            "phi": "resistance factor = 1.20",
+            "R_c": "reinforcement coverage ratio"
+          },
+          "notes": "Creep reduction factor RFCR is excluded because dynamic seismic load is transient"
+        },
+        {
+          "equation_id": "7-15",
+          "description": "Required ultimate tensile resistance of geosynthetic reinforcement for seismic",
+          "latex": "T_{ult} \\geq S_{rs} + S_{rt}",
+          "variables": {
+            "T_ult": "required ultimate tensile resistance (kN/m)",
+            "S_rs": "static component requirement (kN/m)",
+            "S_rt": "dynamic component requirement (kN/m)"
+          }
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Seismic tensile failure check for metallic and geosynthetic reinforcements; Extreme Event I"
+    },
+    {
+      "section_id": "7.1.2.b",
+      "title": "Pullout Failure — Seismic",
+      "body": "For pullout of steel or geosynthetic reinforcement under seismic loading (Equation 7-16):\n  Pr = φ × F* × α × σv × C × Le × Rc ≥ Ttotal\nwhere Le is the reinforcement length in the resisting zone, Ttotal is the maximum factored tension from Equation 7-12, φ = 1.20 (AASHTO Table 11.5.6-1), and other terms are as defined in Chapter 4.\n\nFor seismic loading conditions, the value of F* (pullout resistance factor) is reduced to 80 percent of the value used for static design, unless dynamic pullout tests are performed to directly determine the F* value.",
+      "key_points": [
+        "Seismic pullout resistance factor φ = 1.20 (AASHTO Table 11.5.6-1)",
+        "F* reduced to 80% of static value under seismic loading unless dynamic pullout tests determine F* directly",
+        "Design pullout against Ttotal = Tmax + Tmd"
+      ],
+      "equations": [
+        {
+          "equation_id": "7-16",
+          "description": "Seismic pullout resistance of reinforcement",
+          "latex": "P_r = \\phi \\cdot F^* \\cdot \\alpha \\cdot \\sigma_v \\cdot C \\cdot L_e \\cdot R_c \\geq T_{total}",
+          "variables": {
+            "P_r": "factored pullout resistance (kN/m)",
+            "phi": "pullout resistance factor = 1.20 for seismic (AASHTO Table 11.5.6-1)",
+            "F*": "pullout resistance factor (reduced to 80% of static value for seismic unless tested)",
+            "alpha": "scale effect correction factor",
+            "sigma_v": "unfactored vertical stress at reinforcement level in resistant zone (kPa)",
+            "C": "overall reinforcement surface area geometry factor",
+            "L_e": "reinforcement length in resisting zone (m)",
+            "R_c": "reinforcement coverage ratio",
+            "T_total": "maximum factored reinforcement tension (Eq 7-12)"
+          }
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Seismic pullout failure check; Extreme Event I"
+    },
+    {
+      "section_id": "7.1.3",
+      "title": "Seismic Facing Reinforcement Connections",
+      "body": "Facing elements are designed to resist the total factored load Ttotal = Tmax + Tmd. Facing elements are designed per applicable provisions of AASHTO (2007) Sections 5, 6, and 8 for reinforced concrete, steel, and timber, respectively.\n\nFor segmental concrete block (MBW) faced walls, blocks above the uppermost reinforcement layer must be designed to resist toppling failure during seismic loading.\n\nFor geosynthetic connections subject to seismic loading, the factored long-term connection strength Tac must exceed Ttotal. For connections partially or fully dependent on friction between facing blocks and reinforcement, connection strength is reduced to 80% of its static value:\n\nFor the static component (Equation 7-17):\n  Srs = (Tmax × RFD × CRcr) / (φ × Rc) where φ = 1.20\n\nFor the dynamic component (Equation 7-18):\n  Srt = (0.8 × Tmd × CRu) / (φ × Rc)\n(0.8 multiplier reflects 80% reduction for friction-dependent connections; remove 0.8 for mechanical connections)\n\nRequired ultimate tensile resistance at connection (Equation 7-19):\n  Tult ≥ Srs + Srt\n\nFor metallic reinforcement connections, AASHTO (2007) resistance factors for combined static/seismic:\n  Strip reinforcements: φ = 1.00\n  Grid reinforcements: φ = 0.85\n\nFor seismic cases requiring analysis per AASHTO Section 4, MBW unit walls should use shear resisting devices (shear keys, structural pins from steel or HDPE meeting design life requirements) and should not be fully dependent on frictional resistance for connection capacity.",
+      "key_points": [
+        "Facing connections designed for Ttotal = Tmax + Tmd",
+        "Friction-dependent geosynthetic connection strength reduced to 80% under seismic loading",
+        "MBW units in seismic areas must use shear keys or structural pins — cannot rely on friction alone",
+        "Metallic connection resistance factors: strip φ = 1.00, grid φ = 0.85 for seismic",
+        "Required connection Tult ≥ Srs + Srt"
+      ],
+      "equations": [
+        {
+          "equation_id": "7-17",
+          "description": "Required connection tensile resistance for static component — geosynthetic seismic",
+          "latex": "S_{rs} = \\frac{T_{max} \\times RF_D \\times CR_{cr}}{\\phi \\times R_c}",
+          "variables": {
+            "S_rs": "static connection resistance requirement (kN/m)",
+            "T_max": "applied static reinforcement load (kN/m)",
+            "RF_D": "degradation strength reduction factor",
+            "CR_cr": "long-term connection strength reduction factor for creep at connection",
+            "phi": "resistance factor = 1.20",
+            "R_c": "reinforcement coverage ratio"
+          }
+        },
+        {
+          "equation_id": "7-18",
+          "description": "Required connection tensile resistance for dynamic component — friction-dependent geosynthetic seismic",
+          "latex": "S_{rt} = \\frac{0.8 \\times T_{md} \\times CR_u}{\\phi \\times R_c}",
+          "variables": {
+            "S_rt": "dynamic connection resistance requirement (kN/m)",
+            "T_md": "factored dynamic inertia force (kN/m)",
+            "CR_u": "short-term connection strength reduction factor",
+            "phi": "resistance factor = 1.20",
+            "R_c": "reinforcement coverage ratio"
+          },
+          "notes": "Remove 0.8 factor for mechanical connections not relying on friction"
+        },
+        {
+          "equation_id": "7-19",
+          "description": "Required ultimate tensile resistance at facing connection — geosynthetic seismic",
+          "latex": "T_{ult} \\geq S_{rs} + S_{rt}",
+          "variables": {
+            "T_ult": "required ultimate connection tensile resistance (kN/m)"
+          }
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Seismic facing connection design; Extreme Event I; geosynthetic and metallic connections"
+    },
+    {
+      "section_id": "7.2",
+      "title": "Vehicular Impact Events",
+      "body": "Traffic railing impact loads are analyzed under Extreme Event II limit state per AASHTO (2007) Article A13.2. Vehicular impact events affect only the internal stability of MSE walls. Guidance is based on NCHRP 22-20 (Bligh et al., 2009), which extends previous FHWA methods (Elias et al., 2001) based on laboratory and full-scale field tests. Guidance for post and beam railings is based on AASHTO (2007).",
+      "key_points": [
+        "Vehicular impact analyzed under Extreme Event II limit state",
+        "Impact affects only internal stability (not external stability)",
+        "Guidance from NCHRP 22-20 (Bligh et al., 2009)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "MSE walls with traffic barriers or guardrails"
+    },
+    {
+      "section_id": "7.2.1",
+      "title": "Traffic Barriers — Vehicular Impact Design",
+      "body": "Traffic barriers over the front face of MSE walls must be designed to resist overturning moment by their own mass per AASHTO (2007) Article 11.10.10.2.\n\nStatic Impact Load: The recommended static impact force is 10,000 lb (45 kN) applied on a barrier with minimum height of 32 in. (810 mm) above the roadway. Bligh et al. (2009) found that a 10,000 lb (45 kN) static impact load is equivalent to a dynamic TL-4 test level of 54,000 lb (240 kN). Where the impact barrier moment slab is cast integrally with concrete pavement, the additional force may be neglected.\n\nLoad Combination and Factors for Extreme Event II: load factor γP-EV = 1.35 for static soil load; traffic surcharge modeled as equivalent 2 ft soil height uses γP-EV = 1.35 (not γ = 0.50) for internal stability; static equivalent impact loads use load factor γCT = 1.00.\n\nReinforcement Rupture: The static impact force adds additional horizontal forces to the upper 2 reinforcement layers:\n  Layer 1 (top): rupture impact load = 2,300 lb/lft (33.5 kN/m)\n  Layer 2: rupture impact load = 600 lb/lft (8.8 kN/m)\nDistribution of stresses per AASHTO (2007) Figure 3.11.6.3-2 is NOT recommended.\n\nLoad factor for impact = 1.0. Total factored reinforcement load (Equations 7-20a and 7-20b):\n  Ttotal = Tmax + TI\n  TI = ti / Rc\nwhere ti = 33.5 kN/m for layer 1 or 8.8 kN/m for layer 2, and Rc = reinforcement coverage ratio.\n\nNote: for geosynthetic reinforcements, the nominal strength used for impact sizing is NOT increased by eliminating the creep reduction factor (unlike seismic design), because full-scale traffic barrier impact testing with geosynthetic reinforcement has not been performed.\n\nReinforcement Pullout: Impact pullout resistance is mobilized over the full reinforcement length L (not just the resistant zone). Traffic surcharge (2 ft equivalent height) is included in nominal vertical stress σv for pullout resistance. Impact pullout design loads:\n  Layer 1 (top): pullout impact load = 1,300 lb/lft (19.0 kN/m)\n  Layer 2: pullout impact load = 600 lb/lft (8.8 kN/m)\n\nResistance Factors: Use Table 4-7 factors for \"Combined static/traffic barrier impact\" for Extreme Event II. Pullout resistance factor = 1.00 for both metallic and geosynthetic reinforcements.\n\nBarrier, Coping, and Moment Slab: Typical base slab length = 20 ft (6 m), jointed to adjacent slabs with shear dowels. Parapet reinforcement per AASHTO Section 13 Railings. Anchoring slab must resist the ultimate strength of the standard parapet and provide adequate sliding and overturning resistance.\n\nMSE Facing Panel Design: Upper facing panel must be separated from barrier slab with 1 to 2 in. (25–50 mm) of expanded polystyrene (see Figure 5-2(b)). Separation allows the barrier and slab to resist impact load without stressing the facing panel.",
+      "key_points": [
+        "Static equivalent impact force = 10,000 lb (45 kN) ≡ dynamic TL-4 = 54,000 lb (240 kN)",
+        "Impact load factor γCT = 1.00; soil γP-EV = 1.35; surcharge γP-EV = 1.35",
+        "Rupture impact: Layer 1 = 33.5 kN/m, Layer 2 = 8.8 kN/m",
+        "Pullout impact: Layer 1 = 19.0 kN/m, Layer 2 = 8.8 kN/m",
+        "Geosynthetic impact design does NOT remove creep reduction factor (insufficient test data)",
+        "Pullout resistance factor = 1.00 for impact loading",
+        "Upper panel must be separated from barrier slab by 25–50 mm expanded polystyrene"
+      ],
+      "equations": [
+        {
+          "equation_id": "7-20a",
+          "description": "Total factored reinforcement load under traffic barrier impact",
+          "latex": "T_{total} = T_{max} + T_I",
+          "variables": {
+            "T_total": "total factored load per unit wall width (kN/m)",
+            "T_max": "reinforcement tension from static earth and traffic loads (kN/m)",
+            "T_I": "factored impact load at layer 1 or 2 (kN/m)"
+          }
+        },
+        {
+          "equation_id": "7-20b",
+          "description": "Impact load component per unit wall width",
+          "latex": "T_I = \\frac{t_i}{R_c}",
+          "variables": {
+            "t_i": "equivalent static impact load at layer i: t1 = 33.5 kN/m (rupture), t2 = 8.8 kN/m (rupture); t1 = 19.0 kN/m (pullout), t2 = 8.8 kN/m (pullout)",
+            "R_c": "reinforcement coverage ratio"
+          }
+        }
+      ],
+      "figures": [
+        {
+          "figure_id": "7-6",
+          "title": "Comparison of static and dynamic impact force",
+          "description": "Graphical illustration comparing static 10,000 lb (45 kN) and dynamic TL-4 54,000 lb (240 kN) impact force with 1-inch (25 mm) maximum displacement criterion (Bligh et al., 2009)"
+        }
+      ],
+      "tables": [],
+      "applicability": "MSE walls with traffic barriers at the wall crest; Extreme Event II; internal stability only"
+    },
+    {
+      "section_id": "7.2.2",
+      "title": "Post and Beam Railings",
+      "body": "Flexible post and beam barriers shall be placed at a minimum distance of 3.0 ft (0.9 m) from the wall face, driven 5.0 ft (1.5 m) below grade, and spaced to miss the reinforcements where possible. If the reinforcements cannot be avoided, the wall must be designed accounting for the presence of an obstruction. Each of the upper two rows of reinforcement shall be designed for an additional horizontal load of 150 lb/lft (2.2 kN/m) per wall length, for a total additional load of 300 lb/lft (4.4 kN/m).",
+      "key_points": [
+        "Minimum 3.0 ft (0.9 m) clearance from wall face to post and beam barrier",
+        "Posts driven 5.0 ft (1.5 m) below grade",
+        "Additional 150 lb/lft (2.2 kN/m) per upper two reinforcement rows = 300 lb/lft (4.4 kN/m) total additional load",
+        "Design as obstruction per Chapter 5 if reinforcements cannot be avoided"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "MSE walls with flexible post and beam railings at the wall crest"
+    },
+    {
+      "section_id": "7.3",
+      "title": "Superflood Events and Scour",
+      "body": "The stability of walls and abutments in areas of turbulent flow must be addressed in design. Wall design is based on total scour depths estimated per AASHTO (2007) Article 2.6.4.4.2. Scour must be investigated for two flood conditions:\n\nDesign Flood: The more severe of the 100-year event or an overtopping flood of lesser recurrence interval. Stability design assumes all streambed material above the total scour line has been removed. Analyzed as a strength limit state.\n\nCheck Flood: The more severe of the 500-year event or an overtopping flood of lesser recurrence interval. Stability design assumes all streambed material above the total scour line has been removed. This is an extreme event condition — Extreme Event II limit state applies. Resistance factors may be taken as 1.0 per AASHTO (2007) Articles 10.6.4 and 10.5.5.3.3.",
+      "key_points": [
+        "Design flood = 100-year event or overtopping flood; analyzed at strength limit state",
+        "Check flood = 500-year event or overtopping flood; analyzed at Extreme Event II limit state",
+        "Both floods analyzed assuming all material above total scour line is removed",
+        "Check flood resistance factors = 1.0 per AASHTO Articles 10.6.4 and 10.5.5.3.3"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "MSE walls and abutments in areas subject to scour from flooding or turbulent flow"
+    }
+  ]
+}

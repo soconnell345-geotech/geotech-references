@@ -1,0 +1,193 @@
+{
+  "reference_id": "FHWA-NHI-18-024",
+  "reference_title": "Drilled Shafts: Construction Procedures and LRFD Design Methods",
+  "chapter": 6,
+  "chapter_title": "Rebar Cages",
+  "sections": [
+    {
+      "section_id": "6.1",
+      "title": "Introduction",
+      "body": "Rebar cage design, fabrication, and installation are critical steps in drilled shaft design and construction. Addressed from two perspectives: structural design (Chapter 12) and constructability (this chapter). A drilled shaft rebar cage consists of longitudinal bars arranged circumferentially, transverse reinforcing around the longitudinals, and accessories including sizing hoops, centering devices, tremie guides, and bracing. Access tubes for nondestructive testing (CSL or TIP) are part of the cage. Amount of steel controlled by structural requirements; designer typically has options for bar sizes, bundling, splices, and concrete cover — all with constructability implications. Cage always placed before concrete; concrete flows through and around the cage. Short cages may sometimes be 'wet-stick' (pushed or vibrated into fresh concrete) but this is unusual.",
+      "key_points": [
+        "Cage components: longitudinal bars, transverse reinforcing, sizing hoops, centering devices, tremie guides, bracing, access tubes",
+        "Structural design covered in Chapter 12; constructability covered here",
+        "Designer has options on bar size, bundling, cover, splices — all affect constructability",
+        "Cage always placed before concrete in typical drilled shaft construction"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "All drilled shaft rebar cage design, fabrication, and installation"
+    },
+    {
+      "section_id": "6.2",
+      "title": "Properties of Reinforcing Steel",
+      "body": "ASTM and AASHTO specifications govern reinforcing steel properties per AASHTO LRFD Bridge Design Specifications (2017a). Yield strength range: 60-100 ksi per AASHTO for bridges. Most common rebar: AASHTO M 31 (ASTM A615) — available in Grade 40, 60, 75, 80, 100; not weldable in normal practice; maximum bar No. 18. Weldable alternative: ASTM A706 — available Grade 60 and 80; must specify when welding required. High corrosion resistance: AASHTO M18 (ASTM A1035) — chromium alloy; Grade 60, 75, or 100; weldable; marine environments. Plain bars not recommended — deformed bars required per AASHTO (2017a) for all except spirals/hoops. Modulus of elasticity: 29,000,000 psi; elastic-plastic stress-strain assumed with knee at yield. Higher strength rebar (Grade 75-100): reduces total steel area, reduces cage congestion, reduces cage weight — benefits constructability. Hollow bars (Grade 80/100 per ASTM A615) can serve as CSL access tubes — eliminates separate PVC/steel tubes, reduces congestion.",
+      "key_points": [
+        "AASHTO yield strength limits: 60-100 ksi for all seismic zones",
+        "Most common: ASTM A615 Grade 60 — NOT weldable; specify ASTM A706 when welding required",
+        "ASTM A1035: chromium alloy, corrosion-resistant, Grade 60-100, weldable — use in marine environments",
+        "Higher strength rebar reduces cage congestion and weight — improved constructability",
+        "Hollow bars (Gr 80/100) can serve dual purpose as CSL access tubes"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-1: GR75 reinforcement cage with threaded couplers, I-35W bridge Minneapolis"
+      ],
+      "tables": [
+        "Table 6-1: Properties of steel for concrete reinforcement — ASTM/AASHTO designations, yield strengths, weldability, maximum bar size",
+        "Table 6-2: Weights and dimensions of deformed bars — bar No., weight (lb/ft), diameter (in.), area (in²), perimeter (in.)"
+      ],
+      "applicability": "Rebar selection for drilled shaft reinforcing cages"
+    },
+    {
+      "section_id": "6.3",
+      "title": "Longitudinal Reinforcing",
+      "body": "Longitudinal bars resist bending, compression, and tension stresses. Amount determined by structural analysis per Chapter 12 and AASHTO minimum percentages. AASHTO (2017a): minimum longitudinal steel 0.5% of gross area where moment demand is minimal. Full-length reinforcement required for: Seismic Zones 3 and 4 (AASHTO requirement); support of CSL access tubes; cases where cage must stand on shaft bottom during casing extraction. Performance depends on bond between bars and concrete — surfaces must be free of excessive rust, soil, oils, or contaminants. No evidence of significant bond loss from bentonite or polymer contact with deformations under normal construction. Minimum clear spacing between longitudinal bars: sufficient to allow concrete passage and for tremie tube operation. Maximum bar spacing should not exceed 6 inches in most cases. Bar bundling may be used to increase spacing between bundle groups while providing required area.",
+      "key_points": [
+        "Minimum longitudinal steel: 0.5% of gross area where moment demand minimal",
+        "Full-length reinforcement required for Seismic Zones 3 and 4",
+        "Full-length reinforcement also needed to support CSL access tubes",
+        "Bar surfaces must be clean — excessive rust, soil, oils reduce bond",
+        "Maximum bar spacing: typically ≤6 inches; bundling can increase clear space between groups"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Longitudinal rebar design and detailing for drilled shafts"
+    },
+    {
+      "section_id": "6.4",
+      "title": "Transverse Reinforcement",
+      "body": "Transverse reinforcement provides confinement of core concrete, resists shear and torsion, prevents buckling of longitudinal bars, and maintains circular shape during cage fabrication/handling. Forms: spirals (continuous helical winding) or circular hoops (discrete rings). Spirals preferred for ductility in seismic applications. Spiral pitch and hoop spacing: minimum 3 inches (governed by concrete placement), maximum 6 inches for seismic zones. AASHTO spiral requirements in Seismic Zones 3 and 4: heavy confinement to achieve adequate ductility. For non-seismic: transverse reinforcement primarily for shear; minimum No. 3 at ≤12 inch spacing. Minimum transverse bar size: No. 3 for shafts ≤24 in. diameter, No. 4 for larger shafts. Minimum clear opening between transverse bar and longitudinal bar cluster must accommodate aggregate size (maximum aggregate size + 1.5 in. for minimum clear space).",
+      "key_points": [
+        "Transverse functions: confinement, shear/torsion resistance, prevent bar buckling, maintain shape",
+        "Spirals preferred over hoops for seismic ductility",
+        "Minimum spacing: 3 inches (concrete placement requirement)",
+        "Maximum spacing: 6 inches for seismic zones; 12 inches for non-seismic shear reinforcement",
+        "Seismic Zones 3 and 4: heavy confinement reinforcement required per AASHTO"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Transverse reinforcing design; seismic detailing"
+    },
+    {
+      "section_id": "6.5",
+      "title": "Splices",
+      "body": "Splices needed when cage is too long for single piece fabrication. Types: lap splices, mechanical couplers, and welded splices. Lap splices: most common; development length per ACI/AASHTO; practical minimum lap ≥2 ft for most bars; stagger lap splices so not all bars splice at same elevation. Mechanical couplers: threaded or swaged; provide 125% of minimum yield strength per AASHTO; reduce cage congestion at splice location; used in seismic zones where lap splices are restricted; higher cost than lap splices but significant constructability benefits. Welded splices: requires ASTM A706 (weldable) steel; difficult to inspect welds in cage; generally not recommended except for special connections. Cage-to-shaft-top connection: threaded bars with anchor bolt pattern used for sign/tower/mast connections; anchor bolts installed while concrete is still fluid.",
+      "key_points": [
+        "Lap splices most common; stagger elevations to avoid all bars splicing at same level",
+        "Mechanical couplers: 125% min yield per AASHTO; reduces congestion; required in some seismic zones",
+        "Welded splices: require ASTM A706; difficult to inspect; generally not recommended",
+        "Stagger splices vertically to avoid stress concentration at a single elevation"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Cage splice design and fabrication planning"
+    },
+    {
+      "section_id": "6.6",
+      "title": "Connection Between Drilled Shaft and Column",
+      "body": "Column-to-shaft connection types depend on structure type. For bridge columns: longitudinal bars extend above shaft top, spliced to column cage with lap or mechanical coupler; or column bars embedded into shaft concrete. For precast columns: dowels extending from shaft top connect to precast column pockets. For anchor bolt connections (sign towers, masts, transmission towers): plate with anchor bolt pattern installed at top of shaft with anchor bolts positioned while concrete is fluid; dowel bars may also extend for structural continuity. Connection zone must have sufficient confinement to prevent concrete splitting under concentrated loads.",
+      "key_points": [
+        "Bridge columns: bars extend above shaft top and splice to column cage",
+        "Sign/tower/mast: anchor bolt pattern installed while concrete is still fluid",
+        "Precast columns: dowels from shaft connect to precast pockets",
+        "Connection zone requires adequate confinement transverse reinforcement"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Shaft-to-structure connection detailing"
+    },
+    {
+      "section_id": "6.7",
+      "title": "Fabrication and Storage",
+      "body": "Rebar cages typically pre-assembled in yard or on-site before placement. Pre-assembly requires planning for handling equipment (cranes) and layout space. Fabrication sequence: assemble longitudinal bars in jig, install transverse reinforcing, attach accessories (sizing hoops, centering devices, access tubes, bracing). Steel must be free of excessive rust (tight mill scale is acceptable), oils, soil, or other contaminants. Bars should be stored off ground on blocks to prevent soil contamination. Spacing templates/jigs used to maintain uniform bar spacing during cage rolling. Final cage length often limited by transport/crane constraints — splice sections on-site or at top of shaft if too long. Cage weight must be calculated for crane selection.",
+      "key_points": [
+        "Pre-assembly in yard requires planning for handling and layout space",
+        "Steel: free of excessive rust, oils, soil; tight mill scale acceptable",
+        "Store off ground on blocks to prevent contamination",
+        "Cage weight must be calculated for crane selection",
+        "Cage length limited by transport and crane — splice sections on-site if needed"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Cage fabrication planning and yard operations"
+    },
+    {
+      "section_id": "6.8",
+      "title": "Sizing Hoops",
+      "body": "Sizing hoops (or standoff rings) are plain bar hoops attached externally to the outside of the transverse reinforcement to maintain the specified clear cover to the borehole wall. They are not structural reinforcing elements but serve as guides to prevent the cage from contacting the borehole sidewall. Sizing hoops must be sized so the cage fits within the shaft excavation and the specified concrete cover (typically 3 inches minimum for non-aggressive environments) is maintained. Sizing hoops are commonly plain round bars welded to the outside of the cage spiral or hoops at intervals along the cage length.",
+      "key_points": [
+        "Sizing hoops maintain specified concrete cover to borehole wall",
+        "Non-structural elements — plain bar rings external to transverse reinforcement",
+        "Minimum concrete cover: typically 3 inches for non-aggressive environments",
+        "Spaced at intervals along cage length to prevent cage-wall contact"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "All drilled shaft cages; concrete cover quality control"
+    },
+    {
+      "section_id": "6.9",
+      "title": "Centering Devices",
+      "body": "Centering devices (centralizers) center the cage within the borehole to ensure uniform concrete cover on all sides. Configured as fixed or adjustable devices spaced along the cage. Types include plastic or steel bar chairs, rollers, and fin-type centralizers. Must not impede concrete flow. Centering devices also used for CSL access tubes to maintain proper position within the cage. For slurry-filled holes, must be robust enough to position cage accurately despite buoyancy effects.",
+      "key_points": [
+        "Centering devices ensure uniform concrete cover around entire cage perimeter",
+        "Must not impede concrete flow between cage and borehole wall",
+        "Also used to position CSL access tubes",
+        "Robust design needed for buoyancy effects in slurry-filled holes"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Cage positioning; concrete cover quality control"
+    },
+    {
+      "section_id": "6.10",
+      "title": "Bracing of Rebar Cages",
+      "body": "Long or large-diameter cages require internal bracing to prevent distortion during lifting and placement. Bracing typically consists of cross-bar diagonals or X-frames at intervals within the cage. Cage must be able to stand freely under self-weight without racking when supported on shaft bottom — important when cage must resist concrete downdrag during casing extraction. Lifting eyes and pickup points must be strong enough to support full cage weight during vertical placement. Bracing designed for construction loads — not a structural element in the completed shaft.",
+      "key_points": [
+        "Long/large cages require internal bracing to prevent distortion during lifting and placement",
+        "Cage must stand freely under self-weight when placed on shaft bottom",
+        "Lifting eyes and pickup points sized for full cage dead weight",
+        "Bracing designed for construction loads only — removed from structural model"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Long and large-diameter cage fabrication; cage placement operations"
+    },
+    {
+      "section_id": "6.11",
+      "title": "Rebar Cage Lifting and Placement",
+      "body": "Cage lifting requires crane with sufficient capacity; lifting analysis required for longer/heavier cages. Pick points and spreader bars used to lift long cages without distortion. Cages lifted vertically and placed into shaft in sections spliced at top of shaft or lowered to depth. In slurry-filled holes, care taken to avoid cage swing that could contact hole wall and dislodge soil into excavation. After placement, cage suspended at correct elevation using support bars resting on surface casing or ground — cage should not rest on shaft bottom except when design requires it for casing extraction. Out-hook bars: protrude outward from cage — not permitted when temporary casing must be extracted over cage.",
+      "key_points": [
+        "Crane selection requires cage weight analysis; lifting analysis for long/heavy cages",
+        "Spreader bars and multiple pick points for long cages to prevent distortion",
+        "In slurry-filled holes: avoid cage swing that disturbs borehole wall",
+        "Cage suspended at correct elevation — do not rest on shaft bottom unless required",
+        "No out-hook bars when temporary casing must be extracted over cage"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Cage handling and placement operations; crane planning"
+    },
+    {
+      "section_id": "6.12",
+      "title": "Summary",
+      "body": "Chapter provided guidance on constructability of drilled shaft rebar cages including steel properties, longitudinal and transverse reinforcing, splices, connections, fabrication, and placement. Key constructability considerations: bar spacing for concrete flow and tremie access; cage weight for crane selection; bracing for distortion prevention; centering devices for concrete cover; compatibility of cage with casing extraction. Structural design of reinforcing addressed in Chapter 12.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Overview"
+    }
+  ]
+}

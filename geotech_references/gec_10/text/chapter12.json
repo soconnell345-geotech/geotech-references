@@ -1,0 +1,163 @@
+{
+  "reference_id": "FHWA-NHI-18-024",
+  "reference_title": "Drilled Shafts: Construction Procedures and LRFD Design Methods",
+  "chapter": 12,
+  "chapter_title": "Structural Design",
+  "sections": [
+    {
+      "section_id": "12.1",
+      "title": "Introduction",
+      "body": "Drilled shaft structural design follows AASHTO LRFD 2017 Bridge Design Specifications Section 5 and AASHTO LRFD Bridge Construction Specifications (2017b). Drilled shaft treated as load-bearing reinforced concrete element (beam-column) with special attention to constructability requirements. Design is iterative (Block 12 in Figure 8-1): revisions may be required for constructability, changes in shaft geometry, revised loads, or updated subsurface information. Structural design steps: (1) determine factored force demands; (2) check trial design for axial resistance; (3) analyze shaft or group under lateral/moment loads; (4) design for combined axial and moment (P-M interaction); (5) design for shear; (6) review and revise for constructability. Design calculations must demonstrate LRFD criterion is satisfied for all applicable limit states. LRFD criterion: ΣηiγiQi ≤ φRn = Rr.",
+      "key_points": [
+        "Follows AASHTO LRFD 2017 Section 5",
+        "Drilled shaft designed as reinforced concrete beam-column",
+        "Six-step structural design process with iterations",
+        "Design must demonstrate LRFD criterion satisfied for all applicable limit states",
+        "LRFD criterion: ΣηiγiQi ≤ φRn = Rr"
+      ],
+      "equations": [
+        "Eq. 12-1: ΣηiγiQi ≤ φRn = Rr — LRFD structural design criterion"
+      ],
+      "figures": [
+        "Figure 12-1: Simplified flow chart for structural design"
+      ],
+      "tables": [],
+      "applicability": "All drilled shaft structural design per AASHTO LRFD 2017"
+    },
+    {
+      "section_id": "12.2",
+      "title": "Material Requirements",
+      "body": "Concrete: fc' typically 3.5-5.0 ksi; methods applicable to fc' up to 10 ksi; minimum fc' ≥2.4 ksi per AASHTO. Normal weight concrete. Modulus of elasticity: Ec = 1820√fc' (ksi). Reinforcing steel: most common AASHTO M31 (ASTM A615) Grade 60, fy = 60 ksi; AASHTO allows up to Grade 100 (fy = 100 ksi); higher grade reduces steel area and cage weight — improved constructability; fy <60 ksi requires owner approval; for welding specify ASTM A706; Es = 29,000 ksi. Permanent casing: ASTM A36 (fy = 36 ksi), ASTM A242 (fy = 50 ksi for ≤1/2 in.), ASTM A252 Grade 2 (fy = 36 ksi) or Grade 3 (fy = 45 ksi); casing thickness shown on plans as 'minimum'; contractor may use greater thickness if installation equipment requires it; Es = 29,000 ksi.",
+      "key_points": [
+        "Concrete: fc' typically 3.5-5.0 ksi; Ec = 1820√fc' (ksi)",
+        "Most common rebar: ASTM A615 Grade 60; AASHTO allows up to Grade 100",
+        "Specify ASTM A706 when welding required",
+        "Permanent casing: minimum fy per ASTM A36, A242, A252 standards",
+        "Casing thickness shown as 'minimum' on contract documents"
+      ],
+      "equations": [
+        "Eq. 12-2: Ec = 1820√fc' (ksi) — concrete modulus of elasticity for normal weight concrete"
+      ],
+      "figures": [],
+      "tables": [
+        "Table 12-1: Minimum yield strengths for permanent steel casing — ASTM A36, A242, A252 Grade 2 and Grade 3"
+      ],
+      "applicability": "Material selection and specification for drilled shaft structural design"
+    },
+    {
+      "section_id": "12.3",
+      "title": "Code-Specified Limits on Steel Reinforcement",
+      "body": "Longitudinal steel: AASHTO limits ρs between 1% and 8% of gross area; upper limit 6% for Seismic Zone 2; 4% for Seismic Zones 3 and 4. Practical range: 1-2%. Minimum longitudinal reinforcement for compression members: (Asfy)/(Agfc') ≥ 0.135. Where unfactored permanent loads ≤0.4Agfc', this need not exceed 1.5%. Above-grade column section minimum: 1% of gross area. Below-grade laterally-supported portion: 0.5% minimum. Minimum 6 bars in circular arrangement; minimum bar No. 5. Transverse steel minimum per AASHTO 5.7.2.5: Av ≥ 0.0316λ√fc'(bv×s)/fy, required when Vu > 0.5φVc. Maximum transverse spacing: if vu < 0.125fc', smax = 0.8dv ≤ 24 in.; if vu ≥ 0.125fc', smax = 0.4dv ≤ 12 in. Seismic Zones 3 and 4 per AASHTO 5.11.4.1.5: transverse confinement required from 3× max cross-section dimension below moment fixity to larger of max dimension or 18 in. above mudline; max spacing ≤ min(¼ min dimension, 4 in.). IMPORTANT: 4-inch seismic maximum conflicts with minimum 5-inch clear spacing for concrete flow. California Amendments resolve this by deleting seismic exceptions to 5-inch minimum clear spacing — highly recommended practice. Bundled No. 8 hoops at Grade 80 can meet high seismic demand while providing ≥5 inch clear spacing.",
+      "key_points": [
+        "ρs limits: 1-8% gross area; ≤6% Seismic Zone 2; ≤4% Seismic Zones 3&4; typical 1-2%",
+        "Minimum longitudinal: (Asfy)/(Agfc') ≥ 0.135; typically ≥0.5% below grade; ≥1% above grade",
+        "Minimum 6 bars; No. 5 minimum; uniform circular spacing",
+        "Transverse minimum: Av ≥ 0.0316λ√fc'(bv×s)/fy when Vu > 0.5φVc",
+        "AASHTO seismic max spacing 4 in. conflicts with 5-in. minimum for concrete flow",
+        "California Amendments: maintain 5-in. minimum for ALL seismic zones — use bundled No. 8 hoops"
+      ],
+      "equations": [
+        "Eq. 12-3: (Asfy)/(Agfc') ≥ 0.135 — minimum longitudinal reinforcement for compression members (AASHTO 5.6.4.2-3)",
+        "Eq. 12-4: Vu > 0.5φVc — condition requiring minimum transverse reinforcement",
+        "Eq. 12-5: Av ≥ 0.0316λ√fc'(bvs)/fy — minimum transverse steel area (AASHTO 5.7.2.5-1)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Structural design of drilled shaft reinforcement; seismic detailing"
+    },
+    {
+      "section_id": "12.4",
+      "title": "Concrete Cover",
+      "body": "AASHTO/ACI minimum cover cast against soil/rock: 3.0 inches. Recommended minimum to primary longitudinal steel (accounting for construction tolerances): 3.0 in. for shafts ≤3 ft diameter; 4.0 in. for 3-5 ft diameter; 6.0 in. for shafts ≥5 ft diameter. Transverse reinforcement cover may be less than longitudinal by no more than 0.5 inch. Cover adjustments for w/cm: ×1.2 for w/cm ≥0.50; ×0.8 for w/cm ≤0.40 (but do not reduce below recommended minimums — low w/cm also impairs concrete flow). Centering devices maintain cage alignment and cover — see Chapter 6.",
+      "key_points": [
+        "Cover to primary longitudinal steel: 3 in. (≤3 ft dia); 4 in. (3-5 ft dia); 6 in. (≥5 ft dia)",
+        "Transverse reinforcement cover may be ≤0.5 in. less than longitudinal bars",
+        "Adjust cover for w/cm: ×1.2 if w/cm ≥0.50; ×0.8 if w/cm ≤0.40",
+        "Do not reduce below recommended minimums — low w/cm impairs concrete flow"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Concrete cover specification; cage design for large diameter shafts"
+    },
+    {
+      "section_id": "12.5",
+      "title": "Design for Axial Load",
+      "body": "Axial compression — nominal factored compressive resistance: Pr = φ×0.85[0.85fc'(Ag-Ast) + fyAst]; resistance factor φ = 0.75 for compression-controlled sections with spiral or circular ties; φ = 0.90 for extreme event seismic Zones 2, 3, and 4. Where shaft bears on competent rock and reinforcement extends to tip: same equation with φ = 0.70 for bearing. Plain concrete at unreinforced tip: Pr = φPn = 0.70[0.85fc'A1m] with confinement factor m ≤ 2.0; for socketed shaft on competent rock, m = 2.0. Tension (uplift) — nominal factored tensile resistance: Pr = φPn = φfyAst; resistance factor φ = 0.90.",
+      "key_points": [
+        "Compression: Pr = φ×0.85[0.85fc'(Ag-Ast) + fyAst]; φ = 0.75 (spiral/hoop); 0.90 for seismic Zones 2-4",
+        "Rock bearing at tip: φ = 0.70",
+        "Unreinforced plain concrete tip: Pr = 0.70[0.85fc'A1m]; m = 2.0 for socket on competent rock",
+        "Tension/uplift: Pr = φfyAst; φ = 0.90"
+      ],
+      "equations": [
+        "Eq. 12-6: Pr = φ×0.85[0.85fc'(Ag-Ast) + fyAst] — factored compressive resistance (φ=0.75 spiral/hoop)",
+        "Eq. 12-7: Pr = 0.70[0.85fc'A1m] — plain concrete bearing at tip (AASHTO 5.6.5-2); m≤2.0; m=2.0 for socket on competent rock",
+        "Eq. 12-8: Pr = φfyAst — factored tensile resistance; φ=0.90 (AASHTO 5.6.6.1-1)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Axial compression and uplift structural design checks"
+    },
+    {
+      "section_id": "12.6",
+      "title": "Interaction Diagrams for Combined Axial and Lateral Loading",
+      "body": "P-M interaction diagram defines strength limit of section for combined axial load (P) and moment (M). Based on Bernoulli hypothesis (plane sections remain plane) with superposed axial and bending strains. Key points on diagram: (A) pure compression — uniform strain εcs = 0.003; (B) compression with small moment — top fiber εcs, bottom fiber reduced compressive; (C) combined compression and tension from moment; (D) balanced condition — εcs in concrete and εy in steel reached simultaneously (Pb, Mb); (A to D) compression-controlled (concrete crushes before steel yields); (E) tension-controlled — steel yields before εcs reached with smaller axial load; (F) pure bending (Mo). Diagram depends on shaft diameter, fc', bar layout, and fy. For shafts with permanent casing, casing contribution incorporated assuming strain compatibility. Nominal diagram multiplied by resistance factors for LRFD check (Pr = φPn, Mr = φMn). Resistance factor varies: φ = 0.75 compression-controlled; transitions to φ = 0.90 tension-controlled; interpolated in between.",
+      "key_points": [
+        "P-M interaction diagram defines strength limit for combined P and M demands",
+        "Balanced condition: εcs in concrete and εy in steel reached simultaneously (Pb, Mb)",
+        "Compression-controlled (A to D): φ = 0.75; Tension-controlled (E to F): φ = 0.90",
+        "Permanent casing contribution can be incorporated via strain compatibility",
+        "In practice, nominal P-M diagrams generated by commercial software"
+      ],
+      "equations": [
+        "Eq. 12-9: Pr = φPn — factored axial resistance from P-M interaction (AASHTO 5.7.4.4-1)",
+        "Eq. 12-10: Mr = φMn — factored moment resistance (AASHTO 5.7.3.2.1-1)"
+      ],
+      "figures": [
+        "Figure 12-2: Interaction diagram and strain distribution for a reinforced concrete column — points A through F"
+      ],
+      "tables": [],
+      "applicability": "Structural design of drilled shafts under combined axial and lateral loads"
+    },
+    {
+      "section_id": "12.7",
+      "title": "Structural Design Procedure",
+      "body": "Six-step procedure: (1) Determine factored force demands at top of shaft — from structural analysis model of bridge; foundation supports modeled as springs or depth-of-fixity; resolve reactions into axial P, shear V, and moment M components for each limit state. (2) Check trial design for axial resistance — compare factored axial P to φPn from Eq. 12-6 or 12-8; modify design if insufficient. (3) Analyze shaft under lateral/moment loads — use p-y curve method (Chapter 9) to develop shear and moment vs. depth diagrams; maximum shear and moment typically occur at different depths. Example: 5-ft diameter, 47 ft deep, 18 No. 11 Grade 80 bars with 6-in. cover into rock; Vmax = 247 kips at depth 18 ft; Mmax = 4,400 k-ft at depth 6 ft. (4) Design for combined axial and moment — factored P-M demand point must fall within factored resistance P-M envelope; iterate on bar size, count, grade, or shaft diameter as needed. (5) Design for shear — nominal shear resistance Vn = Vc + Vs; Vc = 0.0316λβ√fc'bvdv; Vs = Avfydv/s for spirals; resistance factor φ = 0.90; if factored demand exceeds resistance, increase transverse reinforcing or shaft diameter. (6) Review and revise for constructability — minimum clear spacing ≥5 in.; cage weight assessment; concrete placement verification.",
+      "key_points": [
+        "Step 1: Factored demands from structural model — P, V, M at top of shaft for each limit state",
+        "Step 3: p-y method for shear/moment diagrams; Vmax and Mmax occur at different depths",
+        "Step 4: Factored P-M demand point must fall within factored P-M resistance envelope",
+        "Step 5: Shear resistance φVn = φ(Vc + Vs); φ = 0.90; Vc = 0.0316λβ√fc'bvdv",
+        "Step 6: Constructability check — minimum 5-in. clear spacing; cage weight; concrete placement"
+      ],
+      "equations": [
+        "Vn = Vc + Vs — total nominal shear resistance",
+        "Vc = 0.0316λβ√fc'bvdv (kips) — concrete shear resistance per AASHTO Modified Compression Field Theory",
+        "Vs = Avfydv/s — steel shear resistance from transverse reinforcement"
+      ],
+      "figures": [
+        "Figure 12-3: Example trial drilled shaft — subsurface profile, loads, and trial section",
+        "Figure 12-4: Shear and moment vs. depth diagrams for example trial shaft"
+      ],
+      "tables": [],
+      "applicability": "Step-by-step structural design procedure for drilled shafts"
+    },
+    {
+      "section_id": "12.8",
+      "title": "Additional Structural Design Considerations",
+      "body": "Splices, connections, and cutoffs: longitudinal bar development length; rebar cutoffs where moment demand decreases; mechanical couplers for high seismic zones; top-of-shaft connection to column per Chapter 6. Drilled shafts with permanent casing: casing acts as structural element; casing contribution to P-M resistance calculated with strain compatibility; casing must be structurally adequate for all applicable limit states; casing corrosion must be accounted for over design life. Structural design of rock sockets: high base resistance in rock can induce bearing stress exceeding concrete strength; strut-and-tie model (STM) per AASHTO 2017 applicable for structural design of rock sockets; STM models load transfer through concrete as compression struts and tension ties; requires adequate transverse reinforcement within the socket zone to prevent splitting of the rock socket; STM added in 2018 edition of this manual.",
+      "key_points": [
+        "Bar cutoffs: must be designed for development length requirements",
+        "Permanent casing: contribution to P-M resistance calculated with strain compatibility; account for corrosion",
+        "Rock socket STM: applies when high base resistance may exceed concrete bearing strength",
+        "STM requires adequate transverse reinforcement within socket zone to prevent splitting",
+        "STM added in 2018 edition per AASHTO 2017 provisions"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Permanent casing design; rock socket structural design; seismic connections"
+    }
+  ]
+}

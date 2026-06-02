@@ -17,58 +17,50 @@ from geotech_references._retrieval import (
 class TestLoadChapter:
     """Tests for load_chapter()."""
 
-    @pytest.mark.parametrize("chapter", list(range(1, 24)))
+    @pytest.mark.parametrize("chapter", list(range(1, 19)))
     def test_all_chapters_load(self, chapter):
-        """All GEC-10 chapter JSON files load without error."""
-        try:
-            data = load_chapter("gec_10", chapter)
-        except FileNotFoundError:
-            pytest.skip(f"Chapter {chapter} JSON file not yet created")
+        """All 18 GEC-10 (2018 edition) chapter JSON files load without error."""
+        data = load_chapter("gec_10", chapter)
         assert isinstance(data, dict)
         assert data["chapter"] == chapter
 
-    @pytest.mark.parametrize("chapter", list(range(1, 24)))
+    @pytest.mark.parametrize("chapter", list(range(1, 19)))
     def test_chapter_has_required_fields(self, chapter):
         """Each chapter has required top-level fields."""
-        try:
-            data = load_chapter("gec_10", chapter)
-        except FileNotFoundError:
-            pytest.skip(f"Chapter {chapter} JSON file not yet created")
+        data = load_chapter("gec_10", chapter)
         assert "reference_id" in data
+        assert data["reference_id"] == "FHWA-NHI-18-024"
         assert "chapter_title" in data
         assert "sections" in data
         assert isinstance(data["sections"], list)
         assert len(data["sections"]) > 0
 
-    @pytest.mark.parametrize("chapter", list(range(1, 24)))
+    @pytest.mark.parametrize("chapter", list(range(1, 19)))
     def test_sections_have_required_fields(self, chapter):
         """Each section has required fields."""
-        try:
-            data = load_chapter("gec_10", chapter)
-        except FileNotFoundError:
-            pytest.skip(f"Chapter {chapter} JSON file not yet created")
+        data = load_chapter("gec_10", chapter)
         for section in data["sections"]:
             assert "section_id" in section
             assert "title" in section
             assert "body" in section
 
     def test_chapter10_reference_id(self):
-        """Chapter 10 has correct reference ID."""
+        """Chapter 10 has correct 2018 edition reference ID."""
         try:
             data = load_chapter("gec_10", 10)
         except FileNotFoundError:
             pytest.skip("Chapter 10 not yet created")
-        assert data["reference_id"] == "FHWA-NHI-10-016"
+        assert data["reference_id"] == "FHWA-NHI-18-024"
 
-    def test_chapter13_has_design_content(self):
-        """Chapter 13 covers geotechnical design."""
+    def test_chapter13_has_load_test_content(self):
+        """Chapter 13 (2018 edition) covers field load tests."""
         try:
             data = load_chapter("gec_10", 13)
         except FileNotFoundError:
             pytest.skip("Chapter 13 not yet created")
         assert any(
             word in data["chapter_title"].lower()
-            for word in ("design", "resistance", "geomaterial", "axial")
+            for word in ("load", "test", "field", "integrity")
         )
 
     def test_nonexistent_chapter(self):

@@ -1,0 +1,366 @@
+{
+  "reference_id": "FHWA-NHI-10-024",
+  "reference_title": "Design and Construction of Mechanically Stabilized Earth Walls and Reinforced Soil Slopes",
+  "volume": 1,
+  "chapter": 3,
+  "chapter_title": "Soil Reinforcement Principles and System Design Properties",
+  "sections": [
+    {
+      "section_id": "3.1",
+      "title": "Overview",
+      "body": "This chapter presents soil reinforcement principles and design properties for MSE systems. The chapter covers engineering properties of reinforced and retained fill, mechanisms of soil-reinforcement interaction, and design properties of both steel and geosynthetic reinforcements. Facing material properties are also addressed. The chapter establishes the material properties framework used in the design procedures of Chapter 4.",
+      "key_points": [
+        "Covers reinforced fill properties, interaction mechanisms, and reinforcement design properties",
+        "Steel reinforcement properties governed by tensile yield strength and corrosion allowances",
+        "Geosynthetic reinforcement properties governed by long-term allowable tensile strength Tal",
+        "Facing materials: precast concrete panels, MBW units, welded wire mesh, geosynthetic wrap, gabions, geocells"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "All MSE wall and RSS design using GEC-11 procedures."
+    },
+    {
+      "section_id": "3.2",
+      "title": "Reinforced and Retained Fill Engineering Properties",
+      "body": "Reinforced fill is the granular fill material placed within the reinforced soil zone. Retained backfill is the fill placed behind the reinforced zone. Their engineering properties govern external stability analyses and must meet minimum gradation and electrochemical requirements. Table 3-1 presents electrochemical requirements for reinforced fill (pH 5-10, resistivity ≥ 3,000 ohm-cm, chlorides ≤ 100 ppm, sulfates ≤ 200 ppm, organic content ≤ 1%). Table 3-2 presents gradation requirements. For walls with metallic reinforcement, reinforced fill pH must be 5 to 10; for geosynthetic-reinforced walls, pH 3 to 9 is acceptable for PET and 3 to 12 for polyolefins. Table 3-3 summarizes friction angle selection for reinforced fill based on gradation (minimum 34 degrees for default). Table 3-4 covers retained fill properties and unit weight ranges. In the absence of testing, a minimum friction angle of 34 degrees and unit weight of 125 pcf (20 kN/m3) may be assumed for the reinforced fill. The retained fill friction angle used for computing lateral earth pressure coefficient Kr and active pressure for external stability should be based on site-specific testing.",
+      "key_points": [
+        "Reinforced fill must meet electrochemical limits: pH 5-10 (metallic reinf.), 3-9 PET or 3-12 polyolefin",
+        "Electrochemical requirements: resistivity ≥ 3,000 ohm-cm, Cl ≤ 100 ppm, SO4 ≤ 200 ppm, organics ≤ 1%",
+        "Default reinforced fill: phi ≥ 34 degrees, gamma = 125 pcf (20 kN/m3) if no testing",
+        "Retained fill: phi determined by testing; used for external earth pressure calculations",
+        "Tables 3-1 through 3-4 provide gradation, electrochemical, and friction angle criteria"
+      ],
+      "equations": [
+        "Equation 3-1: phi_f based on gradation and testing (see Table 3-3)"
+      ],
+      "figures": [],
+      "tables": ["Table 3-1", "Table 3-2", "Table 3-3", "Table 3-4"],
+      "applicability": "All MSE wall and RSS projects — reinforced fill and retained fill material selection."
+    },
+    {
+      "section_id": "3.3",
+      "title": "Reinforced Soil Concepts",
+      "body": "Soil reinforcement interaction occurs through two primary mechanisms: (1) frictional resistance along the reinforcement surface, dominant for planar (sheet-type) reinforcements such as geotextiles and steel strips; and (2) passive resistance against transverse members, dominant for bar mat and geogrid reinforcements with significant transverse elements. For strips, sheets, and longitudinal bars of grids, the coefficient of direct sliding interaction between soil and reinforcement is expressed as a fraction of the soil friction coefficient (tan phi_f). The coverage ratio Rc (= b/Sh, where b is reinforcement width and Sh is horizontal spacing) scales the interaction force per unit wall face area. For continuous sheet reinforcement (geotextiles, geogrids at 100% coverage), Rc = 1.0.",
+      "key_points": [
+        "Two interaction mechanisms: friction (geotextiles, strips) and passive resistance (transverse grid members)",
+        "Coverage ratio Rc = b/Sh — scales reinforcement capacity to unit area of wall face",
+        "For continuous sheets (geotextiles, geogrids): Rc = 1.0",
+        "Interaction coefficients Ci relate soil-reinforcement friction to soil-soil friction (tan phi)",
+        "Passive resistance against grid transverse members dominates for geogrids and bar mats"
+      ],
+      "equations": [],
+      "figures": ["Figure 3-1", "Figure 3-2"],
+      "tables": [],
+      "applicability": "Foundation of pullout and direct sliding resistance calculations for all reinforcement types."
+    },
+    {
+      "section_id": "3.4",
+      "title": "Soil Reinforcement Interaction Using Normalized Concepts",
+      "body": "Soil reinforcement interaction is quantified using the pullout resistance concept. The nominal pullout resistance per unit reinforcement width is: Pr = F* × alpha × sigma_v × Le × C (Equation 3-2), where F* is the pullout resistance factor, alpha is a scale correction factor (default = 1.0), sigma_v is the effective vertical stress at the reinforcement, Le is the embedment length in the resistance zone behind the failure plane, and C is the reinforcement perimeter factor (C=2 for strips/grids, C=2 for geotextiles). The pullout factor F* = 0.67 tan(phi_f) for geotextiles and geogrids by default, or may be determined by testing. For grids, F* at the top of the wall (z ≤ 2 m) is taken as the greater of Fq × alpha_beta or 2/3 tan(phi_f). Equations 3-3 through 3-9 define pullout factors for specific reinforcement types based on laboratory or field testing. The scale correction factor alpha accounts for non-linear stress distribution along the reinforcement (Table 3-5). Default alpha = 1.0 is conservative. Scale effects become significant for reinforcements longer than 6 m. Table 3-6 provides default pullout parameters for reinforcement types.",
+      "key_points": [
+        "Pr = F* × alpha × sigma_v × Le × C × Rc (Equation 3-2): normalized pullout resistance",
+        "F* = pullout resistance factor — combines friction angle and reinforcement type effects",
+        "alpha = scale correction factor (default 1.0; laboratory tests use 1.0, field may differ)",
+        "Le = embedment length in the resistance zone (behind the failure plane)",
+        "C = 2 for strips, grids, and geotextiles (top and bottom surface count)",
+        "For geogrids at top of wall (z ≤ 2 m): F* = max(Fq × alpha_beta, 2/3 tan phi)",
+        "Table 3-5: default scale correction factors; Table 3-6: default pullout parameters"
+      ],
+      "equations": [
+        "Equation 3-2: Pr = F* × alpha × sigma_v × Le × C",
+        "Equations 3-3 through 3-9: F* determination for specific reinforcement types"
+      ],
+      "figures": ["Figure 3-3", "Figure 3-4"],
+      "tables": ["Table 3-5", "Table 3-6"],
+      "applicability": "Internal stability pullout resistance calculations for all reinforcement types."
+    },
+    {
+      "section_id": "3.5",
+      "title": "Soil Reinforcement System Design Properties",
+      "body": "Design properties of soil reinforcement are determined based on the reinforcement type (steel vs. geosynthetic) and account for long-term degradation. Steel reinforcements lose cross-sectional area due to corrosion; geosynthetic reinforcements lose tensile strength due to installation damage, creep, and durability degradation. The design tensile resistance for both types is established at the limit state level consistent with LRFD principles.",
+      "key_points": [
+        "Steel reinforcement design: reduce cross-section for corrosion over design life to get Ec (sacrificial steel)",
+        "Geosynthetic reinforcement design: reduce ultimate strength by reduction factors to get Tal",
+        "Both approaches establish nominal resistance for LRFD strength limit state checks"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Framework for all reinforcement design property calculations."
+    },
+    {
+      "section_id": "3.5.1",
+      "title": "Strength Properties of Steel Reinforcements",
+      "body": "The tensile resistance of steel reinforcements is based on the steel yield strength Fy and the reduced cross-sectional area after corrosion losses over the design life. The nominal tensile resistance of steel strip reinforcements per unit width is: Tn = 0.86 × b × Ec × Fy (Equation 3-10), where b is strip width, Ec is corroded thickness, and 0.86 accounts for non-uniform stress distribution. For steel grid reinforcements, nominal tensile resistance per reinforcement is: Tn = Ac × Fy (Equation 3-11a) or Tn = Ac × Fu (Equation 3-11b). Standard practice uses ASTM A572 Grade 65 steel (Fy = 65 ksi, 448 MPa) or higher grades. For corrosion allowances in non-aggressive soils, zinc (galvanized) coating corrodes at 15 μm/yr for the first 2 years, then 4 μm/yr thereafter. Carbon steel corrodes at 12 μm/yr after zinc is depleted. For a 75-year design life, total zinc loss is 15×2 + 4×73 = 322 μm; residual zinc provides protection so carbon steel corrosion begins only when zinc is depleted. The sacrificial steel thickness (Ec = design thickness − corrosion loss) is used to compute the corroded cross-sectional area Ac. Table 3-7 provides corrosion rates for non-aggressive and aggressive soil conditions. Table 3-8 provides resistance factors phi_t for steel reinforcement tensile resistance (Strength I: phi_t = 0.75 for metallic reinforcement).",
+      "key_points": [
+        "Tn = 0.86 × b × Ec × Fy (Equation 3-10) for steel strips",
+        "Ec = design thickness minus corrosion loss (sacrificial steel approach)",
+        "Zinc corrosion: 15 μm/yr first 2 years, then 4 μm/yr thereafter (non-aggressive soils)",
+        "Carbon steel corrosion: 12 μm/yr after zinc depletion (non-aggressive soils)",
+        "Aggressive soils: higher corrosion rates require testing — Table 3-7",
+        "Resistance factor phi_t = 0.75 for metallic strip reinforcement (Strength I)",
+        "ASTM A572 Grade 65 typical: Fy = 65 ksi (448 MPa)"
+      ],
+      "equations": [
+        "Equation 3-10: Tn = 0.86 × b × Ec × Fy (steel strip tensile resistance)",
+        "Equation 3-11a: Tn = Ac × Fy (steel grid, yield)",
+        "Equation 3-11b: Tn = Ac × Fu (steel grid, ultimate)"
+      ],
+      "figures": [],
+      "tables": ["Table 3-7", "Table 3-8"],
+      "applicability": "Internal stability tensile resistance for steel strip and bar mat/welded wire grid reinforcements."
+    },
+    {
+      "section_id": "3.5.2",
+      "title": "Strength Properties of Geosynthetic Reinforcement",
+      "body": "The nominal long-term tensile strength (Tal) of geosynthetic reinforcements is determined by reducing the ultimate tensile strength (Tult) by a combined reduction factor RF: Tal = Tult / RF (Equation 3-12), where RF = RFID × RFCR × RFD. RFID is the installation damage reduction factor, RFCR is the creep reduction factor, and RFD is the durability reduction factor. Tult is the minimum average roll value (MARV) determined from wide-width tensile testing (ASTM D4595 for geotextiles, ASTM D6637 for geogrids). The LRFD nominal long-term reinforcement strength is Tal for use in design with resistance factor phi_g = 0.90 for Strength I limit state. The product-specific reduction factors must be determined from testing per Appendix D protocols or default values may be used under specified conditions.",
+      "key_points": [
+        "Tal = Tult / (RFID × RFCR × RFD) — Equation 3-12",
+        "Tult = minimum average roll value (MARV) from wide-width testing",
+        "RF = RFID × RFCR × RFD: installation damage, creep, and durability factors",
+        "Resistance factor phi_g = 0.90 for geosynthetic reinforcement (Strength I)",
+        "Product-specific testing preferred; defaults require minimum qualifying index tests"
+      ],
+      "equations": [
+        "Equation 3-12: Tal = Tult / RF = Tult / (RFID × RFCR × RFD)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Internal stability tensile resistance for all geosynthetic reinforcements."
+    },
+    {
+      "section_id": "3.5.2.b",
+      "title": "Installation Damage Reduction Factor, RFID",
+      "body": "The installation damage reduction factor accounts for strength loss due to mechanical damage during fill placement and compaction. Damage is caused by abrasion, puncture, and tearing by aggregate particles during placement and compaction. RFID is determined by comparing ultimate tensile strength before and after simulated installation damage testing per FHWA RD-97-144 protocols. The RFID is strongly dependent on backfill soil gradation (angularity and maximum particle size) and to a lesser extent on geosynthetic unit weight/thickness. Table 3-9 provides typical RFID values for common geosynthetic types and two backfill gradation categories. Type 1 backfill (max size 4 in., D50 about 1.25 in.) produces higher RFID values than Type 2 backfill (max size 3/4 in., D50 about No. 30 sieve). Providing a minimum of 6 inches of backfill between the reinforcement and compaction equipment wheels/tracks reduces RFID sensitivity to construction technique. Coated polyester (PVC and acrylic coated PET) geogrids have higher RFID than HDPE/PP geogrids for coarse gradations. Slit film woven PP geotextiles have the highest RFID range (1.60-3.00 for Type 1 backfill).",
+      "key_points": [
+        "RFID accounts for mechanical damage during fill placement and compaction",
+        "Determined from pre- vs. post-installation tensile strength testing per FHWA RD-97-144",
+        "Strongly dependent on backfill gradation: coarser/more angular = higher RFID",
+        "Table 3-9: RFID ranges by geosynthetic type and backfill type",
+        "HDPE/PP geogrids: RFID 1.10-1.45; Slit film woven PP: RFID 1.60-3.00 (Type 1 backfill)",
+        "6-inch minimum cover between reinforcement and compaction equipment reduces damage"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": ["Table 3-9"],
+      "applicability": "All geosynthetic reinforcement installations — RFID selection based on backfill gradation."
+    },
+    {
+      "section_id": "3.5.2.c",
+      "title": "Creep Reduction Factor, RFCR",
+      "body": "The creep reduction factor limits the reinforcement load to the creep limit — the maximum sustainable load that will not cause excessive elongation or creep rupture over the design life. Creep is a long-term deformation process where molecular chains straighten or slip under constant load. At loads below the creep limit, elongation occurs without significant strength loss. At loads above the creep limit, molecular chains can break, leading to accelerating elongation and strength loss (creep rupture). RFCR is determined from long-term creep testing per ASTM D5262 (conventional creep testing at constant load up to 10,000 hours) or ASTM D6992 (Stepped Isothermal Method — accelerated using stepped temperature increases). RFCR is the ratio of ultimate load to the extrapolated maximum sustainable load (creep rupture limit) within the design life (75-100 years for permanent structures). Typical RFCR ranges by polymer type: Polyester (PET): 2.5 to 1.6; Polypropylene (PP): 5 to 4.0; High Density Polyethylene (HDPE): 5 to 2.6. Lower values represent products with higher creep resistance.",
+      "key_points": [
+        "RFCR limits load to creep limit — analogous to yield strength in steel",
+        "Creep rupture occurs when molecular chains straighten/break under sustained load",
+        "Testing: ASTM D5262 (conventional, up to 10,000 hrs) or ASTM D6992 (SIM accelerated)",
+        "RFCR = Ultimate load / Creep rupture load at design life (75-100 yr for permanent)",
+        "Typical RFCR: PET 1.6-2.5; PP 4.0-5.0; HDPE 2.6-5.0",
+        "PET generally has better creep resistance than polyolefins"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "All geosynthetic reinforcements — creep factor selection based on polymer type and design life."
+    },
+    {
+      "section_id": "3.5.2.d",
+      "title": "Durability Reduction Factor, RFD",
+      "body": "The durability reduction factor accounts for long-term strength loss due to chemical and biological degradation. RFD typically ranges from 1.1 to 2.0. PET geosynthetics are susceptible to hydrolysis (accelerated in alkaline conditions, high saturation, and elevated temperature). The AASHTO LRFD specifications limit PET use to pH 3-9 for permanent walls (lower limit 4.5 for permanent per Article 11.10.6.4.2b). Polyolefin products (PP, HDPE) are susceptible to oxidation, which is accelerated by transition metals (Fe, Cu, Mn, Co, Cr) in acid sulfate soils, slag, mine tailings, and elevated temperature. Table 3-10 identifies anticipated polymer resistance to specific environments (NE=No Effect, ETR=Exposure Tests Required). Table 3-11 provides default RFD values for PET at 100-year design life: 1.15 for coated geogrids/geotextiles with Mn > 25,000 and CEG < 30 at pH 5-8; 1.3 for same at pH 3-5 or 8-9. Table 3-12 specifies minimum index test requirements to use default RFD = 1.3 for polyolefins and PET. For PP/HDPE: UV test ASTM D4355 min 70% strength retained after 500 hours; oven aging ENV ISO 13438:1999. For PET: Mn ≥ 25,000 (ASTM D4603/GRI GG8) and max CEG = 30 (GRI GG7). If index criteria in Table 3-12 are met, default RFD = 1.3 may be used. UV stability is only a construction concern for buried geosynthetics (exposed only during placement). Biological degradation is rarely a concern because most geosynthetics use high-molecular-weight polymers.",
+      "key_points": [
+        "RFD = 1.1 to 2.0 typical; accounts for hydrolysis (PET) or oxidation (PP, HDPE)",
+        "PET restricted to pH 3-9 for permanent; pH 4.5-9 per AASHTO LRFD Article 11.10.6.4.2b",
+        "Oxidation of polyolefins accelerated by transition metals in fill (acid sulfate soils, slag)",
+        "Table 3-11: Default RFD for PET at 100-yr life — 1.15 (pH 5-8, Mn>25,000, CEG<30)",
+        "Table 3-12: Index tests for default RFD = 1.3: UV (ASTM D4355), oven aging (ISO 13438), Mn, CEG",
+        "Default RFD = 1.3 allowed if Table 3-12 criteria met for both PP/HDPE and PET",
+        "Elevated site temperature (>85°F/30°C) requires higher default RFD"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": ["Table 3-10", "Table 3-11", "Table 3-12"],
+      "applicability": "All geosynthetic reinforcements — durability factor based on polymer type and soil environment."
+    },
+    {
+      "section_id": "3.5.2.e",
+      "title": "Durability Reduction Factor at Wall Face Unit",
+      "body": "The long-term environmental aging factor RFD at the connection zone (wall face unit) may differ significantly from the in-soil RFD used for Tal. PET geosynthetics should be limited to pH 3-9 at the face unit connection. PET geogrids and geotextiles must not be cast into concrete because of the potential for chemical degradation in the high pH environment. Use of PET reinforcements connected to dry-cast MBW units by sandwiching between units is acceptable with minor additional reductions: an FHWA-sponsored study (Koerner et al., 2000) found pH within MBW blocks in the connection zone only occasionally exceeds 9 and only for the first few years, then decreases to ambient backfill pH. For coated PET geogrids, no further reduction is warranted. For geotextiles, a small further reduction should be considered. Caution is advised for structures subject to long-term saturation (e.g., walls in lakes or streams) where pH testing of saturated blocks should be performed if pH may exceed 9.",
+      "key_points": [
+        "RFD at connection zone may be higher than in-soil RFD — evaluate separately",
+        "PET must not be cast into concrete (high pH degradation)",
+        "PET with MBW units: pH exceeds 9 only briefly at first; coated PET geogrids — no extra reduction needed",
+        "Geotextiles with MBW: small additional reduction to account for early high pH",
+        "Structures in water (lakes, streams): test saturated block pH; use polyolefin if pH > 9"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "PET geosynthetic reinforcement connections to concrete facing panels and MBW units."
+    },
+    {
+      "section_id": "3.5.2.f",
+      "title": "LRFD Geosynthetic Reinforcement Resistance Factor",
+      "body": "The resistance factor phi for geosynthetic reinforcement accounts for potential local overstress due to load non-uniformity and uncertainties in long-term reinforcement strength. For Strength I limit state, phi = 0.90 is used for geosynthetic reinforcements (Table 4-7). This is higher than the resistance factors for steel reinforcements due to the ductile nature of geosynthetic systems at failure. Justification for phi = 0.90: (1) granular reinforced fill controls reinforcement strain to levels well below rupture strain; (2) at a limit state, overstress causes visible time-dependent strain rather than sudden collapse; (3) long-term properties of geosynthetics are improved when confined in soil (not currently credited in Tal); (4) measured stresses in MSE walls with geosynthetics are consistently lower than design values. Note that for RSS structures, Tal is used directly in limit equilibrium analysis with a factor of safety, not as a factored resistance.",
+      "key_points": [
+        "phi_g = 0.90 for geosynthetic reinforcement, Strength I limit state",
+        "Higher phi than steel (phi_t = 0.75) because geosynthetics fail gradually (ductile)",
+        "Granular fill limits reinforcement strain below rupture strain at limit state",
+        "Confinement in soil improves geosynthetic strength beyond Tal — conservative not to credit",
+        "For RSS: Tal used with limit equilibrium FS, not as LRFD factored resistance"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": ["Table 4-7"],
+      "applicability": "LRFD strength limit state for all geosynthetic reinforcement tensile resistance checks."
+    },
+    {
+      "section_id": "3.5.2.g",
+      "title": "Preliminary Design Reduction Factor",
+      "body": "For preliminary design of permanent structures or applications without severe consequences, a default total reduction factor RF = 7 may be used to compute Tal without product-specific data (Equation 3-13: Tal = Tult / RF). Use of RF = 7 is restricted to projects meeting: granular soils (sands and gravels) in the reinforced volume; pH 4.5-9; site temperature < 85°F (30°C); maximum backfill particle size ≤ 3/4 inch (19 mm); maximum MSEW height ≤ 35 ft (10 m); maximum RSS height ≤ 50 ft (15 m). Site temperature is defined as halfway between the average yearly air temperature and the normal daily temperature for the hottest month at the site. RF = 7 was established from lower-bound reduction factor values from products meeting the minimum requirements in Table 3-13. Products with specific creep, installation damage, and aging data typically have total RF = 3 to 6. For temporary applications without severe consequences, a default RF = 3.5 may be used.",
+      "key_points": [
+        "Default RF = 7 for preliminary design of permanent structures (Equation 3-13: Tal = Tult / 7)",
+        "Applicable only when: granular fill, pH 4.5-9, T < 85°F, max particle ≤ 3/4 in., H ≤ 35 ft MSE",
+        "RF = 3.5 default for temporary structures without severe failure consequences",
+        "Products with full test data often have RF = 3-6 (lower than 7)",
+        "Table 3-13: minimum qualifying tests to use default RF"
+      ],
+      "equations": [
+        "Equation 3-13: Tal = Tult / RF (RF = 7 for permanent preliminary, 3.5 for temporary)"
+      ],
+      "figures": [],
+      "tables": ["Table 3-13"],
+      "applicability": "Preliminary design of MSE walls and RSS — use only when product-specific data are unavailable."
+    },
+    {
+      "section_id": "3.5.2.h",
+      "title": "Serviceability Limit State for Geosynthetic Reinforcement",
+      "body": "Serviceability limit state deflection requirements for geosynthetic reinforcements are met through the use of low stress levels resulting from the reduction factors combined with the inherent constraining effects of granular soils. Regarding strain limits, methods for estimating reinforcement strain vary widely with no present consensus on an appropriate analytical method. Measured strains in instrumented field structures have consistently been much lower (typically less than 1 percent) than predicted by most current analytical methods. Therefore, until a validated method is agreed upon, strain limit requirements are not imposed on the reinforcement at the serviceability limit state.",
+      "key_points": [
+        "Serviceability met implicitly through reduction factors and granular fill confinement",
+        "Measured field strains typically < 1% — lower than all analytical method predictions",
+        "No explicit strain limit requirement imposed pending development of validated method",
+        "Low reinforcement stress levels achieved through conservative RF values provide serviceability implicitly"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Serviceability limit state for all geosynthetic-reinforced MSE walls and RSS."
+    },
+    {
+      "section_id": "3.6",
+      "title": "Facing Materials",
+      "body": "The facing is the component that prevents soil raveling between reinforcement layers and provides the exposed face of the MSE wall or slope. Facing plays a minor structural role but has major aesthetic and durability implications. The commonly used facing types include precast concrete panels (segmental and full-height), modular block wall (MBW) units, welded wire mesh (WWM), geosynthetic wrap-around, and others (gabions, geocells, large wet-cast units). Tolerances of precast panels to settlement are addressed in Section 2.8.3. Design aspects of facings are addressed in Section 4.4.8. Specifications are in Chapter 10.",
+      "key_points": [
+        "Facing prevents raveling — minor structural role, major aesthetic/durability role",
+        "Common types: precast concrete panels (segmental/full-height), MBW units, WWM, geosynthetic wrap",
+        "Other types: gabions, geocells, large wet-cast concrete units",
+        "Settlement tolerances: Section 2.8.3; design aspects: Section 4.4.8; specs: Chapter 10"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Overview of facing material types for MSE walls and RSS."
+    },
+    {
+      "section_id": "3.6.1",
+      "title": "Precast Concrete Panels",
+      "body": "Segmental precast concrete panels are commonly 5-8 inches (125-200 mm) thick, 5 ft (1.5 m) high, and 5 or 10 ft (1.5 or 3 m) wide. Cruciform, diamond, and hexagonal face geometries are also used. Panels are typically cast with the exposed face down, allowing smooth or form-liner finishes. Edges are cast with butt, shiplap, or tongue-and-groove joints. Concrete must reach minimum 1,000 psi (6.9 MPa) before removal of support, 3,400 psi (23.4 MPa) before shipping or installation, and minimum 4,000 psi (27.6 MPa) at 28 days. Agencies should verify raw materials, mix design, and precasting operations. Metal connection hardware extending from the back face of the panel for attachment to reinforcement must not contact the concrete steel reinforcement (unless both are equally protected). Bearing pads are placed on all horizontal joints to prevent point loadings and accommodate vertical deformation: minimum 2 pads for 5-ft panels, minimum 3 for 10-ft panels. Bearing pads must be EPDM (ASTM D2000 Grade 2, Type A, Class A, 60 Durometer) or HDPE (min density 0.946 g/cm3 per ASTM D1505). Full-height panels are typically 6-8 inches thick and 8-10 ft wide; maximum height approximately 32 ft (10 m). Full-height panels require external bracing until the reinforced fill reaches 2/3 to full height.",
+      "key_points": [
+        "Segmental panels: 5-8 in thick, 5 ft high, 5 or 10 ft wide; multiple face geometries available",
+        "Concrete: f'c ≥ 4,000 psi (27.6 MPa) at 28 days; 3,400 psi before shipping/installing",
+        "Bearing pads required on all horizontal joints: EPDM or HDPE type, min 2 per joint",
+        "Metal connection hardware must not contact concrete steel reinforcement (galvanic corrosion risk)",
+        "Full-height panels: max ~32 ft (10 m) height; require bracing during fill placement",
+        "Full-height panels: no bearing pads; connection must accommodate elastic fill settlement"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Precast concrete panel facing for MSE walls — material and construction requirements."
+    },
+    {
+      "section_id": "3.6.2",
+      "title": "Modular Block Wall Units",
+      "body": "Modular block wall (MBW) units (also known as 'segmental retaining wall' units) are dry-cast concrete with typical dimensions of 4-15 in. (100-375 mm) high, 8-18 in. (200-450 mm) exposed face length, and 8-24 in. (200-600 mm) depth. The dry-cast manufacturing process precludes air entrainment and steel reinforcement. MBW units are erected in running bond, dry-stacked (without mortar), with full-height cores filled with aggregate. Adjacent units may be connected with shear pins, lips, or keys. Geogrid reinforcement is typical, though some systems use geotextiles or steel mat reinforcement, connected by friction, mechanical, or combined connection. Dry-cast units are susceptible to freeze-thaw degradation with deicing salts. Based on ASTM C1372, agencies should specify: compressive strength ≥ 4,000 psi (28 MPa), maximum water absorption ≤ 5%, and freeze-thaw testing (ASTM C1262). Minnesota DOT (Mn/DOT) has more stringent requirements (Table 3-14): compressive strength ≥ 5,500 psi (38 MPa) individual / 5,800 psi (40 MPa) average; freeze-thaw: mean weight loss ≤ 1% after 90 cycles (wall) or 40 cycles (cap) in 3% saline solution per ASTM C1262; surface sealer required on upper three courses. Maximum recommended height for MBW-faced walls is approximately 32 ft (10 m) unless setbacks separate bearing loads. Higher walls require horizontal bearing pads or vertical joints in lower courses.",
+      "key_points": [
+        "MBW units: dry-cast concrete, 4-15 in. high, 8-18 in. face length, 8-24 in. depth",
+        "Dry-cast precludes air entrainment — susceptible to freeze-thaw with deicing salts",
+        "Minimum compressive strength: 4,000 psi (28 MPa) per modified ASTM C1372",
+        "Freeze-thaw tested per ASTM C1262 in 3% saline solution",
+        "Mn/DOT cold-weather requirements (Table 3-14): f'c ≥ 5,500 psi, weight loss ≤ 1% after 90 cycles",
+        "Maximum wall height: ~32 ft (10 m); taller walls require special bearing provisions",
+        "No bearing pads between MBW units — connection/fill must accommodate elastic settlement"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": ["Table 3-14"],
+      "applicability": "MBW unit-faced MSE walls — material requirements and freeze-thaw durability criteria."
+    },
+    {
+      "section_id": "3.6.3",
+      "title": "Welded Wire Mesh Facing",
+      "body": "Welded wire mesh (WWM) is used for temporary walls and slopes, and in permanent walls and slopes. For permanent applications, the WWM acts as the primary face soil retention element and must be galvanized. Steel facings in permanent structures should use hot-dip galvanizing of at least 2 oz/ft2. Expected galvanizing protection in atmospheric conditions: 40-50 years in rural/suburban environments, 25-30 years in coastal areas, approximately 20 years near industrial areas. For temporary non-galvanized steel facing, a typical corrosion rate of 1.0 mil/yr (25 μm/yr) should be used, with higher rates for vegetated wall faces, road salt environments, marine, or industrial conditions. For geosynthetic-reinforced slopes or walls where WWM serves as a forming device left in-place, plain (black) steel is acceptable since the geosynthetic is the primary face retention element. For permanent walls, vertical and horizontal spacing of metallic reinforcements for flexible face (WWM) systems must not exceed 18 inches. Maximum local horizontal deformation between reinforcement layers must be limited to less than 1-2 inches.",
+      "key_points": [
+        "Permanent WWM: must be galvanized (min 2 oz/ft2 hot-dip); plain steel only as forming device",
+        "Galvanizing life: 40-50 yr rural, 25-30 yr coastal, ~20 yr industrial",
+        "Temporary non-galvanized steel: corrosion rate 1.0 mil/yr (25 μm/yr) in non-aggressive soils",
+        "Max reinforcement spacing for flexible face systems: 18 inches vertical and horizontal",
+        "Max local horizontal deformation between reinforcement layers: 1-2 inches",
+        "Hardware cloth (if used): assume degradation; WWM must retain fill independently"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Welded wire mesh facing for temporary and permanent MSE walls and reinforced soil slopes."
+    },
+    {
+      "section_id": "3.6.4",
+      "title": "Geosynthetic Wrap-Around Facing",
+      "body": "Geosynthetic facing elements must not be left exposed to sunlight (UV radiation) for permanent walls. If exposure is unavoidable for permanent or temporary structures, the geosynthetic must be UV-stabilized and product-specific test data extrapolated to the intended design life must show the product will perform as intended in the exposed environment. Protective coatings (concrete, shotcrete) or vegetative covers can provide UV protection. Vegetative covers prevent exposure and can be maintained as a long-term protective measure. Thick geosynthetics with UV stabilizers can be left exposed for several years without protection; however, long-term maintenance should be anticipated due to UV deterioration and potential vandalism.",
+      "key_points": [
+        "Geosynthetic wrap facing must be protected from UV for permanent walls",
+        "If exposed: must be UV-stabilized with product-specific data proving adequate design life",
+        "Protection options: concrete/shotcrete coating, vegetative cover",
+        "Thick UV-stabilized products can be left exposed for a few years — plan for long-term maintenance",
+        "Vandalism risk should be considered for exposed geosynthetic face areas"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Geosynthetic wrap-around facing for temporary and permanent MSE walls and RSS."
+    },
+    {
+      "section_id": "3.6.5",
+      "title": "Other Facings",
+      "body": "Other facings used on permanent walls and slopes include large wet-cast concrete units (up to 3 ft high and 3-10 ft wide), gabions, and geocells. Large wet-cast concrete units are stacked similar to MBW units, generally using geosynthetic soil reinforcement connected by friction (sandwiched between units) or mechanical connectors cast into the units. Rock-filled gabions serve as face units in some MSE wall systems. One system uses woven-wire soil reinforcement integral with the gabion (no separate connection required). Most gabions are 3 ft × 3 ft (0.9 × 0.9 m), resulting in vertical reinforcement spacing exceeding the recommended 32-inch (0.8-m) maximum — this greater spacing may be offset by the size/mass of the gabion facing but caution is advised for special loading or soft foundation conditions. Secondary reinforcement layers at mid-height of gabion units may reduce effective spacing. Geocells with nominal 8-inch (200 mm) height and approximately 3 ft (0.9 m) width are used to face walls and slopes; connection is by friction between vertically adjacent mats, and cells may be vegetated for aesthetics.",
+      "key_points": [
+        "Large wet-cast units: stacked with geosynthetic reinforcement by friction or mechanical connectors",
+        "Gabions: 3 ft × 3 ft face units; reinforcement often integral with woven wire element",
+        "Gabion reinforcement spacing typically exceeds 32-in recommended max — caution for special conditions",
+        "Geocells: 8-in. high, ~3 ft wide; friction connection between vertically adjacent mats",
+        "Geocell faces may be vegetated; reinforcement connected by sandwiching"
+      ],
+      "equations": [],
+      "figures": ["Figure 3-7", "Figure 3-8", "Figure 3-9"],
+      "tables": [],
+      "applicability": "Alternative facing types for MSE walls and reinforced soil slopes."
+    },
+    {
+      "section_id": "3.6.6",
+      "title": "Two-Stage Facings",
+      "body": "Two-stage MSE wall construction is used where significant foundation settlement is anticipated. Stage 1: construct an MSE wall with a flexible facing (WWM or geosynthetic wrap) with connectors or form anchors embedded for Stage 2 attachment. The Stage 1 structure is allowed to settle, with or without a surcharge load, until settlement is complete. Stage 2: a cast-in-place or precast concrete facing (full-height or segmental panels) is mechanically connected to the Stage 1 reinforced soil mass. Design issues include: (1) estimating Stage 1 settlement and setting tolerance limits; (2) estimating long-term additional settlement after Stage 2 construction including the added load of the concrete facing; and (3) evaluating long-term durability of the connection hardware with consideration for differential settlement along the wall length. Steel connectors require corrosion protection; geosynthetic connectors require durability evaluation. For cast-in-place Stage 2 facings, connection design must consider hydrostatic pressure from concrete pour (potential for connection overstressing); staged pours may be required.",
+      "key_points": [
+        "Two-stage construction used when significant foundation settlement expected",
+        "Stage 1: flexible facing (WWM or geosynthetic wrap) with embedded connectors",
+        "Stage 2: concrete facing (cast-in-place or precast panels) connected to Stage 1 reinforced mass",
+        "Design issues: settlement estimation, long-term differential settlement, connector durability",
+        "CIP Stage 2 facing: design connectors for concrete pour hydrostatic pressure",
+        "Connection hardware: address corrosion (steel) or durability (geosynthetic) for design life"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "MSE walls on compressible foundations where significant settlement must occur before permanent facing."
+    }
+  ]
+}

@@ -1,261 +1,90 @@
 {
-  "reference_id": "FHWA-NHI-10-016",
+  "reference_id": "FHWA-NHI-18-024",
   "reference_title": "Drilled Shafts: Construction Procedures and LRFD Design Methods",
   "chapter": 17,
-  "chapter_title": "Field Loading Tests",
+  "chapter_title": "Assessment and Acceptance of Drilled Shafts",
   "sections": [
     {
       "section_id": "17.1",
       "title": "Introduction",
-      "body": "Field load tests provide the most reliable means of verifying the capacity of drilled shaft foundations. Types of tests include axial compression, axial uplift, and lateral load tests. Load tests serve multiple purposes: verifying design assumptions, calibrating site-specific design methods, and increasing AASHTO resistance factors to as high as 0.70 for static tests. The chapter covers planning, execution, instrumentation, and interpretation of field loading tests.",
+      "body": "Final step of a drilled shaft project: official acceptance of as-built shafts by the engineer in responsible charge. Acceptance requires complete installation records and demonstration that shaft conforms to Plans and Specifications including post-construction integrity testing. Imperfections are to be expected; a robust design should be tolerant of small unavoidable flaws. An imperfection requires remediation when the shaft is insufficient to meet strength and serviceability requirements during design life. Key terms: anomaly — deviation from norm; often detected by NDT, may or may not be a defect; flaw — deviation from planned shape or material characteristics; defect — flaw that may significantly detract from drilled shaft performance (ASTM D6760); deficient — insufficient or inadequate; remediation — correcting a fault or deficiency; repair — restore to condition meeting performance requirements.",
       "key_points": [
-        "Load testing provides the most reliable verification of drilled shaft capacity",
-        "Types include static axial, bi-directional (O-cell), rapid (Statnamic), high-strain dynamic, and lateral",
-        "AASHTO resistance factors can be increased to 0.70 for statically tested shafts",
-        "Tests can verify design assumptions and calibrate site-specific methods"
+        "Acceptance requires complete installation records + NDT results + conformance with Plans and Specs",
+        "Anomaly → Flaw → Defect: increasing severity per ASTM D6760 terminology",
+        "Defect requires remediation only if shaft is deficient (insufficient to meet performance requirements)",
+        "Perfection is unattainable; robust design tolerates small unavoidable flaws"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "All drilled shaft projects where load testing is considered or required"
+      "applicability": "Post-construction quality assurance; acceptance decision framework for all drilled shafts"
     },
     {
       "section_id": "17.2",
-      "title": "Axial Load Tests",
-      "body": "Axial load tests are the most common type of drilled shaft load test. They can be conducted using conventional top-down static loading, bi-directional (O-cell) testing, rapid load testing (Statnamic), or high-strain dynamic methods. Planning, test method selection, instrumentation, and interpretation are all critical to obtaining reliable results that can be applied to production shaft design.",
+      "title": "Assessment of Completed Drilled Shafts",
+      "body": "Two categories of information for acceptance: (1) field observations during construction (inspection records per Chapter 15); (2) NDT results (CSL, TIP, GGL per Chapter 16). Process (Figure 17-1): review inspection records → review NDT results → accept or reject → if anomalies, engineering evaluation → accept as-is or remediate. Inspection records review: check casing, excavation log, slurry properties, base cleanout, cage inspection, concrete testing, volume monitoring; foundation design engineer is responsible for timely review. NDT recommendation: require NDT for ALL drilled shafts constructed using wet methods (slurry or water); also for all load test and technique shafts; consider also for dry construction with challenging conditions (congested cage, excavation stability concerns). NDT anomaly classification per Table 17-1: Class A (acceptable) — CSL FAT increase <15%, energy reduction <9 dB; TIP radius reduction Rr <6%, local cover >3 in.; GGL <3 standard deviations below mean. Class B (conditionally acceptable) — CSL per Table 16-2 intermediate values. Class C (abnormal) — CSL FAT increase per Table 16-2; TIP Rr >6% or local cover <3 in.; GGL >3 SD below mean. Decision process: Class A = accept; Class B = review records, may require additional action; Class C = further evaluation required (CT tomography, coring, additional testing).",
       "key_points": [
-        "Four main test methods: conventional static, bi-directional, rapid, and dynamic",
-        "Selection depends on project requirements, available capacity, and budget",
-        "Proper planning and instrumentation are essential for meaningful results"
-      ],
-      "equations": [],
-      "figures": [],
-      "tables": [],
-      "applicability": "All axial load testing of drilled shafts"
-    },
-    {
-      "section_id": "17.2.1",
-      "title": "Planning for Axial Load Tests",
-      "body": "Planning involves defining test objectives, selecting test shaft locations representative of production conditions, characterizing geomaterial properties at the test location, evaluating effects of scour, and determining construction methods. Prototype shafts (same size as production) are preferred over smaller trial shafts. Group effects and the potential need for multiple tests across variable conditions should be considered during planning.",
-      "key_points": [
-        "Test objectives should be clearly defined before selecting methods",
-        "Test shafts should be located in representative subsurface conditions",
-        "Prototype (full-size) shafts are preferred over trial (reduced-size) shafts",
-        "Multiple tests may be needed where subsurface conditions vary significantly",
-        "Geotechnical investigation at the test shaft location is essential"
-      ],
-      "equations": [],
-      "figures": [],
-      "tables": [],
-      "applicability": "Planning phase for axial load test programs"
-    },
-    {
-      "section_id": "17.2.2",
-      "title": "Test Methods for Axial Loading",
-      "body": "This section describes five categories of axial load tests: conventional top-down static, bi-directional (Osterberg cell), rapid load (Statnamic), high-strain dynamic (drop weight), and static uplift tests. Each method has specific advantages, limitations, and applicability depending on the magnitude of load, shaft geometry, subsurface conditions, and project budget.",
-      "key_points": [
-        "Conventional static tests require reaction system capable of resisting test loads",
-        "Bi-directional tests use embedded hydraulic jack, eliminating external reaction",
-        "Rapid tests apply loads of 100-200 ms duration using combustion gases",
-        "High-strain dynamic tests use drop weights and wave equation analysis"
-      ],
-      "equations": [],
-      "figures": [],
-      "tables": [],
-      "applicability": "Selection of axial load test methods"
-    },
-    {
-      "section_id": "17.2.2.1",
-      "title": "Conventional Top-Down Static Test",
-      "body": "Conventional static tests apply load in increments at the top of the shaft using hydraulic jacks reacting against a loaded platform, anchor piles, or ground anchors, following ASTM D1143 procedures. Load is applied in increments with settlements measured at each increment. The test continues until reaching the nominal resistance (plunging failure) or a specified displacement, typically 5% of shaft diameter. Cost and reaction capacity are the main limitations for large-diameter shafts.",
-      "key_points": [
-        "Follows ASTM D1143 standard test procedures",
-        "Reaction system options: dead weight, anchor piles, ground anchors",
-        "Loading continued to 5% of shaft diameter displacement or plunging failure",
-        "Cost of reaction system may be prohibitive for shafts exceeding 20,000 kN capacity",
-        "Quick test method with 5-15 minute load increments is commonly used"
+        "Require NDT on ALL wet-method shafts; all load test and technique shafts",
+        "Class A: acceptable — no action required",
+        "Class B: conditionally acceptable — review records; may need further action",
+        "Class C: abnormal — further evaluation required (CSL tomography, coring)",
+        "Foundation design engineer responsible for timely review of inspection records and NDT"
       ],
       "equations": [],
       "figures": [
-        "Figure 17-1: Conventional Static Load Test Setup with Reaction Piles",
-        "Figure 17-2: Photos of Static Load Test Setups"
-      ],
-      "tables": [],
-      "applicability": "Static load testing of drilled shafts with available reaction capacity"
-    },
-    {
-      "section_id": "17.2.2.2",
-      "title": "Bi-Directional (O-Cell) Test",
-      "body": "The bi-directional test uses one or more sacrificial hydraulic jacks (Osterberg cells) cast within the shaft. The jack loads upward against side resistance and downward against base resistance simultaneously. This method eliminates the need for an external reaction system and can test very large loads. Multi-level O-cell arrangements can be used to isolate side resistance in different strata. Results require construction of an equivalent top-loaded settlement curve.",
-      "key_points": [
-        "O-cell is a sacrificial hydraulic jack cast into the shaft during construction",
-        "Eliminates need for external reaction system, enabling tests to very high loads",
-        "Multi-level arrangements can isolate resistance in different geologic strata",
-        "Equivalent top-loaded curve must be constructed from bi-directional results",
-        "Maximum test capacity limited by the lesser of side resistance above or base resistance below the cell",
-        "Horvath correction for side shear: delta_i = (delta_oc * L) / (2 * (E*A)_avg) (Eq 17-1)"
-      ],
-      "equations": [
-        "Eq 17-1: delta_i = (delta_oc * L) / (2 * (E*A)_avg) -- Horvath side shear correction",
-        "Eq 17-2: f_i = Q_i / (pi * D * delta_L_i) -- unit side resistance for O-cell segment"
-      ],
-      "figures": [
-        "Figure 17-3: Schematic of Bi-Directional (O-Cell) Load Test",
-        "Figure 17-4: O-Cell Assembly and Installation",
-        "Figure 17-5: Multi-Level O-Cell Configuration",
-        "Figure 17-6: Construction of Equivalent Top-Loaded Settlement Curve"
-      ],
-      "tables": [],
-      "applicability": "Load testing of large-capacity drilled shafts, especially where external reaction is impractical"
-    },
-    {
-      "section_id": "17.2.2.3",
-      "title": "Rapid Load Test (Statnamic)",
-      "body": "The Statnamic test applies a rapid compressive force using combustion of a propellant within a pressure chamber, generating a force pulse of 100-200 ms duration. The test measures force, acceleration, and displacement using a load cell and laser reference. Inertia and damping effects must be removed to obtain equivalent static resistance using the Unloading Point Method (UPM). Rate effect correction factors are applied: 0.96 for rock, 0.91 for sand, 0.69 for silt, and 0.65 for clay.",
-      "key_points": [
-        "Force pulse duration of 100-200 ms from combustion of propellant",
-        "Measured force = static resistance + inertia force + damping force (Eq 17-3)",
-        "Unloading Point Method (UPM) used to derive equivalent static resistance",
-        "Rate effect factors: rock=0.96, sand=0.91, silt=0.69, clay=0.65",
-        "ASTM D7383 standard for rapid load testing",
-        "Test device mass approximately 5-10% of expected test load"
-      ],
-      "equations": [
-        "Eq 17-3: F_stn = F_static + c*v + m*a -- Statnamic force equilibrium",
-        "Eq 17-4: F_static = F_stn - c*v - m*a -- static resistance from Statnamic",
-        "Eq 17-5: F_derived_static = (1/eta) * F_static -- rate-corrected static resistance"
-      ],
-      "figures": [
-        "Figure 17-7: Statnamic Test Setup",
-        "Figure 17-8: Statnamic Force-Time History",
-        "Figure 17-9: Unloading Point Method Analysis"
+        "Figure 17-1: Drilled shaft assessment and acceptance process flowchart",
+        "Figure 17-2: Detailed engineering evaluation and remediation process"
       ],
       "tables": [
-        "Table 17-1: Rate Effect Factors for Statnamic Tests (rock=0.96, sand=0.91, silt=0.69, clay=0.65)"
+        "Table 17-1: Anomalous readings by NDT method — Class A/B/C for CSL (FAT%, RE dB), TIP (Rr%, local cover), GGL (standard deviations)"
       ],
-      "applicability": "Rapid load testing of drilled shafts, particularly in cohesionless soils or rock"
-    },
-    {
-      "section_id": "17.2.2.4",
-      "title": "High Strain Dynamic Test",
-      "body": "High-strain dynamic testing uses a drop weight impacting the shaft head, generating a stress wave analyzed by signal matching (CAPWAP). Strain gauges and accelerometers at the shaft top record force and velocity. The test requires calibration against static methods and is better suited for confirming minimum capacity than for precise capacity determination. It can be applied to production shafts as a proof test when other methods are not feasible.",
-      "key_points": [
-        "Drop weight impact generates stress wave analyzed by CAPWAP signal matching",
-        "Strain gauges and accelerometers mounted near shaft top",
-        "Better suited for proof testing than precise capacity determination",
-        "ASTM D4945 standard applies (adapted from driven pile testing)",
-        "Drop height and weight must mobilize sufficient resistance"
-      ],
-      "equations": [],
-      "figures": [
-        "Figure 17-10: Drop Weight Dynamic Test Setup"
-      ],
-      "tables": [],
-      "applicability": "Proof testing of drilled shaft capacity where static or bi-directional tests are not feasible"
-    },
-    {
-      "section_id": "17.2.2.5",
-      "title": "Uplift Tests",
-      "body": "Static uplift tests apply tensile load to the shaft reinforcement to measure side resistance in tension. The test follows ASTM D3689 procedures. Results provide direct measurement of side resistance but require careful interpretation since the shaft concrete may crack under tension, affecting load distribution. The measured uplift resistance is typically less than the compressive side resistance due to Poisson effects reducing radial stress.",
-      "key_points": [
-        "Follows ASTM D3689 standard procedures",
-        "Directly measures side resistance in tension",
-        "Tension side resistance is typically less than compression due to Poisson effects",
-        "Shaft concrete may crack under tension affecting load distribution"
-      ],
-      "equations": [],
-      "figures": [],
-      "tables": [],
-      "applicability": "Drilled shafts subject to uplift loads (transmission towers, anchorages)"
-    },
-    {
-      "section_id": "17.2.3",
-      "title": "Instrumentation",
-      "body": "Instrumentation is essential for interpreting load test results beyond just total load-displacement behavior. Key measurements include applied load, shaft head displacement, load distribution along the shaft, and base displacement. Various instrument types are used including strain gauges (resistance, vibrating wire, fiber optic), telltales, extensometers, load cells, and accelerometers.",
-      "key_points": [
-        "Instrumentation enables determination of load distribution along shaft",
-        "Strain gauges convert strain to load using estimated shaft stiffness (E*A)",
-        "Sister-bar vibrating wire strain gauges are the most common type",
-        "Fiber optic sensors emerging as alternative with continuous strain profiles",
-        "Redundancy in instrumentation is essential to guard against individual gauge failure"
-      ],
-      "equations": [
-        "Eq 17-6: Q_z = E*A*epsilon_z -- load at depth from strain",
-        "Eq 17-7: f_z = (Q_z1 - Q_z2) / (pi * D * delta_L) -- unit side resistance from load difference",
-        "Eq 17-8: E*A = Q_top / epsilon_top -- shaft composite stiffness from top measurements",
-        "Eq 17-9: SCR = (Q_z1 - Q_z2) / (gamma' * delta_L * pi * D) -- stress change ratio"
-      ],
-      "figures": [
-        "Figure 17-11: Vibrating Wire Sister-Bar Strain Gauge",
-        "Figure 17-12: Strain Gauge Installation on Reinforcing Cage"
-      ],
-      "tables": [],
-      "applicability": "Instrumentation planning for all types of drilled shaft load tests"
-    },
-    {
-      "section_id": "17.2.4",
-      "title": "Interpretation of Results for Design",
-      "body": "Interpretation of load test results involves constructing load-settlement curves, determining nominal resistance, and deriving unit side resistance and base resistance for design. The 5% diameter criterion is used to define nominal resistance from the load-settlement curve. Results from bi-directional tests require construction of an equivalent top-loaded curve. For Statnamic tests, rate effect corrections are applied. Resistance factors per AASHTO for load-tested shafts range from 0.55 to 0.70 depending on site variability and test method.",
-      "key_points": [
-        "Nominal resistance defined at displacement of 5% of shaft diameter",
-        "AASHTO resistance factors: 0.70 for static, 0.65 for Statnamic, 0.55 for dynamic",
-        "Site variability coefficient accounts for extrapolating test results to production shafts",
-        "Unit side resistance and base resistance derived from instrumented test data",
-        "Equivalent top-loaded curve construction required for bi-directional test results"
-      ],
-      "equations": [],
-      "figures": [],
-      "tables": [
-        "Table 17-2: AASHTO Resistance Factors for Load-Tested Drilled Shafts"
-      ],
-      "applicability": "Applying load test results to production drilled shaft design"
+      "applicability": "Post-construction NDT interpretation and acceptance decisions"
     },
     {
       "section_id": "17.3",
-      "title": "Lateral Load Tests",
-      "body": "Lateral load tests measure the lateral load-displacement response of drilled shafts for calibration of p-y curve models used in design. These tests are particularly valuable for conditions where standard p-y models may not be reliable, such as rock sockets, weathered rock, cemented soils, or layered profiles. The test involves applying lateral load at or near ground level and measuring deflection and rotation at multiple points along the shaft.",
+      "title": "Types of Deficiencies in Completed Shafts",
+      "body": "Geotechnical strength or serviceability deficiencies: insufficient shaft length to mobilize required resistance; poor quality bearing material at tip; loosening of soil around shaft due to caving or poor construction; excessive settlement due to inadequate consolidation of bearing material after improper base cleanout. Structural deficiencies: zones of weak or absent concrete (necking, void, soil inclusion); discontinuity in reinforcement; insufficient cover; geometric defects (misalignment exceeding tolerance). Common causes of structural defects: concrete flow blocked by rebar or debris; slurry contamination of concrete; loss of slurry head during concrete placement; premature casing extraction; caving during excavation; separation of tremie from concrete; tremie joints failure. During construction incidents that may be addressed before completion: sidewall sloughing (restore stability); loosening of ground (change methods, adjust diameter/length); inflow of water in dry hole (flood and use wet methods); tremie problems (stop, remove fluid concrete before set, restart after re-excavating).",
       "key_points": [
-        "Lateral tests calibrate p-y curve models for site-specific conditions",
-        "Particularly valuable for rock sockets and unusual geomaterial conditions",
-        "Both free-head and fixed-head boundary conditions can be tested",
-        "Inclinometer measurements provide deflection profile along shaft length"
+        "Geotechnical deficiencies: insufficient length, poor bearing material, loose soil, excessive settlement",
+        "Structural deficiencies: weak concrete zones, necking, voids, soil inclusions, discontinuous reinforcement",
+        "Tremie problems may allow re-excavation and restart if concrete is still fluid",
+        "Document all incidents; communicate to design engineer promptly for decisions"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Lateral load design of drilled shafts, especially in rock or unusual soil profiles"
+      "applicability": "Deficiency identification; pre- and post-completion problem classification"
     },
     {
-      "section_id": "17.3.1",
-      "title": "Planning for Lateral Load Tests",
-      "body": "Planning for lateral load tests includes selecting shaft geometry representative of production conditions, determining the magnitude of lateral loads to be applied, and planning instrumentation. The reaction system can be another drilled shaft or a structural element. Inclinometer casings should be installed in the test shaft for measuring deflection profiles. Strain gauges at multiple levels enable derivation of bending moment profiles.",
+      "section_id": "17.4",
+      "title": "Evaluation",
+      "body": "Engineering evaluation process when defect is identified: (1) determine location and extent of defect from NDT, coring, video, construction records; (2) classify defect type (structural vs. geotechnical) and assess severity; (3) determine whether defect causes shaft to be deficient (fails to meet design requirements); (4) if not deficient, document rationale and accept; (5) if deficient, develop remediation plan. Engineering judgment for Class C NDT results: coring is not automatically required; for small anomalies in non-critical locations, engineer may accept with documented rationale. If coring performed and finds competent concrete with acceptable strength: accept (document number and locations of cores taken). If coring finds defective concrete: proceed to engineering evaluation of impact on performance and develop remediation plan.",
       "key_points": [
-        "Test shaft geometry should match production shaft conditions",
-        "Inclinometer casings provide continuous deflection profiles",
-        "Strain gauges at multiple levels enable bending moment determination",
-        "Loading applied by hydraulic jack reacting against another shaft or structure"
+        "Evaluation steps: locate defect → classify → assess whether deficient → accept or remediate",
+        "Coring not automatically required for Class C NDT results; engineering judgment required",
+        "Accept with documented rationale when defect location/extent does not render shaft deficient",
+        "Only one core boring: consider additional borings to verify no significant defect was missed"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Planning lateral load test programs for drilled shafts"
+      "applicability": "Engineering evaluation of detected anomalies and defects"
     },
     {
-      "section_id": "17.3.2",
-      "title": "Test Methods for Lateral Loading",
-      "body": "Lateral load tests follow ASTM D3966 procedures. Load is applied in increments using a hydraulic jack reacting against an adjacent shaft or structure. Measurements include applied load, lateral displacement at multiple points on the shaft, and inclinometer readings. Rapid lateral load tests using Statnamic devices have also been developed. Cyclic lateral testing can evaluate performance under repeated loading conditions relevant to seismic or wave loading.",
+      "section_id": "17.5",
+      "title": "Remediation Methods",
+      "body": "Ground improvement: improve soil resistance around deficient shaft using grouting, jet grouting, or other ground improvement methods to increase side or base resistance. Supplemental foundations and/or structural bridging: install additional drilled shafts, micropiles, or other foundations adjacent to deficient shaft; install structural cap or beam to bridge load from deficient shaft to adjacent foundations. Excavation and replacement: excavate deficient shaft and replace with new shaft; applicable when shaft is relatively shallow or defect is near top; avoid for deep shafts or shafts already incorporated into structure above. Structural enhancement: add reinforcement, jacketing, or other structural elements to strengthen deficient zone in shaft; may involve coring, cleaning, injecting epoxy or grout into defect zone. Grouting: pressure grouting to fill voids or strengthen weak concrete; sleeve-port tube grouting along shaft sides; post-grouting through tubes preinstalled at shaft base (Appendix H) for base resistance enhancement. Case histories: examples in Chapter 17 illustrate successful remediation of various defect types.",
       "key_points": [
-        "Follows ASTM D3966 standard procedures",
-        "Conventional reaction system uses paired shafts loaded against each other",
-        "Rapid lateral tests using Statnamic have been developed",
-        "Cyclic testing evaluates performance under repeated lateral loading"
+        "Ground improvement: increase side/base resistance around deficient shaft",
+        "Supplemental foundations: additional drilled shafts or micropiles adjacent; structural cap to bridge",
+        "Excavation and replacement: applicable for shallow shafts; avoid for deep or already-integrated shafts",
+        "Structural enhancement: epoxy or grout injection into defect zone; jacketing",
+        "Grouting: post-grouting for base resistance; sleeve-port tubes for side; pressure grouting for voids"
       ],
       "equations": [],
-      "figures": [
-        "Figure 17-13: Lateral Load Test Setup"
-      ],
+      "figures": [],
       "tables": [],
-      "applicability": "Conducting lateral load tests on drilled shafts"
+      "applicability": "Remediation of deficient drilled shafts after construction"
     }
   ]
 }

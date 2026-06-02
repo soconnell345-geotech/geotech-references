@@ -1,105 +1,109 @@
 {
-  "reference_id": "FHWA-NHI-10-016",
+  "reference_id": "FHWA-NHI-18-024",
   "reference_title": "Drilled Shafts: Construction Procedures and LRFD Design Methods",
   "chapter": 11,
-  "chapter_title": "Design Process",
+  "chapter_title": "Design of Groups of Drilled Shafts",
   "sections": [
     {
       "section_id": "11.1",
       "title": "Introduction",
-      "body": "This chapter presents an overall design process for drilled shaft foundations using a 22-block flowchart. The process integrates geotechnical investigation, construction considerations, structural design, and LRFD methodology into a systematic framework. The flowchart guides the designer from initial site characterization through final construction specifications.",
+      "body": "Groups of drilled shafts may be required when axial or lateral loads are too large for a single shaft, when a pile cap foundation is used, or when redundancy is desired. Group behavior differs from single shaft behavior due to interaction effects — overlapping stress zones reduce individual shaft capacity and increase settlement. Design of groups involves: geotechnical strength limit state (group capacity vs. individual capacity); service limit state (group settlement and lateral deflection); structural design of cap.",
       "key_points": [
-        "22-block design process flowchart organizes the complete design sequence",
-        "Combines geotechnical investigation with construction and structural considerations",
-        "Iterative process with feedback loops for optimization"
+        "Groups used when single shaft insufficient for load or when cap foundation preferred",
+        "Group interaction: overlapping stress zones reduce capacity and increase settlement vs. individual shaft",
+        "Design checks: group geotechnical strength, group settlement, group lateral deflection, cap structural design"
       ],
       "equations": [],
-      "figures": [
-        "Figure 11-1: Overall Design Process Flowchart for Drilled Shafts"
-      ],
+      "figures": [],
       "tables": [],
-      "applicability": "All drilled shaft design projects from inception to construction"
+      "applicability": "Groups of two or more drilled shafts; pile cap foundations"
     },
     {
       "section_id": "11.2",
-      "title": "Blocks 1-6: Site Characterization and Preliminary Design",
-      "body": "The first six blocks cover establishing project requirements (Block 1), site characterization (Block 2), subsurface investigation (Block 3), soil/rock property evaluation (Block 4), preliminary shaft dimensions (Block 5), and constructability review (Block 6). Subsurface investigation must target depths of 2 diameters below anticipated shaft tips or to rock. Shaft length and diameter are estimated using simplified methods before detailed analysis.",
+      "title": "Group Versus Single Shaft Foundation",
+      "body": "Single shaft (monoshaft) advantages: no pile cap needed; smaller footprint; no cap excavation; lower cost when axial loads moderate and lateral capacity sufficient. Multiple shaft groups with cap advantages: greater capacity for large loads; rotational stiffness from cap; redundancy; better for large lateral loads where single shaft diameter would be impractical. Selection criteria: cost (foundation + cap); schedule; constructability; redundancy requirements; site constraints.",
       "key_points": [
-        "Block 1: Establish project requirements (loads, performance criteria, constraints)",
-        "Block 2: Site characterization including topography, geology, groundwater",
-        "Block 3: Borings to minimum 2D below expected shaft tip or 10 ft into rock",
-        "Block 4: Evaluate design soil/rock properties (strength, stiffness, unit weight)",
-        "Block 5: Preliminary shaft dimensions using simplified axial capacity methods",
-        "Block 6: Constructability review with contractor input on methods and equipment"
+        "Single shaft: no cap, smaller footprint, lower cost for moderate loads",
+        "Group with cap: greater capacity, rotational stiffness, redundancy for large loads",
+        "Evaluation criteria: cost including cap, schedule, constructability, redundancy"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Initial phases of drilled shaft design including site investigation and preliminary sizing"
+      "applicability": "Foundation type selection; monoshaft vs. group decision"
     },
     {
       "section_id": "11.3",
-      "title": "Blocks 7-12: Geotechnical Design",
-      "body": "Blocks 7 through 12 address detailed geotechnical design. Block 7 computes nominal axial resistance using alpha, beta, and/or rock socket methods. Block 8 applies LRFD resistance factors and checks adequacy. Block 9 evaluates group effects. Block 10 addresses settlement (service limit state). Block 11 performs lateral loading analysis using p-y methods. Block 12 checks extreme events including seismic, scour, and downdrag.",
+      "title": "Considerations for Spacing",
+      "body": "Minimum center-to-center spacing per AASHTO: 2.5B for compression groups (where B = shaft diameter); 3.0B for uplift groups to reduce interaction effects. Practical minimum: 3D (3× diameter) provides significantly better efficiency than 2.5D for most soils. Effects of closer spacing: reduced group efficiency (lower total capacity); increased group settlement; more difficult concrete placement between shafts; reduced effectiveness of integrity testing. Closer spacing may be acceptable if: group efficiency is verified by load testing; the reduced capacity is compensated by additional shaft length; construction is carefully sequenced to avoid interference.",
       "key_points": [
-        "Block 7: Compute nominal axial resistance (side + base) using Chapter 13 methods",
-        "Block 8: Apply resistance factors from Table 10-5 and verify Strength I adequacy",
-        "Block 9: Group efficiency and group effects per Chapter 14",
-        "Block 10: Settlement analysis for Service I limit state per Chapter 13",
-        "Block 11: Lateral load analysis (p-y method) per Chapter 12",
-        "Block 12: Extreme event checks (seismic, scour, vessel collision) per Chapter 15"
+        "AASHTO minimum spacing: 2.5B (compression groups); 3.0B (uplift groups)",
+        "Practical minimum: 3B provides significantly better efficiency than 2.5B",
+        "Closer spacing: reduced efficiency, increased settlement, construction difficulty"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Detailed geotechnical design phase for axial, lateral, and group behavior"
+      "applicability": "Group layout design; cap design coordination"
     },
     {
       "section_id": "11.4",
-      "title": "Blocks 13-18: Structural Design and Optimization",
-      "body": "Blocks 13 through 18 cover structural design and optimization. Block 13 designs the reinforced concrete section (Chapter 16). Block 14 evaluates cost and constructability. Block 15 iterates on shaft dimensions if needed. Block 16 considers alternative foundation types for comparison. Block 17 finalizes the design. Block 18 prepares construction specifications including installation criteria and integrity testing requirements.",
+      "title": "Group Effects on Axial Resistance",
+      "body": "Group efficiency η = (group capacity)/(n × individual shaft capacity). Two failure modes: (1) individual shaft failure — each shaft fails separately; capacity = η × sum of individual shaft capacities; efficiency factor <1 typically in cohesive soils, may be >1 in cohesionless soils due to densification during installation; AASHTO: η = 0.65 for 3B spacing in cohesive soils, 1.0 in cohesionless soils for typical spacing; (2) block failure — shafts and enclosed soil fail as a unit; block capacity = perimeter shear × depth + base area × net bearing pressure; governs for closely spaced groups in cohesive soils. Design uses lesser of (1) or (2) — block failure typically governs for close spacing in clay. Group settlement: elastic compression (self-weight of cap and shafts); consolidation settlement of compressible soils below pile tips; secondary compression. Group settlement analysis: equivalent footing method — distribute load over equivalent area at 2/3 of embedded depth; use Terzaghi-Meyerhof-DeBeer correction for shape and depth. AASHTO: settlement under service load ≤ tolerable differential settlement (structure-dependent).",
       "key_points": [
-        "Block 13: Structural design of reinforced concrete section per Chapter 16",
-        "Block 14: Cost evaluation and constructability assessment",
-        "Block 15: Iterate on dimensions (diameter, length) for optimization",
-        "Block 16: Compare with alternative foundation types if warranted",
-        "Block 17: Finalize design with all limit states satisfied",
-        "Block 18: Prepare specifications including inspection and testing requirements"
+        "Two failure modes: individual shaft failure (with efficiency η) or block failure",
+        "AASHTO efficiency factor η: 0.65 for 3B spacing in cohesive soils; 1.0 in cohesionless soils",
+        "Block failure governs for closely spaced groups in clay",
+        "Group settlement: elastic + consolidation + secondary; analyzed via equivalent footing method",
+        "Service limit: settlement ≤ tolerable differential settlement for the structure"
       ],
-      "equations": [],
+      "equations": [
+        "Group capacity by individual failure: Qgroup = η × Σ(individual shaft capacities)",
+        "Block failure: Qblock = (perimeter × average su × depth) + (base area × Nc*su)"
+      ],
       "figures": [],
       "tables": [],
-      "applicability": "Structural design, optimization, and specification preparation"
+      "applicability": "Axial capacity and settlement of drilled shaft groups in all geomaterial types"
     },
     {
       "section_id": "11.5",
-      "title": "Blocks 19-22: Construction and Verification",
-      "body": "Blocks 19 through 22 address construction phase activities. Block 19 covers pre-construction meetings and technique shaft installation. Block 20 addresses construction monitoring and quality control. Block 21 covers integrity testing (CSL, thermal, gamma-gamma). Block 22 addresses load testing when specified, including static, O-cell, and rapid load tests. Post-construction evaluation confirms design assumptions.",
+      "title": "Group Effects in Lateral Loading",
+      "body": "P-multiplier (fm) concept: in a group, leading row shafts carry more load than trailing row shafts due to shadow effects. P-multipliers reduce the p-y curves of individual shafts within the group relative to a single isolated shaft. AASHTO p-multipliers fm: leading row = 0.8; second row = 0.4; third and subsequent rows = 0.3 for 3B spacing; increase toward 1.0 as spacing increases toward 5-6B. Computer programs: FB-Multipier (recommended by FHWA), GROUP; PLAXIS. Group analysis: apply p-multiplier to each shaft's p-y curves; analyze group as system with cap stiffness; distribute lateral load and moment to individual shafts based on relative stiffness. Interaction effects reduce total lateral resistance and increase deflections compared to n times single shaft resistance.",
       "key_points": [
-        "Block 19: Technique shaft (pre-production trial shaft) installation and evaluation",
-        "Block 20: Construction monitoring including concrete volume curves and drilling logs",
-        "Block 21: Integrity testing methods (CSL most common for large shafts)",
-        "Block 22: Load testing for verification (static, Osterberg cell, rapid load, Statnamic)",
-        "Post-construction evaluation confirms or modifies design for remaining shafts"
+        "P-multiplier (fm): reduces p-y resistance for group shafts; leading row fm=0.7, second row fm=0.5, third+ rows fm=0.35 at 3B spacing",
+        "P-multipliers approach 1.0 as spacing increases to 5-6B",
+        "Computer programs: FB-Multipier (FHWA recommended), GROUP",
+        "Group lateral resistance < n × single shaft resistance due to shadow effects"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Construction phase monitoring, testing, and verification"
+      "applicability": "Lateral capacity of drilled shaft groups; p-multiplier method"
     },
     {
       "section_id": "11.6",
-      "title": "Summary",
-      "body": "The 22-block design process provides a systematic framework for drilled shaft design from initial planning through construction verification. The iterative nature allows optimization of shaft dimensions while ensuring all LRFD limit states are satisfied. Constructability considerations are integrated throughout the process, not treated as an afterthought.",
+      "title": "Combined Loading and Computation of Load Distribution to Group",
+      "body": "Methods for distributing combined column loads (axial, shear, moment) to individual shafts in a group: (1) Simple static equilibrium — rigid cap assumption; load distribution based on statics; applicable for small groups with simple loading; (2) Simple elastic solution — cap assumed rigid; shaft load proportional to distance from centroid for eccentric axial load; lateral loads distributed equally; moments distributed in proportion to shaft stiffness; (3) Nonlinear computer solution — model individual shafts with p-y curves and t-z curves; cap modeled as rigid or flexible element; iterative solution for load distribution; most rigorous. AASHTO: use method appropriate for load complexity and group size. For large groups with eccentric loading or combined loading, nonlinear computer analysis recommended.",
       "key_points": [
-        "Systematic 22-block process ensures all design aspects are addressed",
-        "Iterative optimization of dimensions balances cost and performance",
-        "Constructability is integral to the design process"
+        "Simple static equilibrium: rigid cap, statics only; for small groups simple loading",
+        "Simple elastic solution: rigid cap, load proportional to distance from centroid",
+        "Nonlinear computer solution: most rigorous; required for large groups or complex combined loading",
+        "Computer programs: FB-Multipier, GROUP, OpenSees for nonlinear group analysis"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Overview of the complete drilled shaft design and construction process"
+      "applicability": "Load distribution to individual shafts in groups under combined loading"
+    },
+    {
+      "section_id": "11.7",
+      "title": "Summary",
+      "body": "Chapter provided guidance on design of groups of drilled shafts for axial and lateral loading including group efficiency, block failure, group settlement, p-multipliers for lateral loading, and methods for load distribution to individual shafts. Use n × individual shaft capacity with efficiency factor or block failure (whichever governs) for axial group strength limit state. Apply p-multipliers for lateral group effects. Nonlinear computer analysis recommended for large or complex groups.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Overview"
     }
   ]
 }

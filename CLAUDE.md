@@ -25,9 +25,9 @@ geotech_references/           # Python package (pip install -e .)
     tables.py                  # 13 table lookup functions (bond, pullout, resistance factors, seismic)
     figures.py                 # 2 figure lookup functions (friction angle vs SPT, basal heave Nc)
     text/                      # Structured chapter JSON (ch 1-5, ~37 sections, body-only; ch 6-10 not yet extracted — manifest ready)
-  gec_10/                      # FHWA-NHI-10-016 Drilled Shafts
-    tables.py, figures.py
-    text/                      # Structured chapter JSON (ch 9-11,17-18 only, 5 of 22 chapters, body-only — manifest ready for full extraction)
+  gec_10/                      # FHWA-NHI-18-024 Drilled Shafts (2018 edition)
+    tables.py, figures.py      # 2018 edition: Table 8-4/9-1/10-2/11-1, Figure 10-6, Eq 10-21/22
+    text/                      # All 18 chapters complete (FHWA-NHI-18-024, ch 1-18)
   gec_11/                      # FHWA-NHI-10-024 Design of MSE Walls & Slopes
     tables.py, figures.py
     text/                      # Empty — manifest ready (7 chapters, 2026-05-02)
@@ -123,7 +123,7 @@ references/                    # Source PDFs (git-ignored)
 |--------|-----------|-----------|-------|---------------|
 | gec_6 | FHWA-SA-02-054 Shallow Foundations | 13 | 121 | 10 chapters body-only; manifest ready |
 | gec_7 | FHWA-NHI-14-007 Soil Nail Walls | 15 | 101 | ch 1-5 body-only; ch 6-10 pending |
-| gec_10 | FHWA-NHI-10-016 Drilled Shafts | 10 | 175 | 5 of 22 chapters body-only; rest pending |
+| gec_10 | FHWA-NHI-18-024 Drilled Shafts (2018) | 14 | — | All 18 chapters complete (ch 1-18) |
 | gec_11 | FHWA-NHI-10-024 MSE Walls & Slopes | 17 | 130 | manifest ready, not yet extracted |
 | gec_12 | FHWA-NHI-16-009 Driven Piles | 16 | 147 | Vol I (ch 1-8) body-only; Vol II (ch 9-18) pending |
 | gec_13 | FHWA-NHI-16-027 Ground Modification | 10 | 105 | 5 chapters body-only; manifest ready |

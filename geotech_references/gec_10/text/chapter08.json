@@ -1,0 +1,59 @@
+{
+  "reference_id": "FHWA-NHI-18-024",
+  "reference_title": "Drilled Shafts: Construction Procedures and LRFD Design Methods",
+  "chapter": 8,
+  "chapter_title": "Drilled Shaft Design Process",
+  "sections": [
+    {
+      "section_id": "8.1",
+      "title": "Outline of the Overall Design and Construction Process",
+      "body": "Chapter provides framework for drilled shaft design and construction via a logical step-by-step process. Sequence ensures all important issues are identified and addressed; no step is inherently more important than verifying issues are not overlooked. Early review of major design issues, risk identification, and constructability is especially important. Design process is illustrated in Figure 8-1 flowchart with multiple blocks: Block 1 — Establish global project performance requirements and constraints: structure type; project constraints (schedule, traffic, overhead clearance, existing foundations, marine traffic, contamination); construction sequence and phasing; structure layout; geologic setting; special design events (seismic, scour, downdrag, vessel impact); foundation loads; serviceability limits (settlement, differential settlement, lateral deformations); environmental considerations. Block 2 — Define preliminary geotechnical site conditions: desk study using geologic maps, existing borings, topographic maps; site visit; local experience from nearby projects; deep foundation trade associations. Block 3 — Determine substructure loads and load combinations: preliminary loads from Block 1 refined to complete factored demands before final design. Block 4 — Develop and execute subsurface exploration and testing program per Chapter 2; phased investigation approach for large projects. Block 5 — Evaluate information and select foundation systems: if settlement, scour, liquefaction do not preclude shallow foundations, they may be most economical; ground improvement also considered. Block 6 — Deep foundations decision: compare drilled shafts to driven piles (FHWA GEC 12), micropiles (FHWA NHI-05-039), and CFA piles (FHWA GEC 8); criteria include cost, schedule, and constructability. Block 7 — Select drilled shaft foundations: single shaft per column most common for routine bridges; alternatives include groups of smaller shafts with cap; define separate design sections for extended retaining walls/sound walls. Block 8 — Define subsurface profile: establish design profiles with specific geomaterial properties at each foundation location; group similar portions when appropriate; identify parameter ranges for sensitivity analysis. Block 9 — Establish limit states and factored demands: AASHTO LRFD equation ΣηiγiQi ≤ ΣφiRi; most common limit states for drilled shafts: Strength I, Strength IV (large DL/LL), Extreme Event I (earthquake), Service I; factored demands derived from structural analysis with foundation springs or depth of fixity. Blocks 10-15 — Design iterations: select trial shaft geometry; compute resistance for all limit states; check strength limits; check service limits (settlement, lateral displacement); iterate until optimal design achieved. Block 16 — Construction phase: contractor selection; installation plan review; inspection and QA; load testing if required.",
+      "key_points": [
+        "AASHTO LRFD check equation: ΣηiγiQi ≤ ΣφiRi for each limit state",
+        "Most common limit states: Strength I, Strength IV, Extreme Event I (earthquake), Service I",
+        "Single shaft per column is most common approach for routine bridge design",
+        "Phased investigation recommended for large projects",
+        "Early constructability review reduces risk and claims",
+        "Design process requires multiple iterations between structural and geotechnical analyses"
+      ],
+      "equations": [
+        "Eq. 8-1: ΣηiγiQi ≤ ΣφiRi — LRFD check; ηi = load modifier (ductility, redundancy, importance); γi = load factor; Qi = force effect; φi = resistance factor; Ri = nominal resistance"
+      ],
+      "figures": [
+        "Figure 8-1: Drilled shaft design and construction process flowchart (multiple sheets)",
+        "Figure 8-2: Structure model and foundation reactions for LRFD design"
+      ],
+      "tables": [
+        "Table 8-1: AASHTO (2017) limit states for bridge design — 5 Strength, 2 Extreme Event, 4 Service, 2 Fatigue",
+        "Table 8-2: Load combinations and load factors (AASHTO 2017, Table 3.4.1-1)",
+        "Table 8-3: Load factors for permanent loads γp"
+      ],
+      "applicability": "Design process framework for all drilled shaft projects; design team organization and phasing"
+    },
+    {
+      "section_id": "8.2",
+      "title": "Calibration of Resistance Factors to Regional Conditions or Agency Practice",
+      "body": "The resistance factors provided in AASHTO (2017a) were developed based on a broad statistical database of load test results from a range of soil and rock conditions across the US. In some situations, an agency may have extensive local experience, high-quality regional data, or a history of load testing that supports different resistance factors that are more reliable for local conditions. AASHTO (2017a) allows agencies to develop regionally calibrated resistance factors through a site-specific or regional calibration process. The process follows the AASHTO reliability-based calibration approach, requiring sufficient load test data to statistically characterize the bias (ratio of measured to predicted resistance) and coefficient of variation of resistance for the design method. Minimum 5-10 load tests required; more data provides higher reliability in calibration. Calibrated resistance factors should only be used for the specific design method and geomaterial type for which they were derived.",
+      "key_points": [
+        "AASHTO resistance factors based on broad national database",
+        "Agencies may calibrate resistance factors for local conditions using sufficient load test data",
+        "Calibration requires statistical characterization of bias and COV from minimum 5-10 load tests",
+        "Calibrated factors apply only to the specific design method and geomaterial for which derived"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Agency-level resistance factor calibration programs; high-quality regional data programs"
+    },
+    {
+      "section_id": "8.3",
+      "title": "Summary",
+      "body": "Chapter provided an overview of the drilled shaft design process using a structured flowchart framework. The process covers global project requirements, site characterization, foundation system selection, design iterations for all applicable limit states, and construction phase activities. The AASHTO LRFD format applies throughout: load demands factored by limit state; nominal resistance computed and factored by resistance factors. Agencies with sufficient load test data may calibrate resistance factors for local conditions.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Overview"
+    }
+  ]
+}
