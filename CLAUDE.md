@@ -60,14 +60,14 @@ geotech_references/           # Python package (pip install -e .)
     equations.py               # 4 equations (CBR-to-k, flexible/rigid thickness, ESWL)
     tables.py                  # 5 tables (frost susceptibility, reduction, aircraft, layers, subgrade)
 scripts/                       # Content generation tools (NOT installed with the package)
-  build_chapter_text.py        # PDF → chapter JSON pipeline (Anthropic + OpenAI-compatible backends)
+  build_chapter_text.py        # DEPRECATED: PDF → chapter JSON pipeline (Anthropic API); discontinued — too costly ($20/reference on DM7). Chapter JSON files are now authored manually by Claude Code across sessions.
   audit_chapter_text.py        # Validate generated JSON (schema, eq coverage, implemented_in links)
   chapter_schema.json          # JSON schema for chapter files
   manifests/                   # Per-reference manifest files (chapter page ranges + PDF paths)
     dm7_1.json, dm7_2.json     # DM7 — page ranges pre-filled
     gec_6.json, gec_7.json, gec_10.json, gec_11.json  # GECs — page ranges pre-filled
     gec_12_v1.json, gec_12_v2.json, gec_13.json       # GECs — page ranges pre-filled
-  README.md                    # Pipeline usage guide
+  README.md                    # Pipeline usage guide (describes deprecated build_chapter_text.py approach)
 agents/
   dm7_agent.py                 # DM7 Foundry-style 3-function wrapper
   gec6_agent.py                # GEC-6 Foundry-style 3-function wrapper
@@ -126,7 +126,7 @@ references/                    # Source PDFs (git-ignored)
 | gec_10 | FHWA-NHI-18-024 Drilled Shafts (2018) | 12 | 195 | All 18 chapters complete (ch 1-18) |
 | gec_11 | FHWA-NHI-10-024 MSE Walls & Slopes | 17 | 130 | All 11 chapters complete (ch 1-11) |
 | gec_12 | FHWA-NHI-16-009 Driven Piles | 16 | 147 | Vol I (ch 1-8) body-only; Vol II (ch 9-18) pending |
-| gec_13 | FHWA-NHI-16-027 Ground Modification | 10 | 105 | 5 chapters body-only; manifest ready |
+| gec_13 | FHWA-NHI-16-027 Ground Modification | 10 | 105 | Vol I ch 1-5 complete; ch 6 + Vol II ch 7-11 pending |
 | micropile | FHWA-NHI-05-039 Micropile Design | 14 | 108 | 10 chapters (complete) |
 | fema_p2192 | FEMA P-2192 SDC Determination (2024) | 10 | 132 | - |
 | noaa_frost | NOAA Frost Protected Shallow Foundations | 9 | 86 | - |
