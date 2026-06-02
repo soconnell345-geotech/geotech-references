@@ -188,3 +188,175 @@ def figure_5_5_settlement_improvement(area_replacement_ratio: float,
         "stress_concentration_ratio": stress_concentration_ratio,
         "description": "Priebe (1995) settlement improvement for stone columns",
     }
+
+
+# ============================================================================
+# Equation 7-4: Deep Mixing Composite Modulus
+# E_comp = a_s * E_col + (1 - a_s) * E_soil
+# ============================================================================
+
+def equation_7_4_composite_modulus(e_col_kpa: float,
+                                    e_soil_kpa: float,
+                                    area_replacement_ratio: float) -> dict:
+    """Composite modulus of a deep mixed treatment zone (GEC-13 Eq 7-4).
+
+    E_comp = a_s * E_col + (1 - a_s) * E_soil
+
+    Typical column modulus: E_col = 50–200 * qu (E in kPa, qu in kPa).
+
+    Parameters
+    ----------
+    e_col_kpa : float
+        Elastic modulus of the DM column in kPa.
+    e_soil_kpa : float
+        Elastic modulus of the untreated soil in kPa.
+    area_replacement_ratio : float
+        Area replacement ratio a_s = column area / tributary area (0–1).
+
+    Returns
+    -------
+    dict
+        e_comp_kpa, e_col_kpa, e_soil_kpa, area_replacement_ratio,
+        stress_concentration_ratio.
+
+    Raises
+    ------
+    ValueError
+        If moduli are non-positive or area ratio is out of range.
+    """
+    if e_col_kpa <= 0:
+        raise ValueError("e_col_kpa must be > 0")
+    if e_soil_kpa <= 0:
+        raise ValueError("e_soil_kpa must be > 0")
+    if not (0 < area_replacement_ratio < 1):
+        raise ValueError("area_replacement_ratio must be between 0 and 1")
+
+    a_s = area_replacement_ratio
+    e_comp = a_s * e_col_kpa + (1.0 - a_s) * e_soil_kpa
+    n = e_col_kpa / e_soil_kpa
+
+    return {
+        "e_comp_kpa": round(e_comp, 1),
+        "e_col_kpa": e_col_kpa,
+        "e_soil_kpa": e_soil_kpa,
+        "area_replacement_ratio": a_s,
+        "stress_concentration_ratio": round(n, 2),
+        "description": "Composite modulus of deep mixed treatment zone (parallel model)",
+    }
+
+
+# ============================================================================
+# Equation 8-1: Groutability Ratio for Permeation Grouting
+# N = D15_soil / D85_grout
+# ============================================================================
+
+def equation_8_1_groutability_ratio(d15_soil_mm: float,
+                                     d85_grout_mm: float) -> dict:
+    """Groutability ratio for particulate permeation grouting (GEC-13 Eq 8-1).
+
+    N = D15_soil / D85_grout
+
+    Interpretation:
+      N > 25:   Grouting feasible
+      11–25:    Grouting uncertain
+      N < 11:   Grouting not feasible
+
+    Parameters
+    ----------
+    d15_soil_mm : float
+        D15 grain size of the soil to be grouted in mm.
+    d85_grout_mm : float
+        D85 particle size of the particulate grout in mm.
+
+    Returns
+    -------
+    dict
+        groutability_ratio, feasibility, d15_soil_mm, d85_grout_mm.
+
+    Raises
+    ------
+    ValueError
+        If either input is non-positive.
+    """
+    if d15_soil_mm <= 0:
+        raise ValueError("d15_soil_mm must be > 0")
+    if d85_grout_mm <= 0:
+        raise ValueError("d85_grout_mm must be > 0")
+
+    n = d15_soil_mm / d85_grout_mm
+
+    if n > 25:
+        feasibility = "Feasible"
+    elif n >= 11:
+        feasibility = "Uncertain"
+    else:
+        feasibility = "Not feasible"
+
+    return {
+        "groutability_ratio": round(n, 2),
+        "feasibility": feasibility,
+        "d15_soil_mm": d15_soil_mm,
+        "d85_grout_mm": d85_grout_mm,
+        "description": "Groutability ratio N = D15_soil / D85_grout for particulate permeation grouting",
+    }
+
+
+# ============================================================================
+# Equation 11-1: Long-Term Design Strength (LTDS) for Geosynthetics
+# LTDS = T_ult / (RF_ID * RF_CR * RF_CBD * FS)
+# ============================================================================
+
+def equation_11_1_ltds(t_ult_kn_m: float,
+                        rf_id: float,
+                        rf_cr: float,
+                        rf_cbd: float,
+                        fs: float = 1.0) -> dict:
+    """Long-term design strength for geosynthetic reinforcement (GEC-13 Eq 11-1).
+
+    LTDS = T_ult / (RF_ID * RF_CR * RF_CBD * FS)
+
+    Use table_11_1_geosynthetic_reduction_factors() for RF values by polymer.
+
+    Parameters
+    ----------
+    t_ult_kn_m : float
+        Ultimate tensile strength from index test (kN/m).
+    rf_id : float
+        Installation damage reduction factor (typically 1.05–3.0).
+    rf_cr : float
+        Creep reduction factor (typically 1.5–5.0 by polymer type).
+    rf_cbd : float
+        Chemical and biological degradation factor (typically 1.05–1.6).
+    fs : float
+        Overall factor of safety (default 1.0; AASHTO LRFD typically uses
+        FS=1.0 with RF terms covering all uncertainty).
+
+    Returns
+    -------
+    dict
+        ltds_kn_m, combined_reduction_factor, t_ult_kn_m,
+        rf_id, rf_cr, rf_cbd, fs.
+
+    Raises
+    ------
+    ValueError
+        If any input is non-positive.
+    """
+    for name, val in [("t_ult_kn_m", t_ult_kn_m), ("rf_id", rf_id),
+                      ("rf_cr", rf_cr), ("rf_cbd", rf_cbd), ("fs", fs)]:
+        if val <= 0:
+            raise ValueError(f"{name} must be > 0")
+
+    combined_rf = rf_id * rf_cr * rf_cbd * fs
+    ltds = t_ult_kn_m / combined_rf
+
+    return {
+        "ltds_kn_m": round(ltds, 2),
+        "combined_reduction_factor": round(combined_rf, 3),
+        "t_ult_kn_m": t_ult_kn_m,
+        "rf_id": rf_id,
+        "rf_cr": rf_cr,
+        "rf_cbd": rf_cbd,
+        "fs": fs,
+        "description": "Long-term design strength (LTDS) for geosynthetic reinforcement",
+    }

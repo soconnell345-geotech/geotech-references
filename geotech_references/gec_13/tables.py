@@ -836,3 +836,460 @@ def figure_4_1_ddc_depth(weight_tonnes: float, drop_height_m: float,
         "soil_type": key,
         "description": data["description"],
     }
+
+
+# ============================================================================
+# Table 7-2: Deep Mixing — Typical Unconfined Compressive Strength (qu)
+# (qu in kPa at 28 days)
+# ============================================================================
+
+_TABLE_7_2 = {
+    "soft_clay_ddm": {
+        "soil_type": "Soft clay",
+        "method": "Dry deep mixing (DDM)",
+        "binder": "Lime-cement blend",
+        "qu_low_kpa": 200,
+        "qu_high_kpa": 500,
+        "notes": "Scandinavian practice; lower end for high water content soils",
+    },
+    "soft_clay_wdm": {
+        "soil_type": "Soft clay",
+        "method": "Wet deep mixing (WDM)",
+        "binder": "Portland cement slurry",
+        "qu_low_kpa": 500,
+        "qu_high_kpa": 2000,
+        "notes": "Higher binder content achievable with wet mixing",
+    },
+    "organic_peat_ddm": {
+        "soil_type": "Organic clay / peat",
+        "method": "Dry deep mixing (DDM)",
+        "binder": "Lime-cement blend",
+        "qu_low_kpa": 100,
+        "qu_high_kpa": 400,
+        "notes": "Organic content > 6% may inhibit hydration; treatability testing required",
+    },
+    "organic_peat_wdm": {
+        "soil_type": "Organic clay / peat",
+        "method": "Wet deep mixing (WDM)",
+        "binder": "Portland cement slurry",
+        "qu_low_kpa": 200,
+        "qu_high_kpa": 800,
+        "notes": "Lower strength than mineral clays; higher w/c ratio may be needed",
+    },
+    "silt_ddm": {
+        "soil_type": "Silt",
+        "method": "Dry deep mixing (DDM)",
+        "binder": "Lime-cement blend",
+        "qu_low_kpa": 300,
+        "qu_high_kpa": 800,
+        "notes": "Effective when water content is high",
+    },
+    "silt_wdm": {
+        "soil_type": "Silt",
+        "method": "Wet deep mixing (WDM)",
+        "binder": "Portland cement slurry",
+        "qu_low_kpa": 500,
+        "qu_high_kpa": 2000,
+        "notes": "Consistent with soft clay WDM performance",
+    },
+    "loose_sand_wdm": {
+        "soil_type": "Loose to medium sand",
+        "method": "Wet deep mixing (WDM)",
+        "binder": "Portland cement slurry",
+        "qu_low_kpa": 1000,
+        "qu_high_kpa": 4000,
+        "notes": "Granular soils respond well to cement; higher strength than cohesive soils",
+    },
+}
+
+
+def table_7_2_deep_mixing_strength(soil_type: str = "", method: str = "") -> list:
+    """Typical unconfined compressive strength (qu) for deep mixed soil (Table 7-2).
+
+    Parameters
+    ----------
+    soil_type : str
+        Filter by soil type (partial match, case-insensitive).
+        E.g., 'clay', 'peat', 'silt', 'sand', 'organic'.
+    method : str
+        Filter by mixing method (partial match, case-insensitive).
+        E.g., 'dry', 'wet', 'DDM', 'WDM'.
+
+    Returns
+    -------
+    list of dict
+        Each dict has soil_type, method, binder, qu_low_kpa,
+        qu_high_kpa, and notes.
+    """
+    st_lower = soil_type.lower().strip()
+    meth_lower = method.lower().strip()
+    results = []
+    for key, data in _TABLE_7_2.items():
+        if st_lower and (st_lower not in key.lower() and
+                         st_lower not in data["soil_type"].lower()):
+            continue
+        if meth_lower and (meth_lower not in key.lower() and
+                           meth_lower not in data["method"].lower()):
+            continue
+        entry = {"key": key}
+        entry.update(data)
+        results.append(entry)
+    return results
+
+
+# ============================================================================
+# Table 8-2: Jet Grouting System Comparison
+# ============================================================================
+
+_TABLE_8_2 = {
+    "single_fluid": {
+        "system": "Single-fluid",
+        "fluids": "Grout jet only",
+        "column_diameter_mm_low": 300,
+        "column_diameter_mm_high": 600,
+        "typical_soils": "Soft clays, silts, loose sands",
+        "strength_mpa_low": 1,
+        "strength_mpa_high": 5,
+        "notes": "Simplest system; smallest column diameter; most economical in soft soils",
+    },
+    "double_fluid": {
+        "system": "Double-fluid",
+        "fluids": "Grout jet with air shroud",
+        "column_diameter_mm_low": 600,
+        "column_diameter_mm_high": 1000,
+        "typical_soils": "Clays, silts, loose to medium sands",
+        "strength_mpa_low": 1,
+        "strength_mpa_high": 7,
+        "notes": "Air shroud increases cutting energy and column diameter",
+    },
+    "triple_fluid": {
+        "system": "Triple-fluid",
+        "fluids": "Separate water jet, air shroud, and grout injection",
+        "column_diameter_mm_low": 600,
+        "column_diameter_mm_high": 2000,
+        "typical_soils": "Wide range: silts, clays, sands, gravels",
+        "strength_mpa_low": 1,
+        "strength_mpa_high": 10,
+        "notes": "Largest columns; highest cost; most versatile soil range",
+    },
+}
+
+
+def table_8_2_jet_grouting_systems(system: str = "") -> list:
+    """Jet grouting system comparison — diameter, soils, and strength (Table 8-2).
+
+    Parameters
+    ----------
+    system : str
+        Filter by system name (partial match, case-insensitive).
+        E.g., 'single', 'double', 'triple'.
+
+    Returns
+    -------
+    list of dict
+        Each dict has system, fluids, column_diameter_mm (low/high),
+        typical_soils, strength_mpa (low/high), and notes.
+    """
+    sys_lower = system.lower().strip()
+    results = []
+    for key, data in _TABLE_8_2.items():
+        if sys_lower and (sys_lower not in key.lower() and
+                          sys_lower not in data["system"].lower()):
+            continue
+        entry = {"key": key}
+        entry.update(data)
+        results.append(entry)
+    return results
+
+
+# ============================================================================
+# Table 9-2: Soil Nail Bond Strength — Ultimate Unit Resistance (qu_nail)
+# Values for drilled and pressure-grouted nails per GEC-7 / GEC-13 Ch 9.
+# ============================================================================
+
+_TABLE_9_2 = {
+    "cohesive_soft": {
+        "soil_type": "Cohesive soils — soft to medium (su = 20–50 kPa)",
+        "installation": "Drilled and grouted",
+        "qu_nail_low_kpa": 20,
+        "qu_nail_high_kpa": 55,
+        "notes": "Low bond; marginal applicability; verify with field pullout tests",
+    },
+    "cohesive_stiff": {
+        "soil_type": "Cohesive soils — stiff to hard (su = 50–150 kPa)",
+        "installation": "Drilled and grouted",
+        "qu_nail_low_kpa": 40,
+        "qu_nail_high_kpa": 100,
+        "notes": "Most common cohesive soil nail condition",
+    },
+    "cohesionless_loose": {
+        "soil_type": "Cohesionless soils — loose to medium (SPT N = 10–30)",
+        "installation": "Drilled and grouted",
+        "qu_nail_low_kpa": 55,
+        "qu_nail_high_kpa": 145,
+        "notes": "Apparent cohesion required for face stability during construction",
+    },
+    "cohesionless_dense": {
+        "soil_type": "Cohesionless soils — dense to very dense (SPT N > 30)",
+        "installation": "Drilled and grouted",
+        "qu_nail_low_kpa": 100,
+        "qu_nail_high_kpa": 190,
+        "notes": "High bond in dense granular soils",
+    },
+    "glacial_till": {
+        "soil_type": "Glacial till / mixed granular-cohesive",
+        "installation": "Drilled and grouted",
+        "qu_nail_low_kpa": 100,
+        "qu_nail_high_kpa": 200,
+        "notes": "Variable; depends on fines content and compaction state",
+    },
+    "weathered_rock": {
+        "soil_type": "Weathered rock / residual soils",
+        "installation": "Drilled and grouted",
+        "qu_nail_low_kpa": 200,
+        "qu_nail_high_kpa": 400,
+        "notes": "Significant variability depending on rock type and weathering grade",
+    },
+    "soft_rock": {
+        "soil_type": "Soft rock (soft sandstone, shale, soft limestone)",
+        "installation": "Drilled and grouted",
+        "qu_nail_low_kpa": 300,
+        "qu_nail_high_kpa": 800,
+        "notes": "Verify with pullout tests; rock quality strongly affects bond",
+    },
+    "hard_rock": {
+        "soil_type": "Hard rock (granite, hard limestone, quartzite)",
+        "installation": "Drilled and grouted",
+        "qu_nail_low_kpa": 500,
+        "qu_nail_high_kpa": 3000,
+        "notes": "Bond often limited by grout/drill-hole interface rather than rock strength",
+    },
+}
+
+
+def table_9_2_nail_bond_strength(soil_type: str = "") -> list:
+    """Soil nail ultimate unit bond resistance by soil type (Table 9-2).
+
+    Values for drilled and pressure-grouted nails. Field pullout tests
+    required per GEC-7 (FHWA-NHI-14-007).
+
+    Parameters
+    ----------
+    soil_type : str
+        Filter by soil type (partial match, case-insensitive).
+        E.g., 'cohesive', 'cohesionless', 'rock', 'glacial', 'sand'.
+
+    Returns
+    -------
+    list of dict
+        Each dict has soil_type, installation, qu_nail_low_kpa,
+        qu_nail_high_kpa, and notes.
+    """
+    st_lower = soil_type.lower().strip()
+    results = []
+    for key, data in _TABLE_9_2.items():
+        if st_lower and (st_lower not in key.lower() and
+                         st_lower not in data["soil_type"].lower()):
+            continue
+        entry = {"key": key}
+        entry.update(data)
+        results.append(entry)
+    return results
+
+
+# ============================================================================
+# Table 10-1: Micropile Bond Zone Unit Resistance (alpha_bond) by Soil/Rock Type
+# Grout types A–D per FHWA-NHI-05-039 classification.
+# ============================================================================
+
+_TABLE_10_1 = {
+    "soft_clay": {
+        "soil_type": "Soft clay (su < 50 kPa)",
+        "type_a": (35, 70),
+        "type_b": (35, 95),
+        "type_cd": (50, 120),
+    },
+    "medium_clay": {
+        "soil_type": "Medium stiff clay (su = 50–100 kPa)",
+        "type_a": (40, 75),
+        "type_b": (50, 120),
+        "type_cd": (65, 160),
+    },
+    "loose_sand": {
+        "soil_type": "Loose to medium sand (SPT N = 10–30)",
+        "type_a": (55, 90),
+        "type_b": (75, 145),
+        "type_cd": (95, 190),
+    },
+    "dense_sand": {
+        "soil_type": "Dense to very dense sand (SPT N > 30)",
+        "type_a": (75, 110),
+        "type_b": (95, 180),
+        "type_cd": (120, 240),
+    },
+    "gravel": {
+        "soil_type": "Gravel and cobbles",
+        "type_a": (90, 140),
+        "type_b": (110, 200),
+        "type_cd": (145, 265),
+    },
+    "soft_rock": {
+        "soil_type": "Soft rock (soft sandstone, shale, soft limestone)",
+        "type_a": (None, None),
+        "type_b": (200, 600),
+        "type_cd": (250, 750),
+    },
+    "hard_rock": {
+        "soil_type": "Hard rock (granite, hard limestone, quartzite)",
+        "type_a": (None, None),
+        "type_b": (500, 2500),
+        "type_cd": (600, 3000),
+    },
+}
+
+
+def table_10_1_micropile_bond_stress(soil_type: str = "",
+                                     grout_type: str = "") -> list:
+    """Micropile bond zone unit resistance by soil/rock type and grout type (Table 10-1).
+
+    Grout types:
+      Type A: Gravity-placed neat cement grout
+      Type B: Pressure-injected through drill pipe
+      Type C/D: Post-grouted through sleeve pipes
+
+    Based on GEC-13 Chapter 10 and FHWA-NHI-05-039 Table 5-3.
+    Verify with field load tests.
+
+    Parameters
+    ----------
+    soil_type : str
+        Filter by soil or rock type (partial match, case-insensitive).
+        E.g., 'clay', 'sand', 'rock', 'gravel'.
+    grout_type : str
+        Filter by grout type: 'A', 'B', 'C', 'D', or 'CD'.
+        Empty string returns all types.
+
+    Returns
+    -------
+    list of dict
+        Each dict has soil_type plus alpha_bond_low_kpa and
+        alpha_bond_high_kpa for each applicable grout type.
+    """
+    st_lower = soil_type.lower().strip()
+    gt_lower = grout_type.lower().strip()
+    results = []
+    for key, data in _TABLE_10_1.items():
+        if st_lower and (st_lower not in key.lower() and
+                         st_lower not in data["soil_type"].lower()):
+            continue
+        entry = {"key": key, "soil_type": data["soil_type"]}
+        include_a = not gt_lower or gt_lower == "a"
+        include_b = not gt_lower or gt_lower == "b"
+        include_cd = not gt_lower or gt_lower in ("c", "d", "cd")
+        if include_a and data["type_a"][0] is not None:
+            entry["type_a_alpha_bond_low_kpa"] = data["type_a"][0]
+            entry["type_a_alpha_bond_high_kpa"] = data["type_a"][1]
+        if include_b:
+            entry["type_b_alpha_bond_low_kpa"] = data["type_b"][0]
+            entry["type_b_alpha_bond_high_kpa"] = data["type_b"][1]
+        if include_cd:
+            entry["type_cd_alpha_bond_low_kpa"] = data["type_cd"][0]
+            entry["type_cd_alpha_bond_high_kpa"] = data["type_cd"][1]
+        results.append(entry)
+    return results
+
+
+# ============================================================================
+# Table 11-1: Geosynthetic Reduction Factors
+# RF_ID = installation damage, RF_CR = creep, RF_CBD = chemical/biological
+# Per AASHTO M288 and GEC-11 Table 3-3.
+# ============================================================================
+
+_TABLE_11_1 = {
+    "pp_woven_geotextile": {
+        "product": "PP woven geotextile",
+        "polymer": "Polypropylene (PP)",
+        "rf_id_low": 1.10,
+        "rf_id_high": 3.00,
+        "rf_cr_low": 1.50,
+        "rf_cr_high": 4.50,
+        "rf_cbd_low": 1.05,
+        "rf_cbd_high": 1.50,
+        "notes": "RF_ID depends on fill gradation and compaction energy",
+    },
+    "hdpe_geogrid": {
+        "product": "HDPE geogrid",
+        "polymer": "High-density polyethylene (HDPE)",
+        "rf_id_low": 1.05,
+        "rf_id_high": 2.50,
+        "rf_cr_low": 2.00,
+        "rf_cr_high": 5.00,
+        "rf_cbd_low": 1.05,
+        "rf_cbd_high": 1.50,
+        "notes": "High creep susceptibility of HDPE; use long-term creep test data",
+    },
+    "pet_geogrid": {
+        "product": "PET geogrid",
+        "polymer": "Polyester (PET)",
+        "rf_id_low": 1.05,
+        "rf_id_high": 2.00,
+        "rf_cr_low": 1.60,
+        "rf_cr_high": 2.50,
+        "rf_cbd_low": 1.20,
+        "rf_cbd_high": 1.60,
+        "notes": "RF_CBD increases for acidic (pH < 4.5) or alkaline (pH > 9) conditions",
+    },
+    "pet_woven_geotextile": {
+        "product": "PET woven geotextile",
+        "polymer": "Polyester (PET)",
+        "rf_id_low": 1.10,
+        "rf_id_high": 2.50,
+        "rf_cr_low": 1.60,
+        "rf_cr_high": 2.50,
+        "rf_cbd_low": 1.20,
+        "rf_cbd_high": 1.60,
+        "notes": "Same polymer as PET geogrid; typically higher RF_ID due to thinner cross-section",
+    },
+}
+
+
+def table_11_1_geosynthetic_reduction_factors(product: str = "",
+                                               polymer: str = "") -> list:
+    """Geosynthetic reduction factors for LTDS calculation (Table 11-1).
+
+    RF_ID: installation damage (fill gradation and compaction energy)
+    RF_CR: creep (time-dependent elongation under sustained load)
+    RF_CBD: chemical and biological degradation (pH, oxidation)
+
+    Used in LTDS = T_ult / (RF_ID * RF_CR * RF_CBD * FS).
+    Per AASHTO M288 and GEC-11 Table 3-3.
+
+    Parameters
+    ----------
+    product : str
+        Filter by product type (partial match, case-insensitive).
+        E.g., 'geogrid', 'geotextile', 'woven'.
+    polymer : str
+        Filter by polymer type (partial match, case-insensitive).
+        E.g., 'PP', 'HDPE', 'PET', 'polyester'.
+
+    Returns
+    -------
+    list of dict
+        Each dict has product, polymer, rf_id (low/high),
+        rf_cr (low/high), rf_cbd (low/high), and notes.
+    """
+    prod_lower = product.lower().strip()
+    poly_lower = polymer.lower().strip()
+    results = []
+    for key, data in _TABLE_11_1.items():
+        if prod_lower and (prod_lower not in key.lower() and
+                           prod_lower not in data["product"].lower()):
+            continue
+        if poly_lower and (poly_lower not in key.lower() and
+                           poly_lower not in data["polymer"].lower()):
+            continue
+        entry = {"key": key}
+        entry.update(data)
+        results.append(entry)
+    return results

@@ -10,6 +10,11 @@ from geotech_references.gec_13.tables import (
     table_3_1_lightweight_fill,
     table_4_1_ddc_parameters,
     figure_4_1_ddc_depth,
+    table_7_2_deep_mixing_strength,
+    table_8_2_jet_grouting_systems,
+    table_9_2_nail_bond_strength,
+    table_10_1_micropile_bond_stress,
+    table_11_1_geosynthetic_reduction_factors,
 )
 
 
@@ -341,3 +346,226 @@ class TestFigure41:
         assert "n_high" in result
         assert "soil_type" in result
         assert "description" in result
+
+
+# ============================================================================
+# Table 7-2: Deep Mixing Strength
+# ============================================================================
+
+class TestTable72:
+    """Tests for table_7_2_deep_mixing_strength()."""
+
+    def test_all_entries(self):
+        results = table_7_2_deep_mixing_strength()
+        assert len(results) == 7
+
+    def test_filter_clay(self):
+        results = table_7_2_deep_mixing_strength(soil_type="clay")
+        assert len(results) >= 2
+        assert all("clay" in r["soil_type"].lower() for r in results)
+
+    def test_filter_ddm(self):
+        results = table_7_2_deep_mixing_strength(method="DDM")
+        assert len(results) >= 3
+        assert all("DDM" in r["method"] or "dry" in r["method"].lower()
+                   for r in results)
+
+    def test_filter_wdm(self):
+        results = table_7_2_deep_mixing_strength(method="WDM")
+        assert len(results) >= 3
+
+    def test_sand_wdm_highest_strength(self):
+        """Sand WDM has the highest qu range."""
+        sand = table_7_2_deep_mixing_strength(soil_type="sand", method="WDM")
+        assert len(sand) == 1
+        assert sand[0]["qu_high_kpa"] == 4000
+
+    def test_organic_peat_lower_than_clay(self):
+        """Organic/peat has lower strength than mineral clay for same method."""
+        clay = table_7_2_deep_mixing_strength(soil_type="soft_clay", method="DDM")
+        peat = table_7_2_deep_mixing_strength(soil_type="organic", method="DDM")
+        assert clay[0]["qu_low_kpa"] > peat[0]["qu_low_kpa"]
+
+    def test_entries_have_required_fields(self):
+        results = table_7_2_deep_mixing_strength()
+        for entry in results:
+            assert "soil_type" in entry
+            assert "method" in entry
+            assert "qu_low_kpa" in entry
+            assert "qu_high_kpa" in entry
+            assert entry["qu_low_kpa"] < entry["qu_high_kpa"]
+
+    def test_no_match(self):
+        results = table_7_2_deep_mixing_strength(soil_type="nonexistent_xyz")
+        assert results == []
+
+
+# ============================================================================
+# Table 8-2: Jet Grouting Systems
+# ============================================================================
+
+class TestTable82:
+    """Tests for table_8_2_jet_grouting_systems()."""
+
+    def test_all_systems(self):
+        results = table_8_2_jet_grouting_systems()
+        assert len(results) == 3
+
+    def test_single_fluid(self):
+        results = table_8_2_jet_grouting_systems("single")
+        assert len(results) == 1
+        assert results[0]["column_diameter_mm_high"] <= 600
+
+    def test_triple_fluid_largest(self):
+        results = table_8_2_jet_grouting_systems("triple")
+        assert len(results) == 1
+        assert results[0]["column_diameter_mm_high"] == 2000
+
+    def test_diameter_increases_with_system(self):
+        single = table_8_2_jet_grouting_systems("single")[0]
+        double = table_8_2_jet_grouting_systems("double")[0]
+        triple = table_8_2_jet_grouting_systems("triple")[0]
+        assert single["column_diameter_mm_high"] <= double["column_diameter_mm_high"]
+        assert double["column_diameter_mm_high"] <= triple["column_diameter_mm_high"]
+
+    def test_entries_have_required_fields(self):
+        results = table_8_2_jet_grouting_systems()
+        for entry in results:
+            assert "system" in entry
+            assert "column_diameter_mm_low" in entry
+            assert "column_diameter_mm_high" in entry
+            assert "strength_mpa_low" in entry
+            assert "strength_mpa_high" in entry
+
+    def test_no_match(self):
+        results = table_8_2_jet_grouting_systems("quadruple")
+        assert results == []
+
+
+# ============================================================================
+# Table 9-2: Soil Nail Bond Strength
+# ============================================================================
+
+class TestTable92:
+    """Tests for table_9_2_nail_bond_strength()."""
+
+    def test_all_entries(self):
+        results = table_9_2_nail_bond_strength()
+        assert len(results) == 8
+
+    def test_filter_rock(self):
+        results = table_9_2_nail_bond_strength("rock")
+        assert len(results) >= 2
+
+    def test_filter_cohesive(self):
+        results = table_9_2_nail_bond_strength("cohesive")
+        assert len(results) >= 2
+
+    def test_rock_higher_than_cohesive(self):
+        """Hard rock bond strength exceeds cohesive soil bond strength."""
+        rock = table_9_2_nail_bond_strength("hard_rock")
+        cohesive = table_9_2_nail_bond_strength("cohesive_stiff")
+        assert rock[0]["qu_nail_low_kpa"] > cohesive[0]["qu_nail_high_kpa"]
+
+    def test_entries_have_required_fields(self):
+        results = table_9_2_nail_bond_strength()
+        for entry in results:
+            assert "soil_type" in entry
+            assert "qu_nail_low_kpa" in entry
+            assert "qu_nail_high_kpa" in entry
+            assert entry["qu_nail_low_kpa"] < entry["qu_nail_high_kpa"]
+
+    def test_no_match(self):
+        results = table_9_2_nail_bond_strength("nonexistent_xyz")
+        assert results == []
+
+
+# ============================================================================
+# Table 10-1: Micropile Bond Zone Unit Resistance
+# ============================================================================
+
+class TestTable101:
+    """Tests for table_10_1_micropile_bond_stress()."""
+
+    def test_all_entries(self):
+        results = table_10_1_micropile_bond_stress()
+        assert len(results) == 7
+
+    def test_filter_clay(self):
+        results = table_10_1_micropile_bond_stress(soil_type="clay")
+        assert len(results) == 2
+
+    def test_filter_type_b(self):
+        results = table_10_1_micropile_bond_stress(grout_type="B")
+        assert all("type_b_alpha_bond_low_kpa" in r for r in results)
+        assert all("type_a_alpha_bond_low_kpa" not in r for r in results)
+
+    def test_type_cd_higher_than_type_b(self):
+        """Post-grouted (C/D) has higher bond than Type B."""
+        results = table_10_1_micropile_bond_stress(soil_type="dense_sand")
+        assert len(results) == 1
+        assert results[0]["type_cd_alpha_bond_low_kpa"] > results[0]["type_b_alpha_bond_low_kpa"]
+
+    def test_rock_no_type_a(self):
+        """Type A gravity grout not used in rock."""
+        results = table_10_1_micropile_bond_stress(soil_type="hard_rock")
+        assert len(results) == 1
+        assert "type_a_alpha_bond_low_kpa" not in results[0]
+        assert "type_b_alpha_bond_low_kpa" in results[0]
+
+    def test_rock_higher_than_soil(self):
+        """Rock bond stress exceeds granular soil bond stress."""
+        rock = table_10_1_micropile_bond_stress(soil_type="hard_rock")
+        sand = table_10_1_micropile_bond_stress(soil_type="dense_sand")
+        assert rock[0]["type_b_alpha_bond_low_kpa"] > sand[0]["type_b_alpha_bond_high_kpa"]
+
+    def test_no_match(self):
+        results = table_10_1_micropile_bond_stress(soil_type="nonexistent_xyz")
+        assert results == []
+
+
+# ============================================================================
+# Table 11-1: Geosynthetic Reduction Factors
+# ============================================================================
+
+class TestTable111:
+    """Tests for table_11_1_geosynthetic_reduction_factors()."""
+
+    def test_all_entries(self):
+        results = table_11_1_geosynthetic_reduction_factors()
+        assert len(results) == 4
+
+    def test_filter_geogrid(self):
+        results = table_11_1_geosynthetic_reduction_factors(product="geogrid")
+        assert len(results) == 2
+
+    def test_filter_hdpe(self):
+        results = table_11_1_geosynthetic_reduction_factors(polymer="HDPE")
+        assert len(results) == 1
+        assert results[0]["rf_cr_high"] == 5.00
+
+    def test_filter_pet(self):
+        results = table_11_1_geosynthetic_reduction_factors(polymer="PET")
+        assert len(results) == 2
+
+    def test_hdpe_higher_creep_than_pet(self):
+        """HDPE has higher creep RF than PET geogrid."""
+        hdpe = table_11_1_geosynthetic_reduction_factors(product="hdpe_geogrid")
+        pet = table_11_1_geosynthetic_reduction_factors(product="pet_geogrid")
+        assert hdpe[0]["rf_cr_high"] > pet[0]["rf_cr_high"]
+
+    def test_entries_have_required_fields(self):
+        results = table_11_1_geosynthetic_reduction_factors()
+        for entry in results:
+            assert "product" in entry
+            assert "polymer" in entry
+            assert "rf_id_low" in entry
+            assert "rf_cr_low" in entry
+            assert "rf_cbd_low" in entry
+            assert entry["rf_id_low"] >= 1.0
+            assert entry["rf_cr_low"] >= 1.0
+            assert entry["rf_cbd_low"] >= 1.0
+
+    def test_no_match(self):
+        results = table_11_1_geosynthetic_reduction_factors(polymer="carbon_fiber")
+        assert results == []

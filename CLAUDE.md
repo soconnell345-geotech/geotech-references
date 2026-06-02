@@ -2,6 +2,10 @@
 
 Standalone geotechnical reference library: digitized equations, figures, tables, and structured reference text from UFC 3-220-10/20 (the UFC successors to NAVFAC DM 7.01/7.02), FHWA GEC series, and other standards.
 
+**Two complementary components per reference:**
+1. **Python lookup scripts** (`tables.py`, `figures.py`, sometimes `equations.py`) — Digitized design charts, tables, and equations as callable functions. Written manually by Claude Code from the source PDFs.
+2. **Structured reference text** (`text/chapterNN.json`) — Each chapter as a JSON file with sections containing `body`, `key_points`, `equations`, `figures`, `tables`, and `applicability` fields. Also written manually by Claude Code across sessions (not auto-generated — the `build_chapter_text.py` pipeline was retired after the $20/reference cost incurred on DM7).
+
 Consumed by [GeotechStaffEngineer](https://github.com/soconnell345-geotech/GeotechStaffEngineer) as a Git submodule.
 
 ## Architecture
@@ -83,7 +87,7 @@ agents/
   ufc_dewatering_agent.py      # UFC 3-220-05 Foundry-style 3-function wrapper
   ufc_expansive_agent.py       # UFC 3-220-07 Foundry-style 3-function wrapper
   ufc_pavement_agent.py        # UFC 3-250-01 Foundry-style 3-function wrapper (agent references UFC 3-260-02 — update when equations.py/tables.py are audited)
-tests/                         # 3,453 tests (pytest)
+tests/                         # 3,511 tests (pytest)
 references/                    # Source PDFs (git-ignored)
 ```
 
@@ -126,7 +130,7 @@ references/                    # Source PDFs (git-ignored)
 | gec_10 | FHWA-NHI-18-024 Drilled Shafts (2018) | 12 | 195 | All 18 chapters complete (ch 1-18) |
 | gec_11 | FHWA-NHI-10-024 MSE Walls & Slopes | 17 | 130 | All 11 chapters complete (ch 1-11) |
 | gec_12 | FHWA-NHI-16-009 Driven Piles | 16 | 147 | Vol I (ch 1-8) body-only; Vol II (ch 9-18) pending |
-| gec_13 | FHWA-NHI-16-027 Ground Modification | 10 | 105 | All 11 chapters complete (Vol I ch 1-6, Vol II ch 7-11) |
+| gec_13 | FHWA-NHI-16-027 Ground Modification | 18 | 168 | All 11 chapters complete (Vol I ch 1-6, Vol II ch 7-11) |
 | micropile | FHWA-NHI-05-039 Micropile Design | 14 | 108 | 10 chapters (complete) |
 | fema_p2192 | FEMA P-2192 SDC Determination (2024) | 10 | 132 | - |
 | noaa_frost | NOAA Frost Protected Shallow Foundations | 9 | 86 | - |
@@ -173,11 +177,11 @@ references/                    # Source PDFs (git-ignored)
 
 **Text**: All 11 chapters (Vol I ch 1-6: overview through design of MSE walls; Vol II ch 1-5: RSS design, construction, and inspection)
 
-### GEC-13: Ground Modification Methods — FHWA-NHI-16-027 (10 functions, 105 tests)
+### GEC-13: Ground Modification Methods — FHWA-NHI-16-027 (18 functions, 168 tests)
 
-**Table Functions** (7): Technology applicability by category/soil (Table 1-2); technologies by function (Table 1-3); comparative unit costs (Table 1-6, 2016 $); PVD transportation applications (Table 2-1); lightweight fill material properties (Table 3-1); deep dynamic compaction parameters (Table 4-1)
+**Table Functions** (12): Technology applicability by category/soil (Table 1-2); technologies by function (Table 1-3); comparative unit costs (Table 1-6, 2016 $); PVD transportation applications (Table 2-1); lightweight fill material properties (Table 3-1); DDC design parameters (Table 4-1); deep mixing typical qu by soil/method (Table 7-2); jet grouting system comparison (Table 8-2); soil nail bond strength by soil type (Table 9-2); micropile bond zone unit resistance Types A/B/C-D (Table 10-1); geosynthetic reduction factors RF_ID/RF_CR/RF_CBD by polymer (Table 11-1)
 
-**Figure/Equation Functions** (3): Vibro-compaction soil suitability number (Fig 4-3, Brown 1977 SN formula); aggregate column area replacement ratio (Fig 5-2, triangular/square pattern); stone column settlement improvement factor (Fig 5-5, Priebe 1995 SRF formula)
+**Figure/Equation Functions** (6): Vibro-compaction soil suitability number (Fig 4-3, Brown 1977 SN formula); aggregate column area replacement ratio (Fig 5-2, triangular/square pattern); stone column settlement improvement factor (Fig 5-5, Priebe 1995 SRF formula); deep mixed zone composite modulus (Eq 7-4, parallel model); groutability ratio for permeation grouting (Eq 8-1, N = D15_soil/D85_grout); long-term design strength for geosynthetics (Eq 11-1, LTDS = T_ult/RF_product)
 
 **Text**: All 11 chapters — Vol I ch 1-6 (Introduction, Vertical Drains, Lightweight Fills, Deep Compaction, Aggregate Columns, Column-Supported Embankments); Vol II ch 7-11 (Deep Mixing, Grouting, Soil Nailing, Micropiles, Geosynthetic Reinforcement)
 
@@ -205,4 +209,4 @@ DM7 agent auto-discovers 340+ functions via `inspect.getmembers()`. GEC/micropil
 
 - Python 3.10+ (developed on 3.14.3)
 - No required dependencies (numpy/scipy/matplotlib are optional, used by some functions)
-- Tests: `pytest tests/ -q` (expect 3,453 passed)
+- Tests: `pytest tests/ -q` (expect 3,511 passed)
