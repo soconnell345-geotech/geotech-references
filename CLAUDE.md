@@ -198,12 +198,28 @@ All 14 agents follow the 3-function Foundry pattern:
 
 DM7 agent auto-discovers 340+ functions via `inspect.getmembers()`. GEC/micropile agents wrap text retrieval + figure/table lookup functions. FEMA/NOAA/UFC agents wrap table/equation lookup functions (no text retrieval).
 
+## QC Progress and Implementation Gaps
+
+`qc_progress.json` (repo root) is maintained by the weekend QC agent and tracks two things:
+
+**Per-chapter QC status** — `references.<key>.text` and `references.<key>.python` blocks, each file entry has `status` (`pending` / `done` / `pdf_unreadable`), `qc_date`, `issues_fixed`, and `notes`.
+
+**Implementation gaps** — `references.<key>.implementation_gaps`: figures and tables that are referenced in the JSON text but have no corresponding Python lookup function in the package. These are **TODOs for weekday authoring sessions**.
+
+When starting work on a reference (e.g., adding new chapter implementations), check `qc_progress.json` first:
+```bash
+# See all flagged gaps for a reference
+python -c "import json; d=json.load(open('qc_progress.json')); print(json.dumps(d['references'].get('dm7_1',{}).get('implementation_gaps',[]), indent=2))"
+```
+Each gap entry has `type` (figure/table), `id` (e.g., "Figure 2-4"), `section`, and `notes` describing why it likely needs a Python function.
+
 ## Working on This Repo
 
 1. Install: `pip install -e .`
 2. Run tests: `pytest tests/ -q`
 3. Each chapter file is self-contained (no cross-chapter imports)
 4. When adding equations, follow existing patterns in the relevant chapter file
+5. Check `qc_progress.json` for `implementation_gaps` before authoring new functions — the QC agent flags figures/tables that need Python implementations but don't have them yet
 
 ## Environment
 
