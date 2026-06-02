@@ -1,0 +1,168 @@
+{
+  "reference_id": "FHWA-NHI-16-027",
+  "reference_title": "Ground Modification Methods Reference Manual – Volume II",
+  "volume": 2,
+  "chapter": 7,
+  "chapter_title": "Deep Mixing",
+  "sections": [
+    {
+      "section_id": "7.1",
+      "title": "Description",
+      "body": "Deep mixing (DM) is a ground improvement technology that mechanically blends in-situ soil with cementitious binders (Portland cement, lime, fly ash, slag, or combinations) to create a stiffer, stronger, and lower-permeability treated mass. Two primary installation methods are used: dry deep mixing (DDM), which injects dry binder through hollow mixing shafts, and wet deep mixing (WDM), which injects binder as a slurry. Mixing is accomplished by rotating augers and paddles as the mixing tool is advanced and withdrawn. DM is applicable to a wide range of soil types including soft clays, organic soils, peats, silts, and loose sands. Treated ground can be configured as isolated columns, overlapping columns forming walls or grids, or mass mixing of entire soil volumes. Applications include embankment support, retaining wall construction, liquefaction mitigation, excavation support, and environmental containment. The technology is widely used in Scandinavia (lime-cement columns), Japan (CDM and other wet methods), and increasingly in the US for transportation applications.",
+      "key_points": [
+        "Mechanical blending of in-situ soil with cementitious binders (cement, lime, fly ash, slag)",
+        "Two methods: dry deep mixing (DDM, dry binder injection) and wet deep mixing (WDM, slurry injection)",
+        "Applicable to soft clays, organic soils, peats, silts, and loose sands",
+        "Configurations: isolated columns, overlapping walls/grids, mass mixing",
+        "Applications: embankment support, retaining walls, liquefaction mitigation, excavation support, containment",
+        "Well-established in Scandinavia (lime-cement columns) and Japan (CDM and wet methods)"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-1: Deep mixing installation sequence showing auger/paddle mixing tool advancing and withdrawing with binder injection",
+        "Figure 7-2: Deep mixed column configurations — isolated columns, overlapping wall, grid pattern, and mass mixing"
+      ],
+      "tables": [],
+      "applicability": "Soft clays, organic soils, peats, and silts where increased stiffness, strength, or reduced permeability is needed."
+    },
+    {
+      "section_id": "7.2",
+      "title": "Feasibility and Applicability",
+      "body": "Deep mixing is feasible in most fine-grained soils and organic soils that can be mechanically blended with binder. Key applicability factors include soil type and chemistry (highly organic soils and acidic soils may inhibit cement hydration), maximum depth of treatment (typically 20–30 m for conventional equipment, deeper with specialized rigs), presence of cobbles or obstructions (limits mixing tool penetration), and groundwater chemistry (sulfate-bearing groundwater can cause expansive reactions with cement). DM is not effective in coarse gravels or bedrock. Dry deep mixing is preferred for soft, high-water-content soils where water is needed for hydration; wet mixing is preferred for stiffer soils or where grout volumes must be controlled. Laboratory treatability testing (binder content optimization, unconfined compressive strength of treated specimens) is essential prior to field implementation to confirm target strengths are achievable.",
+      "key_points": [
+        "Feasible in most fine-grained and organic soils that can be mechanically blended",
+        "Highly organic soils (> 6% organic content) and acidic soils may inhibit cement hydration — treatability testing required",
+        "Maximum depth typically 20–30 m; deeper with specialized equipment",
+        "Cobbles, boulders, or dense soils limit mixing tool penetration",
+        "Sulfate-bearing groundwater can cause expansive reactions with cement binders",
+        "Laboratory treatability testing essential before field implementation to verify target strength"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 7-1: Applicability of deep mixing by soil type, binder type, and installation method"
+      ],
+      "applicability": "Screening criteria for deep mixing feasibility based on soil type, organic content, groundwater chemistry, and depth."
+    },
+    {
+      "section_id": "7.3",
+      "title": "Engineering Properties of Deep Mixed Soils",
+      "body": "The primary engineering property of deep mixed soil is unconfined compressive strength (qu), which depends on binder type and content, soil type, water content, curing time, and mixing energy. Typical design qu values range from 200–500 kPa for soft clay treated with lime-cement (Scandinavian practice) to 1,000–4,000 kPa for wet-mixed cement columns in soft clay. Elastic modulus of treated soil is approximately E_col = 50–200 × qu (MPa when qu in MPa). Permeability of DM-treated soil is typically 100–1000 times lower than untreated soil, making DM effective for groundwater cutoff walls. Shear strength of DM elements is taken as cu = 0.5 × qu for undrained conditions. Stress-strain behavior is brittle at high qu values; design must account for post-peak strength reduction. Variability of treated soil strength in the field is high; the coefficient of variation (COV) for qu typically ranges from 30–70%, requiring use of characteristic strength values (often the lower 10th or 20th percentile of field test results).",
+      "key_points": [
+        "Unconfined compressive strength qu: 200–500 kPa (lime-cement, soft clay) to 1,000–4,000 kPa (wet-mixed cement)",
+        "Elastic modulus E_col ≈ 50–200 × qu (E in MPa, qu in MPa)",
+        "Permeability 100–1000× lower than untreated soil; suitable for groundwater cutoff",
+        "Undrained shear strength cu = 0.5 × qu",
+        "Brittle behavior at high qu; post-peak strength reduction must be considered in design",
+        "High field variability (COV = 30–70%); use characteristic (10th–20th percentile) strength for design"
+      ],
+      "equations": [
+        "Eq 7-1: Elastic modulus of DM column E_col = α_E × q_u, where α_E = 50–200 (dimensionless, E in same units as q_u)",
+        "Eq 7-2: Undrained shear strength c_u = 0.5 × q_u (from unconfined compressive strength)",
+        "Eq 7-3: Area replacement ratio a_s = (π/4 × d²) / A_t (same form as aggregate columns)"
+      ],
+      "figures": [
+        "Figure 7-3: Typical qu vs. binder content relationship for soft clay treated with cement (wet mixing)"
+      ],
+      "tables": [
+        "Table 7-2: Typical qu ranges for deep mixed soil by soil type, binder type, and mixing method"
+      ],
+      "applicability": "Engineering property characterization for design of deep mixed columns, walls, and mass mixing applications."
+    },
+    {
+      "section_id": "7.4",
+      "title": "Design of Deep Mixed Columns for Embankment Support",
+      "body": "DM columns supporting embankments are designed as stiff columnar inclusions that carry a disproportionate share of embankment load through stress concentration, similar to CSE systems. Design checks include: (1) bearing capacity of individual columns; (2) settlement analysis using unit cell or composite modulus approach; (3) global stability of the embankment including the treated zone; (4) internal stability of DM columns against bending and shear; and (5) punching failure of column heads through the LTP (if used). Column spacing is typically 1.0–2.5 m center-to-center. A load transfer platform (granular fill with or without geosynthetic reinforcement) is often used above DM columns, similar to CSE design (Chapter 6). Design in the US increasingly follows the Nordic Design Guidelines (EuroSoilStab 2002) or Japanese CDM design standards, adapted for local conditions. The composite modulus of the treated zone is: E_comp = a_s × E_col + (1-a_s) × E_soil, where a_s is the area replacement ratio.",
+      "key_points": [
+        "Design checks: bearing capacity, settlement, global stability, column bending/shear, punching of column heads",
+        "Column spacing typically 1.0–2.5 m center-to-center",
+        "LTP (granular fill ± geosynthetic) often used above DM columns, same design as CSE (Chapter 6)",
+        "Composite modulus: E_comp = a_s × E_col + (1-a_s) × E_soil",
+        "Design references: Nordic EuroSoilStab (2002) and Japanese CDM standards adapted for US practice",
+        "Global stability must include potential failure surfaces through, around, or below the treated zone"
+      ],
+      "equations": [
+        "Eq 7-4: Composite modulus E_comp = a_s × E_col + (1 - a_s) × E_soil",
+        "Eq 7-5: Average stress on DM column σ_col = σ_avg × n / (1 + (n-1) × a_s), where n = stress concentration ratio E_col/E_soil",
+        "Eq 7-6: Column bearing capacity Q_ult = q_u × A_col (end bearing on competent strata or compressive failure)"
+      ],
+      "figures": [
+        "Figure 7-4: Unit cell model for DM column analysis showing column, surrounding soil, and load distribution"
+      ],
+      "tables": [],
+      "applicability": "Design of DM column arrays for embankment support including bearing capacity, settlement, and global stability."
+    },
+    {
+      "section_id": "7.5",
+      "title": "Design of Deep Mixed Walls and Grid Patterns",
+      "body": "DM elements arranged in overlapping patterns form walls, panels, grids, or cellular structures used for excavation support, retaining walls, and liquefaction mitigation. Wall configurations are used as gravity retaining structures or tie-back walls. Grid and cellular configurations enclose volumes of untreated soil, with the treated material providing lateral confinement and shear resistance. For excavation support, DM walls are designed as cantilever or propped walls using conventional earth pressure methods, accounting for the lower stiffness and brittleness of DM compared to concrete. For liquefaction mitigation, DM grids limit the volume of liquefiable soil that can expand, reducing lateral spreading and post-liquefaction settlement. The degree of improvement for liquefaction is quantified by the treated area ratio A_r (ratio of treated area to total plan area), which typically ranges from 0.15–0.50 for liquefaction mitigation applications.",
+      "key_points": [
+        "Overlapping DM elements form walls, panels, grids, or cellular structures",
+        "Applications: excavation support, retaining walls, liquefaction mitigation, environmental containment",
+        "Gravity retaining walls: DM block designed for sliding, overturning, and bearing capacity",
+        "DM walls for excavation support: cantilever or propped design using earth pressure methods",
+        "Liquefaction mitigation: grid/cellular configuration limits liquefiable soil expansion",
+        "Area treatment ratio A_r = 0.15–0.50 for liquefaction mitigation"
+      ],
+      "equations": [
+        "Eq 7-7: Treated area ratio A_r = A_treated / A_total (plan area of DM elements / total plan area of treatment zone)"
+      ],
+      "figures": [
+        "Figure 7-5: DM wall, grid, and cellular configurations for retaining wall, excavation support, and liquefaction mitigation"
+      ],
+      "tables": [],
+      "applicability": "Design of DM walls and grids for earth retention, excavation support, and liquefaction mitigation."
+    },
+    {
+      "section_id": "7.6",
+      "title": "Construction",
+      "body": "Dry deep mixing installation uses a hollow-stem auger with injection ports and paddle mixing blades. Dry binder (typically lime, cement, or lime-cement blend) is injected under low air pressure through the hollow stem as the tool withdraws. Multiple passes (down and up strokes) improve mixing uniformity. Wet deep mixing uses a slurry of binder and water pumped through the hollow shaft; the water-binder ratio of the slurry controls workability and final strength. Construction quality monitoring includes: total binder volume injected, mixing energy (torque and rotation counts), shaft penetration and withdrawal speed, and coring or continuous flight auger samples. Installation should be verified through core extraction and unconfined compression testing of field-treated specimens at 28 and 90 days. Typical production rates for DM are 100–400 lin m of column per day for single-auger equipment. Wet mixing using large-diameter (600–1000 mm) multi-auger equipment achieves higher production rates.",
+      "key_points": [
+        "DDM: hollow-stem auger injects dry binder under air pressure during withdrawal; multiple passes improve uniformity",
+        "WDM: slurry pumped through hollow shaft; water-binder ratio controls workability and strength",
+        "QC monitoring: binder volume, mixing energy (torque/rotations), penetration/withdrawal rate",
+        "Verification: core extraction + UCS testing at 28 and 90 days",
+        "Production rates: 100–400 lin m/day for single-auger equipment",
+        "Multi-auger wet mixing rigs achieve higher production rates"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction methods and quality control for dry and wet deep mixing installations."
+    },
+    {
+      "section_id": "7.7",
+      "title": "Specifications and Quality Assurance",
+      "body": "DM specifications should define: binder type and minimum binder content (kg/m³ of treated soil); minimum unconfined compressive strength (qu) at 28 or 90 days; acceptance criteria for column integrity (no more than X% of cores below minimum qu); and installation parameters (mixing energy, withdrawal rate, binder injection rate). Recommended specifications distinguish between design strength (characteristic qu used in design calculations) and minimum acceptance qu (field cores that must exceed a lower threshold to be accepted). Typically, characteristic qu = 0.5 × average field qu, and minimum acceptance qu = 0.3 × average field qu. Quality assurance includes: wet grab samples during installation for laboratory qu testing; core borings through completed columns (minimum 5% of production); and settlement monitoring of the embankment. The FHWA Geotechnical Engineering Circular GEC-13 recommends at minimum one core per 200 lin m of production columns and one load test per project.",
+      "key_points": [
+        "Specifications: binder type and content (kg/m³), minimum qu at 28 or 90 days, installation parameters",
+        "Characteristic design qu ≈ 0.5 × average field qu; acceptance threshold ≈ 0.3 × average field qu",
+        "QA: wet grab samples during installation; core borings through completed columns (min 5% of production)",
+        "Minimum 1 core per 200 lin m of production; minimum 1 load test per project (GEC-13 recommendation)",
+        "Settlement monitoring of supported embankment during and after construction",
+        "Post-construction integrity testing may include low-strain pile integrity testing on column tops"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Specification writing and quality assurance for deep mixing construction."
+    },
+    {
+      "section_id": "7.8",
+      "title": "References",
+      "body": "Key references for deep mixing design and construction include: FHWA-RD-99-167 (Porbaha et al., 1998) and FHWA-HRT-13-046 (Bruce et al., 2013) for US design practice; EuroSoilStab (2002) Nordic Design Guidelines; Japanese CDM Manual (CDM Association, 2008); Kitazume & Terashi (2013) textbook; and ASCE Geo-Institute publications on deep mixing (Denies & Huybrechts, 2015; O'Brien et al., 2009). The ICE specification for ground treatment (Institution of Civil Engineers, 2012) provides model specifications. For environmental applications, the EPA Engineering Issue document on in-situ soil mixing (EPA 542-F-06-020) provides additional guidance. Case histories and workshop proceedings from the International Symposium on Deep Mixing and Admixture Stabilization (2009, 2012) document field performance.",
+      "key_points": [
+        "Primary US reference: FHWA-HRT-13-046 (Bruce et al., 2013) for deep mixing design practice",
+        "Nordic design reference: EuroSoilStab (2002) — widely used for lime-cement column design",
+        "Japanese CDM Manual (2008) and Kitazume & Terashi (2013) for wet mixing practice",
+        "ICE specification (2012) provides model specifications for deep mixing construction",
+        "EPA 542-F-06-020 for environmental containment applications",
+        "International symposium proceedings document field performance case histories"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Bibliography and design references for deep mixing applications."
+    }
+  ]
+}

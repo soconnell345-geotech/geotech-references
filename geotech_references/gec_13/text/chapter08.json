@@ -1,0 +1,160 @@
+{
+  "reference_id": "FHWA-NHI-16-027",
+  "reference_title": "Ground Modification Methods Reference Manual – Volume II",
+  "volume": 2,
+  "chapter": 8,
+  "chapter_title": "Grouting",
+  "sections": [
+    {
+      "section_id": "8.1",
+      "title": "Description",
+      "body": "Grouting encompasses a family of techniques that inject cementitious, chemical, or particulate materials into soil or rock voids to improve strength, reduce permeability, fill voids, or displace and compact loose materials. The major grouting methods used in transportation applications are: (1) permeation (chemical) grouting, which displaces pore fluid with low-viscosity grout to fill intergranular voids; (2) compaction grouting, which injects stiff mortar to displace and densify surrounding soils; (3) jet grouting, which uses high-velocity fluid jets to erode and mix soil with a cementitious binder in-situ; and (4) fracture grouting (hydrofracture), which uses grout to create hydraulic fractures in fine-grained soils for volume compensation or pre-stressing. Bulk void filling and slabjacking are specialized applications for filling large voids (sinkholes, mine shafts) and lifting settled pavements. Each method has distinct mechanisms, materials, and applications; selection depends on soil type, required improvement, and project constraints.",
+      "key_points": [
+        "Major methods: permeation grouting, compaction grouting, jet grouting, fracture grouting",
+        "Permeation grouting: fills intergranular voids with low-viscosity grout in coarse soils",
+        "Compaction grouting: injects stiff mortar to displace and densify surrounding soils",
+        "Jet grouting: high-velocity jets erode and mix soil with cementitious binder in-situ",
+        "Fracture grouting: hydraulic fractures in fine-grained soils for volume compensation",
+        "Bulk void filling and slabjacking for large void treatment and pavement lifting"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 8-1: Schematic comparison of grouting methods — permeation, compaction, jet grouting, and fracture grouting mechanisms"
+      ],
+      "tables": [],
+      "applicability": "Various soil and rock conditions; method selection depends on soil type, void structure, required improvement, and depth."
+    },
+    {
+      "section_id": "8.2",
+      "title": "Permeation Grouting",
+      "body": "Permeation grouting (also called chemical grouting or solution grouting) injects low-viscosity grout into soil pores without disturbing the soil fabric. The grout displaces pore fluid and fills intergranular voids, solidifying in-situ to produce a stronger, stiffer, and lower-permeability mass. Applicable soils are limited to those with sufficient permeability to accept grout: typically clean sands and gravels with D10 > 0.5 mm and permeability greater than about 10⁻⁴ m/s. Fine sands and silts may accept chemical grouts (sodium silicate, acrylamide, polyurethane) with viscosities approaching that of water. Portland cement grouts are suitable only for gravels and coarser materials (requires D15 > 0.3 mm for stable penetration). The groutability ratio N = D15_soil / D85_grout must exceed about 25 for successful particulate grout injection. Chemical grouts achieve lower viscosity but may have long-term durability concerns (acrylamide, acrylate) or environmental restrictions (sodium silicate). Treated strength and stiffness depend on grout type, injection pressure, and soil gradation.",
+      "key_points": [
+        "Injects low-viscosity grout into pores without disturbing soil fabric",
+        "Applicable to clean sands/gravels with D10 > 0.5 mm and k > 10⁻⁴ m/s",
+        "Groutability ratio N = D15_soil / D85_grout must exceed ~25 for particulate cement grout",
+        "Chemical grouts (sodium silicate, polyurethane) reach silty sands; lower viscosity but durability concerns",
+        "Portland cement grout requires gravels (D15 > 0.3 mm); not suitable for fine sands",
+        "Environmental restrictions apply to some chemical grouts (acrylamide)"
+      ],
+      "equations": [
+        "Eq 8-1: Groutability ratio N = D15_soil / D85_grout (N > 25: grouting feasible; N < 11: grouting not feasible)",
+        "Eq 8-2: Darcy grouting radius r = sqrt(Q × t / (π × n × H)) — approximate radial spread from injection point"
+      ],
+      "figures": [],
+      "tables": [
+        "Table 8-1: Permeation grouting applicability by soil type, grout type, and groutability ratio"
+      ],
+      "applicability": "Clean sands and gravels where permeability is sufficient for grout injection; chemical grouting extends applicability to fine sands."
+    },
+    {
+      "section_id": "8.3",
+      "title": "Compaction Grouting",
+      "body": "Compaction grouting injects a very stiff, low-slump mortar (typically 0–25 mm slump, water-cement ratio 0.3–0.5) under high pressure through a pipe or casing. The stiff grout does not permeate the soil but forms a growing bulb that displaces and densifies the surrounding soil by lateral stress increase and vibration. Compaction grouting is effective in densifying loose granular soils (loose sands, fills, collapsible soils), remediating sinkholes or voids in karstic terrain, and lifting settled structures. It can also be used to compensate for settlement under existing structures by controlled heave. Injection points are typically spaced 1.5–3.0 m and treated from the bottom of the loose zone upward (primary injection) followed by secondary injections between primary points. Refusal criteria are based on pressure limit (typically 1.5–2.5 MPa), grout volume, or observed ground heave. Compaction grouting is ineffective in soft saturated clays because the low permeability and high compressibility of the clay prevents densification; instead, the grout simply creates a void that refills with clay.",
+      "key_points": [
+        "Stiff mortar (0–25 mm slump, W/C = 0.3–0.5) injected under high pressure forms expanding bulb",
+        "Densifies surrounding soil by lateral stress increase; does NOT permeate soil",
+        "Effective in loose sands, fills, collapsible soils, and karstic voids",
+        "Can lift settled structures by controlled heave (compensation grouting)",
+        "Injection from bottom upward; secondary injection between primary points at 1.5–3.0 m spacing",
+        "Ineffective in saturated soft clays (grout void refills); best in cohesionless or unsaturated soils"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 8-2: Compaction grouting injection sequence showing growing bulb, soil displacement, and densification zone"
+      ],
+      "tables": [],
+      "applicability": "Loose granular fills, collapsible soils, karstic voids, and settlement remediation under existing structures."
+    },
+    {
+      "section_id": "8.4",
+      "title": "Jet Grouting",
+      "body": "Jet grouting uses one or more high-velocity fluid jets (water, air, or grout) to erode and mix in-situ soil with a cementitious grout, forming cylindrical soilcrete columns. Three systems are used: single-fluid (grout jet only), double-fluid (grout jet surrounded by air shroud), and triple-fluid (separate water jet for cutting, air shroud, and grout injection). Single-fluid produces smaller columns (300–600 mm) in weak soils; triple-fluid produces the largest columns (600–2000 mm) with greatest vertical reach. Jet grouting is applicable to a wide range of soils including silts, clays, sands, and gravels. It is especially valuable in urban environments where access is limited, since columns can be installed through small-diameter boreholes. Applications include foundation underpinning, excavation cutoff walls, sinkhole remediation, and liquefaction mitigation. Soilcrete strength (qu) typically ranges from 1–10 MPa depending on soil type (higher in sands, lower in clays) and grout mix. Verification of column geometry is difficult and requires test panels or coring.",
+      "key_points": [
+        "High-velocity jets erode and mix in-situ soil with grout to form cylindrical soilcrete columns",
+        "Three systems: single-fluid (grout only), double-fluid (grout + air), triple-fluid (water + air + grout)",
+        "Column diameter: 300–600 mm (single) to 600–2000 mm (triple-fluid)",
+        "Applicable to silts, clays, sands, gravels; especially suited to urban sites with limited access",
+        "Soilcrete qu: 1–10 MPa (higher in sands, lower in clays)",
+        "Column geometry difficult to verify; test panels or coring required"
+      ],
+      "equations": [
+        "Eq 8-3: Soilcrete column diameter D_col ≈ f(jet pressure, withdrawal rate, soil type) — empirical, site-specific calibration required"
+      ],
+      "figures": [
+        "Figure 8-3: Jet grouting system configurations — single, double, and triple fluid systems with soilcrete column diameters"
+      ],
+      "tables": [
+        "Table 8-2: Jet grouting system comparison — fluid configuration, typical column diameter, applicable soils, and typical strengths"
+      ],
+      "applicability": "Wide range of soils; especially for urban sites with limited access, underpinning, cutoff walls, and remediation."
+    },
+    {
+      "section_id": "8.5",
+      "title": "Fracture Grouting and Compensation Grouting",
+      "body": "Fracture grouting (hydrofracture grouting) injects grout at pressures exceeding the minor principal stress in the ground, creating thin, disc-shaped grout lenses that heave the ground or pre-stress the soil mass. Applications include compensation grouting to counteract surface settlements from tunneling or excavation, prestressing soil to reduce future settlement, and reinforcing weak soil masses. Compensation grouting requires a TAM (tube-à-manchette) sleeve pipe system that allows repeated injection through the same borehole at any depth. Fracture grouting is generally limited to cohesive soils where hydraulic fractures can be maintained; in granular soils, permeation or compaction grouting is typically more effective. Design and execution of fracture grouting is complex and requires real-time settlement monitoring to control injection volumes and prevent over-heave. The technology is most commonly used in geotechnical risk management for underground construction in urban environments.",
+      "key_points": [
+        "Injects grout at pressures exceeding minor principal stress to create disc-shaped lenses",
+        "Applications: compensation grouting for tunneling/excavation settlements, soil prestress",
+        "TAM (tube-à-manchette) sleeve pipe allows repeated injection through the same borehole at any depth",
+        "Best in cohesive soils; granular soils prefer permeation or compaction grouting",
+        "Requires real-time settlement monitoring to control injection volumes and prevent over-heave",
+        "Most common in urban underground construction where surface settlement must be controlled"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Compensation grouting for tunnel/excavation-induced settlement control in urban environments; cohesive soils."
+    },
+    {
+      "section_id": "8.6",
+      "title": "Bulk Void Filling and Slabjacking",
+      "body": "Bulk void filling addresses large underground voids from natural causes (karst, dissolution) or human activity (abandoned mine workings, utility vaults). Voids are filled with low-strength, flowable concrete (flowable fill, controlled low-strength material or CLSM), lean concrete, or grout to prevent void migration and surface subsidence. Injection is through boreholes or pipes drilled to the void level; fill is typically placed by gravity or low-pressure pumping. Slabjacking (mudjacking) lifts settled concrete slabs (road slabs, floor slabs, sidewalks) by pumping cementitious grout or polyurethane foam beneath the slab through small-diameter drill holes. Polyurethane foam slabjacking has become increasingly popular because of its light weight, rapid cure time, and minimal drilling. Slabjacking is limited to slabs resting on compressible or eroded subgrade and cannot address deep settlement problems. Typical slabjacking grout mixes include portland cement, flyash, and local soil to produce a pumpable, self-leveling material with qu = 0.3–1.0 MPa after curing.",
+      "key_points": [
+        "Bulk void filling: CLSM, lean concrete, or grout injected to fill underground voids from karst or mine workings",
+        "Injection through boreholes; placement by gravity or low-pressure pumping",
+        "Slabjacking (mudjacking): grout or polyurethane foam pumped beneath settled slabs to restore grade",
+        "Polyurethane foam: light weight, rapid cure, minimal drilling — increasingly preferred over grout",
+        "Slabjacking limited to shallow slab settlement; cannot fix deep settlement problems",
+        "Grout mix: portland cement + flyash + soil; qu = 0.3–1.0 MPa after curing"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Large underground voids (karst, abandoned mines) and shallow slab settlement remediation."
+    },
+    {
+      "section_id": "8.7",
+      "title": "Construction and Quality Assurance",
+      "body": "Grouting construction requires careful control of injection pressure, grout volume, and injection sequence to achieve intended ground improvement without causing surface heave, hydrofracture in unintended zones, or grout migration to undesirable locations. Injection pressure limits must be established prior to construction through pressure testing or review of local experience. Monitoring during grouting typically includes: injection pressure and volume at each stage, surface settlement or heave monitoring (for compaction and fracture grouting), and piezometric response in adjacent boreholes. Post-grouting verification includes geophysical testing (crosshole seismic, electrical resistivity), standard penetration testing (before/after comparison), and permeability testing for cutoff applications. For jet grouting, verification columns (test panels or trial columns) are installed before production to calibrate column diameter, strength, and grout mix.",
+      "key_points": [
+        "Control injection pressure, volume, and sequence to prevent heave, hydrofracture, or grout migration",
+        "Pre-construction pressure testing to establish injection limits",
+        "Monitoring: injection pressure/volume, surface heave, piezometric response",
+        "Post-grouting verification: geophysics (crosshole seismic, resistivity), SPT, permeability testing",
+        "Jet grouting: trial columns required to calibrate diameter, strength, and mix before production",
+        "Refusal criteria: pressure limit (1.5–2.5 MPa), volume limit, or surface heave limit"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction control and quality assurance for all grouting methods."
+    },
+    {
+      "section_id": "8.8",
+      "title": "References",
+      "body": "Key references for grouting design and construction include: FHWA Grouting Reference Manuals (Henn, 1996; Byle & Borden, 1995); Nonveiller (1989) grouting theory and practice; Sherwood & Benson (1967) on chemical grouting; Raabe & Esters (1990) on compaction grouting; Burke (2004) on jet grouting; and ASCE Geotechnical Special Publications on grouting (GSP 57, 66, 168, 228). The International Society of Rock Mechanics Commission on Rock Grouting (1996) provides standards for rock grouting. EPA 542-F-06-020 covers grouting for environmental remediation. For TAM systems and fracture grouting, Harris et al. (1994) and Mair & Hight (1994) are primary references. ASTM standards for grout testing include ASTM C942 (compressive strength of grout) and ASTM D6910 (grout testing for soil cement).",
+      "key_points": [
+        "FHWA grouting reference manuals (Henn 1996, Byle & Borden 1995) for US transportation practice",
+        "ASCE Geotechnical Special Publications on grouting (GSP 57, 66, 168, 228)",
+        "Burke (2004) primary reference for jet grouting",
+        "Harris et al. (1994) and Mair & Hight (1994) for fracture/compensation grouting",
+        "ASTM C942 (grout compressive strength) and ASTM D6910 (soil cement grout testing)",
+        "ISRM Commission on Rock Grouting (1996) standards for rock applications"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Bibliography and key design references for grouting applications."
+    }
+  ]
+}

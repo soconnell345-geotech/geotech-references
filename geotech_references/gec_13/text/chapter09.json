@@ -1,0 +1,123 @@
+{
+  "reference_id": "FHWA-NHI-16-027",
+  "reference_title": "Ground Modification Methods Reference Manual – Volume II",
+  "volume": 2,
+  "chapter": 9,
+  "chapter_title": "Soil Nailing",
+  "sections": [
+    {
+      "section_id": "9.1",
+      "title": "Description",
+      "body": "Soil nailing is an in-situ ground reinforcement technique that installs passive steel elements (soil nails) into existing ground to create a composite reinforced mass that acts as a gravity retaining structure. Nails are typically 25–44 mm diameter threaded steel bars installed at 10–20° below horizontal in closely spaced arrays (1.0–2.0 m horizontal and vertical spacing). Nails are installed by drilling a borehole, inserting the nail bar, and grouting the annular space. A shotcrete-reinforced facing is applied to the excavated face to provide facing support and continuity between nail heads. Soil nailing is used primarily for temporary and permanent cut slopes, retaining walls, and roadway widening where top-down construction is advantageous. Compared to tieback walls, soil nailing is more economical for shallow to moderate heights (3–15 m), requires no tendons or anchor zone, and can be constructed with lighter equipment. FHWA GEC-7 (FHWA-NHI-14-007) is the primary design reference for soil nail walls; GEC-13 Chapter 9 provides a summary within the broader ground modification context.",
+      "key_points": [
+        "Passive steel bars (soil nails) grouted into boreholes create composite reinforced earth mass",
+        "Typical nail: 25–44 mm threaded bar, 10–20° below horizontal, spaced 1.0–2.0 m",
+        "Shotcrete facing provides face support and connects nail heads",
+        "Applications: temporary/permanent cut slopes, retaining walls, roadway widening",
+        "Top-down construction; economical for 3–15 m height range",
+        "Primary design reference: FHWA GEC-7 (FHWA-NHI-14-007); GEC-13 provides overview context"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 9-1: Soil nail wall construction sequence — excavation lift, nail installation, grouting, shotcrete facing"
+      ],
+      "tables": [],
+      "applicability": "Cut slopes and retaining walls 3–15 m height in dense to stiff soils, weathered rock, and engineered fill."
+    },
+    {
+      "section_id": "9.2",
+      "title": "Feasibility and Applicability",
+      "body": "Soil nailing is feasible in soils that provide temporary stand-up time (at least 1–2 hours at unsupported cut height of 1–2 m) and sufficient bond strength between the grout and soil. Suitable soils include stiff to hard fine-grained soils, dense to very dense granular soils with some apparent cohesion, weathered rock, glacial till, and compacted fills. Soil nailing is generally not suitable in: soft to medium clays (insufficient stand-up time and low bond strength), loose granular soils below the water table, highly plastic clays (creep of nail/soil interface), granular soils with high groundwater (face stability problems), and soils with high cobble content (difficult drilling). Existing utilities, right-of-way limitations, and minimum clearance requirements for drilling equipment constrain applicability in urban areas. Soil nailing is compatible with various monitoring and instrumentation programs for performance verification.",
+      "key_points": [
+        "Requires temporary stand-up time of at least 1–2 hours at 1–2 m unsupported cut height",
+        "Suitable soils: stiff/hard fine-grained, dense granular with apparent cohesion, weathered rock, glacial till",
+        "Not suitable: soft to medium clays, loose saturated granular, highly plastic clays, or soils with large cobbles",
+        "Urban constraints: utilities, ROW limits, equipment clearance",
+        "No pre-drilling in competent rock; vibratory installation possible in dense sand/gravel",
+        "Groundwater control often needed; soil nailing not a groundwater cutoff system"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 9-1: Soil nailing applicability by soil type — suitable, marginal, and not suitable categories"
+      ],
+      "applicability": "Cut slopes and retaining walls in stiff cohesive, dense granular, and weathered rock conditions with adequate stand-up time."
+    },
+    {
+      "section_id": "9.3",
+      "title": "Design Overview",
+      "body": "Soil nail wall design uses LRFD methods per AASHTO (2014) and FHWA GEC-7. Design checks include: (1) external stability (global stability, sliding, overturning, and bearing failure of the composite nail-reinforced mass); (2) internal stability (nail pullout, nail tensile failure, and facing failure); and (3) facing design (flexure, punching shear, and connection strength). Nail bond strength (ultimate pullout resistance per unit length) is estimated from empirical relationships with soil type and installation method, and must be verified by field pullout tests. Design nail force is governed by the critical failure surface, which is typically a bi-linear or parabolic surface through the reinforced mass. The wall batter (typically 5–10° from vertical), nail inclination (10–20° below horizontal), nail length (0.5–0.8 times wall height), and facing thickness (100–200 mm shotcrete) are the primary design parameters. Settlement of supported structures behind the wall must be estimated and evaluated against performance criteria.",
+      "key_points": [
+        "LRFD design per AASHTO (2014) and FHWA GEC-7; three design checks: external, internal, facing",
+        "Bond strength estimated empirically by soil type and verified by field pullout tests",
+        "Nail length: typically 0.5–0.8 × wall height; inclination 10–20° below horizontal",
+        "Facing: 100–200 mm shotcrete with welded wire mesh reinforcement",
+        "Critical failure surface: bi-linear or parabolic through reinforced mass",
+        "Settlement analysis required for structures behind wall; soil nail walls are flexible and allow some movement"
+      ],
+      "equations": [
+        "Eq 9-1: Nail pullout capacity per unit length q_ult = π × d_b × τ_u (where d_b = drill hole diameter, τ_u = ultimate bond stress)",
+        "Eq 9-2: Nail tensile capacity T_n = F_y × A_b (nail yield strength × bar cross-sectional area)",
+        "Eq 9-3: Required nail length L_nail = 0.5 to 0.8 × H_wall (empirical; verify by stability analysis)"
+      ],
+      "figures": [
+        "Figure 9-2: External and internal failure modes for soil nail walls (global stability, sliding, pullout, tensile break, facing)"
+      ],
+      "tables": [
+        "Table 9-2: Soil nail bond strength (ultimate unit resistance qu_nail) by soil type and installation method for preliminary design"
+      ],
+      "applicability": "Design of soil nail walls for cut slopes and retaining applications per AASHTO LRFD."
+    },
+    {
+      "section_id": "9.4",
+      "title": "Construction",
+      "body": "Soil nail wall construction proceeds in lifts from top to bottom: (1) excavate a 1.0–1.5 m lift; (2) drill nail holes at design spacing and inclination; (3) insert nail bars and grout annulus (tremie grouting from bottom up); (4) place bearing plate and nut at the exposed nail head; (5) apply first shotcrete layer (reinforcement and initial layer); (6) install drainage (drain strips or geocomposite drains behind facing); (7) excavate next lift and repeat. Nail hole drilling uses rotary, rotary-percussion, or hollow-stem auger methods depending on soil conditions. Grout is typically neat Portland cement with w/c ratio of 0.4–0.5, placed by tremie pipe starting at the base of the borehole to displace air upward. Shotcrete is applied by dry-mix or wet-mix methods. Drainage is a critical construction element; inadequate drainage can lead to hydrostatic pressure behind the facing and global instability.",
+      "key_points": [
+        "Top-down construction: excavate lift → drill nails → grout → bearing plate → shotcrete → drainage → next lift",
+        "Lift height: 1.0–1.5 m to maintain face stability during construction",
+        "Grout: neat Portland cement, w/c = 0.4–0.5, placed by tremie pipe from bottom up",
+        "Shotcrete: dry-mix or wet-mix, typically 100–200 mm with welded wire mesh",
+        "Drainage: geocomposite strips or perforated pipe behind facing — critical for long-term performance",
+        "Drainage gaps or weep holes in shotcrete facing required to prevent hydrostatic pressure buildup"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction sequencing and methods for soil nail walls."
+    },
+    {
+      "section_id": "9.5",
+      "title": "Testing and Quality Assurance",
+      "body": "Nail testing is a critical QA requirement for soil nail walls. Verification tests (performed on sacrificial nails before production) confirm that the specified bond strength is achievable for site conditions and installation method; at least two verification tests per wall are recommended. Proof tests are performed on a minimum of 5% of production nails to confirm adequate load capacity of the installed nails; each proof nail is loaded to 1.5 times the design load and held for a prescribed time while creep is monitored. Nails failing proof tests require investigation and remediation (regrouting, replacement, or additional nails). Shotcrete QA includes cylinder testing (minimum qu = 21 MPa at 28 days) and visual inspection for voids, delamination, or insufficient cover. Wall performance monitoring includes horizontal inclinometers and crack monitoring of the shotcrete facing during and after construction.",
+      "key_points": [
+        "Verification tests on sacrificial nails before production; minimum 2 per wall",
+        "Proof tests on minimum 5% of production nails; load to 1.5× design load with creep monitoring",
+        "Nail failure in proof testing requires investigation and remediation",
+        "Shotcrete QA: cylinder testing (minimum qu = 21 MPa at 28 days), visual inspection",
+        "Performance monitoring: inclinometers, crack monitoring during and after construction",
+        "Pre-production and post-installation testing per FHWA GEC-7 testing protocol"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Testing requirements and quality assurance for soil nail wall construction."
+    },
+    {
+      "section_id": "9.6",
+      "title": "References",
+      "body": "The primary design reference for soil nail walls is FHWA GEC-7 (Lazarte et al., 2015; FHWA-NHI-14-007). Additional references include: Elias & Juran (1991) soil nailing for highway applications; Byrne et al. (1996) manual for design and construction of soil nail walls; AASHTO LRFD Bridge Design Specifications Section 11.10 (2014) for nail wall design; and FHWA-SA-96-069R (1996) manual for design and construction monitoring of soil nail walls. International references include the French CLOUTERRE recommendations (FHWA-SA-93-026, 1993) which form the basis for many US methods. For corrosion protection design, refer to FHWA-IF-09-016 and ASTM A934 (epoxy-coated bars) or ASTM A775 (epoxy-coated reinforcement).",
+      "key_points": [
+        "Primary reference: FHWA GEC-7 (FHWA-NHI-14-007, Lazarte et al. 2015)",
+        "AASHTO LRFD Bridge Design Specifications Section 11.10 (2014) for LRFD design",
+        "French CLOUTERRE recommendations (FHWA-SA-93-026, 1993) basis for US nail design methods",
+        "FHWA-IF-09-016 for corrosion protection design",
+        "GEC-13 Chapter 9 provides overview only; GEC-7 required for full design procedure",
+        "Field load test standards: ASTM D4435 (load testing of soil nails)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Bibliography and key design references for soil nail wall design and construction."
+    }
+  ]
+}

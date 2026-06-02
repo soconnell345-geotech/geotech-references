@@ -1,0 +1,121 @@
+{
+  "reference_id": "FHWA-NHI-16-027",
+  "reference_title": "Ground Modification Methods Reference Manual – Volume II",
+  "volume": 2,
+  "chapter": 10,
+  "chapter_title": "Micropiles",
+  "sections": [
+    {
+      "section_id": "10.1",
+      "title": "Description",
+      "body": "Micropiles are small-diameter (typically 100–300 mm), high-capacity, drilled and grouted piles that resist both axial and lateral loads through a combination of skin friction in the bond zone and structural capacity of the reinforcing element (steel pipe, rebar, or combination). Micropiles were developed in Italy by Fernando Lizzi in the 1950s as 'pali radice' (root piles) for underpinning historic structures in challenging urban environments. In ground modification practice, micropiles are used for foundation underpinning, slope stabilization through reticulated (networked) micropile grids, seismic retrofit of foundations, and ground reinforcement in difficult access situations. Micropiles are classified by FHWA into Type A through D based on the method of grout placement: Type A (gravity-fed neat cement), Type B (pressure-injected through the drill pipe), Type C (primary pressure grouting followed by secondary sleeve-pipe grouting), and Type D (primary and secondary sleeve-pipe grouting with repeatable injection). The primary design reference for micropiles is FHWA-NHI-05-039 (GEC Micropile manual); GEC-13 Chapter 10 provides an overview within the ground modification context.",
+      "key_points": [
+        "Small-diameter (100–300 mm) drilled and grouted piles resist axial and lateral loads",
+        "Developed by Lizzi (Italy, 1950s) as pali radice for underpinning in urban environments",
+        "Classification Types A–D by grout placement method (gravity, pressure, sleeve-pipe)",
+        "Applications: underpinning, slope stabilization, seismic retrofit, difficult access situations",
+        "Load capacity from skin friction in bond zone + structural capacity of steel reinforcement",
+        "Primary design reference: FHWA-NHI-05-039 (Micropile Design and Construction)"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10-1: Micropile cross-section showing drill hole, grout, steel pipe/rebar reinforcement, and bond zone"
+      ],
+      "tables": [],
+      "applicability": "Underpinning of existing foundations, slope stabilization, seismic retrofit, and access-constrained sites."
+    },
+    {
+      "section_id": "10.2",
+      "title": "Feasibility and Applications",
+      "body": "Micropiles are feasible in virtually any soil or rock condition because the small drilling diameter allows penetration through cobbles, boulders, and hard rock. They are especially suited to: (1) underpinning of existing foundations where excavation or vibration must be minimized; (2) sites with restricted access (low headroom, tight spaces) where conventional pile driving or drilled shaft equipment cannot operate; (3) slope reinforcement through reticulated micropile networks that create a reinforced soil mass; and (4) sites with difficult or variable subsurface conditions including karstic limestone, rubble fill, and heterogeneous profiles. Limitations include higher cost per unit capacity compared to conventional piles when access is not constrained, difficulty verifying installation quality in all soil types, and limited lateral capacity compared to larger-diameter elements. The maximum axial capacity of a micropile is typically 1,500–2,500 kN due to structural limits of the pipe and grout.",
+      "key_points": [
+        "Feasible in any soil or rock, including cobbles, boulders, and hard rock",
+        "Best suited to: underpinning, restricted access sites, slope reinforcement, difficult subsurface conditions",
+        "Reticulated micropile networks for slope stabilization create a composite reinforced soil mass",
+        "Limitations: higher cost without access constraints; limited lateral capacity; difficult QC",
+        "Maximum axial capacity typically 1,500–2,500 kN (structural limit of pipe/grout)",
+        "Minimal vibration and noise make micropiles compatible with sensitive urban environments"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Any soil or rock condition; particularly for underpinning, access-constrained sites, and reticulated slope reinforcement."
+    },
+    {
+      "section_id": "10.3",
+      "title": "Design Overview",
+      "body": "Micropile design for axial loading is governed by the lesser of structural capacity and geotechnical bond capacity. Structural capacity: Q_structural = f_y × A_s + f_grout × A_grout, where A_s is steel area and A_grout is gross grout cross-section minus steel. Bond capacity in the grouted zone: Q_bond = π × d_b × L_b × α_bond, where d_b is drill hole diameter, L_b is bond length, and α_bond is ultimate unit bond stress (from Table 5-3 in FHWA-NHI-05-039, varying by soil/rock type and grout type). Cased zones above the bond zone carry load structurally without geotechnical contribution. Design for lateral loading follows standard p-y lateral analysis methods. Reticulated micropile networks for slope stabilization are designed using limit equilibrium methods with the micropile network providing additional resisting forces. AASHTO LRFD resistance factors for micropiles are addressed in FHWA-NHI-05-039 Table 4-1.",
+      "key_points": [
+        "Capacity governed by lesser of structural capacity and geotechnical bond capacity",
+        "Structural: Q_s = f_y × A_steel + f_grout × A_grout",
+        "Geotechnical bond: Q_bond = π × d_b × L_b × α_bond (α_bond from FHWA-NHI-05-039 Table 5-3)",
+        "Cased zone above bond zone: structural capacity only, no geotechnical contribution",
+        "Lateral loading: p-y analysis methods (same as drilled shafts)",
+        "Reticulated networks: limit equilibrium with micropile reinforcement forces"
+      ],
+      "equations": [
+        "Eq 10-1: Structural capacity Q_n = f_y × A_s + 0.85 × f'_c × A_grout (LRFD nominal)",
+        "Eq 10-2: Geotechnical bond capacity Q_bond = π × d_b × L_b × α_bond",
+        "Eq 10-3: Design capacity Q_allow = min(Q_structural, Q_bond) / FS (ASD) or φ × min(Q_structural, Q_bond) (LRFD)"
+      ],
+      "figures": [],
+      "tables": [
+        "Table 10-1: Typical micropile bond zone unit resistance (α_bond) by soil and rock type and grout type (Type A through D)"
+      ],
+      "applicability": "Design of micropiles for axial and lateral loading in underpinning, foundation support, and slope stabilization."
+    },
+    {
+      "section_id": "10.4",
+      "title": "Construction",
+      "body": "Micropile installation involves drilling to the required depth, placing reinforcement, and grouting. Drilling methods include: rotary duplex (casing and bit advance simultaneously), down-the-hole (DTH) hammer for rock, or hollow-stem auger for soft soils. Casing is left in place for Type B, C, and D micropiles in the upper zone; the casing is used for grouting and provides structural continuity. Reinforcement options include single central rebar (typically 32–50 mm diameter), a bundle of rebars, or a structural steel pipe (API N-80 or ASTM A519). Steel pipe reinforcement provides the best structural capacity and is preferred for high-load applications. Grouting uses neat Portland cement grout (w/c ratio 0.4–0.5) placed by tremie for Type A or pressure injection through the drill pipe for Types B–D. Post-grouting (secondary injection through sleeve pipes) for Types C and D increases bond capacity by 20–50% compared to Type B by re-opening the grout/soil interface.",
+      "key_points": [
+        "Drilling: rotary duplex (simultaneous casing advance), DTH hammer (rock), or hollow-stem auger (soft soil)",
+        "Reinforcement: single large rebar, rebar bundle, or steel pipe (API N-80 or ASTM A519)",
+        "Grouting: neat cement, w/c = 0.4–0.5; tremie (Type A) or pressure through drill pipe (Types B–D)",
+        "Post-grouting through sleeve pipes (Types C/D) increases bond capacity 20–50% over Type B",
+        "Casing left in place above bond zone provides structural continuity",
+        "Installation compatible with low-headroom (<3 m) and limited-access equipment"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10-2: Micropile Type A through D grout placement methods and casing configurations"
+      ],
+      "tables": [],
+      "applicability": "Micropile installation in any soil or rock with standard or specialized drill rigs."
+    },
+    {
+      "section_id": "10.5",
+      "title": "Testing and Quality Assurance",
+      "body": "Micropile load testing follows ASTM D1143 (axial compression), ASTM D3689 (axial tension), and ASTM D3966 (lateral). Verification tests (performed on sacrificial piles) verify that design bond stress is achievable for site conditions; at least one verification test per project is recommended. Proof tests on production micropiles verify load capacity at a specified test load (typically 1.33–1.5 times design load); a minimum of 5% of production piles should be proof tested. Grout quality assurance includes testing of grout cubes at 7 and 28 days; minimum compressive strength typically 28–35 MPa at 28 days. Installation records for each pile must include: drill depth, grout volume, grouting pressure, and any obstructions encountered. Integrity testing (low-strain pile integrity test, LPST) can detect major defects in the grouted zone but has limited resolution in small-diameter piles.",
+      "key_points": [
+        "Load testing standards: ASTM D1143 (compression), ASTM D3689 (tension), ASTM D3966 (lateral)",
+        "Verification tests on sacrificial piles before production; minimum 1 per project",
+        "Proof tests on minimum 5% of production piles at 1.33–1.5× design load",
+        "Grout QA: cube testing at 7 and 28 days; minimum 28–35 MPa at 28 days",
+        "Installation records: drill depth, grout volume, pressure, obstructions",
+        "Low-strain integrity testing (LPST) applicable but limited resolution in small diameters"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Testing and quality assurance for micropile construction and load capacity verification."
+    },
+    {
+      "section_id": "10.6",
+      "title": "References",
+      "body": "The primary micropile design reference for US transportation practice is FHWA-NHI-05-039 (Sabatini et al., 2005), which provides full LRFD design procedures. Additional references include: Lizzi (1978) for original pali radice concept; Juran et al. (1999) for reticulated micropile networks; ADSC/DFI Micropile Committee design guidelines; and Post-Tensioning Institute (PTI) anchorage design standards applicable to high-load micropiles. AASHTO LRFD Bridge Design Specifications (2014) Section 10.9 provides resistance factors. For seismic applications, refer to FHWA-SA-98-086 (MCEER) for retrofitting with micropiles. ICE specification for ground treatment (2012) provides model specifications. Field performance case histories are compiled in DFI Deep Foundations (various years) and the ISSMGE TC212 proceedings.",
+      "key_points": [
+        "Primary US reference: FHWA-NHI-05-039 (Sabatini et al. 2005) with full LRFD procedures",
+        "AASHTO LRFD Section 10.9 for resistance factors",
+        "Lizzi (1978): original pali radice concept; Juran et al. (1999): reticulated networks",
+        "Seismic retrofit: FHWA-SA-98-086 (MCEER)",
+        "GEC-13 Chapter 10 overview only; FHWA-NHI-05-039 required for full design",
+        "ASTM D1143/D3689/D3966 load test standards"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Bibliography and key design references for micropile design and construction."
+    }
+  ]
+}
