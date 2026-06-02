@@ -16,12 +16,15 @@ geotech_references/           # Python package (pip install -e .)
   _plotting.py                 # Shared matplotlib helpers (get_pyplot, setup_engineering_plot)
   _retrieval.py                # Reference text retrieval (load, search, retrieve by section)
   _retrieval_db.py             # SQLite FTS5 retrieval layer — reference_search / reference_get / reference_query (v1.2.0)
+  _figures_db.py               # SQLite FTS5 figure-catalog retrieval — figure_search / figure_get / resolve_pdf
   dm7_1/                       # UFC 3-220-10 Soil Mechanics (8 chapters)
     chapter1.py ... chapter8.py
     text/                      # Structured chapter JSON (8 chapters, 457 sections, 2026-04-07)
+    figures_catalog.json       # 223 figures (number, caption, page, text-enriched description)
   dm7_2/                       # UFC 3-220-20 Foundations & Earth Structures (7 chapters)
     prologue.py, chapter2.py ... chapter7.py
     text/                      # Structured chapter JSON (prologue + 6 chapters, 438 sections, 2026-04-07)
+    figures_catalog.json       # 252 figures (incl. P-* prologue, B-* appendix; e.g. Fig 4-12 log-spiral Ka/Kp)
   gec_6/                       # FHWA-SA-02-054 Shallow Foundations
     tables.py, figures.py
     text/                      # Structured chapter JSON (10 chapters, body-only — manifest ready for full-schema re-extraction)
@@ -64,6 +67,7 @@ geotech_references/           # Python package (pip install -e .)
     equations.py               # 4 equations (CBR-to-k, flexible/rigid thickness, ESWL)
     tables.py                  # 5 tables (frost susceptibility, reduction, aircraft, layers, subgrade)
 scripts/                       # Content generation tools (NOT installed with the package)
+  build_figure_catalog.py      # PDF "List of Figures" → <pkg>/figures_catalog.json (no API; PyMuPDF text parse). Resolves each figure to its PDF page via caption-search; enriches descriptions from chapter text. Run: python scripts/build_figure_catalog.py dm7_1 dm7_2
   build_chapter_text.py        # DEPRECATED: PDF → chapter JSON pipeline (Anthropic API); discontinued — too costly ($20/reference on DM7). Chapter JSON files are now authored manually by Claude Code across sessions.
   audit_chapter_text.py        # Validate generated JSON (schema, eq coverage, implemented_in links)
   chapter_schema.json          # JSON schema for chapter files
@@ -87,8 +91,9 @@ agents/
   ufc_dewatering_agent.py      # UFC 3-220-05 Foundry-style 3-function wrapper
   ufc_expansive_agent.py       # UFC 3-220-07 Foundry-style 3-function wrapper
   ufc_pavement_agent.py        # UFC 3-250-01 Foundry-style 3-function wrapper (agent references UFC 3-260-02 — update when equations.py/tables.py are audited)
-tests/                         # 3,511 tests (pytest)
-references/                    # Source PDFs (git-ignored)
+tests/                         # 3,529 tests (pytest)
+docs/                          # Source PDFs (UFC/GEC/micropile/pavement) — used by build_figure_catalog.py and figure read-off
+references/                    # (legacy) source PDFs (git-ignored)
 ```
 
 ## Key Conventions
@@ -185,6 +190,30 @@ references/                    # Source PDFs (git-ignored)
 
 **Text**: All 11 chapters — Vol I ch 1-6 (Introduction, Vertical Drains, Lightweight Fills, Deep Compaction, Aggregate Columns, Column-Supported Embankments); Vol II ch 7-11 (Deep Mixing, Grouting, Soil Nailing, Micropiles, Geosynthetic Reinforcement)
 
+## Figure Retrieval & Vision Read-Off
+
+A third access modality alongside Python lookups and chapter text: **find an
+engineering chart by meaning, then read a value off it with a vision model** —
+giving coverage of figures that have not been hand-digitized into `figures.py`.
+
+- **Catalog** (`<pkg>/figures_catalog.json`, committed): built by
+  `scripts/build_figure_catalog.py` from the PDF's "List of Figures". Each entry
+  has `figure_number`, `caption`, `chapter`, 0-based `pdf_page_index` (resolved
+  by searching the body for the caption's own page), `printed_page`, and a
+  `description` cross-linked from the chapter text (so concept queries like
+  "passive earth pressure" hit Fig 4-12 even though its caption only says
+  "K_A and K_P for the Log Spiral Method"). No API cost.
+- **Retrieve** (`_figures_db.py`, FTS5 lazy temp DB, mirrors `_retrieval_db.py`):
+  `figure_search(query, reference, chapter, limit)` (BM25, with an OR-of-terms
+  recall fallback), `figure_get(reference, figure_number)`, `resolve_pdf(...)`
+  → `(pdf_abs_path, page_index)`, `list_indexed_figures()`.
+- **Read off** (in GeotechStaffEngineer): the `read_reference_figure` vision tool
+  renders the resolved page at 220 DPI and asks the engine to read the value(s).
+  Results are **read-off estimates** to be verified, not exact digitized values.
+
+Built for DM7 (`dm7_1`: 223 figures, `dm7_2`: 252). Run the same script per
+reference to extend. Source PDFs live in `docs/`.
+
 ## Agent Pattern
 
 All 14 agents follow the 3-function Foundry pattern:
@@ -225,4 +254,4 @@ Each gap entry has `type` (figure/table), `id` (e.g., "Figure 2-4"), `section`, 
 
 - Python 3.10+ (developed on 3.14.3)
 - No required dependencies (numpy/scipy/matplotlib are optional, used by some functions)
-- Tests: `pytest tests/ -q` (expect 3,511 passed)
+- Tests: `pytest tests/ -q` (expect 3,529 passed)
