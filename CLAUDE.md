@@ -30,7 +30,7 @@ geotech_references/           # Python package (pip install -e .)
     text/                      # All 18 chapters complete (FHWA-NHI-18-024, ch 1-18)
   gec_11/                      # FHWA-NHI-10-024 Design of MSE Walls & Slopes
     tables.py, figures.py
-    text/                      # Empty — manifest ready (7 chapters, 2026-05-02)
+    text/                      # All 11 chapters complete (FHWA-NHI-10-024, ch 1-11)
   gec_12/                      # FHWA-NHI-16-009 Driven Piles
     tables.py                  # 8 table lookup functions (resistance factors, beta/Nt, setup, API)
     figures.py                 # 8 figure lookup functions (Nordlund Kd, CF, alpha_t, N'q, adhesion)
@@ -83,7 +83,7 @@ agents/
   ufc_dewatering_agent.py      # UFC 3-220-05 Foundry-style 3-function wrapper
   ufc_expansive_agent.py       # UFC 3-220-07 Foundry-style 3-function wrapper
   ufc_pavement_agent.py        # UFC 3-250-01 Foundry-style 3-function wrapper (agent references UFC 3-260-02 — update when equations.py/tables.py are audited)
-tests/                         # 3,299 tests (pytest)
+tests/                         # 3,418 tests (pytest)
 references/                    # Source PDFs (git-ignored)
 ```
 
@@ -123,8 +123,8 @@ references/                    # Source PDFs (git-ignored)
 |--------|-----------|-----------|-------|---------------|
 | gec_6 | FHWA-SA-02-054 Shallow Foundations | 13 | 121 | 10 chapters body-only; manifest ready |
 | gec_7 | FHWA-NHI-14-007 Soil Nail Walls | 15 | 101 | ch 1-5 body-only; ch 6-10 pending |
-| gec_10 | FHWA-NHI-18-024 Drilled Shafts (2018) | 14 | — | All 18 chapters complete (ch 1-18) |
-| gec_11 | FHWA-NHI-10-024 MSE Walls & Slopes | 17 | 130 | manifest ready, not yet extracted |
+| gec_10 | FHWA-NHI-18-024 Drilled Shafts (2018) | 12 | 195 | All 18 chapters complete (ch 1-18) |
+| gec_11 | FHWA-NHI-10-024 MSE Walls & Slopes | 17 | 130 | All 11 chapters complete (ch 1-11) |
 | gec_12 | FHWA-NHI-16-009 Driven Piles | 16 | 147 | Vol I (ch 1-8) body-only; Vol II (ch 9-18) pending |
 | gec_13 | FHWA-NHI-16-027 Ground Modification | 10 | 105 | 5 chapters body-only; manifest ready |
 | micropile | FHWA-NHI-05-039 Micropile Design | 14 | 108 | 10 chapters (complete) |
@@ -141,6 +141,14 @@ references/                    # Source PDFs (git-ignored)
 
 **Figure Functions** (2): Friction angle vs SPT N60 (Fig 4.3), basal heave Nc (Fig 5.11)
 
+### GEC-10: Drilled Shafts — FHWA-NHI-18-024 (12 functions, 195 tests)
+
+**Figure/Equation Functions** (5): Alpha adhesion factor for cohesive side resistance (Fig 10-6, Chen 2011 formula α=0.30+0.17/(su/pa)); UU→CIUC and UC→CIUC strength conversion (Eq 10-16/17, Chen & Kulhawy 1993); rock socket side resistance for normal sockets (Eq 10-21, C=1.0 normalized); rock socket side resistance for caving/fractured rock (Eq 10-22 + Table 10-3 αE reduction factors by RQD and joint condition)
+
+**Table Functions** (7): LRFD resistance factors by limit state and geomaterial (Table 8-4, compression vs. uplift keys); lateral resistance factors for p-y pushover (Table 9-1); N*c bearing capacity factor for base resistance in cohesive soil (Table 10-2, su-keyed); p-multipliers for lateral group analysis (Table 11-1, 0.70/0.50/0.35 at 3D); group axial efficiency for cohesionless soils (AASHTO 10.8.3.6.3, 0.65/0.80/1.0 at 2.5D/3D/4D+); LRFD reliability index β ↔ pF
+
+**Text**: All 18 chapters (FHWA-NHI-18-024, 2018 edition) — construction methods (ch 1-7), design process (ch 8), lateral and axial design (ch 9-10), group design (ch 11), structural design (ch 12), load tests (ch 13), specifications/inspection/integrity/acceptance/cost (ch 14-18)
+
 ### Micropile: FHWA-NHI-05-039 (14 functions, 108 tests)
 
 **Table Functions** (13): Grout-to-ground bond stress alpha_bond by soil/rock type & micropile type A/B/C/D (Table 5-3), pipe casing properties API N-80 & ASTM A519/A106 (Table 4-5), reinforcing bar properties (Table 4-2), classification system (Table 2-1), group efficiency (Table 5-4), corrosion criteria (Table 5-5), epsilon_50 for clays (Tables 5-7/5-8), soil modulus k for sand/clay (Tables 5-9/5-10), fixity guidance (Table 5-11), elastic modulus by soil type & SPT (Tables 5-12/5-13)
@@ -156,6 +164,14 @@ references/                    # Source PDFs (git-ignored)
 **Text Retrieval**: `retrieve_section(reference, section_id)`, `search_sections(reference, query)`, `list_chapters(reference)`, `load_chapter(reference, chapter)`
 
 **Structured Text**: 8 chapters (Ch 1-8 of Vol I), ~109 sections with title, body, key_points, equations, figures, tables, and applicability fields
+
+### GEC-11: MSE Walls & Reinforced Soil Slopes — FHWA-NHI-10-024 (17 functions, 130 tests)
+
+**Table Functions** (16): Minimum reinforcement length and embedment depth (Tables 2-1/2-2); select fill gradation (Table 3-1); electrochemical limits for steel and geosynthetics (Tables 3-3/3-4); pullout parameters Ci and F* (Table 3-6); galvanization thickness and corrosion rates (Tables 3-7/3-8); installation damage reduction factors (Table 3-9); PET durability (Table 3-11); LRFD load combinations and permanent load factors (Tables 4-1/4-2); traffic surcharge (Table 4-4); external resistance factors (Table 4-5); bearing capacity factors (Table 4-6); internal resistance factors (Table 4-7)
+
+**Figure Functions** (1): Kr/Ka lateral stress ratio vs depth (Fig 4-10)
+
+**Text**: All 11 chapters (Vol I ch 1-6: overview through design of MSE walls; Vol II ch 1-5: RSS design, construction, and inspection)
 
 ## Agent Pattern
 
@@ -181,4 +197,4 @@ DM7 agent auto-discovers 340+ functions via `inspect.getmembers()`. GEC/micropil
 
 - Python 3.10+ (developed on 3.14.3)
 - No required dependencies (numpy/scipy/matplotlib are optional, used by some functions)
-- Tests: `pytest tests/ -q` (expect 3,313 passed, 85 skipped)
+- Tests: `pytest tests/ -q` (expect 3,418 passed)
