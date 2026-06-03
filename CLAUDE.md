@@ -227,20 +227,39 @@ All 14 agents follow the 3-function Foundry pattern:
 
 DM7 agent auto-discovers 340+ functions via `inspect.getmembers()`. GEC/micropile agents wrap text retrieval + figure/table lookup functions. FEMA/NOAA/UFC agents wrap table/equation lookup functions (no text retrieval).
 
-## QC Progress and Implementation Gaps
+## Weekend QC Agent (scheduled remote routine)
 
-`qc_progress.json` (repo root) is maintained by the weekend QC agent and tracks two things:
+A **scheduled remote agent** ("routine") runs automated quality control on this repo every weekend, comparing the digitized JSON/Python against the source PDFs and pushing fixes. It runs in Anthropic's cloud (CCR) on the claude.ai Pro subscription — NOT on the API console, and NOT a Claude Code subagent. It is intentionally split into small chunks so weekday interactive sessions can author content without colliding with it.
 
-**Per-chapter QC status** — `references.<key>.text` and `references.<key>.python` blocks, each file entry has `status` (`pending` / `done` / `pdf_unreadable`), `qc_date`, `issues_fixed`, and `notes`.
+**Where it lives / how to manage it:** https://claude.ai/code/routines (routine id `trig_015ika6HHrYfcrf7uupLGGTC`). Edit/run/disable via the `/schedule` skill in any Claude Code session, or the web UI. Deletion is web-UI only.
 
-**Implementation gaps** — `references.<key>.implementation_gaps`: figures and tables that are referenced in the JSON text but have no corresponding Python lookup function in the package. These are **TODOs for weekday authoring sessions**.
+**Schedule:** `0 */5 * * 6,0` — every 5 hours on Sat/Sun UTC (~10 runs/weekend). Weekdays are left free for interactive authoring. Model: `claude-sonnet-4-6`.
 
-When starting work on a reference (e.g., adding new chapter implementations), check `qc_progress.json` first:
+**What it does each run (one file per run):**
+1. Scans `scripts/manifests/*.json`; a reference is eligible when its manifest `pdf_path` resolves to an existing PDF in `docs/`.
+2. Auto-registers any new eligible reference into `qc_progress.json`.
+3. Picks the first `pending` file (text chapter, then Python file) and extracts the matching PDF pages via PyMuPDF.
+4. Verifies content against the PDF, fixes extraction errors, flags edition differences and implementation gaps.
+5. Validates (`audit_chapter_text.py` + `pytest`), then pushes a `qc/<ref>-<file>-<date>` branch and updates `qc_progress.json`. **It opens branches, never merges** — review and merge the `qc/*` branches yourself.
+
+**Onboarding a new reference** (so the weekend agent picks it up automatically):
+1. Add the source PDF to `docs/` and commit it (note: `docs/` is committed; `references/*.pdf` is git-ignored).
+2. Set that reference's manifest `pdf_path` to `../../docs/<filename>` (resolved relative to `scripts/manifests/`).
+3. Commit + push. No prompt edit needed — discovery is automatic.
+
+### qc_progress.json (repo root)
+
+The agent's state file, tracking two things:
+
+**Per-chapter QC status** — `references.<key>.text` and `references.<key>.python` blocks; each file entry has `status` (`pending` / `done` / `pdf_unreadable`), `qc_date`, `issues_fixed`, and `notes`. Edition metadata (`pdf_edition`, `extraction_edition`) is per-reference; when they differ, the agent flags edition changes in `notes` rather than overwriting content (relevant for dm7_1: JSON from the 2022 edition, PDF is 2026).
+
+**Implementation gaps** — `references.<key>.implementation_gaps`: figures/tables referenced in the JSON text that have NO corresponding Python lookup function. These are **TODOs for weekday authoring sessions** (e.g., a parameter-lookup chart that should become a `figure_X_Y_*()` function). The agent only flags them; it never writes the function.
+
+When starting work on a reference, check the gaps first:
 ```bash
-# See all flagged gaps for a reference
 python -c "import json; d=json.load(open('qc_progress.json')); print(json.dumps(d['references'].get('dm7_1',{}).get('implementation_gaps',[]), indent=2))"
 ```
-Each gap entry has `type` (figure/table), `id` (e.g., "Figure 2-4"), `section`, and `notes` describing why it likely needs a Python function.
+Each gap entry has `type` (figure/table), `id` (e.g., "Figure 2-4"), `section`, and `notes`.
 
 ## Working on This Repo
 
