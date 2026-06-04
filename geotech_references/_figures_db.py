@@ -23,6 +23,7 @@ returned page, try +/-1.
 from __future__ import annotations
 
 import json
+import os
 import re
 import sqlite3
 import tempfile
@@ -339,21 +340,40 @@ def list_indexed_figures() -> list[dict[str, Any]]:
         conn.close()
 
 
+# Env var pointing at the folder holding the source reference PDFs. Set this when
+# the package is pip-installed (e.g. Databricks): the PDFs are too large/
+# license-sensitive to ship in the wheel, so copy them into a docs folder and set
+# GEOTECH_REFERENCES_DOCS to it. Falls back to the repo-relative location for
+# source checkouts.
+_DOCS_ENV = "GEOTECH_REFERENCES_DOCS"
+
+
 def resolve_pdf(reference: str, figure_number: str) -> tuple[Path, int]:
     """Resolve a figure to its absolute source PDF path and 0-based page index.
+
+    The PDF is located via the ``GEOTECH_REFERENCES_DOCS`` folder when that env
+    var is set (needed when the package is installed and the repo's ``docs/`` is
+    absent), otherwise relative to the repo root.
 
     Raises
     ------
     KeyError
         If the figure is unknown.
     FileNotFoundError
-        If the catalog's ``pdf_path`` does not exist on disk.
+        If the source PDF cannot be found on disk.
     """
     rec = figure_get(reference, figure_number)
-    pdf_abs = (_REPO_ROOT / rec["pdf_path"]).resolve()
+    pdf_rel = rec["pdf_path"]
+    docs_override = os.environ.get(_DOCS_ENV)
+    if docs_override:
+        # PDFs live flat in the docs folder; resolve by filename.
+        pdf_abs = (Path(docs_override) / Path(pdf_rel).name).resolve()
+    else:
+        pdf_abs = (_REPO_ROOT / pdf_rel).resolve()
     if not pdf_abs.exists():
         raise FileNotFoundError(
-            f"source PDF for {reference} {figure_number} not found: {pdf_abs}"
+            f"source PDF for {reference} {figure_number} not found: {pdf_abs}. "
+            f"Set {_DOCS_ENV} to the folder containing the reference PDFs."
         )
     return pdf_abs, int(rec["pdf_page_index"])
 
