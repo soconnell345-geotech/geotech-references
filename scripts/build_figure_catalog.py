@@ -100,14 +100,17 @@ def _clean_caption(seg: str) -> tuple[str, int | None]:
     return cap, printed
 
 
-def _parse_list_of_figures(doc) -> list[dict]:
+def _parse_list_of_figures(doc) -> tuple[list[dict], "int | None"]:
     """Parse the LIST OF FIGURES section into figure entries.
 
     Segments the section text on figure markers (robust to entries glued
-    inline and to header/footer noise across page breaks). Returns a list of
-    ``{figure_number, caption, printed_page}`` dicts in document order;
-    ``printed_page`` may be ``None`` when no page number parsed.
+    inline and to header/footer noise across page breaks). Returns
+    ``(figs, lof_last_page)``: a list of ``{figure_number, caption,
+    printed_page}`` dicts in document order, plus the last PDF page index the
+    figure list occupies (so body resolution can start after the front matter).
+    ``lof_last_page`` is ``None`` when no list is found.
     """
+    lof_pages: list[int] = []
     start = None
     for i in range(min(60, doc.page_count)):
         if re.search(r"^\s*LIST OF FIGURES\s*$", doc[i].get_text(), re.I | re.M):
@@ -117,6 +120,7 @@ def _parse_list_of_figures(doc) -> list[dict]:
     if start is not None:
         for i in range(start, min(start + 14, doc.page_count)):
             text = doc[i].get_text()
+            lof_pages.append(i)
             if i > start and re.search(r"^\s*LIST OF TABLES\s*$", text, re.I | re.M):
                 for ln in text.splitlines():
                     if re.search(r"(?i)^\s*list of tables\s*$", ln):
@@ -137,13 +141,14 @@ def _parse_list_of_figures(doc) -> list[dict]:
             and len(re.findall(r"\.{3,}\s*\d{1,4}", doc[i].get_text())) >= 3
         ]
         if not dense:
-            return []
+            return [], None
         run = [dense[0]]
         for i in dense[1:]:
             if i == run[-1] + 1:
                 run.append(i)
             else:
                 break
+        lof_pages = run
         for i in run:
             kept.extend(ln.strip() for ln in doc[i].get_text().splitlines()
                         if not _is_lof_noise(ln))
@@ -158,7 +163,7 @@ def _parse_list_of_figures(doc) -> list[dict]:
             {"figure_number": m.group(1).upper(),
              "caption": cap, "printed_page": printed}
         )
-    return figs
+    return figs, (max(lof_pages) if lof_pages else None)
 
 
 def _norm_fig_ref(s) -> str:
@@ -353,14 +358,17 @@ def build_catalog(package: str) -> dict:
 
     chapters = manifest.get("chapters", [])
     starts = [c["page_start"] for c in chapters if isinstance(c.get("page_start"), int)]
-    # page_start is the 1-based PDF page of the first chapter; body index is -1.
-    body_start = (min(starts) - 1) if starts else 0
 
     doc = fitz.open(str(pdf_abs))
     try:
-        figs = _parse_list_of_figures(doc)
+        figs, lof_last = _parse_list_of_figures(doc)
         if not figs:
             raise ValueError(f"No LIST OF FIGURES parsed from {pdf_abs}")
+        # Resolve from just after the figure list so a caption matches on its
+        # real body page, not its LoF entry. Manifest chapter ranges are only a
+        # fallback used when no LoF span was found.
+        body_start = (lof_last + 1) if lof_last is not None else (
+            (min(starts) - 1) if starts else 0)
         stats = _resolve_pages(doc, figs, body_start)
     finally:
         doc.close()
