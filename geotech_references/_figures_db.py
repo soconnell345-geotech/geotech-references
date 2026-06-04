@@ -137,7 +137,7 @@ def _build_db(db_path: Path) -> None:
                         fig.get("caption", ""),
                         fig.get("description", "") or "",
                         fig.get("chapter"),
-                        pdf_path,
+                        fig.get("pdf_path") or pdf_path,  # per-figure (multi-volume) wins
                         fig.get("pdf_page_index"),
                         fig.get("printed_page"),
                         1 if fig.get("page_estimated") else 0,

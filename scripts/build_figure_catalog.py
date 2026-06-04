@@ -346,37 +346,62 @@ def _repo_relative_pdf_path(manifest: dict) -> str:
         return abs_pdf.as_posix()
 
 
-def build_catalog(package: str) -> dict:
-    """Build and write ``figures_catalog.json`` for one package."""
+def _figs_from_pdf(pdf_abs) -> list[dict]:
+    """Parse + page-resolve every figure in one PDF (figs carry page_estimated)."""
     import fitz  # PyMuPDF
-
-    manifest = _load_manifest(package)
-    pdf_rel = _repo_relative_pdf_path(manifest)
-    pdf_abs = _REPO_ROOT / pdf_rel
-    if not pdf_abs.exists():
-        raise FileNotFoundError(f"PDF not found for '{package}': {pdf_abs}")
-
-    chapters = manifest.get("chapters", [])
-    starts = [c["page_start"] for c in chapters if isinstance(c.get("page_start"), int)]
-
     doc = fitz.open(str(pdf_abs))
     try:
         figs, lof_last = _parse_list_of_figures(doc)
         if not figs:
-            raise ValueError(f"No LIST OF FIGURES parsed from {pdf_abs}")
+            return []
         # Resolve from just after the figure list so a caption matches on its
-        # real body page, not its LoF entry. Manifest chapter ranges are only a
-        # fallback used when no LoF span was found.
-        body_start = (lof_last + 1) if lof_last is not None else (
-            (min(starts) - 1) if starts else 0)
-        stats = _resolve_pages(doc, figs, body_start)
+        # real body page, not its LoF entry.
+        body_start = (lof_last + 1) if lof_last is not None else 0
+        _resolve_pages(doc, figs, body_start)
+        return figs
     finally:
         doc.close()
 
-    stats["enriched"] = _enrich_from_text(package, figs)
 
-    out_figs = [
-        {
+def build_catalog(package: str) -> dict:
+    """Build and write ``figures_catalog.json`` for one package.
+
+    Single-volume manifests carry a ``pdf_path``. Multi-volume manifests carry a
+    ``volumes`` list of ``{pdf_path, volume}``; each figure is tagged with its own
+    volume's ``pdf_path`` so read-off resolves to the right PDF.
+    """
+    manifest = _load_manifest(package)
+    volumes = manifest.get("volumes")
+
+    if volumes:
+        figs: list[dict] = []
+        for vol in volumes:
+            vrel = _repo_relative_pdf_path({"pdf_path": vol.get("pdf_path", "")})
+            vabs = _REPO_ROOT / vrel
+            if not vabs.exists():
+                raise FileNotFoundError(f"PDF not found for '{package}': {vabs}")
+            vfigs = _figs_from_pdf(vabs)
+            for f in vfigs:
+                f["pdf_path"] = vrel            # per-figure source PDF
+                f["volume"] = vol.get("volume")
+            figs.extend(vfigs)
+        if not figs:
+            raise ValueError(f"No figures parsed from any volume of '{package}'")
+        pdf_rel = _repo_relative_pdf_path({"pdf_path": volumes[0].get("pdf_path", "")})
+    else:
+        pdf_rel = _repo_relative_pdf_path(manifest)
+        pdf_abs = _REPO_ROOT / pdf_rel
+        if not pdf_abs.exists():
+            raise FileNotFoundError(f"PDF not found for '{package}': {pdf_abs}")
+        figs = _figs_from_pdf(pdf_abs)
+        if not figs:
+            raise ValueError(f"No LIST OF FIGURES parsed from {pdf_abs}")
+
+    enriched = _enrich_from_text(package, figs)
+
+    out_figs = []
+    for f in figs:
+        rec = {
             "figure_number": f["figure_number"],
             "caption": f["caption"],
             "chapter": _chapter_of(f["figure_number"]),
@@ -385,9 +410,13 @@ def build_catalog(package: str) -> dict:
             "page_estimated": bool(f.get("page_estimated", False)),
             "description": f.get("description", ""),
         }
-        for f in figs
-    ]
+        if f.get("pdf_path"):              # multi-volume per-figure override
+            rec["pdf_path"] = f["pdf_path"]
+        if f.get("volume") is not None:
+            rec["volume"] = f["volume"]
+        out_figs.append(rec)
 
+    resolved = sum(1 for f in out_figs if not f["page_estimated"])
     catalog = {
         "reference_id": manifest.get("reference_id", ""),
         "reference_title": manifest.get("reference_title", ""),
@@ -399,16 +428,13 @@ def build_catalog(package: str) -> dict:
     }
 
     out_path = _PACKAGE_DIR / package / "figures_catalog.json"
+    out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(
         json.dumps(catalog, indent=2, ensure_ascii=False), encoding="utf-8"
     )
-
     print(
-        f"[{package}] {stats['total']} figures "
-        f"(caption-resolved {stats['caption_resolved']}, "
-        f"offset {stats['offset_filled']}, interp {stats['interp_filled']}; "
-        f"median offset {stats['median_offset']}; "
-        f"text-enriched {stats['enriched']}) -> {out_path}"
+        f"[{package}] {len(out_figs)} figures (caption-resolved {resolved}, "
+        f"estimated {len(out_figs) - resolved}; text-enriched {enriched}) -> {out_path}"
     )
     return catalog
 
@@ -420,7 +446,7 @@ def _packages_with_pdf() -> list[str]:
             data = json.loads(mf.read_text(encoding="utf-8"))
         except (OSError, json.JSONDecodeError):
             continue
-        if data.get("pdf_path"):
+        if data.get("pdf_path") or data.get("volumes"):
             out.append(mf.stem)
     return out
 
