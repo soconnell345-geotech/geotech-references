@@ -45,9 +45,10 @@ _REPO_ROOT = _SCRIPTS_DIR.parent
 _MANIFEST_DIR = _SCRIPTS_DIR / "manifests"
 _PACKAGE_DIR = _REPO_ROOT / "geotech_references"
 
-# A figure marker, e.g. "Figure 4-12", "Figure P-1", "Figure B-1" (appendix).
-# Matched anywhere (not just line start) so inline-glued LoF entries segment too.
-_FIG_MARKER = re.compile(r"Figure\s+((?:[A-Z]{1,3}|\d+)-\d+)", re.I)
+# A figure marker, e.g. "Figure 4-12", "Figure P-1", "Figure B-1" (DM7/UFC dash
+# notation) or "Figure 2.1", "Figure 3.10" (GEC dot notation). Matched anywhere
+# (not just line start) so inline-glued LoF entries segment too.
+_FIG_MARKER = re.compile(r"Figure\s+((?:[A-Z]{1,3}|\d+)[-.]\d+)", re.I)
 # A dotted leader terminated by the printed page number.
 _LEADER_PG = re.compile(r"\.{2,}\s*(\d+)\s*$")
 # Trailing bare page number (no dotted leader); guard against caption-internal
@@ -94,7 +95,8 @@ def _clean_caption(seg: str) -> tuple[str, int | None]:
             printed = int(tm.group(1))
             seg = seg[:tm.start()]
     cap = re.sub(r"\.{2,}", "", seg).translate(_SMART)
-    cap = re.sub(r"\s+", " ", cap).strip(" .-")
+    # Strip leading colon too: GEC entries read "Figure 2.1: <caption>".
+    cap = re.sub(r"\s+", " ", cap).strip(" .-:")
     return cap, printed
 
 
@@ -111,20 +113,40 @@ def _parse_list_of_figures(doc) -> list[dict]:
         if re.search(r"^\s*LIST OF FIGURES\s*$", doc[i].get_text(), re.I | re.M):
             start = i
             break
-    if start is None:
-        return []
-
     kept: list[str] = []
-    for i in range(start, min(start + 14, doc.page_count)):
-        text = doc[i].get_text()
-        if i > start and re.search(r"^\s*LIST OF TABLES\s*$", text, re.I | re.M):
-            for ln in text.splitlines():
-                if re.search(r"(?i)^\s*list of tables\s*$", ln):
-                    break
-                if not _is_lof_noise(ln):
-                    kept.append(ln.strip())
-            break
-        kept.extend(ln.strip() for ln in text.splitlines() if not _is_lof_noise(ln))
+    if start is not None:
+        for i in range(start, min(start + 14, doc.page_count)):
+            text = doc[i].get_text()
+            if i > start and re.search(r"^\s*LIST OF TABLES\s*$", text, re.I | re.M):
+                for ln in text.splitlines():
+                    if re.search(r"(?i)^\s*list of tables\s*$", ln):
+                        break
+                    if not _is_lof_noise(ln):
+                        kept.append(ln.strip())
+                break
+            kept.extend(ln.strip() for ln in text.splitlines() if not _is_lof_noise(ln))
+    else:
+        # No "LIST OF FIGURES" heading: fall back to the contiguous run of
+        # front-matter pages dense with dotted-leader figure entries (some
+        # references, e.g. GEC-9, carry the figure list with no heading). Require
+        # both several figure markers AND dotted page leaders so the main TOC
+        # (chapters, no figure markers) and body pages (no leaders) are skipped.
+        dense = [
+            i for i in range(min(60, doc.page_count))
+            if len(_FIG_MARKER.findall(doc[i].get_text())) >= 3
+            and len(re.findall(r"\.{3,}\s*\d{1,4}", doc[i].get_text())) >= 3
+        ]
+        if not dense:
+            return []
+        run = [dense[0]]
+        for i in dense[1:]:
+            if i == run[-1] + 1:
+                run.append(i)
+            else:
+                break
+        for i in run:
+            kept.extend(ln.strip() for ln in doc[i].get_text().splitlines()
+                        if not _is_lof_noise(ln))
 
     blob = "\n".join(kept)
     markers = list(_FIG_MARKER.finditer(blob))
@@ -139,11 +161,21 @@ def _parse_list_of_figures(doc) -> list[dict]:
     return figs
 
 
-def _norm_fig_ref(s: str) -> str:
-    """Normalize a text-cited figure ref to a catalog key ('Figure 4-12'->'4-12')."""
-    s = (s or "").strip()
+def _norm_fig_ref(s) -> str:
+    """Normalize a text-cited figure ref to a catalog key ('Figure 4-12'->'4-12').
+
+    Tolerates strings ("Figure 2.1: caption") and dicts ({"number": "2.1", ...}) —
+    reference text JSON is not uniform across packages — and trims any trailing
+    ": caption" so GEC-style citations match the bare figure id.
+    """
+    if isinstance(s, dict):
+        s = (s.get("number") or s.get("figure_number") or s.get("id")
+             or s.get("label") or s.get("ref") or "")
+    s = (str(s) if s is not None else "").strip()
     if s.lower().startswith("figure"):
         s = s[len("figure"):].strip()
+    if s:  # keep only the figure-id token; drop any trailing ": caption"
+        s = re.split(r"[:\s]", s, maxsplit=1)[0]
     return s.upper()
 
 
