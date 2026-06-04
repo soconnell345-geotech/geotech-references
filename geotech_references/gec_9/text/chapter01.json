@@ -1,0 +1,75 @@
+{
+  "reference_id": "FHWA-HIF-18-031",
+  "reference_title": "Design, Analysis, and Testing of Laterally Loaded Deep Foundations that Support Transportation Facilities",
+  "chapter": 1,
+  "chapter_title": "Introduction and Overview",
+  "sections": [
+    {
+      "section_id": "1.1",
+      "title": "Purpose",
+      "summary": "GEC-9 provides recommended guidance for the design, analysis, and testing of laterally loaded deep foundations for transportation facilities under the LRFD platform. It addresses driven piles, drilled shafts, micropiles, and CFA piles resisting lateral loads in applications including bridge foundations, retaining walls, noise walls, slope stabilization, and seismic resistance.",
+      "body": "The purpose of this Geotechnical Engineering Circular (GEC) is to provide recommended guidance for the design, analysis, and testing of laterally loaded deep foundations for transportation facilities in accordance with the Load and Resistance Factor Design (LRFD) platform. The intended audience includes geotechnical, structural, and highway design and construction specialists involved with the selection, design, analysis, and testing of laterally loaded deep foundations. This document applies to deep foundation elements such as driven piles, drilled shafts, micropiles, and continuous flight auger (CFA) piles that are used to resist lateral loads, often in combination with axial loads. Applications include single and groups of deep foundation elements for bridge foundations, excavation support, earth retaining structures, noise walls, sign and signal foundations, landslide repairs, vessel or vehicle impact mitigation measures, and seismic event resistance. The recommended procedures presented herein are not intended to preclude deviations based on sound local engineering practices, demonstrated performance, or testing results.",
+      "key_points": [
+        "Applies to driven piles, drilled shafts, micropiles, and CFA piles under lateral loads",
+        "Intended audience: geotechnical, structural, and highway design/construction specialists",
+        "Follows LRFD design platform per AASHTO specifications",
+        "Not prescriptive — good engineering judgment should be applied",
+        "Other aspects of deep foundation design (axial capacity, construction) are beyond scope"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "All laterally loaded deep foundation types for transportation facilities"
+    },
+    {
+      "section_id": "1.2",
+      "title": "Background and History of Analysis of Laterally Loaded Deep Foundations",
+      "summary": "Lateral loads occur in deep foundations under many conditions. Analysis methods have evolved from elastic/plasticity methods to fully nonlinear p-y approaches. Key milestones include Terzaghi's subgrade modulus (1955), Broms' plasticity method (1964), the p-y method (McClelland and Focht 1958; Matlock 1970; Reese et al. 1975), and COM624P computer program. The strain wedge method emerged in the 1990s as a more theoretical alternative.",
+      "body": "Lateral loads on deep foundations may result from either the structure or surrounding ground. A concentrated horizontal load and/or overturning moment applied at the top of the foundation element are typical in transportation applications including bridge foundations, signal and sign structures, and noise walls. In other applications such as slope stabilization or earth retaining structures, loads are heavily dependent on soil conditions. Numerous methods are available to analyze the response of deep foundations under lateral loads. Early methods used the subgrade modulus concept (Terzaghi 1955), modeling soil as elastic springs. Broms (1964a) developed plasticity-based methods to estimate ultimate lateral capacity. The nonlinear p-y method (McClelland and Focht 1958) represents soil with nonlinear springs calibrated to soil type. This method gained popularity in the 1960s-1970s through offshore platform research (Matlock 1970; Reese et al. 1975). COM624P (Wang and Reese 1993) was developed under FHWA contract to analyze single pile/shaft response using p-y curves. The strain wedge method (1990s) provides a theoretical basis correlating lateral resistance with 3D passive wedge mobilization. Modern FEM/FDM programs handle complex features including 3D loading, nonlinear response, and pile groups.",
+      "key_points": [
+        "Terzaghi (1955) introduced subgrade modulus concept — lateral soil reaction proportional to deflection",
+        "Broms (1964) developed plasticity-based ultimate lateral capacity method",
+        "p-y method: soil represented by nonlinear springs, calibrated from field tests in offshore research",
+        "COM624P (FHWA, Wang and Reese 1993) was first widely-used p-y computer program",
+        "Strain wedge method (1990s): theoretical passive wedge approach, alternative to empirical p-y"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Background context for understanding evolution of lateral pile analysis methods"
+    },
+    {
+      "section_id": "1.3",
+      "title": "Literature Review",
+      "summary": "A comprehensive literature review was performed as part of GEC-9 development to identify gaps in current practice. The review covered state DOT publications, FHWA and AASHTO guidelines, international sources, and published case histories. Findings are included in Appendix E and informed the document's guidance on design methodologies, resistance factors, and testing requirements.",
+      "body": "A literature review was performed as part of the development of this document. The intent was to identify gaps in the literature and existing practice so that this document would enhance, rather than duplicate, the existing state-of-the-practice. The literature review included review of various publications and guidelines by state DOTs, publications by other U.S.-based sources including FHWA, AASHTO, and other organizations, as well as a review of published international sources. Published case histories and lateral load test studies were also reviewed. The literature review provided information about how various state DOTs have implemented the LRFD design platform with regard to laterally loaded deep foundation applications, and how other organizations, both U.S.-based and internationally, address requirements for laterally loaded deep foundations. The literature review report is included in Appendix E.",
+      "key_points": [
+        "Review covered state DOT publications, FHWA/AASHTO standards, and international sources",
+        "Published case histories and lateral load test studies were included",
+        "Focus on how state DOTs implement LRFD for laterally loaded deep foundations",
+        "Full literature review report is Appendix E of GEC-9"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Background on sources and gaps addressed by GEC-9"
+    },
+    {
+      "section_id": "1.4",
+      "title": "Organization of Manual",
+      "summary": "GEC-9 is organized into 13 chapters plus appendices. Chapter topics progress from load applications (Ch2) through site characterization (Ch3), LRFD requirements (Ch4), design process (Ch5), single pile analysis (Ch6), group analysis (Ch7), extreme events (Ch8), earth retention (Ch9), slope stabilization (Ch10), structural design (Ch11), load testing (Ch12), and construction (Ch13). Appendices provide p-y curve parameters (A), example problems (B), load test examples (C), guide specifications (D), and literature review (E).",
+      "body": "Chapter 2 presents an overview of lateral load applications and deep foundation type selection. Chapter 3 discusses subsurface investigation, testing methods, and the engineering parameters needed for lateral pile design. Chapter 4 covers LRFD design platform including limit states, load factors, and resistance factors for laterally loaded deep foundations. Chapter 5 presents the overall design procedure and typical team roles. Chapter 6 presents analysis methods for single laterally loaded deep foundation elements including simplified and computer-based methods. Chapter 7 addresses lateral analysis of groups including spacing, group effects, frame action, and batter piles. Chapter 8 presents design methods for extreme events such as seismic and vessel impact. Chapter 9 addresses earth retention structure considerations. Chapter 10 covers slope stabilization applications. Chapter 11 presents structural design considerations for shear and bending. Chapter 12 provides guidance on conducting and interpreting lateral load tests. Chapter 13 discusses construction considerations that may impact lateral load capacity. Appendix A provides example p-y curves and parameters for various subsurface conditions. Appendix B provides detailed design examples. Appendices C and D cover load test results interpretation and guide specifications.",
+      "key_points": [
+        "13 main chapters plus 5 appendices",
+        "Chapters 6 and 7 are the analytical core: single pile and group p-y analysis",
+        "Appendix A: reference p-y curve parameters for soft clay, stiff clay, sand, weak rock, liquefied sand",
+        "Appendix B: worked design examples for ITS pole and bridge pier group",
+        "Appendix D: guide specification for lateral load tests"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Navigation guide for practitioners using GEC-9"
+    }
+  ]
+}

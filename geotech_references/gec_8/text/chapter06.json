@@ -1,0 +1,75 @@
+{
+  "reference_id": "FHWA-HIF-07-03",
+  "reference_title": "Design and Construction of Continuous Flight Auger Piles",
+  "chapter": 6,
+  "chapter_title": "Recommended Design Method",
+  "sections": [
+    {
+      "section_id": "6.1-6.2",
+      "title": "Steps 1-2: Initial Considerations and Foundation Type Selection",
+      "summary": "Step 1 collects general structural foundation requirements (loads, geometry, scour depth, seismic zone, special events), site geology and subsurface conditions. Step 2 compares CFA and DD piles to alternative foundation types (driven piles, drilled shafts). Selection criteria from Table 6.1 address stratigraphy, groundwater, CFA-favorable conditions, geotechnical and project constraints. CFA piles are generally best when: soils are predominantly cohesive or cemented; no deep hard bearing stratum; speed and economy are important; vibration or noise constraints exist.",
+      "body": "Step 1 — Initial Design Considerations: Collect (a) general structural foundation requirements including loads, geometry, foundation layout, and code requirements; (b) site geology and subsurface conditions from the site investigation; (c) special design events such as seismic, scour, vessel impact, etc.; and (d) possible modifications to the structure and approximate foundation loads and deformation tolerances.\n\nStep 2 — Comparison and Selection of Deep Foundation Alternatives: Compare CFA and DD piles to alternative deep foundation types. Table 6.1 provides a structured comparison of CFA and DD piles for different stratigraphic conditions, groundwater locations, and other factors. Alternative deep foundation types are described in FHWA IF-99-025 (drilled shafts, O'Neill and Reese 1999) and FHWA NHI-132021 (driven piles, Hannigan et al. 2006). Key selection factors favoring CFA piles: predominantly cohesive or moderately granular soils without deep scour or hard rock; no significant design uplift, bending, or lateral requirements beyond the capacity of CFA piles; speed, economy, noise/vibration constraints.",
+      "key_points": [
+        "Step 1: Collect loads, geometry, subsurface profile, special events (seismic, scour), deformation tolerances",
+        "Step 2: Compare CFA/DD vs. driven piles and drilled shafts using Table 6.1 criteria",
+        "Table 6.1: Favorable CFA conditions — cohesive/cemented soils, no deep hard bearing, no deep scour",
+        "Unfavorable for CFA: significant uplift, bending, or lateral demands; deep scour; liquefiable zones"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 6.1: Design Consideration for Foundation Selection of CFA and DD Piles"
+      ],
+      "applicability": "CFA pile selection and comparison with alternative foundation types"
+    },
+    {
+      "section_id": "6.3",
+      "title": "Step 3: Select Pile Length and Calculate Performance",
+      "summary": "ASD design: ΣQi ≤ R/SF. Typical safety factors: SF = 2.0–2.5 without load tests; SF = 2.0 with a complete pre-production static load test program. Service limit state settlement per AASHTO: angular distortion ≤ 0.008 for simple spans, ≤ 0.004 for continuous spans. Design procedure: (A) develop idealized subsurface profiles; (B) determine geotechnical parameters by layer; (C) determine design loads; (D) compute group effects; (E) check settlement and deformation; (F) design individual piles for axial and lateral loading; (G) optimize group layout and pile count.",
+      "body": "Limit states for design: The Geotechnical Ultimate Limit State (GULS) governs when the design must provide adequate pile capacity; the Structural Ultimate Limit State (SULS) governs when structural integrity of the pile controls; and the Serviceability Limit State (SLS) governs when deformations and settlements control.\n\nASD design equation: ΣQi ≤ R/SF, where Qi = service (unfactored) load, R = computed resistance at GULS, SF = factor of safety. CFA piles should generally be designed with SF = 2.0–2.5 where no load tests are performed. With a complete pre-production static load test program, SF = 2.0 is appropriate. Higher safety factors may be warranted for difficult construction conditions or especially critical structures.\n\nServiceability: Bridge structures per AASHTO Section 4.4.7.2.5. Angular distortions between adjacent foundations should generally not exceed 0.008 for simple spans and 0.004 for continuous spans. For approach embankments on soft soils, differential settlement between the pile-supported structure and the adjacent embankment may control.\n\nDesign procedures: (A) Develop idealized subsurface profiles at all foundation locations. (B) Develop geotechnical design parameters per layer (Su, φ', SPT N, CPT qc, etc.). (C) Determine design loads at foundation level. (D) Consider group effects on axial capacity and lateral resistance. (E) Check total and differential settlements. (F) Design individual piles — compute axial resistance (Chapter 5 methods), check lateral capacity and deflection (p-y analysis), design structural section (P-M interaction diagram). (G) Optimize group layout: pile size, length, spacing, and number of piles; the minimum group size that satisfies GULS, SULS, and SLS governs.",
+      "key_points": [
+        "ASD: ΣQi ≤ R/SF; SF = 2.0–2.5 without load tests; SF = 2.0 with pre-production static load tests",
+        "Three limit states: GULS (capacity), SULS (structural), SLS (settlement/deformation)",
+        "Settlement: angular distortion ≤ 0.008 simple span; ≤ 0.004 continuous span (AASHTO)",
+        "Design sequence: idealize profile → parameters → loads → group effects → settlement → individual pile → optimize"
+      ],
+      "equations": [
+        {
+          "equation_id": "6-ASD",
+          "description": "ASD design check for CFA piles — service loads vs. allowable resistance",
+          "latex": "\\sum Q_i \\leq \\frac{R}{SF}",
+          "variables": {
+            "Q_i": "value of service (unfactored) load of type i",
+            "R": "computed resistance at the Geotechnical Ultimate Limit State (GULS)",
+            "SF": "factor of safety (2.0–2.5 without load tests; 2.0 with pre-production static load test program)"
+          },
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure 6.4: Five-Pile Footing Layout (design example)",
+        "Figure 6.5: Lateral load vs. deflection response (nonlinear and linear)"
+      ],
+      "tables": [
+        "Table 6.2: Pile Group Settlement Computation (design example)"
+      ],
+      "applicability": "ASD limit states and design procedure for CFA pile capacity, serviceability, and structural design"
+    },
+    {
+      "section_id": "6.4-6.5",
+      "title": "Steps 4-5: Constructability Review and Plans/Specifications",
+      "summary": "Step 4 reviews constructability: pile size and type appropriate for local contractors, sufficient torque capacity, ability to reach required depth, pile spacing allowing equipment access, risk of adjacent structure damage. Step 5 prepares plans, project special provisions, and performance specifications (from Chapter 8). QC/QA and load testing requirements are set at this stage. The guide spec from Chapter 8 is performance-based — the contractor is responsible for pile design submittals, installation plan, testing plan, and verifying performance through load tests.",
+      "body": "Step 4 — Constructability Review: An evaluation of constructability is an integral part of the design process. Items for review include: (1) Are pile sizes and types appropriate for the local contractor pool? Large diameter CFA piles may require high-torque hydraulic equipment that is less common among smaller regional contractors. (2) Can the rig generate sufficient torque and crowd to drill to required depth without soil mining? (3) Can required depths be achieved given site constraints (slope, headroom, access)? (4) Is the pile spacing sufficient to allow equipment access and prevent over-drilling of adjacent piles? (5) Are there risks of damage to adjacent structures from vibration or ground displacement? (6) Is the construction sequence feasible?\n\nStep 5 — Prepare Plans and Specifications: Develop project special provisions and plan notes incorporating guide construction specifications from Chapter 8. These are performance-based specifications that require: design submittals; pile installation plan; testing plan (pre-production and conformance tests); and as-built drawings upon completion. Setting QC/QA requirements includes specifying automated monitoring system requirements, data recording, inspector qualifications, and reporting.",
+      "key_points": [
+        "Constructability review: torque/crowd adequacy, local contractor capability, equipment access, adjacent structure risks",
+        "Performance-based specification (Chapter 8): contractor submits design, installation plan, testing plan",
+        "QC/QA requirements: automated monitoring (volume and pressure), pre-production and conformance testing",
+        "Load testing requirements set at this stage: type (static/rapid/dynamic), quantity, criteria for acceptance"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Final design review and specification preparation for CFA pile projects"
+    }
+  ]
+}

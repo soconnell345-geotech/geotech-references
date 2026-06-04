@@ -1,0 +1,134 @@
+{
+  "reference_id": "FHWA-HIF-18-031",
+  "reference_title": "Design, Analysis, and Testing of Laterally Loaded Deep Foundations that Support Transportation Facilities",
+  "chapter": 7,
+  "chapter_title": "Lateral Analysis of Groups of Deep Foundations",
+  "sections": [
+    {
+      "section_id": "7.1",
+      "title": "Introduction",
+      "summary": "Chapter 7 extends single-pile lateral load concepts to groups of deep foundations. Group lateral resistance is less than the sum of individual pile resistances due to shadowing effects and cap-mediated load distribution. Both p-y and strain wedge methods can be used for group analysis, but group interaction and efficiency must be accounted for in all cases.",
+      "body": "The concepts related to the response of a single laterally loaded deep foundation element can be extended to a group of deep foundation elements. Groups can be analyzed using the p-y method or the strain wedge method. However, the lateral load resistance of a deep foundation element in a group is less than if the same foundation were an isolated element in the same subsurface conditions. Group efficiency and interaction must be accounted for in a group analysis. Most deep foundation groups involve foundations that are relatively closely spaced and therefore need to account for the interaction and reduction in efficiency within the group. The behavior of a group is more complex than that of a single deep foundation because of two additional aspects: (1) reduced efficiency of lateral load resistance among closely-spaced deep foundation elements as a result of overlapping shear zones (the shadowing or shading effect); and (2) distribution of loads and moments to individual foundation elements within a group from the cap.",
+      "key_points": [
+        "Group lateral resistance is less than sum of individual pile resistances due to shadowing and cap effects",
+        "Two sources of group complexity: shadowing effect (overlapping shear zones) and load distribution through cap",
+        "p-y and strain wedge methods can both be extended to group analysis",
+        "Group interaction and reduced efficiency must be accounted for regardless of analysis method"
+      ],
+      "equations": [],
+      "figures": ["Figure 7-1: Illustration of the shadowing effect showing overlapping zones of mobilized lateral load resistance"],
+      "tables": [],
+      "applicability": "All groups of laterally loaded deep foundation elements"
+    },
+    {
+      "section_id": "7.2",
+      "title": "Group Effects in Lateral Loading: Group Efficiency and P-Multipliers",
+      "summary": "Group efficiency Ge = Qg/(n*Qs) quantifies the reduction in lateral resistance for closely spaced groups (Ge ≤ 1.0). The p-multiplier (Pm) accounts for the shadowing effect in p-y analysis by reducing the p-y curve for each row. Leading rows have the highest Pm; trailing rows have progressively lower Pm. Table 7-1 (AASHTO 2014) gives Pm values: Row 1 = 0.8/1.0, Row 2 = 0.4/0.85, Row 3+ = 0.3/0.7 at spacings of 3B/5B respectively. Group efficiency and Pm values are most strongly influenced by pile size, spacing, and group layout — soil type and density have secondary effects. Pm values stabilize at pile head deflections above roughly 3/4 inch.",
+      "body": "Group efficiency, Ge, quantifies the interaction effects in a group and is defined as Ge = Qg/(n*Qs), where Qg is the lateral load resistance of the group, n is the number of deep foundation elements, and Qs is the lateral load resistance of a single element. In general, Ge ≤ 1.0. Pile group efficiency depends on foundation element characteristics, group size, group arrangement, head fixity, subsurface conditions, and displacement. The p-multiplier (Pm) is a reduction factor applied to the entire p-y curve for a laterally loaded pile/shaft to account for overlapping zones of influence. The leading row (closest to the zone of soil resistance) develops the greatest soil resistance; each subsequent trailing row experiences compounding shadowing effect with smaller Pm and lower p-y response. The most significant reduction in Pm occurs between Row 1 and Row 2; differences between subsequent trailing rows (Row 2 to Row 3, Row 3 to Row 4) are relatively small. P-multipliers are relatively constant at large deflections, generally above about 3/4 inch. Side-by-side interaction effects are not significant at center-to-center spacing of 5B or more for sands or 3B or more for clays. Table 7-1 (AASHTO 2014, originally from Hannigan et al. 2006) gives recommended Pm values: at 3B spacing, Row 1 = 0.8, Row 2 = 0.4, Row 3+ = 0.3; at 5B spacing, Row 1 = 1.0, Row 2 = 0.85, Row 3+ = 0.7. Interpolation may be used between 3B and 5B. These Pm values apply regardless of foundation type, geomaterial, or loading condition. Pile spacing, group size, and group layout have the most significant effect on Pm — soil type, strength, and density have much less effect. Driven piles may have higher Pm than bored piles due to densification effects, but this is typically not credited in design without in-situ verification. P-multipliers are applicable only to p-y analysis; the Broms method does not apply to groups. The SWM approach can be used for group analysis by accounting for overlapping soil wedges, but the p-y method is preferred.",
+      "key_points": [
+        "Group efficiency Ge = Qg/(n*Qs); Ge ≤ 1.0 for closely spaced groups",
+        "P-multiplier Pm reduces p-y curves by row: leading row highest Pm, trailing rows progressively lower",
+        "Table 7-1: at 3B spacing, Pm = 0.8/0.4/0.3 (Rows 1/2/3+); at 5B, Pm = 1.0/0.85/0.7",
+        "Group spacing, size, and layout dominate Pm; soil type and density have secondary influence",
+        "Pm values are essentially constant for pile head deflections above about 3/4 inch",
+        "P-multipliers apply only to p-y method; Broms method is single-pile only"
+      ],
+      "equations": [
+        {
+          "equation_id": "7-1",
+          "description": "Group efficiency: ratio of group lateral resistance to sum of individual pile resistances",
+          "latex": "G_e = \\frac{Q_g}{n \\cdot Q_s}",
+          "variables": {
+            "G_e": "group efficiency (dimensionless, generally ≤ 1.0)",
+            "Q_g": "lateral load resistance of the group",
+            "n": "number of deep foundation elements in the group",
+            "Q_s": "lateral load resistance of a single foundation element in the group"
+          },
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure 7-2: Illustration of the p-multiplier concept",
+        "Figure 7-3: Illustration of the p-multiplier concept for rows of deep foundation elements in a group",
+        "Figure 7-4: P-multipliers as a function of lateral pile head deflection (after Rollins et al. 1998)",
+        "Figure 7-5: Loading direction and layout of deep foundation elements for p-multipliers in Table 7-1",
+        "Figure 7-6: Pile group interaction in the SWM model (from Ashour et al. 2006)"
+      ],
+      "tables": [
+        "Table 7-1: P-multipliers for analysis of groups of deep foundation elements (from AASHTO 2014)"
+      ],
+      "applicability": "Groups of closely spaced deep foundations where pile-soil-pile interaction reduces lateral resistance; p-y method group analysis"
+    },
+    {
+      "section_id": "7.3",
+      "title": "Lateral Resistance Contribution of the Cap",
+      "summary": "The pile cap can contribute 40 to 50 percent or more of total lateral resistance through passive pressure on the cap front and shear resistance on cap sides. However, cap resistance is often disregarded due to risks of soil separation, scour, settlement-induced loss of contact, frost action, and backfill quality uncertainty. When relied upon, cap resistance requires iterative p-y and passive resistance analysis based on deformation compatibility. AASHTO permits but does not detail this approach.",
+      "body": "Studies (Beatty 1970; Kim and Singh 1974; Rollins et al. 2000; Zafir and Vanderpool 1998; Mokwa and Duncan 2001) indicate that the cap can provide 40 to 50 percent or more of the overall contribution to the lateral resistance of a group. The lateral resistance of the cap is generated by passive pressures on the cap front and shear resistances on the sides. Base resistance under the cap is often disregarded because separation between the cap base and soil is likely due to soil settlement. If scour or future excavations are likely to remove soil in front of the cap, passive and side resistance should not be relied upon. Soil shrinkage, frost action, or erosion may reduce contact between the cap and adjacent soil. Use of passive pressure and side shear requires verification of backfill placement and compaction. Based on Mokwa and Duncan (2001) and McVay et al. (1995), the lateral resistance depends primarily on: (1) passive resistance in front of the cap — a function of stiffness and strength of soil in front; and (2) depth of cap embedment — increasing cap thickness reduces lateral deflections at the same load. Analyzing cap contribution involves an iterative process between p-y analysis of piles and assessment of passive resistance-deformation relationships. Software programs are available that can account for cap resistance together with pile-soil-pile interaction. The log-spiral method provides the best agreement with measured passive resistance on caps; the Rankine method significantly underestimates, and the Coulomb method overestimates (Rollins et al. 2000; Duncan and Mokwa 2001).",
+      "key_points": [
+        "Cap can contribute 40-50% or more of total group lateral resistance via passive pressure and side shear",
+        "Cap resistance is often neglected due to scour, settlement, frost action, and backfill quality concerns",
+        "Increasing cap embedment depth increases lateral resistance and reduces deflection",
+        "Log-spiral method best estimates cap passive resistance; Rankine underestimates, Coulomb overestimates",
+        "Cap resistance analysis requires iterative approach — p-y analysis combined with passive resistance-deformation relationship"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Pile cap lateral resistance estimation for groups with embedded caps and reliable backfill"
+    },
+    {
+      "section_id": "7.4",
+      "title": "Analysis of Groups of Deep Foundation Elements",
+      "summary": "Group analysis options include: (1) individual pile p-y analysis with Pm applied per row, averaging results for group deflection — suitable for preliminary or non-critical designs; (2) a simplified weighted average Pm approach (Brown et al. 2010) with overstress allowance for maximum moment (1.2x at 3B, 1.15x at 4B, 1.05x at 5B); (3) elastic spring models; and (4) nonlinear group analysis software. The nonlinear solution using specialty software is the preferred approach for critical structures. FEM is capable but not cost-effective for routine analysis. Care must be exercised with software default p-multipliers, cap resistance methods, and treatment of downdrag.",
+      "body": "The p-y analysis method is the recommended method for analyzing deep foundations under lateral loading, particularly for long pile bending behavior. Several options exist. For simple design problems or preliminary designs, group effects can be accounted for by applying the p-multiplier as input to individual pile p-y analysis: (1) obtain factored lateral loads for each row; (2) develop p-y curves; (3) analyze each row with appropriate Pm from Table 7-1; (4) estimate group deflection from average of individual row responses divided by number of piles; (5) evaluate structural acceptability using maximum bending moment versus deflection plots. An alternative simpler approach uses a weighted average p-multiplier for all piles in the group (Brown et al. 2001; 2010), which captures overall group stiffness with sufficient accuracy. To account for higher moments in leading rows, an overstress allowance is applied: Mmax = 1.2 × Mmax,average at 3B spacing; 1.15 × at 4B spacing; 1.05 × at 5B spacing. All piles are then designed with the same structural section. For other structures, load distribution may be computed using: simple static equilibrium (determinate frames, weighted average Pm, vertical piles only); elastic solutions (pile springs with rigid cap assumption); or nonlinear computer programs. The nonlinear solution with specialty software is more widely used and accounts for cap effects including rotation about two orthogonal horizontal axes and one vertical axis. FEM programs can model the soil continuum and capture pile-soil-pile interaction but are generally not cost-effective for routine design. Software cautions: default p-multipliers may under-predict group effects (Rollins et al. 2000 found 35% error with default software values); p-y curves in group software may have fewer options than single-pile software; cap passive resistance methods vary in accuracy; settlement potential, downdrag, and elastic shortening may not be directly addressed.",
+      "key_points": [
+        "Individual pile analysis with Pm per row is acceptable for preliminary/non-critical structures",
+        "Weighted average Pm approach (Brown et al. 2010): apply overstress factor 1.2/1.15/1.05 at 3B/4B/5B",
+        "Nonlinear group software preferred for critical structures — captures cap rotation, pile cap effects",
+        "Default software p-multipliers may over-predict group resistance by ~35% (Rollins et al. 2000)",
+        "FEM can model group as continuum but generally not cost-effective for routine design",
+        "Group software may not address settlement, downdrag, and elastic shortening — check separately"
+      ],
+      "equations": [],
+      "figures": ["Figure 7-7: Load vs. pile head deflection and bending moment vs. deflection for group analysis using single pile p-y analysis"],
+      "tables": [],
+      "applicability": "Groups of deep foundations under lateral loading — from preliminary analysis to complex nonlinear group software"
+    },
+    {
+      "section_id": "7.5",
+      "title": "Use of Batter Piles",
+      "summary": "Batter piles resist lateral loads through the horizontal component of axial force. Typical batter angles are 1H:12V to 1H:3V. Batter piles are generally discouraged in seismic areas because higher stiffness amplifies seismic demand and ductility in compression is poor (Loma Prieta 1989). They should also be avoided where significant settlement or downdrag is expected. When used, the lateral resistance of outwardly battered piles (battered away from load direction) is the horizontal component of pile axial compression. For p-y analysis, batter piles use a modifying constant (0 to 2) that adjusts pult based on batter direction and angle.",
+      "body": "Batter piles are installed at angles typically 1H:12V to 1H:3V. Shallower inclinations are generally more difficult to construct and should be avoided. Batter piles are considered when large static lateral loads are expected or where structural rigidity is required. Driven piles and micropiles are commonly battered; battered drilled shafts are difficult to install and rarely used. Concerns regarding batter piles include: (1) higher stiffness increases seismic load demand and reduces ductility — batter piles were implicated in damage during the 1989 Loma Prieta earthquake (Hadjian et al. 1992); (2) settlement after installation increases bending moment along the pile length and can damage the pile — downdrag forces must be included in structural analysis if batter piles are used in settling ground; (3) higher installation cost and inspection requirements; (4) potential interference with adjacent foundations, utilities, and temporary works. The lateral load resistance from a batter pile comes from the horizontal component of axial load when the pile is battered outward (away from the applied lateral load). If the pile is battered inward (toward the load), the horizontal component reduces lateral resistance. The analysis procedure for batter pile groups: (1) determine axial load at each pile from the vertical load and batter angle; (2) sum horizontal components of outward batter pile axial loads; (3) if the sum is less than the applied lateral load, the remaining load must be resisted by bending through p-y analysis. The recommended design sequence is: design vertical piles first; add batter piles only if vertical piles are insufficient. For p-y analysis of batter piles, a modifying constant (0 to 2) adjusts pult: values 0 to 1 for piles inclined toward the load (increases resistance); values 1 to 2 for piles inclined away from the load (decreases resistance). The modifying constant is shown in Figure 7-9 and is incorporated in most p-y software programs.",
+      "key_points": [
+        "Batter piles resist lateral loads through horizontal component of axial force; typical batter 1H:12V to 1H:3V",
+        "Batter piles generally discouraged in seismic areas — higher stiffness amplifies demand, poor ductility in compression",
+        "Settlement and downdrag cause additional bending moments in batter piles; downdrag must be included in design",
+        "Design sequence: design vertical piles first; add batter piles only if vertical piles are insufficient",
+        "P-y analysis uses modifying constant (0–2) for pult: 0–1 for pile inclined toward load, 1–2 away from load"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-8: Variation of foundation response for vertical and batter piles (modified from Wilson et al. 2006)",
+        "Figure 7-9: Modifying constant for p-y curves for batter piles (from Reese et al. 1974)"
+      ],
+      "tables": [],
+      "applicability": "Foundation groups incorporating batter piles for lateral load resistance; should be avoided in seismic areas and where significant settlement is expected"
+    },
+    {
+      "section_id": "7.6",
+      "title": "Other Considerations for Groups of Deep Foundation Elements",
+      "summary": "Group analysis must also address axial design, vertical resistance, group bearing capacity, block failure potential, settlement and downdrag effects, and minimum spacing for constructability. Minimum center-to-center spacing of 3B (or 3 ft minimum) is recommended. Pile driving in cohesive soils may cause heave and excess pore pressure; cohesionless soils may settle. Detailed guidance on axial group design is in Brown et al. (2010) and Hannigan et al. (2016).",
+      "body": "Analysis of deep foundation groups must address aspects beyond lateral loading, including: axial design of individual foundation elements; vertical resistance of the group; potential for group block failure; group bearing resistance and settlement; axial uplift or tension design. Settlement may cause loss of contact between ground and pile cap, reducing cap lateral resistance and potentially introducing downdrag forces. Spacing between deep foundation elements must consider both interaction and constructability. A minimum center-to-center spacing of 3 pile/shaft diameters, with a minimum of 3 feet, is recommended to provide more efficient pile group resistance and reduce constructability issues. Driving piles in cohesionless soils may cause settlement in the area immediately around the pile; in cohesive soils, driving may result in heave of the surrounding ground and previously installed piles, or cause excess pore pressure build-up and a short-term decrease in group axial and lateral efficiency. A wider spacing reduces pile-soil-pile interaction from the standpoint of lateral load resistance and reduces construction impacts between foundation elements.",
+      "key_points": [
+        "Minimum spacing 3B (or 3 ft) center-to-center for group efficiency and constructability",
+        "Settlement under cap reduces cap lateral resistance and may induce downdrag forces",
+        "Pile driving in clays may cause heave and excess pore pressure, temporarily reducing group capacity",
+        "Axial group design (block failure, settlement, bearing resistance) is outside lateral analysis scope — see Brown et al. 2010 and Hannigan et al. 2016"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Group deep foundation design — constructability spacing, settlement effects, and axial group considerations"
+    }
+  ]
+}

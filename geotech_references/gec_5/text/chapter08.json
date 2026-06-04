@@ -1,0 +1,78 @@
+{
+  "reference_id": "FHWA NHI-16-072",
+  "reference_title": "Geotechnical Site Characterization",
+  "chapter": 8,
+  "chapter_title": "Measurement and Interpretation of Stress-Strain and Stiffness Properties",
+  "sections": [
+    {
+      "section_id": "8.1-8.5",
+      "title": "Uses and Measurement of Small-Strain Stiffness",
+      "summary": "Stiffness properties are used for settlement of shallow foundations on sands (Schmertmann 1970), deflection analysis, dynamic analysis (site amplification, liquefaction), pavement design (subgrade modulus), and p-y analysis of laterally loaded piles. Small-strain shear modulus Gmax is the upper bound; Gmax = ρVs² where Vs = shear wave velocity. Gmax from in situ seismic tests: crosshole (ASTM D4428), downhole, seismic CPT (SCPT), suspension logging, and surface wave methods (MASW, passive arrays). MASW resolves Vs profiles to ~30 m depth. Vs30 (average Vs in upper 30 m) is the AASHTO/IBC site classification parameter.",
+      "body": "Uses for stiffness properties: (1) settlement analysis for shallow foundations on sands and granular soils; (2) deflection analysis of structures; (3) dynamic analysis — site response, liquefaction assessment, and site amplification (Vs30 for site classification); (4) pavement subgrade modulus; (5) p-y analysis for laterally loaded piles; (6) evaluation of ground vibrations.\n\nSmall-strain stiffness (Gmax): Maximum shear stiffness at very small strains (<0.001%). Gmax = ρ × Vs² where Vs = shear wave velocity and ρ = mass density. Shear wave velocity Vs is the most direct measurement of Gmax. Also expressed as Emax = 2(1+ν) × Gmax where ν = Poisson's ratio (~0.2–0.35 for most soils).\n\nIn situ seismic methods: (1) Crosshole test (ASTM D4428): Source and receivers in separate boreholes at same depth; measures Vs and Vp at specific depths; most accurate but requires ≥2 boreholes. (2) Downhole test: Single borehole receiver, surface source; multiple depths. (3) Seismic CPT (SCPT): Seismic source at surface, geophone in CPT module; provides Vs profile with each push. (4) Suspension logging: Borehole probe with source and receivers; good for deep profiles. (5) Surface wave methods: MASW (Multichannel Analysis of Surface Waves) — active source at surface; resolves Vs profile to ~30 m; no boreholes required. Passive methods (ReMi, SPAC) extend to greater depths. Vs30 = average Vs in upper 30 m per AASHTO/IBC site class.",
+      "key_points": [
+        "Gmax = ρVs²; Vs from seismic testing is the most reliable measurement of Gmax",
+        "Vs30 (average Vs in upper 30 m) is AASHTO/IBC site classification parameter for seismic site class",
+        "MASW: surface wave method; no boreholes needed; depth to ~30 m; passive methods extend deeper",
+        "Crosshole test (ASTM D4428): most accurate in situ Vs measurement; requires ≥2 boreholes"
+      ],
+      "equations": [
+        {
+          "equation_id": "8-Gmax",
+          "description": "Maximum small-strain shear modulus from shear wave velocity",
+          "latex": "G_{max} = \\rho V_s^2",
+          "variables": {
+            "G_max": "maximum small-strain shear modulus",
+            "rho": "mass density of soil = γ/g",
+            "V_s": "shear wave velocity"
+          },
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure 8-4: Common intrusive methods to measure small-strain velocity: crosshole, downhole, seismic CPT, suspension logging",
+        "Figure 8-6: General testing arrangement for refraction surveys"
+      ],
+      "tables": [],
+      "applicability": "In situ seismic testing for small-strain shear modulus measurement"
+    },
+    {
+      "section_id": "8.6-8.9",
+      "title": "Gmax Correlations and Modulus Degradation",
+      "summary": "Gmax from laboratory and indirect methods: resonant column (RC) and torsional shear (TS) tests measure small-strain Gmax and modulus reduction curves. Hardin-Richart (1963): Gmax = A × F(e) × σ'm^n (Eq 8.7) for coarse-grained soils. Gmax from SPT N60: Imai and Tonouchi (1982) Gmax = 325 × N60^0.68 (kPa, sand); Table 8-6. Gmax from CPT/CPTU: various correlations in Table 8-7/8-8. Modulus reduction at working strains: G/Gmax vs. shear strain curve; Es for shallow foundation settlement from G/Gmax. Pressuremeter: Ep = 2(1+ν) × Vo × (ΔP/ΔV). Constrained modulus M from CPT: M = α × qc (Table 10-11 for α).",
+      "body": "Laboratory measurement of Gmax: Resonant column (RC) test and torsional shear (TS) test measure Gmax at very small strains and modulus reduction curves at larger strains up to about 0.1%. Both require high quality undisturbed specimens.\n\nGmax correlation with stress and void ratio (Hardin and Richart 1963, Eq 8.7): Gmax = A × F(e) × σ'm^n where A = soil stiffness constant, F(e) = void ratio function, σ'm = mean effective stress, n = stress exponent. Table 8-2 provides A, F(e), and n for coarse-grained soils.\n\nGmax from SPT N60 (indirect, Table 8-6): Examples — Imai and Tonouchi (1982): Gmax = 325 × N60^0.68 (kPa, sand). Multiple alternative correlations available; all carry substantial uncertainty.\n\nGmax from CPT (indirect, Tables 8-7, 8-8): Various correlations relating Gmax and Vs to measured qt, fs, and σ'vo. From DMT: Gmax estimated from ED (dilatometer modulus) ratio, approximate only.\n\nModulus reduction: G/Gmax decreases from 1.0 at very small strains to near 0 at large strains. Working strains for most structures are typically 0.01–0.3%. Figure 8-15 shows recommended modulus degradation ratios. Design modulus Es = G/Gmax × 2(1+ν)/(1+ν/other) at appropriate strain level. Pressuremeter: Ep = 2(1+ν) × Vo × (ΔP/ΔV) over appropriate stress increment. DMT constrained modulus: MDMT = RM × ED where RM is a function of ID and KD (Marchetti 2001). p-y models: Table 8-13 lists common p-y models for lateral pile analysis.",
+      "key_points": [
+        "Hardin-Richart (1963): Gmax = A × F(e) × σ'm^n; Table 8-2 for coarse-grained soils",
+        "Gmax from SPT: substantial uncertainty; Imai and Tonouchi (1982) Gmax = 325N60^0.68 (kPa, sand)",
+        "Modulus degradation curve G/Gmax vs. strain; working strains for structures typically 0.01–0.3%",
+        "Pressuremeter modulus Ep = 2(1+ν) × Vo × (ΔP/ΔV)",
+        "Constrained modulus from CPT: M = α × qc; α from Table 10-11"
+      ],
+      "equations": [
+        {
+          "equation_id": "8-7",
+          "description": "Hardin-Richart relationship for maximum shear modulus of coarse-grained soils",
+          "latex": "G_{max} = A \\cdot F(e) \\cdot \\sigma_m'^n",
+          "variables": {
+            "G_max": "maximum small-strain shear modulus (kPa)",
+            "A": "soil stiffness constant (from Table 8-2)",
+            "F_e": "void ratio function (from Table 8-2)",
+            "sigma_m_prime": "mean effective stress = (σ'v + 2σ'h)/3 (kPa)",
+            "n": "stress exponent ≈ 0.5 for most soils (from Table 8-2)"
+          },
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure 8-12: Gmax/ED ratio for estimating Gmax from DMT",
+        "Figure 8-15: Recommended modulus degradation ratio for intact clays and uncemented sands"
+      ],
+      "tables": [
+        "Table 8-2: Values of A, F(e), and n for coarse-grained soils (modified from Kokusho 1987)",
+        "Table 8-6: Transformations between Gmax and SPT N60-values",
+        "Table 8-7 and 8-8: Transformations between Gmax/Vs and CPT measurements",
+        "Table 8-13: Common p-y models for different soil or rock conditions"
+      ],
+      "applicability": "Gmax estimation from correlations and modulus reduction for settlement and stiffness analysis"
+    }
+  ]
+}

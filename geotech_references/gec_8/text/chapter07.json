@@ -1,0 +1,73 @@
+{
+  "reference_id": "FHWA-HIF-07-03",
+  "reference_title": "Design and Construction of Continuous Flight Auger Piles",
+  "chapter": 7,
+  "chapter_title": "Quality Control (QC) / Quality Assurance (QA) Procedures",
+  "sections": [
+    {
+      "section_id": "7.2-7.3",
+      "title": "Inspector Role and Pre-Construction Planning",
+      "summary": "The inspector is the owner's representative for ensuring CFA piles are installed correctly. Required records include: pile location and plumbness, ground surface elevation, tip depth/elevation, grout/concrete top depth, pile length, auger diameter, reinforcing details, and automated monitoring data (auger tip depth, grout volume, grout pressure at ≤0.6 m (2 ft) increments). Pre-construction planning covers owner-supplied information, contractor experience verification, design submittals, pile installation plan, and testing plan. Pile installation plan must specify drilling rig, auger type, target drilling/grouting parameters with acceptable ranges.",
+      "body": "Role of the inspector: The inspector is the owner's representative and must understand CFA pile construction well enough to identify problems during installation. Key inspection records to maintain: (1) pile location and plumbness; (2) ground surface elevation; (3) pile toe depth/elevation; (4) depth/elevation of top of grout/concrete; (5) pile length; (6) auger diameter; (7) reinforcing steel details; (8) automated monitoring data — average maximum and minimum pump stroke pressures at ground level for every 0.6 m (2 ft) of pile placed.\n\nPre-construction planning: Owner must supply information on subsurface conditions, design plans, structural loads, and project requirements. Contractor experience requirements must be verified before the project begins. Design submittals include design calculations and working drawings for contractor-designed systems. Pile installation plan must specify: (a) drilling rig type, model, and capabilities; (b) auger type and size; (c) grout/concrete mix design; (d) target drilling and grouting parameters with acceptable ranges (rotation speed, penetration rates, torque, crowd, grout pressure, grout volume factor); (e) reinforcement placement method and support; (f) automated monitoring system description. Testing plan must address pre-production static load tests and conformance/verification tests during production.",
+      "key_points": [
+        "Inspector records: pile location, plumbness, tip/top elevations, auger dia., rebar details, automated monitoring data",
+        "Automated monitoring records grout volume and pressure every ≤0.6 m (2 ft) of pile installed",
+        "Pile installation plan: rig type/capability, auger, mix design, target drilling/grouting parameters with ranges",
+        "Contractor experience verification required before work begins",
+        "Testing plan: pre-production static load tests + conformance/verification tests during production"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Inspector responsibilities and pre-construction planning for CFA pile projects"
+    },
+    {
+      "section_id": "7.4",
+      "title": "Performance Monitoring and Control During Construction",
+      "summary": "Automated monitoring is required for transportation projects — manual observation alone is insufficient. Drilling phase: monitor rotation speed, penetration rate, torque, and crowd to control soil mining. Grouting phase: automated systems record auger tip depth, grout volume (in-line flowmeter preferred), and grout pressure vs. depth. Grout volume factor must exceed 1.0 continuously; target 1.15–1.20. Inspector observes grout return at surface; pile flushed to grade. Rebar placed by gravity immediately after auger withdrawal; not vibrated unless permitted.",
+      "body": "Drilling phase: The inspector and operator should observe penetration rate and rotation speed. Excessive flighting is indicated by soil appearance at the surface earlier than expected or by excessive rotation relative to penetration. Automated monitoring systems record: (a) depth of auger tip (from depth encoder on crane boom or computer system); (b) rotation (if rotated during grouting); (c) grout/concrete volume (in-line flowmeter, Figure 7.3); (d) grout/concrete pressure (pressure transducers, Figure 7.4). These are recorded and plotted as a function of depth. A cab-mounted or inspector-accessible display panel allows real-time monitoring.\n\nGrouting/concreting phase: Minimum grout/concrete factor (volume delivered/theoretical pile volume) must exceed 1.0 at all times during withdrawal; target is approximately 1.15–1.20. Simple manual observations (grout hose appearance, pump stroke count) are not adequate for transportation projects — automated systems are mandatory. Manual observations can serve as a backup check.\n\nPile top completion: Inspector must observe grout/concrete return at the ground surface and confirm that the pile is flushed to the working platform elevation. Any soil contamination or debris must be removed. Use of a top form is required on public projects.\n\nReinforcing cage placement: Reinforcement is lowered by gravity into the fluid grout. Not to be driven, hammered, or vibrated unless specifically permitted; vibration permitted only for fully welded cages. Cage must be installed before grout/concrete loses workability.",
+      "key_points": [
+        "Automated monitoring mandatory for transportation projects — manual observation not sufficient",
+        "Automated system records: auger tip depth, grout volume (in-line flowmeter), grout pressure vs. depth",
+        "Grout volume factor must exceed 1.0 continuously; target 1.15–1.20 (15–20% overrun)",
+        "Grout/concrete pressure must remain positive throughout auger withdrawal",
+        "Inspector observes grout return at surface; top form required on public projects",
+        "Rebar placed by gravity immediately after auger withdrawal; vibration only for fully welded cages"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7.1: Cab-mounted display and monitoring parameters for CFA pile installation",
+        "Figure 7.2: Depth Encoder Mounted on Crane Boom",
+        "Figure 7.3: In-line Flowmeter",
+        "Figure 7.4: Pressure Sensors on Hydraulics to Monitor Rig Forces",
+        "Figure 7.5: Display panel for inspector outside cab",
+        "Figure 7.9: Placement of Reinforcing Cage with Plastic Spacers"
+      ],
+      "tables": [],
+      "applicability": "Real-time monitoring and control requirements during CFA pile drilling, grouting, and reinforcement installation"
+    },
+    {
+      "section_id": "7.5-7.6",
+      "title": "Post-Construction Integrity Testing and Load Testing",
+      "summary": "Integrity testing supplements installation monitoring. Surface methods: sonic echo (SE/IR) test — simple, economical, no downhole access required; effective for depth-to-diameter ratio ≤ 30. Downhole methods: cross-hole sonic logging (CSL), single-hole sonic logging (SSL), and gamma-gamma (backscatter) tests — more reliable for identifying anomalies but require pre-installed access tubes. Load testing: static axial compression tests most common; rapid load tests (Statnamic) and dynamic load tests (drop hammer) used for verification testing. Pre-production tests calibrate production criteria; verification tests confirm production piles meet design requirements.",
+      "body": "Post-construction integrity testing: Surface methods — sonic echo (SE) test evaluates pile length and identifies major anomalies without internal instrumentation. Rapid, inexpensive, no pre-installed tubes. Limitation: pile length-to-diameter ratio > 30 limits effectiveness due to signal attenuation. Also cannot reliably find anomalies in the upper portion of the pile. Downhole methods — cross-hole sonic logging (CSL) is most reliable: access tubes pre-installed on rebar cage, sonic signal transmitted between tubes. Single-hole sonic logging (SSL) uses one tube. Gamma-gamma (backscatter) test also uses downhole tubes. Downhole methods require pre-installed access tubes, which are not practical for every production pile but are used for high-importance or suspected problem piles.\n\nLoad testing: Axial compressive load tests are most common. Rapid load tests (RLT, e.g., Statnamic) and dynamic load tests (DLT, e.g., drop hammer) can test a large number of piles efficiently and cost-effectively. Calibrating RLT or DLT results with static load tests during the pre-production test program is recommended unless comparison tests are available from similar geologic conditions. Multiple load cycles on CFA piles may result in increased stiffness in subsequent cycles — the order of RLT/DLT vs. static tests on the same pile can affect results. Pre-production load tests establish target drilling and grouting parameters for production. Conformance/verification tests (performed on a fraction of production piles) confirm that required performance is being achieved.",
+      "key_points": [
+        "Sonic echo (SE) test: rapid, no instrumentation required; limited to pile L/D ≤ 30",
+        "CSL (cross-hole sonic logging): most reliable downhole method; requires pre-installed access tubes",
+        "Downhole tubes not practical for every pile; used for high-importance or suspected-problem elements",
+        "Static load tests most common; RLT (Statnamic) and DLT (drop hammer) used for efficient production verification",
+        "Calibrate RLT/DLT with static load tests during pre-production program",
+        "Multiple load cycles on CFA piles increase stiffness — test sequence matters when comparing RLT vs. static"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7.11: Sonic echo test concept",
+        "Figure 7.13: Downhole Single-Hole Sonic Logging (SSL) Concept",
+        "Figure 7.14: Gamma-Gamma Testing Via Downhole Tube",
+        "Figure 7.15: Static load test setup on CFA piles"
+      ],
+      "tables": [],
+      "applicability": "Post-installation integrity testing and load testing program for CFA pile quality assurance"
+    }
+  ]
+}

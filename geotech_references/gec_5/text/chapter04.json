@@ -1,0 +1,189 @@
+{
+  "reference_id": "FHWA NHI-16-072",
+  "reference_title": "Geotechnical Site Characterization",
+  "chapter": 4,
+  "chapter_title": "Identification and Classification of Soil and Rock",
+  "sections": [
+    {
+      "section_id": "4.1-4.10",
+      "title": "Soil Index Properties",
+      "summary": "Key soil index properties: grain-size distribution (Cu = D60/D10, Cc = D30²/(D10×D60); percent fines = % passing #200 sieve); water content (wn 0–20% for sands, 10–40%+ for clays/silts); unit weight (γt, γd, γsat); Atterberg limits (LL, PL, PI = LL-PL, LI = (wn-PL)/PI, Activity = PI/CF). Organic content: high water retention, high compressibility, possible high corrosion. Carbonate: may act as cementing agent. Clay mineralogy influences: SSA, surface charge, and cation exchange capacity; Activity 0.4 (kaolinite) to 8+ (montmorillonite).",
+      "body": "Grain-size distribution: Measured by sieve analysis (coarse-grained) and hydrometer (fine-grained per ASTM D7928/formerly D422). Coefficient of uniformity Cu = D60/D10; coefficient of curvature Cc = D30²/(D10 × D60). Well-graded soils have Cu ≥ 4 (gravels) or ≥ 6 (sands) and 1 ≤ Cc ≤ 3. Percent fines = % passing #200 sieve.\n\nWater content: wn = mw/ms. Sands: 0–20%; silts and inorganic clays: 10–40%; soft and sensitive clays, organic soils: wn can exceed 100%.\n\nUnit weight: γt = Wt/V; γd = Ws/V; γt = γd(1+wn). Specific gravity Gs for most soils is 2.6–2.8 (AASHTO T100, ASTM D854).\n\nAtterberg limits: LL per AASHTO T89/ASTM D4318 (Casagrande cup: water content at 25 blows) or fall cone (British standard; 20 mm penetration at LL). PL per AASHTO T90/ASTM D4318 (thread method: crumbles at 3.2 mm diameter). PI = LL - PL (Eq 4.12). LI = (wn - PL)/PI (Eq 4.13).\n\nActivity (Eq 4.16): A = PI/CF where CF = clay-size fraction (% < 0.002 mm). Activity ranges: 0.4 (kaolinite), 0.9 (illite), 7–8+ (montmorillonite). High activity = high swelling potential.\n\nClay mineralogy characterization: X-ray diffraction (XRD) identifies minerals from interatomic plane spacing. Specific surface area (SSA) distinguishes clay mineral types; SSA ranges: kaolinite 5–50 m²/g; illite 50–200 m²/g; montmorillonite 200–800 m²/g.\n\nCarbonate content: Calcium and calcium-magnesium carbonates can act as cementing agents. High carbonate soils or rocks may dissolve and create voids (karst hazard). Organic content: Organic soils have high water content, primary and secondary compressibility, and corrosion potential.",
+      "key_points": [
+        "Cu = D60/D10; Cc = D30²/(D10×D60); well-graded: Cu ≥ 4 (gravel) or ≥ 6 (sand), 1 ≤ Cc ≤ 3",
+        "PI = LL - PL; LI = (wn - PL)/PI; Activity = PI/CF (clay fraction < 0.002 mm)",
+        "Activity: 0.4 kaolinite → 0.9 illite → 7-8+ montmorillonite — indicator of swelling potential",
+        "SSA for clay mineral identification: kaolinite 5–50 m²/g; illite 50–200; montmorillonite 200–800",
+        "Organic soils: high wn (>100% possible), high compressibility, potential corrosion risk"
+      ],
+      "equations": [
+        {
+          "equation_id": "4-Cu",
+          "description": "Coefficient of uniformity for grain-size distribution",
+          "latex": "C_u = \\frac{D_{60}}{D_{10}}",
+          "variables": {
+            "C_u": "coefficient of uniformity",
+            "D_60": "grain size at 60% finer by mass",
+            "D_10": "grain size at 10% finer by mass (effective grain size)"
+          },
+          "implemented_in": null
+        },
+        {
+          "equation_id": "4-Cc",
+          "description": "Coefficient of curvature for grain-size distribution",
+          "latex": "C_c = \\frac{D_{30}^2}{D_{10} \\cdot D_{60}}",
+          "variables": {
+            "C_c": "coefficient of curvature",
+            "D_30": "grain size at 30% finer by mass",
+            "D_10": "grain size at 10% finer",
+            "D_60": "grain size at 60% finer"
+          },
+          "implemented_in": null
+        },
+        {
+          "equation_id": "4-12",
+          "description": "Plasticity index",
+          "latex": "PI = LL - PL",
+          "variables": {
+            "PI": "plasticity index",
+            "LL": "liquid limit",
+            "PL": "plastic limit"
+          },
+          "implemented_in": null
+        },
+        {
+          "equation_id": "4-13",
+          "description": "Liquidity index",
+          "latex": "LI = \\frac{w_n - PL}{PI}",
+          "variables": {
+            "LI": "liquidity index (LI < 0: overconsolidated; LI ≈ 1: soft/normally consolidated; LI > 1: sensitivity concern)",
+            "w_n": "in situ water content",
+            "PL": "plastic limit",
+            "PI": "plasticity index"
+          },
+          "implemented_in": null
+        },
+        {
+          "equation_id": "4-16",
+          "description": "Activity of clay soil",
+          "latex": "A = \\frac{PI}{CF}",
+          "variables": {
+            "A": "activity (0.4 = kaolinite; 0.9 = illite; 7-8+ = montmorillonite)",
+            "PI": "plasticity index",
+            "CF": "clay fraction — percent of particles finer than 0.002 mm by dry mass"
+          },
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure 4-1: Grain-size distribution curves",
+        "Figure 4-5: Casagrande cup device for liquid limit",
+        "Figure 4-7: Fall cone device for liquid limit (British standard)"
+      ],
+      "tables": [
+        "Table 4-10: Field evaluation of rock hardness descriptions"
+      ],
+      "applicability": "Index property measurement and interpretation for soil classification and preliminary design parameter estimation"
+    },
+    {
+      "section_id": "4.16-4.17",
+      "title": "Soil Classification Systems and In Situ Identification",
+      "summary": "USCS (ASTM D2487): primary designation G/S/M/C/O/Pt; based on >50% #200 (fine-grained) or <50% (coarse); secondary from Cu, Cc (coarse) or Casagrande plasticity chart (fine). AASHTO (ASTM D3282): A-1 to A-8; Group Index from gradation and Atterberg limits. CPT soil behavior type (SBT): original Robertson et al. (1986) chart uses qc and friction ratio Rf = fs/qc × 100%; normalized SBTn uses Q and F. Ic-RW = √[(3.47-logQ)² + (logF+1.22)²] (Eq 4.28); Ic > 2.6 indicates fine-grained. DMT material index ID = (p1-p0)/(p0-u0) distinguishes soft cohesive to dense sand.",
+      "body": "USCS classification: Based on grain-size analysis and Atterberg limits. Primary symbol based on >50% passing #200 (fine-grained) or <50% (coarse). For coarse-grained soils, secondary designation from Cu and Cc (W = well-graded, P = poorly graded). For fine-grained soils, secondary designation from Casagrande Plasticity Chart: L or H plasticity, C (clay) or M (silt) based on position relative to A-line.\n\nAASHTO classification (ASTM D3282): Groups A-1 through A-8. Group Index (Eq 4.22): GI = (F-35)[0.2+0.005(LL-40)] + 0.01(F-15)(PI-10), where F = percent passing #200. GI ranges from 0 (good subgrade) to 20+ (very poor).\n\nTable 4-14: Approximate comparison between USCS and AASHTO systems.\n\nCPT soil behavior type (SBT): Robertson et al. (1986) chart uses qc (tip resistance) and Rf = fs/qc × 100% (friction ratio) — Eq 4.24. Updated Robertson (2010) uses normalized qt and F. Soil behavior type index (Robertson and Wride 1998, Eq 4.28): Ic-RW = √[(3.47-logQ)² + (logF+1.22)²] where Q = (qt-σvo)/σ'vo and F = fs/(qt-σvo)×100%. Ic > 2.6 generally indicates fine-grained behavior; Ic < 2.6 indicates coarse-grained. Extended per Robertson (2010) as Ic-JB for normalized CPTU.\n\nCPT corrected cone resistance: qt = qc + u2(1-a) (Eq 4.23) where a = net area ratio from calibration.\n\nDMT material index: ID = (p1-p0)/(p0-u0). ID < 0.1 = soft clay; 0.1–0.35 = clay; 0.35–0.9 = silty clay/clayey silt; 0.9–1.8 = silt; 1.8–3.3 = sandy silt/silty sand; >3.3 = sand.",
+      "key_points": [
+        "USCS (ASTM D2487): G/S (coarse, >50% retained #200); M/C (fine, >50% passing #200); W/P from Cu/Cc",
+        "AASHTO Group Index: GI from F (% passing #200), LL, PI; higher GI = worse subgrade material",
+        "CPT friction ratio: Rf = fs/qc × 100%; lower Rf = granular; higher Rf = cohesive",
+        "Ic-RW = √[(3.47-logQ)² + (logF+1.22)²]; Ic > 2.6 = fine-grained; Ic < 2.6 = coarse-grained",
+        "DMT material index ID: < 0.35 = clay; 0.35–1.8 = silt/mixed; > 1.8 = sand"
+      ],
+      "equations": [
+        {
+          "equation_id": "4-23",
+          "description": "CPT corrected total cone tip resistance accounting for unequal end areas",
+          "latex": "q_t = q_c + u_2(1 - a)",
+          "variables": {
+            "q_t": "corrected total cone tip resistance",
+            "q_c": "measured cone tip resistance",
+            "u_2": "pore water pressure measured at the shoulder (u2 position)",
+            "a": "net area ratio from calibration"
+          },
+          "implemented_in": null
+        },
+        {
+          "equation_id": "4-24",
+          "description": "CPT friction ratio for soil behavior type identification",
+          "latex": "R_f = \\frac{f_s}{q_c} \\times 100\\%",
+          "variables": {
+            "R_f": "friction ratio (%); low Rf (< 1%) = granular; high Rf (> 3%) = cohesive",
+            "f_s": "sleeve friction resistance",
+            "q_c": "cone tip resistance"
+          },
+          "implemented_in": null
+        },
+        {
+          "equation_id": "4-28",
+          "description": "CPT soil behavior type index (Robertson and Wride 1998)",
+          "latex": "I_{c-RW} = \\sqrt{(3.47 - \\log Q)^2 + (\\log F + 1.22)^2}",
+          "variables": {
+            "I_c_RW": "soil behavior type index; Ic > 2.6 = fine-grained; Ic < 2.6 = coarse-grained",
+            "Q": "normalized tip resistance = (qt - σvo) / σ'vo",
+            "F": "normalized friction ratio = fs / (qt - σvo) × 100%"
+          },
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure 4-9: Flow chart for soil classification tasks",
+        "Figure 4-11: Casagrande Plasticity Chart for USCS fine-grained soil classification",
+        "Figure 4-12: AASHTO soil classifications for fine-grained soils",
+        "Figure 4-13: Subsurface profile from CPT measurements",
+        "Figure 4-14: SBT charts for CPT: original Robertson et al. (1986) and updated Robertson (2010)",
+        "Figure 4-16: Normalized SBTn charts from Robertson (1990)",
+        "Figure 4-18: Use of SCPT to distinguish sand from clay",
+        "Figure 4-19: Approximate relationship between CPT Ic-RW and DMT ID"
+      ],
+      "tables": [
+        "Table 4-13: AASHTO soil classification system (from ASTM D3282 2015)",
+        "Table 4-14: Approximate comparison between USCS and AASHTO systems (Handy and Spangler 2007)",
+        "Table 4-15: Soil behavioral type designations for Robertson et al. (1986) chart",
+        "Table 4-16: Soil behavioral type designations for updated Robertson (2010) chart"
+      ],
+      "applicability": "Soil classification from laboratory tests and in situ tests (CPT, DMT) for site characterization"
+    },
+    {
+      "section_id": "4.15-4.19",
+      "title": "Rock Identification and Classification",
+      "summary": "RQD (ASTM D6032) = sum of pieces >100 mm / total core length × 100%; RQD 0–25 = very poor, 25–50 = poor, 50–75 = fair, 75–90 = good, 90–100 = excellent. Intact rock classified by type (igneous, sedimentary, metamorphic), mineralogy, texture (grain size), and relative strength (R0 extremely weak ~35–150 psi to R6 extremely strong >30,000 psi). Rock mass classification via RMR and GSI systems (Chapter 9). Automated drilling parameters (feed rate, penetration rate, thrust, torque, rotation speed) provide supplemental characterization but are not yet standard practice.",
+      "body": "Rock quality designation (RQD): Developed by Deere and Deere (1988). RQD = (Σ lengths of intact core pieces >100 mm) / total core length × 100% (ASTM D6032). RQD ratings: 0–25 Very Poor; 25–50 Poor; 50–75 Fair; 75–90 Good; 90–100 Excellent. RQD reflects degree of natural fracturing in rock mass.\n\nRock type classification: Three main types: (1) igneous — formed by solidification of molten material; classified by mineral composition and texture (intrusive vs. extrusive). Examples: granite/rhyolite; gabbro/basalt. (2) Sedimentary — deposited and lithified sediments; examples: sandstone, shale, limestone. (3) Metamorphic — formed by transformation under heat and pressure; examples: schist, gneiss, marble. Rock type tables: Table 4-19 (NRCS classification), Table 4-20 (igneous), Tables for sedimentary and metamorphic.\n\nGrain size descriptions: Very fine-grained (<0.075 mm), fine-grained (0.075–0.425 mm), medium-grained (0.425–2 mm), coarse-grained (2–10 mm), very coarse-grained (>10 mm) per Table 4-23.\n\nRelative strength: R0 Extremely Weak (35–150 psi, indented by thumbnail) through R6 Extremely Strong (>30,000 psi). Table 4-25. More detailed measurement by point load index or UCS tests in Chapter 9.\n\nDrilling parameters: Automated recording of fluid pressure, feed rate, penetration rate, thrust, torque, rotation speed as function of depth. Provides supplemental characterization not yet standard practice.",
+      "key_points": [
+        "RQD = (Σ pieces > 100 mm) / total core length × 100%; 0–25 very poor to 90–100 excellent",
+        "Rock types: igneous (solidified melt), sedimentary (deposited/lithified), metamorphic (transformed)",
+        "Relative strength R0 (35–150 psi, thumbnail) through R6 (>30,000 psi) — Table 4-25",
+        "Automated drilling parameters provide supplemental characterization but not yet standard practice"
+      ],
+      "equations": [
+        {
+          "equation_id": "4-RQD",
+          "description": "Rock Quality Designation (RQD) from core drilling (ASTM D6032)",
+          "latex": "RQD = \\frac{\\sum (\\text{lengths of intact core} > 100\\text{ mm})}{\\text{total core length}} \\times 100\\%",
+          "variables": {
+            "RQD": "Rock Quality Designation (%); 0–25 very poor; 25–50 poor; 50–75 fair; 75–90 good; 90–100 excellent",
+            "lengths of intact core > 100 mm": "sum of lengths of sound pieces of intact core greater than 100 mm"
+          },
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure 4-18: Use of SCPT to distinguish sand from clay (additional characterization from CPT)"
+      ],
+      "tables": [
+        "Table 4-19: Rock type classification (from NRCS 2012)",
+        "Table 4-20: Characteristics of common igneous rock",
+        "Table 4-23: Criteria for defining rock grain size",
+        "Table 4-25: Criteria and descriptions for relative rock strength (R0-R6)"
+      ],
+      "applicability": "Rock type identification, RQD calculation, and relative strength assessment from core drilling"
+    }
+  ]
+}

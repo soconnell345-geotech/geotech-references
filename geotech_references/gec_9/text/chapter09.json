@@ -1,0 +1,110 @@
+{
+  "reference_id": "FHWA-HIF-18-031",
+  "reference_title": "Design, Analysis, and Testing of Laterally Loaded Deep Foundations that Support Transportation Facilities",
+  "chapter": 9,
+  "chapter_title": "Design for Earth Retention Structures",
+  "sections": [
+    {
+      "section_id": "9.1",
+      "title": "Overview",
+      "summary": "Chapter 9 addresses non-gravity cantilevered walls with discrete vertical elements (drilled shafts, driven piles, or drilled-in piles) embedded below finish grade to provide passive resistance to retained earth. These top-down or soldier pile walls have center-to-center spacing of at least three effective diameters to avoid overlapping passive stress zones. Fascia lagging, precast panels, or temporary lagging with cast-in-place facing fills intervals between vertical elements. Continuous wall methods (secant or tangent pile walls) are addressed in Brown et al. (2010).",
+      "body": "This chapter is limited to non-gravity cantilevered walls with discrete vertical wall elements, such as drilled shafts, driven piles, or drilled-in piles, embedded below finish grade to provide passive resistance to retained earth. Often referred to as top-down walls, soldier pile walls, or beam and lagging walls, the supporting drilled shafts or piles are spaced center-to-center generally at least three effective diameters apart. Fascia lagging, precast concrete panels, or temporary lagging with a cast-in-place concrete facing is positioned in the interval between the above-grade portions of the vertical elements. Center-to-center spacing less than three diameters may result in overlapping passive stress influence between supporting elements. Methods of analysis for continuous vertical wall elements (secant pile or tangent pile walls) are discussed in Brown et al. (2010). Design covers determination of active earth pressure, embedment depth (geotechnical strength limit state), and evaluation of deflection (service limit state).",
+      "key_points": [
+        "Scope: non-gravity cantilevered walls with discrete vertical elements (soldier pile and lagging type)",
+        "Minimum spacing: 3 effective diameters center-to-center to avoid overlapping passive stress zones",
+        "Continuous walls (secant/tangent pile) are outside scope — see Brown et al. 2010",
+        "Design covers: active earth pressure → embedment depth (Strength LS) → deflection check (Service LS)"
+      ],
+      "equations": [],
+      "figures": ["Figure 9-1: Soldier pile wall"],
+      "tables": [],
+      "applicability": "Non-gravity cantilevered retaining walls with discrete vertical deep foundation elements at spacing ≥ 3 diameters"
+    },
+    {
+      "section_id": "9.2",
+      "title": "Earth Pressures",
+      "summary": "The unfactored resultant active earth pressure is Pa = Ka×γ'×l×H²/2 (Eq 9-1), acting at H/3 above design base grade. Coulomb Ka accounts for wall friction δ, backfill slope β, wall angle θ, and friction angle φ'f (Eqs 9-2, 9-3). Table 9-1 provides wall friction angles for mass concrete, steel piles, and precast concrete. In stiff clays and plastic silts, long-term pressures use effective stress strength. Active pressure in cohesive soils must not be less than 0.25 times effective overburden pressure or 0.035 ksf/ft of wall height.",
+      "body": "Prior to performing a p-y analysis for the discrete supporting elements, active earth pressures imposed above the base level of the fascia lagging or panels must be resolved into a resultant force, inclusive of any surcharge loads acting above the wall. AASHTO Section 3.11 describes the unfactored resultant active earth pressure Pa for design of permanent non-gravity cantilevered walls: Pa = (Ka×γ'×l×H²)/2 (Eq 9-1), acting at H/3 above the design base grade, where H = total wall height from panel or lagging base level, γ' = effective unit weight of retained soil, l = contributory length of wall relative to each vertical element (center-to-center spacing). The active earth pressure coefficient Ka is derived from Coulomb earth pressure theory including wall friction: Ka = sin²(θ+φ'f) / [sin²(θ)×sin(θ-δ)×r] (Eq 9-2), where r = [1 + √(sin(φ'f+δ)×sin(φ'f+β)/(sin(θ-δ)×sin(θ+β)))]² (Eq 9-3). Variables are: δ = friction angle between backfill and wall, β = angle of backfill with respect to horizontal, θ = angle of back face of wall to horizontal (normally 90°), φ'f = effective angle of internal friction of retained soil. Table 9-1 provides friction angle values from DM 7.02 (1986) for various interface materials. Some ground movement may be required to develop active earth pressure and realize the full benefit of wall friction; this depends on construction technique for the lagging or panels. Long-term earth pressures from stiff clays and plastic silts on permanent structures are governed by effective stress strength. For temporary cohesive soil walls, active pressure may be based on total stress (undrained) methods but shall not be less than 0.25 times effective overburden pressure at any depth, or 0.035 ksf/ft of wall height, whichever is greater (AASHTO 2014). If hydrostatic pressure behind the wall cannot be relieved, water pressure must be added to earth pressure with submerged unit weights.",
+      "key_points": [
+        "Pa = Ka×γ'×l×H²/2 acts at H/3 above base of lagging; l = center-to-center pile spacing (Eq 9-1)",
+        "Ka from Coulomb theory includes wall friction angle δ (Eq 9-2 and Eq 9-3)",
+        "Table 9-1: wall friction angles for mass concrete (17–35°), steel piles (11–22°), precast concrete (14–26°) against various soils",
+        "Stiff clay/plastic silt permanent walls: use effective stress strength for long-term conditions",
+        "Temporary cohesive soil walls: active pressure ≥ max(0.25×σ'v, 0.035 ksf/ft of wall height)"
+      ],
+      "equations": [
+        {
+          "equation_id": "9-1",
+          "description": "Resultant active earth pressure on non-gravity cantilevered wall per AASHTO Section 3.11",
+          "latex": "P_a = \\frac{K_a \\cdot \\gamma' \\cdot l \\cdot H^2}{2}",
+          "variables": {
+            "P_a": "resultant active earth pressure (force per vertical element)",
+            "K_a": "active earth pressure coefficient (Coulomb, from Eq 9-2)",
+            "gamma_prime": "effective unit weight of retained soil",
+            "l": "contributory length — center-to-center pile spacing",
+            "H": "total wall height from base of lagging/panel to top of retained earth"
+          },
+          "implemented_in": null
+        },
+        {
+          "equation_id": "9-2",
+          "description": "Coulomb active earth pressure coefficient including wall friction",
+          "latex": "K_a = \\frac{\\sin^2(\\theta + \\phi'_f)}{\\sin^2\\theta \\cdot \\sin(\\theta - \\delta) \\cdot r}",
+          "variables": {
+            "theta": "angle of back face of wall to horizontal (normally 90°)",
+            "phi_prime_f": "effective angle of internal friction of retained soil",
+            "delta": "friction angle between backfill and wall (from Table 9-1)",
+            "r": "denominator factor from Eq 9-3"
+          },
+          "implemented_in": null
+        },
+        {
+          "equation_id": "9-3",
+          "description": "Denominator factor r for Coulomb Ka calculation",
+          "latex": "r = \\left[1 + \\sqrt{\\frac{\\sin(\\phi'_f + \\delta)\\sin(\\phi'_f + \\beta)}{\\sin(\\theta - \\delta)\\sin(\\theta + \\beta)}}\\right]^2",
+          "variables": {
+            "phi_prime_f": "effective friction angle of retained soil",
+            "delta": "friction angle between backfill and wall",
+            "beta": "angle of backfill slope with respect to horizontal",
+            "theta": "angle of back face of wall to horizontal"
+          },
+          "implemented_in": null
+        }
+      ],
+      "figures": ["Figure 9-2: Geometry for active earth pressure"],
+      "tables": ["Table 9-1: Friction Angle for Dissimilar Materials (from DM 7.02, 1986)"],
+      "applicability": "Calculation of resultant active earth pressure for design of soldier pile and lagging walls"
+    },
+    {
+      "section_id": "9.3",
+      "title": "Determination of Embedment Depth",
+      "summary": "Embedment depth is determined by p-y analysis using either the direct application of the factored resultant active earth pressure or the equivalent shear and moment at the design grade level (bottom of lagging/panel fascia). Design grade for passive resistance is taken at the bottom of the fascia panel, below finish grade in front of the wall. A lower grade should be considered for utility trenching or other disturbance. The geotechnical resistance factor is φ = 0.75 for passive resistance per AASHTO 11.5.6-1. Limit equilibrium methods may also be used for embedment design.",
+      "body": "Once the resultant active earth pressure has been determined above the design grade level (base of lagging or panel fascia), p-y analysis software can be used to assess the embedment requirements for the vertical foundation elements. The factored resultant force can be applied directly on the pile/shaft or, depending on the program, resolved to an applied shear and moment at the design grade level. Design grade for passive resistance should be taken at the bottom of the fascia panel (below finish grade in front of the wall) to model the construction condition. A lower level should be considered to account for potential disturbance during the service life of the wall, such as trenching for installation of utilities. Limit equilibrium methods can also be used to assess embedment requirements. Following the design process in Chapter 5 (Block 9.1), the required embedment is determined from a geotechnical strength limit analysis for individual foundation elements using factored strength limit load combinations per AASHTO Section 3.4.1 and a geotechnical resistance factor φ = 0.75 for passive resistance of embedded vertical piles or drilled shafts per AASHTO 11.5.6-1.",
+      "key_points": [
+        "Apply factored resultant Pa directly in p-y analysis or resolve to equivalent shear and moment at design grade",
+        "Design grade for passive resistance = bottom of fascia panel; lower if utility trenching expected",
+        "Geotechnical resistance factor φ = 0.75 for passive resistance of embedded elements (AASHTO 11.5.6-1)",
+        "Limit equilibrium methods may also be used to assess embedment requirements"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Determination of required pile/shaft embedment depth for soldier pile and lagging retaining walls at Strength Limit State"
+    },
+    {
+      "section_id": "9.4",
+      "title": "Evaluation of Deformation",
+      "summary": "After embedment depth and structural strength are satisfied, Service Limit State load combinations per AASHTO Section 3.4.1 are used in p-y analysis to assess wall deflection. If the p-y analysis uses resolved shear and moment at design grade, computed lateral translation and angular distortion at design grade must be projected to the top of the wall to determine the overall wall deflection.",
+      "body": "After the pile or drilled shaft embedment and Structural Strength Limit State (Chapter 11) have been satisfied, service load combinations per AASHTO 3.4.1 are used in a p-y analysis to assess deflection (Block 9.3 of Chapter 5 design process). If the p-y analysis is performed based upon resolved shear and moment at the design grade elevation, the free-head lateral translation and angular distortion computed at the design grade level must be projected to the top of the wall to determine the wall deflection at the top.",
+      "key_points": [
+        "Service Limit State deflection check uses AASHTO 3.4.1 service load combinations in p-y analysis",
+        "If applying shear and moment at design grade: project lateral translation and rotation to wall top for total deflection",
+        "Structural Strength LS must be satisfied before evaluating service deflection"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Lateral deflection evaluation of soldier pile and lagging walls at Service Limit State"
+    }
+  ]
+}

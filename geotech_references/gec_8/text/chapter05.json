@@ -1,0 +1,245 @@
+{
+  "reference_id": "FHWA-HIF-07-03",
+  "reference_title": "Design and Construction of Continuous Flight Auger Piles",
+  "chapter": 5,
+  "chapter_title": "Evaluation of Static Capacity of Continuous Flight Augered Piles",
+  "sections": [
+    {
+      "section_id": "5.1",
+      "title": "Introduction",
+      "summary": "CFA pile static capacity falls between that of a drilled shaft and a driven pile due to the minimal lateral stress change during conventional CFA installation (similar to drilled shafts) versus the stress increase of DD piles (similar to driven piles). Methods developed for drilled shafts and driven piles can be adapted for CFA piles, with some modifications. Capacity estimates are always considered preliminary until validated by load tests; a well-designed load-testing program is a critical and necessary component of CFA pile design.",
+      "body": "In many respects, the static capacity of a well-constructed CFA pile can be considered to fall between that of a drilled shaft and a driven pile. Conventional CFA pile construction leaves the soil stresses near pre-construction values (similar to a drilled shaft), while DD pile construction increases stresses in the surrounding soil (similar to driven piles). It is reasonable to estimate static capacity of CFA piles using methods developed specifically for driven piles and drilled shafts. Some methods have been developed specifically for CFA piles, usually as modifications to drilled shaft or driven pile methods, with correlations to SPT blowcount, CPT tip resistance, and undrained shear strength.\n\nThe recommended methods (Section 5.3) were selected based on four comparison studies that evaluated multiple prediction methods against various CFA load-test databases. Appendix A contains a summary of those comparison studies. All static capacity computations should be considered as estimates to be validated and/or modified on a project-specific basis using load tests. The guide specification in Chapter 8 is performance-based: the contractor computes resistance, sets pile lengths, and verifies performance via load tests.",
+      "key_points": [
+        "Conventional CFA capacity: between drilled shaft and driven pile — minimal lateral stress change during installation",
+        "DD pile capacity: closer to driven pile — displacement increases lateral stress and densifies soil",
+        "Recommended methods (Section 5.3) selected from four comparison studies vs. CFA load-test databases",
+        "All capacity estimates are preliminary until validated by project-specific load tests — load testing is mandatory"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Framework for static axial capacity estimation of CFA and DD piles"
+    },
+    {
+      "section_id": "5.2-5.3",
+      "title": "Side-Shear and End-Bearing Capacity Methods",
+      "summary": "Total axial resistance RT = RS + RB. Side-shear is mobilized at pile tip displacements <10 mm; full end-bearing at ~5% of pile diameter. For cohesive soils, the recommended FHWA 1999 method uses fs = α×Su with α = 0.55 (Su/Pa ≤ 1.5) to 0.45 (Su/Pa = 2.5), and qp = N*c×Su. For cohesionless soils, fs = β×σ'v (β from SPT N and depth Z); qp = 0.6N60 tsf (N60 ≤ 75). The LPC/CPT method is recommended when CPT data are available: qp = 0.15qc (cohesive); qp = 0.375qc (cohesionless). For vuggy limestone and clay-shale, hyperbolic load-transfer models apply.",
+      "body": "Total capacity: RT = RS + RB (Eq 5.1). Side resistance: RS = Σ(fs,i × π × Di × Li) (Eq 5.2) summed over N pile segments; or RS = fs-ave × π × D × L (Eq 5.3) for methods using average unit side-shear. End-bearing: RB = qp × (π×DB²/4) (Eq 5.4). Side-shear is mobilized at <10 mm (0.4 in.) displacement; full end-bearing at ~5% of pile diameter tip movement.\n\nCohesive soils — FHWA 1999 (recommended): fs = α × Su (Eq 5.5). α = 0.55 for Su/Pa ≤ 1.5; interpolated 0.55→0.45 for 1.5 < Su/Pa ≤ 2.5 (Eq 5.6); Pa = atmospheric pressure ≈ 101 kPa (1 tsf). Neglect side-shear in bottom 1D and in top 1.5 m (5 ft) or depth of seasonal moisture change in clay. End-bearing: qp = N*c × Su (Eq 5.7) for L ≥ 3D; N*c = 9 for 200 kPa ≤ Su ≤ 250 kPa (Eq 5.8); N*c = (4/3)×ln(Ir + 1) for Su < 200 kPa (Eq 5.9); Ir = Es/(3Su) (Eq 5.10). Su > 250 kPa treated as intermediate geo-material.\n\nCohesionless soils — FHWA 1999 (recommended): fs = β × σ'v ≤ 200 kPa (Eq 5.17); 0.25 ≤ β ≤ 1.2. For N60 ≥ 15 bpf: β = 1.5 - 0.135√Z (Eq 5.19). For N60 < 15: β = (N60/15)(1.5 - 0.135√Z) (Eq 5.20); Z in feet. End-bearing: qp (tsf) = 0.6 × N60 for N60 ≤ 75 (Eq 5.20a); qp = 4.3 MPa (45 tsf) for N60 > 75 (Eq 5.20b). N60 averaged over 1D above to 2–3D below pile tip.\n\nCPT/LPC method (Bustamante and Gianeselli 1981/1982): recommended when CPT data available. qp = 0.15 × qc for cohesive soils (averaged over 2–3D below tip); qp = 0.375 × qc for cohesionless soils (Eq 5.21). Side-shear from figures (Figure 5.3 for clays; Figure 5.5 for sands).\n\nAlternative cohesive methods: Coleman and Arcement (2002) — α = 56.2/Su (kPa) or 56/Su (tsf); valid 25–150 kPa; derived from alluvial/loessial deposits in Mississippi and Louisiana. TXDOT 1971 — fs = 0.7 × Su ≤ 120 kPa; good for desiccated stiff clays.\n\nAlternative cohesionless methods: Coleman and Arcement — β = 2.27/Zm^0.67 (silty); β = 10.72/Zm^1.3 (sandy); Zm in meters; 0.2 ≤ β ≤ 2.5.\n\nOther geo-materials: Vuggy limestone (South Florida) — side resistance correlated to qu or N60; side-shear development follows hyperbolic model. Clay-shale (N-Central Texas) — hyperbolic model Q/Qult = (ρ/D)/[ρ50/D + (ρ/D)]; Qult = qu × πDL × (-0.11L/D + 0.96); ρ50/D correlated to qu/Patm.",
+      "key_points": [
+        "RT = RS + RB; RS = Σ(fs,i × π × Di × Li); RB = qp × πDB²/4",
+        "Side-shear mobilized at <10 mm; end-bearing at ~5% pile diameter tip displacement",
+        "Cohesive (FHWA 1999, recommended): fs = α×Su; α = 0.55 (Su/Pa ≤ 1.5); qp = N*c×Su",
+        "Cohesionless (FHWA 1999, recommended): fs = β×σ'v; β from SPT N and depth Z; qp = 0.6N60 tsf (N60 ≤ 75)",
+        "CPT/LPC (recommended when CPT available): qp = 0.15qc (clay); qp = 0.375qc (sand)",
+        "Coleman and Arcement (alternative for Mississippi/Louisiana alluvial): α = 56.2/Su(kPa)",
+        "Vuggy limestone and clay-shale: hyperbolic load-transfer models specific to regional deposits"
+      ],
+      "equations": [
+        {
+          "equation_id": "5-1",
+          "description": "Total axial resistance of a CFA pile as sum of side-shear and end-bearing",
+          "latex": "R_T = R_S + R_B",
+          "variables": {
+            "R_T": "total axial compressive resistance",
+            "R_S": "total side-shear resistance",
+            "R_B": "total end-bearing resistance"
+          },
+          "implemented_in": null
+        },
+        {
+          "equation_id": "5-2",
+          "description": "Total side-shear resistance as sum over pile segments",
+          "latex": "R_S = \\sum_{i=1}^{N} f_{s,i} \\cdot \\pi \\cdot D_i \\cdot L_i",
+          "variables": {
+            "f_{s,i}": "ultimate unit side-shear resistance of pile segment i (kPa)",
+            "D_i": "diameter of pile segment i (m)",
+            "L_i": "length of pile segment i (m)",
+            "N": "total number of pile segments"
+          },
+          "implemented_in": null
+        },
+        {
+          "equation_id": "5-4",
+          "description": "Total end-bearing resistance of CFA pile",
+          "latex": "R_B = q_p \\cdot \\frac{\\pi D_B^2}{4}",
+          "variables": {
+            "q_p": "ultimate unit end-bearing resistance (kPa)",
+            "D_B": "pile diameter at the base (m)"
+          },
+          "implemented_in": null
+        },
+        {
+          "equation_id": "5-5",
+          "description": "Unit side-shear resistance for CFA piles in cohesive soils — FHWA 1999 (recommended)",
+          "latex": "f_s = \\alpha \\cdot S_u",
+          "variables": {
+            "f_s": "ultimate unit side-shear resistance (kPa)",
+            "alpha": "adhesion factor: 0.55 for Su/Pa ≤ 1.5; linear interpolation 0.55→0.45 for 1.5 < Su/Pa ≤ 2.5",
+            "S_u": "undrained shear strength at pile segment location (kPa)",
+            "P_a": "atmospheric pressure ≈ 101 kPa (1 tsf)"
+          },
+          "implemented_in": null
+        },
+        {
+          "equation_id": "5-7",
+          "description": "Unit end-bearing resistance for CFA piles in cohesive soils — FHWA 1999 (recommended), for L ≥ 3D",
+          "latex": "q_p = N_c^* \\cdot S_u",
+          "variables": {
+            "q_p": "ultimate unit end-bearing resistance (kPa)",
+            "N_c_star": "bearing capacity factor: 9 for 200 kPa ≤ Su ≤ 250 kPa; (4/3)×ln(Ir+1) for Su < 200 kPa",
+            "S_u": "average undrained shear strength from pile tip to 2D below tip (kPa)",
+            "I_r": "rigidity index = Es/(3Su)"
+          },
+          "implemented_in": null
+        },
+        {
+          "equation_id": "5-17",
+          "description": "Unit side-shear resistance for CFA piles in cohesionless soils — FHWA 1999 (recommended)",
+          "latex": "f_s = \\beta \\cdot \\sigma'_v \\leq 200 \\text{ kPa}",
+          "variables": {
+            "beta": "lateral earth pressure factor × tan(phi); 0.25 ≤ β ≤ 1.2; from SPT N and depth Z",
+            "sigma_prime_v": "vertical effective stress at pile segment midpoint (kPa)"
+          },
+          "implemented_in": null
+        },
+        {
+          "equation_id": "5-19",
+          "description": "Beta factor for cohesionless soils (FHWA 1999) for N60 ≥ 15 bpf",
+          "latex": "\\beta = 1.5 - 0.135 \\sqrt{Z}",
+          "variables": {
+            "beta": "lateral earth pressure factor × tan(phi); 0.25 ≤ β ≤ 1.2",
+            "Z": "depth from ground surface to middle of pile segment (feet)"
+          },
+          "implemented_in": null
+        },
+        {
+          "equation_id": "5-20a",
+          "description": "Unit end-bearing resistance for CFA piles in cohesionless soils — FHWA 1999",
+          "latex": "q_p \\text{ (tsf)} = 0.6 \\cdot N_{60} \\quad (N_{60} \\leq 75)",
+          "variables": {
+            "q_p": "ultimate unit end-bearing resistance (tsf)",
+            "N_60": "SPT blowcount at 60% hammer efficiency near pile tip (average over 1D above to 2–3D below tip)"
+          },
+          "implemented_in": null
+        },
+        {
+          "equation_id": "5-DD-1",
+          "description": "Unit side-shear resistance for drilled displacement piles — NeSmith (2002)",
+          "latex": "f_s \\text{ (MPa)} = 0.005 \\cdot N + W_s \\quad (N \\leq 50)",
+          "variables": {
+            "f_s": "ultimate unit side-shear (MPa); limited to 0.16 MPa (rounded materials) or 0.21 MPa (angular well-graded)",
+            "N": "SPT blowcount (bpf)",
+            "W_s": "correlation constant: 0 for uniform rounded materials (≤40% fines); 0.05 MPa for well-graded angular (≤10% fines)"
+          },
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure 5.1: Load-displacement relationships for side-shear and end-bearing in cohesive and cohesionless soils",
+        "Figure 5.2: Alpha factor vs. Su for Coleman and Arcement (2002) method",
+        "Figure 5.3: Unit side-shear resistance as a function of cone tip resistance for cohesive soils (LPC method)",
+        "Figure 5.4: Beta factor vs. depth for FHWA 1999 and Coleman/Arcement methods",
+        "Figure 5.5: Unit side-shear resistance as a function of cone tip resistance for cohesionless soils (LPC method)"
+      ],
+      "tables": [
+        "Table 5.1: Relationship between undrained shear strength, rigidity index (Ir), and bearing capacity factor (N*c) — FHWA 1999 method",
+        "Table 5.2: Soil conditions investigated for drilled displacement piles (NeSmith 2002)"
+      ],
+      "applicability": "Static axial capacity prediction for CFA piles in cohesive soils, cohesionless soils, vuggy limestone, and clay-shale"
+    },
+    {
+      "section_id": "5.5",
+      "title": "Group Effects, Settlement, and Uplift",
+      "summary": "Group efficiency ηg = Rug/ΣRu,i. For CFA piles in cohesionless soils (AASHTO drilled shaft provisions): η = 0.65 at 2.5D spacing, η = 1.0 at 6D or more, linearly interpolated between. For DD pile groups, η ≈ driven pile groups. Group settlement uses equivalent footing method: elastic compression Δmax = Qmax×Lpile/(Apile×Epile); consolidation settlement via standard Cc/Cr equations. Uplift resistance equals downward side-shear without end-bearing; no reduction factor for cohesionless uplift from soil loads.",
+      "body": "Group efficiency: ηg = Rug / Σ(Ru,i) where Rug = ultimate resistance of the pile group and Ru,i = ultimate resistance of individual pile i. Conventional CFA piles in cohesionless soils: use AASHTO provisions for drilled shafts (AASHTO 10.8.3.9.3) — η = 0.65 at 2.5D spacing; η = 1.0 at 6.0D spacing; linearly interpolated between. In cohesive soils, the block failure mode must also be checked for groups where the block perimeter side shear plus block end-bearing is less than individual pile capacities. DD pile groups in cohesionless soils follow driven pile group recommendations. DD pile groups in cohesive soils: η = 1.0 for Su > 100 kPa or cap in firm contact with ground; η = 0.7 at 3D spacing for Su < 100 kPa with cap not in firm contact, linearly interpolated.\n\nSettlement: Use equivalent footing method for group settlement. Elastic compression of pile: Δmax = Qmax × Lpile / (Apile × Epile). Pile considered rigid if stiffness ratio SR ≤ 0.010 and elastic shortening is negligible. Consolidation settlement for normally consolidated cohesive soil: Si = H × [Cc/(1+eo)] × log[(po + Δp)/po]. For overconsolidated soil with po + Δp > pc: split into two terms using Cr and Cc.\n\nUplift: CFA piles behave essentially as drilled shafts in uplift. Uplift resistance computed using side-shear values (opposite sign) from recommended methods. No reduction factor for cohesionless soils when uplift is from soil loads (no reduction in effective stress expected). Reinforcement requirement governs maximum feasible uplift resistance.",
+      "key_points": [
+        "ηg = Rug / ΣRu,i; CFA piles in cohesionless soil: AASHTO drilled shaft provisions (η = 0.65 at 2.5D, 1.0 at 6D)",
+        "DD pile groups in cohesionless: follow driven pile group recommendations",
+        "DD pile groups in soft cohesive (Su < 100 kPa, cap not in contact): η = 0.7 at 3D, 1.0 at 6D",
+        "Elastic compression: Δmax = Qmax×Lpile/(Apile×Epile); pile rigid if SR ≤ 0.010",
+        "Group consolidation settlement: equivalent footing method with Cc/Cr",
+        "Uplift: same side-shear methods in reverse; no reduction factor for cohesionless soil uplift from soil loads"
+      ],
+      "equations": [
+        {
+          "equation_id": "5-group-eff",
+          "description": "Definition of pile group efficiency",
+          "latex": "\\eta_g = \\frac{R_{ug}}{\\sum_{i=1}^{n} R_{u,i}}",
+          "variables": {
+            "eta_g": "pile group efficiency",
+            "R_ug": "ultimate resistance of the pile group",
+            "R_{u,i}": "ultimate resistance of individual pile i",
+            "n": "number of piles in the group"
+          },
+          "implemented_in": null
+        },
+        {
+          "equation_id": "5-elastic-comp",
+          "description": "Maximum elastic compression of a pile under load",
+          "latex": "\\Delta_{max} = \\frac{Q_{max} \\cdot L_{pile}}{A_{pile} \\cdot E_{pile}}",
+          "variables": {
+            "Delta_max": "maximum elastic compression of the pile",
+            "Q_max": "maximum axial load in the pile",
+            "L_pile": "pile embedment length",
+            "A_pile": "cross-sectional area of the pile",
+            "E_pile": "elastic modulus of the pile material"
+          },
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure 5.17: Overlapping zones of influence in a frictional pile group",
+        "Figure 5.21: Equivalent footing concept for pile groups",
+        "Figure 5.22: Pressure distribution below equivalent footing for pile group (four cases)"
+      ],
+      "tables": [
+        "Table 5.3: Efficiency for model drilled shafts spaced 3D center-to-center in various group configurations in clayey sand (Senna et al. 1993)"
+      ],
+      "applicability": "Pile group axial efficiency, settlement, and uplift for CFA and DD pile groups"
+    },
+    {
+      "section_id": "5.6",
+      "title": "Lateral Resistance and Structural Capacity",
+      "summary": "CFA pile lateral resistance is analyzed by the p-y method (Winkler spring model), using the same p-y curve formulations as for drilled shafts. Lateral group effects are accounted for using p-multipliers (Table 5.4) from GEC-9/AASHTO. Structural capacity uses P-M interaction diagrams. Longitudinal steel: cage in upper portion (10–15 m) plus full-length center bar; factored interaction diagram with variable resistance factor. Shear resistance from concrete section per ACI; supplemental spiral required in seismic zones. Minimum cover: 75 mm (3 in.) non-aggressive; 100 mm (4 in.) for saltwater.",
+      "body": "Lateral behavior: CFA piles behave similarly to other deep foundations under lateral loading. The p-y method (Winkler spring model) is used for analysis. The governing equation is EI×d⁴y/dz⁴ + Px×d²y/dz² + p - w = 0. P-y curves developed for drilled shafts (Reese 1986; O'Neill and Reese 1999) are applicable. Computer codes GROUP (Ensoft 2006) or FB-Pier (BSI 2003) are used for analysis. Loss of soil resistance due to scour or liquefaction must be considered.\n\nGroup p-multipliers: The Pm method accounts for group effects on lateral load response. For closely spaced piles, individual p-y resistances are multiplied by Pm < 1 per row. Recommended Pm values are given in Table 5.4 (same as AASHTO and GEC-9 Table 7-1). A simplified approach by Brown and O'Neill (2003) using a single weighted average Pm is also applicable.\n\nStructural capacity: Two-section reinforcing: (1) full cage of longitudinal bars and spiral/ties in upper section; (2) full-length single center bar. Interaction diagram computed from assumed plane sections and nonlinear material stress-strain models (concrete and steel). Maximum axial force: P0 = 0.85×f'c×Ac + As×fy (pure compression). Variable resistance factor φ transitions from 0.85 (spiral, pure compression) to 0.90 (pure tension). Shear resistance from concrete: Vc = Av/(2r_ls + 0.58r_ls); spiral transverse steel supplement for seismic. Minimum cover: 75 mm (3 in.) normal; 100 mm (4 in.) aggressive (salt water) per AASHTO 5.12.3.",
+      "key_points": [
+        "p-y method used for lateral analysis; same p-y curves as drilled shafts (Reese 1986; O'Neill and Reese 1999)",
+        "Lateral group analysis: p-multipliers from Table 5.4 (same Pm values as AASHTO/GEC-9)",
+        "Structural design: P-M interaction diagram with two-section rebar (cage upper + full-length center bar)",
+        "Resistance factor φ: 0.85 (spiral, pure compression) to 0.90 (pure tension), variable in transition",
+        "Cover: 75 mm (3 in.) standard; 100 mm (4 in.) for salt water or aggressive environments"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5.23: Example deflection and moment response of a laterally loaded pile",
+        "Figure 5.28: Pile cross-section strain and stress at ultimate bending",
+        "Figure 5.29: Typical P-M interaction diagram with nominal and factored resistances"
+      ],
+      "tables": [
+        "Table 5.4: P-Multipliers (Pm) for design of laterally loaded pile groups"
+      ],
+      "applicability": "Lateral resistance and structural design of CFA pile foundations"
+    },
+    {
+      "section_id": "5.7",
+      "title": "Downdrag in CFA Piles",
+      "summary": "Downdrag (negative skin friction) occurs when soil above the neutral plane settles relative to the pile. The downdrag force (from downward side-shear above neutral plane) is a permanent load. Resistance is the upward side-shear plus end-bearing below the neutral plane. For pile groups, the equivalent pier method uses the group perimeter as the drag perimeter. The neutral plane position is where upward and downward side-shear forces balance; pile settlement at the neutral plane equals ground settlement there.",
+      "body": "Downdrag loads develop when soils in contact with the upper portion of the pile move downward relative to the pile, reversing the direction of skin friction from upward-resisting to downward-loading. The downdrag force is treated as a permanent load for design. The neutral plane is defined as the depth at which: (1) the shear force direction transitions from downward to upward; and (2) the pile and soil settlements are equal. Above the neutral plane, side-shear is negative (adding to pile load). Below the neutral plane, side-shear and end-bearing provide positive resistance.\n\nFor ASD design, the allowable resistance is based on the resistance below the neutral plane, and the allowable load at the pile head equals this resistance minus the permanent structural load minus the downdrag force, divided by the safety factor. When downdrag is anticipated around a pile group, the equivalent pier method is used: the pier depth equals the pile length, and the perimeter equals the group perimeter. The neutral plane for the group is where the group downdrag plus structural load equals the group side resistance plus end-bearing below the neutral plane.",
+      "key_points": [
+        "Downdrag occurs when soil above neutral plane settles relative to pile — reverses skin friction to downward load",
+        "Downdrag force treated as a permanent load (ASD: added to structural load, compared against allowable resistance)",
+        "Neutral plane: depth where upward and downward shear forces balance; soil and pile settlement equal at this depth",
+        "Pile group downdrag: equivalent pier method with group perimeter as drag perimeter"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5.30: Examples of Cases of Downdrag",
+        "Figure 5.31: Potential Geotechnical Limit States for Piles Experiencing Downdrag",
+        "Figure 5.32: Mechanics of Downdrag — Estimating the Depth to the Neutral Plane",
+        "Figure 5.33: Mechanics of Downdrag in a Pile Group"
+      ],
+      "tables": [],
+      "applicability": "Downdrag load assessment and design for CFA piles in settling ground conditions"
+    }
+  ]
+}

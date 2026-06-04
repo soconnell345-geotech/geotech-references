@@ -1,0 +1,111 @@
+{
+  "reference_id": "FHWA-HIF-18-031",
+  "reference_title": "Design, Analysis, and Testing of Laterally Loaded Deep Foundations that Support Transportation Facilities",
+  "chapter": 4,
+  "chapter_title": "LRFD Design Requirements and Limit States for Laterally Loaded Deep Foundations",
+  "sections": [
+    {
+      "section_id": "4.1",
+      "title": "Introduction",
+      "summary": "Chapter 4 presents the LRFD design framework for laterally loaded deep foundations, including load combinations, load factors, and resistance factors. The four limit states considered are: Strength (geotechnical and structural), Service (deformation/displacement), Extreme Event (seismic, vessel impact, check flood), and limit equilibrium for retaining and slope applications. AASHTO LRFD Bridge Design Specifications (2014) are the primary reference.",
+      "body": "This chapter provides a discussion of the LRFD design platform including Limit States, load factors, and resistance factors as they relate to the design of laterally loaded deep foundations. Lateral load analysis in the LRFD framework involves evaluation of Strength, Service, and Extreme Event limit states. AASHTO LRFD Bridge Design Specifications (2014) provide the primary framework, with GEC-9 supplementing AASHTO guidance specifically for lateral loading applications. The selection of resistance factors and load combinations presented in this chapter are based on recommendations from Brown et al. (2010) for lateral loading where specific AASHTO calibration has not been performed.",
+      "key_points": [
+        "Four limit states: Strength (geotechnical and structural), Service, Extreme Event, and limit equilibrium",
+        "AASHTO LRFD Bridge Design Specifications (2014) is the primary design reference",
+        "Resistance factors for lateral analysis are from engineering judgment (Brown et al. 2010), not AASHTO calibration",
+        "Load factors and combinations follow AASHTO load groups"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "LRFD design framework for laterally loaded driven piles, drilled shafts, micropiles, and CFA piles"
+    },
+    {
+      "section_id": "4.2",
+      "title": "Load Combinations and Load Factors",
+      "summary": "AASHTO LRFD load combinations include Strength I through V, Service I, Extreme Event I and II, and Fatigue. Strength I and Service I are the most common governing combinations for lateral loading. Load factors for lateral loads include wind (WS = 1.4 for Strength III), vessel collision (CV = 1.0 for Extreme Event II), seismic (EQ = 1.0 for Extreme Event I), and earth pressure (EH = 1.5 active/1.35 maximum passive for Strength I). All load combinations must be evaluated with the factored loads applied to foundation elements.",
+      "body": "The design loads applied to laterally loaded deep foundations must be determined using the appropriate AASHTO LRFD load combinations and load factors. Multiple load combinations may need to be assessed unless a single most critical combination can be identified. Load types that commonly affect laterally loaded foundations include: permanent loads (dead load DC, earth pressure EH), transient loads (live load LL, wind on structure WS, wind on vehicles WL, vehicle braking force BR, centrifugal force CE), and extreme event loads (seismic EQ, vessel collision CV, ice IC). The Strength I combination governs for most bridge piers and abutments under normal traffic loading. The Strength III combination (with high wind) may govern for noise walls and sign structures. For retaining walls, Strength I with maximum earth pressure governs. Extreme Event I (seismic) and Extreme Event II (vessel collision, check flood) must be evaluated separately. Service I load combination with load factors of 1.0 applies to lateral displacement checks. All load combinations should be applied to the group of foundation elements, with the load distributed to individual elements and checked for both geotechnical and structural adequacy.",
+      "key_points": [
+        "Strength I: dead load + live load; most common governing combination for bridge foundations",
+        "Strength III: wind on structure controls for noise walls and sign/signal structures",
+        "Extreme Event I: seismic EQ = 1.0; Extreme Event II: vessel collision CV = 1.0",
+        "Service I: all factors = 1.0; used for lateral displacement/deflection checks",
+        "Earth pressure load factor EH: 1.5 for active pressure, 1.35 maximum passive (Strength I)"
+      ],
+      "equations": [],
+      "figures": ["Figure 4-3: Typical loads on noise walls", "Figure 4-4: Typical loads for slope stabilization", "Figure 4-5: Force effects on bridge foundation"],
+      "tables": [],
+      "applicability": "Load combination and load factor selection for LRFD design of laterally loaded deep foundations"
+    },
+    {
+      "section_id": "4.3",
+      "title": "Strength Limit State for Laterally Loaded Foundations",
+      "summary": "Resistance factors for lateral Geotechnical Strength Limit State are from Table 4-1 (Brown et al. 2010), not calibrated by AASHTO. Recommended values: φr = 0.67 for individual elements or single-row/wall/abutment with free-head rotation; φr = 0.80 for elements in multi-row groups with moment connection to cap. These values exceed AASHTO's default φr = 1.0 to ensure ductile response and adequate geotechnical reserve capacity. Analysis uses p-y static pushover method.",
+      "body": "Strength Limit State failure modes are related to the strength and stability of the foundation under loads applied during the design life. For laterally loaded deep foundations, Strength Limit States include geotechnical strength (failure of the soil) and structural strength (failure of the foundation element) limit states. Structural Strength Limit State is discussed in Chapter 11. Resistance factors have not been calibrated for lateral analysis of deep foundations; however, Table 4-1 provides recommended values for geotechnical Strength Limit State design based on engineering judgement (Brown et al. 2010). These recommended resistance factors apply to lateral analysis using load-displacement (p-y) analyses and provide a check for ductility and geotechnical stability that exceeds the level of reliability provided by the AASHTO (2014) code provisions which specify φ = 1.0 for lateral resistance. Table 4-1 values: individual element or single row/wall/abutment with head free to rotate — φr = 0.67; element in multiple-row group with moment connection to cap — φr = 0.80. Local DOTs have developed locally calibrated resistance factors based on substantial successful experience and load tests, which may also be used where established.",
+      "key_points": [
+        "Lateral resistance factors not formally calibrated by AASHTO; Table 4-1 values are engineering judgment",
+        "φr = 0.67 for individual pile/shaft or single-row/wall/abutment (free head rotation)",
+        "φr = 0.80 for element in multiple-row group with moment connection to cap",
+        "AASHTO default is φr = 1.0 for lateral; GEC-9 recommends lower values for ductility assurance",
+        "Local DOT calibrations (Idaho, North Carolina NCDOT, Missouri MoDOT) may be acceptable alternatives"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 4-1: Resistance factors for lateral Geotechnical and Strength Limit State (from Brown et al. 2010)"
+      ],
+      "applicability": "Lateral geotechnical Strength Limit State design of driven piles and drilled shafts using p-y analysis"
+    },
+    {
+      "section_id": "4.4",
+      "title": "Service Limit State for Lateral Displacements",
+      "summary": "Service Limit State for laterally loaded foundations checks that lateral displacements remain within tolerable levels established by the project structural engineer. Resistance factor φ = 1.0 applies to Service Limit States. Analysis methods include p-y, Broms, and strain wedge methods. Tolerable lateral displacement is project-specific and governed by structural performance criteria such as joint closure, excessive lean, or aesthetics.",
+      "body": "Service Limit State failure modes are related to performance problems such as deformation under regular operating conditions. For laterally loaded deep foundations, Service Limit States relate to lateral displacement of foundation elements considering interaction with the structure. A resistance factor of 1.0 is applicable to Service Limit States. Tolerable lateral displacement is project specific and should be determined by the project structural engineer. Laterally loaded deep foundations must have adequate structural and geotechnical resistance to keep bridge or structure displacements within established tolerable levels. The tolerable lateral displacements of foundation elements are often limited based on lateral displacements that will adversely impact the structure, such as closure of joints on bridge structures, excessive structure lean or rotation, displacement of one structural element into another, or aesthetics. The magnitude of tolerable lateral displacements should be determined by the structural engineer. These displacements are often less than the amount of displacement the foundation elements themselves can withstand, especially for ductile elements such as steel piles. Analyses of foundations for deformation are generally performed using p-y methods, although alternative methods such as the strain wedge method or FEM can also be used. Lateral displacements can also be determined from lateral load tests.",
+      "key_points": [
+        "φ = 1.0 for Service Limit State — no resistance reduction factor applied",
+        "Tolerable lateral displacement is set by structural engineer, not geotechnical engineer",
+        "p-y analysis is the recommended method for Service Limit State displacement analysis",
+        "Displacement limits are often governed by structural performance (joint closure, excessive lean)",
+        "Steel piles can typically sustain more displacement than structures can tolerate"
+      ],
+      "equations": [],
+      "figures": ["Figure 4-6: Measurement of lateral deformation in a test shaft using inclinometer"],
+      "tables": [],
+      "applicability": "Lateral displacement check for bridge foundations, retaining walls, and noise/sign structures at service loads"
+    },
+    {
+      "section_id": "4.5",
+      "title": "Extreme Event Limit State",
+      "summary": "Extreme Event Limit State addresses foundation performance under unique loading events: check flood (500-year scour), earthquakes (Extreme Event I), and vessel/vehicle collision (Extreme Event II). Recommended resistance factor for lateral geotechnical resistance under extreme events is φ = 0.80 (Brown et al. 2010). The design goal is life safety and survival without collapse, with expectation of some structural damage.",
+      "body": "Extreme Event Limit State failure modes are related to the strength and stability of the foundation under unique loading events with return periods greater than the bridge design life. These events include check flood (500-year event for scour), earthquakes, and major vessel or vehicle collision. The design concern is survival of the bridge and protection of life safety, with the expectation that some damage to the structure will occur without resulting in collapse. The recommended load and resistance factor for extreme events is 0.80 for geotechnical lateral resistance (Brown et al. 2010). Extreme Event I uses seismic load (EQ = 1.0) for earthquake design. Extreme Event II uses vessel collision (CV = 1.0) or check flood scour. Lateral pile analysis for extreme events generally follows the same p-y approach as for Strength Limit State, but with the reduced resistance factor and extreme event load combination. For seismic cases, the dynamic response of the structure and liquefaction effects must be considered. For scour check flood, the scoured soil profile is used in the p-y analysis with reduced lateral resistance over the scoured depth. Detailed discussion of extreme event design is in Chapter 8.",
+      "key_points": [
+        "φ = 0.80 for geotechnical lateral resistance under Extreme Event I and II",
+        "Extreme Event I: earthquake loads (EQ = 1.0); Extreme Event II: vessel collision or check flood",
+        "Design goal: life safety and no collapse, with acceptable structural damage",
+        "Scour check flood: use scoured profile in p-y analysis with reduced lateral resistance over scour depth",
+        "Seismic cases require consideration of dynamic structural response and liquefaction"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Laterally loaded deep foundations subject to seismic, vessel collision, or 500-year scour loading"
+    },
+    {
+      "section_id": "4.6",
+      "title": "Considerations for Limit Equilibrium Applications",
+      "summary": "For global stability of retaining structures and slope stabilization, limit equilibrium analyses use Strength I load combinations with load factor = 1.0 and resistance factor = 0.75 (or 0.65 for highly variable conditions). Unlike standard LRFD checks, resistance and load factors are not typically applied within the limit equilibrium analysis itself; the deep foundation lateral resistance is an input to the slope or wall stability model.",
+      "body": "For evaluation of global stability of retaining structures and slope stabilization, limit equilibrium applications are needed. Resistance factors and additional load factors in current standards are typically not applied to loads and resistances in limit equilibrium analyses. Using software to assess global stability, analyses are performed at the Strength I load combination targeting a load factor of 1.0 and a resistance factor of 0.75. If supporting a structure foundation, the resistance factor of 0.75 is used in combination with applying Strength Limit load factors to foundation loads to be consistent with current Strength Limit load groups. A resistance factor of 0.65 should be used when the geotechnical parameters and subsurface stratigraphy are highly variable, or are based on limited information. The analysis of deep foundation elements for slope stabilization is further discussed in Chapter 10.",
+      "key_points": [
+        "Limit equilibrium uses Strength I loads; resistance factor = 0.75 (standard) or 0.65 (highly variable conditions)",
+        "Load factors are not applied within limit equilibrium analysis itself",
+        "When foundations support structures, Strength Limit load factors are applied to foundation loads",
+        "φ = 0.65 when subsurface conditions are highly variable or based on limited data",
+        "See Chapter 10 for detailed guidance on slope stabilization using deep foundations"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Global stability analysis for retaining walls and slope stabilization applications"
+    }
+  ]
+}

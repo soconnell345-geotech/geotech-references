@@ -1,0 +1,98 @@
+{
+  "reference_id": "FHWA NHI-16-072",
+  "reference_title": "Geotechnical Site Characterization",
+  "chapter": 10,
+  "chapter_title": "Measurement and Interpretation of Groundwater Conditions and Hydraulic Properties of Soil and Rock",
+  "sections": [
+    {
+      "section_id": "10.1-10.3",
+      "title": "Groundwater Concepts and Measurement Devices",
+      "summary": "Total hydraulic head h = ze + u/γw; Darcy's law: q = k × i × A. Anisotropy: kh/kv = 0.9–2.2 (glacial till); 2–10 (varved clay). Groundwater in monitoring wells (screened pipe; allow equilibration) or piezometers. Piezometer types: standpipe (simple), pneumatic (no water in tubes), vibrating wire (data logger). CPT in sands: u0 = hydrostatic; CPTU in clays: dissipation test needed for u0. Clean drilling (hollow stem auger, clean water) required to avoid contaminating measurements.",
+      "body": "Hydraulic head: h = he + hp = ze + u/γw (ignoring velocity head). Pressure head hp = u/γw; elevation head he = ze. For no-flow condition, hydraulic head is constant with depth. Darcy's law: q = k × i × A where i = dh/dl. Valid for laminar flow conditions (Re < 1-10).\n\nMonitoring wells: PVC or steel pipe with screened section (typically 1.5 m long) surrounded by sand pack; bentonite seal above sand pack; grout seal to surface. Allow equilibration time after drilling — time depends on k (minutes for sands; days to weeks for clays). Standpipe piezometer response time per Hvorslev (1951).\n\nPiezometer types: (1) Standpipe — open pipe, simplest, slow response in low-k soils; good for most sands and gravels. (2) Twin-tube hydraulic — closed system, no water in tubes; good for low-k soils. (3) Pneumatic — twin-tube diaphragm; no water in lines, suitable for freezing conditions; less expensive. (4) Electrical resistance — strain gauge; rapid response; data logger compatible. (5) Vibrating wire — most common for permanent installations; automatic data logger; high accuracy and long-term reliability.\n\nCPT/CPTU groundwater: In coarse-grained soils, measured pore pressure u2 = u0 (hydrostatic) since drainage is complete. In fine-grained soils, excess pore pressures develop during cone advance; dissipation tests required to determine u0 (initial pore pressure). Dissipation test: stop cone advance, record pore pressure decay vs. time; ch from Robertson et al. (1992) chart.\n\nGeophysical methods: Time-domain electromagnetic (TEM), seismic refraction (Vp changes at water table), self-potential (SP) for seepage detection.",
+      "key_points": [
+        "Total head: h = ze + u/γw; Darcy's law: q = k × i × A",
+        "Monitoring wells: allow equilibration time; days to weeks for low-k soils",
+        "Vibrating wire piezometers most common for permanent installations — data logger compatible",
+        "CPTU in fine-grained soils: u2 ≠ u0 during advance; dissipation test required for u0",
+        "Clean drilling required — hollow stem auger or clean water drilling fluid"
+      ],
+      "equations": [
+        {
+          "equation_id": "10-head",
+          "description": "Total hydraulic head (ignoring velocity head)",
+          "latex": "h = z_e + \\frac{u}{\\gamma_w}",
+          "variables": {
+            "h": "total hydraulic head (length)",
+            "z_e": "elevation head above selected datum",
+            "u": "pore water pressure",
+            "gamma_w": "unit weight of water"
+          },
+          "implemented_in": null
+        },
+        {
+          "equation_id": "10-Darcy",
+          "description": "Darcy's law for flow through soil",
+          "latex": "q = k \\cdot i \\cdot A",
+          "variables": {
+            "q": "volumetric flow rate",
+            "k": "hydraulic conductivity",
+            "i": "hydraulic gradient = dh/dl",
+            "A": "cross-sectional area of flow"
+          },
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure 10-2: Measured values of total head with depth",
+        "Figure 10-3: Diagram illustrating Darcy's Law",
+        "Figure 10-8: Twin-tube hydraulic piezometer schematic",
+        "Figure 10-10: Electrical resistance gage piezometer",
+        "Figure 10-11: Vibrating wire piezometer"
+      ],
+      "tables": [
+        "Table 10-3: Summary of methods for determining hydraulic conductivity",
+        "Table 10-4: Reported hydraulic conductivity anisotropy (kh/kv) for various soils"
+      ],
+      "applicability": "Groundwater level measurement and piezometer selection for transportation geotechnical projects"
+    },
+    {
+      "section_id": "10.9-10.15",
+      "title": "Hydraulic Conductivity Testing and Estimation",
+      "summary": "Field tests for hydraulic conductivity: auger hole seepage (variable head in unlined hole), slug/bail tests in standpipe piezometers (Hvorslev and Cooper-Bredehoeft analysis), packer tests in rock boreholes (constant or falling head), Guelph permeameter (constant head in hand-augered hole), pumping tests (most representative; Theis confined equation: k = Q×W(u)/(4πb) per observation well drawdown). Laboratory tests: flexible-wall permeameter (ASTM D5084, preferred for low-k soils), rigid-wall permeameter, consolidation cell. Correlations: Hazen equation k = C × D10² (C ≈ 1.0 cm/s, D10 in cm) for clean sands; Kozeny-Carman for granular soils. For clays: k decreases with increasing PI and Cc.",
+      "body": "Field tests for hydraulic conductivity: (1) Auger hole seepage test — open borehole below water table; variable head; suitable for relatively permeable soils. (2) Slug/bail tests in standpipe piezometers — Hvorslev method (straight-line method on semi-log plot) and Cooper-Bredehoeft (type curve matching); kh from Bourdon equation. (3) Packer tests in rock — isolate zone with inflatable packers; apply constant head or falling head; measures krock for specific zone. (4) Guelph permeameter — constant head in hand-augered hole; quick measurement of kfs (field-saturated hydraulic conductivity). (5) Boutwell two-stage permeameter — obtains both kv and kh from same hole. (6) Pumping tests — most representative; for confined aquifer: k = Q×W(u)/(4πb) (Theis equation, Eq 10.24) where W(u) = well function.\n\nLaboratory tests: Flexible-wall permeameter (ASTM D5084) — specimen in latex membrane under controlled effective stress; preferred for low-k soils (< 10-5 cm/s). Rigid-wall permeameter — simpler but sidewall leakage risk. Consolidation test k = cv × mv × γw calculated indirectly.\n\nCorrelations for granular soils: Hazen equation: k = C × D10² where C ≈ 0.8–1.2 cm/s (D10 in cm) for clean, uniform sands. Kozeny-Carman equation: k = f(e, gradation) — applicable for sands and gravels; NOT for clayey soils.\n\nCorrelations for fine-grained soils: k from PI, CC, and Ck (coefficient relating k to e). kh estimated from CPTU t50 (time for 50% dissipation) per empirical chart (Figure 10-37). DMT: kh from DMT DMTC dissipation test.",
+      "key_points": [
+        "Pumping tests most representative for kh; Theis equation for confined aquifer interpretation",
+        "Slug tests (Hvorslev, Cooper-Bredehoeft): simple but only point estimate of kh near well screen",
+        "Flexible-wall permeameter (ASTM D5084) preferred for low-k soils",
+        "Hazen: k = C × D10² (C ≈ 1.0 cm/s, D10 in cm); clean uniform sands only",
+        "kh from CPTU t50 dissipation time — empirical chart (Figure 10-37)"
+      ],
+      "equations": [
+        {
+          "equation_id": "10-Hazen",
+          "description": "Hazen empirical equation for hydraulic conductivity of granular soils",
+          "latex": "k = C \\cdot D_{10}^2",
+          "variables": {
+            "k": "hydraulic conductivity (cm/s)",
+            "C": "Hazen constant ≈ 0.8–1.2 cm/s (various sources give C in this range)",
+            "D_10": "effective grain size — grain size at 10% finer (cm)"
+          },
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure 10-21: Direct measurement of hydraulic conductivity in Shelby tube",
+        "Figure 10-23: Schematic of a flexible-wall permeameter",
+        "Figure 10-24: Shape factor for auger hole seepage tests",
+        "Figure 10-37: Empirical relationship between kh and CPTU t50"
+      ],
+      "tables": [
+        "Table 10-5: Summary of laboratory methods for determining hydraulic conductivity",
+        "Table 10-9: Advantages and disadvantages of different infiltrometers",
+        "Table 10-10: Direct push methods for determining in situ hydraulic conductivity",
+        "Table 10-11: Summary of α values for estimating constrained modulus from qc"
+      ],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    }
+  ]
+}

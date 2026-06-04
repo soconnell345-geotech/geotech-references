@@ -1,0 +1,183 @@
+{
+  "reference_id": "FHWA-HIF-18-031",
+  "reference_title": "Design, Analysis, and Testing of Laterally Loaded Deep Foundations that Support Transportation Facilities",
+  "chapter": 8,
+  "chapter_title": "Design for Extreme Events",
+  "sections": [
+    {
+      "section_id": "8.1",
+      "title": "Introduction",
+      "summary": "Extreme Event Limit States involve low-probability events with return periods greater than the bridge design life. The design goal is structural survivability, prevention of collapse, and protection of life safety; some damage may be acceptable. The resistance factor for lateral geotechnical resistance under extreme events is 0.80 (Brown et al. 2010) and the load factor is 1.0 (AASHTO 2014). Extreme events addressed include: check flood scour, earthquakes, ice, vessel collision, and vehicle collision.",
+      "body": "Extreme Event Limit States involve events with a low probability of occurrence. Such events are considered unique events whose return period may be significantly greater than the design life of the structure (AASHTO 2014). The Extreme Event Limit State is intended to ensure the survivability of the structure during such an event. This Limit State is to protect against collapse of the structure and loss of life; some damage or loss of functionality may be acceptable. The resistance factor for lateral geotechnical resistance under extreme events is 0.80 (Brown et al. 2010) and the load factor is 1.0 (AASHTO 2014). Extreme Event Limit States for deep foundations include: the check flood for scour (Extreme Event I combined with seismic, or Extreme Event II); earthquakes/seismic events (Extreme Event I); loading from ice (Extreme Event II); vessel collision (Extreme Event II); and vehicle collision (Extreme Event II). The check flood is a 500-year return period event and is not to be confused with scour from the 100-year flood, which is evaluated as part of the Strength and Service Limit States. References: Arneson et al. (2012) for scour, Kavazanjian et al. (2011) for seismic, AASHTO (2014) for collision loads.",
+      "key_points": [
+        "Extreme events: check flood scour, earthquake, ice, vessel collision, vehicle collision",
+        "Design goal: survivability, no collapse, life safety; some structural damage acceptable",
+        "φ = 0.80 for lateral geotechnical resistance under extreme events (Brown et al. 2010)",
+        "Load factor = 1.0 for all extreme event load combinations (AASHTO 2014)",
+        "Check flood = 500-year event; not to be confused with 100-year scour at Strength LS"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Design of deep foundations subject to any extreme event loading condition"
+    },
+    {
+      "section_id": "8.2",
+      "title": "Extreme Event Scour (Check Flood)",
+      "summary": "The check flood (500-year scour) requires deeper, wider scour prisms than the 100-year design flood. The deep foundation must be designed to remain stable after the extreme scour event, including a pushover analysis to confirm ductile behavior and adequate embedment depth. Resistance factors for axial and lateral resistance are 1.0 under extreme events; uplift resistance factor is 0.8. The scoured soil profile (geotechnical conditions in Block 5 of the design process) is updated for the check flood conditions. Load factors for extreme events are 1.0, compared to greater than 1.0 for Strength and Service Limit States.",
+      "body": "Structures constructed over or adjacent to bodies of water subject to scour must be designed for the extreme scour event or check flood, corresponding to a 500-year return period. Arneson et al. (2012) provides details on scour assessment. AASHTO (2014) indicates that the foundation must be designed for applied structural loads as well as debris loads during the flood event. The design for extreme scour differs from 100-year scour in three key ways: (1) the scour prism for the extreme flood is typically deeper and wider, requiring update of geotechnical conditions in the analysis (Block 5 of Chapter 5 design process); (2) load factors for extreme events are 1.0, whereas those for Strength and Service Limit States may be greater than 1.0; (3) resistance factors differ — a resistance factor of 1.0 applies for axial and lateral resistance and 0.8 for uplift resistance under Extreme Event Limit States, though other considerations may lead to selection of less than 1.0. Deep foundations should be designed to be embedded deep enough to account for the loss of resistance during the extreme scour event. A pushover analysis should be performed to check overall stability and verify that foundations are embedded deep enough to avoid pushover failure and behave as ductile elements under lateral loads, even under extreme conditions.",
+      "key_points": [
+        "Check flood (500-year) scour prism is deeper and wider than 100-year scour — update Block 5 geotechnical conditions",
+        "Load factors = 1.0 for extreme events; may be greater for Strength/Service LS",
+        "Axial and lateral resistance factor = 1.0 under extreme events; uplift factor = 0.8",
+        "Pushover analysis required to verify ductile behavior and adequate embedment under extreme scour conditions"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Deep foundations at bridges over or adjacent to waterways subject to scour"
+    },
+    {
+      "section_id": "8.3",
+      "title": "Seismic Design",
+      "summary": "Seismic design uses AASHTO equivalent static force approach with elastic seismic response coefficient Csm varying with vibration period (Equations 8-1 to 8-3) applied to superstructure equivalent weight (Equation 8-4). Seismic zone classification is based on SD1 (Table 8-1; Zones 1-4). Zones 2-4 require liquefaction assessment for multispan bridges. For liquefaction analysis, residual strength is estimated using equivalent clean sand blow count (N1)60-e = (N1)60 - Ncorr (Equation 8-5). P-multipliers of 0.05 (loose sand) to 0.30 (dense sand) model fully liquefied layer response. Bridges in Zone 4 or near active faults require time-history analysis by a specialist.",
+      "body": "Structures must be designed for seismic loads and liquefaction potential. AASHTO (2014) uses a dimensionless elastic seismic response coefficient (Csm) based on acceleration coefficient, site effects, and predominant period of vibration. Site peak ground acceleration coefficient PGA, short period Ss, and long period S1 spectral coefficients are from USGS seismic maps in AASHTO (2014) Section 3.10.2.1. Site classification determines site factors for zero-period, short-period, and long-period acceleration ranges. The elastic seismic response coefficient varies with vibration period: Csm = As + (SDS - As)(Tm/T0) for periods less than or equal to T0 (Eq 8-1); Csm = SDS for T0 ≤ Tm ≤ Ts (Eq 8-2); Csm = SD1/Tm for periods greater than Ts (Eq 8-3). The equivalent static horizontal seismic force is Pe(x) = Csm × W (Eq 8-4). Seismic zones are defined by SD1 in Table 8-1: Zone 1 (SD1 ≤ 0.15), Zone 2 (0.15 < SD1 ≤ 0.30), Zone 3 (0.30 < SD1 ≤ 0.50), Zone 4 (SD1 > 0.50). Multispan bridges in Zones 2-4 require a liquefaction assessment. Liquefaction affects deep foundations by loss of lateral and vertical capacity and potential lateral spreading or flow. Foundations should be assessed for liquefaction where peak earthquake acceleration exceeds 0.1g and should be extended below the liquefiable zone. Residual strength of liquefied layers can be estimated from equivalent clean sand blow count (N1)60-e = (N1)60 - Ncorr (Eq 8-5), applied to Figure 8-1. P-multiplier values of 0.05 in loose sand and 0.30 in dense sand may be used to model p-y response in fully liquefied granular layers (Hannigan et al. 2016). Liquefaction may also cause lateral spreading — Reese's soft clay p-y criterion with low residual shear strength and high ε50 values is often used to evaluate maximum bending moments in the liquefiable layer. For bridges in Zone 4 or geometrically complex bridges close to active faults, AASHTO requires a time-history structural analysis by a specialist.",
+      "key_points": [
+        "Csm varies with period: ascending ramp for Tm < T0; plateau SDS for T0 ≤ Tm ≤ Ts; 1/Tm decay for Tm > Ts",
+        "Equivalent static seismic force: Pe(x) = Csm × W (Eq 8-4)",
+        "Seismic zones 1-4 based on SD1; Zones 2-4 require liquefaction assessment for multispan bridges",
+        "Residual strength of liquefied layers: (N1)60-e = (N1)60 - Ncorr applied to Figure 8-1 (Eq 8-5)",
+        "Fully liquefied granular layer: P-multipliers of 0.05 (loose sand) and 0.30 (dense sand) for p-y analysis",
+        "Lateral spreading: use soft clay p-y criterion with low residual strength and high ε50 in liquefiable layer",
+        "Zone 4 or near active fault: time-history analysis required; must be performed by specialist"
+      ],
+      "equations": [
+        {
+          "equation_id": "8-1",
+          "description": "Elastic seismic response coefficient for vibration periods less than or equal to T0",
+          "latex": "C_{sm} = A_s + (S_{DS} - A_s) \\frac{T_m}{T_0}",
+          "variables": {
+            "C_sm": "elastic seismic response coefficient for mth mode (dimensionless)",
+            "A_s": "F_pga × PGA (site-modified peak ground acceleration)",
+            "S_DS": "F_a × S_s (design short-period spectral acceleration)",
+            "T_m": "period of vibration of mth mode (sec)",
+            "T_0": "reference period = 0.2 T_s (sec)"
+          },
+          "implemented_in": null
+        },
+        {
+          "equation_id": "8-2",
+          "description": "Elastic seismic response coefficient for vibration periods T0 ≤ Tm ≤ Ts (spectral plateau)",
+          "latex": "C_{sm} = S_{DS}",
+          "variables": {
+            "C_sm": "elastic seismic response coefficient (dimensionless)",
+            "S_DS": "design short-period spectral acceleration = F_a × S_s"
+          },
+          "implemented_in": null
+        },
+        {
+          "equation_id": "8-3",
+          "description": "Elastic seismic response coefficient for vibration periods greater than Ts (descending branch)",
+          "latex": "C_{sm} = \\frac{S_{D1}}{T_m}",
+          "variables": {
+            "C_sm": "elastic seismic response coefficient (dimensionless)",
+            "S_D1": "design one-second spectral acceleration = F_v × S_1",
+            "T_m": "period of vibration of mth mode (sec)"
+          },
+          "implemented_in": null
+        },
+        {
+          "equation_id": "8-4",
+          "description": "Equivalent static horizontal seismic force on superstructure",
+          "latex": "P_e(x) = C_{sm} \\cdot W",
+          "variables": {
+            "P_e(x)": "equivalent static horizontal seismic force (kips)",
+            "C_sm": "elastic seismic response coefficient (dimensionless)",
+            "W": "equivalent weight of superstructure (kips)"
+          },
+          "implemented_in": null
+        },
+        {
+          "equation_id": "8-5",
+          "description": "Equivalent clean sand blow count for residual undrained shear strength estimation in liquefied layers",
+          "latex": "(N_1)_{60-e} = (N_1)_{60} - N_{corr}",
+          "variables": {
+            "(N1)_60-e": "equivalent clean sand SPT blow count",
+            "(N1)_60": "SPT N value corrected for energy and overburden stress",
+            "N_corr": "correction for percent fines content (from Figure 8-1)"
+          },
+          "implemented_in": null
+        }
+      ],
+      "figures": ["Figure 8-1: Corrected blow count versus residual undrained shear strength (Brown et al. 2010)"],
+      "tables": ["Table 8-1: Seismic zones based on acceleration coefficient SD1 (from Hannigan et al. 2016)"],
+      "applicability": "Deep foundation seismic design for transportation structures; liquefaction assessment where peak ground acceleration exceeds 0.1g"
+    },
+    {
+      "section_id": "8.4",
+      "title": "Design for Ice and Collisions",
+      "summary": "Ice, vehicular collision, and vessel collision are Extreme Event II loading conditions (Eq 8-6). These loads do not alter geotechnical conditions; structural analysis resolves them to foundation head forces, then p-y analysis proceeds as for other extreme events. Ice loads include dynamic pressure from ice flows, static pressure from thermal movement, hanging dams, and static uplift. Vehicle collision load is 600 kips equivalent static force at 5 ft above ground, applied at 0–15 degrees from road edge. Vessel collision force is Ps = 8.15V√DWT (Eq 8-7), applied as concentrated force at mean high water level and as distributed line load along bow depth.",
+      "body": "Bridges may need to be designed for ice loads and collision of vehicles or vessels under Extreme Event II conditions (AASHTO 2014). These are independent events, not combined. The Extreme Event II load combination is: ΣγiQi = γp×DL + 0.5×LL + 1.0×WA + 1.0×FR + 1.0×(IC or CT or CV) (Eq 8-6), where IC = ice load, CT = vehicular collision load, CV = vessel collision load. Unlike scour and seismic extreme events, ice and collision cases do not change geotechnical conditions or resistance. Structural analyses resolve loads to force effects at foundation heads, then lateral load analysis follows Chapters 6 and 7. The resistance factor for lateral load resistance under extreme loads is 1.0 unless site- or project-specific considerations apply (Chapter 4). Ice loads: AASHTO (2014) Section 3.9 provides lateral ice load determination based on ice thickness, crushing strength, pier width, and ice flow angle. Dynamic ice forces should be analyzed for resonance effects — flexible piers may amplify dynamic ice forces; drilled shafts may offer advantage over driven piles due to higher rigidity and damping. Vehicular collision (CT): AASHTO requires bridge piers within 30 ft of roadway edge to be investigated for vehicle collision. The crash load is 600 kips equivalent static force at 0–15 degrees from road edge, at 5 ft above ground. For individual columns, this is a point load; for wall piers, distributed over no more than 5 ft × 2 ft area. Because CT is an equivalent static load, no dynamic or cyclic analysis is required in the foundation analysis. Vessel collision (CV): All bridge components in navigable waterways with water depth greater than 2 ft must be designed for vessel impact. The design vessel is selected through probabilistic risk assessment. The head-on ship collision impact force is: Ps = 8.15×V×√DWT (Eq 8-7), where Ps is in kips, V in ft/sec, and DWT is deadweight tonnage. Two design cases are assessed: 100% of design impact parallel to channel centerline, and 50% normal to centerline. Impact force is applied as concentrated force at mean high water level and as vertical line load along bow depth. Protection systems such as fenders, pile clusters, dolphins, or islands may reduce or eliminate vessel collision forces.",
+      "key_points": [
+        "Extreme Event II combination: γp×DL + 0.5×LL + 1.0×WA + 1.0×FR + 1.0×(IC or CT or CV) — ice, vehicle, vessel not combined",
+        "Ice/collision loads do not change geotechnical conditions — resolve to foundation head forces, then standard p-y analysis",
+        "Vehicle collision CT: 600 kips equivalent static force at 5 ft above ground, 0–15° from road edge, for piers within 30 ft of roadway",
+        "Vessel collision force: Ps = 8.15×V×√DWT (kips); applied at mean high water level and as line load along bow depth",
+        "Two vessel collision design cases: 100% parallel to channel + 50% normal to channel centerline"
+      ],
+      "equations": [
+        {
+          "equation_id": "8-6",
+          "description": "Extreme Event Limit State II load combination for ice, vehicle collision, and vessel collision",
+          "latex": "\\sum \\gamma_i Q_i = \\gamma_p \\cdot DL + 0.5 \\cdot LL + 1.0 \\cdot WA + 1.0 \\cdot FR + 1.0 \\cdot (IC \\text{ or } CT \\text{ or } CV)",
+          "variables": {
+            "gamma_i": "load factor",
+            "Q_i": "force effect",
+            "gamma_p": "load factor for permanent loads",
+            "DL": "dead load",
+            "LL": "live load",
+            "WA": "water load",
+            "FR": "friction load",
+            "IC": "ice load",
+            "CT": "vehicular collision load",
+            "CV": "vessel collision load"
+          },
+          "implemented_in": null
+        },
+        {
+          "equation_id": "8-7",
+          "description": "Head-on ship collision equivalent static impact force on a pier",
+          "latex": "P_s = 8.15 \\cdot V \\cdot \\sqrt{DWT}",
+          "variables": {
+            "P_s": "equivalent static vessel impact force (kips)",
+            "V": "vessel impact velocity (ft/sec)",
+            "DWT": "deadweight tonnage of vessel (tonne)"
+          },
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure 8-2: Ship impact concentrated force on pier (after AASHTO 2014)",
+        "Figure 8-3: Ship impact line load on pier (after AASHTO 2014)",
+        "Figure 8-4: Barge impact force on pier (after AASHTO 2014)"
+      ],
+      "tables": [],
+      "applicability": "Bridge foundations subject to ice loading, vehicle collision, or vessel collision under Extreme Event II conditions"
+    },
+    {
+      "section_id": "8.5",
+      "title": "Combinations of Extreme Events",
+      "summary": "AASHTO provides two extreme event combinations. Extreme Event I combines scour with earthquake loading; because joint probability is low, only mean-discharge scour (not check flood) applies. Extreme Event II combines scour with ice, vehicle or vessel collision, and hydraulic loads; research on joint loading probability is ongoing. Engineering judgment based on site-specific factors governs when more extreme flood events are needed.",
+      "body": "AASHTO (2014) provides two Extreme Event combinations. Extreme Event I is a combination of scour with earthquake loading, and Extreme Event II is a combination of scour with ice, vehicle and vessel collision loads, and hydraulic loads. As noted in Arneson et al. (2012), the Extreme Event I combination has a low occurrence probability for both check flood and earthquake loading simultaneously. Therefore, scour for the mean discharge or normal non-flood flow may be applied in this event combination. For the Extreme Event II combination, research is ongoing to assess the probability of joint loading conditions during the check flood, and judgment should be used based on site-specific factors. If ice or debris jams near the structure dictate use of a more extreme flood event than the check flood, this may be used to assess the extreme event limit (Hannigan et al. 2016).",
+      "key_points": [
+        "Extreme Event I: earthquake + mean discharge scour (not check flood — joint probability too low)",
+        "Extreme Event II: check flood scour + ice or vessel/vehicle collision + hydraulic loads",
+        "Joint probability for Extreme Event II check flood + collision is uncertain — use site-specific engineering judgment"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Loading combinations for bridge foundations subject to multiple concurrent extreme event conditions"
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "reference_id": "FHWA NHI-16-072",
+  "reference_title": "Geotechnical Site Characterization",
+  "chapter": 11,
+  "chapter_title": "Development of Design Models and Selection of Design Parameters",
+  "sections": [
+    {
+      "section_id": "11.1-11.5",
+      "title": "Design Model Development and Variability Quantification",
+      "summary": "Site characterization culminates in developing a design model and selecting reliable design parameters. AASHTO LRFD requires mean values; designs using mean values with COV_total ≤ 0.3 practically achieve target reliability. Total variability: σ_total² = σ_meas² + σ_model²; COV_total = σ_total/mean. σ_meas = scatter around the mean; σ_model = σ_meas/√n = uncertainty in estimating the mean from limited data. Combining direct and indirect measurements reduces total uncertainty. Historical data may supplement if method and conditions are comparable.",
+      "body": "Design model development: A design model represents site conditions as a simplified stratigraphy with properties assigned to each stratum or design domain. More than one model may be developed (short-term vs. long-term; multiple strata alternatives). Parameters are established to represent conditions in a given volume or stratum. Multiple equally valid interpretations of the same data may exist; engineering judgment integrates available evidence.\n\nLRFD requirements: AASHTO LRFD designs require use of mean values (expected values) for design parameters. Using mean values with COV_total ≤ 0.3 produces designs that practically achieve the target probability of failure. Using mean values with COV_total > 0.3 typically produces under-reliable designs. Using conservative (less-than-mean) values increases reliability but also increases cost, violating the spirit of LRFD.\n\nVariability and uncertainty quantification: Three components: (1) Measurement variability σ_meas = standard deviation of measurements about the estimated mean; represents natural variability and measurement error. (2) Model uncertainty σ_model represents uncertainty in estimating the true mean from limited data; for uniform stratum with n direct measurements: σ_model ≈ σ_meas/√n. (3) Total: σ_total = √(σ_meas² + σ_model²); COV_total = σ_total/ŷd.\n\nFor indirect measurements: Variability of transformed measurements + transformation uncertainty contribute to σ_total. Combining direct (σ_d) and indirect (σ_s) measurements: weighted mean reduces total uncertainty; weights inversely proportional to variances. Historical measurements: verify they are representative (same test type, relevant stress conditions, appropriate time period) before combining with new measurements.",
+      "key_points": [
+        "LRFD requires mean design parameters; COV_total ≤ 0.3 practically achieves target reliability",
+        "σ_total² = σ_meas² + σ_model²; σ_model ≈ σ_meas/√n for uniform stratum",
+        "Combining direct and indirect measurements via weighted average reduces σ_total",
+        "Historical data: verify same test method and relevant conditions before combining",
+        "Multiple valid interpretations of the same data are acceptable and appropriate"
+      ],
+      "equations": [
+        {
+          "equation_id": "11-sigma-total",
+          "description": "Total variability and uncertainty of design parameter estimate",
+          "latex": "\\sigma_{total} = \\sqrt{\\sigma_{meas}^2 + \\sigma_{model}^2}",
+          "variables": {
+            "sigma_total": "total standard deviation of design parameter estimate",
+            "sigma_meas": "measurement variability — standard deviation of measurements about estimated mean",
+            "sigma_model": "model uncertainty — uncertainty in estimating the mean (≈ σ_meas/√n for uniform stratum)"
+          },
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure 11-3: Alternative interpretations of Cc measurements",
+        "Figure 11-8: Measured values of qu showing three measures of variability and uncertainty"
+      ],
+      "tables": [
+        "Table 11-1: Measures of variability and uncertainty for qu",
+        "Table 11-2: Coefficients of variation for direct measurements of qu"
+      ],
+      "applicability": "Design model development and variability quantification for LRFD-compatible parameter selection"
+    },
+    {
+      "section_id": "11.8-11.13",
+      "title": "Specific Design Parameter Interpretation",
+      "summary": "In situ stress: σvo = Σ(γi × Δzi); σ'vo = σvo - u; σ'p from consolidation tests; Ko = 1-sinφ' (NC soils) or from DMT/PMT/SBPMT. Undrained shear strength: CIUC tests to field σ'vc; SHANSEP su/σ'vc = S × OCR^m; field vane corrected by μ(PI). Effective stress: c' and φ' from regression; c' = 0 for stiff fissured OC clays. Consolidation: Cc and Cr per stratum; lab cv typically underestimates field rate (no macrofabric). Ko assessment needed for anchored walls and tunnels.",
+      "body": "Stress parameters: Total vertical stress σvo = Σ(γi × Δzi) from surface to depth z. Effective vertical stress σ'vo = σvo - u where u = pore water pressure. Preconsolidation stress σ'p from consolidation tests (Chapter 6 methods); OCR = σ'p/σ'vo. Ko for NC soils: Ko = 1-sinφ' (Jaky formula). Ko for OC soils: Ko,OC = Ko,NC × OCR^0.5 (Mayne and Kulhawy 1982). In situ Ko from self-boring PMT, SBPMT, or DMT; large scatter in correlations.\n\nUndrained shear strength for design: CIUC tests reconsolidated to field consolidation stresses; su established from compression loading path. For soft clays: interpret su as function of depth or OCR profile. SHANSEP: su = σ'vc × S × OCR^m (from CKoUC tests); reduces uncertainty by normalizing out stress level effects. FVT su: apply Chandler (1988) correction factor μ(PI). For stiff clays: use CIU-bar tests.\n\nEffective stress parameters: Fit linear Mohr-Coulomb envelope s = c' + σ'tanφ' to collection of strength tests using ordinary least squares or weighted least squares regression. Present as scatter plot with regression line and confidence interval. Stiff fissured OC clays: c' = 0 with fully softened φ' for long-term design (Section 7.6).\n\nConsolidation parameters: Cc and Cr interpreted separately for each stratum. cv from lab typically underestimates field rate because macro-scale features (sand and silt seams, varves) are not captured in small specimens; field cv often 2–10× lab cv.\n\nGroundwater conditions: Artesian pressure (u > γw × depth below GWT) requires piezometers; may change with season or construction dewatering. Design for most critical (highest) pore pressure conditions for stability analyses.",
+      "key_points": [
+        "σ'vo = σvo - u; OCR = σ'p/σ'vo; Ko = 1-sinφ' for NC soils (Jaky formula)",
+        "SHANSEP reduces Su uncertainty by normalizing for consolidation stress and OCR",
+        "Effective stress c', φ' from regression of strength test results; c' = 0 recommended for fissured OC clays",
+        "Lab cv typically underestimates field rate by 2–10× due to macrofabric not captured in specimens",
+        "Design for most critical groundwater conditions; artesian pressure requires piezometers"
+      ],
+      "equations": [
+        {
+          "equation_id": "11-sigvo",
+          "description": "Total vertical stress at depth z",
+          "latex": "\\sigma_{vo} = \\sum_i \\gamma_i \\cdot \\Delta z_i",
+          "variables": {
+            "sigma_vo": "total vertical stress at depth z",
+            "gamma_i": "total unit weight of layer i",
+            "Delta_z_i": "thickness of layer i"
+          },
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure 11-19: Measured values of Ko as function of φ' for NC soils and as function of OCR for OC soils",
+        "Figure 11-21: Interpretation of su from CIUC tests",
+        "Figure 11-24: Effective stress failure envelope",
+        "Figure 11-25: Effective stress failure envelope from weighted least squares regression"
+      ],
+      "tables": [],
+      "applicability": "Interpretation of in situ stress, undrained strength, effective stress strength, and consolidation parameters for LRFD design"
+    }
+  ]
+}

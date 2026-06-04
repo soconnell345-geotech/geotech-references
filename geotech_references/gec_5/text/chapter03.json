@@ -1,0 +1,84 @@
+{
+  "reference_id": "FHWA NHI-16-072",
+  "reference_title": "Geotechnical Site Characterization",
+  "chapter": 3,
+  "chapter_title": "Planning and Scoping for Site Characterization Activities",
+  "sections": [
+    {
+      "section_id": "3.1-3.3",
+      "title": "Information Requirements, Existing Information, and Site Reconnaissance",
+      "summary": "Three broad requirements for site characterization: (1) characterize stratigraphy and soil/rock units; (2) establish reliable design parameters and groundwater conditions; (3) identify and characterize geotechnical hazards. Existing information: web-based mapping (USGS, NRCS, Google Earth), geologic maps, historical records, aerial photographs, satellite imagery (InSAR for subsidence). Site reconnaissance provides first-hand account and reveals conditions overlooked by desk studies. Most maps have inadequate spatial resolution for geotechnical site characterization.",
+      "body": "Three broad requirements: (1) characterize stratigraphy and general soil/rock characteristics; (2) establish reliable design parameter values and groundwater conditions; (3) identify and characterize hazards.\n\nExisting information: GIS tools and web-based mapping have dramatically improved access to existing information. USGS topographic maps (soil type, drainage, etc.), NRCS Web Soil Survey (corrosion-risk ratings, fill/cut conditions), Google Earth and aerial photography (land use, drainage patterns, potential fills), interferometric radar (InSAR) for surface deformation/subsidence, historical aerial photographs for previous site use. Limitations: most maps have inadequate spatial resolution; ratings may not apply to specific soil conditions.\n\nSite reconnaissance: Provides first-hand account. Reveals local GWT seeps, unusual vegetation, past land use (contamination, fills), exposed geologic features. Most valuable early in the planning process to direct field investigations. Must be performed by a qualified person familiar with ground behavior.",
+      "key_points": [
+        "Three requirements: stratigraphy characterization, reliable design parameters + GWT, hazard identification",
+        "Web-based mapping tools (GIS, USGS, NRCS, Google Earth) provide rapid access to preliminary information",
+        "InSAR (interferometric radar) can identify subsidence associated with groundwater withdrawal or underground construction",
+        "Most maps have inadequate spatial resolution for geotechnical characterization — supplement with field investigation",
+        "Site reconnaissance is essential — reveals conditions overlooked by desk studies"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 3-1: Corrosion-risk ratings from the NRCS Web Soil Survey interactive tool",
+        "Figure 3-2: USGS topographic map",
+        "Figure 3-3: Areas of known damage from 1993 Midwest Floods",
+        "Figure 3-4: Karstic conditions and locations of known sinkholes"
+      ],
+      "tables": [],
+      "applicability": "Initial planning and information gathering for geotechnical site characterization programs"
+    },
+    {
+      "section_id": "3.4-3.5",
+      "title": "Influence of Number of Measurements and Direct vs. Indirect Measurements",
+      "summary": "More measurements reduce uncertainty in design parameters. For a uniform site, ~5 measurements may suffice; for a highly variable site, 25+ may be needed to fall within 25% of the true mean. LRFD motivates more measurements: variable resistance factors (higher φ with reduced uncertainty) produce more efficient designs. Direct measurements (e.g., triaxial Su) measure the property directly. Indirect measurements (transformations) estimate properties via empirical correlations (e.g., Su from SPT N or CPT qc) and carry additional uncertainty. Combining direct and indirect reduces total uncertainty.",
+      "body": "Statistical sampling concept: Available measurements are samples from a large population. More measurements reduce variability of the estimated mean. For a highly variable site: ~10 measurements required to reduce range to 25% of actual mean; ~40 measurements to reduce to 10% of actual mean. For a uniform site: fewer measurements sufficient. Most engineers underestimate uncertainty when few measurements are available.\n\nLRFD implications: AASHTO LRFD uses variable resistance factors that depend on the quantity and type of measurements. Greater numbers of measurements → higher resistance factor (lower required conservatism) → potentially more efficient design. Figure 3-12 shows percentage of AASHTO LRFD designs that achieve target reliability vs. number of measurements; with very few measurements, many designs will be under-reliable or over-reliable.\n\nDirect measurements: Measurements of the quantity of interest (e.g., undrained shear strength from unconsolidated undrained triaxial test, effective friction angle from consolidated drained triaxial test). Direct measurements are generally more reliable but often more expensive and require higher quality sampling.\n\nIndirect measurements (transformations): Measurements of a related quantity transformed to design parameters via empirical correlations. Examples: Su from SPT N, from CPT qc, from vane shear; φ' from CPT qc. Transformations introduce additional uncertainty beyond measurement uncertainty. Cannot be considered functionally equivalent to a direct measurement. However, combining direct and indirect measurements can produce meaningful reductions in uncertainty. Transformations are used throughout this manual for estimating properties from field tests.",
+      "key_points": [
+        "Variable site: ~10 measurements to fall within 25% of true mean; ~40 for within 10%",
+        "LRFD: higher resistance factor with more measurements incentivizes sufficient investigation quantity",
+        "Direct measurements: measure the design parameter directly (e.g., Su from triaxial); more reliable",
+        "Indirect measurements (transformations): estimate parameter via empirical correlation (e.g., Su from SPT N); additional uncertainty",
+        "Combining direct and indirect measurements can meaningfully reduce uncertainty"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 3-6: Alternative samples from population of su measurements showing variability with n=4",
+        "Figure 3-7: Alternative samples from population of su measurements showing reduced variability with n=20",
+        "Figure 3-8: Histograms of mean su from subsamples of size n=5 and n=20",
+        "Figure 3-12: Percentages of spread footings achieving target probability of failure vs. number of measurements",
+        "Figure 3-15: Empirical transformation between Is (point load index) and qu (UCS)"
+      ],
+      "tables": [],
+      "applicability": "Determining appropriate quantity and type of measurements for reliable design parameter characterization"
+    },
+    {
+      "section_id": "3.6-3.9",
+      "title": "Sample Quality, Time-Varying Conditions, and Developing Scope",
+      "summary": "Sample disturbance from stress relief and mechanical disturbance affects measured properties; collect more samples than needed for testing. Time-varying conditions: groundwater and effective stress changes can produce unconservative results if sampling occurs when effective stresses are higher than during construction. Scope development uses risk equation R = pf × C (Eq 3.1) to prioritize investigations where consequences are greatest. AASHTO 2014 Table 3-2 provides minimum exploration guidelines. On-site geotechnical engineer required to modify scope when unexpected conditions are encountered.",
+      "body": "Sample quality: Sample disturbance from stress relief, mechanical disturbance, and gas exsolution reduces reliability of laboratory tests. Higher quality samples (Shelby tubes, piston samplers, Laval samplers) produce more reliable results. Collection of more samples than needed is recommended since some samples are inevitably damaged. Sample quality is addressed in greater detail in Chapters 6 and 7.\n\nTime-varying conditions: The primary mechanism causing changes in soil properties over time is changes in effective stress resulting from changes in groundwater conditions. If sampling is conducted when effective stresses are higher than those that will exist during construction, measured properties may be unconservative. Important to consider timing of investigations relative to anticipated construction and operating conditions.\n\nDeveloping scope: Risk equation: R = pf × C (Eq 3.1) where R = quantitative risk, pf = probability of failure, and C = consequences. Where consequences are greatest, more rigorous investigations are justified. Scope must be balanced with budget constraints and practical limitations. AASHTO 2014 Table 3-2 provides guidelines for minimum number, location, and depth of exploration points for various structure types. However, these minimum guidelines should be supplemented based on site variability and design requirements.\n\nKey scoping requirements: (1) borings to characterize stratigraphy along alignment and at structure locations; (2) additional measurements for design parameter characterization (number depends on variability); (3) specialized investigations for identified hazards. Field investigations must be directed by on-site qualified engineer or geologist so scope can be modified when unexpected conditions are encountered.",
+      "key_points": [
+        "Collect more field samples than needed — some will be damaged and unsuitable for testing",
+        "Effective stress changes with GWT level: sampling during high-stress conditions can produce unconservative properties",
+        "Risk equation: R = pf × C — prioritize investigations where consequences are greatest",
+        "AASHTO 2014 Table 3-2: minimum exploration point guidelines — supplement based on variability and design requirements",
+        "On-site geotechnical engineer or geologist required to direct field investigations and modify scope when needed"
+      ],
+      "equations": [
+        {
+          "equation_id": "3-1",
+          "description": "Quantitative risk for geotechnical design decision making",
+          "latex": "R = p_f \\cdot C",
+          "variables": {
+            "R": "quantitative risk (financial)",
+            "p_f": "probability of an undesirable event (failure)",
+            "C": "consequences associated with the undesirable event (generally financial)"
+          },
+          "implemented_in": null
+        }
+      ],
+      "figures": [],
+      "tables": [
+        "Table 3-2: Guidelines for minimum number, location, and depth of exploration points (adapted from AASHTO 2014)"
+      ],
+      "applicability": "Developing and executing an appropriate scope of site characterization investigations"
+    }
+  ]
+}

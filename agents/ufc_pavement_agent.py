@@ -1,12 +1,12 @@
 """
-UFC Pavement Agent — Foundry-style wrapper for UFC 3-260-02 lookups.
+UFC Pavement Agent — Foundry-style wrapper for UFC 3-250-01 lookups.
 
-Wraps CBR-based pavement design equations, frost susceptibility tables,
-aircraft classification, and structural layer coefficients for airfield
-pavement design.
+Wraps pavement design equations and tables from UFC 3-250-01 (2016),
+Pavement Design for Roads and Parking Areas.  Covers roads, streets,
+walks, and open storage areas — NOT airfields (airfields = UFC 3-260-02).
 
 Three entry-point functions:
-  1. ufc_pavement_agent           - Run a UFC 3-260-02 function
+  1. ufc_pavement_agent           - Run a UFC 3-250-01 function
   2. ufc_pavement_list_methods    - Browse available functions by category
   3. ufc_pavement_describe_method - Get detailed parameter docs for a specific function
 
@@ -124,8 +124,8 @@ def _load_registry():
     _METHOD_INFO = {}
 
     _lookup_modules = [
-        (equations, "equations", "UFC 3-260-02 pavement design equations"),
-        (tables, "tables", "UFC 3-260-02 frost, aircraft, and layer coefficient tables"),
+        (equations, "equations", "UFC 3-250-01 pavement design equations"),
+        (tables, "tables", "UFC 3-250-01 subgrade, frost, and equivalency tables"),
     ]
 
     for _mod, _category_prefix, _ref in _lookup_modules:
@@ -142,13 +142,15 @@ def _load_registry():
 @function
 def ufc_pavement_agent(method: str, parameters_json: str) -> str:
     """
-    UFC 3-260-02 Pavement Design for Airfields tool.
+    UFC 3-250-01 Pavement Design for Roads and Parking Areas tool.
 
-    Provides CBR-to-subgrade modulus conversion, flexible and rigid
-    pavement thickness design, equivalent single wheel load (ESWL),
-    frost susceptibility classification, frost CBR reduction, aircraft
-    loading parameters, structural layer coefficients, and subgrade
-    quality classification.
+    Provides CBR-to-k conversion, stabilized layer thickness design,
+    frost free-draining layer check, subgrade category lookup (Table 4-1),
+    subbase permissible values (Table 6-1), base CBR values (Table 7-1),
+    minimum pavement thickness (Table 7-2), stabilized material equivalency
+    factors (Table 9-1), modulus of subgrade reaction k (Table 10-1),
+    frost soil classification (Table 19-2), and frost soil support index
+    (Table 19-3). Covers roads, streets, walks, and open storage areas.
 
     Parameters:
         method: The function name. Use ufc_pavement_list_methods() to browse.
@@ -191,10 +193,10 @@ def ufc_pavement_agent(method: str, parameters_json: str) -> str:
 @function
 def ufc_pavement_list_methods(category: str = "") -> str:
     """
-    Lists available UFC 3-260-02 pavement design functions by category.
+    Lists available UFC 3-250-01 pavement design functions by category.
 
     Parameters:
-        category: Optional filter (e.g. 'cbr', 'frost', 'aircraft', 'layer').
+        category: Optional filter (e.g. 'cbr', 'frost', 'subgrade', 'equivalency', 'thickness').
 
     Returns:
         JSON string with method names grouped by category.
@@ -216,7 +218,7 @@ def ufc_pavement_list_methods(category: str = "") -> str:
 @function
 def ufc_pavement_describe_method(method: str) -> str:
     """
-    Returns detailed documentation for a UFC 3-260-02 pavement function.
+    Returns detailed documentation for a UFC 3-250-01 pavement function.
 
     Parameters:
         method: The method name (e.g. 'cbr_to_subgrade_modulus_MPa_per_m',

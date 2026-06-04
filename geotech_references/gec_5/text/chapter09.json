@@ -1,0 +1,104 @@
+{
+  "reference_id": "FHWA NHI-16-072",
+  "reference_title": "Geotechnical Site Characterization",
+  "chapter": 9,
+  "chapter_title": "Measurement and Interpretation of Rock Properties",
+  "sections": [
+    {
+      "section_id": "9.1-9.4",
+      "title": "Intact Rock Properties",
+      "summary": "Intact rock properties measured by: (1) uniaxial compressive strength qu (ASTM D7012): peak axial stress at failure; E50 from slope of stress-strain curve at 50% of qu; (2) Brazilian tensile strength (ASTM D3967): σt = 2P/(πDl); (3) direct shear on rock joints (ASTM D5607): peak and residual friction angle φj with optional JRC roughness quantification; (4) point load index Is (ASTM D5731): qu ≈ 22 × Is(50) (correction to 50 mm diameter); (5) Schmidt hammer rebound R → qu and E50 per Table 9-3 and 9-4. Sample selection: avoid weathered, fractured, or mechanically damaged specimens; sufficient L/D ratio (≥ 2.0 for UCS).",
+      "body": "Intact rock strength and stiffness: The uniaxial compressive strength qu (or UCS) is the axial stress at failure in an unconfined compression test. E50 = Young's modulus at 50% of qu from the axial stress-strain curve. Poisson's ratio from simultaneous lateral strain measurements. Tests on intact specimens; values must be adjusted for in situ rock mass quality using classification systems.\n\nBrazilian tensile strength (ASTM D3967): Indirect tensile test on disk-shaped specimen; σt = 2P/(πDl) where P = load, D = diameter, l = thickness. Useful when direct tensile strength is needed.\n\nDirect shear on rock joints (ASTM D5607): Peak and residual friction angles for natural or manufactured discontinuities. Joint roughness coefficient (JRC) from Barton and Choubey (1977) quantifies surface texture; smooth = 0, very rough = 20. JRC combined with JCS (joint compressive strength) and φr (residual friction angle) gives strength envelope.\n\nPoint load index (ASTM D5731): Quick field test on drill core or irregular rock lumps; Is = P/De² where De = equivalent diameter. Normalize to 50 mm: Is(50). Empirical: qu ≈ 22 × Is(50) for irregular lumps; correlation varies by rock type.\n\nSchmidt hammer: R value → qu and E50 from Table 9-3 (Deere and Miller 1966) and Table 9-4. Simple portable tool for preliminary assessment. Large scatter in correlations; should not replace direct UCS testing for design.",
+      "key_points": [
+        "UCS (ASTM D7012): qu = peak axial stress; E50 from stress-strain at 50% qu; L/D ≥ 2.0",
+        "Brazilian tensile: σt = 2P/(πDl) — indirect; use when direct tensile needed",
+        "Point load index: qu ≈ 22 × Is(50); quick field test but significant scatter",
+        "Schmidt hammer R → qu and E50 (Tables 9-3, 9-4); preliminary screening only",
+        "JRC (0–20) + JCS + φr: Barton-Choubey discontinuity shear strength parameters"
+      ],
+      "equations": [
+        {
+          "equation_id": "9-Brazilian",
+          "description": "Brazilian indirect tensile strength of intact rock",
+          "latex": "\\sigma_t = \\frac{2P}{\\pi D l}",
+          "variables": {
+            "sigma_t": "indirect tensile strength",
+            "P": "maximum applied load at failure",
+            "D": "diameter of rock disk specimen",
+            "l": "axial length (thickness) of rock disk specimen"
+          },
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure 9-3: Result from uniaxial compression test on intact rock",
+        "Figure 9-7: Axial stress vs. axial strain from uniaxial compression test",
+        "Figure 9-8: Different definitions of rock modulus from stress-strain curve",
+        "Figure 9-11: Relationship between Schmidt hammer R and qu",
+        "Figure 9-14: Relationship between static and dynamic constrained modulus"
+      ],
+      "tables": [
+        "Table 9-3: Transformations to transform Schmidt hammer R to qu",
+        "Table 9-4: Selected relations to transform rebound hammer R to E50",
+        "Table 9-10: Values of material constant mi for Hoek-Brown criterion"
+      ],
+      "applicability": "Intact rock strength and stiffness measurement for foundation design and rock mass characterization"
+    },
+    {
+      "section_id": "9.5-9.8",
+      "title": "Rock Mass Classification and Deformability",
+      "summary": "Rock mass classification systems: RMR (Rock Mass Rating, ASTM D5878/Bieniawski 1989) — sums 5 parameters: UCS, RQD, discontinuity spacing, discontinuity condition, groundwater; range 0–100 (0 = very poor, 100 = excellent). GSI (Geological Strength Index, Hoek et al. 2013) — from rock mass structure and discontinuity surface condition charts; quantitative version from Jcond89 and RQD. Rock mass modulus Em from Hoek and Diederichs (2006): Em = Ei × [0.02 + (1-D/2)/(1+e^((60+15D-GSI)/11))]; D = disturbance factor (0 = undisturbed, 1 = heavily blasted). Hoek-Brown failure criterion for rock masses: σ1 = σ3 + qu × (mb×σ3/qu + s)^a; mb, s, a from GSI and mi (Table 9-10).",
+      "body": "Discontinuity characterization: Strike and dip describe planar orientation; plotted on stereonets for stability analysis. Downhole televiewer (acoustic or optical) provides high-resolution images of borehole wall for discontinuity characterization without core orientation tools.\n\nRMR system (ASTM D5878, Bieniawski 1989): Five parameter rating system (Table 9-5): (1) UCS of intact rock; (2) RQD; (3) Spacing of discontinuities; (4) Condition of discontinuities (roughness, opening, infill, weathering, length); (5) Groundwater conditions. Sum of 5 ratings (0–100): 81–100 = Class I Very Good; 61–80 = Class II Good; 41–60 = Class III Fair; 21–40 = Class IV Poor; 0–20 = Class V Very Poor. Correction for joint orientation applied for specific applications.\n\nGSI (Geological Strength Index, Hoek et al.): Reflects rock mass structure (blockiness) and surface condition of discontinuities. Estimated from chart (Figure 9-23) or quantitative chart (Figure 9-24) using Jcond89 (Table 9-7) and RQD.\n\nRock mass modulus: Em from Hoek and Diederichs (2006): Em = Ei × [0.02 + (1-D/2) / (1 + e^((60+15D-GSI)/11))] where Ei = intact rock modulus, D = disturbance factor. Table 9-9 provides guidance on D. Also from plate load tests, pressure meter (Chapter 8 methods), and seismic velocity.\n\nHoek-Brown failure criterion: σ1 = σ3 + qu × (mb × σ3/qu + s)^a where mb = mi × exp((GSI-100)/(28-14D)); s and a depend on GSI (Equations 9.31, 9.32). Represents curved failure envelope for interlocked rock masses; can be converted to approximate Mohr-Coulomb c' and φ' for given stress range.",
+      "key_points": [
+        "RMR (ASTM D5878): 5 parameters; sum 0-100; Class I (81-100) excellent to Class V (0-20) very poor",
+        "GSI: rock mass structure + discontinuity surface condition; quantified from Jcond89 and RQD",
+        "Hoek-Diederichs rock mass modulus: Em = Ei × [0.02 + (1-D/2)/(1+e^((60+15D-GSI)/11))]",
+        "Disturbance factor D: 0 = undisturbed in situ; 1 = heavily blasted — reduces Em significantly",
+        "Hoek-Brown: σ1 = σ3 + qu(mb×σ3/qu + s)^a; mb, s, a from GSI and mi (Table 9-10)"
+      ],
+      "equations": [
+        {
+          "equation_id": "9-Hoek-Diederichs",
+          "description": "Rock mass modulus from Hoek and Diederichs (2006)",
+          "latex": "E_m = E_i \\left[0.02 + \\frac{1 - D/2}{1 + e^{(60 + 15D - GSI)/11}}\\right]",
+          "variables": {
+            "E_m": "rock mass deformation modulus",
+            "E_i": "intact rock modulus from laboratory tests",
+            "D": "disturbance factor (0 = undisturbed; 0.5 = partially blasted; 1.0 = heavily blasted)",
+            "GSI": "Geological Strength Index"
+          },
+          "implemented_in": null
+        },
+        {
+          "equation_id": "9-HB",
+          "description": "Hoek-Brown failure criterion for rock masses",
+          "latex": "\\sigma_1 = \\sigma_3 + q_u \\left(m_b \\frac{\\sigma_3}{q_u} + s\\right)^a",
+          "variables": {
+            "sigma_1": "major principal stress at failure",
+            "sigma_3": "minor principal stress (confining stress)",
+            "q_u": "uniaxial compressive strength of intact rock",
+            "m_b": "mb = mi × exp((GSI-100)/(28-14D)); reduced Hoek-Brown constant for rock mass",
+            "s": "strength parameter from GSI: s = exp((GSI-100)/(9-3D))",
+            "a": "strength parameter from GSI: a = 0.5 + (1/6)(e^(-GSI/15) - e^(-20/3))"
+          },
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure 9-19: Downhole televiewer measurements",
+        "Figure 9-23: Qualitative chart for estimation of GSI in rock (Marinos et al. 2005)",
+        "Figure 9-24: Quantitative version of the GSI chart (Hoek et al. 2013)",
+        "Figure 9-25: GSI for heterogeneous rock masses",
+        "Figure 9-36: Comparison of Hoek-Brown failure criterion with approximate Mohr-Coulomb envelope"
+      ],
+      "tables": [
+        "Table 9-5: Rock Mass Rating (RMR) system of rock mass classification (ASTM D5878)",
+        "Table 9-6: RMR system: class descriptions and engineering properties",
+        "Table 9-7: Definition of JCond89 for estimating GSI",
+        "Table 9-8: Guidelines for classifying discontinuity condition",
+        "Table 9-10: Values of material constant mi for Hoek-Brown criterion"
+      ],
+      "applicability": "Rock mass classification, deformability, and strength characterization for transportation foundation design"
+    }
+  ]
+}

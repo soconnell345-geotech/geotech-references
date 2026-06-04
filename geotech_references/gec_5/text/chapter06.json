@@ -1,0 +1,75 @@
+{
+  "reference_id": "FHWA NHI-16-072",
+  "reference_title": "Geotechnical Site Characterization",
+  "chapter": 6,
+  "chapter_title": "Measurement and Interpretation of Consolidation Properties of Soil",
+  "sections": [
+    {
+      "section_id": "6.1-6.5",
+      "title": "Consolidation Test Methods",
+      "summary": "Two main laboratory consolidation test types: (1) incremental load (IL) — load applied in increments with LIR ≈ 1 (doubling); each increment held 24 hours; ASTM D2435/AASHTO T216; (2) constant rate of strain (CRS) — continuous loading at constant axial strain rate; ASTM D4186; requires base pore pressure measurement. Both define σ'p, Cc, and Cr from e-log σ'v. Sampling disturbance: problematic in soft sensitive clays; fixed piston or Laval samplers preferred; block samples best. Schmertmann (1955) method corrects laboratory curve for disturbance.",
+      "body": "Incremental load (IL) consolidation test (ASTM D2435, AASHTO T216): Applies a series of vertical loads to a laterally confined specimen (typically 50-76 mm diameter, 20-25 mm height). Standard load schedule: LIR = 1 (doubling each increment). Each increment held for 24 hours (longer if secondary compression is significant). Measurements of vertical deformation vs. time for each load increment. Output: e-log σ'v or εv-log σ'v plot; preconsolidation stress σ'p; Cc (slope of normal consolidation line); Cr (recompression slope).\n\nConstant rate of strain (CRS) consolidation test (ASTM D4186): Applies continuous loading at constant axial strain rate (0.05% to 1% per hour typical). Requires pore pressure measurement at base. Strain rate selected to maintain ratio of excess pore pressure to total stress of ≤ 5–10%. Faster than IL tests; continuous data gives better-defined σ'p. Useful for soft to medium clays.\n\nSampling disturbance effects: Stress relief from excavation/extraction, mechanical disturbance, and gas exsolution can all degrade sample quality. Table 6-1 characterizes sample quality from consolidation test results. Block samples and fixed-piston samples produce least disturbance; Shelby tube samples may show significant disturbance for soft sensitive clays (Figure 6-4). Schmertmann (1955) method (Figure 6-18) corrects laboratory curve for disturbance effects to produce 'field consolidation curve'.",
+      "key_points": [
+        "IL test (ASTM D2435): LIR = 1 (doubling); each increment held 24 hrs; measures e-log σ'v",
+        "CRS test (ASTM D4186): continuous loading at constant strain rate; requires base pore pressure measurement",
+        "Sampling disturbance overestimates σ'p and distorts Cc; block samples and fixed-piston samplers preferred",
+        "Schmertmann (1955) method corrects for disturbance to obtain field compression curve"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-2: Alternative presentations for consolidation test results (log σ vs. strain; e-log σ)",
+        "Figure 6-3: Interpretation of preconsolidation stress from consolidation tests",
+        "Figure 6-4: Influence of sampling method on consolidation test results (Bozozuk 1971)",
+        "Figure 6-5: Comparison of consolidation tests for block, fixed-piston, and Shelby tube samples",
+        "Figure 6-10: Measured response from CRS consolidation test",
+        "Figure 6-18: Schmertmann (1955) method to obtain field consolidation curve for OC soils"
+      ],
+      "tables": [
+        "Table 6-1: Characterization of sample quality from consolidation tests"
+      ],
+      "applicability": "Laboratory consolidation testing methods and sampling requirements for compressibility parameter measurement"
+    },
+    {
+      "section_id": "6.6-6.12",
+      "title": "Preconsolidation Stress, Compression Parameters, and Rate of Consolidation",
+      "summary": "Preconsolidation stress σ'p from IL tests by: Casagrande method (tangent + bisector construction), strain energy method (more consistent per Grozic et al. 2003), or tangent modulus method. OCR = σ'p/σ'vo. Compression index Cc from slope of normal consolidation line (log-space); recompression index Cr = 0.1–0.25 Cc typically. cv from Casagrande log-time (T90 = 0.848) or Taylor square root of time method. In situ: σ'p from CPT (qt), CPTU (u2), DMT (KD), FVT (su-FV), PMT (pL), SPT (N60) — all with significant scatter. ch from CPTU dissipation tests (Terzaghi monotonic or Tflex method). Cα/Cc typically 0.04 for most inorganic clays.",
+      "body": "Preconsolidation stress σ'p from laboratory tests: (1) Casagrande method — graphical construction on e-log σ'v plot: tangent at point of maximum curvature, horizontal line, bisector, tangent to linear portion; σ'p at intersection. (2) Strain energy method (Becker et al. 1987) — σ'p at peak of strain energy vs. log σ'v plot; more objective and consistent (Figure 6-15). (3) Tangent modulus method — from CRS tests; σ'p at minimum of tangent modulus M.\n\nOCR = σ'p / σ'vo. Table of OCR interpretation from IL tests. Correlations for σ'p or OCR from in-situ tests (Table 6-5/6-6): qt (CPT), u2 (CPTU), KD (DMT), su-FV (FVT), pL (PMT), N60 (SPT). Scatter in correlations is substantial — use multiple methods when possible.\n\nCompression parameters: Cc = slope of normal consolidation line in e-log σ'v space. Cr = recompression slope (typically 0.1 to 0.25 Cc). Correlations of Cc with initial void ratio eo and LL (Table 6-12). Cr often from slope of unload-reload curve or from separate tests.\n\nCoefficient of consolidation cv: Casagrande log-time method: cv = T90 × d²/t90 where T90 = 0.848 (Eq 6 from ASTM D2435). d = drainage path length = H/2 for double drainage. Taylor square root of time method: t90 from modified intercept.\n\nch from CPTU dissipation tests: ch from time for u to dissipate to baseline (Robertson et al. 1992 chart; modified time factor T* method). Horizontal consolidation governs for wick drains and stone columns.\n\nSecondary compression: Cα = Cαε / (1+eo). Cα/Cc typically 0.04 for inorganic clays (Mesri and Godlewski 1977); higher for organic soils. Values for specific soils in Table 6-17.",
+      "key_points": [
+        "Casagrande and strain energy methods for σ'p; strain energy more objective and consistent",
+        "Cc = slope of NC line (log-space); Cr ≈ 0.1–0.25 Cc; Cc correlates with eo and LL (Table 6-12)",
+        "cv (Casagrande): T90 × d²/t90; T90 = 0.848; d = H/2 for double drainage",
+        "ch from CPTU dissipation tests; Robertson et al. (1992) T*-based chart",
+        "Cα/Cc ≈ 0.04 for inorganic clays; higher for organic soils"
+      ],
+      "equations": [
+        {
+          "equation_id": "6-cv",
+          "description": "Coefficient of consolidation from Casagrande log-time method",
+          "latex": "c_v = \\frac{T_{90} \\cdot d^2}{t_{90}}",
+          "variables": {
+            "c_v": "coefficient of vertical consolidation",
+            "T_90": "theoretical time factor for 90% consolidation = 0.848",
+            "d": "drainage path length = H/2 for double drainage, H for single drainage",
+            "t_90": "measured time for 90% primary consolidation from log-time plot"
+          },
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure 6-13: Influence of strain rate on interpreted preconsolidation stress",
+        "Figure 6-24: Transformations from CPTU pore pressure to preconsolidation stress",
+        "Figure 6-36: Correlation between plasticity index and recompression and compression parameters",
+        "Figure 6-37: Correlation of coefficient of consolidation to liquid limit (NAVFAC 1986)",
+        "Figure 6-38: Typical relationship between Cαε and Cc",
+        "Figure 6-39: Generalized relationships between LI and preconsolidation stress"
+      ],
+      "tables": [
+        "Table 6-5: Summary of in situ test methods for determining preconsolidation stress",
+        "Table 6-6: Summary of empirical transformations between preconsolidation stress and DMT KD",
+        "Table 6-12: Reported correlations between compression index Cc, initial void ratio eo, and LL",
+        "Table 6-17: Values of Cα/Cc for several soil types"
+      ],
+      "applicability": "Interpretation of preconsolidation stress, compression indices, and consolidation rate from laboratory and in situ tests"
+    }
+  ]
+}

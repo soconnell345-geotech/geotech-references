@@ -1,0 +1,59 @@
+{
+  "reference_id": "FHWA-HIF-18-031",
+  "reference_title": "Design, Analysis, and Testing of Laterally Loaded Deep Foundations that Support Transportation Facilities",
+  "chapter": 5,
+  "chapter_title": "Design Process and Team Roles for Analysis of Laterally Loaded Deep Foundations",
+  "sections": [
+    {
+      "section_id": "5.1",
+      "title": "Design Process",
+      "summary": "The design process for laterally loaded deep foundations is presented as 17 sequential blocks from project definition through post-construction reporting, illustrated in Figure 5-1. Key steps include establishing performance requirements, characterizing subsurface conditions, selecting foundation type, performing single-pile and group p-y analyses for all limit states, finalizing structural design, and constructability review. The process is iterative in practice and does not follow a strictly linear path.",
+      "body": "The design procedure for laterally loaded deep foundations is presented as a step-by-step process, though in practice it often does not follow a linear path. The design process often includes multiple iterations to refine the design, incorporate additional subsurface data, accommodate design changes, or address constructability considerations. The 17 design blocks are: Block 1 — Establish project type, performance requirements, and constraints (structure type, site conditions, special events, preliminary loads, resistance factors, and performance criteria); Block 1a — Design-Build: develop project performance requirements; Block 2 — Define preliminary geotechnical conditions; Block 3 — Develop estimates of applied loads; Block 4 — Plan and execute subsurface investigation and testing; Block 5 — Characterize subsurface conditions; Block 6 — Select deep foundation type; Block 7 — Determine initial foundation layout and head fixity conditions; Block 8 — Estimate pile size and depth and determine subsurface conditions for lateral loading; Block 9 — Analyze single pile (9.1: Geotechnical Strength LS; 9.2: Structural Strength LS; 9.3: Service LS; 9.4: Extreme Event LS); Block 10 — Perform axial design; Block 11 — Perform group analysis; Block 12 — Final structural design of elements and connections; Block 13 — Constructability review; Block 14 — Develop construction documents; Block 15 — Develop cost estimate; Block 16 — Design considerations and changes during construction; Block 17 — Post-construction reporting.",
+      "key_points": [
+        "Block 1: Establish project type, performance requirements, load factors, and tolerable deflection criteria",
+        "Block 9 contains four sub-analyses: geotechnical strength LS, structural strength LS, service LS, extreme event LS",
+        "Blocks 9 and 11 (single pile and group analysis) are the primary analytical activities of lateral design",
+        "Block 13 constructability review is important for foundation type selection and specification development",
+        "Process is iterative — multiple loops between blocks are common in practice"
+      ],
+      "equations": [],
+      "figures": ["Figure 5-1: Design procedure for laterally loaded deep foundations"],
+      "tables": [],
+      "applicability": "All projects requiring laterally loaded deep foundation design"
+    },
+    {
+      "section_id": "5.2",
+      "title": "Design Team Roles",
+      "summary": "Geotechnical engineers lead subsurface characterization, parameter development, foundation type selection, and geotechnical resistance analysis. Structural engineers lead structural loading, head fixity conditions, structural strength design, and connection details. Responsibilities for single-pile p-y analysis may be shared. Communication and coordination between disciplines is critical to avoid double application of factors and to identify design optimization opportunities.",
+      "body": "The geotechnical engineer has primary responsibility for: defining preliminary geotechnical conditions, planning and executing subsurface investigations, characterizing subsurface conditions, developing resistance factors, determining external geotechnical loads (retained earth, slope movement, liquefaction), assessing constructability, and developing construction inspection and testing requirements. For geotechnical-natured projects (slope stabilization, retaining walls), the geotechnical engineer may also take the lead on foundation type selection, layout, and head fixity conditions. The structural engineer has primary responsibility for: definition of project type and structural needs, determination of head fixity conditions and foundation layout, determination of performance criteria (allowable deflection, shear and moment capacity), development of structural loads at foundation heads, structural strength limit state analysis, preliminary and final structural design of elements and connections, and construction documents. Single-pile p-y analysis may be performed by either discipline: the geotechnical engineer develops subsurface profiles and p-y curves/parameters; the structural engineer may then run the p-y analysis or the geotechnical engineer may run it and the structural engineer reviews. Group analysis similarly may be performed by either discipline using specialty software. Other team members include hydraulic engineers (scour, current loads), civil engineers (grading, downdrag), and construction engineers (constructability review and construction inspection).",
+      "key_points": [
+        "Geotechnical engineer leads site characterization, parameter development, and geotechnical resistance factors",
+        "Structural engineer leads performance criteria, head fixity, structural design, and connection details",
+        "Single-pile p-y analysis may be performed by geotech or structural engineer depending on project type",
+        "Group analysis requires specialty software with both geotechnical and structural inputs",
+        "Hydraulic engineer provides scour depths and wave/current loads; construction engineer oversees field execution"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Multi-discipline project teams for laterally loaded deep foundation design on transportation projects"
+    },
+    {
+      "section_id": "5.3",
+      "title": "Need for Communication and Coordination",
+      "summary": "Effective communication between geotechnical and structural engineers is critical to avoid conservatism compounding at each discipline's boundary, to ensure loads and resistances are properly factored (not double-factored), and to identify opportunities for design optimization. Early-stage conservatism in deflection limits, soil parameters, or foundation sizes is common but should be revisited as the design is refined to potentially reduce costs.",
+      "body": "There is a need for communication and coordination between team members for the design of deep foundations. Design requirements such as tolerable deflections, loading conditions, subsurface conditions, or other inputs must be determined and communicated to avoid using assumed or overly conservative values or to avoid double application of load and resistance factors. Clear communication should include an indication of whether loads and resistances are factored or unfactored/nominal, as well as what load or resistance factors should be applied in the analysis. Individual pile and group analyses performed by one discipline should be reviewed by the other to confirm adequacy and that there are no missed optimization opportunities. It is often the case that conservatism included in early-stage design parameters or inputs — conservatism in the allowable deflection limit, geotechnical input parameters, subsurface characterization, foundation size/type, or design loads — is not re-assessed at later stages. This can result in missed opportunities to optimize the design. For example, IGM materials may be characterized conservatively as stiff soils, which may result in excessive depths for some applications. Without coordination, the initial characterization may not be revisited to confirm whether a more economical design can be realized.",
+      "key_points": [
+        "Always specify whether loads and resistances are factored or nominal when communicating between disciplines",
+        "Avoid double application of load and resistance factors",
+        "Review single pile and group analyses across disciplines",
+        "Early conservatism in deflection limits and soil parameters should be revisited as design is refined",
+        "IGM materials conservatively modeled as soils may result in unnecessarily deep foundations"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Multi-discipline project teams; any project where geotechnical and structural engineers collaborate on lateral foundation design"
+    }
+  ]
+}

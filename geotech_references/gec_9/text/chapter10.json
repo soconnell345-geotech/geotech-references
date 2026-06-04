@@ -1,0 +1,154 @@
+{
+  "reference_id": "FHWA-HIF-18-031",
+  "reference_title": "Design, Analysis, and Testing of Laterally Loaded Deep Foundations that Support Transportation Facilities",
+  "chapter": 10,
+  "chapter_title": "Design for Slope Stabilization",
+  "sections": [
+    {
+      "section_id": "10.1",
+      "title": "Overview",
+      "summary": "Slope stabilization with deep foundation elements uses either (i) drilled shafts, driven piles, or drilled-in piles to add shear resistance across the failure plane, or (ii) battered driven piles or micropiles in an A-frame configuration to tie the sliding mass to competent ground below. Both methods require comprehensive existing slope stability assessment followed by modeling of soil-pile interaction. The geotechnical resistance factor after stabilization is not well-defined because earth pressures depend on relative soil-pile movement, geotechnical resistance, and pile stiffness.",
+      "body": "Methods for stabilizing slopes with deep foundation elements, independent of wall structures that buttress the slide force, include in-slope installation of: (i) drilled shaft, driven pile, or drilled-in pile systems to add shear resistance across the failure plane or a potential slip surface; and (ii) battered driven pile or micropile systems to essentially tie the soil mass of an existing slide together to the more competent ground below the plane of failure. Both design methods rely upon comprehensive assessment of existing slope stability, followed by modelling of the interaction between the soil and the installed deep foundation elements. The analysis and design involves evaluation of: (i) the geotechnical resistance factor of the slope with elements installed; and (ii) the loads for structural design of the foundation elements. The geotechnical resistance factor after stabilization is not well defined because the earth pressures on the elements depend on relative movement of the soil and elements, which depend on geotechnical resistance and stiffness of the pile/shaft elements.",
+      "key_points": [
+        "Two approaches: (1) shear resistance piles/shafts perpendicular to slip surface; (2) battered micropile/pile A-frame system tying slide mass to stable ground",
+        "Both require comprehensive slope stability assessment and soil-pile interaction modeling",
+        "Geotechnical resistance factor after stabilization is not well-defined — depends on soil-pile relative movement and pile stiffness",
+        "Chapter presents Liang and Zeng (2002) limit equilibrium method for drilled shaft slope stabilization"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Slope stabilization using deep foundation elements — drilled shafts, driven piles, and battered micropiles"
+    },
+    {
+      "section_id": "10.2",
+      "title": "Existing Slope Stability Assessment",
+      "summary": "Existing slope stability is assessed by data gathering (topography, landslide extent, subsurface profile, failure plane identification via inclinometers and piezometers) and limit equilibrium analysis (Bishop, Janbu, Spencer). Target AASHTO resistance factors are φ = 0.75 (FS = 1.33) or φ = 0.65 (FS = 1.53). For failing slopes, back-analysis must achieve FS ≈ 1.0 with a failure surface consistent with observed field conditions; a back-analysis that matches FS = 1.0 but uses an incorrect failure surface is not acceptable.",
+      "body": "Existing slope conditions should be assessed by review of available information and collection of geotechnical data through subsurface exploration, geophysics, and laboratory testing. Data gathering includes: topography (for cross-sections, critical areas, and slide limits); landslide extent (head scarps, toe bulges, surface slumps); subsurface profile (borings for soil indices, strength, stratigraphy, and groundwater — CPT may supplement open-hole borings for rapid assessment); failure plane identification (inclinometer casings for periodic monitoring, piezometers and monitoring wells for groundwater). Slope stability is evaluated at the AASHTO Service I Load Combination relative to geotechnical resistance factors that are the inverse of the computed FS. Target resistance factors: φ = 0.75 (FS = 1.33) and φ = 0.65 (FS = 1.53) per AASHTO 11.6.2.3. Limit equilibrium methods (Modified Bishop, Simplified Janbu, Spencer) are used for the overall slope analysis. For failing slopes, computed FS should approximate 1.0 (φ = 1.0 for Service Limit State). If the computer-simulated failure surface differs significantly from observed conditions, soil properties and pore pressures should be adjusted in iterative back-analyses until the computed surface matches observations. A back-analysis producing FS = 1.0 with an incorrect failure surface should not be relied upon.",
+      "key_points": [
+        "Data gathering: topography, landslide extent, subsurface borings, inclinometer-confirmed failure plane, piezometers",
+        "Target resistance factors: φ = 0.75 (FS = 1.33) or φ = 0.65 (FS = 1.53) per AASHTO 11.6.2.3",
+        "Failing slope: back-analysis must give FS ≈ 1.0 with failure surface consistent with inclinometer observations",
+        "A back-analysis matching FS = 1.0 but with incorrect failure surface geometry is not acceptable"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Initial slope stability assessment before designing deep foundation slope stabilization"
+    },
+    {
+      "section_id": "10.3",
+      "title": "Drilled Shaft Analysis Using the Liang and Zeng Method",
+      "summary": "The Liang and Zeng (2002) method uses modified method-of-slices limit equilibrium to calculate the net force on drilled shafts needed to stabilize a slope. Soil arching is incorporated through reduction factor R depending on diameter d, spacing S, and residual pressure fraction Rp (Tables 10-1a/b/c). Interslice forces are computed recursively (Eqs 10-1 to 10-3); net shaft force from Eq 10-4 (Case I) or Eq 10-5 (Case II). The net force is applied as triangular loading in p-y analysis. Service LS: unfactored loads plus 2-ft surcharge; Strength LS: γLS = 1.75, γEH = 1.50. Implemented in ODOT UA Slope program.",
+      "body": "The Liang and Zeng (2002) method was selected because it relies on a detailed limit equilibrium formulation, incorporates soil arching effects, generates a general slip surface, handles complex slope geometry and soil layers, and allows optimizing shaft location and spacing. General principle of soil arching: the arching effect is largest when shaft spacing s is close to diameter d, transmitting most of the driving force to the shafts; when s >> d, arching is negligible and a fraction Rp of force acts on the soil between shafts. The slope is divided into n slices and the recursive interslice force formula (Eq 10-1) applied: Pi = Wi×sinαi - (1/FS)×[Ci'×li + (Wi×cosαi - ui×li)×tanφi] + Ki×R×P(i-1), where Ki = cos(α(i-1)-αi) - sin(α(i-1)-αi)×tanφi/FS (Eq 10-2). The reduction factor R = (d/s) + (1 - d/s)×Rp (Eq 10-3); Rp values from Tables 10-1(a)-(c) for d = 1, 2, 3 ft by friction angle, s/d ratio, and cohesion. If Pi < 0 at any step, set Pi = 0 (soils cannot reliably provide tension). Net shaft force for Case I (residual earth pressure downslope): Fnet-shaft = (1-Rp)×Pi×S (Eq 10-4); for Case II (at-rest earth pressure downslope): Fnet-shaft = (1-Rp)×Pi×(S-d) + [Pi - Ko×γ×H²/2]×d (Eq 10-5). The net force is distributed as a triangular load from shaft head to slip surface in a p-y analysis with free-head boundary conditions. Service LS: include unfactored vehicular live load surcharge (LS = 2 ft of soil at 125 pcf) per AASHTO 3.11.6.4 if traffic is within the failure zone or horizontal distance to traffic ≤ half the slip surface depth at the shaft location. Strength LS: apply load factor γLS = 1.75 for live load surcharge and γEH = 1.50 for horizontal earth pressure per AASHTO Section 3.4.1. Structural design uses AASHTO Section 5.7.3 (flexure) and 5.8.3 (shear). Limitations of the method: based on 2D FEM parametric study; extrapolation to shaft diameters > 6 ft or cohesion > 6 psi should be done cautiously and confirmed by numerical simulation.",
+      "key_points": [
+        "Liang and Zeng (2002) method: modified method of slices with soil arching reduction factor R",
+        "Eq 10-1: recursive interslice force Pi; Eq 10-2: slice coefficient Ki; Eq 10-3: arching reduction factor R",
+        "Tables 10-1(a/b/c): Rp (residual load fraction) by diameter (1/2/3 ft), s/d, φ, and cohesion",
+        "Net shaft force: Eq 10-4 (Case I, residual pressure) or Eq 10-5 (Case II, at-rest pressure)",
+        "Apply as triangular load in p-y analysis; free-head boundary condition at shaft head",
+        "Service LS: unfactored loads + 2-ft live load surcharge; Strength LS: γLS=1.75, γEH=1.50",
+        "UA Slope (ODOT/Geotechnical Bulletin GB7 2014): computer implementation of Liang and Zeng method"
+      ],
+      "equations": [
+        {
+          "equation_id": "10-1",
+          "description": "Recursive interslice force for slice i in Liang and Zeng method of slices for slope with drilled shafts",
+          "latex": "P_i = W_i \\sin\\alpha_i - \\frac{1}{FS}\\left[C'_i l_i + (W_i \\cos\\alpha_i - u_i l_i)\\tan\\phi_i\\right] + K_i R P_{i-1}",
+          "variables": {
+            "P_i": "interslice force at slice i",
+            "W_i": "weight of slice i",
+            "alpha_i": "inclination of base of slice i from horizontal",
+            "FS": "factor of safety (= 1/φ, where φ is LRFD resistance factor)",
+            "C_prime_i": "cohesion intercept at the slip surface",
+            "l_i": "length of base of slice i",
+            "u_i": "pore pressure at base of slice i",
+            "phi_i": "friction angle of soil at slip surface",
+            "K_i": "coefficient from Eq 10-2",
+            "R": "soil arching reduction factor from Eq 10-3",
+            "P_i-1": "interslice force from previous (upslope) slice"
+          },
+          "implemented_in": null
+        },
+        {
+          "equation_id": "10-2",
+          "description": "Coefficient Ki for interslice force calculation in Liang and Zeng method",
+          "latex": "K_i = \\cos(\\alpha_{i-1} - \\alpha_i) - \\sin(\\alpha_{i-1} - \\alpha_i) \\frac{\\tan\\phi_i}{FS}",
+          "variables": {
+            "alpha_i-1": "inclination of base of slice i-1",
+            "alpha_i": "inclination of base of slice i",
+            "phi_i": "friction angle of soil at slip surface",
+            "FS": "factor of safety"
+          },
+          "implemented_in": null
+        },
+        {
+          "equation_id": "10-3",
+          "description": "Soil arching reduction factor R as a function of shaft spacing-to-diameter ratio and residual pressure fraction",
+          "latex": "R = \\frac{1}{s/d} + \\left(1 - \\frac{1}{s/d}\\right) R_p",
+          "variables": {
+            "s": "center-to-center shaft spacing",
+            "d": "shaft diameter",
+            "R_p": "percent of residual soil pressure acting on soil mass between shafts (from Tables 10-1a/b/c)"
+          },
+          "implemented_in": null
+        },
+        {
+          "equation_id": "10-4",
+          "description": "Net force transferred to drilled shaft — Case I (residual earth pressure downslope of shaft)",
+          "latex": "F_{net-shaft} = (1 - R_p) \\cdot P_i \\cdot S",
+          "variables": {
+            "F_net-shaft": "net resisting force on the drilled shaft",
+            "R_p": "percent residual soil pressure fraction",
+            "P_i": "interslice force just behind (upslope of) the shaft",
+            "S": "center-to-center shaft spacing"
+          },
+          "implemented_in": null
+        },
+        {
+          "equation_id": "10-5",
+          "description": "Net force transferred to drilled shaft — Case II (at-rest earth pressure downslope of shaft)",
+          "latex": "F_{net-shaft} = (1 - R_p) P_i (S - d) + \\left[P_i - \\frac{K_0 \\gamma H^2}{2}\\right] d",
+          "variables": {
+            "R_p": "residual soil pressure fraction",
+            "P_i": "interslice force just upslope of the shaft",
+            "S": "shaft center-to-center spacing",
+            "d": "shaft diameter",
+            "K_0": "at-rest earth pressure coefficient",
+            "gamma": "unit weight of soil",
+            "H": "depth to slip surface at drilled shaft location"
+          },
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure 10-1: Direction of movement and soil arching (after Liang and Zeng 2002)",
+        "Figure 10-2: Slope divided into n slices (after Liang and Zeng 2002)",
+        "Figure 10-3: Forces acting on slice (Liang and Zeng 2002)",
+        "Figure 10-4: Reduction factor concept in distribution of forces (after Liang and Zeng 2002)",
+        "Figure 10-5: Loading for design of a drilled shaft in slope stabilization"
+      ],
+      "tables": [
+        "Table 10-1(a): Percent of residual load on soil mass between shafts — d = 1 foot (Liang and Zeng 2002)",
+        "Table 10-1(b): Percent of residual load on soil mass between shafts — d = 2 feet",
+        "Table 10-1(c): Percent of residual load on soil mass between shafts — d = 3 feet"
+      ],
+      "applicability": "Drilled shaft design for slope stabilization using the Liang and Zeng (2002) limit equilibrium method with soil arching; implemented in ODOT UA Slope program"
+    },
+    {
+      "section_id": "10.4",
+      "title": "Micropile Slope Stabilization",
+      "summary": "Micropiles resist unstable slope forces through combined axial resistance (grout-to-ground bond above and below the slip surface) and structural shear and bending resistance. Individual pile shear resistance corresponds to the maximum shear force at nominal bending resistance. Piles are typically battered 30 degrees from vertical in an A-frame configuration with a reinforced concrete cap beam, where the upslope leg is in tension and the downslope leg is in compression. Ground anchors may supplement resistance if needed. Detailed design procedures are in GEC-9 Chapter 6 (referenced from micropile design guidelines).",
+      "body": "Micropiles can be used to resist unstable slope forces through a combination of axial resistance developed at the grout-to-ground interface both above and below the slip surface, and structural shear and bending resistance of the pile element. The shear resistance that an individual pile provides is assumed to correspond to the maximum shear force in the pile at its nominal bending resistance. Resistance of individual piles can be increased by designing piles on a batter, whereby the upslope leg will be in tension and the downslope leg in compression. Piles are typically battered 30 degrees from vertical in an A-frame configuration with a reinforced concrete cap beam. If necessary, the resisting force can be supplemented by ground anchors tied back to stable ground below the slip surface.",
+      "key_points": [
+        "Micropile resistance: axial bond (above and below slip surface) + structural shear/bending at nominal bending capacity",
+        "Typical configuration: battered 30° from vertical in A-frame, upslope leg in tension and downslope leg in compression",
+        "Reinforced concrete cap beam connects the A-frame; ground anchors may supplement if needed"
+      ],
+      "equations": [],
+      "figures": ["Figure 2-11: Battered micropiles for slope stabilization (referenced from Chapter 2)"],
+      "tables": [],
+      "applicability": "Micropile slope stabilization using battered A-frame configurations with cap beam"
+    }
+  ]
+}

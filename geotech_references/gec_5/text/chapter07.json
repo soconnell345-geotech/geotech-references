@@ -1,0 +1,113 @@
+{
+  "reference_id": "FHWA NHI-16-072",
+  "reference_title": "Geotechnical Site Characterization",
+  "chapter": 7,
+  "chapter_title": "Measurement and Interpretation of Shear Strength Properties of Soil",
+  "sections": [
+    {
+      "section_id": "7.1-7.3",
+      "title": "Fundamental Concepts of Shear Strength",
+      "summary": "Mohr-Coulomb criterion: s = c' + σ'tanφ' (effective stress) or s = Su (undrained, φ=0). Four strength states: peak (maximum stress), fully softened (corresponds to NC state, c'=0), post-rupture, and residual (very large displacements, c'≈0). Drained vs. undrained: short-term behavior of low-permeability clays is undrained; long-term is drained. NC clay generates positive pore pressure → Su < σ'vc. OC clay may generate negative pore pressure → enhanced short-term strength. Normalized behavior: Su/σ'vc = S × OCR^m (SHANSEP approach). Three levels of investigation (A, B, C) based on project complexity and soil conditions.",
+      "body": "Mohr-Coulomb criterion: shear strength s = c' + σ'tanφ' where c' = effective cohesion and φ' = effective friction angle. For total stress undrained analysis: s = Su (φ = 0). Four strength states: (1) peak strength — maximum stress in stress-strain relationship; (2) fully softened strength — corresponds to NC state, c' = 0 (post-peak, before residual); (3) post-rupture strength — after formation of failure surface; (4) residual strength — at large displacements on pre-existing failure surfaces, c' ≈ 0.\n\nDrained vs. undrained behavior: Low-permeability fine-grained soils may be undrained during rapid loading or construction. NC clays under undrained loading generate positive excess pore pressures, reducing effective stress and mobilized strength — Su < σ'vc. OC clays generate negative excess pore pressures, giving enhanced short-term undrained strength; this enhancement is NOT reliable for long-term design in fissured OC clays.\n\nNormalized behavior: Su/σ'vc is a function of OCR: Su/σ'vc = S × OCR^m (SHANSEP approach) where S and m are soil-specific parameters. For many clays, S ≈ 0.25–0.30, m ≈ 0.8–0.9.\n\nThree levels of investigation: Level A (highest) — requires undisturbed samples and advanced testing; for embankments on soft clay, bridge foundations. Level B — requires undisturbed samples and routine testing; for most routine structures. Level C (lowest) — index property measurements; for routine embankments and fills.",
+      "key_points": [
+        "Mohr-Coulomb: s = c' + σ'tanφ' (drained) or s = Su (undrained φ=0)",
+        "Four strength states: peak, fully softened, post-rupture, residual — each appropriate for different conditions",
+        "NC clay: positive excess pore pressures → undrained Su < long-term drained; OC: negative → enhanced short-term",
+        "SHANSEP: Su/σ'vc = S × OCR^m; S ≈ 0.25–0.30; m ≈ 0.8–0.9 for many clays",
+        "Enhanced OC undrained strength NOT reliable long-term in fissured clays — use drained effective stress for design"
+      ],
+      "equations": [
+        {
+          "equation_id": "7-MC",
+          "description": "Mohr-Coulomb shear strength criterion (effective stress)",
+          "latex": "s = c' + \\sigma' \\tan\\phi'",
+          "variables": {
+            "s": "shear strength",
+            "c_prime": "effective stress cohesion intercept (= 0 for most analyses; NC soils have c' = 0)",
+            "sigma_prime": "effective normal stress on failure plane",
+            "phi_prime": "effective stress friction angle"
+          },
+          "implemented_in": null
+        },
+        {
+          "equation_id": "7-SHANSEP",
+          "description": "SHANSEP normalized undrained shear strength relationship",
+          "latex": "\\frac{S_u}{\\sigma'_{vc}} = S \\cdot OCR^m",
+          "variables": {
+            "S_u": "undrained shear strength",
+            "sigma_prime_vc": "effective vertical consolidation stress",
+            "S": "SHANSEP parameter (strength ratio at OCR=1; typically 0.25–0.30 for many clays)",
+            "OCR": "overconsolidation ratio = σ'p / σ'vo",
+            "m": "SHANSEP exponent (typically 0.8–0.9)"
+          },
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure 7-10: Shearing modes along different portions of a potential sliding surface",
+        "Figure 7-14: Normalized undrained shear strength vs. OCR",
+        "Figure 7-15: Total stress strength envelopes for saturated soils (φ=0)"
+      ],
+      "tables": [
+        "Table 7-2: Effect of sample disturbance on effective stress and su for different soil types (Vaughan et al. 1993)"
+      ],
+      "applicability": "Fundamental concepts of soil shear strength for transportation geotechnical design"
+    },
+    {
+      "section_id": "7.4-7.5",
+      "title": "Measurement of Undrained Shear Strength",
+      "summary": "Undrained shear strength Su: UC test (AASHTO T208/ASTM D2166) — most common but sensitive to disturbance and desiccation; UU triaxial (AASHTO T234/ASTM D2850) — better than UC if no reconsolidation; CU-bar triaxial (ASTM D4767) — best laboratory method, gives Su and φ' simultaneously. Field vane shear (FVT/VST, ASTM D2573): correction factor μ from Chandler (1988) per PI of soil. CPT: Su = (qt-σvo)/Nkt; Nkt ≈ 12–17 typical range (site-specific calibration preferred). CPTU: Su from Bq pore pressure ratio. DMT: Su from p0-u0. Pocket penetrometer and Torvane — for screening only, not design.",
+      "body": "Unconfined compression (UC) test: Simplest method; specimen sheared at constant strain rate. Su = qu/2. Subject to disturbance and desiccation effects; may substantially underestimate Su. Not recommended as primary method.\n\nUnconsolidated undrained (UU) triaxial test (ASTM D2850): Specimen not reconsolidated prior to shear; provides Su directly but doesn't account for stress history changes. Results sensitive to sampling disturbance.\n\nConsolidated undrained (CU-bar) triaxial test (ASTM D4767): Specimen reconsolidated to field stress state, then sheared undrained with pore pressure measurement. Preferred laboratory method; provides both Su and φ'. Various consolidation procedures: isotropic (CIUC) or anisotropic (CAU) consolidation to σ'vc.\n\nField vane shear test (FVT/VST, ASTM D2573): Most common in situ test for Su. Vane rotated in soft to medium clay; Su = Torque / K where K is vane constant. Correction factor μ = su,design/su,FVT per Chandler (1988), function of PI. Use μ when designing with FVT results.\n\nCPT: Su = (qt - σvo) / Nkt where Nkt is a dimensionless cone factor. Nkt typically ranges 12–17 for most clays; best calibrated from adjacent CU triaxial tests or FVT. CPTU: Su also estimated from Bq = (u2-u0)/(qt-σvo).\n\nDMT: Su = (p0 - u0) / (1.25 to 1.75); site-specific calibration recommended.\n\nTorvane and pocket penetrometer: Screening tools only; not reliable for design. Significant scatter and disturbance.",
+      "key_points": [
+        "CU-bar triaxial (ASTM D4767) is the preferred laboratory method — reconsolidates to field stress, measures Su and φ' simultaneously",
+        "UC test: simplest but most affected by disturbance and desiccation; not recommended as primary method",
+        "FVT (ASTM D2573): correction factor μ = su,design/su,FVT from Chandler (1988) per PI is required",
+        "CPT: Su = (qt-σvo)/Nkt; Nkt = 12–17 typical; calibrate against CU triaxial or FVT at each site",
+        "Pocket penetrometer and Torvane: screening only, not for design"
+      ],
+      "equations": [
+        {
+          "equation_id": "7-Su-CPT",
+          "description": "Undrained shear strength from CPT corrected tip resistance",
+          "latex": "S_u = \\frac{q_t - \\sigma_{vo}}{N_{kt}}",
+          "variables": {
+            "S_u": "undrained shear strength",
+            "q_t": "corrected CPT cone tip resistance",
+            "sigma_vo": "total overburden stress at test depth",
+            "N_kt": "dimensionless cone factor (typically 12–17; best calibrated locally)"
+          },
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure 7-29: Comparison of Su derived from different in situ test measurements using general transformations",
+        "Figure 7-30: Correction factor for FVT measurements from ASTM D2573 (Chandler 1988)"
+      ],
+      "tables": [],
+      "applicability": "Measurement and interpretation of undrained shear strength from laboratory and in situ tests"
+    },
+    {
+      "section_id": "7.6-7.8",
+      "title": "Effective Stress Strength and Special Considerations",
+      "summary": "Effective stress strength parameters (c', φ') from consolidated drained (CD) or consolidated undrained with pore pressure measurement (CU-bar, ASTM D4767) triaxial tests, or direct shear (ASTM D3080). φ' from SPT: Schmertmann (1975) chart; N60 → φ' function of σ'vo; for N60 > 15: φ' ≈ 28 + 0.45N60 approximately. φ' from CPT: qt-based correlations. OC stiff fissured clays: use fully softened strength (c'=0) for long-term anchored wall design; residual strength if pre-existing failure surface. Compacted soils: strength strongly dependent on compaction condition (wet vs. dry of optimum). Three considerations: peak, fully softened, and residual strength states.",
+      "body": "Effective stress strength from laboratory: CD triaxial test (ASTM D7181) — most direct; slow drained shear. CU-bar triaxial (ASTM D4767) — faster; interpret effective stress envelope from total minus pore pressure. Direct shear test (ASTM D3080) — simplest; shear plane imposed; good for φ' but uncertain drainage; good for residual strength with ring shear or repeated direct shear.\n\nφ' from SPT (indirect): Schmertmann (1975) chart (Figure 7-41) — relates φ' to N60 and σ'vo. Hatanaka and Uchida (1996) correlation. For very coarse soils requiring LPT or BPT.\n\nφ' from CPT: qt and friction angle correlations (Figure 7-43 from Andersen and Schjetne 2013). Table 7-6: parameters for empirical φ' estimation (Duncan et al. 2014).\n\nStrength states for stiff fissured OC clays: (1) Peak — reliable only for initial loading at low OCR; (2) Fully softened — c'=0, φ' from remolded or NC specimens; appropriate for long-term design of walls and slopes in fissured clays when no previous failure surface exists; (3) Residual — applicable if pre-existing failure surface; established by ring shear or repeated direct shear to large displacements; correlated with PI (Stark and Eid 1994).\n\nCompacted soils: Strength depends strongly on compaction condition. Soils compacted wet of optimum have lower peak strength and less strain-softening. Soils compacted dry of optimum have higher peak but more brittleness and potential for collapse.",
+      "key_points": [
+        "CD or CU-bar triaxial (ASTM D4767) preferred for c', φ'; direct shear good for φ' and residual",
+        "φ' from SPT: Schmertmann (1975) chart; φ' increases with N60 and decreases with σ'vo",
+        "Stiff fissured OC clays: use fully softened (c'=0) for design; residual if pre-existing failure surface",
+        "Residual φ' from Stark and Eid (1994) correlation with clay size fraction and LL or PI",
+        "Compacted soils: dry of optimum → higher peak, more brittle; wet of optimum → lower peak, less brittle"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-41: Chart relating φ' to SPT N60-value and σ'vo (Schmertmann 1975)",
+        "Figure 7-43: Relation between φ', Dr, and σ'c for sands (Andersen and Schjetne 2013)",
+        "Figure 7-47: Comparison of peak and residual strength envelopes from direct-residual shear test"
+      ],
+      "tables": [
+        "Table 7-6: Parameter values for use with empirical φ' estimation equation (Duncan et al. 2014)"
+      ],
+      "applicability": "Effective stress shear strength measurement and strength state selection for design"
+    }
+  ]
+}

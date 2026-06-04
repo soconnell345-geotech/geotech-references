@@ -1,284 +1,192 @@
-"""UFC 3-260-02 pavement design equations.
+"""UFC 3-250-01 pavement design equations.
 
-CBR-to-subgrade modulus conversion, flexible pavement thickness (CBR
-method), equivalent single wheel load (ESWL), and rigid pavement
-thickness (Westergaard-based).  All units SI.
+Pavement Design for Roads and Parking Areas (14 November 2016).
+Covers roads, streets, walks, and open storage areas — NOT airfields
+(airfields are in UFC 3-260-02).
+
+Primary design tool is PCASE software; this module provides the
+supporting calculations that can be implemented analytically.
 """
 
 import math
 
 
-def cbr_to_subgrade_modulus_MPa_per_m(cbr):
-    """Convert California Bearing Ratio to modulus of subgrade reaction.
+def cbr_to_k_psi_per_in(cbr):
+    """Estimate modulus of subgrade reaction k from CBR (empirical).
 
-    Empirical correlation (AASHTO/PCA/UFC)::
+    UFC 3-250-01 Table 10-1 provides tabulated k values by soil type and
+    moisture content as the primary reference.  This equation provides a
+    first estimate for preliminary design where Table 10-1 cannot be
+    entered without detailed soil data.
 
-        k (pci) ≈ 26 * CBR^0.7   (for CBR 2-80)
-        k (MPa/m) = k (pci) * 0.2714
+    Correlation (consistent with Table 10-1 ranges)::
 
-    Parameters
-    ----------
-    cbr : float
-        California Bearing Ratio (%).  Valid range 2-80.
+        k (psi/in) ≈ 26 × CBR^0.7     (USACE empirical correlation)
 
-    Returns
-    -------
-    float
-        Modulus of subgrade reaction k (MPa/m).
-
-    Raises
-    ------
-    ValueError
-        If cbr is outside 2-80 range.
-    """
-    if cbr < 2:
-        raise ValueError(f"cbr must be >= 2, got {cbr}")
-    if cbr > 80:
-        raise ValueError(f"cbr must be <= 80, got {cbr}")
-
-    k_pci = 26.0 * cbr ** 0.7
-    k_MPa_per_m = k_pci * 0.2714
-    return round(k_MPa_per_m, 1)
-
-
-def flexible_pavement_thickness_mm(
-    cbr,
-    wheel_load_kN,
-    tire_pressure_kPa,
-    coverages=10000,
-):
-    """Flexible pavement thickness by the CBR method (UFC 3-260-02).
-
-    Simplified thickness equation for flexible pavements::
-
-        t (in) = sqrt(P / (8.1 * CBR * pi)) * alpha
-
-    where *P* = wheel load (lb), *CBR* = subgrade CBR (%),
-    and *alpha* is a coverage factor.  Converted to SI.
-
-    For traffic coverages: alpha ~ 1.0 for 1,000 coverages,
-    increases with traffic.
+    Use Table 10-1 directly when soil type and moisture content are known.
+    Conversion: k (kPa/mm) = k (psi/in) × 0.271.
 
     Parameters
     ----------
     cbr : float
-        Subgrade CBR (%).  Valid range 2-50.
-    wheel_load_kN : float
-        Single wheel load (kN).
-    tire_pressure_kPa : float
-        Tire inflation pressure (kPa).
-    coverages : int, optional
-        Design number of coverages (default 10,000).
+        California Bearing Ratio (%).  Valid range 2–100.
 
     Returns
     -------
     dict
-        Keys: total_thickness_mm, contact_radius_mm, notes.
+        {'cbr': float, 'k_psi_in': float, 'k_kPa_mm': float,
+         'note': str}
 
     Raises
     ------
     ValueError
-        If inputs are non-positive or CBR out of range.
+        If cbr is outside valid range.
     """
     if cbr < 2:
         raise ValueError(f"cbr must be >= 2, got {cbr}")
-    if cbr > 50:
-        raise ValueError(f"cbr must be <= 50, got {cbr}")
-    if wheel_load_kN <= 0:
-        raise ValueError(f"wheel_load_kN must be > 0, got {wheel_load_kN}")
-    if tire_pressure_kPa <= 0:
-        raise ValueError(
-            f"tire_pressure_kPa must be > 0, got {tire_pressure_kPa}"
-        )
-    if coverages <= 0:
-        raise ValueError(f"coverages must be > 0, got {coverages}")
+    if cbr > 100:
+        raise ValueError(f"cbr must be <= 100, got {cbr}")
 
-    # Contact area and radius
-    A_mm2 = (wheel_load_kN * 1000.0) / tire_pressure_kPa  # N / (N/mm²*1e-3) ...
-    # tire_pressure in kPa = kN/m²; load in kN
-    # Contact area = load / pressure = kN / (kN/m²) = m²
-    A_m2 = wheel_load_kN / tire_pressure_kPa
-    r_m = math.sqrt(A_m2 / math.pi)
-    r_mm = r_m * 1000.0
-
-    # Coverage factor (logarithmic relationship)
-    if coverages <= 1000:
-        alpha = 1.0
-    elif coverages <= 10000:
-        alpha = 1.0 + 0.12 * math.log10(coverages / 1000.0)
-    else:
-        alpha = 1.12 + 0.15 * math.log10(coverages / 10000.0)
-
-    # CBR thickness equation
-    # t = sqrt(P / (pi * CBR_decimal * S)) where S is allowable subgrade
-    # stress ~ 8.1 * CBR (psi).  In SI:
-    # Allowable subgrade stress (kPa) ~ 68.9 * CBR (conversion from psi)
-    # Simplification: t = r * sqrt(tire_pressure / (68.9 * CBR) - 1) * alpha
-    # If the ratio < 1, the subgrade can support the load directly
-    ratio = tire_pressure_kPa / (68.9 * cbr)
-    if ratio <= 1.0:
-        # Subgrade strong enough; only base/surface minimum
-        t_mm = max(100.0, r_mm * 0.5)
-    else:
-        t_mm = r_mm * math.sqrt(ratio - 1.0) * alpha
+    k_psi = 26.0 * cbr ** 0.7
+    k_kPa_mm = k_psi * 0.271
 
     return {
-        "total_thickness_mm": round(t_mm, 0),
-        "contact_radius_mm": round(r_mm, 1),
-        "coverage_factor": round(alpha, 3),
-        "notes": "Minimum total pavement thickness above subgrade",
+        "cbr": cbr,
+        "k_psi_in": round(k_psi, 1),
+        "k_kPa_mm": round(k_kPa_mm, 1),
+        "note": (
+            "Preliminary estimate only; use UFC 3-250-01 Table 10-1 "
+            "when soil type and moisture content are known"
+        ),
     }
 
 
-def equivalent_single_wheel_load_kN(
-    wheel_load_kN,
-    num_wheels,
-    wheel_spacing_mm,
-    depth_mm,
+def stabilized_layer_thickness_mm(
+    conventional_thickness_mm,
+    equivalency_factor,
 ):
-    """Equivalent single wheel load (ESWL) at a given depth.
+    """Stabilized layer thickness from UFC 3-250-01 Table 9-1.
 
-    For a multi-wheel gear, the ESWL at depth *z* is interpolated
-    between::
+    When a stabilized layer replaces conventional granular base or subbase,
+    the design starts with a conventional flexible pavement thickness and
+    then divides that thickness by the equivalency factor to get the
+    stabilized layer thickness::
 
-        ESWL = P            (at z = 0, stress overlap = 0)
-        ESWL = n * P        (at z >> S, full overlap)
+        t_stab = t_conventional / E
 
-    Using the log-based interpolation (UFC 3-260-02)::
+    where *E* is from Table 9-1 (``table_9_1_equivalency_factor``).
 
-        If z <= S/2: ESWL = P * (1 + (n-1) * 2z/S * log(n)/log(n))
-        Simplified: ESWL = P at z=0, n*P at z=S/2, interpolate log
-
-    A common approximation::
-
-        ESWL = P * (1 + (n-1) * min(2*z/S, 1))
+    A conventional pavement must first be designed to determine the
+    required conventional base/subbase thickness.  The stabilized thickness
+    must also be checked against minimum thickness requirements of Table 7-2.
 
     Parameters
     ----------
-    wheel_load_kN : float
-        Load per wheel (kN).
-    num_wheels : int
-        Number of wheels in the gear assembly.
-    wheel_spacing_mm : float
-        Centre-to-centre wheel spacing (mm).
-    depth_mm : float
-        Depth below surface at which ESWL is evaluated (mm).
-
-    Returns
-    -------
-    float
-        Equivalent single wheel load (kN).
-
-    Raises
-    ------
-    ValueError
-        If inputs are non-positive.
-    """
-    P = wheel_load_kN
-    n = num_wheels
-    S = wheel_spacing_mm
-    z = depth_mm
-
-    if P <= 0:
-        raise ValueError(f"wheel_load_kN must be > 0, got {P}")
-    if n < 1:
-        raise ValueError(f"num_wheels must be >= 1, got {n}")
-    if S <= 0:
-        raise ValueError(f"wheel_spacing_mm must be > 0, got {S}")
-    if z < 0:
-        raise ValueError(f"depth_mm must be >= 0, got {z}")
-
-    if n == 1:
-        return P
-
-    # Linear interpolation factor from 1 at z=0 to n at z=2*S_d
-    # where S_d is the critical overlap depth
-    S_d = S / 2.0  # half-spacing
-    if z >= 2.0 * S_d:
-        factor = float(n)
-    else:
-        # Log interpolation (Boyd & Foster approach)
-        ratio = z / (2.0 * S_d)
-        factor = 1.0 + (n - 1.0) * ratio
-
-    return round(P * factor, 1)
-
-
-def rigid_pavement_thickness_mm(
-    k_subgrade_MPa_per_m,
-    wheel_load_kN,
-    concrete_flexural_strength_MPa,
-    safety_factor=1.3,
-):
-    """Rigid (PCC) pavement thickness for airfields (simplified).
-
-    Based on Westergaard edge loading analysis (UFC 3-260-02)::
-
-        h = sqrt(3 * P * FS / (pi * f_r))
-
-    where *P* = wheel load, *f_r* = concrete flexural (rupture)
-    strength, *FS* = safety factor.  The subgrade modulus *k* affects
-    the radius of relative stiffness but for a simplified single-load
-    check, this approach gives a conservative first estimate.
-
-    Parameters
-    ----------
-    k_subgrade_MPa_per_m : float
-        Modulus of subgrade reaction (MPa/m).
-    wheel_load_kN : float
-        Single wheel load (kN).
-    concrete_flexural_strength_MPa : float
-        Flexural (rupture) strength of PCC, f_r (MPa).
-        Typical values: 3.5-5.0 MPa.
-    safety_factor : float, optional
-        Factor of safety applied to stress (default 1.3).
+    conventional_thickness_mm : float
+        Thickness of conventional base or subbase course required (mm).
+    equivalency_factor : float
+        Equivalency factor from Table 9-1 for the stabilized material,
+        USCS classification, and layer type.  Must be > 0.
+        Typical range: 1.0–2.3.
 
     Returns
     -------
     dict
-        Keys: thickness_mm, radius_of_relative_stiffness_mm, notes.
+        {'conventional_thickness_mm': float,
+         'equivalency_factor': float,
+         'stabilized_thickness_mm': float,
+         'note': str}
 
     Raises
     ------
     ValueError
-        If inputs are non-positive.
+        If inputs are not positive.
     """
-    k = k_subgrade_MPa_per_m
-    P = wheel_load_kN
-    fr = concrete_flexural_strength_MPa
-    FS = safety_factor
-
-    if k <= 0:
-        raise ValueError(f"k_subgrade_MPa_per_m must be > 0, got {k}")
-    if P <= 0:
-        raise ValueError(f"wheel_load_kN must be > 0, got {P}")
-    if fr <= 0:
+    if conventional_thickness_mm <= 0:
         raise ValueError(
-            f"concrete_flexural_strength_MPa must be > 0, got {fr}"
+            f"conventional_thickness_mm must be > 0, "
+            f"got {conventional_thickness_mm}"
         )
-    if FS < 1.0:
-        raise ValueError(f"safety_factor must be >= 1.0, got {FS}")
+    if equivalency_factor <= 0:
+        raise ValueError(
+            f"equivalency_factor must be > 0, got {equivalency_factor}"
+        )
 
-    # Concrete properties (typical)
-    E_concrete = 27600.0  # MPa (typical for PCC)
-    nu = 0.15  # Poisson's ratio for concrete
-
-    # Westergaard: required thickness from edge stress
-    # sigma_edge = (3*P) / (pi * h^2) * [1 + ...] ≈ simplified
-    # Rearranging: h = sqrt(3 * P * FS / (pi * fr))
-    # P in kN = kN; fr in MPa = kN/m²/1000; so convert:
-    # P_kN * 1000 (to N) / (pi * fr * 1e6 (N/m²)) -> h in m
-    # Simplified: h_m = sqrt(3 * P * FS / (pi * fr * 1e3))
-    h_m = math.sqrt(3.0 * P * FS / (math.pi * fr * 1e3))
-    h_mm = h_m * 1000.0
-
-    # Radius of relative stiffness
-    # l = (E*h^3 / (12*(1-nu^2)*k))^0.25
-    k_Pa_per_m = k * 1e6  # MPa/m -> Pa/m
-    l_m = (E_concrete * 1e6 * h_m**3 / (12.0 * (1.0 - nu**2) * k_Pa_per_m)) ** 0.25
+    t_stab = conventional_thickness_mm / equivalency_factor
 
     return {
-        "thickness_mm": round(h_mm, 0),
-        "radius_of_relative_stiffness_mm": round(l_m * 1000.0, 0),
-        "notes": "Simplified Westergaard edge loading; verify with full design charts",
+        "conventional_thickness_mm": conventional_thickness_mm,
+        "equivalency_factor": equivalency_factor,
+        "stabilized_thickness_mm": round(t_stab, 1),
+        "note": (
+            "Check against Table 7-2 minimum thickness requirements; "
+            "cement content limited to ≤ 4% by weight to prevent "
+            "reflective cracking"
+        ),
+    }
+
+
+def free_draining_layer_required(
+    bound_layer_thickness_in,
+    design_freezing_index,
+):
+    """Check UFC 3-250-01 frost free-draining layer requirement.
+
+    In frost areas, if the combined thickness of pavement plus contiguous
+    bound base courses is less than 0.09 × DFI (degree-Fahrenheit-days),
+    at least 4 in (100 mm) of free-draining material must be placed directly
+    beneath the lowest bound layer.  The free-draining material must contain
+    ≤ 2.0% by weight passing the No. 200 sieve.
+
+    This limits the design freezing index at the bottom of the bound base
+    to about 20 degree-Fahrenheit-days.
+
+    Parameters
+    ----------
+    bound_layer_thickness_in : float
+        Combined thickness of pavement plus contiguous bound base courses
+        (inches).
+    design_freezing_index : float
+        Design air freezing index (degree-Fahrenheit-days).  Use the
+        average of the three coldest years in 30 years (or coldest winter
+        in 10 years).
+
+    Returns
+    -------
+    dict
+        {'required': bool,
+         'bound_layer_thickness_in': float,
+         'threshold_thickness_in': float,
+         'design_freezing_index': float,
+         'min_free_draining_layer_in': float,
+         'note': str}
+
+    Raises
+    ------
+    ValueError
+        If inputs are not positive.
+    """
+    if bound_layer_thickness_in < 0:
+        raise ValueError(
+            f"bound_layer_thickness_in must be >= 0, "
+            f"got {bound_layer_thickness_in}"
+        )
+    if design_freezing_index <= 0:
+        raise ValueError(
+            f"design_freezing_index must be > 0, got {design_freezing_index}"
+        )
+
+    threshold = 0.09 * design_freezing_index
+    required = bound_layer_thickness_in < threshold
+
+    return {
+        "required": required,
+        "bound_layer_thickness_in": bound_layer_thickness_in,
+        "threshold_thickness_in": round(threshold, 1),
+        "design_freezing_index": design_freezing_index,
+        "min_free_draining_layer_in": 4.0,
+        "note": (
+            "Free-draining material must have ≤ 2.0% fines passing No. 200 "
+            "sieve; check filter criteria for conformance with adjacent layers"
+        ),
     }

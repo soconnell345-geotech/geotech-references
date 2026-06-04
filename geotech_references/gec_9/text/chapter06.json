@@ -1,0 +1,158 @@
+{
+  "reference_id": "FHWA-HIF-18-031",
+  "reference_title": "Design, Analysis, and Testing of Laterally Loaded Deep Foundations that Support Transportation Facilities",
+  "chapter": 6,
+  "chapter_title": "Analysis for Laterally Loaded Single Deep Foundation Elements",
+  "sections": [
+    {
+      "section_id": "6.1",
+      "title": "Introduction",
+      "summary": "Chapter 6 presents methods for analyzing single laterally loaded deep foundation elements. The p-y method is the recommended approach for all major projects. Available methods include: p-y method (computer-based, nonlinear soil springs), strain wedge model (SWM, computer-based limit equilibrium), and Broms method (simplified, limit equilibrium for short piles only). All analyses use factored loads per Chapter 4 load combinations.",
+      "body": "The interaction between a vertical deep foundation element and surrounding soil when the foundation element is subjected to a lateral load is characterized by the p-y relationship. Horizontal pressures modify in front of and behind the foundation element as it deflects. The net effect is a soil resistance p corresponding to a deflection y at a given depth — the p-y relationship. There are a number of available methods for analyzing laterally loaded deep foundation elements. The most widely accepted methods are the p-y method (computer-based nonlinear solution), the strain wedge model (SWM, another computer-based solution based on limit equilibrium), and the Broms method for short piles. The p-y method is the recommended method for design of all major deep foundation projects. All loads used in analysis should be factored loads, with applicable load factors for the Strength, Service, and Extreme Limit States per Chapter 4.",
+      "key_points": [
+        "p-y method is recommended for analysis of all major deep foundation projects",
+        "Strain wedge model (SWM) may supplement p-y analysis for complex or large projects",
+        "Broms method applies only to short, stiff piles that rotate rather than bend",
+        "All analyses use factored loads with applicable load factors per AASHTO load combinations",
+        "p-y curves are largely empirically based from full-scale lateral load tests"
+      ],
+      "equations": [],
+      "figures": ["Figure 6-1: Vertical deep foundation element subjected to lateral loading — earth pressure distribution"],
+      "tables": [],
+      "applicability": "All single laterally loaded deep foundation element analyses"
+    },
+    {
+      "section_id": "6.2",
+      "title": "Geotechnical Strength Limit State of Laterally Loaded Piles",
+      "summary": "The Geotechnical Strength Limit State verifies that a deep foundation behaves in a ductile manner (long pile behavior — bending and deflecting) rather than experiencing push-over rotation failure. For p-y pushover analysis, factored loads are applied incrementally until the analysis reaches the factored design load; convergence at a reasonable deflection (≤ ~10% diameter for drilled shafts) indicates adequate ductile behavior. Short pile rotation failure is modeled using the SWM or Broms method.",
+      "body": "Typically, laterally loaded deep foundation elements are deep enough such that they will bend and deflect rather than rotate. If the foundation element is not sufficiently deep, geotechnical failure of the soil material can occur and the foundation element behaves as a rigid element that rotates about a point near the bottom — referred to as short pile or 'push-over' behavior. If the foundation element is deep enough to avoid push-over failure, its tip remains essentially fixed and the element bends and deflects in a ductile manner. For the Geotechnical Strength Limit State using p-y analysis: (1) model the foundation as a linear elastic beam; (2) develop the soil profile with separate profiles as appropriate for scour or liquefaction; (3) apply factored loads in multiples up to and exceeding the factored design load; (4) verify convergence at a reasonable deflection at the factored design load — for drilled shafts, Brown et al. (2010) suggest 10% of the diameter as a reference; (5) if convergence is not achieved, increase foundation length or diameter. There is typically a critical depth beyond which additional embedment does not reduce deflection. If the critical depth is reached and deflection criteria are not met, the diameter must be increased or additional elements added. The intent is not to avoid geotechnical soil failure, but to ensure that ductile bending behavior governs rather than push-over rotation. For short, stiff, or large-diameter foundations, SWM or Broms method should be used instead to verify Strength Limit State.",
+      "key_points": [
+        "Geotechnical Strength LS verifies ductile long pile behavior, not soil failure per se",
+        "Pushover analysis: apply factored loads; check convergence at reasonable deflection (~10%D for shafts)",
+        "Critical depth: embedment beyond which additional depth does not reduce deflection",
+        "Short pile (push-over) behavior: use SWM or Broms method, not p-y, for Strength LS",
+        "Resistance factor φr from Table 4-1 (0.67 individual, 0.80 group with moment cap)"
+      ],
+      "equations": [],
+      "figures": ["Figure 6-2: Short pile vs. long pile behavior under lateral loads", "Figure 6-3: Critical depth concept for deep foundations"],
+      "tables": [],
+      "applicability": "Strength Limit State verification of lateral pile design using p-y pushover analysis"
+    },
+    {
+      "section_id": "6.3",
+      "title": "P-Y Method",
+      "summary": "The p-y method models the deep foundation as a beam-column on nonlinear springs. The governing fourth-order differential equation (Eq. 6-1) is solved iteratively: EpIp(d⁴y/dx⁴) + Px(d²y/dx²) − p − w = 0. The soil reaction p = Epy × y where Epy is the secant modulus of the p-y curve. Initial modulus K = k×z for sands; p-y curves are largely empirical from full-scale tests. The method accommodates variable layers, axial loads, distributed loads, sloping ground, fixed/free head, and nonlinear concrete cracking. Parametric sensitivity analysis of key inputs is recommended.",
+      "body": "The p-y method can accommodate variable subsurface layers, axial loads, lateral deflections as inputs, distributed loads, sloping ground conditions, fixed or free head conditions, nonlinear bending characteristics such as cracked sections in drilled shafts, and non-linear soil response. Outputs include distributions versus depth of lateral displacement, shear forces, bending moments, soil resistance, and soil and pile moduli. The governing fourth-order differential equation (Equation 6-1) is: EpIp(d⁴y/dx⁴) + Px(d²y/dx²) − p − w = 0, where Px = axial load, y = lateral deflection, x = depth, Ep = elastic modulus, Ip = moment of inertia, p = lateral soil reaction per unit length, w = distributed load. Beam formulas: EpIp(d³y/dx³) = V (Eq. 6-2, shear); EpIp(d²y/dx²) = M (Eq. 6-3, moment); dy/dx = S (Eq. 6-4, slope). The soil reaction p = Epy × y (Eq. 6-5), where Epy is the secant reaction modulus. For sands, K = k × z (Eq. 6-6) where k (pci) is from Table A-3. For rock, K = ki × Em (Eq. 6-7). P-y curves have three portions: (i) initial linear elastic response; (ii) nonlinear transition; (iii) plateau at ultimate resistance pult. The ultimate resistance pult increases with depth. Parametric evaluation of key inputs is recommended to assess sensitivity and identify which parameters are most critical.",
+      "key_points": [
+        "Governing equation (Eq. 6-1): EpIp(d⁴y/dx⁴) + Px(d²y/dx²) − p − w = 0",
+        "p = Epy × y (Eq. 6-5): p-y curve secant modulus characterizes nonlinear soil spring",
+        "Initial modulus K = k × z for sands (Eq. 6-6); K = ki × Em for rock (Eq. 6-7)",
+        "Axial load Px directly influences bending moments and deflections (second-order effect)",
+        "Parametric sensitivity analysis of soil parameters is recommended for all major projects"
+      ],
+      "equations": [
+        {
+          "id": "6-1",
+          "description": "Fourth-order governing differential equation for laterally loaded beam-column: EpIp(d⁴y/dx⁴) + Px(d²y/dx²) − p − w = 0",
+          "implemented_in": null
+        },
+        {
+          "id": "6-5",
+          "description": "Soil reaction as function of displacement: p = Epy × y",
+          "implemented_in": null
+        },
+        {
+          "id": "6-6",
+          "description": "Initial p-y modulus for sand: K = k × z",
+          "implemented_in": null
+        }
+      ],
+      "figures": ["Figure 6-4: Graphical p-y analysis results", "Figure 6-5: Deep foundation model with nonlinear soil springs and p-y curves", "Figure 6-6: Typical p-y curve shape"],
+      "tables": [],
+      "applicability": "Primary analysis method for all major single pile/shaft lateral design; required for final design when service deflection controls"
+    },
+    {
+      "section_id": "6.4",
+      "title": "Strain Wedge Model",
+      "summary": "The Strain Wedge Model (SWM) is a computer-based method that models soil resistance using a 3D passive soil wedge in a limit equilibrium framework. It can explicitly model variation in soil stiffness and strength, pile shape effects, axial load effects, and group pile overlap. SWM is accepted by some state agencies but has less industry experience and fewer test database correlations than the p-y method. Recommended as a supplement to p-y analyses rather than a replacement; for short large-diameter elements, SWM may be preferred over Broms method.",
+      "body": "The strain wedge method was derived in the 1990s to provide a more theoretical basis for correlating lateral soil resistance for laterally loaded deep foundations. In the strain wedge method, the soil resistance is correlated with mobilization of forces of a 3-D passive soil wedge from a limit equilibrium solution. Estimated strains in the passive soil wedge associated with the mobilization of the passive resistance are correlated to lateral displacements. The SWM can explicitly consider: variation of soil modulus and strength with strain level, the effects of nonlinear pile-soil friction and adhesion on the distribution of strains in the soil wedge, piles with variable cross-sections, the effect of axial loads on the lateral response of the pile, the effect of lateral soil spreading on individual piles and groups, and the effect of vertical side shear on lateral response of large diameter shafts. The SWM is not as widely used or accepted in practice for transportation structures, and there is not as much experience or correlation with testing databases compared to the p-y method. For long piles, SWM should supplement p-y analyses rather than replace them. The SWM may be more applicable than the Broms method for shorter, large-diameter elements that tend to rotate rather than bend.",
+      "key_points": [
+        "SWM provides a more theoretical (less empirical) alternative to p-y analysis",
+        "Explicitly models 3D passive wedge geometry, nonlinear pile-soil friction, and group pile overlap",
+        "Less industry experience than p-y method — use to supplement, not replace, p-y analyses",
+        "For large-diameter short elements that tend to rotate, SWM may be preferred over Broms",
+        "Lateral load testing for verification recommended if SWM is used as primary design method"
+      ],
+      "equations": [],
+      "figures": ["Figure 6-6: Pile group interaction in SWM model"],
+      "tables": [],
+      "applicability": "Complex or large projects as supplement to p-y analysis; short large-diameter rotational foundations where Broms method may be inappropriate"
+    },
+    {
+      "section_id": "6.5",
+      "title": "Broms Method",
+      "summary": "Broms method is a limit equilibrium approach for short, stiff foundation elements with free-head rotation. For cohesive soils, maximum soil resistance = 9Su × B; for cohesionless soils, resistance = 3BγzKp. Key equations: depth to zero shear in clay f = Pt/(9SuB) (Eq. 6-8), minimum length L ≥ 1.5B + f + g (Eq. 6-12); for sand, depth to zero shear f = √[Pt/(1.5BγKp)] (Eq. 6-16). Acceptable for preliminary analysis, simple structures (sign posts, noise walls), and preliminary length estimates in uniform profiles. Not calibrated to LRFD.",
+      "body": "Broms (1964a, 1964b, 1965) developed a limit equilibrium method for estimating nominal lateral capacity and moments for short, stiff foundation elements with free-head rotation. The method assumes fully mobilized passive and active soil pressures. For cohesive soils, the maximum soil resistance per unit length is 9 × Su × Bb, with the top 1.5Bb excluded. The depth to zero shear: f = Pt/(9SuBb) (Eq. 6-8). Maximum moment: Mmax = Mt + Pt(1.5Bb + 0.5f) (Eq. 6-9) or Mmax = 2.25BbSug² (Eq. 6-10). Minimum pile length: L ≥ 1.5Bb + f + g where g = √[Mmax/(2.25SuBb)] (Eq. 6-11, 6-12). For cohesionless soils, soil resistance per unit length: pz = 3BbγzKp (Eq. 6-13), where Kp = tan²(45 + φ'/2) (Eq. 6-14). Depth to zero shear: f = √[Pt/(1.5BbγKp)] (Eq. 6-16). Maximum moment: Mmax = Mt + Ptf − (BbγKpf³)/2 (Eq. 6-17). The Broms method has not been calibrated to the LRFD framework. It is limited to free-head rotation, homogeneous uniform soil profiles, and uniform pile/shaft cross-sections. The deflection estimation by Broms for long piles is not recommended due to unreliability.",
+      "key_points": [
+        "Applicable only to short, stiff piles that rotate (not bend) with free-head rotation",
+        "Cohesive soil: max resistance = 9Su × B (top 1.5B ignored); key depth parameter f = Pt/(9SuB)",
+        "Cohesionless soil: max resistance = 3Bγz Kp; depth to max moment f = √[Pt/(1.5BγKp)]",
+        "Not calibrated to LRFD; use with engineering judgment for simple structures",
+        "Broms long pile deflection method is NOT recommended — use p-y analysis instead"
+      ],
+      "equations": [
+        {
+          "id": "6-8",
+          "description": "Depth to zero shear in cohesive soil: f = Pt/(9 × Su × Bb)",
+          "implemented_in": null
+        },
+        {
+          "id": "6-12",
+          "description": "Minimum pile length in cohesive soil: L ≥ 1.5Bb + f + g",
+          "implemented_in": null
+        },
+        {
+          "id": "6-13",
+          "description": "Soil resistance per unit length in cohesionless soil: pz = 3BbγzKp",
+          "implemented_in": null
+        },
+        {
+          "id": "6-16",
+          "description": "Depth to zero shear in cohesionless soil: f = sqrt(Pt / (1.5BbγKp))",
+          "implemented_in": null
+        }
+      ],
+      "figures": ["Figure 6-10: Earth pressure, shear, and moment diagrams for Broms method in cohesive soils", "Figure 6-11: Earth pressure, shear, and moment diagrams for Broms method in cohesionless soils"],
+      "tables": [],
+      "applicability": "Preliminary analysis, simple structures (sign posts, noise walls, light poles) in uniform profiles; Strength Limit State only"
+    },
+    {
+      "section_id": "6.7",
+      "title": "Other Design Considerations",
+      "summary": "Key design considerations for single pile p-y analysis include: selection of foundation type and size (iterative parametric evaluation); depth of fixity (preliminary estimate from AASHTO Eqs. 6-18 and 6-19 for clay and sand respectively, verified by p-y analysis); free head vs. fixed head conditions (moment connection to cap); scour effects (use scoured profile with reduced resistance over scoured depth); sloping ground surface (modified p-y resistance factors); rock socketed deep foundations (mass modulus and qu control); and cyclic loading effects.",
+      "body": "Foundation type and size selection is iterative — the solution involves combinations of type, diameter, embedment depth, and number of elements. Computer software makes parametric evaluation of multiple options efficient. The depth of fixity (where lateral deflection and slope are both zero) is used for structural analysis to determine the pile length over which shear and moment apply. Preliminary estimates per AASHTO (2014) Section 10.7.3.13.4: for clays, df = 1.4 × (EpIw/Es)^0.25 (Eq. 6-18) where Es = 0.465Su; for sands, df = 1.8 × (EpIw/nh)^0.2 (Eq. 6-19). In rock, assume fixity at 0.5D below top of rock. Final design must verify with p-y analysis. Free head (head free to rotate) vs. fixed head (moment connection to cap) significantly affects lateral load distribution. Fixed-head piles carry more moment at the head. Scour requires use of the scoured profile in p-y analysis with no lateral resistance over the scoured depth. Sloping ground reduces passive resistance on the uphill side. Rock-socketed elements may develop high shear near the top of rock requiring careful structural design. Axial loads increase bending moments (second-order effect); include axial load in p-y analysis when pile is also carrying significant axial load. Cyclic loads can degrade p-y resistance, particularly in soft clays where gap formation at the surface can reduce stiffness.",
+      "key_points": [
+        "Depth of fixity (clay): df = 1.4 × (EpIw/Es)^0.25 (Eq. 6-18); verify by p-y analysis in final design",
+        "Depth of fixity (sand): df = 1.8 × (EpIw/nh)^0.2 (Eq. 6-19)",
+        "Fixed head piles carry higher head moment; free head piles have larger deflection",
+        "Scour: remove lateral soil resistance over scoured depth in p-y analysis",
+        "Include axial load Px in p-y analysis — it increases bending moments via P-delta effects"
+      ],
+      "equations": [
+        {
+          "id": "6-18",
+          "description": "Depth of fixity in clay: df = 1.4 × (EpIw/Es)^0.25 where Es = 0.465Su",
+          "implemented_in": null
+        },
+        {
+          "id": "6-19",
+          "description": "Depth of fixity in sand: df = 1.8 × (EpIw/nh)^0.2",
+          "implemented_in": null
+        }
+      ],
+      "figures": ["Figure 6-12: Selection of resistance factors for structural Strength Limit State of piles"],
+      "tables": [],
+      "applicability": "All single pile p-y analyses where scour, sloping ground, axial loads, or fixity conditions are relevant design parameters"
+    }
+  ]
+}

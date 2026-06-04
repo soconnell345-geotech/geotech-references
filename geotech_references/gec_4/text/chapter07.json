@@ -1,0 +1,40 @@
+{
+  "reference_id": "FHWA-IF-99-015",
+  "reference_title": "Ground Anchors and Anchored Systems",
+  "chapter": 7,
+  "chapter_title": "Load Testing and Transfer of Load to the Anchored System",
+  "sections": [
+    {
+      "section_id": "7.1-7.4",
+      "title": "Load Testing Methods and Acceptance Criteria",
+      "summary": "Every production ground anchor is tested. Three test types: (1) performance tests (~5% of anchors) — multi-cycle incremental loading to 133% DL; (2) proof tests (~95%) — single cycle to 133% DL; (3) extended creep tests — required for PI > 20 or LL > 50 (~8 hours). Acceptance: creep ≤ 1 mm/log cycle at test load; apparent free length 80–120% of design (soil) or 80–130% (rock). Lock-off load: 75–100% of design load.",
+      "body": "Load testing purpose: Verify that the anchor can carry the design load without excessive deformation and that load transfer to the ground is mobilized as assumed. The testing uses a hydraulic jack against a bearing plate to apply load to the tendon. Movements are measured with a dial gauge referenced to an independent fixed datum.\n\nPerformance tests: Multi-cycle loading per Table 21. Each cycle loads from alignment load (AL) — typically 10% of design load — up to the maximum load for that cycle, then back to AL; elastic and residual movements are recorded. Load cycles progress from 0.25DL to 1.0DL (first four cycles), then to 1.33DL (cycle 5) for permanent anchors. At test load, a 10-minute creep hold is performed with movements recorded at 1, 2, 3, 4, 5, 6, and 10 minutes. Elastic movement and residual movement are plotted per Figure 69-70.\n\nProof tests: Single loading cycle to test load (133% of DL for permanent anchors) with a 10-minute creep hold. All production piles not subjected to performance tests receive proof tests.\n\nExtended creep tests: Required for anchors in soils with PI > 20 or LL > 50. Minimum two anchors per project in creep-susceptible soils. Test duration approximately 8 hours with load held at specified fractions of design load (per Table 23). The test identifies whether anchor exhibits unacceptable creep at the design load. Creep curves plotted as movement vs. log time for each load level.\n\nAcceptance criteria: (1) Creep — movement rate at test load must be decreasing; creep movement during final 10 minutes ≤ 1 mm (proof test) or ≤ 2 mm for extended creep. (2) Apparent free length — calculated from elastic movement and known tendon properties; must be within 80–120% of designed free length for soil anchors; 80–130% for rock anchors. If anchor fails, decision tree (Figure 73) guides whether to postgrout, lock off at reduced load, or reject and replace.\n\nLock-off load: Typically 75 to 100% of design load, allowing for subsequent creep/relaxation to bring the long-term load to the desired level.\n\nLift-off tests: Performed after lock-off to confirm the actual tendon load. Gradually re-apply load until the strand or bar 'lifts off' the anchor head — the load at which this occurs is the installed tendon load.",
+      "key_points": [
+        "Every production anchor tested; performance tests on ~5%, proof tests on ~95%",
+        "Performance test: multi-cycle loading to 133% DL; proof test: single cycle to 133% DL",
+        "Creep hold: 10 minutes at test load; movements at 1,2,3,4,5,6,10 min",
+        "Extended creep test (~8 hrs) required for PI > 20 or LL > 50 — minimum 2 anchors per project",
+        "Acceptance: creep ≤ 1 mm/log cycle; apparent free length 80–120% of design (soil), 80–130% (rock)",
+        "Anchor failing acceptance: decision tree per Figure 73 — postgrout, reduce lock-off, or reject/replace",
+        "Lock-off load: 75–100% of design load; lift-off test confirms installed tendon load"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 65: Strain distribution and fictitious anchorage point (FAP) in bond zone",
+        "Figure 66: Evaluation of critical creep tension",
+        "Figure 67: Typical equipment for load testing of strand ground anchor",
+        "Figure 68: Typical equipment for load testing of bar ground anchor",
+        "Figure 69: Plotting of performance test data (after PTI 1996)",
+        "Figure 70: Plotting of elastic and residual movement for performance test",
+        "Figure 71: Plotting of proof test data",
+        "Figure 72: Extended creep test data plot",
+        "Figure 73: Ground anchor acceptance decision tree (PTI 1996)"
+      ],
+      "tables": [
+        "Table 21: Steps for the performance test",
+        "Table 23: Load schedule and observation periods for extended creep test for permanent anchor"
+      ],
+      "applicability": "Ground anchor load test procedures and acceptance criteria for permanent and temporary anchors"
+    }
+  ]
+}

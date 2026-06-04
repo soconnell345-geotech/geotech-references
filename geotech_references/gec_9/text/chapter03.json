@@ -1,0 +1,80 @@
+{
+  "reference_id": "FHWA-HIF-18-031",
+  "reference_title": "Design, Analysis, and Testing of Laterally Loaded Deep Foundations that Support Transportation Facilities",
+  "chapter": 3,
+  "chapter_title": "Geotechnical Site Characterization for Design of Laterally Loaded Deep Foundations",
+  "sections": [
+    {
+      "section_id": "3.1",
+      "title": "Introduction",
+      "summary": "Chapter 3 focuses on subsurface characterization specifically for laterally loaded deep foundation design. For p-y analysis all geomaterials are categorized as granular soils, cohesive soils, rock, or cohesive intermediate geomaterial (IGM). The chapter complements general guidance in GEC-5 (Loehr et al. 2016) and AASHTO Article 10.4, with emphasis on parameters specifically needed for lateral pile analysis.",
+      "body": "This chapter presents information on the characterization of subsurface conditions for design and constructability assessments of laterally loaded deep foundations. The intent is not to repeat detailed information in other publications, but to focus specifically on considerations where lateral loads may be a significant aspect of the design, as well as the development of parameters specifically needed for lateral pile analyses. General subsurface investigations and evaluation of soil and rock parameters are addressed in Subsurface Investigations (Mayne et al. 2002) and Geotechnical Site Characterization (Loehr et al. 2016). Specific LRFD requirements are in AASHTO Article 10.4. For the analysis and design of piles/shafts under lateral loads, all geomaterials are categorized as either granular soils, cohesive soils, rock, or cohesive intermediate geomaterial (IGM). The selection of resistance factors for LRFD design, discussed in Chapter 4, is based in part on the adequacy of the investigation and testing program.",
+      "key_points": [
+        "Geomaterials categorized as granular soils, cohesive soils, rock, or cohesive IGM",
+        "LRFD resistance factor selection depends in part on adequacy of site investigation",
+        "General investigation guidance in GEC-5 (Loehr et al. 2016) and AASHTO Article 10.4",
+        "This chapter focuses specifically on parameters needed for p-y analysis"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "All projects where lateral loads are a significant design consideration"
+    },
+    {
+      "section_id": "3.2",
+      "title": "Geotechnical Design Parameters",
+      "summary": "For p-y analysis of laterally loaded foundations in soils, required parameters are: unit weight (γ), Poisson's ratio (ν), undrained shear strength (Su) and strain at 50% peak deviatoric stress (ε50) for cohesive soils, friction angle (φ) and subgrade modulus (k) for cohesionless soils, and elastic modulus (E). For rock, parameters include unit weight, unconfined compressive strength (qu), elastic modulus of intact rock (ER) and rock mass (Em), and Poisson's ratio. Cohesive IGM with qu of 10-100 ksf may be treated as clay-type or weak rock.",
+      "body": "Subsurface investigations should consider geotechnical design parameters needed for analysis of deep foundations under lateral loads. For cohesive soils, basic parameters are unit weight (γ) and Poisson's ratio; strength parameters are undrained shear strength (Su); and deformation/stiffness parameters are strain at 50% of maximum deviatoric stress (ε50) and subgrade modulus (k). For cohesionless soils, basic parameters are unit weight and Poisson's ratio; strength parameters are friction angle (φ); and stiffness parameters are subgrade modulus (k) and elastic modulus (E). For rock, parameters needed for p-y analysis include unit weight, unconfined compressive strength of intact rock (qu), elastic modulus of intact rock (ER), elastic modulus of rock mass (Em), and Poisson's ratio. It is important to distinguish properties of intact rock from properties of the rock mass, which includes intact rock plus discontinuities (joints and fractures). Cohesive IGM is defined as material with unconfined compressive strengths of 10 to 100 ksf, including heavily overconsolidated clays, clay shales, saprolites, mudstones, and calcareous rocks. Not all parameters are used in every type of lateral pile analysis.",
+      "key_points": [
+        "Cohesive soils: Su, ε50, and subgrade modulus k are key p-y parameters",
+        "Cohesionless soils: friction angle φ and subgrade modulus k are key p-y parameters",
+        "Rock: qu, Em (rock mass modulus), and Poisson's ratio needed for weak rock p-y criteria",
+        "Cohesive IGM (qu = 10–100 ksf): may be treated as clay-type or weak rock in analysis",
+        "Intact rock properties differ from rock mass properties — use rock mass modulus Em for p-y curves"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 3-1: Geotechnical parameters for analysis of laterally loaded deep foundations in soils",
+        "Table 3-2: Geotechnical parameters for analysis of laterally loaded deep foundations in rock"
+      ],
+      "applicability": "Parameter selection for p-y analysis of laterally loaded piles and drilled shafts"
+    },
+    {
+      "section_id": "3.3",
+      "title": "Subsurface Exploration",
+      "summary": "Subsurface exploration for laterally loaded deep foundations requires soil borings with SPT testing, plus rock coring where foundations bear on rock. Minimum exploration points are defined by application: one per substructure for bridges <100 ft wide; one per wall for retaining walls with additional borings every 100–200 ft for longer walls. In-situ tests particularly useful for lateral analysis include PMT (for rock mass modulus), DMT, and borehole jack tests. Laboratory testing provides soil classification, strength, and ε50 values.",
+      "body": "Characterization of subsurface conditions requires an adequate subsurface investigation and testing program consisting of field investigations, in-situ testing, and laboratory testing. For soils, soil borings with SPT tests should always be conducted to retrieve samples for classification and laboratory testing. Where foundations are expected to bear on or in rock, borings with rock coring should always be performed. Minimum exploration requirements per Table 3-3: for retaining walls on deep foundations, one exploration point per wall, with points every 100–200 ft for walls greater than 100 ft; exploration depth should be 1 to 2 times wall height below the base. For bridge foundations, one exploration per substructure less than 100 ft wide (two for wider substructures); depth should be at least 20 ft below estimated foundation tip or two times minimum pile/shaft group dimension. When lateral loading is expected to be a significant design aspect, advanced in-situ testing is recommended: the pressuremeter test (PMT) can estimate rock mass modulus (Em) directly, avoiding the need for sampling; the dilatometer test (DMT) can correlate with soil type, undrained shear strength, and friction angle; borehole jack tests can provide higher pressures for stronger rock. These tests have limitations — they test only a small area of rock mass and may not be representative of overall rock mass behavior where joint spacing varies. Laboratory testing provides soil classification, strength parameters (Su, φ), and ε50 values from triaxial tests.",
+      "key_points": [
+        "Minimum: one boring per bridge substructure; depth ≥ 20 ft below foundation tip or 2× pile group dimension",
+        "For retaining walls: one boring per wall, every 100–200 ft for long walls; depth = 1–2× wall height below base",
+        "PMT recommended when lateral loads are significant: provides rock mass modulus (Em) for p-y curves",
+        "SPT borings required for soil sampling; rock coring required when foundations bear on rock",
+        "ε50 from triaxial tests: strain at 50% of peak deviator stress, needed for clay p-y curves"
+      ],
+      "equations": [],
+      "figures": ["Figure 3-1: Schematic of various in-situ tests"],
+      "tables": [
+        "Table 3-3: Minimum number of exploration points and depth requirements for deep foundations subject to lateral loads"
+      ],
+      "applicability": "Planning and scoping subsurface investigation programs for laterally loaded foundation design"
+    },
+    {
+      "section_id": "3.4",
+      "title": "Laboratory Testing and Groundwater Conditions",
+      "summary": "Laboratory tests for lateral pile design include undrained shear strength (UC, UU, DSS), triaxial tests for ε50, and grain size analysis for classification. Groundwater level directly affects p-y resistance through effective stress for sands (submerged vs. above water k values) and the presence of free water for stiff clay p-y criteria. Groundwater should be characterized during exploration and seasonally if variation is expected.",
+      "body": "Laboratory testing for projects with laterally loaded deep foundations includes index testing for soil classification, strength tests (unconfined compression, UU triaxial, consolidated-undrained triaxial) for cohesive soils, and grain size analysis for cohesionless soils. Triaxial tests can provide ε50, the axial strain at 50% of peak deviatoric stress, which is needed for p-y curve construction for soft and stiff clays. The groundwater conditions at a site, including the depth to the water table (or piezometric surface) and seasonal variation, must be characterized for laterally loaded deep foundation design. Groundwater level affects the unit weight of soil that governs effective stresses and directly affects the parameters used in p-y analysis for sands (submerged versus above-water initial modulus k values per Table A-3) and for stiff clays (the presence of free water affects the appropriate p-y criterion). Artesian conditions or flowing water conditions may affect the constructability of deep foundations, particularly drilled shafts. Seasonal variation in groundwater can affect the magnitude of lateral loads on deep foundations from earth pressures for retaining walls and slope stabilization.",
+      "key_points": [
+        "ε50 from triaxial tests needed for clay p-y curves — report strain at 50% of peak deviatoric stress",
+        "Groundwater depth directly affects p-y sand parameters (submerged vs. above-water k)",
+        "Presence of free water at surface is key to selecting stiff clay p-y criterion (Reese vs. Welch and Reese)",
+        "Seasonal groundwater variation may affect earth pressure loads for retaining and slope applications",
+        "Artesian conditions affect drilled shaft constructability"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Laboratory test selection and groundwater characterization for lateral pile p-y analysis"
+    }
+  ]
+}

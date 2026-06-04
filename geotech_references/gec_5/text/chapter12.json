@@ -1,0 +1,60 @@
+{
+  "reference_id": "FHWA NHI-16-072",
+  "reference_title": "Geotechnical Site Characterization",
+  "chapter": 12,
+  "chapter_title": "Identification and Characterization of Geotechnical Hazards",
+  "sections": [
+    {
+      "section_id": "12.1-12.3",
+      "title": "Karst, Sinkholes, and Underground Mines",
+      "summary": "Karst: dissolution of carbonate rock creates sinkholes, caves, and caverns; collapse sinkholes form suddenly without warning. Desk study: topographic maps, LiDAR, geologic maps. At least one boring per deep foundation location in karst terrain. Geophysical methods (ASTM D6429): gravity survey (void as density anomaly), seismic reflection, GPR, resistivity, TDR, borehole tomography — all depth-limited. Underground mines: undocumented workings common; desk study from mine maps; GPR detects voids beneath pavements.",
+      "body": "Karst hazards: Dissolution of carbonate rock (limestone, dolomite) and evaporites (gypsum, halite) creates network of subsurface features. Surface expressions: sinkholes (circular depressions), irregular bedrock depth, irregular rock quality, loss of drilling fluid, 'rod drops' during boring. Types: solution sinkholes (gradual, slow), cover-subsidence sinkholes (gradual, fill descends into void), cover-collapse sinkholes (sudden, catastrophic). Impacts: foundation settlement, collapse, irregular bearing, loss of groundwater.\n\nDesk study for karst: topographic maps for closed depressions; LiDAR for subtle surface expressions (Figure 12-5); geologic maps; published karst maps; previous site investigations; observation wells for loss of groundwater.\n\nField investigation for karst: Borings spaced close enough to detect karst features; minimum one boring per deep foundation location. Borings must penetrate through rock to confirm rock quality below apparent top of rock. Document all rod drops, drilling fluid losses, and voids encountered in boring log.\n\nGeophysical methods (ASTM D6429): Gravity survey — detects voids as density anomaly; 5–50 ft measurement spacing; effectiveness decreases with depth. Seismic reflection — locates irregular rock surface; receivers spaced 1–10 ft; depth of investigation ≈ 1–2× furthest receiver distance. Electrical resistivity — low resistivity = voids/fractured rock. TDR and GPR — shallow voids and cavities under pavements. Borehole tomography — between borings; images velocity and attenuation of rock.\n\nUnderground mines: Undocumented workings from 19th-20th century are common near historic mining districts. Desk study: mine maps from state archives, MSHA, USGS. Field: GPR for voids beneath pavements; borings through suspected mine workings. Surface subsidence features (Figure 12-16) are indicators of mine collapse.",
+      "key_points": [
+        "Karst: minimum one boring per deep foundation; document rod drops and fluid loss in boring logs",
+        "Cover-collapse sinkholes form suddenly — require careful field investigation and geophysics",
+        "ASTM D6429 geophysical methods: gravity, seismic reflection, GPR, resistivity, TDR — depth-limited",
+        "GPR most effective for locating shallow voids and mine workings under pavements",
+        "Underground mines: consult historical mine maps; confirm with borings through suspected workings"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 12-5: Comparison of aerial photograph and LiDAR imagery showing depressions",
+        "Figure 12-8: Gravity anomaly indicating void below surface",
+        "Figure 12-10: Seismic refraction for detecting subsurface voids",
+        "Figure 12-11: Resistivity image showing low values indicating voids or fractured rock",
+        "Figure 12-13: Borehole tomography",
+        "Figure 12-16: Surface water in subsidence feature over underground mine",
+        "Figure 12-17: GPR for voids beneath pavement"
+      ],
+      "tables": [
+        "Table 12-1: Applicability of geophysical methods for identifying voids and sinkholes (ASTM D6429)"
+      ],
+      "applicability": "Karst and underground mine hazard identification and characterization for transportation projects"
+    },
+    {
+      "section_id": "12.4-12.7",
+      "title": "Seismic, Groundwater, Slope, and Geoenvironmental Hazards",
+      "summary": "Seismic hazards: site amplification (Vs30 and AASHTO site class Table 12-4); liquefaction (SPT (N1)60 and CPT qt from Youd et al. 2001); seismic slope instability (pseudo-static or Newmark displacement method). Groundwater hazards: artesian conditions require piezometers; seepage-induced instability. Landslides/rockfall: identify from desk study (USGS, topographic maps, LiDAR), inclinometers, field reconnaissance. Rock slope failure modes: planar, wedge, toppling, circular. Geoenvironmental hazards: contaminant characterization; phased investigation approach.",
+      "body": "Seismic hazards: (1) Ground shaking intensity: Vs30 used for AASHTO/IBC site classification (site class A-F); site factors Fpga and Fv amplify PGA and spectral acceleration. AASHTO 2012 Table 12-4 provides Fpga by site class and PGA level. (2) Liquefaction: assess susceptibility (loose saturated cohesionless soils, (N1)60 < 30), triggering (SPT and CPT methods per Youd et al. 2001), and consequences (lateral spreading, settlement, strength loss). Site characterization: determine spatial limits of liquefiable soil, GWT depth, maximum anticipated liquefaction depth, and SPT/CPT measurements. (3) Slope instability: pseudo-static limit equilibrium with horizontal coefficient kh = 0.5A (AASHTO), or Newmark displacement analysis.\n\nGroundwater hazards: Artesian conditions — confined aquifer pore pressure > overburden stress; identify from borehole observations (water rising above ground) or piezometers. Seepage-induced hazards: uplift (foundation design), piping, liquefaction of granular soils. Characterize by piezometer network.\n\nLandslide and rockfall hazards: Landslides identified from desk study (USGS landslide database, aerial photography, LiDAR, geologic mapping), then confirmed by field investigation (slope inclinometers, borings for failure surface location and characterization). Rock slope failure modes: planar (rock slab slides along single discontinuity), wedge (intersection of two discontinuities), toppling (rotation of rock blocks), circular (in weak/heavily jointed rock). Rockfall conditions: steep slopes, extensive subvertical joint sets, freeze-thaw, undercutting.\n\nGeoenvironmental hazards: Contaminants from waste piles, USTs, landfills, or industrial operations. Phased investigation: desk study → surface reconnaissance → limited subsurface → comprehensive. Characterize extent, concentration, and migration pathways.",
+      "key_points": [
+        "AASHTO site class from Vs30; site factor Fpga from Table 12-4 for site amplification",
+        "Liquefaction: SPT (N1)60 and CPT qt methods (Youd et al. 2001); need spatial limits, GWT, and SPT/CPT data",
+        "Newmark displacement analysis for seismic slope stability; requires seismic hazard and yield acceleration",
+        "Landslide investigation: desk study (USGS, LiDAR) then inclinometers + borings for failure surface",
+        "Rock slope failure: planar, wedge, toppling, circular — assess from discontinuity orientation stereonets"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 12-19: Route 17 landslide from Loma Prieta earthquake",
+        "Figure 12-22: Settings that produce artesian conditions",
+        "Figure 12-23: Modes of rock slope failure leading to rockfall events",
+        "Figure 12-24: Landslide event affecting highway",
+        "Figure 12-25: Rockfall event in Glenwood Canyon, CO affecting I-70"
+      ],
+      "tables": [
+        "Table 12-4: Values for site factor Fpga at zero period (AASHTO 2012)"
+      ],
+      "applicability": "Characterization of seismic, groundwater, slope instability, and geoenvironmental hazards for transportation projects"
+    }
+  ]
+}
