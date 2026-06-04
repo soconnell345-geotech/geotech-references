@@ -1,0 +1,514 @@
+{
+  "reference_id": "FHWA-SA-02-054",
+  "reference_title": "Shallow Foundations",
+  "package": "gec_6",
+  "volume": null,
+  "pdf_path": "docs/GEC 6.pdf",
+  "figure_count": 56,
+  "figures": [
+    {
+      "figure_number": "2-1",
+      "caption": "Isolated Spread Footing",
+      "chapter": 2,
+      "pdf_page_index": 10,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Introduction General classification and definition of shallow foundations for all design applications. Shallow foundation generally defined as bearing depth less than about 2 times the foundation width Understanding theoretical assumptions behind design procedures is more important than the strict definition Bearing capacity equations have theoretical limitations that vary as a function of depth Common types illustrated in Figures 2-1 through 2-5 Isolated Spread Footings Single column support where loads can be distributed to adequate bearing material through an individual footing. Designed to distribute concentrated column loads and prevent shear failure of bearing material Typical minimum size for bridge columns is 3 m x 3 m (10 ft x 10 ft) Footing size increases with eccentric loads"
+    },
+    {
+      "figure_number": "2-2",
+      "caption": "Continuous Strip Spread Footing",
+      "chapter": 2,
+      "pdf_page_index": 11,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Introduction General classification and definition of shallow foundations for all design applications. Shallow foundation generally defined as bearing depth less than about 2 times the foundation width Understanding theoretical assumptions behind design procedures is more important than the strict definition Bearing capacity equations have theoretical limitations that vary as a function of depth Common types illustrated in Figures 2-1 through 2-5 Continuous Strip Spread Footings Support of bearing walls or a single row of columns where continuous load distribution is needed. Most common foundation type for buildings Minimum length-to-width ratio of at least 5 (length > 5 x width) Supports a single row of columns or a bearing wall Plane strain conditions assumed parallel to the long axis"
+    },
+    {
+      "figure_number": "2-3",
+      "caption": "Figure 2-3: Spread Footing with Cantilever Stemwall",
+      "chapter": 2,
+      "pdf_page_index": 12,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Introduction General classification and definition of shallow foundations for all design applications. Shallow foundation generally defined as bearing depth less than about 2 times the foundation width Understanding theoretical assumptions behind design procedures is more important than the strict definition Bearing capacity equations have theoretical limitations that vary as a function of depth Common types illustrated in Figures 2-1 through 2-5 Spread Footings with Cantilever Stemwalls Situations where shallow foundations must resist both vertical loads and lateral earth pressures from backfill. Combines vertical load distribution with retaining wall function Foundation must resist eccentric loads from lateral earth pressures Lateral pressures resisted by cantilever action of stemwall"
+    },
+    {
+      "figure_number": "2-4",
+      "caption": "Semi-Gravity Cantilever Retaining Wall",
+      "chapter": 2,
+      "pdf_page_index": 13,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Introduction General classification and definition of shallow foundations for all design applications. Shallow foundation generally defined as bearing depth less than about 2 times the foundation width Understanding theoretical assumptions behind design procedures is more important than the strict definition Bearing capacity equations have theoretical limitations that vary as a function of depth Common types illustrated in Figures 2-1 through 2-5 Spread Footings with Cantilever Stemwalls Situations where shallow foundations must resist both vertical loads and lateral earth pressures from backfill. Combines vertical load distribution with retaining wall function Foundation must resist eccentric loads from lateral earth pressures Lateral pressures resisted by cantilever action of stemwall"
+    },
+    {
+      "figure_number": "2-5",
+      "caption": "Combined Footing",
+      "chapter": 2,
+      "pdf_page_index": 14,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Introduction General classification and definition of shallow foundations for all design applications. Shallow foundation generally defined as bearing depth less than about 2 times the foundation width Understanding theoretical assumptions behind design procedures is more important than the strict definition Bearing capacity equations have theoretical limitations that vary as a function of depth Common types illustrated in Figures 2-1 through 2-5 Combination Footings Multiple-column support where individual footings would overlap or where non-uniform column spacing or large overturning moments are present. Support two or more columns on a single rectangular or trapezoidal footing Used when column spacing is non-uniform or when isolated footings would overlap Spill-through abutments are a"
+    },
+    {
+      "figure_number": "2-6",
+      "caption": "Spill-Through Abutment on Combination Strip Footing",
+      "chapter": 2,
+      "pdf_page_index": 14,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Combination Footings Multiple-column support where individual footings would overlap or where non-uniform column spacing or large overturning moments are present. Support two or more columns on a single rectangular or trapezoidal footing Used when column spacing is non-uniform or when isolated footings would overlap Spill-through abutments are a bridge application of combination footings (Figure 2-6) Frame action allows resistance to large overturning or rotational moments Spill-through abutments used at stream crossings to place foundations below scour level Design choice depends on available space, load distribution, soil variability, and economics"
+    },
+    {
+      "figure_number": "2-7",
+      "caption": "Typical Mat Foundation",
+      "chapter": 2,
+      "pdf_page_index": 15,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Mat Foundations Structures where spread footings would cover more than 50% of the plan area, or where differential settlement must be minimized over weak or variable ground conditions. Single heavily reinforced concrete slab underlying the entire structure or major portion Economical when spread footings would cover more than about 50% of the plan area (Peck et al. 1974) Principal advantage is ability to bridge over soft spots and reduce differential movement Suitable for relatively weak soils or lightweight structures Limited applicability for bridge support; applicable for bascule piers and movable bridge supports Common transportation applications include maintenance facilities, storage bins, and box culverts Large mat foundation design discussed in Section 8.6"
+    },
+    {
+      "figure_number": "2-8",
+      "caption": "The bridge was constructed in 1968 and 1969",
+      "chapter": 2,
+      "pdf_page_index": 16,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Case History No. 1: I-5 Kalama Interchange, Washington Bridge foundations on compressible alluvial soils where preloading can improve ground conditions and reduce post-construction settlement to acceptable levels. 71-m long, four-span prestressed concrete bridge on alluvial sediments over bedrock 30 m of compressible alluvial soils with Cc = 0.19-0.24 Ground improvement by two-stage preloading prior to footing construction Design bearing pressures: 280 kPa (Piers 1-4) and 244 kPa (Pier 5) Post-deck settlement: 37-49 mm at abutments, 21-34 mm at interior piers Maximum angular distortion less than 0.002 between adjacent piers Cost savings of approximately $25,000 (20% of total cost) by eliminating 124 timber piles Observational method used to evaluate feasibility during construction"
+    },
+    {
+      "figure_number": "2-9",
+      "caption": "Standard",
+      "chapter": 2,
+      "pdf_page_index": 16,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Case History No. 1: I-5 Kalama Interchange, Washington Bridge foundations on compressible alluvial soils where preloading can improve ground conditions and reduce post-construction settlement to acceptable levels. 71-m long, four-span prestressed concrete bridge on alluvial sediments over bedrock 30 m of compressible alluvial soils with Cc = 0.19-0.24 Ground improvement by two-stage preloading prior to footing construction Design bearing pressures: 280 kPa (Piers 1-4) and 244 kPa (Pier 5) Post-deck settlement: 37-49 mm at abutments, 21-34 mm at interior piers Maximum angular distortion less than 0.002 between adjacent piers Cost savings of approximately $25,000 (20% of total cost) by eliminating 124 timber piles Observational method used to evaluate feasibility during construction"
+    },
+    {
+      "figure_number": "2-10",
+      "caption": "The settlement data show that vertical deflections at",
+      "chapter": 2,
+      "pdf_page_index": 19,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Case History No. 1: I-5 Kalama Interchange, Washington Bridge foundations on compressible alluvial soils where preloading can improve ground conditions and reduce post-construction settlement to acceptable levels. 71-m long, four-span prestressed concrete bridge on alluvial sediments over bedrock 30 m of compressible alluvial soils with Cc = 0.19-0.24 Ground improvement by two-stage preloading prior to footing construction Design bearing pressures: 280 kPa (Piers 1-4) and 244 kPa (Pier 5) Post-deck settlement: 37-49 mm at abutments, 21-34 mm at interior piers Maximum angular distortion less than 0.002 between adjacent piers Cost savings of approximately $25,000 (20% of total cost) by eliminating 124 timber piles Observational method used to evaluate feasibility during construction"
+    },
+    {
+      "figure_number": "2-11",
+      "caption": "I-5 Kalama Interchange",
+      "chapter": 2,
+      "pdf_page_index": 21,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Case History No. 1: I-5 Kalama Interchange, Washington Bridge foundations on compressible alluvial soils where preloading can improve ground conditions and reduce post-construction settlement to acceptable levels. 71-m long, four-span prestressed concrete bridge on alluvial sediments over bedrock 30 m of compressible alluvial soils with Cc = 0.19-0.24 Ground improvement by two-stage preloading prior to footing construction Design bearing pressures: 280 kPa (Piers 1-4) and 244 kPa (Pier 5) Post-deck settlement: 37-49 mm at abutments, 21-34 mm at interior piers Maximum angular distortion less than 0.002 between adjacent piers Cost savings of approximately $25,000 (20% of total cost) by eliminating 124 timber piles Observational method used to evaluate feasibility during construction"
+    },
+    {
+      "figure_number": "2-12",
+      "caption": "Mt. Rose Interchange: I-580 Overcrossing at Mt. Rose Highway, Nevada",
+      "chapter": 2,
+      "pdf_page_index": 22,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Case History No. 2: I-580 Mt. Rose Highway Interchange, Nevada Bridge foundations on dense granular soils where shallow foundations on structural fills provide adequate bearing capacity and acceptable settlement without ground improvement. 107.6-m long, two-span concrete bridge on dense glacial outwash and alluvial fan deposits SPT N-values of 25-75 (average 50) at north abutment Design bearing pressure of 190 kPa (2 tsf); estimated settlements 32-57 mm Groundwater deeper than 30 m below site Abutment footings on compacted aggregate base (Type 1 Class B); lifts of 200 mm; 95% compaction Estimated cost savings of $105,000 (4% of $2.8 million structure cost) by deleting piles Structure has performed without problems since 1994 construction"
+    },
+    {
+      "figure_number": "2-13",
+      "caption": "Figure 2-13: Elevation of Mt. Rose Interchange Bridge, I-580, Nevada",
+      "chapter": 2,
+      "pdf_page_index": 23,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Case History No. 2: I-580 Mt. Rose Highway Interchange, Nevada Bridge foundations on dense granular soils where shallow foundations on structural fills provide adequate bearing capacity and acceptable settlement without ground improvement. 107.6-m long, two-span concrete bridge on dense glacial outwash and alluvial fan deposits SPT N-values of 25-75 (average 50) at north abutment Design bearing pressure of 190 kPa (2 tsf); estimated settlements 32-57 mm Groundwater deeper than 30 m below site Abutment footings on compacted aggregate base (Type 1 Class B); lifts of 200 mm; 95% compaction Estimated cost savings of $105,000 (4% of $2.8 million structure cost) by deleting piles Structure has performed without problems since 1994 construction"
+    },
+    {
+      "figure_number": "2-14",
+      "caption": "Footing at South Abutment, I-580, Nevada",
+      "chapter": 2,
+      "pdf_page_index": 24,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Case History No. 2: I-580 Mt. Rose Highway Interchange, Nevada Bridge foundations on dense granular soils where shallow foundations on structural fills provide adequate bearing capacity and acceptable settlement without ground improvement. 107.6-m long, two-span concrete bridge on dense glacial outwash and alluvial fan deposits SPT N-values of 25-75 (average 50) at north abutment Design bearing pressure of 190 kPa (2 tsf); estimated settlements 32-57 mm Groundwater deeper than 30 m below site Abutment footings on compacted aggregate base (Type 1 Class B); lifts of 200 mm; 95% compaction Estimated cost savings of $105,000 (4% of $2.8 million structure cost) by deleting piles Structure has performed without problems since 1994 construction"
+    },
+    {
+      "figure_number": "2-15",
+      "caption": "Elevation of Cadillac Bypass Structure S01, Michigan",
+      "chapter": 2,
+      "pdf_page_index": 25,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Case History No. 3: Cadillac Bypass Structure S01, Michigan Bridge foundations where loose native soils are removed and replaced with well-compacted structural fill to support spread footings, avoiding the need for driven piles. 77.8-m long, three-span concrete structure with 2 abutments and 2 piers Loose sand up to 6 m thick removed and replaced with Structure Embankment Structure Embankment: granular, 0-15% passing No. 200, compacted to 100% Modified Proctor Fill thickness: 7.6 m under abutments, 4.6 m under piers Placed in lifts of 230-380 mm Estimated cost savings of $180,000 (8% of $2.3 million structure cost) 10 of 24 structures in the overall project supported on spread footings"
+    },
+    {
+      "figure_number": "2-16",
+      "caption": "Profile Along Centerline Showing the Limits of Structural Fill,",
+      "chapter": 2,
+      "pdf_page_index": 26,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Case History No. 3: Cadillac Bypass Structure S01, Michigan Bridge foundations where loose native soils are removed and replaced with well-compacted structural fill to support spread footings, avoiding the need for driven piles. 77.8-m long, three-span concrete structure with 2 abutments and 2 piers Loose sand up to 6 m thick removed and replaced with Structure Embankment Structure Embankment: granular, 0-15% passing No. 200, compacted to 100% Modified Proctor Fill thickness: 7.6 m under abutments, 4.6 m under piers Placed in lifts of 230-380 mm Estimated cost savings of $180,000 (8% of $2.3 million structure cost) 10 of 24 structures in the overall project supported on spread footings"
+    },
+    {
+      "figure_number": "3-1",
+      "caption": "IGM or Intact Rock",
+      "chapter": 3,
+      "pdf_page_index": 30,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Footings on Intermediate Geomaterials (IGMs) and Rock Shallow foundation design on intermediate geomaterials and rock, including assessment of discontinuities, slope stability, and potential for strength loss or cavern collapse. IGMs are materials too dense/stiff for 'soil' classification but not intact 'rock' (glacial till, weathered rock, indurated sediments, cemented materials) IGMs are typically strong enough that overturning or stability governs design rather than material strength Three foundation configurations on IGM/rock: horizontal bearing, near-slope crest, and tied-in for uplift/lateral loads (Figure 3-1) Slope stability analysis for IGM/rock must consider planar, wedge, sliding, and toppling failure mechanisms Evaluate weathering degree, rock strength, durability, and"
+    },
+    {
+      "figure_number": "4-1",
+      "caption": "Correlation Between Relative Density and SPT",
+      "chapter": 4,
+      "pdf_page_index": 39,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Standard Penetration Test SPT testing procedures, N-value correlations, and hammer efficiency corrections for foundation design. SPT standardized by AASHTO T-206 and ASTM D-1586 63-kg hammer, 0.76 m drop; N-value = sum of blows for second and third 150-mm increments N-values correlate with relative density (sands) and consistency (clays) per Table 4-1 Figures 4-1 and 4-2 relate N-value to relative density and friction angle for granular soils Figure 4-1 is a function of both N-value and effective overburden stress; do not correct N for overburden Hammer efficiency correction: N60 = (ER/60%) * N_field (Equation 4-1) Automatic hammers typically have 70-90% efficiency; 80% commonly assumed Correlations for gravels and clays from SPT are relatively unreliable"
+    },
+    {
+      "figure_number": "4-2",
+      "caption": "Correlation Between Relative Density, Material Classification and Angle of",
+      "chapter": 4,
+      "pdf_page_index": 40,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Standard Penetration Test SPT testing procedures, N-value correlations, and hammer efficiency corrections for foundation design. SPT standardized by AASHTO T-206 and ASTM D-1586 63-kg hammer, 0.76 m drop; N-value = sum of blows for second and third 150-mm increments N-values correlate with relative density (sands) and consistency (clays) per Table 4-1 Figures 4-1 and 4-2 relate N-value to relative density and friction angle for granular soils Figure 4-1 is a function of both N-value and effective overburden stress; do not correct N for overburden Hammer efficiency correction: N60 = (ER/60%) * N_field (Equation 4-1) Automatic hammers typically have 70-90% efficiency; 80% commonly assumed Correlations for gravels and clays from SPT are relatively unreliable"
+    },
+    {
+      "figure_number": "4-3",
+      "caption": "The proportion of the various phases, in terms of both weight and volume, can be represented",
+      "chapter": 4,
+      "pdf_page_index": 46,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Phase and Volume Relationships Fundamental soil phase relationships and weight-volume computations for geotechnical design. Soil is a three-phase material: solid, water, gas (air) Phase relationships defined by specific gravity, void space, and degree of saturation Void ratio (e) is a general indicator of relative strength and compressibility Low void ratio indicates strong, incompressible soils; high void ratio indicates weak, compressible soils Table 4-3 contains Equations 4-2 through 4-20 for all weight-volume and functional relationships Consolidation occurs as excess pore-water pressure dissipates and intergranular stress increases Spring analogy (Figure 4-4) explains consolidation: valve = permeability, spring = soil skeleton, water = pore fluid"
+    },
+    {
+      "figure_number": "4-4",
+      "caption": "Spring Analogy as Applied to Consolidation (Holtz and Kovacs, 1981)",
+      "chapter": 4,
+      "pdf_page_index": 48,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Phase and Volume Relationships Fundamental soil phase relationships and weight-volume computations for geotechnical design. Soil is a three-phase material: solid, water, gas (air) Phase relationships defined by specific gravity, void space, and degree of saturation Void ratio (e) is a general indicator of relative strength and compressibility Low void ratio indicates strong, incompressible soils; high void ratio indicates weak, compressible soils Table 4-3 contains Equations 4-2 through 4-20 for all weight-volume and functional relationships Consolidation occurs as excess pore-water pressure dissipates and intergranular stress increases Spring analogy (Figure 4-4) explains consolidation: valve = permeability, spring = soil skeleton, water = pore fluid"
+    },
+    {
+      "figure_number": "4-5",
+      "caption": "The saturated specimen of clay can be compressed when sufficient pressure is applied to the soil",
+      "chapter": 4,
+      "pdf_page_index": 49,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Phase and Volume Relationships Fundamental soil phase relationships and weight-volume computations for geotechnical design. Soil is a three-phase material: solid, water, gas (air) Phase relationships defined by specific gravity, void space, and degree of saturation Void ratio (e) is a general indicator of relative strength and compressibility Low void ratio indicates strong, incompressible soils; high void ratio indicates weak, compressible soils Table 4-3 contains Equations 4-2 through 4-20 for all weight-volume and functional relationships Consolidation occurs as excess pore-water pressure dissipates and intergranular stress increases Spring analogy (Figure 4-4) explains consolidation: valve = permeability, spring = soil skeleton, water = pore fluid"
+    },
+    {
+      "figure_number": "5-1",
+      "caption": "Note that the allowable bearing capacity of a footing is controlled by shear-failure",
+      "chapter": 5,
+      "pdf_page_index": 52,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Allowable Bearing Capacity Conceptual framework for all shallow foundation bearing capacity evaluation. Allowable bearing capacity combines shear failure prevention and settlement limitation For narrow footings, shear failure controls; for wide footings, settlement controls Footing width B is the key design variable for both criteria As B increases, factor of safety against shear failure increases but settlement potential also increases The depth of influence increases proportionally with footing width"
+    },
+    {
+      "figure_number": "5-2",
+      "caption": "Bearing Capacity Failure of Silo Foundation",
+      "chapter": 5,
+      "pdf_page_index": 54,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Bearing Capacity Theory All shallow foundations where shear failure must be evaluated. Ultimate bearing capacity is the load that causes subsurface collapse due to insufficient soil strength Foundation failure manifests as excessive penetration or rotation Settlement involves both immediate elastic strains and long-term consolidation Bearing capacity theory provides the framework for preventing shear failure"
+    },
+    {
+      "figure_number": "5-3",
+      "caption": "Boundaries of Zone of Plastic Equilibrium after Failure of",
+      "chapter": 5,
+      "pdf_page_index": 55,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Failure Mechanisms Understanding failure modes is essential for selecting appropriate bearing capacity equations and correction factors. Three failure modes: general shear, local shear, and punching shear General shear: well-defined failure planes extend to surface, soil bulges on both sides, footing rotates - occurs in incompressible/strong soils or rapidly loaded NC clays Local shear: failure planes do not reach surface, vertical compression with bulging but no rotation - occurs in loose or soft soils Punching shear: vertical compression without bulging, continuous load increase under strain control - occurs when loose soils loaded slowly under drained conditions Zone I (elastic wedge), Zone II (radial shear, logarithmic spiral), Zone III (passive state at 45 - phi'/2) Soils prone to"
+    },
+    {
+      "figure_number": "5-4",
+      "caption": "Modes of Bearing Capacity Failure (After Vesic, 1975)",
+      "chapter": 5,
+      "pdf_page_index": 55,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Failure Mechanisms Understanding failure modes is essential for selecting appropriate bearing capacity equations and correction factors. Three failure modes: general shear, local shear, and punching shear General shear: well-defined failure planes extend to surface, soil bulges on both sides, footing rotates - occurs in incompressible/strong soils or rapidly loaded NC clays Local shear: failure planes do not reach surface, vertical compression with bulging but no rotation - occurs in loose or soft soils Punching shear: vertical compression without bulging, continuous load increase under strain control - occurs when loose soils loaded slowly under drained conditions Zone I (elastic wedge), Zone II (radial shear, logarithmic spiral), Zone III (passive state at 45 - phi'/2) Soils prone to"
+    },
+    {
+      "figure_number": "5-5",
+      "caption": "Design Terminology for Spread Footing Foundation",
+      "chapter": 5,
+      "pdf_page_index": 57,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Bearing Capacity Equation Formulations All bearing capacity calculations for shallow foundations. Use Eq 5-7 as the base equation before applying correction factors. Use gross ultimate bearing pressure (q_ult gross) for determining allowable bearing capacity, NOT net Using net bearing pressure double-counts surcharge when structural loads include footing self-weight FHWA/AASHTO use Caquot and Kerisel (1948) equation for N_gamma: N_gamma = 2(N_q + 1)*tan(phi) For phi = 0 (undrained clay): bearing capacity depends only on cohesion and embedment depth For cohesionless soils: bearing capacity is very sensitive to friction angle, embedment, and water table Scour or excavation removing overburden can substantially reduce bearing capacity Rising water table reduces effective unit weight by"
+    },
+    {
+      "figure_number": "5-6",
+      "caption": "Note from Equation 5-7 that the ultimate bearing capacity of a soil is a function of the cohesive",
+      "chapter": 5,
+      "pdf_page_index": 58,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Bearing Capacity Equation Formulations All bearing capacity calculations for shallow foundations. Use Eq 5-7 as the base equation before applying correction factors. Use gross ultimate bearing pressure (q_ult gross) for determining allowable bearing capacity, NOT net Using net bearing pressure double-counts surcharge when structural loads include footing self-weight FHWA/AASHTO use Caquot and Kerisel (1948) equation for N_gamma: N_gamma = 2(N_q + 1)*tan(phi) For phi = 0 (undrained clay): bearing capacity depends only on cohesion and embedment depth For cohesionless soils: bearing capacity is very sensitive to friction angle, embedment, and water table Scour or excavation removing overburden can substantially reduce bearing capacity Rising water table reduces effective unit weight by"
+    },
+    {
+      "figure_number": "5-7",
+      "caption": "Modified Bearing Capacity Factors for Footing on Sloping Ground,",
+      "chapter": 5,
+      "pdf_page_index": 64,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Sloping Ground Surface Footings located on slopes or within 2-6 footing widths of a slope crest. For footings on or near slopes, replace N_c with N_cq and N_gamma with N_gamma_q Beyond 2-6 times footing width from slope edge, bearing capacity equals flat-ground case Surcharge effect on the slope side of footing should be ignored (embedment term goes to zero) Must also check overall slope stability (Section 5.5) in addition to bearing capacity Figure 5-7 provides modified bearing capacity factors for both cohesive and cohesionless soils on slopes"
+    },
+    {
+      "figure_number": "5-8",
+      "caption": "Modes of Failure of Model Footings in Sand (after Vesic, 1975)",
+      "chapter": 5,
+      "pdf_page_index": 65,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Local or Punching Shear Footings on loose sands, sensitive clays, metastable soils, or other weak/problematic soils where local or punching shear may develop. Reduced strength parameters: c* = 0.67*c and phi* = arctan(0.67*tan(phi)) Applies to loose sands, sensitive clays (S_t > 8), metastable soils, brittle clays (OCR > 4-8) Do NOT apply one-third reduction for normally consolidated cohesionless soils if settlement is checked independently Do NOT apply one-third reduction for compacted structural fills (95% max density, D_R >= 75%) Figure 5-8 defines failure mode boundaries as function of relative density D_r and D_f/B_f* B_f* = B_f for square/circular; B_f* = B_f*L_f/[2(B_f+L_f)] for rectangular"
+    },
+    {
+      "figure_number": "5-9",
+      "caption": "Stresses Under Uniform Load on Circular Area (Lambe & Whitman, 1969)",
+      "chapter": 5,
+      "pdf_page_index": 80,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Vertical Stress Distribution Computing stress increases for settlement calculations in both cohesive and cohesionless soils. Elastic theory methods are standard for computing stress increases beneath footings Assumptions: homogeneous, isotropic, elastic soil - computed stresses may be in error by 25% or more Figure 5-9: circular loaded areas; Figure 5-10: strip loads; Figure 5-11: rectangular corner stresses (Newmark chart) Superposition can be used with Figure 5-11 for irregular or multiple loaded areas 2:1 stress distribution method (Eq 5-17) is simpler and reasonably accurate 2:1 method: delta_sigma_v/q = B_f*L_f / [(B_f+Z)(L_f+Z)]"
+    },
+    {
+      "figure_number": "5-10",
+      "caption": "Stresses Under Uniform Strip Load (Lambe & Whitman, 1969)",
+      "chapter": 5,
+      "pdf_page_index": 81,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Vertical Stress Distribution Computing stress increases for settlement calculations in both cohesive and cohesionless soils. Elastic theory methods are standard for computing stress increases beneath footings Assumptions: homogeneous, isotropic, elastic soil - computed stresses may be in error by 25% or more Figure 5-9: circular loaded areas; Figure 5-10: strip loads; Figure 5-11: rectangular corner stresses (Newmark chart) Superposition can be used with Figure 5-11 for irregular or multiple loaded areas 2:1 stress distribution method (Eq 5-17) is simpler and reasonably accurate 2:1 method: delta_sigma_v/q = B_f*L_f / [(B_f+Z)(L_f+Z)]"
+    },
+    {
+      "figure_number": "5-12",
+      "caption": "This is much simpler to compute and is a reasonably",
+      "chapter": 5,
+      "pdf_page_index": 83,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Vertical Stress Distribution Computing stress increases for settlement calculations in both cohesive and cohesionless soils. Elastic theory methods are standard for computing stress increases beneath footings Assumptions: homogeneous, isotropic, elastic soil - computed stresses may be in error by 25% or more Figure 5-9: circular loaded areas; Figure 5-10: strip loads; Figure 5-11: rectangular corner stresses (Newmark chart) Superposition can be used with Figure 5-11 for irregular or multiple loaded areas 2:1 stress distribution method (Eq 5-17) is simpler and reasonably accurate 2:1 method: delta_sigma_v/q = B_f*L_f / [(B_f+Z)(L_f+Z)]"
+    },
+    {
+      "figure_number": "5-13",
+      "caption": "This distribution can be computed as a function of",
+      "chapter": 5,
+      "pdf_page_index": 83,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Vertical Stress Distribution Computing stress increases for settlement calculations in both cohesive and cohesionless soils. Elastic theory methods are standard for computing stress increases beneath footings Assumptions: homogeneous, isotropic, elastic soil - computed stresses may be in error by 25% or more Figure 5-9: circular loaded areas; Figure 5-10: strip loads; Figure 5-11: rectangular corner stresses (Newmark chart) Superposition can be used with Figure 5-11 for irregular or multiple loaded areas 2:1 stress distribution method (Eq 5-17) is simpler and reasonably accurate 2:1 method: delta_sigma_v/q = B_f*L_f / [(B_f+Z)(L_f+Z)]"
+    },
+    {
+      "figure_number": "5-14",
+      "caption": "Void Ratio versus Log Effective Vertical Stress Curve from a Consolidation",
+      "chapter": 5,
+      "pdf_page_index": 86,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Footings on Cohesive Soils Settlement estimation for footings on saturated cohesive soils (clays and clayey deposits). Use 1D consolidation theory (ASTM D-2435 oedometer test) for cohesive soil settlement OCR = sigma'_p / sigma'_vo; OCR = 1 is normally consolidated, OCR > 1 is preconsolidated Preconsolidated soils have ~10x less compressibility than NC soils below sigma'_p c_u/sigma'_v = 0.10 + 0.004*PI for NC clays (Eq 5-19) - use as check for OCR C_c correlations (Table 5-11) vary by factor of 5 - do NOT use for final design Subdivide compressible layers into 1.5-3 m thick sublayers for settlement computation Sum settlements from each sublayer within the zone of influence"
+    },
+    {
+      "figure_number": "5-15",
+      "caption": "Typical Consolidation Curve for Normally Consolidated Soil",
+      "chapter": 5,
+      "pdf_page_index": 89,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Footings on Cohesive Soils Settlement estimation for footings on saturated cohesive soils (clays and clayey deposits). Use 1D consolidation theory (ASTM D-2435 oedometer test) for cohesive soil settlement OCR = sigma'_p / sigma'_vo; OCR = 1 is normally consolidated, OCR > 1 is preconsolidated Preconsolidated soils have ~10x less compressibility than NC soils below sigma'_p c_u/sigma'_v = 0.10 + 0.004*PI for NC clays (Eq 5-19) - use as check for OCR C_c correlations (Table 5-11) vary by factor of 5 - do NOT use for final design Subdivide compressible layers into 1.5-3 m thick sublayers for settlement computation Sum settlements from each sublayer within the zone of influence"
+    },
+    {
+      "figure_number": "5-16",
+      "caption": "Typical Consolidation Curve for Overconsolidated Soil",
+      "chapter": 5,
+      "pdf_page_index": 90,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Footings on Cohesive Soils Settlement estimation for footings on saturated cohesive soils (clays and clayey deposits). Use 1D consolidation theory (ASTM D-2435 oedometer test) for cohesive soil settlement OCR = sigma'_p / sigma'_vo; OCR = 1 is normally consolidated, OCR > 1 is preconsolidated Preconsolidated soils have ~10x less compressibility than NC soils below sigma'_p c_u/sigma'_v = 0.10 + 0.004*PI for NC clays (Eq 5-19) - use as check for OCR C_c correlations (Table 5-11) vary by factor of 5 - do NOT use for final design Subdivide compressible layers into 1.5-3 m thick sublayers for settlement computation Sum settlements from each sublayer within the zone of influence"
+    },
+    {
+      "figure_number": "5-17",
+      "caption": "In the 1990s, FHWA funded a study to examine the load-settlement behavior of large footings on",
+      "chapter": 5,
+      "pdf_page_index": 91,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Footings on Cohesionless Soils Settlement estimation for footings on sands, gravels, and non-plastic silts. Settlement typically controls design of footings on cohesionless soils rather than bearing capacity Hough method is RECOMMENDED as primary design tool - conservative, reliable, easy to implement Hough method overpredicts settlement by factor of ~2 (s_o = 0.82 from Gifford study, s_o = 0.53 from load tests) D'Appolonia method is most statistically accurate (s_o = 0.51) but may underpredict by factor of 0.77 Both methods use SPT N-values as primary input Load-settlement curve method (Briaud) using pressuremeter is promising alternate"
+    },
+    {
+      "figure_number": "5-18",
+      "caption": "Corrected SPT (N) versus Overburden Pressure (after Liao & Whitman, 1986)",
+      "chapter": 5,
+      "pdf_page_index": 95,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Hough Method Primary recommended method for settlement estimation on normally consolidated cohesionless soils. Applicable ONLY for normally consolidated cohesionless soils Uses SPT N-values corrected for overburden stress (Liao & Whitman, 1986) Overburden correction: N'/N = 1/(sigma'_vo/95.76)^0.5, maximum 2.0, sigma'_vo in kPa Bearing capacity index C' obtained from Figure 5-19 based on corrected N' and soil type Profile subdivided into ~3-m layers to depth of ~3*B_f Settlement computed layer-by-layer using Equation 5-24 and summed Figure 5-19 has curves for: clean uniform medium sand, well graded silty sand & gravel, clean well graded fine to coarse sand, sandy clay, inorganic silt"
+    },
+    {
+      "figure_number": "5-21",
+      "caption": "Any consistent set of units can be used for ∆H, ∆σv, Bf and M",
+      "chapter": 5,
+      "pdf_page_index": 95,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "D'Appolonia Method Alternate method for settlement on cohesionless soils, especially when preloading history is known. Settlement = (delta_sigma_v * B_f / M) * mu_0 * mu_1 M = modulus of compressibility from Figure 5-21, based on average SPT in depth B below footing Separate M correlations for normally loaded vs preloaded sand mu_0 = correction for embedment (D/B ratio), mu_1 = correction for finite sand layer thickness (H/B ratio) Most statistically accurate method (s_o = 0.51) but may underpredict settlement Limited application history for highway bridges"
+    },
+    {
+      "figure_number": "5-19",
+      "caption": "Bearing Capacity Index versus Corrected SPT",
+      "chapter": 5,
+      "pdf_page_index": 96,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Hough Method Primary recommended method for settlement estimation on normally consolidated cohesionless soils. Applicable ONLY for normally consolidated cohesionless soils Uses SPT N-values corrected for overburden stress (Liao & Whitman, 1986) Overburden correction: N'/N = 1/(sigma'_vo/95.76)^0.5, maximum 2.0, sigma'_vo in kPa Bearing capacity index C' obtained from Figure 5-19 based on corrected N' and soil type Profile subdivided into ~3-m layers to depth of ~3*B_f Settlement computed layer-by-layer using Equation 5-24 and summed Figure 5-19 has curves for: clean uniform medium sand, well graded silty sand & gravel, clean well graded fine to coarse sand, sandy clay, inorganic silt"
+    },
+    {
+      "figure_number": "5-20",
+      "caption": "Correction Factors for Embedment and Layer Thickness",
+      "chapter": 5,
+      "pdf_page_index": 97,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "D'Appolonia Method Alternate method for settlement on cohesionless soils, especially when preloading history is known. Settlement = (delta_sigma_v * B_f / M) * mu_0 * mu_1 M = modulus of compressibility from Figure 5-21, based on average SPT in depth B below footing Separate M correlations for normally loaded vs preloaded sand mu_0 = correction for embedment (D/B ratio), mu_1 = correction for finite sand layer thickness (H/B ratio) Most statistically accurate method (s_o = 0.51) but may underpredict settlement Limited application history for highway bridges"
+    },
+    {
+      "figure_number": "5-22",
+      "caption": "Keys are typically difficult to construct while maintaining the",
+      "chapter": 5,
+      "pdf_page_index": 105,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Sliding and Lateral Stability All shallow foundations subjected to lateral loads; minimum FS = 1.5 against sliding for bridge foundations. Passive earth pressure resistance is conservatively IGNORED in most shallow foundation designs Sliding resistance on granular soil: F_R = (W + P_v) * tan(delta), where delta = friction angle at interface For concrete cast against granular soil: tan(delta) = tan(phi) of the soil Sliding resistance on clay: F_R = c_a * B_f, where c_a ~ c_u (undrained shear strength) Minimum FS against sliding = 1.5 for bridge foundations Do NOT combine drained (Eq 5-38) and undrained (Eq 5-39) sliding resistance Keys in cohesive soils/soft rock can add resistance (Eq 5-41); keys in granular soils mainly increase shear surface length Table 5-15 provides friction factors"
+    },
+    {
+      "figure_number": "5-23",
+      "caption": "Global Slope Stability with Respect to Shallow Foundation Locations",
+      "chapter": 5,
+      "pdf_page_index": 107,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Global Stability All shallow foundations near slopes or on ground with non-level geometry. Evaluate global stability when ground geometry near the footing invalidates bearing capacity theory assumptions Footing loads can either stabilize or destabilize a slope depending on location (Figure 5-23) Use limit equilibrium methods (Bishop or Spencer method of slices) to check global stability Detailed slope stability guidance is in the Soils and Foundation Workshop Reference Manual and TRB SR 247 Global stability check is separate from and additional to bearing capacity and settlement checks"
+    },
+    {
+      "figure_number": "6-1",
+      "caption": "Design Process Flow Chart – Bridge Shallow Foundation",
+      "chapter": 6,
+      "pdf_page_index": 110,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Design Process and Flow Chart Establishing the overall design workflow and discipline responsibilities for bridge shallow foundation design. 12-step design process with clear discipline assignments for each step Steps 1-3: Preliminary layout, geologic review, and site reconnaissance Step 4: Depth determination for scour and frost protection (hydraulic/geotechnical) Steps 5-6: Loads, settlement criteria, soil properties from exploration and lab testing Steps 7-9: Bearing capacity, sliding/passive resistance, global stability (geotechnical) Steps 10-12: Footing sizing, overturning/sliding checks, structural design (structural) Structural design (Step 12) uses factored loads and trapezoidal contact pressure, not the uniform equivalent pressure used for sizing"
+    },
+    {
+      "figure_number": "6-2",
+      "caption": "Coulomb Lateral Earth Pressure Definitions",
+      "chapter": 6,
+      "pdf_page_index": 120,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Active Pressure Distribution Computing active earth pressure coefficients for abutment design using Coulomb or Rankine theory. Coulomb active earth pressure coefficient (Equation 6-2) is the general case accounting for wall batter, backfill slope, and wall friction Rankine equation K_a = tan^2(45 - phi'/2) is the simplified case for vertical walls with level ground Rankine assumes no wall-soil friction; Coulomb includes interface friction angle delta Neither Coulomb nor Rankine basic equations account for surcharge or seismic loads Parameters: delta = wall/backfill friction angle, beta = backfill slope, theta = wall face inclination, phi' = soil friction angle"
+    },
+    {
+      "figure_number": "6-3",
+      "caption": "Lateral Earth Pressures on Abutments",
+      "chapter": 6,
+      "pdf_page_index": 122,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Live Load Surcharge Computing additional lateral load from traffic surcharge on abutment walls. Live load surcharge applies when traffic is within horizontal distance of 0.5H behind the wall If approach slab is present, live loads are applied to the corbel on the abutment backwall instead Equivalent surcharge height h_eq = 0.6 m (2 ft) with unit weight of 19.6 kN/m^3 (125 pcf) Surcharge pressure distribution is uniform along the wall, with resultant at H/2 from base P_LS = K * gamma' * h_eq * H"
+    },
+    {
+      "figure_number": "6-4",
+      "caption": "Notations for Footings Subjected to Eccentric,",
+      "chapter": 6,
+      "pdf_page_index": 123,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Effective Footing Dimensions and Overturning Stability Computing effective footing dimensions for eccentric loading and checking overturning stability. Effective footing dimensions account for eccentric loading: B'_f = B_f - 2*e_B, L'_f = L_f - 2*e_L Eccentricity e = M / V (moment divided by vertical load) in each direction Effective area A' = B'_f * L'_f used for bearing stress calculation with uniform pressure assumption Eccentricity on soil must be < B/6 or L/6 to avoid zero contact pressure (AASHTO 1996) Eccentricity on rock must be < B/4 or L/4 If eccentricity within these limits, separate overturning calculation is not needed Effective dimensions are an approximation; structural design uses actual trapezoidal/triangular distributions"
+    },
+    {
+      "figure_number": "6-5",
+      "caption": "Eccentrically Loaded Footing with (a) Linear Pressure Distribution (Structural",
+      "chapter": 6,
+      "pdf_page_index": 124,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Effective Footing Dimensions and Overturning Stability Computing effective footing dimensions for eccentric loading and checking overturning stability. Effective footing dimensions account for eccentric loading: B'_f = B_f - 2*e_B, L'_f = L_f - 2*e_L Eccentricity e = M / V (moment divided by vertical load) in each direction Effective area A' = B'_f * L'_f used for bearing stress calculation with uniform pressure assumption Eccentricity on soil must be < B/6 or L/6 to avoid zero contact pressure (AASHTO 1996) Eccentricity on rock must be < B/4 or L/4 If eccentricity within these limits, separate overturning calculation is not needed Effective dimensions are an approximation; structural design uses actual trapezoidal/triangular distributions"
+    },
+    {
+      "figure_number": "6-6",
+      "caption": "The maximum and minimum pressures beneath the footing can be computed using",
+      "chapter": 6,
+      "pdf_page_index": 126,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Structural Design of the Footing Structural design of bridge spread footings using trapezoidal or triangular contact pressure distributions for reinforcement and shear checks. Assume rigid footing with linear contact pressure distribution (trapezoidal or triangular) For e_L <= L_f/6: trapezoidal distribution with q_max and q_min computed from Equations 6-9 and 6-10 For L_f/6 < e_L < L_f/2: triangular distribution with q_min = 0 and L_1 = 3[(L_f/2) - e_L] Use actual trapezoidal/triangular pressures for structural design, NOT the equivalent uniform pressure used for sizing Structural design per AASHTO Standard Specifications Section 8 Check: moment at column face, flexural steel in short direction, one-way shear at 'd' from column face, and punching (two-way) shear Abutment elements"
+    },
+    {
+      "figure_number": "8-1",
+      "caption": "Distribution of Pressure in Soil Beneath Buildings Supported by",
+      "chapter": 8,
+      "pdf_page_index": 131,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Mat Foundations Selection and design of mat foundations for buildings with high loads, poor soils, or erratic subsurface conditions. Heavily reinforced concrete foundations covering entire building plan area Preferred when spread footings would cover more than 50% of plan area Reduces vertical stress magnitude and produces more uniform settlement profile Differential displacements approximately 50% less than isolated footings Can create deep basements and serve as water barriers Bridges over erratic soil zones with variable strength/stiffness Applied stress at surface higher under spread footings, but reverses with depth"
+    },
+    {
+      "figure_number": "8-2",
+      "caption": "Mat Foundation on a Dense Sand Stratum with Erratic",
+      "chapter": 8,
+      "pdf_page_index": 132,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Mat Foundations Selection and design of mat foundations for buildings with high loads, poor soils, or erratic subsurface conditions. Heavily reinforced concrete foundations covering entire building plan area Preferred when spread footings would cover more than 50% of plan area Reduces vertical stress magnitude and produces more uniform settlement profile Differential displacements approximately 50% less than isolated footings Can create deep basements and serve as water barriers Bridges over erratic soil zones with variable strength/stiffness Applied stress at surface higher under spread footings, but reverses with depth"
+    },
+    {
+      "figure_number": "8-3",
+      "caption": "Note that the notation for",
+      "chapter": 8,
+      "pdf_page_index": 134,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Design of Mat Foundations and Floor Slabs Design of mat foundations and floor slabs for buildings, including Winkler model approach and subgrade reaction determination. Mat design must account for bearing capacity, immediate settlement, and long-term settlement Bearing capacity generally does not govern mat design due to large size Controlling deflections is typically the most critical design aspect Deep-seated bearing capacity may control on cohesive soils Subsurface explorations must reach sufficient depth for deep-seated capacity and settlement zone of influence Beam on elastic foundation (Winkler) theory is common design approach: q_applied = K_v * y Modulus of subgrade reaction (K_v) obtained from Figure 8-3 or plate load tests corrected per Figure 8-4 K_v is not an intrinsic soil"
+    },
+    {
+      "figure_number": "8-4",
+      "caption": "The validity of the beam on elastic foundation approach has been called into question due to the",
+      "chapter": 8,
+      "pdf_page_index": 134,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Design of Mat Foundations and Floor Slabs Design of mat foundations and floor slabs for buildings, including Winkler model approach and subgrade reaction determination. Mat design must account for bearing capacity, immediate settlement, and long-term settlement Bearing capacity generally does not govern mat design due to large size Controlling deflections is typically the most critical design aspect Deep-seated bearing capacity may control on cohesive soils Subsurface explorations must reach sufficient depth for deep-seated capacity and settlement zone of influence Beam on elastic foundation (Winkler) theory is common design approach: q_applied = K_v * y Modulus of subgrade reaction (K_v) obtained from Figure 8-3 or plate load tests corrected per Figure 8-4 K_v is not an intrinsic soil"
+    },
+    {
+      "figure_number": "9-1",
+      "caption": "Structural Approach Fill Details (after Cheney & Chassie, 2000)",
+      "chapter": 9,
+      "pdf_page_index": 140,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": "Structural Fills Specifying structural fill materials and compaction requirements for bridge abutments on spread footings. Structural fill specifications are critical for bridge abutment spread footing support Figure 9-1 shows recommended structural approach embankment details Three zones: Select Structural Fill (100% compaction T99), Highway Embankment 150mm topsize (95% T180), Highway Embankment (90% T180) 1.5 m pad of select material placed beneath abutments on spread footings Minimum 15 m of embankment placed before abutment construction or pile driving Embankment and select material placed simultaneously at vertical payment line Unsuitable materials (peat, muck, wood, organic waste, coal, charcoal) must be excluded State DOT specifications (WA, NV, MI) for structural fills are in"
+    },
+    {
+      "figure_number": "C-1",
+      "caption": "LRFD Design Process Flow Chart – Bridge",
+      "chapter": null,
+      "pdf_page_index": 259,
+      "printed_page": null,
+      "page_estimated": false,
+      "description": ""
+    }
+  ]
+}

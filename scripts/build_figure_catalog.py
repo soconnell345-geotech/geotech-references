@@ -45,10 +45,23 @@ _REPO_ROOT = _SCRIPTS_DIR.parent
 _MANIFEST_DIR = _SCRIPTS_DIR / "manifests"
 _PACKAGE_DIR = _REPO_ROOT / "geotech_references"
 
-# A figure marker, e.g. "Figure 4-12", "Figure P-1", "Figure B-1" (DM7/UFC dash
-# notation) or "Figure 2.1", "Figure 3.10" (GEC dot notation). Matched anywhere
-# (not just line start) so inline-glued LoF entries segment too.
-_FIG_MARKER = re.compile(r"Figure\s+((?:[A-Z]{1,3}|\d+)[-.]\d+)", re.I)
+# A figure marker, e.g. "Figure 4-12", "Figure P-1" (DM7/UFC dash), "Figure 2.1"
+# (GEC dot), or "Figure 1 - 1" (micropile spaced dash). Matched anywhere (not
+# just line start) so inline-glued LoF entries segment too. Spaces around the
+# separator are tolerated and stripped from the captured id (see _fig_id).
+_FIG_MARKER = re.compile(r"Figure\s+((?:[A-Z]{1,3}|\d+)\s*[-.]\s*\d+)", re.I)
+
+
+def _fig_id(raw: str) -> str:
+    """Normalize a captured figure id: 'Figure '-free, spaces stripped, upper."""
+    return re.sub(r"\s+", "", raw).upper()
+
+
+# Sequential figure numbering used by some older refs (e.g. GEC-4, 1999):
+# "Figure 1", "Figure 21" with no chapter dash. Lookaheads exclude longer digit
+# runs and dash/dot *ids* ("1-1", "1.5") but still allow a caption period
+# ("Figure 1. Components ...").
+_SEQ_MARKER = re.compile(r"Figure\s+(\d{1,3})(?!\d)(?![-.]\d)", re.I)
 # A dotted leader terminated by the printed page number.
 _LEADER_PG = re.compile(r"\.{2,}\s*(\d+)\s*$")
 # Trailing bare page number (no dotted leader); guard against caption-internal
@@ -160,7 +173,7 @@ def _parse_list_of_figures(doc) -> tuple[list[dict], "int | None"]:
         end = markers[k + 1].start() if k + 1 < len(markers) else len(blob)
         cap, printed = _clean_caption(blob[m.end():end])
         figs.append(
-            {"figure_number": m.group(1).upper(),
+            {"figure_number": _fig_id(m.group(1)),
              "caption": cap, "printed_page": printed}
         )
     return figs, (max(lof_pages) if lof_pages else None)
@@ -346,19 +359,57 @@ def _repo_relative_pdf_path(manifest: dict) -> str:
         return abs_pdf.as_posix()
 
 
-def _figs_from_pdf(pdf_abs) -> list[dict]:
-    """Parse + page-resolve every figure in one PDF (figs carry page_estimated)."""
+def _figs_from_body(doc, marker=None) -> list[dict]:
+    """Extract figures by scanning the body for labeled captions — used when a
+    reference has no parseable List of Figures (e.g. GEC-6, GEC-14). A figure's
+    caption appears on its own page, so the page where ``Figure X-Y`` is followed
+    by a substantial capitalized caption is taken as that figure's page. ``marker``
+    defaults to the dash/dot id pattern; pass ``_SEQ_MARKER`` for sequential refs.
+    """
+    marker = marker or _FIG_MARKER
+    figs: list[dict] = []
+    seen: set[str] = set()
+    for i in range(doc.page_count):
+        text = doc[i].get_text()
+        for m in marker.finditer(text):
+            num = _fig_id(m.group(1))
+            if num in seen:
+                continue
+            tail = re.sub(r"^[\s:.\-]+", "", text[m.end():m.end() + 220])
+            cap = re.split(r"[\r\n]", tail, maxsplit=1)[0]
+            cap = re.sub(r"\.{2,}.*$", "", cap)            # drop dotted-leader tail
+            cap = re.sub(r"\s+", " ", cap).strip(" .-:")
+            # Caption pages read "Figure X-Y. <Capitalized caption>"; in-text refs
+            # ("...in Figure X-Y") leave little/no caption after the marker.
+            if len(cap) < 8 or not cap[:1].isupper():
+                continue
+            seen.add(num)
+            figs.append({"figure_number": num, "caption": cap[:200],
+                         "printed_page": None, "pdf_page_index": i,
+                         "page_estimated": False})
+    return figs
+
+
+def _figs_from_pdf(pdf_abs, seq=False) -> list[dict]:
+    """Parse + page-resolve every figure in one PDF (figs carry page_estimated).
+
+    ``seq=True`` forces sequential body extraction (refs numbered "Figure 1",
+    "Figure 2" with no chapter dash, e.g. GEC-4).
+    """
     import fitz  # PyMuPDF
     doc = fitz.open(str(pdf_abs))
     try:
+        if seq:
+            return _figs_from_body(doc, _SEQ_MARKER)
         figs, lof_last = _parse_list_of_figures(doc)
-        if not figs:
-            return []
-        # Resolve from just after the figure list so a caption matches on its
-        # real body page, not its LoF entry.
-        body_start = (lof_last + 1) if lof_last is not None else 0
-        _resolve_pages(doc, figs, body_start)
-        return figs
+        if figs:
+            # Resolve from just after the figure list so a caption matches on its
+            # real body page, not its LoF entry.
+            body_start = (lof_last + 1) if lof_last is not None else 0
+            _resolve_pages(doc, figs, body_start)
+            return figs
+        # No List of Figures: extract labeled captions from the body directly.
+        return _figs_from_body(doc)
     finally:
         doc.close()
 
@@ -393,9 +444,10 @@ def build_catalog(package: str) -> dict:
         pdf_abs = _REPO_ROOT / pdf_rel
         if not pdf_abs.exists():
             raise FileNotFoundError(f"PDF not found for '{package}': {pdf_abs}")
-        figs = _figs_from_pdf(pdf_abs)
+        figs = _figs_from_pdf(
+            pdf_abs, seq=manifest.get("figure_numbering") == "sequential")
         if not figs:
-            raise ValueError(f"No LIST OF FIGURES parsed from {pdf_abs}")
+            raise ValueError(f"No figures parsed from {pdf_abs}")
 
     enriched = _enrich_from_text(package, figs)
 
