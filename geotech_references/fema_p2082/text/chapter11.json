@@ -1,0 +1,187 @@
+{
+  "reference_id": "FEMA P-2082-1",
+  "reference_title": "2020 NEHRP Recommended Seismic Provisions for New Buildings and Other Structures",
+  "chapter": 11,
+  "chapter_title": "Seismic Design Criteria",
+  "sections": [
+    {
+      "section_id": "11.4.2",
+      "title": "Site Class and Default Site Class",
+      "summary": "The site is classified as Site Class A, B, BC, C, CD, D, DE, E, or F per Chapter 20. Where soil properties are not known in sufficient detail, the MCER spectral accelerations are based on the most critical of Site Class C, CD, and D (the default site class), unless the AHJ determines from geotechnical data that DE, E, or F soils are present.",
+      "body": "The site shall be classified as Site Class A, B, BC, C, CD, D, DE, E, or F in accordance with Chapter 20. 11.4.2.1 Default Site Class: Where the soil properties are not known in sufficient detail to determine the site class, risk-targeted maximum considered earthquake (MCER) spectral response accelerations shall be based on the most critical spectral response acceleration of Site Class C, Site Class CD and Site Class D, unless the authority having jurisdiction determines, based on geotechnical data, that Site Class DE, E or F soils are present at the site.",
+      "key_points": [
+        "Nine site classes: A, B, BC, C, CD, D, DE, E, F (per Chapter 20)",
+        "Default site class (unknown soils): most critical of C, CD, and D",
+        "AHJ may require DE/E/F based on geotechnical data"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Linking the Chapter 20 site class into the Chapter 11 ground motion procedure"
+    },
+    {
+      "section_id": "11.4.3",
+      "title": "Risk-Targeted MCER Spectral Response Acceleration Parameters",
+      "summary": "MCER spectral response acceleration parameters SS, S1, SMS, and SM1 are obtained from the USGS Seismic Design Geodatabase (and the USGS Seismic Design Web Service) for the site class determined per Section 11.4.2. SS and S1 are defined for the reference Site Class BC; SMS and SM1 are the site-class-specific values. IMPORTANT: the 2020 NEHRP Provisions DELETED the ASCE 7-16 Fa/Fv site-coefficient tables - SMS/SM1 are read directly from the geodatabase's multi-period response spectra per site class, NOT computed as Fa*SS and Fv*S1.",
+      "body": "Risk-targeted maximum considered earthquake (MCER) spectral response acceleration parameters SS, S1, SMS and SM1 shall be obtained from the USGS Seismic Design Geodatabase (https://doi.org/10.5066/F7NK3C76). Values are provided by the USGS Seismic Design Web Service for the site class determined per Section 11.4.2. SS is the MCER 5%-damped spectral response acceleration at 0.2 s for Site Class BC; S1 is the MCER 5%-damped value at 1 s for Site Class BC. SMS and SM1 are the MCER 5%-damped values at short periods and at 1 s, respectively, for the actual site class. A major change from ASCE 7-16: the Fa and Fv site coefficients (and FPGA) are DELETED as symbols. The site amplification is built into the USGS multi-period geodatabase, so SMS and SM1 come directly from the geodatabase for the site class rather than from Fa*SS / Fv*S1 site-coefficient tables. EXCEPTION: where a site-specific ground motion analysis is performed per Section 11.4.7, SMS and SM1 are determined per Section 21.4 and SS, S1 from the site-specific MCER response spectrum of Section 21.2.3.",
+      "key_points": [
+        "SS, S1, SMS, SM1 come from the USGS Seismic Design Geodatabase / Web Service",
+        "SS and S1 are referenced to Site Class BC (the new baseline site condition)",
+        "SMS and SM1 are the site-class-specific MCER values from the geodatabase",
+        "P-2082 DELETED the Fa, Fv, and FPGA site coefficients - no Fa/Fv table; site amplification is in the multi-period geodatabase",
+        "Site-specific analysis (Section 11.4.7) is an alternative per Sections 21.2-21.4"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Obtaining the mapped MCER ground motion parameters for the site class"
+    },
+    {
+      "section_id": "11.4.4",
+      "title": "Design Spectral Acceleration Parameters",
+      "summary": "Design spectral response acceleration parameters are SDS = (2/3)*SMS (Eq. 11.4-1) and SD1 = (2/3)*SM1 (Eq. 11.4-2). These two-thirds relationships are unchanged from ASCE 7, but SMS/SM1 now come directly from the USGS geodatabase per site class (not from Fa/Fv tables).",
+      "body": "Design earthquake spectral response acceleration parameters at short periods, SDS, and at a 1-s period, SD1, shall be determined from Eqs. (11.4-1) and (11.4-2): SDS = (2/3)*SMS (Eq. 11.4-1) and SD1 = (2/3)*SM1 (Eq. 11.4-2), where SMS = the 5%-damped MCER spectral response acceleration at short periods (Section 11.4.3) and SM1 = the 5%-damped MCER spectral response acceleration at a 1-s period (Section 11.4.3). Where the alternate simplified design procedure of Section 12.14 is used, SDS is determined per Section 12.14.8.1 and SD1 need not be determined.",
+      "key_points": [
+        "SDS = (2/3) * SMS  (Eq. 11.4-1)",
+        "SD1 = (2/3) * SM1  (Eq. 11.4-2)",
+        "SMS, SM1 are the site-class-specific MCER values from the USGS geodatabase"
+      ],
+      "equations": [
+        {
+          "equation_id": "11.4-1",
+          "description": "Design spectral response acceleration at short periods",
+          "latex": "S_{DS} = \\tfrac{2}{3} S_{MS}",
+          "variables": {
+            "S_DS": "design 5%-damped spectral response acceleration at short periods",
+            "S_MS": "MCER 5%-damped spectral response acceleration at short periods (Section 11.4.3)"
+          },
+          "implemented_in": "geotech_references.fema_p2082.equations.design_spectral_acceleration_short"
+        },
+        {
+          "equation_id": "11.4-2",
+          "description": "Design spectral response acceleration at a 1-s period",
+          "latex": "S_{D1} = \\tfrac{2}{3} S_{M1}",
+          "variables": {
+            "S_D1": "design 5%-damped spectral response acceleration at a 1-s period",
+            "S_M1": "MCER 5%-damped spectral response acceleration at a 1-s period (Section 11.4.3)"
+          },
+          "implemented_in": "geotech_references.fema_p2082.equations.design_spectral_acceleration_1s"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Deriving design spectral parameters SDS and SD1 from the MCER parameters"
+    },
+    {
+      "section_id": "11.4.5",
+      "title": "Design Response Spectrum (Multi-Period and Two-Period)",
+      "summary": "The preferred design response spectrum is the MULTI-PERIOD spectrum (Section 11.4.5.1): at 22 discrete periods from 0 to 10 s, Sa = (2/3) of the multi-period 5%-damped MCER response spectrum from the USGS geodatabase, with linear interpolation between and a 10/T (or 10*TL/T^2 beyond TL) tail past 10 s. Where multi-period data are unavailable, the TWO-PERIOD spectrum (Section 11.4.5.2, Figure 11.4-1) applies: ascending branch Sa = SDS*(0.4 + 0.6*T/T0) for T<T0 (Eq. 11.4-3); plateau Sa = SDS for T0<=T<=Ts; Sa = SD1/T for Ts<T<=TL (Eq. 11.4-4); Sa = SD1*TL/T^2 for T>TL (Eq. 11.4-5), with T0 = 0.2*SD1/SDS and Ts = SD1/SDS. The MCER response spectrum is the design spectrum * 1.5 (Section 11.4.6).",
+      "body": "11.4.5.1 Multi-Period Design Response Spectrum: at discrete periods T = 0.0, 0.01, 0.02, 0.03, 0.05, 0.075, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.75, 1.0, 1.5, 2.0, 3.0, 4.0, 5.0, 7.5, and 10 s, Sa is two-thirds of the multi-period 5%-damped MCER response spectrum from the USGS geodatabase. Between listed periods, Sa is linearly interpolated. For T > 10 s, Sa = (value at 10 s)*(10/T) where T <= TL, and Sa = (value at 10 s)*(10*TL/T^2) where T > TL. 11.4.5.2 Two-Period Design Response Spectrum (used where multi-period data are unavailable; Figure 11.4-1): For T < T0, Sa = SDS*(0.4 + 0.6*T/T0) (Eq. 11.4-3). For T0 <= T <= Ts, Sa = SDS. For Ts < T <= TL, Sa = SD1/T (Eq. 11.4-4). For T > TL, Sa = SD1*TL/T^2 (Eq. 11.4-5). Where T0 = 0.2*(SD1/SDS), Ts = SD1/SDS, and TL = the long-period transition period (Figs. 22-14 through 22-17). 11.4.6 MCER Response Spectrum: where an MCER response spectrum is required, it is the design response spectrum multiplied by 1.5.",
+      "key_points": [
+        "Preferred: multi-period spectrum, Sa = (2/3) of the USGS multi-period MCER spectrum at 22 periods (0-10 s)",
+        "Fallback (no multi-period data): two-period spectrum (Figure 11.4-1)",
+        "Two-period corner periods: T0 = 0.2*SD1/SDS, Ts = SD1/SDS",
+        "Ascending Sa = SDS*(0.4 + 0.6*T/T0) (Eq. 11.4-3); plateau Sa = SDS; Sa = SD1/T (Eq. 11.4-4); Sa = SD1*TL/T^2 (Eq. 11.4-5)",
+        "MCER spectrum = design spectrum * 1.5 (Section 11.4.6)"
+      ],
+      "equations": [
+        {
+          "equation_id": "11.4-3",
+          "description": "Two-period design spectrum, ascending branch (T < T0)",
+          "latex": "S_a = S_{DS}\\left(0.4 + 0.6\\frac{T}{T_0}\\right)",
+          "variables": {
+            "S_a": "design spectral response acceleration",
+            "S_DS": "design spectral acceleration at short periods",
+            "T": "period",
+            "T_0": "0.2 * (SD1/SDS)"
+          },
+          "implemented_in": "geotech_references.fema_p2082.equations.design_response_spectrum_sa"
+        },
+        {
+          "equation_id": "11.4-4",
+          "description": "Two-period design spectrum, constant-velocity branch (Ts < T <= TL)",
+          "latex": "S_a = \\frac{S_{D1}}{T}",
+          "variables": {
+            "S_a": "design spectral response acceleration",
+            "S_D1": "design spectral acceleration at a 1-s period",
+            "T": "period"
+          },
+          "implemented_in": "geotech_references.fema_p2082.equations.design_response_spectrum_sa"
+        },
+        {
+          "equation_id": "11.4-5",
+          "description": "Two-period design spectrum, constant-displacement branch (T > TL)",
+          "latex": "S_a = \\frac{S_{D1} T_L}{T^2}",
+          "variables": {
+            "S_a": "design spectral response acceleration",
+            "S_D1": "design spectral acceleration at a 1-s period",
+            "T_L": "long-period transition period",
+            "T": "period"
+          },
+          "implemented_in": "geotech_references.fema_p2082.equations.design_response_spectrum_sa"
+        }
+      ],
+      "figures": [
+        "Figure 11.4-1: Two-Period Design Response Spectrum"
+      ],
+      "tables": [],
+      "applicability": "Constructing the design (and MCER) response spectrum"
+    },
+    {
+      "section_id": "11.5",
+      "title": "Importance Factor and Risk Category",
+      "summary": "An Importance Factor Ie is assigned to each structure per Table 1.5-2 (Risk Category I=1.0, II=1.0, III=1.25, IV=1.5). The Risk Category (I-IV) is per Table 1.5-1. Risk Category IV structures requiring operational access through an adjacent structure impose Risk Category IV requirements on that adjacent structure.",
+      "body": "11.5.1 Importance Factor: an Importance Factor, Ie, shall be assigned to each structure in accordance with Table 1.5-2 (Risk Category I -> Ie=1.0; II -> 1.0; III -> 1.25; IV -> 1.5). 11.5.2 Protected Access for Risk Category IV: where operational access to a Risk Category IV structure is required through an adjacent structure, the adjacent structure shall conform to the requirements for Risk Category IV. Where operational access is less than 10 ft (3.048 m) from an interior lot line or another structure on the same lot, protection from potential falling debris shall be provided by the owner of the Risk Category IV structure.",
+      "key_points": [
+        "Importance Factor Ie from Table 1.5-2: RC I=1.0, II=1.0, III=1.25, IV=1.5",
+        "Risk Category I-IV from Table 1.5-1 (occupancy / hazard to life)",
+        "RC IV operational access through an adjacent structure imposes RC IV on it"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 1.5-1: Risk Category of buildings and other structures",
+        "Table 1.5-2: Importance Factors Ie by Risk Category"
+      ],
+      "applicability": "Assigning the Risk Category and seismic Importance Factor"
+    },
+    {
+      "section_id": "11.6",
+      "title": "Seismic Design Category",
+      "summary": "The Seismic Design Category (SDC) is the MORE SEVERE of Table 11.6-1 (from SDS) and Table 11.6-2 (from SD1), based on the Risk Category. Risk Category I/II/III share one column; Risk Category IV is the other. Override: where S1 >= 0.75, Risk Category I/II/III -> SDC E and Risk Category IV -> SDC F, regardless of period. Chapter 19 (SSI) shall not be used to modify SDS/SD1 for SDC determination. Table 11.6-1 (SDS) breakpoints: <0.167 -> A/A; 0.167-0.33 -> B/C; 0.33-0.50 -> C/D; >=0.50 -> D/D. Table 11.6-2 (SD1) breakpoints: <0.067 -> A/A; 0.067-0.133 -> B/C; 0.133-0.20 -> C/D; >=0.20 -> D/D (columns are I/II/III then IV).",
+      "body": "Structures shall be assigned a Seismic Design Category per this section. Risk Category I, II, or III structures where S1 >= 0.75 shall be assigned to Seismic Design Category E. Risk Category IV structures where S1 >= 0.75 shall be assigned to Seismic Design Category F. All other structures shall be assigned to an SDC based on their Risk Category and the design spectral response acceleration parameters SDS and SD1 (Section 11.4.4). Each structure shall be assigned to the MORE SEVERE SDC per Table 11.6-1 or 11.6-2, irrespective of the fundamental period T. Chapter 19 (soil-structure interaction) shall not be used to modify the spectral response acceleration parameters for determining the SDC. TABLE 11.6-1 (SDC from SDS; columns: Risk Category I/II/III, then IV): SDS < 0.167 -> A, A; 0.167 <= SDS < 0.33 -> B, C; 0.33 <= SDS < 0.50 -> C, D; SDS >= 0.50 -> D, D. TABLE 11.6-2 (SDC from SD1; columns: Risk Category I/II/III, then IV): SD1 < 0.067 -> A, A; 0.067 <= SD1 < 0.133 -> B, C; 0.133 <= SD1 < 0.20 -> C, D; SD1 >= 0.20 -> D, D. Where S1 < 0.75, the SDC may be determined from Table 11.6-1 alone if: (1) in each of two orthogonal directions Ta < 0.8*Ts; (2) the period used for story drift is < Ts; (3) Eq. (12.8-2) is used for Cs; and (4) diaphragms are rigid (or, if not rigid, vertical elements are spaced <= 40 ft). The SDC is also provided via the USGS Seismic Design Geodatabase.",
+      "key_points": [
+        "SDC = more severe of Table 11.6-1 (from SDS) and Table 11.6-2 (from SD1)",
+        "Risk Category I, II, III share one column; Risk Category IV is the other",
+        "Override: S1 >= 0.75 -> SDC E (RC I/II/III) or SDC F (RC IV), regardless of period",
+        "Table 11.6-1 (SDS): <0.167->A/A; 0.167-0.33->B/C; 0.33-0.50->C/D; >=0.50->D/D",
+        "Table 11.6-2 (SD1): <0.067->A/A; 0.067-0.133->B/C; 0.133-0.20->C/D; >=0.20->D/D",
+        "Chapter 19 SSI shall NOT modify SDS/SD1 for SDC determination",
+        "Where S1 < 0.75 and 4 conditions hold, SDC may be set from Table 11.6-1 alone"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 11.6-1: Seismic Design Category Based on Short-Period Response Acceleration Parameter (SDS)",
+        "Table 11.6-2: Seismic Design Category Based on 1-s Period Response Acceleration Parameter (SD1)"
+      ],
+      "applicability": "Assigning the Seismic Design Category (A-F) that governs detailing and analysis requirements"
+    },
+    {
+      "section_id": "11.8",
+      "title": "Geologic Hazards and Geotechnical Investigation",
+      "summary": "Structures in SDC E or F shall not be located where an active fault may cause ground-surface rupture (11.8.1). A geotechnical investigation report is required for SDC C-F, evaluating slope instability, liquefaction, total/differential settlement, and surface displacement from faulting/lateral spreading/lateral flow (11.8.2). For SDC D-F, the report also addresses dynamic seismic lateral earth pressures on basement/retaining walls and liquefaction/strength loss using the MCEG peak ground acceleration PGAM (from a site-specific study or the USGS geodatabase) (11.8.3).",
+      "body": "11.8.1 Site Limitation for SDC E and F: a structure assigned to SDC E or F shall not be located where a known potential exists for an active fault to cause rupture of the ground surface at the structure. 11.8.2 Geotechnical Investigation Report Requirements for SDC C through F: a geotechnical investigation report shall be provided for SDC C, D, E, or F, evaluating slope instability, liquefaction, total and differential settlement, and surface displacement caused by faulting or seismically induced lateral spreading or lateral flow; the report shall recommend foundation designs or mitigation measures. 11.8.3 Additional Requirements for SDC D through F: the report shall also include (1) dynamic seismic lateral earth pressures on basement and retaining walls from design earthquake ground motions, and (2) the potential for liquefaction and soil strength loss evaluated for site PGA, magnitude, and source characteristics consistent with the MCEG peak ground acceleration - PGA determined from a site-specific study (Section 11.4.7) or the MCEG PGAM parameter from the USGS Seismic Design Geodatabase for the site class.",
+      "key_points": [
+        "SDC E/F: do not site over a fault capable of surface rupture (11.8.1)",
+        "SDC C-F: geotechnical report - slope instability, liquefaction, settlement, surface displacement (11.8.2)",
+        "SDC D-F: also dynamic seismic lateral earth pressures and liquefaction/strength loss via PGAM (11.8.3)",
+        "PGAM (MCEG peak ground acceleration) from a site-specific study or the USGS geodatabase"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Geotechnical investigation and geologic-hazard requirements by Seismic Design Category"
+    }
+  ]
+}

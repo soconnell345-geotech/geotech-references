@@ -14,4 +14,6 @@ micropile : FHWA-NHI-05-039 — Micropile Design & Construction
 ufc_backfill : UFC 3-220-04N — Backfill for Subsurface Structures
 ufc_expansive : UFC 3-220-07 — Foundations in Expansive Soils
 ufc_pavement : UFC 3-260-02 — Pavement Design for Airfields
+fema_p2082 : FEMA P-2082 — 2020 NEHRP Recommended Seismic Provisions
+             (Ch 20 site classification, Ch 11 seismic design criteria)
 """

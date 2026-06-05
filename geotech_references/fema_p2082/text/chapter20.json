@@ -1,0 +1,143 @@
+{
+  "reference_id": "FEMA P-2082-1",
+  "reference_title": "2020 NEHRP Recommended Seismic Provisions for New Buildings and Other Structures",
+  "chapter": 20,
+  "chapter_title": "Site Classification Procedure for Seismic Design",
+  "sections": [
+    {
+      "section_id": "20.1",
+      "title": "Site Classification",
+      "summary": "The site soil is classified per Table 20.2-1 and Section 20.2 based on the average shear wave velocity vs (Vs30) over the upper 100 ft (30 m). Where Vs is not measured, generalized correlations with SPT N, CPT tip resistance, shear strength, or other parameters are used (Section 20.3). Where soil properties are unknown, the most critical of Site Class C, CD, and D (the default site class) is used unless the AHJ or geotechnical data show DE, E, or F soils. Site Classes A and B cannot be assigned if there is more than 10 ft (3.1 m) of soil between the rock surface and the bottom of the footing/mat.",
+      "body": "The site soil shall be classified in accordance with Table 20.2-1 and Section 20.2 based on the average shear wave velocity parameter vs, derived from the measured shear wave velocity profile from the ground surface to a depth of 100 ft (30 m). Where shear wave velocity is not measured, appropriate generalized correlations between shear wave velocity and standard penetration test (SPT) blow counts, Cone Penetration Test (CPT) tip resistance, shear strength, or other geotechnical parameters shall be used to obtain an estimated shear wave velocity profile as described in Section 20.3. Where site-specific data are available only to a maximum depth less than 100 ft (30 m), vs shall be estimated as described in Section 20.3. Where the soil properties are not known in sufficient detail to determine the site class, the most critical site conditions of Site Class C, Site Class CD and Site Class D (as defined in Section 11.4.2) shall be used unless the Authority Having Jurisdiction or geotechnical data determine that Site Class DE, E or F soils are present. Site Classes A and B shall not be assigned if there is more than 10 ft (3.1 m) of soil between the rock surface and the bottom of the spread footing or mat foundation.",
+      "key_points": [
+        "Site class is based on the average shear wave velocity vs (Vs30) over the upper 100 ft (30 m)",
+        "Where Vs is not measured, estimate it from SPT N, CPT qc, shear strength, or other geotechnical correlations (Section 20.3)",
+        "Default site class (unknown properties): the most critical of Site Class C, CD, and D",
+        "Site Classes A and B require <= 10 ft (3.1 m) of soil between the rock surface and the footing/mat base",
+        "Site Class BC is the reference (baseline) site condition for the mapped SS and S1 parameters"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 20.2-1: Site classification (eight velocity-based classes A, B, BC, C, CD, D, DE, E plus F)"
+      ],
+      "applicability": "Assigning a seismic site class for any building or structure under the 2020 NEHRP Provisions"
+    },
+    {
+      "section_id": "20.2",
+      "title": "Site Class Definitions (Table 20.2-1)",
+      "summary": "The 2020 NEHRP Provisions REVISED the ASCE 7-16 site classes: eight velocity-based classes are defined in Table 20.2-1 by the average shear wave velocity vs (Vs30), adding the intermediate classes BC, CD, and DE. Boundaries (ft/s): A vs>5,000; B 3,000-5,000; BC 2,100-3,000; C 1,450-2,100; CD 1,000-1,450; D 700-1,000; DE 500-700; E vs<500. Site Class F (Section 20.2.1) covers soils needing site response analysis. Convert with 1 ft/s = 0.3048 m/s.",
+      "body": "Site class types shall be assigned in accordance with the definitions in Table 20.2-1 and this section. Table 20.2-1 (Site classification), vs calculated using the measured or estimated shear wave velocity profile over the upper 100 ft (30 m): A. Hard rock, vs > 5,000 ft/s; B. Medium hard rock, 3,000 < vs <= 5,000 ft/s; BC. Soft rock, 2,100 < vs <= 3,000 ft/s; C. Very dense sand or hard clay, 1,450 < vs <= 2,100 ft/s; CD. Dense sand or very stiff clay, 1,000 < vs <= 1,450 ft/s; D. Medium dense sand or stiff clay, 700 < vs <= 1,000 ft/s; DE. Loose sand or medium stiff clay, 500 < vs <= 700 ft/s; E. Very loose sand or soft clay, vs < 500 ft/s; F. Soils requiring site response analysis per Section 21.1 (see Section 20.2.1). For SI: 1 ft = 0.3048 m; 1 ft/s = 0.3048 m/s. This is a major change from ASCE 7-16: the new intermediate classes BC, CD, and DE were added, the velocity ranges were re-defined, and the reference (baseline) site condition for mapped SS/S1 is now Site Class BC rather than the old Site Class B/C boundary.",
+      "key_points": [
+        "REVISED scheme vs ASCE 7-16: intermediate classes BC, CD, DE added; Vs ranges re-defined",
+        "A: vs > 5,000 ft/s (>1,524 m/s) - Hard rock",
+        "B: 3,000-5,000 ft/s (914-1,524 m/s) - Medium hard rock",
+        "BC: 2,100-3,000 ft/s (640-914 m/s) - Soft rock (the reference/baseline site condition)",
+        "C: 1,450-2,100 ft/s (442-640 m/s) - Very dense sand or hard clay",
+        "CD: 1,000-1,450 ft/s (305-442 m/s) - Dense sand or very stiff clay",
+        "D: 700-1,000 ft/s (213-305 m/s) - Medium dense sand or stiff clay",
+        "DE: 500-700 ft/s (152-213 m/s) - Loose sand or medium stiff clay",
+        "E: vs < 500 ft/s (<152 m/s) - Very loose sand or soft clay",
+        "F: soils requiring site response analysis (Section 20.2.1)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 20.2-1: Site classification by average shear wave velocity vs"
+      ],
+      "applicability": "Velocity-based seismic site class assignment (Site Class A through E, with F by Section 20.2.1)"
+    },
+    {
+      "section_id": "20.2.1",
+      "title": "Site Class F",
+      "summary": "A site is Site Class F (requiring a site response analysis per Section 21.1) if ANY apply: (1) soils vulnerable to seismic failure/collapse - liquefiable soils, quick/highly sensitive clays, collapsible weakly cemented soils (exception: T <= 0.5 s structures need not do site response for liquefiable soils); (2) peats/highly organic clays with H > 10 ft (3 m); (3) very high plasticity clays H > 25 ft (7.6 m) with PI > 75 in a profile otherwise CD/D/DE/E (exception: not required for SDC A or B); (4) soft/medium stiff clays H > 120 ft (37 m) with su < 1,000 psf (50 kPa) (exception: not required for SDC A or B).",
+      "body": "Where any of the following conditions is satisfied, the site shall be classified as Site Class F and a site response analysis in accordance with Section 21.1 shall be performed. (1) Soil profile includes soils vulnerable to potential failure or collapse under seismic loading, such as liquefiable soils, quick and highly sensitive clays, and collapsible weakly cemented soils. EXCEPTION: For structures with fundamental periods of vibration equal to or less than 0.5 s, site response analysis is not required to determine spectral accelerations for liquefiable soils; a site class is permitted to be determined per Section 20.2. (2) Soil profile includes peats and/or highly organic clays (H > 10 ft (3 m), where H = thickness of soil). (3) Soil profile includes very high plasticity clays (H > 25 ft (7.6 m) with PI > 75) in a profile that would otherwise be Site Class CD, D, DE or E. EXCEPTION: Site response analysis is not required for this clay category for Seismic Design Category A and B (where SDC is based on SDS and SD1). (4) Soil profile includes soft/medium stiff clays (H > 120 ft (37 m)) with su < 1,000 psf (50 kPa). EXCEPTION: Site response analysis is not required for this clay category for SDC A and B.",
+      "key_points": [
+        "Any one trigger -> Site Class F -> site response analysis per Section 21.1",
+        "Trigger 1: liquefiable / quick-sensitive / collapsible soils (exception: T <= 0.5 s skips liquefiable)",
+        "Trigger 2: peat / highly organic clay H > 10 ft (3 m)",
+        "Trigger 3: very high PI clay (PI > 75) H > 25 ft (7.6 m) (exception: SDC A/B)",
+        "Trigger 4: thick soft/medium clay H > 120 ft (37 m), su < 1,000 psf (50 kPa) (exception: SDC A/B)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identifying sites requiring a project-specific site response analysis (Site Class F)"
+    },
+    {
+      "section_id": "20.2.2",
+      "title": "Site Class E (Soft Clay)",
+      "summary": "If a site does not qualify as F and has a total soft-clay thickness greater than 10 ft (3 m) - where soft clay is defined by su < 500 psf (25 kPa), moisture content w >= 40%, and PI > 20 - it is classified Site Class E regardless of the computed vs.",
+      "body": "Where a site does not qualify under the criteria for Site Class F and there is a total thickness of soft clay greater than 10 ft (3 m), where a soft clay layer is defined by su < 500 psf (25 kPa), w >= 40%, and PI > 20, it shall be classified as Site Class E. This classification is made regardless of the computed average shear wave velocity vs (Section 20.4).",
+      "key_points": [
+        "Soft-clay override: total soft clay > 10 ft (3 m) forces Site Class E regardless of vs",
+        "Soft clay defined by su < 500 psf (25 kPa), w >= 40%, PI > 20"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Soft-clay override to Site Class E"
+    },
+    {
+      "section_id": "20.2.3-20.2.5",
+      "title": "Site Classes C-E, B/BC, and A Assignment Rules",
+      "summary": "Classes C, CD, D, DE are assigned from the average shear wave velocity vs over the upper 100 ft (30 m) (Section 20.4). Site Class B can only be assigned from on-site measured Vs; an estimated competent-rock site with moderate fracturing/weathering defaults to Site Class BC, and softer/more fractured rock is either measured or classified as C. Site Class A (hard rock) must be supported by Vs measurement on site or on the same rock type/formation with equal or greater weathering and fracturing.",
+      "body": "20.2.3 Site Classes C, CD, D, DE and E: assignment of Site Class C, CD, DE shall be made based on the average shear wave velocity vs derived from the site shear wave velocity profile from the ground surface to 100 ft (30 m), as described in Section 20.4. 20.2.4 Site Class B and BC (Medium Hard and Soft Rock): Site Class B can only be assigned on the basis of shear wave velocity measured on site. If Vs data are not available and the site condition is estimated by a geotechnical engineer, engineering geologist, or seismologist as Site Class B or BC on the basis of site geology consisting of competent rock with moderate fracturing and weathering, the site shall be classified as Site Class BC. Softer and more highly fractured/weathered rock shall either be measured on site for Vs or classified as Site Class C. 20.2.5 Site Class A (Hard Rock): the hard-rock Site Class A category shall be supported by Vs measurement on site or on profiles of the same rock type in the same formation with an equal or greater degree of weathering and fracturing. Where hard-rock conditions are known to be continuous to 100 ft (30 m), surficial Vs measurements to depths less than 100 ft may be extrapolated to assess vs.",
+      "key_points": [
+        "C/CD/D/DE/E from measured or estimated vs over upper 100 ft (Section 20.4)",
+        "Site Class B requires on-site measured Vs; estimated competent rock -> Site Class BC",
+        "Softer/fractured rock -> measure Vs or use Site Class C",
+        "Site Class A (hard rock) requires Vs measurement (on site or same formation)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Rules constraining when rock site classes A, B, BC may be assigned"
+    },
+    {
+      "section_id": "20.3",
+      "title": "Estimation of Shear Wave Velocity Profiles",
+      "summary": "Where measured Vs data are not available, estimate Vs vs depth from correlations with SPT N, shear strength, overburden pressure, void ratio, or CPT tip resistance. Because of correlation uncertainty, the site class shall be derived using three velocity profiles: vs, vs/1.3, and 1.3*vs (an uncertainty factor of 1.3; smaller factors allowed for demonstrated local correlations if approved). The most critical resulting site class for ground motion at each period governs. Where data extend 50-100 ft, extend the last layer's Vs to 100 ft; where data do not reach 50 ft, use the default site classes of Section 20.1.",
+      "body": "Where measured shear wave velocity data are not available, shear wave velocity shall be estimated as a function of depth using correlations with suitable geotechnical parameters, including SPT blow counts, shear strength, overburden pressure, void ratio, or CPT tip resistance measured at the site. Due to the uncertainty inherent in such correlations, site class based on estimated values of vs shall be derived using vs, vs/1.3, and 1.3*vs when correlation models are used to derive shear wave velocities. Where correlations derived for specific local regions can be demonstrated to have greater accuracy, factors less than 1.3 can be used if approved by local building officials. If the different average velocities result in different site classes per Table 20.2-1, the most critical of the site classes for ground motion analysis at each period shall be determined by a geotechnical engineer (Section 11.4.2). Where the available data extend to depths less than 100 ft (30 m) but more than 50 ft (15 m), and soft layers are unlikely below the maximum profile depth, the Vs of the last layer shall be extended to 100 ft for the calculation of vs in Eq. (20.4-1). Where the data do not extend to 50 ft (15 m), default site classes per Section 20.1 shall be used unless another site class can be justified by site geology.",
+      "key_points": [
+        "Estimate Vs from SPT N, shear strength, overburden, void ratio, or CPT qc",
+        "Correlation uncertainty: classify using vs, vs/1.3, and 1.3*vs (factor 1.3)",
+        "Smaller factors than 1.3 allowed for demonstrated local correlations if approved",
+        "Take the most critical resulting site class for ground motion at each period",
+        "Data 50-100 ft: extend last layer Vs to 100 ft; data < 50 ft: use default site class"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Estimating Vs where direct measurement is unavailable, including the 1.3 uncertainty factor"
+    },
+    {
+      "section_id": "20.4",
+      "title": "Definitions of Site Class Parameters",
+      "summary": "The site profile over the upper 100 ft (30 m) is subdivided into n distinct soil/rock layers. The average shear wave velocity vs (Vs30) is the time-averaged (slowness-weighted) harmonic mean: vs = (sum of layer thicknesses di) / (sum of di/vsi), with the total thickness equal to 100 ft (30 m). This is Eq. (20.4-1).",
+      "body": "The definitions in this section apply to the upper 100 ft (30 m) of the site profile. Profiles containing distinct soil and rock layers shall be subdivided into those layers, numbered 1 to n (n distinct layers in the upper 100 ft (30 m)); i refers to any one of the layers between 1 and n. 20.4.1 vs, AVERAGE SHEAR WAVE VELOCITY: vs = (sum_{i=1..n} di) / (sum_{i=1..n} di/vsi)  (Eq. 20.4-1), where di = thickness of any layer between 0 and 100 ft (30 m); vsi = the shear wave velocity in ft/s (m/s); and sum_{i=1..n} di = 100 ft (30 m). This is the slowness-weighted harmonic mean velocity, i.e. the travel-time-averaged velocity over 30 m, conventionally denoted Vs30.",
+      "key_points": [
+        "vs (Vs30) = (sum di) / (sum di/vsi) - the slowness-weighted harmonic mean over 100 ft (30 m)",
+        "Subdivide the upper 100 ft (30 m) into n distinct layers; sum of di = 100 ft (30 m)",
+        "This is the travel-time-averaged shear wave velocity, conventionally Vs30"
+      ],
+      "equations": [
+        {
+          "equation_id": "20.4-1",
+          "description": "Average (time-averaged / slowness-weighted harmonic mean) shear wave velocity vs over the upper 100 ft (30 m), i.e. Vs30",
+          "latex": "\\bar{v}_s = \\frac{\\sum_{i=1}^{n} d_i}{\\sum_{i=1}^{n} d_i / v_{si}}",
+          "variables": {
+            "v_s_bar": "average shear wave velocity over the upper 100 ft (30 m) (Vs30)",
+            "d_i": "thickness of layer i (0 to 100 ft / 30 m)",
+            "v_si": "shear wave velocity of layer i (ft/s or m/s)",
+            "n": "number of distinct layers in the upper 100 ft (30 m); sum of d_i = 100 ft (30 m)"
+          },
+          "implemented_in": null
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Computing the average shear wave velocity (Vs30) used for site classification"
+    }
+  ]
+}
