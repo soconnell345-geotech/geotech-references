@@ -24,14 +24,14 @@
     {
       "section_id": "19.3.2",
       "title": "Effective Damping Ratio of the Soil-Structure System",
-      "summary": "The effective damping ratio of the soil-structure system is beta_0 = beta_f + beta/(T_eff/T)^2 (Eq. 19.3-1), where beta is structural viscous damping (5% unless justified) and (T_eff/T) is the effective period-lengthening ratio from Eq. (19.3-2), driven by the expected ductility demand mu (ELF/MRSA: max base shear / elastic base shear capacity, or R/Omega_0; RHA: max displacement / yield displacement at the top). The foundation damping ratio beta_f = [1 - 1/(T/T)^2]*beta_rd + beta_s (Eq. 19.3-3) combines radiation damping beta_rd (Sections 19.3.3/19.3.4) and soil hysteretic damping beta_s (Section 19.3.5). Over a much stiffer underlying layer, beta_rd is replaced by beta_s' (Eq. 19.3-4).",
-      "body": "19.3.2 Effective Damping Ratio: The effects of foundation damping shall be represented by the effective damping ratio of the soil-structure system, beta_0, determined in accordance with Eq. (19.3-1): beta_0 = beta_f + beta / (T_eff/T)^2 (Eq. 19.3-1), where beta_f = effective viscous damping ratio relating to foundation-soil interaction; beta = effective viscous damping ratio of the structure, taken as 5% unless otherwise justified by analysis; and (T_eff/T) = effective period-lengthening ratio defined in Eq. (19.3-2). The effective period-lengthening ratio shall be determined in accordance with Eq. (19.3-2): T_eff/T = [1 + (1/mu)*((T/T)^2 - 1)]^0.5 (Eq. 19.3-2), where mu = expected ductility demand. For equivalent lateral force (ELF) or modal response spectrum analysis procedures, mu is the maximum base shear divided by the elastic base shear capacity; alternately, mu is permitted to be taken as R/Omega_0, where R and Omega_0 are per Table 12.2-1. For response history analysis procedures, mu is the maximum displacement divided by the yield displacement of the structure measured at the highest point above grade. The foundation damping ratio caused by soil hysteretic damping and radiation damping, beta_f, is permitted to be determined in accordance with Eq. (19.3-3) or by other approved methods: beta_f = [1 - 1/(T/T)^2]*beta_rd + beta_s (Eq. 19.3-3), where beta_s = soil hysteretic damping ratio determined in accordance with Section 19.3.5, and beta_rd = radiation damping ratio determined in accordance with Section 19.3.3 or 19.3.4. If a site more than a depth B below the base of the building consists of a relatively uniform layer of depth D_s overlaying a very stiff layer with a shear wave velocity more than twice that of the surface layer, then the damping value beta_rd in Eq. (19.3-3) shall be replaced by beta_s' per Eq. (19.3-4): beta_s' = beta_rd*(4*D_s/(Vs*Ts))^4 (Eq. 19.3-4).",
+      "summary": "The effective damping ratio of the soil-structure system is beta_0 = beta_f + beta/(T_eff/T)^2 (Eq. 19.3-1), where beta is structural viscous damping (5% unless justified) and (T_eff/T) is the effective period-lengthening ratio from Eq. (19.3-2), driven by the expected ductility demand mu (ELF/MRSA: max base shear / elastic base shear capacity, or R/Omega_0; RHA: max displacement / yield displacement at the top). The foundation damping ratio beta_f = [1 - 1/(T/T)^2]*beta_rd + beta_s (Eq. 19.3-3) combines radiation damping beta_rd (Sections 19.3.3/19.3.4) and soil hysteretic damping beta_s (Section 19.3.5). Over a much stiffer underlying layer, beta_rd is replaced by beta_s' = (4*D_s/(v_s*T_tilde))^4 * beta_s (Eq. 19.3-4), which scales the SOIL HYSTERETIC damping beta_s by the period-lengthening period T_tilde.",
+      "body": "19.3.2 Effective Damping Ratio: The effects of foundation damping shall be represented by the effective damping ratio of the soil-structure system, beta_0, determined in accordance with Eq. (19.3-1): beta_0 = beta_f + beta / (T_eff/T)^2 (Eq. 19.3-1), where beta_f = effective viscous damping ratio relating to foundation-soil interaction; beta = effective viscous damping ratio of the structure, taken as 5% unless otherwise justified by analysis; and (T_eff/T) = effective period-lengthening ratio defined in Eq. (19.3-2). The effective period-lengthening ratio shall be determined in accordance with Eq. (19.3-2): T_eff/T = [1 + (1/mu)*((T/T)^2 - 1)]^0.5 (Eq. 19.3-2), where mu = expected ductility demand. For equivalent lateral force (ELF) or modal response spectrum analysis procedures, mu is the maximum base shear divided by the elastic base shear capacity; alternately, mu is permitted to be taken as R/Omega_0, where R and Omega_0 are per Table 12.2-1. For response history analysis procedures, mu is the maximum displacement divided by the yield displacement of the structure measured at the highest point above grade. The foundation damping ratio caused by soil hysteretic damping and radiation damping, beta_f, is permitted to be determined in accordance with Eq. (19.3-3) or by other approved methods: beta_f = [1 - 1/(T/T)^2]*beta_rd + beta_s (Eq. 19.3-3), where beta_s = soil hysteretic damping ratio determined in accordance with Section 19.3.5, and beta_rd = radiation damping ratio determined in accordance with Section 19.3.3 or 19.3.4. If a site more than a depth B below the base of the building consists of a relatively uniform layer of depth D_s overlaying a very stiff layer with a shear wave velocity more than twice that of the surface layer, then the damping value beta_rd in Eq. (19.3-3) shall be replaced by beta_s' per Eq. (19.3-4): beta_s' = (4*D_s/(v_s*T_tilde))^4 * beta_s (Eq. 19.3-4), where beta_s is the soil hysteretic damping ratio (Section 19.3.5), v_s is the surface-layer shear wave velocity, D_s is the surface-layer depth, and T_tilde is the period-lengthening (flexible-base) period.",
       "key_points": [
         "beta_0 = beta_f + beta/(T_eff/T)^2 (Eq. 19.3-1); structural damping beta = 5% unless justified",
         "Effective period-lengthening ratio T_eff/T = [1 + (1/mu)*((T/T)^2 - 1)]^0.5 (Eq. 19.3-2)",
         "Ductility mu: ELF/MRSA -> max base shear / elastic base shear capacity, or R/Omega_0 (Table 12.2-1); RHA -> max displacement / yield displacement at top",
         "Foundation damping beta_f = [1 - 1/(T/T)^2]*beta_rd + beta_s (Eq. 19.3-3), combining radiation (19.3.3/19.3.4) and soil hysteretic (19.3.5) damping",
-        "Uniform layer (depth D_s, below depth B) over a stiffer layer (Vs > 2x): replace beta_rd with beta_s' = beta_rd*(4*D_s/(Vs*Ts))^4 (Eq. 19.3-4)"
+        "Uniform layer (depth D_s, below depth B) over a stiffer layer (Vs > 2x): replace beta_rd with beta_s' = (4*D_s/(v_s*T_tilde))^4 * beta_s (Eq. 19.3-4) - scales the SOIL HYSTERETIC damping beta_s (not beta_rd) by the period-lengthening period T_tilde"
       ],
       "equations": [
         {
@@ -71,14 +71,14 @@
         },
         {
           "equation_id": "19.3-4",
-          "description": "Reduced radiation damping for a uniform surface layer over a much stiffer layer (Vs of stiff layer > 2x surface)",
-          "latex": "\\beta_s' = \\beta_{rd}\\left(\\frac{4 D_s}{v_s T_s}\\right)^4",
+          "description": "Reduced damping for a uniform surface layer over a much stiffer layer (Vs of stiff layer > 2x surface): scales the SOIL HYSTERETIC damping beta_s by the period-lengthening period T_tilde",
+          "latex": "\\beta_s' = \\left(\\frac{4 D_s}{v_s \\tilde{T}}\\right)^4 \\beta_s",
           "variables": {
-            "beta_s_prime": "modified (reduced) radiation damping ratio replacing beta_rd",
-            "beta_rd": "radiation damping ratio from Section 19.3.3 / 19.3.4",
+            "beta_s_prime": "modified damping ratio replacing beta_rd in Eq. 19.3-3",
+            "beta_s": "soil hysteretic damping ratio (Section 19.3.5) - this is the factor that is scaled (NOT beta_rd)",
             "D_s": "depth of the relatively uniform surface layer",
             "v_s": "shear wave velocity of the surface layer",
-            "T_s": "fundamental period of the soil column / structure (as used in the provision)"
+            "T_tilde": "period-lengthening (flexible-base) period of the soil-structure system"
           },
           "implemented_in": null
         }
@@ -111,23 +111,24 @@
     {
       "section_id": "19.3.3",
       "title": "Radiation Damping for Rectangular Foundations",
-      "summary": "For a rectangular foundation (plan half-dimensions L >= B), the radiation damping ratio beta_rd (Eq. 19.3-5) sums translation (y) and rocking (xx) contributions weighted by their modal period ratios: beta_rd = (1/(T_y/T)^2)*beta_y + (1/(T_xx/T)^2)*beta_xx. The modal periods T_y, T_xx depend on the effective modal mass M*, effective height h*, and the static stiffnesses K_y (translation) and K_xx (rocking), which are functions of G, the L/B ratio, and Poisson's ratio nu. The dashpot terms beta_y, beta_xx depend on the dimensionless frequency a_0 = 2*pi*B/(T*vs). G is the effective (strain-compatible) shear modulus from G/G0 (Table 19.3-2); vs from Table 19.3-1; nu = 0.3 (sand) or 0.45 (clay).",
-      "body": "19.3.3 Radiation Damping for Rectangular Foundations: The effects of radiation damping for structures with a rectangular foundation plan shall be represented by the effective radiation damping ratio beta_rd determined in accordance with Eq. (19.3-5) and the supporting Eqs. (19.3-6) through (19.3-14): beta_rd = (1/(T_y/T)^2)*beta_y + (1/(T_xx/T)^2)*beta_xx (Eq. 19.3-5). T_y = 2*pi*sqrt(M*/K_y) (Eq. 19.3-6). T_xx = 2*pi*sqrt(M*(h*)^2/(K_xx*alpha_xx)) (Eq. 19.3-7). K_y = (GB/(2-nu))*[6.8*(L/B)^0.65 + 0.8*(L/B) + 1.6] (Eq. 19.3-8). K_xx = (GB^3/(1-nu))*[3.2*(L/B) + 0.8] (Eq. 19.3-9). beta_y = [4*(L/B)/(K_y/(GB))]*(a_0/2) (Eq. 19.3-10). a_0 = 2*pi*B/(T*vs) (Eq. 19.3-11). beta_xx = [(4*psi/3)*(L/B)*a_0^2 / ((K_xx/(GB^3))*(2.2 - 0.4/(L/B)^3 + a_0^2))]*(a_0/(2*alpha_xx)) (Eq. 19.3-12). psi = 2.5*sqrt((2(1-nu))/(1-2*nu)) (Eq. 19.3-13). alpha_xx = 1.0 - [(0.55 + 0.01*sqrt((L/B)-1))*a_0^2 / (2.4 - 0.4/(L/B)^3 + a_0^2)] (Eq. 19.3-14). Where: L = half the larger dimension of the base of the structure; B = half the smaller dimension of the base of the structure; vs = average effective shear wave velocity over a depth B below the base of the structure, determined using vso and Table 19.3-1 or a site-specific study; vso = average low-strain shear wave velocity over a depth B below the base; G = effective shear modulus derived or approximated from G0 and Table 19.3-2; G0 = G0 = gamma*vso^2/g = average shear modulus for the soils beneath the foundation at small strain levels; M* = effective modal mass for the fundamental mode of vibration in the direction under consideration; h* = effective structure height (vertical distance from the foundation to the centroid of the first-mode shape), permitted to be approximated as 70% of total height for multistory structures or full height for one-story structures; gamma = average unit weight of the soils over a depth B below the base; nu = Poisson's ratio, permitted to be 0.3 for sandy soils and 0.45 for clayey soils.",
+      "summary": "For a rectangular foundation (plan half-dimensions L >= B), the radiation damping ratio beta_rd (Eq. 19.3-5) sums translation (y) and rocking (xx) contributions weighted by their modal period ratios: beta_rd = (1/(T_tilde/T_y)^2)*beta_y + (1/(T_tilde/T_xx)^2)*beta_xx (note T_tilde, the period-lengthening period, is in the NUMERATOR of each ratio). The modal periods T_y, T_xx depend on the effective modal mass M*, effective height h*, and the static stiffnesses K_y (translation) and K_xx (rocking), which are functions of G, the L/B ratio, and Poisson's ratio nu. The dashpot terms beta_y, beta_xx depend on the dimensionless frequency a_0 = 2*pi*B/(T_tilde*vs) (Eq. 19.3-11; T_tilde is the period-lengthening period). G is the effective (strain-compatible) shear modulus from G/G0 (Table 19.3-2); vs from Table 19.3-1; nu = 0.3 (sand) or 0.45 (clay).",
+      "body": "19.3.3 Radiation Damping for Rectangular Foundations: The effects of radiation damping for structures with a rectangular foundation plan shall be represented by the effective radiation damping ratio beta_rd determined in accordance with Eq. (19.3-5) and the supporting Eqs. (19.3-6) through (19.3-14): beta_rd = (1/(T_tilde/T_y)^2)*beta_y + (1/(T_tilde/T_xx)^2)*beta_xx (Eq. 19.3-5), where T_tilde (the period-lengthening / flexible-base period) is in the numerator of each period ratio. T_y = 2*pi*sqrt(M*/K_y) (Eq. 19.3-6). T_xx = 2*pi*sqrt(M*(h*)^2/(K_xx*alpha_xx)) (Eq. 19.3-7). K_y = (GB/(2-nu))*[6.8*(L/B)^0.65 + 0.8*(L/B) + 1.6] (Eq. 19.3-8). K_xx = (GB^3/(1-nu))*[3.2*(L/B) + 0.8] (Eq. 19.3-9). beta_y = [4*(L/B)/(K_y/(GB))]*(a_0/2) (Eq. 19.3-10). a_0 = 2*pi*B/(T_tilde*vs) (Eq. 19.3-11; T_tilde is the period-lengthening period, not plain T). beta_xx = [(4*psi/3)*(L/B)*a_0^2 / ((K_xx/(GB^3))*(2.2 - 0.4/(L/B)^3 + a_0^2))]*(a_0/(2*alpha_xx)) (Eq. 19.3-12). psi = min(sqrt((2(1-nu))/(1-2*nu)), 2.5) (Eq. 19.3-13; this is a CAP of 2.5 on the square root, not a 2.5x multiplier). alpha_xx = 1.0 - [(0.55 + 0.01*sqrt((L/B)-1))*a_0^2 / (2.4 - 0.4/(L/B)^3 + a_0^2)] (Eq. 19.3-14). Where: L = half the larger dimension of the base of the structure; B = half the smaller dimension of the base of the structure; vs = average effective shear wave velocity over a depth B below the base of the structure, determined using vso and Table 19.3-1 or a site-specific study; vso = average low-strain shear wave velocity over a depth B below the base; G = effective shear modulus derived or approximated from G0 and Table 19.3-2; G0 = G0 = gamma*vso^2/g = average shear modulus for the soils beneath the foundation at small strain levels; M* = effective modal mass for the fundamental mode of vibration in the direction under consideration; h* = effective structure height (vertical distance from the foundation to the centroid of the first-mode shape), permitted to be approximated as 70% of total height for multistory structures or full height for one-story structures; gamma = average unit weight of the soils over a depth B below the base; nu = Poisson's ratio, permitted to be 0.3 for sandy soils and 0.45 for clayey soils.",
       "key_points": [
-        "beta_rd = (1/(T_y/T)^2)*beta_y + (1/(T_xx/T)^2)*beta_xx - sum of translation (y) and rocking (xx) radiation damping (Eq. 19.3-5)",
+        "beta_rd = (1/(T_tilde/T_y)^2)*beta_y + (1/(T_tilde/T_xx)^2)*beta_xx - sum of translation (y) and rocking (xx) radiation damping (Eq. 19.3-5); T_tilde (period-lengthening period) is in the NUMERATOR of each ratio",
         "Static stiffnesses: translation K_y (Eq. 19.3-8) and rocking K_xx (Eq. 19.3-9), functions of G, L/B, and nu",
         "L = half the larger base dimension, B = half the smaller base dimension (half-dimensions, not full)",
-        "Dimensionless frequency a_0 = 2*pi*B/(T*vs) (Eq. 19.3-11) drives the dashpot terms beta_y, beta_xx",
+        "Dimensionless frequency a_0 = 2*pi*B/(T_tilde*vs) (Eq. 19.3-11; uses the period-lengthening period T_tilde) drives the dashpot terms beta_y, beta_xx",
         "G0 = gamma*vso^2/g; effective G from G/G0 (Table 19.3-2); vs from Table 19.3-1; nu = 0.3 (sand) / 0.45 (clay)",
         "h* approx 70% of total height (multistory) or full height (one-story); M* = effective first-mode modal mass"
       ],
       "equations": [
         {
           "equation_id": "19.3-5",
-          "description": "Radiation damping ratio for a rectangular foundation (translation + rocking)",
-          "latex": "\\beta_{rd} = \\frac{1}{(T_y/T)^2}\\beta_y + \\frac{1}{(T_{xx}/T)^2}\\beta_{xx}",
+          "description": "Radiation damping ratio for a rectangular foundation (translation + rocking); each period ratio is T_tilde/T_i with the period-lengthening period T_tilde in the numerator",
+          "latex": "\\beta_{rd} = \\frac{1}{(\\tilde{T}/T_y)^2}\\beta_y + \\frac{1}{(\\tilde{T}/T_{xx})^2}\\beta_{xx}",
           "variables": {
             "beta_rd": "radiation damping ratio for a rectangular foundation",
+            "T_tilde": "period-lengthening (flexible-base) period of the soil-structure system (numerator of each period ratio)",
             "T_y": "modal period associated with foundation translation (Eq. 19.3-6)",
             "T_xx": "modal period associated with foundation rocking (Eq. 19.3-7)",
             "beta_y": "translation (horizontal) radiation dashpot ratio (Eq. 19.3-10)",
@@ -163,12 +164,12 @@
         },
         {
           "equation_id": "19.3-11",
-          "description": "Dimensionless frequency for the rectangular foundation",
-          "latex": "a_0 = \\frac{2\\pi B}{T v_s}",
+          "description": "Dimensionless frequency for the rectangular foundation (uses the period-lengthening period T_tilde)",
+          "latex": "a_0 = \\frac{2\\pi B}{\\tilde{T} v_s}",
           "variables": {
             "a_0": "dimensionless frequency",
             "B": "half the smaller plan dimension of the base",
-            "T": "fundamental period of the structure",
+            "T_tilde": "period-lengthening (flexible-base) period of the soil-structure system",
             "v_s": "effective (strain-compatible) shear wave velocity over depth B below the base"
           },
           "implemented_in": null
@@ -215,22 +216,23 @@
     {
       "section_id": "19.3.4",
       "title": "Radiation Damping for Circular Foundations",
-      "summary": "For a circular foundation of radius r_f, the radiation damping ratio beta_rd sums translation (r) and rocking (rr) contributions weighted by their modal period ratios: beta_rd = (1/(T_r/T)^2)*beta_r + (1/(T_rr/T)^2)*beta_rr (Eq. 19.3-15). T_r, T_rr come from M*, h*, and the circular static stiffnesses K_r = 8*G*r_f/(2-nu) (Eq. 19.3-18) and K_rr = 8*G*r_f^3/(3(1-nu)) (Eq. 19.3-19). The dashpot terms beta_r, beta_rr depend on a_0 = 2*pi*r_f/(T*vs) (Eq. 19.3-21), with psi and alpha_rr coefficients (Eqs. 19.3-23, 19.3-24). Same effective-property inputs as the rectangular case: effective vs (Table 19.3-1), effective G (Table 19.3-2), gamma, and nu.",
-      "body": "19.3.4 Radiation Damping for Circular Foundations: The effects of radiation damping for structures with a circular foundation plan shall be represented by the radiation damping ratio beta_rd determined in accordance with Eq. (19.3-15) and the supporting Eqs. (19.3-16) through (19.3-24): beta_rd = (1/(T_r/T)^2)*beta_r + (1/(T_rr/T)^2)*beta_rr (Eq. 19.3-15). T_r = 2*pi*sqrt(M*/K_r) (Eq. 19.3-16). T_rr = 2*pi*sqrt(M*(h*)^2/(K_rr*alpha_rr)) (Eq. 19.3-17). K_r = 8*G*r_f/(2-nu) (Eq. 19.3-18). K_rr = 8*G*r_f^3/(3*(1-nu)) (Eq. 19.3-19). beta_r = [pi/(K_r/(G*r_f))]*(a_0/2) (Eq. 19.3-20). a_0 = 2*pi*r_f/(T*vs) (Eq. 19.3-21). beta_rr = [(pi*psi/4)*a_0^2 / ((K_rr/(G*r_f^3))*(2 + a_0^2))]*(a_0/(2*alpha_rr)) (Eq. 19.3-22). psi = 2.5*sqrt((2(1-nu))/(1-2*nu)) (Eq. 19.3-23). alpha_rr = 1.0 - [0.35*a_0^2 / (1.0 + a_0^2)] (Eq. 19.3-24). Where: r_f = radius of the circular foundation; vs = average effective shear wave velocity over a depth r_f below the base of the structure, determined using vso and Table 19.3-1 or a site-specific study; vso = average low-strain shear wave velocity over a depth r_f below the base; and gamma = average unit weight of the soils over a depth r_f below the base. nu = Poisson's ratio (0.3 sand, 0.45 clay).",
+      "summary": "For a circular foundation of radius r_f, the radiation damping ratio beta_rd sums translation (r) and rocking (rr) contributions weighted by their modal period ratios: beta_rd = (1/(T_tilde/T_r)^2)*beta_r + (1/(T_tilde/T_rr)^2)*beta_rr (Eq. 19.3-15; T_tilde, the period-lengthening period, is in the NUMERATOR). T_r, T_rr come from M*, h*, and the circular static stiffnesses K_r = 8*G*r_f/(2-nu) (Eq. 19.3-18) and K_rr = 8*G*r_f^3/(3(1-nu)) (Eq. 19.3-19). The dashpot terms beta_r, beta_rr depend on a_0 = 2*pi*r_f/(T_tilde*vs) (Eq. 19.3-21; uses the period-lengthening period T_tilde), with psi and alpha_rr coefficients (Eqs. 19.3-23, 19.3-24). Same effective-property inputs as the rectangular case: effective vs (Table 19.3-1), effective G (Table 19.3-2), gamma, and nu.",
+      "body": "19.3.4 Radiation Damping for Circular Foundations: The effects of radiation damping for structures with a circular foundation plan shall be represented by the radiation damping ratio beta_rd determined in accordance with Eq. (19.3-15) and the supporting Eqs. (19.3-16) through (19.3-24): beta_rd = (1/(T_tilde/T_r)^2)*beta_r + (1/(T_tilde/T_rr)^2)*beta_rr (Eq. 19.3-15), where T_tilde (the period-lengthening / flexible-base period) is in the numerator of each period ratio. T_r = 2*pi*sqrt(M*/K_r) (Eq. 19.3-16). T_rr = 2*pi*sqrt(M*(h*)^2/(K_rr*alpha_rr)) (Eq. 19.3-17). K_r = 8*G*r_f/(2-nu) (Eq. 19.3-18). K_rr = 8*G*r_f^3/(3*(1-nu)) (Eq. 19.3-19). beta_r = [pi/(K_r/(G*r_f))]*(a_0/2) (Eq. 19.3-20). a_0 = 2*pi*r_f/(T_tilde*vs) (Eq. 19.3-21; T_tilde is the period-lengthening period, not plain T). beta_rr = [(pi*psi/4)*a_0^2 / ((K_rr/(G*r_f^3))*(2 + a_0^2))]*(a_0/(2*alpha_rr)) (Eq. 19.3-22). psi = min(sqrt((2(1-nu))/(1-2*nu)), 2.5) (Eq. 19.3-23; this is a CAP of 2.5 on the square root, not a 2.5x multiplier). alpha_rr = 1.0 - [0.35*a_0^2 / (1.0 + a_0^2)] (Eq. 19.3-24). Where: r_f = radius of the circular foundation; vs = average effective shear wave velocity over a depth r_f below the base of the structure, determined using vso and Table 19.3-1 or a site-specific study; vso = average low-strain shear wave velocity over a depth r_f below the base; and gamma = average unit weight of the soils over a depth r_f below the base. nu = Poisson's ratio (0.3 sand, 0.45 clay).",
       "key_points": [
-        "beta_rd = (1/(T_r/T)^2)*beta_r + (1/(T_rr/T)^2)*beta_rr - translation (r) + rocking (rr) (Eq. 19.3-15)",
+        "beta_rd = (1/(T_tilde/T_r)^2)*beta_r + (1/(T_tilde/T_rr)^2)*beta_rr - translation (r) + rocking (rr) (Eq. 19.3-15); T_tilde (period-lengthening period) is in the NUMERATOR of each ratio",
         "Circular static stiffnesses: translation K_r = 8*G*r_f/(2-nu) (Eq. 19.3-18); rocking K_rr = 8*G*r_f^3/(3(1-nu)) (Eq. 19.3-19)",
-        "Dimensionless frequency a_0 = 2*pi*r_f/(T*vs) (Eq. 19.3-21)",
-        "alpha_rr = 1.0 - 0.35*a_0^2/(1+a_0^2) (Eq. 19.3-24); psi per Eq. 19.3-23",
+        "Dimensionless frequency a_0 = 2*pi*r_f/(T_tilde*vs) (Eq. 19.3-21; uses the period-lengthening period T_tilde)",
+        "alpha_rr = 1.0 - 0.35*a_0^2/(1+a_0^2) (Eq. 19.3-24); psi = min(sqrt(2(1-nu)/(1-2nu)), 2.5) per Eq. 19.3-23 (a 2.5 CAP, not a 2.5x multiplier)",
         "Effective properties over depth r_f below the base: vs (Table 19.3-1), G (Table 19.3-2), gamma; nu = 0.3 sand / 0.45 clay"
       ],
       "equations": [
         {
           "equation_id": "19.3-15",
-          "description": "Radiation damping ratio for a circular foundation (translation + rocking)",
-          "latex": "\\beta_{rd} = \\frac{1}{(T_r/T)^2}\\beta_r + \\frac{1}{(T_{rr}/T)^2}\\beta_{rr}",
+          "description": "Radiation damping ratio for a circular foundation (translation + rocking); each period ratio is T_tilde/T_i with the period-lengthening period T_tilde in the numerator",
+          "latex": "\\beta_{rd} = \\frac{1}{(\\tilde{T}/T_r)^2}\\beta_r + \\frac{1}{(\\tilde{T}/T_{rr})^2}\\beta_{rr}",
           "variables": {
             "beta_rd": "radiation damping ratio for a circular foundation",
+            "T_tilde": "period-lengthening (flexible-base) period of the soil-structure system (numerator of each period ratio)",
             "T_r": "modal period associated with foundation translation (Eq. 19.3-16)",
             "T_rr": "modal period associated with foundation rocking (Eq. 19.3-17)",
             "beta_r": "translation radiation dashpot ratio (Eq. 19.3-20)",
@@ -264,12 +266,12 @@
         },
         {
           "equation_id": "19.3-21",
-          "description": "Dimensionless frequency for the circular foundation",
-          "latex": "a_0 = \\frac{2\\pi r_f}{T v_s}",
+          "description": "Dimensionless frequency for the circular foundation (uses the period-lengthening period T_tilde)",
+          "latex": "a_0 = \\frac{2\\pi r_f}{\\tilde{T} v_s}",
           "variables": {
             "a_0": "dimensionless frequency",
             "r_f": "radius of the circular foundation",
-            "T": "fundamental period of the structure",
+            "T_tilde": "period-lengthening (flexible-base) period of the soil-structure system",
             "v_s": "effective (strain-compatible) shear wave velocity over depth r_f below the base"
           },
           "implemented_in": null

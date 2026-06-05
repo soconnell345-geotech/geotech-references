@@ -316,7 +316,7 @@ def table_5_28_typical_cbr(soil_class: str = "") -> dict:
     if sc in ("", "ALL"):
         return {
             "reference": "FHWA-NHI-05-037 Table 5-28 (USACE, 1953)",
-            "table": "5-28", "pdf_page": 215, "printed_page": "5-39",
+            "table": "5-28", "pdf_page": 216, "printed_page": "5-39",
             "rows": rows,
             "note": "Field CBR (%). AASHO Road Test: base CBR ~ 100, subbase ~ 30.",
         }
@@ -329,7 +329,7 @@ def table_5_28_typical_cbr(soil_class: str = "") -> dict:
     return {
         "soil_class": sc, "cbr_min": lo, "cbr_max": hi,
         "reference": "FHWA-NHI-05-037 Table 5-28 (USACE, 1953)",
-        "table": "5-28", "pdf_page": 215, "printed_page": "5-39",
+        "table": "5-28", "pdf_page": 216, "printed_page": "5-39",
     }
 
 
@@ -405,7 +405,11 @@ def table_4_14_soil_as_pavement_material(soil_class: str = "") -> dict:
             "table": "4-14", "pdf_page": 166, "printed_page": "4-65",
             "rows": [_row(k) for k in _TABLE_4_14],
             "note": ("Subgrade strength is for soils NOT subject to frost action. "
-                     "Printed table covers gravels (G*) and sands (S*) only."),
+                     "Printed table covers gravels (G*) and sands (S*) only. The "
+                     "GM and SM rows here represent ONLY the low-plasticity 'd' "
+                     "sub-row (Atterberg LL <= 28 and PI <= 6); the printed table "
+                     "splits GM/SM into 'd' and 'u' (high-plasticity, LL > 28) "
+                     "variants and the 'u' variants are not represented."),
         }
     if sc not in _TABLE_4_14:
         raise ValueError(
@@ -415,6 +419,13 @@ def table_4_14_soil_as_pavement_material(soil_class: str = "") -> dict:
     out = _row(sc)
     out.update({"reference": "FHWA-NHI-05-037 Table 4-14 (NCHRP 1-37A)",
                 "table": "4-14", "pdf_page": 166, "printed_page": "4-65"})
+    if sc in ("GM", "SM"):
+        out["note"] = (
+            "Represents ONLY the low-plasticity 'd' sub-row (Atterberg LL <= 28 "
+            "and PI <= 6). The printed table splits GM/SM into 'd' and 'u' "
+            "(high-plasticity, LL > 28) variants; the 'u' variant is not "
+            "represented here."
+        )
     return out
 
 

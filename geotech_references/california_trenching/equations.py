@@ -416,16 +416,35 @@ def tension_crack_depth(cohesion_psf, gamma_pcf, ka) -> dict:
 # Chapter 4-5 — maximum allowable embankment slope angle (c-phi soil)
 # ============================================================================
 
-def max_allowable_slope_angle(phi_deg, cohesion_psf, gamma_pcf, height_ft) -> dict:
-    """Maximum allowable embankment slope angle for c-phi soil (Eq. 4-5-1).
+def max_allowable_slope_angle(phi_deg, cohesion_psf, gamma_pcf, height_ft,
+                              beta_deg=None) -> dict:
+    """Maximum allowable embankment slope angle for c-phi soil (Eqs. 4-5-1..4-5-4).
 
     None of the earth-pressure theories work when the slope angle beta exceeds
     the friction angle phi; cohesion lets a stable slope stand steeper. The
-    manual's limit (ASCE JGGE Feb 1997) is:
+    manual's limit (ASCE JGGE Feb 1997, PDF p.72) is:
 
-        sin(beta) <= sin(phi) + c / (gamma * h)        (Eq. 4-5-1)
+        sin(beta) <= sin(phi) + (c / l) * cos(phi)                  (Eq. 4-5-1)
 
-    i.e. beta_max = arcsin( sin(phi) + c/(gamma*h) ), capped at 90 deg.
+    where the stress quantity ``l`` is given by Eq. 4-5-2:
+
+        l = (1/cos^2(phi)) * [ sigma_x + (1/2) sin(2 phi)
+              - sqrt( sigma_v (cos^2(beta) - cos^2(phi))
+                      + sigma_x [c sin(2 phi)] + c^2 cos^2(phi) ) ]  (Eq. 4-5-2)
+
+    with the vertical and horizontal-projected stresses on the ground surface
+    at depth H (Eqs. 4-5-3, 4-5-4):
+
+        sigma_v = gamma * H * cos(beta)                             (Eq. 4-5-3)
+        sigma_x = gamma * H * cos^2(beta)                           (Eq. 4-5-4)
+
+    Because l depends on beta (via sigma_v, sigma_x) and beta is what we are
+    solving for, the limiting slope angle is found by scanning beta from phi up
+    to 90 deg for the largest beta that still satisfies the inequality
+    sin(beta) <= RHS(beta) (RHS = sin(phi) + (c/l) cos(phi)), refining the
+    crossing by bisection. If the inequality holds all the way to 90 deg
+    (RHS reaches >= 1 before sin(beta) overtakes it) the soil can stand vertical
+    for the given height.
 
     Parameters
     ----------
@@ -436,38 +455,167 @@ def max_allowable_slope_angle(phi_deg, cohesion_psf, gamma_pcf, height_ft) -> di
     gamma_pcf : float
         Soil unit weight gamma (pcf), > 0.
     height_ft : float
-        Slope / excavation height h (ft), > 0.
+        Slope / excavation height H (ft), > 0.
+    beta_deg : float, optional
+        Slope angle beta (deg) at which to evaluate the stress quantity ``l``
+        and the right-hand side of Eq. 4-5-1. If given, the function returns the
+        single-point evaluation (and whether Eq. 4-5-1 is satisfied) at that
+        beta instead of solving for the limiting beta. Useful for checking a
+        proposed slope. Default None (solve for the limiting angle).
 
     Returns
     -------
     dict
-        {'phi_deg', 'cohesion_psf', 'gamma_pcf', 'height_ft',
-         'sin_beta_max', 'beta_max_deg', 'vertical', 'reference', ...}
+        {'phi_deg', 'cohesion_psf', 'gamma_pcf', 'height_ft', 'l', 'sigma_v',
+         'sigma_x', 'sin_beta_max', 'beta_max_deg', 'vertical', 'converged',
+         'reference', ...}. When ``beta_deg`` is supplied, also includes
+        'beta_input_deg', 'sin_beta_rhs', and 'satisfies_4_5_1'.
 
     Raises
     ------
     ValueError
-        If gamma_pcf <= 0 or height_ft <= 0.
+        If gamma_pcf <= 0, height_ft <= 0, or phi_deg <= 0 (Eq. 4-5-2 divides
+        by cos^2(phi), and the form is for a c-phi soil).
     """
     if gamma_pcf <= 0:
         raise ValueError(f"gamma_pcf must be > 0, got {gamma_pcf}")
     if height_ft <= 0:
         raise ValueError(f"height_ft must be > 0, got {height_ft}")
-    sin_beta = math.sin(math.radians(phi_deg)) + cohesion_psf / (gamma_pcf * height_ft)
-    vertical = sin_beta >= 1.0
-    beta_max = 90.0 if vertical else math.degrees(math.asin(sin_beta))
+    if phi_deg <= 0:
+        raise ValueError(
+            f"phi_deg must be > 0 for Eq. 4-5-2 (divides by cos^2(phi)), got {phi_deg}"
+        )
+
+    phi = math.radians(phi_deg)
+    c = cohesion_psf
+    cos2phi = math.cos(phi) ** 2
+    sin2phi = math.sin(2.0 * phi)
+
+    def stress_l(beta):
+        """Eq. 4-5-2 stress quantity l, evaluated at slope angle beta (rad)."""
+        sigma_v = gamma_pcf * height_ft * math.cos(beta)           # Eq. 4-5-3
+        sigma_x = gamma_pcf * height_ft * math.cos(beta) ** 2      # Eq. 4-5-4
+        radicand = (
+            sigma_v * (math.cos(beta) ** 2 - cos2phi)
+            + sigma_x * (c * sin2phi)
+            + c ** 2 * cos2phi
+        )
+        radicand = max(radicand, 0.0)
+        l = (1.0 / cos2phi) * (
+            sigma_x + 0.5 * sin2phi - math.sqrt(radicand)
+        )
+        return l, sigma_v, sigma_x
+
+    def rhs(beta):
+        """Right-hand side of Eq. 4-5-1 (= sin(beta_limit)) at slope angle beta."""
+        l, sv, sx = stress_l(beta)
+        if l == 0:
+            return float("inf"), l, sv, sx
+        return math.sin(phi) + (c / l) * math.cos(phi), l, sv, sx
+
+    # Single-point evaluation at a user-supplied beta (proposed-slope check).
+    if beta_deg is not None:
+        beta = math.radians(beta_deg)
+        sin_beta_rhs, l, sv, sx = rhs(beta)
+        satisfies = math.sin(beta) <= sin_beta_rhs
+        return {
+            "phi_deg": phi_deg, "cohesion_psf": cohesion_psf,
+            "gamma_pcf": gamma_pcf, "height_ft": height_ft,
+            "beta_input_deg": beta_deg,
+            "sigma_v": round(sv, 3), "sigma_x": round(sx, 3),
+            "l": round(l, 4),
+            "sin_beta_rhs": round(sin_beta_rhs, 4) if sin_beta_rhs != float("inf") else sin_beta_rhs,
+            "satisfies_4_5_1": bool(satisfies),
+            "equation": "4-5-1..4-5-4",
+            "reference": "Caltrans T&S Manual Section 4-5 (Eqs. 4-5-1..4-5-4, ASCE JGGE Feb 1997)",
+            "pdf_page": 72, "printed_page": "4-22",
+            "note": ("Single-point check: evaluates Eq. 4-5-1 RHS and l (Eq. 4-5-2, "
+                     "with sigma_v/sigma_x from Eqs. 4-5-3/4-5-4) at the supplied "
+                     "beta. satisfies_4_5_1 is True when sin(beta) <= RHS."),
+        }
+
+    # Solve Eq. 4-5-1 by scanning beta from phi to 90 deg for the largest beta
+    # satisfying sin(beta) <= RHS(beta); h(beta) = RHS(beta) - sin(beta) is the
+    # stability margin (>= 0 while the inequality holds). If h stays >= 0 all the
+    # way to 90 deg, the soil can stand vertical for this height.
+    def margin(beta):
+        sin_rhs, l, _sv, _sx = rhs(beta)
+        # Eq. 4-5-1 only makes sense while the stress quantity l > 0; as beta
+        # steepens, l decreases toward 0 (and (c/l) toward +inf). l <= 0 is
+        # non-physical (the printed Eq. 4-5-2 mixes stress/stress^2 units and
+        # goes singular), so treat it as the unstable side of the crossing.
+        if l <= 0.0:
+            return -1.0
+        return sin_rhs - math.sin(beta)
+
+    hi = math.pi / 2.0
+    # The printed Eq. 4-5-2 mixes stress and stress^2 terms, so for a large
+    # cohesion relative to gamma*H the radicand exceeds sigma_x and l is already
+    # <= 0 at beta = phi (the no-cohesion baseline). In that degenerate regime
+    # the closed form cannot be evaluated as printed; we report beta_max = phi
+    # and flag degenerate=True so the caller knows to fall back to a proper
+    # slope-stability analysis.
+    l0, _, _ = stress_l(phi)
+    degenerate = l0 <= 0.0
+
+    if degenerate:
+        vertical = False
+        beta = phi
+    else:
+        n_steps = 900
+        prev = phi
+        crossing = None
+        for k in range(1, n_steps + 1):
+            b = phi + (hi - phi) * k / n_steps
+            if margin(b) < 0.0:
+                crossing = (prev, b)  # bracket where margin changes sign
+                break
+            prev = b
+
+        if crossing is None:
+            # Inequality holds up to 90 deg -> stands vertical.
+            vertical = True
+            beta = hi
+        else:
+            vertical = False
+            lo, hib = crossing
+            for _ in range(80):
+                mid = 0.5 * (lo + hib)
+                if margin(mid) >= 0.0:
+                    lo = mid
+                else:
+                    hib = mid
+            beta = lo  # largest beta with margin >= 0
+
+    converged = True
+    sin_beta_final, l, sv, sx = rhs(beta)
+    beta_max = 90.0 if vertical else math.degrees(beta)
+
     return {
         "phi_deg": phi_deg, "cohesion_psf": cohesion_psf,
         "gamma_pcf": gamma_pcf, "height_ft": height_ft,
-        "sin_beta_max": round(sin_beta, 4),
+        "sigma_v": round(sv, 3), "sigma_x": round(sx, 3),
+        "l": round(l, 4),
+        "sin_beta_max": round(min(sin_beta_final, 1.0), 4),
         "beta_max_deg": round(beta_max, 2),
         "vertical": vertical,
-        "equation": "4-5-1",
-        "reference": "Caltrans T&S Manual Section 4-5 (Eq. 4-5-1, ASCE JGGE Feb 1997)",
+        "degenerate": degenerate,
+        "converged": converged,
+        "equation": "4-5-1..4-5-4",
+        "reference": "Caltrans T&S Manual Section 4-5 (Eqs. 4-5-1..4-5-4, ASCE JGGE Feb 1997)",
         "pdf_page": 72, "printed_page": "4-22",
-        "note": ("If sin(phi) + c/(gamma*h) >= 1 the soil can stand vertical for "
-                 "the given height. This is an estimate; a slope-stability "
-                 "analysis is still recommended."),
+        "note": ("Faithful implementation of the manual's coupled Eqs. 4-5-1..4-5-4: "
+                 "sin(beta) <= sin(phi) + (c/l) cos(phi) with l from Eq. 4-5-2 "
+                 "(sigma_v = gamma*H*cos(beta), sigma_x = gamma*H*cos^2(beta)). "
+                 "Because l depends on beta, the limiting beta is found by scanning "
+                 "beta from phi to 90 deg and bisecting the inequality crossing. "
+                 "vertical=True means the inequality holds to 90 deg (stands "
+                 "vertical for this height). This is an estimate; a slope-stability "
+                 "analysis is still recommended. Note the manual's Eq. 4-5-2 mixes "
+                 "stress and stress^2 terms as printed; it is reproduced verbatim. "
+                 "degenerate=True means that printed form yields l <= 0 at beta = "
+                 "phi (large c relative to gamma*H); beta_max defaults to phi and a "
+                 "slope-stability analysis must be used instead."),
     }
 
 
@@ -534,12 +682,14 @@ def minimum_construction_surcharge() -> dict:
 
 
 def boussinesq_strip_load_pressure(q_psf, alpha_deg, beta_deg) -> dict:
-    """Horizontal pressure from a Boussinesq/Wayne C. Teng strip load (Section 5-1.03A).
+    """Horizontal pressure from a Boussinesq/Wayne C. Teng strip load (Eq. 5-1-2).
 
     For a strip surcharge (e.g. a parallel highway/railroad) the horizontal
-    pressure at a point on the wall is the Wayne C. Teng / Boussinesq form:
+    pressure at a point on the wall is the manual's adopted Wayne C. Teng
+    rigid-wall form (PDF Eq 5-1-2, p.85), which carries a factor of 2 (the
+    rigid-wall doubling, K = 1.0) over the half-space Boussinesq value:
 
-        sigma_h = (q / pi) * [ beta_R - sin(beta) cos(2*alpha) ]
+        sigma_h = (2 q / pi) * [ beta_R - sin(beta) cos(2*alpha) ]
 
     where alpha is the angle from the wall to the center of the strip, beta is
     the angle subtended by the strip at the point, and beta_R is beta in radians.
@@ -569,13 +719,16 @@ def boussinesq_strip_load_pressure(q_psf, alpha_deg, beta_deg) -> dict:
         raise ValueError(f"beta_deg must be > 0, got {beta_deg}")
     beta_r = math.radians(beta_deg)
     alpha = math.radians(alpha_deg)
-    sigma_h = (q_psf / math.pi) * (beta_r - math.sin(beta_r) * math.cos(2 * alpha))
+    sigma_h = (2.0 * q_psf / math.pi) * (beta_r - math.sin(beta_r) * math.cos(2 * alpha))
     return {
         "q_psf": q_psf, "alpha_deg": alpha_deg, "beta_deg": beta_deg,
         "sigma_h_psf": round(sigma_h, 3),
-        "reference": "Caltrans T&S Manual Section 5-1.03A (Wayne C. Teng / Boussinesq)",
+        "equation": "5-1-2",
+        "reference": "Caltrans T&S Manual Section 5-1.03A, Eq. 5-1-2 (Wayne C. Teng)",
         "pdf_page": 85, "printed_page": "5-4",
-        "note": "beta_R is beta in radians; the 2D elastic (Boussinesq) strip-load form.",
+        "note": ("beta_R is beta in radians. The manual adopts the Wayne C. Teng "
+                 "rigid-wall form with the factor 2.0 (K = 1.0), i.e. twice the "
+                 "free-field elastic (Boussinesq) strip-load pressure."),
     }
 
 
@@ -588,11 +741,11 @@ def aep_single_level_cohesionless(gamma_pcf, height_ft, ka) -> dict:
     cohesionless soil (Eq. 8-2-1..8-2-5; Fig 8-2).
 
     The triangular Rankine/Coulomb distribution (resultant P = 0.5*gamma*H^2*Ka)
-    is converted to a trapezoid whose resultant PT = 1.3 P. For a single level of
-    anchors/braces with the trapezoid spanning 0.2H..0.8H (the manual's f-factor
-    that gives PT = 0.65*gamma*H^2*Ka = 1.3 P), the maximum ordinate is:
+    is converted to a trapezoid whose resultant PT = f*P with f = 1.3, giving
+    PT = 0.65*gamma*H^2*Ka. Per PDF Eq 8-2-1 (p.153) the maximum ordinate divides
+    PT by (2/3)H (the height over which the trapezoidal resultant acts):
 
-        sigma_a = PT / (0.8 * H) = 0.65*gamma*H^2*Ka / (0.8 H)
+        sigma_a = (f x P) / ((2/3) H) = (1.3 P) / ((2/3) H)
 
     Parameters
     ----------
@@ -622,17 +775,18 @@ def aep_single_level_cohesionless(gamma_pcf, height_ft, ka) -> dict:
         raise ValueError(f"ka must be >= 0, got {ka}")
     p = 0.5 * gamma_pcf * height_ft ** 2 * ka
     pt = 1.3 * p
-    sigma_a = pt / (0.8 * height_ft)
+    sigma_a = pt / ((2.0 / 3.0) * height_ft)
     return {
         "gamma_pcf": gamma_pcf, "height_ft": height_ft, "ka": ka,
         "p_triangular_plf": round(p, 2),
         "pt_trapezoidal_plf": round(pt, 2),
         "sigma_a_psf": round(sigma_a, 2),
         "equation": "8-2-1..8-2-5",
-        "reference": "Caltrans T&S Manual Section 8-2 (Fig 8-2)",
+        "reference": "Caltrans T&S Manual Section 8-2 (Eq. 8-2-1, Fig 8-2)",
         "pdf_page": 153, "printed_page": "8-3",
-        "note": ("Trapezoid spans 0.2H to 0.8H; PT = 1.3 P. sigma_a here uses the "
-                 "0.8H trapezoid base height."),
+        "note": ("Single anchor/brace level: PT = f*P with f = 1.3. Per Eq 8-2-1 "
+                 "the maximum ordinate sigma_a = (1.3 P) / ((2/3)H) - the (2/3)H "
+                 "is the height over which the trapezoidal resultant acts."),
     }
 
 

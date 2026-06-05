@@ -289,20 +289,41 @@ class TestLateralPressureAndApparent:
 
 
 class TestMaxAllowableSlopeAngle:
+    # Eqs. 4-5-1..4-5-4 (PDF p.72): sin(beta) <= sin(phi) + (c/l) cos(phi),
+    # with l from Eq. 4-5-2 and sigma_v/sigma_x from Eqs. 4-5-3/4-5-4. The
+    # limiting beta is solved (beta depends on l, which depends on beta).
     def test_cohesionless_equals_phi(self):
-        # c=0 -> sin(beta) = sin(phi) -> beta = phi
+        # c=0 -> l = sigma_x/cos^2(phi) > 0, RHS = sin(phi) -> beta = phi
         r = max_allowable_slope_angle(30, 0, 120, 10)
         assert r["beta_max_deg"] == pytest.approx(30.0, abs=0.1)
 
     def test_cohesion_allows_steeper(self):
-        r = max_allowable_slope_angle(20, 1000, 120, 10)
-        assert r["beta_max_deg"] > 20.0
+        # moderate cohesion (l stays > 0 at beta = phi) lets the slope stand
+        # steeper than phi
+        r = max_allowable_slope_angle(30, 200, 120, 15)
+        assert not r["degenerate"]
+        assert r["beta_max_deg"] > 30.0
 
-    def test_vertical_when_term_exceeds_one(self):
-        # large c / small gamma*h -> sin(beta) >= 1 -> vertical
-        r = max_allowable_slope_angle(30, 5000, 120, 5)
-        assert r["vertical"] is True
-        assert r["beta_max_deg"] == 90.0
+    def test_cosphi_term_present(self):
+        # The corrected Eq. 4-5-1 carries the cos(phi) factor on the cohesion
+        # term and the stress quantity l (Eq. 4-5-2), not the old c/(gamma*h)
+        # form. The result must therefore reflect l, exposed in the output.
+        r = max_allowable_slope_angle(30, 200, 120, 15)
+        assert "l" in r and "sigma_v" in r and "sigma_x" in r
+
+    def test_large_cohesion_degenerate(self):
+        # The printed Eq. 4-5-2 mixes stress / stress^2 terms, so a large c
+        # relative to gamma*H drives l <= 0 at beta = phi: the closed form is
+        # degenerate and beta_max defaults to phi (use a slope-stability check).
+        r = max_allowable_slope_angle(20, 1000, 120, 10)
+        assert r["degenerate"] is True
+        assert r["beta_max_deg"] == pytest.approx(20.0, abs=0.1)
+
+    def test_single_point_check(self):
+        # Evaluating at a supplied beta returns the Eq. 4-5-1 RHS and whether
+        # the inequality is satisfied at that beta.
+        r = max_allowable_slope_angle(30, 200, 120, 15, beta_deg=35)
+        assert "satisfies_4_5_1" in r and "sin_beta_rhs" in r
 
 
 # ===================================================================
