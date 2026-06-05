@@ -1,9 +1,9 @@
 """
 Unified References Agent — single Foundry dispatcher for all geotech-references.
 
-Replaces 14 per-reference agents (dm7, gec6, gec7, gec10, gec11, gec12, gec13,
-micropile, fema_p2192, noaa_frost, ufc_backfill, ufc_dewatering, ufc_expansive,
-ufc_pavement) with three Foundry functions:
+Replaces the per-reference agents (dm7, gec6, gec7, gec10, gec11, gec12, gec13,
+micropile, ufc_backfill, ufc_expansive, ufc_pavement) with three Foundry
+functions:
 
   1. lookup_reference          - Run a reference function (table/figure/equation/text)
   2. list_reference_methods    - Browse available functions for a given reference
@@ -11,8 +11,7 @@ ufc_pavement) with three Foundry functions:
 
 The `reference` parameter selects which reference library to query, e.g.:
   "dm7_1", "dm7_2", "gec_6", "gec_7", "gec_10", "gec_11", "gec_12", "gec_13",
-  "micropile", "fema_p2192", "noaa_frost", "ufc_backfill", "ufc_dewatering",
-  "ufc_expansive", "ufc_pavement"
+  "micropile", "ufc_backfill", "ufc_expansive", "ufc_pavement"
 """
 
 import json
@@ -78,25 +77,10 @@ _REFERENCE_CATALOG = {
         "has_text": True,
         "citation": "FHWA-NHI-05-039 — Micropile Design & Construction",
     },
-    "fema_p2192": {
-        "submodules": ["tables"],
-        "has_text": False,
-        "citation": "FEMA P-2192 — Seismic Design Category (2024)",
-    },
-    "noaa_frost": {
-        "submodules": ["equations", "tables"],
-        "has_text": False,
-        "citation": "NOAA — Frost Protected Shallow Foundations",
-    },
     "ufc_backfill": {
         "submodules": ["equations", "tables"],
         "has_text": False,
         "citation": "UFC 3-220-04N — Backfill for Subsurface Structures",
-    },
-    "ufc_dewatering": {
-        "submodules": ["equations", "tables"],
-        "has_text": False,
-        "citation": "UFC 3-220-05 — Dewatering and Groundwater Control",
     },
     "ufc_expansive": {
         "submodules": ["equations", "tables"],
@@ -307,8 +291,8 @@ def _load_reference(reference: str):
 def lookup_reference(reference: str, method: str, parameters_json: str) -> str:
     """
     Unified geotechnical reference lookup — tables, figures, equations, and text
-    from NAVFAC DM7, FHWA GEC-6/7/10/11/12/13, FHWA Micropile, FEMA P-2192,
-    NOAA frost, and UFC standards (backfill, dewatering, expansive, pavement).
+    from NAVFAC DM7, FHWA GEC-6/7/10/11/12/13, FHWA Micropile, and UFC standards
+    (backfill, expansive, pavement).
 
     Use this for any numeric value from a reference table or figure, or to
     retrieve structured reference text. Prefer this over searching uploaded PDFs
@@ -317,8 +301,8 @@ def lookup_reference(reference: str, method: str, parameters_json: str) -> str:
     Parameters:
         reference: Which reference to query. One of:
             'dm7_1', 'dm7_2', 'gec_6', 'gec_7', 'gec_10', 'gec_11', 'gec_12',
-            'gec_13', 'micropile', 'fema_p2192', 'noaa_frost', 'ufc_backfill',
-            'ufc_dewatering', 'ufc_expansive', 'ufc_pavement'
+            'gec_13', 'micropile', 'ufc_backfill', 'ufc_expansive',
+            'ufc_pavement'
         method: The function name within that reference (e.g.
             'table_4_4a_bond_strength_coarse', 'figure_4_3_friction_angle_spt',
             'retrieve_section', 'search_sections'). Use list_reference_methods
@@ -369,8 +353,7 @@ def list_reference_methods(reference: str, category: str = "") -> str:
     Parameters:
         reference: Which reference to list. One of: 'dm7_1', 'dm7_2', 'gec_6',
             'gec_7', 'gec_10', 'gec_11', 'gec_12', 'gec_13', 'micropile',
-            'fema_p2192', 'noaa_frost', 'ufc_backfill', 'ufc_dewatering',
-            'ufc_expansive', 'ufc_pavement'.
+            'ufc_backfill', 'ufc_expansive', 'ufc_pavement'.
             Pass '' (empty) to list all available references and their citations.
         category: Optional partial-match filter on category, method name, or
             brief description (e.g. 'bond', 'bearing', 'seismic', 'figures').
