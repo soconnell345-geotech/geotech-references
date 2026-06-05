@@ -1,0 +1,120 @@
+{
+  "reference_id": "Caltrans Trenching and Shoring Manual",
+  "reference_title": "California Trenching and Shoring Manual (Caltrans, June 2011, Revision 2 - July 2025)",
+  "volume": null,
+  "chapter": 12,
+  "chapter_title": "Appendix A: Additional Theory for Inquiring Minds (Log-Spiral Passive Pressure and Culmann's Graphical Solution)",
+  "sections": [
+    {
+      "section_id": "12-1",
+      "title": "Appendix A-1: Introduction (Archival Theory)",
+      "summary": "Appendix A is archival/advanced reference material excerpted from the 2011 Trenching and Shoring Manual and removed from the main body to streamline it to the most commonly used review content. It presents alternative analysis approaches (log-spiral passive pressure, Culmann's graphical active-pressure solution) that are good for edification but not essential to a plan review; the references are not updated to the latest guidance. A reader using these approaches must find and use the latest references cited herein.",
+      "body": "The information within this appendix is provided for additional reference and includes some advanced topics. These sections are excerpted from the 2011 Trenching and Shoring Manual and were removed to streamline the manual to the most relevant information commonly used in the review of excavation plans. They provide mainly alternative approaches for analysis comparison; all are good for edification but not essential for the review task at hand. As such, no updates to the latest referenced guidance are provided - this is purely archival information. If the reader is to utilize any of these approaches, it is incumbent upon the reader to find and utilize the latest references noted within this appendix.",
+      "key_points": [
+        "Appendix A is archival/advanced material excerpted from the 2011 manual",
+        "Removed from the main body to streamline it to commonly used review content",
+        "Covers alternative analysis approaches (log-spiral passive, Culmann graphical active)",
+        "Good for edification but not essential for plan review; references are not updated",
+        "A reader using these methods must obtain the latest cited references"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Understanding the archival, advanced-theory status of Appendix A"
+    },
+    {
+      "section_id": "12-2",
+      "title": "Appendix A-2: Log-Spiral Passive Earth Pressure (Composite and Noncomposite Surfaces)",
+      "summary": "Rankine (no wall friction) and Coulomb (planar surface) misestimate passive pressure - Coulomb overpredicts Kp as wall friction delta grows, which is unsafe. The true surface is curved: Terzaghi (1943) used a log spiral plus a straight Rankine line (composite); Morrison & Ebeling (1995) a single arc (noncomposite). The spiral is R = Ro*exp(theta*tan(phi)) (Eq. A-2-1; circular for phi=0). Passive force is found by force equilibrium (slices, Kph = Ph/(0.5*gamma*H^2), Eq. A-2-12) or moment equilibrium about the spiral center O (Eq. A-2-17), minimized over trial surfaces. For delta < ~phi/3 methods agree; for large delta use the log-spiral methods (Figure A-15).",
+      "body": "Rankine's theory should not be used for passive earth pressure on shoring because it ignores wall friction and assumes a linear failure plane. Coulomb's theory includes the wall friction angle delta but still assumes a linear surface, producing error because the real sliding surface is curved; Coulomb gives increasingly erroneous (higher, unsafe) passive pressures as delta increases. Terzaghi (1943) suggested combining a logarithmic spiral and a straight line to represent the failure surface, while Morrison and Ebeling (1995) suggested a single log-spiral arc; both are implemented in this manual. COMPOSITE FAILURE SURFACE (Figure A-1): the log-spiral portion BD is governed by the wall height AB, the location of the spiral center O, and the soil friction angle phi (the curve is circular, R = Ro, in cohesive soil with phi = 0). The spiral is R = Ro*exp(theta*tan(phi)) (Eq. A-2-1), with Ro from triangle OAB; the upper portion DE is a straight line tangent to the curve at D, making angle alpha1 with the horizontal (per Eq. 4-3-21). The spiral leaves the wall at the takeoff angle alpha_w (Eq. A-2-2/A-2-3), positive above the horizontal and negative below; the coefficient K = (AC + AD)/AB (Eq. A-2-4) is the horizontal-to-vertical stress ratio, and the subtended angle theta_m = alpha1 - alpha_w (Eq. A-2-9). FORCE EQUILIBRIUM: once the geometry is set the mass is divided into vertical slices and the passive force is obtained by summing forces (Eq. A-2-10/A-2-11); dividing the resisting wall force Ph by 0.5*gamma*H^2 gives the horizontal passive coefficient Kph = Ph/(0.5*gamma*H^2) (Eq. A-2-12). MOMENT EQUILIBRIUM: Pp is found by summing moments about the spiral center O, superposing the weight free body (Ew, Eq. A-2-13) and the cohesion free body (Ec, with moment Mc = c*theta*Ro^2-type term, Eq. A-2-14..A-2-16): (1) compute the Rankine earth pressure on vertical face DEF, (2) compute the weight of zone ABDF including surcharge, (3) take moments about O; the total lateral pressure Pp = Ew + Ec (Eq. A-2-17). Because only one trial surface is examined at a time, Pp must be evaluated for several trial surfaces (Figure A-5) until the minimum Pp is found (the critical surface). NONCOMPOSITE (FULL LOG-SPIRAL) SURFACE (Figure A-6): a single spiral arc represents the entire surface; the force-equilibrium slice method is unchanged (Rankine zone treated as one slice), and the moment equations are obtained by removing the Rankine components (Eq. A-2-18/A-2-19). Figure A-15 (and Figure 4-3) plot Kph from the various log-spiral and straight-line methods for zero-slope backfill: when delta is less than about phi/3, Kph does not differ significantly, but for large delta the log-spiral methods should be used. For sloping backfill, Kph is obtained from Figure 4-20 (Caquot & Kerisel 1948) with the corresponding Figures A-8 through A-14.",
+      "key_points": [
+        "Rankine/Coulomb planar passive surfaces are inaccurate; Coulomb overpredicts Kp (unsafe) as delta grows",
+        "True passive surface is curved: log-spiral + straight line (Terzaghi 1943) or single arc (Morrison & Ebeling 1995)",
+        "Log-spiral equation R = Ro*exp(theta*tan(phi)) (Eq. A-2-1); circular (R = Ro) for phi = 0 cohesive soil",
+        "Force-equilibrium method of slices gives Kph = Ph/(0.5*gamma*H^2) (Eq. A-2-10..A-2-12)",
+        "Moment-equilibrium about spiral center O superposes weight (Ew) and cohesion (Ec): Pp = Ew + Ec (Eq. A-2-13..A-2-17)",
+        "Minimize Pp over several trial surfaces to find the critical one (Figure A-5)",
+        "For delta < ~phi/3 methods agree; for large delta use the log-spiral methods (Figure A-15)"
+      ],
+      "equations": [
+        {
+          "id": "Eq. A-2-1",
+          "description": "Logarithmic spiral radius R = Ro*exp(theta*tan(phi)) (circular R = Ro when phi = 0).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. A-2-12",
+          "description": "Horizontal passive earth pressure coefficient Kph = Ph/(0.5*gamma*H^2) from the force-equilibrium method of slices.",
+          "implemented_in": "geotech_references.california_trenching.equations.log_spiral_passive_kp"
+        },
+        {
+          "id": "Eq. A-2-17",
+          "description": "Total passive earth pressure by moment equilibrium Pp = Ew + Ec (superposition of weight and cohesion free bodies about the spiral center O).",
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure A-1: Geometry of the developing mobilized failure plane (Shamsabadi et al., 2005)",
+        "Figure A-2: Geometry of the Failure Surface and Associated Interslice Forces",
+        "Figure A-3: Geometry of the Failure Surface due to Weight",
+        "Figure A-4: Geometry of the Failure Surface Due to Cohesion",
+        "Figure A-5: Moment Method (trial surfaces)",
+        "Figure A-6: Mobilized Full Log Spiral Failure Surface",
+        "Figure A-7: Mobilized Full Log Spiral Failure Surface for Cohesion Component",
+        "Figure A-15: Kph Based on Straight or Curved Rupture Lines with Zero Slope Backfill (beta = 0)"
+      ],
+      "tables": [],
+      "applicability": "Computing passive earth pressure coefficients with a curved (log-spiral) failure surface for walls with wall friction"
+    },
+    {
+      "section_id": "12-3",
+      "title": "Appendix A-3: Culmann's Graphical Solution for Active Earth Pressure",
+      "summary": "Culmann (1866) is a graphical trial-wedge method for active pressure on walls with irregular backfill/surcharges. Per wedge the forces are weight W (incl. tension crack + surcharges, Eq. A-3-1), wall adhesion Ca (Eq. A-3-2), failure-surface cohesion C (Eq. A-3-3), resultant R, and active force Pa. Many wedges are drawn to scale; a tangent parallel to TT' locates Pa,max = (length L)*(load scale lambda) (Eq. A-3-5). Six examples (A-1..A-6) compare the graphical method to the Caltrans critical-active-wedge program (Eq. A-3-9..A-3-26), incl. AREMA gravity and cantilever walls; results agree within a few percent (e.g., 8.5 vs 8.46; 11.35 vs 11.32 k/ft).",
+      "body": "As presented in Section 4-5.03, Culmann (1866) developed a graphical trial-wedge procedure to calculate the active earth pressure on retaining walls with irregular backfill and surcharges (Figure A-16). For equilibrium of a single wedge the forces per unit width are: (1) W = weight of the wedge including the tension-crack zone and surcharges = (wedge area)(gamma) + q(width) + V (Eq. A-3-1); (2) Ca = adhesive force along the wall backface = c(length along wall) (Eq. A-3-2); (3) C = cohesive force along the failure surface = c(failure length) (Eq. A-3-3); (4) hcr = tension-crack height (Eq. 4-4.13); (5) R = resultant of the shear and normal forces on the failure surface (direction known only); (6) Pa = active force of the wedge (direction known only). To find the maximum active force, several trial wedges are drawn and their force polygons drawn to scale; for greater precision a wedge should address each discontinuity in the retained embankment (and edges/changes of surcharge). PROCEDURE (Figures A-17/A-18): (1) draw the tension-crack profile parallel to the backfill at height hcr; (2) draw several trial wedges intersecting that line; (3) draw weight vectors (including surcharges); (4) draw the wall-adhesion vector Ca; (5) draw the failure-surface cohesion vector Cn; (6) draw the active-force vector Pa; (7) draw the resultant R on the failure plane; (8) repeat for all wedges; (9) draw a smooth curve (a cubic spline in the CT-Flex program) through points P1..Pn+2; (10) draw line TT' through the left ends of the Pa vectors; (11) draw a line parallel to TT' tangent to the curve to locate the maximum; (12) the maximum active-pressure vector Pa,max runs parallel to the Pa vectors from TT' to the tangent point. The maximum active pressure is Pa = (length of L)(load scale lambda) (Eq. A-3-5). Six example problems follow: A-1 a gravity wall with adhesion and cohesion solved by the Culmann graphical (trial-wedge) method (maximum ~8.5 k/ft); A-2 the same wall solved by the Caltrans critical-active-wedge program (Eq. A-3-9/A-3-10) giving 8.46 k/ft; A-3 an AREMA (2023, page 8-5-20) cantilever wall with a heel, 500 psf surcharge over 14 ft, no adhesion, by the graphical method (~11.35 k/ft vs AREMA's 11.1); A-4 the same cantilever wall by the critical-wedge method (Eq. A-3-16/A-3-17) giving 11.32 k/ft; A-5 an AREMA (2023, page 8-5-21) gravity wall without a heel, no adhesion, by the graphical method (13.9 vs AREMA's 13.5 k/ft); A-6 the same gravity wall by the critical-wedge method (Eq. A-3-21..A-3-26) giving 13.70 k/ft. The small differences between the graphical and analytical values are attributed to the graphical nature of the construction.",
+      "key_points": [
+        "Culmann (1866) graphical trial-wedge method for active pressure with irregular backfill and surcharges",
+        "Wedge forces: weight W (Eq. A-3-1), wall adhesion Ca (Eq. A-3-2), failure-surface cohesion C (Eq. A-3-3), R, Pa",
+        "Draw many trial wedges and force polygons to scale; a wedge at each backfill discontinuity",
+        "Maximum active force from a tangent parallel to TT': Pa,max = (length of L)*(load scale lambda) (Eq. A-3-5)",
+        "Analytical critical-active-wedge equations A-3-9/A-3-10 (with adhesion) and A-3-16/A-3-17, A-3-21/A-3-23 (without)",
+        "Examples A-1..A-6 (incl. 2023 AREMA gravity and cantilever walls) agree within a few percent of the graphical results"
+      ],
+      "equations": [
+        {
+          "id": "Eq. A-3-1",
+          "description": "Trial-wedge weight W = (wedge area)(gamma) + q(width) + V, including the tension-crack zone and surcharges.",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. A-3-5",
+          "description": "Maximum active force from the Culmann graphical construction Pa = (length of L)*(load scale lambda).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. A-3-9",
+          "description": "Critical-active-wedge active force Pa with adhesion (weight, cohesion, and adhesion components; Caltrans T&S Check Program).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. A-3-16",
+          "description": "Critical-active-wedge active force Pa without adhesion (weight and cohesion components).",
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure A-16: Single Wedge and Force Polygon",
+        "Figure A-17: Culmann Trial Wedges",
+        "Figure A-18: Culmann Graphical Solution to Scale",
+        "Figure A-19: Retaining Wall with Irregular Backfill by Culmann Method (Example A-1)",
+        "Figure A-21: Culmann Graphical Solution Using Force Polygon (Example A-1)",
+        "Figure A-22: Critical Active Wedge (Example A-2)",
+        "Figure A-23: Retaining Wall by Culmann Method (AREMA Manual page 8-5-20, Example A-3)",
+        "Figure A-26: Critical Active Wedge Method (Example A-4)",
+        "Figure A-27: Gravity Retaining Wall with Irregular Backfill by Culmann Method (Example A-5)",
+        "Figure A-31: Critical Active Wedge (Example A-6)"
+      ],
+      "tables": [],
+      "applicability": "Computing the maximum active earth pressure on a wall with irregular backfill/surcharges by Culmann's graphical or critical-wedge method"
+    }
+  ]
+}

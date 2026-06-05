@@ -1,0 +1,297 @@
+{
+  "reference_id": "Caltrans Trenching and Shoring Manual",
+  "reference_title": "California Trenching and Shoring Manual (Caltrans, June 2011, Revision 2 - July 2025)",
+  "volume": null,
+  "chapter": 11,
+  "chapter_title": "Construction Considerations and Final Summary (incl. Ground Anchor Restrained Shoring Systems)",
+  "sections": [
+    {
+      "section_id": "11-3",
+      "title": "Ground Anchor Restrained Shoring Systems (Overview)",
+      "summary": "Restrained shoring is higher risk: it usually retains greater soil heights, has additional elements that must perform as intended, is sensitive to the installation/removal sequence, and involves drilling/disturbance below or behind the wall (utility damage risk). This section focuses on ground anchors (tiebacks) as the restraining element.",
+      "body": "Restrained shoring systems are generally considered higher risk due to several factors. First, these systems are often retaining a greater height of soil. Another risk is the additional elements of the system that must perform as intended, and that the sequence of installation and removal affects the loading and performance of the shoring system. There are also risks involved with additional drilling or disturbance below or behind the shoring, such as damaging utilities. This section focuses specifically on ground anchors used as a restraining element.",
+      "key_points": [
+        "Restrained (anchored) shoring is higher risk than unrestrained shoring",
+        "Risks: greater retained height, additional elements that must perform, installation/removal sequence sensitivity, drilling disturbance and utility damage",
+        "Section 11-3 covers ground anchors (tiebacks) as the restraining element"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Understanding the added risks of ground-anchor (tieback) restrained shoring systems"
+    },
+    {
+      "section_id": "11-3.01",
+      "title": "Engineering Analysis and Construction Sequence",
+      "summary": "The construction sequence of a restrained system (sheet or soldier pile) must be considered in the engineering analysis whether the restraint is a strut, a buried anchor block, or a drilled ground anchor. Different loads act before and after each level of intermediate support is completed, so each installation stage should be analyzed - and each stage of support removal during backfilling may also need analysis.",
+      "body": "The construction sequence for a restrained shoring system, sheet pile or soldier pile, must be considered when making an engineering analysis. This is true whether the restraint is strutting, a buried anchor block, or a drilled ground anchor. Different loads are imposed on the system before and after the completion of a level of intermediate supports. An analysis for each stage of the system's installation should be performed, and an analysis for each stage of support removal during backfilling operations may also be needed.",
+      "key_points": [
+        "The construction sequence must be part of the engineering analysis (struts, anchor blocks, or drilled anchors)",
+        "Loads differ before and after each intermediate support level is completed",
+        "Analyze each installation stage; analyze each support-removal stage during backfilling as needed"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Staging the analysis of a restrained shoring system through installation and removal"
+    },
+    {
+      "section_id": "11-3.02",
+      "title": "Components of Ground Anchor Systems",
+      "summary": "Ground anchor components: piling (sheet/soldier piles); walers transferring earth pressure to the anchor (33% overstress allowed during proof testing; anchors often go directly through pile flanges, needing stiffeners/cover plates and a cut-section analysis); the tendon (high-strength bars/strands, centered with centralizers); stress limits (Fpu = 150 ksi bars, 270 ksi strand; Ft <= 0.6 Fpu at design load and <= 0.8 Fpu at proof load, both checked; proof load = 1.3 x design load); and grout (neat cement up to 8-in holes, sand-cement >= 8 in, aggregate concrete for very large holes; Type I/II, Type III for high early strength; inject from the bottom).",
+      "body": "There are many variations of ground anchor systems. The tension element may be prestressing strands or bars, single or multiple elements; ground anchors may be secured against walers or piles. Figure 11-1 illustrates a typical temporary ground anchor (a bar tendon system; strand systems are similar). Common components: PILING - sheet piling and soldier piles (see Chapter 6 for materials and allowable stresses). WALER - transfers the resultant earth pressure from the piling to the ground anchor; an overstress of 33 percent to the allowable design value is permitted for walers when proof testing the anchor. Temporary anchors are often anchored directly against the soldier piling through holes or slots in the flanges, eliminating walers; bearing stiffeners and flange cover plates are generally added to compensate for the loss of section, and a structural analysis of this cut section should always be required. TENDON - generally the same high-strength bars or strands used in prestressing concrete; anchorage consists of bearing plates and anchor nuts (bar tendons) or bearing plates, anchor head, and strand wedges (strand tendons), with shims/wedge plates accommodating the anchor inclination. The tendon should be centered within the drilled hole throughout its length using centralizers (spacers) or a hollow-stem auger. STRESS - allowable tensile stresses are a percentage of the ultimate tensile strength Fpu (bars Fpu = 150 ksi, strand Fpu = 270 ksi; check manufacturer data): at design load Ft <= 0.6 Fpu, at proof load Ft <= 0.8 Fpu (both conditions must be checked). The proof load can be considered the maximum value to use for the soil; the design load applies a safety factor of 1.3 to (i.e., the proof load is 1.3 times) the design load. GROUT - a flowable Portland cement grout or concrete encapsulates the tendon and fills the hole within the bonded length; neat cement grout for holes up to 8 in diameter, sand-cement for >= 8 in, aggregate concrete for very large holes; Type I or II cement (Type III for high early strength). Grout should, with few exceptions, always be injected at the bottom of the hole to ensure complete grouting and displace accumulated water.",
+      "key_points": [
+        "Components: piling, waler, tendon (bar or strand), grout",
+        "Waler transfers earth pressure to the anchor; 33% overstress allowed during proof testing",
+        "Anchors often go directly through pile flanges (add stiffeners/cover plates; analyze the cut section)",
+        "Stress limits: Fpu = 150 ksi (bars), 270 ksi (strand); Ft <= 0.6 Fpu at design load, <= 0.8 Fpu at proof load (both checked)",
+        "Proof load = 1.3 x design load",
+        "Center the tendon with centralizers/spacers; grout from the bottom of the hole",
+        "Grout: neat cement to 8-in holes, sand-cement >= 8 in, aggregate concrete for very large holes; Type I/II (III for high early strength)"
+      ],
+      "equations": [
+        {
+          "id": "Allowable tendon stress (design)",
+          "description": "Allowable tendon tensile stress at design load Ft <= 0.6 Fpu (Fpu = 150 ksi bars, 270 ksi strand).",
+          "implemented_in": null
+        },
+        {
+          "id": "Allowable tendon stress (proof)",
+          "description": "Allowable tendon tensile stress at proof load Ft <= 0.8 Fpu; proof load = 1.3 x design load.",
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure 11-1: Typical Temporary Ground Anchor"
+      ],
+      "tables": [],
+      "applicability": "Identifying and checking the components, stress limits, and grout of a ground anchor system"
+    },
+    {
+      "section_id": "11-3.03",
+      "title": "Ground Anchor (Capacity, Bond, Unbonded Length)",
+      "summary": "Anchor capacity depends on many interrelated factors and is confirmed by proof/performance tests. Most temporary anchors are straight-shafted with low-pressure (tremie) grout. Bond (pull-out) capacity develops along the bonded length. Ultimate capacity Pult = pi*d*Lb*Sb (hole diameter d, bonded length Lb, bond strength Sb). The Engineer checks the unbonded length: the front of the bonded zone must be >= H/5 (and >= 5 ft) beyond the active failure surface, and Lu >= 15 ft. Bond strength depends on overburden, drilling method/hole shape, soil, grouting method/pressure, and tendon. Post-grouting (>= 150 psi) increases capacity; under-reamed (belled) holes need cohesive soil.",
+      "body": "There are several types of ground anchors; capacity depends on a number of interrelated factors. Alternative products (e.g., CHANCE Helical screw anchors, Manta Ray deadman-style earth anchors) follow the manufacturer's published data. The most typical drilled hole is a straight-shafted hole; occasionally a hole is mechanically enlarged (under-reamed/belled) to add bearing, which requires soils with sufficient cohesion to prevent collapse (Figure 11-2). Water (drilling-introduced or groundwater) can significantly reduce anchor capacity in some cohesive soils (softer clays) with rotary drilling. Grout is generally placed by tremie or low-pressure methods; high-pressure post-grouting (150 psi or higher) fractures and expands the previously placed grout to compress the soil and form an enlarged bulb, increasing capacity, and is done through a separate ported grout tube. Because capacity varies widely, proof or performance tests are needed to confirm it; the FHWA/RD-82/047 report 'Tiebacks' provides capacity-estimating information. Bond capacity is the anchor's resistance to pull-out developed along the bonded length by the grout-soil interaction. The determination of the bonded length Lb and capacity is solely the Contractor's responsibility, verified by testing. The Engineer's review must include a check of the unbonded length: the minimum distance between the front of the bonded zone and the active failure surface behind the wall must not be less than H/5, in no case less than 5 feet, and the unbonded length must not be less than 15 feet (Figure 11-3). The ultimate anchor capacity is Pult = pi*d*Lb*Sb, where d is the drilled-hole diameter, Lb the bonded length, Lu the unbonded length, Sb the bond strength (lb/ft^2), and the assumed failure plane makes angle Psi = 45 - phi/2 with the vertical for the Rankine active condition. Bond strength depends on (1) location/effective overburden pressure above the anchor, (2) drilling method and hole configuration, (3) soil strength/type/relative density, (4) grouting method and pressure, and (5) tendon type/size/shape. Because bond strength is affected by the Contractor's means and methods, the assumed bond strength must be included in the submittal (preferably in a geotechnical report); Geotechnical Services (DES) are available for consultation.",
+      "key_points": [
+        "Ultimate anchor capacity Pult = pi*d*Lb*Sb (d = hole diameter, Lb = bonded length, Sb = bond strength)",
+        "Bond (pull-out) capacity develops along the bonded length (grout-soil interaction)",
+        "Unbonded length check: front of bonded zone >= H/5 (and >= 5 ft) beyond the active surface; Lu >= 15 ft",
+        "Rankine active failure plane at Psi = 45 - phi/2 from vertical",
+        "Bond strength depends on overburden, drilling/hole shape, soil, grouting method/pressure, tendon",
+        "Post-grouting (>= 150 psi) forms an enlarged bulb and increases capacity",
+        "Under-reamed (belled) holes require cohesive soil; verify capacity by proof/performance testing"
+      ],
+      "equations": [
+        {
+          "id": "Pult = pi*d*Lb*Sb",
+          "description": "Ultimate ground-anchor capacity Pult = pi*d*Lb*Sb (hole diameter d, bonded length Lb, bond strength Sb).",
+          "implemented_in": null
+        },
+        {
+          "id": "Unbonded length criteria",
+          "description": "Front of bonded zone must be >= H/5 (and >= 5 ft) beyond the active failure surface; unbonded length Lu >= 15 ft.",
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure 11-2: Types of drilled hole shapes",
+        "Figure 11-3: Unbonded Length Criteria"
+      ],
+      "tables": [],
+      "applicability": "Estimating ground-anchor capacity and checking bonded/unbonded length geometry"
+    },
+    {
+      "section_id": "11-3.04",
+      "title": "Forces on the Vertical Members",
+      "summary": "Inclined ground anchors impose a vertical force component that the vertical member must resist through skin friction on its embedded length and end bearing; failure to account for this downward load has caused excessive downward wall movement. Check the vertical capacity especially for (1) shoring in loose granular material or soft clays, (2) anchors steeper than the standard 15 degrees, and (3) multiple anchor rows; contact Caltrans Geotechnical Services for assistance.",
+      "body": "Ground anchors are generally inclined; therefore the vertical component of the ground anchor force must be resisted by the vertical member through skin friction on the embedded length of piling in contact with the soil and by end bearing. Problems with ground anchor walls have occurred because of excessive downward wall movement when this downward movement was not properly accounted for. The vertical capacity of the shoring system should be checked, particularly for (1) shoring embedded in loose granular material or soft clays, (2) ground anchors with angles steeper than the standard 15 degrees, and (3) when there are multiple rows of ground anchors. Contact Caltrans Geotechnical Services for assistance when checking the vertical capacity of the shoring elements.",
+      "key_points": [
+        "Inclined anchors add a vertical (downward) force on the vertical member",
+        "Resisted by pile skin friction on the embedded length plus end bearing",
+        "Unaccounted downward load has caused excessive downward wall movement",
+        "Check vertical capacity for loose granular/soft clay, anchors steeper than 15 deg, and multiple anchor rows"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Checking the vertical (downdrag) capacity of anchored vertical members for inclined ground anchors"
+    },
+    {
+      "section_id": "11-3.05",
+      "title": "Testing Temporary Ground Anchors (Proof and Performance Testing)",
+      "summary": "The Contractor verifies anchor capacity by testing after installation; testing matters most near existing structures or for long durations. Proof testing applies a sustained proof load (1.2-1.3 x design, or >= 1.3 high risk) and measures movement over a 10-60 min hold (by soil/risk; Table 11-1). Only the bonded length carries the proof load (unbonded length stays ungrouted). The proof load must be reached quickly and the creep clock must start at the proof load. A 'lift-off test' is an alternative but cannot separate creep from wall movement; SC recommends a dial-indicator gauge. Performance testing (incremental load/unload) is not normally specified for temporary shoring.",
+      "body": "The Contractor is responsible for providing a reasonable test method for verifying anchor capacity after installation. Anchors are tested to verify they sustain the design load over time without excessive movement; testing is more important when supporting or adjacent to existing structures and for extended durations. The Contractor should consider the degree of risk in selecting the number of anchors tested, test duration, allowable movement, and allowable load loss; high-risk situations include where settlement or damage would affect adjacent facilities (Table 11-1 lists recommended minimum criteria). The shoring plans should include load testing criteria (minimally proof load values), frequency of testing, test load duration (to capture creep), allowable movement or load loss, anticipated service life, and remedial measures if test anchors fail. Pressure gauges/load cells should be recently calibrated (within one year), clean, and in good order. PROOF TESTING: applying a sustained proof load and measuring movement over a specified period is the typical method; it may begin after the grout reaches the desired strength. Table 11-1 gives recommended proof-test criteria: cohesionless soils normal risk 1.2-1.3 of design load, 10-min hold, 10% of anchors per soil type; cohesionless high risk >= 1.3 design load, 10 min, 20-100%; cohesive normal risk 1.2-1.3 design load, 30 min, 10%; cohesive high risk >= 1.3 design load, 60 min, 30-100%; adverse conditions (groundwater or soft clays) 60 min for 10% and 10 min for the remaining 90%. The unbonded length Lu is left ungrouted before and during testing so that only the bonded length Lb carries the proof load (grout in the unbonded zone lies within the failure wedge and would not contribute resistance, and could bear against the wall facing producing erroneous results); forensic work shows small-diameter anchors (<= 6 in) develop most capacity in the bonded length. An alignment load of 5-10% of the proof load secures the jack, then the load is increased to the proof load and the hold period begins; movement is measured with a dial indicator gauge on a tripod independent of the anchor and shoring (Figure 11-4), and continuous jacking maintains the proof load. The proof load must be reached quickly; if it takes too long or is held too long before measuring creep, the creep rate is not representative - the creep clock must start when the proof load is first reached. As an alternative, a 'lift-off test' compares the force at seating to the force at lift-off over a specified period; lost force converts to creep movement, but it cannot differentiate anchor creep from wall movement into the soil, so SC recommends a dial-indicator gauge instead. PERFORMANCE TESTING is more extensive (incremental loading/unloading with movement measurement) to establish movement behavior; it is not normally specified for temporary shoring but can identify causes of anchor movement.",
+      "key_points": [
+        "Contractor verifies anchor capacity by proof testing (or performance testing) after installation",
+        "Proof load = 1.2-1.3 x design load (>= 1.3 for high risk); hold 10-60 min by soil type/risk (Table 11-1)",
+        "Only the bonded length Lb carries the proof load; the unbonded length stays ungrouted during testing",
+        "Reach the proof load quickly; start the creep clock when the proof load is first reached",
+        "Measure movement with a dial-indicator gauge independent of the anchor/shoring (Figure 11-4)",
+        "Lift-off test alternative cannot separate creep from wall movement; SC recommends the dial gauge",
+        "Performance testing (incremental load/unload) is not normally specified for temporary shoring"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 11-4: Proof Testing Equipment Setup Example"
+      ],
+      "tables": [
+        "Table 11-1: Recommended Ground Anchor Proof Test Criteria"
+      ],
+      "applicability": "Specifying and reviewing proof/performance test criteria for temporary ground anchors"
+    },
+    {
+      "section_id": "11-3.06",
+      "title": "Wall Movement and Settlement",
+      "summary": "As a rule of thumb, settlement of the soil behind a ground-anchor wall (with anchors locked off at a high percentage of design force) can be approximated as equal to the movement at the top of the wall from anchor creep plus pile deflection (see Section 7-3, System Deflection). Significant deflection/creep is unacceptable near existing structures where settlement is detrimental; where no permanent structures or sensitive features are affected, reasonable lateral movement and settlement may be tolerated.",
+      "body": "As a rule of thumb, the settlement of the soil behind a ground anchor wall, where the ground anchors are locked off at a high percentage of the design force, can be approximated as equal to the movement at the top of the wall caused by anchor creep and deflection of the piling (reference Section 7-3, System Deflection, of Chapter 7). If a shoring system is in close proximity to an existing structure where settlement might be detrimental, significant deflection and creep of the shoring system would not be acceptable. If a shoring system will not affect permanent structures, or supports something like a haul road, reasonable lateral movement and settlement may be tolerated.",
+      "key_points": [
+        "Behind-wall settlement ~ top-of-wall movement (anchor creep + pile deflection) when locked off at high design force",
+        "Reference Section 7-3, System Deflection (Chapter 7)",
+        "Near sensitive existing structures, significant deflection/creep is unacceptable",
+        "Where no permanent structures are affected, reasonable movement/settlement may be tolerated"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Estimating soil settlement behind an anchored wall from wall movement and creep"
+    },
+    {
+      "section_id": "11-3.07",
+      "title": "Lock-off Force",
+      "summary": "The lock-off force is the percentage of the required design force at which the anchor wedges/nut are seated after seating losses; 0.8*T_design is typically recommended (higher/lower values may be used for specific needs). For strand systems, a shim plate equal to the elastic elongation produced by (proof load - lock-off load) is inserted under the anchor head (corrected for wedge seating), tshim per Eq. 11-3-4. Seating loss is 0-1/16 in for threaded bars and 3/8-5/8 in for strands (often reduced by mechanically seating wedges).",
+      "body": "The lock-off force is the percentage of the required design force that the anchor wedges or anchor nut are seated at after seating losses. A value of 0.8*T_DESIGN is typically recommended as the lock-off force, but lower or higher values may be used to achieve specific design needs. One method for obtaining the proper lock-off force for strand systems is to insert a shim plate under the anchor head equal to the elastic elongation of the tendon produced by a force equal to the proof load minus the lock-off load, with a correction for wedge seating often subtracted from the shim thickness. The shim thickness is given by Equation 11-3-4, where tshim is the shim thickness, Pproof the proof load (kips), Plockoff the lock-off load (kips), A the tendon steel area (in^2), E the modulus of elasticity of the anchor (psi), Lu' the unbonded length (ft), and dL = 3 to 5 ft of anchor length for the jack and anchor wedges. Seating loss for threaded-bar systems is much less than for strands and can vary between 0 and 1/16 in; for strand systems it can vary between 3/8 and 5/8 in. The seating loss should be determined by the designer and verified during installation; mechanically seating the wedges minimizes seating loss. After seating the wedges at the proof load, the tendon is loaded, the shim removed, and the anchor head assembly seated against the bearing plate.",
+      "key_points": [
+        "Lock-off force = fraction of design force at which the anchor is seated after seating loss; typically 0.8*T_design",
+        "Strand lock-off via a shim plate = elastic elongation from (Pproof - Plockoff), corrected for wedge seating (Eq. 11-3-4)",
+        "Lu' = Lu + dL, with dL = 3 to 5 ft for the jack and wedges",
+        "Seating loss: 0-1/16 in (threaded bars), 3/8-5/8 in (strands; less if wedges are mechanically seated)"
+      ],
+      "equations": [
+        {
+          "id": "Eq. 11-3-4",
+          "description": "Shim plate thickness for strand lock-off tshim = (Pproof - Plockoff)*Lu'/(A*E), with Lu' = Lu + dL (dL = 3-5 ft).",
+          "implemented_in": null
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Setting the lock-off force and shim thickness for ground-anchor tendons"
+    },
+    {
+      "section_id": "11-3.08",
+      "title": "Corrosion Protection",
+      "summary": "The Contractor's submittal must address tendon corrosion after stressing. Very short-term installations on non-corrosive sites may not need protection. For longer-term installations, grouting the bonded and unbonded length is generally adequate on non-corrosive sites, with encapsulation/coating of un-grouted portions (anchor head, bearing plate, wedges, exposed strand). Long-term or corrosive-site installations may need elaborate schemes (grease as an inhibitor; pre-greased, pre-grouted plastic-sheathed tendons for permanent installations, Figure 11-5).",
+      "body": "The Contractor's submittal must address potential corrosion of the tendon after it has been stressed. For very short-term installations in non-corrosive sites, corrosion protection may not be necessary; the exposed steel may not be affected by a small amount of corrosion during its life. For longer-term installations, grouting of the bonded and unbonded length is generally adequate to minimize corrosion in most non-corrosive sites; encapsulating or coating any un-grouted portions (anchor head, bearing plate, wedges, strand, etc.) may be necessary. For long-term installations or installations in corrosive sites, more elaborate corrosion protection schemes may be necessary (grease is often used as a corrosion inhibitor). Figure 11-5 depicts tendons encapsulated in pre-greased and pre-grouted plastic sheaths generally used for permanent installations.",
+      "key_points": [
+        "Submittal must address tendon corrosion after stressing",
+        "Very short-term, non-corrosive sites: protection may be unnecessary",
+        "Longer-term, non-corrosive: grout the bonded/unbonded length; encapsulate/coat un-grouted parts",
+        "Long-term or corrosive sites: elaborate schemes (grease inhibitor; pre-greased/pre-grouted sheathed tendons)"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 11-5: Bar or Strand Tendons"
+      ],
+      "tables": [],
+      "applicability": "Specifying corrosion protection for temporary and permanent ground-anchor tendons"
+    },
+    {
+      "section_id": "11-3.09",
+      "title": "General Steps for Checking Ground Anchor Shoring Submittal",
+      "summary": "A 12-step review checklist for an anchored-shoring submittal: review completeness; determine Ka and Kp (K0 if the wall cannot move sufficiently); develop pressure diagrams; determine forces; find the moment at the top of the pile above the highest anchor; solve for embedment depth D and anchor force TH (confirm D resists vertical loads); check the pile section; check anchor capacity; check miscellaneous details; check the anchor test procedure; review the corrosion proposal; and consider wall-deflection/settlement effects on surface features behind the wall.",
+      "body": "General steps for checking a ground anchor shoring submittal: (1) Review submittal for completeness. (2) Determine Ka and Kp; in the rare cases where the shoring is not allowed to move sufficiently, determine K0 in lieu of Ka. (3) Develop pressure diagrams. (4) Determine forces. (5) Determine the moments at the top of the pile above the highest ground anchor. (6) Solve for depth (D), for both lateral and ground anchor force (TH); confirm D is sufficient to resist the vertical loads. (7) Check pile section. (8) Check anchor capacity. (9) Check miscellaneous details. (10) Check adequacy of ground anchor test procedure. (11) Review corrosion proposal. (12) General: consider effects of wall deflection and subsequent soil settlement on any surface feature behind the shoring wall.",
+      "key_points": [
+        "12-step submittal-review checklist for anchored shoring",
+        "Determine Ka and Kp (K0 if the wall cannot move sufficiently)",
+        "Solve for embedment depth D and horizontal anchor force TH; confirm D resists vertical loads",
+        "Check the pile section, anchor capacity, details, test procedure, and corrosion proposal",
+        "Consider wall deflection/settlement effects on surface features behind the wall"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Reviewing a Contractor's ground-anchor shoring submittal step by step"
+    },
+    {
+      "section_id": "11-3.10",
+      "title": "Estimating Long Term Creep",
+      "summary": "Long-term anchor creep is estimated from short-term proof-test measurements by extrapolating a logarithmic-in-time creep curve to the service period (Eq. 11-3-1, with constant C from movement between T1 and T2). A 'lift-off test' alternative substitutes elastic relationships (force at seating P1, force at lift-off P2, Lu' = Lu + dL, area A, modulus E) into the creep equation (Eq. 11-3-3). The formula is only an estimate and does not accurately predict creep in soft cohesive soils; it should accompany periodic wall-movement monitoring. Examples 11-1A (measurement/time method) and 11-1B (lift-off method) demonstrate the calculation (e.g., ~1/2 inch of estimated long-term wall deflection).",
+      "body": "Long-term ground anchor creep can be estimated from measurements taken during initial short-term proof testing by extrapolating those measurements to the anticipated total creep over the service period; the anchor creep is roughly modeled by a curve that is a logarithmic function of time. The general long-term creep formula (Eq. 11-3-1) uses a constant C determined from the movement between T1 and T2; for the period T2 to T3 the value of C is known and the creep movement Delta can be calculated. Delta is the creep movement (inches) for times T1, T2, or T3 (or measured in the field); T1 is the time of the first movement measurement during the load-hold period (usually within 1 minute after the proof load is applied); T2 is the time of the last measurement during the load-hold period; T3 is the time the shoring system will be in use. The formula is only an estimate of potential anchor creep, should be used with periodic monitoring of wall movement, and does not accurately predict creep for soft cohesive soils. If using a lift-off test to estimate creep, an approximation (Eq. 11-3-2/11-3-3) substitutes the force at seating P1, force at lift-off P2, Lu' = Lu + dL (dL = 3 to 5 ft for the jack and wedges), the movement during the load-hold period Delta_1-2, the tendon area A, and the modulus of elasticity E. Example 11-1A demonstrates the measurement-and-time method (given a proof load applied in <= 2 min, a 10-min hold beginning at the proof load, measurements at 1/4/6/8/10 min, proof load = 133% of design load, max permissible movement 0.1 in between 1 and 10 min, all anchors tested, 1-year service - the estimated long-term deflection is about 1/2 inch, which may be unacceptable near a sensitive structure but acceptable where no permanent structures are affected). Example 11-1B demonstrates the lift-off load method (lift-off test 24 hr after seating; force at seating 83,000 lb, lift-off force >= 67,900 lb; Lu' ~ 20 ft, A = 0.647 in^2, E = 28x10^6 psi; estimated creep from T2 = 1 day to T3 = 365 days is Delta_2-3 = 0.16 inch).",
+      "key_points": [
+        "Anchor creep is modeled as logarithmic in time; extrapolate proof-test movements to the service period (Eq. 11-3-1)",
+        "Constant C is set from the movement between T1 and T2, then used to find Delta to T3",
+        "T1 = first measurement (~1 min after proof load), T2 = last hold measurement, T3 = service time",
+        "Lift-off alternative substitutes P1 (seating), P2 (lift-off), Lu' = Lu + dL, A, E (Eq. 11-3-2/11-3-3)",
+        "Estimate only; does NOT apply to soft cohesive soils; pair with periodic wall-movement monitoring",
+        "Example 11-1A ~ 1/2 inch long-term deflection; Example 11-1B lift-off creep Delta_2-3 = 0.16 inch"
+      ],
+      "equations": [
+        {
+          "id": "Eq. 11-3-1",
+          "description": "General long-term creep formula (logarithmic in time); constant C from movement between T1 and T2, extrapolated to service time T3.",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. 11-3-3",
+          "description": "Lift-off-test creep approximation using P1 (force at seating), P2 (force at lift-off), Lu' = Lu + dL, tendon area A, and modulus E.",
+          "implemented_in": null
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Estimating long-term ground-anchor creep from proof-test or lift-off measurements"
+    },
+    {
+      "section_id": "11-1",
+      "title": "Construction (Inspection Considerations)",
+      "summary": "Shoring integrity depends on design adequacy, material quality, and workmanship; frequent, thorough inspection by qualified personnel is required at all stages. A 23-item checklist of common construction/inspection considerations covers permits, plan familiarity, soil/groundwater monitoring, distress indicators, member sizes/spacing and sequence, ground-anchor installation, cable thimbles/clamps, surcharge monitoring, weather, vibrations, utility notification (USA 811) within 5x the excavation depth, benchmarks for ground-movement monitoring, egress within 25 ft, hazardous-atmosphere protection, and competent-person daily inspections.",
+      "body": "The integrity of a shoring system depends on the adequacy of the design, the quality of materials, and the quality of workmanship; frequent, thorough inspection by qualified personnel is required during all stages of construction. Common considerations (23-item list) include: confirm a current Cal/OSHA excavation permit (annual permits Jan 1-Dec 31, or project-specific); become familiar with the authorized plans, location, assumptions, soils data, groundwater, surcharge loads, sequence, utilities, and the Contractor's competent person; know the minimum safety requirements; assess excavated soil against the Log of Test Borings; monitor groundwater; watch for distress (tension cracks, subsidence); inspect sloped (unshored) cuts especially after rain; verify shored member size/spacing and follow the plan sequence; check full bearing at jacks/struts; review materials for quality and grade; use manufactured products per manufacturer recommendations; install ground anchors per the authorized plan; use thimbles and proper cable clamps (no sharp corners); monitor surcharge loads; account for weather effects on clays; maintain good workmanship; add monitoring for dynamic loads (vibratory compaction, pile driving, blasting); notify utility owners (Underground Service Alert / 811) when facilities are within 5x the excavation depth; use benchmarks to monitor horizontal/vertical ground movement; provide egress (ladders/ramps/stairs) in excavations 4 ft or deeper within 25 ft of lateral travel; protect against hazardous atmospheres (air monitoring, confined-space rules); protect employees from accumulating water, falling debris, and unstable structures; the Contractor's competent person performs daily and post-storm inspections with authority to remove endangered workers; and provide barrier protection and backfill temporary shafts/pits. Contractor-proposed alternative systems (wire-mesh MSE, 'burrito' retention, proprietary systems) are reviewed against the manufacturer's published design criteria.",
+      "key_points": [
+        "Shoring integrity = design adequacy + material quality + workmanship; inspect at all stages",
+        "Verify a current Cal/OSHA excavation permit and follow the plan's sequence of operations",
+        "Monitor groundwater, surcharge loads, distress (tension cracks/subsidence), and dynamic loads",
+        "Notify Underground Service Alert (811) for utilities within 5x the excavation depth",
+        "Provide egress in excavations >= 4 ft (within 25 ft of lateral travel) and hazardous-atmosphere protection",
+        "Competent person performs daily and post-storm inspections with authority to remove workers"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Inspecting and monitoring shoring systems during construction"
+    },
+    {
+      "section_id": "11-2",
+      "title": "Encroachment Permit Projects",
+      "summary": "An encroachment permit (issued by the District Permit Engineer) is required for work by others within or adjacent to State highway right-of-way. If excavation/shoring is involved, shoring plans must accompany the application and be authorized before the permit issues; complex systems may be routed to Structure Maintenance, Bridge Design, or Structure Construction. A California-registered civil engineer must prepare plans that deviate from Title 8 safety orders. The minimum shoring-plan content (permit number, contractor/owner, location, purpose, soil profile, surcharge loadings, the shoring plan, manufactured data, construction permit, and the competent person) is enumerated.",
+      "body": "An encroachment permit is required for projects performed by others within State highway right-of-way or adjacent to State highways (including cooperative agreements such as Capital Improvement Projects); the Contractor, builder, or owner must apply to the District Permit Engineer. If the scope requires excavation and shoring, plans must accompany the application and be reviewed/authorized by the District Permit Engineer before a permit is issued. The plan may be routed to Structure Maintenance, Bridge Design, or Structure Construction for review, and must conform to Chapter 2 (Cal/OSHA Overview) and the permit application. Acceptance is based on what is required for a State project, with consideration of the Contractor's background, the work, and the degree of risk; geotechnical engineering is not an exact science. The minimum shoring-plan content includes: Encroachment Permit No.; Contractor (name, address, phone); Owner (and contract number); Owner Encroachment Permit No.; Location; Purpose; Soil Profile (basis of identification); Surcharge Loadings (all adjacent loads with dimensions; the minimum surcharge applies where not exceeded); the Excavation/Trenching & Shoring Plan (a letter for simple work, a full description for complex systems - and per the California Labor Code, plans deviating from Title 8 safety orders must be prepared and signed by a California-registered civil engineer); Manufactured Data; Construction Permit (Cal/OSHA); and Inspection (the designated competent person). The Engineer reviews the plan per applicable specifications and the Construction Safety Orders, considering deviations with adequate supporting data. The District Encroachment Permit Engineer is responsible for fieldwork inspection; complex work may require Structure Construction assistance acting as a representative of the District Permit Engineer, who can withdraw the permit to stop work.",
+      "key_points": [
+        "Encroachment permit (District Permit Engineer) required for work in/adjacent to State highway right-of-way",
+        "Shoring plans must accompany the application and be authorized before the permit issues",
+        "Plans deviating from Title 8 safety orders must be prepared/signed by a California-registered civil engineer",
+        "Minimum plan content includes soil profile, surcharge loadings, the shoring plan, manufactured data, permits, and the competent person",
+        "Review per specifications and the Construction Safety Orders; SC may assist the District Permit Engineer"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Reviewing shoring plans submitted under an encroachment permit"
+    },
+    {
+      "section_id": "11-4",
+      "title": "Summary",
+      "summary": "Closing summary: the Department has legal obligations for trenching/shoring (Chapters 1 and 2); soil mechanics is not a precise science, so be aware of assumptions; simplified analysis procedures suffice for much of the work; construction quality is as important as design; and railroad work needs additional controls. Key procedural points: a California-registered engineer must review Contractor temporary-structure plans; the Contractor must hold a posted Cal/OSHA permit; trenches <= 20 ft following Cal/OSHA standard details need no independent analysis, but deeper trenches or deviations from the standard details require professional-engineer plans and an independent analysis.",
+      "body": "The Department has an obligation with respect to trenching and shoring work; be informed of legal responsibilities (Chapter 1, Legal Requirements, and Chapter 2, Cal/OSHA Overview). Soil mechanics (geotechnical engineering) is not a precise science; be aware of the effects assumptions can make. Simplified engineering analysis procedures can be used for much of the trenching and shoring work encountered. The actual construction work is of equal importance to the design; the Contractor and Engineer must be alert to changing conditions and take appropriate action - good engineering judgment is essential. Railroad work requires additional controls and specific administrative procedures. Summary of requirements: (1) State Statute Sec. 137.6 requires a California-registered engineer to review the Contractor's plans for temporary structures (including shoring plans) on State highway work; (2) the Engineer confirms a proper Cal/OSHA excavation/trenching permit is obtained and posted before work starts; (3) trenches <= 20 ft deep that conform to Cal/OSHA Construction Safety Order standard details need not be prepared by a professional engineer and need no independent analysis (the Engineer confirms conformance); (4) trenches over 20 ft, or where the standard details do not apply, must have plans prepared by a professional engineer; (5) plans deviating from the Cal/OSHA CSO must be prepared by a California-registered professional engineer and the reviewer performs an independent analysis; (6) designs by specialty firms may appear less conservative and may need to be reviewed in the manner designed (obtain SC Falsework Engineer assistance); (7) railroad-authorization work is handled through the SC Falsework Engineer as liaison; (8) revisions should be done by the plan originator.",
+      "key_points": [
+        "The Department has legal obligations for trenching/shoring (Chapters 1 and 2)",
+        "Geotechnical engineering is not a precise science; be aware of assumptions",
+        "Construction quality is as important as design; railroad work needs additional controls",
+        "A California-registered engineer reviews Contractor temporary-structure (shoring) plans; Cal/OSHA permit must be posted",
+        "Trenches <= 20 ft per Cal/OSHA standard details need no independent analysis; deeper trenches or deviations require PE plans and independent analysis"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Summarizing Caltrans trenching/shoring review requirements and procedures"
+    }
+  ]
+}

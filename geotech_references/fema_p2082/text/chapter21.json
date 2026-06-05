@@ -1,0 +1,173 @@
+{
+  "reference_id": "FEMA P-2082-1",
+  "reference_title": "2020 NEHRP Recommended Seismic Provisions for New Buildings and Other Structures",
+  "chapter": 21,
+  "chapter_title": "Site-Specific Ground Motion Procedures for Seismic Design",
+  "sections": [
+    {
+      "section_id": "21.1",
+      "title": "Site Response Analysis",
+      "summary": "Chapter 21 REPLACES ASCE 7-16 Sections 21.1-21.5. Section 21.1 governs the 1D site response analysis required by Section 11.4.7 (and for Site Class F). (21.1.1) Base Ground Motions: an MCER spectrum at a bedrock (or deep firm-soil) base condition per Section 11.4.6 or 21.2 (base Vs30), with >= 5 horizontal time histories matching the controlling MCER magnitude/distance, scaled to the MCER rock spectrum. (21.1.2) Site Condition Modeling: low-strain Vs, nonlinear/equivalent-linear curves, unit weights. (21.1.3) Analysis: input base motions as OUTCROPPING, propagate, and form surface-to-base 5%-damped spectral ratios; the surface MCER spectrum >= base spectrum x average ratios.",
+      "body": "CHAPTER 21, SITE SPECIFIC GROUND MOTION PROCEDURES FOR SEISMIC DESIGN (Modifications). SECTION 21.1 SITE RESPONSE ANALYSIS - Replace Section 21.1 with the following. The requirements of Section 21.1 shall be satisfied where site response analysis is performed or required by Section 11.4.7. The analysis shall be documented in a report. 21.1.1 Base Ground Motions: An MCER response spectrum shall be developed for a base condition consisting of bedrock, or when bedrock is very deep, firm soil conditions below softer surficial layers, using the procedure of Sections 11.4.6 or 21.2. Unless a site-specific ground motion hazard analysis described in Section 21.2 is carried out, the MCER base response spectrum shall be developed using the procedure of Section 11.4.6, assuming a site condition representative of the geological conditions at the base (represented by a base-condition average shear wave velocity, vs30). At least five recorded or simulated horizontal ground motion acceleration time histories shall be selected from events that have magnitudes and fault distances that are consistent with those that control the MCER ground motion. Each selected time history shall be scaled so that its response spectrum is, on average, approximately at the level of the MCER rock response spectrum over the period range of significance to structural response. 21.1.2 Site Condition Modeling: A site response model based on low-strain shear wave velocities, nonlinear or equivalent-linear shear stress-strain relationships, and unit weights shall be developed. Low-strain shear wave velocities shall be determined from field measurements at the site or from measurements from similar soils in the site vicinity. Nonlinear or equivalent-linear shear stress-strain relationships and unit weights shall be selected on the basis of laboratory tests or published relationships for similar soils. The uncertainties in soil properties shall be estimated. Where very deep soil profiles make the development of a soil model to bedrock impractical, the model is permitted to be terminated where the soil stiffness is at least as great as the values used to define Site Class C in Chapter 20. 21.1.3 Site Response Analysis and Computed Results: Base ground motion time histories shall be input to the soil profile as outcropping motions. Using appropriate computational techniques that treat nonlinear soil properties in a nonlinear or equivalent-linear manner, the response of the soil profile shall be determined and surface ground motion time histories shall be calculated. Ratios of 5% damped response spectra of surface ground motions to input base ground motions shall be calculated. The recommended surface MCER ground motion response spectrum shall not be lower than the MCER response spectrum of the base motion multiplied by the average surface-to-base response spectral ratios (calculated period by period) obtained from the site response analyses. The recommended surface ground motions that result from the analysis shall reflect consideration of sensitivity of response to uncertainty in soil properties, depth of soil model, and input motions.",
+      "key_points": [
+        "P-2082 Chapter 21 REPLACES ASCE 7-16 Sections 21.1-21.5 (full replacement, not partial revision)",
+        "Section 21.1 site response analysis is required by Section 11.4.7 and for Site Class F (Section 20.2.1); must be documented in a report",
+        "Base motion: MCER spectrum at a bedrock (or deep firm-soil) base condition per Section 11.4.6 or 21.2, characterized by a base-condition Vs30",
+        "Select >= 5 recorded/simulated horizontal acceleration time histories with magnitudes and fault distances consistent with the controlling MCER motion, scaled to the MCER rock spectrum",
+        "Site model: low-strain Vs (field or similar-soil measurements), nonlinear / equivalent-linear modulus-reduction & damping curves, unit weights, with estimated soil-property uncertainties",
+        "Very deep profiles may terminate the model where soil stiffness >= the Site Class C values of Chapter 20",
+        "Input base motions as OUTCROPPING motions; propagate via nonlinear or equivalent-linear (EQL) analysis",
+        "Recommended surface MCER spectrum >= base MCER spectrum x average period-by-period surface-to-base 5%-damped spectral ratios"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Performing the 1D site response analysis (Site Class F or by-choice) that produces a site-specific surface MCER ground motion"
+    },
+    {
+      "section_id": "21.2",
+      "title": "Risk-Targeted MCER Ground Motion Hazard Analysis",
+      "summary": "Section 21.2 governs the probabilistic + deterministic ground motion hazard analysis required by Section 11.4.7, accounting for regional tectonics, geology, seismicity, fault recurrence/Mmax, near-source effects, and site conditions. It uses maximum-direction horizontal response; geometric-mean models are scaled by 1.2 (T <= 0.2 s), 1.25 (1.0 s), 1.3 (T >= 10 s). (21.2.1) Probabilistic MCER = the maximum-direction spectrum at a 1% probability of collapse in 50 years, from the hazard curve and a lognormal collapse fragility (10% collapse probability, log std dev = 0.6). (21.2.2) Deterministic MCER = the 84th-percentile maximum-direction Sa, the largest over scenario earthquakes on faults.",
+      "body": "SECTION 21.2 RISK-TARGETED MAXIMUM CONSIDERED EARTHQUAKE (MCER) GROUND MOTION HAZARD ANALYSIS - Replace Section 21.2 with the following. The requirements of Section 21.2 shall be satisfied where a ground motion hazard analysis is performed or required by Section 11.4.7. The ground motion hazard analysis shall account for the regional tectonic setting, geology, and seismicity; the expected recurrence rates and maximum magnitudes of earthquakes on known faults and source zones; the characteristics of ground motion including near-source effects, if any; and the effects of subsurface site conditions on ground motions. The characteristics of subsurface site conditions shall be considered either using ground motion models that represent regional and local geology or in accordance with Section 21.1. The analysis shall incorporate current seismic interpretations, including uncertainties for models and parameter values for seismic sources and ground motions. If the spectral response accelerations predicted by the ground motion models do not represent the maximum response in the horizontal plane, then the response spectral accelerations computed from the hazard analysis shall be scaled by factors to increase the motions to the maximum response. If the ground motion models predict the geometric mean or similar metric of the two horizontal components, then the scale factors shall be 1.2 for periods <= 0.2 s, 1.25 for a period of 1.0 s, and 1.3 for periods >= 10 s, unless it can be shown that other scale factors more closely represent the maximum response; scale factors between these periods shall be obtained by linear interpolation. The analysis shall be documented in a report. 21.2.1 Probabilistic (MCER) Ground Motions: The probabilistic spectral response accelerations shall be taken as the spectral response accelerations in the direction of maximum horizontal response represented by a 5% damped acceleration response spectrum that is expected to achieve a 1% probability of collapse within a 50-year period. At each spectral response period, ordinates of the probabilistic ground motion response spectrum shall be determined from iterative integration of a site-specific hazard curve with a lognormal probability density function representing the collapse fragility. The ordinate at each period shall achieve a 1% probability of collapse within a 50-year period for a collapse fragility that has (1) a 10% probability of collapse at said ordinate of the probabilistic ground motion response spectrum and (2) a logarithmic standard deviation value of 0.6. 21.2.2 Deterministic (MCER) Ground Motions: The deterministic spectral response acceleration at each period shall be calculated as an 84th-percentile 5% damped spectral response acceleration in the direction of maximum horizontal response computed at that period. The largest such acceleration calculated for scenario earthquakes on all known faults within the region shall be used. The scenario earthquakes shall be determined from deaggregation for the probabilistic spectral response acceleration at each period. Scenario earthquakes contributing less than 10% of the largest contributor at each period shall be ignored.",
+      "key_points": [
+        "Hazard analysis (per Section 11.4.7) accounts for regional tectonics, geology, seismicity, fault recurrence/Mmax, near-source effects, and subsurface site conditions",
+        "Maximum-direction horizontal response; if models give geometric mean, scale 1.2 (T <= 0.2 s), 1.25 (T = 1.0 s), 1.3 (T >= 10 s), linearly interpolated",
+        "Probabilistic MCER (21.2.1): maximum-direction 5%-damped spectrum at a 1% probability of collapse in 50 years",
+        "Risk-targeting via lognormal collapse fragility: 10% collapse probability at the spectral ordinate, logarithmic std dev = 0.6",
+        "Deterministic MCER (21.2.2): 84th-percentile maximum-direction Sa, the largest over scenario earthquakes on all known faults",
+        "Scenario earthquakes from deaggregation; contributions < 10% of the largest contributor at each period are ignored"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Performing the probabilistic + deterministic site-specific MCER ground motion hazard analysis"
+    },
+    {
+      "section_id": "21.2.3",
+      "title": "Site-Specific MCER Response Spectrum",
+      "summary": "The site-specific MCER spectral acceleration SaM at each period is the LESSER of the probabilistic (21.2.1) and deterministic (21.2.2) values, subject to two lower limits. Deterministic lower limit: the deterministic spectrum >= the Table 21.2-1 lower-limit spectrum for the site class; it need not be computed if the probabilistic spectrum is below that limit at all periods. 80% floor: SaM >= 80% of the USGS geodatabase MCER spectrum for the site class (for Site Class F, >= 80% of the Site Class E geodatabase spectrum, unless a different class is justified per Section 20.3.3). Alternatively the MCER may equal the USGS geodatabase MCER spectrum for the site class.",
+      "body": "21.2.3 Site-Specific MCER Response Spectrum: The site-specific MCER spectral response acceleration at any period, SaM, shall be taken as the lesser of the spectral response accelerations from the probabilistic ground motions of Section 21.2.1 and the deterministic ground motions of Section 21.2.2. EXCEPTION: The site-specific MCER response spectrum may be taken as equal to the MCER response spectrum obtained from the USGS Seismic Design Geodatabase where values are provided by the USGS Seismic Design Web Service for the site class determined in accordance with Section 11.4.2. The site-specific MCER spectral response acceleration at any period shall not be taken as less than 80% of the MCER response spectrum obtained from the USGS Seismic Design Geodatabase (https://doi.org/10.5066/F7NK3C76) where values are provided by the USGS Seismic Design Web Service for the site class per Section 11.4.2. For sites classified as Site Class F requiring site-specific analysis in accordance with Section 11.4.7, the site-specific MCER spectral response acceleration at any period shall not be less than 80% of the MCER response spectrum obtained from the USGS Seismic Design Geodatabase for Site Class E. EXCEPTION: Where a different site class can be justified using the site-specific classification procedures of Section 20.3.3, a lower limit of 80% of SaM for the justified site class shall be permitted to be used. Additionally, the deterministic response spectral acceleration at each period (Section 21.2.2) shall be taken as not less than the deterministic lower limit response spectrum of Table 21.2-1 for the site class determined per Section 11.4.2; the deterministic ground motion response spectrum need not be calculated where the probabilistic ground motion response spectrum of 21.2.1 is, at all response periods, less than the deterministic lower limit response spectrum of Table 21.2-1 for that site class.",
+      "key_points": [
+        "SaM = the LESSER of the probabilistic (21.2.1) and deterministic (21.2.2) MCER spectra at each period",
+        "Deterministic lower limit: SaM >= the Table 21.2-1 deterministic-lower-limit spectrum for the site class (Section 11.4.2)",
+        "Deterministic spectrum may be skipped if the probabilistic spectrum is below that lower limit at all periods",
+        "80% floor: SaM >= 80% of the USGS Seismic Design Geodatabase MCER spectrum for the site class",
+        "Site Class F: SaM >= 80% of the geodatabase MCER spectrum for Site Class E (unless a different class is justified per Section 20.3.3)",
+        "MCER may alternatively be taken equal to the USGS geodatabase MCER spectrum for the site class"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 21.2-1: Deterministic Lower Limit Values of MCER Response Spectra and PGAG (g) by Site Class A-E"
+      ],
+      "applicability": "Constructing the final site-specific MCER response spectrum (lesser of probabilistic/deterministic, with the deterministic and 80%-geodatabase lower limits)"
+    },
+    {
+      "section_id": "21.2.3.1",
+      "title": "Table 21.2-1 - Deterministic Lower Limit Values of MCER Response Spectra and PGAG",
+      "summary": "Table 21.2-1 gives the deterministic lower-limit MCER response spectral acceleration (g, 5% damped) at 22 periods from 0 to 10 s, plus the geometric-mean PGA lower limit PGAG, for Site Classes A, B, BC, C, CD, D, DE, and E. These values form the floor on the deterministic MCER spectrum (Section 21.2.2) and on the deterministic MCEG PGA (Section 21.5.2). The lower limit is largest at intermediate/soft site classes (e.g., short-period peaks near 1.7-1.83 g for C/CD) and tapers at long periods.",
+      "body": "Table 21.2-1 Deterministic Lower Limit Values of MCER Response Spectra and PGAG (g), 5% damped, by Site Class (columns A, B, BC, C, CD, D, DE, E). Period T (s) -> [A, B, BC, C, CD, D, DE, E]: 0.00 -> [0.50, 0.57, 0.66, 0.73, 0.74, 0.69, 0.61, 0.55]; 0.01 -> [0.50, 0.57, 0.66, 0.73, 0.75, 0.70, 0.62, 0.55]; 0.02 -> [0.52, 0.58, 0.68, 0.74, 0.75, 0.70, 0.62, 0.55]; 0.03 -> [0.60, 0.66, 0.75, 0.79, 0.78, 0.70, 0.62, 0.55]; 0.05 -> [0.81, 0.89, 0.95, 0.96, 0.89, 0.76, 0.62, 0.55]; 0.075 -> [1.04, 1.14, 1.21, 1.19, 1.08, 0.90, 0.71, 0.62]; 0.10 -> [1.12, 1.25, 1.37, 1.37, 1.24, 1.04, 0.82, 0.72]; 0.15 -> [1.12, 1.29, 1.53, 1.61, 1.50, 1.27, 1.00, 0.87]; 0.20 -> [1.01, 1.19, 1.50, 1.71, 1.66, 1.44, 1.15, 1.01]; 0.25 -> [0.90, 1.07, 1.40, 1.71, 1.77, 1.58, 1.30, 1.15]; 0.30 -> [0.81, 0.98, 1.30, 1.66, 1.83, 1.71, 1.44, 1.30]; 0.40 -> [0.69, 0.83, 1.14, 1.53, 1.82, 1.80, 1.61, 1.48]; 0.50 -> [0.60, 0.72, 1.01, 1.38, 1.73, 1.80, 1.68, 1.60]; 0.75 -> [0.46, 0.54, 0.76, 1.07, 1.41, 1.57, 1.60, 1.59]; 1.0 -> [0.37, 0.42, 0.60, 0.86, 1.17, 1.39, 1.51, 1.58]; 1.5 -> [0.26, 0.29, 0.41, 0.60, 0.84, 1.09, 1.35, 1.54]; 2.0 -> [0.21, 0.23, 0.31, 0.45, 0.64, 0.88, 1.19, 1.46]; 3.0 -> [0.15, 0.17, 0.21, 0.31, 0.45, 0.63, 0.89, 1.11]; 4.0 -> [0.12, 0.13, 0.16, 0.24, 0.34, 0.47, 0.66, 0.81]; 5.0 -> [0.10, 0.11, 0.13, 0.19, 0.26, 0.36, 0.49, 0.61]; 7.5 -> [0.063, 0.068, 0.080, 0.11, 0.15, 0.19, 0.26, 0.31]; 10 -> [0.042, 0.045, 0.052, 0.069, 0.089, 0.11, 0.14, 0.17]. PGAG -> [0.37, 0.43, 0.50, 0.55, 0.56, 0.53, 0.46, 0.42].",
+      "key_points": [
+        "Deterministic lower-limit MCER spectral acceleration (g, 5% damped) at 22 periods 0-10 s for Site Classes A-E (A, B, BC, C, CD, D, DE, E)",
+        "Last row PGAG is the geometric-mean PGA deterministic lower limit (used in Section 21.5.2)",
+        "Floors the deterministic MCER spectrum (21.2.2) and deterministic MCEG PGA (21.5.2)",
+        "Short-period (0.2-0.3 s) lower-limit peaks ~1.7-1.83 g at Site Class C/CD; values taper to ~0.04-0.17 g at 10 s",
+        "PGAG ranges 0.37 g (A) to 0.56 g (CD), then down to 0.42 g (E)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 21.2-1: Deterministic Lower Limit Values of MCER Response Spectra and PGAG (g), Site Classes A-E, 22 periods + PGAG"
+      ],
+      "applicability": "Deterministic lower-limit floor on the site-specific MCER response spectrum and MCEG PGA"
+    },
+    {
+      "section_id": "21.3",
+      "title": "Design Response Spectrum",
+      "summary": "The site-specific design spectral response acceleration at any period is two-thirds of the site-specific MCER value: Sa = (2/3)*SaM (Eq. 21.3-1), where SaM is the site-specific MCER spectral response acceleration from Section 21.1 (site response analysis) or Section 21.2 (hazard analysis). This is the same two-thirds factor used in Chapter 11.",
+      "body": "SECTION 21.3 DESIGN RESPONSE SPECTRUM - Replace Section 21.3 with the following. The design spectral response acceleration at any period shall be determined from Eq. (21.3-1): Sa = (2/3)*SaM (Eq. 21.3-1), where SaM is the MCER spectral response acceleration obtained from Section 21.1 or 21.2.",
+      "key_points": [
+        "Site-specific design spectrum Sa = (2/3)*SaM (Eq. 21.3-1)",
+        "SaM = site-specific MCER spectral acceleration from Section 21.1 (site response) or 21.2 (hazard analysis)",
+        "Same two-thirds MCER-to-design factor as the Chapter 11 general procedure"
+      ],
+      "equations": [
+        {
+          "equation_id": "21.3-1",
+          "description": "Site-specific design spectral response acceleration (two-thirds of the site-specific MCER value)",
+          "latex": "S_a = \\tfrac{2}{3} S_{aM}",
+          "variables": {
+            "S_a": "site-specific design spectral response acceleration at period T",
+            "S_aM": "site-specific MCER spectral response acceleration at period T (from Section 21.1 or 21.2)"
+          },
+          "implemented_in": null
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Deriving the site-specific design response spectrum from the site-specific MCER spectrum"
+    },
+    {
+      "section_id": "21.4",
+      "title": "Design Acceleration Parameters",
+      "summary": "When the site-specific procedure (Section 21.3) is used: SDS = 90% of the maximum site-specific design Sa over periods 0.2-5 s (inclusive). SD1 = 90% of the maximum of the product T*Sa, over 1-2 s for stiffer sites (vs > 1,450 ft/s / 442 m/s) or 1-5 s for softer sites (vs <= 1,450 ft/s / 442 m/s), but not less than 100% of Sa at 1 s. SMS = 1.5*SDS and SM1 = 1.5*SD1. The 1,450 ft/s break is the Site Class C/CD boundary of the revised Chapter 20. For ELF, the site-specific Sa(T) may replace SD1/T in Eq. (12.8-3) and SD1*TL/T^2 in Eq. (12.8-4); SDS may be used in Eqs. (12.8-2),(12.8-5),(15.4-1),(15.4-3); the mapped S1 is used in Eqs. (12.8-6),(15.4-2),(15.4-4).",
+      "body": "SECTION 21.4 DESIGN ACCELERATION PARAMETERS - Replace Section 21.4 with the following. Where the site-specific procedure is used to determine the design ground motion in accordance with Section 21.3, the parameter SDS shall be taken as 90% of the maximum spectral acceleration, Sa, obtained from the site-specific spectrum, at any period within the range from 0.2 to 5 s, inclusive. The parameter SD1 shall be taken as 90% of the maximum value of the product T*Sa for periods from 1 to 2 s for sites with vs > 1,450 ft/s (vs > 442 m/s) and for periods from 1 to 5 s for sites with vs <= 1,450 ft/s (vs <= 442 m/s), but not less than 100% of the value of Sa at 1 s. The parameters SMS and SM1 shall be taken as 1.5 times SDS and SD1, respectively. For use with the equivalent lateral force procedure, the site-specific spectral acceleration, Sa at T, shall be permitted to replace SD1/T in Eq. (12.8-3) and SD1*TL/T^2 in Eq. (12.8-4). The parameter SDS calculated per this section shall be permitted to be used in Eqs. (12.8-2), (12.8-5), (15.4-1), and (15.4-3). The mapped value of S1 shall be used in Eqs. (12.8-6), (15.4-2), and (15.4-4).",
+      "key_points": [
+        "SDS = 90% of the maximum site-specific design Sa over periods 0.2-5 s (inclusive)",
+        "SD1 = 90% of max(T*Sa) over 1-2 s if vs > 1,450 ft/s (442 m/s), or over 1-5 s if vs <= 1,450 ft/s (442 m/s); but >= 100% of Sa at 1 s",
+        "The 1,450 ft/s (442 m/s) break is the Site Class C / CD boundary in the revised Chapter 20 classification",
+        "SMS = 1.5*SDS and SM1 = 1.5*SD1",
+        "ELF: site-specific Sa(T) may replace SD1/T in Eq. (12.8-3) and SD1*TL/T^2 in Eq. (12.8-4)",
+        "SDS may be used in Eqs. (12.8-2),(12.8-5),(15.4-1),(15.4-3); mapped S1 used in Eqs. (12.8-6),(15.4-2),(15.4-4)"
+      ],
+      "equations": [
+        {
+          "equation_id": "21.4-SDS",
+          "description": "Site-specific design short-period acceleration parameter (90% of the peak design Sa over 0.2-5 s)",
+          "latex": "S_{DS} = 0.90\\,\\max_{0.2 \\le T \\le 5\\,s} S_a(T)",
+          "variables": {
+            "S_DS": "site-specific design spectral acceleration parameter at short periods",
+            "S_a": "site-specific design spectral acceleration (Sa = (2/3) SaM)",
+            "T": "period (0.2 to 5 s inclusive)"
+          },
+          "implemented_in": null
+        },
+        {
+          "equation_id": "21.4-SD1",
+          "description": "Site-specific design 1-s acceleration parameter (90% of max of T*Sa over the vs-dependent period band, but >= Sa at 1 s)",
+          "latex": "S_{D1} = \\max\\left(0.90\\,\\max_{T \\in band} [T \\cdot S_a(T)],\\; S_a(1\\,s)\\right)",
+          "variables": {
+            "S_D1": "site-specific design spectral acceleration parameter at a 1-s period",
+            "T_Sa": "the product T*Sa maximized over the band (1-2 s if vs > 1,450 ft/s; 1-5 s if vs <= 1,450 ft/s)",
+            "S_a_1s": "site-specific design Sa at a period of 1 s (the floor on SD1)",
+            "vs": "site average shear wave velocity (break at 1,450 ft/s = 442 m/s)"
+          },
+          "implemented_in": null
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Deriving SDS, SD1, SMS, SM1 from a site-specific design spectrum (including the vs-dependent SD1 period band)"
+    },
+    {
+      "section_id": "21.5",
+      "title": "Maximum Considered Earthquake Geometric Mean (MCEG) Peak Ground Acceleration",
+      "summary": "Section 21.5 defines the site-specific MCEG peak ground acceleration PGAM used in the Chapter 11.8.3 geotechnical evaluations (liquefaction, lateral spreading, dynamic earth pressures). (21.5.1) Probabilistic MCEG PGA = the geometric-mean PGA at a 2% probability of exceedance in 50 years. (21.5.2) Deterministic MCEG PGA = the largest 84th-percentile geometric-mean PGA over scenario earthquakes on all known active faults (from deaggregation; < 10% contributors ignored), but >= the PGAG lower limit of Table 21.2-1 for the site class. (21.5.3) PGAM = the LESSER of the two, but >= 80% of the USGS geodatabase PGAM for the site class.",
+      "body": "SECTION 21.5 MAXIMUM CONSIDERED EARTHQUAKE GEOMETRIC MEAN (MCEG) PEAK GROUND ACCELERATION - Replace Section 21.5 with the following. 21.5.1 Probabilistic MCEG Peak Ground Acceleration: The probabilistic geometric mean peak ground acceleration shall be taken as the geometric mean peak ground acceleration with a 2% probability of exceedance within a 50-year period. 21.5.2 Deterministic MCEG Peak Ground Acceleration: The deterministic geometric mean peak ground acceleration shall be calculated as the largest 84th-percentile geometric mean peak ground acceleration for scenario earthquakes on all known active faults within the site region. The scenario earthquakes shall be determined from deaggregation for the probabilistic spectral response acceleration at each period. Scenario earthquakes contributing less than 10% of the largest contributor at each period shall be ignored. The deterministic geometric mean peak ground acceleration shall not be taken as lower than the value of PGAG of Table 21.2-1 of the site class determined in accordance with the site class requirements of Section 11.4.2. 21.5.3 Site-Specific MCEG Peak Ground Acceleration PGAM: The site-specific MCEG peak ground acceleration, PGAM, shall be taken as the lesser of the probabilistic geometric mean peak ground acceleration of Section 21.5.1 and the deterministic geometric mean peak ground acceleration of Section 21.5.2. The site-specific MCEG peak ground acceleration shall not be taken as less than 80% of the value of the MCEG peak ground acceleration parameter PGAM obtained from the USGS Seismic Design Geodatabase (https://doi.org/10.5066/F7NK3C76) where the value of PGAM is provided by the USGS Seismic Design Web Service for the site class determined in accordance with Section 11.4.2.",
+      "key_points": [
+        "PGAM is the site-specific MCEG peak ground acceleration used in the Chapter 11.8.3 geotechnical evaluations (liquefaction, lateral spreading, seismic earth pressures)",
+        "Probabilistic MCEG PGA (21.5.1): geometric-mean PGA at 2% probability of exceedance in 50 years",
+        "Deterministic MCEG PGA (21.5.2): largest 84th-percentile geometric-mean PGA over scenario earthquakes on all known active faults; < 10% contributors ignored",
+        "Deterministic MCEG PGA floored at the PGAG value of Table 21.2-1 for the site class",
+        "PGAM (21.5.3) = the LESSER of the probabilistic and deterministic MCEG PGA",
+        "PGAM >= 80% of the USGS Seismic Design Geodatabase PGAM for the site class (Section 11.4.2)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 21.2-1: PGAG row (deterministic lower-limit geometric-mean PGA) by Site Class"
+      ],
+      "applicability": "Determining the site-specific MCEG peak ground acceleration PGAM for liquefaction, lateral spreading, and seismic earth-pressure evaluations"
+    }
+  ]
+}

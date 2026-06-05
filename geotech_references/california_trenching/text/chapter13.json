@@ -1,0 +1,65 @@
+{
+  "reference_id": "Caltrans Trenching and Shoring Manual",
+  "reference_title": "California Trenching and Shoring Manual (Caltrans, June 2011, Revision 2 - July 2025)",
+  "volume": null,
+  "chapter": 13,
+  "chapter_title": "Appendix C: Surcharges - Tabular Values (Strip-Load Tables; Boussinesq vs Wayne C. Teng)",
+  "sections": [
+    {
+      "section_id": "13-1",
+      "title": "Appendix C-1: Tabular Values for Strip Loads",
+      "summary": "Tables C-2a..C-2j give horizontal pressures from a vertical Q = 300 psf Boussinesq strip surcharge by the Wayne C. Teng (1962) equation, for strip lengths from the excavation face (L0) to the end (L2), at 1-ft depth increments to 20 ft. For a strip NOT at the face, subtract the L1 value from the L2 value, then prorate by Q/300. When L0 = 0, the pressure at h = 0 equals Q (300 psf). Example: a 250 psf strip from 6-20 ft at h = 12 ft gives sigma_12 = (250/300)(112.53 - 12.16) = 83.6 psf (Eq. C-1-1); a combined haul-road + building case (Eq. C-1-2/C-1-3, Table C-1) is compared to the 100 psf alternative loading.",
+      "body": "The tabular values may be used to obtain horizontal pressures due to vertical surcharge loadings. The values (beginning with Table C-2a) are for a Boussinesq strip surcharge of Q = 300 psf using the Wayne C. Teng equation (1962), calculated for a length of surcharge beginning at the face of the excavation (L0) to the end of the strip load (L2) as illustrated in Figure C-1. Surcharge pressures are listed for one-foot increments of excavation to a depth of 20 feet. For surcharges not beginning at the face of the excavation (L0), subtract the tabular values for distance L1 from the tabular values for L2 to determine the 300 psf surcharge load (Figure C-2), then prorate the Q value by the ratio Q/300. Note: when L0 = 0, the horizontal pressure at h = 0 equals Q (300 psf). EXAMPLE 1: a Boussinesq strip load begins 6 ft from the excavation (L1 = 6) and ends 20 ft from it (L2 = 20), with Q = 250 psf; at a depth of 12 ft the L1 = 6 ft tabular value is 12.16 psf and the L2 = 20 ft tabular value is 112.53 psf, so sigma_12 = (250/300)(112.53 - 12.16) = 83.6 psf horizontal (Eq. C-1-1). EXAMPLE 2: surcharges near a haul road and a storage building (Figure C-3); horizontal pressures are computed at 5-ft increments. For the haul road at depth 10 ft, sigma_10 = 140.99 - 44.99 = 96.00 psf (Eq. C-1-2); for the building (1000 psf) at 10 ft, sigma_10 = (1000/300)(237.49 - 181.25) = 187.47 psf (Eq. C-1-3); combined building + road = 187.47 + 96.0 = 283.47 psf, versus building + road at the 100 psf alternative = 187.47 + 100 = 287.47 psf. Table C-1 tabulates the combined horizontal surcharges (building sigma, road sigma, their sum, and building + 100 psf) at 0/5/10/15/20 ft, with the 72 psf minimum construction surcharge governing at the surface. The strip-load tables themselves (Tables C-2a through C-2j) span surcharge end-distances from 1 ft to 80 ft across the columns, with depth h = 1..20 ft down the rows.",
+      "key_points": [
+        "Tables C-2a..C-2j give horizontal pressures for a Q = 300 psf Boussinesq strip via the Wayne C. Teng (1962) equation",
+        "Values run for strip length from the face (L0) to the end (L2), at 1-ft depth increments to 20 ft",
+        "Strip not at the face: subtract the L1 value from the L2 value, then prorate by Q/300",
+        "When L0 = 0, the horizontal pressure at h = 0 equals Q (300 psf)",
+        "Example: 250 psf strip, 6-20 ft, h = 12 ft -> sigma = (250/300)(112.53 - 12.16) = 83.6 psf (Eq. C-1-1)",
+        "Combine multiple surcharges by superposition; the 72 psf minimum construction surcharge governs at shallow depth"
+      ],
+      "equations": [
+        {
+          "id": "Eq. C-1-1",
+          "description": "Strip-load surcharge from the tables: sigma_h = (Q/300)*(value_L2 - value_L1), prorating the 300 psf table by Q/300.",
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure C-1: Typical 300 psf Vertical Surcharge Starting at Face of Excavation",
+        "Figure C-2: Typical 300 psf Vertical Surcharge Starting Away from Face of Excavation",
+        "Figure C-3: Excavation Near a Haul Road and Storage Building with Various Surcharge Loads"
+      ],
+      "tables": [
+        "Table C-1: Tabulated Values of Combined Horizontal Surcharges for Example 2",
+        "Table C-2a..C-2j: Horizontal Pressure at Depth h for Uniform (Q = 300 psf) Strip Loadings from L0 to L2 or L1 to L2 (surcharge end-distances 1-80 ft, depths h = 1-20 ft; Wayne C. Teng 1962)"
+      ],
+      "applicability": "Reading horizontal strip-surcharge pressures from the 300 psf tables and prorating/superposing them for design"
+    },
+    {
+      "section_id": "13-2",
+      "title": "Appendix C-2: Additional Notes - Boussinesq versus Wayne C. Teng Equations",
+      "summary": "Boussinesq (1885) elastic equations come from the Theory of Elasticity (homogeneous, isotropic) and estimate vertical-stress increase from a surcharge. Eq. 5-1-2 is NOT the 1885 Boussinesq equation but the Wayne C. Teng (1962) empirical equation for rigid (non-yielding) walls - a plastic solution with a factor of 2.0, independent of phi, earth-pressure coefficient = 1.0, and alpha centered inside beta (per Caltrans/UPRR, not through the strip center as USACE/Braja Das). USACE (EM 1110-2-2502): factor 2 for a rigid wall, factor 1 for a flexible wall. UPRR applies it to Cooper E80 loads (calling it the 'Boussinesq Strip Load Equation') assuming rigid walls.",
+      "body": "These notes help differentiate the Boussinesq and the more recent Wayne C. Teng equations for surcharge effects. Section 5-1.03 introduces Boussinesq surcharge loads; the Boussinesq equations were developed in 1885 using the Theory of Elasticity for homogeneous and isotropic materials. Although soils are not isotropic, the Boussinesq equations can be used to determine increases in vertical stress from a surcharge load. Equation 5-1-2 in this manual is NOT a Boussinesq equation from 1885; it is the Wayne C. Teng equation for non-yielding (rigid) walls from 1962. Although based on the 1885 Boussinesq equations, it has been modified by experiments and is empirical. Its conditions: (1) the wall does not yield; (2) it is a plastic solution, in contrast to the elastic Boussinesq equation; (3) the alpha (a) angle differs among sources - most sources (USACE, Braja Das textbook) put the alpha line through the center of the strip load, but the Union Pacific Railroad and this Caltrans manual show the alpha angle centered inside the beta (b) angle (the alpha line does not go to the center of the strip); (4) the horizontal stress is not a function of phi; (5) the coefficient of earth pressure for the soil is 1.0 (whereas for the Boussinesq equation it equals the active, at-rest, or passive coefficient appropriate to the soil condition); (6) the Wayne C. Teng equation has a factor of 2.0 for a rigid (non-yielding) wall - USACE states the factor of 2 is correct for a rigid wall but a factor of 1 (not 2) should be used for a flexible wall (EM 1110-2-2502, 'Engineering and Design for Retaining and Flood Walls,' Sept 29, 1989, page 3-50); (7) UPRR uses the Wayne C. Teng equation for Cooper E80 loads, calls it the 'Boussinesq Strip Load Equation,' and assumes all walls are rigid. For further information see the USACE Engineer Manual (Retaining and Flood Walls), the UPRR & BNSF Guidelines for Temporary Shoring, and Boussinesq equations from the University of Massachusetts at Lowell.",
+      "key_points": [
+        "Boussinesq (1885) is an elastic solution from the Theory of Elasticity (homogeneous, isotropic)",
+        "Eq. 5-1-2 is the empirical Wayne C. Teng (1962) equation for rigid (non-yielding) walls, NOT the 1885 Boussinesq equation",
+        "Wayne C. Teng is a plastic solution with a factor of 2.0, independent of phi, with earth-pressure coefficient = 1.0",
+        "Boussinesq uses the soil's earth-pressure coefficient (active/at-rest/passive) for the condition",
+        "Caltrans/UPRR center the alpha angle inside beta (not through the strip center as USACE/Braja Das do)",
+        "USACE (EM 1110-2-2502): factor of 2 for a rigid wall, factor of 1 for a flexible wall",
+        "UPRR applies Wayne C. Teng to Cooper E80 loads (called the 'Boussinesq Strip Load Equation'), assuming rigid walls"
+      ],
+      "equations": [
+        {
+          "id": "Eq. 5-1-2 (Wayne C. Teng vs Boussinesq)",
+          "description": "Strip-load horizontal pressure Eq. 5-1-2 is the empirical Wayne C. Teng (1962) rigid-wall form (factor 2.0, K = 1.0, independent of phi), distinct from the elastic 1885 Boussinesq equation.",
+          "implemented_in": "geotech_references.california_trenching.equations.boussinesq_strip_load_pressure"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Distinguishing the Boussinesq (elastic) and Wayne C. Teng (rigid-wall, empirical) strip-surcharge equations"
+    }
+  ]
+}

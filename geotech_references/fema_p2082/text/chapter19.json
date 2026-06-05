@@ -1,0 +1,302 @@
+{
+  "reference_id": "FEMA P-2082-1",
+  "reference_title": "2020 NEHRP Recommended Seismic Provisions for New Buildings and Other Structures",
+  "chapter": 19,
+  "chapter_title": "Soil-Structure Interaction for Seismic Design",
+  "sections": [
+    {
+      "section_id": "19.3.1",
+      "title": "Foundation Damping Requirements (Applicability)",
+      "summary": "Chapter 19 of the 2020 NEHRP Provisions is a set of MODIFICATIONS to ASCE 7-16 Section 19.3 (Foundation Effects). Foundation damping (soil hysteretic + radiation damping) may be incorporated directly in the structural model. The simplified Section 19.3 damping procedures SHALL NOT be used for: (1) discrete, non-interconnected footings spaced less than the larger plan dimension of the supported lateral-force-resisting element; (2) deep foundations (piles or piers); or (3) mats interconnected by slabs that are flexible per Section 12.3.1.3 or not continuously connected to grade beams. Pile/pier-supported and flexible-mat systems require other treatment of SSI damping.",
+      "body": "CHAPTER 19, SOIL-STRUCTURE INTERACTION FOR SEISMIC DESIGN (Modifications). SECTION 19.3 FOUNDATION EFFECTS - Revise Section 19.3 as follows. 19.3.1 Foundation Damping Requirements: Foundation damping effects are permitted to be considered through direct incorporation of soil hysteretic damping and radiation damping in the mathematical model of the structure. The procedures of this section shall not be used for the following cases: (1) A foundation system consisting of discrete footings that are not interconnected and that are spaced less than the larger dimension of the supported lateral-force-resisting element in the direction under consideration; (2) A foundation system consisting of, or including, deep foundations such as piles or piers; (3) A foundation system consisting of structural mats interconnected by concrete slabs that are characterized as flexible in accordance with Section 12.3.1.3 or that are not continuously connected to grade beams or other foundation elements.",
+      "key_points": [
+        "P-2082 Chapter 19 is a MODIFICATIONS chapter that revises ASCE 7-16 Section 19.3 (Foundation Effects)",
+        "Foundation damping = soil hysteretic damping + radiation damping, incorporated directly into the structural model",
+        "Section 19.3 procedures SHALL NOT be used for non-interconnected discrete footings spaced < the larger plan dimension of the supported LFRS element",
+        "Section 19.3 procedures SHALL NOT be used for deep foundations (piles or piers)",
+        "Section 19.3 procedures SHALL NOT be used for mats interconnected by flexible (Section 12.3.1.3) slabs or mats not continuously connected to grade beams"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Determining when the simplified foundation-damping (SSI) procedure of Section 19.3 may be applied"
+    },
+    {
+      "section_id": "19.3.2",
+      "title": "Effective Damping Ratio of the Soil-Structure System",
+      "summary": "The effective damping ratio of the soil-structure system is beta_0 = beta_f + beta/(T_eff/T)^2 (Eq. 19.3-1), where beta is structural viscous damping (5% unless justified) and (T_eff/T) is the effective period-lengthening ratio from Eq. (19.3-2), driven by the expected ductility demand mu (ELF/MRSA: max base shear / elastic base shear capacity, or R/Omega_0; RHA: max displacement / yield displacement at the top). The foundation damping ratio beta_f = [1 - 1/(T/T)^2]*beta_rd + beta_s (Eq. 19.3-3) combines radiation damping beta_rd (Sections 19.3.3/19.3.4) and soil hysteretic damping beta_s (Section 19.3.5). Over a much stiffer underlying layer, beta_rd is replaced by beta_s' (Eq. 19.3-4).",
+      "body": "19.3.2 Effective Damping Ratio: The effects of foundation damping shall be represented by the effective damping ratio of the soil-structure system, beta_0, determined in accordance with Eq. (19.3-1): beta_0 = beta_f + beta / (T_eff/T)^2 (Eq. 19.3-1), where beta_f = effective viscous damping ratio relating to foundation-soil interaction; beta = effective viscous damping ratio of the structure, taken as 5% unless otherwise justified by analysis; and (T_eff/T) = effective period-lengthening ratio defined in Eq. (19.3-2). The effective period-lengthening ratio shall be determined in accordance with Eq. (19.3-2): T_eff/T = [1 + (1/mu)*((T/T)^2 - 1)]^0.5 (Eq. 19.3-2), where mu = expected ductility demand. For equivalent lateral force (ELF) or modal response spectrum analysis procedures, mu is the maximum base shear divided by the elastic base shear capacity; alternately, mu is permitted to be taken as R/Omega_0, where R and Omega_0 are per Table 12.2-1. For response history analysis procedures, mu is the maximum displacement divided by the yield displacement of the structure measured at the highest point above grade. The foundation damping ratio caused by soil hysteretic damping and radiation damping, beta_f, is permitted to be determined in accordance with Eq. (19.3-3) or by other approved methods: beta_f = [1 - 1/(T/T)^2]*beta_rd + beta_s (Eq. 19.3-3), where beta_s = soil hysteretic damping ratio determined in accordance with Section 19.3.5, and beta_rd = radiation damping ratio determined in accordance with Section 19.3.3 or 19.3.4. If a site more than a depth B below the base of the building consists of a relatively uniform layer of depth D_s overlaying a very stiff layer with a shear wave velocity more than twice that of the surface layer, then the damping value beta_rd in Eq. (19.3-3) shall be replaced by beta_s' per Eq. (19.3-4): beta_s' = beta_rd*(4*D_s/(Vs*Ts))^4 (Eq. 19.3-4).",
+      "key_points": [
+        "beta_0 = beta_f + beta/(T_eff/T)^2 (Eq. 19.3-1); structural damping beta = 5% unless justified",
+        "Effective period-lengthening ratio T_eff/T = [1 + (1/mu)*((T/T)^2 - 1)]^0.5 (Eq. 19.3-2)",
+        "Ductility mu: ELF/MRSA -> max base shear / elastic base shear capacity, or R/Omega_0 (Table 12.2-1); RHA -> max displacement / yield displacement at top",
+        "Foundation damping beta_f = [1 - 1/(T/T)^2]*beta_rd + beta_s (Eq. 19.3-3), combining radiation (19.3.3/19.3.4) and soil hysteretic (19.3.5) damping",
+        "Uniform layer (depth D_s, below depth B) over a stiffer layer (Vs > 2x): replace beta_rd with beta_s' = beta_rd*(4*D_s/(Vs*Ts))^4 (Eq. 19.3-4)"
+      ],
+      "equations": [
+        {
+          "equation_id": "19.3-1",
+          "description": "Effective damping ratio of the soil-structure system",
+          "latex": "\\beta_0 = \\beta_f + \\frac{\\beta}{(T_{eff}/T)^2}",
+          "variables": {
+            "beta_0": "effective damping ratio of the soil-structure system",
+            "beta_f": "effective viscous damping ratio relating to foundation-soil interaction (Eq. 19.3-3)",
+            "beta": "effective viscous damping ratio of the structure (5% unless otherwise justified)",
+            "T_eff_over_T": "effective period-lengthening ratio (Eq. 19.3-2)"
+          },
+          "implemented_in": null
+        },
+        {
+          "equation_id": "19.3-2",
+          "description": "Effective period-lengthening ratio",
+          "latex": "\\frac{T_{eff}}{T} = \\left[1 + \\frac{1}{\\mu}\\left(\\left(\\tfrac{\\tilde{T}}{T}\\right)^2 - 1\\right)\\right]^{0.5}",
+          "variables": {
+            "T_eff_over_T": "effective period-lengthening ratio",
+            "T_tilde_over_T": "elastic period-lengthening ratio (flexible-base to fixed-base period)",
+            "mu": "expected ductility demand (ELF/MRSA: max base shear / elastic base shear capacity, or R/Omega_0; RHA: max displacement / yield displacement at top)"
+          },
+          "implemented_in": null
+        },
+        {
+          "equation_id": "19.3-3",
+          "description": "Foundation damping ratio from radiation and soil hysteretic damping",
+          "latex": "\\beta_f = \\left[1 - \\frac{1}{(\\tilde{T}/T)^2}\\right]\\beta_{rd} + \\beta_s",
+          "variables": {
+            "beta_f": "foundation damping ratio (foundation-soil interaction)",
+            "T_tilde_over_T": "elastic period-lengthening ratio",
+            "beta_rd": "radiation damping ratio (Section 19.3.3 for rectangular, 19.3.4 for circular foundations)",
+            "beta_s": "soil hysteretic damping ratio (Section 19.3.5)"
+          },
+          "implemented_in": null
+        },
+        {
+          "equation_id": "19.3-4",
+          "description": "Reduced radiation damping for a uniform surface layer over a much stiffer layer (Vs of stiff layer > 2x surface)",
+          "latex": "\\beta_s' = \\beta_{rd}\\left(\\frac{4 D_s}{v_s T_s}\\right)^4",
+          "variables": {
+            "beta_s_prime": "modified (reduced) radiation damping ratio replacing beta_rd",
+            "beta_rd": "radiation damping ratio from Section 19.3.3 / 19.3.4",
+            "D_s": "depth of the relatively uniform surface layer",
+            "v_s": "shear wave velocity of the surface layer",
+            "T_s": "fundamental period of the soil column / structure (as used in the provision)"
+          },
+          "implemented_in": null
+        }
+      ],
+      "figures": [],
+      "tables": [
+        "Table 19.3-1: Effective Shear Wave Velocity Ratio (vs/vso) by Site Class and effective peak acceleration SDS/2.5"
+      ],
+      "applicability": "Computing the effective soil-structure system damping ratio beta_0 used to reduce design forces for foundation/SSI damping"
+    },
+    {
+      "section_id": "19.3.2.1",
+      "title": "Table 19.3-1 - Effective Shear Wave Velocity Ratio (vs/vso)",
+      "summary": "Table 19.3-1 gives the strain-compatible effective shear wave velocity ratio vs/vso (effective Vs over a depth below the base of the structure, normalized by the low-strain Vs) as a function of Site Class and the effective peak acceleration SDS/2.5. The ratio is 1.00 at zero shaking and decreases with stronger shaking and softer site classes (soils soften / Vs degrades under strong motion). For Site Class F, a site-specific geotechnical investigation and dynamic site response analyses shall be performed (no tabulated values). Straight-line interpolation is used for intermediate SDS/2.5.",
+      "body": "Table 19.3-1 Effective Shear Wave Velocity Ratio (vs/vso). Columns are effective peak acceleration SDS/2.5 = 0, 0.1, 0.4, and >= 0.8. Values by Site Class: A: 1.00, 1.00, 1.00, 1.00; B: 1.00, 1.00, 0.97, 0.95; BC: 1.00, 0.98, 0.92, 0.86; C: 1.00, 0.97, 0.87, 0.77; CD: 1.00, 0.96, 0.79, 0.50; D: 1.00, 0.95, 0.71, 0.32; DE: 1.00, 0.86, 0.40, 0.18; E: 1.00, 0.77, 0.22, (b); F: (b), (b), (b), (b). Note a: use straight-line interpolation for intermediate values of SDS/2.5. Note b: a site-specific geotechnical investigation and dynamic site response analyses shall be performed. vso is the average low-strain shear wave velocity over the relevant depth below the base of the structure; vs is the corresponding strain-compatible (effective) shear wave velocity.",
+      "key_points": [
+        "vs/vso is the strain-compatible (effective) Vs divided by the low-strain Vs over the depth below the base",
+        "Ratio = 1.00 at SDS/2.5 = 0 (no degradation); decreases with stronger shaking and softer site class",
+        "Columns: SDS/2.5 = 0, 0.1, 0.4, >= 0.8; interpolate linearly for intermediate SDS/2.5",
+        "Softest tabulated values: Site Class D at SDS/2.5>=0.8 is 0.32; DE is 0.18; Class E only to SDS/2.5=0.4 (0.22)",
+        "Site Class E (>=0.8) and all of Site Class F require a site-specific investigation and dynamic site response analysis"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 19.3-1: Effective Shear Wave Velocity Ratio vs/vso by Site Class (A-E) and SDS/2.5 (0, 0.1, 0.4, >=0.8)"
+      ],
+      "applicability": "Obtaining the strain-degraded effective shear wave velocity for foundation radiation-damping and SSI calculations"
+    },
+    {
+      "section_id": "19.3.3",
+      "title": "Radiation Damping for Rectangular Foundations",
+      "summary": "For a rectangular foundation (plan half-dimensions L >= B), the radiation damping ratio beta_rd (Eq. 19.3-5) sums translation (y) and rocking (xx) contributions weighted by their modal period ratios: beta_rd = (1/(T_y/T)^2)*beta_y + (1/(T_xx/T)^2)*beta_xx. The modal periods T_y, T_xx depend on the effective modal mass M*, effective height h*, and the static stiffnesses K_y (translation) and K_xx (rocking), which are functions of G, the L/B ratio, and Poisson's ratio nu. The dashpot terms beta_y, beta_xx depend on the dimensionless frequency a_0 = 2*pi*B/(T*vs). G is the effective (strain-compatible) shear modulus from G/G0 (Table 19.3-2); vs from Table 19.3-1; nu = 0.3 (sand) or 0.45 (clay).",
+      "body": "19.3.3 Radiation Damping for Rectangular Foundations: The effects of radiation damping for structures with a rectangular foundation plan shall be represented by the effective radiation damping ratio beta_rd determined in accordance with Eq. (19.3-5) and the supporting Eqs. (19.3-6) through (19.3-14): beta_rd = (1/(T_y/T)^2)*beta_y + (1/(T_xx/T)^2)*beta_xx (Eq. 19.3-5). T_y = 2*pi*sqrt(M*/K_y) (Eq. 19.3-6). T_xx = 2*pi*sqrt(M*(h*)^2/(K_xx*alpha_xx)) (Eq. 19.3-7). K_y = (GB/(2-nu))*[6.8*(L/B)^0.65 + 0.8*(L/B) + 1.6] (Eq. 19.3-8). K_xx = (GB^3/(1-nu))*[3.2*(L/B) + 0.8] (Eq. 19.3-9). beta_y = [4*(L/B)/(K_y/(GB))]*(a_0/2) (Eq. 19.3-10). a_0 = 2*pi*B/(T*vs) (Eq. 19.3-11). beta_xx = [(4*psi/3)*(L/B)*a_0^2 / ((K_xx/(GB^3))*(2.2 - 0.4/(L/B)^3 + a_0^2))]*(a_0/(2*alpha_xx)) (Eq. 19.3-12). psi = 2.5*sqrt((2(1-nu))/(1-2*nu)) (Eq. 19.3-13). alpha_xx = 1.0 - [(0.55 + 0.01*sqrt((L/B)-1))*a_0^2 / (2.4 - 0.4/(L/B)^3 + a_0^2)] (Eq. 19.3-14). Where: L = half the larger dimension of the base of the structure; B = half the smaller dimension of the base of the structure; vs = average effective shear wave velocity over a depth B below the base of the structure, determined using vso and Table 19.3-1 or a site-specific study; vso = average low-strain shear wave velocity over a depth B below the base; G = effective shear modulus derived or approximated from G0 and Table 19.3-2; G0 = G0 = gamma*vso^2/g = average shear modulus for the soils beneath the foundation at small strain levels; M* = effective modal mass for the fundamental mode of vibration in the direction under consideration; h* = effective structure height (vertical distance from the foundation to the centroid of the first-mode shape), permitted to be approximated as 70% of total height for multistory structures or full height for one-story structures; gamma = average unit weight of the soils over a depth B below the base; nu = Poisson's ratio, permitted to be 0.3 for sandy soils and 0.45 for clayey soils.",
+      "key_points": [
+        "beta_rd = (1/(T_y/T)^2)*beta_y + (1/(T_xx/T)^2)*beta_xx - sum of translation (y) and rocking (xx) radiation damping (Eq. 19.3-5)",
+        "Static stiffnesses: translation K_y (Eq. 19.3-8) and rocking K_xx (Eq. 19.3-9), functions of G, L/B, and nu",
+        "L = half the larger base dimension, B = half the smaller base dimension (half-dimensions, not full)",
+        "Dimensionless frequency a_0 = 2*pi*B/(T*vs) (Eq. 19.3-11) drives the dashpot terms beta_y, beta_xx",
+        "G0 = gamma*vso^2/g; effective G from G/G0 (Table 19.3-2); vs from Table 19.3-1; nu = 0.3 (sand) / 0.45 (clay)",
+        "h* approx 70% of total height (multistory) or full height (one-story); M* = effective first-mode modal mass"
+      ],
+      "equations": [
+        {
+          "equation_id": "19.3-5",
+          "description": "Radiation damping ratio for a rectangular foundation (translation + rocking)",
+          "latex": "\\beta_{rd} = \\frac{1}{(T_y/T)^2}\\beta_y + \\frac{1}{(T_{xx}/T)^2}\\beta_{xx}",
+          "variables": {
+            "beta_rd": "radiation damping ratio for a rectangular foundation",
+            "T_y": "modal period associated with foundation translation (Eq. 19.3-6)",
+            "T_xx": "modal period associated with foundation rocking (Eq. 19.3-7)",
+            "beta_y": "translation (horizontal) radiation dashpot ratio (Eq. 19.3-10)",
+            "beta_xx": "rocking radiation dashpot ratio (Eq. 19.3-12)"
+          },
+          "implemented_in": null
+        },
+        {
+          "equation_id": "19.3-8",
+          "description": "Static translational (horizontal) stiffness of a rectangular foundation",
+          "latex": "K_y = \\frac{GB}{2-\\nu}\\left[6.8\\left(\\tfrac{L}{B}\\right)^{0.65} + 0.8\\left(\\tfrac{L}{B}\\right) + 1.6\\right]",
+          "variables": {
+            "K_y": "static horizontal (translational) foundation stiffness",
+            "G": "effective (strain-compatible) soil shear modulus",
+            "B": "half the smaller plan dimension of the base",
+            "L": "half the larger plan dimension of the base",
+            "nu": "Poisson's ratio (0.3 sand, 0.45 clay)"
+          },
+          "implemented_in": null
+        },
+        {
+          "equation_id": "19.3-9",
+          "description": "Static rocking stiffness of a rectangular foundation",
+          "latex": "K_{xx} = \\frac{GB^3}{1-\\nu}\\left[3.2\\left(\\tfrac{L}{B}\\right) + 0.8\\right]",
+          "variables": {
+            "K_xx": "static rocking foundation stiffness",
+            "G": "effective soil shear modulus",
+            "B": "half the smaller plan dimension of the base",
+            "L": "half the larger plan dimension of the base",
+            "nu": "Poisson's ratio"
+          },
+          "implemented_in": null
+        },
+        {
+          "equation_id": "19.3-11",
+          "description": "Dimensionless frequency for the rectangular foundation",
+          "latex": "a_0 = \\frac{2\\pi B}{T v_s}",
+          "variables": {
+            "a_0": "dimensionless frequency",
+            "B": "half the smaller plan dimension of the base",
+            "T": "fundamental period of the structure",
+            "v_s": "effective (strain-compatible) shear wave velocity over depth B below the base"
+          },
+          "implemented_in": null
+        }
+      ],
+      "figures": [],
+      "tables": [
+        "Table 19.3-2: Effective Shear Modulus Ratio (G/G0) by Site Class and SDS/2.5"
+      ],
+      "applicability": "Computing the radiation damping contribution for rectangular (mat/spread) foundations in the SSI damping procedure"
+    },
+    {
+      "section_id": "19.3.3.1",
+      "title": "Table 19.3-2 - Effective Shear Modulus Ratio (G/G0)",
+      "summary": "Table 19.3-2 gives the strain-compatible effective shear modulus ratio G/G0 as a function of Site Class and effective peak acceleration SDS/2.5, where G0 = gamma*vso^2/g is the small-strain shear modulus. As with Vs, the ratio is 1.00 at zero shaking and degrades with stronger shaking and softer soils (it falls roughly as the square of the vs/vso ratio of Table 19.3-1). Site Class F (and Class E at SDS/2.5 >= 0.8) requires a site-specific geotechnical investigation and dynamic site response analysis. Interpolate linearly for intermediate SDS/2.5.",
+      "body": "Table 19.3-2 Effective Shear Modulus Ratio (G/G0). Columns are effective peak acceleration SDS/2.5 = 0, 0.1, 0.4, and >= 0.8. Values by Site Class: A: 1.00, 1.00, 1.00, 1.00; B: 1.00, 1.00, 0.95, 0.90; BC: 1.00, 0.97, 0.84, 0.73; C: 1.00, 0.95, 0.75, 0.60; CD: 1.00, 0.92, 0.62, 0.25; D: 1.00, 0.90, 0.50, 0.10; DE: 1.00, 0.73, 0.16, 0.03; E: 1.00, 0.60, 0.05, (b); F: (b), (b), (b), (b). Note a: use straight-line interpolation for intermediate values of SDS/2.5. Note b: a site-specific geotechnical investigation and dynamic site response analyses shall be performed. G0 = gamma*vso^2/g is the average small-strain shear modulus of the soils beneath the foundation.",
+      "key_points": [
+        "G/G0 is the strain-compatible modulus reduction; G0 = gamma*vso^2/g (small-strain shear modulus)",
+        "Ratio = 1.00 at SDS/2.5 = 0; degrades with stronger shaking and softer site class (~square of vs/vso)",
+        "Columns: SDS/2.5 = 0, 0.1, 0.4, >= 0.8; interpolate linearly for intermediate SDS/2.5",
+        "Softest tabulated: Site Class D at SDS/2.5>=0.8 is 0.10; DE is 0.03; Class E only to SDS/2.5=0.4 (0.05)",
+        "Site Class E (>=0.8) and all of Site Class F require a site-specific investigation and dynamic site response analysis"
+      ],
+      "equations": [
+        {
+          "equation_id": "19.3-G0",
+          "description": "Small-strain shear modulus from low-strain shear wave velocity",
+          "latex": "G_0 = \\frac{\\gamma v_{so}^2}{g}",
+          "variables": {
+            "G_0": "average small-strain (low-strain) shear modulus of the soils beneath the foundation",
+            "gamma": "average unit weight of the soils over the relevant depth below the base",
+            "v_so": "average low-strain shear wave velocity over the relevant depth below the base",
+            "g": "acceleration of gravity"
+          },
+          "implemented_in": null
+        }
+      ],
+      "figures": [],
+      "tables": [
+        "Table 19.3-2: Effective Shear Modulus Ratio G/G0 by Site Class (A-E) and SDS/2.5 (0, 0.1, 0.4, >=0.8)"
+      ],
+      "applicability": "Obtaining the strain-degraded effective shear modulus G used in the foundation-stiffness and radiation-damping equations"
+    },
+    {
+      "section_id": "19.3.4",
+      "title": "Radiation Damping for Circular Foundations",
+      "summary": "For a circular foundation of radius r_f, the radiation damping ratio beta_rd sums translation (r) and rocking (rr) contributions weighted by their modal period ratios: beta_rd = (1/(T_r/T)^2)*beta_r + (1/(T_rr/T)^2)*beta_rr (Eq. 19.3-15). T_r, T_rr come from M*, h*, and the circular static stiffnesses K_r = 8*G*r_f/(2-nu) (Eq. 19.3-18) and K_rr = 8*G*r_f^3/(3(1-nu)) (Eq. 19.3-19). The dashpot terms beta_r, beta_rr depend on a_0 = 2*pi*r_f/(T*vs) (Eq. 19.3-21), with psi and alpha_rr coefficients (Eqs. 19.3-23, 19.3-24). Same effective-property inputs as the rectangular case: effective vs (Table 19.3-1), effective G (Table 19.3-2), gamma, and nu.",
+      "body": "19.3.4 Radiation Damping for Circular Foundations: The effects of radiation damping for structures with a circular foundation plan shall be represented by the radiation damping ratio beta_rd determined in accordance with Eq. (19.3-15) and the supporting Eqs. (19.3-16) through (19.3-24): beta_rd = (1/(T_r/T)^2)*beta_r + (1/(T_rr/T)^2)*beta_rr (Eq. 19.3-15). T_r = 2*pi*sqrt(M*/K_r) (Eq. 19.3-16). T_rr = 2*pi*sqrt(M*(h*)^2/(K_rr*alpha_rr)) (Eq. 19.3-17). K_r = 8*G*r_f/(2-nu) (Eq. 19.3-18). K_rr = 8*G*r_f^3/(3*(1-nu)) (Eq. 19.3-19). beta_r = [pi/(K_r/(G*r_f))]*(a_0/2) (Eq. 19.3-20). a_0 = 2*pi*r_f/(T*vs) (Eq. 19.3-21). beta_rr = [(pi*psi/4)*a_0^2 / ((K_rr/(G*r_f^3))*(2 + a_0^2))]*(a_0/(2*alpha_rr)) (Eq. 19.3-22). psi = 2.5*sqrt((2(1-nu))/(1-2*nu)) (Eq. 19.3-23). alpha_rr = 1.0 - [0.35*a_0^2 / (1.0 + a_0^2)] (Eq. 19.3-24). Where: r_f = radius of the circular foundation; vs = average effective shear wave velocity over a depth r_f below the base of the structure, determined using vso and Table 19.3-1 or a site-specific study; vso = average low-strain shear wave velocity over a depth r_f below the base; and gamma = average unit weight of the soils over a depth r_f below the base. nu = Poisson's ratio (0.3 sand, 0.45 clay).",
+      "key_points": [
+        "beta_rd = (1/(T_r/T)^2)*beta_r + (1/(T_rr/T)^2)*beta_rr - translation (r) + rocking (rr) (Eq. 19.3-15)",
+        "Circular static stiffnesses: translation K_r = 8*G*r_f/(2-nu) (Eq. 19.3-18); rocking K_rr = 8*G*r_f^3/(3(1-nu)) (Eq. 19.3-19)",
+        "Dimensionless frequency a_0 = 2*pi*r_f/(T*vs) (Eq. 19.3-21)",
+        "alpha_rr = 1.0 - 0.35*a_0^2/(1+a_0^2) (Eq. 19.3-24); psi per Eq. 19.3-23",
+        "Effective properties over depth r_f below the base: vs (Table 19.3-1), G (Table 19.3-2), gamma; nu = 0.3 sand / 0.45 clay"
+      ],
+      "equations": [
+        {
+          "equation_id": "19.3-15",
+          "description": "Radiation damping ratio for a circular foundation (translation + rocking)",
+          "latex": "\\beta_{rd} = \\frac{1}{(T_r/T)^2}\\beta_r + \\frac{1}{(T_{rr}/T)^2}\\beta_{rr}",
+          "variables": {
+            "beta_rd": "radiation damping ratio for a circular foundation",
+            "T_r": "modal period associated with foundation translation (Eq. 19.3-16)",
+            "T_rr": "modal period associated with foundation rocking (Eq. 19.3-17)",
+            "beta_r": "translation radiation dashpot ratio (Eq. 19.3-20)",
+            "beta_rr": "rocking radiation dashpot ratio (Eq. 19.3-22)"
+          },
+          "implemented_in": null
+        },
+        {
+          "equation_id": "19.3-18",
+          "description": "Static translational (horizontal) stiffness of a circular foundation",
+          "latex": "K_r = \\frac{8 G r_f}{2-\\nu}",
+          "variables": {
+            "K_r": "static horizontal (translational) stiffness of a circular foundation",
+            "G": "effective soil shear modulus",
+            "r_f": "radius of the circular foundation",
+            "nu": "Poisson's ratio"
+          },
+          "implemented_in": null
+        },
+        {
+          "equation_id": "19.3-19",
+          "description": "Static rocking stiffness of a circular foundation",
+          "latex": "K_{rr} = \\frac{8 G r_f^3}{3(1-\\nu)}",
+          "variables": {
+            "K_rr": "static rocking stiffness of a circular foundation",
+            "G": "effective soil shear modulus",
+            "r_f": "radius of the circular foundation",
+            "nu": "Poisson's ratio"
+          },
+          "implemented_in": null
+        },
+        {
+          "equation_id": "19.3-21",
+          "description": "Dimensionless frequency for the circular foundation",
+          "latex": "a_0 = \\frac{2\\pi r_f}{T v_s}",
+          "variables": {
+            "a_0": "dimensionless frequency",
+            "r_f": "radius of the circular foundation",
+            "T": "fundamental period of the structure",
+            "v_s": "effective (strain-compatible) shear wave velocity over depth r_f below the base"
+          },
+          "implemented_in": null
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Computing the radiation damping contribution for circular foundations in the SSI damping procedure"
+    },
+    {
+      "section_id": "19.3.5",
+      "title": "Soil Hysteretic Damping",
+      "summary": "The soil hysteretic damping ratio beta_s shall be based on a site-specific study, or alternatively taken from Table 19.3-3 as a function of Site Class and the effective peak acceleration SDS/2.5. beta_s is small at low shaking (0.01) and increases with stronger shaking and softer site classes (e.g., Site Class E reaches ~0.20 at SDS/2.5 >= 0.8). Site Class F requires a site-specific geotechnical investigation and dynamic site response analyses. Interpolate linearly for intermediate SDS/2.5.",
+      "body": "19.3.5 Soil Damping: The effects of soil hysteretic damping shall be represented by the effective soil hysteretic damping ratio, beta_s, determined based on a site-specific study. Alternatively, it is permitted to determine beta_s in accordance with Table 19.3-3. Table 19.3-3 Soil Hysteretic Damping Ratio, beta_s, as a function of effective peak acceleration SDS/2.5 (columns = 0, 0.1, 0.4, >= 0.8). Tabulated values (per the printed table, geotech-relevant softer site classes): Site Class C: 0.01, 0.01, 0.03, 0.05; CD: 0.01, 0.01, 0.05, 0.09; D: 0.01, 0.02, 0.07, 0.15; DE: 0.01, 0.03, 0.12, 0.20; E: 0.01, 0.05, 0.20, (b); F: (b), (b), (b), (b). Note a: use straight-line interpolation for intermediate values of SDS/2.5. Note b: a site-specific geotechnical investigation and dynamic site response analyses shall be performed.",
+      "key_points": [
+        "beta_s from a site-specific study, or from Table 19.3-3 by Site Class and SDS/2.5",
+        "beta_s increases with stronger shaking and softer site class (e.g., E ~0.20 at SDS/2.5 = 0.4)",
+        "Columns: SDS/2.5 = 0, 0.1, 0.4, >= 0.8; interpolate linearly for intermediate SDS/2.5",
+        "Site Class E at SDS/2.5 >= 0.8 and all of Site Class F: site-specific investigation + dynamic site response analysis required",
+        "beta_s feeds the foundation damping ratio beta_f via Eq. (19.3-3)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 19.3-3: Soil Hysteretic Damping Ratio beta_s by Site Class and SDS/2.5 (0, 0.1, 0.4, >=0.8)"
+      ],
+      "applicability": "Obtaining the soil hysteretic damping ratio beta_s used in the foundation damping ratio (Eq. 19.3-3)"
+    }
+  ]
+}

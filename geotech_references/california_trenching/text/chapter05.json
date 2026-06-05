@@ -1,0 +1,181 @@
+{
+  "reference_id": "Caltrans Trenching and Shoring Manual",
+  "reference_title": "California Trenching and Shoring Manual (Caltrans, June 2011, Revision 2 - July 2025)",
+  "volume": null,
+  "chapter": 5,
+  "chapter_title": "Surcharges",
+  "sections": [
+    {
+      "section_id": "5-1",
+      "title": "Surcharge Loads (Definition and Scope)",
+      "summary": "A surcharge is any load imposed on the soil surface close enough to the excavation to add lateral pressure beyond the basic earth pressure (buildings, roadways, railroads, construction equipment, stockpiles). Groundwater is NOT a surcharge - it acts directly against the sheeting, not as a load on the retained soil. A minimum surcharge must always be applied, and assumptions about surcharge loads are best recorded on the protective-system shop drawings.",
+      "body": "This chapter presents how to account for loads on the retained soil. There could be buildings, roadways, railroads, construction equipment, and/or materials adjacent to the excavation. There is a minimum surcharge that must always be applied. The Engineer must always consider a shoring system in relation to its surroundings as well as to the construction methods and equipment that will be implemented. Assumptions made with regard to these additional loads are best recorded on the shop drawings for the protective system. A surcharge load is any load imposed upon the surface of the soil close enough to the excavation to cause a lateral pressure to act on the system in addition to the basic earth pressure. Groundwater will also cause an additional pressure, but it is NOT a surcharge load; water is a force acting against the sheets directly and not a load acting on the soil retained by the shoring system.",
+      "key_points": [
+        "Surcharge = any surface load near the excavation that adds lateral pressure beyond the basic earth pressure",
+        "Sources: buildings, roadways, railroads, construction equipment, stockpiled materials",
+        "Groundwater is NOT a surcharge (it acts directly on the sheeting, not on the retained soil)",
+        "A minimum surcharge must always be applied (see Section 5-1.01)",
+        "Record surcharge assumptions on the protective-system shop drawings"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identifying which adjacent loads are surcharges to be added to the basic earth pressure"
+    },
+    {
+      "section_id": "5-1.01",
+      "title": "Minimum Construction Surcharge Load",
+      "summary": "A minimum lateral construction surcharge of 72 psf must always be applied to any shoring system over a minimum depth of 10 ft (Hs) below the top of the retained soil, regardless of whether a real surcharge exists. It covers normal small vehicles, equipment, materials, and workers. Surcharges producing lateral pressures greater than 72 psf govern in lieu of this minimum. The 72 psf is comparable to gamma = 109 pcf, Ka = 0.33 over a 2-ft depth [(0.33)(109)(2) = 72 psf].",
+      "body": "A minimum lateral construction surcharge of 72 psf (sigma_h) must be applied to the shoring system; the Cal/OSHA tables account for a similar surcharge. This load must be applied to a minimum depth of 10 feet (Hs) below the uppermost level of the soil retained by the shoring system (Figure 5-1). This is the minimum surcharge loading that must be applied to any shoring system regardless of whether or not the system is actually subjected to a surcharge load. Surcharge loads which produce lateral pressures greater than 72 psf would be used in lieu of this prescribed minimum. This surcharge is intended to provide for the normal construction loads imposed by small vehicles, equipment, materials, and workers in the area adjacent to the trench or excavation, and should be added to all basic earth pressure diagrams. This minimum surcharge can be compared to a soil having parameters of gamma = 109 pcf and Ka = 0.33 for a depth of 2 feet [(0.33)(109)(2) = 72 psf].",
+      "key_points": [
+        "Minimum lateral construction surcharge sigma_h = 72 psf, applied to ALL shoring systems",
+        "Applied over a minimum depth of 10 ft (Hs) below the top of retained soil",
+        "Required regardless of whether an actual surcharge load is present",
+        "Add to all basic earth pressure diagrams; larger real surcharges govern over the 72 psf minimum",
+        "Comparable to gamma = 109 pcf, Ka = 0.33 at 2 ft depth: (0.33)(109)(2) = 72 psf"
+      ],
+      "equations": [
+        {
+          "id": "Minimum construction surcharge",
+          "description": "Minimum lateral construction surcharge of 72 psf applied over the top 10 ft (Hs) of the retained soil.",
+          "implemented_in": "geotech_references.california_trenching.equations.minimum_construction_surcharge"
+        }
+      ],
+      "figures": [
+        "Figure 5-1: Minimum Lateral Surcharge Load"
+      ],
+      "tables": [],
+      "applicability": "Applying the mandatory 72 psf minimum construction surcharge to a shoring design"
+    },
+    {
+      "section_id": "5-1.02",
+      "title": "Uniform Surcharge Loads",
+      "summary": "A uniform surcharge Q over the backfill within the active failure wedge adds a constant horizontal pressure sigma_h = K*Q (Eq. 5-1-1) to the basic lateral earth pressure. K is the lateral earth pressure coefficient: use Ka for active conditions and K0 for at-rest conditions.",
+      "body": "Where a uniform surcharge is present, a constant horizontal earth pressure must be added to the basic lateral earth pressure. This constant earth pressure may be taken as sigma_h = (K)(Q) (Eq. 5-1-1), where sigma_h is the constant horizontal earth pressure due to the uniform surcharge, K is the coefficient of lateral earth pressure due to surcharge (use Ka for active earth pressure, use K0 for at-rest earth pressure), and Q is the uniform surcharge applied to the wall backfill surface within the limits of the active failure wedge.",
+      "key_points": [
+        "Uniform surcharge adds a constant horizontal pressure sigma_h = K*Q (Eq. 5-1-1)",
+        "Use Ka for active earth pressure, K0 for at-rest earth pressure",
+        "Q is the uniform surcharge applied within the limits of the active failure wedge",
+        "Add this constant pressure to the basic (triangular) lateral earth pressure"
+      ],
+      "equations": [
+        {
+          "id": "Eq. 5-1-1",
+          "description": "Constant horizontal pressure from a uniform surcharge sigma_h = K*Q (K = Ka active or K0 at-rest).",
+          "implemented_in": "geotech_references.california_trenching.equations.uniform_surcharge_pressure"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Adding the lateral pressure from a uniform surface surcharge to the earth pressure diagram"
+    },
+    {
+      "section_id": "5-1.03",
+      "title": "Boussinesq Loads (Strip, Line, and Point Loads)",
+      "summary": "Three Boussinesq surcharge types: (A) strip loads (highways, railroads parallel to the wall), using the Wayne C. Teng equation sigma_h = (2Q/pi)[beta_R - sin(beta)cos(2alpha)] (Eq. 5-1-2); (B) line loads (narrow wall footings, K-rail), with separate forms for m<=0.4 and m>0.4 (Eq. 5-1-3/5-1-4); and (C) point loads (outrigger, crane, concrete-truck wheel), Eq. 5-1-5/5-1-6, with an extra cos^2[(1.1)theta] lateral-offset adjustment (Eq. 5-1-7). m = L1/H and n = h/H = depth ratio.",
+      "body": "Typically there are three types of Boussinesq Loads. (A) Strip Load - loads such as highways and railroads generally parallel to the wall. The horizontal pressure at depth h is the Wayne C. Teng equation (Figure 5-2): sigma_h = (2Q/pi)[beta_R - sin(beta)cos(2alpha)] (Eq. 5-1-2), where beta_R is beta in radians, a is the width of the surcharge strip, and L1/L2 are the distances from the wall to the left/right edges of the strip. (B) Line Load - a continuous wall footing of narrow width or similar load generally parallel to the wall (a K-rail can be considered a line load). At depth h = n*H (Figure 5-3): for m <= 0.4, sigma_h = (Ql/H)*0.2n/(0.16 + n^2)^2 (Eq. 5-1-3); for m > 0.4, sigma_h = (1.28 Ql/H)*m^2 n/(m^2 + n^2)^2 (Eq. 5-1-4). (C) Point Load - loads such as outrigger loads from a concrete pump or crane; a concrete-truck wheel load adjacent to and unloading at the excavation may also be treated as a point load (parallel or perpendicular). At depth h = n*H (Figure 5-4): for m <= 0.4, sigma_h = 0.28(Qp/H^2)*n^2/(0.16 + n^2)^3 (Eq. 5-1-5); for m > 0.4, sigma_h = 1.77(Qp/H^2)*m^2 n^2/(m^2 + n^2)^3 (Eq. 5-1-6). When the point is further from the line closest to the point load, sigma_h is further adjusted by sigma_h' = sigma_h*cos^2[(1.1)theta] (Eq. 5-1-7, Figure 5-5). Here m = L1/H and n = depth/H.",
+      "key_points": [
+        "Three Boussinesq types: strip, line, and point loads",
+        "Strip (highway/railroad parallel to wall): Wayne C. Teng sigma_h = (2Q/pi)[beta_R - sin(beta)cos(2alpha)] (Eq. 5-1-2)",
+        "Line (narrow footing, K-rail): Eq. 5-1-3 (m<=0.4) and Eq. 5-1-4 (m>0.4)",
+        "Point (crane/pump outrigger, concrete-truck wheel): Eq. 5-1-5 (m<=0.4) and Eq. 5-1-6 (m>0.4)",
+        "Lateral-offset adjustment for a point load off the closest line: sigma_h' = sigma_h*cos^2[(1.1)theta] (Eq. 5-1-7)",
+        "m = L1/H (offset ratio), n = depth/H (depth ratio)"
+      ],
+      "equations": [
+        {
+          "id": "Eq. 5-1-2",
+          "description": "Boussinesq/Wayne C. Teng strip-load horizontal pressure sigma_h = (2Q/pi)[beta_R - sin(beta)cos(2alpha)].",
+          "implemented_in": "geotech_references.california_trenching.equations.boussinesq_strip_load_pressure"
+        },
+        {
+          "id": "Eq. 5-1-3",
+          "description": "Boussinesq line-load horizontal pressure for m <= 0.4: sigma_h = (Ql/H)*0.2n/(0.16 + n^2)^2.",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. 5-1-4",
+          "description": "Boussinesq line-load horizontal pressure for m > 0.4: sigma_h = (1.28 Ql/H)*m^2 n/(m^2 + n^2)^2.",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. 5-1-5",
+          "description": "Boussinesq point-load horizontal pressure for m <= 0.4: sigma_h = 0.28(Qp/H^2)*n^2/(0.16 + n^2)^3.",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. 5-1-6",
+          "description": "Boussinesq point-load horizontal pressure for m > 0.4: sigma_h = 1.77(Qp/H^2)*m^2 n^2/(m^2 + n^2)^3.",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. 5-1-7",
+          "description": "Lateral-offset adjustment for a point load: sigma_h' = sigma_h*cos^2[(1.1)theta].",
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure 5-2: Boussinesq Type Strip Load",
+        "Figure 5-3: Boussinesq Type Line Load",
+        "Figure 5-4: Boussinesq Type Point Load",
+        "Figure 5-5: Boussinesq Type Point Load with Lateral Offset"
+      ],
+      "tables": [],
+      "applicability": "Computing lateral pressures from strip, line, and point surcharge loads by the Boussinesq/Wayne C. Teng method"
+    },
+    {
+      "section_id": "5-1.04",
+      "title": "Traffic Loads",
+      "summary": "Traffic is one of the most common surcharges. For normal situations, a vertical surcharge of 300 psf spread over the width of the traveled way is sufficient. A worked comparison (Example, Figure 5-6) shows that a 300 psf Boussinesq strip load matches an HS-20 truck modeled as six point loads (16,000 lb rear/center, 4,000 lb front) centered in a 12-ft lane: the summed point-load pressures and the 300 psf strip values agree closely at all depths (Table 5-2). The companion sample problem (Example 5-1, Table 5-3) shows prorating the 300 psf Appendix C tables for 200 and 100 psf loads.",
+      "body": "Traffic near an excavation is one of the more commonly occurring surcharge loads. Analyzing every possible scenario would be impractical; for normal situations a vertical surcharge load of 300 psf spread over the width of the traveled way should be sufficient. The example compares pressure diagrams for a Q = 300 psf load (Boussinesq strip method) against an HS-20 truck modeled with individual tire point loads centered in a 12-ft lane adjacent to the shoring (Figure 5-6); total excavation depth is 10 ft, so n = depth/H with H = 10 ft (Table 5-1: n = 0.2, 0.4, 0.6, 0.8, 1.0 at 2-ft increments). Because m > 0.4 in both wheel cases, Equation 5-1-6 is used, with the horizontal-angle adjustment of Equation 5-1-7 (theta = 66.8 deg gives cos^2[(1.1)(66.8)] = 0.08 for the front/rear right wheels; theta' = 49.4 deg gives 0.34 for the front/rear left wheels). Combining the six wheel equations (16,000 lb rear and center axles, 4,000 lb front axle) yields case (a) sigma_H = 112.2 n^2/(0.36 + n^2)^3 and case (b) sigma_H = 581.1 n^2/(1.44 + n^2)^3 (Eq. 5-1-18, 5-1-19). Table 5-2 sums the point-load pressures at 2-ft increments and compares them to the 300 psf surcharge from the Appendix C tables (HS-20 centered, so the 300 psf strip begins 3 ft from the shoring and ends 15 ft away). The point-load total and the 300 psf strip compare favorably (e.g., 77.3 vs 150.1 psf at 2 ft, 150.4 vs 171.5 at 4 ft, 84.6 vs 96.4 at 10 ft; Figure 5-7), so the conclusion is that a Q = 300 psf strip load compares favorably to an HS-20 point-load evaluation. Example 5-1 (Figure 5-8, Table 5-3) demonstrates using the Appendix C 300 psf surcharge tables for other intensities by prorating: for a 200 psf K-rail load use 2/3 of the tabulated value, and for a 100 psf load use 1/3; the minimum construction surcharge of 72 psf governs at shallow depths.",
+      "key_points": [
+        "Use a vertical traffic surcharge of 300 psf spread over the traveled-way width for normal situations",
+        "A 300 psf Boussinesq strip load compares favorably to an HS-20 truck modeled as six tire point loads",
+        "HS-20 axle loads: 16,000 lb rear and center, 4,000 lb front; 12-ft lane adjacent to shoring",
+        "Combined wheel pressures: sigma_H = 112.2 n^2/(0.36 + n^2)^3 (right) and 581.1 n^2/(1.44 + n^2)^3 (left) (Eq. 5-1-18/19)",
+        "Prorate the Appendix C 300 psf tables for other intensities (200 psf -> 2/3, 100 psf -> 1/3)",
+        "Minimum 72 psf construction surcharge governs at shallow depths (Table 5-3)"
+      ],
+      "equations": [
+        {
+          "id": "Eq. 5-1-18",
+          "description": "Combined HS-20 right-side wheel pressure sigma_H = 112.2 n^2/(0.36 + n^2)^3.",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. 5-1-19",
+          "description": "Combined HS-20 left-side wheel pressure sigma_H = 581.1 n^2/(1.44 + n^2)^3.",
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure 5-6: Example problem of HS-20 traffic loads adjacent to excavation",
+        "Figure 5-7: Plotted comparison of point loads versus 300 psf for traffic",
+        "Figure 5-8: Surcharge Loads (Example 5-1)"
+      ],
+      "tables": [
+        "Table 5-1: Values of 'n' for various depths",
+        "Table 5-2: Summary of wheel point loads versus 300 psf traffic load",
+        "Table 5-3: Surcharge Lateral Pressures (psf) (Example 5-1)"
+      ],
+      "applicability": "Selecting and computing a traffic surcharge (300 psf strip versus HS-20 point loads) on a shoring system"
+    },
+    {
+      "section_id": "5-1.05",
+      "title": "Alternate Surcharge Loading (Traffic)",
+      "summary": "An acceptable alternative to the Boussinesq analysis is to impose a uniform rectangular pressure diagram of 100 psf extending the full computed depth of the shoring system (Figure 5-9). Alternative surcharge loadings are generally limited to traffic and light-equipment surcharges; structures, soil/material stockpiles, and heavy equipment must be considered separately.",
+      "body": "An acceptable alternative to the Boussinesq analysis described above consists of imposing estimated surcharges behind the shoring system such that the resulting pressure diagram is a rectangle extending to the computed depth of the shoring system and of a uniform width of 100 psf (Figure 5-9). Generally, alternative surcharge loadings are limited to traffic and light equipment surcharge loads. Other loadings due to structures, stockpiles of soil, materials, or heavy equipment will need to be considered separately.",
+      "key_points": [
+        "Alternative to Boussinesq: a uniform rectangular 100 psf pressure over the full shoring depth",
+        "Limited to traffic and light-equipment surcharge loads",
+        "Structures, stockpiles, and heavy equipment must be analyzed separately"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-9: Alternate Traffic Surcharge Loading"
+      ],
+      "tables": [],
+      "applicability": "Using the simplified uniform 100 psf rectangular traffic surcharge in lieu of a Boussinesq analysis"
+    }
+  ]
+}
