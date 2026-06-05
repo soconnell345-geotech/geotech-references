@@ -1,0 +1,1605 @@
+{
+  "reference_id": "Caltrans Trenching and Shoring Manual",
+  "reference_title": "California Trenching and Shoring Manual (Caltrans, June 2011, Revision 2 - July 2025)",
+  "package": "california_trenching",
+  "volume": null,
+  "pdf_path": "../../docs/California Trenching and Shoring Manual.pdf",
+  "figure_numbering": "section",
+  "scope_note": "Geotech/excavation-engineering figures from the Caltrans Trenching and Shoring Manual: soils (Ch 3), earth pressure theory (Ch 4), surcharges (Ch 5), structural design (Ch 6), unrestrained/cantilever shoring (Ch 7), restrained/braced/anchored shoring with apparent earth pressure (Ch 8), special conditions - anchor blocks, heave, piping, slope stability (Ch 10), ground-anchor construction (Ch 11), and the log-spiral/Culmann theory appendix (App A) plus surcharge tabular figures (App C) and sheet-pile product sections (App D). All pages confirmed against the source PDF by labeled-caption page search (page_estimated=false). Administrative/legal chapters (1-2) and railroad chapter (9) figures included where they are shoring-engineering diagrams.",
+  "figure_count": 177,
+  "figures": [
+    {
+      "figure_number": "3-1",
+      "caption": "Cone Penetration Test (CPT) Boring",
+      "chapter": 3,
+      "pdf_page_index": 44,
+      "printed_page": "3-7",
+      "page_estimated": false,
+      "description": "Cone Penetration Test (CPT) boring log presentation example used by Caltrans for soil identification and strength interpretation."
+    },
+    {
+      "figure_number": "3-2",
+      "caption": "Typical CPT Plot",
+      "chapter": 3,
+      "pdf_page_index": 45,
+      "printed_page": "3-8",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "3-3",
+      "caption": "Mohr-Coulomb Criteria",
+      "chapter": 3,
+      "pdf_page_index": 47,
+      "printed_page": "3-10",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "4-1",
+      "caption": "Examples of Restrained Shoring Systems",
+      "chapter": 4,
+      "pdf_page_index": 53,
+      "printed_page": "4-3",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "4-2",
+      "caption": "Active and Passive Earth Pressure Coefficient as a Function of Wall Displacement",
+      "chapter": 4,
+      "pdf_page_index": 54,
+      "printed_page": "4-4",
+      "page_estimated": false,
+      "description": "Active and passive earth pressure coefficient mobilized as a function of wall displacement (delta/H); shows how much wall movement is needed to reach minimum active or maximum passive pressure for dense/medium/loose sand (Clough 1991, Table 4-1)."
+    },
+    {
+      "figure_number": "4-3",
+      "caption": "Comparison of Plane versus Curved Failure Surfaces",
+      "chapter": 4,
+      "pdf_page_index": 55,
+      "printed_page": "4-5",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "4-4",
+      "caption": "Lateral Earth Pressure Variation with Depth",
+      "chapter": 4,
+      "pdf_page_index": 56,
+      "printed_page": "4-6",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "4-5",
+      "caption": "Concept of Active and Passive Earth Pressure Theory",
+      "chapter": 4,
+      "pdf_page_index": 57,
+      "printed_page": "4-7",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "4-6",
+      "caption": "Mohr Circle Representation of Earth Pressure for Cohesionless Backfill",
+      "chapter": 4,
+      "pdf_page_index": 57,
+      "printed_page": "4-7",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "4-7",
+      "caption": "Rankine’s Active Wedge",
+      "chapter": 4,
+      "pdf_page_index": 60,
+      "printed_page": "4-10",
+      "page_estimated": false,
+      "description": "Rankine active failure wedge geometry, with the planar failure plane at angle alpha = 45 + phi/2 and Ka = tan^2(45 - phi/2)."
+    },
+    {
+      "figure_number": "4-8",
+      "caption": "Rankine’s Passive Wedge",
+      "chapter": 4,
+      "pdf_page_index": 61,
+      "printed_page": "4-11",
+      "page_estimated": false,
+      "description": "Rankine passive failure wedge geometry, with Kp = tan^2(45 + phi/2) (valid only for level or negative backfill slope)."
+    },
+    {
+      "figure_number": "4-9",
+      "caption": "Coulomb’s Active Wedge",
+      "chapter": 4,
+      "pdf_page_index": 63,
+      "printed_page": "4-13",
+      "page_estimated": false,
+      "description": "Coulomb active wedge with wall friction delta; the lateral earth pressure acts at angle delta to the wall normal."
+    },
+    {
+      "figure_number": "4-10",
+      "caption": "Coulomb's Passive Wedge",
+      "chapter": 4,
+      "pdf_page_index": 64,
+      "printed_page": "4-14",
+      "page_estimated": false,
+      "description": "Coulomb passive wedge with wall friction delta (planar surface; overpredicts Kp for large wall friction, use log-spiral instead)."
+    },
+    {
+      "figure_number": "4-11",
+      "caption": "Mohr Circle Representation of Earth Pressure for Cohesive Backfill",
+      "chapter": 4,
+      "pdf_page_index": 67,
+      "printed_page": "4-17",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "4-12",
+      "caption": "Tension Crack with Hydrostatic Water Pressure",
+      "chapter": 4,
+      "pdf_page_index": 69,
+      "printed_page": "4-19",
+      "page_estimated": false,
+      "description": "Tension crack zone development from the surface to depth hcr in cohesive backfill, with hydrostatic water pressure filling the crack; basis for the apparent active earth pressure coefficient Kapparent (minimum 0.25)."
+    },
+    {
+      "figure_number": "4-13",
+      "caption": "Cohesive Soil Active and Passive Earth Pressure Distribution",
+      "chapter": 4,
+      "pdf_page_index": 70,
+      "printed_page": "4-20",
+      "page_estimated": false,
+      "description": "Active and passive lateral earth pressure distribution for cohesive (c-phi) soil per Bell (1952), showing the negative (tension) zone near the surface and the cohesion shift of the pressure diagram."
+    },
+    {
+      "figure_number": "4-14",
+      "caption": "Pressure for K apparent",
+      "chapter": 4,
+      "pdf_page_index": 71,
+      "printed_page": "4-21",
+      "page_estimated": false,
+      "description": "Modified active pressure distribution using the apparent active earth pressure coefficient Kapparent (>= 0.25) for shoring supporting cohesive backfill where the tension crack zone is ignored."
+    },
+    {
+      "figure_number": "4-15",
+      "caption": "Pressure Diagram Depicting Hydrostatic Water Pressure in the Tension Crack Zone",
+      "chapter": 4,
+      "pdf_page_index": 71,
+      "printed_page": "4-21",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "4-16",
+      "caption": "Mohr’s Circles for Sloping Ground",
+      "chapter": 4,
+      "pdf_page_index": 72,
+      "printed_page": "4-22",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "4-17",
+      "caption": "Active Trial Wedge",
+      "chapter": 4,
+      "pdf_page_index": 74,
+      "printed_page": "4-24",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "4-18",
+      "caption": "Passive Trial Wedge",
+      "chapter": 4,
+      "pdf_page_index": 75,
+      "printed_page": "4-25",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "4-19",
+      "caption": "Single Wedge and Force Polygon",
+      "chapter": 4,
+      "pdf_page_index": 77,
+      "printed_page": "4-27",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "4-20",
+      "caption": "Passive Earth Pressure Coefficient (Caquot and Kerisel, 1948)",
+      "chapter": 4,
+      "pdf_page_index": 80,
+      "printed_page": "4-30",
+      "page_estimated": false,
+      "description": "Passive earth pressure coefficient Kp chart (Caquot and Kerisel, 1948) for log-spiral failure surface; enter with phi and beta/phi to read the initial Kp, then apply the wall-friction reduction factor R (delta/phi) to get Kp_prime = R*Kp."
+    },
+    {
+      "figure_number": "5-1",
+      "caption": "Minimum Lateral Surcharge Load",
+      "chapter": 5,
+      "pdf_page_index": 84,
+      "printed_page": "5-3",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "5-2",
+      "caption": "Boussinesq Type Strip Load",
+      "chapter": 5,
+      "pdf_page_index": 85,
+      "printed_page": "5-4",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "5-3",
+      "caption": "Boussinesq Type Line Load",
+      "chapter": 5,
+      "pdf_page_index": 86,
+      "printed_page": "5-5",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "5-4",
+      "caption": "Boussinesq Type Point Load",
+      "chapter": 5,
+      "pdf_page_index": 87,
+      "printed_page": "5-6",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "5-5",
+      "caption": "Boussinesq Type Point Load with Lateral Offset",
+      "chapter": 5,
+      "pdf_page_index": 88,
+      "printed_page": "5-7",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "5-6",
+      "caption": "Example problem of HS-20 traffic",
+      "chapter": 5,
+      "pdf_page_index": 89,
+      "printed_page": "5-8",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "5-7",
+      "caption": "Plotted comparision of point loads versus 300 psf for traffic",
+      "chapter": 5,
+      "pdf_page_index": 91,
+      "printed_page": "5-10",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "5-8",
+      "caption": "Surcharge Loads",
+      "chapter": 5,
+      "pdf_page_index": 92,
+      "printed_page": "5-11",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "5-9",
+      "caption": "Alternate Traffic Surcharge Loading",
+      "chapter": 5,
+      "pdf_page_index": 93,
+      "printed_page": "5-12",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "6-1",
+      "caption": "Soil Arching",
+      "chapter": 6,
+      "pdf_page_index": 99,
+      "printed_page": "6-5",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "7-1",
+      "caption": "Sheet Pile Wall with Cap Beam",
+      "chapter": 7,
+      "pdf_page_index": 108,
+      "printed_page": "7-2",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "7-2",
+      "caption": "Soldier Pile Wall with Cap Beam",
+      "chapter": 7,
+      "pdf_page_index": 109,
+      "printed_page": "7-3",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "7-3",
+      "caption": "Soldier Pile with Soil Arching Below Excavation",
+      "chapter": 7,
+      "pdf_page_index": 110,
+      "printed_page": "7-4",
+      "page_estimated": false,
+      "description": "Soldier pile with soil arching below the excavation line; arching increases the effective pile width for passive resistance up to 3x for granular soil and 2x for cohesive soil (arching factor f = 0.08*phi <= 3)."
+    },
+    {
+      "figure_number": "7-4",
+      "caption": "Arching Capability for Cohesive Soil",
+      "chapter": 7,
+      "pdf_page_index": 111,
+      "printed_page": "7-5",
+      "page_estimated": false,
+      "description": "Arching capability factor for cohesive soil (ranges 1 to 2) used to compute the adjusted effective pile width for passive resistance of unrestrained soldier piles."
+    },
+    {
+      "figure_number": "7-5",
+      "caption": "Deflected Shape for Unrestrained System",
+      "chapter": 7,
+      "pdf_page_index": 112,
+      "printed_page": "7-6",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "7-6",
+      "caption": "Pressure Diagram of Multilayer Soil Pressure",
+      "chapter": 7,
+      "pdf_page_index": 113,
+      "printed_page": "7-7",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "7-7",
+      "caption": "Non-Gravity Cantilever Retaining Walls Loading Diagram",
+      "chapter": 7,
+      "pdf_page_index": 114,
+      "printed_page": "7-8",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "7-8",
+      "caption": "Cantilever Sheet Pile Walls Idealized Loading Diagram",
+      "chapter": 7,
+      "pdf_page_index": 115,
+      "printed_page": "7-9",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "7-9",
+      "caption": "Sheet Pile Walls Idealized Pressure Distribution and Shear and Moment Diagram",
+      "chapter": 7,
+      "pdf_page_index": 116,
+      "printed_page": "7-10",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "7-10",
+      "caption": "Soldier Pile Idealized Pressure Distribution and Shear and Moment Diagram",
+      "chapter": 7,
+      "pdf_page_index": 116,
+      "printed_page": "7-10",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "7-11",
+      "caption": "Cantilever Sheet Pile Walls Idealized Loading Diagram",
+      "chapter": 7,
+      "pdf_page_index": 117,
+      "printed_page": "7-11",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "7-12",
+      "caption": "Loading Diagram for Single Layer",
+      "chapter": 7,
+      "pdf_page_index": 118,
+      "printed_page": "7-12",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "7-13",
+      "caption": "Loading Diagram for Multi-Layer Granular Soil",
+      "chapter": 7,
+      "pdf_page_index": 119,
+      "printed_page": "7-13",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "7-14",
+      "caption": "Loading Diagram for Multi-Layer – Cohesive over Granular Soil",
+      "chapter": 7,
+      "pdf_page_index": 120,
+      "printed_page": "7-14",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "7-15",
+      "caption": "Loading Diagram for Granular over Cohesive Soil",
+      "chapter": 7,
+      "pdf_page_index": 121,
+      "printed_page": "7-15",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "7-16",
+      "caption": "Loading Diagram for Multi-Layer Cohesive Soil",
+      "chapter": 7,
+      "pdf_page_index": 122,
+      "printed_page": "7-16",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "7-17",
+      "caption": "Cantilevered Soldier-Pile-Lagging Wall Example Properties",
+      "chapter": 7,
+      "pdf_page_index": 123,
+      "printed_page": "7-17",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "7-18",
+      "caption": "Rigorous Assumed Loading Diagram",
+      "chapter": 7,
+      "pdf_page_index": 124,
+      "printed_page": "7-18",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "7-19",
+      "caption": "Force Diagram for Rigorous Method",
+      "chapter": 7,
+      "pdf_page_index": 127,
+      "printed_page": "7-21",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "7-20",
+      "caption": "Net Load and Shear Diagram",
+      "chapter": 7,
+      "pdf_page_index": 129,
+      "printed_page": "7-23",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "7-21",
+      "caption": "Location of Zero Shear and Maximum Moment for Soldier Pile",
+      "chapter": 7,
+      "pdf_page_index": 130,
+      "printed_page": "7-24",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "7-22",
+      "caption": "Shear and Moment Diagram (CT_T&S Program)",
+      "chapter": 7,
+      "pdf_page_index": 131,
+      "printed_page": "7-25",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "7-23",
+      "caption": "Deflection (CT_T&S Program)",
+      "chapter": 7,
+      "pdf_page_index": 131,
+      "printed_page": "7-25",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "7-24",
+      "caption": "Cantilevered Soldier-Pile-Lagging Wall Cross-Section",
+      "chapter": 7,
+      "pdf_page_index": 132,
+      "printed_page": "7-26",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "7-25",
+      "caption": "Force Diagram",
+      "chapter": 7,
+      "pdf_page_index": 134,
+      "printed_page": "7-28",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "7-26",
+      "caption": "Shear and Moment Diagram (CT_T&S Program)",
+      "chapter": 7,
+      "pdf_page_index": 137,
+      "printed_page": "7-31",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "7-27",
+      "caption": "Deflection by Simplified Method (CT_T&S Program)",
+      "chapter": 7,
+      "pdf_page_index": 137,
+      "printed_page": "7-31",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "7-28",
+      "caption": "Diagram of Shoring Cross Section and Soil Properties",
+      "chapter": 7,
+      "pdf_page_index": 138,
+      "printed_page": "7-32",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "7-29",
+      "caption": "Pressure Loading Diagram",
+      "chapter": 7,
+      "pdf_page_index": 139,
+      "printed_page": "7-33",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "7-30",
+      "caption": "Force Loading Diagram",
+      "chapter": 7,
+      "pdf_page_index": 141,
+      "printed_page": "7-35",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "7-31",
+      "caption": "Soldier Pile Wall with Sloping Ground, Example 7-3",
+      "chapter": 7,
+      "pdf_page_index": 142,
+      "printed_page": "7-36",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "7-32",
+      "caption": "Active and Passive Earth Pressure Coefficients",
+      "chapter": 7,
+      "pdf_page_index": 144,
+      "printed_page": "7-38",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "7-33",
+      "caption": "Pressure Diagram",
+      "chapter": 7,
+      "pdf_page_index": 146,
+      "printed_page": "7-40",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "7-34",
+      "caption": "Location of Zero Shear and Maximum Moment",
+      "chapter": 7,
+      "pdf_page_index": 148,
+      "printed_page": "7-42",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "8-1",
+      "caption": "Lateral Earth Pressure for Anchored/Braced Wall",
+      "chapter": 8,
+      "pdf_page_index": 152,
+      "printed_page": "8-2",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "8-2",
+      "caption": "Pressure Diagram for Single Anchored/Braced Wall in Cohesionless Soil",
+      "chapter": 8,
+      "pdf_page_index": 153,
+      "printed_page": "8-3",
+      "page_estimated": false,
+      "description": "Trapezoidal apparent earth pressure (AEP) diagram for a single-level anchored or braced wall in cohesionless soil; maximum ordinate sigma_a converts the triangular Rankine distribution (resultant P) to the trapezoid (PT = 1.3 P)."
+    },
+    {
+      "figure_number": "8-3",
+      "caption": "Pressure Diagram for Multi-Anchored/Braced Wall in Cohesionless Soil",
+      "chapter": 8,
+      "pdf_page_index": 154,
+      "printed_page": "8-4",
+      "page_estimated": false,
+      "description": "Trapezoidal apparent earth pressure (AEP) diagram for a multi-level anchored or braced wall in cohesionless soil; sigma_a = 1.3P / [H - (1/3)(H1 + Hn+1)] (Eq 8-2-6)."
+    },
+    {
+      "figure_number": "8-4",
+      "caption": "Pressure Diagram for Multi Anchored/Braced Wall for Cohesive Backfill",
+      "chapter": 8,
+      "pdf_page_index": 156,
+      "printed_page": "8-6",
+      "page_estimated": false,
+      "description": "Trapezoidal apparent earth pressure (AEP) diagram for a multi-anchored or braced wall in cohesive backfill; stiff-hard clay (Ns<=4) sigma_a = 0.2 to 0.4 gamma H, soft-medium clay (Ns>=6) sigma_a = Ka gamma H with Ka (FHWA) >= 0.25."
+    },
+    {
+      "figure_number": "8-5",
+      "caption": "Single Ground anchor System",
+      "chapter": 8,
+      "pdf_page_index": 158,
+      "printed_page": "8-8",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "8-6",
+      "caption": "Multiple Ground Anchor System",
+      "chapter": 8,
+      "pdf_page_index": 159,
+      "printed_page": "8-9",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "8-7",
+      "caption": "Detail Hinge Method for Ground Anchor Analysis",
+      "chapter": 8,
+      "pdf_page_index": 160,
+      "printed_page": "8-10",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "8-9",
+      "caption": "Example 8-1 Given Information",
+      "chapter": 8,
+      "pdf_page_index": 161,
+      "printed_page": "8-11",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "8-10",
+      "caption": "Pressure Diagram for Single Ground Anchor Wall",
+      "chapter": 8,
+      "pdf_page_index": 163,
+      "printed_page": "8-13",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "8-11",
+      "caption": "Pressure Diagram.",
+      "chapter": 8,
+      "pdf_page_index": 164,
+      "printed_page": "8-14",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "8-12",
+      "caption": "Pressure Diagram for Single-Ground Anchor Above Dredge Line Based on MR",
+      "chapter": 8,
+      "pdf_page_index": 166,
+      "printed_page": "8-16",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "8-13",
+      "caption": "Zero Shear",
+      "chapter": 8,
+      "pdf_page_index": 168,
+      "printed_page": "8-18",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "8-14",
+      "caption": "Pressure, Shear, Moment, and Deflection Diagrams (CT-T&S Program)",
+      "chapter": 8,
+      "pdf_page_index": 170,
+      "printed_page": "8-20",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "8-15",
+      "caption": "Multiple Ground Anchor Soldier Pile Wall, Example 8-2",
+      "chapter": 8,
+      "pdf_page_index": 171,
+      "printed_page": "8-21",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "8-16",
+      "caption": "Typical Multi Ground Anchor Wall System",
+      "chapter": 8,
+      "pdf_page_index": 172,
+      "printed_page": "8-22",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "8-17",
+      "caption": "Pressure Diagram for Multi Ground Anchor Wall System with Boussinesq Load",
+      "chapter": 8,
+      "pdf_page_index": 173,
+      "printed_page": "8-23",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "8-18",
+      "caption": "Trapezoidal Pressure Diagram Distribution",
+      "chapter": 8,
+      "pdf_page_index": 174,
+      "printed_page": "8-24",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "8-19",
+      "caption": "Boussinesq-Type Strip Load with the Wayne C. Teng Equation",
+      "chapter": 8,
+      "pdf_page_index": 175,
+      "printed_page": "8-25",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "8-20",
+      "caption": "Load Diagram Due to Boussinesq Load",
+      "chapter": 8,
+      "pdf_page_index": 176,
+      "printed_page": "8-26",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "8-21",
+      "caption": "Detailed Analysis of Multi Ground Anchor Wall",
+      "chapter": 8,
+      "pdf_page_index": 178,
+      "printed_page": "8-28",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "8-22",
+      "caption": "Pressure Diagram for Multi-Ground Anchor Above Dredge Line",
+      "chapter": 8,
+      "pdf_page_index": 179,
+      "printed_page": "8-29",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "8-23",
+      "caption": "Shear Diagram",
+      "chapter": 8,
+      "pdf_page_index": 183,
+      "printed_page": "8-33",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "8-24",
+      "caption": "Moment Diagram",
+      "chapter": 8,
+      "pdf_page_index": 184,
+      "printed_page": "8-34",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "8-25",
+      "caption": "Pressure, Shear, Moment, and Deflection Diagrams (CT-T&S Program)",
+      "chapter": 8,
+      "pdf_page_index": 185,
+      "printed_page": "8-35",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9-1",
+      "caption": "Cooper E80 Loading from the Appendix of the GUIDELINES",
+      "chapter": 9,
+      "pdf_page_index": 189,
+      "printed_page": "9-3",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9-2",
+      "caption": "Pressure diagram for Boussinesq Strip Load",
+      "chapter": 9,
+      "pdf_page_index": 190,
+      "printed_page": "9-4",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9-3",
+      "caption": "Shoring Zones from the GUIDELINES, Section 3, Figure 1",
+      "chapter": 9,
+      "pdf_page_index": 191,
+      "printed_page": "9-5",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9-4",
+      "caption": "Deflection Criteria from GUIDELINES, Section 3.8, Table 2",
+      "chapter": 9,
+      "pdf_page_index": 192,
+      "printed_page": "9-6",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9-5",
+      "caption": "Cantilevered Soldier-Pile-Lagging Wall Example Properties",
+      "chapter": 9,
+      "pdf_page_index": 194,
+      "printed_page": "9-8",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9-6",
+      "caption": "Boussinesq Type Strip Load",
+      "chapter": 9,
+      "pdf_page_index": 195,
+      "printed_page": "9-9",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9-8",
+      "caption": "Rigorous Pressure Diagram and Horizontal Load from Surcharge",
+      "chapter": 9,
+      "pdf_page_index": 198,
+      "printed_page": "9-12",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9-9",
+      "caption": "Force Diagram for Rigorous Method",
+      "chapter": 9,
+      "pdf_page_index": 201,
+      "printed_page": "9-15",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9-10",
+      "caption": "Pressure, Shear, and Moment Diagram",
+      "chapter": 9,
+      "pdf_page_index": 203,
+      "printed_page": "9-17",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9-11",
+      "caption": "Shear and Moment Diagram",
+      "chapter": 9,
+      "pdf_page_index": 205,
+      "printed_page": "9-19",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9-12",
+      "caption": "Deflection (CT_T&S Program)",
+      "chapter": 9,
+      "pdf_page_index": 207,
+      "printed_page": "9-21",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10-1",
+      "caption": "Anchor Block and Tie Rod",
+      "chapter": 10,
+      "pdf_page_index": 211,
+      "printed_page": "10-3",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10-2",
+      "caption": "Anchor Block Position Relative to Wall Face and Failure Plain",
+      "chapter": 10,
+      "pdf_page_index": 212,
+      "printed_page": "10-4",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10-3",
+      "caption": "Anchor Block in Cohesionless Soil at the Ground Surface",
+      "chapter": 10,
+      "pdf_page_index": 213,
+      "printed_page": "10-5",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10-4",
+      "caption": "Continuous Anchor Block in Cohesionless Soil within H/2 of Ground Surface",
+      "chapter": 10,
+      "pdf_page_index": 213,
+      "printed_page": "10-5",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10-5",
+      "caption": "Anchor Block in 3D (Shamsabadi, A., Nordal, S., 2006)",
+      "chapter": 10,
+      "pdf_page_index": 214,
+      "printed_page": "10-6",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10-6",
+      "caption": "Section A-A (Shamsabadi, A., et al., 2007)",
+      "chapter": 10,
+      "pdf_page_index": 215,
+      "printed_page": "10-7",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10-7",
+      "caption": "Isolated Anchor Blocks in Cohesionless Soil",
+      "chapter": 10,
+      "pdf_page_index": 215,
+      "printed_page": "10-7",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10-8",
+      "caption": "Anchor Block not near the Ground Surface: 1.5 <= D/H <= 5.5",
+      "chapter": 10,
+      "pdf_page_index": 216,
+      "printed_page": "10-8",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10-9",
+      "caption": "Anchor Block in Cohesionless Soil 1.5 ≤ D/H ≤ 5.5 – Alternate Method",
+      "chapter": 10,
+      "pdf_page_index": 218,
+      "printed_page": "10-10",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10-10",
+      "caption": "Cohesive Soil Pressure Diagrams",
+      "chapter": 10,
+      "pdf_page_index": 219,
+      "printed_page": "10-11",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10-11",
+      "caption": "Anchor Block in cohesive soil near the ground surface d ≤ H/2",
+      "chapter": 10,
+      "pdf_page_index": 219,
+      "printed_page": "10-11",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10-12",
+      "caption": "Anchor Block in Cohesive Soil  d ≥ H/2",
+      "chapter": 10,
+      "pdf_page_index": 221,
+      "printed_page": "10-13",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10-13",
+      "caption": "Anchor Block Example 10-1",
+      "chapter": 10,
+      "pdf_page_index": 222,
+      "printed_page": "10-14",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10-14",
+      "caption": "Bottom Heave",
+      "chapter": 10,
+      "pdf_page_index": 225,
+      "printed_page": "10-17",
+      "page_estimated": false,
+      "description": "Bottom heave failure surface for a braced cut in soft clay (Terzaghi 1943); driving force Q from the soil column at 0.7B vs the bearing-capacity resisting force Qu = c*Nc*(0.7B)."
+    },
+    {
+      "figure_number": "10-15",
+      "caption": "Bearing Capacity Factor from Bjerrum and Eide (1956)",
+      "chapter": 10,
+      "pdf_page_index": 226,
+      "printed_page": "10-18",
+      "page_estimated": false,
+      "description": "Bearing capacity factor Nc for bottom-heave analysis (Bjerrum and Eide 1956) as a function of excavation depth/width ratio H/B and length/width ratio L/B."
+    },
+    {
+      "figure_number": "10-16",
+      "caption": "Driving and Resisting Forces and the Factor of Safety",
+      "chapter": 10,
+      "pdf_page_index": 228,
+      "printed_page": "10-20",
+      "page_estimated": false,
+      "description": "Driving and resisting forces for the factor of safety against bottom heave (FS = FRS/FDR = Qu/Q >= 1.5)."
+    },
+    {
+      "figure_number": "10-17",
+      "caption": "Heave Example Problem Calculations",
+      "chapter": 10,
+      "pdf_page_index": 229,
+      "printed_page": "10-21",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10-18",
+      "caption": "Hydraulic Forces on Cofferdams",
+      "chapter": 10,
+      "pdf_page_index": 230,
+      "printed_page": "10-22",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10-19",
+      "caption": "Drag and Hydraulic Forces on a Cofferdam",
+      "chapter": 10,
+      "pdf_page_index": 231,
+      "printed_page": "10-23",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10-20",
+      "caption": "Common Pattern of Soil Slope Failure (USGS)",
+      "chapter": 10,
+      "pdf_page_index": 233,
+      "printed_page": "10-25",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10-21",
+      "caption": "Method of Slices and Forces Acting on a Slice",
+      "chapter": 10,
+      "pdf_page_index": 235,
+      "printed_page": "10-27",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10-22",
+      "caption": "A Trial Surface and Potential Slices for Fellenius, Simplified Bishop, and Spencer",
+      "chapter": 10,
+      "pdf_page_index": 237,
+      "printed_page": "10-29",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10-23",
+      "caption": "Slice i, Fellenius Method",
+      "chapter": 10,
+      "pdf_page_index": 238,
+      "printed_page": "10-30",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10-24",
+      "caption": "Example of Fellenius and Bishop Method of Slices",
+      "chapter": 10,
+      "pdf_page_index": 239,
+      "printed_page": "10-31",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10-25",
+      "caption": "Slice i, Bishop Method",
+      "chapter": 10,
+      "pdf_page_index": 241,
+      "printed_page": "10-33",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10-26",
+      "caption": "Mechanism of Translational Slide",
+      "chapter": 10,
+      "pdf_page_index": 243,
+      "printed_page": "10-35",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10-27",
+      "caption": "Mechanism of Translational Slide",
+      "chapter": 10,
+      "pdf_page_index": 244,
+      "printed_page": "10-36",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10-28",
+      "caption": "Example of a Translational Slide",
+      "chapter": 10,
+      "pdf_page_index": 246,
+      "printed_page": "10-38",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10-29",
+      "caption": "Stability Failure Modes",
+      "chapter": 10,
+      "pdf_page_index": 247,
+      "printed_page": "10-39",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "11-1",
+      "caption": "Typical Temporary Ground Anchor",
+      "chapter": 11,
+      "pdf_page_index": 255,
+      "printed_page": "11-7",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "11-2",
+      "caption": "Types of drilled hole shapes",
+      "chapter": 11,
+      "pdf_page_index": 257,
+      "printed_page": "11-9",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "11-3",
+      "caption": "Unbonded Length Criteria",
+      "chapter": 11,
+      "pdf_page_index": 259,
+      "printed_page": "11-11",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "11-4",
+      "caption": "Proof Testing Equipment Setup Example",
+      "chapter": 11,
+      "pdf_page_index": 262,
+      "printed_page": "11-14",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "11-5",
+      "caption": "Bar or Strand Tendons",
+      "chapter": 11,
+      "pdf_page_index": 266,
+      "printed_page": "11-18",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "A-1",
+      "caption": "Geometry of the developing mobilized failure plane (Shamsabadi et al, 2007)",
+      "chapter": "A",
+      "pdf_page_index": 274,
+      "printed_page": "A-3",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "A-2",
+      "caption": "Geometry of the Failure Surface and Associated Interslice Forces",
+      "chapter": "A",
+      "pdf_page_index": 276,
+      "printed_page": "A-5",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "A-3",
+      "caption": "Geometry of the Failure Surface due to Weight",
+      "chapter": "A",
+      "pdf_page_index": 277,
+      "printed_page": "A-6",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "A-4",
+      "caption": "Geometry of the Failure Surface Due to Cohesion",
+      "chapter": "A",
+      "pdf_page_index": 277,
+      "printed_page": "A-6",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "A-5",
+      "caption": "Moment Method",
+      "chapter": "A",
+      "pdf_page_index": 279,
+      "printed_page": "A-8",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "A-6",
+      "caption": "Mobilized Full Log Spiral Failure Surface",
+      "chapter": "A",
+      "pdf_page_index": 279,
+      "printed_page": "A-8",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "A-7",
+      "caption": "Mobilized Full Log Spiral Failure Surface for Cohesion Component",
+      "chapter": "A",
+      "pdf_page_index": 280,
+      "printed_page": "A-9",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "A-8",
+      "caption": "Log Spiral – Forces Method – Full Log Spiral – Trial",
+      "chapter": "A",
+      "pdf_page_index": 281,
+      "printed_page": "A-10",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "A-9",
+      "caption": "Log Spiral – Forces Method – Full Log Spiral – No Trial",
+      "chapter": "A",
+      "pdf_page_index": 282,
+      "printed_page": "A-11",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "A-10",
+      "caption": "Log Spiral – Forces Method – Composite Failure Surface",
+      "chapter": "A",
+      "pdf_page_index": 283,
+      "printed_page": "A-12",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "A-11",
+      "caption": "Log Spiral – Modified Moment Method – Composite Failure Surface",
+      "chapter": "A",
+      "pdf_page_index": 284,
+      "printed_page": "A-13",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "A-12",
+      "caption": "Log Spiral – Moment Method – Full Log Spiral Failure Surface",
+      "chapter": "A",
+      "pdf_page_index": 285,
+      "printed_page": "A-14",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "A-13",
+      "caption": "Log Spiral – Moment Method – Composite Failure Surface",
+      "chapter": "A",
+      "pdf_page_index": 286,
+      "printed_page": "A-15",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "A-14",
+      "caption": "Log Spiral (see Figure A-7)",
+      "chapter": "A",
+      "pdf_page_index": 287,
+      "printed_page": "A-16",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "A-15",
+      "caption": "Kph Based on Straight or Curved Rupture Lines with Zero Slope Backfill (beta = 0)",
+      "chapter": "A",
+      "pdf_page_index": 288,
+      "printed_page": "A-17",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "A-16",
+      "caption": "Single Wedge and Force Polygon",
+      "chapter": "A",
+      "pdf_page_index": 289,
+      "printed_page": "A-18",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "A-17",
+      "caption": "Culmann Trial Wedges",
+      "chapter": "A",
+      "pdf_page_index": 291,
+      "printed_page": "A-20",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "A-18",
+      "caption": "Culmann Graphical Solution to Scale",
+      "chapter": "A",
+      "pdf_page_index": 292,
+      "printed_page": "A-21",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "A-19",
+      "caption": "Retaining Wall with Irregular Backfill by Culmann Method",
+      "chapter": "A",
+      "pdf_page_index": 294,
+      "printed_page": "A-23",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "A-20",
+      "caption": "Culmann Trial Wedge Method to Scale and Graphical Method Results",
+      "chapter": "A",
+      "pdf_page_index": 295,
+      "printed_page": "A-24",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "A-21",
+      "caption": "Culmann Graphical Solution Using Force Polygon",
+      "chapter": "A",
+      "pdf_page_index": 296,
+      "printed_page": "A-25",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "A-22",
+      "caption": "Critical Active Wedge",
+      "chapter": "A",
+      "pdf_page_index": 297,
+      "printed_page": "A-26",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "A-23",
+      "caption": "Retaining Wall by Culmann Method (AREMA Manual page 8-5-20)",
+      "chapter": "A",
+      "pdf_page_index": 299,
+      "printed_page": "A-28",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "A-24",
+      "caption": "Culmann Trial Wedge and Trial Wedge Method Results",
+      "chapter": "A",
+      "pdf_page_index": 300,
+      "printed_page": "A-29",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "A-25",
+      "caption": "Culmann Graphical Solution Using Force Polygon",
+      "chapter": "A",
+      "pdf_page_index": 301,
+      "printed_page": "A-30",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "A-26",
+      "caption": "Critical Active Wedge Method",
+      "chapter": "A",
+      "pdf_page_index": 302,
+      "printed_page": "A-31",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "A-27",
+      "caption": "Gravity  Retaining Wall with Irregular Backfill by Culmann Method",
+      "chapter": "A",
+      "pdf_page_index": 304,
+      "printed_page": "A-33",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "A-28",
+      "caption": "Culmann Trial  Wedge Method and Graphical Method Results",
+      "chapter": "A",
+      "pdf_page_index": 305,
+      "printed_page": "A-34",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "A-29",
+      "caption": "Snapshot of AREMA Manual, Page 8-5-21",
+      "chapter": "A",
+      "pdf_page_index": 306,
+      "printed_page": "A-35",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "A-30",
+      "caption": "Culmann Force Polygon",
+      "chapter": "A",
+      "pdf_page_index": 307,
+      "printed_page": "A-36",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "A-31",
+      "caption": "Critical Active Wedge",
+      "chapter": "A",
+      "pdf_page_index": 308,
+      "printed_page": "A-37",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "C-1",
+      "caption": "Typical 300 psf Vertical Surcharge Starting at Face of Excavation",
+      "chapter": "C",
+      "pdf_page_index": 313,
+      "printed_page": "C-2",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "C-2",
+      "caption": "Typical 300 psf Vertical Surcharge Starting Away from Face of Excavation",
+      "chapter": "C",
+      "pdf_page_index": 314,
+      "printed_page": "C-3",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "C-3",
+      "caption": "Excavation Near a Haul Road and Storage Building with Various Surcharge Loads",
+      "chapter": "C",
+      "pdf_page_index": 315,
+      "printed_page": "C-4",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "D-1",
+      "caption": "Hoesch Steel Sheet Piling",
+      "chapter": "D",
+      "pdf_page_index": 332,
+      "printed_page": "D-3",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "D-2",
+      "caption": "Nucor Skyline",
+      "chapter": "D",
+      "pdf_page_index": 333,
+      "printed_page": "D-4",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "D-3",
+      "caption": "J.D. Fields & Co Sheet Piling",
+      "chapter": "D",
+      "pdf_page_index": 334,
+      "printed_page": "D-5",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "D-4",
+      "caption": "ArcelorMittal Steel Sheet Piling",
+      "chapter": "D",
+      "pdf_page_index": 335,
+      "printed_page": "D-6",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "D-5",
+      "caption": "PZC Sheet Pile Section Properties",
+      "chapter": "D",
+      "pdf_page_index": 339,
+      "printed_page": "D-10",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "D-6",
+      "caption": "Cross Sections of Various PZC Sheet Piles",
+      "chapter": "D",
+      "pdf_page_index": 340,
+      "printed_page": "D-11",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "D-7",
+      "caption": "Cross Sections of Various Heavy Duty PZ Sheet Piles",
+      "chapter": "D",
+      "pdf_page_index": 341,
+      "printed_page": "D-12",
+      "page_estimated": false,
+      "description": ""
+    }
+  ]
+}

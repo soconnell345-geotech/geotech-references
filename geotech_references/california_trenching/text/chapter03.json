@@ -1,0 +1,116 @@
+{
+  "reference_id": "Caltrans Trenching and Shoring Manual",
+  "reference_title": "California Trenching and Shoring Manual (Caltrans, June 2011, Revision 2 - July 2025)",
+  "volume": null,
+  "chapter": 3,
+  "chapter_title": "Soils",
+  "sections": [
+    {
+      "section_id": "3-2",
+      "title": "Soil Identification, Classification, Description, and Presentation",
+      "summary": "Soil for shoring design is classified from the Geotechnical Design Report / Foundation Report and Log of Test Borings (LOTB), or by a competent person per Cal/OSHA CSO 1541.1 Appendix A (Stable Rock, Type A, B, or C). Group name/symbol follow ASTM D2488 (visual-manual) or D2487 (USCS lab). Soils are coarse-grained (>50% retained on the No. 200 sieve: gravel G, sand S) or fine-grained (>50% passing: silt M, clay C, organic O), further graded W/P or by plasticity L/H.",
+      "body": "The Contractor can obtain soil classification from the Geotechnical Design Report or Foundation Report and corresponding Log of Test Borings (LOTB), by independent sampling and analysis, or by having a competent person classify the soil per Cal/OSHA Construction Safety Orders, Section 1541.1, Appendix A, Soil Classification. The Cal/OSHA methods use at least one visual and one manual analysis to classify the soil as stable rock, Type A, Type B, or Type C; each type is assigned an unconfined compressive strength. The descriptive sequence is a group name and group symbol (e.g. 'SANDY lean CLAY (CL)') from ASTM D2488 (visual-manual, if no lab testing) or ASTM D2487 (USCS, if lab particle-size and plasticity tests are done), followed by density/consistency, color, moisture, etc. Coarse-grained soils retain more than 50 percent on/above the No. 200 sieve (0.075 mm); GRAVEL (G) and SAND (S) are graded well-graded (W) or poorly graded (P), with silt (M) or clay (C) content (e.g. SW, SM). Fine-grained soils pass more than 50 percent through the No. 200 sieve; SILT (M), CLAY (C), ORGANIC (O) are low (L) or high (H) plasticity (e.g. CL, ML).",
+      "key_points": [
+        "Cal/OSHA classifies soils as Stable Rock, Type A, Type B, or Type C (CSO 1541.1 App A)",
+        "Group name/symbol from ASTM D2488 (visual-manual) or D2487 (USCS, lab)",
+        "Coarse-grained: >50% retained on No. 200 sieve (gravel G, sand S; W/P, M/C content)",
+        "Fine-grained: >50% passing No. 200 sieve (silt M, clay C, organic O; L/H plasticity)",
+        "It is the Engineer's responsibility to verify the soil properties used in the Contractor's shoring submittal"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Establishing the soil classification underlying a shoring design or review"
+    },
+    {
+      "section_id": "3-4",
+      "title": "Standard Penetration Test (SPT) and Granular Soil Properties",
+      "summary": "The SPT N value (blows/ft for the split-spoon over 12 in.) is energy-corrected to N60. Table 3-1 correlates N60 to apparent density, friction angle phi, and unit weight (moist/submerged) for granular soils. Table 3-2 (Caltrans 'simplified typical soil values') lists phi, gamma, Ka, and equivalent fluid weight Kw = Ka*gamma by soil class and density; use gamma >= 115 pcf minimum for active pressure when data is insufficient. The Department does NOT use SPT to estimate cohesive shear strength.",
+      "body": "The Standard Penetration Test (SPT) obtains a disturbed sample; the number of hammer blows to drive the split-spoon 12 inches is the N value, corrected to N60 for hammer energy efficiency. Table 3-1, Properties of Granular Soils, relates N60 to apparent density (Very Loose / Loose / Medium Dense / Dense / Very Dense), relative density (%), friction angle phi (deg), and unit weight (pcf, moist and submerged). Note the LOTB and boring records report the field N value, not N60. Table 3-2, Simplified Typical Soil Values, prepared by Geotechnical Services for average trench conditions, lists phi, gamma, the active coefficient Ka, and the equivalent fluid weight Kw = Ka*gamma (pcf, also called EFP) by soil class (gravel/coarse sand, medium sand, fine sand, silty sand/sandy silt, silt) and density (dense/medium dense/loose). For active pressure use a unit weight of gamma = 115 pcf minimum when insufficient soils data is known. It is not the Department's practice to use the SPT to estimate the shear strength of cohesive soil; field tests (pocket penetrometer, Torvane) and lab tests (triaxial, unconfined compression, direct shear) are more accurate (Table 3-3 for cohesive consistency vs unconfined compressive strength).",
+      "key_points": [
+        "N value (field) is energy-corrected to N60 before using Table 3-1",
+        "Table 3-1: granular density / phi / unit weight vs N60",
+        "Table 3-2: phi, gamma, Ka, and equivalent fluid weight Kw = Ka*gamma by soil class and density",
+        "Use gamma >= 115 pcf minimum for active pressure when soils data is insufficient",
+        "SPT is NOT used to estimate cohesive shear strength; use field/lab tests (Table 3-3)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 3-1: Properties of Granular Soils (density / phi / unit weight vs N60)",
+        "Table 3-2: Simplified Typical Soil Values (phi, gamma, Ka, equivalent fluid weight)",
+        "Table 3-3: Simplified Typical Properties of Cohesive Soils (consistency vs unconfined compressive strength)"
+      ],
+      "applicability": "Estimating granular soil strength/unit weight and basic Ka/EFP values for shoring design"
+    },
+    {
+      "section_id": "3-6",
+      "title": "Field and Laboratory Tests; Test Reliability",
+      "summary": "Not all shear-strength tests are equally accurate. Table 3-4 rates SPT, CPT, pocket penetrometer, Torvane, vane shear, triaxial, unconfined compression, and direct shear for coarse- vs fine-grained soils. The pocket penetrometer gives cohesive unconfined compressive strength qu (tsf); the Torvane gives undrained shear strength Su and is acceptable under Cal/OSHA. The Engineer weighs the test method, subsurface variability, and number/distribution of tests when assigning strength.",
+      "body": "Table 3-4 lists field and laboratory tests and their reliability for measuring soil shear strength. The Standard Penetration Test (SPT, ASTM D1586) is Good for coarse-grained and Poor for fine-grained soil; the Cone Penetration Test (CPT, ASTM D3441) is Good/Fair; the pocket penetrometer and Torvane are Not applicable/Fair for coarse/fine; Vane Shear (ASTM D2573) is Very good for fine-grained; Triaxial (UU, CU; ASTM D2850) is Very good for both (recovery of undisturbed coarse samples can be difficult); Unconfined Compression (ASTM D2166) is Very good for fine-grained; Direct Shear (ASTM D3080) is Good/Fair. The pocket penetrometer provides the cohesive soils' unconfined compressive strength qu in tons per square foot; the Torvane (shearvane) determines undrained shear strength (Su) and is an acceptable Cal/OSHA manual test. Factors the Engineer considers when assigning strength are: the test method (Table 3-4), the variability of the subsurface profile, and the number and distribution of tests.",
+      "key_points": [
+        "Table 3-4 rates each test's reliability for coarse- vs fine-grained soil",
+        "Pocket penetrometer -> cohesive unconfined compressive strength qu (tsf)",
+        "Torvane (shearvane) -> undrained shear strength Su (Cal/OSHA-acceptable manual test)",
+        "Vane shear / unconfined compression / triaxial are most reliable for fine-grained soils",
+        "Assign strength considering test method, subsurface variability, and number of tests"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 3-1: Cone Penetration Test (CPT) Boring",
+        "Figure 3-2: Typical CPT Plot"
+      ],
+      "tables": [
+        "Table 3-4: Field and Laboratory Test Reliability of Soil Shear Strength Measurements"
+      ],
+      "applicability": "Judging the reliability of soil shear-strength data submitted with a shoring design"
+    },
+    {
+      "section_id": "3-7",
+      "title": "Shear Strength",
+      "summary": "Soil shear strength is governed by the Mohr-Coulomb criterion tau_f = c + sigma*tan(phi) (Figure 3-3). In fine-grained (cohesive) soils strength is initially insensitive to confining pressure and the criterion simplifies to tau_f = Su (undrained shear strength). Cohesive soils unloaded by excavation can swell and lose shear strength over time, so cohesion values must be used with caution.",
+      "body": "The shear strength of soil is measured by the angle of internal friction phi (interparticle slip resistance) and the cohesion c (interparticle attraction). The fundamental Mohr-Coulomb relationship is tau_f = c + sigma*tan(phi) (Eq. 3-7-1), where tau_f is the shear strength at failure, sigma the normal stress, and the strength envelope is tangent to the Mohr circles (Figure 3-3). In fine-grained (cohesive) soils, shear strength is initially insensitive to confining pressure because it derives from cohesion; the criterion simplifies to tau_f = Su (Eq. 3-7-2), the undrained shear strength. Cohesive soils consolidate or swell over time when loaded or unloaded; a fine-grained soil unloaded by excavation expands and may lose shear strength over time. Extreme caution is advised when relying on a cohesion value c in shoring design.",
+      "key_points": [
+        "Mohr-Coulomb: tau_f = c + sigma*tan(phi) (Eq. 3-7-1)",
+        "Undrained cohesive soil: tau_f = Su (Eq. 3-7-2)",
+        "Undrained shear strength Su = unconfined compressive strength qu / 2 (when phi_u = 0)",
+        "Excavation unloads cohesive soil, which can swell and lose strength over time",
+        "Use cohesion values cautiously in shoring design"
+      ],
+      "equations": [
+        {
+          "id": "Eq. 3-7-1",
+          "description": "Mohr-Coulomb shear strength at failure: tau_f = c + sigma*tan(phi).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. 3-7-2",
+          "description": "Undrained cohesive shear strength: tau_f = Su (phi_u = 0).",
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure 3-3: Mohr-Coulomb Criteria"
+      ],
+      "tables": [],
+      "applicability": "Defining the shear strength parameters (c, phi, Su) used in shoring and slope analyses"
+    },
+    {
+      "section_id": "3-9",
+      "title": "Special Ground Conditions",
+      "summary": "Some excavations encounter soil/rock needing special consideration: fractured rock (toppling/wedge failure on adverse bedding), organic soil/peat (compressible, decomposes), clay and shale (crack/spall/swell/slake on exposure, weaken when unloaded), running soil (no shear strength, flows; c = 0), and quick conditions (upward seepage suspends grains; stabilize by equalizing water levels). The geotechnical report typically identifies these; contact Geotechnical Services.",
+      "body": "Occasionally excavations are made into soil or rock with properties that require special consideration. Examples: (1) Fractured rock - adversely oriented bedding/fracturing allowing toppling or wedge failure must be accounted for. (2) Organic soil (peat) - compressible and subject to decomposition causing volume change. (3) Clay and shale - subject to cracking/spalling on exposure to air, swelling/slaking when exposed to water, and weakening when unloaded; design must account for the disturbed (weaker) strength. (4) Running soil - cannot stand even short term, little shear strength, flows with virtually no angle of repose; cohesion c = 0. (5) Quick condition - upward water flow makes the soil buoyant and suspends the grains; can occur in silts and sands, best stabilized by equalizing water levels (see Section 10-4, Piping).",
+      "key_points": [
+        "Fractured rock: adverse bedding/fracturing can cause toppling or wedge failure",
+        "Organic soil/peat: compressible, decomposes, large volume change",
+        "Clay/shale: crack/spall/swell/slake on exposure; design for disturbed (weaker) strength",
+        "Running soil: little shear strength, flows; cohesion c = 0",
+        "Quick condition: upward seepage suspends grains; equalize water levels (see piping, Ch 10-4)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Flagging special soil/rock conditions that alter shoring design assumptions"
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "reference_id": "Caltrans Trenching and Shoring Manual",
+  "reference_title": "California Trenching and Shoring Manual (Caltrans, June 2011, Revision 2 - July 2025)",
+  "volume": null,
+  "chapter": 7,
+  "chapter_title": "Unrestrained Shoring Systems",
+  "sections": [
+    {
+      "section_id": "7-2",
+      "title": "Effective Pile Width and Soil Arching",
+      "summary": "For cantilever (unrestrained) soldier piles, the effective width d is the pile dimension parallel to the wall (driven/gravel-backfilled), or the drilled-hole diameter when 4-sack+ concrete is used below the excavation. Soil arching increases the effective width for PASSIVE resistance below the excavation - up to 3x for granular soil (arching factor f = 0.08*phi, capped at 3) and up to 2x for cohesive soil (Figure 7-4, 1 to 2). The adjusted width cannot exceed the pile spacing; active loads behind the pile use only the effective width.",
+      "body": "The effective width (d) of a soldier pile is generally the dimension taken parallel to the line of the wall for driven piles or drilled piles backfilled with non-concrete material (e.g. gravel); it may be taken as the diameter of the drilled hole when 4-sack or better concrete is used below the excavation line. Soil arching can greatly increase the effective width for passive resistance below the excavation (Figure 7-3). Passive resistance in front of an isolated pile is three-dimensional and is adjusted for arching beyond the effective width. For granular soils the soil arching factor f = 0.08*phi, limited to 3 (i.e. up to 3x; Eq. 7-2-1), and the Adjusted Pile Width = Effective Width * f, limited to the actual pile spacing (Eq. 7-2-2). The arching capability for cohesive soil ranges between 1 and 2 (Figure 7-4). Below the excavation depth the adjusted pile width is used for passive resistance in front of the pile; any active loadings (including surcharge) on the back of the pile below the excavation use only the effective width, fixing the arching factor at 1. The adjusted pile width cannot exceed the pile spacing.",
+      "key_points": [
+        "Effective width = pile dimension parallel to the wall (or drilled-hole dia. with 4-sack+ concrete)",
+        "Granular arching factor f = 0.08*phi, capped at 3 (up to 3x effective width) - Eq. 7-2-1",
+        "Cohesive arching capability 1 to 2 (Figure 7-4)",
+        "Adjusted pile width = effective width * f, limited to the pile spacing - Eq. 7-2-2",
+        "Adjusted width is for PASSIVE resistance below the excavation only",
+        "Active loads behind the pile use the effective width (arching factor = 1)"
+      ],
+      "equations": [
+        {
+          "id": "Eq. 7-2-1",
+          "description": "Granular soil arching capability factor f = 0.08*phi, limited to 3.",
+          "implemented_in": "geotech_references.california_trenching.tables.effective_pile_width_arching"
+        },
+        {
+          "id": "Eq. 7-2-2",
+          "description": "Adjusted pile width = effective width * f, limited to the actual pile spacing.",
+          "implemented_in": "geotech_references.california_trenching.tables.effective_pile_width_arching"
+        }
+      ],
+      "figures": [
+        "Figure 7-3: Soldier Pile with Soil Arching Below Excavation",
+        "Figure 7-4: Arching Capability for Cohesive Soil"
+      ],
+      "tables": [],
+      "applicability": "Computing the effective and arching-adjusted soldier-pile width for passive resistance"
+    },
+    {
+      "section_id": "7-3",
+      "title": "System Deflection and Point of Fixity",
+      "summary": "The point of fixity (zero deflection) below the excavation line is a key cantilever-analysis assumption affecting embedment, shear, moment, and deflection. It is taken as a fraction of the embedment depth D, from 0 to 0.75D; 0.25D is the default for most stiff-to-medium-dense soils (and the SC Trenching & Shoring Check Program default), with a greater value for loose sand or soft clay.",
+      "body": "The point of fixity, or point of zero deflection, of the shoring support of a cantilevered system is a significant analysis assumption. The point of fixity below the excavation line affects the pile embedment, shears, moments, and deflection. It is defined as a percentage of the embedment depth D, varying from 0 to 0.75D. For unrestrained shoring in most stiff to medium dense soils, a value of 0.25D may be assumed; this is the default in the Structure Construction (SC) Trenching & Shoring Check Program. A greater value may be used for loose sand or soft clay.",
+      "key_points": [
+        "Point of fixity = fraction of embedment depth D (0 to 0.75D)",
+        "0.25D default for most stiff to medium dense soils (SC T&S Program default)",
+        "Use a greater value for loose sand or soft clay",
+        "Affects embedment, shear, moment, and deflection of the cantilever"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-5: Deflected Shape for Unrestrained System"
+      ],
+      "tables": [],
+      "applicability": "Setting the point-of-fixity assumption for cantilever soldier/sheet-pile analysis"
+    },
+    {
+      "section_id": "7-5",
+      "title": "Lateral Earth Pressures for Unrestrained Shoring (Rigorous and Simplified)",
+      "summary": "Cantilever walls are analyzed by the Rigorous Method (1984 USS Steel form; combined active+passive idealized loading below point O) or the Simplified Method (AASHTO / NCHRP 611). In the Rigorous Method the depth to the point of rotation, D0, is found from force/moment balance, then increased 20 percent (D = 1.2*D0) to approximate the total embedment - this 20% increase is NOT a factor of safety; it accounts for rotation of the wall length below point O. Driving and resisting moments are balanced and the wall is checked for max shear, max moment, and deflection.",
+      "body": "All shoring is designed for lateral earth pressure, water pressure, and surcharge. The Simplified Method for cantilevers is built on AASHTO and TRB NCHRP Report 611 equations; the Conventional/Rigorous Method follows the 1984 USS Steel Sheet Piling Design Manual (a reintroduced pre-2006 practice) and produces a more refined analysis. In the Rigorous Method the idealized load distribution combines active and passive pressure extending below point O to the pile tip; sheet piles and soldier piles have different below-excavation distributions due to pile spacing and effective width. The procedure solves for the depth to the point of rotation D0 by force/moment equilibrium, then increases D0 by 20 percent (D = 1.2*D0) to approximate the total embedment - the 20% increase is NOT a factor of safety; it accounts for rotation of the wall length below point O. Driving moments (soil pushing the system into the excavation) and resisting moments are balanced, R is checked by horizontal force summation (R <= 0; increase D if R > 0), and maximum shear, maximum moment, and deflection are computed.",
+      "key_points": [
+        "Cantilever methods: Rigorous (1984 USS Steel) and Simplified (AASHTO / NCHRP 611)",
+        "Rigorous idealized loading combines active + passive pressure below point O",
+        "Solve for the point-of-rotation depth D0, then D = 1.2*D0 (total embedment)",
+        "The 20% increase (D = 1.2*D0) is NOT a factor of safety - it accounts for rotation below point O",
+        "Balance driving vs resisting moments; check max shear, max moment, deflection"
+      ],
+      "equations": [
+        {
+          "id": "D = 1.2*D0",
+          "description": "Cantilever total embedment depth = 1.2 * the point-of-rotation depth D0 (the 20% increase is NOT a factor of safety).",
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure 7-8: Cantilever Sheet Pile Walls Idealized Loading Diagram",
+        "Figure 7-11: Cantilever Sheet Pile Walls Idealized Loading Diagram (point of rotation O)"
+      ],
+      "tables": [],
+      "applicability": "Computing embedment, shear, moment, and deflection for cantilever (unrestrained) shoring"
+    }
+  ]
+}

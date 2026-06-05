@@ -1,0 +1,51 @@
+{
+  "reference_id": "Caltrans Trenching and Shoring Manual",
+  "reference_title": "California Trenching and Shoring Manual (Caltrans, June 2011, Revision 2 - July 2025)",
+  "volume": null,
+  "chapter": 2,
+  "chapter_title": "Cal/OSHA Overview",
+  "sections": [
+    {
+      "section_id": "2-3.03",
+      "title": "Soil Classification (Cal/OSHA Type A/B/C)",
+      "summary": "Cal/OSHA CSO 1541.1 Appendix A classifies soils as Type A, B, or C from at least one visual and one manual test. Type A is cohesive soil with unconfined compressive strength qu >= 1.5 tsf (but never if fissured, vibration-loaded, disturbed, or dipping into the cut at 4H:1V+). Type B is cohesive 0.5-1.5 tsf or granular cohesionless or disturbed/fissured-A soil. Type C is cohesive qu <= 0.5 tsf, granular (gravel/sand/loamy sand), submerged, or freely seeping soil. The CSO timber-shoring tables use PA = 25H/45H/80H + 72 psf for A/B/C.",
+      "body": "A competent person or testing lab makes the soil classification using at least one visual and one manual test (CSO 1541.1, Appendix A). The three Cal/OSHA types: Type A is cohesive soil with an unconfined compressive strength of 1.5 tsf or greater (clay, silty clay, sandy clay, clay loam, caliche, hardpan) - but NO soil is Type A if it is fissured, subject to vibration/dynamic loads, previously disturbed, sloped 4H:1V or greater with layers dipping into the excavation, or otherwise precluded. Type B is cohesive soil with qu > 0.5 tsf but < 1.5 tsf; or granular cohesionless soils (angular gravel, silt, silty/sandy loam); or previously disturbed soils not Type C; or soil meeting Type A but fissured or subject to vibration; or unstable dry rock. Type C is cohesive soil with qu <= 0.5 tsf; or granular soil (gravel, sand, loamy sand); or submerged soil / soil from which water is freely seeping; or submerged unstable rock; or material sloped toward the excavation at 4H:1V or steeper in a layered system. The Cal/OSHA CSO timber-shoring tables use the effective lateral pressure PA = 25H + 72 psf (Type A), 45H + 72 psf (Type B), 80H + 72 psf (Type C), where H is depth and 72 psf represents a 2-ft surcharge.",
+      "key_points": [
+        "Type A: cohesive, unconfined compressive strength qu >= 1.5 tsf (never if fissured/disturbed/vibrated)",
+        "Type B: cohesive 0.5-1.5 tsf, OR granular cohesionless, OR disturbed/fissured-A soil",
+        "Type C: cohesive qu <= 0.5 tsf, OR granular (gravel/sand), OR submerged/seeping soil",
+        "Classification requires at least one visual AND one manual test (CSO 1541.1 App A)",
+        "CSO timber-shoring effective pressure PA = 25H/45H/80H + 72 psf for Type A/B/C"
+      ],
+      "equations": [
+        {
+          "id": "PA (CSO timber)",
+          "description": "Cal/OSHA timber-shoring effective lateral pressure PA = m*H + 72 psf (m = 25 / 45 / 80 for Type A / B / C).",
+          "implemented_in": "geotech_references.california_trenching.tables.osha_timber_shoring_pressure"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Classifying soil into Cal/OSHA Type A/B/C for protective-system selection"
+    },
+    {
+      "section_id": "2-3.04",
+      "title": "Sloping or Benching Systems (Maximum Allowable Slopes)",
+      "summary": "Cal/OSHA CSO 1541.1 Appendix B gives sloping/benching for excavations 20 ft or less. Table 2-1 (Table B-1) lists the maximum allowable temporary slopes (H:V): Stable Rock = vertical, Type A = 3/4:1, Type B = 1:1, Type C = 1-1/2:1. Slopes must be laid back at least 1/2 H:1 V flatter than the maximum at any sign of distress, and reduced for surcharge loads. A registered engineer may design alternate configurations or anything outside Appendix B.",
+      "body": "Cal/OSHA CSO 1541.1, Appendix B, Sloping and Benching, gives specifications and diagrams for excavations 20 feet or less. Table B-1 (reproduced as Table 2-1) lists the maximum allowable slopes (H:V) for excavations less than 20 feet deep: Stable Rock - Vertical; Type A - 3/4:1; Type B - 1:1; Type C - 1-1/2:1. Slopes may be laid back per the Appendix B figures provided there is no sign of distress and no surcharge. When there is any sign of distress (caving, fissures, subsidence, bulging/heaving at the bottom, spalling/raveling of the face), the slope must be laid back at least 1/2 horizontal to 1 vertical less than the maximum allowable. When surcharge loads from stored material, equipment, or traffic are present, a competent person must reduce the actual slope below the maximum allowable. Conditions outside Appendix B require a California registered professional engineer to design an alternative system; structural surcharges require underpinning, bracing, stable rock, or an engineer's determination of no hazard.",
+      "key_points": [
+        "Stable Rock: vertical; Type A: 3/4:1; Type B: 1:1; Type C: 1-1/2:1 (H:V) for cuts < 20 ft (Table 2-1)",
+        "Lay back at least 1/2 H:1 V flatter than the maximum at any sign of distress",
+        "Reduce the slope below the maximum for surcharge loads (equipment, stockpiles, traffic)",
+        "A registered PE may design alternate configurations or anything outside Appendix B",
+        "Default fallback: slope 1-1/2:1 as for Type C soil"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 2-1: Maximum allowable slopes (H:V) for excavations less than 20 feet deep"
+      ],
+      "applicability": "Setting the maximum allowable temporary excavation slope by Cal/OSHA soil type"
+    }
+  ]
+}

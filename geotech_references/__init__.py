@@ -16,4 +16,7 @@ ufc_expansive : UFC 3-220-07 — Foundations in Expansive Soils
 ufc_pavement : UFC 3-260-02 — Pavement Design for Airfields
 fema_p2082 : FEMA P-2082 — 2020 NEHRP Recommended Seismic Provisions
              (Ch 20 site classification, Ch 11 seismic design criteria)
+california_trenching : California (Caltrans) Trenching and Shoring Manual —
+             temporary excavation support (Cal/OSHA soil types & slopes, earth
+             pressure, apparent earth pressure for braced/anchored walls, heave)
 """

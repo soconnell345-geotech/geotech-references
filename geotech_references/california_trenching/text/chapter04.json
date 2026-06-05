@@ -1,0 +1,185 @@
+{
+  "reference_id": "Caltrans Trenching and Shoring Manual",
+  "reference_title": "California Trenching and Shoring Manual (Caltrans, June 2011, Revision 2 - July 2025)",
+  "volume": null,
+  "chapter": 4,
+  "chapter_title": "Earth Pressure Theory and Application",
+  "sections": [
+    {
+      "section_id": "4-2",
+      "title": "Shoring Types and Shoring Movement/Loading",
+      "summary": "Shoring is unrestrained (non-gravity cantilevered soldier-pile or sheet-pile walls relying on passive resistance and member bending; economical to ~18 ft) or restrained (braced/anchored walls with struts, rakers, or ground anchors; feasible to ~80 ft). Walls that cannot move use at-rest pressure; walls that can move away use active pressure. The active/passive variation requires lateral wall movement (Table 4-1, Clough 1991); far more movement mobilizes full passive than active. Soil nail and MSE walls are excluded.",
+      "body": "Shoring systems are unrestrained (non-gravity cantilevered walls) or restrained (braced or anchored). Unrestrained systems are partially embedded soldier piles or continuous sheet piles relying on the passive resistance of the foundation material and member moment capacity; economical height is generally limited to ~18 ft. Restrained systems (Figure 4-1) add one or more levels of braces, rakers, or anchors (or trench struts) and are feasible to ~80 ft. Soil Nail and MSE walls are not included. Shoring that cannot tolerate movement is designed for at-rest pressure; shoring that can move away from the soil mass is designed for active pressure depending on tolerable movement. The movement to reach minimum active or maximum passive pressure is a function of wall height and soil type; typical mobilizing movements (delta/H) are in Table 4-1 (Clough 1991), and a significant amount of movement is needed to mobilize full passive pressure (Figure 4-2).",
+      "key_points": [
+        "Unrestrained = non-gravity cantilever (soldier/sheet pile), economical to ~18 ft",
+        "Restrained = braced/anchored (struts, rakers, ground anchors), feasible to ~80 ft",
+        "No-movement walls -> at-rest pressure; walls free to move away -> active pressure",
+        "Mobilizing movement delta/H from Table 4-1 (Clough 1991)",
+        "Full passive pressure needs far more movement than active",
+        "Soil Nail and MSE walls are excluded from this manual"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 4-1: Examples of Restrained Shoring Systems",
+        "Figure 4-2: Active and Passive Earth Pressure Coefficient as a Function of Wall Displacement"
+      ],
+      "tables": [
+        "Table 4-1: Mobilized Wall Movements (Clough 1991)"
+      ],
+      "applicability": "Choosing the shoring type and the active/at-rest pressure basis for design"
+    },
+    {
+      "section_id": "4-3",
+      "title": "Developing Earth Pressures for Granular Soil (Rankine, Coulomb, At-Rest)",
+      "summary": "Horizontal stress is sigma_h = K*gamma*h, with K = Ka, Kp, or K0. The triangular resultant P = 0.5*gamma*h^2*K acts at h/3. Rankine (smooth vertical wall, planar surface): Ka = tan^2(45 - phi/2), Kp = tan^2(45 + phi/2) - but Rankine passive must NOT be used for sloping backfill. Coulomb adds wall friction delta (Table 4-2) but its passive form overpredicts Kp and is also discouraged. At-rest: K0 = (1 - sin phi)(1 - sin beta) for NC soils, K0 = (1 - sin phi)*OCR^(sin phi) for OC soils.",
+      "body": "Earth pressure methods in common use are Rankine (1857) and Coulomb (1776), both limit-equilibrium with an assumed planar surface; experiments (Terzaghi 1943) show the true surface is curved (Figure 4-3), so the theories are accurate for active pressure but only approximate for passive. For level homogeneous backfill, sigma_h = sigma_v*K = gamma*h*K (Eq. 4-3-1) and the resultant P = 0.5*sigma_h*h (Eq. 4-3-2) acts at h/3 above the base. At-rest coefficient (zero lateral strain): K0 = mu/(1-mu) (Eq. 4-3-13); for normally consolidated soils and vertical walls K0 = (1 - sin phi)(1 - sin beta) (Eq. 4-3-14); for over-consolidated soils, level backfill, vertical wall K0 = (1 - sin phi)*OCR^(sin phi) (Eq. 4-3-15). Rankine (smooth vertical frictionless wall): Ka = tan^2(45 - phi/2) (Eq. 4-3-11), Kp = tan^2(45 + phi/2) (Eq. 4-3-12); the failure plane is at 45 + phi/2. Rankine passive must NOT be used when the backfill slope beta > 0 (it gives identical Kp for +beta and -beta) or when large wall friction develops. Coulomb (rough wall, friction/adhesion delta, Eq. 4-3-22/4-3-24) accounts for wall friction (Table 4-2 typical delta) but assumes planar surfaces, so its passive coefficient is inaccurate for large back slope or wall friction; the manual recommends NOT using Coulomb for passive pressure either - use the Log-Spiral method (Section 4-6).",
+      "key_points": [
+        "sigma_h = gamma*h*K; triangular resultant P = 0.5*gamma*h^2*K acts at h/3 (Eq. 4-3-1, 4-3-2)",
+        "Rankine active: Ka = tan^2(45 - phi/2) (Eq. 4-3-11)",
+        "Rankine passive: Kp = tan^2(45 + phi/2) (Eq. 4-3-12) - do NOT use for sloping backfill",
+        "Coulomb adds wall friction delta (Table 4-2) but is discouraged for passive pressure",
+        "At-rest NC: K0 = (1 - sin phi)(1 - sin beta) (Eq. 4-3-14)",
+        "At-rest OC: K0 = (1 - sin phi)*OCR^(sin phi) (Eq. 4-3-15)",
+        "For passive pressure with wall friction or slope, use the Log-Spiral method (Section 4-6)"
+      ],
+      "equations": [
+        {
+          "id": "Eq. 4-3-1",
+          "description": "Horizontal stress sigma_h = sigma_v*K = gamma*h*K.",
+          "implemented_in": "geotech_references.california_trenching.equations.lateral_earth_pressure_resultant"
+        },
+        {
+          "id": "Eq. 4-3-2 / 4-3-17",
+          "description": "Triangular lateral earth pressure resultant P = 0.5*gamma*h^2*K, acting at h/3.",
+          "implemented_in": "geotech_references.california_trenching.equations.lateral_earth_pressure_resultant"
+        },
+        {
+          "id": "Eq. 4-3-11",
+          "description": "Rankine active coefficient Ka = tan^2(45 - phi/2).",
+          "implemented_in": "geotech_references.california_trenching.equations.rankine_ka"
+        },
+        {
+          "id": "Eq. 4-3-12",
+          "description": "Rankine passive coefficient Kp = tan^2(45 + phi/2).",
+          "implemented_in": "geotech_references.california_trenching.equations.rankine_kp"
+        },
+        {
+          "id": "Eq. 4-3-14",
+          "description": "At-rest coefficient for normally consolidated soil: K0 = (1 - sin phi)(1 - sin beta).",
+          "implemented_in": "geotech_references.california_trenching.equations.at_rest_k0"
+        },
+        {
+          "id": "Eq. 4-3-15",
+          "description": "At-rest coefficient for over-consolidated soil: K0 = (1 - sin phi)*OCR^(sin phi).",
+          "implemented_in": "geotech_references.california_trenching.equations.at_rest_k0"
+        },
+        {
+          "id": "Eq. 4-3-22",
+          "description": "Coulomb active coefficient Ka (with wall friction delta, slope beta, wall batter omega).",
+          "implemented_in": "geotech_references.california_trenching.equations.coulomb_ka"
+        }
+      ],
+      "figures": [
+        "Figure 4-3: Comparison of Plane versus Curved Failure Surfaces",
+        "Figure 4-4: Lateral Earth Pressure Variation with Depth",
+        "Figure 4-7: Rankine's Active Wedge",
+        "Figure 4-8: Rankine's Passive Wedge",
+        "Figure 4-9: Coulomb's Active Wedge",
+        "Figure 4-10: Coulomb's Passive Wedge"
+      ],
+      "tables": [
+        "Table 4-2: Wall Friction (ultimate friction angle delta for dissimilar materials)"
+      ],
+      "applicability": "Computing active, passive, and at-rest earth pressure coefficients for granular backfill"
+    },
+    {
+      "section_id": "4-4",
+      "title": "Developing Earth Pressures for Cohesive Soil; Apparent Active Coefficient",
+      "summary": "Bell (1952) modified Rankine for cohesion: sigma_a = sigma_v*Ka - 2c*sqrt(Ka), sigma_p = sigma_v*Kp + 2c*sqrt(Kp). A tension crack forms to depth hcr = 2c/(gamma*sqrt(Ka)) (Eq. 4-4-13) and, with water, fills hydrostatically. For shoring, the tension zone is ignored and a modified full-height distribution uses the apparent active earth pressure coefficient Kapparent = sigma_a/(gamma*h), which must be >= 0.25 (Eq. 4-4-16) unless a lower value is specifically justified.",
+      "body": "Neither Coulomb nor Rankine explicitly include cohesion; Bell (1952) modified Rankine. For the active case sigma_a = sigma_v*Ka - 2c*sqrt(Ka) and for the passive case sigma_p = sigma_v*Kp + 2c*sqrt(Kp) (Eq. 4-4-4 through 4-4-9; with sigma_v = gamma*h). The active stress is zero at a shallow depth and the soil is in tension above it; the tension crack develops from the surface to depth hcr = 2c/(gamma*sqrt(Ka)) (Eq. 4-4-13, Figure 4-12), and when water is present the crack fills, adding hydrostatic pressure. Extreme caution is advised using the cohesion value c, because the induced stress is highly uncertain (shrink-swell, wet-dry, saturation). For shoring supporting cohesive backfill the tension height hcr is ignored (a crack's timing is undeterminable and the cohesive tension is then absent), and a modified pressure distribution acts along the entire wall height (Figure 4-14). The base active stress sigma_a may be used provided it is not less than a minimum apparent active coefficient of 0.25 times the effective vertical stress (gamma*h). Because cohesion shifts the pressure diagram to a lower horizontal stress, a revised 'apparent active earth pressure coefficient' Kapparent = sigma_a/(gamma*h) is computed, and Kapparent must be >= 0.25 (Eq. 4-4-16). Any design with Kapparent < 0.25 must be justified (multiple lab tests for c, the excavation time frame, and other conditions).",
+      "key_points": [
+        "Bell cohesive: sigma_a = sigma_v*Ka - 2c*sqrt(Ka); sigma_p = sigma_v*Kp + 2c*sqrt(Kp)",
+        "Tension crack depth hcr = 2c/(gamma*sqrt(Ka)) (Eq. 4-4-13)",
+        "With water, the tension crack fills and adds hydrostatic pressure",
+        "For shoring, ignore the tension zone and use a modified full-height distribution",
+        "Apparent active coefficient Kapparent = sigma_a/(gamma*h), must be >= 0.25 (Eq. 4-4-16)",
+        "Kapparent < 0.25 requires specific justification (lab tests for c, excavation time frame)"
+      ],
+      "equations": [
+        {
+          "id": "Eq. 4-4-13",
+          "description": "Depth of the cohesive tension crack zone hcr = 2c/(gamma*sqrt(Ka)).",
+          "implemented_in": "geotech_references.california_trenching.equations.tension_crack_depth"
+        },
+        {
+          "id": "Eq. 4-4-16",
+          "description": "Apparent active earth pressure coefficient Kapparent = sigma_a/(gamma*h) >= 0.25.",
+          "implemented_in": "geotech_references.california_trenching.equations.apparent_active_coefficient"
+        }
+      ],
+      "figures": [
+        "Figure 4-11: Mohr Circle Representation of Earth Pressure for Cohesive Backfill",
+        "Figure 4-12: Tension Crack with Hydrostatic Water Pressure",
+        "Figure 4-13: Cohesive Soil Active and Passive Earth Pressure Distribution",
+        "Figure 4-14: Pressure for K apparent"
+      ],
+      "tables": [],
+      "applicability": "Computing active/passive pressures and the apparent active coefficient for cohesive backfill"
+    },
+    {
+      "section_id": "4-5",
+      "title": "Estimating Maximum Allowable Embankment Slope Angle",
+      "summary": "None of the earth-pressure theories work when the slope angle beta exceeds the friction angle phi; cohesion c lets a slope stand steeper than phi. For c-phi soil the maximum allowable slope angle (ASCE JGGE, Feb 1997) is sin(beta) <= sin(phi) + c/(gamma*h). If sin(phi) + c/(gamma*h) >= 1 the soil can stand vertical for that height. This is an estimate; a slope-stability analysis is still recommended.",
+      "body": "In nature many stable slopes have a slope angle beta larger than the friction angle phi, due to cohesion c. None of the earth-pressure theories work when beta > phi, even in cohesive soil. The Mohr-circle representation of a c-phi backfill with beta <= phi is shown in Figure 4-16. From the ASCE Journal of Geotechnical and Geoenvironmental Engineering (February 1997), the maximum allowable embankment slope angle for c-phi soil backfill satisfies sin(beta) <= sin(phi) + c/(gamma*log_n*phi) - in the manual's working form, sin(beta) <= sin(phi) + c/(gamma*h) (Eq. 4-5-1), where h is the slope/excavation height. The Active and Passive Trial Wedge methods (Sections 4-5.01/4-5.02) and Culmann's graphical solution (Section 4-5.03, Appendix A) provide more rigorous treatment of irregular backfill and slopes.",
+      "key_points": [
+        "Earth-pressure theories fail when slope angle beta > friction angle phi",
+        "Cohesion c lets a c-phi slope stand steeper than phi",
+        "Max allowable slope: sin(beta) <= sin(phi) + c/(gamma*h) (Eq. 4-5-1, ASCE JGGE Feb 1997)",
+        "If sin(phi) + c/(gamma*h) >= 1, the soil can stand vertical for that height",
+        "Estimate only - a slope-stability analysis (Ch 10) is still recommended"
+      ],
+      "equations": [
+        {
+          "id": "Eq. 4-5-1",
+          "description": "Maximum allowable embankment slope angle for c-phi soil: sin(beta) <= sin(phi) + c/(gamma*h).",
+          "implemented_in": "geotech_references.california_trenching.equations.max_allowable_slope_angle"
+        }
+      ],
+      "figures": [
+        "Figure 4-16: Mohr's Circles for Sloping Ground",
+        "Figure 4-17: Active Trial Wedge",
+        "Figure 4-18: Passive Trial Wedge"
+      ],
+      "tables": [],
+      "applicability": "Estimating the steepest temporary cut/embankment slope that c-phi soil can sustain"
+    },
+    {
+      "section_id": "4-6",
+      "title": "Log-Spiral Passive Earth Pressure (Caquot & Kerisel)",
+      "summary": "Because straight-line (Rankine/Coulomb) passive surfaces overpredict Kp - dangerously so when wall friction exceeds phi/3 - the Log-Spiral method is used for passive pressure. The Caquot & Kerisel (1948) chart (Figure 4-20) gives an initial Kp from phi and beta/phi; a wall-friction reduction factor R (from delta/phi; Matrix 4-1) is applied to get the design Kp' = R*Kp. Example: phi=32, beta/phi=0.84 -> Kp~19; delta/phi=0.44 -> R=0.679; Kp' = 13.",
+      "body": "A stable shoring system requires the passive earth pressure on the low side to oppose the active pressure on the high side. The sliding surface for active pressure is practically a straight line, but the passive sliding surface cannot be approximated by a straight line. The Log-Spiral theory was developed because straight-line failure-plane theories give unrealistic (unsafe) passive earth pressures, especially when wall friction exceeds phi/3 (Figure 4-3 compares the curved Log-Spiral and planar Coulomb/Rankine surfaces). Procedure using Figure 4-20 (Passive Earth Pressure Coefficient, Caquot & Kerisel 1948): (1) given delta, beta, phi; (2) compute delta/phi and beta/phi; (3) read the initial Kp for beta/phi from Figure 4-20; (4) determine the reduction factor R from delta/phi (Matrix 4-1, the chart's upper-left interpolation table); (5) compute the final Kp' = R*Kp. Worked example: wall friction delta = 14 deg, slope beta = 27 deg, phi = 32 deg; beta/phi = 0.84 gives initial Kp ~ 19; delta/phi = 0.44 with phi = 32 gives R = 0.679; Kp' = 0.679*19 = 13.",
+      "key_points": [
+        "Use the Log-Spiral method for passive pressure (straight-line theories overpredict Kp)",
+        "Difference is large and unsafe for Coulomb passive when wall friction > phi/3",
+        "Figure 4-20 (Caquot & Kerisel 1948): initial Kp from phi and beta/phi",
+        "Wall-friction reduction factor R from delta/phi (Matrix 4-1)",
+        "Design passive coefficient Kp' = R * Kp",
+        "Example: phi=32, beta/phi=0.84 -> Kp~19; delta/phi=0.44 -> R=0.679; Kp'=13"
+      ],
+      "equations": [
+        {
+          "id": "Section 4-6 (Kp')",
+          "description": "Final log-spiral passive coefficient Kp' = R * Kp (R from Matrix 4-1, Kp from Figure 4-20).",
+          "implemented_in": "geotech_references.california_trenching.equations.log_spiral_passive_kp"
+        }
+      ],
+      "figures": [
+        "Figure 4-20: Passive Earth Pressure Coefficient (Caquot and Kerisel, 1948)"
+      ],
+      "tables": [
+        "Matrix 4-1: Matrix for Interpolation of the wall-friction reduction factor R"
+      ],
+      "applicability": "Computing a realistic passive earth pressure coefficient for walls with wall friction or sloping ground"
+    }
+  ]
+}

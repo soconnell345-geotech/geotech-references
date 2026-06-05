@@ -1,0 +1,128 @@
+{
+  "reference_id": "Caltrans Trenching and Shoring Manual",
+  "reference_title": "California Trenching and Shoring Manual (Caltrans, June 2011, Revision 2 - July 2025)",
+  "volume": null,
+  "chapter": 10,
+  "chapter_title": "Special Conditions",
+  "sections": [
+    {
+      "section_id": "10-2",
+      "title": "Use of Anchor Blocks (Deadmen)",
+      "summary": "Anchor blocks (deadmen) develop tie-rod resistance only when placed OUTSIDE the active failure wedge; the net resistance is the passive minus active force. In cohesionless soil the 3-D end effects are captured by the Ovesen factor R (3-D ultimate load / 2-D ultimate load), capped at 2.0. The ultimate block capacity Tult = R*(Pp - Pa)*L, and a factor of safety on the tie load is checked (FS ~ 1.5+).",
+      "body": "Proper placement of anchor blocks (deadmen) is critical: anchors placed within a soil failure wedge will not provide the needed resistance once the active zone moves. The available resistance is the passive force in front minus the active force behind the block. For an isolated/continuous anchor block in cohesionless soil, three-dimensional end effects increase the capacity; Ovesen's theory gives the factor R = (3-D ultimate load)/(2-D ultimate load), and if the calculated R exceeds 2.0 then R = 2 is used. The ultimate anchor-block capacity is Tult = R*(Pp - Pa)*L (Eq. 10-2-36), where L is the block length, and the factor of safety FS = Tult/T is checked against the applied tie load T (the worked example shows FS = 2.03). Cases are given for cohesionless soil at the surface, cohesionless soil with 1.5 <= D/H <= 5.5, and cohesive soil near and below the surface (d <= H/2 and d >= H/2).",
+      "key_points": [
+        "Anchor blocks must be placed OUTSIDE the active failure wedge to be effective",
+        "Net resistance = passive force Pp minus active force Pa",
+        "Ovesen 3-D factor R = (3-D ultimate)/(2-D ultimate), capped at 2.0",
+        "Ultimate capacity Tult = R*(Pp - Pa)*L (Eq. 10-2-36)",
+        "Check FS = Tult / T on the applied tie load"
+      ],
+      "equations": [
+        {
+          "id": "Eq. 10-2-36",
+          "description": "Ultimate anchor-block capacity Tult = R*(Pp - Pa)*L (R is the Ovesen 3-D factor, capped at 2.0).",
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure 10-1: Anchor Block and Tie Rod",
+        "Figure 10-2: Anchor Block Position Relative to Wall Face and Failure Plane",
+        "Figure 10-8: Anchor Block not near the Ground Surface: 1.5 <= D/H <= 5.5"
+      ],
+      "tables": [],
+      "applicability": "Sizing and locating deadman anchor blocks for tieback restraint"
+    },
+    {
+      "section_id": "10-3",
+      "title": "Heave (Bottom Heave of Braced Cuts in Clay)",
+      "summary": "Bottom heave can occur in soft clay when the excavation is deep enough to displace the surrounding clay upward; check it (and slip-circle failure) when the stability number No = gamma*H/c exceeds 6. Terzaghi (1943) treats the driving force Q = W + 0.7B*q - S (W = gamma*H*0.7B, S = cH) as a load on a continuous footing of width 0.7B, resisted by Qu = c*Nc*(0.7B) with Nc from Bjerrum & Eide (1956, Figure 10-15). FS = Qu/Q must be >= 1.5.",
+      "body": "Heave occurs in soft plastic clays when the excavation depth displaces surrounding clay vertically with corresponding upward movement of the excavation bottom. Check heave and slip-circle failure when the Stability Number No = gamma*H/c exceeds 6 (Eq. 10-3-1). Terzaghi (1943) analyzed the FS of long braced excavations against bottom heave (Figure 10-14). The vertical driving load per unit length along line dc is Q = W + (0.7B)*q - S (Eq. 10-3-2), where W = gamma*H*(0.7B) is the soil column weight, B the open-excavation width, q the surcharge, and S = cH the cohesion resistance over the excavation depth (modeled as a negative driving force). The driving force Q is treated as a load on a continuous footing of width 0.7B; the resisting net ultimate bearing capacity is Qu = c*Nc*(0.7B) (Eq. 10-3-3), with Nc from Bjerrum & Eide (1956, Figure 10-15) varying with H/B and L/B. The factor of safety against heave is FS = FRS/FDR = Qu/Q (Eq. 10-3-5), and a minimum FS of 1.5 is recommended. If a hard layer is within 0.7B of the bottom, the failure surface depth 0.7B is replaced by the depth D to the hard layer in the W, surcharge, and bearing-capacity terms. Mitigation: extend the sheeting into a more stable layer or for one-half the excavation width (typically valid for H > B), or over-excavate and construct a counterweight; strutting near the bottom does NOT prevent heave.",
+      "key_points": [
+        "Check heave when the stability number No = gamma*H/c > 6 (Eq. 10-3-1)",
+        "Driving force Q = W + 0.7B*q - S; W = gamma*H*0.7B, S = cH (Eq. 10-3-2)",
+        "Resisting force Qu = c*Nc*(0.7B) (Terzaghi bearing capacity, Eq. 10-3-3)",
+        "Nc from Bjerrum & Eide (1956), function of H/B and L/B (Figure 10-15)",
+        "FS = Qu/Q must be >= 1.5 (Eq. 10-3-5)",
+        "Strutting near the bottom does NOT prevent heave; extend sheeting or add counterweight"
+      ],
+      "equations": [
+        {
+          "id": "Eq. 10-3-1",
+          "description": "Stability number for heave No = gamma*H/c (check heave when No > 6).",
+          "implemented_in": "geotech_references.california_trenching.equations.stability_number"
+        },
+        {
+          "id": "Eq. 10-3-2",
+          "description": "Heave driving force Q = W + (0.7B)*q - S, with W = gamma*H*(0.7B), S = cH.",
+          "implemented_in": "geotech_references.california_trenching.equations.heave_factor_of_safety"
+        },
+        {
+          "id": "Eq. 10-3-3",
+          "description": "Heave resisting force Qu = c*Nc*(0.7B) (Terzaghi bearing capacity).",
+          "implemented_in": "geotech_references.california_trenching.equations.heave_factor_of_safety"
+        },
+        {
+          "id": "Eq. 10-3-5",
+          "description": "Factor of safety against bottom heave FS = Qu/Q >= 1.5.",
+          "implemented_in": "geotech_references.california_trenching.equations.heave_factor_of_safety"
+        }
+      ],
+      "figures": [
+        "Figure 10-14: Bottom Heave",
+        "Figure 10-15: Bearing Capacity Factor from Bjerrum and Eide (1956)",
+        "Figure 10-16: Driving and Resisting Forces and the Factor of Safety"
+      ],
+      "tables": [],
+      "applicability": "Checking and mitigating bottom heave of a braced excavation in soft clay"
+    },
+    {
+      "section_id": "10-4",
+      "title": "Piping (Quick Conditions and Cofferdams)",
+      "summary": "In pervious sands, piping (quick conditions, sand boils) occurs when an unbalanced hydrostatic head drives upward seepage into the excavation bottom, transporting material, causing adjacent settlement, and reducing passive resistance of embedded members. Mitigate by equalizing the head (flood the excavation or dewater outside), providing adequate sheet-pile embedment, or a seal course. Hydraulic/drag forces on cofferdams from stream flow must also be considered.",
+      "body": "For excavations in pervious materials (sands), piping occurs when an unbalanced hydrostatic head exists, driving an upward flow of water into the bottom (also called quick conditions, visible as a sand boil). Continued piping transports material, settles adjacent soil, and reduces the passive resistance of embedded members. Solutions: equalize the head by flooding the excavation or dewatering outside (which decreases flow, increases shear strength, and stops liquid-like behavior); provide adequate embedded length so piping does not develop (USS Steel Sheet Piling Design Manual gives embedment-length charts); or use a seal course (Foundation Manual, Chapter 12). For cofferdams, stream-flow drag and hydraulic forces against the exposed sides under an unbalanced head must be evaluated.",
+      "key_points": [
+        "Piping/quick condition: upward seepage under unbalanced head in pervious sands",
+        "Effects: transports material, settles adjacent soil, reduces passive resistance",
+        "Mitigate by equalizing the head (flood the cut or dewater outside)",
+        "Adequate sheet-pile embedment or a seal course also controls piping",
+        "Cofferdams: evaluate stream-flow drag and hydraulic forces"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10-18: Hydraulic Forces on Cofferdams",
+        "Figure 10-19: Drag and Hydraulic Forces on a Cofferdam"
+      ],
+      "tables": [],
+      "applicability": "Controlling piping/quick conditions and hydraulic forces in dewatered or cofferdam excavations"
+    },
+    {
+      "section_id": "10-5",
+      "title": "Slope Stability",
+      "summary": "When the ground is not level, global/slope failure can occur along a least-resistance surface (most types of shoring except two-sided trenches in level ground). Limit-equilibrium method-of-slices analyses - Fellenius (Ordinary/Swedish Circle, 1936), Simplified Bishop (1955), Spencer/Janbu - express stability as the lowest factor of safety over many trial surfaces. Soil parameters (especially cohesion) drive the FS, and construction surcharges must be included.",
+      "body": "When the ground surface is not horizontal, a gravity component may cause the soil to slide. A stability analysis by a geotechnical engineer or geologist should be requested when shoring or a cut slope presents a slip-failure possibility (Geotechnical Services can perform computer-aided analysis). The limit-equilibrium method assumes failure when a soil mass slides along a slip surface. The analysis: obtain geometry/stratigraphy/subsurface info, soil properties, soil-structure interaction (sheet/soldier piles, anchors, nails), surcharge loads, then compute the minimum FS against failure for the various stages. Stability is the lowest FS found over multiple trial surfaces; the critical surface is often but not always circular (non-circular surfaces arise from adverse bedding, weak zones, or unfavorable groundwater). Method-of-slices variants: Fellenius Method (Ordinary Method of Slices / Swedish Circle, 1936), Simplified Bishop Method (1955), and Spencer/Janbu. The basic FS form (Eq. 10-5-1) sums resisting (cohesion along the arc + friction on the effective normal force) over driving (Wi*sin(theta_i)) terms across the slices. Agreement on soil parameters with the Contractor - especially cohesion - is critical because they strongly affect the calculated FS.",
+      "key_points": [
+        "Global/slope failure possible for most shoring except two-sided trenches in level ground",
+        "Limit-equilibrium method of slices: FS = resisting moments / driving moments",
+        "Methods: Fellenius (Swedish Circle, 1936), Simplified Bishop (1955), Spencer/Janbu",
+        "Stability = lowest FS over many trial surfaces (circular and non-circular)",
+        "Include construction surcharges (equipment, stockpiles)",
+        "Cohesion strongly affects FS - agree on soil parameters with the Contractor"
+      ],
+      "equations": [
+        {
+          "id": "Eq. 10-5-1",
+          "description": "Method-of-slices factor of safety FS = sum(resisting: cohesion*arc + friction on effective normal) / sum(driving: Wi*sin(theta_i)).",
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure 10-20: Common Pattern of Soil Slope Failure (USGS)",
+        "Figure 10-23: Slice i, Fellenius Method",
+        "Figure 10-25: Slice i, Bishop Method",
+        "Figure 10-29: Stability Failure Modes"
+      ],
+      "tables": [],
+      "applicability": "Assessing global/slope stability of cut slopes and shoring systems in non-level ground"
+    }
+  ]
+}

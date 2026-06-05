@@ -1,0 +1,120 @@
+{
+  "reference_id": "Caltrans Trenching and Shoring Manual",
+  "reference_title": "California Trenching and Shoring Manual (Caltrans, June 2011, Revision 2 - July 2025)",
+  "volume": null,
+  "chapter": 8,
+  "chapter_title": "Restrained Shoring Systems",
+  "sections": [
+    {
+      "section_id": "8-1",
+      "title": "Lateral Earth Pressures for Restrained Shoring Systems",
+      "summary": "An anchored/braced wall of exposed height H with embedded depth D uses a TRAPEZOIDAL apparent earth pressure (AEP) distribution, not the triangular distribution used for cantilevers, because the support points restrain the wall (Figure 8-1). Anchored walls are used when the height is impractical for a cantilever or the cantilever displacement would be too large for adjacent structures/utilities.",
+      "body": "An anchored wall of exposed height H over which soil is retained, with embedded depth D, includes structural supports (braced) or ground anchors (Figure 8-1). An anchored wall is used when the restrained height is too large for a practical cantilever, or when the estimated lateral displacement of a cantilever is too large given existing structures or utilities behind the wall. The lateral earth pressure increases with depth and a triangular pressure is used for cantilevers; for braced or ground-anchor walls a trapezoidal apparent earth pressure (AEP) distribution must be developed instead.",
+      "key_points": [
+        "Restrained (braced/anchored) walls use a TRAPEZOIDAL apparent earth pressure, not triangular",
+        "Wall of exposed height H, embedded depth D, with braces or ground anchors",
+        "Used when a cantilever is impractical (height) or its displacement is too large",
+        "Figure 8-1 shows the anchored/braced wall pressure"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 8-1: Lateral Earth Pressure for Anchored/Braced Wall"
+      ],
+      "tables": [],
+      "applicability": "Choosing the trapezoidal AEP basis for braced/anchored excavation support"
+    },
+    {
+      "section_id": "8-2",
+      "title": "Cohesionless Soils - Trapezoidal Apparent Earth Pressure",
+      "summary": "For braced/anchored walls in cohesionless soil the triangular Rankine/Coulomb pressure (resultant P = 0.5*gamma*H^2*Ka) is converted to a trapezoid with resultant PT = 1.3 P (Eq. 8-2-5). Single level: Figure 8-2; the f-factor gives PT = 0.65*gamma*H^2*Ka. Multi-level: sigma_a = 1.3P/[H - (1/3)(H1 + Hn+1)] (Eq. 8-2-6), where H1 is to the uppermost anchor and Hn+1 from the wall base to the lowermost anchor.",
+      "body": "The lateral earth pressure distribution for braced/anchored walls in cohesionless soils is determined from Figure 8-2 (single level) and Figure 8-3 (multi-level). The factor f converts the triangular distribution to a trapezoid. The resultant for the triangular distribution is P = 0.5*gamma*H^2*Ka; the trapezoidal resultant is PT = 0.65*gamma*H^2*Ka (Eq. 8-2-3). Setting them equal gives PT = 1.3 P (Eq. 8-2-5). For the multilevel anchored wall (Figure 8-3), the maximum ordinate is sigma_a = 1.3P / [H - (1/3)(H1 + Hn+1)] (Eq. 8-2-6), where H1 is the distance from the ground surface to the uppermost anchor level and Hn+1 is the distance from the grade at the bottom of the wall to the lowermost anchor level.",
+      "key_points": [
+        "Trapezoidal resultant PT = 1.3 * triangular resultant P (Eq. 8-2-5)",
+        "Triangular resultant P = 0.5*gamma*H^2*Ka",
+        "Multi-level max ordinate sigma_a = 1.3P/[H - (1/3)(H1 + Hn+1)] (Eq. 8-2-6)",
+        "H1 = surface to uppermost anchor; Hn+1 = wall base to lowermost anchor",
+        "Single-level pressure from Figure 8-2; multi-level from Figure 8-3"
+      ],
+      "equations": [
+        {
+          "id": "Eq. 8-2-5",
+          "description": "Trapezoidal AEP resultant PT = 1.3 * triangular resultant P.",
+          "implemented_in": "geotech_references.california_trenching.equations.aep_single_level_cohesionless"
+        },
+        {
+          "id": "Eq. 8-2-6",
+          "description": "Multi-level cohesionless AEP maximum ordinate sigma_a = 1.3P/[H - (1/3)(H1 + Hn+1)].",
+          "implemented_in": "geotech_references.california_trenching.equations.aep_multi_level_cohesionless"
+        }
+      ],
+      "figures": [
+        "Figure 8-2: Pressure Diagram for Single Anchored/Braced Wall in Cohesionless Soil",
+        "Figure 8-3: Pressure Diagram for Multi-Anchored/Braced Wall in Cohesionless Soil"
+      ],
+      "tables": [],
+      "applicability": "Building the trapezoidal AEP envelope for braced/anchored walls in cohesionless soil"
+    },
+    {
+      "section_id": "8-3",
+      "title": "Cohesive Soils - AEP by Stability Number",
+      "summary": "The cohesive AEP envelope is selected by the stability number Ns = gamma*H/cu (Eq. 8-3-1; cu = unconfined compressive strength / 2). Stiff-to-hard clay (Ns <= 4): sigma_a = 0.2 to 0.4 gamma H (Eq. 8-3-2, engineering judgment). Soft-to-medium clay (Ns >= 6): sigma_a = Ka gamma H (Eq. 8-3-3) with Ka per FHWA Eq. 8-3-4 and not less than 0.25. For 4 < Ns < 6 use the larger of the two. Figure 8-4 gives the diagram.",
+      "body": "The cohesive lateral earth pressure distribution is related to the stability number Ns = gamma*H/cu (Eq. 8-3-1), where gamma is the total unit weight, H the wall height, and cu the average undrained shear strength (cohesion); the undrained cohesion equals the unconfined compressive strength divided by 2 (when phi_u = 0). For braced/anchored walls in stiff to hard cohesive soil with Ns <= 4, the maximum ordinate sigma_a = 0.2*gamma*H to 0.4*gamma*H (Eq. 8-3-2) - a higher Ns needs higher shear strength to stay stable, and best judgment chooses the 0.2-0.4 factor from field conditions. For soft to medium stiff cohesive soil with Ns >= 6, sigma_a = Ka*gamma*H (Eq. 8-3-3), where Ka is from FHWA Eq. 8-3-4: Ka = 1 - 4*cu/(gamma*H) form using the upper- and lower-layer undrained strengths cu1, cu2 and the failure depth D, and is not to be less than 0.25. For 4 < Ns < 6, use the larger sigma_a from Eq. 8-3-2 and 8-3-3. Figure 8-4 gives the trapezoidal diagram.",
+      "key_points": [
+        "Stability number Ns = gamma*H/cu (Eq. 8-3-1); cu = unconfined compressive strength / 2",
+        "Stiff-hard clay (Ns <= 4): sigma_a = 0.2 to 0.4 * gamma * H (Eq. 8-3-2)",
+        "Soft-medium clay (Ns >= 6): sigma_a = Ka * gamma * H (Eq. 8-3-3)",
+        "Ka (FHWA Eq. 8-3-4) is not to be less than 0.25",
+        "4 < Ns < 6: use the larger sigma_a of the two envelopes",
+        "Check heave/slip-circle when Ns > 6 (Chapter 10-3)"
+      ],
+      "equations": [
+        {
+          "id": "Eq. 8-3-1",
+          "description": "Stability number Ns = gamma*H/cu.",
+          "implemented_in": "geotech_references.california_trenching.equations.stability_number"
+        },
+        {
+          "id": "Eq. 8-3-2",
+          "description": "Stiff-hard cohesive AEP max ordinate sigma_a = 0.2 to 0.4 * gamma * H (Ns <= 4).",
+          "implemented_in": "geotech_references.california_trenching.equations.aep_cohesive_max_ordinate"
+        },
+        {
+          "id": "Eq. 8-3-3",
+          "description": "Soft-medium cohesive AEP max ordinate sigma_a = Ka * gamma * H (Ns >= 6).",
+          "implemented_in": "geotech_references.california_trenching.equations.aep_cohesive_max_ordinate"
+        },
+        {
+          "id": "Eq. 8-3-4",
+          "description": "Coefficient Ka (FHWA) for soft-medium cohesive AEP, not less than 0.25.",
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure 8-4: Pressure Diagram for Multi Anchored/Braced Wall for Cohesive Backfill"
+      ],
+      "tables": [],
+      "applicability": "Building the cohesive AEP envelope and choosing it by the stability number Ns"
+    },
+    {
+      "section_id": "8-4",
+      "title": "Calculation Procedures (Single and Multiple Anchor; Embedment FS)",
+      "summary": "Single anchor: convert active pressure above the excavation to a trapezoid, take moments about the anchor for embedment D with FS = 1.3, then with FS = 1.0 to back-calculate the anchor load T, and finish with max shear/moment. Multiple anchors: use the Hinge Method (force AND moment equilibrium, shear/moment = 0 at the tip) or the Tributary Area Method; embedment D uses FS = 1.3 for external stability. Point of fixity is 0.25D to 0.8D below the excavation.",
+      "body": "Single ground anchor/brace procedure: (1) determine the earth pressure coefficients (classical theories, Chapter 4); (2) convert the active pressure above the excavation line to a trapezoid; (3) take moments about the anchor to calculate embedment depth D using a factor of safety of 1.3; (4) take moments about the anchor with FS = 1.0 to calculate the ground-anchor load T in the next step; (5) set the horizontal force summation to zero to find the anchor force T; (6) calculate maximum bending moment and shear to size the vertical member and lagging. Multiple anchors: per FHWA the two methods are the Hinge Method and the Tributary Area Method. The Tributary Area Method balances only force summation (large tip moment); the Hinge Method satisfies force AND moment equilibrium so shear and moment equal zero at the tip. Embedment D for multiple anchors is found by taking moments about the last anchor using FS = 1.3 for external stability. Deflection: support deflections are taken as zero (like a simple beam); the point of fixity varies from 0.25D to 0.8D below the excavation level depending on effective pile diameter and soil type.",
+      "key_points": [
+        "Embedment depth D: take moments about the anchor with FS = 1.3 (external stability)",
+        "Anchor/brace load T: take moments with FS = 1.0, then sum horizontal forces",
+        "Multiple anchors: Hinge Method (force + moment equilibrium) or Tributary Area Method",
+        "Hinge Method sets shear and moment to zero at the pile tip",
+        "Point of fixity 0.25D to 0.8D below the excavation level"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 8-5: Single Ground anchor System",
+        "Figure 8-6: Multiple Ground Anchor System",
+        "Figure 8-7: Detail Hinge Method for Ground Anchor Analysis"
+      ],
+      "tables": [],
+      "applicability": "Computing embedment depth, anchor loads, and internal forces for braced/anchored walls"
+    }
+  ]
+}
