@@ -19,4 +19,8 @@ fema_p2082 : FEMA P-2082 — 2020 NEHRP Recommended Seismic Provisions
 california_trenching : California (Caltrans) Trenching and Shoring Manual —
              temporary excavation support (Cal/OSHA soil types & slopes, earth
              pressure, apparent earth pressure for braced/anchored walls, heave)
+fhwa_pavements : FHWA-NHI-05-037 — Geotechnical Aspects of Pavements (resilient
+             modulus Mr, CBR, soil-as-pavement-material suitability, drainage,
+             frost susceptibility, swell, stabilization, compaction; DISTINCT
+             from the UFC 3-250-01 roads/parking design module ``ufc_pavement``)
 """

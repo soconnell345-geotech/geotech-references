@@ -1,0 +1,84 @@
+{
+  "reference_id": "FHWA-NHI-05-037 Geotechnical Aspects of Pavements",
+  "reference_title": "Geotechnical Aspects of Pavements (FHWA-NHI-05-037, May 2006)",
+  "volume": null,
+  "chapter": 4,
+  "chapter_title": "Geotechnical Exploration and Testing",
+  "sections": [
+    {
+      "section_id": "4.7.2",
+      "title": "Soil Classification for Pavements (USCS and AASHTO)",
+      "summary": "Pavement soils are classified by the Unified Soil Classification System (USCS, ASTM D2487) and the AASHTO system. USCS keys group symbols on gradation (Cu, Cc, % fines) for coarse-grained soils and on the plasticity chart (LL, PI, A-line) for fine-grained soils; coarse-grained = more than 50% retained on the No. 200 sieve, fine-grained = 50% or more passing (Table 4-13). The AASHTO system rates soils A-1 (best) through A-8 (peat). The classification determines a soil's suitability as a pavement material.",
+      "body": "Soil classification organizes soils with similar engineering behavior. Two systems are used in pavement practice: the Unified Soil Classification System (USCS, ASTM D2487/D2488) and the AASHTO classification (M145). In the USCS (Table 4-13), coarse-grained soils (more than 50% retained on the No. 200 sieve) are gravels (G) or sands (S) and are sub-classified by gradation - well graded (W) requires Cu >= 4 (gravels) or >= 6 (sands) with 1 <= Cc <= 3; otherwise poorly graded (P) - and by fines content, with silty (M) or clayey (C) suffixes where fines exceed 12% (5-12% fines require dual symbols, e.g. GW-GM). Fine-grained soils (50% or more passing the No. 200 sieve) are silts (M) or clays (C), lean (CL) or fat (CH) per the liquid limit (50% boundary) and the plasticity chart A-line, with organic (O) and peat (Pt) classes. The AASHTO system grades granular materials A-1 through A-3 and silt-clay materials A-4 through A-7 (with A-8 for peat); lower numbers are better subgrade. Figures 4-18 and 4-19 compare the two systems and their particle-size limits. The classification is the basis for judging a soil's suitability as a pavement material (Table 4-14) and for the default resilient-modulus values (Table 5-35).",
+      "key_points": [
+        "USCS (ASTM D2487) and AASHTO (M145) are both used in pavement practice",
+        "Coarse-grained: >50% retained on No. 200; fine-grained: >=50% passing No. 200",
+        "USCS gradation: well graded (W) needs Cu>=4 (G) / >=6 (S) and 1<=Cc<=3, else poorly graded (P)",
+        "5-12% fines -> dual symbol (GW-GM etc.); >12% fines -> M (silty) or C (clayey) suffix",
+        "Fine-grained split by LL (50% boundary) and the plasticity-chart A-line (CL/ML, CH/MH)",
+        "AASHTO grades A-1 (best) to A-7/A-8; classification drives suitability (Table 4-14) and default Mr (Table 5-35)"
+      ],
+      "equations": [
+        {
+          "id": "Cu / Cc",
+          "description": "Uniformity coefficient Cu = D60/D10 and coefficient of curvature Cc = D30^2/(D10*D60) for USCS gradation.",
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure 4-18: The AASHTO and the Unified Soil Classification System",
+        "Figure 4-19: Particle size limit by different classification systems"
+      ],
+      "tables": [
+        "Table 4-13: Classification of soils (USCS)"
+      ],
+      "applicability": "Classifying subgrade/subbase/base soils to assess suitability and select design inputs"
+    },
+    {
+      "section_id": "4.7.3",
+      "title": "Soil Suitability as a Pavement Material",
+      "summary": "Each USCS soil class has a characteristic suitability as a pavement material (Table 4-14, from NCHRP 1-37A): subgrade strength when not frozen, potential frost action, compressibility & expansion, and drainage. Clean gravels (GW/GP) are excellent subgrade, non-frost-susceptible, near-incompressible and free-draining; clayey sands/gravels (SC/GC) are poorer subgrade, frost-susceptible, more compressible and nearly impervious. The ranking guides selection of subgrade, subbase, and base materials.",
+      "body": "Table 4-14 (from the NCHRP 1-37A Pavement Design Guide) summarizes the suitability of each USCS soil class as a pavement material by four characteristics: subgrade strength when not subject to frost action, potential frost action, compressibility & expansion, and drainage characteristics. Well-graded clean gravels (GW) rate excellent subgrade strength, none-to-very-slight frost action, almost no compressibility, and excellent drainage; poorly graded gravels (GP) are good to excellent. Silty and clayey gravels (GM, GC) drop to good with slight-to-medium frost action and poor-to-impervious drainage. Clean sands (SW good, SP fair-to-good) drain excellently and are non-frost-susceptible, while silty and clayey sands (SM fair-to-good, SC poor-to-fair) become slight-to-highly frost-susceptible with poor-to-impervious drainage and slight-to-medium compressibility. The division of GM/SM groups uses the Atterberg limits (suffix d when LL <= 28 and PI <= 6; suffix u when LL > 28). This ranking guides whether a soil is acceptable as subgrade, must be improved, or is suitable only at depth, and complements the default resilient-modulus values (Table 5-35).",
+      "key_points": [
+        "Table 4-14 rates each USCS class: subgrade strength, frost action, compressibility/expansion, drainage",
+        "Clean gravels GW/GP: excellent subgrade, non-frost-susceptible, ~incompressible, free-draining",
+        "Clayey sands/gravels SC/GC: poorer subgrade, frost-susceptible, more compressible, ~impervious",
+        "GM/SM split by Atterberg limits (d: LL<=28 & PI<=6; u: LL>28)",
+        "Subgrade strength rating is for soils NOT subject to frost action"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 4-14: Summary of soil characteristics as a pavement material"
+      ],
+      "applicability": "Judging a soil's acceptability as subgrade, subbase, or base material"
+    },
+    {
+      "section_id": "4.5.3",
+      "title": "In-Situ Strength Tests (DCP, CBR, SPT, CPT)",
+      "summary": "In-situ tests provide strength/stiffness for pavement design. The Dynamic Cone Penetrometer (DCP, ASTM D6951) gives a penetration index converted to CBR (CBR = 292/DCP^1.12) and then to Mr. Field CBR (ASTM D4429), SPT, and CPT are also used. The DCP is a rapid, low-cost field strength profiler well suited to pavements.",
+      "body": "Several in-situ tests characterize subgrade and unbound-layer strength/stiffness for pavement design. The Dynamic Cone Penetrometer (DCP, ASTM D6951) drives a cone with a standard hammer and reports a penetration index (in./blow); the index correlates to CBR by CBR = 292/DCP^1.12, and the estimated CBR is then converted to resilient modulus (Table 5-34). The DCP is rapid, inexpensive, and gives a continuous shallow strength profile, making it especially useful for pavement subgrades and for construction QC. Field CBR is measured directly per ASTM D4429. The Standard Penetration Test (SPT) and Cone Penetration Test (CPT) provide deeper-profile strength and stratigraphy. These in-situ measures feed the same Mr correlations used for laboratory data.",
+      "key_points": [
+        "DCP (ASTM D6951): penetration index -> CBR = 292/DCP^1.12 -> Mr",
+        "Field CBR per ASTM D4429; SPT and CPT for deeper profiling",
+        "DCP is rapid, low-cost, and gives a continuous shallow strength profile",
+        "In-situ strength feeds the same Mr correlations as lab data (Table 5-34)"
+      ],
+      "equations": [
+        {
+          "id": "Table 5-34 (DCP)",
+          "description": "CBR from the Dynamic Cone Penetrometer index: CBR = 292/DCP^1.12 (ASTM D6951).",
+          "implemented_in": "geotech_references.fhwa_pavements.equations.cbr_from_dcp"
+        }
+      ],
+      "figures": [
+        "Figure 4-13: CPT log in comparison to SPT data from several locations"
+      ],
+      "tables": [
+        "Table 4-9: Dynamic cone penetrometer",
+        "Table 4-10: Cone penetrometer"
+      ],
+      "applicability": "Obtaining in-situ subgrade strength for pavement design and construction QC"
+    }
+  ]
+}

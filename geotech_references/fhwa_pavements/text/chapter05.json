@@ -1,0 +1,188 @@
+{
+  "reference_id": "FHWA-NHI-05-037 Geotechnical Aspects of Pavements",
+  "reference_title": "Geotechnical Aspects of Pavements (FHWA-NHI-05-037, May 2006)",
+  "volume": null,
+  "chapter": 5,
+  "chapter_title": "Geotechnical Inputs",
+  "sections": [
+    {
+      "section_id": "5.4.1",
+      "title": "California Bearing Ratio (CBR)",
+      "summary": "CBR is an indirect measure of soil strength based on resistance to penetration (AASHTO T193 / ASTM D1883 lab; ASTM D4429 field). It is defined as the ratio of the load to penetrate a compacted soil specimen to the load to penetrate a standard crushed-stone sample, expressed as a percentage. Tests are usually run soaked to simulate long-term field conditions. Typical field CBR by USCS class is in Table 5-28 (e.g. GW 60-80, CH 3-5); for the AASHO Road Test CBR ~ 100 for the granular base and ~ 30 for the subbase.",
+      "body": "The California Bearing Ratio (CBR) is an indirect measure of soil strength based on resistance to penetration by a standardized piston. CBR is determined in the laboratory per AASHTO T193 or ASTM D1883 and in the field per ASTM D4429. CBR is the ratio of the load required to cause a given depth of penetration of a piston into a compacted soil specimen to the standard load required for the same penetration into a standard crushed-stone (limestone) sample. Soaked conditions are typically used to simulate anticipated long-term field conditions; as-compacted CBR at optimum moisture/density can be significantly greater than soaked CBR, so the test conditions (dry, optimum, soaked, relative compaction) must be stated. The CBR is run on three identically compacted samples. Typical field CBR values by USCS soil class are given in Table 5-28 (after USACE 1953); clean gravels (GW) reach 60-80 while fat clays (CH) are only 3-5. CBR is a primary input to several empirical design methods and is the basis of the most-preferred resilient-modulus correlation (Mr = 2555*CBR^0.64, Table 5-34).",
+      "key_points": [
+        "CBR = penetration resistance of soil / penetration resistance of standard crushed stone (%)",
+        "Lab: AASHTO T193 / ASTM D1883 (usually soaked); field: ASTM D4429 (field moisture)",
+        "Typical field CBR by USCS class in Table 5-28: GW 60-80 ... CH 3-5",
+        "AASHO Road Test: base CBR ~ 100, subbase ~ 30",
+        "CBR feeds the preferred Mr correlation Mr = 2555*CBR^0.64 (Table 5-34)"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-12: California Bearing Ratio test device"
+      ],
+      "tables": [
+        "Table 5-27: California Bearing Ratio (CBR)",
+        "Table 5-28: Typical CBR values"
+      ],
+      "applicability": "Strength input for empirical pavement design and for estimating resilient modulus"
+    },
+    {
+      "section_id": "5.4.2",
+      "title": "Stabilometer R-Value",
+      "summary": "The Stabilometer R-value (AASHTO T190) measures a soil's resistance to lateral deformation under vertical load and is used by some agencies as a subgrade/base strength input. It correlates with resilient modulus: Mr (psi) = 1155 + 555*R (Table 5-34), or the recommended subgrade form Mr (psi) = 1000 + 555*R (Eq. 5.15).",
+      "body": "The Resistance R-value, measured with the Hveem stabilometer (AASHTO T190), characterizes a soil's resistance to lateral plastic deformation under an applied vertical load. R ranges from 0 (a liquid that transmits full lateral pressure) to 100 (a rigid material). Several state agencies use R-value as the primary subgrade and unbound-material strength input. R-value correlates with resilient modulus: Table 5-34 gives Mr (psi) = 1155 + 555*R (MPa form 8.0 + 3.8*R); the recommended subgrade correlation (Eq. 5.15) is Mr (psi) = 1000 + 555*R, and the general 1993 AASHTO form is Mr = A + B*R with A = 772-1155 and B = 369-555 (Asphalt Institute 1982).",
+      "key_points": [
+        "R-value (AASHTO T190) = resistance to lateral deformation under vertical load, scale 0-100",
+        "Mr (psi) = 1155 + 555*R (Table 5-34)",
+        "Recommended subgrade form Eq. 5.15: Mr (psi) = 1000 + 555*R",
+        "General form Mr = A + B*R, A = 772-1155, B = 369-555 (Asphalt Institute 1982)"
+      ],
+      "equations": [
+        {
+          "id": "Eq. 5.15",
+          "description": "Subgrade resilient modulus from R-value: Mr (psi) = 1000 + 555*R (recommended).",
+          "implemented_in": "geotech_references.fhwa_pavements.equations.resilient_modulus_from_r_value"
+        }
+      ],
+      "figures": [
+        "Figure 5-13: Schematic of stabilometer test setup for measuring R-value"
+      ],
+      "tables": [
+        "Table 5-29: Stabilometer or R-Value"
+      ],
+      "applicability": "Subgrade/unbound strength input and estimation of resilient modulus"
+    },
+    {
+      "section_id": "5.4.3",
+      "title": "Resilient Modulus (MR)",
+      "summary": "The resilient modulus Mr is the elastic (recoverable) unloading modulus after many cycles of repeated load, Mr = cyclic deviator stress / recoverable axial strain. It is the key stiffness input for both AASHTO and NCHRP 1-37A (M-E) design. Mr can be measured (cyclic triaxial, AASHTO T307 etc.), backcalculated from FWD deflections (then reduced to design Mr by a factor: 0.33 flexible / 0.25 rigid in 1993 AASHTO; 0.40 subgrade / 0.67 granular in NCHRP 1-37A), or estimated from CBR/R-value/DCP/plasticity (Table 5-34) or by soil class (default Table 5-35). For granular layers Mr is stress-dependent: Mr = k1*theta^k2 (Eq. 5.9). Seasonal variation is handled by an effective Mr via the relative-damage relationship.",
+      "body": "The resilient modulus (Mr) is the elastic unloading modulus after many cycles of cyclic loading, defined for cyclic triaxial loading as Mr = cyclic (deviator) stress / recoverable (resilient) axial strain (Figure 5-15). Mr characterizes subgrade and unbound layer stiffness for flexible and rigid pavements (AASHTO 1986/1993 and NCHRP 1-37A) and is used to determine structural layer coefficients. Lab testing uses repeated haversine load pulses in a triaxial cell (AASHTO T307-99 and related protocols, harmonized in NCHRP 1-28A). Mr inputs may be obtained three ways: (1) Level 1 - laboratory or backcalculated Mr; (2) Level 2 - correlations with CBR, R-value, layer coefficient, plasticity+gradation, or DCP (Table 5-34, in rough order of preference, with the Mr-CBR correlation most preferred); (3) Level 3 - typical values by AASHTO/USCS soil class (Table 5-35). Backcalculated/field Mr must be reduced to a design Mr: the 1993 AASHTO Guide recommends multiplying field subgrade Mr by up to 0.33 (flexible) or 0.25 (rigid), while NCHRP 1-37A recommends 0.40 for subgrade and 0.67 for granular base/subbase (Table 5-32). For unbound GRANULAR base/subbase, Mr is stress-dependent and modeled as Mr = k1*theta^k2 (Eq. 5.9), where theta is the bulk stress (sigma1+sigma2+sigma3). The AASHTO 1993 Mr-CBR forms vary with bulk stress (e.g. Mr = 740*CBR at theta = 100 psi); for subgrade the legacy form is Mr (psi) = 1500*CBR for CBR < 10 (Eq. 5.13, Heukelom & Klomp 1962) - NCHRP 1-37A strongly recommends AGAINST it, preferring Mr = 2555*CBR^0.64. The 1993 AASHTO Guide accounts for seasonal subgrade-moisture variation by computing a relative damage uf = 1.18e8*Mr^(-2.32) (Eq. 5.11) for each seasonal Mr, averaging uf, and back-solving for the single effective design Mr.",
+      "key_points": [
+        "Mr = cyclic deviator stress / recoverable axial strain (cyclic triaxial; AASHTO T307)",
+        "Key stiffness input for AASHTO 1986/1993 and NCHRP 1-37A (M-E) design",
+        "Preferred correlation: Mr (psi) = 2555*CBR^0.64 (Table 5-34); NOT the older Mr = 1500*CBR (Eq. 5.13)",
+        "Default Mr by AASHTO/USCS soil class in Table 5-35 (Level 3)",
+        "Granular layers are stress-dependent: Mr = k1*theta^k2, theta = bulk stress (Eq. 5.9)",
+        "Backcalc->design factors: 0.33 flexible / 0.25 rigid (AASHTO 1993); 0.40 subgrade / 0.67 granular (NCHRP 1-37A)",
+        "Seasonal effective Mr via relative damage uf = 1.18e8*Mr^(-2.32) (Eq. 5.11)"
+      ],
+      "equations": [
+        {
+          "id": "Table 5-34 (CBR)",
+          "description": "Preferred Mr-CBR correlation: Mr (psi) = 2555*CBR^0.64 (Mr (MPa) = 17.6*CBR^0.64).",
+          "implemented_in": "geotech_references.fhwa_pavements.equations.resilient_modulus_from_cbr"
+        },
+        {
+          "id": "Eq. 5.13",
+          "description": "Legacy 1993 AASHTO subgrade Mr from CBR: Mr (psi) = 1500*CBR for CBR < 10 (Heukelom & Klomp 1962); NCHRP 1-37A recommends against it.",
+          "implemented_in": "geotech_references.fhwa_pavements.equations.resilient_modulus_from_cbr_aashto93"
+        },
+        {
+          "id": "Eq. 5.9",
+          "description": "Stress-dependent granular resilient modulus: Mr = k1*theta^k2, theta = sigma1+sigma2+sigma3 (bulk stress, psi).",
+          "implemented_in": "geotech_references.fhwa_pavements.equations.granular_resilient_modulus_bulk_stress"
+        },
+        {
+          "id": "Eq. 5.11",
+          "description": "Seasonal relative damage uf = 1.18e8*Mr^(-2.32); average over seasons and invert for the effective design Mr.",
+          "implemented_in": "geotech_references.fhwa_pavements.equations.seasonal_relative_damage"
+        },
+        {
+          "id": "Table 5-34 (DCP)",
+          "description": "CBR from the Dynamic Cone Penetrometer: CBR = 292/DCP^1.12 (ASTM D6951), then estimate Mr.",
+          "implemented_in": "geotech_references.fhwa_pavements.equations.cbr_from_dcp"
+        },
+        {
+          "id": "Table 5-34 (PI+gradation)",
+          "description": "CBR from plasticity and gradation: CBR = 75/(1 + 0.728*wPI), wPI = P200*PI.",
+          "implemented_in": "geotech_references.fhwa_pavements.equations.cbr_from_plasticity_gradation"
+        }
+      ],
+      "figures": [
+        "Figure 5-14: Resilient modulus under cyclic load",
+        "Figure 5-15: Definition of resilient modulus MR for cyclic triaxial loading",
+        "Figure 5-16: Triaxial cell set-up for resilient modulus test",
+        "Figure 5-17: Correlations between subgrade resilient modulus and other soil properties"
+      ],
+      "tables": [
+        "Table 5-31: Resilient modulus",
+        "Table 5-32: Average backcalculated to laboratory determined elastic modulus ratios",
+        "Table 5-34: Correlations between resilient modulus and various material strength and index properties",
+        "Table 5-35: Default MR values for unbound granular and subgrade materials",
+        "Table 5-39: Typical k1 and k2 for unbound base and subbase materials"
+      ],
+      "applicability": "Primary stiffness input for flexible and rigid pavement design (AASHTO and NCHRP 1-37A)"
+    },
+    {
+      "section_id": "5.4.7",
+      "title": "Swell and Collapse Potential",
+      "summary": "Swelling soils undergo large volume change with moisture and must be identified and removed, stabilized, or designed for. Swell potential is screened from plasticity: Table 5-24 (Holtz & Gibbs 1956) keys Low-to-Very-high expansion on PI, shrinkage limit, % finer than 0.001 mm, and probable % volume change; the simpler Table 7-17 (LL/PI) is used in the Chapter 7 stabilization guidance. Collapsible soils lose strength and volume on wetting (ASTM D5333).",
+      "body": "Swelling is a large change in soil volume induced by changes in moisture content (Table 5-23); swelling subgrade soils can seriously degrade pavement performance and must be identified so they can be removed, stabilized, or accounted for in design. Swell potential is measured by AASHTO T258 / ASTM D4546 (and the ASTM D1883 CBR swell). It is estimated from index properties: Table 5-24 (Holtz & Gibbs 1956) rates expansion Low / Medium / High / Very high from the plasticity index, shrinkage limit, percent finer than 0.001 mm, and the probable percent total volume change under a 1 psi (6.9 kPa) load. A simpler liquid-limit/plasticity-index screen (Table 7-17) is used in the Chapter 7 admixture-stabilization guidance: soils swelling in excess of 3% are treated as expansive for pavement purposes, and lime treatment may be appropriate. Collapsible soils (Table 5-25) exhibit large strength loss and volume decrease at moisture contents approaching saturation (ASTM D5333) and must likewise be identified and mitigated.",
+      "key_points": [
+        "Swelling soils must be removed, stabilized, or designed for",
+        "Table 5-24 (Holtz & Gibbs): expansion from PI, SL, % finer 0.001 mm, probable % volume change",
+        "Table 7-17: simpler swell screen from LL and PI (Low / Marginal / High)",
+        "Soils swelling > 3% are expansive for pavement purposes; lime treatment may apply",
+        "Collapsible soils lose strength/volume on wetting (ASTM D5333)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 5-23: Swell potential of clays",
+        "Table 5-24: Estimation of swell potential",
+        "Table 5-25: Collapse potential of soils",
+        "Table 7-17: Swell potential of soils"
+      ],
+      "applicability": "Identifying expansive/collapsible subgrade soils requiring removal, stabilization, or special design"
+    },
+    {
+      "section_id": "5.5",
+      "title": "Drainage Inputs (Permeability and Drainage Coefficients)",
+      "summary": "Drainage quality affects pavement life and is incorporated in AASHTO 1993 via a drainage modifier mi on the structural layer coefficients of untreated base/subbase in flexible pavements (Table 5-49) and a drainage coefficient Cd in the rigid pavement equation (Table 5-50), both keyed on the quality of drainage (time-to-drain, Table 7-4) and the % of time the structure is near saturation. Saturated hydraulic conductivity (permeability) ranges by soil (Table 5-56) and by highway material (Table 5-57).",
+      "body": "The benefits of good drainage are incorporated into AASHTO 1993 design through empirical coefficients. For flexible pavements the structural number is SN = a1*D1 + a2*D2*m2 + a3*D3*m3, where m2 and m3 are drainage modifiers for the untreated base and subbase; recommended mi values (Table 5-49) range from 1.40 (excellent drainage, rarely saturated) down to 0.40 (very poor drainage, often saturated). For rigid pavements the drainage coefficient Cd (Table 5-50) modifies the design equation, ranging from 1.25 to 0.70. Both are functions of the quality of drainage - defined by the time to remove water (Table 7-4: excellent = 2 hours, good = 1 day, fair = 1 week, poor = 1 month, very poor = does not drain, based on 50% time-to-drain) - and the percent of time the pavement is exposed to moisture levels approaching saturation. The relevant material property is the saturated hydraulic conductivity (permeability) k; typical values span clean gravel (1-100 cm/s) to clay (1e-10 to 1e-6 cm/s) for soils (Table 5-56) and open-graded aggregate down to Portland cement concrete for highway materials (Table 5-57).",
+      "key_points": [
+        "Flexible: SN = a1 D1 + a2 D2 m2 + a3 D3 m3; mi modifies untreated base/subbase (Table 5-49)",
+        "Rigid: drainage coefficient Cd modifies the design equation (Table 5-50)",
+        "mi and Cd depend on quality of drainage (Table 7-4) and % time near saturation",
+        "Quality of drainage = time to remove water: excellent 2 h ... very poor does not drain",
+        "Permeability k by soil (Table 5-56) and highway material (Table 5-57)"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-38: Schematic of a constant head permeameter",
+        "Figure 5-39: Schematic of a falling head permeameter"
+      ],
+      "tables": [
+        "Table 5-49: Recommended mi values (flexible)",
+        "Table 5-50: Recommended Cd values (rigid)",
+        "Table 5-56: Typical saturated hydraulic conductivity for soils",
+        "Table 5-57: Typical saturated hydraulic conductivity for highway materials",
+        "Table 7-4: AASHTO definitions for pavement drainage"
+      ],
+      "applicability": "Quantifying drainage benefits and material permeability in AASHTO 1993 pavement design"
+    },
+    {
+      "section_id": "5.3.3",
+      "title": "Compaction Characteristics",
+      "summary": "Compaction increases dry density and strength/stiffness while reducing permeability and compressibility. Typical compacted dry unit weight and optimum moisture content vary with soil type: by AASHTO class A-1 (115-134 pcf, OMC 5-15%) down to A-7 highly plastic clay (81-115 pcf, OMC 15-35%) (Table 5-18). The modified Proctor uses higher compactive effort than the standard Proctor, giving higher maximum dry density at a lower optimum moisture.",
+      "body": "Compaction of embankment and subgrade soils increases dry density and the associated strength and stiffness while reducing permeability and compressibility. The moisture-density relationship from a Proctor test (Figure 5-4) defines the maximum dry density and the optimum moisture content (OMC). Typical compacted dry unit weight and OMC by AASHTO soil class are given in Table 5-18 (after Carter & Bentley 1991): well-graded gravel/sand A-1 reaches 115-134 pcf at 5-15% moisture, whereas highly plastic clay A-7 is only 81-115 pcf at 15-35% moisture (Table 5-17 gives the USCS-keyed equivalents). The modified Proctor compaction test applies substantially higher compactive energy than the standard Proctor (Table 5-15), producing a higher maximum dry density at a lower optimum moisture content. Recommended minimum compaction requirements for embankments and subgrades are summarized in Table 5-16.",
+      "key_points": [
+        "Compaction raises dry density, strength and stiffness; lowers permeability and compressibility",
+        "Maximum dry density and OMC from the Proctor moisture-density curve",
+        "Typical dry unit weight & OMC by AASHTO class in Table 5-18 (A-1 115-134 pcf ... A-7 81-115 pcf)",
+        "Modified Proctor: higher energy -> higher max dry density at lower OMC than standard Proctor"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-4: Typical moisture-density relationship from a standard compaction test"
+      ],
+      "tables": [
+        "Table 5-16: Recommended minimum requirements for compaction of embankments and subgrades",
+        "Table 5-17: Typical compacted densities and optimum moisture content for USCS soil types",
+        "Table 5-18: Typical compacted densities and optimum moisture contents for AASHTO soil types"
+      ],
+      "applicability": "Specifying and estimating compacted density and moisture for embankment and subgrade construction"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "reference_id": "FHWA-NHI-05-037 Geotechnical Aspects of Pavements",
+  "reference_title": "Geotechnical Aspects of Pavements (FHWA-NHI-05-037, Reference Manual / Participant Workbook, NHI Course No. 132040, May 2006)",
+  "volume": null,
+  "pdf_path": "../../docs/FHWA-NHI-05-037 - Geotech Pavements.pdf",
+  "package": "fhwa_pavements",
+  "figure_numbering": "section",
+  "scope_note": "Geotechnical-aspects pavement reference (DISTINCT from UFC 3-250-01 roads/parking design). The PDF has an intact text layer (no OCR required). Python lookups digitize the soil/geotech inputs: resilient modulus Mr (default values + CBR/R-value/DCP/plasticity correlations, seasonal adjustment), typical CBR by soil class, soil suitability as a pavement material, drainage coefficients and permeability, frost susceptibility, swell potential, and compaction. Image-only design charts and matrix tables (Fig 5-17 Mr-vs-property nomograph; Table 7-13/7-16 stabilization-method matrices) are exposed through the figure catalog rather than digitized as numbers. Chapter text JSON authored for the design-relevant geotech chapters: 4 (Exploration & Testing / classification), 5 (Geotechnical Inputs - Mr/CBR/drainage/frost), 7 (Design Details & Construction - drainage, frost, stabilization, geosynthetics). The figure catalog is built by labeled-caption page search (figure-catalog-builder methodology).",
+  "chapters": []
+}

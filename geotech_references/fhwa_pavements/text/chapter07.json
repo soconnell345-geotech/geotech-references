@@ -1,0 +1,88 @@
+{
+  "reference_id": "FHWA-NHI-05-037 Geotechnical Aspects of Pavements",
+  "reference_title": "Geotechnical Aspects of Pavements (FHWA-NHI-05-037, May 2006)",
+  "volume": null,
+  "chapter": 7,
+  "chapter_title": "Design Details and Construction",
+  "sections": [
+    {
+      "section_id": "7.2",
+      "title": "Subsurface Drainage Design",
+      "summary": "Moisture is a primary cause of pavement distress. Subsurface drainage (permeable bases, edgedrains, separator/filter layers) removes infiltrated water. The need for drainage is assessed from traffic, subgrade permeability, and climate (Table 7-3). AASHTO 1993 incorporates drainage benefits via the mi modifier (flexible) and Cd coefficient (rigid), keyed on quality of drainage (time to drain, Table 7-4) and % time near saturation. A permeable base must be free-draining and protected by a filter/separator meeting permeability and gradation criteria.",
+      "body": "Excess moisture is one of the principal causes of pavement deterioration (Tables 7-1, 7-2), so positive subsurface drainage is a core design detail. A drainable pavement system uses a permeable base or subbase to collect infiltrated water, edgedrains/collector pipes to carry it away, and a separator/filter layer to keep the subgrade from contaminating (clogging) the permeable layer while preventing fines migration. The need for subsurface drainage is assessed from the design traffic, the subgrade permeability, and the climatic condition (wet/dry x freeze/no-freeze), with the recommendation ranging from Required (R) to Not Recommended (NR) (Table 7-3). The quality of drainage is defined by the time to remove water (Table 7-4: excellent = 2 hours through very poor = does not drain, based on 50% time-to-drain). In AASHTO 1993 design the benefit of drainage is captured by the drainage modifier mi on the untreated base/subbase structural-layer coefficients (flexible, Table 5-49) and the drainage coefficient Cd in the rigid design equation (Table 5-50); both depend on the quality of drainage and the percent of time the structure is near saturation. Permeable base/subbase materials may be treated with asphalt or Portland cement (Tables 7-9, 7-10) to remain stable while free-draining; their permeability is compared against the soil/material values in Tables 5-56 and 5-57.",
+      "key_points": [
+        "Moisture is a primary cause of pavement distress; positive subsurface drainage is essential",
+        "Drainable system = permeable base + edgedrains + separator/filter layer",
+        "Need assessed from traffic, subgrade permeability, and climate (Table 7-3)",
+        "Quality of drainage = time-to-drain (Table 7-4); drives mi (Table 5-49) and Cd (Table 5-50)",
+        "Separator/filter prevents subgrade contamination and fines migration into the permeable base"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-2: Design elements of a drainable pavement system",
+        "Figure 7-9: Time factor for 50 percent drainage"
+      ],
+      "tables": [
+        "Table 7-3: Assessment of need for subsurface drainage",
+        "Table 7-4: AASHTO definitions for pavement drainage",
+        "Table 7-9: Recommended asphalt stabilizer properties for permeable base/subbase",
+        "Table 7-10: Recommended Portland cement stabilizer properties for permeable base/subbase"
+      ],
+      "applicability": "Designing subsurface drainage and crediting its benefit in AASHTO pavement design"
+    },
+    {
+      "section_id": "7.3",
+      "title": "Frost Susceptibility and Frost Action",
+      "summary": "Frost action requires three conditions: a frost-susceptible soil, freezing temperatures, and a water supply. Soils are classified F1 (negligible-to-low) through F4 (very high) by soil type, percent finer than 0.075 mm, and USCS class (Table 7-12). Silts are the most frost-susceptible; a soil is frost-susceptible by USACE criteria if it has >= 3% by weight finer than 0.02 mm. A water table within 3 m (10 ft) of the surface signals a high frost hazard. Thaw-weakening can sharply reduce subgrade support even without heave.",
+      "body": "Detrimental frost action requires three simultaneous conditions: a frost-susceptible soil, sustained freezing temperatures, and a supply of water (Figure 7-19). When all three exist, ice lenses grow and the pavement heaves; on thawing, the trapped water sharply reduces subgrade support (thaw-weakening), often more damaging than the heave itself. Soils are grouped F1 (negligible to low) through F4 (very high) by soil type, percentage finer than 0.075 mm (No. 200), and typical USCS class (Table 7-12): gravelly F1, sandy/gravelly F2, clays and all silts F3, and varved/banded fine-grained sediments F4. Silts are the most frost-susceptible because their high capillarity feeds water to the freezing front quickly; clays heave less (low capillary rate) but lose much support on thaw. By the U.S. Army Corps of Engineers criterion, an inorganic soil is frost-susceptible if it has 3% or more by weight finer than 0.02 mm. Water supply is the most distinguishing frost-hazard factor: a water table within 3 m (10 ft) of the pavement surface (and homogeneous clay subgrades regardless of water-table depth) indicates a high frost hazard, while a water table deeper than 6 m (20 ft) indicates a low hazard. Mitigation includes removing/replacing frost-susceptible soil, lowering the water table, or providing a non-frost-susceptible cover thickness.",
+      "key_points": [
+        "Frost action needs all three: frost-susceptible soil + freezing temperatures + water supply",
+        "Frost groups F1 (negligible/low) to F4 (very high) by soil type, % finer 0.075 mm, USCS class (Table 7-12)",
+        "Silts are most frost-susceptible (high capillarity); clays heave less but thaw-weaken badly",
+        "USACE: soil is frost-susceptible if >= 3% by weight finer than 0.02 mm",
+        "Water table within 3 m (10 ft) -> high frost hazard; deeper than 6 m (20 ft) -> low",
+        "Thaw-weakening can reduce subgrade support sharply even without significant heave"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-19: Elements of frost heave",
+        "Figure 7-20: Average rate of heave versus % fines for natural soil gradations"
+      ],
+      "tables": [
+        "Table 7-12: Frost susceptibility classification of soils"
+      ],
+      "applicability": "Identifying frost-susceptible subgrades and setting frost-protection requirements"
+    },
+    {
+      "section_id": "7.4",
+      "title": "Stabilization (Lime, Cement, Asphalt) and Geosynthetics",
+      "summary": "Subgrade and unbound materials can be improved by mechanical stabilization (thick granular layers / geosynthetics) or admixture stabilization (lime, cement, asphalt). Admixture selection depends on soil gradation and plasticity (Table 7-16). Lime is most effective for plastic clays - it reduces swell and plasticity and improves workability (lime modification 1-3% as a working platform; lime stabilization for strength). Cement suits granular and low-plasticity soils; asphalt suits granular/sandy soils (gradations in Tables 7-19/7-20). Geosynthetics provide separation, filtration, and reinforcement; they are appropriate for poor, low-strength (cu<13 psi, CBR<3, or Mr<4500 psi), wet, or sensitive subgrades (Table 7-15).",
+      "body": "Weak or moisture-sensitive subgrades and marginal unbound materials can be improved two ways. Mechanical stabilization uses thick granular layers, often with a geotextile or geogrid, to build a working platform over soft wet subgrades (Table 7-13); it provides constructability but does not strengthen the subgrade itself. Admixture stabilization chemically alters the soil; the appropriate admixture (lime, cement, or asphalt) is selected from the soil's gradation and plasticity (Table 7-16, Austroads 1998). LIME is most effective on plastic clays containing montmorillonite/illite/kaolinite: 1-3% hydrated lime (lime modification) aids drying and compaction to expedite construction (no thickness reduction credited), while lime stabilization significantly improves fine-grained strength and is an effective way to reduce swell of expansive soils (those swelling > 3%, Table 7-17). Lime treatment is generally limited to 0.6-1 m (2-3 ft) depth and requires adequate curing; it can convert a low-frost-heave soil into a highly frost-susceptible one if curing is insufficient. CEMENT stabilization suits granular and low-plasticity soils; ASPHALT (bituminous) stabilization suits granular and sandy materials, with recommended gradations for stabilized subgrade (Table 7-19) and base/subbase (Table 7-20). GEOSYNTHETICS perform separation (preventing subgrade-subbase intermixing/pumping), filtration (retaining the subgrade without clogging), and reinforcement (carrying tension over soft soils); stabilization combines these functions. Geosynthetic stabilization is appropriate when the subgrade is poor (USCS SC/CL/CH/ML/MH/OL/OH/PT or AASHTO A-5/A-6/A-7), low strength (cu < 13 psi or CBR < 3 or Mr < 4500 psi), has a high water table, or is highly sensitive (Table 7-15); the geotextile must meet AASHTO M288 survivability (Table 7-5).",
+      "key_points": [
+        "Mechanical stabilization (thick granular + geosynthetic) gives a working platform, not subgrade strength",
+        "Admixture selection (lime/cement/asphalt) from gradation and plasticity (Table 7-16)",
+        "Lime: best for plastic clays; 1-3% lime modification (working platform) vs lime stabilization (strength, swell reduction)",
+        "Lime treatment limited to ~0.6-1 m (2-3 ft) depth; can worsen frost susceptibility if under-cured",
+        "Cement suits granular/low-PI soils; asphalt suits granular/sandy (gradations Tables 7-19/7-20)",
+        "Geosynthetics = separation + filtration + reinforcement",
+        "Geosynthetic stabilization criteria (Table 7-15): cu<13 psi, CBR<3, or Mr<4500 psi; poor/wet/sensitive subgrade"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-21: Thickness design curves with geosynthetics for single and dual wheel loads",
+        "Figure 7-22: Effect of lime content on engineering properties of a CH clay"
+      ],
+      "tables": [
+        "Table 7-13: Stabilization methods for pavements",
+        "Table 7-14: Transportation uses of geosynthetic materials",
+        "Table 7-15: Appropriate subgrade conditions for stabilization using geosynthetics",
+        "Table 7-16: Guide for selection of admixture stabilization method(s)",
+        "Table 7-17: Swell potential of soils",
+        "Table 7-18: Examples of the effects of lime stabilization on various soils",
+        "Table 7-19: Recommended gradations for bituminous stabilized subgrade materials",
+        "Table 7-20: Recommended gradations for bituminous-stabilized base and subbase materials"
+      ],
+      "applicability": "Selecting and applying lime/cement/asphalt and geosynthetic stabilization for weak or expansive subgrades"
+    }
+  ]
+}
