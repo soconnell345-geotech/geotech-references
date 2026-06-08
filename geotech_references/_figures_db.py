@@ -30,6 +30,8 @@ import tempfile
 from pathlib import Path
 from typing import Any
 
+from . import _query_expansion as _qe
+
 # FTS5 operator words we must not inject as bare terms in the OR fallback.
 _FTS_OPS = {"or", "and", "not", "near"}
 
@@ -274,12 +276,39 @@ def figure_search(
             params.append(limit)
             return conn.execute(sql, params).fetchall()
 
+        fig_key = lambda r: (r["reference"], r["figure_number"])
+        strategy = _qe.EXPANSION_STRATEGY
         try:
-            rows = run(query)
-            if not rows:
+            if strategy == "rerank":
+                # "shotgun": BM25 ranks the literal+synonym union in one query.
+                rows = run(_qe.combined_query(query))
+            elif strategy == "auto":
+                # Rerank the literal+synonym union (recall), but PIN the literal
+                # top-1 so an already-good query keeps its best hit (precision).
+                literal = run(query)
+                combined = _qe.combined_query(query)
+                if combined == query:
+                    rows = literal            # no synonyms to add
+                elif not literal:
+                    rows = run(combined)      # nothing to pin; rerank the union
+                else:
+                    rows = _qe.merge_hits([literal[0]], run(combined), limit,
+                                          key=fig_key)
+            else:
+                rows = run(query)
+                # "fill" (targeted): append synonym hits to remaining slots when
+                # the literal AND-query under-returns on a terminology mismatch.
+                if strategy == "fill" and len(rows) < limit:
+                    expansion = _qe.expand_query(query)
+                    if expansion:
+                        rows = _qe.merge_hits(rows, run(expansion), limit,
+                                              key=fig_key)
+            # Broad OR-of-terms ALSO fills remaining slots (all strategies); it
+            # is complementary to synonym expansion and must not be suppressed.
+            if len(rows) < limit:
                 fb = _or_fallback(query)
                 if fb and fb != query:
-                    rows = run(fb)
+                    rows = _qe.merge_hits(rows, run(fb), limit, key=fig_key)
         except sqlite3.OperationalError as e:
             return [{"error": f"FTS query error: {e}"}]
         return [_row_to_hit(r) for r in rows]

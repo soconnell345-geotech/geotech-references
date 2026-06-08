@@ -37,6 +37,8 @@ import tempfile
 from pathlib import Path
 from typing import Any
 
+from . import _query_expansion as _qe
+
 _PACKAGE_DIR = Path(__file__).parent
 _DB_NAME = "geotech_references_fts.sqlite"
 
@@ -287,23 +289,56 @@ def reference_search(
     limit = max(1, min(int(limit), _MAX_LIMIT))
     conn = _ro_connect()
     try:
-        sql = (
-            "SELECT s.reference, s.reference_title, s.chapter, "
-            "s.chapter_title, s.section_id, s.title, s.summary "
-            "FROM sections_fts f JOIN sections s ON s.rowid = f.rowid "
-            "WHERE sections_fts MATCH ?"
-        )
-        params: list[Any] = [query]
-        if reference:
-            sql += " AND s.reference = ?"
-            params.append(reference)
-        if chapter is not None:
-            sql += " AND s.chapter = ?"
-            params.append(int(chapter))
-        sql += " ORDER BY bm25(sections_fts) LIMIT ?"
-        params.append(limit)
+        def run(match_query: str) -> list[sqlite3.Row]:
+            sql = (
+                "SELECT s.reference, s.reference_title, s.chapter, "
+                "s.chapter_title, s.section_id, s.title, s.summary "
+                "FROM sections_fts f JOIN sections s ON s.rowid = f.rowid "
+                "WHERE sections_fts MATCH ?"
+            )
+            params: list[Any] = [match_query]
+            if reference:
+                sql += " AND s.reference = ?"
+                params.append(reference)
+            if chapter is not None:
+                sql += " AND s.chapter = ?"
+                params.append(int(chapter))
+            sql += " ORDER BY bm25(sections_fts) LIMIT ?"
+            params.append(limit)
+            return conn.execute(sql, params).fetchall()
+
+        strategy = _qe.EXPANSION_STRATEGY
         try:
-            rows = conn.execute(sql, params).fetchall()
+            if strategy == "rerank":
+                # "shotgun": one combined query, BM25 ranks literal+synonym union.
+                rows = run(_qe.combined_query(query))
+            elif strategy == "auto":
+                # Rerank the literal+synonym union (recall), but PIN the literal
+                # top-1 so an already-good query keeps its best hit (precision).
+                literal = run(query)
+                combined = _qe.combined_query(query)
+                if combined == query:
+                    rows = literal            # no synonyms to add
+                elif not literal:
+                    rows = run(combined)      # nothing to pin; rerank the union
+                else:
+                    rows = _qe.merge_hits(
+                        [literal[0]], run(combined), limit,
+                        key=lambda r: (r["reference"], r["section_id"]),
+                    )
+            else:
+                rows = run(query)
+                # "fill": the literal query is AND-matched, so it under-returns
+                # exactly when the query's terminology differs from the source
+                # text (a synonym miss). Append synonym hits to fill remaining
+                # slots; literal BM25 hits keep their rank (precision preserved).
+                if strategy == "fill" and len(rows) < limit:
+                    expansion = _qe.expand_query(query)
+                    if expansion:
+                        rows = _qe.merge_hits(
+                            rows, run(expansion), limit,
+                            key=lambda r: (r["reference"], r["section_id"]),
+                        )
         except sqlite3.OperationalError as e:
             return [{"error": f"FTS query error: {e}"}]
         return [_row_to_summary(r) for r in rows]
