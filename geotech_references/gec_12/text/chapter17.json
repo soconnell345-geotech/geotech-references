@@ -1,0 +1,89 @@
+{
+  "reference_id": "FHWA-NHI-16-009",
+  "reference_title": "Design and Construction of Driven Pile Foundations",
+  "chapter": 17,
+  "chapter_title": "Driving Criteria",
+  "sections": [
+    {
+      "section_id": "17.1",
+      "title": "Development of the Pile Driving Criteria",
+      "summary": "Driving criteria correlate blow count and hammer stroke to nominal geotechnical resistance using one or more of: static load test, dynamic testing with signal matching, rapid load test, wave equation analysis, or dynamic formula. Change in verification method changes required Rn: switching from dynamic testing (phi=0.65) to Modified Gates (phi=0.40) increases Rn by 63%; switching from Gates (0.40) to static test (0.75) reduces Rn by 47%. Soil setup allows driving to Rn/setup_factor at EOD if confirmed by restrike; relaxation requires driving to higher Rn at EOD.",
+      "body": "Pile foundations are installed using a driving criterion that equates blow count and hammer stroke to nominal geotechnical resistance. A minimum pile penetration depth may be included when scour, settlement, uplift, or lateral loading demands impact performance.\n\nNCHRP Synthesis 418 (Brown and Thompson 2011) surveyed 42 transportation agencies on driving criteria. Most frequent methods, in order: (1) blow count from dynamic testing and analysis on another pile; (2) blow count from dynamic formula; (3) blow count from wave equation analysis; (4) practical refusal; (5) specified tip elevation; (6) blow count from statically load tested pile.\n\nEffect of verification method change: Each method has its own AASHTO resistance factor; changing methods during construction changes the required Rn:\n- Change from dynamic testing (phi = 0.65) to FHWA Modified Gates (phi = 0.40): required Rn increases by 63% (0.65/0.40 - 1)\n- Change from Modified Gates (phi = 0.40) to static load test (phi = 0.75) or 100% dynamic testing: required Rn reduces by ~47% (1 - 0.40/0.75)\nA higher Rn may exceed the driving system capacity; a lower Rn may solve difficult driving problems (e.g., avoiding a boulder layer at a lower elevation).\n\nTime-dependent resistance: In setup soils, piles may be driven to Rndr = Rn / setup_factor at EOD, confirmed by restrike on a representative percentage of production piles. A contingency plan must exist if restrike indicates insufficient resistance. In relaxation soils, piles must be driven to Rndr > Rn to account for post-driving resistance loss.",
+      "key_points": [
+        "Driving criterion established from: static load test, dynamic testing + signal matching, rapid load test, wave equation, or dynamic formula",
+        "Most common agency practice (NCHRP 418): blow count from dynamic test on another pile",
+        "Changing verification method changes required Rn: dynamic test (0.65) → Gates (0.40) = +63% Rn",
+        "Changing from Gates (0.40) → static test (0.75) = −47% required Rn",
+        "Soil setup: drive to Rn/setup_factor at EOD; restrike on representative % of production piles required",
+        "Relaxation: drive to Rn > nominal resistance at EOD; restrike confirms post-driving resistance loss",
+        "Minimum pile penetration depth specified for scour, settlement, uplift, or lateral loads — not solely for axial compression"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Framework for developing pile driving criteria, understanding how resistance verification method affects required Rn, and handling time-dependent soil resistance changes during construction."
+    },
+    {
+      "section_id": "17.2",
+      "title": "Practical and Absolute Refusal",
+      "summary": "Practical refusal: 10 blows per inch for maximum 3 consecutive inches. Absolute refusal: 20 blows per 1 inch or less. Both definitions assume approved hammer operating at maximum fuel/stroke setting. Hard rock seating: 5 blows per 0.25 inch or 10 blows per 0.5 inch preferred over 20 blows/inch to reduce pile toe and hammer damage. When refusal prevents achieving required penetration, evaluate predrilling, jetting, or spudding.",
+      "body": "Practical and absolute refusal definitions are based on an approved hammer system operating properly at maximum fuel or stroke setting. If refusal occurs with suspect hammer performance, evaluate hammer energy transfer and the source of refusal.\n\nPractical refusal: 10 blows per inch for a maximum of 3 consecutive inches. Commonly used as a criterion for piles driven to a consistent hard bearing layer. Blow counts greater than 10 blows/inch should be used with care for concrete piles and avoided for timber piles.\n\nAbsolute refusal: 20 blows for 1 inch or less of pile penetration. Driving must terminate immediately once achieved with a properly sized and operating hammer.\n\nHard rock seating: Absolute refusal criterion of 5 blows per 0.25 inch (20 blows/inch equivalent) or 10 blows per 0.5 inch may be preferred over the standard 20 blows/inch to reduce risk of pile toe or driving equipment damage when seating on hard rock.\n\nWhen required penetration depths cannot be achieved without exceeding practical or absolute refusal with the approved hammer, installation aids (predrilling, jetting, spudding — Chapter 15) should be evaluated.",
+      "key_points": [
+        "Practical refusal: 10 blows per inch for maximum 3 consecutive inches",
+        "Absolute refusal: 20 blows per 1 inch (or less) of pile penetration",
+        "Both definitions assume approved hammer at maximum fuel/stroke setting",
+        "Hard rock seating: 5 blows/0.25 inch or 10 blows/0.5 inch preferred to minimize toe/equipment damage",
+        "Blow counts >10 blows/inch: use with caution for concrete piles; avoid for timber piles",
+        "When refusal prevents achieving required penetration: evaluate predrilling, jetting, or spudding (Chapter 15)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Definition and application of practical and absolute refusal criteria for driven pile acceptance, including hard rock seating guidance."
+    },
+    {
+      "section_id": "17.3",
+      "title": "Practical Issues and Considerations in Driving Criteria",
+      "summary": "Key practical issues: (1) Specifications must clearly define acceptance criteria (nominal resistance in compression/tension, minimum toe elevation, refusal definition, time of application — EOD vs. BOR). (2) Rndr ≠ Rn: Rndr can be greater (scourable/liquefiable layers, relaxation) or less (soil setup) than Rn. (3) Dynamic methods unreliable below 24 blows/ft (overpredict) and above 120 blows/ft (underpredict). (4) Open-end pipe/H-piles: dynamic and static plugging behavior differ. (5) Restrike timing critical: too early or too late invalidates correlation.",
+      "body": "Prior to test pile or production pile driving, numerous practical issues must be understood by parties responsible for developing, approving, and implementing driving criteria:\n\n1. Incomplete or conflicting acceptance criteria: Specifications must clearly identify pile acceptance requirements (nominal resistance in compression and/or uplift; minimum pile penetration depth if applicable; acceptance method) and the resistance verification method.\n\n2. Who determines driving termination: On test pile projects, multiple parties are present (pile inspector, agency's project engineer, dynamic test contractor, contractor foreman). Who and what method determines termination must be established in contract documents before test pile driving. Detailed manually recorded driving log always maintained.\n\n3. Time considerations: Acceptance criterion must state when it applies — EOD or BOR. Restrike must be performed within a set time window. Too early or too late invalidates the time-dependent resistance correlation.\n\n4. Applicability to different substructure locations: Test pile locations and the substructure units covered by those results must be identified. Driving criteria may require refinement by wave equation analysis for higher/lower Rn, shorter/longer lengths, or different batter angles.\n\n5. Purpose of minimum pile penetration depth: Required for scour, compressible layers, liquefaction, uplift, lateral loads — not solely for axial compression resistance. Estimated toe elevation is for contract length estimation; minimum toe elevation is for satisfying performance requirements.\n\n6. Rndr vs. Rn distinction: Rndr = soil resistance to overcome at time of driving. Rndr can exceed Rn when unsuitable layers (scour, liquefaction susceptible, compressible) must be penetrated or when relaxation reduces toe resistance post-driving. Rndr can be less than Rn when soil setup is expected.\n\n7. Dynamic method accuracy limits: Below 24 blows/ft (high set/blow): dynamic methods tend to overpredict — use reduced stroke/fuel setting to improve accuracy. Above 120 blows/ft (low set/blow): tend to underpredict — use larger stroke, higher fuel, greater-energy hammer, or variable-stroke drop hammer.\n\n8. Restrike interpretation: Target restrike at 2-3 to 10 blows/inch. Select early, high-energy blow with good data quality for signal matching. When BOR blow count is near 24 blows/ft or below, use lower-energy restrike blow for analysis. In difficult situations, superposition of shaft resistances from multiple blows may be needed.\n\n9. Open-end pipe/H-piles: Dynamic loading — soil inside pile may slip (additional dynamic shaft resistance). Static loading — soil may plug (full cross-section toe resistance). Both shaft and toe resistances may differ between dynamic and static conditions; careful interpretation required.\n\n10. Timely production pile acceptance decisions: Delay in acceptance decisions regarding splice depth, additional piles, or replacement piles can result in contractor delay claims.",
+      "key_points": [
+        "Rndr ≠ Rn: Rndr > Rn when penetrating unsuitable layers or expecting relaxation; Rndr < Rn when soil setup expected",
+        "Restrike timing critical — defined time window required; too early or too late invalidates time-dependent resistance correlation",
+        "Dynamic methods: overpredict at <24 blows/ft; underpredict at >120 blows/ft",
+        "Low blow count (<24 bl/ft): reduce hammer stroke/fuel for better dynamic test accuracy",
+        "High blow count (>120 bl/ft): increase stroke/energy (larger hammer or variable drop) for better accuracy",
+        "Open-end pipe/H-piles: dynamic plugging behavior differs from static — shaft and toe resistance values differ between methods",
+        "Test pile log: detailed manually recorded driving log required during all test pile installations",
+        "Minimum toe elevation: for scour/liquefaction/lateral loads — not specified solely for axial compression Rn"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Practical guidance for developing, communicating, and implementing pile driving criteria, including common specification deficiencies and field implementation challenges."
+    },
+    {
+      "section_id": "17.4",
+      "title": "Examples for Establishing Driving Criteria",
+      "summary": "Example 1 (2% dynamic testing, phi=0.65): five test piles across 5 substructure units; signal matching at EOD and BOR; average setup factors 1.15 (abutments) and 1.19 (piers); production driving criterion = refined wave equation blow count corresponding to EOD nominal resistance 10% below required Rn. Example 2 (static test + 2% dynamic testing, phi=0.80): static test failure 260 kips; dynamic test restrike 290 kips; correlation factor 0.9 applied; conservative setup factor 1.2 used; EOD criterion established for each substructure unit.",
+      "body": "Example 1 — 2% Dynamic Testing with Signal Matching (Section 17.4.1): Small bridge project (<100 piles, phi_dyn = 0.65). Five test piles at five substructure units (3 piers + 2 abutments). Required Rn: 180 kips at abutments (117 kips / 0.65); 230 kips at piers (150 kips / 0.65). Piles dynamically tested during initial driving and restrike the next day (sandy soils, 1-day wait).\n\nSignal matching results (Table 17-1): At abutments: EOD Rn avg = 187 kips; BOR Rn avg = 215 kips; setup factor = 1.15. At piers: EOD Rn avg = 240 kips; BOR Rn avg = 285 kips; setup factor = 1.19.\n\nProduction driving criterion: EOD nominal resistance permitted to be 10% below required Rn. At abutments: target EOD Rn = 164 kips → refined wave equation analysis gives 36 blows/ft criterion. At piers: target EOD Rn = 209 kips → wave equation gives 43 blows/ft. Test piles drove to > required Rn and were accepted as production piles.\n\nExample 2 — Static Test + 2% Dynamic Testing (Section 17.4.2): Small bridge project (<120 piles, phi_dyn = 0.80 for combination). Required Rn: 180 kips at abutments; 230 kips at piers. Reaction piles driven to wave equation criterion; static load test pile driven to 60 blows/ft (determined by static analysis for 230 kips).\n\nTest results: Signal matching at EOD = 220 kips; Static load test (Davisson criterion) = 260 kips; Signal matching on restrike = 290 kips. Correlation factor 0.90 applied (260/290 = 0.90). Conservative site-wide setup factor = 1.20. EOD nominal resistance targets: abutments = 180 / (1.20 × 0.90) = 167 kips; piers = 230 / (1.20 × 0.90) = 212 kips. One production pile per substructure unit dynamically tested and analyzed; when it reached the target EOD Rn, the corresponding blow count became the production criterion for that location.",
+      "key_points": [
+        "Example 1: phi=0.65; signal matching on 5 test piles; average setup factors 1.15 (abutments) and 1.19 (piers)",
+        "Example 1: EOD criterion = refined wave equation blow count for 10%-below-required Rn at EOD",
+        "Example 2: phi=0.80 (static + 2% dynamic); static test 260 kips; restrike signal matching 290 kips",
+        "Example 2: correlation factor = 0.90 (260/290) applied to all dynamic test results site-wide",
+        "Example 2: conservative setup factor = 1.20; EOD target = Rn / (setup_factor × correlation_factor)",
+        "Both examples: production criterion established per substructure unit from test pile blow count via wave equation refinement",
+        "Table 17-1: Example 1 test pile results — location, factored load, required Rn, test blow count, EOD Rn, BOR Rn, setup factor"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        {
+          "table_id": "17-1",
+          "description": "Example 1 summary of requirements and results — test pile location (N Abut, Pier 1-3, S Abut), factored load (kips), required Rn (kips), test pile blow count (bl/ft), nominal resistance from signal matching at EOD (kips), nominal resistance at BOR (kips), and soil setup factor"
+        }
+      ],
+      "applicability": "Step-by-step examples for establishing production pile driving criteria from dynamic test results and from combined static + dynamic test programs, including handling soil setup through restrike correlation."
+    }
+  ]
+}

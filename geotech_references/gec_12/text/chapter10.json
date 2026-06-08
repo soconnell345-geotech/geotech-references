@@ -1,0 +1,209 @@
+{
+  "reference_id": "FHWA-NHI-16-009",
+  "reference_title": "Design and Construction of Driven Pile Foundations",
+  "chapter": 10,
+  "chapter_title": "Dynamic Testing and Analysis",
+  "sections": [
+    {
+      "section_id": "10.1-10.3",
+      "title": "Background, Applications, and Resistance Factors",
+      "summary": "Dynamic testing methods originated at Case Institute of Technology (Eiber 1958; Goble et al.) with ODOT/FHWA sponsorship, leading to the Pile Driving Analyzer (PDA). Applications include: nominal resistance determination, hammer and drive system performance evaluation, driving stress monitoring, and pile integrity assessment. AASHTO resistance factors: phi = 0.65 when signal matching on >= 2% of piles (min 2 per site), 0.75 when 100% of piles tested with signal matching, and 0.80 when combined with one static load test per site condition.",
+      "body": "Dynamic testing methods began with work at Case Institute of Technology. Eiber (1958) conducted the first laboratory study at the suggestion of Professor H.R. Nara. ODOT and FHWA subsequently funded research beginning in 1964 under Professors R.H. Scanlan and G.G. Goble, continuing through the 1970s under Goble. This research produced the Case Method and the Pile Driving Analyzer (PDA) system.\n\nApplications of Dynamic Testing (Section 10.2): Dynamic testing methods provide valuable information for several applications: (i) Nominal resistance — estimate of static pile resistance both during initial driving and during restrike; (ii) Hammer and driving system performance — measurement of hammer energy transferred to the pile, allowing hammer efficiency evaluation and identification of drive system problems; (iii) Driving stresses and pile integrity — measurements of compressive and tensile driving stresses for comparison to allowable values, and detection of pile damage from cracks, breaks, or buckling.\n\nResistance Factors (Section 10.3, AASHTO 2014): Three dynamic testing resistance factors are provided:\n- phi = 0.65: driving criteria established by signal matching analysis on >= 2 piles per site condition but no less than 2% of production piles\n- phi = 0.75: driving criteria established by signal matching on 100% of production piles\n- phi = 0.80: driving criteria established by a successful static load test (one per site condition) combined with signal matching on >= 2 piles per site but no less than 2% of production piles\n\nDynamic testing resistance factors are lower than for static load testing (0.75-0.80) due to inherent uncertainties in translating dynamic measurements to static resistance, particularly the selection of appropriate damping parameters.",
+      "key_points": [
+        "Developed at Case Institute of Technology (1958-1970s) by Eiber, Scanlan, and Goble with ODOT/FHWA support",
+        "Three applications: nominal resistance, hammer/drive system performance, driving stresses and pile integrity",
+        "phi = 0.65 (signal matching on >= 2% of piles); 0.75 (signal matching on 100%); 0.80 (combined with static test)",
+        "Dynamic testing resistance factors lower than static test due to damping parameter uncertainty",
+        "Signal matching required for all AASHTO-compliant nominal resistance assessments — Case Method alone insufficient"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        {
+          "table_id": "10-1",
+          "description": "Summary of Case Damping Factors for RSP and RMX Equations — by soil type at pile toe, with Goble et al. (1975) original correlation ranges and Pile Dynamics Inc. (2015) recommended ranges"
+        }
+      ],
+      "applicability": "Overview of dynamic pile testing program, applications, and AASHTO LRFD resistance factors for driven pile foundations."
+    },
+    {
+      "section_id": "10.4-10.5",
+      "title": "Dynamic Testing Equipment and Wave Mechanics",
+      "summary": "A dynamic testing system uses at minimum two strain transducers and two accelerometers bolted diametrically opposite at 2-3 diameters below the pile head, measuring strain and acceleration to compute force F(t) = EA*eps(t) (Eq. 10-1) and velocity V(t) = integral of a(t) (Eq. 10-2). When a pile is struck, a compressive wave travels at wave speed c = sqrt(E/rho). Force equals impedance Z times velocity (Z = EA/c) in a uniform pile with no resistance. Reflections from soil resistance generate upward-traveling waves that are analyzed to infer resistance.",
+      "body": "Dynamic Testing System (Section 10.4): A typical dynamic testing system consists of a minimum of two strain transducers and two accelerometers externally bolted to diametrically opposite sides of the pile at a location two to three diameters below the pile head. Using two diametrically opposite gages averages out the influence of non-uniform hammer impacts and pile bending. All driven pile types can be tested using external gages. The measurement system computes force and velocity records versus time:\n\nF(t) = E * A * eps(t)  (Eq. 10-1)\nV(t) = integral of a(t) dt  (Eq. 10-2)\n\nwhere F(t) is force at the gage, E is elastic modulus, A is pile area, eps(t) is measured strain, and a(t) is measured acceleration.\n\nBasic Wave Mechanics (Section 10.5): When a pile is struck by a mass, a compressive force wave is generated at the impact surface and travels down the pile at the wave speed c. The wave speed for a pile is c = sqrt(E/rho), where rho is the mass density. For a uniform elastic pile with no resistance, the pile impedance Z = EA/c, and the relationship F = Z*V holds. When the wave reaches a point of resistance (e.g., soil friction, pile toe), partial reflection occurs. Upward-traveling waves are compressive in the presence of resistance (toe or shaft) and tensile when the pile hits a soft layer or is a free pile end.\n\nEnergy transfer from the hammer to the pile is calculated as the integral of force times velocity over time: Ep(t) = integral_0^t F(t)*V(t) dt (Eq. 10-5). The maximum value represents the energy transferred to the pile head (EMX). Downward and upward traveling wave components at any time are: WD(t) = [F(t) + (EA/c)*V(t)] / 2 (Eq. 10-6) and WU(t) = [F(t) - (EA/c)*V(t)] / 2 (Eq. 10-7).",
+      "key_points": [
+        "Two strain transducers + two accelerometers at 2-3 diameters below pile head — opposite sides for bending correction",
+        "Eq 10-1: F(t) = E*A*eps(t); Eq 10-2: V(t) = integral of a(t) dt",
+        "Wave speed c = sqrt(E/rho); pile impedance Z = EA/c; for uniform pile with no resistance: F = Z*V",
+        "Downward wave: WD(t) = [F(t) + Z*V(t)]/2; upward wave: WU(t) = [F(t) - Z*V(t)]/2 (Eqs 10-6, 10-7)",
+        "Energy transferred: Ep(t) = integral F(t)*V(t)dt (Eq 10-5); maximum EMX = energy transfer efficiency indicator",
+        "Resistance causes upward compressive reflections; free-end or soft layer causes upward tensile reflections"
+      ],
+      "equations": [
+        {
+          "equation_id": "10-1",
+          "description": "Force computed from measured strain at dynamic test gage location",
+          "latex": "F(t) = E A \\varepsilon(t)",
+          "variables": {
+            "F_t": "force computed at gage location at time t (kips)",
+            "E": "elastic modulus of pile material (ksi)",
+            "A": "pile cross-sectional area (in^2)",
+            "eps_t": "measured strain at time t"
+          },
+          "notes": "One of two primary dynamic test measurements; paired with velocity from Eq 10-2",
+          "implemented_in": null
+        },
+        {
+          "equation_id": "10-2",
+          "description": "Velocity computed by integrating measured acceleration at gage location",
+          "latex": "V(t) = \\int a(t)\\, dt",
+          "variables": {
+            "V_t": "velocity computed at gage location at time t (ft/s)",
+            "a_t": "measured acceleration at gage location at time t (ft/s^2)"
+          },
+          "notes": "Second primary dynamic test measurement; integration performed by data acquisition system",
+          "implemented_in": null
+        },
+        {
+          "equation_id": "10-5",
+          "description": "Energy transferred to pile — integral of force times velocity over time",
+          "latex": "E_p(t) = \\int_0^t F(t) V(t)\\, dt",
+          "variables": {
+            "E_p_t": "energy computed at gage location at time t (ft-kips)",
+            "F_t": "force measured at gage location at time t (kips)",
+            "V_t": "velocity measured at gage location at time t (ft/s)"
+          },
+          "notes": "Maximum value EMX represents energy transferred to pile head; key indicator of drive system efficiency",
+          "implemented_in": null
+        },
+        {
+          "equation_id": "10-6",
+          "description": "Downward traveling wave (wave down) at gage location",
+          "latex": "WD(t) = \\frac{1}{2}\\left[F(t) + \\frac{EA}{c} V(t)\\right]",
+          "variables": {
+            "WD_t": "downward traveling wave at time t (kips)",
+            "F_t": "force measured at gage location at time t (kips)",
+            "V_t": "velocity measured at gage location at time t (ft/s)",
+            "E": "elastic modulus of pile material (ksi)",
+            "A": "pile cross-sectional area (in^2)",
+            "c": "wave speed of pile material (ft/s)"
+          },
+          "notes": "WD and WU are the two fundamental components used in Case Method and signal matching analysis",
+          "implemented_in": null
+        },
+        {
+          "equation_id": "10-7",
+          "description": "Upward traveling wave (wave up) at gage location",
+          "latex": "WU(t) = \\frac{1}{2}\\left[F(t) - \\frac{EA}{c} V(t)\\right]",
+          "variables": {
+            "WU_t": "upward traveling wave at time t (kips)",
+            "F_t": "force measured at gage location at time t (kips)",
+            "V_t": "velocity measured at gage location at time t (ft/s)",
+            "E": "elastic modulus of pile material (ksi)",
+            "A": "pile cross-sectional area (in^2)",
+            "c": "wave speed of pile material (ft/s)"
+          },
+          "notes": "Upward wave from resistance is compressive; from free end or soft soil is tensile",
+          "implemented_in": null
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Dynamic testing equipment setup and wave mechanics theory underlying the Case Method and signal matching analysis of driven piles."
+    },
+    {
+      "section_id": "10.6",
+      "title": "Dynamic Testing Methodology: Case Method and Signal Matching",
+      "summary": "The total resistance RTL (static + dynamic) is computed from force/velocity records at times t1 and t2 = t1 + 2L/c (Eq. 10-3). The Case Method static resistance RSP removes damping using J*[pile toe velocity * Z]: RSP = (1-J)/2 * [F(t1) + Z*V(t1)] + (1+J)/2 * [F(t2) - Z*V(t2)] (Eq. 10-4). Case damping factor J ranges 0.1-0.15 (clean sand) to 0.70+ (clay). The RMX equation searches for t1 that maximizes resistance — used for displacement piles with large toe resistance. Signal matching (CAPWAP, iCAP) provides AASHTO-required rigorous analysis; Case Method equations are for field screening only.",
+      "body": "Nominal Resistance by Case Method (Section 10.6.1): Total static and dynamic resistance RTL from one-dimensional wave theory: RTL = [F(t1) + F(t2)]/2 + [V(t1) - V(t2)] * EA/(2c) (Eq. 10-3), where t1 is the time of peak input force and t2 = t1 + 2L/c is the time when the reflection of the first peak returns from the pile toe. The static nominal resistance RSP removes the dynamic (damping) component: RSP = RTL - J * [toe velocity * Z] (Eq. 10-4, standard form), where J is the dimensionless Case damping factor. Case damping ranges: clean sand J = 0.10-0.15, silty sand 0.15-0.25, silts 0.25-0.40, silty clays 0.40-0.70, clay 0.70+ (RSP equation, Table 10-1). For piles with large toe resistances or large toe quakes, the maximum Case Method equation RMX searches for the t1 value that maximizes resistance. Case Method equations are valuable for quick field assessment only; AASHTO requires signal matching for all resistance factor compliance.\n\nSignal Matching (Section 10.6.6): Dynamic test data is analyzed with signal matching software (CAPWAP, iCAP, TNOWAVE, All-Wave DLT) for rigorous evaluation. Signal matching programs use numerical pile and soil models to iteratively match computed force/velocity signals to measured records. The soil model is adjusted until computed signals match measured signals, yielding: total static resistance, shaft and toe resistance distribution, and soil quake and damping parameters. Signal matching is performed on individual hammer blows — typically at end of initial driving (EOID) and beginning of restrike (BOR). BOR results after sufficient time for soil setup represent long-term nominal resistance.\n\nSoil setup and relaxation (Sections 10.8.5-10.8.6): Setup is the increase in nominal resistance over time after driving, common in fine-grained soils. Relaxation is the decrease in resistance over time, which can occur in certain rock types and dense sands due to pore pressure dissipation or stress relief. Both setup and relaxation are quantified by comparing EOID to BOR dynamic test results.",
+      "key_points": [
+        "Eq 10-3: RTL = [F(t1)+F(t2)]/2 + [V(t1)-V(t2)]*EA/(2c); t2 = t1 + 2L/c",
+        "Eq 10-4: RSP = (1-J)/2*[F(t1)+Z*V(t1)] + (1+J)/2*[F(t2)-Z*V(t2)]; J = Case damping factor",
+        "Case J: clean sand 0.10-0.15, silty sand 0.15-0.25, silts 0.25-0.40, silty clay 0.40-0.70, clay 0.70+",
+        "RMX equation: searches for t1 that maximizes resistance — for piles with large toe resistance",
+        "RAU (minimal shaft resistance) and RA2 (toe + moderate shaft) are automatic methods not requiring J selection",
+        "Signal matching (CAPWAP, iCAP, TNOWAVE): required by AASHTO for all nominal resistance phi calculations",
+        "Setup (resistance increase over time) and relaxation (decrease) quantified by comparing EOID to BOR tests"
+      ],
+      "equations": [
+        {
+          "equation_id": "10-3",
+          "description": "Total static and dynamic resistance on pile during driving (Case Method)",
+          "latex": "RTL = \\frac{F(t_1) + F(t_2)}{2} + \\frac{V(t_1) - V(t_2)}{2} \\cdot \\frac{EA}{c}",
+          "variables": {
+            "RTL": "total static and dynamic resistance on pile during driving (kips)",
+            "F_t1": "force measured at gage location at time t1 (kips)",
+            "F_t2": "force measured at gage location at time t2 (kips)",
+            "V_t1": "velocity at gage at time t1 (ft/s)",
+            "V_t2": "velocity at gage at time t2 (ft/s)",
+            "t1": "time of first peak input force",
+            "t2": "time of reflection of first peak from pile toe = t1 + 2L/c",
+            "L": "pile length below gage location (feet)",
+            "E": "elastic modulus of pile material (ksi)",
+            "A": "pile cross-sectional area (in^2)",
+            "c": "wave speed of pile material (ft/s)"
+          },
+          "notes": "Derived from closed-form solution to 1D wave propagation theory; includes both static and dynamic resistance",
+          "implemented_in": null
+        },
+        {
+          "equation_id": "10-4",
+          "description": "Standard Case Method static nominal resistance (RSP)",
+          "latex": "RSP = \\frac{1-J}{2}\\left[F(t_1) + \\frac{EA}{c}V(t_1)\\right] + \\frac{1+J}{2}\\left[F(t_2) - \\frac{EA}{c}V(t_2)\\right]",
+          "variables": {
+            "RSP": "standard Case Method static nominal resistance (kips)",
+            "RTL": "total static and dynamic resistance per Eq 10-3 (kips)",
+            "J": "Case damping factor — dimensionless, depends on soil type at pile toe",
+            "F_t1": "force at gage at time t1 (kips)",
+            "V_t1": "velocity at gage at time t1 (ft/s)",
+            "F_t2": "force at gage at time t2 (kips)",
+            "V_t2": "velocity at gage at time t2 (ft/s)"
+          },
+          "notes": "J ranges from 0.10-0.15 (clean sand) to 0.70+ (clay); site-specific calibration from static test or signal matching recommended",
+          "implemented_in": null
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Case Method and signal matching procedures for determining driven pile nominal resistance from dynamic testing measurements during driving and restrike."
+    },
+    {
+      "section_id": "10.7-10.8",
+      "title": "Test Specification, Implementation, and Interpretation",
+      "summary": "Dynamic test specifications must clearly identify: the test objective (resistance vs. hammer performance vs. stress monitoring), number and location of test piles, timing of tests (EOID, BOR, specific depth), and whether signal matching is required and by whom. Driving stress limits are: compressive maximum 0.9*fy (steel) or 0.85*f'c (concrete); tensile 0.70*fy (steel) or 0.60*sqrt(f'c) (prestressed concrete). Pile damage appears as compression waves that arrive earlier than expected from the pile toe reflection — indicated by a sudden increase in impedance (compressive spike) or decrease (crack/damage).",
+      "body": "Test Specification and Implementation (Section 10.7): Specifications for dynamic testing should clearly address: (i) the number and location of test piles; (ii) the test objective — specifically whether driving criteria is to be established from the test; (iii) whether signal matching analysis is required; (iv) the analyst qualifications; (v) the timing requirements for delivering driving criteria to the contractor; and (vi) when during driving the pile is to be tested (EOID, specific depth, restrike). Misspecification is a common source of disputes — specifying 'a dynamic test' does not implicitly require the dynamic test personnel to furnish driving criteria.\n\nDriving Stresses (Section 10.6.4): Driving stresses are monitored to verify piles are not overstressed during installation. Maximum allowable compressive stress: for steel piles, 0.9*fy; for concrete piles, 0.85*f'c. Maximum allowable tensile stress: for steel piles, 0.70*fy; for prestressed concrete piles, 0.60*sqrt(f'c) + f_se (prestress). Driving stresses are computed from force measurements and compared to allowable values.\n\nPile Integrity (Section 10.6.5): Dynamic testing provides a method of assessing pile integrity during or after driving. Pile damage appears as an impedance change that causes an unexpected wave reflection. A compression wave arriving earlier than the toe reflection indicates damage above the pile toe — a sharp impedance increase (compression spike in WU) suggests a crack, while a decrease suggests a section reduction. The Integrity Factor, BTA, quantifies the degree of damage as the ratio of the damaged cross-sectional area to the undamaged area.\n\nField and Restrike Results (Section 10.8.1): Each recorded blow provides information on force and velocity versus time, calculated resistance, transferred energy, and driving stresses. BOR (beginning of restrike) tests are performed after an appropriate set wait period to evaluate nominal resistance including soil setup. Setup is evaluated by comparing BOR resistance to EOID resistance.",
+      "key_points": [
+        "Specifications must explicitly state: test objective, signal matching requirement, analyst qualifications, timing for driving criteria",
+        "Specifying 'a dynamic test' does NOT implicitly require the test personnel to furnish driving criteria",
+        "Compressive driving stress limits: steel 0.90*fy; concrete 0.85*f'c",
+        "Tensile driving stress limits: steel 0.70*fy; prestressed concrete 0.60*sqrt(f'c) + f_se",
+        "Pile damage: early WU reflection indicates impedance change above toe; compression spike = crack/zone damage",
+        "Integrity Factor BTA = ratio of damaged to undamaged cross-sectional area",
+        "BOR tests after set wait period quantify soil setup and provide long-term nominal resistance estimate"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Dynamic test specification requirements, driving stress limits, pile integrity assessment methods, and field result interpretation for driven pile dynamic testing."
+    },
+    {
+      "section_id": "10.10-10.11",
+      "title": "Advantages, Limitations, and Practical Considerations",
+      "summary": "Advantages of dynamic testing: provides resistance, hammer performance, driving stress, and pile integrity data from a single test; many piles can be tested in one day; results available immediately after each blow. Limitations: accuracy less than static load tests; sensitive to analyst skill and damping factor selection; cannot directly account for long-term settlement or group action. Practical issues: difficult to interpret in very easy or very hard driving; hard driving can damage gages; setup-sensitive soils require appropriate wait times for BOR tests.",
+      "body": "Advantages (Section 10.10): Dynamic testing provides a broader set of information than any other single test method — nominal resistance estimate, hammer and drive system evaluation, driving stress monitoring, and pile integrity assessment, all from a single test event. Many piles can be dynamically tested during initial driving or restrike in one day, making it an economical and quick method. Results are generally available immediately after each hammer blow, enabling real-time decision making.\n\nDisadvantages and Limitations: Dynamic test accuracy for nominal resistance is less than static load tests and depends on analyst skill, appropriate damping parameter selection, and the accuracy of the pile model used in signal matching. Dynamic testing cannot directly account for long-term settlement, downdrag, or pile group action. Results can be misleading on projects with highly variable soil conditions or when multiple soil layers contribute differently to resistance.\n\nPractical Issues (Section 10.11):\n(i) Test scope must be explicitly specified: specifying 'a dynamic test' does not require driving criteria to be furnished.\n(ii) Easy driving: below approximately 10 blows/ft, insufficient energy is transferred to mobilize full resistance — dynamic test results in easy driving may significantly underpredict the actual nominal resistance.\n(iii) Hard driving: at very high blow counts, pile head damage can prevent proper gage attachment; additionally, fatigue damage accumulates in repeated hard driving.\n(iv) Setup-sensitive soils: appropriate wait times must be specified for BOR tests — insufficient wait times will not capture the full soil setup.\n(v) Analyst qualifications: dynamic test analysis requires specialized training; results should be reviewed by a qualified geotechnical engineer who understands signal matching limitations.\n(vi) Driving criteria delivery: if driving criteria is to be determined from dynamic test results, the specification must identify when the criteria will be furnished, as delays can affect production.",
+      "key_points": [
+        "Advantages: resistance + hammer performance + stresses + integrity from one test; many piles per day; immediate results",
+        "Accuracy less than static load test; sensitive to analyst skill and damping parameter selection",
+        "Cannot account for long-term settlement, downdrag, or group action",
+        "Easy driving (<10 blows/ft): dynamic test may significantly underpredict resistance — insufficient energy transfer",
+        "Hard driving: potential gage attachment issues and pile head fatigue damage",
+        "BOR wait times must be sufficient to capture soil setup — inadequate wait time underestimates long-term resistance",
+        "Analyst qualifications critical; signal matching limitations must be understood by reviewing engineer"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Summary of dynamic testing advantages, accuracy limitations, and practical specification and implementation considerations for driven pile projects."
+    }
+  ]
+}

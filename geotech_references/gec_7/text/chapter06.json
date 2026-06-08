@@ -1,0 +1,396 @@
+{
+  "reference_id": "FHWA-NHI-14-007",
+  "reference_title": "Soil Nail Walls Reference Manual",
+  "chapter": 6,
+  "chapter_title": "Design of Soil Nail Walls",
+  "sections": [
+    {
+      "section_id": "6.1",
+      "title": "Introduction",
+      "summary": "Chapter 6 presents the step-by-step design procedure for soil nail walls, organized into four phases: Initial Design Considerations (Steps 1-3), Design (Steps 4-9), Pre-Construction, and Construction/Post-Construction. The Initial Design Considerations phase covers project requirements, performance criteria, preliminary field reconnaissance, feasibility evaluation, geotechnical investigation program, and pre-design report. The Design phase is the primary focus of the chapter.",
+      "body": "This chapter presents step-by-step procedures for the design of soil nail walls. The principal activities throughout the duration of a soil nail project take place in the following main phases: Initial design considerations; Design; Pre-construction; and Construction and post-construction. The sequence of the major steps and sub-steps is listed in Tables 6.1 and 6.2. The Design phase (Steps 4-9) is the focus of this chapter. Step 1 addresses project requirements, standards, and constraints. Step 2 covers preliminary feasibility evaluation including soil conditions, right-of-way constraints, and utilities. Step 3 involves geotechnical investigation including borings, laboratory testing, and preparation of a pre-design report with soil strength parameters and groundwater conditions.",
+      "key_points": [
+        "Four project phases: Initial Design Considerations, Design, Pre-Construction, Construction/Post-Construction",
+        "Step 1: Establish project requirements, performance criteria, and assemble preliminary data",
+        "Step 2: Conduct preliminary field reconnaissance and feasibility evaluation",
+        "Step 3: Perform geotechnical investigation and prepare pre-design report",
+        "Design phase (Steps 4-9) is the primary focus of Chapter 6",
+        "Steps may need to be repeated iteratively until design is adequate"
+      ],
+      "equations": [],
+      "figures": [
+        {
+          "figure_id": "6.1",
+          "title": "Example nail arrangement with varying patterns",
+          "description": "Illustration showing varying nail patterns: (a) example of nail arrangement for non-horizontal ground, (b) varying nail inclination and lengths around utilities.",
+          "page": 150
+        }
+      ],
+      "tables": [
+        {
+          "table_id": "6.1",
+          "title": "Main Steps — Initial Design Considerations",
+          "description": "Step-by-step sequence for Initial Design Considerations (Steps 1-3) including project requirements, preliminary reconnaissance, and geotechnical investigation.",
+          "page": 143
+        },
+        {
+          "table_id": "6.2",
+          "title": "Main Steps — Design",
+          "description": "Step-by-step sequence for the Design phase (Steps 4-12) including soil nail configuration, resistance factors, stability analysis, structural resistance verification, deformations, seismic design, drainage, specialty items, and construction documents.",
+          "page": 143
+        }
+      ],
+      "applicability": "Overview of the soil nail wall design process and Initial Design Considerations phase for all soil nail wall projects."
+    },
+    {
+      "section_id": "6.2",
+      "title": "Design Phase Overview",
+      "summary": "The Design phase involves six main steps (Steps 4-9), which may need to be repeated iteratively until the design is adequate. The steps address soil nail configuration, resistance factor selection, stability analysis, structural resistance verification, deformation evaluation, and seismic design. The procedures are primarily described for solid bar soil nails but are generally applicable to hollow bar soil nails (HBSNs).",
+      "body": "The Design phase involves six main steps, which are discussed in Sections 6.3 through 6.8. These are Steps 4 through 9 in Table 6.2. Some steps may need to be repeated until the design is adequate. The focus of the description is solid bar soil nails, but steps are generally applicable for HBSNs. The six design steps are: Step 4 — Soil Nail Configuration and Material Selection; Step 5 — Select Resistance Factors; Step 6 — Overall Stability; Step 7 — Verify Geotechnical and Structural Resistances; Step 8 — Service Limit States (Deformations); and Step 9 — Seismic Design.",
+      "key_points": [
+        "Design phase encompasses Steps 4-9 in the overall design sequence",
+        "Steps may be repeated iteratively until design criteria are satisfied",
+        "Procedure applies primarily to solid bar soil nails but is applicable to HBSNs",
+        "Step 4: Configuration and material; Step 5: Resistance factors; Step 6: Stability",
+        "Step 7: Resistance verification; Step 8: Deformations; Step 9: Seismic"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Overview of the six-step Design phase for solid bar and hollow bar soil nail walls."
+    },
+    {
+      "section_id": "6.3",
+      "title": "Step 4 — Soil Nail Configuration and Material Selection",
+      "summary": "Step 4 establishes the preliminary wall cross section, nail geometry, corrosion protection level, and material properties. Nail spacing SH × SV typically ranges from 16 to 36 ft^2 with 5 ft common in each direction. Nails are installed at 10-20 degrees from horizontal (15 degrees typical). Preliminary nail length L ≈ 0.7H. Wall batter of 8-10 degrees (1H:10V) is typical. Step 4 also selects corrosion protection level (I-IV) and nail type based on Chapter 7 guidance.",
+      "body": "Once the existing geometric constraints are identified, the engineer establishes preliminary wall cross sections including number of nails, vertical and horizontal nail spacing, and nail inclination and length. These quantities are expected to be adjusted as the design progresses. Nail spacing in both directions generally ranges from 4 to 6 ft and occasionally up to 6.5 ft; 5 ft is routinely selected. The spacing can be checked such that SH × SV is less than approximately 36 to 42 ft^2. The first row of nails should be installed at a depth of no more than SV/2 below the top of the wall. Nails are installed at 10 to 20 degrees from the horizontal; 15 degrees is most common. Preliminary nail length can be estimated as approximately 0.7H, where H is the wall height; longer nails are needed in weak soils, with deep-seated slip surfaces, or under large surcharges. Wall batter is typically 1H:10V to 1H:12V. Sub-steps 4a through 4f address wall layout, cross sections, nail pattern, horizontal splaying, corrosion protection, and nail type selection.",
+      "key_points": [
+        "Nail spacing: SH × SV = 16 to 42 ft^2; commonly 5 ft × 5 ft = 25 ft^2",
+        "Nail inclination: 10 to 20 degrees from horizontal; 15 degrees most common",
+        "Preliminary nail length L ≈ 0.7H; increase for weak soils, deep slip surfaces, surcharges",
+        "Wall batter: typically 1H:10V (about 6 degrees); helps with construction and drainage",
+        "First nail row at depth <= SV/2 from top of wall",
+        "Step 4f: Select corrosion protection level and nail type (see Chapter 7)",
+        "Horizontal splaying of nails (Step 4d) can improve stability in obstructed areas"
+      ],
+      "equations": [],
+      "figures": [
+        {
+          "figure_id": "6.2",
+          "title": "Varying nail patterns",
+          "description": "Illustration of varying nail patterns for non-horizontal ground and varying nail inclination and lengths around utilities.",
+          "page": 150
+        },
+        {
+          "figure_id": "6.3",
+          "title": "Battered versus vertical facing",
+          "description": "Comparison of soil nail wall cross sections with battered and vertical wall facings showing nail geometry, wall height H, batter angle, and drain locations.",
+          "page": 152
+        }
+      ],
+      "tables": [],
+      "applicability": "Preliminary design of soil nail geometry, spacing, inclination, length, and corrosion protection for new soil nail wall projects."
+    },
+    {
+      "section_id": "6.4",
+      "title": "Step 5 — Select Resistance Factors",
+      "summary": "Step 5 selects LRFD resistance factors per Chapter 5. Table 6.3 summarizes all resistance factors: overall stability phi_OS = 0.65 (static) / 0.90 (seismic); basal heave phi_BH = 0.50 (short-term) / 0.40 (long-term); pullout phi_PO = 0.65; nail tensile strength phi_T = 0.75 (high corrosion) / 0.65 (mild); facing flexure phi_FF = 0.90; facing punching shear phi_FP = 0.90; facing headed-stud tensile phi_FH = 0.75. Resistance factors are calibrated to the required frequency of verification and proof testing.",
+      "body": "The engineer selects resistance factors for LRFD verification in accordance with the formulations presented in Chapter 5. Resistance factors are summarized in Table 6.3. As discussed in Section 5.3.4, the selected resistance factors are consistent with the minimum required frequency of verification and proof testing, as discussed in detail in Chapter 9. Higher resistance factors are allowed when higher levels of field testing are performed to verify nail pullout resistance.",
+      "key_points": [
+        "phi_OS = 0.65 for static overall stability; 0.90 for seismic loading",
+        "phi_BH = 0.50 for basal heave (permanent wall, short-term); 0.40 (long-term)",
+        "phi_PO = 0.65 for pullout (static); higher resistance factors allowed with more testing",
+        "phi_T = 0.75 for nail in tension (high-corrosion environment); 0.65 (mild environment)",
+        "phi_FF = 0.90 for facing flexure (initial and final); phi_FP = 0.90 for punching shear",
+        "phi_FH = 0.75 for headed-stud tensile resistance in facing"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        {
+          "table_id": "6.3",
+          "title": "Resistance Factors for Soil Nail Wall Design",
+          "description": "Summary of all LRFD resistance factors: phi_OS (overall stability static/seismic), phi_BH (basal heave short/long-term), phi_PO (pullout), phi_LS (sliding), phi_T (tensile), phi_FF (facing flexure), phi_FP (facing punching shear), phi_FH (headed-stud tensile).",
+          "page": 147
+        }
+      ],
+      "applicability": "LRFD resistance factor selection for all soil nail wall limit state verifications."
+    },
+    {
+      "section_id": "6.5",
+      "title": "Step 6 — Overall Stability",
+      "summary": "Step 6 evaluates four stability modes: internal stability (6a), global stability (6b), basal heave (6c, if applicable), and sliding (6d, if applicable). Internal and global stability are analyzed using 2D limit-equilibrium slope stability programs (SNAIL, GoldNail, or SNAP-2). The ASD factor of safety FSOS and nail loads Tmax are obtained. Basal heave applies to walls excavated into fine-grained soils with low overconsolidation. Sliding is checked when weak soil layers underlie the reinforced block.",
+      "body": "Step 6 evaluates internal stability (Step 6a), global stability (Step 6b), basal heave (Step 6c, if applicable), and sliding stability (Step 6d, if applicable). Internal stability is typically analyzed using two-dimensional, limit-equilibrium, ASD-based slope stability programs. Well-established computer programs for designing soil nail walls (such as SNAIL, GoldNail, or SNAP-2) can model multiple soil strata, groundwater, external loads, seismic loads, and various geometric features. The ASD-based slope stability program calculates the safety factors for overall stability FSOS and the maximum loads of all nails. Of these loads, the maximum among all nails (Tmax) is selected for LRFD verifications in Step 7. Global stability evaluates the stability of the entire soil mass including the reinforced zone and the retained soil behind it. Basal heave analysis applies when the wall is excavated into soft to medium fine-grained soils. Sliding stability is evaluated if a weak soil layer underlies the reinforced block.",
+      "key_points": [
+        "Step 6a: Internal stability via ASD slope stability (SNAIL, GoldNail, SNAP-2); obtain FSOS and Tmax",
+        "Step 6b: Global stability — evaluate entire soil mass including retained soil behind wall",
+        "Step 6c: Basal heave — applies when excavation is in soft to medium fine-grained soils",
+        "Step 6d: Sliding stability — check if weak layer underlies reinforced block",
+        "SNAP-2 (FHWA) preferred program; also tracks deformation limits from Chapter 5",
+        "Tmax = largest nail load from all nail levels; used for LRFD verification in Step 7"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Overall stability evaluation for soil nail walls during excavation and final service conditions."
+    },
+    {
+      "section_id": "6.6",
+      "title": "Step 7 — Verify Geotechnical and Structural Resistances",
+      "summary": "Step 7 verifies all strength limit states using the capacity-to-demand ratio (CDR) approach. Load factor gamma = 1.35 (earth vertical). Pullout: rPO = pi*qu*DDH (Eq 6.1), RPO = rPO*LP (Eq 6.2), CDR_PO = phi_PO*RPO/(gamma*Tmax) (Eq 6.3). Nail tensile: RT = At*fy (Eq 6.5), CDR_T = phi_T*RT/(gamma*Tmax) (Eq 6.4). Facing checks include bending (Eqs 6.9-6.17), punching shear (Eqs 6.19-6.25), and headed-stud tensile and shear (Eqs 6.26-6.30). All CDRs must be >= 1.0.",
+      "body": "At this stage, the designer obtains Tmax from the stability analysis and multiplies it by load factor gamma = 1.35 (gamma_EV for vertical earth loads per AASHTO 2012) for LRFD verification. Step 7a verifies pullout resistance: the nominal unit pullout resistance per unit length rPO = pi*qu*DDH (Eq 6.1), where qu is the grout-soil bond strength and DDH is the drill hole diameter. The nominal pullout resistance RPO = rPO*LP (Eq 6.2). The CDR for pullout CDR_PO = phi_PO*RPO/(gamma*Tmax) (Eq 6.3) must be >= 1.0. Step 7c verifies nail tensile resistance: RT = At*fy (Eq 6.5), and CDR_T = phi_T*RT/(gamma*Tmax) (Eq 6.4) >= 1.0. Step 7d-7g verify facing resistances: bending (vertical and horizontal directions, CDR per Eq 6.18), punching shear through the facing at the nail head (CDR per Eq 6.19), and headed-stud resistance (CDR per Eq 6.27). Facing design considers both the initial (temporary shotcrete) facing and the final facing.",
+      "key_points": [
+        "Load factor gamma = 1.35 (gamma_EV) for LRFD verification of all resistance checks",
+        "Eq 6.1: rPO = pi*qu*DDH (nominal unit pullout resistance, force/length)",
+        "Eq 6.2: RPO = rPO*LP (nominal pullout resistance, LP = nail length behind slip surface)",
+        "Eq 6.3: CDR_PO = phi_PO*RPO/(gamma*Tmax) >= 1.0",
+        "Eq 6.5: RT = At*fy; Eq 6.4: CDR_T = phi_T*RT/(gamma*Tmax) >= 1.0",
+        "Facing flexure (Eq 6.18): CDR_FF = phi_FF*RFF/(gamma*Tmax) >= 1.0",
+        "Facing punching shear (Eq 6.19): CDR_FP = phi_FP*RFP/(gamma*Tmax) >= 1.0",
+        "Headed-stud (Eq 6.27): CDR_HS = phi_FH*RHS/(gamma*Tmax) >= 1.0"
+      ],
+      "equations": [
+        {
+          "eq_id": "6.1",
+          "description": "Nominal unit pullout resistance per unit length of nail",
+          "formula": "r_PO = pi * q_u * D_DH",
+          "variables": {
+            "r_PO": "nominal unit pullout resistance (force/length)",
+            "q_u": "bond strength of the nail-grout-soil interface (force/area)",
+            "D_DH": "diameter of the drill hole"
+          },
+          "notes": "qu values from field testing or Table 4.4 (Chapter 4).",
+          "implemented_in": null
+        },
+        {
+          "eq_id": "6.2",
+          "description": "Nominal pullout resistance along bonded nail length behind slip surface",
+          "formula": "R_PO = r_PO * L_P",
+          "variables": {
+            "R_PO": "nominal pullout resistance (force)",
+            "r_PO": "nominal unit pullout resistance (force/length, Eq 6.1)",
+            "L_P": "nail length behind the critical slip surface"
+          },
+          "notes": "LP obtained from graphical output of slope stability program.",
+          "implemented_in": null
+        },
+        {
+          "eq_id": "6.3",
+          "description": "Capacity-to-demand ratio for pullout resistance",
+          "formula": "CDR_PO = phi_PO * R_PO / (gamma * T_max)",
+          "variables": {
+            "CDR_PO": "capacity-to-demand ratio for pullout (must be >= 1.0)",
+            "phi_PO": "resistance factor for pullout (0.65, Table 6.3)",
+            "R_PO": "nominal pullout resistance (Eq 6.2)",
+            "gamma": "load factor (1.35 for earth vertical load)",
+            "T_max": "maximum nominal tensile force in nail from stability analysis"
+          },
+          "notes": null,
+          "implemented_in": null
+        },
+        {
+          "eq_id": "6.4",
+          "description": "Capacity-to-demand ratio for nail tensile resistance",
+          "formula": "CDR_T = phi_T * R_T / (gamma * T_max)",
+          "variables": {
+            "CDR_T": "capacity-to-demand ratio for tension (must be >= 1.0)",
+            "phi_T": "resistance factor for tendon tensile strength (0.75 or 0.65, Table 6.3)",
+            "R_T": "nominal tensile resistance of tendon (Eq 6.5)",
+            "gamma": "load factor (1.35)",
+            "T_max": "maximum nominal tensile force in nail"
+          },
+          "notes": null,
+          "implemented_in": null
+        },
+        {
+          "eq_id": "6.5",
+          "description": "Nominal tensile resistance of nail tendon",
+          "formula": "R_T = A_t * f_y",
+          "variables": {
+            "R_T": "nominal tensile resistance (force)",
+            "A_t": "cross-sectional area of tendon",
+            "f_y": "nominal yield resistance of tendon (force per area)"
+          },
+          "notes": "For Grade 150 bars, apparent yield at 120 ksi. Grade 60 rebar uses fy=60 ksi.",
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        {
+          "figure_id": "6.4",
+          "title": "Distribution of bond stress along grout-soil interface",
+          "description": "Schematic showing distribution of bond stresses along the grout-soil interface for a soil nail, illustrating variation of stress along length LP behind slip surface.",
+          "page": 161
+        }
+      ],
+      "tables": [],
+      "applicability": "Verification of all geotechnical and structural strength limit states for soil nail wall design."
+    },
+    {
+      "section_id": "6.7",
+      "title": "Step 8 — Service Limit States (Deformations)",
+      "summary": "Step 8 estimates wall deformations to ensure they remain within tolerable limits. Maximum lateral and vertical ground displacements are estimated using the approximate method from Chapter 5 (DDEF = C*(1-tan(alpha))*H). SNAP-2 outputs deformation limits but does not compute them. For complex geometries or walls adjacent to critical structures within the DDEF zone, numerical methods (2D FEM or FDM) are used. Numerical codes include Plaxis, FLAC, ABAQUS, and CRISP.",
+      "body": "A soil nail wall should be designed to limit movements within tolerable ranges. Maximum lateral and vertical displacements of the ground behind the wall are estimated using the approximate method presented in Chapter 5 (Eq 5.35). These limits are listed in the SNAP-2 output; however, the program does not evaluate deformations. For complex geometries or when the wall will be constructed adjacent to a critical structure within the DDEF zone (Figure 5.16), the engineer may use numerical methods to evaluate the magnitude and distribution of deflections. The most common numerical methods are 2D finite element method (FEM) and the finite difference method (FDM). Numerical codes include Plaxis, FLAC, ABAQUS, and CRISP. These analyses require careful selection of constitutive models and input parameters.",
+      "key_points": [
+        "Deformations estimated per Chapter 5 approximate method: DDEF = C*(1-tan(alpha))*H",
+        "SNAP-2 lists deformation limits but does not compute deformations",
+        "Numerical methods (FEM, FDM) used for complex geometries or critical adjacent structures",
+        "Numerical codes: Plaxis, FLAC, ABAQUS, CRISP",
+        "Deformation assessment needed when critical structures lie within DDEF influence zone"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Evaluation of wall deformations at the service limit state for soil nail walls."
+    },
+    {
+      "section_id": "6.8",
+      "title": "Step 9 — Seismic Design",
+      "summary": "Step 9 provides a pseudo-static seismic design procedure for soil nail walls. Soil nail walls historically perform better than rigid retaining structures during earthquakes. The procedure determines site-corrected PGA (Eqs 6.31-6.32), corrects for wall height (Eq 6.33-6.34), estimates permanent displacement (Eq 6.35), and selects a modified seismic coefficient kh based on wall ductility (Eqs 6.36-6.39). The Mononobe-Okabe method (Eqs 6.40-6.43) is an alternative. Seismic analysis is not required in AASHTO Seismic Zones 1-3 when PGAD <= 0.4g and soils do not liquefy.",
+      "body": "Soil nail walls have intrinsically good seismic performance due to their flexibility and design redundancy; walls subjected to accelerations up to 0.7g have shown no significant distress. Seismic design is not mandatory for MSE-equivalent walls in AASHTO Seismic Zones 1-3 (S1D <= 0.50) or where PGAD <= 0.4g and soils behind the wall do not liquefy. When seismic analysis is required, Step 9a selects design seismic parameters from AASHTO/USGS PGAD and S1D. Step 9b establishes the seismic coefficient kh corrected for site (Eqs 6.31-6.32), then corrected for wall height using factor alpha_h (Eqs 6.33-6.34). Step 9b also estimates permanent displacement de = 0.087*(ky/PGV)^(-1.5) (Eq 6.35, Newmark method), where PGV = 38*S1D. For walls that can sustain lateral displacement, a modified kh is calculated using a ductility reduction factor r (Eqs 6.36-6.39): r = 1.0 for rigid walls, r = 0.5 for walls tolerating more than 2 inches of lateral displacement. Step 9c re-evaluates overall stability using the modified kh with minimum Extreme Event I factors of safety from Table 5.1. The Mononobe-Okabe method (Eqs 6.40-6.43) provides an alternative pseudo-static approach.",
+      "key_points": [
+        "Seismic analysis not required in AASHTO Seismic Zones 1-3 when PGAD <= 0.4g and soils stable",
+        "Step 9a: Obtain PGAD and S1D from AASHTO or USGS; correct for site class (Eqs 6.31-6.32)",
+        "Eq 6.33/6.34: Wall height correction factor alpha_h reduces kh for taller walls",
+        "Eq 6.35: Permanent displacement de = 0.087*(ky/PGV)^(-1.5); PGV = 38*S1D",
+        "Eq 6.36 (rigid wall): kh = PGAD; Eqs 6.37-6.39: reduced kh using ductility factor r",
+        "r = 1.0 for rigid walls; r = 0.5 for >2 in. lateral displacement tolerance",
+        "Step 9c: Re-evaluate overall stability with modified kh per SNAP-2 or equivalent program",
+        "Alternative: Mononobe-Okabe method (Eqs 6.40-6.43) for cohesionless retained soils"
+      ],
+      "equations": [
+        {
+          "eq_id": "6.31",
+          "description": "Design site-corrected peak ground acceleration (Site Classes C, D, E)",
+          "formula": "k_h = F_PGA * PGA",
+          "variables": {
+            "k_h": "horizontal seismic coefficient",
+            "F_PGA": "site coefficient for PGA (AASHTO Table 3.10.3.2-3)",
+            "PGA": "peak ground acceleration coefficient at rock (dimensionless)"
+          },
+          "notes": "Site Classes C, D, E. For Site Classes A/B, use Eq 6.32.",
+          "implemented_in": null
+        },
+        {
+          "eq_id": "6.33",
+          "description": "Seismic coefficient corrected for wall height",
+          "formula": "k_h = alpha_h * k_h0",
+          "variables": {
+            "k_h": "height-corrected seismic coefficient",
+            "alpha_h": "wall height correction factor (Eq 6.34)",
+            "k_h0": "site-corrected seismic coefficient before height correction"
+          },
+          "notes": "Height correction reduces kh for taller walls.",
+          "implemented_in": null
+        },
+        {
+          "eq_id": "6.35",
+          "description": "Estimated permanent wall seismic displacement (Newmark method)",
+          "formula": "d_e = 0.087 * (k_y / PGV)^(-1.5)",
+          "variables": {
+            "d_e": "estimated permanent wall displacement after earthquake (inches)",
+            "k_y": "yield acceleration (seismic coefficient at FSOS=1.0 from stability analysis)",
+            "PGV": "peak ground velocity (inches/sec), estimated as PGV = 38*S_1D"
+          },
+          "notes": "PGV = 38*S1D where S1D is the design 1-second spectral acceleration.",
+          "implemented_in": null
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Seismic design of soil nail walls under Extreme Event I limit state per AASHTO pseudo-static procedure."
+    },
+    {
+      "section_id": "6.9",
+      "title": "Step 10 — Drainage and Drainage Details",
+      "summary": "Step 10 provides drainage design requirements for soil nail walls. Drainage is required to prevent hydrostatic forces on the facing, maintain wall performance, and protect aesthetics. Main drainage components include: geocomposite strip drains (100-200 mm wide) bonded to the shotcrete and extending to weep holes at the base; collector pipes; surface water berms and ditches; and subsurface drainage blankets for high groundwater. Specific details are provided for low, moderate, and high groundwater conditions.",
+      "body": "The design engineer must provide adequate subsurface and surface drainage features in all walls unless it is determined that such features are not needed for a specific project. Soil nail wall facings are relatively lightly reinforced and are not designed to resist hydrostatic forces. Incidental water behind the wall face is handled by strip drains. Uncontrolled groundwater can cause difficulties during construction, increase costs, impair long-term integrity, and degrade wall performance. For low groundwater or low seepage volumes (Step 10a/b), geocomposite strip drains 100-200 mm wide are installed vertically against the excavated face and attached to the shotcrete facing. Drains extend from the top of the wall to weep holes through the facing at the base. For high groundwater (Step 10c), a geocomposite drainage blanket or drainage layer is installed behind the full height of the facing with collector pipes at the base directed to outlet points. Permanent surface water control (Step 10c) includes shallow ditches or berms at the top of wall and lined swales at the base to prevent surface water infiltration. Drainage details must account for frost in cold climates.",
+      "key_points": [
+        "Facing is not designed to resist hydrostatic forces; drainage is mandatory in most cases",
+        "Geocomposite strip drains: 100-200 mm wide, vertical, bonded to shotcrete, routed to weep holes",
+        "Weep holes at base of wall, 1.5-2 m spacing, drain incidental seepage",
+        "Low groundwater: strip drains at each nail location; high groundwater: full drainage blanket",
+        "Collector pipes at base of wall drain to outlets; sized for expected seepage flow",
+        "Surface water: berms and ditches at top of wall; lined swales at base",
+        "Frost protection: drainage layer depth matches local frost depth for cold climates"
+      ],
+      "equations": [],
+      "figures": [
+        {
+          "figure_id": "6.12",
+          "title": "Drainage details for low groundwater",
+          "description": "Cross section and plan view showing geocomposite strip drain installation at nail locations for low groundwater or low seepage volume conditions, with weep holes through final facing.",
+          "page": 190
+        },
+        {
+          "figure_id": "6.13",
+          "title": "Drainage details for high groundwater",
+          "description": "Cross section showing full-height geocomposite drainage blanket behind facing with collector pipe at base and outlet for high groundwater conditions.",
+          "page": 192
+        }
+      ],
+      "tables": [],
+      "applicability": "Drainage design and detailing for soil nail walls under all groundwater conditions."
+    },
+    {
+      "section_id": "6.10",
+      "title": "Specialty Items",
+      "summary": "Section 6.10 covers four specialty configurations: stepped walls (two or more tiers with horizontal setbacks), composite walls (soil nail wall combined with another wall type such as MSE, soldier pile, or sheet pile), strut-nails (nails installed as compression struts), and frost protection. Stepped walls require shorter nail lengths but are less common on transportation projects. Composite walls suit sites with mixed conditions. Strut-nails are applicable where short nails must be used but can carry compressive loads from ground movement.",
+      "body": "Step 6.10.1 — Stepped Walls: Where space is available and the geometry allows, two or more soil nail walls with horizontal setbacks (benches) between tiers provide shorter nail lengths than a single tall wall. Stepped walls with vertical facing are most common on transportation projects. Nail length reduction depends on the setback width and the height of each tier. Step 6.10.2 — Composite Walls: Soil nail walls can be combined with other wall types (MSE walls, soldier pile walls, sheet pile walls) when site conditions require. The design of each component follows its respective design standard. Step 6.10.3 — Strut-Nails: Strut-nails are installed at small inclinations (typically 3-5 degrees) and can resist compression as well as tension. They are useful when nail length is limited by right-of-way constraints but the wall must resist horizontal compression from backfill settlement or consolidation. Step 6.10.4 — Frost Protection: In cold climates, the final shotcrete facing and drainage layer must be designed to accommodate frost heave. Adequate drainage behind the facing and sufficient facing thickness prevent frost damage.",
+      "key_points": [
+        "Stepped walls: reduce nail lengths vs. single tall wall; require available bench space",
+        "Two-tier stepped walls with vertical facing most common on transportation projects",
+        "Composite walls: combine soil nail wall with MSE, soldier pile, or sheet pile system",
+        "Strut-nails: installed near horizontal (3-5 degrees); resist both tension and compression",
+        "Strut-nails used when nail length limited by ROW but compression must be resisted",
+        "Frost protection: design drainage layer and facing thickness for local frost depth"
+      ],
+      "equations": [],
+      "figures": [
+        {
+          "figure_id": "6.14",
+          "title": "Example of stepped soil nail wall",
+          "description": "Illustration of a two-tier stepped soil nail wall showing individual wall sections, horizontal setbacks (benches), nail lengths for each tier, and overall wall geometry. Source: Byrne et al. (1988).",
+          "page": 199
+        }
+      ],
+      "tables": [],
+      "applicability": "Specialty soil nail wall configurations including stepped walls, composite walls, strut-nails, and frost protection."
+    },
+    {
+      "section_id": "6.11",
+      "title": "Step 11 — Other Design Considerations",
+      "summary": "Step 11 covers final design considerations including constructability evaluation, load testing program preparation, and geotechnical monitoring plan. The constructability evaluation identifies any special construction needs such as temporary support of exposed lifts or use of strut-nails. The load testing program specifies the type, frequency, and acceptance criteria for verification and proof tests (details in Chapter 9). The geotechnical monitoring plan defines how wall deformations will be monitored during and after construction if deformations are non-trivial or critical structures are adjacent.",
+      "body": "Final evaluations of constructability may need to be carried out in this step if the design has requirements for special construction needs, such as temporary support of exposed lifts or use of strut-nails. The Owner's design engineer must develop a load testing program to verify the assumed design values. Recommendations for load testing programs are presented in Chapter 9. The Owner's design engineer may also need to prepare a geotechnical monitoring plan to specify how deformations of the wall will need to be evaluated during and after construction, particularly if wall deformations were found to be non-trivial during design or if critical structures are within the zone of influence.",
+      "key_points": [
+        "Constructability evaluation: identify need for temporary support of exposed lifts or strut-nails",
+        "Load testing program: specify verification and proof test type, frequency, and acceptance criteria",
+        "Verification and proof test guidance in Chapter 9",
+        "Geotechnical monitoring plan: required when deformations are non-trivial or critical structures nearby",
+        "Monitoring plan specifies survey points, instruments, and trigger levels for action"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Final design-phase considerations for constructability, load testing, and performance monitoring of soil nail walls."
+    },
+    {
+      "section_id": "6.12",
+      "title": "Step 12 — Pre-Construction, Construction, and Post-Construction",
+      "summary": "Step 12 covers preparation and execution of construction documents and the full pre-construction, construction, and post-construction phases. Pre-construction activities include preparation of engineer's cost estimates, evaluation of contractor experience, and contractor selection. Construction activities involve staged excavation and nail installation per Chapter 9 inspection guidance. Post-construction activities include final performance monitoring and project documentation. In Design/Bid/Build contracts, the design engineer should oversee drawing and specification preparation to ensure design intent is unambiguously conveyed.",
+      "body": "In Design/Bid/Build contracts, the oversight of the preparation of construction drawings and specifications by the same personnel performing the design is highly desirable to ensure that the design intent is unambiguously conveyed in construction documents. Drawing and specification preparation should be an integral part of the Design phase. The Pre-Construction phase includes activities such as: preparation of Owner's engineering cost estimates; evaluation of bidders' experience; and selection of contractor. Chapter 8 (Contracting Approaches and Specifications) provides guidelines for the activities listed above. The Construction phase involves staged excavation and nail installation per the approved design drawings and specifications. Chapter 9 (Construction Inspection and Performance Monitoring) provides guidance on construction inspection, performance monitoring, and acceptance testing. Post-construction activities include final review of load test results, monitoring data, and project documentation.",
+      "key_points": [
+        "Design/Bid/Build: design engineer should oversee drawing and specification preparation",
+        "Pre-construction: cost estimates, contractor qualification evaluation, contractor selection",
+        "Chapter 8 provides guidance on contracting approaches and specifications",
+        "Construction: staged excavation and nail installation per approved design",
+        "Chapter 9 provides guidance on construction inspection and performance monitoring",
+        "Post-construction: review load tests, monitoring data, and project documentation"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Pre-construction, construction, and post-construction activities for soil nail wall projects."
+    }
+  ]
+}

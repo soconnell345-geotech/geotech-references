@@ -8,6 +8,7 @@
     {
       "section_id": "2.1",
       "title": "Introduction",
+      "summary": "Overview of driven pile design and construction within the LRFD framework per AASHTO (2014). Covers limit states, loads and resistance factors, and the 32-block design-construction process. Key distinction: pile driving data can improve accuracy of geotechnical resistance estimates beyond what static analysis alone provides.",
       "body": "Chapter 2 provides an overview of the driven pile design and construction process within the LRFD framework per AASHTO (2014). It covers load and resistance factor concepts, the various limit states that must be satisfied, and the comprehensive step-by-step design-construction process. The chapter emphasizes that driven pile design is unique among structural design because pile driving characteristics can be used to improve accuracy of geotechnical resistance estimates.",
       "key_points": [
         "Design follows LRFD methodology per AASHTO (2014) 7th Edition",
@@ -24,6 +25,7 @@
     {
       "section_id": "2.2",
       "title": "Limit States",
+      "summary": "Limit states governing driven pile designs: Strength I, Strength IV, Extreme Event I (earthquake), Extreme Event II (ice/vessel/blast/vehicle), and Service I. All applicable limit states have equal importance. Service II–IV and Fatigue I–II generally do not apply to foundation design.",
       "body": "AASHTO (2014) defines limit states as conditions beyond which a bridge component ceases to satisfy its design provisions. Limit states commonly governing driven pile foundation designs include Strength I, Strength IV, Extreme Event I (earthquake), Extreme Event II (ice, vessel, blast, vehicle collision), and Service I. All applicable limit states have equal importance. Service Limit States II, III, IV and Fatigue Limit States I and II are relevant to superstructure elements and are not generally applicable to foundation design.",
       "key_points": [
         "Limit states are conditions beyond which a component ceases to satisfy design provisions",
@@ -40,6 +42,7 @@
     {
       "section_id": "2.3",
       "title": "Loads, Load Combinations, and Load Factors",
+      "summary": "Total factored load Q = sum(eta_i*gamma_i*Q_i) (Eq 2-1). Permanent load factors gamma_p use max/min values (Table 2-3); select the more critical: DC max 1.25/min 0.90, DD (Tomlinson) max 1.40/min 0.25. Multiple iterations between structural and geotechnical analyses are typically required.",
       "body": "The total factored load Q for a given limit state is calculated from force effects, load modifiers, and load factors per Eq. 2-1. A specific load combination applies for each limit state case as detailed in Table 2-2. Permanent loads use load factor gamma_p with maximum and minimum values from Table 2-3, and the factor producing the more critical combination is selected. The two-letter load codes (DC, DD, DW, EH, EV, ES, EL, PS, CR, SH) correspond to permanent loads, and remaining codes correspond to transient loads. Figure 2-1 illustrates how structural analysis reactions at a column-cap joint become factored axial, lateral, and moment force effects at the pile cap. Figure 2-2 provides an example factored load calculation for a three-span bridge.",
       "key_points": [
         "Total factored load: Q = sum(eta_i * gamma_i * Q_i) where eta_i is load modifier, gamma_i is load factor",
@@ -65,6 +68,7 @@
     {
       "section_id": "2.4",
       "title": "Nominal and Factored Resistance",
+      "summary": "LRFD check: sum(eta_i*gamma_i*Q_i) ≤ phi*R_n = R_r (Eq 2-2). Factored resistance is the lesser of factored structural and geotechnical resistance. Redundancy: ≥5 piles per cap is redundant; ≤4 is non-redundant and requires 20% resistance factor reduction per AASHTO C10.5.5.2.3.",
       "body": "The nominal resistance R_n is calculated and multiplied by the resistance factor phi to determine the factored resistance R_r. The basic LRFD methodology equation (Eq. 2-2) requires that the factored resistance be greater than or equal to the sum of all factored force effects. Nominal geotechnical resistances and resistance factors are discussed in Chapter 7. Paikowsky (2004) in NCHRP Report 507 defined redundancy based on the number of piles per cap: 5 or more piles is redundant, 4 or fewer is non-redundant. For non-redundant designs, AASHTO Article C10.5.5.2.3 recommends reducing the resistance factor by 20%.",
       "key_points": [
         "Basic LRFD equation: sum(eta_i * gamma_i * Q_i) <= phi * R_n = R_r",
@@ -80,7 +84,7 @@
         {
           "id": "Eq. 2-2",
           "description": "LRFD design equation: sum(eta_i * gamma_i * Q_i) <= phi * R_n = R_r, where phi = resistance factor, R_n = nominal resistance, R_r = factored resistance",
-          "implemented_in": "axial_pile"
+          "implemented_in": null
         }
       ],
       "figures": [],
@@ -90,6 +94,7 @@
     {
       "section_id": "2.5",
       "title": "Strength Limit States",
+      "summary": "Strength limit state checks for driven piles: axial compression and uplift resistance for single piles and groups, lateral resistance, bearing stratum punching, structural resistance under combined axial and flexural loading, drivability including driving stresses, and loss of support due to design flood scour (100-year event).",
       "body": "The strength limit states ensure local and global strength and stability against statistically significant load combinations during the structure design life. Strength limit state design includes evaluation of nominal geotechnical and structural resistances as well as loss of lateral and vertical support due to scour in the design flood event (100 year). Geotechnical and structural strength limit state considerations are described in detail in Chapters 7 and 8.",
       "key_points": [
         "Axial compression resistance of single piles and pile groups",
@@ -108,6 +113,7 @@
     {
       "section_id": "2.6",
       "title": "Service Limit States",
+      "summary": "Service limit state checks: vertical settlement of single piles and groups, horizontal movements under lateral loads, rotation of pile groups, overall stability, and deformations due to 100-year scour. All applicable Service I load combinations must be evaluated per AASHTO Articles 10.5.2.1–10.5.2.4.",
       "body": "The service limit states provide limits on stress, deformation, and cracking under regular service conditions. Service limit state considerations in driven pile foundation designs include vertical deformation (settlement), horizontal movements, rotation, overall stability, and deformations due to scour at the design flood (100 year event). All applicable service limit state load combinations must be evaluated per AASHTO (2014) Articles 10.5.2.1 through 10.5.2.4.",
       "key_points": [
         "Vertical deformation (settlement) of single piles and pile groups",
@@ -125,6 +131,7 @@
     {
       "section_id": "2.7",
       "title": "Extreme Event Limit States",
+      "summary": "Extreme Event I (seismic) and Extreme Event II (500-year flood scour, vessel collision, vehicle collision, blast) checks. Liquefaction assessment required for multi-span bridges in Seismic Zones 2, 3, or 4. Seismic design per GEC-3 and AASHTO Section 10, Appendix A10.",
       "body": "Extreme event limit states ensure structural survival of a bridge under unique major occurrences such as earthquakes, floods, vehicle and vessel collisions, or blasts with return periods significantly greater than the bridge design life. A liquefaction assessment is required as part of the design for multi-span bridges if the site is classified as Seismic Zone 2, 3, or 4. Extreme event limit states are discussed further in Section 7.4 of this manual.",
       "key_points": [
         "Check flood (500 year event) for scour",
@@ -143,6 +150,7 @@
     {
       "section_id": "2.8",
       "title": "Construction of Pile Foundations",
+      "summary": "Successful construction requires relating load requirements to field resistance determination methods. Wave equation analysis, dynamic monitoring, and static load tests verify nominal resistance. Post-construction review of driving results versus predictions is essential for quality assurance and future design improvement.",
       "body": "Construction of a successful driven pile foundation depends on relating load requirements to resistance requirements of the field installation and resistance determination method. A pile foundation must meet limit state requirements for compressive, lateral, and uplift resistance. Wave equation analysis, dynamic monitoring of pile driving, and/or static load testing can all be used to verify nominal resistance and avoid pile damage or cost overruns. Post-construction review of driving results versus predictions regarding resistances, pile lengths, and field problems is essential.",
       "key_points": [
         "Design and construction must be explicitly incorporated into plans and specifications",
@@ -161,6 +169,7 @@
     {
       "section_id": "2.9",
       "title": "Foundation Specialist Involvement",
+      "summary": "A foundation specialist with both structural and geotechnical expertise is essential from planning through post-construction. The specialist is best positioned to select pile type, estimate pile length, and choose the most cost-effective resistance determination method. Continuity of specialist involvement applies to all contracting methods.",
       "body": "The input of an experienced foundation specialist is essential to produce a successful driven pile foundation. A foundation specialist has both structural and geotechnical background in design and construction. The specialist is the most knowledgeable person for selecting pile type, estimating pile length, and choosing the most appropriate and cost-effective resistance determination method. The foundation specialist should be involved from the planning stage through the design and construction process.",
       "key_points": [
         "Foundation specialist has both structural and geotechnical expertise",
@@ -179,6 +188,7 @@
     {
       "section_id": "2.10",
       "title": "The Driven Pile Design and Construction Process",
+      "summary": "32-block design-construction flow chart (Fig 2-3) covering planning (Blocks 1–8), preliminary design (9–19), design refinement (20–27), and construction (28–32). Lead roles identified by block border: structural engineer (solid), geotechnical engineer (dashed), construction engineer (dash-dot). Dynamic resistance methods are generally more accurate than static analysis.",
       "body": "The driven pile design and construction process is outlined in the 32-block flow chart of Figure 2-3. The process includes aspects unique to all structural design because pile driving characteristics can improve the accuracy of geotechnical resistance estimates. Dynamic methods for determining nominal resistance from penetration data or dynamic measurements are generally more accurate than static analysis methods based on subsurface exploration. Pile drivability must be considered during the design phase to avoid costly construction problems. The flow chart distinguishes lead roles by block border style: structural engineer (solid), geotechnical engineer (dashed), and construction engineer (dash-dot). The process covers planning (Blocks 1-8), preliminary design (Blocks 9-19), design refinement (Blocks 20-27), and construction (Blocks 28-32).",
       "key_points": [
         "Block 1: Establish global project performance requirements (structure type, phasing, layout, site conditions)",
@@ -198,6 +208,7 @@
     {
       "section_id": "2.10.1",
       "title": "The Driven Pile Design and Construction Process - Preliminary Design (Blocks 9-19)",
+      "summary": "Preliminary design (Blocks 9–19): calculate structural and geotechnical resistances vs. depth, estimate pile lengths for compression/tension/lateral/settlement demands, check drivability (acceptable blow count 30–120 blows/ft), determine neutral plane and drag force, verify settlement, and evaluate economics. Hammer ram weight starting estimate: 1–2% of required nominal resistance.",
       "body": "The preliminary design phase begins with calculating nominal and factored structural resistances (Block 9), then geotechnical resistances in compression and tension versus depth with preliminary drivability analysis (Block 10). Individual pile loads are resolved at all limit states (Block 11). Penetration depths are established for axial compression (Block 12), tension (Block 13), lateral loads (Block 14), and tolerable deformations based on group settlement (Block 15). Drivability is checked for all candidate pile types (Block 16) with acceptable blow counts of 30-120 blows/ft (120 blows/ft or 10 blows/inch considered refusal). The neutral plane location and drag force are determined (Block 17), settlement is verified (Block 18), and economics are evaluated (Block 19).",
       "key_points": [
         "Block 9: Calculate nominal and factored structural resistances for all candidate pile types (Chapter 8)",
@@ -220,6 +231,7 @@
     {
       "section_id": "2.10.2",
       "title": "The Driven Pile Design and Construction Process - Design Refinement (Blocks 20-27)",
+      "summary": "Design refinement (Blocks 20–27): refine structural model with updated loads, re-evaluate for seismic/dynamic foundation stiffness (unfactored loads, convergence within 5%), confirm all limit states are satisfied, design pile caps per AASHTO concrete specs, finalize plans showing factored loads, nominal resistance, resistance method, phi_dyn, and min/max penetration depths.",
       "body": "After preliminary design is complete at all substructure locations (Block 20), structural modeling is refined with updated foundation top loads and lateral earth pressure loads on abutments (Block 21). If loads change significantly, foundation design is re-evaluated (Block 22). For dynamic elastic analyses (seismic), foundation stiffnesses are re-evaluated using unfactored loads (Block 23) and loads are checked for convergence within 5% (Block 24). The final design must meet all limit state requirements (Block 25). Pile caps are designed per AASHTO concrete specifications (Block 26). Plans and specifications are finalized with pile quantities, minimum penetration requirements, required nominal resistances, resistance determination method, and resistance factor phi_dyn (Block 27).",
       "key_points": [
         "Block 20: Preliminary design must be complete at all substructure locations before refinement",
@@ -239,6 +251,7 @@
     {
       "section_id": "2.10.3",
       "title": "The Driven Pile Design and Construction Process - Construction (Blocks 28-32)",
+      "summary": "Construction phase (Blocks 28–32): evaluate contractor's driving equipment via wave equation analysis, set preliminary driving criteria and drive test piles, adjust criteria or design based on test results, drive production piles with QC monitoring, and conduct post-construction review. Changing resistance determination method post-design changes both phi and required nominal resistance.",
       "body": "Construction begins with evaluation of the contractor's proposed equipment (Block 28). Wave equation analysis estimates the blow count to meet required nominal driving resistance and checks if the pile can be driven to the required depth without exceeding material stress limits. Preliminary driving criteria are set and test piles are driven (Block 29). Driving requirements may be defined by blow count, minimum penetration depth, dynamic monitoring results, or a combination. Each field resistance determination method has its own resistance factor phi_dyn. If test results indicate inadequate resistance, driving criteria or design may be adjusted (Block 30). Production piles are driven with construction monitoring (Block 31), and post-construction evaluation is performed for design refinement on future projects (Block 32).",
       "key_points": [
         "Block 28: Evaluate contractor's proposed pile driving equipment via wave equation analysis (Chapters 12, 14)",
@@ -258,6 +271,7 @@
     {
       "section_id": "2.11",
       "title": "Communication",
+      "summary": "Interdisciplinary communication between structural, geotechnical, hydraulic, geologic, and construction engineers is essential throughout driven pile design and construction. Tables 2-4 and 2-5 identify which disciplines must communicate at each stage. Construction-stage items (QC/QA, wave equation, load testing, installation problems) require all three disciplines.",
       "body": "Good communication between all organizations and disciplines involved in the design and construction of a pile foundation is essential for successful project completion. In the design stage, communication and interaction is needed between the structural, geotechnical, geologic, hydraulic, and construction disciplines, as well as with consultants, drill crews, and laboratory personnel. In the construction stage, structural, geotechnical, and construction disciplines must communicate for timely resolution of construction issues. Tables 2-4 and 2-5 detail the key communication items in both design and construction stages.",
       "key_points": [
         "Communication between structural, geotechnical, hydraulic, geologic, and construction disciplines is essential",

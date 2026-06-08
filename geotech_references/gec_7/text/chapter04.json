@@ -8,6 +8,7 @@
     {
       "section_id": "4.1",
       "title": "Introduction",
+      "summary": "Design information requirements for soil nail walls: subsurface investigation, field and laboratory testing, design parameter selection (shear strength and nail-ground bond strength), and evaluation of special conditions including creep, corrosion, frost, and seismic loading.",
       "body": "This chapter describes the information needed to design a soil nail wall, including subsurface investigation requirements, field and laboratory testing procedures, selection of design parameters, and evaluation of special conditions such as soil creep, corrosion potential, frost, and seismic loading. The subsurface investigation program must provide sufficient data to develop reliable design parameters, particularly soil shear strength and nail-ground bond strength.",
       "key_points": [
         "Subsurface investigation requirements for soil nail wall design",
@@ -23,6 +24,7 @@
     {
       "section_id": "4.2",
       "title": "Subsurface Investigation",
+      "summary": "Borings at maximum 30-m intervals along the wall alignment, extending to at least 1.5 times the wall height below the proposed base, with SPT sampling at 0.75–1.5 m intervals and groundwater monitoring. Critical items: soft layers, water conditions, obstructions (boulders, utilities), and corrosive ground. CPT, geophysics, and test pits supplement borings.",
       "body": "The purpose of the subsurface investigation is to define the soil stratigraphy, groundwater conditions, and engineering properties of the ground. Minimum investigation requirements include: borings at intervals not exceeding 30 m (100 ft) along the wall alignment and extending at least 1.5 times the wall height below the proposed base; at least one boring at each end of the wall and at major changes in alignment or grade; SPT sampling at 0.75-1.5 m intervals; and groundwater monitoring. Additional investigation may include CPT soundings, geophysical surveys, and test pits. Critical items include identification of soft layers, groundwater conditions, obstructions (boulders, utilities), and corrosive ground conditions.",
       "key_points": [
         "Borings at maximum 30 m (100 ft) intervals along wall alignment",
@@ -41,6 +43,7 @@
     {
       "section_id": "4.3",
       "title": "Field Testing Procedures",
+      "summary": "SPT (ASTM D1586) is the most common field test for soil nail walls. CPT (ASTM D5778) provides continuous soil profiling. Vane shear (ASTM D2573) measures Su in soft clays. Pressuremeter (ASTM D4719) provides deformation properties. SPT N-values are correlated to friction angle for granular soils and undrained shear strength for cohesive soils.",
       "body": "Field testing procedures include: (a) Standard Penetration Test (SPT) per ASTM D1586, the most common field test for soil nail wall investigations; (b) Cone Penetration Test (CPT) per ASTM D5778, useful for defining soil stratigraphy and estimating soil properties continuously with depth; (c) Vane Shear Test (VST) per ASTM D2573 for measuring undrained shear strength of soft to medium clays in situ; (d) Pressuremeter Test (PMT) per ASTM D4719; and (e) in-situ permeability tests. SPT N-values can be correlated to friction angle for granular soils and undrained shear strength for cohesive soils using established correlations.",
       "key_points": [
         "SPT (ASTM D1586): most common field test for soil nail walls",
@@ -61,6 +64,7 @@
     {
       "section_id": "4.4",
       "title": "Laboratory Testing",
+      "summary": "Classification tests: grain-size (D422), Atterberg limits (D4318), moisture (D2216). Shear strength: direct shear (D3080), triaxial (D2850/D4767), unconfined compression (D2166). Corrosion tests: pH, resistivity, chloride, sulfate, organic content. Selection of drained vs. undrained and peak vs. residual strength depends on soil type, loading conditions, and strain levels.",
       "body": "Laboratory testing requirements include: (a) Classification tests: grain-size analysis (ASTM D422), Atterberg limits (ASTM D4318), moisture content (ASTM D2216), and unit weight (ASTM D7263); (b) Shear strength tests: direct shear (ASTM D3080), triaxial compression (ASTM D2850/D4767), and unconfined compression (ASTM D2166); (c) Corrosion-related tests: pH, resistivity, chloride content, sulfate content, and organic content. The selection of appropriate shear strength parameters (drained vs. undrained, peak vs. residual) depends on soil type, loading conditions, and expected strain levels.",
       "key_points": [
         "Classification: grain-size (D422), Atterberg limits (D4318), moisture (D2216)",
@@ -81,6 +85,7 @@
     {
       "section_id": "4.5",
       "title": "Selection of Design Parameters",
+      "summary": "Bond strength (qu) is the most critical parameter for soil nail design, representing the ultimate shear stress at the soil-grout interface. Preliminary values from Tables 4.4a/4.4b by soil type and drilling method; must be verified by field pullout tests during construction. Effective stress parameters (c', phi') for drained analysis; Su for undrained analysis.",
       "body": "Key design parameters include: (a) Unit weight: total and effective unit weights from lab measurements or correlations. (b) Shear strength: effective stress parameters (c', phi') for drained analysis of granular soils and long-term analysis of fine-grained soils; total stress parameters (Su) for short-term undrained analysis of fine-grained soils. (c) Bond strength (qu): the most critical parameter for soil nail design, representing the ultimate shear stress at the soil-grout interface. Preliminary bond strength values can be estimated from Tables 4.4a and 4.4b, which provide ranges based on soil type and drilling method. Final bond strengths must be verified by field pullout (verification and proof) tests during construction.",
       "key_points": [
         "Unit weight from lab measurements or correlations",
@@ -104,6 +109,7 @@
     {
       "section_id": "4.6",
       "title": "Soil Creep Potential",
+      "summary": "Creep is a concern for permanent walls in high-plasticity fine-grained soils (CH clays with LL > 50, LI > 0.2, organics), potentially causing long-term increases in nail tensile forces and wall deformation. Use more conservative deformation estimates and more frequent monitoring when creep-susceptible soils are present.",
       "body": "Soil creep can be a concern for permanent soil nail walls in fine-grained soils with high plasticity or high moisture content. Creep may cause long-term increase in nail tensile forces and wall deformation. Soils susceptible to creep include: clays with liquid limit greater than 50 (CH classification), clays with Liquidity Index (LI) greater than 0.2, and organic soils. When creep-susceptible soils are present, the design should account for potential long-term deformations using more conservative deformation estimates and more frequent monitoring.",
       "key_points": [
         "Creep concern for permanent walls in high-plasticity fine-grained soils",
@@ -120,6 +126,7 @@
     {
       "section_id": "4.7",
       "title": "Corrosion Potential Evaluation",
+      "summary": "Ground is aggressive (highly corrosive) if: pH < 4.5, resistivity < 2,000 ohm-cm, chloride > 200 ppm, sulfate > 1,000 ppm, or stray electrical currents are present. Aggressive ground requires enhanced corrosion protection (encapsulation) per Chapter 7. Non-aggressive ground may use simpler protection (epoxy coating, increased grout cover).",
       "body": "Evaluation of the ground corrosion potential is essential for permanent soil nail walls. Ground is considered aggressive (highly corrosive) if any of the following conditions exist: pH less than 4.5; resistivity less than 2,000 ohm-cm; chloride concentration greater than 200 ppm; sulfate concentration greater than 1,000 ppm; or presence of stray electrical currents. Testing standards are listed in Table 4.7. For aggressive ground, enhanced corrosion protection (encapsulation) is required per Chapter 7. For non-aggressive ground, simpler protection measures (epoxy coating or increased grout cover) may be adequate.",
       "key_points": [
         "Ground aggressive if: pH < 4.5, resistivity < 2,000 ohm-cm",
@@ -136,6 +143,7 @@
     {
       "section_id": "4.8",
       "title": "Frost Potential",
+      "summary": "Frost affects soil nail walls by generating heave pressures on the facing, reducing bond strength in the frost zone, and creating ice lenses that weaken soil upon thawing. Effective bond length should begin below the frost depth. Facing design must account for frost pressures; adequate drainage minimizes ice lens formation.",
       "body": "Frost penetration can affect soil nail walls by: (a) generating frost heave pressures on the facing; (b) reducing bond strength in the frost zone; and (c) causing ice lenses that reduce soil strength upon thawing. The frost depth must be determined for each project location. Soil nails should be designed such that effective bond length begins below the frost depth. The facing design should account for potential frost pressures, and adequate drainage is critical to minimize water availability for ice lens formation.",
       "key_points": [
         "Frost heave pressures can act on facing",
@@ -153,6 +161,7 @@
     {
       "section_id": "4.9",
       "title": "Seismic Data",
+      "summary": "Seismic design requires site classification (Vs30 via Eq 4.1 or average SPT-N via Eq 4.2), PGA from AASHTO hazard maps, and site-adjusted design PGA = FPGA*PGA (Eq 4.3) and S_D1 = Fv*S1 (Eq 4.4) using site coefficients from Tables 4.9–4.10. The horizontal seismic coefficient kh is used for pseudo-static analysis of the wall.",
       "body": "Seismic design parameters must be obtained for all soil nail wall projects in seismically active regions. Required parameters include: site classification based on average shear wave velocity in the upper 30 m (Eq. 4.1) or average SPT N-value (Eq. 4.2) per AASHTO (2014) and MCEER/ATC-49; Peak Ground Acceleration (PGA) from AASHTO seismic hazard maps; site-adjusted PGA using site coefficients FPGA (Table 4.9) and Fv (Table 4.10); and the design seismic coefficient kh for pseudo-static analysis. The design PGA is calculated as PGA_D = FPGA * PGA (Eq. 4.3), and the design spectral acceleration parameter S_D1 = Fv * S1 (Eq. 4.4).",
       "key_points": [
         "Site classification based on Vs30 (Eq 4.1) or average SPT N (Eq 4.2)",

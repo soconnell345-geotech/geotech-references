@@ -8,6 +8,7 @@
     {
       "section_id": "3.0",
       "title": "Introduction",
+      "summary": "Systematic selection of foundation type based on superstructure requirements, subsurface conditions, and cost. Foundation types: shallow (spread footings, mats) and deep (driven piles, micropiles, drilled shafts, CFA piles). Table 3-1 lists FHWA reference manuals for each foundation type.",
       "body": "A foundation is the interfacing element between the superstructure, substructure, and the underlying geomaterial. The loads transmitted by the foundation must not cause shear failure or damaging deformations of the superstructure. It is essential to systematically consider various foundation types and to select the most appropriate alternative based on the superstructure requirements, the subsurface conditions, and foundation cost. Foundation types include shallow foundations (spread footings, mat foundations with or without ground improvement) and deep foundations (driven piles, micropiles, drilled shafts, CFA piles).",
       "key_points": [
         "Foundation interfaces superstructure/substructure with underlying geomaterial",
@@ -30,6 +31,7 @@
     {
       "section_id": "3.1",
       "title": "Foundation Design Approach",
+      "summary": "Six-step foundation selection process: (1) define loads and constraints, (2) evaluate subsurface data, (3) prepare final profile, (4) identify feasible alternatives, (5) prepare cost estimates using foundation support cost concept, (6) select most economical option. If alternatives are within 15% cost, include alternates in contract documents.",
       "body": "A six-step design approach is recommended to determine the most appropriate foundation alternative. The process begins with determining foundation loads, structure layout, and performance limits, then evaluating subsurface exploration data. A final subsurface profile is prepared to identify layers suitable or unsuitable for various foundation types. The most feasible foundation alternatives (both shallow and deep) are identified, cost estimates prepared using the foundation support cost concept, and the most economical alternative selected.",
       "key_points": [
         "Step 1: Determine foundation loads, structure layout, settlement/deformation limits, scour, seismic, and construction constraints",
@@ -49,6 +51,7 @@
     {
       "section_id": "3.2",
       "title": "Foundation Alternatives",
+      "summary": "Driven piles are the most commonly used deep foundation for transportation projects. Table 3-2 compares spread footings, mats, driven piles, drilled shafts, micropiles (diameter < 305 mm), and CFA piles — listing applicable and non-suitable soil conditions for each. Deep foundations should not be used indiscriminately where installation is difficult or costly.",
       "body": "Both shallow and deep foundations should be considered to determine the most preferred foundation alternative. Table 3-2 summarizes foundation types and uses along with applicable and non-applicable subsurface conditions. Shallow foundations include spread footings and mat foundations. Deep foundations include driven piles, drilled shafts, micropiles, and continuous flight auger (CFA) piles, each with distinct advantages and limitations depending on soil conditions, loading demands, and project constraints.",
       "key_points": [
         "Spread footings are generally more economical where geomaterial and loading conditions are favorable; not suitable for scour, liquefaction, large uplift, or large lateral loads",
@@ -73,6 +76,7 @@
     {
       "section_id": "3.3",
       "title": "Establishment of a Need for a Deep Foundation",
+      "summary": "Eleven situations requiring deep foundations (Fig 3-1, after Vesic 1977): end bearing to competent stratum (a), friction in deep weak deposit (b), uplift resistance (c), lateral load on single pile (d), battered pile group (e), sign/noise wall (f), scour conditions (g), liquefaction and seismic loading (h), vessel impact fender (i), adjacent future excavation (j), expansive/collapsible soils (k).",
       "body": "Vesic (1977) summarized typical situations where piles may be needed, shown in Figure 3-1. The most common case is when upper soil strata are too compressible or too weak to support heavy vertical loads, requiring load transfer to a deeper competent stratum. Deep foundations are also needed to resist inclined, lateral, or uplift loads and overturning moments that shallow footings cannot accommodate. Additional situations include scour conditions, liquefaction and seismic loading, vessel impact protection, future adjacent excavations, and expansive or collapsible soils.",
       "key_points": [
         "End bearing piles transfer loads through weak strata to competent bearing layer at depth (Figure 3-1a)",
@@ -101,6 +105,7 @@
     {
       "section_id": "3.4",
       "title": "Economic Aspects of Foundation Selection",
+      "summary": "Foundation support cost = total foundation cost / factored load ($/kip or $/ton). Three components for driven pile projects: pile support cost, pile cap support cost, and construction control method support cost. All substructure costs (cofferdams, dewatering, pile caps) must be included. If alternatives within 15% cost, include alternates in contract documents.",
       "body": "When both shallow and deep foundation alternatives are technically feasible, economic evaluation guides the final selection. Foundation support cost is defined as the total cost of the foundation divided by the factored load it supports (in tons or kips). For driven pile projects where axial loading governs, the total foundation support cost separates into three components: pile support cost, pile cap support cost, and construction control method support cost. The cost analysis should also include cofferdam/retention systems, dewatering, pile caps, environmental restrictions, and mitigation procedures. If alternatives are within 15% cost, alternate designs should be included in contract documents.",
       "key_points": [
         "Foundation support cost = total foundation cost / factored load supported ($/ton or $/kip)",
@@ -117,6 +122,7 @@
     {
       "section_id": "3.4.1",
       "title": "Foundation Support Cost and Cost Optimization Example",
+      "summary": "Cost optimization example for HP 14x117 H-pile in layered profile. Support cost ($/kip) = pile cost / nominal resistance vs. depth. Resistance factors by field verification method: phi_dyn = 0.80 (SLT + 2% DLT) down to 0.40 (FHWA Gates); higher phi_dyn allows shorter piles and lower total cost. Uplift resistance factors: phi_up = 0.60 (SLT) to 0.25/0.35 (alpha/Nordlund in clay/sand).",
       "body": "A cost optimization example is presented using an HP 14x117 H-pile in a layered soil profile with soft clay, medium sand, stiff clay, dense sand, and bedrock. Static analysis determines nominal geotechnical resistance versus pile penetration depth. Several possible pile termination depths and resistances are identified. The pile cost is assumed linear with depth based on unit price, and the nominal resistance pile support cost ($/kip) is obtained by dividing pile cost by nominal resistance at each depth. The factored resistances depend on the field verification method and its associated resistance factor, which significantly affects required pile length and overall cost.",
       "key_points": [
         "Example uses HP 14x117 H-pile with layered soil profile (soft clay/medium sand/stiff clay/dense sand/bedrock)",
@@ -180,6 +186,7 @@
     {
       "section_id": "3.5",
       "title": "Other Considerations",
+      "summary": "Non-economic factors in foundation selection: constructability and drivability, pile driving noise, ground vibrations, condition surveys and vibration monitoring of adjacent facilities, and durability. Environmental restrictions on vibrations, noise, and work hours can significantly increase foundation costs.",
       "body": "Beyond technical feasibility and economics, several additional factors must be evaluated when selecting a driven pile foundation. These include constructability, pile driving noise, pile driving induced vibrations, condition surveys and vibration monitoring of adjacent facilities, and durability considerations. Environmental restrictions on vibrations, noise, and work hours can significantly increase foundation costs and should be factored into the selection process.",
       "key_points": [
         "Constructability, noise, vibrations, effects on nearby structures, durability, and long-term maintenance must be evaluated",
@@ -194,6 +201,7 @@
     {
       "section_id": "3.5.1",
       "title": "Constructability",
+      "summary": "Drivability must be verified: the pile must reach the specified minimum penetration depth. Design must consider hard layers requiring predrilling or jetting, densification within cofferdams, heave from displacement piles in cohesive soils, and constraints on headroom, workspace, and construction access.",
       "body": "Constructability should be assessed during design with construction considerations factored into pile selection and final design. Drivability is a key component: the chosen pile section must be capable of being installed to the specified minimum penetration depth. The design and drivability assessment should consider hard layers requiring predrilling or jetting, potential densification effects in cofferdams or from driving large pile groups, heave effects on adjacent structures from displacement piles in cohesive deposits, and limitations on head room, work space, and construction access.",
       "key_points": [
         "Drivability must be evaluated to ensure pile can be installed to required penetration depth",
@@ -211,6 +219,7 @@
     {
       "section_id": "3.5.2",
       "title": "Consideration of Pile Driving Noise",
+      "summary": "Impact pile driving noise typically ranges from 80–135 dBa. Noise suppression devices available for some diesel/hydraulic hammers can reduce levels by ~10 dBa. Costs of noise restrictions (work hour limits, equipment type, suppression devices) must be included in foundation cost estimates.",
       "body": "Noise from impact pile driving typically ranges from 80 to 135 dBa depending on hammer and pile type. If local ordinances dictate allowable noise levels at or below typical driving levels, some equipment may not comply. A few diesel and hydraulic hammer manufacturers offer optional noise suppression devices that may reduce noise by about 10 dBa. In noise sensitive areas, the designer should review ordinances and assess impacts on contractor equipment selection and productivity. Costs associated with work hour limits, equipment type restrictions, and noise suppression equipment should be included in the foundation selection process.",
       "key_points": [
         "Impact pile driving noise typically ranges from 80 to 135 dBa",
@@ -228,6 +237,7 @@
     {
       "section_id": "3.5.3",
       "title": "Pile Driving Induced Vibrations",
+      "summary": "Damage threshold 0.5–4 in/sec peak particle velocity (Wiss 1981). Settlement can occur at PPV as low as 0.1–0.2 in/sec in loose sands. Bay (2003) gives PPV vs. distance for Class II (n=1.5) and Class III (n=1.1) soils by hammer energy (Fig 3-8). Massarsch & Fellenius (2014) settlement in inverted 2V:1H zone: S_max = alpha*(D+6b), S_avg = alpha*(D+3b)/3 (Eqs 3-1, 3-2).",
       "body": "Ground vibrations from impact or vibratory pile driving are always induced into surrounding soils. Vibration levels depend on soil type, pile type and section, hammer type, penetration resistance, pile toe depth, and distance from the pile. Damage to nearby structures can result from vibration-induced soil densification and settlement, or from direct vibration effects on the structure. Wiss (1981) recommended safe ground vibration levels of 0.5 to 4 inches per second peak particle velocity. Bay (2003) summarized relationships between peak particle velocity and distance from the pile as a function of rated hammer energy for Class II and Class III soils (Figure 3-8). Massarsch and Fellenius (2014) describe vibration-induced settlement using Equations 3-1 and 3-2 within an inverted 2(V):1(H) triangular zone around the pile.",
       "key_points": [
         "Vibrations depend on soil type, pile type/section, hammer, penetration resistance, toe depth, and distance from pile",
@@ -291,6 +301,7 @@
     {
       "section_id": "3.5.4",
       "title": "Condition Surveys and Vibration Monitoring of Adjacent Facilities",
+      "summary": "Pre-construction condition surveys document existing crack patterns and structure condition as baseline for damage claims. Routine survey distance: 60 m (200 ft) from pile driving; extend to 150 m (500 ft) for older/poor-condition structures or vibration-sensitive equipment. Use film rather than digital photography when damage claims may arise.",
       "body": "Pre-construction condition surveys and vibration monitoring programs are warranted on projects in populated urban areas. Prior to construction, the internal and external condition of potentially affected structures should be documented using photos and videos, including existing cracks with crack monitors installed. This provides a baseline for comparison against any future damage claims. Post-construction surveys should document any changes. Condition surveys should use film rather than digital photography if damage claims may arise. Survey distances for routine cases should extend 200 feet from pile driving, extended to 500 feet for older structures, structures in poor condition, or vibration-sensitive equipment.",
       "key_points": [
         "Pre-construction condition surveys document existing conditions as baseline for damage claims",
@@ -310,6 +321,7 @@
     {
       "section_id": "3.5.5",
       "title": "Durability Considerations",
+      "summary": "AASHTO mandates 75-year design life for ordinary bridges, 100 years for complex major bridges. Steel pile corrosion (case: Leo Frigo Bridge 2013, 32-yr H-piles in fly ash fill). Concrete piles: chloride/sulfate attack, abrasion. Timber piles: creosote-treated last 40–70 years depending on channel exposure. Corrosion protection details in Section 6.13.",
       "body": "The durability of a pile foundation is defined by how long it performs satisfactorily without unforeseen high maintenance costs relative to the expected service life. AASHTO mandates a 75-year design life for new ordinary bridges, with 100 years for complex major bridges. In general, driven piles have proved very durable in most environments, but aggressive environments can cause significant deterioration. Steel pile corrosion was the cause of the 2013 Leo Frigo Bridge (I-43) settlement in Green Bay, WI, where 32-year-old H-piles experienced severe corrosion from porous industrial fly ash fill, sulfates, and chlorides. Concrete piles can deteriorate from chloride intrusion, reinforcement corrosion, tidal/splash zone abrasion, and sulfate attack. Timber piles experience mechanical damage, abrasion, fire damage, and weathering; creosote-treated timber piles away from stream channels last 60-70 years while those in channels have a 40-50 year life expectancy.",
       "key_points": [
         "AASHTO mandates 75-year design life for ordinary bridges; 100 years for complex major bridges",
@@ -356,6 +368,7 @@
     {
       "section_id": "3.6",
       "title": "Unanticipated Occurrences",
+      "summary": "External activities can damage existing pile foundations. Case 1: I-495 Delaware (2014) — ~50,000-ton fill stockpile induced lateral soil movement, deformed H-piles, cracked pile caps, and columns tilting up to 0.6 m. Case 2: I-65 Wildcat Creek (2015) — new pile driving released artesian pressure, causing up to 254 mm settlement of adjacent spread footing pier.",
       "body": "The long-term performance of a foundation is generally assessed by total and differential settlement within and between substructure locations. Unanticipated occurrences from outside influences can affect a foundation's long-term performance, such as fill stockpiles placed adjacent to existing bridge piers or construction of new pile foundations affecting adjacent existing foundations. Two case histories illustrate how external changes can cause significant damage to existing pile-supported structures.",
       "key_points": [
         "Foundation long-term performance assessed by total and differential settlement",

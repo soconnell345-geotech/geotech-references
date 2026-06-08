@@ -1,0 +1,222 @@
+{
+  "reference_id": "FHWA-NHI-14-007",
+  "reference_title": "Soil Nail Walls Reference Manual",
+  "chapter": 7,
+  "chapter_title": "Corrosion Protection",
+  "sections": [
+    {
+      "section_id": "7.1",
+      "title": "Introduction",
+      "summary": "Chapter 7 discusses factors promoting or inhibiting corrosion in soil nails, presents criteria for assessing soil corrosion potential, and provides guidelines for selecting corrosion protection levels. Grouted solid bar soil nails always have some corrosion protection from the grout, but grout alone is insufficient in aggressive ground conditions. Chapter 7 focuses on solid bar nails; hollow bar soil nails (HBSNs) are addressed in Chapter 10.",
+      "body": "This chapter discusses the main factors that promote or inhibit corrosion in soil nails, presents criteria for assessing soil corrosion potential, and introduces guidelines for selecting levels of corrosion protection. The design and construction of permanent soil nail walls require thorough consideration of the corrosion potential of tendons and other metallic components. The tendons discussed in this manual are grouted; therefore, some level of corrosion protection always exists. However, grout alone cannot provide adequate corrosion protection for aggressive ground conditions. This chapter focuses on corrosion protection for solid bar soil nails. HBSNs are discussed in Chapter 10. The options for corrosion protection of HBSNs are limited compared to solid bar soil nails due to the installation methods.",
+      "key_points": [
+        "Grouted soil nails always have some corrosion protection from the grout",
+        "Grout alone is insufficient for aggressive ground conditions",
+        "Corrosion protection applies to tendons and all metallic components (bearing plates, headed studs, nuts)",
+        "Chapter 7 covers solid bar soil nails only; HBSNs addressed in Chapter 10",
+        "Permanent soil nail walls require thorough corrosion potential evaluation"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Corrosion protection design for permanent solid bar soil nail walls."
+    },
+    {
+      "section_id": "7.2",
+      "title": "Historical Background",
+      "summary": "No soil nail wall failures or serviceability issues due to corrosion have been reported in the published literature. Recommendations are drawn from experience with ground anchors and MSE walls rather than soil nail-specific case histories. Key references include PTI (2004) for prestressed ground anchors, Sabatini et al. (1999), AASHTO (2014) Article 11.8, and Elias et al. (2009) for MSE walls, all of which provide corrosion protection frameworks adaptable to soil nails.",
+      "body": "There are no available publications in the literature reporting soil nail wall failures or serviceability issues due to corrosion of the tendons. Therefore, the recommendations presented in this manual do not follow from specific experience in soil nails, but rather from experience with other earth retention systems. Publications focusing on corrosion of ground anchors and MSE wall metallic reinforcement provide relevant information. Key references include: Weatherby (1982) for pre-stressed steel anchors; PTI (2004) for prestressed rock and soil anchors (includes decision tree for selecting corrosion protection levels); Sabatini et al. (1999) for ground anchors; AASHTO (2014) and AASHTO (2002) Section 6 for ground anchors; and Elias et al. (2009) for MSE wall electrochemical criteria. The concept of corrosion protection classes and criteria for differentiating between strong and mild soil corrosion potential are adapted from these references.",
+      "key_points": [
+        "No documented soil nail wall failures due to corrosion in published literature",
+        "Recommendations adapted from ground anchor and MSE wall corrosion protection experience",
+        "PTI (2004): decision tree for prestressed anchor corrosion protection levels",
+        "Sabatini et al. (1999): ground anchor corrosion protection guidance",
+        "Elias et al. (2009): electrochemical criteria for MSE walls — threshold values adapted for soil nails",
+        "AASHTO (2014) Article 11.8 addresses corrosion of metallic reinforcement"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Background for soil nail corrosion protection framework and references."
+    },
+    {
+      "section_id": "7.3",
+      "title": "Terminology",
+      "summary": "Chapter 7 defines key terms for corrosion protection: aggressive soil exceeds resistivity, pH, sulfate, or chloride thresholds from Table 7.2; non-aggressive soil does not. Protection levels are classified as Class A (encapsulation in plastic sheathing — highest protection), Class B (epoxy coating or galvanization), and Class C (grout cover only — no additional protective coatings). Passivation refers to the formation of an oxide layer that inhibits further corrosion.",
+      "body": "For clarity, the following terms are used in this chapter: Aggressiveness refers to the tendency of soil to promote corrosion of steel at relatively fast rates. Aggressive soil has values of resistivity, pH, sulfate, and chloride contents that exceed established thresholds (Elias et al. 2009). Non-aggressive soil does not exceed those thresholds. Corrosion potential is synonymous with aggressiveness. Class A Protection involves encapsulation of the soil nail in plastic sheathing — the highest level of protection. Class B Protection includes epoxy coating or galvanizing the tendon and connection components. Class C Protection consists of a bare tendon with no protective coatings other than the surrounding grout. Passivation refers to the process by which a metal forms an oxide or hydroxide layer on its surface that inhibits further corrosion.",
+      "key_points": [
+        "Aggressive soil: any electrochemical threshold from Table 7.2 exceeded",
+        "Non-aggressive soil: all Table 7.2 thresholds satisfied",
+        "Class A: encapsulation in plastic sheathing (highest protection)",
+        "Class B: epoxy coating or hot-dip galvanization of tendon and hardware",
+        "Class C: grout cover only, no additional protective coating",
+        "Passivation: protective oxide/hydroxide layer formation on metal surface"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Terminology for corrosion protection classification in soil nail wall design."
+    },
+    {
+      "section_id": "7.4",
+      "title": "Corrosion Mechanisms",
+      "summary": "Corrosion is an electrochemical process converting refined metal through ion movement between anodes and cathodes via an electrolyte. Four corrosion types are relevant to soil nails: general corrosion (uniform metal loss), localized corrosion/pitting (develops at small pits in grout cracks), stray-current corrosion (from nearby direct current sources such as rail transit systems), and stress-crack corrosion/hydrogen embrittlement (primarily in high-strength steel under tension). The electrochemical reactions are driven by differences in voltage, oxygen concentration, pH, or resistivity.",
+      "body": "Corrosion is the process that deteriorates a refined metal by changing its physical and chemical properties through electrochemical reactions with the surrounding environment. The reactions consist of ion movement from a metal surface (anode) to another metal surface (cathode) through a nonmetallic conductor in solution (electrolyte) such as dissolved oxygen, chlorine, and hydrogen ions. Reactions arise due to differences in voltage, oxygen concentration, pH, or electric resistivity between cathode and anode. General corrosion progresses uniformly along the tendon; the grout alkalinity (pH ~12.5) passivates steel and inhibits general corrosion. Localized corrosion (pitting) develops at small pits or crevices where grout is cracked or defective, promoting non-homogeneous ion concentrations. Stray-current corrosion occurs near direct current sources (e.g., rail transit electrification) where induced currents accelerate anodic dissolution; this risk decreases rapidly with distance, becoming minimal beyond 30-60 m from the source. Stress-crack corrosion and hydrogen embrittlement affect high-strength steel tendons under tensile stress.",
+      "key_points": [
+        "Electrochemical process: anode (metal loss) → electrolyte → cathode",
+        "Grout alkalinity (pH ~12.5) passivates steel — general corrosion inhibited in intact grout",
+        "General corrosion: uniform metal loss where grout pH is lowered or grout is cracked",
+        "Localized corrosion (pitting): develops at grout cracks or defects",
+        "Stray-current corrosion: induced by nearby DC sources (rail transit); minimized beyond 30-60 m",
+        "Stress-crack corrosion: affects high-strength steel under sustained tension"
+      ],
+      "equations": [],
+      "figures": [
+        {
+          "figure_id": "7.1",
+          "title": "General corrosion of a tendon",
+          "description": "Schematic illustrating general corrosion mechanism for a grouted soil nail tendon, showing anode and cathode zones, ion flow through grout electrolyte, and locations of potential metal loss. After Hamilton et al. (1995) and Samtani and Nowatzki (2010).",
+          "page": 208
+        }
+      ],
+      "tables": [
+        {
+          "table_id": "7.1",
+          "title": "Relative Effect of Resistivity on Corrosion Potential/Aggressiveness",
+          "description": "Classifies soil corrosion potential by electrical resistivity: Very corrosive (<700 ohm-cm), Corrosive (700-2000), Moderately corrosive (2000-5000), Mildly corrosive (5000-10000), Non-corrosive (>10000). From NCHRP (1978).",
+          "page": 210
+        }
+      ],
+      "applicability": "Understanding of corrosion mechanisms affecting grouted solid bar soil nail tendons and metallic components."
+    },
+    {
+      "section_id": "7.5",
+      "title": "Evaluation of Soil Corrosion Potential",
+      "summary": "Soil corrosion potential is evaluated using electrochemical testing per Table 7.2 thresholds. A soil is classified as aggressive if ANY single threshold is exceeded: pH outside 5.0-10; resistivity < 3,000 ohm-cm; sulfates >= 200 ppm; chlorides >= 100 ppm; or organics >= 1% by weight. Conditions promoting corrosion include low/high pH, low resistivity, elevated chlorides or sulfides, saturation, organic content, stray currents, and available oxygen. If resistivity >= 5,000 ohm-cm, the chloride and sulfate criteria may be waived.",
+      "body": "To select an adequate level of corrosion protection, the soil corrosion potential of the ground around a soil nail system must be evaluated. Conditions promoting corrosion include: too low or too high pH; low electric resistivity; high concentration of chlorides or sulfides; saturated or near-saturated soil; soil with organic content; presence of stray currents; and availability of oxygen. Table 7.1 shows the relative effect of resistivity on corrosion potential. Table 7.2 provides the criteria for classifying soil as aggressive or non-aggressive. Soil is classified as aggressive if any one of the conditions in Table 7.2 exceeds the threshold. According to Elias et al. (2009), the chloride and sulfate requirements may be waived when resistivity is greater than or equal to 5,000 ohm-cm. Testing methods include AASHTO T-289 (pH), AASHTO T-288 (resistivity), ASTM D4327 (sulfates and chlorides), and AASHTO T-267 (organics).",
+      "key_points": [
+        "Aggressive soil if ANY Table 7.2 threshold is exceeded",
+        "pH threshold: 5.0 < pH < 10 for non-aggressive (AASHTO T-289)",
+        "Resistivity threshold: > 3,000 ohm-cm for non-aggressive (AASHTO T-288)",
+        "Sulfate threshold: < 200 ppm for non-aggressive (ASTM D4327)",
+        "Chloride threshold: < 100 ppm for non-aggressive (ASTM D4327)",
+        "Organics threshold: < 1% by weight for non-aggressive (AASHTO T-267)",
+        "If resistivity >= 5,000 ohm-cm, chloride and sulfate criteria may be waived"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        {
+          "table_id": "7.2",
+          "title": "Criteria for Assessing Ground Corrosion Potential",
+          "description": "Electrochemical thresholds for non-aggressive soil classification: pH 5.0-10.0, resistivity > 3000 ohm-cm, sulfates < 200 ppm, chlorides < 100 ppm, organics < 1% by weight. Soil classified as aggressive if any one criterion is exceeded. From Elias et al. (2009).",
+          "page": 211
+        }
+      ],
+      "applicability": "Electrochemical testing and classification of soil corrosion potential for soil nail wall site characterization."
+    },
+    {
+      "section_id": "7.6",
+      "title": "Corrosion Protection Systems",
+      "summary": "Seven corrosion protection systems are described: (1) grout cover (always present); (2) epoxy coating on tendon; (3) zinc coating (galvanization, hot-dip or thermal spray, 2-4 mils); (4) encapsulation in corrugated HDPE sheathing (Class A — highest level); (5) sacrificial steel added to design diameter per Eq 7.1 (thickness X as function of service life tf) and Eq 7.2 (remaining diameter); (6) nail-head protection using epoxy, galvanized hardware, or isolation pads; (7) stray-current protection using electrical isolation pads and non-conductive fittings.",
+      "body": "Corrosion protection can be provided by physical or chemical means or a combination. Electrical means (cathodic protection) are not typically used for soil nails. Physical protection places a continuous barrier between the tendon and corrosion sources. Chemical protection uses sacrificial or dielectric materials. The seven systems are: (1) Grout Cover: neat cement grout always present; centralizers ensure uniform cover (minimum 25 mm for mild conditions). (2) Epoxy Coating: applied to tendon in factory; field-damaged areas must be repaired. (3) Zinc Coating: hot-dip galvanization (2-4 mils thickness) or thermal spray zinc; provides sacrificial protection. (4) Encapsulation: corrugated HDPE sheathing over epoxy-coated or galvanized tendon — Class A protection; provides two independent barriers. (5) Sacrificial Steel: additional bar diameter beyond required structural area to account for corrosion over the design life, calculated per Eqs 7.1-7.2. (6) Nail-Head Protection: bearing plates and hardware are epoxy-coated and/or galvanized; electrical isolation pads prevent stray-current path. (7) Stray-Current Protection: install electrical isolation pads at bearing plate-facing connection to interrupt stray-current flow.",
+      "key_points": [
+        "Grout cover: always present; centralizers required for minimum 25 mm cover",
+        "Epoxy coating: factory-applied to bar; field repairs required for damaged areas",
+        "Galvanization: hot-dip or thermal spray zinc, 2-4 mils; sacrificial protection",
+        "Encapsulation (Class A): corrugated HDPE sheathing over coated tendon; two barriers",
+        "Sacrificial steel: add diameter loss (Eqs 7.1-7.2) to nominal diameter for Class C design",
+        "Nail-head hardware: epoxy-coated and/or galvanized bearing plates, headed studs, nuts, washers",
+        "Stray-current protection: isolation pads at bearing plate to interrupt current flow"
+      ],
+      "equations": [
+        {
+          "eq_id": "7.1",
+          "description": "Thickness of sacrificial steel loss over design service life",
+          "formula": "X = f(t_f)",
+          "variables": {
+            "X": "thickness of steel loss (micrometers, µm) per side",
+            "t_f": "service life of the soil nail wall (years)"
+          },
+          "notes": "The steel loss model is based on empirical data. Steel loss is taken twice from the bar diameter (once from each side).",
+          "implemented_in": null
+        },
+        {
+          "eq_id": "7.2",
+          "description": "Remaining bar diameter after sacrificial steel loss",
+          "formula": "d_loss = d_bar - 2*X",
+          "variables": {
+            "d_loss": "bar diameter after sacrificial steel loss (same units as d_bar)",
+            "d_bar": "nominal bar diameter",
+            "X": "steel loss per side (Eq 7.1)"
+          },
+          "notes": "d_loss is used as the cross-sectional area input in Eq 6.5 for Class C design.",
+          "implemented_in": null
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selection and design of corrosion protection systems for solid bar soil nail tendons and nail-head components."
+    },
+    {
+      "section_id": "7.7",
+      "title": "Methodology for Selecting Corrosion Protection Levels",
+      "summary": "A decision tree (Figure 7.2) guides selection of corrosion protection level based on soil aggressiveness (Table 7.2), risk tolerance (permanent vs. temporary wall, consequences of failure), and tendon type. The procedure has three main paths: non-aggressive soil with low risk tolerance allows Class C (grout only); aggressive soil or higher risk tolerance requires Class B (epoxy/galvanized) or Class A (encapsulated). Risk tolerance considers service life (50-75 years for permanent walls), proximity to utilities, right-of-way constraints, and public safety consequences.",
+      "body": "This section presents a method for selecting the corrosion protection level suited for the project, soil, and soil nail tendon types. A decision tree (Figure 7.2), adapted from PTI (2004), guides selection by systematically considering: (1) soil aggressiveness per Table 7.2; (2) project risk tolerance (consequences of failure, service life, and wall classification); and (3) tendon type. Risk tolerance is categorized as high (permanent public walls, long service life, urban setting) or low (temporary walls, remote locations, short service life). If soil is non-aggressive and risk tolerance is low, Class C (grout only) is acceptable. If soil is aggressive OR risk tolerance is high, Class B (epoxy or galvanized) is required. For aggressive soil AND high risk tolerance, or for highly aggressive environments, Class A (encapsulation) is required.",
+      "key_points": [
+        "Decision tree (Figure 7.2): three inputs — aggressiveness, risk tolerance, tendon type",
+        "Non-aggressive soil + low risk tolerance → Class C (grout only) acceptable",
+        "Aggressive soil OR high risk tolerance → Class B (epoxy or galvanized) required",
+        "Aggressive soil AND high risk tolerance → Class A (encapsulation) required",
+        "Risk tolerance considers service life (50-75 yr permanent), failure consequences, and urban setting",
+        "Temporary walls: lower corrosion protection level may be acceptable"
+      ],
+      "equations": [],
+      "figures": [
+        {
+          "figure_id": "7.2",
+          "title": "Procedure for selecting soil nail corrosion protection level",
+          "description": "Decision tree for corrosion protection level selection based on soil aggressiveness (Table 7.2), project risk tolerance, and tendon type. Outputs Class A, B, or C protection level. Adapted from PTI (2004).",
+          "page": 218
+        }
+      ],
+      "tables": [],
+      "applicability": "Systematic selection of corrosion protection level (Class A, B, or C) for solid bar soil nail walls."
+    },
+    {
+      "section_id": "7.8",
+      "title": "Design of Corrosion Protection",
+      "summary": "The corrosion protection design procedure has seven steps: (1) classify soil as aggressive/non-aggressive using Table 7.2; (2) determine protection level from Figure 7.2 decision tree; (3) select tendon type; (4) for Class C — calculate sacrificial steel using Eqs 7.1-7.2 and reduce effective tendon area for resistance calculation (Eq 6.5); (5) for Class B — specify epoxy coating or galvanization; (6) for Class A — specify HDPE encapsulation with epoxy/galvanized tendon; (7) detail nail-head protection.",
+      "body": "The selection of soil nail corrosion protection is performed by the Owner using the following steps. (1) Use Table 7.2 to classify soil as non-aggressive or aggressive based on corrosion testing from Chapter 4. (2) Use Figure 7.2 to determine the appropriate corrosion protection level considering aggressiveness, risk tolerance, and other project-specific factors. (3) Select the appropriate tendon type to meet project needs. (4) If Class C is selected: obtain nominal tendon diameter; select design life (typically 50-75 years); calculate sacrificial steel thickness X using Eq 7.1; calculate remaining diameter d_loss using Eq 7.2; use d_loss to compute reduced cross-sectional area At for Eq 6.5; proceed with design using reduced At. (5) If Class B is selected: specify epoxy coating and/or galvanized tendon, epoxy-coated and galvanized hardware, and isolation pads. (6) If Class A is selected: specify encapsulation (corrugated HDPE sheathing), epoxy-coated or galvanized tendon within encapsulation, and full hardware protection. (7) Detail nail-head corrosion protection including bearing plate, hardware coatings, and isolation from stray currents.",
+      "key_points": [
+        "Step 1: Classify soil per Table 7.2 — aggressive if any threshold exceeded",
+        "Step 2: Use Figure 7.2 decision tree to select Class A, B, or C protection",
+        "Step 4 (Class C): Calculate sacrificial steel loss X (Eq 7.1) for design life 50-75 yr",
+        "Step 4 (Class C): d_loss = d_bar - 2*X (Eq 7.2); use reduced area in Eq 6.5",
+        "Step 5 (Class B): Epoxy/galvanized tendon + epoxy/galvanized hardware + isolation pads",
+        "Step 6 (Class A): HDPE encapsulation + coated tendon inside + full hardware protection"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Step-by-step corrosion protection design procedure for permanent solid bar soil nail walls."
+    },
+    {
+      "section_id": "7.9",
+      "title": "Unusual Conditions",
+      "summary": "Three unusual corrosion conditions require additional consideration. Marine/saltwater exposure: carbon steel loss ~3.2 mils/side in the first years, reducing to 0.67-0.7 mils/year; zinc (galvanizing) losses ~3.4 mils in the first year alone — encapsulation (Class A) is typically required. De-icing salt intrusion: install a 30-mil minimum geomembrane below the road base tied into drainage to prevent salt penetration. Acid mine drainage or pyrite-rich soils: consult a corrosion specialist; soil nail application may not be suitable.",
+      "body": "Structures exposed to marine or other chloride-rich environments represent unusual conditions requiring further consideration. For marine structures exposed to saltwater, carbon steel losses on the order of 3.2 mils per side or radius should be anticipated in the first few years, reducing to 0.67-0.7 mils thereafter. Zinc losses from galvanization are likely to be quite rapid in marine exposure; total loss of approximately 3.4 mils should be anticipated in the first year. These high corrosion rates mean that Class A (encapsulation) protection is typically warranted for marine structures. For structures under roads or bridge abutments exposed to de-icing salts, a 30-mil (minimum) thick geomembrane installed below the road base and tied into the roadway drainage system prevents de-icing salt penetration into the ground. Structures in acidic water from mine waste, abandoned coal mines, or pyrite-rich soil strata require the input of a corrosion specialist. These conditions may not be suitable for soil nailing applications at all.",
+      "key_points": [
+        "Marine exposure: carbon steel loss ~3.2 mils/side initially, then 0.67-0.7 mils/year",
+        "Galvanizing in marine exposure: ~3.4 mils zinc lost in first year — inadequate alone",
+        "Marine environment: Class A (encapsulation) typically required",
+        "De-icing salt intrusion: 30-mil minimum geomembrane below road base tied to drainage",
+        "Acid mine drainage or pyrite-rich soils: consult corrosion specialist; may not be suitable for soil nailing"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Corrosion protection design for soil nail walls in marine environments, de-icing salt exposure, and acidic ground conditions."
+    }
+  ]
+}

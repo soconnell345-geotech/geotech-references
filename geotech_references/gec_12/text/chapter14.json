@@ -1,0 +1,143 @@
+{
+  "reference_id": "FHWA-NHI-16-009",
+  "reference_title": "Design and Construction of Driven Pile Foundations",
+  "chapter": 14,
+  "chapter_title": "Plans and Specifications",
+  "sections": [
+    {
+      "section_id": "14.1",
+      "title": "Overview of Plan and Specification Requirements",
+      "summary": "Pile foundations cannot be inspected after installation, making construction specifications and monitoring critical. Project plans must include pile location, type, section, estimated length, toe details, splicing details, cutoff elevation, factored resistance, nominal resistance, nominal driving resistance, and resistance factor. Plans must clearly distinguish Rr (factored), Rn (nominal), and Rndr (nominal driving resistance). Chapter 14 provides a generic highway driven pile specification updated for LRFD from FHWA Geotechnical Guideline 13.",
+      "body": "Pile foundations generally cannot be inspected after installation. Therefore, construction specifications and monitoring are of prime importance for a successful pile foundation. Preparation of the contract plans, plan details, and specifications related to piling issues are the responsibility of the foundation designer in cooperation with materials and construction personnel.\n\nProject plans should include:\n- Location of piles and pile numbering system\n- Pile type, section, and estimated length\n- Pile toe details (driving shoe, closure plate)\n- Pile splicing details\n- Pile cutoff elevation\n- Pile cap connection details\n- Estimated and minimum pile toe elevation\n- Required pile batter and direction; orientation of H-piles\n- Factored resistance (Rr), Nominal resistance (Rn), and Nominal driving resistance (Rndr)\n- Location of subsurface borings and results of subsurface exploration\n\nPlan statements such as 'piles shall have a resistance of 300 kips' are ambiguous — they may be interpreted as Rr, Rn, or Rndr. Plans must clearly indicate: factored resistance, resistance factor, nominal resistance, additional resistance required through unsuitable layers (scour, liquefaction and their elevations), time-dependent resistance changes (setup or relaxation), and the resulting nominal driving resistance.\n\nThe generic pile specification in Section 14.2 was originally developed for FHWA Geotechnical Guideline 13 and updated to LRFD. AASHTO LRFD Bridge Construction Specifications (2010) provides a similar document with additional commentary. A good driven pile specification includes components listed in Table 14-1.",
+      "key_points": [
+        "Plans must clearly distinguish: Rr (factored resistance), Rn (nominal resistance), Rndr (nominal driving resistance), and resistance factor phi",
+        "Plans must show: pile location/type/section/length, toe details, splices, cutoff elevation, cap connection, batter, and boring locations",
+        "Include time-dependent resistance effects: setup/relaxation factors, scour and liquefaction elevations, resulting Rndr",
+        "Ambiguous plan statements (e.g., 'resistance = 300 kips') create contract disputes — always specify Rr, Rn, Rndr separately",
+        "Generic pile specification (Section 14.2) originally from FHWA GG 13, updated to LRFD",
+        "Table 14-1: basic components of a good driven pile specification"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        {
+          "table_id": "14-1",
+          "description": "Basic components of a good driven pile specification — checklist of specification sections required for a comprehensive driven pile contract document"
+        }
+      ],
+      "applicability": "General requirements for driven pile plans and specifications; guidance on clearly communicating factored resistance, nominal resistance, and nominal driving resistance to avoid contract ambiguities."
+    },
+    {
+      "section_id": "14.2.1-14.2.2",
+      "title": "Description, Submittals, and Equipment Approval",
+      "summary": "Pile Installation Plan due 30 days before first pile: proposed equipment list, methods to determine hammer energy, follower drawings, load test details, driving sequence, schedule, and preconstruction condition documentation. Driving equipment approval based on wave equation analysis (unless dynamic formula specified): required blow count 30-96 blows/ft at Rn; driving stresses must not exceed material limits (phi_da = 1.0 for steel, 1.15 for timber). Steel pile maximum compressive stress = phi_da*0.90*Fy. Concrete tension limits vary by environment.",
+      "body": "Section X.01 — Description: The contractor furnishes and drives piles of designated type and dimensions, including cutoff or build-up as required. When test piles are required, lengths shown are for estimating only; actual production pile lengths are determined by the engineer after test pile results are evaluated.\n\nSection X.02 — Submittals: A Pile Driving Installation Plan is due no later than 30 days before driving the first pile. Required contents:\n1. List and size of proposed equipment (cranes, barges, hammers, jetting, compressors, predrilling)\n2. Methods to determine hammer energy in the field; charts and calibrations for pressure gauges\n3. Detailed drawings of proposed followers and templates\n4. Load test equipment details, instrumentation, procedures, reaction frame details, jack and load cell calibrations\n5. Driving sequence for each pile layout configuration\n6. Schedule for test pile program and production driving\n7. Preconstruction condition documentation for nearby structures/utilities; protection and monitoring procedures\n8. Shop drawings for piles, cofferdams, etc.\n9. Methods for preventing pile movement during fill placement within 15 feet of piles\n10. Proposed splice locations and details of any mechanical or proprietary splices\n\nEquipment Approval by Wave Equation (Section X.02 B): All pile driving equipment is subject to engineer approval. Approval is based on wave equation analysis unless a dynamic formula was specified for field control. The Pile Driving Equipment Data Form (Figure 14-1) must be submitted at least 30 days prior to driving start. Wave equation approval criteria: (1) required blow count at Rn must be 30-96 blows/ft; and (2) driving stresses must not exceed material limits.\n\nDriving stress limits for equipment approval (phi_da = 1.0 for all pile types except timber, where phi_da = 1.15):\n- Steel piles: maximum compressive stress ≤ phi_da × 0.90 × Fy\n- Prestressed concrete, normal environment: tensile stress ≤ phi_da × (0.095*sqrt(f'c) + fpe)\n- Prestressed concrete, severe corrosive environment: tensile stress = 0.0 ksi (compression only)\n- Prestressed concrete, compression: ≤ phi_da × 0.85 × f'c\n- Timber piles: stress limited per species and grade\n\nEquipment Approval by Alternate Method (Section X.02 C): If wave equation analysis is not used, the contractor must demonstrate equipment adequacy by other approved means (e.g., experience records, simplified analysis).",
+      "key_points": [
+        "Pile Installation Plan due 30 days before first pile — includes equipment list, energy measurement method, load test details, driving sequence",
+        "Equipment approval by wave equation: blow count 30-96 blows/ft at Rn AND driving stresses within material limits",
+        "phi_da = 1.0 for steel/concrete; 1.15 for timber piles",
+        "Steel pile compressive stress limit: phi_da * 0.90 * Fy",
+        "Prestressed concrete tensile limit (normal environment): phi_da * (0.095*sqrt(f'c) + fpe) in ksi",
+        "Prestressed concrete severe environment: no tensile stress allowed (compression only)",
+        "Pile Driving Equipment Data Form (Figure 14-1) required for approval even if dynamic formula is used",
+        "Equipment must not be transported to site until written approval received"
+      ],
+      "equations": [],
+      "figures": [
+        {"figure_id": "14-1", "description": "Pile driving and equipment data submittal form — standard form for contractor to document proposed hammer type, rated energy, stroke, cushion details, helmet weight, and pile section for engineer approval"}
+      ],
+      "tables": [],
+      "applicability": "Contractor submittal requirements for driven pile projects, including pile installation plan contents and wave equation criteria for driving equipment approval."
+    },
+    {
+      "section_id": "14.2.3-14.2.4",
+      "title": "Materials and Driving Equipment Specification Requirements",
+      "summary": "Materials specification references agency standard specifications for concrete, reinforcing steel, prestressing strands, structural steel, castings, shells, timber, preservatives, and protective coatings. Driving equipment: air/steam, diesel, hydraulic, or drop hammers. Drop hammers limited to Rn ≤ 120 kips, ram ≥ 2.0 kips, drop ≤ 12 ft. Vibratory hammers for production piles require prior load testing or restrike verification; first of every 10 vibratory-installed piles must be restruck with impact hammer.",
+      "body": "Section X.03 — Materials: Materials must meet agency standard specification requirements for: Portland cement concrete; reinforcing steel; prestressing strands/post-tensioning tendons; structural steel; castings for pile shoes; steel shells for cast-in-place piles; timber piles; timber preservative and treatment; protective coatings. No generic materials section is provided — agency standard specifications apply.\n\nSection X.04 — Driving Equipment and Appurtenances:\n\nPile Hammers: Piles may be driven with air, steam, diesel, or hydraulic hammers. Drop hammers, when permitted: ram weight ≥ 2.0 kips; drop height ≤ 12 ft; ram weight ≥ combined helmet + pile weight; ram weight ≥ one-third helmet + pile weight requirement waived if wave equation used for approval; use limited to Rn ≤ 120 kips.\n\nAir/steam hammers: operated within manufacturer's specifications; striking parts weight ≥ 1/3 weight of helmet and pile; striking parts ≥ 2.75 kips (waived if wave equation approval used).\n\nOpen-end (single-acting) diesel hammers: must have visible stroke indicator rings; contractor provides stroke-to-blows-per-minute chart; contractor maintains automatic stroke display device for engineer.\n\nClosed-end (double-acting) diesel hammers: bounce chamber pressure gauge at ground level; calibrated chart relating pressure to energy or stroke (calibrated within 60 days of use).\n\nHydraulic hammers: system measuring and displaying kinetic energy or ram impact velocity at all times.\n\nVibratory hammers: allowed for production piles only after pile toe elevation confirmed by load testing or impact hammer restrike. First of every 10 vibratory-installed piles must be restruck with an impact hammer at contractor's cost. Installation controlled by power consumption, penetration rate, or other means acceptable to the engineer.\n\nDrive System Components: hammer cushion, helmet, pile cushion (for concrete piles), leads, followers (when approved), jets (auxiliary to driving, not for final resistance), predrilling equipment, spuds (with engineer written approval only).",
+      "key_points": [
+        "Drop hammers: Rn ≤ 120 kips; ram ≥ 2.0 kips; drop ≤ 12 ft; ram weight ≥ helmet+pile weight",
+        "Open-end diesel: stroke indicator rings + stroke-blows/min chart required; automatic stroke display device required",
+        "Closed-end diesel: bounce chamber gauge at grade + calibrated pressure-energy/stroke chart (within 60 days)",
+        "Hydraulic hammers: automatic kinetic energy or ram velocity display required at all times",
+        "Vibratory hammers: load test or restrike required before production use; 1st of every 10 piles restruck with impact hammer",
+        "Air/steam hammer striking parts: ≥ 1/3 of helmet+pile weight and ≥ 2.75 kips (waived if wave equation approval used)",
+        "Spuds not permitted in lieu of predrilling without specific written engineer approval",
+        "Jets are auxiliary to driving; not used for final resistance determination"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Specification requirements for driven pile materials and driving equipment, including hammer types, operating requirements, stroke monitoring, and vibratory hammer use conditions."
+    },
+    {
+      "section_id": "14.2.5",
+      "title": "Specification for Determination of Nominal Resistance",
+      "summary": "Static load tests (ASTM D1143 quick method, to plunging or 150% Rn): failure load per Davisson criterion — Eq. 14-1 (piles ≤24 inch): sf = delta + b/120 + 0.15; Eq. 14-2 (piles >36 inch): sf = delta + b/30; interpolate for 24-36 inch. Minimum wait before static load test: 5 days (sands), 2 weeks (clays/shales). Dynamic testing: restrike required; warm up hammer ≥20 blows; maximum restrike 3 inches or 20 blows. Restrike wait: 1 day clean sands, 2 days silty sands, 3-5 days sandy silts, 7-14 days silty clays/shales (Table 14-4).",
+      "body": "Section X.05 — Nominal Resistance Determination:\n\nA. Axial Compression Resistance:\n\n1. Static Load Tests: ASTM D1143 quick load test method; to geotechnical plunging failure or 150% Rn capacity. Load cell + spherical bearing plate required. Submittal: detailed loading apparatus plans by licensed PE; calibrations for jack, load cell, and pressure gauge within 30 days. Reaction piles = same type and diameter as production piles; surveyed for heave; if ≥0.25 inch permanent heave, reaction pile must be redriven. Heave in test pile >0.5 inch before testing → redrive required.\n\nFailure load (Davisson criterion):\nEq. 14-1 (piles ≤24 inch): sf = delta + b/120 + 0.15\nEq. 14-2 (piles >36 inch): sf = delta + b/30\nLinear interpolation for 24-36 inch diameter.\n\nWait time before static load test (minimum): 5 days unless otherwise specified; 2 weeks or longer for clay; 5 days to 1 week for sandy silts and sands; 2 weeks for shales.\n\n2. Dynamic Testing with Signal Matching: Dynamic test pile to be driven to design penetration depth or depth determined by engineer. Engineer monitors stresses and directs energy reduction (cushion or reduced stroke) if material stress limits are exceeded. Hammer warm-up before restrike: ≥20 blows on another pile or timber mats. Maximum restrike penetration: 3 inches or 20 blows, whichever comes first. Restrike wait times (Table 14-4): clean sands 1 day; silty sands 2 days; sandy silts 3-5 days; silty clays 7-14 days; shales 10-14 days.\n\n3. Rapid Load Tests: ASTM D7383; combustion gas/reaction mass or cushioned drop weight system. Peak force > nominal resistance + dynamic soil resistance. Applied force > 50% peak force for duration 4L/C; static pre-load > 12L/C unless additional force/displacement instrumentation along pile per ASTM D7383.\n\n4. Wave Equation Analysis: Contractor submits equipment data form; engineer uses wave equation to develop bearing graph; bearing graph becomes driving criterion.\n\n5. Dynamic Formula: If specified, contractor uses FHWA Modified Gates formula (preferred) or AASHTO Modified Engineering News formula for field construction control.\n\nB. Axial Tension Resistance: Static load tests per ASTM D3689; dynamic testing with signal matching.\n\nC. Lateral Resistance: Static load tests per ASTM D3966.",
+      "key_points": [
+        "Eq 14-1: sf = delta + b/120 + 0.15 (Davisson, piles ≤24 inch) — delta = elastic compression (inches), b = pile diameter (inches)",
+        "Eq 14-2: sf = delta + b/30 (Davisson, piles >36 inch); interpolate for 24-36 inch",
+        "Static load test minimum wait: 5 days for sands; 2 weeks for clays; 2 weeks for shales",
+        "Dynamic testing restrike: ≥20 blow warm-up; max 3 inches or 20 blows restrike penetration",
+        "Table 14-4 restrike wait: clean sands 1 day; silty sands 2 days; sandy silts 3-5 days; silty clays 7-14 days; shales 10-14 days",
+        "Rapid load test: peak force > Rn + dynamic resistance; force > 50% peak for ≥4L/C; pre-load > 12L/C",
+        "Reaction pile permanent heave ≥0.25 inch: redrive required; test pile heave >0.5 inch before test: redrive",
+        "Jack pressure gauge typically reads 10-20% high due to ram friction — load cell required to verify actual load"
+      ],
+      "equations": [
+        {
+          "equation_id": "14-1",
+          "description": "Davisson failure criterion for static load test — piles 24 inches or less in diameter or width",
+          "latex": "s_f = \\Delta + \\frac{b}{120} + 0.15",
+          "variables": {
+            "s_f": "pile head movement at failure (inches)",
+            "Delta": "elastic deformation of total pile length under test load (inches)",
+            "b": "pile diameter or width for square piles (inches)"
+          },
+          "notes": "Same criterion as Eq. 9-2. For piles >36 inch use Eq. 14-2; interpolate for 24-36 inch",
+          "implemented_in": null
+        },
+        {
+          "equation_id": "14-2",
+          "description": "Davisson failure criterion for static load test — piles greater than 36 inches in diameter",
+          "latex": "s_f = \\Delta + \\frac{b}{30}",
+          "variables": {
+            "s_f": "pile head movement at failure (inches)",
+            "Delta": "elastic deformation of total pile length under test load (inches)",
+            "b": "pile diameter or width for square piles (inches)"
+          },
+          "notes": "Same criterion as Eq. 9-3. For piles ≤24 inch use Eq. 14-1; interpolate for 24-36 inch",
+          "implemented_in": null
+        }
+      ],
+      "figures": [],
+      "tables": [
+        {
+          "table_id": "14-4",
+          "description": "Common time delay for restrike based on soil type — clean sands: 1 day; silty sands: 2 days; sandy silts: 3-5 days; silty clays: 7-14 days*; shales: 10-14 days* (*longer times sometimes required)"
+        }
+      ],
+      "applicability": "Specification requirements for determining nominal pile resistance by static load test, dynamic testing with signal matching, rapid load test, wave equation analysis, or dynamic formula, including failure criteria, wait times, and restrike procedures."
+    },
+    {
+      "section_id": "14.2.6-14.2.8",
+      "title": "Pile Installation, Measurement, and Payment",
+      "summary": "Installation: site excavated to grade before driving; fill settlement complete before driving at abutments. Predrilling ≤ pile width + 6 inch; stop ≥5 ft above plan toe elevation except for end-bearing on rock/hardpan. Practical refusal: 10 blows/inch. Location tolerance: plan specifies. Pile acceptance: no full-perimeter cracks; misaligned piles not forced into position. Payment items: mobilization (75% on start, 25% on completion), piles furnished, piles driven (lf or each), test piles, load tests, splices, shoes, predrilling, jetting, cutoffs, delays.",
+      "body": "Section X.06 — Preparation and Driving:\n\nSite Work: Excavate to grade before driving where practical. Fill placement at abutments must be complete and settlement must reach specified magnitude before driving. Predrilling hole diameter ≤ pile maximum dimension + 6 inches (unless different size specified). Predrilling stops ≥5 ft above plan pile toe elevation for non-end-bearing piles; may extend to rock surface for end-bearing on rock/hardpan. Void space remaining after driving in predrilled zone filled with sand or approved material.\n\nPile Preparation: Pile heads must be plane and perpendicular to pile axis before helmet attached. Concrete pile heads flat, smooth, perpendicular to axis. Piles marked for reference before driving (section, length marks every foot). Marking requirements for concrete piles: reference marks at 1-foot intervals or closer.\n\nDriving: Test piles, probe piles, and indicator piles driven to depths and resistances directed by engineer. Production piles driven to the nominal driving resistance, minimum toe elevation, or both as specified. Driving stresses monitored; contractor reduces energy if stresses exceed material limits. Installation sequence typically outside-in for groups. Location tolerance per contract documents. Heaved piles exceeding specified tolerance must be redriven. Obstructions reported to engineer; predrilling or other means as directed. Practical refusal = 10 blows per inch. Absolute refusal based on material stress calculations.\n\nPile splices: performed only where permitted; splice details per approved submittals. Pile cutoffs: cut to plan elevation plus fresh head allowance; material disposal as directed. Unsatisfactory piles (cracked, deformed, misaligned, overdriven) remediated by: withdrawing and replacing; driving adjacent pile; extending footing; redesigning cap.\n\nSection X.07 — Measurement: Mobilization: lump sum (75% on first pile, 25% on completion). Piles furnished: per lf or each including build-up extensions. Piles driven: per lf or each including all related pile driving costs. Test piles, load tests, splices, shoes, predrilling, jetting, cutoffs, delays all separate pay items.\n\nSection X.08 — Payment: Unit prices and lump sums as defined in the contract documents. No extra compensation for contractor's increased pile lengths needed for fresh heading.",
+      "key_points": [
+        "Practical refusal: 10 blows per inch (120 blows/foot)",
+        "Predrilling: diameter ≤ pile width + 6 inches; stop ≥5 ft above plan toe except end-bearing on rock",
+        "Fill at abutments: settlement must be complete before pile driving",
+        "Heaved piles: check elevation after driving and before cap; redrive if heave exceeds tolerance",
+        "Unsatisfactory piles: no forced realignment; remediate by withdrawal/replacement, adjacent pile, or cap extension",
+        "Concrete pile defect: visible full-perimeter crack or any defect affecting strength or service life",
+        "Mobilization payment: 75% on start of driving, 25% on completion",
+        "Load test, splices, predrilling, jetting are separate pay items; all other driving costs in piles-driven unit price"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Specification requirements for driven pile installation, measurement, and payment including site preparation, predrilling, driving criteria, defect acceptance, and pay item structure."
+    }
+  ]
+}

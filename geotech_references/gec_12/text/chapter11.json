@@ -1,0 +1,136 @@
+{
+  "reference_id": "FHWA-NHI-16-009",
+  "reference_title": "Design and Construction of Driven Pile Foundations",
+  "chapter": 11,
+  "chapter_title": "Rapid Load Testing",
+  "sections": [
+    {
+      "section_id": "11.1-11.3",
+      "title": "Overview, Methods, and Applications",
+      "summary": "Rapid load tests per ASTM D7383 apply forces of 0.1 to 0.2 seconds duration, intermediate between dynamic tests (<0.01 s) and static load tests (minutes to hours). Two methods: Statnamic (1988) uses combustion gas to accelerate a reaction mass upward, applying equal and opposite force to the pile; cushioned drop weight systems use a falling mass with cushion to extend load duration. The wave number Nw = L/(c*tL) determines whether 1D stress wave effects are significant — Nw >= 12 is considered quasi-static.",
+      "body": "Rapid load tests use the same general prerequisites as static load tests (Section 9.1.1) for design verification, resistance confirmation, and in some cases p-y response characterization. Rapid load test procedures are standardized in ASTM D7383 (2010). In this method, a loading apparatus generates a force with duration of 0.1 to 0.2 seconds — significantly longer than dynamic testing (<0.01 s) but much shorter than static load testing (minutes to hours).\n\nStatic tests assume slow loading with no inertia or viscous effects. Dynamic tests (Chapter 10) rely on stress wave effects. Rapid load tests fall between these extremes and require correction for inertia (pile mass acceleration) and damping (soil viscous resistance) to obtain the equivalent static resistance.\n\nTwo rapid load test systems are described:\n(i) Statnamic Method (Section 11.2.1): Developed in 1988 by Berminghammer Foundation Equipment and TNO. Solid fuel burned within a pressure chamber rapidly accelerates an upward reaction mass on top of the pile head. The equal and opposite downward force loads the pile. Load is measured by a load cell; acceleration by accelerometers. Load varies from a few hundred to over 30,000 kips for large offshore piles.\n(ii) Cushioned Drop Weight Systems (Section 11.2.2): A mass is dropped from a specified height onto a cushion placed on the pile head. The cushion extends the load duration compared to direct hammer impact.\n\nWave Number (Section 11.4): The wave number Nw = L/(c*tL) = Dw/L (Eq. 11-1) determines the influence of stress wave behavior on the analysis method. If Nw >= 12, the pile may be treated as a rigid body (quasi-static analysis). If Nw < 12, segmental analysis methods are required. For most rapid load tests with tL ~ 0.1-0.2 s and typical piles, Nw falls in the range of 3 to 12, requiring wave-based corrections.\n\nApplications (Section 11.3): Rapid load tests are used for: (i) design verification and nominal resistance confirmation; (ii) evaluation of pile setup and relaxation (BOR analog); (iii) estimation of p-y response for laterally loaded piles; and (iv) testing multiple piles at a site when static test cost is prohibitive.",
+      "key_points": [
+        "ASTM D7383: rapid load test applies force for 0.1-0.2 s — longer than dynamic (0.01 s), shorter than static",
+        "Statnamic: combustion gas accelerates reaction mass upward; equal/opposite force loads pile head",
+        "Cushioned drop weight: falling mass on cushion extends load duration vs. direct impact",
+        "Eq 11-1: Nw = L/(c*tL) — wave number; Nw >= 12: rigid body (quasi-static); Nw < 12: segmental analysis required",
+        "Rapid load tests require inertia (ma) and damping (C4*V) corrections to obtain equivalent static resistance",
+        "Applications: design verification, setup/relaxation evaluation, p-y response estimation, economic alternative to static tests"
+      ],
+      "equations": [
+        {
+          "equation_id": "11-1",
+          "description": "Wave number — determines significance of stress wave behavior in rapid load tests",
+          "latex": "N_w = \\frac{L}{c \\cdot t_L} = \\frac{D_w}{L}",
+          "variables": {
+            "N_w": "wave number (dimensionless)",
+            "D_w": "wave length (feet)",
+            "L": "total pile length (feet)",
+            "c": "wave speed of pile material (ft/s)",
+            "t_L": "load duration (seconds)"
+          },
+          "notes": "Nw >= 12: pile behaves as quasi-static rigid body; Nw < 12: stress wave analysis required (segmental methods)",
+          "implemented_in": null
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Overview of rapid load test methods (Statnamic and drop weight) and applications for driven pile capacity verification."
+    },
+    {
+      "section_id": "11.4",
+      "title": "Rapid Load Test Interpretation Methods",
+      "summary": "The Unloading Point Method (UPM) is the most widely used interpretation for Statnamic tests. Force equilibrium: Fstn = Fa + Fu + Fv, where Fa = m*a (inertia), Fu = static resistance, Fv = viscous damping. At the unloading point (maximum displacement tumax), velocity and damping are zero so Fu(tumax) = Fstn(tumax) - m*a(tumax) (Eq. 11-5). The damping constant C4 is calibrated at the start of Stage 4 (Eq. 11-6), then the full static curve Fu(t) = Fstn(t) - m*a(t) - C4*V(t) is derived (Eq. 11-7). Loading rate reduction factors of 0.65-0.96 apply to soil/rock type to correct for rate effects.",
+      "body": "Interpretation is required because rapid load test measurements (Statnamic force, pile acceleration, pile velocity) include inertia and damping components that must be separated from static resistance.\n\nForce Equilibrium: The applied Statnamic load Fstn equals the sum of inertia force Fa = m*a, static resistance Fu, and viscous damping Fv (Eq. 11-2). With pore pressure resistance Fp absorbed into Fv: Fu(t) = Fstn(t) - m*a(t) - Fv(t) (Eq. 11-4).\n\nUnloading Point Method (UPM, Section 11.4.1): At the end of Stage 4 (unloading point, time tumax of maximum displacement), velocity V and viscous damping Fv are both zero, so static resistance equals: Fu(tumax) = Fstn(tumax) - Fa(tumax) (Eq. 11-5). The damping constant C4 is then calibrated at the start of Stage 4 (time t4): C4 = [Fstn(t4) - Fu(tumax) - m*a(t4)] / V(t4) (Eq. 11-6). Assuming C4 is constant, the full static load-displacement curve is derived from: Fu(t) = Fstn(t) - m*a(t) - C4*V(t) (Eq. 11-7).\n\nOther Interpretation Methods (Sections 11.4.2-11.4.5): Modified UPM (MUP) uses a varying damping function rather than constant C4. Segmental UPM (SUP) divides the pile into segments for cases where wave effects are significant (Nw < 12). Fully Mobilized UPM requires the pile to reach a fully mobilized state during loading. Sheffield Method applies a loading rate factor alpha that is correlated to soil properties.\n\nLoading Rate Reduction Factors (Section 11.4.6): Applied to the derived static load-displacement curve to correct for loading rate overpredictions (Paikowsky 2006, NCHRP 21-08). Values: rock = 0.96, sand = 0.91, silt = 0.69, clay = 0.65.\n\nResistance Factors (Section 11.4.7): AASHTO (2014) does not provide resistance factors for rapid load tests. SCDOT guidance (2010) suggests: phi = 0.70 for toe bearing piles in rock or very dense sand, phi = 0.65 for friction piles. Other agencies may have their own guidance.",
+      "key_points": [
+        "UPM force equilibrium: Fstn = Fa + Fu + Fv; at unloading point (max displacement): Fv=0, V=0",
+        "Eq 11-5: Fu(tumax) = Fstn(tumax) - ma(tumax) — static resistance at unloading point",
+        "Eq 11-6: C4 = [Fstn(t4) - Fu(tumax) - ma(t4)] / V(t4) — calibration of damping constant at start of Stage 4",
+        "Eq 11-7: Fu(t) = Fstn(t) - ma(t) - C4*V(t) — full derived static curve using constant C4",
+        "Loading rate reduction: rock 0.96, sand 0.91, silt 0.69, clay 0.65 (apply to derived static curve)",
+        "AASHTO has no resistance factor; SCDOT: phi = 0.70 (toe bearing rock/dense sand), 0.65 (friction piles)"
+      ],
+      "equations": [
+        {
+          "equation_id": "11-4",
+          "description": "Force equilibrium for rapid load test — static soil resistance from measured loads",
+          "latex": "F_u(t) = F_{stn}(t) - F_a(t) - F_v(t)",
+          "variables": {
+            "F_u": "static soil resistance (kips)",
+            "F_stn": "Statnamic induced load (kips)",
+            "F_a": "pile inertia force = m*a(t) (kips)",
+            "F_v": "dynamic (viscous) soil resistance including pore pressure effects (kips)"
+          },
+          "notes": "Fundamental equilibrium from which all UPM-based methods derive the static resistance",
+          "implemented_in": null
+        },
+        {
+          "equation_id": "11-5",
+          "description": "Static soil resistance at the unloading point (maximum displacement) — key UPM equation",
+          "latex": "F_u(t_{u,max}) = F_{stn}(t_{u,max}) - F_a(t_{u,max})",
+          "variables": {
+            "F_u": "static soil resistance at unloading point (kips)",
+            "F_stn": "Statnamic load at time of maximum displacement (kips)",
+            "F_a": "inertia force at time of maximum displacement = m*a(tumax) (kips)",
+            "t_umax": "time at maximum pile displacement (unloading point)"
+          },
+          "notes": "At tumax: velocity V = 0, so viscous damping Fv = 0 and static resistance is directly computed",
+          "implemented_in": null
+        },
+        {
+          "equation_id": "11-6",
+          "description": "Damping constant C4 calibration at start of Stage 4",
+          "latex": "C_4 = \\frac{F_{stn}(t_4) - F_u(t_{u,max}) - m a(t_4)}{V(t_4)}",
+          "variables": {
+            "C4": "viscous damping constant",
+            "F_stn": "Statnamic induced load at time t4 (kips)",
+            "F_u": "static soil resistance from Eq 11-5 (kips)",
+            "m": "mass of pile",
+            "a_t4": "acceleration of pile at time t4 (ft/s^2)",
+            "V_t4": "velocity of pile at time t4 (ft/s)",
+            "t4": "time at beginning of Stage 4"
+          },
+          "notes": "C4 is assumed constant; calibrated using Eq 11-5 result as static resistance reference",
+          "implemented_in": null
+        },
+        {
+          "equation_id": "11-7",
+          "description": "Derived static load at any time using calibrated damping constant (UPM)",
+          "latex": "F_u(t) = F_{stn}(t) - m a(t) - C_4 V(t)",
+          "variables": {
+            "F_u": "derived static soil resistance at time t (kips)",
+            "F_stn": "Statnamic induced load at time t (kips)",
+            "m": "mass of pile",
+            "a_t": "acceleration of pile at time t (ft/s^2)",
+            "C4": "damping constant from Eq 11-6",
+            "V_t": "velocity of pile at time t (ft/s)"
+          },
+          "notes": "Used to construct the full derived static load-displacement curve for comparison to Davisson criterion",
+          "implemented_in": null
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Interpretation of Statnamic rapid load tests to derive equivalent static pile resistance using the Unloading Point Method and its variants."
+    },
+    {
+      "section_id": "11.7-11.8",
+      "title": "Advantages, Limitations, and Practical Considerations",
+      "summary": "Rapid load tests cost one-quarter to one-half of an equivalent static load test with shorter setup time and greater on-site mobility. Limitations: AASHTO resistance factors not established; accuracy depends on interpretation method and soil type — results can be unreliable in cohesive soils where rate effects are large (loading rate factor 0.65 for clay). Practical issues: wave number Nw must be computed to select appropriate interpretation; setup effects require restrike analogs; interpretation requires specialist software and knowledge of method limitations.",
+      "body": "Advantages (Section 11.7): Rapid load testing is considerably less expensive than static load testing — on the order of one-quarter to one-half the cost of an equivalent static load test. Savings increase when multiple tests are performed at the same site or when testing piles with higher nominal resistances. The test has on-site mobility, shorter setup time, and can be applied to test piles throughout a project rather than just at pre-selected locations. Results are available relatively quickly.\n\nDisadvantages and Limitations: AASHTO (2014) does not provide resistance factors for rapid load tests, limiting their use as the primary design basis under LRFD. Accuracy depends on the interpretation method selected, the wave number, and the soil type. Results can be unreliable in cohesive soils where rate effects are large (loading rate reduction factor = 0.65 for clay). Results in rock are more reliable (factor = 0.96). The interpretation of rapid load tests is more complex than static tests and requires specialist knowledge.\n\nPractical Considerations (Section 11.8): Several practical issues should be understood:\n(i) Wave number calculation: Nw = L/(c*tL) must be calculated to determine appropriate interpretation method (UPM for Nw >= 12, segmental methods for Nw < 12).\n(ii) Calibration: where possible, rapid load tests should be calibrated against static load test results at the same site to establish appropriate damping and rate correction parameters.\n(iii) Setup effects: like dynamic testing, restrike analogs can be performed to evaluate soil setup after appropriate wait periods.\n(iv) Equipment limitations: the maximum applicable load varies with equipment size; site access for large Statnamic equipment must be considered.\n(v) Analyst qualification: experienced personnel with specialized training in rapid load test interpretation are required.",
+      "key_points": [
+        "Cost: one-quarter to one-half of equivalent static load test; greater savings for large resistance or multiple tests",
+        "AASHTO does not provide resistance factors — limits use as primary LRFD design basis",
+        "Loading rate factors by soil: rock 0.96, sand 0.91, silt 0.69, clay 0.65 — clay results most uncertain",
+        "Wave number Nw determines analysis method: quasi-static (Nw >= 12) vs. segmental (Nw < 12)",
+        "Calibration against static tests recommended where possible to establish site-specific damping parameters",
+        "Setup evaluation: restrike analogs can capture post-driving resistance increase in setup-sensitive soils",
+        "Experienced analyst with specialist software required for reliable interpretation"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Economic comparison, accuracy limitations, and practical implementation guidance for rapid load testing programs on driven pile projects."
+    }
+  ]
+}

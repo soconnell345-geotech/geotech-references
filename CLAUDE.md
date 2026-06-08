@@ -25,6 +25,11 @@ geotech_references/           # Python package (pip install -e .)
     prologue.py, chapter2.py ... chapter7.py
     text/                      # Structured chapter JSON (prologue + 6 chapters, 438 sections, 2026-04-07)
     figures_catalog.json       # 252 figures (incl. P-* prologue, B-* appendix; e.g. Fig 4-12 log-spiral Ka/Kp)
+  gec_4/                       # FHWA-IF-99-015 Ground Anchors and Anchored Systems (1999)
+    tables.py                  # 6 functions: table_6 soil anchor transfer load, table_7 bond stress (rock/cohesive/cohesionless), table_8 rock anchor transfer load, table_20 corrosion protection
+    text/                      # All 9 chapters complete (ch 1-9)
+  gec_5/                       # FHWA NHI-16-072 Geotechnical Site Characterization (2017)
+    text/                      # All 13 chapters complete (ch 1-13)
   gec_6/                       # FHWA-SA-02-054 Shallow Foundations
     tables.py, figures.py
     text/                      # Structured chapter JSON (10 chapters, body-only — manifest ready for full-schema re-extraction)
@@ -32,6 +37,14 @@ geotech_references/           # Python package (pip install -e .)
     tables.py                  # 13 table lookup functions (bond, pullout, resistance factors, seismic)
     figures.py                 # 2 figure lookup functions (friction angle vs SPT, basal heave Nc)
     text/                      # Structured chapter JSON (ch 1-5, ~37 sections, body-only; ch 6-10 not yet extracted — manifest ready)
+  gec_8/                       # FHWA-HIF-07-03 Design and Construction of CFA Piles (2007)
+    equations.py               # 3 functions: dd_pile_side_resistance (NeSmith 2002), cfa_allowable_capacity, cfa_grout_volume_factor
+    tables.py                  # 2 functions: table_5_4 p-multiplier, table_group_efficiency_cohesionless
+    text/                      # All 8 chapters complete (ch 1-8)
+  gec_9/                       # FHWA-HIF-18-031 Laterally Loaded Deep Foundations (2018)
+    tables.py                  # 5 functions: table_4_1 lateral resistance factor, table_7_1 p-multiplier, table_a1 k stiff clay, table_a2 epsilon50, table_a3 k sand
+    figures.py                 # (catalog only; figures handled by figure_db vision tools)
+    text/                      # All 13 chapters complete (ch 1-13)
   gec_10/                      # FHWA-NHI-18-024 Drilled Shafts (2018 edition)
     tables.py, figures.py      # 2018 edition: Table 8-4/9-1/10-2/11-1, Figure 10-6, Eq 10-21/22
     text/                      # All 18 chapters complete (FHWA-NHI-18-024, ch 1-18)
@@ -41,10 +54,12 @@ geotech_references/           # Python package (pip install -e .)
   gec_12/                      # FHWA-NHI-16-009 Driven Piles
     tables.py                  # 8 table lookup functions (resistance factors, beta/Nt, setup, API)
     figures.py                 # 8 figure lookup functions (Nordlund Kd, CF, alpha_t, N'q, adhesion)
-    text/                      # Structured chapter JSON (Vol I ch 1-8 only, ~109 sections, body-only; Vol II ch 9-18 not yet extracted — manifests ready)
+    text/                      # Structured chapter JSON (all 18 chapters complete — Vol I ch 1-8 body-only; Vol II ch 9-18 full schema with summary/key_points/equations/tables)
   gec_13/                      # FHWA-NHI-16-027 Ground Modification Methods
     tables.py, figures.py
-    text/                      # Structured chapter JSON (5 chapters, body-only — manifest ready for full-schema re-extraction)
+    text/                      # Structured chapter JSON (all 11 chapters complete)
+  gec_14/                      # FHWA-HIF-17-016 Assuring Quality in Geotechnical Reporting Documents (2016)
+    text/                      # All 4 chapters complete (ch 1-4)
   micropile/                   # FHWA-NHI-05-039 Micropile Design & Construction
     tables.py                  # 13 table lookup functions (bond stress, pipe/rebar, elastic modulus)
     figures.py                 # 1 figure lookup function (limiting lateral modulus)
@@ -63,9 +78,9 @@ geotech_references/           # Python package (pip install -e .)
   ufc_expansive/               # UFC 3-220-07 Foundations in Expansive Soils
     equations.py               # 5 equations (activity, free swell, swell pressure, heave, pier)
     tables.py                  # 4 tables (swell potential, active zone, foundation, void space)
-  ufc_pavement/                # UFC 3-250-01 Pavement Design for Roads, Streets, Walks & Storage (NOTE: existing equations.py/tables.py were coded from UFC 3-260-02 airfield — needs audit/replacement)
-    equations.py               # 4 equations (CBR-to-k, flexible/rigid thickness, ESWL)
-    tables.py                  # 5 tables (frost susceptibility, reduction, aircraft, layers, subgrade)
+  ufc_pavement/                # UFC 3-250-01 Pavement Design for Roads, Streets, Walks & Storage
+    equations.py               # 3 equations (cbr_to_k, stabilized_layer_thickness, free_draining_layer_required)
+    tables.py                  # 8 tables (subgrade category, subbase permissible values, base design CBR, min thickness, equivalency factors, k-subgrade, frost classification, frost support index)
 scripts/                       # Content generation tools (NOT installed with the package)
   build_figure_catalog.py      # PDF "List of Figures" → <pkg>/figures_catalog.json (no API; PyMuPDF text parse). Resolves each figure to its PDF page via caption-search; enriches descriptions from chapter text. Run: python scripts/build_figure_catalog.py dm7_1 dm7_2
   build_chapter_text.py        # DEPRECATED: PDF → chapter JSON pipeline (Anthropic API); discontinued — too costly ($20/reference on DM7). Chapter JSON files are now authored manually by Claude Code across sessions.
@@ -90,7 +105,7 @@ agents/
   ufc_backfill_agent.py        # UFC 3-220-04N Foundry-style 3-function wrapper
   ufc_dewatering_agent.py      # UFC 3-220-05 Foundry-style 3-function wrapper
   ufc_expansive_agent.py       # UFC 3-220-07 Foundry-style 3-function wrapper
-  ufc_pavement_agent.py        # UFC 3-250-01 Foundry-style 3-function wrapper (agent references UFC 3-260-02 — update when equations.py/tables.py are audited)
+  ufc_pavement_agent.py        # UFC 3-250-01 Foundry-style 3-function wrapper
 tests/                         # 3,529 tests (pytest)
 docs/                          # Source PDFs (UFC/GEC/micropile/pavement) — used by build_figure_catalog.py and figure read-off
 references/                    # (legacy) source PDFs (git-ignored)
@@ -130,19 +145,24 @@ references/                    # (legacy) source PDFs (git-ignored)
 
 | Module | Reference | Functions | Tests | Text Chapters |
 |--------|-----------|-----------|-------|---------------|
+| gec_4 | FHWA-IF-99-015 Ground Anchors (1999) | 6 | 50 | All 9 chapters complete |
+| gec_5 | FHWA NHI-16-072 Site Characterization (2017) | 0 | 0 | All 13 chapters complete (text only) |
 | gec_6 | FHWA-SA-02-054 Shallow Foundations | 13 | 121 | 10 chapters body-only; manifest ready |
 | gec_7 | FHWA-NHI-14-007 Soil Nail Walls | 15 | 101 | ch 1-5 body-only; ch 6-10 pending |
+| gec_8 | FHWA-HIF-07-03 CFA Piles (2007) | 5 | 37 | All 8 chapters complete |
+| gec_9 | FHWA-HIF-18-031 Laterally Loaded Piles (2018) | 5 | 0 | All 13 chapters complete (no text retrieval tests yet) |
 | gec_10 | FHWA-NHI-18-024 Drilled Shafts (2018) | 12 | 195 | All 18 chapters complete (ch 1-18) |
 | gec_11 | FHWA-NHI-10-024 MSE Walls & Slopes | 17 | 130 | All 11 chapters complete (ch 1-11) |
-| gec_12 | FHWA-NHI-16-009 Driven Piles | 16 | 147 | Vol I (ch 1-8) body-only; Vol II (ch 9-18) pending |
+| gec_12 | FHWA-NHI-16-009 Driven Piles | 16 | 147 | All 18 chapters complete (Vol I ch 1-8 body-only; Vol II ch 9-18 full schema) |
 | gec_13 | FHWA-NHI-16-027 Ground Modification | 18 | 168 | All 11 chapters complete (Vol I ch 1-6, Vol II ch 7-11) |
+| gec_14 | FHWA-HIF-17-016 QA Geotechnical Reports (2016) | 0 | 0 | All 4 chapters complete (text only) |
 | micropile | FHWA-NHI-05-039 Micropile Design | 14 | 108 | 10 chapters (complete) |
 | fema_p2192 | FEMA P-2192 SDC Determination (2024) | 10 | 132 | - |
 | noaa_frost | NOAA Frost Protected Shallow Foundations | 9 | 86 | - |
 | ufc_backfill | UFC 3-220-04N Backfill | 8 | 87 | - |
 | ufc_dewatering | UFC 3-220-05 Dewatering | 9 | 75 | - |
 | ufc_expansive | UFC 3-220-07 Expansive Soils | 9 | 55 | - |
-| ufc_pavement | UFC 3-250-01 Roads/Streets/Walks/Storage (**NOTE: equations.py/tables.py still from UFC 3-260-02 airfield — pending audit**) | 9 | 54 | - |
+| ufc_pavement | UFC 3-250-01 Roads/Streets/Walks/Storage | 11 | 86 | - |
 
 ### GEC-7: Soil Nail Walls (15 functions, 101 tests)
 
