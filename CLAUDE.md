@@ -17,6 +17,7 @@ geotech_references/           # Python package (pip install -e .)
   _retrieval.py                # Reference text retrieval (load, search, retrieve by section)
   _retrieval_db.py             # SQLite FTS5 retrieval layer — reference_search / reference_get / reference_query (v1.2.0)
   _figures_db.py               # SQLite FTS5 figure-catalog retrieval — figure_search / figure_get / resolve_pdf
+  _query_expansion.py          # Synonym query-expansion recall lever for reference_search/figure_search; EXPANSION_STRATEGY off/fill/rerank/auto (env GEOTECH_RETRIEVAL_EXPANSION, default auto). See "Lexical Query Expansion" below.
   dm7_1/                       # UFC 3-220-10 Soil Mechanics (8 chapters)
     chapter1.py ... chapter8.py
     text/                      # Structured chapter JSON (8 chapters, 457 sections, 2026-04-07)
@@ -204,8 +205,9 @@ giving coverage of figures that have not been hand-digitized into `figures.py`.
   "passive earth pressure" hit Fig 4-12 even though its caption only says
   "K_A and K_P for the Log Spiral Method"). No API cost.
 - **Retrieve** (`_figures_db.py`, FTS5 lazy temp DB, mirrors `_retrieval_db.py`):
-  `figure_search(query, reference, chapter, limit)` (BM25, with an OR-of-terms
-  recall fallback), `figure_get(reference, figure_number)`, `resolve_pdf(...)`
+  `figure_search(query, reference, chapter, limit)` (BM25, with synonym
+  query-expansion + an OR-of-terms recall fallback — see "Lexical Query Expansion"),
+  `figure_get(reference, figure_number)`, `resolve_pdf(...)`
   → `(pdf_abs_path, page_index)`, `list_indexed_figures()`.
 - **Read off** (in GeotechStaffEngineer): the `read_reference_figure` vision tool
   renders the resolved page at 220 DPI and asks the engine to read the value(s).
@@ -213,6 +215,49 @@ giving coverage of figures that have not been hand-digitized into `figures.py`.
 
 Built for DM7 (`dm7_1`: 223 figures, `dm7_2`: 252). Run the same script per
 reference to extend. Source PDFs live in `docs/`.
+
+## Lexical Query Expansion (recall lever)
+
+> Status: built + tested on branch `ref-retrieval-expansion` (2026-06-08),
+> **uncommitted** — a master-level agent owns the merge. Default is ON (`auto`).
+
+Both FTS5 retrieval layers (`reference_search` for text, `figure_search` for
+figures) are lexical (BM25 + porter stemming), which closes *morphological* gaps
+("pressures"→"pressure") but **not** *synonym* gaps ("interface friction" vs
+"wall friction"/δ; "bored pile" vs "drilled shaft"). `_query_expansion.py` adds a
+curated, dependency-free table of geotechnical term-equivalence groups and applies
+it as a recall lever. This is the **cheaper alternative to text embeddings** (see
+the GeotechStaffEngineer HANDOFF P6); image embeddings remain rejected.
+
+- **`expand_query(q)`** → an FTS5 `OR` clause of synonym surface forms not already
+  in `q` (or `""` if no group matches). **`combined_query(q)`** → `"(q) OR <syns>"`.
+- **`EXPANSION_STRATEGY`** (module global; env `GEOTECH_RETRIEVAL_EXPANSION`;
+  default `auto`):
+  - `off` — pure literal.
+  - `fill` — append synonym hits only to empty result slots (precision-safe, but
+    the eval shows ~0 recall lift — the win comes from re-ranking, not filling).
+  - `rerank` — BM25 over `(literal) OR synonyms` (best recall, but disturbs the
+    top-1 of already-good queries).
+  - `auto` (**default**) — rerank the union BUT pin the literal top-1 (best of both).
+- **Eval** (`scripts/eval_retrieval_recall.py`, self-labeling gated ground truth):
+  recall@5 — off/fill 11%, rerank/**auto 44%**; top-1 disturbance — off/fill/auto 0,
+  rerank 5/10. So `auto` = rerank's recall at fill's precision.
+- **Reaches the Funhouse consultant for free** — the reviewer/consult sub-agent
+  calls these same `reference_db`/`figure_db` functions via adapters, so it picks up
+  `auto` with no funhouse_agent change.
+- **Tests:** `tests/test_query_expansion.py` (27); full suite **3702 passed**.
+
+### Remaining items (this feature)
+- [ ] **Live Funhouse reviewer-agent eval** (owner-gated, costs API) — validate the
+      lift end-to-end with the consultant on a synonym-phrased question set.
+- [ ] **Curate `SYNONYM_GROUPS`** from observed recall misses (the eval's
+      "no trusted GT" rows hint at vocabulary gaps); keep entries defensible.
+- [ ] **Grow the eval's labeled set** (currently 9 trusted cases — small) toward a
+      hand-curated gold set for a firmer recall@k estimate.
+- [ ] **Owner decision at merge:** keep `auto` as the default, or ship opt-in
+      (env-flip to `off`/`fill`).
+- [ ] **Optional precision tuning:** `rerank`/`auto` reorder ranks 2–5 of good
+      queries; if that matters, pin top-N instead of top-1.
 
 ## Agent Pattern
 
