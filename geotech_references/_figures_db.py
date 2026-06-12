@@ -33,7 +33,6 @@ from typing import Any
 from . import _query_expansion as _qe
 
 # FTS5 operator words we must not inject as bare terms in the OR fallback.
-_FTS_OPS = {"or", "and", "not", "near"}
 
 _PACKAGE_DIR = Path(__file__).parent
 _REPO_ROOT = _PACKAGE_DIR.parent
@@ -183,21 +182,8 @@ def _norm_fig_number(s: str) -> str:
     return s.upper()
 
 
-def _or_fallback(query: str) -> str | None:
-    """Build an OR-of-terms query from a plain query, or None if not applicable.
-
-    Used as a recall fallback when strict (AND) matching returns nothing: a
-    natural query like "passive earth pressure coefficient log spiral" should
-    still surface the log-spiral chart even though the literal word
-    "coefficient" is absent from its text.
-    """
-    if '"' in query:  # respect explicit phrase/operator queries
-        return None
-    toks = [t for t in re.findall(r"[A-Za-z0-9]+", query)
-            if t.lower() not in _FTS_OPS]
-    if len(toks) < 2:
-        return None
-    return " OR ".join(toks)
+# OR-of-terms recall fallback shared with reference_search.
+_or_fallback = _qe.or_fallback
 
 
 def _row_to_hit(row: sqlite3.Row) -> dict[str, Any]:

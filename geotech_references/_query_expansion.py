@@ -161,6 +161,27 @@ def expand_query(query: str) -> str:
     return " OR ".join(_as_fts_term(t) for t in added)
 
 
+_FTS_OPS = {"or", "and", "not", "near"}
+
+
+def or_fallback(query: str) -> str | None:
+    """Build an OR-of-terms query from a plain query, or None if not applicable.
+
+    Used as a recall fallback when strict (AND) matching returns nothing: a
+    natural query like "liquefaction triggering CRR" should still surface the
+    liquefaction sections even though the literal token "CRR" is absent from
+    the corpus. Only ever applied to a ZERO-hit primary query, so it cannot
+    disturb the ranking of any query that already returns results.
+    """
+    if '"' in query:  # respect explicit phrase/operator queries
+        return None
+    toks = [t for t in re.findall(r"[A-Za-z0-9]+", query)
+            if t.lower() not in _FTS_OPS]
+    if len(toks) < 2:
+        return None
+    return " OR ".join(toks)
+
+
 def merge_hits(literal: list, extra: list, limit: int, key) -> list:
     """Merge expansion hits into literal hits: literal first, deduped by ``key``,
     capped at ``limit``. ``key`` maps a hit -> hashable id."""

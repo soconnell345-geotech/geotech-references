@@ -339,6 +339,16 @@ def reference_search(
                             rows, run(expansion), limit,
                             key=lambda r: (r["reference"], r["section_id"]),
                         )
+            # Zero-hit recall fallback (mirrors figure_search): if the
+            # AND-matched query (and any expansion) found nothing, retry as
+            # OR-of-terms. Fires only when there would otherwise be no
+            # results, so existing rankings are never disturbed. NOT applied
+            # in 'off' — that strategy is the pure-literal anchor used by the
+            # recall eval and the precision invariants.
+            if not rows and strategy != "off":
+                fb = _qe.or_fallback(query)
+                if fb and fb != query:
+                    rows = run(fb)
         except sqlite3.OperationalError as e:
             return [{"error": f"FTS query error: {e}"}]
         return [_row_to_summary(r) for r in rows]
