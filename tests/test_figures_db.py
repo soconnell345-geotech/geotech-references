@@ -143,3 +143,55 @@ def test_resolve_pdf_points_at_existing_file():
     pdf_abs, page = _figures_db.resolve_pdf("dm7_2", "4-12")
     assert pdf_abs.exists()
     assert page == 229
+
+
+# ---------------------------------------------------------------------------
+# ufc_expansive Appendix C (TM 5-818-7) — scanned construction-detail figures
+# added by vision read-off of the scanned pages (confirmed labels + printed
+# footers). Pins the 0-based PDF page of each so the read-off renders the
+# correct page.
+# ---------------------------------------------------------------------------
+
+# figure_number -> (0-based pdf page, printed page)
+_UFC_EXP_APPENDIX_C = {
+    "C-1": (83, "C-1"), "C-2": (84, "C-2"), "C-3": (85, "C-3"),
+    "C-4": (87, "C-5"), "C-5": (88, "C-6"), "C-6": (89, "C-7"),
+    "C-7": (90, "C-8"), "C-8": (91, "C-9"), "C-9": (92, "C-10"),
+    "C-10": (93, "C-11"),
+}
+
+
+def test_ufc_expansive_catalog_complete():
+    cat = json.loads((_PKG_DIR / "ufc_expansive" / "figures_catalog.json")
+                     .read_text(encoding="utf-8"))
+    assert cat["package"] == "ufc_expansive"
+    assert cat["figure_count"] == len(cat["figures"]) == 42
+    for f in cat["figures"]:
+        assert f["caption"], f"empty caption for {f['figure_number']}"
+        assert isinstance(f["pdf_page_index"], int) and f["pdf_page_index"] >= 0
+        assert f["page_estimated"] is False, f"{f['figure_number']} still estimated"
+
+
+def test_ufc_expansive_appendix_c_pages():
+    for num, (page, printed) in _UFC_EXP_APPENDIX_C.items():
+        g = _figures_db.figure_get("ufc_expansive", num)
+        assert g["figure_number"] == num
+        assert g["chapter"] == "C"
+        assert g["pdf_page_index"] == page, f"{num}: {g['pdf_page_index']} != {page}"
+        assert g["printed_page"] == printed
+
+
+def test_ufc_expansive_appendix_c_resolves_to_existing_pages():
+    for num, (page, _printed) in _UFC_EXP_APPENDIX_C.items():
+        pdf_abs, resolved = _figures_db.resolve_pdf("ufc_expansive", num)
+        assert pdf_abs.exists() and str(pdf_abs).endswith("ufc_3_220_07.pdf")
+        assert resolved == page
+
+
+def test_ufc_expansive_appendix_c_searchable():
+    steel = [h["figure_number"] for h in _figures_db.figure_search(
+        "wall ties to steel beam", reference="ufc_expansive", limit=5)]
+    assert "C-4" in steel
+    mat = [h["figure_number"] for h in _figures_db.figure_search(
+        "ribbed mat foundation", reference="ufc_expansive", limit=5)]
+    assert "C-9" in mat
