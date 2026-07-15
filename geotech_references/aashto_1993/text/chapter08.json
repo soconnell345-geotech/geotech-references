@@ -1,0 +1,227 @@
+{
+  "reference_id": "AASHTO Guide for Design of Pavement Structures",
+  "reference_title": "AASHTO Guide for Design of Pavement Structures, 1993 Edition",
+  "chapter": 8,
+  "chapter_title": "Part II, Chapter 3 -- Highway Pavement Structural Design",
+  "sections": [
+    {
+      "section_id": "3.1.1",
+      "title": "Flexible Pavement Design -- Determine Required Structural Number",
+      "summary": "Presents the AASHO-Road-Test-derived flexible design equation (Figure 3.1): log10(W18)=ZR*So+9.36*log10(SN+1)-0.20+[log10(dPSI/2.7)]/[0.40+1094/(SN+1)^5.19]+2.32*log10(MR)-8.07, solved for the required structural number SN given design traffic W18, reliability (ZR, So), effective roadbed MR, and serviceability loss dPSI=po-pt.",
+      "body": "Figure 3.1 provides the design nomograph that solves the flexible design equation for SN given five inputs: estimated future traffic W18 (Section 2.1.2), reliability R and overall standard deviation So (Section 2.1.3), effective resilient modulus of roadbed material MR (Section 2.3.1), and design serviceability loss dPSI = po - pt (Section 2.2.1). The printed worked example (W18=5x10^6, R=95% giving ZR=-1.645, So=0.35, MR=5000 psi, dPSI=1.9) solves to SN=5.0. An example application of the full flexible design procedure is presented in Appendix H.",
+      "key_points": [
+        "log10(W18) = ZR*So + 9.36*log10(SN+1) - 0.20 + [log10(dPSI/2.7)]/[0.40+1094/(SN+1)^5.19] + 2.32*log10(MR) - 8.07",
+        "5 inputs: W18, ZR (from R), So, MR (effective roadbed), dPSI = po - pt (po=4.2 fixed)",
+        "Solved via nomograph (Figure 3.1) or numerically (this module: flexible_sn_from_w18)",
+        "Printed worked example: W18=5e6, R=95%, So=0.35, MR=5000psi, dPSI=1.9 -> SN=5.0",
+        "Full worked flexible design example: Appendix H"
+      ],
+      "equations": [
+        {"id": "Fig. 3.1 equation", "description": "log10(W18)=ZR*So+9.36*log10(SN+1)-0.20+[log10(dPSI/2.7)]/[0.40+1094/(SN+1)^5.19]+2.32*log10(MR)-8.07",
+         "implemented_in": "geotech_references.aashto_1993.equations.flexible_sn_from_w18"}
+      ],
+      "figures": ["Figure 3.1: Design Chart for Flexible Pavements Based on Using Mean Values for Each Input"],
+      "tables": [],
+      "applicability": "The primary flexible pavement thickness-design calculation (AC/ST surfaces carrying > 50,000 18-kip ESAL)."
+    },
+    {
+      "section_id": "3.1.2",
+      "title": "Stage Construction",
+      "summary": "If the desired analysis period exceeds a facility's practical maximum performance period, planned rehabilitation (stage construction) is used; individual-stage reliabilities must be compounded (Section 4.5) and the minimum-performance-period constraint (Section 2.1.1) checked for each stage.",
+      "body": "Regardless of structural adequacy, a flexible pavement may have a practical maximum performance period under significant truck traffic. When the desired analysis period exceeds this maximum, stage construction (an initial pavement plus one or more planned overlays) should be considered, particularly for life-cycle economic comparisons. Because reliabilities compound across stages (Section 4.5), a 3-stage strategy each designed to 90% reliability yields only 0.9x0.9x0.9=72.9% overall reliability; to achieve 95% overall reliability across 3 stages, each stage requires (0.95)^(1/3)=98.3% reliability. Part III (pavement rehabilitation) provides the overlay-design procedure and additional rehabilitation-method criteria; Appendix H illustrates the stage-construction approach with a planned future overlay.",
+      "key_points": [
+        "Stage construction (planned rehabilitation) used when analysis period exceeds the practical max performance period",
+        "Reliabilities compound multiplicatively across stages (Section 4.5)",
+        "Minimum performance period (Section 2.1.1) must still be checked for each stage",
+        "Part III provides the overlay-design methodology",
+        "Appendix H example illustrates stage construction with a planned overlay"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Multi-stage (initial pavement + planned overlay) flexible design strategies."
+    },
+    {
+      "section_id": "3.1.3",
+      "title": "Roadbed Swelling and Frost Heave",
+      "summary": "An iterative procedure (Table 3.1) determines the performance period of an initial flexible pavement structure when roadbed swelling and/or frost heave contribute environmental serviceability loss in addition to traffic-caused loss, using the cumulative environmental loss vs. time curve (Figure 2.2) and the flexible design chart (Figure 3.1) applied in reverse.",
+      "body": "For pavements subject to significant swelling or frost heave, the total serviceability loss during a trial performance period combines environmental loss (read from the Figure 2.2 type curve) and traffic-caused loss; the iterative Table 3.1 procedure alternates between a trial performance period, the corresponding environmental loss, the residual traffic-serviceability-loss budget, the allowable cumulative ESAL traffic (Figure 3.1 applied in reverse, holding SN/MR/reliability constant), and the resulting predicted performance period (from the cumulative-traffic-vs-time plot, Figure 2.1) -- iterating until the trial and predicted performance periods agree within 1 year. The maximum initial SN recommended for stage strategies with environmental loss is the SN derived assuming NO swelling/frost heave (since SN has a relatively small effect on minimizing these losses); a worked example (initial PSI=4.4, 15-year maximum performance period, dPSI=1.9) converges to an 8-year predicted performance period after 3 iterations.",
+      "key_points": [
+        "Iterative procedure (Table 3.1, 7 steps) for pavements with roadbed swelling/frost heave",
+        "Combines environmental loss (Figure 2.2) and traffic loss to find performance period",
+        "Figure 3.1 (flexible design chart) applied in reverse to find allowable traffic for a given traffic-loss budget",
+        "Maximum recommended initial SN = the no-swell/no-frost-heave SN (swelling/heave has limited SN sensitivity)",
+        "Convergence when trial and calculated performance periods differ by < 1 year",
+        "Same basic approach applies to rigid pavements (Section 3.2.4)"
+      ],
+      "equations": [
+        {"id": "dPSI_TR", "description": "dPSI_TR = dPSI - dPSI_SW,FH (traffic-caused loss = total design loss minus environmental loss)"}
+      ],
+      "figures": [],
+      "tables": ["Table 3.1: Example of Process Used to Predict the Performance Period of an Initial Pavement Structure Considering Swelling and/or Frost Heave"],
+      "applicability": "Flexible pavements on expansive or frost-susceptible roadbed soils where environmental serviceability loss must be included in performance-period/stage-construction planning."
+    },
+    {
+      "section_id": "3.1.4",
+      "title": "Selection of Layer Thicknesses",
+      "summary": "Converts the design structural number SN into actual layer thicknesses via SN = a1*D1 + a2*D2*m2 + a3*D3*m3 (many combinations satisfy a given SN); provides minimum practical thicknesses by traffic level and notes cost-effectiveness (layer cost ratio vs. layer-coefficient*drainage ratio) guidance for economical layer selection.",
+      "body": "The SN equation SN = a1*D1 + a2*D2*m2 + a3*D3*m3 does not have a unique solution; many thickness combinations of surface (a1, D1), base (a2, D2, m2), and subbase (a3, D3, m3) satisfy a given design SN. Thicknesses should be rounded to the nearest 0.5 in (1/2-inch increments possible with controlled slip-form paving). A minimum-practical-thickness table (by design traffic ESAL range) is given to avoid impractical/uneconomical thin lifts: e.g. for traffic < 50,000 ESAL, 1.0 in AC (or surface treatment) over 4 in aggregate base; for traffic > 7,000,000 ESAL, 4.0 in AC over 6 in aggregate base. From a cost-effectiveness view, if the ratio of layer-1-to-layer-2 unit cost is less than the corresponding ratio of layer coefficients times drainage coefficient, the optimum economical design uses the minimum practical base thickness.",
+      "key_points": [
+        "SN = a1*D1 + a2*D2*m2 + a3*D3*m3 -- no unique solution; many thickness combinations satisfy a given SN",
+        "Thicknesses rounded to nearest 0.5 in (or 0.5-in increments with slip-form pavers)",
+        "Minimum practical thickness table by traffic ESAL range (Section 3.1.4)",
+        "Cost-effectiveness rule: minimum base thickness is optimum when cost-ratio < layer-coefficient*drainage ratio",
+        "Individual agencies establish minimum practical thicknesses and surface-treatment layer coefficients"
+      ],
+      "equations": [
+        {"id": "SN equation", "description": "SN = a1*D1 + a2*D2*m2 + a3*D3*m3", "implemented_in": "geotech_references.aashto_1993.equations.structural_number"}
+      ],
+      "figures": [],
+      "tables": ["Minimum practical thickness by traffic ESAL range (Section 3.1.4)"],
+      "applicability": "Converting a design SN into buildable layer thicknesses (surface/base/subbase)."
+    },
+    {
+      "section_id": "3.1.5",
+      "title": "Layered Design Analysis",
+      "summary": "Because a flexible pavement is a layered system, each layer's thickness should also individually satisfy the SN required over the material immediately beneath it (SN1 over base, SN2 over subbase, SN3 = overall design SN over the roadbed); Figure 3.2 gives the minimum-thickness cascade D*1>=SN1/a1, D*2>=(SN2-SN1*)/(a2*m2), D*3>=(SN3-(SN1*+SN2*))/(a3*m3). Not applicable above materials with MR > 40,000 psi.",
+      "body": "The layered design analysis (Figure 3.2) recognizes that the pavement structure must be adequate not only as a whole (over the roadbed soil, using the roadbed MR) but also over each intermediate layer (using that layer's own MR as the design equation's roadbed input). Working from the top down, the minimum thickness of each layer is D*1 >= SN1/a1 (with the actual SN*1=a1*D*1 used in subsequent layers); D*2 >= (SN2-SN*1)/(a2*m2), subject to SN*1+SN*2>=SN2; and D*3 >= (SN3-(SN*1+SN*2))/(a3*m3). This procedure should NOT be applied to determine the SN required above a base or subbase material with modulus greater than 40,000 psi; for such high-modulus layers, thicknesses above them should instead be set by cost-effectiveness and minimum-practical-thickness considerations.",
+      "key_points": [
+        "Each layer must satisfy the SN required over the material immediately beneath it, not just the overall SN",
+        "D*1 >= SN1/a1; SN*1 = a1*D*1 >= SN1",
+        "D*2 >= (SN2-SN*1)/(a2*m2); SN*1+SN*2 >= SN2",
+        "D*3 >= (SN3-(SN*1+SN*2))/(a3*m3)",
+        "NOT applicable above a layer with modulus > 40,000 psi"
+      ],
+      "equations": [
+        {"id": "Figure 3.2 cascade", "description": "D*1>=SN1/a1; D*2>=(SN2-SN1*)/(a2*m2); D*3>=(SN3-(SN1*+SN2*))/(a3*m3)",
+         "implemented_in": "geotech_references.aashto_1993.equations.minimum_layer_thicknesses"}
+      ],
+      "figures": ["Figure 3.2: Procedure for Determining Thicknesses of Layers Using a Layered Analysis Approach"],
+      "tables": [],
+      "applicability": "Verifying intermediate-layer adequacy in a multi-layer flexible pavement design (in addition to the overall SN check)."
+    },
+    {
+      "section_id": "3.2.1",
+      "title": "Rigid Pavement Design -- Develop Effective Modulus of Subgrade Reaction",
+      "summary": "Estimates a design (effective, seasonally weighted) modulus of subgrade reaction k for use in the rigid design equation, via an 8-step iterative process (Table 3.2 + Figures 3.3-3.6) accounting for subbase type/thickness, seasonal roadbed and subbase moduli, a semi-infinite-subgrade composite k (Figure 3.3), a shallow-rigid-foundation correction (Figure 3.4, if bedrock < 10 ft), the relative damage-weighted design k (Figure 3.5), and a final loss-of-support correction (Figure 3.6, factor LS).",
+      "body": "Slab support is characterized by an effective modulus of subgrade reaction k, developed through Table 3.2 and Figures 3.3-3.6 for each candidate subbase type/thickness/loss-of-support/depth-to-rigid-foundation combination. Steps: (1) identify subbase type, thickness, LS, and depth-to-rigid-foundation combinations to evaluate; (2) enter seasonal roadbed MR (Section 2.3.1) and (3) seasonal subbase ESB values (Section 2.3.3) per season; (4) estimate the composite modulus of subgrade reaction assuming a semi-infinite subgrade depth (Figure 3.3) -- or, if no subbase (slab directly on roadbed), the theoretical relation k=MR/19.4; (5) if bedrock lies within 10 ft, correct the composite k for the shallow rigid foundation (Figure 3.4); (6)-(7) project a trial slab thickness, use Figure 3.5 to get the relative damage ur for each season, and average to obtain the effective k (again via the ur-to-k correspondence in Figure 3.5); (8) correct the effective k for potential loss of support (subbase erosion) using the LS factor and Figure 3.6. The full process is demonstrated in Table 3.3 (referenced) and Appendix I.",
+      "key_points": [
+        "Effective k developed via Table 3.2 (8-step process) + Figures 3.3-3.6",
+        "Step 4: composite k assuming semi-infinite subgrade (Figure 3.3); or k=MR/19.4 if no subbase",
+        "Step 5: shallow rigid foundation correction if bedrock < 10 ft deep (Figure 3.4)",
+        "Steps 6-7: relative damage ur per season (Figure 3.5, needs trial slab thickness) -> average -> effective k",
+        "Step 8: loss-of-support correction (LS factor, Figure 3.6) for subbase erosion potential",
+        "Full worked example: Appendix I"
+      ],
+      "equations": [
+        {"id": "k=MR/19.4", "description": "Theoretical k for slab directly on roadbed (no subbase, no shallow rigid foundation)",
+         "implemented_in": "geotech_references.aashto_1993.equations.modulus_subgrade_reaction_simple"}
+      ],
+      "figures": [
+        "Figure 3.3: Chart for Estimating Composite Modulus of Subgrade Reaction, k(infinity), Assuming a Semi-Infinite Subgrade Depth",
+        "Figure 3.4: Chart for Correcting Effective Modulus of Subgrade Reaction for Rigid Foundation Near Surface (not individually rendered)",
+        "Figure 3.5: Chart for Estimating Relative Damage to Rigid Pavements (not individually rendered)",
+        "Figure 3.6: Correction of Effective Modulus of Subgrade Reaction for Potential Loss of Support (not individually rendered)"
+      ],
+      "tables": ["Table 3.2: Table for Estimating Effective Modulus of Subgrade Reaction"],
+      "applicability": "Determining the design k-value input required by the rigid pavement design equation (Section 3.2.2)."
+    },
+    {
+      "section_id": "3.2.2",
+      "title": "Rigid Pavement Design -- Determine Required Slab Thickness",
+      "summary": "Presents the AASHO-Road-Test-derived rigid design equation (Figure 3.7, in two nomograph segments): log10(W18)=ZR*So+7.35*log10(D+1)-0.06+[log10(dPSI/3.0)]/[1+1.624e7/(D+1)^8.46]+(4.22-0.32*pt)*log10{[Sc'*Cd*(D^0.75-1.132)]/[215.63*J*(D^0.75-18.42/(Ec/k)^0.25)]}, solved for slab thickness D given design traffic, reliability, serviceability loss, concrete properties (Ec, Sc'), load transfer J, drainage Cd, and effective k.",
+      "body": "Figure 3.7 (two nomograph segments joined by a match line) solves the rigid design equation for slab thickness D given eight inputs: design traffic W18, reliability R and overall standard deviation So, design serviceability loss dPSI=pi-pt (Section 2.2.1), concrete elastic modulus Ec (Section 2.3.3), mean concrete modulus of rupture Sc' (Section 2.3.4), load transfer coefficient J (Section 2.4.2), and drainage coefficient Cd (Section 2.4.1). The printed worked example (k=72 pci, Ec=5x10^6 psi, Sc'=650 psi, J=3.2, Cd=1.0, So=0.29, R=95% giving ZR=-1.645, dPSI=4.2-2.5=1.7, W18=5.1x10^6) solves to D=10.0 in (rounded to the nearest half-inch). Layer thickness (slab plus subbase) is generally rounded to the nearest inch, or the nearest half-inch with slip-form pavers. A full worked example is given in Appendix L.",
+      "key_points": [
+        "log10(W18) = ZR*So + 7.35*log10(D+1) - 0.06 + [log10(dPSI/3.0)]/[1+1.624e7/(D+1)^8.46] + (4.22-0.32*pt)*log10{Sc'*Cd*(D^0.75-1.132) / [215.63*J*(D^0.75-18.42/(Ec/k)^0.25)]}",
+        "8 inputs: W18, ZR/So, dPSI (po=4.5 fixed), Ec, Sc', J, Cd, k",
+        "Solved via 2-segment nomograph (Figure 3.7) or numerically (this module: rigid_d_from_w18)",
+        "Printed worked example: k=72pci, Ec=5e6psi, Sc'=650psi, J=3.2, Cd=1.0, So=0.29, R=95%, dPSI=1.7, W18=5.1e6 -> D=10.0in",
+        "Should NOT be applied to determine SN/D above materials with modulus > 40,000 psi (per Section 2.3.5 note)"
+      ],
+      "equations": [
+        {"id": "Fig. 3.7 equation", "description": "log10(W18)=ZR*So+7.35*log10(D+1)-0.06+[log10(dPSI/3.0)]/[1+1.624e7/(D+1)^8.46]+(4.22-0.32*pt)*log10{Sc'*Cd*(D^0.75-1.132)/[215.63*J*(D^0.75-18.42/(Ec/k)^0.25)]}",
+         "implemented_in": "geotech_references.aashto_1993.equations.rigid_d_from_w18"}
+      ],
+      "figures": [
+        "Figure 3.7: Design Chart for Rigid Pavement Based on Using Mean Values for Each Input Variable (Segment 1)",
+        "Figure 3.7 (continued): Design Chart for Rigid Pavements (Segment 2)"
+      ],
+      "tables": [],
+      "applicability": "The primary rigid pavement (JCP/JRCP/CRCP) thickness-design calculation (carrying > 50,000 18-kip ESAL)."
+    },
+    {
+      "section_id": "3.2.3",
+      "title": "Rigid Pavement -- Stage Construction",
+      "summary": "Same compounding-reliability logic as flexible stage construction (Section 3.1.2): for a 2-stage rigid strategy, both the initial pavement and overlay must be individually designed to (R_overall)^(1/2), e.g. 97.5% each for a 95% overall target.",
+      "body": "As for flexible pavements, a practical maximum performance period may apply to rigid pavements under significant truck traffic; stage construction (planned rehabilitation) should be considered when the desired analysis period exceeds this maximum, with the individual-stage reliability compounding requirement of Section 4.5 (Part I) applied. Part III addresses the rigid pavement rehabilitation/overlay design methodology.",
+      "key_points": [
+        "Same stage-construction/compounding-reliability approach as flexible pavements",
+        "2-stage example: 95% overall reliability requires 97.5% per stage",
+        "Part III provides the rigid-pavement overlay design methodology"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Multi-stage (initial pavement + planned overlay) rigid design strategies."
+    },
+    {
+      "section_id": "3.2.4",
+      "title": "Rigid Pavement -- Roadbed Swelling and Frost Heave",
+      "summary": "Nearly identical iterative procedure to the flexible case (Section 3.1.3), using Table 3.4 (referenced) to determine the initial slab thickness's performance period under swelling/frost heave. Worked example (max feasible slab 9.5 in, 25-yr max performance period, individual reliability 95% for a 2-stage 90% overall target) converges to allowable traffic 4.6x10^6 ESAL for a 20-yr trial period.",
+      "body": "The approach mirrors flexible design (Section 3.1.3): select an initial slab thickness (the maximum feasible thickness is that derived assuming no swell/frost heave, since slab thickness has a relatively small effect on minimizing environmental losses), select a trial performance period, read the corresponding environmental serviceability loss from the Figure 2.2-type curve, subtract it from the total design serviceability loss to get the traffic-caused loss budget, use Figure 3.7 to find the allowable cumulative ESAL for that budget, and estimate the corresponding calendar year from the cumulative-traffic-vs-time plot -- iterating to convergence.",
+      "key_points": [
+        "Iterative procedure parallel to Section 3.1.3, using Figure 3.7 in place of Figure 3.1",
+        "Maximum feasible initial slab thickness = the no-swell/no-frost-heave design thickness",
+        "Worked example: 9-in feasible slab thickness at 90-percent-reliability-per-stage inputs, iterating to an allowable 4.6x10^6 ESAL at 20 years"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Rigid pavements on expansive or frost-susceptible roadbed soils requiring stage-construction / performance-period planning."
+    },
+    {
+      "section_id": "3.3",
+      "title": "Rigid Pavement Joint Design",
+      "summary": "Covers joint types (expansion, contraction, construction, longitudinal), joint geometry (spacing, skew, sealant reservoir dimensions), and joint sealant dimensioning; general criteria only (Part I provides supporting background).",
+      "body": "Joint design criteria cover expansion, contraction, construction, and longitudinal joint types; joint spacing and skew geometry; and joint sealant reservoir dimensions. This module does not digitize numeric joint-spacing/sealant-dimension tables (out of the core structural-design scope); see the printed guide (Section 3.3, pdf_page ~136-140, printed II-48 to II-51) for the full criteria.",
+      "key_points": [
+        "Joint types: expansion, contraction, construction, longitudinal",
+        "Joint geometry: spacing, skew",
+        "Joint sealant reservoir dimensions"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Detailing transverse/longitudinal joints for jointed rigid pavements; not digitized as callable functions in this module."
+    },
+    {
+      "section_id": "3.4",
+      "title": "Rigid Pavement Reinforcement Design",
+      "summary": "Covers reinforcement design for jointed reinforced concrete pavements (JRCP, temperature steel to hold cracks tight between wide joint spacings) and continuously reinforced concrete pavements (CRCP, longitudinal steel percentage controls crack spacing/width), plus transverse reinforcement (tie bars).",
+      "body": "For JRCP, distributed (welded wire fabric or bar mat) reinforcement is designed by the subgrade-drag equation to hold together the wider-spaced transverse cracks that develop between joints. For CRCP, the design objective is a longitudinal steel percentage that controls the resulting transverse crack spacing and crack width within acceptable bounds (function of concrete tensile strength, steel-concrete bond, and thermal/shrinkage stresses); design charts/procedures for both are in the printed guide (Section 3.4, pdf_page ~140-151, printed II-51 to II-62). Not digitized as callable functions in this module.",
+      "key_points": [
+        "JRCP: distributed reinforcement designed via the subgrade-drag equation",
+        "CRCP: longitudinal steel percentage controls crack spacing/width",
+        "Transverse reinforcement (tie bars) also addressed"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Reinforcement design for JRCP/CRCP; not digitized as callable functions in this module."
+    },
+    {
+      "section_id": "3.5",
+      "title": "Prestressed Concrete Pavement",
+      "summary": "General criteria for prestressed concrete pavement (PCP) design: subbase, slab length, magnitude of prestress, tendon spacing, fatigue, and overall PCP structural design guidance (a less common pavement type; criteria are qualitative/general rather than a numeric design equation).",
+      "body": "The guide provides general (non-equation) criteria for PCP design covering subbase requirements, maximum practical slab (pour) length, magnitude and method of applying prestress, tendon spacing, and fatigue considerations, noting PCP is expected to carry significant traffic levels and require a paved surface like conventional JCP/JRCP/CRCP. See the printed guide (Section 3.5, pdf_page ~154-158, printed II-65 to II-66) for full criteria; not digitized as callable functions in this module.",
+      "key_points": [
+        "PCP: subbase, slab length, prestress magnitude, tendon spacing, fatigue -- general criteria only",
+        "No numeric design equation comparable to Figures 3.1/3.7 is printed for PCP"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Qualitative guidance for prestressed concrete pavement projects (uncommon pavement type)."
+    }
+  ]
+}

@@ -1,0 +1,629 @@
+{
+  "reference_id": "EN 1997-1:2004",
+  "reference_title": "Eurocode 7: Geotechnical Design - Part 1: General Rules",
+  "volume": null,
+  "chapter": 2,
+  "chapter_title": "Basis of geotechnical design",
+  "sections": [
+    {
+      "section_id": "2.1",
+      "title": "Design requirements",
+      "summary": "Requires verification that no relevant limit state is exceeded, lists the site/structure/environment factors to consider, and introduces three Geotechnical Categories (1, 2, 3) to scale investigation/calculation/control effort to complexity and risk. Category 1 = small, low-risk structures verifiable by experience; Category 2 = conventional structures needing quantitative data/analysis (spread/raft/pile foundations, retaining walls, excavations, bridge piers, embankments, ground anchors, tunnels in sound rock); Category 3 = very large, unusual, high-risk, or highly seismic structures needing provisions beyond this standard.",
+      "body": "For each geotechnical design situation it shall be verified that no relevant limit state, as defined in EN 1990:2002, is exceeded. Factors to consider when defining design situations and limit states include: site conditions (overall stability, ground movements); nature/size of the structure including design life; surroundings (neighbouring structures, traffic, utilities, vegetation, hazardous chemicals); ground and ground-water conditions; regional seismicity; and environmental influences (hydrology, surface water, subsidence, seasonal temperature/moisture changes). Limit states can occur in the ground, in the structure, or by combined failure of both, and should be verified by calculation (2.4), prescriptive measures (2.5), experimental models/load tests (2.6), or the observational method (2.7); in practice experience often shows which limit state governs, with avoidance of others verified by a control check. Buildings should normally be protected against ground-water penetration or vapour/gas transmission, and design results should be checked against comparable experience where practicable. To set minimum requirements for investigation/calculation/control-check extent, the complexity of each design and its associated risks must be identified, distinguishing light/simple structures and small earthworks (satisfiable by experience and qualitative investigation, negligible risk) from other geotechnical structures. Three Geotechnical Categories (1, 2, 3) may be introduced to establish design requirements. A preliminary Category classification should normally be made before geotechnical investigation begins and checked/changed as needed at each design/construction stage; higher-category procedures may be used to justify more economic designs; different aspects of one project may fall in different Categories -- the whole project need not be treated at the highest category. Geotechnical Category 1 covers only small, relatively simple structures where fundamental requirements can be ensured from experience and qualitative investigation with negligible risk, no overall-stability/ground-movement risk, ground conditions known from comparable local experience to be straightforward, and (if excavating) no excavation below the water table or local experience showing it will be straightforward; procedures may be routine foundation methods. Geotechnical Category 2 covers conventional structures/foundations with no exceptional risk or difficult ground/loading conditions, normally requiring quantitative geotechnical data and analysis and using routine field/laboratory/design/execution procedures; examples include spread foundations, raft foundations, pile foundations, retaining/soil-or-water-supporting walls, excavations, bridge piers and abutments, embankments and earthworks, ground anchors and tie-back systems, and tunnels in hard non-fractured rock without special water-tightness requirements. Geotechnical Category 3 covers structures falling outside Categories 1 and 2, normally requiring alternative provisions beyond this standard; examples include very large or unusual structures, structures with abnormal risk or unusual/exceptionally difficult ground or loading conditions, structures in highly seismic areas, and structures in areas of probable instability or persistent ground movement requiring separate investigation or special measures.",
+      "key_points": [
+        "Core requirement: verify no relevant limit state (EN 1990:2002) is exceeded for each design situation",
+        "Limit states may be verified by calculation, prescriptive measures, load tests, or the observational method",
+        "Design complexity and risk must be identified to set minimum investigation/calculation/control requirements",
+        "Three Geotechnical Categories (1, 2, 3) scale requirements to complexity/risk; preliminary classification precedes investigation and is revisited through the project",
+        "Category 1: small, simple, negligible-risk structures verifiable by experience and qualitative investigation only",
+        "Category 2: conventional structures (spread/pile foundations, retaining walls, excavations, bridge piers, embankments, anchors, sound-rock tunnels) needing quantitative data and routine analysis",
+        "Category 3: large/unusual/high-risk/highly-seismic/unstable-ground structures requiring provisions beyond this standard",
+        "Different parts of one project may be treated under different Categories"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "The entry point for every EN 1997-1 design: sets the limit-state verification requirement and the Geotechnical Category that scales how much investigation, calculation rigor, and construction control the rest of the standard demands."
+    },
+    {
+      "section_id": "2.2",
+      "title": "Design situations",
+      "summary": "Both short-term and long-term design situations must be considered, with detailed specification of actions/combinations, ground suitability, zonation of soil/rock/construction elements, rock-specific hazards (bedding, mining, faults, solution cavities), and environmental/time effects (scour, erosion, chemical/weathering/freeze/drought effects, ground-water variation, gas emergence, seismicity, subsidence, structure sensitivity to deformation, and effects on neighbouring structures).",
+      "body": "Both short-term and long-term design situations shall be considered. In geotechnical design, detailed specifications of design situations should include, as appropriate: the actions, their combinations and load cases; the general suitability of the ground with respect to overall stability and ground movements; the disposition and classification of soil/rock zones and construction elements involved in any calculation model; dipping bedding planes; mine workings, caves or other underground structures; for structures on or near rock -- interbedded hard/soft strata, faults/joints/fissures, possible rock-block instability, and solution cavities (swallow holes, fissures filled with soft material) with continuing solution processes; and the design environment, including effects of scour/erosion/excavation changing ground-surface geometry, chemical corrosion, weathering, freezing, long-duration droughts, ground-water level variations (dewatering, flooding, drainage failure, water exploitation), gases emerging from the ground, other time/environment effects on material properties (e.g. animal-activity holes), earthquakes, mining/caving/tunnelling-induced ground movements, the sensitivity of the structure to deformations, and the effect of the new structure on existing structures/services/the local environment.",
+      "key_points": [
+        "Both short-term and long-term design situations must be considered",
+        "Design situation specification covers actions/combinations, ground suitability, and zonation of soil/rock/construction elements used in the calculation model",
+        "Rock-specific hazards to consider: bedding planes, mine workings/caves, interbedded strata, faults/joints/fissures, rock-block instability, solution cavities",
+        "Environmental/time effects: scour/erosion/excavation, chemical corrosion, weathering, freezing, drought, ground-water variation, gas emergence, seismicity, subsidence",
+        "Structure sensitivity to deformation and effects on neighbouring structures/services must be considered"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Checklist for defining the design situations (short- and long-term) that a geotechnical design must be verified against before any calculation model is selected."
+    },
+    {
+      "section_id": "2.3",
+      "title": "Durability",
+      "summary": "Environmental conditions must be assessed for their effect on durability of materials used in the ground, so protection or adequate resistance can be provided: aggressive agents (acids, sulfates) for concrete; corrosion mechanisms (permeable-ground oxygen/water percolation, free-water exposure, pitting on fissured/porous concrete) for steel; fungal/bacterial decay for timber; and UV/ozone/temperature-stress degradation for synthetic fabrics.",
+      "body": "At the geotechnical design stage, the significance of environmental conditions shall be assessed in relation to durability, to enable provisions for protection or adequate resistance of materials. Considerations for durability of materials in the ground include: for concrete -- aggressive agents in ground-water or ground/fill material such as acids or sulfate salts; for steel -- chemical attack where foundation elements are buried in ground permeable enough to allow percolation of ground-water and oxygen, corrosion on sheet-pile wall faces exposed to free water (particularly at the mean water-level zone), and pitting-type corrosive attack on steel embedded in fissured/porous concrete (mill scale acting as a cathode promotes electrolytic action with the scale-free surface as anode); for timber -- fungi and aerobic bacteria in the presence of oxygen; for synthetic fabrics -- ageing effects of UV exposure or ozone degradation, or combined temperature/stress effects and secondary chemical degradation. Reference should be made to durability provisions in the relevant construction materials standards.",
+      "key_points": [
+        "Environmental conditions must be assessed for durability at the design stage, enabling protection/resistance provisions",
+        "Concrete: aggressive ground-water/ground/fill agents such as acids or sulfate salts",
+        "Steel: permeable-ground oxygen/water percolation, free-water corrosion on sheet piles, pitting attack on embedded steel in fissured/porous concrete",
+        "Timber: fungal and aerobic bacterial decay in the presence of oxygen",
+        "Synthetic fabrics: UV/ozone degradation and combined temperature-stress chemical degradation"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies whenever foundation/retaining elements (concrete, steel, timber, or geosynthetic) will remain in ground contact for the structure's service life."
+    },
+    {
+      "section_id": "2.4",
+      "title": "Geotechnical design by calculation",
+      "summary": "Introduces calculation-based design: actions, material/geometrical properties, deformation limits, and calculation models (analytical, semi-empirical, or numerical), covered in the numbered subsections 2.4.1 through 2.4.9 (general principles through limiting movement values).",
+      "body": "",
+      "key_points": [
+        "Container clause for the calculation-based design method, detailed in 2.4.1-2.4.9",
+        "Covers actions (2.4.2), ground properties (2.4.3), geometrical data (2.4.4), characteristic values (2.4.5), design values (2.4.6), ultimate limit states/Design Approaches (2.4.7), serviceability limit states (2.4.8), and limiting movement values (2.4.9)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Parent clause; see child subsections 2.4.1-2.4.9 for the operative rules."
+    },
+    {
+      "section_id": "2.4.1",
+      "title": "General",
+      "summary": "Design by calculation must follow EN 1990:2002's fundamental requirements plus EN 1997-1's particular rules, combining actions, material properties, geometrical data, deformation limits, and a calculation model (analytical, semi-empirical, or numerical) that must be accurate or err on the safe side; ground-structure interaction and strain compatibility need particular attention for raft foundations, laterally loaded piles, and flexible/anchored retaining walls.",
+      "body": "Design by calculation shall be in accordance with the fundamental requirements of EN 1990:2002 and the particular rules of this standard, involving: actions (imposed loads or displacements, e.g. from ground movements); properties of soils, rocks and other materials; geometrical data; limiting values of deformations, crack widths, vibrations etc.; and calculation models. Knowledge of ground conditions (extent/quality of investigation) and control of workmanship are usually more significant to satisfying the fundamental requirements than precision in the calculation model and partial factors. The calculation model shall describe the assumed ground behaviour for the limit state considered; if no reliable model exists for a specific limit state, analysis of another limit state with factors ensuring sufficient improbability of exceeding the specific state shall be used, or design by prescriptive measures/experimental models/load tests/the observational method performed instead. The calculation model may be analytical, semi-empirical, or numerical, may include simplifications, and shall be either accurate or err on the side of safety; a model factor may be used to modify results, accounting for the range of uncertainty and any known systematic errors of the method. Where an empirical relationship is used, it must be clearly established as relevant to the prevailing ground conditions. Limit states involving formation of a ground mechanism should be checked with a calculation model; deformation-governed limit states should be evaluated per 2.4.8 or otherwise assessed. Many calculation models assume sufficiently ductile ground/structure performance -- a lack of ductility leads to a sudden-collapse ultimate limit state. Numerical methods are appropriate where strain compatibility or structure-soil interaction at a limit state matter; detailed analysis allowing for relative structure/ground stiffness may be needed where combined structural-member/ground failure could occur, e.g. raft foundations, laterally loaded piles, and flexible retaining walls, with particular attention to strain compatibility for brittle or strain-softening materials. In problems such as excavations supported by anchored or strutted flexible walls, the magnitude/distribution of earth pressures and internal structural forces/moments depend heavily on the stiffness of the structure and ground and the ground stress state; such ground-structure interaction analyses should use sufficiently representative stress-strain relationships and stress states to give a safe result for the limit state considered.",
+      "key_points": [
+        "Design by calculation follows EN 1990:2002's fundamental requirements plus EN 1997-1's particular rules",
+        "Involves actions, material properties, geometrical data, deformation limits, and a calculation model",
+        "Investigation quality and workmanship control usually matter more than model/factor precision",
+        "Calculation model may be analytical, semi-empirical, or numerical; must be accurate or err safe, optionally adjusted by a model factor",
+        "No reliable model available -> analyze another limit state conservatively, or use prescriptive measures/tests/observational method",
+        "Ground-structure interaction and strain compatibility are critical for raft foundations, laterally loaded piles, flexible/anchored retaining walls"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "General principles governing every calculation-based verification in Sections 6-12; sets the standard for what counts as an acceptable calculation model."
+    },
+    {
+      "section_id": "2.4.2",
+      "title": "Actions",
+      "summary": "Action definitions and values follow EN 1990:2002/EN 1991; geotechnical action values must be selected before calculation (though they may change during it), and interaction between structure and ground must be accounted for. Lists geotechnical actions to include (earth/water/seepage pressures, surcharges, dynamic/seismic/mining-induced movements, downdrag, etc.) and requires attention to action duration, repeated/variable-intensity loading, dynamic response, and ground/free-water-dominated actions.",
+      "body": "The definition of actions is taken from EN 1990:2002; values of actions are taken from EN 1991 where relevant. Values of geotechnical actions to be used shall be selected since they are known before a calculation is performed, though they may change during that calculation (introduced as a first estimate and updated). Any structure-ground interaction shall be accounted for when determining design actions. Items to consider for inclusion as geotechnical actions include: weight of soil, rock and water; stresses in the ground; earth pressures; free water pressures (including wave pressures); ground-water pressures; seepage forces; dead and imposed structural loads; surcharges; mooring forces; removal of load or excavation; traffic loads; movements from mining/caving/tunnelling; swelling/shrinkage from vegetation/climate/moisture; movements from creep/sliding/settling ground; movements from degradation/dispersion/decomposition/self-compaction/solution; movements/accelerations from earthquakes/explosions/vibrations/dynamic loads; temperature effects (incl. frost action); ice loading; imposed pre-stress in anchors/struts; and downdrag. The possibility of variable actions occurring jointly and separately shall be considered; action duration shall be considered with reference to time effects in material properties (especially drainage/compressibility of fine-grained soils); repeatedly-applied and variable-intensity actions require special consideration (continuing movements, liquefaction, changing ground stiffness/strength); actions producing dynamic structural/ground response require special consideration; and actions where ground/free-water forces predominate require special consideration for deformations, fissuring, variable permeability, and erosion. Unfavourable and favourable permanent actions from a single source may in some situations take a single partial factor applied to their sum or the sum of their effects.",
+      "key_points": [
+        "Action definitions/values follow EN 1990:2002/EN 1991; geotechnical action values are selected up front but may be updated during calculation",
+        "Structure-ground interaction must be accounted for in determining design actions",
+        "Broad list of geotechnical actions: earth/water/seepage pressures, surcharges, mining/tunnelling movements, swelling/shrinkage, creep/settlement, seismic/dynamic loads, frost/ice, anchor pre-stress, downdrag",
+        "Duration, repeated/variable-intensity loading, dynamic response, and ground/water-dominated actions each require special consideration",
+        "Favourable and unfavourable permanent actions from a single source may share one partial factor on their combined sum"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Defines what counts as a design action for every subsequent limit-state verification (Sections 6-12) and how ground-structure interaction and time/dynamic effects must be folded into action values."
+    },
+    {
+      "section_id": "2.4.3",
+      "title": "Ground properties",
+      "summary": "Geotechnical parameters must come from test results (directly, or via correlation/theory/empiricism) and other relevant data, interpreted appropriately for the limit state; differences between tested and in-situ (structure-governing) behaviour must be accounted for (stress/deformation dependence, fissures/fabric, time, softening from water/dynamic loading, brittleness/ductility, installation method, workmanship, construction effects), guided by published data, local/general experience, parameter variation, field trial results, cross-test correlations, and expected long-term deterioration; calibration factors convert EN 1997-2 test results into design-representative values.",
+      "body": "Properties of soil and rock masses, as quantified for design calculations by geotechnical parameters, shall be obtained from test results (directly or through correlation, theory or empiricism) and other relevant data; values obtained shall be interpreted appropriately for the limit state considered. Account shall be taken of possible differences between ground properties/parameters obtained from tests and those governing the actual behaviour of the geotechnical structure, which can arise because: many geotechnical parameters are not true constants but depend on stress level and deformation mode; soil/rock structure (fissures, laminations, large particles) may play a different role in the test versus the structure; time effects; softening from percolating water or dynamic actions; brittleness/ductility of the tested material; the installation method of the geotechnical structure; workmanship influence on artificially placed/improved ground; and construction-activity effects on ground properties. When establishing parameter values, consider: published/well-recognised information for each test type in the relevant ground conditions; comparison with relevant published data and local/general experience; the variation of parameters relevant to the design; results of large-scale field trials and neighbouring-construction measurements; correlations between more than one test type; and any significant deterioration expected over the structure's lifetime. Calibration factors shall be applied where necessary to convert laboratory or field test results per EN 1997-2 into values representing actual soil/rock behaviour in the ground for the actual limit state, or to account for correlations used to derive values from test results.",
+      "key_points": [
+        "Geotechnical parameters must derive from test results (direct, correlated, theoretical, or empirical) and other relevant data",
+        "Test-to-structure behaviour gaps arise from stress/strain dependence, fabric effects, time, softening, brittleness/ductility, installation method, workmanship, construction effects",
+        "Parameter selection should draw on published data, local/general experience, field trials, and cross-test correlations",
+        "Calibration factors convert EN 1997-2 laboratory/field test results into design-representative in-ground values"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Governs how raw laboratory/field test data (from EN 1997-2 procedures) is converted into the geotechnical parameters used in Section 6-12 calculations."
+    },
+    {
+      "section_id": "2.4.4",
+      "title": "Geometrical data",
+      "summary": "Ground surface level and slope, water levels, stratum-interface levels, excavation levels, and the geotechnical structure's dimensions are all treated as geometrical data for design purposes.",
+      "body": "The level and slope of the ground surface, water levels, levels of interfaces between strata, excavation levels, and the dimensions of the geotechnical structure shall be treated as geometrical data.",
+      "key_points": [
+        "Ground surface level/slope, water levels, stratum interfaces, excavation levels, and structure dimensions are all 'geometrical data'"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Establishes what counts as geometrical data feeding into design values of geometrical data (2.4.6.3) and the calculation models of Sections 6-12."
+    },
+    {
+      "section_id": "2.4.5.1",
+      "title": "Characteristic and representative values of actions",
+      "summary": "Characteristic and representative values of actions are derived per EN 1990:2002 and the relevant Parts of EN 1991, rather than by a separate EN 1997-1 procedure.",
+      "body": "Characteristic and representative values of actions shall be derived in accordance with EN 1990:2002 and the various Parts of EN 1991.",
+      "key_points": [
+        "Characteristic/representative action values follow EN 1990:2002 and EN 1991, not a separate EN 1997-1 method",
+        "This clause is a cross-reference, not an independent procedure"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to structural (non-geotechnical) actions such as dead/live loads; geotechnical action characteristic values instead follow 2.4.5.2."
+    },
+    {
+      "section_id": "2.4.5.2",
+      "title": "Characteristic values of geotechnical parameters",
+      "summary": "The characteristic value of a geotechnical parameter is a cautious estimate of the value governing the limit state's occurrence, based on test/field results plus well-established experience -- accounting for c' having greater variance than tan(phi'), background/variability/sample data, the ground zone actually governing behaviour, and the structure's ability to transfer load from weak to strong zones. Statistical methods, where used, should target a 95% confidence cautious-mean estimate (or 5% fractile for local-failure-governed cases).",
+      "body": "The selection of characteristic values for geotechnical parameters shall be based on results and derived values from laboratory and field tests, complemented by well-established experience. The characteristic value shall be selected as a cautious estimate of the value affecting the occurrence of the limit state; the greater variance of c' compared to tan(phi') shall be considered when determining their characteristic values. Selection shall take account of: geological and other background information (e.g. from previous projects); variability of measured property values and other relevant information; extent of field/laboratory investigation; type and number of samples; extent of the ground zone governing the geotechnical structure's behaviour at the limit state considered; and the structure's ability to transfer loads from weak to strong ground zones. Characteristic values can be lower (less than most probable) or upper (greater) values; for each calculation, the most unfavourable combination of lower/upper values of independent parameters shall be used. The zone of ground governing structure behaviour at a limit state is usually much larger than a test sample or an in-situ test's affected zone, so the governing parameter value is often the mean of a range covering a large surface/volume -- the characteristic value should be a cautious estimate of this mean. If behaviour is governed by the lowest or highest property value, the characteristic value should be a cautious estimate of that extreme within the governing zone. When selecting the governing zone, consider that the limit state may depend on the supported structure's own behaviour -- e.g. for a bearing-resistance ULS under several footings, use the mean strength over each individual footing's zone if the building cannot resist local failure, or the mean of those mean values over the wider zone if the building is stiff/strong enough to redistribute load. Statistical methods, if used, should differentiate local from regional sampling and allow use of prior knowledge of comparable ground properties; the characteristic value should then be derived such that the calculated probability of a worse value governing the limit state is not greater than 5% -- i.e. a cautious estimate of the mean value at a 95% confidence level, or (where local failure governs) a 5% fractile of the low value. When using standard tables of characteristic values tied to soil investigation parameters, the characteristic value shall be selected as a very cautious value.",
+      "key_points": [
+        "Characteristic value = a cautious estimate of the value governing the limit state, from tests plus well-established experience",
+        "c' has greater variance than tan(phi') -- must be considered in selecting characteristic values",
+        "Selection accounts for background data, measured-value variability, sample extent/type, the governing ground zone, and the structure's load-transfer capacity between weak/strong zones",
+        "Most unfavourable combination of independent parameters' lower/upper characteristic values is used per calculation",
+        "Governing zone depends on whether the supported structure can redistribute load between weak and strong ground",
+        "Statistical approach targets a 95%-confidence cautious mean, or a 5% fractile where local failure governs",
+        "Standard characteristic-value tables require an especially cautious (conservative) selection"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "The core methodology for turning raw/statistical soil test data into the design-input characteristic parameter values used throughout Sections 6-12 and Annexes C-G."
+    },
+    {
+      "section_id": "2.4.5.3",
+      "title": "Characteristic values of geometrical data",
+      "summary": "Characteristic values of ground/water levels are measured, nominal, or estimated upper/lower levels; characteristic values of ground levels and geotechnical element dimensions should usually be nominal values.",
+      "body": "Characteristic values of the levels of ground and ground-water or free water shall be measured, nominal, or estimated upper or lower levels. Characteristic values of levels of ground and dimensions of geotechnical structures or elements should usually be nominal values.",
+      "key_points": [
+        "Ground/water-level characteristic values: measured, nominal, or estimated upper/lower levels",
+        "Structure/element dimension characteristic values are usually simply nominal values"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Feeds design values of geometrical data (2.4.6.3) whenever a deviation allowance (Eq. 2.3-type) is not otherwise required."
+    },
+    {
+      "section_id": "2.4.6.1",
+      "title": "Design values of actions",
+      "summary": "The design value of an action follows EN 1990:2002, derived from representative values via Fd = gamma_F * Frep (Eq. 2.1a) using the partial factor gamma_F for persistent/transient situations from Annex A; if geotechnical action design values are instead assessed directly, Annex A's recommended factors serve as a guide to the required safety level.",
+      "body": "The design value of an action shall be determined in accordance with EN 1990:2002. The design value of an action (Fd) shall either be assessed directly, or derived from representative values using Eq. (2.1a): Fd = gamma_F * Frep, where Frep = psi * Fk (with psi taken from EN 1990:2002). The partial factor gamma_F for persistent and transient situations, as defined in Annex A, shall be used; the recommended Annex A values indicate the appropriate level of safety for conventional designs (a National annex may set different values). If geotechnical action design values are assessed directly instead of via Eq. 2.1a, the partial factors recommended in Annex A should still be used as a guide to the required safety level. For ground-water pressures: for limit states with severe consequences (generally ULS), design values shall represent the most unfavourable values that could occur during the structure's design lifetime; for limit states with less severe consequences (generally SLS), design values shall be the most unfavourable values that could occur in normal circumstances (extreme water pressures meeting EN 1990:2002 1.5.3.5 may in some cases be treated as accidental actions). Design values of ground-water pressure may be derived either by applying partial factors to characteristic water pressures, or by applying a safety margin to the characteristic water level per 2.4.4(1)P and 2.4.5.3(1)P. Features affecting water pressure to consider: the level of the free-water surface or ground-water table; favourable/unfavourable drainage effects (natural and artificial, including future maintenance); water supply from rain, flood, burst mains, or other sources; and water-pressure changes from vegetation growth/removal. Unfavourable water levels caused by catchment changes or reduced drainage (blockage, freezing, other causes) should be considered; unless adequate drainage-system maintenance can be demonstrated and ensured, the design ground-water table should be taken as the maximum possible level (which may be the ground surface).",
+      "key_points": [
+        "Eq. 2.1a: Fd = gamma_F * Frep -- the general design-value-of-action relationship",
+        "gamma_F (persistent/transient situations) comes from Annex A; recommended values give the appropriate conventional-design safety level",
+        "Direct assessment of geotechnical action design values still uses Annex A factors as a safety-level guide",
+        "Ground-water design pressures: most unfavourable lifetime value for severe-consequence (ULS) states; most unfavourable normal-circumstance value for less-severe (SLS) states",
+        "Absent demonstrated/maintained drainage, the design ground-water table should be taken at the maximum possible level (potentially the ground surface)"
+      ],
+      "equations": [
+        {
+          "id": "Eq. 2.1a",
+          "description": "Design value of an action derived from its representative value: Fd = gamma_F * Frep, using the partial factor gamma_F for persistent/transient situations from Annex A (Tables A.1/A.3/A.15/A.17 depending on limit state).",
+          "implemented_in": null
+        }
+      ],
+      "figures": [],
+      "tables": [
+        "Annex A (Tables A.1, A.3, A.15, A.17 -- gamma_F values by limit state, referenced generally by this clause)"
+      ],
+      "applicability": "Governs how every action's design value is derived throughout Sections 6-12, and sets the ground-water design-level policy used in retaining structure (Section 9) and hydraulic failure (Section 10) verifications."
+    },
+    {
+      "section_id": "2.4.6.2",
+      "title": "Design values of geotechnical parameters",
+      "summary": "The design value of a geotechnical parameter is Xd = Xk / gamma_M (Eq. 2.2), using the partial factor gamma_M for persistent/transient situations from Annex A; direct assessment likewise uses Annex A's recommended factors as a guide to the required safety level.",
+      "body": "Design values of geotechnical parameters (Xd) shall either be derived from characteristic values using Eq. (2.2): Xd = Xk / gamma_M, or be assessed directly. The partial factor gamma_M for persistent and transient situations, defined in Annex A, shall be used in Eq. 2.2; the recommended Annex A values indicate the minimum level of safety for conventional designs (a National annex may set different values). If design values of geotechnical parameters are assessed directly, the partial factors recommended in Annex A should be used as a guide to the required level of safety.",
+      "key_points": [
+        "Eq. 2.2: Xd = Xk / gamma_M -- the general design-value-of-geotechnical-parameter relationship",
+        "gamma_M (persistent/transient situations) comes from Annex A (Tables A.2/A.4/A.16 depending on limit state)",
+        "Direct assessment of design parameter values still uses Annex A factors as a minimum safety-level guide"
+      ],
+      "equations": [
+        {
+          "id": "Eq. 2.2",
+          "description": "Design value of a geotechnical parameter derived from its characteristic value: Xd = Xk / gamma_M, using the partial factor gamma_M for persistent/transient situations from Annex A.",
+          "implemented_in": null
+        }
+      ],
+      "figures": [],
+      "tables": [
+        "Annex A (Tables A.2, A.4, A.16 -- gamma_M values by limit state, referenced generally by this clause)"
+      ],
+      "applicability": "Governs how every soil/rock strength or stiffness parameter's design value is derived before use in the bearing/sliding/earth-pressure calculations of Sections 6-12."
+    },
+    {
+      "section_id": "2.4.6.3",
+      "title": "Design values of geometrical data",
+      "summary": "Partial action/material factors normally already allow for minor geometrical-data variation, so no further safety margin is usually needed; where deviations significantly affect reliability, design values of geometrical data (ad) are assessed directly or derived from nominal values by Eq. 2.3 (ad = anom +/- delta_a), with delta_a values given in 6.5.4(2) and 9.3.2.2.",
+      "body": "The partial action and material factors (gamma_F and gamma_M) include an allowance for minor variations in geometrical data, and in such cases no further safety margin on geometrical data should be required. Where deviations in geometrical data have a significant effect on structural reliability, design values of geometrical data (ad) shall either be assessed directly or derived from nominal values using Eq. (2.3): ad = anom +/- delta_a (see EN 1990:2002, 6.3.4), with values of delta_a given in 6.5.4(2) and 9.3.2.2 of this standard.",
+      "key_points": [
+        "gamma_F/gamma_M already absorb minor geometrical variation -- usually no extra margin needed",
+        "Eq. 2.3: ad = anom +/- delta_a, applied only where geometrical deviations significantly affect reliability",
+        "delta_a values are given specifically in 6.5.4(2) (spread foundations) and 9.3.2.2 (retaining structures)"
+      ],
+      "equations": [
+        {
+          "id": "Eq. 2.3",
+          "description": "Design value of geometrical data from a nominal value plus/minus an adjustment: ad = anom +/- delta_a, per EN 1990:2002 6.3.4; delta_a values given in 6.5.4(2) and 9.3.2.2 of this standard.",
+          "implemented_in": null
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies mainly to foundation eccentricity/width tolerances (Section 6) and retaining-wall geometry tolerances (Section 9) where geometrical uncertainty materially affects the safety margin."
+    },
+    {
+      "section_id": "2.4.6.4",
+      "title": "Design values of structural properties",
+      "summary": "Design strength properties of structural materials and design resistances of structural elements in geotechnical structures are calculated per EN 1992 through EN 1996 and EN 1999 (the structural-material Eurocodes), not by EN 1997-1 itself.",
+      "body": "The design strength properties of structural materials and the design resistances of structural elements shall be calculated in accordance with EN 1992 to EN 1996 and EN 1999.",
+      "key_points": [
+        "Structural material design strengths/resistances follow EN 1992-1996 and EN 1999, not EN 1997-1",
+        "Cross-reference clause tying geotechnical structural design (e.g. pile/wall reinforced-concrete or steel sections) back to the material Eurocodes"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies whenever a geotechnical element's structural (as opposed to geotechnical/ground) capacity is being verified, e.g. 6.8 structural design of spread foundations, 7.8 structural design of piles."
+    },
+    {
+      "section_id": "2.4.7.1",
+      "title": "General",
+      "summary": "Defines the five ultimate limit state types to verify where relevant: EQU (static equilibrium), STR (structural failure/deformation), GEO (ground failure/deformation, often critical for foundation/retaining-structure sizing), UPL (uplift/buoyancy), and HYD (hydraulic heave/erosion/piping). Uses Annex A partial factors for persistent/transient situations; accidental-situation action factors are normally 1.0; more/less severe factors than Annex A apply for abnormal risk or justified temporary situations.",
+      "body": "Where relevant, it shall be verified that the following limit states are not exceeded: EQU -- loss of equilibrium of the structure or ground, considered as a rigid body, where structural-material and ground strengths are insignificant in providing resistance; STR -- internal failure or excessive deformation of the structure or structural elements (e.g. footings, piles, basement walls) where structural material strength is significant; GEO -- failure or excessive deformation of the ground where soil/rock strength is significant (GEO is often critical to the sizing of structural elements in foundations or retaining structures, and sometimes to structural element strength); UPL -- loss of equilibrium due to uplift by water pressure (buoyancy) or other vertical actions; HYD -- hydraulic heave, internal erosion, and piping caused by hydraulic gradients. The partial factors for persistent and transient situations defined in Annex A shall be used (a National annex may set different values; the Annex A tables give recommended values). All partial factors for actions/effects of actions in accidental situations should normally be taken as 1.0, with resistance-partial-factor values selected according to the particular accidental circumstances (again, nationally settable). More severe values than Annex A's recommendations should be used for abnormal risk or unusual/exceptionally difficult ground or loading conditions; less severe values than Annex A's recommendations may be used for temporary structures or transient design situations where the likely consequences justify it (both nationally settable). Model factors on design resistance (gamma_Rd) or design action effects (gamma_Sd) may be introduced when calculating design values, to ensure the design calculation model result is accurate or errs on the safe side (nationally settable).",
+      "key_points": [
+        "Five ULS types: EQU (static equilibrium), STR (structural failure/deformation), GEO (ground failure/deformation), UPL (uplift/buoyancy), HYD (hydraulic heave/piping/erosion)",
+        "GEO is often the governing state for sizing foundation and retaining-structure elements",
+        "Persistent/transient-situation partial factors come from Annex A; accidental-situation action factors are normally 1.0",
+        "More severe factors than Annex A apply under abnormal risk or difficult conditions; less severe factors may apply for justified temporary/transient situations",
+        "Optional model factors (gamma_Rd, gamma_Sd) may be applied to keep the calculation model accurate or safe-sided"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Annex A (all tables -- the general source of gamma_F/gamma_M/gamma_R values for the five ULS types defined here)"
+      ],
+      "applicability": "The top-level ULS taxonomy that every verification in Sections 6-12 maps onto (e.g. Section 6 bearing/sliding = GEO/STR, Section 10 = HYD/UPL, Section 9 retaining wall overturning = EQU-type)."
+    },
+    {
+      "section_id": "2.4.7.2",
+      "title": "Verification of static equilibrium",
+      "summary": "For EQU verification, the design effect of destabilising actions must not exceed the design effect of stabilising actions plus any design shearing resistance (Eq. 2.4), using the Annex A Table A.1/A.2 partial factors for persistent/transient situations. EQU is mainly a structural-design concern (rare in pure geotechnical design, e.g. a rigid foundation on rock) and distinct from overall-stability/buoyancy problems; any included shearing resistance should be of only minor importance.",
+      "body": "When considering a limit state of static equilibrium or overall displacement of the structure or ground (EQU), it shall be verified that Edst;d <= Estb;d + Td (Eq. 2.4), where Edst;d is the design effect of destabilising actions, Estb;d is the design effect of stabilising actions, and Td is the design value of any total shearing resistance mobilised. The partial factors for persistent and transient situations defined in A.2(1)P and A.2(2)P (Tables A.1 and A.2) shall be used. EQU is mainly relevant in structural design; in geotechnical design, EQU verification is limited to rare cases such as a rigid foundation bearing on rock, and is in principle distinct from overall stability or buoyancy problems. If any shearing resistance Td is included, it should be of minor importance.",
+      "key_points": [
+        "Eq. 2.4: Edst;d <= Estb;d + Td -- destabilising design effect must not exceed stabilising design effect plus any shear resistance",
+        "Uses Table A.1 (actions) and Table A.2 (soil parameters) partial factors",
+        "EQU geotechnical application is rare (e.g. rigid foundation on rock); distinct from overall stability (Section 11) or buoyancy (UPL, 2.4.7.4) checks",
+        "Any included shearing resistance Td should be of only minor importance to the equilibrium check"
+      ],
+      "equations": [
+        {
+          "id": "Eq. 2.4",
+          "description": "Static equilibrium (EQU) verification: Edst;d <= Estb;d + Td, i.e. the design effect of destabilising actions must not exceed the design effect of stabilising actions plus any design shearing resistance. Edst;d and Estb;d are themselves combinations of design action values via gamma_G;dst/stb and gamma_Q;dst/stb (Eq. 2.4a/2.4b).",
+          "implemented_in": null
+        }
+      ],
+      "figures": [],
+      "tables": [
+        "Table A.1 - Partial factors on actions (gamma_F) for EQU",
+        "Table A.2 - Partial factors for soil parameters (gamma_M) for EQU"
+      ],
+      "applicability": "Rarely governing in pure geotechnical design; relevant for rigid foundations bearing on rock or similar overturning/equilibrium checks distinct from overall slope stability or buoyancy."
+    },
+    {
+      "section_id": "2.4.7.3.1",
+      "title": "General",
+      "summary": "For STR/GEO limit states (rupture or excessive deformation of a structural element or ground section), the design effect of actions must not exceed the design resistance (Eq. 2.5) -- the master inequality that Design Approaches 1-3 (2.4.7.3.4) each implement with different partial-factor placements.",
+      "body": "When considering a limit state of rupture or excessive deformation of a structural element or section of the ground (STR and GEO), it shall be verified that Ed <= Rd (Eq. 2.5), i.e. the design value of the effect of actions does not exceed the design value of the resistance.",
+      "key_points": [
+        "Eq. 2.5: Ed <= Rd -- the master STR/GEO verification inequality",
+        "Design Approaches 1, 2, and 3 (2.4.7.3.4) are three different, standard-permitted ways to compute Ed and Rd for this same inequality"
+      ],
+      "equations": [
+        {
+          "id": "Eq. 2.5",
+          "description": "STR/GEO ultimate limit state verification: Ed <= Rd, the design effect of actions must not exceed the design resistance.",
+          "implemented_in": null
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "The master inequality underlying every bearing capacity, sliding, pile capacity, anchorage, and retaining-structure ULS check in Sections 6-9."
+    },
+    {
+      "section_id": "2.4.7.3.2",
+      "title": "Design effects of actions",
+      "summary": "Partial factors on actions may be applied either to the actions themselves before evaluating effects (Eq. 2.6a) or directly to the effects of representative actions (Eq. 2.6b); the latter avoids unreasonable/impossible design values that can arise when factoring soil/water-derived actions directly. Uses Annex A Tables A.3/A.4 partial factors.",
+      "body": "Partial factors on actions may be applied either to the actions themselves (Frep), giving Eq. (2.6a): Ed = E{gamma_F * Frep; Xd; ad}, or to their effects (E), giving Eq. (2.6b): Ed = gamma_E * E{Frep; Xd; ad}. In some design situations, applying partial factors to actions coming from or through the soil (such as earth or water pressures) could produce design values that are unreasonable or even physically impossible; in these situations the factors may instead be applied directly to the effects of actions derived from representative action values. The partial factors defined in A.3.1(1)P and A.3.2(1)P (Tables A.3 and A.4) shall be used in Eq. 2.6a/2.6b.",
+      "key_points": [
+        "Eq. 2.6a: Ed = E{gamma_F * Frep; Xd; ad} -- factor the actions, then evaluate the effect",
+        "Eq. 2.6b: Ed = gamma_E * E{Frep; Xd; ad} -- evaluate the effect of representative actions, then factor the effect",
+        "Factoring ground-derived actions (earth/water pressure) directly can give unreasonable/impossible values -- factor the effects instead in those cases",
+        "Uses Table A.3 (gamma_F/gamma_E, sets A1/A2) and Table A.4 (gamma_M, sets M1/M2)"
+      ],
+      "equations": [
+        {
+          "id": "Eq. 2.6a",
+          "description": "Design effect of actions by factoring the actions before evaluating the effect: Ed = E{gamma_F * Frep; Xd; ad}.",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. 2.6b",
+          "description": "Design effect of actions by factoring the evaluated effect of representative actions: Ed = gamma_E * E{Frep; Xd; ad}.",
+          "implemented_in": null
+        }
+      ],
+      "figures": [],
+      "tables": [
+        "Table A.3 - Partial factors on actions (gamma_F) or effects of actions (gamma_E), sets A1/A2",
+        "Table A.4 - Partial factors for soil parameters (gamma_M), sets M1/M2"
+      ],
+      "applicability": "Determines whether a Design Approach factors actions or effects of actions -- directly relevant to earth-pressure and water-pressure-dominated verifications in Sections 9 and 10."
+    },
+    {
+      "section_id": "2.4.7.3.3",
+      "title": "Design resistances",
+      "summary": "Partial factors may be applied to ground properties (X), resistances (R), or both (Eq. 2.7a/b/c) -- the mechanism that differentiates Design Approaches 1-3. Draws on Annex A Tables A.5 (spread foundations), A.6/A.7/A.8 (driven/bored/CFA piles), A.12 (anchorages), A.13 (retaining structures), and A.14 (slopes).",
+      "body": "Partial factors may be applied either to ground properties (X) or resistances (R) or to both, per Eq. (2.7a): Rd = R{Xd; ad}/gamma_Rd, Eq. (2.7b): Rd = R{Fd; Xk; ad}/gamma_R, or Eq. (2.7c): Rd = R{Fd; Xd; ad}. In design procedures where the effects of actions are factored, the partial factor for actions gamma_F = 1.0 (see also Annex B.3(6)). The partial factors defined in A.3.3.1(1)P, A.3.3.2(1)P, A.3.3.4(1)P, A.3.3.5(1)P and A.3.3.6(1)P shall be used in Eq. 2.7a/b/c; the recommended values for the relevant sets are given in Tables A.5, A.6, A.7, A.8, A.12, A.13 and A.14.",
+      "key_points": [
+        "Eq. 2.7a/2.7b/2.7c: three equivalent forms differing in whether gamma_M (on X), gamma_R (on R), or both, is applied",
+        "Where action effects are already factored, gamma_F = 1.0 in the resistance calculation (Annex B.3(6))",
+        "Table A.5 (spread foundations R1-R3), A.6/A.7/A.8 (driven/bored/CFA piles R1-R4), A.12 (anchorages R1-R4), A.13 (retaining structures R1-R3), A.14 (slopes/overall stability R1-R3)"
+      ],
+      "equations": [
+        {
+          "id": "Eq. 2.7a",
+          "description": "Design resistance via factored ground properties: Rd = R{Xd; ad} / gamma_Rd.",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. 2.7b",
+          "description": "Design resistance via factored resistance, characteristic ground properties: Rd = R{Fd; Xk; ad} / gamma_R.",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. 2.7c",
+          "description": "Design resistance via factored ground properties with no separate resistance factor: Rd = R{Fd; Xd; ad}.",
+          "implemented_in": null
+        }
+      ],
+      "figures": [],
+      "tables": [
+        "Table A.5 - Partial resistance factors for spread foundations",
+        "Table A.6 - Partial resistance factors for driven piles",
+        "Table A.7 - Partial resistance factors for bored piles",
+        "Table A.8 - Partial resistance factors for CFA piles",
+        "Table A.12 - Partial resistance factors for pre-stressed anchorages",
+        "Table A.13 - Partial resistance factors for retaining structures",
+        "Table A.14 - Partial resistance factor for slopes and overall stability"
+      ],
+      "applicability": "The mechanism (factor X, factor R, or both) that Design Approaches 1-3 each choose differently; central to every bearing/pile/anchorage/retaining-wall/slope resistance check in Sections 6-9 and 11."
+    },
+    {
+      "section_id": "2.4.7.3.4.1",
+      "title": "General",
+      "summary": "The manner of applying Eq. 2.6/2.7 (factor actions vs. effects; factor properties vs. resistances) is fixed by choosing one of three Design Approaches (1, 2, or 3), which may be nationally prescribed; Annex A groups the partial factors into sets A (actions/effects), M (soil parameters), and R (resistances), selected according to the Design Approach used.",
+      "body": "The manner in which Eq. 2.6 and 2.7 are applied shall be determined using one of three Design Approaches. The way Eq. 2.6/2.7 are applied, and which particular Design Approach is used, may be given in the National annex. Further clarification of the Design Approaches is provided in Annex B. The partial factors in Annex A used in Eq. 2.6 and 2.7 are grouped in sets denoted A (for actions or effects of actions), M (for soil parameters), and R (for resistances), selected according to the Design Approach used.",
+      "key_points": [
+        "One of three Design Approaches (1, 2, 3) must be selected -- typically fixed nationally",
+        "Annex A factors are organized into sets A (actions/effects), M (soil parameters), R (resistances)",
+        "Annex B provides further background/clarification on the three Design Approaches"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Introduces the Design Approach selection that governs every subsequent STR/GEO verification in Sections 6-9 and 11."
+    },
+    {
+      "section_id": "2.4.7.3.4.2",
+      "title": "Design Approach 1",
+      "summary": "Except for axially loaded piles/anchors, DA1 requires checking BOTH Combination 1 (A1+M1+R1, factors on actions and ground strength) and Combination 2 (A2+M2+R1, factors on actions and ground strength with different magnitudes) -- whichever governs; if one clearly governs, the other need not be run. For axially loaded piles/anchors, Combination 2 instead uses A2 + (M1 or M2) + R4 (factors applied to actions, resistances, and sometimes strength parameters), with M1 for calculating pile/anchor resistance and M2 for unfavourable actions on piles (e.g. negative skin friction, transverse loading).",
+      "body": "Except for the design of axially loaded piles and anchors, it shall be verified that a limit state of rupture or excessive deformation will not occur with either of: Combination 1: A1 + M1 + R1; Combination 2: A2 + M2 + R1 (in both, partial factors are applied to actions and to ground strength parameters). For the design of axially loaded piles and anchors, it shall instead be verified with either: Combination 1: A1 + M1 + R1 (partial factors on actions and ground strength parameters); Combination 2: A2 + (M1 or M2) + R4 (partial factors on actions, on ground resistances, and sometimes on ground strength parameters -- set M1 is used for calculating resistances of piles or anchors, and set M2 for calculating unfavourable actions on piles owing to e.g. negative skin friction or transverse loading). If it is obvious that one combination governs the design, calculations for the other need not be carried out; however, different combinations may be critical to different aspects of the same design.",
+      "key_points": [
+        "DA1 Combination 1: A1 + M1 + R1 (factors on actions and ground strength)",
+        "DA1 Combination 2 (general case): A2 + M2 + R1",
+        "DA1 Combination 2 for axially loaded piles/anchors: A2 + (M1 or M2) + R4 -- M1 for pile/anchor resistance, M2 for unfavourable actions on piles (negative skin friction, transverse loading)",
+        "Both combinations must be checked unless one obviously governs; different combinations may govern different aspects of the same design"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table A.3/A.4 (sets A1/A2, M1/M2) and Table A.5/A.6/A.7/A.8/A.12/A.13/A.14 (set R1) for the general case",
+        "Table A.6/A.7/A.8 (set R4) for axially loaded piles/anchors under Combination 2"
+      ],
+      "applicability": "One of the three Design Approach options a National annex may mandate; when in force, governs all STR/GEO checks in Sections 6-9, with a special two-set rule for axially loaded piles/anchors."
+    },
+    {
+      "section_id": "2.4.7.3.4.3",
+      "title": "Design Approach 2",
+      "summary": "DA2 requires a single calculation using Combination A1+M1+R2: partial factors are applied to actions (or effects of actions) and to ground resistances. For slope/overall-stability analyses under DA2, the action effect on the failure surface is multiplied by gamma_E and the shear resistance along the failure surface divided by gamma_R;e.",
+      "body": "It shall be verified that a limit state of rupture or excessive deformation will not occur with the combination: A1 + M1 + R2. In this approach, partial factors are applied to actions or to the effects of actions, and to ground resistances. If this approach is used for slope and overall stability analyses, the resulting effect of the actions on the failure surface is multiplied by gamma_E, and the shear resistance along the failure surface is divided by gamma_R;e.",
+      "key_points": [
+        "DA2: single calculation, combination A1 + M1 + R2",
+        "Factors applied to actions/effects of actions and to ground resistances (not to ground strength parameters -- M1 = 1.0)",
+        "For slope/overall stability under DA2: action effect on failure surface x gamma_E; shear resistance along failure surface / gamma_R;e"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table A.3 (set A1), Table A.4 (set M1), Table A.5/A.6/A.7/A.8/A.12/A.13 (set R2), Table A.14 (set R2 for slopes)"
+      ],
+      "applicability": "One of the three Design Approach options a National annex may mandate; a single-calculation alternative to DA1's two combinations."
+    },
+    {
+      "section_id": "2.4.7.3.4.4",
+      "title": "Design Approach 3",
+      "summary": "DA3 requires a single calculation using Combination (A1 on structural actions, or A2 on geotechnical actions) + M2 + R3: partial factors are applied to actions/effects of actions from the structure and to ground strength parameters. For slope/overall-stability analyses, actions on the soil (structural actions, traffic load) are treated as geotechnical actions using set A2.",
+      "body": "It shall be verified that a limit state of rupture or excessive deformation will not occur with the combination: (A1* or A2 dagger) + M2 + R3, where * denotes structural actions and dagger denotes geotechnical actions. In this approach, partial factors are applied to actions or to the effects of actions from the structure, and to ground strength parameters. For slope and overall stability analyses, actions on the soil (e.g. structural actions, traffic load) are treated as geotechnical actions by using the load-factor set A2.",
+      "key_points": [
+        "DA3: single calculation, combination (A1 on structural actions, or A2 on geotechnical actions) + M2 + R3",
+        "Factors applied to structural actions/their effects and to ground strength parameters (not generally to resistances -- R3 = 1.0 in most tables)",
+        "Slope/overall-stability analyses treat soil-acting loads (structural actions, traffic) as geotechnical actions -> use set A2 for those"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table A.3 (sets A1 structural / A2 geotechnical), Table A.4 (set M2), Table A.5/A.6/A.7/A.8/A.12/A.13 (set R3), Table A.14 (set R3 for slopes)"
+      ],
+      "applicability": "One of the three Design Approach options a National annex may mandate; distinguishes structural- from geotechnical-origin actions for factoring purposes, notably in slope stability (Section 11)."
+    },
+    {
+      "section_id": "2.4.7.4",
+      "title": "Verification procedure and partial factors for uplift",
+      "summary": "Uplift (UPL) verification requires the design destabilising vertical actions (permanent + variable) not exceed the design stabilising permanent vertical actions plus any additional uplift resistance (Eq. 2.8); additional resistance may alternatively be treated as a stabilising action. Uses Annex A Tables A.15 (actions) and A.16 (soil parameters/resistances) partial factors.",
+      "body": "Verification for uplift (UPL) shall be carried out by checking that the design value of the combination of destabilising permanent and variable vertical actions (Vdst;d) is less than or equal to the sum of the design value of stabilising permanent vertical actions (Gstb;d) and the design value of any additional resistance to uplift (Rd): Vdst;d <= Gstb;d + Rd (Eq. 2.8). Additional resistance to uplift may also be treated as a stabilising permanent vertical action (Gstb;d). The partial factors for Gdst;d, Qdst;d, Gstb;d and Rd for persistent and transient situations, defined in A.4(1)P and A.4(2)P, shall be used in Eq. 2.8; the recommended values are given in Tables A.15 and A.16.",
+      "key_points": [
+        "Eq. 2.8: Vdst;d <= Gstb;d + Rd -- destabilising vertical actions must not exceed stabilising actions plus uplift resistance",
+        "Additional uplift resistance may alternatively be folded into Gstb;d as a stabilising action",
+        "Uses Table A.15 (gamma_F for permanent/variable, destabilising/stabilising) and Table A.16 (gamma_M/gamma_R for phi', c', cu, tensile pile resistance, anchorage resistance)"
+      ],
+      "equations": [
+        {
+          "id": "Eq. 2.8",
+          "description": "Uplift (UPL) limit state verification: Vdst;d <= Gstb;d + Rd, the design destabilising vertical actions must not exceed the design stabilising permanent vertical actions plus any additional design uplift resistance.",
+          "implemented_in": null
+        }
+      ],
+      "figures": [],
+      "tables": [
+        "Table A.15 - Partial factors on actions (gamma_F) for UPL",
+        "Table A.16 - Partial factors for soil parameters and resistances for UPL"
+      ],
+      "applicability": "Governs buoyancy/uplift checks for basements, tanks, and other structures subject to net upward water or vertical action -- see also Section 10 (Hydraulic failure)."
+    },
+    {
+      "section_id": "2.4.7.5",
+      "title": "Verification of resistance to failure by heave due to seepage of water in the ground",
+      "summary": "Hydraulic heave (HYD) verification requires, for every relevant soil column, that the design destabilising pore-water pressure (or seepage force) at the column base not exceed the stabilising total vertical stress (or submerged weight) of the column (Eq. 2.9a/2.9b); uses Annex A Table A.17 partial factors.",
+      "body": "When considering a limit state of failure due to heave by seepage of water in the ground (HYD, see 10.3), it shall be verified, for every relevant soil column, that the design value of the destabilising total pore-water pressure (Udst;d) at the bottom of the column, or the design value of the seepage force (Sdst;d) in the column, is less than or equal to the stabilising total vertical stress (sigma_stb;d) at the bottom of the column, or the submerged weight (G'stb;d) of the same column: Udst;d <= sigma_stb;d (Eq. 2.9a), and Sdst;d <= G'stb;d (Eq. 2.9b). The partial factors for Udst;d, sigma_stb;d, Sdst;d and G'stb;d for persistent and transient situations, defined in A.5(1)P, shall be used; the recommended values are given in Table A.17.",
+      "key_points": [
+        "Eq. 2.9a: Udst;d <= sigma_stb;d (pore-pressure form)",
+        "Eq. 2.9b: Sdst;d <= G'stb;d (seepage-force form, equivalent alternative)",
+        "Checked column-by-column for every relevant soil column at risk of heave",
+        "Uses Table A.17 partial factors on permanent/variable, destabilising/stabilising actions"
+      ],
+      "equations": [
+        {
+          "id": "Eq. 2.9a",
+          "description": "Hydraulic heave (HYD) verification, pore-pressure form: Udst;d <= sigma_stb;d for every relevant soil column.",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. 2.9b",
+          "description": "Hydraulic heave (HYD) verification, seepage-force form: Sdst;d <= G'stb;d for every relevant soil column.",
+          "implemented_in": null
+        }
+      ],
+      "figures": [],
+      "tables": [
+        "Table A.17 - Partial factors on actions (gamma_F) for HYD"
+      ],
+      "applicability": "Directly implements the Section 10.3 'Failure by heave' verification for excavations and cofferdams below the water table."
+    },
+    {
+      "section_id": "2.4.8",
+      "title": "Serviceability limit states",
+      "summary": "SLS verification requires the design effect of actions not exceed a limiting design value (Eq. 2.10), normally with partial factors of 1.0; alternatively, a simplified approach may verify that a sufficiently low fraction of ground strength is mobilised to keep deformations within limits, restricted to cases where a deformation value is not itself required and comparable experience exists. Characteristic values should be updated if ground properties may change over the structure's life (e.g. from dewatering or desiccation); limiting deformation values must be agreed during design of the supported structure.",
+      "body": "Verification for serviceability limit states in the ground or in a structural section, element or connection shall either require Ed <= Cd (Eq. 2.10), or be done through the simplified method given in (4). Values of partial factors for SLS should normally be taken as 1.0 (a National annex may set different values). Characteristic values should be changed appropriately if changes of ground properties, e.g. from ground-water lowering or desiccation, may occur during the structure's life. It may be verified that a sufficiently low fraction of the ground strength is mobilised to keep deformations within required serviceability limits, provided this simplified approach is restricted to design situations where a deformation value is not required to check the SLS, and established comparable experience exists with similar ground, structures, and application method. A limiting value for a particular deformation is the value at which an SLS (such as unacceptable cracking or door-jamming) is deemed to occur in the supported structure; this limiting value shall be agreed during the design of the supported structure.",
+      "key_points": [
+        "Eq. 2.10: Ed <= Cd -- design effect of actions must not exceed the limiting design value of the serviceability criterion",
+        "SLS partial factors are normally 1.0",
+        "Simplified 'low mobilised strength fraction' approach is allowed only where no deformation value is required and comparable experience exists",
+        "Characteristic values must be revisited if ground properties may change during the structure's life (dewatering, desiccation)",
+        "Limiting deformation values (e.g. causing cracking or door-jamming) must be agreed with the supported structure's designer"
+      ],
+      "equations": [
+        {
+          "id": "Eq. 2.10",
+          "description": "Serviceability limit state verification: Ed <= Cd, the design effect of actions must not exceed the limiting design value of the relevant serviceability criterion.",
+          "implemented_in": null
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Governs settlement/deformation checks throughout Sections 6 (spread foundations SLS), 7 (pile settlement), and 9 (retaining wall movement), and ties into Annex F (settlement evaluation methods) and Annex H (limiting movement values)."
+    },
+    {
+      "section_id": "2.4.9",
+      "title": "Limiting values for movements of foundations",
+      "summary": "Limiting values must be established for foundation movements, and any differential movement causing deformation in the supported structure must be limited to prevent an SLS there. Selection of limiting values and differential-settlement calculations must account for confidence in the estimate, movement rate, structure/construction-material/foundation/ground type, deformation mode, structure use, and service entry points; absent project-specific limits, Annex H values may be used.",
+      "body": "In foundation design, limiting values shall be established for foundation movements. Any differential movements of foundations leading to deformation in the supported structure shall be limited to ensure they do not cause a limit state in that structure. Selection of design values for limiting movements/deformations shall account for: confidence in specifying the acceptable movement value; the occurrence and rate of ground movements; the type of structure, construction material, and foundation; the type of ground; the mode of deformation; the proposed use of the structure; and the need to avoid problems with services entering the structure. Calculations of differential settlement shall account for: the occurrence and rate of settlements/ground movements; random and systematic variations in ground properties; the loading distribution; the construction method (including loading sequence); and the stiffness of the structure during and after construction. In the absence of specified limiting values of structural deformation for the supported structure, the values of structural deformation and foundation movement given in Annex H may be used.",
+      "key_points": [
+        "Limiting foundation-movement values must be established; differential movement must not cause an SLS in the supported structure",
+        "Selection criteria: confidence in the estimate, movement rate, structure/material/foundation/ground type, deformation mode, structure use, service connections",
+        "Differential settlement calculations account for rate, ground-property variation, loading distribution/sequence, and structure stiffness during/after construction",
+        "Absent project-specific limits, Annex H's structural deformation/foundation movement values may be used"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Annex H (Limiting values of structural deformation and foundation movement) - used when project-specific limits are not otherwise specified"
+      ],
+      "applicability": "Directly ties SLS foundation design (2.4.8, Section 6.6 SLS design of spread foundations) to the quantitative relative-rotation/settlement limits tabulated in Annex H."
+    },
+    {
+      "section_id": "2.5",
+      "title": "Design by prescriptive measures",
+      "summary": "Where calculation models are unavailable or unnecessary, exceeding a limit state may instead be avoided using conventional, generally conservative prescriptive rules plus attention to specification/control of materials, workmanship, protection and maintenance -- particularly useful where comparable experience makes calculation unnecessary, or for durability against frost/chemical/biological attack where direct calculation is not generally appropriate.",
+      "body": "In design situations where calculation models are not available or not necessary, exceeding limit states may be avoided by using prescriptive measures -- conventional and generally conservative design rules, with attention to specification and control of materials, workmanship, protection and maintenance procedures (reference to such conventional rules may be given in the National annex). Design by prescriptive measures may be used where comparable experience (as defined in 1.5.2.2) makes design calculations unnecessary; it may also be used to ensure durability against frost action and chemical or biological attack, for which direct calculations are not generally appropriate.",
+      "key_points": [
+        "Prescriptive measures substitute for calculation where models are unavailable/unnecessary",
+        "Relies on conventional, generally conservative rules plus material/workmanship/protection/maintenance control",
+        "Justified by comparable experience (1.5.2.2), or for durability issues (frost, chemical/biological attack) that resist direct calculation"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "An alternative verification route (per 2.1(4)) to calculation, particularly for Geotechnical Category 1 structures or durability-governed design."
+    },
+    {
+      "section_id": "2.6",
+      "title": "Load tests and tests on experimental models",
+      "summary": "When load tests or model tests justify a design (or complement another 2.1(4) verification route), differences in ground conditions, time effects (test duration vs. actual loading duration), and scale effects (stress level and particle size for small models) must be considered and allowed for.",
+      "body": "When the results of load tests or tests on large- or small-scale models are used to justify a design, or to complement one of the other alternatives mentioned in 2.1(4), the following features shall be considered and allowed for: differences in ground conditions between the test and the actual construction; time effects, especially if the test duration is much less than the actual construction's loading duration; and scale effects, especially for small models, including the effects of stress level together with particle-size effects. Tests may be carried out on a sample of the actual construction, or on full-scale or smaller-scale models.",
+      "key_points": [
+        "Load/model tests may justify a design or complement another 2.1(4) verification method",
+        "Must account for ground-condition differences, time effects (short test duration vs. long-term loading), and scale effects (stress level, particle size)",
+        "Tests may use an actual-construction sample, or full-scale or smaller-scale models"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Governs pile load testing (feeding Annex A Tables A.9-A.11 correlation factors) and any physical model testing used in lieu of or alongside calculation."
+    },
+    {
+      "section_id": "2.7",
+      "title": "Observational method",
+      "summary": "Where geotechnical behaviour is hard to predict, the design may be reviewed during construction ('the observational method'), requiring pre-construction acceptable-behaviour limits, an assessed range of possible behaviour with acceptable-probability justification, a monitoring plan able to detect exceedance early enough for contingency action, sufficiently rapid instrument response/analysis, and a contingency-action plan -- all executed and reassessed as construction proceeds, with monitoring equipment replaced/extended if it proves unreliable or insufficient.",
+      "body": "When prediction of geotechnical behaviour is difficult, it can be appropriate to apply 'the observational method', in which the design is reviewed during construction. Before construction starts, the following requirements shall be met: acceptable limits of behaviour shall be established; the range of possible behaviour shall be assessed, showing an acceptable probability that actual behaviour will stay within acceptable limits; a monitoring plan shall be devised that will reveal whether actual behaviour lies within acceptable limits, clearly and early enough, with sufficiently short intervals, to allow contingency actions to succeed; instrument response time and result-analysis procedures shall be sufficiently rapid relative to the system's possible evolution; and a plan of contingency actions shall be devised for adoption if monitoring reveals behaviour outside acceptable limits. During construction, monitoring shall be carried out as planned; results shall be assessed at appropriate stages, with planned contingency actions triggered if behaviour limits are exceeded. Monitoring equipment shall be replaced or extended if it fails to supply reliable data of the appropriate type or in sufficient quantity.",
+      "key_points": [
+        "Applies when geotechnical behaviour is difficult to predict; design is reviewed during construction",
+        "Pre-construction requirements: acceptable behaviour limits, assessed behaviour range with acceptable probability, a monitoring plan, sufficiently rapid instrumentation/analysis, and a contingency-action plan",
+        "During construction: monitor as planned, assess at appropriate stages, trigger contingency actions if limits are exceeded",
+        "Unreliable or insufficient monitoring equipment must be replaced or extended"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Alternative/complementary verification route (2.1(4)) especially relevant to Geotechnical Category 3 works or ground conditions with high prediction uncertainty."
+    },
+    {
+      "section_id": "2.8",
+      "title": "Geotechnical Design Report",
+      "summary": "Design assumptions, data, calculation methods and verification results must be recorded in a Geotechnical Design Report, whose detail scales with the design's complexity (a single sheet may suffice for simple designs); it should cross-reference the Ground Investigation Report and include a supervision/monitoring plan, with post-construction checks recorded in an addendum and a supervision/monitoring/maintenance extract provided to the owner/client.",
+      "body": "The assumptions, data, methods of calculation, and results of the verification of safety and serviceability shall be recorded in the Geotechnical Design Report. The level of detail varies greatly with design type -- a single sheet may suffice for simple designs. The Report should normally include, cross-referenced to the Ground Investigation Report (3.4) and other supporting documents: a description of the site and surroundings; a description of ground conditions; a description of the proposed construction, including actions; design values of soil/rock properties with justification as appropriate; statements on codes/standards applied; statements on site suitability and acceptable risk level; geotechnical design calculations and drawings; foundation design recommendations; and a note of items to be checked during construction or requiring maintenance/monitoring. The Report shall include a supervision and monitoring plan, clearly identifying items requiring construction checks or post-construction maintenance; completed checks shall be recorded in an addendum to the Report. Regarding supervision/monitoring, the Report should state: the purpose of each observation/measurement set; which structure parts are monitored and observation locations; reading frequency; how results will be evaluated; the expected range of results; how long post-construction monitoring continues; and the parties responsible for measurement, interpretation, and instrument maintenance. An extract from the Report containing the supervision/monitoring/maintenance requirements for the completed structure shall be provided to the owner/client.",
+      "key_points": [
+        "Geotechnical Design Report records assumptions, data, calculation methods, and safety/serviceability verification results",
+        "Detail scales with design complexity -- a single sheet may suffice for simple designs",
+        "Should cross-reference the Ground Investigation Report (3.4) and cover site/ground/construction description, design parameter justification, calculations, drawings, and recommendations",
+        "Must include a supervision/monitoring plan; completed construction checks are recorded in an addendum",
+        "An owner/client-facing extract must cover post-construction supervision, monitoring, and maintenance requirements"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "The deliverable that closes out the Section 2 design-basis framework; every subsequent Section's calculations and Annex-derived factors ultimately get recorded here."
+    }
+  ]
+}

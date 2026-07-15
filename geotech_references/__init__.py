@@ -23,4 +23,13 @@ fhwa_pavements : FHWA-NHI-05-037 — Geotechnical Aspects of Pavements (resilien
              modulus Mr, CBR, soil-as-pavement-material suitability, drainage,
              frost susceptibility, swell, stabilization, compaction; DISTINCT
              from the UFC 3-250-01 roads/parking design module ``ufc_pavement``)
+eurocode_7_1 : EN 1997-1:2004 — Eurocode 7 Geotechnical Design Part 1, General
+             Rules (Annex A partial-factor sets A/M/R + Design Approaches,
+             sample earth pressures, bearing resistance, settlement)
+eurocode_7_2 : EN 1997-2:2007 — Eurocode 7 Part 2, Ground Investigation and
+             Testing (CPT/PMT/SPT/DP/FVT/DMT/PLT derived-value correlations,
+             lab-test minima)
+aashto_1993 : AASHTO Guide for Design of Pavement Structures (1993) — flexible
+             SN + rigid D design equations, layer coefficients, reliability,
+             drainage, ESAL factors (US customary units)
 """

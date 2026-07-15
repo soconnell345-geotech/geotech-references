@@ -1,0 +1,66 @@
+{
+  "reference_id": "EN 1997-1:2004",
+  "reference_title": "Eurocode 7: Geotechnical Design - Part 1: General Rules",
+  "volume": null,
+  "chapter": 16,
+  "chapter_title": "Annex D (informative): A sample analytical method for bearing resistance calculation",
+  "sections": [
+    {
+      "section_id": "16-1",
+      "title": "Annex D.1-D.2: Symbols and General",
+      "summary": "Defines the symbols used throughout Annex D's bearing-resistance method (effective foundation area A'=B'*L', base inclination factors b, embedment depth D, load eccentricity e, load inclination factors i, bearing capacity factors N, overburden pressure q, shape factors s, vertical load V, base inclination alpha, weight density gamma' -- notation per Figure D.1). States the approximate bearing-resistance equations must allow for ground strength, load eccentricity/inclination, foundation shape/depth/inclination, ground-surface inclination, water pressures/gradients, and ground variability (layering).",
+      "body": "Annex D.1 lists the symbols used in Annex D: A' = B'*L' is the design effective foundation area; b (with subscripts c, q, gamma) are the design values of the base-inclination factors; B is the foundation width and B' the effective foundation width; D is the embedment depth; e (with subscripts B, L) is the eccentricity of the resultant action; i (with subscripts c, q, gamma) are the load inclination factors; L is the foundation length and L' the effective foundation length; m is the exponent in the load-inclination-factor formulas; N (with subscripts c, q, gamma) are the bearing capacity factors; q is the overburden or surcharge pressure at the foundation base level, and q' its design effective value; s (with subscripts c, q, gamma) are the shape factors of the foundation base; V is the vertical load; alpha is the inclination of the foundation base to the horizontal; gamma' is the design effective weight density of the soil below the foundation level; theta is the direction angle of the horizontal load H. The notations are illustrated in Figure D.1. Annex D.2 states that approximate equations for the design vertical bearing resistance, derived from plasticity theory and experimental results, may be used, with allowance made for: the strength of the ground, generally represented by the design values of cu, c', and phi'; the eccentricity and inclination of design loads; the shape, depth, and inclination of the foundation; the inclination of the ground surface; ground-water pressures and hydraulic gradients; and the variability of the ground, especially layering.",
+      "key_points": [
+        "A' = B'*L' is the design effective foundation area (effective width B' and effective length L' account for load eccentricity)",
+        "Subscripted factors b, i, N, s (with c/q/gamma subscripts) are base-inclination, load-inclination, bearing-capacity, and shape factors respectively",
+        "alpha = base inclination to horizontal; theta = direction angle of horizontal load H; m = exponent in the load-inclination formulas",
+        "Bearing-resistance equations must allow for: ground strength (cu, c', phi'), load eccentricity/inclination, foundation shape/depth/inclination, ground-surface inclination, water pressures/gradients, and ground variability/layering"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure D.1: Notations for the Annex D bearing-resistance method"
+      ],
+      "tables": [],
+      "applicability": "Symbol reference and scope statement for the Annex D analytical bearing-resistance method, needed before applying D.3 (undrained) or D.4 (drained)."
+    },
+    {
+      "section_id": "16-2",
+      "title": "Annex D.3: Undrained conditions",
+      "summary": "Design bearing resistance in undrained conditions: R/A' = (pi+2)*cu*bc*sc*ic + q (Eq. D.1), with base-inclination factor bc = 1 - 2*alpha/(pi+2), shape factor sc = 1+0.2*(B'/L') for a rectangle or 1.2 for square/circular, and load-inclination factor ic = 0.5*(1+sqrt(1-H/(A'*cu))) valid for H <= A'*cu. Fully implemented as undrained_bearing_resistance.",
+      "body": "In undrained conditions, the design bearing resistance may be calculated from R/A' = (pi+2)*cu*bc*sc*ic + q (Eq. D.1), where q is the design effective overburden pressure at the foundation base level and the dimensionless factors are: the base-inclination factor bc = 1 - 2*alpha/(pi+2), where alpha is the inclination of the foundation base to the horizontal; the shape factor sc = 1 + 0.2*(B'/L') for a rectangular foundation, or sc = 1.2 for a square or circular shape; and the load-inclination factor, caused by a horizontal load H, ic = 0.5*(1 + sqrt(1 - H/(A'*cu))), valid for H <= A'*cu (beyond that limit the inclination factor is undefined -- the base would be sliding). The bearing capacity factor for undrained conditions is Nc = pi+2 (approximately 5.14), reflecting the classical Prandtl mechanism for a purely cohesive material.",
+      "key_points": [
+        "R/A' = (pi+2)*cu*bc*sc*ic + q (Eq. D.1); Nc = pi+2 = 5.14 (Prandtl mechanism)",
+        "Base-inclination factor bc = 1 - 2*alpha/(pi+2)",
+        "Shape factor sc = 1 + 0.2*(B'/L') [rectangular] or 1.2 [square/circular]",
+        "Load-inclination factor ic = 0.5*(1 + sqrt(1 - H/(A'*cu))), requires H <= A'*cu",
+        "Fully implemented as undrained_bearing_resistance"
+      ],
+      "equations": [
+        {"id": "Eq. D.1", "description": "Undrained design bearing resistance: R/A' = (pi+2)*cu*bc*sc*ic + q.", "implemented_in": "geotech_references.eurocode_7_1.equations.undrained_bearing_resistance"}
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Design bearing resistance of a shallow foundation on saturated fine-grained soil under undrained (short-term, total-stress) loading."
+    },
+    {
+      "section_id": "16-3",
+      "title": "Annex D.4: Drained conditions",
+      "summary": "Design bearing resistance in drained conditions: R/A' = c'*Nc*bc*sc*ic + q'*Nq*bq*sq*iq + 0.5*gamma'*B'*Ngamma*bgamma*sgamma*igamma (Eq. D.2), with Nq = e^(pi*tan(phi'))*tan^2(45+phi'/2), Nc = (Nq-1)*cot(phi'), Ngamma = 2*(Nq-1)*tan(phi') (rough base, delta>=phi'/2); base-inclination bq=bgamma=(1-alpha*tan(phi'))^2, bc=bq-(1-bq)/(Nc*tan(phi')); shape sq, sgamma, sc by rectangular/square-circular form; load-inclination iq, igamma, ic via exponent m (mB or mL). Fully implemented as bearing_capacity_factors and drained_bearing_resistance.",
+      "body": "In drained conditions, the design bearing resistance may be calculated from R/A' = c'*Nc*bc*sc*ic + q'*Nq*bq*sq*iq + 0.5*gamma'*B'*Ngamma*bgamma*sgamma*igamma (Eq. D.2), with the design values of the dimensionless factors: bearing-capacity factors Nq = e^(pi*tan(phi'))*tan^2(45deg + phi'/2), Nc = (Nq-1)*cot(phi'), and Ngamma = 2*(Nq-1)*tan(phi') (for a rough base, where the wall/base friction angle delta >= phi'/2); base-inclination factors bq = bgamma = (1 - alpha*tan(phi'))^2 and bc = bq - (1-bq)/(Nc*tan(phi')); shape factors sq = 1 + (B'/L')*sin(phi') for a rectangular foundation or 1+sin(phi') for square/circular, sgamma = 1 - 0.3*(B'/L') for rectangular or 0.7 for square/circular, and sc = (sq*Nq - 1)/(Nq - 1) for any of the three shapes; and load-inclination factors, caused by a horizontal load H, ic = iq - (1-iq)/(Nc*tan(phi')), iq = [1 - H/(V + A'*c'*cot(phi'))]^m, and igamma = [1 - H/(V + A'*c'*cot(phi'))]^(m+1), where the exponent m = mB = [2+(B'/L')]/[1+(B'/L')] when H acts in the direction of B', or m = mL = [2+(L'/B')]/[1+(L'/B')] when H acts in the direction of L' (a more general formula, not fully legible in the source, applies when H acts at an angle theta to the direction of L'). All primed quantities (B', L', A', c', gamma', q') denote design effective values as defined in D.1.",
+      "key_points": [
+        "R/A' = c'*Nc*bc*sc*ic + q'*Nq*bq*sq*iq + 0.5*gamma'*B'*Ngamma*bgamma*sgamma*igamma (Eq. D.2)",
+        "Nq = e^(pi*tan(phi'))*tan^2(45deg+phi'/2); Nc = (Nq-1)*cot(phi'); Ngamma = 2*(Nq-1)*tan(phi') for a rough base (delta>=phi'/2)",
+        "Base inclination: bq = bgamma = (1-alpha*tan(phi'))^2; bc = bq - (1-bq)/(Nc*tan(phi'))",
+        "Shape: sq=1+(B'/L')*sin(phi') [rect] or 1+sin(phi') [sq/circ]; sgamma=1-0.3*(B'/L') [rect] or 0.7 [sq/circ]; sc=(sq*Nq-1)/(Nq-1) for any shape",
+        "Load inclination: iq=[1-H/(V+A'c'cot(phi'))]^m, igamma=[1-H/(...)]^(m+1), ic=iq-(1-iq)/(Nc*tan(phi')); m=mB or mL depending on load direction",
+        "Fully implemented as bearing_capacity_factors (Nq, Nc, Ngamma) and drained_bearing_resistance (complete Eq. D.2)"
+      ],
+      "equations": [
+        {"id": "Eq. D.2", "description": "Drained design bearing resistance: R/A' = c'*Nc*bc*sc*ic + q'*Nq*bq*sq*iq + 0.5*gamma'*B'*Ngamma*bgamma*sgamma*igamma, with Nq/Nc/Ngamma, base-inclination, shape, and load-inclination factors as defined.", "implemented_in": "geotech_references.eurocode_7_1.equations.drained_bearing_resistance"}
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Design bearing resistance of a shallow foundation on cohesive-frictional soil under drained (long-term, effective-stress) loading, including eccentric/inclined loads."
+    }
+  ]
+}

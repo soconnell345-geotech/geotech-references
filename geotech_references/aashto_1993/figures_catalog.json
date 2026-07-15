@@ -1,0 +1,200 @@
+{
+  "reference_id": "AASHTO Guide for Design of Pavement Structures",
+  "reference_title": "AASHTO Guide for Design of Pavement Structures, 1993 Edition",
+  "package": "aashto_1993",
+  "volume": null,
+  "pdf_path": "docs/aashto1993.pdf",
+  "figure_count": 21,
+  "note": "This document has NO front-matter 'List of Figures' section (confirmed: the Table of Contents goes directly from Executive Summary to Part I). Unlike other references in this repo, this catalog was NOT built from a List of Figures -- it was hand-built during content-driven reading of Part I Ch.4 (Reliability), Part II Ch.2-3 (Design Requirements / Structural Design, the core design nomographs), and one figure each from Appendices D and G. Every entry's pdf_page_index was directly verified by rendering that page (page_estimated is false for all entries). Coverage is a deliberate subset, not the full ~150+ figures in the guide (Parts III/IV and most appendices are not catalogued).",
+  "figures": [
+    {
+      "figure_number": "4.1",
+      "caption": "Serviceability Index (p) Versus Equivalent Load Applications (N)",
+      "chapter": "I-4",
+      "pdf_page_index": 76,
+      "printed_page": "I-55",
+      "page_estimated": false,
+      "description": "Defines the basic points (p1, pt, Nt) on the pavement serviceability history curve used throughout the Part I reliability derivation."
+    },
+    {
+      "figure_number": "4.2",
+      "caption": "Basic Points and Deviations for Design-Performance Reliability",
+      "chapter": "I-4",
+      "pdf_page_index": 79,
+      "printed_page": "I-58",
+      "page_estimated": false,
+      "description": "Shows the four basic ESAL/log-ESAL points (Nt, wT, Wt, Nt) and the Level-0/Level-1 basic deviations (traffic prediction error, reliability design factor log FR, performance prediction error) that compose the reliability framework."
+    },
+    {
+      "figure_number": "4.3",
+      "caption": "Basic Probability Distributions for Design-Performance Reliability",
+      "chapter": "I-4",
+      "pdf_page_index": 80,
+      "printed_page": "I-59",
+      "page_estimated": false,
+      "description": "Normal probability distributions for the traffic-prediction and performance-prediction chance deviations, and their sum (overall deviation delta_o)."
+    },
+    {
+      "figure_number": "4.4",
+      "caption": "Definition of Reliability and Evaluation of Reliability Design Factor",
+      "chapter": "I-4",
+      "pdf_page_index": 82,
+      "printed_page": "I-61",
+      "page_estimated": false,
+      "description": "Derives ZR = (-log FR)/So and FR = 10^(-ZR*So) from the overall deviation distribution; reliability level R = 100*Prob[delta_o >= 0]. Basis for Table 4.1 (standard_normal_deviate_zr)."
+    },
+    {
+      "figure_number": "4.5",
+      "caption": "Illustration of Approach to Identifying the Optimum Reliability Level for a Given Facility",
+      "chapter": "I-4",
+      "pdf_page_index": 85,
+      "printed_page": "I-64",
+      "page_estimated": false,
+      "description": "Qualitative cost-vs-reliability curves (initial cost increasing, future/distress cost decreasing, total cost minimized) illustrating why an 'optimum' reliability level exists for a given project's usage/risk."
+    },
+    {
+      "figure_number": "2.1",
+      "caption": "Example Plot of Cumulative 18-kip ESAL Traffic Versus Time",
+      "chapter": "II-2",
+      "pdf_page_index": 97,
+      "printed_page": "II-8",
+      "page_estimated": false,
+      "description": "Worked example converting a cumulative-traffic-vs-time curve into the design ESAL value used for stage construction / rehabilitation timing analysis."
+    },
+    {
+      "figure_number": "2.2",
+      "caption": "A Conceptual Example of the Environmental Serviceability Loss Versus Time Graph that may be Developed for a Specific Location",
+      "chapter": "II-2",
+      "pdf_page_index": 100,
+      "printed_page": "II-11",
+      "page_estimated": false,
+      "description": "Shows cumulative serviceability loss from swelling and frost heave (summed to total environmental loss) versus time; used in the Table 3.1 stage-construction iterative procedure for roadbed swelling/frost heave."
+    },
+    {
+      "figure_number": "2.3",
+      "caption": "Chart for Estimating Effective Roadbed Soil Resilient Modulus for Flexible Pavements Designed Using the Serviceability Criteria",
+      "chapter": "II-2",
+      "pdf_page_index": 103,
+      "printed_page": "II-14",
+      "page_estimated": false,
+      "description": "Nomograph pairing monthly roadbed Mr with relative damage uf via uf=1.18e8*MR^-2.32 (digitized exactly in equations.relative_damage_uf); averaging uf over 12 months and inverting gives the effective design MR."
+    },
+    {
+      "figure_number": "2.4",
+      "caption": "Chart for Estimating Effective Roadbed Soil Resilient Modulus for Flexible Pavements Designed Using the Serviceability Criteria (worked example)",
+      "chapter": "II-2",
+      "pdf_page_index": 104,
+      "printed_page": "II-15",
+      "page_estimated": false,
+      "description": "Fully worked 12-month example: monthly MR values (20000,20000,2500,4000,4000,7000,7000,7000,7000,7000,4000,20000 psi), sum(uf)=3.72, avg uf=0.31 -> effective MR=5,000 psi. Validation anchor for equations.effective_roadbed_resilient_modulus."
+    },
+    {
+      "figure_number": "2.5",
+      "caption": "Chart for Estimating Structural Layer Coefficient of Dense-Graded Asphalt Concrete Based on the Elastic (Resilient) Modulus",
+      "chapter": "II-2",
+      "pdf_page_index": 107,
+      "printed_page": "II-18",
+      "page_estimated": false,
+      "description": "a1 vs EAC (psi) curve, 100,000-500,000 psi (dashed extrapolation above ~420,000 psi, with the guide cautioning against modulus values above 450,000 psi). Digitized as 9 interpolation anchor points in tables.layer_coefficient_a1_asphalt."
+    },
+    {
+      "figure_number": "2.6",
+      "caption": "Variation in Granular Base Layer Coefficient (a2) with Various Base Strength Parameters",
+      "chapter": "II-2",
+      "pdf_page_index": 108,
+      "printed_page": "II-19",
+      "page_estimated": false,
+      "description": "5-scale alignment nomograph (a2, CBR, R-value, Texas Triaxial class, elastic modulus). Superseded in this module by the printed closed-form regression on the following page: a2=0.249*log10(EBS)-0.977 (equations.layer_coefficient_a2_granular_base), verified against the chart's own worked check (EBS=30,000 psi -> a2=0.14)."
+    },
+    {
+      "figure_number": "2.7",
+      "caption": "Variation in Granular Subbase Layer Coefficient (a3) with Various Subbase Strength Parameters",
+      "chapter": "II-2",
+      "pdf_page_index": 110,
+      "printed_page": "II-21",
+      "page_estimated": false,
+      "description": "Same 5-scale alignment-nomograph style as Figure 2.6, for subbase. Superseded by the printed closed-form regression a3=0.227*log10(ESB)-0.839 (equations.layer_coefficient_a3_granular_subbase), verified against the chart's own worked check (ESB=15,000 psi -> a3=0.11)."
+    },
+    {
+      "figure_number": "2.8",
+      "caption": "Variation in a2 for Cement-Treated Bases with Base Strength Parameter",
+      "chapter": "II-2",
+      "pdf_page_index": 112,
+      "printed_page": "II-23",
+      "page_estimated": false,
+      "description": "Alignment nomograph, a2 vs 7-day unconfined compressive strength (and an alternate elastic modulus scale). No printed closed-form equation; digitized at 3 dashed cross-alignment points in tables.layer_coefficient_a2_cement_treated."
+    },
+    {
+      "figure_number": "2.9",
+      "caption": "Variation in a2 for Bituminous-Treated Bases with Base Strength Parameter",
+      "chapter": "II-2",
+      "pdf_page_index": 113,
+      "printed_page": "II-24",
+      "page_estimated": false,
+      "description": "Alignment nomograph, a2 vs Marshall stability (and an alternate elastic modulus scale). Digitized at 3 dashed cross-alignment points in tables.layer_coefficient_a2_bituminous_treated."
+    },
+    {
+      "figure_number": "3.1",
+      "caption": "Design Chart for Flexible Pavements Based on Using Mean Values for Each Input",
+      "chapter": "II-3",
+      "pdf_page_index": 121,
+      "printed_page": "II-32",
+      "page_estimated": false,
+      "description": "THE core flexible design nomograph, printed with its solved equation log10(W18)=ZR*So+9.36*log10(SN+1)-0.20+[log10(dPSI/2.7)]/[0.40+1094/(SN+1)^5.19]+2.32*log10(MR)-8.07, plus a worked example (W18=5e6, R=95%, So=0.35, MR=5000psi, dPSI=1.9 -> SN=5.0). Digitized exactly in equations.flexible_w18_from_sn / flexible_sn_from_w18."
+    },
+    {
+      "figure_number": "3.2",
+      "caption": "Procedure for Determining Thicknesses of Layers Using a Layered Analysis Approach",
+      "chapter": "II-3",
+      "pdf_page_index": 125,
+      "printed_page": "II-36",
+      "page_estimated": false,
+      "description": "D*1>=SN1/a1, D*2>=(SN2-SN1*)/(a2*m2), D*3>=(SN3-(SN1*+SN2*))/(a3*m3) minimum-thickness cascade. Digitized in equations.minimum_layer_thicknesses."
+    },
+    {
+      "figure_number": "3.3",
+      "caption": "Chart for Estimating Composite Modulus of Subgrade Reaction, k(infinity), Assuming a Semi-Infinite Subgrade Depth",
+      "chapter": "II-3",
+      "pdf_page_index": 127,
+      "printed_page": "II-39",
+      "page_estimated": false,
+      "description": "4-quadrant nomograph (subbase modulus/thickness -> composite k, semi-infinite subgrade). NOT digitized as a closed-form/tabulated function (the guide's simplified relation k=MR/19.4 used instead, equations.modulus_subgrade_reaction_simple, for the no-subbase case); the full seasonal composite-k procedure (Table 3.2 + Figures 3.3-3.6) requires the printed nomographs directly."
+    },
+    {
+      "figure_number": "3.7",
+      "caption": "Design Chart for Rigid Pavement Based on Using Mean Values for Each Input Variable (Segment 1)",
+      "chapter": "II-3",
+      "pdf_page_index": 134,
+      "printed_page": "II-45",
+      "page_estimated": false,
+      "description": "First segment of THE core rigid design nomograph, printed with its solved equation and a worked example (k=72pci, Ec=5e6psi, Sc'=650psi, J=3.2, Cd=1.0, So=0.29, R=95%, dPSI=1.7, W18=5.1e6 -> D=10.0in). Digitized exactly in equations.rigid_w18_from_d / rigid_d_from_w18."
+    },
+    {
+      "figure_number": "3.7-2",
+      "caption": "Continued--Design Chart for Rigid Pavements Based on Using Mean Values for Each Input Variable (Segment 2)",
+      "chapter": "II-3",
+      "pdf_page_index": 135,
+      "printed_page": "II-46",
+      "page_estimated": false,
+      "description": "Second segment of the rigid design nomograph (design slab thickness D vs W18 traffic, reliability/So); completes the Figure 3.7 worked example (D=10.0 in)."
+    },
+    {
+      "figure_number": "D.1",
+      "caption": "Computation of the Truck Load Factor for 5 Axle or Greater Trucks on Flexible Pavements with an SN = 5 and a Terminal Serviceability of 2.5",
+      "chapter": "D",
+      "pdf_page_index": 380,
+      "printed_page": "D-21",
+      "page_estimated": false,
+      "description": "Worked example converting a W-4 axle-weight distribution into a single truck load factor using Table D.4 load equivalency factors, illustrating the Appendix D ESAL-conversion workflow (see tables.esal_flexible_single_axle/tandem_axle for the digitized SN=5, pt=2.5 factors)."
+    },
+    {
+      "figure_number": "G.4",
+      "caption": "Chart for Estimating Serviceability Loss Due to Roadbed Swelling",
+      "chapter": "G",
+      "pdf_page_index": 400,
+      "printed_page": "G-7",
+      "page_estimated": false,
+      "description": "Nomograph solving dPSI_sw = 0.00335*VR*Ps*(1-e^(-theta*t)) for serviceability loss from roadbed swelling, given swell rate constant theta, swell probability Ps, potential vertical rise VR, and time t. Not digitized as a callable function (Part I/Appendix G environmental-loss detail is out of this module's core scope); referenced from text/chapter1.json (Part I Section 1.7 Environment)."
+    }
+  ]
+}

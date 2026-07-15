@@ -1,0 +1,31 @@
+{
+  "reference_id": "EN 1997-1:2004",
+  "reference_title": "Eurocode 7: Geotechnical Design - Part 1: General Rules",
+  "volume": null,
+  "chapter": 19,
+  "chapter_title": "Annex G (informative): A sample method for deriving presumed bearing resistance for spread foundations on rock",
+  "sections": [
+    {
+      "section_id": "19-1",
+      "title": "Annex G: Presumed bearing resistance on weak/broken rock",
+      "summary": "For weak and broken rocks with tight joints (incl. chalk with porosity < 35%), presumed bearing resistance may be read from the Figure G.1 nomograph (uniaxial compressive strength qu vs. discontinuity spacing ds), grouped by rock type per Table G.1 (Groups 1-4, strongest to weakest), assuming the structure tolerates settlement up to 0.5% of foundation width; scale proportionally for other settlement tolerances. Reduce presumed pressure for open/infilled joints. Table G.1 implemented as table_g_1_rock_group; Figure G.1 is a nomograph, not digitized as a function.",
+      "body": "For weak and broken rocks with tight joints, including chalk with porosity less than 35%, the presumed bearing resistance may be derived from Figure G.1 (from BS 8004). This is based on the rock grouping given in Table G.1, with the assumption that the structure can tolerate settlements equal to 0.5% of the foundation width; values of presumed bearing resistance for other settlement tolerances may be derived by direct proportion. For weak and broken rocks with open or infilled joints, reduced values of presumed bearing pressure should be used instead of the chart values (which assume tight joints). Table G.1 groups weak and broken rock types into four groups by expected strength/quality: Group 1 (strongest) -- pure limestones and dolomites, carbonate sandstones of low porosity; Group 2 -- igneous rocks, oolitic and marly limestones, well-cemented sandstones, indurated carbonate mudstones, metamorphic rocks including slates and schist with flat cleavage/foliation; Group 3 -- very marly limestones, poorly cemented sandstones, slates and schists with steep cleavage/foliation; Group 4 (weakest) -- uncemented mudstones and shales. Figure G.1 is a nomograph plotting allowable/presumed bearing pressure against uniaxial compressive strength qu (abscissa, MPa, log scale) and discontinuity spacing ds (ordinate, mm, log scale), with separate panels or curve families for each of the four rock groups and for qualitative bearing categories (very weak, weak, moderately weak, moderately strong, strong rock) crossed with discontinuity spacing categories (closely, medium, and widely spaced discontinuities). The allowable bearing pressure is not to exceed the uniaxial compressive strength of the rock if joints are tight, or 50% of that value if joints are open. Zones on the chart requiring inspection and/or rock testing before use are hatched.",
+      "key_points": [
+        "Presumed bearing resistance for weak/broken tight-jointed rock (incl. chalk porosity<35%) from Figure G.1, based on the Table G.1 rock grouping",
+        "Chart basis: settlement tolerance of 0.5% of foundation width; scale proportionally for other tolerances",
+        "Open/infilled joints require REDUCED presumed bearing pressure relative to the tight-joint chart values",
+        "Table G.1 groups (1=strongest..4=weakest): pure limestone/dolomite; igneous/oolitic-marly limestone/well-cemented sandstone/flat-cleavage metamorphics; very marly limestone/poorly cemented sandstone/steep-cleavage slate-schist; uncemented mudstone/shale",
+        "Allowable bearing pressure capped at qu (tight joints) or 0.5*qu (open joints)",
+        "Table G.1 implemented as table_g_1_rock_group; Figure G.1 (nomograph) is cataloged for vision read-off, not digitized as a lookup function"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure G.1: Presumed bearing resistance for square pad foundations bearing on rock (settlements not exceeding 0.5% of foundation width)"
+      ],
+      "tables": [
+        "Table G.1: Grouping of weak and broken rocks"
+      ],
+      "applicability": "Deriving a first-pass presumed (allowable) bearing pressure for spread foundations on weak/broken rock with tight joints, given rock type and expected settlement tolerance."
+    }
+  ]
+}

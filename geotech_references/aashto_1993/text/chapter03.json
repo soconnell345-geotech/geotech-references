@@ -1,0 +1,44 @@
+{
+  "reference_id": "AASHTO Guide for Design of Pavement Structures",
+  "reference_title": "AASHTO Guide for Design of Pavement Structures, 1993 Edition",
+  "chapter": 3,
+  "chapter_title": "Part I, Chapter 3 -- Economic Evaluation of Alternative Pavement Design Strategies",
+  "sections": [
+    {
+      "section_id": "3.1",
+      "title": "Life-Cycle Cost Concepts and Economic Analysis Basics",
+      "summary": "Recommends life-cycle economic evaluation (present worth and/or equivalent uniform annual cost) over an analysis period to compare alternative pavement design/rehabilitation strategies, but cautions that pavement-type selection should not rest on economics alone (Appendix B provides broader selection guidelines).",
+      "body": "Chapter 3 (condensed here; printed guide Sections 3.1-3.8, pdf_page ~41-73, printed I-41 to I-49) covers life-cycle cost concepts (initial capital costs, maintenance, rehabilitation/resurfacing cost, salvage/residual value, user costs including traffic delay cost, and the identification of pavement benefit) and the discounting/inflation considerations (opportunity cost of capital, discount rates) needed for an economic evaluation. It stresses that economics should be A factor, not the SOLE factor, in pavement type selection; Appendix B provides an extensive list of guidelines for comparing alternative design strategies.",
+      "key_points": [
+        "Life-cycle costs: initial capital, maintenance, rehabilitation/resurfacing, salvage/residual value, user costs",
+        "User costs include vehicle operating cost, travel time cost, accident cost, discomfort cost, and traffic delay cost",
+        "Discounting/inflation: opportunity cost of capital, discount rate selection",
+        "Economics should inform, not solely determine, pavement type selection (Appendix B: broader selection guidelines)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Framing for comparing alternative design/rehabilitation strategies on a life-cycle cost basis."
+    },
+    {
+      "section_id": "3.9",
+      "title": "Equations for Economic Analysis",
+      "summary": "Two standard methods are given: Equivalent Uniform Annual Cost (EUAC) and Present Worth (net present value, NPV). NPV is generally preferred for pavements: NPVx1 = TPWCxo,n - TPWCx1,n (present worth of the base/standard alternative minus present worth of the alternative being evaluated); comparisons must use equal-length analysis periods regardless of method.",
+      "body": "Two methods for economic evaluation are presented (Section 3.9): the Equivalent Uniform Annual Cost method (Section 3.9.1) and the Present Worth (net present value) method (Section 3.9.2), NPVx1 = TPWCxo,n - TPWCx1,n, where TPWC is total present worth of costs for an alternative over an n-year analysis period, and xo is the standard/base alternative against which x1 is compared. The present worth (net present value) method is generally preferred for the highway field over the 'traditional' annual-cost and benefit-cost methods, offering several advantages: costs/benefits expressed as a single comparable value; direct comparability of projects with different service lives and stage development; all costs in present-day terms; ability to fold in nonmonetary (cost-effectiveness) considerations; a single payoff figure; and computational simplicity. Its chief disadvantage is that it cannot be applied to single (non-comparative) alternatives, and the lump-sum result may be less intuitively understandable as a rate of return. Most agencies use only the agency-cost term (Eq. 3.9.3, without the user-cost term) due to data/policy limitations. Section 3.9.3 concludes that either NPV or EUAC may be used for life-cycle comparisons, provided comparisons are made over analysis periods of EQUAL length.",
+      "key_points": [
+        "NPVx1 = TPWCxo,n - TPWCx1,n (Eq. 3.9.7) -- present worth method, preferred for highways",
+        "TPWC = total present worth of costs for an alternative over an n-year analysis period",
+        "NPV advantages: single comparable value, handles differing service lives/staging, present-day terms, cost-effectiveness-compatible, computationally simple",
+        "NPV disadvantage: cannot evaluate a single non-comparative alternative; lump-sum less intuitive than a rate",
+        "Most agencies use agency-cost-only comparisons (Eq. 3.9.3), omitting the user-cost term",
+        "Either NPV or EUAC acceptable, but ONLY for analysis periods of equal length"
+      ],
+      "equations": [
+        {"id": "Eq. 3.9.7", "description": "NPVx1 = TPWCxo,n - TPWCx1,n (net present value comparison)"}
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Comparing life-cycle costs of alternative pavement design or rehabilitation strategies over equal-length analysis periods."
+    }
+  ]
+}

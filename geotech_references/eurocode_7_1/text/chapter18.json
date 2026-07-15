@@ -1,0 +1,93 @@
+{
+  "reference_id": "EN 1997-1:2004",
+  "reference_title": "Eurocode 7: Geotechnical Design - Part 1: General Rules",
+  "volume": null,
+  "chapter": 18,
+  "chapter_title": "Annex F (informative): Sample methods for settlement evaluation",
+  "sections": [
+    {
+      "section_id": "18-1",
+      "title": "Annex F.1: Stress-strain method",
+      "summary": "Total settlement on cohesive or non-cohesive soil evaluated by: (1) computing the stress distribution beneath the foundation via elasticity theory (homogeneous isotropic soil, linear bearing-pressure distribution); (2) computing strain from those stresses using stiffness moduli or other stress-strain relationships from lab tests (preferably field-calibrated) or field tests; (3) integrating vertical strains at a sufficient number of points beneath the foundation to obtain settlement. Qualitative method, no closed-form equation given.",
+      "body": "The total settlement of a foundation on cohesive or non-cohesive soil may be evaluated using the stress-strain calculation method as follows: computing the stress distribution in the ground due to the loading from the foundation, which may be derived on the basis of elasticity theory, generally assuming homogeneous isotropic soil and a linear distribution of bearing pressure; computing the strain in the ground from the stresses using stiffness moduli values or other stress-strain relationships determined from laboratory tests (preferably calibrated against field tests), or from field tests directly; and integrating the vertical strains to find the settlement, for which a sufficient number of points within the ground beneath the foundation should be selected and the stresses and strains computed at each.",
+      "key_points": [
+        "General method: stress distribution (elasticity theory) -> strain (stiffness moduli/stress-strain relations) -> integrate vertical strains -> settlement",
+        "Assumes homogeneous isotropic soil and a linear bearing-pressure distribution as the base case",
+        "Stiffness/stress-strain relationships preferably calibrated against field tests",
+        "Requires computing stress and strain at a sufficient number of points beneath the foundation",
+        "No closed-form equation given in the source; this is a general computational procedure, not a formula"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "General-purpose settlement estimation for shallow foundations on cohesive or non-cohesive soil when a full stress/strain field computation is warranted."
+    },
+    {
+      "section_id": "18-2",
+      "title": "Annex F.2: Adjusted elasticity method",
+      "summary": "Total settlement via elasticity theory: s = p*B*f/Em (Eq. F.1), where Em is the design modulus of elasticity, f is a settlement coefficient depending on foundation shape/dimensions, stiffness variation with depth, compressible-layer thickness, Poisson's ratio, bearing-pressure distribution, and evaluation point, and p is the linearly-distributed bearing pressure. Valid only where no significant yielding occurs and ground behaviour is linear; caution required for non-homogeneous ground. Fully implemented as adjusted_elasticity_settlement.",
+      "body": "The total settlement of a foundation on cohesive or non-cohesive soil may be evaluated using elasticity theory and an equation of the form s = p*B*f/Em (Eq. F.1), where Em is the design value of the modulus of elasticity, f is the settlement coefficient, p is the bearing pressure (linearly distributed on the foundation base), and B is the foundation width. The value of the settlement coefficient f depends on the shape and dimensions of the foundation area, the variation of stiffness with depth, the thickness of the compressible formation, Poisson's ratio, the distribution of the bearing pressure, and the point for which the settlement is calculated. If no useful settlement results measured on neighbouring similar structures in similar conditions are available, the design drained modulus Em of the deforming stratum for drained conditions may be estimated from laboratory or in-situ test results. The adjusted elasticity method should only be used where the stresses in the ground are such that no significant yielding occurs and the stress-strain behaviour of the ground may be considered linear; great caution is required when applying it to non-homogeneous ground.",
+      "key_points": [
+        "s = p*B*f/Em (Eq. F.1)",
+        "f (settlement coefficient) depends on foundation shape/dimensions, stiffness-with-depth variation, compressible-layer thickness, Poisson's ratio, pressure distribution, and evaluation point",
+        "Em (design elastic modulus) may be estimated from lab/in-situ tests if no comparable settlement records exist",
+        "Valid only where stresses stay in the linear, non-yielding range of ground behaviour",
+        "Great caution required for non-homogeneous ground",
+        "Fully implemented as adjusted_elasticity_settlement"
+      ],
+      "equations": [
+        {"id": "Eq. F.1", "description": "Adjusted elasticity settlement: s = p*B*f/Em.", "implemented_in": "geotech_references.eurocode_7_1.equations.adjusted_elasticity_settlement"}
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Quick elasticity-based settlement estimate for a shallow foundation, valid within the linear (non-yielding) stress range."
+    },
+    {
+      "section_id": "18-3",
+      "title": "Annex F.3: Settlements without drainage",
+      "summary": "Short-term (undrained) settlement components may be evaluated using either the stress-strain method (F.1) or the adjusted elasticity method (F.2), but the stiffness parameters adopted (Em, Poisson's ratio) must represent undrained behaviour rather than drained behaviour.",
+      "body": "The short-term components of settlement of a foundation, which occur without drainage, may be evaluated using either the stress-strain method (Annex F.1) or the adjusted elasticity method (Annex F.2). The values adopted for the stiffness parameters in this case, such as Em and Poisson's ratio, should represent the undrained behaviour of the ground rather than its drained behaviour.",
+      "key_points": [
+        "Undrained (short-term) settlement uses the same F.1/F.2 methods, but with UNDRAINED stiffness parameters",
+        "Em and Poisson's ratio must represent undrained, not drained, behaviour for this application",
+        "No new equation introduced -- reuses F.1/F.2 with substituted parameters"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Estimating the short-term (undrained) settlement component immediately after loading, before consolidation begins."
+    },
+    {
+      "section_id": "18-4",
+      "title": "Annex F.4: Settlements caused by consolidation",
+      "summary": "Consolidation settlement is calculated assuming confined one-dimensional deformation, using the consolidation test curve. Adding undrained and consolidation settlements separately often overestimates total settlement, so empirical corrections may be applied.",
+      "body": "To calculate the settlement caused by consolidation, a confined one-dimensional deformation of the soil may be assumed and the consolidation test curve is then used. Addition of settlements in the undrained and consolidation states often leads to an overestimate of the total settlement, and empirical corrections may be applied to account for this.",
+      "key_points": [
+        "Consolidation settlement assumes confined one-dimensional deformation, derived from the consolidation (oedometer) test curve",
+        "Simple addition of undrained + consolidation settlement tends to OVERESTIMATE total settlement",
+        "Empirical corrections may be applied to correct this overestimate",
+        "No closed-form equation given in this clause"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Estimating the long-term consolidation settlement component of a foundation on fine-grained (compressible) soil, and combining it appropriately with the undrained component."
+    },
+    {
+      "section_id": "18-5",
+      "title": "Annex F.5: Time-settlement behaviour",
+      "summary": "The rate of consolidation settlement before the end of primary consolidation may be estimated approximately from consolidation parameters obtained via a compression (oedometer) test, but the rate should preferably be based on permeability values from in-situ tests rather than lab-derived permeability.",
+      "body": "With cohesive soils, the rate of consolidation settlement before the end of the primary consolidation may be estimated approximately using consolidation parameters obtained from a compression test. However, the rate of consolidation settlement should preferably be obtained using permeability values obtained from in-situ tests, since laboratory-derived permeability values (from small samples) can be unrepresentative of the field-scale drainage behaviour, especially in layered or fissured deposits.",
+      "key_points": [
+        "Rate of primary consolidation settlement may be approximated from oedometer (compression test) consolidation parameters",
+        "PREFERRED: base the rate on in-situ permeability measurements rather than laboratory permeability",
+        "Reflects the general unreliability of small-sample lab permeability for field-scale drainage/rate predictions",
+        "No closed-form equation given in this clause"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Estimating the time rate of consolidation settlement (as distinct from its final magnitude) for foundations on cohesive soil."
+    }
+  ]
+}

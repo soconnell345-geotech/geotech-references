@@ -1,0 +1,101 @@
+{
+  "reference_id": "EN 1997-2:2007",
+  "reference_title": "Eurocode 7: Geotechnical design - Part 2: Ground investigation and testing",
+  "volume": null,
+  "chapter": 3,
+  "chapter_title": "Soil and rock sampling and groundwater measurements",
+  "sections": [
+    {
+      "section_id": "3.1",
+      "title": "General",
+      "summary": "Sampling of soils and rocks by drilling/excavation and groundwater measurements must be conducted comprehensively enough to obtain the necessary geotechnical design data.",
+      "body": "Sampling of soils and rocks by drilling and excavations and groundwater measurements shall be conducted so comprehensively that the necessary geotechnical design data are obtained.",
+      "key_points": [
+        "Sampling and groundwater measurement scope must be comprehensive enough for geotechnical design data needs"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "General requirement framing the whole of Section 3."
+    },
+    {
+      "section_id": "3.2",
+      "title": "Sampling by drilling",
+      "summary": "Drilling equipment is selected according to the required sampling category (3.4.1, 3.5.1), depth/diameter needs, and drilling-rig functions (parameter recording, automatic/manual adjustment), per EN ISO 22475-1.",
+      "body": "The drilling equipment shall be selected according to: the sampling categories required, as defined in 3.4.1 and 3.5.1; the depth to be reached and the required diameter of the sample; and the functions required from the drilling rig (recording of drilling parameters, automatic or manual adjustment). The requirements of EN ISO 22475-1 shall be followed.",
+      "key_points": [
+        "Drilling equipment selection depends on required sampling category, target depth/diameter, and rig functions",
+        "EN ISO 22475-1 governs drilling requirements"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Equipment-selection rule for any drilling-based sampling programme."
+    },
+    {
+      "section_id": "3.3",
+      "title": "Sampling by excavation",
+      "summary": "Samples recovered from trial pits, headings, or shafts must also follow EN ISO 22475-1 requirements.",
+      "body": "If samples are recovered from trial pits, headings or shafts, the requirements of EN ISO 22475-1 shall be followed.",
+      "key_points": [
+        "Trial pit / heading / shaft sampling also follows EN ISO 22475-1"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Equipment/procedure rule for excavation-based sampling (as opposed to drilling)."
+    },
+    {
+      "section_id": "3.4",
+      "title": "Soil sampling",
+      "summary": "Three sampling method categories (A, B, C, per EN ISO 22475-1) achieve different laboratory quality classes of soil sample (Table 3.1, quality classes 1-5): category A can achieve classes 1-5, category B only 3-5, category C only class 5. Soil identification follows EN ISO 14688-1; sampling should generally not exceed 3 m spacing, closer in inhomogeneous ground.",
+      "body": "Samples shall contain all mineral constituents of the sampled strata and shall not be contaminated by material from other strata or sampling additives. Three sampling method categories are considered (EN ISO 22475-1), depending on desired sample quality (Table 3.1): category A sampling methods can obtain samples of quality class 1 to 5; category B methods can obtain quality class 3 to 5; category C methods can only obtain quality class 5. Quality classes 1 or 2 (no or only slight structural disturbance; water content and void ratio correspond to in-situ values; no change in constituents/chemistry) can only be obtained with category A methods, though unforeseen circumstances (e.g. variable geological strata) may still lead to a lower class. Category B methods preclude achieving better than class 3 (constituents present in original proportions, natural water content retained, general layer arrangement identifiable, but soil structure disturbed). Category C methods cannot achieve better than class 5 (soil structure totally changed, in-situ layers not accurately identifiable, water content not representative). Table 3.1 tabulates, for quality classes 1-5, which soil properties are assumed unchanged (particle size, water content, density/density index/permeability, compressibility/shear strength) and which properties can be determined (sequence of layers, broad/fine strata boundaries, Atterberg limits/particle density/organic content, water content, density/density index/porosity/permeability, compressibility/shear strength), together with the sampling category needed. Soil identification, based on examination of recovered samples, shall conform to EN ISO 14688-1. The quality class and number of samples shall be based on the investigation aims, site geology, and structure/construction complexity; two drilling strategies may be followed (complete-column recovery via drilling tools plus special samplers, or samples only at predetermined elevations e.g. via penetration tests); sampling categories are selected considering desired quality classes, expected soil types, and groundwater conditions, per EN ISO 22475-1. Samples should be taken at any stratum change and at a spacing usually not exceeding 3 m; in inhomogeneous soil or where detailed ground-condition definition is required, continuous sampling or very short intervals should be used. Handling, transport, and storage of samples follow EN ISO 22475-1 (see also Section 5 for laboratory handling/storage).",
+      "key_points": [
+        "Three sampling categories (EN ISO 22475-1): A achieves quality classes 1-5, B achieves 3-5, C achieves only 5",
+        "Quality class 1/2 samples: no/slight disturbance, in-situ water content/void ratio preserved, no constituent/chemistry change - only achievable with category A",
+        "Table 3.1 maps quality class 1-5 to unchanged vs. determinable soil properties and the required sampling category (see tables.table_3_1_quality_class)",
+        "Soil identification follows EN ISO 14688-1",
+        "Samples taken at every stratum change, spacing usually <=3 m (continuous or very short intervals in inhomogeneous ground)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 3.1: Quality classes of soil samples for laboratory testing and sampling categories to be used"
+      ],
+      "applicability": "Governs the selection of soil sampling method and category to achieve the sample quality class needed for the intended laboratory tests."
+    },
+    {
+      "section_id": "3.5",
+      "title": "Rock sampling",
+      "summary": "Rock sampling also uses three method categories (A/B/C, decreasing preservation of in-situ strength/deformation/water-content/density/porosity/permeability and structural detail); identification follows EN ISO 14689-1, including weathering classification and discontinuity quantification; RQD, TCR, and SCR are determined per EN ISO 22475-1.",
+      "body": "Rock samples shall contain all mineral constituents of the sampled strata, uncontaminated by other strata or sampling additives; discontinuities and infilling materials, which often control the strength and deformation of the rock mass, shall be defined as closely as possible if such properties are needed. Three sampling method categories are considered (EN ISO 22475-1): category A preserves strength/deformation properties, water content, density, porosity, and permeability corresponding to in-situ values with no constituent/chemistry change (though unforeseen strata variation may still reduce achieved quality); category B preserves original proportions of constituents and rock-piece strength/deformation/water content/density/porosity, identifies the general discontinuity arrangement, but the rock mass structure (and thus its bulk strength/deformation/permeability) has been disturbed; category C results in the rock mass structure and discontinuities being totally changed, possibly crushed material, with some possible change in constituents/chemistry, though rock type/matrix/texture/fabric remain identifiable. Visual rock identification, based on examination of rock masses and samples including decomposition and discontinuity observations, shall conform to EN ISO 14689-1; weathering classification shall conform to EN ISO 14689-1:2003, 4.2.4 and 4.3.4; discontinuities (bedding planes, joints, fissures, cleavages, faults) shall be quantified for pattern, spacing, and inclination per EN ISO 14689-1:2003. Rock quality designation (RQD), total core recovery (TCR), and solid core recovery (SCR), as defined by EN ISO 22475-1, shall be determined. Sample characteristics/numbers are based on investigation aims, area geology, and structure complexity; the sampling category is selected per the rock characteristics to be preserved and expected rock/groundwater conditions, per EN ISO 22475-1. Handling, transport, and storage follow EN ISO 22475-1 after sampling and visual inspection.",
+      "key_points": [
+        "Three rock sampling categories (EN ISO 22475-1): A preserves in-situ strength/deformation/water content/density/porosity/permeability; B preserves constituents/proportions but disturbs bulk structure; C totally changes structure (may crush material)",
+        "Rock identification conforms to EN ISO 14689-1, including weathering classification and discontinuity (bedding/joints/fissures/cleavage/faults) quantification",
+        "RQD (rock quality designation), TCR (total core recovery), and SCR (solid core recovery) shall be determined per EN ISO 22475-1"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Governs the selection of rock sampling method/category and the required rock-mass quality descriptors (RQD/TCR/SCR)."
+    },
+    {
+      "section_id": "3.6",
+      "title": "Groundwater measurements in soils and rocks",
+      "summary": "Groundwater level or pore pressure is measured with open systems (observation well/pipe, best for high-permeability ground) or closed systems (pressure transducer, usable in all ground types, preferred for low-permeability ground and high artesian pressure); planning covers equipment selection, station number/location/depth, reading frequency, and duration; only positive pore pressures relative to atmospheric are covered.",
+      "body": "Groundwater measurements shall conform to 2.1.4. Groundwater table or pore water pressure determination shall be made by installing open or closed groundwater measuring systems; this subclause applies to measurement of positive pore water pressures relative to atmospheric pressure (negative pore water pressures are not considered). Measurements and sampling shall be conducted per EN ISO 22475-1; equipment type is selected according to ground type/permeability, measurement purpose, required observation time, expected groundwater fluctuations, and equipment/ground response time. Open systems (piezometric head measured via an observation well, usually an open pipe) are best suited to relatively high-permeability soils and rock (aquifers/aquitards, e.g. sand, gravel, highly fissured rock); in low-permeability ground they can give erroneous results due to time lag for filling/emptying the pressure pipe (filter tips with a small-diameter hose reduce the lag). Closed systems (pressure transducer directly measuring pressure at the selected point) can be used in all soil/rock types, should be used in very-low-permeability ground (aquicludes, e.g. clay, low-fissured rock), and are recommended for high artesian water pressure. Continuous recording via transducers and data loggers shall be used when very short-term variations or fast pore water fluctuations must be monitored, for any soil/rock type. Open water within or near the investigation area shall be considered in interpreting groundwater measurements, along with well water levels, springs, and artesian water. The number, location, and depth of measuring stations depend on the measurement purpose, topography, stratigraphy, and ground/aquifer permeability; for monitoring projects (groundwater lowering, excavations, fillings, tunnels) locations are chosen relative to expected changes to be monitored; where possible, natural groundwater fluctuations should also be measured outside the affected area for reference. Measuring points shall be adequately sealed off from other layers/aquifers per EN ISO 22475-1. The number/frequency of readings and measuring-period length shall be planned considering the measurement purpose and stabilisation period, adjusted after an initial observation period; where fluctuation assessment is intended, measurement intervals shall be smaller than the natural fluctuations being characterised, over a long period. During drilling, water-level observations at the end/start of each day give a good preliminary indication of groundwater conditions and should be recorded, along with any sudden inflow/loss of water; early-phase boreholes may be equipped with open perforated pipes/filters for preliminary readings, subject to the open-system limitations, considering risks from connecting different aquifers and environmental regulations. Evaluation of groundwater measurements shall take into account geological/geotechnical site conditions, individual measurement accuracy, pore pressure time-fluctuations, observation-period duration, measurement season, and climatic conditions during/prior to the period; evaluated results shall comprise observed maximum/minimum water-table elevations or pore pressures and the corresponding measuring period; upper/lower bounds for extreme and normal circumstances shall be derived by adding/subtracting expected (or a reduced part of) fluctuations, as a cautious estimate where reliable long-duration data are lacking; the need for further measurements/stations should be assessed during field investigations and in the ground investigation report. Annex C presents an example of a statistical method to evaluate groundwater conditions when long-term measurements in a reference pipe are available together with a short measuring period on the actual site.",
+      "key_points": [
+        "Open systems (observation well/pipe): best for high-permeability ground (sand, gravel, fissured rock); can lag/mislead in low-permeability ground",
+        "Closed systems (pressure transducer): usable in all ground types; required for very low permeability (aquicludes) and high artesian pressure",
+        "Only positive pore water pressures (relative to atmospheric) are covered; negative pore pressures are not considered",
+        "Continuous transducer/data-logger recording is required for short-term/fast pore-pressure fluctuation monitoring",
+        "Evaluated results report max/min water-table elevation or pore pressure over the measuring period, with cautious upper/lower bound estimates for extreme/normal circumstances",
+        "Annex C gives a statistical example combining long-term reference-pipe data with a short on-site measuring period"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Governs the design, execution, and evaluation of groundwater level and pore pressure monitoring for any geotechnical project."
+    }
+  ]
+}

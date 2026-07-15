@@ -1,0 +1,254 @@
+{
+  "reference_id": "EN 1997-2:2007",
+  "reference_title": "Eurocode 7: Geotechnical design - Part 2: Ground investigation and testing",
+  "volume": null,
+  "chapter": 5,
+  "chapter_title": "Laboratory tests on soil and rock",
+  "sections": [
+    {
+      "section_id": "5.1",
+      "title": "General",
+      "summary": "Section 5 covers general requirements for laboratory tests, specimen preparation (soil and rock), classification/identification/description tests, chemical testing, strength index and strength testing, compressibility/deformation testing, compaction testing, permeability testing (all for soil), and classification, swelling, and strength testing for rock; detailed guidance and minimum test-number tables are in Annexes L-W.",
+      "body": "Section 5 sets out general requirements for the laboratory tests commonly used in European geotechnical practice, covering both soil and rock. It addresses, in turn: general requirements for laboratory tests (procedures, equipment, presentation, evaluation); preparation of soil and of rock specimens for testing; tests for classification, identification and description of soil (water content, bulk/particle density, particle size analysis, consistency limits, density index of granular soil, dispersibility, frost susceptibility); chemical testing of soil and groundwater (organic content, carbonate content, sulfate content, pH, chloride content); strength index testing and strength testing of soil (unconfined compression, unconsolidated-undrained triaxial, consolidated triaxial, consolidated direct shear box); compressibility and deformation testing of soil (oedometer compressibility, triaxial deformability); compaction testing of soil (compaction tests, CBR); permeability testing of soil; and, for rock, classification tests, swelling tests, and strength tests (uniaxial compression/deformability, point load, direct shear, Brazil, triaxial). Detailed procedural guidance, checklists, and recommended minimum numbers of specimens per stratum/formation are given in the corresponding informative Annexes L through W.",
+      "key_points": [
+        "Covers general lab-test requirements plus soil specimen prep, soil classification/chemical/strength-index/strength/compressibility/compaction/permeability tests, and rock specimen prep/classification/swelling/strength tests",
+        "Each test category has a matching detailed-guidance annex (L through W) with checklists and minimum specimen-count tables",
+        "Laboratory tests on soil are mainly applicable to saturated soils (per 1.1.2(3))"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Overview and roadmap for the whole of Section 5 and its supporting Annexes L-W."
+    },
+    {
+      "section_id": "5.2",
+      "title": "General requirements for laboratory tests",
+      "summary": "General requirements cover test procedures/equipment/presentation and evaluation of results, applicable across all the soil and rock laboratory tests described in the rest of Section 5.",
+      "body": "General requirements for laboratory tests address procedures, equipment, and presentation of test results, plus the evaluation of test results, as common threads running through every specific test procedure described later in Section 5.",
+      "key_points": [
+        "Establishes common procedural, equipment, presentation, and evaluation requirements shared by all Section 5 laboratory tests"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Baseline requirements applicable to every laboratory test in Section 5."
+    },
+    {
+      "section_id": "5.3",
+      "title": "Preparation of soil specimens for testing",
+      "summary": "Sets objectives and requirements for preparing soil specimens (disturbed, undisturbed, re-compacted, or reconstituted) for testing; detailed procedures, minimum sample/specimen masses, and allowable particle sizes are given in Annex L.",
+      "body": "Establishes the objective and requirements for preparing soil test specimens from disturbed, undisturbed, re-compacted, or reconstituted samples. Annex L gives detailed information: minimum masses of disturbed soil required per test type and soil coarseness (Table L.1), minimum mass for sieving by largest particle diameter (Table L.2), allowable particle sizes for compaction tests (Table L.3), minimum masses for tests on undisturbed samples (Table L.4), allowable particle size as a function of re-compacted specimen size (Table L.5), plus procedures for drying, disaggregating, subdividing disturbed soil, preparing re-compacted and reconstituted (slurry-consolidated) specimens, and re-saturation.",
+      "key_points": [
+        "Covers preparation of disturbed, undisturbed, re-compacted, and reconstituted soil specimens",
+        "Annex L Table L.1: minimum disturbed-soil mass by test type and soil coarseness (table_l1_sample_mass)",
+        "Annex L Table L.2: minimum mass for sieving by largest particle diameter (table_l2_min_mass_sieving)",
+        "Reconstituted (fine-soil) specimens are prepared as a slurry at/above the liquid limit, then consolidated"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table L.1: mass of soil required for tests on disturbed samples",
+        "Table L.2: minimum mass for sieving",
+        "Table L.3: allowable size of particles for compaction tests",
+        "Table L.4: mass of soil required for tests on undisturbed samples",
+        "Table L.5: allowable particle size as a function of size of test specimen"
+      ],
+      "applicability": "Governs specimen preparation for every soil laboratory test described later in Section 5."
+    },
+    {
+      "section_id": "5.4",
+      "title": "Preparation of rock specimens for testing",
+      "summary": "Sets objectives and requirements for preparing rock test specimens; Annex T gives detailed common-practice guidance on rock core specimen preparation and dimensional/shape tolerances, following the ISRM Suggested Methods.",
+      "body": "Establishes the objective and requirements for preparing rock test specimens. Annex T notes that the ISRM Suggested Methods for Rock Characterisation, Testing and Monitoring contain no single dedicated specimen-preparation requirement, but most individual test methods specify sample volume, quality, preparation method, dimensions, and tolerance checks. Required sample volume depends on the test programme; samples 300-1000 mm long with diameter greater than 50 mm are generally sufficient for a group of classification, strength, and deformation tests. Required core quantity depends on natural/induced fissuring; initial core description should evaluate fissuring/homogeneity to guide selection of test sections. For weaker (sedimentary) rocks, prompt field packing is important since even brief exposure can change water content and properties.",
+      "key_points": [
+        "Follows the ISRM Suggested Methods for rock specimen preparation, applied per individual test method's requirements",
+        "Samples 300-1000 mm long, diameter >50 mm, generally sufficient for a combined classification/strength/deformation test group",
+        "Weaker sedimentary rocks require prompt field packing to avoid property change from exposure"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Governs specimen preparation for every rock laboratory test described later in Section 5 (classification, swelling, strength)."
+    },
+    {
+      "section_id": "5.5",
+      "title": "Tests for classification, identification and description of soil",
+      "summary": "Covers water content, bulk density, particle density, particle size analysis, consistency limits, density index of granular soil, dispersibility, and frost susceptibility determination; Annex M gives detailed checklists (Table M.2), minimum-test-number guidance (Table M.1), and per-test procedural notes.",
+      "body": "This subclause establishes general requirements for the routine soil classification tests: water content determination, bulk density determination, particle density determination, particle size analysis, consistency limits determination, determination of the density index of granular soil, soil dispersibility determination, and frost susceptibility. Annex M gives a suggested minimum number of classification tests per stratum, with and without comparable experience (Table M.1, e.g. particle size distribution 2-4 tests with comparable experience vs. 4-6 without; consistency limits 1-3 vs. 3-5), a checklist for each classification test (Table M.2), and detailed sub-clauses: water content (correction needed for saline or coarse soil), bulk density (Table M.3 gives minimum specimen counts by measured-density variability and comparable experience), particle density (small volume needed, ~10 g at particle size <4 mm; special technique for materials with enclosed pores), particle size analysis (sieving after washing for coarse soil, sedimentation for fine soil, both for mixed soil; care needed for clay/organic soil due to cementing/oxidation effects during drying), density index of granular soil (minimum 2 specimens for maximum density, 3 for minimum density), soil dispersibility (not applicable to soil with <10% clay content and plasticity index <=4; pinhole/double-hydrometer/crumb/soluble-salts test methods, minimum specimen counts given), and frost susceptibility (sample size and CBR-test-related requirements; a soil is deemed frost-susceptible if it exhibits segregational heaving in the laboratory frost heave test).",
+      "key_points": [
+        "Eight classification test types: water content, bulk density, particle density, particle size analysis, consistency limits, density index (granular soil), dispersibility, frost susceptibility",
+        "Table M.1: minimum test counts per stratum by test type and comparable-experience status (table_m1_classification_test_count)",
+        "Table M.2: detailed checklist per classification test (sampling/storage/preparation cautions)",
+        "Soil dispersibility tests are not applicable below 10% clay content and Ip<=4",
+        "A soil is frost-susceptible if it shows segregational heaving in the laboratory frost heave test"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table M.1: suggested minimum number of classification tests per soil stratum",
+        "Table M.2: checklist for soil classification tests",
+        "Table M.3: minimum number of density-test specimens per soil stratum"
+      ],
+      "applicability": "The routine soil classification/identification/description test suite, performed in every phase of ground investigation."
+    },
+    {
+      "section_id": "5.6",
+      "title": "Chemical testing of soil and groundwater",
+      "summary": "Covers organic content (loss on ignition), carbonate content, sulfate content, pH, and chloride content determination; Annex N gives procedural detail and two unit-conversion relationships (CaCO3 from CO2; SO4 from SO3).",
+      "body": "This subclause covers the five routine chemical tests dealt with in the standard: organic content determination (loss on ignition), carbonate content determination, sulfate content determination, pH value determination (acidity/alkalinity), and chloride content determination. Chemical tests for other substances should normally be performed by a specialist chemical laboratory. Annex N gives detail: organic content via loss on ignition on material finer than 2 mm (drying temperature typically (50+-2.5) degC to avoid oxidising organic matter, since standard (105+-5) degC drying is too hot; ignition temperature typically (440+-25) degC, generally 500-520 degC is appropriate - caution needed since some clay minerals disintegrate near 550 degC and sulfides/carbonates react in the 650-900 degC range); carbonate content by rapid titration (preferred) or measuring liberated CO2, converted to equivalent CaCO3 via CaCO3 = 2.273*CO2 (Annex N.3.2); sulfate content by the gravimetric method (preferred), with SO4(2-) = 1.2*SO3 (Annex N.4.1) and gypsum drying caution above ~65 degC; pH via the electrometric method (recommended, direct reading); chloride content via Mohr's method (water-soluble, preferred for groundwater), Volhard's method (acid- or water-soluble), or electrochemical procedures, with a quick qualitative silver-nitrate turbidity test to confirm chloride presence.",
+      "key_points": [
+        "Five chemical tests: organic content (loss on ignition), carbonate content, sulfate content, pH, chloride content",
+        "CaCO3 = 2.273 * CO2 (equations.equation_n_caco3_from_co2)",
+        "SO4(2-) = 1.2 * SO3 (equations.equation_n_so4_from_so3)",
+        "Organic-content ignition temperature is typically 500-520 degC; caution above ~550 degC (clay mineral disintegration) and 650-900 degC (sulfide oxidation/carbonate disintegration)",
+        "pH: electrometric (direct-reading) method recommended as the definitive procedure"
+      ],
+      "equations": [
+        {"id": "Annex N.3.2", "description": "CaCO3 (%) = 2.273 * CO2 (%)", "implemented_in": "geotech_references.eurocode_7_2.equations.equation_n_caco3_from_co2"},
+        {"id": "Annex N.4.1", "description": "SO4(2-) (%) = 1.2 * SO3 (%)", "implemented_in": "geotech_references.eurocode_7_2.equations.equation_n_so4_from_so3"}
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Chemical characterization of soil/groundwater for aggressiveness/durability and classification purposes."
+    },
+    {
+      "section_id": "5.7",
+      "title": "Strength index testing of soil",
+      "summary": "Covers strength index tests (laboratory vane, fall cone) that give an approximate indication of shear strength without necessarily a representative value; Annex O gives a checklist (Table O.1) noting large measurement uncertainty and rate/repeatability caveats.",
+      "body": "Establishes the objective and general requirements for strength index tests on soil. These tests provide an approximate index of shear strength only, with large measurement uncertainty; results should be used cautiously for non-homogeneous or jointed/slickensided soil, and are affected by testing rate, so repeatability should be checked. Annex O Table O.1 gives a checklist: the laboratory vane additionally gives a measure of sensitivity and remoulded shear strength (mode of rotation - hand vs. motorised - should be checked; tests can be on extruded samples or in the sampling tube); the fall cone can be performed on extruded samples or in the sampling tube on intact material, supplemented by a remoulded-material test to establish sensitivity, and requires checking cone-tip wear and tip angle.",
+      "key_points": [
+        "Strength index tests (laboratory vane, fall cone) give an approximate shear-strength indication only, not necessarily representative",
+        "Results are affected by testing rate; repeatability should be checked, especially for non-homogeneous/jointed/slickensided soil",
+        "Laboratory vane and fall cone both provide a sensitivity measure via comparison with remoulded strength"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table O.1: checklist for strength index tests on clayey soil"
+      ],
+      "applicability": "Quick, approximate shear-strength screening tests, as distinct from the definitive strength tests of 5.8."
+    },
+    {
+      "section_id": "5.8",
+      "title": "Strength testing of soil",
+      "summary": "Covers unconfined compression, unconsolidated-undrained triaxial, consolidated triaxial, and consolidated direct shear box tests; Annex P gives minimum test-count tables for triaxial phi' (Table P.1, by regression coefficient r) and su (by max/min strength ratio), and for direct shear (Table P.2, by regression coefficient).",
+      "body": "Establishes the objective, scope, and general requirements for strength testing of soil, comprising unconfined compression, unconsolidated-undrained triaxial compression, consolidated triaxial compression, and consolidated direct shear box tests. Annex P.1 gives minimum recommended triaxial test counts (Table P.1) as a function of strength-envelope variability (regression coefficient r, for phi') or undrained-strength variability (max/min ratio, for su) crossed with the level of comparable experience (none/medium/extensive); one recommended test = a set of three individual specimens at different cell pressures. Evaluation should check derived cu and phi' against correlations with soil type, plasticity index, density index, and in-situ vs. laboratory stress conditions (e.g. axisymmetric vs. plane strain), including comparison with CPT-based correlations. Annex P.2 gives minimum direct-shear test counts (Table P.2, similar structure to Table P.1) and notes that translational shear box and ring shear results agree well in comparative studies, though ring shear more easily produces residual strength at large strain; twice the material needed for testing should be sampled from the stratum.",
+      "key_points": [
+        "Four strength tests: unconfined compression, UU triaxial, consolidated (CIU/CID) triaxial, consolidated direct shear box",
+        "Table P.1: minimum triaxial test counts by strength-envelope/su variability and comparable experience (table_min_test_count with test_family='triaxial_phi' or 'triaxial_su')",
+        "Table P.2: minimum direct-shear test counts, same 3x3 structure (table_min_test_count with test_family='direct_shear')",
+        "One recommended 'test' = three individual specimens at different confining/normal stresses",
+        "Ring shear more readily produces residual strength at large strain than translational shear box, though results agree well overall"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table P.1: triaxial compression tests, recommended minimum number of tests",
+        "Table P.2: direct shear tests, recommended minimum number of tests"
+      ],
+      "applicability": "The definitive strength-parameter (cu, phi', c') laboratory test suite for soil."
+    },
+    {
+      "section_id": "5.9",
+      "title": "Compressibility and deformation testing of soil",
+      "summary": "Covers oedometer compressibility testing and triaxial deformability testing; Annex Q gives minimum oedometer test counts (Table Q.1, by Eoed range across comparable experience) and notes four alternative ways to assess compressibility (back-calculation, empirical in-situ correlation, in-situ tests, laboratory tests).",
+      "body": "Establishes general requirements for compressibility and deformation testing of soil: oedometer compressibility testing and triaxial deformability testing. Annex Q.1 gives a minimum recommended number of oedometer tests per stratum contributing significantly to settlement (Table Q.1, by the range of Eoed values in the relevant stress range crossed with comparable experience; specimen count should increase for settlement-sensitive structures); one oedometer test plus classification tests represents a verification of existing knowledge if only one test is specified. Annex Q.2 notes four widely used compressibility-assessment methods: back-calculation from measured settlements (reliable but complicated by layering/load redistribution/time effects); empirical evaluation of indirect in-situ soundings (common for sand/gravel foundations); in-situ tests (plate load, pressuremeter); and laboratory compression tests (most reliable for fine/organic soil where high-quality Class-1 samples are obtainable); a combination of field and laboratory methods is desirable where sand, silt, and clay are all expected.",
+      "key_points": [
+        "Oedometer compressibility testing and triaxial deformability testing are the two compressibility/deformation test types",
+        "Table Q.1: minimum oedometer test counts by Eoed variability range and comparable experience (table_min_test_count with test_family='oedometer')",
+        "Four compressibility-assessment approaches: back-calculated settlements, empirical in-situ sounding correlations, in-situ tests (PLT/PMT), and laboratory compression tests"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table Q.1: incremental oedometer test, recommended minimum number of tests"
+      ],
+      "applicability": "Laboratory determination of soil compressibility/stiffness parameters (Eoed, Cc, Cs) for settlement analysis."
+    },
+    {
+      "section_id": "5.10",
+      "title": "Compaction testing of soil",
+      "summary": "Covers compaction (Proctor) tests and the California Bearing Ratio (CBR) test; Annex R gives procedural guidance including specimen preparation, effect of stiff-soil shredding on results, and the CBR sieve/mass requirements.",
+      "body": "This standard covers compaction tests (Standard and Modified Proctor) and the California Bearing Ratio test. Annex R notes: minimum 3 specimens per stratum, number selected considering particle-distribution/consistency-limit variation and quantity of material to be compacted; some highly permeable soils (clean gravels, uniformly-graded coarse clean sands) do not yield a well-defined maximum density, making optimum water content hard to obtain; stiff fine soil is shredded (5 mm sieve) or chopped (20 mm sieve) before testing, and results depend on the resulting piece size, not necessarily matching in-situ density; for soil not susceptible to crushing, one sample may be reused at progressively increasing water contents (departure from common procedure should be reported); crushable soil requires separate batches at different water contents. CBR testing: in-situ tests may be run but the laboratory test is definitive; may use undisturbed or re-compacted material; moisture content should represent design conditions; material passing the 20 mm sieve is used (particles retained are removed/weighed first; if the retained fraction exceeds 25% by mass of the passing fraction, CBR is not applicable).",
+      "key_points": [
+        "Compaction (Standard/Modified Proctor) and CBR tests are covered",
+        "Minimum 3 specimens per stratum for compaction testing",
+        "Stiff fine soil is shredded/chopped before compaction testing; results are piece-size dependent, not necessarily representative of in-situ density",
+        "CBR test material passes a 20 mm sieve; not applicable if the retained (>20mm) fraction exceeds 25% by mass of the passing fraction"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Compaction-characteristic and subgrade-strength-index (CBR) testing for earthworks and pavement design."
+    },
+    {
+      "section_id": "5.11",
+      "title": "Permeability testing of soil",
+      "summary": "Covers laboratory permeability (hydraulic conductivity) testing; Annex S gives minimum test counts (Table S.1, by kmax/kmin ratio across comparable experience) and notes four assessment methods, with field tests generally the most reliable.",
+      "body": "Establishes the objective and requirements for permeability testing of soil. Annex S.1 notes twice the material needed for the specimen count should be sampled, specimens should represent property extremes (composition, density index, void ratio), hydraulic gradient should generally be <30 in clay/silt and <10 in sand, and the required degree of saturation depends on soil type and required accuracy. Annex S.2 Table S.1 gives minimum test counts by the variability in measured permeability (kmax/kmin ratio) crossed with comparable experience. Annex S.3 notes four widely used permeability-assessment methods: field tests (pumping, borehole permeability - generally the most reliable); empirical correlations with grain size distribution (reasonably accurate for homogeneous sand); evaluation from an oedometer test (approximate only for silt/clay; constant-rate-of-strain oedometer tests are more direct); and laboratory permeability tests on specimens (can be reliable for clay/silt/organic soil with high-quality undisturbed samples, representativeness must be checked). Even in homogeneous soil, permeability can vary by small changes in stress/void ratio/structure/particle size/bedding, so should be described by upper/lower bound values; degree of saturation and permeant chemistry can each shift permeability by up to several orders of magnitude.",
+      "key_points": [
+        "Table S.1: minimum permeability-test counts by kmax/kmin ratio and comparable experience (table_min_test_count with test_family='permeability')",
+        "Hydraulic gradient guideline: <30 in clay/silt, <10 in sand",
+        "Field tests (pumping, borehole permeability) are generally the most reliable permeability-assessment method",
+        "Permeability should be described by upper/lower bound values even within a homogeneous stratum; saturation degree and permeant chemistry can shift k by orders of magnitude"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table S.1: permeability tests, recommended minimum number of soil specimens"
+      ],
+      "applicability": "Laboratory determination of the coefficient of permeability (hydraulic conductivity) for seepage/drainage/consolidation analysis."
+    },
+    {
+      "section_id": "5.12",
+      "title": "Tests for classification of rocks",
+      "summary": "Covers rock identification/description (per EN ISO 14689-1), water content determination, and density/porosity determination; Annex U gives minimum test frequency (at least one per metre of core for water content; at least once per two metres and per rock-type unit for density/porosity).",
+      "body": "Establishes general requirements for classification tests of rock: rock identification and description, water content determination, and density and porosity determination. Annex U notes that classification calls for the highest possible core recovery to identify discontinuities/cavities, minimising drilling disturbance since most rock-quality designations relate to fractures found in cores; most classification systems require a sample diameter of at least 50 mm, with 50-200 mm of non-fractured core length generally sufficient for element testing. Water content should be taken at least once per metre of core. Porosity/void-ratio determination requires (or estimates, from local experience) the density of solid particles; closed pores may influence porosity, and mercury-displacement methods should be avoided. Density and porosity should be determined at least once every two metres and at least once for each differentiated rock-type unit, regardless of homogeneity, since these parameters underpin most rock strength/deformation evaluations.",
+      "key_points": [
+        "Rock identification/description conforms to EN ISO 14689-1; classification systems typically require >=50 mm core diameter",
+        "Water content: at least one determination per metre of core",
+        "Density and porosity: at least once every two metres and once per differentiated rock-type unit; mercury-displacement methods should be avoided"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Basic rock classification/index testing that underpins rock strength and deformation property evaluation."
+    },
+    {
+      "section_id": "5.13",
+      "title": "Swelling testing of rock material",
+      "summary": "Covers swelling pressure index (zero volume change), swelling strain index (radially-confined with axial surcharge), and swelling strain in unconfined specimens; Annex V gives minimum specimen dimensions/counts (Table V.1), doubled for sites more likely to be subject to swelling.",
+      "body": "Establishes general requirements for swelling testing of rock: swelling pressure index under zero volume change, swelling strain index for radially-confined specimens with axial surcharge, and swelling strain developed in an unconfined rock specimen. Undisturbed specimens should preferably be tested (rock fabric significantly affects swelling behaviour); where samples are too weak/broken (e.g. joint fill material), remoulded/re-compacted specimens may be used with the procedure described in the report. Annex V.1 Table V.1 gives minimum specimen dimensions and counts per test type (applicable to sites with limited swelling risk; double the count for sites more likely to be subject to swelling). Annex V.2 notes the swelling pressure index apparatus may be an ordinary soil oedometer cell but must be very stiff to avoid cell-deformation influence. Annex V.3 notes the swelling strain index test example specifies a 5 kPa sustained pressure under water flooding, though more representative pressures may be specified with any deviation reported.",
+      "key_points": [
+        "Three swelling test types: swelling pressure index (zero volume change), swelling strain index (radially confined + axial surcharge), swelling strain (unconfined)",
+        "Table V.1: minimum specimen thickness/diameter/count per test type (table_v1_swelling_test_specimens); double the count where swelling risk is elevated",
+        "Undisturbed specimens preferred; remoulded/re-compacted only where undisturbed specimens cannot be prepared (e.g. joint fill)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table V.1: swelling tests on rocks, recommended minimum number of rock specimens"
+      ],
+      "applicability": "Assessment of swelling potential for rock formations (e.g. mudstones, shales, anhydrite) affecting foundations, tunnels, and excavations."
+    },
+    {
+      "section_id": "5.14",
+      "title": "Strength testing of rock material",
+      "summary": "Covers uniaxial compression/deformability, point load, direct shear, Brazil (indirect tensile), and triaxial compression tests on rock, generally following ISRM methods with EN 1997-2 amendments; Annex W Table W.1 gives minimum specimen counts (by standard deviation of strength as % of mean) applicable to uniaxial compression, Brazil, and triaxial tests alike.",
+      "body": "Establishes general requirements for rock strength testing: uniaxial compression and deformability, point load, direct shear, Brazil (indirect tensile), and triaxial compression tests, generally following ISRM (or ASTM) methods with amendments given in Annex W (e.g. platen diameter D to D+10mm, spherical-seat end platen, specimen height:diameter 2-3 with diameter >=50mm, end flatness/perpendicularity tolerances, failure within 5-15 minutes). Uniaxial compression/deformability: two ISRM test levels - strength only, or strength plus axial deformation modulus and Poisson's ratio (the latter preferred); Table W.1 gives minimum specimen counts by standard deviation of measured strength as a percent of the mean, crossed with comparable experience, and explicitly also governs Brazil and triaxial rock test minimum counts. Point load test: portable or laboratory equipment, field or laboratory execution, on core/blocks/irregular lumps; minimum 5 single tests for a representative mean Point Load Strength Index, at least 10 for rock characterisation/parameter prediction. Direct shear test: amendments include normal-load control within 2% and shear-rate <0.1 mm/min in the 10 minutes before readings; at least 5 tests per test horizon/joint family at different normal stresses; test-plane area preferably >=2500 mm2, joint-length-to-shear-box-size ratio preferably >=0.5. Brazil test: specimen diameter >=54 mm (core size), thickness approximately equal to radius; for shale/anisotropic rock, specimens should be cut both parallel and perpendicular to bedding. Triaxial compression: specimen diameter >=54 mm, height 2-3x diameter, per the same 5.4(2)P/X.4.8 specifications; provides the Mohr-Coulomb envelope (phi, c) from a series of confining-pressure tests, generally on intact rock (upscaling to rock-mass in-situ properties requires separate consideration).",
+      "key_points": [
+        "Five rock strength tests: uniaxial compression/deformability, point load, direct shear, Brazil (indirect tensile), triaxial compression",
+        "Table W.1 minimum specimen counts (by strength std. dev. as % of mean x comparable experience) governs uniaxial compression AND Brazil AND triaxial tests (table_min_test_count with test_family='rock_uniaxial_compression')",
+        "Point load test: minimum 5 tests for a representative mean index, >=10 for characterisation/parameter prediction",
+        "Direct shear: minimum 5 tests per test horizon/joint family at different normal stresses",
+        "Triaxial compression yields the Mohr-Coulomb strength envelope (phi, c) for intact rock; in-situ rock-mass properties require separate upscaling"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table W.1: uniaxial compression tests (also governing Brazil and triaxial tests), recommended minimum number of test specimens"
+      ],
+      "applicability": "The definitive rock-strength laboratory test suite, feeding Mohr-Coulomb and point-load-index strength parameters into rock foundation, slope, and excavation design."
+    }
+  ]
+}

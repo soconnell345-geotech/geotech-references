@@ -1,0 +1,70 @@
+{
+  "reference_id": "EN 1997-2:2007",
+  "reference_title": "Eurocode 7: Geotechnical design - Part 2: Ground investigation and testing",
+  "volume": null,
+  "chapter": 6,
+  "chapter_title": "Ground investigation report",
+  "sections": [
+    {
+      "section_id": "6.1",
+      "title": "General requirements",
+      "summary": "The Ground Investigation Report (part of the Geotechnical Design Report) presents geotechnical information plus its evaluation (interpretation assumptions), may include derived values, must state known limitations, and should propose and justify any needed further investigation.",
+      "body": "The results of a geotechnical investigation shall be compiled in the Ground Investigation Report, which forms part of the Geotechnical Design Report. The report shall consist of: a presentation of all appropriate geotechnical information including geological features and relevant data; and a geotechnical evaluation of the information, stating the assumptions made in interpreting the test results. Information may be presented as one report or separate parts, and may include derived values. Known limitations of the results shall be stated where appropriate. The report should propose any necessary further field and laboratory investigations, with comments justifying the need, accompanied by a detailed programme for the further investigations.",
+      "key_points": [
+        "The Ground Investigation Report forms part of the Geotechnical Design Report",
+        "Must include both a factual presentation of geotechnical information and a geotechnical evaluation stating interpretation assumptions",
+        "May include derived values; must state known limitations of the results",
+        "Should propose and justify any further investigations needed, with a detailed programme"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Defines the mandatory content and role of the Ground Investigation Report within the overall Geotechnical Design Report."
+    },
+    {
+      "section_id": "6.2",
+      "title": "Presentation of geotechnical information",
+      "summary": "The factual account covers investigation purpose/scope/geotechnical category, consultants, dates, site reconnaissance findings (groundwater, neighbouring-structure behaviour, quarries, instability, mining, excavation difficulties, site/geology history, survey data, aerial photos, local experience, seismicity), plus full documentation of desk studies, field investigations, and laboratory tests per the applicable EN/ISO standards.",
+      "body": "The presentation of geotechnical information shall include a factual account of all field and laboratory investigations, covering as relevant: purpose and scope of the investigation including site/topography description, planned structure, and planning stage referenced; geotechnical category classification; names of consultants/subcontractors; dates of field/laboratory investigations; field reconnaissance findings (evidence of groundwater; behaviour of neighbouring structures; exposures in quarries/borrow areas; areas of instability; mining activity exposures; excavation difficulties; site history; site geology including faulting; survey data with investigation-point plans; aerial-photograph information; local experience; site seismicity). Documentation shall include all relevant reports of desk studies, field investigations (sampling, field tests, groundwater measurements), and laboratory tests. Results shall be presented and reported per the requirements defined in the EN/ISO standards applied.",
+      "key_points": [
+        "Factual account covers purpose/scope, geotechnical category, consultants, dates, and a detailed field reconnaissance checklist",
+        "Reconnaissance checklist includes groundwater evidence, neighbouring-structure behaviour, instability areas, mining exposures, excavation difficulties, site geology/faulting, seismicity",
+        "All desk study, field investigation, and laboratory test reports must be documented per the applicable EN/ISO standard's own reporting requirements"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Specifies the factual (as opposed to interpretive) content required in the Ground Investigation Report."
+    },
+    {
+      "section_id": "6.3",
+      "title": "Evaluation of geotechnical information",
+      "summary": "The evaluation documents field/lab results assessed per Sections 3-5, reviews all site/lab investigation and desk-study information, describes strata geometry and properties, and comments on irregularities; interpretation must account for groundwater/drilling/sampling/handling effects, with averaging used cautiously since it can mask weak zones.",
+      "body": "The evaluation of geotechnical information shall be documented and include, as appropriate: results of field investigations and laboratory tests evaluated per Sections 3-5; a review of site/laboratory investigation results and all other information listed in 6.2; a description of strata geometry; detailed descriptions of all strata including physical properties and deformation/strength characteristics, referencing the investigation results; and comments on irregularities such as cavities and zones of discontinuous material. It shall be documented, if appropriate, that results were interpreted taking into account groundwater table, ground type, drilling method, sampling method, transport, handling, and specimen preparation, and that the strata subdivision assumed from desk studies/site inspections was reconsidered in light of the results obtained. Documentation should include: tabulation and graphical presentation of field/laboratory results in ground cross-sections showing relevant strata and boundaries (including groundwater table) relative to project requirements; geotechnical parameter values for each stratum; and a review of derived parameter values (see 6.4). Averaging can mask a weaker zone and should be used with caution; weak zones must be identified, since parameter/coefficient variation can indicate significant site-condition variation. Documentation should substantiate that strata differing only slightly in ground parameters may be treated as one stratum, and that a sequence of fine layers with greatly differing composition/properties may be treated as one stratum if overall behaviour is relevant and adequately represented by the selected stratum parameters. When deriving layer/groundwater boundaries, linear interpolation between investigation points is allowed where spacing is sufficiently small and geological conditions sufficiently homogeneous, with such application and its justification reported.",
+      "key_points": [
+        "Evaluation reviews all field/laboratory results (per Sections 3-5) plus desk-study/site information, and describes strata geometry and properties",
+        "Interpretation must account for groundwater table, ground type, drilling/sampling method, and specimen handling/preparation effects",
+        "Averaging can mask weaker zones and should be used cautiously; weak zones must be identified",
+        "Adjacent strata with only slightly differing parameters, or fine layer sequences whose overall behaviour is well represented by combined parameters, may be treated as a single stratum",
+        "Linear interpolation of layer/groundwater boundaries between investigation points is permitted where spacing is small and conditions are homogeneous, with justification reported"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Specifies the interpretive content and cautions (averaging, stratum lumping, interpolation) required in the Ground Investigation Report's evaluation section."
+    },
+    {
+      "section_id": "6.4",
+      "title": "Establishment of derived values",
+      "summary": "Any correlations used to derive geotechnical parameters or coefficients, and their applicability to the site, shall be documented in the Ground Investigation Report.",
+      "body": "If correlations have been used to derive geotechnical parameters or coefficients, the correlations and their applicability shall be documented.",
+      "key_points": [
+        "Any correlation used to derive a geotechnical parameter/coefficient must be documented, together with its applicability to the site"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Closes the loop from Section 1.6's derived-value framework back into mandatory reporting, ensuring traceability of every correlation used in design."
+    }
+  ]
+}

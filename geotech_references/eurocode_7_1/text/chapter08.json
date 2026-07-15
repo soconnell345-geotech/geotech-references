@@ -1,0 +1,166 @@
+{
+  "reference_id": "EN 1997-1:2004",
+  "reference_title": "Eurocode 7: Geotechnical Design - Part 1: General Rules",
+  "volume": null,
+  "chapter": 8,
+  "chapter_title": "Anchorages",
+  "sections": [
+    {
+      "section_id": "8.1",
+      "title": "General (scope and definitions)",
+      "summary": "Applies to temporary/permanent anchorages supporting retaining structures, stabilizing slopes/cuts/tunnels, or resisting uplift, by transmitting tensile force into soil/rock via pre-stressed (anchor head + free length + grouted bond length) or non-pre-stressed (anchor head + free length + fixed length/deadman/screw anchor/rock bolt) systems. Excludes soil nails; tension-pile anchorages fall under Section 7. Defines permanent (>2 yr) vs temporary (<2 yr) anchorage, and acceptance/suitability/investigation tests, per EN 1537:1999.",
+      "body": "This Section applies to the design of temporary and permanent anchorages used to support a retaining structure, provide stability of slopes/cuts/tunnels, or resist uplift forces on structures, by transmitting a tensile force to a load-bearing soil or rock formation. It covers pre-stressed anchorages (anchor head, tendon free length, and tendon bond length bonded to the ground by grout) and non pre-stressed anchorages (anchor head, tendon free length, and a restraint such as a fixed anchor length bonded by grout, a deadman anchorage, a screw anchor, or a rock bolt). This Section does not apply to soil nails; Section 7 applies to anchorages comprising tension piles. Definitions (from EN 1537:1999 unless noted): permanent anchorage -- design life more than two years; temporary anchorage -- design life less than two years; acceptance test -- site load test confirming each anchorage meets design requirements; suitability test -- site load test confirming a particular anchor design is adequate for particular ground conditions; investigation test -- load test establishing the ultimate resistance at the grout/ground interface and the anchorage's working-load-range characteristics; anchor bond length -- length bonded directly to the ground through a grout body; tendon free length -- tendon length between the anchor head and the proximal end of the tendon bond length; tendon bond length -- tendon length bonded directly to the grout and capable of transmitting the applied tensile load.",
+      "key_points": [
+        "Covers pre-stressed anchorages (head + free length + grouted bond length) and non-pre-stressed anchorages (head + free length + fixed length/deadman/screw anchor/rock bolt)",
+        "Used to support retaining structures, stabilize slopes/cuts/tunnels, or resist uplift",
+        "Excludes soil nails; tension-pile anchorages are covered by Section 7, not this Section",
+        "Permanent anchorage: design life > 2 years; temporary anchorage: design life < 2 years",
+        "Three test types (per EN 1537:1999): acceptance (every anchorage, confirms design requirements), suitability (confirms a design for given ground), investigation (establishes ultimate grout/ground interface resistance)",
+        "Anchor bond length, tendon free length, and tendon bond length are distinct defined lengths within the anchorage"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Scope and terminology for all temporary and permanent ground anchorage design, excluding soil nails and tension-pile anchorages."
+    },
+    {
+      "section_id": "8.2",
+      "title": "Limit states",
+      "summary": "Lists the limit states to be considered individually and in combination for anchorages: tendon/anchor-head structural failure, anchor-head distortion/corrosion, grout-ground interface failure, tendon-grout bond failure, deadman resistance failure, anchorage-force loss from excessive head displacement/creep/relaxation, structural failure of the anchored parts, loss of overall stability, and group interaction effects.",
+      "body": "The following limit states shall be considered for anchorages, both individually and in combination: structural failure of the tendon or anchor head caused by applied stresses; distortion or corrosion of the anchor head; for grouted anchors, failure at the interface between the grout body and the ground; for grouted anchors, failure of the bond between the steel tendon and the grout; for deadman anchorages, failure by insufficient deadman resistance; loss of anchorage force by excessive anchor-head displacement or by creep and relaxation; failure or excessive deformation of structural parts due to the applied anchorage force; loss of overall stability of the retained ground and retaining structure; and interaction of groups of anchorages with the ground and adjoining structures.",
+      "key_points": [
+        "Tendon/anchor-head structural failure and anchor-head distortion/corrosion are both listed limit states",
+        "Grouted anchors: both grout-ground interface failure and tendon-grout bond failure must be checked",
+        "Deadman anchorages: insufficient deadman resistance is a distinct limit state",
+        "Anchorage force loss from head displacement, creep, or relaxation must be considered",
+        "Overall stability of the retained ground/structure, and group interaction effects, are both in scope"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Checklist for compiling the complete set of limit states relevant to a specific anchorage or group of anchorages."
+    },
+    {
+      "section_id": "8.3",
+      "title": "Design situations and actions",
+      "summary": "Design situations must consider construction-phase and design-life circumstances, all 8.2 limit states and combinations, anticipated ground-water/confined-aquifer pressures, consequences of anchorage failure, and the possibility that pre-stressing loads exceed the structural design requirement. The anchorage load P is treated as an unfavourable action for anchorage design.",
+      "body": "When selecting design situations, consideration shall be given to: all circumstances during construction of the structure; all anticipated circumstances during the design life of the structure; all pertinent limit states from the list compiled in 8.2, and their combinations; the anticipated level of ground-water and water pressures in confined aquifers; the consequences of failure of any anchorage; and the possibility that pre-stressing (anchorage load) forces may exceed those required for the design of the structure. The anchorage load, P, shall be treated as an unfavourable action for the anchorage design.",
+      "key_points": [
+        "Design situations span both construction-phase and full design-life circumstances",
+        "All 8.2 limit states and their combinations must be reflected in the design situations considered",
+        "Ground-water and confined-aquifer water pressures must be anticipated",
+        "Consequences of individual anchorage failure factor into the design situation",
+        "Pre-stressing (anchorage) load P may exceed the structural design requirement and is itself treated as an unfavourable action"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when defining the design situations and actions (particularly the anchorage load P) for any anchorage design."
+    },
+    {
+      "section_id": "8.4",
+      "title": "Design and construction considerations",
+      "summary": "Requires site investigation of the tensile-force transfer zone, anchor-head design tolerant of stressing/proof-loading/lock-off/de-stressing operations and angular deviations, compatible-deformation multi-material design, adequate tendon-free-length spacing from retained ground/foundations/other anchorages (>=1.5 m where practicable), tested or comparable-experience anchorage systems, self-stressing tendon direction, suitability-test-based pull-out resistance (checked by acceptance tests), and corrosion protection per EN 1537:1999.",
+      "body": "The design of the anchorage and its execution specification shall account for any adverse effects of tensile stresses transmitted beyond the anchorage vicinity; the zone of ground into which tensile forces transfer shall be included in site investigations. For pre-stressed anchorages, the anchor head shall allow the tendon/rod to be stressed, proof-loaded, and locked-off, and (if required) released, de-stressed, and re-stressed. For all anchorage types, the anchor head shall tolerate angular force deviations (per EN 1537:1999 6.3) and accommodate deformations occurring during the design life. Where different materials are combined, their design strengths shall be assessed for deformation-performance compatibility. Because anchorage system effects depend on tendon free length: the anchor force shall act in ground sufficiently distant from the retained volume that its stability is unaffected, sufficiently distant from existing foundations to avoid adverse effects, and measures shall avoid adverse interaction between tendon bond lengths of nearby anchorages -- a spacing of at least 1.5 m between tendon bond lengths should be maintained where possible. Only anchorage systems tested by investigation tests (per EN 1537:1999) or with documented successful comparable experience (performance and durability) shall be used. Tendon direction shall normally provide self-stressing against potential failure-mechanism deformations; where infeasible, adverse effects shall be accounted for in design. For grouted and screw anchorages, the characteristic pull-out resistance Ra;k shall be determined from suitability tests (8.7) or comparable experience, with the design resistance checked by acceptance tests after execution. The tendon free length's performance shall be checked per EN 1537:1999; a sufficient lock-off force shall ensure SLS anchorage resistance is mobilised with tolerable head displacements. Corrosion protection of pre-stressed anchorages shall comply with EN 1537:1999 6.9, with steel-tendon corrosion protection designed for the aggressiveness of the ground environment, using protective sheaths or sacrificial steel where necessary.",
+      "key_points": [
+        "Tensile-force transfer zone must be included in site investigations; anchor head must tolerate stressing/proof-loading/lock-off/de-stress/re-stress operations and angular deviations",
+        "Multi-material anchorages need deformation-compatibility assessment of design strengths",
+        "Anchor force must act far enough from retained ground and existing foundations to avoid adverse effects; tendon bond lengths of nearby anchorages should keep >=1.5 m spacing",
+        "Only investigation-tested systems, or those with documented comparable performance/durability experience, may be used",
+        "Grouted/screw anchorage characteristic pull-out resistance Ra;k comes from suitability tests (8.7) or comparable experience, verified per-anchorage by acceptance tests",
+        "Lock-off force must ensure SLS resistance mobilisation with tolerable displacements; corrosion protection follows EN 1537:1999 6.9, tailored to ground aggressiveness"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Governs anchor-head design, spacing/interaction avoidance, system qualification, and corrosion protection for all anchorage types during design and construction."
+    },
+    {
+      "section_id": "8.5",
+      "title": "Ultimate limit state design",
+      "summary": "Requires the design anchorage load to not exceed the design pull-out resistance Ra;d (Eq. 8.1). Design pull-out resistance from tests: Ra;d = Ra;k / gamma_a (Eq. 8.2, gamma_a per A.3.3.4(1)P/Table A.12), optionally related to suitability-test results via a correlation factor xi_a. Design pull-out resistance may also be assessed by calculation per 2.4.7/2.4.8. Structural resistance check: Ra;d <= Rt;d (Eq. 8.3, per EN 1992/1993/1537). Anchorages share the SAME special pile/anchor Design Approach rule as Section 7 (2.4.7.3.4.2(2)): DA1-C1 = A1+M1+R1, but DA1-C2 = A2+(M1 or M2)+R4, not the general A2+M2+R1.",
+      "body": "The design value Ra;d of the pull-out resistance Ra of an anchorage shall fulfil the limit condition Fa;d <= Ra;d (Eq. 8.1) -- the design anchorage (tensile) load must not exceed the design pull-out resistance (the printed equation graphic for this inequality was displaced by the source PDF's text layer to appear after the 8.5.2 heading rather than under 8.5.1; the relationship is reconstructed from the surrounding clause text and from 8.3(2)P/8.5.5, which establish the anchorage load P/Fa;d as the governing unfavourable action). Design values of pull-out resistance may be determined from anchorage test results or by calculation. From TEST RESULTS: the design pull-out resistance is derived from the characteristic value via Ra;d = Ra;k / gamma_a (Eq. 8.2), where the partial factor gamma_a accounts for unfavourable deviations of the anchorage pull-out resistance; the partial factors gamma_a defined in A.3.3.4(1)P shall be used (recommended values for persistent/transient situations in Table A.12, sets R1-R4). The characteristic value should be related to suitability test results by applying a correlation factor xi_a (based on experience or set by the National annex), applicable to anchorage types not individually checked by acceptance tests. Like axially loaded piles (Section 7.6, per 2.4.7.3.4.2(2)), anchorages use a SPECIAL Design Approach combination set, not the general STR/GEO combinations: Design Approach 1 Combination 1 = A1\"+\"M1\"+\"R1 (as normal), but Design Approach 1 Combination 2 = A2\"+\"(M1 or M2)\"+\"R4 -- NOT the general DA1-C2 combination of A2+M2+R1; this determines which R-set (R1 vs R4) is used to read gamma_a from Table A.12. BY CALCULATION: the design value of pull-out resistance shall be assessed according to the principles in 2.4.7 and 2.4.8, where appropriate. Structural design of the anchorage shall satisfy Ra;d <= Rt;d (Eq. 8.3), where the material resistance Rt;d is calculated per EN 1992, EN 1993, and EN 1537:1999 as relevant; if anchors are subject to suitability tests, Rt;d shall account for the proof load per EN 1537:1999 9.5. The design value of the anchorage load shall be derived from the retained-structure design as the maximum of the ULS force applied by the retained structure and, if relevant, the SLS force applied by the retained structure.",
+      "key_points": [
+        "Design pull-out resistance limit condition: design anchorage load Fa;d <= Ra;d (Eq. 8.1)",
+        "From tests: Ra;d = Ra;k/gamma_a (Eq. 8.2); gamma_a per A.3.3.4(1)P, recommended values in Table A.12 (sets R1-R4)",
+        "SPECIAL Design Approach rule (2.4.7.3.4.2(2), same as Section 7 piles): DA1-C2 = A2+(M1 or M2)+R4 for anchorages, not the general A2+M2+R1",
+        "A correlation factor xi_a may relate the characteristic value to suitability test results for anchorage types not individually acceptance-tested",
+        "Calculation-based pull-out resistance assessment follows the general 2.4.7/2.4.8 principles",
+        "Structural resistance check: Ra;d <= Rt;d (Eq. 8.3), material resistance per EN 1992/1993/1537:1999",
+        "Design anchorage load = max(ULS force from retained structure, SLS force from retained structure where relevant)"
+      ],
+      "equations": [
+        {"id": "Eq. 8.1", "description": "Fa;d <= Ra;d -- the design anchorage load must not exceed the design pull-out resistance (limit condition on Ra;d). Symbol reconstructed from the surrounding clause text (8.3(2)P, 8.5.5) since the source PDF's OCR displaced this equation's printed form to after the 8.5.2 heading.", "implemented_in": null},
+        {"id": "Eq. 8.2", "description": "Ra;d = Ra;k / gamma_a, design pull-out resistance derived from characteristic value and partial factor gamma_a (Table A.12, sets R1-R4, subject to the special pile/anchor Design Approach rule).", "implemented_in": null},
+        {"id": "Eq. 8.3", "description": "Ra;d <= Rt;d, structural resistance check of the anchorage tendon/head against the applied design pull-out resistance.", "implemented_in": null}
+      ],
+      "figures": [],
+      "tables": [
+        "Table A.12 - Partial resistance factors gamma_a for temporary/permanent pre-stressed anchorages, sets R1-R4 (table_a_12_anchorage_resistance)"
+      ],
+      "applicability": "Core ULS verification for anchorage pull-out resistance (from tests or calculation) and structural resistance of the anchorage tendon/head, using the special pile/anchor R1/R4 Design Approach rule."
+    },
+    {
+      "section_id": "8.6",
+      "title": "Serviceability limit state design",
+      "summary": "For SLS verification of the supported structure, an anchorage is modelled as a spring: an elastic, pre-stressed spring for pre-stressed anchorages, or a non-pre-stressed spring (stiffness selected for displacement/elongation compatibility) otherwise. The most adverse combination of minimum/maximum stiffness and pre-stress should be selected; a model factor may apply to the SLS force; deformations imposed on adjacent foundations by the pre-stress force should be accounted for.",
+      "body": "For verification of a serviceability limit state in the supported structure, an anchorage shall be regarded as a spring. For pre-stressed anchorages (e.g. grouted anchorages), the spring shall be regarded as an elastic, pre-stressed spring. The most adverse combination of minimum or maximum anchorage stiffness and minimum or maximum pre-stress should be selected when analysing this design situation. A model factor should be applied to the SLS force to ensure the anchorage resistance is sufficiently safe (value may be set by the National annex). When considering a non-pre-stressed anchorage as a (non-pre-stressed) spring, its stiffness should be selected to achieve compatibility between the calculated displacements of the retained structure and the displacement/elongation of the anchorage. Account should be taken of the effects of any deformations imposed on adjacent foundations by the anchorage pre-stress force.",
+      "key_points": [
+        "Anchorages are modelled as springs for SLS verification of the supported structure",
+        "Pre-stressed anchorages: elastic, pre-stressed spring model",
+        "Analysis should use the most adverse combination of stiffness extremes and pre-stress extremes",
+        "A model factor (National annex determined) may be applied to the SLS force",
+        "Non-pre-stressed anchorage stiffness is selected for displacement/elongation compatibility with the retained structure",
+        "Effects of pre-stress-induced deformation on adjacent foundations must be accounted for"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "SLS verification method (spring-model) for both pre-stressed and non-pre-stressed anchorages supporting a retained structure."
+    },
+    {
+      "section_id": "8.7",
+      "title": "Suitability tests",
+      "summary": "Suitability tests are required for grouted anchorages, screw anchorages, and rock bolts, performed per EN 1537:1999. At least three tests per distinct ground/structure condition are recommended to determine characteristic anchor resistance. The proof load Pp for grouted-anchorage suitability tests follows EN 1537:1999; screw anchorages/rock bolts follow the same procedure pending a dedicated test standard.",
+      "body": "Suitability tests shall be specified for grouted anchorages, screw anchorages, and rock bolts, with test performance complying with EN 1537:1999. At least three suitability tests should be performed for each distinct condition of ground and structure to determine the characteristic resistance of the anchor. The proof load Pp of a suitability test for grouted anchorages shall comply with EN 1537:1999. Until a specific test procedure is available, suitability testing for screw anchorages and rock bolts should follow the same procedure as EN 1537:1999 specifies for grouted anchorages.",
+      "key_points": [
+        "Required for grouted anchorages, screw anchorages, and rock bolts, per EN 1537:1999",
+        "At least three tests recommended per distinct ground/structure condition",
+        "Grouted-anchorage proof load Pp follows EN 1537:1999",
+        "Screw anchorages and rock bolts follow the grouted-anchorage procedure pending a dedicated standard"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Pre-construction testing to confirm that a particular anchor design is adequate for the ground conditions encountered."
+    },
+    {
+      "section_id": "8.8",
+      "title": "Acceptance tests",
+      "summary": "All grouted anchorages shall be subjected to acceptance tests prior to lock-off and before becoming operational, following EN 1537:1999 procedures. Where anchorage groups cross with tendon bond lengths spaced less than 1.5 m apart, random control tests should follow lock-off completion.",
+      "body": "All grouted anchorages shall be subjected to acceptance tests prior to lock-off and before they become operational. The procedure for acceptance tests shall follow the rules given in EN 1537:1999 for grouted anchorages. Where groups of anchorages cross with tendon bond lengths at spacings of less than 1.5 m, random control tests should be made after completion of the lock-off action.",
+      "key_points": [
+        "Mandatory for every grouted anchorage, prior to lock-off and before operational use",
+        "Procedure follows EN 1537:1999",
+        "Tendon bond lengths crossing at less than 1.5 m spacing trigger additional random control tests after lock-off"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Per-anchorage confirmation testing applied to every grouted anchorage before it is put into service."
+    },
+    {
+      "section_id": "8.9",
+      "title": "Supervision and monitoring",
+      "summary": "Anchorage supervision and monitoring shall follow the rules of Section 4 of this standard together with clauses 9.10 and 9.11 of EN 1537:1999, where appropriate.",
+      "body": "Supervision and monitoring of anchorages shall follow the rules given in Section 4 of this standard and 9.10 and 9.11 of EN 1537:1999, where appropriate.",
+      "key_points": [
+        "Anchorage supervision/monitoring is governed jointly by Section 4 of EN 1997-1 and EN 1537:1999 clauses 9.10/9.11"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction-phase and in-service supervision/monitoring requirements for anchorages."
+    }
+  ]
+}

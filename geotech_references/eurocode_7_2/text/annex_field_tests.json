@@ -1,0 +1,521 @@
+{
+  "reference_id": "EN 1997-2:2007",
+  "reference_title": "Eurocode 7: Geotechnical design - Part 2: Ground investigation and testing",
+  "volume": null,
+  "chapter": 7,
+  "chapter_title": "Annexes A-K: test-standard reference, planning, and field-test derived-value correlations",
+  "sections": [
+    {
+      "section_id": "7.1",
+      "title": "Annex A: List of test results of geotechnical test standards",
+      "summary": "Informative Annex A (Table A.1) lists, for each field test (CPT/CPTU, dynamic probing, SPT, Menard PMT, flexible dilatometer, other PMTs, FVT, WST, PLT, DMT) and each laboratory test, the specific test results that should be presented in the Ground Investigation Report.",
+      "body": "Table A.1 lists field and laboratory tests together with the test results that should be presented in the Ground Investigation Report, if applicable. Field test results include: CPT - qc, local unit side friction fs, friction ratio Rf; CPTU - corrected cone resistance qt, local unit side friction fs, measured pore pressure u; dynamic probing - N10 for DPL/DPM/DPH, N10 or N20 for DPSH; SPT - blow count N, energy correction Er, soil description; Menard pressuremeter - pressuremeter modulus EM, creep pressure pf, limit pressure PLM, expansion curve; flexible dilatometer test - dilatometer modulus EFDT, deformation curve; all other pressuremeter tests - expansion curve; field vane test - undrained shear strength (uncorrected) cfv, remoulded undrained shear strength, torque-rotation curve; weight sounding test - continuous record of WST resistance (penetration depth for standard load, or half-turns per 0.2 m at 1 kN standard load); plate loading test - ultimate contact pressure pu; flat dilatometer test - corrected lift-off pressure p0, corrected expansion pressure p1 at 1.10 mm, dilatometer modulus EDMT, material index IDMT, horizontal stress index KDMT. Laboratory test results (continued in Table A.1) include water content w, bulk mass density rho, particle mass density rhos, grain size distribution curve, plastic/liquid limit values (wp, wL), density index parameters (emax, emin, ID), loss on ignition, carbonate/sulfate/chloride content, pH, oedometer compressibility curves (Eoed with stress interval, sigma'p or Cs/Cc/sigma'p), laboratory vane and fall cone strength indices, unconfined compression qu=2cu, and stress-strain/pore-pressure/stress-path results for UU/CIU/CID triaxial and direct shear box tests.",
+      "key_points": [
+        "Table A.1 is the master cross-reference from each test method to the specific result quantities/curves expected in the Ground Investigation Report",
+        "CPT results: qc, fs, Rf; CPTU adds qt (pore-pressure-corrected) and measured u",
+        "SPT results: N, energy ratio Er, soil description; must report Er for any quantitative use",
+        "DMT results: p0, p1 (at 1.10mm), EDMT, IDMT, KDMT - the four quantities feeding Eq 4.5 and the Annex J Eoed correlation",
+        "PLT results: ultimate contact pressure pu, feeding Annex K.1's cu correlation"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table A.1: List of test results of geotechnical standards"
+      ],
+      "applicability": "Master checklist for what raw test-result quantities must be captured and reported for each field/laboratory test method."
+    },
+    {
+      "section_id": "7.2",
+      "title": "Annex B: Planning of geotechnical investigations",
+      "summary": "Annex B.1/B.2 give flowchart guidance for investigation staging and field-method selection (Table B.1). Annex B.3 gives concrete guidance values for investigation-point spacing (by structure type) and investigation depth Za (by structure/foundation type, taking the largest of several conditions), e.g. Za>=6m or Za>=3.0*bF for high-rise structures.",
+      "body": "Annex B.1 presents flowcharts for the stages of ground investigation in geotechnical design, execution of works, and structure exploitation. Annex B.2 gives Table B.1, an example of selecting ground-investigation methods (preliminary vs. control investigations, by fine/coarse soil) with the field-testing abbreviations used throughout the standard (BJT borehole jack test, DP dynamic probing, SR soil/rock sounding, SS static sounding e.g. WST, CPT(U), SPT, PMT, DMT, FVT, PLT, MWD, SE, PIL, RDT). Annex B.3 gives example recommendations for investigation-point spacing and depth. Spacing guidance: high-rise and industrial structures - grid pattern, points 15-40 m apart; large-area structures - grid pattern, points not more than 60 m apart; linear structures (roads, railways, channels, pipelines, dikes, tunnels, retaining walls) - spacing 20-200 m; special structures (bridges, stacks, machinery foundations) - 2 to 6 investigation points per foundation; dams and weirs - points along relevant sections (upper spacing bound 75 m; the lower bound digit is illegible in the scanned source). Investigation depth Za guidance (reference level = lowest point of the structure's foundation or the excavation base; where multiple conditions are given, the largest governs): greater depths are always selected where unfavourable geology (weak/compressible strata beneath higher-bearing strata) is presumed; on competent strata, depth may be reduced to Za>=2m (or, if geology is indistinct, at least one borehole to Za>=5m minimum; if bedrock is encountered at the proposed structure base, that becomes the Za reference level, otherwise Za is referenced to the bedrock surface). High-rise structures/civil engineering projects (Figure B.1a): Za>=6m or Za>=3.0*bF (bF = smaller foundation side length). Raft foundations / multiple superimposing foundation elements (Figure B.1b): Za>=1.5*bB (bB = smaller side of the structure). Embankments and cuttings, e.g. dams (Figure B.2): 0.8h<Za<1.2h and Za>=6m (h = embankment height). Linear structures (Figure B.3): roads/airfields - Za>=2m below the proposed formation level; trenches/pipelines - Za>=2m below the invert level and Za>=1.5*b (b = excavation width). Excavations, piezometric surface/groundwater below the excavation base: Zj>=0.4h and Zj>=(t+2.0)m (t = embedded support length, h = excavation depth); a further condition applies where the piezometric surface/groundwater is above the excavation base (not reproduced here). Cut-off walls (Figure B.6) and piles (Figure B.7, three conditions related to pile-base diameter Df and the smaller side bg of the pile-group-circumscribing rectangle, with a fixed 5.0 m floor) are also covered, referenced by figure only.",
+      "key_points": [
+        "Annex B.1: flowcharts for investigation staging; B.2/Table B.1: example method selection by investigation stage, with the standard's field-test abbreviation key",
+        "Investigation-point spacing guidance: high-rise/industrial 15-40m grid; large-area <=60m grid; linear structures 20-200m; special structures 2-6 points/foundation; dams/weirs up to 75m along sections",
+        "Investigation depth Za: largest of several structure-specific conditions governs; e.g. high-rise Za>=6m or 3.0*bF; raft foundations Za>=1.5*bB; embankments 0.8h<Za<1.2h and Za>=6m; linear structures Za>=2m below formation/invert level",
+        "On competent strata, Za may reduce to >=2m (or >=5m minimum with one borehole if geology is indistinct)",
+        "This is investigation-planning guidance (where/how deep to investigate), distinct from the derived-value correlations of Annexes D-K"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure B.1: high-rise structures, civil engineering projects",
+        "Figure B.2: embankments and cuttings",
+        "Figure B.3: linear structures",
+        "Figure B.6: cut-off wall",
+        "Figure B.7: piles"
+      ],
+      "tables": [
+        "Table B.1: example selection of ground investigation methods in different stages"
+      ],
+      "applicability": "Practical guidance for siting and depth-scoping a ground investigation programme by structure type, supplementing the general principles of Section 2."
+    },
+    {
+      "section_id": "7.3",
+      "title": "Annex C: Example of groundwater pressure derivations based on a model and long term measurements",
+      "summary": "Informative Annex C, referenced from 3.6.3(2), presents an example statistical method to evaluate groundwater conditions when long-term measurements in a reference pipe in the vicinity are available together with only a short measuring period on the actual site.",
+      "body": "Annex C is referenced from Section 3 (3.6.3, Note) as presenting an example of a statistical method for evaluating groundwater conditions when long-term measurements in a reference standpipe near the site are available, combined with only a short measuring period on the actual site itself. This lets the short site-specific record be extended/calibrated against the longer reference record to estimate more reliable upper/lower bound groundwater levels or pore pressures (per the general evaluation principles of 3.6.3).",
+      "key_points": [
+        "Worked example: combining a short on-site groundwater measurement period with a long-term nearby reference-pipe record via a statistical model",
+        "Directly supports the general groundwater-evaluation principles of 3.6.3 (extreme/normal bound estimation)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Worked example for extending limited site groundwater monitoring data using longer-term regional reference data."
+    },
+    {
+      "section_id": "7.4.1",
+      "title": "Annex D.1: phi' and drained Young's modulus from CPT cone resistance",
+      "summary": "Table D.1 (Bergdahl et al. 1993) gives, for quartz and feldspar sands, ranges of effective angle of shearing resistance phi' and drained Young's modulus E' by density category (very loose to very dense) as a function of mean CPT cone resistance qc, for bearing resistance and settlement of spread foundations.",
+      "body": "Table D.1 is an example for deriving, from qc, the effective angle of shearing resistance phi' and drained (long-term) Young's modulus of elasticity E' for quartz and feldspar sands, for bearing resistance and settlement calculations of spread foundations, obtained by correlating the mean qc in a layer to the mean phi' and E'. Five density categories are tabulated (very loose, loose, medium dense, dense, very dense) against qc ranges 0-2.5, 2.5-5.0, 5.0-10.0, 10.0-20.0, and >20.0 MPa, giving phi' ranges 29-32, 32-35, 35-37, 37-40, 40-42 degrees and E' ranges <10, 10-20, 20-30, 30-60, 60-90 MPa respectively. Values are valid for sands; reduce phi' by 3 degrees for silty soil, increase by 2 degrees for gravel. E' approximates the stress- and time-dependent secant modulus, corresponding to settlements at 10 years assuming a 2:1 vertical stress distribution; values can be 50% lower in silty soil and 50% higher in gravelly soil, and considerably higher in over-consolidated coarse soil; halve the tabulated modulus when calculating settlements for ground pressures greater than 2/3 of the ultimate-limit-state design bearing pressure.",
+      "key_points": [
+        "Table D.1: 5 density categories (very loose to very dense) mapping qc (MPa) ranges to phi' (deg) and E' (MPa) ranges",
+        "Adjustments: phi' -3deg for silty soil, +2deg for gravel; E' -50% silty, +50% gravelly, halved above 2/3 of ULS design pressure",
+        "E' corresponds to 10-year settlements assuming 2:1 vertical stress spread",
+        "Digitized as tables.table_d1_phi_e_from_qc(qc_mpa, soil_type)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table D.1: phi' and E' for quartz/feldspar sands from qc"
+      ],
+      "applicability": "Preliminary bearing-resistance and settlement design of spread foundations on quartz/feldspar sand, from CPT results alone."
+    },
+    {
+      "section_id": "7.4.2",
+      "title": "Annex D.2: correlation between CPT cone resistance and effective angle of shearing resistance",
+      "summary": "Deterministic correlation phi' = 13.5*log10(qc) + 23 (qc in MPa) for poorly-graded sands (Cu<3) above groundwater, valid 5<=qc<=28 MPa; established from electrical CPT and laboratory triaxial tests (Stenzel et al. 1978; DIN 4094-1).",
+      "body": "Example for deriving the effective angle of shearing resistance phi' from CPT cone penetration resistance qc in sands. The deterministic correlation reads: phi' = 13.5 * log10(qc) + 23, where phi' is in degrees and qc is in MPa. This relationship is valid for poorly-graded sands (Cu<3) above groundwater and cone penetration resistances 5 MPa <= qc <= 28 MPa; it was established from electrical cone penetrometer tests and laboratory triaxial tests, and published by Stenzel et al. (1978) and in DIN 4094-1 (2002).",
+      "key_points": [
+        "phi' = 13.5*log10(qc) + 23 (degrees, qc in MPa)",
+        "Valid for poorly-graded sands (Cu<3) above groundwater, 5<=qc<=28 MPa",
+        "Digitized as equations.equation_d2_phi_from_qc(qc_mpa)"
+      ],
+      "equations": [
+        {"id": "Annex D.2", "description": "phi' = 13.5 * log10(qc) + 23 (qc in MPa, phi' in degrees)", "implemented_in": "geotech_references.eurocode_7_2.equations.equation_d2_phi_from_qc"}
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Closed-form estimate of phi' for poorly-graded sand directly from CPT qc, as an alternative to the Table D.1 density-category lookup."
+    },
+    {
+      "section_id": "7.4.3",
+      "title": "Annex D.3: settlement of spread foundations by the Schmertmann method",
+      "summary": "Semi-empirical settlement method for spread foundations in coarse soil (Schmertmann 1970): E'=2.5*qc (axisymmetric) or 3.5*qc (plane strain); settlement s = C1*C2*(q-sigma'v0)*integral(Iz/(C3*E'))dz, with C1/C2/C3 coefficients and a strain-influence-factor (Iz) chart (Figure D.1).",
+      "body": "Example of a semi-empirical method for calculating settlements of spread foundations in coarse soil. The Young's modulus of elasticity E' derived from qc for this method is: E'=2.5*qc for axisymmetric (circular and square) foundations, and E'=3.5*qc for plane strain (strip) foundations. Settlement s of a foundation under load pressure q is: s = C1*C2*(q-sigma'v0)*integral[0,zi](Iz/(C3*E'))dz, where C1 = 1-0.5*[sigma'v0/(q-sigma'v0)]; C2 = 1.2+0.2*log10(t); C3 is the shape correction factor (1.25 square, 1.75 strip with L>10B); sigma'v0 is the initial effective vertical stress at foundation level; zi is the depth influenced by foundation pressure/width; Iz is the vertical strain influence factor, whose distribution with depth for axisymmetric and plane-strain foundations is given in Figure D.1 (published by Schmertmann 1970/1978). The Iz-integral itself is chart-dependent and not digitized; C1, C2, C3, and the two E' formulas are digitized directly.",
+      "key_points": [
+        "E'=2.5*qc (axisymmetric) or 3.5*qc (plane strain) - equations.equation_d3_youngs_modulus_from_qc",
+        "s = C1*C2*(q-sigma'v0)*integral(Iz/(C3*E'))dz; C1=1-0.5*[sigma'v0/(q-sigma'v0)], C2=1.2+0.2*log10(t), C3=1.25 (square) or 1.75 (strip, L>10B) - equations.equation_d3_settlement_coefficients",
+        "Iz strain-influence-factor distribution (Figure D.1) is chart-based and not digitized; read off from the figure per foundation shape and relative depth"
+      ],
+      "equations": [
+        {"id": "Annex D.3", "description": "E' = 2.5*qc (axisymmetric) or 3.5*qc (plane strain); s = C1*C2*(q-sigma'v0)*integral(Iz/(C3*E'))dz", "implemented_in": "geotech_references.eurocode_7_2.equations.equation_d3_youngs_modulus_from_qc"}
+      ],
+      "figures": [
+        "Figure D.1: strain influence factor Iz diagrams for axisymmetric and plane-strain spread foundations"
+      ],
+      "tables": [],
+      "applicability": "Schmertmann-method settlement estimation for spread foundations on coarse soil from CPT qc."
+    },
+    {
+      "section_id": "7.4.4",
+      "title": "Annex D.4: correlation between oedometer modulus and CPT cone resistance",
+      "summary": "Table D.2 (Sanglerat 1972) gives example ranges of the correlation factor alpha in Eoed=alpha*qc (Eq 4.3), by soil type (low/high plasticity clay and silt, very organic silt, peat, chalk, sand) and qc range.",
+      "body": "Table D.2 gives example values of alpha (see 4.3.4.1(9), Eq 4.3: Eoed=alpha*qc) for various soil types as a function of qc, published by Sanglerat (1972): low-plasticity clay - alpha 3-8 (qc<=0.7 MPa), 2-5 (0.7<qc<2 MPa), 1-2.5 (qc>=2 MPa); low-plasticity silt - alpha 3-6 (qc<2 MPa), 1-2 (qc>=2 MPa); very plastic clay - alpha 2-6 (qc<2 MPa); very plastic silt - alpha 1-2 (qc>2 MPa); very organic silt - alpha 2-8 (qc<1.2 MPa); peat and very organic clay (qc<0.7 MPa) - alpha varies further by water content w (1.5-4 for 50<w<=100%, 1-1.5 for 100<w<=200%, 0.4-1.0 for w>200%); chalk - alpha 2-4 (2<qc<=3 MPa), 1.5-3 (qc>3 MPa); sands - alpha=2 (qc<5 MPa), alpha=1.5 (qc>10 MPa).",
+      "key_points": [
+        "Table D.2: alpha ranges (Eoed=alpha*qc) by soil type and qc band, e.g. low-plasticity clay 1-8 depending on qc",
+        "Peat/very organic clay additionally depends on water content w",
+        "Sand: alpha=2 for qc<5 MPa, alpha=1.5 for qc>10 MPa (constant, not interpolated - gap 5-10 MPa untabulated)",
+        "Digitized as tables.table_d2_alpha_oedometer(soil_type, qc_mpa) (peat/organic-clay water-content-dependent rows not included in the simplified lookup)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table D.2: examples of values of alpha (Eoed = alpha*qc correlation factor)"
+      ],
+      "applicability": "Provides the alpha factor needed to apply Eq 4.3 (Eoed from qc) across a wide range of fine and coarse soil types."
+    },
+    {
+      "section_id": "7.4.5",
+      "title": "Annex D.5: stress-dependent oedometer modulus from CPT results",
+      "summary": "Gives the stiffness-coefficient w1 (in Eoed=w1*(sigma'v/pa)^w2) as a function of qc for poorly-graded sands (w1=167*lg(qc)+113), well-graded sands (w1=463*lg(qc)-13), and low-plasticity stiff clays (w1=15.2*qc+50), each with a stated qc validity range.",
+      "body": "Example derivation of the vertical-stress-dependent oedometer settlement modulus Eoed = w1*(sigma'v/pa)^w2, frequently recommended for spread-foundation settlement calculation, where w1 is the stiffness coefficient, w2 the stiffness exponent (0.5 for sands with Cu<=3, 0.6 for low-plasticity clays with Ip<=10 and wL<=35), sigma'v the effective vertical stress at/below the foundation base due to overburden, delta-sigma'v the structure-induced effective vertical stress increment, and pa atmospheric pressure. Values of w1 from CPT results, by soil type: poorly-graded sands (Cu<=3) above groundwater - w1=167*log10(qc)+113, valid 5 MPa<=qc<=30 MPa; well-graded sands (Cu>6) above groundwater - w1=463*log10(qc)-13, valid 5 MPa<=qc<=30 MPa; low-plasticity clays of at least stiff consistency (0.75<=Ic<=1.30) above groundwater - w1=15.2*qc+50, valid 0.6 MPa<=qc<=3.5 MPa. Published by Stenzel et al. (1978) and Biedermann (1984), and in DIN 4094-1:2002.",
+      "key_points": [
+        "Eoed = w1*(sigma'v/pa)^w2; w2=0.5 (Cu<=3 sands) or 0.6 (low-plasticity clays)",
+        "w1 = 167*log10(qc)+113 (poorly-graded sand, 5<=qc<=30 MPa)",
+        "w1 = 463*log10(qc)-13 (well-graded sand, 5<=qc<=30 MPa)",
+        "w1 = 15.2*qc+50 (low-plasticity stiff clay, 0.6<=qc<=3.5 MPa)",
+        "Digitized as equations.equation_d5_stiffness_coefficient_from_qc(soil_type, qc_mpa)"
+      ],
+      "equations": [
+        {"id": "Annex D.5", "description": "w1 from qc, by soil type (poorly/well-graded sand, low-plasticity clay), for Eoed=w1*(sigma'v/pa)^w2", "implemented_in": "geotech_references.eurocode_7_2.equations.equation_d5_stiffness_coefficient_from_qc"}
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Alternative, stress-level-dependent oedometer modulus estimate from CPT results, for use in theoretical elastic settlement methods."
+    },
+    {
+      "section_id": "7.4.6",
+      "title": "Annex D.6: correlation between CPT resistance and pile compressive resistance (coarse soil)",
+      "summary": "Introduces Tables D.3 (unit base resistance pb of cast in-situ piles) and D.4 (unit shaft resistance ps) for coarse soil with little or no fines, from average CPT qc, established from static load tests (DIN 1054 2003-01).",
+      "body": "Tables D.3 and D.4 give examples of established correlations between static load test results and CPT results for coarse soil with little or no fines: unit base resistance pb and unit shaft resistance ps of cast in-situ piles, as functions of average cone penetration resistance qc and normalised pile head settlement. Table D.3 tabulates pb (MPa) at normalised settlement s/Ds (or s/Db) = 0.02, 0.03, and 0.10 (=sg, the ultimate settlement), against qc = 10, 15, 20, 25 MPa (e.g. at s/Db=0.02: pb=0.70/1.05/1.40/1.75 MPa; intermediate values interpolated linearly; multiply by 0.75 for piles with base enlargement). Table D.4 tabulates ps (MPa) against average qc = 0, 5, 10, >15 MPa, giving ps = 0/0.040/0.080/0.120 MPa respectively (intermediate values interpolated linearly). Established from electrical CPT results, published in DIN 1054 (2003-01).",
+      "key_points": [
+        "Table D.3: unit base resistance pb (MPa) vs. normalised settlement (0.02/0.03/0.10) and qc (10/15/20/25 MPa); x0.75 for enlarged-base piles - table_d3_pile_base_resistance",
+        "Table D.4: unit shaft resistance ps (MPa) vs. qc (0/5/10/>15 MPa) - table_d4_pile_shaft_resistance",
+        "Both interpolated linearly between tabulated points"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table D.3: unit base resistance pb of cast in-situ piles in coarse soil",
+        "Table D.4: unit shaft resistance ps of cast in-situ piles in coarse soil"
+      ],
+      "applicability": "Direct qc-to-pile-resistance correlation for cast-in-situ piles in clean coarse soil, an alternative to the fuller Dutch method of D.7."
+    },
+    {
+      "section_id": "7.4.7",
+      "title": "Annex D.7: method to determine the compressive resistance of a single pile from CPT (Dutch method)",
+      "summary": "The Dutch (NEN 6743-1) method computes Fmax=Fmax;base+Fmax;shaft from layer-averaged qc values (qc;I/II/III averaging with a critical-depth search) and pile-class/soil-type factors alpha_p, beta, s (Table D.5 for sand/gravelly sand) and alpha_s (Tables D.5-D.6 for sand vs. clay/silt/peat), capped at pmax;base<=15 MPa.",
+      "body": "Example determination of the maximum bearing resistance of a single pile from qc values of an electrical CPT (qc values should be reduced in cases of over-consolidation or post-CPT excavation). Maximum compressive resistance Fmax = Fmax;base + Fmax;shaft. Fmax;base = Abase*pmax;base, where Abase is the pile base cross-sectional area and pmax;base = 0.5*alpha_p*beta*s*{(qc;I;mean+qc;II;mean)/2 + qc;III;mean}, capped at pmax;base<=15 MPa; alpha_p is the pile class factor (Table D.5); beta is the pile-point shape factor (Figure D.3, interpolated); s=(1+sin(phi')/r)/(1+sin(phi')), r=L/B (larger/smaller side of a rectangular pile point); qc;I;mean is the mean qc from pile base level to a depth between 0.7 and 4 times the equivalent base diameter Deq deeper (at the critical depth dcrit where pmax;base is minimised); qc;II;mean is the mean of the lowest qc;II values from the critical depth up to the pile base; qc;III;mean is the mean qc from pile base level to 8*Deq (or 8*a if b>1.5a) above the base, starting from the lowest qc;II value used in qc;II;mean (for continuous flight auger piles, qc;III;mean is capped at 2 MPa unless CPTs were performed within 1 m of the pile after fabrication); Deq=1.13*a*sqrt(b/a), a=smaller base side, b=larger base side (b<=1.5a). Fmax;shaft = Cp*integral(pmax;shaft;z)dz, Fmax;shaft:z = alpha_s*qc;z;a, where alpha_s is from Tables D.5 (sand/gravelly sand) or D.6 (clay/silt/peat) and qc;z;a is the cut-off qc at depth z (if qc;z>=12 MPa over a continuous 1 m interval, qc;z;a<=15 MPa over that interval; if the qc;z;a>12 MPa interval is <1 m thick, qc<=12 MPa applies over it instead). Table D.5 gives alpha_p/alpha_s maxima for sand/gravelly-sand pile classes (driven prefabricated: alpha_p=1.0/alpha_s=0.010; driven cast-in-place closed-tube: 1.0/0.012; flight auger: 0.8/0.006 [0.01 if CPTs run near the piles rather than before installation]; bored with mud: 0.6/0.005; reduce alpha_s by 0.75 for very coarse sand, 0.5 for gravel). Table D.6 gives alpha_s maxima for clay/silt/peat (clay<0.030, silt<0.020, peat<0.025, before the qc>3MPa/qc<3MPa distinction, digitized here as a single conservative upper-bound value per soil type). Published in NEN 6743-1.",
+      "key_points": [
+        "Fmax = Fmax;base + Fmax;shaft; pmax;base capped at 15 MPa; alpha_p*beta*s formula with layered qc;I/II/III averaging around a searched critical depth",
+        "Table D.5: alpha_p and alpha_s maxima by pile class for sand/gravelly sand - table_d5_alpha_p_alpha_s_sand",
+        "Table D.6: alpha_s maxima for clay/silt/peat - table_d6_alpha_s_clay_silt_peat",
+        "The full Fmax;base/Fmax;shaft procedure (critical-depth search, qc;I/II/III integrals, beta shape factor from Figure D.3) is a multi-step design method, not digitized as a single function; only the Table D.5/D.6 factor lookups are digitized",
+        "For flight auger piles, qc;III;mean is capped at 2 MPa unless post-installation-vicinity CPTs are used"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure D.2: explanation of qc;I, qc;II, and qc;III averaging zones",
+        "Figure D.3: pile foot shape factor beta"
+      ],
+      "tables": [
+        "Table D.5: maximum values of alpha_p and alpha_s for sands and gravelly sands",
+        "Table D.6: maximum alpha_s values for clay, silt and peat"
+      ],
+      "applicability": "The full Dutch CPT-based method for single-pile compressive resistance in coarse-to-fine soil; the digitized factor tables support hand/spreadsheet application of the method, but the critical-depth search and Fmax integrals require the qc profile and are not reduced to a single formula here."
+    },
+    {
+      "section_id": "7.5.1",
+      "title": "Annex E.1: bearing resistance of spread foundations from Menard pressuremeter results",
+      "summary": "Semi-empirical bearing-resistance method using the Menard limit pressure PLM; Table E.1 (French Ministere de l'Equipement, 1993) gives the bearing factor k = base*[1+coeff*(0.6+0.4B/L)*De/B] by soil category (clay/silt, sand/gravel, chalk, marl/weathered rock) and PLM category (A/B/C).",
+      "body": "Example method to calculate the bearing resistance of spread foundations using a semi-empirical method and MPM test results. The bearing resistance is R = A'*[k*(PLM-p0)] + A'*sigma_v0 (form implied by the standard's equation, with k the bearing resistance factor, A' the effective base area, PLM the representative Menard limit pressure at the foundation base, p0=[K0*(sigma_v0-u)+u] with K0 conventionally 0.5, B/L the foundation width/length, and De the equivalent depth of foundation). Table E.1 gives k = base*[1+coeff*(0.6+0.4*B/L)*De/B] for: clay and silt - category A (PLM<0.7 MPa): base=0.8, coeff=0.25; category B (1.2-2.0 MPa): base=0.8, coeff=0.35; category C: base=0.8, coeff=0.50; sand and gravel - category A (PLM<0.5 MPa): base=1.0, coeff=0.35; category B (1.0-2.0 MPa): base=1.0, coeff=0.50; category C (>2.5 MPa): base=1.0, coeff=0.80; chalk: base=1.3, coeff=0.27; marl and weathered rock: base=1.0, coeff=0.27. Published by the French Ministere de l'Equipement du Logement et des Transports (1993).",
+      "key_points": [
+        "k = base*[1+coeff*(0.6+0.4*B/L)*De/B], with base/coeff tabulated by soil category (clay&silt, sand&gravel, chalk, marl&weathered rock) and PLM category A/B/C",
+        "Digitized as tables.table_e1_pmt_bearing_factor_k(soil_category, plm_category, b_m, l_m, de_m)",
+        "chalk and marl/weathered rock only have a single (category A) row"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table E.1: correlations for deriving the bearing resistance factor k for spread foundations"
+      ],
+      "applicability": "Menard-pressuremeter semi-empirical bearing resistance calculation for spread foundations, per EN 1997-1:2004 Annex E."
+    },
+    {
+      "section_id": "7.5.2",
+      "title": "Annex E.2: settlement of spread foundations from Menard pressuremeter results",
+      "summary": "Semi-empirical settlement method using shape coefficients lambda_c/lambda_l (Table E.2, by L/B and shape) and rheological factor alpha (Table E.3, by ground type and EM/PLM ratio range).",
+      "body": "Example method to calculate settlement s of spread foundations using a semi-empirical method developed for MPM tests, of the form s = (function of B0=0.6m reference width, B, lambda_c, lambda_l, alpha, Ed [weighted EM immediately below the foundation], Ec [harmonic mean EM to 8B below], sigma_v0, q). Table E.2 gives shape coefficients at L/B=1,2,3,5,20: lambda_l (circle: 1,1,1,1,1; square: 1,1.12,1.78,2.14,2.65) and lambda_c (1,1.1,1.2,1.3,1.4 [printed digit for the L/B=20 value is ambiguous between 1.4 and 1.5 in the scanned source; 1.4 is used, matching the well-known Menard shape-coefficient table also used in EN 1997-1 Annex E]). Table E.3 gives the rheological factor alpha by ground type and typical EM/PLM ratio: peat alpha=1.0; clay - over-consolidated (EM/PLM>16) alpha=1.0, normally consolidated (9-16) alpha=0.67, remoulded (7-9) alpha=0.5; silt - over-consolidated (>14) alpha=0.67, normally consolidated (5-14) alpha=0.5; sand - dense (>12) alpha=0.5, loose (5-12) alpha=0.33; sand and gravel - dense (>10) alpha=0.33, loose (6-10) alpha=0.25; rock - extensively fractured alpha=0.33, unaltered alpha=0.5, weathered alpha=0.67. Published by the French Ministere de l'Equipement du Logement et des Transports (1993).",
+      "key_points": [
+        "Table E.2: shape coefficients lambda_c (1.0-1.4) and lambda_l (circle=1 always; square 1.0-2.65) by L/B=1,2,3,5,20 - table_e2_pmt_shape_coefficients",
+        "Table E.3: rheological factor alpha (0.25-1.0) by ground type/consolidation state and typical EM/PLM ratio - table_e3_pmt_rheological_factor",
+        "L/B=20 lambda_c source digit flagged as ambiguous (1.4 vs 1.5); 1.4 used per the standard Menard table"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table E.2: shape coefficients lambda_c, lambda_l for settlement of spread foundations",
+        "Table E.3: correlations for deriving the rheological factor alpha"
+      ],
+      "applicability": "Menard-pressuremeter semi-empirical settlement calculation for spread foundations, per EN 1997-1:2004 Annex F."
+    },
+    {
+      "section_id": "7.5.3",
+      "title": "Annex E.3: compressive resistance of a single pile from Menard pressuremeter results",
+      "summary": "Q = k*A*(PLM-p0) + Cp*integral(shaft resistance)dz; Table E.4 gives the compression resistance factor k by soil category (clay&silt, sand&gravel, chalk), PLM category (A/B/C), and pile type (bored/small-displacement vs. full-displacement); Table E.5/Figure E.1 select the unit-shaft-resistance design curve.",
+      "body": "Example method to calculate the ultimate compressive resistance Q of piles from MPM test results: Q = k*A*(PLM-p0) + Cp*integral(pmax;shaft;z)dz, where A is the pile base area (full area for closed-ended piles, part-area for open-ended), PLM is the representative limit pressure at the pile base (corrected for weak layers below), p0=[K0*(sigma_v0-u)+u] with K0=0.5 conventionally, k is the compression resistance factor (Table E.4), Cp is the pile perimeter, and pmax;shaft;z is the unit shaft resistance for soil layer i, read from Figure E.1 in conjunction with Table E.5. Table E.4 gives k for bored/small-displacement piles vs. full-displacement piles, by soil category and PLM category: clay and silt - A(<0.7 MPa): 1.1/1.4; B(1.2-2.0): 1.2/1.5; C(>2.5): 1.3/1.6; sand and gravel - A(<0.5): 1.0/4.2; B(1.0-2.0): 1.1/3.7; C(>2.5): 1.2/3.2; chalk - A(<0.7): 1.1/1.6; B(1.0-2.5): 1.4/2.2; C(>3.0): 1.8/2.6. Table E.5 selects, for each soil category/PLM category and pile type (bored/caisson with no support, mud support, temporary casing, permanent casing, hand-dug caisson; displacement piles closed-end steel tube, prefab concrete, driven cast-in-situ, coated-shaft driven steel; grouted piles low/high pressure; weathered rock), which of the 7 unit-shaft-resistance design curves in Figure E.1 to use. Published by the French Ministere de l'Equipement du Logement et des Transports (1993).",
+      "key_points": [
+        "Q = k*A*(PLM-p0) + Cp*integral(shaft resistance)dz",
+        "Table E.4: compression factor k by soil category, PLM category, and bored-vs-displacement pile type - table_e4_pmt_pile_compression_factor",
+        "Table E.5 + Figure E.1: selects 1 of 7 unit-shaft-resistance design curves by soil/PLM category and detailed pile construction method (not digitized - chart read-off)"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure E.1: unit shaft resistance for axially loaded piles (7 design curves)"
+      ],
+      "tables": [
+        "Table E.4: values of the compression resistance factor k for axially loaded piles",
+        "Table E.5: selection of design curves for unit shaft resistance"
+      ],
+      "applicability": "Menard-pressuremeter method for single-pile compressive resistance, base term digitized (Table E.4); shaft term requires Figure E.1 chart read-off."
+    },
+    {
+      "section_id": "7.6.1",
+      "title": "Annex F.1: correlations between SPT blow counts and density indices",
+      "summary": "Table F.1 (Skempton 1986) correlates the normalised blow count (N1)60 with density index ID for normally-consolidated natural sand; Table F.2 gives the ageing effect on the parameter a=(N1)60/ID^2 for laboratory tests, recent fills, and natural deposits; over-consolidation increases the coefficient b by (1+2K0)/(1+2K0nc).",
+      "body": "The relationship between blow count N60, density index ID=(emax-e)/(emax-emin), and effective vertical stress sigma'v0 (kPa x10^-2) in a given sand can be represented as N60/ID^2 = a+b*sigma'v0, with a and b nearly constant for 0.35<ID<0.85 and 0.5<sigma'v0<2.5 (kPa x10^-2) in normally-consolidated sands (Skempton 1986, Table 8). Table F.1 gives, for normally consolidated natural sand deposits, the established correlation between normalised blow count (N1)60 and ID: very loose (N1)60=0-3, ID=0-15%; loose (N1)60=3-8, ID=15-35%; medium (N1)60=8-25, ID=35-65%; dense (N1)60=25-42, ID=65-85%; very dense (N1)60=42-58, ID=85-100%. For fine sands, reduce N-values in ratio 55:60; for coarse sands, increase in ratio 65:60. Ageing (longer consolidation period) increases blow count for a given ID, reflected as an increase in parameter a; Table F.2 gives typical (N1)60/ID^2 for normally-consolidated fine sands by age: laboratory tests (age ~10^-2 years) = 35; recent fills (~10 years) = 40; natural deposits (>10^2 years) = 55. Over-consolidation increases coefficient b by the factor (1+2*K0)/(1+2*K0nc), where K0 and K0nc are the in-situ horizontal/vertical effective stress ratios for over-consolidated and normally-consolidated sand respectively. All correlations are established for predominantly silica sands; use in crushable/compressible sands (e.g. calcareous sands, or silica sands with non-negligible fines) may underestimate ID. Published by Skempton (1986).",
+      "key_points": [
+        "Table F.1: (N1)60 vs. ID correlation, 5 density categories, normally-consolidated natural sand deposits - table_f1_density_index_from_n160",
+        "Table F.2: (N1)60/ID^2 ageing parameter by deposit age (35 lab / 40 recent fill / 55 natural deposit) - table_f2_ageing_factor",
+        "Fine sand: reduce N in ratio 55:60; coarse sand: increase in ratio 65:60",
+        "Over-consolidation increases coefficient b by (1+2K0)/(1+2K0nc)",
+        "Valid for predominantly silica sands; calcareous/fines-bearing sands may underestimate ID"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table F.1: correlation between the normalised blow count (N1)60 and the density index ID",
+        "Table F.2: effect of ageing in normally consolidated fine sands"
+      ],
+      "applicability": "Core SPT-to-density-index correlation feeding the phi' (F.2) and settlement (F.3) methods, and general density-index estimation from SPT."
+    },
+    {
+      "section_id": "7.6.2",
+      "title": "Annex F.2: deriving effective angle of shearing resistance from SPT density index",
+      "summary": "Table F.3 (US Army Corps of Engineers 1993) correlates density index ID with phi' for silica sands, by grain size (fine/medium/coarse) and grading (uniform/well-graded), across ID=40/60/80/100%.",
+      "body": "Table F.3 is an example for deriving phi' of silica sands from density index ID; phi' is also influenced by particle angularity and stress level. At ID=40/60/80/100%: fine uniform sand phi'=34/36/39/42 deg; fine well-graded phi'=36/38/41/43; medium uniform phi'=36/38/41/43; medium well-graded phi'=38/41/43/44; coarse uniform phi'=41/41/43/44; coarse well-graded phi'=43/43/44/46. Published by the US Army Corps of Engineers (1993).",
+      "key_points": [
+        "Table F.3: phi' vs. ID (40-100%) for 6 combinations of grain size (fine/medium/coarse) x grading (uniform/well-graded)",
+        "Digitized as tables.table_f3_phi_from_density_index(density_index_pct, grain_size, grading)",
+        "phi' increases with density index, grain coarseness, and better grading"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table F.3: correlation between density index ID and phi' of silica sands"
+      ],
+      "applicability": "Bearing-resistance analytical method: derives phi' for spread foundations on sand from SPT-based density index."
+    },
+    {
+      "section_id": "7.6.3",
+      "title": "Annex F.3: settlement of spread foundations in sand from SPT (Burland & Burbridge method)",
+      "summary": "Burland & Burbridge (1985) empirical direct settlement method: si=sigma'p*B^0.7*Icc/3 (q'<=sigma'p) or si=(q'-sigma'p)*B^0.7*Icc (normally consolidated), with Icc=1.71/N^1.4, a length-correction factor fs=[1.25(L/B)/(L/B+0.25)]^2, and a time-correction factor ft for 3+ years.",
+      "body": "Empirical direct method for calculating settlement in granular spread foundations. Settlement below the over-consolidation pressure is assumed 1/3 of the normally-consolidated value: for q'>=sigma'p, si=sigma'p*B^0.7*Icc/3 if q'<=sigma'p is not met... precisely: if q'<=sigma'p, si=sigma'p*B^0.7*(Icc/3); for normally consolidated sands, si=(q'-sigma'p)*B^0.7*Icc; where sigma'p is the maximum previous overburden pressure (kPa), q' the average effective foundation pressure (kPa), Icc=af/B^0.7 with af the foundation subgrade compressibility (mm/kPa). Icc is obtained by regression as Icc=1.71/N_avg^1.4, where N_avg is the average (uncorrected) SPT blow count over the depth of influence z1=B^0.75 (arithmetic mean; standard error of af ~1.5 for N>25 to ~1.8 for N<~10). N-values are not corrected for overburden in this method, and no energy-ratio correction is mentioned; apply N'=15+0.5*(N-15) for submerged fine/silty sand when N>15, and increase N by ~1.25 for gravel/sandy gravel. The depth of influence z1=B^0.75 is used where N increases or is constant with depth; where N consistently decreases with depth, use 2B or the base of the soft layer, whichever is less. A length-to-width correction factor fs=[1.25*(L/B)/(L/B+0.25)]^2 is applied (tends to 1.56 as L/B->infinity; no depth correction needed for D/B<3). Foundations in sand/gravel exhibit time-dependent settlement; a correction factor ft=(1+R3+Rt*log10(t/3)) applies for t>=3 years, with R3 the 3-year settlement fraction and Rt the per-log-cycle fraction thereafter; conservative static-load values R3=0.3, Rt=0.2 (ft=1.5 at t=30 years); for fluctuating loads (chimneys, bridges, silos, turbines) R3=0.7, Rt=0.8 (ft=2.5 at t=30 years). Published by Burland and Burbridge (1985).",
+      "key_points": [
+        "Icc = 1.71/N_avg^1.4 - equations.equation_burland_burbridge_icc",
+        "si = sigma'p*B^0.7*Icc/3 (q'<=sigma'p) or (q'-sigma'p)*B^0.7*Icc (normally consolidated) - equations.equation_burland_burbridge_settlement",
+        "Length-correction factor fs = [1.25*(L/B)/(L/B+0.25)]^2, tending to 1.56 - equations.equation_burland_burbridge_shape_factor",
+        "N-values NOT overburden-corrected in this method; submerged fine/silty sand correction N'=15+0.5*(N-15) for N>15; gravel N increased ~1.25x",
+        "Time-dependent settlement factor ft=(1+R3+Rt*log10(t/3)); ft=1.5 at t=30yr (static loads), 2.5 at t=30yr (fluctuating loads) - not separately digitized as a function"
+      ],
+      "equations": [
+        {"id": "Annex F.3", "description": "Burland & Burbridge (1985) settlement of spread foundations in sand: Icc, si, fs", "implemented_in": "geotech_references.eurocode_7_2.equations.equation_burland_burbridge_settlement"}
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "The standard empirical direct method for estimating immediate and time-dependent settlement of spread foundations on sand/gravel from SPT results."
+    },
+    {
+      "section_id": "7.7.1",
+      "title": "Annex G.1: correlations between DP blow counts and density index",
+      "summary": "Density index ID from dynamic probing N10, by grading (poorly/well-graded) and groundwater position: 5 formulas of the form ID=a+b*log10(N10), valid 3<=N10<=50, published by Stenzel et al. (1978) / DIN 4094-3.",
+      "body": "Examples for correlating density index ID from dynamic probing DP results (range of validity 3<=N10<=50): poorly-graded sand (Cu<=3) above groundwater - ID=0.15+0.260*log10(N10L) [DPL]; ID=0.10+0.435*log10(N10H) [DPH]; poorly-graded sand (Cu<=3) below groundwater - ID=0.21+0.230*log10(N10L) [DPL]; ID=0.23+0.380*log10(N10H) [DPH]; well-graded sand-gravel (Cu>=6) above groundwater - ID=0.14+0.550*log10(N10H) [DPH] (no DPL or below-groundwater formula given for well-graded material). Published by Stenzel et al. (1978) and in DIN 4094-3.",
+      "key_points": [
+        "5 tabulated ID=a+b*log10(N10) formulas: poorly-graded above/below groundwater (DPL and DPH each), well-graded above groundwater (DPH only)",
+        "Valid 3<=N10<=50",
+        "Digitized as equations.equation_g1_density_index_from_dp(n10, grading, groundwater, probe_type)"
+      ],
+      "equations": [
+        {"id": "Annex G.1", "description": "ID = a + b*log10(N10), coefficients by grading/groundwater/probe type", "implemented_in": "geotech_references.eurocode_7_2.equations.equation_g1_density_index_from_dp"}
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Density-index estimation from dynamic probing, feeding the phi' correlation of G.2."
+    },
+    {
+      "section_id": "7.7.2",
+      "title": "Annex G.2: correlation between effective angle of shearing resistance and density index (DP)",
+      "summary": "Table G.1 (DIN 1054-100) gives phi' of coarse soil by grading (poorly-graded Cu<6 vs. well-graded 6<=Cu<=15) and density state (loose/medium dense/dense, by ID range), for bearing-capacity calculations.",
+      "body": "Table G.1 derives phi' from density index ID for bearing-capacity calculations of coarse soil: slightly fine-grained sand, sand-gravel (Cu<6, poorly-graded) - loose (ID 15-35%) phi'=30 deg; medium dense (35-65%) phi'=32.5 deg; dense (>65%) phi'=35 deg; sand, sand-gravel, gravel (6<=Cu<=15, well-graded) - loose (ID 15-35%) phi'=30 deg; medium dense phi'=34 deg; dense phi'=38 deg. Published in DIN 1054-100.",
+      "key_points": [
+        "Table G.1: phi' by grading (Cu<6 vs 6-15) and density state (loose/medium/dense)",
+        "Poorly-graded: 30/32.5/35 deg; well-graded: 30/34/38 deg (loose/medium/dense)",
+        "Digitized as tables.table_g1_phi_from_density_index_dp(grading, density_state)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table G.1: phi' of coarse soil as a function of density index ID and uniformity coefficient Cu"
+      ],
+      "applicability": "Bearing-capacity phi' estimate for coarse soil from dynamic-probing-derived density index."
+    },
+    {
+      "section_id": "7.7.3",
+      "title": "Annex G.3: stress-dependent oedometer modulus from DP results",
+      "summary": "Stiffness coefficient w1 (in Eoed=w1*(sigma'v/pa)^w2) from dynamic probing, for poorly-graded sands (w1=214*lg(N10L)+71 or 249*lg(N10H)+161) and low-plasticity stiff clays (w1=4*N10L+30 or 6*N10H+50), each with a stated N10 validity range.",
+      "body": "Example derivation of Eoed=w1*(sigma'v/pa)^w2 (w2=0.5 for Cu<=3 sands, 0.6 for low-plasticity clays with Ip<=10/wL<=35) from DP results: poorly-graded sands (Cu<=3) above groundwater - w1=214*log10(N10L)+71 (DPL, valid 4<=N10L<=50); w1=249*log10(N10H)+161 (DPH, valid 3<=N10H<=30); low-plasticity clays of at least stiff consistency (0.75<=Ic<=1.30) above groundwater - w1=4*N10L+30 (DPL, valid 6<=N10L<=19); w1=6*N10H+50 (DPH, valid 3<=N10H<=13). Published by Stenzel et al. (1978) and Biedermann (1984), and in DIN 4094-3:2002.",
+      "key_points": [
+        "w1 = 214*log10(N10L)+71 or 249*log10(N10H)+161 (poorly-graded sand)",
+        "w1 = 4*N10L+30 or 6*N10H+50 (low-plasticity stiff clay)",
+        "Digitized as equations.equation_g3_stiffness_coefficient_from_dp(n10, soil_type, probe_type)"
+      ],
+      "equations": [
+        {"id": "Annex G.3", "description": "w1 from N10, by soil type and probe type, for Eoed=w1*(sigma'v/pa)^w2", "implemented_in": "geotech_references.eurocode_7_2.equations.equation_g3_stiffness_coefficient_from_dp"}
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Alternative, stress-level-dependent oedometer modulus estimate from dynamic probing results."
+    },
+    {
+      "section_id": "7.7.4",
+      "title": "Annex G.4-G.5: DP-to-CPT and DP-to-DP correlations",
+      "summary": "G.4 gives a chart (Figure G.1) correlating N10H with CPT qc for poorly/well-graded sand above/below groundwater, for pile design; G.5 gives closed-form correlations between DPL and DPH blow counts for poorly-graded sand above groundwater.",
+      "body": "G.4: example estimating qc in sands/sand-gravel mixtures from DPH results, to derive ultimate pile bearing capacities from qc-based static-load-test correlations (Figure G.1 gives 4 curves: poorly-graded sand above/below groundwater, well-graded sand-gravel above/below groundwater; chart-based, not a closed-form equation). Published by Stenzel et al. (1978) and in DIN 4094-3. G.5: example correlation between DPL blow count N10L and DPH blow count N10H for poorly-graded sands (Cu<3) above groundwater: given DPH results, N10L=3*N10H (valid 3<=N10H<=20); given DPL results, N10H=0.34*N10L (valid 3<=N10L<=50). For clays, see Butcher, McElmeel & Powell (1995) (not reproduced numerically in the standard). Published by Stenzel (1978) and Biedermann (1984), and in DIN 4094-3:2002.",
+      "key_points": [
+        "G.4/Figure G.1: qc from N10H, 4 curves by grading/groundwater position - chart-based, not digitized as an equation",
+        "G.5: N10L=3*N10H (from DPH, 3<=N10H<=20) and N10H=0.34*N10L (from DPL, 3<=N10L<=50) for poorly-graded sand above groundwater"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure G.1: correlation between N10H and qc for poorly-graded sand and well-graded sand-gravel"
+      ],
+      "tables": [],
+      "applicability": "Cross-correlation between different dynamic probing test types, and an approximate route from DPH results to an equivalent qc for pile design."
+    },
+    {
+      "section_id": "7.8",
+      "title": "Annex H: weight sounding test (WST) correlations",
+      "summary": "Table H.1 (Bergdahl et al. 1993, Swedish experience) gives phi' and E' for naturally deposited quartz/feldspar sands from WST resistance (half-turns per 0.2 m), by density category; use the lower interval value if WST is the only available test.",
+      "body": "Table H.1 gives example values of phi' and drained Young's modulus E', estimated from WST resistance based on Swedish experience, correlating the mean WST resistance in a layer to mean phi' and E': very loose (WST 0-10 half-turns/0.2m) - phi' 29-32 deg, E'<10 MPa; loose (10-30) - phi' 32-35, E' 10-20 MPa; medium dense (20-50) - phi' 35-37, E' 20-30 MPa; dense (40-90) - phi' 37-40, E' 30-60 MPa; very dense (>80) - phi' 40-42, E' 60-90 MPa (note the overlapping half-turn ranges between adjacent categories in the source table). Before determining relative density, WST resistance in silty soil should be divided by 1.3. Values are valid for sands; reduce phi' by 3 deg for silty soil, add 2 deg for gravel. If only WST results are available, use the lower value in each interval (conservative). When evaluating WST resistance diagrams, peak values from stones/pebbles (common in gravel) should be disregarded. Published by Bergdahl et al. (1993).",
+      "key_points": [
+        "Table H.1: phi'/E' by density category from WST half-turns/0.2m, quartz/feldspar sand (Swedish experience) - table_h1_phi_e_from_wst",
+        "Silty soil: divide WST resistance by 1.3 before density assessment; phi' -3 deg; gravel: phi' +2 deg",
+        "Conservative practice: use the lower interval value when WST is the only test available",
+        "Disregard resistance peaks caused by stones/pebbles, common in gravel"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table H.1: phi' and E' for quartz/feldspar sands from weight sounding resistance"
+      ],
+      "applicability": "The standard's example derived-value correlation for the weight sounding test, feeding bearing-resistance and settlement analytical methods."
+    },
+    {
+      "section_id": "7.9.1",
+      "title": "Annex I.1-I.4: field vane correction factor - background and graphical methods",
+      "summary": "Introduces the FVT correction factor mu (cu=mu*cfv) and gives three graphical procedures (I.2 by liquid limit, I.3 by plasticity index/effective stress, I.4 by NC/OC classification then correction curve) based on back-analysis of embankment failures and load tests in soft clay.",
+      "body": "I.1: examples of procedures to determine the correction factor mu for undrained shear strength (cu=mu*cfv) from field vane results, based mainly on back-analysis of embankment failures and load tests in soft clays; the procedure used should reflect local experience with the actual clay type, noting the drained strength might be lower than the undrained strength. I.2: for soft, normally-consolidated clays, mu is linked to the liquid limit or plasticity index (Figure I.1); a correction factor above 1.2 should not be used without supplementary investigation support; in fissured clays a factor as low as 0.3 may be needed, and undrained strength should be determined by other methods (e.g. plate load tests) instead of the FVT (Danish Geotechnical Institute 1959). I.3: mu linked to plasticity index and effective vertical stress sigma'v0 for over-consolidated clays (Figure I.2, Aas 1979). I.4: first estimate NC vs. OC classification from the cfv/sigma'v0-vs-Ip relationship (Figure I.3: between 'young' and 'aged' curves = NC; above 'aged' = OC), then apply the corresponding NC or OC correction curve (Figure I.4) (Aas et al. 1986). All four figures are chart-based read-offs, not reduced to closed-form equations in the standard (unlike I.5, which does give closed-form equations).",
+      "key_points": [
+        "mu (in cu=mu*cfv) is generally determined graphically from wL, Ip, and/or sigma'v0, or from an NC/OC classification step",
+        "mu should not exceed 1.2 without supplementary support; fissured clays may need mu as low as 0.3 (use PLT instead of FVT there)",
+        "I.2-I.4 methods are chart-based (Figures I.1-I.4); only I.5 (next section) gives closed-form formulas"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure I.1: correction factors for cfv based on liquid limit, normally consolidated clays",
+        "Figure I.2: correction factors based on plasticity index and effective vertical stress, over-consolidated clays",
+        "Figure I.3: diagram for separating normally-consolidated and over-consolidated clays",
+        "Figure I.4: correction factors for normally-consolidated and over-consolidated clays"
+      ],
+      "tables": [],
+      "applicability": "Graphical routes to the FVT correction factor mu, an alternative to the closed-form I.5 equations when charts/local calibration are preferred."
+    },
+    {
+      "section_id": "7.9.2",
+      "title": "Annex I.5: field vane correction factor - closed-form equations",
+      "summary": "mu=(0.43/wL)^0.45, floored at 0.5, for NC/slightly-OC clays; for OCR>1.3, mu=(0.43/wL)^0.45*(Roc/1.3)^-0.15; if OCR is unknown, estimate cfv=0.45*wL*sigma'p (Hansbo 1957) and use mu=(0.43/wL)^0.45*(cfv/(0.585*wL*sigma'v0))^-0.15.",
+      "body": "This procedure also accounts for over-consolidation effects. The correction factor mu for normally-consolidated and slightly over-consolidated clays: mu=(0.43/wL)^0.45, floored at (>=) 0.5, where wL is the liquid limit (see Figure I.1). In clays with an over-consolidation ratio greater than 1.3, mu=(0.43/wL)^0.45*(Roc/1.3)^-0.15, where Roc is the over-consolidation ratio (Larsson and Ahnberg, 2003). If the over-consolidation ratio has not been determined, it can be estimated empirically from cfv=0.45*wL*sigma'p (Hansbo 1957), giving mu=(0.43/wL)^0.45*(cfv/(0.585*wL*sigma'v0))^-0.15. In all three formulas wL is used as a fraction (e.g. 0.60 for a 60% liquid limit), not a percentage: Figure I.1's chart spans wL=0-200%, and the mu>=0.5 floor becomes active almost exactly at wL=200% (fraction 2.0), confirming the convention -- taking wL as a raw percentage would pin every realistic clay at the 0.5 floor.",
+      "key_points": [
+        "mu = (0.43/wL)^0.45, floored at 0.5 (NC/slightly OC clays); wL used as a FRACTION (0.60 for 60%), not a percentage",
+        "mu = (0.43/wL)^0.45 * (Roc/1.3)^-0.15 (OCR>1.3, known)",
+        "mu = (0.43/wL)^0.45 * (cfv/(0.585*wL*sigma'v0))^-0.15 (OCR unknown, estimated via cfv=0.45*wL*sigma'p, Hansbo 1957)",
+        "Digitized as equations.equation_i5_fvt_correction_factor(w_l_pct, roc, cfv_kpa, sigma_v0_eff_kpa) (function takes wL as a percentage and converts internally)"
+      ],
+      "equations": [
+        {"id": "Annex I.5", "description": "mu = (0.43/wL)^0.45, floored at 0.5; OCR- and cfv/sigma'v0-adjusted variants", "implemented_in": "geotech_references.eurocode_7_2.equations.equation_i5_fvt_correction_factor"}
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Closed-form determination of the FVT correction factor mu feeding Eq 4.4 (cu=mu*cfv), the preferred route when wL and (optionally) OCR are known."
+    },
+    {
+      "section_id": "7.10",
+      "title": "Annex J: oedometer modulus from flat dilatometer test (DMT) results",
+      "summary": "Eoed=RM*EDMT, where RM is a piecewise function of IDMT and KDMT (floored at 0.85), giving a way to derive the one-dimensional tangent modulus from DMT results (Marchetti 2001).",
+      "body": "Gives an example of correlations between Eoed and DMT results, usable to determine the one-dimensional tangent modulus (Eoed=d(sigma)/d(epsilon)) from DMT results, through Eoed=RM*EDMT, in which RM is estimated either from local experience or: if IDMT<=0.6, RM=0.14+2.36*log10(KDMT); if 0.6<IDMT<3.0, RM=RM0+(2.5-RM0)*log10(KDMT), with RM0=0.14+0.15*(IDMT-0.6); if IDMT>=3, RM=0.5+2*log10(KDMT); if KDMT>10 (overriding the above), RM=0.32+2.18*log10(KDMT); if any of the above give RM<0.85, RM is taken as 0.85. IDMT is the material index and KDMT the horizontal stress index from the flat dilatometer test. Published by Marchetti (2001).",
+      "key_points": [
+        "Eoed = RM * EDMT",
+        "RM piecewise by IDMT (<=0.6, 0.6-3.0, >=3) with a KDMT>10 override, floored at 0.85",
+        "Digitized as equations.equation_j_dmt_oedometer_modulus(i_dmt, k_dmt, e_dmt_mpa)"
+      ],
+      "equations": [
+        {"id": "Annex J", "description": "Eoed = RM * EDMT, RM piecewise from IDMT/KDMT, floored at 0.85", "implemented_in": "geotech_references.eurocode_7_2.equations.equation_j_dmt_oedometer_modulus"}
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "The standard's sole DMT-derived-value annex; supports the settlement-by-adjusted-elasticity method referenced from 4.10.4.1(3)."
+    },
+    {
+      "section_id": "7.11.1",
+      "title": "Annex K.1: undrained shear strength from plate loading test",
+      "summary": "cu=(pu-gamma*z)/Nc, with Nc=6 for a surface PLT and Nc=9 for a PLT in a deep borehole (depth > 4x plate diameter/width), per Marsland (1972).",
+      "body": "Example of deriving undrained shear strength cu = (pu - gamma*z)/Nc, where pu is the ultimate contact pressure from PLT results, gamma*z is the total stress (density times depth) at test level (relevant when the test is conducted in a borehole with diameter smaller than 3 times the plate diameter/width), and Nc is the bearing capacity factor: Nc=6 for a circular plate PLT typically on the subsoil surface, Nc=9 for a PLT in boreholes of depth greater than 4 times the plate diameter/width. Published by Marsland (1972).",
+      "key_points": [
+        "cu = (pu - gamma*z) / Nc",
+        "Nc=6 (surface PLT), Nc=9 (deep borehole PLT, depth > 4x plate diameter/width)",
+        "Digitized as equations.equation_k1_plt_undrained_shear_strength(pu_kpa, gamma_z_kpa, plate_condition)"
+      ],
+      "equations": [
+        {"id": "Annex K.1", "description": "cu = (pu - gamma*z) / Nc, Nc=6 or 9", "implemented_in": "geotech_references.eurocode_7_2.equations.equation_k1_plt_undrained_shear_strength"}
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "PLT-based undrained shear strength determination, feeding the analytical bearing-resistance method of 4.11.4(4)."
+    },
+    {
+      "section_id": "7.11.2",
+      "title": "Annex K.2: plate settlement modulus",
+      "summary": "EpLT=(delta_p/delta_s)*pi*b*(1-v^2)/4 for surface/excavation tests (bottom width/diameter >= 5x plate diameter); the same formula times a depth correction factor Cz (Figure K.1) for borehole-base tests; v=0.5 (undrained, fine soil) or 0.3 (coarse soil) if not otherwise determined.",
+      "body": "Example of deriving the plate settlement modulus EpLT (secant modulus). For loading tests at ground level or in an excavation where the bottom width/diameter is at least 5 times the plate diameter: EpLT = (delta_p/delta_s) * pi*b*(1-v^2)/4, where delta_p is the selected applied-contact-pressure range, delta_s the corresponding total settlement change (including creep), b the plate diameter, v Poisson's ratio (0.5 for undrained fine-soil conditions, 0.3 for coarse soil, if not otherwise determined). If the test is made at a borehole base: EpLT = (delta_p/delta_s) * pi*b/4 * (1-v^2) * Cz, where Cz is a depth correction factor (ratio of depth-load-to-settlement to the corresponding surface-load value); suggested Cz values are given in Figure K.1 as a function of plate diameter b and depth z (curves for v=0.0, 0.25, 0.49). Published by Burland (1969).",
+      "key_points": [
+        "Surface/excavation (bottom width/diameter >=5x plate diameter): EpLT = (delta_p/delta_s)*pi*b*(1-v^2)/4",
+        "Borehole-base: same formula x depth correction factor Cz (Figure K.1, function of z/b and v)",
+        "v = 0.5 (undrained fine soil) or 0.3 (coarse soil) if not otherwise determined",
+        "Digitized as equations.equation_k2_plt_modulus(delta_p_kpa, delta_s_mm, b_m, poisson, cz) (Cz read from Figure K.1, default 1.0 for surface tests)"
+      ],
+      "equations": [
+        {"id": "Annex K.2", "description": "EpLT = (delta_p/delta_s) * pi*b*(1-v^2)/4 [* Cz for borehole-base tests]", "implemented_in": "geotech_references.eurocode_7_2.equations.equation_k2_plt_modulus"}
+      ],
+      "figures": [
+        "Figure K.1: depth correction factor Cz as a function of plate diameter b and depth z"
+      ],
+      "tables": [],
+      "applicability": "PLT-based deformation modulus determination, feeding the adjusted-elasticity settlement method of 4.11.4(5)."
+    },
+    {
+      "section_id": "7.11.3",
+      "title": "Annex K.3: coefficient of sub-grade reaction",
+      "summary": "ks=delta_p/delta_s, from the selected applied-pressure range and corresponding settlement change (including creep) in an incremental loading test; plate dimensions must be stated (Bergdahl 1993).",
+      "body": "Example of deriving the coefficient of sub-grade reaction ks = delta_p/delta_s, where delta_p is the selected range of applied contact pressure and delta_s is the corresponding change in settlement (including creep settlements). The dimensions of the loading plate should be stated when calculating ks values. Published by Bergdahl (1993).",
+      "key_points": [
+        "ks = delta_p / delta_s",
+        "Plate dimensions must always be stated alongside a reported ks value (it is not dimension-independent)",
+        "Digitized as equations.equation_k3_plt_subgrade_reaction(delta_p_kpa, delta_s_mm)"
+      ],
+      "equations": [
+        {"id": "Annex K.3", "description": "ks = delta_p / delta_s", "implemented_in": "geotech_references.eurocode_7_2.equations.equation_k3_plt_subgrade_reaction"}
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "PLT-based coefficient of sub-grade reaction for deformation-evaluation methods (e.g. beam-on-elastic-foundation analysis)."
+    },
+    {
+      "section_id": "7.11.4",
+      "title": "Annex K.4: settlement of footings in sand from plate loading test",
+      "summary": "Empirical width-scaling method (Figures K.2/K.3, Bergdahl et al. 1993) deriving footing settlement s from test-plate settlement s1, given the width ratio b/b1 and a loose/medium-dense/dense soil-density curve, applicable when ground beneath the footing to a depth >2x its width matches that beneath the test plate.",
+      "body": "Example of deriving settlements directly for a footing in sand. Footing settlement may be derived empirically from the relations in Figure K.3 (s/s1 vs. b/b1, with separate curves for loose, medium dense, and dense sand), provided the ground beneath the footing to a depth greater than twice its width is the same as beneath the test plate (Figure K.2 illustrates the influenced zones beneath a test plate and a footing). Published by Bergdahl et al. (1993).",
+      "key_points": [
+        "s/s1 (settlement ratio) vs. b/b1 (width ratio), separate curves for loose/medium-dense/dense sand (Figure K.3) - chart-based, not digitized as a formula",
+        "Applicability condition: ground beneath the footing to depth >2x footing width must match that beneath the test plate (Figure K.2)"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure K.2: influenced area beneath a test plate and a footing",
+        "Figure K.3: graph for calculation of settlement based on plate loading tests"
+      ],
+      "tables": [],
+      "applicability": "Direct-design empirical settlement scaling from small-plate PLT results to a full-size footing on sand."
+    }
+  ]
+}

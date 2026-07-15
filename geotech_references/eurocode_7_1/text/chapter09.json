@@ -1,0 +1,550 @@
+{
+  "reference_id": "EN 1997-1:2004",
+  "reference_title": "Eurocode 7: Geotechnical Design - Part 1: General Rules",
+  "volume": null,
+  "chapter": 9,
+  "chapter_title": "Retaining structures",
+  "sections": [
+    {
+      "section_id": "9.1",
+      "title": "General",
+      "summary": "Introduces Section 9, which governs the design of retaining structures -- walls and support systems that retain ground comprising soil, rock, backfill, and water at a slope steeper than it would naturally adopt. Sets the scope (structural elements loaded by retained material; silo pressures from EN 1991-4 excluded) and establishes the three main structural types addressed by the rest of the Section: gravity walls, embedded walls, and composite retaining structures.",
+      "body": "Section 9 sets out requirements for the geotechnical and structural design of retaining structures. It applies to any structure that keeps ground -- soil, rock, or backfill -- and water at a slope steeper than the ground would eventually adopt without the structure present. Two clauses follow: 9.1.1 establishes the scope of application and 9.1.2 defines the three main types of retaining structure recognised by the standard -- gravity walls, embedded walls, and composite retaining structures. These three types recur throughout the rest of Section 9, since the applicable ultimate limit state checks in 9.7 differ materially between gravity walls (bearing, sliding, toppling) and embedded walls (rotational and vertical equilibrium).",
+      "key_points": [
+        "Section 9 governs design of walls and support systems that retain soil, rock, backfill, or water",
+        "Material is 'retained' if kept at a slope steeper than it would naturally adopt without the structure",
+        "Silo pressures from stored granular material are excluded -- use EN 1991-4 instead",
+        "Three main retaining-structure types are distinguished: gravity walls, embedded walls, composite structures",
+        "The type distinction drives which ultimate limit states apply later in 9.7"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to the design of any wall or support system in which structural elements carry forces imposed by retained soil, rock, backfill, or water."
+    },
+    {
+      "section_id": "9.1.1",
+      "title": "Scope",
+      "summary": "Defines the scope of Section 9: it applies to structures retaining soil, rock, backfill, or water at a slope steeper than the natural angle of repose, including every wall and support-system type in which structural elements carry forces from the retained material. Pressure from granular material stored in silos is excluded and must instead be determined using EN 1991-4.",
+      "body": "The provisions of this Section apply to structures which retain ground comprising soil, rock, or backfill and water. Material is considered retained if it is kept at a slope steeper than it would eventually adopt if no structure were present. Retaining structures therefore include all types of wall and support system in which structural elements have forces imposed on them by the retained material -- from massive gravity walls to thin embedded sheet-pile or diaphragm walls to composite systems. Pressure from granular material stored in silos falls outside this scope and shall be calculated using EN 1991-4 instead of the provisions given here.",
+      "key_points": [
+        "Applies to structures retaining soil, rock, backfill, or water at a slope steeper than natural repose",
+        "Covers all wall/support-system types where structural elements carry forces from retained material",
+        "Silo pressure from stored granular material is explicitly excluded -- use EN 1991-4"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies whenever a structural element retains soil, rock, backfill, or water steeper than its unsupported angle."
+    },
+    {
+      "section_id": "9.1.2",
+      "title": "Definitions",
+      "summary": "Distinguishes the three main retaining structure types used throughout Section 9. Gravity walls rely on self-weight (of the wall itself, and sometimes stabilising soil/rock/backfill mass) for support. Embedded walls are relatively thin and rely on bending capacity plus anchorages, struts, and/or passive earth pressure, with self-weight playing an insignificant role. Composite retaining structures combine elements of both.",
+      "body": "In considering the design of retaining structures, three main types should be distinguished. Gravity walls are walls of stone, plain concrete, or reinforced concrete having a base footing with or without a heel, ledge, or buttress; the weight of the wall itself, sometimes including stabilising masses of soil, rock, or backfill, plays a significant role in supporting the retained material. Examples include concrete gravity walls of constant or variable thickness, spread-footing reinforced concrete walls, and buttress walls. Embedded walls are relatively thin walls of steel, reinforced concrete, or timber, supported by anchorages, struts, and/or passive earth pressure; the bending capacity of the wall plays a significant role in supporting the retained material while the role of the wall's self-weight is insignificant. Examples include cantilever steel sheet pile walls, anchored or strutted steel or concrete sheet pile walls, and diaphragm walls. Composite retaining structures are walls composed of elements from the above two types; a large variety exists, including double sheet pile wall cofferdams, earth structures reinforced by tendons, geotextiles, or grouting, and structures with multiple rows of ground anchorages or soil nails.",
+      "key_points": [
+        "Gravity walls: stone/plain/reinforced concrete with a base footing (with or without heel, ledge, buttress); self-weight, sometimes plus a stabilising soil/rock/backfill mass, provides support",
+        "Gravity wall examples: constant/variable-thickness concrete gravity walls, spread-footing RC walls, buttress walls",
+        "Embedded walls: relatively thin steel/RC/timber walls supported by anchorages, struts, and/or passive earth pressure; bending capacity governs, self-weight is insignificant",
+        "Embedded wall examples: cantilever steel sheet pile walls, anchored/strutted steel or concrete sheet pile walls, diaphragm walls",
+        "Composite retaining structures combine elements of both types, e.g. double sheet pile cofferdams, tendon/geotextile/grout-reinforced earth, multi-row anchored or nailed walls"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Used throughout Section 9 to classify a retaining structure and determine which ultimate limit state checks in 9.7 apply to it."
+    },
+    {
+      "section_id": "9.2",
+      "title": "Limit states",
+      "summary": "Sets the minimum list of limit states to check for every retaining structure -- overall stability, structural element or connection failure, combined ground/structural failure, hydraulic heave and piping, damaging movement, leakage, particle transport, and ground-water regime change -- plus additional checks for gravity/composite walls (bearing, sliding, toppling) and for embedded walls (rotation/translation, vertical equilibrium).",
+      "body": "A list shall be compiled of limit states to be considered. As a minimum the following limit states shall be considered for all types of retaining structure: loss of overall stability; failure of a structural element such as a wall, anchorage, wale, or strut, or failure of the connection between such elements; combined failure in the ground and in the structural element; failure by hydraulic heave and piping; movement of the retaining structure, which may cause collapse or affect the appearance or efficient use of the structure or nearby structures or services which rely on it; unacceptable leakage through or beneath the wall; unacceptable transport of soil particles through or beneath the wall; and unacceptable change in the ground-water regime. In addition, the following limit states shall be considered for gravity walls and for composite retaining structures: bearing resistance failure of the soil below the base; failure by sliding at the base; and failure by toppling. For embedded walls the additional limit states are: failure by rotation or translation of the wall or parts thereof; and failure by lack of vertical equilibrium. For all types of retaining structure, combinations of the above limit states shall be taken into account where relevant. Design of gravity walls often requires solving the same types of problem encountered in the design of spread foundations, embankments, and slopes; the principles of Section 6 should therefore be applied as appropriate, with special care taken to account for bearing resistance failure of the ground below the base of the wall under loads with large eccentricities and inclinations (see 6.5.4).",
+      "key_points": [
+        "Minimum limit states for all retaining structures: overall stability, structural/connection failure, combined ground-structure failure, hydraulic heave/piping",
+        "Also minimum for all types: damaging movement, unacceptable leakage, particle transport, ground-water regime change",
+        "Gravity/composite walls add: bearing resistance failure, base sliding, toppling",
+        "Embedded walls add: rotation/translation failure, lack of vertical equilibrium",
+        "Combinations of limit states shall be considered where relevant",
+        "Gravity wall design overlaps with spread-foundation/slope design (Section 6 principles apply, esp. eccentric/inclined loads per 6.5.4)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when compiling the design limit-state checklist for any gravity, embedded, or composite retaining structure."
+    },
+    {
+      "section_id": "9.3",
+      "title": "Actions, geometrical data and design situations",
+      "summary": "Introduces the three clauses covering the inputs to a retaining-structure design: the actions to consider (9.3.1, including backfill weight, surcharges, water weight, wave/ice/seepage/collision forces, and temperature effects), the geometrical data (9.3.2, including the unplanned-excavation allowance Delta-a and water level determination), and the design situations to be enumerated (9.3.3).",
+      "body": "Before earth pressures and resistances can be calculated, the designer must establish the actions acting on the retaining structure, the geometrical data describing the wall and retained ground, and the design situations that must be checked. Clause 9.3.1 lists the actions specific to retaining structures -- backfill weight, surcharges, water weight, wave and ice forces, seepage forces, collision forces, and temperature effects -- in addition to the basic actions of 2.4.2(4). Clause 9.3.2 covers geometrical data, including how to select design ground surfaces (with an unplanned-excavation/scour allowance Delta-a in front of the wall) and design water levels. Clause 9.3.3 lists the circumstances that design situations must account for, such as spatial and temporal variation in soil properties and water levels, excavation or erosion in front of the wall, and compaction effects of backfilling.",
+      "key_points": [
+        "9.3.1 Actions: backfill weight, surcharges, water weight, wave/ice, seepage, collision, temperature",
+        "9.3.2 Geometrical data: ground surface geometry (with allowance Delta-a), water levels",
+        "9.3.3 Design situations: spatial/temporal variation, excavation/scour, compaction effects, future surcharges, ground movement"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Establishes the action, geometry, and design-situation inputs required before earth pressures or resistances can be computed for a retaining structure."
+    },
+    {
+      "section_id": "9.3.1",
+      "title": "Actions",
+      "summary": "Lists the actions to be considered for retaining structures beyond the basic actions of 2.4.2(4): weight of backfill material, surcharges (including repeated surcharge loading), weight of water, wave and ice forces, seepage forces from differing ground-water levels, collision forces (including ice-floe impact and liquefaction risk), and temperature effects (including ice-lens prevention).",
+      "body": "The actions listed in 2.4.2(4) should be considered as basic actions. Design values for the weight density of backfill material shall be estimated from knowledge of the available material, and the Geotechnical Design Report shall specify checks made during construction to verify that actual field values are no worse than those assumed in design. Determination of design values for surcharges shall account for the presence of nearby buildings, parked or moving vehicles or cranes, stored material, goods, and containers on or near the retained ground surface; care should be taken with repeated surcharge loading, such as crane rails on a quay wall, since the resulting pressures can significantly exceed those from a single first loading or from static application of an equal load. Design values for the weight density of water shall reflect whether the water is fresh, saline, or charged with chemicals or contaminants to an extent that the normal value needs amendment. Design values for forces from reflected waves or from ice shall be selected on the basis of locally available climatic and hydraulic data; for static forces from a sheet of ice, the initial ice temperature, the rate of temperature increase, and the ice sheet thickness shall all be taken into account. Seepage forces due to differing ground-water levels behind and in front of a retaining structure shall be considered, since they may change the earth pressure behind the wall and reduce the earth resistance in front of it. Determination of collision impact forces (from waves, ice floes, or traffic) may take account of energy absorbed by the colliding mass and by the retaining system (e.g. fenders or guide structures); the increased stiffness exhibited by retained ground under lateral impact should be considered, and the risk of liquefaction due to lateral impact on embedded walls should be investigated. Ice-floe impact loads shall be calculated from the compressive strength and thickness of the ice floe, with salinity and homogeneity considered in calculating that compressive strength. The design of retaining structures shall take into account the temporal and spatial effects of abnormal temperature changes, particularly when determining loads in struts and props; the Structural Fire Design Parts of the material-related Eurocodes should be consulted for fire effects, and special precautions such as selection of suitable backfill material, drainage, or insulation shall be taken to prevent ice lenses forming in the ground behind retaining structures.",
+      "key_points": [
+        "Basic actions per 2.4.2(4) apply, plus backfill weight (design values from known material, GDR specifies verification checks)",
+        "Surcharges: nearby buildings, vehicles, cranes, stored goods; repeated surcharge (e.g. crane rails) can exceed static-equivalent pressure",
+        "Weight of water reflects fresh/saline/contaminated condition",
+        "Wave and ice forces from local climatic/hydraulic data; static ice-sheet forces need initial temperature, warming rate, and thickness",
+        "Seepage forces from differing ground-water levels behind/in front of wall change earth pressure and earth resistance",
+        "Collision forces: energy absorption by colliding mass and retaining system; consider increased ground stiffness under impact and liquefaction risk on embedded walls; ice-floe loads from compressive strength, thickness, salinity, homogeneity",
+        "Temperature effects: abnormal temporal/spatial changes affect strut/prop loads; guard against ice-lens formation behind the wall"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when assembling the full set of design actions on a retaining structure, beyond the basic actions of 2.4.2(4)."
+    },
+    {
+      "section_id": "9.3.2",
+      "title": "Geometrical data",
+      "summary": "Covers determination of design geometrical data for retaining structures: basic data per 2.4.6.3, ground surface geometry (including anticipated excavation or scour, and the unplanned-excavation allowance Delta-a lowering the resisting soil level in ULS calculations), and water level data from hydraulic/hydrogeological records including perched or artesian conditions.",
+      "body": "Design values for geometrical data shall be derived in accordance with the principles stated in 2.4.6.3. Design values for the geometry of the retained material shall take account of variation in actual field values, as well as anticipated excavation or possible scour in front of the retaining structure. In ultimate limit state calculations where the stability of a retaining wall depends on ground resistance in front of the structure, the level of the resisting soil should be lowered below the nominally expected level by an amount Delta-a, selected taking account of the degree of site control over the surface level. With a normal degree of control: for a cantilever wall, Delta-a should equal 10% of the wall height above excavation level, limited to a maximum of 0,5 m; for a supported wall, Delta-a should equal 10% of the distance between the lowest support and the excavation level, limited to a maximum of 0,5 m. Smaller values of Delta-a, including zero, may be used when the surface level is specified to be controlled reliably throughout the appropriate design situation, and larger values should be used where the surface level is particularly uncertain. The selection of design or characteristic values for the positions of free water and phreatic surfaces shall be made on the basis of hydraulic and hydrogeological data for the site, taking account of the effects of permeability variation on the ground-water regime; the possibility of adverse water pressures from perched or artesian water tables shall also be considered.",
+      "key_points": [
+        "Design geometrical data derived per 2.4.6.3; retained-ground geometry accounts for field variation plus anticipated excavation/scour",
+        "ULS calcs relying on ground resistance in front of the wall: lower the resisting soil level by allowance Delta-a",
+        "Cantilever wall: Delta-a = 10% of wall height above excavation level, max 0,5 m",
+        "Supported wall: Delta-a = 10% of distance between lowest support and excavation level, max 0,5 m",
+        "Smaller/zero Delta-a allowed with reliably controlled surface level; larger Delta-a where surface level is uncertain",
+        "Design water levels from hydraulic/hydrogeological data, accounting for permeability variation and perched/artesian water tables"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when selecting design ground-surface geometry and water levels for a retaining-structure calculation, particularly the unplanned-excavation allowance in front of the wall."
+    },
+    {
+      "section_id": "9.3.3",
+      "title": "Design situations",
+      "summary": "Lists the circumstances a retaining-structure design situation must account for: spatial and temporal variation in soil properties, water levels, and pore pressures; variation in actions and their combinations; excavation, scour, or erosion in front of the wall; backfill compaction effects; future structures or surcharges near the retained material; and anticipated ground movement from subsidence or frost.",
+      "body": "The following items shall be considered when selecting design situations: variations in soil properties, water levels, and pore-water pressures in space; anticipated variations in soil properties, water levels, and pore-water pressures in time; variation in actions and in the ways they are combined; excavation, scour, or erosion in front of the retaining structure; the effects of compaction of the backfilling behind the retaining structure; the effects of anticipated future structures and surcharge loadings or unloadings on or close to the retained material; and anticipated ground movements due, for example, to subsidence or frost action. For waterfront structures, ice and wave forces need not be applied simultaneously at the same point.",
+      "key_points": [
+        "Consider spatial and temporal variation in soil properties, water levels, and pore-water pressures",
+        "Consider variation in actions and how they are combined",
+        "Consider excavation, scour, or erosion in front of the wall, and backfill compaction effects behind it",
+        "Consider future structures/surcharges near the retained material and anticipated ground movement (subsidence, frost)",
+        "For waterfront structures, ice and wave forces need not be applied simultaneously at the same point"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when enumerating the design situations to be checked for a retaining structure, covering both persistent and transient conditions."
+    },
+    {
+      "section_id": "9.4",
+      "title": "Design and construction considerations",
+      "summary": "Introduces general design/construction guidance for retaining structures (9.4.1), including verification of vertical equilibrium, ductile-failure design preference, the observational method, and a checklist of construction-related items to consider, plus specific requirements for drainage systems (9.4.2) where safety or serviceability depends on their continued performance.",
+      "body": "This clause addresses both ultimate and serviceability limit states using the procedures of 2.4.7 and 2.4.8, requiring that vertical equilibrium be demonstrated for the assumed pressure distributions and actions on the wall. It covers general design philosophy (9.4.1) -- preference for visible warning signs before an ultimate limit state, avoidance of brittle failure, use of the observational method where ground-structure interaction is complex, and a checklist of construction-related items the design must address -- and drainage systems (9.4.2), where the consequences of drainage failure must be considered if the structure's safety or serviceability depends on it.",
+      "key_points": [
+        "Covers both ULS and SLS design per 2.4.7/2.4.8, requiring vertical equilibrium to be demonstrated",
+        "9.4.1 General: ductile/visible-warning design philosophy, observational method, construction-item checklist",
+        "9.4.2 Drainage systems: consequences of drainage failure must be considered where safety/serviceability depends on it"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to the general design philosophy and construction planning for gravity, embedded, and composite retaining structures."
+    },
+    {
+      "section_id": "9.4.1",
+      "title": "General",
+      "summary": "Requires demonstration of vertical equilibrium (which may involve reducing wall friction parameters), a design philosophy favouring visible warning signs and avoidance of brittle failure, and consideration of the observational method for complex ground-structure interaction. Lists construction-related items the design must address, including temporary excavation support, ground disturbance, water tightness, anchorage/propping practicality, and fill compaction.",
+      "body": "Both ultimate and serviceability limit states shall be considered using the procedures described in 2.4.7 and 2.4.8, and it shall be demonstrated that vertical equilibrium can be achieved for the assumed pressure distributions and actions on the wall; this verification may be achieved by reducing the wall friction parameters. As far as possible, retaining walls should be designed so that there are visible signs of the approach of an ultimate limit state, guarding against brittle failure (sudden collapse without conspicuous preliminary deformation). For many earth retaining structures, a critical limit state should be considered to occur if the wall has displaced enough to damage nearby structures or services, even though collapse of the wall itself may not be imminent -- the degree of damage may considerably exceed a serviceability limit state in the supported structure. The design methods and partial factor values recommended by this standard are usually sufficient to prevent ultimate limit states in nearby structures, provided the soils involved are at least medium density or firm consistency and adequate construction methods and sequences are adopted; special care should be taken with some highly over-consolidated clay deposits, in which large at-rest horizontal stresses may induce substantial movements over a wide area around excavations. Where the complexity of ground-structure interaction makes detailed design difficult before execution begins, use of the observational method (see 2.7) should be considered. The design of retaining structures shall take account of, where appropriate: the effects of constructing the wall, including temporary support to excavation sides, changes of in-situ stresses and resulting ground movements from wall excavation and construction, and disturbance from driving or boring operations; provision of access for construction; the required degree of water tightness of the finished wall and the practicability of reaching a low-permeability stratum to form a water cut-off (assessing the resulting equilibrium ground-water flow problem); the practicability of forming ground anchorages in adjacent ground and of excavating between any propping; the wall's ability to carry vertical load; the ductility of structural components; access for maintenance of the wall and associated drainage measures; the appearance and durability of the wall and any anchorages; for sheet piling, the need for a section stiff enough to be driven to the design penetration without loss of interlock; the stability of open borings or slurry trench panels; and, for fill, the nature of available materials and the means used to compact them adjacent to the wall, in accordance with 5.3.",
+      "key_points": [
+        "Vertical equilibrium must be demonstrated for the assumed pressure distributions and actions; may be verified by reducing wall friction",
+        "Design philosophy favours visible warning of an approaching ULS and avoids brittle/sudden collapse",
+        "Critical limit state for many walls = displacement enough to damage nearby structures/services, even without wall collapse",
+        "Recommended methods/factors are usually sufficient in medium/firm soils with adequate construction; special care needed for highly over-consolidated clays",
+        "Observational method (2.7) should be considered where ground-structure interaction is too complex to design fully in advance",
+        "Construction checklist: temporary excavation support, ground disturbance from driving/boring, water tightness/cut-off, anchorage/propping practicality, vertical load capacity, ductility",
+        "Construction checklist (cont.): maintenance access, durability, sheet-pile drivability, boring/slurry-trench stability, backfill compaction per 5.3"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to the general ULS/SLS design philosophy and the construction-related items that must be accounted for in retaining-structure design."
+    },
+    {
+      "section_id": "9.4.2",
+      "title": "Drainage systems",
+      "summary": "Requires that if a retaining structure's safety or serviceability depends on a drainage system, the consequences of drainage failure be considered for both safety and repair cost, with either a specified maintenance programme with design access, or demonstrated evidence (comparable experience plus discharge assessment) that the system operates adequately without maintenance.",
+      "body": "If the safety and serviceability of the designed structure depend on the successful performance of a drainage system, the consequences of its failure shall be considered, having regard for both safety and cost of repair. One of the following conditions, or a combination of them, shall apply: a maintenance programme for the drainage system shall be specified and the design shall allow access for this purpose; or it shall be demonstrated, both by comparable experience and by assessment of any water discharge, that the drainage system will operate adequately without maintenance. The quantities, pressures, and eventual chemical content of any water discharge should be taken into account.",
+      "key_points": [
+        "Consider consequences of drainage-system failure for both safety and cost of repair",
+        "Either specify a maintenance programme with design access, or demonstrate reliable maintenance-free operation by comparable experience plus discharge assessment",
+        "Account for the quantities, pressures, and chemical content of any water discharge"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to any retaining structure whose safety or serviceability relies on a drainage system operating as intended."
+    },
+    {
+      "section_id": "9.5",
+      "title": "Determination of earth pressures",
+      "summary": "Introduces the earth pressure clauses: general principles for calculating magnitude and direction (9.5.1), at-rest pressure for walls without relative movement (9.5.2), limiting active/passive pressure values for walls that move enough to reach failure (9.5.3, linked to the Annex C sample analytical method), intermediate values for insufficient movement (9.5.4), and compaction-induced pressures (9.5.5).",
+      "body": "Determination of earth pressures shall take account of the acceptable mode and amount of any movement and strain that may occur at the limit state under consideration; in this context 'earth pressure' also covers the total pressure from soft and weathered rock and includes ground-water pressure. This clause is organised by the wall-movement regime: 9.5.2 covers at-rest pressure, applicable when there is no relative movement between wall and ground; 9.5.3 covers the limiting active and passive pressure values reached at full mobilisation, for which Annex C provides a sample analytical method (partially digitized -- see 9.5.3); 9.5.4 covers intermediate values, applicable when wall movement is insufficient to mobilise the limiting values; and 9.5.5 addresses the additional pressures generated by backfill placement and compaction.",
+      "key_points": [
+        "9.5.1 General: earth pressure calculation accounts for movement mode/amount at the relevant limit state; term includes soft/weathered rock pressure and ground-water pressure",
+        "9.5.2 At-rest values: apply when wall and ground have no relative movement",
+        "9.5.3 Limiting values: full active/passive mobilisation; Annex C gives a sample analytical procedure",
+        "9.5.4 Intermediate values: apply when wall movement is insufficient to reach limiting values",
+        "9.5.5 Compaction effects: additional pressures from backfill placement and compaction"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies whenever design earth pressures must be derived for a retaining structure, selecting the appropriate at-rest/limiting/intermediate regime for the wall movement expected."
+    },
+    {
+      "section_id": "9.5.1",
+      "title": "General",
+      "summary": "Sets the general parameters that any earth-pressure calculation must account for: surcharge and ground slope, wall inclination, water tables and seepage, wall movement, overall equilibrium, ground strength and weight density, and wall roughness/friction. Establishes the wall-ground interface friction parameter delta, including the k*phi'cv;d relation for concrete/steel sheet piling on sand or gravel.",
+      "body": "Calculations of the magnitudes of earth pressures and directions of the resulting forces shall take account of: the surcharge on and slope of the ground surface; the inclination of the wall to the vertical; the water tables and seepage forces in the ground; the amount and direction of movement of the wall relative to the ground; horizontal as well as vertical equilibrium for the entire retaining structure; the shear strength and weight density of the ground; the rigidity of the wall and supporting system; and the wall roughness. The amount of mobilised wall friction and adhesion should be considered as a function of the strength parameters of the ground, the friction properties of the wall-ground interface, the direction and amount of movement of the wall relative to the ground, and the ability of the wall to support any vertical forces resulting from wall friction and adhesion. The amount of shear stress that can be mobilised at the wall-ground interface should be determined by the wall-ground interface friction parameter delta. A concrete wall or steel sheet pile wall supporting sand or gravel may be assumed to have a design wall-ground interface friction angle delta_d = k times phi'_cv;d (the design critical-state, i.e. constant-volume, angle of shearing resistance); k should not exceed 2/3 for precast concrete or steel sheet piling. For concrete cast against soil, a value of k = 1,0 may be assumed. For a steel sheet pile in clay under undrained conditions immediately after driving, no adhesive or frictional resistance should be assumed, although these values may increase over time. The magnitudes of earth pressures and directions of resultant forces shall be calculated according to the selected Design Approach (see 2.4.7.3) and the limit state being considered; the value of an earth pressure at an ultimate limit state is generally different from its value at a serviceability limit state, since these are determined by two fundamentally different calculations, so earth pressure expressed as an action cannot have a single characteristic value. For structures retaining rock masses, calculations shall take account of discontinuities -- their orientation, spacing, aperture, roughness, and the mechanical characteristics of any joint filling material -- and account shall be taken of any swelling potential of the ground.",
+      "key_points": [
+        "Earth pressure calculations account for surcharge/slope, wall inclination, water tables/seepage, wall movement, overall equilibrium, ground strength/weight density, wall rigidity and roughness",
+        "Mobilised wall friction/adhesion depends on ground strength, interface friction properties, relative wall movement, and the wall's ability to carry vertical forces from friction/adhesion",
+        "Wall-ground interface friction parameter delta governs mobilisable shear stress at the interface",
+        "Concrete/steel sheet pile wall on sand/gravel: delta_d = k*phi'_cv;d, with k <= 2/3 for precast concrete or steel sheet piling; k = 1,0 for concrete cast against soil",
+        "Steel sheet pile in clay, undrained, immediately after driving: assume no adhesive/frictional resistance (may increase over time)",
+        "ULS and SLS earth pressure values differ (two fundamentally different calculations) -- earth pressure as an action has no single characteristic value",
+        "For rock-mass retaining structures, account for discontinuity orientation/spacing/aperture/roughness/joint fill and any ground swelling potential"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to the general parameters and wall-friction assumptions underlying any earth pressure calculation, regardless of which of the at-rest, limiting, or intermediate regimes governs."
+    },
+    {
+      "section_id": "9.5.2",
+      "title": "At rest values of earth pressure",
+      "summary": "Covers the at-rest earth pressure state, applicable when there is no relative wall-ground movement, using K0 = (1-sin phi')*sqrt(OCR) for a horizontal ground surface (not valid for very high OCR) and an adjusted coefficient K0;beta = K0*(1+sin beta) when the ground slopes upward from the wall at angle beta <= phi', with the resultant force direction assumed parallel to the ground surface.",
+      "body": "When no movement of the wall relative to the ground takes place, the earth pressure shall be calculated from the at-rest state of stress, and the determination of the at-rest state shall take account of the stress history of the ground. For normally consolidated soil, at-rest conditions should normally be assumed in the ground behind a retaining structure if the movement of the structure is less than 5x10^-4 times the retained height h. For a horizontal ground surface, the at-rest earth pressure coefficient K0 should be determined from K0 = (1 - sin phi') * sqrt(OCR); this formula should not be used for very high values of OCR. If the ground slopes upwards from the wall at an angle beta <= phi' to the horizontal, the horizontal component of the effective earth pressure at rest may be related to the effective overburden pressure by the ratio K0;beta, where K0;beta = K0 * (1 + sin beta); the direction of the resulting force should then be assumed to be parallel to the ground surface. Note on source transcription: the source PDF's OCR text layer detaches the '(9.1)' and '(9.2)' equation-number labels from their formulas -- both labels print together immediately ahead of the 9.5.3 heading rather than beside the K0 and K0;beta expressions above, a column-reordering artifact of the same kind noted for the Annex A R4 columns in tables.py. The formulas reproduced here are the standard EN 1997-1 forms for Eq. (9.1) and Eq. (9.2); they are not implemented as Python functions in this reference.",
+      "key_points": [
+        "At-rest state applies when there is no relative wall-ground movement; determination accounts for the ground's stress history",
+        "For normally consolidated soil, assume at-rest conditions if wall movement < 5x10^-4 * h",
+        "Eq. 9.1 (horizontal ground): K0 = (1 - sin phi') * sqrt(OCR); not valid for very high OCR",
+        "Eq. 9.2 (ground sloping upward at beta <= phi'): K0;beta = K0 * (1 + sin beta), resultant parallel to the ground surface",
+        "Neither Eq. 9.1 nor Eq. 9.2 is implemented as a Python function in this reference module"
+      ],
+      "equations": [
+        {
+          "id": "Eq. 9.1",
+          "description": "At-rest earth pressure coefficient for a horizontal ground surface: K0 = (1 - sin phi') * sqrt(OCR). Not to be used for very high OCR values. Reconstructed from a source PDF whose OCR text layer detached this equation's number label from its formula (the label prints just ahead of the 9.5.3 heading); the formula itself renders legibly in the extracted text.",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. 9.2",
+          "description": "At-rest earth pressure coefficient adjustment for ground sloping upward from the wall at angle beta <= phi': K0;beta = K0 * (1 + sin beta), with the resultant force direction assumed parallel to the ground surface. Same detached-label transcription note as Eq. 9.1.",
+          "implemented_in": null
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to walls or wall segments experiencing negligible relative movement with the retained ground, such as basement walls braced before backfilling."
+    },
+    {
+      "section_id": "9.5.3",
+      "title": "Limiting values of earth pressure",
+      "summary": "Covers the limiting (fully mobilised) active and passive earth pressure values, determined from the relative soil-wall movement at failure and the corresponding failure-surface shape. Annex C provides a sample analytical method for these limiting values: the basic Eq. C.1/C.2 pressure formulas, the Kac cohesion coefficient, and the mw and Kgamma relations from the (partially legible) log-spiral analytical procedure.",
+      "body": "Limiting values of earth pressures shall be determined taking account of the relative movement of the soil and the wall at failure and the corresponding shape of the failure surface. Limiting values of earth pressure assuming straight failure surfaces can significantly deviate from the values assuming curved failure surfaces for high angles of shearing resistance and wall-ground interface friction parameters delta, and so lead to unsafe results. Annex C provides some data on relative movements that cause limiting values of earth pressure to develop, and it is the source of the sample analytical procedure digitized in this reference's equations module. Annex C.1 gives the basic limit-pressure formulas: the total active earth pressure normal to the wall at depth z is sigma_a(z) = Ka*[integral(gamma dz) + q] + u - c*Kac (Eq. C.1), and the total passive earth pressure is sigma_p(z) = Kp*[integral(gamma dz) + q] + u + c*Kpc (Eq. C.2), where Ka and Kp are the coefficients of effective horizontal active/passive earth pressure (read from Annex C design charts or an external analytical/numerical method) and Kac (with Kpc inferred by analogy) is a cohesion earth-pressure coefficient, Kac = 2*sqrt(K*(1+a/c)) capped at 2.56*sqrt(K), where a is the ground-wall adhesion and c is the cohesion. Annex C.2 gives a sample analytical (log-spiral) procedure for deriving Ka and Kp themselves; of its equations, the wall boundary condition for the angle mw (Eq. C.4: cos(2*mw + phi + delta) = sin(delta)/sin(phi), with phi and delta entered as negative values for active-pressure calculations) and the approximate weight-density coefficient Kgamma given the normal-loading coefficient Kn (Eq. C.9: Kgamma = Kn*cos(beta)*cos(beta-theta)) are legible in the source scan and are digitized below. The remaining log-spiral equations (the soil-surface boundary condition for angle mt, the tangent rotation v, the surcharge coefficient Kq, the cohesion coefficient Kc, and Kn itself) were embedded as images in the original document scan and were not captured by the OCR text layer at all, so this reference does not implement the full log-spiral procedure -- it should be treated as a sample procedure from the informative Annex C, only partially digitized here; a designer needing the complete method should consult EN 1997-1:2004 Annex C.2 directly or use the Annex C design charts (Figures C.1.1-C.1.4 for Ka, C.2.1-C.2.4 for Kp). In cases where struts, anchorages, or similar elements restrain movement of the retaining structure, it should be considered that the limiting active and passive values of earth pressure, and their distributions, may not be the most adverse ones.",
+      "key_points": [
+        "Limiting active/passive pressures depend on relative soil-wall movement at failure and the failure-surface shape",
+        "Straight-surface limiting values can deviate unsafely from curved-surface values at high phi' and delta",
+        "Annex C.1 basic formulas: sigma_a = Ka*(gamma*z+q)+u-c*Kac (Eq. C.1); sigma_p = Kp*(gamma*z+q)+u+c*Kpc (Eq. C.2)",
+        "Cohesion coefficient Kac = 2*sqrt(K*(1+a/c)), capped at 2.56*sqrt(K); Kpc used by analogy for passive pressure",
+        "Annex C.2 log-spiral procedure: mw wall boundary condition (Eq. C.4) and Kgamma weight-density coefficient (Eq. C.9) are digitized",
+        "Eq. C.3, C.5, C.6, C.7, C.8 of Annex C.2 were image-based in the source scan and are NOT digitized -- only a sample procedure from the informative Annex C is implemented here",
+        "Where struts/anchorages restrain wall movement, the limiting active/passive values may not be the most adverse case"
+      ],
+      "equations": [
+        {
+          "id": "Eq. C.1",
+          "description": "Total active earth pressure normal to the wall at depth z: sigma_a(z) = Ka*[integral(gamma dz) + q] + u - c*Kac.",
+          "implemented_in": "geotech_references.eurocode_7_1.equations.active_earth_pressure"
+        },
+        {
+          "id": "Eq. C.2",
+          "description": "Total passive earth pressure normal to the wall at depth z: sigma_p(z) = Kp*[integral(gamma dz) + q] + u + c*Kpc.",
+          "implemented_in": "geotech_references.eurocode_7_1.equations.passive_earth_pressure"
+        },
+        {
+          "id": "Eq. C.1 note (Kac)",
+          "description": "Cohesion earth-pressure coefficient: Kac = 2*sqrt(K*(1+a/c)), limited to 2.56*sqrt(K); used with Ka in Eq. C.1. The passive analogue Kpc (used with Kp in Eq. C.2) is not explicitly restated in the source for the passive case and is applied here only by analogy.",
+          "implemented_in": "geotech_references.eurocode_7_1.equations.cohesion_earth_pressure_coefficient"
+        },
+        {
+          "id": "Eq. C.4",
+          "description": "Wall boundary condition of the Annex C.2 log-spiral analytical procedure, giving the angle mw: cos(2*mw + phi + delta) = sin(delta)/sin(phi) (phi, delta negative for active pressure per C.2(3)).",
+          "implemented_in": "geotech_references.eurocode_7_1.equations.mobilised_wall_angle_mw"
+        },
+        {
+          "id": "Eq. C.9",
+          "description": "Approximate weight-density earth-pressure coefficient of the Annex C.2 log-spiral procedure, given the normal-loading coefficient Kn: Kgamma = Kn*cos(beta)*cos(beta-theta). Safe-sided; error may be considerable for passive pressures with positive beta.",
+          "implemented_in": "geotech_references.eurocode_7_1.equations.weight_density_coefficient"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to walls that move (or rotate) enough relative to the retained ground to fully mobilise active or passive shear strength, and to computing the Ka/Kp coefficients used in Eq. C.1/C.2 via the (partially digitized) Annex C.2 sample analytical procedure."
+    },
+    {
+      "section_id": "9.5.4",
+      "title": "Intermediate values of earth pressure",
+      "summary": "Covers earth pressures intermediate between at-rest and limiting values, occurring when wall movement is insufficient to fully mobilise the limiting active or passive pressure. Annex C Figure C.3 gives a diagram for determining mobilised passive earth pressure; intermediate values may otherwise be computed by empirical rules, spring-constant methods, or finite element methods.",
+      "body": "Intermediate values of earth pressure occur if the wall movements are insufficient to mobilise the limiting values. The determination of the intermediate values of earth pressure shall take account of the amount of wall movement and its direction relative to the ground. Annex C, Figure C.3, gives a diagram which may be used for the determination of the mobilised passive earth pressure. The intermediate values of earth pressures may be calculated using, for example, various empirical rules, spring constant methods, or finite element methods.",
+      "key_points": [
+        "Intermediate values apply when wall movement is insufficient to mobilise the full active/passive (limiting) pressure",
+        "Determination accounts for the amount and direction of wall movement relative to the ground",
+        "Annex C Figure C.3 gives a diagram for mobilised passive earth pressure",
+        "May also be computed by empirical rules, spring-constant methods, or finite element methods"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to walls whose movement is too small to reach the limiting active or passive state but too large to remain at rest, such as many propped or strutted embedded walls."
+    },
+    {
+      "section_id": "9.5.5",
+      "title": "Compaction effects",
+      "summary": "Requires that earth-pressure determination account for the additional pressures generated by backfill placement and compaction, which depend on the compactive energy, compacted-layer thickness, and compaction-plant travel pattern; appropriate compaction procedures shall be specified to avoid unacceptable wall movements.",
+      "body": "The determination of earth pressures acting behind the wall shall take account of the additional pressures generated by any placing of backfill and the procedures adopted for its compaction. Measurements indicate that the additional pressures depend on the applied compactive energy, the thickness of the compacted layers, and the travel pattern of the compaction plant; horizontal pressure normal to the wall in a layer may reduce when the next layer is placed and compacted, and once backfilling is complete, the additional pressure normally acts only on the upper part of the wall. Appropriate compaction procedures shall be specified with the aim of avoiding excessive additional earth pressures, which may lead to unacceptable movements.",
+      "key_points": [
+        "Earth-pressure determination must include additional pressure from backfill placement and compaction",
+        "Additional pressure depends on compactive energy, compacted-layer thickness, and compaction-plant travel pattern",
+        "Horizontal pressure in a layer may reduce when the next layer is placed and compacted",
+        "After backfilling is complete, additional pressure normally acts only on the upper part of the wall",
+        "Compaction procedures must be specified to avoid excessive additional pressure and resulting unacceptable movement"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies whenever backfill is placed and compacted against a retaining wall, particularly for stiff or restrained walls where compaction-induced pressure can exceed the at-rest or active pressure."
+    },
+    {
+      "section_id": "9.6",
+      "title": "Water pressures",
+      "summary": "Requires that characteristic and design water pressures account for water levels above and in the ground and be included in ULS/SLS action combinations. For walls retaining medium/low-permeability soils (silts, clays), water pressure should normally be assumed to act at the surface of the retained material unless reliable drainage is installed; both non-steady and steady conditions must be examined for sudden water-level changes, and water-filled tension/shrinkage cracks considered where drainage measures are absent.",
+      "body": "Determination of characteristic and design water pressures shall take account of water levels both above and in the ground. When checking the ultimate and serviceability limit states, water pressures shall be accounted for in the combinations of actions in accordance with 2.4.5.3 and 2.4.6.1, considering the possible risks indicated in 9.4.1(5). For structures retaining earth of medium or low permeability (silts and clays), water pressures should normally be assumed to act behind the wall; unless a reliable drainage system is installed (per 9.4.2(1)P) or infiltration is prevented, the values of water pressure should normally correspond to a water table at the surface of the retained material. Where sudden changes in a free water level may occur, both the non-steady condition occurring immediately after the change and the steady condition shall be examined. Where no special drainage or flow-prevention measures are taken, the possible effects of water-filled tension or shrinkage cracks shall be considered.",
+      "key_points": [
+        "Design water pressures account for water levels above and in the ground; included in ULS/SLS action combinations per 2.4.5.3/2.4.6.1",
+        "Medium/low-permeability retained soils (silts, clays): assume water pressure to a water table at the retained ground surface unless reliable drainage is installed",
+        "Both non-steady (immediately after a sudden water-level change) and steady conditions must be examined",
+        "Consider water-filled tension or shrinkage cracks where no special drainage/flow-prevention measures are taken"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to determining the water-pressure component of the design action combination for any retaining wall, particularly walls retaining low-permeability soils without engineered drainage."
+    },
+    {
+      "section_id": "9.7",
+      "title": "Ultimate limit state design",
+      "summary": "Introduces the ultimate limit state verification of retaining structures for the design situations of 9.3.3, covering: general equilibrium requirements (9.7.1); overall stability via Section 11 (9.7.2); gravity-wall foundation failure -- bearing and sliding -- via Section 6 and Table A.13 (9.7.3); rotational and vertical failure of embedded walls (9.7.4, 9.7.5); structural design of the retaining structure and its supports (9.7.6); and anchorage pull-out failure via Section 8 (9.7.7).",
+      "body": "The design of retaining structures shall be checked at the ultimate limit state for the design situations appropriate to that state, as specified in 9.3.3, using the design actions or action effects and design resistances. All relevant limit modes shall be considered, including as a minimum the types illustrated in Figures 9.1 to 9.6 for the most commonly used retaining structures. Calculations for ultimate limit states shall establish that equilibrium can be achieved using the design actions or effects of actions and the design strengths or resistances specified in clause 2.4, with compatibility of deformations considered in assessing design strengths or resistances; upper or lower design values, whichever are more adverse, shall be used for the strength or resistance of the ground. Calculation methods may redistribute earth pressure in accordance with the relative displacements and stiffnesses of ground and structural elements. For fine-grained soils, both short- and long-term behaviour shall be considered, and for walls subject to differential water pressures, safety against failure by hydraulic heave and piping shall be checked. The following subclauses address each recognised failure mode in turn: overall stability (9.7.2), foundation failure of gravity walls (9.7.3), rotational failure of embedded walls (9.7.4), vertical failure of embedded walls (9.7.5), structural failure of the retaining structure (9.7.6), and pull-out failure of anchorages (9.7.7).",
+      "key_points": [
+        "ULS design checked for the design situations of 9.3.3, using design actions/effects and design resistances",
+        "Minimum limit modes: types illustrated in Figures 9.1-9.6 for common retaining structures",
+        "Upper or lower design values (whichever is more adverse) used for ground strength/resistance",
+        "Earth pressure may be redistributed per relative ground/structure displacement and stiffness",
+        "Fine-grained soils: consider both short- and long-term behaviour",
+        "Walls with differential water pressure: check hydraulic heave and piping safety"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to the ultimate limit state verification of any gravity, embedded, or composite retaining structure across all recognised failure modes."
+    },
+    {
+      "section_id": "9.7.1",
+      "title": "General",
+      "summary": "Sets the general ULS requirements common to all retaining-structure failure modes: checking against the design situations of 9.3.3, considering all relevant limit modes (minimum per Figures 9.1-9.6), demonstrating equilibrium with design actions/resistances and deformation compatibility, using the more adverse of upper/lower ground design values, and checking hydraulic heave/piping safety for walls with differential water pressure.",
+      "body": "The design of retaining structures shall be checked at the ultimate limit state for the design situations appropriate to that state, as specified in 9.3.3, using the design actions or action effects and design resistances. All relevant limit modes shall be considered; these will include, as a minimum, limit modes of the types illustrated in Figures 9.1 to 9.6 for the most commonly used retaining structures. Calculations for ultimate limit states shall establish that equilibrium can be achieved using the design actions or effects of actions and the design strengths or resistances, as specified in clause 2.4; compatibility of deformations shall be considered in assessing design strengths or resistances. Upper or lower design values, whichever are more adverse, shall be used for the strength or resistance of the ground. Calculation methods may be used which redistribute earth pressure in accordance with the relative displacements and stiffnesses of ground and structural elements. For fine-grained soils, both short- and long-term behaviour shall be considered. For walls subject to differential water pressures, safety against failure due to hydraulic heave and piping shall be checked.",
+      "key_points": [
+        "Checked at ULS for design situations per 9.3.3, using design actions/effects and design resistances",
+        "Minimum limit modes: types illustrated in Figures 9.1-9.6",
+        "Equilibrium established with design strengths/resistances per 2.4, considering deformation compatibility",
+        "Use whichever of upper/lower design ground strength/resistance value is more adverse",
+        "Earth pressure redistribution permitted per relative displacement/stiffness of ground and structure",
+        "Both short- and long-term behaviour considered for fine-grained soils",
+        "Hydraulic heave/piping safety checked for differential water pressure"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies as the general ULS framework preceding the specific failure-mode checks of 9.7.2 through 9.7.7."
+    },
+    {
+      "section_id": "9.7.2",
+      "title": "Overall stability",
+      "summary": "Requires that the principles of Section 11 be used to demonstrate that an overall stability failure will not occur and that corresponding deformations are sufficiently small, considering as a minimum the limit modes illustrated in Figure 9.1 (examples of overall-stability limit modes for retaining structures) and accounting for progressive failure and liquefaction as relevant.",
+      "body": "The principles in Section 11 shall be used as appropriate to demonstrate that an overall stability failure will not occur and that the corresponding deformations are sufficiently small. As a minimum, limit modes of the types illustrated in Figure 9.1 should be considered, taking progressive failure and liquefaction into account as relevant.",
+      "key_points": [
+        "Use Section 11 principles to demonstrate no overall stability failure and sufficiently small deformations",
+        "Consider, as a minimum, the limit modes illustrated in Figure 9.1",
+        "Account for progressive failure and liquefaction as relevant"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 9.1: Examples of limit modes for overall stability of retaining structures"
+      ],
+      "tables": [],
+      "applicability": "Applies to any retaining structure where a deep-seated failure surface could pass beneath, behind, or through the wall and its supported ground."
+    },
+    {
+      "section_id": "9.7.3",
+      "title": "Foundation failure of gravity walls",
+      "summary": "Requires that the principles of Section 6 be used to demonstrate a sufficiently remote foundation failure and acceptable deformations for gravity walls, checking both bearing resistance and sliding, considering as a minimum the limit modes of Figure 9.2. Table A.13 gives the partial resistance factors gamma_R for bearing, sliding, and earth resistance under Design Approach sets R1-R3.",
+      "body": "The principles of Section 6 shall be used as appropriate to demonstrate that a foundation failure of a gravity wall is sufficiently remote and that deformations will be acceptable; both bearing resistance and sliding shall be considered. As a minimum, limit modes of the types illustrated in Figure 9.2 should be considered. The partial resistance factors gamma_R applied to bearing, sliding, and earth resistance for retaining structures are given in Annex A Table A.13 (digitized as table_a_13_retaining_structure_resistance, keyed by resistance type -- 'bearing', 'sliding', 'earth_resistance' -- and Design Approach resistance set R1-R3); the recommended values are gamma_R;v = 1,0/1,4/1,0, gamma_R;h = 1,0/1,1/1,0, and gamma_R;e = 1,0/1,4/1,0 for R1/R2/R3 respectively.",
+      "key_points": [
+        "Section 6 principles used to demonstrate sufficiently remote foundation failure and acceptable deformations for gravity walls",
+        "Both bearing resistance and sliding at the base shall be considered",
+        "Minimum limit modes: types illustrated in Figure 9.2",
+        "Table A.13 (table_a_13_retaining_structure_resistance) gives gamma_R for bearing, sliding, and earth resistance across R1-R3"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 9.2: Examples of limit modes for foundation failures of gravity walls"
+      ],
+      "tables": [
+        "Table A.13: Partial resistance factors (gamma_R) for retaining structures -- bearing, sliding, earth resistance; sets R1-R3 (table_a_13_retaining_structure_resistance)"
+      ],
+      "applicability": "Applies to gravity and composite retaining walls, where foundation bearing and base-sliding failure are the governing geotechnical checks."
+    },
+    {
+      "section_id": "9.7.4",
+      "title": "Rotational failure of embedded walls",
+      "summary": "Requires equilibrium calculations demonstrating that embedded walls have sufficient penetration into the ground to prevent rotational failure, considering as a minimum the limit modes of Figure 9.3, with the design magnitude and direction of soil-wall shear stress kept consistent with the relative vertical displacement expected in the design situation.",
+      "body": "It shall be demonstrated by equilibrium calculations that embedded walls have sufficient penetration into the ground to prevent rotational failure. As a minimum, limit modes of the types illustrated in Figure 9.3 should be considered. The design magnitude and direction of shear stress between the soil and the wall shall be consistent with the relative vertical displacement which would occur in the design situation.",
+      "key_points": [
+        "Equilibrium calculations must demonstrate sufficient wall penetration to prevent rotational failure",
+        "Minimum limit modes: types illustrated in Figure 9.3",
+        "Design soil-wall shear stress magnitude and direction must be consistent with expected relative vertical displacement"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 9.3: Examples of limit modes for rotational failures of embedded walls"
+      ],
+      "tables": [],
+      "applicability": "Applies to embedded (relatively thin, bending-governed) walls such as cantilever or anchored sheet pile and diaphragm walls, checking penetration depth against rotational failure."
+    },
+    {
+      "section_id": "9.7.5",
+      "title": "Vertical failure of embedded walls",
+      "summary": "Requires demonstration that vertical equilibrium can be achieved for embedded walls using design soil strengths/resistances and design vertical wall forces, per the minimum limit mode of Figure 9.4, using upper design values for downward-acting prestressing forces (e.g. ground anchorages) and checking vertical equilibrium per Section 7 where the wall also acts as a structure's foundation.",
+      "body": "It shall be demonstrated that vertical equilibrium can be achieved using the design soil strengths or resistances and design vertical forces on the wall. As a minimum, the limit mode of the type illustrated in Figure 9.4 should be considered. Where downward movement of the wall is considered, upper design values shall be used in the calculation of prestressing forces, such as those from ground anchorages, which have a vertical downward component. The design magnitude and direction of shear stress between the soil and the wall shall be consistent with the check for vertical and rotational equilibrium. If the wall acts as the foundation for a structure, vertical equilibrium shall be checked using the principles of Section 7.",
+      "key_points": [
+        "Demonstrate vertical equilibrium using design soil strengths/resistances and design vertical wall forces",
+        "Minimum limit mode: type illustrated in Figure 9.4",
+        "Use upper design values for downward-acting prestressing forces (e.g. ground anchorages) when downward wall movement is considered",
+        "Soil-wall shear stress magnitude/direction must be consistent with the vertical and rotational equilibrium checks",
+        "If the wall also acts as a structure's foundation, check vertical equilibrium per Section 7"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 9.4: Example of a limit mode for vertical failure of embedded walls"
+      ],
+      "tables": [],
+      "applicability": "Applies to embedded walls carrying significant vertical load, e.g. from downward-acting anchorage prestress or where the wall doubles as a structural foundation."
+    },
+    {
+      "section_id": "9.7.6",
+      "title": "Structural design of retaining structures",
+      "summary": "Requires that retaining structures and their supporting structural elements (anchorages, props) be verified against structural failure per 2.4 and the relevant material Eurocodes (EN 1992, EN 1993, EN 1995, EN 1996), demonstrating mobilisable strength with compatible ground-structure deformation and considering strength reduction with deformation (cracking, plastic hinge rotation, local buckling).",
+      "body": "Retaining structures, including their supporting structural elements such as anchorages and props, shall be verified against structural failure in accordance with 2.4 and EN 1992, EN 1993, EN 1995, and EN 1996. As a minimum, limit modes of the types illustrated in Figure 9.5 should be considered. For each ultimate limit state, it shall be demonstrated that the required strengths can be mobilised, with compatible deformations in the ground and the structure. In structural elements, reduction in strength with deformation due to effects such as cracking of unreinforced sections, large rotations at plastic hinges, or local buckling of steel sections should be considered in accordance with EN 1992 to EN 1996 and EN 1999.",
+      "key_points": [
+        "Retaining structures and supporting elements (anchorages, props) verified against structural failure per 2.4 and EN 1992/1993/1995/1996",
+        "Minimum limit modes: types illustrated in Figure 9.5",
+        "Demonstrate mobilisable required strength with compatible ground-structure deformation for each ULS",
+        "Consider strength reduction with deformation: cracking of unreinforced sections, plastic hinge rotation, local steel buckling (per EN 1992-1996 and EN 1999)"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 9.5: Examples of limit modes for structural failure of retaining structures"
+      ],
+      "tables": [],
+      "applicability": "Applies to the structural (as opposed to geotechnical) verification of retaining walls, anchorages, and props against material failure."
+    },
+    {
+      "section_id": "9.7.7",
+      "title": "Failure by pull-out of anchorages",
+      "summary": "Requires demonstration that equilibrium can be achieved without pull-out failure of ground anchorages, designed per Section 8, considering as a minimum the limit modes of Figure 9.6(a,b) and, for deadman anchors, also the failure mode of Figure 9.6(c).",
+      "body": "It shall be demonstrated that equilibrium can be achieved without pull-out failure of ground anchorages. Anchors shall be designed in accordance with Section 8. As a minimum, limit modes of the types illustrated in Figure 9.6 (a, b) should be considered. For deadman anchors, the failure mode illustrated in Figure 9.6 (c) should also be considered.",
+      "key_points": [
+        "Demonstrate equilibrium without pull-out failure of ground anchorages",
+        "Anchors designed per Section 8",
+        "Minimum limit modes: types illustrated in Figure 9.6 (a, b)",
+        "Deadman anchors: also consider the failure mode of Figure 9.6 (c)"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 9.6: Examples of limit modes for failure by pull-out of anchors"
+      ],
+      "tables": [],
+      "applicability": "Applies to anchored or strutted retaining walls where ground anchorages (including deadman anchors) provide part of the restraining system."
+    },
+    {
+      "section_id": "9.8",
+      "title": "Serviceability limit state design",
+      "summary": "Introduces the serviceability limit state check for retaining structures using the design situations of 9.3.3 (9.8.1), and sets out the displacement-limit requirements of 9.8.2, including the use of comparable experience, the circumstances requiring detailed displacement calculations, and (per Annex H) typical limiting relative-rotation and total-settlement guidance.",
+      "body": "The design of retaining structures shall be checked at the serviceability limit state using the appropriate design situations as specified in 9.3.3. This clause covers the general SLS design basis (9.8.1) -- design earth pressure values that account for ground stiffness/strength and structural stiffness, and that need not be limiting values -- and the displacement requirements (9.8.2), which establish limiting displacement values per 2.4.8 and set out when a cautious comparable-experience estimate suffices versus when a more detailed displacement investigation is required.",
+      "key_points": [
+        "SLS design checked using the design situations of 9.3.3",
+        "9.8.1 General: design earth pressures need not be limiting values, but account for ground/structure stiffness and strength",
+        "9.8.2 Displacements: limiting values per 2.4.8, comparable-experience estimates, and criteria triggering detailed displacement calculations"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to the serviceability verification of retaining structures, distinct from the ultimate limit state checks of 9.7."
+    },
+    {
+      "section_id": "9.8.1",
+      "title": "General",
+      "summary": "Requires that retaining structures be checked at the serviceability limit state using the design situations of 9.3.3, with design earth pressure values that account for the initial stress, stiffness, and strength of the ground and the stiffness of the structural elements, and that need not be limiting values but should reflect the structure's allowable serviceability deformation.",
+      "body": "The design of retaining structures shall be checked at the serviceability limit state using the appropriate design situations as specified in 9.3.3. The assessment of design values of earth pressures should take account of the initial stress, stiffness, and strength of the ground and the stiffness of the structural elements. The design values of earth pressures should be derived taking account of the allowable deformation of the structure at its serviceability limit state; these pressures need not necessarily be limiting values.",
+      "key_points": [
+        "SLS checked using the design situations of 9.3.3",
+        "Design earth pressures account for initial ground stress, stiffness, strength, and structural element stiffness",
+        "Design earth pressure values reflect the structure's allowable SLS deformation and need not be limiting values"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies as the general SLS design basis preceding the specific displacement requirements of 9.8.2."
+    },
+    {
+      "section_id": "9.8.2",
+      "title": "Displacements",
+      "summary": "Requires limiting allowable displacement values for walls and adjacent ground (per 2.4.8), a cautious comparable-experience distortion/displacement estimate as the default check, and a more detailed displacement investigation where sensitivity, retained-soil height/plasticity, or supporting soft clay thresholds are exceeded. Annex H gives typical limiting relative-rotation and total-settlement guidance for the affected structures.",
+      "body": "Limiting values for the allowable displacements of walls and the ground adjacent to them shall be established in accordance with 2.4.8, taking into account the tolerance to displacements of supported structures and services. A cautious estimate of the distortion and displacement of retaining walls, and the effects on supported structures and services, shall always be made on the basis of comparable experience, including the effects of construction of the wall; the design may be justified by checking that the estimated displacements do not exceed the limiting values. If the initial cautious estimate of displacement exceeds the limiting values, the design shall be justified by a more detailed investigation including displacement calculations. It shall be considered to what extent variable actions, such as vibrations caused by traffic loads behind the retaining wall, contribute to the wall displacement. A more detailed investigation, including displacement calculations, shall be undertaken where nearby structures and services are unusually sensitive to displacement, or where comparable experience is not well established. Displacement calculations should also be considered where the wall retains more than 6 m of cohesive soil of low plasticity, where it retains more than 3 m of soils of high plasticity, or where the wall is supported by soft clay within its height or beneath its base. Displacement calculations shall take account of the stiffness of the ground and structural elements and the sequence of construction; the behaviour of materials assumed should be calibrated by comparable experience with the same calculation model, using stiffnesses appropriate to the computed degree of deformation if linear behaviour is assumed, or complete stress-strain models as an alternative. The effect of vibrations on displacements shall be considered with regard to 6.6.4. Where a numerical limit is needed for the allowable relative rotation of an adjacent structure or for its total settlement, Annex H gives typical guidance -- limiting relative (angular) rotation in the range 1/2000 to 1/300, with 1/500 stated as acceptable for many structures and 1/150 likely to cause an ultimate limit state (halved for hogging), and a typical acceptable total settlement of 50 mm for isolated foundations of normal structures.",
+      "key_points": [
+        "Limiting allowable displacement values for walls and adjacent ground established per 2.4.8, considering tolerance of supported structures/services",
+        "Default check: cautious comparable-experience distortion/displacement estimate, including construction effects, against the limiting values",
+        "If the cautious estimate exceeds limits, justify the design with a detailed displacement investigation and calculations",
+        "Consider variable-action contributions (e.g. traffic vibration) to wall displacement",
+        "Detailed investigation required for unusually displacement-sensitive nearby structures/services, or where comparable experience is not well established",
+        "Also consider detailed calculation where retained cohesive soil exceeds 6 m (low plasticity) or 3 m (high plasticity), or the wall is supported by soft clay",
+        "Displacement calculations account for ground/structural stiffness and construction sequence; material behaviour calibrated by comparable experience; vibration effects per 6.6.4",
+        "Annex H typical guidance: limiting relative rotation 1/2000-1/300 (1/500 acceptable for many structures, 1/150 near ULS, halved for hogging); typical acceptable total settlement 50 mm for isolated foundations"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Annex H (informative guidance, not a numbered table): limiting relative rotation (table_h_1_limiting_relative_rotation) and typical limiting total settlement (table_h_2_limiting_total_settlement)"
+      ],
+      "applicability": "Applies to setting and checking allowable wall and ground displacement limits, and to deciding whether a cautious comparable-experience estimate suffices or a detailed displacement calculation is required."
+    }
+  ]
+}

@@ -1,0 +1,268 @@
+{
+  "reference_id": "EN 1997-1:2004",
+  "reference_title": "Eurocode 7: Geotechnical Design - Part 1: General Rules",
+  "volume": null,
+  "chapter": 13,
+  "chapter_title": "Annex A (normative): Partial and correlation factors for ultimate limit states and recommended values",
+  "sections": [
+    {
+      "section_id": "13-1",
+      "title": "Annex A.1: Partial factors and correlation factors",
+      "summary": "Introduces Annex A as the source of the partial factors gamma for ultimate limit states in persistent and transient design situations, and the correlation factors xi for pile foundations in all design situations, used throughout EN 1997-1. All values given in this annex are the RECOMMENDED values; a National Annex may set different values for use in a specific country.",
+      "body": "Annex A is normative (unlike the other annexes B through J, which are informative). It collects, in one place, every partial factor gamma referenced elsewhere in the standard for ultimate limit state verification in persistent and transient design situations, plus the correlation factors xi used specifically for deriving characteristic pile resistance from load tests or ground test results (applicable in all design situations, not just persistent/transient). The values tabulated in A.2 through A.5 are the values recommended by CEN; EN 1997-1 explicitly allows a country's National Annex to substitute different values, so the numbers digitized here (and in geotech_references.eurocode_7_1.tables) are the EN 1997-1:2004 base-standard recommended values, not necessarily the values mandated in any specific country's national implementation.",
+      "key_points": [
+        "Annex A is NORMATIVE, unlike Annexes B-J which are informative",
+        "Covers partial factors gamma for ULS verification in persistent/transient situations",
+        "Covers correlation factors xi for pile foundations, applicable in ALL design situations",
+        "All tabulated values are RECOMMENDED values only",
+        "A National Annex may substitute different values for a specific country"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Framing clause for the whole of Annex A; applies whenever any Annex A table is used."
+    },
+    {
+      "section_id": "13-2",
+      "title": "Annex A.2: Partial factors for equilibrium limit state (EQU) verification",
+      "summary": "Defines the partial factors on actions (gamma_F: gamma_G;dst, gamma_G;stb, gamma_Q;dst, gamma_Q;stb, Table A.1) and on soil parameters (gamma_M: gamma_phi', gamma_c', gamma_cu, gamma_qu, gamma_gamma, Table A.2) used to verify the EQU limit state -- loss of static equilibrium of the structure or ground treated as a rigid body, where the strength of structural materials and the ground is insignificant in providing resistance.",
+      "body": "Clause A.2(1)P gives the four partial factors on actions applied for EQU verification: gamma_G;dst on destabilising (unfavourable) permanent actions, gamma_G;stb on stabilising (favourable) permanent actions, gamma_Q;dst on destabilising variable actions, and gamma_Q;stb on stabilising variable actions. Table A.1 gives the recommended values for buildings (from EN 1990:2002): gamma_G;dst = 1.1, gamma_G;stb = 0.9, gamma_Q;dst = 1.5, gamma_Q;stb = 0. Clause A.2(2)P gives the partial factors on soil parameters to be applied for EQU verification when minor shearing resistances are included in the calculation: gamma_phi' (applied to tan(phi')), gamma_c' (effective cohesion), gamma_cu (undrained shear strength), gamma_qu (unconfined strength), and gamma_gamma (weight density). Table A.2 gives the recommended values: gamma_phi' = 1.25, gamma_c' = 1.25, gamma_cu = 1.4, gamma_qu = 1.4, gamma_gamma = 1.0. Per 2.4.7.2(1)P/(2)P, EQU verification requires Edst;d <= Estb;d (Eq. 2.4) using these A.2 factors; EQU is mainly relevant in structural design and, in geotechnical design, is limited to rare cases such as a rigid foundation bearing on rock -- any included shearing resistance Td should be of minor importance.",
+      "key_points": [
+        "Table A.1: gamma_G;dst=1.1, gamma_G;stb=0.9, gamma_Q;dst=1.5, gamma_Q;stb=0",
+        "Table A.2: gamma_phi'=1.25, gamma_c'=1.25, gamma_cu=1.4, gamma_qu=1.4, gamma_gamma=1.0",
+        "gamma_phi' is applied to tan(phi'), not to phi' itself",
+        "EQU = loss of static equilibrium as a rigid body; strength of materials/ground insignificant",
+        "EQU in geotechnical design is limited to rare cases (e.g. rigid foundation on rock)",
+        "Used in Eq. 2.4 (Edst;d <= Estb;d) per clause 2.4.7.2"
+      ],
+      "equations": [
+        {"id": "Table A.1", "description": "Partial factors on actions (gamma_F) for EQU verification.", "implemented_in": "geotech_references.eurocode_7_1.tables.table_a_1_equ_actions"},
+        {"id": "Table A.2", "description": "Partial factors for soil parameters (gamma_M) for EQU verification.", "implemented_in": "geotech_references.eurocode_7_1.tables.table_a_2_equ_soil_parameters"}
+      ],
+      "figures": [],
+      "tables": [
+        "Table A.1 - Partial factors on actions (gamma_F) for EQU",
+        "Table A.2 - Partial factors for soil parameters (gamma_M) for EQU"
+      ],
+      "applicability": "Used for equilibrium (EQU) limit-state verification per clause 2.4.7.2, e.g. rigid foundations bearing on rock where buoyancy/overturning governs."
+    },
+    {
+      "section_id": "13-3",
+      "title": "Annex A.3.1: Partial factors on actions for STR/GEO verification (sets A1, A2)",
+      "summary": "Defines the partial factors on actions (gamma_F) or effects of actions (gamma_E) -- gamma_G on permanent actions and gamma_Q on variable actions -- for structural (STR) and geotechnical (GEO) limit state verification, in two alternative sets A1 and A2 (Table A.3), selected according to which Design Approach and which combination within it is being used.",
+      "body": "Clause A.3.1(1)P introduces gamma_G (permanent, unfavourable or favourable) and gamma_Q (variable, unfavourable or favourable), applied in either of two sets, A1 or A2. Table A.3 gives the recommended values for buildings from EN 1990:2002: Set A1 -- gamma_G unfavourable = 1.35, gamma_G favourable = 1.0, gamma_Q unfavourable = 1.5, gamma_Q favourable = 0. Set A2 -- gamma_G unfavourable = 1.0, gamma_G favourable = 1.0, gamma_Q unfavourable = 1.3, gamma_Q favourable = 0. Set A1 is the more conservative action-factoring set (used in Design Approach 1 Combination 1, and on structural actions in Design Approach 2 and Design Approach 3); set A2 is the less conservative action set, used together with the more conservative material factor set M2 in Design Approach 1 Combination 2, and on geotechnical actions in Design Approach 3.",
+      "key_points": [
+        "Table A.3, Set A1: gamma_G unfav=1.35, gamma_G fav=1.0, gamma_Q unfav=1.5, gamma_Q fav=0",
+        "Table A.3, Set A2: gamma_G unfav=1.0, gamma_G fav=1.0, gamma_Q unfav=1.3, gamma_Q fav=0",
+        "Applied to actions (Frep) directly, or to the effects of actions (E), per Eq. 2.6a/2.6b",
+        "Set A1 used in DA1-C1 and on structural actions in DA2/DA3",
+        "Set A2 used in DA1-C2 and on geotechnical actions in DA3"
+      ],
+      "equations": [
+        {"id": "Table A.3", "description": "Partial factors on actions (gamma_F) or effects of actions (gamma_E), sets A1/A2, for STR/GEO verification.", "implemented_in": "geotech_references.eurocode_7_1.tables.table_a_3_str_geo_actions"}
+      ],
+      "figures": [],
+      "tables": ["Table A.3 - Partial factors on actions (gamma_F) or effects of actions (gamma_E)"],
+      "applicability": "Used for structural (STR) and geotechnical (GEO) ULS verification per clause 2.4.7.3.2, in all three Design Approaches."
+    },
+    {
+      "section_id": "13-4",
+      "title": "Annex A.3.2: Partial factors for soil parameters for STR/GEO verification (sets M1, M2)",
+      "summary": "Defines the partial factors on soil parameters (gamma_M) -- gamma_phi', gamma_c', gamma_cu, gamma_qu, gamma_gamma -- for STR/GEO limit state verification, in two alternative sets M1 and M2 (Table A.4).",
+      "body": "Clause A.3.2(1)P introduces the same five soil-parameter factors as Table A.2, now given in two sets M1 and M2. Table A.4 recommended values: Set M1 -- gamma_phi'=1.0, gamma_c'=1.0, gamma_cu=1.0, gamma_qu=1.0, gamma_gamma=1.0 (i.e. no factoring of ground strength -- characteristic values are used directly). Set M2 -- gamma_phi'=1.25, gamma_c'=1.25, gamma_cu=1.4, gamma_qu=1.4, gamma_gamma=1.0. Set M1 is used together with action set A1 and resistance set R1 in Design Approach 1 Combination 1, and with A1/R2 in Design Approach 2; set M2 is used together with A2/R1 (or A2/R4 for piles/anchors) in Design Approach 1 Combination 2, and with A1-or-A2/R3 in Design Approach 3.",
+      "key_points": [
+        "Table A.4, Set M1: all factors = 1.0 (no ground-strength factoring)",
+        "Table A.4, Set M2: gamma_phi'=1.25, gamma_c'=1.25, gamma_cu=1.4, gamma_qu=1.4, gamma_gamma=1.0",
+        "M2 is identical in value to the EQU Table A.2 factors",
+        "gamma_phi' applied to tan(phi')",
+        "M1 pairs with R1 (DA1-C1) and R2 (DA2); M2 pairs with R1/R4 (DA1-C2) and R3 (DA3)"
+      ],
+      "equations": [
+        {"id": "Table A.4", "description": "Partial factors for soil parameters (gamma_M), sets M1/M2, for STR/GEO verification.", "implemented_in": "geotech_references.eurocode_7_1.tables.table_a_4_str_geo_soil_parameters"}
+      ],
+      "figures": [],
+      "tables": ["Table A.4 - Partial factors for soil parameters (gamma_M)"],
+      "applicability": "Used for structural (STR) and geotechnical (GEO) ULS verification per clause 2.4.7.3.3, in all three Design Approaches."
+    },
+    {
+      "section_id": "13-5",
+      "title": "Annex A.3.3.1: Partial resistance factors for spread foundations",
+      "summary": "Defines the partial resistance factors gamma_R;v (bearing) and gamma_R;h (sliding) for spread foundations, in three alternative sets R1, R2, R3 (Table A.5).",
+      "body": "Clause A.3.3.1(1)P introduces gamma_R;v on bearing resistance and gamma_R;h on sliding resistance for spread foundations. Table A.5 recommended values: bearing -- R1=1.0, R2=1.4, R3=1.0; sliding -- R1=1.0, R2=1.1, R3=1.0. Set R1 leaves resistance unfactored (used with the more conservative action/material sets in DA1); set R2 applies substantial factoring to resistance while actions and soil parameters are largely unfactored (Design Approach 2, the resistance-factoring approach); set R3 again leaves resistance unfactored, pairing instead with heavily factored soil strength parameters (M2, Design Approach 3).",
+      "key_points": [
+        "Table A.5 bearing (gamma_R;v): R1=1.0, R2=1.4, R3=1.0",
+        "Table A.5 sliding (gamma_R;h): R1=1.0, R2=1.1, R3=1.0",
+        "R2 is the resistance-factoring set used in Design Approach 2",
+        "R1 and R3 leave spread-foundation resistance unfactored",
+        "Ties to the sample bearing-resistance methods of Annexes D, E, G"
+      ],
+      "equations": [
+        {"id": "Table A.5", "description": "Partial resistance factors (gamma_R) for spread foundations, sets R1/R2/R3.", "implemented_in": "geotech_references.eurocode_7_1.tables.table_a_5_spread_foundation_resistance"}
+      ],
+      "figures": [],
+      "tables": ["Table A.5 - Partial resistance factors (gamma_R) for spread foundations"],
+      "applicability": "Used in the ULS bearing/sliding verification of spread foundations, clause 6.5."
+    },
+    {
+      "section_id": "13-6",
+      "title": "Annex A.3.3.2: Partial resistance factors for pile foundations",
+      "summary": "Defines the partial resistance factors gamma_b (base), gamma_s (shaft, compression), gamma_t (total/combined, compression), and gamma_s;t (shaft, tension) for pile foundations, in four alternative sets R1-R4, separately for driven piles (Table A.6), bored piles (Table A.7), and continuous flight auger (CFA) piles (Table A.8).",
+      "body": "Clause A.3.3.2(1)P introduces the four pile resistance factors. Driven piles (Table A.6): base R1/R2/R3/R4 = 1.0/1.1/1.0/1.3; shaft (compression) = 1.0/1.1/1.0/1.3; total/combined (compression) = 1.0/1.1/1.0/1.3; shaft in tension = 1.25/1.15/1.1/1.6. Bored piles (Table A.7): base = 1.25/1.1/1.0/1.3; shaft (compression) = 1.0/1.1/1.0/1.3; total/combined (compression) = 1.15/1.1/1.0/1.3; shaft in tension = 1.25/1.15/1.1/1.6. CFA piles (Table A.8): base = 1.1/1.1/1.0/1.3; shaft (compression) = 1.0/1.1/1.0/1.3; total/combined (compression) = 1.1/1.1/1.0/1.4; shaft in tension = 1.25/1.15/1.1/1.6. Set R4 is used only for the special DA1-C2 combination applicable to axially loaded piles and anchors (A2 + (M1 or M2) + R4, per 2.4.7.3.4.2(2)P); R1-R3 are the ordinary sets used with the general DA1-C1/DA2/DA3 combinations for pile design.",
+      "key_points": [
+        "Driven piles (Table A.6): base/shaft/total R1-R3 all 1.0/1.1/1.0; tension 1.25/1.15/1.1; R4 base/shaft/total=1.3, tension=1.6",
+        "Bored piles (Table A.7): base R1=1.25 (higher than driven, reflecting installation uncertainty); shaft R1-R3 = 1.0/1.1/1.0; total R1=1.15; tension and R4 column identical to Table A.6",
+        "CFA piles (Table A.8): base R1=1.1 (between driven and bored); total R4=1.4 (differs from Tables A.6/A.7's 1.3); tension identical to A.6/A.7",
+        "R4 is used specifically for the piles/anchors variant of DA1 Combination 2",
+        "gamma_s;t (tension) is consistently more conservative than gamma_s (compression) across all three pile types and all four sets"
+      ],
+      "equations": [
+        {"id": "Table A.6", "description": "Partial resistance factors (gamma_R) for driven piles, sets R1-R4.", "implemented_in": "geotech_references.eurocode_7_1.tables.table_a_6_driven_pile_resistance"},
+        {"id": "Table A.7", "description": "Partial resistance factors (gamma_R) for bored piles, sets R1-R4.", "implemented_in": "geotech_references.eurocode_7_1.tables.table_a_7_bored_pile_resistance"},
+        {"id": "Table A.8", "description": "Partial resistance factors (gamma_R) for CFA piles, sets R1-R4.", "implemented_in": "geotech_references.eurocode_7_1.tables.table_a_8_cfa_pile_resistance"}
+      ],
+      "figures": [],
+      "tables": [
+        "Table A.6 - Partial resistance factors (gamma_R) for driven piles",
+        "Table A.7 - Partial resistance factors (gamma_R) for bored piles",
+        "Table A.8 - Partial resistance factors (gamma_R) for CFA piles"
+      ],
+      "applicability": "Used in axially loaded pile design, clause 7.6, to derive design resistance Rd from characteristic resistance Rk."
+    },
+    {
+      "section_id": "13-7",
+      "title": "Annex A.3.3.3: Correlation factors for pile foundations",
+      "summary": "Defines the correlation factors xi_1 through xi_6 used to derive characteristic pile resistance from static load tests (Table A.9, by number of piles tested), ground test profiles (Table A.10, by number of test profiles), and dynamic impact tests (Table A.11, by number of piles, with model-factor adjustments).",
+      "body": "Clause A.3.3.3(1)P defines six correlation factors: xi_1 (mean of static load test results), xi_2 (minimum of static load test results), xi_3 (mean of calculated resistances from ground test results), xi_4 (minimum of calculated resistances from ground test results), xi_5 (mean of dynamic load/impact test results), xi_6 (minimum of dynamic load/impact test results). Table A.9 (static load tests, n = number of piles tested): xi_1 for n=1,2,3,4,>=5 is 1.40, 1.30, 1.20, 1.10, 1.00; xi_2 is 1.40, 1.20, 1.05, 1.00, 1.00. Table A.10 (ground test profiles, n=1,2,3,4,5,7,10): xi_3 is 1.40, 1.35, 1.33, 1.31, 1.29, 1.27, 1.25; xi_4 is 1.40, 1.27, 1.23, 1.20, 1.15, 1.12, 1.08 (intermediate n values are linearly interpolated). Table A.11 (dynamic impact tests, n=2,5,10,15,20): xi_5 is 1.60, 1.50, 1.45, 1.42, 1.40; xi_6 is 1.50, 1.35, 1.30, 1.25, 1.25. Table A.11's footnotes give model factors for dynamic impact test methods: multiply xi by 0.85 for signal-matching analysis; by 1.10 for a pile-driving formula WITH measurement of the quasi-elastic pile-head displacement during impact; by 1.20 for a pile-driving formula WITHOUT that measurement. If different pile types exist in the foundation, groups of similar piles should be considered separately when selecting n.",
+      "key_points": [
+        "6 correlation factors: xi_1/xi_2 (static tests, mean/min), xi_3/xi_4 (ground tests, mean/min), xi_5/xi_6 (dynamic tests, mean/min)",
+        "All xi values decrease toward 1.0 as the number of tests n increases (more tests = less uncertainty)",
+        "Table A.9 static tests tabulated for n=1 to >=5; Table A.10 ground tests for n=1,2,3,4,5,7,10; Table A.11 dynamic tests for n=2,5,10,15,20",
+        "Dynamic impact test xi values get additional model factors: 0.85 (signal matching), 1.10 (formula w/ displacement measurement), 1.20 (formula w/o measurement)",
+        "Characteristic resistance Rk = (mean of test results)/xi_mean, also checked against (min of test results)/xi_min -- the governing (lower) value controls",
+        "Dissimilar pile groups within one foundation should be correlated separately"
+      ],
+      "equations": [
+        {"id": "Table A.9", "description": "Correlation factors xi_1 (mean), xi_2 (min) from static pile load tests, by number of piles n.", "implemented_in": "geotech_references.eurocode_7_1.tables.table_a_9_correlation_static_load_test"},
+        {"id": "Table A.10", "description": "Correlation factors xi_3 (mean), xi_4 (min) from ground test profiles, by number of profiles n.", "implemented_in": "geotech_references.eurocode_7_1.tables.table_a_10_correlation_ground_test"},
+        {"id": "Table A.11", "description": "Correlation factors xi_5 (mean), xi_6 (min) from dynamic impact tests, by number of piles n, with model-factor footnotes.", "implemented_in": "geotech_references.eurocode_7_1.tables.table_a_11_correlation_dynamic_impact_test"}
+      ],
+      "figures": [],
+      "tables": [
+        "Table A.9 - Correlation factors xi from static pile load tests",
+        "Table A.10 - Correlation factors xi from ground test results",
+        "Table A.11 - Correlation factors xi from dynamic impact tests"
+      ],
+      "applicability": "Used in clause 7.6 to derive characteristic axial pile resistance from load test or ground test programmes before applying the Table A.6/A.7/A.8 partial resistance factors."
+    },
+    {
+      "section_id": "13-8",
+      "title": "Annex A.3.3.4: Partial resistance factors for pre-stressed anchorages",
+      "summary": "Defines the partial resistance factors gamma_a;t (temporary anchorages) and gamma_a;p (permanent anchorages), in four alternative sets R1-R4 (Table A.12).",
+      "body": "Clause A.3.3.4(1)P introduces gamma_a;t for temporary anchorages and gamma_a;p for permanent anchorages. Table A.12 recommended values are uniform across anchorage type: temporary = 1.1, 1.1, 1.0, 1.1 for R1/R2/R3/R4; permanent = 1.1, 1.1, 1.0, 1.1 for R1/R2/R3/R4 -- i.e. temporary and permanent anchorages take identical factors, and only set R3 leaves anchorage resistance unfactored.",
+      "key_points": [
+        "Table A.12: temporary R1-R4 = 1.1/1.1/1.0/1.1; permanent R1-R4 = 1.1/1.1/1.0/1.1 (identical)",
+        "Only R3 leaves anchorage resistance unfactored (consistent with R3 pairing with heavily factored M2 soil parameters in Design Approach 3)"
+      ],
+      "equations": [
+        {"id": "Table A.12", "description": "Partial resistance factors (gamma_R) for pre-stressed anchorages, sets R1-R4.", "implemented_in": "geotech_references.eurocode_7_1.tables.table_a_12_anchorage_resistance"}
+      ],
+      "figures": [],
+      "tables": ["Table A.12 - Partial resistance factors (gamma_R) for pre-stressed anchorages"],
+      "applicability": "Used in anchorage ULS design, clause 8.5."
+    },
+    {
+      "section_id": "13-9",
+      "title": "Annex A.3.3.5: Partial resistance factors for retaining structures",
+      "summary": "Defines the partial resistance factors gamma_R;v (bearing capacity), gamma_R;h (sliding resistance), and gamma_R;e (earth resistance) for retaining structures, in three alternative sets R1-R3 (Table A.13).",
+      "body": "Clause A.3.3.5(1)P introduces the three retaining-structure resistance factors. Table A.13 recommended values: bearing capacity -- R1=1.0, R2=1.4, R3=1.0; sliding resistance -- R1=1.0, R2=1.1, R3=1.0; earth resistance -- R1=1.0, R2=1.4, R3=1.0. Bearing capacity and earth resistance share identical values across the three sets (both governed by the same style of bearing-type failure mechanism); sliding resistance is factored less severely under R2.",
+      "key_points": [
+        "Table A.13 bearing (gamma_R;v): R1=1.0, R2=1.4, R3=1.0",
+        "Table A.13 sliding (gamma_R;h): R1=1.0, R2=1.1, R3=1.0",
+        "Table A.13 earth resistance (gamma_R;e): R1=1.0, R2=1.4, R3=1.0",
+        "Bearing and earth-resistance factors are numerically identical across all three sets"
+      ],
+      "equations": [
+        {"id": "Table A.13", "description": "Partial resistance factors (gamma_R) for retaining structures, sets R1-R3.", "implemented_in": "geotech_references.eurocode_7_1.tables.table_a_13_retaining_structure_resistance"}
+      ],
+      "figures": [],
+      "tables": ["Table A.13 - Partial resistance factors (gamma_R) for retaining structures"],
+      "applicability": "Used in retaining-structure ULS design, clause 9.7."
+    },
+    {
+      "section_id": "13-10",
+      "title": "Annex A.3.3.6: Partial resistance factor for slopes and overall stability",
+      "summary": "Defines the single partial resistance factor gamma_R;e (earth resistance) for slope and overall-stability verification, in three alternative sets R1-R3 (Table A.14).",
+      "body": "Clause A.3.3.6(1)P introduces gamma_R;e for slopes and overall stability. Table A.14 recommended values: R1=1.0, R2=1.1, R3=1.0. Per clause 2.4.7.3.4.4 NOTE 2, Design Approach 3 (which pairs with R3, i.e. gamma_R;e=1.0, unfactored resistance) is the usual choice for slope and overall-stability analyses; the resulting effect of actions on the failure surface is multiplied by the action factor and the shear resistance along the failure surface is divided by gamma_R;e, with structural actions on the soil (e.g. traffic load) treated as geotechnical actions using set A2.",
+      "key_points": [
+        "Table A.14: R1=1.0, R2=1.1, R3=1.0",
+        "Design Approach 3 (R3, gamma_R;e=1.0) is the usual choice for slope/overall-stability analysis",
+        "In DA3 slope analysis, structural actions on soil (e.g. traffic load) are treated as geotechnical actions (set A2)"
+      ],
+      "equations": [
+        {"id": "Table A.14", "description": "Partial resistance factor (gamma_R;e) for slopes and overall stability, sets R1-R3.", "implemented_in": "geotech_references.eurocode_7_1.tables.table_a_14_slope_stability_resistance"}
+      ],
+      "figures": [],
+      "tables": ["Table A.14 - Partial resistance factors (gamma_R) for slopes and overall stability"],
+      "applicability": "Used in overall-stability (slope) ULS design, clause 11.5."
+    },
+    {
+      "section_id": "13-11",
+      "title": "Annex A.4: Partial factors for uplift limit state (UPL) verification",
+      "summary": "Defines the partial factors on actions (Table A.15: gamma_G;dst, gamma_G;stb, gamma_Q;dst) and on soil parameters/resistances (Table A.16: gamma_phi', gamma_c', gamma_cu, gamma_s;t, gamma_a) for verifying the uplift (UPL) limit state -- loss of equilibrium due to buoyancy or other vertical uplift actions.",
+      "body": "Clause A.4(1)P gives the action factors for UPL: gamma_G;dst on destabilising permanent actions, gamma_G;stb on stabilising permanent actions, gamma_Q;dst on destabilising variable actions (no favourable-variable factor is defined for UPL). Table A.15 recommended values: gamma_G;dst=1.0, gamma_G;stb=0.9, gamma_Q;dst=1.5. Clause A.4(2)P gives the factors applied when resistances are included: gamma_phi', gamma_c', gamma_cu, gamma_s;t (tensile pile resistance), gamma_a (anchorage resistance). Table A.16 recommended values: gamma_phi'=1.25, gamma_c'=1.25, gamma_cu=1.40, gamma_s;t=1.40, gamma_a=1.40. These factors are used in the UPL verification of Eq. 2.8 (Vdst;d <= Gstb;d + Rd), per clause 10.2.",
+      "key_points": [
+        "Table A.15: gamma_G;dst=1.0, gamma_G;stb=0.9, gamma_Q;dst=1.5",
+        "Table A.16: gamma_phi'=1.25, gamma_c'=1.25, gamma_cu=1.40, gamma_s;t=1.40, gamma_a=1.40",
+        "gamma_G;dst=1.0 for UPL (vs. 1.35 for the equivalent STR/GEO Set A1 permanent-unfavourable factor) -- uplift treats permanent destabilising loads less conservatively on the action side, relying instead on Table A.16's resistance-side factors",
+        "No favourable-variable-action factor is given for UPL"
+      ],
+      "equations": [
+        {"id": "Table A.15", "description": "Partial factors on actions (gamma_F) for UPL verification.", "implemented_in": "geotech_references.eurocode_7_1.tables.table_a_15_upl_actions"},
+        {"id": "Table A.16", "description": "Partial factors for soil parameters and resistances for UPL verification.", "implemented_in": "geotech_references.eurocode_7_1.tables.table_a_16_upl_soil_resistance"}
+      ],
+      "figures": [],
+      "tables": [
+        "Table A.15 - Partial factors on actions (gamma_F) for UPL",
+        "Table A.16 - Partial factors for soil parameters and resistances for UPL"
+      ],
+      "applicability": "Used in uplift (UPL) limit-state verification, clause 10.2, e.g. basements and buried tanks in high ground-water conditions."
+    },
+    {
+      "section_id": "13-12",
+      "title": "Annex A.5: Partial factors for hydraulic heave limit state (HYD) verification",
+      "summary": "Defines the partial factors on actions gamma_G;dst, gamma_G;stb, gamma_Q;dst for verifying the hydraulic heave (HYD) limit state -- failure by heave due to upward seepage of water in the ground (Table A.17).",
+      "body": "Clause A.5(1)P gives the action factors for HYD verification: gamma_G;dst on destabilising permanent actions, gamma_G;stb on stabilising permanent actions, gamma_Q;dst on destabilising variable actions. Table A.17 recommended values: gamma_G;dst=1.35, gamma_G;stb=0.90, gamma_Q;dst=1.50. These are applied in Eq. 2.9a/2.9b (udst;d <= sigma_stb;d, or Sdst;d <= G'stb;d) per clause 10.3, checking every relevant soil column for the destabilising pore-water pressure or seepage force against the stabilising total vertical stress or submerged weight.",
+      "key_points": [
+        "Table A.17: gamma_G;dst=1.35, gamma_G;stb=0.90, gamma_Q;dst=1.50",
+        "gamma_G;dst=1.35 for HYD matches the STR/GEO Set A1 permanent-unfavourable factor (unlike UPL's 1.0)",
+        "Applied per relevant soil column via Eq. 2.9a (pore pressure vs. total stress) or Eq. 2.9b (seepage force vs. submerged weight)"
+      ],
+      "equations": [
+        {"id": "Table A.17", "description": "Partial factors on actions (gamma_F) for HYD (hydraulic heave) verification.", "implemented_in": "geotech_references.eurocode_7_1.tables.table_a_17_hyd_actions"}
+      ],
+      "figures": [],
+      "tables": ["Table A.17 - Partial factors on actions (gamma_F) for HYD"],
+      "applicability": "Used in hydraulic heave limit-state verification, clause 10.3, e.g. excavations below groundwater with upward seepage gradients."
+    },
+    {
+      "section_id": "13-13",
+      "title": "Annex A: Design Approach combinations summary",
+      "summary": "Cross-reference summarizing, from clause 2.4.7.3.4, exactly which Annex A action set (A1/A2), material set (M1/M2), and resistance set (R1-R4) is combined under each of the three Design Approaches and their combinations, since a given Annex A table value is only meaningful once paired with the correct set label from this scheme.",
+      "body": "EN 1997-1 leaves the choice of Design Approach to the National Annex, but defines exactly three: Design Approach 1 requires checking BOTH of two combinations (unless one obviously governs) -- Combination 1: A1+M1+R1 (factor actions and ground strength, not resistance); Combination 2: A2+M2+R1, except for axially loaded piles and anchors where Combination 2 becomes A2+(M1 or M2)+R4 (M1 for calculating pile/anchor resistance, M2 for unfavourable actions on piles such as negative skin friction). Design Approach 2 requires a single calculation: A1+M1+R2 (factor actions and resistances, not ground strength -- for slopes, the action effect on the failure surface is multiplied by the action factor and resistance divided by gamma_R;e). Design Approach 3 requires a single calculation: (A1 on structural actions, or A2 on geotechnical actions such as traffic load treated as acting through the ground) + M2 + R3 (factor structural/geotechnical actions and ground strength, not resistance). This scheme is digitized as geotech_references.eurocode_7_1.tables.design_approach_sets(), which returns the correct set labels for a given approach so the caller can then look up the matching Table A.1-A.17 values.",
+      "key_points": [
+        "DA1-C1: A1 + M1 + R1",
+        "DA1-C2: A2 + M2 + R1 (piles/anchors: A2 + (M1 or M2) + R4)",
+        "DA2: A1 + M1 + R2 (resistance-factoring approach)",
+        "DA3: (A1 structural actions, or A2 geotechnical actions) + M2 + R3 (material-factoring approach, usual choice for slopes)",
+        "Design Approach 1 generally requires checking both combinations unless one obviously governs",
+        "Digitized as design_approach_sets(approach) in tables.py"
+      ],
+      "equations": [
+        {"id": "2.4.7.3.4", "description": "Design Approaches 1, 2, 3 and their A/M/R set combinations for applying Eq. 2.6 and Eq. 2.7.", "implemented_in": "geotech_references.eurocode_7_1.tables.design_approach_sets"}
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Reference scheme tying together every Table A.1-A.17 lookup; consult before applying any Annex A factor to know which set (A1/A2, M1/M2, R1-R4) is in force for the Design Approach in use."
+    }
+  ]
+}

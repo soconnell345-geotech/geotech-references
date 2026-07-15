@@ -1,0 +1,94 @@
+{
+  "reference_id": "EN 1997-1:2004",
+  "reference_title": "Eurocode 7: Geotechnical Design - Part 1: General Rules",
+  "volume": null,
+  "chapter": 15,
+  "chapter_title": "Annex C (informative): Sample procedures to determine earth pressures",
+  "sections": [
+    {
+      "section_id": "15-1",
+      "title": "Annex C.1: Limit values of earth pressure",
+      "summary": "Gives the basic active/passive earth-pressure formulas: total stress normal to a vertical wall at depth z is sigma_a(z) = Ka*[integral(gamma dz) + q] + u - c*Kac (active, Eq. C.1) or sigma_p(z) = Kp*[integral(gamma dz) + q] + u + c*Kpc (passive, Eq. C.2), with Kac = 2*sqrt[Ka*(1+a/c)] capped at 2.56*sqrt(Ka). Ka/Kp come from design charts (Figures C.1.1-C.1.4 for Ka, C.2.1-C.2.4 for Kp, by delta/phi' ratio and slope) or the Annex C.2 analytical procedure; for undrained soil Ka=Kp=1 and c=cu.",
+      "body": "The limit values of earth pressure on a vertical wall, caused by soil of weight density gamma, uniform vertical surface load q, angle of shearing resistance phi, and cohesion c, are calculated for the active limit state as sigma_a(z) = Ka*[integral of gamma dz from ground surface to depth z, plus q] + u - c*Kac (Eq. C.1), where Kac = 2*sqrt[Ka*(1+a/c)], limited to 2.56*sqrt(Ka). For the passive limit state, sigma_p(z) = Kp*[integral(gamma dz) + q] + u + c*Kpc (Eq. C.2), with the integration likewise taken from the ground surface to depth z. Symbols: a is the adhesion between ground and wall; c is the cohesion; Ka/Kp are the coefficients of effective horizontal active/passive earth pressure; q is the vertical surface load; z is distance down the wall face; beta is the slope angle of the ground behind the wall (positive rising away from the wall); delta is the angle of shearing resistance between ground and wall (wall friction angle); gamma is the total weight density of the retained ground; sigma_a(z)/sigma_p(z) are the total stresses normal to the wall at depth z. For drained soil, Ka and Kp are functions of the angle of shearing resistance phi' and the effective cohesion c'; for undrained soil, Ka = Kp = 1 and c = cu (the undrained shear strength). Values of the effective earth-pressure coefficients may be taken from Figures C.1.1 to C.1.4 for Ka (horizontal retained surface, and inclined surface at delta/phi' = 0, 0.66, and 1.0) and Figures C.2.1 to C.2.4 for Kp (same delta/phi' groupings), each plotted against phi' with beta as a curve parameter; alternatively the analytical procedure of C.2 may be used. In layered soils, K should normally be determined from the shear strength parameters at depth z only, independent of values at other depths.",
+      "key_points": [
+        "Active pressure: sigma_a(z) = Ka*[integral(gamma dz) + q] + u - c*Kac (Eq. C.1)",
+        "Passive pressure: sigma_p(z) = Kp*[integral(gamma dz) + q] + u + c*Kpc (Eq. C.2)",
+        "Kac = 2*sqrt[Ka*(1+a/c)], limited to 2.56*sqrt(Ka) -- IMPLEMENTED as cohesion_earth_pressure_coefficient",
+        "Ka from Figures C.1.1-C.1.4, Kp from Figures C.2.1-C.2.4, by delta/phi' ratio (0, 0.66, 1.0) and slope beta",
+        "Undrained soil: Ka = Kp = 1 and c = cu",
+        "In layered soils, K uses the shear strength parameters AT depth z only, not other depths",
+        "Eq. C.1/C.2 themselves ARE implemented as active_earth_pressure / passive_earth_pressure"
+      ],
+      "equations": [
+        {"id": "Eq. C.1", "description": "Total active earth pressure normal to the wall at depth z: sigma_a(z) = Ka*[integral(gamma dz) + q] + u - c*Kac.", "implemented_in": "geotech_references.eurocode_7_1.equations.active_earth_pressure"},
+        {"id": "Eq. C.2", "description": "Total passive earth pressure normal to the wall at depth z: sigma_p(z) = Kp*[integral(gamma dz) + q] + u + c*Kpc.", "implemented_in": "geotech_references.eurocode_7_1.equations.passive_earth_pressure"}
+      ],
+      "figures": [
+        "Figure C.1.1: Coefficients Ka of effective active earth pressure - horizontal retained surface (beta=0)",
+        "Figure C.1.2: Coefficients Ka - inclined retained surface (delta/phi'=0)",
+        "Figure C.1.3: Coefficients Ka - inclined retained surface (delta/phi'=0.66)",
+        "Figure C.1.4: Coefficients Ka - inclined retained surface (delta/phi'=1.0)",
+        "Figure C.2.1: Coefficients Kp of effective passive earth pressure - horizontal retained surface (beta=0)",
+        "Figure C.2.2: Coefficients Kp - inclined retained surface (delta/phi'=0)",
+        "Figure C.2.3: Coefficients Kp - inclined retained surface (delta/phi'=0.66)",
+        "Figure C.2.4: Coefficients Kp - inclined retained surface (delta/phi'=1.0)"
+      ],
+      "tables": [],
+      "applicability": "Computing total active or passive earth pressure at any depth on a vertical wall once Ka/Kp are known from the design charts or Annex C.2."
+    },
+    {
+      "section_id": "15-2",
+      "title": "Annex C.2: Analytical procedure for obtaining limiting active and passive earth pressures",
+      "summary": "A log-spiral-family analytical alternative to the Figures C.1/C.2 charts, stated for passive pressure with phi, c, delta, a positive (active pressure uses the same algorithm with these negative, and beta0=beta). Defines angles mt, mw (Eq. C.4, cos(2mw+phi+delta)=sin(delta)/sin(phi)), and v, combining into Kn (Eq. C.6), Kq (Eq. C.7), Kc (Eq. C.8), and Kgamma=Kn*cos(beta)*cos(beta-theta) (Eq. C.9, safe-sided). Eq. C.3, C.5, C.7, C.8 are embedded as images in the source PDF, not captured by the text layer -- not reproduced here. Only Eq. C.4 (mw) and Eq. C.9 (Kgamma, given Kn) are legible and implemented.",
+      "body": "The analytical procedure of C.2, which includes certain approximations, may be used in all cases as an alternative to reading Ka/Kp off Figures C.1/C.2. It is stated for passive pressures with the strength parameters (phi, c, delta, a) inserted as positive values (see Figure C.3); for active pressures the same algorithm is used with phi, c, delta, and a inserted as negative values, and with the angle of incidence of the equivalent surface load beta0 set equal to beta (mainly because of the approximations used for Kgamma). Symbols used: a = adhesion between wall and ground; c = cohesion; Kc = coefficient for cohesion; Kn = coefficient for normal loading on the surface; Kq = coefficient for vertical loading; Kgamma = coefficient for the soil weight; mt = angle from the soil-surface direction to the tangent direction of the intersecting slip line bounding the moving soil mass; mw = angle from the wall normal to the tangent direction at the wall of the exterior slip line (positive when the tangent points upward behind the wall); beta = angle from horizontal to the soil surface direction (positive rising away from the wall); delta = angle of wall friction (sign convention per Figure C.4 for passive resistance); phi = angle of shearing resistance; theta = angle between vertical and the wall direction (positive when soil overhangs the wall); v = tangent rotation along the exterior slip line (positive for a convex soil mass above the slip line); q = general uniform surcharge per unit area of the actual surface; p = vertical uniform surcharge per unit area in horizontal projection. The interface parameters delta and a must satisfy a/c = tan(delta)/tan(phi). The angle beta0 (angle of incidence of the equivalent surface load) is defined from the vectorial sum of the actual distributed surface loading q and c*cot(phi) acting as a normal load; beta0 is positive when the tangential component of q points toward the wall while the normal component points toward the soil (if c=0 and the surface load is vertical or zero, and generally for active pressures, beta0=beta). The angle mt is determined by the boundary condition at the soil surface (Eq. C.3 -- NOT LEGIBLE in the source PDF's extracted text; it renders as blank/image content between its descriptive sentence and its equation label, and is not reconstructed here rather than guessed). The angle mw is determined by the boundary condition at the wall (Eq. C.4): cos(2*mw + phi + delta) = sin(delta)/sin(phi); mw is negative for passive pressures (phi>0) if sin(delta)/sin(phi) is sufficiently large -- this equation IS legible and is implemented as mobilised_wall_angle_mw. The total tangent rotation v along the exterior slip line is given by Eq. C.5 (also NOT LEGIBLE in the source PDF -- not reconstructed here). The coefficient Kn for normal loading on the surface is then given by Eq. C.6 (v inserted in radians) -- the surviving OCR fragments of this equation are ambiguous enough (fraction numerator/denominator and an exp(2*v*tan(phi)) term scrambled by the PDF's column layout) that this module does not attempt to reconstruct it as a verified function; a caller needing Kn should consult EN 1997-1:2004 directly. The coefficient for vertical loading on the surface, Kq (Eq. C.7), and the coefficient for the cohesion term, Kc (Eq. C.8), are likewise NOT LEGIBLE in the source PDF (blank/image content) and are not reproduced. For the soil weight, an approximate expression is given (Eq. C.9): Kgamma = Kn*cos(beta)*cos(beta-theta) -- this expression is on the safe side; the source notes the error is unimportant for active pressures but may be considerable for passive pressures with positive beta. This equation IS legible and is implemented as weight_density_coefficient (taking Kn as a caller-supplied input, since Kn itself is not reconstructed here). For the special case phi=0 (undrained), the source gives explicit limit-value relations: cos(2*mt) = -(p/c)*sin(beta)*cos(beta); cos(2*mw) = a/c (sign as printed is ambiguous); Kq = cos^2(beta); Kc = 2*v + sin(2*mt) + sin(2*mw) (v in radians); and a better approximation for Kgamma at phi=0 involving cos(theta), sin(beta), cos(mw) and sin(mt) whose exact arrangement is not legible (Eq. C.10) -- given the surrounding OCR corruption, these phi=0 relations are also NOT implemented as verified functions, only reported here for reference; they should be independently verified against the standard before use. Both for passive and active pressures, the procedure assumes the angle of convexity v is non-negative; if this is not even approximately satisfied (e.g. a smooth wall with a sufficiently sloping soil surface where beta and phi have opposite signs), other methods should be considered, as also for irregular surface loads.",
+      "key_points": [
+        "Stated for passive pressure with phi, c, delta, a POSITIVE; active pressure uses the SAME algorithm with these NEGATIVE and beta0=beta",
+        "Interface constraint: a/c = tan(delta)/tan(phi)",
+        "Eq. C.4 (mw): cos(2*mw+phi+delta) = sin(delta)/sin(phi) -- LEGIBLE, implemented as mobilised_wall_angle_mw",
+        "Eq. C.9 (Kgamma): Kgamma = Kn*cos(beta)*cos(beta-theta), safe-sided approximation -- LEGIBLE, implemented as weight_density_coefficient (Kn supplied by caller)",
+        "Eq. C.3 (mt boundary condition), Eq. C.5 (tangent rotation v), Eq. C.7 (Kq), Eq. C.8 (Kc) render as BLANK/image content in the source PDF text layer -- not OCR'd at all, and NOT reconstructed here (flagged, not guessed)",
+        "Eq. C.6 (Kn) survives only as scrambled OCR fragments -- ambiguous enough that it is not implemented as a verified function; consult EN 1997-1:2004 directly for Kn",
+        "phi=0 (undrained) special-case relations for mt, mw, Kq, Kc are given in the source but likewise not implemented given the surrounding OCR corruption",
+        "Procedure requires the angle of convexity v to be non-negative; otherwise use other methods"
+      ],
+      "equations": [
+        {"id": "Eq. C.3", "description": "Boundary condition at the soil surface determining angle mt. NOT LEGIBLE in the source PDF (blank/image content) -- not reconstructed.", "implemented_in": null},
+        {"id": "Eq. C.4", "description": "Boundary condition at the wall determining angle mw: cos(2*mw+phi+delta) = sin(delta)/sin(phi).", "implemented_in": "geotech_references.eurocode_7_1.equations.mobilised_wall_angle_mw"},
+        {"id": "Eq. C.5", "description": "Total tangent rotation v along the exterior slip line. NOT LEGIBLE in the source PDF (blank/image content) -- not reconstructed.", "implemented_in": null},
+        {"id": "Eq. C.6", "description": "Coefficient Kn for normal loading on the surface, as a function of mt, mw, v, phi. Surviving OCR fragments are ambiguous (scrambled fraction/exponential terms) -- not implemented as a verified function.", "implemented_in": null},
+        {"id": "Eq. C.7", "description": "Coefficient Kq for vertical loading on the surface. NOT LEGIBLE in the source PDF (blank/image content) -- not reconstructed.", "implemented_in": null},
+        {"id": "Eq. C.8", "description": "Coefficient Kc for the cohesion term. NOT LEGIBLE in the source PDF (blank/image content) -- not reconstructed.", "implemented_in": null},
+        {"id": "Eq. C.9", "description": "Approximate soil-weight coefficient Kgamma = Kn*cos(beta)*cos(beta-theta); safe-sided, given Kn.", "implemented_in": "geotech_references.eurocode_7_1.equations.weight_density_coefficient"},
+        {"id": "Eq. C.10", "description": "Special-case (phi=0, undrained) closed forms for mt, mw, Kq, and Kc, plus an improved Kgamma approximation. Reported for reference only -- not implemented given surrounding OCR corruption.", "implemented_in": null}
+      ],
+      "figures": [
+        "Figure C.3: Definitions concerning wall and backfill inclination, surcharges and slipline geometry",
+        "Figure C.4 (Annex C.2): Sign convention for the angle of wall friction delta when computing passive resistance"
+      ],
+      "tables": [],
+      "applicability": "Analytical (closed-form-family) alternative to the Ka/Kp design charts for limiting active/passive earth pressure; the legible subset (Eq. C.4, C.9) supports computing mw and Kgamma given an externally-obtained Kn."
+    },
+    {
+      "section_id": "15-3",
+      "title": "Annex C.3: Movements to mobilise earth pressures",
+      "summary": "Gives approximate wall-displacement ratios needed to fully mobilise active (Table C.1, ratio va/h) or passive (Table C.2, ratio vp/h) earth pressure in drained, non-cohesive soil with a horizontal ground surface and Ko<1, by mode of wall movement and soil density (loose/dense). Active pressure varies linearly with displacement between rest and limit states; passive mobilisation follows the nonlinear curve of Figure C.4 (values from Table C.2, including the v/h for half the limiting passive pressure).",
+      "body": "The relationship between earth pressure and wall movement should be considered for both active and passive situations; the magnitude of movement needed depends on the mode of wall movement, the initial earth pressure, and the soil density. Table C.1 gives approximate ratios va/h (wall motion to mobilise active earth pressure, over wall height h) for a vertical wall with drained, non-cohesive soil and a horizontal ground surface, assuming an initial stress state with Ko<1, by mode of wall movement (translation, rotation about the top or base, etc.) and by loose vs. dense soil (ranging roughly 0.05% to 1.0% of h depending on mode and density). Table C.2 gives approximate ratios vp/h (wall displacement to mobilise passive earth pressure) for the same soil/wall conditions, with values in brackets giving the v/h ratio for half the limiting passive pressure (ranging roughly 3% to 25% of h, several times larger than the active-mobilisation displacements, reflecting the much larger strains needed to fully mobilise passive resistance). Intermediate values of effective active earth pressure between the at-rest state and the limit state may be obtained by linear interpolation. For passive situations, intermediate values may be interpolated from Table C.2 using the nonlinear mobilisation curve of general form shown in Figure C.4 (effective passive pressure, normalised to Ko and to the limiting passive value, plotted against normalised wall displacement v/vp).",
+      "key_points": [
+        "Table C.1: ratio va/h to mobilise ACTIVE earth pressure, by wall-movement mode and soil density (loose/dense), drained non-cohesive soil, Ko<1",
+        "Table C.2: ratio vp/h (and v/h for 0.5*passive pressure, in brackets) to mobilise PASSIVE earth pressure, same conditions",
+        "Passive mobilisation requires MUCH larger wall displacement than active mobilisation (roughly an order of magnitude)",
+        "Active pressure between rest and limit states: linear interpolation with displacement",
+        "Passive pressure mobilisation follows the nonlinear curve of Figure C.4, referenced to Table C.2 values"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure C.4: Mobilisation of effective passive earth pressure of non-cohesive soil versus normalised wall displacement v/vp"
+      ],
+      "tables": [
+        "Table C.1: Ratios va/h for non-cohesive soils (active pressure mobilisation)",
+        "Table C.2: Ratios vp/h and v/h for 0.5*passive-pressure for non-cohesive soils (passive pressure mobilisation)"
+      ],
+      "applicability": "Estimating the wall displacement required to mobilise a given fraction of active or passive earth pressure, e.g. for serviceability checks on retaining structures."
+    }
+  ]
+}

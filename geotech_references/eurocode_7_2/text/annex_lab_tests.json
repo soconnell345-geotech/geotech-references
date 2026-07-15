@@ -1,0 +1,159 @@
+{
+  "reference_id": "EN 1997-2:2007",
+  "reference_title": "Eurocode 7: Geotechnical design - Part 2: Ground investigation and testing",
+  "volume": null,
+  "chapter": 8,
+  "chapter_title": "Annexes L-S: detailed guidance on laboratory soil testing",
+  "sections": [
+    {
+      "section_id": "8.1",
+      "title": "Annex L: detailed information on preparation of soil specimens for testing",
+      "summary": "Gives detailed procedures for preparing disturbed, undisturbed, re-compacted, and reconstituted soil specimens, including minimum sample/specimen masses (Table L.1), minimum mass for sieving (Table L.2), and allowable particle sizes (Tables L.3, L.5).",
+      "body": "L.1 Introduction: detailed procedures follow ISSMGE ETC5 (European Technical Committee 5, Laboratory Testing) recommendations. L.2 Preparation of disturbed soil: drying methods (oven at (105+-5)degC to constant mass, partial oven drying below 100degC, or air drying); disaggregating (no more severe than a rubber-headed pestle, done at natural water content, in batches for large quantities); subdividing (repeated until representative minimum-mass specimens obtained); Table L.1 gives minimum masses for tests on disturbed samples by soil coarseness (e.g. water content: >=2x specimen mass initial, 30g clay/silt vs 100g sand vs 0.3xMMS-min-500g gravelly soil; particle density 100g initial, 10g clay/silt at particle size <4mm; consistency limits 500g initial, 300g clay/silt at particle size <0.4mm; density index 8kg initial), with Table L.2 giving the minimum mass for sieving (MMS) by largest particle diameter (e.g. 2mm->100g, 20mm->2kg, 63mm->70kg, 75mm->120kg). L.3 Preparation of undisturbed specimens: depends on sample/specimen type; Table L.4 gives approximate required masses by test type and specimen dimensions. L.4 Preparation of re-compacted specimens: compacted to a specified compactive effort/water content or specified dry density/water content; Table L.5 gives allowable particle size as a function of specimen size (oedometer: <=1/5 height; direct shear: <=1/10 height; compressive strength: <=1/5 diameter; permeability: <=1/12 diameter); re-compaction into a larger mould then extrusion, or direct compaction for permeability specimens; clay specimens require >=24h sealed curing before extrusion/use; re-saturation is normally required after re-compaction, confirmed via B-value check if applicable. L.5 Preparation of reconstituted specimens: fine soil mixed to a homogeneous slurry at/above the liquid limit (about 2x liquid limit water content is usually pourable), consolidated under the top-plate weight then increasing vertical stress until handleable and substantially complete, then extruded and trimmed (may remain in the consolidation cell for one-dimensional consolidation testing).",
+      "key_points": [
+        "Table L.1: minimum disturbed-soil mass by test type and soil coarseness (table_l1_sample_mass covers water content, particle density, consistency limits, density index)",
+        "Table L.2: minimum mass for sieving (MMS) by largest particle diameter, 2mm to 75mm (table_l2_min_mass_sieving)",
+        "Table L.3: allowable particle size for compaction tests (20mm 1-litre mould, 37.5mm CBR mould)",
+        "Table L.5: allowable particle size as fraction of specimen dimension (1/5 height oedometer, 1/10 height shear box, 1/5 diameter compressive strength, 1/12 diameter permeability)",
+        "Reconstituted fine-soil specimens: slurry at/above liquid limit, consolidated under increasing static load"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table L.1: mass of soil required for tests on disturbed samples",
+        "Table L.2: minimum mass for sieving",
+        "Table L.3: allowable size of particles for compaction tests",
+        "Table L.4: mass of soil required for tests on undisturbed samples",
+        "Table L.5: allowable particle size as a function of size of test specimen"
+      ],
+      "applicability": "Detailed specimen-preparation procedures underlying every soil laboratory test in Section 5."
+    },
+    {
+      "section_id": "8.2",
+      "title": "Annex M: detailed information on tests for classification, identification and description of soil",
+      "summary": "Gives minimum classification-test counts (Table M.1) and per-test checklists (Table M.2, water content through frost susceptibility), plus a separate minimum density-test count table (Table M.3, by measured-density variability).",
+      "body": "M.1 Checklists for classification testing: the number of specimens tested depends on soil variability and existing experience, more than on the geotechnical problem itself; Table M.1 gives suggested minimum numbers (e.g. particle size distribution 2-4 tests with comparable experience vs 4-6 without; water content: all Quality Class 1-3 samples; strength index test: all Quality Class 1 samples; consistency limits 1-3 vs 3-5; loss on ignition 1-3, for organic/clay soil); Table M.2 gives a detailed checklist per test covering sampling/storage/preparation cautions (e.g. water content: standard oven-drying unsuitable for gypsum/organic soil, coarse-soil correction may be needed, saline-soil correction needed; particle size analysis: correct quartering needed, carbonates/organic matter influence results; consistency limits: fall cone method recommended, avoid oven drying, results unreliable for thixotropic soil; density index: results very procedure-dependent). M.2-M.8 give per-test detail: water content (saline soil needs fluid-content instead; coarse-soil correction for oversize particles); bulk density (Table M.3: minimum specimen count by measured-density variability [none/medium/extensive experience] crossed with range >=0.02 vs <=0.02 Mg/m3); particle density (small volume, ~10g at <4mm; enclosed-pore materials need special technique); particle size analysis (sieving for coarse, sedimentation for fine, both for mixed; clay/organic soil care needed); density index (min 2 specimens for max density, 3 for min density); soil dispersibility (not applicable below 10% clay and Ip<=4; pinhole, double hydrometer, crumb, and soluble-salts tests, each with minimum specimen counts); frost susceptibility (specimen size/saturation requirements; frost-susceptible if segregational heaving occurs in the lab test; winter-season length affects clayey-soil frost action severity).",
+      "key_points": [
+        "Table M.1: minimum classification test counts by test type and comparable-experience yes/no (table_m1_classification_test_count)",
+        "Table M.2: detailed per-test checklist (sampling/storage/preparation cautions) for all 8 classification test types",
+        "Table M.3: minimum density-test specimen count by measured-density variability (>=0.02 vs <=0.02 Mg/m3) and comparable experience",
+        "Soil dispersibility tests not applicable below 10% clay content and plasticity index <=4"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table M.1: classification tests, suggested minimum number of samples",
+        "Table M.2: checklist for soil classification tests",
+        "Table M.3: density tests, minimum number of soil specimens"
+      ],
+      "applicability": "Detailed procedural checklists and minimum test counts for the routine soil classification/identification/description test suite of 5.5."
+    },
+    {
+      "section_id": "8.3",
+      "title": "Annex N: detailed information on chemical testing of soil",
+      "summary": "Gives detailed procedures for the five routine chemical tests (organic content, carbonate content, sulfate content, pH, chloride content), including the CaCO3-from-CO2 and SO4-from-SO3 unit conversions.",
+      "body": "N.1 General: 100g dry soil suffices for most chemical testing, though a much larger initial dried sample is usually needed; storage at 5-10degC preserves biological/organic-matter integrity before testing; number of tests should account for wide within-stratum variability of organic/carbonate/sulfate/pH/chloride content. N.2 Organic content: loss on ignition on material finer than 2mm, assuming all mass loss is organic-matter combustion; less reliable with significant clay/carbonate content; drying at (50+-2.5)degC (not the standard 105degC, to avoid oxidising organic matter, though this may not remove all water); ignition typically (440+-25)degC, generally 500-520degC appropriate (caution: clay minerals disintegrate near 550degC, chemically-bound water may vanish from 200degC, gypsum disintegrates from ~65degC, sulfides oxidise/carbonates disintegrate 650-900degC); document constant mass if ignition period is <3h. N.3 Carbonate content: rapid titration method preferred (accurate given careful dissolution and duplicate tests); alternative CO2-gasometer method; CaCO3(%) = 2.273 * CO2(%) equivalent-calcium-carbonate conversion. N.4 Sulfate content: gravimetric method (acid/water extract or groundwater) preferred unless shown otherwise; gypsum (CaSO4.2H2O) dried at 50degC (loses crystallisation water above ~65degC, causing erroneously high water-content readings); SO4(2-)(%) = 1.2 * SO3(%); calcium sulfate solubility is low but can dissolve appreciably over geological time (e.g. karst); sulfides can oxidise long-term to produce additional sulfates. N.5 pH: electrometric method recommended (direct reading, suspension or groundwater); common errors include mis-calibration, inadequate electrode protection, unstable readings, and container contamination. N.6 Chloride content: Mohr's method (water-soluble, preferred for groundwater) or Volhard's method (acid- or water-soluble, per BS 1377:1990 7.2/7.3 and BS 812-118:1988) via silver nitrate exchange reactions, or electrochemical (conductivity) methods; a quick qualitative silver-nitrate turbidity test confirms chloride presence before quantitative testing.",
+      "key_points": [
+        "CaCO3(%) = 2.273 * CO2(%) - equations.equation_n_caco3_from_co2",
+        "SO4(2-)(%) = 1.2 * SO3(%) - equations.equation_n_so4_from_so3",
+        "Organic content: dry at (50+-2.5)degC, ignite typically 500-520degC (avoid clay-mineral disintegration ~550degC and sulfide/carbonate reactions 650-900degC)",
+        "pH: electrometric (direct-reading) method recommended as definitive",
+        "Chloride: Mohr's method preferred for groundwater; Volhard's method per BS 1377/BS 812-118; quick qualitative silver-nitrate turbidity screening test available"
+      ],
+      "equations": [
+        {"id": "Annex N.3.2", "description": "CaCO3 (%) = 2.273 * CO2 (%)", "implemented_in": "geotech_references.eurocode_7_2.equations.equation_n_caco3_from_co2"},
+        {"id": "Annex N.4.1", "description": "SO4(2-) (%) = 1.2 * SO3 (%)", "implemented_in": "geotech_references.eurocode_7_2.equations.equation_n_so4_from_so3"}
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Detailed chemical-test procedures and the standard unit conversions for reporting carbonate and sulfate content."
+    },
+    {
+      "section_id": "8.4",
+      "title": "Annex O: detailed information on strength index testing of soil",
+      "summary": "Table O.1 gives a summary checklist for the laboratory vane and fall cone strength index tests on clayey soil, covering general cautions (approximate results, testing-rate sensitivity, non-homogeneous/jointed-soil caution) and per-test detail (rotation mode, cone wear/angle checks).",
+      "body": "Table O.1 suggests a summary checklist on test procedures for the strength index tests. General cautions for any strength index test: provides only an approximate index of shear strength; large measurement uncertainty; use cautiously for non-homogeneous and jointed/slickensided soil; results affected by testing rate; repeatability needs checking. Laboratory vane: additionally provides a measure of sensitivity and remoulded shear strength; check mode of rotation (hand-operated vs. motorised); can be performed on extruded samples or in the sampling tube. Fall cone: can be performed on extruded samples or in the sampling tube on intact material, supplementable with a remoulded-material test to establish sensitivity; check cone-tip wear and cone-tip angle.",
+      "key_points": [
+        "Strength index tests give an approximate index only, with large measurement uncertainty and testing-rate sensitivity",
+        "Laboratory vane and fall cone both additionally provide a sensitivity measure via remoulded-strength comparison",
+        "Equipment checks: vane rotation mode (hand vs. motorised); fall cone tip wear and tip angle"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table O.1: checklist for strength index tests on clayey soil"
+      ],
+      "applicability": "Detailed procedural checklist for the laboratory vane and fall cone strength index tests of 5.7."
+    },
+    {
+      "section_id": "8.5",
+      "title": "Annex P: detailed information on strength testing of soil",
+      "summary": "P.1 gives minimum triaxial test counts (Table P.1) by strength-envelope variability (for phi', via regression coefficient r) or undrained-strength variability (for su, via max/min ratio), each crossed with comparable-experience level; P.2 gives minimum direct shear test counts (Table P.2) with the same structure, and compares translational shear box vs. ring shear behaviour.",
+      "body": "P.1 Triaxial compression tests: Table P.1 gives minimum recommended test counts (one recommended test = 3 individual specimens at different cell pressures) - for determining phi', by correlation coefficient r on the regression curve (r>=0.95: 4/3/2 tests for none/medium/extensive experience; 0.95<r<=0.98: 3/2/1; r>0.98... i.e. r>=0.98: 2/1/1); for determining su (same consolidation stress), by max/min strength ratio (ratio>2: 6/4/3; 1.25<ratio<=2: 4/3/2; ratio<=1.25: 3/2/1). Test count may be reduced if shear-stress data are available from other methods (e.g. field tests). Evaluation should check cu against soil-type/plasticity-index correlations, and phi' against soil-type/plasticity/density-index correlations plus CPT-based correlations, considering axisymmetric-vs-plane-strain stress-condition differences. P.2 Direct shear box tests: run preferably where a distinct rupture plane is expected or for interface strength; translational shear box and ring shear results agree well in comparative studies (easier specimen prep in translational box; more homogeneous stresses but non-uniform strains in ring shear, which more easily produces large-strain residual strength); twice the material needed for the tested specimens should be sampled. Table P.2 gives minimum test counts by regression coefficient (similar 3-tier structure to Table P.1): coefficient<0.95: 4/3/2; 0.95<=coeff<0.98: 3/2/2; coeff>=0.98: 2/2/1 (a single test there paired with classification tests to verify compatibility with comparable experience; run additional tests if results disagree).",
+      "key_points": [
+        "Table P.1 (phi'): minimum triaxial tests by regression coefficient r (r>=0.98: 2/1/1; 0.95<r<0.98: 3/2/1; r<=0.95: 4/3/2, none/medium/extensive experience) - table_min_test_count(test_family='triaxial_phi')",
+        "Table P.1 (su): minimum triaxial tests by max/min strength ratio (<=1.25: 3/2/1; 1.25-2: 4/3/2; >2: 6/4/3) - table_min_test_count(test_family='triaxial_su')",
+        "Table P.2: minimum direct shear tests by regression coefficient, same 3-tier structure - table_min_test_count(test_family='direct_shear')",
+        "One recommended triaxial/shear 'test' = a set of 3 individual specimens at different confining/normal stresses",
+        "Ring shear more readily gives large-strain residual strength than translational shear box, though results otherwise agree well"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table P.1: triaxial compression tests, recommended minimum number of tests",
+        "Table P.2: direct shear tests, recommended minimum number of tests"
+      ],
+      "applicability": "Detailed minimum-test-count guidance for the definitive strength-parameter test suite of 5.8."
+    },
+    {
+      "section_id": "8.6",
+      "title": "Annex Q: detailed information on compressibility testing of soil",
+      "summary": "Table Q.1 gives minimum oedometer test counts for settlement-significant strata, by Eoed variability range (in the relevant stress range) crossed with comparable-experience level; Q.2 discusses the four compressibility-assessment approaches.",
+      "body": "Q.1 Number of tests: for a stratum contributing significantly to settlement, Table Q.1 gives minimum recommended oedometer test counts by the range of Eoed values in the relevant stress range (range>=~50%: 4/3/2 for none/medium/extensive experience; ~20%<range<~50%: 3/2/2; range<~20%: 2/2/1, the single-test case paired with classification tests to verify compatibility with comparable knowledge); specimen count should increase for settlement-sensitive structures; run additional tests if new results disagree with existing data. Q.2 Evaluation of compressibility characteristics: four widely used methods - back-calculation from measured settlements (reliable but layering/load-redistribution/time effects complicate it); empirical evaluation of indirect in-situ soundings (common for sand/gravel foundations, mostly comparable-experience-based); measurement by in-situ tests (plate load, pressuremeter); and laboratory compression tests on samples (most reliable for fine/organic soil where Quality-Class-1 samples are obtainable); a combination of field and laboratory methods is desirable where sand, coarser soil, silt, and clay are all expected.",
+      "key_points": [
+        "Table Q.1: minimum oedometer tests by Eoed variability range and comparable experience (table_min_test_count(test_family='oedometer'))",
+        "Four compressibility-assessment methods: back-calculated settlements, empirical in-situ sounding correlation, in-situ tests (PLT/PMT), laboratory oedometer tests",
+        "Laboratory tests are most reliable for fine/organic soil with high-quality (Class 1) samples"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table Q.1: incremental oedometer test, recommended minimum number of tests"
+      ],
+      "applicability": "Detailed minimum-test-count guidance and method-selection discussion for compressibility characterisation of 5.9."
+    },
+    {
+      "section_id": "8.7",
+      "title": "Annex R: detailed information on compaction testing of soil",
+      "summary": "Gives procedural detail for compaction (Standard/Modified Proctor) and CBR tests: minimum 3 specimens per stratum, stiff-soil shredding/chopping guidance, single-sample-reuse vs. separate-batch procedures, and CBR sieve/moisture-content requirements.",
+      "body": "R.1 Test procedures applicable to both test types: minimum 3 soil specimens per stratum, number based on engineering judgement considering particle-distribution/consistency-limit variation and quantity to be compacted (relevant standards may specify counts for dams, roads, etc.). R.2 Compaction-test-specific requirements: most frequently used tests are Standard and Modified Proctor; highly permeable soils (clean gravel, uniformly-graded coarse clean sand) may not show a well-defined maximum density, making optimum water content hard to obtain; stiff fine soil is shredded (5mm sieve) or chopped (20mm sieve) before testing, with results dependent on the resulting piece size (not necessarily matching in-situ density); soils not susceptible to crushing may reuse one sample at progressively increasing water content (departure from common procedure should be reported); crushable soils require separate batches at different water contents. R.3 CBR-test-specific requirements: laboratory test is definitive though in-situ tests may also be run; may use undisturbed or re-compacted material; moisture content should represent design conditions; material passes the 20mm sieve (retained particles removed/weighed first; CBR not applicable if the >20mm fraction exceeds 25% by mass of the passing fraction); where a range of water contents is investigated, water is added/removed from the natural (undried) soil after disaggregation.",
+      "key_points": [
+        "Minimum 3 specimens per stratum for compaction testing",
+        "Stiff fine soil shredded (5mm) or chopped (20mm) before testing; result depends on resulting piece size, may not match in-situ density",
+        "CBR test material passes the 20mm sieve; not applicable if the retained fraction exceeds 25% by mass of the passing fraction"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Detailed procedural guidance for compaction (Proctor) and CBR testing of 5.10."
+    },
+    {
+      "section_id": "8.8",
+      "title": "Annex S: detailed information on permeability testing of soil",
+      "summary": "S.1 gives specimen-selection and hydraulic-gradient guidance (<30 clay/silt, <10 sand); S.2/Table S.1 gives minimum test counts by kmax/kmin ratio and comparable experience; S.3 discusses the four permeability-assessment methods, noting field tests are generally most reliable.",
+      "body": "S.1 Test procedures: twice the material needed for the tested specimens should be sampled; specimens selected to represent property extremes (composition, density index, void ratio); hydraulic gradient guideline <30 in clay/silt, <10 in sand; required saturation degree depends on soil type and required permeability accuracy. S.2 Number of tests: Table S.1 gives minimum specimen counts by permeability (k) variability, kmax/kmin ratio, crossed with comparable experience (ratio>100: 5/4/3 for none/medium/extensive experience; 10<ratio<=100: 5/3/2; ratio<=10: 3/2/1, single-test case paired with classification tests to verify compatibility). S.3 Evaluation: four widely used methods - field tests (pumping, borehole permeability, generally most reliable); empirical correlations with grain size distribution; evaluation from an oedometer test (approximate for silt/clay; constant-rate-of-strain oedometer tests give a more direct measure); laboratory permeability tests on specimens (reliable for clay/silt/organic soil with high-quality undisturbed samples, representativeness must be checked); combining methods can optimise the evaluation. Even in a homogeneous stratum, permeability varies with small changes in stress/void ratio/structure/particle size/bedding, so upper/lower bound values should be used; degree of saturation and permeant chemistry can each shift k by up to several orders of magnitude.",
+      "key_points": [
+        "Table S.1: minimum permeability-test counts by kmax/kmin ratio and comparable experience (table_min_test_count(test_family='permeability'))",
+        "Hydraulic gradient guideline: <30 clay/silt, <10 sand",
+        "Field tests (pumping, borehole) are generally the most reliable permeability-assessment method; combining methods can optimise results",
+        "Degree of saturation and permeant chemistry can each shift k by orders of magnitude"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table S.1: permeability tests, recommended minimum number of soil specimens"
+      ],
+      "applicability": "Detailed minimum-test-count guidance and method-selection discussion for permeability characterisation of 5.11."
+    }
+  ]
+}

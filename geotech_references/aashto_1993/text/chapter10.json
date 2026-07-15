@@ -1,0 +1,29 @@
+{
+  "reference_id": "AASHTO Guide for Design of Pavement Structures",
+  "reference_title": "AASHTO Guide for Design of Pavement Structures, 1993 Edition",
+  "chapter": 10,
+  "chapter_title": "Part III -- Pavement Design Procedures for Rehabilitation of Existing Pavements (stub)",
+  "sections": [
+    {
+      "section_id": "1",
+      "title": "Part III Overview (condensed stub)",
+      "summary": "Part III (5 chapters, printed III-3 to III-157, pdf_page ~178-334) provides alternative rehabilitation methods for existing pavements, with or without an overlay, consistent with the Part II design/performance concepts (traffic, reliability, drainage treated identically for new and rehabilitated pavements). Out of core scope for this module (per the build brief); condensed to this single overview section.",
+      "body": "Chapter 1 (Introduction) sets Part III's scope/assumptions/limitations. Chapter 2 (Rehabilitation Concepts) covers major rehabilitation categories, recycling concepts, construction considerations, and a structured process for selecting among alternative rehabilitation methods (problem definition -> potential solutions -> selection of preferred solution). Chapter 3 (Guides for Field Data Collection) covers the fundamental analysis unit concept, drainage survey for rehabilitation, condition (distress) survey, nondestructive testing (NDT) deflection measurement (including evaluating effective structural capacity and joint load transfer analysis), and field sampling/testing programs. Chapter 4 (Rehabilitation Methods Other Than Overlay) covers full/partial-depth repair, joint and crack sealing, subsealing, diamond grinding/cold milling, subdrainage design, pressure relief joints, restoration of joint load transfer, surface treatments, and predicting the service life of non-overlay techniques (including a remaining-life equation RL=100*[1-(Np/N1.5)] and Deff=CF*D). Chapter 5 (Rehabilitation Methods With Overlays) is the largest chapter, covering overlay type feasibility and design considerations (pre-overlay repair, reflection crack control, subdrainage, milling, structural-vs-functional overlays, PCC overlay joints/reinforcement/bonding, overlay reliability/So) plus pavement evaluation for overlay design (functional and structural evaluation, determination of design MR) and detailed thickness-design procedures for each specific overlay/existing-pavement combination (AC-on-AC, AC-on-fractured-PCC, AC-on-JPCP/JRCP/CRCP, AC-on-composite, bonded PCC-on-PCC, unbonded PCC-on-PCC/composite, PCC-on-AC). Worked overlay design examples are in Appendix N.",
+      "key_points": [
+        "5 chapters: Introduction, Rehabilitation Concepts, Field Data Collection, Non-Overlay Methods, Overlay Methods",
+        "Consistent with Part II's traffic/reliability/drainage treatment for new pavements",
+        "NDT deflection-based structural capacity evaluation (Chapter 3) feeds the overlay design (Chapter 5)",
+        "Remaining life RL=100*[1-(Np/N1.5)]; effective thickness Deff=CF*D (Chapter 4, non-overlay methods for PCC)",
+        "Chapter 5 (overlays) is the largest, with per-combination thickness-design procedures (AC or PCC overlay on AC, JPCP, JRCP, CRCP, or composite existing pavements)",
+        "Worked overlay design examples: Appendix N"
+      ],
+      "equations": [
+        {"id": "RL = 100*[1-(Np/N1.5)]", "description": "Remaining life of a PCC pavement, percent (Np=traffic to date, N1.5=traffic to 'failure' at PSI=1.5, R=50%)"},
+        {"id": "Deff = CF*D", "description": "Effective (condition-factored) slab thickness for remaining-life-based overlay design"}
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Out of core scope for this module (rehabilitation design, not new-pavement design); condensed overview only. Consult the printed guide directly for numeric rehabilitation design procedures."
+    }
+  ]
+}

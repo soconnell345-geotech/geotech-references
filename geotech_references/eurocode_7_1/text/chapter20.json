@@ -1,0 +1,46 @@
+{
+  "reference_id": "EN 1997-1:2004",
+  "reference_title": "Eurocode 7: Geotechnical Design - Part 1: General Rules",
+  "volume": null,
+  "chapter": 20,
+  "chapter_title": "Annex H (informative): Limiting values of structural deformation and foundation movement",
+  "sections": [
+    {
+      "section_id": "20-1",
+      "title": "Annex H(1): Components and definitions of foundation movement",
+      "summary": "Foundation movement components to consider: settlement, relative (differential) settlement, rotation, tilt, relative deflection, relative rotation (angular distortion), horizontal displacement, and vibration amplitude. Figure H.1 defines these terms graphically: (a) settlement delta, differential settlement d-delta, rotation theta, angular strain alpha; (b) relative deflection Delta and deflection ratio Delta/L; (c) tilt omega and relative rotation (angular distortion) beta.",
+      "body": "The components of foundation movement which should be considered include settlement, relative (or differential) settlement, rotation, tilt, relative deflection, relative rotation, horizontal displacement, and vibration amplitude. Definitions of these terms are given graphically in Figure H.1: part (a) defines settlement (delta), differential settlement (d-delta), rotation (theta), and angular strain (alpha); part (b) defines relative deflection (Delta) and the deflection ratio (Delta/L); part (c) defines tilt (omega) and relative rotation, also called angular distortion (beta). These geometric definitions underpin the limiting-value guidance given in Annex H(2)-(4).",
+      "key_points": [
+        "Foundation movement components: settlement, differential settlement, rotation, tilt, relative deflection, relative rotation (angular distortion), horizontal displacement, vibration amplitude",
+        "Figure H.1(a): settlement delta, differential settlement d-delta, rotation theta, angular strain alpha",
+        "Figure H.1(b): relative deflection Delta and deflection ratio Delta/L",
+        "Figure H.1(c): tilt omega and relative rotation / angular distortion beta"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure H.1: Definitions of foundation movement (settlement, differential settlement, rotation, angular strain, relative deflection, deflection ratio, tilt, relative rotation)"
+      ],
+      "tables": [],
+      "applicability": "Establishing the vocabulary/geometry used to specify and check limiting foundation movements against the guidance values in Annex H(2)-(4)."
+    },
+    {
+      "section_id": "20-2",
+      "title": "Annex H(2)-(5): Limiting values of relative rotation and total settlement",
+      "summary": "Maximum acceptable relative rotation (angular distortion) for open framed structures, infilled frames, and load-bearing/continuous brick walls generally ranges 1/2000 to 1/300 to avoid a serviceability limit state; 1/500 is acceptable for many structures; ~1/150 is likely to cause an ultimate limit state. Sagging-mode values are halved for hogging. Total settlements up to 50 mm are often acceptable for normal structures with isolated foundations. Implemented as table_h_1_limiting_relative_rotation and table_h_2_limiting_total_settlement.",
+      "body": "The maximum acceptable relative rotations for open framed structures, infilled frames, and load-bearing or continuous brick walls are unlikely to be the same but are likely to range from about 1/2000 to about 1/300, in order to prevent the occurrence of a serviceability limit state in the structure; a maximum relative rotation of 1/500 is stated as acceptable for many structures, while a relative rotation of about 1/150 is likely to cause an ultimate limit state. These ratios apply to a sagging mode of deformation, as illustrated in Figure H.1; for a hogging mode (where the edge settles more than the part between supports), the limiting value should be halved. For normal structures with isolated foundations, total settlements up to 50 mm are often acceptable; larger settlements may still be acceptable provided the relative rotations remain within acceptable limits and provided the total settlements do not cause problems with services entering the structure, or cause tilting, etc. These guidelines concerning limiting settlements apply only to normal, routine structures; they should not be applied to buildings or structures which are out of the ordinary, or for which the loading intensity is markedly non-uniform.",
+      "key_points": [
+        "General serviceability range for relative rotation (sagging): about 1/2000 to about 1/300",
+        "1/500 relative rotation is stated as acceptable for MANY structures",
+        "~1/150 relative rotation is likely to cause an ULTIMATE limit state (structural)",
+        "Hogging mode (edge settles more than middle): HALVE the sagging-mode limiting value",
+        "Total settlement up to 50 mm often acceptable for normal structures with isolated foundations (larger may be OK if rotation limits and service connections are unaffected)",
+        "Guidance applies to normal, ROUTINE structures only -- not unusual structures or markedly non-uniform loading",
+        "Implemented as table_h_1_limiting_relative_rotation (sagging/hogging, four limit_type options) and table_h_2_limiting_total_settlement"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Setting serviceability/ULS limiting values for foundation relative rotation and total settlement of normal, routine structures with isolated foundations, absent project-specific limits."
+    }
+  ]
+}

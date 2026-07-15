@@ -1,0 +1,76 @@
+{
+  "reference_id": "EN 1997-1:2004",
+  "reference_title": "Eurocode 7: Geotechnical Design - Part 1: General Rules",
+  "volume": null,
+  "chapter": 14,
+  "chapter_title": "Annex B (informative): Background information on partial factors for Design Approaches 1, 2 and 3",
+  "sections": [
+    {
+      "section_id": "14-1",
+      "title": "Annex B.1: General",
+      "summary": "Explains why the three Design Approaches distribute partial factors differently between actions, effects of actions, material properties and resistances: Design Approach 1 requires two separate calculations (Combinations 1 and 2) with factors mostly on actions or on ground parameters (except piles/anchors, factored on resistances); Design Approaches 2 and 3 each need only a single calculation, applying factors to actions/effects of actions and to resistances (DA2) or to structural actions and ground strength parameters (DA3).",
+      "body": "For limit state types STR and GEO in persistent and transient design situations, three Design Approaches are outlined in 2.4.7.3.4. They differ in the way they distribute partial factors between actions, the effects of actions, material properties, and resistances, in part reflecting differing approaches to allowing for uncertainties in modelling the effects of actions and resistances. In Design Approach 1, checks are in principle required for two sets of factors applied in two separate calculations (Combinations 1 and 2); where it is obvious that one combination governs, the other need not be calculated. Factors are generally applied to actions rather than to the effects of actions, though with one noted exception (2.4.7.3.2(2)). In most cases factors are applied to ground parameters, but for the design of piles and anchors they are applied to resistances instead. In Design Approaches 2 and 3, a single calculation is required for each part of a design, with the manner of applying the factors varying by the calculation considered: Design Approach 2 applies factors either to actions or to the effects of actions, and to resistances; Design Approach 3 applies factors to actions (or effects of actions) from the structure, and to ground strength (material) parameters.",
+      "key_points": [
+        "Three Design Approaches (2.4.7.3.4) distribute partial factors differently among actions, effects of actions, material properties, and resistances",
+        "Design Approach 1 requires two separate calculations (Combination 1 and Combination 2); the governing combination need not always both be run",
+        "DA1 factors are generally on actions or ground parameters, EXCEPT for piles/anchors where factors go on resistances",
+        "Design Approach 2: single calculation, factors on actions or effects of actions, and on resistances",
+        "Design Approach 3: single calculation, factors on structural actions (or effects of actions) and on ground strength parameters"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Background rationale for choosing among Design Approaches 1, 2, and 3 and understanding how each distributes partial factors."
+    },
+    {
+      "section_id": "14-2",
+      "title": "Annex B.2: Factors on actions and the effects of actions",
+      "summary": "Clarifies the relationship between the action partial factor gamma_F and the model factor gamma_Sd (EN 1990:2002 allows their product to be combined as gamma_F*gamma_Sd), and states that EN 1997-1 uses gamma_F for actions and gamma_E for effects of actions throughout for simplicity (Annex A Tables A.1/A.3). Walks through how equations (2.6a)/(2.6b) reduce for each Design Approach's two combinations (DA1), single application (DA2), or structural/geotechnical action split (DA3).",
+      "body": "EN 1990:2002 defines gamma_F as a partial factor for an action, accounting for possible unfavourable deviations of the action value from its characteristic value, and gamma_Sd as a partial factor accounting for uncertainties in modelling the actions and their effects; EN 1990:2002 permits gamma_Sd and gamma_F to be combined into one factor gamma_F*gamma_Sd. Because using a separate model factor gamma_Sd for ground actions remains exceptional and is left to national determination, EN 1997-1 uses gamma_F throughout for actions and gamma_E for effects of actions in geotechnical design (see Annex A Tables A.1 and A.3), which allows national authorities to select alternative values of the combined factor gamma_F*gamma_Sd. Equations (2.6a) and (2.6b) include Xk/gamma_M in the calculation of actions because ground material properties may affect the values of geotechnical actions in some cases. In Design Approach 1, Combination 1 generally applies factors unequal to 1 to actions (gamma_F != 1) with gamma_E = 1 (exception per 2.4.7.3.2(2), e.g. a tank with a fixed fluid level, where instead gamma_F = 1 and gamma_Sd != 1); Combination 2 always uses gamma_E = 1, with gamma_F != 1 only for variable actions, giving Ed = E{gamma_F * F_rep; Xk/gamma_M; ad} (Eq. B.2). In Design Approach 2, a single calculation applies either gamma_E != 1 with gamma_F = 1, or gamma_F != 1 with gamma_E = 1, and since gamma_M = 1 is used, equations (2.6a)/(2.6b) reduce to simpler forms (Eq. B.3.1/B.3.2). In Design Approach 3, a distinction is made between structural actions F_rep and geotechnical actions computed from Xk; either gamma_E != 1 with gamma_F = 1, or gamma_E = 1 with gamma_F != 1, is applied, and equations (2.6a)/(2.6b) remain in their general form (Eq. B.4.1/B.4.2).",
+      "key_points": [
+        "gamma_F (action factor) and gamma_Sd (model factor for actions/effects) may be combined per EN 1990:2002; EN 1997-1 uses gamma_F for actions and gamma_E for effects of actions throughout (Annex A Tables A.1, A.3)",
+        "DA1 Combination 1: gamma_F != 1, gamma_E = 1 (exception: fixed-fluid-level tank type cases per 2.4.7.3.2(2))",
+        "DA1 Combination 2: gamma_E = 1 always; gamma_F != 1 only for variable actions -> Ed = E{gamma_F*F_rep; Xk/gamma_M; ad} (Eq. B.2)",
+        "DA2: single calculation, either gamma_E != 1 & gamma_F = 1, or gamma_F != 1 & gamma_E = 1; gamma_M = 1 (Eq. B.3.1/B.3.2)",
+        "DA3: distinguishes structural actions F_rep from geotechnical actions via Xk; general form of Eq. 2.6a/2.6b retained (Eq. B.4.1/B.4.2)"
+      ],
+      "equations": [
+        {"id": "Eq. B.1", "description": "EN 1990:2002 permits combining the model factor gamma_Sd and the action factor gamma_F into a single factor gamma_F*gamma_Sd multiplying the representative action.", "implemented_in": null},
+        {"id": "Eq. B.2", "description": "Design Approach 1 Combination 2 general form: Ed = E{gamma_F*F_rep; Xk/gamma_M; ad}, with gamma_E = 1 always and gamma_F != 1 only for variable actions.", "implemented_in": null},
+        {"id": "Eq. B.3.1", "description": "Design Approach 2 reduced form of Eq. 2.6a/2.6b with gamma_M = 1.", "implemented_in": null},
+        {"id": "Eq. B.3.2", "description": "Design Approach 2 alternate reduced form of Eq. 2.6a/2.6b with gamma_M = 1.", "implemented_in": null},
+        {"id": "Eq. B.4.1", "description": "Design Approach 3 form of Eq. 2.6a/2.6b distinguishing structural actions F_rep from geotechnical actions via Xk.", "implemented_in": null},
+        {"id": "Eq. B.4.2", "description": "Design Approach 3 alternate form of Eq. 2.6a/2.6b.", "implemented_in": null}
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Understanding how the partial factors on actions and effects of actions are applied differently under each Design Approach's governing equations."
+    },
+    {
+      "section_id": "14-3",
+      "title": "Annex B.3: Factors on material strengths and resistances",
+      "summary": "Explains that EN 1997-1's gamma_M (on material strengths X) and gamma_R (on resistances R) together play the role of EN 1990:2002's material factor gamma_m and resistance model factor gamma_Rd, with the conversion factor eta taken as 1.0 since characteristic material strengths already represent field conditions. Summarizes which of gamma_M vs gamma_R exceeds 1 under each Design Approach: DA1-C1 both = 1; DA1-C2 gamma_M > 1 (gamma_R > 1 only for piles/anchors); DA2 gamma_M = 1, gamma_R > 1; DA3 gamma_M > 1, gamma_R = 1 (except piles in tension, where gamma_R > 1 too).",
+      "body": "Equation (6.6) of EN 1990:2002 and equation (2.7c) of EN 1997-1 are equivalent in form: Rd = (1/gamma_Rd)*R{Xi;d; ad} = (1/gamma_Rd)*R{eta_i*Xk,i/gamma_m,i; ad}. EN 1997-1 equations (2.7a), (2.7b) and (2.7c) include gamma_F*F_rep in the calculation of design resistances because the magnitude of actions may affect geotechnical resistances in some cases, e.g. the bearing capacity of a shallow foundation. The conversion factor eta is taken as 1.0 in EN 1997-1 because characteristic material strengths are defined to already be relevant to the field situation, incorporating eta into the characteristic value itself. Because EN 1997-1 requires factors be applied either to material strengths (X) or to resistances (R), these factors combine the roles of EN 1990:2002's material factor gamma_m and resistance model factor gamma_Rd; the factors on material strengths are denoted gamma_M and the factors on resistances gamma_R. In Design Approach 1 Combination 1, factors of 1 are applied to both material strengths and resistances (gamma_M = gamma_R = 1 in Eq. 2.7c). In Combination 2, except for piles and anchorages, gamma_M > 1 and gamma_R = 1 (Eq. 2.7a); but for piles and anchors in Combination 2, gamma_M = 1 and gamma_R > 1 are used instead (Eq. 2.7b, Eq. B.6.1.2). In Design Approach 2, factors of 1 are generally applied to material strengths with factors greater than 1 applied to resistances: gamma_M = 1, gamma_R > 1 (Eq. 2.7b, Eq. B.6.2.1), sometimes combined with gamma_F != 1 (Eq. B.6.2.2). In Design Approach 3, gamma_M > 1 and gamma_R = 1 are generally applied using Eq. 2.7a (Eq. B.6.3.1), but sometimes gamma_R > 1 is also needed (e.g. piles in tension), giving Eq. B.6.3.2.",
+      "key_points": [
+        "gamma_M (material strengths) and gamma_R (resistances) jointly play the role of EN 1990's gamma_m and gamma_Rd; conversion factor eta = 1.0 in EN 1997-1 (characteristic strengths already reflect field conditions)",
+        "Eq. 2.7a/2.7b/2.7c include gamma_F*F_rep in resistance calculations because action magnitude can affect geotechnical resistance (e.g. shallow foundation bearing capacity)",
+        "DA1-C1: gamma_M = gamma_R = 1 (Eq. 2.7c)",
+        "DA1-C2: gamma_M > 1, gamma_R = 1 (Eq. 2.7a) EXCEPT piles/anchors: gamma_M = 1, gamma_R > 1 (Eq. 2.7b, Eq. B.6.1.2)",
+        "DA2: gamma_M = 1, gamma_R > 1 (Eq. 2.7b, Eq. B.6.2.1/B.6.2.2)",
+        "DA3: gamma_M > 1, gamma_R = 1 (Eq. 2.7a, Eq. B.6.3.1); gamma_R > 1 also needed for piles in tension (Eq. B.6.3.2)"
+      ],
+      "equations": [
+        {"id": "Eq. B.5.1", "description": "EN 1990:2002 Eq. 6.6 form of the design resistance, Rd = (1/gamma_Rd)*R{Xi;d; ad}.", "implemented_in": null},
+        {"id": "Eq. B.5.2", "description": "Expanded form of Eq. B.5.1 with Xi;d = eta_i*Xk,i/gamma_m,i.", "implemented_in": null},
+        {"id": "Eq. B.6.1.2", "description": "Design Approach 1 Combination 2, piles/anchors case: gamma_M = 1, gamma_R > 1 applied via Eq. 2.7b.", "implemented_in": null},
+        {"id": "Eq. B.6.2.1", "description": "Design Approach 2: gamma_M = 1, gamma_R > 1 applied via Eq. 2.7b.", "implemented_in": null},
+        {"id": "Eq. B.6.2.2", "description": "Design Approach 2 alternate form also using gamma_F != 1.", "implemented_in": null},
+        {"id": "Eq. B.6.3.1", "description": "Design Approach 3: gamma_M > 1, gamma_R = 1 applied via Eq. 2.7a.", "implemented_in": null},
+        {"id": "Eq. B.6.3.2", "description": "Design Approach 3 alternate form with gamma_R > 1 also applied (e.g. piles in tension).", "implemented_in": null}
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Understanding which of the material-strength factor gamma_M or the resistance factor gamma_R governs under each Design Approach, and why."
+    }
+  ]
+}

@@ -1,0 +1,268 @@
+{
+  "reference_id": "EN 1997-1:2004",
+  "reference_title": "Eurocode 7: Geotechnical Design - Part 1: General Rules",
+  "volume": null,
+  "chapter": 7,
+  "chapter_title": "Pile foundations",
+  "sections": [
+    {
+      "section_id": "7.1",
+      "title": "General",
+      "summary": "Defines the scope of Section 7: end-bearing piles, friction piles, tension piles and transversely loaded piles installed by driving, jacking, or screwing/boring with or without grouting. Excludes settlement-reducing piles (e.g. some piled rafts). Lists the execution standards that apply to pile installation: EN 1536 (bored piles), EN 12063 (sheet pile walls), EN 12699 (displacement piles), EN 14199 (micropiles).",
+      "body": "Section 7 applies to end-bearing piles, friction piles, tension piles and transversely loaded piles installed by driving, by jacking, and by screwing or boring with or without grouting. The provisions should not be applied directly to the design of piles intended as settlement reducers, such as in some piled raft foundations. The following execution standards apply to the installation of piles: EN 1536:1999 for bored piles, EN 12063:2000 for sheet pile walls, EN 12699:2000 for displacement piles, and EN 14199:2005 for micropiles.",
+      "key_points": [
+        "Covers end-bearing, friction, tension, and transversely loaded piles",
+        "Installation methods: driving, jacking, screwing, or boring, with or without grouting",
+        "Does not directly cover settlement-reducing piles (e.g. some piled rafts)",
+        "EN 1536:1999 governs execution of bored piles",
+        "EN 12063:2000 governs execution of sheet pile walls",
+        "EN 12699:2000 governs execution of displacement piles",
+        "EN 14199:2005 governs execution of micropiles"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Scope-setting clause for all pile foundation design and construction covered by Section 7."
+    },
+    {
+      "section_id": "7.2",
+      "title": "Limit states",
+      "summary": "Lists the limit states that shall be considered for pile foundations: loss of overall stability, bearing resistance failure, uplift/insufficient tensile resistance, transverse-loading failure in the ground, structural failure of the pile (compression, tension, bending, buckling, shear), combined ground/pile or ground/structure failure, excessive settlement, heave, lateral movement, and unacceptable vibrations.",
+      "body": "An appropriate list of limit states shall be compiled and considered for pile foundation design, comprising: loss of overall stability; bearing resistance failure of the pile foundation; uplift or insufficient tensile resistance of the pile foundation; failure in the ground due to transverse loading of the pile foundation; structural failure of the pile in compression, tension, bending, buckling or shear; combined failure in the ground and in the pile foundation; combined failure in the ground and in the structure; excessive settlement; excessive heave; excessive lateral movement; and unacceptable vibrations.",
+      "key_points": [
+        "Loss of overall stability must be checked (see Section 11)",
+        "Bearing resistance failure and uplift/tensile resistance failure are both ULS checks",
+        "Transverse-loading ground failure and structural pile failure (compression/tension/bending/buckling/shear) are both covered",
+        "Combined ground-and-pile or ground-and-structure failure modes must be considered",
+        "Serviceability concerns: excessive settlement, heave, lateral movement, and vibration"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Checklist used to compile the complete list of limit states relevant to a specific pile foundation design."
+    },
+    {
+      "section_id": "7.3",
+      "title": "Actions and design situations",
+      "summary": "Requires design situations to be derived per 2.2, considering actions from 2.4.2(4). Piles may be loaded axially and/or transversely. Ground displacement (from consolidation, swelling, adjacent loads, creep, landslides, earthquakes) can act on piles as downdrag (negative skin friction), heave, or transverse loading; two design approaches exist: treat the ground movement as an action with interaction analysis, or bound the force the ground can transmit.",
+      "body": "The actions listed in 2.4.2(4) should be considered when selecting design situations, which shall be derived in accordance with 2.2. Piles can be loaded axially and/or transversely, and interaction analysis between structure, pile foundation and ground may be necessary. Ground in which piles are located may be subject to displacement caused by consolidation, swelling, adjacent loads, creeping soil, landslides or earthquakes, which can cause downdrag (negative skin friction), heave, stretching, transverse loading and displacement of the piles; design values of strength/stiffness of moving ground should usually be upper values. One of two approaches shall be adopted: (a) treat the ground displacement as an action and carry out an interaction analysis to determine forces, displacements, and strains in the pile, or (b) introduce an upper bound to the force the ground could transmit to the pile as the design action, accounting for the strength of the soil and the source of the load. For downdrag specifically, if the ULS design uses the downdrag load as an action, its value shall be the maximum that could be generated by downward ground movement relative to the pile, taking account of shaft shear resistance and downward ground movement from self-weight compression and surface loads; an upper bound for a pile group may be calculated from the weight of the surcharge causing movement, accounting for ground-water pressure changes. Where post-installation ground settlement is expected to be small, treating the settlement as the action with an interaction analysis can be more economic; downdrag and transient loading normally need not be combined in load cases. For heave (upward loads along the pile shaft from unloading, excavation, frost action, or driving of adjacent piles, or from ground-water content increases), the ground movement shall generally be treated as an action; heave during construction, before piles are loaded, may cause unacceptable uplift or structural failure. Transverse actions from ground movement around a pile (e.g. differential surcharge or excavation on either side, creeping slopes, inclined piles in settling ground, seismic regions) should be evaluated by considering pile-soil interaction, treating stiff or flexible piles as beams interacting with the moving soil mass; for widely spaced piles in weak layers undergoing large horizontal deformation, transverse loading depends mainly on the shear strength of the weak layers.",
+      "key_points": [
+        "Design situations derived per 2.2; actions per 2.4.2(4); piles may be axially and/or transversely loaded",
+        "Ground displacement (consolidation, swelling, adjacent loads, creep, landslides, earthquakes) can cause downdrag, heave, stretching, or transverse loading",
+        "Two design approaches for ground-displacement effects: treat displacement as an action with interaction analysis, or bound the transmissible force directly",
+        "Downdrag design value = maximum load from downward ground movement relative to the pile; downdrag and transient loading normally not combined",
+        "Heave (from unloading, excavation, frost, adjacent pile driving, or ground-water rise) generally treated as an action; can occur before structural loading",
+        "Transverse actions from asymmetric surcharge/excavation, creeping slopes, inclined piles, or seismicity analyzed via pile-soil interaction"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when identifying design situations and quantifying axial/transverse actions, including ground-movement-induced downdrag, heave, and transverse loading, for any pile foundation."
+    },
+    {
+      "section_id": "7.4",
+      "title": "Design methods and design considerations",
+      "summary": "Pile design shall be based on static load tests, empirical/analytical methods validated by static load tests, dynamic load tests validated by static load tests, or observed performance of comparable foundations supported by site investigation. Requires consideration of pile-group and structure stiffness, loading duration/time-variation, future overburden changes, and installation effects (ground conditions, installation stresses, integrity checking, effects on adjacent piles/structures, tolerances, chemical aggressivity, handling).",
+      "body": "The design shall be based on one of: the results of static load tests demonstrated (by calculation or otherwise) to be consistent with other relevant experience; empirical or analytical calculation methods whose validity has been demonstrated by static load tests in comparable situations; the results of dynamic load tests whose validity has been demonstrated by static load tests in comparable situations; or the observed performance of a comparable pile foundation, supported by site investigation and ground testing results. Design parameter values should generally follow Section 3, with load test results also informing parameter selection; static load tests may use dedicated trial piles or working piles that form part of the foundation. The behaviour of individual piles and pile groups and the stiffness/strength of the connecting structure shall be considered, along with the duration and time-variation of loading in calculation methods, parameter selection, and load test interpretation. Planned future placement or removal of overburden, and potential ground-water regime changes, shall be considered in both calculations and load test interpretation. Pile type selection (including material quality and installation method) must account for ground/ground-water conditions and obstructions, installation-induced stresses, integrity preservation/checking, effects of installation sequence on already-installed piles and adjacent structures/services, achievable installation tolerances, deleterious ground chemicals, connection of different ground-water regimes, handling/transportation, and effects on neighbouring buildings. Further items requiring attention include pile spacing within groups, displacement/vibration of adjacent structures from installation, hammer/vibrator type, dynamic driving stresses, fluid-support borehole pressure control (bored piles), base/shaft cleaning under bentonite, local shaft instability during concreting, water/soil ingress into cast-in-situ piles, unsaturated sand extracting water from concrete, chemical retardation effects, soil compaction from displacement-pile driving, and soil disturbance from boring.",
+      "key_points": [
+        "Four permitted design bases: static load tests, empirical/analytical methods validated by static tests, dynamic load tests validated by static tests, or observed comparable performance",
+        "Design parameters generally per Section 3, refined by load test results",
+        "Static tests may use dedicated trial piles or working piles",
+        "Must consider pile/pile-group behaviour together with connecting-structure stiffness and strength",
+        "Loading duration and time-variation affect method/parameter selection and test interpretation",
+        "Future overburden changes and ground-water regime changes must be anticipated",
+        "Pile type/material/installation choice must weigh ground conditions, installation stresses, integrity checkability, effects on neighbours, tolerances, chemical aggressivity, and handling",
+        "Installation-phase attention items: spacing, adjacent vibration/displacement, hammer/vibrator type, driving stresses, borehole fluid pressure, base cleaning, concreting disturbance, water ingress, chemical retardation, compaction/disturbance effects"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Governs the selection of the design basis (test-based, calculation-based, or experience-based) and the installation-related factors that must be accounted for in any pile foundation design."
+    },
+    {
+      "section_id": "7.5",
+      "title": "Pile load tests",
+      "summary": "Specifies when pile load tests are mandatory (novel pile/method, untested soil/loading conditions, insufficient theoretical confidence, or adverse installation observations) and their uses (construction-method suitability, load-settlement response, overall judgement). Covers static test loading procedure, trial vs. working pile testing, dynamic load tests (validated against static tests per 7.6.2.4-7.6.2.6), and the required load test factual report content.",
+      "body": "Pile load tests shall be carried out when: using a pile type/installation method with no comparable experience; piles have not been tested under comparable soil/loading conditions; anticipated loading exceeds the confidence provided by theory and experience (the test shall then simulate the anticipated loading); or installation observations deviate strongly and unfavourably from expectations without a clarifying explanation from further investigation. Load tests may assess construction-method suitability, determine settlement/limit-load response of a representative pile and surrounding ground, or support overall foundation judgement; where testing under realistic load variation (e.g. cyclic) is impractical, very cautious material property design values should be used. A single test shall normally be sited at the most adverse ground conditions believed to occur (or an allowance made if this is not possible); with two or more test piles, locations shall be representative of the site with at least one at the most adverse conditions. Adequate time shall elapse between test-pile installation and load testing for the pile material to gain required strength and for pore-water pressures to recover; recording installation-induced pore pressures and their dissipation may be needed to time the test start. For static load tests: loading procedures (number of steps, step duration, load cycles) shall support conclusions about deformation behaviour, creep, and rebound, and for trial piles, about the ultimate failure load; measuring devices should be calibrated beforehand; test load direction should coincide with the pile's longitudinal axis; tension-pile tests should be carried out to failure without load-displacement extrapolation. The number of trial piles depends on ground variability, Geotechnical Category, prior documented performance evidence, and the total number/types of pile; ground conditions at the test site shall be thoroughly investigated to a sufficient depth around and beneath the pile tip, and trial-pile installation shall be fully documented per 7.9. For working piles, the number tested is selected from installation records, and the test load shall be at least the design load. Dynamic load tests may estimate compressive resistance given adequate site investigation and calibration against static load tests on comparable piles (see 7.6.2.4-7.6.2.6); results from different dynamic test types shall be cross-checked; dynamic tests may also indicate pile consistency and detect weak piles. A factual load test report shall be written for every test, including (where appropriate): test description, ground conditions with reference to investigations, pile type, installation description and problems encountered, loading/measuring apparatus and reaction system description, calibration documents, test-pile installation records, photographic records, numerical test results, time-displacement plots for step loading, measured load-displacement behaviour, and reasons for any departures from these requirements.",
+      "key_points": [
+        "Mandatory triggers: unproven pile type/method, untested soil/loading conditions, insufficient theoretical confidence, or adverse installation deviations",
+        "Test siting: single test at the most adverse conditions; multiple tests representative of the site with at least one at the worst conditions",
+        "Static test procedure must support conclusions on deformation, creep, rebound, and (for trial piles) ultimate failure load",
+        "Tension-pile tests must be carried out to failure; no extrapolation of the load-displacement curve",
+        "Trial-pile count depends on ground variability, Geotechnical Category, prior experience, and pile inventory; ground shall be investigated around and beneath the tip",
+        "Working-pile test load must be at least the design load",
+        "Dynamic load tests require calibration against comparable static load tests (per 7.6.2.4-7.6.2.6)",
+        "A factual report is required for every load test, with specified minimum content"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies whenever static or dynamic pile load testing is planned or required to establish or verify pile resistance."
+    },
+    {
+      "section_id": "7.6.1",
+      "title": "Axially loaded piles - general and overall stability",
+      "summary": "Requires design to make exceeding compressive/tensile resistance failure, structural collapse from displacement, or serviceability limit states sufficiently improbable. For continuously curving load-settlement plots, a 10% of pile-base-diameter settlement is the compression 'failure' criterion. Piles undergoing significant settlement need a cautious range estimate; overall stability (Section 11) and block uplift failure (7.6.3.1(4)P) must also be checked.",
+      "body": "The design shall demonstrate that exceeding the following limit states is sufficiently improbable: ultimate limit states of compressive or tensile resistance failure of a single pile; ultimate limit states of compressive or tensile resistance failure of the pile foundation as a whole; ultimate limit states of collapse or severe damage to a supported structure from excessive (differential) displacement of the pile foundation; and serviceability limit states in the supported structure from pile displacement. The design should normally consider the margin of safety against compressive or tensile resistance failure -- the state where the foundation displaces significantly with negligible change in resistance (see 7.6.2 and 7.6.3). Since piles in compression often show a continuously curving load-settlement plot with no distinct ultimate point, a pile-top settlement of 10% of the pile base diameter should be adopted as the 'failure' criterion. For piles undergoing significant settlement, structural ultimate limit states may occur in the supported structure before the pile resistance is fully mobilised, so a cautious estimate of the possible settlement range shall be adopted (settlement itself is treated in 7.6.4). Failure due to loss of overall stability of foundations involving piles in compression shall be considered per Section 11, considering failure surfaces both passing below and intersecting the piles where instability is possible. Failure due to uplift of a block of soil containing piles shall be checked per 7.6.3.1(4)P.",
+      "key_points": [
+        "Four governing limit states: single-pile compressive/tensile failure, foundation-wide compressive/tensile failure, structural collapse from displacement, and serviceability limit states",
+        "10% of pile base diameter settlement is the standard 'failure' criterion for compression piles with a continuously curving load-settlement plot",
+        "Piles with significant settlement require a cautious settlement-range estimate since structural ULS may precede full geotechnical mobilisation",
+        "Overall stability (Section 11) must consider failure surfaces both below and intersecting the piles",
+        "Block uplift failure of soil containing the piles is checked per 7.6.3.1(4)P"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Sets the governing limit-state framework and failure criteria for any axially loaded pile or pile group design."
+    },
+    {
+      "section_id": "7.6.2",
+      "title": "Compressive ground resistance",
+      "summary": "Core compressive pile design: Fc;d <= Rc;d (Eq. 7.1) must hold for all ULS load cases; for groups, both individual-pile and block failure mechanisms govern, taking the lower resistance. Characteristic resistance Rc;k is derived from static load tests (Eq. 7.2-7.5, correlation factors xi1/xi2 per Table A.9), ground test results (Eq. 7.6-7.9, xi3/xi4 per Table A.10), dynamic impact tests (Eq. 7.10-7.11, xi5/xi6 per Table A.11), pile driving formulae, or wave equation analysis; resistance factors gamma_b/gamma_s/gamma_t per Tables A.6-A.8. Axially loaded piles use a SPECIAL Design Approach combination set (2.4.7.3.4.2(2)), not the general STR/GEO combinations.",
+      "body": "To demonstrate adequate safety against compressive failure, the inequality Fc;d <= Rc;d (Eq. 7.1) shall be satisfied for all ULS load cases and combinations, where Fc;d is the design axial compressive action (in principle including pile self-weight) and Rc;d the design compressive resistance (in principle including base overburden); these two items may be disregarded if they approximately cancel, but not if downdrag is significant, the soil is very light, or the pile extends above ground. For pile groups, two failure mechanisms govern: compressive resistance failure of the piles individually, and of the piles-and-contained-soil acting as a block (the block may be modelled as a single large-diameter pile); the design resistance is the lower of the two. The connecting structure's stiffness/strength affects load redistribution: a stiff structure can redistribute load so only a significant-number pile failure constitutes a limit state, while a flexible structure's capacity is governed by its weakest pile; edge piles under inclined/eccentric loads need special attention. Underlying weak layers, the ground zone above/below the pile base (which may extend several diameters and strongly influences base resistance), punching into weak ground within 4 base diameters below the tip, and base-diameter-exceeds-shaft-diameter effects must all be considered; open-ended driven tube/box piles with openings over 500 mm (without anti-plugging devices) limit base resistance to the lesser of the plug-to-pile shearing resistance or the gross-area base resistance. IMPORTANT -- Design Approach combinations for axially loaded piles (and anchors) are a SPECIAL CASE per 2.4.7.3.4.2(2), distinct from the general STR/GEO combinations used elsewhere in EN 1997-1: Design Approach 1 Combination 1 = A1\"+\"M1\"+\"R1 (same as general DA1-C1); but Design Approach 1 Combination 2 = A2\"+\"(M1 or M2)\"+\"R4 -- NOT the general DA1-C2 combination of A2+M2+R1. This R4 resistance set (Tables A.6/A.7/A.8, A.12) is materially more conservative than R1-R3 and only ever applies to piles and anchors. Ultimate compressive resistance from STATIC LOAD TESTS (7.6.2.2): trial piles shall be installed identically to working piles and founded in the same stratum; diameter mismatches and (for very large piles) reduced-scale trial piles (ratio >= 0.5, same fabrication/installation, separately instrumented base/shaft) require caution, especially for open-ended driven piles. Downdrag corrections subtract the measured/most unfavourable positive shaft resistance in the compressible and overlying strata from the measured pile-head loads; test loads on downdrag-affected piles should exceed the design external load plus twice the downdrag force. The characteristic resistance Rc;k is derived from measured Rc;m using correlation factors xi1 (applied to the mean) and xi2 (applied to the lowest) via Eq. 7.2 (recommended values, Table A.9); for structures able to redistribute load from weak to strong piles, xi1/xi2 may be divided by 1.1 (xi1 never below 1.0). Rc;k may be decomposed into base and shaft components Rb;k and Rs;k (Eq. 7.3). The design resistance Rc;d is derived either as Rc;k/gamma_t (Eq. 7.4) or as Rb;k/gamma_b + Rs;k/gamma_s (Eq. 7.5), using the recommended factors of Tables A.6, A.7, and A.8 -- selected per the R-set (R1-R4) dictated by the Design Approach and combination in use, per the special pile rule above. Ultimate compressive resistance from GROUND TEST RESULTS (7.6.2.3): methods must be established from pile load tests and comparable experience, optionally with a model factor (2.4.1(9)); Rc;d is derived from Rb;d = Rb;k/gamma_b (Eq. 7.6) and Rs;d = Rs;k/gamma_s (Eq. 7.7), with Tables A.6-A.8 giving recommended factors. Rb;k and Rs;k are determined either via correlation factors xi3 (mean) and xi4 (lowest) applied to calculated resistances Rb;cal+Rs;cal from n test profiles (Eq. 7.8, Table A.10; also divisible by 1.1 for load-redistributing structures with xi3 never below 1.0), or by summing qb;k*Ab + integral(qs;i;k*As;i) over strata (Eq. 7.9) -- this alternative may need a model factor >1.0 applied to gamma_b/gamma_s beyond the Annex A recommended values. If Design Approach 3 is used, characteristic ground parameters (2.4.5) are first derived, then partial factors applied to obtain design parameter values for the resistance calculation. Model validity assessment considers soil type/grading/mineralogy/density/compressibility/permeability, pile installation method, pile geometry/material/base shape, and the ground-testing method. Ultimate compressive resistance from DYNAMIC IMPACT TESTS (7.6.2.4): validity requires prior demonstrated acceptable static-load-test performance on comparable piles; driving resistance should be measured directly on site; signal matching can approximate shaft/base resistance split and load-settlement behaviour; impact energy must be high enough for meaningful capacity interpretation at an adequately high strain level. Rc;d is derived from Rc;k/gamma_t (Eq. 7.10) with Rc;k from correlation factors xi5 (mean) and xi6 (lowest) applied to measured Rc;m over n piles tested (Eq. 7.11, Table A.11). Ultimate compressive resistance by PILE DRIVING FORMULAE (7.6.2.5): usable only with determined ground stratification and demonstrated validity via comparable static load tests; for end-bearing piles in non-cohesive soil, Rc;d follows the 7.6.2.4 procedure; at least 5 test piles at suitable spacing should be driven to check blow count, with final-blow-set penetration recorded per pile. Ultimate compressive resistance from WAVE EQUATION ANALYSIS (7.6.2.6): requires determined ground stratification; Rc;d follows the 7.6.2.4 procedure using locally-experienced xi values; the method models soil/pile/hammer mathematically (without site stress-wave measurement) to study hammer performance, dynamic soil parameters, driving stresses, and required driving resistance. RE-DRIVING (7.6.2.7): the number of piles to be re-driven shall be specified; lower re-driving results govern the resistance assessment (higher results may be considered); re-driving is usually warranted in silty soils and typically reduces the apparent resistance of friction piles in clayey soils.",
+      "key_points": [
+        "Fc;d <= Rc;d (Eq. 7.1) must hold for all ULS load cases; self-weight/overburden may cancel unless downdrag is significant, soil is light, or the pile extends above ground",
+        "Pile groups: check individual-pile failure and block (piles-plus-soil) failure; design resistance is the lower value",
+        "SPECIAL Design Approach rule for piles/anchors (2.4.7.3.4.2(2)): DA1-C1 = A1+M1+R1 (as normal), but DA1-C2 = A2+(M1 or M2)+R4 -- NOT the general A2+M2+R1 used for STR/GEO",
+        "Static load tests: xi1 (mean)/xi2 (min) correlation factors from Table A.9 give Rc;k (Eq. 7.2); Rc;d = Rc;k/gamma_t or Rb;k/gamma_b + Rs;k/gamma_s (Eq. 7.4/7.5) with Tables A.6-A.8",
+        "Ground test results: xi3 (mean)/xi4 (min) from Table A.10 applied to calculated Rb;cal+Rs;cal (Eq. 7.8), or direct summation from qb;k/qs;i;k (Eq. 7.9, may need a model factor)",
+        "Dynamic impact tests: xi5 (mean)/xi6 (min) from Table A.11 applied to measured Rc;m (Eq. 7.10-7.11); requires prior static-test validation",
+        "Pile driving formulae and wave equation analysis both require determined ground stratification and static-test-validated methodology, and follow the 7.6.2.4 xi-factor procedure",
+        "Load-redistributing structures may divide xi correlation factors by 1.1, subject to a floor of 1.0 on the mean-based factor",
+        "Re-driving: lower results govern; typically warranted in silty soils; reduces apparent resistance of friction piles in clay"
+      ],
+      "equations": [
+        {"id": "Eq. 7.1", "description": "Fc;d <= Rc;d -- ULS compressive load-resistance verification for axially loaded piles (design axial compressive action must not exceed design compressive resistance).", "implemented_in": null},
+        {"id": "Eq. 7.2", "description": "Rc;k derived from static load test Rc;m using correlation factors xi1 (mean) and xi2 (min).", "implemented_in": null},
+        {"id": "Eq. 7.3", "description": "Rc;k = Rb;k + Rs;k, decomposition of characteristic compressive resistance into base and shaft components.", "implemented_in": null},
+        {"id": "Eq. 7.4", "description": "Rc;d = Rc;k / gamma_t, design compressive resistance from total/combined resistance factor.", "implemented_in": null},
+        {"id": "Eq. 7.5", "description": "Rc;d = Rb;k/gamma_b + Rs;k/gamma_s, design compressive resistance from separate base and shaft factors.", "implemented_in": null},
+        {"id": "Eq. 7.6", "description": "Rb;d = Rb;k / gamma_b, design base resistance from ground test results.", "implemented_in": null},
+        {"id": "Eq. 7.7", "description": "Rs;d = Rs;k / gamma_s, design shaft resistance from ground test results.", "implemented_in": null},
+        {"id": "Eq. 7.8", "description": "Rb;k, Rs;k derived from calculated Rb;cal+Rs;cal over n ground test profiles using correlation factors xi3 (mean)/xi4 (min).", "implemented_in": null},
+        {"id": "Eq. 7.9", "description": "Alternative characteristic resistance from summing qb;k over the base area and qs;i;k over shaft strata.", "implemented_in": null},
+        {"id": "Eq. 7.10", "description": "Rc;d = Rc;k / gamma_t, design compressive resistance from dynamic impact test results.", "implemented_in": null},
+        {"id": "Eq. 7.11", "description": "Rc;k derived from dynamic impact test Rc;m using correlation factors xi5 (mean) and xi6 (min).", "implemented_in": null}
+      ],
+      "figures": [],
+      "tables": [
+        "Table A.6 - Partial resistance factors gamma_b/gamma_s/gamma_t for driven piles, sets R1-R4 (table_a_6_driven_pile_resistance)",
+        "Table A.7 - Partial resistance factors for bored piles, sets R1-R4 (table_a_7_bored_pile_resistance)",
+        "Table A.8 - Partial resistance factors for CFA piles, sets R1-R4 (table_a_8_cfa_pile_resistance)",
+        "Table A.9 - Correlation factors xi1/xi2 from static pile load tests, by number tested n (table_a_9_correlation_static_load_test)",
+        "Table A.10 - Correlation factors xi3/xi4 from ground test results, by number of profiles n (table_a_10_correlation_ground_test)",
+        "Table A.11 - Correlation factors xi5/xi6 from dynamic impact tests, by number tested n, plus model factors (table_a_11_correlation_dynamic_impact_test)"
+      ],
+      "applicability": "Core design procedure for verifying axial compressive resistance of individual piles and pile groups, by any of the four permitted resistance-derivation routes, using the R1/R4 special pile Design Approach rule to select the correct R-set."
+    },
+    {
+      "section_id": "7.6.3",
+      "title": "Ground tensile resistance",
+      "summary": "Tension-pile design follows 7.6.2 where applicable, verifying an ULS inequality (Eq. 7.12) against pull-out of the pile and against block uplift of the ground containing the piles (per 2.4.7.4, Figure 7.1). Block effect governs when pile spacing <= sqrt(pile diameter x penetration into the bearing stratum). Rt;d derived from pile load tests (Eq. 7.13-7.14, xi1/xi2 per Table A.9) or ground test results (Eq. 7.15-7.18, xi3/xi4 per Table A.10), with resistance factor gamma_s;t per Tables A.6-A.8 -- subject to the same special pile Design Approach rule (2.4.7.3.4.2(2)) as compressive resistance.",
+      "body": "Design of piles in tension follows the rules of 7.6.2 where applicable. To verify adequate safety against tension failure, an ULS inequality of the same Fx;d <= Rx;d form used throughout this Section shall be satisfied for all load cases and combinations. Two failure mechanisms govern: pull-out of the piles from the ground mass, and uplift of the block of ground containing the piles (verified per 2.4.7.4, see Figure 7.1, whose labelled uplift force Vdst;d is the destabilising action checked against the block's stabilising weight/resistance plus, where added, the shear resistance Td mobilised along the block's sides -- Eq. 7.12); pull-out and block-uplift are two distinct checks, both required. For isolated tensile piles or groups, pull-out resistance of a cone of ground may govern, especially for enlarged-base or rock-socket piles; the block effect normally governs when pile spacing is less than or equal to the square root of the product of pile diameter and penetration into the main resisting stratum. Group effects that reduce effective vertical stress (and hence individual shaft resistance) must be considered, along with the severe adverse effect of cyclic loading and load reversals (informed by comparable pile-load-test experience). SPECIAL Design Approach rule (2.4.7.3.4.2(2)): as for compressive resistance (7.6.2), axially loaded piles in tension use DA1-C1 = A1+M1+R1 but DA1-C2 = A2+(M1 or M2)+R4 (not the general A2+M2+R1), governing which R-set is used to read gamma_s;t from Tables A.6-A.8. Ultimate tensile resistance from PILE LOAD TESTS (7.6.3.2): tests follow 7.5.1, 7.5.2, and 7.5.4, with regard to 7.6.2.2; the design tensile resistance Rt;d is derived from Rt;k/gamma_s;t (Eq. 7.13, recommended factors in Tables A.6-A.8). Normally more than one tension pile should be tested; for large tension-pile populations at least 2% should be tested. The characteristic tensile resistance is determined from measured Rt;m using correlation factors xi1 (mean) and xi2 (minimum) (Eq. 7.14, Table A.9). Ultimate tensile resistance from GROUND TEST RESULTS (7.6.3.3): methods must be established from pile load tests and comparable experience, optionally with a model factor; Rt;d = Rt;k/gamma_s;t (Eq. 7.15) using Rs;d = Rs;k/gamma_s (Eq. 7.16), with recommended factors per Tables A.6-A.8. Rt;k is determined either from calculated Rs;cal over n ground test profiles using correlation factors xi3 (mean) and xi4 (minimum) (Eq. 7.17, Table A.10), or by summing qs;i;k over shaft strata (Eq. 7.18) -- this alternative may require a model factor above 1.0 applied to the recommended gamma_s;t. If Design Approach 3 is used, characteristic ground parameters are derived per 2.4.5 before applying partial factors to obtain design pile resistance values. Model validity assessment follows 7.6.2.3(10).",
+      "key_points": [
+        "Tension piles require BOTH an individual pull-out check and a block ground-uplift check (Eq. 7.12, per 2.4.7.4 and Figure 7.1)",
+        "Block uplift typically governs when pile spacing <= sqrt(pile diameter x penetration into the bearing stratum)",
+        "Enlarged-base or rock-socket piles may instead be governed by pull-out of a cone of ground",
+        "Group effects reducing effective vertical stress, and cyclic loading/load reversal effects, must both be considered for tensile capacity",
+        "SPECIAL Design Approach rule (2.4.7.3.4.2(2), same as 7.6.2): DA1-C2 = A2+(M1 or M2)+R4 for piles/anchors, not the general A2+M2+R1",
+        "From pile load tests: Rt;d = Rt;k/gamma_s;t (Eq. 7.13), Rt;k from xi1 (mean)/xi2 (min) per Table A.9 (Eq. 7.14); at least 2% of a large tension-pile population should be tested",
+        "From ground test results: Rt;d = Rt;k/gamma_s;t via Rs;d=Rs;k/gamma_s (Eq. 7.15-7.16), Rt;k from xi3/xi4 per Table A.10 (Eq. 7.17) or direct qs;i;k summation (Eq. 7.18)"
+      ],
+      "equations": [
+        {"id": "Eq. 7.12", "description": "Block uplift verification per 2.4.7.4 for a group of tension piles: the design destabilising uplift action on the block (Vdst;d, per the Figure 7.1 labelling) must not exceed the block's stabilising resistance (self-weight/stabilising forces plus, where added, the shear resistance Td mobilised along the sides of the block). The source PDF's OCR degraded the printed symbolic form beyond confident full reconstruction; this description follows Figure 7.1's surviving labels and the explicit 2.4.7.4 cross-reference rather than reproducing garbled characters.", "implemented_in": null},
+        {"id": "Eq. 7.13", "description": "Rt;d = Rt;k / gamma_s;t, design tensile resistance from pile load test results.", "implemented_in": null},
+        {"id": "Eq. 7.14", "description": "Rt;k derived from pile load test Rt;m using correlation factors xi1 (mean) and xi2 (min).", "implemented_in": null},
+        {"id": "Eq. 7.15", "description": "Rt;d = Rt;k / gamma_s;t, design tensile resistance from ground test results.", "implemented_in": null},
+        {"id": "Eq. 7.16", "description": "Rs;d = Rs;k / gamma_s, design shaft resistance component for tension piles.", "implemented_in": null},
+        {"id": "Eq. 7.17", "description": "Rt;k derived from calculated Rs;cal over n ground test profiles using correlation factors xi3 (mean)/xi4 (min).", "implemented_in": null},
+        {"id": "Eq. 7.18", "description": "Alternative characteristic tensile resistance from summing qs;i;k over shaft strata.", "implemented_in": null}
+      ],
+      "figures": [
+        "Figure 7.1: Examples of uplift (UPL) of a group of piles"
+      ],
+      "tables": [
+        "Table A.6 - Partial resistance factors for driven piles",
+        "Table A.7 - Partial resistance factors for bored piles",
+        "Table A.8 - Partial resistance factors for CFA piles",
+        "Table A.9 - Correlation factors from static pile load tests",
+        "Table A.10 - Correlation factors from ground test results"
+      ],
+      "applicability": "Design procedure for tension (uplift-resisting) piles and pile groups, covering both individual pull-out and block ground uplift failure modes."
+    },
+    {
+      "section_id": "7.6.4",
+      "title": "Vertical displacements of pile foundations (serviceability)",
+      "summary": "Requires assessment of pile-foundation vertical displacements under serviceability conditions per 2.4.8/2.4.9, acknowledging calculation-model and ground-property uncertainty. For piles bearing in medium-to-dense soil or founded on rock/very hard soil, ULS design is normally sufficient to prevent an SLS event. Compression-pile settlement assessment must include both individual and group-action settlement plus differential settlement; tension-pile upward displacement follows the same principles.",
+      "body": "Vertical displacements under serviceability limit state conditions shall be assessed and checked against 2.4.8 and 2.4.9. Calculations of pile-foundation displacement carry uncertainty from the calculation model and from determining relevant ground properties, so results should be regarded as only an approximate estimate. For piles bearing in medium-to-dense soils and for tension piles, satisfying ULS requirements is normally sufficient to prevent an SLS event in the supported structure. For piles in COMPRESSION: the occurrence of an SLS event due to pile settlement shall be checked, accounting for downdrag where probable (when the pile toe sits in a medium-dense/firm layer overlying rock or very hard soil, ULS partial factors are normally sufficient to also satisfy SLS conditions). Settlement assessment shall include both individual-pile settlement and settlement from group action, with an estimate of expected differential settlement; where no load test results are available to analyze pile-superstructure interaction, load-settlement performance of individual piles should be assessed using empirically established safe assumptions. For piles in TENSION: upward displacement assessment follows the same principles as 7.6.4.2, with particular attention to elongation of the pile material; where very severe SLS criteria apply, a separate check of upward displacements shall be carried out.",
+      "key_points": [
+        "SLS vertical displacement checked per 2.4.8/2.4.9, acknowledging model and ground-property uncertainty in the estimate",
+        "ULS design is normally sufficient to prevent SLS for piles in medium-to-dense soil and for tension piles generally",
+        "Compression-pile settlement assessment covers individual-pile settlement, group-action settlement, and differential settlement",
+        "Toe founded in medium-dense/firm soil overlying rock or very hard soil: ULS factors normally also satisfy SLS",
+        "Without load test data, individual pile load-settlement performance is assessed via empirically established safe assumptions",
+        "Tension-pile upward displacement follows the same principles as compression settlement, with attention to pile-material elongation; severe SLS criteria require a separate upward-displacement check"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies whenever the serviceability (vertical displacement) performance of a pile foundation under compression or tension must be verified."
+    },
+    {
+      "section_id": "7.7",
+      "title": "Transversely loaded piles",
+      "summary": "Design of transversely loaded piles follows 7.4/7.5 where applicable, verifying Ftr;d <= Rtr;d (Eq. 7.19) against rigid-body rotation/translation (short piles) or bending failure with local soil yielding (long slender piles), considering group effects. Covers transverse load resistance from pile load tests, from ground test results and pile strength (beam-on-deformable-medium theory), and transverse-displacement assessment factors.",
+      "body": "The design of piles subjected to transverse loading follows the rules of 7.4 and 7.5 where applicable. To demonstrate adequate safety against transverse-loading failure, Ftr;d <= Rtr;d (Eq. 7.19) shall be satisfied for all ULS load cases and combinations. One of two failure mechanisms should be considered: for short piles, rotation or translation as a rigid body; for long slender piles, bending failure accompanied by local yielding and displacement of soil near the pile top. The group effect shall be considered when assessing transverse resistance, since a transverse load on a pile group may produce a combination of compression, tension, and transverse forces in individual piles. Transverse load resistance from PILE LOAD TESTS (7.7.2): tests follow 7.5.2, but unlike other pile load tests, transverse tests need not normally be continued to failure -- the test load magnitude and line of action should simulate the design loading. An allowance shall be made for ground variability (particularly over the top few metres) when selecting the number of test piles and deriving design transverse resistance; installation records should be checked for deviations, and for pile groups, interaction and head-fixity effects must be accounted for when deriving group transverse resistance from individual test-pile results. Transverse load resistance from GROUND TEST RESULTS AND PILE STRENGTH PARAMETERS (7.7.3): the transverse resistance of a pile or group shall be calculated using a compatible set of structural action effects, ground reactions, and displacements; the analysis shall include the possibility of structural pile failure in the ground per 7.8. For long slender piles, the calculation may use beam theory with the pile loaded at the top and supported by a deformable medium characterised by a horizontal modulus of subgrade reaction. The degree of rotational freedom at the pile-structure connection shall be accounted for. Transverse displacement (7.7.4) assessment shall account for: ground stiffness and its strain-level variation; flexural stiffness of individual piles; moment fixity at the structure connection; group effects; and load reversal/cyclic loading effects; a general displacement analysis should be based on the expected kinematic degrees of freedom.",
+      "key_points": [
+        "Ftr;d <= Rtr;d (Eq. 7.19) governs transverse-load ULS verification",
+        "Short piles: rigid-body rotation/translation mechanism; long slender piles: bending failure with local soil yielding near the top",
+        "Group effect must be considered -- a transverse load on a group can induce combined compression/tension/transverse forces in individual piles",
+        "Transverse load tests need not be carried out to failure (unlike axial tests); test loading should simulate the design loading",
+        "Beam-on-deformable-medium theory (horizontal subgrade reaction modulus) is used for long slender pile analysis, considering connection rotational fixity",
+        "Transverse displacement depends on ground stiffness/strain level, pile flexural stiffness, connection moment fixity, group effects, and cyclic/reversal loading"
+      ],
+      "equations": [
+        {"id": "Eq. 7.19", "description": "Ftr;d <= Rtr;d -- ULS transverse load-resistance verification for laterally loaded piles.", "implemented_in": null}
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Design procedure for piles subjected to transverse (lateral) loading, individually or in groups, whether verified by load test or by ground-test-based calculation."
+    },
+    {
+      "section_id": "7.8",
+      "title": "Structural design of piles",
+      "summary": "Piles shall be verified against structural failure per 2.4.6.4, with the pile structure designed to accommodate service conditions (e.g. corrosion), installation conditions (adverse ground, boulders, inclined bedrock), driveability factors including joint quality, and (for precast piles) transportation/installation circumstances. Construction tolerances must be accounted for in structural design. Slender piles through water or very-low-strength soil need buckling checks (generally unnecessary if surrounding soil has cu > 10 kPa).",
+      "body": "Piles shall be verified against structural failure in accordance with 2.4.6.4. The structure of piles shall be designed to accommodate all situations to which they will be subjected, including: circumstances of use (e.g. corrosion conditions); circumstances of installation (e.g. adverse ground conditions such as boulders or steeply inclined bedrock surfaces); other factors influencing driveability, including joint quality; and, for precast piles, the circumstances of transportation to site and installation. Construction tolerances specified for the pile type, the action components, and foundation performance shall be taken into account during structural design. Slender piles passing through water or thick deposits of extremely low-strength fine soil shall be checked against buckling; normally a buckling check is not required when piles are contained by soils with a characteristic undrained shear strength cu exceeding 10 kPa.",
+      "key_points": [
+        "Structural verification per 2.4.6.4, covering the full range of service and installation conditions",
+        "Must accommodate corrosion, adverse ground (boulders, inclined bedrock), driveability/joint quality, and precast transportation/installation",
+        "Construction tolerances (pile type, action components, foundation performance) factor into structural design",
+        "Buckling check required for slender piles through water or very-low-strength fine soil",
+        "Buckling check normally unnecessary where surrounding soil has characteristic cu > 10 kPa"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Structural (as opposed to geotechnical) verification of the pile cross-section itself, including buckling for unsupported/weak-soil lengths."
+    },
+    {
+      "section_id": "7.9",
+      "title": "Supervision of construction",
+      "summary": "A pile installation plan (giving pile type, location/inclination/tolerances, cross-section, reinforcement, length, number, required capacity, toe level or penetration resistance, sequence, obstructions, and constraints) shall form the basis for piling works, with monitored installation and per-pile records per the relevant execution standards. Records kept 5+ years; investigations/remedial measures required if quality is uncertain, and integrity testing required where installation cannot be reliably monitored.",
+      "body": "A pile installation plan shall form the basis for the piling works, giving: pile type; location and inclination of each pile including positional tolerances; pile cross-section; reinforcement data for cast-in-situ piles; pile length and number; required pile load-carrying capacity; pile toe level (relative to a fixed datum) or required penetration resistance; installation sequence; known obstructions; and any other constraints on piling activities. Installation of all piles shall be monitored and recorded per the relevant execution standards (EN 1536:1999, EN 12063:1999, EN 12699:2000, EN 14199:2005), covering: pile number; installation equipment; cross-section and length; installation date/time and interruptions; concrete mix/volume/placing method for cast-in-situ piles; bentonite slurry weight density, pH, Marsh viscosity, and fines content (when used); for CFA/injection piles, grout/concrete volumes and pumping pressures, diameters, screw pitch, and penetration per revolution; for displacement piles, driving-resistance measurements (hammer weight/drop or power, blow frequency, blow count for at least the final 0.25 m); vibrator power take-off; drilling motor torque; for bored piles, encountered strata and base condition where toe performance is critical; obstructions encountered; and deviations of position/direction plus as-built elevations. Records shall be kept for at least five years after completion, with as-built records compiled and kept with construction documents. If site observations or record review reveal quality uncertainties, investigations (static load or integrity testing, installing a new pile, or re-driving for displacement piles, combined with ground tests adjoining the suspect pile) shall be carried out to determine pile condition and remedial needs. Integrity tests shall be used where pile quality is installation-sensitive and procedures cannot be reliably monitored; dynamic low-strain integrity tests may globally evaluate piles with possible severe defects or soil-strength loss during construction, though defects such as insufficient concrete quality/cover thickness (affecting long-term performance) often cannot be found by dynamic tests -- sonic tests, vibration tests, or coring may then be needed.",
+      "key_points": [
+        "Installation plan must specify pile type, location/tolerances, cross-section, reinforcement, length, number, capacity, toe level/penetration resistance, sequence, obstructions, and constraints",
+        "All pile installations monitored and recorded per the relevant execution standard (EN 1536/12063/12699/14199)",
+        "Records retained at least five years; as-built records compiled and kept with construction documents",
+        "Quality uncertainty triggers investigation: static load/integrity test, new pile installation, or re-driving (displacement piles), plus adjoining ground tests",
+        "Integrity testing is mandatory where installation-sensitive pile quality cannot be reliably monitored during construction",
+        "Dynamic low-strain tests give a global defect/strength-loss screen but may miss concrete-quality/cover defects, requiring sonic, vibration, or coring follow-up"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction-phase supervision, monitoring, and record-keeping requirements for all pile installation methods, plus remedial-investigation triggers."
+    }
+  ]
+}

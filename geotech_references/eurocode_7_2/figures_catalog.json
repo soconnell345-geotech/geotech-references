@@ -1,0 +1,181 @@
+{
+  "reference_id": "EN 1997-2:2007",
+  "reference_title": "Eurocode 7: Geotechnical design - Part 2: Ground investigation and testing",
+  "package": "eurocode_7_2",
+  "volume": null,
+  "pdf_path": "docs/en.1997.2.2007-1.pdf",
+  "figure_count": 19,
+  "figures": [
+    {
+      "figure_number": "1.1",
+      "caption": "General framework for the selection of derived values of geotechnical properties",
+      "chapter": 1,
+      "pdf_page_index": 16,
+      "printed_page": 15,
+      "page_estimated": false,
+      "description": "Flowchart: site investigation/testing (EN 1997-2) feeds correlations and test results/derived values, which combine with other site information into the geotechnical model and characteristic values (EN 1997-1); partial factors then give design values of geotechnical properties."
+    },
+    {
+      "figure_number": "1.2",
+      "caption": "General architecture of the CEN standards linked with EN 1997",
+      "chapter": 1,
+      "pdf_page_index": 17,
+      "printed_page": 16,
+      "page_estimated": false,
+      "description": "Diagram showing EN 1997-1 (design rules) and EN 1997-2 (this standard: ground investigation and testing) both resting on the CEN/TC 341 test standards (drilling/sampling, lab/field tests, structure tests, soil/rock classification) and the CEN/TC 288 execution-of-geotechnical-works standards."
+    },
+    {
+      "figure_number": "B.1",
+      "caption": "High-rise structures, civil engineering projects",
+      "chapter": 7,
+      "pdf_page_index": 106,
+      "printed_page": 104,
+      "page_estimated": false,
+      "description": "Investigation-depth Za definition sketch for (a) a single foundation and (b) a structure with several foundation elements, used with Annex B.3(5)-(6): Za>=6m or Za>=3.0*bF (single foundation), Za>=1.5*bB (raft/multiple superimposing foundations)."
+    },
+    {
+      "figure_number": "B.2",
+      "caption": "Embankments and cuttings",
+      "chapter": 7,
+      "pdf_page_index": 106,
+      "printed_page": 104,
+      "page_estimated": false,
+      "description": "Investigation-depth Za definition sketch for (a) an embankment and (b) a cutting, used with Annex B.3(7): 0.8h<Za<1.2h and Za>=6m, where h is the embankment/cutting height."
+    },
+    {
+      "figure_number": "B.3",
+      "caption": "Linear structures",
+      "chapter": 7,
+      "pdf_page_index": 107,
+      "printed_page": 105,
+      "page_estimated": false,
+      "description": "Investigation-depth Za definition sketch for (a) a road and (b) a trench, used with Annex B.3(8): Za>=2m below formation/invert level, plus a width-based condition for trenches/pipelines."
+    },
+    {
+      "figure_number": "B.6",
+      "caption": "Cut-off wall",
+      "chapter": 7,
+      "pdf_page_index": 109,
+      "printed_page": 107,
+      "page_estimated": false,
+      "description": "Investigation-depth definition sketch for a cut-off wall/excavation support, used with Annex B.3(9)-(12) piezometric-surface/groundwater conditions."
+    },
+    {
+      "figure_number": "B.7",
+      "caption": "Pile groups",
+      "chapter": 7,
+      "pdf_page_index": 109,
+      "printed_page": 107,
+      "page_estimated": false,
+      "description": "Investigation-depth Za definition sketch for a pile group, used with Annex B.3(13): three conditions on Za involving the pile base diameter Df and the smaller side bg of the rectangle circumscribing the pile group."
+    },
+    {
+      "figure_number": "D.1",
+      "caption": "Strain influence factor diagrams",
+      "chapter": 7,
+      "pdf_page_index": 114,
+      "printed_page": 112,
+      "page_estimated": false,
+      "description": "Schmertmann-method (Annex D.3) vertical strain influence factor Iz distribution with relative depth below the footing, separate curves for axisymmetric (circular/square) and plane-strain (strip) spread foundations; used in the settlement integral s=C1*C2*(q-sigma'v0)*integral(Iz/(C3*E'))dz."
+    },
+    {
+      "figure_number": "D.2",
+      "caption": "Explanation of qc;I, qc;II and qc;III",
+      "chapter": 7,
+      "pdf_page_index": 120,
+      "printed_page": 118,
+      "page_estimated": false,
+      "description": "Definition sketch for the Dutch CPT pile method (Annex D.7): the three qc-averaging zones (qc;I from base level to critical depth dcrit, qc;II from dcrit upward to base, qc;III from base level to 8*Deq above) used to compute pmax;base, by soil type (clay/silt/peat)."
+    },
+    {
+      "figure_number": "D.3",
+      "caption": "Pile foot shape factor (beta)",
+      "chapter": 7,
+      "pdf_page_index": 121,
+      "printed_page": 119,
+      "page_estimated": false,
+      "description": "Chart giving the pile-point shape factor beta (5 borderlines, beta=1.0 to 0.6) as a function of pile foot geometry (H/Deq and b/a ratios), for the Dutch CPT pile method's pmax;base equation (Annex D.7)."
+    },
+    {
+      "figure_number": "E.1",
+      "caption": "Unit shaft resistance for axially loaded piles",
+      "chapter": 7,
+      "pdf_page_index": 125,
+      "printed_page": 123,
+      "page_estimated": false,
+      "description": "7 design curves of unit shaft resistance (fsi, MPa) vs. Menard limit pressure PLM (MPa) for axially loaded piles, selected via Table E.5 by soil category, PLM category, and detailed pile construction method (Annex E.3)."
+    },
+    {
+      "figure_number": "G.1",
+      "caption": "An example of correlations between the number of blows N10H and the cone penetration resistance (qc) for poorly-graded sands and for well-graded sand-gravel",
+      "chapter": 7,
+      "pdf_page_index": 132,
+      "printed_page": 130,
+      "page_estimated": false,
+      "description": "4 curves of CPT cone resistance qc (MPa) vs. dynamic probing DPH blow count N10H: poorly-graded sand above/below groundwater, well-graded sand-gravel above/below groundwater (Annex G.4)."
+    },
+    {
+      "figure_number": "I.1",
+      "caption": "An example of correction factors for Cfv based on the liquid limit for normally consolidated clays",
+      "chapter": 7,
+      "pdf_page_index": 135,
+      "printed_page": 133,
+      "page_estimated": false,
+      "description": "Chart of the field-vane correction factor mu (y-axis, 0.4-1.2) vs. liquid limit wL (x-axis, 0-200%), for normally-consolidated clays (Annex I.2; Larsson et al. 1984)."
+    },
+    {
+      "figure_number": "I.2",
+      "caption": "Examples of correction factors for Cfv based on plasticity index and effective vertical stress (sigma'v0) for over-consolidated clays",
+      "chapter": 7,
+      "pdf_page_index": 135,
+      "printed_page": 133,
+      "page_estimated": false,
+      "description": "Chart of the field-vane correction factor mu vs. cfv/sigma'v0 ratio, separate curves for Ip<40% and Ip>=40%, over-consolidated clays (Annex I.3; Aas 1979)."
+    },
+    {
+      "figure_number": "I.3",
+      "caption": "Diagram for separating normally-consolidated and over-consolidated clays",
+      "chapter": 7,
+      "pdf_page_index": 136,
+      "printed_page": 134,
+      "page_estimated": false,
+      "description": "Chart of cfv/sigma'v0 vs. plasticity index Ip, with 'young clay' and 'aged clay' bounding curves separating normally-consolidated (NC, between the curves) from over-consolidated (OC, above 'aged') clays (Annex I.4; Aas et al. 1986)."
+    },
+    {
+      "figure_number": "I.4",
+      "caption": "Correction factors for normally-consolidated and over-consolidated clays",
+      "chapter": 7,
+      "pdf_page_index": 137,
+      "printed_page": 135,
+      "page_estimated": false,
+      "description": "Field-vane correction factor mu vs. an abscissa parameter, separate NC and OC curves, following the I.3 classification step (Annex I.4)."
+    },
+    {
+      "figure_number": "K.1",
+      "caption": "Depth correction factor Cz as a function of plate diameter b and depth z for PLT results obtained with a uniform circular load at the base of an unlined shaft",
+      "chapter": 7,
+      "pdf_page_index": 141,
+      "printed_page": 139,
+      "page_estimated": false,
+      "description": "Chart of depth correction factor Cz vs. z/b (depth-to-plate-diameter ratio), for three Poisson's ratio curves (v=0.0, 0.25, 0.49), used in the borehole-base plate settlement modulus formula (Annex K.2; Burland 1969)."
+    },
+    {
+      "figure_number": "K.2",
+      "caption": "Influenced area beneath a test plate and a footing",
+      "chapter": 7,
+      "pdf_page_index": 142,
+      "printed_page": 140,
+      "page_estimated": false,
+      "description": "Definition sketch of the overlapping influenced (stressed) zones beneath a small test plate (width b1) and a full-size footing (width b), used to justify the empirical settlement-scaling method of Annex K.4."
+    },
+    {
+      "figure_number": "K.3",
+      "caption": "Graph for calculations of settlement based on plate loading tests",
+      "chapter": 7,
+      "pdf_page_index": 143,
+      "printed_page": 141,
+      "page_estimated": false,
+      "description": "Chart of settlement ratio s/s1 vs. width ratio b/b1, separate curves for loose/medium-dense/dense sand, for direct-design settlement scaling of footings in sand from plate loading test results (Annex K.4; Bergdahl et al. 1993)."
+    }
+  ]
+}

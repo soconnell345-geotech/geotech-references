@@ -1,0 +1,324 @@
+{
+  "reference_id": "EN 1997-1:2004",
+  "reference_title": "Eurocode 7: Geotechnical Design - Part 1: General Rules",
+  "volume": null,
+  "chapter": 6,
+  "chapter_title": "Spread foundations",
+  "sections": [
+    {
+      "section_id": "6.1",
+      "title": "General",
+      "summary": "Applies to spread foundations including pads, strips, and rafts; some provisions may also be applied to deep foundations such as caissons.",
+      "body": "The provisions of this Section apply to spread foundations including pads, strips, and rafts. Some of the provisions may be applied to deep foundations such as caissons.",
+      "key_points": [
+        "Covers pad, strip, and raft spread foundations",
+        "Some provisions extendable to deep foundations such as caissons"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Scope-setting clause for spread foundation design."
+    },
+    {
+      "section_id": "6.2",
+      "title": "Limit states",
+      "summary": "Compiles the limit states to consider for spread foundations: loss of overall stability, bearing resistance failure/punching/squeezing, sliding, combined ground-structure failure, structural failure from foundation movement, excessive settlement, excessive heave (swelling/frost/other), and unacceptable vibrations.",
+      "body": "The following limit states shall be considered and an appropriate list compiled: loss of overall stability; bearing resistance failure, punching failure, squeezing; failure by sliding; combined failure in the ground and in the structure; structural failure due to foundation movement; excessive settlements; excessive heave due to swelling, frost, and other causes; and unacceptable vibrations.",
+      "key_points": [
+        "Eight limit-state categories to be considered for every spread foundation design",
+        "Includes both ultimate (stability, bearing, sliding) and serviceability (settlement, heave, vibration) concerns"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Checklist framing the full set of limit states a spread foundation design must address."
+    },
+    {
+      "section_id": "6.3",
+      "title": "Actions and design situations",
+      "summary": "Design situations are selected per 2.2, considering the actions listed in 2.4.2(4) when choosing limit states for calculation; where structural stiffness is significant, structure-ground interaction analysis should determine the action distribution.",
+      "body": "Design situations shall be selected in accordance with 2.2. The actions listed in 2.4.2(4) should be considered when selecting the limit states for calculation. If structural stiffness is significant, an analysis of the interaction between the structure and the ground should be performed to determine the distribution of actions.",
+      "key_points": [
+        "Design situations follow the general selection process of Clause 2.2",
+        "The general action list of 2.4.2(4) informs limit-state selection",
+        "Significant structural stiffness may require structure-ground interaction analysis for action distribution"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Links spread foundation design situations back to the general design-situation and action framework of Section 2."
+    },
+    {
+      "section_id": "6.4",
+      "title": "Design and construction considerations",
+      "summary": "Foundation depth selection weighs bearing stratum adequacy, seasonal clay shrink/swell and frost depths, water table/excavation issues, ground-movement/strength-reduction risks, nearby-excavation effects, service excavations, thermal transmission, scour, arid-climate volume instability, and soluble materials; frost damage is avoided via non-susceptible soil, adequate depth, or insulation; foundation width also reflects practical/economic factors; design uses a direct, indirect, or prescriptive (presumed bearing resistance) method, with 6.5/6.6 giving ULS/SLS calculation models for soil and 6.7 presumed pressures for rock.",
+      "body": "When choosing the depth of a spread foundation the following shall be considered: reaching an adequate bearing stratum; the depth above which seasonal clay shrink/swell (weather, trees, shrubs) may cause appreciable movement; the depth above which frost damage may occur; water table level and below-water-table excavation issues; possible ground movement/strength reduction from seepage, climate, or construction procedures; effects of excavation on nearby foundations/structures; anticipated service excavations near the foundation; high/low building-transmitted temperatures; scour possibility; volume-unstable soil effects from drought/rain cycles in arid climates; and soluble materials (limestone, claystone, gypsum, salt rocks). Frost damage will not occur if the soil is not frost-susceptible, the foundation is beneath frost-free depth, or frost is eliminated by insulation (EN-ISO 13793 may be applied). The design foundation width must also account for practical considerations (economic excavation, setting-out tolerances, working space, wall/column dimensions). One of three design methods shall be used: a direct method (separate analysis per limit state -- ULS calculations model the envisaged failure mechanism as closely as possible, SLS uses a settlement calculation); an indirect method using comparable experience and field/laboratory measurement results chosen relative to SLS loads to satisfy all relevant limit states; or a prescriptive method using a presumed bearing resistance (see 2.5). Calculation models for ULS/SLS design of spread foundations on soil (6.5, 6.6) should be applied; presumed bearing pressures for foundations on rock should be applied per 6.7.",
+      "key_points": [
+        "Long checklist of factors governing foundation depth selection",
+        "Frost damage avoided via non-susceptible soil, adequate depth, or insulation",
+        "Foundation width also driven by practical/economic construction considerations",
+        "Three permitted design methods: direct (per-limit-state analysis), indirect (comparable experience), or prescriptive (presumed bearing resistance)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Governs foundation depth/width selection and the choice of design method (direct/indirect/prescriptive)."
+    },
+    {
+      "section_id": "6.5.1",
+      "title": "Ultimate limit state design - Overall stability",
+      "summary": "Overall stability (with or without the foundation) must be checked near natural/man-made slopes, excavations/retaining walls, water bodies, or mine workings/buried structures, demonstrating via Section 11 principles that a ground-mass stability failure containing the foundation is sufficiently improbable.",
+      "body": "Overall stability, with or without the foundations, shall be checked particularly near or on a natural or man-made slope; near an excavation or retaining wall; near a river, canal, lake, reservoir, or sea shore; or near mine workings or buried structures. For such situations, it shall be demonstrated, using the principles of Section 11, that a stability failure of the ground mass containing the foundation is sufficiently improbable.",
+      "key_points": [
+        "Overall stability check required in specific site-context situations (slopes, excavations, water bodies, mine workings)",
+        "Verification uses the general overall-stability principles of Section 11"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Overall (global) stability check for spread foundations sited in stability-sensitive contexts."
+    },
+    {
+      "section_id": "6.5.2.1",
+      "title": "Bearing resistance - General",
+      "summary": "The fundamental ULS inequality Vd <= Rd (Eq. 6.1) must be satisfied, with Rd calculated per the general design-value framework of 2.4 and Vd including the foundation weight, backfill weight, and all (favourable or unfavourable) earth pressures plus any water pressures not caused by the foundation load itself.",
+      "body": "The following inequality shall be satisfied for all ultimate limit states: Vd <= Rd (Eq. 6.1), where Vd is the design vertical action (or action effect) on the foundation and Rd is the design bearing resistance of the ground. Rd shall be calculated according to the general design-value framework of 2.4 (using Annex A partial factors per the chosen Design Approach). Vd shall include the weight of the foundation, the weight of any backfill material, and all earth pressures (favourable or unfavourable); water pressures not caused by the foundation load shall be included as actions.",
+      "key_points": [
+        "Fundamental bearing check: Vd <= Rd (Eq. 6.1)",
+        "Rd is calculated per the Clause 2.4 design-value framework, using Annex A partial/resistance factors",
+        "Vd includes foundation weight, backfill weight, all earth pressures, and non-foundation-induced water pressures"
+      ],
+      "equations": [
+        {"id": "Eq. 6.1", "description": "Vd <= Rd -- fundamental bearing resistance ULS verification inequality.", "implemented_in": null},
+        {"id": "Table A.5 (bearing, gamma_R;v)", "description": "Partial resistance factor for bearing resistance of spread foundations (gamma_R;v), applied within the 2.4 design-value framework used to compute Rd.", "implemented_in": "geotech_references.eurocode_7_1.tables.table_a_5_spread_foundation_resistance"}
+      ],
+      "figures": [],
+      "tables": ["Table A.5 - Partial resistance factors for spread foundations"],
+      "applicability": "Core bearing-resistance ULS verification requirement for any spread foundation."
+    },
+    {
+      "section_id": "6.5.2.2",
+      "title": "Bearing resistance - Analytical method",
+      "summary": "A commonly recognised analytical method should be used (Annex D's sample method is suggested); both short- and long-term Rd should be evaluated, especially for fine-grained soils; layered/discontinuous ground requires rupture mechanisms and parameters reflecting the actual structure, with per-layer parameter determination for greatly varying layered deposits; a weak-over-strong sequence uses the weak layer's parameters, the reverse triggers a punching check; numerical methods are used where analytical methods are inapplicable, and Section 11's overall stability calculations may also apply.",
+      "body": "A commonly recognised analytical method should be used; the sample analytical calculation for bearing resistance given in Annex D may be used. An analytical evaluation of the short-term and long-term values of Rd shall be considered, particularly in fine-grained soils. Where the soil or rock mass beneath a foundation presents a definite structural pattern of layering or other discontinuities, the assumed rupture mechanism and the selected shear strength/deformation parameters shall reflect that structure. When calculating design bearing resistance on layered deposits whose properties vary greatly, design ground parameters shall be determined for each layer. Where a strong formation underlies a weak one, bearing resistance may be calculated using the weak formation's shear strength parameters; for the reverse situation (weak over strong), punching failure should be checked. Analytical methods are often inapplicable to these layered/discontinuous situations, in which case numerical procedures should determine the most unfavourable failure mechanism; the overall stability calculations of Section 11 may also be applied.",
+      "key_points": [
+        "Annex D's sample analytical bearing resistance method is the recommended calculation approach",
+        "Both short-term and long-term Rd should be evaluated for fine-grained soils",
+        "Layered ground requires per-layer parameters and rupture mechanisms reflecting the real structure",
+        "Weak-over-strong ground uses the weak layer's parameters; strong-over-weak requires a punching check",
+        "Numerical methods or Section 11 overall-stability calculations are used where analytical methods do not apply"
+      ],
+      "equations": [
+        {"id": "Eq. D.1 (Annex D.3)", "description": "Sample analytical undrained bearing resistance: R/A' = (pi+2)*cu*bc*sc*ic + q -- the short-term route referenced by 6.5.2.2(2)P for fine-grained soils.", "implemented_in": "geotech_references.eurocode_7_1.equations.undrained_bearing_resistance"},
+        {"id": "Eq. D.2 (Annex D.4)", "description": "Sample analytical drained bearing resistance: R/A' = c'*Nc*bc*sc*ic + q'*Nq*bq*sq*iq + 0.5*gamma'*B'*Ngamma*bgamma*sgamma*igamma -- the long-term route.", "implemented_in": "geotech_references.eurocode_7_1.equations.drained_bearing_resistance"},
+        {"id": "Eq. D.2 factors (Annex D.4)", "description": "Drained bearing capacity factors Nq, Nc, Ngamma as a function of phi', used within Eq. D.2.", "implemented_in": "geotech_references.eurocode_7_1.equations.bearing_capacity_factors"}
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Analytical (closed-form) bearing resistance calculation route for spread foundations."
+    },
+    {
+      "section_id": "6.5.2.3",
+      "title": "Bearing resistance - Semi-empirical method",
+      "summary": "A commonly recognised semi-empirical method should be used; the sample pressuremeter-based bearing resistance method of Annex E is recommended.",
+      "body": "A commonly recognised semi-empirical method should be used. The sample semi-empirical method for bearing resistance estimation using pressuremeter test results, given in Annex E, is recommended.",
+      "key_points": [
+        "Semi-empirical bearing resistance route uses field test correlations (e.g. pressuremeter)",
+        "Annex E's pressuremeter-based method is the recommended sample approach"
+      ],
+      "equations": [
+        {"id": "Annex E", "description": "Sample semi-empirical pressuremeter bearing resistance method, Rd/A' = sigma_v0 + k*p*le.", "implemented_in": "geotech_references.eurocode_7_1.equations.pressuremeter_bearing_resistance"}
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Semi-empirical bearing resistance calculation route based on in-situ test correlations."
+    },
+    {
+      "section_id": "6.5.2.4",
+      "title": "Bearing resistance - Prescriptive method using presumed bearing resistance",
+      "summary": "A commonly recognised prescriptive method based on presumed bearing resistance should be used; Annex G's sample method for spread foundations on rock is recommended, with the design result evaluated against comparable experience when applied.",
+      "body": "A commonly recognised prescriptive method based on presumed bearing resistance should be used. The sample method for deriving presumed bearing resistance for spread foundations on rock, given in Annex G, is recommended; when such a method is applied, the design result should be evaluated on the basis of comparable experience.",
+      "key_points": [
+        "Prescriptive bearing resistance route uses tabulated/presumed values rather than calculation",
+        "Annex G's rock presumed-bearing-resistance method is the recommended sample approach",
+        "Results from prescriptive methods should be cross-checked against comparable experience"
+      ],
+      "equations": [
+        {"id": "Table G.1 (Annex G)", "description": "Grouping of weak and broken rocks for deriving presumed bearing resistance for spread foundations on rock, used with the Annex G / Figure G.1 nomograph.", "implemented_in": "geotech_references.eurocode_7_1.tables.table_g_1_rock_group"}
+      ],
+      "figures": ["Figure G.1 - Presumed bearing resistance for square pad foundations bearing on rock"],
+      "tables": ["Table G.1 - Grouping of weak and broken rocks"],
+      "applicability": "Prescriptive bearing resistance route, primarily for spread foundations on rock."
+    },
+    {
+      "section_id": "6.5.3",
+      "title": "Sliding resistance",
+      "summary": "Where loading is not normal to the base, foundations are checked against sliding via Hd <= Rd + Rp;d (Eq. 6.2), with Hd including design active earth forces and Rd per 2.4; Rd/Rp;d selection reflects anticipated movement and structure life. Drained Rd factors ground properties or resistance (Eq. 6.3a/b), using delta_d = phi'_cv;d (cast-in-situ) or (2/3)*phi'_cv;d (smooth precast), neglecting c'; undrained Rd similarly factors properties or resistance (Eq. 6.4a/b); an additional check (Eq. 6.5) applies where water/air can reach an undrained clay interface.",
+      "body": "Where the loading is not normal to the foundation base, foundations shall be checked against failure by sliding on the base. The following inequality shall be satisfied: Hd <= Rd + Rp;d (Eq. 6.2), where Hd is the design horizontal action, Rd is the design sliding resistance on the base, and Rp;d is any design passive resistance mobilised in front of the foundation. Hd shall include the design values of any active earth forces imposed on the foundation; Rd shall be calculated per 2.4. The values of Rd and Rp;d should be related to the scale of movement anticipated, considering post-peak behaviour for large movements, with Rp;d reflecting the anticipated structure life. For foundations within the zone of seasonal clay movement, the possibility of the clay shrinking away from vertical faces shall be considered, as shall the possibility that soil in front of the foundation may be removed by erosion or human activity. For drained conditions, Rd shall be calculated by factoring ground properties (Eq. 6.3a) or ground resistance (Eq. 6.3b); where the effects of actions are factored, the action partial factor is 1.0 and Vd = Vk in Eq. 6.3b. The design friction angle delta_d may be taken equal to the design effective critical-state angle phi'_cv;d for cast-in-situ concrete foundations, or (2/3)*phi'_cv;d for smooth precast foundations; any effective cohesion c' should be neglected. In determining V'd (effective normal force), account shall be taken of whether Hd and Vd are dependent or independent actions. For undrained conditions, Rd shall similarly be calculated by factoring ground properties or resistance (Eq. 6.4a/b). If water or air can reach the interface between the foundation and an undrained clay subgrade, an additional check (Eq. 6.5) shall be made; this requirement may only be disregarded where suction prevents gap formation in areas with no positive bearing pressure.",
+      "key_points": [
+        "Sliding check: Hd <= Rd + Rp;d (Eq. 6.2)",
+        "Rd/Rp;d selection reflects anticipated movement scale and structure life",
+        "Drained sliding resistance uses delta_d = phi'_cv;d (cast-in-situ) or (2/3)phi'_cv;d (smooth precast); c' neglected (Eq. 6.3a/b)",
+        "Undrained sliding resistance factors properties or resistance (Eq. 6.4a/b)",
+        "Additional check (Eq. 6.5) required where water/air can reach an undrained clay interface, unless suction prevents gap formation"
+      ],
+      "equations": [
+        {"id": "Eq. 6.2", "description": "Hd <= Rd + Rp;d -- sliding resistance ULS verification inequality.", "implemented_in": null},
+        {"id": "Eq. 6.3a", "description": "Drained sliding resistance, factoring ground properties (tan delta_d from phi'_cv;d).", "implemented_in": null},
+        {"id": "Eq. 6.3b", "description": "Drained sliding resistance, factoring ground resistance directly.", "implemented_in": null},
+        {"id": "Eq. 6.4a", "description": "Undrained sliding resistance, factoring ground properties (cu-based).", "implemented_in": null},
+        {"id": "Eq. 6.4b", "description": "Undrained sliding resistance, factoring ground resistance directly.", "implemented_in": null},
+        {"id": "Eq. 6.5", "description": "Additional check where water/air can reach an undrained clay foundation interface.", "implemented_in": null},
+        {"id": "Table A.5 (sliding, gamma_R;h)", "description": "Partial resistance factor for sliding resistance of spread foundations (gamma_R;h), applied within the 2.4 design-value framework used to compute Rd.", "implemented_in": "geotech_references.eurocode_7_1.tables.table_a_5_spread_foundation_resistance"}
+      ],
+      "figures": [],
+      "tables": ["Table A.5 - Partial resistance factors for spread foundations"],
+      "applicability": "Sliding resistance ULS verification for spread foundations under non-normal (inclined) loading."
+    },
+    {
+      "section_id": "6.5.4",
+      "title": "Loads with large eccentricities",
+      "summary": "Special precautions are required where load eccentricity exceeds 1/3 of a rectangular footing's width, or 0.6 of a circular footing's radius, including careful review of design action values (2.4.2) and designing the foundation edge location to account for construction tolerances (up to 0.10 m unless special care is taken).",
+      "body": "Special precautions shall be taken where the eccentricity of loading exceeds 1/3 of the width of a rectangular footing or 0.6 of the radius of a circular footing. Such precautions include careful review of the design values of actions in accordance with 2.4.2, and designing the location of the foundation edge to account for the magnitude of construction tolerances. Unless special care is taken during the works, tolerances up to 0.10 m should be considered.",
+      "key_points": [
+        "Large-eccentricity threshold: e > B/3 (rectangular) or e > 0.6r (circular)",
+        "Precautions include careful action-value review and edge-location allowance for construction tolerance",
+        "Default construction tolerance to consider: up to 0.10 m unless special care is taken"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Additional ULS precautions for spread foundations subject to highly eccentric loading."
+    },
+    {
+      "section_id": "6.5.5",
+      "title": "Structural failure due to foundation movement",
+      "summary": "Differential vertical/horizontal foundation displacements must be shown not to cause an ULS in the supported structure; a presumed bearing pressure may be adopted (2.5) if displacements will not cause a structural ULS, and potential differential heave in swelling ground must be assessed with the foundation/structure designed to resist or accommodate it.",
+      "body": "Differential vertical and horizontal foundation displacements shall be considered to ensure that they do not lead to an ultimate limit state occurring in the supported structure. A presumed bearing pressure may be adopted (see 2.5) provided displacements will not cause an ultimate limit state in the structure. In ground that may swell, the potential differential heave shall be assessed, and the foundations and structure designed to resist or accommodate it.",
+      "key_points": [
+        "Differential foundation movement must not trigger a structural ULS",
+        "A presumed bearing pressure approach is acceptable if it keeps displacements below the ULS threshold",
+        "Potential differential heave in swelling ground must be assessed and designed for"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Structural ULS check driven by differential foundation movement, including swelling-ground heave."
+    },
+    {
+      "section_id": "6.6.1",
+      "title": "Serviceability limit state design - General",
+      "summary": "Displacements from foundation actions (2.4.2(4)) must be accounted for, using comparable experience and calculation where necessary (always for soft clays); SLS loads are used for the displacement calculation, results are not regarded as accurate (approximate indication only); both whole-foundation and differential displacements are considered, neighbouring foundation/fill effects on ground compressibility are included, and the possible range of relative rotations is assessed against the 2.4.9 limiting values.",
+      "body": "Account shall be taken of displacements caused by actions on the foundation, such as those listed in 2.4.2(4). In assessing displacement magnitude, comparable experience (1.5.2.2) shall be used, and calculations carried out if necessary; for soft clays, settlement calculations shall always be carried out. For spread foundations on stiff/firm clays in Geotechnical Categories 2 and 3, vertical displacement (settlement) calculations should usually be undertaken, using the methods of 6.6.2. SLS design loads shall be used for foundation displacement calculations compared with serviceability criteria; settlement calculations should not be regarded as accurate -- they merely provide an approximate indication. Foundation displacements shall be considered both as whole-foundation displacement and as differential displacement between parts of the foundation. The effect of neighbouring foundations and fills on ground compressibility (via stress increase) shall be taken into account. The possible range of relative rotations of the foundation shall be assessed and compared with the limiting values of 2.4.9 (see also Annex H).",
+      "key_points": [
+        "Displacement calculations required using comparable experience and/or calculation; always for soft clays",
+        "SLS design loads are used; settlement calculation results are approximate, not exact",
+        "Both whole-foundation and differential displacement must be assessed",
+        "Neighbouring foundation/fill effects on ground compressibility must be included",
+        "Relative rotation range assessed against the 2.4.9 / Annex H limiting values"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": ["Annex H - Limiting values of structural deformation and foundation movement"],
+      "applicability": "Overarching serviceability limit state framework for spread foundation displacement."
+    },
+    {
+      "section_id": "6.6.2",
+      "title": "Serviceability limit state design - Settlement",
+      "summary": "Settlement calculations include immediate (s0), consolidation (s1), and creep (s2) components; Annex F's sample methods for s0/s1 are suggested; compressible depth is typically taken to the 20%-of-overburden stress point or roughly 1-2x foundation width; linear or non-linear ground stiffness models are used as appropriate. For clay-founded conventional structures, a bearing-capacity-to-serviceability-load ratio below 3 always triggers settlement calculation, and below 2 requires non-linear stiffness effects.",
+      "body": "Calculations of settlement shall include both immediate and delayed settlement. Three components are considered for partially/fully saturated soils: s0 (immediate settlement, from shear deformation at constant volume for fully-saturated soil, or shear deformation plus volume reduction for partially-saturated soil); s1 (settlement caused by consolidation); and s2 (settlement caused by creep). Commonly recognised methods should be used; the sample methods for evaluating s0 and s1 given in Annex F may be applied. Special consideration should be given to organic soils and soft clays, where settlement may be prolonged almost indefinitely due to creep. The compressible layer depth for settlement calculation depends on foundation size/shape, soil stiffness variation with depth, and foundation-element spacing; it may normally be taken as the depth at which the foundation-load-induced effective vertical stress is 20% of the effective overburden stress, or roughly estimated as 1 to 2 times the foundation width (reduced for lightly-loaded, wide rafts; not valid for very soft soils). Additional settlement from self-weight compaction shall be assessed, along with self-weight/flooding/vibration effects on fill and collapsible soils, and stress-change effects on crushable sands. Linear or non-linear ground stiffness models shall be adopted as appropriate. Differential settlement/relative rotation assessment shall account for load distribution and ground variability; ignoring structure stiffness tends to over-predict differential settlement, and ground-structure interaction analysis may justify reduced values, though some differential settlement normally occurs even where uniform settlement is calculated. Eccentrically loaded foundation tilting is estimated from a linear bearing pressure distribution, calculating corner-point settlements from the corner vertical stress distributions. For conventional clay-founded structures, the ratio of ground bearing capacity (at initial undrained shear strength) to applied serviceability load should be calculated (2.4.8(4)): if the ratio is below 3, settlement calculations should always be undertaken; if below 2, non-linear stiffness effects should be included.",
+      "key_points": [
+        "Three settlement components: s0 immediate, s1 consolidation, s2 creep; Annex F gives sample methods for s0/s1",
+        "Compressible depth typically taken at 20%-overburden-stress point, or roughly 1-2x foundation width",
+        "Organic soils/soft clays may show prolonged creep settlement",
+        "Differential settlement assessment accounts for load distribution, ground variability, and structure-stiffness interaction",
+        "Clay-founded structures: bearing-capacity/serviceability-load ratio < 3 triggers settlement calc; < 2 requires non-linear stiffness"
+      ],
+      "equations": [
+        {"id": "Annex F", "description": "Sample settlement evaluation methods (stress-strain method F.1, adjusted elasticity method F.2 Eq. F.1) for s0/s1.", "implemented_in": "geotech_references.eurocode_7_1.equations.adjusted_elasticity_settlement"}
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Settlement (vertical displacement) calculation methodology for spread foundations."
+    },
+    {
+      "section_id": "6.6.3",
+      "title": "Serviceability limit state design - Heave",
+      "summary": "Heave causes to distinguish are effective stress reduction, volume expansion of partly saturated soil, and constant-volume heave in fully saturated soil caused by settlement of an adjacent structure; heave calculations include both immediate and delayed components.",
+      "body": "The following causes of heave shall be distinguished: reduction of effective stress; volume expansion of partly saturated soil; and heave due to constant volume conditions in fully saturated soil, caused by settlement of an adjacent structure. Calculations of heave shall include both immediate and delayed heave.",
+      "key_points": [
+        "Three distinct heave causes to identify: effective stress reduction, partial-saturation volume expansion, adjacent-settlement-induced constant-volume heave",
+        "Heave calculations must include both immediate and delayed components"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Heave assessment for spread foundations, complementing the settlement checks of 6.6.2."
+    },
+    {
+      "section_id": "6.6.4",
+      "title": "Serviceability limit state design - Vibration analysis",
+      "summary": "Foundations for vibrating structures/loads must be designed to prevent excessive vibration-induced settlement, avoiding resonance between the dynamic load frequency and a critical foundation-ground system frequency, and avoiding liquefaction; earthquake-induced vibrations are considered per EN 1998.",
+      "body": "Foundations for structures subjected to vibrations or vibrating loads shall be designed to ensure that vibrations will not cause excessive settlements. Precautions should be taken to ensure resonance does not occur between the dynamic load frequency and a critical frequency of the foundation-ground system, and to ensure that liquefaction will not occur in the ground. Vibrations caused by earthquakes shall be considered using EN 1998.",
+      "key_points": [
+        "Vibration-induced settlement must be controlled",
+        "Resonance avoidance between dynamic load and foundation-ground system frequency is required",
+        "Liquefaction avoidance is required; earthquake vibrations follow EN 1998"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Vibration serviceability check for foundations subject to dynamic/vibrating loads, including seismic."
+    },
+    {
+      "section_id": "6.7",
+      "title": "Foundations on rock; additional design considerations",
+      "summary": "Rock-founded spread foundation design must consider rock mass deformability/strength and permissible settlement, weak layers beneath the foundation, bedding joints/discontinuities, weathering/decomposition/fracturing, and construction-induced disturbance; presumed bearing pressures (Annex G) are the normal design method, capped by concrete compressive strength for strong intact rocks, with settlement optionally assessed via comparable experience related to rock mass classification.",
+      "body": "The design of spread foundations on rock shall take account of: the deformability and strength of the rock mass and the permissible settlement of the supported structure; the presence of weak layers (e.g. solution features, fault zones) beneath the foundation; bedding joints and other discontinuities and their characteristics (filling, continuity, width, spacing); the state of weathering, decomposition, and fracturing of the rock; and disturbance of the rock's natural state from construction activities (e.g. underground works, slope excavation) near the foundation. Spread foundations on rock may normally be designed using the method of presumed bearing pressures; for strong intact igneous rocks, gneissic rocks, limestones, and sandstones, the presumed bearing pressure is limited by the compressive strength of the concrete foundation. The recommended method for deriving presumed bearing resistance on rock is given in Annex G. Foundation settlement on rock may be assessed on the basis of comparable experience related to rock mass classification.",
+      "key_points": [
+        "Rock foundation design considers rock mass deformability/strength, weak layers, discontinuities, weathering, and construction disturbance",
+        "Presumed bearing pressures (Annex G) are the normal design method for rock",
+        "For strong intact rock, presumed bearing pressure is capped by the foundation concrete's compressive strength",
+        "Settlement on rock may be assessed via comparable experience tied to rock mass classification"
+      ],
+      "equations": [
+        {"id": "Table G.1 (Annex G)", "description": "Grouping of weak and broken rocks for deriving presumed bearing resistance, per the Annex G note in 6.7(2).", "implemented_in": "geotech_references.eurocode_7_1.tables.table_g_1_rock_group"}
+      ],
+      "figures": ["Figure G.1 - Presumed bearing resistance for square pad foundations bearing on rock"],
+      "tables": ["Table G.1 - Grouping of weak and broken rocks"],
+      "applicability": "Additional design considerations specific to spread foundations bearing on rock."
+    },
+    {
+      "section_id": "6.8",
+      "title": "Structural design of spread foundations",
+      "summary": "Structural failure prevention follows 2.4.6.4; stiff-foundation bearing pressure may be assumed linear (or refined via soil-structure interaction analysis); flexible-foundation bearing pressure distribution may use a beam/raft-on-springs or continuum model; strip/raft SLS is checked with SLS loading and a deformation-consistent pressure distribution; concentrated loads may use a subgrade reaction model with linear elasticity and settlement-derived moduli (adjusted to keep computed pressures within the linear range); overall total/differential settlements follow 6.6.2, using finite element methods where ground-structure interaction dominates rather than subgrade reaction models.",
+      "body": "Structural failure of a spread foundation shall be prevented in accordance with 2.4.6.4. The bearing pressure beneath a stiff foundation may be assumed distributed linearly; a more detailed soil-structure interaction analysis may justify a more economic design. The bearing pressure distribution beneath a flexible foundation may be derived by modelling the foundation as a beam or raft on a deforming continuum or series of springs with appropriate stiffness/strength. The serviceability of strip and raft foundations shall be checked using SLS loading and a bearing pressure distribution corresponding to the deformation of the foundation and ground. For concentrated loads on a strip/raft, forces and bending moments may be derived from a subgrade reaction model using linear elasticity, with subgrade reaction moduli assessed by settlement analysis and an appropriate bearing pressure distribution estimate; moduli may be adjusted so computed pressures stay within the assumed linear range. Total and differential settlements of the structure as a whole should be calculated per 6.6.2; subgrade reaction models are often inappropriate for this purpose, and more precise methods such as finite element computations should be used where ground-structure interaction dominates.",
+      "key_points": [
+        "Structural failure prevention follows the structural design-value framework of 2.4.6.4",
+        "Stiff foundations: linear bearing pressure assumption (or refined soil-structure interaction analysis)",
+        "Flexible foundations: beam/raft-on-continuum or spring model for bearing pressure distribution",
+        "Concentrated loads: subgrade reaction model with settlement-derived, pressure-range-adjusted moduli",
+        "Whole-structure total/differential settlement: per 6.6.2, using FE methods where ground-structure interaction dominates"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Structural design (forces, moments, bearing pressure distribution) of spread foundation elements."
+    },
+    {
+      "section_id": "6.9",
+      "title": "Preparation of the subsoil",
+      "summary": "The subsoil must be prepared with great care: roots/obstacles/weak-soil pockets removed without disturbing the ground, with resulting holes filled to replicate undisturbed ground stiffness; disturbance-susceptible soils (e.g. clay) use a specified excavation sequence -- normally horizontal slices, or alternate trenches (concreted before excavating intermediate ones) where heave control is needed.",
+      "body": "The subsoil shall be prepared with great care. Roots, obstacles, and enclosures of weak soil shall be removed without disturbing the ground; any resulting holes shall be filled with soil (or other material) to replicate the stiffness of the undisturbed ground. In soils susceptible to disturbance, such as clay, the excavation sequence for a spread foundation should be specified to minimise disturbance -- usually sufficient by excavating in horizontal slices. Where heave is to be controlled, excavation should be in alternate trenches, with concrete cast in each trench before excavating the intermediate ones.",
+      "key_points": [
+        "Subsoil preparation must avoid disturbing the ground; voids from removed obstacles are backfilled to match undisturbed stiffness",
+        "Disturbance-susceptible soils (e.g. clay) use a specified, typically horizontal-slice, excavation sequence",
+        "Heave-controlled excavation uses alternate trenches, concreted before excavating intermediate trenches"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction-phase subsoil preparation requirements preceding spread foundation placement."
+    }
+  ]
+}

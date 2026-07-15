@@ -1,0 +1,242 @@
+{
+  "reference_id": "EN 1997-2:2007",
+  "reference_title": "Eurocode 7: Geotechnical design - Part 2: Ground investigation and testing",
+  "volume": null,
+  "chapter": 4,
+  "chapter_title": "Field tests in soil and rock",
+  "sections": [
+    {
+      "section_id": "4.1",
+      "title": "General",
+      "summary": "Field tests link to sampling/drilling and must be planned per geology, structure type, required parameters, and design method. Eight test types are covered: CPT, pressuremeter/dilatometer tests, SPT, dynamic probing, WST, field vane test, flat dilatometer test, and plate loading test, with Table 2.1 giving their broad applicability.",
+      "body": "When field tests are conducted, they shall be linked to sampling by excavating and drilling, to collect information on ground stratification and obtain geotechnical parameters or direct design input (see also EN 1997-1:2004, 3.3). Field tests shall be planned considering: geology/stratification of the ground; type of structure, possible foundation, and anticipated construction work; type of geotechnical parameter required; and the design method to be adopted. The tests (or combinations) should be selected from those covered in this Section, contained in the Parts of EN ISO 22476: cone penetration test; pressuremeter and dilatometer tests; standard penetration test; dynamic probing; weight sounding test; field vane test; flat dilatometer test; plate loading test. Table 2.1 gives a broad overview of test applicability in different ground conditions. Other complementary internationally recognised investigation methods (e.g. geophysical methods) may also be used.",
+      "key_points": [
+        "Field tests must be linked to sampling/drilling for stratification data plus direct geotechnical parameters",
+        "Planning considers geology, structure type/foundation/construction, required parameter type, and design method",
+        "Eight covered test types: CPT, PMT/dilatometer, SPT, dynamic probing, WST, FVT, DMT, PLT (EN ISO 22476 Parts 1-13)",
+        "Table 2.1 gives the broad applicability overview; geophysical and other recognised methods may supplement these"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Frames the planning requirements common to every field test type covered in the remainder of Section 4."
+    },
+    {
+      "section_id": "4.2",
+      "title": "General requirements",
+      "summary": "Common requirements for all field tests: programme planning must establish the expected ground profile, investigation depth, and groundwater level; execution/evaluation follow EN ISO 22476-1 to -9, -12, -13; when using Annexes D-K correlations, ground-condition compatibility (soil type, uniformity coefficient, consistency index, etc.) with the correlation's boundary conditions must be confirmed, ideally with local experience.",
+      "body": "In addition to the recommendations in 2.3 and requirements in 2.4/4.1(2), planning a specific test programme shall establish: the ground profile to be expected; the desired total depth of investigation; and elevation of ground surface and (if applicable) groundwater level. Selection of the field test type and equipment shall aim for the best technical and economical solution for the intended purpose (see also Table 2.1 and Annex B.2). For execution, equipment and procedures shall correspond to EN ISO 22476-1 to -9, -12 and -13 (further procedural information for the weight sounding test and flat dilatometer test is in CEN ISO/TS 22476-10 and -11 respectively). If ongoing investigation results do not correspond to the initial site/aim information (Section 2), additional measures (additional tests, changing test methods) shall be considered; if the desired investigation depth is not reached, the client should be informed immediately. For evaluation, any additional ground-condition information shall be considered, and results from Section 3 sampling/excavation shall be available and used; possible geotechnical and equipment influences on measured parameters shall be considered, with attention paid to the loading axis relative to any anisotropy. If correlations are used to derive geotechnical parameters/coefficients, their suitability shall be considered for each particular project; when using Annexes D to K, the ground conditions of the site under investigation (soil type, uniformity coefficient, consistency index, etc.) must be compatible with the boundary conditions given for the correlation, confirmed by local experience where available. Annexes D to K give examples of correlations for establishing derived values and applying test values to design methods; X.3 contains further examples of correlations and direct-use applications.",
+      "key_points": [
+        "Test programme planning establishes the expected ground profile, target depth, and groundwater level",
+        "Execution/evaluation follow EN ISO 22476-1 to -9, -12, -13 (plus CEN ISO/TS 22476-10/-11 for WST/DMT procedural detail)",
+        "Correlations from Annexes D-K require confirming the site's soil type/Cu/Ic etc. match the correlation's stated boundary conditions",
+        "Local experience should confirm correlation suitability wherever available"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Cross-cutting planning, execution, and evaluation requirements that apply to every field test type in Section 4."
+    },
+    {
+      "section_id": "4.3",
+      "title": "Cone penetration and piezocone penetration tests (CPT, CPTU, CPTM)",
+      "summary": "The CPT/CPTU measures cone resistance qc (and pore pressure for CPTU) as a cone penetrometer is pushed at constant rate; results derive cu (Eq 4.1/4.2), phi', E', pile capacity, and foundation dimensions. Annexes D.1-D.7 give worked correlation examples for quartz/feldspar sands and coarse soils.",
+      "body": "The CPT objective is to determine soil/soft-rock resistance to cone penetration and local sleeve friction; the cone penetrometer is pushed vertically at a constant rate, measuring qc and (if a friction sleeve is present) local friction. Electrical CPTs measure all quantities via sensors in the penetrometer; mechanical CPTs measure remotely. The CPTU (piezocone) is an electrical CPT with additional instrumentation measuring pore water pressure during penetration at the cone base; CPTU results are used mainly for soil profiling (with sampling/other field tests) and for strength/deformation parameters and direct design input in coarse and fine soil, including pile length/resistance and shallow foundation dimensions. Testing follows EN ISO 22476-1 (electrical CPT/CPTU) or EN ISO 22476-12 (CPTM); the test programme decides the CPT type and, if applicable, pore-pressure dissipation-test depth/duration. Evaluation uses the field/test reports per those standards; in clays, the pore-pressure-corrected resistance qt should be used. For bearing resistance/settlement of spread foundations, a semi-empirical or analytical method (EN 1997-1:2004 Annex D or F) is used, taking all method features into account. If the sample analytical method of EN 1997-1:2004 Annex D is used, cu for fine soil may be determined from CPT via Eq 4.1 (cu = (qc-sigma_v0)/Nk) or from CPTU via Eq 4.2 (cu = (qt-sigma_v0)/Nkt), with Nk/Nkt from local experience or reliable correlations; phi' may be determined from qc on the basis of local experience, taking depth effects into account when relevant (D.1 gives example phi'/E' ranges for quartz/feldspar sands; D.2 gives a conservative phi'-from-qc correlation for poorly-graded sands). For settlement by an adjusted elasticity method, E' from qc depends on whether a semi-empirical (D.3, coarse soil) or theoretical elastic method (D.1 example values) is used; correlations between Eoed and qc (Eq 4.3: Eoed = alpha*qc, example alpha values in D.4) may also be used, including the stress-dependent oedometer modulus (D.5) for a theoretical elastic method (EN 1997-1:2004 Annex F). For pile bearing resistance, locally established correlations between static load test results and CPT results are used (D.6 gives an example for coarse soil; D.7 gives an example method for the compressive resistance of a single pile from qc, the Dutch NEN 6743-1 method).",
+      "key_points": [
+        "CPT measures qc (and sleeve friction); CPTU adds pore pressure measurement, giving qt after correction",
+        "Eq 4.1: cu = (qc - sigma_v0)/Nk (CPT); Eq 4.2: cu = (qt - sigma_v0)/Nkt (CPTU) - see equations.equation_4_1_cu_from_cpt / equation_4_2_cu_from_cptu",
+        "Eq 4.3: Eoed = alpha * qc, with example alpha values by soil type in Annex D.4 (table_d2_alpha_oedometer)",
+        "Annex D.1 gives example phi'/E' ranges vs. qc for quartz/feldspar sands (table_d1_phi_e_from_qc); D.2 gives phi'=13.5*lg(qc)+23 for poorly-graded sands (equation_d2_phi_from_qc)",
+        "Annex D.3 gives the Schmertmann semi-empirical settlement method (E'=2.5qc axisymmetric / 3.5qc plane strain)",
+        "Annex D.6/D.7 give the Dutch (NEN 6743-1) pile base/shaft resistance method from qc (tables D.3-D.6)"
+      ],
+      "equations": [
+        {"id": "Eq. 4.1", "description": "cu = (qc - sigma_v0) / Nk", "implemented_in": "geotech_references.eurocode_7_2.equations.equation_4_1_cu_from_cpt"},
+        {"id": "Eq. 4.2", "description": "cu = (qt - sigma_v0) / Nkt", "implemented_in": "geotech_references.eurocode_7_2.equations.equation_4_2_cu_from_cptu"},
+        {"id": "Eq. 4.3", "description": "Eoed = alpha * qc", "implemented_in": "geotech_references.eurocode_7_2.equations.equation_4_3_oedometer_modulus_from_qc"}
+      ],
+      "figures": [
+        "Figure D.1: Strain influence factor diagrams (Schmertmann method)",
+        "Figure D.2: Explanation of qc;I, qc;II and qc;III (Dutch pile method)",
+        "Figure D.3: Pile foot shape factor (beta)"
+      ],
+      "tables": [
+        "Table D.1: phi' and E' from qc for quartz/feldspar sands",
+        "Table D.2: correlation factor alpha for Eoed=alpha*qc by soil type",
+        "Table D.3/D.4: unit base/shaft resistance of cast in-situ piles from qc",
+        "Table D.5/D.6: alpha_p/alpha_s pile factors for sand and clay/silt/peat"
+      ],
+      "applicability": "CPT/CPTU/CPTM test procedure, evaluation, and the full set of Annex D derived-value correlations for bearing resistance, settlement, and pile capacity."
+    },
+    {
+      "section_id": "4.4",
+      "title": "Pressuremeter tests (PMT)",
+      "summary": "The PMT measures in-situ soil/soft-rock deformation from radial expansion of a flexible membrane; four apparatus types (PBP, MPM, SBP, FDP) are covered. Annex E gives worked Menard-pressuremeter examples for bearing resistance (E.1), settlement (E.2), and pile resistance (E.3) of spread foundations and piles.",
+      "body": "The PMT objective is to measure in-situ deformation of soil/soft rock from expansion of a cylindrical flexible membrane under pressure; a probe is inserted (pre-formed borehole, self-boring, or full-displacement pushing) and the membrane expanded, recording pressure/expansion readings to the device's maximum. The test derives strength/deformation parameters or specific pressuremeter parameters, and stress-strain curves in fine soil/soft rock. Four apparatus types with corresponding standards: pre-bored pressuremeters (PBP, e.g. flexible dilatometer test, EN ISO 22476-5); the Menard pressuremeter (MPM, a specific PBP form, EN ISO 22476-4); self-boring pressuremeter (SBP, EN ISO 22476-6); full-displacement pressuremeter (FDP, EN ISO 22476-8). Two basic procedures: obtaining pressuremeter modulus EM and limit pressure PLM for Menard-formulated design procedures, or obtaining other stiffness/strength parameters. Evaluation corrects applied pressure for membrane stiffness/compression/thinning as needed and (for volume-displacement types like MPM) for system expansion; Table 4.1 lists additional recommended plots (cavity strain or log/ln-cavity-strain vs. applied pressure, by probe/ground type). For bearing resistance, a semi-empirical method (Menard, EN 1997-1:2004 Annex E; worked example E.1 using bearing factor k from soil/PLM category, Table E.1) or analytical method (empirical/theoretical strength, EN 1997-1:2004 Annex D; SBP theoretical, PBP/FDP empirical, local-experience-based) is used. For settlement, a semi-empirical method from MPM results (worked example E.2, using shape coefficients lambda_c/lambda_l from Table E.2 and rheological factor alpha from Table E.3) or an analytical/theoretical method (EN 1997-1:2004 Annex F, local-experience-based stiffness) is used. For pile bearing resistance, ultimate compressive resistance may be derived directly from stress-controlled tests (worked example E.3, using compression resistance factor k from Table E.4 and the unit shaft resistance design curves of Figure E.1/Table E.5) or, indirectly, via an analytical method for base/shaft resistance based on local experience.",
+      "key_points": [
+        "Four PMT apparatus types: PBP, MPM (Menard), SBP, FDP, each with its own EN ISO 22476 part",
+        "Two output paths: EM/PLM (Menard design procedures) or other stiffness/strength parameters",
+        "Annex E.1 bearing resistance: R uses bearing factor k from Table E.1 (soil category x PLM category, function of B/L and De/B) - table_e1_pmt_bearing_factor_k",
+        "Annex E.2 settlement: shape coefficients lambda_c/lambda_l (Table E.2) and rheological factor alpha (Table E.3) - table_e2_pmt_shape_coefficients, table_e3_pmt_rheological_factor",
+        "Annex E.3 pile resistance: compression factor k from Table E.4 (soil/PLM category x bored/displacement pile type) - table_e4_pmt_pile_compression_factor"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure E.1: Unit shaft resistance for axially loaded piles (design curves 1-7, read with Table E.5)"
+      ],
+      "tables": [
+        "Table 4.1: A list of additional plots (probe type x ground type)",
+        "Table E.1: bearing resistance factor k",
+        "Table E.2: shape coefficients lambda_c, lambda_l",
+        "Table E.3: rheological factor alpha",
+        "Table E.4: compression resistance factor k for piles",
+        "Table E.5: selection of design curves for unit shaft resistance"
+      ],
+      "applicability": "PMT/dilatometer test procedure, evaluation, and the Annex E Menard-pressuremeter derived-value correlations for bearing resistance, settlement, and pile capacity."
+    },
+    {
+      "section_id": "4.5",
+      "title": "Flexible dilatometer test (FDT)",
+      "summary": "The FDT measures in-situ rock (RDT) or soil (SDT) deformability from radial borehole expansion under known pressure via a cylindrical probe; used mainly for deformation/creep in intact rock and rapid index logging of poor-recovery boreholes. Poisson's ratio must be known or assumed for interpretation; E may be taken equal to the dilatometer modulus EFDT for a linear-elastic isotropic assumption.",
+      "body": "The FDT objective is to measure in-situ deformability of rock (rock dilatometer test, RDT) and soil (soil dilatometer test, SDT) from radial expansion of a borehole section under known uniform radial pressure via a cylindrical probe with an outer expandable flexible membrane, at selected depths or semi-continuously. RDT is used mainly in soft/hard rock formations, SDT primarily in soft-to-stiff soil, to profile deformability variation with depth. Results derive in-situ deformation and creep properties in intact rock; in fragile/clayey rock or fractured/closely-jointed formations with poor core recovery, the FDT may be used for rapid index logging and relative deformability comparisons between strata. Testing conforms to EN ISO 22476-5. Interpretation requires the soil/rock Poisson's ratio to be known or assumed. Results may check the serviceability limit state of spread foundations via deformation analysis, taking E equal to the dilatometer modulus EFDT on the assumption of linear-elastic, isotropic behaviour; shear modulus for indirect/analytical design is derived from the dilatometer curve using methods relevant to the particular test type.",
+      "key_points": [
+        "FDT measures deformability via radial borehole expansion; RDT for rock, SDT for soil",
+        "Testing conforms to EN ISO 22476-5",
+        "Interpretation requires an assumed/known Poisson's ratio",
+        "E may be taken equal to the dilatometer modulus EFDT (linear-elastic, isotropic assumption) for serviceability-limit-state deformation checks"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "FDT (RDT/SDT) test procedure and use for deformation-based serviceability checks of foundations on soil or rock."
+    },
+    {
+      "section_id": "4.6",
+      "title": "Standard penetration test (SPT)",
+      "summary": "SPT drives a split-barrel sampler with a 63.5 kg hammer falling 760 mm, recording blows N per 300 mm penetration; used mainly for coarse-soil strength/deformation properties. Annex F gives phi'/density-index (F.1/F.2) and settlement (F.3, Burland & Burbridge) correlations; energy ratio Er must be known for quantitative use, and ageing/over-consolidation effects increase blow counts for the same density index.",
+      "body": "The SPT objective is to determine soil resistance at a borehole base to dynamic penetration of a split-barrel sampler (or solid cone) and to obtain disturbed samples for identification. The sampler is driven by a 63.5 kg hammer falling 760 mm onto an anvil/drive head; N (blows for 300 mm penetration, after seating drive) is the penetration resistance. Used mainly for coarse-soil strength/deformation properties, though valuable additional data can be obtained in other soil types. Testing follows EN ISO 22476-3; existing SPT-based foundation design methods are empirical, so appropriate correction factors (equipment-related) shall be applied. The energy ratio Er = Emeas/Etheor must be known for quantitative evaluation/comparison; N shall be corrected accordingly. In sands, energy losses from rod length and effective overburden pressure should be accounted for (EN ISO 22476-3:2005, A.2/A.4); other corrections cover liners (A.3) or solid-cone use. For sands, wide empirical experience supports quantitative evaluation of density index, bearing resistance, and settlement (results are a rough approximation, mostly from uncorrected/partly-corrected values); for clayey soil, use is generally restricted to qualitative soil-profile/strength estimates unless well-known local conditions support quantitative use with direct correlation to other tests. For bearing resistance in sand, phi' may be derived empirically from direct SPT correlations or via density index (F.1 gives (N1)60-vs-ID correlation, Table F.1; F.2 gives ID-vs-phi' correlation, Table F.3); ageing (Table F.2) and over-consolidation both increase blow count for a given ID and sigma'v0, so should be accounted for (F.1 gives sample correlations for both effects; conservative phi' results if not corrected). For settlement in sand, a purely elastic method may derive E' from N60 empirically, or via density index; direct methods compare N-values with PLT results or measured settlement records (F.3 gives the Burland & Burbridge (1985) sample method). For pile bearing resistance in sand, locally established correlations between static pile load test results and SPT results (per EN 1997-1:2004, 7.6.2.3/7.6.3.3) shall be used.",
+      "key_points": [
+        "SPT: 63.5 kg hammer, 760 mm drop, N = blows per 300 mm penetration; EN ISO 22476-3",
+        "Energy ratio Er = Emeas/Etheor must be known and N corrected accordingly for quantitative use",
+        "Table F.1: (N1)60 -> density index ID correlation (table_f1_density_index_from_n160); Table F.2: ageing effect on (N1)60/ID^2 (table_f2_ageing_factor)",
+        "Table F.3: ID -> phi' for silica sands, by grain size and grading (table_f3_phi_from_density_index)",
+        "F.3 Burland & Burbridge (1985) settlement method: Icc=1.71/N^1.4 (equation_burland_burbridge_icc), settlement si and shape factor fs (equation_burland_burbridge_settlement, equation_burland_burbridge_shape_factor)",
+        "Ageing and over-consolidation both increase blow count for a given density index/overburden - correct for both when known"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure F... (none numbered separately from the body; correlations are tabulated)"
+      ],
+      "tables": [
+        "Table F.1: correlation between normalised blow count (N1)60 and density index ID",
+        "Table F.2: effect of ageing in normally consolidated fine sands",
+        "Table F.3: correlation between density index ID and phi' of silica sands"
+      ],
+      "applicability": "SPT test procedure, evaluation, and the Annex F derived-value correlations for phi', settlement, and pile bearing resistance in sand."
+    },
+    {
+      "section_id": "4.7",
+      "title": "Dynamic probing tests (DP)",
+      "summary": "DP drives a cone with a falling hammer, recording blows per defined distance continuously with depth (no samples recovered); five procedures (DPL, DPM, DPH, DPSH-A, DPSH-B) span light to super-heavy mass ranges. Annex G gives density-index (G.1), phi'-vs-ID (G.2), oedometer-modulus (G.3), and DP-to-CPT/DP-to-DP (G.4/G.5) correlations, all flagged as conservative estimates.",
+      "body": "The DP objective is to determine soil/soft-rock resistance in-situ to dynamic cone penetration; a hammer of given mass/falling height drives the cone, with penetration resistance defined as blows over a defined distance, recorded continuously with depth; no samples are recovered. Results are used for soil profiling (with sampling/other tests) or relative comparison with other in-situ tests, for coarse (and possibly fine) soil strength/deformation properties via correlations, and to locate very dense layers (e.g. for end-bearing pile length). Testing follows EN ISO 22476-2, which defines five procedures by mass range/work-per-blow: DPL (dynamic probing light, blow count N10L), DPM (medium, N10M), DPH (heavy to very heavy, N10H), DPSH-A and DPSH-B (super heavy, closely related to SPT dimensions, blow count N10 or N20). Deviations (falling height/hammer mass, cone dimensions e.g. 10 cm2 vs 15 cm2 for DPM) shall be justified and their influence commented upon; lighter equipment may be used where accessibility is difficult. For coarse soil, correlations with geotechnical parameters and other field tests may be used quantitatively for foundation design provided rod friction is negligible or corrected; for fine soil, quantitative use is restricted to well-known local conditions with specific correlations, with rod skin friction a particular concern. Several established correlations exist between different DP tests and other tests/parameters, but where rod friction has been eliminated/corrected without measuring actual transmitted energy, they are not generally valid (G.1 example correlations flagged accordingly). If an analytical bearing-resistance method is used, phi' of coarse soil may be determined from blow count and corresponding density index via correlations (G.1 gives ID-from-N10 formulas by grading/groundwater/probe type; G.2/Table G.1 gives phi'-from-ID correlations, both should be considered conservative estimates). If a theoretical elastic settlement method is used, Eoed derived from blow count may be used (G.3 gives stiffness-coefficient w1 formulas by soil type/probe type, for EN 1997-1:2004 Annex F methods). If well-established qc-versus-static-pile-load-test correlations are used for pile design in coarse soil, qc may be estimated from N10/N20 (G.4 gives DPH-to-qc correlations, Figure G.1; G.5 gives correlations between different DP test results).",
+      "key_points": [
+        "DP: falling-hammer-driven cone, blow count over a defined distance, continuous record, no samples recovered",
+        "Five procedures (EN ISO 22476-2): DPL, DPM, DPH, DPSH-A, DPSH-B, by mass/work-per-blow range",
+        "G.1: ID from N10 by grading (poorly/well-graded), groundwater position, and probe type (equation_g1_density_index_from_dp)",
+        "G.2/Table G.1: phi' from ID and grading/Cu for coarse soil (table_g1_phi_from_density_index_dp)",
+        "G.3: stiffness coefficient w1 from N10 for Eoed, by soil type and probe type (equation_g3_stiffness_coefficient_from_dp)",
+        "G.4/G.5: qc estimated from DPH blow count; correlations between different DP test results - both chart/example-based, flagged conservative"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure G.1: correlation between the number of blows N10H and cone penetration resistance qc"
+      ],
+      "tables": [
+        "Table G.1: phi' of coarse soil as a function of density index ID and uniformity coefficient Cu"
+      ],
+      "applicability": "DP (DPL/DPM/DPH/DPSH) test procedure, evaluation, and the Annex G derived-value correlations for phi', oedometer modulus, and qc estimation."
+    },
+    {
+      "section_id": "4.8",
+      "title": "Weight sounding test (WST)",
+      "summary": "WST determines soil resistance to static penetration (resistance < 1 kN) or rotational penetration (half-turns per 0.2 m, resistance > 1 kN) of a screw-shaped point, giving a continuous soil profile with no samples recovered. Annex H gives an example phi'/E' correlation for quartz/feldspar sands (Swedish experience); WST is also usable for density index, undrained shear strength (with sensitivity/water-condition caveats), and locating dense end-bearing layers.",
+      "body": "The WST objective is to determine in-situ soil resistance to static and/or rotational penetration of a screw-shaped point. The test is made as static sounding in soft soil (resistance < 1 kN); if resistance exceeds 1 kN, the penetrometer is rotated manually or mechanically and the number of half-turns per depth increment recorded; a continuous record is provided with depth, no samples recovered. Primarily used to give a continuous soil profile and layer-sequence indication (good penetrability even in stiff clay and dense sand), to estimate density index of coarse soil, and to locate very dense layers (e.g. end-bearing pile length). Testing follows a recognised method (further procedure/presentation/evaluation guidance in CEN ISO/TS 22476-10); deviations shall be justified and commented upon. Evaluation notes: resistance variation with depth reflects layer sequence; in very soft-to-firm clay, resistance is often <1 kN or approximately constant and <10 half-turns per 0.2 m (clay sensitivity affects resistance, so strength cannot be determined directly without site-specific calibration); loose silt/sand gives low, roughly constant resistance; medium-dense-to-dense silt/fine sand gives higher (10-30 half-turns per 0.2 m), roughly constant-with-depth resistance; sand/gravel resistance variation increases with grain size; in silty sand/coarse gravel, high resistance does not always correspond to higher density/strength/deformation properties. For bearing resistance/settlement of spread foundations, an analytical method is used (EN 1997-1:2004 Annex D for bearing, Annex F for an adjusted elasticity settlement method); phi' may be determined from correlations with WST resistance based on comparable experience relevant to the design situation (Annex H gives an example for quartz/feldspar sands in a European climate: if only WST results are available, use the lower value of each interval, i.e. conservative); E' and phi' correlations for quartz/feldspar sands are also given in Annex H. In coarse soil, WST resistance may be used for direct estimation of spread-foundation and pile bearing capacity; in fine soil, it may estimate undrained shear strength based on local experience, considering soil sensitivity and borehole water conditions.",
+      "key_points": [
+        "WST: static (resistance <1 kN) or rotational (half-turns per 0.2 m, resistance >1 kN) penetration of a screw point; continuous record, no samples",
+        "Good penetrability even in stiff clay and dense sand; used for soil profiling, density index of coarse soil, and locating dense end-bearing layers",
+        "Annex H (Table H.1): phi'/E' from WST resistance for quartz/feldspar sands, Swedish experience - conservative (lower interval value) if WST is the only test (table_h1_phi_e_from_wst)",
+        "Clay resistance is sensitivity-dependent; strength needs site-specific calibration, not direct read-off"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table H.1: phi' and E' for quartz/feldspar sands from WST resistance (Swedish experience)"
+      ],
+      "applicability": "WST test procedure, evaluation, and the Annex H derived-value correlation, plus general guidance on WST use in coarse and fine soil."
+    },
+    {
+      "section_id": "4.9",
+      "title": "Field vane test (FVT)",
+      "summary": "FVT measures rotational resistance of a four-bladed vane pushed into soft fine soil, giving cu (via correction factor mu applied to the raw vane strength cfv, Eq 4.4) and sensitivity from the remoulded strength after extensive rotation. Annex I gives four families of correction-factor procedures based on Atterberg limits and/or state of consolidation.",
+      "body": "The FVT objective is to measure in-situ rotational resistance of a vane installed in soft fine soil, for undrained shear strength and sensitivity determination. A rectangular vane (four plates at 90 degrees) is pushed to the desired depth and rotated; the test may also be used for undrained shear strength in stiff clays, silts, and glacial clays, though reliability varies by soil type. After extensive rotation thoroughly remoulding the soil along the failure surface, the remoulded shear strength is measured and sensitivity calculated. Testing follows EN ISO 22476-9. Evaluation uses field/test reports per that standard; results from other field tests (SPT, WST, DP), if conducted, should be considered. Where the bearing resistance of a spread foundation, ultimate pile resistance, or slope stability is derived from vane results, an analytical design method is used. To obtain derived cu values, the measured result (cfv) is corrected per Eq 4.4: cu = mu * cfv; the correction factor mu is determined from local experience, usually related to liquid limit, plasticity index, effective vertical stress, or degree of consolidation (Annex I gives example correction-factor procedures): I.2 links mu to liquid limit/plasticity index for soft normally-consolidated clays (Figure I.1; a correction factor above 1.2 should not be used without supplementary support; fissured clays may need factors as low as 0.3, better assessed by other methods e.g. PLT); I.3 links mu to plasticity index and effective vertical stress for over-consolidated clays (Figure I.2); I.4 first estimates whether a clay is normally- or over-consolidated from the cfv/sigma'vo-vs-Ip relationship (Figure I.3, 'young'/'aged' curves), then applies an NC or OC correction curve (Figure I.4); I.5 gives closed-form equations: mu = (0.43/wL)^0.45, floored at 0.5, for normally-consolidated/slightly-over-consolidated clays; for OCR > 1.3, mu = (0.43/wL)^0.45 * (Roc/1.3)^-0.15; if OCR is unknown it may be estimated from cfv = 0.45*wL*sigma'p (Hansbo 1957), giving mu = (0.43/wL)^0.45 * (cfv/(0.585*wL*sigma'v0))^-0.15.",
+      "key_points": [
+        "FVT: four-bladed vane rotated in soft fine soil; also usable in stiff clay/silt/glacial clay with variable reliability",
+        "Eq 4.4: cu = mu * cfv (equations.equation_4_4_cu_from_fvt); mu from local experience, related to wL/Ip/sigma'v0/OCR",
+        "Extensive rotation gives remoulded strength and hence sensitivity",
+        "Annex I.5 closed-form mu formulas: (0.43/wL)^0.45 (NC/slightly OC, floor 0.5); with Roc or with cfv/sigma'v0-estimated OCR correction (equations.equation_i5_fvt_correction_factor)",
+        "Annex I.2-I.4 give graphical mu-determination methods from wL, Ip, sigma'v0, and NC/OC classification (Figures I.1-I.4)"
+      ],
+      "equations": [
+        {"id": "Eq. 4.4", "description": "cu = mu * cfv", "implemented_in": "geotech_references.eurocode_7_2.equations.equation_4_4_cu_from_fvt"}
+      ],
+      "figures": [
+        "Figure I.1: correction factors for cfv based on liquid limit, normally consolidated clays",
+        "Figure I.2: correction factors based on plasticity index and effective vertical stress, over-consolidated clays",
+        "Figure I.3: diagram for separating normally-consolidated and over-consolidated clays",
+        "Figure I.4: correction factors for normally-consolidated and over-consolidated clays"
+      ],
+      "tables": [],
+      "applicability": "FVT test procedure, evaluation, and the full set of Annex I correction-factor methods for deriving cu from raw vane strength."
+    },
+    {
+      "section_id": "4.10",
+      "title": "Flat dilatometer test (DMT)",
+      "summary": "DMT expands a thin steel membrane on a blade-shaped probe, measuring lift-off and 1.10 mm expansion pressures at selected depths or semi-continuously; used for stratigraphy, in-situ stress state, deformation, and shear strength in clay/silt/sand. Eq 4.5 gives cu for non-cemented clay (IDMT<0.8); Annex J gives the Eoed-from-EDMT correlation (RM factor).",
+      "body": "The DMT objective is to determine in-situ strength and deformation properties by expanding a thin circular steel membrane mounted flush on a blade-shaped steel probe, inserted vertically. The test measures the pressure when the membrane is flush and just begins to move, and when its centre displacement reaches 1.10 mm into the soil, at selected depths or semi-continuously. Results give information on soil stratigraphy, in-situ stress state, deformation properties, and shear strength; the DMT should primarily be used in clays, silts, and sands where particles are small compared to the membrane size. Testing follows a recognised method (further detail in CEN ISO/TS 22476-11); deviations shall be justified and commented upon. For bearing resistance, an analytical method is used (EN 1997-1:2004 Annex D); for non-cemented clays with DMT material index IDMT < 0.8, cu may be determined via Eq 4.5: cu = 0.22*sigma'v0*(0.5*KDMT)^1.25, or another well-documented local-experience-based relationship. For settlement via an adjusted elasticity method, the one-dimensional tangent modulus Eoed from DMT results (Annex J) may be used; in fine soil this should only be applied when the sum of effective overburden pressure and foundation-induced stress increase is less than the pre-consolidation pressure (an example settlement determination is in Annex J... actually cross-referenced as 'Annex J' throughout, single-clause annex). For pile bearing resistance from DMT results, an analytical method deriving base/shaft resistance values shall be applied.",
+      "key_points": [
+        "DMT: thin steel membrane on a blade probe; measures lift-off pressure and pressure at 1.10 mm expansion",
+        "Primarily used in clay, silt, and sand with particles small relative to the membrane",
+        "Eq 4.5: cu = 0.22*sigma'v0*(0.5*KDMT)^1.25 for non-cemented clay (IDMT<0.8) - equations.equation_4_5_cu_from_dmt",
+        "Annex J: Eoed = RM * EDMT, with RM estimated from IDMT and KDMT via a piecewise formula (floored at 0.85) - equations.equation_j_dmt_oedometer_modulus",
+        "For settlement, the adjusted-elasticity fine-soil application is limited to stresses below the pre-consolidation pressure"
+      ],
+      "equations": [
+        {"id": "Eq. 4.5", "description": "cu = 0.22 * sigma'v0 * (0.5*KDMT)^1.25 for IDMT < 0.8", "implemented_in": "geotech_references.eurocode_7_2.equations.equation_4_5_cu_from_dmt"}
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "DMT test procedure, evaluation, and the derived-value equations for undrained shear strength (Eq 4.5) and oedometer modulus (Annex J)."
+    },
+    {
+      "section_id": "4.11",
+      "title": "Plate loading test (PLT)",
+      "summary": "PLT loads a rigid plate on ground level, excavation base, or borehole/shaft base and records load-settlement behaviour, for direct or indirect foundation design. Annex K gives cu (K.1), plate settlement modulus EpLT (K.2), coefficient of sub-grade reaction ks (K.3), and sand settlement (K.4) derived-value examples.",
+      "body": "The PLT objective is to determine vertical deformation and strength properties of soil/rock masses in-situ, recording load and settlement as a rigid plate models a foundation. Tests are carried out on a thoroughly levelled, undisturbed surface, at ground level, an excavation base, a large-diameter borehole base, or an exploration shaft/gallery; applicable to all soils, fills, and rock, but normally not to very soft fine soil. Testing follows EN ISO 22476-13; deviations (plate size, incremental loading vs. constant deformation rate) shall be justified and commented upon. Results may predict spread-foundation behaviour: for indirect design methods on a homogeneous layer, the layer must be at least twice the plate width/diameter thick beneath the plate; for direct design methods, either the plate size matches the planned foundation width (direct transform) or a homogeneous layer at least twice the planned foundation width exists (empirical transform from smaller-plate results). If an analytical bearing-resistance method is used, cu may be derived from a PLT at constant, sufficiently fast penetration rate to preclude drainage (K.1: cu = (pu - gamma*z)/Nc, Nc=6 surface or Nc=9 deep borehole, EN 1997-1:2004 Annex D). If an adjusted elasticity settlement method is used, E may be derived from the plate settlement modulus EpLT based on established experience (K.2 gives the surface/excavation formula and the borehole-base formula with depth correction factor Cz, Figure K.1; EN 1997-1:2004 Annex F). The coefficient of sub-grade reaction ks for deformation evaluation may be derived from an incremental loading test (K.3: ks = delta_p/delta_s). For direct design, PLT results may transfer directly to the foundation problem without geotechnical parameters; settlements of footings in sand may be derived from PLT results via an empirical width-scaling relationship (K.4, Figures K.2/K.3).",
+      "key_points": [
+        "PLT: rigid plate loaded at surface, excavation base, or borehole/shaft base; homogeneous layer >=2x plate/foundation width required for indirect/direct design use respectively",
+        "K.1: cu = (pu - gamma*z)/Nc, Nc=6 (surface) or Nc=9 (deep borehole) - equations.equation_k1_plt_undrained_shear_strength",
+        "K.2: EpLT = (delta_p/delta_s) * pi*b*(1-v^2)/4 [* Cz for borehole-base tests] - equations.equation_k2_plt_modulus",
+        "K.3: ks = delta_p/delta_s - equations.equation_k3_plt_subgrade_reaction",
+        "K.4: empirical settlement scaling for footings in sand from smaller test-plate results (Figures K.2/K.3, chart-based)"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure K.1: depth correction factor Cz vs. plate diameter b and depth z",
+        "Figure K.2: influenced area beneath a test plate and a footing",
+        "Figure K.3: graph for calculating settlement based on plate loading tests"
+      ],
+      "tables": [],
+      "applicability": "PLT test procedure, evaluation, and the full set of Annex K derived-value equations for cu, modulus, sub-grade reaction, and sand settlement."
+    }
+  ]
+}

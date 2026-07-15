@@ -1,0 +1,28 @@
+{
+  "reference_id": "EN 1997-1:2004",
+  "reference_title": "Eurocode 7: Geotechnical Design - Part 1: General Rules",
+  "volume": null,
+  "chapter": 17,
+  "chapter_title": "Annex E (informative): A sample semi-empirical method for bearing resistance estimation",
+  "sections": [
+    {
+      "section_id": "17-1",
+      "title": "Annex E: Pressuremeter-based bearing resistance",
+      "summary": "Design bearing resistance from pressuremeter test results: Rd/A' = sigma_v0 + k*p*le, where sigma_v0 is the initial total vertical stress, k is a bearing-resistance factor in the range 0.8 to 3.0 (by soil type, embedment depth, foundation shape), and p*le is the design net equivalent limit pressure, itself derived from the pressuremeter's net limit pressure p*l = pl - p0, with p0 = Ko*sigma'v + u. Fully implemented as pressuremeter_bearing_resistance.",
+      "body": "To estimate the design bearing resistance of a foundation on soil, field tests such as the pressuremeter test may be used. When using the pressuremeter, the design bearing resistance Rd of a foundation subjected to a vertical load is related to the limit pressure of the soil by the linear function Rd/A' = sigma_v0 + k*p*le, where k is the bearing resistance factor, sigma_v0 is the initial total vertical stress, and p*le is the design net equivalent limit pressure from the pressuremeter test. Numerical values of the bearing resistance factor k are in the range 0.8 to 3.0, depending on the type of soil, the embedment depth, and the shape of the foundation. The design net equivalent limit pressure p*le is derived from the net limit pressure p*l, defined for a pressuremeter test as the difference (pl - p0) between the limit pressure pl and the at-rest horizontal earth pressure p0 at the level of the test; p0 may be determined from an estimate of the at-rest earth pressure coefficient Ko and the values of the effective overburden pressure sigma'v and the pore-water pressure u, as p0 = Ko*sigma'v + u.",
+      "key_points": [
+        "Rd/A' = sigma_v0 + k*p*le -- linear relation between bearing resistance and pressuremeter limit pressure",
+        "k (bearing resistance factor) ranges 0.8 to 3.0 depending on soil type, embedment depth, and foundation shape",
+        "p*le = design net equivalent limit pressure, derived from the pressuremeter net limit pressure p*l = pl - p0",
+        "p0 (at-rest horizontal earth pressure at test level) = Ko*sigma'v + u",
+        "Fully implemented as pressuremeter_bearing_resistance"
+      ],
+      "equations": [
+        {"id": "Annex E Eq.", "description": "Design bearing resistance from pressuremeter results: Rd/A' = sigma_v0 + k*p*le.", "implemented_in": "geotech_references.eurocode_7_1.equations.pressuremeter_bearing_resistance"}
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Estimating shallow-foundation bearing resistance directly from pressuremeter (PMT) field test results, as an alternative to the analytical Annex D method when phi'/c'/cu are not well characterised but PMT data are available."
+    }
+  ]
+}

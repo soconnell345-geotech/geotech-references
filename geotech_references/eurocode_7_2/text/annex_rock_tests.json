@@ -1,0 +1,93 @@
+{
+  "reference_id": "EN 1997-2:2007",
+  "reference_title": "Eurocode 7: Geotechnical design - Part 2: Ground investigation and testing",
+  "volume": null,
+  "chapter": 9,
+  "chapter_title": "Annexes T-X: detailed rock testing guidance and bibliography",
+  "sections": [
+    {
+      "section_id": "9.1",
+      "title": "Annex T: preparation of specimen for testing on rock material",
+      "summary": "Follows ISRM Suggested Methods practice for preparing rock core specimens and dimensional/shape tolerances; samples 300-1000mm long, diameter >50mm, generally suffice for a group of classification/strength/deformation tests; core-quantity requirements depend on natural/induced fissuring.",
+      "body": "The ISRM Suggested Methods for Rock Characterisation, Testing and Monitoring contain no single dedicated preparation requirement, but most individual test methods specify sample volume/quality/preparation method/dimensions/tolerances. Instruments for checking straightness/flatness/perpendicularity of end surfaces should be regularly controlled to at least the tolerances required by the specific rock tests. Most unfractured single/double/triple-tube rotary-drilled cores can be used with or without re-coring after trimming end-bearing surfaces; oriented rock-formation blocks may also be used if orientation is clearly marked. Required sample volume depends on the test programme; 300-1000mm long samples with diameter >50mm are generally sufficient for a combined classification/strength/deformation test group. Required core quantity depends heavily on natural/induced fissuring; the initial core description should evaluate fissuring/homogeneity to guide test-section selection; selecting only fracture-free zones may make test specimens non-representative of the formation (should be noted in reporting). Weaker (sedimentary) rocks require prompt field packing for deformability/strength/swelling tests, since even brief exposure can change water content and inherent properties. It is not always possible to meet the ISRM's desirable criteria, e.g. for weaker, more porous, poorly-cemented, or structurally-featured rock types.",
+      "key_points": [
+        "Follows ISRM Suggested Methods, applied per individual test method's own requirements",
+        "300-1000mm long, >50mm diameter samples generally suffice for a combined classification/strength/deformation test group",
+        "Core quantity requirements scale with natural/induced fissuring; test-section selection from fracture-free zones only may compromise representativeness",
+        "Weaker sedimentary rocks need prompt field packing to preserve water content/properties before deformability/strength/swelling testing"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Detailed specimen-preparation procedures underlying every rock laboratory test (classification, swelling, strength) in Section 5."
+    },
+    {
+      "section_id": "9.2",
+      "title": "Annex U: classification testing of rock material",
+      "summary": "Detailed rock identification (EN ISO 14689-1), water content (>=1 per metre of core), and density/porosity (>=1 per 2 metres and per rock-type unit) testing guidance; classification calls for maximum core recovery and minimal drilling disturbance.",
+      "body": "U.1 General: classification based on cores requires the highest possible core recovery to identify discontinuities/cavities; core disturbance from drilling should be minimised since most rock-quality designations relate to fractures found in cores; most classification systems require >=50mm sample diameter, with 50-200mm non-fractured core length generally sufficient for element testing; nationally/internationally recognised semi-numerical rock-mass classification systems exist (e.g. Bieniawski 1989, Engineering Rock Mass Classifications). U.2 Rock identification and description: per EN ISO 14689-1, applied to cores/other natural rock samples and rock masses; any published/locally-approved classification system may be used if the report gives a traceable reference. U.3 Water content: accuracy checks by comparing parallel specimens within the same formation; taken at least once per metre of core. U.4 Density and porosity: porosity/void-ratio determination needs (or estimates from local experience) the solid-particle density; closed pores may affect porosity, total pore volume may be based on powdered-sample solid density, but open/closed-pore split needs specialised analysis; mercury-displacement methods should be avoided; density and porosity determined at least once every two metres and at least once per differentiated rock-type unit regardless of homogeneity, since they underpin most rock strength/deformation evaluations.",
+      "key_points": [
+        "Rock identification/description conforms to EN ISO 14689-1; most classification systems need >=50mm core diameter",
+        "Water content: minimum 1 determination per metre of core",
+        "Density/porosity: minimum 1 determination per 2 metres AND per differentiated rock-type unit; mercury-displacement methods avoided",
+        "Classification prioritises maximum core recovery and minimal drilling disturbance since RQD-type metrics depend on observed fractures"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Detailed procedures for the basic rock classification/index tests of 5.12, underpinning subsequent strength/deformation evaluation."
+    },
+    {
+      "section_id": "9.3",
+      "title": "Annex V: swelling testing of rock material",
+      "summary": "Table V.1 gives minimum specimen dimensions/counts for the three swelling test types; undisturbed specimens are preferred (rock fabric strongly affects swelling), with remoulded/re-compacted specimens only where undisturbed preparation is impossible.",
+      "body": "V.1 General: undisturbed specimens preferred (rock fabric significantly affects swelling characteristics); where too weak/broken to prepare (e.g. joint fill material), swelling index tests may use remoulded/re-compacted specimens with the procedure described in the report. Table V.1 gives minimum specimen dimensions/counts for sites with limited swelling risk (double for sites more likely to be subject to swelling): swelling pressure index under zero volume change - min thickness 15mm and/or 10x max particle size, min diameter 2.5x thickness, min 3 specimens (specimen should fit closely in the ring); swelling strain index for radially-confined specimens with axial surcharge - min thickness 15mm and/or 10x max particle size, min diameter 4x thickness, min 3 plus duplicates for water content (fit closely in the ring); swelling strain developed in unconfined rock specimen - min thickness and diameter each 15mm and/or 10x max particle size, min 3 plus duplicates for water content. V.2 Swelling pressure index apparatus may be an ordinary soil oedometer cell but must be very stiff to avoid cell-deformation influence. V.3 Swelling strain index example specifies a 5kPa sustained pressure under water flooding (more representative pressures may be specified, with deviations reported). V.4 Swelling strain in unconfined specimen: example given by reference document only (no numeric procedure reproduced in the standard body).",
+      "key_points": [
+        "Table V.1: minimum specimen thickness/diameter-ratio/count for 3 swelling test types (table_v1_swelling_test_specimens); double the count at higher-swelling-risk sites",
+        "Undisturbed specimens preferred; remoulded/re-compacted only where undisturbed preparation is impossible (e.g. joint fill material)",
+        "Swelling pressure index apparatus may reuse an ordinary soil oedometer cell, but must be very stiff"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table V.1: swelling tests on rocks, recommended minimum number of rock specimens"
+      ],
+      "applicability": "Detailed specimen requirements for the three rock swelling test types of 5.13."
+    },
+    {
+      "section_id": "9.4",
+      "title": "Annex W: strength testing of rock material",
+      "summary": "Detailed ISRM-based amendments for uniaxial compression/deformability, point load, direct shear, Brazil, and triaxial compression tests; Table W.1 gives minimum specimen counts (by strength standard deviation as % of mean) governing uniaxial compression, Brazil, and triaxial tests alike.",
+      "body": "W.1 Uniaxial compressive strength and deformability: follows ISRM (or ASTM) methods, generally the two-level ISRM procedure (strength only, or strength + deformation modulus + Poisson's ratio, the latter preferred), with standard amendments: platen diameter D to D+10mm (or greater with proper centring); at least one end platen with a spherical seat; specimen height:diameter 2-3, diameter >=50mm (down to 6:1 diameter:grain-size for weak rock, 10:1 preferred); end flatness within 0.02x diameter, perpendicularity within 0.1deg; no capping materials except for soft rock (capping mechanically better than the rock); dimension measurement to nearest 0.1mm or 0.2%; strain gauges >=10x grain size, measured over the middle third of specimen height; loading at constant stress/strain rate targeting failure in 5-15 minutes; machine platens checked for parallelism. Table W.1 gives minimum specimen counts by standard deviation of measured strength as % of mean, crossed with comparable experience (s>50%: 6/4/2 for none/medium/extensive; 20%<s<50%: 3/2/1; s<20%: 2/1/0-with-caveat), explicitly also governing Brazil and triaxial rock test minimum counts. W.2 Point load test: portable or lab equipment, field or lab execution, on core/blocks/irregular lumps; minimum 5 single tests for a representative mean Point Load Strength Index, >=10 separate tests per stratum for characterisation/parameter prediction. W.3 Direct shear test: amendments include normal-load control within 2% and shear-displacement rate <0.1mm/min in the 10 minutes before readings (relaxed if automatic logging is used); specimen reconsolidated under each new normal stress; minimum 5 tests per test horizon/joint family at different normal stresses; test-plane area preferably >=2500mm2, joint-length-to-shear-box-size ratio preferably >=0.5; percussive drills/hammers/chisels avoided when cutting specimens. W.4 Brazil test: specimen diameter >=54mm (core size), thickness approximately equal to radius, surface irregularity <0.025mm, end flatness within 0.25mm and parallel within 0.25deg; shale/anisotropic rock specimens cut both parallel and perpendicular to bedding. W.5 Triaxial compression test: specimen diameter >=54mm, height 2-3x diameter (per 5.4(2)P/X.4.8); provides the Mohr-Coulomb strength envelope (phi, c) from a series of confining-pressure tests on intact rock; upscaling to in-situ rock-mass properties requires separate consideration beyond element testing.",
+      "key_points": [
+        "Table W.1: minimum specimen counts by strength std. dev. (% of mean) and comparable experience; governs uniaxial compression, Brazil, AND triaxial rock tests alike (table_min_test_count(test_family='rock_uniaxial_compression'))",
+        "Uniaxial compression: height:diameter 2-3, diameter >=50mm, end flatness/perpendicularity tolerances, failure targeted within 5-15 minutes",
+        "Point load: minimum 5 tests for a representative mean index, >=10 for characterisation/parameter prediction",
+        "Direct shear: minimum 5 tests per test horizon/joint family, normal-load held within 2%, shear rate <0.1mm/min before readings",
+        "Brazil: diameter >=54mm, thickness ~= radius; shale/anisotropic rock cut both parallel and perpendicular to bedding",
+        "Triaxial: diameter >=54mm, height 2-3x diameter; yields Mohr-Coulomb phi/c for intact rock (in-situ upscaling handled separately)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table W.1: uniaxial compression tests (governs Brazil and triaxial too), recommended minimum number of test specimens"
+      ],
+      "applicability": "Detailed ISRM-amended procedures and minimum test counts for the full rock-strength test suite of 5.14."
+    },
+    {
+      "section_id": "9.5",
+      "title": "Annex X: bibliography",
+      "summary": "Lists the abbreviations/notations used across the annexes (ASTM, BS, DGF, DIN, ETC, ISRM, ISSMGE, etc.) and the full bibliography of national/international test standards and literature referenced throughout EN 1997-2's informative annexes, organized by subject (X.1 abbreviations, X.2-X.11 subject-specific document lists, plus general references).",
+      "body": "Annex X is the informative Bibliography: X.1 gives the abbreviations and notations used in the annexes (e.g. ASTM = American Society for Testing and Materials, BS = British Standard, DGF = Danish Geotechnical Society, DIN = German Institute for Standardization, ETC = European Technical Committee (of ISSMGE), ISRM = International Society for Rock Mechanics, ISSMGE = International Society for Soil Mechanics and Geotechnical Engineering). The remaining subclauses (X.2 onward, cross-referenced throughout Sections 4-5 and Annexes D-W as 'X.3.1' through 'X.11', etc.) list the specific national standards, ISO/CEN technical specifications, and published literature (e.g. Bergdahl et al. 1993; Stenzel et al. 1978; Skempton 1986; Schmertmann 1970; Burland & Burbridge 1985; Marchetti 2001; Marsland 1972; Burland 1969; Larsson & Ahnberg 2003; Hansbo 1957; Bieniawski 1989) that are the original sources of the example correlations reproduced in Annexes D through W.",
+      "key_points": [
+        "X.1: abbreviations used across the annexes (ASTM, BS, DGF, DIN, ETC, ISRM, ISSMGE, etc.)",
+        "X.2 onward: subject-organized bibliography of national standards and literature sources for the Annex D-W example correlations",
+        "The correlation-attribution notes embedded throughout Annexes D-W (e.g. 'published by Bergdahl et al. 1993') point back to this bibliography"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Reference list identifying the literature origin of every example correlation reproduced elsewhere in EN 1997-2's informative annexes."
+    }
+  ]
+}

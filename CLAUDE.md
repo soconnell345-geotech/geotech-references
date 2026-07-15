@@ -144,6 +144,9 @@ references/                    # (legacy) source PDFs (git-ignored)
 | ufc_dewatering | UFC 3-220-05 Dewatering | 9 | 75 | - |
 | ufc_expansive | UFC 3-220-07 Expansive Soils | 9 | 55 | - |
 | ufc_pavement | UFC 3-250-01 Roads/Streets/Walks/Storage (**NOTE: equations.py/tables.py still from UFC 3-260-02 airfield — pending audit**) | 9 | 54 | - |
+| eurocode_7_1 | EN 1997-1:2004 Eurocode 7 Part 1 General Rules (Annex A partial factors, DA1-DA3, Annex C/D/E/F/G/H methods) | 31 | 134 | All 21 chapters (Sections 1-12 + Annexes A-J) |
+| eurocode_7_2 | EN 1997-2:2007 Eurocode 7 Part 2 Ground Investigation (CPT/PMT/SPT/DP/FVT/DMT/PLT correlations) | 43 | 133 | 9 chapters (body + all annexes) |
+| aashto_1993 | AASHTO 1993 Pavement Design Guide (flexible SN / rigid D equations, layer coefficients, reliability, ESALs; scanned source read visually; US units) | ~35 | 117 | 11 chapters (Part I-II full, III/IV stubs) |
 
 ### GEC-7: Soil Nail Walls (15 functions, 101 tests)
 

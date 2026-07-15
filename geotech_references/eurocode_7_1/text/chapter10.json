@@ -1,0 +1,126 @@
+{
+  "reference_id": "EN 1997-1:2004",
+  "reference_title": "Eurocode 7: Geotechnical Design - Part 1: General Rules",
+  "volume": null,
+  "chapter": 10,
+  "chapter_title": "Hydraulic failure",
+  "sections": [
+    {
+      "section_id": "10.1",
+      "title": "General",
+      "summary": "Introduces four modes of hydraulic ground failure that shall be checked as relevant: failure by uplift (buoyancy, when pore pressure under a structure or low-permeability layer exceeds the mean overburden pressure), failure by heave (upward seepage forces reducing vertical effective stress to zero, causing boiling), failure by internal erosion (particle transport within or at the interface of soil strata), and failure by piping (a regressive internal-erosion mode forming a discharge tunnel). Where pore pressure is hydrostatic, only uplift need be checked.",
+      "body": "The provisions of this Section apply to four modes of ground failure induced by pore-water pressure or pore-water seepage, which shall be checked as relevant: failure by uplift (buoyancy); failure by heave; failure by internal erosion; and failure by piping. Buoyancy occurs when pore-water pressure under a structure or a low permeability ground layer becomes larger than the mean overburden pressure (due to the structure and/or the overlying ground layer). Failure by heave occurs when upward seepage forces act against the weight of the soil, reducing the vertical effective stress to zero; soil particles are then lifted away by the vertical water flow and failure occurs (boiling). Failure by internal erosion is produced by the transport of soil particles within a soil stratum, at the interface of soil strata, or at the interface between the soil and a structure, and this may finally result in regressive erosion leading to collapse of the soil structure. Failure by piping is a particular form of failure, for example of a reservoir, by internal erosion, where erosion begins at the surface then regresses until a pipe-shaped discharge tunnel is formed in the soil mass, between the soil and a foundation, or at the interface between cohesive and non-cohesive soil strata; failure occurs as soon as the upstream end of the eroded tunnel reaches the bottom of the reservoir. The conditions for hydraulic failure can be expressed in terms of total stress and pore-water pressure, or in terms of effective stresses and hydraulic gradient: total stress analysis is applied to failure by uplift; for failure by heave, both total and effective stresses are applied; and conditions are put on hydraulic gradients to control internal erosion and piping. In situations where the pore-water pressure is hydrostatic (negligible hydraulic gradient), it is not required to check other than failure by uplift. The determination of hydraulic gradients, pore-water pressures, or seepage forces shall take account of the variation of soil permeability in time and space, variations in water levels and pore-water pressure in time, and any modification of the boundary conditions (e.g. downstream excavation); it should be considered that the relevant soil stratification may be different for different failure mechanisms. When hydraulic heave, piping, or internal erosion are significant dangers to the integrity of a geotechnical structure, measures shall be taken to decrease the hydraulic gradient. The measures most commonly adopted to reduce erosion or avoid hydraulic failure are: lengthening the seepage path by screens or shoulders; modifying the project to resist the pressures or gradients; seepage control; protective filters; avoidance of dispersive clays without adequate filters; slope revetments; inverted filters; relief wells; and reduction of hydraulic gradient.",
+      "key_points": [
+        "Four hydraulic failure modes checked as relevant: uplift (buoyancy), heave, internal erosion, piping",
+        "Uplift: pore pressure under a structure/low-permeability layer exceeds mean overburden pressure",
+        "Heave: upward seepage force reduces vertical effective stress to zero -- soil is lifted (boiling)",
+        "Internal erosion: particle transport within a stratum, between strata, or at a soil-structure interface, potentially regressive",
+        "Piping: regressive internal erosion forming a pipe-shaped discharge tunnel; failure when it reaches the reservoir/source",
+        "Total stress analysis applies to uplift; both total and effective stress to heave; hydraulic gradient conditions control erosion/piping",
+        "If pore pressure is hydrostatic (negligible gradient), only uplift need be checked",
+        "Common mitigation: lengthen seepage path, seepage control, protective/inverted filters, relief wells, slope revetments, reduce hydraulic gradient"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to any geotechnical structure or excavation where pore-water pressure or seepage could induce uplift, heave, internal erosion, or piping."
+    },
+    {
+      "section_id": "10.2",
+      "title": "Failure by uplift",
+      "summary": "Requires checking uplift stability by comparing permanent stabilising actions (weight, side friction) against permanent and variable destabilising water/other actions, using inequality (2.8) of 2.4.7.4: stabilising vertical action Gstb;d (e.g. structure/ground-layer weight, optionally including friction/anchor resistance if allowed by the National Annex) against destabilising vertical action Vdst;d (water pressures under the structure plus other upward forces). Table A.15/A.16 give the UPL partial factors.",
+      "body": "The stability of a structure or of a low permeability ground layer against uplift shall be checked by comparing the permanent stabilising actions (for example, weight and side friction) to the permanent and variable destabilising actions from water and, possibly, other sources. Examples of situations where uplift stability shall be checked include a buried hollow structure, a lightweight embankment during flood, the bottom of an excavation, a slab constructed below water level, and a structure anchored to resist uplift. The design shall be checked against failure by uplift using inequality (2.8) of 2.4.7.4. In this inequality, the design value of the vertical component of the stabilising permanent actions (Gstb;d) is, for example, the weight of the structure and of ground layers, while the design resistance (Rd) is the sum of, for example, any friction forces (Td) and any anchor forces (P). If allowed by the National Annex, resistance to uplift by friction or anchor forces may also be treated as a stabilising permanent vertical action (Gstb;d). The design value of the vertical component of the destabilising permanent and variable actions (Vdst;d) is the sum of the water pressures applied under the structure (permanent and variable parts) and any other upward forces; the values of the partial factors may be set by the National Annex. The measures most commonly adopted to resist failure by uplift are: increasing the weight of the structure; decreasing the water pressure below the structure by drainage; and anchoring the structure in the underlying strata. Where piles or anchorages are used to provide resistance against failure by uplift, the design shall be checked according to 7.6.3 or 8.5 respectively, using the partial factors given in 2.4.7.4. Annex A Table A.15 (digitized as table_a_15_upl_actions) gives the UPL partial action factors gamma_G;dst = 1,0, gamma_G;stb = 0,9, and gamma_Q;dst = 1,5, and Annex A Table A.16 (digitized as table_a_16_upl_soil_resistance) gives the associated partial factors on soil parameters and resistances (gamma_phi' = gamma_c' = 1,25; gamma_cu = 1,40; and gamma on tensile pile resistance and anchorage resistance = 1,40).",
+      "key_points": [
+        "Uplift stability = permanent stabilising actions (weight, side friction) vs. permanent + variable destabilising actions (water, other)",
+        "Checked via inequality (2.8) of 2.4.7.4: Gstb;d (structure/ground weight, +/- friction/anchor forces per National Annex) vs. Vdst;d (water pressures under structure + other upward forces)",
+        "Example situations: buried hollow structure, lightweight embankment in flood, excavation bottom, below-water-level slab construction, anchored structure (Figure 10.1)",
+        "Mitigation: increase structure weight, decrease sub-structure water pressure by drainage, anchor into underlying strata",
+        "Piles/anchorages resisting uplift are checked per 7.6.3/8.5 using the 2.4.7.4 partial factors",
+        "Table A.15 (table_a_15_upl_actions): gamma_G;dst=1,0, gamma_G;stb=0,9, gamma_Q;dst=1,5",
+        "Table A.16 (table_a_16_upl_soil_resistance): gamma_phi'=gamma_c'=1,25; gamma_cu=1,40; tensile pile/anchorage resistance=1,40"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10.1: Examples of situations where uplift might be critical (buried hollow structure; lightweight embankment during flood; excavation bottom; slab below water level; anchored structure)"
+      ],
+      "tables": [
+        "Table A.15: Partial factors on actions (gamma_F) for the UPL (uplift) limit state (table_a_15_upl_actions)",
+        "Table A.16: Partial factors for soil parameters and resistances for the UPL limit state (table_a_16_upl_soil_resistance)"
+      ],
+      "applicability": "Applies to buried or low-permeability structures (basements, buried tanks, excavation bases, lightweight embankments) where uplift water pressure could exceed stabilising weight and resistance."
+    },
+    {
+      "section_id": "10.3",
+      "title": "Failure by heave",
+      "summary": "Requires checking soil stability against heave for every relevant soil column by verifying either equation (2.9a), expressed in terms of pore-water pressures and total stresses, or the equivalent equation (2.9b), expressed in terms of seepage forces and submerged weights. Where the soil has significant cohesive shear resistance, the failure mode shifts from heave to uplift (checked per 10.2). Table A.17 gives the HYD partial action factors.",
+      "body": "The stability of soil against heave shall be checked by verifying either equation (2.9a) or equation (2.9b) for every relevant soil column; equation (2.9a) expresses the condition for stability in terms of pore-water pressures and total stresses, while equation (2.9b) expresses the same condition in terms of seepage forces and submerged weights. Both equations are defined in Section 2 of the standard (2.4.7.5) and are outside the pdf_page_index range extracted for this chapter, so their explicit forms are not reproduced here; they are referenced rather than re-derived. An example situation where heave shall be checked is a narrow excavation below water level retaining water on one side against a sand layer of limited thickness. The determination of the characteristic value of the pore-water pressure shall take into account all possible unfavourable conditions, such as thin layers of soil of low permeability and spatial effects such as narrow, circular, or rectangular excavations below water level. Where the soil has a significant cohesive shear resistance, the mode of failure changes from failure by heave to failure by uplift, and stability is then checked using the provisions of 10.2, where additional resisting forces may be added to the weight; stability against heave will not necessarily prevent internal erosion, which should be checked independently when relevant. The measures most commonly adopted to resist failure by heave are decreasing the water pressure below the soil mass subjected to heave, and increasing the resisting weight. Annex A Table A.17 (digitized as table_a_17_hyd_actions) gives the HYD partial action factors: gamma_G;dst = 1,35, gamma_G;stb = 0,90, and gamma_Q;dst = 1,50.",
+      "key_points": [
+        "Heave stability checked per soil column by equation (2.9a) (pore pressures/total stresses) or the equivalent (2.9b) (seepage forces/submerged weights)",
+        "Eq. 2.9a/2.9b are defined in Section 2 (2.4.7.5), outside this chapter's extracted page range -- referenced here, not reproduced",
+        "Example situation: narrow excavation below water level (Figure 10.2)",
+        "Characteristic pore-water pressure accounts for thin low-permeability layers and spatial (narrow/circular/rectangular excavation) effects",
+        "Significant cohesive shear resistance shifts the failure mode from heave to uplift -- check per 10.2 instead, with added resisting forces",
+        "Heave stability does not guarantee against internal erosion -- check independently when relevant",
+        "Mitigation: decrease water pressure below the soil mass, or increase resisting weight",
+        "Table A.17 (table_a_17_hyd_actions): gamma_G;dst=1,35, gamma_G;stb=0,90, gamma_Q;dst=1,50"
+      ],
+      "equations": [
+        {
+          "id": "Eq. 2.9a",
+          "description": "Heave stability condition expressed in terms of pore-water pressures and total stresses, verified for every relevant soil column. Defined in Section 2 (2.4.7.5), outside the pdf_page_index range extracted for this chapter; referenced by clause 10.3(1)P but its explicit form is not reproduced here.",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. 2.9b",
+          "description": "Heave stability condition expressed in terms of seepage forces and submerged weights -- the equivalent alternative to Eq. 2.9a. Same source-range note as Eq. 2.9a.",
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure 10.2: Example of situation where heave might be critical"
+      ],
+      "tables": [
+        "Table A.17: Partial factors on actions (gamma_F) for the HYD (hydraulic heave) limit state (table_a_17_hyd_actions)"
+      ],
+      "applicability": "Applies to excavations and cofferdams below water level where upward seepage could reduce vertical effective stress to zero in the retained soil column."
+    },
+    {
+      "section_id": "10.4",
+      "title": "Internal erosion",
+      "summary": "Requires filter criteria to limit the danger of material transport by internal erosion, with filter protection (natural non-cohesive soil or, alternatively, geotextiles) applied at the free surface of the ground; where filter criteria cannot be satisfied, the design hydraulic gradient must be verified well below the critical gradient at which soil particles begin to move, established from flow direction, grain size/shape, and soil stratification.",
+      "body": "Filter criteria shall be used to limit the danger of material transport by internal erosion. Where an ultimate limit state due to internal erosion can occur, measures such as filter protection shall be applied at the free surface of the ground. Filter protection should generally be provided by natural non-cohesive soil that fulfils adequate design criteria for filter materials; in some cases more than one filter layer may be necessary to ensure that the particle size distribution changes in a stepwise fashion, providing sufficient protection for both the soil and the filter layers. Alternatively, artificial filter sheets such as geotextiles may be used, provided it can be established that they sufficiently prevent transport of fines. If the filter criteria are not satisfied, it shall be verified that the design value of the hydraulic gradient is well below the critical hydraulic gradient at which soil particles begin to move. The critical hydraulic gradient for internal erosion shall be established taking into consideration at least the direction of flow, the grain size distribution and shape of grains, and the stratification of the soil.",
+      "key_points": [
+        "Filter criteria limit the danger of material transport by internal erosion",
+        "Filter protection applied at the free surface of the ground where an internal-erosion ULS can occur",
+        "Preferred: natural non-cohesive soil meeting filter-material design criteria; multiple stepped layers may be needed",
+        "Alternative: artificial filter sheets (geotextiles), if proven to sufficiently prevent fines transport",
+        "If filter criteria are not met, verify the design hydraulic gradient is well below the critical (particle-movement) gradient",
+        "Critical hydraulic gradient established from flow direction, grain size distribution/shape, and soil stratification"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies wherever seepage exits at a free ground surface or a soil-structure interface and could transport fine particles, e.g. downstream of dams, levees, or excavation dewatering systems."
+    },
+    {
+      "section_id": "10.5",
+      "title": "Failure by piping",
+      "summary": "Requires prescriptive measures (filters or structural measures such as berms or impermeable screens) to prevent onset of piping wherever hydraulic and soil conditions could produce it and where piping would endanger a hydraulic structure's stability or serviceability. Susceptible areas must be inspected regularly under extreme hydraulic conditions (e.g. floods), and piping is prevented by ensuring sufficient safety against heave (horizontal ground) or sufficient local slope stability of the surface layers (sloping ground).",
+      "body": "Where prevailing hydraulic and soil conditions can lead to the occurrence of piping, and where piping endangers the stability or serviceability of the hydraulic structure, prescriptive measures shall be taken to prevent the onset of the piping process, either by the application of filters or by taking structural measures to control or block the ground-water flow. Suitable structural measures include: application of berms on the land side of a retaining embankment, thus displacing the possible starting point of piping farther from the structure and decreasing the hydraulic gradient at that point; and application of impermeable screens below the base of the hydraulic structure, by which the ground-water flow is either blocked or the seepage path is increased, decreasing the hydraulic gradient to a safe value. During periods of extremely unfavourable hydraulic conditions such as floods, areas susceptible to piping shall be inspected regularly so that necessary mitigating measures can be taken without delay, and materials for such measures shall be stored in the vicinity. Failure by piping shall be prevented by providing sufficient resistance against internal soil erosion in the areas where water outflow may occur; such failure can be prevented by providing sufficient safety against failure by heave where the ground surface is horizontal, and sufficient stability of the surface layers in sloping ground (local slope stability). When determining the outflow hydraulic conditions for the verification of failure by heave or of local slope stability, account shall be taken of the fact that joints or interfaces between the structure and the ground can become preferred seepage paths.",
+      "key_points": [
+        "Prescriptive measures (filters or structural) prevent piping onset where hydraulic/soil conditions could produce it and it would endanger the structure",
+        "Structural measures: land-side berms (lengthen seepage path, reduce gradient) or impermeable screens below the structure base",
+        "Susceptible areas inspected regularly during extreme hydraulic conditions (e.g. floods); mitigation materials stored nearby",
+        "Prevention on horizontal ground surface: sufficient safety against heave (per 10.3)",
+        "Prevention on sloping ground: sufficient local slope stability of the surface layers",
+        "Joints/interfaces between structure and ground can become preferred seepage paths -- account for this in outflow hydraulic condition determination"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10.3: Example of conditions that may cause piping"
+      ],
+      "tables": [],
+      "applicability": "Applies to hydraulic structures (dams, levees, retaining embankments) and their foundations where prevailing hydraulic and soil conditions could initiate a regressive erosion tunnel (piping)."
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "reference_id": "AASHTO Guide for Design of Pavement Structures",
+  "reference_title": "AASHTO Guide for Design of Pavement Structures, 1993 Edition",
+  "chapter": 4,
+  "chapter_title": "Part I, Chapter 4 -- Reliability",
+  "sections": [
+    {
+      "section_id": "4.1",
+      "title": "Definitions",
+      "summary": "Defines pavement design-performance reliability as the probability that a designed pavement section will survive the design-period traffic (p >= pt for the full performance period). A designed section is one produced by a design equation Wt = f(PSF, RSF, CRF, PCF); the reliability design factor FR (>= 1) multiplies the predicted traffic wT so that Wt = FR*wT, giving log FR = log Wt - log wT >= 0.",
+      "body": "Section 4.1 gives several published general definitions of reliability (probability that serviceability is maintained, that load applications withstood are not exceeded by actual applications, or that the pavement performs its intended function over its design life). AASHTO's own formal definition (4.1.2-4.1.3): a designed pavement section uses a specific design equation predicting Wt (allowable ESAL to a specified terminal serviceability pt) from four categories of predictor variables -- pavement structure factors (PSF, e.g. layer thickness), roadbed soil factors (RSF, e.g. MR), climate-related factors (CRF, e.g. drainage coefficients), and pavement condition factors (PCF, e.g. terminal PSI). Because the traffic prediction wT is itself uncertain (may range 1/2 to 2x actual), the design equation's Wt is set equal to FR*wT with FR>=1 a 'reliability design factor'; log FR is a non-negative 'spacing factor' between the predicted and design traffic.",
+      "key_points": [
+        "Reliability = probability a designed pavement section survives the design-period traffic",
+        "Design equation: Wt = f(PSF, RSF, CRF, PCF) -- 4 categories of predictor variables",
+        "wT = predicted design-period ESAL traffic (actual may range 1/2x to 2x the prediction)",
+        "FR (reliability design factor, >=1) is applied: Wt = FR*wT",
+        "log FR = log Wt - log wT >= 0 is a non-negative spacing factor"
+      ],
+      "equations": [
+        {"id": "Eq. 4.1.1", "description": "Wt = f(PSF, RSF, CRF, PCF) -- general design-equation form"},
+        {"id": "Eq. 4.1.2", "description": "Wt = FR*wT or FR = Wt/wT"},
+        {"id": "Eq. 4.1.3", "description": "FR*wT = f(PSF, RSF, CRF, PCF) -- design equation restated with FR"},
+        {"id": "Eq. 4.1.4", "description": "Actual Performance (to PSI=pt) = log10(Nt)"},
+        {"id": "Eq. 4.1.5", "description": "Predicted Performance = log Wt = log wT + log FR"},
+        {"id": "Eq. 4.1.6", "description": "log FR = (log Wt - log wT) >= 0"}
+      ],
+      "figures": ["Figure 4.1: Serviceability Index (p) Versus Equivalent Load Applications (N)"],
+      "tables": [],
+      "applicability": "Conceptual foundation for the reliability factor used in both the flexible and rigid design equations (Part II, Chapter 3)."
+    },
+    {
+      "section_id": "4.2",
+      "title": "Variance Components and Reliability Design Factor",
+      "summary": "Decomposes the overall design-performance deviation delta_o into two chance components (traffic-prediction error and performance-prediction error) plus the fixed log FR spacer; delta_o is normally distributed with variance So^2 = Sw^2 + SN^2. Reliability level R = 100*Prob[delta_o >= 0], giving ZR = -log(FR)/So and the reliability design factor FR = 10^(-ZR*So).",
+      "body": "Section 4.2.1-4.2.2 identifies three chance-variation steps in the design-performance process (prediction of actual traffic wT, application of FR, prediction of actual performance Nt via the design equation) and four basic log-ESAL points (log NT actual design-period traffic, log wT predicted traffic, log Wt predicted performance, log Nt actual performance). Three basic deviations are defined: traffic-prediction error delta(NT,wT), the fixed reliability spacer log FR, and performance-prediction error delta(Wt,Nt); their sum is the overall deviation delta_o = log Nt - log NT, which is positive whenever the pavement survives the design traffic. Both component deviations are assumed normally distributed with mean zero and variances Sw^2 and SN^2 respectively (Section 4.2.2, Figure 4.3); the overall deviation is therefore normal with mean log FR and variance So^2 = Sw^2 + SN^2. Section 4.2.3 formally defines the design-performance reliability level as R(percent) = 100*Prob[Nt>=NT] = 100*Prob[delta_o>=0] (Eq. 4.2.1), converts to the standard normal Z-scale via Z=(delta_o - log FR)/So, and at delta_o=0 defines ZR = -log(FR)/So (Eq. 4.2.3), giving the reliability design factor log FR = -ZR*So (Eq. 4.2.4) or FR = 10^(-ZR*So) (Eq. 4.2.5). ZR values for common reliability levels are tabulated in Table 4.1 (digitized in tables.standard_normal_deviate_zr). Interim criteria for the overall standard deviation So (Section 4.3) are 0.30-0.40 for rigid and 0.40-0.50 for flexible pavements (digitized in tables.overall_standard_deviation_range).",
+      "key_points": [
+        "delta_o = log Nt - log NT = overall deviation of actual performance from actual design traffic",
+        "delta_o = +/-delta(NT,wT) + log FR +/- delta(Wt,Nt) -- sum of 3 basic (Level 1) deviations",
+        "So^2 = Sw^2 + SN^2 (traffic-prediction variance + performance-prediction variance)",
+        "R(%) = 100*Prob[delta_o >= 0] -- formal reliability-level definition (Eq. 4.2.1)",
+        "ZR = -log(FR)/So (Eq. 4.2.3); FR = 10^(-ZR*So) (Eq. 4.2.5)",
+        "Table 4.1 tabulates ZR for R=50 to 99.99 percent",
+        "Interim So ranges: 0.30-0.40 rigid, 0.40-0.50 flexible (Section 4.3)"
+      ],
+      "equations": [
+        {"id": "Eq. 4.2.1", "description": "R(%) = 100*Prob[Nt>=NT] = 100*Prob[delta_o>=0]", "implemented_in": null},
+        {"id": "Eq. 4.2.2", "description": "Z = (delta_o - log FR)/So"},
+        {"id": "Eq. 4.2.3", "description": "ZR = (-log FR)/So", "implemented_in": "geotech_references.aashto_1993.tables.standard_normal_deviate_zr"},
+        {"id": "Eq. 4.2.4", "description": "log FR = -ZR*So"},
+        {"id": "Eq. 4.2.5", "description": "FR = 10^(-ZR*So)"}
+      ],
+      "figures": [
+        "Figure 4.2: Basic Points and Deviations for Design-Performance Reliability",
+        "Figure 4.3: Basic Probability Distributions for Design-Performance Reliability",
+        "Figure 4.4: Definition of Reliability and Evaluation of Reliability Design Factor"
+      ],
+      "tables": ["Table 4.1: Standard Normal Deviate (ZR) Values Corresponding to Selected Levels of Reliability"],
+      "applicability": "Provides the ZR and So inputs used directly in both the flexible (Figure 3.1) and rigid (Figure 3.7) AASHTO design equations."
+    },
+    {
+      "section_id": "4.3",
+      "title": "Criteria for Selection of Overall Standard Deviation",
+      "summary": "Interim So criteria: 0.30-0.40 for rigid pavements and 0.40-0.50 for flexible pavements, spanning the case where projected-traffic variance is included (rigid 0.39, flexible 0.49) versus excluded (rigid 0.34, flexible 0.44); lower-end values approximate the AASHO Road Test / prior Interim Guides.",
+      "body": "Appendix EE of Volume 2 provides guidance for developing agency-specific So estimates by decomposing Sw^2 and SN^2 into hierarchies of variance components (Level 2-4), with numerical component estimates in Tables EE.4 (flexible), EE.5 (rigid), and EE.6 (traffic). As interim criteria pending agency-specific values, the guide recommends So=0.30-0.40 for rigid and So=0.40-0.50 for flexible pavements; the lower end of each range corresponds roughly to the AASHO Road Test / 1972 and 1981 Interim Guide variance estimates.",
+      "key_points": [
+        "Recommended interim So: 0.30-0.40 rigid, 0.40-0.50 flexible",
+        "With projected-traffic variance included: So=0.39 rigid, 0.49 flexible",
+        "Without projected-traffic variance: So=0.34 rigid, 0.44 flexible",
+        "Lower end of each range ~ AASHO Road Test / prior Interim Guide values",
+        "Appendix EE (Vol. 2) provides component-level (Tables EE.4-EE.6) So derivation guidance"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selecting So for the flexible/rigid design equations when agency-specific variance data is unavailable."
+    },
+    {
+      "section_id": "4.4",
+      "title": "Criteria for Selection of Reliability Level",
+      "summary": "Recommends reliability levels by functional classification (Table 2.2 in Part II) derived from a survey of inherent reliability in state DOT design practice; higher reliability for higher-use facilities (Interstate/freeway) and lower for local roads. Figure 4.5 illustrates the underlying cost trade-off: initial cost rises and future distress/rehabilitation cost falls with increasing reliability, so an economic optimum reliability exists for a given facility's usage and risk.",
+      "body": "Selection of an appropriate reliability level depends primarily on projected usage level and the consequences (risk) of an early failure: heavily trafficked, hard-to-divert facilities warrant higher reliability (minimizing risk of premature closure/rehabilitation) while lower-volume facilities can tolerate a thinner, lower-reliability initial design. Suggested reliability ranges by functional class and urban/rural condition (surveyed from state DOT practice) are presented in Part II, Table 2.2. A more rigorous project-specific approach (Figure 4.5) recognizes that reliability affects both initial cost (increasing) and future distress-related costs (maintenance, rehabilitation, user delay -- decreasing); the total-cost curve has a minimum at an 'optimum' reliability specific to a given project's usage and risk profile.",
+      "key_points": [
+        "Reliability level depends on facility usage level and consequences (risk) of early failure",
+        "Higher-volume, hard-to-divert facilities (Interstate) warrant higher reliability",
+        "Suggested reliability ranges by functional class: Part II Table 2.2",
+        "Figure 4.5: initial cost rises, future/distress cost falls with reliability -> total-cost minimum defines an 'optimum' project-specific reliability",
+        "Same functional class may have different optimum reliability depending on local risk/soil/environment"
+      ],
+      "equations": [],
+      "figures": ["Figure 4.5: Illustration of Approach to Identifying the Optimum Reliability Level for a Given Facility"],
+      "tables": [],
+      "applicability": "Selecting the design reliability level R for a specific project; feeds ZR via Table 4.1."
+    },
+    {
+      "section_id": "4.5",
+      "title": "Reliability and Stage Construction Alternatives",
+      "summary": "Reliabilities compound multiplicatively across stages of a planned-rehabilitation (stage construction) strategy: R_overall = product of R_stage across n stages. To achieve a target overall reliability, each stage must be individually designed to R_stage = (R_overall)^(1/n), a higher value than the overall target.",
+      "body": "When an initial pavement plus one or more planned overlays (stage construction) is used to reach a desired analysis period, the overall probability that the full strategy survives the analysis period is the product of the individual-stage survival probabilities (assuming independence). For example, three stages each designed to 90% reliability compound to only 0.9^3 = 72.9% overall reliability; conversely, achieving 95% overall reliability with 3 stages requires each stage to be designed to (0.95)^(1/3) = 98.3% individual reliability. This compounding effect can be severe for multi-stage strategies and should be weighed against opportunities to correct problem areas at each rehabilitation stage.",
+      "key_points": [
+        "Stage reliabilities compound multiplicatively: R_overall = R_stage1 * R_stage2 * ... * R_stagen",
+        "R_stage = (R_overall)^(1/n) -- Eq. 4.5.1, required per-stage reliability for n stages",
+        "Example: two 90% stages compound to 81% overall; achieving 95% overall with 3 stages needs 98.3% per stage",
+        "Compounding can be severe for multi-stage (many-overlay) strategies",
+        "Later rehabilitation stages provide an opportunity to correct problem areas, partially offsetting the compounding risk"
+      ],
+      "equations": [
+        {"id": "Eq. 4.5.1", "description": "R_stage = (R_overall)^(1/n)", "implemented_in": "geotech_references.aashto_1993.equations.stage_reliability"}
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Determining the per-stage design reliability for a planned initial-pavement-plus-overlay(s) strategy."
+    }
+  ]
+}
