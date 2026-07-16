@@ -1,16 +1,18 @@
 """AASHTO Guide for Design of Pavement Structures (1993) -- axle load
 equivalency factors (LEF), full Appendix D table digitization.
 
-PROVENANCE NOTE (read this first): Appendix D's own introduction states that
-the closed-form AASHO Road Test equations used to derive the printed LEF
-tables are NOT in this Guide -- "Appendix MM of Volume 2 presents the AASHO
-Road Test-based equations that were used to generate these tables. It also
-provides some support for extending the tables to tridem axle loadings."
-(pdf_page 361, printed D-2). ``docs/aashto1993.pdf`` is Volume 1 only (its own
-front-matter Appendices list, pdf_page 19 printed xvii, runs A through N with
-no Volume 2 / Appendix MM content); the full extent of Appendix D (pdf_page
-360-384, printed D-1 through D-25) was read page-by-page to confirm no
-equation is printed anywhere in it. So this module implements the axle load
+PROVENANCE NOTE (read this first): the closed-form AASHO Road Test equations
+used to derive the printed LEF tables are NOT in this Guide. Appendix D's
+introduction says "Appendix MM of Volume 2 presents the AASHO Road Test-based
+equations that were used to generate these tables. It also provides some
+support for extending the tables to tridem axle loadings." (pdf_page 361,
+printed D-2) -- but that "Volume 2" is a carried-over citation to the 1986
+edition's separate research-appendix volume; the 1993 Guide (this document)
+is a SINGLE volume (title page and front matter carry no volume designation;
+the Appendices list, pdf_page 19 printed xvii, runs A through N with no
+Appendix MM). The full extent of Appendix D (pdf_page 360-384, printed D-1
+through D-25) was read page-by-page to confirm no equation is printed
+anywhere in it. So this module implements the axle load
 equivalency factor as BILINEAR INTERPOLATION directly over the full printed
 table grid (Tables D.1-D.18) rather than a closed-form equation -- every
 number below is transcribed from a specific rendered page of
