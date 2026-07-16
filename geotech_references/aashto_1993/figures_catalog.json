@@ -4,7 +4,7 @@
   "package": "aashto_1993",
   "volume": null,
   "pdf_path": "docs/aashto1993.pdf",
-  "figure_count": 24,
+  "figure_count": 29,
   "note": "This document has NO front-matter 'List of Figures' section (confirmed: the Table of Contents goes directly from Executive Summary to Part I). Unlike other references in this repo, this catalog was NOT built from a List of Figures -- it was hand-built during content-driven reading of Part I Ch.4 (Reliability), Part II Ch.2-3 (Design Requirements / Structural Design, the core design nomographs), and one figure each from Appendices D and G. Every entry's pdf_page_index was directly verified by rendering that page (page_estimated is false for all entries). Coverage is a deliberate subset, not the full ~150+ figures in the guide (Parts III/IV and most appendices are not catalogued).",
   "figures": [
     {
@@ -215,13 +215,58 @@
       "description": "Worked example converting a W-4 axle-weight distribution into a single truck load factor using Table D.4 load equivalency factors, illustrating the Appendix D ESAL-conversion workflow (see tables.esal_flexible_single_axle/tandem_axle for the digitized SN=5, pt=2.5 factors)."
     },
     {
+      "figure_number": "G.2",
+      "caption": "Nomograph for Estimating Swell Rate Constant",
+      "chapter": "G",
+      "pdf_page_index": 396,
+      "printed_page": "G-3",
+      "page_estimated": false,
+      "description": "Swell rate constant theta from moisture supply and soil fabric fractions (straight-line alignment chart). Digitized in environmental.swell_rate_constant_theta."
+    },
+    {
+      "figure_number": "G.3",
+      "caption": "Chart for Estimating Potential Vertical Rise of Natural Soils",
+      "chapter": "G",
+      "pdf_page_index": 397,
+      "printed_page": "G-4",
+      "page_estimated": false,
+      "description": "Potential vertical rise VR from plasticity index, moisture condition, and layer thickness (two-panel chart). Coarse chart read in environmental.potential_vertical_rise (calibrated to the printed anchor; ~20-40% stated tolerance)."
+    },
+    {
       "figure_number": "G.4",
       "caption": "Chart for Estimating Serviceability Loss Due to Roadbed Swelling",
       "chapter": "G",
       "pdf_page_index": 400,
       "printed_page": "G-7",
       "page_estimated": false,
-      "description": "Nomograph solving dPSI_sw = 0.00335*VR*Ps*(1-e^(-theta*t)) for serviceability loss from roadbed swelling, given swell rate constant theta, swell probability Ps, potential vertical rise VR, and time t. Not digitized as a callable function (Part I/Appendix G environmental-loss detail is out of this module's core scope); referenced from text/chapter1.json (Part I Section 1.7 Environment)."
+      "description": "Nomograph solving the PRINTED equation dPSI_sw = 0.00335*VR*Ps*(1-e^(-theta*t)) (Ps in percent). Digitized exactly in environmental.swelling_serviceability_loss (printed worked example t=15, theta=0.10, Ps=60%, VR=2in -> 0.3 reproduced)."
+    },
+    {
+      "figure_number": "G.6",
+      "caption": "Chart for Estimating Frost Heave Rate for Subgrade Soil",
+      "chapter": "G",
+      "pdf_page_index": 402,
+      "printed_page": "G-9",
+      "page_estimated": false,
+      "description": "Frost heave rate phi (mm/day) by USCS group and percent finer than 0.02 mm, with the frost-susceptibility classification bar. Coarse chart read in environmental.frost_heave_rate_group / frost_susceptibility_classification."
+    },
+    {
+      "figure_number": "G.7",
+      "caption": "Graph for Estimating Maximum Serviceability Loss Due to Frost Heave",
+      "chapter": "G",
+      "pdf_page_index": 403,
+      "printed_page": "G-10",
+      "page_estimated": false,
+      "description": "dPSI_MAX vs depth of frost penetration, five drainage-quality lines (linear through the origin, slopes 0.10-0.50 per ft). Digitized exactly in environmental.max_serviceability_loss_frost (printed anchor: poor drainage, 5 ft -> 2.0)."
+    },
+    {
+      "figure_number": "G.8",
+      "caption": "Chart for Estimating Serviceability Loss Due to Frost Heave",
+      "chapter": "G",
+      "pdf_page_index": 404,
+      "printed_page": "G-11",
+      "page_estimated": false,
+      "description": "Nomograph solving the PRINTED equation dPSI_FH = 0.01*PF*dPSI_MAX*(1-e^(-0.02*phi*t)) (PF in percent; the 0.02 constant renders as '02' in the scan and is confirmed by the printed worked example t=15, phi=5, PF=30%, dPSI_MAX=2.0 -> 0.47). Digitized exactly in environmental.frost_heave_serviceability_loss."
     }
   ]
 }

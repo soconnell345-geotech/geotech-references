@@ -33,5 +33,6 @@ aashto_1993 : AASHTO Guide for Design of Pavement Structures (1993) — flexible
              SN + rigid D design equations, layer coefficients, reliability,
              drainage, full Appendix D ESAL load-equivalency tables D.1-D.18
              (lef.py), Section 3.2 composite/effective subgrade-reaction
-             worksheet (composite_k.py) (US customary units)
+             worksheet (composite_k.py), Appendix G swelling/frost-heave
+             serviceability loss (environmental.py) (US customary units)
 """
