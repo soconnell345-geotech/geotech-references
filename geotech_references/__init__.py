@@ -31,5 +31,7 @@ eurocode_7_2 : EN 1997-2:2007 — Eurocode 7 Part 2, Ground Investigation and
              lab-test minima)
 aashto_1993 : AASHTO Guide for Design of Pavement Structures (1993) — flexible
              SN + rigid D design equations, layer coefficients, reliability,
-             drainage, ESAL factors (US customary units)
+             drainage, full Appendix D ESAL load-equivalency tables D.1-D.18
+             (lef.py), Section 3.2 composite/effective subgrade-reaction
+             worksheet (composite_k.py) (US customary units)
 """

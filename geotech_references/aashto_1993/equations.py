@@ -701,7 +701,7 @@ def modulus_subgrade_reaction_simple(mr_psi) -> dict:
     return {
         "mr_psi": mr_psi, "k_pci": round(k, 1),
         "equation": "k (pci) = MR (psi) / 19.4",
-        "reference": "AASHTO 1993 Guide, Section 3.2.1 (pdf_page 129, printed II-44)",
+        "reference": "AASHTO 1993 Guide, Section 3.2.2 (pdf_page 133, printed II-44)",
         "note": ("Theoretical relation for a slab bearing directly on the "
                  "roadbed (no subbase, no shallow rigid foundation)."),
     }

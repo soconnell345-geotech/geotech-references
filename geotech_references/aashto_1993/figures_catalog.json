@@ -4,7 +4,7 @@
   "package": "aashto_1993",
   "volume": null,
   "pdf_path": "docs/aashto1993.pdf",
-  "figure_count": 21,
+  "figure_count": 24,
   "note": "This document has NO front-matter 'List of Figures' section (confirmed: the Table of Contents goes directly from Executive Summary to Part I). Unlike other references in this repo, this catalog was NOT built from a List of Figures -- it was hand-built during content-driven reading of Part I Ch.4 (Reliability), Part II Ch.2-3 (Design Requirements / Structural Design, the core design nomographs), and one figure each from Appendices D and G. Every entry's pdf_page_index was directly verified by rendering that page (page_estimated is false for all entries). Coverage is a deliberate subset, not the full ~150+ figures in the guide (Parts III/IV and most appendices are not catalogued).",
   "figures": [
     {
@@ -155,10 +155,37 @@
       "figure_number": "3.3",
       "caption": "Chart for Estimating Composite Modulus of Subgrade Reaction, k(infinity), Assuming a Semi-Infinite Subgrade Depth",
       "chapter": "II-3",
-      "pdf_page_index": 127,
+      "pdf_page_index": 128,
       "printed_page": "II-39",
       "page_estimated": false,
-      "description": "4-quadrant nomograph (subbase modulus/thickness -> composite k, semi-infinite subgrade). NOT digitized as a closed-form/tabulated function (the guide's simplified relation k=MR/19.4 used instead, equations.modulus_subgrade_reaction_simple, for the no-subbase case); the full seasonal composite-k procedure (Table 3.2 + Figures 3.3-3.6) requires the printed nomographs directly."
+      "description": "4-quadrant turning-line nomograph (roadbed MR + subbase modulus/thickness -> composite k, semi-infinite subgrade). Digitized in composite_k.composite_k_subbase (chart-read anchor grid); the full seasonal worksheet is composite_k.effective_modulus_subgrade_reaction; the no-subbase simplification remains equations.modulus_subgrade_reaction_simple."
+    },
+    {
+      "figure_number": "3.4",
+      "caption": "Chart to Modify Modulus of Subgrade Reaction to Consider Effects of Rigid Foundation Near Surface (Within 10 ft)",
+      "chapter": "II-3",
+      "pdf_page_index": 129,
+      "printed_page": "II-40",
+      "page_estimated": false,
+      "description": "Rigid-foundation (bedrock within 10 ft) correction to the composite k: roadbed MR + subgrade depth to rigid foundation DSG -> modified k. Digitized in composite_k.k_rigid_foundation_correction (chart-read)."
+    },
+    {
+      "figure_number": "3.5",
+      "caption": "Chart for Estimating Relative Damage to Rigid Pavements Based on Slab Thickness and Underlying Support",
+      "chapter": "II-3",
+      "pdf_page_index": 130,
+      "printed_page": "II-41",
+      "page_estimated": false,
+      "description": "Seasonal relative damage u_r vs projected slab thickness D and composite k (log-log fan of D curves). Implemented in composite_k.relative_damage_rigid (closed form reconstructed from later literature -- not printed in this scan -- validated against the guide's printed Table 3.3 worked example and direct chart reads)."
+    },
+    {
+      "figure_number": "3.6",
+      "caption": "Correction of Effective Modulus of Subgrade Reaction for Potential Loss of Subbase Support",
+      "chapter": "II-3",
+      "pdf_page_index": 131,
+      "printed_page": "II-42",
+      "page_estimated": false,
+      "description": "Loss-of-support correction: effective k (from Table 3.2 worksheet) + LS factor (0-3, Table 2.7 by material) -> corrected design k. Digitized in composite_k.k_loss_of_support (chart-read curves); LS values in composite_k.loss_of_support_values."
     },
     {
       "figure_number": "3.7",
