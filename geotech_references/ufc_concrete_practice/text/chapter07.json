@@ -1,0 +1,584 @@
+{
+  "reference_id": "UFC 3-250-04",
+  "reference_title": "Standard Practice for Concrete Pavements",
+  "volume": null,
+  "chapter": 7,
+  "chapter_title": "Concrete Mixture",
+  "sections": [
+    {
+      "section_id": "7-1",
+      "title": "Introduction",
+      "summary": "Concrete quality is workability, strength, and durability together; strength is often over-emphasized because it drives the pay schedule, but all three should be optimized. Detailed mixture design guidance is in TSPWG M 3-250-04.97-05.",
+      "body": "Concrete mixture design considerations are discussed in this chapter. The quality of concrete is usually defined in terms of workability, strength, and durability; strength requirements are often mistakenly emphasized above quality requirements because concrete strength is an important component of the pay schedule. It is preferable to optimize all three aspects of concrete quality. Specific information on concrete mixture design is in TSPWG M 3-250-04.97-05, Proportioning Concrete Mixtures with Graded Aggregates for Rigid Airfield Pavements.",
+      "key_points": [
+        "Concrete quality = workability + strength + durability, together",
+        "Strength is often over-emphasized because it drives the pay schedule",
+        "Detailed mixture design procedure: TSPWG M 3-250-04.97-05"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Frames the chapter's balanced view of concrete quality before detailing mixture requirements."
+    },
+    {
+      "section_id": "7-2",
+      "title": "Concrete Highlights",
+      "summary": "Concrete is aggregates (60-75% of volume) plus paste (cementitious materials, water, and entrapped/entrained air); paste quality depends heavily on water content (a maximum w/cm ratio is specified), and chemical admixtures adjust plastic-concrete properties such as workability, air, water demand, and setting time.",
+      "body": "Concrete is a two-component mixture: aggregates and paste. In this mixture, the aggregate particles are completely coated with the paste, which consists of cementitious materials and water and incorporates entrapped or purposely entrained air. Aggregates make up about 60 percent to 75 percent of the total volume of concrete. The quality of the concrete depends on the quality of the aggregates and paste and the bond between the two; the quality of the paste is significantly influenced by the amount of water used, and typically less water improves concrete quality. A maximum w/cm ratio is typically specified to avoid excess water and ensure good quality paste. Cleanliness of the aggregates also influences the paste/aggregate bond and concrete quality. The properties of freshly mixed (plastic) concrete are changed by adding chemical admixtures, usually in liquid form during batching, to improve or control workability, entrained air, water demand, setting time, and other properties.",
+      "key_points": [
+        "Concrete = aggregates (60-75% of volume) + paste (cementitious materials + water + air)",
+        "A maximum w/cm ratio is specified to control paste quality by limiting excess water",
+        "Aggregate cleanliness affects the paste/aggregate bond and overall quality",
+        "Chemical admixtures adjust workability, entrained air, water demand, and setting time"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Provides the basic mixture composition framework used throughout the rest of the chapter."
+    },
+    {
+      "section_id": "7-3",
+      "title": "Concrete Mixture Requirements",
+      "summary": "90-day flexural strength (28-day for roads, or by TSPDWG approval) governs airfield/heavy-duty design; compressive testing may substitute with project-specific correlations; 7-day compressive testing is used for QC, 14-day for QA; key attributes include a 650 psi (4.5 MPa) max 90-day design flexural strength, minimum cement contents, max 0.45 w/cm (0.40 for severe sulfate), max 50 mm (2 in.) fixed-form slump, and a 2.5-3.4 fine aggregate fineness modulus.",
+      "body": "A 90-day flexural strength is specified for airfield and heavy-duty pavement design purposes, though this can be reduced to 28 days if required and approved by the Service-specific TSPDWG representative; a 28-day flexural strength may be specified for roads. Compressive strength testing can be used for field acceptance of strength provided correlations between compression and flexural tests have been developed during the mix design phase. Seven-day compressive strength testing is performed for QC and 14-day testing for QA. Requirements are established for aggregates (coarse and fine), cementitious materials, admixtures, concrete mixture design, and concrete acceptance. Required attributes for airfield/heavy-duty concrete include: maximum design flexural strength of 650 psi (4.5 MPa) at 90 days (actual field-measured strength may be higher); minimum cement content of 280 kg/m3 (470 lb/yd3), or 310 kg/m3 (517 lb/yd3) if pozzolan is used; maximum w/cm ratio of 0.45 (0.40 for severe sulfate exposure areas); maximum slump for fixed-form concrete of 50 mm (2 in.), adjusted for slipform concrete to meet smoothness/joint-face-deformation/edge-slump tolerances; air content based on exposure condition and maximum aggregate size; and fine aggregate fineness modulus between 2.5 and 3.4.",
+      "key_points": [
+        "Design basis: 90-day flexural strength for airfield/heavy-duty (28-day for roads or by TSPDWG approval)",
+        "QC compressive testing at 7 days; QA compressive testing at 14 days (with project-specific flexural correlation)",
+        "Max design 90-day flexural strength: 650 psi (4.5 MPa)",
+        "Min cement content: 280 kg/m3 (470 lb/yd3), or 310 kg/m3 (517 lb/yd3) with pozzolan",
+        "Max w/cm ratio: 0.45 (0.40 for severe sulfate exposure); max fixed-form slump: 50 mm (2 in.)",
+        "Fine aggregate fineness modulus: 2.5-3.4"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Establishes the numeric mixture-requirement envelope for airfield and heavy-duty concrete pavement."
+    },
+    {
+      "section_id": "7-4",
+      "title": "Laboratory Mixture Design Process",
+      "summary": "A PCA-adapted procedure: gather material data, set project requirements, choose slump (13-38 mm/0.5-1.5 in. for slipform) and max aggregate size, estimate water/air, select w/cm, calculate cementitious content, estimate aggregate contents, adjust for moisture, then trial-batch to finalize proportions/admixture dosages.",
+      "body": "The following is a discussion of the procedure for proportioning concrete mixtures adapted from the Portland Cement Association (PCA) mixture design procedure: (a) obtain required information (gradation, absorption, specific gravity) for the materials to be used; (b) identify project requirements for maximum w/cm ratio, nominal air content, slump, sulfate resistance, and strength; (c) choose slump -- for slipform paving it must be in the 13 to 38 mm (0.5 to 1.5 in.) range to minimize edge slump; (d) choose maximum aggregate size, using the largest size economically available that can be placed and consolidated; (e) estimate mixing water and air content; (f) select the w/cm ratio needed to meet strength/durability requirements (lower if resisting sulfate attack); (g) calculate cementitious materials content, estimating proportions of the various cementitious materials for the desired properties; (h) estimate coarse and fine aggregate contents; (i) adjust for aggregate moisture condition; and (j) conduct trial batches to determine the exact proportions and admixture dosages, which may need adjustment when the laboratory batch is scaled up to the field batch size.",
+      "key_points": [
+        "PCA-adapted 10-step procedure: material data -> requirements -> slump -> max aggregate size -> water/air -> w/cm -> cementitious content -> aggregate content -> moisture adjustment -> trial batches",
+        "Slipform slump range: 13-38 mm (0.5-1.5 in.) to minimize edge slump",
+        "Trial batches determine final proportions and admixture dosages, adjusted for the field batch scale"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to the laboratory mixture-proportioning workflow for a new concrete pavement mix design."
+    },
+    {
+      "section_id": "7-5",
+      "title": "Mixture Design Issues",
+      "summary": "Mixture design procedures indirectly address workability only via the slump test, which is not a true workability indicator (especially for slipform); the contractor must independently ensure workability, and gradation requirements (No. 50/100 passing vs. fineness modulus) can conflict per ASTM C33/CRD-C 133.",
+      "body": "Mixture design procedures typically do not directly address concrete workability; they indirectly attempt to define it via the slump test, which is not a true indicator of concrete workability, especially for slipform concrete. The contractor must recognize that in addition to designing the mixture to meet strength, slump, and air requirements, the mixture must be designed to ensure workability for the given mixture characteristics, project paving equipment, and expected ambient conditions at time of paving. Mixture design requirements do not address aggregate gradation directly; there may be conflicting requirements related to allowable fine aggregate gradation in terms of material passing the 0.3 and 0.15 mm (No. 50 and No. 100) sieves versus the fineness modulus. The contractor must review these requirements at the time of mixture design; ASTM C33/CRD-C 133 provides guidance.",
+      "key_points": [
+        "Slump test is not a true workability indicator, especially for slipform concrete",
+        "The contractor is responsible for ensuring real workability, not just meeting slump/strength/air numbers",
+        "Fine aggregate gradation requirements (No. 50/100 passing vs. fineness modulus) can conflict -- review per ASTM C33/CRD-C 133"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies whenever slump-based acceptance is being relied on as a workability proxy."
+    },
+    {
+      "section_id": "7-5.1",
+      "title": "Mix Design Guides",
+      "summary": "General trial-batching guidance: develop a 3-point w/cm-strength curve, watch for >25 mm (1 in.) slump loss in 15 min or <10 F (5.5 C) cylinder temperature rise (both flagging incompatibility), test early-age strength at 3/7/14 days, and tailor hot- vs. cold-weather mixtures (SCM type/amount, retarder/accelerator verification).",
+      "body": "General guidelines for developing a mix design: develop mixes with different w/cm ratios to establish sensitivity of flexural strength to a slight w/cm change (a 3-point curve); monitor slump loss during trial batching, since excessive slump loss (25 mm [1 in.] in 15 minutes) may indicate false setting or material incompatibility; conduct early-age strength tests (3, 7, and 14 days) to evaluate potential 28-day problems; monitor a well-insulated concrete cylinder's temperature during the first 12 hours, since a temperature increase of less than 10 F (5.5 C) may indicate retardation from material incompatibility; concrete for hot-weather placement should contain less cement and more SCM (preferably Class F fly ash, calcined clay, or slag), with trial batches including retarders to verify dosage/setting-time effects; concrete for cold-weather placement must contain more cement and less slow-reacting SCM (Class F fly ash, slag) -- if SCMs are still required (e.g., for ASR control), early strength can be regained via more cementitious material, Type III cement, or warm water, with trial batches including accelerating admixtures to verify dosage/setting-time effects; and trial batches must be tested across the full range of anticipated project temperatures.",
+      "key_points": [
+        "Develop a 3-point w/cm-vs-strength curve during mix design",
+        "Slump loss > 25 mm (1 in.) in 15 minutes signals false setting or material incompatibility",
+        "Cylinder temperature rise < 10 F (5.5 C) in the first 12 hours signals retardation from incompatibility",
+        "Hot weather: less cement, more SCM, verified retarder dosage; cold weather: more cement, less slow-reacting SCM, verified accelerator dosage"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies during trial batching to detect and manage material incompatibility and seasonal mixture adjustments."
+    },
+    {
+      "section_id": "7-6",
+      "title": "Concrete Mixture Design Issues",
+      "summary": "The best mixture is easily mixed/placed/consolidated/finished, attains required strength on time, and is durable in service, with durability concerns often outweighing strength limitations.",
+      "body": "The best concrete mixture design results in a concrete that is easily mixed, placed, consolidated, and finished under job conditions; attains the required compressive or flexural strength at the desired time; and is durable in the service environment -- durability concerns often outweigh the limitations imposed by strength requirements.",
+      "key_points": [
+        "Best mixtures balance ease of construction, timely strength gain, and long-term durability",
+        "Durability concerns often outweigh strength-requirement limitations"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Frames the workability, strength, and fast-track subsections that follow."
+    },
+    {
+      "section_id": "7-6.1",
+      "title": "Workability",
+      "summary": "Workability (ease of placing/consolidating/finishing without segregation) is often mis-specified via slump alone, which is inadequate given today's many influencing factors.",
+      "body": "Workability is an essential characteristic of concrete: the ease of placing, consolidating, and finishing freshly placed concrete without segregation. Workability is typically and erroneously specified in terms of slump measurement; because of the many factors that affect today's concrete, slump is not considered an adequate measure of workability, and the contractor should not rely on slump measurement alone to assess project concrete workability.",
+      "key_points": [
+        "Workability = ease of placing, consolidating, and finishing without segregation",
+        "Slump alone is not an adequate workability measure for modern concrete"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies whenever workability is being assessed or specified for a paving mixture."
+    },
+    {
+      "section_id": "7-6.1.1",
+      "title": "Factors Affecting Workability",
+      "summary": "Workability-related factors include transport/placement segregation, ease of consolidation, well-formed slipformed edges with minimal edge slump, and minimal hand-finishing needs.",
+      "body": "The concrete mix design process should not focus solely on meeting strength and slump requirements; achieving acceptable workability is equally critical. Workability-related factors include: segregation during transport and placement; ease of consolidation resulting in a well-distributed concrete matrix; well-formed slipformed edges with little or no edge slump; and minimal hand-finishing required behind the paver to manipulate the surface for tightness and smoothness.",
+      "key_points": [
+        "Workability factors: transport/placement segregation resistance, ease of consolidation",
+        "Well-formed slipformed edges with minimal edge slump",
+        "Minimal hand-finishing needed behind the paver"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when evaluating whether a mixture's workability supports the intended paving method."
+    },
+    {
+      "section_id": "7-6.1.2",
+      "title": "Mixture Components Affecting Workability",
+      "summary": "Workability depends on aggregate (size/grading/shape/water demand/variability), cement content/water demand, fly ash and slag effects on set/finishing, total water demand, and admixtures (air-entrainment improves workability; water reducers cut water demand).",
+      "body": "Obtaining the desirable workability for a given mix requires consideration of: aggregate (size, grading, particle shape, water demand, variability); cement (content, water demand); fly ash if used (effect on initial set, water demand, effect on finishing); slag cements and GGBF slag (effect on finishing and saw cutting); water (total water demand); and admixtures (air-entrained concrete exhibits better workability; water reducers reduce water demand while improving workability).",
+      "key_points": [
+        "Aggregate size/grading/shape/water demand strongly influence workability",
+        "Fly ash and slag affect set time, water demand, and finishing/saw-cutting behavior",
+        "Air-entraining admixtures improve workability; water reducers cut water demand while improving workability"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to selecting/adjusting mixture components to achieve target workability."
+    },
+    {
+      "section_id": "7-6.2",
+      "title": "Strength",
+      "summary": "The pavement designer sets the strength requirement (flexural or compressive at 14/28/90 days); standard deviation guidance sets target strength levels, and mixture uniformity keeps lot standard deviation low, since higher standard deviation can reduce the strength-related pay factor. Fixed-form (hand-placed) mixes need different workability but equal strength/durability.",
+      "body": "The pavement designer establishes the strength requirement for the concrete that meets the intent of the design, in terms of flexural strength or compressive strength at ages of 14, 28, or 90 days. The standard deviation for the strength needs to be established to provide guidance on target strength levels during the mixture design phase; the concrete also needs to be produced uniformly from batch to batch to keep the lot standard deviation as small as possible, since a higher standard deviation for a lot may reduce the strength-related pay factor. Mixture designs must also be developed for hand-placed (fixed-form) areas, which have workability requirements different from mechanically placed mixes, but the strength and durability requirements must be the same as the production concrete.",
+      "key_points": [
+        "Strength requirement (flexural or compressive, 14/28/90 days) is set by the pavement designer",
+        "Higher lot-to-lot standard deviation can reduce the strength-related pay factor",
+        "Fixed-form (hand-placed) mixture designs need different workability but the same strength/durability as production concrete"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to setting and maintaining target strength across production and hand-placed concrete."
+    },
+    {
+      "section_id": "7-6.2.1",
+      "title": "Weather Conditions",
+      "summary": "Heat of hydration is a concern for hot/cold placements; trial batches must verify desired strength is achieved in cold weather without excessive heat generation in hot weather (see §8-16/8-17 for details).",
+      "body": "For hot or cold weather placements, the heat of hydration is a concern. Trial batches must verify that the proposed mixes will achieve the desired strengths for cold weather placements and not generate excessive heat in hot-weather placements. Refer to paragraphs 8-16 and 8-17, respectively, for details on the specific concerns that must be addressed for hot and cold weather job conditions.",
+      "key_points": [
+        "Heat of hydration is a key concern for both hot- and cold-weather placements",
+        "Trial batches must confirm adequate strength gain (cold) without excessive heat generation (hot)",
+        "Detailed hot/cold weather concerns are in Chapter 8, §8-16 and §8-17"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Cross-references Chapter 8 for detailed hot- and cold-weather concreting concerns tied to strength/heat of hydration."
+    },
+    {
+      "section_id": "7-6.2.2",
+      "title": "Fast Track Concrete",
+      "summary": "Fast track concrete (best suited to cross-taxiways/high-traffic aprons) doesn't require unique mixes -- typically higher cement factor, optimized w/cm, uniform gradation, admixtures, and possibly Type III cement -- with typical early-strength targets of 5-7 MPa (750-1,000 psi) in 4-6 hours and 14-21 MPa (2,000-3,000 psi) in 24 hours, plus meeting any specified 14/28/90-day flexural strength.",
+      "body": "Considerations and requirements for placement and use of fast-track concrete: fast track paving does not necessarily mean high early-strength concrete, but many situations call for fast track or high early-strength concrete; fast track concrete is best suited for bridging areas incorporating cross taxiways or high-traffic-volume apron areas; high early-strength concrete can be produced using normal locally available ingredients and conventional construction methods; a conventional high early-strength mix typically incorporates a higher cement factor, optimized w/cm ratio, uniform aggregate gradation, and admixtures as needed (Type III cement may also be considered); there are no specific or unique mix designs for high early-strength concrete -- a wide range of mixes can meet project needs, including proprietary cements and admixtures; when high early-strength concrete is specified, the early-age strength requirement is typically defined in terms of compressive strength: about 5 to 7 MPa (750 to 1,000 psi) in about four to six hours, and about 14 to 21 MPa (2,000 to 3,000 psi) in about 24 hours; there may still be a requirement to meet a specified flexural strength at 14, 28, or 90 days.",
+      "key_points": [
+        "Fast track concrete is best suited to cross-taxiway or high-traffic apron bridging areas",
+        "No unique mix design required: higher cement factor, optimized w/cm, uniform gradation, admixtures, possibly Type III cement",
+        "Typical early-strength targets: 5-7 MPa (750-1,000 psi) at 4-6 hours; 14-21 MPa (2,000-3,000 psi) at 24 hours",
+        "The normal 14/28/90-day flexural strength requirement may still apply on top of the early-strength target"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when a project requires early trafficking via fast-track or high early-strength concrete."
+    },
+    {
+      "section_id": "7-6.3",
+      "title": "Sulfate Resistance",
+      "summary": "Severe sulfate attack potential exists above 0.20% (1,500 ppm) water-soluble sulfate, moderate above 0.10% (150 ppm); tricalcium aluminate (C3A) content is the main cement-side factor, ASTM C88 durability testing applies (max 12% loss/5 cycles, 18% for magnesium sulfate), and w/cm must be reduced with SCM/pozzolan use where sulfates are present.",
+      "body": "The potential for severe sulfate attack exists when concrete is exposed to water-soluble sulfate (SO4) in soil or water (per CRD-C 403 and ASTM D516/CRD-C 408) in excess of 0.20 percent or 1,500 parts per million; the potential for moderate sulfate attack exists above 0.10 percent or 150 parts per million. If soils or groundwater contain sulfates, the cementitious material(s) must be appropriately resistant and the w/cm ratio reduced appropriately; use of pozzolans or slags should also be considered. The main cement-side consideration is tricalcium aluminate (C3A) content; a supplementary cementitious material with high CaO and Al2O3 content may effectively add to the system's C3A content, making it more vulnerable to sulfate attack. For DoD construction, test durability per ASTM C88: the maximum limit of sulfate soundness loss is 12 percent after five cycles, or for magnesium sulfate, 18 percent after five cycles.",
+      "key_points": [
+        "Severe sulfate attack potential: >0.20% (1,500 ppm) water-soluble sulfate; moderate: >0.10% (150 ppm)",
+        "Tricalcium aluminate (C3A) content is the primary cement-side sulfate-vulnerability factor",
+        "High-CaO/Al2O3 SCMs can increase effective C3A content, worsening sulfate vulnerability",
+        "ASTM C88 durability limit: 12% soundness loss after 5 cycles (18% for magnesium sulfate)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to concrete placed in contact with sulfate-bearing soils or groundwater."
+    },
+    {
+      "section_id": "7-6.4",
+      "title": "Air Entrainment",
+      "summary": "Freeze-exposed concrete needs a well-distributed finely divided air-void system; typical pavement air content is 5-7% (exposure-dependent), required air increases as aggregate size decreases, air-void spacing factor must be <=0.20 mm (0.008 in.) (<=0.15 mm/0.006 in. with SCMs), and hauling/consolidation each reduce air content 1-2 percentage points.",
+      "body": "Concrete subject to freezing must contain a well-distributed system of finely divided air voids to protect it from frost damage. Specifications typically provide a required air volume (ASTM C231/CRD-C 41 pressure method or ASTM C173/CRD-C 8 volumetric method), but these methods do not distinguish a good air-void system from a poor one. Produce trial batches to determine the correct admixture dosage for job-site conditions including temperature; typical air content requirements for pavements range from 5 to 7 percent, depending on exposure; the volume of air required for frost protection increases with decreasing aggregate size (increased paste content); and, all else equal, increased air content decreases concrete strength. Test the air-void system on hardened concrete per ASTM C457/CRD-C 42: an air-void spacing factor of 0.20 mm (0.008 in.) or less is necessary, or 0.15 mm (0.006 in.) or less for concretes containing SCMs. Allow trial batch concrete to sit for a representative haul time before measuring, since non-agitating truck delivery can lose 1 to 2 percentage points of air; in a no-freeze environment, if air is entrained solely for workability, the minimum frost-protection air contents do not apply; and typical slipform paving operations reduce air content by 1 to 2 percent during consolidation.",
+      "key_points": [
+        "Typical pavement air content: 5-7%, depending on exposure",
+        "Air-void spacing factor (ASTM C457/CRD-C 42): <=0.20 mm (0.008 in.), or <=0.15 mm (0.006 in.) with SCMs",
+        "Required frost-protection air increases as aggregate size decreases",
+        "Non-agitating haul trucks can lose 1-2 percentage points of air; slipform consolidation reduces air by 1-2 percent"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to specifying and verifying the air-void system for freeze-exposed concrete pavement."
+    },
+    {
+      "section_id": "7-7",
+      "title": "Blended Cement/Supplementary Cementitious Material",
+      "summary": "Judicious SCM use (blended or mixer-added) enhances concrete properties: Class C fly ash is prohibited; Class F fly ash/natural pozzolans and slag each have distinct heat-of-hydration/early-strength/setting effects that must be verified by trial batching; SCMs reduce thermal cracking risk, increase later-age strength, reduce permeability, and control ASR/sulfate attack; ternary blends can outperform a single blended cement.",
+      "body": "The judicious use of supplementary cementitious materials, either as components of blended cements or added at the mixer, can greatly enhance the properties of the concrete. Key issues: Class C fly ash is not permitted for paving concrete; slags contain enough calcium for some self-cementitious properties, with potential early stiffening in the presence of certain water reducers and hot weather (verify via trial batches at the highest anticipated temperature, checking slump loss and setting time; if slump loses rapidly, consider reducing fly ash dosage, or changing fly ash/cement/water reducer); Class F fly ash and natural pozzolans react with water and calcium hydroxide from cement hydration to form calcium silicate hydrate; reactivity and strength-gain rate of cementitious materials vary with chemical/mineralogical composition and fineness; purely pozzolanic Class F fly ash and natural pozzolans tend to produce lower heat of hydration and lower early-age strength than cement; slag generally lowers heat of hydration and early-age strength; most SCMs increase later-age strength. Appropriately used SCMs can: reduce thermal cracking tendency (lower heat of hydration); increase strength (particularly at later ages); reduce permeability/diffusivity; and control ASR expansion and increase sulfate resistance. Some SCMs are better suited to a given application than others, and some may be inappropriate; natural pozzolans can perform excellently, similar to Class F fly ashes; if the aggregate is ASR-susceptible, consider a Class F fly ash with CaO content below 8 percent (test the aggregate/cement/fly ash combination to determine required quantity); Class F fly ash is considered the most effective SCM for heat-of-hydration control, ASR control, and sulfate resistance; some SCM combinations make performance worse, so test each combination of cementitious materials, aggregates, and admixtures; blended cements containing Class F fly ash, slag, calcined clay, or silica fume may also be used for heat-of-hydration/ASR/sulfate control; if the available blended cement doesn't meet ASR/sulfate requirements, incorporate additional SCM of the same or different kind at the mixer; and ternary mixtures (three cementitious materials) may offer the best alternative in some applications, e.g. a Type IS cement alone insufficient for required sulfate resistance may be improved by adding slag or Class F fly ash at the mixer.",
+      "key_points": [
+        "Class C fly ash is NOT permitted for paving concrete",
+        "Slag can cause early stiffening with certain water reducers/hot weather -- verify by trial batch at the highest anticipated temperature",
+        "SCMs reduce thermal cracking tendency, increase later-age strength, reduce permeability, and control ASR/sulfate attack",
+        "Class F fly ash (CaO < 8%) is generally the most effective SCM for heat-of-hydration, ASR, and sulfate-resistance control",
+        "Ternary (three-cementitious-material) blends can outperform a single blended cement for sulfate resistance"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when selecting and proportioning SCMs or blended cements to control heat of hydration, ASR, or sulfate resistance."
+    },
+    {
+      "section_id": "7-8",
+      "title": "Materials Incompatibility",
+      "summary": "Complex modern mixtures (SCMs + chemical admixtures) risk incompatibility: early stiffening, retardation, early-age shrinkage cracking, and poor air-void systems; incompatibility factors are poorly understood and temperature-sensitive, so trial batches should span the project's expected temperature extremes.",
+      "body": "Some concretes exhibit undesirable characteristics because of incompatibility among different concrete materials: (a) early loss of workability (early stiffening), (b) delayed set (retardation), (c) early-age cracking due to excessive autogenous and drying shrinkage, and (d) lack of a proper air-void system. These incompatibility-related problems affect construction productivity and long-term performance. As concrete mixtures become more complex with SCMs and combinations of chemical admixtures, the likelihood of incompatibility increases; the problem is compounded because the factors causing incompatibility among cementitious materials and admixtures are not well known, and incompatibility may be induced by temperature changes -- therefore, test trial batches at the extremes of temperature anticipated at the project site.",
+      "key_points": [
+        "Four incompatibility symptoms: early stiffening, retardation, early-age shrinkage cracking, poor air-void system",
+        "Complex mixtures (multiple SCMs + admixtures) raise incompatibility risk",
+        "Incompatibility factors are poorly understood and temperature-sensitive",
+        "Test trial batches across the full range of anticipated project-site temperatures"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when diagnosing or preventing material-incompatibility problems in complex modern mixtures."
+    },
+    {
+      "section_id": "7-8.1",
+      "title": "Early Stiffening",
+      "summary": "Early stiffening occurs when insufficient sulfates in solution fail to control aluminate hydration timing, causing loss of slump/workability and placement/consolidation difficulty; it can arise from individual materials or their interactions with admixtures and temperature.",
+      "body": "Early stiffening occurs when there are insufficient sulfates in solution at the right time to control the hydration of the aluminates. The early stiffening leads to loss of workability, as indicated by loss of slump, which leads to difficulties in concrete placement and consolidation. The tendency to early stiffening may be attributed not only to the individual cementitious materials, but also to interactions among the various cementitious materials, the chemical admixtures, and ambient temperatures.",
+      "key_points": [
+        "Root cause: insufficient/mistimed sulfate availability to control aluminate hydration",
+        "Symptom: rapid slump loss, causing placement/consolidation difficulty",
+        "Can result from individual materials or their interaction with admixtures and temperature"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to diagnosing rapid, unexplained slump loss during batching/placement."
+    },
+    {
+      "section_id": "7-8.2",
+      "title": "Retarded Concrete",
+      "summary": "Uncommon but occasionally seen, retarded concrete sets a few hours to more than 12 hours late, delaying joint sawing and risking uncontrolled cracking.",
+      "body": "Although retarded concrete is not a common phenomenon, from time to time some paving projects experience concrete setting problems, where setting may be delayed by a few hours to more than 12 hours. A consequence of this problem is the inability to perform joint sawing in a timely manner, leading to uncontrolled cracking.",
+      "key_points": [
+        "Retarded concrete: setting delayed a few hours to over 12 hours (uncommon but recurring)",
+        "Consequence: missed sawing window, leading to uncontrolled cracking"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when diagnosing an unusually delayed set that threatens the joint-sawing schedule."
+    },
+    {
+      "section_id": "7-8.3",
+      "title": "Shrinkage",
+      "summary": "Premature cracking can stem from plastic shrinkage (rapid surface water evaporation in fresh concrete) or later hardened-concrete cracking from excessive autogenous/drying shrinkage.",
+      "body": "Premature cracking in concrete can be caused by a host of factors. Shrinkage can occur in the fresh (plastic) or hardened concrete. Plastic shrinkage cracking results as water rapidly evaporates from the surface of the fresh concrete. Cracking may also occur somewhat later in the life of the pavement due to excessive autogenous and drying shrinkage.",
+      "key_points": [
+        "Plastic shrinkage cracking: rapid surface-water evaporation in fresh concrete",
+        "Later cracking can result from excessive autogenous or drying shrinkage in hardened concrete"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to diagnosing shrinkage-related cracking in either fresh or hardened concrete."
+    },
+    {
+      "section_id": "7-8.4",
+      "title": "Air Void System",
+      "summary": "Certain air-entraining agents can cause accumulations of air voids around aggregate particles (strength loss) and a poor-quality hardened air-void system (compromised long-term freeze-thaw durability).",
+      "body": "Problems related to the use of certain air-entraining agents include: accumulations of air voids around the aggregate particles, leading to strength loss; and a poor-quality air void system in the hardened concrete that affects long-term freeze-thaw durability.",
+      "key_points": [
+        "Some air-entraining agents cause air-void accumulation around aggregate, reducing strength",
+        "A poor hardened air-void system compromises long-term freeze-thaw durability"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to diagnosing strength loss or freeze-thaw durability problems traced to the air-void system."
+    },
+    {
+      "section_id": "7-8.5",
+      "title": "Reducing Incompatibility",
+      "summary": "Have separate hot- and cool-weather mixture designs where seasonal temperature differences are significant, along with other incompatibility-reduction steps.",
+      "body": "It is advisable to have hot and cool weather mixture designs in locations where seasonal differences in temperature are usually significant. Other steps to minimize incompatibility problems include using consistent material sources, verifying admixture compatibility via trial batches, and testing across the anticipated temperature range before committing to a single year-round mixture.",
+      "key_points": [
+        "Maintain separate hot- and cool-weather mixture designs where seasonal swings are significant",
+        "Verify admixture/material compatibility with trial batches across the anticipated temperature range"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to projects spanning multiple seasons where a single mixture design would not perform consistently."
+    },
+    {
+      "section_id": "7-9",
+      "title": "Aggregate Requirements",
+      "summary": "Introduces aggregate grading requirements, covered in the following subsections (7-9.1 and its sub-subsections).",
+      "body": "This section covers aggregate grading requirements for concrete pavement mixtures, detailed in the following subsections.",
+      "key_points": [
+        "Introduces the aggregate grading subsections that follow (Section 7-9.1)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Introduces the aggregate grading requirements detailed in the following subsections."
+    },
+    {
+      "section_id": "7-9.1",
+      "title": "Aggregate Grading",
+      "summary": "Aggregate grading substantially affects mixture properties; fine aggregate grading is especially important -- too little fines hurts extrudability/finishing and increases bleeding, too much fines increases water demand and air-entraining admixture dosage.",
+      "body": "The grading of the aggregate can have a substantial effect on the properties of the concrete mixture. The grading of the fine aggregate fraction is also important: too little fines make the concrete difficult to extrude and finish as well as more prone to bleeding, while excess fines increase the water demand of the concrete and the required dosage of air-entraining admixture.",
+      "key_points": [
+        "Aggregate grading substantially affects concrete mixture properties",
+        "Too little fine-aggregate fines: harder to extrude/finish, more bleeding",
+        "Too much fines: higher water demand and air-entraining admixture dosage"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Introduces the aggregate grading subsections that follow."
+    },
+    {
+      "section_id": "7-9.1.1",
+      "title": "Well-graded Aggregate",
+      "summary": "Well-graded combined aggregate reduces water need, maintains workability, requires minimal finishing, consolidates without segregation, and enhances strength/long-term performance.",
+      "body": "Concrete mixtures produced with a well-graded aggregate combination tend to: reduce the need for water; provide and maintain adequate workability; require minimal finishing; consolidate without segregation; and enhance strength and long-term performance.",
+      "key_points": [
+        "Well-graded aggregate: less water needed, better sustained workability, minimal finishing",
+        "Consolidates without segregation and enhances strength/long-term performance"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Describes the benefits sought when targeting a well-graded combined aggregate."
+    },
+    {
+      "section_id": "7-9.1.2",
+      "title": "Gap-graded Aggregate",
+      "summary": "Gap-graded aggregate combinations tend to segregate easily, contain more fines, require more water, be more shrinkage-prone, and limit long-term performance.",
+      "body": "Concrete mixtures produced with a gap-graded aggregate combination tend to: segregate easily; contain more fines; require more water; increase their susceptibility to shrinkage; and limit long-term performance.",
+      "key_points": [
+        "Gap-graded aggregate: segregates easily, more fines, more water demand",
+        "Increased shrinkage susceptibility and limited long-term performance"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Describes the downsides that motivate avoiding gap-graded aggregate combinations."
+    },
+    {
+      "section_id": "7-9.1.3",
+      "title": "Combined Aggregate Grading",
+      "summary": "Proportion the mixture as a well-graded combined aggregate so that workability, finishability, minimum air content, and w/cm requirements are all met.",
+      "body": "Proportion the concrete mixture so the requirements for workability and finishability are met. Also, proportion the mixture as a well-graded combined aggregate such that the minimum requirements for air content and the water cementitious ratio are met.",
+      "key_points": [
+        "Combined aggregate proportioning must satisfy workability, finishability, air content, and w/cm requirements simultaneously"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to proportioning the overall combined aggregate blend for a concrete mixture."
+    },
+    {
+      "section_id": "7-9.1.4",
+      "title": "Percent Combined Aggregate Retained Graph",
+      "summary": "Grading reports should cover 12 sieve sizes from 50 mm (2 in.) to 0.15 mm (No. 100); Figure 7-1 plots percent retained per sieve as a smooth-transition curve, with dotted max/min guide lines and no significant valleys/peaks between the 9.5 mm (3/8 in.) sieve and the finest reporting sieve.",
+      "body": "Grading reports should include the following sieve sizes: 50 mm, 37.5 mm, 25 mm, 19 mm, 12.5 mm, 9.5 mm, 4.75 mm, 2.36 mm, 1.18 mm, 0.6 mm, 0.3 mm, and 0.15 mm (2 in., 1-1/2 in., 1 in., 3/4 in., 1/2 in., 3/8 in., No. 4, No. 8, No. 16, No. 30, No. 50, and No. 100, respectively). Plot the selected proportions for the combined gradation on a graph as percentage retained for each reporting sieve size (y axis) versus sieve size (x axis); the plot should be a line showing a relatively smooth transition between coarse and fine aggregate. The maximum and minimum percent retained limits, represented by dotted lines in Figure 7-1, are a guide; the plot should have no significant valleys or peaks between the 9.5 mm (3/8 in.) sieve size and the finest reporting sieve size. Figure 7-1 shows an example, including satisfactory and unsatisfactory combined aggregate gradation plots.",
+      "key_points": [
+        "12 reporting sieves: 50, 37.5, 25, 19, 12.5, 9.5, 4.75, 2.36, 1.18, 0.6, 0.3, 0.15 mm (2in-No.100)",
+        "Plot % retained per sieve vs. sieve size (Figure 7-1) as a smoothly-transitioning line",
+        "Dotted max/min lines are a guide; avoid significant valleys/peaks between the 3/8 in. sieve and the finest sieve"
+      ],
+      "equations": [],
+      "figures": ["Figure 7-1: Percent Combined Aggregate Retained"],
+      "tables": [],
+      "applicability": "Applies to reporting and visually screening a combined aggregate gradation for smoothness."
+    },
+    {
+      "section_id": "7-9.1.5",
+      "title": "Coarseness Factor / Workability Factor",
+      "summary": "Combined aggregate grading yields a coarseness factor (CF = 100 x %retained-above-3/8in / %retained-above-#8) and a workability factor (WF = %passing-#8 + 2.5% per 56 kg/m3/94 lb/yd3 of cementitious material above the 335 kg/m3/564 lb/yd3 baseline, upward-only); CF should be 30-80, and the (WF, CF) point should plot above the control line and inside the workability box on Figure 7-2, with CF > 75 (Area E) producing gap-graded, hard-to-work mixtures.",
+      "body": "Use the combined aggregate grading to calculate a coarseness factor and a workability factor. Determine the coarseness factor for a particular combined aggregate gradation by dividing the amount retained above the 9.5 mm (3/8 in.) sieve by the amount retained above the 2.36 mm (No. 8) sieve and multiplying by 100. The workability factor is the percentage of combined aggregate finer than the 2.36 mm (No. 8) sieve, from the percentage passing the No. 8 sieve on the combined aggregate sieve analysis; increase the workability factor by 2.5 percent for each 56 kg/m3 (94 lb/yd3) of cementitious material used in excess of the baseline amount of 335 kg/m3 (564 lb/yd3), only adjusting upwards since 335 kg/m3 (564 lb/yd3) is the minimum permitted cementitious content for rigid airfield mix designs (see Equation 7-1, printed as '(7-9.1.5)' in the source). The coarseness and workability factors are plotted on a chart similar to Figure 7-2. The coarseness factor should not be greater than 80 nor less than 30; the plot of workability factor vs. coarseness factor is a single point that should fall above the control line and within the workability box (Figure 7-2). Aggregate blends near the bottom boundary line may have too much coarse aggregate (rocky mixtures, inadequate mortar); blends above the top boundary line (Area D) produce sandy, high-fines mixtures needing more water and prone to segregation; blends with coarseness factors above 75 (Area E) produce gap-graded mixtures with inadequate workability and high segregation potential; and for aggregate sizes below 19 mm (0.75 in.) the areas shift to the right within the given control lines.",
+      "key_points": [
+        "Coarseness Factor CF = 100 x (%retained above 3/8in [9.5mm]) / (%retained above No.8 [2.36mm])",
+        "Workability Factor WF = %passing No.8 sieve + 2.5% per 56 kg/m3 (94 lb/yd3) cementitious material above the 335 kg/m3 (564 lb/yd3) baseline (upward adjustment only)",
+        "Coarseness factor must be within 30-80; the (WF,CF) point must plot above the control line, inside the workability box (Figure 7-2)",
+        "CF > 75 (Area E): gap-graded, poor-workability, segregation-prone mixture",
+        "This is the one genuine printed formula (Equation 7-1) in the document; digitized in equations.py"
+      ],
+      "equations": [
+        {"id": "Equation 7-1", "description": "Coarseness Factor = 100 x (% retained above 9.5 mm [3/8 in.] sieve) / (% retained above 2.36 mm [No. 8] sieve); Workability Factor = % passing 2.36 mm [No. 8] sieve + 2.5% for each 56 kg/m3 (94 lb/yd3) of cementitious material in excess of 335 kg/m3 (564 lb/yd3) baseline",
+         "implemented_in": "geotech_references.ufc_concrete_practice.equations.coarseness_factor"}
+      ],
+      "figures": ["Figure 7-2: Aggregate Proportioning Guide"],
+      "tables": [],
+      "applicability": "Applies to evaluating whether a combined aggregate gradation falls in a workable range for the intended paving method."
+    },
+    {
+      "section_id": "7-9.1.6",
+      "title": "Aggregate Proportioning Guide",
+      "summary": "Once a gradation passes the percent-retained check, the workability box (Figure 7-3) further screens by placement method: Area A (lower-left, near control line) suits slipform, Area B (lower-right) suits fixed-form, Area C (top) suits hand-placed areas.",
+      "body": "When a combined aggregate grading appears to meet the criteria of the percent retained graphic, assess the location in the workability box that is best suited to the method of placement, evaluating workability factor and coarseness factor as shown in Figure 7-3: aggregate blends that plot at the lower left of the box near the control line (Area A) produce mixtures suitable for slipform paving (though other regions can be acceptable depending on aggregate texture/shape); blends at the lower right corner (Area B) produce mixtures suitable for fixed-form paving, assuming smaller aggregate sizes are used to lower the coarseness factor and increase workability; and blends at the top of the box (Area C) produce mixtures suitable for hand-placed areas.",
+      "key_points": [
+        "Area A (lower-left, near control line): suited to slipform paving",
+        "Area B (lower-right corner): suited to fixed-form paving (smaller aggregate, lower coarseness factor)",
+        "Area C (top of box): suited to hand-placed areas"
+      ],
+      "equations": [],
+      "figures": ["Figure 7-3: Workability Box within Aggregate Proportioning Guide"],
+      "tables": [],
+      "applicability": "Applies to matching an acceptable aggregate gradation to the intended concrete placement method."
+    },
+    {
+      "section_id": "7-9.1.7",
+      "title": "Controlling Factors",
+      "summary": "The proportioning guide is not exact -- it assumes rounded/cubical particles, ignoring fine-aggregate particle shape and entrained air content; flat/elongated aggregates limit workability/finishing, and the chart should be used as a guide (validated by test-strip response), not a rule.",
+      "body": "The above criteria is not exact because the aggregate proportioning guide for grading does not take other 'workability' factors into account. The shape of the fine aggregate particles affects workability but is not reflected in the grading; when using the coarseness/workability chart, it is assumed that particles are rounded or cubical shaped. Flat and elongated aggregates typically limit workability and finishing characteristics, while rounded or cubical shaped aggregates typically enhance them. Entrained air content directly affects workability but is not considered in the guide. Chemical admixtures adjust workability and should not be neglected in the final mixture selection. Use the aggregate proportioning guide as a guide, not a rule; the person doing the mixture proportioning must be familiar with the placement method and characteristics best suited to it, and the person evaluating the study must balance the data against results from previous paving projects. The final test for both contractor and engineer is the mixture's characteristics and response to placement observed at a test strip.",
+      "key_points": [
+        "The chart assumes rounded/cubical particle shape; flat/elongated aggregate limits workability/finishing but is not reflected in the chart",
+        "Entrained air content affects workability but is not captured by the chart",
+        "Use the proportioning guide as a guide, not a rule -- the test strip is the final validation"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies as a caution when interpreting the coarseness/workability chart -- it must be paired with judgment and test-strip validation."
+    },
+    {
+      "section_id": "7-9.1.8",
+      "title": "Gradation Variations",
+      "summary": "Consider daily variance (about 5% on coarseness factor, 3% on workability factor) relative to the workability box when selecting a final design gradation, so normal batch-to-batch variation does not plot outside the box (Figure 7-4).",
+      "body": "An important consideration in selecting the final design aggregate grading, using the aggregate proportioning guide, is the location of the design grading relative to the expected daily variance of the concrete mixture materials. Changes in coarse, blend, and fine aggregate gradations could place the plot outside of the workability box, as illustrated in Figure 7-4. A normal variance of about 5 percent on the coarseness factor and about 3 percent on the workability factor should be considered in the final selection of an aggregate blend; a design further from the workability box boundary (allowing for this normal variance) is a better choice than one closer to the boundary.",
+      "key_points": [
+        "Normal daily variance to plan for: ~5% on coarseness factor, ~3% on workability factor",
+        "Select a design gradation with enough margin from the workability-box boundary to absorb this variance (Figure 7-4)"
+      ],
+      "equations": [],
+      "figures": ["Figure 7-4: Daily Variance within Workability Box for Aggregate Proportioning"],
+      "tables": [],
+      "applicability": "Applies to final gradation selection, ensuring day-to-day material variance does not push the mixture out of the workability box."
+    },
+    {
+      "section_id": "7-9.1.9",
+      "title": "Slag Aggregates",
+      "summary": "Properly aged blast-furnace slag aggregate performs well but needs careful moisture control (poor management risks honeycombing/poor edges); open-hearth steel slag must never be used as concrete or econocrete aggregate due to its expansive nature.",
+      "body": "Properly aged iron ore blast-furnace slag aggregates have a history of good performance; however, control of moisture content is important when slag aggregates are used, as potential problems include variations in workability and consolidation. If slag aggregate moisture is not managed well, the in-place concrete may exhibit honeycombing and poorly formed edges. Never use slag from open hearth steel mills as concrete aggregate or for econocrete/lean concrete base because of the expansive nature of the steel slag aggregates.",
+      "key_points": [
+        "Properly aged blast-furnace slag aggregate has a good performance history but needs careful moisture control",
+        "Poor moisture management risks honeycombing and poorly formed edges",
+        "NEVER use open-hearth steel-mill slag as concrete or econocrete aggregate -- it is expansive"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when blast-furnace or other slag material is considered as a concrete aggregate source."
+    },
+    {
+      "section_id": "7-9.1.10",
+      "title": "Recycled Concrete Aggregates",
+      "summary": "Recycled/crushed concrete is a feasible aggregate source if it meets project requirements, but generally has higher absorption (needing more water/cement for equal workability), and variability in the source concrete can carry through; petrographic examination is recommended, and rebar-containing recycled concrete cannot be used.",
+      "body": "Recycled concrete, or crushed concrete, is a feasible source of aggregates if it meets the project-specific aggregate requirements. Recycled concrete generally has a higher absorption than virgin aggregates and may require more water to achieve the same workability and slump, and may also require added cement to achieve desired workability. A potential problem is that the variability in the properties of the old concrete may affect the properties of the new concrete. Recommend evaluating recycled concrete aggregates by petrographic examination; identify why the recycled concrete was removed, and do not incorporate problematic recycled concrete into new concrete mix. Recycled concrete cannot contain rebar.",
+      "key_points": [
+        "Recycled concrete aggregate is feasible if it meets project-specific requirements",
+        "Higher absorption than virgin aggregate: needs more water and possibly more cement for equal workability",
+        "Petrographic examination recommended; identify why the source concrete was removed",
+        "Recycled concrete used as aggregate cannot contain rebar"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when recycled/crushed concrete is being considered as an aggregate source."
+    },
+    {
+      "section_id": "7-10",
+      "title": "Field Adjustments of Concrete Mixture Design",
+      "summary": "Material shortages/changes require trial-batch verification of properties; minor adjustments for weather are acceptable, but increasing air or adding water above the design w/cm can reduce strength; air-entraining admixture dosage set at 70 F (20 C) is typically decreased ~30% for 40-50 F (4-10 C) placement and increased ~30% for 100-110 F (40-45 C) placement.",
+      "body": "Shortages of cement or other concrete-making ingredients may occur during the construction season; if any changes in type, source, or brand of cementitious material, admixtures, or aggregate source need to be made, trial batches need to verify the required properties are retained. Certain minor adjustments to the concrete mixture proportions may be necessary due to changes in the weather to maintain required workability and air content; however, if air content is increased or water is added above the design w/cm ratio, concrete strength may decrease. Adjustments of admixture dosages are acceptable, provided the maximum dosages do not exceed the manufacturer's maximum recommended dosage. The dosage of air-entraining admixture required to entrain a given volume of air varies with concrete temperature: if the required dosage was determined in the laboratory at 70 F (20 C), it can be decreased by approximately 30 percent for placement temperatures of 40 to 50 F (4 to 10 C) and increased by approximately 30 percent for placement temperatures of 100 to 110 F (40 to 45 C).",
+      "key_points": [
+        "Cementitious/admixture/aggregate source changes require trial-batch re-verification",
+        "Increasing air or adding water above the design w/cm ratio can reduce strength",
+        "Admixture dosage adjustments must stay within the manufacturer's maximum recommended dosage",
+        "Air-entraining admixture dosage (vs. 70 F/20 C laboratory baseline): ~-30% at 40-50 F (4-10 C); ~+30% at 100-110 F (40-45 C)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when field conditions (material shortage, weather) require adjusting a previously approved mixture design."
+    },
+    {
+      "section_id": "7-10.1",
+      "title": "New Mixture Design Implementation",
+      "summary": "When a new mixture design is needed mid-project, paving may proceed once early-age breaks confirm specified strength at the specified age (temporarily using a higher-strength mixture until confirmed), verifying setting times and all other required characteristics, not strength alone; a multi-season project should develop more than one mixture design.",
+      "body": "If a new mixture design is developed because of changes in concrete materials, allow the contractor to proceed with paving once the early-age breaks indicate that the new mixture provides the specified strength at the specified age; it is advisable that the contractor use a higher strength mixture temporarily until all the new mixture strength results are available. Concrete strength is not the only criterion the new mixture must satisfy -- required characteristics include mixing, placing, consolidation, and finishing under job site conditions, and setting times must be verified. If pavement construction spans more than one season, it is advisable to develop more than one mixture design.",
+      "key_points": [
+        "Use a temporarily higher-strength mixture while confirming a new mixture design's early-age strength results",
+        "Verify all required characteristics (mixing, placing, consolidation, finishing, setting time), not just strength",
+        "Multi-season projects should have more than one mixture design"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when a mixture design must be changed mid-project due to material changes."
+    },
+    {
+      "section_id": "7-10.2",
+      "title": "Differences in Laboratory and Plant Mixing",
+      "summary": "Batch size/mixer-type differences change mixing efficiency (may need admixture dosage adjustment); normal lab mixing can hide false-setting tendency revealed only at the batch plant (test slump at 3 minutes vs. final mixing to check); and temperature strongly affects workability/water demand/slump loss/air/setting, so lab mix designs should be run at anticipated field temperatures.",
+      "body": "Note the following differences between laboratory and plant mixing: differences in batch size and mixer type produce different mixing efficiencies, possibly requiring chemical admixture dosage adjustment to obtain desired workability and air content; normal laboratory mixing procedures obscure any tendency of a concrete mixture to false set, and a mixture that behaves appropriately in the laboratory may false set when mixed in the batch plant -- in the laboratory, test the slump after the initial three minutes of mixing and compare it to the slump after final mixing to check for false-set tendency; and temperature can significantly affect workability, water demand, slump loss, air content, and setting, so conduct laboratory mixture designs at the temperature(s) anticipated in the field.",
+      "key_points": [
+        "Batch size/mixer type differences between lab and plant may require admixture dosage adjustment",
+        "Check false-set tendency in the lab by comparing 3-minute vs. final-mixing slump",
+        "Conduct laboratory mixture design testing at the temperature(s) anticipated in the field"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when translating a laboratory mixture design into full-scale batch plant production."
+    },
+    {
+      "section_id": "7-10.3",
+      "title": "Troubleshooting Guide",
+      "summary": "Observation and documentation are the primary tools for isolating cause and effect in construction problems; look for patterns (e.g., a coincident weather change or new cement shipment); Paragraph 8-20 (Table 8-2) discusses common problems and remedies.",
+      "body": "Observations and documentation are important tools to isolate and solve construction problems. Look for patterns that appear to connect cause and effect: for example, if everything works well until the weather becomes hot or a new shipment of cement arrives, the most recent change may be a clue to the root cause of the problem; alternatively, if construction practices are marginal, the last change may simply tip the balance to unacceptable performance. In hot weather or cold weather, certain types of problems predominate. Paragraph 8-20 discusses common problems and possible remedies.",
+      "key_points": [
+        "Look for patterns linking a recent change (weather shift, new material shipment) to the onset of a problem",
+        "Marginal construction practices can be tipped into unacceptable performance by the last change, not necessarily its root cause",
+        "See Section 8-20 (Table 8-2) for the full troubleshooting guide covering placement/finishing/texturing/curing problems"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to diagnosing concrete mixture and construction problems by pattern recognition, cross-referencing Chapter 8's troubleshooting table."
+    }
+  ]
+}

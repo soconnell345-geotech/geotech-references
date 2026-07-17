@@ -64,7 +64,10 @@ geotech_references/           # Python package (pip install -e .)
   ufc_expansive/               # UFC 3-220-07 Foundations in Expansive Soils
     equations.py               # 5 equations (activity, free swell, swell pressure, heave, pier)
     tables.py                  # 4 tables (swell potential, active zone, foundation, void space)
-  ufc_pavement/                # UFC 3-250-01 Pavement Design for Roads, Streets, Walks & Storage (NOTE: existing equations.py/tables.py were coded from UFC 3-260-02 airfield — needs audit/replacement)
+  ufc_pavement/                # UFC 3-250-01 (2016) Pavement Design for Roads & Parking — REBUILT 2026-07 from the real doc (audit gap CLOSED): CBR curve E-1, rigid Eq 13-1, overlays, frost, drainage
+  ufc_stabilization/           # UFC 3-250-11 (2020) Soil Stabilization (additive selection, criteria, equivalency)
+  ufc_flexible_practice/       # UFC 3-250-03 (2018) Flexible Pavement Practice (HMA/Marshall/Superpave, sprays, seals)
+  ufc_concrete_practice/       # UFC 3-250-04 (2024) Concrete Pavement Practice (materials, dowels, joints, RCC)
     equations.py               # 4 equations (CBR-to-k, flexible/rigid thickness, ESWL)
     tables.py                  # 5 tables (frost susceptibility, reduction, aircraft, layers, subgrade)
 scripts/                       # Content generation tools (NOT installed with the package)

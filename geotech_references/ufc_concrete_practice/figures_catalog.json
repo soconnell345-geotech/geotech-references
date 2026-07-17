@@ -1,0 +1,91 @@
+{
+  "reference_id": "UFC 3-250-04",
+  "reference_title": "Standard Practice for Concrete Pavements",
+  "package": "ufc_concrete_practice",
+  "volume": null,
+  "pdf_path": "docs/ufc_3_250_04_2024.pdf",
+  "figure_count": 9,
+  "figures": [
+    {
+      "figure_number": "4-1",
+      "caption": "Typical Moisture-Density Curves",
+      "chapter": 4,
+      "pdf_page_index": 55,
+      "printed_page": 38,
+      "page_estimated": false,
+      "description": "Moisture Compaction Relationships Applies when selecting compaction equipment and technique based on soil type and moisture sensitivity. Moisture-density (Proctor) curve shape indicates a soil's moisture sensitivity; clayey sand is an example of a moisture-sensitive soil. Figure 4-1 illustrates typical moisture-density curves used to assess this sensitivity. Use sheepsfoot rollers for cohesive soil; pads must penetrate 70% of the lift thickness. Disc cohesive soil as needed to control moisture content. Use static steel drum rollers to smooth the grade surface after compaction. Use vibratory steel drum rollers for cohesionless soil, but apply vibration with caution near a shallow water table or in saturated subgrade."
+    },
+    {
+      "figure_number": "7-1",
+      "caption": "Percent Combined Aggregate Retained",
+      "chapter": 7,
+      "pdf_page_index": 80,
+      "printed_page": 63,
+      "page_estimated": false,
+      "description": "Percent Combined Aggregate Retained Graph Applies to reporting and visually screening a combined aggregate gradation for smoothness. 12 reporting sieves: 50, 37.5, 25, 19, 12.5, 9.5, 4.75, 2.36, 1.18, 0.6, 0.3, 0.15 mm (2in-No.100) Plot % retained per sieve vs. sieve size (Figure 7-1) as a smoothly-transitioning line Dotted max/min lines are a guide; avoid significant valleys/peaks between the 3/8 in. sieve and the finest sieve"
+    },
+    {
+      "figure_number": "7-2",
+      "caption": "Aggregate Proportioning Guide",
+      "chapter": 7,
+      "pdf_page_index": 82,
+      "printed_page": 65,
+      "page_estimated": false,
+      "description": "Coarseness Factor / Workability Factor Applies to evaluating whether a combined aggregate gradation falls in a workable range for the intended paving method. Coarseness Factor CF = 100 x (%retained above 3/8in [9.5mm]) / (%retained above No.8 [2.36mm]) Workability Factor WF = %passing No.8 sieve + 2.5% per 56 kg/m3 (94 lb/yd3) cementitious material above the 335 kg/m3 (564 lb/yd3) baseline (upward adjustment only) Coarseness factor must be within 30-80; the (WF,CF) point must plot above the control line, inside the workability box (Figure 7-2) CF > 75 (Area E): gap-graded, poor-workability, segregation-prone mixture This is the one genuine printed formula (Equation 7-1) in the document; digitized in equations.py"
+    },
+    {
+      "figure_number": "7-3",
+      "caption": "Workability Box within Aggregate Proportioning Guide",
+      "chapter": 7,
+      "pdf_page_index": 83,
+      "printed_page": 66,
+      "page_estimated": false,
+      "description": "Aggregate Proportioning Guide Applies to matching an acceptable aggregate gradation to the intended concrete placement method. Area A (lower-left, near control line): suited to slipform paving Area B (lower-right corner): suited to fixed-form paving (smaller aggregate, lower coarseness factor) Area C (top of box): suited to hand-placed areas"
+    },
+    {
+      "figure_number": "7-4",
+      "caption": "Daily Variance within Workability Box for Aggregate Proportioning",
+      "chapter": 7,
+      "pdf_page_index": 84,
+      "printed_page": 67,
+      "page_estimated": false,
+      "description": "Gradation Variations Applies to final gradation selection, ensuring day-to-day material variance does not push the mixture out of the workability box. Normal daily variance to plan for: ~5% on coarseness factor, ~3% on workability factor Select a design gradation with enough margin from the workability-box boundary to absorb this variance (Figure 7-4)"
+    },
+    {
+      "figure_number": "8-1",
+      "caption": "Dowel Bar Misalignment Categories",
+      "chapter": 8,
+      "pdf_page_index": 94,
+      "printed_page": 77,
+      "page_estimated": false,
+      "description": "Dowel Bar Alignment Applies to inspecting and interpreting dowel bar misalignment and its performance consequences. Dowel alignment must be checked regularly -- misalignment significantly affects performance Table 8-1: 5 misalignment types (horizontal/longitudinal/vertical translation, horizontal/vertical skew) and their spalling/cracking/load-transfer impacts Figure 8-1 illustrates the misalignment categories"
+    },
+    {
+      "figure_number": "9-1",
+      "caption": "Concrete Pavement Joint Types",
+      "chapter": 9,
+      "pdf_page_index": 119,
+      "printed_page": 102,
+      "page_estimated": false,
+      "description": "Joint Design Introduces the three joint types and points to the correct design UFCs for road vs. airfield jointing. Three joint categories: isolation, construction, contraction (Figure 9-1) Road/parking jointing design: UFC 3-250-01; airfield jointing design: UFC 3-260-02 This UFC (3-250-04) is the construction-practice document, not the jointing design procedure"
+    },
+    {
+      "figure_number": "10-1",
+      "caption": "Example Control Charts",
+      "chapter": 10,
+      "pdf_page_index": 135,
+      "printed_page": 118,
+      "page_estimated": false,
+      "description": "Control Charts Establishes the control-chart methodology and the critical distinction between statistical action limits and specification limits. Control charts aid early problem detection, variability monitoring, and process-capability tracking Action limits are set at 3 standard deviations (3s) based on the CONTRACTOR'S OWN process variability, NOT on specification limits The CQC plan must specify which items need control charts, chart content, posting timing, and distribution Charts are only useful if updated and acted on in a timely manner"
+    },
+    {
+      "figure_number": "10-2",
+      "caption": "Measurement of Edge Slump",
+      "chapter": 10,
+      "pdf_page_index": 142,
+      "printed_page": 125,
+      "page_estimated": false,
+      "description": "Edge Slump Testing Provides the numeric edge slump acceptance criteria and CQC procedure requirements for slipform paving. Edge slump acceptance: <= 6 mm (0.25 in.) over 15% of joint length, never > 10 mm (3/8 in.) Straight edge length: typically 3.1-3.7 m (10-12 ft); edge-slump measurement zone is 300-600 mm (12-24 in.) from the edge CQC plan must define testing start timing/frequency, agreed measurement procedure, and allowed corrective actions (temporary forms, saw-correction)"
+    }
+  ]
+}

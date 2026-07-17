@@ -13,7 +13,20 @@ gec_13 : FHWA-NHI-16-027 — Ground Modification Methods
 micropile : FHWA-NHI-05-039 — Micropile Design & Construction
 ufc_backfill : UFC 3-220-04N — Backfill for Subsurface Structures
 ufc_expansive : UFC 3-220-07 — Foundations in Expansive Soils
-ufc_pavement : UFC 3-260-02 — Pavement Design for Airfields
+ufc_pavement : UFC 3-250-01 (2016) — Pavement Design for Roads and Parking
+             Areas (REBUILT 2026-07 from the actual document: mixed-traffic
+             equivalent ESALs, CBR flexible design curve E-1, rigid Eq 13-1
+             + reinforced design, overlays Ch 15, joints/dowels, frost Ch 19,
+             subsurface drainage Ch 20; US customary)
+ufc_stabilization : UFC 3-250-11 (2020) — Soil Stabilization and Modification
+             (additive selection, strength/durability criteria, mix design,
+             equivalency factors)
+ufc_flexible_practice : UFC 3-250-03 (2018) — Standard Practice Manual for
+             Flexible Pavements (HMA gradations, Marshall/Superpave criteria,
+             spray applications, seal coats, RMP; Marshall volumetrics)
+ufc_concrete_practice : UFC 3-250-04 (2024) — Standard Practice for Concrete
+             Pavements (materials tables, dowel tolerances, joint spacing,
+             RCC, cracking causes)
 fema_p2082 : FEMA P-2082 — 2020 NEHRP Recommended Seismic Provisions
              (Ch 20 site classification, Ch 11 seismic design criteria)
 california_trenching : California (Caltrans) Trenching and Shoring Manual —

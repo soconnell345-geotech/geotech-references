@@ -1,0 +1,189 @@
+{
+  "reference_id": "UFC 3-250-11",
+  "reference_title": "Soil Stabilization and Modification for Pavements",
+  "volume": null,
+  "chapter": 6,
+  "chapter_title": "Appendix A - Best Practices",
+  "sections": [
+    {
+      "section_id": "1",
+      "title": "A-1 Thickness Criteria - Stabilized Soil Layers",
+      "summary": "Stabilized soil layers within a flexible pavement can reduce the overall thickness required to support a given load, via equivalency factors applied to a conventionally designed pavement's base/subbase layers. Limit cement content to 4% to prevent excessive reflective cracking.",
+      "body": "The use of stabilized soil layers within a flexible pavement provides the opportunity to reduce the overall thickness of the pavement structure required to support a given load. To design a pavement containing stabilized soil layers requires applying equivalency factors to a layer or layers of a conventionally designed pavement. To qualify for application of equivalency factors, ensure the stabilized layer meets appropriate strength and durability requirements set forth in this UFC (Tables 2-1, 2-2). An equivalency factor represents the number of inches (millimeters) of a conventional base or subbase that can be replaced by 1 inch (25 mm) of stabilized material. Equivalency factors for stabilized materials are determined as shown in Table A-1. Limit the cement content to 4 percent by weight or less to prevent excessive reflective cracking. Selecting an equivalency factor from the table is dependent upon the classification of the soil to be stabilized.",
+      "key_points": [
+        "Equivalency factor definition: inches of conventional base/subbase replaceable by 1 inch of stabilized material",
+        "Prerequisite: the stabilized layer must meet Table 2-1/2-2 strength and durability requirements",
+        "Design limit: cement content <= 4% by weight to prevent excessive reflective cracking",
+        "Equivalency factor selection depends on stabilizer type AND soil classification (Table A-1)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Governing section for the thickness-equivalency design method; the task's flagship thickness-reduction procedure."
+    },
+    {
+      "section_id": "1.1",
+      "title": "A-1.1 Equivalency Factors",
+      "summary": "Table A-1 gives base and subbase equivalency factors by stabilizer type (asphalt, cement, lime, LCF, unbound) and soil group; some combinations are marked '(*) Not used for base course material' (base=None).",
+      "body": "Equivalency factors for stabilized materials are determined as shown in Table A-1. Limit the cement content to 4 percent by weight or less to prevent excessive reflective cracking. Selecting an equivalency factor from the table is dependent upon the classification of the soil to be stabilized. Asphalt-stabilized all-bituminous concrete has the highest factors (1.15 base, 2.30 subbase); cement-stabilized GW/GP/SW/SP soils match those values; finer/more plastic soil groups generally have lower (or base-inapplicable) factors, reflecting their reduced structural contribution as a base course.",
+      "key_points": [
+        "Table A-1 (table_a1_equivalency_factors) is keyed by stabilizer_type (asphalt, cement, lime, lime_cement_fly_ash, unbound) and soil_class",
+        "Highest factors: asphalt-stabilized all-bituminous concrete and cement-stabilized GW/GP/SW/SP (1.15 base, 2.30 subbase)",
+        "Some soil groups are '(*) Not used for base course material' (e.g. SC/SM under cement, all lime/LCF combinations) -- subbase-only credit",
+        "Unbound crushed stone (1.00 base, 2.00 subbase) is the baseline/reference row"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": ["Table A-1: Equivalency Factors for Stabilized Material"],
+      "applicability": "Direct lookup step in the thickness-equivalency design procedure of Sec A-1.2."
+    },
+    {
+      "section_id": "1.2",
+      "title": "A-1.2 Thickness Design for Stabilized Soil Layers",
+      "summary": "Given a conventional flexible-pavement design, divide each conventional base/subbase thickness by its Table A-1 equivalency factor to get the equivalent stabilized-layer thickness; two worked examples (single-layer replacement, all-bituminous replacement) follow.",
+      "body": "To use the equivalency factors requires that a conventional flexible pavement be designed to support the design load conditions. If it is desired to use a stabilized base or subbase course, the thickness of the conventional base or subbase is divided by the equivalency factor for the applicable stabilized soil (T(stabilized) = T(conventional) / EF). See equations.equation_stabilized_equivalent_thickness for the digitized formula. When the resulting stabilized thickness is less than the layer's practical minimum construction thickness, the 'excess' capacity (built minimum thickness minus the structurally-required equivalent thickness) can be credited toward the next layer down by converting it to an equivalent thickness of that next (non-stabilized or stabilized) layer, as shown in the two worked examples.",
+      "key_points": [
+        "Core relationship: T(stabilized) = T(conventional) / equivalency_factor",
+        "If the computed stabilized thickness is below a practical minimum, build to the minimum and credit the excess capacity toward the next layer down",
+        "Two worked examples follow: Example 1 (partial base+subbase replacement with cement-stabilized GP) and Example 2 (full all-bituminous-concrete replacement)"
+      ],
+      "equations": [
+        {
+          "id": "§A-1.2",
+          "description": "Equivalent stabilized-layer thickness from a conventional design: T(stabilized) = T(conventional) / EF",
+          "implemented_in": "geotech_references.ufc_stabilization.equations.equation_stabilized_equivalent_thickness"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "The core thickness-design calculation step; applies whenever a conventional pavement design is being converted to use a stabilized base/subbase layer."
+    },
+    {
+      "section_id": "1.2.1",
+      "title": "A-1.2.1 Example 1",
+      "summary": "16 in conventional pavement (2in AC, 4in base, 10in subbase) replacing base+subbase with cement-stabilized GP (UCS=890 psi, qualifies as base per Table 2-1; EF=1.15 base). Result: 2in AC + 4in stabilized base + 4in stabilized subbase.",
+      "body": "Assume a conventional flexible pavement has been designed that requires a total thickness of 16 inches (406 mm) above the subgrade: 2 in AC, 4 in base, 10 in subbase (51, 102, 254 mm respectively). It is desired to replace the base and subbase with a cement-stabilized gravelly soil (GP) having an unconfined compressive strength of 890 psi (6.14 MPa) -- this qualifies for application as a base course since its strength exceeds the 750 psi (5.17 MPa) Table 2-1 requirement. From Table A-1, the equivalency factor for cement-stabilized GP as a base is 1.15. Therefore, 4 in / 1.15 = 3.48 in (102 mm / 1.15 = 88.7 mm) of stabilized base course is structurally sufficient. Since the minimum required (practical) thickness is 4 in (102 mm), the excess capacity of 4 in - 3.48 in = 0.52 in (102 - 88.7 = 13.3 mm) is converted to an equivalent thickness of non-stabilized subbase material using the subbase equivalency factor (2.3): 0.52 in * 2.3 = 1.12 in (13.3 mm * 2.3 = 30.6 mm). This credit reduces the needed non-stabilized subbase from 10 in to 10 - 1.12 = 8.88 in (254 - 21.2 = 232.8 mm). Converting THIS to stabilized subbase thickness: 8.88 in / 2.3 = 3.86 in (223.4 / 2.3 = 97.1 mm). Since the minimum required thickness for stabilized subbase is 4 in (102 mm), use 4 in. Final design: 2 in AC + 4 in cement-stabilized GP base + 4 in cement-stabilized GP subbase.",
+      "key_points": [
+        "Given: 16 in total (2in AC, 4in base, 10in subbase); cement-stabilized GP, UCS=890 psi qualifies as base (>750 psi per Table 2-1)",
+        "Structural base thickness: 4in / 1.15 = 3.48 in; built to the 4in practical minimum instead",
+        "Excess base capacity (0.52in) credited to subbase via base-to-subbase factor ratio: 0.52 * 2.3 = 1.12in",
+        "Remaining non-stabilized-equivalent subbase need: 10 - 1.12 = 8.88in -> stabilized equivalent 8.88/2.3 = 3.86in -> built to 4in practical minimum",
+        "Final design: 2in AC + 4in stabilized base + 4in stabilized subbase (hand-verified anchor for equation_stabilized_equivalent_thickness and table_a1_equivalency_factors)"
+      ],
+      "equations": [
+        {
+          "id": "§A-1.2.1",
+          "description": "Worked application of T(stabilized) = T(conventional) / EF for a cement-stabilized GP base+subbase replacement",
+          "implemented_in": "geotech_references.ufc_stabilization.equations.equation_stabilized_equivalent_thickness"
+        }
+      ],
+      "figures": [],
+      "tables": ["Table A-1: Equivalency Factors for Stabilized Material", "Table 2-1: Minimum Unconfined Compressive Strength for Cement-, Lime-, Lime-Cement, and Lime-Cement-Fly Ash-Stabilized Soils"],
+      "applicability": "Worked design example for partial (base+subbase) replacement with a single stabilized material; verification anchor for equation_stabilized_equivalent_thickness."
+    },
+    {
+      "section_id": "1.2.2",
+      "title": "A-1.2.2 Example 2",
+      "summary": "Conventional design: 3.5in AC + 4in crushed-stone base + 18in subbase. Constructing an all-bituminous pavement (ABC, EF=1.15 base/2.30 subbase) gives a total thickness of about 14.84in (~15in), replacing base and subbase entirely with ABC.",
+      "body": "Assume a conventional flexible pavement has been designed requiring 3.5 in (89 mm) AC surface, 4 in (102 mm) crushed stone base, and 18 in (458 mm) subbase. It is desired to construct an all-bituminous pavement (ABC). From Table A-1, the equivalency factor for a base course is 1.15 and for a subbase, 2.30. The thickness of AC required to replace the base is 4 in / 1.15 = 3.48 in (102 / 1.15 = 88.7 mm). Since the minimum required thickness is 4 in (102 mm), the excess of stabilized base course, 4 - 3.48 = 0.52 in (102 - 88.7 = 13.3 mm), is converted to equivalent non-stabilized subbase thickness: 0.52 * 2.3 = 1.12 in (13.3 * 2.3 = 30.6 mm). This reduces the needed non-stabilized subbase from 18 in to 18 - 1.12 = 16.88 in (458 - 21.2 = 437 mm). Converting to subbase-stabilized-material thickness: 16.88 / 2.3 = 7.34 in (437 / 2.3 = 190 mm). Total ABC pavement thickness = 3.5 (AC surface, unchanged) + 4 (ABC base) + 7.34 (ABC subbase) = 14.84 in, approximately 15 in (89 + 102 + 190 = 381 mm, approximately 390 mm).",
+      "key_points": [
+        "Given: 3.5in AC + 4in crushed-stone base + 18in subbase, converting fully to an all-bituminous concrete (ABC) pavement",
+        "Same base/subbase equivalency factors as Example 1 (1.15 base, 2.30 subbase, since both examples use asphalt/cement-stabilized GW-GP-SW-SP-equivalent material)",
+        "Excess base capacity (0.52in) again credited to subbase: 0.52 * 2.3 = 1.12in",
+        "Remaining subbase need converted to ABC: (18-1.12)/2.3 = 7.34in",
+        "Final total: 3.5in AC + 4in ABC base + 7.34in ABC subbase = ~14.84in (~15in) total (hand-verified second anchor for equation_stabilized_equivalent_thickness)"
+      ],
+      "equations": [
+        {
+          "id": "§A-1.2.2",
+          "description": "Worked application of T(stabilized) = T(conventional) / EF for a full all-bituminous-concrete pavement replacement",
+          "implemented_in": "geotech_references.ufc_stabilization.equations.equation_stabilized_equivalent_thickness"
+        }
+      ],
+      "figures": [],
+      "tables": ["Table A-1: Equivalency Factors for Stabilized Material"],
+      "applicability": "Second worked design example, for a full all-bituminous-concrete pavement conversion; independent verification anchor for equation_stabilized_equivalent_thickness."
+    },
+    {
+      "section_id": "2",
+      "title": "A-2 pH Test on Soil-Cement Mixtures",
+      "summary": "A 9-step pH test on a 25.0g soil + 2.5g portland cement + distilled-water paste, measured after 15 minutes; pH >= 12.1 indicates organic matter should not interfere with the cement-stabilizing mechanism.",
+      "body": "MATERIALS: portland cement is used for soil stabilization. APPARATUS: pH meter (electrode with a pH range of 14), 150-ml plastic bottles with screw-top lids, 500-ml plastic beakers, distilled water, balance, oven, and moisture cans. PROCEDURE: (1) standardize the pH meter with a buffer solution of pH 12.00; (2) weigh, to the nearest 0.01 g, a representative air-dried soil sample passing the No. 40 (0.425 mm) sieve equal to 25.0 g of oven-dried soil; (3) pour the soil sample into a 150-ml plastic bottle with a screw-top lid; (4) add 2.5 g of portland cement; (5) thoroughly mix the soil and cement; (6) add distilled water to make a thick paste (caution: too much water reduces the pH and produces an incorrect result); (7) stir the soil-cement-water mixture until thoroughly blended; (8) after 15 minutes, transfer part of the paste to a plastic beaker and measure the pH; (9) if the pH is 12.1 or greater, the soil's organic matter content should not interfere with the cement-stabilizing mechanism.",
+      "key_points": [
+        "Sample: 25.0 g oven-dried-equivalent soil (minus No.40 sieve) + 2.5 g portland cement (10:1 ratio) + distilled water to a thick paste",
+        "pH meter standardized against a pH 12.00 buffer solution before use",
+        "Measure pH 15 minutes after mixing/blending",
+        "Interference threshold: pH >= 12.1 indicates organic matter probably will NOT interfere with cement stabilization (consistent with the pH>=12.0 criterion referenced in Sec 2-1.2.1)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Field/lab screening procedure for organic matter interference before designing a cement-stabilization mix, per Sec 2-1.2.1."
+    },
+    {
+      "section_id": "3",
+      "title": "A-3 Determination of Sulfate in Soils - Gravimetric and Turbidimetric Method",
+      "summary": "Two laboratory methods determine soil sulfate (as SO4) content: a gravimetric BaSO4-precipitation method (detects down to 0.05% SO4) and a turbidimetric method using a spectrophotometer standard curve, detailed in the child sections.",
+      "body": "",
+      "key_points": [
+        "Gravimetric method (A-3.1): precipitates and weighs BaSO4 from a boiled/filtered soil extract",
+        "Turbidimetric method (A-3.2): measures light-scattering turbidity of a BaCl2-treated extract against a spectrophotometer standard curve"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Container section; used to determine sulfate content per the 0.1% design limits referenced throughout Chapters 2-3."
+    },
+    {
+      "section_id": "3.1",
+      "title": "A-3.1 Gravimetric Method",
+      "summary": "Detects sulfate as low as 0.05% SO4. Boil a ~10g air-dried soil sample in HCl/water, filter, precipitate with MgCl2 then BaCl2, ignite and weigh the BaSO4 residue; Percent SO4 = (weight of residue / oven-dry weight of initial sample) * 411.6.",
+      "body": "SCOPE: applicable to all soil types (with the possible exception of soils containing certain organic compounds); detects as little as 0.05 percent sulfates as SO4. REAGENTS: barium chloride (10% BaCl2.2H2O solution, +1 ml 2% HCl per 100 ml to prevent carbonate formation), hydrochloric acid (2% / 0.55 N solution), magnesium chloride (10% MgCl2.6H2O solution), demineralized water, silver nitrate (0.1 N solution). APPARATUS: 100-ml beaker, burner and ring stand, 500-ml filtering flask, 90-ml Buchner funnel, Whatman No. 40 and No. 42 filter paper, Saran Wrap, crucible or heavy aluminum foil, analytical balance, aspirator/vacuum source. PROCEDURE: select ~10 g air-dried soil (weigh to nearest 0.01 g; use 20+ g if sulfate content is expected < 0.1%; measure moisture content for later dry-weight determination); boil 1.5 hours with 300 ml water + 15 ml HCl; filter through Whatman No. 40, wash with hot water, dilute filtrate+washings to 50 ml (as printed -- this is inconsistent with the next step's '100 ml of this solution,' an apparent unresolved error in the source itself); take 100 ml of this solution and add MgCl2 solution until no more precipitate forms; filter through Whatman No. 42, wash, dilute to 200 ml; heat 100 ml of this to boiling and add BaCl2 solution slowly until no more precipitate forms, boil ~5 minutes, let stand overnight covered; filter through Whatman No. 42, wash with hot water until free of chlorides (no AgNO3 precipitate); dry and ignite the filter paper in a crucible/foil; weigh the residue as BaSO4. CALCULATION: Percent SO4 = (Weight of residue / Oven-dry weight of initial sample) * 411.6, where oven-dry weight of the initial sample is obtained from its air-dry weight and air-dry moisture content (see equations.equation_oven_dry_weight_from_air_dry -- the source's own printed equation for this conversion renders as a garbled/malformed fraction; the standard soil-mechanics relationship is used instead, verified against the Sec A-3.2.4 sample calculation). NOTE: cold-solution precipitation disperses BaSO4 too finely to retain when filtering; precipitating/digesting in a warm, dilute solution increases crystal size and reduces occlusion error.",
+      "key_points": [
+        "Detects sulfate down to 0.05% as SO4; applicable to all soil types except those with certain organics",
+        "Procedure: boil ~10g soil in HCl/water, double-filter with MgCl2 then BaCl2 precipitation, ignite and weigh BaSO4 residue",
+        "Calculation: Percent SO4 = (weight of residue / oven-dry weight of initial sample) * 411.6 (equation_gravimetric_percent_so4)",
+        "Oven-dry weight is derived from air-dry weight and moisture content (equation_oven_dry_weight_from_air_dry)",
+        "Precipitate in a warm, dilute solution (not cold) to get larger, more retainable BaSO4 crystals and reduce occlusion error"
+      ],
+      "equations": [
+        {
+          "id": "§A-3.1.5",
+          "description": "Percent sulfate (as SO4) via the gravimetric BaSO4 method: Percent SO4 = (Weight of residue / Oven-dry weight of initial sample) * 411.6",
+          "implemented_in": "geotech_references.ufc_stabilization.equations.equation_gravimetric_percent_so4"
+        },
+        {
+          "id": "§A-3.1.5b",
+          "description": "Oven-dry weight of the initial sample from its air-dry weight and air-dry moisture content (standard soil-mechanics relationship; the source's own printed equation image is malformed -- see function docstring)",
+          "implemented_in": "geotech_references.ufc_stabilization.equations.equation_oven_dry_weight_from_air_dry"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Laboratory procedure for determining soil sulfate content against the 0.1% design thresholds in Sec 2-1.2.2, 2-1.3.2-2-1.3.5."
+    },
+    {
+      "section_id": "3.2",
+      "title": "A-3.2 Turbidimetric Method",
+      "summary": "Extract sulfate with ammonium acetate, precipitate with BaCl2 crystals, and read turbidity on a spectrophotometer against a standard curve (Figure A-1) to get ppm SO4; Percent SO4 = (C*V*100)/(1,000*1,000*W). Sample calculation given and hand-verified.",
+      "body": "REAGENTS: BaCl2 crystals (ground to pass a 1-mm sieve), ammonium acetate solution (0.5 N, pH adjusted to 4.2 with dilute HCl), distilled water. APPARATUS: moisture can, oven, 200-ml beaker, burner and ring stand, filtering flask, 90-ml Buchner funnel, Whatman No. 40 filter paper, vacuum source, spectrophotometer and standard tubes (Bausch and Lomb Spectronic 200 or equivalent), pH meter. PROCEDURE: take ~10 g air-dried soil (weigh to nearest 0.01 g, measure moisture content); add ammonium acetate solution to a soil:solution ratio of ~1:5 by weight; boil ~5 minutes; filter through Whatman No. 40 (refilter if not clear); take 10 ml of extracting solution, dilute with distilled water to ~40 ml, add ~0.2 g BaCl2 crystals, dilute to exactly 50 ml, stir 1 minute; immediately pour into the spectrophotometer's standard tube and measure turbidity at 30-second intervals for 4 minutes (maximum turbidity is usually reached within 2 minutes and stays constant for 3-10 minutes; use the maximum reading in the 4-minute interval); compare the reading to a standard curve (Figure A-1, built from standard potassium sulfate solutions) to get the sulfate concentration (as SO4) of the original extracting solution; correct for apparent turbidity by running blanks with no BaCl2 added. SAMPLE CALCULATION (hand-verified): weight of air-dried sample = 10.12 g, water content = 9.36%, weight of dry soil = 9.27 g, total volume of extracting solution = 39.1 ml. 10 ml of extracting solution diluted to 50 ml after BaCl2 addition gave a transmission reading of 81, corresponding (per the Figure A-1 standard curve) to 16.0 ppm; concentration of the ORIGINAL extracting solution = 16.0 * 5 (dilution factor) = 80.0 ppm. Percent SO4 = (80.0 * 39.1 * 100) / (1,000 * 1,000 * 9.27) = 0.0337, matching the source's printed answer of 0.0338 percent to within rounding. STANDARD CURVE (Figure A-1): prepared from sulfate solutions of 0, 4, 8, 12, 16, 20, 25, 30, 35, 40, 45, and 50 ppm (potassium sulfate salt in 0.5 N ammonium acetate, pH 4.2), carried through the same BaCl2/turbidity procedure and plotted as transmission reading vs. known concentration.",
+      "key_points": [
+        "Extraction: ~10g soil in ammonium acetate (1:5 ratio), boiled, filtered; sulfate precipitated as BaCl2 turbidity",
+        "Turbidity read on a spectrophotometer at 30-second intervals over 4 minutes; use the maximum reading",
+        "Concentration (ppm) is read from the Figure A-1 standard curve, then scaled by the dilution factor",
+        "Calculation: Percent SO4 = (C * V * 100) / (1,000 * 1,000 * W) (equation_turbidimetric_percent_so4)",
+        "Sample calculation hand-verified: C=80.0 ppm, V=39.1 ml, W=9.27g -> 0.0337%, matching the source's printed 0.0338%"
+      ],
+      "equations": [
+        {
+          "id": "§A-3.2.4",
+          "description": "Percent sulfate (as SO4) via the turbidimetric method: Percent SO4 = (C*V*100) / (1,000*1,000*W)",
+          "implemented_in": "geotech_references.ufc_stabilization.equations.equation_turbidimetric_percent_so4"
+        }
+      ],
+      "figures": ["Figure A-1: Example Standard Curve for Spectrophotometer"],
+      "tables": [],
+      "applicability": "Alternative laboratory procedure for determining soil sulfate content, using a spectrophotometer where gravimetric equipment is unavailable."
+    }
+  ]
+}

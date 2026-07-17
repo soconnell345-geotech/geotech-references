@@ -1,0 +1,344 @@
+{
+  "reference_id": "UFC 3-250-04",
+  "reference_title": "Standard Practice for Concrete Pavements",
+  "volume": null,
+  "chapter": 10,
+  "chapter_title": "Implementing CQC Requirements",
+  "sections": [
+    {
+      "section_id": "10-1",
+      "title": "Introduction",
+      "summary": "This chapter's CQC implementation is limited to the framework of the project CQC plans discussed in Chapter 3; it presents operational issues rather than detailed test-performance procedures.",
+      "body": "The implementation of CQC programs in this chapter is limited to the framework of the project CQC plans in Chapter 3. Operational issues are presented instead of actual test performance.",
+      "key_points": [
+        "This chapter covers CQC implementation within the Chapter 3 framework, not step-by-step test performance",
+        "Focus is on operational issues encountered while running a CQC program"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Frames the chapter's scope relative to Chapter 3's CQC/QA specification-development content."
+    },
+    {
+      "section_id": "10-2",
+      "title": "CQC Testing and Production Plans",
+      "summary": "A CQC plan must be specific enough to implement, illustrated by a slump-testing example: specification item, test standard, frequency, responsibility, tolerances (action/suspension limits), and a defined corrective-action sequence (retest three trucks, halt production if limits are exceeded, resume only after root cause is fixed).",
+      "body": "The CQC plan should be specific and contain enough detail to implement during construction. For example, basic requirements of a QC plan for slump testing in fresh concrete may include: specification item (PCC paving); item description (process control testing); type of test (slump of fresh concrete); test standard (ASTM C143/CRD-C 5); test frequency (first three trucks each day; one test per 50 yd3/40 m3); responsibility (QC paving technician); specified tolerance (40 mm +/-25 mm [1.5 in. +/-1.0 in.] action limits, and +/-38 mm [+/-1.5 in.] suspension limits); and corrective action (if one individual slump test is outside action limits, test the next three trucks -- if within limits, resume normal frequency; if at any time a test is outside suspension limits, or two consecutive tests are outside action limits, halt production and test each truck en route, rejecting loads outside action limits and placing acceptable ones; production paving should not resume until the contractor has identified the problem and implemented corrective action, then test the first three trucks again before resuming normal frequency). Although impossible to account for all scenarios, it is important to outline procedures for known or possible recurring problems; CQC plans fail when there is no clear corrective action plan for each tested item.",
+      "key_points": [
+        "A CQC plan item needs: spec item, test standard, frequency, responsibility, tolerance (action/suspension limits), corrective action",
+        "Example slump tolerance: 40 mm +/-25 mm (1.5 in. +/-1.0 in.) action limits; +/-38 mm (+/-1.5 in.) suspension limits",
+        "Corrective action example: one out-of-action-limit test -> retest next 3 trucks; suspension-limit or 2-consecutive-action-limit failures -> halt production, test every truck",
+        "CQC plans fail when a tested item has no clear corrective action plan"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Provides the model structure (using slump testing as the example) for any CQC testing/production plan item."
+    },
+    {
+      "section_id": "10-3",
+      "title": "Control Charts",
+      "summary": "Control charts (Figure 10-1) summarize the construction process for the inspection/testing team and management, aiding early problem detection, variability monitoring, and process-capability tracking; the CQC plan must define which items need charts, what they show, posting timing, and distribution; action limits are set at 3 standard deviations (3s) based on each contractor's own process variability, not on specification limits.",
+      "body": "Control charts (Figure 10-1) provide the inspection and testing team and senior management a summary of the construction process; they are excellent tools to track trends and anticipate problems. Benefits include early detection of problems, monitoring variability, and establishing process capabilities. Like other project documentation, control charts are only useful when updated and adjustments implemented on a timely basis. The CQC plan must contain a detailed procedure identifying which items require control charts, the information presented on each chart, the required posting time, and distribution. Control charts should include individual test results, the average of all test results, and action limits at 3 standard deviations (3s); action limits should NOT be based on specification requirements, since each contractor's process has a unique variability that dictates where to place the 3s limits.",
+      "key_points": [
+        "Control charts aid early problem detection, variability monitoring, and process-capability tracking",
+        "Action limits are set at 3 standard deviations (3s) based on the CONTRACTOR'S OWN process variability, NOT on specification limits",
+        "The CQC plan must specify which items need control charts, chart content, posting timing, and distribution",
+        "Charts are only useful if updated and acted on in a timely manner"
+      ],
+      "equations": [],
+      "figures": ["Figure 10-1: Example Control Charts"],
+      "tables": [],
+      "applicability": "Establishes the control-chart methodology and the critical distinction between statistical action limits and specification limits."
+    },
+    {
+      "section_id": "10-4",
+      "title": "Testing Process",
+      "summary": "Field labs follow the same standards as permanent facilities (e.g., ASTM C1077/CRD-C 553); key field-lab items are curing capacity/temperature control, sample-separation area, and calibration of testing/monitoring equipment (often by separate QA/QC calibration agencies).",
+      "body": "Field laboratories follow the same standards as permanent facilities for each test conducted (for example ASTM C1077/CRD-C 553 requirements). Items to address for a field laboratory include: sufficient capacity for properly curing beams and cylinders (if curing tanks are used, identify the method controlling water temperature, water level, and lime content); sufficient area for properly separating or quartering aggregates for testing; calibration of testing and monitoring equipment (test machine scales, sieves, laboratory thermometers) by a certified/qualified source, with separate agencies performing QA and QC calibration when practical; and calibration of all field testing equipment (air meters, slump cones, field thermometers).",
+      "key_points": [
+        "Field labs follow the same standards as permanent facilities (e.g., ASTM C1077/CRD-C 553)",
+        "Curing tank method (temperature, water level, lime content control) must be identified if used",
+        "Separate agencies should perform QA and QC calibration when practical"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Introduces field-laboratory requirements and the testing-process definitions/procedures subsections that follow."
+    },
+    {
+      "section_id": "10-4.1",
+      "title": "Definitions",
+      "summary": "Introduces the accuracy, precision, bias, and components-of-variability definitions (derived from ASTM E177) covered in the following subsections, important when test-method variability affects the pay factor.",
+      "body": "When test methods are specified and the variability in a test method affects the pay factor, it is important that the engineer and contractor understand the limitations inherent in the test methods as stated in their precision and bias statements. The following definitions are derived from ASTM E177.",
+      "key_points": [
+        "Understanding test-method precision/bias limitations matters most when variability affects the pay factor",
+        "Definitions are derived from ASTM E177"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Introduces the accuracy/precision/bias/variability definition subsections that follow."
+    },
+    {
+      "section_id": "10-4.1.1",
+      "title": "Accuracy",
+      "summary": "Accuracy refers to how close a test result is to a reference value, incorporating both measurement imprecision and test-method bias.",
+      "body": "Accuracy refers to how close a test result is to a reference value and incorporates both the imprecision of the measurement and the bias of the test method.",
+      "key_points": [
+        "Accuracy = closeness to a reference value, combining imprecision and bias"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Defines a term used throughout CQC/QA test-result interpretation."
+    },
+    {
+      "section_id": "10-4.1.2",
+      "title": "Precision",
+      "summary": "Precision is the closeness of agreement between test results obtained under like conditions; more scatter means poorer precision.",
+      "body": "Precision refers to closeness of agreement between test results obtained under like conditions. The greater the scatter in test results, the poorer the precision.",
+      "key_points": [
+        "Precision = closeness of agreement between like-condition test results; more scatter = poorer precision"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Defines a term used throughout CQC/QA test-result interpretation."
+    },
+    {
+      "section_id": "10-4.1.3",
+      "title": "Bias",
+      "summary": "Bias is the consistent difference between a set of test results and the accepted reference value of the property being measured; without a reference value, bias cannot be determined.",
+      "body": "Bias is the consistent difference between a set of test results and an accepted reference value of a property being measured. When an accepted reference value is not available, bias cannot be determined.",
+      "key_points": [
+        "Bias = the consistent (systematic) difference between test results and an accepted reference value",
+        "Bias cannot be determined without an accepted reference value"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Defines a term used throughout CQC/QA test-result interpretation."
+    },
+    {
+      "section_id": "10-4.1.4",
+      "title": "Components of Variability",
+      "summary": "Measured construction-attribute variability may come from natural (material) variability, construction-process variability, and testing variability (test-method precision/bias).",
+      "body": "Variability in a measured construction attribute may be due to: natural (material) variability; variability introduced by the construction process; and testing variability, introduced through the precision (or lack of precision) and bias of the test method.",
+      "key_points": [
+        "Three variability sources: natural (material), construction process, and testing (precision/bias)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Helps diagnose whether observed test-result variability traces to the material, the process, or the test method itself."
+    },
+    {
+      "section_id": "10-4.2",
+      "title": "Achieving Quality",
+      "summary": "Three conditions must be consistently met: the process is stable (only common-cause variability present), capable (common-cause variability small enough for consistent within-tolerance results), and on target (performing near the specified target).",
+      "body": "Three conditions must be consistently met to achieve high levels of quality: (1) the process is stable (only common cause variability is present); (2) the process is capable (common cause variability must be small enough to permit consistent results within the specified tolerances); and (3) the process is on target (the process is consistently performing near the specified target).",
+      "key_points": [
+        "Quality requires: (1) stable process (common-cause variability only), (2) capable process (small enough variability for tolerance), (3) on-target process"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Provides the three-condition statistical-process-control framework underlying CQC quality goals."
+    },
+    {
+      "section_id": "10-4.3",
+      "title": "Subgrade, Subbase, and Base Testing",
+      "summary": "Major testing items: gradation, density/moisture, thickness, and grade control; if failed material is placed, removal (not blending) maximizes quality; CQC items include density/thickness requirements per material/lift, target-density determination, gradation requirements, testing frequency/location, mix design requirements for stabilized layers, documentation process, and a failed-test action list.",
+      "body": "Major testing items for subgrades, subbases, and bases include material characteristics such as gradation and appropriate density and moisture values, thickness, and grade control; a smooth, uniform pavement starts at the subgrade, and the uniformity of these layers affects overall pavement performance. If failed material is placed on the grade, typical remediation blends in loads of good material; however, to maximize quality, remove the failed material to reduce material variability. Items to address in CQC plans: density requirements for each material lift; density requirement for each different subgrade type; maximum and minimum placement thickness; how to determine the target density for each material type; gradation requirements for each material; testing frequency and location for all tests; mix design requirements for stabilized layers; the process for documenting/reporting/distributing all test results, including schedule; and an action list for handling failed test results.",
+      "key_points": [
+        "Removing failed subgrade/subbase/base material (rather than blending in good material) maximizes quality",
+        "CQC plan items: density/thickness by material and lift, target density determination, gradation, testing frequency/location",
+        "Include a documented action list for failed test results"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to CQC planning for subgrade, subbase, and base layer testing."
+    },
+    {
+      "section_id": "10-4.4",
+      "title": "Fresh Concrete Testing",
+      "summary": "Take representative samples from several discharge areas, remixed and covered to prevent evaporation; typical fresh-concrete tests cover air content, slump, temperature, and unit weight, each requiring calibrated equipment and clearly agreed procedures; samples come from the center one-third of the batch.",
+      "body": "Take representative samples of concrete placed for paving, collected from several different discharge areas; remix the sample before performing any tests and keep it covered with a plastic sheet to prevent evaporation. Testing of fresh concrete typically includes air content, slump, temperature, and unit weight. Consider: properly calibrate meters for air content testing (ASTM C231/CRD-C 41 pressure method, ASTM C173/CRD-C 8 volumetric method) -- pressure meter accuracy depends on calibration altitude, and tests should be repeated before considering concrete out of specification; the slump test (ASTM C143/CRD-C 5) determines consistency, not necessarily workability -- clean and pre-wet the cone each test, and repeat with another sample before deciding concrete is off spec; record fresh concrete temperature (ASTM C1064/CRD-C 3) every time strength specimens are made and whenever temperature is suspected near specification limits; the fresh concrete density (ASTM C138/CRD-C 7) can indicate a possible air-content change and determines yield -- properly calibrate the container. Although these tests are widely used, testing-requirement details are often not well understood, so it is important for the contractor and inspectors to review testing standards and agree on procedures; CQC plans should address testing frequency, testing location (plant vs. onsite, since transport affects basic material properties), the control-chart update/distribution process, and clearly defined action items for nonconforming results. Obtain a representative sample from the center one-third of the batch; CQC plans need to address sampling location within each batch for each type of delivery vehicle.",
+      "key_points": [
+        "Fresh concrete testing: air content, slump, temperature, unit weight, each per its own ASTM/CRD-C method",
+        "Pressure-method air meter accuracy depends on calibration altitude; repeat suspect tests before declaring out-of-spec",
+        "Slump test measures CONSISTENCY, not necessarily workability",
+        "Sample from the center one-third of the batch; address per-vehicle-type sampling location in the CQC plan"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to CQC planning and execution of fresh concrete property testing (air, slump, temperature, unit weight)."
+    },
+    {
+      "section_id": "10-4.5",
+      "title": "Thickness Testing",
+      "summary": "Pavement thickness is checked via stringline guidance, destructive testing (excavation for non-stabilized material, coring for stabilized/concrete layers -- coring preferred, typically 100 mm/4 in. cores, labeled and stored onsite until project end), or before/after elevation surveys; CQC plans should address frequency/location, procedures, open-graded-base core-bottom determination, and avoiding thickened edges/transitions.",
+      "body": "Pavement thickness is tested in several ways: using paving stringline as a guide; performing destructive testing by excavating non-stabilized material or taking cores from stabilized material and concrete layers (coring is the preferred method -- preferably label and store cores, typically 100 mm [4 in.] in diameter, onsite until the end of the project); or surveying elevations before and after placement. Items to address in CQC plans: testing frequency and location; clearly defined procedures for locating, measuring, and reporting test results; for stabilized open-graded drainable bases, agree on the procedure to determine the bottom of the core; and avoiding thickened edges and transition areas for test locations.",
+      "key_points": [
+        "Coring (typically 100 mm/4 in. diameter) is the preferred thickness-testing method; label and store cores onsite until project end",
+        "For open-graded drainable bases, agree in advance on how to determine the core's bottom",
+        "Avoid selecting thickened edge/transition areas as thickness-test locations"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to CQC planning for pavement layer thickness verification."
+    },
+    {
+      "section_id": "10-4.6",
+      "title": "Aggregate Tests (Gradation and Moisture Content)",
+      "summary": "Aggregate gradation testing requirements vary by use (base, stabilized base, trench backfill, concrete) and can become testing-volume-overwhelming; CQC items include frequency, stabilized-base/concrete-mixture verification requirements, sampling location, moisture testing frequency (ASTM C70/CRD-C 111, C566/CRD-C 113), gradation failure action items, and bulk specific gravity verification (impractical below 42,000 m2/50,000 yd2 projects).",
+      "body": "Aggregate gradation testing varies based on the specifications for bases, stabilized bases, trench backfill, and concrete; since projects use large quantities of aggregate, testing the gradations can become overwhelming. Items to address in CQC plans: testing frequency; requirements for stabilized bases and concrete mixture verifications; sampling location (stockpiles or individual trucks); aggregate moisture content test frequency (ASTM C70/CRD-C 111, ASTM C566/CRD-C 113); gradation in fresh concrete, washed gradations; clearly defining action items when aggregate fails gradation tests; how to determine the limits of unacceptable material; a clear reporting process for timely distribution of results; and verifying bulk specific gravity of each aggregate at designated times throughout the project (not practical on projects smaller than 42,000 m2 [50,000 yd2]).",
+      "key_points": [
+        "Aggregate moisture content test methods: ASTM C70/CRD-C 111 and ASTM C566/CRD-C 113",
+        "Bulk specific gravity verification is not practical on projects smaller than 42,000 m2 (50,000 yd2)",
+        "Clearly define the action items and unacceptable-material limits when gradation tests fail"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to CQC planning for aggregate gradation and moisture content testing."
+    },
+    {
+      "section_id": "10-4.7",
+      "title": "Strength Testing",
+      "summary": "Strength testing may include flexural and compressive testing, detailed in the following subsections.",
+      "body": "Strength testing may include flexural and compressive testing, covered in the following subsections.",
+      "key_points": [
+        "Strength testing spans flexural, compressive, and (when needed) core strength testing"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Introduces the flexural/compressive/core strength testing subsections that follow."
+    },
+    {
+      "section_id": "10-4.7.1",
+      "title": "Flexural Strength Testing",
+      "summary": "Because flexural strength drives design/acceptance, testing needs careful attention: calibrated machine, correct load/loading-rate/distribution across supports and beam width, careful specimen handling (beams are damage-vulnerable, yielding low results if mishandled); CQC items span sampling/fabrication location, sample-to-fabrication timing, standard 150x150x530 mm (6x6x21 in.) beam dimensions, mold type, curing/transport/lab procedures, frequency, beam count, additional-beam curing, a consignment-tracking form, and damaged-beam disposition.",
+      "body": "Due to the importance of strength in the design and acceptance of pavements, flexural strength testing requires attention to detail; test results are affected by minor procedural changes that can increase variability or produce suspect results. The test machine must be calibrated, operators must understand testing requirements, and the beam tester must be checked for correct load/rate of loading and uniformity of loading (distribution) between the two supports and across the beam width. Field supervisors must monitor specimen handling at the job site, during transportation, and at the laboratory -- beams are vulnerable to handling/transport damage, which yields low strength results. Items to address in CQC plans: location of material sampling (plant, delivery truck, or on-grade in front of the paver); sample fabrication location (near the sampling point, or an onsite laboratory); ensuring the time allowed between sampling and beam fabrication is met; beam sample dimensions (typically 150 by 150 by 530 mm [6 by 6 by 21 in.]); type of beam molds allowed (plastic or steel); fabrication procedures; field curing, transportation, and laboratory procedures; frequency of testing; number of beams per sample location; determination of sample locations; curing requirements for additional beams made for other reasons (e.g., opening to traffic -- field cured or laboratory cured); use of a consignment form tracking each sample from fabrication through field curing, transportation, laboratory curing, and testing; and the procedure for disposition of possibly damaged beams and known bad test results.",
+      "key_points": [
+        "Standard beam sample dimensions: 150 x 150 x 530 mm (6 x 6 x 21 in.)",
+        "Beams are handling/transport-damage-vulnerable, which yields artificially LOW strength results",
+        "Use a consignment form tracking each sample from fabrication through testing",
+        "Define the disposition procedure for possibly damaged beams and known-bad test results"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to CQC planning and execution of flexural strength beam testing."
+    },
+    {
+      "section_id": "10-4.7.2",
+      "title": "Compressive Strength Testing",
+      "summary": "Compressive testing may supplement flexural testing (companion cylinder sets can resolve future flexural-result disputes); cylinders are less handling-vulnerable than beams; coring/core-conditioning/core-testing per ASTM C42/CRD-C 26 and splitting tensile per ASTM C496/CRD-C 77.",
+      "body": "Compressive testing may be required in addition to flexural strength testing; even if not required, it may be preferable to make companion sets of cylinders along with beams, since the cylinders may help resolve future disputes over in-place strength if flexural results are questionable. Items to address are most of the same flexural strength testing items already discussed; cylinder specimens are less vulnerable to handling/transport damage than beam specimens. Coring, core conditioning, and core testing are conducted per ASTM C42/CRD-C 26, and splitting tensile strength testing per ASTM C496/CRD-C 77.",
+      "key_points": [
+        "Companion cylinder sets (even if not strictly required) can help resolve future flexural-strength disputes",
+        "Cylinders are less handling/transport-damage-vulnerable than flexural beams",
+        "Coring/conditioning/testing: ASTM C42/CRD-C 26; splitting tensile: ASTM C496/CRD-C 77"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to CQC planning for compressive strength cylinder testing as a supplement or alternative to flexural testing."
+    },
+    {
+      "section_id": "10-4.7.3",
+      "title": "Core Strength Testing",
+      "summary": "When beam/cylinder testing is inadequate or results are suspect, core strength testing (compressive or splitting tensile) determines in-place strength via project-specific core-to-beam/cylinder correlations; test age should be close to the specified flexural/compressive test age, and core conditioning (air-dry typically raises results) must follow specification requirements.",
+      "body": "When beam or cylinder strength tests are not performed adequately or if test results are suspect, consider core strength testing to determine the strength quality of the in-place concrete. Consider: test cores for compressive or splitting tensile strength; use core strength test results per established procedures defined in the specifications, typically involving project-specific correlations between core strength and beam/cylinder strength; initiate core testing at a test age close to the specified test age for the flexural or compressive strength testing; and core conditioning before testing is important -- air-dry conditioning typically results in higher compressive or split tensile strengths, but condition cores as defined in the project specifications.",
+      "key_points": [
+        "Core strength testing determines in-place strength when beam/cylinder results are inadequate or suspect",
+        "Requires a project-specific core-to-beam/cylinder strength correlation",
+        "Air-dry core conditioning typically yields higher strength results -- follow the specified conditioning method"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when in-place concrete strength must be verified directly via core testing."
+    },
+    {
+      "section_id": "10-5",
+      "title": "Edge Slump/Joint Face Deformation/Profile Testing",
+      "summary": "Excessive edge slump and joint face deformation under slipform paving indicate improper mixture proportioning, placement, or equipment operation; the following subsections cover edge slump, joint face deformation, and surface smoothness testing.",
+      "body": "Excessive edge slump and joint face deformations under slipform paving are indications of improper concrete mixture proportioning, improper concrete placement, or improper equipment operation.",
+      "key_points": [
+        "Excessive edge slump/joint face deformation signals a mixture, placement, or equipment operation problem"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Introduces the edge slump, joint face deformation, and smoothness testing subsections that follow."
+    },
+    {
+      "section_id": "10-5.1",
+      "title": "Edge Slump Testing",
+      "summary": "Typical spec: edge slump <=6 mm (0.25 in.) over 15% of joint length, and never > 10 mm (3/8 in.); measured with a straight edge and cross-slope-adjusted level, typically 3.1-3.7 m (10-12 ft) long, positioned to support on the central slab portion away from the 300-600 mm (12-24 in.) edge-slump zone; can be measured on fresh or hardened concrete, and CQC plans should define timing, frequency, agreed procedure, corrective action, and whether temporary forms or saw-correction are allowed.",
+      "body": "Typical specifications require that edge slump not exceed 6 mm (0.25 in.) over 15 percent of the joint length and that edge slump be no greater than 10 mm (3/8 in.). Checking for edge slump requires a straight edge and level adjusted for the cross-slope, as shown in Figure 10-1 (labeled Figure 10-2 in the printed figure list). Edge slump can be measured on either fresh or hardened concrete; the straight edge must be of sufficient length, typically 3.1 to 3.7 m (10 to 12 ft), to support itself on the central portion of the slab and away from the area of edge slump, 300 to 600 mm (12 to 24 in.). Inspectors must be aware that small bumps or deviations, exaggerated in the figure, might yield incorrect results. Items to address in CQC plans: how soon to begin edge slump testing; frequency of testing; a detailed procedure agreed upon by QA and QC for measuring edge slump; agreed-upon corrective action for edge slump in fresh vs. hardened concrete; whether the contractor is allowed to correct excessive edge slump in fresh concrete; whether temporary forms are allowed in areas of excessive edge slump; and whether sawing the edges of hardened concrete is an acceptable solution (the distance back from the edge depends on the amount of edge slump).",
+      "key_points": [
+        "Edge slump acceptance: <= 6 mm (0.25 in.) over 15% of joint length, never > 10 mm (3/8 in.)",
+        "Straight edge length: typically 3.1-3.7 m (10-12 ft); edge-slump measurement zone is 300-600 mm (12-24 in.) from the edge",
+        "CQC plan must define testing start timing/frequency, agreed measurement procedure, and allowed corrective actions (temporary forms, saw-correction)"
+      ],
+      "equations": [],
+      "figures": ["Figure 10-2: Measurement of Edge Slump"],
+      "tables": [],
+      "applicability": "Provides the numeric edge slump acceptance criteria and CQC procedure requirements for slipform paving."
+    },
+    {
+      "section_id": "10-5.2",
+      "title": "Joint Face Deformation",
+      "summary": "CQC items include whether joint face tolerances are the same for transverse/longitudinal joints, how headers are treated (included or excluded from testing), and whether vertical deviations may be corrected with concrete saws (full-depth or not).",
+      "body": "Items to address in the CQC plans include: are the joint face tolerances the same for transverse and longitudinal joints; how are headers handled (are they part of the testing or excluded); and can vertical deviations be corrected with concrete saws -- if yes, do the cuts have to be full-depth.",
+      "key_points": [
+        "Define whether transverse and longitudinal joints share the same face-deformation tolerance",
+        "Define whether headers are included in or excluded from joint face testing",
+        "Define whether saw correction of vertical deviations is allowed, and whether it must be full-depth"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to CQC planning for joint face deformation acceptance criteria and corrective action."
+    },
+    {
+      "section_id": "10-5.3",
+      "title": "Surface Smoothness Testing",
+      "summary": "Smoothness testing uses a straight edge or profilograph per project specifications; CQC items include allowed equipment, evaluation method, facility-specific criteria, excluded areas, header inclusion, timing after paving, and testing pattern (continuous/random/subjective, and rolling-straightedge location/lane logic).",
+      "body": "Conduct surface smoothness testing, per the project specifications, that may use a straight edge or a profilograph. Items to address in CQC plans: type of equipment allowed; method of evaluation used; are criteria different for different facilities; are any areas excluded; are headers included in the smoothness evaluation; how soon after paving is profile testing conducted; if a straightedge is used, will testing be continuous, random, or subjective; if using a rolling straightedge, where will testing occur (center of slab, near the longitudinal paving lane joint, or at the third points of the slab); and if multiple passes are required, are these per lane or per paving width (which may incorporate two or more lanes).",
+      "key_points": [
+        "Smoothness testing equipment: straight edge or profilograph, per project specifications",
+        "CQC plan must define testing location pattern for a rolling straightedge (center, near longitudinal joint, or third points)",
+        "Define whether multiple passes are counted per lane or per full paving width"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to CQC planning for surface smoothness testing method and acceptance."
+    },
+    {
+      "section_id": "10-6",
+      "title": "Dowel Bar Alignment and Inspection",
+      "summary": "Specifications limit dowel skew and horizontal/vertical displacement; CQC items include material transmittals/coatings, handling/installation procedures, inserter checks (roadways only), assembly trueness, allowable misalignment and measurement method, saw-cut-line deviation vs. embedment, and misaligned-dowel-per-panel limits. Alignment is measured only for pre-placed baskets (before placement) and drilled/grouted dowels (after epoxy sets); GPR can check alignment at ~1 day but only to 3-6 mm (1/8-0.25 in.) vertical accuracy, so coring may still be needed for complete verification.",
+      "body": "Specifications for dowel bar misalignment limit the skew misalignment and horizontal and vertical displacements. Items related to dowel bar placement to address in the CQC plans include: dowel bar material transmittals and bond-breaker coatings; detailed procedures for transporting, storing, inspecting, installing, and securing dowel bars; detailed procedures for dowel bar inserters (roadways only) including random checks that equipment is operating properly; checking dowel bar assembly for trueness to eliminate skewed bars; allowable dowel bar misalignment and how to measure it; joint saw cut line deviation acceptable with regards to dowel bar embedment; and the permissible number of misaligned dowel bars per joint per panel. Dowel bar alignment is measured only for pre-placed baskets before concrete placement, and for drill and grouted dowels along the longitudinal construction joints. The inspector must ensure pre-placed baskets are properly positioned and fastened, and that paver operation does not indicate any potential for moving or dragging the dowel basket assemblies; for drill and grouted dowel bars, check alignment after the epoxy grout sets. Cut and install new dowels for any dowel bars misaligned beyond the allowable limits. For machine-inserted dowel bars, as well as pre-placed dowel bars, ground penetrating radar (GPR) can check alignment after the concrete is about one day old; however, GPR testing can only determine vertical dowel bar alignment to an accuracy of 3 to 6 mm (1/8 to 0.25 in.), so coring may still be required for complete verification of dowel bar placement.",
+      "key_points": [
+        "Dowel alignment is measured ONLY for pre-placed baskets (before placement) and drilled/grouted dowels (after epoxy sets)",
+        "GPR can check alignment at ~1 day of concrete age, but only to 3-6 mm (1/8-0.25 in.) vertical accuracy -- coring may still be needed",
+        "Misaligned-beyond-limits dowels must be cut out and replaced with new dowels",
+        "CQC plan must define the permissible number of misaligned dowels per joint per panel"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Governs the CQC dowel bar alignment inspection program, cross-referencing the installation practice in Chapter 8 §8-5.2."
+    }
+  ]
+}

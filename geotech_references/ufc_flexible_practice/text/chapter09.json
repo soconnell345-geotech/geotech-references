@@ -1,0 +1,202 @@
+{
+  "reference_id": "UFC 3-250-03",
+  "reference_title": "Standard Practice Manual for Flexible Pavements",
+  "volume": null,
+  "chapter": 9,
+  "chapter_title": "Appendix B: Best Practices",
+  "sections": [
+    {
+      "section_id": "9-1",
+      "title": "Summary of Design Methods for Slurry Seals",
+      "summary": "Top-level heading for the Appendix B slurry-seal design procedure: introduction and CKE/cone-test overview (9-1.1), the surface area design method for the coating and absorption components of asphalt content (9-1.2, with sub-parts for the surface area calculation, aggregate absorption, and total asphalt content), the cone test for water/consistency control (9-1.3), and a full worked sample calculation (9-1.4).",
+      "body": "",
+      "key_points": [
+        "Appendix B's slurry-seal design method determines the emulsion requirement from aggregate surface area (film-thickness coating) plus aggregate absorption (via the CKE/kerosene test).",
+        "Sub-topics: introduction (9-1.1), surface area design method (9-1.2), cone test for water content (9-1.3), and a full worked sample calculation (9-1.4)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to slurry seal (and, by the same surface-area/absorption method, micro-surfacing) emulsion content design."
+    },
+    {
+      "section_id": "9-1.1",
+      "title": "Introduction",
+      "summary": "The slurry-seal emulsion requirement is determined by summing the asphalt needed to coat the job aggregate's surface area at an 8 micron (3.15x10^-4 in.) film thickness with the asphalt the aggregate absorbs (via the CKE/kerosene test). Water content is separately set by an ASTM D3910 cone (flow) test targeting a 25.4 mm (1 in.) flow without segregation, with Portland cement or hydrated lime added as needed to control segregation.",
+      "body": "The design method for determining the emulsion requirement consists of determining the surface area of the job aggregate and calculating the amount of asphalt required to coat the surface area with a film thickness of 8 microns (3.15x10-4 inch). The absorption characteristics of the aggregate are determined using the CKE (centrifuge kerosene equivalent) test. The total asphalt is the asphalt required for coating the aggregate plus the asphalt required due to aggregate absorption. Separately, the water required for a given mixture is determined by a cone test as described in ASTM D3910: water is added to a slurry mixture until a flow of 25.4 millimeters (1 inch) is obtained on a reference plate, and the consistency at that flow must show no segregation in the mixture. Portland cement or hydrated lime is added to help overcome segregation, and the cone test also serves as an aid for determining how much Portland cement or hydrated lime is required.",
+      "key_points": [
+        "Total asphalt (emulsion) requirement = asphalt to coat the aggregate surface area (film thickness basis) + asphalt absorbed by the aggregate (CKE/kerosene test basis).",
+        "Design film thickness target: 8 microns (3.15x10^-4 inch).",
+        "Water content is set separately via an ASTM D3910 cone (flow) test, targeting a 25.4 mm (1 in.) flow with no segregation.",
+        "Portland cement or hydrated lime is added to control segregation, sized with the aid of the cone test."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies as the framing overview before performing the surface-area/absorption asphalt-content design and the cone water-content test for a slurry seal mixture."
+    },
+    {
+      "section_id": "9-1.2",
+      "title": "Surface Area Design Method",
+      "summary": "The surface area design method has three parts: the surface area asphalt (coating) calculation (9-1.2.1), the aggregate absorption calculation (9-1.2.2), and the resulting total asphalt content (9-1.2.3).",
+      "body": "The surface area design method includes three considerations: the calculation of the amount of asphalt required to coat the surface area of the job aggregate, the absorption characteristics of the aggregate, and the total asphalt content.",
+      "key_points": [
+        "Three parts: surface area asphalt (coating) calculation, aggregate absorption calculation, and total asphalt content."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when working through the full slurry-seal surface-area-based asphalt content design procedure."
+    },
+    {
+      "section_id": "9-1.2.1",
+      "title": "Surface Area Asphalt Calculation",
+      "summary": "REAL EQUATION (Equation B-1). Aggregate surface area (SA, m2/kg or ft2/lb) is found by multiplying percent passing each sieve by a Table B-1 surface-area factor and summing across sieve sizes, then correcting for aggregate specific gravity: CSA = SA x 2.65/ASG. The percent asphalt by weight to achieve film thickness t is SAA = CSA x t x SG_A x 0.99941 (metric) or CSA x t x SG_A x 0.02047 (US customary), per the source text as printed; if SG_A is unknown, assume SG_A = 1.0 with acceptably small design error.",
+      "body": "The surface area of the job aggregate is determined by multiplying the percent of aggregate passing a given sieve by a surface area factor based on the sieve size (Table B-1, in square meters per kilogram or square feet per pound of aggregate). The surface area is determined for each particle size group and summed to obtain the total surface area (SA). SA is then corrected to obtain a corrected surface area: CSA = SA x 2.65/ASG, where ASG is the apparent specific gravity of the aggregate. When the surface area and the desired bitumen film thickness are known, the volume -- and thus percent by weight -- of asphalt required is obtained via Equation B-1: SAA = CSA x t x SG_A x 0.99941 (Metric) or SAA = CSA x t x SG_A x 0.02047 (U.S. Customary), where SAA = asphalt content to cover the surface area of aggregate at a film thickness t micrometers, percent of dry aggregate weight; CSA = corrected surface area, square meters per kilogram (feet per pound) of dry aggregate; t = asphalt film thickness, micrometers; SG_A = specific gravity of the asphalt; and 0.99941 (0.02047) is the stated conversion coefficient for the units of the equation, as printed in the source. If SG_A is not known, the coating asphalt is calculated assuming SG_A = 1.0, which the source states does not greatly affect the final design requirements. NOTE: this text reproduces Equation B-1 exactly as printed in the source (coefficients 0.99941 metric / 0.02047 US customary). The worked sample calculation in Section 9-1.4.3, however, computes SAA = 6.83 percent from CSA = 8.310 m2/kg, t = 8 micrometers, SG_A = 1.028 -- a result consistent with a metric coefficient of approximately 0.1 (i.e., 0.099941), not 0.99941 as printed; see the applicability note for this discrepancy.",
+      "key_points": [
+        "Table B-1 gives a surface area factor (m2/kg or ft2/lb) per sieve size, from 0.4 m2/kg at 9.5 mm (3/8 in.) up to 32.8 m2/kg at 75 micrometer (No. 200).",
+        "Total surface area SA = sum over sieve sizes of (percent passing x surface area factor); corrected CSA = SA x 2.65/ASG (ASG = apparent specific gravity of aggregate).",
+        "Equation B-1 (REAL EQUATION, as printed): SAA = CSA x t x SG_A x 0.99941 (metric) or CSA x t x SG_A x 0.02047 (US customary).",
+        "SAA = asphalt needed to coat the aggregate surface at film thickness t (micrometers), percent of dry aggregate weight.",
+        "If asphalt specific gravity SG_A is unknown, assume SG_A = 1.0 -- source states this does not greatly affect final design.",
+        "FLAG: the printed metric coefficient (0.99941) is inconsistent by roughly a factor of 10 with the worked numeric example in 9-1.4.3 (which implies ~0.099941); verify against the source before any digitization."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table B-1 - Factors Used in Calculating Surface Area of Slurry Seal Aggregate"
+      ],
+      "applicability": "Applies when calculating the film-thickness (coating) component of slurry-seal asphalt content from aggregate gradation and specific gravity."
+    },
+    {
+      "section_id": "9-1.2.2",
+      "title": "Aggregate Absorption",
+      "summary": "Aggregate absorption is measured with the CKE (centrifuge kerosene equivalent) test per ASTM D5148: 100 g (0.22 lb) of minus-4.75 mm (No. 4) material is centrifuged in kerosene for 2 minutes, and the kerosene retained (assumed equivalent to absorbed asphalt) is converted to kerosene absorbed (KA), a percentage of the aggregate's dry weight.",
+      "body": "The absorption requirements of the aggregate are determined by using the CKE described in ASTM D5148. In this test, 100 grams (0.22 pounds) of 4.75-millimeter (No. 4) material is centrifuged in the presence of kerosene for 2 minutes. The amount of kerosene retained by the aggregate is assumed to be the amount of asphalt that the aggregate absorbs. The kerosene absorbed (KA) by the aggregate is converted to a percentage of the dry weight of the aggregate.",
+      "key_points": [
+        "CKE (centrifuge kerosene equivalent) test per ASTM D5148: 100 g (0.22 lb) of minus-No. 4 material centrifuged in kerosene for 2 minutes.",
+        "Kerosene retained by the aggregate is assumed equivalent to the asphalt the aggregate will absorb in service.",
+        "Result is expressed as KA, kerosene absorbed, percent of dry aggregate weight."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when quantifying the absorption component of total asphalt demand for an aggregate with significant internal porosity."
+    },
+    {
+      "section_id": "9-1.2.3",
+      "title": "Total Asphalt Content",
+      "summary": "REAL EQUATIONS (Equations B-2 and B-3). Total asphalt required AR (percent of dry aggregate weight) is the sum of the coating requirement and the absorption requirement: AR = SAA + KA, i.e. AR = (CSA x t x SG_A x 0.99941) + KA (metric) or AR = (CSA x t x SG_A x 0.02047) + KA (US customary), per the source text as printed. Required emulsion percentage = AR x 100 / (residue asphalt content in the emulsion).",
+      "body": "The total asphalt requirement is obtained by adding the percent asphalt required for the film thickness (SAA) and the percent asphalt required for absorption (KA); all percentages are based on the dry weight of the aggregate. The total is obtained using Equations B-2 and B-3: AR = SAA + KA, and, substituting Equation B-1's terms, AR = (CSA x t x SG_A x 0.99941) + KA (Metric) or AR = (CSA x t x SG_A x 0.02047) + KA (U.S. Customary), where AR = total asphalt required, percent of dry aggregate weight, and KA = kerosene absorbed, percent of dry aggregate weight. The required percentage of emulsion is then calculated by dividing the total asphalt required for the aggregate by the percentage of asphalt residue in the emulsion, i.e. emulsion required (percent of dry aggregate weight) = AR x 100 / (residue asphalt content in emulsion, percent). A worked sample calculation is presented in Section 9-1.4.",
+      "key_points": [
+        "Equation B-2 (REAL EQUATION): AR = SAA + KA (total asphalt required = coating requirement + absorption requirement), percent of dry aggregate weight.",
+        "Equation B-3 (REAL EQUATION, as printed): AR = (CSA x t x SG_A x 0.99941) + KA (metric) or AR = (CSA x t x SG_A x 0.02047) + KA (US customary).",
+        "Required emulsion (percent of dry aggregate weight) = AR x 100 / (percent asphalt residue in the emulsion).",
+        "Full worked numeric example is carried through in Section 9-1.4."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when combining the coating (SAA) and absorption (KA) asphalt demands into the final emulsion content for a slurry seal mix design."
+    },
+    {
+      "section_id": "9-1.3",
+      "title": "Cone Test",
+      "summary": "The cone test (ASTM D3910, using the ASTM C128 sand absorption cone over a base plate with concentric rings in 12.7 mm/0.5 in. radius increments) sets the mix water content: the mixture is loosely filled into the cone, struck off, and released to flow over the base plate, targeting a 25.4 mm (1 in.) flow with no segregation. If segregation prevents reaching that flow, 0.5 to 4 percent Portland cement or hydrated lime is added; any such addition not already in the design gradation requires increasing the total bitumen content by 0.6 percent asphalt per percent of added cement/lime.",
+      "body": "The cone test is used to determine the amount of water required to form a workable mixture as described in ASTM D3910. This test uses the sand absorption cone described in ASTM C128. The cone is placed over a base plate having concentric circles inscribed in diameters equal to the large end of the cone, increasing proportionally outward with each circle's radius increasing in 12.7-millimeter (1/2-inch) increments. The cone is loosely filled with a slurry mixture, struck off, then removed to allow the slurry mixture to 'flow' over the base plate. A mixture with a flow of 25.4 millimeters (1 inch) is considered to contain the right amount of water for field workability; mixtures that do not flow 25.4 millimeters (1 inch) require additional water. If the flow cannot be obtained without segregation, adding 0.5 to 4 percent Portland cement or hydrated lime helps reduce the segregation. Flows greater than 25.4 millimeters (1 inch) indicate excess water or segregation. If Portland cement or hydrated lime is added to reduce segregation and its addition was not included in the design gradation, correct the total bitumen content of the mixture to include the effect: as a rule, increase the asphalt content by 0.6 percent for every percent of additional Portland cement or hydrated lime added.",
+      "key_points": [
+        "Cone test per ASTM D3910, using the ASTM C128 sand absorption cone over a base plate with concentric rings at 12.7 mm (1/2 in.) radius increments.",
+        "Target flow: 25.4 mm (1 in.) with no segregation, indicating the right amount of water for field workability.",
+        "Segregation that prevents reaching target flow is corrected with 0.5 to 4 percent added Portland cement or hydrated lime.",
+        "Rule of thumb: increase asphalt content by 0.6 percent for every percent of added Portland cement/hydrated lime not already in the design gradation."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when setting slurry mixture water content and diagnosing/correcting segregation during slurry seal mix design or field batching."
+    },
+    {
+      "section_id": "9-1.4",
+      "title": "Sample Calculation of Asphalt Requirements for a Slurry Seal Aggregate",
+      "summary": "A full worked example carrying an actual job aggregate (ASG = 2.96, 2 percent Portland cement in the gradation) through the surface area calculation (9-1.4.1, Table B-2), the kerosene absorption calculation (9-1.4.2, Table B-3), and the total asphalt/emulsion requirement (9-1.4.3), arriving at 12.53 percent total asphalt and 19.9 percent required SS-1h emulsion by dry aggregate weight.",
+      "body": "",
+      "key_points": [
+        "Worked example aggregate: apparent specific gravity (ASG) = 2.96, gradation includes 2 percent Portland cement.",
+        "Sequence: surface area calculation (9-1.4.1) -> kerosene absorption calculation (9-1.4.2) -> total asphalt/emulsion requirement (9-1.4.3).",
+        "Final result: AR = 12.53 percent total asphalt (dry aggregate weight); 19.9 percent SS-1h emulsion required (19.9 kg or lb emulsion per 100 kg or lb dry aggregate)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies as a worked reference example for checking a slurry seal surface-area/absorption asphalt content calculation."
+    },
+    {
+      "section_id": "9-1.4.1",
+      "title": "Surface Area Calculation",
+      "summary": "For the example aggregate (ASG = 2.96), Table B-2 multiplies percent passing at each of eight sieve sizes (9.5 mm/3/8 in. down to 75 micrometer/No. 200) by the Table B-1 surface area factor and sums to total SA = 9.282 m2/kg (45.32 ft2/lb); correcting for specific gravity gives CSA = SA x 2.65/2.96 = 8.310 m2/kg (40.57 ft2/lb).",
+      "body": "The ASG equals 2.96, and the aggregate gradation includes 2 percent Portland cement. Table B-2 (Surface Area Calculation) works through eight sieve sizes -- 9.5 mm (3/8 in.), 4.75 mm (No. 4), 2.36 mm (No. 8), 1.18 mm (No. 16), 600 micrometer (No. 30), 300 micrometer (No. 50), 150 micrometer (No. 100), and 75 micrometer (No. 200) -- multiplying each sieve's percent passing (100, 99.5, 95.6, 77.8, 52.0, 24.5, 10.7, 6.4) by its Table B-1 surface area factor to get a per-sieve surface area contribution, summing to a total SA of 9.282 square meters per kilogram (45.32 square feet per pound) of aggregate. The corrected surface area is then CSA = SA x 2.65/2.96 = 8.310 square meters per kilogram (40.57 square feet per pound) of aggregate.",
+      "key_points": [
+        "Table B-2 worked gradation: 100/99.5/95.6/77.8/52.0/24.5/10.7/6.4 percent passing at 9.5mm/4.75mm/2.36mm/1.18mm/600um/300um/150um/75um respectively.",
+        "Total surface area SA = 9.282 m2/kg (45.32 ft2/lb) of aggregate, summed across all eight sieve-size contributions.",
+        "Corrected surface area CSA = SA x 2.65/ASG = 9.282 x 2.65/2.96 = 8.310 m2/kg (40.57 ft2/lb) of aggregate."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table B-2 - Surface Area Calculation"
+      ],
+      "applicability": "Applies as the worked surface-area-calculation reference step for a slurry seal aggregate with ASG = 2.96."
+    },
+    {
+      "section_id": "9-1.4.2",
+      "title": "Kerosene Absorption Calculation",
+      "summary": "Table B-3 runs two CKE cups (100 g sample each) through the centrifuge kerosene equivalent procedure; both cups return KA = 5.7 percent kerosene absorbed, giving an average KA = 5.7 percent for the example aggregate.",
+      "body": "The aggregate gradation includes 2 percent Portland cement. Table B-3 (Kerosene Absorption Calculation) runs two cups: Cup 1 has tare weight 215.3 g, sample weight 100.0 g, weight before centrifuging 315.3 g, weight after centrifuging 321.0 g, giving KA = 5.7 percent; Cup 2 has tare weight 215.9 g, sample weight 100.0 g, weight before centrifuging 315.9 g, weight after centrifuging 321.6 g, giving KA = 5.7 percent. The average KA across the two cups is 5.7 percent.",
+      "key_points": [
+        "Table B-3 worked example: two 100 g CKE cups, each returning KA = 5.7 percent kerosene absorbed.",
+        "Average KA (kerosene absorption) for the example aggregate = 5.7 percent of dry aggregate weight."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table B-3 - Kerosene Absorption Calculation"
+      ],
+      "applicability": "Applies as the worked kerosene-absorption-calculation reference step for the same example slurry seal aggregate."
+    },
+    {
+      "section_id": "9-1.4.3",
+      "title": "Total Asphalt Requirements",
+      "summary": "REAL EQUATION worked through numerically. With emulsion = SS-1h, design film thickness t = 8 micrometers, ASG = 2.96, asphalt specific gravity SG_A = 1.028, KA = 5.7 percent, and CSA = 8.310 m2/kg (40.57 ft2/lb): SAA = (8.310 x 8 x 1.028 x 0.99941) reported in the source as 6.83 percent, so AR = SAA + KA = 6.83 + 5.7 = 12.53 percent of dry aggregate weight. With 63 percent residue asphalt content in the emulsion, required emulsion = AR x 100/63 = 12.53 x 100/63 = 19.9 percent of dry aggregate weight, i.e. 19.9 kg (or lb) of emulsion per 100 kg (or lb) of dry aggregate.",
+      "body": "These factors are involved in calculating the asphalt contents: asphalt = SS-1h asphalt emulsion; design film thickness (t) = 8 micrometers; apparent specific gravity of aggregate (ASG) = 2.96; specific gravity of asphalt (SG_A) = 1.028; kerosene absorption (KA) = 5.7 percent; corrected surface area (CSA) = 8.310 square meters per kilogram (40.57 square feet per pound) of aggregate, carried from Section 9-1.4.1. Total asphalt required (AR) = (CSA x t x SG_A x 0.99941) + KA (Metric) or (CSA x t x SG_A x 0.02047) + KA (U.S. Customary): numerically, (8.310 x 8 x 1.028 x 0.99941) + 5.7 = 6.83 + 5.7 = 12.53 percent, so AR = 12.53 percent of dry aggregate weight. With a residue asphalt content in the emulsion of 63 percent by weight, emulsion required = AR x 100/(residue asphalt content in emulsion) = 12.53 x 100/63 = 19.9 percent of dry aggregate weight -- that is, 19.9 kilograms of emulsion is required for every 100 kilograms of dry aggregate, or in inch-pound units, 19.9 pounds of emulsion for every 100 pounds of dry aggregate. NOTE: the source's own numeric substitution (8.310 x 8 x 1.028 x 0.99941 = 6.83) is internally inconsistent with the printed coefficient 0.99941 -- direct arithmetic with that coefficient gives approximately 68.3, not 6.83, a factor-of-10 discrepancy consistent with the true metric coefficient being approximately 0.099941 rather than 0.99941. The final AR = 12.53 percent and emulsion = 19.9 percent results themselves are taken as printed and are internally self-consistent (SAA=6.83, KA=5.7, sum=12.53).",
+      "key_points": [
+        "REAL WORKED EQUATION: AR = (CSA x t x SG_A x 0.99941) + KA (metric, as printed) = (8.310 x 8 x 1.028 x 0.99941) + 5.7 = 6.83 + 5.7 = 12.53 percent of dry aggregate weight.",
+        "Emulsion required = AR x 100 / (residue asphalt content in emulsion) = 12.53 x 100/63 = 19.9 percent of dry aggregate weight.",
+        "Final result: 19.9 kg (or lb) of SS-1h emulsion required per 100 kg (or lb) of dry aggregate.",
+        "RESOLVED: printed metric coefficient 0.99941 gives ~68.3, not the stated SAA=6.83, from CSA=8.310, t=8, SG_A=1.028; equations.py uses 0.099941, verified against this example and the US customary coefficient (0.02047)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table B-4 - Product and Vendor Information"
+      ],
+      "applicability": "Applies as the complete worked reference calculation for slurry seal total asphalt content and required emulsion percentage."
+    },
+    {
+      "section_id": "9-2",
+      "title": "Potential Vendors",
+      "summary": "Lists potential vendors of dust-abatement/slurry products (Table B-4) as a procurement aid, not a complete or endorsed vendor list; a small test section is recommended before field use of any listed product to confirm effectiveness and placement details.",
+      "body": "A list of potential vendors is summarized in Table B-4 to assist in the procurement of products. It is not intended to be a complete listing of vendors, as there are numerous large and small companies that provide a wide range of materials for dust abatement. Inclusion on this list does not represent endorsement of any kind. The list is provided to assist the soldiers, sailors, marines, and airmen working in the field. Complete a small test section prior to using each product to evaluate the effectiveness and determine the placement details. Table B-4 (Product and Vendor Information) lists, for example, Alyan Corporation's Prosalvia-7 (PL7) product with its website.",
+      "key_points": [
+        "Table B-4 lists potential dust-abatement/slurry product vendors as a procurement aid, e.g. Alyan Corporation's Prosalvia-7 (PL7).",
+        "Not a complete listing and inclusion does not represent endorsement of any kind.",
+        "Complete a small test section before field use of any listed product to confirm effectiveness and placement details."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table B-4 - Product and Vendor Information"
+      ],
+      "applicability": "Applies when identifying candidate commercial products/vendors for dust abatement or resin/polymer additives before running a field test section."
+    }
+  ]
+}
