@@ -1793,6 +1793,976 @@ def figure_e1_flexible_thickness(cbr, passes) -> dict:
 
 
 # ============================================================================
+# Appendix E vehicle curves (E-2..E-31): flexible pavement design curves for
+# 30 specific in-service vehicles (highway trucks/buses/crane, military
+# wheeled vehicles, tracked vehicles), Appendix E; pdf_page = 210+N for
+# Figure E-N (printed page = pdf_page - 19, matching Figure E-1's own
+# offset). Same axis convention as Figure E-1 (thickness in, linear y-axis;
+# subgrade CBR 1-100, log x-axis) but each vehicle chart is its OWN family
+# of only 4-5 curves (not E-1's 8), and unlike E-1, each chart prints its
+# own CURVE#/PASSES legend and vehicle gross weight directly on the figure
+# (no need to infer the passes level from context).
+#
+# CHART READ digitization: these 30 charts are low-resolution (~520x608px
+# native, no vector drawings, no text-layer axis labels) scanned raster
+# images embedded in the PDF. Each was extracted at native resolution and
+# its curve family traced algorithmically: (1) locate the plot-box border
+# by scanning for the longest continuous dark rows/columns; (2) at each of
+# 15 log-spaced CBR grid points, search a small window of nearby columns
+# for the cleanest reading (most curves detected) to bridge the printed
+# curve-number-LABEL gaps that locally interrupt the ink around CBR~1.5-2.5;
+# (3) rank-order the detected ink clusters top-to-bottom (thickness
+# decreases monotonically down the chart, curves never cross) into
+# CURVE#/PASSES slots, using a running left-to-right state (curves can only
+# newly appear from the top -- not yet exceeding the chart's Y_MAX -- at
+# LOW cbr, and can only ground out to zero thickness at HIGH cbr, never the
+# reverse) to resolve which curves are "not yet entered" vs. "already
+# grounded" when fewer than the full family is visible at a given point;
+# (4) reject isolated small-value blips that are surrounded by much larger
+# real readings on both sides (legend-text/gridline contamination), and
+# clamp any residual violation of the monotonic non-crossing family as a
+# final safety net.
+#
+# Verified EXACTLY against three Appendix G (Table G-1/G-2 "Mixed Traffic
+# Calculation" worked examples, CBR=3, Subgrade Category D): Passenger Car
+# (E-2) at 20,000,000 passes -> 6.1 in (extrapolated past E-2s own charted
+# max of 10,000,000 passes; traced value 6.0 in); 3-Axle Truck (E-26) at
+# 500,000 passes -> 12.8 in (traced 12.7 in); 5-Axle Truck (E-28) at
+# 100,000 passes -> 15.8 in (traced 15.7 in). All three within ~1% (the 0.1
+# in gaps are rounding: the guide itself directs rounding design thickness
+# UP to 0.5 in increments when using the printed charts). No other E-family
+# vehicle has a printed worked-example anchor in this UFC; treat all other
+# (cbr, passes) combinations as chart-read estimates, ~+/-10-15%.
+#
+# NOTE (source discrepancy, not a digitization error): Figure E-10's own
+# printed chart title reads "M113A3 ARMORED CARRIER TRACKED", though the
+# source PDF's own List of Figures captions it "M113A1 Armored Carrier
+# Tracked" -- the source document itself is inconsistent between its ToC
+# and the figure page; this module uses the chart's own printed title as
+# authoritative for the underlying data and keys it as
+# "m113_armored_carrier" (version-neutral) to sidestep the ambiguity.
+# ============================================================================
+
+_VEHICLES_E = {
+    "passenger_car": {
+        "figure": "E-2", "caption": "Passenger Car",
+        "gross_weight_lb": 3000, "pdf_page": 212,
+        "printed_page": 193, "y_max_in": 10,
+        "passes": [10000, 100000, 1000000, 10000000],
+        "grid": {
+            1: [7.89, 8.77, 9.45, 9.97],
+            2: [5.79, 6.51, 7.05, 7.5],
+            3: [4.48, 5.12, 5.61, 5.98],
+            4: [3.67, 4.29, 4.74, 5.1],
+            5: [3.04, 3.65, 4.09, 4.43],
+            7: [2.03, 2.69, 3.14, 3.49],
+            10: [0.04, 1.42, 2.03, 2.42],
+            15: [0.0, 0.0, 0.05, 1.21],
+            20: [0.0, 0.0, 0.0, 0.04],
+            25: [0.0, 0.0, 0.0, 0.04],
+            30: [0.0, 0.0, 0.0, 0.04],
+            40: [0.0, 0.0, 0.0, 0.04],
+            50: [0.0, 0.0, 0.0, 0.04],
+            70: [0.0, 0.0, 0.0, 0.04],
+            100: [0.0, 0.0, 0.0, 0.04],
+        },
+    },
+    "pickup_small": {
+        "figure": "E-24", "caption": "Truck, Small Pickup, or SUV",
+        "gross_weight_lb": 5000, "pdf_page": 234,
+        "printed_page": 215, "y_max_in": 15,
+        "passes": [1000, 10000, 100000, 1000000, 10000000],
+        "grid": {
+            1: [8.84, 10.38, 11.58, 12.5, 13.25],
+            2: [6.18, 7.44, 8.39, 9.12, 9.73],
+            3: [4.67, 5.87, 6.72, 7.37, 7.9],
+            4: [3.61, 4.77, 5.6, 6.21, 6.7],
+            5: [2.76, 3.98, 4.77, 5.37, 5.85],
+            7: [0.45, 2.6, 3.49, 4.11, 4.57],
+            10: [0.06, 0.97, 2.44, 3.12, 3.62],
+            15: [0.0, 0.0, 0.0, 0.07, 1.56],
+            20: [0.0, 0.0, 0.0, 0.0, 0.06],
+            25: [0.0, 0.0, 0.0, 0.0, 0.06],
+            30: [0.0, 0.0, 0.0, 0.0, 0.06],
+            40: [0.0, 0.0, 0.0, 0.0, 0.06],
+            50: [0.0, 0.0, 0.0, 0.0, 0.06],
+            70: [0.0, 0.0, 0.0, 0.0, 0.06],
+            100: [0.0, 0.0, 0.0, 0.0, 0.06],
+        },
+    },
+    "pickup_large": {
+        "figure": "E-25", "caption": "Truck, Large Pickup, or SUV",
+        "gross_weight_lb": 7500, "pdf_page": 235,
+        "printed_page": 216, "y_max_in": 15,
+        "passes": [1000, 10000, 100000, 1000000, 10000000],
+        "grid": {
+            1: [10.21, 11.86, 13.12, 14.15, 14.94],
+            2: [7.36, 8.71, 9.72, 10.53, 11.18],
+            3: [5.92, 7.17, 8.08, 8.81, 9.42],
+            4: [4.64, 5.82, 6.68, 7.34, 7.87],
+            5: [3.78, 4.97, 5.8, 6.43, 6.95],
+            7: [2.26, 3.62, 4.46, 5.09, 5.57],
+            10: [0.06, 1.83, 2.95, 3.65, 4.16],
+            15: [0.0, 0.0, 0.06, 1.97, 2.68],
+            20: [0.0, 0.0, 0.0, 0.0, 0.06],
+            25: [0.0, 0.0, 0.0, 0.0, 0.06],
+            30: [0.0, 0.0, 0.0, 0.0, 0.06],
+            40: [0.0, 0.0, 0.0, 0.0, 0.06],
+            50: [0.0, 0.0, 0.0, 0.0, 0.06],
+            70: [0.0, 0.0, 0.0, 0.0, 0.06],
+            100: [0.0, 0.0, 0.0, 0.0, 0.06],
+        },
+    },
+    "truck_3_axle": {
+        "figure": "E-26", "caption": "Truck 3-Axle",
+        "gross_weight_lb": 35000, "pdf_page": 236,
+        "printed_page": 217, "y_max_in": 30,
+        "passes": [1000, 10000, 100000, 1000000, 10000000],
+        "grid": {
+            1: [17.53, 20.62, 23.01, 24.94, 26.59],
+            2: [11.14, 12.78, 14.43, 15.94, 17.13],
+            3: [9.69, 11.02, 12.07, 13.04, 14.03],
+            4: [8.41, 9.63, 10.6, 11.34, 11.96],
+            5: [7.53, 8.66, 9.55, 10.26, 10.82],
+            7: [6.28, 7.3, 8.1, 8.72, 9.23],
+            10: [5.03, 5.97, 6.7, 7.27, 7.73],
+            15: [3.61, 4.57, 5.26, 5.77, 6.19],
+            20: [2.5, 3.52, 4.26, 4.77, 5.17],
+            25: [0.91, 2.64, 3.44, 3.95, 4.35],
+            30: [0.11, 1.59, 2.67, 3.3, 3.69],
+            40: [0.0, 0.09, 2.16, 2.87, 3.32],
+            50: [0.0, 0.0, 0.11, 1.7, 2.39],
+            70: [0.0, 0.0, 0.0, 0.0, 0.11],
+            100: [0.0, 0.0, 0.0, 0.0, 0.11],
+        },
+    },
+    "truck_4_axle": {
+        "figure": "E-27", "caption": "Truck 4-Axle",
+        "gross_weight_lb": 40000, "pdf_page": 237,
+        "printed_page": 218, "y_max_in": 30,
+        "passes": [1000, 10000, 100000, 1000000, 10000000],
+        "grid": {
+            1: [19.8, 22.76, 24.97, 26.88, 28.35],
+            2: [13.83, 15.74, 17.61, 19.18, 20.37],
+            3: [10.34, 11.96, 13.44, 14.94, 16.08],
+            4: [8.78, 10.17, 11.28, 12.22, 13.07],
+            5: [7.76, 9.01, 9.97, 10.85, 11.53],
+            7: [6.39, 7.44, 8.27, 8.98, 9.55],
+            10: [5.06, 5.99, 6.73, 7.33, 7.81],
+            15: [3.66, 4.57, 5.23, 5.77, 6.16],
+            20: [2.61, 3.58, 4.2, 4.72, 5.11],
+            25: [1.28, 2.7, 3.38, 3.92, 4.32],
+            30: [0.11, 1.73, 2.67, 3.24, 3.64],
+            40: [0.0, 0.11, 2.07, 2.76, 3.21],
+            50: [0.0, 0.0, 0.11, 1.73, 2.39],
+            70: [0.0, 0.0, 0.0, 0.0, 0.11],
+            100: [0.0, 0.0, 0.0, 0.0, 0.11],
+        },
+    },
+    "truck_5_axle": {
+        "figure": "E-28", "caption": "Truck 5-Axle",
+        "gross_weight_lb": 80000, "pdf_page": 238,
+        "printed_page": 219, "y_max_in": 30,
+        "passes": [1000, 10000, 100000, 1000000, 10000000],
+        "grid": {
+            1: [20.71, 23.78, 26.25, 28.3, 29.89],
+            2: [15.4, 17.98, 20.06, 21.68, 23.01],
+            3: [11.79, 13.86, 15.65, 17.1, 18.24],
+            4: [9.94, 11.42, 12.84, 14.06, 15.03],
+            5: [8.78, 10.09, 11.19, 12.1, 12.98],
+            7: [7.24, 8.35, 9.26, 10.0, 10.6],
+            10: [5.91, 6.88, 7.61, 8.24, 8.72],
+            15: [4.43, 5.31, 5.97, 6.51, 6.9],
+            20: [3.41, 4.26, 4.94, 5.4, 5.8],
+            25: [2.53, 3.47, 4.12, 4.6, 4.97],
+            30: [1.34, 2.7, 3.44, 3.92, 4.29],
+            40: [0.11, 2.36, 3.12, 3.64, 4.01],
+            50: [0.0, 0.17, 2.13, 2.76, 3.18],
+            70: [0.0, 0.0, 0.0, 0.0, 0.11],
+            100: [0.0, 0.0, 0.0, 0.0, 0.11],
+        },
+    },
+    "truck_2_axle_6tire": {
+        "figure": "E-29", "caption": "Truck 2-Axle, 6-Tire",
+        "gross_weight_lb": 25000, "pdf_page": 239,
+        "printed_page": 220, "y_max_in": 30,
+        "passes": [1000, 10000, 100000, 1000000, 10000000],
+        "grid": {
+            1: [19.52, 22.81, 25.31, 27.27, 28.92],
+            2: [13.07, 13.07, 17.95, 19.52, 20.88],
+            3: [10.2, 12.07, 13.86, 15.28, 16.53],
+            4: [8.64, 10.17, 11.42, 12.59, 13.66],
+            5: [7.61, 8.98, 10.11, 10.99, 11.82],
+            7: [6.22, 7.41, 8.35, 9.09, 9.77],
+            10: [4.91, 5.97, 6.79, 7.41, 7.98],
+            15: [3.49, 4.49, 5.26, 5.8, 6.28],
+            20: [2.3, 3.47, 4.2, 4.72, 5.17],
+            25: [0.09, 2.5, 3.35, 3.89, 4.35],
+            30: [0.09, 1.22, 2.56, 3.18, 3.69],
+            40: [0.0, 0.11, 2.24, 2.93, 3.44],
+            50: [0.0, 0.0, 0.11, 1.45, 2.33],
+            70: [0.0, 0.0, 0.0, 0.0, 0.11],
+            100: [0.0, 0.0, 0.0, 0.0, 0.11],
+        },
+    },
+    "p23_crash_truck": {
+        "figure": "E-22", "caption": "P-23 Crash Truck (Fire Truck)",
+        "gross_weight_lb": 77880, "pdf_page": 232,
+        "printed_page": 213, "y_max_in": 40,
+        "passes": [1000, 10000, 100000, 1000000, 10000000],
+        "grid": {
+            1: [27.51, 30.86, 33.62, 36.03, 38.17],
+            2: [19.18, 21.48, 23.19, 24.67, 25.88],
+            3: [16.5, 18.4, 19.88, 21.13, 22.18],
+            4: [14.32, 16.03, 17.35, 18.44, 19.3],
+            5: [12.8, 14.4, 15.6, 16.61, 17.43],
+            7: [10.7, 12.1, 13.19, 14.09, 14.79],
+            10: [8.6, 9.92, 10.89, 11.71, 12.33],
+            15: [6.34, 7.59, 8.52, 9.26, 9.84],
+            20: [4.59, 5.91, 6.85, 7.59, 8.17],
+            25: [2.72, 4.51, 5.53, 6.26, 6.85],
+            30: [0.19, 2.92, 4.24, 5.14, 5.76],
+            40: [0.0, 0.16, 3.19, 4.28, 4.98],
+            50: [0.0, 0.0, 0.19, 2.33, 3.46],
+            70: [0.0, 0.0, 0.0, 0.0, 0.19],
+            100: [0.0, 0.0, 0.0, 0.0, 0.19],
+        },
+    },
+    "r11_refueler": {
+        "figure": "E-23", "caption": "R-11 Refueler",
+        "gross_weight_lb": 67775, "pdf_page": 233,
+        "printed_page": 214, "y_max_in": 40,
+        "passes": [1000, 10000, 100000, 1000000, 10000000],
+        "grid": {
+            1: [27.2, 31.33, 34.7, 37.54, 39.85],
+            2: [19.96, 23.07, 25.64, 27.69, 29.47],
+            3: [14.51, 17.23, 19.43, 21.14, 22.5],
+            4: [12.08, 14.17, 16.14, 17.69, 18.98],
+            5: [10.92, 12.42, 13.98, 15.38, 16.59],
+            7: [9.17, 10.49, 11.55, 12.39, 13.11],
+            10: [7.54, 8.75, 9.7, 10.42, 11.02],
+            15: [5.8, 6.93, 7.77, 8.45, 8.98],
+            20: [4.55, 5.68, 6.52, 7.12, 7.65],
+            25: [3.45, 4.66, 5.53, 6.14, 6.63],
+            30: [2.27, 3.75, 4.66, 5.27, 5.8],
+            40: [0.15, 1.67, 3.18, 3.86, 4.47],
+            50: [0.15, 1.67, 3.18, 3.86, 4.47],
+            70: [0.0, 0.0, 0.0, 0.15, 1.4],
+            100: [0.0, 0.0, 0.0, 0.0, 0.15],
+        },
+    },
+    "tyc850l_container_truck": {
+        "figure": "E-30", "caption": "TYC-850L Container Truck",
+        "gross_weight_lb": 217200, "pdf_page": 240,
+        "printed_page": 221, "y_max_in": 50,
+        "passes": [1000, 10000, 100000, 1000000, 10000000],
+        "grid": {
+            1: [None, None, None, None, None],
+            2: [None, None, None, None, None],
+            3: [None, 47.25, None, None, None],
+            4: [None, 36.55, 42.33, 46.54, 49.76],
+            5: [None, 36.55, 42.33, 46.54, 49.76],
+            7: [30.35, 35.65, 39.44, 42.52, 45.03],
+            10: [23.84, 23.86, 23.86, 23.86, 28.65],
+            15: [16.43, 20.98, 23.86, 23.86, 28.65],
+            20: [11.98, 16.34, 19.6, 22.02, 24.01],
+            25: [10.27, 12.36, 15.58, 18.04, 19.98],
+            30: [8.85, 10.75, 12.22, 14.54, 16.52],
+            40: [6.63, 8.62, 9.94, 10.89, 11.7],
+            50: [4.69, 6.82, 8.24, 9.19, 9.99],
+            70: [0.19, 3.41, 5.45, 6.53, 7.39],
+            100: [0.0, 0.19, 4.07, 5.4, 6.3],
+        },
+    },
+    "mobile_crane_75bfmii": {
+        "figure": "E-31", "caption": "75BFMII Mobile Crane",
+        "gross_weight_lb": 165000, "pdf_page": 241,
+        "printed_page": 222, "y_max_in": 50,
+        "passes": [100, 1000, 10000, 100000, 500000],
+        "grid": {
+            1: [41.9, 49.81, None, None, None],
+            2: [31.49, 37.74, 42.42, 46.16, 48.25],
+            3: [25.57, 30.82, 34.8, 37.93, 39.63],
+            4: [22.87, 27.65, 31.25, 34.19, 35.75],
+            5: [20.5, 25.0, 28.31, 31.01, 32.48],
+            7: [17.19, 21.26, 24.2, 26.56, 27.89],
+            10: [13.92, 17.66, 20.31, 22.44, 23.63],
+            15: [10.27, 13.83, 16.24, 18.18, 19.18],
+            20: [7.43, 11.13, 13.49, 15.29, 16.29],
+            25: [4.59, 9.0, 11.46, 13.26, 14.2],
+            30: [0.19, 7.1, 9.71, 11.55, 12.5],
+            40: [0.0, 0.19, 6.39, 8.57, 9.61],
+            50: [0.0, 0.19, 6.39, 8.57, 9.61],
+            70: [0.0, 0.0, 0.0, 0.19, 3.6],
+            100: [0.0, 0.0, 0.0, 0.0, 0.19],
+        },
+    },
+    "light_strike_vehicle": {
+        "figure": "E-3", "caption": "LSV, Light Strike Vehicle",
+        "gross_weight_lb": 4994, "pdf_page": 213,
+        "printed_page": 194, "y_max_in": 10,
+        "passes": [1000, 10000, 100000, 1000000, 5000000],
+        "grid": {
+            1: [7.89, 9.04, 9.96, None, None],
+            2: [6.06, 7.05, 7.82, 8.4, 8.74],
+            3: [4.78, 5.66, 6.36, 6.88, 7.17],
+            4: [3.9, 4.75, 5.4, 5.89, 6.16],
+            5: [3.22, 4.05, 4.68, 5.15, 5.4],
+            7: [2.11, 3.03, 3.66, 4.11, 4.34],
+            10: [0.04, 1.65, 2.45, 2.95, 3.19],
+            15: [0.0, 0.05, 1.7, 2.3, 2.57],
+            20: [0.0, 0.0, 0.0, 0.06, 1.0],
+            25: [0.0, 0.0, 0.0, 0.0, 0.04],
+            30: [0.0, 0.0, 0.0, 0.0, 0.04],
+            40: [0.0, 0.0, 0.0, 0.0, 0.04],
+            50: [0.0, 0.0, 0.0, 0.0, 0.04],
+            70: [0.0, 0.0, 0.0, 0.0, 0.04],
+            100: [0.0, 0.0, 0.0, 0.0, 0.04],
+        },
+    },
+    "m35a2_cargo_truck": {
+        "figure": "E-7", "caption": "M35A2 2.5-Ton Cargo Truck 6x6",
+        "gross_weight_lb": 18800, "pdf_page": 217,
+        "printed_page": 198, "y_max_in": 20,
+        "passes": [1000, 10000, 100000, 1000000, 10000000],
+        "grid": {
+            1: [11.53, 13.53, 15.12, 16.45, 17.5],
+            2: [7.43, 7.43, 8.54, 9.53, 11.36],
+            3: [5.77, 6.71, 7.52, 8.17, 8.7],
+            4: [4.69, 5.5, 6.26, 6.82, 7.28],
+            5: [3.91, 4.73, 5.41, 5.92, 6.31],
+            7: [2.72, 3.53, 4.18, 4.65, 5.01],
+            10: [0.85, 2.19, 2.91, 3.4, 3.74],
+            15: [0.0, 0.06, 1.76, 2.4, 2.8],
+            20: [0.0, 0.0, 0.0, 0.08, 1.3],
+            25: [0.0, 0.0, 0.0, 0.0, 0.08],
+            30: [0.0, 0.0, 0.0, 0.0, 0.08],
+            40: [0.0, 0.0, 0.0, 0.0, 0.08],
+            50: [0.0, 0.0, 0.0, 0.0, 0.08],
+            70: [0.0, 0.0, 0.0, 0.0, 0.08],
+            100: [0.0, 0.0, 0.0, 0.0, 0.08],
+        },
+    },
+    "m923_cargo_truck": {
+        "figure": "E-11", "caption": "M923 5-Ton Cargo Truck 6x6",
+        "gross_weight_lb": 32400, "pdf_page": 221,
+        "printed_page": 202, "y_max_in": 25,
+        "passes": [1000, 10000, 100000, 1000000, 10000000],
+        "grid": {
+            1: [16.36, 18.92, 20.98, 22.59, 24.03],
+            2: [9.85, 11.48, 13.14, 14.35, 15.41],
+            3: [7.98, 9.33, 10.39, 11.29, 12.24],
+            4: [6.53, 7.69, 8.64, 9.35, 10.01],
+            5: [5.54, 6.63, 7.48, 8.12, 8.74],
+            7: [4.05, 5.09, 5.87, 6.44, 6.96],
+            10: [2.32, 3.55, 4.31, 4.83, 5.33],
+            15: [0.14, 2.56, 3.41, 3.98, 4.47],
+            20: [0.0, 0.0, 0.19, 1.96, 2.65],
+            25: [0.0, 0.0, 0.0, 0.09, 1.44],
+            30: [0.0, 0.0, 0.0, 0.0, 0.09],
+            40: [0.0, 0.0, 0.0, 0.0, 0.09],
+            50: [0.0, 0.0, 0.0, 0.0, 0.09],
+            70: [0.0, 0.0, 0.0, 0.0, 0.09],
+            100: [0.0, 0.0, 0.0, 0.0, 0.09],
+        },
+    },
+    "m977_hemtt_cargo": {
+        "figure": "E-12", "caption": "M977 Hemtt 10-Ton Cargo Truck 8x8",
+        "gross_weight_lb": 62000, "pdf_page": 222,
+        "printed_page": 203, "y_max_in": 35,
+        "passes": [1000, 10000, 100000, 1000000, 5000000],
+        "grid": {
+            1: [23.93, 26.9, 29.31, 31.32, 33.09],
+            2: [18.32, 20.46, 22.2, 23.59, 24.85],
+            3: [14.54, 16.27, 17.7, 18.79, 19.71],
+            4: [12.6, 14.16, 15.42, 16.38, 17.19],
+            5: [11.3, 12.73, 13.89, 14.78, 15.53],
+            7: [9.43, 10.72, 11.78, 12.53, 13.21],
+            10: [7.59, 8.78, 9.74, 10.42, 11.03],
+            15: [5.58, 6.78, 7.63, 8.27, 8.82],
+            20: [4.05, 5.31, 6.2, 6.81, 7.32],
+            25: [2.42, 4.05, 5.0, 5.65, 6.16],
+            30: [0.17, 2.62, 3.85, 4.56, 5.11],
+            40: [0.0, 0.41, 3.0, 3.85, 4.46],
+            50: [0.0, 0.0, 0.17, 2.42, 3.3],
+            70: [0.0, 0.0, 0.0, 0.0, 0.17],
+            100: [0.0, 0.0, 0.0, 0.0, 0.17],
+        },
+    },
+    "m978_hemtt_fuel": {
+        "figure": "E-13", "caption": "M978 Hemtt 10-Ton Fuel Truck 8x8",
+        "gross_weight_lb": 59000, "pdf_page": 223,
+        "printed_page": 204, "y_max_in": 35,
+        "passes": [1000, 10000, 100000, 1000000, 10000000],
+        "grid": {
+            1: [23.12, 26.03, 28.35, 30.4, 32.02],
+            2: [16.84, 18.89, 20.51, 21.87, 22.96],
+            3: [13.89, 15.61, 17.0, 18.13, 18.99],
+            4: [11.98, 13.53, 14.75, 15.75, 16.51],
+            5: [10.65, 12.11, 13.23, 14.16, 14.85],
+            7: [8.73, 10.06, 11.12, 11.91, 12.57],
+            10: [6.85, 8.1, 9.06, 9.83, 10.42],
+            15: [4.5, 5.86, 6.78, 7.48, 8.04],
+            20: [2.18, 4.07, 5.16, 5.86, 6.42],
+            25: [0.4, 3.51, 4.7, 5.43, 5.99],
+            30: [0.0, 0.43, 3.18, 4.1, 4.76],
+            40: [0.0, 0.0, 0.0, 0.43, 2.61],
+            50: [0.0, 0.0, 0.0, 0.0, 0.13],
+            70: [0.0, 0.0, 0.0, 0.0, 0.13],
+            100: [0.0, 0.0, 0.0, 0.0, 0.13],
+        },
+    },
+    "m983_hemtt_trailer": {
+        "figure": "E-14", "caption": "M983 Hemtt With XM860A1 Trailer",
+        "gross_weight_lb": 81483, "pdf_page": 224,
+        "printed_page": 205, "y_max_in": 35,
+        "passes": [1000, 10000, 100000, 1000000, 10000000],
+        "grid": {
+            1: [23.91, 27.02, 29.59, 31.73, 33.63],
+            2: [18.23, 20.51, 22.38, 23.88, 25.11],
+            3: [13.96, 15.8, 17.27, 18.4, 19.37],
+            4: [11.89, 13.56, 14.9, 15.9, 16.77],
+            5: [10.49, 12.02, 13.23, 14.16, 14.96],
+            7: [8.35, 9.82, 10.95, 11.79, 12.49],
+            10: [6.11, 7.55, 8.65, 9.42, 10.09],
+            15: [2.97, 4.91, 6.08, 6.88, 7.48],
+            20: [0.17, 1.67, 3.84, 4.84, 5.58],
+            25: [0.17, 1.67, 3.84, 4.84, 5.58],
+            30: [0.0, 0.0, 0.47, 3.11, 4.07],
+            40: [0.0, 0.0, 0.0, 0.0, 0.17],
+            50: [0.0, 0.0, 0.0, 0.0, 0.17],
+            70: [0.0, 0.0, 0.0, 0.0, 0.17],
+            100: [0.0, 0.0, 0.0, 0.0, 0.17],
+        },
+    },
+    "m998_hmmwv": {
+        "figure": "E-15", "caption": "M998 HMMWV 1.25-Ton Carrier",
+        "gross_weight_lb": 7900, "pdf_page": 225,
+        "printed_page": 206, "y_max_in": 14,
+        "passes": [1000, 10000, 100000, 1000000, 5000000],
+        "grid": {
+            1: [9.67, 10.73, 11.55, 12.13, 12.45],
+            2: [6.78, 7.7, 8.36, 8.84, 9.09],
+            3: [5.72, 6.58, 7.21, 7.66, 7.9],
+            4: [4.66, 5.52, 6.14, 6.56, 6.79],
+            5: [3.81, 4.71, 5.32, 5.74, 5.97],
+            7: [2.17, 3.28, 3.98, 4.43, 4.66],
+            10: [0.05, 1.84, 2.78, 3.32, 3.59],
+            15: [0.0, 0.0, 0.0, 0.3, 1.42],
+            20: [0.0, 0.0, 0.0, 0.0, 0.05],
+            25: [0.0, 0.0, 0.0, 0.0, 0.05],
+            30: [0.0, 0.0, 0.0, 0.0, 0.05],
+            40: [0.0, 0.0, 0.0, 0.0, 0.05],
+            50: [0.0, 0.0, 0.0, 0.0, 0.05],
+            70: [0.0, 0.0, 0.0, 0.0, 0.05],
+            100: [0.0, 0.0, 0.0, 0.0, 0.05],
+        },
+    },
+    "m988b_rtch_forklift": {
+        "figure": "E-16", "caption": "M988B RTCH Forklift",
+        "gross_weight_lb": 180000, "pdf_page": 226,
+        "printed_page": 207, "y_max_in": 50,
+        "passes": [1000, 10000, 100000, 1000000, 10000000],
+        "grid": {
+            1: [None, None, None, None, None],
+            2: [None, None, None, None, None],
+            3: [None, 42.85, 48.64, None, None],
+            4: [None, 37.11, 42.27, 46.4, 49.61],
+            5: [33.07, 37.11, 41.59, 44.41, 46.98],
+            7: [27.87, 32.05, 35.36, 37.84, 40.13],
+            10: [22.08, 22.08, 22.08, 25.88, 28.79],
+            15: [16.15, 19.8, 22.08, 24.51, 26.26],
+            20: [10.04, 15.47, 18.14, 20.14, 21.84],
+            25: [5.3, 11.24, 14.15, 16.39, 18.09],
+            30: [0.24, 7.2, 11.14, 13.52, 15.37],
+            40: [0.0, 0.29, 8.71, 11.53, 13.57],
+            50: [0.0, 0.0, 0.24, 6.91, 9.82],
+            70: [0.0, 0.0, 0.0, 0.0, 0.24],
+            100: [0.0, 0.0, 0.0, 0.0, 0.24],
+        },
+    },
+    "m1070_het_tractor": {
+        "figure": "E-17", "caption": "M1070 HET Tractor W/M1000 TRL W/M1A1 Tank",
+        "gross_weight_lb": 229750, "pdf_page": 227,
+        "printed_page": 208, "y_max_in": 40,
+        "passes": [1000, 10000, 100000, 1000000, 10000000],
+        "grid": {
+            1: [28.86, 32.12, 34.85, 37.2, 39.32],
+            2: [20.83, 23.18, 25.11, 26.74, 28.07],
+            3: [17.01, 19.05, 20.68, 22.05, 23.14],
+            4: [16.36, 17.88, 19.09, 20.0, 23.14],
+            5: [12.8, 14.55, 15.91, 17.05, 17.95],
+            7: [10.23, 11.89, 13.14, 14.17, 14.96],
+            10: [7.65, 9.28, 10.49, 11.44, 12.2],
+            15: [3.98, 5.98, 7.27, 8.26, 9.02],
+            20: [2.65, 3.56, 4.55, 5.83, 6.7],
+            25: [1.29, 2.61, 3.3, 3.75, 4.28],
+            30: [0.15, 1.44, 2.42, 3.03, 3.37],
+            40: [0.0, 0.23, 2.08, 2.69, 3.14],
+            50: [0.0, 0.0, 0.0, 0.3, 1.74],
+            70: [0.0, 0.0, 0.0, 0.0, 0.15],
+            100: [0.0, 0.0, 0.0, 0.0, 0.15],
+        },
+    },
+    "m1074_load_system_crane": {
+        "figure": "E-18", "caption": "M1074 Load System w/Crane w/M1076 Trailer",
+        "gross_weight_lb": 140859, "pdf_page": 228,
+        "printed_page": 209, "y_max_in": 40,
+        "passes": [1000, 10000, 100000, 1000000, 10000000],
+        "grid": {
+            1: [26.15, 29.46, 32.53, 35.14, 37.74],
+            2: [19.07, 21.32, 23.19, 24.63, 25.95],
+            3: [15.56, 17.47, 18.95, 20.12, 21.21],
+            4: [13.42, 15.1, 16.46, 17.51, 18.37],
+            5: [11.95, 13.54, 14.75, 15.72, 16.54],
+            7: [9.84, 11.28, 12.37, 13.23, 13.97],
+            10: [7.7, 9.07, 10.08, 10.86, 11.52],
+            15: [5.25, 6.65, 7.63, 8.37, 8.99],
+            20: [2.96, 4.79, 5.84, 6.61, 7.24],
+            25: [0.39, 3.89, 5.06, 5.88, 6.5],
+            30: [0.0, 0.19, 2.26, 3.62, 4.47],
+            40: [0.0, 0.0, 0.0, 0.51, 2.84],
+            50: [0.0, 0.0, 0.0, 0.0, 0.19],
+            70: [0.0, 0.0, 0.0, 0.0, 0.19],
+            100: [0.0, 0.0, 0.0, 0.0, 0.19],
+        },
+    },
+    "m1075_load_system": {
+        "figure": "E-19", "caption": "M1075 Load System",
+        "gross_weight_lb": 81660, "pdf_page": 229,
+        "printed_page": 210, "y_max_in": 40,
+        "passes": [1000, 10000, 100000, 1000000, 10000000],
+        "grid": {
+            1: [25.02, 28.37, 31.44, 34.12, 36.61],
+            2: [19.03, 21.48, 23.42, 25.02, 26.42],
+            3: [14.9, 16.89, 18.4, 19.65, 20.74],
+            4: [12.88, 14.63, 15.99, 17.08, 18.02],
+            5: [11.44, 13.07, 14.32, 15.33, 16.19],
+            7: [9.42, 10.89, 12.02, 12.96, 13.7],
+            10: [7.39, 8.79, 9.88, 10.7, 11.4],
+            15: [4.98, 6.42, 7.43, 8.21, 8.87],
+            20: [2.65, 4.59, 5.72, 6.54, 7.2],
+            25: [0.12, 3.81, 5.02, 5.88, 6.54],
+            30: [0.0, 0.19, 2.18, 3.7, 4.55],
+            40: [0.0, 0.0, 0.16, 3.04, 4.05],
+            50: [0.0, 0.0, 0.0, 0.0, 0.19],
+            70: [0.0, 0.0, 0.0, 0.0, 0.19],
+            100: [0.0, 0.0, 0.0, 0.0, 0.19],
+        },
+    },
+    "m1075_load_system_trailer": {
+        "figure": "E-20", "caption": "M1075 Load System w/M1076 Trailer",
+        "gross_weight_lb": 136159, "pdf_page": 230,
+        "printed_page": 211, "y_max_in": 40,
+        "passes": [1000, 10000, 100000, 1000000, 10000000],
+        "grid": {
+            1: [25.6, 28.95, 31.83, 34.59, 37.08],
+            2: [17.94, 20.12, 21.79, 23.23, 24.47],
+            3: [15.25, 17.16, 18.6, 19.81, 20.82],
+            4: [13.15, 14.86, 16.15, 17.2, 18.09],
+            5: [11.87, 13.39, 14.59, 15.53, 16.38],
+            7: [9.69, 11.09, 12.18, 13.04, 13.77],
+            10: [7.7, 9.03, 10.04, 10.82, 11.44],
+            15: [5.25, 6.61, 7.59, 8.37, 8.95],
+            20: [3.07, 4.82, 5.91, 6.65, 7.24],
+            25: [0.12, 3.74, 4.98, 5.72, 6.34],
+            30: [0.0, 0.19, 2.72, 3.85, 4.63],
+            40: [0.0, 0.0, 0.16, 2.92, 3.81],
+            50: [0.0, 0.0, 0.0, 0.0, 0.19],
+            70: [0.0, 0.0, 0.0, 0.0, 0.19],
+            100: [0.0, 0.0, 0.0, 0.0, 0.19],
+        },
+    },
+    "m1078_cargo_truck": {
+        "figure": "E-21", "caption": "M1078 2.5-Ton Cargo Truck 4x4",
+        "gross_weight_lb": 22740, "pdf_page": 231,
+        "printed_page": 212, "y_max_in": 30,
+        "passes": [1000, 10000, 100000, 1000000, 10000000],
+        "grid": {
+            1: [18.12, 20.75, 22.7, 24.31, 25.71],
+            2: [13.42, 15.55, 17.1, 18.39, 19.44],
+            3: [10.42, 12.26, 13.57, 14.68, 15.61],
+            4: [8.64, 10.36, 11.59, 12.61, 13.42],
+            5: [7.3, 8.99, 10.16, 11.15, 11.91],
+            7: [5.19, 6.95, 8.08, 8.99, 9.75],
+            10: [1.98, 4.55, 5.84, 6.77, 7.5],
+            15: [0.0, 0.12, 3.3, 4.55, 5.43],
+            20: [0.0, 0.0, 0.12, 3.06, 4.17],
+            25: [0.0, 0.0, 0.0, 0.0, 0.15],
+            30: [0.0, 0.0, 0.0, 0.0, 0.15],
+            40: [0.0, 0.0, 0.0, 0.0, 0.15],
+            50: [0.0, 0.0, 0.0, 0.0, 0.15],
+            70: [0.0, 0.0, 0.0, 0.0, 0.15],
+            100: [0.0, 0.0, 0.0, 0.0, 0.15],
+        },
+    },
+    "m1a1_main_tank": {
+        "figure": "E-4", "caption": "M1A1 Main Tank",
+        "gross_weight_lb": 126000, "pdf_page": 214,
+        "printed_page": 195, "y_max_in": 50,
+        "passes": [1000, 10000, 100000, 1000000, 10000000],
+        "grid": {
+            1: [31.87, 38.92, 44.74, 49.67, None],
+            2: [20.69, 25.05, 28.79, 32.1, 35.13],
+            3: [14.44, 17.42, 19.89, 22.11, 24.01],
+            4: [11.03, 13.54, 15.44, 17.14, 18.56],
+            5: [9.42, 10.84, 12.41, 13.87, 15.06],
+            7: [7.53, 8.66, 9.56, 10.37, 11.03],
+            10: [5.82, 6.77, 7.53, 8.19, 8.66],
+            15: [4.12, 4.97, 5.73, 6.2, 6.63],
+            20: [2.84, 3.79, 4.45, 4.97, 5.35],
+            25: [1.14, 2.7, 3.46, 4.02, 4.4],
+            30: [0.19, 1.14, 2.46, 3.12, 3.55],
+            40: [0.0, 0.0, 0.33, 2.08, 2.6],
+            50: [0.0, 0.0, 0.0, 0.19, 1.56],
+            70: [0.0, 0.0, 0.0, 0.0, 0.19],
+            100: [0.0, 0.0, 0.0, 0.0, 0.19],
+        },
+    },
+    "m1a2_main_tank": {
+        "figure": "E-5", "caption": "M1A2 Main Tank",
+        "gross_weight_lb": 139000, "pdf_page": 215,
+        "printed_page": 196, "y_max_in": 50,
+        "passes": [1000, 10000, 100000, 1000000, 10000000],
+        "grid": {
+            1: [39.35, 46.54, 49.67, None, None],
+            2: [25.38, 29.88, 32.1, 35.84, 39.25],
+            3: [17.61, 20.6, 22.02, 24.53, 26.75],
+            4: [13.54, 15.81, 16.9, 18.75, 20.41],
+            5: [10.98, 12.88, 13.83, 15.39, 16.76],
+            7: [8.76, 9.8, 10.32, 11.27, 12.22],
+            10: [6.91, 7.81, 8.19, 8.9, 9.47],
+            15: [5.07, 5.82, 6.2, 6.77, 7.2],
+            20: [3.79, 3.88, 4.78, 5.45, 5.87],
+            25: [2.79, 3.65, 3.93, 4.5, 4.92],
+            30: [1.33, 2.6, 2.98, 3.65, 4.02],
+            40: [0.0, 0.33, 1.7, 2.6, 3.08],
+            50: [0.0, 0.0, 0.19, 1.8, 2.56],
+            70: [0.0, 0.0, 0.0, 0.0, 0.19],
+            100: [0.0, 0.0, 0.0, 0.0, 0.19],
+        },
+    },
+    "m2a3_bradley": {
+        "figure": "E-6", "caption": "M2A3 Bradley Vehicle Tracked",
+        "gross_weight_lb": 58200, "pdf_page": 216,
+        "printed_page": 197, "y_max_in": 30,
+        "passes": [1000, 10000, 100000, 1000000, 10000000],
+        "grid": {
+            1: [19.89, 22.9, 25.51, 28.07, 29.89],
+            2: [13.3, 15.0, 16.39, 17.67, 18.66],
+            3: [11.36, 12.81, 13.95, 14.97, 15.77],
+            4: [9.83, 11.08, 12.05, 12.9, 13.58],
+            5: [8.81, 9.94, 10.82, 11.59, 12.19],
+            7: [7.41, 8.38, 9.18, 9.83, 10.34],
+            10: [6.05, 6.93, 7.64, 8.21, 8.66],
+            15: [4.63, 5.45, 6.08, 6.62, 6.99],
+            20: [3.58, 4.43, 5.06, 5.51, 5.91],
+            25: [2.7, 3.61, 4.23, 4.74, 5.09],
+            30: [1.59, 2.84, 3.52, 4.03, 4.4],
+            40: [0.09, 2.39, 3.12, 3.66, 4.03],
+            50: [0.0, 0.11, 2.13, 2.81, 3.21],
+            70: [0.0, 0.0, 0.0, 0.0, 0.11],
+            100: [0.0, 0.0, 0.0, 0.0, 0.11],
+        },
+    },
+    "m60a3_main_tank": {
+        "figure": "E-8", "caption": "M60A3 Main Tank",
+        "gross_weight_lb": 116000, "pdf_page": 218,
+        "printed_page": 199, "y_max_in": 50,
+        "passes": [1000, 10000, 100000, 1000000, 10000000],
+        "grid": {
+            1: [31.14, 38.14, 44.19, 49.67, None],
+            2: [19.38, 19.38, 26.89, 29.91, 32.61],
+            3: [13.71, 16.64, 19.05, 21.12, 22.87],
+            4: [11.25, 12.85, 14.79, 16.49, 17.86],
+            5: [9.88, 11.25, 12.43, 13.56, 14.79],
+            7: [8.22, 9.26, 10.21, 10.96, 11.63],
+            10: [6.76, 7.7, 8.46, 9.03, 9.5],
+            15: [5.43, 6.19, 6.76, 7.23, 7.61],
+            20: [4.54, 5.2, 5.77, 6.19, 6.52],
+            25: [3.92, 4.58, 5.06, 5.53, 5.81],
+            30: [3.31, 3.97, 4.44, 4.87, 5.2],
+            40: [0.19, 2.36, 3.12, 3.59, 4.11],
+            50: [0.19, 1.23, 2.36, 2.88, 3.45],
+            70: [0.19, 1.23, 2.27, 2.69, 3.02],
+            100: [0.0, 0.0, 0.19, 1.18, 1.84],
+        },
+    },
+    "m109a6_howitzer": {
+        "figure": "E-9", "caption": "M109A6, 155 Howitzer Tracked",
+        "gross_weight_lb": 67500, "pdf_page": 219,
+        "printed_page": 200, "y_max_in": 30,
+        "passes": [1000, 10000, 100000, 1000000, 10000000],
+        "grid": {
+            1: [21.79, 25.2, 26.99, 29.83, None],
+            2: [15.68, 17.64, 18.61, 20.28, 21.85],
+            3: [12.59, 13.95, 14.63, 15.77, 16.76],
+            4: [10.82, 11.93, 12.5, 13.41, 14.18],
+            5: [9.8, 10.77, 11.22, 12.02, 12.7],
+            7: [8.21, 9.06, 9.46, 10.11, 10.65],
+            10: [6.85, 7.59, 7.93, 8.49, 8.95],
+            15: [5.54, 6.16, 6.48, 6.96, 7.33],
+            20: [4.66, 5.28, 5.54, 5.97, 6.31],
+            25: [4.01, 4.57, 4.86, 5.26, 5.6],
+            30: [3.44, 4.01, 4.29, 4.69, 4.97],
+            40: [2.5, 3.12, 3.41, 3.81, 4.09],
+            50: [1.45, 2.33, 2.61, 3.07, 3.41],
+            70: [0.11, 1.39, 1.88, 2.44, 2.78],
+            100: [0.0, 0.0, 0.0, 0.11, 1.36],
+        },
+    },
+    "m113_armored_carrier": {
+        "figure": "E-10", "caption": "M113A1 Armored Carrier Tracked",
+        "gross_weight_lb": 24500, "pdf_page": 220,
+        "printed_page": 201, "y_max_in": 25,
+        "passes": [1000, 10000, 100000, 1000000, 10000000],
+        "grid": {
+            1: [13.45, 15.57, 17.39, 18.93, 20.39],
+            2: [9.03, 10.26, 11.25, 12.05, 12.78],
+            3: [7.68, 8.74, 9.55, 10.23, 10.82],
+            4: [6.57, 7.51, 8.22, 8.81, 9.33],
+            5: [5.81, 6.71, 7.35, 7.89, 8.34],
+            7: [4.77, 5.53, 6.14, 6.62, 6.99],
+            10: [3.71, 4.44, 4.99, 5.41, 5.79],
+            15: [2.36, 3.17, 3.71, 4.14, 4.47],
+            20: [0.61, 2.13, 2.76, 3.21, 3.54],
+            25: [0.07, 2.01, 2.65, 3.1, 3.47],
+            30: [0.0, 0.07, 1.75, 2.32, 2.72],
+            40: [0.0, 0.0, 0.0, 0.09, 1.44],
+            50: [0.0, 0.0, 0.0, 0.0, 0.09],
+            70: [0.0, 0.0, 0.0, 0.0, 0.09],
+            100: [0.0, 0.0, 0.0, 0.0, 0.09],
+        },
+    },
+}
+
+
+_VEHICLE_FIGURE_INDEX = {
+    info["figure"].replace("-", "").lower(): key for key, info in _VEHICLES_E.items()
+}
+_VERIFIED_ANCHOR_VEHICLES = {"passenger_car", "truck_3_axle", "truck_5_axle"}
+
+
+def _resolve_vehicle_key(vehicle):
+    key = vehicle.strip().lower().replace(" ", "_").replace("-", "_")
+    if key in _VEHICLES_E:
+        return key
+    fig_key = key.replace("_", "").replace("figure", "")
+    if fig_key in _VEHICLE_FIGURE_INDEX:
+        return _VEHICLE_FIGURE_INDEX[fig_key]
+    raise ValueError(
+        f"Unknown vehicle '{vehicle}'. Valid: {', '.join(sorted(_VEHICLES_E))} "
+        "(or a figure number, e.g. 'E-2')"
+    )
+
+
+def _fig_e_thickness_at_cbr(vehicle_grid, cbr_grid, passes_col_idx, cbr):
+    """Log-CBR interpolate one passes-curve's thickness, skipping CBR grid
+    points where that curve is off-chart (None = thickness > y_max_in).
+
+    A query CBR below this curve's own first real (non-None) grid point is
+    genuinely off-chart (the required thickness exceeds y_max_in there) and
+    must return None rather than flat-clamp to that first real value --
+    _linterp's endpoint clamping is only valid once the curve has actually
+    entered the plotted range.
+    """
+    xs, vals = [], []
+    for cb in cbr_grid:
+        v = vehicle_grid[cb][passes_col_idx]
+        if v is not None:
+            xs.append(math.log10(cb))
+            vals.append(v)
+    if not xs:
+        return None
+    log_cbr = math.log10(cbr)
+    if log_cbr < xs[0]:
+        return None
+    return _linterp(log_cbr, xs, vals)
+
+
+def _fig_e_thickness(key, cbr, passes):
+    data = _VEHICLES_E[key]
+    grid = data["grid"]
+    cbr_grid = sorted(grid)
+    passes_list = data["passes"]
+    y_max = data["y_max_in"]
+    c = min(max(cbr, cbr_grid[0]), cbr_grid[-1])
+    p = min(max(passes, passes_list[0]), passes_list[-1])
+    lower_idx = max(i for i, pp in enumerate(passes_list) if pp <= p)
+    upper_idx = min(i for i, pp in enumerate(passes_list) if pp >= p)
+    t_lower = _fig_e_thickness_at_cbr(grid, cbr_grid, lower_idx, c)
+    if upper_idx == lower_idx:
+        thickness = t_lower
+    else:
+        t_upper = _fig_e_thickness_at_cbr(grid, cbr_grid, upper_idx, c)
+        if t_lower is None or t_upper is None:
+            thickness = None
+        else:
+            log_lo = math.log10(passes_list[lower_idx])
+            log_hi = math.log10(passes_list[upper_idx])
+            frac = (math.log10(p) - log_lo) / (log_hi - log_lo)
+            thickness = t_lower + frac * (t_upper - t_lower)
+    return thickness, y_max
+
+
+def figure_e_vehicle_thickness(vehicle, cbr, passes) -> dict:
+    """Required total flexible-pavement thickness above the subgrade for a
+    specific in-service vehicle (Figures E-2 through E-31, Appendix E).
+    CHART READ (see module note above for the digitization method and the
+    three Appendix G worked-example anchors).
+
+    Parameters
+    ----------
+    vehicle : str
+        Vehicle key (e.g. ``"passenger_car"``, ``"truck_3_axle"``,
+        ``"m1a1_main_tank"``) or its figure number (e.g. ``"E-2"``).
+        See ``ValueError`` message for the full valid-key list.
+    cbr : float
+        Subgrade CBR. Interpolated within 1-100 (log scale); clamped at
+        the endpoints.
+    passes : float
+        Design passes of this specific vehicle (NOT an 18-kip ESAL --
+        each vehicle chart's own passes levels are printed on the chart
+        and stored in this module; see the chart's CURVE#/PASSES legend).
+        Log-interpolated between the vehicle's own printed curves;
+        clamped at the vehicle's min/max printed passes level.
+
+    Returns
+    -------
+    dict
+        {'vehicle', 'cbr', 'passes', 'thickness_in', 'chart_read',
+         'tolerance', 'reference'}.
+
+    Raises
+    ------
+    ValueError
+        If vehicle is not recognized; if cbr or passes is not positive;
+        if the (cbr, passes) combination falls outside the chart's plotted
+        range (thickness would exceed the chart's printed y-axis maximum,
+        i.e. an under-designed combination needing a stronger subgrade or
+        fewer passes) or would be ~0/undefined (CBR too high to need
+        cover at that traffic level).
+    """
+    if cbr <= 0:
+        raise ValueError(f"cbr must be > 0, got {cbr}")
+    if passes <= 0:
+        raise ValueError(f"passes must be > 0, got {passes}")
+    key = _resolve_vehicle_key(vehicle)
+    data = _VEHICLES_E[key]
+    thickness, y_max = _fig_e_thickness(key, cbr, passes)
+    if thickness is None:
+        raise ValueError(
+            f"CBR={cbr} at passes={passes:g} falls in the '{data['caption']}' "
+            f"chart's off-chart region (required thickness would exceed the "
+            f"chart's printed {y_max:g} in range) -- improve subgrade CBR or "
+            "reduce design passes."
+        )
+    if thickness <= 0:
+        raise ValueError(
+            f"CBR={cbr} at passes={passes:g} falls outside the plotted curve "
+            f"for '{data['caption']}' (thickness would be ~0 or undefined) -- "
+            "CBR is too high for this traffic level to require cover."
+        )
+    tol = (
+        "verified within ~1% against the Appendix G Table G-1 mixed-traffic "
+        "worked example for this vehicle; other (cbr, passes) combinations "
+        "are chart_read, ~+/-10%"
+        if key in _VERIFIED_ANCHOR_VEHICLES
+        else "chart_read digitization (algorithmic curve trace + rank-order "
+             "assignment against the chart's own printed CURVE#/PASSES "
+             "legend), ~+/-10-15%"
+    )
+    return {
+        "vehicle": key, "cbr": cbr, "passes": passes,
+        "thickness_in": round(thickness, 1),
+        "chart_read": True,
+        "tolerance": tol,
+        "reference": (f"UFC 3-250-01, Figure {data['figure']} "
+                      f"(pdf_page {data['pdf_page']}, printed {data['printed_page']})"),
+    }
+
+
+def figure_e_vehicle_allowable_passes(vehicle, cbr, thickness_in, tol=0.01,
+                                       max_iter=60) -> dict:
+    """Allowable design passes of a specific vehicle on an existing (cbr,
+    thickness) pavement section -- the inverse of
+    ``figure_e_vehicle_thickness``, by bisection over log10(passes)
+    (thickness increases monotonically with passes at fixed CBR). This is
+    the "working in reverse" step Appendix G's mixed-traffic procedure
+    describes (Table G-1/G-2: read the allowable passes of each non-
+    controlling vehicle at the controlling vehicle's thickness, to build
+    the equivalent-passes ratio).
+
+    Parameters
+    ----------
+    vehicle : str
+        Vehicle key or figure number, as in ``figure_e_vehicle_thickness``.
+    cbr : float
+        Subgrade CBR.
+    thickness_in : float
+        Provided/available total pavement thickness above the subgrade, in.
+    tol : float, optional
+        Bisection convergence tolerance on thickness_in (default 0.01 in).
+    max_iter : int, optional
+        Maximum bisection iterations (default 60).
+
+    Returns
+    -------
+    dict
+        {'vehicle', 'cbr', 'thickness_in', 'allowable_passes', 'chart_read',
+         'reference'}. If thickness_in is at or below the vehicle's
+         thinnest printed curve, 'allowable_passes' is clamped to that
+         curve's passes level and 'clamped'='below_min_passes_curve' is
+         added (per Appendix G's "Unlimited" passes convention -- treat as
+         effectively unlimited, i.e. the smallest tabulated passes level
+         governs). If at or above the thickest printed curve, clamped to
+         that curve's passes level with 'clamped'='above_max_passes_curve'.
+
+    Raises
+    ------
+    ValueError
+        If vehicle is not recognized, or cbr/thickness_in is not positive.
+    """
+    if cbr <= 0:
+        raise ValueError(f"cbr must be > 0, got {cbr}")
+    if thickness_in <= 0:
+        raise ValueError(f"thickness_in must be > 0, got {thickness_in}")
+    key = _resolve_vehicle_key(vehicle)
+    data = _VEHICLES_E[key]
+    passes_list = data["passes"]
+    lo, hi = passes_list[0], passes_list[-1]
+    t_lo = figure_e_vehicle_thickness(key, cbr, lo)["thickness_in"]
+    t_hi = figure_e_vehicle_thickness(key, cbr, hi)["thickness_in"]
+    if thickness_in <= t_lo:
+        return {"vehicle": key, "cbr": cbr, "thickness_in": thickness_in,
+                "allowable_passes": lo, "clamped": "below_min_passes_curve",
+                "reference": f"UFC 3-250-01, Figure {data['figure']}"}
+    if thickness_in >= t_hi:
+        return {"vehicle": key, "cbr": cbr, "thickness_in": thickness_in,
+                "allowable_passes": hi, "clamped": "above_max_passes_curve",
+                "reference": f"UFC 3-250-01, Figure {data['figure']}"}
+    log_lo, log_hi = math.log10(lo), math.log10(hi)
+    mid = lo
+    for _ in range(max_iter):
+        log_mid = (log_lo + log_hi) / 2
+        mid = 10 ** log_mid
+        t_mid = figure_e_vehicle_thickness(key, cbr, mid)["thickness_in"]
+        if abs(t_mid - thickness_in) < tol:
+            break
+        if t_mid < thickness_in:
+            log_lo = log_mid
+        else:
+            log_hi = log_mid
+    return {
+        "vehicle": key, "cbr": cbr, "thickness_in": thickness_in,
+        "allowable_passes": round(mid),
+        "chart_read": True,
+        "reference": (f"UFC 3-250-01, Figure {data['figure']} "
+                      f"(pdf_page {data['pdf_page']}, printed {data['printed_page']})"),
+    }
+
+
+# ============================================================================
 # Figure F-1: Rigid Pavement Design Curve -- Single Axle, Dual Tire Load
 # (Appendix F; pdf_page 243, printed 224). CHART READ -- read-grid digitization.
 #

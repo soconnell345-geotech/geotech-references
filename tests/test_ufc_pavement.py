@@ -63,6 +63,8 @@ from geotech_references.ufc_pavement.tables import (
     table_21_1_aggregate_gradation,
     figure_e1_flexible_thickness,
     figure_f1_rigid_thickness,
+    figure_e_vehicle_thickness,
+    figure_e_vehicle_allowable_passes,
 )
 
 
@@ -862,3 +864,167 @@ class TestFigureF1:
     def test_zero_passes_raises(self):
         with pytest.raises(ValueError):
             figure_f1_rigid_thickness(650, 100, 0)
+
+
+# ============================================================================
+# Appendix E vehicle curves (E-2..E-31): figure_e_vehicle_thickness /
+# figure_e_vehicle_allowable_passes over the 30-vehicle registry.
+# ============================================================================
+
+_ALL_E_VEHICLES = [
+    "passenger_car", "light_strike_vehicle", "m1a1_main_tank",
+    "m1a2_main_tank", "m2a3_bradley", "m35a2_cargo_truck", "m60a3_main_tank",
+    "m109a6_howitzer", "m113_armored_carrier", "m923_cargo_truck",
+    "m977_hemtt_cargo", "m978_hemtt_fuel", "m983_hemtt_trailer",
+    "m998_hmmwv", "m988b_rtch_forklift", "m1070_het_tractor",
+    "m1074_load_system_crane", "m1075_load_system",
+    "m1075_load_system_trailer", "m1078_cargo_truck", "p23_crash_truck",
+    "r11_refueler", "pickup_small", "pickup_large", "truck_3_axle",
+    "truck_4_axle", "truck_5_axle", "truck_2_axle_6tire",
+    "tyc850l_container_truck", "mobile_crane_75bfmii",
+]
+
+
+class TestFigureEVehicleThicknessAnchors:
+    """The three hard Appendix G Table G-1/G-2 "Mixed Traffic Calculation"
+    worked-example anchors (CBR=3, Subgrade Category D)."""
+
+    def test_passenger_car_g1_anchor(self):
+        # Table G-1: Passenger Car, 20,000,000 passes -> 6.1 in (extrapolated
+        # past the chart's own charted max of 10,000,000 passes).
+        r = figure_e_vehicle_thickness("passenger_car", cbr=3, passes=20_000_000)
+        assert r["thickness_in"] == pytest.approx(6.1, abs=0.2)
+
+    def test_truck_3_axle_g1_anchor(self):
+        # Table G-1: 3-Axle Truck, 500,000 passes -> 12.8 in.
+        r = figure_e_vehicle_thickness("truck_3_axle", cbr=3, passes=500_000)
+        assert r["thickness_in"] == pytest.approx(12.8, abs=0.2)
+
+    def test_truck_5_axle_g1_anchor(self):
+        # Table G-1: 5-Axle Truck, 100,000 passes -> 15.8 in.
+        r = figure_e_vehicle_thickness("truck_5_axle", cbr=3, passes=100_000)
+        assert r["thickness_in"] == pytest.approx(15.8, abs=0.2)
+
+    def test_verified_vehicles_tolerance_note(self):
+        r = figure_e_vehicle_thickness("truck_5_axle", cbr=3, passes=100_000)
+        assert "verified within ~1%" in r["tolerance"]
+
+    def test_unverified_vehicle_tolerance_note(self):
+        r = figure_e_vehicle_thickness("m1a1_main_tank", cbr=5, passes=100_000)
+        assert "chart_read digitization" in r["tolerance"]
+
+
+class TestFigureEVehicleLookup:
+    def test_figure_number_lookup(self):
+        by_slug = figure_e_vehicle_thickness("passenger_car", cbr=5, passes=100_000)
+        by_figure = figure_e_vehicle_thickness("E-2", cbr=5, passes=100_000)
+        assert by_slug["thickness_in"] == by_figure["thickness_in"]
+        assert by_figure["vehicle"] == "passenger_car"
+
+    def test_figure_number_lowercase_no_dash(self):
+        r = figure_e_vehicle_thickness("e26", cbr=5, passes=100_000)
+        assert r["vehicle"] == "truck_3_axle"
+
+    def test_unknown_vehicle_raises_with_valid_list(self):
+        with pytest.raises(ValueError, match="Unknown vehicle"):
+            figure_e_vehicle_thickness("not_a_real_vehicle", cbr=5, passes=1000)
+
+    def test_result_shape(self):
+        r = figure_e_vehicle_thickness("truck_3_axle", cbr=5, passes=100_000)
+        assert r["chart_read"] is True
+        assert "Figure E-26" in r["reference"]
+        assert "tolerance" in r
+        assert r["vehicle"] == "truck_3_axle"
+
+
+class TestFigureEVehicleAllRegistered:
+    """Shape/monotonicity sanity across every one of the 30 registered
+    vehicles: thickness must (a) decrease as CBR increases at fixed passes,
+    and (b) increase (or hold, at the clamped end) as passes increase at
+    fixed CBR -- the curve family never crosses."""
+
+    @pytest.mark.parametrize("vehicle", _ALL_E_VEHICLES)
+    def test_thickness_decreases_with_cbr(self, vehicle):
+        # cbr=3/10 chosen so even the lightest vehicles (passenger_car,
+        # pickups, LSV, HMMWV) still require nonzero cover at 100,000
+        # passes -- a genuinely zero requirement is a valid answer for this
+        # module (matching the Figure E-1 precedent) but isn't what this
+        # monotonicity check is probing.
+        r_low = figure_e_vehicle_thickness(vehicle, cbr=4, passes=100_000)
+        r_high = figure_e_vehicle_thickness(vehicle, cbr=10, passes=100_000)
+        assert r_high["thickness_in"] <= r_low["thickness_in"]
+
+    @pytest.mark.parametrize("vehicle", _ALL_E_VEHICLES)
+    def test_thickness_nondecreasing_with_passes(self, vehicle):
+        r_few = figure_e_vehicle_thickness(vehicle, cbr=10, passes=1_000)
+        r_many = figure_e_vehicle_thickness(vehicle, cbr=10, passes=1_000_000)
+        assert r_many["thickness_in"] >= r_few["thickness_in"]
+
+    @pytest.mark.parametrize("vehicle", _ALL_E_VEHICLES)
+    def test_result_has_expected_fields(self, vehicle):
+        r = figure_e_vehicle_thickness(vehicle, cbr=10, passes=100_000)
+        assert set(r) == {"vehicle", "cbr", "passes", "thickness_in",
+                          "chart_read", "tolerance", "reference"}
+        assert r["thickness_in"] > 0
+
+
+class TestFigureEVehicleErrorHandling:
+    def test_negative_cbr_raises(self):
+        with pytest.raises(ValueError):
+            figure_e_vehicle_thickness("passenger_car", -1, 1000)
+
+    def test_zero_passes_raises(self):
+        with pytest.raises(ValueError):
+            figure_e_vehicle_thickness("passenger_car", 10, 0)
+
+    def test_off_chart_low_cbr_heavy_vehicle_raises(self):
+        # TYC-850L container truck (217,200 lb, Y_MAX=50in) needs more than
+        # 50in of cover even at its lowest printed passes level when CBR=1 --
+        # off the top of the chart.
+        with pytest.raises(ValueError, match="off-chart"):
+            figure_e_vehicle_thickness("tyc850l_container_truck", cbr=1, passes=1000)
+
+    def test_very_high_cbr_zero_or_near_zero(self):
+        # At CBR=100 even the highest-passes curve should have negligible
+        # (near-zero) required cover for a light vehicle.
+        r = figure_e_vehicle_thickness("passenger_car", cbr=100, passes=10_000_000)
+        assert r["thickness_in"] < 0.5
+
+
+class TestFigureEVehicleAllowablePasses:
+    def test_inversion_round_trip(self):
+        fwd = figure_e_vehicle_thickness("truck_3_axle", cbr=5, passes=250_000)
+        inv = figure_e_vehicle_allowable_passes(
+            "truck_3_axle", cbr=5, thickness_in=fwd["thickness_in"])
+        # within ~15% given the 0.1in rounding on the forward call
+        assert inv["allowable_passes"] == pytest.approx(250_000, rel=0.15)
+
+    def test_clamped_below_min_curve(self):
+        # cbr=7 keeps the min-passes curve comfortably above zero (2.03in,
+        # even after 0.1in rounding) so the requested 0.01in is clearly
+        # below it, triggering the clamp rather than a bisection search.
+        r = figure_e_vehicle_allowable_passes(
+            "passenger_car", cbr=7, thickness_in=0.01)
+        assert r["clamped"] == "below_min_passes_curve"
+        assert r["allowable_passes"] == 10_000  # passenger_car's min printed level
+
+    def test_clamped_above_max_curve(self):
+        r = figure_e_vehicle_allowable_passes(
+            "passenger_car", cbr=1, thickness_in=100.0)
+        assert r["clamped"] == "above_max_passes_curve"
+        assert r["allowable_passes"] == 10_000_000  # passenger_car's max printed level
+
+    def test_more_thickness_allows_more_passes(self):
+        r_thin = figure_e_vehicle_allowable_passes(
+            "truck_5_axle", cbr=10, thickness_in=6.0)
+        r_thick = figure_e_vehicle_allowable_passes(
+            "truck_5_axle", cbr=10, thickness_in=8.0)
+        assert r_thick["allowable_passes"] >= r_thin["allowable_passes"]
+
+    def test_negative_cbr_raises(self):
+        with pytest.raises(ValueError):
+            figure_e_vehicle_allowable_passes("passenger_car", -1, 5.0)
+
+    def test_zero_thickness_raises(self):
+        with pytest.raises(ValueError):
+            figure_e_vehicle_allowable_passes("passenger_car", 10, 0)
