@@ -1821,16 +1821,28 @@ def figure_e1_flexible_thickness(cbr, passes) -> dict:
 # separable near the thickness axis and in short local runs near the two
 # Appendix G anchor points -- through the middle of the chart the two
 # families overlap into a dense crossing lattice that cannot be reliably
-# decomposed into 8 individual traced curves (confirmed: attempts to trace
-# individual N-lines across the full chart width lost continuity at the
-# crossings). Rather than force an unreliable full decomposition, thickness
-# is modeled as a LOG-LINEAR interpolation in passes between two real,
-# short, directly-traced local segments (~100 pdf-points each) anchored
-# exactly at the two Appendix G worked examples below. This reproduces both
-# printed examples to within 0.02 in and gives well-behaved (monotonic,
-# in-range) results across the full k x flexural x passes grid tested, but
-# is explicitly weaker away from the two anchors -- see tolerance in the
-# function's return value.
+# decomposed into 8 individual traced curves. Rather than force an
+# unreliable full decomposition, thickness is modeled as a LOG-LINEAR
+# interpolation in passes between two real, short, directly-traced local
+# segments (~100 pdf-points each) anchored exactly at the two Appendix G
+# worked examples below. This reproduces both printed examples to within
+# 0.02 in and gives well-behaved (monotonic, in-range) results across the
+# full k x flexural x passes grid tested, but is explicitly weaker away
+# from the two anchors -- see tolerance in the function's return value.
+#
+# A follow-up attempt traced all 8 individual N-lines locally near the
+# thickness axis (where each is briefly separable) to densify this
+# interpolation beyond the two anchors. That attempt was NOT adopted: line
+# IDENTITY (which traced segment is which of the 8 printed passes values)
+# could not be reliably resolved. Cross-checking one candidate assignment
+# against the independently-verified real trace of the 20,000,000-passes
+# anchor (extended rightward from the exact G-7 point to x~372, giving a
+# directly-traced thickness of ~9.16-9.17 in there) showed the candidate
+# "10,000,000-passes" near-axis segment reading HIGHER (~10.03 in) at that
+# same x -- a physical impossibility (more passes cannot require LESS
+# thickness). Rather than paper over an unverified identification with
+# monotonicity-forcing tricks, the simpler, fully-verified 2-anchor model
+# below is kept as authoritative; the near-axis traces were not incorporated.
 # ============================================================================
 
 # k-family: (x_at_flexural_1000, slope) in pdf-points-per-pdf-point, fit by

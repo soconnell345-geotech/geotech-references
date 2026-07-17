@@ -859,7 +859,7 @@
       "pdf_page_index": 243,
       "printed_page": 224,
       "page_estimated": false,
-      "description": ""
+      "description": "Single Axle, Dual Tire Load, 18,000 lb (the base ESAL). Digitized in tables.figure_f1_rigid_thickness: k-family (7 lines) fit by connected-component pixel regression; N-family (8 lines) modeled as log-linear interpolation between two exact Appendix G anchors (G-7: flexural=650/k=100/passes=20e6 -> 8.1in; G-8.11: flexural=650/k=325/passes=1.2e6 -> 6.3in). See the module docstring for the fuller digitization discipline, including a documented failed attempt to densify the N-family beyond the two anchors (line-identity could not be verified)."
     },
     {
       "figure_number": "F-2",
@@ -868,7 +868,7 @@
       "pdf_page_index": 244,
       "printed_page": 225,
       "page_estimated": false,
-      "description": ""
+      "description": "NOT digitized (chart_read function does not exist -- catalog/vision-read only). Passenger Car, 3,000 lb. Appendix G gives one real anchor at flexural=750 psi, k=147 psi/in (Subgrade Category C): passes=21,900,000 -> thickness=2.6 in (Table G-3). Independent full digitization (own axis calibration + k-family trace, confirmed NOT reusable from Figure F-1 -- e.g. this chart's thickness axis range differs from F-1's 4-12in) was judged out of scope for this pass; these anchor point(s) are exact (text-extracted from the guide, no chart-reading involved) and usable as a spot-check for any future digitization or an independent design-equation implementation."
     },
     {
       "figure_number": "F-3",
@@ -877,7 +877,7 @@
       "pdf_page_index": 245,
       "printed_page": 226,
       "page_estimated": false,
-      "description": ""
+      "description": "NOT digitized (chart_read function does not exist -- catalog/vision-read only). No Appendix G worked example references this figure, so no exact anchor point is available to validate a chart-read digitization against; blind nomograph tracing without a ground-truth check was judged unreliable enough to withhold (see Figure F-1's module docstring in tables.py for the demonstrated failure mode when this was attempted without adequate anchoring)."
     },
     {
       "figure_number": "F-4",
@@ -886,7 +886,7 @@
       "pdf_page_index": 246,
       "printed_page": 227,
       "page_estimated": false,
-      "description": ""
+      "description": "NOT digitized (chart_read function does not exist -- catalog/vision-read only). No Appendix G worked example references this figure, so no exact anchor point is available to validate a chart-read digitization against; blind nomograph tracing without a ground-truth check was judged unreliable enough to withhold (see Figure F-1's module docstring in tables.py for the demonstrated failure mode when this was attempted without adequate anchoring)."
     },
     {
       "figure_number": "F-5",
@@ -895,7 +895,7 @@
       "pdf_page_index": 247,
       "printed_page": 228,
       "page_estimated": false,
-      "description": ""
+      "description": "NOT digitized (chart_read function does not exist -- catalog/vision-read only). M1A2 Main Tank, 139,000 lb. Appendix G gives TWO real anchors at flexural=750 psi, k=147 psi/in (Subgrade Category C): passes=147,295 -> thickness=7.8 in (G-5.1, pdf_page 280-281, printed 261); passes=365,444 -> thickness=8.3 in (G-5.2, pdf_page 282-283, printed 263). This is the ONLY vehicle-specific figure with more than one exact anchor. A full independent digitization attempt was started (axis-gridline calibration confirmed: flexural gridlines match F-1's row-spacing closely, but the THICKNESS axis is 4-16 in here, not F-1's 4-12 in, requiring its own re-derivation) but not completed in this pass given the per-chart scope (comparable to Figure F-1's full build); the two exact anchors above are usable as-is for validation."
     },
     {
       "figure_number": "F-6",
@@ -904,7 +904,7 @@
       "pdf_page_index": 248,
       "printed_page": 229,
       "page_estimated": false,
-      "description": ""
+      "description": "NOT digitized (chart_read function does not exist -- catalog/vision-read only). M2A3 Tank, 58,200 lb. Appendix G gives one real anchor at flexural=750 psi, k=147 psi/in (Subgrade Category C): passes=146,000 -> thickness=5.7 in (Table G-4). Independent full digitization (own axis calibration + k-family trace, confirmed NOT reusable from Figure F-1 -- e.g. this chart's thickness axis range differs from F-1's 4-12in) was judged out of scope for this pass; these anchor point(s) are exact (text-extracted from the guide, no chart-reading involved) and usable as a spot-check for any future digitization or an independent design-equation implementation."
     },
     {
       "figure_number": "F-7",
@@ -913,7 +913,7 @@
       "pdf_page_index": 249,
       "printed_page": 230,
       "page_estimated": false,
-      "description": ""
+      "description": "NOT digitized (chart_read function does not exist -- catalog/vision-read only). No Appendix G worked example references this figure, so no exact anchor point is available to validate a chart-read digitization against; blind nomograph tracing without a ground-truth check was judged unreliable enough to withhold (see Figure F-1's module docstring in tables.py for the demonstrated failure mode when this was attempted without adequate anchoring)."
     },
     {
       "figure_number": "F-8",
@@ -922,7 +922,7 @@
       "pdf_page_index": 250,
       "printed_page": 231,
       "page_estimated": false,
-      "description": ""
+      "description": "NOT digitized (chart_read function does not exist -- catalog/vision-read only). No Appendix G worked example references this figure, so no exact anchor point is available to validate a chart-read digitization against; blind nomograph tracing without a ground-truth check was judged unreliable enough to withhold (see Figure F-1's module docstring in tables.py for the demonstrated failure mode when this was attempted without adequate anchoring)."
     },
     {
       "figure_number": "F-9",
@@ -931,7 +931,7 @@
       "pdf_page_index": 251,
       "printed_page": 232,
       "page_estimated": false,
-      "description": ""
+      "description": "NOT digitized (chart_read function does not exist -- catalog/vision-read only). No Appendix G worked example references this figure, so no exact anchor point is available to validate a chart-read digitization against; blind nomograph tracing without a ground-truth check was judged unreliable enough to withhold (see Figure F-1's module docstring in tables.py for the demonstrated failure mode when this was attempted without adequate anchoring)."
     },
     {
       "figure_number": "F-10",
@@ -940,7 +940,7 @@
       "pdf_page_index": 252,
       "printed_page": 233,
       "page_estimated": false,
-      "description": ""
+      "description": "NOT digitized (chart_read function does not exist -- catalog/vision-read only). No Appendix G worked example references this figure, so no exact anchor point is available to validate a chart-read digitization against; blind nomograph tracing without a ground-truth check was judged unreliable enough to withhold (see Figure F-1's module docstring in tables.py for the demonstrated failure mode when this was attempted without adequate anchoring)."
     },
     {
       "figure_number": "F-11",
@@ -949,7 +949,7 @@
       "pdf_page_index": 253,
       "printed_page": 234,
       "page_estimated": false,
-      "description": ""
+      "description": "NOT digitized (chart_read function does not exist -- catalog/vision-read only). M923 5-Ton Cargo Truck, 32,500 lb. Appendix G gives one real anchor at flexural=750 psi, k=147 psi/in (Subgrade Category C): passes=730,000 -> thickness=4.3 in (Table G-4). Independent full digitization (own axis calibration + k-family trace, confirmed NOT reusable from Figure F-1 -- e.g. this chart's thickness axis range differs from F-1's 4-12in) was judged out of scope for this pass; these anchor point(s) are exact (text-extracted from the guide, no chart-reading involved) and usable as a spot-check for any future digitization or an independent design-equation implementation."
     },
     {
       "figure_number": "F-12",
@@ -958,7 +958,7 @@
       "pdf_page_index": 254,
       "printed_page": 235,
       "page_estimated": false,
-      "description": ""
+      "description": "NOT digitized (chart_read function does not exist -- catalog/vision-read only). M978 HEMTT, 59,000 lb. (table does not distinguish the cargo/F-12 vs fuel/F-13 body variant). Appendix G gives one real anchor at flexural=750 psi, k=147 psi/in (Subgrade Category C): passes=730,000 -> thickness=6.6 in (Table G-4). Independent full digitization (own axis calibration + k-family trace, confirmed NOT reusable from Figure F-1 -- e.g. this chart's thickness axis range differs from F-1's 4-12in) was judged out of scope for this pass; these anchor point(s) are exact (text-extracted from the guide, no chart-reading involved) and usable as a spot-check for any future digitization or an independent design-equation implementation."
     },
     {
       "figure_number": "F-13",
@@ -967,7 +967,7 @@
       "pdf_page_index": 255,
       "printed_page": 236,
       "page_estimated": false,
-      "description": ""
+      "description": "NOT digitized (chart_read function does not exist -- catalog/vision-read only). M978 HEMTT, 59,000 lb. (table does not distinguish the cargo/F-12 vs fuel/F-13 body variant). Appendix G gives one real anchor at flexural=750 psi, k=147 psi/in (Subgrade Category C): passes=730,000 -> thickness=6.6 in (Table G-4). Independent full digitization (own axis calibration + k-family trace, confirmed NOT reusable from Figure F-1 -- e.g. this chart's thickness axis range differs from F-1's 4-12in) was judged out of scope for this pass; these anchor point(s) are exact (text-extracted from the guide, no chart-reading involved) and usable as a spot-check for any future digitization or an independent design-equation implementation."
     },
     {
       "figure_number": "F-14",
@@ -976,7 +976,7 @@
       "pdf_page_index": 256,
       "printed_page": 237,
       "page_estimated": false,
-      "description": ""
+      "description": "NOT digitized (chart_read function does not exist -- catalog/vision-read only). No Appendix G worked example references this figure, so no exact anchor point is available to validate a chart-read digitization against; blind nomograph tracing without a ground-truth check was judged unreliable enough to withhold (see Figure F-1's module docstring in tables.py for the demonstrated failure mode when this was attempted without adequate anchoring)."
     },
     {
       "figure_number": "F-15",
@@ -985,7 +985,7 @@
       "pdf_page_index": 257,
       "printed_page": 238,
       "page_estimated": false,
-      "description": ""
+      "description": "NOT digitized (chart_read function does not exist -- catalog/vision-read only). M998 HMMWV, 7,900 lb. Appendix G gives one real anchor at flexural=750 psi, k=147 psi/in (Subgrade Category C): passes=1,460,000 -> thickness=3.4 in (Table G-4). Independent full digitization (own axis calibration + k-family trace, confirmed NOT reusable from Figure F-1 -- e.g. this chart's thickness axis range differs from F-1's 4-12in) was judged out of scope for this pass; these anchor point(s) are exact (text-extracted from the guide, no chart-reading involved) and usable as a spot-check for any future digitization or an independent design-equation implementation."
     },
     {
       "figure_number": "F-16",
@@ -994,7 +994,7 @@
       "pdf_page_index": 258,
       "printed_page": 239,
       "page_estimated": false,
-      "description": ""
+      "description": "NOT digitized (chart_read function does not exist -- catalog/vision-read only). No Appendix G worked example references this figure, so no exact anchor point is available to validate a chart-read digitization against; blind nomograph tracing without a ground-truth check was judged unreliable enough to withhold (see Figure F-1's module docstring in tables.py for the demonstrated failure mode when this was attempted without adequate anchoring)."
     },
     {
       "figure_number": "F-17",
@@ -1003,7 +1003,7 @@
       "pdf_page_index": 259,
       "printed_page": 240,
       "page_estimated": false,
-      "description": ""
+      "description": "NOT digitized (chart_read function does not exist -- catalog/vision-read only). No Appendix G worked example references this figure, so no exact anchor point is available to validate a chart-read digitization against; blind nomograph tracing without a ground-truth check was judged unreliable enough to withhold (see Figure F-1's module docstring in tables.py for the demonstrated failure mode when this was attempted without adequate anchoring)."
     },
     {
       "figure_number": "F-18",
@@ -1012,7 +1012,7 @@
       "pdf_page_index": 260,
       "printed_page": 241,
       "page_estimated": false,
-      "description": ""
+      "description": "NOT digitized (chart_read function does not exist -- catalog/vision-read only). No Appendix G worked example references this figure, so no exact anchor point is available to validate a chart-read digitization against; blind nomograph tracing without a ground-truth check was judged unreliable enough to withhold (see Figure F-1's module docstring in tables.py for the demonstrated failure mode when this was attempted without adequate anchoring)."
     },
     {
       "figure_number": "F-19",
@@ -1021,7 +1021,7 @@
       "pdf_page_index": 261,
       "printed_page": 242,
       "page_estimated": false,
-      "description": ""
+      "description": "NOT digitized (chart_read function does not exist -- catalog/vision-read only). No Appendix G worked example references this figure, so no exact anchor point is available to validate a chart-read digitization against; blind nomograph tracing without a ground-truth check was judged unreliable enough to withhold (see Figure F-1's module docstring in tables.py for the demonstrated failure mode when this was attempted without adequate anchoring)."
     },
     {
       "figure_number": "F-20",
@@ -1030,7 +1030,7 @@
       "pdf_page_index": 262,
       "printed_page": 243,
       "page_estimated": false,
-      "description": ""
+      "description": "NOT digitized (chart_read function does not exist -- catalog/vision-read only). No Appendix G worked example references this figure, so no exact anchor point is available to validate a chart-read digitization against; blind nomograph tracing without a ground-truth check was judged unreliable enough to withhold (see Figure F-1's module docstring in tables.py for the demonstrated failure mode when this was attempted without adequate anchoring)."
     },
     {
       "figure_number": "F-21",
@@ -1039,7 +1039,7 @@
       "pdf_page_index": 263,
       "printed_page": 244,
       "page_estimated": false,
-      "description": ""
+      "description": "NOT digitized (chart_read function does not exist -- catalog/vision-read only). No Appendix G worked example references this figure, so no exact anchor point is available to validate a chart-read digitization against; blind nomograph tracing without a ground-truth check was judged unreliable enough to withhold (see Figure F-1's module docstring in tables.py for the demonstrated failure mode when this was attempted without adequate anchoring)."
     },
     {
       "figure_number": "F-21",
@@ -1048,7 +1048,7 @@
       "pdf_page_index": 264,
       "printed_page": 245,
       "page_estimated": false,
-      "description": ""
+      "description": "NOT digitized (chart_read function does not exist -- catalog/vision-read only). No Appendix G worked example references this figure, so no exact anchor point is available to validate a chart-read digitization against; blind nomograph tracing without a ground-truth check was judged unreliable enough to withhold (see Figure F-1's module docstring in tables.py for the demonstrated failure mode when this was attempted without adequate anchoring)."
     },
     {
       "figure_number": "F-23",
@@ -1057,7 +1057,7 @@
       "pdf_page_index": 265,
       "printed_page": 246,
       "page_estimated": false,
-      "description": ""
+      "description": "NOT digitized (chart_read function does not exist -- catalog/vision-read only). No Appendix G worked example references this figure, so no exact anchor point is available to validate a chart-read digitization against; blind nomograph tracing without a ground-truth check was judged unreliable enough to withhold (see Figure F-1's module docstring in tables.py for the demonstrated failure mode when this was attempted without adequate anchoring)."
     },
     {
       "figure_number": "F-24",
@@ -1066,7 +1066,7 @@
       "pdf_page_index": 266,
       "printed_page": 247,
       "page_estimated": false,
-      "description": ""
+      "description": "NOT digitized (chart_read function does not exist -- catalog/vision-read only). No Appendix G worked example references this figure, so no exact anchor point is available to validate a chart-read digitization against; blind nomograph tracing without a ground-truth check was judged unreliable enough to withhold (see Figure F-1's module docstring in tables.py for the demonstrated failure mode when this was attempted without adequate anchoring)."
     },
     {
       "figure_number": "F-25",
@@ -1075,7 +1075,7 @@
       "pdf_page_index": 267,
       "printed_page": 248,
       "page_estimated": false,
-      "description": ""
+      "description": "NOT digitized (chart_read function does not exist -- catalog/vision-read only). No Appendix G worked example references this figure, so no exact anchor point is available to validate a chart-read digitization against; blind nomograph tracing without a ground-truth check was judged unreliable enough to withhold (see Figure F-1's module docstring in tables.py for the demonstrated failure mode when this was attempted without adequate anchoring)."
     },
     {
       "figure_number": "F-26",
@@ -1084,7 +1084,7 @@
       "pdf_page_index": 268,
       "printed_page": 249,
       "page_estimated": false,
-      "description": ""
+      "description": "NOT digitized (chart_read function does not exist -- catalog/vision-read only). Truck 3-Axle, 35,000 lb. Appendix G gives one real anchor at flexural=750 psi, k=147 psi/in (Subgrade Category C): passes=1,095,000 -> thickness=5.5 in (Table G-3). Independent full digitization (own axis calibration + k-family trace, confirmed NOT reusable from Figure F-1 -- e.g. this chart's thickness axis range differs from F-1's 4-12in) was judged out of scope for this pass; these anchor point(s) are exact (text-extracted from the guide, no chart-reading involved) and usable as a spot-check for any future digitization or an independent design-equation implementation."
     },
     {
       "figure_number": "F-27",
@@ -1093,16 +1093,16 @@
       "pdf_page_index": 269,
       "printed_page": 250,
       "page_estimated": false,
-      "description": ""
+      "description": "NOT digitized (chart_read function does not exist -- catalog/vision-read only). No Appendix G worked example references this figure, so no exact anchor point is available to validate a chart-read digitization against; blind nomograph tracing without a ground-truth check was judged unreliable enough to withhold (see Figure F-1's module docstring in tables.py for the demonstrated failure mode when this was attempted without adequate anchoring)."
     },
     {
       "figure_number": "F-28",
-      "caption": "Truck 5 \u2013Axle Plain Concrete and RCCP",
+      "caption": "Truck 5 –Axle Plain Concrete and RCCP",
       "chapter": null,
       "pdf_page_index": 270,
       "printed_page": 251,
       "page_estimated": false,
-      "description": ""
+      "description": "NOT digitized (chart_read function does not exist -- catalog/vision-read only). Truck 5-Axle, 80,000 lb. Appendix G gives one real anchor at flexural=750 psi, k=147 psi/in (Subgrade Category C): passes=730,000 -> thickness=6.5 in (Table G-3). Independent full digitization (own axis calibration + k-family trace, confirmed NOT reusable from Figure F-1 -- e.g. this chart's thickness axis range differs from F-1's 4-12in) was judged out of scope for this pass; these anchor point(s) are exact (text-extracted from the guide, no chart-reading involved) and usable as a spot-check for any future digitization or an independent design-equation implementation."
     },
     {
       "figure_number": "F-29",
@@ -1111,7 +1111,7 @@
       "pdf_page_index": 271,
       "printed_page": 252,
       "page_estimated": false,
-      "description": ""
+      "description": "NOT digitized (chart_read function does not exist -- catalog/vision-read only). No Appendix G worked example references this figure, so no exact anchor point is available to validate a chart-read digitization against; blind nomograph tracing without a ground-truth check was judged unreliable enough to withhold (see Figure F-1's module docstring in tables.py for the demonstrated failure mode when this was attempted without adequate anchoring)."
     },
     {
       "figure_number": "F-30",
@@ -1120,7 +1120,7 @@
       "pdf_page_index": 272,
       "printed_page": 253,
       "page_estimated": false,
-      "description": ""
+      "description": "NOT digitized (chart_read function does not exist -- catalog/vision-read only). No Appendix G worked example references this figure, so no exact anchor point is available to validate a chart-read digitization against; blind nomograph tracing without a ground-truth check was judged unreliable enough to withhold (see Figure F-1's module docstring in tables.py for the demonstrated failure mode when this was attempted without adequate anchoring)."
     },
     {
       "figure_number": "F-31",
@@ -1129,7 +1129,7 @@
       "pdf_page_index": 273,
       "printed_page": 254,
       "page_estimated": false,
-      "description": ""
+      "description": "NOT digitized (chart_read function does not exist -- catalog/vision-read only). No Appendix G worked example references this figure, so no exact anchor point is available to validate a chart-read digitization against; blind nomograph tracing without a ground-truth check was judged unreliable enough to withhold (see Figure F-1's module docstring in tables.py for the demonstrated failure mode when this was attempted without adequate anchoring)."
     },
     {
       "figure_number": "G-1",

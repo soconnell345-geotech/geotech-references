@@ -801,6 +801,19 @@ class TestFigureF1:
         r = figure_f1_rigid_thickness(650, 200, 500_000)
         assert "+/-20-25%" in r["tolerance"]
 
+    def test_all_eight_printed_passes_levels_monotonic(self):
+        # Sanity check across all 8 printed N-line levels at a representative
+        # (flexural,k): monotonic increase in thickness, all within the
+        # chart's printed 4-12in axis range. (The model interpolates/
+        # extrapolates log-linearly between the two Appendix G anchors, so
+        # this must hold for any single fixed (flexural,k).)
+        levels = [1_000, 3_000, 10_000, 30_000, 100_000, 1_000_000,
+                  10_000_000, 50_000_000]
+        thicknesses = [figure_f1_rigid_thickness(650, 150, n)["thickness_in"]
+                       for n in levels]
+        assert thicknesses == sorted(thicknesses)
+        assert all(4.0 <= t <= 12.0 for t in thicknesses)
+
     def test_higher_k_less_thickness(self):
         r_soft = figure_f1_rigid_thickness(650, 50, 5_000_000)
         r_stiff = figure_f1_rigid_thickness(650, 400, 5_000_000)
