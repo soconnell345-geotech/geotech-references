@@ -1,0 +1,135 @@
+{
+  "reference_id": "UFC 3-250-01",
+  "reference_title": "Pavement Design for Roads, Streets, Walks, and Storage Areas",
+  "volume": null,
+  "chapter": 17,
+  "chapter_title": "Joints for Reinforced Concrete",
+  "sections": [
+    {
+      "section_id": "17-1",
+      "title": "Requirements",
+      "summary": "Reinforced concrete joint requirements/types generally follow plain concrete rules except as listed in this chapter (unscheduled joints, thickened-edge, transverse construction/contraction spacing, two-lane and centerline tie requirements); Appendix C figures C17-1/2/3 give construction details.",
+      "body": "The exceptions for joint requirements and types of reinforced concrete pavements are the same as for plain concrete pavements except as listed below. Figure C17-1, Figure C17-2 and Figure C17-3 (Appendix C) show the associated details for the design and construction of joints for reinforced concrete pavements.",
+      "key_points": [
+        "Reinforced concrete joints follow the plain-concrete rules (Chapter 16) except for this chapter's specific exceptions."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure C17-1: Contraction Joints for Reinforced Concrete Pavements",
+        "Figure C17-2A/B/C/D: Construction Joints for Reinforced Concrete Pavements",
+        "Figure C17-3: Expansion Joints for Reinforced Concrete Pavements"
+      ],
+      "tables": [],
+      "applicability": "Framing this chapter as an exceptions-list against Chapter 16."
+    },
+    {
+      "section_id": "17-1.1",
+      "title": "Unscheduled Joints",
+      "summary": "Any joint NOT at a regularly scheduled transverse contraction joint must be doweled (thickened-edge type excepted); one dowel end painted+oiled for movement.",
+      "body": "All joints falling at a point other than a regularly scheduled transverse contraction joint must be doweled with the exception of the thickened-edge type. One end of the dowel must be painted and oiled to permit movement at the joint.",
+      "key_points": [
+        "Any joint NOT at a regularly scheduled transverse contraction joint must be doweled (thickened-edge type excepted); one dowel end painted+oiled for movement."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Dowel requirement for any off-schedule joint in reinforced concrete."
+    },
+    {
+      "section_id": "17-1.2",
+      "title": "Thickened-Edge-Type Joints",
+      "summary": "Never doweled; edge thickened to 125% of design thickness (matching the plain-concrete rule).",
+      "body": "Thickened-edge-type joints must not be doweled. Thicken the edge to 125 percent of the design thickness.",
+      "key_points": [
+        "Never doweled; edge thickened to 125% of design thickness (matching the plain-concrete rule)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Thickened-edge joint rule for reinforced concrete."
+    },
+    {
+      "section_id": "17-1.3",
+      "title": "Transverse Construction Joint",
+      "summary": "Carry reinforcing steel through the joint (unlike plain concrete); use Table 16-2 dowel size/spacing for the design thickness.",
+      "body": "When a transverse construction joint is required within a reinforced concrete slab unit not at a regularly scheduled contraction joint location, carry the reinforcing steel through the joint. In addition, use dowels meeting the size and spacing requirements of Table 16-2 for the design thickness in the joint.",
+      "key_points": [
+        "KEY DIFFERENCE from plain concrete: reinforcing steel is carried THROUGH an off-schedule transverse construction joint, in addition to dowels."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 16-2: Dowel Size and Spacing for Construction, Contraction, and Expansion Joints"
+      ],
+      "applicability": "Transverse construction joint design in reinforced concrete."
+    },
+    {
+      "section_id": "17-1.4",
+      "title": "Transverse Contraction Joints",
+      "summary": "Perpendicular to centerline, spaced 25-75 ft (7.6-25 m); max slab length L is a function of subgrade friction restraint, steel percentage, and steel yield strength; read directly from Figure 14-1 for fs=60,000 psi, else compute via Eq. 17-1: L = [0.00047*hr*(fs*S)^2]^(1/3).",
+      "body": "Transverse contraction joints in reinforced concrete pavements should be constructed across each paving lane, perpendicular to the pavement center line, and at intervals of not less than 25 ft (7.6 m) nor more than 75 ft (25 m). The maximum allowable slab width or length for reinforced concrete pavements is a function of the effective frictional restraint developed at the interface between the slab and subgrade, the percentage of steel reinforcing used in the slab, and the yield strength of the steel reinforcing. Allowable slab widths or lengths can be determined directly from Figure 14-1 for yield strengths of 60,000 psi (410 MPa). If it is desired to use reinforcing steel having a yield strength other than this value, determine the maximum allowable slab width or length from the following equation: L = [0.00047 * hr * (fs*S)^2]^(1/3) (Equation 17-1), where hr = thickness of reinforced concrete pavement, in; fs = yield strength of reinforcing steel, psi; S = percent of reinforcing steel.",
+      "key_points": [
+        "Transverse contraction joint spacing range: 25-75 ft (7.6-25 m).",
+        "Verified EXACTLY against Appendix G, G-6: hr=7in, fs=60,000 psi, S=0.10% -> L=49 ft; hr=6in, S=0.30% -> L=97 ft raw (both match the printed answer exactly).",
+        "For fs=60,000 psi, L may be read directly off Figure 14-1; Eq. 17-1 generalizes to any yield strength."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 17-1",
+          "description": "Maximum allowable reinforced-concrete slab length: L = [0.00047*hr*(fs*S)^2]^(1/3).",
+          "implemented_in": "geotech_references.ufc_pavement.equations.reinforced_pavement_max_slab_length"
+        }
+      ],
+      "figures": [
+        "Figure 14-1: Reinforced Rigid Pavement Design"
+      ],
+      "tables": [],
+      "applicability": "The core max-slab-length calculation for reinforced concrete transverse contraction joints."
+    },
+    {
+      "section_id": "17-1.5",
+      "title": "Two Traffic Lanes",
+      "summary": "Where two lanes form a single paving lane, provide a longitudinal contraction joint at centerline (steel carried through, no tie bars needed).",
+      "body": "For reinforced concrete pavements where two traffic lanes are placed as a single paving lane, provide a longitudinal contraction joint at the center line of the paving lane to control cracking. In these joints, carry the reinforcing steel through the joint. Tie bars are not required.",
+      "key_points": [
+        "Where two lanes form a single paving lane, provide a longitudinal contraction joint at centerline (steel carried through, no tie bars needed)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Two-lane single-paving-lane joint layout."
+    },
+    {
+      "section_id": "17-1.6",
+      "title": "Pavement Center Line",
+      "summary": "Tied centerline longitudinal contraction joints required when pavement width exceeds the allowable slab length L for the steel percentage used; break the reinforcement at the joint; tie bars 5/8-in diameter, 30 in long, 30 in centers.",
+      "body": "Tied longitudinal contraction joints are also required at the center line of reinforced concrete pavements when the width of the pavement exceeds the allowable length of slab L for the percentage of steel reinforcement being used. When such joints are required, break the steel reinforcement at the joint, and use 5/8-in (16-mm) diameter tie bars 30 in (750 mm) long and spaced 30 in (750 mm) center to center.",
+      "key_points": [
+        "Trigger: pavement width > allowable slab length L for the design steel percentage -> tied centerline joint required, steel broken at the joint."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 17-1",
+          "description": "L threshold that triggers the centerline tied joint requirement.",
+          "implemented_in": "geotech_references.ufc_pavement.equations.reinforced_pavement_max_slab_length"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Centerline joint requirement when pavement width exceeds L."
+    },
+    {
+      "section_id": "17-2",
+      "title": "Joint Sealing",
+      "summary": "Same requirements as plain concrete (Section 16-5); preformed compression sealants required above 50 ft joint spacing (vs. 25 ft for plain concrete, reflecting reinforced concrete's wider allowable spacing).",
+      "body": "Joint sealing for reinforced concrete pavements must be the same as for plain concrete pavements (see paragraph 15-5). Use preformed compression sealants when the joint spacing exceeds 50 ft (15.2 m).",
+      "key_points": [
+        "Preformed compression sealant threshold: 50 ft for reinforced concrete (vs. 25 ft for plain concrete, Section 16-5) -- reflecting the larger allowable joint spacing."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Joint sealant selection for reinforced concrete pavements."
+    }
+  ]
+}

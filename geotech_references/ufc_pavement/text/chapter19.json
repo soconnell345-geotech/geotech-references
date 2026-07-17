@@ -1,0 +1,573 @@
+{
+  "reference_id": "UFC 3-250-01",
+  "reference_title": "Pavement Design for Roads, Streets, Walks, and Storage Areas",
+  "volume": null,
+  "chapter": 19,
+  "chapter_title": "Seasonal Frost Conditions",
+  "sections": [
+    {
+      "section_id": "19-1",
+      "title": "General",
+      "summary": "Frost action causes non-uniform winter heave and thaw-period strength loss (accelerating deterioration), plus loss of compaction, permanent roughness, restricted drainage, and surface cracking; design goal is uninterrupted traffic and a service life matching the design objective despite thaw-weakening and low-temperature cracking.",
+      "body": "This chapter presents criteria and procedures for the design and construction of pavements placed on subgrade or base course materials subject to seasonal frost action. The most prevalent modes of distress in pavements and their causes are listed in Table 19-1. The detrimental effects of frost action in subsurface materials are manifested by non-uniform heave of pavements during the winter and by loss of strength of affected soils during the ensuing thaw period. This is accompanied by a corresponding increase in damage accumulation and a more rapid rate of pavement deterioration during the period of weakening. Other related detrimental effects of frost and low temperatures are possible loss of compaction, development of permanent roughness, restriction of drainage by the frozen strata, and cracking and deterioration of the pavement surface. Except when other criteria are specifically established, pavements should be designed so that there will be no interruption of traffic at any time due to differential heave or to reduction in load-supporting capacity.",
+      "key_points": [
+        "Frost damage mechanism: winter heave (non-uniform) + thaw-period strength loss, together accelerating deterioration.",
+        "Design goal: no traffic interruption from heave or strength loss at any point in the service life."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 19-1: Modes of Distress in Pavements"
+      ],
+      "applicability": "Framing why frost design is a distinct, additional design track."
+    },
+    {
+      "section_id": "19-2",
+      "title": "Frost-Susceptibility Classification",
+      "summary": "Soils are divided into 8 frost groups (Table 19-2), listed in roughly decreasing thaw-period bearing capacity / increasing frost-heave susceptibility order; the first 4 groups may be used as base/subbase; all 8 may occur as subgrade; F4 soils are especially highly frost-susceptible.",
+      "body": "For frost design purposes, soils are divided into eight groups as shown in Table 19-2. The first four groups are generally suitable for base course and subbase course materials, and any of the eight groups may be encountered as subgrade soils. Soils are listed in approximate order of decreasing bearing capacity during periods of thaw. There is also a tendency for the order of the listing of groups to coincide with increasing order of susceptibility to frost heave, although the low coefficients of permeability of most clays restrict their heaving potential. The order of listing of subgroups under groups F3 and F4 does not necessarily indicate the order of susceptibility to frost heave of these subgroups. There is some overlapping of frost susceptibility between groups. Soils in group F4 are of especially high frost susceptibility.",
+      "key_points": [
+        "8 frost groups: NFS, PFS, S1, S2, F1, F2, F3, F4 (Table 19-2).",
+        "Only the first four groups (through S1/S2) are suitable for base/subbase; F1-F4 require the frost design procedures below when they occur as subgrade."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 19-2: Frost Design Soil Classification"
+      ],
+      "applicability": "Classifying any soil for frost-area design."
+    },
+    {
+      "section_id": "19-2.1",
+      "title": "S1 and S2 Groups",
+      "summary": "S1 (gravelly) and S2 (sandy) are low-to-medium frost-susceptibility groups suitable for subbase; both exhibit less heave and higher post-freeze-thaw strength than similarly-fined F-group subgrade soils, S2 partly because sands carry a lower percentage of sub-0.02mm fines than comparable F2 soils.",
+      "body": "The S1 group includes gravelly soils with very low to medium frost-susceptibility classifications that are considered suitable for subbase materials. They generally exhibit less frost heave and higher strength after freeze-thaw cycles than similar PI group subgrade soils. The S2 group includes sandy soils with very low to medium frost-susceptibility classifications that are considered suitable for subbase materials. Due to their lower percentages of finer than 0.02 mm grains than similar F2 groups subgrade soils, they generally exhibit less frost heave and higher strength after freeze-thaw cycles.",
+      "key_points": [
+        "S1 (gravelly) and S2 (sandy) are the two subbase-grade low-frost-susceptibility groups."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 19-2: Frost Design Soil Classification"
+      ],
+      "applicability": "Identifying subbase-quality frost groups."
+    },
+    {
+      "section_id": "19-2.2",
+      "title": "F1 and F2 Groups",
+      "summary": "F1 = frost-susceptible gravelly soils (GM/GW-GM/GP-GM-like); F2 = frost-susceptible soils including sandier/more-fines variants (GM/GW-GM/GP-GM/SM/SW-SM/SP-SM, occasionally GC/SC); F1 vs F2 split is based on F1's higher expected thaw-period bearing capacity even at equal ice segregation.",
+      "body": "The F1 group includes frost-susceptible gravelly soils that in the normal unfrozen condition have traffic performance characteristics of GM, GW GM, and GP GM type materials with the noted percentage of fines. The F2 group includes frost-susceptible soils that in the normal unfrozen condition have traffic performance characteristics of GM, GW GM, GP GM, SM, SW SM, or SP SM type materials with fines within the stated limits. Occasionally, GC or SC materials may occur within the F2 group, although they normally fall into the F3 category. The basis for division between the F1 and F2 groups is that F1 materials are expected to show higher bearing capacity than F2 materials during thaw, even though both may have experienced equal ice segregation.",
+      "key_points": [
+        "F1 vs F2 distinction = expected THAW bearing capacity, not ice segregation amount."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 19-2: Frost Design Soil Classification"
+      ],
+      "applicability": "Distinguishing F1 from F2 frost groups."
+    },
+    {
+      "section_id": "19-2.3",
+      "title": "Varved Clays",
+      "summary": "Varved clays (alternating silt/clay layers) combine both materials' undesirable properties and heave/soften more than homogeneous soils of equal average water content; classify per the MOST frost-susceptible constituent, usually placing the deposit in F4.",
+      "body": "Varved clays consisting of alternating layers of silts and clays are likely to combine the undesirable properties of both silts and clays. These and other stratified fine-grained sediments may be hard to classify for frost design. Since such soils are likely to heave and soften more readily than homogeneous soils with equal average water contents, the classification of the material of highest frost susceptibility should be adopted for design. Usually, this will place the overall deposit in the F4 category.",
+      "key_points": [
+        "Varved clays: classify by the MOST frost-susceptible layer present, usually landing in F4."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Classifying stratified/varved fine-grained deposits for frost design."
+    },
+    {
+      "section_id": "19-2.4",
+      "title": "Special Conditions",
+      "summary": "The frost group may be adjusted by up to one group from the standard classification, with full justification (moisture/uniformity/gradation/plasticity, plus nearby existing-pavement performance data), approved by the Government Civil Engineer.",
+      "body": "Under special conditions the frost group classification adopted for design may differ from that obtained by application of the above frost group definitions when the difference is not greater than one frost group and complete justification for the variation is presented and approved by the Government Civil Engineer. Such justification may take into account special conditions of subgrade moisture or soil uniformity, in addition to soil gradation and plasticity, and should include data on performance of existing pavements near those proposed to be constructed.",
+      "key_points": [
+        "Frost-group adjustment is capped at one group, and requires Government Civil Engineer approval with documented justification."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Justifying a frost-group deviation from the standard Table 19-2 classification."
+    },
+    {
+      "section_id": "19-3",
+      "title": "Alternative Methods of Thickness Design",
+      "summary": "Two frost design methods exist: Limited Subgrade Frost Penetration (limits frost intrusion into the subgrade to an acceptable amount) and Reduced Subgrade Strength (accepts frost penetration but designs for the seasonally-reduced thaw-period strength); goal is the lowest-cost system with acceptably low deterioration.",
+      "body": "The thickness design process is the determination of the required thickness for each layer of a pavement system and of the combined thickness of all layers above the subgrade. Its objective is to determine the lowest-cost pavement system whose rate of deterioration under traffic loads and environmental conditions will be acceptably low. In seasonal frost areas, the thickness design process must include the effects of frost action. Two methods are prescribed for determining the thickness design of a pavement that will have adequate resistance to distortion by frost heave and cracking and distortion under traffic loads as affected by seasonal variation of supporting capacity, including possible severe weakening during frost-melting periods.",
+      "key_points": [
+        "Two frost design methods: Limited Subgrade Frost Penetration vs. Reduced Subgrade Strength -- pick the lower-cost one unless a special condition (19-4) dictates otherwise."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Deciding which of the two frost design methods to run."
+    },
+    {
+      "section_id": "19-3.1",
+      "title": "Limited Subgrade Frost Penetration Method",
+      "summary": "Controls pavement distortion from frost heave directly, by sizing pavement+base+subbase to limit frost penetration into the frost-susceptible subgrade to an acceptable amount; full prevention of penetration is almost always uneconomical/unnecessary and needs Government Civil Engineer approval.",
+      "body": "The first method is directed specifically to the control of pavement distortion caused by frost heave. It requires a sufficient thickness of pavement, base, and subbase to limit the penetration of frost into the frost-susceptible subgrade to an acceptable amount. This method also includes a design approach to determine the thickness of pavement, base, and subbase necessary to prevent the penetration of frost into the subgrade. Prevention of frost penetration into the subgrade is nearly always uneconomical and unnecessary, and will not be used to design pavements to serve conventional traffic, except when approved by the Government Civil Engineer.",
+      "key_points": [
+        "This method limits (not necessarily prevents) frost penetration into the subgrade; full prevention needs special approval."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Overview of the limited-subgrade-frost-penetration design method."
+    },
+    {
+      "section_id": "19-3.2",
+      "title": "Reduced Subgrade Strength Method",
+      "summary": "Accepts frost penetration into the subgrade and instead designs the section to carry traffic through the design period's thaw-weakened intervals; relies on subgrade uniformity/preparation and transitions to control roughness from differential heave.",
+      "body": "The second method does not seek to limit the penetration of frost into the subgrade, but it determines the thickness of pavement, base, and subbase that will adequately carry traffic loads over the design period of years, each of which includes one or more periods during which the subgrade supporting capacity is sharply reduced by frost melting. This approach relies on uniform subgrade conditions, adequate subgrade preparation techniques, and transitions for adequate control of pavement roughness resulting from differential frost heave.",
+      "key_points": [
+        "Reduced Subgrade Strength method designs directly for the thaw-weakened subgrade condition, not for limiting frost penetration."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Overview of the reduced-subgrade-strength design method."
+    },
+    {
+      "section_id": "19-4",
+      "title": "Selection of Design Method",
+      "summary": "Normally pick the lower-cost method; use Limited Subgrade Frost Penetration despite higher cost when subgrade is too variable (e.g. glaciated terrain) for uniform preparation, or operational demands require strict roughness control; if not mandated, run BOTH methods for cost comparison, plus always check the NFS-criteria minimum (governs regardless).",
+      "body": "In most cases the choice of the pavement design method will be the one that gives the lower cost. Exceptions dictating the choice of the limited subgrade frost penetration method, even at higher cost, include pavements in locations where subgrade soils are so extremely variable (as, for example, in some glaciated areas) that the required subgrade preparation techniques could not be expected to provide sufficient protection against differential frost heave. In other cases special operational demands on the pavement might dictate unusually severe restrictions on tolerable pavement roughness, requiring that subgrade frost penetration be strictly limited or even prevented. If the use of limited subgrade frost penetration method is not required, preliminary designs must be prepared by both methods for comparison of costs. A preliminary design must also be prepared following the NFS criteria, since the thickness requirements under NFS criteria must be met in addition to the frost design requirements.",
+      "key_points": [
+        "Run BOTH frost methods for cost comparison unless one is specifically mandated by subgrade variability or operational roughness limits.",
+        "ALWAYS also check the NFS-criteria minimum thickness -- it must be met in addition to whichever frost method governs."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Deciding which frost design method(s) to run for a given site."
+    },
+    {
+      "section_id": "19-5",
+      "title": "Limited Subgrade Frost Penetration",
+      "summary": "Use this method where it needs less thickness than Reduced Subgrade Strength; typically economical only in low design-freezing-index regions.",
+      "body": "Use this method of design for seasonal frost conditions where it requires less thickness than the reduced subgrade strength method. Its use is likely to be economical only in regions of low design freezing index.",
+      "key_points": [
+        "Limited Subgrade Frost Penetration tends to be the more economical method only in LOW design-freezing-index regions."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Screening whether this method is worth running for a given climate."
+    },
+    {
+      "section_id": "19-5.1",
+      "title": "Air Freezing Index",
+      "summary": "Base the air freezing index on actual temperatures from the nearest weather station (elevation/topography/water-body/urban-heat effects can shift values significantly, especially below ~1,000 degree-F-days design / ~500 mean); NWS local climatological summaries cover ~350 US first-order stations; correlate to a nearby station if the local record is too short.",
+      "body": "Air freezing index values should be based on actual air temperatures obtained from the meteorological station closest to the construction site. This is desirable because differences in elevation or topographical position, or nearness to bodies of water, cities, or other sources of heat may cause considerable variation in air freezing indexes over short distances. These variations are of greater relative importance in areas of design freezing index of less than 1,000 degree Fahrenheit days (i.e., mean air freezing index of less than about 500 degree Fahrenheit days) than they are in colder climates. The daily maximum, minimum, and mean monthly air temperature records for all stations that report to the U.S. National Weather Service are available from Weather Service Centers. One of these centers is generally located in each state. The mean air freezing index may be based on mean monthly air temperatures, but computation of values for the design freezing index may be limited to only the coldest years in the desired cycle. These years may be selected from the tabulation of average monthly temperatures for the nearest first-order weather station. A local climatological data summary containing this tabulation for the period of record is published annually by the National Weather Service for each of the about 350 U.S. first-order stations. If the temperature record of the station closest to the construction site is not long enough to determine the mean or design freezing index values, the available data should be related, for the same period, to that of the nearest station or stations of adequate record. Site air freezing index values can then be computed based on this established relation and the indexes for the more distant station or stations.",
+      "key_points": [
+        "Site-to-site variation matters most in mild climates (design freezing index < 1,000 degree-F-days)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Establishing the air freezing index input for frost design."
+    },
+    {
+      "section_id": "19-5.2",
+      "title": "Design Freezing Index",
+      "summary": "Design freezing index = average air freezing index of the 3 coldest years in a 30-year record (or the coldest winter in 10 years); Figures 19-2 (North America) and 19-3 (Northern Eurasia) are guide-only regional distributions.",
+      "body": "The design freezing index should be used in determining the combined thickness of pavement, base, and subbase required to limit subgrade frost penetration. As with any natural climatic phenomenon, winters that are colder than average occur with a frequency that decreases as the degree of departure from average becomes greater. A mean freezing index cannot be computed where temperatures in some of the winters do not fall below freezing. A design method has been adopted that uses the average air freezing index for the three coldest years in a 30 year period (or for the coldest winter in 10 year of record) as the design freezing index to determine the thickness of protection that will be provided. A distribution of design freezing indexes for North America and Northern Eurasia are shown in Figures 19-2 and 19-3 and are to be used as a guide only.",
+      "key_points": [
+        "Design Freezing Index = average of the 3 coldest years in 30 (or coldest winter in 10) -- NOT a simple long-term average."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 19-2: Distribution of Design Freezing Indexes in North America",
+        "Figure 19-3: Distribution of Mean Freezing Indexes in Northern Eurasia"
+      ],
+      "tables": [],
+      "applicability": "Computing the Design Freezing Index used throughout the frost design procedures."
+    },
+    {
+      "section_id": "19-5.3",
+      "title": "Design Method (Limited Subgrade Frost Penetration)",
+      "summary": "Estimate base/subgrade moisture+dry unit weight at freeze onset; get frost penetration depth a from Figure 19-4 (Modified Berggren basis, 12-in rigid pavement reference, deduct 10 degree-F-days per inch of rigid thickness over 12 in before entering); compute C=a-p (base thickness for zero subgrade penetration); compute r = subgrade water content / base water content (cap at 3.0); enter Figure 19-5 with C and r to get design base thickness b (and resulting subgrade penetration s).",
+      "body": "The design method permits a small amount of frost penetration into frost-susceptible subgrades for the design freezing index year. The procedure is described in the following subparagraphs. Estimate average moisture contents in the base course and subgrade at start of freezing period, and estimate the dry unit weight of base. The moisture content of the base is generally affected by the moisture content of the subgrade, drainage, precipitation, and depth to groundwater table. As the base course may, in some cases, comprise successive layers containing substantially different fine contents, the average moisture content and dry unit weight should be weighted in proportion to the thickness of the various layers. Alternatively, if layers of bound base course and granular unbound base course are used in the pavement, the average may be assumed to be equal to the moisture content and dry unit weight of the material in the granular unbound base course. From Figure 19-4, determine frost penetration depth (a). These frost penetration depths are based on modified Berggren formula and computational procedures. Frost penetration depths are measured from pavement surface. Depths are computed on a 12 in (300 mm.) rigid pavement kept free of snow and ice, and are good approximations for bituminous pavements over 6 to 9 in (150 to 225 mm.) of high-quality base. Computations also assume that all soil beneath pavements within depths of frost penetration are granular and NFS. It was assumed in computations that all soil moisture freezes at 32 degrees Fahrenheit (0 degrees Celsius). Use straight line interpolation where necessary. For rigid pavements greater than 12 in (300 mm) thick, deduct 10 degrees Fahrenheit days for each 1 in (25 mm) increment of pavement exceeding 12 in (300 mm) from the design freezing index before entering Figure 19-4 to determine frost penetration depth (a). Then add extra concrete pavement thickness to the determined frost penetration. Compute thickness of unbound base C (Figure 19-5) required for zero frost penetration into the subgrade as follows: C = a - p, where a = frost penetration depth, p = thickness of PCC or bituminous concrete. Compute ratio r = water content of subgrade / water content of base. Enter Figure 19-5 with C as the abscissa and, at the applicable value of r, find on the left scale the design base thickness b that will result in the allowable subgrade frost penetration shown on the right scale. If r is greater than 3.0 use 3.0.",
+      "key_points": [
+        "Design chain: Figure 19-4 (a) -> C = a - p -> r = subgrade_w/base_w (capped 3.0) -> Figure 19-5 (C, r) -> b, s.",
+        "Figure 19-4's frost-penetration depths assume a 12-in rigid reference pavement; deduct 10 degree-F-days per inch of RIGID thickness beyond 12 in before entering the chart, then add that extra thickness back to the resulting depth.",
+        "Verified anchors for Figure 19-5: r=2.0 (chart's own example, c=32in->b=21in,s=5.2in) and r=3.0 (Appendix G, G-8.9/G-8.11: c=42->b=26, c=38.5->b=22)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 19-4A/B/C: Frost Penetration Beneath Pavements",
+        "Figure 19-5: Design Depth of Non-frost Susceptible Base for Limited Subgrade Frost Penetration"
+      ],
+      "tables": [],
+      "applicability": "The core Limited Subgrade Frost Penetration thickness calculation."
+    },
+    {
+      "section_id": "19-5.4",
+      "title": "Thickness (Limited Subgrade Frost Penetration)",
+      "summary": "The resulting b (design base thickness) should keep average-field-condition subgrade frost penetration s from causing excessive differential heave in the design freezing index year.",
+      "body": "The above procedure results in a thickness of material between the frost-susceptible subgrade and the pavement so that for average field conditions subgrade frost penetration of the amount s should not cause excessive differential heave of the pavement surface during the design freezing index year.",
+      "key_points": [
+        "s (from Figure 19-5's right-hand scale) is the resulting, ACCEPTED amount of subgrade frost penetration -- not zero."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Interpreting the b/s output of the Figure 19-5 procedure."
+    },
+    {
+      "section_id": "19-5.5",
+      "title": "Controlling Thickness",
+      "summary": "If the NFS-criteria combined pavement+base thickness exceeds the Limited Subgrade Frost Penetration result, use the larger NFS thickness as the design thickness.",
+      "body": "If the combined thickness of pavement and base required by the NFS criteria exceeds the thickness given by the limited subgrade frost penetration procedure of design, adopt the greater thickness given by the NFS criteria as the design thickness.",
+      "key_points": [
+        "NFS-criteria thickness is a floor -- take the larger of NFS and frost-method thickness."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Final thickness governance check for the Limited Subgrade Frost Penetration method."
+    },
+    {
+      "section_id": "19-5.6",
+      "title": "Effects of Non-frost Susceptible Criteria",
+      "summary": "Rigorously follow base course composition rules; design base thickness = total filter + granular unbound base/subbase + bound base; for flexible pavements, asphalt/bound-base thickness and granular-layer CBR requirements still come from NFS criteria; rigid slab thickness also comes from NFS criteria.",
+      "body": "Rigorously follow the base course composition requirements of this chapter. The design base thickness is the total thickness of filter layers, granular unbound base and subbase, and any bound base. For flexible pavements, the thickness of the asphalt surfacing layer and of any bound base, as well as the CBR requirements of each layer of granular unbound base, must be determined using NFS criteria. The thickness of rigid pavement slab must also be determined from NFS criteria.",
+      "key_points": [
+        "Rigorously follow base course composition rules; design base thickness = total filter + granular unbound base/subbase + bound base; for flexible pavements, asphalt/bound-base thickness and granular-layer CBR requirements still come from NFS criteria; rigid slab thickness also..."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Determining individual layer thicknesses/CBRs after the combined frost thickness is set."
+    },
+    {
+      "section_id": "19-6",
+      "title": "Reduced Subgrade Strength",
+      "summary": "Uses seasonally-varying subgrade support (incl. sharp thaw-period reduction); usually needs LESS pavement+base than Limited Subgrade Frost Penetration except in low-freezing-index regions; applicable to flexible and rigid where subgrade is/can be made reasonably uniform; F4 subgrades need unusually rigorous subgrade preparation control if this method is used; if this method's thickness EXCEEDS the frost-penetration method's, use the smaller (still >= NFS minimum); intermediate thicknesses allowed if justified by comparable local frost-heave experience.",
+      "body": "Thickness design may also be based on the seasonally varying subgrade support that includes sharply reduced values during thawing of soils that have been affected by frost action. Except for pavement projects that are located in regions of low design freezing index, this design procedure usually requires less thickness of pavement and base than that needed for limited subgrade frost penetration. The method may be used for both flexible and rigid pavements wherever the subgrade is reasonably uniform or can be made reasonably horizontally uniform by the required techniques of subgrade preparation. This will prevent or minimize significant or objectionable differential heaving and resultant cracking of pavements. When the reduced subgrade strength method is used for F4 subgrade soils, unusually rigorous control of subgrade preparation must be required. When a thickness determined by the reduced subgrade strength procedure exceeds that determined for limited subgrade frost penetration, the latter smaller value must be used, provided it is at least equal to the thickness required for NFS conditions. In situations where use of the reduced subgrade strength procedure might result in objectionable frost heave, but use of the greater thickness of base course indicated by the limited subgrade frost penetration design procedure is not considered necessary, intermediate design thickness may be used. However, these must be justified on the basis of frost heaving experience developed from existing pavements where climatic and soil conditions are comparable.",
+      "key_points": [
+        "If Reduced Subgrade Strength gives MORE thickness than Limited Subgrade Frost Penetration, use the smaller (frost-penetration) value instead, subject to the NFS floor.",
+        "F4 subgrades using this method need unusually rigorous subgrade-preparation control."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Overview/governance of the Reduced Subgrade Strength method."
+    },
+    {
+      "section_id": "19-6.1",
+      "title": "Thickness of Flexible Pavements (Reduced Subgrade Strength)",
+      "summary": "Enter the Appendix E curves with the frost-area soil support index (Table 19-3) instead of the actual CBR (S1/S2 base/subbase materials still use conventional CBR in the unfrozen state); up to 10% thickness reduction allowed on substantial fills if local data support it (better drainage/less ice segregation than cuts); NFS criteria still governs individual-layer thicknesses and whether bound-base layers are worthwhile.",
+      "body": "In the reduced subgrade strength procedure for design, the design curves in Appendix E should be used for road, street, and parking area design. Do not enter the curves with subgrade CBR values determined by tests or estimates, but instead with the applicable frost-area soil support index from Table 19-3. Frost-area soil support indexes are used as if they were CBR values; the term CBR is not applied to them, however, because being weighted average values for an annual cycle, their value cannot be determined by CBR tests. The soil support index for S1 or S2 material meeting current specifications for base or subbase are determined by conventional CBR tests in the unfrozen state. General field data and experience indicate that on the relatively narrow embankments of roads and parking areas, reduction in strength of subgrades during frost melting may be less in substantial fills than in cuts because of better drainage conditions and less intense ice segregation. If local field data and experience show this to be the case, then a reduction in combined thickness of pavement and base for frost conditions of up to 10 percent may be permitted for substantial fills. Flexible pavement criteria for NFS design should also be used to determine the thickness of individual layers in the pavement system, and to ascertain whether it will be advantageous to include one or more layers of bound base in the system. The base course composition requirements set forth must be followed rigorously.",
+      "key_points": [
+        "Enter Appendix E with Table 19-3's frost-area soil support index (F1/S1=9.0, F2/S2=6.5, F3/F4=3.5), NOT the actual measured CBR.",
+        "Up to 10% combined-thickness reduction is allowed for substantial fills, if locally justified."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure E-1: Single Axle, Dual-Tire Load Flexible Pavement Design Curve"
+      ],
+      "tables": [
+        "Table 19-3: Frost-Area Soil Support Indexes for Subgrade Soils for Flexible Pavement Design"
+      ],
+      "applicability": "Flexible pavement thickness design in a frost area, reduced subgrade strength method."
+    },
+    {
+      "section_id": "19-6.2",
+      "title": "Thickness of Rigid Pavements (Reduced Subgrade Strength)",
+      "summary": "Good practice: NFS base >= slab thickness; minimum reducible to 4 in NFS granular base if the subgrade is made uniform, PROVIDED it also meets filter criteria (else add a second 4-in filter layer); more base raises the frost-area index of reaction (Figure 19-6, higher = thinner slab); bound base adds further structural credit; enter the Chapter 13 plain-concrete procedure using the Figure 19-6 frost-area index of reaction (or the measured non-frost k, if numerically LOWER, which then governs).",
+      "body": "Where frost is expected to penetrate into a frost-susceptible subgrade beneath a rigid pavement, it is good practice to use a NFS base course at least equal in thickness to the slab. Experience has shown, however, that rigid pavements with only a 4 in (100 mm) base have performed well in cold environments with relatively uniform subgrade conditions. Accordingly, where subgrade soils can be made reasonably uniform by the required procedures of subgrade preparation, the minimum thickness of granular unbound base may be reduced to a minimum of 4 in (100 mm). The material must meet the requirements set forth below for free-draining material as well as the criteria for filter under pavement slab. If it does not also meet the criteria for filter over subgrade, a second 4 in (100 mm) layer meeting that criterion must be provided. Additional granular unbound base course, giving a thickness greater than the minimum specified above, improves pavement performance, giving a higher frost-area index of reaction on the surface of the unbound base Figure 19-6 and permitting a pavement slab of less thickness. Bound base also has significant structural value, and may be used to effect a further reduction in the required thickness of rigid pavement slab. Criteria for determining the required thickness of rigid pavement slabs in combination with a bound base course are contained in Chapter titled Plain Concrete Pavement Design. The requirements for granular unbound base as drainage and filter layers are still applicable. The thickness of concrete pavement must be determined in accordance with Chapter titled Plain Concrete Pavement Design, using the frost-area index of reaction determined from Figure 19-6. This figure shows the equivalent weighted average index of reaction values for an annual cycle that includes a period of thaw-weakening in relation to the thickness base. Frost-area indexes of reaction are used as if they were moduli of reaction, k, and have the same units. The term modulus of reaction is not applied to them because being weighted average values for an annual cycle, they cannot be determined by a plate-bearing test. If the modulus of reaction, k, determined from tests on the equivalent base course and subgrade, but without frost melting, is numerically smaller than the index of reaction obtained from Figure 19-6, the test value must govern the design.",
+      "key_points": [
+        "Minimum NFS base can drop to 4 in with uniform subgrade preparation (vs. the good-practice default of matching slab thickness).",
+        "The Figure 19-6 frost-area index of reaction is used exactly like k in the Chapter 13 design charts; if the actual measured non-frost k is numerically LOWER, that test value governs instead.",
+        "Verified anchor for Figure 19-6: F3&F4 group, base thickness 8 in -> index of reaction 50 psi/in (Appendix G, G-8.12)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 19-6: Frost-Area Index of Reaction for Design of Rigid Roads and Parking Areas",
+        "Figure F-1: Single Axle, Dual Tire Load, Plain Concrete and RCCP"
+      ],
+      "tables": [],
+      "applicability": "Rigid pavement thickness design in a frost area, reduced subgrade strength method."
+    },
+    {
+      "section_id": "19-7",
+      "title": "Free-Draining Material Directly Beneath Bound Base or Surfacing Layer",
+      "summary": "Never place cement/lime-bound base directly under bituminous pavement without approval, and never sandwich an unbound course between two impervious bound layers; if combined pavement + contiguous bound-base thickness (in) < 0.09 x design air freezing index, provide >=4 in of free-draining material (<=2.0% passing No. 200) directly beneath the lowest bound layer (or slab, if no bound base); check that layer against the filter criteria too, adding another layer if it fails.",
+      "body": "Base courses may consist of either granular unbound materials or bound base materials or a combination of the two. However, do not place cement or lime bound base directly beneath bituminous pavement unless approved by the Government Civil Engineer. Also, do not place an unbound course between two relatively impervious bound layers. If the combined thickness, in inches, of pavement and contiguous bound base courses is less than 0.09 multiplied by the design air freezing index (this calculation limits the design freezing index at the bottom of the bound base to about 20 degrees Fahrenheit days), not less than 4 in (100 mm) of free-draining material must be placed directly beneath the lower layer of bound base or, if there is no bound base, directly beneath the pavement slab or surface course. The free-draining material must contain 2.0 percent or less, by weight, of grains that can pass the No. 200 sieve, and to meet this requirement, it probably will have to be screened and washed. If the structural criteria for design of the pavement do not require granular unbound base other than the 4 in of free-draining material, then the material in the 4 in (100 mm) layer must be checked for conformance with the filter requirements below. If it fails the test for conformance, an additional layer meeting those requirements must be provided. When using a drainage layer, the drainage layer must extend to an open ditch or subdrain. Pavement drainage is discussed in Chapter titled Design Of Subsurface Pavement Drainage Systems.",
+      "key_points": [
+        "Threshold: (pavement + contiguous bound base thickness, in) < 0.09 x design air freezing index -> requires >=4 in free-draining material (<=2.0% passing No. 200) beneath the lowest bound layer.",
+        "0.09 x DFI limits the freezing index at the bottom of the bound base to about 20 degree-F-days."
+      ],
+      "equations": [
+        {
+          "id": "N/A (19-7 threshold, not numbered)",
+          "description": "Free-draining layer requirement: required if (bound layer thickness, in) < 0.09 * design air freezing index.",
+          "implemented_in": "geotech_references.ufc_pavement.equations.free_draining_layer_required"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Checking whether a free-draining layer is required beneath a bound base/surface in a frost area."
+    },
+    {
+      "section_id": "19-8",
+      "title": "Soil Stabilization",
+      "summary": "See 19-8.1/19-8.2/19-8.3/19-8.4 for bound-base, lime, cement, and bitumen stabilization frost-durability requirements.",
+      "body": "See the subsections below for stabilization-specific frost durability criteria.",
+      "key_points": [
+        "See 19-8.1/19-8.2/19-8.3/19-8.4 for bound-base, lime, cement, and bitumen stabilization frost-durability requirements."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Overview of frost-area soil stabilization criteria."
+    },
+    {
+      "section_id": "19-8.1",
+      "title": "Bound Base",
+      "summary": "Lime-only stabilization is generally unsuitable for upper base layers in frost areas; lime+cement+pozzolan (fly ash) can produce an adequately durable cemented material; mixture design per UFC 3-250-11 plus freeze-thaw testing (ASTM D560/560M variant, 6-in mold/5 layers/10-lb hammer/18-in drop) must meet the UFC 3-250-11 cement-stabilized weight-loss criteria.",
+      "body": "Soils containing only lime as the stabilizer are generally unsuitable for use as base course layers in the upper layers of pavement systems in frost areas. Lime, cement, and a pozzolanic material such as fly ash may be used in some cases to produce a cemented material of high quality that is suitable for upper base course and that has adequate durability and resistance to freeze-thaw action. Soil stabilization mixture design will be based on the procedures set forth in UFC 3-250-11 with the additional requirement that the mixture, after freeze-thaw testing as set forth below, should meet the weight-loss criteria specified in UFC 3-250-11 for cement-stabilized soil. The procedures in ASTM D560/560M should be followed for freeze-thaw testing, except that the specimens should be compacted in a 6 in (150 mm) diameter mold in five layers with a 10 lb (4.5 kg) hammer having an 18 in (450 mm) drop, and that the preparation and curing of the specimens should follow the procedures indicated in UFC 3-250-11 for unconfined compression tests on lime-stabilized soil.",
+      "key_points": [
+        "Lime-only stabilization: unsuitable for upper frost-area base; lime+cement+fly ash is the durable option."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Frost-area bound base stabilization mix design."
+    },
+    {
+      "section_id": "19-8.2",
+      "title": "Stabilization with Lime",
+      "summary": "Lime-stabilized/modified lower-layer material still needs durability/frost-resistance verification: 12 ASTM D560/560M freeze-thaw cycles (no wire-brushing) then a standard lab frost classification test; result must meet Chapter 6 base-course frost-susceptibility limits (if base) or govern the reduced-subgrade-strength design (if used as subgrade).",
+      "body": "If it is economical to use lime-stabilized or lime-modified soil in lower layers of a pavement system, a mixture of adequate durability and resistance to frost action is still necessary. In addition to the requirements for mixture design of lime-stabilized and lime-modified subbase and subgrade materials set forth in UFC 3-250-11, cured specimens should be subjected to the 12 freeze-thaw cycles in ASTM D560/560M (but omitting wire-brushing) or other applicable freeze-thaw procedures. This should be followed by determination of frost-design soil classification by standard laboratory freezing tests. For lime-stabilized or lime-modified soil used in lower layers of the base course, the frost susceptibility, determined after freeze-thaw cycling, should meet the requirements set forth for base course in Chapter titled Flexible Pavement Select Materials And Subbase Courses. If lime-stabilized or lime-modified soil is used as subgrade, its frost susceptibility, determined after freeze-thaw cycling, should be used as the basis of the pavement thickness design if the reduced subgrade strength design method is applied.",
+      "key_points": [
+        "Lime-stabilized/modified lower-layer material still needs durability/frost-resistance verification: 12 ASTM D560/560M freeze-thaw cycles (no wire-brushing) then a standard lab frost classification test; result must meet Chapter 6 base-course frost-susceptibility limits (if..."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Frost-area lime stabilization qualification."
+    },
+    {
+      "section_id": "19-8.3",
+      "title": "Stabilization with Portland Cement",
+      "summary": "Cement-stabilized (meeting UFC 3-250-11 + ASTM D560/560M) or cement-modified soil may be used as frost-area base or stabilized subgrade; cement-MODIFIED soil needs the same 12-cycle freeze-thaw + frost classification verification as lime-modified soil.",
+      "body": "Cement-stabilized soil meeting the requirements set forth in UFC 3-250-11, including freeze-thaw effects tested under ASTM D560/560M, may be used in frost areas as base course or as stabilized subgrade. Cement-modified soil conforming with the requirements in UFC 3-250-11 also may be used in frost areas. However, in addition to the procedures for mixture design specified in UFC 3-250-11, cured specimens of cement-modified soil should be subjected to the 12 freeze-thaw cycles in ASTM D560/560M (but omitting wire-brushing) or other applicable freeze-thaw procedures. This should be followed by determination of frost design soil classification by standard laboratory freezing tests. For cement-modified soil used in the base course, the frost susceptibility, determined after freeze-thaw cycling, should meet the requirements set forth for base course in Chapter titled Flexible Pavement Select Materials And Subbase Courses. If cement-modified soil is used as subgrade, its frost susceptibility, determined after freeze-thaw cycling, should be used as the basis of the pavement thickness design if the reduced subgrade design method is applied.",
+      "key_points": [
+        "Cement-stabilized (meeting UFC 3-250-11 + ASTM D560/560M) or cement-modified soil may be used as frost-area base or stabilized subgrade; cement-MODIFIED soil needs the same 12-cycle freeze-thaw + frost classification verification as lime-modified soil."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Frost-area Portland cement stabilization qualification."
+    },
+    {
+      "section_id": "19-8.4",
+      "title": "Stabilization with Bitumen",
+      "summary": "Bitumen-stabilized base can be durable in frost areas; avoid tar (high temperature susceptibility) in frost regions; select an asphalt grade suited to local climate; otherwise follow UFC 3-250-11 / UFC 3-250-03 mix design.",
+      "body": "Many different types of soils and aggregates can be successfully stabilized to produce a high quality bound base with a variety of types of bituminous material. In frost areas the use of tar as a binder should be avoided because of its high temperature susceptibility. Asphalts are affected to a lesser extent by temperature changes, but a grade of asphalt suitable to the prevailing climatic conditions should be selected. Excepting these special conditions affecting the suitability of particular types of bitumen, the procedures for mixture design set forth in UFC 3-250-11 and UFC 3-250-03 will ensure that the asphalt-stabilized base will have adequate durability and resistance to moisture and freeze-thaw cycles.",
+      "key_points": [
+        "Avoid tar binders in frost regions (temperature susceptibility); select asphalt grade for local climate instead."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Frost-area bituminous stabilization material selection."
+    },
+    {
+      "section_id": "19-9",
+      "title": "Subgrade Requirements",
+      "summary": "Prepare frost-area subgrades for uniform frost susceptibility (mix stratified soils, eliminate isolated pockets, blend into a homogeneous mass) rather than trying to remove all frost-susceptible soil; best fill materials go on top via stockpiling/cross-hauling/selective grading; prep depth = lesser of 24 in or 2/3 frost penetration minus actual pavement+base+subbase thickness.",
+      "body": "It is a basic requirement for all pavements constructed in frost areas, that subgrades in which freezing will occur, must be prepared to achieve uniformity of soil conditions by mixing stratified soils, eliminating isolated pockets of soil of higher or lower frost susceptibility, and blending the various types of soils into a single, relatively homogeneous mass. It is not intended to eliminate from the subgrade those soils in which detrimental frost action will occur, but to produce a subgrade of uniform frost susceptibility and thus create conditions tending to make both surface heave and subgrade thaw-weakening as uniform as possible over the paved area. In fill sections the least frost-susceptible soils must be placed in the upper portion of the subgrade by temporarily stockpiling the better materials, cross-hauling, and selective grading. If the upper layers of fill contain frost-susceptible soils, then the finished fill section must be subjected to the subgrade preparation procedures required for cut sections. In cut sections the subgrade must be scarified and excavated to a prescribed depth, and the excavated material must be windrowed and bladed successively until thoroughly blended. The depth of subgrade preparation, measured downward from the top of the subgrade, must be 24 in (600 mm) or two-thirds of the frost penetration less the actual combined thickness of pavement, base course, and subbase course, whichever is less. The prepared subgrade must meet the designated compaction requirements for NFS areas. The construction inspection personnel should be alert to verify that the processing of the subgrade will yield uniform soil conditions throughout the section. To achieve uniformity in some cases, it will be necessary to remove highly frost susceptible soils or soils of low frost susceptibility. In that case, the pockets of soil to be removed should be excavated to the full depth of frost penetration and replaced with material surrounding the frost-susceptible soil being removed.",
+      "key_points": [
+        "Goal is UNIFORM frost susceptibility, not elimination of frost-susceptible soil.",
+        "Subgrade prep depth = lesser of 24 in, or (2/3 x frost penetration) minus actual combined pavement+base+subbase thickness.",
+        "Verified via Appendix G, G-8.12: 24 in - 16 in (combined actual thickness) = 8 in required subgrade prep depth."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Subgrade preparation specification in frost areas."
+    },
+    {
+      "section_id": "19-9.1",
+      "title": "Exception Conditions",
+      "summary": "Exceptions to subgrade prep: soils confirmed NFS (by thorough investigation + nearby-pavement performance) to the prep depth, and fine-grained subgrades too wet (above optimum, no drainage option) to scarify/recompact.",
+      "body": "Exceptions to the basic requirement for subgrade preparation are subgrades known to be NFS to the depth prescribed for subgrade preparation and known to contain no frost-susceptible layers or lenses, as demonstrated and verified by extensive and thorough subsurface investigations and by the performance of nearby existing pavements. Also, fine-grained subgrades containing moisture well in excess of the optimum for compaction, without drainage or other means for reducing the moisture content, and which consequently it is not possible to scarify and re-compacted, are also exceptions.",
+      "key_points": [
+        "Exceptions to subgrade prep: soils confirmed NFS (by thorough investigation + nearby-pavement performance) to the prep depth, and fine-grained subgrades too wet (above optimum, no drainage option) to scarify/recompact."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identifying when subgrade preparation may be skipped."
+    },
+    {
+      "section_id": "19-9.2",
+      "title": "Treatment of Wet Fine-Grained Subgrades",
+      "summary": "Achieve frost protection with fill: raise grade, or undercut/replace, by the same depth otherwise prescribed for subgrade prep; NFS or (properly-prepped) frost-susceptible fill/backfill material may be used.",
+      "body": "If wet fine-grained subgrades exist at the site, it is necessary to achieve frost protection with fill material. This may be done by raising the grade by an amount equal to the depth of subgrade preparation that otherwise would be prescribed, or by undercutting and replacing the wet fine-grained subgrade to that same depth. In either case the fill or backfill material may be NFS material or frost-susceptible material meeting specified requirements. If the fill or backfill material is frost susceptible, it should be subjected to the same subgrade preparation procedures prescribed above.",
+      "key_points": [
+        "Achieve frost protection with fill: raise grade, or undercut/replace, by the same depth otherwise prescribed for subgrade prep; NFS or (properly-prepped) frost-susceptible fill/backfill material may be used."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Handling a wet fine-grained subgrade exception case."
+    },
+    {
+      "section_id": "19-9.3",
+      "title": "Cobbles or Boulders",
+      "summary": "Remove all stones >~6 in diameter from fill materials (and any exposed during prep) to the full frost-penetration depth; unremoved stones/roots heave upward over time and can eventually break through the surface, forcing reconstruction.",
+      "body": "A critical condition requiring the attention of inspection personnel is the presence of cobbles or boulders in the subgrades. All stones larger than about 6 in (150 mm) in diameter should be removed from fill materials for the full depth of frost penetration, either at the source or as the material is spread in the embankments. Any such large stones exposed during the subgrade preparation work also must be removed, down to the full depth to which subgrade preparation is required. Failure to remove stones or large roots can result in increasingly severe pavement roughness as the stones or roots are heaved gradually upward toward the pavement surface. They eventually break through the surface in extreme cases, necessitating complete reconstruction.",
+      "key_points": [
+        "6-in stone/boulder removal threshold, to the full frost penetration depth."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Cobble/boulder handling during frost-area subgrade preparation."
+    },
+    {
+      "section_id": "19-9.4",
+      "title": "Changes in Soil Conditions",
+      "summary": "No abrupt subgrade discontinuities allowed; taper transitions at cut/fill changes (Figure C19-7) and at culverts (clean NFS granular fill) and other buried pipe crossings (with perforated-pipe underdrains).",
+      "body": "Abrupt changes in soil conditions must not be permitted. Where the subgrade changes from a cut to a fill section, a wedge of subgrade soil in the cut section with the dimensions shown in Figure C19-7 (Appendix C) should be removed and replaced with fill material. Tapered transitions also are needed at culverts beneath paved areas, but in such cases the transition material should be clean, NFS granular fill. Other pipes under pavement should be similarly treated, and perforated-pipe underdrains should be constructed. These and any other discontinuities in subgrade conditions require the most careful attention of construction inspection personnel, as failure to enforce strict compliance with the requirements for transitions may result in serious pavement distress.",
+      "key_points": [
+        "No abrupt subgrade discontinuities allowed; taper transitions at cut/fill changes (Figure C19-7) and at culverts (clean NFS granular fill) and other buried pipe crossings (with perforated-pipe underdrains)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure C19-7: Tapered Transition"
+      ],
+      "tables": [],
+      "applicability": "Cut/fill and utility-crossing transitions in frost areas."
+    },
+    {
+      "section_id": "19-9.5",
+      "title": "Wet Areas",
+      "summary": "Install intercepting drains as needed to prevent infiltration from higher adjacent ground into the subgrade, most commonly needed in road construction.",
+      "body": "Careful attention should be given to wet areas in the subgrade, and special drainage measures should be installed as required. The need for such measures arises most often in road construction, where it may be necessary to provide intercepting drains to prevent infiltration into the subgrade from higher ground adjacent to the road.",
+      "key_points": [
+        "Install intercepting drains as needed to prevent infiltration from higher adjacent ground into the subgrade, most commonly needed in road construction."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Wet-area drainage in frost-area subgrade prep."
+    },
+    {
+      "section_id": "19-9.6",
+      "title": "Rock Excavation",
+      "summary": "Grade rock excavations for positive transverse drainage with no ponding pockets within the freeze depth (fill with lean concrete if needed); tapered transitions still needed at fill/rock-cut junctions; blanket seepage-prone rock with pervious material; clean frost-susceptible soil out of joints/fractures to the frost depth (or remove rock to that depth if impractical).",
+      "body": "In areas where rock excavation is required, consider the character of the rock and seepage conditions. In any case, the excavations should be made so that positive transverse drainage is provided, and no pockets are left on the rock surface that permit ponding of water within the depth of freezing. The irregular groundwater availability created by such conditions may result in markedly irregular heaving under freezing conditions. It may be necessary to fill drainage pockets with lean concrete. At intersections of fills with rock cuts, the tapered transitions mentioned above Figure C19-7 (Appendix C) are essential. Rock subgrades where large quantities of seepage are involved should be blanketed with a highly pervious material to permit the escape of groundwater. Often, the fractures and joints in the rock contain frost-susceptible soils. These materials should be cleaned out of the joints to the depth of frost penetration and replaced with NFS material. If this is impractical, it may be necessary to remove the rock to the full depth of frost penetration.",
+      "key_points": [
+        "Grade rock excavations for positive transverse drainage with no ponding pockets within the freeze depth (fill with lean concrete if needed); tapered transitions still needed at fill/rock-cut junctions; blanket seepage-prone rock with pervious material; clean frost-susceptible..."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure C19-7: Tapered Transition"
+      ],
+      "tables": [],
+      "applicability": "Rock-cut subgrade treatment in frost areas."
+    },
+    {
+      "section_id": "19-9.7",
+      "title": "Rock Subgrades",
+      "summary": "In-place fragmentation (blast holes 3-6 ft deep, spaced for thorough fracturing) is an effective alternative rock treatment enabling groundwater drainage through the shattered rock; taper the transition to adjacent fill.",
+      "body": "An alternative method for treatment of rock subgrades, in-place fragmentation, has been used effectively in road construction. Blast holes 3 to 6 ft (0.9 to 1.8 m) deep are commonly used. They are spaced suitably for achieving thorough fragmentation of the rock to permit effective drainage of groundwater through the shattered rock and out of the zone of freezing in the subgrade. A tapered transition should be provided between the shattered rock cut and the adjacent fill.",
+      "key_points": [
+        "In-place fragmentation (blast holes 3-6 ft deep, spaced for thorough fracturing) is an effective alternative rock treatment enabling groundwater drainage through the shattered rock; taper the transition to adjacent fill."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "In-place rock fragmentation as an alternative frost-area treatment."
+    },
+    {
+      "section_id": "19-10",
+      "title": "Other Measures to Reduce Heave",
+      "summary": "Insulation (Appendix D) controls frost-penetration depth; steel reinforcement in rigid pavements holds heave-induced cracks tightly closed (reducing pumping) without reducing heave itself; also give special field attention to cut/fill/culvert/drain transitions and boulder removal.",
+      "body": "Other possible measures to reduce the effects of heave are the use of insulation (Appendix D) to control depth of frost penetration and the use of steel reinforcement to improve the continuity of rigid pavements that may become distorted by frost heave. Reinforcement does not reduce heave nor prevent the cracking resulting from it, but it helps to hold cracks tightly closed and thus reduce pumping through these cracks. Transitions between cut and fill, culverts and drains change in character or stratification of subgrade soils. Subgrade preparation and boulder removal should also receive special attention in field construction control.",
+      "key_points": [
+        "Reinforcement doesn't prevent heave/cracking -- it holds cracks closed to reduce pumping.",
+        "Insulated pavement systems (Appendix D) are the other heave-reduction option, by limiting frost penetration depth directly."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Supplementary heave-mitigation measures."
+    },
+    {
+      "section_id": "19-11",
+      "title": "Pavement Cracking Associated with Frost Heave",
+      "summary": "Differential heave/strength-loss surface distortion (and resulting cracking/edge spalling/debris) is reduced by controlling base composition/uniformity/thickness, slab dimensions, subbase/subgrade materials, subsurface moisture uniformity, and (in special situations) reinforcement or pavement-type limitation; uniformity and gradual transitions are essential wherever discontinuities can't be avoided.",
+      "body": "One of the most detrimental effects of frost action on a pavement is surface distortion as the result of differential frost heave or differential loss of strength. These may also lead to random cracking. Deterioration and spalling of the edges of working cracks are causes of uneven surface conditions and sources of debris. Cracking may be reduced by control of such elements as base composition, uniformity and thickness, slab dimensions, subbase and subgrade materials, uniformity of subsurface moisture conditions, and, in special situations, by use of reinforcement and by limitation of pavement type. The importance of uniformity cannot be overemphasized. Where unavoidable discontinuities in subgrade conditions exist, gradual transitions are essential.",
+      "key_points": [
+        "Differential heave/strength-loss surface distortion (and resulting cracking/edge spalling/debris) is reduced by controlling base composition/uniformity/thickness, slab dimensions, subbase/subgrade materials, subsurface moisture uniformity, and (in special situations)..."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Design factors that control frost-heave-related cracking."
+    },
+    {
+      "section_id": "19-12",
+      "title": "Compaction",
+      "summary": "Subgrade, subbase, and base course materials in frost areas must meet the applicable NFS compaction requirements (Table 5-1/21-2, and Chapter 6/7/11 compaction floors).",
+      "body": "Subgrade, subbase, and base course materials must meet the applicable compaction requirements for NFS materials.",
+      "key_points": [
+        "Subgrade, subbase, and base course materials in frost areas must meet the applicable NFS compaction requirements (Table 5-1/21-2, and Chapter 6/7/11 compaction floors)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Compaction specification in frost areas -- same as non-frost, no relaxation."
+    },
+    {
+      "section_id": "19-13",
+      "title": "Use of Insulation Materials in Pavements",
+      "summary": "Synthetic insulating layers within the pavement cross section require written Government Civil Engineer approval; see Appendix D for design criteria.",
+      "body": "The use of synthetic insulating material within a pavement cross section must have written approval by the Government Civil Engineer, which can also provide advice and assistance in regard to the structural analysis. Criteria for design of pavements containing insulating layers are contained in Appendix D.",
+      "key_points": [
+        "Synthetic insulating layers within the pavement cross section require written Government Civil Engineer approval; see Appendix D for design criteria."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Cross-reference to Appendix D for insulated pavement design."
+    },
+    {
+      "section_id": "19-14",
+      "title": "Design Example: Heavily Trafficked Road",
+      "summary": "Appendix G, G-8 works a full flexible + rigid design example (both frost methods) for a seasonal-frost site.",
+      "body": "Appendix G includes examples of design for flexible and rigid pavements in an environment subjected to seasonal frost.",
+      "key_points": [
+        "Worked example: Appendix G, G-8 (both Limited Subgrade Frost Penetration and Reduced Subgrade Strength, flexible and rigid)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Worked-example reference for the full frost design procedure."
+    },
+    {
+      "section_id": "19-15",
+      "title": "Alternative Designs",
+      "summary": "Beyond the two frost methodologies, investigate stabilized-layer and aggregate-base-course alternatives for potential economy.",
+      "body": "Besides the two methodologies in dealing with seasonal frost, investigate other design alternatives using stabilized layers, including aggregate base course pavements, to determine whether they are more economical than the designs presented above.",
+      "key_points": [
+        "Beyond the two frost methodologies, investigate stabilized-layer and aggregate-base-course alternatives for potential economy."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Considering non-standard frost-area pavement alternatives for cost."
+    }
+  ]
+}

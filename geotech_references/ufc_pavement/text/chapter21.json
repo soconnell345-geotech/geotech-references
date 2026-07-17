@@ -1,0 +1,294 @@
+{
+  "reference_id": "UFC 3-250-01",
+  "reference_title": "Pavement Design for Roads, Streets, Walks, and Storage Areas",
+  "volume": null,
+  "chapter": 21,
+  "chapter_title": "Design of Aggregate Surfaces",
+  "sections": [
+    {
+      "section_id": "21-1",
+      "title": "General",
+      "summary": "Aggregate-surfaced road/parking-area thickness design parallels flexible pavement design: select a traffic mix (Chapter titled Vehicular Traffic), a subgrade CBR, and use the PCASE software's unsurfaced-design criteria to get total granular thickness and required layer strength/CBR.",
+      "body": "The thickness design of aggregate surfaced roads and parking areas is similar to the design of flexible pavement as described in Chapter titled Flexible Pavement Design. This procedure involves selecting a vehicle mix or traffic, as explained in Chapter titled Vehicular Traffic, a subgrade CBR, and using unsurfaced design criteria contained within the PCASE software. The procedure determines total thickness of material to be placed above the subgrade, as well as its required strength in relation to the CBR value. A computer program is available for determining pavement thickness and compaction requirements and may be obtained as described in paragraph titled Pavement-Transportation Computer Assisted Structural Engineering.",
+      "key_points": [
+        "Aggregate-surface design mirrors flexible pavement design: traffic mix + subgrade CBR, fed into PCASE's unsurfaced-design criteria.",
+        "Output is total granular thickness above subgrade plus the required strength/CBR of that material.",
+        "PCASE (Pavement-Transportation Computer Assisted Structural Engineering) is the governing design tool, not a closed-form hand equation."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Framing aggregate-surface design as a PCASE-driven variant of flexible pavement design."
+    },
+    {
+      "section_id": "21-2",
+      "title": "Entrances, Exits, and Segments",
+      "summary": "Approach/exit roads and other channelized-traffic areas warrant special design attention (heavier, more frequent loads than the general road) -- typically designed to primary-road load/pass levels; large multi-entrance hardstands should be partitioned into separate design sections for economy and better traffic organization.",
+      "body": "Special consideration should be given to the design of approach roads, exit roads, and other heavily trafficked areas. Early failure or poor performance may be expected in these areas due to the channelized traffic. Since these areas will almost certainly be subjected to more frequent and heavier loads than the road, the design should be based on vehicular loads and passes usually used for primary road designs. In the case of large hardstands having multiple use and multiple entrances and exits, consideration should be given to partitioning and using different design sections. The immediate benefits that would accrue include economy through elimination of overdesign in some areas and better organization of vehicles and equipment.",
+      "key_points": [
+        "Channelized-traffic areas (entrances, exits) fail early if under-designed -- design to primary-road load/pass levels, not the lighter general-area traffic.",
+        "Large multi-entrance hardstands should be partitioned into separate design sections: avoids overdesigning low-traffic zones and organizes vehicle flow better."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Sizing entrance/exit/channelized-traffic zones and large hardstand partitioning."
+    },
+    {
+      "section_id": "21-3",
+      "title": "Thickness Criteria (Non-Frost Areas)",
+      "summary": "Non-frost thickness comes from PCASE for the given soil strength and design vehicle/pass levels; Figure 21-1 gives a convenience design chart for the common equivalent-18-kip-axle case. Granular fill may be uniform depth or a layered base/subbase-plus-compacted-subgrade system; the top 6 in of any base/subbase used as surface fill must meet Table 21-1 gradation.",
+      "body": "Refer to UFC 3-201-01 for minimum thickness requirements. Thickness requirements for aggregate surfaced roads and parking areas are determined using the PCASE software for a given soil strength and design vehicles and pass levels. Since roads and parking areas are usually designed for equivalent 18-kip (8,200-kg) axles, the design chart in Figure 21-1 is provided for convenience. The computed design thickness may be constructed of compacted granular fill for the total depth over the natural subgrade or in a layered system of granular fill (including subbases) and compacted subgrade for the same total depth. The layered section should be checked to ensure that an adequate thickness of material is used to protect the underlying layer and if it also meets the minimum surface CBR required. The granular fill may consist of base and subbase material provided the top 6 in (150 mm) meet the gradation requirements in Table 21-1.",
+      "key_points": [
+        "PCASE is the governing design tool for non-frost thickness; Figure 21-1 (18-kip-equivalent design chart) is a convenience read for the common traffic case -- not digitized here (chart-only; see figures_catalog.json), consistent with the PCASE-first framing of Section 21-1.",
+        "UFC 3-201-01 sets the minimum thickness floor.",
+        "Granular fill may be full-depth uniform material OR a layered base/subbase-over-compacted-subgrade system, provided each layer adequately protects the one below and the top 6 in meets Table 21-1 gradation."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 21-1: Aggregate Surfaced Design Chart, 18-kip Axle (8,200-kg) -- catalog only, not digitized (PCASE-driven chart, see Section 21-1)"
+      ],
+      "tables": [
+        "Table 21-1: Gradation for Aggregate Surface Courses",
+        "N/A (aggregate gradation lookup)"
+      ],
+      "applicability": "Determining total granular thickness above subgrade in non-frost areas."
+    },
+    {
+      "section_id": "21-4",
+      "title": "Frost Area Considerations",
+      "summary": "Where frost affects the design (see Chapter titled Seasonal Frost Conditions for the general treatment), soils are classified into the 8 groups of Table 19-2; only the NFS group is suitable for base course, NFS/S1/S2 for subbase, and all 8 groups may occur as subgrade, listed in roughly decreasing thaw-period bearing capability.",
+      "body": "In areas where frost effects have an impact on the design of pavements, additional considerations concerning thicknesses and required layers in the pavement structure must be addressed. The specific areas where frost has an impact on the design are discussed in the following paragraphs; however, a more detailed discussion of frost effects is presented in Chapter titled Seasonal Frost Conditions. For frost design purposes, soils have been divided into groups as shown in Table 19-2. Only the NFS group is suitable for base course. NFS, S1, or S2 soils may be used for subbase course and any of the eight groups may be encountered as subgrade soils. Soils are listed in approximate order of decreasing bearing capability during periods of thaw.",
+      "key_points": [
+        "Frost-affected aggregate-surface design layers on top of the general Chapter 19 (Seasonal Frost Conditions) treatment -- read that chapter for the frost classification/support-index mechanics.",
+        "Table 19-2's 8 frost groups gate material use: only NFS qualifies for base course; NFS/S1/S2 for subbase; all 8 may occur as subgrade."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 19-2: Frost Design Soil Classification"
+      ],
+      "applicability": "Container section introducing frost-area design for aggregate surfaces; subsections 21-4.1 through 21-4.8 give the specific procedures."
+    },
+    {
+      "section_id": "21-4.1",
+      "title": "Required Thickness",
+      "summary": "Frost-susceptible subgrades use the reduced subgrade strength method with Table 19-3 frost-area soil support indexes (FASSI), which are used like CBR values in the design chart but are not themselves called CBR since they are annual-cycle weighted averages, not directly measured by a CBR test.",
+      "body": "Where frost susceptible subgrades are encountered, determine the section thickness required according to the reduced subgrade strength method. The reduced subgrade strength method requires the use of frost area soil support indexes listed in Table 19-3. Frost-area soil support indexes are used as if they were CBR values; the term CBR is not applied to them, however, because, being weighted average values for an annual cycle, their values cannot be determined by CBR tests.",
+      "key_points": [
+        "Frost-susceptible subgrade -> use the reduced subgrade strength method with Table 19-3 FASSI values in place of CBR.",
+        "FASSI is used exactly like CBR in the design chart, but is a weighted annual-cycle average, not a directly tested CBR value -- do not call it CBR."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 19-3: Frost-Area Soil Support Index",
+        "N/A (FASSI lookup, table_19_3_frost_support_index)"
+      ],
+      "applicability": "Sizing aggregate-surface thickness over frost-susceptible subgrade."
+    },
+    {
+      "section_id": "21-4.2",
+      "title": "Required Layers in Pavement Section",
+      "summary": "Frost design recommends a layered aggregate section (wearing surface of fine crushed stone, coarse-graded base, well-graded sand/gravelly-sand subbase) to ensure stability through thaw; base/subbase width should exceed the finished surface width by at least 12 in on each side.",
+      "body": "When frost is a consideration, it is recommended that the pavement section consist of a series of layers that will ensure the stability of the system, particularly during thaw periods. The layered system in the aggregate fill may consist of a wearing surface of fine crushed stone, a coarse-graded base course, a well-graded subbase of sand or gravelly sand. To ensure the stability of the wearing surface, the width of the base course and subbase should exceed the final desired surface width by a minimum of 12 in (300 mm) on each side.",
+      "key_points": [
+        "Recommended frost-area layer stack: fine crushed-stone wearing surface + coarse-graded base + well-graded sand/gravelly-sand subbase.",
+        "Base and subbase should extend at least 12 in (300 mm) beyond the finished surface width on each side, for wearing-surface stability."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Detailing the layered cross-section used in frost-area aggregate-surface design."
+    },
+    {
+      "section_id": "21-4.3",
+      "title": "Wearing Surface",
+      "summary": "The wearing surface's fines provide stability, aid compaction, and help produce a relatively smooth riding surface for the aggregate-surfaced road.",
+      "body": "The wearing surface contains fines to provide stability in the aggregate surface. The presence of fines helps the layer's compaction characteristics and helps to provide a relatively smooth riding surface.",
+      "key_points": [
+        "Wearing-surface fines aid stability, compaction, and ride smoothness."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Specifying the top wearing-surface layer of a frost-area aggregate section."
+    },
+    {
+      "section_id": "21-4.4",
+      "title": "Base Course",
+      "summary": "The coarse-graded base course provides drainage of the granular fill and must be NFS (non-frost-susceptible) to retain its strength through spring thaw.",
+      "body": "The coarse-graded base course is important in providing drainage of the granular fill. It is also important that this material be NFS so that it retains its strength during spring thaw periods.",
+      "key_points": [
+        "Base course must be NFS material -- drains the fill and keeps its strength through spring thaw."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Specifying the base-course layer of a frost-area aggregate section."
+    },
+    {
+      "section_id": "21-4.5",
+      "title": "Subbase",
+      "summary": "The well-graded sand subbase adds bearing capacity over frost-susceptible subgrade and acts as a filter between the base and subgrade (meeting filter criteria); must be NFS, S1, or S2; the filter function may be unnecessary over gravel/sand subgrade, or may be replaced by geotextile.",
+      "body": "The well-graded sand subbase is used for additional bearing capacity over the frost susceptible subgrade and as a filter layer between the coarse-graded base course and the subgrade to prevent the migration of the subgrade into the voids in the coarser material during periods of reduced subgrade strength. The material must therefore meet standard filter criteria. The sand subbase must be either NFS or of low frost susceptibility (S1 or S2). The filter layer may or may not be necessary depending upon the type of subgrade material. If the subgrade consists principally of gravel or sand, the filter layer may not be necessary and may be replaced by additional base course if the gradation of the base course is such that it meets filter criteria. However, for finer grained soils, the filter layer will be necessary. If a geotextile is used, the sand subbase or filter layer may be omitted as the fabric will be placed directly on the subgrade and will act as a filter.",
+      "key_points": [
+        "Subbase (NFS, S1, or S2) serves two roles: extra bearing capacity and a filter preventing subgrade migration into the base course during weak-subgrade periods -- must meet standard filter criteria.",
+        "Gravel/sand subgrade may not need a separate filter layer (extra base course meeting filter criteria can substitute); finer-grained subgrade requires the filter layer.",
+        "A geotextile placed directly on the subgrade can substitute for the sand subbase/filter layer."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Specifying the subbase/filter layer of a frost-area aggregate section."
+    },
+    {
+      "section_id": "21-4.6",
+      "title": "Compaction",
+      "summary": "Subgrade is compacted for a firm working platform, but compaction does not raise its frost-area soil support index (frost action reverts it to a weaker state regardless) -- so the compacted subgrade is excluded from the layered system, which comprises only the wearing, base, and subbase courses.",
+      "body": "Compact the subgrade to provide uniformity of conditions and a firm working platform for placement and compaction of subbase. Compaction of subgrade does not change its frost-area soil support index because frost action causes the subgrade to revert to a weaker state. Hence, in frost areas, the compacted subgrade is not considered part of the layered system of the road which is comprised of only the wearing, base, and subbase courses.",
+      "key_points": [
+        "Subgrade compaction gives a firm working platform but does NOT improve its FASSI -- frost action reverts subgrade to a weaker state regardless.",
+        "The frost-area \"layered system\" thickness is wearing + base + subbase only; compacted subgrade is excluded from that count."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Clarifying what counts toward the frost-area layered-system thickness."
+    },
+    {
+      "section_id": "21-4.7",
+      "title": "Thickness of Base Course and Filter Layer",
+      "summary": "The relative split of base-course versus filter-layer thickness within the total required cover is flexible, set by economics and site conditions rather than a fixed ratio.",
+      "body": "Relative thicknesses of the base course and filter layer are variable and should be based on the required cover and economic conditions.",
+      "key_points": [
+        "No fixed base/filter-layer thickness split -- allocate based on required total cover and project economics."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Allocating thickness between base course and filter layer once total required cover is known."
+    },
+    {
+      "section_id": "21-4.8",
+      "title": "Alternate Design",
+      "summary": "A more economical alternative uses a frost-susceptible select material or subbase as part of the total cover above the frost-susceptible subgrade, sizing the layer above it with that material's own FASSI; such frost-susceptible select/subbase materials must meet current specifications except the 0.02 mm fines-percentage restriction is waived.",
+      "body": "The reduced subgrade strength design procedure provides the thickness of soil required above a frost-susceptible subgrade to minimize frost heave. To provide a more economical design, a frost susceptible select material or subbase may be used as a part of the total thickness above the frost susceptible subgrade. However, the thickness above the select material or subbase must be determined by using the Frost Area Soil Support Index (FASSI) of the select or subbase material. Where frost-susceptible soils are used as select materials or subbases, they must meet the requirements of current specifications except that the restriction on the allowable percent finer than 0.02 mm is waived.",
+      "key_points": [
+        "Economical alternate: let a frost-susceptible select/subbase material carry part of the required cover, then size the remaining thickness above it using THAT material's own FASSI.",
+        "Frost-susceptible select/subbase material used this way is exempt from the normal <0.02 mm fines-percentage limit (all other specification requirements still apply)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "A more economical frost-area design alternative to full non-frost-susceptible cover."
+    },
+    {
+      "section_id": "21-5",
+      "title": "Surface Course Requirements",
+      "summary": "Surface-course material requirements for aggregate-surfaced roads/parking areas differ between non-frost and frost areas; see the frost/non-frost subsections for the specific gradation and plasticity criteria (Table 21-1).",
+      "body": "The requirements for the various materials to be used in the construction of aggregate surfaced roads and parking areas are dependent upon whether or not frost is a consideration in the design.",
+      "key_points": [
+        "Surface-course material requirements branch on frost vs. non-frost design -- see Sections 21-5.1 and 21-5.2 for the specific criteria."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Container section for surface-course material requirements; subsections 21-5.1/21-5.2 give the frost/non-frost specifics."
+    },
+    {
+      "section_id": "21-5.1",
+      "title": "Non-Frost Areas",
+      "summary": "Non-frost surface material should be cohesive enough to resist abrasion, with LL <= 35 and PI between 4 and 9, graded for maximum density/minimum voids (Table 21-1); chemical modification (chlorides for moisture retention, lime to reduce excess plasticity) may correct an off-spec fine fraction.",
+      "body": "The material used for gravel surfaced roads and parking areas should be sufficiently cohesive to resist abrasive action. It should have a liquid limit no greater than 35 and a plasticity index between 4 and 9. It should also be graded for maximum density and minimum volume of voids to enhance optimum moisture retention while resisting excessive water intrusion. The gradation, therefore, should consist of the optimum combination of coarse and fine aggregates that will ensure minimum void ratios and maximum density. Such a material will then exhibit cohesive strength as well as inter-granular shear strength. Recommended gradations are as shown in Table 21-1. If the fine fraction of the material does not meet plasticity characteristics, modification by addition of chemicals might be required. Chloride products can, in some cases, enhance moisture retention, and lime can be used to reduce excessive plasticity.",
+      "key_points": [
+        "Non-frost surface material target: LL <= 35, PI 4-9, graded for maximum density/minimum voids (Table 21-1) for both cohesive and inter-granular shear strength.",
+        "Chemical fixes for an off-spec fine fraction: chlorides improve moisture retention, lime reduces excessive plasticity."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 21-1: Gradation for Aggregate Surface Courses",
+        "N/A (aggregate gradation lookup)"
+      ],
+      "applicability": "Specifying non-frost-area aggregate surface-course material."
+    },
+    {
+      "section_id": "21-5.2",
+      "title": "Frost Areas",
+      "summary": "Frost-area surfaces need a layered system with restricted fines in all layers (drainage, avoid thaw-period strength/stability loss); Table 21-1 Gradation Nos. 3 and 4 should be used cautiously since they may be unstable in a freeze-thaw environment.",
+      "body": "As previously stated, where frost is a consideration in the design of roads and parking areas, a layered system should be used. The percentage of fines should be restricted in all the layers to facilitate drainage and reduce the loss of stability and strength during thaw periods. Gradation numbers 3 and 4 shown in Table 21-1 should be used with caution since they may be unstable in a freeze-thaw environment.",
+      "key_points": [
+        "Frost areas need the layered system (Section 21-4.2) with fines restricted throughout for drainage and thaw-period stability.",
+        "Table 21-1 Gradation Nos. 3 and 4 carry a freeze-thaw instability caution."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 21-1: Gradation for Aggregate Surface Courses",
+        "N/A (aggregate gradation lookup)"
+      ],
+      "applicability": "Specifying frost-area aggregate surface-course material."
+    },
+    {
+      "section_id": "21-6",
+      "title": "Compaction Requirements",
+      "summary": "Granular layers compact to 100% of ASTM D698 maximum density; select materials/fill subgrades follow Table 21-2 densities (min 95% for cohesionless PI<5/LL<25, min 90% for cohesive PI>5/LL>25); cut-section subgrades must also meet Table 21-2, by direct compaction, remove-and-replace, or covering to a satisfactory in-place-density depth; Table 21-2 depths are measured from the finished aggregate-road surface, not the subgrade surface.",
+      "body": "Compaction requirements for the subgrade and granular layers are expressed as a percent of maximum density as determined by ASTM D1557. For the granular layers, the material must be compacted to 100 percent of the maximum ASTM D698 density. Select materials and subgrades in fills must have densities equal to or greater than the values shown in Table 21-2, except that fills will be placed at no less than 95 percent compaction for cohesionless soils (PI < 5; LL < 25) or 90 percent compaction for cohesive soils (PI > 5; LL > 25). Subgrades in cuts must have densities equal to or greater than the values shown in Table 21-2. Subgrades occurring in cut sections must be either compacted from the surface to meet the densities shown in Table 21-2, removed and replaced before applying the requirements for fills, or covered with sufficient material so that the un-compacted subgrade is at a depth where the in-place densities are satisfactory. The depths shown in Table 21-2 are measured from the surface of the aggregate road and not the surface of the subgrade.",
+      "key_points": [
+        "Granular layers: 100% of ASTM D698 maximum density; percent-of-maximum-density basis overall is ASTM D1557.",
+        "Fill select material/subgrade: Table 21-2 densities, with floors of 95% (cohesionless, PI<5/LL<25) or 90% (cohesive, PI>5/LL>25).",
+        "Cut subgrade: meet Table 21-2 by direct compaction, remove-and-replace, or covering to a depth where in-place density already satisfies the table -- depths in Table 21-2 are measured from the finished aggregate-road surface, not the subgrade."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 21-2: Compaction Depth Requirements for Aggregate Surfaces",
+        "N/A (aggregate compaction depth lookup, table_21_2_aggregate_compaction_depth)"
+      ],
+      "applicability": "Setting compaction density/depth requirements for aggregate-surface subgrade and granular layers."
+    },
+    {
+      "section_id": "21-7",
+      "title": "Drainage Requirements",
+      "summary": "Adequate, well-graded surface drainage (continuous or interconnecting cross slopes per UFC 3-201-01) minimizes moisture damage and erosion of the aggregate surface; off-site drainage (ditches/culverts, sparing culvert use with adequate cover) must handle road runoff without harming surrounding areas, and dust-control materials are covered in UFC 3-260-17.",
+      "body": "Adequate surface drainage should be provided to minimize moisture damage. Expeditious removal of surface water reduces the potential for absorption and ensures more consistent strength and reduced maintenance. Drainage, however, must be provided in a way to preclude damage to the aggregate surfaced road through erosion of fines or erosion of the entire surface layer. Also, care must be taken to ensure that the change in the overall drainage regime as a result of construction can be accommodated by the surrounding topography without damage to the environment or to the newly constructed road or airfield. The surface geometry of a road should be designed so that drainage is provided at all points. Depending upon the surrounding terrain, surface drainage of the roadway can be achieved by a continual cross slope or by a series of two or more interconnecting cross slopes. The entire area should consist of one or more cross slopes having a gradient that meet the requirements of UFC 3-201-01. Judgment is required to arrange the cross slopes to remove water from the road at the nearest possible points while taking advantage of the natural surface geometry to the greatest extent possible. Adequate drainage must be provided outside the road or airfield area to accommodate maximum possible drainage flow from the road. Ditches and culverts must be provided for this purpose. Culverts should be used sparingly and only in areas where adequate cover of granular fill is provided over the culvert. Additionally, adjacent areas and their drainage provisions should be evaluated to determine if rerouting is needed to prevent water from other areas flowing across the road or airfield. Drainage is a critical factor in aggregate surface roads and parking area construction, and maintenance. Therefore, drainage should be considered before construction, and when necessary, serve as a basis for site selection.",
+      "key_points": [
+        "Surface drainage via continuous or interconnecting cross slopes meeting UFC 3-201-01 gradients; goal is drainage at every point without eroding fines or the surface layer.",
+        "Off-site drainage (ditches/culverts) must handle full road runoff; culverts used sparingly, only with adequate granular cover, and adjacent-area drainage rerouting should be checked.",
+        "Drainage adequacy is critical enough to be a site-selection factor, not just a construction detail."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Container section for surface and off-site drainage design of aggregate-surfaced roads; subsection 21-7.1 covers dust-control materials."
+    },
+    {
+      "section_id": "21-7.1",
+      "title": "Materials",
+      "summary": "Multiple dust-control materials are available with no single universally-best choice; recommended materials are discussed in UFC 3-260-17.",
+      "body": "A wide selection of materials for dust control is available to the engineer. No one choice, however, can be singled out as being the most universally acceptable for all problem situations that may be encountered. However, several materials have been recommended for use and are discussed in UFC 3-260-17.",
+      "key_points": [
+        "No universal best dust-control material -- select per site conditions; see UFC 3-260-17 for the recommended options."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selecting a dust-control material for an aggregate-surfaced road."
+    },
+    {
+      "section_id": "21-8",
+      "title": "Design Examples",
+      "summary": "Appendix G contains two worked design examples for unsurfaced aggregate roads (a non-frost design and a frost design), demonstrating the full procedure of this chapter end to end.",
+      "body": "Appendix G contains two design examples of unsurfaced aggregate roads.",
+      "key_points": [
+        "Appendix G, G-9.1/G-9.2: non-frost and frost worked examples for unsurfaced aggregate roads.",
+        "Both examples run the full PCASE-driven procedure of this chapter (traffic mix, subgrade CBR, gradation/compaction tables) end to end."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Pointing to the Appendix G worked examples that demonstrate this chapter's procedure."
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "reference_id": "UFC 3-250-01",
+  "reference_title": "Pavement Design for Roads, Streets, Walks, and Storage Areas",
+  "volume": null,
+  "chapter": 7,
+  "chapter_title": "Flexible Pavement Base Courses",
+  "sections": [
+    {
+      "section_id": "7-1",
+      "title": "Materials",
+      "summary": "Base courses need high-quality material to resist near-surface stresses; graded crushed aggregate, limerock, and stabilized aggregate are unrestricted; dry-/water-bound macadam are allowed only when cost-competitive with stabilized aggregate AND local contractors have a proven track record achieving the required smoothness/grade tolerance with that material.",
+      "body": "Use high-quality materials in base courses of flexible pavements. These high-quality materials provide resistance to the high stresses that occur near the pavement surface. Guide specifications for graded crushed aggregate, limerock, and stabilized aggregate may be used without qualification for design of roads and parking areas. Guide specifications for dry- and water-bound macadam base courses may be used for design of pavements only when the cost of the dry- or water-bound macadam base does not exceed the cost of stabilized-aggregate base course, and the ability of probable bidders to construct pavements with dry- or water-bound macadam base to the required surface smoothness and grade tolerances has been proved by experience in the area.",
+      "key_points": [
+        "Graded crushed aggregate, limerock, stabilized aggregate: usable without qualification.",
+        "Dry-/water-bound macadam: conditional -- cost-competitive AND locally proven constructability."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selecting an allowable base course material family."
+    },
+    {
+      "section_id": "7-2",
+      "title": "Compaction",
+      "summary": "Compact base courses to maximum practicable density, minimum 100% ASTM D1557.",
+      "body": "Compact base courses for flexible pavements sections to the maximum density practicable, but never less than 100 percent of ASTM D1557 maximum density. Generally, the base course will be compacted to a minimum of 100 percent of ASTM D1557 maximum density.",
+      "key_points": ["Base course compaction floor: 100% ASTM D1557."],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Base course compaction specification."
+    },
+    {
+      "section_id": "7-3",
+      "title": "Drainage",
+      "summary": "Base course drainage design is covered in Chapter 20.",
+      "body": "Drainage design for base courses is discussed in Chapter titled Design of Subsurface Pavement Drainage Systems.",
+      "key_points": [
+        "Base course drainage design is covered in Chapter 20, not this chapter."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Cross-reference to Chapter 20."
+    },
+    {
+      "section_id": "7-4",
+      "title": "Selection of Design CBR",
+      "summary": "Do not lab-CBR-test base course materials (mold/processing effects distort results); instead use Table 7-1's service-record-based design CBR by material type. No. 6 Aggregate base needs 50% crushed particles for 80 CBR; No. 1 Graded-Crushed Aggregate needs 90% crushed for its rating.",
+      "body": "Because of the effects of processing samples for the laboratory CBR tests and because of the effects of the test mold, do not use the laboratory CBR test to determine CBR values of base courses. Instead, assign selected CBR ratings as shown in Table 7-1. These ratings have been based on service behavior records and, where pertinent, on in-place tests made on materials subjected to traffic. Materials must conform to the quality requirements given in the guide specifications to develop the needed strengths. To obtain an 80 CBR for No. 6 Aggregate Base Coarse, the material must have 50 percent crushed particles and be graded, but the No. 1 Graded-Crushed Aggregate Base Coarse material has a higher 90 percent of crushed material.",
+      "key_points": [
+        "Base course design CBR comes from Table 7-1 (service-record based), NEVER from a lab CBR test on the base material itself.",
+        "Crushed-particle content differentiates the 80-CBR ratings: 50% crushed for No. 6 Aggregate, 90% crushed for No. 1 Graded-Crushed Aggregate."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": ["Table 7-1: Design CBR Values (Base Course Materials)"],
+      "applicability": "Assigning a design CBR to a base course material."
+    },
+    {
+      "section_id": "7-5",
+      "title": "Minimum Thickness",
+      "summary": "Where PCASE is mandatory, minimum base thickness comes from Table 7-2; combined pavement+base must be >= 6 in or the frost penetration depth (Ch 19), except under surface treatment; frost areas need the Section 19-7 free-draining layer if the base doesn't already provide it; base is added once granular cover reaches 12 in, otherwise evaluate via Chapter 20 drainage criteria.",
+      "body": "Refer to UFC 3-201-01 for minimum thickness requirements where the State pavement design procedure is used. Where the use of PCASE is mandatory, the minimum allowable thickness of base course is shown in Table 7-2. The total thickness of pavement plus base for roads and parking areas must not be less than 6 in (150 mm) or the frost penetration depth as determined from Chapter titled Seasonal Frost Conditions except where a surface treatment is applied. Where frost is expected to penetrate the base material, the base course must also meet the frost criteria in paragraph titled Free-Draining Material Directly Beneath Bound Base Or Surfacing Layer for free-draining material that contain 2.0 percent or less, by weight, of grains that can pass the No. 200 sieve. The drainage criteria in Chapter titled Design of Subsurface Pavement Drainage Systems, requires a minimum of 4 in (100 mm) of drainage layer and 4 in (100 mm) of subbase (separation) course for most pavements. When a pavement design requires 12 in (300 mm) or more of granular material above the subgrade, add base course. For pavements requiring less than 12 in (300 mm) of granular material above the subgrade, evaluate the drainage requirements in Chapter titled Design of Subsurface Pavement Drainage Systems to determine a cost effective system of granular materials. Placing an asphalt surface directly on a drainage layer (without a base course) can be accomplished under certain conditions.",
+      "key_points": [
+        "Table 7-2 governs minimum base thickness when PCASE is mandatory.",
+        "Pavement + base combined thickness floor: 6 in, or the Chapter 19 frost penetration depth, whichever governs (except under surface treatment).",
+        "Add a base course once required granular cover reaches 12 in; below that, run the Chapter 20 drainage evaluation instead."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": ["Table 7-2: Minimum Thickness of Flexible Pavement Sections"],
+      "applicability": "Checking/setting minimum base and total-pavement thickness for a flexible design."
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "reference_id": "UFC 3-250-01",
+  "reference_title": "Pavement Design for Roads, Streets, Walks, and Storage Areas",
+  "volume": null,
+  "chapter": 5,
+  "chapter_title": "Flexible Pavement Subgrades",
+  "sections": [
+    {
+      "section_id": "5-1",
+      "title": "Factors to be Considered",
+      "summary": "Flexible subgrade design must weigh soil classification/limits, depth to bedrock, depth to (including perched) groundwater, attainable/existing compaction, environmentally realistic CBR, weak subsoil layers, frost susceptibility, and expansion potential.",
+      "body": "Consider the following primary factors regarding subgrades for flexible pavement design: the general characteristics of the subgrade soils (e.g. soil classification, limits); depth to bed rock; depth to groundwater table (including perched groundwater table); the attainable compaction in the subgrade and the adequacy of the existing density in the layers below the zone of compaction requirements; the CBR that the compacted subgrade and un-compacted subgrade will have under local environmental conditions; the presence of weak soft layers in the subsoil; susceptibility to detrimental frost action; expansion potential.",
+      "key_points": [
+        "Eight subgrade factors: classification, depth to rock, depth to (perched) groundwater, attainable compaction, environmental CBR, weak layers, frost susceptibility, expansion potential."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Scoping a flexible-pavement subgrade investigation/design."
+    },
+    {
+      "section_id": "5-2",
+      "title": "Compaction",
+      "summary": "Table 5-1 gives the depth (from the pavement surface) at which each percent-compaction level (of ASTM D1557 max density) must be met, by traffic level (equiv. 18-kip ESAL passes) and soil type (cohesive vs. cohesionless); fill cohesionless >=95%, cohesive >=90% minimum.",
+      "body": "The natural density of the subgrade must be sufficient to resist densification under traffic or the subgrade must be compacted during construction to a depth where the natural density will resist densification under traffic. Table 5-1 shows the depth, measured from the pavement surface, at which a given percent compaction is required to prevent densification under traffic. Subgrades in cuts must have natural densities equal to or greater than the values shown in Table 5-1. Where such is not the case, compact the subgrade from the surface to meet the tabulated densities, or remove and replace the subgrade, in which case the requirements for fills apply. As another option, cover the subgrade with sufficient selected material, subbase, and base so that the un-compacted subgrade is at a depth where the in place densities are satisfactory. In fill areas, place cohesionless soils at no less than 95 percent of ASTM D1557 maximum density and cohesive fills at less than 90 percent of ASTM D1557 maximum density.",
+      "key_points": [
+        "Table 5-1: depth-of-compaction requirement vs. equivalent 18-kip ESAL passes, by percent density (100/95/90/85/80) and soil type.",
+        "Cut sections: natural density must already meet Table 5-1, or be compacted/replaced/covered to comply.",
+        "Fill minimums: cohesionless >= 95%, cohesive >= 90% (ASTM D1557), independent of Table 5-1's deeper-zone values."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": ["Table 5-1: Depth of Compaction for Select Materials and Subgrades (CBR <= 20)"],
+      "applicability": "Any flexible-pavement subgrade compaction spec/verification."
+    },
+    {
+      "section_id": "5-3",
+      "title": "Compaction Examples",
+      "summary": "Appendix G (G-2) includes two worked examples applying the subgrade compaction requirements: a cohesionless and a cohesive subgrade case.",
+      "body": "Appendix G includes two examples illustrating the application of subgrade compaction requirements: Example 1 (Section G-2.1) works a cohesionless sand subgrade, and Example 2 (Section G-2.2) works a cohesive lean-clay subgrade, each walking through the Table 5-1 depth-of-compaction lookup and the resulting cut/fill treatment.",
+      "key_points": [
+        "Worked examples in Appendix G, G-2.1 (cohesionless) and G-2.2 (cohesive)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Reference examples for applying Table 5-1."
+    },
+    {
+      "section_id": "5-4",
+      "title": "Selection of Design CBR Values",
+      "summary": "Design CBR may come from lab soaked CBR, field in-place CBR, DCP CBR (ASTM D6951/D6951M), or undisturbed-sample CBR (ASTM D1883/D4429); lab soaked CBR is default absent prior local performance data; in-place tests apply when the subgrade is already near max field moisture and frost won't penetrate it.",
+      "body": "Flexible pavements may be designed using the laboratory soaked CBR, the field in-place CBR, the CBR from the Dynamic Cone Penetrometer as described in ASTM D6951/D6951M or the CBR from undisturbed samples as described in ASTM D1883 or ASTM D 4429. For the design of flexible pavements in areas where no previous experience regarding pavement performance is available, the laboratory soaked CBR is normally used. Where an existing pavement is available at the site that has a subgrade constructed to the same standards as the job being designed, in-place tests or tests on undisturbed samples may be used in selecting the design CBR value. In-place tests are used when the subgrade material is at the maximum water content expected in the prototype and frost is not expected to penetrate the subgrade. Contrarily, tests on undisturbed samples are used where the material is not at the maximum water content and thus soaking is required. Sampling involves considerably more work than in-place tests and undisturbed samples tend to be slightly disturbed. Therefore, in-place tests should be used where possible. Guides for determining when in-place tests can be used are given in details of the CBR test in ASTM D4429.",
+      "key_points": [
+        "Default method (no local performance history): laboratory soaked CBR.",
+        "In-place testing preferred over undisturbed sampling when feasible (less disturbance, less work)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Choosing the CBR test method for a given site/data-availability situation."
+    }
+  ]
+}

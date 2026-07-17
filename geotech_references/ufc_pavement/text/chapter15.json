@@ -1,0 +1,492 @@
+{
+  "reference_id": "UFC 3-250-01",
+  "reference_title": "Pavement Design for Roads, Streets, Walks, and Storage Areas",
+  "volume": null,
+  "chapter": 15,
+  "chapter_title": "Pavement Overlays",
+  "sections": [
+    {
+      "section_id": "15-1",
+      "title": "General",
+      "summary": "Overlays either increase load-carrying capacity (needs structural design, this chapter) or correct a surface defect (no capacity increase needed); the equations here give overlay thickness equivalent in performance to a new pavement on subgrade, from full-scale accelerated traffic test research.",
+      "body": "Normally, overlays of existing pavements are used to increase the load-carrying capacity of an existing pavement or to correct a defective surface condition on the existing pavement. Of these reasons, the first requires a structural design procedure for determining the thickness of overlay; whereas the second requires only a thickness of overlay sufficient to correct the surface condition, and no increase in load-carrying capacity is considered. The design method for overlays included in this chapter determines the thickness required to increase load-carrying capacity. These methods have been developed from a series of full-scale accelerated traffic tests on various types of overlays and are, therefore, empirical. These methods determine the required thickness of overlay that, when placed on the existing pavement, will be equivalent in performance to the required design thickness of a new pavement placed on subgrade.",
+      "key_points": [
+        "This chapter's equations are for CAPACITY-INCREASING overlays only; a surface-only overlay does not need this structural procedure."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Determining whether an overlay project needs the structural design procedures in this chapter."
+    },
+    {
+      "section_id": "15-2",
+      "title": "Preparation of Existing Pavement",
+      "summary": "Explore/test the existing pavement for distress and cause; repair extensive/progressive cracking, rutting, foundation failures, pumping, groundwater bleeding, and settlement before overlay; grout voids beneath rigid pavement; determine k, CBR, thickness, condition index, and flexural strength as needed for the chosen overlay type.",
+      "body": "Exploration and tests of the existing pavement should be made to locate all areas of distress in the existing pavement and to determine the cause of the distress. Areas showing extensive and progressive cracking, rutting, and foundation failures should be repaired before the overlay. Such repair is especially needed in areas where excessive pumping, bleeding of groundwater at joints or cracks, excessive settlement in foundation, subgrade rutting, surface rutting, and slides have occurred. If testing of the existing pavement indicates the presence of voids beneath a rigid pavement, they should be filled by grouting before the overlay. The properties of the existing pavement and foundation such as the modulus of subgrade reaction, CBR, thickness, condition index, and flexural strength should be determined. The exact properties to be determined depend upon the type of overlay to be used.",
+      "key_points": [
+        "Grout voids beneath an existing rigid pavement before overlaying."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Pre-overlay condition assessment/repair."
+    },
+    {
+      "section_id": "15-2.1",
+      "title": "Rigid Overlay (Surface Preparation)",
+      "summary": "Three bond conditions (fully bonded, partially bonded, non-bonded); clean the existing pavement of all bond-breaking contaminants for bonded cases; apply grout for fully-bonded; use a bond-breaking course (<=~1 in) for non-bonded; repair flexible-pavement unevenness >1 in before a rigid overlay.",
+      "body": "Overlay thickness criteria are presented for three conditions of bond between the rigid overlay and existing rigid pavement: fully bonded, partially bonded, and non-bonded. The fully bonded condition exists when the concrete is cast directly on concrete and special efforts are made to obtain bond. The partially bonded condition exists when the concrete is cast directly on concrete with no special efforts to achieve or destroy bond. The non-bonded condition exists when the bond is prevented by an intervening layer of material. When using a fully bonded or partially bonded rigid overlay, clean the existing rigid pavement of all foreign matter (such as oil and paint), spalled concrete, extruded joint seal, bituminous patches, or anything else that would act as a bond-breaker between the overlay and existing rigid pavement. In addition, for the fully bonded overlay, prepare the surface of the existing pavement according to the recommendation in UFC 3-250-04. Apply a sand-cement grout or an epoxy grout to the cleaned surface immediately prior placement of the concrete overlay. When using a non-bonded rigid overlay, clean the existing rigid pavement of all loose particles and cover with a leveling or bond-breaking course of bituminous concrete, sand asphalt, heavy building paper, polyethylene, or other similar stable material. The bond-breaking medium generally should not exceed a thickness of about 1 in (25 mm) except in the case of leveling courses where greater thicknesses may be necessary. When applying a rigid overlay to an existing flexible pavement, clean the surface of the existing pavement of loose materials, and repair any potholing or unevenness exceeding about 1 in (25 mm) by cold planning, localized patching or the application of a leveling course using bituminous concrete, sand-asphalt, or a similar material.",
+      "key_points": [
+        "Bond-breaking medium thickness: ~1 in max (except leveling courses)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Surface prep before a rigid (fully/partially/non-bonded) overlay."
+    },
+    {
+      "section_id": "15-2.2",
+      "title": "Flexible Overlay (Surface Preparation)",
+      "summary": "No special surface prep on rigid pavement beyond removing loose material; over bituminous, clean contamination, seal joints <1 in with sealant, fill wider joints with bituminous mixture, use leveling courses to correct grade, and tack-coat before an all-bituminous overlay.",
+      "body": "When using a flexible overlay, no special treatment of the surface of the existing rigid pavement is required, other than the removal of loose material. When the flexible overlay is over bituminous concrete, clean the surface of the existing rigid pavement of all foreign matter, spalled concrete, fat spots in bituminous patches, and extruded soft or spongy joint seal material. Fill joints or cracks less than 1 in (25 mm) wide in the existing rigid with joint sealant. Clean joints or cracks that are 1 in (25 mm) or greater in width and fill with an acceptable bituminous mixture (such as sand asphalt) which is compatible with the overlay. Use leveling courses of bituminous concrete to bring the existing rigid pavement to the proper grade when required. Before placing the all-bituminous concrete, apply a tack coat to the surface of the existing pavement.",
+      "key_points": [
+        "Joint width threshold for treatment: < 1 in = sealant; >= 1 in = fill with bituminous mixture."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Surface prep before a flexible overlay of a rigid or flexible pavement."
+    },
+    {
+      "section_id": "15-3",
+      "title": "Condition of Existing Pavement",
+      "summary": "The existing rigid pavement's support in overlay design is captured by a condition factor C, selected from a condition survey (interpolate between listed values if needed); C differs by overlay type (rigid vs. flexible) and existing pavement type (plain vs. reinforced) -- see Table 15 condition factor lookup.",
+      "body": "The support that the existing rigid pavement provides to an overlay is a function of its structural condition just before the overlay. In the overlay design equations, the structural condition of the existing rigid pavement is assessed by a condition factor C. Select the value of C based upon a condition survey of the existing rigid pavement. Use an interpolation of C values between those shown if it is considered necessary to define more accurately the existing structural condition.",
+      "key_points": [
+        "The existing rigid pavement's support in overlay design is captured by a condition factor C, selected from a condition survey (interpolate between listed values if needed); C differs by overlay type (rigid vs. flexible) and existing pavement type (plain vs. reinforced) -- see..."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Determining the condition factor C input to the overlay equations."
+    },
+    {
+      "section_id": "15-3.1",
+      "title": "General (Condition Factor)",
+      "summary": "See Section 15-3 for the general C-factor discussion.",
+      "body": "The support that the existing rigid pavement provides to an overlay is a function of its structural condition just before the overlay, assessed via condition factor C selected from a condition survey.",
+      "key_points": [
+        "See Section 15-3 for the general C-factor discussion."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "General condition-factor background."
+    },
+    {
+      "section_id": "15-3.2",
+      "title": "Plain Concrete Overlay -- Condition Factor",
+      "summary": "For a PLAIN concrete overlay design, C for the existing plain pavement is 1.00 (good), 0.75 (initial cracking, no progression), or 0.35 (progressive cracking with spalling/raveling/faulting); C for an existing REINFORCED pavement is 1.00/0.75/0.35 on an analogous good/moderate/severe scale.",
+      "body": "The following values of C are assigned for the following conditions of plain and reinforced concrete pavements (see 15-3.2.1 and 15-3.2.2).",
+      "key_points": [
+        "For a PLAIN concrete overlay design, C for the existing plain pavement is 1.00 (good), 0.75 (initial cracking, no progression), or 0.35 (progressive cracking with spalling/raveling/faulting); C for an existing REINFORCED pavement is 1.00/0.75/0.35 on an analogous..."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Condition factor C for a rigid overlay (plain concrete overlay) design."
+    },
+    {
+      "section_id": "15-3.2.1",
+      "title": "Condition of Existing Plain Concrete Pavement",
+      "summary": "C=1.00 good (little/no structural load cracking); C=0.75 initial load cracking, no progression/faulting; C=0.35 progressive load cracking with spalling/raveling/faulting.",
+      "body": "C=1.00: Pavements are in good condition with little or no structural cracking due to load. C=0.75: Pavements exhibit initial cracking due to load but no progressive cracking or faulting of joints or cracks. C=0.35: Pavements exhibit progressive cracking due to load accompanied by spalling, raveling, or faulting of cracks and joints.",
+      "key_points": [
+        "Verified via Appendix G, G-7 (overlay example): existing pavement in good condition, C=1.0 used for both the rigid and flexible overlay computations."
+      ],
+      "equations": [
+        {
+          "id": "N/A (condition factor lookup)",
+          "description": "Condition factor C for a rigid overlay on an existing plain concrete pavement.",
+          "implemented_in": "geotech_references.ufc_pavement.tables.table_15_condition_factor"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Rigid overlay of an existing plain concrete pavement."
+    },
+    {
+      "section_id": "15-3.2.2",
+      "title": "Condition of Existing Reinforced Concrete Pavement",
+      "summary": "C=1.00 good (short-spaced transverse cracks OK, no longitudinal cracking, little spalling); C=0.75 short-spaced transverse cracking, little/no interconnecting longitudinal cracking, moderate spalling; C=0.35 severe transverse+interconnecting-longitudinal cracking, severe spalling, initial punch-outs.",
+      "body": "C=1.00: Pavements are in good condition with little or no short-spaced transverse 12 in (300 mm) to 24 in (600 mm) cracks, no longitudinal cracking, and little spalling or raveling along cracks. C=0.75: Pavements exhibit short-spaced transverse cracking but little or no interconnecting longitudinal cracking due to load and only moderate spalling or raveling along cracks. C=0.35: Pavements exhibit severe short-spaced transverse cracking and interconnecting longitudinal cracking due to load, severe spalling along cracks, and initial punch-out type failures.",
+      "key_points": [
+        "C=1.00 good (short-spaced transverse cracks OK, no longitudinal cracking, little spalling); C=0.75 short-spaced transverse cracking, little/no interconnecting longitudinal cracking, moderate spalling; C=0.35 severe transverse+interconnecting-longitudinal cracking, severe..."
+      ],
+      "equations": [
+        {
+          "id": "N/A (condition factor lookup)",
+          "description": "Condition factor C for a rigid overlay on an existing reinforced concrete pavement.",
+          "implemented_in": "geotech_references.ufc_pavement.tables.table_15_condition_factor"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Rigid overlay of an existing reinforced concrete pavement."
+    },
+    {
+      "section_id": "15-3.3",
+      "title": "Flexible Overlay -- Condition Factor",
+      "summary": "For a FLEXIBLE overlay design, C for existing plain pavement is 1.00/0.75/0.50; C for existing reinforced pavement is 1.00/0.75.",
+      "body": "The following values of C are assigned for the following conditions of plain and reinforced concrete pavement (see 15-3.3.1 and 15-3.3.2).",
+      "key_points": [
+        "For a FLEXIBLE overlay design, C for existing plain pavement is 1.00/0.75/0.50; C for existing reinforced pavement is 1.00/0.75."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Condition factor C for a flexible overlay of a rigid base pavement."
+    },
+    {
+      "section_id": "15-3.3.1",
+      "title": "Condition of Existing Plain Concrete Pavements (Flexible Overlay)",
+      "summary": "C=1.00 good (some load cracking, no progression); C=0.75 progressive cracking with spalling/raveling/minor faulting; C=0.50 multiple cracking with raveling/spalling/faulting.",
+      "body": "C=1.00: Pavements are in good condition with some cracking due to load but little or no progressive-type cracking. C=0.75: Pavements exhibit progressive cracking due to load and spalling, raveling, and minor faulting at joints and cracks. C=0.50: Pavements exhibit multiple cracking along with raveling, spalling, and faulting at joints and cracks.",
+      "key_points": [
+        "C=1.00 good (some load cracking, no progression); C=0.75 progressive cracking with spalling/raveling/minor faulting; C=0.50 multiple cracking with raveling/spalling/faulting."
+      ],
+      "equations": [
+        {
+          "id": "N/A (condition factor lookup)",
+          "description": "Condition factor C for a flexible overlay on an existing plain concrete pavement.",
+          "implemented_in": "geotech_references.ufc_pavement.tables.table_15_condition_factor"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Flexible overlay of an existing plain concrete pavement."
+    },
+    {
+      "section_id": "15-3.3.2",
+      "title": "Condition of Existing Reinforced Concrete Pavement (Flexible Overlay)",
+      "summary": "C=1.00 good (some closely-spaced transverse cracking, initial interconnecting longitudinal cracks, moderate spalling); C=0.75 numerous closely-spaced cracks, rather severe spalling, or initial punch-out evidence.",
+      "body": "C=1.00: Pavements are in good condition but exhibit some closely spaced load-induced transverse cracking, initial interconnecting longitudinal cracks, and moderate spalling or raveling of joints and cracks. C=0.75: Pavements in trafficked areas exhibit numerous closely spaced load-induced transverse and longitudinal cracks, rather severe spalling or raveling, or initial evidence of punch-out failures.",
+      "key_points": [
+        "C=1.00 good (some closely-spaced transverse cracking, initial interconnecting longitudinal cracks, moderate spalling); C=0.75 numerous closely-spaced cracks, rather severe spalling, or initial punch-out evidence."
+      ],
+      "equations": [
+        {
+          "id": "N/A (condition factor lookup)",
+          "description": "Condition factor C for a flexible overlay on an existing reinforced concrete pavement.",
+          "implemented_in": "geotech_references.ufc_pavement.tables.table_15_condition_factor"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Flexible overlay of an existing reinforced concrete pavement."
+    },
+    {
+      "section_id": "15-4",
+      "title": "Rigid Overlay of Existing Rigid Pavement",
+      "summary": "Three overlay equations (fully/partially/non-bonded), selected by achievable bond and the existing pavement's own condition/type.",
+      "body": "There are three basic equations for the design of rigid overlays which depend upon the degree of bond that develops between the overlay and existing pavement: fully bonded, partially bonded, and non-bonded.",
+      "key_points": [
+        "Three overlay equations (fully/partially/non-bonded), selected by achievable bond and the existing pavement's own condition/type."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Rigid-on-rigid overlay design overview."
+    },
+    {
+      "section_id": "15-4.1",
+      "title": "General (Rigid Overlay Equation Selection)",
+      "summary": "Use fully bonded when special care achieves bond; partially bonded when no special bond effort is made; non-bonded (with a bond-breaking medium) when overlaying reinforced concrete or a plain pavement with C<=0.35, or when overlay joints can't practically match existing joints.",
+      "body": "Use the fully bonded overlay equation when special care is taken to provide bond between the overlay and the existing pavement. Use the partially bonded equation when the rigid overlay is to be placed directly on the existing pavement and no special care is taken to provide bond. Use a bond-breaking medium and the non-bonded equation when a plain concrete overlay is used to overlay an existing reinforced concrete pavement or an existing plain concrete pavement that has a condition factor C <= 0.35. Also use these equations when matching joints in a plain concrete overlay with those in the existing plain concrete pavement causing undue construction difficulties or resulting in odd-shaped slabs.",
+      "key_points": [
+        "Non-bonded is REQUIRED (not optional) when overlaying reinforced concrete, or plain concrete with C<=0.35."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selecting which of Eq. 15-1/15-2/15-3 governs a rigid-on-rigid overlay."
+    },
+    {
+      "section_id": "15-4.2",
+      "title": "Plain Concrete Overlay",
+      "summary": "See 15-4.2.1 for the three thickness equations and their parameters.",
+      "body": "The required thickness of plain concrete overlay is determined from the applicable equation for the achievable bond condition (see 15-4.2.1).",
+      "key_points": [
+        "See 15-4.2.1 for the three thickness equations and their parameters."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Plain concrete rigid-on-rigid overlay design."
+    },
+    {
+      "section_id": "15-4.2.1",
+      "title": "Thickness Determination (Rigid Overlay)",
+      "summary": "Fully bonded: ho = hd - hE (Eq. 15-1). Partially bonded: ho = [hd^1.4 - C*((hd/he)*hE)^1.4]^(1/1.4) (Eq. 15-2). Non-bonded: ho = sqrt[hd^2 - C*((hd/he)*hE)^2] (Eq. 15-3). hd = overlay-flexural-strength plain-concrete design thickness (Appendix F); he = plain-concrete design thickness using the EXISTING pavement's measured flexural strength/k/overlay traffic; hE = existing pavement thickness (or Figure 14-1 equivalent if reinforced). Fully bonded limited to C=1.0, overlay 2.0-5.0 in. Minimum overlay: 2 in fully bonded, 6 in partially/non-bonded. Round up in 0.5 in increments.",
+      "body": "The required thickness ho of plain concrete overlay is determined from the following applicable equations: Fully bonded: ho = hd - hE (eq. 15-1). Partially bonded: ho = [hd^1.4 - C*((hd/he)*hE)^1.4]^(1/1.4) (eq. 15-2). Non-bonded: ho = sqrt[hd^2 - C*((hd/he)*hE)^2] (eq. 15-3). Where hd is the design thickness of plain concrete pavement determined from Appendix F using the design flexural strength of the overlay and he is the design thickness of plain concrete pavement using the measured flexural strength of the existing rigid pavement, the modulus of soil reaction k of the existing rigid pavement foundation, and the design traffic needed for overlay design. The use of fully bonded overlay is limited to existing pavements having a condition index of 1.0 and to overlay thickness of 2.0 in (50 mm) to 5.0 in (125 mm). The fully bonded overlay is used primarily to correct a surface problem such as scaling rather than as a structural upgrade. The factor hE represents the thickness of the existing plain concrete pavement or the equivalent thickness of plain concrete pavement having the same load-carrying capacity as the existing pavement. If the existing pavement is reinforced concrete, hE is determined from Figure 14-1 using the percent reinforcing steel S and design thickness he. The minimum thickness of plain concrete overlay is 2 in (50 mm) for a fully bonded overlay and 6 in (150 mm) for a partially bonded or non-bonded overlay. When the final pavement thickness obtained from the design curve indicates a fractional value, round up in 0.5 in (10 mm) increments.",
+      "key_points": [
+        "Verified EXACTLY vs. Appendix G, G-7.1/7.2/7.3: hd=8.1, he=8.1 (same properties as overlay design), hE=6, C=1.0 -> ho = 2.1 in (fully bonded), 3.7 in (partially bonded), 5.4 in (non-bonded).",
+        "hE for a reinforced existing pavement comes from Figure 14-1, not directly from the actual physical thickness."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 15-1",
+          "description": "Fully bonded rigid overlay: ho = hd - hE.",
+          "implemented_in": "geotech_references.ufc_pavement.equations.rigid_overlay_fully_bonded"
+        },
+        {
+          "id": "Eq. 15-2",
+          "description": "Partially bonded rigid overlay: ho = [hd^1.4 - C*((hd/he)*hE)^1.4]^(1/1.4).",
+          "implemented_in": "geotech_references.ufc_pavement.equations.rigid_overlay_partially_bonded"
+        },
+        {
+          "id": "Eq. 15-3",
+          "description": "Non-bonded rigid overlay: ho = sqrt[hd^2 - C*((hd/he)*hE)^2].",
+          "implemented_in": "geotech_references.ufc_pavement.equations.rigid_overlay_non_bonded"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Computing the required rigid overlay thickness for any of the three bond conditions."
+    },
+    {
+      "section_id": "15-4.2.2",
+      "title": "Jointing (Rigid Overlay)",
+      "summary": "Partially/fully bonded overlays: match existing joint locations; non-bonded: design contraction joints per plain concrete rules; dowel longitudinal construction joints (both bonded and non-bonded).",
+      "body": "For all partially bonded and fully bonded plain concrete overlays, provide joints in the overlay to coincide with all joints in the existing rigid pavement. It is not necessary for joints in the overlay to be of the same type as joints in the existing pavement. When it is impractical to match the joints in the overlay to joints in the existing rigid pavement, either use a bond-breaking medium and design the overlay as a non-bonded overlay or reinforce the overlay over the mismatched joints. Should the mismatch of joints become severe, consider a reinforced concrete overlay design as an economic alternative to the use of a non-bonded plain concrete overlay. For non-bonded plain concrete overlays, the design and spacing of transverse contraction joints is in accordance with requirements for plain concrete pavements. For both partially bonded and non-bonded plain concrete overlays, dowel the longitudinal construction joints using the dowel size and spacing discussed in Chapter titled Rigid Overlay Of Existing Flexible Or Composite Pavements. Do not use dowels and load-transfer devices in fully bonded overlays. Joint sealing for plain concrete overlays must conform to the requirements for plain concrete pavements.",
+      "key_points": [
+        "Partially/fully bonded overlays: match existing joint locations; non-bonded: design contraction joints per plain concrete rules; dowel longitudinal construction joints (both bonded and non-bonded)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Joint layout for rigid-on-rigid overlays."
+    },
+    {
+      "section_id": "15-4.3",
+      "title": "Reinforced Concrete Overlay",
+      "summary": "May strengthen either plain or reinforced existing pavement; generally designed partially bonded; use non-bonded only where a leveling course is required.",
+      "body": "A reinforced concrete overlay may be used to strengthen either, an existing plain concrete pavement, or an existing reinforced concrete pavement. Generally, the overlay will be designed as a partially bonded overlay. Use the non-bonded overlay design only when a leveling course is required over the existing pavement. Design the reinforcement steel for reinforced concrete overlays and place in accordance with reinforced concrete pavements.",
+      "key_points": [
+        "May strengthen either plain or reinforced existing pavement; generally designed partially bonded; use non-bonded only where a leveling course is required."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Reinforced-concrete overlay design overview."
+    },
+    {
+      "section_id": "15-4.3.1",
+      "title": "Thickness Determination (Reinforced Overlay)",
+      "summary": "Determine the plain-concrete overlay thickness (Eq. 15-1/2/3) first, then use Figure 14-1 exactly as for new reinforced pavement to get the reinforced overlay thickness/steel; minimum 6 in.",
+      "body": "Determine the required thickness of reinforced concrete overlay using Figure 14-1 after determining the thickness of plain concrete overlay from the appropriate overlay equation. Then, using the value for the thickness of plain concrete overlay, select either the thickness of reinforced concrete overlay and determine the required percent steel or select the percent steel and determine the thickness of reinforced concrete overlay from Figure 14-1. The minimum thickness of reinforced concrete overlay must be 6 in (150 mm).",
+      "key_points": [
+        "Determine the plain-concrete overlay thickness (Eq. 15-1/2/3) first, then use Figure 14-1 exactly as for new reinforced pavement to get the reinforced overlay thickness/steel; minimum 6 in."
+      ],
+      "equations": [
+        {
+          "id": "N/A (Figure 14-1 nomograph)",
+          "description": "Reinforced overlay thickness/steel from the plain-concrete overlay thickness.",
+          "implemented_in": "geotech_references.ufc_pavement.tables.figure_14_1_reinforced_pavement_design"
+        }
+      ],
+      "figures": [
+        "Figure 14-1: Reinforced Rigid Pavement Design"
+      ],
+      "tables": [],
+      "applicability": "Reinforced concrete overlay thickness design."
+    },
+    {
+      "section_id": "15-4.3.2",
+      "title": "Jointing (Reinforced Overlay)",
+      "summary": "Match longitudinal construction joints when possible; dowel all longitudinal joints per Table 16-2 using the overlay thickness; transverse joints need not match; max transverse contraction joint spacing per Eq. 17-1, capped at 75 ft (25 m).",
+      "body": "Whenever possible, the longitudinal construction joints in the overlay should match the longitudinal joints in the existing pavement. Dowel all longitudinal joints dowel size and spacing designated in Chapter titled Joints For Plain Concrete using the thickness of reinforced concrete overlay. It is not necessary for transverse joints in the overlay to match joints in the existing pavement; however, when practical, match the joints. Determine the maximum spacing of transverse contraction joints in accordance with equation 17-1, but do not exceed 75 ft (25 m) regardless of the thickness of the pavement or the percent steel used. Joint sealing for reinforced concrete pavements must conform to the requirements for plain concrete pavements.",
+      "key_points": [
+        "Match longitudinal construction joints when possible; dowel all longitudinal joints per Table 16-2 using the overlay thickness; transverse joints need not match; max transverse contraction joint spacing per Eq. 17-1, capped at 75 ft (25 m)."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 17-1",
+          "description": "Maximum transverse contraction joint spacing for the reinforced overlay, capped at 75 ft.",
+          "implemented_in": "geotech_references.ufc_pavement.equations.reinforced_pavement_max_slab_length"
+        }
+      ],
+      "figures": [],
+      "tables": [
+        "Table 16-2: Dowel Size and Spacing"
+      ],
+      "applicability": "Joint layout for reinforced concrete overlays."
+    },
+    {
+      "section_id": "15-5",
+      "title": "Rigid Overlay of Existing Flexible or Composite Pavements",
+      "summary": "Two conditions (flexible pavement, composite base pavement) each with their own k-determination and thickness-design path (both feed into the Appendix F plain-concrete design charts).",
+      "body": "See 15-5.1 (flexible pavements) and 15-5.2 (composite base pavements) for the respective procedures.",
+      "key_points": [
+        "Two conditions (flexible pavement, composite base pavement) each with their own k-determination and thickness-design path (both feed into the Appendix F plain-concrete design charts)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Rigid overlay of a non-rigid existing pavement."
+    },
+    {
+      "section_id": "15-5.1",
+      "title": "Flexible Pavements (Rigid Overlay)",
+      "summary": "Design as a new rigid pavement on grade; get k from a plate-bearing test on the existing flexible surface, or Figure 10-1 (treating the bituminous concrete as unbound base); cap k at 500 pci; run the plate test near the hottest-time-of-year AC temperature (within 5 degrees F).",
+      "body": "Design a rigid overlay of an existing flexible pavement in the same way as a rigid pavement on grade. Determine a modulus of subgrade reaction k by a plate-bearing test performed on the surface of the existing flexible pavement. If it is not practical to determine k from a plate-bearing test, use Figure 10-1 to determine an approximate value. Figure 10-1 yields an effective k value at the surface of the flexible pavement as a function of the subgrade k and thickness of base and subbase above the subgrade. When using Figure 10-1, consider the bituminous concrete to be unbound base course material. Using this k value and the concrete flexural strength, determine the required thickness of plain concrete overlay from the charts in Appendix F. However, the following limitations should apply: in no case should a k value greater than 500 pci (140 kPa/mm) be used; perform the plate-bearing test to determine the k value on the flexible pavement at a time when the temperature of the bituminous concrete is within five degrees of the ambient temperature of the hottest period of the year in the locality of the proposed construction.",
+      "key_points": [
+        "k for a rigid-over-flexible overlay comes from a plate test on the flexible surface, or Figure 10-1 treating the AC as unbound base.",
+        "Cap: k <= 500 pci for this application; plate test timing must approximate the hottest-season AC temperature."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10-1: Effect of Base Course Thickness on Modulus of Soil Reaction for Non-frost Conditions",
+        "Figure F-1: Single Axle, Dual Tire Load, Plain Concrete and RCCP"
+      ],
+      "tables": [],
+      "applicability": "Rigid overlay of an existing flexible pavement."
+    },
+    {
+      "section_id": "15-5.2",
+      "title": "Composite Base Pavements (Rigid Overlay)",
+      "summary": "Rigid base + <4 in bituminous overlay: use the non-bonded overlay equation (Eq. 15-3). Rigid base + >=4 in bituminous (or bituminous+base): use the flexible-pavement-on-existing-flexible procedure (15-5.1); same k-limitations apply.",
+      "body": "Two conditions of composite pavement are possible when considering a rigid overlay. When the composite pavement is composed of a rigid base pavement with less than 4 in (100 mm) of all-bituminous overlay, determine the required thickness of rigid overlay using the non-bonded overlay equation. If the composite pavement is composed of a rigid base pavement with 4 in (100 mm) or more of either all bituminous or bituminous with base course overlay, determine the required thickness of overlay by paragraph titled Flexible Pavements above. The same limitations for maximum k value and temperature of pavement during testing apply.",
+      "key_points": [
+        "4 in of existing bituminous cover over a rigid base is the threshold that switches the design method (non-bonded Eq. 15-3 below 4 in; the flexible-surface k-based procedure at/above 4 in)."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 15-3",
+          "description": "Non-bonded rigid overlay equation, used for a composite base with < 4 in of bituminous cover.",
+          "implemented_in": "geotech_references.ufc_pavement.equations.rigid_overlay_non_bonded"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Rigid overlay of a composite (rigid base + bituminous cover) pavement."
+    },
+    {
+      "section_id": "15-6",
+      "title": "Flexible Overlay of Flexible Pavement",
+      "summary": "Design a new pavement and compare to existing thickness; the difference is the overlay thickness; exercise judgment for complex/semi-rigid existing construction; UFC 3-260-03 covers evaluating existing construction.",
+      "body": "Overlays are used for strengthening or rehabilitation of an existing pavement. Strengthening is required when heavier loads are introduced or when a pavement is no longer capable of supporting the loads for which it was designed. Rehabilitation may include sealing or resealing of cracks, patching, limited reconstruction before an overlay, restoration of the surface profile, improvement of skid resistance by a friction course, or improvement of the surface quality. When it has been determined that strengthening is required, design the overlay by designing a new pavement and comparing its thickness with the thickness of the existing pavement. The difference between these two pavements is the thickness of overlay required to satisfy design requirements. Overlays may be all-bituminous concrete or asphalt concrete and base course. The flexible pavement, after being overlaid, must meet all compaction requirements of a new pavement. Where the existing construction is complex, consisting of several layers, and especially where there are semi-rigid layers, such as soil cement, cement-stabilized soils, or badly cracked PCC, exercise careful judgment to evaluate the existing materials. UFC 3-260-03 provides criteria for evaluating existing construction.",
+      "key_points": [
+        "Flexible-on-flexible overlay thickness = (new-pavement design thickness) - (existing pavement thickness); simple difference method."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Flexible overlay of an existing flexible pavement."
+    },
+    {
+      "section_id": "15-7",
+      "title": "Flexible Overlay of Rigid Base Pavement",
+      "summary": "Two flexible-overlay types (all-bituminous, bituminous-with-base-course), chosen by required overlay thickness (>= 4 in of base needed to use the base-course type); method references the existing rigid pavement's thickness deficiency and assumes controlled cracking of the rigid base during the overlay's design life.",
+      "body": "See 15-7.1 (design procedure) and 15-7.2 (thickness determination).",
+      "key_points": [
+        "Two flexible-overlay types (all-bituminous, bituminous-with-base-course), chosen by required overlay thickness (>= 4 in of base needed to use the base-course type); method references the existing rigid pavement's thickness deficiency and assumes controlled cracking of the..."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Flexible overlay of an existing rigid (base) pavement."
+    },
+    {
+      "section_id": "15-7.1",
+      "title": "Design Procedure (Flexible Overlay of Rigid)",
+      "summary": "Use bituminous-with-base-course when overlay thickness supports a minimum 4 in compacted base course plus surface courses; else all-bituminous; assumes controlled cracking develops in the rigid base over the overlay's design life.",
+      "body": "The design procedure presented determines the thickness of flexible overlay necessary to increase the load-carrying capacity of existing rigid pavement. This method is limited to the design of the two types of flexible overlay, the all-bituminous and the bituminous with base course. The selection of the type of flexible overlay to be used for a given condition is dependent only on the required thickness of the overlay. Normally, use the bituminous with base course overlay when the required thickness of overlay is sufficient to incorporate a minimum 4 in (100 mm) compacted layer of high quality base course material plus the required thickness of bituminous concrete surface courses. For lesser thicknesses of flexible overlay, use the all-bituminous overlay. The method of design is referenced to the deficiency in thickness of the existing rigid base pavement and assumes that a controlled degree of cracking takes place in the rigid base pavement during the design life of the pavement.",
+      "key_points": [
+        "Use bituminous-with-base-course when overlay thickness supports a minimum 4 in compacted base course plus surface courses; else all-bituminous; assumes controlled cracking develops in the rigid base over the overlay's design life."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Choosing between all-bituminous and bituminous-with-base-course overlay types."
+    },
+    {
+      "section_id": "15-7.2",
+      "title": "Thickness Determination (Flexible Overlay of Rigid)",
+      "summary": "to = 3.0*(F*hd - C*hE) (Eq. 15-4). hd = plain-concrete design thickness (Appendix F); hE = existing pavement thickness (plain) or Figure 14-1 equivalent (reinforced); F = cracking-projection factor from Figure 15-1; C = condition factor. Round up 0.5 in; min 4 in (all-bituminous strengthening); use minimum if the raw result is negative/low; when existing flexural strength <500 psi or k>200 pci, ALSO compute via the flexible-pavement (CBR=100-equivalent) method and use the LESSER thickness.",
+      "body": "Regardless of the type of non-rigid overlay, determine the thickness by to = 3.0*(F*hd - C*hE) (eq. 15-4) where hd is the design thickness of plain concrete pavement from the charts in Appendix F; the factor hE represents the thickness of plain concrete pavement equivalent in load-carrying capacity to the thickness of existing rigid pavement. If the existing rigid pavement is plain concrete, then the equivalent thickness equals the existing thickness. If the existing rigid pavement is reinforced concrete, determine the equivalent thickness from Figure 14-1. F is a factor, determined from Figure 15-1, that projects the cracking expected to occur in the base pavement during the design life of the overlay. C is a coefficient from paragraph titled Condition of Existing Pavement based upon the structural condition of the existing rigid pavement. Round the computed overlay thickness up using 0.5 in (10 mm) increments. To reduce reflective cracking, the minimum thickness of all-bituminous overlay used for strengthening purposes will be 4 in (100 mm). No limitation is placed on the minimum thickness of an all-bituminous overlay when used for maintenance or to improve pavement surface smoothness. In certain instances, the flexible overlay design equation may indicate thickness requirements less (sometimes negative values) than the minimum values. In such cases use the minimum thickness requirement. When strengthening existing rigid pavements that exhibit low flexural strength (less than 500 psi (3.5 MPa)) or that are constructed on high-strength foundation (k exceeding 200 pci (50 kPa/mm)), it is possible that the flexible pavement design procedure in this UFC indicates a lesser required overlay thickness than the overlay design formula. For these conditions, determine the overlay thickness by both methods, and use the lesser thickness for design. For the flexible pavement design procedure, consider the existing rigid pavement an equivalent thickness of high quality crushed aggregate base (CBR = 100), and determine the total pavement thickness based upon the subgrade CBR. Consider any existing base or subbase layers as corresponding layers in the flexible pavement. The thickness of required overlay is then the difference between the required flexible pavement thickness and the combined thicknesses of existing rigid pavement and any base or subbase layers above the subgrade.",
+      "key_points": [
+        "Verified EXACTLY vs. Appendix G, G-7.4: F=0.93, hd=8.1, C=1.0, hE=6 -> to = 3.0*(0.93*8.1-1.0*6) = 4.6 in.",
+        "Cross-check rule: for low-strength (<500 psi) or high-k (>200 pci) existing rigid pavements, ALSO run the flexible-pavement (CBR=100 equivalent) method and take the LESSER of the two overlay thicknesses.",
+        "Minimum all-bituminous strengthening overlay: 4 in (no minimum for maintenance/smoothness-only overlays)."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 15-4",
+          "description": "to = 3.0 * (F*hd - C*hE): flexible overlay thickness over an existing rigid base pavement.",
+          "implemented_in": "geotech_references.ufc_pavement.equations.flexible_overlay_of_rigid_thickness"
+        }
+      ],
+      "figures": [
+        "Figure 15-1: Factor for Projecting Cracking in a Flexible Pavement"
+      ],
+      "tables": [],
+      "applicability": "The core flexible-overlay-of-rigid-pavement thickness calculation."
+    },
+    {
+      "section_id": "15-7.3",
+      "title": "Jointing (Flexible Overlay of Rigid)",
+      "summary": "Normally no special joints needed beyond bituminous-construction joints; try to avoid overlay joints coinciding with existing rigid joints; reflective cracking severity relates to overlay thickness (thinner = more prone) and existing joint type (plain concrete tight/less-raveling reflective cracks vs. reinforced concrete's wider-spaced, larger-movement, more-raveling-prone joints).",
+      "body": "Normally, joints, other than those required for construction of a bituminous concrete pavement, are not required in flexible overlays of existing rigid pavements. It is good practice to try to layout paving lanes in the bituminous concrete to prevent joints in the overlay from coinciding with joints in the rigid base pavement. Movements of the existing rigid pavement, both from contraction and expansion and deflections due to applied loads, cause high concentrated stresses in the flexible overlay directly over joints and cracks in the existing rigid pavements. These stresses may result in cracking, often referred to as reflection cracks, in the overlay. The severity of this type of cracking depends, in part, upon the type of rigid pavement. For example, a plain concrete pavement normally has closely spaced joints and may result in reflection cracks over the joints, but the cracks are fairly tight and less likely to ravel. Nevertheless, reinforced concrete pavements normally have joints spaced farther apart, which in turn experience larger movements. The reflection cracks over these joints are more likely to ravel and spall. Likewise, either existing plain concrete or reinforced concrete pavements may have expansion joints that experience rather large movements, and consideration should be given to provide an expansion joint in the flexible overlay to coincide with the expansion joint in the existing pavement. No practical method has been developed to absolutely prevent reflective cracking in flexible overlays; however, experience shows that the degree of cracking is related to the thickness of the overlay, with the thinner overlays exhibiting the greater tendency to crack.",
+      "key_points": [
+        "Normally no special joints needed beyond bituminous-construction joints; try to avoid overlay joints coinciding with existing rigid joints; reflective cracking severity relates to overlay thickness (thinner = more prone) and existing joint type (plain concrete..."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Joint layout for flexible overlays of rigid pavements."
+    },
+    {
+      "section_id": "15-8",
+      "title": "Use of Geotextiles to Retard Reflective Cracking",
+      "summary": "Geotextiles retard reflective cracking regionally (Figure 15-2 gives min. overlay thickness by US zone: 2 in in Area I, 3-4 in in Area II, not recommended in Area III); require sealing cracks >0.25 in, a leveling course, and a tack coat before fabric placement; lower-viscosity asphalt grades reduce reflective cracking further.",
+      "body": "Geotextiles are effective in retarding reflective cracking in some areas of the United States, as shown in Figure 15-2. When using geotextiles under an asphalt concrete pavement, the existing pavement should be relatively smooth with all cracks larger than 0.25 in (6 mm) sealed. A leveling course is also recommended before application of the fabric to ensure a suitable surface. A tack coat is also required immediately before placement of the geotextile. The minimum overlay thickness is shown in Figure 15-2. When using geotextiles under a flexible pavement overlay, the geotextiles can be used as a membrane strip or a full-width application. The existing pavement should be stable with negligible movement under loads and all joints and cracks larger than 0.25 in (6 mm) sealed. With the strip method, apply the geotextile directly on the concrete joints and cracks and then overlay. With the full-width method, apply the geotextile directly to the existing pavement or place on a leveling course. In flexible overlays, the lower viscosity (or higher penetration grade) asphalts are less likely to experience reflective cracking. Therefore, use the lowest viscosity grade asphalt that provides sufficient stability during high temperatures.",
+      "key_points": [
+        "Figure 15-2 zones: Area I -> min 2 in overlay w/ geotextile; Area II -> 3-4 in; Area III -> geotextiles not recommended.",
+        "Seal all joints/cracks > 0.25 in before geotextile placement."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 15-2: Location Guide for the Use of Geotextiles in Retarding Reflective Cracking"
+      ],
+      "tables": [],
+      "applicability": "Reflective-crack mitigation on flexible overlays of jointed/cracked pavements."
+    },
+    {
+      "section_id": "15-9",
+      "title": "Overlays in Frost Regions",
+      "summary": "Overlay design must meet Chapter 19 frost requirements when the subgrade is heave/thaw-susceptible; an overlay may not fix frost-heave distress unless combined thickness is enough to prevent substantial frost penetration into the frost-susceptible material.",
+      "body": "Whenever the subgrade is susceptible to differential heaving or weakening during the frost-melt period, the overlay design should meet the requirements for frost action as given in Chapter titled Seasonal Frost Conditions. When it is determined that distress in an existing pavement has been caused by differential heaving due to frost action, an overlay may not correct the condition unless the combined thickness of the pavement is sufficient to prevent substantial frost penetration into the underlying frost-susceptible material.",
+      "key_points": [
+        "Overlay design must meet Chapter 19 frost requirements when the subgrade is heave/thaw-susceptible; an overlay may not fix frost-heave distress unless combined thickness is enough to prevent substantial frost penetration into the frost-susceptible material."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Overlays in seasonal-frost regions with frost-susceptible subgrades."
+    },
+    {
+      "section_id": "15-10",
+      "title": "Overlay Design Example",
+      "summary": "Appendix G, G-7 gives worked examples of bonded, partially bonded, non-bonded rigid overlay, and flexible overlay design.",
+      "body": "Appendix G includes examples of design for bonded, partially bonded, unbonded rigid overlay and flexible overlay design.",
+      "key_points": [
+        "Appendix G, G-7 gives worked examples of bonded, partially bonded, non-bonded rigid overlay, and flexible overlay design."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Worked-example reference for all four overlay equations."
+    }
+  ]
+}

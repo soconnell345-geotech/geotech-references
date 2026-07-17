@@ -1,0 +1,167 @@
+{
+  "reference_id": "UFC 3-250-01",
+  "reference_title": "Pavement Design for Roads, Streets, Walks, and Storage Areas",
+  "volume": null,
+  "chapter": 18,
+  "chapter_title": "Roller-Compacted Concrete Pavements",
+  "sections": [
+    {
+      "section_id": "18-1",
+      "title": "Introduction",
+      "summary": "RCCP is a zero-slump PCC placed with an AC paver and vibratory/rubber-tired-roller compacted; mixture proportions/properties resemble conventional concrete (flexural strength routinely >650 psi/4.5 MPa at 28 days, similar fatigue behavior); Canadian heavy-load field performance supports applying plain-concrete thickness design rationale to RCCP.",
+      "body": "RCCP is a zero-slump PCC mixture that is placed with an asphalt concrete paving machine and compacted with vibratory and rubber-tired rollers. Mixture proportions and most engineering properties of RCCP are similar to those of conventional plain concrete pavements. The mixture proportions of RCCP are not appreciably different than those used in conventional concrete; flexural strengths of beams taken from RCCP facilities and test sections routinely exceed 650 psi (4.5 MPa) at 28 days. Limited tests show that the fatigue characteristics of RCCP mixtures are similar to those of conventional concrete pavement mixtures. In Canada under moderately severe environmental and heavy loading conditions, RCCP hardstands have performed well for over 10 years alongside conventional concrete hardstands. Therefore, it may be assumed that the same rationale applied to the thickness design for plain non-reinforced concrete pavement thickness may also be applied to the design of RCCP.",
+      "key_points": [
+        "RCCP thickness design uses the SAME rationale as plain concrete (Chapter 13/Appendix F), justified by similar mix properties and Canadian field performance."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Establishing RCCP as a construction-method variant of plain concrete design."
+    },
+    {
+      "section_id": "18-2",
+      "title": "Load Transfer",
+      "summary": "RCCP's uncontrolled natural cracking (irregular, 40-70 ft spacing) gives highly variable/potentially near-zero joint load transfer, unlike plain concrete's assumed 25%; measured average load transfer at Ft. Hood/Ft. Stewart: 18.6% transverse cracks (SD 6.7%), 16.7% longitudinal cracks (SD 5.9%); cold (construction) joints transfer even less; DESIGN BASIS = NO load transfer (free-edge condition at all joints/cracks).",
+      "body": "A major difference exists in the assumptions of load transfer at joints made for plain concrete pavements and RCCP, which directly affects the design stress and therefore the thickness of the pavement. RCCP has typically been allowed to crack naturally, and spacing between these cracks is usually irregular, ranging from 40 to 70 ft (12 to 21 m) apart. Although, spacing between cracks have been reported much greater than and lower than this range. Consequently, the width of the crack opening will be greater and the load transfer developed from aggregate interlock at the cracks will be highly variable, if not totally lost. Limited tests at Fort Hood, TX and Fort Stewart, GA have revealed average load transfer at transverse contraction cracks of 18.6 percent (standard deviation of 6.7 percent) and longitudinal cracks of 16.7 percent (standard deviation of 5.9 percent), respectively. Tests on longitudinal and transverse cold (construction) joints revealed even less load transfer. Therefore, the assumption of 25 percent load transfer at joints constructed of plain concrete would not be valid for RCCP thickness design. Therefore, base the thickness design of RCCP on no load transfer at the joints, (i.e. assuming all joints and cracks to be a free edge condition).",
+      "key_points": [
+        "RCCP thickness design assumes ZERO joint load transfer (free-edge condition everywhere) -- NOT the 25% assumed for plain concrete parking-area design (Section 13-3).",
+        "Measured field load transfer at natural RCCP cracks: ~18.6% transverse, ~16.7% longitudinal (both with substantial scatter) -- well below the 25% plain-concrete assumption, hence the conservative zero-transfer design basis."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "The key structural-assumption difference between RCCP and plain concrete design."
+    },
+    {
+      "section_id": "18-3",
+      "title": "Thickness Design",
+      "summary": "Use the same Appendix F design curves as plain concrete/parking-area roads; no separate RCCP curve set exists.",
+      "body": "Use the thickness design curves shown in Appendix F to determine thickness requirements for RCCP. These curves are the same as used for plain concrete roads and parking areas.",
+      "key_points": [
+        "No separate RCCP design curves -- use Appendix F (same as plain concrete), but with the Section 18-2 zero-load-transfer basis in mind."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure F-1: Single Axle, Dual Tire Load, Plain Concrete and RCCP"
+      ],
+      "tables": [],
+      "applicability": "RCCP thickness determination."
+    },
+    {
+      "section_id": "18-4",
+      "title": "Multilift Pavements",
+      "summary": "Max single-lift thickness ~10 in (compactable to uniform grade/density); above that, use 2+ lifts, ideally with the thinner upper lift (>=4 in, ideally 1/3 of total) for surface finish; bond condition (full/partial/no) governs the thickness design method for the multi-lift section.",
+      "body": "The maximum lift thickness that can be placed at an acceptable grade and smoothness and compacted to a uniform density is about 10 in (250 mm). Therefore, if the RCCP design thickness is greater than 10 in (250 mm), two or more lifts will be necessary to achieve the design thickness. If possible, the upper lift should be of minimal thickness, preferably one-third of the total pavement thickness (but no less than 4 in (100 mm)), to aid in creating a smoother surface finish. The type of bond achieved between the lifts is a function of the construction sequence and timing and will govern the method of thickness design used for multi-lift RCCP. The three types of bonding conditions to be considered in RCCP thickness design are full bond, partial bond, and no bond.",
+      "key_points": [
+        "Single-lift practical maximum: ~10 in; beyond that, split into lifts (upper lift ideally 1/3 of total, minimum 4 in)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Multi-lift RCCP construction/design planning above 10 in total thickness."
+    },
+    {
+      "section_id": "18-4.1",
+      "title": "Full Bond",
+      "summary": "Assumed if lifts are placed/compacted within 1 hr of each other (or a thin grout is used between lifts); keep the lower lift's surface clean/moist, don't rubber-tire-roll it before the upper lift; design as a monolithic slab (no inter-lift joint consideration).",
+      "body": "Full bond may be assumed between adjacent lifts if they are placed and compacted within 1 hour of each other, or if a thin grout is placed between the upper and lower lifts. The surface of the lower lift must be kept clean and moist until the upper lift is placed and should not be rolled with the rubber-tired roller. If the full bond condition is achieved, the thickness should be determined as if a monolithic slab were used, with no consideration for the joint between lifts in the thickness design calculations.",
+      "key_points": [
+        "Full bond design = monolithic slab thickness, no inter-lift joint consideration needed."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Multi-lift RCCP designed as a monolithic full-bond section."
+    },
+    {
+      "section_id": "18-4.2",
+      "title": "Partial Bond",
+      "summary": "Assumed if lifts are placed >1 hr apart (lower lift kept clean/moist); design as a rigid overlay of a rigid base pavement, partially bonded (Chapter 15 procedure).",
+      "body": "Partial bond should be assumed between subsequent lifts if they are placed and compacted more than 1 hour apart. Keep the surface of the lower lift clean and moist until the upper lift is placed. The thickness should be designed as a rigid overlay of a rigid base pavement with partial bonding according to the guidance in Chapter titled Pavement Overlays.",
+      "key_points": [
+        "Partial-bond multi-lift RCCP uses the Chapter 15 partially bonded rigid overlay equation (Eq. 15-2) -- the upper lift is treated as an 'overlay' of the lower lift 'base pavement'."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 15-2",
+          "description": "Partially bonded rigid overlay equation, applied to a partial-bond multi-lift RCCP upper lift over the lower lift.",
+          "implemented_in": "geotech_references.ufc_pavement.equations.rigid_overlay_partially_bonded"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Multi-lift RCCP with a >1-hour placement gap between lifts."
+    },
+    {
+      "section_id": "18-4.3",
+      "title": "No Bond",
+      "summary": "Assumed if a bond breaker (curing compound, asphalt emulsion) is sprayed on the lower lift; design as a rigid overlay of a rigid base pavement, no bond (Chapter 15 procedure).",
+      "body": "Assume no bond between adjacent lifts if some type of bond breaker is used between the lifts, such as a curing compound or asphalt emulsion sprayed on the surface of the lower lift. Design the thickness as a rigid overlay of a rigid base pavement with no bond, according to the guidance in Chapter titled Pavement Overlays.",
+      "key_points": [
+        "No-bond multi-lift RCCP uses the Chapter 15 non-bonded rigid overlay equation (Eq. 15-3)."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 15-3",
+          "description": "Non-bonded rigid overlay equation, applied to a no-bond multi-lift RCCP upper lift over the lower lift.",
+          "implemented_in": "geotech_references.ufc_pavement.equations.rigid_overlay_non_bonded"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Multi-lift RCCP with an intentional bond breaker between lifts."
+    },
+    {
+      "section_id": "18-5",
+      "title": "Joint Types for RCCP",
+      "summary": "See 18-5.1 (expansion, rarely needed) and 18-5.2 (contraction, natural or sawed) for RCCP-specific joint practice; RCCP construction joints are covered separately in Section 18-5.3.",
+      "body": "See the subsections below for expansion, contraction, and construction joint practice specific to RCCP.",
+      "key_points": [
+        "See 18-5.1 (expansion, rarely needed) and 18-5.2 (contraction, natural or sawed) for RCCP-specific joint practice; RCCP construction joints are covered separately in Section 18-5.3."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Overview of RCCP joint practice."
+    },
+    {
+      "section_id": "18-5.1",
+      "title": "Expansion Joints",
+      "summary": "Not required within an RCCP paved area except to protect facilities located within it.",
+      "body": "Expansion joints, within an area paved with RCCP, are not required except to protect facilities located within the paved area.",
+      "key_points": [
+        "Not required within an RCCP paved area except to protect facilities located within it."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "RCCP expansion joint necessity."
+    },
+    {
+      "section_id": "18-5.2",
+      "title": "Contraction Joints",
+      "summary": "Longitudinal joints usually unnecessary; transverse cracks form naturally (random, 40-70 ft, minimal raveling/faulting reported), typically unsealed unless frost-susceptible (then route+seal); alternatively saw joints at 50-75 ft (within first 24 hr, if raveling-free) to depth of 1/3 pavement thickness (or 1/3 lift thickness for multi-lift, each lift's cuts coinciding, lower-lift cuts sawable 1 hr after compaction); coincide longitudinal/transverse cold joints between lifts; seal all sawed joints.",
+      "body": "Generally, longitudinal contraction joints are not required in RCCP. However, most RCCP pavement to date has been allowed to crack naturally in the transverse direction. These cracks usually occur randomly at 40 to 70 ft (12 to 21 m) spacings, and have performed well, with little raveling or faulting. The natural cracks are typically not sealed; however, it is recommended that all cracks be routed and sealed in areas where the pavement may be susceptible to frost damage. Sawing of contraction joints is recommended at spacing of 50 to 75 ft (15 to 23 m), providing the sawing can be accomplished in the first 24 hours without excessive raveling. Determine the optimum time for sawing and optimum transverse joint spacing during the test section construction. Depth of sawcut should be one-third of the pavement thickness. For multi-lift pavements, make the sawcut one-third the pavement depth if full bond conditions are used. If partial bond or no bond conditions are used, make the sawcuts in each lift in coinciding locations to one-third the lift thickness (the sawcuts in the lower lifts may be made 1 hour after compaction). The longitudinal and transverse cold joints for each lift should always coincide. Seal all sawed joints.",
+      "key_points": [
+        "Sawed contraction joint spacing option: 50-75 ft, sawn within the first 24 hr, cut depth 1/3 pavement (or lift) thickness."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Choosing between natural-crack and sawed-joint RCCP contraction joint practice."
+    },
+    {
+      "section_id": "18-5.3",
+      "title": "Construction Joints",
+      "summary": "Two types: fresh (adjoining concrete placed within ~90 min, no special treatment, edge left uncompacted+rolled after adjoining placement) and cold (in-place concrete stiffened, needs full compaction+trim to a near-vertical face, dampen before adjoining placement, push spilled excess back before rolling, no load-transfer effort); keep cold longitudinal construction joints spaced >=50-75 ft.",
+      "body": "Currently, there are two types of construction joints in RCCP; fresh and cold. When fresh concrete can be placed and compacted against in-place concrete before initial set (usually within 90 min), consider the juncture or joint to be a fresh joint requiring no special treatment. For the construction of a fresh joint, the edge of the in-place concrete is left un-compacted and rolled after the adjoining concrete has been placed. When the in-place RCCP has stiffened significantly before the adjoining fresh concrete can be placed (usually around 90 min), consider the resulting juncture a cold construction joint. The in-place concrete must be fully compacted and then the edge trimmed back to solid concrete to form a near vertical face. If the required density or smoothness is not obtained, then remove the in-place concrete. Immediately before placement of the adjoining concrete, dampen the vertical edge. After placement of the fresh concrete, the excess which spills onto the compacted material should be pushed back to the edge of the fresh concrete before rolling. No effort will be made to achieve load transfer at the cold joint. Make every effort to keep cold longitudinal construction joints spaced at least 50 to 75 ft (15 to 23 m).",
+      "key_points": [
+        "90-minute threshold distinguishes a 'fresh' joint (no special treatment) from a 'cold' joint (trim to vertical face, dampen, no load-transfer effort)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "RCCP construction joint (fresh vs. cold) treatment."
+    }
+  ]
+}

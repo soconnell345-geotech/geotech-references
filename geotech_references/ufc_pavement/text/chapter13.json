@@ -1,0 +1,104 @@
+{
+  "reference_id": "UFC 3-250-01",
+  "reference_title": "Pavement Design for Roads, Streets, Walks, and Storage Areas",
+  "volume": null,
+  "chapter": 13,
+  "chapter_title": "Plain Concrete Pavement Design",
+  "sections": [
+    {
+      "section_id": "13-1",
+      "title": "General",
+      "summary": "Rigid pavements for roads/parking must be plain (non-reinforced) concrete unless a Chapter 14 condition applies or the Government Civil Engineer approves otherwise; non-reinforced design requires a minimum 0.05% steel at odd-shaped slabs and mismatched joints.",
+      "body": "Rigid pavements for roads and parking areas must be plain (non-reinforced) concrete except for those conditions listed in Chapter titled Reinforced Concrete Pavements or unless otherwise approved by the Government Civil Engineer. Non-reinforced pavement design requires a minimum of 0.05 percent steel in odd-shaped slabs and mismatched joints. Refer to UFC 3-201-01 for permeable pavement criteria.",
+      "key_points": ["Default rigid pavement type is PLAIN concrete; reinforcement is the exception (Chapter 14 conditions)."],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Establishing plain concrete as the default rigid pavement type."
+    },
+    {
+      "section_id": "13-2",
+      "title": "Roller-Compacted Concrete Pavements",
+      "summary": "RCCP is a plain-concrete pavement placed zero-slump with an AC paver and compacted with vibratory/rubber-tired rollers; design covered in Chapter 18.",
+      "body": "Roller-compacted concrete pavements (RCCP) are plain concrete pavements constructed using a zero-slump Portland Cement Concrete (PCC) mixture that is placed with an AC paving machine and compacted with vibratory and rubber-tired rollers. The design of RCCP is presented in Chapter titled Roller-Compacted Concrete Pavements.",
+      "key_points": [
+        "RCCP is a construction-method variant of plain concrete (zero-slump PCC, AC paver placement); see Chapter 18 for its design specifics."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Cross-reference to Chapter 18."
+    },
+    {
+      "section_id": "13-3",
+      "title": "Design Procedure",
+      "summary": "Get plain/RCCP thickness from Appendix F design charts; for parking areas divide the flexural strength by 0.75 (25% assumed joint load transfer) before entering the charts; charts are Westergaard-derived + empirical corrections; PCASE required for vehicles not in Appendix F; entry procedure: horizontal to k line, vertical to pass-level line, horizontal to thickness; round up in 0.5 in increments; minimum plain concrete thickness 6 in; thickened edges normally not needed for roads (free-edge stress design, little shoulder load transfer assumed, edge stress NOT reduced before checking against the allowable).",
+      "body": "For roads and parking areas, obtain the required thickness of plain and roller-compacted concrete pavements from the design charts presented in Appendix F. Parking areas assume that only a few vehicles will apply loads close to the edge of pavement and therefore, the pavement is designed assuming 25 percent joint load transfer. Use Appendix F to determine the thickness of concrete in parking areas, divide the design concrete flexural strength by 0.75 (i.e., Flexural Strength / 0.75). This is equivalent to reducing the edge stress (multiplying the edge stress by 0.75) to account for joint load transfer. For example, if a flexural strength of 600 psi is selected for the design of a parking area, then the flexural strength to be used in the design charts is 600 / 0.75 = 800 psi. The net result is a thickness that is less than the road design. These design charts are graphical representations of the relationship between flexural strength, modulus of subgrade reaction k, pavement thickness, and repetitions of a vehicle. If the design includes vehicles not covered in Appendix F, PCASE must be used. These design charts are based on the theoretical stress analyses of Westergaard (New Formulas for Stresses in Concrete Pavements of Airfields, American Society of Civil Engineers Transactions), supplemented by empirical modifications determined from accelerated traffic tests and observations of pavement behavior under actual service conditions. Enter the design charts using the 28-day flexural strength of the concrete. Make a horizontal projection to the right to the design value for k. Make a vertical projection to the appropriate pass level line. Make a second horizontal projection to the right to intersect the scale of pavement thickness. The guidelines shown on the curves are an example of the correct usage of the curves. When the final pavement thickness obtained from the design curve indicates a fractional value, round up in 0.5 in (10 mm) increments. All plain concrete pavements must be uniform in cross-sectional thickness. Thickened edges are not normally required on roads since the design is for free edge stresses. Only use thickened edges where the road layout requires repeated wheel loads across the free edge of the pavement. The minimum thickness of plain concrete is 6 in (150 mm). These charts also assume that the vehicle loadings traverse very close to the edge of the pavement and there is very little load transfer between the road slabs and the shoulders. Consequently, the computed edge stress is not reduced before it is used to check for maximum allowable edge stress values.",
+      "key_points": [
+        "Road design: use flexural strength as-tested; parking-area design: divide flexural strength by 0.75 before entering the charts (accounts for 25% assumed joint load transfer, giving a thinner section).",
+        "Chart entry sequence: flexural strength (horizontal) -> k line -> (vertical) -> pass-level line -> (horizontal) -> thickness.",
+        "Round the resulting thickness UP in 0.5 in (10 mm) increments; minimum plain concrete thickness = 6 in.",
+        "Design basis: Westergaard free-edge theory + empirical corrections from accelerated traffic tests; PCASE required for any vehicle not in Appendix F."
+      ],
+      "equations": [],
+      "figures": ["Figure F-1: Single Axle, Dual Tire Load, Plain Concrete and RCCP (and Figures F-2..F-31 for specific vehicles)"],
+      "tables": [],
+      "applicability": "The core plain-concrete/RCCP thickness design procedure for roads and parking areas."
+    },
+    {
+      "section_id": "13-4",
+      "title": "Design Procedure for Stabilized Foundations",
+      "summary": "Modified-soil foundations: design as unbound using the k measured on top of the modified layer. Stabilized soil layers: treat as a low-strength base pavement and reduce the required overlay thickness via Eq. 13-1, ho = [hd^1.4 - (0.0063*Ef^(1/3)*hs)^1.4]^(1/1.4), where 0.0063 = (1/Ec)^(1/3) with Ec = 4,000,000 psi (PCC modulus assumed).",
+      "body": "The thickness requirements for a plain concrete pavement on a modified soil foundation must be designed as if the layer is unbound using the k value measured on top of the modified soil layer. For stabilized soil layers, consider the treated layer to be a low-strength base pavement and the thickness determined using the following modified partially bonded overlay pavement design equation: ho = [hd^1.4 - (0.0063*Ef^(1/3)*hs)^1.4]^(1/1.4) (Eq. 13-1) Where: ho = thickness of plain concrete pavement overlay required over the stabilized layer, inches; hd = thickness of plain concrete pavement from design charts based on k value of unbound material, inches; Ef = flexural modulus of elasticity of the stabilized soil, determined per Appendix H procedures; hs = thickness of stabilized layer, inches. The coefficient 0.0063 derives from (1/Ec)^(1/3) where Ec represents the concrete modulus of elasticity, usually assumed being equal to 4,000,000 psi. For additional information on stabilization and mix proportioning see UFC 3-250-11.",
+      "key_points": [
+        "MODIFIED soil (doesn't meet stabilized criteria): design as unbound, using k measured on top of the modified layer -- no thickness credit equation.",
+        "STABILIZED soil layer: apply Eq. 13-1 to get a reduced plain-concrete overlay thickness ho, crediting the stabilized layer's own strength (Ef).",
+        "Verified EXACTLY against Appendix G, G-5.2: hd=8.3in, Ef=650,000 psi, hs=6in -> ho=6.6in (printed)."
+      ],
+      "equations": [
+        {"id": "Eq. 13-1", "description": "ho = [hd^1.4 - (0.0063*Ef^(1/3)*hs)^1.4]^(1/1.4): plain concrete pavement thickness over a stabilized soil foundation, credited via a modified partially-bonded-overlay equation.", "implemented_in": "geotech_references.ufc_pavement.equations.plain_concrete_thickness_on_stabilized_foundation"}
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Rigid pavement designed over a stabilized (not merely modified) soil layer."
+    },
+    {
+      "section_id": "13-5",
+      "title": "Design Examples",
+      "summary": "Appendix G contains two rigid pavement design examples (G-5.1 non-stabilized, G-5.2 stabilized soil).",
+      "body": "Appendix G contains two design examples of rigid pavement design: G-5.1 for a non-stabilized foundation (mixed traffic reduced to a controlling vehicle, then read from Appendix F) and G-5.2 for a plain concrete slab over a cement-stabilized soil layer (using Eq. 13-1 to credit the stabilized layer).",
+      "key_points": [
+        "G-5.1: non-stabilized foundation, mixed-traffic controlling-vehicle example.",
+        "G-5.2: stabilized soil foundation, Eq. 13-1 worked example."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Worked-example reference."
+    },
+    {
+      "section_id": "13-6",
+      "title": "Concrete Sidewalks, Curbs and Gutters",
+      "summary": "Concrete sidewalk, curb, and gutter design criteria are outside this UFC's scope; refer instead to UFC 3-201-01 (Civil Engineering) for those requirements.",
+      "body": "Refer to UFC 3-201-01 for criteria on concrete sidewalks, curbs and gutters. The Chapter 13 plain-concrete design procedure (Appendix F curves, Eq. 13-1) applies to roads and parking-area pavements, not to these ancillary concrete elements.",
+      "key_points": [
+        "Concrete sidewalks/curbs/gutters are outside this UFC's scope -- use UFC 3-201-01."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Cross-reference."
+    },
+    {
+      "section_id": "13-7",
+      "title": "Rigid Pavement Design Curves",
+      "summary": "Appendix F contains the rigid design curves for commonly included vehicles; contact USACE Transportation Systems Center for others.",
+      "body": "Appendix F contains the rigid pavement design curves of vehicles commonly included in the design traffic mix. If a design curve for a vehicle not included in Appendix F, the U.S. Army Corps of Engineers, Transportation Systems Center, 1616 Capitol Avenue, Omaha, NE 68102-4901 may be contacted.",
+      "key_points": ["31 vehicle-specific curves (F-1..F-31, with a genuine source duplication at F-21); F-1 (single axle, dual-tire, 18-kip) is the general-purpose/universal curve used throughout the worked examples."],
+      "equations": [],
+      "figures": ["Figure F-1: Single Axle, Dual Tire Load, Plain Concrete and RCCP"],
+      "tables": [],
+      "applicability": "Locating the correct Appendix F curve for a given vehicle."
+    }
+  ]
+}

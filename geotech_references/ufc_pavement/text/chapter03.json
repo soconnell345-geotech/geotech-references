@@ -1,0 +1,119 @@
+{
+  "reference_id": "UFC 3-250-01",
+  "reference_title": "Pavement Design for Roads, Streets, Walks, and Storage Areas",
+  "volume": null,
+  "chapter": 3,
+  "chapter_title": "Technical Requirements",
+  "sections": [
+    {
+      "section_id": "3-1",
+      "title": "Selection of Pavement Type",
+      "summary": "Use rigid (or rigid-overlay composite) pavement for vehicle maintenance areas, non-pneumatic-tire vehicles, high-pressure open storage, hardstands, tracked-vehicle pavements, wash racks, and fueling pads; other cases may use life-cycle cost analysis.",
+      "body": "Use rigid pavements or composite pavements with a rigid overlay for the following areas: vehicle maintenance areas; pavements for all vehicles with non-pneumatic tires; open storage areas with materials having non-pneumatic loadings in excess of 200 psi (1.38 MPa), covered or uncovered; hardstands (organizational vehicle parking areas, motor pool, unit's equipment parking); pavements supporting tracked vehicles; vehicle wash racks; and vehicle fueling pads. Exception: for architectural or special operational requirements, design pavements based upon life-cycle cost analysis.",
+      "key_points": [
+        "Rigid (or rigid-overlay composite) pavement is mandatory for: maintenance areas, non-pneumatic-tire traffic, >200 psi open storage, hardstands, tracked-vehicle areas, wash racks, fueling pads.",
+        "Life-cycle cost analysis is the exception path for architectural/special operational cases."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "First decision point in any road/parking-area design: rigid vs. flexible."
+    },
+    {
+      "section_id": "3-2",
+      "title": "Design Variables",
+      "summary": "Required pavement thickness is governed by vehicle gross loads/wheel configurations, traffic volume over the design life, soil strength, and modulus of rupture (flexural strength).",
+      "body": "The prime factor influencing the structural design of a pavement is the required load-carrying capacity. The thickness of pavement necessary to provide the desired load-carrying capacity is a function of the following variables: vehicle gross loads and wheel configurations; volume of traffic during the design life of pavement; soil strength; modulus of rupture (flexural strength).",
+      "key_points": [
+        "Four governing design variables: vehicle loads/wheel configuration, traffic volume, soil strength, flexural strength."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Framing what inputs a thickness design must gather."
+    },
+    {
+      "section_id": "3-3",
+      "title": "Rigid Pavements",
+      "summary": "Rigid pavement design is based on critical tensile stresses at the free/unsupported edge (maximum) versus at joints (reduced by load transfer); cyclic thermal/moisture-gradient stresses are additive and are covered by empirically developed design factors.",
+      "body": "The rigid pavement design procedures presented in this UFC are based upon the critical tensile stresses produced within the pavement by the vehicle loading. Correlation between theory, small-scale model studies, and full-scale accelerated traffic tests show that maximum tensile stresses in the pavement occur when the vehicle wheels are tangent to a free or unsupported edge of the pavement. Stresses for the condition of the vehicle wheels tangent to a longitudinal or transverse joint are less severe because of the use of load-transfer devices and aggregate interlock in these joints to transfer a portion of the load across the joint. Because of their cyclic nature, other stresses are, at times, additive to the vehicle load stresses. These other stresses include restraint stresses resulting from thermal expansion and contraction of the pavement and warping stresses resulting from moisture and temperature gradients within the pavement. Provision for those stresses not induced by wheel loads is included in design factors developed empirically from full-scale accelerated traffic tests and from the observed performance of pavements under actual service conditions.",
+      "key_points": [
+        "Design governs on the free-edge condition (maximum tensile stress), not the jointed condition.",
+        "Thermal/moisture-gradient (curling/warping) stresses are folded into empirically derived design factors, not solved for explicitly."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Conceptual basis for the Appendix F rigid design curves and the Westergaard-derived thickness procedure (Chapter 13)."
+    },
+    {
+      "section_id": "3-4",
+      "title": "Flexible Pavements",
+      "summary": "DoD flexible pavement design uses the Beta Criteria procedure: each layer must be thick enough to keep stresses reaching the underlying layer below its shear-deformation capacity; the Beta Criteria produced the Appendix E design curves. Layers must also be compacted (ASTM D1557) against consolidation under traffic.",
+      "body": "The design procedure used by DoD to design flexible pavements for roads and parking areas is referred to as the Beta Criteria design procedure. This procedure requires that each layer be thick enough to distribute the stresses induced by traffic so that when such stresses reach the underlying layer they will not overstress the underlying layer causing excessive shear deformation. The Beta Criteria is used to sketch the design curves contained in Appendix E. Besides the determination of layer thicknesses, adequately compact each layer so that traffic does not induce excessive settlement. Use ASTM D1557 compaction effort procedures to design against consolidation under traffic.",
+      "key_points": [
+        "'Beta Criteria' is the DoD flexible design procedure name; it underlies the Appendix E CBR/passes curves.",
+        "Compaction (ASTM D1557 effort) guards against traffic-induced consolidation, separate from the thickness/shear check."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Conceptual basis for the Appendix E flexible design curves (Chapter 9)."
+    },
+    {
+      "section_id": "3-5",
+      "title": "Mandatory Use of PCASE",
+      "summary": "PCASE is mandatory for special-military-vehicle roads/parking areas, all non-US/non-territory locations, and organizational vehicle parking areas.",
+      "body": "PCASE is mandatory for the design of roads and parking areas trafficked by special military vehicles and for all vehicle types outside of the United States and its territories and possessions. Refer to UFC 3-201-01 for the types of vehicles characterized as special military vehicles. PCASE is also mandatory for the design of organizational vehicle parking areas.",
+      "key_points": [
+        "PCASE required for: special military vehicle traffic, any design outside the US/territories, organizational vehicle parking areas.",
+        "'Special military vehicle' definition is in UFC 3-201-01, not this UFC."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Deciding whether the printed design charts/equations in this UFC may be used, or PCASE is required."
+    },
+    {
+      "section_id": "3-5.1",
+      "title": "Pavement-Transportation Computer Assisted Structural Engineering",
+      "summary": "PCASE is a free USACE ERDC software tool (Windows) for pavement thickness and compaction-requirement design, available from transportation.wes.army.mil/pcase or pcase.com.",
+      "body": "PCASE is a computer program developed by the United States Army Corps of Engineers (USACE), Engineer Research and Development Center (ERDC), is available for use by the public. PCASE can be used to determine pavement thickness and compaction requirements. The computer program runs on the Microsoft Windows operating systems or Windows compatible systems. PCASE may be obtained electronically from the following: https://transportation.wes.army.mil/pcase or http://www.pcase.com; A compact disk (CD) is also available from the U.S. Army Corps of Engineers, Transportation Systems Center, 1616 Capitol Avenue, Omaha, NE 68102-4901.",
+      "key_points": [
+        "PCASE is free, public, USACE ERDC software; Windows-based.",
+        "The printed design charts/equations in this UFC are the documented non-PCASE fallback for the vehicles/conditions they cover."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Obtaining the authoritative design tool when PCASE use is mandatory or preferred."
+    },
+    {
+      "section_id": "3-6",
+      "title": "Materials",
+      "summary": "Materials must conform to this UFC and the Unified Facility Guide Specifications (UFGS); prefer local materials meeting the state DoT's requirements where consistent with UFC criteria; only material specs change, not general/tolerance/execution requirements.",
+      "body": "Materials for pavements designed in accordance with this UFC and PCASE must conform to requirements set forth in this and the Unified Facility Guide Specifications (UFGS). To the greatest practical extent, specify local materials that meet requirements of the Department of Transportation in the State in which the project is located, and are in accordance to UFC requirements. Only the materials should be changed in the UFGS, all other requirements such as general requirements, tolerances, and execution requirements should stay the same. The construction materials for pavements designed using state Department of Transportation (DoT) thickness design criteria must conform to the DoT material specifications. The construction execution procedure for physically determining acceptable conditions, preparation, installation, field quality control and inspection must conform to the UFGS.",
+      "key_points": [
+        "UFGS governs execution/QC regardless of which materials are substituted.",
+        "State DoT materials are preferred when they satisfy UFC requirements, to leverage local supply."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Specification writing for a pavement construction package."
+    },
+    {
+      "section_id": "3-7",
+      "title": "Drainage Systems",
+      "summary": "Pavement subdrainage is covered in this UFC (Chapter 20); storm/surface drainage is covered by UFC 3-201-01 and low-impact-development by UFC 3-210-01.",
+      "body": "Pavement subdrainage systems are covered in this UFC. Refer to UFC 3-201-01 for criteria on storm drainage systems (e.g. surface drainage, underground drainage systems, stormwater management facilities, erosion and sediment control). Refer to UFC 3-210-01 for criteria on low impact development.",
+      "key_points": [
+        "Subsurface pavement drainage = this UFC (Chapter 20); surface/storm drainage = UFC 3-201-01; LID = UFC 3-210-01."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Scoping which UFC governs a given drainage design task."
+    }
+  ]
+}

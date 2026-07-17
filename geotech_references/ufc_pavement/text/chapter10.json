@@ -1,0 +1,104 @@
+{
+  "reference_id": "UFC 3-250-01",
+  "reference_title": "Pavement Design for Roads, Streets, Walks, and Storage Areas",
+  "volume": null,
+  "chapter": 10,
+  "chapter_title": "Rigid Pavement Design",
+  "sections": [
+    {
+      "section_id": "10-1",
+      "title": "Soil Classification and Tests",
+      "summary": "Classify all soils per USCS (ASTM D2487); avoid ambiguous local terms like 'loam,' 'gumbo,' 'mud,' 'muck'; reference Atterberg-limit test procedures/limits in specs when used for classification.",
+      "body": "All soils should be classified according to the USCS as given in ASTM D2487. There have been instances in construction specifications where the use of such terms as 'loam,' 'gumbo,' 'mud,' and 'muck' have resulted in misunderstandings. These terms are not specific and are subject to different interpretations throughout the United States. Such terms should not be used. Sufficient investigations should be performed at the proposed site to facilitate the description of all soils that will be used or removed during construction in accordance with ASTM D 2487; any additional descriptive information considered pertinent should also be included. If Atterberg limits are a required part of the description, as indicated by the classification tests, the test procedures and limits should be referenced in the construction specifications.",
+      "key_points": ["Use USCS terminology only; ambiguous local terms ('loam', 'gumbo', 'mud', 'muck') are prohibited in specs."],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Soil description standards for rigid pavement specifications."
+    },
+    {
+      "section_id": "10-2",
+      "title": "Compaction",
+      "summary": "Compaction improves subgrade stability/uniformity; ASTM D1557 at several moisture contents characterizes it, except for particle-degrading soils unless field compaction produces similar degradation.",
+      "body": "Compaction improves the stability of the subgrade soils and provides a more uniform foundation for the pavement. The ASTM D1557 soil compaction test conducted at several moisture contents is used to determine the compaction characteristics of the subgrade soils. The range of maximum densities normally obtained in the compaction test on various soil types is listed in UFC 3-260-02. This test method should not be used if the soil contains particles that are easily broken under the blow of the tamper unless the field method of compaction will produce a similar degradation. Certain types of soil may require the use of a laboratory compaction control test other than the soil compaction test. The unit weight of some types of sands and gravels obtained using the compaction method above may be lower than the unit weight that can be obtained by field compaction; hence, the method may not be applicable. In those cases where a higher laboratory density is desired, compaction tests are usually made under some variation of the ASTM D1557 method, such as vibration or tamping (alone or in combination) with a type hammer or compaction effort different from that used in the test.",
+      "key_points": [
+        "Standard characterization test: ASTM D1557 at several moisture contents.",
+        "Do not use ASTM D1557 on particle-degrading soils unless field compaction produces similar degradation -- use an alternate lab control test instead."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Compaction test method selection for rigid-pavement subgrades."
+    },
+    {
+      "section_id": "10-2.1",
+      "title": "General",
+      "summary": "See Section 10-2 for the general compaction test discussion.",
+      "body": "Compaction improves the stability of the subgrade soils and provides a more uniform foundation for the pavement. The ASTM D1557 soil compaction test is the standard characterization method, with variations for particle-degrading soils and low-unit-weight sands/gravels as discussed above.",
+      "key_points": [
+        "This subsection restates the Section 10-2 general compaction-test background before the specific requirements (10-2.2) and special-soil cases (10-2.3)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "General rigid-pavement subgrade compaction background."
+    },
+    {
+      "section_id": "10-2.2",
+      "title": "Requirements",
+      "summary": "Compact the subgrade under slab/base to at least 6 in depth; no rolling needed if natural density already >=90% ASTM D1557; cohesive soils (LL>25,PI>5): 90% for top 6 in of cuts / full depth of fills; cohesionless (LL<25,PI<5): 95% for top 6 in of cuts / full depth of fills; scarify/dry-or-moisten/recompact as needed.",
+      "body": "For all subgrade soil types, compact the subgrade under the pavement slab or base course to a minimum depth of 6 in (150 mm). If the densities of the natural subgrade materials are equal to or greater than 90 percent of the maximum density from ASTM D1557, no rolling is necessary other than that required to provide a smooth surface. Compaction requirements for cohesive soils (Liquid Limit (LL) > 25; Plasticity Index (PI) > 5) are 90 percent of maximum density for the top 6 in (150 mm) of cuts and the full depth of fills. Compaction requirements for cohesionless soils (LL<25: PI<5) are 95 percent for the top 6-in of cuts and the full depth of fills. Compaction of the top 6 in (150 mm) of cuts may require the subgrade to be scarified and dried or moistened as necessary and re-compacted to the desired density.",
+      "key_points": [
+        "Minimum compaction depth: 6 in under slab/base.",
+        "Cohesive (LL>25, PI>5): 90% density, top 6 in of cuts / full depth of fills.",
+        "Cohesionless (LL<25, PI<5): 95% density, top 6 in of cuts / full depth of fills."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Rigid-pavement subgrade compaction specification."
+    },
+    {
+      "section_id": "10-2.3",
+      "title": "Special Soils",
+      "summary": "Some soils lose stability when worked/rolled; expansive soils shrink/swell excessively -- control via water content/compaction effort/overburden (nominal cases) or replacement/grade-raise/lime stabilization/pre-wetting (highly expansive cases).",
+      "body": "Although compaction increases the stability and strength of most soils, some soil types show a marked decrease in stability when scarified, worked, and rolled. Also, expansive soils shrink excessively during dry periods and expand excessively when allowed to absorb moisture. When soils of these types are encountered, special treatment will usually be required. For nominally expansive soils, water content, compaction effort, and overburden should be determined to control swell. For highly expansive soils, replacement to depth of moisture equilibrium, raising grade, lime stabilization, pre-wetting, or other acceptable means of controlling swell should be considered.",
+      "key_points": [
+        "Nominally expansive soils: control via water content, compaction effort, and overburden.",
+        "Highly expansive soils: replacement to depth of moisture equilibrium, grade raise, lime stabilization, or pre-wetting."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Expansive or work-sensitive subgrade soils."
+    },
+    {
+      "section_id": "10-3",
+      "title": "Treatment of Unsuitable Soils",
+      "summary": "Remove/replace, cover, or treat unsuitable subgrade soils per UFC 3-260-02 criteria based on judgment/experience/traffic/cost; stabilization (cement/fly ash/lime/chemical) is an option; caution: calcium-based stabilizers + water + sulfate-bearing clays can form highly expansive calcium-aluminate-sulfate-hydrate minerals -- allow adequate water/mellowing time before compaction.",
+      "body": "Soils not suitable for subgrade use, as specified in UFC 3-260-02, should be removed and replaced, covered with soils which are suitable or treated. The depth to which such adverse soils should be removed, covered, or treated depends on the soil type, drainage conditions, and depth of freezing temperature penetration and should be determined by the engineer on the basis of judgment and previous experience, with due consideration of the traffic to be served and the costs involved. Where freezing temperatures penetrate a frost-susceptible subgrade, follow the design procedures outlined in Chapter titled Seasonal Frost Conditions. In some instances, unsuitable or adverse soils may be improved economically by stabilization with such materials as cement, fly ash, lime, or certain chemical additives, whereby the characteristics of the composite material become suitable for subgrade purposes. Criteria for soil stabilization are in UFC 3-250-11. However, subgrade stabilization should not be attempted unless the costs reflect corresponding savings in base course, pavement, or drainage facilities construction. Highly expansive subgrades are typically removed and replaced with suitable soil, compacted at a moisture content and unit weight that will minimize expansion, or chemically treated. Care should be taken when using calcium-based materials such as lime and Portland cement to chemically treat clay soils with soluble sulfates. The combination of calcium-based stabilizer, water, and clay with soluble sulfates will produce calcium-aluminate-sulfate-hydrate minerals with very large expansion potential. An adequate amount of water and mellowing time is required to allow formation of the expansive minerals before compaction.",
+      "key_points": [
+        "CAUTION: lime/cement stabilization of sulfate-bearing clays can form expansive calcium-aluminate-sulfate-hydrate minerals -- mellow with adequate water before compacting."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Handling unsuitable or expansive subgrade soils under rigid pavements."
+    },
+    {
+      "section_id": "10-4",
+      "title": "Determination of Modulus of Subgrade Reaction",
+      "summary": "Prefer a field plate-bearing test for k; Table 10-1 gives typical k by soil type/moisture as a guide only; where a base course exists, use the EFFECTIVE k on top of the base (Figure 10-1, or a plate test run on the base) for the thickness design.",
+      "body": "For the design of rigid pavements in those areas where no previous experience regarding pavement performance is available, determine the modulus of subgrade reaction k for design purposes by the field plate-bearing test. Where performance data from existing rigid pavements are available, adequate values for k can usually be determined on the basis of consideration of soil type, drainage conditions, and frost conditions that prevail at the proposed site. Table 10-1 presents typical values of k for various soil types and moisture conditions as a function of base course thickness. Consider these values as a guide only and their use in place of the field plate-bearing test, although not recommended, is left to the discretion of the engineer. Where a base course is used under the pavement, the k value on top of the base (also known as the effective k value) is used to determine the pavement thickness. The plate-bearing test may be run on top of the base, or Figure 10-1 may be used to determine the modulus of soil reaction on top of the base. It is good practice to confirm adequacy of the k on top of the base from Figure 10-1 by running a field plate-load test.",
+      "key_points": [
+        "Field plate-bearing test is preferred; Table 10-1 is guidance only.",
+        "The DESIGN value is the EFFECTIVE k on top of the base course, from Figure 10-1 (or a plate test run on the base surface itself), not the raw subgrade k.",
+        "Table 10-1 k varies by soil group and moisture-content band (1-4% through >28%), 90-95% ASTM D1557 density assumed; reduce 50 psi/in if density < 90% (min 25 psi/in); may increase slightly if > 95% (max 500 psi/in); frost-area k comes from Chapter 19 instead."
+      ],
+      "equations": [],
+      "figures": ["Figure 10-1: Effect of Base Course Thickness on Modulus of Soil Reaction for Non-frost Conditions"],
+      "tables": ["Table 10-1: Modulus of Soil Reaction (psi/in)"],
+      "applicability": "Establishing the design k value for rigid pavement thickness design (Chapters 13/14)."
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "reference_id": "UFC 3-250-01",
+  "reference_title": "Pavement Design for Roads, Streets, Walks, and Storage Areas",
+  "volume": null,
+  "chapter": 6,
+  "chapter_title": "Flexible Pavement Select Materials and Subbase Courses",
+  "sections": [
+    {
+      "section_id": "6-1",
+      "title": "General",
+      "summary": "Select materials have design CBR <= 20, subbases have design CBR > 20; minimum thicknesses eliminate the need for subbases above CBR 50; subgrades in the 20-50 CBR range may skip select material/subbase if they also meet subbase gradation/plasticity; only a subgrade meeting those requirements may be assigned CBR >= 20.",
+      "body": "This UFC designates layers between the subgrade and base course as selected materials or subbases. Select materials are those with design CBR values equal to or less than 20; subbases are those with CBR values above 20. Minimum thicknesses of pavement and base have been established to eliminate the need for subbases with design CBR values above 50. Where the design CBR value of the subgrade without processing is in the range of 20 to 50, select materials and subbases may not be needed. However, the subgrade cannot be assigned design CBR values of 20 or higher unless it meets the gradation and plasticity requirements for subbases.",
+      "key_points": [
+        "Select material: design CBR <= 20. Subbase: design CBR > 20.",
+        "A natural subgrade CBR of 20+ is only usable AS-IS if it also passes the Table 6-1 subbase gradation/plasticity limits."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Deciding whether a select material and/or subbase layer is needed above the natural subgrade."
+    },
+    {
+      "section_id": "6-2",
+      "title": "Materials",
+      "summary": "Use the Chapter 2 subsurface investigation to locate and characterize suitable select-material/subbase soils.",
+      "body": "Use the soils investigations described in Chapter titled Preliminary Soils Investigation to determine the location and characteristics of suitable soils for select material and subbase construction.",
+      "key_points": [
+        "Select material and subbase sourcing decisions build directly on the Chapter 2 investigation program."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Linking material sourcing back to the Chapter 2 investigation program."
+    },
+    {
+      "section_id": "6-2.1",
+      "title": "Select Materials",
+      "summary": "Select materials are typically local coarse-grained soils (GW/GP/GM/GC, SW/SP/SM/SC, occasionally ML/CL); limerock/coral/shell/ashes/cinders/caliche/disintegrated granite are options when economical; Table 6-1 gives plasticity limits; max aggregate size 3 in suggested; used mainly with subgrade CBR<4 and large ESAL traffic; frost-area select materials must ALSO meet the free-draining criterion (<=2.0% passing No. 200) when frost will penetrate them.",
+      "body": "The subbase materials for each CBR value must conform to the quality and gradations requirements given in the guide specifications so that they will develop the needed strengths. Select materials are normally locally available coarse-grained soils (gravel: GW, GP, GM, GC, or sand: SW, SP, SM, SC), although fine-grained soils in the ML and CL groups may be used in certain cases. Consider limerock, coral, shell, ashes, cinders, caliche, disintegrated granite, and other such materials when they are economical. Recommended plasticity requirements are listed in Table 6-1. A maximum aggregate size of 3 in (80 mm) is suggested to aid in meeting grading requirements. Select material subbases are typically only used with subgrade CBR values less than 4 and large ESAL traffic volumes. Where frost is expected to penetrate the material, the subbase course must also meet the frost criteria in paragraph titled Free-Draining Material Directly Beneath Bound Base Or Surfacing Layer for free-draining material that contain 2.0 percent or less, by weight, of grains that can pass the No. 200 sieve.",
+      "key_points": [
+        "Select material soils: GW/GP/GM/GC, SW/SP/SM/SC, sometimes ML/CL; 3 in max aggregate size.",
+        "Select material use is typically limited to subgrade CBR < 4 with large ESAL traffic.",
+        "Frost-area select materials additionally need the <=2.0% No. 200 free-draining criterion (Section 19-7)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": ["Table 6-1: Maximum Permissible Design Values for Subbases and Select Materials"],
+      "applicability": "Selecting/qualifying a select-material source."
+    },
+    {
+      "section_id": "6-2.2",
+      "title": "Subbase Materials",
+      "summary": "Subbases may be natural or blended/processed coarse-grained soils (limerock, coral, shell, ashes, cinders, disintegrated granite) meeting Table 6-1; existing subgrade may itself serve as subbase if unmixed and meeting LL/PI (do not 'cut' plasticity by mixing); chemical stabilization (cement/lime/fly ash/bitumen) is allowed; ash/cinders need <5% free lime and volumetric stability.",
+      "body": "Subbase materials may consist of naturally occurring coarse-grained soils or blended and processed soils. Materials such as limerock, coral, shell, ashes, cinders, caliche, and disintegrated granite may be used as subbases when they meet the requirements described in Table 6-1. The existing subgrade may meet the requirements for a subbase course or it may be possible to treat the existing subgrade to produce a subbase. However, use native or processed materials only when the unmixed subgrade meets the liquid limit and plasticity index requirements for subbases. Do not 'cut' plasticity by mixing subgrade. Material stabilized with commercial additives may be economical as a subbase. Portland cement, lime, fly ash, or bitumen and combinations thereof are commonly used for this purpose. Also, it may be possible to decrease the plasticity of some materials by use of lime or Portland cement in sufficient amounts to make them suitable as subbases. When using ash or cinders, the free lime content must be less than 5% and the material must be volumetrically stable.",
+      "key_points": [
+        "Do not artificially lower plasticity by blending/mixing subgrade -- the UNMIXED material must meet subbase LL/PI.",
+        "Chemical stabilization (cement/lime/fly ash/bitumen) is an accepted route to a qualifying subbase.",
+        "Ash/cinder subbase: free lime < 5%, must be volumetrically stable."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": ["Table 6-1: Maximum Permissible Design Values for Subbases and Select Materials"],
+      "applicability": "Qualifying a subbase source, natural or stabilized."
+    },
+    {
+      "section_id": "6-3",
+      "title": "Compaction",
+      "summary": "Subbases: 100% ASTM D1557 (or higher if achievable); select materials/subgrades: per Table 5-1, with fill floors of 95% cohesionless / 90% cohesive.",
+      "body": "Compaction of subbases will be 100 percent of ASTM D1557 density except where it is known that a higher density can be obtained, in which case the higher density should be required. Compaction of select materials and subgrades will be as shown in Table 5-1 except that in no case will cohesionless fill be placed at less than 95 percent or cohesive fill at less than 90 percent.",
+      "key_points": [
+        "Subbase compaction default: 100% ASTM D1557 (or higher when achievable)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": ["Table 5-1: Depth of Compaction for Select Materials and Subgrades (CBR <= 20)"],
+      "applicability": "Specifying subbase/select-material compaction."
+    },
+    {
+      "section_id": "6-4",
+      "title": "Drainage",
+      "summary": "Subbase drainage is an important aspect of the pavement design and is addressed separately in Chapter 20 (Design of Subsurface Pavement Drainage Systems).",
+      "body": "Subbase drainage is an important aspect of design and is discussed in Chapter titled Design of Subsurface Pavement Drainage Systems.",
+      "key_points": [
+        "Subbase drainage design is covered in Chapter 20, not this chapter."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Cross-reference to Chapter 20 for subbase drainage design."
+    },
+    {
+      "section_id": "6-5",
+      "title": "Selection of Design CBR Values",
+      "summary": "Design CBR for select/subbase materials should reflect Table 6-1 gradations and material economics; remolded-sample tests are typical, but in-place or undisturbed-soaked tests may be used given prior similar construction; gravelly-material lab CBR tends to read HIGHER than field CBR (mold confinement/processing effect), so gradation/Atterberg-limit requirements supplement the CBR test.",
+      "body": "During the design phase where the materials have normally not been selected for construction, the design CBR values should be selected based on the gradations recommended in Table 6-1 and the cost of the materials available. The select material or subbase is generally uniform, and the problem of selecting a limiting condition, as described for the subgrade, does not ordinarily exist. Tests are usually made on remolded samples; however, where existing similar construction is available, CBR tests may be made in place on material when it has attained its maximum expected water content or on undisturbed soaked samples. The procedures for selecting CBR design values described for subgrades apply to select materials and subbases. CBR tests on gravelly materials in the laboratory tend to give CBR values higher than those obtained in the field. The difference is attributed to the processing necessary to test the sample in the 6 in (150 mm) mold, and to the confining effect of the mold. Therefore, the CBR test is supplemented by gradation and Atterberg limits requirements for subbases, as shown in Table 6-1. Suggested limits for select materials are also indicated. In addition to these requirements, the material must also show in the laboratory tests a CBR equal to or higher than the CBR assigned to the material for design purposes.",
+      "key_points": [
+        "Lab CBR on gravelly materials tends to READ HIGH vs. field performance (mold processing/confinement effect) -- hence the gradation/Atterberg-limit backstop in Table 6-1.",
+        "Material must independently show lab CBR >= its assigned design CBR."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": ["Table 6-1: Maximum Permissible Design Values for Subbases and Select Materials"],
+      "applicability": "Assigning a design CBR to a candidate select-material or subbase source."
+    }
+  ]
+}
