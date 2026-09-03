@@ -48,4 +48,15 @@ aashto_1993 : AASHTO Guide for Design of Pavement Structures (1993) — flexible
              (lef.py), Section 3.2 composite/effective subgrade-reaction
              worksheet (composite_k.py), Appendix G swelling/frost-heave
              serviceability loss (environmental.py) (US customary units)
+em_2104 : EM 1110-2-2104, Strength Design for Reinforced Concrete Hydraulic
+             Structures (USACE, dated 1 Nov 2023, published 8 Jan 2025) —
+             load inventory + full load-factor table + LRFD/earthquake load
+             combinations (loads.py), serviceability service-stress/
+             reinforcement-limit provisions (serviceability.py), Chapter 2
+             detailing (reinforcement.py), the full Appendix B flexure+axial
+             INVESTIGATION equations for singly/doubly reinforced and
+             tension+flexure members (flexure_axial.py), the complementary
+             Appendix D-2 DESIGN equations (design.py), and Chapter 5 shear
+             incl. the pre-ACI-318-19 equation deliberately retained for RCHS
+             (shear.py) (US customary units)
 """

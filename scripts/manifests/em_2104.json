@@ -1,0 +1,45 @@
+{
+  "reference_id": "EM 1110-2-2104",
+  "reference_title": "EM 1110-2-2104, Strength Design for Reinforced Concrete Hydraulic Structures (USACE, dated 1 November 2023, published 8 January 2025)",
+  "volume": null,
+  "pdf_path": "../../docs/EM_1110-2-2104_2025.pdf",
+  "package": "em_2104",
+  "scope_note": "Full-manual coverage. Chapters 1-5 body text extracted (chapter01.json through chapter05.json). Appendices B-D (design equations + investigation/design worked examples) are implemented as Python lookups (flexure_axial.py, design.py) rather than re-narrated chapter text -- their content is equations and numeric examples, not descriptive prose. Appendix E (11 structure-specific example load-combination tables) and Appendices F/G (commentary) are NOT extracted as chapter text; F/G's two data tables (target reliability, shear coefficient comparison) are digitized directly in loads.py/shear.py. The figure catalog covers all 32 figures across the whole document (Chapters 2-5, Appendices B/C/D/F).",
+  "chapters": [
+    {
+      "number": 1,
+      "title": "Introduction",
+      "page_start": 7,
+      "page_end": 9,
+      "equation_module": "geotech_references.em_2104.loads"
+    },
+    {
+      "number": 2,
+      "title": "Details of Reinforcement",
+      "page_start": 10,
+      "page_end": 17,
+      "equation_module": "geotech_references.em_2104.reinforcement"
+    },
+    {
+      "number": 3,
+      "title": "Strength and Serviceability Requirements",
+      "page_start": 18,
+      "page_end": 34,
+      "equation_module": "geotech_references.em_2104.loads"
+    },
+    {
+      "number": 4,
+      "title": "Flexure and Axial Loads",
+      "page_start": 35,
+      "page_end": 40,
+      "equation_module": "geotech_references.em_2104.flexure_axial"
+    },
+    {
+      "number": 5,
+      "title": "Shear",
+      "page_start": 41,
+      "page_end": 44,
+      "equation_module": "geotech_references.em_2104.shear"
+    }
+  ]
+}

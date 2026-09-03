@@ -1,0 +1,109 @@
+{
+  "reference_id": "EM 1110-2-2104",
+  "reference_title": "EM 1110-2-2104, Strength Design for Reinforced Concrete Hydraulic Structures (USACE, dated 1 November 2023, published 8 January 2025)",
+  "volume": null,
+  "chapter": 5,
+  "chapter_title": "Shear",
+  "sections": [
+    {
+      "section_id": "5-1",
+      "title": "Shear strength",
+      "summary": "Shear strength Vn=Vc+Vs is computed per ACI 318-19 except where this chapter modifies it; EM 1110-2-2400 (outlet works) and EM 1110-2-6053 (performance-based design) provide seismic shear-capacity guidance; deep beams follow ACI 318-19's deep-beam provisions.",
+      "body": "The shear strength (Vn) provided by concrete (Vc) and reinforcement (Vs) must be computed according to ACI 318-19, except in the cases described in this chapter. Guidance is provided in EM 1110-2-2400 (outlet works) and EM 1110-2-6053 (performance-based design) to calculate shear capacity for seismic loads, when applicable. Some RCHS members may meet the definition of a deep beam and must be designed according to ACI 318-19's deep-beam provisions.",
+      "key_points": [
+        "Default: ACI 318-19 shear provisions apply, EXCEPT the cases in paragraphs 5-2, 5-4, 5-5",
+        "Deep beams still follow ACI 318-19's deep-beam provisions (no RCHS-specific exception)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Establishes ACI 318-19 as the shear-design baseline before the RCHS-specific exceptions in this chapter."
+    },
+    {
+      "section_id": "5-2",
+      "title": "Shear strength for one-way slabs in reinforced concrete hydraulic structures",
+      "summary": "For RCHS's large flat elements (walls, foundation slabs in I/T/L-walls, U-frames, pump/gate wells, intake towers, powerhouse substructures) typically built without shear reinforcement, Eq 5-1 gives the nominal shear capacity, waiving ACI 318-19's shear-reinforcement-free-member provisions for these member types (no Vc/2 shear-reinforcement-trigger limit either).",
+      "body": "A substantial amount of RCHS is comprised of large, flat elements (walls and foundation slabs in I-walls, T-walls, L-walls, U-framed structures, pumping station wells, gate wells, intake towers, hydraulic control structures, powerhouse substructures) that normally use no shear reinforcement. For these, the nominal shear strength of the unreinforced section is Eq 5-1: Vc = [2*sqrt(fc') + Nu/(6*Ag)]*b*d lb (US) or [0.17*sqrt(fc') + Nu/(6*Ag)]*b*d N (SI). ACI 318-19's shear-capacity requirements for members without shear reinforcement are WAIVED for these member types (see Appendix G for why the pre-ACI-318-19 equation was retained). The factored shear must be less than phi*Vc unless shear reinforcement is provided; there is no requirement to limit capacity to Vc/2 absent shear reinforcement (unlike ordinary beams). Shear reinforcement is uncommon in walls/slabs, which should normally be sized to avoid needing it, for constructability and economy.",
+      "key_points": [
+        "Eq 5-1 applies to large flat elements (walls, foundation slabs) typically without shear reinforcement",
+        "ACI 318-19's newer (lower) shear-capacity provisions for members without shear reinforcement are DELIBERATELY WAIVED here",
+        "No Vc/2 shear-reinforcement trigger limit for these member types, unlike ordinary beams"
+      ],
+      "equations": [
+        {"id": "5-1", "description": "Nominal shear capacity, one-way slabs/walls without shear reinforcement: Vc = [2*sqrt(fc') + Nu/(6*Ag)]*b*d (US) or [0.17*sqrt(fc') + Nu/(6*Ag)]*b*d (SI).",
+         "implemented_in": "geotech_references.em_2104.shear.shear_capacity_one_way_slab"}
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Shear design of walls and foundation slabs without shear reinforcement -- the most common RCHS shear case; see Appendix G for the deliberate deviation from current ACI 318-19."
+    },
+    {
+      "section_id": "5-3",
+      "title": "Design sections for cantilever walls",
+      "summary": "Sets the critical shear section location for cantilever walls: at the base of the stem for a construction joint there (with vertical face reinforcement developed into the base for shear friction), or at a distance d from the wall-stem front face (toe) / back face (heel) within the base, per Figures 5-1 (T-type) and 5-2 (L-type); U-frame structures are similar.",
+      "body": "The critical section for shear depends on support conditions. When a construction joint is used at the base of a cantilevered stem, the critical section for shear is taken at the base of the stem; vertical reinforcement in both stem faces should be developed into the base for shear friction across the joint. The critical section for shear in a base is taken at a distance d from the front face of the wall stem for the toe section, and at the back face of the wall stem for the heel section. Figures 5-1 and 5-2 show critical shear sections for T-type and L-type cantilever walls; U-frame structures are similar.",
+      "key_points": [
+        "Construction joint at stem base -> critical shear section AT the base (not offset by d)",
+        "Base toe section: critical section at distance d from the stem's front face",
+        "Base heel section: critical section AT the stem's back face (no d offset)"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-1: Critical sections for shear in cantilever T-type walls",
+        "Figure 5-2: Critical sections for shear in cantilever L-type walls"
+      ],
+      "tables": [],
+      "applicability": "Locating where to check shear in a cantilever retaining/flood wall's stem and base."
+    },
+    {
+      "section_id": "5-4",
+      "title": "Shear strength for special straight members",
+      "summary": "For box-culvert/gate-well-type straight members meeting specific geometry/loading/detailing criteria (rectangular, ln/d 1.25-9, fc'<=6,000 psi, rigid joints, straight full-length reinforcement extended around corners and through supports), Eq 5-2 gives Vc at the critical section 0.15*ln from the support face, capped by Eq 5-3's two limits; US units only.",
+      "body": "(a) Applies only to straight members of box culvert sections, gate wells, or similar structures meeting 5-4b/c; stiffening effects of wide supports/haunches are included in computing moments/shears/member properties; the ultimate shear strength is the load causing the first inclined crack; US (standard) units only. (b) Members subjected to (approximately) uniformly distributed loads producing shear, flexure, and axial COMPRESSION (not tension). (c) Members must have: rectangular cross section; ln/d between 1.25 and 9 (ln = clear span, in.); fc' <= 6,000 psi; rigid continuous joints/corner connections; straight full-length reinforcement (not terminated even where no longer theoretically required); exterior-face reinforcement extended around corners so any vertical lap splice occurs in a compression region; interior-face reinforcement extended into and through the supports. (d) Vc (Eq 5-2), computed at 0.15*ln from the support face: Vc = (11.5 - ln/d)*sqrt(fc')*sqrt(1 + Nu/(5*Ag*sqrt(fc')))*b*d lb. (e) Vc is capped (Eq 5-3) at 2*[12-(ln/d)]*sqrt(fc')*b*d lb, and in all cases at 10*sqrt(fc')*b*d lb.",
+      "key_points": [
+        "Applicability: rectangular section, ln/d in [1.25, 9], fc'<=6,000 psi, rigid joints, straight full-length reinforcement",
+        "Critical section is 0.15*ln from the face of support (not d, unlike ordinary beams)",
+        "Eq 5-2 capacity is capped by TWO limits in Eq 5-3 (an ln/d-dependent cap and an absolute 10*sqrt(fc')*b*d cap)",
+        "US (standard) units only -- no SI form is given for this equation"
+      ],
+      "equations": [
+        {"id": "5-2", "description": "Shear capacity of special straight members (box culverts, gate wells) at 0.15*ln from the support: Vc = (11.5 - ln/d)*sqrt(fc')*sqrt(1 + Nu/(5*Ag*sqrt(fc')))*b*d.",
+         "implemented_in": "geotech_references.em_2104.shear.shear_capacity_special_straight_member"},
+        {"id": "5-3", "description": "Upper limits on Eq 5-2: Vc <= 2*[12-(ln/d)]*sqrt(fc')*b*d, and Vc <= 10*sqrt(fc')*b*d.",
+         "implemented_in": "geotech_references.em_2104.shear.shear_capacity_special_straight_member"}
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Shear design of box-culvert roof/wall slabs and similar rigid-frame straight members; worked in Appendix D-6."
+    },
+    {
+      "section_id": "5-5",
+      "title": "Shear strength for curved members",
+      "summary": "For uniformly loaded, curved, cast-in-place members with R/d>2.25 (R=radius of curvature to the member centerline), Eq 5-4 gives Vc at points of maximum shear, capped at 10*sqrt(fc')*b*d; US units only.",
+      "body": "At points of maximum shear, for uniformly loaded, curved, cast-in-place members with R/d > 2.25 (R = radius of curvature to the member centerline), the shear strength provided by concrete is Vc = 4*sqrt(fc')*sqrt(1 + Nu/(4*Ag*sqrt(fc')))*b*d lb (Eq 5-4), not to exceed 10*sqrt(fc')*b*d lb. This equation is available only in US (standard) units.",
+      "key_points": [
+        "Applicability: uniformly loaded, curved, cast-in-place member with R/d > 2.25",
+        "Absolute cap: Vc <= 10*sqrt(fc')*b*d (same absolute cap form as Eq 5-3)",
+        "US (standard) units only"
+      ],
+      "equations": [
+        {"id": "5-4", "description": "Shear capacity of curved members at points of maximum shear: Vc = 4*sqrt(fc')*sqrt(1 + Nu/(4*Ag*sqrt(fc')))*b*d, capped at 10*sqrt(fc')*b*d.",
+         "implemented_in": "geotech_references.em_2104.shear.shear_capacity_curved_member"}
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Shear design of curved conduits/tunnels and similar cast-in-place curved members; worked in Appendix D-7."
+    },
+    {
+      "section_id": "5-6",
+      "title": "Mandatory requirements",
+      "summary": "Restates that Vc must follow ACI 318-19 except as modified in this chapter, and that cantilever-wall, special-straight-member, and curved-member shear must meet paragraphs 5-2 (properly 5-3 for section location), 5-4, and 5-5 respectively.",
+      "body": "The shear strength Vc provided by concrete must be computed according to ACI 318-19 except in the cases described in this chapter. Shear strength of cantilever walls must meet the requirements of paragraph 5-2 [critical section location, paragraph 5-3]. Shear strength of special straight members must meet the requirements of paragraph 5-4. Shear strength of curved members must meet the requirements of paragraph 5-5.",
+      "key_points": ["Restates 5-1 through 5-5 as mandatory chapter requirements"],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Compliance checklist for Chapter 5."
+    }
+  ]
+}

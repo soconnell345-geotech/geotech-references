@@ -1,0 +1,300 @@
+{
+  "reference_id": "EM 1110-2-2104",
+  "reference_title": "EM 1110-2-2104, Strength Design for Reinforced Concrete Hydraulic Structures (USACE, dated 1 November 2023, published 8 January 2025)",
+  "package": "em_2104",
+  "volume": null,
+  "pdf_path": "../../docs/EM_1110-2-2104_2025.pdf",
+  "figure_numbering": "section",
+  "scope_note": "All 32 figures in the manual's own Figure List (front matter, printed p. iv-v), spanning Chapter 2 (reinforcement detailing), Chapter 3 (load categories), Chapter 4 (interaction diagrams), Chapter 5 (shear critical sections), Appendix B (flexure/axial design-equation free-body diagrams), Appendix C (investigation examples, incl. CGSI software screenshots), Appendix D (design examples: retaining walls, coastal floodwall, conduits), and Appendix F (reliability commentary). All pages confirmed directly against the source PDF's own page markers (printed page = pdf_page_index - 5 in this edition; page_estimated=false throughout) -- not caption-search-estimated.",
+  "figure_count": 32,
+  "figures": [
+    {
+      "figure_number": "2-1",
+      "caption": "Reinforcement detailing at moment connections",
+      "chapter": "2",
+      "pdf_page_index": 14,
+      "printed_page": "9",
+      "page_estimated": false,
+      "description": "Detailing at a wall-stem-to-footing T/L moment connection, showing hooked bars turned from the beam to achieve full moment transfer."
+    },
+    {
+      "figure_number": "2-2",
+      "caption": "Typical seismic reinforcement details - Olmsted Lock and Dam",
+      "chapter": "2",
+      "pdf_page_index": 16,
+      "printed_page": "11",
+      "page_estimated": false,
+      "description": "Seismic reinforcement detailing example at the Olmsted Lock and Dam pile-founded lock chamber monolith: opening reinforcement, lock wall base, and base slab stirrup confinement."
+    },
+    {
+      "figure_number": "3-1",
+      "caption": "Load category versus return period",
+      "chapter": "3",
+      "pdf_page_index": 21,
+      "printed_page": "16",
+      "page_estimated": false,
+      "description": "Illustrates the usual/unusual/extreme load-category boundaries (10-year and 300/750-year return periods for normal/critical structures) against annual exceedance probability."
+    },
+    {
+      "figure_number": "4-1",
+      "caption": "Interaction diagram with illustrated failure modes",
+      "chapter": "4",
+      "pdf_page_index": 36,
+      "printed_page": "31",
+      "page_estimated": false,
+      "description": "Axial load (P) vs. moment (M) interaction diagram showing the compression failure branch, tension failure branch, and the balanced point between them."
+    },
+    {
+      "figure_number": "4-2",
+      "caption": "Interaction diagram illustrating strain conditions",
+      "chapter": "4",
+      "pdf_page_index": 37,
+      "printed_page": "32",
+      "page_estimated": false,
+      "description": "Companion to Figure 4-1: the concrete/steel strain state at the compression failure, tension failure, and balanced conditions along the interaction diagram."
+    },
+    {
+      "figure_number": "5-1",
+      "caption": "Critical sections for shear in cantilever T-type walls",
+      "chapter": "5",
+      "pdf_page_index": 41,
+      "printed_page": "36",
+      "page_estimated": false,
+      "description": "Critical sections for shear at the toe and heel of a cantilever T-type wall, located a distance d from the front/back face of the stem."
+    },
+    {
+      "figure_number": "5-2",
+      "caption": "Critical sections for shear in cantilever L-type walls",
+      "chapter": "5",
+      "pdf_page_index": 42,
+      "printed_page": "37",
+      "page_estimated": false,
+      "description": "Critical sections for shear at the toe and heel of a cantilever L-type wall (asymmetric stem/footing geometry)."
+    },
+    {
+      "figure_number": "B-1",
+      "caption": "Axial compression and flexure, single reinforcement",
+      "chapter": "B",
+      "pdf_page_index": 46,
+      "printed_page": "41",
+      "page_estimated": false,
+      "description": "Free-body stress and strain diagram for a singly reinforced member under combined axial compression and flexure (Appendix B-2 derivation)."
+    },
+    {
+      "figure_number": "B-2",
+      "caption": "Axial compression and flexure, double reinforcement",
+      "chapter": "B",
+      "pdf_page_index": 51,
+      "printed_page": "46",
+      "page_estimated": false,
+      "description": "Free-body stress and strain diagram for a doubly reinforced member under combined axial compression and flexure (Appendix B-3 derivation)."
+    },
+    {
+      "figure_number": "B-3",
+      "caption": "Axial tension and flexure, double reinforcement",
+      "chapter": "B",
+      "pdf_page_index": 54,
+      "printed_page": "49",
+      "page_estimated": false,
+      "description": "Free-body stress and strain diagram for a doubly reinforced member under combined axial tension and flexure (Appendix B-4 derivation)."
+    },
+    {
+      "figure_number": "C-1",
+      "caption": "Diagram of singly reinforced beam cross section, strain, and stress",
+      "chapter": "C",
+      "pdf_page_index": 57,
+      "printed_page": "52",
+      "page_estimated": false,
+      "description": "Cross section, strain diagram, and stress diagram for the Appendix C-2 singly reinforced beam analysis example (As=1.58 sq in)."
+    },
+    {
+      "figure_number": "C-2",
+      "caption": "Slab with reinforcement on both faces, with diagram of stress and strain",
+      "chapter": "C",
+      "pdf_page_index": 59,
+      "printed_page": "54",
+      "page_estimated": false,
+      "description": "Cross section with reinforcement on both faces, with stress/strain diagram, for the Appendix C-3 doubly reinforced slab analysis example."
+    },
+    {
+      "figure_number": "C-3",
+      "caption": "General interaction diagram points and given cross section",
+      "chapter": "C",
+      "pdf_page_index": 63,
+      "printed_page": "58",
+      "page_estimated": false,
+      "description": "The example cross section and the three labeled interaction-diagram points (1=pure flexure, 2=max axial, 3=balanced) computed in Appendix C-4."
+    },
+    {
+      "figure_number": "C-4",
+      "caption": "Stress and strain under pure flexure",
+      "chapter": "C",
+      "pdf_page_index": 63,
+      "printed_page": "58",
+      "page_estimated": false,
+      "description": "Stress and strain state at interaction-diagram Point 1 (pure flexure, Mn=205.3 k-ft)."
+    },
+    {
+      "figure_number": "C-5",
+      "caption": "Stress and strain under maximum axial load",
+      "chapter": "C",
+      "pdf_page_index": 64,
+      "printed_page": "59",
+      "page_estimated": false,
+      "description": "Stress and strain state at interaction-diagram Point 2 (maximum axial capacity, Pn(max)=873.9 kips)."
+    },
+    {
+      "figure_number": "C-6",
+      "caption": "Stress and strain at balanced point",
+      "chapter": "C",
+      "pdf_page_index": 65,
+      "printed_page": "60",
+      "page_estimated": false,
+      "description": "Stress and strain state at interaction-diagram Point 3 (balanced point, kb=0.5031, Pb=331.5 kips, Mb=343.4 k-ft)."
+    },
+    {
+      "figure_number": "C-7",
+      "caption": "Interaction diagram for combined bending and axial forces",
+      "chapter": "C",
+      "pdf_page_index": 66,
+      "printed_page": "61",
+      "page_estimated": false,
+      "description": "The hand-computed interaction diagram (Points 1-3) for the Appendix C-4 example section."
+    },
+    {
+      "figure_number": "C-8",
+      "caption": "Interaction diagram produced in the computer program CGSI",
+      "chapter": "C",
+      "pdf_page_index": 67,
+      "printed_page": "62",
+      "page_estimated": false,
+      "description": "The same interaction diagram as computed by the CGSI (Concrete General Strength Investigation) software, for comparison against the hand calculation."
+    },
+    {
+      "figure_number": "C-9",
+      "caption": "Cross section of column with 8 #6 bars",
+      "chapter": "C",
+      "pdf_page_index": 68,
+      "printed_page": "63",
+      "page_estimated": false,
+      "description": "18x18 in. column cross section with 8 #6 bars, used in the Appendix C-5 axial-load-plus-biaxial-bending example."
+    },
+    {
+      "figure_number": "C-10",
+      "caption": "Inputs for the computer program CGSI",
+      "chapter": "C",
+      "pdf_page_index": 69,
+      "printed_page": "64",
+      "page_estimated": false,
+      "description": "CGSI software input screenshot for the Appendix C-5 biaxial column example."
+    },
+    {
+      "figure_number": "C-11",
+      "caption": "User inputs for the computer program CGSI",
+      "chapter": "C",
+      "pdf_page_index": 70,
+      "printed_page": "65",
+      "page_estimated": false,
+      "description": "CGSI software user-input screenshot (material/section properties) for the Appendix C-5 example."
+    },
+    {
+      "figure_number": "C-12",
+      "caption": "Flexural strength when both bending moments are acting simultaneously",
+      "chapter": "C",
+      "pdf_page_index": 70,
+      "printed_page": "65",
+      "page_estimated": false,
+      "description": "CGSI biaxial flexural strength output when both Mnx and Mny act simultaneously."
+    },
+    {
+      "figure_number": "C-13",
+      "caption": "Nominal flexural strength about the x-axis",
+      "chapter": "C",
+      "pdf_page_index": 72,
+      "printed_page": "67",
+      "page_estimated": false,
+      "description": "CGSI nominal flexural strength result about the section's x-axis."
+    },
+    {
+      "figure_number": "C-14",
+      "caption": "Nominal flexural strength about the y-axis",
+      "chapter": "C",
+      "pdf_page_index": 73,
+      "printed_page": "68",
+      "page_estimated": false,
+      "description": "CGSI nominal flexural strength result about the section's y-axis."
+    },
+    {
+      "figure_number": "D-1",
+      "caption": "Section of stress for singly reinforced member",
+      "chapter": "D",
+      "pdf_page_index": 74,
+      "printed_page": "69",
+      "page_estimated": false,
+      "description": "Stress diagram for the Appendix D-2 singly reinforced member design-equation derivation (Eq D-1/D-2)."
+    },
+    {
+      "figure_number": "D-2",
+      "caption": "Section of stress and strain for doubly reinforced member",
+      "chapter": "D",
+      "pdf_page_index": 75,
+      "printed_page": "70",
+      "page_estimated": false,
+      "description": "Stress and strain diagram for the Appendix D-2 doubly reinforced member design-equation derivation (Eq D-3/D-4)."
+    },
+    {
+      "figure_number": "D-3",
+      "caption": "Retaining wall with moment at the base of stem",
+      "chapter": "D",
+      "pdf_page_index": 79,
+      "printed_page": "74",
+      "page_estimated": false,
+      "description": "Retaining wall stem with moment at the base, the Appendix D-3 singly reinforced design example (M=5 k-ft, As=0.43 sq in result)."
+    },
+    {
+      "figure_number": "D-4",
+      "caption": "Retaining wall with moment at the base of stem plus axial load",
+      "chapter": "D",
+      "pdf_page_index": 82,
+      "printed_page": "77",
+      "page_estimated": false,
+      "description": "Retaining wall stem with moment plus axial load at the base, the Appendix D-4 combined flexure+axial doubly reinforced example (ku=0.357 result)."
+    },
+    {
+      "figure_number": "D-5",
+      "caption": "Coastal floodwall with Load Case 1.1 loads (Table D-3a)",
+      "chapter": "D",
+      "pdf_page_index": 86,
+      "printed_page": "81",
+      "page_estimated": false,
+      "description": "Coastal floodwall cross section with Load Case 1.1 loads (surge, wave, uplift), the Appendix D-5 design example geometry (Table D-3a)."
+    },
+    {
+      "figure_number": "D-6",
+      "caption": "Rectangular conduit",
+      "chapter": "D",
+      "pdf_page_index": 93,
+      "printed_page": "88",
+      "page_estimated": false,
+      "description": "Rectangular conduit (box culvert) cross section with factored loads, the Appendix D-6 special-straight-member shear example (Vc=134.9 kips)."
+    },
+    {
+      "figure_number": "D-7",
+      "caption": "Circular conduit",
+      "chapter": "D",
+      "pdf_page_index": 95,
+      "printed_page": "90",
+      "page_estimated": false,
+      "description": "Circular conduit cross section with factored loads, the Appendix D-7 curved-member shear example (Vc=192.1 kips)."
+    },
+    {
+      "figure_number": "F-1",
+      "caption": "Reliability concepts",
+      "chapter": "F",
+      "pdf_page_index": 125,
+      "printed_page": "120",
+      "page_estimated": false,
+      "description": "Illustrates the reliability index beta, probability of failure Pf, and the safety-margin distribution concepts underlying the Appendix F load-factor calibration."
+    }
+  ]
+}

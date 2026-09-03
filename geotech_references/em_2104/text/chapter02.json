@@ -1,0 +1,170 @@
+{
+  "reference_id": "EM 1110-2-2104",
+  "reference_title": "EM 1110-2-2104, Strength Design for Reinforced Concrete Hydraulic Structures (USACE, dated 1 November 2023, published 8 January 2025)",
+  "volume": null,
+  "chapter": 2,
+  "chapter_title": "Details of Reinforcement",
+  "sections": [
+    {
+      "section_id": "2-1",
+      "title": "General",
+      "summary": "This chapter presents guidance for furnishing and placing steel reinforcement in various concrete members of hydraulic structures.",
+      "body": "This chapter presents guidance for furnishing and placing steel reinforcement in various concrete members of hydraulic structures.",
+      "key_points": ["Scope of Chapter 2: reinforcement furnishing/placement guidance"],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Introduces the detailing chapter."
+    },
+    {
+      "section_id": "2-2",
+      "title": "Quality",
+      "summary": "Reinforcing steel should generally be ASTM A615 Grade 60; other grades complying with ACI 318-19 and paragraph 3-5 may be used as needed.",
+      "body": "The type and grade of reinforcing steel should generally be ASTM A615, Grade 60. Reinforcement of other types and grades that comply with the requirements of ACI 318-19 and paragraph 3-5 may be used as needed.",
+      "key_points": ["Default: ASTM A615 Grade 60", "Other grades allowed if compliant with ACI 318-19 and paragraph 3-5"],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selecting reinforcement material grade."
+    },
+    {
+      "section_id": "2-3",
+      "title": "Reinforcement",
+      "summary": "Distinguishes primary reinforcement (strength) from secondary reinforcement (confinement ties, shrinkage/temperature control), and notes that secondary-reinforcement width is generally subtracted when computing effective depth d unless the primary steel is specified on the outside.",
+      "body": "Reinforcement is categorized as either primary or secondary. Primary reinforcement consists of the bars required for strength. Secondary reinforcement consists of bars that serve as confining reinforcement (ties, etc.) or control shrinkage/temperature changes. Unless plans/specifications specify the primary reinforcement is on the outside, the width of secondary reinforcement should be subtracted when calculating effective depth (d) of the section.",
+      "key_points": [
+        "Primary reinforcement = strength bars; secondary = confinement/shrinkage-temperature bars",
+        "Secondary bar width is generally subtracted from d unless primary is specified outermost"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Determining effective depth d when both primary and secondary reinforcement are present."
+    },
+    {
+      "section_id": "2-4",
+      "title": "Anchorage and bar development",
+      "summary": "Anchorage, development, and splice requirements must conform to ACI 318-19; the designer must indicate required embedment length on contract drawings since development length depends on concrete strength, bar position/function/size/type/spacing/cover.",
+      "body": "The anchorage, bar development, and splice requirements must conform to ACI 318-19 and the requirements presented below. Since development length depends on concrete strength and bar position, function, size, type, spacing, and cover, the designer must indicate the required embedment length for bar development on the contract drawings.",
+      "key_points": ["Follow ACI 318-19 for anchorage/development/splices", "Designer must show required embedment length on drawings"],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Detailing bar anchorage and development lengths."
+    },
+    {
+      "section_id": "2-5",
+      "title": "Hooks and bends",
+      "summary": "Hooks and bends follow ACI 318-19; larger bars require careful bend detailing for clear spacing/cover, and bends at corners/blockouts/nosing may need additional reinforcement where large unreinforced spaces are left outside the bend.",
+      "body": "Hooks and bends must be according to ACI 318-19. Some RCHS members require larger bars; detailing of bends for larger bars must consider bar width and actual bend radii to assure proper clear spacing and concrete cover. Bends with larger bars at corners, blockouts, nosing, or other geometry changes may require additional reinforcement where large unreinforced spaces are left outside the bend.",
+      "key_points": ["Follow ACI 318-19 for hooks/bends", "Larger-bar bends may need supplemental reinforcement at corners/blockouts"],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Detailing hooks and bends, especially for large-diameter RCHS bars."
+    },
+    {
+      "section_id": "2-6",
+      "title": "Bar spacing",
+      "summary": "Minimum clear spacing is 1.5x bar diameter or 1.5x max aggregate size (No.14/18 bars not closer than 6/8 in. center-to-center). Maximum center-to-center spacing is 12 in. for both primary and secondary reinforcement, with clear-cover, usual/unusual/extreme-load-specific modifications to the ACI 318-19 spacing requirement (paragraph 2-6b(1)-(4)).",
+      "body": "Minimum spacing: clear distance between parallel bars must not be less than 1.5x nominal bar diameter, nor less than 1.5x max coarse aggregate size. No. 14/18 bars should not be spaced closer than 6 in./8 in. center-to-center, respectively. Maximum spacing: to control cracking, max center-to-center spacing of both primary and secondary reinforcement must not exceed 12 in.; primary flexural reinforcement must also meet ACI 318-19 serviceability spacing requirements, with modifications: (1) clear cover for the spacing calc may use the lesser of 2.5 in. or actual clear cover (since RCHS cover typically exceeds ACI 318-19 minimums); (2) for usual loads, 12-in. max spacing satisfies ACI 318-19 when Chapter 3 serviceability requirements are met; (3) for unusual loads, use the paragraph 3-4 reinforcement service stress limit (or actual service stress) in place of ACI 318-19's 2/3*fy; (4) for extreme loads, crack control is not a performance requirement (paragraph 3-1e(4)) so ACI 318-19 spacing requirements need not be met.",
+      "key_points": [
+        "Min clear spacing: 1.5x bar diameter or 1.5x max aggregate size",
+        "No.14/18 bars: min 6 in./8 in. center-to-center",
+        "Max spacing 12 in. center-to-center for primary and secondary reinforcement",
+        "Spacing calc may use cc=min(2.5in, actual cover) per paragraph 2-6b(1)",
+        "Extreme loads: ACI 318-19 spacing requirements not required (no crack-control performance requirement)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Setting minimum and maximum reinforcement spacing; the Appendix D-3/D-5 examples check maximum spacing via ACI 318-19's s_max formula with this cc value."
+    },
+    {
+      "section_id": "2-7",
+      "title": "Concrete protection for reinforcement",
+      "summary": "Table 2-1 gives minimum clear cover by concrete-section type: 4 in. (unformed, foundation contact), 6 in. (cavitation/abrasion exposure), 4 in. (formed, >=24 in. thick), 3 in. (formed, 12-24 in. thick), or per ACI 318-19 (formed, <=12 in. thick); floor of 1.5x max aggregate size or 2.5x max bar diameter always applies.",
+      "body": "The minimum cover for reinforcement must conform to Table 2-1 for various concrete sections (dimensions = clear distance from reinforcement edge to concrete surface). In no case can cover be less than 1.5x the nominal max aggregate size, or 2.5x the max reinforcement diameter.",
+      "key_points": [
+        "Table 2-1: 4 in. unformed/foundation contact; 6 in. cavitation/abrasion erosion",
+        "Table 2-1: 4 in. formed >=24in thick; 3 in. formed 12-24in thick; ACI 318-19 governs <=12in thick",
+        "Absolute floor: 1.5x max aggregate size or 2.5x max bar diameter, whichever governs"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": ["Table 2-1: Minimum clear distance from the edge of the reinforcement to the surface of the concrete"],
+      "applicability": "Specifying concrete cover; implemented in reinforcement.table_2_1_min_cover."
+    },
+    {
+      "section_id": "2-8",
+      "title": "Splicing",
+      "summary": "Splices only where required, avoided at max-tensile-stress points, staggered when unavoidable. Bars > No.11 must not be lap spliced (must be butt spliced) and No.11 or smaller should not be butt spliced unless justified; Table 2-2 gives longitudinal stagger for tension butt splices; mechanical splicing requires testing provisions in the contract documents.",
+      "body": "General: splices only as required, indicated on contract drawings, avoided at points of maximum tensile stress (staggered where unavoidable), made by lapping or butt splicing. Lapped splices: bars larger than No. 11 must not be lap spliced; tension splices staggered so no more than half the bars are lap spliced at any section within the required lap length. Butt splices: bars larger than No. 11 must be butt spliced (No. 11 or smaller should not be, absent clear justification, due to high cost); fabrication by welding or approved mechanical splicing per ACI 318-19; tension butt splices staggered per Table 2-2. Mechanical splicing: by approved exothermic, threaded-coupling, swaged-sleeve, or other positive connection per ACI 318-19; the designer should require slippage-testing provisions in the contract documents.",
+      "key_points": [
+        "Bars > No.11 must be butt spliced, not lap spliced",
+        "Table 2-2: <=No.11 splices stagger per ACI 318-19 lap length; >No.11 stagger >= 5 ft (1.5 m)",
+        "No more than half the bars spliced at any one section",
+        "Mechanical splices need contract-specified testing provisions for slippage risk"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": ["Table 2-2: Longitudinal stagger of tension butt splices"],
+      "applicability": "Detailing bar splices; implemented in reinforcement.table_2_2_splice_stagger."
+    },
+    {
+      "section_id": "2-9",
+      "title": "Temperature and shrinkage reinforcement",
+      "summary": "Minimum shrinkage/temperature reinforcement is 0.003 of gross cross-sectional area (half each face), generally no less than No.4 @ 12 in. each face and need not exceed No.9 @ 12 in. each face (thicker sections are mass concrete, governed by thermal studies instead). Table 2-3 raises the minimum ratio to 0.004/0.005 for longer joint spacings (30-40 ft / >40 ft). Discusses monolith length/joint-spacing tradeoffs, mass-concrete thermal-crack control, and concrete-mixture factors (paste content, aggregate type, curing) affecting shrinkage.",
+      "body": "(a) Minimum area of T&S reinforcement (non-mass-concrete members) is 0.003*Ag, half in each face, generally no less than No.4 bars at 12 in. each face for placement ease; more may be needed if the steel also distributes stress. (b) Area need not exceed the equivalent of No.9 bars at 12 in. each face -- adding more to thick sections is generally ineffective; thick sections are designed as mass concrete (2-9h) and may not need T&S reinforcement if properly designed. (c)-(f) Monolith length and control-joint spacing (monolith, expansion, contraction, construction joints) can dictate more T&S reinforcement than 2-9a's baseline; Table 2-3 gives minimum ratios by joint spacing. Good design minimizes restraint and visible wide cracks via adequate reinforcing and joint use; fewer contraction joints with slightly more T&S reinforcement is often more practical. Contraction joints within a monolith, if used, should be spaced 1 to 3x the monolith height/transverse dimension (taller/wider features toward the lower end of the range, shorter features <=8 ft toward the higher end). (g) Additional T&S reinforcement is generally unneeded in the plane of primary tensile reinforcement when restraint is accounted for in analysis, but primary reinforcement must not be less than the T&S requirement. (h) Mass concrete (large enough to require heat-of-hydration and volume-change mitigation) needs thermal studies to determine T&S requirements; control is managed by mix design, placement, curing, temperature control, joints, and sequencing, sometimes combined with self-straining-stress considerations from external loads. (i) Concrete mixture design affects shrinkage: minimizing paste/water content and coarse-aggregate maximization reduce drying shrinkage; avoid high-shrinkage aggregates (sandstone, greywacke, high-clay-content aggregates) in favor of quartz, granite, feldspar, limestone, dolomite; extended moist curing (beyond 7 days, 14 with pozzolans) can reduce shrinkage 10-20 percent.",
+      "key_points": [
+        "Baseline: As_T&S = 0.003*Ag, half each face (paragraph 2-9a)",
+        "Floor: No.4 @ 12in each face; ceiling: No.9 @ 12in each face (paragraph 2-9a/b)",
+        "Table 2-3: ratio rises to 0.004 (30-40 ft joint spacing) or 0.005 (>40 ft)",
+        "Mass concrete requires thermal studies instead of the standard T&S ratio (2-9h)",
+        "Contraction joint spacing guideline: 1 to 3x monolith height/transverse dimension"
+      ],
+      "equations": [
+        {"id": "As_T&S (paragraph 2-9a/Table 2-3)",
+         "description": "Minimum shrinkage/temperature reinforcement area = ratio * gross cross-sectional area, half each face, clamped to the No.4/No.9-at-12in per-face bounds.",
+         "implemented_in": "geotech_references.em_2104.reinforcement.shrinkage_temperature_reinforcement"}
+      ],
+      "figures": [],
+      "tables": ["Table 2-3: Minimum shrinkage and temperature reinforcement ratios for various joint spacings"],
+      "applicability": "Sizing temperature and shrinkage steel for walls, slabs, and other RCHS members; implemented in reinforcement.table_2_3_temp_shrinkage_ratio / shrinkage_temperature_reinforcement."
+    },
+    {
+      "section_id": "2-10",
+      "title": "Reinforcement detailing",
+      "summary": "Covers moment-connection detailing at T/L-shaped joints (Figure 2-1, full moment transfer via hooked bars turned from the beam) and seismic detailing (confinement at anticipated plastic-hinge locations, openings, lock walls, and base slabs; Figure 2-2 example from Olmsted Lock and Dam).",
+      "body": "(a) Detailing at joints/corners where moment transfers (e.g., a wall stem to a T-wall footing): full moment transfer is attained by turning hooks from the beam as in Figure 2-1 (transverse/other required reinforcement in the vertical member not shown); see ACI 318-19 retaining-wall guidance for more. (b) Seismic detailing: confinement is essential where inelastic action (hinges) is anticipated -- typically high-moment locations like the base of culvert/chamber walls or cross-sectional discontinuities. Confinement keeps cracked concrete in place to continue carrying load; corner reinforcement should arrest anticipated cracks, maintain bond/embedment of tension and fixed piles, and anchor reinforcement adequately. Figure 2-2 shows an Olmsted Lock and Dam pile-founded chamber monolith example (high-seismicity region): (a) openings should generally have 45-degree corner bars no less than temperature-effect reinforcement, plus adequate vertical/horizontal steel for internal forces and concrete confinement; (b) lock walls -- the base and thin wall portions need enough reinforcement for ductile behavior, especially the column between chamber and culvert (plastic-hinge-susceptible), requiring adequate, properly anchored steel (straight embedment or bent parallel to base-slab moment reinforcement); (c) base slab -- moment reinforcement must be tied with stirrups in high-moment regions to confine concrete and permit inelastic deformation, no smaller/fewer than temperature-effect reinforcement.",
+      "key_points": [
+        "Figure 2-1: full moment transfer at T/L joints via hooked bars turned from the beam",
+        "Seismic detailing targets anticipated plastic-hinge (high-moment) locations",
+        "Confinement (stirrups, corner bars) keeps cracked concrete in place under inelastic action",
+        "Figure 2-2 (Olmsted L&D) illustrates openings, lock-wall, and base-slab seismic detailing"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 2-1: Reinforcement detailing at moment connections",
+        "Figure 2-2: Typical seismic reinforcement details - Olmsted Lock and Dam"
+      ],
+      "tables": [],
+      "applicability": "Detailing moment connections and seismic-resistant reinforcement in high-seismicity RCHS."
+    },
+    {
+      "section_id": "2-11",
+      "title": "Mandatory requirements",
+      "summary": "Checklist restating that anchorage/development, hooks/bends, bar spacing, cover, splicing, and temperature/shrinkage reinforcement must meet paragraphs 2-4 through 2-9; thermal studies are required for mass concrete; seismic-load design requires adequate opening/base-slab reinforcement per 2-10b.",
+      "body": "Anchorage and reinforcing bar development must meet paragraph 2-4. Hooks and bends must meet paragraph 2-5. Reinforcing bar spacing must meet paragraph 2-6. Cover for reinforcing bars must meet paragraph 2-7. Splicing of reinforcing bars must meet paragraph 2-8. Temperature/shrinkage reinforcement must meet paragraph 2-9; primary reinforcement must be no less than that required for temperature and shrinkage. Thermal studies must be performed to determine temperature/shrinkage requirements for mass concrete. When designing for seismic loads, openings must have adequate vertical/horizontal steel to resist internal forces and confine concrete; base slab reinforcement must be tied with stirrups in regions of high moment.",
+      "key_points": [
+        "Restates 2-4 through 2-9 as mandatory",
+        "Thermal studies mandatory for mass concrete",
+        "Seismic design: openings and base slabs need specific confinement detailing per 2-10b"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Compliance checklist for Chapter 2."
+    }
+  ]
+}

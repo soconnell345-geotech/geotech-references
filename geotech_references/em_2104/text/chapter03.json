@@ -1,0 +1,150 @@
+{
+  "reference_id": "EM 1110-2-2104",
+  "reference_title": "EM 1110-2-2104, Strength Design for Reinforced Concrete Hydraulic Structures (USACE, dated 1 November 2023, published 8 January 2025)",
+  "volume": null,
+  "chapter": 3,
+  "chapter_title": "Strength and Serviceability Requirements",
+  "sections": [
+    {
+      "section_id": "3-1",
+      "title": "Overview",
+      "summary": "RCHS satisfy ACI 318-19 serviceability/strength/stability with the manual's own load factors/combinations/reinforcement limits. Defines critical vs. normal structures (by loss-of-life potential), the usual/unusual/extreme performance requirements, structural-stability analysis using a single load factor on unfactored forces, vehicle-load design per AASHTO/AREMA plus RCHS requirements, and hydraulic-steel-structure reaction loads.",
+      "body": "(a)-(c) RCHS satisfy ACI 318-19 serviceability, strength, and stability requirements except where this manual modifies load factors, load cases, and reinforcement limits. Serviceability limit states impose stress/deformation/cracking limits (paragraph 3-4) for durability over the 100-year service life. Strength limit states use LRFD: nominal loads and load factors (3-2, 3-3) provide adequate reliability against ACI 318-19/Chapter 4/5 strength limit states. (d) Structures are critical (failure could cause loss of life, directly by breach or indirectly by flooding a lifeline facility -- informed by hazard-potential classification, ER 1110-2-1806/1156) or normal (all others); extreme economic/environmental consequences may also justify a critical designation. (e) Performance requirements by load category: usual loads -> linear elastic, minimal hairline cracking, no leakage (designed to paragraph 3-4 serviceability, paragraph 2-6b spacing); unusual loads -> essentially elastic, concrete strain below crushing, reinforcement elastic, tensile cracking that closes after the load recedes (same serviceability/spacing checks); extreme loads -> possibly nonlinear, may sustain repairable damage but must not collapse/cause uncontrolled flooding (designed by LRFD strength limit states, Table 3-2 factors). (f) Stability analyses use factored loads for strength-limit-state LRFD; for single-load-factor design (paragraph 3-1f), stability analysis may use unfactored loads with results scaled by the single load factor afterward. (g) Vehicle-carrying hydraulic structures (culverts, flood-closure foundations) are designed to both AASHTO/AREMA and this manual's RCHS requirements; when RCHS loads are principal, vehicle live loads are companion per paragraph 3-2f(11); crane/special loads may exceed AASHTO design vehicles. (h) Reactions from hydraulic steel structures (HSS, per EM 1110-2-2107) are applied to RCHS LRFD combinations without additional load factors (factored) or directly (unfactored, for serviceability).",
+      "key_points": [
+        "Critical structures: failure could cause loss of life (directly or via lifeline flooding); all others are normal",
+        "Usual/unusual/extreme performance requirements set the expected structural response and design method",
+        "Single-load-factor stability analysis may use unfactored loads, scaled after the fact",
+        "Vehicle-carrying RCHS designed to both industry codes (AASHTO/AREMA) and this manual",
+        "HSS reaction loads are already factored per EM 1110-2-2107; applied without additional factors"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Framing the overall serviceability/strength/stability approach before selecting loads and load factors."
+    },
+    {
+      "section_id": "3-2",
+      "title": "Loads",
+      "summary": "Defines Table 3-1's 17 loads by duration category (permanent Lp, temporary Lt, dynamic Ld), the principal/companion load concept, the usual/unusual/extreme probability-of-loading categories (by return period/AEP thresholds that differ for normal vs. critical structures), and gives detailed guidance for each load (D, EH, EV, G, Hs, IX, ES, Q, L, T, V, Hd, Hw, IM, BI, W, EQ, HA), including hydrostatic principal-load selection and wave-plus-surge coastal combinations.",
+      "body": "(a)-(c) All loads with non-negligible design impact are considered per paragraph 3-3. Loads combine as principal (the extreme-valued action dominating a combination) plus companion actions (at their expected concurrent values); companion temporary/dynamic loads default to a 10-year minimum return period (the usual-category ceiling / normal-operating pool) unless paragraph 3-3e states otherwise. (d) Probability-of-loading categories by mean return period tr (AEP=1/tr): usual (tr<=10 yr); unusual (10<tr<=750yr critical / 10<tr<=300yr normal); extreme (tr>750yr critical / tr>300yr normal) -- illustrated in Figure 3-1. (e) Load duration categories: permanent Lp (dead, lateral earth -- continuous); temporary Lt (minutes to weeks: flood, dewatering, operation live loads); dynamic Ld (seconds or less: vessel/ice impact, earthquake, wave, turbulent flow -- rarely more than one at a time given short duration). (f) Load definitions (Table 3-1 summarizes): D dead (permanent); EH lateral earth (at-rest at low movement, approaching active/passive with movement; computed with a conservative-bias soil-parameter approach per EM 1110-2-2502; permanent); EV vertical earth (moist/buoyant soil weight, water tracked under Hs; permanent); G gravity (mud/silt/debris/atmospheric ice, highly site-dependent, ASCE 7-22 for atmospheric ice; permanent, treated as temporary-duration in Table 3-1's Lp/Lt/Ld split -- see Table 3-1 for the authoritative categorization); Hs hydrostatic (above/below-grade water pressure and uplift, expected-value 50% confidence basis, principal-load water levels chosen for maximum geometrically/hydrologically possible differential head, companion = normal operating condition; temporary); IX ice thermal expansion (upper-bound principal values, extreme; temporary); ES earth surcharge (stockpile/machinery/roadway loads, temporary principal unless permanent; typical nominal surcharge = unusual, extreme case = upper bound); Q operating equipment/gate reactions (temporary); L live load (ASCE 7-22; temporary); T self-straining (settlement/temperature, incl. concrete curing per 2-9h; temporary); V vehicle loads (per paragraph 3-1g; temporary); Hd hydrodynamic except earthquake (propwash, downdrag, hydraulic jumps -- high uncertainty, extreme = maximum expected; dynamic); Hw wave (per EM 1110-2-1100; principal for permanent-pool RCHS combined with companion Hs, or companion itself at 10-yr return for other cases; coastal surge-wave correlation requires coupled hydraulic-engineer analysis; dynamic); IM debris/floating-ice impact (perpendicular or glancing; correlated with flood loads as companion, or upper-bound extreme as principal; dynamic); BI barge/vessel impact (per EM 1110-2-3402; site-dependent vessel/tow characteristics; dynamic); W wind (ASCE 7-22, Risk Category IV for critical structures, II otherwise; serviceability wind uses a 10-yr return velocity; dynamic); EQ earthquake (see paragraph 3-3h; dynamic); HA hawser (per EM 1110-2-2602, based on breaking-strength of a single line for locks; unusual if based on line-breaking strength, usual if based on lesser loads; dynamic).",
+      "key_points": [
+        "Usual/unusual/extreme thresholds differ for normal vs. critical structures (10/300/750-year return-period boundaries)",
+        "Principal load = dominant/extreme action; companion loads default to a 10-year (usual-category) return period",
+        "Hydrostatic (Hs) principal-load water levels are the maximum geometrically/hydrologically possible differential head, chosen in consultation with hydraulic engineers",
+        "Coastal surge-plus-wave correlation requires a coupled hydraulic analysis, not independent combination",
+        "Dynamic loads (Ld) rarely coincide -- short duration makes simultaneous occurrence very unlikely"
+      ],
+      "equations": [],
+      "figures": ["Figure 3-1: Load category versus return period"],
+      "tables": ["Table 3-1: Loads on hydraulic structures"],
+      "applicability": "Selecting and categorizing loads before assembling a load combination; implemented in loads.TABLE_3_1_LOADS / table_3_1_load_inventory."
+    },
+    {
+      "section_id": "3-3",
+      "title": "Strength design",
+      "summary": "The core LRFD provisions: required strength <= design strength (Eq 3-1), the general load-combination equation (Eq 3-2), permanent/principal/companion load factors (paragraph 3-3d/e/f, tabulated in Table 3-2), and the earthquake-specific load combinations (Eq 3-3/3-4/3-5) for standard OBE, standard MDE, and site-specific MDE/MCE ground-motion analysis, including load-factor-on-load-effects treatment for dynamic analysis.",
+      "body": "(a) Required strength: sum(gamma_i*Lni) <= phi*Rn (Eq 3-1), where phi and Rn come from ACI 318-19/Chapters 4-5. (b)-(c) General LRFD combination equation (Eq 3-2): U = sum(gamma_p*Lp) + gamma_pu*Lpu + sum(gamma_c*Ltc) + gamma_c*Ldc; Ld is excluded as a companion when the principal load is itself dynamic; correlated principal loads (e.g. surge+wave) must be combined as a single correlated loading, not superposed with other temporary/dynamic loads. Specific combinations for typical structures are in Appendix E; loads not covered require CECW-EC consultation/approval. (d) Permanent load factors gamma_p (max/min applied for greatest effect): D=1.2/0.9 combined, 1.4 alone; EV=1.35/1.0; EH at-rest driving/resisting=1.35/0.9, active/passive=1.5/0.5; G=1.6/0. (e) Principal load factors gamma_pu by condition: Condition 1 (unlimited by geometry, estimable return period, e.g. most wave loads; min design return period >=3,000yr normal / >=10,000yr critical) gamma_pu=1.2; Condition 2 (limited by structure geometry, e.g. differential head limited by wall height) -- extreme range gamma_pu=1.3, unusual range gamma_pu=1.4, usual range gamma_pu=1.5; Condition 3 (unknown return period, upper-bound loads: impact, ice thermal expansion, most hydrodynamic loads) gamma_pu=1.3; ASCE-7-22-derived loads (L, T, W) use 1.6/1.0/1.0 gamma_pu respectively. (f) Companion load factors gamma_c: L=1.0, T=0.75, W=0.5 (all per ASCE 7-22); all other temporary/dynamic companions = 1.0. (g) Table 3-2 summarizes all load factors by load and category. (h) Earthquake: two design earthquakes per ER 1110-2-1806 -- Operating Basis Earthquake (OBE, unusual) and Maximum Design Earthquake (MDE, extreme; Maximum Credible Earthquake MCE for critical features' MDE). Combined with normal operating loads (self-weight, uplift, water pressure, at-rest lateral earth pressure per EM 1110-2-2100, since structure/soil can move either direction under dynamic analysis); only one temporary load included at a time with an EQ load. Standard OBE: U = sum(gamma_p*Lp) + 1.5*EQ + gamma_c*Lc (Eq 3-3). Standard MDE: U = sum(gamma_p*Lp) + 1.25*EQ + gamma_c*Lc (Eq 3-4). Site-specific MDE/MCE: U = 1.0*sum(Lp) + 1.0*EQ + 1.0*Lc (Eq 3-5, unfactored since site-specific analysis already reflects the target reliability). For dynamic (response-spectrum/time-history) analysis, load factors apply to computed member force effects, not the applied loads.",
+      "key_points": [
+        "Eq 3-1: required strength (factored-load demand) <= phi*Rn",
+        "Eq 3-2: U = sum(gamma_p*Lp) + gamma_pu*Lpu + sum(gamma_c*Lc); dynamic principal excludes a dynamic companion",
+        "Permanent gamma_p: D=1.2/0.9(/1.4 alone), EV=1.35/1.0, EH active/passive=1.5/0.5, EH at-rest=1.35/0.9, G=1.6/0",
+        "Principal-load Conditions 1/2/3 (paragraph 3-3e) set gamma_pu=1.2 / 1.3-1.5 by category / 1.3 for upper-bound loads",
+        "Earthquake combos Eq 3-3 (OBE, 1.5*EQ), 3-4 (standard MDE, 1.25*EQ), 3-5 (site-specific MDE/MCE, unfactored 1.0*EQ)"
+      ],
+      "equations": [
+        {"id": "3-1", "description": "Required strength check: sum(gamma_i*Lni) <= phi*Rn.",
+         "implemented_in": "geotech_references.em_2104.loads.required_strength_check"},
+        {"id": "3-2", "description": "General LRFD load combination: U = sum(gamma_p*Lp) + gamma_pu*Lpu + sum(gamma_c*Lc).",
+         "implemented_in": "geotech_references.em_2104.loads.load_combination_lrfd"},
+        {"id": "3-3", "description": "Standard OBE earthquake load combination: U = sum(gamma_p*Lp) + 1.5*EQ + gamma_c*Lc.",
+         "implemented_in": "geotech_references.em_2104.loads.earthquake_load_combination"},
+        {"id": "3-4", "description": "Standard MDE earthquake load combination: U = sum(gamma_p*Lp) + 1.25*EQ + gamma_c*Lc.",
+         "implemented_in": "geotech_references.em_2104.loads.earthquake_load_combination"},
+        {"id": "3-5", "description": "Site-specific MDE/MCE earthquake load combination: U = 1.0*sum(Lp) + 1.0*EQ + 1.0*Lc.",
+         "implemented_in": "geotech_references.em_2104.loads.earthquake_load_combination"}
+      ],
+      "figures": [],
+      "tables": ["Table 3-2: Minimum load factors for strength design"],
+      "applicability": "The core strength-design (LRFD) computation for any RCHS load combination; implemented in loads.py."
+    },
+    {
+      "section_id": "3-4",
+      "title": "Serviceability design",
+      "summary": "Sets maximum service (unfactored) reinforcement stresses (Table 3-3, no extreme-load requirement) and an alternate single-load-factor method (Table 3-4, fy=60,000 psi only) for beams/one-way slabs; discusses deflection control via service-load deflection checks and the recommended (not mandatory in the current edition) 0.25*rho_b deflection-control reinforcement-ratio limit.",
+      "body": "(a)(1) Maximum service stresses: reinforcement flexure/shear stress fs and direct tension stress, by load category (Table 3-3; usual 25/20 ksi, unusual 35/27.5 ksi; no serviceability stress requirement for extreme loads). Applies to all steel grades, in addition to paragraph 2-6b spacing and paragraph 3-6 reinforcement-ratio limits. (2) Alternate serviceability design: beams/one-way slabs meeting Table 3-3 stresses may instead be designed by the strength method, multiplying service loads by a single load factor (Table 3-4; fy=60,000 psi/414 MPa only) to get a factored design load -- this is the method used throughout the Appendix D worked examples. (b) Deflection: computed from service (unfactored) loads; acceptable limits are engineer-determined from operational requirements (e.g. waterstop movement capacity at joints, sensitivity of connected/supported elements). Limiting the tension reinforcement ratio to 0.25*rho_b was mandatory in past editions to control deflection; the current edition recommends (not requires) staying within this limit, deferring to other applicable manuals for additional deflection guidance.",
+      "key_points": [
+        "Table 3-3: max service stress usual 25/20 ksi (flexure-shear/direct tension), unusual 35/27.5 ksi; none for extreme",
+        "Table 3-4 single-load-factor method (fy=60,000 psi only): usual 2.2/2.8, unusual 1.6/2.0 (flexure-shear/direct tension)",
+        "0.25*rho_b deflection-control limit is now RECOMMENDED, not mandatory (changed from past editions)",
+        "Deflection limits are engineer-judgment-based on operational sensitivity (e.g. waterstops)"
+      ],
+      "equations": [
+        {"id": "single-load-factor design moment (paragraph 3-4a(2))",
+         "description": "Mu = single_load_factor * M_service (Table 3-4), then Mn = Mu/phi -- the design method used throughout Appendix D.",
+         "implemented_in": "geotech_references.em_2104.serviceability.single_load_factor_design_moment"}
+      ],
+      "figures": [],
+      "tables": ["Table 3-3: Maximum service stresses", "Table 3-4: Single-load factors for approximating serviceability design with fy = 60,000 psi (414 MPa)"],
+      "applicability": "Serviceability (crack-width/service-stress) design, and the practical single-load-factor design shortcut used in Appendix D-3/D-4/D-5."
+    },
+    {
+      "section_id": "3-5",
+      "title": "Design strength of reinforcement",
+      "summary": "Design should normally use fy=60,000 psi (Grade 60); other grades up to 80,000 psi may be used per ACI 318-19 and this manual, with the design fy shown on drawings; fy above 80,000 psi requires a CECW-EC-approved ductility/serviceability investigation.",
+      "body": "Design should normally be based on 60,000 psi (414 MPa), the yield strength of ASTM Grade 60 reinforcement. Other grades up to a maximum of 80,000 psi (552 MPa) may be used subject to ACI 318-19 and this manual; the design yield strength should be shown on the drawings. Reinforcement above 80,000 psi (552 MPa) must not be used unless a detailed ductility/serviceability investigation is conducted in consultation with and approved by CECW-EC.",
+      "key_points": [
+        "Default fy = 60,000 psi (Grade 60)",
+        "Up to 80,000 psi allowed per ACI 318-19 + this manual",
+        "Above 80,000 psi requires a CECW-EC-approved study"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selecting the design yield strength for reinforcement."
+    },
+    {
+      "section_id": "3-6",
+      "title": "Reinforcement limits",
+      "summary": "The tension reinforcement ratio must not exceed 50 percent of the balanced ratio (0.50*rho_b) for all load cases, ensuring a ductile failure mode.",
+      "body": "For all load cases, the tension reinforcement ratio must not exceed 50 percent of the balanced reinforcement ratio (0.50*rho_b) to ensure that the strength limit state is a ductile failure mode.",
+      "key_points": ["Mandatory ceiling: rho <= 0.50*rho_b, all load cases, for ductile failure"],
+      "equations": [
+        {"id": "3-6 (max reinforcement ratio)",
+         "description": "Mandatory maximum tension reinforcement ratio: rho_max = 0.50*rho_b.",
+         "implemented_in": "geotech_references.em_2104.serviceability.max_reinforcement_ratio"}
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Mandatory ductility check on any flexural/combined design; distinct from the recommended 0.25*rho_b deflection-control limit of paragraph 3-4b(2)."
+    },
+    {
+      "section_id": "3-7",
+      "title": "Minimum thickness of walls",
+      "summary": "Walls taller than 10 ft must be at least 12 in. thick; walls 10 in. or thicker must have reinforcement in both faces; walls must never be less than 8 in. thick.",
+      "body": "Walls with height greater than 10 ft (3 m) must be a minimum of 12 in. (30.5 cm) thick. Walls 10 in. (25 cm) or greater in thickness must have reinforcement in both faces. Walls must not be less than 8 in. (20 cm) thick.",
+      "key_points": [
+        "Height > 10 ft -> minimum 12 in. thickness",
+        "Thickness >= 10 in. -> reinforcement required in both faces",
+        "Absolute minimum thickness: 8 in., any height"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Sizing wall thickness before detailing reinforcement; implemented in serviceability.min_wall_thickness."
+    },
+    {
+      "section_id": "3-8",
+      "title": "Mandatory requirements",
+      "summary": "Restates the chapter's mandatory checklist: ACI 318-19 serviceability/strength/stability with this manual's load-factor/combination/reinforcement-limit exceptions; critical-vs-normal classification by hazard potential; stability per 3-1f; vehicle-supporting design per 3-1g; loads per 3-2; Eq 3-1 strength check; load factors per 3-3; minimum Appendix E load cases; earthquake per 3-3h if applicable; service stresses per 3-4a; reinforcement ratio per 3-6; wall thickness/reinforcement per 3-7.",
+      "body": "RCHS must be designed to satisfy all serviceability, strength, and stability requirements per ACI 318-19 with this manual's exceptions for load factors, load combinations, and reinforcement limits. Per paragraph 3-1d, high-hazard-potential-project structures must be classified critical (loss-of-life risk); all others are normal. Stability analyses must follow paragraph 3-1f. Vehicle-supporting hydraulic structures must follow paragraph 3-1g. Loads must conform to paragraph 3-2 definitions. Required strength from factored loads must be less than capacity per Eq 3-1. Load factors must follow paragraph 3-3. As a minimum, Appendix E's loading cases must be satisfied. Earthquake resistance, if required, must meet paragraph 3-3h. Design service stresses must meet paragraph 3-4a. Tension reinforcement ratios must meet paragraph 3-6. Walls must meet the thickness/reinforcement requirements of paragraph 3-7.",
+      "key_points": [
+        "Restates 3-1 through 3-7 as mandatory chapter requirements",
+        "Appendix E's load cases are a MINIMUM requirement, not merely illustrative"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Compliance checklist for Chapter 3."
+    }
+  ]
+}
