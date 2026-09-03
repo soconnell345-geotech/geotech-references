@@ -59,4 +59,19 @@ em_2104 : EM 1110-2-2104, Strength Design for Reinforced Concrete Hydraulic
              Appendix D-2 DESIGN equations (design.py), and Chapter 5 shear
              incl. the pre-ACI-318-19 equation deliberately retained for RCHS
              (shear.py) (US customary units)
+em_2107 : EM 1110-2-2107, Design of Hydraulic Steel Structures (USACE,
+             dated 1 Aug 2022) — LRFD loads/load factors/load combinations
+             (Chapter 4, loads.py), the HSS-support seismic-acceleration
+             amplification method incl. the full Appendix D pseudo-dynamic
+             derivation and worked example (seismic_amplification.py),
+             target reliability + usual/unusual/extreme load categories
+             (Chapter 3, design_basis.py), fatigue/fracture screening checks
+             (Chapter 5, fatigue_fracture.py), connection/bolt/weld
+             selection rules (Chapter 6, connections.py), and Chapter 10 +
+             Appendix F's Tainter-gate load-determination equations (side-
+             seal friction, wire-rope loads, hydrostatic load by
+             integration, trunnion friction, the full spillway-Tainter-gate
+             load-combination table) (tainter_gate_loads.py). Unlike
+             em_2104, this manual does not reprint AISC 360 member-capacity
+             equations (US customary units)
 """

@@ -1,0 +1,1038 @@
+{
+  "reference_id": "EM 1110-2-2107",
+  "reference_title": "EM 1110-2-2107, Design of Hydraulic Steel Structures (USACE, dated 1 August 2022)",
+  "package": "em_2107",
+  "volume": null,
+  "pdf_path": "docs/EM 1110-2-2107_2022.pdf",
+  "figure_numbering": "chapter.sequence",
+  "scope_note": "All 114 figures in the manual's own Figure List (front matter, printed p. iv-v: 'Figure List'). Chapters 9, 10, and 16's front-matter list has a source-document defect -- every 5th figure number in Ch 9/10 (9.5/9.10/9.15/9.20/9.25, 10.5/10.10/.../10.35) and the whole of 16.2 render as a blank auto-number field ('Figure 9. .') in BOTH the front-matter list and, confirmed independently, nowhere corrupted in the body (body captions render the number correctly on every figure's own page). All 114 entries below were therefore resolved directly against each figure's own body-page caption (exact 'Figure N.M.' block match), not the corrupted front-matter list -- this is a stronger verification than caption-search-off-the-list and every pdf_page_index is a confirmed body-page hit (page_estimated=false throughout). Three two-column side-by-side figures (13.2/13.4/13.6) share a page with their odd-numbered neighbor and interleave caption lines column-wise in extraction order; those three captions were reconstructed by de-interleaving the two-column block text, cross-checked against the front-matter list's own wording. printed_page = pdf_page_index - 8 throughout this edition.",
+  "figure_count": 114,
+  "figures": [
+    {
+      "figure_number": "2.1",
+      "caption": "Miter Gate",
+      "chapter": 2,
+      "pdf_page_index": 14,
+      "printed_page": "6",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "2.2",
+      "caption": "Submersible Lift Gate",
+      "chapter": 2,
+      "pdf_page_index": 15,
+      "printed_page": "7",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "2.3",
+      "caption": "Sector Gate",
+      "chapter": 2,
+      "pdf_page_index": 15,
+      "printed_page": "7",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "2.4",
+      "caption": "Tainter Gate",
+      "chapter": 2,
+      "pdf_page_index": 16,
+      "printed_page": "8",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "2.5",
+      "caption": "One-Piece Bulkhead",
+      "chapter": 2,
+      "pdf_page_index": 16,
+      "printed_page": "8",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "2.6",
+      "caption": "Bulkhead Formed from Stacked Stoplogs",
+      "chapter": 2,
+      "pdf_page_index": 17,
+      "printed_page": "9",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "3.1",
+      "caption": "Load Category Versus Return Period",
+      "chapter": 3,
+      "pdf_page_index": 21,
+      "printed_page": "13",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "4.1",
+      "caption": "Parameters for Equation 4.4",
+      "chapter": 4,
+      "pdf_page_index": 37,
+      "printed_page": "29",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "4.2",
+      "caption": "Example Site Response Spectrum",
+      "chapter": 4,
+      "pdf_page_index": 39,
+      "printed_page": "31",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "5.1",
+      "caption": "S-N Curve",
+      "chapter": 5,
+      "pdf_page_index": 41,
+      "printed_page": "33",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9.1",
+      "caption": "Load Transfer in Vertically Frame (Left) and Horizontally Framed (Right) (PIANC Working Group No. 154, 2017)",
+      "chapter": 9,
+      "pdf_page_index": 63,
+      "printed_page": "55",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9.2",
+      "caption": "Point Load Impact for Miter Gate Girders",
+      "chapter": 9,
+      "pdf_page_index": 65,
+      "printed_page": "57",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9.3",
+      "caption": "Geometrical Relations for Determining the Miter Gate Axis of Rotation (with a showing a simple method that gives one location, and b showing a more complex method that gives an area of possible locations)",
+      "chapter": 9,
+      "pdf_page_index": 69,
+      "printed_page": "61",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9.4",
+      "caption": "Skin Plate Location Relation to Uplift Force (Ryszard Daniel, 2019)",
+      "chapter": 9,
+      "pdf_page_index": 72,
+      "printed_page": "64",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9.5",
+      "caption": "Nomenclature and Assumed Load Area for Intercostal Design (with 2a equal to the intercostal spacing, G the spacing between centerlines of the girder webs, and S the spacing between edges of girder flanges)",
+      "chapter": 9,
+      "pdf_page_index": 73,
+      "printed_page": "65",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9.6",
+      "caption": "Sample Intercostal Section",
+      "chapter": 9,
+      "pdf_page_index": 73,
+      "printed_page": "65",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9.7",
+      "caption": "Preferred Detailing Options for Diaphragm Flange to Girder Flange Connection",
+      "chapter": 9,
+      "pdf_page_index": 74,
+      "printed_page": "66",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9.8",
+      "caption": "Girder Tapered End Section",
+      "chapter": 9,
+      "pdf_page_index": 76,
+      "printed_page": "68",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9.9",
+      "caption": "Generalized Primary Anchorage Load (Stress) Cycle for Normal Alignment of Quoin Blocks (Blocks in Contact with Hydrostatic Loading)",
+      "chapter": 9,
+      "pdf_page_index": 80,
+      "printed_page": "72",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9.10",
+      "caption": "Generalized Primary Anchorage Load (Stress) Cycle for Gap Misalignment of Quoin Blocks (load reduction can be less, equal, or greater in magnitude to the swinging load depending on the magnitude of the gate weight and hydrostatic load)",
+      "chapter": 9,
+      "pdf_page_index": 80,
+      "printed_page": "72",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9.11",
+      "caption": "Generalized Primary Anchorage Load (Stress) Cycle for Prying Action Misalignment of Quoin Blocks (the magnitude of the load increase can be quite high (e.g., nearly double the usual swinging load was seen at Lock 24))",
+      "chapter": 9,
+      "pdf_page_index": 81,
+      "printed_page": "73",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9.12",
+      "caption": "Type 5 Top Hinge Anchorage – Compact Post-Tensioned Exposed Anchorage (Elevation)",
+      "chapter": 9,
+      "pdf_page_index": 83,
+      "printed_page": "75",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9.13",
+      "caption": "Diagonal with Threaded Ends and Large 4.5-in. Diameter Nut (Left) and with Hydraulic Tensioner Attached (Right)",
+      "chapter": 9,
+      "pdf_page_index": 92,
+      "printed_page": "84",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9.14",
+      "caption": "Multiple Nut Tensioning Mechanism Using Multiple Stud Tensioners",
+      "chapter": 9,
+      "pdf_page_index": 92,
+      "printed_page": "84",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9.15",
+      "caption": "Multi-Bolt Jacking Mechanism (USACE, Inland Navigation Design Center)",
+      "chapter": 9,
+      "pdf_page_index": 93,
+      "printed_page": "85",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9.16",
+      "caption": "Jack and Shim Mechanism (The St. Lawrence Seaway Management Corporation) (Roby, P., 2016)",
+      "chapter": 9,
+      "pdf_page_index": 94,
+      "printed_page": "86",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9.17",
+      "caption": "Seals on Horizontally Framed Miter Gates",
+      "chapter": 9,
+      "pdf_page_index": 95,
+      "printed_page": "87",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9.18",
+      "caption": "Inclined J-Bulb Seal",
+      "chapter": 9,
+      "pdf_page_index": 97,
+      "printed_page": "89",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9.19",
+      "caption": "Block Seal (Kentucky Lock)",
+      "chapter": 9,
+      "pdf_page_index": 97,
+      "printed_page": "89",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9.20",
+      "caption": "Plan View of Transition Between Round Seal and Block Seal (Kentucky Lock)",
+      "chapter": 9,
+      "pdf_page_index": 98,
+      "printed_page": "90",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9.21",
+      "caption": "Sections of Transition Between Round Seal and Block Seal (Kentucky Lock)",
+      "chapter": 9,
+      "pdf_page_index": 98,
+      "printed_page": "90",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9.22",
+      "caption": "J-Bulb Bottom Seal at Pintle Where Seal Is Below Bottom Girder Height (The Dalles Lock)",
+      "chapter": 9,
+      "pdf_page_index": 99,
+      "printed_page": "91",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9.23",
+      "caption": "J-Bulb Bottom Seal Near Pintle Where Seal is at Bottom Girder Height (Troy Lock)",
+      "chapter": 9,
+      "pdf_page_index": 99,
+      "printed_page": "91",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9.24",
+      "caption": "J-Bulb Seal",
+      "chapter": 9,
+      "pdf_page_index": 100,
+      "printed_page": "92",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9.25",
+      "caption": "Load Pin",
+      "chapter": 9,
+      "pdf_page_index": 104,
+      "printed_page": "96",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9.26",
+      "caption": "Bottom Girder with Upstream Flange Held Below Girder Web",
+      "chapter": 9,
+      "pdf_page_index": 105,
+      "printed_page": "97",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9.27",
+      "caption": "Seals on Vertically Framed Miter Gates (Upper Mississippi Locks)",
+      "chapter": 9,
+      "pdf_page_index": 108,
+      "printed_page": "100",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9.28",
+      "caption": "Omega Seal Detail",
+      "chapter": 9,
+      "pdf_page_index": 108,
+      "printed_page": "100",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9.29",
+      "caption": "Plan View of Pintle Sitting in the Embedded Pintle Base with Upstream Toward Top and Miter Sill to the Right",
+      "chapter": 9,
+      "pdf_page_index": 109,
+      "printed_page": "101",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "9.30",
+      "caption": "Methods for Prestressing Diagonal",
+      "chapter": 9,
+      "pdf_page_index": 111,
+      "printed_page": "103",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.1",
+      "caption": "Overall View of Navigation Dam from Downstream",
+      "chapter": 10,
+      "pdf_page_index": 179,
+      "printed_page": "171",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.2",
+      "caption": "Downstream View of a Typical Tainter Gate",
+      "chapter": 10,
+      "pdf_page_index": 179,
+      "printed_page": "171",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.3",
+      "caption": "Submergible Tainter Gate",
+      "chapter": 10,
+      "pdf_page_index": 180,
+      "printed_page": "172",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.4",
+      "caption": "Submergible Tainter Gate Typical Recessed End Frame",
+      "chapter": 10,
+      "pdf_page_index": 181,
+      "printed_page": "173",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.5",
+      "caption": "View of a Typical Tainter Gate",
+      "chapter": 10,
+      "pdf_page_index": 182,
+      "printed_page": "174",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.6",
+      "caption": "Wire Rope Hoisting System",
+      "chapter": 10,
+      "pdf_page_index": 182,
+      "printed_page": "174",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.7",
+      "caption": "Hydraulic Hoisting System",
+      "chapter": 10,
+      "pdf_page_index": 183,
+      "printed_page": "175",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.8",
+      "caption": "Layout Variations of a Wire Rope Hoisting System",
+      "chapter": 10,
+      "pdf_page_index": 184,
+      "printed_page": "176",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.9",
+      "caption": "Primary Tainter Gate Components",
+      "chapter": 10,
+      "pdf_page_index": 185,
+      "printed_page": "177",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.10",
+      "caption": "Horizontal Girder Lateral Bracing",
+      "chapter": 10,
+      "pdf_page_index": 186,
+      "printed_page": "178",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.11",
+      "caption": "Downstream Vertical Truss",
+      "chapter": 10,
+      "pdf_page_index": 187,
+      "printed_page": "179",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.12",
+      "caption": "End Frame Bracing Examples",
+      "chapter": 10,
+      "pdf_page_index": 188,
+      "printed_page": "180",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.13",
+      "caption": "End Frame Bracing Example",
+      "chapter": 10,
+      "pdf_page_index": 189,
+      "printed_page": "181",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.14",
+      "caption": "Trunnion Tie",
+      "chapter": 10,
+      "pdf_page_index": 190,
+      "printed_page": "182",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.15",
+      "caption": "Side Seal Friction Variables",
+      "chapter": 10,
+      "pdf_page_index": 191,
+      "printed_page": "183",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.16",
+      "caption": "Skin Plate Model",
+      "chapter": 10,
+      "pdf_page_index": 192,
+      "printed_page": "184",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.17",
+      "caption": "Rib Model",
+      "chapter": 10,
+      "pdf_page_index": 193,
+      "printed_page": "185",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.18",
+      "caption": "Girder Frame Model",
+      "chapter": 10,
+      "pdf_page_index": 194,
+      "printed_page": "186",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.19",
+      "caption": "End Frame Model",
+      "chapter": 10,
+      "pdf_page_index": 195,
+      "printed_page": "187",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.20",
+      "caption": "End Frame Model",
+      "chapter": 10,
+      "pdf_page_index": 196,
+      "printed_page": "188",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.21",
+      "caption": "Downstream Vertical Truss Model",
+      "chapter": 10,
+      "pdf_page_index": 197,
+      "printed_page": "189",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.22",
+      "caption": "Trunnion Hub Assembly",
+      "chapter": 10,
+      "pdf_page_index": 198,
+      "printed_page": "190",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.23",
+      "caption": "Seal Detail",
+      "chapter": 10,
+      "pdf_page_index": 199,
+      "printed_page": "191",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.24",
+      "caption": "Wire Rope Attachment Detail",
+      "chapter": 10,
+      "pdf_page_index": 200,
+      "printed_page": "192",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.25",
+      "caption": "Hydraulic Cylinder Attachment Detail",
+      "chapter": 10,
+      "pdf_page_index": 201,
+      "printed_page": "193",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.26",
+      "caption": "Gate Stop Details",
+      "chapter": 10,
+      "pdf_page_index": 202,
+      "printed_page": "194",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.27",
+      "caption": "Bumper Details",
+      "chapter": 10,
+      "pdf_page_index": 203,
+      "printed_page": "195",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.28",
+      "caption": "Bumper Details",
+      "chapter": 10,
+      "pdf_page_index": 204,
+      "printed_page": "196",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.29",
+      "caption": "Trunnion Assembly with Cylindrical Bushing",
+      "chapter": 10,
+      "pdf_page_index": 205,
+      "printed_page": "197",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.30",
+      "caption": "Spherical Bearing",
+      "chapter": 10,
+      "pdf_page_index": 206,
+      "printed_page": "198",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.31",
+      "caption": "Trunnion Assembly Structural Components",
+      "chapter": 10,
+      "pdf_page_index": 207,
+      "printed_page": "199",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.32",
+      "caption": "Trunnion Yoke Assembly",
+      "chapter": 10,
+      "pdf_page_index": 207,
+      "printed_page": "199",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.33",
+      "caption": "Generalized Forces on Trunnion Pin and Retainer Plate",
+      "chapter": 10,
+      "pdf_page_index": 208,
+      "printed_page": "200",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.34",
+      "caption": "Trunnion Hub Design Assumptions",
+      "chapter": 10,
+      "pdf_page_index": 208,
+      "printed_page": "200",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.35",
+      "caption": "Design of Base Plate",
+      "chapter": 10,
+      "pdf_page_index": 209,
+      "printed_page": "201",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.36",
+      "caption": "Trunnion Girder Analytical Model",
+      "chapter": 10,
+      "pdf_page_index": 209,
+      "printed_page": "201",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.37",
+      "caption": "Analytical Model to Evaluate Anchorage Bearing Stresses",
+      "chapter": 10,
+      "pdf_page_index": 210,
+      "printed_page": "202",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.38",
+      "caption": "Stress Distributions Between Pier/Trunnion Girder Interface",
+      "chapter": 10,
+      "pdf_page_index": 210,
+      "printed_page": "202",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.39",
+      "caption": "Trunnion Girder Movement",
+      "chapter": 10,
+      "pdf_page_index": 211,
+      "printed_page": "203",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.40",
+      "caption": "Post-Tensioned Concrete Trunnion Girder",
+      "chapter": 10,
+      "pdf_page_index": 211,
+      "printed_page": "203",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.41",
+      "caption": "Trunnion Girder Analytical Model",
+      "chapter": 10,
+      "pdf_page_index": 212,
+      "printed_page": "204",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.42",
+      "caption": "General Arrangement of Trunnion Girder Anchorage",
+      "chapter": 10,
+      "pdf_page_index": 213,
+      "printed_page": "205",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "10.43",
+      "caption": "Post-Tensioned Anchorage System",
+      "chapter": 10,
+      "pdf_page_index": 213,
+      "printed_page": "205",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "11.1",
+      "caption": "The Dalles Lock and Dam Navigation Lock Tainter Gate",
+      "chapter": 11,
+      "pdf_page_index": 217,
+      "printed_page": "209",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "11.2",
+      "caption": "Lower Saint Anthony Falls Lock and Dam Navigation Tainter Gate",
+      "chapter": 11,
+      "pdf_page_index": 218,
+      "printed_page": "210",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "12.1",
+      "caption": "Typical Tainter Valve Components",
+      "chapter": 12,
+      "pdf_page_index": 222,
+      "printed_page": "214",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "12.2",
+      "caption": "Tainter Valve Configurations – Vertically Framed (Left) and Double Skin (Horizontally Framed) (Right)",
+      "chapter": 12,
+      "pdf_page_index": 222,
+      "printed_page": "214",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "13.1",
+      "caption": "Submersible Lift Gate, Normal Operation",
+      "chapter": 13,
+      "pdf_page_index": 229,
+      "printed_page": "221",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "13.2",
+      "caption": "Submersible Lift Gate, Hydrostatic Loading Diagram, Downstream Leaf, Seals Effective",
+      "chapter": 13,
+      "pdf_page_index": 229,
+      "printed_page": "221",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "13.3",
+      "caption": "Submersible Lift Gate, Hydrostatic Loading Diagram, Downstream Leaf, Seals Ineffective",
+      "chapter": 13,
+      "pdf_page_index": 230,
+      "printed_page": "222",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "13.4",
+      "caption": "Submersible Lift Gate, Hydrostatic Loading Diagram, Upstream Leaf, Seals Effective",
+      "chapter": 13,
+      "pdf_page_index": 230,
+      "printed_page": "222",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "13.5",
+      "caption": "Submersible Lift Gate, Hydrostatic Loading Diagram, Upstream Leaf, Seals Ineffective",
+      "chapter": 13,
+      "pdf_page_index": 230,
+      "printed_page": "222",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "13.6",
+      "caption": "Overhead Lift Gate with Crossover Gallery, Hydrostatic Loading",
+      "chapter": 13,
+      "pdf_page_index": 230,
+      "printed_page": "222",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "13.7",
+      "caption": "Overhead Lift Gate Without Crossover Gallery, Hydrostatic Loading",
+      "chapter": 13,
+      "pdf_page_index": 231,
+      "printed_page": "223",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "13.8",
+      "caption": "Single-Section Spillway Crest Gate",
+      "chapter": 13,
+      "pdf_page_index": 232,
+      "printed_page": "224",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "13.9",
+      "caption": "Single-Section Spillway Crest Gate, Hydrostatic Loading Diagram",
+      "chapter": 13,
+      "pdf_page_index": 232,
+      "printed_page": "224",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "13.10",
+      "caption": "Multiple-Section Spillway Crest Gate",
+      "chapter": 13,
+      "pdf_page_index": 233,
+      "printed_page": "225",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "13.11",
+      "caption": "Multiple-Section Spillway Crest Gate, Hydrostatic Loading Diagram, Top and Bottom Sections Split",
+      "chapter": 13,
+      "pdf_page_index": 233,
+      "printed_page": "225",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "13.12",
+      "caption": "Double-Section Spillway Crest Gate",
+      "chapter": 13,
+      "pdf_page_index": 234,
+      "printed_page": "226",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "13.13",
+      "caption": "Double-Section Spillway Crest Gate, Hydrostatic Loading for Overflow and Underflow Operation",
+      "chapter": 13,
+      "pdf_page_index": 234,
+      "printed_page": "226",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "13.14",
+      "caption": "Outlet Gate with Downstream Seal with an Upstream Skin Plate",
+      "chapter": 13,
+      "pdf_page_index": 235,
+      "printed_page": "227",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "13.15",
+      "caption": "Outlet Gate, Hydrostatic Loading, Downstream Seal with an Upstream Skin Plate",
+      "chapter": 13,
+      "pdf_page_index": 235,
+      "printed_page": "227",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "13.16",
+      "caption": "Outlet Gate with Upstream Seal with an Upstream Skin Plate",
+      "chapter": 13,
+      "pdf_page_index": 236,
+      "printed_page": "228",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "13.17",
+      "caption": "Outlet Gate, Hydrostatic Loading, Upstream Seal with an Upstream Skin Plate",
+      "chapter": 13,
+      "pdf_page_index": 236,
+      "printed_page": "228",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "13.18",
+      "caption": "Submersible Lift Gate, Hydrodynamic Loading for Passing Ice and Debris",
+      "chapter": 13,
+      "pdf_page_index": 238,
+      "printed_page": "230",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "14.1",
+      "caption": "Stoplog Closure Structure with Center Post",
+      "chapter": 14,
+      "pdf_page_index": 263,
+      "printed_page": "255",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "14.2",
+      "caption": "Swing-Gate Closure Structure",
+      "chapter": 14,
+      "pdf_page_index": 264,
+      "printed_page": "256",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "14.3",
+      "caption": "Tieback Linkage for Double-Leaf Swing Gate",
+      "chapter": 14,
+      "pdf_page_index": 265,
+      "printed_page": "257",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "14.4",
+      "caption": "Miter Gate Closure Structure",
+      "chapter": 14,
+      "pdf_page_index": 266,
+      "printed_page": "258",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "14.5",
+      "caption": "Rolling Gate Closure Structure",
+      "chapter": 14,
+      "pdf_page_index": 267,
+      "printed_page": "259",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "14.6",
+      "caption": "Rolling Gate Stabilized By L-Frame and Hooks",
+      "chapter": 14,
+      "pdf_page_index": 267,
+      "printed_page": "259",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "14.7",
+      "caption": "Trolley Gate Closure Structure",
+      "chapter": 14,
+      "pdf_page_index": 268,
+      "printed_page": "260",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "16.1",
+      "caption": "Framing of the Recess/Middle Truss Vertical Member into the Web of the Horizontal Beam",
+      "chapter": 16,
+      "pdf_page_index": 277,
+      "printed_page": "269",
+      "page_estimated": false,
+      "description": ""
+    },
+    {
+      "figure_number": "16.2",
+      "caption": "Framing of the Channel-Side Vertical Member to the Horizontal Beam Downstream Flange (to allow more water flow between the skin plate and the vertical member when opening gate from closed position)",
+      "chapter": 16,
+      "pdf_page_index": 278,
+      "printed_page": "270",
+      "page_estimated": false,
+      "description": ""
+    }
+  ]
+}

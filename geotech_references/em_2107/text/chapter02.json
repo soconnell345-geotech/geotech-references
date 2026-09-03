@@ -1,0 +1,61 @@
+{
+  "reference_id": "EM 1110-2-2107",
+  "reference_title": "EM 1110-2-2107, Design of Hydraulic Steel Structures (USACE, dated 1 August 2022)",
+  "volume": null,
+  "chapter": 2,
+  "chapter_title": "Types of Hydraulic Steel Structures",
+  "sections": [
+    {
+      "section_id": "2.1",
+      "title": "General",
+      "summary": "Introduces the chapter as an overview of HSS types and uses across USACE's flood storage, navigation, and flood-risk-management projects (with hydropower/water supply as secondary purposes); detailed design requirements are in the type-specific chapters.",
+      "body": "USACE designs, constructs, and operates many types of projects that control or regulate water. The primary project purposes are flood storage (reservoirs), navigation, and flood risk management. USACE projects sometimes include hydropower and water supply as secondary purposes. Each project uses HSS (gates) to control the flow of water in various ways. This chapter provides a brief overview of the types and uses of various HSS. See the detailed design requirements for each HSS type in the HSS type specific chapter.",
+      "key_points": ["Primary USACE project purposes: flood storage, navigation, flood risk management", "Hydropower/water supply are secondary purposes"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Framing paragraph for the chapter."
+    },
+    {
+      "section_id": "2.2",
+      "title": "Project Types",
+      "summary": "Describes HSS use by project type: navigation (lock gates, lift heights 10 ft coastal to 100 ft in mountainous areas), flood storage (retain/release/regulate flows), hydropower (turbine control gates and maintenance bulkheads, high reservoir levels), levee systems (closure gates for openings, seldom operated but must be reliable), and water supply/recreation (secondary, mixed-use reservoirs).",
+      "body": "Navigation projects permit navigation between different water levels upstream and downstream of the dam. The navigation lift height varies considerably in different geographic areas. In coastal areas, lifts are often 10 ft (3 m) or less. Along the Mississippi and Ohio Rivers, lifts of 15 to 25 ft (5.6 to 7.6 m) are common. In more hilly or mountainous areas, especially in the Pacific Northwest, lift heights can reach 100 ft (30 m). Lock gates open and close to pass navigation traffic. Flood storage dams provide volume in the reservoir to store incoming flows to prevent downstream flooding. They use HSS to retain water during high inflows, release water after the high inflows to recover flood storage capacity, and regulate low flows for downstream water supply or water quality. Hydropower may be included as a secondary function of flood storage or for navigation dams. HSS on projects with hydropower are similar to those on other dams; typically there are HSS to control flows through the turbines and bulkheads to allow turbine maintenance. Reservoir levels on hydropower dams are generally kept high to maximize power generation. Levee system projects include levees or floodwalls surrounding a populated area; openings are built through the structures to permit vehicle, railroad, or pedestrian access, and HSS close the openings during flood conditions (sliding, hinged, and rolling configurations). These HSS are seldom operated but must perform reliably during flood events. Water supply and recreation are generally not the primary function of USACE projects; pool levels must be balanced with other uses in mixed-use reservoirs.",
+      "key_points": [
+        "Navigation lift heights: coastal <=10 ft, Mississippi/Ohio 15-25 ft, mountainous up to 100 ft",
+        "Flood storage HSS: retain during high inflow, release after, regulate low flows",
+        "Hydropower dams keep reservoir levels high to maximize generation",
+        "Levee closure HSS are seldom operated but must be highly reliable during floods"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Understanding why the same gate TYPE (e.g. miter gate) may see very different service demands depending on project purpose."
+    },
+    {
+      "section_id": "2.3",
+      "title": "HSS Types",
+      "summary": "Describes each major HSS type and where its design chapter lives: miter gates (Ch 9, three-hinged-arch action), Tainter gates (Ch 10 spillway / Ch 11 lock) and Tainter valves (Ch 12), lift gates (Ch 13, submersible/overhead/multi-leaf), levee closure gates (Ch 14: swing/miter/rolling/trolley/stoplog), bulkheads and stoplogs (Ch 15), sector gates (low-lift navigation, two rotating leaves about a vertical axis), and other/less-common types (prefabricated slide/sluice/flap gates, dam crest gates, roller gates, wicket gates, bear-trap/clamshell/inflatable gates, valves) covered only at a high level or not at all.",
+      "body": "Miter gates are commonly used as lock gates and are also used in levee closures. A miter gate consists of two individual leaves; when closed and retaining pool, the leaves form a shallow three-hinged arch pointing upstream. When open, the leaves rotate into recesses in the lock walls. See Chapter 9. Tainter gates are primarily used as spillway crest gates and, to a lesser extent, as lock gates; pool is typically applied to the upstream side of the skin plate toward the trunnion pin, and the gate is shaped as a sector of a cylinder with a horizontal axis, allowing operation under large differential heads with favorable hydraulic discharge characteristics. See Chapter 10 (spillway) and Chapter 11 (lock). Tainter valves are used for lock emptying/filling and behave similarly, but water is typically placed on the rib side of the skin plate. See Chapter 12. Lift gates are submersible or overhead and can be single or multiple leaf; submersible gates lower to pass navigation/debris over the top, overhead gates raise to pass below the bottom. See Chapter 13. A wide variety of gate types close openings in levees and floodwalls (swing, miter, rolling, trolley gates, and stoplogs) due to the range of opening widths/heights/slopes and required operating speed. See Chapter 14. Bulkheads and stoplogs permit dewatering for maintenance/repairs/emergency closures; a bulkhead is a single fabricated structure while stoplogs are several shallower structures stacked to form a bulkhead system. See Chapter 15. Sector gates are used for very low lift navigation gates (e.g. coastal areas); two leaves joined at the lock center rotate into wall recesses, each shaped as a sector of a cylinder with a VERTICAL axis, and can open/close under small differential heads or with flow through the lock, eliminating the need for a separate filling/emptying system. Other, less common HSS types include prefabricated slide/sluice/flap gates, dam crest gates (only Tainter and lift gates are covered in detail), roller gates (older low-head dams, hollow tube rolled up a toothed track), wicket gates (folded down when not in use, also used for turbine flow control), and bear-trap/clamshell/inflatable/hinged crest gates and Butterfly/Jet Flow/Howell-Bunger/Stony Gate/Flap valves.",
+      "key_points": [
+        "Miter gate = 3-hinged arch, two leaves, upstream-pointing (Ch 9)",
+        "Tainter gate = cylindrical-sector shape, horizontal axis, favorable large-head operation (Ch 10 spillway / Ch 11 lock)",
+        "Tainter valve = similar to Tainter gate but water on rib side (Ch 12)",
+        "Sector gate = cylindrical sector, VERTICAL axis, low-lift, can open under flow (no separate fill/empty system needed)",
+        "Levee closure gates: swing/miter/rolling/trolley/stoplog, chosen per opening geometry (Ch 14)",
+        "Bulkhead = single structure; stoplogs = stacked shallower structures forming a bulkhead system (Ch 15)"
+      ],
+      "equations": [], "figures": ["2.1", "2.2", "2.3", "2.4", "2.5", "2.6"], "tables": [],
+      "applicability": "Identifying which HSS-type chapter (9-16) governs a given gate's detailed design, and understanding the structural principle (arch action, cylindrical-sector geometry) behind each."
+    },
+    {
+      "section_id": "2.4",
+      "title": "Design Requirements",
+      "summary": "Chapters 3-8 give basic HSS design requirements applicable to ALL HSS types; Chapters 9-16 give geometry/details/design specific to each type (and may cross-apply to less-common types); design/construction records from prior projects are the best source of information for uncommon HSS types, modified to meet current requirements.",
+      "body": "Chapters 3 through 8 of this manual contain basic HSS design requirements that apply to all types of HSS. Chapters 9-16 provide geometry, details, and other information about specific types of HSS. Some of the information in those chapters may also be useful in the design of other types of HSS. The best source for geometry and detailing information on less common HSS types is usually the design and construction records from previous projects; however, such information should be modified to comply with current design requirements.",
+      "key_points": [
+        "Chapters 3-8 = universal HSS requirements",
+        "Chapters 9-16 = type-specific geometry/details",
+        "Legacy project records are the practical source for uncommon HSS types, but must be updated to current criteria"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Navigating the manual's overall structure between universal (Ch 3-8) and type-specific (Ch 9-16) content."
+    }
+  ]
+}

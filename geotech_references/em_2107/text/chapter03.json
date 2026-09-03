@@ -1,0 +1,131 @@
+{
+  "reference_id": "EM 1110-2-2107",
+  "reference_title": "EM 1110-2-2107, Design of Hydraulic Steel Structures (USACE, dated 1 August 2022)",
+  "volume": null,
+  "chapter": 3,
+  "chapter_title": "Design Considerations",
+  "sections": [
+    {
+      "section_id": "3.1",
+      "title": "Purpose",
+      "summary": "Identifies the chapter's role: general HSS design considerations, with specific requirements in other chapters.",
+      "body": "This chapter identifies the general considerations for the design of HSS. Specific requirements are described in other chapters.",
+      "key_points": ["Chapter 3 is the general/governing framework; specifics live elsewhere"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Framing paragraph."
+    },
+    {
+      "section_id": "3.2",
+      "title": "Design Philosophy",
+      "summary": "Introduces the limit-state design philosophy (constructability, safety, serviceability, inspectability, economy), the probable failure mode analysis (PFMA), the four limit states (strength, serviceability, fatigue, fracture), critical vs. normal structure classification, 100-year service life, target reliability (Table 3.1), and constructability/QA considerations.",
+      "body": "HSS will be designed for the specified limit states to achieve the objectives of constructability, safety, and serviceability -- with consideration for inspectability and economy -- throughout the service life of the structure. The guidance in this manual is intended to provide ductile structures and to prevent brittle behavior. Redundant structures should be used when practical and economical. HSS design must consider all possible modes of failure. A probable failure mode analysis (PFMA) should be performed on HSS where life safety or significant economic loss would occur in the event of a failure; the PFMA should consider failure modes associated with the HSS, its mechanical and electrical systems, and its interface with other structural systems (see ER 1110-2-1156). HSS must be designed to satisfy all applicable limit states -- a limit state is a controlling condition in which a structural system or component becomes unfit for its intended purpose. The Strength Limit State ensures safety against yield, net-section fracture, and stability failure (local or global). The Serviceability Limit State ensures the HSS meets all operational requirements by limiting stress, deformation, and cracking. The Fatigue Limit State avoids crack initiation from repeated stress cycles. The Fracture Limit State ensures fracture will not occur under given design conditions. The requirements of this manual are based on a 100-year HSS service life. Strength requirements are intended to achieve an acceptable level of reliability over the service life; target reliability indices are given in Table 3.1, accounting for consequences of failure and for the HSS's environment and operating conditions. The guidance for load/load-factor selection in Chapter 4, combined with AISC capacity/resistance factors, is intended to achieve the Table 3.1 target reliability. For simplicity, the load factors in this manual were developed for single-load-path structures, so they can also be safely applied to redundant structures. Constructability considerations (deflection, strength, stability during construction stages) must be addressed; fabrication/erection sequences assumed to prevent certain stresses must be defined in the contract documents (see Chapter 8).",
+      "key_points": [
+        "Four limit states: Strength, Serviceability, Fatigue, Fracture",
+        "PFMA required where failure risks life safety or significant economic loss",
+        "100-year HSS service life is the basis for this manual's requirements",
+        "Target reliability beta from Table 3.1 (design_basis.table_3_1_target_reliability)",
+        "Load factors are developed for single-load-path structures but apply safely to redundant ones too"
+      ],
+      "equations": [], "figures": [], "tables": ["3.1"],
+      "applicability": "Understanding the limit-state framework and reliability basis that Chapter 4's load factors are calibrated to achieve."
+    },
+    {
+      "section_id": "3.3",
+      "title": "Loads",
+      "summary": "Establishes that all loads with non-negligible impact must be considered per Chapter 4; distinguishes cyclically-loaded from statically-loaded structures; introduces principal/companion load combination logic (Chapter C2 of ASCE 7-22) and the usual/unusual/extreme probability-of-loading categories with their return-period/AEP thresholds (paragraph 3.3.4, Figure 3.1), plus load-duration categories (paragraph 3.3.5).",
+      "body": "All loads to which an HSS is subjected will be considered in the design according to Chapter 4; loads with a negligible impact on the design may be ignored. Cyclically loaded structures repeatedly undergo significant stress changes during operation; statically (non-cyclically) loaded structures do not, though they may see stress changes from loading/unloading for a relatively small number of cycles. Loads are combined to produce maximum effects for a given limit state under varying load frequencies, using principal and companion action loads (per ASCE 7-22 Chapter C2 and the following paragraphs). A principal load is a specified variable or rare load that dominates in a given combination (selected per paragraph 4.3.3); its principal load factor accounts for load variability and pattern. A companion load accompanies the principal load; its companion load factor accounts for uncertainty in the companion load's magnitude acting simultaneously with the factored principal load -- companion loads are typically usual loads, and for strength design (unless paragraph 4.3.5 states otherwise) temporary/dynamic companion loads must have a minimum 10-year return period (the usual-category maximum; for hydrostatic loading this is the normal operating pool). Loads are categorized usual/unusual/extreme by mean return period (Tr) or annual exceedance probability (AEP), illustrated in Figure 3.1: usual has Tr <= 10 years (AEP >= 0.10, deflections minimized, steel elastic, fatigue avoided); unusual has 10 < Tr <= 300 years (normal) or <= 750 years (critical) (deflections meet operational needs, steel generally elastic); extreme has Tr beyond those bounds (structure expected to withstand loading, possibly with permanent deformation, but failure-critical members must remain intact). Loads are also grouped by duration (paragraph 3.3.5): permanent loads are usual loads; dynamic loads' HSS response may be dynamic but is usually treated as static for design, and because of short duration it is extremely unlikely more than one dynamic load exists at any given time.",
+      "key_points": [
+        "usual: Tr <= 10 yr; unusual: 10 < Tr <= 300 yr (normal)/750 yr (critical); extreme: beyond those (paragraph 3.3.4, design_basis.load_category_from_return_period)",
+        "Companion temporary/dynamic loads need >= 10-year minimum return period unless stated otherwise",
+        "At most one dynamic load is assumed present at a time (short duration)",
+        "Principal/companion load combination follows ASCE 7-22 Chapter C2"
+      ],
+      "equations": [], "figures": ["3.1"], "tables": [],
+      "applicability": "Classifying any given load's probability-of-loading category before selecting its Table 4.1 load factor."
+    },
+    {
+      "section_id": "3.4",
+      "title": "Materials",
+      "summary": "Materials are selected for strength, ductility, and other properties (yield/tensile strength, ductility, fracture toughness, corrosion resistance); ASTM A709 is the preferred structural steel and ASTM F1325 Grade A325 the preferred fastener; weld metal and other connection materials are project-specific.",
+      "body": "Materials are selected to provide the required strength, ductility, and other properties such that the design may be constructed to meet all applicable limit states and performance requirements. Specified material properties may include yield and tensile strengths, ductility, fracture toughness, and corrosion resistance. Material certification reports will be reviewed to ensure material requirements are met. American Society of Testing and Materials (ASTM) A709 is the preferred structural steel specification used to ensure the appropriate limit states and performance criteria are met. ASTM F1325 Grade A325 is the preferred structural fastener specification. Weld metal is selected based on strength and toughness requirements and material types. Other materials used for attachments, appurtenances, and connections are selected on a project-by-project basis.",
+      "key_points": [
+        "Preferred structural steel: ASTM A709",
+        "Preferred structural fastener: ASTM F1325 Grade A325",
+        "Weld metal selected for strength/toughness compatibility with base metal"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Baseline material selection before detailed design; note Chapter 6 gives the actual bolt-grade allowance rules (A325/A490/F3148 for structural connections)."
+    },
+    {
+      "section_id": "3.5",
+      "title": "Member Types",
+      "summary": "Distinguishes primary members (main load path from application point to supports) from secondary members (bracing, intercostals, diaphragms -- support/stability or attachments); covers redundancy (structural condition where more support exists than strictly needed) and Fracture Critical Members (FCM, a subset of failure-critical members requiring additional scrutiny/testing/material and fabrication requirements per ER 1110-2-8157).",
+      "body": "HSS are comprised of various member types, each with specific functions and performance requirements. Primary members are the main load-carrying members that provide load path from point of load application to the supports. Secondary members (e.g., bracing, intercostal, and diaphragm) provide support or stability to the primary members, and also include attachments or other appurtenances; failure of a secondary member is generally localized but can lead to global failure if it causes failure of the primary member. Some members may serve as both primary and secondary members depending on loading conditions and system response. Redundancy is a structural condition where there are more elements of support than necessary for strength or stability, so loads can be redistributed to avoid collapse; non-redundant members are identified by the Engineer through analysis and/or judgment. Fracture Critical Members (FCM) are a subset of Failure Critical Members (defined in ER 1110-2-8157). All FCM in an HSS must be identified by the Engineer and labeled in the project plans, requiring: additional levels of scrutiny throughout design and fabrication; additional material testing and nondestructive testing (NDT); and additional testing/improved reliability of connections. Appropriate materials and fabrication requirements are included in the project specifications.",
+      "key_points": [
+        "Primary members carry the main load path; secondary members (bracing/intercostal/diaphragm) support/stabilize them",
+        "A member can be primary under one loading condition and secondary under another",
+        "FCM = subset of Failure Critical Members; must be identified/labeled, with added scrutiny/testing/fabrication requirements"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Classifying members before applying Chapter 5's fracture-control requirements (which apply specifically to FCM)."
+    },
+    {
+      "section_id": "3.6",
+      "title": "Analysis",
+      "summary": "Requires understanding of load paths and system response (not just individual members); simplified 2D hand-analysis models for miter and Tainter gates (Chapters 9/10, cross-applicable to other skin-plate HSS); advanced analysis (e.g. finite element) when complex conditions exist, requiring full documentation (model description, assumptions, and how/why they differ from reality) and independent verification (hand calculations and/or an independent model).",
+      "body": "Individual HSS members are sized to meet the performance requirements under all applicable limit states for the specified load combinations. The load effects in each member are determined through an understanding of the distribution of loads throughout the structure and application of proper analysis techniques that account for the overall response of the HSS as a system, not just individual members or components. Guidance to develop simplified analysis models for miter and Tainter gates is provided in Chapters 9 and 10; the simplified methods of Chapter 9 may also be applied to skin plate design of vertical lift gates, stoplogs, bulkheads, and levee closures, and the methods of Chapter 10 to lock Tainter gates and Tainter valves. These models are typically 2D and conducive to hand analysis or simplified truss/frame models. Advanced analysis techniques (e.g. finite element methods) may be employed where complex loading conditions or member configurations exist, or to verify simplified analyses; when used, documentation and verification are required. Documentation includes a complete description of the analysis model (element types, meshing, boundary conditions, nodal connectivity, adequacy of assumed-behavior simplifications, loads/load application), all assumptions, how they differ from reality, and why the differences are acceptable. Verification should include hand calculations or an independent model analysis (itself subject to the same documentation requirements and also including some hand calculations), in addition to a detailed check of the original model.",
+      "key_points": [
+        "Chapter 9's simplified 2D methods also apply to lift gates/stoplogs/bulkheads/levee closures' skin plates",
+        "Chapter 10's simplified 2D methods also apply to lock Tainter gates and Tainter valves",
+        "Advanced (FE) analysis requires full documentation of assumptions plus independent verification (hand calc or independent model)"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Selecting and documenting an analysis approach appropriate to the HSS's complexity."
+    },
+    {
+      "section_id": "3.7",
+      "title": "Corrosion Control",
+      "summary": "Corrosion is controlled through material selection, coating specs, detailing, and cathodic protection to maintain reliability through service life; see Chapter 7.",
+      "body": "Corrosion is controlled through proper material selection, coating specifications, detailing, and cathodic protection systems. Corrosion control helps prevent deterioration to ensure reliability is maintained through the service life of the HSS. See Chapter 7 for guidance on corrosion control.",
+      "key_points": ["Corrosion control tools: material selection, coatings, detailing, cathodic protection"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Pointer to Chapter 7 for detailed corrosion-control guidance."
+    },
+    {
+      "section_id": "3.8",
+      "title": "Inspection and Maintenance",
+      "summary": "Design for inspection/maintenance access, materials, corrosion protection, detailing, and component replaceability; see Chapter 7.",
+      "body": "See Chapter 7 for guidance on designing for inspection and maintenance. Inspection and Maintenance are considered in the design of HSS by providing good access for conducting inspections and maintenance, specifying proper materials and corrosion protection, employing good detailing practices, and designing components for easy replacement.",
+      "key_points": ["Design for inspectability, maintainability, and component replaceability"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Pointer to Chapter 7."
+    },
+    {
+      "section_id": "3.9",
+      "title": "Plans and Specifications",
+      "summary": "Plans/specs communicate the design to the fabricator and must include all information needed to fabricate the HSS.",
+      "body": "The HSS design is communicated to the fabricator through the plans and specifications. Include all information necessary to fabricate the HSS in these documents.",
+      "key_points": ["Plans/specs must be complete enough to fabricate without additional design input"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Documentation completeness requirement."
+    },
+    {
+      "section_id": "3.10",
+      "title": "Fabrication and Erection",
+      "summary": "Fabrication/erection processes are considered in design (additional stresses, detailing to accommodate the processes); see Chapter 8.",
+      "body": "Fabrication and erection processes are considered in the design. Design should consider additional stresses imposed during fabrication and erection and should include proper detailing to accommodate the processes. See Chapter 8 for details.",
+      "key_points": ["Fabrication/erection stresses must be accounted for in design, not just service loads"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Pointer to Chapter 8."
+    },
+    {
+      "section_id": "3.11",
+      "title": "Deviations from Prescribed Design",
+      "summary": "Proposed modifications to design requirements for special conditions must be submitted to CECW-EC.",
+      "body": "Where special conditions exist, proposed modifications to the design requirements must be submitted to CECW-EC.",
+      "key_points": ["CECW-EC approval required for design-requirement deviations under special conditions"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Governance for design deviations beyond the DSOG/LSOG process of paragraph 1.6 (dam/levee-safety-specific deviations)."
+    }
+  ]
+}

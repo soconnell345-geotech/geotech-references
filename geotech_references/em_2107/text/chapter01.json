@@ -1,0 +1,140 @@
+{
+  "reference_id": "EM 1110-2-2107",
+  "reference_title": "EM 1110-2-2107, Design of Hydraulic Steel Structures (USACE, dated 1 August 2022)",
+  "volume": null,
+  "chapter": 1,
+  "chapter_title": "Introduction",
+  "sections": [
+    {
+      "section_id": "1.1",
+      "title": "Purpose",
+      "summary": "States the manual's purpose: LRFD design guidance for Hydraulic Steel Structures (HSS), including new structures, replacement, rehabilitation, and repair. Notes that manual criteria may exceed industry requirements due to USACE's unique structures and risks; criteria are minimums that may be exceeded for resiliency.",
+      "body": "This manual prescribes guidance for the design of Hydraulic Steel Structures (HSS) by load and resistance factor design (LRFD). This includes design of new structures, replacement, rehabilitation, and repair. Mechanical and electrical design considerations are addressed in EM 1110-2-2610. Commentary is provided in Appendix B. Due to the U.S. Army Corps of Engineers' (USACE) unique structures and their associated risks, criteria in this manual may exceed industry requirements. The criteria in this manual are minimum USACE requirements. These criteria may be exceeded by the designer to enhance resiliency as risk and economics dictate.",
+      "key_points": [
+        "LRFD design guidance for HSS: new, replacement, rehabilitation, and repair",
+        "Mechanical/electrical design is in EM 1110-2-2610; commentary is Appendix B",
+        "Criteria are USACE minimums; may exceed industry requirements and may be exceeded further for resiliency"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Establishing the manual's scope and its relationship to industry (AISC) practice before applying any provision."
+    },
+    {
+      "section_id": "1.2",
+      "title": "Applicability",
+      "summary": "Applies to HQUSACE elements, major subordinate commands, districts, laboratories, and field operating activities responsible for civil works project design.",
+      "body": "This manual applies to HQUSACE elements, major subordinate commands, districts, laboratories, and field operating activities with responsibility for design of civil works projects.",
+      "key_points": ["Applies across all USACE civil-works design organizations"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Administrative scope statement."
+    },
+    {
+      "section_id": "1.3",
+      "title": "Distribution Statement",
+      "summary": "A one-line administrative statement: this engineer manual is approved for public release with unlimited distribution, carrying no access or dissemination restrictions for any user of the manual.",
+      "body": "Approved for public release; distribution is unlimited.",
+      "key_points": [
+        "Approved for public release",
+        "Distribution is unlimited (no access restrictions)"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Administrative."
+    },
+    {
+      "section_id": "1.4",
+      "title": "References",
+      "summary": "A one-line pointer to Appendix A for the complete list of required publications and prescribed forms that this manual references throughout (e.g. AISC 360, AASHTO/AWS welding codes, ASTM material specifications).",
+      "body": "References are listed in Appendix A.",
+      "key_points": [
+        "Full reference list is in Appendix A",
+        "Appendix A covers both required publications and prescribed forms"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Locating source standards."
+    },
+    {
+      "section_id": "1.5",
+      "title": "Records Management (Recordkeeping) Requirements",
+      "summary": "References the Army Records Retention Schedule (RRS-A) / ARIMS for recordkeeping; see DA Pam 25-403 if records are not current.",
+      "body": "The records management requirement for all record numbers, associated forms, and reports required by this regulation are addressed in the Army Records Retention Schedule -- Army (RRS-A). Detailed information for all related record numbers is located in the Army Records Information Management System (ARIMS)/RRS-A. If any record numbers, forms, and reports are not current, addressed, and/or published correctly in ARIMS/RRS-A, see Department of the Army (DA) Pamphlet 25-403, Guide to Recordkeeping in the Army, for guidance.",
+      "key_points": ["Administrative recordkeeping requirement, not a design provision"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Administrative."
+    },
+    {
+      "section_id": "1.6",
+      "title": "Delegated USACE Design Approval for Dam and Levee Projects",
+      "summary": "Covers risk assessment and approval/documentation requirements for deviations and waivers from mandatory design standards, which must include a risk assessment and be documented and concurred by the Dam/Levee Safety Oversight Group.",
+      "body": "Guidance in this manual supersedes all other previously published USACE guidance for the design of HSS. Justifications for deviations and waivers from mandatory design standards in this manual must include a risk assessment. All deviations and waivers must be clearly identified in the decision documents and design reports and must be deliberately called out within the review plan as a specific charge for the review. All proposed deviations and waivers from these mandatory design standards, including rationale, must be documented in a memorandum approved by the respective District and Division Dam Safety Officer or Levee Safety Officer and concurred by the Dam Safety Oversight Group (DSOG) or Levee Safety Oversight Group (LSOG), whichever is appropriate. The DSOG or LSOG will ensure the appropriate USACE Community of Practice leader(s) or their designated representatives are included in the concurrence process. Review documentation will account for all decisions and rationale for deviations and waivers, including the memorandum documenting approval and concurrence.",
+      "key_points": [
+        "This manual supersedes prior USACE HSS guidance",
+        "Deviations/waivers require a risk assessment and DSOG/LSOG concurrence memorandum",
+        "Deviations/waivers must be flagged in the review plan as a specific review charge"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Governance process for any departure from this manual's mandatory provisions."
+    },
+    {
+      "section_id": "1.7",
+      "title": "Background",
+      "summary": "Lists the types of HSS (lock gates, Tainter gates/valves, bulkheads/stoplogs, lift gates, closure gates, wicket gates, penstocks, needle dams, crest/roller/outlet gates, lifting beams), the severe conditions they experience, and notes small/low-risk manufacturer-standard HSS are exempt.",
+      "body": "Types of HSS. ER 1110-2-8157 provides a definition of HSS. Typical HSS are lock gates, Tainter gates, Tainter and other types of valves, bulkheads and stoplogs, vertical lift gates, components of hydroelectric and pumping plants, closure gates for levee systems, wicket gates, penstocks, needle dams, crest gates, roller gates, outlet works gates, and lifting beams. Standard manufacturer's design of small size, low head, and low risk are exempted from these requirements. HSS may be subject to submergence, wave action, hydraulic hammer, cavitation, impact, corrosion, vibration due to defective seals, friction from seals and bearings, and severe climatic conditions.",
+      "key_points": [
+        "Full HSS type list: lock/Tainter/valve/lift/closure/wicket/sector gates, bulkheads/stoplogs, penstocks, needle dams, lifting beams",
+        "Small/low-head/low-risk manufacturer-standard HSS are exempt",
+        "HSS-specific severe conditions: submergence, wave, hydraulic hammer, cavitation, impact, corrosion, seal vibration/friction"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Scoping which structures this manual governs."
+    },
+    {
+      "section_id": "1.8",
+      "title": "Design Policy",
+      "summary": "HSS are designed to this manual plus AISC 360-16, welded per AASHTO/AWS D1.5M or AWS D1.1M, replacing the expired ETL 1110-2-584; defines mandatory (will/must), strong-preference (should), and permissive (may) terminology; requires coordination with Operations Divisions and end users.",
+      "body": "Engineering responsibilities for the design of HSS are prescribed by ER 1110-2-8157. HSS must be designed according to this manual and American Institute of Steel Construction (AISC) Specification for Structural Steel Buildings, ANSI/AISC 360-16, except as specified herein. Welding requirements must follow American Association of State Highway and Transportation Officials (AASHTO)/American Welding Society (AWS) D1.5M/D1.5:2015 or AWS D1.1/D1.1M:2015 (AWS) except as specified herein. This manual provides the minimum requirements necessary to provide for safety, reliability, and required performance of HSS and was written to replace the now expired Engineer Technical Letter (ETL) 1110-2-584. The Engineer, meeting the qualifications as defined by ER 1110-2-8157, must perform or oversee the performance of the design, fabrication, and installation of HSS. Coordination with Operations Divisions, project personnel, or end users is required during all design phases. The terms 'will' or 'must' denotes a mandatory requirement for compliance with this manual. The term 'should' indicates a strong preference for a given criterion. The term 'may' indicates a criterion that is usable.",
+      "key_points": [
+        "Design governed by this manual + AISC 360-16 (member design)",
+        "Welding per AASHTO/AWS D1.5M or AWS D1.1M",
+        "Replaces the expired ETL 1110-2-584",
+        "will/must = mandatory; should = strong preference; may = permissive"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Baseline design-method statement and the manual's mandatory-language convention -- read this before interpreting any 'must'/'should'/'may' elsewhere."
+    },
+    {
+      "section_id": "1.9",
+      "title": "Requirement Criterion",
+      "summary": "All newly fabricated HSS must follow this manual; existing designs reused for new work must be modified to meet all provisions.",
+      "body": "All newly fabricated HSS must be designed according to this manual. Existing designs used for new work must be modified to meet all provisions of this manual.",
+      "key_points": ["New fabrication and reused existing designs both must meet this manual"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Applies to both new designs and reuse of legacy drawings."
+    },
+    {
+      "section_id": "1.10",
+      "title": "Reuse of Existing Designs",
+      "summary": "For non-carbon (stainless steel, aluminum) HSS, this manual's loads/load factors/combinations still apply, but AISC Design Guide 27 (stainless) or the Aluminum Design Manual (aluminum, LRFD building provisions) govern member design.",
+      "body": "For non-carbon HSS, use the loads, load factors, and load combinations in this manual. Use AISC Design Guide 27 for design of stainless steel structures. For design of aluminum structures, the current Aluminum Association Aluminum Design Manual is used. For aluminum use LRFD of building structures in the referenced manual.",
+      "key_points": [
+        "This manual's loads/factors/combinations apply to ALL HSS materials",
+        "Stainless steel member design: AISC Design Guide 27",
+        "Aluminum member design: Aluminum Design Manual (LRFD building provisions)"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Selecting the correct member-design standard for non-carbon-steel HSS."
+    },
+    {
+      "section_id": "1.11",
+      "title": "Design Guidance",
+      "summary": "This table-of-contents heading has no distinct printed content of its own in this edition; its subject (non-carbon HSS material design guidance) is actually presented under paragraph 1.10, Reuse of Existing Designs.",
+      "body": "See paragraph 1.10 for design guidance on non-carbon HSS materials.",
+      "key_points": [
+        "No distinct content beyond paragraph 1.10 in the printed body",
+        "Non-carbon (stainless/aluminum) HSS design guidance is covered under 1.10"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Administrative table-of-contents entry."
+    }
+  ]
+}
