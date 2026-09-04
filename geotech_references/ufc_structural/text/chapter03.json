@@ -1,0 +1,124 @@
+{
+  "reference_id": "UFC 3-301-01",
+  "reference_title": "UFC 3-301-01, Structural Engineering (DoD, dated 11 April 2023, as amended through Change 4, 3 June 2025)",
+  "volume": null,
+  "chapter": 3,
+  "chapter_title": "Modifications to ASCE 7",
+  "sections": [
+    {
+      "section_id": "3-1",
+      "title": "ASCE 7-22 Chapter 1 - General",
+      "summary": "Performance-based design requires AHJ documentation approval during the design-concept stage; Table 2-2 of this UFC replaces ASCE 7-22 Tables 1.5-1 and 1.5-2 (risk category classification).",
+      "body": "1.3.1 [Supplement, Item c]: performance-based design documentation for AHJ approval is required during the design-concept stage. 1.3.1.3 [Replacement]: structural/nonstructural components and connections must be demonstrated (analysis + testing) to provide reliability not less than the Strength Procedures of Section 1.3.1.1, considering load/resistance uncertainty. 1.3.1.3.3 [Replacement]: submit compliance/testing reports to the AHJ and an independent peer reviewer (where required). Tables 1.5-1/1.5-2 [Replacement]: replaced by Table 2-2 of this UFC (see Chapter 2, Section 2-4.2); items differing from IBC Table 1604.5 are shown in italics in the source.",
+      "key_points": [
+        "Performance-based design needs AHJ documentation approval at the design-concept stage",
+        "Table 2-2 (Chapter 2) replaces ASCE 7-22 Tables 1.5-1 and 1.5-2"
+      ],
+      "equations": [], "figures": [], "tables": ["Table 2-2 (Chapter 2)"],
+      "applicability": "Any project using ASCE 7-22 performance-based design procedures; risk category classification for all projects."
+    },
+    {
+      "section_id": "3-2",
+      "title": "ASCE 7-22 Chapter 2 - Combinations of Loads",
+      "summary": "Adds self-straining-force (T) load-factor guidance pointers for both strength design and ASD, adds the vertical-ground-motion-sensitive-member seismic load combinations (Eq under 2.3.6/2.4.5), and replaces the Load Combinations for Extraordinary Events section to point directly at UFC 4-023-03 while deleting ASCE 7-22's own load-combination and stability-requirement sub-sections.",
+      "body": "2.3.4/2.4.4 [Supplement]: self-straining load T must be considered; ASCE 7 Section C2.3.4/C2.4.4 commentary contains load factors for T not given in the main text -- read the full commentary; also evaluate T's serviceability/long-term-performance impact. 2.3.6/2.4.5 [Supplement]: adds combinations 8/9 (LRFD) and 11/12/13 (ASD) for the vertical-ground-motion-sensitive members of Chapter 2 Section 1605.1.2, using vertical seismic effect Ev0 = 0.67*SDS*D (or from the ASCE 7-22 Section 11.9 design vertical response spectrum) -- see ``seismic_load_combinations`` module. [C]: derived via the 100+30 orthogonal-combination rule, noting the code's standard 0.2*SDS*D vertical term already assumes peak-vertical/peak-horizontal ~ 2/3 and 30% combination (0.3*0.67*SDS = 0.2*SDS); these additions simply flip the emphasis to 100% vertical + 30% horizontal. 2.5.1 [Replacement]: extraordinary-event strength/stability checks (progressive collapse) follow UFC 4-023-03 when required. 2.5.2/2.5.3 [Deletion]: ASCE 7-22's own Load Combinations and Stability Requirements sub-sections for extraordinary events are deleted entirely (superseded by UFC 4-023-03).",
+      "key_points": [
+        "New seismic load combinations 8/9 (LRFD, Section 2.3.6) and 11/12/13 (ASD, Section 2.4.5) for vertical-ground-motion-sensitive members",
+        "Ev0 = 0.67*SDS*D, derived via the 100+30 orthogonal combination rule",
+        "Progressive collapse load combinations come from UFC 4-023-03, not ASCE 7-22's own extraordinary-events sections (deleted)"
+      ],
+      "equations": [
+        {"id": "2.3.6 (add'l)", "description": "LRFD seismic combinations 8/9 for vertical-ground-motion-sensitive members", "implemented_in": "geotech_references.ufc_structural.seismic_load_combinations.basic_combination_with_vertical_seismic_lrfd"},
+        {"id": "2.4.5 (add'l)", "description": "ASD seismic combinations 11/12/13 for vertical-ground-motion-sensitive members", "implemented_in": "geotech_references.ufc_structural.seismic_load_combinations.basic_combination_with_vertical_seismic_asd"}
+      ],
+      "figures": [], "tables": [],
+      "applicability": "Self-straining forces (all structures); additional seismic combinations (vertical-ground-motion-sensitive members per Chapter 2 Section 1605.1.2); extraordinary-event/progressive-collapse design."
+    },
+    {
+      "section_id": "3-3",
+      "title": "ASCE 7-22 Chapter 6 - Tsunami Loads",
+      "summary": "Permits a Medium 2065 DoD Regional Sea Level Rise (DRSL) design target for RC IV/V tsunami-prone structures (with future-adaptation design features labeled NIC), clarifies the 1.3 tsunami-refuge-elevation factor does not stack with Table 2-2's tsunami factor, and requires mission-critical nonstructural systems to sit above the 1.3-factored maximum inundation elevation.",
+      "body": "6.5.3 [Supplement]: subject to AHJ approval, a Medium 2065 DRSL target may be used for RC IV/V tsunami-prone structures when designing for combined tsunami + sea level rise; design must incorporate future adaptation to High/Highest 2065 DRSL per Table 2-2, labeling adaptive features 'Not in Contract (NIC)' for low-cost future construction; cost/risk tradeoffs must be considered. 6.14.1 [Supplement]: where a 1.3 elevation factor is required for tsunami vertical evacuation refuge structures, it SUPPLANTS (does not stack with) the Table 2-2 tsunami factor. 6.15.1 [Supplement]: mission-critical nonstructural systems/components must sit above the maximum inundation elevation factored by 1.3 (in addition to projected sea level rise per Table 2-2), unless designed directly for tsunami effects with inundation not inhibiting critical function.",
+      "key_points": [
+        "Medium 2065 DRSL is the permitted (AHJ-approved) design target for RC IV/V combined tsunami+SLR design, with NIC future-adaptation features",
+        "The 1.3 refuge-elevation factor REPLACES, not adds to, the Table 2-2 tsunami factor",
+        "Mission-critical nonstructural systems: 1.3x maximum inundation elevation, plus SLR"
+      ],
+      "equations": [], "figures": [], "tables": ["Table 2-2 (Chapter 2)"],
+      "applicability": "Risk Category IV/V structures and mission-critical systems in Tsunami Design Zones."
+    },
+    {
+      "section_id": "3-4",
+      "title": "ASCE 7-22 Chapter 7 - Snow Loads",
+      "summary": "Requires consideration of snow buildup around roof obstructions (PV panels, lightning cable systems, etc.) in sloped-roof snow load design.",
+      "body": "7.4 [Supplement]: where roof obstructions occur (PV panels, lightning cable systems, etc.), consider the potential for snow buildup around them in sloped-roof snow load design.",
+      "key_points": ["Snow drift/buildup around roof-mounted obstructions must be considered"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Sloped roofs with mounted obstructions."
+    },
+    {
+      "section_id": "3-5",
+      "title": "ASCE 7-22 Chapter 11 - Seismic Design Criteria",
+      "summary": "Clarifies applicability of Chapter 12 detailing to non-routinely-occupied but human-activity-supporting structures (e.g. training towers), redefines Designated Seismic Systems (Ip=1.5, Owner-identified) and moment frames, and ties the seismic importance factor Ie directly to Table 2-2.",
+      "body": "11.1.2 [Supplement]: seismic force-resisting-system design/detailing follows ASCE 7-22 Sections 11.7/Chapter 12 (as modified by this UFC) plus 2024 IBC nonseismic requirements. 11.1.3 [Supplement]: non-routinely-occupied structures whose primary purpose supports human activities (e.g. training towers) are not classified as nonbuilding structures unless specifically AHJ-approved. 11.2 [Replacement, DESIGNATED SEISMIC SYSTEMS]: nonstructural components requiring Chapter 13 design with component importance factor Ip > 1.0, required operational post-earthquake; Owner-identified, Ip = 1.5. 11.2 [Replacement, Moment Frame]: a frame resisting lateral forces by flexure and axial action, with every joint restrained against rotation; categorized IMF/OMF/SMF. 11.5.1 [Replacement]: seismic importance factor Ie is assigned per Table 2-2 of this UFC.",
+      "key_points": [
+        "Designated Seismic Systems: Ip=1.5, Owner-identified, required post-earthquake operational",
+        "Seismic importance factor Ie comes directly from Table 2-2",
+        "Non-routinely-occupied human-activity structures (training towers) are NOT automatically nonbuilding structures"
+      ],
+      "equations": [], "figures": [], "tables": ["Table 2-2 (Chapter 2)"],
+      "applicability": "Seismic force-resisting system scope and designated-seismic-system identification for all structures."
+    },
+    {
+      "section_id": "3-6",
+      "title": "ASCE 7-22 Chapter 12 - Seismic Design Requirements for Building Structures",
+      "summary": "Introduces Table 3-1 (the full replacement for ASCE 7-22 Table 12.2-1: R/Omega0/Cd and SDC height limits for ~92 systems across categories A-H); restricts Risk Category IV structures using the Appendix B alternate procedure to nonlinear-only analysis; clarifies overstrength-factor load-combination usage for collector elements; and points to Figure 3-1 for flexible-diaphragm wall-anchorage span determination.",
+      "body": "12.2.1 [Supplement]: Table 3-1 of this UFC MUST be used in lieu of ASCE 7-22 Table 12.2-1 -- see ``seismic_force_resisting_systems.table_3_1_seismic_system`` (categories A Bearing Wall, B Building Frame, C Moment-Resisting Frame, D/E Dual Systems w/ Special/Intermediate Moment Frames >=25%, F Shear Wall-Frame Interactive, G Cantilevered Column, H Steel Not Specifically Detailed). 12.6 [Supplement]: RC IV structures using the Appendix B alternate procedure may use ONLY nonlinear static or nonlinear response history analysis (per Appendix B). 12.10.2.1 Item (c) [Replacement] + Exception [Replacement]: collector-element forces at SDC C-F use the Section 2.3.6 load combinations WITHOUT the overstrength factor (seismic forces per Eq 12.10-2, or per Section 12.10.1.1 for the wood-light-frame-shear-wall exception) -- clarifying that ASCE 7-22's own text ambiguously references a section containing BOTH overstrength and non-overstrength combination sets. 12.11.2.1 [Supplement]: Figure 3-1 of this UFC shows how to determine the flexible-diaphragm span Lf for wall anchorage force calculations.",
+      "key_points": [
+        "Table 3-1 is THE seismic force-resisting system table for this UFC (replaces ASCE 7-22 Table 12.2-1 entirely)",
+        "RC IV + Appendix B alternate procedure => nonlinear analysis ONLY (no ELF/modal response spectrum)",
+        "Collector elements at SDC C-F: use load combinations WITHOUT overstrength factor",
+        "Figure 3-1: flexible-diaphragm span Lf determination for wall anchorage"
+      ],
+      "equations": [], "figures": ["Figure 3-1 (Anchorage of Walls to Flexible Diaphragm)"], "tables": ["Table 3-1"],
+      "applicability": "Seismic force-resisting system selection (every building); collector-element design at SDC C-F; wall-to-flexible-diaphragm anchorage."
+    },
+    {
+      "section_id": "3-7",
+      "title": "ASCE 7-22 Chapter 13 - Seismic Design Requirements for Nonstructural Components",
+      "summary": "Points to Appendix C for supplementary architectural/mechanical/electrical guidance; sets shake-table testing and O&M/nameplate certification for Designated Seismic Systems; adds masonry-anchor ductility provisions, RC IV suspended-ceiling bracing, special-access-floor triggers, RC IV elevator criteria (0.5g trigger), and bridge/crane/monorail CAR/Rpo seismic-force criteria.",
+      "body": "13.1.1 [Supplement]: Appendix C provides supplementary architectural (Section C-2)/mechanical-electrical (Section C-3) component guidance, cross-referenced to ASCE 7-22 sections. 13.2.3 [Supplement]: Appendix D provides certification/verification guidance; shake-table Required Response Spectra (RRS) per ICC-ES AC156 or a site-specific study (UFC 3-301-02 Sections 2-15.2/2-17.4.4, 15%-peak-broadened); acceptable testing standards: ICC-ES AC156, CEFAPP (USACERL TR 97/58, peer-reviewed), or IEEE 693-2018 (power substation equipment only); triaxial motions targeting the largest response at the equipment's natural frequencies; independent Registered-Design-Professional review of test motions/plan/results covering site-specific criteria, seismic design/analysis, testing, and QA/QC/maintenance/inspection requirements. 13.2.3.1/13.2.3.2 [Addition]: certified components need an 'Equipment Seismic Certification Documentation' O&M-manual file (re-certification on replacement/modification) AND a permanent nameplate (>=5x7 in., red letters >=1 in. on white, specific wording, component ID number). 13.3.2 [Supplement]: egress stairways/ramps detailed per ASCE 7-22 Section 13.5.10 for seismic relative displacement. 13.4.2.2 [Replacement]: SDC C+ masonry anchors need one of four ductility/overstrength provisions (mirrors Chapter 2 Section 2106.2.4's concrete-anchor logic; SDC A/B exempt). 13.4.2.3 [Replacement]: SDC C+ post-installed mechanical anchors need ACI 355.2 seismic prequalification; SDC C/D/E/F adhesive anchors need ACI 355.4; masonry anchors need an approved qualification procedure. 13.5.6 [Supplement]: RC IV suspended ceilings need rigid bracing or taut diagonal splay wires, positive vertical-movement restraint, and Kl/r < 200 for compression-designed supports/braces (see Appendix C Section C-2.2.8). 13.5.7 [Supplement]: access-floor components with Ip>1.0 need Special Access Floor design (Section 13.5.7.2); certified equipment on access flooring must account for motion amplification. 13.6.1/13.6.2/13.6.3/13.6.4 [Supplement]: stack, piping-support, electrical-component, and RC IV lighting-fixture guidance point to Appendix C Sections C-3.2/C-3.1.3/Appendices C&D/C-3.4 respectively. 13.6.11.3 [Supplement]: RC IV or SDC E/F elevators: seismic-switch trigger at 50% g (both horizontal axes), Ip=1.5, operability required below 50% g. 13.6.12 [Deletion]: the rooftop-solar-panel exception (addressing ballasted systems without positive attachment) is deleted -- consistent with UFC 3-110-03's general ballasted-system prohibition. 13.6.14/13.6.14.1 [Addition]: bridge/crane/monorail structural supports at SDC C (Ip>1.0) or SDC D/E/F use ASCE 7-22 Section 13.3 force/displacement provisions with CAR/Rpo = 1.0 generally but 1.15 for crane rail connections (Wp excludes live/lifted loads and below-cable components; unlocked cranes may use rail-friction-limited lateral force with full rated live load included for wheel gravity load); RC IV buildings additionally consider MCER-level vertical earthquake motion (site-specific spectrum, or ASCE 7-22 Section 11.9.2 if none available). [C]: CAR/Rpo=1.15 arises because crane rail connections (not listed in Table 13.6-1) use the table's lowest Rpo=1.3, while cranes/monorails use Rpo=1.5, giving a 1.5/1.3=1.15 ratio preserving the legacy ap/Rp=1.0 convention.",
+      "key_points": [
+        "Appendix C/D are the cross-referenced guidance appendices for nonstructural component design and certification",
+        "Designated Seismic Systems need O&M-manual documentation AND a specific physical nameplate",
+        "Masonry anchor ductility provisions (SDC C+) mirror the Chapter 2 concrete-anchor logic exactly",
+        "RC IV/SDC E-F elevators: 0.5g seismic-switch trigger, Ip=1.5, must remain operable below 0.5g",
+        "Bridge/crane/monorail: CAR/Rpo=1.0 generally, 1.15 for crane rail connections; RC IV adds MCER vertical motion"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "All nonstructural component seismic design; RC IV facilities specifically for elevators, suspended ceilings, and crane vertical-motion design."
+    },
+    {
+      "section_id": "3-8",
+      "title": "ASCE 7-22 Chapter 15 - Seismic Design Requirements for Nonbuilding Structures",
+      "summary": "Nonbuilding structures similar to buildings follow the Chapter 12 building drift limits (with a rational-analysis exception); adds masonry-anchor ductility provisions mirroring the building-structure logic; points piers/wharves to UFC 4-152-01; deletes the ASCE 7-22 Design Basis section for such structures; and adds a post-installed-anchor embedment provision for tank/vessel/boiler/pressure-vessel anchorage.",
+      "body": "15.4.5 [Replacement]: nonbuilding structures similar to buildings follow the Chapter 12 lateral drift limitations, EXCEPT where rational AHJ-acceptable analysis shows exceeding them does not adversely affect stability of attached/interconnected components (walkways, piping); P-delta must still be considered where critical. 15.4.9.2 [Replacement]: SDC C/D/E/F nonbuilding-structure masonry anchors need one of four ductility/overstrength provisions (identical structure to the building-structure and nonstructural-component versions). 15.4.9.3 [Replacement]: SDC C/D/E/F post-installed mechanical anchors need ACI 355.2 prequalification; adhesive anchors need ACI 355.4; masonry anchors need an approved qualification procedure. 15.5.6.1 [Supplement]: UFC 4-152-01 (Design: Piers and Wharves) governs seismic design of piers/wharves. 15.5.6.2 [Deletion]: the Design Basis section is deleted entirely. 15.7.5 Item (c) [Replacement] / 15.7.11.7 Item (b) [Replacement]: post-installed anchors for tank/vessel/boiler/pressure-vessel anchorage are permitted per Section 15.4.9.3 provided embedment develops the anchor rod's steel tensile strength; ACI 318 Chapter 17's special seismic tension provisions (Section 17.10.5.2) trigger Section 17.10.5.3(a) compliance.",
+      "key_points": [
+        "Nonbuilding structures similar to buildings: Chapter 12 drift limits apply, with a rational-analysis exception",
+        "Masonry anchor ductility provisions repeat across buildings/nonstructural-components/nonbuilding-structures with identical logic",
+        "Piers and wharves: seismic design governed by UFC 4-152-01, not this chapter directly"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Nonbuilding structures similar to buildings; tanks, vessels, boilers, and pressure vessels."
+    },
+    {
+      "section_id": "3-9",
+      "title": "ASCE 7-22 Chapter 26 - Wind Loads: General Requirements",
+      "summary": "Fire station garage bays must be designed as partially enclosed structures (assuming bay-door failure), driven by Hurricane Michael roof-diaphragm losses from failed roll-up/sectional doors.",
+      "body": "26.12.1 [Supplement]: design all fire station garage bays as partially enclosed structures, assuming garage bay doors have failed; the remainder of the fire station (if isolated from garage-bay internal pressure) may follow standard code provisions. [C]: driven by Hurricane Michael (2018) roof-diaphragm losses from failed exterior roll-up/sectional doors, including one fire station.",
+      "key_points": ["Fire station garage bays: design as partially enclosed (bay doors assumed failed)"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Fire station design, specifically the garage bay enclosure classification for wind loads."
+    }
+  ]
+}

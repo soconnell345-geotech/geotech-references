@@ -1,0 +1,59 @@
+{
+  "reference_id": "UFC 3-301-01",
+  "reference_title": "UFC 3-301-01, Structural Engineering (DoD, dated 11 April 2023, as amended through Change 4, 3 June 2025)",
+  "volume": null,
+  "pdf_path": "../../docs/UFC_3-301-01_2023_c4.pdf",
+  "package": "ufc_structural",
+  "scope_note": "Full-manual survey (228 pages). Chapters 1-7 body text extracted (chapter01.json through chapter07.json), using a two-tier granularity: top-level UFC section headers with substantive summaries, plus deeper entries for sections carrying real engineering tables/equations. Appendices A-D and G are implemented as Python lookups (best_practices.py, seismic_force_resisting_systems.py Table B-1, nonstructural_seismic.py, gfrp.py) rather than re-narrated chapter text, matching the em_2104/em_2107 precedent for equation/table-heavy appendix content. Appendix E (Table E-1 live loads) is fully digitized in risk_category_and_loads.py. Table 4-2 (Chapter 4, ASCE 41-17 benchmark-building code-vintage cross-reference) is NOT digitized -- an 18-building-type x 11-code-vintage administrative lookup with no design equations. Appendix F (Composites for Bridging Applications), Appendix H (Glossary), and Appendix I (References) are NOT extracted -- narrow FRP-bridge case-study content, abbreviation definitions, and the source reference list respectively. The figure catalog covers all 13 numbered figures across Chapters 2/3 and Appendix C.",
+  "chapters": [
+    {
+      "number": 1,
+      "title": "Introduction",
+      "page_start": 1,
+      "page_end": 6,
+      "equation_module": "geotech_references.ufc_structural.general_provisions"
+    },
+    {
+      "number": 2,
+      "title": "Modifications to IBC",
+      "page_start": 7,
+      "page_end": 42,
+      "equation_module": "geotech_references.ufc_structural.risk_category_and_loads"
+    },
+    {
+      "number": 3,
+      "title": "Modifications to ASCE 7",
+      "page_start": 43,
+      "page_end": 68,
+      "equation_module": "geotech_references.ufc_structural.seismic_force_resisting_systems"
+    },
+    {
+      "number": 4,
+      "title": "Evaluation and Retrofit of Existing Buildings",
+      "page_start": 69,
+      "page_end": 84,
+      "equation_module": "geotech_references.ufc_structural.evaluation_retrofit"
+    },
+    {
+      "number": 5,
+      "title": "Nonbuilding Structures",
+      "page_start": 85,
+      "page_end": 86,
+      "equation_module": "geotech_references.ufc_structural.nonbuilding_structures"
+    },
+    {
+      "number": 6,
+      "title": "Modifications to the IBC for Critical Healthcare Facilities",
+      "page_start": 87,
+      "page_end": 94,
+      "equation_module": "geotech_references.ufc_structural.healthcare_modifications"
+    },
+    {
+      "number": 7,
+      "title": "Modifications to ASCE 7-16 for Critical Healthcare Facilities",
+      "page_start": 95,
+      "page_end": 102,
+      "equation_module": "geotech_references.ufc_structural.healthcare_modifications"
+    }
+  ]
+}

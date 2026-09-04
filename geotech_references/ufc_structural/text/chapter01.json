@@ -1,0 +1,158 @@
+{
+  "reference_id": "UFC 3-301-01",
+  "reference_title": "UFC 3-301-01, Structural Engineering (DoD, dated 11 April 2023, as amended through Change 4, 3 June 2025)",
+  "volume": null,
+  "chapter": 1,
+  "chapter_title": "Introduction",
+  "sections": [
+    {
+      "section_id": "1-1",
+      "title": "Background",
+      "summary": "This UFC implements the 2024 IBC as the DoD building code (via UFC 1-200-01). Chapter 2 modifies the 2024 IBC and Chapter 3 modifies ASCE 7-22, each organized by the civilian-code chapter/section it modifies. Any unreferenced section applies as written in the civilian code.",
+      "body": "UFC 1-200-01 implements and supplements 2024 IBC as the building code for DoD. Chapter 2 of this UFC further modifies the IBC for structural-specific design requirements and is organized by the chapter of the IBC that each section modifies. Apply any section in the 2024 IBC, that is not specifically referenced, as it is written in the 2024 IBC. Chapter 3 of this UFC further modifies ASCE 7-22 for structural-specific design requirements and is organized by the chapter of ASCE 7 that each section modifies. Apply any section in ASCE 7-22, that is referenced by the 2024 IBC but is not modified in Chapter 3 of this UFC, as it is written in ASCE 7-22. The 2024 IBC and ASCE 7-22 section modifications are one of four actions: [Addition] add a new section not shown in the civilian code; [Deletion] delete a referenced section or portion; [Replacement] delete a referenced section/portion and replace it with the printed narrative; [Supplement] add narrative as a supplement to the referenced section.",
+      "key_points": [
+        "2024 IBC is the DoD building code via UFC 1-200-01",
+        "Chapter 2 modifies the 2024 IBC; Chapter 3 modifies ASCE 7-22, each organized by the civilian code's own chapter numbering",
+        "Unreferenced civilian-code sections apply as written",
+        "Four modification actions: Addition, Deletion, Replacement, Supplement (see general_provisions.modification_action_definition)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Establishes how to read every subsequent chapter of this UFC as a delta against the 2024 IBC / ASCE 7-22 baseline."
+    },
+    {
+      "section_id": "1-2",
+      "title": "Reissue and cancels",
+      "summary": "This edition of UFC 3-301-01 cancels the prior 1 October 2019 edition.",
+      "body": "This edition of UFC 3-301-01 cancels UFC 3-301-01 dated 1 October 2019.",
+      "key_points": ["Supersedes the 1 October 2019 edition"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Administrative; confirms which edition governs."
+    },
+    {
+      "section_id": "1-3",
+      "title": "Purpose and scope",
+      "summary": "Provides DoD structural design requirements based on the 2024 IBC as modified by UFC 1-200-01, and ASCE/SEI 7-22. Also provides limited seismic evaluation/retrofit guidance (ICSSC RP 10, ASCE/SEI 41-17) and nonseismic retrofit guidance (2024 IEBC), serving as minimum design requirements for DoD buildings.",
+      "body": "This Unified Facilities Criteria (UFC) provides requirements for structures designed and constructed for the Department of Defense (DoD). These technical requirements are based on the 2024 International Building Code (2024 IBC), as modified by UFC 1-200-01, DoD Building Code, and the structural standard referenced by the 2024 IBC: ASCE/SEI 7-22 Minimum Design Loads and Associated Criteria for Buildings and Other Structures. The criteria further provides limited technical guidance for seismic evaluation and strengthening of existing buildings, and references ICSSC RP 10, Standards of Seismic Safety for Existing Federally Owned and Leased Buildings, as well as ASCE/SEI 41-17. Additionally, for nonseismic retrofit of existing buildings, the criteria references the 2024 IEBC. This information is for use by structural engineers to develop design calculations, specifications, plans, and design-build RFPs, serving as the minimum design requirement for DoD buildings.",
+      "key_points": [
+        "Basis: 2024 IBC + UFC 1-200-01 + ASCE/SEI 7-22",
+        "Seismic evaluation/retrofit basis: ICSSC RP 10 + ASCE/SEI 41-17",
+        "Nonseismic retrofit basis: 2024 IEBC",
+        "Serves as minimum DoD design requirement"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Scope statement for the whole UFC."
+    },
+    {
+      "section_id": "1-4",
+      "title": "Applicability",
+      "summary": "Follows the same applicability as UFC 1-200-01 paragraph 1-3, with no exceptions.",
+      "body": "This UFC follows the same applicability as UFC 1-200-01, paragraph 1-3, with no exceptions.",
+      "key_points": ["Applicability is identical to UFC 1-200-01 paragraph 1-3"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Determines which DoD projects this UFC governs."
+    },
+    {
+      "section_id": "1-5",
+      "title": "Conflicts and modifications",
+      "summary": "Explains why DoD modifies the civilian 2024 IBC/ASCE 7-22 (unique military performance/facility types, OCONUS requirements not in national codes); where conflicts arise, this UFC prevails over the civilian code, and for OCONUS work, the more stringent of the UFC or host-nation code governs.",
+      "body": "The 2024 IBC provisions are directed toward public health, safety, and general welfare, presenting minimum standards for the private sector. Military projects sometimes require higher standards to achieve unique building performance, or to construct facility types not used in the private sector; OCONUS construction can introduce requirements not addressed in national model codes. Where conflicts between the 2024 IBC/ASCE 7-22 and this UFC arise, this UFC prevails. For OCONUS construction, where host-nation codes conflict with the UFC, the more stringent design provisions prevail.",
+      "key_points": [
+        "This UFC prevails over the 2024 IBC/ASCE 7-22 where they conflict",
+        "For OCONUS work, the more stringent of the UFC or host-nation code governs"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Conflict-resolution rule between this UFC, the civilian code baseline, and host-nation codes."
+    },
+    {
+      "section_id": "1-6",
+      "title": "Overview of this UFC",
+      "summary": "Summarizes every chapter and appendix of this UFC: Chapter 2 (IBC mods), Chapter 3 (ASCE 7 mods), Chapter 4 (evaluation/retrofit), Chapter 5 (nonbuilding structures pointers), Chapters 6-7 (critical healthcare facility mods), and Appendices A-I (best practices, RC IV alternate design, nonstructural seismic guidance, M&E certification, minimum live loads, FRP bridging, GFRP bars, glossary, references).",
+      "body": "Chapter 2 - Modifications to IBC: supplemental requirements applying the 2024 IBC structural provisions to DoD building design; unreferenced IBC sections (not modified by Chapter 2, 6, or Appendix B) apply as written. Chapter 3 - Modifications to ASCE 7: supplemental requirements for ASCE 7-22 structural/nonstructural component provisions; unreferenced ASCE 7-22 sections (not modified by Chapter 3, 7, or Appendix B) apply as written. Chapter 4 - Evaluation and Retrofit of Existing Buildings: repair/alteration/change-of-occupancy/acquisition/addition/relocation provisions, adopting ICSSC RP 10 and ASCE/SEI 41-17 for seismic evaluation (with revisions to specific RP 10 sections) and the 2024 IEBC for nonseismic evaluation. Chapter 5 - Nonbuilding Structures: names standards for highway/railroad/pedestrian bridges, liquid/petroleum storage tanks, environmental engineering concrete structures, prestressed concrete tanks, water treatment facilities, transmission towers/poles, and antenna towers. Chapter 6 - Modifications to the IBC for Critical Healthcare Facilities: additional requirements (modifications to IBC Chapters 16, 18, 19, 20, 21, 22) for certain critical healthcare facilities. Chapter 7 - Modifications to ASCE 7 for Critical Healthcare Facilities: additional requirements (modifications to ASCE 7 Chapters 11, 12, 13) for the same healthcare facilities. Appendix A - Best Practices: recommendations on building drift limits, impact-resistant glazing, PV array wind/seismic loads, etc. Appendix B - Alternate Design Procedure for Buildings and Other Structures in Risk Category IV: optional nonlinear static/dynamic analysis procedures for RC IV buildings, usable only with AHJ approval. Appendix C - Guidance for Seismic Design of Nonstructural Components: supplements Chapter 3's nonstructural component requirements. Appendix D - Mechanical and Electrical Component Certification: supplements ASCE 7-22 Section 13.2.2 certification guidance. Appendix E - Minimum Uniformly Distributed Live Loads: Table E-1 replaces IBC Table 1607.1, adding military-specific occupancy classifications (shown bold-italic in the source). Appendix F - Guidance for Composite Technologies for Bridge Applications [ADDITION]: FRP prestressing/strengthening/repair systems and thermoplastic timber-bridge-replacement materials. Appendix G - GFRP Bars for Concrete Structures [ADDITION]: design resources, ASTM/ACI standards, use limits, and key design considerations for GFRP reinforcement. Appendix H - Glossary: abbreviated terms used in this UFC. Appendix I - References: the extensive list of referenced documents, primarily the 2024 IBC and ASCE 7-22.",
+      "key_points": [
+        "Chapters 2/3 modify the 2024 IBC/ASCE 7-22 respectively; unmodified sections apply as written",
+        "Chapter 4 covers evaluation/retrofit of existing buildings (RP 10 + ASCE 41-17 + IEBC)",
+        "Chapter 5 is a pointer-only chapter for nonbuilding structures",
+        "Chapters 6/7 add critical-healthcare-facility-specific modifications on top of Chapters 2/3",
+        "Appendix B is an OPTIONAL alternate nonlinear design procedure for Risk Category IV, AHJ approval required",
+        "Appendices F and G are wholly new [ADDITION] content not derived from IBC/ASCE 7-22 modification"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Navigation/overview of the entire document; read before using any specific chapter."
+    },
+    {
+      "section_id": "1-7",
+      "title": "Commentary",
+      "summary": "Commentary paragraphs are marked with a preceding [C] and shaded narrative.",
+      "body": "Limited commentary has been provided in the chapters. Section designations for such commentary are preceded by a \"[C]\", and the commentary narrative is shaded.",
+      "key_points": ["[C]-prefixed sections are non-mandatory commentary, not requirements"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Distinguishes mandatory provisions from explanatory commentary throughout the document."
+    },
+    {
+      "section_id": "1-8",
+      "title": "Other criteria",
+      "summary": "Points to four additional/adjacent DoD criteria areas beyond this UFC's own scope: general building requirements (UFC 1-200-01), progressive collapse (UFC 4-023-03), Risk Category V design (UFC 3-301-02), and cybersecurity (UFC 4-010-06).",
+      "body": "Military criteria other than those listed in this document may be applicable to specific types of structures. Such structures must meet the additional requirements of the applicable military criteria.",
+      "key_points": ["Umbrella statement introducing the four subsections 1-8.1 through 1-8.4"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Signals that this UFC does not cover every DoD structural criterion in isolation."
+    },
+    {
+      "section_id": "1-8.1",
+      "title": "General Building Requirements",
+      "summary": "Comply with UFC 1-200-01 (DoD Building Code) for model-code applicability, government-unique criteria, accessibility, antiterrorism, security, high-performance/sustainability, and safety, in addition to this UFC.",
+      "body": "Comply with UFC 1-200-01, DoD Building Code. UFC 1-200-01 provides applicability of model building codes and government unique criteria for typical design disciplines and building systems, as well as for accessibility, antiterrorism, security, high performance and sustainability requirements, and safety. Use this UFC in addition to UFC 1-200-01 and the UFCs and government criteria referenced therein.",
+      "key_points": ["UFC 1-200-01 is the umbrella DoD building code; this UFC supplements it, not replaces it"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Always applicable alongside this UFC."
+    },
+    {
+      "section_id": "1-8.2",
+      "title": "Progressive Collapse Analysis and Design",
+      "summary": "Pointer only: when progressive-collapse design is required, apply UFC 4-023-03. This UFC prints no trigger/applicability table of its own.",
+      "body": "When required, apply UFC 4-023-03, Design of Buildings to Resist Progressive Collapse.",
+      "key_points": [
+        "No progressive-collapse trigger table is printed in UFC 3-301-01 itself",
+        "Applicability triggers live entirely in UFC 4-023-03"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Applies whenever UFC 4-023-03's own applicability criteria are met for the project."
+    },
+    {
+      "section_id": "1-8.3",
+      "title": "Design of Risk Category V Structures",
+      "summary": "Risk Category V is a DoD addition (not in the 2024 IBC/ASCE 7-22) for national strategic military assets, designed to remain elastic during the MCER. Table 2-2 lists RC V occupancies; UFC 3-301-02 governs actual RC V design.",
+      "body": "A risk category not included in the 2024 IBC/ASCE 7-22, Risk Category V, has been added to address national strategic military assets. Structures in this risk category are designed to remain elastic during the MCER. Refer to Table 2-2 of this UFC for the list of structures that must be assigned to RC V. Refer to UFC 3-301-02 for the design of all RC V structures.",
+      "key_points": [
+        "Risk Category V structures remain elastic during the MCER",
+        "Table 2-2 (Chapter 2) is the RC V occupancy list",
+        "UFC 3-301-02 governs RC V design, not this UFC"
+      ],
+      "equations": [], "figures": [], "tables": ["Table 2-2 (Chapter 2)"],
+      "applicability": "Applies to structures identified as national strategic military defensive assets."
+    },
+    {
+      "section_id": "1-8.4",
+      "title": "Cybersecurity",
+      "summary": "Facility-related control systems must comply with UFC 4-010-06 and individual Service Implementation Policy.",
+      "body": "All facility-related control systems (including systems separate from a utility monitoring and control system) must be planned, designed, acquired, executed, and maintained in accordance with UFC 4-010-06, and as required by individual Service Implementation Policy.",
+      "key_points": ["UFC 4-010-06 governs facility-related control system cybersecurity"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Applies to any facility-related control system, not just structural systems."
+    },
+    {
+      "section_id": "1-9",
+      "title": "References",
+      "summary": "Appendix I lists all referenced documents; unless otherwise specified, the most recent edition of a referenced publication applies (publication dates are not called out in-text).",
+      "body": "APPENDIX I contains a list of references used in this document. The publication date of the code or standard is not included in this document. Unless otherwise specified, the most recent edition of the referenced publication applies.",
+      "key_points": [
+        "Appendix I is the master reference list",
+        "Default rule: use the MOST RECENT edition of a referenced document unless a specific edition is called out"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Governs interpretation of every bare document citation throughout this UFC."
+    }
+  ]
+}

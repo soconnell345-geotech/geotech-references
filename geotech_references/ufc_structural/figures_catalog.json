@@ -1,0 +1,129 @@
+{
+  "reference_id": "UFC 3-301-01",
+  "reference_title": "UFC 3-301-01, Structural Engineering (DoD, dated 11 April 2023, as amended through Change 4, 3 June 2025)",
+  "package": "ufc_structural",
+  "volume": null,
+  "pdf_path": "../../docs/UFC_3-301-01_2023_c4.pdf",
+  "figure_numbering": "section",
+  "scope_note": "All 13 numbered/captioned figures in the document, spanning Chapter 2 (Figure 2-1, Additively Constructed Concrete webbing detail), Chapter 3 (Figure 3-1, flexible-diaphragm wall anchorage), and Appendix C (Figures C-1 through C-11, nonstructural-component seismic-design details incl. the Table C-1/C-2/C-3 pipe-span support-condition figures). All pages resolved from the document's own PDF bookmark (TOC) destinations and cross-verified directly against the extracted page text at each location (printed_page = pdf_page_index - 21 throughout this document, confirmed at multiple anchor points from p.1 to p.206); page_estimated=false throughout. Figure C-9's multi-mode period-coefficient chart is cataloged but its coefficient values are NOT individually digitized in nonstructural_seismic.py (see the package __init__.py docstring gap note).",
+  "figure_count": 13,
+  "figures": [
+    {
+      "figure_number": "2-1",
+      "caption": "Webbing in Shell Elements",
+      "chapter": "2",
+      "pdf_page_index": 52,
+      "printed_page": "31",
+      "page_estimated": false,
+      "description": "Additively Constructed Concrete (3D-printed concrete) wall detail showing webbing employed between two printed concrete face shells to act compositely, per paragraph 1903.4 -- requires third-party load-test validation of the composite assembly for all relevant loading."
+    },
+    {
+      "figure_number": "3-1",
+      "caption": "Anchorage of Walls to Flexible Diaphragm",
+      "chapter": "3",
+      "pdf_page_index": 80,
+      "printed_page": "59",
+      "page_estimated": false,
+      "description": "Determination of the flexible-diaphragm span Lf used in ASCE 7-22 Section 12.11.2.1 wall anchorage force calculations, per paragraph 3-6.4."
+    },
+    {
+      "figure_number": "C-1",
+      "caption": "Partial Infill Masonry Wall between Two Concrete Columns, Causing Adverse \"Short Column\" Effect",
+      "chapter": "C",
+      "pdf_page_index": 151,
+      "printed_page": "130",
+      "page_estimated": false,
+      "description": "Illustrates the short-column effect at a partial infill wall (window strip above a solid infill panel between columns): the upper unbraced column segment becomes a stiff, shear-vulnerable 'short column' relative to the fully braced adjacent columns."
+    },
+    {
+      "figure_number": "C-2",
+      "caption": "Typical Details for Isolation of Rigid Partition Walls",
+      "chapter": "C",
+      "pdf_page_index": 152,
+      "printed_page": "131",
+      "page_estimated": false,
+      "description": "Lateral-support details (continuous angles, hanger wires, L-brace, slotted connections) for isolating rigid nonstructural partition walls from in-plane building lateral forces; limited to SDC A/B/C per the source note."
+    },
+    {
+      "figure_number": "C-3",
+      "caption": "Typical Seismic Restraints for Floor-mounted Equipment",
+      "chapter": "C",
+      "pdf_page_index": 154,
+      "printed_page": "133",
+      "page_estimated": false,
+      "description": "Base anchorage/restraint detail for floor- or pad-mounted equipment in Risk Category IV buildings, referenced by the Section C-3.1 base-mounted-equipment cast-in-place anchor bolt guidance."
+    },
+    {
+      "figure_number": "C-4",
+      "caption": "Typical Seismic Restraints for Suspended Equipment",
+      "chapter": "C",
+      "pdf_page_index": 155,
+      "printed_page": "134",
+      "page_estimated": false,
+      "description": "Trapeze-hanger and diagonal-bracing details for suspended mechanical equipment, including a vibration-isolation-mount variant, per ANSI/SMACNA 001-2008 guidance referenced in Section C-3.1."
+    },
+    {
+      "figure_number": "C-5",
+      "caption": "Acceptable Seismic Details for Pipe Sway Bracing",
+      "chapter": "C",
+      "pdf_page_index": 157,
+      "printed_page": "136",
+      "page_estimated": false,
+      "description": "Sway-bracing connection details (45-degree bracing, cast inserts, clip angles) for horizontal pipe supports per Section C-3.1.3."
+    },
+    {
+      "figure_number": "C-6",
+      "caption": "Pinned-pinned Support Condition for Table C-1",
+      "chapter": "C",
+      "pdf_page_index": 159,
+      "printed_page": "138",
+      "page_estimated": false,
+      "description": "Support-condition diagram (span L, pinned-pinned) corresponding to the Table C-1 rigid-pipe maximum-span values."
+    },
+    {
+      "figure_number": "C-7",
+      "caption": "Fixed-pinned Support Condition for Table C-2",
+      "chapter": "C",
+      "pdf_page_index": 160,
+      "printed_page": "139",
+      "page_estimated": false,
+      "description": "Support-condition diagram (span L, fixed-pinned) corresponding to the Table C-2 rigid-pipe maximum-span values."
+    },
+    {
+      "figure_number": "C-8",
+      "caption": "Fixed-fixed Support Condition for Table C-3",
+      "chapter": "C",
+      "pdf_page_index": 161,
+      "printed_page": "140",
+      "page_estimated": false,
+      "description": "Support-condition diagram (span L, fixed-fixed) corresponding to the Table C-3 rigid-pipe maximum-span values."
+    },
+    {
+      "figure_number": "C-9",
+      "caption": "Period Coefficients for Uniform Beams",
+      "chapter": "C",
+      "pdf_page_index": 164,
+      "printed_page": "143",
+      "page_estimated": false,
+      "description": "Fundamental-period mode-shape coefficients C for uniform cantilever (fixed-base) and pinned-base beams, used with Ta = C*L^2*sqrt(w/(EI)) for cantilever-stack period estimation (Section C-3.2.2). NOT individually digitized in nonstructural_seismic.py -- the per-mode-shape coefficient/deflected-shape pairing is ambiguous in the extracted text; consult the printed figure directly if higher-mode stack periods are needed."
+    },
+    {
+      "figure_number": "C-10",
+      "caption": "Single Guyed Stacks",
+      "chapter": "C",
+      "pdf_page_index": 165,
+      "printed_page": "144",
+      "page_estimated": false,
+      "description": "Flexible-wire vs. rigid-wire deflected-shape comparison for a single guyed stack, illustrating why guy cables should be pretensioned to at least 10% of the stack's seismic force Fp (Section C-3.2.2)."
+    },
+    {
+      "figure_number": "C-11",
+      "caption": "Elevator Details",
+      "chapter": "C",
+      "pdf_page_index": 166,
+      "printed_page": "145",
+      "page_estimated": false,
+      "description": "Elevator car/counterweight frame, guide rail, roller-guide-assembly, and retainer-plate detail referenced by the Section C-3.3 elevator seismic-design criteria (guide-rail deflection limits, retainer-plate clearance, counterweight tie-bracket spacing)."
+    }
+  ]
+}

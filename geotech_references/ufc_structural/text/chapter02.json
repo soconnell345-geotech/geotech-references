@@ -1,0 +1,260 @@
+{
+  "reference_id": "UFC 3-301-01",
+  "reference_title": "UFC 3-301-01, Structural Engineering (DoD, dated 11 April 2023, as amended through Change 4, 3 June 2025)",
+  "volume": null,
+  "chapter": 2,
+  "chapter_title": "Modifications to IBC",
+  "sections": [
+    {
+      "section_id": "2-1",
+      "title": "IBC Chapter 1 - Scope and Administration",
+      "summary": "Directs seismic evaluation/retrofit of existing buildings to Chapter 4 of this UFC (and nonseismic retrofit to the IEBC as modified by Chapter 4); clarifies that unsafe-structure restoration must comply with those Section 101.4.7 provisions.",
+      "body": "Section 101 [Replacement, 101.4.7]: for seismic evaluation/retrofit of existing buildings, Chapter 4 of this UFC applies to repair, alteration, change of occupancy, acquisition, addition, and relocation; for nonseismic evaluation/retrofit, the IEBC as modified by Chapter 4 applies. Section 116 [Replacement, 116.5]: where an unsafe structure/equipment is restored to a safe condition, repairs/alterations/additions/occupancy changes made during restoration must comply with Section 101.4.7.",
+      "key_points": [
+        "101.4.7: seismic retrofit -> Chapter 4 of this UFC; nonseismic retrofit -> IEBC as modified by Chapter 4",
+        "116.5: unsafe-structure restoration work must also comply with 101.4.7"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Existing-building repair, alteration, change of occupancy, and unsafe-structure restoration."
+    },
+    {
+      "section_id": "2-2",
+      "title": "IBC Chapter 2 - Definitions",
+      "summary": "Adds a Structural Engineer of Record (SER) definition: the registered design professional responsible for the building's structural system design.",
+      "body": "Section 202 [Addition, STRUCTURAL ENGINEER OF RECORD (SER)]: the SER is a registered design professional who performs, supervises, or approves the analysis, design, and document preparation for the building structural system -- the completed combination of elements supporting self-weight, superimposed dead loads, applicable live loads, and environmental loads (wind, seismic, thermal).",
+      "key_points": ["Defines SER responsibility scope, used throughout the rest of this UFC (delegated design, special inspections, structural observation)"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Establishes SER responsibility referenced by later delegated-design and inspection provisions."
+    },
+    {
+      "section_id": "2-3",
+      "title": "IBC Chapter 4 - Special Detailed Requirements Based on Occupancy and Use",
+      "summary": "Storm shelter critical-emergency-operations requirements extend to hurricane-prone regions and continuously-manned critical national defense facilities; adds Child Development Centers to Group E day-care storm-shelter scope.",
+      "body": "Section 423 [Supplement, 423.4]: storm-shelter critical-emergency-operations requirements also apply to hurricane-prone regions (ASCE 7 Section 26.2) and facilities housing critical national defense functions requiring continuous manning with no redundant capability elsewhere. [Supplement, 423.5]: deletes Exception 1 for Group E occupancies and renumbers the remaining exceptions; Child Development Centers (CDCs) are included in Group E day-care storm-shelter scope even if classified Group I-4 by a military branch.",
+      "key_points": [
+        "423.4: storm shelters required for hurricane-prone regions and critical continuously-manned defense facilities",
+        "423.5: CDCs included in Group E storm-shelter scope regardless of I-4 classification"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Storm shelter and child-development-center design."
+    },
+    {
+      "section_id": "2-4",
+      "title": "IBC Chapter 16 - Structural Design",
+      "summary": "The largest section of Chapter 2: construction documents (delegated design), general design requirements (deflection Table 2-1, risk category Table 2-2), load combinations (vertical-ground-motion-sensitive members), live loads (Table E-1), snow loads (ASCE Hazard Tool), wind loads (hangars, VLFD prohibition, wind speed conversion equations), earthquake loads (Table 3-1 seismic system replacement, MCER/BSE-1E procedures), tsunami loads, and deletion of the Structural Integrity section. See the deeper section entries below (2-4.1 through 2-4.9) for the individual IBC sub-sections modified.",
+      "body": "This section organizes nine sub-modifications to IBC Chapter 16 (Structural Design): 1603 Construction Documents, 1604 General Design Requirements, 1605 Load Combinations, 1607 Live Loads, 1608 Snow Loads, 1609 Wind Loads, 1613 Earthquake Loads, 1615 Tsunami Loads, and 1616 Structural Integrity [Deletion].",
+      "key_points": [
+        "Covers Sections 1603, 1604, 1605, 1607, 1608, 1609, 1613, 1615, 1616",
+        "This is where Tables 2-1, 2-2, and E-1 are introduced, and where Table 3-1 is invoked for seismic design"
+      ],
+      "equations": [], "figures": ["Figure 2-1 (Webbing in Shell Elements, Section 1903.4)"], "tables": ["Table 2-1", "Table 2-2", "Table E-1"],
+      "applicability": "Core structural-design chapter; almost every DoD building project touches this section."
+    },
+    {
+      "section_id": "2-4.1",
+      "title": "Section 1603 - Construction Documents",
+      "summary": "Requires earthquake design data (Ss, S1, site-specific analysis type) and special-inspection systems/components to be noted on construction documents; permits delegated engineered systems, but the SER must always design lateral-force-resisting-system connections (wind and seismic), including steel connections.",
+      "body": "1603.1.5 [Replacement]: construction documents must state spectral response acceleration parameters Ss and S1, noting whether based on site-specific response analysis (response spectrum vs. time-history). 1603.1.10 [Addition]: documents/specifications for systems/components requiring seismic special inspection (Section 1705.13) must be prepared, referencing seismic standards in lieu of detailed drawings where acceptable. 1603.2 [Addition]: the SER may delegate design of systems/components to a qualified PE, but must always design/detail lateral-force-resisting-system connections for wind and seismic forces (exception does not preclude a pre-engineered building/parking-garage engineer who is themselves the SER). Examples of optional delegated designs: pre-fabricated wood trusses, post-tensioned concrete, precast/prestressed concrete, open-web steel joists/joist girders, specialty foundations, simple shear-only steel connections, cold-formed steel framing, nonstructural-component seismic anchorage, crane track, cross-laminated-timber connections (again excepting LFRS connections). The delegated engineer signs/seals their work; the SER reviews all delegated submittals before fabrication/construction.",
+      "key_points": [
+        "1603.1.5: Ss/S1 and site-specific-analysis type must be documented",
+        "1603.2: SER may delegate design EXCEPT lateral-force-resisting-system connections (always SER's responsibility)",
+        "Nine examples of permissible delegated-design scope listed"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Construction-document content requirements and the delegated-design/SER responsibility split."
+    },
+    {
+      "section_id": "2-4.2",
+      "title": "Section 1604 - General Design Requirements",
+      "summary": "Introduces Table 2-1 (wind-induced deflection limits for exterior wall finish framing, added by Change 4) and Table 2-2 (Risk Category, replacing IBC Table 1604.5), plus a slab-on-ground expansion-joint pointer.",
+      "body": "1604.3 [Supplement]: the SER must set frame drift limits suitable to occupancy/use/construction, per ASCE 7-22 Appendix C and UFC Section A-1.1. 1604.3.1 [Replacement]: member deflections must not exceed the most restrictive of Sections 1604.3.2-1604.3.5, Table 1604.3, or Table 2-1 of this UFC (wind-induced deflection limits by exterior cladding type: brick veneer L/600, EIFS L/240, cement board L/360, stone masonry per supplier, plywood/wood panels L/240, gypsum sheathing L/240, metal/vinyl siding L/120; wind load may be taken as 0.42x C&C load for this check). Table 1604.5 [Replacement]: Table 2-2 of this UFC replaces IBC Table 1604.5 in its entirety (Risk Category I-V, seismic factor Ie, tsunami factor Itsu, DoD Sea Level Rise scenario -- see ``risk_category_and_loads.table_2_2_risk_category``). 1604.12 [Addition]: see 'Design of Concrete Floor Slabs-on-Ground for DoD Facilities' (WBDG) for expansion joints.",
+      "key_points": [
+        "Table 2-1: wind-induced deflection limits by exterior cladding type (Change 4 addition)",
+        "Table 2-2 REPLACES IBC Table 1604.5 (and ASCE 7-22 Tables 1.5-1/1.5-2 per Chapter 3) -- adds Risk Category V and a DoD Sea Level Rise column",
+        "1604.3: SER sets frame drift limits per ASCE 7-22 Appendix C"
+      ],
+      "equations": [], "figures": [], "tables": ["Table 2-1", "Table 2-2"],
+      "applicability": "Serviceability deflection limits and risk category assignment -- foundational to nearly every subsequent load/detailing provision."
+    },
+    {
+      "section_id": "2-4.3",
+      "title": "Section 1605 - Load Combinations",
+      "summary": "Adds a vertical-ground-motion-sensitive-member list (long-span/cantilever/prestressed/high-gravity-demand members, base-isolated structures, long-span roofs, power generation facilities) that must use the additional load combinations of Chapter 3 Sections 2.3.6/2.4.5 when SDS > 0.6g; deletes the Alternative ASD Load Combinations section entirely.",
+      "body": "1605.1.2 [Addition]: where SDS > 0.6g, specific building members (spans >=65 ft, cantilevers >16 ft, prestressed members, members with gravity demand >80% of nominal strength, elements supporting discontinuous vertical elements, base-isolated structures) and nonbuilding structures (long-span roofs, electric power generation facilities, excepting ASCE 7-22 Section 15.1.4 structures) must be designed for the additional Strength Design (Section 2.3.6) and ASD (Section 2.4.5) load combinations of Chapter 3. [C]: the SDS > 0.6g threshold derives from a 2004 Eurocode 8 criterion (peak vertical ground acceleration avg > 0.25g), via avg = 0.62*(2/3*SDS) = 0.41*SDS => SDS > 0.6g. 1605.2 [Deletion]: Alternative Allowable Stress Design Load Combinations section deleted entirely.",
+      "key_points": [
+        "SDS > 0.6g threshold triggers additional seismic load combinations for specific member types (see risk_category_and_loads.vertical_ground_motion_threshold_check)",
+        "Threshold derivation traces to a 2004 Eurocode 8 vertical-ground-motion criterion",
+        "Alternative ASD load combinations (1605.2) are deleted -- not available under this UFC"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Any structure with SDS > 0.6g containing the listed member types."
+    },
+    {
+      "section_id": "2-4.4",
+      "title": "Section 1607 - Live Loads",
+      "summary": "Table E-1 (Appendix E) replaces IBC Table 1607.1, adding military-specific occupancy classifications; also modifies vehicular live loads for unrestricted-access structures, fall-arrest anchorage loads, and bridge crane support structure design.",
+      "body": "1607.1 [Replacement]: Table E-1 of this UFC replaces IBC Table 1607.1 (military-added classifications shown bold-italic in the source). 1607.8.1 [Replacement]: structures not restricting >10,000 lb GVW vehicle access must be designed for AASHTO Bridge Design Specification vehicular live loads (including impact/fatigue). 1607.12.4 [Replacement]: the 3,100 lb fall-arrest/lifeline/rope-descent anchorage load is a live load usable with either ASD or strength-design combinations; eliminate fall hazards where feasible, otherwise provide certified labeled anchorages, avoiding conflicts with weight-handling equipment. 1607.12.5 [Addition]: in hangars, horizontal-lifeline fall-protection systems must not interfere with the crane envelope. 1607.14 [Addition, Change 4]: reference AISC Design Guide 7 Section 18 for bridge crane support structure design (crane runway beams); for SDC C-F see Section 3-7.6/13.6.14.",
+      "key_points": [
+        "Table E-1 replaces IBC Table 1607.1 (see risk_category_and_loads.table_e1_live_load)",
+        "3,100 lb fall-arrest anchorage load applies with either ASD or strength combinations",
+        "Bridge crane support: AISC Design Guide 7 Section 18; SDC C-F also triggers Section 13.6.14"
+      ],
+      "equations": [], "figures": [], "tables": ["Table E-1"],
+      "applicability": "Occupancy live-load determination for every structure; fall-protection and crane-support design where applicable."
+    },
+    {
+      "section_id": "2-4.5",
+      "title": "Section 1608 - Snow Loads",
+      "summary": "Ground snow loads at US/territory DoD installations come from the ASCE Hazard Tool (zero for Hawaii except mountainous regions); OCONUS locations use a WBDG spreadsheet or best-available local data; site-specific snow-load case studies (RC II basis) may be required by the AHJ per CRREL methodology.",
+      "body": "1608.2 [Replacement]: ground snow loads at US/territory DoD installations from https://ascehazardtool.online; zero for Hawaii except mountainous regions as approved by AHJ; consult the AHJ where the tool does not provide a value. 1608.2.2 [Addition]: OCONUS ground snow loads from a WBDG spreadsheet; use best locally available information where not provided. 1608.2.3 [Addition]: site-specific snow-load case studies (RC II basis) per CRREL methodology (Tobiasson & Greatorex; Buska, Greatorex & Tobiasson), with AHJ approval/requirement.",
+      "key_points": [
+        "ASCE Hazard Tool is the primary US/territory snow-load source",
+        "Hawaii snow load = 0 except mountainous regions",
+        "OCONUS: WBDG spreadsheet or best-available local data"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Snow load determination for all DoD structures, domestic and OCONUS."
+    },
+    {
+      "section_id": "2-4.6",
+      "title": "Section 1609 - Wind Loads",
+      "summary": "Adds aircraft hangar wind-load conditions (doors closed/open cases), prohibits Vertical Lift Fabric Doors in/near windborne-debris-region wind speeds, requires pressure-tested roll-up/sectional doors in hurricane-prone regions, adds the ASD/fastest-mile wind-speed conversion equations, sets DoD wind-speed sourcing (ASCE Hazard Tool), and permits a 0.78 reduction factor for non-permanent structures (now extended to hurricane-prone regions).",
+      "body": "1609.1.1 [Supplement]: adds an exception for winds parallel to the ridge of open buildings (ASCE 7-22 Section 28.3.7). 1609.1.2 [Addition]: aircraft hangar MWFRS/C&C wind loads for two conditions -- doors closed (partially-enclosed assumption, 1-in. perimeter gap plus unshielded fenestration, large-volume reduction factor permitted) and doors open to maximum extent at 60 mph design velocity (partially-enclosed assumption, total open-door area in the large-volume reduction factor). 1609.2.3 [Addition]: Vertical Lift Fabric Doors (VLFDs) prohibited within windborne debris regions AND wherever 700-yr-MRI wind speed meets/exceeds the windborne-debris-region threshold (130 mph within 1 mi of coastal mean-high-water with Exposure D upwind, else 140 mph) -- slightly expanding IBC windborne debris regions; driven by Hurricane Michael VLFD failures. 1609.2.4 [Addition]: hurricane-prone-region roll-up/sectional doors must pass ANSI/DASMA 108 C&C pressure testing, noted on drawings/specs. 1609.3.1 [Replacement]: Eq 16-18a (Vasd = sqrt(0.6*V)) and Eq 16-18b (Vfm = (sqrt(0.6*V)-10.5)/1.05) -- see ``risk_category_and_loads.wind_speed_conversion_asd/fastest_mile``. 1609.3 [Replacement]: basic wind speeds from the ASCE Hazard Tool for US/territories, per ASCE 7 Chapter 26 via AHJ elsewhere. 1609.3.2 [Addition]: OCONUS wind speeds from a WBDG spreadsheet or best-available local data. 1609.3.3 [Addition]: non-permanent structures (<=5 yr design life, UFC 1-201-01) may use a 0.78 basic-wind-speed reduction factor, now extended (by this UFC) to hurricane-prone regions as well as non-hurricane-prone regions -- supersedes UFC 1-201-01 Section 3-2.1.5 and IBC Section 3103.6.1.2. [C]: the 0.78 factor derivation used a uniform-hazard approach matching probability of exceedance in a 5-yr design life to the 50-yr civilian-structure basis (RC II: 70-yr return period vs. 700-yr for regular structures); validated against 342 US locations.",
+      "key_points": [
+        "Aircraft hangar wind loads: two design conditions, doors closed and doors open at 60 mph",
+        "VLFDs prohibited in windborne-debris regions AND wherever 700-yr-MRI wind speed hits the debris threshold",
+        "Eq 16-18a/16-18b: ASD and fastest-mile wind-speed conversions",
+        "Non-permanent structure wind-speed reduction factor: 0.78 (now valid in hurricane-prone regions too)",
+        "Wind speed source of record: ASCE Hazard Tool (US/territories) or a WBDG spreadsheet (OCONUS)"
+      ],
+      "equations": [
+        {"id": "16-18a", "description": "ASD wind speed conversion, Vasd = sqrt(0.6*V)", "implemented_in": "geotech_references.ufc_structural.risk_category_and_loads.wind_speed_conversion_asd"},
+        {"id": "16-18b", "description": "Fastest-mile wind speed conversion, Vfm = (sqrt(0.6*V)-10.5)/1.05", "implemented_in": "geotech_references.ufc_structural.risk_category_and_loads.wind_speed_conversion_fastest_mile"}
+      ],
+      "figures": [], "tables": [],
+      "applicability": "Wind load determination for all structures; hangars, VLFDs, roll-up/sectional doors, and non-permanent structures specifically."
+    },
+    {
+      "section_id": "2-4.7",
+      "title": "Section 1613 - Earthquake Loads",
+      "summary": "Table 3-1 (Chapter 3) replaces ASCE 7-22 Table 12.2-1 wherever referenced; seismic ground motion values come from the ASCE Hazard Tool (with an OCONUS spreadsheet and a site-specific-study path); non-permanent structures may use BSE-1E-level (20%-in-50-yr) reduced ground motion; ballasted photovoltaic panel systems are prohibited (UFC 3-110-03); and site response analysis requirements for Site Class F are clarified.",
+      "body": "1613.1 [Supplement]: wherever ASCE 7-22 Table 12.2-1 is referenced, replace it with Table 3-1 of this UFC. 1613.1.1 [Replacement]: seismic multi-period response spectra at US/territory installations from the ASCE Hazard Tool; consult AHJ elsewhere. 1613.1.1.1 [Addition]: OCONUS seismic parameters from a WBDG spreadsheet or Structural Criteria Working Group contact. 1613.1.1.2 [Addition]: ASCE 7-22 Chapter 21 site-specific ground-motion procedures may be used for any structure. 1613.1.1.3 [Addition]: non-permanent structures may use BSE-1E-level response spectra (20% probability of exceedance in 50 years) from the ASCE Hazard Tool; SDC and all other seismic design still follow the IBC/ASCE 7 process using these reduced values -- supersedes UFC 1-201-01 Section 3-2.1.6 and IBC Section 3103.6.1.4. [C]: derivation uses the same uniform-hazard logic as the wind reduction factor (2%-in-5-yr ~ 20%-in-50-yr), replacing the older flat 0.6 reduction factor limited to low-seismicity regions. 1613.4 [Replacement]: ballasted photovoltaic panel systems are NOT permitted (UFC 3-110-03, Roofing, disallows ballasted systems generally). 1613.7 [Addition]: MCER/design spectral accelerations per ASCE 7-22 Sections 11.4.2-11.4.6 (as modified by Chapter 3) or the Section 11.4.8 site-specific procedure (as modified by Section 3-5.3); Site Class F requires ASCE 7 Section 21.1 site response analysis UNLESS exempted per Section 20.2.1, or Ss <= 0.25 and S1 <= 0.10.",
+      "key_points": [
+        "Table 3-1 (Chapter 3) is a wholesale replacement for ASCE 7-22 Table 12.2-1",
+        "ASCE Hazard Tool is the seismic-parameter source of record for US/territory installations",
+        "Non-permanent structures: BSE-1E-level (20%-in-50-yr) ground motion permitted",
+        "Ballasted PV panel systems prohibited outright",
+        "Site Class F triggers mandatory site response analysis unless Ss<=0.25 & S1<=0.10 (or otherwise exempt)"
+      ],
+      "equations": [], "figures": [], "tables": ["Table 3-1 (Chapter 3)"],
+      "applicability": "Seismic parameter determination and system selection for all structures."
+    },
+    {
+      "section_id": "2-4.8",
+      "title": "Section 1615 - Tsunami Loads",
+      "summary": "Tsunami Design Zone buildings follow ASCE 7-22 Chapter 6 as modified by Chapter 3 Section 3-3; OCONUS Pacific/Pacific Rim installations use DoD KMZ inundation/flow maps (Google Earth/ARCGIS-compatible).",
+      "body": "1615.1 [Replacement]: design/construction in a Tsunami Design Zone (per the Tsunami Design Geodatabase or DoD OCONUS tsunami mapping) follows ASCE 7-22 Chapter 6 as modified by Section 3-3 of this UFC. At-risk Pacific/Pacific Rim OCONUS installations: tsunami inundation/flow KMZ maps at wbdg.org/dod/ufc/tsunami-inundation-mapping.",
+      "key_points": ["Tsunami design governed by ASCE 7-22 Chapter 6 as modified by Chapter 3 Section 3-3", "OCONUS tsunami maps distributed as KMZ files"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Structures in a Tsunami Design Zone."
+    },
+    {
+      "section_id": "2-4.9",
+      "title": "Section 1616 - Structural Integrity [Deletion]",
+      "summary": "The IBC Structural Integrity section is deleted in its entirety.",
+      "body": "1616 [Deletion]: delete this section in its entirety.",
+      "key_points": ["IBC Section 1616 does not apply under this UFC"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "N/A -- section is removed."
+    },
+    {
+      "section_id": "2-5",
+      "title": "IBC Chapter 17 - Special Inspections and Tests",
+      "summary": "Establishes DoD-specific AHJ/building-official/owner/permit terminology substitutions, tightens research-report/performance provisions for untried materials, adds adhesive-anchor proof-load and Designated-Seismic-System special-inspection requirements, and introduces the Special Inspector of Record (SIOR) role with duties and final-report requirements.",
+      "body": "1701.1 [Supplement]: DoD contractual relationships differ from IBC assumptions -- 'Building official' = 'Authority Having Jurisdiction' (MIL STD 3007), 'Owner' = 'AHJ', 'Permit applicant' = 'Contractor'. 1703.4 [Replacement]: untried materials/systems/methods may be used with ICC-ES (or equivalent) evaluation reports and AHJ approval; 1703.4.1/1703.4.2 [Deletion] remove the Research and Investigation / Research Reports sections. 1704.2.3 [Replacement]: SER submits a Statement of Special Inspections per Section 1704.3 (WBDG templates available). 1704.6 [Replacement] / 1704.6.1 [Replacement]: structural observation performed by the SER (or designee, a Registered Design Professional); Item 1 triggers on Risk Category III/IV per Table 2-2; Item 4 triggers when required by the SER. 1704.7 [Addition]: a Special Inspector of Record (SIOR), a licensed PE approved by the AHJ, is retained by the Contractor as third-party QA when Section 1704.6.1 applies. 1704.7.1 [Addition]: SIOR duties defined in UFGS Section 01 45 35. 1704.7.2 [Addition]: SIOR submits a signed/sealed Final Special Inspection Report to the Contracting Officer, SER, and Contractor once all Special Inspection work and nonconforming-item resolution is complete. 1705.3.3 [Addition]: SER determines the adhesive-anchor proof load (ACI 318-19 Section 26.7.1(k)) and identifies critical anchors for testing in the construction documents. 1705.13.6 [Supplement]: Designated Seismic Systems require special inspection/verification per a project-specific Statement/Schedule of Special Inspections (WBDG templates), periodic life-safety walk-down inspections by qualified design professionals (SER-approved selection), and a final SER walk-down inspection with a documented report (site-visit record, inspection-compliance documentation, construction/installation-compliance documentation).",
+      "key_points": [
+        "DoD term substitutions: Building Official/Owner/Permit Applicant -> AHJ/AHJ/Contractor",
+        "Structural observation required for Risk Category III/IV (Table 2-2) or whenever the SER requires it",
+        "Special Inspector of Record (SIOR): licensed PE, AHJ-approved, third-party QA, duties in UFGS 01 45 35",
+        "Adhesive anchors: SER sets proof load per ACI 318-19 Section 26.7.1(k)",
+        "Designated Seismic Systems: periodic + final SER walk-down inspections with a documented final report"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Special inspection program administration, terminology, and the SIOR role for every DoD project."
+    },
+    {
+      "section_id": "2-6",
+      "title": "IBC Chapter 18 - Soils and Foundations",
+      "summary": "Foundation vibratory-load design defers to ACI 351.3R/351.4R and UFC 3-220-01; footings over 3 ft thick get a minimum 0.0015 reinforcement ratio (No. 4 bar min., 12 in. max spacing); frost-line depth for foundation design must be set by the project geotechnical engineer -- this UFC prints no frost-depth table of its own.",
+      "body": "1808.4 [Supplement]: design foundations for vibratory loads per ACI 351.3R or ACI 351.4R (as applicable) and UFC 3-220-01. 1808.8.2.1 [Addition]: footings over 3 ft (914 mm) thick require a minimum reinforcement-area-to-gross-concrete-area ratio of 0.0015 in each direction, with 1/2 to 2/3 of the total placed near one face; minimum bar size No. 4 (#13M), maximum 12 in. (305 mm) spacing (ACI CODE-318-19 Section 13.3.4.4). 1809.5.2 / 1809.5.3 [Addition]: frost-line depth for foundation construction must be specified by the project geotechnical engineer (no DoD frost-depth table is printed in this UFC).",
+      "key_points": [
+        "Vibratory-load foundation design: ACI 351.3R/351.4R + UFC 3-220-01",
+        "Footings > 3 ft thick: 0.0015 reinforcement ratio, No. 4 min. bar, 12 in. max spacing",
+        "Frost-line depth: geotechnical engineer's responsibility, no table printed here"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Foundation design for machine/equipment foundations (vibratory loads) and thick footings; frost-protection depth for shallow foundations."
+    },
+    {
+      "section_id": "2-7",
+      "title": "IBC Chapter 19 - Concrete",
+      "summary": "Adds construction-joint, lightweight-concrete water-content, and GFRP-reinforcement provisions (1901); adds a detailed Additively Constructed Concrete (3D-printed concrete, ACC) framework with material/testing/geometry limits and third-party ICC-AC509-based testing requirements (1903, Figure 2-1); and adds environmental-severity-classification cover and slab-on-ground provisions (1904/1907).",
+      "body": "1901.8 [Addition]: construction/contraction/expansion joints per ACI 224.3R and ACI CODE-318-19 Section 26.5.6. 1901.9 [Addition]: lightweight aggregate must be saturated-surface-dry before mixing; water-cementitious-materials ratio <= 0.50. 1901.10 [Addition]: GFRP reinforcement (preferred where corrosion is a durability concern; ~1/4 weight of steel) per ACI CODE-440.11-22, but NOT permitted in structures with fire rating above zero (or unrated structures that could collapse due to fire), and NOT permitted in seismic force-resisting systems for SDC B-F (permitted in non-SFRS members for SDC A-C); see Appendix G. 1903.4 [Addition]: Additively Constructed Concrete (ACC, 3D-printed) allowed as an alternative material/method under UFC 1-200-01 Section 104.11 with AHJ approval, LIMITED TO one-story RC I/II structures in SDC A/B only; unreinforced ACC not allowed; detailed requirements cover mix documentation, QA/QC, cover over reinforcement (no printed material relied on for development length unless tested), anchor/diaphragm connection testing, complete calculation packages, and (Figure 2-1) webbing-in-shell-elements composite assemblies requiring third-party load-test validation; peer review by USACE CERL required >=90 days before construction; ACC limited to walls <=10 ft, embedded pilasters, and non-participating stay-in-place footing formwork -- suspended elements (beams/girders/diaphragms) are NOT approved; detailed dimensional limits for wall shells/stabilizers/pilasters; third-party testing must conform to ICC AC509 as modified (compressive/flow/UCS/freeze-thaw/length-change/bond-strength/print-stability/dynamic testing clauses, each with specific ASTM standards and modified acceptance criteria). 1904.3 [Addition]: exterior exposed concrete at ESC C3-C5 locations follows ACI 357.3R Table 5.5.4 minimum cover (painted concrete with 2+ coats is not considered exposed; galvanized/stainless/epoxy-coated reinforcement uses ACI 318 cover instead). 1907.3/1907.5/1907.6/1907.7: slab-on-ground guidance references WBDG materials; warehouse slabs need UFC 4-440-01 minimum reinforcement; permafrost slabs follow UFC 3-130-01; post-tensioned slabs-on-ground follow PTI DC10.1.",
+      "key_points": [
+        "GFRP reinforcement: ACI CODE-440.11-22, prohibited above zero fire rating, prohibited in SFRS for SDC B-F (see gfrp.gfrp_seismic_applicability)",
+        "Additively Constructed Concrete (ACC): one-story RC I/II, SDC A/B only, walls <=10 ft, no suspended elements, extensive ICC-AC509-based third-party testing regime",
+        "Figure 2-1 shows the webbing-in-shell-elements composite ACC wall detail",
+        "ESC C3-C5 exterior exposed concrete: ACI 357.3R Table 5.5.4 cover"
+      ],
+      "equations": [], "figures": ["Figure 2-1 (Webbing in Shell Elements)"], "tables": [],
+      "applicability": "All cast-in-place concrete construction; ACC/3D-printed concrete specifically limited to low-rise, low-seismic applications."
+    },
+    {
+      "section_id": "2-8",
+      "title": "IBC Chapter 21 - Masonry",
+      "summary": "Requires reinforced masonry design (empirical design prohibited), running-bond-only shear walls, prohibits a specific clay-tile floor system, requires solid grouting below grade, adds seismic detailing for minimum reinforcement/joints/coupling-beam-shear/anchoring, and deletes the empirical adobe-masonry design section.",
+      "body": "2101.2.1/2101.2.2 [Addition]: masonry designed as reinforced unless isolated from vertical/lateral force transfer. 2101.2.3 [Addition]: empirical masonry design method not permitted. 2101.4 [Addition]: shear walls must be running-bond construction (no stack bond). 2101.5 [Addition]: Celersap clay-tile floor forming system prohibited. 2104.1.1 [Addition]: below-grade/elevator-shaft masonry walls must be grouted solid. 2104.1.2 [Addition]: corrugated metal brick ties prohibited. 2104.1.3 [Addition]: horizontal wall reinforcement continuous around corners/through intersections (TMS 402-22-compliant splices count as continuous). 2104.1.6/2104.1.7 [Addition]: concrete masonry control joints per NCMA TEK 10-2C/10-3; vertical brick expansion joints per BIA Technical Notes 18/18A. 2106.2.1 [Addition]: for special/intermediate masonry walls SDC B-F, only continuous horizontal reinforcement (including code-compliant bond-beam splices) counts toward minimum reinforcement. 2106.2.2 [Addition]: SDC B+ joints between concrete and masonry (not designed as separation joints) require roughening to 1/8 in. aggregate exposure and horizontal reinforcement per TMS 402-22 Section 5.2.3. 2106.2.3 [Addition]: SDC D+ coupling beams between shear walls must satisfy the capacity-design shear check phi*Vn >= 1.25*(Mn1+Mn2)/Lc + 1.4*Vg (see ``seismic_load_combinations.coupling_beam_shear_demand``); nominal moment strength calc includes slab reinforcement over a width of 6x slab thickness. 2106.2.4 [Addition]: SDC C+ masonry anchors require one of four ductility/overstrength provisions (mirrors ACI 318-19 Chapter 17 concrete-anchor logic; overstrength option amplifies only the horizontal seismic component QE by Omega0, not the vertical Ev). 2109 [Deletion]: Empirical Design of Adobe Masonry deleted entirely.",
+      "key_points": [
+        "Empirical masonry design is prohibited outright; masonry must be designed as reinforced",
+        "Coupling-beam shear capacity check: phi*Vn >= 1.25*(Mn1+Mn2)/Lc + 1.4*Vg (SDC D+)",
+        "Masonry anchor ductility/overstrength provisions mirror ACI 318-19's concrete-anchor logic (SDC C+)",
+        "Adobe masonry empirical design is deleted"
+      ],
+      "equations": [{"id": "2106.2.3", "description": "Coupling beam capacity-design shear check", "implemented_in": "geotech_references.ufc_structural.seismic_load_combinations.coupling_beam_shear_demand"}],
+      "figures": [], "tables": [],
+      "applicability": "All masonry construction; seismic provisions (2106.x) apply by SDC threshold."
+    },
+    {
+      "section_id": "2-9",
+      "title": "IBC Chapter 22 - Steel",
+      "summary": "Requires direct-tension-indicators or twist-off tension-control bolts at high-strength connections; requires AISC Design Guide 11 vibration serviceability design; adds corrosion-protection and cold-formed-steel provisions (22-gauge minimum roof deck, seismic diagonal-bracing material, floor-vibration design, brick-veneer backup, connection methods, galvanization).",
+      "body": "2201.4 [Supplement]: compressible-washer direct-tension-indicators or twist-off tension-control bolts (RCSC Specification) required at all high-strength bolted connections. 2202.1 [Supplement]: design structural steel floor framing for vibration serviceability per AISC Design Guide 11. 2202.3 [Addition]: hot-dip galvanize or use stainless alloy for steel in corrosion-prone environments (UFC 1-200-01 Section 4-1.3 definition); exterior steel deck/cold-formed members need ASTM A653/A653M G90 galvanizing with corrosion-resistant fasteners (see Section A-5.4). 2208.1 [Supplement]: steel roof deck minimum 22-gauge. 2206.1.1.1 [Addition]: diagonal seismic bracing must use ASTM A653/A653M steel WITHOUT rerolling (rerolling induces strain hardening, reducing elongation -- undesirable under seismic loading). 2206.4 [Addition]: cold-formed steel floor vibration serviceability per the Kraus design procedure (residential-derived but applicable broadly). 2206.5 [Addition]: brick-veneer/steel-stud backup per BIA Technical Note 28B (stud gage, galvanization, anchorage, welding, deflection track, allowable deflection, sheathing, water barriers). 2206.6 [Addition]: cold-formed steel members interconnected by screw fasteners or welding (pneumatic nailing only for connections to other-material members). 2206.7 [Addition]: cold-formed steel exposed to salt/brackish/seawater spray needs ASTM A653/A653M G90 galvanizing and hot-dipped-galvanized or stainless fasteners.",
+      "key_points": [
+        "High-strength bolted connections: direct-tension-indicators or twist-off tension-control bolts required",
+        "Floor vibration serviceability: AISC Design Guide 11 (structural steel), Kraus procedure (cold-formed steel)",
+        "Seismic diagonal bracing (cold-formed steel): ASTM A653/A653M steel WITHOUT rerolling",
+        "Roof deck minimum gauge: 22-gauge (general), 20-gauge for healthcare (Chapter 6)"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "All structural and cold-formed steel construction."
+    },
+    {
+      "section_id": "2-10",
+      "title": "IBC Chapter 23 - Wood",
+      "summary": "Prohibits conventional light-frame construction provisions for Risk Category IV buildings assigned to Seismic Design Category C, D, E, or F.",
+      "body": "2308.2.6 [Replacement]: conventional light-frame construction provisions are NOT permitted for RC IV buildings assigned to SDC C, D, E, or F (per IBC Section 1613.2).",
+      "key_points": ["RC IV + SDC C/D/E/F: conventional light-frame wood construction prohibited"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Risk Category IV wood-framed structures in moderate-to-high seismic zones."
+    },
+    {
+      "section_id": "2-11",
+      "title": "IBC Chapter 31 - Special Construction",
+      "summary": "Prohibits fabric-envelope membrane structures (frame-supported, air-supported, cable-net, grid-shell, geodesic dome) in windborne-debris regions for Risk Categories II-V, and wherever the 1700-yr-MRI wind speed meets/exceeds the windborne-debris threshold.",
+      "body": "3102.1 [Addition]: membrane structures with fabric envelopes/cladding are prohibited within windborne-debris regions for RC II-V, and wherever 1700-yr-MRI wind speed (IBC Figure 1609.3(2), ASCE 7 Figure 26.5-1C) meets/exceeds the windborne-debris-region threshold (130 mph within 1 mi of coastal mean-high-water, or 140 mph elsewhere). [C]: driven by fabric vulnerability to windborne debris observed in recent hurricanes/typhoons; slightly expands IBC windborne-debris regions, mirroring the VLFD logic of Section 1609.2.3.",
+      "key_points": ["Fabric-envelope membrane structures prohibited in windborne-debris regions for RC II-V", "Same 1700-yr-MRI wind-speed expansion logic as the VLFD prohibition"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Fabric/membrane structures of any RC above I in or near windborne-debris regions."
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "reference_id": "UFC 3-301-01",
+  "reference_title": "UFC 3-301-01, Structural Engineering (DoD, dated 11 April 2023, as amended through Change 4, 3 June 2025)",
+  "volume": null,
+  "chapter": 4,
+  "chapter_title": "Evaluation and Retrofit of Existing Buildings",
+  "sections": [
+    {
+      "section_id": "4-1",
+      "title": "General",
+      "summary": "Adopts ICSSC RP 10 for seismic evaluation/retrofit (worldwide DoD applicability) and the 2024 IEBC for nonseismic evaluation/retrofit, each with UFC-specific modifications, using the same four-action legend (Addition/Replacement/Supplement) as Chapters 2/3 minus Deletion.",
+      "body": "For evaluation/retrofit of existing buildings, this chapter applies to repair, alteration, change of occupancy, acquisition, addition, and relocation. Seismic evaluation/retrofit adopts ICSSC RP 10 (applicable worldwide to DoD owned/leased buildings), which itself uses ASCE/SEI 41-17 as its technical basis. Nonseismic evaluation/retrofit adopts the 2024 IEBC. Modification actions: [Addition] new section; [Replacement] delete and replace; [Supplement] add to existing text. [C]: RP 10 provides exemptions/triggers/scope/criteria for existing-building work; this chapter clarifies RP 10 terms, modifies RP 10's exemption/benchmarking provisions, and separately modifies the 2024 IEBC's scope and prescriptive compliance method.",
+      "key_points": [
+        "Seismic basis: ICSSC RP 10 (worldwide DoD applicability) + ASCE/SEI 41-17",
+        "Nonseismic basis: 2024 IEBC",
+        "Three modification actions here (no [Deletion], unlike Chapters 2/3)"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Any repair, alteration, change of occupancy, acquisition, addition to, or relocation of an existing DoD building."
+    },
+    {
+      "section_id": "4-2",
+      "title": "Modifications to RP 10",
+      "summary": "Updates RP 10's code-vintage citations to the 2024 IBC/IEBC and ASCE 7-22; sets project-cost thresholds triggering mandatory evaluation for SDC C (50%) and SDC D-F (30%) additions/alterations/repairs; replaces RP 10's performance-objective tables with Table 4-1(a)/(b); and modifies RP 10's exemption and benchmark-building provisions.",
+      "body": "See the deeper section entries (4-2.1 through 4-2.3) for triggers, performance objectives, exemptions, and benchmark buildings.",
+      "key_points": ["Umbrella section for 4-2.1 (triggers), 4-2.2 (performance objectives), 4-2.3 (exemptions/benchmarks)"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "All RP 10-governed seismic evaluation/retrofit projects."
+    },
+    {
+      "section_id": "4-2.1",
+      "title": "Circumstances Initiating Evaluation and Mitigation (Triggers)",
+      "summary": "Updates RP 10's code citations to 2024 IBC/IEBC and ASCE 7-22; sets the mandatory-evaluation cost threshold at 50% of pre-construction replacement cost for SDC C additions/alterations/repairs, and 30% for SDC D, E, or F (excluding tenant equipment/fit-outs/seismic mitigation costs from both the numerator and the replacement-cost denominator).",
+      "body": "RP 10 Section 1.0 [Supplement]: wherever RP 10 cites 2021 IBC/IEBC or ASCE 7-16, substitute 2024 IBC/IEBC or ASCE 7-22. RP 10 Section 1.2.1 Item c [Replacement]: SDC C additions/alterations/repairs costing more than 50% of current pre-construction replacement cost (excluding tenant-supplied operational equipment/fit-outs/seismic mitigation) trigger mandatory evaluation. RP 10 Section 1.2.1 Item d [Replacement]: SDC D, E, or F additions/alterations/repairs trigger at more than 30% of replacement cost (same exclusions). See ``evaluation_retrofit.evaluation_trigger_cost_threshold``.",
+      "key_points": [
+        "SDC C: 50% of replacement cost triggers mandatory evaluation",
+        "SDC D/E/F: 30% of replacement cost triggers mandatory evaluation",
+        "Tenant equipment/fit-outs/seismic mitigation costs are excluded from the cost calculation"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Any addition, alteration, or repair project on an existing SDC C, D, E, or F building."
+    },
+    {
+      "section_id": "4-2.2",
+      "title": "Performance Objectives for Evaluation and Retrofit using ASCE 41-17",
+      "summary": "Table 4-1(a) (structural) and 4-1(b) (nonstructural) replace RP 10 Tables 2-1/2-2/2-3 for determining required performance objectives by trigger and risk category; the AHJ may waive nonstructural scope in unaffected areas; Item i (Unacceptable Risk Exposure) targets URMs at a low Collapse-Prevention-in-BSE-1E threshold with standard BPOE retrofit requirements.",
+      "body": "RP 10 Section 2.0 [Supplement]: Tables 4-1(a)/4-1(b) of this chapter replace RP 10 Tables 2-1, 2-2, and 2-3 for structural/nonstructural performance objectives respectively, based on risk category and evaluation/retrofit trigger; AHJ may waive nonstructural scope in areas unaffected by the project and not affecting DoD operations/safety/post-earthquake occupancy. [C]: Tables 4-1(a)/(b) restate RP 10's own tables with more clarity, except Item i (Unacceptable Risk Exposure), which RP 10 leaves to agency discretion -- this UFC develops it with a URM focus (a low Collapse Prevention in BSE-1E threshold, since URMs are not expected to pass a higher bar; retrofit matches other Basic Performance Objective for Existing Buildings (BPOE) project types; relocating URM activities is an effective alternative if retrofit becomes infeasible in higher risk categories). RP10 Section 2.1 [Supplement]: enhanced performance objectives beyond Table 2-1 follow ASCE 41-17 Section 2.2.2; BSE-1E/2E/1N/2N seismic multi-period response spectra come from the ASCE Hazard Tool (US/territories) or the AHJ elsewhere. [C]: the four RP 10 hazard levels are BSE-2N (2%/50yr), BSE-1N (2/3 of BSE-2N), BSE-2E (5%/50yr), and BSE-1E (20%/50yr).",
+      "key_points": [
+        "Table 4-1(a) = structural performance objectives; Table 4-1(b) = nonstructural (see evaluation_retrofit module)",
+        "AHJ may waive nonstructural evaluation scope in project-unaffected areas",
+        "Item i (URE) specifically targets unreinforced masonry buildings with a Collapse-Prevention-in-BSE-1E evaluation threshold",
+        "Four hazard levels: BSE-2N/1N/2E/1E, all from the ASCE Hazard Tool"
+      ],
+      "equations": [], "figures": [], "tables": ["Table 4-1(a)", "Table 4-1(b)"],
+      "applicability": "Every RP 10-triggered seismic evaluation or retrofit project; determines the target performance level and hazard."
+    },
+    {
+      "section_id": "4-2.3",
+      "title": "Exemptions and Benchmark Buildings",
+      "summary": "Change-of-occupancy exemptions apply to the new/intended occupancy; incidental-occupancy structures (<=2 persons/100 sf, <2 hr/day) are exempt from RC I/II evaluation; Table 4-2 replaces the ASCE 41-17 benchmark-building code-vintage tables (NOT digitized in this package -- consult printed pp. 78-81).",
+      "body": "4-2.3.1 Exemptions: RP 10 Section 1.3 exemptions apply to the new/intended occupancy for change-of-occupancy projects. RP 10 Section 1.3 Item e [Replacement]: RC I/II structures for incidental human occupancy (<=2 persons/100 sf, <2 hr/day total) are exempt. 4-2.3.2 Benchmark Buildings: RP 10 Section 1.4 [Supplement]: Table 4-2 of this chapter replaces ASCE 41-17 Table 3-2 (Life Safety benchmark codes/standards) and Table 3-3 (Immediate Occupancy benchmark codes/standards) at BSE-1E.",
+      "key_points": [
+        "Incidental-occupancy exemption: <=2 persons/100 sf, <2 hr/day, RC I/II only",
+        "Table 4-2 (NOT digitized here) replaces ASCE 41-17 Tables 3-2/3-3 -- an 18-building-type x 11-code-vintage administrative cross-reference; consult the printed table (pp. 78-81) directly"
+      ],
+      "equations": [], "figures": [], "tables": ["Table 4-2 (not digitized)"],
+      "applicability": "Determining whether an existing building qualifies as a 'benchmark building' exempt from further seismic evaluation."
+    },
+    {
+      "section_id": "4-3",
+      "title": "Additional Requirements",
+      "summary": "Combined addition+alteration/repair projects must comply with both sets of provisions; existing seismic force-resisting elements may remain unaltered if structurally independent of a new addition (subject to a 10%-demand-capacity-ratio exception), otherwise the combined structure must meet 2024 IBC Sections 1609/1613 (with an ASCE 41-17 Tier-3-to-Table-4-1(a) compliance path).",
+      "body": "4-3.1 [guidance]: alteration work concurrent with an addition project follows alteration-project provisions; repair work concurrent with an addition follows repair-project provisions. 4-3.2 [guidance]: a structurally-independent addition permits existing seismic force-resisting elements to remain unaltered; otherwise, the combined structure-plus-addition must meet 2024 IBC Sections 1609/1613 (deemed satisfied via ASCE 41-17 Tier 3 procedure at the Table 4-1(a) retrofit performance objective). EXCEPTION: an existing element may remain unaltered if its demand-capacity ratio (with the addition considered) is no more than 10% greater than without the addition, PROVIDED the addition creates no new (or worsens no existing) structural irregularities per ASCE 7-22 Section 12.3.2; demand must include wind/earthquake load combinations and account for the CUMULATIVE effect of all additions/alterations since original construction. 4-3.2.1/4-3.2.2: if no alterations/repairs accompany a structurally-independent addition, no seismic evaluation of the existing structure is required; if alterations/repairs ARE made, RP 10 requirements apply to the existing structure.",
+      "key_points": [
+        "10% demand-capacity-ratio exception allows an existing seismic element to remain unaltered despite a new addition, if no new/worsened irregularities result",
+        "Demand-capacity comparisons must account for the CUMULATIVE effect of all prior additions/alterations, not just the current project",
+        "Structurally-independent addition with NO accompanying alteration/repair => no seismic evaluation of the existing structure required"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Projects combining an addition with alteration and/or repair work, and additions to existing seismic force-resisting structures."
+    },
+    {
+      "section_id": "4-4",
+      "title": "Modifications to IEBC",
+      "summary": "Tsunami loads (ASCE 7-22 Chapter 6) do not apply to IEBC-defined repairs/alterations/changes of occupancy; adds a high-wind roof-diaphragm retrofit trigger (130 mph threshold, 50% cost/re-roofing triggers, 75% capacity check) for the prescriptive compliance method and Level One alterations, with specific building-type exemptions.",
+      "body": "4-4.1 [guidance]: IEBC Part 1 scope. 101.2 [Supplement]: ASCE 7-22 Chapter 6 (Tsunami Loads) does NOT apply to repairs, alterations, and changes of occupancy of existing buildings as defined by the 2024 IEBC. [C]: the IEBC does not yet incorporate tsunami requirements; this may change in future editions. 4-4.2 [guidance]: IEBC Chapter 5 prescriptive compliance method. 503.12 [Replacement]: in high-wind regions (RC II basic wind speed > 130 mph, or a UFC special wind region), a building alteration/repair triggers roof-diaphragm/connection wind-load evaluation when (1) alteration/repair cost exceeds 50% of replacement value, OR (2) re-roofing an RC III/IV building removes more than 50% of roofing material -- AND the provision has not been invoked in the prior 25 years. If the diaphragm/connections cannot resist 75% of current UFC design wind loads, they must be replaced/strengthened. EXEMPT: reinforced-concrete buildings with concrete diaphragms, reinforced-CMU buildings with concrete diaphragms, detached 1-2 family dwellings, townhouses (<8 units, <=3 stories), and RC I buildings. 4-4.3 [guidance]: IEBC Chapter 7 alterations - Level One. 706.3.2 [Replacement]: apply Section 503.12 of this UFC.",
+      "key_points": [
+        "Tsunami loads do NOT apply to IEBC-scope existing-building work",
+        "High-wind roof-diaphragm retrofit trigger: >130 mph RC II wind speed AND (>50% alteration/repair cost OR >50% re-roofing material removal on RC III/IV)",
+        "Capacity check: diaphragm/connections must resist 75% of current UFC design wind loads or be strengthened",
+        "Five exempt building types listed explicitly (see evaluation_retrofit.roof_diaphragm_high_wind_retrofit_trigger)"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Existing-building alteration, repair, and re-roofing projects in high-wind regions."
+    }
+  ]
+}

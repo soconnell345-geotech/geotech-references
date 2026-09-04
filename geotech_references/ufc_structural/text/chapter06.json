@@ -1,0 +1,94 @@
+{
+  "reference_id": "UFC 3-301-01",
+  "reference_title": "UFC 3-301-01, Structural Engineering (DoD, dated 11 April 2023, as amended through Change 4, 3 June 2025)",
+  "volume": null,
+  "chapter": 6,
+  "chapter_title": "Modifications to the IBC for Critical Healthcare Facilities",
+  "sections": [
+    {
+      "section_id": "6-1",
+      "title": "IBC Chapter 1 - Scope and Administration",
+      "summary": "This chapter adopts modifications from the 2022 California Building Code's 'A' chapters, cited against the 2021 IBC and its referenced standards (ASCE 7-16, ACI 318-19, TMS 402-16, AISC 360-16, AISC 341-16) since the 2025 CBC (2024-IBC-based) was not yet available; applies IN ADDITION to Chapter 2, governing on conflict, for SDC D/E/F Group I-2 Condition 2 and emergency-surgery ambulatory-care facilities.",
+      "body": "This Chapter adopts some of the modifications made by the 'A' chapters of the 2022 California Building Code for DoD's critical healthcare facilities. The 2022 CBC is based on the 2021 IBC. The 2025 CBC (based on the 2024 IBC) was not available when this Chapter was finalized, so any IBC reference in this Chapter is to the 2021 IBC and its referenced standards: ASCE 7-16, ACI 318-19, TMS 402-16, AISC 360-16, AISC 341-16 -- this Chapter needs updating once the 2025 CBC publishes. 101.2 [Supplement]: for SDC D/E/F Group I-2 Condition 2 occupancies (2021 IBC Section 308.3) and ambulatory-care facilities with emergency surgery/treatment, the modifications to 2021 IBC Chapters 16/18/19/21/22 in this chapter apply IN ADDITION to Chapter 2; this chapter governs on conflict.",
+      "key_points": [
+        "Edition basis: 2022 CBC 'A' chapters, against the 2021 IBC / ASCE 7-16 / ACI 318-19 / TMS 402-16 / AISC 360-16 / AISC 341-16 -- NOT the 2024/ASCE 7-22 basis of Chapters 2/3",
+        "Applies only to SDC D/E/F Group I-2 Condition 2 and emergency-surgery ambulatory-care facilities",
+        "This chapter governs over Chapter 2 on conflict, for the facilities within its scope"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Critical healthcare facilities: Group I-2 Condition 2 (emergency surgery/treatment) and ambulatory care emergency-surgery facilities, assigned to SDC D, E, or F."
+    },
+    {
+      "section_id": "6-2",
+      "title": "IBC Chapter 16 - Structural Design",
+      "summary": "Adds structural/vertical irregularity and base-location documentation to earthquake design data.",
+      "body": "1603.1.5 [Supplement]: add three items to the earthquake design data list: (12) applicable horizontal structural irregularities, (13) applicable vertical structural irregularities, (14) location of base per ASCE 7-16 Section 11.2.",
+      "key_points": ["Earthquake design data must document horizontal/vertical irregularities and the structure's seismic base location"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Construction documents for critical healthcare facilities."
+    },
+    {
+      "section_id": "6-3",
+      "title": "IBC Chapter 18 - Soils and Foundations",
+      "summary": "Foundation and retaining walls follow lateral soil loads from a geotechnical investigation; retaining walls must use at least 80% of the Section 1610 lateral soil load, with SDC D/E/F walls retaining more than 6 ft of backfill requiring the geotechnically-determined additional seismic lateral earth pressure; rubble-stone and permanent-wood foundation systems are prohibited.",
+      "body": "1807.1.1 [Replacement]: foundation walls designed for geotechnically-determined lateral soil loads (Section 1803). 1807.1.3/1807.1.4 [Replacement]: rubble stone foundation walls and permanent wood foundation systems are NOT permitted. 1807.2.2 [Replacement]: retaining walls designed for geotechnically-determined lateral soil loads, not less than 80% of the Section 1610 lateral soil load; gravity-load surcharge counts as a gravity load, seismic earth-pressure increases count as seismic loads for load combinations; SDC D/E/F retaining walls supporting more than 6 ft (1829 mm) of backfill require the geotechnically-determined additional seismic lateral earth pressure per Section 1803.2 (see ``healthcare_modifications.healthcare_retaining_wall_lateral_load_minimum``).",
+      "key_points": [
+        "Retaining wall lateral soil load: minimum 80% of Section 1610 value, from geotechnical investigation",
+        "SDC D/E/F + backfill height > 6 ft: additional seismic lateral earth pressure required from the geotechnical investigation",
+        "Rubble stone foundation walls and permanent wood foundation systems are prohibited outright"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Foundation walls and retaining walls at critical healthcare facilities -- directly geotechnical-engineering-relevant provisions."
+    },
+    {
+      "section_id": "6-4",
+      "title": "IBC Chapter 19 - Concrete",
+      "summary": "Requires opening-detailing documentation; prohibits flat-wall ICF systems for hospitals/correctional treatment centers (with an ASTM E2634 alternative for skilled nursing/clinics); restricts reactive aggregates and pozzolan/slag content; prohibits steel fiber reinforcement; and replaces most 2021 IBC ACI-318 modifications with new foundation/wall-anchorage/diaphragm-opening/topping-slab/testing-frequency provisions.",
+      "body": "1901.5 [Supplement]: add construction-document item (12), detailing of openings larger than 12 in. in any dimension. 1903.4 [Replacement]: flat-wall Insulating Concrete Form (ICF) systems NOT permitted for hospitals/correctional treatment centers; ASTM E2634 conformance required for skilled nursing/intermediate care/clinics. 1903.5 [Addition]: normal-weight aggregate must be nonreactive per ASTM C33 Appendix XI (or use an AHJ-approved deleterious-expansion-prevention additive). 1903.6 [Addition]: pozzolan/fly-ash/silica-fume/slag-cement percentage limits per ACI 318 Table 26.4.2.2(b) for hospitals/correctional treatment centers; f'c duration beyond 28 days when pozzolans are used counts as an alternative system. 1903.7 [Addition]: steel fiber reinforcement NOT permitted. 1905.1.1-1905.1.6 [ACI 318 Modification/Replacement/Addition]: retain 1905.1.8 (renumbered 1905.1.4); replace other 2021-IBC ACI-318 modifications with: (1905.1.1) Section 9.6.1.3 excluded for seismic members except foundation members with overstrength-factor load combinations at hospitals/correctional treatment centers (As >= 1.2x cracking load per fr, Section 19.2.3); (1905.1.2) Section 11.2.4.1 wall-to-intersecting-element anchorage, minimum equivalent to No. 4 bars at 12 in. o.c. per reinforcement layer; (1905.1.3) new Section 12.7.3.4 requiring trim bars (2x No. 5 or 1x No. 5 for single-layer diaphragms) around openings >12 in., developed beyond the opening; (1905.1.5) new Section 18.12.6.2 requiring topping-slab collector/boundary elements over precast floor/roof >= 3 in. or 6*db thick; (1905.1.6) Section 26.12.2.1(a) strength-test sampling frequency (>=1/day, or per 50 cu yd, or per 2,000 sf of slab/wall surface, with additional 7-day tests at mix/aggregate changes).",
+      "key_points": [
+        "Flat-wall ICF systems prohibited for hospitals/correctional treatment centers",
+        "Steel fiber reinforcement not permitted",
+        "Foundation members: overstrength-factor seismic combos require As >= 1.2x cracking moment reinforcement (an exception carved out of ACI 318 9.6.1.3)",
+        "New topping-slab collector/boundary thickness minimum: 3 in. or 6*db"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Concrete construction at hospitals, correctional treatment centers, skilled nursing facilities, and clinics."
+    },
+    {
+      "section_id": "6-5",
+      "title": "IBC Chapter 21 - Masonry",
+      "summary": "Prohibits unreinforced/AAC masonry, empirical design, adobe construction, and several shear-wall types (ordinary/intermediate reinforced, prestressed, simplified direct design) outright; introduces Table 6-1 minimum masonry wall thickness; adds column-tie, lateral-support, and minimum-reinforcement provisions; and sets a masonry compressive strength floor of 1,500 psi (max 3,000 psi concrete / 4,500 psi clay for nominal-strength calculation).",
+      "body": "2101.1.1 [Addition]: prohibits unreinforced masonry, AAC masonry, empirical design of masonry, adobe construction, ordinary reinforced masonry shear walls, intermediate reinforced masonry shear walls, prestressed masonry shear walls, and the Simplified Direct Design procedure. 2106.1.1 [IBC Addition, TMS Replacement]: column ties >= 3/8 in. diameter, embedded in grout, top tie within 2 in. of column top/supported-beam bottom bar; tie spacing <= 8 bar diameters, 24 tie diameters, half the least column dimension, or 8 in., for the full column height. 2106.1.2 [IBC Addition, TMS Addition]: new TMS 402-16 Section 5.6 (Lateral Support of Members) -- lateral support via cross walls/columns/pilasters/counterforts/buttresses (horizontal spanning) or floors/beams/girts/roofs (vertical spanning); supporting vertical-element stiffness must exceed the tributary wall-area stiffness. 2106.1.3 [IBC Addition, TMS Replacement/Deletion]: minimum reinforcement 0.003x wall sectional area (neither direction < 1/3 of total), max 24 in. spacing each direction (16 in. for stack-bond open-end hollow units); minimum No. 4 bars (No. 3 for ties/stirrups); dowels matching vertical reinforcement in footings; continuous reinforcement around corners/intersections; bond-beam horizontal reinforcement at footing tops, wall openings, floor/roof levels, and parapet tops; two-layer reinforcement division for walls >=12 in. thick (except retaining walls); trim bars (>=1 No. 5 or 2 No. 4) around openings >24 in., extended 24 in. or 48 bar diameters beyond corners; joint reinforcement not permitted as principal reinforcement. 2107.5/2108.4 [IBC Addition / IBC Addition, TMS Modification]: masonry compressive strength floor of 1,500 psi (10.34 MPa); nominal-strength-calculation cap of 3,000 psi (20.7 MPa) concrete masonry / 4,500 psi (31.03 MPa) clay masonry, for both ASD (Chapter 8) and strength design (Chapter 9). 2109 concept [Addition]: empirical adobe design not permitted (consistent with the general prohibition list above).",
+      "key_points": [
+        "Unreinforced masonry, AAC masonry, empirical design, adobe construction, and several specific shear-wall types are ALL prohibited for critical healthcare facilities",
+        "Minimum masonry reinforcement ratio: 0.003 x wall sectional area",
+        "Masonry compressive strength floor: 1,500 psi; nominal-strength calculation caps at 3,000 psi (concrete) / 4,500 psi (clay)",
+        "See Table 6-1 (paragraph 6-5.3) for minimum wall thickness by masonry type"
+      ],
+      "equations": [], "figures": [], "tables": ["Table 6-1"],
+      "applicability": "Masonry construction at critical healthcare facilities -- notably more restrictive than the Chapter 2 general masonry provisions."
+    },
+    {
+      "section_id": "6-5.3",
+      "title": "Section 2107 - Allowable Stress Design (Table 6-1)",
+      "summary": "Table 6-1 sets the minimum nominal masonry wall thickness and maximum unsupported height/length-to-thickness ratio, by wall type (bearing/shear vs. nonbearing).",
+      "body": "8.3.4.4.1/8.3.4.4.2 [IBC Addition, TMS Supplement]: wall thickness determined on net masonry thickness (accounting for reductions like raked joints); walls must not exceed the height/length-to-thickness ratio nor be thinner than Table 6-1 (bearing/shear walls: stone masonry 14:1 ratio / 16 in. min.; reinforced grouted masonry 25:1 / 6 in.; reinforced hollow unit masonry 25:1 / 6 in.; nonbearing walls: exterior reinforced 30:1 / 6 in.; interior reinforced partitions 36:1 / 4 in.). 8.3.4.4.3 [IBC Addition, TMS Supplement]: piers/wall sections with width < 3x thickness are designed as columns; width 3-5x thickness (or less than half the height of adjacent openings) require horizontal ties (hairpins permitted for walls <=12 in. thick).",
+      "key_points": ["Table 6-1 governs minimum masonry wall thickness by type -- see healthcare_modifications.table_6_1_masonry_wall_thickness"],
+      "equations": [], "figures": [], "tables": ["Table 6-1"],
+      "applicability": "Masonry wall sizing at critical healthcare facilities."
+    },
+    {
+      "section_id": "6-6",
+      "title": "IBC Chapter 22 - Steel",
+      "summary": "Requires minimum pre-heat/post-heat for restrained welded connections, oversized-hole shear-transfer provisions at column base plates, laterally-supported joist chords at direction changes, 20-gauge minimum roof deck, and prohibits seismic-force-resisting-system prescriptive cold-formed framing.",
+      "body": "2204.1.1 [Addition]: welded structural steel connections at hospitals/correctional treatment centers with medium/high restraint (AWS D1.1 Annex H) need >=150 deg F pre-heat; high-restraint flange/web/wall/plate welds need >=300 deg F post-heat for >=1 hour after welding. 2204.4 [Addition]: where column base plates transfer shear/tension to anchor bolts, oversized holes (per AISC 360) larger than the bolt by >1/8 in. require shear lugs/welded shear-transfer plates (or AHJ-acceptable means); otherwise anchor bolts must be checked for combined bending + shear. 2207.6 [Addition]: joist chords must be laterally supported at every direction change. 2210.1.1.2 [Supplement]: steel roof deck minimum 20-gauge for hospitals/correctional treatment centers (stricter than Chapter 2's general 22-gauge). 2211.1.2 [Replacement]: prescriptive cold-formed-steel framing systems NOT permitted within the seismic force-resisting system.",
+      "key_points": [
+        "Restrained welded connections: >=150 deg F pre-heat, >=300 deg F post-heat (1 hr) for high-restraint welds",
+        "Roof deck minimum: 20-gauge (stricter than Chapter 2's general 22-gauge)",
+        "Cold-formed steel prescriptive framing prohibited in the seismic force-resisting system"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Structural and cold-formed steel construction at critical healthcare facilities."
+    }
+  ]
+}
