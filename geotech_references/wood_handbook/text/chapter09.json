@@ -1,0 +1,257 @@
+{
+  "reference_id": "USDA FPL-GTR-282",
+  "reference_title": "Wood Handbook: Wood as an Engineering Material (USDA Forest Products Laboratory, General Technical Report FPL-GTR-282, 2021)",
+  "volume": null,
+  "chapter": 9,
+  "chapter_title": "Structural Analysis Equations",
+  "sections": [
+    {
+      "section_id": "9-1",
+      "title": "Deformation Equations: Axial Load and Bending",
+      "summary": "Axial deformation (Eq 9-1), straight beam deflection as bending plus shear terms (Eq 9-2, with Table 9-1 kb/ks constants for 8 loading/support cases and Eq 9-3/9-4 section properties), and tapered beam shear deflection (Eq 9-5, Figs 9-4/9-5 for the accompanying bending-deflection charts).",
+      "body": "Axial deformation of a member is delta=PL/(AE) (Eq 9-1). Straight-beam deflection is the sum of a bending term and a shear term, delta=kb*W*L^3/(EI) + ks*W*L/(GA') (Eq 9-2), with kb/ks tabulated for 8 common loading/support combinations (Table 9-1) and section properties I, A' given for rectangular and circular sections (Eq 9-3, 9-4). Tapered beams (single- or double-tapered) deflect from both bending (read from Figs 9-4/9-5 design charts) and shear (closed-form Eq 9-5).",
+      "key_points": [
+        "Total straight-beam deflection = bending term + shear term (Eq 9-2)",
+        "Table 9-1 gives kb/ks for 8 loading/support cases (UDL, midspan point load, quarter-point loads; simply supported, clamped, cantilever)",
+        "Tapered-beam bending deflection is chart-based (Figs 9-4/9-5); shear deflection is closed-form (Eq 9-5)"
+      ],
+      "equations": [
+        "9-1",
+        "9-2",
+        "9-3",
+        "9-4",
+        "9-5"
+      ],
+      "figures": [
+        "9-1",
+        "9-2",
+        "9-3",
+        "9-4",
+        "9-5"
+      ],
+      "tables": [
+        "9-1"
+      ],
+      "applicability": "Serviceability (deflection) checks for axially loaded members and straight or tapered beams.",
+      "implemented_in": "structural_deformation.axial_deformation, structural_deformation.straight_beam_deflection, structural_deformation.table_9_1_kb_ks, structural_deformation.section_moment_of_inertia, structural_deformation.section_modified_shear_area, structural_deformation.tapered_beam_shear_deflection"
+    },
+    {
+      "section_id": "9-2",
+      "title": "Deformation Equations: Water Ponding, Combined Bending+Axial, Torsion",
+      "summary": "Ponding deflection amplification (Eq 9-6), combined bending+axial-load deflection for concentric (Eq 9-7) and eccentric (Eq 9-8) axial load, and torsion (angle of twist Eq 9-9, torsional constant K for circular Eq 9-10 and rectangular Eq 9-11 sections, the latter via the Figure 9-9 coefficient phi).",
+      "body": "Water ponding on an already-deflected roof beam amplifies total deflection by Delta=Delta0/(1-s/s_cr) (Eq 9-6), where s_cr is the critical beam spacing (Eq 9-32, Stability Equations). Adding a concentric axial load to a beam under transverse bending amplifies (compression) or reduces (tension) midspan deflection by a factor 1/(1+/-P/Pcr) (Eq 9-7); an eccentrically applied axial load induces its own bending deflection via the same amplification factor applied to the eccentricity (Eq 9-8). Torsion twists a member per theta=TL/(GK) (Eq 9-9), with the torsional constant K equal to the polar moment of inertia J for circular sections (Eq 9-10) and approximated as K=h*b^3/phi for rectangular sections (Eq 9-11), phi read from Figure 9-9 (reproduced in closed form in this module).",
+      "key_points": [
+        "Ponding amplification (Eq 9-6) and combined bending+axial amplification (Eq 9-7/9-8) share the same 1/(1-x) mathematical form",
+        "Torsional constant K: exact for circular sections (Eq 9-10, K=J); approximate empirical fit for rectangular sections (Eq 9-11, via Figure 9-9's phi)"
+      ],
+      "equations": [
+        "9-6",
+        "9-7",
+        "9-8",
+        "9-9",
+        "9-10",
+        "9-11"
+      ],
+      "figures": [
+        "9-6",
+        "9-7",
+        "9-8",
+        "9-9"
+      ],
+      "tables": [],
+      "applicability": "Roof ponding stability checks, beam-column deflection under combined loading, and torsional deformation of members.",
+      "implemented_in": "structural_deformation.ponding_deflection_amplification, structural_deformation.combined_bending_axial_deflection, structural_deformation.eccentric_axial_bending_deflection, structural_deformation.angle_of_twist, structural_deformation.torsional_constant_circular, structural_deformation.torsional_constant_rectangular"
+    },
+    {
+      "section_id": "9-3",
+      "title": "Stress Equations: Axial Load and Straight Beam Stresses",
+      "summary": "Uniform axial stress (Eq 9-12, tension positive, also used for short-block compression), bending stress at the extreme fiber (Eq 9-13, the same formula that defines modulus of rupture when M is the ultimate moment), and beam shear stress at the neutral axis (Eq 9-14, k=3/2 rectangular, 4/3 circular).",
+      "body": "Concentric axial load produces uniform stress f=P/A (Eq 9-12); the same equation, with a negative-sign convention, applies to short-block compression provided the member is short enough to fail by fiber crushing rather than buckling. Maximum bending stress at the top/bottom fibers is fb=M/S (Eq 9-13, S=bh^2/6 rectangular or piD^3/32 circular); used beyond Hooke's law limits with M as the ultimate moment, this gives the modulus of rupture reported in Table 5-3. Maximum shear stress at the neutral axis is fv=kV/A (Eq 9-14).",
+      "key_points": [
+        "Eq 9-12 (f=P/A) covers both axial tension and short-block compression",
+        "Eq 9-13 (fb=M/S) at ultimate moment defines the modulus of rupture (Table 5-3 values)",
+        "Eq 9-14 shear-stress coefficient k differs by section shape (3/2 rectangular, 4/3 circular)"
+      ],
+      "equations": [
+        "9-12",
+        "9-13",
+        "9-14"
+      ],
+      "figures": [
+        "9-10",
+        "9-11"
+      ],
+      "tables": [],
+      "applicability": "The fundamental axial, bending, and shear stress checks for straight members of uniform section.",
+      "implemented_in": "structural_stress.axial_stress, structural_stress.section_modulus, structural_stress.bending_stress, structural_stress.beam_shear_stress"
+    },
+    {
+      "section_id": "9-4",
+      "title": "Stress Equations: Tapered Beam Stresses",
+      "summary": "The combined stress state (bending, shear, and perpendicular-to-neutral-axis stress) at a tapered beam edge (Eq 9-16), checked against a Norris (Henky-von Mises-based) interaction criterion (Eq 9-15).",
+      "body": "At the tapered edge of a beam of constant width that tapers in depth (slope < 25 degrees), the bending stress fx, shear stress fxy, and perpendicular stress fy combine (Eq 9-16, all three derived from a single peak-shear-stress term fx). The Norris (1950) interaction criterion, based on the Henky-von Mises distortion-energy theory (Eq 9-15), checks this combined stress state against the corresponding allowable/maximum values Fx (shear/bending parallel to grain), Fxy, and Fy (perpendicular-to-grain tension or compression, depending on which flange is tapered).",
+      "key_points": [
+        "Tapered-edge combined stresses (fx, fxy, fy) all derive from the peak shear stress of an equivalent constant-depth beam (Eq 9-16)",
+        "The Norris interaction criterion (Eq 9-15) checks the combined state against three independent allowable stresses"
+      ],
+      "equations": [
+        "9-15",
+        "9-16"
+      ],
+      "figures": [
+        "9-12"
+      ],
+      "tables": [],
+      "applicability": "Checking tapered glulam or sawn beams for combined stress at the tapered edge (a location often overlooked if only Eq 9-13 bending stress is checked).",
+      "implemented_in": "structural_stress.tapered_beam_stresses, structural_stress.tapered_beam_interaction"
+    },
+    {
+      "section_id": "9-5",
+      "title": "Stress Equations: Size Effect",
+      "summary": "Modulus of rupture decreases as beam size increases (weakest-link statistical strength theory). Gives the two-point-vs-two-point size ratio (Eq 9-17, factored worked form Eq 9-18), the uniform-vs-concentrated-load ratio (Eq 9-19), and a shear-strength size adjustment from ASTM D143 shear-block data (Eq 9-20).",
+      "body": "Larger clear, straight-grained beams test weaker in bending than smaller ones (weakest-link statistical strength theory, Bohannan 1966). Eq 9-17 gives the general modulus-of-rupture ratio between two beams under symmetric two-point loading, as a function of depth, span, load spacing, and an empirical material constant m (m=18 for clear, straight-grained Douglas-fir); Eq 9-18 factors this to a fixed reference beam (50.8 mm deep, 711.12 mm span, midspan-loaded) with a worked printed example (7,330 lbf/in^2 result, reproduced as this module's validation anchor). Eq 9-19 extends the theory to compare uniformly distributed vs. concentrated loading (Liu 1982). Eq 9-20 separately adjusts ASTM D143 shear-block strength for specimen size and the block's re-entrant-corner stress concentration.",
+      "key_points": [
+        "Larger beams have lower modulus of rupture (weakest-link theory, m=18 for Douglas-fir)",
+        "Eq 9-18's worked example (7,330 lbf/in^2) is this module's printed validation anchor",
+        "Shear strength is separately size-adjusted from ASTM D143 block tests via Eq 9-20"
+      ],
+      "equations": [
+        "9-17",
+        "9-18",
+        "9-19",
+        "9-20"
+      ],
+      "figures": [
+        "9-13"
+      ],
+      "tables": [],
+      "applicability": "Adjusting clear-wood strength test data (or design values derived from it) for the actual member size being designed.",
+      "implemented_in": "structural_stress.size_effect_ratio_two_point_vs_concentrated, structural_stress.size_effect_midspan_reference, structural_stress.size_effect_ratio_uniform_vs_concentrated, structural_stress.shear_strength_size_adjusted"
+    },
+    {
+      "section_id": "9-6",
+      "title": "Stress Equations: Effect of Notches, Slits, and Holes",
+      "summary": "A conservative fracture-mechanics crack-initiation criterion for a beam with a slit or sharp-cornered notch/hole (Eq 9-21), using coefficients A (tension- or compression-edge) and B read from Figure 9-14 as a function of slit-depth ratio a/h.",
+      "body": "Sharp interior corners at notches, slits, or holes create local shear-parallel-to-grain and tension-perpendicular-to-grain stress concentrations that can initiate a crack propagating along the grain; it is generally more economical to avoid sharp notches entirely. A conservative crack-initiation criterion (Murphy 1979, Eq 9-21) combines the bending-moment and shear-force terms at the notch, scaled by empirical coefficients A and B that depend on slit-depth ratio a/h and (for A) whether the slit is on the tension or compression edge (Figure 9-14, conservative for most softwood species per the handbook text).",
+      "key_points": [
+        "Sharp notches/slits are a fracture-mechanics crack-initiation risk, worse in larger beams (size effect)",
+        "Eq 9-21's A/B coefficients (Figure 9-14) depend on slit-depth ratio a/h and tension- vs. compression-edge location"
+      ],
+      "equations": [
+        "9-21"
+      ],
+      "figures": [
+        "9-14"
+      ],
+      "tables": [],
+      "applicability": "Checking beams with end notches, bolt holes, or other sharp-cornered cross-section reductions.",
+      "implemented_in": "structural_stress.crack_initiation_check, structural_stress.figure_9_14_coefficients"
+    },
+    {
+      "section_id": "9-7",
+      "title": "Stress Equations: Combined Bending and Axial Load, Torsion",
+      "summary": "Net bending stress under combined bending and concentric axial load (Eq 9-22, with printed maximum tensile/compressive stress examples), the eccentric-load extension, and torsional shear stress for circular (Eq 9-23) and rectangular (Eq 9-24, via the Figure 9-15 coefficient beta) sections.",
+      "body": "Combined bending and concentric axial load amplifies net bending stress by the same 1/(1+/-P/Pcr) factor as the corresponding deflection (Eq 9-22); the printed worked example gives maximum tensile stress on the convex edge and maximum compressive stress on the concave edge by superposing this amplified bending stress with the axial stress P/A. An eccentrically applied axial load additionally augments fb0 by +/-P*e0/S before amplification. Torsional shear stress is fs=16T/(pi*d^3) for circular sections (Eq 9-23) and fs=T/(beta*h*b^2) for rectangular sections (Eq 9-24), beta read from Figure 9-15 (reproduced in closed form in this module).",
+      "key_points": [
+        "Total combined-load stress = superposition of Eq 9-12 (axial) and Eq 9-22 (amplified bending)",
+        "Eccentric axial load additionally shifts fb0 by P*e0/S before the same amplification is applied",
+        "Torsional shear stress: exact for circular sections (Eq 9-23); Figure-9-15-based coefficient beta for rectangular (Eq 9-24)"
+      ],
+      "equations": [
+        "9-22",
+        "9-23",
+        "9-24"
+      ],
+      "figures": [
+        "9-15"
+      ],
+      "tables": [],
+      "applicability": "Beam-columns (combined axial + bending) and members under torsion, e.g. eccentrically loaded posts or out-of-plane-loaded beams.",
+      "implemented_in": "structural_stress.combined_bending_axial_stress, structural_stress.eccentric_bending_axial_stress, structural_stress.torsional_shear_stress_circular, structural_stress.torsional_shear_stress_rectangular"
+    },
+    {
+      "section_id": "9-8",
+      "title": "Stability Equations: Axial Compression (Long and Short Columns)",
+      "summary": "Long-column Euler buckling (Eq 9-25/9-26), short-column buckling via the FPL fourth-power parabolic form (Eq 9-27) or the more broadly accurate Ylinen nonlinear stress-strain-based form (Eq 9-28/9-29, with printed guidance on the empirical constant c), built-up/spaced column capacity (Eq 9-30), and thin-outstanding-flange instability (Eq 9-31).",
+      "body": "A 'long column' buckles before its compressive stress P/A exceeds the proportional limit, governed by Euler's formula (Eq 9-25, with radius of gyration from Eq 9-26). A 'short column' buckles beyond the proportional limit; the historical FPL fourth-power parabolic function (Newlin and Gahagan 1930, Eq 9-27) is compared against Ylinen's (1956) nonlinear stress-strain relationship (Eq 9-28) used in place of Hooke's law, giving Ylinen's buckling equation (Eq 9-29) with an empirical constant c: c=0.957 matches the fourth-power formula closely, c=0.8 better fits solid-sawn/glulam data (the fourth-power form is nonconservative there), and c=0.9 better fits structural composite lumber. Built-up (mechanically connected) columns of nearly square section carry less load than an equivalent solid section because the connections deform and slip; capacity uses the Ylinen form reduced by a built-up stability factor Kf (0.75 bolted, 0.6 nailed, Eq 9-30). Thin outstanding flanges (I, H, +, L sections) can fail by local elastic flange instability at stresses below general column buckling (Eq 9-31; capacity increases up to 1.6x if joints are glued with reinforcing fillets).",
+      "key_points": [
+        "Long columns: Euler buckling (Eq 9-25)",
+        "Short columns: FPL fourth-power form (Eq 9-27) or the generally-better-fitting Ylinen form (Eq 9-29), c=0.8/0.9/0.957 by material",
+        "Built-up columns: Ylinen form reduced by connection-type factor Kf (Eq 9-30)",
+        "Outstanding thin flanges can fail by local instability below the general column buckling load (Eq 9-31)"
+      ],
+      "equations": [
+        "9-25",
+        "9-26",
+        "9-27",
+        "9-28",
+        "9-29",
+        "9-30",
+        "9-31"
+      ],
+      "figures": [
+        "9-16",
+        "9-17",
+        "9-18",
+        "9-19",
+        "9-20"
+      ],
+      "tables": [],
+      "applicability": "Column (post, stud, brace) buckling capacity checks, including built-up/spaced columns and thin-flange built-up sections.",
+      "implemented_in": "structural_stability.euler_critical_stress, structural_stability.radius_of_gyration, structural_stability.ylinen_critical_stress_fourth_power, structural_stability.ylinen_strain, structural_stability.ylinen_buckling_stress, structural_stability.built_up_column_capacity, structural_stability.flange_instability_stress"
+    },
+    {
+      "section_id": "9-9",
+      "title": "Stability Equations: Bending (Water Ponding, Lateral-Torsional Buckling, Deck Support)",
+      "summary": "Critical beam spacing to prevent progressive ponding failure (Eq 9-32), long-beam lateral-torsional buckling via a slenderness factor alpha (Eq 9-33/9-34, with Table 9-2 effective-length cases), short-beam buckling via the same column-buckling chart with substituted variables, and the beneficial effect of an attached deck on buckling capacity (Eq 9-35, Figure 9-23 chart).",
+      "body": "To prevent progressive ponding-driven deflection, actual beam spacing must stay below a critical spacing s_cr (Eq 9-32, Zahn 1988). Long, slender beams restrained against torsional/axial rotation at supports but otherwise free to twist and deflect laterally buckle when bending stress reaches fb_cr=pi^2*EL/alpha^2 (Eq 9-33), where the slenderness factor alpha (Eq 9-34) depends on lateral flexural rigidity, torsional rigidity, effective length Le (Table 9-2, 5 support/load cases), depth, and width. Short beams (buckling beyond the proportional limit) are analyzed using the same column-buckling chart (Fig 9-18) with alpha substituted for L/r and fb_cr/Fb for fcr/Fc. A deck continuously attached to the compression (top) edge often restrains lateral-torsional buckling; Figure 9-23 quantifies the buckling-stress increase as a function of the deck shear-stiffness parameter tau (Eq 9-35), applied by dividing the effective length by the chart's theta value -- this chart has no printed closed form and is not digitized in this module.",
+      "key_points": [
+        "Ponding critical spacing s_cr (Eq 9-32) uses the same beam stiffness EI as the ponding-deflection amplification (Eq 9-6)",
+        "Long-beam lateral-torsional buckling (Eq 9-33/9-34) mirrors the Euler column form with alpha in place of L/r",
+        "Table 9-2 gives effective length Le for 5 support/load combinations (simple support: equal end moments / midspan point load / UDL; cantilever: end point load / UDL)",
+        "Deck bracing benefit (Eq 9-35, Figure 9-23) is chart-based only -- NOT implemented as a closed-form function (documented skip)"
+      ],
+      "equations": [
+        "9-32",
+        "9-33",
+        "9-34",
+        "9-35"
+      ],
+      "figures": [
+        "9-21",
+        "9-22",
+        "9-23"
+      ],
+      "tables": [
+        "9-2"
+      ],
+      "applicability": "Roof-beam ponding stability, and lateral-torsional (out-of-plane) buckling stability of unbraced or partially braced beams.",
+      "implemented_in": "structural_stability.critical_ponding_spacing, structural_stability.lateral_torsional_buckling_stress, structural_stability.table_9_2_effective_length, structural_stability.slenderness_factor, structural_stability.deck_shear_stiffness_parameter"
+    },
+    {
+      "section_id": "9-10",
+      "title": "Interaction of Buckling Modes",
+      "summary": "When axial load, primary (edgewise) bending, and lateral (flatwise) bending act together, each with its own critical buckling value, the combination can buckle even though each load alone is below its own critical value. Gives the full biaxial beam-column interaction check (Eq 9-36, Zahn 1986) with its moment-magnification factors (Eq 9-37/9-38) and elastic buckling stresses (Eq 9-39/9-40/9-41).",
+      "body": "For a beam-column of unbraced length le carrying axial load P plus a primary (edgewise) moment M1 and a lateral (flatwise) moment M2, the axial load creates a secondary moment on BOTH the edgewise and flatwise moments (per the single-axis amplification of Eq 9-7). Zahn's (1986) interaction equation (Eq 9-36) combines a squared axial-stress-ratio term with edgewise and flatwise bending terms, each including a 6*(e/d)*fc eccentricity contribution and a moment-magnification factor theta_c (theta_c1 for edgewise, Eq 9-37; theta_c2 for flatwise, Eq 9-38, which itself depends on the edgewise bending stress). The elastic buckling stresses feeding theta_c1/theta_c2 and the strength-reduced Fc'/Fb1' terms are computed from Euler-form expressions for edgewise/flatwise compression (Eq 9-39/9-40) and edgewise bending (Eq 9-41). Figure 9-24 illustrates the reference geometry (1-2 coordinate system for edgewise/flatwise bending) this interaction equation is built on.",
+      "key_points": [
+        "Combined axial + biaxial bending can buckle even when each individual load is below its own critical value",
+        "Eq 9-36's moment-magnification factors theta_c1 (edgewise, Eq 9-37) and theta_c2 (flatwise, Eq 9-38) are coupled -- theta_c2 depends on the edgewise bending stress",
+        "Elastic buckling stresses (Eq 9-39/9-40/9-41) use the same Euler-form 0.822*E/(le/d)^2 pattern for both bending axes"
+      ],
+      "equations": [
+        "9-36",
+        "9-37",
+        "9-38",
+        "9-39",
+        "9-40",
+        "9-41"
+      ],
+      "figures": [
+        "9-24"
+      ],
+      "tables": [],
+      "applicability": "The general biaxial beam-column check for members simultaneously carrying axial load, edgewise (strong-axis) bending, and flatwise (weak-axis) bending -- e.g., a wall stud also serving as a rafter tie or purlin.",
+      "implemented_in": "structural_stability.biaxial_beam_column_interaction, structural_stability.moment_magnification_edgewise, structural_stability.moment_magnification_flatwise, structural_stability.elastic_buckling_stress_edgewise_flatwise, structural_stability.elastic_buckling_stress_edgewise_bending"
+    }
+  ]
+}

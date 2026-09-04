@@ -1,0 +1,195 @@
+{
+  "reference_id": "USDA FPL-GTR-282",
+  "reference_title": "Wood Handbook: Wood as an Engineering Material (USDA Forest Products Laboratory, General Technical Report FPL-GTR-282, 2021)",
+  "volume": null,
+  "chapter": 8,
+  "chapter_title": "Fastenings",
+  "sections": [
+    {
+      "section_id": "8-1",
+      "title": "Nails",
+      "summary": "Covers nail types (Fig 8-1), withdrawal resistance from side grain (Eq 8-1 smooth-shank, Eq 8-2a/b annularly threaded), and lateral resistance -- both the pre-1991 empirical proportional-limit equation (Eq 8-2, p=K*D^1.5, Table 8-4) and the post-1991 5% offset yield-limit model (Table 8-5).",
+      "body": "Nails are classified by shank form (smooth, annularly threaded, helically threaded, barbed) and surface treatment (bright, cement-coated, zinc-coated), each affecting withdrawal resistance (Fig 8-1). Withdrawal resistance of common (smooth-shank) nails driven into side grain of seasoned wood follows Eq 8-1 (p=54.12*G^2.5*D*L, metric); annularly threaded nails follow the higher-holding Eq 8-2a (p=77.57*G^2*D*L). Lateral resistance historically used a pre-1991 proportional-limit empirical equation (also numbered '8-2' in this printed edition -- a citation collision documented in this module's fastenings.py -- p=K*D^1.5, K from Table 8-4) defined at 0.38 mm joint slip; current design uses the 5% offset yield-limit (European Yield Model) theory (Table 8-5), computing dowel bearing strength from specific gravity (Eq 8-3) and checking four governing yield modes (Is, IIIm, IIIs, IV).",
+      "key_points": [
+        "Nail withdrawal: Eq 8-1 (smooth shank), Eq 8-2a/b (annularly threaded)",
+        "Nail lateral resistance: pre-1991 empirical p=K*D^1.5 (also labeled Eq 8-2, Table 8-4) vs. post-1991 yield-limit model (Table 8-5)",
+        "Dowel bearing strength Fe is estimated from specific gravity via Eq 8-3, feeding the yield-limit model for ALL dowel-type fasteners (nails, screws, bolts, lag screws)"
+      ],
+      "equations": [
+        "8-1",
+        "8-2",
+        "8-2a",
+        "8-3"
+      ],
+      "figures": [
+        "8-1",
+        "8-2",
+        "8-3",
+        "8-4",
+        "8-5",
+        "8-6"
+      ],
+      "tables": [
+        "8-1",
+        "8-4",
+        "8-5"
+      ],
+      "applicability": "Sizing and checking nailed connections for withdrawal and lateral (shear) loading.",
+      "implemented_in": "fastenings.nail_withdrawal_common, fastenings.nail_withdrawal_annularly_threaded, fastenings.nail_lateral_resistance_pre1991, fastenings.dowel_bearing_strength, fastenings.yield_limit_lateral_strength, fastenings.table_8_1_common_nail_size, fastenings.table_8_4_lateral_load_coefficient"
+    },
+    {
+      "section_id": "8-2",
+      "title": "Spikes, Staples, and Drift Bolts",
+      "summary": "Spikes and staples follow similar principles to nails (larger-diameter withdrawal/lateral relations for spikes; specialized wire-staple behavior). Drift bolts/pins use a printed withdrawal equation (Eq 8-9) analogous in form to the nail/screw withdrawal equations.",
+      "body": "Spikes are larger-diameter nails, generally following the same withdrawal/lateral mechanics as nails with spike-specific coefficients (not separately digitized in this module -- use the nail equations with the spike's actual diameter where the handbook's spike-specific guidance permits). Staples are used extensively in sheathing/panel attachment with their own withdrawal/lateral test-based values (chart-based, not printed as closed-form equations). Drift bolts or pins (long, unthreaded rods driven into prebored holes 3.2 mm smaller than the bolt) resist withdrawal per Eq 8-9 (p=45.51*G^2*D*L), assuming average behavior across species.",
+      "key_points": [
+        "Spikes follow nail-type mechanics at larger diameters",
+        "Staples are chart/table-based in this handbook, not closed-form equations",
+        "Drift bolt withdrawal: Eq 8-9 (average relationship across species)"
+      ],
+      "equations": [
+        "8-9"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Heavy-timber connections (drift bolts/pins) and sheathing attachment (spikes, staples).",
+      "implemented_in": "fastenings.drift_bolt_withdrawal"
+    },
+    {
+      "section_id": "8-3",
+      "title": "Wood Screws",
+      "summary": "Wood screw types (Fig 8-7), withdrawal resistance (Eq 8-10), and the pre-1991 empirical lateral resistance equation (Eq 8-13, p=K*D^2, Table 8-4); Table 8-9 gives shank diameter by screw gauge. Post-1991 lateral resistance uses the same yield-limit model as nails (Table 8-5, screw-specific mode formulas).",
+      "body": "Wood screws (flathead, roundhead, ovalhead, Fig 8-7) resist withdrawal from side grain per Eq 8-10 (p=108.25*G^2*D*L), applicable for properly sized lead holes (~70% of root diameter in softwoods, ~90% in hardwoods). Pre-1991 lateral (proportional-limit) resistance follows Eq 8-13 (p=K*D^2, Table 8-4), requiring penetration of the threaded part >= 7x the shank diameter. Post-1991 design uses the yield-limit model (Table 8-5), with the screw-specific IIIs and IV mode formulas differing slightly from the nail forms (a 1.75 vs 2.0 coefficient in mode IV, reflecting the more consistent, threaded engagement of a screw vs. a smooth nail shank).",
+      "key_points": [
+        "Screw withdrawal: Eq 8-10; screw shank diameter by gauge in Table 8-9",
+        "Pre-1991 lateral resistance: Eq 8-13 (p=K*D^2, Table 8-4)",
+        "Post-1991 yield-limit model uses screw-specific mode IIIs/IV coefficients (Table 8-5)"
+      ],
+      "equations": [
+        "8-10",
+        "8-13"
+      ],
+      "figures": [
+        "8-7"
+      ],
+      "tables": [
+        "8-4",
+        "8-9"
+      ],
+      "applicability": "Sizing and checking screwed connections for withdrawal and lateral (shear) loading.",
+      "implemented_in": "fastenings.wood_screw_withdrawal, fastenings.screw_lateral_resistance_pre1991, fastenings.table_8_9_screw_shank_diameter, fastenings.yield_limit_lateral_strength"
+    },
+    {
+      "section_id": "8-4",
+      "title": "Lag Screws",
+      "summary": "Lag screw withdrawal (Eq 8-14) and pre-1991 lateral resistance (Eq 8-15, p=K*D^2) with multiplication factors for side-member thickness (Table 8-10) and perpendicular-to-grain loading (Table 8-11).",
+      "body": "Lag screws (large, coarse-threaded wood screws typically installed with a wrench) resist direct withdrawal per Eq 8-14 (p=125.4*G^1.5*D^0.75*L), developed independently of the wood-screw equation but giving similar results. Pre-1991 lateral resistance parallel to grain follows Eq 8-15 (p=K*D^2, Table 8-4), with a base assumption of side-member thickness 3.5x the shank diameter and main-member penetration 7-11x the diameter; Table 8-10 gives multiplication factors for other side-member-thickness ratios and Table 8-11 for loading perpendicular to grain. Lead-hole quality (Fig 8-8) strongly affects achieved capacity.",
+      "key_points": [
+        "Lag screw withdrawal: Eq 8-14",
+        "Lag screw lateral resistance (pre-1991): Eq 8-15 (p=K*D^2), with Table 8-10 (thickness factor) and Table 8-11 (perpendicular-to-grain factor)",
+        "Post-1991 design uses the same yield-limit model as nails/screws (Table 8-5)"
+      ],
+      "equations": [
+        "8-14",
+        "8-15"
+      ],
+      "figures": [
+        "8-8"
+      ],
+      "tables": [
+        "8-4",
+        "8-10",
+        "8-11"
+      ],
+      "applicability": "Heavy connections (ledger attachment, hardware-to-timber connections) using lag screws.",
+      "implemented_in": "fastenings.lag_screw_withdrawal, fastenings.lag_screw_lateral_resistance_pre1991, fastenings.table_8_10_thickness_factor, fastenings.table_8_11_perpendicular_factor"
+    },
+    {
+      "section_id": "8-5",
+      "title": "Bolts",
+      "summary": "Bolted-connection behavior: bearing stress of wood under bolts (both parallel and perpendicular to grain, historically via test curves Figs 8-9 to 8-13), loads at an angle to grain (via the general Hankinson formula, Eq 8-16), steel side plates, bolt quality, member thickness effects, multi-member joints, spacing/edge/end distance, and bolt-hole quality. Both the historical (pre-1991 allowable stress) and current (post-1991 yield model) design bases are described.",
+      "body": "Bolted-connection capacity historically was characterized by proportional-limit bearing-stress test curves as functions of L/D ratio (length-to-diameter, Figs 8-9 to 8-12) and side-member thickness (Fig 8-13), separately for parallel- and perpendicular-to-grain loading; bearing at an intermediate angle to grain uses the general Hankinson formula (Eq 8-16), which appears throughout the handbook wherever a parallel/perpendicular-to-grain property must be combined at an angle. Bolt-hole surface quality from drilling rate/speed (Fig 8-14) measurably affects joint load-deformation behavior (Fig 8-15). Modern (post-1991) bolted-joint design uses the same yield-limit model (Table 8-5) as nails/screws, with the bolt's actual diameter and bending yield stress (ASTM F1575).",
+      "key_points": [
+        "Bearing stress at an angle to grain (bolts, lag screws) uses the general Hankinson formula, Eq 8-16",
+        "Historical bolt design used proportional-limit test curves (Figs 8-9 to 8-13, graphical, not digitized)",
+        "Current bolt design uses the same yield-limit model (Table 8-5) as nails/screws"
+      ],
+      "equations": [
+        "8-16"
+      ],
+      "figures": [
+        "8-9",
+        "8-10",
+        "8-11",
+        "8-12",
+        "8-13",
+        "8-14",
+        "8-15"
+      ],
+      "tables": [],
+      "applicability": "Bolted timber connection design, and any wood bearing/loading problem at an angle to the grain.",
+      "implemented_in": "fastenings.hankinson_bearing_strength, fastenings.yield_limit_lateral_strength"
+    },
+    {
+      "section_id": "8-6",
+      "title": "Connector Joints (Split Rings and Shear Plates)",
+      "summary": "Split-ring and shear-plate timber connectors (Figs 8-16/8-17) develop much higher joint capacity than bolts alone by engaging a larger bearing area; capacity relates to specific gravity (Figs 8-18 to 8-23, test-curve based) with net-section, spacing/end-distance, and multiple-fastener-joint modification rules.",
+      "body": "Split-ring connectors (precut grooves plus a metal ring and through-bolt, Fig 8-16) and shear-plate connectors (flush-mounted, used with wood or steel side plates, Fig 8-17) develop substantially higher parallel- and perpendicular-to-grain load capacity than an unassisted bolt, by engaging a larger, more uniform bearing area. Design capacity is empirically related to wood specific gravity (Figs 8-18 through 8-23, test-curve-based -- not printed as closed-form equations), then modified for net section at the connector, end distance and spacing (Fig 8-25), cross bolts, and multiple-fastener-joint group effects. Member thickness below an optimum value reduces achievable capacity (Fig 8-24).",
+      "key_points": [
+        "Split rings and shear plates substantially outperform plain bolts by engaging more bearing area",
+        "Capacity vs. specific gravity relationships are printed as test curves (Figs 8-18 to 8-23), not closed-form equations",
+        "Net section, end distance/spacing, and member thickness all modify achievable capacity"
+      ],
+      "equations": [],
+      "figures": [
+        "8-16",
+        "8-17",
+        "8-18",
+        "8-19",
+        "8-20",
+        "8-21",
+        "8-22",
+        "8-23",
+        "8-24",
+        "8-25"
+      ],
+      "tables": [],
+      "applicability": "High-capacity timber connections (glulam trusses, heavy timber construction) using split-ring/shear-plate connectors; graphical design data not digitized as closed-form equations in this module."
+    },
+    {
+      "section_id": "8-7",
+      "title": "Metal Plate Connectors and Joist Hangers",
+      "summary": "Metal plate connectors (toothed plates pressed into wood faces, typically for trusses, Fig 8-26) and joist hangers (formed steel brackets, Fig 8-28) are proprietary/tested hardware systems; design values come from manufacturer testing per ASTM/ICC-ES standards rather than the handbook's own closed-form equations.",
+      "body": "Metal plate connectors (Fig 8-26), used almost exclusively in factory-fabricated wood trusses, develop capacity through many small teeth pressed into the wood faces on each side of a joint; typical load-slip behavior is shown in Fig 8-27, but design values are established by full-scale ASTM testing programs rather than closed-form mechanics equations. Joist hangers (Fig 8-28) are formed sheet-steel brackets whose capacity is governed by the lowest of several failure modes (hanger steel, fasteners, wood bearing) and, similarly, is established by testing rather than closed-form equations in this handbook.",
+      "key_points": [
+        "Metal plate connectors and joist hangers are proprietary, tested hardware -- capacity is NOT given by closed-form handbook equations",
+        "Design values for both come from standardized full-scale testing (ASTM/ICC-ES), out of scope for this module"
+      ],
+      "equations": [],
+      "figures": [
+        "8-26",
+        "8-27",
+        "8-28"
+      ],
+      "tables": [],
+      "applicability": "Truss and joist-hanger connections; proprietary/tested hardware, not digitized as equations."
+    },
+    {
+      "section_id": "8-8",
+      "title": "Fastener Head Embedment",
+      "summary": "Embedment of a fastener head (e.g., nail or screw head pulling through sheathing) is characterized empirically by maximum embedment load vs. fastener perimeter (Fig 8-29) and load at a specified embedment vs. bearing area (Fig 8-30), by species.",
+      "body": "Head pull-through (embedment) resistance -- relevant to sheathing/panel attachment where the fastener head, not the shank, may govern capacity -- is characterized by test relationships between maximum embedment load and fastener perimeter (Fig 8-29), and between load at 1.27 mm embedment and fastener bearing area (Fig 8-30), for several wood species. Graphical/test-curve based; not printed as closed-form equations.",
+      "key_points": [
+        "Head embedment (pull-through) can govern capacity in sheathing/panel connections",
+        "Characterized by test curves (Figs 8-29/8-30) vs. fastener perimeter/bearing area, not closed-form equations"
+      ],
+      "equations": [],
+      "figures": [
+        "8-29",
+        "8-30"
+      ],
+      "tables": [],
+      "applicability": "Checking fastener head pull-through in panel/sheathing attachment; graphical data, not digitized as equations."
+    }
+  ]
+}

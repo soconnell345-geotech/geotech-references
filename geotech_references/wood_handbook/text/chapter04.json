@@ -1,0 +1,190 @@
+{
+  "reference_id": "USDA FPL-GTR-282",
+  "reference_title": "Wood Handbook: Wood as an Engineering Material (USDA Forest Products Laboratory, General Technical Report FPL-GTR-282, 2021)",
+  "volume": null,
+  "chapter": 4,
+  "chapter_title": "Moisture Relations and Physical Properties of Wood",
+  "sections": [
+    {
+      "section_id": "4-1",
+      "title": "Wood-Moisture Relationships",
+      "summary": "Wood is hygroscopic: its moisture content responds to the surrounding relative humidity and temperature. Introduces moisture content on an ovendry-weight basis and the average green moisture content by species (Table 4-1).",
+      "body": "Wood, like many natural materials, is hygroscopic; it gains or loses moisture to come into equilibrium with the surrounding environment. Moisture content (MC) is expressed as a percentage of ovendry weight. The average moisture content of green heartwood and sapwood varies by species (Table 4-1) and is considerable within and between trees.",
+      "key_points": [
+        "Wood is hygroscopic -- moisture content responds to ambient relative humidity and temperature",
+        "Moisture content is expressed as a percentage of ovendry weight",
+        "Green heartwood/sapwood moisture content varies widely by species (Table 4-1)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "4-1"
+      ],
+      "applicability": "Establishing the moisture-content basis used throughout the chapter's equations and tables.",
+      "implemented_in": "moisture_relations.table_4_1_green_moisture_content"
+    },
+    {
+      "section_id": "4-2",
+      "title": "Fiber Saturation and Maximum Moisture Content",
+      "summary": "Defines the fiber saturation point (FSP), the moisture content at which cell walls are saturated with bound water but no free water exists in the cell lumina; below FSP, most wood properties begin to change with moisture content. Gives closed-form estimates for maximum possible moisture content and the moisture content at which wood just sinks in water, both from basic specific gravity.",
+      "body": "Moisture exists in wood as free water (in cell lumina/cavities) or bound water (held within cell walls). The fiber saturation point (FSP), MCfs, is the moisture content at which cell walls are completely saturated but no free water remains; it is conceptually simple but not exactly measurable, and is commonly approximated as 30% for engineering purposes. Below FSP, most mechanical and physical wood properties begin to change with moisture content. Maximum possible moisture content MCmax (Eq 4-3) and the moisture content at which wood will just sink in water, MCsink (Eq 4-4), are both estimated directly from basic specific gravity Gb.",
+      "key_points": [
+        "Fiber saturation point (FSP) separates bound-water-only (below FSP) from free+bound water (above FSP) regimes",
+        "Most wood properties are essentially constant above FSP and change with moisture content below it",
+        "MCmax (Eq 4-3) ranges from ~267% at Gb=0.30 to ~44% at Gb=0.90",
+        "MCsink (Eq 4-4) is the moisture content at which wood specific gravity including water reaches 1.0"
+      ],
+      "equations": [
+        "4-3",
+        "4-4"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Setting the fiber-saturation-point basis (default 30%) used throughout the chapter's shrinkage equations, and bounding achievable moisture content from specific gravity alone.",
+      "implemented_in": "moisture_relations.max_moisture_content, moisture_relations.sink_moisture_content"
+    },
+    {
+      "section_id": "4-3",
+      "title": "Water Vapor Sorption / Equilibrium Moisture Content",
+      "summary": "Equilibrium moisture content (EMC) is the moisture content at which wood is neither gaining nor losing moisture to the surrounding air, a function of relative humidity and temperature (Fig 4-1, Table 4-2). Presents the Hailwood-Horrobin sorption-model equation (Eq 4-5) that Table 4-2 was calculated from, an alternative closed-form model (Eq 4-6, Glass and others 2014), and its inverse (Eq 4-7). Also covers sorption hysteresis (absorption vs. desorption) and sorption kinetics.",
+      "body": "EMC is defined by the relationship between EMC, relative humidity, and temperature (Fig 4-1, Table 4-2), historically presented via the Hailwood-Horrobin two-hydrate sorption theory (Simpson 1973 fit, Eq 4-5) and, more recently, an alternative model (Glass and others 2014, Eq 4-6) with a printed inverse form for relative humidity from a target EMC (Eq 4-7). The EMC for desorption is greater than for absorption at a given relative humidity (sorption hysteresis, Fig 4-2); scanning desorption isotherms are commonly used in practice. Water vapor sorption kinetics (rate of approach to EMC) have been studied with automated sorption balances (dynamic vapor sorption, DVS) and multi-exponential decay analysis (MEDEA, Fig 4-3).",
+      "key_points": [
+        "EMC(%) is a function of relative humidity (0<=h<1) and temperature (Eq 4-5, the Hailwood-Horrobin/Simpson 1973 fit)",
+        "Table 4-2 was calculated directly from Eq 4-5 (not independently measured)",
+        "Eq 4-6/4-7 (Glass and others 2014) give an alternative closed form and its RH-from-EMC inverse",
+        "Desorption EMC > absorption EMC at the same RH (sorption hysteresis)"
+      ],
+      "equations": [
+        "4-5",
+        "4-6",
+        "4-7"
+      ],
+      "figures": [
+        "4-1",
+        "4-2",
+        "4-3"
+      ],
+      "tables": [
+        "4-2"
+      ],
+      "applicability": "Estimating the moisture content wood will reach in service given ambient temperature and relative humidity, and vice versa (target-EMC design).",
+      "implemented_in": "moisture_relations.equilibrium_moisture_content, moisture_relations.equilibrium_moisture_content_glass, moisture_relations.relative_humidity_from_emc"
+    },
+    {
+      "section_id": "4-4",
+      "title": "Dimensional Stability / Shrinkage",
+      "summary": "Wood shrinks (and swells) with moisture content changes below the fiber saturation point, anisotropically by direction (tangential > radial > longitudinal). Gives Table 4-3 printed shrinkage values (radial/tangential/volumetric, green to ovendry) for domestic species, the linear shrinkage-vs-MC relation (Eq 4-9), and specific-gravity conversion between moisture-content bases (Eq 4-10 to 4-13).",
+      "body": "Because cell-wall dimensions change with bound-water content, wood shrinks as it dries below the fiber saturation point and swells as it wets up to FSP; shrinkage above FSP is essentially zero. Shrinkage is anisotropic: tangential shrinkage is roughly twice radial shrinkage, and longitudinal shrinkage is normally negligible (Fig 4-4). Table 4-3 (domestic species) and Table 4-4 (imported species) tabulate radial, tangential, and volumetric shrinkage percentages from green to ovendry condition, obtained per ASTM D143. Shrinkage at any moisture content below FSP is estimated as linear in MC from the green condition (Eq 4-9); this lets specific gravity be converted between any two moisture-content volume bases (Eq 4-10), or computed directly from basic specific gravity given either a known S0 (Eq 4-11) or the estimated relation S0=26.5*Gb (Eq 4-12, combined form Eq 4-13).",
+      "key_points": [
+        "Tangential shrinkage ~2x radial shrinkage; longitudinal shrinkage normally negligible",
+        "Table 4-3 (domestic) / 4-4 (imported) give printed radial/tangential/volumetric shrinkage, green to ovendry",
+        "Shrinkage below FSP is assumed linear in moisture content (Eq 4-9)",
+        "Specific gravity can be converted between moisture-content bases (Eq 4-10) or estimated directly from basic SG (Eq 4-11 to 4-13)"
+      ],
+      "equations": [
+        "4-9",
+        "4-10",
+        "4-11",
+        "4-12",
+        "4-13"
+      ],
+      "figures": [
+        "4-4",
+        "4-5",
+        "4-6"
+      ],
+      "tables": [
+        "4-3",
+        "4-4"
+      ],
+      "applicability": "Estimating dimensional change of lumber/timber as moisture content changes -- critical for connection tolerances, gap detailing, and specific-gravity-dependent property adjustments.",
+      "implemented_in": "moisture_relations.shrinkage_at_moisture_content, moisture_relations.convert_specific_gravity, moisture_relations.specific_gravity_from_basic, moisture_relations.estimate_total_shrinkage_from_basic_sg, moisture_relations.table_4_3_shrinkage"
+    },
+    {
+      "section_id": "4-5",
+      "title": "Density and Specific Gravity",
+      "summary": "Wood density depends on both specific gravity and moisture content (since absorbed water adds mass and, below FSP, changes volume too). Gives two equivalent density formulas (Eq 4-14 from Gx, Eq 4-15 from ovendry density) and an ovendry-density-based shrinkage estimator (Eq 4-16), reproducing the printed Table 4-6a/b density lookup tables.",
+      "body": "Because both the mass of absorbed water and (below FSP) the wood's volume change with moisture content, density is a function of both specific gravity and MC. Eq 4-14 computes density directly from specific gravity Gx referenced to volume at the same MC; Eq 4-15 computes it from ovendry density plus the green-to-ovendry shrinkage S0. Table 4-6a/b tabulate density vs. specific gravity and moisture content directly from Eq 4-14/4-15 and are reproduced by the equations rather than digitized as a standalone lookup table.",
+      "key_points": [
+        "Density depends on both specific gravity and moisture content",
+        "Eq 4-14/4-15 are two equivalent routes to density at any MC below FSP",
+        "Table 4-6a/b (density vs. SG and MC) is fully reproduced by these equations"
+      ],
+      "equations": [
+        "4-14",
+        "4-15",
+        "4-16"
+      ],
+      "figures": [
+        "4-7"
+      ],
+      "tables": [],
+      "applicability": "Computing wood self-weight and density-dependent properties at any in-service moisture content.",
+      "implemented_in": "moisture_relations.density_from_specific_gravity, moisture_relations.density_from_ovendry_density, moisture_relations.estimate_total_shrinkage_from_ovendry_density"
+    },
+    {
+      "section_id": "4-6",
+      "title": "Thermal Properties",
+      "summary": "Covers thermal conductivity (printed closed-form Eq 4-17 as a function of specific gravity and moisture content), heat capacity, thermal diffusivity, and coefficient of thermal expansion.",
+      "body": "Thermal conductivity k across the grain, for Gx>0.3 and MC<25% at about 24 degC, is given by the printed linear-in-MC equation Eq 4-17 (constants A, B, C); conductivity along the grain is 1.5-2.8x (average ~1.8x) the cross-grain value. Structural softwood lumber conductivity at 12% MC is typically 0.10-0.14 W/(m*K), much lower than metals but 2-4x common insulating materials. Heat capacity, thermal diffusivity, and coefficient of thermal expansion are also discussed (not digitized as standalone equations in this module -- see the printed tables for typical values).",
+      "key_points": [
+        "Thermal conductivity k is estimated from specific gravity and MC via Eq 4-17",
+        "Along-grain conductivity is 1.5-2.8x cross-grain conductivity",
+        "Structural softwood k at 12% MC ~ 0.10-0.14 W/(m*K)"
+      ],
+      "equations": [
+        "4-17"
+      ],
+      "figures": [
+        "4-8"
+      ],
+      "tables": [],
+      "applicability": "Thermal/energy analysis of wood-framed assemblies (not a structural topic, included for completeness of the chapter's own equation set).",
+      "implemented_in": "moisture_relations.thermal_conductivity"
+    },
+    {
+      "section_id": "4-7",
+      "title": "Electrical Properties",
+      "summary": "DC and AC electrical properties of wood (resistivity, dielectric constant) are strongly moisture-dependent, forming the basis of resistance- and capacitance-type moisture meters.",
+      "body": "Wood's DC electrical resistivity decreases by several orders of magnitude as moisture content rises from ovendry to fiber saturation, which is the physical basis of resistance-type moisture meters. AC dielectric properties (dielectric constant, power factor) are also moisture- and frequency-dependent and underlie capacitance-type and radio-frequency moisture meters and dielectric heating (e.g., RF/microwave drying). Not implemented as standalone equations in this module (non-structural topic).",
+      "key_points": [
+        "DC resistivity is strongly moisture-dependent -- basis of resistance-type moisture meters",
+        "AC dielectric properties are moisture- and frequency-dependent"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Moisture meter calibration and dielectric heating/drying processes; not a structural design topic."
+    },
+    {
+      "section_id": "4-8",
+      "title": "Friction Properties",
+      "summary": "Friction coefficients between wood and various surfaces depend on surface roughness, moisture content, and normal force; the static/kinetic friction coefficient definitions are illustrated via a force-equilibrium diagram (Fig 4-9).",
+      "body": "The coefficient of static friction mu_s between wood and a surface relates the friction force Ff (parallel to the surface, opposing sliding) to the normal force FN, illustrated in Figure 4-9's force diagram. Friction coefficients depend on wood species, surface condition, and moisture content, with typical design tables in the full chapter (not digitized as standalone equations in this module).",
+      "key_points": [
+        "Friction is governed by the classical static-friction force balance (Fig 4-9)",
+        "Friction coefficients depend on species, surface finish, and moisture content"
+      ],
+      "equations": [],
+      "figures": [
+        "4-9"
+      ],
+      "tables": [],
+      "applicability": "Sliding/bearing friction estimates (e.g., timber skidway design); not a primary structural design topic."
+    },
+    {
+      "section_id": "4-9",
+      "title": "Nuclear Radiation Properties",
+      "summary": "Briefly covers wood's attenuation of gamma and neutron radiation, relevant to radiation shielding and nondestructive density/moisture measurement (e.g., gamma-ray densitometry).",
+      "body": "Wood's density and hydrogen content govern its attenuation of gamma rays and neutrons; this underlies nondestructive gamma-ray density/moisture measurement techniques and informs radiation-shielding applications using wood products. Not digitized as standalone equations in this module (specialized, non-structural topic).",
+      "key_points": [
+        "Wood attenuates gamma/neutron radiation as a function of density and moisture content",
+        "Basis of nondestructive gamma-ray densitometry"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Specialized nondestructive testing and radiation shielding; not a structural design topic."
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "reference_id": "USDA FPL-GTR-282",
+  "reference_title": "Wood Handbook: Wood as an Engineering Material (USDA Forest Products Laboratory, General Technical Report FPL-GTR-282, 2021)",
+  "volume": null,
+  "pdf_path": "../../docs/USDA_Wood_Handbook_FPL-GTR-282.pdf",
+  "package": "wood_handbook",
+  "source_note": "LOCAL-ONLY source file: ~104 MB, too large for GitHub, so docs/USDA_Wood_Handbook_FPL-GTR-282.pdf is git-ignored (not committed to this repo). Download from https://research.fs.usda.gov/download/treesearch/62200.pdf and place it at that path to enable figure_search/read_reference_figure rendering for this module; the figure catalog's pdf_path still points there per repo convention so it resolves correctly once the file is present.",
+  "scope_note": "Design-usable-core subset of a 20-chapter, ~600-page general wood-engineering handbook: Chapter 4 (Moisture Relations and Physical Properties), Chapter 5 (Mechanical Properties, digitized for a documented 27-species structural subset -- see mechanical_properties.py docstring for the subset rule: Douglas Fir-Larch, Southern Pine, Hem-Fir, and Spruce-Pine-Fir group constituent species plus six common hardwoods), Chapter 8 (Fastenings), and Chapter 9 (Structural Analysis Equations, implemented in full). Wood-science/manufacturing/finishing/preservation/fire chapters (1-3, 6-7, 10-20) are NOT digitized. NDS (National Design Specification) design values and adjustment factors are explicitly out of scope throughout -- a separate copyrighted standard; only this handbook's own printed clear-wood data and equations are implemented. The Chapter 5 duration-of-load / creep-rupture relationship (the 'Madison curve', Fig 5-23) is graphical only in this 2021 edition (no printed closed-form equation) and is documented as a skip rather than implemented -- see chapter05.json section 5-9. Figure catalog and chapter text JSON cover all figures/sections in these 4 chapters only (86 figures, 37 text sections), not the full handbook.",
+  "chapters": [
+    {
+      "number": 4,
+      "title": "Moisture Relations and Physical Properties of Wood",
+      "page_start": 95,
+      "page_end": 116,
+      "equation_module": "geotech_references.wood_handbook.moisture_relations"
+    },
+    {
+      "number": 5,
+      "title": "Mechanical Properties of Wood",
+      "page_start": 117,
+      "page_end": 163,
+      "equation_module": "geotech_references.wood_handbook.mechanical_properties"
+    },
+    {
+      "number": 8,
+      "title": "Fastenings",
+      "page_start": 205,
+      "page_end": 233,
+      "equation_module": "geotech_references.wood_handbook.fastenings"
+    },
+    {
+      "number": 9,
+      "title": "Structural Analysis Equations",
+      "page_start": 233,
+      "page_end": 253,
+      "equation_module": "geotech_references.wood_handbook.structural_deformation, geotech_references.wood_handbook.structural_stress, geotech_references.wood_handbook.structural_stability"
+    }
+  ]
+}
