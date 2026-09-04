@@ -1,0 +1,66 @@
+{
+  "reference_id": "GSA Alternate Path Guidelines",
+  "reference_title": "GSA Alternate Path Analysis and Design Guidelines for Progressive Collapse Resistance (October 24, 2013, Revision 1, January 28, 2016)",
+  "volume": null,
+  "pdf_path": "../../docs/GSA_Alternate_Path_2016.pdf",
+  "package": "gsa_collapse",
+  "scope_note": "Full-manual coverage (50 printed pages, main body). Chapters 1-8 body text extracted (chapter01.json through chapter08.json). Chapter 3 (Design Procedures) is the largest chapter and its content is split across two Python modules: alternate_path.py (Sections 3.1-3.3, the sole Alternate Path design procedure -- Tie Forces and Enhanced Local Resistance are both removed in their entirety) and redundancy.py (Section 3.4, entirely NEW content with no UFC 4-023-03 analog) -- equation_module below names alternate_path.py as the primary module for that chapter entry. Appendix A (references) is NOT extracted as chapter text. Appendix B (definitions, narrative) and Appendix C (commentary, narrative) are likewise not extracted as chapter text -- Appendix C's Table C1.1 IS digitized directly in structural_steel.py. Appendix D (reinforced-concrete worked example) is used as a validation anchor in reinforced_concrete.py/redundancy.py tests, not re-narrated as chapter text. Appendix E (structural-steel worked example) is not transcribed or cataloged at all. The figure catalog covers Chapter 2's applicability flow chart, all 15 surviving Chapter 3 figures (3.1-3.6 removed with the Tie Forces section), all 8 Appendix B figures, all 6 Appendix C figures, and the 5 Appendix D building-geometry figures (35 total, all page-confirmed).",
+  "chapters": [
+    {
+      "number": 1,
+      "title": "Introduction",
+      "page_start": 1,
+      "page_end": 3,
+      "equation_module": "geotech_references.gsa_collapse.applicability"
+    },
+    {
+      "number": 2,
+      "title": "Applicability",
+      "page_start": 4,
+      "page_end": 6,
+      "equation_module": "geotech_references.gsa_collapse.applicability"
+    },
+    {
+      "number": 3,
+      "title": "Design Procedures",
+      "page_start": 7,
+      "page_end": 36,
+      "equation_module": "geotech_references.gsa_collapse.alternate_path"
+    },
+    {
+      "number": 4,
+      "title": "Reinforced Concrete",
+      "page_start": 37,
+      "page_end": 42,
+      "equation_module": "geotech_references.gsa_collapse.reinforced_concrete"
+    },
+    {
+      "number": 5,
+      "title": "Structural Steel",
+      "page_start": 43,
+      "page_end": 46,
+      "equation_module": "geotech_references.gsa_collapse.structural_steel"
+    },
+    {
+      "number": 6,
+      "title": "Masonry",
+      "page_start": 47,
+      "page_end": 47,
+      "equation_module": "geotech_references.gsa_collapse.masonry_wood_cfs"
+    },
+    {
+      "number": 7,
+      "title": "Wood",
+      "page_start": 48,
+      "page_end": 49,
+      "equation_module": "geotech_references.gsa_collapse.masonry_wood_cfs"
+    },
+    {
+      "number": 8,
+      "title": "Cold-Formed Steel",
+      "page_start": 50,
+      "page_end": 50,
+      "equation_module": "geotech_references.gsa_collapse.masonry_wood_cfs"
+    }
+  ]
+}

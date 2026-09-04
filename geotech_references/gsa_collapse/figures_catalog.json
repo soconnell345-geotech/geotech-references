@@ -1,0 +1,327 @@
+{
+  "reference_id": "GSA Alternate Path Guidelines",
+  "reference_title": "GSA Alternate Path Analysis and Design Guidelines for Progressive Collapse Resistance (October 24, 2013, Revision 1, January 28, 2016)",
+  "package": "gsa_collapse",
+  "volume": null,
+  "pdf_path": "docs/GSA_Alternate_Path_2016.pdf",
+  "figure_numbering": "section",
+  "scope_note": "35 figures cataloged: Chapter 2's applicability flow chart (Figure 2.1), all 15 SURVIVING numbered figures in Chapter 3 (Figures 3.7-3.21 -- Figures 3.1 through 3.6 are listed in the front-matter List of Figures with blank captions and a page reference of 7, but the body text states 'This UFC section is removed in its entirety, including the following figures: Figure 3.1. ... Figure 3.6.' (Section 3.1, Tie Forces) -- there is no image to catalog for these six numbers, and they are deliberately OMITTED here), all 8 figures in Appendix B (structural-analysis definition diagrams: joint/connection rotation, yield/plastic rotation, panel zone, story drift -- content identical in kind to UFC 4-023-03 Appendix B), all 6 figures in Appendix C (steel connection-type illustrations supporting Table C1.1), and the 5 building-geometry figures from Appendix D (Figures D2.1-D2.5, the reinforced-concrete worked example this package validates against in reinforced_concrete.py/redundancy.py -- Figure D3.1 and all Figure D4.x/D5.x SAP2000-screenshot/analysis-result figures are deliberately OMITTED as narrow, software-workflow-specific content, mirroring ufc_collapse's own Appendix D figure-catalog scope). All 35 pages were located directly during full-document text extraction (each figure's own page marker was read alongside its caption) and independently cross-checked against this document's own front-matter List of Figures (printed pp. vii-x) -- both sources agree at every entry; page_estimated=false throughout. Appendix E (the parallel structural-steel worked example: building plans, SAP2000 screenshots, load-pattern and DCR-result figures) is NOT cataloged at all -- narrow, software-workflow-specific content for one example building, not general design figures of the kind this package catalogs elsewhere (mirrors ufc_collapse's decision to skip its own analogous Appendices E/F/G in their entirety; see the package __init__.py docstring scope note).",
+  "figure_count": 35,
+  "figures": [
+    {
+      "figure_number": "2.1",
+      "caption": "Applicability Flow Chart",
+      "chapter": "2",
+      "pdf_page_index": 18,
+      "printed_page": "6",
+      "page_estimated": false,
+      "description": "Flow chart implementing Section 2.3's Facility Security Level (FSL) applicability logic: FSL I/II never require these Guidelines; FSL III/IV require them at 4+ stories (Alternate Path AND Redundancy); FSL V requires them at any story count (Alternate Path only). See applicability.fsl_applicability()."
+    },
+    {
+      "figure_number": "3.7",
+      "caption": "Definition of Force-Controlled and Deformation-Controlled Actions, from ASCE 41 [10]",
+      "chapter": "3",
+      "pdf_page_index": 22,
+      "printed_page": "10",
+      "page_estimated": false,
+      "description": "The generalized component force-versus-deformation curve (Types 1, 2, 3) and the e/g ratio definitions underlying Section 3.2.5's classification rule; identical in content to UFC 4-023-03 Figure 3-7. See alternate_path.classify_action()."
+    },
+    {
+      "figure_number": "3.8",
+      "caption": "Removal of Column from Alternate Path Model",
+      "chapter": "3",
+      "pdf_page_index": 24,
+      "printed_page": "12",
+      "page_estimated": false,
+      "description": "Illustrates Section 3.2.9.1's beam-to-beam continuity assumption across a removed column, and the full-clear-height removal extent between lateral restraints."
+    },
+    {
+      "figure_number": "3.9",
+      "caption": "Location of External Column Removal",
+      "chapter": "3",
+      "pdf_page_index": 27,
+      "printed_page": "15",
+      "page_estimated": false,
+      "description": "Plan diagram of the Section 3.2.9.2.2 FSL III/IV exterior column removal locations: middle of the short side, middle of the long side, corner, and penultimate (adjacent-to-corner)."
+    },
+    {
+      "figure_number": "3.10",
+      "caption": "Location of Internal Column Removal",
+      "chapter": "3",
+      "pdf_page_index": 27,
+      "printed_page": "15",
+      "page_estimated": false,
+      "description": "Plan diagram of the Section 3.2.9.2.3 internal column removal locations within underground parking or uncontrolled-public-access areas: middle of the short side, middle of the long side, and corner of the uncontrolled space."
+    },
+    {
+      "figure_number": "3.11",
+      "caption": "Location of External Load-Bearing Wall Removal",
+      "chapter": "3",
+      "pdf_page_index": 28,
+      "printed_page": "16",
+      "page_estimated": false,
+      "description": "Plan diagram of the Section 3.2.9.2.4 exterior load-bearing-wall removal locations, including the 2H-in-each-direction corner removal extent."
+    },
+    {
+      "figure_number": "3.12",
+      "caption": "Location of Internal Load-Bearing Wall Removal",
+      "chapter": "3",
+      "pdf_page_index": 28,
+      "printed_page": "16",
+      "page_estimated": false,
+      "description": "Plan diagram of the Section 3.2.9.2.5 internal load-bearing-wall removal locations within underground parking or uncontrolled-public-access areas."
+    },
+    {
+      "figure_number": "3.13",
+      "caption": "Allowable Extents of Collapse for Interior and Exterior Column Removal in Plan",
+      "chapter": "3",
+      "pdf_page_index": 30,
+      "printed_page": "18",
+      "page_estimated": false,
+      "description": "Plan-view illustration of Section 3.2.10.2's existing-building disproportionate-collapse allowance (15% exterior / 30% interior of the floor area directly above the removed element). See alternate_path.disproportionate_collapse_allowance()."
+    },
+    {
+      "figure_number": "3.14",
+      "caption": "Allowable Extents of Collapse for Interior and Exterior Column Removal in Elevation",
+      "chapter": "3",
+      "pdf_page_index": 30,
+      "printed_page": "18",
+      "page_estimated": false,
+      "description": "Elevation-view companion to Figure 3.13, showing the allowance is limited to the single floor level directly above the removed element."
+    },
+    {
+      "figure_number": "3.15",
+      "caption": "Loads and Load Locations for External and Internal Column Removal for Linear and Nonlinear Static Models (Left Side Demonstrates External Column Removal; Right Side Shows Internal Column Removal)",
+      "chapter": "3",
+      "pdf_page_index": 35,
+      "printed_page": "23",
+      "page_estimated": false,
+      "description": "Defines the perimeter A-B-C-D within which the increased gravity load (GLD/GLF/GN) is applied for a column removal, per Equations 3.3, 3.5, and 3.8, and the region searched for the governing mLIF/rotation ratio."
+    },
+    {
+      "figure_number": "3.16",
+      "caption": "Loads and Load Locations for External and Internal Wall Removal for Linear and Nonlinear Static Models (Left Side Demonstrates External Wall Removal; Right Side Shows Internal Wall Removal)",
+      "chapter": "3",
+      "pdf_page_index": 36,
+      "printed_page": "24",
+      "page_estimated": false,
+      "description": "Wall-removal companion to Figure 3.15, for load-bearing-wall structures."
+    },
+    {
+      "figure_number": "3.17",
+      "caption": "Plan View of Strength Definitions for Load Redistributing Systems",
+      "chapter": "3",
+      "pdf_page_index": 45,
+      "printed_page": "33",
+      "page_estimated": false,
+      "description": "Plan diagram defining the single-structural-bay extent of horizontal members contributing to a load redistribution system's design strength QR (Equation 3.15, Section 3.4.2.2). See redundancy.load_redistribution_system_strength()."
+    },
+    {
+      "figure_number": "3.18",
+      "caption": "Elevation View of Strength Definitions for Load Redistributing Systems",
+      "chapter": "3",
+      "pdf_page_index": 46,
+      "printed_page": "34",
+      "page_estimated": false,
+      "description": "Elevation diagram showing multiple load redistribution systems up the height of the building, whose average strength QR_bar is computed by Equation 3.16."
+    },
+    {
+      "figure_number": "3.19",
+      "caption": "Plan View of Stiffness Definitions for Load Redistributing Systems",
+      "chapter": "3",
+      "pdf_page_index": 47,
+      "printed_page": "35",
+      "page_estimated": false,
+      "description": "Plan diagram, analogous to Figure 3.17, for the flexural stiffness KR of a load redistribution system (Equation 3.18, Section 3.4.2.3). See redundancy.load_redistribution_system_stiffness()."
+    },
+    {
+      "figure_number": "3.20",
+      "caption": "Definition of Stiffness based on Various Support Conditions",
+      "chapter": "3",
+      "pdf_page_index": 48,
+      "printed_page": "36",
+      "page_estimated": false,
+      "description": "Support-condition-dependent flexural-stiffness formulas for a uniformly loaded beam (fixed-fixed, fixed-pinned, etc.); the Appendix D worked example uses the fixed-fixed case, KC=384*Ec*Icr/L^3 (see redundancy.fixed_fixed_flexural_stiffness())."
+    },
+    {
+      "figure_number": "3.21",
+      "caption": "Elevation View of Stiffness Definitions for Load Redistributing Systems",
+      "chapter": "3",
+      "pdf_page_index": 48,
+      "printed_page": "36",
+      "page_estimated": false,
+      "description": "Elevation diagram showing multiple load redistribution systems up the height of the building, whose average stiffness KR_bar is computed by Equation 3.19."
+    },
+    {
+      "figure_number": "B1.1",
+      "caption": "Joint and Connection Definition",
+      "chapter": "B",
+      "pdf_page_index": 69,
+      "printed_page": "B3",
+      "page_estimated": false,
+      "description": "Illustrates the joint (central region where members attach) versus the connection (the link transmitting moment/shear/axial actions), for steel moment and reinforced concrete framing. Identical in content to UFC 4-023-03 Figure B-1."
+    },
+    {
+      "figure_number": "B1.2",
+      "caption": "Joint and Connection Rotations",
+      "chapter": "B",
+      "pdf_page_index": 70,
+      "printed_page": "B4",
+      "page_estimated": false,
+      "description": "Sketches distinguishing rigid-body joint rotation (Gamma) from connection rotation (theta), measured relative to the joint."
+    },
+    {
+      "figure_number": "B1.3",
+      "caption": "Definition of Chord Rotation (from ASCE 41 [10])",
+      "chapter": "B",
+      "pdf_page_index": 71,
+      "printed_page": "B5",
+      "page_estimated": false,
+      "description": "Shows how, in a frame, the chord rotation equals the connection rotation theta when joint rotation is separately accounted for."
+    },
+    {
+      "figure_number": "B1.4",
+      "caption": "Definition of Yield Rotation, Plastic Rotation, and Total Rotation",
+      "chapter": "B",
+      "pdf_page_index": 71,
+      "printed_page": "B5",
+      "page_estimated": false,
+      "description": "Moment-versus-rotation curve defining the yield rotation theta_y (elastic limit), plastic rotation theta_p (post-yield, non-recoverable), and their sum, the total rotation theta."
+    },
+    {
+      "figure_number": "B1.5",
+      "caption": "Plastic Hinge and Rotation",
+      "chapter": "B",
+      "pdf_page_index": 72,
+      "printed_page": "B6",
+      "page_estimated": false,
+      "description": "Shows a discrete plastic-hinge model inserted into a numerical frame model, measuring both elastic and plastic rotation (the elastic portion often ignored due to its small size)."
+    },
+    {
+      "figure_number": "B1.6",
+      "caption": "Panel Zone",
+      "chapter": "B",
+      "pdf_page_index": 72,
+      "printed_page": "B6",
+      "page_estimated": false,
+      "description": "Illustrates the steel-frame column-web panel zone (region of high shear stress within the joint boundaries of a fully restrained connection), whose deformation measure is the plastic angular shear rotation."
+    },
+    {
+      "figure_number": "B1.7",
+      "caption": "Story Drift",
+      "chapter": "B",
+      "pdf_page_index": 73,
+      "printed_page": "B7",
+      "page_estimated": false,
+      "description": "Defines story drift (ratio of lateral deflection at the top of a wall segment to its overall height) as ASCE 41's nonlinear deformation measure for load-bearing wall structures."
+    },
+    {
+      "figure_number": "B1.8",
+      "caption": "Vertical Wall Deflection (Drift)",
+      "chapter": "B",
+      "pdf_page_index": 73,
+      "printed_page": "B7",
+      "page_estimated": false,
+      "description": "Adapts the story-drift deformation measure (Figure B1.7) from horizontal seismic drift to VERTICAL deflection due to a removed wall section, for progressive-collapse analysis of load-bearing wall structures."
+    },
+    {
+      "figure_number": "C1.1",
+      "caption": "Fully Restrained Moment Connections or Shear Connections",
+      "chapter": "C",
+      "pdf_page_index": 96,
+      "printed_page": "C20",
+      "page_estimated": false,
+      "description": "Illustrates the Fully Restrained (FR) steel connection types of Table C1.1: WUF, Welded Flange Plates, Welded Cover-Plated Flanges, Bolted Flange Plates, Free Flange, Welded Top/Bottom Haunches, and Reduced Beam Section."
+    },
+    {
+      "figure_number": "C1.2",
+      "caption": "Partially Restrained Moment Connections or Shear Connections",
+      "chapter": "C",
+      "pdf_page_index": 97,
+      "printed_page": "C21",
+      "page_estimated": false,
+      "description": "Illustrates the Partially Restrained (PR) steel connection types of Table C1.1: Top and Bottom Clip Angles, Bolted Double Split Tee, and Bolted End Plate."
+    },
+    {
+      "figure_number": "C1.3",
+      "caption": "Weak Axis Moment Connection or Shear Connection",
+      "chapter": "C",
+      "pdf_page_index": 97,
+      "printed_page": "C21",
+      "page_estimated": false,
+      "description": "Illustrates the Shear Tab Connection (with or without composite floor deck) of Table C1.1."
+    },
+    {
+      "figure_number": "C1.4",
+      "caption": "Kaiser Bolted Bracket® Fully Restrained Connection",
+      "chapter": "C",
+      "pdf_page_index": 98,
+      "printed_page": "C22",
+      "page_estimated": false,
+      "description": "Schematic of the proprietary Kaiser Bolted Bracket SMF moment connection (cast-steel haunch brackets bolted to the column flange)."
+    },
+    {
+      "figure_number": "C1.5",
+      "caption": "SidePlate® Fully Restrained Connection",
+      "chapter": "C",
+      "pdf_page_index": 98,
+      "printed_page": "C22",
+      "page_estimated": false,
+      "description": "Schematic of the proprietary SidePlate SMF moment connection (full-depth side plates with fillet welds), whose m-factors and modeling parameters are digitized in structural_steel.py (Tables 10-11)."
+    },
+    {
+      "figure_number": "C1.6",
+      "caption": "SlottedWeb™ Fully Restrained Connection",
+      "chapter": "C",
+      "pdf_page_index": 98,
+      "printed_page": "C22",
+      "page_estimated": false,
+      "description": "Schematic of the proprietary SlottedWeb SMF moment connection (WUF-like, with extended web slots at the weld access holes)."
+    },
+    {
+      "figure_number": "D2.1",
+      "caption": "Building Floor Plan (Levels 2-6)",
+      "chapter": "D",
+      "pdf_page_index": 105,
+      "printed_page": "D4",
+      "page_estimated": false,
+      "description": "Floor plan of the Appendix D 8-story reinforced-concrete example building (FSL IV, controlled lobby, no below-grade parking) -- perimeter moment frames, pan-joist/slab floor system. See reinforced_concrete.py and redundancy.py validation anchors."
+    },
+    {
+      "figure_number": "D2.2",
+      "caption": "Building Roof Plan",
+      "chapter": "D",
+      "pdf_page_index": 106,
+      "printed_page": "D5",
+      "page_estimated": false,
+      "description": "Roof plan of the Appendix D example building, showing reduced roof-beam reinforcement relative to the typical floor level."
+    },
+    {
+      "figure_number": "D2.3",
+      "caption": "Building Elevation along GL A",
+      "chapter": "D",
+      "pdf_page_index": 107,
+      "printed_page": "D6",
+      "page_estimated": false,
+      "description": "Exterior elevation of the Appendix D example building along gridline A (a perimeter moment-frame gridline)."
+    },
+    {
+      "figure_number": "D2.4",
+      "caption": "Building Elevation along B-F (Interior)",
+      "chapter": "D",
+      "pdf_page_index": 108,
+      "printed_page": "D7",
+      "page_estimated": false,
+      "description": "Interior elevation of the Appendix D example building spanning gridlines B through F."
+    },
+    {
+      "figure_number": "D2.5",
+      "caption": "Building Elevation along Gridline 1 and 4",
+      "chapter": "D",
+      "pdf_page_index": 109,
+      "printed_page": "D8",
+      "page_estimated": false,
+      "description": "Exterior elevations of the Appendix D example building along the short-side gridlines 1 and 4."
+    }
+  ]
+}

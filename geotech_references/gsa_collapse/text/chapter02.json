@@ -1,0 +1,84 @@
+{
+  "reference_id": "GSA Alternate Path Guidelines",
+  "reference_title": "GSA Alternate Path Analysis and Design Guidelines for Progressive Collapse Resistance (October 24, 2013, Revision 1, January 28, 2016)",
+  "volume": null,
+  "chapter": 2,
+  "chapter_title": "Applicability",
+  "sections": [
+    {
+      "section_id": "2",
+      "title": "Applicability (chapter introduction)",
+      "summary": "Applies to GSA-owned (new and existing) and new GSA lease construction; may apply to new lease acquisitions/succeeding leases via a Program of Requirements tenant-specific clause (through full and open competition only) but never to lease renewals, extensions, expansions, or non-competitive superseding/succeeding leases.",
+      "body": "These Guidelines apply to GSA owned (new and existing) and new GSA lease construction. If stated as a tenant specific requirement within the Program of Requirements (POR), these Guidelines may also apply to new lease acquisitions or succeeding leases that are established through full and open competition. These Guidelines do not apply to lease renewals, extensions, expansions, or superseding and succeeding leases that are established other than through full and open competition.",
+      "key_points": ["GSA-owned: always in scope (new or existing)", "Leases: only new construction via full and open competition, or a POR tenant-specific requirement"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Sets the ownership/lease-type scope for the whole chapter."
+    },
+    {
+      "section_id": "2.1",
+      "title": "New Construction and Building Additions",
+      "summary": "Applied to all new construction per the FSL; new additions are treated as \"new construction\" per the ISC Risk Management Process, applying to the addition regardless of size -- but NOT to the existing portion unless the addition is 50%+ of the existing building's gross area and the existing portion is undergoing major structural renovation.",
+      "body": "These Guidelines shall be applied to all new construction, as required by the FSL. Per the ISC Risk Management Process, new additions to existing buildings shall be considered \"new construction, including new building additions\"; these Guidelines apply to all new additions, as required by the FSL. Once a facility is determined as requiring progressive collapse resistance, the methodology of Chapters 3 through 8 is executed, based on the Alternate Path method of UFC 04-023-03 with GSA's modifications, additions, and commentary. Per Commentary C2.1, this requirement does not extend to the existing portion of the building unless the new addition is 50% or more of the gross area of the existing building AND the existing portion is undergoing a major structural renovation.",
+      "key_points": [
+        "New additions are always 'new construction' regardless of size",
+        "Existing-portion evaluation triggered only by the 50%-gross-area + major-renovation test -- see applicability.addition_triggers_existing_building_evaluation()"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Governs applicability to building additions and their interaction with the existing structure."
+    },
+    {
+      "section_id": "2.2",
+      "title": "Existing Buildings",
+      "summary": "Applies only to existing Federal buildings (leased or Government-owned) undergoing a MAJOR MODERNIZATION (e.g. a seismic upgrade), as required by the FSL; if the existing building fails to meet the requirements, the Government must be given full information to make a risk-based mitigate-or-accept decision.",
+      "body": "These Guidelines shall be applied only to existing Federal buildings (leased or Government-owned) that are undergoing a major modernization and as required by the FSL. A major modernization is defined as a major structural renovation, such as a seismic upgrade. For existing construction, once determined as requiring progressive collapse resistance, the same methodology of Chapters 3 through 8 is executed to evaluate the existing structure's potential for progressive collapse. If the existing building does not meet the requirements and mitigation measures are recommended, the Government shall be provided all pertinent information to make an informed risk-based decision regarding mitigation or acceptance of risk, including a complete understanding of potential consequences and associated costs.",
+      "key_points": [
+        "Trigger: major structural renovation (e.g. seismic upgrade) -- non-structural/interior work does not count (Appendix B definition of 'Major Modernization')",
+        "Non-compliance triggers a Government risk-acceptance decision, not automatic retrofit"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Governs when an existing building must be evaluated, and the consequence of a deficient evaluation."
+    },
+    {
+      "section_id": "2.3",
+      "title": "Facility Security Levels (FSL)",
+      "summary": "Applicability is a function of the number of stories AND the Facility Security Level (FSL) -- or a facility-specific risk assessment/RFP-POR requirement where an FSL has not yet been assigned. FSL determination rests with the Government per the ISC Risk Management Process.",
+      "body": "Per the ISC Risk Management Process, the application of progressive collapse design is dependent on the required level of protection as determined by the number of stories and FSL, or where an FSL has not yet been determined, by a facility-specific risk assessment or facility-specific requirements in the RFP or POR. The ISC Risk Management Process defines the criteria and process for determining a facility's FSL, categorizing facilities based on target attractiveness, value, and criticality. The responsibility for the final FSL determination rests with the Government. Once established, applicability is determined via the Applicability Flow Chart (Figure 2.1) and this section.",
+      "key_points": ["FSL is the primary applicability driver, per Figure 2.1's flow chart -- see applicability.fsl_applicability()", "FSL determination is a Government responsibility under the ISC Risk Management Process"],
+      "equations": [], "figures": ["2.1"], "tables": [],
+      "applicability": "Introduces the FSL-based applicability trigger detailed in 2.3.1-2.3.3."
+    },
+    {
+      "section_id": "2.3.1",
+      "title": "FSL I & II",
+      "summary": "Progressive collapse design is NOT required for FSL I and II facilities, regardless of the number of floors, given their low occupancy and risk level.",
+      "body": "Given the low occupancy and risk level associated with these types of facilities, progressive collapse design is not required for FSL I and II, regardless of the number of floors.",
+      "key_points": ["FSL I/II: never applicable"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "The lowest tier of the FSL applicability matrix -- see applicability.FSL_APPLICABILITY."
+    },
+    {
+      "section_id": "2.3.2",
+      "title": "FSL III & IV",
+      "summary": "Applicable to FSL III and IV buildings of 4+ stories (grade to highest elevation point; mechanical penthouses/parking excluded from the story count); both Alternate Path AND Redundancy are required, with removal locations per Section 3.2.9.",
+      "body": "These Guidelines are applicable to FSL III and IV buildings with four stories or more measured from the lowest point of exterior grade to the highest point of elevation. Unoccupied floors such as mechanical penthouses or parking shall not be considered a story. FSL III and IV facilities shall implement both the Alternate Path and Redundancy design procedures. The Alternate Path method shall be applied based on vertical load bearing element removal locations identified in Section 3.2.9.",
+      "key_points": [
+        "4-story threshold, mechanical penthouse/parking excluded -- see applicability.counts_as_story()",
+        "Both Alternate Path AND Redundancy Requirements required -- see applicability.fsl_applicability()"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "The middle tier of the FSL applicability matrix."
+    },
+    {
+      "section_id": "2.3.3",
+      "title": "FSL V",
+      "summary": "Applicable to ALL FSL V buildings regardless of story count; only the Alternate Path method (based on removal locations in Section 3.2.9) is required -- Redundancy Requirements need not be separately applied, since FSL V's whole-building removal scope already meets the redundancy intent (Commentary C2.3).",
+      "body": "These Guidelines are applicable to all FSL V buildings regardless of number of floors. FSL V facilities shall implement the Alternate Path method based on vertical load bearing element removal locations identified in Section 3.2.9. Redundancy design procedures do not need to be applied to FSL V facilities.",
+      "key_points": [
+        "FSL V: applies at any story count",
+        "Alternate Path only -- no separate Redundancy Requirement check -- see applicability.fsl_applicability()"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "The highest tier of the FSL applicability matrix."
+    }
+  ]
+}

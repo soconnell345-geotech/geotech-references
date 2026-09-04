@@ -1,0 +1,123 @@
+{
+  "reference_id": "GSA Alternate Path Guidelines",
+  "reference_title": "GSA Alternate Path Analysis and Design Guidelines for Progressive Collapse Resistance (October 24, 2013, Revision 1, January 28, 2016)",
+  "volume": null,
+  "chapter": 1,
+  "chapter_title": "Introduction",
+  "sections": [
+    {
+      "section_id": "1.1",
+      "title": "Purpose",
+      "summary": "Reduces progressive-collapse potential in new and renovated Federal buildings, aligning with the ISC/GSA security-standard suite and with DoD methodology; replaces the 2003 GSA Guidelines with a new threat-dependent methodology built on UFC 4-023-03's Alternate Path procedures and ASCE 41.",
+      "body": "The purpose of these Guidelines is to reduce the potential for progressive collapse in new and renovated Federal buildings. It is intended to bring a consistent level of protection in the application of progressive collapse design to Federal facilities and to bring alignment with the suite of security standards issued by the Interagency Security Committee (ISC) and GSA in their philosophy, decision-making methodology and application. In addition, it aims to bring alignment within the industry by reducing incongruities between GSA and Department of Defense (DoD) methodologies. To meet this purpose, these Guidelines replace the previous document \"GSA Progressive Collapse Analysis and Design Guidelines for New Federal Office Buildings and Major Modernization Projects 2003\" and provide a new, threat-dependent methodology for minimizing the potential for progressive collapse that utilizes the alternate path (AP) analysis procedures of UFC 04-023-03 and ASCE-41.",
+      "key_points": [
+        "Replaces the 2003 GSA Guidelines",
+        "Adopts UFC 4-023-03's Alternate Path procedures and ASCE 41",
+        "Aims for consistency with the ISC Risk Management Process and reduced GSA/DoD incongruity"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Scope statement for the whole document."
+    },
+    {
+      "section_id": "1.2",
+      "title": "Guideline Philosophy",
+      "summary": "Adopts the ISC Risk Management Process's flexible, risk-based approach: requirements are driven by the Federal tenant's security needs and applied commensurate with the level of risk, via the Facility Security Level (FSL) or a facility-specific risk assessment.",
+      "body": "These Guidelines address the need to save lives, prevent injury and protect Federal buildings, functions, and assets by minimizing the potential for progressive collapse. Consistent with the ISC Risk Management Process, these Guidelines take a flexible risk-based approach where requirements are driven by the security needs of the Federal tenant(s) and where implemented measures are commensurate with the level of risk. The application of these Guidelines is dependent on the required level of protection as determined by the Facility Security Level (FSL) or facility-specific risk assessment.",
+      "key_points": ["Risk-based, not one-size-fits-all", "Application keyed to FSL or facility-specific risk assessment"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Frames the overall risk-based design philosophy."
+    },
+    {
+      "section_id": "1.2.1",
+      "title": "Definition of Progressive Collapse",
+      "summary": "Progressive collapse is defined here as an extent of damage disproportionate to the initiating event's magnitude -- a consequence-focused ('disproportionate') definition, not a mechanism-focused ('progressive') one.",
+      "body": "For the purposes of these Guidelines, progressive collapse is defined as an extent of damage or collapse that is disproportionate to the magnitude of the initiating event. Since this definition focuses on the relative consequence or magnitude of the collapse rather than the manner in which it occurs, it is often referred to in the industry as \"disproportionate\" rather than \"progressive\" collapse.",
+      "key_points": ["Consequence/extent-focused ('disproportionate'), not mechanism-focused ('progressive')"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Governs how 'disproportionate' extents of collapse are judged, e.g. in the existing-building allowance of Section 3.2.10.2."
+    },
+    {
+      "section_id": "1.2.2",
+      "title": "Threat Dependent Approach",
+      "summary": "Implemented with the ISC Risk Management Process and the GSA Applicability document, which take a threat-dependent approach: reduce risk either by hardening elements against a defined threat, or by bridging over their loss (this document's approach) without regard to the initiating cause. Threat-based hardening may substitute for these Guidelines at FSL III/IV with GSA Technical Representative approval.",
+      "body": "This document is to be implemented in conjunction with the ISC Risk Management Process and GSA Facility Security Requirements for Explosive Devices Applicable to Facility Security Levels III and IV (\"GSA Applicability\"), which take a threat dependent approach for reducing potential for progressive collapse. With a threat dependent approach, reduction of progressive collapse potential can be achieved either by precluding failure of load-carrying elements (hardening) or by bridging over their loss (these Guidelines). Where applicable and as approved by the GSA Technical Representative, execution of threat-based hardening in lieu of these Guidelines can be applied for FSL III and IV buildings per Section 7.4 of the GSA Applicability document.",
+      "key_points": [
+        "Two risk-reduction strategies: hardening (limits initial damage) vs. bridging (these Guidelines)",
+        "FSL III/IV may substitute threat-based hardening for these Guidelines, with GSA approval"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Explains the relationship between this document's bridging-based approach and the GSA Applicability document's alternative hardening-based approach."
+    },
+    {
+      "section_id": "1.3",
+      "title": "Applicability",
+      "summary": "An independent set of measures meeting the ISC Risk Management Process's progressive-collapse provisions; used by all professionals (in-house, A/E, contracted) on GSA new-construction/modernization projects where the FSL triggers applicability; does not apply to facilities already benchmarked under the 2003 GSA Guidelines or UFC 4-023-03 prior to this document's issuance.",
+      "body": "The applicability of these Guidelines to specific building types is discussed in Chapter 2. The requirements contained herein are an independent set of measures for meeting the provisions of the ISC Risk Management Process regarding progressive collapse. Where applicable per the ISC Risk Management Process based on the FSL level, these Guidelines should be used by all professionals engaged in the planning and design of new facilities or building modernization projects. These Guidelines are not applicable to facilities that have already been designed for progressive collapse under either the previous GSA guidelines or UFC 04-023-03 prior to issuance of this document -- such facilities are considered benchmarked. While mandatory for GSA facilities, these Guidelines may also be used and/or adopted by any agency, organization, or private entity, without warranty of suitability for any particular use.",
+      "key_points": [
+        "Points to Chapter 2 for the FSL-based applicability trigger -- see applicability.fsl_applicability()",
+        "Prior-benchmarked facilities (2003 Guidelines or UFC 4-023-03) are exempt",
+        "Mandatory for GSA; may be voluntarily adopted elsewhere"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Determines whether a given project must meet this document's requirements."
+    },
+    {
+      "section_id": "1.4",
+      "title": "How to Use This Document",
+      "summary": "Provides guidance to reduce/assess progressive-collapse potential for new or existing Federal buildings, implemented with the ISC Risk Management Process and GSA Applicability documents, following UFC 04-023-03's Alternate Path methodology and performance requirements, plus incorporating Redundancy Requirements to mitigate single points of failure.",
+      "body": "The intent of this document is to provide guidance to reduce and/or assess the potential for progressive collapse of Federal buildings for new or existing construction. It is to be implemented in conjunction with the ISC Risk Management Process and GSA Applicability documents and follows the analysis methodology and performance requirements of UFC 04-023-03 for Alternate Path. It also provides guidelines for incorporating redundancy into the progressive collapse resisting system to mitigate single points of failure and provide increased robustness for extreme loading scenarios not explicitly addressed in the design.",
+      "key_points": ["Alternate Path methodology adopted from UFC 04-023-03", "Redundancy Requirements added for single-point-of-failure mitigation -- see redundancy.py"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Overview of the document's intended use."
+    },
+    {
+      "section_id": "1.5",
+      "title": "Document Organization",
+      "summary": "Four main parts: introduction/applicability (Ch 1-2), design procedures (Ch 3), material-specific criteria (Ch 4-8), and appendices A-E. Except for Ch 1-2, the body incorporates UFC 04-023-03's Alternate-Path-related organization and content in its entirety as a stand-alone document; a left-margin change bar marks UFC modifications/additions, and strike-through marks deleted UFC text.",
+      "body": "This document is organized into four main sections: an introductory section (Chapters 1 and 2); a section on required design procedures (Chapter 3); a section with material specific criteria (Chapters 4 through 8); and a series of appendices (A through E). With the exception of Chapters 1 and 2, the main body incorporates the general organization and content of UFC 04-023-03 as it relates to Alternate Path only. The adopted methodology has been incorporated in its entirety such that these Guidelines are a stand-alone document and the designer need not reference UFC 04-023-03 for its application. Modifications to the Alternate Path procedures are indicated with a line in the left margin (modified or added text) or a strike-through (deleted text), including sections of the UFC that have been removed -- most notably Tie Forces (Section 3.1) and Enhanced Local Resistance (Section 3.3), both removed in their entirety throughout the document.",
+      "key_points": [
+        "Stand-alone document; UFC 04-023-03 need not be separately consulted",
+        "Left-margin change bar = modification/addition; strike-through = deletion",
+        "Tie Forces and Enhanced Local Resistance removed in their entirety -- see alternate_path.tie_forces_removed()/enhanced_local_resistance_removed()"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Roadmap for the rest of the document and its relationship to UFC 04-023-03."
+    },
+    {
+      "section_id": "1.6",
+      "title": "Summary of the Progressive Collapse Design Procedure",
+      "summary": "Design procedures aim to bridge over a lost element (Alternate Path), localizing damage, and to provide a redundant, height-balanced structural system (Redundancy Requirements).",
+      "body": "The design procedures employed by these Guidelines aim to reduce the potential for progressive collapse by bridging over the loss of a structural element, limiting the extent of damage to a localized area (Alternate Path) and providing a redundant and balanced structural system along the height of the building.",
+      "key_points": ["Two coordinated procedures: Alternate Path + Redundancy Requirements"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "High-level roadmap for Chapter 3."
+    },
+    {
+      "section_id": "1.6.1",
+      "title": "Alternate Path",
+      "summary": "Based on UFC 4-023-03 and ASCE-41, with GSA modifications/additions in Chapters 3-8; requires the structure to bridge over vertical load-bearing elements notionally removed one at a time at specific plan/elevation locations set in Chapter 2.",
+      "body": "The Alternate Path method employed by these Guidelines is based on the methodology and performance requirements presented in UFC 4-023-03 and ASCE-41, with modifications and additions as outlined in Chapters 3 through 8. The Alternate Path method requires that the structure be able to bridge over vertical load-bearing elements that are notionally removed one at a time at specific plan and elevation locations, as required by Chapter 2. The general requirements are in Chapter 3, with material-specific requirements in Chapters 4 through 8.",
+      "key_points": ["Removal locations per the FSL applicability of Chapter 2", "General procedure in Chapter 3, material chapters 4-8"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Defines the Alternate Path method family implemented in Section 3.2."
+    },
+    {
+      "section_id": "1.6.2",
+      "title": "Redundancy Requirements",
+      "summary": "Applied together with the Alternate Path analysis to distribute progressive-collapse resistance up the building's height, without requiring column/wall removal at every level.",
+      "body": "The Redundancy Requirements outlined in Chapter 3 shall be applied in conjunction with the Alternate Path analysis. The intent of these requirements is to distribute progressive collapse resistance up the height of the building without explicitly requiring column/wall removal scenarios at each level.",
+      "key_points": ["Applied WITH the Alternate Path analysis, not instead of it", "Achieves height-wise distribution without whole-building removal scenarios"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Introduces the entirely new Section 3.4 content (redundancy.py), with no UFC 4-023-03 analog."
+    },
+    {
+      "section_id": "1.7",
+      "title": "References",
+      "summary": "Dated references are frozen to the cited edition unless this document is itself amended; undated references float to the latest edition including amendments.",
+      "body": "These Guidelines incorporate provisions from other publications by dated or undated reference, cited in the text and listed in Appendix A. For dated references, subsequent amendments or revisions apply to these Guidelines only when incorporated by amendment or revision of this document. For undated references, the latest edition (including amendments) applies.",
+      "key_points": ["Dated references frozen to cited edition", "Undated references float to latest edition"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Governs how to interpret cited external standards (ASCE 41, ACI 318, AISC 360, etc.) as they are updated over time."
+    }
+  ]
+}

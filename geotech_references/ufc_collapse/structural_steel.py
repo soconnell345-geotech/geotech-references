@@ -9,6 +9,14 @@ acceptance criteria mostly follow ASCE 41 Chapter 9 Life-Safety values
 Collapse Prevention values, and (2) the Fully/Partially Restrained
 connections in this UFC's OWN Tables 5-1 (linear m-factors) and 5-2
 (nonlinear modeling parameters), which this module digitizes in full.
+
+CROSS-DOCUMENT NOTE (lead adjudication, 2026-09-04): GSA Alternate Path
+2016 (gsa_collapse module) prints DIFFERENT linear m-factors for 3 of 4
+fully-restrained connection types and the Double Split Tee limit states,
+while the NONLINEAR tables (5-2 vs GSA Table 11) match exactly. Both
+modules were visually verified against their own printed pages — this is
+genuine divergence between the documents, not a transcription error.
+Use the module matching your governing document.
 """
 
 

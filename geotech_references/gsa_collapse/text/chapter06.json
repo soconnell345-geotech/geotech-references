@@ -1,0 +1,79 @@
+{
+  "reference_id": "GSA Alternate Path Guidelines",
+  "reference_title": "GSA Alternate Path Analysis and Design Guidelines for Progressive Collapse Resistance (October 24, 2013, Revision 1, January 28, 2016)",
+  "volume": null,
+  "chapter": 6,
+  "chapter_title": "Masonry",
+  "sections": [
+    {
+      "section_id": "6",
+      "title": "Masonry (chapter introduction)",
+      "summary": "UFC 4-023-03 Chapter 6 is adopted with one modification: all Tie Force and Enhanced Local Resistance references are removed (masonry does NOT get the Collapse Prevention upgrade that RC/steel receive).",
+      "body": "Chapter 6 of UFC 4-023-03 is adopted with the following modification: all references to Enhanced Local Resistance (ELR) and Tie Force analysis methods are removed. This chapter provides the specific requirements for designing a masonry building to resist progressive collapse. If composite construction with other materials is employed, use the design guidance from the appropriate material chapter for those elements/portions.",
+      "key_points": ["Only one modification (unlike Chapters 4-5's two) -- masonry keeps ASCE 41's Life Safety performance level"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Frames the whole chapter's scope."
+    },
+    {
+      "section_id": "6.1",
+      "title": "Material Properties for Masonry",
+      "summary": "Apply ASCE 41 Table 11-1's over-strength factors.",
+      "body": "Apply the appropriate over-strength factors to the calculation of the design strengths for the Alternate Path method. The over-strength factors are provided in ASCE 41 Table 11-1.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "Basis for QCE calculations in masonry components -- see masonry_wood_cfs.masonry_material_basis()."
+    },
+    {
+      "section_id": "6.2",
+      "title": "Strength Reduction Factor Phi for Masonry",
+      "summary": "Use the ACI 530 Phi factor for the component/behavior under consideration.",
+      "body": "For the Alternate Path methods, use the appropriate strength reduction factor phi specified in ACI 530, Building Code Requirements for Masonry Structures, for the component and behavior under consideration.",
+      "key_points": ["See masonry_wood_cfs.masonry_phi_basis()"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Basis for Phi in the masonry acceptance-criteria checks."
+    },
+    {
+      "section_id": "6.3",
+      "title": "Tie Force Requirements for Masonry",
+      "summary": "Removed in its entirety.",
+      "body": "This section is removed in its entirety.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "N/A -- section fully removed."
+    },
+    {
+      "section_id": "6.4",
+      "title": "Alternate Path Method for Masonry",
+      "summary": "Introduces the masonry-specific Alternate Path requirements (Sections 6.4.1-6.4.2).",
+      "body": "This section introduces the material-specific Alternate Path requirements for masonry.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "Parent section for 6.4.1-6.4.2."
+    },
+    {
+      "section_id": "6.4.1",
+      "title": "General",
+      "summary": "Use the Section 3.2 Alternate Path method to verify the acceptance criteria of Section 3.2.10.",
+      "body": "Use the Alternate Path method in Section 3.2 to verify that the structure can meet the acceptance criteria defined in Section 3.2.10.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "Confirms the general-purpose Alternate Path method applies to masonry without modification, beyond Section 6.4.2."
+    },
+    {
+      "section_id": "6.4.2",
+      "title": "Modeling and Acceptance Criteria for Masonry",
+      "summary": "Use ASCE 41 Chapter 11's Life Safety (NOT Collapse Prevention) modeling parameters, nonlinear acceptance criteria, and linear m-factors for primary and secondary components -- this document prints no replacement tables for masonry.",
+      "body": "Use the modeling parameters, nonlinear acceptance criteria and linear m-factors for the Life Safety condition from ASCE 41 Chapter 11 for primary and secondary components. Use the modeling parameters and guidance, including definitions of stiffness, to create the analytical model.",
+      "key_points": [
+        "Life Safety, not Collapse Prevention -- see masonry_wood_cfs.masonry_wood_cfs_performance_level('masonry')",
+        "Commentary C6: lack of available test data supporting a Collapse Prevention change"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "The performance-level pointer governing all masonry acceptance checks -- contrast Chapters 4-5's own replacement tables."
+    },
+    {
+      "section_id": "6.5",
+      "title": "Enhanced Local Resistance for Masonry",
+      "summary": "Removed in its entirety.",
+      "body": "This section is removed in its entirety.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "N/A -- section fully removed."
+    }
+  ]
+}

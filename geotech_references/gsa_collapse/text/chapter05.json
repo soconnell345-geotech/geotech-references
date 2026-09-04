@@ -1,0 +1,87 @@
+{
+  "reference_id": "GSA Alternate Path Guidelines",
+  "reference_title": "GSA Alternate Path Analysis and Design Guidelines for Progressive Collapse Resistance (October 24, 2013, Revision 1, January 28, 2016)",
+  "volume": null,
+  "chapter": 5,
+  "chapter_title": "Structural Steel",
+  "sections": [
+    {
+      "section_id": "5",
+      "title": "Structural Steel (chapter introduction)",
+      "summary": "UFC 4-023-03 Chapter 5 is adopted with two modifications: primary/secondary modeling and acceptance criteria are revised from Life Safety to Collapse Prevention, and all Tie Force/Enhanced Local Resistance references are removed. Appendix E demonstrates the requirements for a 4-story building.",
+      "body": "Chapter 5 of UFC 4-023-03 is adopted with the following modifications: (1) modeling and acceptance criteria for primary and secondary components have been revised from Life Safety to Collapse Prevention; (2) all references to Enhanced Local Resistance (ELR) and Tie Force analysis methods are removed. This chapter provides the specific requirements for designing a structural steel building to resist progressive collapse. Appendix E demonstrates the application of the structural steel design requirements for a 4-story building. If composite construction with other materials is employed, use the design guidance from the appropriate material chapter for those elements/portions.",
+      "key_points": ["Collapse Prevention performance level for steel", "Appendix E's 4-story steel example is NOT digitized/cataloged (software-workflow-specific, mirrors ufc_collapse's own scope decision)"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Frames the whole chapter's scope and its two modifications from UFC 4-023-03."
+    },
+    {
+      "section_id": "5.1",
+      "title": "Material Properties for Structural Steel",
+      "summary": "Apply ASCE 41 Table 9-3's over-strength factors.",
+      "body": "Apply the appropriate over-strength factors to the calculation of the design strengths for the Alternate Path method. The over-strength factors are provided in ASCE 41 Table 9-3.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "Basis for QCE calculations in steel components."
+    },
+    {
+      "section_id": "5.2",
+      "title": "Strength Reduction Factor Phi for Structural Steel",
+      "summary": "Use the ANSI/AISC 360 Phi factor for the component/behavior under consideration.",
+      "body": "For the Alternate Path methods, use the appropriate strength reduction factor phi specified in ANSI/AISC 360, Specification for Structural Steel Buildings, for the component and behavior under consideration.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "Basis for Phi in the steel acceptance-criteria checks."
+    },
+    {
+      "section_id": "5.3",
+      "title": "Tie Force Requirements for Steel",
+      "summary": "Removed in its entirety.",
+      "body": "This section is removed in its entirety.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "N/A -- section fully removed."
+    },
+    {
+      "section_id": "5.4",
+      "title": "Alternate Path Method for Steel",
+      "summary": "Introduces the steel-specific Alternate Path requirements (Sections 5.4.1-5.4.3).",
+      "body": "This section introduces the material-specific Alternate Path requirements for structural steel.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "Parent section for 5.4.1-5.4.3."
+    },
+    {
+      "section_id": "5.4.1",
+      "title": "General",
+      "summary": "Use the Section 3.2 Alternate Path method to verify the acceptance criteria of Section 3.2.10.",
+      "body": "Use the Alternate Path method in Section 3.2 to verify that the structure can meet the acceptance criteria defined in Section 3.2.10.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "Confirms the general-purpose Alternate Path method applies to steel without modification, beyond Section 5.4.3's tables."
+    },
+    {
+      "section_id": "5.4.2",
+      "title": "Connection Rotational Capacity",
+      "summary": "Design strength and rotational capacities of beams and beam-to-column connections follow ASCE 41 guidance, as modified by Section 5.4.3.",
+      "body": "For new and existing construction, the design strength and rotational capacities of beams and beam-to-column connections shall be determined with the guidance found in ASCE 41, as modified with the acceptance criteria provided in Section 5.4.3.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "Points to Section 5.4.3's replacement tables."
+    },
+    {
+      "section_id": "5.4.3",
+      "title": "Modeling and Acceptance Criteria for Structural Steel",
+      "summary": "Uses ASCE 41 Chapter 9's Collapse Prevention modeling/acceptance for primary and secondary components (Tables 9-4, 9-6, 9-7) EXCEPT for the connections in this document's own Tables 10 (linear m-factors) and 11 (nonlinear modeling parameters); Double Angles use limit-state analysis for expected flexural strength at each of three limit states; Simple Shear Tab uses the smallest of several limit-state flexural strengths. Columns with P/PCL>0.5 are force-controlled (P-M interaction <=1.0 at maximum analysis loads); P/PCL<=0.5 uses the interaction equation with M deformation-controlled, P force-controlled.",
+      "body": "With the exception of the connections and elements discussed in this section, use the modeling parameters, nonlinear acceptance criteria and linear m-factors for the Collapse Prevention condition from ASCE 41 Chapter 9, for primary and secondary components; use the modeling parameters and guidance (including stiffness definitions) to create the model. Columns under high axial load (P/PCL > 0.5) shall be considered force-controlled, with P and M equal to the maximum analysis loads; the P-M interaction equation shall not exceed unity. For P/PCL <= 0.5, the interaction equation is used with M deformation-controlled and P force-controlled. Nonlinear and linear acceptance criteria for structural steel components shall meet the Collapse Prevention condition of ASCE 41 Tables 9-4, 9-6, and 9-7, EXCEPT: for the Fully Restrained (FR) and Partially Restrained (PR) connections listed in Table 10 and Table 11, use the specified plastic rotations, modeling parameters, and m-factors; for the Double Angles PR connection, the expected flexural strength shall be determined for each of the three listed limit states using accepted analytical procedures; for the Simple Shear Tab, the expected flexural strength is the smallest determined via limit-state analysis for bolt shear, weld failure, block shear, bearing, plate flexure, or other applicable limit states.",
+      "key_points": [
+        "Tables 10-11 REPLACE ASCE 41 Tables 9-4/9-6/9-7 for the listed connection types -- see structural_steel.py",
+        "Section 5.4.3's column P/PCL>0.5 rule -- see structural_steel.column_axial_classification()",
+        "Table 11 confirmed IDENTICAL to UFC 4-023-03 Table 5-2; Table 10 has THREE confirmed printed differences from UFC Table 5-1 -- see module cross-check note"
+      ],
+      "equations": [], "figures": [], "tables": ["10", "11"],
+      "applicability": "The central content of the steel chapter -- these two replacement tables govern the steel connection acceptance checks."
+    },
+    {
+      "section_id": "5.5",
+      "title": "Enhanced Local Resistance for Structural Steel",
+      "summary": "Removed in its entirety.",
+      "body": "This section is removed in its entirety.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "N/A -- section fully removed."
+    }
+  ]
+}

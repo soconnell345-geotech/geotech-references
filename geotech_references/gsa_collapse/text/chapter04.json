@@ -1,0 +1,90 @@
+{
+  "reference_id": "GSA Alternate Path Guidelines",
+  "reference_title": "GSA Alternate Path Analysis and Design Guidelines for Progressive Collapse Resistance (October 24, 2013, Revision 1, January 28, 2016)",
+  "volume": null,
+  "chapter": 4,
+  "chapter_title": "Reinforced Concrete",
+  "sections": [
+    {
+      "section_id": "4",
+      "title": "Reinforced Concrete (chapter introduction)",
+      "summary": "UFC 4-023-03 Chapter 4 is adopted with two modifications: primary/secondary modeling and acceptance criteria are revised from Life Safety to Collapse Prevention, and all Tie Force/Enhanced Local Resistance references are removed. Provides requirements for an RC building; Appendix D demonstrates the requirements for an 8-story building. Composite construction uses the appropriate material chapter for those elements/portions.",
+      "body": "Chapter 4 of UFC 4-023-03 is adopted with the following modifications: (1) modeling and acceptance criteria for primary and secondary components have been revised from Life Safety to Collapse Prevention; (2) all references to Enhanced Local Resistance (ELR) and Tie Force analysis methods are removed. This chapter provides the specific requirements for designing a reinforced concrete building to resist progressive collapse. Appendix D demonstrates the application of the reinforced concrete design requirements for an 8-story building. If composite construction with other materials is employed, use the design guidance from the appropriate material chapter for those structural elements or portions of the structure.",
+      "key_points": [
+        "Collapse Prevention (not Life Safety) performance level for RC -- see masonry_wood_cfs.masonry_wood_cfs_performance_level() for the materials that DON'T get this upgrade",
+        "Appendix D validates against an 8-story RC building example -- see reinforced_concrete.py/redundancy.py"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Frames the whole chapter's scope and its two modifications from UFC 4-023-03."
+    },
+    {
+      "section_id": "4.1",
+      "title": "Material Properties for Reinforced Concrete",
+      "summary": "Apply ASCE 41 Table 10-1's over-strength factors to translate lower-bound material properties to expected strength for the Alternate Path design strengths.",
+      "body": "Apply the appropriate over-strength factors to the calculation of the design strengths for the Alternate Path method. The over-strength factors are provided in ASCE 41 Table 10-1, Factors to Translate Lower-Bound Material Properties to Expected Strength Material Properties.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "Basis for QCE calculations in RC components."
+    },
+    {
+      "section_id": "4.2",
+      "title": "Strength Reduction Factor Phi for Reinforced Concrete",
+      "summary": "Use the ACI 318 Phi factor for the component/behavior under consideration.",
+      "body": "For the Alternate Path methods, use the appropriate strength reduction factor specified in ACI 318, Building Code Requirements for Structural Concrete, for the component and behavior under consideration.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "Basis for Phi in the RC acceptance-criteria checks."
+    },
+    {
+      "section_id": "4.3",
+      "title": "Tie Force Requirements for Reinforced Concrete",
+      "summary": "Removed in its entirety.",
+      "body": "This section is removed in its entirety.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "N/A -- section fully removed."
+    },
+    {
+      "section_id": "4.4",
+      "title": "Alternate Path Requirements for Reinforced Concrete",
+      "summary": "Introduces the RC-specific Alternate Path requirements (Sections 4.4.1-4.4.3).",
+      "body": "This section introduces the material-specific Alternate Path requirements for reinforced concrete.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "Parent section for 4.4.1-4.4.3."
+    },
+    {
+      "section_id": "4.4.1",
+      "title": "General",
+      "summary": "Use the Section 3.2 Alternate Path method to verify the acceptance criteria of Section 3.2.10.",
+      "body": "Use the Alternate Path method in Section 3.2 to verify that the structure can meet the acceptance criteria defined in Section 3.2.10.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "Confirms the general-purpose Alternate Path method applies to RC without modification, beyond the tables in 4.4.3."
+    },
+    {
+      "section_id": "4.4.2",
+      "title": "Flexural Members and Joints",
+      "summary": "Design strength and rotational capacities of beams and beam-to-column joints follow ASCE 41 guidance, as modified by the acceptance criteria in Section 4.4.3.",
+      "body": "For new and existing construction, the design strength and rotational capacities of the beams and beam-to-column joints shall be determined with the guidance found in ASCE 41, as modified with the acceptance criteria provided in Section 4.4.3.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "Points to Section 4.4.3's replacement tables."
+    },
+    {
+      "section_id": "4.4.3",
+      "title": "Modeling and Acceptance Criteria for Reinforced Concrete",
+      "summary": "Uses ASCE 41 Chapter 10's Collapse Prevention modeling/acceptance/m-factors for primary and secondary components EXCEPT Tables 10-7, 10-13, 10-15, 10-16, which are replaced by this document's Tables 6, 7, 8, 9 respectively (Commentary C4.4.3: the flexure-controlled beam/slab values were multiplied by 2.5 (primary) and 2.0 (secondary) over the ASCE 41 Collapse Prevention baseline, per blast/impact test data).",
+      "body": "With the exception of Tables 10-7, 10-13, 10-15, and 10-16 in ASCE 41, use the modeling parameters, nonlinear acceptance criteria and linear m-factors for the Collapse Prevention condition from ASCE 41 Chapter 10, for primary and secondary components; use the ASCE 41 modeling parameters and guidance (including stiffness definitions) to create the model. Replace ASCE 41 Table 10-7 with Table 6 (nonlinear modeling parameters/acceptance criteria for RC beams). Replace ASCE 41 Table 10-13 with Table 7 (acceptance criteria for linear models of RC beams). Replace ASCE 41 Table 10-15 with Table 8 (nonlinear modeling parameters/acceptance criteria for two-way slabs and slab-column connections). Replace ASCE 41 Table 10-16 with Table 9 (acceptance criteria for linear models of two-way slabs and slab-column connections).",
+      "key_points": [
+        "Tables 6-9 REPLACE ASCE 41 Tables 10-7/10-13/10-15/10-16 -- see reinforced_concrete.py",
+        "Commentary C4.4.3: flexure values multiplied by 2.5 (primary)/2.0 (secondary) over the ASCE 41 baseline",
+        "Tables 6/7 confirmed IDENTICAL to UFC 4-023-03 Tables 4-1/4-2; Table 9 has TWO confirmed printed differences from UFC Table 4-4 -- see module cross-check note"
+      ],
+      "equations": [], "figures": [], "tables": ["6", "7", "8", "9"],
+      "applicability": "The central content of the RC chapter -- these four replacement tables govern all RC beam/slab acceptance checks."
+    },
+    {
+      "section_id": "4.5",
+      "title": "Enhanced Local Resistance for Reinforced Concrete",
+      "summary": "Removed in its entirety.",
+      "body": "This section is removed in its entirety.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "N/A -- section fully removed."
+    }
+  ]
+}

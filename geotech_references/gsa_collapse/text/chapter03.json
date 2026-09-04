@@ -1,0 +1,670 @@
+{
+  "reference_id": "GSA Alternate Path Guidelines",
+  "reference_title": "GSA Alternate Path Analysis and Design Guidelines for Progressive Collapse Resistance (October 24, 2013, Revision 1, January 28, 2016)",
+  "volume": null,
+  "chapter": 3,
+  "chapter_title": "Design Procedures",
+  "sections": [
+    {
+      "section_id": "3",
+      "title": "Design Procedures (chapter introduction)",
+      "summary": "These Guidelines employ the Alternate Path (AP) method ONLY -- Tie Forces and Enhanced Local Resistance are both removed.",
+      "body": "These Guidelines employ the Alternate Path (AP) method only.",
+      "key_points": ["Sole method: Alternate Path (Section 3.2), plus Redundancy Requirements (Section 3.4)"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "States the chapter's scope up front."
+    },
+    {
+      "section_id": "3.1",
+      "title": "Tie Forces",
+      "summary": "This UFC section is removed in its entirety, including Figures 3.1 through 3.6.",
+      "body": "This UFC section is removed in its entirety, including the following figures: Figure 3.1, Figure 3.2, Figure 3.3, Figure 3.4, Figure 3.5, Figure 3.6.",
+      "key_points": ["Tie Forces are not a permitted method under these Guidelines, for any FSL -- see alternate_path.tie_forces_removed()"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Confirms Tie Forces cannot substitute for, or supplement, the Alternate Path method."
+    },
+    {
+      "section_id": "3.2",
+      "title": "Alternate Path Method",
+      "summary": "Used to satisfy progressive-collapse requirements via notional removal of specific vertical load-bearing elements prescribed in Section 3.2.9.",
+      "body": "The Alternate Path method is used to satisfy the progressive collapse requirements of this document for the removal of specific vertical load-bearing elements that are prescribed in Section 3.2.9.",
+      "key_points": ["Points to Section 3.2.9 for removal locations"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Top-level statement of the Alternate Path method."
+    },
+    {
+      "section_id": "3.2.1",
+      "title": "General",
+      "summary": "Follows LRFD philosophy with a modified ASCE 7 extraordinary-event load combination and Phi resistance factors. Three procedures: Linear Static (LSP), Nonlinear Static (NSP), Nonlinear Dynamic (NDP), adapted from ASCE 41 Chapters 9-12 (steel/cast iron, RC, masonry, wood/light-metal/gypsum/plaster) -- superseded where Chapters 4-8 give their own criteria.",
+      "body": "This method follows the general LRFD philosophy by employing a modified version of the ASCE 7 load factor combination for extraordinary events and resistance factors to define design strengths. Three analysis procedures are employed: Linear Static (LSP), Nonlinear Static (NSP) and Nonlinear Dynamic (NDP). These procedures follow the general approach in ASCE 41 with modifications to accommodate progressive collapse. Much of the material-specific criteria from ASCE 41 Chapters 9 to 12 are explicitly adopted in Chapters 4 to 8 of this document: Chapter 9 (steel or cast iron), Chapter 10 (reinforced concrete), Chapter 11 (reinforced or unreinforced masonry), Chapter 12 (timber, light metal studs, gypsum, or plaster products). Some ASCE 41 Chapters 9-12 deformation/strength criteria are superseded by Chapters 4-8 of this document.",
+      "key_points": ["Three procedures: LSP, NSP, NDP", "Material chapters map to ASCE 41 Chapters 9 (steel), 10 (RC), 11 (masonry), 12 (wood/CFS)"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Frames the three analysis procedures detailed in 3.2.11-3.2.13."
+    },
+    {
+      "section_id": "3.2.2",
+      "title": "Alternative Rational Analysis",
+      "summary": "Permits any rational analysis based on fundamental mechanics/dynamics principles (e.g. hand calculations, spreadsheets) provided the specified removal locations, load combinations, and acceptance criteria are incorporated; requires Government/third-party review, and prior Government approval if any of the listed requirements is not met.",
+      "body": "Nothing in this document prevents use of an alternative analysis procedure that is rational and based on fundamental principles of engineering mechanics and dynamics -- e.g. hand calculations or spreadsheets for load-bearing wall structures. Results must meet the acceptance criteria of Section 3.2.10 and Chapters 4-8, include the removal locations of Section 3.2.9, and use the modified ASCE 7 extreme event load combination with the load increase factors of Sections 3.2.11.5/3.2.12.5. If a Linear Static approach is used, Section 3.2.11.1 must be met. All projects using alternative rational analysis shall be reviewed/approved by an independent third-party engineer or Government representative, and the methodology submitted for Government approval prior to starting work.",
+      "key_points": ["Alternative analyses must still meet acceptance criteria, removal locations, load combinations, and (if LSP) the irregularity/DCR gate", "Requires prior Government approval and independent review"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Permits simplified/manual analysis methods for simple structures, within bounds."
+    },
+    {
+      "section_id": "3.2.3",
+      "title": "Load and Resistance Factor Design for Alternate Path Method",
+      "summary": "Equation 3.1 (Phi*Rn >= Ru) integrates LRFD with ASCE 41 (which sets all Phi=1): nominal strength Rn = expected strength QCE (deformation-controlled) or lower-bound strength QCL (force-controlled); Phi is taken from the material-specific code, not set to unity. Live load reductions are permitted for all live loads, with a specific rule for how the LLR is chosen for framed vs. flat-slab/load-bearing-wall structures.",
+      "body": "The design strength is Phi*Rn, which must be >= the required strength Ru = Sum(gamma_i*Q_i) (Equation 3.1). While ASCE 41 requires all Phi factors be taken as unity, this document requires Phi be used as specified in the appropriate material-specific code. ASCE 41's 'action' concept corresponds to LRFD's 'required strength', further split into 'deformation-controlled' and 'force-controlled' actions (Section 3.2.5). The LRFD 'nominal strength' is the 'expected strength' for deformation-controlled actions or the 'lower-bound strength' for force-controlled actions (Section 3.2.6); both use the same over-strength factors as ASCE 41 (Tables 9-3 steel, 10-1 RC, 11-1 masonry; Chapter 12 defaults for wood/CFS, including a time-effect factor lambda for wood). Live load reductions (LLR) per ASCE 7 are permitted for all live loads. For framed structures, the LLR may be applied per-beam or, if applied uniformly, must equal the smallest LLR (greatest live load) for any beam in the bays above the removal location. For flat-slab, load-bearing-wall, and similar direct-transfer structures, the LLR is computed per bay. LLRs are always based on the pre-removal structural configuration.",
+      "key_points": [
+        "Equation 3.1: Phi*Rn >= Ru -- see alternate_path.lrfd_strength_check()",
+        "Phi factors are NOT set to unity (unlike raw ASCE 41)",
+        "LLR rule differs for framed vs. flat-slab/load-bearing-wall structures, and is always based on the pre-removal configuration"
+      ],
+      "equations": ["3.1"], "figures": [], "tables": [],
+      "applicability": "Establishes the general LRFD check used throughout the AP method."
+    },
+    {
+      "section_id": "3.2.4",
+      "title": "Primary and Secondary Components",
+      "summary": "Primary components provide the capacity to resist collapse from a removed element; all others are secondary. Classification (e.g. a gravity beam pinned vs. partially restrained) is left to engineer judgment, subject to meeting the acceptance criteria.",
+      "body": "Designate all structural elements and components as either primary or secondary. Classify elements/components that provide the capacity of the structure to resist collapse due to removal of a vertical load-bearing element as primary. Classify all other elements/components as secondary. For example, a steel gravity beam may be classified secondary if pinned at both ends with the connection's flexural strength ignored; if the connection is modeled as partially restrained and contributes to collapse resistance, it is primary.",
+      "key_points": ["Classification is the engineer's judgment call, not a fixed rule", "Reclassifying a gravity element as primary invokes the more stringent primary-component acceptance criteria"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Governs how model elements are classified before applying acceptance criteria."
+    },
+    {
+      "section_id": "3.2.5",
+      "title": "Force- and Deformation-Controlled Actions",
+      "summary": "Classify every action per Figure 3.7's curve types (Type 1/2/3) and e/g ratio, per Table 1's examples; classification is NOT discretionary. Primary: deformation-controlled if (Type 1 or 2) and e>=2g; else force-controlled. Secondary: deformation-controlled if Type 1 (any e/g) or (Type 2 and e>=2g); else force-controlled.",
+      "body": "Classify all actions as either deformation-controlled or force-controlled using the component force-versus-deformation curve of Figure 3.7. Examples are listed in Table 1. A component might have both force- and deformation-controlled actions. Classification is not up to the discretion of the user and must follow the printed guidance: a PRIMARY component action is deformation-controlled if it has a Type 1 or Type 2 curve and e >= 2g, and force-controlled if Type 1/2 with e < 2g, or Type 3. A SECONDARY component action is deformation-controlled if Type 1 (any e/g) or Type 2 with e >= 2g, and force-controlled if Type 2 with e < 2g, or Type 3.",
+      "key_points": ["Mandatory rule, not engineering judgment -- see alternate_path.classify_action()", "IDENTICAL wording to UFC 4-023-03 Section 3-2.5"],
+      "equations": [], "figures": ["3.7"], "tables": ["1"],
+      "applicability": "Feeds directly into the LSP/NSP/NDP acceptance-criteria checks."
+    },
+    {
+      "section_id": "3.2.6",
+      "title": "Expected and Lower Bound Strength",
+      "summary": "Deformation-controlled actions use QCE (mean strength incl. variability, strain hardening, plastic section development -- e.g. MCE=Z*FYE); force-controlled actions use QCL (mean minus one standard deviation -- e.g. PCL from the governing buckling limit state at FYL).",
+      "body": "When evaluating deformation-controlled actions, use the expected strength QCE, the statistical mean value of strength for a population of similar components, including variability, strain hardening, and plastic section development -- e.g. for a laterally braced beam moment, QCE=MCE=Z*FYE (Z=plastic section modulus, FYE=expected yield strength; if no database exists, FYE is obtained from the lower-bound strength FYL times the appropriate ASCE 41 Chapters 9-12 factor). When evaluating force-controlled actions, use the lower bound strength QCL, the statistical mean minus one standard deviation -- e.g. for a steel column in axial compression, QCL=PCL, the lowest of column/local-flange/local-web buckling calculated at FYL. Where lower-bound data are unavailable, use nominal/construction-document strength.",
+      "key_points": ["QCE for deformation-controlled; QCL for force-controlled", "Defaults to nominal/construction-document strength when statistical data are unavailable"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Defines the 'nominal strength' Rn used in Equation 3.1."
+    },
+    {
+      "section_id": "3.2.7",
+      "title": "Material Properties",
+      "summary": "Expected material properties = mean of tested values; lower bound = mean minus one standard deviation. Absent test data, use nominal/construction-document values as the lower bound and ASCE 41 Chapters 9-12 factors to derive expected values (or use the lower-bound value itself if no factor is given).",
+      "body": "Expected material properties (yield strength, ultimate strength, weld strength, fracture toughness, elongation, etc.) shall be based on mean values of tested material properties. Lower bound properties shall be based on mean minus one standard deviation. If data do not exist, use nominal/construction-document properties as the lower bound unless otherwise specified in ASCE 41 Chapters 9-12, and calculate expected properties by multiplying lower-bound values by the appropriate ASCE 41 Chapters 9-12 factor; if no factor is given, use the lower-bound value as the expected value too.",
+      "key_points": ["Statistical basis for expected vs. lower-bound material properties", "Default fallback chain: statistical data -> construction-document/nominal -> equal expected=lower-bound"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Supports the QCE/QCL determination of Section 3.2.6."
+    },
+    {
+      "section_id": "3.2.8",
+      "title": "Component Force and Deformation Capacities",
+      "summary": "Component strength/deformation capacity methods follow the applicable ASCE 41 material chapter; expected/lower-bound strengths are further multiplied by the material-specific-code Phi factor per Tables 2 (nonlinear) and 3 (linear).",
+      "body": "Methods for calculating individual component strengths and deformation capacities shall comply with the applicable ASCE 41 material chapter. As shown in the acceptance criteria of Sections 3.2.11.7, 3.2.12.7, and 3.2.13.6, expected and lower-bound strengths shall be multiplied by the material-specific-code Phi factors (ACI 318, AISC Manual, etc.) -- note ASCE 41 itself sets Phi=1.",
+      "key_points": ["Phi factors come from material codes, not ASCE 41 (which uses Phi=1)"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Bridges component-capacity calculation to the acceptance-criteria equations."
+    },
+    {
+      "section_id": "3.2.8.1",
+      "title": "Component Capacities for Nonlinear Procedures",
+      "summary": "Table 2: deformation-controlled capacity = permissible inelastic deformation limit; force-controlled capacity = Phi*QCL.",
+      "body": "For nonlinear procedures, component capacities for deformation-controlled actions shall be taken as permissible inelastic deformation limits, and for force-controlled actions as lower-bound strengths QCL multiplied by the appropriate Phi (Table 2).",
+      "key_points": ["See alternate_path.component_capacity_nonlinear()"],
+      "equations": [], "figures": [], "tables": ["2"],
+      "applicability": "Basis for NSP/NDP acceptance criteria (Sections 3.2.12.7, 3.2.13.6)."
+    },
+    {
+      "section_id": "3.2.8.2",
+      "title": "Component Capacities for the Linear Static Procedure",
+      "summary": "Table 3: deformation-controlled capacity = Phi*m*QCE (expected material strength); force-controlled capacity = Phi*QCL (lower-bound material strength).",
+      "body": "For the linear static procedure, component capacities for deformation-controlled actions are the product of m-factors and expected strengths QCE, multiplied by Phi. Capacities for force-controlled actions are lower-bound strengths QCL multiplied by Phi (Table 3).",
+      "key_points": ["See alternate_path.component_capacity_linear()"],
+      "equations": [], "figures": [], "tables": ["3"],
+      "applicability": "Basis for LSP acceptance criteria (Section 3.2.11.7)."
+    },
+    {
+      "section_id": "3.2.9",
+      "title": "Removal of Load-Bearing Elements for the Alternate Path Method",
+      "summary": "Removal scope is set by Facility Security Level: FSL III/IV remove exterior elements at the first floor above grade PLUS all elements (interior/exterior) within underground parking, loading docks, and uncontrolled-public-access areas (controlled public access requires BOTH badge-ID+guard access control AND x-ray/magnetometer screening); FSL V removes interior and exterior elements at EVERY floor level.",
+      "body": "Vertical load-bearing elements are removed as identified below for each FSL Level. (1) For FSL III and IV: exterior elements at the first floor above grade and all elements (interior and exterior) within underground parking, loading docks, and areas of uncontrolled public access. Controlled public access requires badge ID systems for employee access with guard personnel for visual/physical inspection, AND x-ray/magnetometer screening for all visitors and their property. (2) For FSL V: interior and exterior elements at each floor level.",
+      "key_points": [
+        "FSL-keyed removal scope REPLACES UFC 4-023-03's Occupancy-Category scheme -- see alternate_path.removal_locations_fsl_3_4()/removal_locations_fsl_5()",
+        "Controlled public access = BOTH badge-ID+guard control AND x-ray/magnetometer screening"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "The central removal-location trigger for the whole Alternate Path method."
+    },
+    {
+      "section_id": "3.2.9.1",
+      "title": "Extent of Removed Load-Bearing Elements",
+      "summary": "For any column, remove the full clear height between lateral restraints (beam-to-beam continuity assumed maintained across the removed column, Figure 3.8).",
+      "body": "For each column and load-bearing wall, remove the clear height between lateral restraints. For column removal, beam-to-beam continuity is assumed to be maintained across a removed column (Figure 3.8).",
+      "key_points": ["See alternate_path.removed_element_extent()"],
+      "equations": [], "figures": ["3.8"], "tables": [],
+      "applicability": "Defines the vertical extent of a column/wall removal."
+    },
+    {
+      "section_id": "3.2.9.1.1",
+      "title": "OC II Option 1 (Deficient Vertical Tie Force)",
+      "summary": "Removed in its entirety (Tie Force-based removal exemptions do not exist under these Guidelines).",
+      "body": "This section is removed in its entirety.",
+      "key_points": ["Confirms no Occupancy-Category/Tie-Force-based removal exemption path exists"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "N/A -- section fully removed."
+    },
+    {
+      "section_id": "3.2.9.1.2",
+      "title": "OC II Option 2, OC III, and OC IV",
+      "summary": "Removed in its entirety (Occupancy-Category-based removal-extent provisions do not exist under these Guidelines).",
+      "body": "This section is removed in its entirety.",
+      "key_points": ["Confirms removal extent is governed solely by FSL (Section 3.2.9), not UFC's Occupancy Category scheme"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "N/A -- section fully removed."
+    },
+    {
+      "section_id": "3.2.9.2",
+      "title": "Location of Removed Load-Bearing Elements",
+      "summary": "Plan locations for external columns, internal columns, external walls, and internal walls are set in Sections 3.2.9.2.2-3.2.9.2.5 below; the Occupancy-Category-based location scheme of UFC 4-023-03 (3.2.9.2.1) is removed.",
+      "body": "Plan locations for removed load-bearing elements are specified by element type and interior/exterior condition in the subsections below.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "Parent section for the plan-location rules."
+    },
+    {
+      "section_id": "3.2.9.2.1",
+      "title": "OC II Option 1 (Deficient Vertical Tie Force)",
+      "summary": "Removed in its entirety.",
+      "body": "This section is removed in its entirety.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "N/A -- section fully removed."
+    },
+    {
+      "section_id": "3.2.9.2.2",
+      "title": "External Columns",
+      "summary": "Remove near the middle of each side and at/adjacent-to (penultimate) each corner, PLUS engineering-judgment critical locations (plan-geometry change, vertical discontinuity, lightly-loaded neighbor, differing tributary size, differing framing orientation/elevation). Any other column within 30% of the largest bay dimension from the primary removal must be removed simultaneously.",
+      "body": "Remove external columns near the middle of the short side, near the middle of the long side, at the corner of the building, and adjacent to the corner (penultimate), as shown in Figure 3.9. Also remove columns at critical locations per engineering judgment, at minimum where: plan geometry changes significantly (abrupt bay-size decrease, re-entrant corners); vertical load discontinuity (transfer conditions) exists; adjacent columns are lightly loaded; adjacent bays have different tributary sizes; or members frame in at different orientations/elevations. If any other column is within 30% of the largest dimension of the associated bay from the removal location, it must be removed simultaneously.",
+      "key_points": ["See alternate_path.removal_locations_fsl_3_4() and adjacent_element_removal_trigger()"],
+      "equations": [], "figures": ["3.9"], "tables": [],
+      "applicability": "FSL III/IV/V exterior-column plan-location rule."
+    },
+    {
+      "section_id": "3.2.9.2.3",
+      "title": "Internal Columns",
+      "summary": "For structures with underground parking or uncontrolled public access: remove near the middle of each side and at the corner of the uncontrolled space, one story height (parking/uncontrolled floor to next floor), analyzed only for that story; PLUS the same engineering-judgment critical locations as external columns.",
+      "body": "For structures with underground parking or areas of uncontrolled public access, remove internal columns near the middle of the short side, near the middle of the long side and at the corner of the uncontrolled space (Figure 3.10). For each plan location, the AP analysis is only performed for the story with the parking or uncontrolled public area; the removed column extends from that floor to the next floor (one story height). Internal columns must also be removed at critical locations per the same engineering-judgment criteria as external columns.",
+      "key_points": ["Scope limited to the specific affected story", "One-story-height removal extent (not full building height)"],
+      "equations": [], "figures": ["3.10"], "tables": [],
+      "applicability": "FSL III/IV interior-column plan-location rule for parking/uncontrolled-access areas."
+    },
+    {
+      "section_id": "3.2.9.2.4",
+      "title": "External Load-Bearing Walls",
+      "summary": "Remove near the middle of each side and at each corner (2H length in each direction where a load-bearing wall intersects), plus the same engineering-judgment critical locations; the designer must also shift the removed section by up to H if that creates a worse-case scenario.",
+      "body": "As a minimum, remove external load-bearing walls near the middle of the short side, near the middle of the long side, and at the corner of the building (Figure 3.11). For external corners where one or both intersecting walls is load-bearing, remove a length of wall equal to the clear story height H in each direction. Also remove walls at critical locations per engineering judgment (same criteria as columns). The designer must also shift the removed wall section location by up to H if that creates a worse-case scenario.",
+      "key_points": ["Corner removal extent = H in each direction", "Designer must probe a shift of up to H for worst case"],
+      "equations": [], "figures": ["3.11"], "tables": [],
+      "applicability": "FSL III/IV/V exterior-wall plan-location rule."
+    },
+    {
+      "section_id": "3.2.9.2.5",
+      "title": "Internal Load-Bearing Walls",
+      "summary": "For structures with underground parking/uncontrolled access: remove near the middle of each side and at the corner of the uncontrolled space (2H length at internal corners), one story height, plus critical locations and the up-to-H shift check.",
+      "body": "For structures with underground parking or uncontrolled public access, remove internal load-bearing walls near the middle of the short side, near the middle of the long side, and at the corner of the uncontrolled space (Figure 3.12). For internal corners where one or both intersecting walls is load-bearing, remove a length of wall equal to H in each direction; the removed wall extends from the affected floor to the next floor (one story height). Also remove walls at other critical locations within the uncontrolled area per engineering judgment. The designer must shift the removed section by up to H if that creates a worse-case scenario.",
+      "key_points": ["Scope limited to the specific affected story"],
+      "equations": [], "figures": ["3.12"], "tables": [],
+      "applicability": "FSL III/IV interior-wall plan-location rule for parking/uncontrolled-access areas."
+    },
+    {
+      "section_id": "3.2.10",
+      "title": "Structural Acceptance Criteria",
+      "summary": "New buildings/additions and existing buildings both satisfy the AP requirements if no element exceeds the acceptance criteria of the applicable procedure; existing buildings ALSO have a disproportionate-collapse allowance (Section 3.2.10.2) not available to new buildings.",
+      "body": "For all three analysis types, a structure satisfies the Alternate Path requirements if none of its primary/secondary elements, components, or connections exceeds the applicable acceptance criteria (Sections 3.2.11.7, 3.2.12.7, 3.2.13.6). New buildings/additions failing this check must be redesigned. Existing buildings have an additional alternative path to compliance, described in 3.2.10.2.",
+      "key_points": ["New/additions: strict pass/fail, no allowance", "Existing buildings: disproportionate-collapse allowance available -- see 3.2.10.2"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Top-level acceptance-criteria gate for the whole Alternate Path method."
+    },
+    {
+      "section_id": "3.2.10.1",
+      "title": "New Buildings and Additions",
+      "summary": "Must meet the acceptance criteria with NO collapse allowance; a failing element/component/connection requires redesign.",
+      "body": "For all three analysis types, a new building satisfies the Alternate Path requirements if none of the primary and secondary elements, components, or connections exceeds the applicable acceptance criteria. If any element fails, the building does not satisfy the requirements and must be redesigned to eliminate the non-conforming elements.",
+      "key_points": ["No disproportionate-collapse allowance for new construction"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Strict compliance standard for new construction/additions."
+    },
+    {
+      "section_id": "3.2.10.2",
+      "title": "Existing Buildings",
+      "summary": "An existing building may still satisfy the AP requirements, even with failing elements, if the failure's extent of collapse is not DISPROPORTIONATE: floor framing within a single bay on each side, at the floor directly above the removed element, not exceeding 15% (exterior) or 30% (interior) of the total floor area for that floor (Figures 3.13/3.14). Requires prior Government-approved methodology and independent/Government review; the design of space below must account for falling debris (or the designer must demonstrate elements won't disengage/fall). If the building still fails even with this allowance, the Government must be given full mitigate-or-accept information.",
+      "body": "For all three analysis types, an existing building satisfies the requirements if no element exceeds the acceptance criteria; alternatively, if elements do exceed the criteria but additional analyses demonstrate their failure will not result in a disproportionate extent of collapse, the building is still considered to satisfy the requirements. This alternative approach requires prior Government-approved methodology and final-analysis review by an independent third-party engineer or Government representative. The extent of collapse is the extent of elements/connections exceeding the acceptance criteria. A DISPROPORTIONATE extent of collapse is defined as a collapsed area exceeding: (1) exterior -- floor framing within a single structural bay on each side, immediately adjacent to and at the floor directly above the removed element, not exceeding 15% of the total floor area for that floor (Figures 3.13/3.14); (2) interior -- the same, not exceeding 30% of the total floor area. Design of the space below must account for falling primary/secondary elements, or the designer must demonstrate elements will not disengage and fall under the expected loads/displacements. If the building still does not satisfy the requirements, the Government shall be given all pertinent information for an informed mitigate-or-accept decision.",
+      "key_points": [
+        "15% exterior / 30% interior floor-area allowance, existing buildings ONLY -- see alternate_path.disproportionate_collapse_allowance()",
+        "Commentary C3.2.10.2: this allowance is NOT present in the current UFC 4-023-03 edition, which removed its own prior version of it entirely",
+        "Requires prior Government approval + independent/Government review",
+        "Falling-debris design (or a no-disengagement demonstration) is required for the space below"
+      ],
+      "equations": [], "figures": ["3.13", "3.14"], "tables": [],
+      "applicability": "The existing-building-only alternative compliance path."
+    },
+    {
+      "section_id": "3.2.11",
+      "title": "Linear Static Procedure",
+      "summary": "The LSP and its use limitations are set in the following subsections.",
+      "body": "The LSP and limitations to its use are provided in the following sub-sections.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "Parent section for LSP subsections."
+    },
+    {
+      "section_id": "3.2.11.1",
+      "title": "Limitations on the Use of LSP",
+      "summary": "LSP is limited to structures of 10 stories or less. Regular structures may always use LSP without a DCR check; irregular structures may use LSP only if every component DCR <= 2.0.",
+      "body": "The use of the LSP is limited to structures that are 10-stories or less and that meet the irregularity/DCR requirements below. If there are no structural irregularities (Section 3.2.11.1.1), a linear static procedure may be performed without calculating DCRs (Section 3.2.11.1.2). If the structure is irregular, LSP may be used if all component DCRs are <= 2.0; if any DCR exceeds 2.0, LSP cannot be used.",
+      "key_points": ["10-story cap is NOT present in UFC 4-023-03's own LSP section -- see alternate_path.lsp_story_limit()", "See alternate_path.irregularity_check()/lsp_applicable()"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Gates whether LSP may be used at all."
+    },
+    {
+      "section_id": "3.2.11.1.1",
+      "title": "Irregularity Limitations",
+      "summary": "A structure is irregular if ANY of: (1) significant gravity/lateral-system discontinuities (excl. stepped-back stories); (2) exterior-column bay stiffness/strength asymmetry <50% (excl. corners); (3) exterior-wall stiffness/strength asymmetry <50% (excl. corners); (4) lateral elements not parallel to the major orthogonal axes.",
+      "body": "A structure is irregular if any one of the following is true: (1) significant discontinuities in the gravity-load-carrying and lateral-force-resisting systems, including out-of-plane offsets of primary vertical elements, roof belt-girders, and transfer girders (non-stacking primary columns/walls) -- stepped-back stories are not an irregularity; (2) at any exterior column except corners, at each story in a framed structure, bay stiffness/strength ratio from one side to the other is less than 50% (e.g. differing adjacent bay lengths, beam depth/strength, or connection strength/stiffness); (3) for all external load-bearing walls except corners, at each story, wall stiffness/strength ratio from one side of an intersecting wall to the other is less than 50%; (4) horizontal lateral-load-resisting elements are not parallel to the major orthogonal axes (skewed/curved frames or walls).",
+      "key_points": ["See alternate_path.irregularity_check()"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Defines the four irregularity conditions."
+    },
+    {
+      "section_id": "3.2.11.1.2",
+      "title": "DCR Limitation",
+      "summary": "Equation 3.2 (DCR=QUDLim/QCE): built from a linear model of all primary components except the removed element, loaded per the deformation-controlled load case with gravity loads increased by Omega_LD.",
+      "body": "To calculate the DCRs, create a linear model of the building per Section 3.2.11.2, with all primary components except the removed wall or column. Apply the deformation-controlled load case (Section 3.2.11.4.1) with gravity dead/live loads increased by Omega_LD (Section 3.2.11.5); the resulting actions are QUDLim. DCR = QUDLim/QCE, where QCE is the expected strength of the component from Chapters 4-8.",
+      "key_points": ["Equation 3.2 -- see alternate_path.dcr()"],
+      "equations": ["3.2"], "figures": [], "tables": [],
+      "applicability": "The specific DCR calculation used only to gate LSP applicability for irregular structures."
+    },
+    {
+      "section_id": "3.2.11.2",
+      "title": "Analytical Modeling",
+      "summary": "Model as a 3D assembly of elements (hand/spreadsheet calculations remain permitted per Section 3.2.2).",
+      "body": "To model, analyze, and evaluate a building, employ a three-dimensional assembly of elements and components. Hand or spreadsheet calculations remain permitted per Section 3.2.2.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "General LSP modeling requirement."
+    },
+    {
+      "section_id": "3.2.11.2.1",
+      "title": "Loads",
+      "summary": "Analyze two separate load cases: one for deformation-controlled actions QUD, one for force-controlled actions QUF.",
+      "body": "Analyze the model with two separate load cases: to calculate the deformation-controlled actions QUD, and the force-controlled actions QUF, per the load cases defined in Section 3.2.11.4.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "Sets up the two-load-case LSP analysis."
+    },
+    {
+      "section_id": "3.2.11.2.2",
+      "title": "Required Model Elements",
+      "summary": "Model the stiffness/resistance of primary elements only, with enough detail for correct vertical-load transfer, per ASCE 41 Chapters 9-12 guidance; secondary elements may be estimated by hand or included (with zero stiffness/resistance) for convenience. Short (<=3-story) attached sections must be evaluated for potential negative interaction with taller (4+ story) sections.",
+      "body": "Include the stiffness and resistance of only the primary elements and components, with sufficient structural detail for correct vertical-load transfer, per ASCE 41 Chapters 9-12 guidance. After analysis, check primary and secondary elements against the force-/deformation-controlled acceptance criteria. Secondary elements are not included in the model, but their actions/deformations may be estimated from the primary-only model's deformations, or the model may be re-analyzed with secondary components included at zero stiffness/resistance (for convenience of checking their deformations). If the building has sections of three stories or less attached to sections of four or more stories, the designer must analyze whether the short section could negatively affect the taller section; if so, include the short section in the model.",
+      "key_points": ["Primary elements: modeled with real stiffness/resistance", "Secondary elements: zero stiffness/resistance if included, or estimated by hand", "Short-section/tall-section interaction check"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Modeling-detail requirements for the LSP."
+    },
+    {
+      "section_id": "3.2.11.2.3",
+      "title": "Limitations on Connection Strength",
+      "summary": "A connection between horizontal flexural elements and vertical elements shall not be modeled stronger than the attached horizontal flexural element.",
+      "body": "For models with connections between horizontal flexural elements (beams, slabs, girders) and vertical load-bearing elements (columns, walls), the connection strength shall not be modeled as greater than the strength of the attached horizontal flexural element.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "Caps connection strength relative to the member it connects."
+    },
+    {
+      "section_id": "3.2.11.3",
+      "title": "Stability/P-Delta Effects",
+      "summary": "Overall/local stability must be considered, but a formal P-Delta analysis is NOT required for LSP given its small deformations.",
+      "body": "Overall vertical and lateral stability as well as local stability (lateral torsional buckling) must be considered. However, a P-Delta analysis is not required for the Linear Static approach due to the small deformations.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "Stability-check scope for the LSP."
+    },
+    {
+      "section_id": "3.2.11.4",
+      "title": "Loading",
+      "summary": "Two load cases (deformation- and force-controlled) are applied and analyzed separately; live load reduction is allowed per Section 3.2.3.",
+      "body": "Due to the different methods for calculating deformation-controlled and force-controlled actions, two load cases are applied and analyzed: one for deformation-controlled actions, one for force-controlled actions. Live load reduction is allowed if the requirements in Section 3.2.3 are met.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "Introduces Equations 3.3-3.5."
+    },
+    {
+      "section_id": "3.2.11.4.1",
+      "title": "Load Case for Deformation-Controlled Actions QUD",
+      "summary": "Equation 3.3 (GLD=Omega_LD*[1.2D+(0.5L or 0.2S)]) applies to bays immediately adjacent to and above the removed element; Equation 3.4 (G=1.2D+(0.5L or 0.2S)) applies elsewhere.",
+      "body": "To calculate deformation-controlled actions, apply GLD = Omega_LD*[1.2D + (0.5L or 0.2S)] to bays immediately adjacent to the removed element and at all floors above it (Figures 3.15/3.16); L includes the live-load reduction per Section 3.2.3, capped at 50 lb/ft2 (printed as 244 kN/m2). Apply G = 1.2D + (0.5L or 0.2S) to bays not loaded with GLD.",
+      "key_points": ["Equation 3.3 (GLD) and 3.4 (G away) -- see alternate_path.deformation_controlled_load_lsp()/gravity_load_away_from_removal()"],
+      "equations": ["3.3", "3.4"], "figures": ["3.15", "3.16"], "tables": [],
+      "applicability": "Deformation-controlled load case for the LSP."
+    },
+    {
+      "section_id": "3.2.11.4.2",
+      "title": "Load Case for Force-Controlled Actions QUF",
+      "summary": "Equation 3.5 (GLF=Omega_LF*[1.2D+(0.5L or 0.2S)]) applies to bays immediately adjacent to and above the removed element; the same G formula (Equation 3.4) applies elsewhere.",
+      "body": "To calculate force-controlled actions, apply GLF = Omega_LF*[1.2D + (0.5L or 0.2S)] to bays immediately adjacent to the removed element and at all floors above it (Figures 3.15/3.16). Apply G = 1.2D + (0.5L or 0.2S) (Equation 3.4) to bays not loaded with GLF.",
+      "key_points": ["Equation 3.5 -- see alternate_path.force_controlled_load_lsp()"],
+      "equations": ["3.5"], "figures": ["3.15", "3.16"], "tables": [],
+      "applicability": "Force-controlled load case for the LSP."
+    },
+    {
+      "section_id": "3.2.11.5",
+      "title": "Load Increase Factor",
+      "summary": "Table 4 gives Omega_LD and Omega_LF by material/structure type, as a function of mLIF -- the smallest m-factor of any primary beam/girder/spandrel/wall element directly connected to the columns/walls directly above the removal (columns excluded). For RC-framed structures, the beam-hinge m-factor is used even though the joint itself is force-controlled (Footnote A).",
+      "body": "The load increase factors for deformation-controlled and force-controlled actions are in Table 4. mLIF is the smallest m of any primary beam, girder, spandrel, or wall element directly connected to the columns/walls directly above the removal location; columns are excluded from the mLIF determination. For RC framed structures, per Footnote A, beam-column joints are force-controlled but the Omega_LD calculation still uses the m-factor of the beam hinge forming near the column. The method behind this procedure is explained in Appendix C.",
+      "key_points": ["Table 4 -- see alternate_path.table_4_load_increase_factor()", "IDENTICAL to UFC 4-023-03 Table 3-4 -- see module cross-check note"],
+      "equations": [], "figures": [], "tables": ["4"],
+      "applicability": "Provides Omega_LD/Omega_LF for Equations 3.3/3.5."
+    },
+    {
+      "section_id": "3.2.11.6",
+      "title": "Design Forces and Deformations",
+      "summary": "QUD and QUF are calculated per the LSP procedures of Sections 3.2.11.2-3.2.11.5.",
+      "body": "Calculate the deformation-controlled actions QUD and force-controlled actions QUF in accordance with the linear analysis procedures of Sections 3.2.11.2 to 3.2.11.5.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "Pointer section connecting modeling to acceptance criteria."
+    },
+    {
+      "section_id": "3.2.11.7",
+      "title": "Component and Element Acceptance Criteria",
+      "summary": "Components analyzed via the LSP must satisfy Sections 3.2.11.7.1 (deformation-controlled) and 3.2.11.7.2 (force-controlled), after classification per Sections 3.2.4/3.2.5.",
+      "body": "Components and elements analyzed using the LSP procedures of Sections 3.2.11.2-3.2.11.5 shall satisfy the requirements of this section. Prior to selecting acceptance criteria, classify components as primary/secondary and actions as deformation-/force-controlled per Sections 3.2.4 and 3.2.5.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "Parent section for the LSP acceptance-criteria equations."
+    },
+    {
+      "section_id": "3.2.11.7.1",
+      "title": "Deformation-Controlled Actions",
+      "summary": "Equation 3.6 (Phi*m*QCE >= QUD): QCE determined per ASCE 41 Chapters 9-12, including any interaction equations for shear/axial/moment.",
+      "body": "For deformation-controlled actions in all primary and secondary components, check Phi*m*QCE >= QUD, where m is the m-factor from Chapters 4-8 and Phi is the material-specific-code resistance factor. QCE is determined considering all coexisting actions per ASCE 41 Chapters 9-12, including interaction equations combining force- and deformation-controlled actions and expected/lower-bound strengths.",
+      "key_points": ["Equation 3.6 -- see alternate_path.deformation_controlled_capacity_check()"],
+      "equations": ["3.6"], "figures": [], "tables": [],
+      "applicability": "The LSP's deformation-controlled acceptance check."
+    },
+    {
+      "section_id": "3.2.11.7.2",
+      "title": "Force-Controlled Actions",
+      "summary": "Equation 3.7 (Phi*QCL >= QUF), determined analogously to Section 3.2.11.7.1's deformation-controlled check.",
+      "body": "For force-controlled actions in all primary and secondary components, check Phi*QCL >= QUF, where QCL is the lower-bound strength for the force-controlled action and Phi is the material-specific-code resistance factor.",
+      "key_points": ["Equation 3.7 -- see alternate_path.force_controlled_capacity_check()"],
+      "equations": ["3.7"], "figures": [], "tables": [],
+      "applicability": "The LSP's force-controlled acceptance check."
+    },
+    {
+      "section_id": "3.2.11.7.3",
+      "title": "Secondary Elements and Components",
+      "summary": "All secondary elements/components must meet both Equation 3.6 (deformation) and Equation 3.7 (force).",
+      "body": "All secondary components and elements must be checked to ensure they meet the acceptance criteria: deformation-controlled actions per Equation 3.6, force-controlled actions per Equation 3.7.",
+      "key_points": [], "equations": ["3.6", "3.7"], "figures": [], "tables": [],
+      "applicability": "Confirms secondary elements are held to the same equations as primary."
+    },
+    {
+      "section_id": "3.2.12",
+      "title": "Nonlinear Static Procedure",
+      "summary": "The NSP and its use limitations are set in the following subsections.",
+      "body": "The NSP and limitations to its use are provided in the following sub-sections.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "Parent section for NSP subsections."
+    },
+    {
+      "section_id": "3.2.12.1",
+      "title": "Limitations on the Use of NSP",
+      "summary": "No DCR or geometric-irregularity limitations apply to the NSP.",
+      "body": "There are no DCR or geometric irregularity limitations on the use of the NSP.",
+      "key_points": ["NSP has no story-count cap, irregularity gate, or DCR check (unlike LSP)"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Confirms unrestricted NSP applicability."
+    },
+    {
+      "section_id": "3.2.12.2",
+      "title": "Analytical Modeling",
+      "summary": "One 3D model per structure type (framed or load-bearing wall); primary components always modeled, secondary optional (else checked separately); Phi is applied to nonlinear strength models; explicit force-displacement/degradation modeling and explicit connection modeling where the connection governs or its flexibility shifts forces/deformations >10%; short-section interaction check as in the LSP.",
+      "body": "Employ a 3D assembly of elements/components; create one model for framed or load-bearing wall structures. Inclusion of secondary components is optional -- if omitted, they must be checked afterward against the allowable deformation-controlled criteria (e.g. computing chord rotation for a gravity beam's connection). Include the stiffness and resistance of primary components; the material-code Phi factors are applied to the nonlinear strength models (e.g. nominal flexural strength times Phi). Analyze per the Nonlinear Static load case (Section 3.2.12.4). Use ASCE 41 Chapters 9-12 stiffness requirements; discretize the load-deformation response along each component's length; explicitly model force-displacement behavior including strength degradation/residual strength; explicitly model a connection if it is weaker/less ductile than the connected components, or its flexibility changes connection forces/deformations by more than 10%. If sections less than four stories are attached to sections of four or more, use engineering judgment to include some/all of the shorter section if it could negatively affect the taller one.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "NSP modeling requirements."
+    },
+    {
+      "section_id": "3.2.12.3",
+      "title": "Stability/P-Delta Effects",
+      "summary": "Overall/local stability must be considered for the NSP (no exemption analogous to the LSP's small-deformation exemption).",
+      "body": "Overall vertical and lateral stability as well as local stability (lateral torsional buckling) must be considered.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "Stability-check scope for the NSP."
+    },
+    {
+      "section_id": "3.2.12.4",
+      "title": "Loading",
+      "summary": "Live load reduction is allowed per Section 3.2.3; a single combined load case (Equation 3.8/3.9) is applied incrementally.",
+      "body": "Live load reduction is allowed, if the requirements in Section 3.2.3 are met.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "Introduces the NSP load equations and procedure."
+    },
+    {
+      "section_id": "3.2.12.4.1",
+      "title": "Loads",
+      "summary": "Equation 3.8 (GN=Omega_N*[1.2D+(0.5L or 0.2S)]) applies to bays immediately adjacent to/above the removed element for BOTH deformation- and force-controlled actions together; Equation 3.9 (G=1.2D+(0.5L or 0.2S)) applies elsewhere.",
+      "body": "To calculate deformation- and force-controlled actions simultaneously, apply GN = Omega_N*[1.2D + (0.5L or 0.2S)] to bays immediately adjacent to the removed element and at all floors above it (Figures 3.15/3.16). Apply G = 1.2D + (0.5L or 0.2S) (Equation 3.9) to bays not loaded with GN.",
+      "key_points": ["Equations 3.8 (GN) and 3.9 (G away) -- see alternate_path.nonlinear_static_load()/gravity_load_away_from_removal()"],
+      "equations": ["3.8", "3.9"], "figures": ["3.15", "3.16"], "tables": [],
+      "applicability": "The NSP's single combined load case (unlike LSP's two separate cases)."
+    },
+    {
+      "section_id": "3.2.12.4.2",
+      "title": "Loading Procedure",
+      "summary": "Apply loads via a load history starting at zero, reaching full value in at least 10 increments, with iterative convergence at each step.",
+      "body": "Apply the loads using a load history that starts at zero and is increased to the final values. Apply at least 10 load steps to reach the total load. The software must incrementally increase the load and iteratively reach convergence before the next increment.",
+      "key_points": ["Minimum 10 load steps"], "equations": [], "figures": [], "tables": [],
+      "applicability": "Defines the incremental-loading procedure for the NSP."
+    },
+    {
+      "section_id": "3.2.12.5",
+      "title": "Dynamic Increase Factor for NSP (Omega_N)",
+      "summary": "Table 5 gives Omega_N by material/structure type, as a function of the SMALLEST theta_pra/theta_y ratio for any primary element/connection within or touching the increased-load region (columns excluded); theta_y per ASCE 41 Eq. 9-1 (steel) or Table 10-5 stiffness (RC).",
+      "body": "Table 5 gives the Nonlinear Static dynamic increase factors Omega_N. theta_pra is the plastic rotation angle from the acceptance-criteria tables (this document/ASCE 41) for the appropriate performance level; theta_y is the yield rotation (ASCE 41 Equation 9-1 for steel; ASCE 41 Table 10-5 effective stiffness for RC; for connections, theta_y is that of the connected structural element, theta_pra that of the connection). Columns are omitted from the Omega_N determination. Choose the SMALLEST theta_pra/theta_y ratio for any primary element/component/connection within or touching the area loaded with the increased gravity load (Figures 3.15/3.16) -- i.e. anything within or touching the A-B-C-D perimeter of Figure 3.15 -- and use the LARGEST resulting Omega_N for the analysis. The method is explained in Appendix C.",
+      "key_points": ["Table 5 -- see alternate_path.table_5_dynamic_increase_factor()", "IDENTICAL to UFC 4-023-03 Table 3-5 -- see module cross-check note", "Columns excluded from the governing-ratio search"],
+      "equations": [], "figures": ["3.15", "3.16"], "tables": ["5"],
+      "applicability": "Provides Omega_N for Equation 3.8."
+    },
+    {
+      "section_id": "3.2.12.6",
+      "title": "Design Forces and Deformations",
+      "summary": "Component design forces/deformations follow the NSP procedures of Sections 3.2.12.2-3.2.12.5.",
+      "body": "Calculate component design forces and deformations in accordance with the nonlinear analysis procedure of Sections 3.2.12.2 to 3.2.12.5.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "Pointer section connecting NSP modeling to acceptance criteria."
+    },
+    {
+      "section_id": "3.2.12.7",
+      "title": "Component and Element Acceptance Criteria",
+      "summary": "Components analyzed via the NSP must satisfy Sections 3.2.12.7.1 (deformation-controlled) and 3.2.12.7.2 (force-controlled).",
+      "body": "Components and elements analyzed using the nonlinear procedures of Sections 3.2.12.2-3.2.12.5 shall satisfy the requirements of this section.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "Parent section for the NSP acceptance-criteria checks."
+    },
+    {
+      "section_id": "3.2.12.7.1",
+      "title": "Deformation-Controlled Actions",
+      "summary": "Expected deformation capacity (per Chapters 4-8, considering coexisting forces/deformations) must exceed the maximum calculated demand -- no m-factor or Phi applied, unlike the LSP.",
+      "body": "Primary and secondary elements/components shall have expected deformation capacities greater than the maximum calculated deformation demands. Expected deformation capacities are determined considering all coexisting forces/deformations per Chapters 4-8.",
+      "key_points": ["See alternate_path.deformation_controlled_capacity_check_nonlinear()"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "The NSP's deformation-controlled acceptance check."
+    },
+    {
+      "section_id": "3.2.12.7.2",
+      "title": "Force-Controlled Actions",
+      "summary": "Equation 3.10 (Phi*QCL >= QUF), identical in form to the LSP's Equation 3.7.",
+      "body": "For force-controlled actions in all primary and secondary elements and components, Phi*QCL >= QUF, where QUF is the force-controlled action from the Nonlinear Static model.",
+      "key_points": ["Equation 3.10 -- see alternate_path.force_controlled_capacity_check()"],
+      "equations": ["3.10"], "figures": [], "tables": [],
+      "applicability": "The NSP's force-controlled acceptance check."
+    },
+    {
+      "section_id": "3.2.13",
+      "title": "Nonlinear Dynamic Procedure",
+      "summary": "The NDP and its use limitations are set in the following subsections.",
+      "body": "The NDP and limitations to its use are provided in the following sub-sections.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "Parent section for NDP subsections."
+    },
+    {
+      "section_id": "3.2.13.1",
+      "title": "Limitations on the Use of NDP",
+      "summary": "No DCR or geometric-irregularity limitations apply to the NDP.",
+      "body": "There are no DCR or geometric irregularity limitations on the use of the NDP.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "Confirms unrestricted NDP applicability."
+    },
+    {
+      "section_id": "3.2.13.2",
+      "title": "Analytical Modeling",
+      "summary": "Model the ENTIRE structure including the to-be-removed column/wall section; otherwise the same modeling requirements as the NSP (Phi applied to nonlinear strength, explicit degradation/connection modeling, short-section check).",
+      "body": "Employ a 3D assembly of elements/components, modeling the entire structure including the wall section/column to be removed during the analysis. Include the stiffness and resistance of primary components; material-code Phi factors are applied to the nonlinear strength models. Secondary component inclusion is optional (else checked afterward). Use ASCE 41 Chapters 9-12 stiffness requirements, discretized load-deformation response, explicit degradation/connection modeling per the same >10%-shift criterion as the NSP, and the same short-section (<4 stories attached to >=4 stories) interaction check.",
+      "key_points": ["Unlike the NSP/LSP, the to-be-removed element IS included in the initial model"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "NDP modeling requirements."
+    },
+    {
+      "section_id": "3.2.13.3",
+      "title": "Lateral Stability and P-Delta Effects",
+      "summary": "Overall/local stability must be considered for the NDP.",
+      "body": "Overall vertical and lateral stability as well as local stability (lateral torsional buckling) must be considered.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "Stability-check scope for the NDP."
+    },
+    {
+      "section_id": "3.2.13.4",
+      "title": "Loading",
+      "summary": "Live load reduction is allowed per Section 3.2.3; a single whole-structure load (Equation 3.11) is applied per the two-phase (equilibrium, then removal) procedure of 3.2.13.4.2.",
+      "body": "Live load reduction is allowed, if the requirements in Section 3.2.3 are met.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "Introduces the NDP load equation and procedure."
+    },
+    {
+      "section_id": "3.2.13.4.1",
+      "title": "Loads",
+      "summary": "Equation 3.11 (GND=1.2D+(0.5L or 0.2S)) is applied to the ENTIRE structure -- no load increase factor (dynamic effects are captured via the removal-duration requirement instead).",
+      "body": "To calculate deformation- and force-controlled actions, apply the gravity load combination GND = 1.2D + (0.5L or 0.2S) to the entire structure, per the loading procedure of Section 3.2.13.4.2.",
+      "key_points": ["Equation 3.11 -- see alternate_path.nonlinear_dynamic_load()", "No Omega factor -- dynamics captured by the removal-duration rule instead"],
+      "equations": ["3.11"], "figures": [], "tables": [],
+      "applicability": "The NDP's single whole-structure load case."
+    },
+    {
+      "section_id": "3.2.13.4.2",
+      "title": "Loading Procedure",
+      "summary": "First bring the intact structure to equilibrium by monotonic proportional loading; then remove the column/wall section over a duration less than 1/10 of the vertical-response-mode period (preferably instantaneous); run until maximum displacement or one full cycle of vertical motion at the removal location, whichever is greater.",
+      "body": "Starting at zero load, monotonically and proportionately increase the gravity loads to the entire model (column/wall not yet removed) until equilibrium is reached. After equilibrium, remove the column or wall section. While instantaneous removal is preferable, the removal duration must be less than one-tenth of the period associated with the structural response mode for vertical motion of the bays above the removed column (determined from the column/wall-removed model). The analysis duration is until maximum displacement is reached OR one cycle of vertical motion occurs at the removal location, whichever is greater.",
+      "key_points": ["Removal duration < 0.1 * vertical-mode period", "Analysis duration = max displacement OR one full cycle, whichever governs"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "The two-phase (pre-removal equilibrium, then dynamic removal) NDP loading procedure."
+    },
+    {
+      "section_id": "3.2.13.5",
+      "title": "Design Forces and Deformations",
+      "summary": "Component design forces/deformations follow the NDP procedures of Sections 3.2.13.2-3.2.13.4.",
+      "body": "Calculate component design forces and deformations in accordance with the nonlinear analysis procedure of Sections 3.2.13.2 to 3.2.13.4.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "Pointer section connecting NDP modeling to acceptance criteria."
+    },
+    {
+      "section_id": "3.2.13.6",
+      "title": "Component and Element Acceptance Criteria",
+      "summary": "Components analyzed via the NDP must satisfy Sections 3.2.13.6.1 (deformation-controlled) and 3.2.13.6.2 (force-controlled).",
+      "body": "Components and elements analyzed using the nonlinear procedures of Sections 3.2.13.2-3.2.13.4 shall satisfy the requirements of this section.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "Parent section for the NDP acceptance-criteria checks."
+    },
+    {
+      "section_id": "3.2.13.6.1",
+      "title": "Deformation-Controlled Actions",
+      "summary": "Identical form to the NSP's deformation-controlled check (Section 3.2.12.7.1): expected deformation capacity must exceed the maximum calculated demand.",
+      "body": "Primary and secondary elements/components shall have expected deformation capacities greater than the maximum calculated deformation demands, determined considering all coexisting forces/deformations per Chapters 4-8.",
+      "key_points": ["See alternate_path.deformation_controlled_capacity_check_nonlinear()"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "The NDP's deformation-controlled acceptance check."
+    },
+    {
+      "section_id": "3.2.13.6.2",
+      "title": "Force-Controlled Actions",
+      "summary": "Equation 3.12 (Phi*QCL >= QUF), identical in form to the LSP's 3.7 and NSP's 3.10.",
+      "body": "For force-controlled actions in all primary and secondary components, Phi*QCL >= QUF, where QUF is the force-controlled action from the Nonlinear Dynamic model.",
+      "key_points": ["Equation 3.12 -- see alternate_path.force_controlled_capacity_check()"],
+      "equations": ["3.12"], "figures": [], "tables": [],
+      "applicability": "The NDP's force-controlled acceptance check."
+    },
+    {
+      "section_id": "3.3",
+      "title": "Enhanced Local Resistance",
+      "summary": "This UFC section has been removed in its entirety.",
+      "body": "This UFC section has been removed in its entirety.",
+      "key_points": ["ELR is not a permitted method under these Guidelines, for any FSL -- see alternate_path.enhanced_local_resistance_removed()"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Confirms ELR cannot substitute for, or supplement, the Alternate Path method."
+    },
+    {
+      "section_id": "3.4",
+      "title": "Redundancy Requirements",
+      "summary": "Applied in conjunction with the Alternate Path method (Section 3.2), alongside all other structural design requirements (wind, seismic, etc.).",
+      "body": "The Redundancy Requirements outlined below shall be applied in conjunction with the Alternate Path requirements of Section 3.2. Incorporation of these requirements is to be in conjunction with all other structural design requirements, including those for lateral loading such as wind or seismic.",
+      "key_points": ["This entire Section 3.4 is NEW CONTENT with no UFC 4-023-03 analog -- see redundancy.py module docstring"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Top-level statement introducing the Redundancy Requirements."
+    },
+    {
+      "section_id": "3.4.1",
+      "title": "General",
+      "summary": "A load redistribution system is a structural system able to redistribute gravity loads to adjacent structural elements when a column or load-bearing wall is lost; required at the exterior/perimeter of the structure.",
+      "body": "Load redistribution systems shall be provided at the exterior (perimeter) of the structure to meet the design requirements below. A load redistribution system is a structural system with the capability to redistribute gravity loads to adjacent structural elements under the loss of a column or load-bearing wall.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "Defines a 'load redistribution system', the central object of Section 3.4.2."
+    },
+    {
+      "section_id": "3.4.2",
+      "title": "Load Redistribution Systems",
+      "summary": "Location, strength, and stiffness requirements are set in Sections 3.4.2.1-3.4.2.3.",
+      "body": "Load redistribution systems shall be provided at the exterior (perimeter) of the structure to meet the following design requirements.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "Parent section for the three Redundancy checks."
+    },
+    {
+      "section_id": "3.4.2.1",
+      "title": "Location Requirements",
+      "summary": "Equation 3.13 (n>=N/3, rounded up): minimum number of load redistribution systems for the building; spacing up the height shall not exceed three floors.",
+      "body": "The minimum number of load redistribution systems incorporated into the structural design shall be determined by n >= N/3 (n = number of vertical load redistribution systems, rounded up to the next integer; N = total number of floors). Spacing of load redistribution systems up the height of the building shall not exceed three floors.",
+      "key_points": ["Equation 3.13 -- see redundancy.minimum_load_redistribution_systems()", "VALIDATED: N=8 -> n=3 (Appendix D worked example)"],
+      "equations": ["3.13"], "figures": [], "tables": [],
+      "applicability": "Sets the minimum count and maximum vertical spacing of redistribution systems."
+    },
+    {
+      "section_id": "3.4.2.2",
+      "title": "Strength Requirements",
+      "summary": "Equation 3.14 (|QRi-QR_bar|/QR_bar<=0.3): for each EXTERIOR ground-level removal location, strength must be within +/-30% of the height-wise average (Equations 3.15, 3.16). Interior removal scenarios need not be considered. Extent limited to a single bay perpendicular to, and each side of, the removed element (Figure 3.17); for walls, the same extent H as the removed wall.",
+      "body": "For each exterior ground level column and/or wall plan removal location, the variation of the design strength of any load redistributing system shall be within +/-30% of the average design strength up the height of the building (Equation 3.14). Interior column/wall plan removal scenarios need not be considered. The design strength QR (Equation 3.15) sums Phi*QC over all horizontal members contributing to redistribution at a given level, limited in extent to a single structural bay perpendicular to and in either direction of the removed element (Figure 3.17); for load-bearing walls, the same extent as the removed wall (H). QC considers all applicable actions (flexure, shear, etc.) under vertical gravity loading, per applicable material codes, including composite behavior where applicable. The average design strength QR_bar (Equation 3.16) is the mean of all QRi up the height of the building.",
+      "key_points": [
+        "Equation 3.14 (ratio check), 3.15 (QR), 3.16 (QR_bar) -- see redundancy.load_redistribution_strength_ratio()/load_redistribution_system_strength()/load_redistribution_average_strength()",
+        "Only EXTERIOR ground-level removal locations are checked",
+        "Extent = single bay each side of the removal (Figure 3.17)",
+        "VALIDATED: Appendix D worked example, QR3=QR5=QR7=QR_bar=1444.4 kip-in, ratio=0.0"
+      ],
+      "equations": ["3.14", "3.15", "3.16"], "figures": ["3.17", "3.18"], "tables": [],
+      "applicability": "The strength-uniformity check for load redistribution systems."
+    },
+    {
+      "section_id": "3.4.2.3",
+      "title": "Stiffness Requirements",
+      "summary": "Equation 3.17 (|KRi-KR_bar|/KR_bar<=0.3): the stiffness analog of Section 3.4.2.2, using pre-removal support conditions and a uniformly distributed load (Figure 3.20) to compute KC.",
+      "body": "For each exterior ground level column and/or wall plan removal location, the variation of flexural stiffness of any load redistributing system shall be within +/-30% of the average flexural stiffness up the height of the building (Equation 3.17). Interior removal scenarios need not be considered. The flexural stiffness KR (Equation 3.18) sums Phi*KC over the same single-bay extent as the strength check (Figure 3.19). KC is based on the member's provided (pre-removal) support conditions and a uniformly distributed load; example support-condition stiffness formulas are given in Figure 3.20. The average flexural stiffness KR_bar (Equation 3.19) is the mean of all KRi up the height of the building (Figure 3.21).",
+      "key_points": [
+        "Equation 3.17 (ratio check), 3.18 (KR), 3.19 (KR_bar) -- see redundancy.load_redistribution_stiffness_ratio()/load_redistribution_system_stiffness()/load_redistribution_average_stiffness()",
+        "KC uses PRE-REMOVAL support conditions (Figure 3.20) -- see redundancy.fixed_fixed_flexural_stiffness()",
+        "VALIDATED: Appendix D worked example, KR3=KR5=KR7=KR_bar=528 kip/in, ratio=0.0"
+      ],
+      "equations": ["3.17", "3.18", "3.19"], "figures": ["3.19", "3.20", "3.21"], "tables": [],
+      "applicability": "The stiffness-uniformity check for load redistribution systems."
+    }
+  ]
+}

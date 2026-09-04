@@ -1,0 +1,89 @@
+{
+  "reference_id": "GSA Alternate Path Guidelines",
+  "reference_title": "GSA Alternate Path Analysis and Design Guidelines for Progressive Collapse Resistance (October 24, 2013, Revision 1, January 28, 2016)",
+  "volume": null,
+  "chapter": 7,
+  "chapter_title": "Wood",
+  "sections": [
+    {
+      "section_id": "7",
+      "title": "Wood (chapter introduction)",
+      "summary": "UFC 4-023-03 Chapter 7 is adopted with one modification: all Tie Force and Enhanced Local Resistance references are removed. Wood construction (per AF&PA/ASCE 16-96) is categorized as wood frame, non-combustible wall-wood joist, or heavy timber.",
+      "body": "Chapter 7 of UFC 4-023-03 is adopted with the following modification: all references to Enhanced Local Resistance (ELR) and Tie Force analysis methods are removed. This chapter provides the specific requirements for designing a wood building to resist progressive collapse. Wood construction takes several forms in current practice; per AF&PA/ASCE 16-96, wood construction can be categorized as wood frame, non-combustible wall-wood joist, and heavy timber. If composite construction with other materials is employed, use the design guidance from the appropriate material chapter for those elements/portions.",
+      "key_points": ["Only one modification -- wood keeps ASCE 41's Life Safety performance level"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Frames the whole chapter's scope."
+    },
+    {
+      "section_id": "7.1",
+      "title": "Material Properties for Wood",
+      "summary": "Per ASCE 41, default expected strengths for wood are based on AF&PA/ASCE 16 design resistance values (ASCE 41 also gives defaults for shear walls/diaphragms); when default LOWER BOUND values are needed, multiply expected strength by 0.85.",
+      "body": "Per ASCE 41, default expected strength values for wood materials shall be based on design resistance values from AF&PA/ASCE 16. In addition, ASCE 41 provides default expected strength values for shear walls and wood diaphragms. When default lower bound strength values are needed, multiply the expected strength values by 0.85.",
+      "key_points": ["See masonry_wood_cfs.wood_material_basis()/default_lower_bound_factor()"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Basis for QCE/QCL calculations in wood components."
+    },
+    {
+      "section_id": "7.2",
+      "title": "Strength Reduction Factor Phi for Wood",
+      "summary": "Use the AF&PA/AWC National Design Specification (NDS) Phi factor for the component/behavior under consideration.",
+      "body": "For the Alternate Path method, use the appropriate strength reduction factor phi specified in the AF&PA/AWC National Design Specification for Wood Construction, for the component and behavior under consideration.",
+      "key_points": ["See masonry_wood_cfs.wood_phi_basis()"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Basis for Phi in the wood acceptance-criteria checks."
+    },
+    {
+      "section_id": "7.3",
+      "title": "Time Effect Factor Lambda for Wood",
+      "summary": "The wood time-effect factor lambda is 1.0 -- IDENTICAL to UFC 4-023-03's own printed value.",
+      "body": "The time effect factor lambda for wood is 1.0.",
+      "key_points": ["See masonry_wood_cfs.wood_time_effect_factor()"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Adjusts wood strength for the short-duration nature of the progressive-collapse load case."
+    },
+    {
+      "section_id": "7.4",
+      "title": "Tie Force Requirements for Wood",
+      "summary": "Removed in its entirety.",
+      "body": "This section is removed in its entirety.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "N/A -- section fully removed."
+    },
+    {
+      "section_id": "7.5",
+      "title": "Alternate Path Method for Wood",
+      "summary": "Introduces the wood-specific Alternate Path requirements (Sections 7.5.1-7.5.2).",
+      "body": "This section introduces the material-specific Alternate Path requirements for wood.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "Parent section for 7.5.1-7.5.2."
+    },
+    {
+      "section_id": "7.5.1",
+      "title": "General",
+      "summary": "Use the Section 3.2 Alternate Path method to verify the acceptance criteria of Section 3.2.10.",
+      "body": "Use the Alternate Path method in Section 3.2 to verify that the structure can meet the acceptance criteria defined in Section 3.2.10.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "Confirms the general-purpose Alternate Path method applies to wood without modification, beyond Section 7.5.2."
+    },
+    {
+      "section_id": "7.5.2",
+      "title": "Modeling and Acceptance Criteria for Wood",
+      "summary": "Use ASCE 41 Chapter 12's Life Safety (NOT Collapse Prevention) modeling parameters, nonlinear acceptance criteria, and linear m-factors for primary and secondary components -- no replacement tables printed for wood.",
+      "body": "Use the modeling parameters, nonlinear acceptance criteria and linear m-factors for the Life Safety condition from ASCE 41 Chapter 12 for primary and secondary components. Use the modeling parameters and guidance, including definitions of stiffness, to create the analytical model.",
+      "key_points": [
+        "Life Safety, not Collapse Prevention -- see masonry_wood_cfs.masonry_wood_cfs_performance_level('wood')",
+        "Commentary C7: lack of available test data supporting a Collapse Prevention change"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "The performance-level pointer governing all wood acceptance checks."
+    },
+    {
+      "section_id": "7.6",
+      "title": "Enhanced Local Resistance for Wood",
+      "summary": "Removed in its entirety.",
+      "body": "This section is removed in its entirety.",
+      "key_points": [], "equations": [], "figures": [], "tables": [],
+      "applicability": "N/A -- section fully removed."
+    }
+  ]
+}
