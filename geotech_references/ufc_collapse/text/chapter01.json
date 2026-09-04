@@ -1,0 +1,189 @@
+{
+  "reference_id": "UFC 4-023-03",
+  "reference_title": "UFC 4-023-03, Design of Buildings to Resist Progressive Collapse (DoD, dated 14 July 2009, as amended through Change 4, 10 June 2024)",
+  "volume": null,
+  "chapter": 1,
+  "chapter_title": "Introduction",
+  "sections": [
+    {
+      "section_id": "1-1",
+      "title": "Purpose and Scope",
+      "summary": "Provides design requirements to reduce the potential of progressive collapse for facilities that experience localized structural damage from normally unforeseeable events.",
+      "body": "This Unified Facilities Criteria (UFC) provides the design requirements necessary to reduce the potential of progressive collapse for facilities that experience localized structural damage through normally unforeseeable events.",
+      "key_points": ["Threat-independent: addresses localized damage from unforeseeable events, not a specific threat"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Scope statement for the whole UFC."
+    },
+    {
+      "section_id": "1-2",
+      "title": "Applicability",
+      "summary": "Mandatory for all new construction of 3 or more stories (Change 4); existing buildings may apply these requirements at the project proponent's or AHJ's discretion (retrofit is no longer mandatory).",
+      "body": "The requirements outlined in this UFC are mandatory for all new construction of buildings three or more stories. For existing buildings, these requirements may be applied as required by the project proponents or AHJ. (Change 4 removed the prior mandatory-retrofit language, aligning this UFC with UFC 4-010-01.)",
+      "key_points": [
+        "Mandatory for new construction of 3+ stories",
+        "Existing-building retrofit is discretionary (Change 4), not mandatory",
+        "See applicability.story_count_threshold()"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Determines whether a given project must meet this UFC's requirements."
+    },
+    {
+      "section_id": "1-2.1",
+      "title": "Building Type and Story Height",
+      "summary": "A penthouse or below-grade level counts as a story only if occupied (per the IBC 'occupied' definition: human occupancy with egress/light/ventilation); unoccupied mechanical/storage levels are omitted from the story count. Short (1-2 story) sections attached to a 3+-story section trigger peripheral-tie and AP-modeling considerations at the boundary.",
+      "body": "For this UFC, penthouse structures and floors below grade (i.e., single and multiple level basements) will be considered a story if there is any space that is designed for human occupancy and that is equipped with means of egress as well as light and ventilation facilities that meet the local building code requirements. If any story will not be occupied, perhaps due to mechanical equipment or storage, that story will be omitted from the calculation of the number of stories. At changes in building elevation from a one or two story section to a section with three or more stories, the appropriate progressive collapse design requirements from Section 2-2 shall be applied to the section with three or more stories. Special attention shall be given to potential deleterious effects associated with the attachment of the short building section to the building section with three or more stories.",
+      "key_points": [
+        "A story counts toward the 3-story threshold only if occupied (egress + light + ventilation)",
+        "Unoccupied mechanical/storage levels are omitted from the story count",
+        "Short (<3 story) sections attached to a 3+ story section: apply requirements to the taller section, consider deleterious attachment effects",
+        "See applicability.is_story()"
+      ],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Determines which levels of a building count toward the 3-story applicability threshold."
+    },
+    {
+      "section_id": "1-2.2",
+      "title": "Clarification for Partial Occupancy",
+      "summary": "When DoD personnel occupy 25% or more of the net interior usable space, this UFC applies to the ENTIRE structure, superseding UFC 4-010-01's per-portion-occupied rule (since partial-story retrofit is impractical).",
+      "body": "When DoD personnel occupy 25% or more of the net interior useable space, the requirements of this UFC are applicable to the entire structure, not just the portion of the building occupied by DoD personnel; this requirement supersedes that given in UFC 4-010-01 DoD Minimum Antiterrorism Standards for Buildings.",
+      "key_points": ["25% occupancy threshold triggers whole-building applicability", "See applicability.partial_occupancy_threshold()"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Applies when DoD leases or occupies only part of a larger building."
+    },
+    {
+      "section_id": "1-2.3",
+      "title": "Clarification for Controlled Public Access",
+      "summary": "Controlled public access (per UFC 4-010-01) includes electronic access control or mechanical locks on exterior doors, or staffed visitor processing where locking entrances is impractical during operating hours. This definition governs the Tie Force exemption for floors above crawlspaces and internal-column-removal triggers in Chapter 3.",
+      "body": "Per UFC 4-010-01 DoD Minimum Antiterrorism Standards for Buildings, controlled public access will be considered to include (but not be limited to) electronic access control devices or mechanical locks on all exterior doors. Where visitor processing makes locking visitor entrances during building operating hours impractical, providing personnel to control visitor access can be considered positive control at those entrances.",
+      "key_points": ["Controlled public access = electronic/mechanical door locks, or staffed visitor control", "Referenced by Tie Force crawlspace exemption (Section 3-1.3.1) and internal-column/wall removal triggers (Section 3-2.9.2.3/2.5)"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Defines 'controlled public access', used to exempt Tie Force requirements above crawlspaces and to trigger internal-element removal in the Alternate Path method."
+    },
+    {
+      "section_id": "1-2.4",
+      "title": "Application by Other Organizations",
+      "summary": "May be adopted by other federal/state agencies and code-writing organizations (IBC, AISC, ACI, TMS, AISI, AF&PA); the specifying agency determines applicability. Provided without warranty of suitability for any particular use.",
+      "body": "This UFC may be employed by other federal and state government agencies as well as organizations that create and implement building codes (e.g. International Building Code) and material specific design codes (e.g., American Institute of Steel Construction, American Concrete Institute, The Masonry Society, American Iron and Steel Institute, American Forest and Paper Association). The responsibility for determining applicability rests with the specifying agency. The material contained herein is not intended as a warranty on the part of DoD that this information is suitable for any general or particular use.",
+      "key_points": ["May be adopted by other agencies/code bodies", "No warranty of suitability; requires competent professional review"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Governs use of this UFC outside DoD projects."
+    },
+    {
+      "section_id": "1-3",
+      "title": "General",
+      "summary": "Defines progressive collapse per ASCE 7 commentary as the spread of an initial local failure, eventually causing collapse disproportionate to the original damage; buildings should be designed so local damage does not spread disproportionately, since designing against general collapse from severe abnormal loads is usually impractical.",
+      "body": "Progressive collapse is defined in the commentary of ASCE 7 as \"the spread of an initial local failure from element to element, eventually resulting in the collapse of an entire structure or a disproportionately large part of it.\" The standard further states that buildings should be designed \"to sustain local damage with the structural system as a whole remaining stable and not being damaged to an extent disproportionate to the original local damage.\" As discussed in the commentary of ASCE 7, \"except for specially designed protective systems, it is usually impractical for a structure to be designed to resist general collapse caused by severe abnormal loads acting directly on a large portion of it. However, structures can be designed to limit the effects of local collapse and to prevent or minimize progressive collapse.\" The structural design requirements presented herein were developed to ensure prudent precautions are taken when the event causing the initial local damage is undefined and the extent of the initial damage is unknown.",
+      "key_points": ["ASCE 7 definition of progressive collapse", "Goal: prevent disproportionate spread of local damage, not resist general collapse from a defined threat"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Frames the overall design philosophy for the rest of the UFC."
+    },
+    {
+      "section_id": "1-3.1",
+      "title": "Significance of Progressive Collapse",
+      "summary": "A rare event requiring both an abnormal load and inadequate continuity/ductility/redundancy, but with potentially severe casualties -- illustrated by the 1995 Oklahoma City bombing, where most of the 168 fatalities were from partial collapse, not direct blast effects.",
+      "body": "Progressive collapse is a relatively rare event, in the United States and other Western nations, as it requires both an abnormal loading to initiate the local damage and a structure that lacks adequate continuity, ductility, and redundancy to resist the spread of damage. However, significant casualties can result when collapse occurs. This is illustrated by the April 19, 1995 bombing of the Alfred P. Murrah building in Oklahoma City, in which the majority of the 168 fatalities were due to the partial collapse of the structure and not to direct blast effects. The recent escalation of the domestic and international terrorist threat has increased the probability that other US government structures will be attacked with explosives or other violent means.",
+      "key_points": ["Rare but high-consequence event", "Oklahoma City bombing motivating case: most fatalities from collapse, not blast"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Provides the historical/risk rationale for the UFC's requirements."
+    },
+    {
+      "section_id": "1-3.2",
+      "title": "Hardening of Structures to Resist Initial Damage",
+      "summary": "This UFC does not address the initiating event itself (consistent with UFC 4-010-01's undefined-threat philosophy); where a specific explosive threat IS identified, hardening design is used in addition to (not instead of) this UFC's progressive collapse requirements.",
+      "body": "As the initiating event is unknown, the requirements in this UFC are not intended to directly limit or eliminate the initial damage. This is consistent with UFC 4-010-01, which applies where there is a known risk of terrorist attack, but no specific terrorist threat is defined. For cases where specific explosive threats against a building have been identified, the designer shall employ the appropriate design methodology for hardening the building. However, even though a structure is designed to resist an identified explosive threat, the progressive collapse design requirements herein shall still apply.",
+      "key_points": ["This UFC is threat-independent; hardening design (if a specific threat exists) is additive, not a substitute"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Clarifies the relationship between progressive-collapse design and threat-specific hardening design."
+    },
+    {
+      "section_id": "1-3.3",
+      "title": "Risk Considerations",
+      "summary": "Because progressive collapse events have too small a database to assess probability, risk reduces to a consideration of consequences -- primarily human casualties -- making Risk Category the primary driver of the design approach (Section 2-1, using UFC 3-301-01 occupancy tables).",
+      "body": "Hazards and consequences are addressed in a typical risk assessment. Due to the limited database of progressive collapse events (from deliberate attack, vehicle impact, natural causes, etc), it is not possible to reasonably assess the probability of occurrence for a specific hazard or group of hazards. Therefore, the risk assessment reduces to a consideration of consequences. In general, consequences are measured in terms of human casualties and, therefore, the Risk Category of a building or structure is often the most critical issue. The progressive collapse design approaches in this UFC are primarily a function of the Risk Category of the building, although the structure's function is also considered.",
+      "key_points": ["Consequence-based (not probability-based) risk approach", "Risk Category (from UFC 3-301-01 occupancy tables) is the primary design-level driver"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Explains why Risk Category (Chapter 2) governs the level of progressive-collapse design."
+    },
+    {
+      "section_id": "1-3.4",
+      "title": "Design Approaches",
+      "summary": "ASCE 7 defines two general approaches: Direct Design (explicit consideration during design: Alternate Path or Specific Local Resistance) and Indirect Design (implicit, via minimum strength/continuity/ductility provisions, e.g. Tie Forces).",
+      "body": "ASCE 7 defines two general approaches for reducing the possibility of progressive collapse: Direct Design and Indirect Design.",
+      "key_points": ["Direct Design: Alternate Path, Specific Local Resistance", "Indirect Design: Tie Forces and other continuity/ductility provisions"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Frames the three method families (TF/AP/ELR) developed in Chapter 3."
+    },
+    {
+      "section_id": "1-3.4.1",
+      "title": "Direct Design Approaches",
+      "summary": "Explicit design-process consideration of collapse resistance: (1) Alternate Path (AP) -- bridge over a missing element with localized resulting damage, and (2) Specific Local Resistance (SLR) -- provide sufficient strength to resist a specific load or threat directly.",
+      "body": "Direct Design approaches include \"explicit consideration of resistance to progressive collapse during the design process.\" These include: 1) the Alternate Path (AP) method, which requires that the structure be capable of bridging over a missing structural element, with the resulting extent of damage being localized, and 2) the Specific Local Resistance (SLR) method, which requires that the building, or parts of the building, provide sufficient strength to resist a specific load or threat.",
+      "key_points": ["Alternate Path (AP): bridge over a missing element", "Specific Local Resistance (SLR): resist a specific defined load/threat directly (this UFC's Enhanced Local Resistance is a modified, threat-independent version of SLR -- see Appendix C-7)"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Defines the AP method family implemented in Section 3-2 / Chapters 4-8."
+    },
+    {
+      "section_id": "1-3.4.2",
+      "title": "Indirect Design Approaches",
+      "summary": "Implicit resistance via minimum strength/continuity/ductility (good plan layout, tie systems, catenary/beam action, redundancy, ductile detailing, compartmentalization); ASCE 7 offers no quantitative requirements, so this UFC adopts Tie Forces (following post-Ronan-Point British practice and the Eurocode) to give the concept numeric teeth.",
+      "body": "With Indirect Design, resistance to progressive collapse is considered implicitly \"through the provision of minimum levels of strength, continuity and ductility.\" These include: 1) good plan layout, 2) integrated system of ties, 3) returns on walls, 4) changing span directions of floor slabs, 5) load-bearing interior partitions, 6) catenary action of the floor slab, 7) beam action of the walls, 8) redundant structural systems, 9) ductile detailing, 10) additional reinforcement for blast and load reversal, and 11) compartmentalized construction. However, no quantitative requirements for either direct or indirect design to resist progressive collapse are provided in ASCE 7. In this UFC, Tie Forces (TF) are used to enhance continuity, ductility, and structural redundancy by specifying minimum tensile forces that must be used to tie the structure together. This approach is similar to that employed by the British after the Ronan Point apartment building collapse in 1968 and currently used in the Eurocode.",
+      "key_points": ["ASCE 7 lists 11 qualitative indirect-design strategies but gives no quantitative requirements", "This UFC's Tie Force method gives the indirect-design concept numeric requirements", "Historical precedent: British post-Ronan-Point practice, the Eurocode"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Provides the origin and rationale for the Tie Force method (Section 3-1)."
+    },
+    {
+      "section_id": "1-4",
+      "title": "Summary of the Progressive Collapse Design Procedure",
+      "summary": "The level of design correlates to Risk Category (Chapter 2) and employs three levels/methods: Tie Forces (tensile floor/roof strength for load transfer), Alternate Path (bridging over a removed element), and Enhanced Local Resistance (increased perimeter column/wall shear+flexural strength).",
+      "body": "The level of progressive collapse design for a structure is correlated to the Risk Category (RC), assessed per Section 2-1. The design requirements in this UFC were developed such that varying levels of resistance to progressive collapse are specified, depending upon the RC as discussed in Chapter 2. These levels of progressive collapse design employ: Tie Forces, which prescribe a tensile force strength of the floor or roof system, to allow the transfer of load from the damaged portion of the structure to the undamaged portion; the Alternate Path method, in which the building must bridge across a removed element; and Enhanced Local Resistance, in which the shear and flexural strength of the perimeter columns and walls are increased to provide additional protection by reducing the probability and extent of initial damage.",
+      "key_points": ["Design level is a function of Risk Category", "Three methods: Tie Forces, Alternate Path, Enhanced Local Resistance -- see applicability.table_2_2_design_requirements()"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "High-level roadmap for how Chapters 2-8 fit together."
+    },
+    {
+      "section_id": "1-5",
+      "title": "References",
+      "summary": "Incorporates other publications by dated or undated reference (Appendix A); dated references apply as of the cited edition unless this UFC is itself amended, undated references track the latest edition including amendments.",
+      "body": "This UFC incorporates provisions from other publications by dated or undated reference. These references are cited at the appropriate places in the text and the citations for the publications are listed in Appendix A References. For dated references, subsequent amendments to, or revisions of, any of these publications apply to this UFC only when incorporated in it by amendment or revision. For undated references, the latest edition of the referenced publication applies (including amendments).",
+      "key_points": ["Dated references are frozen to the cited edition unless this UFC is amended", "Undated references float to the latest edition"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Governs how to interpret cited external standards as they are updated over time."
+    },
+    {
+      "section_id": "1-6",
+      "title": "Inspection Requirements",
+      "summary": "Inspection requirements verifying conformance (construction documents, structural tests, special inspections) are IBC modifications given in Appendix H, digitized in ibc_modifications.py.",
+      "body": "Inspection requirements to verify conformance with this UFC are provided in Appendix H. These inspection requirements are modifications to the provisions of the International Building Code (IBC), which cover construction documents, structural tests and special inspections for buildings that have been designed to resist progressive collapse.",
+      "key_points": ["Points to Appendix H (IBC Chapter 16/17 modifications) -- see ibc_modifications.py"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Pointer to the construction-QA/inspection requirements."
+    },
+    {
+      "section_id": "1-7",
+      "title": "Security Engineering UFC Series",
+      "summary": "This UFC is one of a sequential series of security-engineering UFCs (minimum standards UFC 4-010-01/4-010-02, planning UFC 4-020-01, design UFC 4-020-02, and discipline-specific support manuals including this one) used throughout the antiterrorism design cycle.",
+      "body": "This UFC is one of a series of security engineering Unified Facilities Criteria that cover minimum standards, planning, preliminary design, and detailed design for security and antiterrorism, used sequentially throughout the design cycle: DoD Minimum Antiterrorism Standards for Buildings (UFC 4-010-01/4-010-02); Security Engineering Facility Planning Manual (UFC 4-020-01); Security Engineering Facility Design Manual (UFC 4-020-02); and Security Engineering Support Manuals (discipline-specific final-design guidance, including this UFC's progressive-collapse provisions).",
+      "key_points": ["Sequence: minimum standards -> planning -> preliminary design -> support manuals (this UFC)"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Places this UFC within the broader DoD antiterrorism/security-engineering document family."
+    },
+    {
+      "section_id": "1-8",
+      "title": "Design Submittals",
+      "summary": "DoD design submittals must, at minimum, narrate the Risk Category/Design Approach/Design Method, list design software used, and include electronic input files for all design-review phases.",
+      "body": "Design submittals for DoD projects requiring compliance with these criteria will include the following elements as a minimum: narratives of the design including the Risk Category, Design Approach (Tie Forces or Alternate Path), and Design Method (Linear Static, Nonlinear Static, or Nonlinear Dynamic); a list of the design software used; and the electronic input files for all phases of the design review.",
+      "key_points": ["Minimum submittal: RC + approach + method narrative, software list, electronic input files"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Administrative submittal requirement for DoD progressive-collapse design projects."
+    },
+    {
+      "section_id": "1-9",
+      "title": "Recommendations for Specification",
+      "summary": "Additional recommended RFP specification language (work-experience and resume requirements for the responsible engineer) is provided in Appendix C-11.",
+      "body": "Additional recommended specification language for new and existing buildings is included in Appendix C-11. The recommendations in this document include the sample paragraphs for the Request-For-Proposal (RFP) specification.",
+      "key_points": ["Points to Appendix C-11 sample RFP specification language"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Administrative pointer for procurement/RFP language."
+    }
+  ]
+}

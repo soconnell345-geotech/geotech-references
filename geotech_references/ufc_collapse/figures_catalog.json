@@ -1,0 +1,363 @@
+{
+  "reference_id": "UFC 4-023-03",
+  "reference_title": "UFC 4-023-03, Design of Buildings to Resist Progressive Collapse (DoD, dated 14 July 2009, as amended through Change 4, 10 June 2024)",
+  "package": "ufc_collapse",
+  "volume": null,
+  "pdf_path": "docs/UFC_4-023-03.pdf",
+  "figure_numbering": "section",
+  "scope_note": "All 14 numbered/captioned figures in Chapter 3 (the Tie Force and Alternate Path design procedures), all 8 figures in Appendix B (structural-analysis definition diagrams: joint/connection rotation, yield/plastic rotation, panel zone, story drift), all 13 figures in Appendix C (commentary: tie-force justification diagrams, the printed Dynamic Increase Factor data-fit chart, and the steel connection-type illustrations supporting Table C-1), and the 4 building-geometry/tie-layout figures from Appendix D (the reinforced-concrete worked example this package validates against in tie_forces.py/enhanced_local_resistance.py). All 39 pages were located directly during full-document text extraction (each figure's own page marker was read alongside its caption) and independently cross-checked against this document's own front-matter List of Figures (printed pp. ix-xi) -- both sources agree at every entry; page_estimated=false throughout. Appendices E, F, and G (structural-steel/wood/cold-formed-steel worked-example figures: building plans, member-size call-outs, SAP2000 screenshots, hinge-property plots) are NOT cataloged -- narrow, software-workflow-specific content for one example building each, not general design figures of the kind this package catalogs elsewhere (see the package __init__.py docstring scope note).",
+  "figure_count": 39,
+  "figures": [
+    {
+      "figure_number": "3-1",
+      "caption": "Tie Forces in a Frame Structure",
+      "chapter": "3",
+      "pdf_page_index": 30,
+      "printed_page": "15",
+      "page_estimated": false,
+      "description": "Illustrates the three horizontal ties (longitudinal/transverse internal ties, dashed peripheral tie) and the vertical tie in a framed building, per Section 3-1's Tie Force method."
+    },
+    {
+      "figure_number": "3-2",
+      "caption": "Sub-areas, Peripheral and Internal Ties for Non-uniform Floor Loads",
+      "chapter": "3",
+      "pdf_page_index": 34,
+      "printed_page": "19",
+      "page_estimated": false,
+      "description": "Shows how a floor plan with heavy- and light-load sub-areas is split, with a peripheral tie placed at the sub-area boundary sized to the sum of both sub-areas' peripheral tie strength (Section 3-1.3.2.2)."
+    },
+    {
+      "figure_number": "3-3",
+      "caption": "Determination of L1 and Column Area for Frame and Two-way Span Load-bearing Wall Construction",
+      "chapter": "3",
+      "pdf_page_index": 35,
+      "printed_page": "20",
+      "page_estimated": false,
+      "description": "Defines L1 (longitudinal/transverse bay spacing) and the column/wall strip (0.2*L wide) within which internal tie force may not exceed twice the required strength per unit length (Equation 3-3, Section 3-1.4.1.1)."
+    },
+    {
+      "figure_number": "3-4",
+      "caption": "Location Restrictions for Internal and Peripheral Ties that are Parallel to the Long Axis of a Beam, Girder or Spandrel",
+      "chapter": "3",
+      "pdf_page_index": 36,
+      "printed_page": "21",
+      "page_estimated": false,
+      "description": "Shows the exclusion zone directly above/within a beam, girder, or spandrel where internal and peripheral ties may not be placed unless the member can sustain a 0.20-rad rotation."
+    },
+    {
+      "figure_number": "3-5",
+      "caption": "Determination of L1 and Column Area for One-way Load-bearing Wall Construction with hw = 12-ft (3.7-m)",
+      "chapter": "3",
+      "pdf_page_index": 38,
+      "printed_page": "23",
+      "page_estimated": false,
+      "description": "Defines L1 (LL longitudinal, LT=5*hw transverse) and the wall strip for one-way load-bearing wall construction (Equation 3-5, Section 3-1.4.1.2)."
+    },
+    {
+      "figure_number": "3-6",
+      "caption": "Splice Locations and Interruptions in Internal Tie Forces",
+      "chapter": "3",
+      "pdf_page_index": 42,
+      "printed_page": "27",
+      "page_estimated": false,
+      "description": "Shows the permitted 60%-of-bay-length splice zone (Section 3-1.6.1, ``tie_forces.splice_exclusion_zone``) and how internal ties are interrupted at openings/courtyards and anchored to peripheral ties with seismic hooks."
+    },
+    {
+      "figure_number": "3-7",
+      "caption": "Definition of Force-Controlled and Deformation Controlled Actions, from ASCE 41",
+      "chapter": "3",
+      "pdf_page_index": 47,
+      "printed_page": "32",
+      "page_estimated": false,
+      "description": "The generalized force-deformation (Type 1/2/3) curve used by Section 3-2.5's classification rule (``alternate_path.classify_action``), with points a, b, c referenced throughout the material-chapter modeling-parameter tables."
+    },
+    {
+      "figure_number": "3-8",
+      "caption": "Removal of Column from Alternate Path Model",
+      "chapter": "3",
+      "pdf_page_index": 50,
+      "printed_page": "35",
+      "page_estimated": false,
+      "description": "Shows beam-to-beam continuity assumed maintained across a removed column for Alternate Path analysis (Section 3-2.9)."
+    },
+    {
+      "figure_number": "3-9",
+      "caption": "Location of External Column Removal for RC II Option 2, RC III and IV Structures",
+      "chapter": "3",
+      "pdf_page_index": 54,
+      "printed_page": "39",
+      "page_estimated": false,
+      "description": "Plan showing the minimum external-column removal locations: mid-short-side, mid-long-side, and building corner (Section 3-2.9.2.2)."
+    },
+    {
+      "figure_number": "3-10",
+      "caption": "Location of Internal Column Removal for RC II Option 2, RC III and IV Structures",
+      "chapter": "3",
+      "pdf_page_index": 54,
+      "printed_page": "39",
+      "page_estimated": false,
+      "description": "Plan showing internal-column removal locations within areas of underground parking or uncontrolled public access (Section 3-2.9.2.3)."
+    },
+    {
+      "figure_number": "3-11",
+      "caption": "Location of External Load-Bearing Wall Removal for RC II Option 2, RC III and RC IV Structures",
+      "chapter": "3",
+      "pdf_page_index": 55,
+      "printed_page": "40",
+      "page_estimated": false,
+      "description": "Plan showing the minimum external-load-bearing-wall removal locations, including the corner condition removing a length H in each direction (Section 3-2.9.2.4)."
+    },
+    {
+      "figure_number": "3-12",
+      "caption": "Location of Internal Load-Bearing Wall Removal for RC II Option 2, RC III and RC IV Structures",
+      "chapter": "3",
+      "pdf_page_index": 55,
+      "printed_page": "40",
+      "page_estimated": false,
+      "description": "Plan showing internal-load-bearing-wall removal locations within areas of underground parking or uncontrolled public access (Section 3-2.9.2.5)."
+    },
+    {
+      "figure_number": "3-13",
+      "caption": "Loads and Load Locations for External and Internal Column Removal for Linear and Nonlinear Static Models (Left Side Demonstrates External Column Removal; Right Side Shows Internal Column Removal)",
+      "chapter": "3",
+      "pdf_page_index": 62,
+      "printed_page": "47",
+      "page_estimated": false,
+      "description": "Shows the increased-gravity-load region (bays A-B-C-D immediately above/adjacent to the removed column) vs. the rest of the structure, for Equations 3-10/3-12/3-15 (``alternate_path.deformation_controlled_load_lsp`` etc.)."
+    },
+    {
+      "figure_number": "3-14",
+      "caption": "Loads and Load Locations for External and Internal Wall Removal for Linear and Nonlinear Static Models (Left Side Demonstrates External Wall Removal; Right Side Shows Internal Wall Removal)",
+      "chapter": "3",
+      "pdf_page_index": 63,
+      "printed_page": "48",
+      "page_estimated": false,
+      "description": "The wall-removal counterpart to Figure 3-13, showing the increased-gravity-load region above/adjacent to a removed load-bearing wall section."
+    },
+    {
+      "figure_number": "B-1",
+      "caption": "Joint and Connection Definition",
+      "chapter": "B",
+      "pdf_page_index": 98,
+      "printed_page": "83",
+      "page_estimated": false,
+      "description": "Distinguishes a 'joint' (the central region where members attach) from a 'connection' (the link transmitting actions between components), per ASCE 41 terminology used throughout the acceptance-criteria tables."
+    },
+    {
+      "figure_number": "B-2",
+      "caption": "Joint and Connection Rotations",
+      "chapter": "B",
+      "pdf_page_index": 98,
+      "printed_page": "83",
+      "page_estimated": false,
+      "description": "Shows joint rotation Gamma (rigid-body rotation) vs. connection rotation theta, the deformation measure used in the m-factor and plastic-rotation acceptance tables."
+    },
+    {
+      "figure_number": "B-3",
+      "caption": "Definition of Chord Rotation (from ASCE 41)",
+      "chapter": "B",
+      "pdf_page_index": 99,
+      "printed_page": "84",
+      "page_estimated": false,
+      "description": "Shows chord rotation as the practical means of computing connection rotation theta in a frame model."
+    },
+    {
+      "figure_number": "B-4",
+      "caption": "Definition of Yield Rotation, Plastic Rotation, and Total Rotation",
+      "chapter": "B",
+      "pdf_page_index": 100,
+      "printed_page": "85",
+      "page_estimated": false,
+      "description": "Moment-rotation curve defining theta_y (yield rotation), theta_p (plastic rotation), and total rotation theta -- the quantities tabulated in Tables 4-1/4-3 (a, b modeling parameters) and referenced by Table 3-5's DIF rotation ratio."
+    },
+    {
+      "figure_number": "B-5",
+      "caption": "Plastic Hinge and Rotation",
+      "chapter": "B",
+      "pdf_page_index": 101,
+      "printed_page": "86",
+      "page_estimated": false,
+      "description": "Shows a discrete plastic-hinge model inserted into a frame member, illustrating how numerical models typically ignore the small elastic joint rotation and model only the connection's plastic rotation."
+    },
+    {
+      "figure_number": "B-6",
+      "caption": "Panel Zone",
+      "chapter": "B",
+      "pdf_page_index": 102,
+      "printed_page": "87",
+      "page_estimated": false,
+      "description": "Shows the steel-frame column-web panel zone (high shear stress region at a fully-restrained beam-to-column moment connection), per ASCE 41 Sections 9.5.2.2.1-9.5.2.2.2."
+    },
+    {
+      "figure_number": "B-7",
+      "caption": "Story Drift",
+      "chapter": "B",
+      "pdf_page_index": 102,
+      "printed_page": "87",
+      "page_estimated": false,
+      "description": "Defines story drift (lateral deflection Delta over wall height h) as the nonlinear deformation measure for load-bearing-wall structures (masonry, wood, cold-formed steel)."
+    },
+    {
+      "figure_number": "B-8",
+      "caption": "Vertical Wall Deflection (Drift)",
+      "chapter": "B",
+      "pdf_page_index": 103,
+      "printed_page": "88",
+      "page_estimated": false,
+      "description": "Adapts the story-drift deformation measure (Figure B-7) to VERTICAL wall deflection caused by a removed wall section in progressive-collapse analysis, rather than horizontal seismic drift."
+    },
+    {
+      "figure_number": "C-1",
+      "caption": "Damaged and Undamaged Structural Elements",
+      "chapter": "C",
+      "pdf_page_index": 109,
+      "printed_page": "94",
+      "page_estimated": false,
+      "description": "Shows how the floor system transfers vertical load from a removed-column panel region, through undamaged framing members, to the vertical load-carrying elements -- the physical basis for the Tie Force approach (Section C-5.3)."
+    },
+    {
+      "figure_number": "C-2",
+      "caption": "Column Removal Locations",
+      "chapter": "C",
+      "pdf_page_index": 110,
+      "printed_page": "95",
+      "page_estimated": false,
+      "description": "The six column-removal scenarios (corner, penultimate, internal, near-penultimate, edge, near-edge) analyzed in the Stevens 2008 study underlying the printed Tie Force equations."
+    },
+    {
+      "figure_number": "C-3",
+      "caption": "Plan View of One-way Load-bearing Wall Structure",
+      "chapter": "C",
+      "pdf_page_index": 111,
+      "printed_page": "96",
+      "page_estimated": false,
+      "description": "Plan showing the four one-way load-bearing-wall removal locations analyzed to derive Equation 3-7 (end wall-center, end wall-end, interior wall-center, interior wall-end)."
+    },
+    {
+      "figure_number": "C-4",
+      "caption": "Loads in a One-way Load-bearing Wall Structure",
+      "chapter": "C",
+      "pdf_page_index": 112,
+      "printed_page": "97",
+      "page_estimated": false,
+      "description": "Idealized floor-load diagram (wall load, floor load, facade load) above a removed one-way load-bearing wall section, underlying Equation 3-7's WC/WW terms."
+    },
+    {
+      "figure_number": "C-5",
+      "caption": "Tie Force in Upper Chord of Roof Joist",
+      "chapter": "C",
+      "pdf_page_index": 113,
+      "printed_page": "98",
+      "page_estimated": false,
+      "description": "Shows how the top chord of an open-web steel joist can supply the internal tie force for lightweight roof systems, per Section 3-1's roof-system guidance."
+    },
+    {
+      "figure_number": "C-6",
+      "caption": "Tie Force in Steel Deck",
+      "chapter": "C",
+      "pdf_page_index": 113,
+      "printed_page": "98",
+      "page_estimated": false,
+      "description": "Shows how a transversely-spanning steel deck can supply the internal tie force across a joist line, with the deck's upper surface remaining intact after 0.20-rad rotation despite crushing at the joist."
+    },
+    {
+      "figure_number": "C-7",
+      "caption": "Dynamic Increase Factor for Structural Steel",
+      "chapter": "C",
+      "pdf_page_index": 121,
+      "printed_page": "106",
+      "page_estimated": false,
+      "description": "The printed data-fit chart underlying Table 3-5's steel DIF equation (Omega_N = 1.08+0.76/(theta_pra/theta_y+0.83)), showing SAP2000 study data points for 3-story and 10-story column-removal cases against the recommended-equation curve; fully digitized in ``alternate_path.table_3_5_dynamic_increase_factor``."
+    },
+    {
+      "figure_number": "C-8",
+      "caption": "Fully Restrained Moment Connections",
+      "chapter": "C",
+      "pdf_page_index": 127,
+      "printed_page": "112",
+      "page_estimated": false,
+      "description": "Seven-panel illustration of the Fully Restrained (FR) connection types listed in Table C-1 (WUF, Welded Flange Plates, Welded Cover-Plated Flanges, Bolted Flange Plates, Free Flange, Top/Bottom Haunch, Reduced Beam Section) -- spans printed pp. 112-113."
+    },
+    {
+      "figure_number": "C-9",
+      "caption": "Partially Restrained Moment Connections or Shear Connections",
+      "chapter": "C",
+      "pdf_page_index": 128,
+      "printed_page": "113",
+      "page_estimated": false,
+      "description": "Four-panel illustration of Partially Restrained (PR) connection types from Table C-1 (bolted/riveted angle, double split tee, unstiffened end plate, simple shear tab)."
+    },
+    {
+      "figure_number": "C-10",
+      "caption": "Weak Axis Moment Connection or Shear Connection",
+      "chapter": "C",
+      "pdf_page_index": 129,
+      "printed_page": "114",
+      "page_estimated": false,
+      "description": "Two-panel illustration of a fully restrained vs. typical shear-only connection at a column's weak axis."
+    },
+    {
+      "figure_number": "C-11",
+      "caption": "Kaiser Bolted Bracket(R) Fully Restrained Connection",
+      "chapter": "C",
+      "pdf_page_index": 129,
+      "printed_page": "114",
+      "page_estimated": false,
+      "description": "Proprietary FR moment connection with cast-steel haunch brackets bolted to the column flange; listed in Table C-1's connection-type inventory."
+    },
+    {
+      "figure_number": "C-12",
+      "caption": "SidePlate(R) Fully Restrained Moment Connection",
+      "chapter": "C",
+      "pdf_page_index": 129,
+      "printed_page": "114",
+      "page_estimated": false,
+      "description": "Proprietary FR moment connection with full-depth side plates and fillet welds; m-factor/modeling-parameter formulas digitized in structural_steel.py Tables 5-1/5-2."
+    },
+    {
+      "figure_number": "C-13",
+      "caption": "SlottedWeb(TM) Fully Restrained Connection",
+      "chapter": "C",
+      "pdf_page_index": 130,
+      "printed_page": "115",
+      "page_estimated": false,
+      "description": "Proprietary FR moment connection similar to WUF with extended web slots separating the beam flanges from the web near the connection; listed in Table C-1."
+    },
+    {
+      "figure_number": "D-1",
+      "caption": "Concrete Building Elevation",
+      "chapter": "D",
+      "pdf_page_index": 137,
+      "printed_page": "122",
+      "page_estimated": false,
+      "description": "Elevation of the 7-story reinforced-concrete moment-frame office building used in Appendix D's Tie Force / Enhanced Local Resistance worked example, which this package's tests validate against directly."
+    },
+    {
+      "figure_number": "D-2",
+      "caption": "Concrete Building Plan",
+      "chapter": "D",
+      "pdf_page_index": 138,
+      "printed_page": "123",
+      "page_estimated": false,
+      "description": "Plan of the Appendix D example building, showing the 227-ft x 97-ft footprint, 37.5-ft bays, office/storage/corridor bay assignments, and stair/elevator opening locations referenced in Table D-1/D-2."
+    },
+    {
+      "figure_number": "D-3",
+      "caption": "Typical Layout of Internal Ties",
+      "chapter": "D",
+      "pdf_page_index": 143,
+      "printed_page": "128",
+      "page_estimated": false,
+      "description": "Diagram of the internal longitudinal/transverse tie-bar layout in an exterior bay of the Appendix D example, replacing the preliminary #3-at-12-inch slab reinforcement."
+    },
+    {
+      "figure_number": "D-4",
+      "caption": "Typical Anchorage of Internal Ties to Peripheral Ties",
+      "chapter": "D",
+      "pdf_page_index": 144,
+      "printed_page": "129",
+      "page_estimated": false,
+      "description": "Shows the seismic-hook anchorage of internal ties into the peripheral tie within the 3-ft peripheral-tie width, per Section 3-1.6.1."
+    }
+  ]
+}

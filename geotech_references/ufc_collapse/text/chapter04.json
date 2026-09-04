@@ -1,0 +1,93 @@
+{
+  "reference_id": "UFC 4-023-03",
+  "reference_title": "UFC 4-023-03, Design of Buildings to Resist Progressive Collapse (DoD, dated 14 July 2009, as amended through Change 4, 10 June 2024)",
+  "volume": null,
+  "chapter": 4,
+  "chapter_title": "Reinforced Concrete",
+  "sections": [
+    {
+      "section_id": "4-0",
+      "title": "Chapter Overview",
+      "summary": "Material-specific RC requirements for progressive collapse; Appendix D demonstrates the requirements on a 7-story building. Composite-construction portions use the appropriate other material chapter. The applicable combination of TF/AP/ELR still depends on Risk Category (Section 2-2).",
+      "body": "This chapter provides the specific requirements for designing a reinforced concrete building to resist progressive collapse. Appendix D demonstrates the application of the reinforced concrete design requirements for a 7-story building. If composite construction with other materials is employed, use the design guidance from the appropriate material chapter in this UFC for those structural elements or portions of the structure. Note that the combination of design requirements (TF, AP, and ELR) will depend upon the Risk Category of the building, as defined in Section 2-2.",
+      "key_points": ["Composite-material portions: use the OTHER material's chapter for those elements", "Validated in full by Appendix D's 7-story worked example"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Chapter roadmap."
+    },
+    {
+      "section_id": "4-1",
+      "title": "Material Properties for Reinforced Concrete",
+      "summary": "Over-strength factors (lower-bound to expected strength) come from ASCE 41 Table 10-4 -- not reprinted in this UFC.",
+      "body": "Apply the appropriate over-strength factors to the calculation of the design strengths for both Tie Forces and the Alternate Path method. The over-strength factors are provided in ASCE 41 Table 10-4, Factors to Translate Lower-Bound Material Properties to Expected Strength Material Properties.",
+      "key_points": ["Over-strength source: ASCE 41 Table 10-4"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Feeds QCE determination for RC Tie Force and Alternate Path calculations."
+    },
+    {
+      "section_id": "4-2",
+      "title": "Strength Reduction Factor Phi for Reinforced Concrete",
+      "summary": "Phi comes from ACI 318, by component and behavior -- not reprinted in this UFC, except for the specific tie-rebar-in-tension Phi=0.75 given in Section 4-3.",
+      "body": "For the Alternate Path and Tie Force methods, use the appropriate strength reduction factor specified in ACI 318 Building Code Requirements for Structural Concrete for the component and behavior under consideration.",
+      "key_points": ["Phi source: ACI 318 (by component/behavior)"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "General Phi-factor pointer; Section 4-3 gives the specific tie-rebar value."
+    },
+    {
+      "section_id": "4-3",
+      "title": "Tie Force Requirements for Reinforced Concrete",
+      "summary": "Apply Section 3-1 for concrete frame/wall/precast systems; the strength reduction factor for tie rebar in TENSION is Phi=0.75 (ACI 318 strut-and-tie); ACI 318 structural-integrity requirements must ALSO be met, taking the more stringent of the two codes wherever they overlap.",
+      "body": "Apply the Tie Force requirements in Section 3-1, when applicable, for concrete frame and load-bearing wall structural systems, mixed systems with concrete elements, and framed/load-bearing wall systems with precast concrete floors. The strength reduction factor Phi for properly anchored, embedded, or spliced steel reinforcement in tension shall be taken as 0.75 (based on ACI 318 strut-and-tie models). The structural integrity requirements of ACI 318 for cast-in-place and precast concrete construction must be satisfied, as well as the Tie Force requirements in this document. Use the largest/most stringent requirement where ACI 318 and this UFC overlap.",
+      "key_points": ["Phi=0.75 for tie rebar in tension (ACI 318 strut-and-tie basis)", "ACI 318 structural-integrity provisions apply IN ADDITION to Section 3-1's Tie Force requirements", "Reproduced in Appendix D: As=Ru/(0.75*1.25*fy)"],
+      "equations": [{"id": "n/a", "description": "Phi=0.75 for RC tie rebar in tension", "implemented_in": "ufc_collapse.reinforced_concrete.tie_rebar_phi"}],
+      "figures": [], "tables": [],
+      "applicability": "The RC-specific Phi factor used with every tie_forces.py equation for concrete construction."
+    },
+    {
+      "section_id": "4-4",
+      "title": "Alternate Path Requirements for Reinforced Concrete",
+      "summary": "General AP procedure per Section 3-2 (4-4.1); RC beam/joint design and rotational capacity per ASCE 41 as modified by 4-4.3 (4-4.2); the specific modeling/acceptance-criteria replacement tables (4-1 through 4-4) are given in Section 4-4.3.",
+      "body": "General (4-4.1): use the Alternate Path method in Section 3-2 to verify that the structure can bridge over removed elements. Flexural Members and Joints (4-4.2): the design strength and rotational capacities of beams and beam-to-column joints shall be determined per ASCE 41, as modified by the acceptance criteria in Paragraph 4-4.3.",
+      "key_points": ["AP method: Section 3-2 general procedure", "RC beam/joint capacities: ASCE 41 as modified by Section 4-4.3"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "The RC-specific application of the general Alternate Path method."
+    },
+    {
+      "section_id": "4-4.3",
+      "title": "Modeling and Acceptance Criteria for Reinforced Concrete",
+      "summary": "Use ASCE 41 Chapter 10 Life-Safety modeling/acceptance/m-factor values EXCEPT Tables 10-7, 10-11, 10-14, and 10-15, which are REPLACED by this UFC's own Tables 4-1 (RC beams, nonlinear), 4-2 (RC beams, linear m-factors), 4-3 (two-way slabs/slab-column connections, nonlinear), and 4-4 (same, linear m-factors).",
+      "body": "With the exception of Tables 10-7, 10-11, 10-14, and 10-15 in ASCE 41, use the modeling parameters, nonlinear acceptance criteria and linear m-factors for the Life Safety condition from ASCE 41 Chapter 10 for primary and secondary components; use ASCE 41's modeling parameters and guidance (including stiffness definitions) to create the analytical model. Table 4-1 REPLACES ASCE 41 Table 10-7 (nonlinear modeling parameters/acceptance criteria for RC beams). Table 4-2 REPLACES ASCE 41 Table 10-11 (acceptance criteria for linear models of RC beams). Table 4-3 REPLACES ASCE 41 Table 10-14 (nonlinear modeling parameters/acceptance criteria for two-way slabs and slab-column connections). Table 4-4 REPLACES ASCE 41 Table 10-15 (acceptance criteria for linear models of two-way slabs and slab-column connections).",
+      "key_points": [
+        "Everything else in ASCE 41 Chapter 10 (Life Safety) applies UNCHANGED",
+        "Table 4-1 replaces ASCE 41 10-7; Table 4-2 replaces 10-11; Table 4-3 replaces 10-14; Table 4-4 replaces 10-15",
+        "Per Table 3-4 Footnote A: RC beam-column joints are force-controlled, but the m-factor applied for the joint's Omega_LD comes from the adjacent beam hinge"
+      ],
+      "equations": [
+        {"id": "n/a", "description": "Table 4-1: RC beam nonlinear modeling (flexure)", "implemented_in": "ufc_collapse.reinforced_concrete.table_4_1_beam_flexure_modeling"},
+        {"id": "n/a", "description": "Table 4-1: RC beam nonlinear modeling (shear/development/embedment)", "implemented_in": "ufc_collapse.reinforced_concrete.table_4_1_beam_other_modeling"},
+        {"id": "n/a", "description": "Table 4-2: RC beam linear m-factors (flexure)", "implemented_in": "ufc_collapse.reinforced_concrete.table_4_2_beam_flexure_mfactor"},
+        {"id": "n/a", "description": "Table 4-2: RC beam linear m-factors (shear/development/embedment)", "implemented_in": "ufc_collapse.reinforced_concrete.table_4_2_beam_other_mfactor"},
+        {"id": "n/a", "description": "Table 4-3: two-way slab nonlinear modeling (flexure)", "implemented_in": "ufc_collapse.reinforced_concrete.table_4_3_slab_flexure_modeling"},
+        {"id": "n/a", "description": "Table 4-3: two-way slab nonlinear modeling (development/embedment)", "implemented_in": "ufc_collapse.reinforced_concrete.table_4_3_slab_other_modeling"},
+        {"id": "n/a", "description": "Table 4-4: two-way slab linear m-factors (flexure)", "implemented_in": "ufc_collapse.reinforced_concrete.table_4_4_slab_flexure_mfactor"},
+        {"id": "n/a", "description": "Table 4-4: two-way slab linear m-factors (development/embedment)", "implemented_in": "ufc_collapse.reinforced_concrete.table_4_4_slab_other_mfactor"}
+      ],
+      "figures": [],
+      "tables": [
+        "Table 4-1: Nonlinear Modeling Parameters and Acceptance Criteria for Reinforced Concrete Beams (Replacement for Table 10-7 in ASCE 41)",
+        "Table 4-2: Acceptance Criteria for Linear Models of Reinforced Concrete Beams (Replacement for Table 10-11 in ASCE 41)",
+        "Table 4-3: Modeling Parameters and Acceptance Criteria for Nonlinear Models of Two-Way Slabs and Slab-Column Connections (Replacement for Table 6-14 in ASCE 41)",
+        "Table 4-4: Acceptance Criteria for Linear Models of Two-Way Slabs and Slab-Column Connections (Replacement for Table 6-15 in ASCE 41)"
+      ],
+      "applicability": "The core RC acceptance-criteria content for both LSP (m-factors) and NSP/NDP (modeling parameters/deformation limits)."
+    },
+    {
+      "section_id": "4-5",
+      "title": "Enhanced Local Resistance Requirements for Reinforced Concrete",
+      "summary": "Apply Section 3-3's material-independent ELR procedure to framed and load-bearing wall RC buildings.",
+      "body": "Apply the Enhanced Local Resistance requirements in Section 3-3, where applicable, for framed and load-bearing wall reinforced concrete buildings.",
+      "key_points": ["ELR for RC: pure pointer to Section 3-3, no RC-specific modification"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "RC ELR design, validated in full by Appendix D."
+    }
+  ]
+}

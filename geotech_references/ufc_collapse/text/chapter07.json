@@ -1,0 +1,76 @@
+{
+  "reference_id": "UFC 4-023-03",
+  "reference_title": "UFC 4-023-03, Design of Buildings to Resist Progressive Collapse (DoD, dated 14 July 2009, as amended through Change 4, 10 June 2024)",
+  "volume": null,
+  "chapter": 7,
+  "chapter_title": "Wood",
+  "sections": [
+    {
+      "section_id": "7-0",
+      "title": "Chapter Overview",
+      "summary": "Material-specific wood requirements, focused on wood-FRAME construction (the DoD-typical category among AF&PA/ASCE 16's wood frame / noncombustible wall-wood joist / heavy timber categories); Appendix F demonstrates them on a 3-story load-bearing wall building.",
+      "body": "This chapter provides the specific requirements for designing a wood building to resist progressive collapse. Appendix F demonstrates the application of the wood design requirements for a 3-story load-bearing wall building. Wood construction takes several forms in current practice; per the 1996 AF&PA/ASCE 16 LRFD Manual for Engineered Wood Construction, it can be categorized as wood frame, noncombustible wall-wood joist, and heavy timber. As most wood construction used for DoD facilities falls under the wood frame category, this is the focus of these provisions. If composite construction with other materials is employed, use the design guidance from the appropriate material chapter for those elements/portions.",
+      "key_points": ["Focused on wood-frame construction (most common DoD wood-building type)"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Chapter roadmap."
+    },
+    {
+      "section_id": "7-1",
+      "title": "Material Properties for Wood",
+      "summary": "Default expected-strength values come from AF&PA/ASCE 16 design resistance values (ASCE 41 also gives defaults for shear walls/diaphragms); when a default LOWER-bound value is needed, multiply the expected-strength value by 0.85.",
+      "body": "Per ASCE 41, default expected strength values for wood materials shall be based on design resistance values from AF&PA/ASCE 16. In addition, ASCE 41 provides default expected strength values for shear walls and wood diaphragms. When default lower bound strength values are needed, multiply the expected strength values by 0.85.",
+      "key_points": ["Default expected strength: AF&PA/ASCE 16 (or ASCE 41 defaults for shear walls/diaphragms)", "Lower-bound = 0.85 x expected strength, when a default is needed"],
+      "equations": [{"id": "n/a", "description": "Wood default lower-bound factor = 0.85", "implemented_in": "ufc_collapse.masonry_wood_cfs.wood_default_lower_bound_factor"}],
+      "figures": [], "tables": [],
+      "applicability": "Feeds QCE/QCL determination for wood Tie Force and Alternate Path calculations."
+    },
+    {
+      "section_id": "7-2",
+      "title": "Strength Reduction Factor Phi for Wood",
+      "summary": "Phi comes from the ANSI/AF&PA National Design Specification (NDS) for Wood Construction, by component/limit state.",
+      "body": "For Tie Force and Alternate Path methods, use the appropriate strength reduction factor specified in ANSI/AF&PA National Design Specification for Wood Construction for the component and behavior under consideration. If wood components can be proven capable of carrying the required tie strengths while undergoing 0.20-rad rotation, use the appropriate Phi for each limit state considered.",
+      "key_points": ["Phi source: ANSI/AF&PA NDS for Wood Construction"],
+      "equations": [{"id": "n/a", "description": "Phi source pointer", "implemented_in": "ufc_collapse.masonry_wood_cfs.wood_material_code_references"}],
+      "figures": [], "tables": [],
+      "applicability": "General Phi-factor pointer for wood."
+    },
+    {
+      "section_id": "7-3",
+      "title": "Time Effect Factor Lambda for Wood",
+      "summary": "This UFC specifies lambda=1.0 for progressive collapse (Section 3-1.2/3-2.7 apply lambda in addition to the ASCE 41 Chapter 12 expected-strength values); per Appendix C-10.1, this is a deliberate middle value between the permanent-load factor (0.6-0.8) and the impact-load factor (1.25), since post-damage stability needs to persist only long enough for rescue and temporary shoring, not permanently.",
+      "body": "The time effect factor lambda for wood is 1.0. Per Appendix C-10.1: time effect factors reflect reliability analysis considering strength-property variability, stochastic load modeling, and cumulative damage; factors range from 0.6 (permanent dead load) to 1.25 (impact loading), with common gravity-load design at 0.80 and lateral-load design at 1.0. Since post-collapse stability need only persist long enough to allow rescue and temporary shoring -- not indefinitely -- a value greater than the permanent-occupancy factor but less than the impact factor is warranted; lambda=1.0 (the same value used for gravity-lateral load combinations) was selected to avoid over-conservatism for this extreme loading case.",
+      "key_points": ["lambda = 1.0 for progressive collapse (a deliberate compromise, not simply the permanent-load or impact-load bound)", "Used alongside the ASCE 41 Chapter 12 default expected-strength values"],
+      "equations": [{"id": "n/a", "description": "Wood time effect factor lambda = 1.0", "implemented_in": "ufc_collapse.masonry_wood_cfs.wood_time_effect_factor"}],
+      "figures": [], "tables": [],
+      "applicability": "Applied to every wood strength calculation (Tie Force and Alternate Path) alongside the material Phi factor."
+    },
+    {
+      "section_id": "7-4",
+      "title": "Tie Force Requirements for Wood",
+      "summary": "Apply Section 3-1 for load-bearing wood buildings.",
+      "body": "Apply the Tie Force requirements in Section 3-1, where applicable, for load-bearing wood buildings.",
+      "key_points": ["Pure pointer to Section 3-1"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Wood Tie Force design."
+    },
+    {
+      "section_id": "7-5",
+      "title": "Alternate Path Method for Wood",
+      "summary": "General procedure per Section 3-2 (7-5.1); modeling/acceptance criteria are the ASCE 41 Chapter 12 Life-Safety values, unmodified by this UFC (7-5.2).",
+      "body": "General (7-5.1): use the Alternate Path method in Section 3-2, where applicable, to verify that the structure can bridge over removed elements. Modeling and Acceptance Criteria (7-5.2): use the modeling parameters, nonlinear acceptance criteria and linear m-factors for the Life Safety condition from ASCE 41 Chapter 12 for primary and secondary components; use ASCE 41's modeling parameters and guidance for the analytical model.",
+      "key_points": ["No UFC-specific replacement tables for wood -- ASCE 41 Chapter 12 Life-Safety values apply directly"],
+      "equations": [{"id": "n/a", "description": "Modeling/acceptance-criteria source pointer", "implemented_in": "ufc_collapse.masonry_wood_cfs.wood_alternate_path_modeling_source"}],
+      "figures": [], "tables": [],
+      "applicability": "The wood-specific application of the general Alternate Path method, validated by Appendix F."
+    },
+    {
+      "section_id": "7-6",
+      "title": "Enhanced Local Resistance Requirements for Wood",
+      "summary": "Apply Section 3-3's material-independent ELR procedure to framed and load-bearing wall wood buildings.",
+      "body": "Apply the Enhanced Local Resistance requirements in Section 3-3, where applicable, for framed and load-bearing wall wood buildings.",
+      "key_points": ["ELR for wood: pure pointer to Section 3-3"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Wood ELR design."
+    }
+  ]
+}

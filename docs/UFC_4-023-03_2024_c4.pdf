@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link id="site-favicon" rel="icon" href="https://www.wbdg.org/api/settings/website/favicon" />
+    <script>
+      // Fall back to the static logo if the backend favicon fails to load
+      // (e.g. no favicon configured, 404, or an invalid/empty response).
+      (function () {
+        var DEFAULT_FAVICON = "/logo.svg";
+        var probe = new Image();
+        probe.onerror = function () {
+          var link = document.getElementById("site-favicon");
+          if (link) link.href = DEFAULT_FAVICON;
+        };
+        probe.src = "https://www.wbdg.org/api/settings/website/favicon";
+      })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WBDG</title>
+    <script type="module" crossorigin src="/assets/index-CKmTD-jS.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-zJdpkEH-.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script
+      defer
+      src="https://integration.pine.zayai.io/client.js?v=250225"
+      data-prefix="OTM"
+      singleRequest="true"
+      multiRequests="false"
+      endUserDiv="true"
+      cloudFAB="true"
+      api_key="otm_sk_46daba1a491a40edefe10008fcc9102985314562acc142806cd2deaf0f0125fb"
+    ></script>
+  </body>
+</html>

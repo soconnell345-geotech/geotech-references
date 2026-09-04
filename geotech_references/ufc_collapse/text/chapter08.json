@@ -1,0 +1,66 @@
+{
+  "reference_id": "UFC 4-023-03",
+  "reference_title": "UFC 4-023-03, Design of Buildings to Resist Progressive Collapse (DoD, dated 14 July 2009, as amended through Change 4, 10 June 2024)",
+  "volume": null,
+  "chapter": 8,
+  "chapter_title": "Cold-Formed Steel",
+  "sections": [
+    {
+      "section_id": "8-0",
+      "title": "Chapter Overview",
+      "summary": "Material-specific cold-formed-steel requirements; Appendix G demonstrates them on a load-bearing wall building. Composite portions use the other applicable material chapter.",
+      "body": "This chapter provides the specific requirements for designing a cold-formed steel building to resist progressive collapse. If composite construction with other materials is employed, use the design guidance from the appropriate material chapter for those elements/portions. Note that the combination of design requirements (TF, AP, and ELR) will depend upon the Risk Category of the building, as defined in Section 2-2.",
+      "key_points": ["The shortest material chapter; follows the same structure as Chapters 6-7"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Chapter roadmap."
+    },
+    {
+      "section_id": "8-1",
+      "title": "Material Properties for Cold-Formed Steel",
+      "summary": "ASCE 41 provides default expected-strength values for light-metal-framing shear walls; when a default LOWER-bound value is needed, multiply the expected-strength value by 0.85 -- the same rule and factor as wood (Section 7-1).",
+      "body": "ASCE 41 provides default expected strength values for light metal framing shear walls. When default lower bound strength values are needed, multiply the expected strength values by 0.85.",
+      "key_points": ["Lower-bound = 0.85 x expected strength (same rule as wood, Section 7-1)"],
+      "equations": [{"id": "n/a", "description": "CFS default lower-bound factor = 0.85", "implemented_in": "ufc_collapse.masonry_wood_cfs.cold_formed_steel_default_lower_bound_factor"}],
+      "figures": [], "tables": [],
+      "applicability": "Feeds QCE/QCL determination for cold-formed steel Tie Force and Alternate Path calculations."
+    },
+    {
+      "section_id": "8-2",
+      "title": "Strength Reduction Factor Phi for Cold-Formed Steel",
+      "summary": "Phi comes from the AISI/COS/NASPEC North American Specification for the Design of Cold-Formed Steel Structural Members.",
+      "body": "For Tie Force and Alternate Path methods, use the appropriate strength reduction factor specified in AISI/COS/NASPEC AISI Standard North American Specification for the Design of Cold-Formed Steel Structural Members for the component and behavior under consideration. If cold formed steel components can be proven capable of carrying the required tie strengths while undergoing 0.20-rad rotation, use the appropriate Phi for each limit state considered.",
+      "key_points": ["Phi source: AISI/COS/NASPEC North American Specification"],
+      "equations": [{"id": "n/a", "description": "Phi source pointer", "implemented_in": "ufc_collapse.masonry_wood_cfs.cold_formed_steel_material_code_references"}],
+      "figures": [], "tables": [],
+      "applicability": "General Phi-factor pointer for cold-formed steel."
+    },
+    {
+      "section_id": "8-3",
+      "title": "Tie Force Requirements for Cold-Formed Steel",
+      "summary": "Apply Section 3-1 for load-bearing cold-formed steel buildings.",
+      "body": "Apply the Tie Force requirements in Section 3-1, where applicable, for load-bearing cold-formed steel buildings.",
+      "key_points": ["Pure pointer to Section 3-1"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Cold-formed steel Tie Force design."
+    },
+    {
+      "section_id": "8-4",
+      "title": "Alternate Path Method for Cold-Formed Steel",
+      "summary": "General procedure per Section 3-2 (8-4.1); modeling/acceptance criteria are the ASCE 41 Chapter 12 Life-Safety values, unmodified by this UFC (8-4.2) -- identical structure to wood's Chapter 12 pointer.",
+      "body": "General (8-4.1): use the Alternate Path method in Section 3-2, where applicable, to verify that the structure can bridge over removed elements. Modeling and Acceptance Criteria (8-4.2): use the modeling parameters, nonlinear acceptance criteria and linear m-factors for the Life Safety condition from ASCE 41 Chapter 12 for primary and secondary components; use ASCE 41's modeling parameters and guidance for the analytical model.",
+      "key_points": ["No UFC-specific replacement tables -- ASCE 41 Chapter 12 Life-Safety values apply directly (same source chapter as wood)"],
+      "equations": [{"id": "n/a", "description": "Modeling/acceptance-criteria source pointer", "implemented_in": "ufc_collapse.masonry_wood_cfs.cold_formed_steel_alternate_path_modeling_source"}],
+      "figures": [], "tables": [],
+      "applicability": "The cold-formed-steel-specific application of the general Alternate Path method, validated by Appendix G."
+    },
+    {
+      "section_id": "8-5",
+      "title": "Enhanced Local Resistance Requirements for Cold-Formed Steel",
+      "summary": "Apply Section 3-3's material-independent ELR procedure to framed and load-bearing wall cold-formed steel buildings.",
+      "body": "Apply the Enhanced Local Resistance requirements in Section 3-3, where applicable, for framed and load-bearing wall cold-formed steel buildings.",
+      "key_points": ["ELR for cold-formed steel: pure pointer to Section 3-3"],
+      "equations": [], "figures": [], "tables": [],
+      "applicability": "Cold-formed steel ELR design."
+    }
+  ]
+}

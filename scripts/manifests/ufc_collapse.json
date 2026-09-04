@@ -1,0 +1,66 @@
+{
+  "reference_id": "UFC 4-023-03",
+  "reference_title": "UFC 4-023-03, Design of Buildings to Resist Progressive Collapse (DoD, dated 14 July 2009, as amended through Change 4, 10 June 2024)",
+  "volume": null,
+  "pdf_path": "../../docs/UFC_4-023-03.pdf",
+  "package": "ufc_collapse",
+  "scope_note": "Full-manual coverage (243 pages). Chapters 1-8 body text extracted (chapter01.json through chapter08.json). Chapter 3 (Design Procedures) is the largest chapter and its equations are split across three Python modules by major section: tie_forces.py (Section 3-1), alternate_path.py (Section 3-2), enhanced_local_resistance.py (Section 3-3) -- equation_module below names the primary module (tie_forces) for that chapter entry. Appendix A (references), Appendix B (definitions, narrative), and Appendix C (commentary, narrative) are NOT extracted as chapter text -- Appendix C's Table C-1 and Figure C-7 fit ARE digitized directly in structural_steel.py/alternate_path.py. Appendix D (reinforced-concrete worked example) is used as a validation anchor in tie_forces.py/enhanced_local_resistance.py tests, not re-narrated as chapter text. Appendices E, F, G (steel/wood/cold-formed-steel worked examples) and Appendix H (IBC modifications) are likewise not re-narrated as chapter text; Appendix H's enumerable criteria are digitized in ibc_modifications.py. The figure catalog covers all 14 Chapter 3 figures, all 8 Appendix B figures, all 13 Appendix C figures, and all 4 Appendix D figures (39 total, all page-confirmed).",
+  "chapters": [
+    {
+      "number": 1,
+      "title": "Introduction",
+      "page_start": 1,
+      "page_end": 6,
+      "equation_module": "geotech_references.ufc_collapse.applicability"
+    },
+    {
+      "number": 2,
+      "title": "Progressive Collapse Design Requirements for New and Existing Construction",
+      "page_start": 7,
+      "page_end": 11,
+      "equation_module": "geotech_references.ufc_collapse.applicability"
+    },
+    {
+      "number": 3,
+      "title": "Design Procedures",
+      "page_start": 13,
+      "page_end": 59,
+      "equation_module": "geotech_references.ufc_collapse.tie_forces"
+    },
+    {
+      "number": 4,
+      "title": "Reinforced Concrete",
+      "page_start": 61,
+      "page_end": 65,
+      "equation_module": "geotech_references.ufc_collapse.reinforced_concrete"
+    },
+    {
+      "number": 5,
+      "title": "Structural Steel",
+      "page_start": 67,
+      "page_end": 70,
+      "equation_module": "geotech_references.ufc_collapse.structural_steel"
+    },
+    {
+      "number": 6,
+      "title": "Masonry",
+      "page_start": 71,
+      "page_end": 72,
+      "equation_module": "geotech_references.ufc_collapse.masonry_wood_cfs"
+    },
+    {
+      "number": 7,
+      "title": "Wood",
+      "page_start": 73,
+      "page_end": 74,
+      "equation_module": "geotech_references.ufc_collapse.masonry_wood_cfs"
+    },
+    {
+      "number": 8,
+      "title": "Cold-Formed Steel",
+      "page_start": 75,
+      "page_end": 76,
+      "equation_module": "geotech_references.ufc_collapse.masonry_wood_cfs"
+    }
+  ]
+}
