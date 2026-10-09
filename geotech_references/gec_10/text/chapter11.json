@@ -68,16 +68,22 @@
     {
       "section_id": "11.5",
       "title": "Group Effects in Lateral Loading",
-      "body": "P-multiplier (fm) concept: in a group, leading row shafts carry more load than trailing row shafts due to shadow effects. P-multipliers reduce the p-y curves of individual shafts within the group relative to a single isolated shaft. AASHTO p-multipliers fm: leading row = 0.8; second row = 0.4; third and subsequent rows = 0.3 for 3B spacing; increase toward 1.0 as spacing increases toward 5-6B. Computer programs: FB-Multipier (recommended by FHWA), GROUP; PLAXIS. Group analysis: apply p-multiplier to each shaft's p-y curves; analyze group as system with cap stiffness; distribute lateral load and moment to individual shafts based on relative stiffness. Interaction effects reduce total lateral resistance and increase deflections compared to n times single shaft resistance.",
+      "body": "When laterally loaded drilled shafts are used in closely spaced groups, a shaft deflects further under a given load, and its bending stresses are larger, than if its neighbors were absent; group effects should be considered when shaft spacing is less than about six diameters in any direction. P-multiplier (Pm) concept (Brown et al. 1987): the p-y curves of a shaft in the group are scaled, p_group shaft = Pm x p_single shaft (Eq 11-14). Shafts in the leading row push into soil that is little affected by the group and need only a minor reduction; shafts in the trailing rows react against soil disturbed by the shafts ahead of them, so their soil resistance is reduced more, and the mass movement of the soil around the group reduces p for all shafts. Trends from field, centrifuge and finite element studies: the greatest reduction is between the first row and the trailing rows (differences among trailing rows are small); soil type has a relatively minor effect; installation of driven displacement piles can raise Pm in trailing rows in sand, which is not expected for drilled shafts; the effects are less pronounced, and Pm closer to 1, at lateral displacements under about one inch. Recommended design values, Table 11-1 (Pm by row position and center-to-center spacing 3D / 4D / 5D / >= 6D): lead row 0.7 / 0.85 / 1.0 / 1.0; 2nd row 0.5 / 0.65 / 0.85 / 1.0; 3rd and higher rows 0.35 / 0.5 / 0.7 / 1.0. Restrained shaft heads develop moments that rotate the cap and induce push-pull axial loads in the shafts (11.5.2). Computer codes FB-MultiPier and GROUP take row-specific p-multipliers; DFSAP (strain wedge method) represents group effects with overlapping passive wedges and applies no external multipliers; finite element analysis (e.g. ABAQUS) may be justified for unusual soil, geometry or loading. Alternatively, separate single-shaft analyses by row position can be combined to obtain the group response (Brown and Bollmann 1993).",
       "key_points": [
-        "P-multiplier (fm): reduces p-y resistance for group shafts; leading row fm=0.7, second row fm=0.5, third+ rows fm=0.35 at 3B spacing",
-        "P-multipliers approach 1.0 as spacing increases to 5-6B",
-        "Computer programs: FB-Multipier (FHWA recommended), GROUP",
-        "Group lateral resistance < n × single shaft resistance due to shadow effects"
+        "P-multiplier (Pm): p_group shaft = Pm x p_single shaft (Eq 11-14); consider group effects at spacing < about 6 diameters",
+        "Table 11-1 at 3D spacing: lead row Pm = 0.7, 2nd row 0.5, 3rd and higher rows 0.35",
+        "Pm = 1.0 for all rows at spacing >= 6D (lead row from 5D)",
+        "Computer programs: FB-MultiPier, GROUP (row-specific Pm); DFSAP strain wedge applies no external multipliers",
+        "Group lateral resistance < n x single shaft resistance due to shadow effects"
       ],
       "equations": [],
-      "figures": [],
-      "tables": [],
+      "figures": [
+        "Figure 11-10",
+        "Figure 11-11"
+      ],
+      "tables": [
+        "Table 11-1"
+      ],
       "applicability": "Lateral capacity of drilled shaft groups; p-multiplier method"
     },
     {

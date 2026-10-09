@@ -177,3 +177,25 @@ class TestListChapters:
             for section in ch["sections"]:
                 assert "section_id" in section
                 assert "title" in section
+
+
+def test_section_11_5_p_multipliers_match_table_11_1():
+    """Live smoke G20 (REF-2, 2026-10-08): the 11.5 text said "AASHTO
+    p-multipliers fm: leading row = 0.8; second row = 0.4; third ... = 0.3"
+    while table_11_1_p_multiplier gives 0.70 / 0.50 / 0.35 at 3D. The printed
+    FHWA-NHI-18-024 (Table 11-1, p. 11-17, PDF p. 351) gives 0.7 / 0.5 / 0.35
+    and calls the factor Pm; the 0.8 / 0.4 / 0.3 values do not appear in the
+    section. Text and table must now agree with the print."""
+    from geotech_references.gec_10.tables import table_11_1_p_multiplier
+    sec = retrieve_section("gec_10", "11.5")
+    text = sec["body"] if isinstance(sec, dict) and "body" in sec else str(sec)
+    assert "0.8;" not in text and "= 0.8" not in text
+    assert "lead row 0.7 / 0.85 / 1.0 / 1.0" in text
+    assert "2nd row 0.5 / 0.65 / 0.85 / 1.0" in text
+    assert "3rd and higher rows 0.35 / 0.5 / 0.7 / 1.0" in text
+    for row, expected in (("lead", (0.7, 0.85, 1.0, 1.0)),
+                          ("2nd", (0.5, 0.65, 0.85, 1.0)),
+                          ("3rd", (0.35, 0.5, 0.7, 1.0))):
+        got = tuple(table_11_1_p_multiplier(row, s)["pm"]
+                    for s in (3.0, 4.0, 5.0, 6.0))
+        assert got == pytest.approx(expected)
