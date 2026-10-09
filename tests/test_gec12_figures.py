@@ -157,28 +157,32 @@ class TestCF:
 class TestLimitingToeResistance:
     """Tests for figure_7_15_limiting_toe_resistance()."""
 
-    def test_exact_phi_30(self):
-        """phi=30 gives qL approx 10 tsf."""
-        assert figure_7_15_limiting_toe_resistance(30) == pytest.approx(10.0, abs=1.0)
+    # Pins measured off the printed figure (2026-10-08); a second pixel read
+    # and both vision models agree within about 1 tsf.
+    @pytest.mark.parametrize("phi, ql", [
+        (30, 7.1), (32, 16.0), (34, 35.9), (36, 75.2), (38, 133.6),
+        (40, 208.5), (42, 296.0), (43, 339.2), (43.75, 368.0),
+    ])
+    def test_measured_nodes(self, phi, ql):
+        assert figure_7_15_limiting_toe_resistance(phi) == pytest.approx(ql, abs=0.05)
 
-    def test_exact_phi_40(self):
-        """phi=40 gives qL approx 200 tsf."""
-        assert figure_7_15_limiting_toe_resistance(40) == pytest.approx(200.0, abs=10.0)
+    def test_interpolates_between_nodes(self):
+        assert figure_7_15_limiting_toe_resistance(35.5) == pytest.approx(
+            (53.7 + 75.2) / 2, abs=0.05)
 
     def test_monotonic_increase(self):
         """qL increases with phi."""
         ql_prev = 0
-        for phi in [26, 30, 34, 38, 42, 45]:
+        for phi in [30, 31, 33, 35, 37, 39, 41, 43, 43.75]:
             ql = figure_7_15_limiting_toe_resistance(phi)
             assert ql > ql_prev
             ql_prev = ql
 
-    def test_phi_out_of_range(self):
-        """phi < 26 or > 45 raises ValueError."""
-        with pytest.raises(ValueError):
-            figure_7_15_limiting_toe_resistance(20)
-        with pytest.raises(ValueError):
-            figure_7_15_limiting_toe_resistance(50)
+    @pytest.mark.parametrize("phi", [20, 26, 28, 29.9, 43.8, 44, 45, 50])
+    def test_refuses_outside_the_chart(self, phi):
+        """The axis starts at 30 deg and the curve ends at 43.75 deg."""
+        with pytest.raises(ValueError, match="outside Figure 7-15"):
+            figure_7_15_limiting_toe_resistance(phi)
 
 
 # ============================================================================

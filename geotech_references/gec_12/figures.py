@@ -191,8 +191,21 @@ def figure_7_14_correction_factor(phi: float, delta_phi_ratio: float) -> float:
 # (after Meyerhof 1976)
 # ============================================================================
 
-_FIG_7_15_PHI = [26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 45]
-_FIG_7_15_QL_TSF = [2.0, 5.0, 10.0, 20.0, 40.0, 75.0, 130.0, 200.0, 280.0, 360.0, 400.0]
+# Measured off the printed figure (GEC 12 Vol 1, pdf page index 283, the
+# embedded image) on 2026-10-08:
+# - x was fitted to the 1-degree gridlines and y to the 25-tsf gridlines;
+# - the curve was read as the centre of its stroke at each degree, to about
+#   +/- 1 tsf;
+# - a second, independent pixel read and both vision models agree.
+#
+# The axis begins at 30 deg and the curve ends at 43.75 deg (about 368 tsf).
+# The earlier table carried nodes at 26/28/44/45 deg that are not on the
+# chart, and read high at the loose end (10 tsf at 30 deg, +41 %).
+_FIG_7_15_PHI = [30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 43.75]
+_FIG_7_15_QL_TSF = [7.1, 10.1, 16.0, 24.5, 35.9, 53.7, 75.2, 102.3, 133.6,
+                    168.3, 208.5, 251.6, 296.0, 339.2, 368.0]
+FIG_7_15_PHI_MIN = _FIG_7_15_PHI[0]
+FIG_7_15_PHI_MAX = _FIG_7_15_PHI[-1]
 
 
 def figure_7_15_limiting_toe_resistance(phi: float) -> float:
@@ -201,7 +214,8 @@ def figure_7_15_limiting_toe_resistance(phi: float) -> float:
     Parameters
     ----------
     phi : float
-        Soil friction angle at pile toe (degrees), 26 to 45.
+        Soil friction angle at pile toe (degrees), 30 to 43.75 -- the span of
+        the printed curve.
 
     Returns
     -------
@@ -211,11 +225,16 @@ def figure_7_15_limiting_toe_resistance(phi: float) -> float:
     Raises
     ------
     ValueError
-        If phi is outside the range 26-45 deg.
+        If phi is outside 30-43.75 deg. The chart gives no value there:
+        below 30 deg the limit is lower than 7.1 tsf, and the curve stops at
+        43.75 deg (about 368 tsf).
     """
-    if phi < 26 or phi > 45:
+    if phi < FIG_7_15_PHI_MIN or phi > FIG_7_15_PHI_MAX:
         raise ValueError(
-            f"Friction angle phi={phi} deg is outside the range 26-45 deg."
+            f"Friction angle phi={phi} deg is outside Figure 7-15, which "
+            f"spans {FIG_7_15_PHI_MIN:g}-{FIG_7_15_PHI_MAX:g} deg (the axis "
+            f"starts at 30 deg; the curve ends at 43.75 deg, about 368 tsf). "
+            f"The chart gives no value here."
         )
     return _linterp(phi, _FIG_7_15_PHI, _FIG_7_15_QL_TSF)
 
