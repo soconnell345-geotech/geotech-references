@@ -308,16 +308,17 @@ def reference_search(
             return conn.execute(sql, params).fetchall()
 
         strategy = _qe.EXPANSION_STRATEGY
-        try:
+
+        def search(q: str, relaxed: bool = False) -> list[sqlite3.Row]:
             if strategy == "rerank":
                 # "shotgun": one combined query, BM25 ranks literal+synonym union.
-                rows = run(_qe.combined_query(query))
+                rows = run(_qe.combined_query(q))
             elif strategy == "auto":
                 # Rerank the literal+synonym union (recall), but PIN the literal
                 # top-1 so an already-good query keeps its best hit (precision).
-                literal = run(query)
-                combined = _qe.combined_query(query)
-                if combined == query:
+                literal = run(q)
+                combined = _qe.combined_query(q)
+                if combined == q:
                     rows = literal            # no synonyms to add
                 elif not literal:
                     rows = run(combined)      # nothing to pin; rerank the union
@@ -327,13 +328,13 @@ def reference_search(
                         key=lambda r: (r["reference"], r["section_id"]),
                     )
             else:
-                rows = run(query)
+                rows = run(q)
                 # "fill": the literal query is AND-matched, so it under-returns
                 # exactly when the query's terminology differs from the source
                 # text (a synonym miss). Append synonym hits to fill remaining
                 # slots; literal BM25 hits keep their rank (precision preserved).
                 if strategy == "fill" and len(rows) < limit:
-                    expansion = _qe.expand_query(query)
+                    expansion = _qe.expand_query(q)
                     if expansion:
                         rows = _qe.merge_hits(
                             rows, run(expansion), limit,
@@ -346,14 +347,90 @@ def reference_search(
             # in 'off' — that strategy is the pure-literal anchor used by the
             # recall eval and the precision invariants.
             if not rows and strategy != "off":
-                fb = _qe.or_fallback(query)
-                if fb and fb != query:
+                fb = _qe.or_fallback(q)
+                if not fb and relaxed:
+                    # a query re-quoted by fts_safe_query: its words, OR-ed
+                    fb = _qe.or_fallback(plain_terms(q))
+                if fb and fb != q:
                     rows = run(fb)
+            return rows
+
+        try:
+            rows = search_fts_safely(
+                search, query, retry=lambda q: search(q, relaxed=True))
         except sqlite3.OperationalError as e:
             return [{"error": f"FTS query error: {e}"}]
         return [_row_to_summary(r) for r in rows]
     finally:
         conn.close()
+
+
+# ---------------------------------------------------------------------------
+# Plain-text queries that FTS5 cannot parse as written
+# ---------------------------------------------------------------------------
+# A user's words go straight to FTS5 MATCH, where '-', '.', '/', ':' and the
+# like are query syntax: "EM 1110-2-1902", "pseudo-static" and "Table 5-2"
+# failed with "no such column: 2" / "no such column: static" (GeotechStaff-
+# Engineer live smoke wave 1, A11). A query that fails is run again with
+# every such token quoted as a phrase -- the tokenizer then matches its parts
+# in order, which is what the words meant -- so valid FTS5 syntax (phrases,
+# OR / NOT / NEAR, prefix*) keeps working exactly as before.
+
+#: A token FTS5 accepts bare: word characters, optionally a trailing '*'.
+_BAREWORD_RE = re.compile(r"^\w+\*?$", re.UNICODE)
+_FTS_OPERATORS = {"AND", "OR", "NOT"}
+
+
+def fts_safe_query(query: str) -> str:
+    """``query`` with every token FTS5 would read as syntax quoted as a
+    phrase (``1110-2-1902`` -> ``"1110-2-1902"``); quoted phrases, the
+    upper-case operators and bare words are kept. Stray quotes and brackets
+    are dropped."""
+    out: list[str] = []
+    for m in re.finditer(r'"[^"]*"|\S+', str(query or "")):
+        tok = m.group(0)
+        if tok.startswith('"') and tok.endswith('"') and len(tok) >= 2:
+            inner = tok[1:-1].strip()
+            if inner:
+                out.append(f'"{inner}"')
+            continue
+        tok = tok.strip('"()[]{}')
+        if not tok:
+            continue
+        if tok in _FTS_OPERATORS or _BAREWORD_RE.match(tok):
+            out.append(tok)
+            continue
+        words = re.findall(r"\w+", tok, re.UNICODE)
+        if not words:
+            continue
+        out.append(f'"{" ".join(words)}"' if len(words) > 1 else words[0])
+    # An operator cannot open or close the query.
+    while out and out[0] in _FTS_OPERATORS:
+        out.pop(0)
+    while out and out[-1] in _FTS_OPERATORS:
+        out.pop()
+    return " ".join(out)
+
+
+def plain_terms(query: str) -> str:
+    """The query's words alone (letters and digits), for the OR fallback."""
+    return " ".join(re.findall(r"[A-Za-z0-9]+", str(query or "")))
+
+
+def search_fts_safely(search, query: str, retry=None):
+    """``search(query)``; when FTS5 cannot parse the query, ``retry`` (default
+    ``search``) on :func:`fts_safe_query` of it. A query that fails both ways
+    raises the first error."""
+    try:
+        return search(query)
+    except sqlite3.OperationalError as first:
+        safe = fts_safe_query(query)
+        if not safe or safe == query:
+            raise
+        try:
+            return (retry or search)(safe)
+        except sqlite3.OperationalError:
+            raise first
 
 
 def reference_get(reference: str, section_id: str) -> dict[str, Any]:

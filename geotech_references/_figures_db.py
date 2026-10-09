@@ -31,6 +31,7 @@ from pathlib import Path
 from typing import Any
 
 from . import _query_expansion as _qe
+from ._retrieval_db import plain_terms, search_fts_safely
 
 # FTS5 operator words we must not inject as bare terms in the OR fallback.
 
@@ -175,11 +176,106 @@ def _ro_connect() -> sqlite3.Connection:
 # ---------------------------------------------------------------------------
 
 def _norm_fig_number(s: str) -> str:
-    """Normalize a figure id for lookup ('Figure 4-12', ' 4-12 ' -> '4-12')."""
-    s = (s or "").strip()
-    if s.lower().startswith("figure"):
-        s = s[len("figure"):].strip()
-    return s.upper()
+    """Normalize a figure id for lookup ('Figure 4-12', 'Fig. 4-12',
+    ' 4-12 ' -> '4-12')."""
+    s = (str(s or "")).strip()
+    low = s.lower()
+    for prefix in ("figure", "fig."):
+        if low.startswith(prefix):
+            s = s[len(prefix):].strip()
+            break
+    else:
+        if low.startswith("fig "):
+            s = s[3:].strip()
+    return s.strip(" .:").upper()
+
+
+def _id_key(text: str) -> str:
+    """A reference id or title reduced to lower-case letters and digits
+    ('gec_10', 'GEC-10', 'gec10' -> 'gec10'; 'UFC 3-250-01' -> 'ufc325001')."""
+    return re.sub(r"[^a-z0-9]+", "", str(text or "").lower())
+
+
+def _catalog_refs(conn: sqlite3.Connection) -> list[tuple[str, str, str]]:
+    """``(reference, reference_title, reference_id)`` of every catalog."""
+    rows = conn.execute(
+        "SELECT DISTINCT reference, reference_title, reference_id FROM figures"
+    ).fetchall()
+    return [(r["reference"], r["reference_title"] or "",
+             r["reference_id"] or "") for r in rows]
+
+
+def _reference_candidates(conn: sqlite3.Connection,
+                          reference: str) -> list[str]:
+    """The catalog ids a caller's ``reference`` can mean, best first.
+
+    The catalog id itself; the same id spelled another way (``gec10``,
+    ``GEC-10`` for ``gec_10``); a module name that covers several catalogs
+    (``dm7`` -> ``dm7_1``, ``dm7_2``); or the document's own designation or
+    title (``UFC 3-250-01`` -> ``ufc_pavement``). GeotechStaffEngineer live
+    smoke wave 1, G4: 9 figure reads failed on exactly these spellings.
+    """
+    refs = _catalog_refs(conn)
+    ids = [r[0] for r in refs]
+    if reference in ids:
+        return [reference]
+    key = _id_key(reference)
+    if not key:
+        return []
+    exact = [r for r in ids if _id_key(r) == key]
+    if exact:
+        return exact
+    prefix = sorted(r for r in ids if _id_key(r).startswith(key)
+                    and len(key) >= 3)
+    if prefix:
+        return prefix
+    by_doc = [r for r, title, doc in refs
+              if len(key) >= 4 and (key in _id_key(doc) or
+                                    key in _id_key(title))]
+    return sorted(set(by_doc), key=by_doc.index)
+
+
+def resolve_reference(reference: str, figure_number: str | None = None) -> str:
+    """The catalog id ``reference`` means (see :func:`_reference_candidates`);
+    when it could mean several catalogs, the one holding ``figure_number``.
+
+    Raises ``KeyError`` naming the valid ids, or the candidates when the
+    figure is in more than one of them."""
+    conn = _ro_connect()
+    try:
+        cands = _reference_candidates(conn, reference)
+        if len(cands) == 1:
+            return cands[0]
+        if not cands:
+            valid = sorted(r[0] for r in _catalog_refs(conn))
+            raise KeyError(
+                f"no figure catalog '{reference}'. Use a catalog id: "
+                f"{', '.join(valid)} (or figure_search to find the figure)")
+        if figure_number:
+            num = _norm_fig_number(figure_number)
+            holding = [c for c in cands if conn.execute(
+                "SELECT 1 FROM figures WHERE reference = ? AND "
+                "UPPER(figure_number) = ? LIMIT 1", (c, num)).fetchone()]
+            if len(holding) == 1:
+                return holding[0]
+            if holding:
+                shown = []
+                for c in holding:
+                    row = conn.execute(
+                        "SELECT caption, reference_title FROM figures WHERE "
+                        "reference = ? AND UPPER(figure_number) = ? LIMIT 1",
+                        (c, num)).fetchone()
+                    shown.append(f"{c} ({str(row['reference_title'])[:40]}: "
+                                 f"{str(row['caption'])[:70]})")
+                raise KeyError(
+                    f"'{reference}' figure {figure_number} exists in more "
+                    f"than one catalog -- {'; '.join(shown)}. Give the id of "
+                    "the one you mean")
+        raise KeyError(
+            f"'{reference}' could mean {', '.join(cands)}: give one of those "
+            "ids")
+    finally:
+        conn.close()
 
 
 # OR-of-terms recall fallback shared with reference_search.
@@ -244,6 +340,10 @@ def figure_search(
     limit = max(1, min(int(limit), _MAX_LIMIT))
     conn = _ro_connect()
     try:
+        # 'gec10', 'dm7', 'UFC 3-250-01' filter the catalogs they mean (G4)
+        refs = ((_reference_candidates(conn, reference) or [reference])
+                if reference else [])
+
         def run(match_query: str) -> list[sqlite3.Row]:
             sql = (
                 "SELECT f.reference, f.reference_title, f.figure_number, "
@@ -252,9 +352,10 @@ def figure_search(
                 "WHERE figures_fts MATCH ?"
             )
             params: list[Any] = [match_query]
-            if reference:
-                sql += " AND f.reference = ?"
-                params.append(reference)
+            if refs:
+                sql += (" AND f.reference IN ("
+                        + ", ".join("?" for _ in refs) + ")")
+                params.extend(refs)
             if chapter is not None:
                 sql += " AND f.chapter = ?"
                 params.append(int(chapter))
@@ -264,16 +365,17 @@ def figure_search(
 
         fig_key = lambda r: (r["reference"], r["figure_number"])
         strategy = _qe.EXPANSION_STRATEGY
-        try:
+
+        def search(q: str, relaxed: bool = False) -> list[sqlite3.Row]:
             if strategy == "rerank":
                 # "shotgun": BM25 ranks the literal+synonym union in one query.
-                rows = run(_qe.combined_query(query))
+                rows = run(_qe.combined_query(q))
             elif strategy == "auto":
                 # Rerank the literal+synonym union (recall), but PIN the literal
                 # top-1 so an already-good query keeps its best hit (precision).
-                literal = run(query)
-                combined = _qe.combined_query(query)
-                if combined == query:
+                literal = run(q)
+                combined = _qe.combined_query(q)
+                if combined == q:
                     rows = literal            # no synonyms to add
                 elif not literal:
                     rows = run(combined)      # nothing to pin; rerank the union
@@ -281,20 +383,31 @@ def figure_search(
                     rows = _qe.merge_hits([literal[0]], run(combined), limit,
                                           key=fig_key)
             else:
-                rows = run(query)
+                rows = run(q)
                 # "fill" (targeted): append synonym hits to remaining slots when
                 # the literal AND-query under-returns on a terminology mismatch.
                 if strategy == "fill" and len(rows) < limit:
-                    expansion = _qe.expand_query(query)
+                    expansion = _qe.expand_query(q)
                     if expansion:
                         rows = _qe.merge_hits(rows, run(expansion), limit,
                                               key=fig_key)
             # Broad OR-of-terms ALSO fills remaining slots (all strategies); it
             # is complementary to synonym expansion and must not be suppressed.
             if len(rows) < limit:
-                fb = _or_fallback(query)
-                if fb and fb != query:
+                fb = _or_fallback(q)
+                if not fb and relaxed:
+                    # a query re-quoted by fts_safe_query: its words, OR-ed
+                    fb = _or_fallback(plain_terms(q))
+                if fb and fb != q:
                     rows = _qe.merge_hits(rows, run(fb), limit, key=fig_key)
+            return rows
+
+        # A query FTS5 cannot parse as written ("pseudo-static", "Table
+        # 5-2") is run again with those tokens quoted (_retrieval_db,
+        # live smoke wave 1 A11).
+        try:
+            rows = search_fts_safely(
+                search, query, retry=lambda q: search(q, relaxed=True))
         except sqlite3.OperationalError as e:
             return [{"error": f"FTS query error: {e}"}]
         return [_row_to_hit(r) for r in rows]
@@ -308,10 +421,13 @@ def figure_get(reference: str, figure_number: str) -> dict[str, Any]:
     Parameters
     ----------
     reference : str
-        Reference id (e.g. ``"dm7_2"``).
+        Reference id (e.g. ``"dm7_2"``). Other spellings resolve
+        (:func:`resolve_reference`): ``gec10`` / ``GEC-10`` for ``gec_10``,
+        ``dm7`` for whichever of ``dm7_1`` / ``dm7_2`` holds the figure, or
+        the document's designation (``UFC 3-250-01``).
     figure_number : str
         Figure id as in the source (e.g. ``"4-12"``, ``"P-1"``, ``"B-3"``).
-        A leading ``"Figure "`` is tolerated.
+        A leading ``"Figure "`` / ``"Fig. "`` is tolerated.
 
     Returns
     -------
@@ -322,20 +438,30 @@ def figure_get(reference: str, figure_number: str) -> dict[str, Any]:
     Raises
     ------
     KeyError
-        If no such figure exists.
+        If no such figure exists -- naming the valid catalog ids, or the
+        nearest figure numbers in the catalog.
     """
     num = _norm_fig_number(figure_number)
+    ref = resolve_reference(reference, figure_number)
     conn = _ro_connect()
     try:
         row = conn.execute(
             "SELECT * FROM figures WHERE reference = ? "
             "AND UPPER(figure_number) = ? LIMIT 1",
-            (reference, num),
+            (ref, num),
         ).fetchone()
         if row is None:
+            import difflib
+            numbers = [r["figure_number"] for r in conn.execute(
+                "SELECT figure_number FROM figures WHERE reference = ?",
+                (ref,)).fetchall()]
+            near = difflib.get_close_matches(num, [n.upper() for n in numbers],
+                                             n=5, cutoff=0.5)
             raise KeyError(
-                f"figure '{figure_number}' not found in reference '{reference}'"
-            )
+                f"figure '{figure_number}' not found in reference '{ref}'"
+                + (f"; nearest figure numbers there: {', '.join(near)}"
+                   if near else "")
+                + " (figure_search finds a figure by what it shows)")
         return _row_to_full(row)
     finally:
         conn.close()
