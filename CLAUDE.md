@@ -1,5 +1,11 @@
 # geotech-references
 
+> **Open work for this repo is tracked in ONE list: `BACKLOG.md` in the
+> GeotechStaffEngineer repo** (§8, REF-nn; this repo is its submodule at
+> `geotech-references/`). Add new to-dos there with the next free ID, never as
+> a list in this file. Backlog, TODO and "follow-up" notes further down are
+> history (owner's rule, 2026-10-12).
+
 Standalone geotechnical reference library: digitized equations, figures, tables, and structured reference text from UFC 3-220-10/20 (the UFC successors to NAVFAC DM 7.01/7.02), FHWA GEC series, and other standards.
 
 **Two complementary components per reference:**
