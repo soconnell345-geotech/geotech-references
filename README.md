@@ -93,6 +93,17 @@ print(dm7_list_methods("chapter1"))
 result = dm7_agent("table_1_4_uscs_classification", '{"gravel_pct": 25, "sand_pct": 55, "fines_pct": 20, "liquid_limit": 35, "plasticity_index": 12}')
 ```
 
+## Source documents
+
+`docs/` holds the PDFs the modules were built from. Most are U.S. government publications: FHWA, USACE, UFC, FEMA, USDA, GSA and Caltrans.
+
+Three are standards from other publishers. They are kept here because copies are openly available online:
+- `docs/aashto1993.pdf`: AASHTO Guide for Design of Pavement Structures, 1993 Edition. Where this copy came from was not recorded.
+- `docs/en.1997.2.2007-1.pdf`: EN 1997-2:2007, Eurocode 7 Part 2, a Public.Resource.Org copy.
+- `docs/eurocode_7_-_geotechnical_designen.1997.1.2004.pdf`: EN 1997-1:2004, Eurocode 7 Part 1, a Public.Resource.Org scan of BS EN 1997-1:2004.
+
+Copyright in these three stays with their publishers. The MIT licence below covers this package's code, not the source documents.
+
 ## License
 
 MIT
