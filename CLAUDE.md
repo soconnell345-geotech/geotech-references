@@ -80,6 +80,7 @@ scripts/                       # Content generation tools (NOT installed with th
   build_figure_catalog.py      # PDF "List of Figures" → <pkg>/figures_catalog.json (no API; PyMuPDF text parse). Resolves each figure to its PDF page via caption-search; enriches descriptions from chapter text. Run: python scripts/build_figure_catalog.py dm7_1 dm7_2
   build_chapter_text.py        # DEPRECATED: PDF → chapter JSON pipeline (Anthropic API); discontinued — too costly ($20/reference on DM7). Chapter JSON files are now authored manually by Claude Code across sessions.
   audit_chapter_text.py        # Validate generated JSON (schema, eq coverage, implemented_in links)
+  check_section_numbers.py     # Chapter JSON section numbers vs the printed PDF (outline + page headings; no API). --detail lists what needs a reader, --apply writes only definite renumberings (section_id values only). Test: tests/test_section_numbers.py (skips without the PDFs). REF-23
   chapter_schema.json          # JSON schema for chapter files
   manifests/                   # Per-reference manifest files (chapter page ranges + PDF paths)
     dm7_1.json, dm7_2.json     # DM7 — page ranges pre-filled

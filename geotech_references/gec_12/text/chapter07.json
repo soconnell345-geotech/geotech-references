@@ -103,12 +103,12 @@
             "Brown method: SPT N60-based method for cohesionless soils",
             "Eslami-Fellenius method: CPT-based method for all soil types",
             "Nottingham-Schmertmann method: CPT-based method for all soil types",
-            "Rock resistance via uniaxial compressive strength (Section 7.2.1.5)",
-            "Static analysis software overview (Section 7.2.1.6)"
+            "Rock resistance via uniaxial compressive strength (Section 7.2.1.4)",
+            "Static analysis software overview (Section 7.2.1.5)"
           ],
           "subsections": [
             {
-              "section_id": "7.2.1.1",
+              "section_id": "7.2.1.3.1",
               "title": "Nordlund Method (Cohesionless Soils)",
               "body": "The Nordlund (1963, 1979) method is the primary static analysis procedure for calculating the shaft and toe resistance of piles driven into cohesionless soils. It accounts for soil displacement volume, pile taper, pile material friction coefficient, and soil friction angle. The method uses four design charts (Figures 7-4 through 7-8) and provides both shaft and toe resistance components. The pile-soil friction angle delta is determined from the pile volume and soil friction angle. A limiting unit toe resistance prevents unrealistic values at depth. This is the most widely used method for driven piles in sand and gravel.",
               "key_points": [
@@ -139,7 +139,7 @@
               ]
             },
             {
-              "section_id": "7.2.1.2",
+              "section_id": "7.2.1.3.2",
               "title": "Alpha Method (Cohesive Soils)",
               "body": "The Alpha method (Tomlinson 1957, 1971) is a total stress approach for calculating shaft and toe resistance of piles in cohesive soils. The adhesion factor alpha relates pile-soil adhesion to the soil undrained shear strength. The Alpha method accounts for pile type, soil layering, and the effect of overlying granular deposits on the adhesion of underlying clays. Adhesion values are obtained from Figures 7-9 through 7-11 based on undrained shear strength and pile embedment ratio. Toe resistance is calculated using Nc = 9 bearing capacity factor.",
               "key_points": [
@@ -164,7 +164,7 @@
               "tables": []
             },
             {
-              "section_id": "7.2.1.3",
+              "section_id": "7.2.1.3.3",
               "title": "P2A (API RP2A) Method",
               "body": "The P2A method follows the API Recommended Practice 2A-LRFD (1993) for fixed offshore platforms, adapted for onshore driven pile design. It provides both shaft and toe resistance calculations for cohesionless and cohesive soils. For cohesionless soils, the unit shaft resistance is the product of the lateral earth pressure coefficient K and effective overburden stress times tan(delta), with limiting values from Table 7-5. For cohesive soils, the adhesion factor alpha varies from 1.0 for low su/sigma'v ratios to a minimum of 0.5 for high ratios. Toe resistance uses Nq bearing capacity factors from Table 7-5 for sands and Nc = 9 for clays.",
               "key_points": [
@@ -190,12 +190,12 @@
               ]
             },
             {
-              "section_id": "7.2.1.4",
+              "section_id": "7.2.1.3.4-7.2.1.3.7",
               "title": "Effective Stress Methods",
               "body": "Two effective stress approaches are presented: the Beta method and the Brown method. The Beta method (Esrig and Kirby 1979) computes shaft and toe resistance using effective stresses and is applicable to all soil types. The Brown method (2001) uses corrected SPT N60 values to estimate capacity in cohesionless soils. Additionally, two CPT-based methods are presented: Eslami-Fellenius and Nottingham-Schmertmann.",
               "subsections": [
                 {
-                  "section_id": "7.2.1.4.1",
+                  "section_id": "7.2.1.3.4",
                   "title": "Beta Method (Effective Stress)",
                   "body": "The Beta method computes unit shaft resistance as the product of the Beta coefficient and the effective overburden stress. The Beta coefficient is related to the soil friction angle and OCR. For normally consolidated clays, Beta typically ranges from 0.2 to 0.3; for overconsolidated clays, Beta can exceed 1.0. Toe resistance uses Nt bearing capacity factor. The method is applicable to all soil types and is the primary method for mixed profiles.",
                   "key_points": [
@@ -218,7 +218,7 @@
                   ]
                 },
                 {
-                  "section_id": "7.2.1.4.2",
+                  "section_id": "7.2.1.3.5",
                   "title": "Brown Method (SPT N60)",
                   "body": "Brown (2001) developed a method that uses corrected SPT N60 values to estimate driven pile capacity in cohesionless soils. Unit shaft resistance is computed directly from N60 with depth-dependent coefficients. The method was calibrated against a load test database.",
                   "key_points": [
@@ -238,7 +238,7 @@
                   ]
                 },
                 {
-                  "section_id": "7.2.1.4.3",
+                  "section_id": "7.2.1.3.6",
                   "title": "Eslami and Fellenius CPT Method",
                   "body": "Eslami and Fellenius (1997) developed a CPT-based method that uses the effective cone tip resistance (q_E = q_c - u_2) to estimate pile capacity. Soil is classified into five types based on the relationship between q_E and sleeve friction f_s. A toe coefficient C_t is applied to the geometric average of q_E in the influence zone around the pile toe.",
                   "key_points": [
@@ -265,7 +265,7 @@
                   ]
                 },
                 {
-                  "section_id": "7.2.1.4.4",
+                  "section_id": "7.2.1.3.7",
                   "title": "Nottingham and Schmertmann CPT Method",
                   "body": "Nottingham and Schmertmann (1975) developed a CPT-based method using the measured cone tip resistance q_c and sleeve friction f_s to estimate pile capacity. The method uses a friction ratio approach for shaft resistance and an averaging technique for toe resistance in the influence zone around the pile toe. Different reduction factors apply to mechanical and electric cone data.",
                   "key_points": [
@@ -294,7 +294,7 @@
               ]
             },
             {
-              "section_id": "7.2.1.5",
+              "section_id": "7.2.1.4",
               "title": "Nominal Axial Resistance from Rock",
               "body": "For piles driven to rock, the nominal toe resistance on rock is typically controlled by the structural capacity of the pile section rather than the rock strength. The geotechnical toe resistance in rock can be estimated from the uniaxial compressive strength. For very hard rock, the pile structural resistance controls.",
               "key_points": [
@@ -310,7 +310,7 @@
               "tables": []
             },
             {
-              "section_id": "7.2.1.6",
+              "section_id": "7.2.1.5",
               "title": "Software Overview for Static Analysis",
               "body": "Several software programs automate static analysis calculations: APILE implements Nordlund, Alpha, P2A, and Schmertmann methods; UniPile implements Beta and Eslami-Fellenius methods; AllPile covers multiple methods; SPT97 is an SPT-based program.",
               "key_points": [
