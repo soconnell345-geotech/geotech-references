@@ -81,6 +81,7 @@ _STRUCTURAL_COLUMNS = (
 
 _MAX_LIMIT = 50  # server-side cap on reference_query LIMIT
 _DEFAULT_SEARCH_LIMIT = 5
+_MAX_OFFSET = 500  # deepest page reference_search reaches
 
 _SELECT_ONLY_RE = re.compile(r"^\s*(?:WITH\b|SELECT\b)", re.IGNORECASE)
 _FORBIDDEN_RE = re.compile(
@@ -361,7 +362,9 @@ def reference_search(
     reference: str | None = None,
     chapter: int | None = None,
     limit: int = _DEFAULT_SEARCH_LIMIT,
-) -> list[dict[str, Any]]:
+    offset: int = 0,
+    max_chars: int | None = None,
+):
     """Full-text search across structured chapter text.
 
     Returns ranked summary-only hits (no `body`) — call
@@ -383,19 +386,39 @@ def reference_search(
         ``reference``).
     limit : int, optional
         Max hits (capped at ``50``).
+    offset : int, optional
+        Skip this many of the best hits first (the next page). Past
+        :data:`_MAX_OFFSET` the result is an error saying to narrow the
+        query; a page whose next hits would start past it says so instead
+        of offering ``next_offset``.
+    max_chars : int, optional
+        The largest result the caller can take, in JSON characters (50
+        hits run to about 36,000). With it the result is a dict of the
+        hits that fit (:func:`_retrieval.fit_hits`: summaries cut to 300
+        characters first, then the lowest-ranked hits left out) with, when
+        some are not shown or more match, ``next_offset`` and a ``note``;
+        an error is ``{"error": ...}``.
 
     Returns
     -------
-    list of dict
+    list of dict, or dict with ``max_chars``
         Each hit has ``reference``, ``reference_title``, ``chapter``,
         ``chapter_title``, ``section_id``, ``title``, ``parent_id``,
         ``under`` (the sections above it, outermost first, e.g.
         ``"7.2 Strength Limit States > 7.2.1 Nominal Axial ..."``; ``""``
-        at the top level) and ``summary``.
+        at the top level) and ``summary``. With ``max_chars``, the dict
+        described above.
     """
     if not query or not query.strip():
-        return []
+        return [] if max_chars is None else {"hits": [], "shown": 0}
     limit = max(1, min(int(limit), _MAX_LIMIT))
+    offset = max(0, int(offset or 0))
+    if offset > _MAX_OFFSET:
+        return _past_deepest_page(offset, max_chars)
+    # rows wanted: the page, after the offset, and one more to learn
+    # whether more match (a plain call asks for exactly the page, as before)
+    want = limit if not (offset or max_chars is not None) \
+        else offset + limit + 1
     conn = _ro_connect()
     try:
         def run(match_query: str) -> list[sqlite3.Row]:
@@ -414,7 +437,7 @@ def reference_search(
                 sql += " AND s.chapter = ?"
                 params.append(int(chapter))
             sql += " ORDER BY bm25(sections_fts) LIMIT ?"
-            params.append(limit)
+            params.append(want)
             return conn.execute(sql, params).fetchall()
 
         strategy = _qe.EXPANSION_STRATEGY
@@ -434,7 +457,7 @@ def reference_search(
                     rows = run(combined)      # nothing to pin; rerank the union
                 else:
                     rows = _qe.merge_hits(
-                        [literal[0]], run(combined), limit,
+                        [literal[0]], run(combined), want,
                         key=lambda r: (r["reference"], r["section_id"]),
                     )
             else:
@@ -443,11 +466,11 @@ def reference_search(
                 # exactly when the query's terminology differs from the source
                 # text (a synonym miss). Append synonym hits to fill remaining
                 # slots; literal BM25 hits keep their rank (precision preserved).
-                if strategy == "fill" and len(rows) < limit:
+                if strategy == "fill" and len(rows) < want:
                     expansion = _qe.expand_query(q)
                     if expansion:
                         rows = _qe.merge_hits(
-                            rows, run(expansion), limit,
+                            rows, run(expansion), want,
                             key=lambda r: (r["reference"], r["section_id"]),
                         )
             # Zero-hit recall fallback (mirrors figure_search): if the
@@ -469,10 +492,32 @@ def reference_search(
             rows = search_fts_safely(
                 search, query, retry=lambda q: search(q, relaxed=True))
         except sqlite3.OperationalError as e:
+            if max_chars is not None:
+                return {"error": f"FTS query error: {e}"}
             return [{"error": f"FTS query error: {e}"}]
-        return [_row_to_summary(r) for r in rows]
+        more = len(rows) > offset + limit
+        hits = [_row_to_summary(r) for r in rows[offset:offset + limit]]
+        if max_chars is None:
+            return hits
+        return _retrieval.fit_hits(
+            hits, max_chars, text_fields=("summary",), offset=offset,
+            more=more, max_offset=_MAX_OFFSET,
+            narrow=("narrow the query (more specific words, a 'reference' "
+                    "or a 'chapter')"),
+            fetch="reference_get returns a section's whole text")
     finally:
         conn.close()
+
+
+def _past_deepest_page(offset: int, max_chars):
+    """reference_search's error for an ``offset`` past the deepest page it
+    gives (a dict with ``max_chars``, a one-item list without, as its other
+    errors)."""
+    message = (f"offset={offset} is past the deepest page this search "
+               f"gives (its offset goes no higher than {_MAX_OFFSET}): "
+               "narrow the query (more specific words, a 'reference' or a "
+               "'chapter') instead.")
+    return {"error": message} if max_chars is not None         else [{"error": message}]
 
 
 # ---------------------------------------------------------------------------
@@ -606,8 +651,9 @@ def reference_get(reference: str, section_id: str,
 def _nearby(conn: sqlite3.Connection, reference: str,
             section_id: str) -> str:
     """For a section number that is not there: the nearest section above
-    it, and up to eight sections numbered under it."""
-    parts = []
+    it, and up to eight sections numbered under it
+    (:func:`_retrieval.nearby_note`)."""
+    above = None
     for pid in _retrieval.id_prefixes(section_id):
         r = conn.execute(
             "SELECT section_id, title FROM sections WHERE reference = ? "
@@ -615,8 +661,7 @@ def _nearby(conn: sqlite3.Connection, reference: str,
             (reference, pid),
         ).fetchone()
         if r is not None:
-            parts.append(f"nearest section above it: {r['section_id']} "
-                         f"{r['title']}")
+            above = (r["section_id"], r["title"])
             break
     below = conn.execute(
         "SELECT section_id, title FROM sections WHERE reference = ? "
@@ -624,13 +669,12 @@ def _nearby(conn: sqlite3.Connection, reference: str,
         "LIMIT 8",
         (reference, f"{section_id}.%", f"{section_id}-%"),
     ).fetchall()
-    if below:
-        parts.append("sections numbered under it: " + "; ".join(
-            f"{r['section_id']} {r['title']}" for r in below))
-    return ("; " + "; ".join(parts)) if parts else ""
+    return _retrieval.nearby_note(
+        above, [(r["section_id"], r["title"]) for r in below])
 
 
-def reference_query(sql: str, limit: int = _MAX_LIMIT) -> list[dict[str, Any]]:
+def reference_query(sql: str, limit: int = _MAX_LIMIT,
+                    max_chars: int | None = None):
     """Run a read-only SELECT against the retrieval DB.
 
     Tables available:
@@ -656,32 +700,94 @@ def reference_query(sql: str, limit: int = _MAX_LIMIT) -> list[dict[str, Any]]:
         SELECT statement.
     limit : int, optional
         Max rows to return (default and max ``50``).
+    max_chars : int, optional
+        The largest result the caller can take, in JSON characters (50
+        rows of ``SELECT *`` run past 250,000). With it the result is
+        ``{"rows": [...], "shown": n}``: whole rows, as many as fit; when
+        not even the first fits, that row with its longest text values
+        cut (named in the note). When rows are left out or cut it adds
+        ``left_out`` and a ``note`` (select fewer or shorter columns, or
+        page with ``LIMIT``/``OFFSET`` in the SQL); an error is
+        ``{"error": ...}``.
 
     Returns
     -------
-    list of dict
+    list of dict, or dict with ``max_chars``
         Result rows as dicts. On a query error, returns a single-element
-        list ``[{"error": "..."}]``.
+        list ``[{"error": "..."}]``. With ``max_chars``, the dict described
+        above.
     """
+    def refuse(message):
+        return ([{"error": message}] if max_chars is None
+                else {"error": message})
+
     if not sql or not sql.strip():
-        return [{"error": "empty query"}]
+        return refuse("empty query")
     if not _SELECT_ONLY_RE.match(sql):
-        return [{"error": "only SELECT (or WITH ... SELECT) statements allowed"}]
+        return refuse("only SELECT (or WITH ... SELECT) statements allowed")
     if _FORBIDDEN_RE.search(sql):
-        return [{"error": "query contains forbidden keyword"}]
+        return refuse("query contains forbidden keyword")
     if ";" in sql.rstrip(";\n\r\t "):
-        return [{"error": "multiple statements not allowed"}]
+        return refuse("multiple statements not allowed")
     limit = max(1, min(int(limit), _MAX_LIMIT))
     conn = _ro_connect()
     try:
         try:
             cur = conn.execute(sql)
         except sqlite3.OperationalError as e:
-            return [{"error": f"SQL error: {e}"}]
-        rows = cur.fetchmany(limit)
-        return [dict(r) for r in rows]
+            return refuse(f"SQL error: {e}")
+        rows = [dict(r) for r in cur.fetchmany(limit)]
+        if max_chars is None:
+            return rows
+        return _fit_rows(rows, max_chars)
     finally:
         conn.close()
+
+
+def _fit_rows(rows: list[dict], max_chars: int) -> dict[str, Any]:
+    """``reference_query``'s rows fitted to ``max_chars`` (whole rows; the
+    first cut when even it does not fit; an error when even cut it does
+    not, as a row of very many columns)."""
+    budget = max_chars - _retrieval._ENVELOPE_CHARS
+    kept: list = []
+    size = 2
+    for r in rows:
+        s = _retrieval.json_size(r) + (2 if kept else 0)
+        if size + s > budget:
+            break
+        kept.append(r)
+        size += s
+    cut: dict = {}
+    if not kept and rows:
+        first, cut = _retrieval.fit_record(rows[0], budget - 2)
+        if _retrieval.json_size([first]) > budget:
+            return {"error": (
+                f"One row of this query is {_retrieval.json_size(rows[0]):,} "
+                f"characters and, with every long value cut, still over the "
+                f"{max_chars:,}-character limit ({len(rows[0])} columns): "
+                "select fewer columns (name the ones you need, not *).")}
+        kept = [first]
+    out: dict[str, Any] = {"rows": kept, "shown": len(kept)}
+    left_out = len(rows) - len(kept)
+    if not (left_out or cut):
+        return out
+    out["left_out"] = left_out
+    notes = []
+    if left_out:
+        notes.append(
+            f"{len(kept)} of the {len(rows)} rows are shown: the rest would "
+            f"not fit in {max_chars:,} characters. Select fewer or shorter "
+            "columns (substr(body, 1, 500), not body), or page with LIMIT "
+            f"and OFFSET in the SQL (raise its OFFSET by {len(kept)} for the "
+            "next rows).")
+    if cut:
+        notes.append(
+            "The first row alone would not fit, so its longest values are "
+            "cut: " + ", ".join(f"{k} (from {n:,} characters)"
+                                for k, n in cut.items())
+            + ". reference_get returns a section's whole text.")
+    out["note"] = " ".join(notes)
+    return out
 
 
 def list_indexed_references() -> list[dict[str, Any]]:

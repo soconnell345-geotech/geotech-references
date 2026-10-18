@@ -20,7 +20,7 @@ Consumed by [GeotechStaffEngineer](https://github.com/soconnell345-geotech/Geote
 geotech_references/           # Python package (pip install -e .)
   _interpolation.py            # Shared helpers (_linterp)
   _plotting.py                 # Shared matplotlib helpers (get_pyplot, setup_engineering_plot)
-  _retrieval.py                # Reference text retrieval (load, search, retrieve by section) at every section level; section_entries() = the one section tree both layers use. See "Section levels" below.
+  _retrieval.py                # Reference text retrieval (load, search, retrieve by section) at every section level; section_entries() = the one section tree both layers use; fit_hits() / fit_record() shape a result to a caller's max_chars. See "Section levels" and "Results that fit a size limit" below.
   _retrieval_db.py             # SQLite FTS5 retrieval layer — reference_search / reference_get / reference_query (v1.2.0); one row per section at every level (REF-24)
   _figures_db.py               # SQLite FTS5 figure-catalog retrieval — figure_search / figure_get / resolve_pdf
   _query_expansion.py          # Synonym query-expansion recall lever for reference_search/figure_search; EXPANSION_STRATEGY off/fill/rerank/auto (env GEOTECH_RETRIEVAL_EXPANSION, default auto). See "Lexical Query Expansion" below.
@@ -188,7 +188,7 @@ references/                    # (legacy) source PDFs (git-ignored)
 
 **Table Functions** (8): Resistance factors static/field, static analysis methods, API design parameters, beta/Nt coefficients, Brown's method factors, Eslami-Fellenius Cs, soil setup factors
 
-**Text Retrieval**: `retrieve_section(reference, section_id, include_subsections=False)`, `search_sections(reference, query)`, `list_chapters(reference)`, `load_chapter(reference, chapter)` — every level, e.g. `retrieve_section("gec_12", "7.2.1.3.1")` (see "Section levels")
+**Text Retrieval**: `retrieve_section(reference, section_id, include_subsections=False)`, `search_sections(reference, query, limit=None, offset=0, max_chars=None)`, `list_chapters(reference, chapter=None, sections=True, max_chars=None)`, `load_chapter(reference, chapter, max_chars=None)` — every level, e.g. `retrieve_section("gec_12", "7.2.1.3.1")` (see "Section levels"; `max_chars` in "Results that fit a size limit")
 
 **Structured Text**: 8 chapters (Ch 1-8 of Vol I), 109 top-level sections plus 76 nested in `subsections` (chapter 7: the static methods, group efficiency, uplift, setup, settlement, p-y), with title, body, key_points, equations, figures, tables, and applicability fields
 
@@ -262,10 +262,10 @@ its own (`7.3.2.1` under `7.3` where there is no `7.3.2`) — and both layers us
   `SUBSECTIONS_INLINE_MAX_CHARS` (12,000, under the app cap); past that it
   returns `children` and a `note`. Largest single fetch in the library: 13,734
   characters (dm7_1 1-3.6, its own body).
-- **A missing number** in `reference_get` raises `KeyError` naming the nearest section above it
-  and up to eight sections numbered under it (`7.2.1.3` -> 7.2.1 and
-  7.2.1.3.1 Nordlund ...); plain `retrieve_section` still raises a bare
-  `KeyError` (BACKLOG REF-26).
+- **A missing number** in `reference_get` or plain `retrieve_section`
+  raises `KeyError` naming the nearest section above it and up to eight
+  sections numbered under it (`7.2.1.3` -> 7.2.1 and 7.2.1.3.1 Nordlund
+  ...); both word it the same way (`_retrieval.nearby_note`; REF-26).
 - **`list_chapters`** lists nested sections too, each with `parent_id`; a
   reference that lists its levels flat keeps the shape it had.
 - **Ranking is unchanged** (BM25, equal column weights). Measured
@@ -283,6 +283,62 @@ its own (`7.3.2.1` under `7.3` where there is no `7.3.2`) — and both layers us
   GEC-12 7.4.2 first, whose title fails the eval's gate; top-1 disturbance
   stays 0/10 (`auto`).
 - **Tests:** `tests/test_subsection_retrieval.py`.
+
+## Results that fit a size limit (REF-26)
+
+The app sends its agent at most 16,000 characters of a reference tool's
+result and cuts the rest, which leaves broken JSON. Before REF-26 the
+largest results were: `list_chapters` 27,820 (ufc_concrete_practice; three
+references over), `search_sections` 708,876 ("a"; "pile" in GEC-12 317,437),
+`load_chapter` 206,140, `reference_search` at 50 hits 36,424,
+`reference_query` 258,786, `figure_search` at 50 hits 68,859, `figure_get`
+30,444 (a catalog caption that ran on into the page text). Every function
+that can return that much now takes an optional **`max_chars`** and, given
+it, returns a shape that fits and says how to get the rest. Without it each
+returns exactly what it always did; the app passes 14,000.
+
+- **`list_chapters(reference, chapter=None, sections=True, max_chars=None)`**:
+  every chapter carries `n_sections`; `sections=False` leaves the sections
+  out (largest listing 3,122); `chapter=N` lists one chapter (a missing one
+  raises `KeyError` naming the chapters there are); with `max_chars` a
+  chapter whose section list does not fit lists its top-level sections with
+  `n_subsections` and a `note`. The app's `list_chapters` without a chapter
+  returns the full listing when it fits its 14,000 characters (22 of 27
+  references) and the chapters alone with a note otherwise.
+- **`load_chapter(reference, chapter, max_chars=None)`**: a chapter over the
+  limit (147 of 291 are over 14,000) comes back as its outline
+  (`chapter_outline`: the chapter's fields, `n_sections`, each section's
+  number, title and place) with `chapter_chars` and a note to fetch sections
+  with `retrieve_section`.
+- **`search_sections(reference, query, limit=None, offset=0, max_chars=None)`**:
+  the plain call still returns whole sections (unchanged); with `max_chars`
+  each hit is the section's number, title, chapter, `parent_id`, `under` and
+  a 300-character `snippet` from where the words first appear, and the
+  result is `{"hits", "shown", "total_hits"}`.
+- **`reference_search` / `figure_search` gain `offset` and `max_chars`**;
+  with `max_chars` the result is the `fit_hits` dict. A plain call runs the
+  same SQL as before; a paged or fitted one asks for `offset + limit + 1`
+  rows and slices, and its first page lists the same hits in the same order
+  as the plain call (checked over 144 queries). `offset` goes no higher than
+  500 (`_MAX_OFFSET`): past it the result is an error saying to narrow the
+  query, and a page whose next hits would start past it says so instead of
+  offering `next_offset` (`fit_hits(max_offset=)`).
+- **`reference_query(sql, limit=50, max_chars=None)`** keeps whole rows that
+  fit (`{"rows", "shown", "left_out", "note"}`); a first row that alone does
+  not fit comes back with its longest values cut and named, and one that
+  still does not fit (very many columns) is an error saying to select fewer
+  columns; the note says to raise the SQL's OFFSET by the rows shown.
+  **`figure_get(...,
+  max_chars=None)`** cuts a caption / description that ran on, with a note.
+- **The shared rules** are in `_retrieval`: `fit_hits` (cut the hits' text
+  fields to `HIT_TEXT_CHARS` 300 first, then leave out the lowest-ranked
+  hits; `left_out`, `next_offset` and a `note` saying how to get the rest)
+  and `fit_record` (cut a record's longest text fields, never below 200).
+- **Section fetches are not shaped**: the largest (`reference_get` dm7_1
+  1-3.6, 13,783; `retrieve_section` gec_12 8.5.2, 13,074) fit by their data.
+  The app's guard test walks every reference method and fails if that
+  changes (`funhouse_agent/tests/test_reference_result_sizes.py`).
+- **Tests:** `tests/test_result_size.py`.
 
 ## Lexical Query Expansion (recall lever)
 

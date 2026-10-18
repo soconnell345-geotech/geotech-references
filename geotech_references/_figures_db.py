@@ -31,6 +31,7 @@ from pathlib import Path
 from typing import Any
 
 from . import _query_expansion as _qe
+from ._retrieval import fit_hits, fit_record
 from ._retrieval_db import plain_terms, search_fts_safely
 
 # FTS5 operator words we must not inject as bare terms in the OR fallback.
@@ -41,6 +42,7 @@ _DB_NAME = "geotech_references_figures_fts.sqlite"
 _CATALOG_NAME = "figures_catalog.json"
 _MAX_LIMIT = 50
 _DEFAULT_SEARCH_LIMIT = 5
+_MAX_OFFSET = 500  # deepest page figure_search reaches
 
 
 # ---------------------------------------------------------------------------
@@ -311,7 +313,9 @@ def figure_search(
     reference: str | None = None,
     chapter: int | None = None,
     limit: int = _DEFAULT_SEARCH_LIMIT,
-) -> list[dict[str, Any]]:
+    offset: int = 0,
+    max_chars: int | None = None,
+):
     """Full-text search the figure catalog by caption/description.
 
     Parameters
@@ -326,18 +330,43 @@ def figure_search(
         appendix figures have no chapter).
     limit : int, optional
         Max hits (capped at 50).
+    offset : int, optional
+        Skip this many of the best hits first (the next page). Past 500
+        the result is an error saying to narrow the query; a page whose
+        next hits would start past it says so instead of offering
+        ``next_offset``.
+    max_chars : int, optional
+        The largest result the caller can take, in JSON characters (a few
+        catalog captions run on into the page text, one to 29,911
+        characters). With it the result is a dict of the hits that fit
+        (:func:`_retrieval.fit_hits`: captions cut to 300 characters
+        first, then the lowest-ranked hits left out) with, when some are
+        not shown or more match, ``next_offset`` and a ``note``; an error
+        is ``{"error": ...}``.
 
     Returns
     -------
-    list of dict
+    list of dict, or dict with ``max_chars``
         Ranked hits, each with ``reference``, ``reference_title``,
         ``figure_number``, ``caption``, ``chapter``, ``pdf_page_index``,
         ``printed_page``. Call :func:`figure_get` for the full row, or render
-        the page for vision read-off.
+        the page for vision read-off. With ``max_chars``, the dict
+        described above.
     """
     if not query or not query.strip():
-        return []
+        return [] if max_chars is None else {"hits": [], "shown": 0}
     limit = max(1, min(int(limit), _MAX_LIMIT))
+    offset = max(0, int(offset or 0))
+    if offset > _MAX_OFFSET:
+        message = (f"offset={offset} is past the deepest page this search "
+                   f"gives (its offset goes no higher than {_MAX_OFFSET}): "
+                   "narrow the query (more specific words, or a "
+                   "'reference') instead.")
+        return {"error": message} if max_chars is not None             else [{"error": message}]
+    # rows wanted: the page, after the offset, and one more to learn
+    # whether more match (a plain call asks for exactly the page, as before)
+    want = limit if not (offset or max_chars is not None) \
+        else offset + limit + 1
     conn = _ro_connect()
     try:
         # 'gec10', 'dm7', 'UFC 3-250-01' filter the catalogs they mean (G4)
@@ -360,7 +389,7 @@ def figure_search(
                 sql += " AND f.chapter = ?"
                 params.append(int(chapter))
             sql += " ORDER BY bm25(figures_fts) LIMIT ?"
-            params.append(limit)
+            params.append(want)
             return conn.execute(sql, params).fetchall()
 
         fig_key = lambda r: (r["reference"], r["figure_number"])
@@ -380,26 +409,26 @@ def figure_search(
                 elif not literal:
                     rows = run(combined)      # nothing to pin; rerank the union
                 else:
-                    rows = _qe.merge_hits([literal[0]], run(combined), limit,
+                    rows = _qe.merge_hits([literal[0]], run(combined), want,
                                           key=fig_key)
             else:
                 rows = run(q)
                 # "fill" (targeted): append synonym hits to remaining slots when
                 # the literal AND-query under-returns on a terminology mismatch.
-                if strategy == "fill" and len(rows) < limit:
+                if strategy == "fill" and len(rows) < want:
                     expansion = _qe.expand_query(q)
                     if expansion:
-                        rows = _qe.merge_hits(rows, run(expansion), limit,
+                        rows = _qe.merge_hits(rows, run(expansion), want,
                                               key=fig_key)
             # Broad OR-of-terms ALSO fills remaining slots (all strategies); it
             # is complementary to synonym expansion and must not be suppressed.
-            if len(rows) < limit:
+            if len(rows) < want:
                 fb = _or_fallback(q)
                 if not fb and relaxed:
                     # a query re-quoted by fts_safe_query: its words, OR-ed
                     fb = _or_fallback(plain_terms(q))
                 if fb and fb != q:
-                    rows = _qe.merge_hits(rows, run(fb), limit, key=fig_key)
+                    rows = _qe.merge_hits(rows, run(fb), want, key=fig_key)
             return rows
 
         # A query FTS5 cannot parse as written ("pseudo-static", "Table
@@ -409,13 +438,24 @@ def figure_search(
             rows = search_fts_safely(
                 search, query, retry=lambda q: search(q, relaxed=True))
         except sqlite3.OperationalError as e:
+            if max_chars is not None:
+                return {"error": f"FTS query error: {e}"}
             return [{"error": f"FTS query error: {e}"}]
-        return [_row_to_hit(r) for r in rows]
+        more = len(rows) > offset + limit
+        hits = [_row_to_hit(r) for r in rows[offset:offset + limit]]
+        if max_chars is None:
+            return hits
+        return fit_hits(
+            hits, max_chars, text_fields=("caption",), offset=offset,
+            more=more, max_offset=_MAX_OFFSET,
+            narrow="narrow the query (more specific words, or a 'reference')",
+            fetch="figure_get returns a figure's whole catalog row")
     finally:
         conn.close()
 
 
-def figure_get(reference: str, figure_number: str) -> dict[str, Any]:
+def figure_get(reference: str, figure_number: str,
+               max_chars: int | None = None) -> dict[str, Any]:
     """Fetch the full catalog row for one figure.
 
     Parameters
@@ -428,6 +468,11 @@ def figure_get(reference: str, figure_number: str) -> dict[str, Any]:
     figure_number : str
         Figure id as in the source (e.g. ``"4-12"``, ``"P-1"``, ``"B-3"``).
         A leading ``"Figure "`` / ``"Fig. "`` is tolerated.
+    max_chars : int, optional
+        The largest result the caller can take, in JSON characters. A row
+        longer than that (a few catalog captions run on into the page
+        text) comes back with its caption / description cut to fit and a
+        ``note`` naming what was cut. Default None: the whole row.
 
     Returns
     -------
@@ -462,7 +507,19 @@ def figure_get(reference: str, figure_number: str) -> dict[str, Any]:
                 + (f"; nearest figure numbers there: {', '.join(near)}"
                    if near else "")
                 + " (figure_search finds a figure by what it shows)")
-        return _row_to_full(row)
+        out = _row_to_full(row)
+        if max_chars is None:
+            return out
+        out, cut = fit_record(out, max_chars - 400,
+                              text_fields=("caption", "description"))
+        if cut:
+            out["note"] = (
+                "Cut to fit " + f"{max_chars:,} characters: " + ", ".join(
+                    f"{k} (from {n:,} characters)" for k, n in cut.items())
+                + ". The catalog's text for this figure runs on past its "
+                "caption; the figure itself is on the page given "
+                "(pdf_page_index).")
+        return out
     finally:
         conn.close()
 
