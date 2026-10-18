@@ -20,8 +20,8 @@ Consumed by [GeotechStaffEngineer](https://github.com/soconnell345-geotech/Geote
 geotech_references/           # Python package (pip install -e .)
   _interpolation.py            # Shared helpers (_linterp)
   _plotting.py                 # Shared matplotlib helpers (get_pyplot, setup_engineering_plot)
-  _retrieval.py                # Reference text retrieval (load, search, retrieve by section)
-  _retrieval_db.py             # SQLite FTS5 retrieval layer — reference_search / reference_get / reference_query (v1.2.0)
+  _retrieval.py                # Reference text retrieval (load, search, retrieve by section) at every section level; section_entries() = the one section tree both layers use. See "Section levels" below.
+  _retrieval_db.py             # SQLite FTS5 retrieval layer — reference_search / reference_get / reference_query (v1.2.0); one row per section at every level (REF-24)
   _figures_db.py               # SQLite FTS5 figure-catalog retrieval — figure_search / figure_get / resolve_pdf
   _query_expansion.py          # Synonym query-expansion recall lever for reference_search/figure_search; EXPANSION_STRATEGY off/fill/rerank/auto (env GEOTECH_RETRIEVAL_EXPANSION, default auto). See "Lexical Query Expansion" below.
   dm7_1/                       # UFC 3-220-10 Soil Mechanics (8 chapters)
@@ -81,6 +81,7 @@ scripts/                       # Content generation tools (NOT installed with th
   build_chapter_text.py        # DEPRECATED: PDF → chapter JSON pipeline (Anthropic API); discontinued — too costly ($20/reference on DM7). Chapter JSON files are now authored manually by Claude Code across sessions.
   audit_chapter_text.py        # Validate generated JSON (schema, eq coverage, implemented_in links)
   check_section_numbers.py     # Chapter JSON section numbers vs the printed PDF (outline + page headings; no API). --detail lists what needs a reader, --apply writes only definite renumberings (section_id values only). Test: tests/test_section_numbers.py (skips without the PDFs). REF-23
+  eval_subsection_retrieval.py # 14 questions answered in a subsection (8 references): replays search -> fetch, reports recall@5 and characters read; --titles --save/--compare = the ranking guard (top-level sections found by their own title). Test: tests/test_subsection_retrieval.py. REF-24
   chapter_schema.json          # JSON schema for chapter files
   manifests/                   # Per-reference manifest files (chapter page ranges + PDF paths)
     dm7_1.json, dm7_2.json     # DM7 — page ranges pre-filled
@@ -187,9 +188,9 @@ references/                    # (legacy) source PDFs (git-ignored)
 
 **Table Functions** (8): Resistance factors static/field, static analysis methods, API design parameters, beta/Nt coefficients, Brown's method factors, Eslami-Fellenius Cs, soil setup factors
 
-**Text Retrieval**: `retrieve_section(reference, section_id)`, `search_sections(reference, query)`, `list_chapters(reference)`, `load_chapter(reference, chapter)`
+**Text Retrieval**: `retrieve_section(reference, section_id, include_subsections=False)`, `search_sections(reference, query)`, `list_chapters(reference)`, `load_chapter(reference, chapter)` — every level, e.g. `retrieve_section("gec_12", "7.2.1.3.1")` (see "Section levels")
 
-**Structured Text**: 8 chapters (Ch 1-8 of Vol I), ~109 sections with title, body, key_points, equations, figures, tables, and applicability fields
+**Structured Text**: 8 chapters (Ch 1-8 of Vol I), 109 top-level sections plus 76 nested in `subsections` (chapter 7: the static methods, group efficiency, uplift, setup, settlement, p-y), with title, body, key_points, equations, figures, tables, and applicability fields
 
 ### GEC-11: MSE Walls & Reinforced Soil Slopes — FHWA-NHI-10-024 (17 functions, 130 tests)
 
@@ -231,6 +232,57 @@ giving coverage of figures that have not been hand-digitized into `figures.py`.
 
 Built for DM7 (`dm7_1`: 223 figures, `dm7_2`: 252). Run the same script per
 reference to extend. Source PDFs live in `docs/`.
+
+## Section levels (REF-24): every section is addressable
+
+A chapter file holds its levels two ways: GEC-12 nests subsections inside
+their section (`subsections`, 76 of them), every other reference lists each
+level as its own entry (`5-5`, `5-5.2`, `5-5.2.1`). `_retrieval.section_entries`
+reads both into one tree — a nested section sits under its container, a flat
+one under the nearest section of the same file whose number is a prefix of
+its own (`7.3.2.1` under `7.3` where there is no `7.3.2`) — and both layers use it.
+
+- **Indexed at every level, own text only.** `_retrieval_db` has one row per
+  section (3,884 rows), each with its own body, never its subsections', so a
+  search hit is the section that holds the words: "Nordlund" finds GEC-12
+  7.2.1.3.1, not only 7.2. Rows carry `parent_rowid`, `depth`, `parents_json`;
+  `PRAGMA user_version` = `_SCHEMA_VERSION` (2), and a database built by an
+  older version is rebuilt on first use whatever its mtime.
+- **Results say where a section sits.** Search hits (both layers) carry
+  `parent_id` and `under` (`"7.2 Strength Limit States > 7.2.1 Nominal Axial
+  ..."`). `reference_get` / `retrieve_section` work on any number and add
+  `children` (number + title of each section directly under it).
+- **A parent is NOT inlined by default.** Before REF-24 `retrieve_section`
+  returned a section with its whole subtree: GEC-12 7.2 was 28,490 characters,
+  so the app's 16,000-character reference cap cut it mid-JSON and 7.2.2-7.2.10
+  were never seen; reaching a 2 k subsection cost ~18 k characters. Now the
+  parent comes back with its own text and `children`, and the librarian
+  fetches the child it needs. `include_subsections=True` (both layers) still
+  inlines the subtree, only when the whole result fits
+  `SUBSECTIONS_INLINE_MAX_CHARS` (12,000, under the app cap); past that it
+  returns `children` and a `note`. Largest single fetch in the library: 13,734
+  characters (dm7_1 1-3.6, its own body).
+- **A missing number** in `reference_get` raises `KeyError` naming the nearest section above it
+  and up to eight sections numbered under it (`7.2.1.3` -> 7.2.1 and
+  7.2.1.3.1 Nordlund ...); plain `retrieve_section` still raises a bare
+  `KeyError` (BACKLOG REF-26).
+- **`list_chapters`** lists nested sections too, each with `parent_id`; a
+  reference that lists its levels flat keeps the shape it had.
+- **Ranking is unchanged** (BM25, equal column weights). Measured
+  (`scripts/eval_subsection_retrieval.py`, 2026-10-18): the 14 subsection
+  questions went from recall@5 7/14 (GEC-12 0/7) and 10/14 reached (GEC-12
+  three, each through a 16 k-cut fetch, ~18 k characters) to 14/14 and 14/14,
+  each one search plus one fetch of 1.1-6.9 k characters. Of 2,260 top-level
+  sections their own title found first, 3 no longer are (two lose to a nested
+  GEC-12 subsection, one a near-tie that moved with the new rows' term
+  statistics). A title weight in BM25 was tried and rejected: at 2x it changed
+  462 first hits library-wide and still lost those two. The cross-reference
+  eval (`eval_retrieval_recall.py`) went from 4/9 to 3/8 trusted cases under
+  `auto`: GEC-12 7.2.10 "Downdrag" now outranks the dm7_2 target for "downdrag
+  drag load on pile", and the canonical "liquefaction triggering" now has
+  GEC-12 7.4.2 first, whose title fails the eval's gate; top-1 disturbance
+  stays 0/10 (`auto`).
+- **Tests:** `tests/test_subsection_retrieval.py`.
 
 ## Lexical Query Expansion (recall lever)
 

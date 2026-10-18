@@ -25,6 +25,19 @@ empty ``summary`` strings, so the noise-reduction lever does not apply
 and agents should drill in via :func:`reference_get` for non-DM7 hits.
 ``gec_11`` and the FEMA / NOAA / UFC references have no narrative text
 at all. See ``scripts/README.md`` "Reference text coverage status".
+
+Every level (REF-24)
+--------------------
+One row per section at EVERY level a chapter file holds, nested
+(``subsections``, GEC-12) or listed flat, read through
+:func:`geotech_references._retrieval.section_entries`. A row holds the
+section's own text only, never its subsections', so a search hit is the
+section that holds the words and :func:`reference_get` works on any section
+number. Each row knows the section above it (``parent_rowid``), its
+``depth`` and the chain above it (``parents_json``); hits carry
+``parent_id`` and ``under``, fetches add ``children``. The database's
+``PRAGMA user_version`` is :data:`_SCHEMA_VERSION`; a database built to an
+older layout is rebuilt on first use.
 """
 
 from __future__ import annotations
@@ -38,9 +51,14 @@ from pathlib import Path
 from typing import Any
 
 from . import _query_expansion as _qe
+from . import _retrieval
 
 _PACKAGE_DIR = Path(__file__).parent
 _DB_NAME = "geotech_references_fts.sqlite"
+
+#: Layout of the ``sections`` table, kept in ``PRAGMA user_version``.
+#: 2 = every level indexed, with parent_rowid / depth / parents_json (REF-24).
+_SCHEMA_VERSION = 2
 
 _INDEXED_COLUMNS = (
     "title",
@@ -101,10 +119,37 @@ def _newest_source_mtime() -> float:
     )
 
 
+#: ``PRAGMA user_version`` per (database path, file mtime), so a search
+#: does not open the database twice to learn its layout.
+_VERSION_SEEN: dict = {}
+
+
+def _schema_version(db_path: Path) -> int:
+    try:
+        key = (str(db_path), db_path.stat().st_mtime_ns)
+    except OSError:
+        return -1
+    if key not in _VERSION_SEEN:
+        try:
+            conn = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True)
+            try:
+                version = int(conn.execute("PRAGMA user_version").fetchone()[0])
+            finally:
+                conn.close()
+        except sqlite3.Error:
+            return -1
+        _VERSION_SEEN[key] = version
+    return _VERSION_SEEN[key]
+
+
 def _needs_rebuild(db_path: Path) -> bool:
     if not db_path.exists():
         return True
-    return db_path.stat().st_mtime < _newest_source_mtime()
+    if db_path.stat().st_mtime < _newest_source_mtime():
+        return True
+    # a database an older version of this module built (one row per
+    # top-level section only) is rebuilt, however new its file is
+    return _schema_version(db_path) != _SCHEMA_VERSION
 
 
 def _build_db(db_path: Path) -> None:
@@ -129,7 +174,10 @@ def _build_db(db_path: Path) -> None:
                 applicability TEXT,
                 equations_json TEXT,
                 figures_json TEXT,
-                tables_json TEXT
+                tables_json TEXT,
+                parent_rowid INTEGER,
+                depth INTEGER,
+                parents_json TEXT
             )
             """
         )
@@ -152,6 +200,9 @@ def _build_db(db_path: Path) -> None:
         cur.execute(
             "CREATE INDEX idx_sections_ref_sid ON sections(reference, section_id)"
         )
+        cur.execute(
+            "CREATE INDEX idx_sections_parent ON sections(parent_rowid)"
+        )
 
         for reference, jf in _iter_text_jsons():
             try:
@@ -161,9 +212,12 @@ def _build_db(db_path: Path) -> None:
             ref_title = data.get("reference_title", "")
             ch_num = data.get("chapter", 0)
             ch_title = data.get("chapter_title", "")
-            for sec in data.get("sections", []):
-                if not isinstance(sec, dict):
-                    continue
+            entries = _retrieval.section_entries(data)
+            rowids: list[int] = []
+            for i, entry in enumerate(entries):
+                sec = entry["section"]
+                chain = [entries[j]["section"]
+                         for j in _retrieval.entry_chain(entries, i)]
                 kps = sec.get("key_points", [])
                 if isinstance(kps, list):
                     key_points_text = "\n".join(
@@ -177,8 +231,8 @@ def _build_db(db_path: Path) -> None:
                         reference, reference_title, chapter, chapter_title,
                         section_id, title, summary, body, key_points,
                         applicability, equations_json, figures_json,
-                        tables_json
-                    ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)
+                        tables_json, depth, parents_json
+                    ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
                     """,
                     (
                         reference,
@@ -194,9 +248,21 @@ def _build_db(db_path: Path) -> None:
                         json.dumps(sec.get("equations", []), ensure_ascii=False),
                         json.dumps(sec.get("figures", []), ensure_ascii=False),
                         json.dumps(sec.get("tables", []), ensure_ascii=False),
+                        len(chain),
+                        json.dumps([[s.get("section_id", ""), s.get("title", "")]
+                                    for s in chain], ensure_ascii=False),
                     ),
                 )
+                rowids.append(cur.lastrowid)
+            # a flat-listed section's parent may come later in its file, so
+            # parents are linked once the whole file is in
+            cur.executemany(
+                "UPDATE sections SET parent_rowid = ? WHERE rowid = ?",
+                [(rowids[e["parent"]], rowids[i])
+                 for i, e in enumerate(entries) if e["parent"] is not None],
+            )
 
+        cur.execute(f"PRAGMA user_version = {_SCHEMA_VERSION}")
         cur.execute(
             """
             INSERT INTO sections_fts(rowid, title, summary, body,
@@ -229,6 +295,7 @@ def _ro_connect() -> sqlite3.Connection:
 # ---------------------------------------------------------------------------
 
 def _row_to_summary(row: sqlite3.Row) -> dict[str, Any]:
+    chain = json.loads(row["parents_json"] or "[]")
     return {
         "reference": row["reference"],
         "reference_title": row["reference_title"],
@@ -236,20 +303,56 @@ def _row_to_summary(row: sqlite3.Row) -> dict[str, Any]:
         "chapter_title": row["chapter_title"],
         "section_id": row["section_id"],
         "title": row["title"],
+        "parent_id": chain[-1][0] if chain else None,
+        "under": _retrieval.under_text(
+            [{"section_id": sid, "title": title} for sid, title in chain]),
         "summary": row["summary"],
+    }
+
+
+def _row_text(row: sqlite3.Row) -> dict[str, Any]:
+    """A section's own text fields."""
+    return {
+        "body": row["body"],
+        "key_points": [
+            kp for kp in (row["key_points"] or "").split("\n") if kp
+        ],
+        "applicability": row["applicability"],
+        "equations": json.loads(row["equations_json"] or "[]"),
+        "figures": json.loads(row["figures_json"] or "[]"),
+        "tables": json.loads(row["tables_json"] or "[]"),
     }
 
 
 def _row_to_full(row: sqlite3.Row) -> dict[str, Any]:
     out = _row_to_summary(row)
-    out["body"] = row["body"]
-    out["key_points"] = [
-        kp for kp in (row["key_points"] or "").split("\n") if kp
-    ]
-    out["applicability"] = row["applicability"]
-    out["equations"] = json.loads(row["equations_json"] or "[]")
-    out["figures"] = json.loads(row["figures_json"] or "[]")
-    out["tables"] = json.loads(row["tables_json"] or "[]")
+    out.update(_row_text(row))
+    return out
+
+
+def _child_rows(conn: sqlite3.Connection, rowid: int) -> list[sqlite3.Row]:
+    return conn.execute(
+        "SELECT * FROM sections WHERE parent_rowid = ? ORDER BY rowid",
+        (rowid,),
+    ).fetchall()
+
+
+def _subtree(conn: sqlite3.Connection, rowid: int,
+             seen: set | None = None) -> list[dict[str, Any]]:
+    """The sections under row ``rowid``, each with its own subsections."""
+    seen = set() if seen is None else seen
+    out = []
+    for child in _child_rows(conn, rowid):
+        if child["rowid"] in seen:
+            continue
+        seen.add(child["rowid"])
+        sec = {"section_id": child["section_id"], "title": child["title"],
+               "summary": child["summary"]}
+        sec.update(_row_text(child))
+        kids = _subtree(conn, child["rowid"], seen)
+        if kids:
+            sec["subsections"] = kids
+        out.append(sec)
     return out
 
 
@@ -262,7 +365,10 @@ def reference_search(
     """Full-text search across structured chapter text.
 
     Returns ranked summary-only hits (no `body`) — call
-    :func:`reference_get` to fetch the full section.
+    :func:`reference_get` to fetch the full section. Every section is
+    indexed at every level with its own text only, so the hit is the
+    section that holds the words (a method's own subsection, not just the
+    chapter section it sits in); ``under`` names the sections above it.
 
     Parameters
     ----------
@@ -282,7 +388,10 @@ def reference_search(
     -------
     list of dict
         Each hit has ``reference``, ``reference_title``, ``chapter``,
-        ``chapter_title``, ``section_id``, ``title``, and ``summary``.
+        ``chapter_title``, ``section_id``, ``title``, ``parent_id``,
+        ``under`` (the sections above it, outermost first, e.g.
+        ``"7.2 Strength Limit States > 7.2.1 Nominal Axial ..."``; ``""``
+        at the top level) and ``summary``.
     """
     if not query or not query.strip():
         return []
@@ -292,7 +401,8 @@ def reference_search(
         def run(match_query: str) -> list[sqlite3.Row]:
             sql = (
                 "SELECT s.reference, s.reference_title, s.chapter, "
-                "s.chapter_title, s.section_id, s.title, s.summary "
+                "s.chapter_title, s.section_id, s.title, s.summary, "
+                "s.parents_json "
                 "FROM sections_fts f JOIN sections s ON s.rowid = f.rowid "
                 "WHERE sections_fts MATCH ?"
             )
@@ -433,8 +543,14 @@ def search_fts_safely(search, query: str, retry=None):
             raise first
 
 
-def reference_get(reference: str, section_id: str) -> dict[str, Any]:
+def reference_get(reference: str, section_id: str,
+                  include_subsections: bool = False) -> dict[str, Any]:
     """Fetch the full section by id, including body, key_points, equations.
+
+    Works at every level: a chapter section (``"7.2"``) or a section
+    nested inside it (``"7.2.1.3.1"``). The result is the section's own
+    text; the sections under it are listed in ``children`` by number and
+    title, to be fetched by their own ids.
 
     Parameters
     ----------
@@ -442,33 +558,76 @@ def reference_get(reference: str, section_id: str) -> dict[str, Any]:
         Reference id (e.g. ``"dm7_1"``).
     section_id : str
         Section id as it appears in the source (e.g. ``"4-2.1"``,
-        ``"5.3"``, ``"P-1"``).
+        ``"5.3"``, ``"P-1"``, ``"7.2.1.3.1"``).
+    include_subsections : bool, optional
+        Inline the sections under it as ``subsections`` (each with its
+        own), as long as the whole result stays within
+        ``_retrieval.SUBSECTIONS_INLINE_MAX_CHARS`` (12,000) characters;
+        past that they stay listed in ``children`` and a ``note`` says
+        so. Default False.
 
     Returns
     -------
     dict
-        Full section dict.
+        Full section dict, plus ``parent_id``, ``under`` (the sections
+        above it) and ``children`` (``section_id`` and ``title`` of each
+        section directly under it).
 
     Raises
     ------
     KeyError
-        If no such section exists.
+        If no such section exists; the message names the nearest section
+        above that number and any sections numbered under it.
     """
     conn = _ro_connect()
     try:
         row = conn.execute(
-            "SELECT * FROM sections WHERE reference = ? AND section_id = ? "
-            "LIMIT 1",
+            "SELECT * FROM sections WHERE reference = ? "
+            "AND section_id = ? ORDER BY rowid LIMIT 1",
             (reference, section_id),
         ).fetchone()
         if row is None:
             raise KeyError(
                 f"section_id '{section_id}' not found in reference "
-                f"'{reference}'"
+                f"'{reference}'" + _nearby(conn, reference, section_id)
             )
-        return _row_to_full(row)
+        out = _row_to_full(row)
+        out["children"] = [
+            {"section_id": c["section_id"], "title": c["title"]}
+            for c in _child_rows(conn, row["rowid"])]
+        if include_subsections:
+            out = _retrieval.inline_subsections(
+                out, _subtree(conn, row["rowid"], {row["rowid"]}))
+        return out
     finally:
         conn.close()
+
+
+def _nearby(conn: sqlite3.Connection, reference: str,
+            section_id: str) -> str:
+    """For a section number that is not there: the nearest section above
+    it, and up to eight sections numbered under it."""
+    parts = []
+    for pid in _retrieval.id_prefixes(section_id):
+        r = conn.execute(
+            "SELECT section_id, title FROM sections WHERE reference = ? "
+            "AND section_id = ? ORDER BY rowid LIMIT 1",
+            (reference, pid),
+        ).fetchone()
+        if r is not None:
+            parts.append(f"nearest section above it: {r['section_id']} "
+                         f"{r['title']}")
+            break
+    below = conn.execute(
+        "SELECT section_id, title FROM sections WHERE reference = ? "
+        "AND (section_id LIKE ? OR section_id LIKE ?) ORDER BY rowid "
+        "LIMIT 8",
+        (reference, f"{section_id}.%", f"{section_id}-%"),
+    ).fetchall()
+    if below:
+        parts.append("sections numbered under it: " + "; ".join(
+            f"{r['section_id']} {r['title']}" for r in below))
+    return ("; " + "; ".join(parts)) if parts else ""
 
 
 def reference_query(sql: str, limit: int = _MAX_LIMIT) -> list[dict[str, Any]]:
@@ -476,10 +635,14 @@ def reference_query(sql: str, limit: int = _MAX_LIMIT) -> list[dict[str, Any]]:
 
     Tables available:
 
-    - ``sections`` — one row per section. Columns: ``reference``,
-      ``reference_title``, ``chapter``, ``chapter_title``, ``section_id``,
-      ``title``, ``summary``, ``body``, ``key_points``, ``applicability``,
-      ``equations_json``, ``figures_json``, ``tables_json``.
+    - ``sections`` — one row per section, at every level. Columns:
+      ``rowid``, ``reference``, ``reference_title``, ``chapter``,
+      ``chapter_title``, ``section_id``, ``title``, ``summary``, ``body``,
+      ``key_points``, ``applicability``, ``equations_json``,
+      ``figures_json``, ``tables_json``, ``parent_rowid`` (the row of the
+      section above it, NULL at the top level), ``depth`` (0 at the top
+      level) and ``parents_json`` (``[[section_id, title], ...]`` above
+      it, outermost first).
     - ``sections_fts`` — FTS5 virtual table over title/summary/body/
       key_points/applicability. Use ``sections_fts MATCH '...'``.
 
