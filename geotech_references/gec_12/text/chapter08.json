@@ -233,7 +233,7 @@
             "E_s": "elastic modulus of clay soil (ksi)"
           },
           "notes": "E_s is determined from Eq. 8-7.",
-          "implemented_in": "lateral_pile"
+          "implemented_in": null
         },
         {
           "eq_id": "8-7",
@@ -257,7 +257,7 @@
             "n_h": "rate of increase of soil modulus with depth (ksi/ft), Table 8-4"
           },
           "notes": null,
-          "implemented_in": "lateral_pile"
+          "implemented_in": null
         }
       ],
       "figures": [],
@@ -466,7 +466,7 @@
             "F_co": "reference compression stress parallel to grain (ksi, Table 8-7)"
           },
           "notes": "Applies to both compression and tension driving stresses.",
-          "implemented_in": "wave_equation"
+          "implemented_in": null
         }
       ],
       "figures": [],
@@ -722,7 +722,7 @@
             "F_y": "yield stress of steel (ksi, Table 8-1)"
           },
           "notes": "Compression only. Tension driving stress not required for steel piles.",
-          "implemented_in": "wave_equation"
+          "implemented_in": null
         }
       ],
       "figures": [],
@@ -754,7 +754,7 @@
             "P_n": "nominal resistance in axial compression (kips)"
           },
           "notes": "phi_c = 0.60 for H-piles (good conditions), 0.70 for pipe piles (good conditions).",
-          "implemented_in": "axial_pile"
+          "implemented_in": null
         },
         {
           "eq_id": "8-35",
@@ -1055,7 +1055,7 @@
             "M_ry": "factored resistance in flexure about y-axis (kip-ft)"
           },
           "notes": "Applies when P_u/P_r < 0.2.",
-          "implemented_in": "pile_group"
+          "implemented_in": null
         },
         {
           "eq_id": "8-58",
@@ -1070,7 +1070,7 @@
             "M_ry": "factored resistance in flexure about y-axis (kip-ft)"
           },
           "notes": "Applies when P_u/P_r >= 0.2.",
-          "implemented_in": "pile_group"
+          "implemented_in": null
         },
         {
           "eq_id": "8-59",
@@ -1173,7 +1173,7 @@
             "f_pe": "effective prestressing stress in concrete (ksi)"
           },
           "notes": "f_pe typically 0.5 to 1.0 ksi for highway projects.",
-          "implemented_in": "wave_equation"
+          "implemented_in": null
         },
         {
           "eq_id": "8-63",
@@ -1186,7 +1186,7 @@
             "f_pe": "effective prestressing stress in concrete (ksi)"
           },
           "notes": "In severe corrosive environments, tension limited to effective prestress after losses.",
-          "implemented_in": "wave_equation"
+          "implemented_in": null
         }
       ],
       "figures": [],
@@ -1459,7 +1459,7 @@
             "n": "number of piles in pile group"
           },
           "notes": "Round up by approximately 15% or more depending on moments and lateral loads.",
-          "implemented_in": "pile_group"
+          "implemented_in": null
         },
         {
           "eq_id": "8-79",
@@ -1477,7 +1477,7 @@
             "y": "distance along y-axis from center of column to each pile center (feet)"
           },
           "notes": "Assumes equal stiffness of all piles in the group. All factored load combinations should be checked.",
-          "implemented_in": "pile_group"
+          "implemented_in": null
         }
       ],
       "figures": [

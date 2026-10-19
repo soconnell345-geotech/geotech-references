@@ -34,7 +34,9 @@
       ],
       "equations": [],
       "figures": [],
-      "tables": ["Table 2-1"],
+      "tables": [
+        "Table 2-1"
+      ],
       "applicability": "Identifying which AASHTO limit states apply to driven pile foundation design. Used at the beginning of any pile design to establish required checks."
     },
     {
@@ -58,8 +60,14 @@
           "implemented_in": null
         }
       ],
-      "figures": ["Figure 2-1", "Figure 2-2"],
-      "tables": ["Table 2-2", "Table 2-3"],
+      "figures": [
+        "Figure 2-1",
+        "Figure 2-2"
+      ],
+      "tables": [
+        "Table 2-2",
+        "Table 2-3"
+      ],
       "applicability": "Determining factored foundation loads for all limit states. Used at the start of pile design to establish demand. Structural engineer provides these loads to the foundation specialist."
     },
     {
@@ -80,7 +88,7 @@
         {
           "id": "Eq. 2-2",
           "description": "LRFD design equation: sum(eta_i * gamma_i * Q_i) <= phi * R_n = R_r, where phi = resistance factor, R_n = nominal resistance, R_r = factored resistance",
-          "implemented_in": "axial_pile"
+          "implemented_in": null
         }
       ],
       "figures": [],
@@ -179,81 +187,27 @@
     {
       "section_id": "2.10",
       "title": "The Driven Pile Design and Construction Process",
-      "body": "The driven pile design and construction process is outlined in the 32-block flow chart of Figure 2-3. The process includes aspects unique to all structural design because pile driving characteristics can improve the accuracy of geotechnical resistance estimates. Dynamic methods for determining nominal resistance from penetration data or dynamic measurements are generally more accurate than static analysis methods based on subsurface exploration. Pile drivability must be considered during the design phase to avoid costly construction problems. The flow chart distinguishes lead roles by block border style: structural engineer (solid), geotechnical engineer (dashed), and construction engineer (dash-dot). The process covers planning (Blocks 1-8), preliminary design (Blocks 9-19), design refinement (Blocks 20-27), and construction (Blocks 28-32).",
+      "body": "The driven pile design and construction process is outlined in the 32-block flow chart of Figure 2-3. The process includes aspects unique to all structural design because pile driving characteristics can improve the accuracy of geotechnical resistance estimates. Dynamic methods for determining nominal resistance from penetration data or dynamic measurements are generally more accurate than static analysis methods based on subsurface exploration. Pile drivability must be considered during the design phase to avoid costly construction problems. The flow chart distinguishes lead roles by block border style: structural engineer (solid), geotechnical engineer (dashed), and construction engineer (dash-dot). The process covers planning (Blocks 1-8), preliminary design (Blocks 9-19), design refinement (Blocks 20-27), and construction (Blocks 28-32).\n\nPreliminary design (Blocks 9-19): The preliminary design phase begins with calculating nominal and factored structural resistances (Block 9), then geotechnical resistances in compression and tension versus depth with preliminary drivability analysis (Block 10). Individual pile loads are resolved at all limit states (Block 11). Penetration depths are established for axial compression (Block 12), tension (Block 13), lateral loads (Block 14), and tolerable deformations based on group settlement (Block 15). Drivability is checked for all candidate pile types (Block 16) with acceptable blow counts of 30-120 blows/ft (120 blows/ft or 10 blows/inch considered refusal). The neutral plane location and drag force are determined (Block 17), settlement is verified (Block 18), and economics are evaluated (Block 19).\n\nDesign refinement (Blocks 20-27): After preliminary design is complete at all substructure locations (Block 20), structural modeling is refined with updated foundation top loads and lateral earth pressure loads on abutments (Block 21). If loads change significantly, foundation design is re-evaluated (Block 22). For dynamic elastic analyses (seismic), foundation stiffnesses are re-evaluated using unfactored loads (Block 23) and loads are checked for convergence within 5% (Block 24). The final design must meet all limit state requirements (Block 25). Pile caps are designed per AASHTO concrete specifications (Block 26). Plans and specifications are finalized with pile quantities, minimum penetration requirements, required nominal resistances, resistance determination method, and resistance factor phi_dyn (Block 27).\n\nConstruction (Blocks 28-32): Construction begins with evaluation of the contractor's proposed equipment (Block 28). Wave equation analysis estimates the blow count to meet required nominal driving resistance and checks if the pile can be driven to the required depth without exceeding material stress limits. Preliminary driving criteria are set and test piles are driven (Block 29). Driving requirements may be defined by blow count, minimum penetration depth, dynamic monitoring results, or a combination. Each field resistance determination method has its own resistance factor phi_dyn. If test results indicate inadequate resistance, driving criteria or design may be adjusted (Block 30). Production piles are driven with construction monitoring (Block 31), and post-construction evaluation is performed for design refinement on future projects (Block 32). (The section runs from printed p. 18 to p. 39 with no numbered subsections; the blocks are its steps.)",
       "key_points": [
-        "Block 1: Establish global project performance requirements (structure type, phasing, layout, site conditions)",
-        "Block 2: Determine bridge geometry, substructure locations, and top of foundation elevations",
-        "Block 3: Define general site geotechnical conditions, scour, and seismicity; consult hydraulic engineer for scour",
-        "Block 4: Perform preliminary structural modeling to determine substructure loads and tolerable deformations",
-        "Block 5: Develop and execute subsurface exploration and laboratory testing program for feasible foundation systems",
-        "Block 6: Evaluate information and determine candidate foundation systems (shallow vs. deep, ground improvement)",
-        "Block 7: Determine if deep foundation is required; compare driven piles to drilled shafts, micropiles, and CFA piles on cost per unit load",
-        "Block 8: Select 2-5 candidate driven pile types and sections for further evaluation based on factored loads"
+        "Figure 2-3: a 32-block flow chart; lead roles shown by border style (structural, geotechnical, construction engineer)",
+        "Planning (Blocks 1-8): performance requirements, geometry, site conditions, exploration, candidate foundation systems, 2-5 candidate pile types",
+        "Preliminary design (Blocks 9-19): structural and geotechnical resistance vs depth, penetration for compression, tension, lateral load and deformation",
+        "Block 16: eliminate candidates that cannot reach the required resistance within 30-120 blows/ft (120 blows/ft = refusal)",
+        "Block 17: neutral plane and drag force; permanent load plus drag force below the factored structural resistance",
+        "Block 19: compare candidates on cost per unit load supported, including caps and cofferdams",
+        "Design refinement (Blocks 20-27): refine the structural model, re-check loads (convergence within 5 % for seismic), design caps, finalize plans",
+        "Block 27: plans show the factored load, nominal resistance, resistance determination method, phi_dyn and minimum penetration",
+        "Construction (Blocks 28-32): wave equation check of the contractor's equipment, test piles, driving criteria, production driving, post-construction review",
+        "Changing the resistance determination method changes both the resistance factor and the required nominal resistance",
+        "Pile drivability must be considered during design",
+        "Preliminary field testing before final design can save substantially on large projects"
       ],
       "equations": [],
-      "figures": ["Figure 2-3"],
+      "figures": [
+        "Figure 2-3"
+      ],
       "tables": [],
       "applicability": "Complete design-construction process for driven pile foundations. Figure 2-3 flow chart applies to all design-bid-build projects; design-build contracts vary in early steps but the key activities remain the same."
-    },
-    {
-      "section_id": "2.10.1",
-      "title": "The Driven Pile Design and Construction Process - Preliminary Design (Blocks 9-19)",
-      "body": "The preliminary design phase begins with calculating nominal and factored structural resistances (Block 9), then geotechnical resistances in compression and tension versus depth with preliminary drivability analysis (Block 10). Individual pile loads are resolved at all limit states (Block 11). Penetration depths are established for axial compression (Block 12), tension (Block 13), lateral loads (Block 14), and tolerable deformations based on group settlement (Block 15). Drivability is checked for all candidate pile types (Block 16) with acceptable blow counts of 30-120 blows/ft (120 blows/ft or 10 blows/inch considered refusal). The neutral plane location and drag force are determined (Block 17), settlement is verified (Block 18), and economics are evaluated (Block 19).",
-      "key_points": [
-        "Block 9: Calculate nominal and factored structural resistances for all candidate pile types (Chapter 8)",
-        "Block 10: Calculate geotechnical resistances in compression and tension vs. depth; perform preliminary wave equation drivability; hammer ram weight 1-2% of required nominal resistance is a good starting size",
-        "Block 11: Estimate preliminary number of piles, group size, and resolve individual pile loads at all limit states",
-        "Block 12: Estimate penetration depth for axial compression; check group efficiency in compression",
-        "Block 13: Establish minimum penetration depth for axial tension loads; check group tension resistance",
-        "Block 14: Establish minimum penetration depth for lateral loads using p-y analysis (Section 7.3.4.2)",
-        "Block 15: Establish penetration depths for tolerable deformations via group settlement; identify intolerable pile toe elevations",
-        "Block 16: Check drivability to maximum penetration depth from Blocks 12-15; eliminate candidates that cannot achieve required resistance within 30-120 blows/ft",
-        "Block 17: Determine neutral plane location and drag force; sum of permanent load + drag force must be less than factored structural resistance",
-        "Block 18: Verify total and differential settlement and angular distortion satisfy design requirements",
-        "Block 19: Evaluate economics of candidate piles based on support cost (cost per ton supported) including pile cap, cofferdams, and all related items"
-      ],
-      "equations": [],
-      "figures": ["Figure 2-3"],
-      "tables": [],
-      "applicability": "Preliminary geotechnical and structural design of driven pile foundations. Uses axial_pile for compression/tension resistance vs. depth, lateral_pile for p-y analysis, pile_group for group effects, settlement for group settlement, downdrag for neutral plane, and wave_equation for drivability assessment."
-    },
-    {
-      "section_id": "2.10.2",
-      "title": "The Driven Pile Design and Construction Process - Design Refinement (Blocks 20-27)",
-      "body": "After preliminary design is complete at all substructure locations (Block 20), structural modeling is refined with updated foundation top loads and lateral earth pressure loads on abutments (Block 21). If loads change significantly, foundation design is re-evaluated (Block 22). For dynamic elastic analyses (seismic), foundation stiffnesses are re-evaluated using unfactored loads (Block 23) and loads are checked for convergence within 5% (Block 24). The final design must meet all limit state requirements (Block 25). Pile caps are designed per AASHTO concrete specifications (Block 26). Plans and specifications are finalized with pile quantities, minimum penetration requirements, required nominal resistances, resistance determination method, and resistance factor phi_dyn (Block 27).",
-      "key_points": [
-        "Block 20: Preliminary design must be complete at all substructure locations before refinement",
-        "Block 21: Refine structural model with updated foundation loads and lateral earth pressures",
-        "Block 22: If loads change significantly, return to Block 8 or 11 and re-evaluate",
-        "Block 23: For seismic/dynamic analyses, re-evaluate foundation stiffness with unfactored loads",
-        "Block 24: Check convergence within 5% between lateral pile analysis loads and structural model loads",
-        "Block 25: Final design check for all limit states (compression, tension, lateral, serviceability, drivability)",
-        "Block 26: Design pile caps per AASHTO concrete specifications; cap cost is key in economic selection",
-        "Block 27: Finalize plans showing factored pile load, nominal resistance, resistance method, phi_dyn, and min/max penetration depths"
-      ],
-      "equations": [],
-      "figures": ["Figure 2-3"],
-      "tables": [],
-      "applicability": "Final design refinement and plan preparation for driven pile foundations. Iterative structural-geotechnical analysis convergence is critical for seismic design."
-    },
-    {
-      "section_id": "2.10.3",
-      "title": "The Driven Pile Design and Construction Process - Construction (Blocks 28-32)",
-      "body": "Construction begins with evaluation of the contractor's proposed equipment (Block 28). Wave equation analysis estimates the blow count to meet required nominal driving resistance and checks if the pile can be driven to the required depth without exceeding material stress limits. Preliminary driving criteria are set and test piles are driven (Block 29). Driving requirements may be defined by blow count, minimum penetration depth, dynamic monitoring results, or a combination. Each field resistance determination method has its own resistance factor phi_dyn. If test results indicate inadequate resistance, driving criteria or design may be adjusted (Block 30). Production piles are driven with construction monitoring (Block 31), and post-construction evaluation is performed for design refinement on future projects (Block 32).",
-      "key_points": [
-        "Block 28: Evaluate contractor's proposed pile driving equipment via wave equation analysis (Chapters 12, 14)",
-        "Block 29: Set preliminary driving criteria; drive test piles; evaluate nominal resistance by static load test, dynamic load test, rapid load test, wave equation, or dynamic formula",
-        "Block 30: Adjust driving criteria or design based on test results; may change to a more reliable resistance method with higher resistance factor",
-        "Block 31: Drive production piles with quality control and construction monitoring; resolve installation problems promptly (Chapter 18)",
-        "Block 32: Post-construction evaluation and refinement benefits future similar projects",
-        "Modified Gates Formula is frequently used for smaller projects; dynamic formula usage in Chapter 13",
-        "Changing resistance determination method post-design changes both resistance factor and required nominal resistance",
-        "Preliminary field testing before final design can yield substantial cost savings on large projects"
-      ],
-      "equations": [],
-      "figures": ["Figure 2-3"],
-      "tables": [],
-      "applicability": "Construction phase of driven pile projects. Uses wave_equation for hammer evaluation and driving criteria, and field resistance methods (static load test, dynamic monitoring, dynamic formulas) for nominal resistance verification."
     },
     {
       "section_id": "2.11",
@@ -269,7 +223,10 @@
       ],
       "equations": [],
       "figures": [],
-      "tables": ["Table 2-4", "Table 2-5"],
+      "tables": [
+        "Table 2-4",
+        "Table 2-5"
+      ],
       "applicability": "All phases of driven pile projects. Defines interdisciplinary communication requirements to avoid costly construction problems and design deficiencies."
     }
   ]

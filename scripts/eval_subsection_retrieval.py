@@ -79,7 +79,7 @@ QUESTIONS = [
          question="How is pile capacity estimated from a CPT with effective "
                   "cone resistance?",
          query="CPT pile capacity effective cone resistance"),
-    dict(ref="gec_12", target="7.2.3.2.1",
+    dict(ref="gec_12", target="7.2.3.2.2",
          question="What controls the uplift resistance of a pile group in "
                   "cohesionless soil?",
          query="group uplift cohesionless"),

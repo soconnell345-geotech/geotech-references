@@ -930,9 +930,26 @@
     },
     {
       "section_id": "4-7",
-      "title": "Factor of Safety for Passive Earth Pressure",
+      "title": "Flexible Retaining Structures",
+      "summary": "Flexible retaining structures (pp. 231-232 and following) are vertical structural elements inserted before excavation - sheet piles, soldier beams and lagging, concrete diaphragm walls - braced, anchored or cantilevered. Their embedded part develops passive resistance; they deflect under earth and water loads, so earth pressures depend on wall deflection. The manual describes limit equilibrium methods; numerical methods are used where wall deflection must be limited or for deep excavations.",
+      "body": "Flexible retaining structures consist primarily of vertical structural elements that are inserted prior to excavation. The structures may be braced or anchored. Examples include sheet pile, soldier beam and lagging, and concrete diaphragm walls. Flexible structures can exhibit a range of displacements depending on the fixity of the buried parts of the wall and on the location of supports or anchors.\nThe embedded portion of a flexible structure develops passive resistance resulting from displacement of the structure toward the soil. In addition, flexible structures are often braced or supported as shown in Figure 2-6 because embedment alone is insufficient. Internally-supported systems use structural supports that are internal to the excavation. Externally-supported systems use anchors or tiebacks within the soil that are external to the excavation.\nA variety of flexible retaining structures are used for waterfront structures, excavation bracing, permanent retaining walls, and other support systems. These walls often appear to be quite rigid, but due to the length of the support elements, they deflect under earth and water loads. As described earlier, earth pressures vary according to wall deflections, and the design of flexible retaining structures can be quite involved. Limit equilibrium analyses have been historically used for the design of these structures, and those are the methods that are described in this manual. Numerical methods, such as finite element and finite difference, are often used in geotechnical engineering practice, especially when limiting wall deflections is important or for deep excavations. However, the use of limit equilibrium methods is still widespread in engineering practice.",
+      "key_points": [
+        "Vertical elements inserted before excavation: sheet piles, soldier beams and lagging, concrete diaphragm walls",
+        "Embedment develops passive resistance; bracing (internal) or anchors and tiebacks (external) where embedment alone is insufficient",
+        "The walls deflect under earth and water loads, so the earth pressures depend on wall deflection",
+        "Limit equilibrium methods are described here; numerical methods where deflection must be limited or for deep excavations",
+        "Subsections: factored passive resistance (4-7.1), anchored bulkheads (4-7.2), anchors (4-7.3), cantilever walls (4-7.4), soldier pile (4-7.5), secant and tangent pile (4-7.6), soil nail walls (4-7.7)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to the design of flexible retaining structures - sheet pile, soldier pile and lagging, diaphragm, secant and tangent pile, and soil nail walls - braced, anchored or cantilevered."
+    },
+    {
+      "section_id": "4-7.1",
+      "title": "Factored Passive Resistance",
       "summary": "Covers two methods for applying a factor of safety to passive earth pressure in wall design: (1) reducing the calculated passive force directly (F = 2–3 for coarse-grained, 1.5–2 for fine-grained), and (2) reducing the friction angle to obtain an allowable φ′ for use in computing KP, analogous to slope stability analysis with F = 1.5–2.0.",
-      "body": "PP,allow = PP / F (Eq. 4-29)\nwhere: PP = passive earth pressure force calculated using the shear strength parameters and F = factor of safety.\nAs such, the factor of safety is applied to load, which is similar to the approach used in bearing capacity analysis. In this case, the value of F should be 2 to 3 for coarse-grained soils (effective stress design). A value of F = 1.5 to 2.0 can be used for undrained analysis in fine-grained soils. These factors of safety will provide approximately equivalent factors of safety with respect to shear strength.\nAlternatively, the value of KP can be determined from an allowable effective stress friction angle (φ′allow) which is found as:\nφ′allow = arctan(tan φ′ / F) (Eq. 4-30)\nwhere: φ′ = effective stress friction angle.\nThe second method (Eqn. 4-30) provides a factor of safety on shear strength, similar to slope stability. In this case, a factor of safety of 1.5 to 2.0 is appropriate, regardless of the soil types or analysis conditions.",
+      "body": "As noted above, the stability of many flexible structures depends on the passive resistance at the base of the wall and in front of supporting anchors. In the analysis methods that follow, two different methods may be used to provide an adequate factor of safety. Where passive earth pressure forces are directly calculated, the allowable passive force (PP,allow) can be found as:\nPP,allow = PP / F (Eq. 4-29)\nwhere: PP = passive earth pressure force calculated using the shear strength parameters and F = factor of safety.\nAs such, the factor of safety is applied to load, which is similar to the approach used in bearing capacity analysis. In this case, the value of F should be 2 to 3 for coarse-grained soils (effective stress design). A value of F = 1.5 to 2.0 can be used for undrained analysis in fine-grained soils. These factors of safety will provide approximately equivalent factors of safety with respect to shear strength.\nAlternatively, the value of KP can be determined from an allowable effective stress friction angle (φ′allow) which is found as:\nφ′allow = arctan(tan φ′ / F) (Eq. 4-30)\nwhere: φ′ = effective stress friction angle.\nThe second method (Eqn. 4-30) provides a factor of safety on shear strength, similar to slope stability. In this case, a factor of safety of 1.5 to 2.0 is appropriate, regardless of the soil types or analysis conditions.",
       "key_points": [
         "Method 1 (Eq. 4-29): Apply F directly to the passive force PP; F = 2–3 for coarse-grained (effective stress), F = 1.5–2 for fine-grained (undrained).",
         "Method 2 (Eq. 4-30): Reduce φ′ to φ′allow = arctan(tan φ′ / F) before computing KP; F = 1.5–2.0 regardless of soil type.",
@@ -953,23 +970,7 @@
       ],
       "figures": [],
       "tables": [],
-      "applicability": "Applies when designing retaining walls or sheet pile walls and selecting an appropriate factor of safety for passive earth pressure resistance."
-    },
-    {
-      "section_id": "4-7.1",
-      "title": "Factored Passive Resistance",
-      "summary": "Describes the two methods used to incorporate an adequate factor of safety for passive resistance in the stability analysis of flexible retaining structures. Where passive earth pressure forces are directly calculated, defines the allowable passive force (PP,allow) as the governing design quantity. Applies to base-of-wall and anchor passive resistance evaluation.",
-      "body": "As noted above, the stability of many flexible structures depends on the passive resistance at the base of the wall and in front of supporting anchors. In the analysis methods that follow, two different methods may be used to provide an adequate factor of safety. Where passive earth pressure forces are directly calculated, the allowable passive force (PP,allow) can be found as:",
-      "key_points": [
-        "Stability of flexible structures is often governed by passive resistance at the wall base and in front of anchors.",
-        "Two distinct methods are available to apply an adequate factor of safety to passive resistance.",
-        "When passive earth pressure forces are computed directly, the design quantity is the allowable passive force (PP,allow).",
-        "The choice of method affects how the factor of safety is incorporated into the overall wall stability analysis."
-      ],
-      "equations": [],
-      "figures": [],
-      "tables": [],
-      "applicability": "Applies when calculating the allowable passive resistance for flexible retaining structures where passive earth pressure forces are directly computed in stability analysis."
+      "applicability": "Applies when applying a factor of safety to passive resistance at the base of a flexible retaining structure or in front of its anchors, either on the passive force (Eq. 4-29) or on the friction angle (Eq. 4-30)."
     },
     {
       "section_id": "4-7.2",

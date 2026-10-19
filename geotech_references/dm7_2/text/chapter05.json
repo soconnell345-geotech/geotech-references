@@ -813,20 +813,18 @@
     },
     {
       "section_id": "5-4",
-      "title": "Definitions and Applications",
-      "summary": "Introduces combined, continuous, grid, mat, rigid, and flexible foundation types for shallow foundations carrying more than a single column or wall load. Clarifies when each type is appropriate, emphasizes the iterative design process between geotechnical and structural engineers for mat foundations, and notes that slabs-on-grade are excluded.",
-      "body": "This section considers the design of shallow foundations carrying more than a single column or wall load as defined above. The following definitions are helpful and have been summarized from ACI (2002):\n• Combined footing – footing supporting more than one column load. Combined footings are used when column loads are closely spaced so that individual footings would overlap and thus the footings are combined to support the loads.\n• Continuous footing – footing supporting two or more columns in a row. Continuous foundations are used under wall loads and when the distance between columns is sufficiently close that individual footings can be combined.\n• Grid foundation – a foundation formed by intersecting continuous footings. Grid foundations are a variation on continuous footings.\n• Mat foundation – a continuous footing supporting columns in several rows in each direction, covering an area of at least 75 percent of the total structure area. Mat foundations are generally appropriate if: 1) the sum of individual footing base areas exceeds about 75% of the total foundation area; 2) the subsurface strata contain cavities or compressible lenses and differential settlements are a concern; 3) the subsurface strata are highly compressible and a reduction in bearing pressures is helpful; or 4) resistance to hydrostatic uplift is required.\n• Rigid foundation – loads cause differential to total settlement ratios ≤ 0.1.\n• Flexible foundation – does not meet requirements for rigid foundations.\nDesign of these foundations, especially mats, is an iterative process between the geotechnical engineer and the structural engineer. The soil response is based on mat contact pressures, which in turn are based on mat loads, flexibility, and modulus. Thus, the computed mat deflections and soil responses must converge. Economic considerations will also have an impact on selection of a combined footing and mat foundation over other alternatives. Slabs-on-grade are excluded from this discussion.",
+      "title": "Geotechnical Design of Combined and Mat Foundations",
+      "summary": "Combined footings and mat foundations are designed as described by ACI (2002); this section gives the input geotechnical engineers provide to structural engineers before and during that design - definitions, rigid and flexible behaviour, the required input, the modulus of subgrade reaction, the iterative process and coupling of soil effects - with an extended example in Appendix B.",
+      "body": "Combined footings and mat foundations are designed as described by the American Concrete Institute (ACI) (2002). The following paragraphs describe the required input that geotechnical engineers need to provide to structural engineers before and during their design of these foundations. An extended example of the necessary field investigation, laboratory testing, and calculations is provided in Appendix B.",
       "key_points": [
-        "Combined footing supports more than one column; used when individual footings would overlap.",
-        "Mat foundation covers ≥75% of total structure area; appropriate when individual footing areas exceed ~75% of total foundation area, differential settlement is a concern, strata are highly compressible, or uplift resistance is needed.",
-        "Rigid foundation: differential-to-total settlement ratio ≤ 0.1; flexible foundation does not meet this criterion.",
-        "Mat foundation design is iterative between geotechnical and structural engineers — contact pressures, flexibility, and modulus must converge.",
-        "Slabs-on-grade are explicitly excluded from this section's scope."
+        "Combined footings and mats are designed per ACI (2002); this section gives the geotechnical input to the structural design",
+        "Extended example of investigation, testing and calculations in Appendix B",
+        "Subsections: definitions (5-4.1), rigid (5-4.2) and flexible (5-4.3) foundations, required input (5-4.4), modulus of subgrade reaction (5-4.5), iterative design (5-4.6), coupling of soil effects (5-4.7, 5-4.8), floating mats (5-4.9), two- or three-dimensional problems (5-4.10)"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Applies when designing shallow foundations that carry more than a single column or wall load, including combined, continuous, grid, and mat foundations."
+      "applicability": "Applies when providing geotechnical input for the design of combined footings, continuous and grid foundations, and mat foundations."
     },
     {
       "section_id": "5-4.1",

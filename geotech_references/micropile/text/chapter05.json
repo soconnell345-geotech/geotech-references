@@ -29,56 +29,34 @@
     },
     {
       "section_id": "5.6",
-      "title": "Structural Design of Cased Length",
-      "summary": "Allowable stress design of the cased length checking compression (Eq. 5-1), tension (Eq. 5-2), and combined axial plus bending (Eq. 5-3, interaction <= 1.0). Capacities sum contributions from grout, casing, and center bar using AASHTO factors of 0.40 (grout) and 0.47 or 0.55 (steel). Composite section properties (I, S, r) are computed via Eq. 5-4a/b/c using modular ratios.",
-      "body": "The cased length of the micropile is the portion where both the steel casing and grout (and optionally a center reinforcing bar) are present. The structural design of the cased length involves checking three conditions: (1) compression capacity, (2) tension capacity, and (3) combined axial load and bending. For compression (Eq. 5-1), the allowable load is the sum of contributions from the grout, casing, and center bar: P_c-allowable = 0.40*f'c_grout*A_grout + 0.47*F_y-steel*(A_bar + A_casing). For tension (Eq. 5-2), the allowable load is: P_t-allowable = 0.55*F_y-steel*(A_bar + A_casing). No tensile contribution from grout is considered. For combined axial and bending (Eq. 5-3), the interaction check uses: f_a/F_a + f_b/F_b <= 1.0, where f_a is the computed axial stress, F_a is the allowable axial stress, f_b is the computed bending stress, and F_b is the allowable bending stress. Section properties are computed using composite section analysis. The moment of inertia of the cased section (Eq. 5-4a) is: I_composite = (pi/64)*[(OD^4 - ID^4) + n_bar*(d_bar^4) + (n_grout - 1)*((ID - 2*cover)^4)], where n is the modular ratio. The section modulus (Eq. 5-4b) is S = I_composite/(OD/2). The radius of gyration (Eq. 5-4c) is r = sqrt(I_composite/A_composite). Factors of 0.40 and 0.47 are AASHTO allowable stress factors for grout and steel, respectively.",
+      "title": "Step 5: Structural Design of Micropile Cased Length",
+      "summary": "Allowable stress checks of the cased length (printed pp. 5-10 to 5-17): compression P = 0.40 f'c Agrout + 0.47 Fy-steel (Abar + Acasing) (Eq. 5-1), with Fy-steel the least of the casing, bar and 600 MPa (87 ksi) grout-strain limits; tension 0.55 Fy-steel (Abar + Acasing) (Eq. 5-2); combined axial compression and bending fa/Fa + fb/[Fb(1 - fa/F'e)] <= 1.0 (Eq. 5-3) on the steel casing alone, with the Euler buckling stress F'e (Eq. 5-5, FS 2.12, K = 1.0) or the Richards and Rothbauer (2004) check (Eq. 5-6).",
+      "body": "Step 5 checks the structural capacity of the cased length of the micropile in three parts (printed pp. 5-10 to 5-17). (1) Allowable compression load: Pc-allowable = [0.40 f'c-grout Agrout + 0.47 Fy-steel (Abar + Acasing)] (Eq. 5-1), with Agrout the grout inside the casing only. Strain compatibility limits Fy-steel to the least of the casing yield stress, the bar yield stress and the stress at the grout's maximum usable strain of 0.003 (200,000 MPa x 0.003 = 600 MPa, 87 ksi); for a 241 MPa (36 ksi) casing and a 520 MPa (75 ksi) bar, 241 MPa is used. Figure 5-2 is the example micropile. Bar couplers typically develop 125 % of the bar yield strength, and a properly threaded, grout-filled casing joint carries about the intact casing's compression; coupled sections are confirmed by proof and verification testing. The casing outside diameter is reduced for corrosion losses over the design life (Section 5.14). Where the cased length is formed in very weak ground or a karstic zone, the allowable compression load may need to be reduced for buckling over that length (Section 5.20). (2) Allowable tension load: Pt-allowable = 0.55 Fy-steel (Abar + Acasing) (Eq. 5-2), with Fy-steel the lesser of the bar and casing yield stresses; no grout contribution. In aggressive ground the casing may be taken as ineffective in tension (Acasing = 0) and the bar designed for the whole tension load. Threaded casing joints are weaker in tension; where tension over 25 % of the intact casing's allowable tension is to be carried through flush-joint threads, the contractor should provide data showing the joint is adequate. (3) Combined axial compression and bending: with Mmax from a laterally loaded pile analysis such as LPILE (Section 5.18), the check of AASHTO (2002) Section 10.36 is fa/Fa + fb/[Fb(1 - fa/F'e)] <= 1.0 (Eq. 5-3), where fa = Pc/Acasing, fb = Mmax/S, Fa = 0.47 Fy-casing and Fb = 0.55 Fy-casing; the axial load is conservatively taken by the steel casing alone and the bar's contribution to bending is ignored. The casing section properties are Acasing = pi/4 (OD^2 - ID^2) (Eq. 5-4a), S = Icasing/(OD/2) (Eq. 5-4b) and Icasing = pi/64 (OD^4 - ID^4) (Eq. 5-4c). The Euler buckling stress is F'e = pi^2 E / [FS (K l/r)^2] (Eq. 5-5), with E = 200,000 MPa (29,000 ksi), FS = 2.12, K = 1.0 (typically assumed for micropiles), l the unsupported length and r = (Icasing/Acasing)^0.5. Richards and Rothbauer (2004) proposed a combined stress check that counts the grout inside the casing and assumes buckling is negligible: Pc/Pc-allowable + Mmax/Mallowable <= 1.0 (Eq. 5-6), with Pc-allowable from Eq. 5-1 and Mallowable = 0.55 Fy-casing S.",
       "key_points": [
-        "Three structural checks: compression (Eq. 5-1), tension (Eq. 5-2), combined stress (Eq. 5-3)",
-        "Compression: P_c = 0.40*f'c*A_grout + 0.47*Fy*(A_bar + A_casing)",
-        "Tension: P_t = 0.55*Fy*(A_bar + A_casing); no grout contribution",
-        "Combined check: f_a/F_a + f_b/F_b <= 1.0 (interaction formula)",
-        "Section properties: composite I, S, and r using modular ratios (Eq. 5-4a,b,c)",
-        "Stress factors 0.40 (grout) and 0.47 (steel) from AASHTO",
-        "Center bar provides additional capacity for both compression and tension"
+        "Compression: Pc-allowable = 0.40 f'c Agrout + 0.47 Fy-steel (Abar + Acasing) (Eq. 5-1); grout inside the casing only",
+        "Fy-steel = least of casing yield, bar yield and 600 MPa (87 ksi) from the grout's 0.003 strain limit",
+        "Tension: Pt-allowable = 0.55 Fy-steel (Abar + Acasing) (Eq. 5-2); Acasing = 0 in aggressive ground",
+        "Flush-threaded casing joints carrying over 25 % of the intact casing's allowable tension need contractor test data",
+        "Combined: fa/Fa + fb/[Fb(1 - fa/F'e)] <= 1.0 (Eq. 5-3) on the steel casing alone (Fa = 0.47 Fy, Fb = 0.55 Fy)",
+        "Euler buckling stress F'e = pi^2 E / [FS (K l/r)^2], FS = 2.12, K = 1.0 (Eq. 5-5)",
+        "Richards and Rothbauer (2004): Pc/Pc-allowable + Mmax/Mallowable <= 1.0, buckling assumed negligible (Eq. 5-6)",
+        "Reduce the allowable compression for buckling where the cased length is in very weak ground or karst (Section 5.20)"
       ],
       "equations": [
-        "Eq. 5-1: P_c-allowable = 0.40*f'c_grout*A_grout + 0.47*F_y-steel*(A_bar + A_casing)",
-        "Eq. 5-2: P_t-allowable = 0.55*F_y-steel*(A_bar + A_casing)",
-        "Eq. 5-3: f_a/F_a + f_b/F_b <= 1.0",
-        "Eq. 5-4a: I_composite for cased section",
-        "Eq. 5-4b: S = I_composite / (OD/2)",
-        "Eq. 5-4c: r = sqrt(I_composite / A_composite)"
+        "Eq. 5-1: Pc-allowable = 0.40 f'c-grout Agrout + 0.47 Fy-steel (Abar + Acasing)",
+        "Eq. 5-2: Pt-allowable = 0.55 Fy-steel (Abar + Acasing)",
+        "Eq. 5-3: fa/Fa + fb/[Fb (1 - fa/F'e)] <= 1.0",
+        "Eq. 5-4a: Acasing = pi/4 (OD^2 - ID^2)",
+        "Eq. 5-4b: S = Icasing / (OD/2)",
+        "Eq. 5-4c: Icasing = pi/64 (OD^4 - ID^4)",
+        "Eq. 5-5: F'e = pi^2 E / [FS (K l / r)^2], FS = 2.12",
+        "Eq. 5-6: Pc/Pc-allowable + Mmax/Mallowable <= 1.0 (Richards and Rothbauer 2004)"
       ],
       "figures": [
-        "Figure 5-2: Micropile Cross Section - Cased Length",
-        "Figure 5-3: Stress Distribution in Cased Micropile Section"
+        "Figure 5-2: Example Micropile Detail"
       ],
-      "tables": [
-        "Table 5-2: Minimum Rock Quality for End Bearing Micropiles"
-      ],
-      "applicability": "Structural design of the upper cased portion of micropiles for compression, tension, and combined loading."
-    },
-    {
-      "section_id": "5.3",
-      "title": "Buckling and Stability of Cased Length",
-      "summary": "Euler buckling check (Eq. 5-5: P_critical = pi^2*E*I/(K*L)^2) for cased lengths that extend through air, water, voids, or very weak soils where lateral support is absent. The Richards and Rothbauer (2004) method (Eq. 5-6) provides an alternative that incorporates lateral subgrade reaction. Buckling is generally not a concern for micropiles fully embedded in adequate soil or rock.",
-      "body": "For micropiles that extend through air, water, or very weak soils, the cased length must be checked for Euler buckling. The Euler buckling load (Eq. 5-5) is: P_critical = pi^2*E*I / (K*L_unsupported)^2, where E is the modulus of elasticity, I is the moment of inertia of the steel casing, K is the effective length factor (typically 1.0 for pinned-pinned or 2.0 for cantilever), and L_unsupported is the unsupported length. The Richards and Rothbauer (2004) method provides an alternative approach (Eq. 5-6) that accounts for the lateral support provided by surrounding soil using subgrade reaction theory. The allowable axial stress in compression should be reduced when buckling is a concern, using the AASHTO column formula approach. In general, buckling is not a concern for micropiles that are fully embedded in soil or rock with adequate lateral support. However, buckling should be evaluated when micropiles pass through very weak or liquefiable soils, through voids (karstic terrain), or above ground/water level.",
-      "key_points": [
-        "Euler buckling check required for micropiles in air, water, or very weak soils (Eq. 5-5)",
-        "P_critical = pi^2*E*I / (K*L)^2 for unsupported sections",
-        "K = 1.0 for pinned-pinned; K = 2.0 for cantilever; K = 0.65 for fixed-fixed",
-        "Richards and Rothbauer (2004) method accounts for lateral soil support (Eq. 5-6)",
-        "Buckling generally not a concern in fully embedded micropiles with adequate lateral support",
-        "Must evaluate buckling through very weak soils, voids (karst), or above ground/water",
-        "AASHTO column formula used to reduce allowable stress when buckling governs"
-      ],
-      "equations": [
-        "Eq. 5-5: P_critical = pi^2 * E * I / (K * L_unsupported)^2 (Euler buckling)",
-        "Eq. 5-6: Richards-Rothbauer method for buckling with lateral soil support"
-      ],
-      "figures": [],
       "tables": [],
-      "applicability": "Stability check for micropiles with unsupported lengths in air, water, voids, or very weak/liquefiable soils."
+      "applicability": "Structural design of the cased length of micropiles for compression, tension, and combined axial compression and bending, including buckling where the cased length lacks lateral support."
     },
     {
       "section_id": "5.7",
@@ -105,30 +83,28 @@
       "applicability": "Structural design of the uncased bond zone for micropiles with center reinforcing bar only."
     },
     {
-      "section_id": "5.5",
-      "title": "Geotechnical Capacity - Grout-to-Ground Bond",
-      "summary": "Determines micropile geotechnical capacity from grout-to-ground bond using R_bond = alpha_bond * pi * D_b * L_bond (Eq. 5-9), with allowable capacity P_G = R_bond / FS at FS = 2.0 to 2.5 (Eq. 5-10). Presumptive alpha_bond values are tabulated in Table 5-3 by soil/rock type and grouting method (Types A through D) and should be confirmed by site-specific load testing for critical projects.",
-      "body": "The geotechnical capacity of a micropile is controlled by the grout-to-ground bond developed along the micropile bond zone. The ultimate bond resistance (Eq. 5-9) is: R_bond = alpha_bond * pi * D_b * L_bond, where alpha_bond is the unit grout-to-ground bond stress, D_b is the bond zone diameter, and L_bond is the bond length. The allowable geotechnical capacity (Eq. 5-10) is: P_G-allowable = R_bond / FS, where FS is the factor of safety (typically 2.0 to 2.5 for micropile bond). Table 5-3 provides presumptive values of alpha_bond for various soil and rock types and grouting methods (Types A, B, C, D). For Type A grouting in rock, alpha_bond ranges from 345 to 4150 kPa depending on rock quality. For Type B grouting in sand, alpha_bond ranges from 70 to 360 kPa. For Type B grouting in clay, alpha_bond ranges from 25 to 190 kPa. Higher bond values are achieved with Type C and D grouting. These values are presumptive and should be verified by site-specific load testing. For critical projects, the designer should specify verification load testing to confirm the achievable bond values for the specific site conditions and contractor methods.",
+      "section_id": "5.9.1-5.9.2",
+      "title": "Step 8: Establish Stratum for Bond Zone; Select Ultimate Bond Stress and Calculate Bond Length",
+      "summary": "The bond zone (printed pp. 5-18 to 5-22) is placed in a stratum able to develop grout-to-ground bond; organic soils and cohesive soils with liquidity index > 0.2, LL > 50 or PI > 20 are generally unsuitable. Allowable bond capacity PG = alpha_bond pi Db Lb / FS (Eq. 5-9), or the bond length Lb = PG FS / (alpha_bond pi Db) (Eq. 5-10), with ultimate bond strengths from Table 5-3 and FS 2.0 (with load testing) or 2.5 (marginal ground).",
+      "body": "The maximum compression and tension loads at the micropile top are resisted by grout-to-ground bond over the bond zone (bond length) (printed pp. 5-18 to 5-22). 5.9.1: review all borings to choose a stratum for the bond zone and identify variations; like ground anchors, organic soils and cohesive soils with an average liquidity index greater than 0.2, liquid limit greater than 50 or plasticity index greater than 20 are generally not suitable, being susceptible to creep, and if used need comprehensive testing and higher factors of safety. 5.9.2: the allowable geotechnical bond capacity is PG-allowable = alpha_bond pi Db Lb / FS (Eq. 5-9), with alpha_bond the ultimate grout-to-ground bond strength, Db the drill hole diameter and Lb the bond length; rearranged, Lb = PG-allowable FS / (alpha_bond pi Db) (Eq. 5-10) gives the bond length for the maximum compression or tension load, which the contract documents usually give as a minimum. Table 5-3 gives ultimate bond strengths for the four grouting methods (Type A gravity grout; Type B pressure grouted through the casing during withdrawal; Type C one phase and Type D one or more phases of secondary global pressure grouting) in kPa: silt and clay 35-70 (A) to 50-145 (D) soft, 50-190 stiff; sand 70-145 (A) and 70-190 (B) fine loose to medium dense, up to 145-385 (D) fine-coarse dense; gravel 95-265 (A) to 145-385 (D); glacial till 95-190 (A) to 120-335 (D); rock (Type A only) soft shales 205-550, slates and hard shales 515-1,380, limestone 1,035-2,070, sandstone 520-1,725, granite and basalt 1,380-4,200. Without experience in similar ground use no more than the middle of the range, and consider lower bound values in loose granular or medium to high plasticity cohesive soils; assume Type A in rock and Type B in soil. Site-specific load testing is required on all highway projects and sets the factor of safety: FS = 2.0 with at least one ultimate or verification test before production and in each significantly different ground type, plus proof tests on about 5 % of production micropiles (Chapter 7); FS = 2.5 for creeping or high plasticity soils, weak rock, other marginal ground or limited experience, which is also the basis for the maximum test load.",
       "key_points": [
-        "Ultimate bond: R_bond = alpha_bond * pi * D_b * L_bond (Eq. 5-9)",
-        "Allowable capacity: P_G-allowable = R_bond / FS; FS = 2.0 to 2.5 (Eq. 5-10)",
-        "Table 5-3 provides alpha_bond values by soil/rock type and grouting Type (A, B, C, D)",
-        "Type A in rock: 345-4150 kPa; Type B in sand: 70-360 kPa; Type B in clay: 25-190 kPa",
-        "Higher bond values achieved with Type C and Type D grouting",
-        "Presumptive values should be verified by site-specific load testing",
-        "Bond zone diameter D_b may differ from casing diameter depending on grouting method"
+        "Unsuitable bond zones: organic soils; cohesive soils with LI > 0.2, LL > 50 or PI > 20",
+        "Allowable bond capacity PG = alpha_bond pi Db Lb / FS (Eq. 5-9); bond length Lb = PG FS / (alpha_bond pi Db) (Eq. 5-10)",
+        "Table 5-3: ultimate bond strengths by ground type and grouting Type A-D",
+        "Rock (Type A): 205-550 kPa soft shale to 1,380-4,200 kPa granite and basalt",
+        "Soil, Type B: 35-95 kPa soft silt and clay to 120-360 kPa dense sand or gravel",
+        "Use no more than mid-range values without local experience; assume Type A in rock, Type B in soil",
+        "FS = 2.0 with verification and proof testing; 2.5 in marginal or creep-prone ground"
       ],
       "equations": [
-        "Eq. 5-9: R_bond = alpha_bond * pi * D_b * L_bond (ultimate bond resistance)",
-        "Eq. 5-10: P_G-allowable = R_bond / FS (allowable geotechnical capacity)"
+        "Eq. 5-9: PG-allowable = alpha_bond pi Db Lb / FS",
+        "Eq. 5-10: Lb = PG-allowable FS / (alpha_bond pi Db)"
       ],
-      "figures": [
-        "Figure 5-5: Load Transfer Mechanism in Micropile Bond Zone"
-      ],
+      "figures": [],
       "tables": [
-        "Table 5-3: Presumptive Ultimate Bond Stress (alpha_bond) Values for Micropile Design"
+        "Table 5-3: Summary of Typical alpha_bond (Grout-to-Ground Bond) Values for Micropile Design"
       ],
-      "applicability": "Estimation of micropile geotechnical capacity based on grout-to-ground bond for preliminary and final design."
+      "applicability": "Geotechnical (grout-to-ground bond) capacity and bond length of micropiles in compression and tension."
     },
     {
       "section_id": "5.9.3-5.9.4",
