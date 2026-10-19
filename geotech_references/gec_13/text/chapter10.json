@@ -3,119 +3,1563 @@
   "reference_title": "Ground Modification Methods Reference Manual – Volume II",
   "volume": 2,
   "chapter": 10,
-  "chapter_title": "Micropiles",
+  "chapter_title": "Reinforced Soil Structures",
   "sections": [
     {
-      "section_id": "10.1",
-      "title": "Description",
-      "body": "Micropiles are small-diameter (typically 100–300 mm), high-capacity, drilled and grouted piles that resist both axial and lateral loads through a combination of skin friction in the bond zone and structural capacity of the reinforcing element (steel pipe, rebar, or combination). Micropiles were developed in Italy by Fernando Lizzi in the 1950s as 'pali radice' (root piles) for underpinning historic structures in challenging urban environments. In ground modification practice, micropiles are used for foundation underpinning, slope stabilization through reticulated (networked) micropile grids, seismic retrofit of foundations, and ground reinforcement in difficult access situations. Micropiles are classified by FHWA into Type A through D based on the method of grout placement: Type A (gravity-fed neat cement), Type B (pressure-injected through the drill pipe), Type C (primary pressure grouting followed by secondary sleeve-pipe grouting), and Type D (primary and secondary sleeve-pipe grouting with repeatable injection). The primary design reference for micropiles is FHWA-NHI-05-039 (GEC Micropile manual); GEC-13 Chapter 10 provides an overview within the ground modification context.",
+      "section_id": "10.1.0",
+      "title": "Description and History",
+      "summary": "Chapter 10 heading for the description and history of the reinforced soil technologies covered: reinforced embankments over soft soils, reinforced soil (MSE) walls, reinforced soil slopes and soil nail walls, plus related technologies, glossary and primary references (pp. 10-1 to 10-6).",
+      "body": "Section 1.0 (p. 10-1) is the heading for the chapter's introduction. It is subdivided into an introduction (1.1), a description and historical overview of each technology with the focus and scope of the chapter (1.2), a glossary of terms and acronyms (1.3) and the primary FHWA and AASHTO references where detailed guidance is given (1.4).",
       "key_points": [
-        "Small-diameter (100–300 mm) drilled and grouted piles resist axial and lateral loads",
-        "Developed by Lizzi (Italy, 1950s) as pali radice for underpinning in urban environments",
-        "Classification Types A–D by grout placement method (gravity, pressure, sleeve-pipe)",
-        "Applications: underpinning, slope stabilization, seismic retrofit, difficult access situations",
-        "Load capacity from skin friction in bond zone + structural capacity of steel reinforcement",
-        "Primary design reference: FHWA-NHI-05-039 (Micropile Design and Construction)"
-      ],
-      "equations": [],
-      "figures": [
-        "Figure 10-1: Micropile cross-section showing drill hole, grout, steel pipe/rebar reinforcement, and bond zone"
-      ],
-      "tables": [],
-      "applicability": "Underpinning of existing foundations, slope stabilization, seismic retrofit, and access-constrained sites."
-    },
-    {
-      "section_id": "10.2",
-      "title": "Feasibility and Applications",
-      "body": "Micropiles are feasible in virtually any soil or rock condition because the small drilling diameter allows penetration through cobbles, boulders, and hard rock. They are especially suited to: (1) underpinning of existing foundations where excavation or vibration must be minimized; (2) sites with restricted access (low headroom, tight spaces) where conventional pile driving or drilled shaft equipment cannot operate; (3) slope reinforcement through reticulated micropile networks that create a reinforced soil mass; and (4) sites with difficult or variable subsurface conditions including karstic limestone, rubble fill, and heterogeneous profiles. Limitations include higher cost per unit capacity compared to conventional piles when access is not constrained, difficulty verifying installation quality in all soil types, and limited lateral capacity compared to larger-diameter elements. The maximum axial capacity of a micropile is typically 1,500–2,500 kN due to structural limits of the pipe and grout.",
-      "key_points": [
-        "Feasible in any soil or rock, including cobbles, boulders, and hard rock",
-        "Best suited to: underpinning, restricted access sites, slope reinforcement, difficult subsurface conditions",
-        "Reticulated micropile networks for slope stabilization create a composite reinforced soil mass",
-        "Limitations: higher cost without access constraints; limited lateral capacity; difficult QC",
-        "Maximum axial capacity typically 1,500–2,500 kN (structural limit of pipe/grout)",
-        "Minimal vibration and noise make micropiles compatible with sensitive urban environments"
+        "The chapter covers four principal reinforced soil technologies used in highway works plus related technologies.",
+        "Guidance is abridged; detailed design guidance is in other FHWA GECs and reference manuals."
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Any soil or rock condition; particularly for underpinning, access-constrained sites, and reticulated slope reinforcement."
+      "applicability": "Use as the entry point for the overview of reinforced soil technologies in GEC 13 Volume II Chapter 10."
     },
     {
-      "section_id": "10.3",
-      "title": "Design Overview",
-      "body": "Micropile design for axial loading is governed by the lesser of structural capacity and geotechnical bond capacity. Structural capacity: Q_structural = f_y × A_s + f_grout × A_grout, where A_s is steel area and A_grout is gross grout cross-section minus steel. Bond capacity in the grouted zone: Q_bond = π × d_b × L_b × α_bond, where d_b is drill hole diameter, L_b is bond length, and α_bond is ultimate unit bond stress (from Table 5-3 in FHWA-NHI-05-039, varying by soil/rock type and grout type). Cased zones above the bond zone carry load structurally without geotechnical contribution. Design for lateral loading follows standard p-y lateral analysis methods. Reticulated micropile networks for slope stabilization are designed using limit equilibrium methods with the micropile network providing additional resisting forces. AASHTO LRFD resistance factors for micropiles are addressed in FHWA-NHI-05-039 Table 4-1.",
+      "section_id": "10.1.1",
+      "title": "Introduction",
+      "summary": "Introduces the soil reinforcement technologies addressed in Chapter 10: reinforced embankments over soft soils, reinforced soil retaining walls, reinforced soil slopes and soil nail walls, the principal reinforced soil technologies used in highway works; related technologies are described at the end of the chapter (p. 10-1).",
+      "body": "Several soil reinforcement technologies are addressed within the chapter (p. 10-1): reinforced embankments over soft soils; reinforced soil retaining walls; reinforced soil slopes; and soil nail walls. These are the principal reinforced soil technologies used in highway works. Related technologies are listed and described at the end of the chapter (Section 6.0).",
       "key_points": [
-        "Capacity governed by lesser of structural capacity and geotechnical bond capacity",
-        "Structural: Q_s = f_y × A_steel + f_grout × A_grout",
-        "Geotechnical bond: Q_bond = π × d_b × L_b × α_bond (α_bond from FHWA-NHI-05-039 Table 5-3)",
-        "Cased zone above bond zone: structural capacity only, no geotechnical contribution",
-        "Lateral loading: p-y analysis methods (same as drilled shafts)",
-        "Reticulated networks: limit equilibrium with micropile reinforcement forces"
+        "Four technologies: reinforced embankments over soft soils, reinforced soil retaining walls, reinforced soil slopes, soil nail walls.",
+        "Related technologies are covered in Section 6.0."
       ],
-      "equations": [
-        "Eq 10-1: Structural capacity Q_n = f_y × A_s + 0.85 × f'_c × A_grout (LRFD nominal)",
-        "Eq 10-2: Geotechnical bond capacity Q_bond = π × d_b × L_b × α_bond",
-        "Eq 10-3: Design capacity Q_allow = min(Q_structural, Q_bond) / FS (ASD) or φ × min(Q_structural, Q_bond) (LRFD)"
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when identifying which reinforced soil technology of Chapter 10 fits a highway application."
+    },
+    {
+      "section_id": "10.1.2",
+      "title": "Description, Historical Overview, Focus, and Scope",
+      "summary": "Historical overview of soil reinforcement from straw-reinforced adobe and branch-reinforced dikes to modern steel (strip, bar mat, welded or woven wire mesh) and geosynthetic (geotextile, geogrid, geocomposite, geostrip; PET, HDPE, PP) reinforcements, and the chapter's abridged scope (p. 10-1).",
+      "body": "Inclusions have been used since prehistoric times to improve soil (p. 10-1): straw in adobe bricks, sticks and branches in mud dwellings, dikes of earth and tree branches used for at least 1,000 years, sticks used by 17th- and 18th-century settlers to reinforce mud dikes, and wooden pegs for erosion and landslide control. Soil reinforcing can also be achieved by plant roots. Modern applications use steel or geosynthetic reinforcements. Steel reinforcements are generally galvanized and in strip, bar mat, welded wire mesh (WWM) or woven wire mesh form. Polymeric reinforcements are geotextile, geogrid, geocomposite or geostrip, generally polyester (PET), high density polyethylene (HDPE) or polypropylene (PP) based. PET fiber geogrids and geostrips are coated with acrylic, polyvinyl chloride (PVC) or polyethylene (PE) to hold the fibers in grid or strip form and to protect them during installation. The chapter presents abridged guidance on construction and materials, design, specifications, quality assurance and costs, because detailed guidance is provided in other FHWA Geotechnical Engineering Circulars (GECs) and reference manuals (Section 1.4).",
+      "key_points": [
+        "Steel reinforcements: generally galvanized; strip, bar mat, welded wire mesh or woven wire mesh.",
+        "Geosynthetic reinforcements: geotextile, geogrid, geocomposite or geostrip; PET, HDPE or PP based.",
+        "PET geogrids and geostrips are coated with acrylic, PVC or PE for form and installation protection.",
+        "Chapter guidance is an overview; detailed guidance is in the GECs listed in Section 1.4."
       ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Background for selecting reinforcement types and for locating detailed FHWA guidance on reinforced soil."
+    },
+    {
+      "section_id": "10.1.2.1",
+      "title": "Reinforced Embankments",
+      "summary": "Embankments over soft soils (EOSS) can fail by rotational instability or lateral spreading; high-strength geotextile or geogrid layers at the embankment-foundation interface increase resistance, acting like a flexible mat foundation. Detailed guidance is in FHWA (2008a) (p. 10-2).",
+      "body": "Embankments over soft soils (EOSS) have several potential failure modes (p. 10-2). Rotational slope stability failure through the embankment and foundation can occur; reinforcement placed at the embankment-to-foundation interface can increase the resistance and stabilize the structure. Embankments on soft foundations also tend to spread laterally because of horizontal earth pressures within the embankment, which cause horizontal shear stresses at its base that the foundation soil must resist; if it cannot, failure can result. Properly designed horizontal layers of high-strength geotextile or geogrid can increase lateral sliding stability and prevent such failures. Fundamentally, the reinforced soil at the base of the embankment is equivalent to a flexible mat foundation, preventing failure through the embankment and spreading the load over its full width. Reinforcement is one of several technologies for embankments over soft soils, and other foundation treatment alternatives should be considered in preliminary design (see other chapters and GeoTechTools). The engineering of reinforced embankments over soft soils is very well established; detailed FHWA guidance is FHWA (2008a), with training in NHI courses #132013A and #132013D.",
+      "key_points": [
+        "Failure modes include rotational stability through embankment and foundation and lateral spreading.",
+        "Basal geotextile or geogrid acts like a flexible mat foundation.",
+        "Detailed guidance: FHWA (2008a) Geosynthetic Design and Construction Guidelines."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to embankments, dikes and levees built over soft foundation soils where basal reinforcement is considered."
+    },
+    {
+      "section_id": "10.1.2.2",
+      "title": "Reinforced Soil Walls",
+      "summary": "History of MSE walls: steel-strip reinforced walls pioneered in the early 1960s, first U.S. use in 1972; more than 9,000,000 sq ft of precast-faced MSE walls built per year on average, tallest wall 150 ft; detailed guidance in GEC 11 and AASHTO (2014) (pp. 10-2 to 10-3).",
+      "body": "Modern soil reinforcement for retaining walls was pioneered by a French architect and engineer in the early 1960s, leading to a proprietary system with steel strip reinforcements placed horizontally in multiple, equally spaced layers attached to metallic and later precast concrete facing panels (p. 10-2). The first such wall in the United States was built in 1972 on a state highway. More than 9,000,000 square feet of MSE retaining walls with precast facing are estimated to be built on average every year (GEC 11); the tallest wall constructed is 150 feet high. Many proprietary and nonproprietary systems followed. Geotextile use in walls followed its benefit in embankments over weak soils: the first geotextile-reinforced wall was built in 1971 (Puig et al. 1977) and the first in the U.S. in 1974 (USDA 1977) (p. 10-3). Geogrids were developed around 1980, first used in earth reinforcement in 1981, and in extensive use from about 1983. More than 3,000,000 square feet of modular block wall (MBW) faced, geosynthetic reinforced MSE walls are estimated to be built yearly for transportation applications (GEC 11). MSE wall engineering is very well established; detailed FHWA guidance is GEC 11 and AASHTO (2014), with training in NHI courses #132042, #132043 and #132080.",
+      "key_points": [
+        "First U.S. steel-strip MSE wall: 1972; tallest U.S. wall: 150 ft.",
+        ">9,000,000 sq ft/yr of precast-faced MSE walls; >3,000,000 sq ft/yr of MBW-faced geosynthetic MSE walls (GEC 11).",
+        "First geotextile wall 1971 (Puig et al. 1977); first U.S. 1974 (USDA 1977); geogrids from about 1980.",
+        "Detailed guidance: GEC 11 and AASHTO (2014)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Background on MSE (reinforced soil) retaining walls and the FHWA/AASHTO documents that govern their design."
+    },
+    {
+      "section_id": "10.1.2.3",
+      "title": "Reinforced Soil Slopes",
+      "summary": "Reinforced soil slopes (RSS) use multiple horizontal reinforcement layers between compacted lifts in a constructed earth slope, with a facing (often vegetated) to prevent erosion; tallest U.S. RSS 141 ft; about 150 RSS projects a year by 2009; guidance in GEC 11 (p. 10-3).",
+      "body": "Reinforced soil slopes, as with MSE walls, consist of multiply spaced, horizontal reinforcement layers placed between compacted soil lifts, but in a constructed earth slope (p. 10-3). The reinforcements extend to the face of the slope and are attached to a facing system, often vegetated, to prevent erosion of the face. The first reported use of reinforced steepened slopes (RSS) is believed to be an ancient defensive wall embankment. The tallest successfully designed, constructed and in-service RSS structure in the United States to date is 141 feet high. Use of RSS has expanded dramatically; as of 2009 more than about 150 RSS projects were being constructed yearly on transportation projects, and the number is growing. Geosynthetic and steel WWM reinforcements are used. The engineering of reinforced soil slopes is very well established; detailed FHWA guidance is GEC 11, with training on RSS on firm foundations in NHI courses #132042 and #132043.",
+      "key_points": [
+        "Tallest in-service U.S. RSS: 141 ft.",
+        "About 150 RSS transportation projects per year as of 2009.",
+        "Reinforcements: geosynthetics and steel welded wire mesh; facing often vegetated.",
+        "Detailed guidance: GEC 11."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Background on reinforced soil slopes built on firm foundations in transportation works."
+    },
+    {
+      "section_id": "10.1.2.4",
+      "title": "Soil Nail Walls",
+      "summary": "History of soil nail walls: an early 1976 application supported a 45-ft deep excavation in about half the time and about 85 percent of the cost of conventional support; FHWA funded a 40-ft prototype demonstration wall in 1984; detailed guidance in GEC 7 (pp. 10-3 to 10-4).",
+      "body": "One of the first U.S. applications was in 1976, when soil nails supported a 45-foot deep excavation for a hospital expansion; the system was completed in nearly half the time and at about 85 percent of the cost of conventional excavation-support systems (FHWA 1998) (pp. 10-3 to 10-4). In 1984 FHWA funded a demonstration project for a prototype 40-foot high soil nail wall (Nicholson 1986). Use of soil nail walls for roadway projects has since increased greatly because of technical feasibility and cost-competitiveness. For certain subsurface and project conditions soil nailing is more advantageous than other top-down earth retaining systems because the construction equipment is smaller and it provides greater structural redundancy. Easements tend to be smaller because soil nails are shorter than ground anchors for the same wall height, and the number of qualified soil-nail specialty contractors has grown (GEC 7). The engineering of soil nail walls is very well established; detailed FHWA guidance is GEC 7, with training in NHI course #132085.",
+      "key_points": [
+        "1976: 45-ft deep excavation, about half the time and about 85% of the cost of conventional support (FHWA 1998).",
+        "1984: FHWA prototype 40-ft high demonstration wall (Nicholson 1986).",
+        "Smaller equipment, greater redundancy and smaller easements than anchored systems.",
+        "Detailed guidance: GEC 7."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Background on soil nail walls for top-down excavation support in roadway work."
+    },
+    {
+      "section_id": "10.1.2.5",
+      "title": "Related Technologies",
+      "summary": "Notes that several technologies are related to or extend the four primary reinforcement applications (embankments over soft soils, MSE walls, reinforced soil slopes and soil nail walls); they are listed and described in Section 6.0 (p. 10-4).",
+      "body": "There are several other technologies related to, or an extension of, the four primary reinforcement applications of embankments over soft soils, MSE walls, reinforced soil slopes and soil nail walls (p. 10-4). These technologies are listed and described in Section 6.0: deep patching, shored MSE walls, stable feature MSE walls, shoot-in nails, screw-in nails and construction working platforms.",
+      "key_points": [
+        "Related technologies are described in Section 6.0."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Points to the related reinforced soil technologies covered at the end of Chapter 10."
+    },
+    {
+      "section_id": "10.1.3",
+      "title": "Glossary",
+      "summary": "Defines reinforced soil terms used in the manual: inclusion, reinforcement, reinforced soil, reinforced fill, retained backfill, MSE wall (face batter 20 degrees or less), RSS (face inclination less than 70 degrees), geosynthetics, facing, GRS and soil nails, plus acronyms (pp. 10-4 to 10-6).",
+      "body": "Terms are defined as follows (pp. 10-4 to 10-5). Inclusion: a generic term for all man-made elements incorporated in soil to improve its behavior (steel strips, geotextile sheets, steel or polymeric grids, steel nails, steel tendons between anchorage elements). Reinforcement: inclusions where soil-inclusion stress transfer occurs continuously along the inclusion. Reinforced soil: multiple layers of inclusions acting as reinforcement. Reinforced fill: the zone where reinforcements are placed in fill. Retained backfill: fill or in situ material behind the reinforced zone. MSE wall (MSEW): reinforced soil with planar reinforcement in fill structures with face inclinations of near vertical to slight batter (20 degrees or less). Reinforced soil slopes (RSS): planar reinforcement in earth-sloped structures with face inclinations of less than 70 degrees. Geosynthetics: flexible polymeric materials such as geotextiles, geogrids and geostraps. Facing: the component that prevents soil raveling between reinforcement rows (precast panels, dry cast modular blocks, gabions, WWM, shotcrete, timber lagging, cellular confinement, wrapped geosynthetics); it plays a minor structural role; for RSS usually WWM, geosynthetic wrap and/or erosion control material. GRS: geosynthetic reinforced soil with closely spaced reinforcement layers, designed by FHWA (2011a) on composite action rather than as inclusions. Soil nails: passive elements drilled and grouted sub-horizontally that work mainly in tension, transfer load by shear along the grout-ground interface and interact with the facing (after GEC 7). Acronyms: EOSS, HDPE, MSE, MSEW, PE, PET, PP, PVC, RSS (pp. 10-5 to 10-6).",
+      "key_points": [
+        "MSE wall: face near vertical to slight batter, 20 degrees or less.",
+        "RSS: face inclination less than 70 degrees.",
+        "Reinforcement means continuous soil-inclusion stress transfer along the inclusion.",
+        "GRS is designed on composite action (FHWA 2011a), not as discrete inclusions.",
+        "Soil nails act mainly in tension, transferring load by grout-ground interface shear."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Use for the meaning of reinforced soil terms and acronyms throughout Chapter 10."
+    },
+    {
+      "section_id": "10.1.4",
+      "title": "Primary References",
+      "summary": "Lists the primary references for the chapter: AASHTO LRFD Bridge Design Specifications (2014), AASHTO LRFD Bridge Construction Specifications (2010), FHWA (2008) Geosynthetic Design and Construction Guidelines, GEC 7 (2015) Soil Nail Walls and GEC 11 (2009) MSE Walls and RSS (p. 10-6).",
+      "body": "The primary references (p. 10-6) are: AASHTO (2014) LRFD Bridge Design Specifications, 7th Edition with 2015 Interim Revisions; AASHTO (2010) LRFD Bridge Construction Specifications, 3rd Edition with interim revisions through 2015; FHWA (2008) Geosynthetic Design and Construction Guidelines, FHWA-HI-07-092 (Holtz, Christopher and Berg); GEC 7 (2015) Soil Nail Walls Reference Manual, FHWA NHI-14-007 (Lazarte et al.); and GEC 11 (2009) Design and Construction of Mechanically Stabilized Earth Walls and Reinforced Soil Slopes, FHWA NHI-10-024 and NHI-10-025 (Berg, Christopher and Samtani).",
+      "key_points": [
+        "AASHTO (2014); AASHTO (2010); FHWA (2008); GEC 7 (2015); GEC 11 (2009)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Use to find the detailed design documents behind each reinforced soil technology."
+    },
+    {
+      "section_id": "10.2.0",
+      "title": "Reinforced Embankments",
+      "summary": "Section heading for reinforced embankments over soft soils: feasibility, applications, construction and materials, design overview, specifications and quality assurance, and cost data (pp. 10-7 to 10-18).",
+      "body": "Section 2.0 (p. 10-7) covers geosynthetic reinforced embankments over soft soils (EOSS): feasibility considerations (2.1), applications with advantages, feasibility evaluations, limitations and alternatives (2.2), construction and materials (2.3), design overview (2.4), construction specifications and quality assurance (2.5) and cost data (2.6).",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Entry point for reinforced embankments constructed over soft foundation soils."
+    },
+    {
+      "section_id": "10.2.1",
+      "title": "Feasibility Considerations",
+      "summary": "Reinforced EOSS are cost-effective where foundation soils are too weak for the planned embankment; one or more high-strength geotextile or geogrid layers at the base reinforce it. Reinforcement can reduce foundation displacement but not total settlement or time to primary consolidation (p. 10-7).",
+      "body": "Reinforced EOSS structures are cost-effective alternatives for many applications where foundation soils are too weak to support the weight and geometry of the planned embankment (p. 10-7). One or more layers of high strength geotextile or geogrid are generally used at the embankment-to-foundation interface. Reinforced EOSS offer significant technical and cost advantages over the conventional excavate-and-replace technique. However, while a reinforced EOSS may reduce the displacement of foundation soil, it will not decrease the total anticipated embankment settlement or the time to achieve primary consolidation. Other techniques or combinations may be best where the rate and/or magnitude of settlement is of concern; for example, reinforced embankments have been combined with prefabricated vertical drains (Chapter 2) to increase the rate of settlement and with lightweight fills (Chapter 3) to decrease total settlement.",
+      "key_points": [
+        "Basal reinforcement: one or more layers of high strength geotextile or geogrid.",
+        "Does not reduce total settlement or time to primary consolidation.",
+        "May be combined with PVDs (Chapter 2) or lightweight fill (Chapter 3)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when screening basal reinforcement for embankments on weak foundation soils."
+    },
+    {
+      "section_id": "10.2.2",
+      "title": "Applications",
+      "summary": "Common application: embankment, dike or levee over very soft saturated silt, clay or peat, with reinforcement strong direction perpendicular to the centerline under plane strain; reinforcement provides stability until the foundation consolidates and gains strength. Geotextiles may also act as separators (pp. 10-7 to 10-8).",
+      "body": "The common application is an embankment, dike or levee constructed over very soft, saturated silt, clay or peat layers (Figure 10-1, p. 10-7). The reinforcement is usually placed with its strong direction perpendicular to the embankment centerline, and plane strain conditions are assumed. Generally the reinforcement provides stability until the underlying soft soils consolidate, gain strength and can support the embankment. Additional reinforcement with its strong direction parallel to the centerline may be required at the ends of the embankment (e.g., at a bridge abutment). Geotextiles may also be used as separators for displacement-type embankment construction (Holtz 1989) and as stabilization layers to support construction or ground modification equipment (Chapter 9) (p. 10-8). In that case the geotextile provides no significant reinforcement but acts primarily as a separator to keep the embankment intact as it displaces the subgrade; its design is based on constructability, survivability and filtration requirements, and a high elongation material may be selected.",
+      "key_points": [
+        "Strong direction perpendicular to centerline; plane strain assumed.",
+        "Reinforcement needed only until the foundation gains strength by consolidation.",
+        "Longitudinal reinforcement may be needed at embankment ends (e.g., abutments).",
+        "Separator use: design on constructability, survivability and filtration."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10-1: Common reinforced embankment application. (after Bonaparte and Christopher 1987; p. 10-7)"
+      ],
+      "tables": [],
+      "applicability": "Applies to embankments, dikes and levees over very soft saturated silt, clay or peat."
+    },
+    {
+      "section_id": "10.2.2.1",
+      "title": "Advantages and Potential Disadvantages",
+      "summary": "Advantages of geosynthetic reinforced EOSS: higher design global factor of safety and embankment height, fewer stabilizing berms, less foundation displacement, less differential settlement, buildable by general contractors. Disadvantages: total settlement and consolidation time not reduced; monitoring needed (p. 10-8).",
+      "body": "Advantages (printed sub-heading 2.1.2.1, p. 10-8): compared with excavate-and-replace and other alternatives, reinforced embankments provide an increase in the design global factor of safety and height of the embankment; reduction or elimination of stabilizing side berms, reducing fill requirements; reduction in displacement of foundation soil during construction, potentially reducing fill requirements; reduction in differential settlement; and most general contractors can construct them without specialty contractors. Potential disadvantages (printed sub-heading 2.1.2.2): the magnitude of total settlement will likely not be reduced; the time to achieve primary consolidation is not reduced; and detailed field observations are generally required during construction to monitor pore pressures, total settlement and rate of settlement.",
+      "key_points": [
+        "Increases design global factor of safety and achievable height.",
+        "Reduces or eliminates side berms and foundation displacement.",
+        "Reduces differential settlement; no specialty contractor needed.",
+        "Does not reduce total settlement or consolidation time; requires monitoring."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Use when weighing a reinforced embankment against other soft-ground treatments."
+    },
+    {
+      "section_id": "10.2.2.2",
+      "title": "Feasibility Evaluations",
+      "summary": "Feasibility of a reinforced embankment: first consider no-build/realignment, a structure or foundation modification (Broms 1979; Holtz 1989). Geotechnical: any depth of soft soil, check lateral squeeze for thin layers, high-quality samples. Environmental: wetlands, contamination. Site conditions govern first lifts (pp. 10-8 to 10-10).",
+      "body": "For problem foundations, three basic choices are evaluated first: a no-build or realignment alternative, placing the roadway on a structure, or some type of foundation soil modification (p. 10-8). Problem foundation soils can be improved by reducing the load, replacing poor soils, increasing shear strength and reducing compressibility, transferring loads to more competent soils, and reinforcing the embankment and/or its foundation (Broms 1979; Holtz 1989) (p. 10-9). Geotechnical (printed 2.1.3.1): a reinforced embankment can be constructed over any depth of soft soils, unlike options with depth limits; where the soft layer is thin relative to the embankment width, lateral squeeze failure should be examined. A comprehensive subsurface investigation with high quality undisturbed samples is key, and settlement analyses must assess primary, secondary, total and differential settlements transversely and longitudinally. Environmental (printed 2.1.3.2): embankments on soft soils are often in wetlands, so allowable width of wetland disturbance may govern; contaminated foundation soils or groundwater can remain in place, capped by the reinforced embankment. Site conditions (printed 2.1.3.3): existing vegetation, groundwater level and foundation strength dictate construction methods for the initial lifts; see FHWA (2008a) for site clearing, geosynthetic placement and fill placement and compaction (pp. 10-9 to 10-10).",
+      "key_points": [
+        "Reinforced embankments can be built over any depth of soft soil.",
+        "Check lateral squeeze where soft soil depth is small relative to embankment width.",
+        "Settlement analyses: primary, secondary, total and differential, both directions.",
+        "Wetland disturbance width and contamination can govern selection."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to evaluating whether a reinforced embankment is feasible on a soft-ground site."
+    },
+    {
+      "section_id": "10.2.2.3",
+      "title": "Limitations",
+      "summary": "Limitations of reinforced embankments: total settlement is not significantly reduced; field instrumentation and monitoring are generally required to measure pore pressures and control fill placement rate; used alone it is not suited to projects that cannot wait for consolidation (p. 10-10).",
+      "body": "The total settlement magnitude will not be significantly reduced from the unreinforced embankment option (p. 10-10). Generally a field instrumentation and monitoring program is required to measure pore pressures in the foundation soils, maintain adequate safety factors and oversee the rate of embankment fill placement. When used alone, this technology is not appropriate for projects that cannot accommodate the time necessary for consolidation of the underlying foundation soils.",
+      "key_points": [
+        "Total settlement not significantly reduced.",
+        "Instrumentation needed to control the rate of fill placement.",
+        "Alone, unsuitable where consolidation time cannot be accommodated."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Use to judge whether schedule or settlement limits rule out a reinforced embankment alone."
+    },
+    {
+      "section_id": "10.2.2.4",
+      "title": "Alternative Solutions",
+      "summary": "Alternatives to reinforced EOSS: excavation and replacement for shallow soft soils, prefabricated vertical drains with preloading, deep dynamic compaction, vibro-compaction, lightweight fills and column supported embankments, chosen by soil type, depth and strength and project constraints (p. 10-10).",
+      "body": "Reinforcement is one of many technologies for EOSS (p. 10-10). If the soft soils extend only to a relatively shallow depth, excavation and replacement is a typical and cost-effective alternative. Other ground modification alternatives are prefabricated vertical drains and fill preloading (Chapter 2), deep dynamic compaction (Chapter 4), vibro-compaction (Chapter 4), lightweight fills (Chapter 3), and column supported embankments with or without a load transfer platform (Chapter 6). Applicability of reinforcement and of these alternatives depends on the type, depth and strength of the foundation soils, and project constraints and risks should be factored into the selection.",
+      "key_points": [
+        "Shallow soft soil: excavation and replacement is typical and cost-effective.",
+        "Others: PVDs with preload, DDC, vibro-compaction, lightweight fill, column supported embankments."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to comparing ground modification options for embankments over soft soils."
+    },
+    {
+      "section_id": "10.2.3",
+      "title": "Construction and Materials",
+      "summary": "General construction requirements for geosynthetic reinforced embankments are in FHWA (2008a); the section gives the general construction sequence, and the primary materials are the geosynthetic reinforcement and the embankment fill soils (p. 10-10).",
+      "body": "General construction requirements and guidance for geosynthetic reinforced embankments are presented in FHWA (2008a) (p. 10-10). The section presents the general sequence of reinforced embankment construction (2.3.1). The primary materials used in construction are the geosynthetic soil reinforcement (2.3.2) and the embankment fill soils (2.3.3).",
+      "key_points": [
+        "Construction guidance: FHWA (2008a).",
+        "Primary materials: geosynthetic reinforcement and embankment fill."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Entry point for construction and materials of reinforced embankments over soft soils."
+    },
+    {
+      "section_id": "10.2.3.1",
+      "title": "Construction",
+      "summary": "Construction of reinforced embankments on soft foundations: improper fill placement can damage the geosynthetic, cause nonuniform settlement or failure. Steps: prepare subgrade leaving stumps and root mat, place geosynthetic, place and compact fill, monitor with piezometers and settlement plates (pp. 10-10 to 10-11).",
+      "body": "Construction procedures for reinforced embankments on soft foundations are extremely important; improper fill placement can lead to geosynthetic damage, nonuniform settlements and even embankment failure (pp. 10-10 to 10-11). With low ground pressure equipment, a properly selected geosynthetic and proper fill placement procedures, these problems can essentially be eliminated. The primary steps (details in FHWA 2008a) are: (1) prepare the subgrade, leaving tree stumps, grass and root mass in place to support construction equipment; (2) geosynthetic placement, including orientation, roll width and length, sewing, manual tension, and inspection and repair; (3) fill placement, spreading and compaction, including placement sequence, initial lift height and compaction and subsequent lifts, with procedures differing between extremely soft and moderate foundations; and (4) construction monitoring with piezometers, settlement plates and fill thickness measurements.",
+      "key_points": [
+        "Use low ground pressure equipment.",
+        "Leave stumps, grass and root mass in place for equipment support.",
+        "Fill placement sequence differs for extremely soft versus moderate foundations.",
+        "Monitor with piezometers, settlement plates and fill thickness measurements."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to the field sequence for building geosynthetic reinforced embankments on soft ground."
+    },
+    {
+      "section_id": "10.2.3.2",
+      "title": "Geosynthetic Reinforcement",
+      "summary": "Geosynthetic strength requirements, including seam strength, come from analysis and design; specifications must also consider drainage, construction conditions and environment. Table 10-1 lists mechanical, hydraulic, constructability and longevity properties required for reinforced embankments (pp. 10-11 to 10-12).",
+      "body": "Geosynthetic strength requirements, including seam strength, are quantified in the analysis and design process (p. 10-11). Besides tensile and frictional properties, the specification must consider drainage requirements, construction conditions and environmental factors. Table 10-1 (p. 10-12) lists the required properties. Design requirements, mechanical: tensile strength, tensile modulus and seam strength (all by wide width strength), tension creep (tension creep), and soil-geosynthetic friction (soil-geosynthetic friction angle). Design requirements, hydraulic: piping resistance (apparent opening size) and permeability (permeability). Constructability requirements: tensile strength (grab strength), puncture resistance (puncture resistance) and tear resistance (trapezoidal tear). Longevity: UV stability if exposed (UV resistance) and soil compatibility where required (chemical; biological). See FHWA (2008a) for discussion of these properties and for construction survivability requirements.",
+      "key_points": [
+        "Tensile strength, modulus and seam strength are specified by wide width strength.",
+        "Hydraulic: apparent opening size and permeability.",
+        "Constructability: grab strength, puncture resistance, trapezoidal tear.",
+        "Longevity: UV resistance if exposed; chemical and biological compatibility where required."
+      ],
+      "equations": [],
       "figures": [],
       "tables": [
-        "Table 10-1: Typical micropile bond zone unit resistance (α_bond) by soil and rock type and grout type (Type A through D)"
+        "Table 10-1: Geosynthetic Properties Required for Reinforced Embankments (p. 10-12)"
       ],
-      "applicability": "Design of micropiles for axial and lateral loading in underpinning, foundation support, and slope stabilization."
+      "applicability": "Use when specifying geosynthetic reinforcement properties for embankments over soft soils."
     },
     {
-      "section_id": "10.4",
-      "title": "Construction",
-      "body": "Micropile installation involves drilling to the required depth, placing reinforcement, and grouting. Drilling methods include: rotary duplex (casing and bit advance simultaneously), down-the-hole (DTH) hammer for rock, or hollow-stem auger for soft soils. Casing is left in place for Type B, C, and D micropiles in the upper zone; the casing is used for grouting and provides structural continuity. Reinforcement options include single central rebar (typically 32–50 mm diameter), a bundle of rebars, or a structural steel pipe (API N-80 or ASTM A519). Steel pipe reinforcement provides the best structural capacity and is preferred for high-load applications. Grouting uses neat Portland cement grout (w/c ratio 0.4–0.5) placed by tremie for Type A or pressure injection through the drill pipe for Types B–D. Post-grouting (secondary injection through sleeve pipes) for Types C and D increases bond capacity by 20–50% compared to Type B by re-opening the grout/soil interface.",
+      "section_id": "10.2.3.3",
+      "title": "Embankment Fill",
+      "summary": "The first lift above the geosynthetic should be free-draining granular fill for drainage of excess pore water and good frictional interaction; lower permeability fill may be used above if strain compatibility is checked, with horizontal geocomposite strip drains considered (pp. 10-12 to 10-13).",
+      "body": "The first lift of fill just above the geosynthetic reinforcement should be a free-draining granular material (p. 10-12). It serves as a drainage layer for excess pore water dissipating from the underlying soils and provides good frictional interaction between the geosynthetic and the embankment fill. Other lower permeability (preferably granular) fill may be used above this layer provided the strain compatibility of the geosynthetic is evaluated with respect to the fill. If lower permeability fill is used, horizontal prefabricated geocomposite drains (e.g., strip drains) placed directly on the foundation soil should also be considered to provide drainage and facilitate consolidation (p. 10-13).",
       "key_points": [
-        "Drilling: rotary duplex (simultaneous casing advance), DTH hammer (rock), or hollow-stem auger (soft soil)",
-        "Reinforcement: single large rebar, rebar bundle, or steel pipe (API N-80 or ASTM A519)",
-        "Grouting: neat cement, w/c = 0.4–0.5; tremie (Type A) or pressure through drill pipe (Types B–D)",
-        "Post-grouting through sleeve pipes (Types C/D) increases bond capacity 20–50% over Type B",
-        "Casing left in place above bond zone provides structural continuity",
-        "Installation compatible with low-headroom (<3 m) and limited-access equipment"
+        "First lift above geosynthetic: free-draining granular material.",
+        "Lower permeability fill above requires a strain compatibility check.",
+        "Consider horizontal geocomposite strip drains on the foundation soil."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to selecting fill for geosynthetic reinforced embankments over soft soils."
+    },
+    {
+      "section_id": "10.2.4",
+      "title": "Design Overview",
+      "summary": "Reinforced embankments are designed against failure; Figure 10-2 shows the three failure modes that set the required stability analyses. Settlement and reinforcement creep are also considered; the end of construction is most critical, so reinforcement need only function until the foundation gains strength (p. 10-13).",
+      "body": "As with ordinary embankments on soft soils, the basic design approach is to design against failure (p. 10-13). The potential failure modes are illustrated in Figure 10-2; the three possible modes indicate the types of stability analyses required. Settlement of the embankment and potential creep of the reinforcement must also be considered, although creep is only a factor if the creep rate in the reinforcement is faster than the rate of strength gain in the foundation soils due to consolidation. Because the most critical condition for embankment stability is at the end of construction, the reinforcement only has to function until the foundation soils gain sufficient strength to support the embankment (FHWA 2008a).",
+      "key_points": [
+        "Three failure modes define the required stability analyses.",
+        "Creep matters only if it outpaces foundation strength gain.",
+        "End of construction is the critical condition."
       ],
       "equations": [],
       "figures": [
-        "Figure 10-2: Micropile Type A through D grout placement methods and casing configurations"
+        "Figure 10-2: Reinforced embankment failure modes. (FHWA 2008a, after Haliburton et al. 1978; p. 10-13)"
       ],
       "tables": [],
-      "applicability": "Micropile installation in any soil or rock with standard or specialized drill rigs."
+      "applicability": "Applies to the design approach for basal-reinforced embankments on soft foundations."
     },
     {
-      "section_id": "10.5",
-      "title": "Testing and Quality Assurance",
-      "body": "Micropile load testing follows ASTM D1143 (axial compression), ASTM D3689 (axial tension), and ASTM D3966 (lateral). Verification tests (performed on sacrificial piles) verify that design bond stress is achievable for site conditions; at least one verification test per project is recommended. Proof tests on production micropiles verify load capacity at a specified test load (typically 1.33–1.5 times design load); a minimum of 5% of production piles should be proof tested. Grout quality assurance includes testing of grout cubes at 7 and 28 days; minimum compressive strength typically 28–35 MPa at 28 days. Installation records for each pile must include: drill depth, grout volume, grouting pressure, and any obstructions encountered. Integrity testing (low-strain pile integrity test, LPST) can detect major defects in the grouted zone but has limited resolution in small-diameter piles.",
+      "section_id": "10.2.4.1",
+      "title": "Design Considerations",
+      "summary": "Stability and settlement calculations use conventional procedures modified for the reinforcement. Total stress analysis is usual and conservative (no strength gain); effective stress analysis needs reliable pore pressure estimates and Ko-consolidated undrained triaxial tests, plus field piezometers to control fill rate (p. 10-14).",
+      "body": "Stability and settlement calculations use conventional geotechnical design procedures modified only for the presence of the reinforcement (p. 10-14). Stability of an embankment over soft soil is usually determined by the total stress method, which is conservative because it generally assumes no strength gain in the compressible soil; FHWA (2008a) uses the total stress approach because it is simple and appropriate for reinforcement design (Holtz 1989). Stability can always be calculated in effective stresses with effective stress strength parameters, but that requires an accurate estimate of field pore pressures during design, high quality undisturbed samples and Ko consolidated-undrained triaxial tests. Because in situ pore pressures are hard to predict before construction, field pore pressure measurements with high quality piezometers are essential during construction to control the rate of filling. Accounting for strength gain with controlled rate (staged) construction allows lower strength and lower cost reinforcement, but construction time may increase significantly and the costs of investigation, testing, analyses, instrumentation and inspection are greater (FHWA 2008a).",
       "key_points": [
-        "Load testing standards: ASTM D1143 (compression), ASTM D3689 (tension), ASTM D3966 (lateral)",
-        "Verification tests on sacrificial piles before production; minimum 1 per project",
-        "Proof tests on minimum 5% of production piles at 1.33–1.5× design load",
-        "Grout QA: cube testing at 7 and 28 days; minimum 28–35 MPa at 28 days",
-        "Installation records: drill depth, grout volume, pressure, obstructions",
-        "Low-strain integrity testing (LPST) applicable but limited resolution in small diameters"
+        "Total stress analysis: usual, simple and conservative.",
+        "Effective stress analysis needs pore pressure estimates and Ko-CU triaxial tests.",
+        "Piezometers are essential to control filling rate.",
+        "Staged construction allows lower strength reinforcement at the cost of time and testing."
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Testing and quality assurance for micropile construction and load capacity verification."
+      "applicability": "Use when choosing total or effective stress analysis for reinforced embankment stability."
     },
     {
-      "section_id": "10.6",
+      "section_id": "10.2.4.2",
+      "title": "Design Steps",
+      "summary": "Table 10-2 lists the 15-step total stress design procedure for reinforced embankments: dimensions and loads, soil profile and properties, fill properties, factors of safety, bearing, rotational and lateral spreading stability, required modulus J, longitudinal strength, other properties, settlement, construction and monitoring (pp. 10-14 to 10-15).",
+      "body": "A step-by-step total stress design procedure is listed in Table 10-2 (p. 10-15); substeps and commentary are in FHWA (2008a). Step 1: define embankment dimensions and loading conditions. Step 2: establish the soil profile and engineering properties of the foundation soil. Step 3: obtain engineering properties of embankment fill. Step 4: establish minimum appropriate factors of safety and operational settlement criteria. Step 5: check bearing capacity. Step 6: check rotational shear stability. Step 7: check lateral spreading (sliding) stability. Step 8: establish tolerable geosynthetic deformation requirements and calculate the required reinforcement modulus, J, based on wide width (ASTM D4595) tensile testing. Step 9: establish geosynthetic tensile strength requirements in the longitudinal direction (along the embankment alignment). Step 10: establish geosynthetic modulus, seam strength, soil-geosynthetic friction, and survivability and construction properties. Step 11: estimate magnitude and rate of settlement. Step 12: establish construction sequence and procedures. Step 13: establish construction observation and monitoring requirements. Step 14: hold preconstruction meetings. Step 15: observe construction and build with confidence.",
+      "key_points": [
+        "Total stress procedure in 15 steps (Table 10-2).",
+        "Stability checks: bearing capacity, rotational shear, lateral spreading (sliding).",
+        "Required reinforcement modulus J from tolerable deformation, based on wide width tests (ASTM D4595).",
+        "Separate longitudinal tensile strength requirement."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 10-2: Reinforced Embankment Design Steps (p. 10-15)"
+      ],
+      "applicability": "Applies to the design sequence for geosynthetic reinforced embankments using total stress analysis."
+    },
+    {
+      "section_id": "10.2.4.3",
+      "title": "Primary Design References",
+      "summary": "Primary reference for total stress design of reinforced embankments is FHWA (2008a); additional references include FHWA (1985), Bonaparte and Christopher (1987), the Canadian Foundation Engineering Manual (2006), Li and Rowe (2001) for PVDs with reinforcement and Rowe and Soderman (1985, 1986) for peats (p. 10-15).",
+      "body": "The primary reference for total stress design of reinforced embankments is FHWA (2008a), Geosynthetic Design and Construction Guidelines (Holtz, Christopher and Berg; FHWA-HI-07-092) (p. 10-15). Additional references include FHWA (1985), Bonaparte and Christopher (1987) and the Canadian Foundation Engineering Manual (2006). See Li and Rowe (2001) for an analysis method combining prefabricated vertical drains (Chapter 2) with geosynthetic reinforcement. For reinforced embankments over fibrous peats, see Rowe and Soderman (1985) for peat underlain by a firm base and Rowe and Soderman (1986) for peat underlain by a soft cohesive layer.",
+      "key_points": [
+        "Primary: FHWA (2008a).",
+        "PVDs with reinforcement: Li and Rowe (2001).",
+        "Fibrous peats: Rowe and Soderman (1985, 1986)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Use to find detailed design methods for reinforced embankments, including over peat or with PVDs."
+    },
+    {
+      "section_id": "10.2.5",
+      "title": "Overview of Construction Specifications and Quality Assurance",
+      "summary": "Heading for reinforced embankment construction specifications and quality assurance: specification development, a summary of quality assurance with Table 10-3, and instrumentation monitoring and construction control (pp. 10-16 to 10-18).",
+      "body": "Section 2.5 (p. 10-16) gives an overview of construction specifications and quality assurance for reinforced embankments: specification development (2.5.1), a summary of quality assurance with Table 10-3 (2.5.2), and a summary of instrumentation monitoring and construction control (2.5.3).",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Entry point for specifying and controlling construction of reinforced embankments."
+    },
+    {
+      "section_id": "10.2.5.1",
+      "title": "Specification Development",
+      "summary": "Reinforcement requirements for soft-ground embankments are project and site specific, so standard specifications with suggested properties are not appropriate; special provisions or a project specification are needed. FHWA (2008a) presents an example method-type state DOT specification (p. 10-16).",
+      "body": "Because the reinforcement requirements for soft-ground embankment construction are project and site specific, standard specifications that include suggested geosynthetic properties are not appropriate, and special provisions or a separate project specification must be used (p. 10-16). An example reinforced embankment specification that includes most items to be considered on a project is presented in FHWA (2008a); it is a state department of transportation method-type specification.",
+      "key_points": [
+        "Use special provisions or a project specification, not a standard specification.",
+        "Example method-type specification in FHWA (2008a)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to writing specifications for geosynthetic reinforced embankments on soft ground."
+    },
+    {
+      "section_id": "10.2.5.2",
+      "title": "Summary of Quality Assurance",
+      "summary": "Contractor procedures are crucial for reinforced embankments on very soft foundations, so competent inspection is essential to verify the specified material, prevent damage and enforce the construction sequence. Table 10-3 lists typical QA components (pp. 10-16 to 10-17).",
+      "body": "The construction procedures used by a contractor are crucial to the success of a reinforced embankment on a very soft foundation, so competent and professional construction inspection is absolutely essential (p. 10-16). Field personnel must be trained to observe every phase and ensure that (1) the specified reinforcement is delivered, (2) the geosynthetic is not damaged during construction, and (3) the specified sequence of construction operations is explicitly followed. Table 10-3 (p. 10-17, after GeoTechTools) lists typical, not exhaustive, QA components: material-related procedures (embankment soil shear strength, reinforcement tensile seam strength); process control procedures (monitor foundation pore water pressure, settlement and fill thickness, reinforcement placement geometries); material measurement values (soil shear strength tests, reinforcement and seam coupon tests, manufacturer's certification); process control measurement values (pore pressure, lift thickness, settlement, placement geometry, reinforcement quantities); material performance criteria (reinforcement strain, foundation strength gain over time); system behavior criteria (settlement, pore pressure, lateral deformation of embankment and foundation); and emerging methods (intelligent geosynthetic, automated instrumentation).",
+      "key_points": [
+        "Inspection must confirm specified material, no damage, and specified construction sequence.",
+        "QA includes pore pressure, settlement, fill thickness and placement geometry monitoring.",
+        "Emerging QA: intelligent geosynthetics and automated instrumentation."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 10-3: Typical Components of Reinforced Embankment Quality Assurance (p. 10-17)"
+      ],
+      "applicability": "Use when planning inspection and QA for reinforced embankments on soft foundations."
+    },
+    {
+      "section_id": "10.2.5.3",
+      "title": "Summary of Instrumentation Monitoring and Construction Control",
+      "summary": "Instrumentation for reinforced embankments should at minimum include piezometers, settlement points and surface survey monuments, with optional inclinometers, to verify design assumptions and control and usually expedite construction. Every instrument must answer a specific question (pp. 10-17 to 10-18).",
+      "body": "As noted in Table 10-2, construction observation is a design step; it includes the construction QA program, instrumentation installation and monitoring (p. 10-17). As a minimum, instrumentation should include piezometers, settlement points and surface survey monuments; inclinometers may be installed to observe lateral movement with depth. The purpose of instrumentation on soft ground reinforcement projects is not research but to verify design assumptions and to control and, usually, expedite the construction schedule (e.g., by a more accurate determination of the time required for settlement) (p. 10-18). The first step in planning a monitoring program is to define the purpose of the measurements: every instrument should be selected and placed to help answer a specific question; if there is no question, there should be no instrumentation. The most significant parameters should be selected, with care to identify secondary parameters that may influence primary ones.",
+      "key_points": [
+        "Minimum: piezometers, settlement points, surface survey monuments; inclinometers optional.",
+        "Purpose: verify design assumptions and control or expedite construction.",
+        "If there is no question, there should be no instrumentation."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to instrumentation planning for staged or reinforced embankments over soft soils."
+    },
+    {
+      "section_id": "10.2.6",
+      "title": "Cost Data",
+      "summary": "Cost analysis for a geosynthetic reinforced embankment (FHWA 2008a) includes geosynthetic cost, site preparation, geosynthetic placement with or without a working table, and fill material including allowance for subsidence, using free-draining granular fill next to the geosynthetic (p. 10-18).",
+      "body": "The cost analysis for a geosynthetic reinforced embankment (FHWA 2008a) includes (p. 10-18): (1) geosynthetic cost, including purchase price, factory prefabrication and shipping; (2) site preparation, including clearing and grubbing and working table preparation; (3) geosynthetic placement, related to field workability, with no working table or with a working table; and (4) fill material, including purchasing, hauling, dumping, compaction and an allowance for additional fill due to embankment subsidence. Free-draining granular fill should be used for the lifts adjacent to the geosynthetic to provide good reinforcement interaction and drainage.",
+      "key_points": [
+        "Cost items: geosynthetic, site preparation, placement, fill (with subsidence allowance)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Use to assemble the cost elements of a geosynthetic reinforced embankment."
+    },
+    {
+      "section_id": "10.2.6.1",
+      "title": "Cost Components",
+      "summary": "Typical pay items for geosynthetic reinforced embankments: geosynthetic by the square yard in place, granular material by the ton and embankment material by the cubic yard; operations are common except low ground pressure equipment, and mobilization costs are generally negligible (p. 10-18).",
+      "body": "Typical contract pay items and units for geosynthetic reinforced embankments are (p. 10-18): geosynthetic (fabric or grid) measured by the square yard in place; granular material measured by the ton; and embankment material measured by the cubic yard. Geosynthetic reinforced embankments are built with operations common to highway construction projects, except that low ground pressure equipment (e.g., wide track dozers) is not always common. Generally, mobilization costs are negligible.",
+      "key_points": [
+        "Geosynthetic: square yard in place; granular material: ton; embankment: cubic yard.",
+        "Mobilization costs generally negligible."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to pay items and cost estimating for reinforced embankments."
+    },
+    {
+      "section_id": "10.3.0",
+      "title": "Reinforced Soil Walls",
+      "summary": "Section heading for reinforced soil (MSE) walls: feasibility considerations, design overview, construction and materials, construction specifications and quality assurance, and cost data (pp. 10-19 to 10-42).",
+      "body": "Section 3.0 (p. 10-19) covers mechanically stabilized earth (MSE) walls and GRS walls: feasibility considerations (3.1), design overview (3.2), construction and materials (3.3), specifications and quality assurance (3.4) and cost data (3.5).",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Entry point for MSE and geosynthetic reinforced soil walls in transportation works."
+    },
+    {
+      "section_id": "10.3.1",
+      "title": "Feasibility Considerations",
+      "summary": "MSE walls are cost-effective alternatives where reinforced concrete or gravity walls have been used, with significant technical and cost advantages on poor foundations; eliminating piles and pile caps has given savings greater than 50 percent on completed projects (p. 10-19).",
+      "body": "MSE wall (MSEW) structures are cost-effective alternatives for most applications where reinforced concrete or gravity type walls have traditionally been used to retain soil (p. 10-19). They also offer significant technical and cost advantages over conventional reinforced concrete retaining structures, especially at sites with poor foundation conditions. In such cases, eliminating the cost of foundation improvements such as piles and pile caps that conventional structures may need has resulted in cost savings of greater than 50 percent on completed projects.",
+      "key_points": [
+        "Savings greater than 50 percent where piles and pile caps are avoided."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to screening MSE walls against conventional concrete retaining walls."
+    },
+    {
+      "section_id": "10.3.1.1",
+      "title": "Applications",
+      "summary": "MSE wall applications: bridge abutments and wing walls, restricted right-of-way, steep terrain, unstable ground and poor foundations, elevated urban interstates, very tall walls (138 ft exposed height), and temporary walls for detours, temporary abutments and phased construction (pp. 10-19 to 10-22).",
+      "body": "Representative uses of MSE walls are shown in Figure 10-3 (p. 10-19): bridge abutments and wing walls, and areas where right-of-way is restricted so that an embankment or excavation with stable side slopes cannot be built. They are particularly suited to economical construction in steep-sided terrain, in ground subject to slope instability, or where foundation soils are poor. A typical application of an elevated interstate in an urban area is shown in Figure 10-4. The tallest MSE wall in the United States to date has an exposed height of 138 feet at its tallest section, built for an airport third-runway project (Figure 10-5). Temporary MSE walls have been especially cost-effective for temporary detours during highway reconstruction, supporting temporary roadway embankments and temporary bridge abutments (Figure 10-6) (p. 10-21). MSE walls are also used as temporary support of permanent roadway embankments for phased construction (Figure 10-7) (p. 10-22).",
+      "key_points": [
+        "Uses: abutments, wing walls, restricted ROW, steep terrain, unstable ground, poor foundations.",
+        "Tallest U.S. MSE wall: 138 ft exposed height.",
+        "Temporary MSE walls are cost-effective for detours and phased construction."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10-3: Representative MSE wall application: retaining wall (top left), access ramp (top right), waterfront structure (bottom left) and bridge abutment (bottom right). (GEC 11; p. 10-20)",
+        "Figure 10-4: MSE wall construction on an urban elevated interstate project (project name omitted). (GEC 11; p. 10-20)",
+        "Figure 10-5: Airport runway extension MSE wall (airport name omitted). (GEC 11; p. 10-21)",
+        "Figure 10-6: MSE walls to support temporary bridge abutment and roadway embankment. (GEC 11; p. 10-21)",
+        "Figure 10-7: MSE wall used to temporarily support a permanent roadway embankment for phased construction. (GEC 11; p. 10-22)"
+      ],
+      "tables": [],
+      "applicability": "Use to identify suitable permanent and temporary applications of MSE walls."
+    },
+    {
+      "section_id": "10.3.1.2",
+      "title": "Advantages and Potential Disadvantages",
+      "summary": "MSE walls are faster to build, need no special skills, less site preparation and space, reduce ROW, tolerate deformation, are cost effective, feasible above 100 ft, likely economical above about 10 ft, and seismically resistant. Disadvantages: large space behind the face, select granular fill, shared design responsibility, no-dig zones (pp. 10-22 to 10-23).",
+      "body": "Advantages (printed 3.1.2.1, pp. 10-22 to 10-23): compared with conventional reinforced concrete and concrete gravity walls, MSE walls are significantly faster to construct (simple, rapid procedures, smaller equipment, no concrete curing wait); do not require special skills; require less site preparation; need less space in front of the structure; reduce right-of-way acquisition; do not need rigid, unyielding foundation support because they tolerate deformations; are cost effective; and are technically feasible to heights in excess of 100 feet. Pre-manufactured materials, rapid construction and competition among proprietary systems have reduced cost; MSE walls are likely to be more economical than other wall systems for walls higher than about 10 feet or where special foundations would be required for a conventional wall. Their flexibility to tolerate deformations on poor subsoils is one of the greatest advantages, and in seismically active zones they have shown higher resistance to seismic loading than rigid concrete walls. Potential disadvantages (printed 3.1.2.2, p. 10-23): a relatively large space (e.g., excavation in a cut) is required behind the face for the reinforcement; select granular fill is required; design often requires shared responsibility between material suppliers and owners; and there are no-dig zones within the reinforced section (e.g., for utilities).",
+      "key_points": [
+        "Technically feasible to heights in excess of 100 ft.",
+        "Likely more economical than other walls above about 10 ft or where special foundations are needed.",
+        "Tolerant of deformation; good seismic performance.",
+        "Need space behind face, select granular fill; shared design responsibility; no-dig zones."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Use when weighing MSE walls against conventional concrete retaining walls."
+    },
+    {
+      "section_id": "10.3.1.3",
+      "title": "Feasibility Evaluations",
+      "summary": "MSE wall feasibility: adequate subsurface investigation; foundation shear strength at least 2.0 to 2.5 times the fill weight as a first approximation, else ground improvement; settlement analyses guide facing type; aggressive ground (chlorides, sulfates over 200 ppm, pH below 5 or above 10); deicing salts; site access; facing aesthetics (pp. 10-23 to 10-25).",
+      "body": "Geotechnical (printed 3.1.3.1, pp. 10-23 to 10-24): an adequate subsurface investigation is key; distress is often traced to explorations that missed soft soils, causing local differential settlement and facing distress and, in a few extreme cases, foundation failures and catastrophic collapse. Foundation properties should establish bearing resistance, global stability, settlement potential and groundwater level. As a first-order evaluation where soft compressible soils exist, the available shear strength must be at least 2.0 to 2.5 times the weight of the fill structure as a rough first approximation; otherwise ground improvement must be considered. With marginal to adequate strength, preliminary settlement analyses (longitudinal and transverse) are a second-order evaluation that guides facing type and construction phasing. Environmental (printed 3.1.3.2, p. 10-24): ground aggressiveness governs reinforcement selection. For steel, chloride and sulfate salts generally in excess of 200 ppm and pH less than 5 accelerate corrosion, and pH greater than 10 accelerates loss of galvanization (FHWA 2009). PET degrades in highly alkaline or acidic regimes; polyolefins only under certain highly acidic conditions with metals (e.g., mine waste). Dry-cast MBW facing units are susceptible to freeze-thaw degradation with deicing salts. Site conditions (printed 3.1.3.3, pp. 10-24 to 10-25): well suited to fill-type walls and side-hill fills; economy diminishes with large cut volumes; poor access favors lightweight facings. Aesthetics (printed 3.1.3.4, p. 10-25): textured or colored precast panels cost a premium that seldom exceeds 15 percent of facing cost (a 4 to 6 percent increase in total in-place cost); MBW facings are comparable in cost to panels except on small projects (less than 4,000 square feet) (GEC 11).",
+      "key_points": [
+        "First approximation: foundation shear strength at least 2.0 to 2.5 times the fill weight.",
+        "Steel: chlorides and sulfates over about 200 ppm or pH below 5 accelerate corrosion; pH above 10 attacks galvanization.",
+        "PET degrades in highly alkaline or acidic regimes; polyolefins only in certain highly acidic, metal-bearing conditions.",
+        "Dry-cast MBW units are vulnerable to freeze-thaw with deicing salts.",
+        "Architectural panel finish premium seldom exceeds 15% of facing cost (4-6% of total)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to geotechnical, environmental, site and aesthetic screening of MSE wall sites."
+    },
+    {
+      "section_id": "10.3.1.4",
+      "title": "Limitations",
+      "summary": "Per AASHTO LRFD (2014), MSE walls should not be used where non-drainage utilities are in the reinforced zone without access, where floodplain erosion or scour may undermine the fill, facing or footing, or where reinforcement is exposed to acid mine drainage or other aggressive water without specific studies (p. 10-25).",
+      "body": "The AASHTO LRFD Bridge Design Specifications (2014) state that MSE walls should not be used under the following conditions (p. 10-25): when utilities other than highway drainage are to be constructed within the reinforced zone, unless access is provided to the utilities without disrupting reinforcements and breakage or rupture of utility lines will not have a detrimental effect on stability; where floodplain erosion or scour may undermine the reinforced fill zone, facing or any supporting footing; and with reinforcements exposed to surface or ground water contaminated by acid mine drainage, other industrial pollutants or other environmental conditions defined as aggressive in Article 7.3.6.3 of the AASHTO LRFD Bridge Construction Specifications (2010), unless environment-specific long-term corrosion or degradation studies are conducted.",
+      "key_points": [
+        "No non-drainage utilities in the reinforced zone unless accessible without disrupting reinforcement.",
+        "Not where scour or floodplain erosion may undermine the wall.",
+        "Not in aggressive environments (AASHTO Construction Spec Art. 7.3.6.3) without specific studies."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Use to check AASHTO conditions under which MSE walls should not be used."
+    },
+    {
+      "section_id": "10.3.1.5",
+      "title": "Alternative Solutions",
+      "summary": "Alternatives to MSE walls: cantilever, gravity, semi-gravity or counterfort concrete walls, or soil or reinforced slopes; in cuts, tieback, soil nail or nongravity cantilever walls, or a shored MSE combination; for waterfront walls, sheetpile walls are often more economical (p. 10-26).",
+      "body": "Cantilever, gravity, semi gravity or counterfort concrete walls, or soil embankments, are the usual alternatives to MSE walls and abutments; embankments may be conventional or reinforced soil slopes (Section 4.0) (p. 10-26). In cut situations, in situ walls such as tieback anchored walls, soil nailed walls or nongravity cantilevered walls are often more economical, although where right-of-way is limited a temporary or permanent in situ wall at the back of the reinforcement combined with a permanent MSE wall is often competitive; a permanent in situ wall at the back allows much shorter reinforcement (Section 6.2 and GEC 11). For waterfront or marine walls, sheetpile walls with or without anchorages that can be built in the wet are often, if not always, both more economical and more practical.",
+      "key_points": [
+        "Fill situations: concrete walls or (reinforced) slopes.",
+        "Cut situations: anchored, soil nail or nongravity cantilever walls, or shored MSE.",
+        "Waterfront: sheetpile walls usually more economical and practical."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to comparing MSE walls with other wall types in fill, cut and waterfront settings."
+    },
+    {
+      "section_id": "10.3.2",
+      "title": "Design Overview",
+      "summary": "MSE walls are designed as a soil mass with discrete tension inclusions by the Simplified Method (ASD updated to LRFD), for near-vertical walls with uniform reinforcement and select fill; steel walls may use the Coherent Gravity Method; GRS walls are designed as a composite mass (FHWA 2011a), including GRS-IBS abutments (pp. 10-26 to 10-27).",
+      "body": "MSE walls are generally designed as a soil mass with discrete soil reinforcement modeled as tension inclusions (p. 10-26). The principal methodology is the Simplified Method, first established as an allowable strength design (ASD) method and updated to load and resistance factor design in the primary references. It is widely used for transportation walls that are near vertical, have uniform reinforcement lengths and use select granular reinforced fill; internal stability is independent of the facing. AASHTO (2014) and GEC 11 (2009) give guidance for deep facing elements in external stability, significantly battered walls and non-uniform reinforcement lengths. The Simplified Method applies to steel strip, steel mat, geogrid and geotextile reinforcements; per AASHTO (2014), internal loads for steel reinforced walls may be computed with the Coherent Gravity Method instead. Neither AASHTO (2014) nor GEC 11 gives design guidance for geosynthetic strap reinforcements. Alternatively, the reinforced soil may be designed as a composite mass: FHWA (2011a) gives an approach for closely spaced geosynthetic reinforced soil walls based on composite action, used in recent years for bridge abutments integrated into single span bridges (pp. 10-26 to 10-27). Closely spaced reinforcement with open-graded aggregate fill and a reinforced soil foundation supporting a bridge is a geosynthetic reinforced soil - integrated bridge system (GRS-IBS) (Figure 10-8), common for single span bridges over creeks and streams.",
+      "key_points": [
+        "Simplified Method: reinforcement as tension inclusions; LRFD per AASHTO (2014) and GEC 11.",
+        "Coherent Gravity Method permitted for steel reinforced walls.",
+        "No AASHTO or GEC 11 design guidance for geosynthetic straps.",
+        "GRS and GRS-IBS designed on composite action (FHWA 2011a)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10-8: Typical cross section of a geosynthetic reinforced soil integrated bridge abutment. (FHWA 2011a; p. 10-27)"
+      ],
+      "tables": [],
+      "applicability": "Applies to choosing the design method for MSE and GRS walls and abutments."
+    },
+    {
+      "section_id": "10.3.2.1",
+      "title": "Design Considerations",
+      "summary": "MSE wall design often involves shared responsibility: the wall system supplier designs internal and external stability with specifier-supplied or assumed soil properties, so the agency must clearly define design and material responsibilities and any agency-specific requirements (pp. 10-27 to 10-28).",
+      "body": "As previously noted, design of MSE wall systems often entails a shared design responsibility between material suppliers and the agency specifier/owner (pp. 10-27 to 10-28). The wall system supplier, often nationally rather than locally based, generally designs the wall for internal and external stability with soil properties supplied by the specifier or assumed. It is therefore imperative that the specifying agency clearly define design and material responsibilities, and any agency-specific design or detailing requirements that differ from the primary design references (Section 3.2.3).",
+      "key_points": [
+        "Supplier typically designs internal and external stability.",
+        "Agency must define design and material responsibilities and agency-specific requirements."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Use when setting responsibilities between agency and MSE wall supplier."
+    },
+    {
+      "section_id": "10.3.2.2",
+      "title": "Design Steps",
+      "summary": "Table 10-4 lists the basic LRFD design steps for MSE walls with simple geometry: requirements, parameters, embedment and reinforcement length, loads, load and resistance factors, external stability (sliding, eccentricity, bearing, settlement), internal stability sub-steps, facing, global and compound stability and drainage (pp. 10-28 to 10-29).",
+      "body": "The basic design steps are listed in Table 10-4 (pp. 10-28 to 10-29, source GEC 11), for walls with simple geometries; steps vary with reinforcement type and additional steps are needed for complex cases such as true bridge abutments. Step 1: establish project requirements (geometry, permanent, transient and seismic loads, performance criteria, construction constraints). Step 2: establish project parameters (topography, subsurface conditions, reinforced fill and retained backfill properties). Step 3: estimate embedment depth, design height(s) and reinforcement length. Step 4: define nominal loads. Step 5: summarize load combinations, load factors and resistance factors. Step 6: evaluate external stability: sliding, eccentricity, bearing on foundation soil, settlement (service limit). Step 7: evaluate internal stability: select reinforcement type; define the critical failure surface; define unfactored loads; establish vertical layout; calculate factored horizontal stress and maximum tension at each level; calculate nominal and factored long-term tensile resistance; select grade and/or number of elements; calculate nominal and factored pullout resistance; check facing connection resistance; estimate lateral wall movements (service); check vertical movement and compression pads. Step 8: design facing elements. Step 9: assess overall global stability. Step 10: assess compound stability. Step 11: design subsurface and surface drainage. Detailed guidance and examples are in GEC 11.",
+      "key_points": [
+        "External stability: sliding, eccentricity, bearing, settlement.",
+        "Internal stability: critical surface, maximum tension, long-term tensile resistance, pullout, connection.",
+        "Also facing design, global and compound stability, drainage.",
+        "The long-term tensile resistance step is listed but no equation for it is printed in this chapter; see GEC 11."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 10-4: Basic LRFD Design Steps for MSE Walls (pp. 10-28 to 10-29)"
+      ],
+      "applicability": "Applies to the LRFD design sequence for MSE walls of simple geometry."
+    },
+    {
+      "section_id": "10.3.2.3",
+      "title": "Primary Design References",
+      "summary": "Primary references for MSE wall design are AASHTO LRFD Bridge Design Specifications (2014) and GEC 11 (2009); GRS-IBS walls may use FHWA (2011a, 2011b); NCMA (2009) is typically used for non-transportation MBW walls and some DOTs allow it for landscape walls only (pp. 10-29 to 10-30).",
+      "body": "There are two primary references for reinforced soil walls in transportation works (p. 10-29): AASHTO (2014) LRFD Bridge Design Specifications, 7th Edition with 2015 Interim Revisions, and GEC 11 (2009), Design and Construction of Mechanically Stabilized Earth Walls and Reinforced Soil Slopes (FHWA NHI-10-024 and NHI-10-025). Closely spaced geosynthetic reinforcements for bridges on a GRS-IBS can be designed with those references or with FHWA (2011a) Geosynthetic Reinforced Soil Integrated Bridge System, Interim Implementation Guide (FHWA-HRT-11-026) and FHWA (2011b) Synthesis Report (FHWA-HRT-11-027) (p. 10-30). MBW faced geosynthetic walls in transportation works are normally designed with either set; for non-transportation works they are typically designed with NCMA (2009) Design Manual for Segmental Retaining Walls. Some DOTs allow the NCMA method for landscape walls, but most do not allow it for structural wall applications.",
+      "key_points": [
+        "Primary: AASHTO (2014) and GEC 11 (2009).",
+        "GRS-IBS: FHWA (2011a, 2011b).",
+        "NCMA (2009) mostly for non-transportation walls; most DOTs disallow it for structural walls."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Use to find the governing design documents for MSE, GRS-IBS and MBW walls."
+    },
+    {
+      "section_id": "10.3.3",
+      "title": "Construction and Materials",
+      "summary": "General construction requirements for MSE walls are in AASHTO (2010) and GEC 11; walls are usually specified as a system from an approved products list, and a system- and agency-specific erection manual should be required from each vendor (p. 10-30).",
+      "body": "General construction requirements and guidance for MSE walls are presented in AASHTO (2010) and FHWA (GEC 11) (p. 10-30). As discussed in Section 3.4, MSE walls are most often specified as a system with an approved products (wall system) list established by the specifying DOT. A system-specific and agency-specific construction erection manual should be required from each vendor applying for pre-approval, and used by the contractor, inspectors and agency for construction. A variety of reinforcement and facing materials are used; they are summarized in this section, with detail in GEC 11, AASHTO (2010) and AASHTO (2014).",
+      "key_points": [
+        "Usually specified as a system from an approved products list.",
+        "Require a system- and agency-specific erection manual from each vendor."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Entry point for MSE wall construction sequence and materials."
+    },
+    {
+      "section_id": "10.3.3.1",
+      "title": "Construction",
+      "summary": "MSE wall construction steps: prepare and test subgrade, improve unstable foundations, place an unreinforced 6-inch concrete leveling pad, erect and brace the first facing row, place and compact fill (95-100% of T 99, loose lifts not over 12 in., typically 8-in. compacted), place and connect reinforcement, repeat, then barriers and copings (pp. 10-30 to 10-32).",
+      "body": "General steps (pp. 10-30 to 10-32): Preparation of subgrade: remove unsuitable materials, strip organic matter, vegetation and slide debris, compact the subgrade, and confirm suitability by observation and tests (e.g., proof rolling, dynamic cone penetrometer). In unstable foundation areas, use ground improvement (excavation and replacement, dynamic compaction, stone columns) before erection. Leveling pad: generally an unreinforced 6-inch thick concrete pad, often 6 inches or more wider than the facing element, wider under curves; it guides panel erection and is not a structural foundation; it is not used with welded wire or geosynthetic wrapped facings. First row of facing: with precast panels, alternating full and half-height panels, externally braced; later rows are wedged and clamped; full blocks without shoring are used with MBW or large wet cast units. Reinforced fill is placed and compacted to the first reinforcement level, usually to 95 to 100 percent of AASHTO T 99 maximum density within the specified moisture range, preferably a few percent dry of optimum. Uniform loose lift thickness should not exceed 12 inches; generally an 8-inch compacted lift is used. Fill is dumped toward the rear and middle of the reinforcement and bladed toward the face; retained backfill follows to the same elevation. Reinforcement is placed and connected when the fill is at or just above the connection (no gap, to avoid downdrag on the connection), generally perpendicular to the facing. The steps are repeated for each layer, then traffic barriers and copings are built.",
+      "key_points": [
+        "Leveling pad: unreinforced 6-in. concrete, not a structural foundation.",
+        "Compaction: 95 to 100% of AASHTO T 99, a few percent dry of optimum.",
+        "Loose lift not over 12 in.; 8-in. compacted lift typical.",
+        "Connect reinforcement with fill at or just above the connection to avoid downdrag."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to field construction sequence and compaction control of MSE walls."
+    },
+    {
+      "section_id": "10.3.3.2",
+      "title": "Wall Facings",
+      "summary": "MSE facing types: segmental precast panels (minimum 5-1/2 in. thick, typically 5 ft by 5 or 10 ft), dry cast MBW units (30-110 lb, typically 8 in. high, 18 in. face, 12 in. deep), welded wire mesh, gabions, geosynthetic wrap-around (needs UV stabilization) and post-construction facings (pp. 10-32 to 10-33).",
+      "body": "Facings control aesthetics as the only visible part, protect against backfill sloughing and erosion, provide drainage paths in some cases, and influence settlement tolerance (p. 10-32). Segmental precast concrete panels: minimum thickness 5-1/2 inches or greater; square, rectangular, cruciform, diamond or hexagonal; typical nominal size 5 feet high and 5 or 10 feet wide; temperature and tensile reinforcement designed per Section 5 of AASHTO (2014). Dry cast modular block wall (MBW) units: small concrete units weighing 30 to 110 pounds, with 75 to 110 pounds routinely used for highways; unit height typically 8 inches (range 4 to 15); exposed face length 8 to 18 inches, 18 typical; front-to-back width typically 12 inches (range 8 to 24); solid or with cores filled with aggregate; dry-stacked in running bond and connected by pins, lips or keys (p. 10-33). Welded wire mesh: grid bent up at the face, possibly continuous with the reinforcement; galvanized for permanent and black steel for temporary walls. Gabion facing: rock-filled wire baskets with WWM, geogrid, geotextile or double-twisted woven mesh reinforcement. Geosynthetic facing: reinforcement looped around at the face, smooth or stepped; must be UV stabilized; vegetation through geogrids protects and improves appearance. Post-construction facing: shotcrete, cast-in-place concrete or attached panels added after construction, at added cost, useful where large differential settlement is expected.",
+      "key_points": [
+        "Precast panels: at least 5-1/2 in. thick; typical 5 ft high by 5 or 10 ft wide.",
+        "MBW units: 30-110 lb (75-110 lb on highways), typically 8 in. high, 18 in. face, 12 in. deep.",
+        "Wrap-around geosynthetic faces must be UV stabilized.",
+        "Post-construction facings suit sites with large differential settlement."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Use when selecting a facing type for an MSE wall."
+    },
+    {
+      "section_id": "10.3.3.3",
+      "title": "Soil Reinforcements",
+      "summary": "MSE reinforcements: galvanized steel strips (ribbed 2 in. by 5/32 in., or sine-wave), welded wire grids (W7.5-W24 longitudinal at 6 or 8 in., W11-W20 transverse at 6-24 in.), double-twisted PVC-coated mesh, HDPE and PVC-coated PET geogrids, PET and PP geotextiles, geosynthetic straps and geocomposites (pp. 10-34 to 10-35).",
+      "body": "Steel and geosynthetic reinforcements are used; steel is generally hot dip galvanized after fabrication (p. 10-34). Steel strips: ribbed top and bottom, 2 inches wide and 5/32-inch thick, or a 1/4-inch high sine-wave shape 1-1/2, 2 or 2-1/2 inches wide and 5/32-inch thick; smooth strips 2 to 4-3/4 inches wide and 1/8 to 5/32-inch thick have been used; used with segmental precast panels. Steel grids: welded wire grid with two to six W7.5 to W24 longitudinal wires at 6 or 8 inches and W11 to W20 transverse wires at 6 to 24 inches; 2 by 2-inch mesh of thinner wire has been used with welded wire facing; two-wire grids are ladder grids, used with precast panel, MBW and steel grid facings. Double twisted steel mesh: a proprietary galvanized, PVC-coated mesh used with gabion faced walls. HDPE geogrid: uniaxial, various strength grades, used with precast panel, MBW, WWM and wrap-around facings. PVC coated PET geogrid: bundled high tenacity PET fibers in the load direction, used with MBW, large precast block and wrap-around facings. High strength geotextiles: PET and PP, used with wrap-around and MBW facings. Geosynthetic strap: PET fibers in a PE sheath, used with precast panel walls (p. 10-35). Geocomposites: geogrids or knitted and woven geotextiles combined with nonwoven geotextiles for drainage where poorly draining fills are used.",
+      "key_points": [
+        "Steel strips: ribbed 2 in. wide by 5/32 in. thick, or sine-wave strips.",
+        "Steel grids: W7.5-W24 longitudinal at 6 or 8 in.; W11-W20 transverse at 6-24 in.",
+        "Geosynthetics: HDPE geogrid, PVC-coated PET geogrid, PET/PP geotextile, PET strap in PE sheath.",
+        "Geocomposites add drainage with poorly draining fills."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Use to match reinforcement types to MSE wall facing types."
+    },
+    {
+      "section_id": "10.3.3.4",
+      "title": "Reinforced Soil Fill",
+      "summary": "MSE select granular fill: Table 10-5 gradation (100% passing 4 in., 0-60% No. 40, 0-15% No. 200; Cu at least 4 for default F*), friction angle over 34 degrees, PI under 6, soundness loss under 30%; electrochemical limits for steel and geosynthetics; GRS-IBS open-graded fill at 38 degrees, AASHTO No. 8 or No. 89 (pp. 10-35 to 10-37).",
+      "body": "MSE walls require high quality, well graded granular fill, reasonably free of organic or deleterious material, conforming to Table 10-5 (p. 10-35): 100 percent passing 4 inches (102 mm), 0-60 percent passing No. 40 (0.425 mm), 0-15 percent passing No. 200 (0.075 mm); to apply default F* values Cu should be at least 4, and maximum particle size is reduced to 3/4 inch for geosynthetics and epoxy or PVC coated steel unless construction damage tests have been done. DOTs may adjust the broad range for local materials. Fill should be well graded per USCS (ASTM D2487). Table 10-6 (p. 10-36): angle of friction greater than 34 degrees (AASHTO T 236, on the portion finer than No. 10 compacted to 95% of T 99; no testing where 80% of sizes exceed 3/4 inch, using 34 degrees), PI less than 6 (AASHTO T 90), and magnesium sulfate soundness loss less than 30 percent after four cycles (AASHTO T 104). Table 10-7, steel reinforcement: resistivity greater than 3000 ohm-cm (T 288), pH greater than 5 and less than 10 (T 289), chlorides less than 100 ppm and sulfates less than 200 ppm (ASTM D4327), organic content 1 percent maximum (T 267). Table 10-8, geosynthetics: PET 3 < pH < 9; polyolefin (PP and HDPE) pH > 3 (T 289). High quality fill drains better, is more durable for steel and needs less reinforcement (pp. 10-36 to 10-37). GRS-IBS fill: minimum friction angle 38 degrees, typically open-graded crushed angular stone with 100 percent passing 3/4 inch and 0 to 5 percent passing No. 50; AASHTO M43 No. 8 (Table 10-9) and No. 89 (Table 10-10) meet this (p. 10-37).",
+      "key_points": [
+        "Table 10-5: 100% passing 4 in.; 0-60% passing No. 40; 0-15% passing No. 200.",
+        "Table 10-6: phi > 34 deg; PI < 6; Mg sulfate soundness loss < 30% after four cycles.",
+        "Table 10-7 (steel): resistivity > 3000 ohm-cm; 5 < pH < 10; chlorides < 100 ppm; sulfates < 200 ppm; organics 1% max.",
+        "Table 10-8: PET 3 < pH < 9; PP and HDPE pH > 3.",
+        "GRS-IBS: phi at least 38 deg; open-graded AASHTO No. 8 or No. 89."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 10-5: MSE Wall Select Granular Reinforced Fill Gradation Requirements (p. 10-35)",
+        "Table 10-6: Additional MSE Wall Select Granular Reinforced Fill Requirments (p. 10-36)",
+        "Table 10-7: Electrochemical Fill Requirements for Steel Reinforcements (p. 10-36)",
+        "Table 10-8: Electrochemical Fill Requirements for Geosynthetic Reinforcements (p. 10-36)",
+        "Table 10-9: AASHTO No. 8 Gradation for GRS-IBS (p. 10-37)",
+        "Table 10-10: AASHTO No. 89 Gradation for GRS-IBS (p. 10-37)"
+      ],
+      "applicability": "Applies to specifying reinforced fill for MSE walls and GRS-IBS abutments."
+    },
+    {
+      "section_id": "10.3.3.5",
+      "title": "Appurtenant Materials",
+      "summary": "Precast panel walls need compressible bearing pads (EPDM rubber or HDPE) in horizontal joints sized to wall height and geotextile filter strips over all joints; MBW walls use a gravel zone usually 1 ft wide behind and within the units with a soil or geotextile filter (p. 10-38).",
+      "body": "Walls with precast concrete panels need bearing pads in their horizontal joints to give some compressibility and movement between panels during elastic compression and settlement of the reinforced fill, mitigating downdrag stress on the reinforcement-facing connection and preventing concrete-to-concrete contact (p. 10-38). Pads are generally EPDM rubber or HDPE, with compressibility and thickness a function of wall height. All panel joints are covered on the back face with geotextile filter strips that prevent migration of fines and allow free drainage; the geotextile AOS and permeability must be compatible with the fill gradation. Bearing pads are not routinely used with MBW units. A zone of aggregate fill, usually 1-foot wide, is used behind the MBW units and within cored units; a soil or geotextile filter, properly designed for gradation, AOS and permeability, is required between the gravel and the wall fill.",
+      "key_points": [
+        "Bearing pads (EPDM rubber or HDPE) in panel joints; sized to wall height.",
+        "Geotextile filter strips behind all panel joints.",
+        "MBW walls: aggregate zone usually 1 ft wide plus a filter."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Use when detailing joints, bearing pads and drainage aggregate for MSE wall facings."
+    },
+    {
+      "section_id": "10.3.4",
+      "title": "Overview of Construction Specifications and Quality Assurance",
+      "summary": "Heading for MSE wall construction specifications and quality assurance: specification development, quality assurance with the field inspection checklist of Table 10-11, and instrumentation monitoring and construction control (pp. 10-38 to 10-41).",
+      "body": "Section 3.4 (p. 10-38) gives an overview of MSE wall construction specifications and quality assurance: specification development (3.4.1), a summary of quality assurance with the field inspection checklist of Table 10-11 (3.4.2), and instrumentation monitoring and construction control (3.4.3).",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Entry point for contracting, inspection and monitoring of MSE walls."
+    },
+    {
+      "section_id": "10.3.4.1",
+      "title": "Specification Development",
+      "summary": "MSE walls are contracted either by a performance (end-result) approach using approved systems with lines and grades and design criteria, or by agency design with components and execution fully specified (e.g., standard designs); most agencies prefer performance specifications, except for GRS-IBS abutments (p. 10-38).",
+      "body": "MSE wall systems are contracted by two approaches (p. 10-38): (1) a performance or end-result approach using approved systems and components, with lines and grades on the drawings and geometric and design criteria specified, and a project-specific design review and detail plan submittal with the working drawings; and (2) agency designs with system components, drainage details, erosion measures and construction execution explicitly specified in the contract documents, which can use standard designs for common wall heights (e.g., Minnesota DOT 2016). Both are valid if properly implemented and each has advantages and disadvantages. Most agencies prefer the performance-based specification for MSE walls; an exception is GRS-IBS abutments, which agencies typically design and specify themselves.",
+      "key_points": [
+        "Two approaches: performance/end-result with approved systems, or agency design.",
+        "Most agencies prefer performance specifications; GRS-IBS usually agency designed."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to choosing a contracting approach for MSE walls."
+    },
+    {
+      "section_id": "10.3.4.2",
+      "title": "Summary of Quality Assurance",
+      "summary": "MSE construction is simple and rapid but attention to detail is essential; suppliers and inspectors should be trained. Table 10-11 outlines the field inspection checklist: specifications, plans, submittals, site and foundation, precast unit rejection criteria, labels, sampling, installation, damage checks and facing alignment (pp. 10-39 to 10-41).",
+      "body": "MSE construction mainly consists of preparing the subgrade, placing and compacting backfill in normal lifts, laying reinforcement and installing facing (p. 10-39). Special skills or equipment are usually not required and local labor can be used, but attention to detail is essential for performance and aesthetics, and experienced crews give higher production. Suppliers provide training, and training should also be required for those monitoring construction. Table 10-11 (pp. 10-39 to 10-40, source GEC 11) outlines general inspection requirements for MSE and RSS, to be expanded by the agency: (1) read the specifications (materials, procedures, compaction, tolerances, acceptance criteria); (2) review plans (sequence, corrosion protection, damage-reducing placement, compaction restrictions, drainage and utility details, slope face, contractor documents); (3) review material requirements, submittals and construction sequence; (4) check site and foundation conditions (foundation preparation, leveling pad level and alignment, access, excavation limits, dewatering, drainage features); (5) check reinforcements and prefabricated units, rejecting precast facing for low compressive strength, molding defects, honeycombing, severe cracking, chipping or spalling, color variation, tolerance or misaligned connections; (6) check labels against certifications; (7) check batch uniformity; (8) obtain test samples; (9) observe installation; (10) check for installation damage, e.g., by trial installation; (11) check against the approved shipment; (12) monitor facing alignment and line and grade. Special considerations for system type, site, fill and facing should be addressed in preconstruction reviews and inspection (pp. 10-40 to 10-41).",
+      "key_points": [
+        "Training should be required for construction monitoring personnel.",
+        "Reject precast facing for strength, molding defects, honeycombing, cracking, color, tolerance or misaligned connections.",
+        "Check reinforcement for installation damage, e.g., with a trial installation."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 10-11: Outline of MSE Wall Field Inspection Checklist Requirements (pp. 10-39 to 10-40)"
+      ],
+      "applicability": "Use when preparing inspection and QA procedures for MSE walls and RSS."
+    },
+    {
+      "section_id": "10.3.4.3",
+      "title": "Summary of Instrumentation Monitoring and Construction Control",
+      "summary": "Extensive MSE wall monitoring is needed only for new features or materials, large post-construction settlement, rate control, reinforcement degradation monitoring or asset management; a minimum program (as-built drawings, a few survey points) is advised for all walls. Agency-specific erection manuals guide control (p. 10-41).",
+      "body": "Because MSE wall technology is well established, extensive monitoring should be limited to projects with new features or materials, substantial anticipated post-construction settlement and/or construction rates needing control, monitoring of reinforcement degradation or corrosion (e.g., to allow marginal fills), or asset management (p. 10-41). A minimum monitoring program should be established for all structures for asset management, which could be as-built drawings with a few survey points at the top and bottom of the structure at select locations (critical features, tallest section). Where a monitoring program is used, first define the purpose; every instrument should answer a specific question, and if there is no question there should be no instrumentation. Each construction step is controlled by method requirements and tolerances. Construction manuals for proprietary systems should be obtained from the contractor, should be agency-specific rather than generic, and should be required when a system is placed on an approved products list. See GEC 11 and Section 3.3 for construction steps and controls.",
+      "key_points": [
+        "Minimum program for all walls: as-built drawings plus a few top and bottom survey points.",
+        "Extensive monitoring only for new features, large settlement, rate control, degradation or asset management.",
+        "Require agency-specific erection manuals for approved systems."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to planning monitoring and construction control for MSE walls."
+    },
+    {
+      "section_id": "10.3.5",
+      "title": "Cost Data",
+      "summary": "MSE wall costs depend on cut-fill, size, soil, fill availability, facing and permanence; precast-faced MSE walls are usually cheaper than reinforced concrete walls above about 10 ft; savings of about 25 to 50 percent; typical permanent wall costs $30 to $65 per square foot of face (pp. 10-41 to 10-42).",
+      "body": "Site specific costs depend on cut-fill requirements, wall/slope size and type, in situ soil, available fill and backfill, facing finish, and temporary or permanent use (p. 10-41). MSE walls with precast concrete facings are usually less expensive than reinforced concrete retaining walls for heights greater than about 10 feet and average foundation conditions; MBW faced walls are competitive with concrete walls at all heights and for small projects (p. 10-42). In general, MSE walls give savings on the order of 25 to 50 percent and possibly more compared with a conventional reinforced concrete retaining structure, especially one on deep foundations, largely by eliminating deep foundations because reinforced soil tolerates relatively large total and differential settlements; ease and speed of construction also save cost. Typical total costs for permanent transportation MSE walls range from $30 to $65 per square foot of face, varying with height, project size, aesthetic treatment, site access and cost of select fill; regional fill costs may make costs much higher.",
+      "key_points": [
+        "Precast-faced MSE walls usually cheaper than RC walls above about 10 ft.",
+        "Savings about 25 to 50 percent versus conventional RC walls.",
+        "Typical permanent wall cost: $30 to $65 per square foot of face."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Use for preliminary cost comparison of MSE walls with conventional walls."
+    },
+    {
+      "section_id": "10.3.5.1",
+      "title": "Cost Components",
+      "summary": "Relative costs for precast-faced MSE walls: erection and profit 20-30%, reinforcement 15-30%, facing 20-40%, reinforced fill 30-60%; architectural finish $0.50-$1.50 per sq ft; traffic barrier about $170 per linear ft; MBW walls under 15 ft are typically at least 10% cheaper (p. 10-42).",
+      "body": "The cost of a specific MSEW structure depends on its principal components (p. 10-42). For segmental precast concrete faced structures, typical relative costs are: erection of panels and contractor's profit, 20 to 30 percent of total cost; reinforcing materials, 15 to 30 percent; facing system, 20 to 40 percent; and reinforced wall fill including placement, 30 to 60 percent where the fill is select granular fill from an off-site borrow source. Additional cost for panel architectural finish treatment ranges from $0.50 to $1.50 per square foot depending on complexity. Traffic barrier costs average $170 per linear foot. Excavation cost may be somewhat greater than for other systems because of the reinforcement zone width. MBW faced walls less than 15 feet high are typically less expensive than segmental panel faced walls by 10 percent or more.",
+      "key_points": [
+        "Erection and profit 20-30%; reinforcement 15-30%; facing 20-40%; fill 30-60%.",
+        "Architectural finish $0.50 to $1.50/sq ft; traffic barrier about $170/linear ft.",
+        "MBW walls under 15 ft: at least 10% cheaper than panel walls."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to breaking down and estimating MSE wall costs."
+    },
+    {
+      "section_id": "10.4.0",
+      "title": "Reinforced Soil Slopes",
+      "summary": "Section heading for reinforced soil slopes (RSS): feasibility considerations, construction and materials, design overview, construction specifications and quality assurance, and cost data (pp. 10-43 to 10-58).",
+      "body": "Section 4.0 (p. 10-43) covers reinforced soil slopes: feasibility considerations (4.1), construction and materials (4.2), design overview (4.3), specifications and quality assurance (4.4) and cost data (4.5).",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Entry point for reinforced soil slopes on firm foundations."
+    },
+    {
+      "section_id": "10.4.1",
+      "title": "Feasibility Considerations",
+      "summary": "RSS are MSE structures with planar reinforcement (typically geosynthetics) in constructed earth slopes with face inclinations less than 70 degrees; they are cost-effective for new construction and reconstruction where fill, right-of-way or other costs make a steeper slope desirable (p. 10-43).",
+      "body": "Reinforced soil slopes (RSS) are a form of mechanically stabilized earth that incorporate planar reinforcing elements (typically geosynthetics) in constructed earth sloped structures with face inclinations of less than 70 degrees (p. 10-43). Multiple layers of reinforcement are placed during construction or reconstruction to reinforce the soil and increase stability. RSS structures are cost-effective alternatives for new construction and reconstruction where the cost of fill, right-of-way and other considerations may make a steeper slope desirable.",
+      "key_points": [
+        "RSS face inclination is less than 70 degrees.",
+        "Typically geosynthetic reinforcement."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to screening steepened reinforced slopes against flatter slopes or walls."
+    },
+    {
+      "section_id": "10.4.1.1",
+      "title": "Applications",
+      "summary": "RSS allow embankments steeper than the soil alone permits: steepened slopes on firm foundations, road widening within right-of-way, and repair of failed slopes reusing slide debris; also shorter bridge spans, temporary detours, preventing surface sloughing, wet fine-grained fills, levees and flood control (pp. 10-43 to 10-44).",
+      "body": "Reinforcement is used to construct an embankment steeper than could otherwise be safely built with the same soil (p. 10-43). The increased stability allows steepened slopes on firm foundations for new highways, as an alternative to flatter unreinforced slopes and to retaining walls. Roadways can be widened over existing flatter slopes without encroaching beyond existing right-of-way. RSS can also repair a failed slope, usually reusing the slide debris as reinforced fill, giving a safer slope and possibly substantial savings over importing higher quality backfill. These applications are illustrated in Figure 10-9. Other applications have included decreased bridge spans, temporary road widening for detours, prevention of surface sloughing during saturation, embankment construction with wet fine-grained soils, permanent levees and temporary flood control structures.",
+      "key_points": [
+        "Steepened slopes on firm foundations; road widening within ROW.",
+        "Slope repair reusing slide debris.",
+        "Also bridge span reduction, detours, sloughing prevention, wet fine-grained fills, levees."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10-9: Reinforced slope applications. (GEC 11; p. 10-44)"
+      ],
+      "tables": [],
+      "applicability": "Use to identify where reinforced soil slopes fit highway projects."
+    },
+    {
+      "section_id": "10.4.1.2",
+      "title": "Advantages and Potential Disadvantages",
+      "summary": "RSS advantages: material and right-of-way savings, reuse of lower quality or slide materials, about half the cost of MSE walls in some cases, vegetated aesthetics, and greater safety than flatter unreinforced slopes at the same factor of safety. Disadvantages: space behind the face and shared design responsibility (pp. 10-44 to 10-45).",
+      "body": "Advantages (printed 4.1.2.1, pp. 10-44 to 10-45): a safe, steeper RSS saves materials and right-of-way; lower quality materials may be acceptable, e.g., reusing slide debris in landslide repair; right-of-way savings can be substantial, especially for urban road widening where new right-of-way is expensive or unobtainable. RSS are an economical alternative to retaining walls, in some cases at about one-half the cost of MSE walls. Vegetated faces that blend with natural surroundings may be an aesthetic advantage, though maintenance issues (e.g., mowing) must be handled in design. Because of inherent conservatism in RSS design and greater reliability of reinforcement strength than soil strength, RSS are actually safer than flatter unreinforced slopes designed at the same factor of safety, with lower risk of long-term stability problems common in compacted fill slopes built to low factors of safety or with marginal materials (shale, low cohesion silts, plastic soils). Potential disadvantages (printed under the number 2.1.2.2, p. 10-45): a relatively large space is required behind the slope face for reinforcement; and with an end-result specification, design responsibility is shared between system or material suppliers and owners.",
+      "key_points": [
+        "In some cases about one-half the cost of MSE walls.",
+        "Safer than flatter unreinforced slopes at the same factor of safety.",
+        "Disadvantages: space behind the face; shared design responsibility with end-result specs."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Use when comparing RSS with flatter slopes or retaining walls."
+    },
+    {
+      "section_id": "10.4.1.3",
+      "title": "Feasibility Evaluations",
+      "summary": "RSS feasibility: adequate subsurface investigation for bearing, global stability, settlement and groundwater; erosion control and revegetation integral to design and not left to the contractor; aggressive ground limits for PET, polyolefins and steel; well suited to fill and side-hill sites; faces about 1:1 or flatter usually vegetated (pp. 10-45 to 10-46).",
+      "body": "Geotechnical (printed 4.1.3.1, p. 10-45): an adequate subsurface investigation is key; distress is often traced to explorations that missed soft soils. Foundation properties should establish bearing resistance, global stability, settlement potential and groundwater level. Environmental (printed 4.1.3.2, pp. 10-45 to 10-46): runoff erosion threatens slope stability, so erosion control and revegetation must be integral to every RSS design and specification; slopes not otherwise protected should be vegetated after construction. Vegetation requirements are project specific and face protection should not be left to the contractor or vendor; maintenance and regional landscaping groups should advise on low maintenance vegetation. Reinforcement selection depends on ground aggressiveness: PET degrades in highly alkaline or acidic regimes (e.g., lime stabilized soils); polyolefins only in certain highly acidic conditions in soils with metals (ferric soils, mine waste); for steel, chlorides and sulfates generally in excess of 200 ppm and pH less than 5 accelerate corrosion, and pH greater than 10 accelerates loss of galvanization (FHWA 2009). Site conditions (printed 4.1.3.3, p. 10-46): well suited to fill-type and side-hill applications; economy diminishes with large cuts. Aesthetics (printed 4.1.3.4): faces of approximately 1:1 or flatter are usually vegetated; steeper slopes may be vegetated with a stepped face, or use a soil bioengineered or hard armor facing (GEC 11).",
+      "key_points": [
+        "Erosion control and revegetation are integral to RSS design and specifications.",
+        "Steel: chlorides and sulfates over about 200 ppm, pH < 5 accelerate corrosion; pH > 10 attacks galvanization.",
+        "Faces about 1:1 or flatter are usually vegetated; steeper faces may need stepped, bioengineered or hard armor facing."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to screening a site and environment for a reinforced soil slope."
+    },
+    {
+      "section_id": "10.4.1.4",
+      "title": "Limitations",
+      "summary": "RSS design often assumes a firm foundation; steepening increases bearing failure risk over soft soils and needs extensive exploration and rigorous analysis. Design charts do not cover basal reinforcement over soft soils, for which FHWA (2008a) applies (pp. 10-46 to 10-47).",
+      "body": "The design of RSS structures often assumes a stable or firm foundation (p. 10-46). Steepening a slope significantly increases the potential for bearing capacity failure over soft soils, so extensive geotechnical exploration and rigorous analysis are required. Design charts and some design procedures do not address reinforcing the base of a reinforced slope built over soft soils, which is a different reinforcement application; the FHWA Geosynthetics Design and Construction Guidelines (FHWA 2008a) cover that application (p. 10-47). An extension is to lengthen reinforcement at the base of the embankment to improve global stability of a reinforced soil slope.",
+      "key_points": [
+        "RSS design usually assumes a firm foundation.",
+        "Over soft soils, basal reinforcement is a separate application (FHWA 2008a)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Use to check whether foundation conditions fall outside standard RSS design."
+    },
+    {
+      "section_id": "10.4.1.5",
+      "title": "Alternative Solutions",
+      "summary": "Alternatives to RSS: MSE walls, cantilever, gravity, semi-gravity or counterfort concrete walls, or soil embankments. RSS may be cost effective in rural areas with ROW limits or long sliver fills, and in urban areas where ROW is available, being generally cheaper than vertical MSE walls (p. 10-47).",
+      "body": "MSE walls; cantilever, gravity, semi gravity or counterfort concrete walls; or soil embankments are the usual alternatives to an RSS structure (p. 10-47). RSS may be cost effective in rural environments where right-of-way restrictions exist, or on widening projects where long sliver fills are necessary. In urban environments they should be considered where right-of-way is available, as they are generally more economical than vertically faced MSE wall structures.",
+      "key_points": [
+        "Alternatives: MSE walls, concrete walls, soil embankments.",
+        "Generally more economical than vertically faced MSE walls where ROW allows."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to choosing between RSS and wall or embankment alternatives."
+    },
+    {
+      "section_id": "10.4.2",
+      "title": "Construction and Materials",
+      "summary": "General RSS construction requirements are in GEC 11; RSS may be specified as a vendor-designed system from an approved products list with an agency-specific erection manual, or designed in-house by the agency with material and construction specifications (p. 10-47).",
+      "body": "General construction requirements and guidance for RSSs are in GEC 11 (p. 10-47). As discussed in Section 4.4, RSSs may be specified as a system with vendor design and an approved products (RSS system) list established by the DOT, in which case a system- and agency-specific construction erection manual should be required from each vendor and used by the contractor, inspectors and agency. Alternatively, RSSs may be designed in-house by an agency, with material and construction specifications. The reinforcement and facing materials are summarized in this section; see GEC 11 for detail.",
+      "key_points": [
+        "Vendor-designed system with approved products list, or in-house agency design."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Entry point for RSS construction sequence, facing, reinforcement and fill."
+    },
+    {
+      "section_id": "10.4.2.1",
+      "title": "Construction",
+      "summary": "RSS construction resembles normal slope construction: place soil, place reinforcement, construct face. Sequence: site preparation and drains; reinforcement perpendicular to the face, pinned, 6-in. edge overlap for wrapped faces; at least 6 in. of fill under equipment; compaction to 95% of T 99 within 2% of optimum; face construction (pp. 10-47 to 10-49).",
+      "body": "Construction of reinforced slopes is very similar to normal slope construction because reinforcement layers are easily placed between compacted lifts; the elements are placing the soil, placing the reinforcement and constructing the face (p. 10-47). The usual sequence (GEC 11, pp. 10-47 to 10-49): Site preparation: clear and grub; remove slide debris for reinstatement; prepare a level subgrade; proof-roll the base and test as required; observe and approve the foundation; place drainage features (basedrain and/or backdrain). Reinforcing layer placement: principal strength direction perpendicular to the slope face; secure with retaining pins; a minimum overlap of 6 inches along edges perpendicular to the slope for wrapped faces, or clipped or tied grid edges; butted edges where reinforcement is not needed for face support. Reinforced fill placement: place fill with a loader or dozer operating on placed fill or natural ground; keep at least 6 inches of fill between reinforcement and wheels or tracks; compact with vibratory roller or plate compactor (granular) or rubber-tired or smooth drum roller (cohesive); avoid moving the reinforcement; use lightweight compaction near wrapped and welded wire faces. Compaction control: at least 95 percent of standard AASHTO T 99 maximum density within 2 percent of optimum moisture; for coarse aggregate, a relative density or method specification. Face construction depends on soil type, slope angle and reinforcement spacing.",
+      "key_points": [
+        "Reinforcement strength direction perpendicular to the face; pinned in place.",
+        "Minimum 6-in. edge overlap for wrapped faces; at least 6 in. of fill under equipment.",
+        "Compaction: at least 95% of AASHTO T 99 within 2% of optimum moisture."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to field construction of reinforced soil slopes."
+    },
+    {
+      "section_id": "10.4.2.2",
+      "title": "RSS Facing",
+      "summary": "RSS facings prevent sloughing and erosion: no wrap may be needed up to about 1H:1V; reinforcement spacing for wrapped or unwrapped faces no greater than 16 in., and generally no greater than 32 in. or the facing width for hard faces. Facings are soft vegetated or hard; Figure 10-10 shows smooth, wrapped and stepped faces (pp. 10-49 to 10-50).",
+      "body": "Facing is needed where the slope angle exceeds the soil friction strength (to prevent sloughing) or for erosion (p. 10-49). Wrapped faces can be formed with sufficient reinforcement length; a face wrap may not be required for slopes up to about 1H:1V, where primary and secondary reinforcements are simply extended to the face. Face compaction is by running equipment over and down the face or by overbuilding and cutting back to the reinforcement; for the no-wrap option, a facing treatment is applied at intervals during construction to prevent erosion. For wrapped or no-wrap construction the reinforcement is kept at close spacing (every lift or every other lift, but no greater than 16 inches); for armored, hard faced systems the maximum spacing should generally be no greater than 32 inches or the width of the facing. The outward slope is covered with a protective facing that limits erosion, protects the reinforcement and gives surficial stability; facings are soft vegetated or hard, including wrapped reinforcement, welded wire forms, gabions and concrete units. Hard facings and wraps become necessary with steeper slopes and more erodible soils. Living vegetation (grasses, small woody plants) aids aesthetics and erosion control and may add tensile strength. Wrapped faces give more lateral confinement near the face; non-wrapped faces suit gentle slopes. Typical face geometries are in Figure 10-10 (Brickman and Berg 2013).",
+      "key_points": [
+        "Face wrap may be unnecessary for slopes up to about 1H:1V.",
+        "Reinforcement spacing for wrapped or unwrapped faces: no greater than 16 in.",
+        "Hard faced systems: maximum spacing generally 32 in. or the facing width.",
+        "Facings are soft (vegetated) or hard; wraps confine the face."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10-10: RSS face geometries - smooth, wrapped, and stepped. (Brickman and Berg 2013; p. 10-50)"
+      ],
+      "tables": [],
+      "applicability": "Use when selecting and detailing the facing of a reinforced soil slope."
+    },
+    {
+      "section_id": "10.4.2.3",
+      "title": "Soil Reinforcements",
+      "summary": "RSS reinforcements: HDPE geogrid and PVC-coated PET geogrid (WWM-faced, wrap-around and non-wrap faces), PET and PP geotextiles (wrap-around, may be shotcreted), welded wire steel grids (W7.5-W24 longitudinal at 6 or 8 in.) and proprietary double-twisted PVC-coated steel mesh with gabion faces (pp. 10-50 to 10-51).",
+      "body": "Geosynthetic and steel reinforcements are used with RSSs (p. 10-50). HDPE geogrid: uniaxial, in various strength grades, used with WWM faced, wrap-around and non-wrap slope facings. PVC coated PET geogrid: from several manufacturers in various grades, with bundled high tenacity PET fibers in the load direction; used with WWM faced, wrap-around and non-wrap facings. High strength geotextiles: PET and PP, used with wrap-around faces and may be coated with shotcrete or other material for permanent slopes (pp. 10-50 to 10-51). Steel grids: welded wire grid with W7.5 to W24 longitudinal wire at 6 or 8 inches and W11 to W20 transverse wire at 6 to 24 inches, generally used with steel grid slope facings; 2 by 2-inch mesh of thinner wire has been used with welded wire facing. Double twisted steel mesh: a proprietary galvanized, PVC-coated soft-tempered mesh generally used with an integral double twisted mesh gabion face.",
+      "key_points": [
+        "HDPE and PVC-coated PET geogrids for WWM, wrap-around and non-wrap faces.",
+        "Geotextiles for wrap-around faces, possibly shotcreted for permanent slopes.",
+        "Steel grids: W7.5-W24 longitudinal at 6 or 8 in.; W11-W20 transverse at 6-24 in."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Use to match RSS reinforcement types to slope facing types."
+    },
+    {
+      "section_id": "10.4.2.4",
+      "title": "Reinforced Soil Fill",
+      "summary": "RSS fill is less stringent than MSE fill: Table 10-12 gradation (100% passing 4 in., 100-20% No. 4, 0-60% No. 40, 0-50% No. 200), Table 10-13 PI 20 or less and soundness loss under 30%; electrochemical limits of Tables 10-7 and 10-8; compaction 95% of T 99 within 2% of optimum (pp. 10-51 to 10-52).",
+      "body": "RSS reinforced fill requirements are less stringent than for MSE walls (Section 3.3.4), since facings are typically flexible and tolerate some distortion, but a high quality embankment fill is still recommended to ease compaction and minimize reinforcement (p. 10-51). Fill should be reasonably free of organic or deleterious material. Table 10-12 (p. 10-52) recommends: 100 percent passing 4 inches (102 mm); 100 to 20 percent passing No. 4 (4.76 mm); 0 to 60 percent passing No. 40 (0.425 mm); 0 to 50 percent passing No. 200 (0.075 mm); Cu at least 4 to apply default F* values, and maximum particle size reduced to 3/4 inch for geosynthetics and epoxy or PVC coated steel unless construction damage tests have been done. DOTs may adjust the range. Fills with steel reinforcement must meet Table 10-7 and with geosynthetics Table 10-8. Table 10-13: PI 20 or less (AASHTO T 90) and magnesium sulfate soundness loss less than 30 percent after four cycles (AASHTO T 104). Fills outside these limits have been used both successfully and unsuccessfully; drainage, distortion and settlement must be evaluated carefully for finer or more plastic soils. Compaction should be based on 95 percent of AASHTO T 99 and plus or minus 2 percent of optimum moisture (p. 10-51).",
+      "key_points": [
+        "Table 10-12: 100% passing 4 in.; 100-20% No. 4; 0-60% No. 40; 0-50% No. 200.",
+        "Table 10-13: PI 20 or less; Mg sulfate soundness loss < 30% after four cycles.",
+        "Compaction: 95% of AASHTO T 99, within plus or minus 2% of optimum."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 10-12: RSS Reinforced Fill Gradation Requirements (p. 10-52)",
+        "Table 10-13: Additional RSS Reinforced Rill Requirements (p. 10-52)"
+      ],
+      "applicability": "Applies to specifying reinforced fill for reinforced soil slopes."
+    },
+    {
+      "section_id": "10.4.3",
+      "title": "Design Overview",
+      "summary": "RSS reinforcement serves stability of steepened slopes and repairs, or as a compaction aid. Design uses limit equilibrium, allowable stress with adequate factors of safety short and long term; LRFD is not developed for slopes. Three failure modes: internal, external and compound (Figure 10-11) (pp. 10-52 to 10-53).",
+      "body": "There are two main purposes for reinforcement in slopes (p. 10-52): improved stability for steepened slopes and slope repair; and compaction aids, for support of construction equipment and improved face stability. Design of reinforcement for safe, steep slopes requires rigorous analysis, as failure of the reinforcement would result in failure of the slope. The overall requirements are similar to unreinforced slopes: a limit equilibrium, allowable stress approach is used, and the factor of safety must be adequate for both short-term and long-term conditions and all possible failure modes. LRFD methods have not been fully developed for unreinforced or reinforced slopes and are not included in the manual (p. 10-53). As illustrated in Figure 10-11, there are three failure modes: internal, where the failure plane passes through the reinforcing elements; external, where the failure surface passes behind and underneath the reinforced zone; and compound, where the failure surface passes behind and through the reinforced zone. In some cases the calculated factor of safety can be approximately equal in two or all three modes if reinforcement strengths, lengths and spacing are optimized (Berg et al. 1989).",
+      "key_points": [
+        "Limit equilibrium, allowable stress design; LRFD not developed for slopes.",
+        "Failure modes: internal, external, compound.",
+        "Optimized layouts can give nearly equal factors of safety in all modes (Berg et al. 1989)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10-11: Failure modes for reinforced soil slope. (p. 10-53)"
+      ],
+      "tables": [],
+      "applicability": "Applies to the design basis and failure modes of reinforced soil slopes."
+    },
+    {
+      "section_id": "10.4.3.1",
+      "title": "Design Considerations",
+      "summary": "RSS stability uses conventional procedures and software modified for reinforcement; unlike basal embankment reinforcement, RSS reinforcement carries tension for the structure's life; facing design is critical and vegetated faces need maintenance. RSS may be designed in-house or by line-and-grade with shared responsibility (pp. 10-53 to 10-54).",
+      "body": "Stability calculations use conventional geotechnical procedures and design software, modified only for the reinforcement (p. 10-53). Unlike a reinforced embankment on soft soils, the reinforcement in RSS carries tensile load over the life of the structure, as in MSE walls. The facing system is a key component and its design is critical to performance; unlike MSE wall facings, a vegetated RSS face requires maintenance (water, fertilizer, cutting), which must be factored into facing selection and design. RSS may be designed in-house by an agency or by a line-and-grade approach like MSE walls. In-house, agency engineers select, specify and detail the reinforcement, facing and drainage and perform the stability analyses with reasonable soil properties and safety factors. With line-and-grade, design responsibility is shared between material suppliers and the agency specifier/owner (pp. 10-53 to 10-54).",
+      "key_points": [
+        "RSS reinforcement carries tension for the life of the structure.",
+        "Vegetated faces need maintenance, which affects facing selection.",
+        "In-house agency design or line-and-grade with shared responsibility."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Use when organizing the design of a reinforced soil slope."
+    },
+    {
+      "section_id": "10.4.3.2",
+      "title": "Design Steps",
+      "summary": "The basic RSS design steps for slopes on firm foundations are shown as a flow chart in Figure 10-12; steps vary with reinforcement type and complex RSSs need more; detailed guidance and examples are in GEC 11 (p. 10-54).",
+      "body": "The basic design steps for RSS structures are listed in Figure 10-12, a flow chart of steps for reinforced soil slope design (p. 10-54, from GEC 11). Some steps have several sub-steps. The steps are for RSSs on firm foundations; they can vary depending on the type of reinforcement and whether it is defined at the outset, and additional steps are required for more complex RSSs. Detailed design guidance, discussions, example calculations and steps for complex cases are in GEC 11. The chapter does not repeat the flow chart's individual steps in its text.",
+      "key_points": [
+        "Design steps shown as a flow chart (Figure 10-12) for RSS on firm foundations.",
+        "Detailed steps and examples: GEC 11."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10-12: Flow chart of steps for reinforced soil slope design. (GEC 11; p. 10-54)"
+      ],
+      "tables": [],
+      "applicability": "Applies to the design sequence for reinforced soil slopes on firm foundations."
+    },
+    {
+      "section_id": "10.4.3.3",
+      "title": "Primary Design References",
+      "summary": "The primary reference for RSS design in transportation works is GEC 11 (2009), Design and Construction of Mechanically Stabilized Earth Walls and Reinforced Soil Slopes; Duncan and Wright (2005), Soil Strength and Slope Stability, is also very useful (p. 10-55).",
+      "body": "The primary reference for RSS design for transportation works is GEC 11 (2009), Design and Construction of Mechanically Stabilized Earth Walls and Reinforced Soil Slopes (Berg, Christopher and Samtani; FHWA NHI-10-024 Vol I and NHI-10-025 Vol II) (p. 10-55). Designers will also find Duncan and Wright (2005), Soil Strength and Slope Stability, very useful.",
+      "key_points": [
+        "Primary: GEC 11 (2009).",
+        "Also useful: Duncan and Wright (2005)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Use to locate detailed design guidance for reinforced soil slopes."
+    },
+    {
+      "section_id": "10.4.4",
+      "title": "Overview of Construction Specifications and Quality Assurance",
+      "summary": "Heading for RSS construction specifications and quality assurance: specification development, a summary of quality assurance, and instrumentation monitoring and construction control (pp. 10-55 to 10-57).",
+      "body": "Section 4.4 (p. 10-55) gives an overview of RSS construction specifications and quality assurance: specification development (4.4.1), a summary of quality assurance (4.4.2) and instrumentation monitoring and construction control (4.4.3).",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Entry point for contracting, inspection and monitoring of reinforced soil slopes."
+    },
+    {
+      "section_id": "10.4.4.1",
+      "title": "Specification Development",
+      "summary": "RSS are contracted by a performance (end-result) approach with approved systems, where face vegetation requirements must be set by the specifier, or by agency design with components fully specified; many agencies prefer in-house design with a generic specification or standard designs (p. 10-55).",
+      "body": "RSS systems are contracted by two approaches (p. 10-55): a performance or end-result approach using approved systems and components, with lines and grades and geometric and design criteria specified and a project-specific design review with the working drawings, in which project-specific face vegetation protection requirements should be defined by the specifier and not left to the contractor or vendor; or agency designs with system components, drainage details, erosion measures and construction execution explicitly specified. Both are valid if properly implemented. Many agencies prefer to design in-house and use a generic specification for RSS components; agencies can also use standard designs for common slope heights (e.g., Minnesota DOT 2016).",
+      "key_points": [
+        "Specifier must define face vegetation protection in end-result contracts.",
+        "Many agencies design RSS in-house with generic component specifications."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to choosing a contracting approach for reinforced soil slopes."
+    },
+    {
+      "section_id": "10.4.4.2",
+      "title": "Summary of Quality Assurance",
+      "summary": "RSS construction is simple and rapid: subgrade, backfill lifts, reinforcement and face erosion protection, with local labor and supplier training. The Table 10-11 checklist applies, expanded by the agency; special considerations go into preconstruction reviews and inspection (pp. 10-55 to 10-56).",
+      "body": "Construction of RSS structures is relatively simple and rapid: preparing the subgrade, placing and compacting backfill in normal lifts, laying reinforcement and installing the facing erosion protection (p. 10-55). Special skills or equipment are usually not required, local labor can be used, and most suppliers provide training. The outline checklist for monitoring and inspecting MSE and RSS systems is Table 10-11, to be expanded by the agency with requirements from its specifications and the project plans (pp. 10-55 to 10-56). Special construction considerations relating to system type, site conditions, backfill and facing erosion protection should be addressed in preconstruction reviews, prefabricated materials inspection, construction control and/or performance monitoring; see GEC 11.",
+      "key_points": [
+        "Use and expand the Table 10-11 inspection checklist for RSS."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Use when planning inspection and QA for reinforced soil slopes."
+    },
+    {
+      "section_id": "10.4.4.3",
+      "title": "Summary of Instrumentation Monitoring and Construction Control",
+      "summary": "RSS monitoring should be limited to new features or materials, large expected settlement, rate control or asset management; each instrument must answer a question. Construction steps: site preparation, subsurface drainage, reinforcement, fill, face, repeat, surface drainage (pp. 10-56 to 10-57).",
+      "body": "RSS technology is well established, so monitoring programs should be limited to designs with new features or materials, substantial anticipated post-construction settlement and/or construction rates requiring control, or asset management (p. 10-56). If monitoring is used, first define the purpose of the measurements; every instrument should help answer a specific question, and if there is no question there should be no instrumentation. Each construction step is controlled by method requirements and tolerances: for in-house designs they are detailed on the drawings and specifications; for end-result specifications, agency-specific construction manuals for the proprietary system should be obtained from the contractor and may be required to place the system on an approved products list. RSS construction is considerably simpler than MSE wall construction and consists of (pp. 10-56 to 10-57): site preparation; construct subsurface drainage features; place reinforcement layer; place and compact backfill on reinforcement; construct face; place additional reinforcement and fill; construct surface drainage features.",
+      "key_points": [
+        "Monitoring only for new features, large settlement, rate control or asset management.",
+        "Construction steps: site prep, subsurface drainage, reinforcement, fill, face, repeat, surface drainage."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to monitoring and construction control of reinforced soil slopes."
+    },
+    {
+      "section_id": "10.4.5",
+      "title": "Cost Data",
+      "summary": "RSS economy must be assessed case by case with a benefit-cost analysis of a steeper reinforced slope versus a flatter slope with more ROW and fill, including guardrails and erosion control. Bid prices about $10 to $24 per sq ft by height; about $16 per sq ft for 30- to 50-ft slopes (pp. 10-57 to 10-58).",
+      "body": "The economy of RSS must be assessed case by case where use is not dictated by space constraints, with a benefit-to-cost analysis of a steeper reinforced slope against a flatter slope with its added right-of-way and material costs (p. 10-57). Guardrails or traffic barriers are often needed for steeper slopes, and erosion control for face protection must be included. Factors to consider: cut or fill quantities; slope area size and average height; slope angle; cost of non-select versus select backfill; temporary and permanent erosion protection; cost and availability of right-of-way; complicated horizontal and vertical alignment changes; need for temporary excavation support; maintenance of traffic; aesthetics; and guardrail and barrier requirements. High RSS have relatively higher reinforcement and lower backfill costs (p. 10-58). Recent bid prices (GEC 11) suggest $10 to $24 per square foot as a function of height, and about $16 per square foot for the 30- to 50-foot height range, excluding safety features and drainage details.",
+      "key_points": [
+        "Use a benefit-cost comparison against a flatter unreinforced slope.",
+        "Bid prices about $10 to $24/sq ft by height; about $16/sq ft for 30-50 ft slopes (GEC 11).",
+        "Prices exclude safety features and drainage details."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Use for preliminary cost evaluation of reinforced soil slopes."
+    },
+    {
+      "section_id": "10.4.5.1",
+      "title": "Cost Components",
+      "summary": "Relative RSS costs from limited data: reinforcement 45 to 65 percent, reinforced fill 30 to 50 percent and face treatment 5 to 10 percent of total cost; compared with flatter slopes, the savings in soil alone often pay for the reinforcement (p. 10-58).",
+      "body": "The bid cost of a specific RSS depends on the cost of each of its principal components (p. 10-58). Based on limited data, typical relative costs are: reinforcement, 45 to 65 percent of total cost; reinforced fill, 30 to 50 percent; and face treatment, 5 to 10 percent. For RSS systems used as an alternate to flatter slopes, the savings in the soil alone will often pay for the reinforcement, as well as providing a more sustainable solution.",
+      "key_points": [
+        "Reinforcement 45-65%; reinforced fill 30-50%; face treatment 5-10% of total cost."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to cost breakdowns for reinforced soil slopes."
+    },
+    {
+      "section_id": "10.5.0",
+      "title": "Soil Nail Walls",
+      "summary": "Section heading for soil nail walls: feasibility considerations, construction and materials, design overview, construction specifications and quality assurance, and cost data, with detailed guidance in GEC 7 (pp. 10-59 to 10-79).",
+      "body": "Section 5.0 (p. 10-59) covers soil nail walls built top-down: feasibility considerations (5.1), construction and materials (5.2), design overview (5.3), specifications and quality assurance (5.4) and cost data (5.5). Detailed guidance is in GEC 7.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Entry point for soil nail walls for top-down excavation support and slope stabilization."
+    },
+    {
+      "section_id": "10.5.1",
+      "title": "Feasibility Considerations",
+      "summary": "Soil nail walls are built top-down in excavation lifts of limited height with nails and initial shotcrete at each lift, then a final shotcrete or cast-in-place facing; they suit ground that can stand in short vertical or near-vertical cuts temporarily. GEC 7 discusses favorable conditions and cost factors (p. 10-59).",
+      "body": "Soil nail walls are constructed top-down: the ground is excavated in lifts of limited height and soil nails and an initial shotcrete facing are installed at each lift to provide support; a final shotcrete or cast-in-place concrete (CIP) facing is then installed (p. 10-59). Soil nail walls can be more advantageous than other top-down retaining systems where the ground can temporarily sustain short, vertical or sub-vertical unsupported cuts. GEC 7 discusses favorable and unfavorable subsurface conditions for cost-effective soil nailing, useful in evaluating feasibility, and the main factors affecting construction cost.",
+      "key_points": [
+        "Top-down construction in limited-height lifts.",
+        "Requires ground that stands temporarily in short vertical or near-vertical cuts."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to screening soil nailing for an excavation or cut."
+    },
+    {
+      "section_id": "10.5.1.1",
+      "title": "Applications",
+      "summary": "Soil nail wall applications: roadway cuts, road widening under existing bridge abutments, tunnel portals, repair of existing retaining structures, hybrid systems with anchors or MSE walls, shored MSE walls for low-volume roads in steep terrain, and temporary or permanent excavation support and slope stabilization (pp. 10-59 to 10-60).",
+      "body": "Soil nail walls can be used in the following roadway applications (pp. 10-59 to 10-60): roadway cuts, where only limited excavation and reasonable right-of-way and clearing limits are required; road widening under existing bridge abutments, where the small drill rig can work in limited overhead and underpass traffic may not need to be fully interrupted; tunnel portals, similar to road cuts with additional design and construction aspects; repair and reconstruction of existing retaining structures, stabilizing or strengthening failing or distressed structures; hybrid soil nail systems combined with ground anchor walls or MSE walls for complex layouts or where other systems are too costly; shored mechanically stabilized earth (SMSE) walls, combining permanent soil nail walls with MSE walls to limit excavation when widening low-volume roads in steep terrain (Section 6.2); and temporary and permanent excavation support and slope stabilization.",
+      "key_points": [
+        "Roadway cuts; widening under bridge abutments; tunnel portals.",
+        "Repair of existing retaining structures; hybrid systems.",
+        "Shored MSE walls in steep terrain (Section 6.2)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Use to identify roadway applications suited to soil nail walls."
+    },
+    {
+      "section_id": "10.5.1.2",
+      "title": "Advantages and Potential Disadvantages",
+      "summary": "Soil nail advantages (GEC 7): smaller ROW, less disruption, fast, adjustable around obstructions, low headroom, remote sites, flexible, redundant, good seismic performance; more economical than gravity walls over about 12 to 15 ft. Limitations: strict movement criteria, utilities, groundwater seepage, permanent easements (pp. 10-60 to 10-61).",
+      "body": "Advantages (printed 5.1.2.1, GEC 7) fall into construction, performance and cost (pp. 10-60 to 10-61). Construction: smaller right-of-way than most retention systems; less traffic disruption and environmental impact than drilled shafts or soldier piles; less congestion than braced excavations; relatively fast installation; easy adjustment of nail inclination and location around obstructions (boulders, piles, utilities); less restricted by overhead limits, important under bridges; cost-effective at remote sites with smaller equipment; multipurpose equipment; many qualified contractors and widespread engineering knowledge; curves and bends accommodated more easily than other top-down walls. Performance: relatively flexible, accommodating large total and differential movements; measured deflections usually tolerable when construction is controlled; good seismic performance; more redundancy than anchored walls because of more reinforcing elements per unit area; sculpted facings possible. Cost: conventional soil nail walls tend to be more economical than conventional concrete gravity walls taller than approximately 12 to 15 feet, and typically equal or better in cost than ground anchor walls with conventional procedures. Potential disadvantages or limitations (printed 5.1.2.2, p. 10-61): strict movement criteria may require costly additional measures or make nails infeasible; utilities behind the wall restrict nail location, inclination and length, especially in upper rows; not well suited where large groundwater seepage enters the excavation; permanent walls require permanent underground easements.",
+      "key_points": [
+        "More economical than conventional concrete gravity walls taller than about 12 to 15 ft.",
+        "More redundancy than anchored walls; good seismic performance.",
+        "Limitations: strict movement criteria, utilities, heavy seepage, permanent easements."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Use when weighing soil nail walls against other top-down retaining systems."
+    },
+    {
+      "section_id": "10.5.1.3",
+      "title": "Feasibility Evaluations",
+      "summary": "Soil nailing works best where soil stands unsupported in a 4- to 6-ft cut for one to two days, nails are above groundwater and holes stay open uncased; well-suited, marginal and unfavorable ground types are listed. Corrosion potential (pH, resistivity, chloride, sulfate, organics) must be evaluated on every project (pp. 10-61 to 10-64).",
+      "body": "Geotechnical (printed 5.1.3.1, pp. 10-61 to 10-63): soil nail walls suit a wide range of soils and can be built in mixed stratigraphy if each layer is suitable and stable. Soil nailing is economically attractive and feasible where the excavated soil can stand unsupported in a 4- to 6-foot high vertical or nearly vertical cut for one to two days; nails in permeable ground are above the groundwater table; and drill holes stay stable without casing until tendons are grouted. Well-suited ground: dense to very dense granular soils with apparent cohesion; weathered rock with adverse weakness planes (as printed); stiff to hard fine-grained soils; engineered fill; residual soils; glacial till. Difficult or marginal: non-engineered fill; residual soils with unsuitable conditions. Unfavorable: dry, poorly graded cohesionless soils; granular soils with high groundwater; cobbles and boulders; soft to very soft fine-grained soils; collapsible soils; organic soils; highly corrosive soil or groundwater; weathered rock with unfavorable weakness planes; karst; loess; glacial till (also printed in this list); expansive soils. Environmental (printed 5.1.3.2, GEC 7, pp. 10-63 to 10-64): corrosion potential must be evaluated on every project by laboratory and field testing of pH, electrical resistivity, chloride, sulfate and organic content. Aggressive soils (FHWA 2009) include acidic soils (pH less than 5, pyritic or high soluble iron), sodic soils in arid environments, calcareous soils (7 < pH < 9, mildly corrosive), organic soils (sulfate-reducing bacteria, pitting), industrial fills (slag, fly ash, debris, mine tailings), coastal salts and road deicing salts. Site conditions (printed 5.1.3.3): see Section 5.3.1 and Table 10-14.",
+      "key_points": [
+        "Favorable: soil stands unsupported 4-6 ft high for one to two days; nails above water table; uncased holes stable.",
+        "Unfavorable: dry poorly graded cohesionless soils, high groundwater in granular soils, soft fines, collapsible, organic, karst, loess, expansive soils.",
+        "Corrosion testing every project: pH, resistivity, chloride, sulfate, organic content.",
+        "Acidic soils: pH less than 5; calcareous soils 7 < pH < 9."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to judging ground and corrosion suitability for soil nail walls."
+    },
+    {
+      "section_id": "10.5.1.4",
+      "title": "Alternative Solutions",
+      "summary": "Top-down alternatives to soil nail walls: ground anchored walls with flexible or stiff facing, sheetpile with or without deadman tiebacks, soldier pile and lagging, braced, soil mixing and jet grouted walls (FHWA 2008b); with room for a temporary backcut, bottom-up walls such as cantilever, gravity or MSE may be cheaper (p. 10-64).",
+      "body": "In cut situations where top-down construction will be used, alternative wall types are ground anchored walls with flexible or stiff facing, sheetpile with or without deadman tiebacks, soldier pile and lagging, braced, soil mixing and jet grouted wall structures (p. 10-64). See FHWA (2008b) for these systems and wall type selection guidance. If right-of-way and soil conditions are sufficient for a temporary backcut, bottom-up walls may be more economical than soil nail walls, including cantilever, gravity, semi gravity, counterfort concrete and MSE walls.",
+      "key_points": [
+        "Top-down alternatives: anchored, sheetpile, soldier pile and lagging, braced, soil mix, jet grout walls.",
+        "Bottom-up walls may be cheaper if a temporary backcut is possible."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Use to compare soil nail walls with other excavation support systems."
+    },
+    {
+      "section_id": "10.5.2",
+      "title": "Construction and Materials",
+      "summary": "General construction requirements for soil nail walls are in GEC 7; the section gives the general construction sequence, notes that walls may be specified by performance (end-result) or procedural (method) specifications, and describes materials in Section 5.2.2 (p. 10-64).",
+      "body": "General construction requirements and guidance for soil nail walls are in GEC 7 (p. 10-64). The general construction sequence is presented in Section 5.2.1. As discussed in Section 5.4, soil nail walls may be specified with a performance (end-result) or a procedural (method) specification. The variety of materials used are discussed in Section 5.2.2.",
+      "key_points": [
+        "Guidance: GEC 7.",
+        "Specification may be end-result or method type."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Entry point for soil nail wall construction sequence and materials."
+    },
+    {
+      "section_id": "10.5.2.1",
+      "title": "Construction",
+      "summary": "Soil nail construction sequence (Figure 10-13): excavation lift typically 3 to 5 ft (2.5 to 7 ft) standing one to two days; drill; install and tremie-grout tendons and strip drains; 4-in. lightly reinforced initial shotcrete with bearing plate and nut tightened within 24 h, 72 h cure; repeat; final facing and drainage (pp. 10-65 to 10-67).",
+      "body": "The typical sequence (GEC 7; Figure 10-13, pp. 10-65 to 10-67): Step 1, excavation: the initial lift (unsupported cut) may range from 2.5 to 7 feet but is typically 3 to 5 feet, reaching slightly below the first nail row; the face must stand unsupported until nails and initial face are installed, typically one to two days, and the platform must be wide enough for the equipment. Step 2, drilling of nail holes from the platform, typically unsupported. Step 3A, nail installation and grouting: tendons placed with a tremie grout pipe and the hole filled under gravity or nominal low pressure; with hollow bars drilling and grouting are one operation. Step 3B, strip drains installed continuously on the face between nails and unrolled to the next lift. Step 4, initial shotcrete facing: typically a lightly reinforced 4-inch layer with WWM in the middle and bars around nail heads; a bearing plate is pressed into fresh shotcrete and the hex nut is wrench-tightened within 24 hours; some nails may be tested before the next lift; shotcrete must reach its 3-day strength before further excavation, with 72 hours assumed for planning. Step 5, subsequent levels repeat Steps 1-4, overlapping WWM by at least one full mesh cell. Step 6, final facing of CIP concrete, reinforced shotcrete or prefabricated panels, with weepholes, foot drain and ditches. Variations include shotcreting each lift before drilling where face stability is a concern, and placing the tendon in pre-grouted holes.",
+      "key_points": [
+        "Excavation lift 2.5 to 7 ft, typically 3 to 5 ft; must stand one to two days.",
+        "Initial facing: lightly reinforced 4-in. shotcrete; nut tightened within 24 h.",
+        "Shotcrete 3-day strength before next lift; plan on 72 h cure.",
+        "WWM panels overlap at least one full mesh cell."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10-13: Typical soil nail wall construction sequence. (modified after FHWA 1994; p. 10-65)"
+      ],
+      "tables": [],
+      "applicability": "Applies to the field construction sequence of drilled and grouted soil nail walls."
+    },
+    {
+      "section_id": "10.5.2.2",
+      "title": "Materials",
+      "summary": "Soil nail materials (Figure 10-14): solid bar tendons (Grade 60 or 75, threaded, Nos. 8-11, max 60 ft, in 4- to 8-in. holes at about 15 degrees), bearing plates (8-10 in. square, 0.75-1 in. thick), neat cement grout by tremie, PVC centralizers, sheathing, epoxy or galvanizing, two-stage facings and strip drains (pp. 10-67 to 10-69).",
+      "body": "The main components of a solid bar soil nail wall are shown in Figure 10-14 (p. 10-67); see GEC 7 for hollow bar soil nails (HBSN). Tendons (printed 5.2.2.1): solid bars are most common, placed in typically 4- to 8-inch holes drilled at a shallow angle (usually 15 degrees from horizontal) by cased or open-hole methods, then grouted; nominal tensile strength 60 ksi (Grade 60) or 75 ksi (Grade 75); threaded; commonly size Nos. 8, 9, 10 and 11; maximum manufactured length 60 feet; generally continuous without splices or welds (pp. 10-67 to 10-68). Connection components (5.2.2.2): bearing plates, beveled washers, hex nuts, washers and headed studs; the plate, commonly Grade 36 (AASHTO M183/ASTM A36) or Grade 50, is usually square and flat, 8 to 10 inches on a side and 0.75 to 1 inch thick. Grout (5.2.2.3): generally neat cement, tremied through a grout tube shortly after the bar is placed; the unfilled bird's beak at the hole mouth is filled with shotcrete. Centralizers (5.2.2.4): PVC or other non-corrosive material at regular intervals to ensure grout cover. Corrosion protection (5.2.2.5): corrugated HDPE or PVC sheathing with grouted annulus, fusion-bonded epoxy coating, or hot-dip galvanizing (pp. 10-68 to 10-69). Wall facings (5.2.2.6): an initial facing of shotcrete with WWM and short waler and vertical bars supports the soil during excavation; the final facing of CIP or reinforced shotcrete provides long-term resistance and finish. Drainage (5.2.2.7): geocomposite strip drains behind the initial facing; they will likely not eliminate hydrostatic pressure, so with groundwater above the wall base the wall must be designed for it or dewatered (e.g., horizontal drains), with a flow net for high groundwater (p. 10-69).",
+      "key_points": [
+        "Solid bar tendons: Grade 60 or 75, threaded, Nos. 8-11, maximum 60 ft, usually no splices.",
+        "Drill holes 4 to 8 in. diameter, usually 15 degrees from horizontal.",
+        "Bearing plates: Grade 36 or 50, 8-10 in. square, 0.75-1 in. thick.",
+        "Strip drains do not eliminate hydrostatic pressure below their interception level."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10-14: Main components of a solid bar soil nail and wall facing. (modified after FHWA 1994; p. 10-67)"
+      ],
+      "tables": [],
+      "applicability": "Use when specifying soil nail tendons, hardware, grout, corrosion protection, facing and drainage."
+    },
+    {
+      "section_id": "10.5.3",
+      "title": "Design Overview",
+      "summary": "GEC 7 soil nail design uses ASD and limit equilibrium slope stability to find nominal nail and component loads and slip surfaces, then LRFD checks for service, strength and extreme-event limit states consistent with AASHTO (2014), using GEC 7 resistance factors with AASHTO load factors (pp. 10-69 to 10-70).",
+      "body": "The soil nail wall design in GEC 7 relies on ASD- and limit equilibrium-based slope stability calculations to quantify nominal soil nail and component loads and the corresponding slip surface geometries (pp. 10-69 to 10-70). Those nominal loads are then used to perform LRFD checks. The GEC 7 LRFD framework considers service, strength and extreme-event limit states, consistent with AASHTO (2014). Recommended resistance factors for soil nail walls are in GEC 7, to be used with load factors in AASHTO (2014).",
+      "key_points": [
+        "Nominal loads from ASD limit equilibrium; then LRFD checks.",
+        "Resistance factors from GEC 7; load factors from AASHTO (2014)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to the design framework for soil nail walls."
+    },
+    {
+      "section_id": "10.5.3.1",
+      "title": "Design Considerations",
+      "summary": "Project-specific requirements affecting soil nail wall design: wall height, length and location; physical constraints; effects on movement-sensitive adjacent structures; access and ROW; overhead and lateral limits; utilities; aesthetics; traffic closure; staging areas. A field reconnaissance is highly recommended (p. 10-70).",
+      "body": "Engineers must become familiar with the project-specific requirements that would affect the design, construction and performance of a soil nail wall (p. 10-70): preliminary site development plans with wall height, length and location relative to new infrastructure; physical constraints (wall near a bridge abutment, cut in steep terrain, near a waterway or subject to scour); potential effects on existing or future adjacent structures sensitive to movement; accessibility and right-of-way; overhead and lateral limitations; existing or new utilities in front of, under and behind the wall; aesthetics of the finish; need for partial or full traffic closure; and availability of staging areas. These are not unique to soil nail walls but must be carefully considered at the initial design stage, and a field reconnaissance is highly recommended (GEC 7).",
+      "key_points": [
+        "Consider movement-sensitive adjacent structures and utilities early.",
+        "Field reconnaissance highly recommended."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Use when gathering project requirements for soil nail wall design."
+    },
+    {
+      "section_id": "10.5.3.2",
+      "title": "Design Steps",
+      "summary": "Tables 10-14 and 10-15 list soil nail wall design steps (GEC 7): project requirements, subsurface exploration and parameters, loads; then nail configuration, resistance factors, overall stability, strength limit states (pullout, tensile, facing), service limit states, seismic design, drainage, other considerations and drawings (pp. 10-70 to 10-72).",
+      "body": "The major steps and sub-steps are listed in Tables 10-14 and 10-15 (pp. 10-71 to 10-72, source GEC 7); the design requirements, guidance and example calculations are in GEC 7 (p. 10-70). Table 10-14, initial steps: Step 1, project requirements (requirements, standards and constraints; performance; preliminary geotechnical information); Step 2, subsurface exploration and design parameters (exploration, laboratory testing, soil corrosion potential and level of protection, profiles, soil parameters, seismic parameters, risk analysis); Step 3, load definition (unfactored service loads; load combinations and load factors). Table 10-15, main steps: Step 4, soil nail configuration and material selection (layout, cross sections, nail pattern, horizontal splaying, corrosion protection, nail type and properties); Step 5, selection of resistance factors; Step 6, overall stability (internal, global, basal heave and sliding if applicable); Step 7, strength limit states (pullout, sliding, nail tensile resistance, facing flexural, punching shear and headed stud resistance, other facing considerations); Step 8, service limit states (lateral and vertical displacements; lateral squeeze if applicable); Step 9, seismic design (parameters, adjusted coefficients, overall stability with seismic loads); Step 10, drainage (internal, surface runoff, details, specialty items); Step 11, other considerations (constructability, load-testing and monitoring plans); Step 12, construction drawings and specifications.",
+      "key_points": [
+        "Initial steps 1-3: requirements, exploration and parameters, loads (Table 10-14).",
+        "Main steps 4-12: configuration, resistance factors, stability, strength and service limit states, seismic, drainage, drawings (Table 10-15).",
+        "Strength checks: pullout, nail tension, facing flexure, punching shear, headed studs."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 10-14: Initial Soil Nail Wall Design Steps and Considerations (p. 10-71)",
+        "Table 10-15: Main Soil Nail Wall Design Steps (pp. 10-71 to 10-72)"
+      ],
+      "applicability": "Applies to the design sequence for permanent soil nail walls."
+    },
+    {
+      "section_id": "10.5.3.3",
+      "title": "Primary Design References",
+      "summary": "The primary reference for soil nail wall design is GEC 7 (2015), Soil Nail Walls Reference Manual (FHWA NHI-14-007); AASHTO (2014) does not address soil nail walls; FHWA (1994) Soil Nailing Field Inspectors Manual gives greater detail on inspection and testing (pp. 10-72 to 10-73).",
+      "body": "The primary reference for design of soil nail walls for transportation works is GEC 7 (2015), Soil Nail Walls Reference Manual (Lazarte et al.; FHWA NHI-14-007) (p. 10-72). The current AASHTO (2014) specifications do not address soil nail walls, though they are expected to be included in future updates. Installation and construction procedures are integral to the design process; GEC 7 discusses construction quality assurance, and greater detail on inspection methods, nail testing, inspection forms and difficult ground during construction is in FHWA (1994), Soil Nailing Field Inspectors Manual (Porterfield, Cotton and Byrne; FHWA-SA-93-068) (p. 10-73).",
+      "key_points": [
+        "Primary: GEC 7 (2015).",
+        "AASHTO (2014) does not address soil nail walls.",
+        "Inspection detail: FHWA (1994)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Use to locate design and inspection guidance for soil nail walls."
+    },
+    {
+      "section_id": "10.5.4",
+      "title": "Overview of Construction Specifications and Quality Assurance",
+      "summary": "Heading for soil nail wall construction specifications and quality assurance: specification development, quality assurance with Table 10-16 inspector responsibilities and nail load testing, and instrumentation monitoring and construction control (pp. 10-73 to 10-78).",
+      "body": "Section 5.4 (p. 10-73) gives an overview of soil nail wall construction specifications and quality assurance: specification development (5.4.1), quality assurance including inspector responsibilities and verification and proof testing (5.4.2), and instrumentation monitoring and construction control (5.4.3).",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Entry point for contracting, inspection and monitoring of soil nail walls."
+    },
+    {
+      "section_id": "10.5.4.1",
+      "title": "Specification Development",
+      "summary": "Permanent soil nail walls are contracted by a procedural (method) approach with all design, materials and methods specified, or a performance (end-result) approach with outcome criteria and a contractor design submittal; selection depends on criticality, complexity, owner experience and contractor availability (p. 10-73).",
+      "body": "Two contracting methods can be used for permanent soil nail walls (p. 10-73): a procedural or method approach, with all details of design, construction materials and methods specified in the contract documents; and a performance or end-result approach, where the documents specify criteria for a successful outcome without prescribing full design, detailing or methods, and a detailed design submittal accompanies the construction drawings. Both are valid if properly implemented, each with advantages and potential disadvantages. The method is selected based on the criticality and complexity of the project, the experience of the owner and its consultants, and the availability of specialty contractors. See GEC 7 and/or GeoTechTools for specification guidance and examples.",
+      "key_points": [
+        "Method (procedural) or end-result (performance) contracting.",
+        "Choice depends on criticality, complexity, owner experience and contractor availability."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to choosing a contracting method for permanent soil nail walls."
+    },
+    {
+      "section_id": "10.5.4.2",
+      "title": "Summary of Quality Assurance",
+      "summary": "Soil nail QA covers material and activity inspection, identifying conditions needing changed procedures or design, and nail load testing. Steel accepted by mill certificates plus visual checks; Table 10-16 lists inspector duties by phase; verification tests and proof tests on at least 5 percent of production nails (pp. 10-73 to 10-78).",
+      "body": "Construction QA includes inspection of materials, inspection of construction activities, identification of site or soil conditions requiring modified procedures or design, and load testing of installed nails (p. 10-73). Material inspection covers quality, storage and corrosion protection (p. 10-74). Steel components (tendons, plates, nuts, washers, WWM, rebar) are normally accepted on mill certifications plus visual inspection for transport or storage damage; cement on producer certification pending grout compressive tests; potable water is generally suitable without testing; corrosion protection of all tendons is inspected on site, and damaged protection is repaired or the tendon replaced. Table 10-16 (pp. 10-74 to 10-77, source FHWA 2008b) lists inspector responsibilities by phase: contractor set up; nail storage and handling (keep dry, off the ground); excavation (line and grade, soil identification, face stability, no over-excavation, sequencing, seepage); drilling (method suited to ground, tolerances, hard drilling, no loss of ground); tendon installation and grouting (hole condition, bar and coating damage, grout volume, minimum length, centralizers, tremie from the bottom, no auger reversal); load testing (calibration, gauges, cure time, retest only after procedures are modified); drainage installation; wall facing (mix, reinforcement position, thickness, joints, test panels); and post installation (pay quantities). Both contractor and inspector should understand the soil conditions assumed in design (pp. 10-77 to 10-78). Verification tests confirm that the contractor's methods achieve the design pullout resistance and bond strength; proof tests, generally on a minimum of 5 percent of production nails, verify there are no significant variations across the wall.",
+      "key_points": [
+        "Steel accepted on mill certificates plus visual inspection.",
+        "Grout placed by tremie from the bottom of the hole, pipe kept below the grout level.",
+        "Proof tests on a minimum of 5 percent of production nails; verification tests confirm design bond.",
+        "Do not retest a failed nail until installation procedures are modified."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 10-16: Inspector Responsibilities for a Typical Soil Nail Wall (pp. 10-74 to 10-77)"
+      ],
+      "applicability": "Use when planning inspection and nail load testing for soil nail walls."
+    },
+    {
+      "section_id": "10.5.4.3",
+      "title": "Summary of Instrumentation Monitoring and Construction Control",
+      "summary": "Soil nail wall monitoring may use inclinometers, survey points, load cells and strain gauges; it should be included for critical or unusual walls, for at least 1 year after construction, with each instrument selected to answer a specific question (p. 10-78).",
+      "body": "Performance monitoring instrumentation for soil nail walls could include inclinometers, wall survey points, load cells and/or strain gauges (p. 10-78). Inclinometers and survey points measure wall movements during and after construction; strain gauges measure the development and distribution of nail forces to improve future designs. Performance monitoring should be included in any critical or unusual soil nail wall installation, and monitoring for at least 1 year after construction is recommended to examine service deformation and stress development in the nails and facing as a function of load, time and environmental changes such as freeze-thaw cycles (GEC 7). If a monitoring program is used, first define the purpose of the measurements; every instrument should be selected and placed to answer a specific question, and if there is no question there should be no instrumentation.",
+      "key_points": [
+        "Instruments: inclinometers, survey points, load cells, strain gauges.",
+        "Monitor critical or unusual walls for at least 1 year after construction."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to performance monitoring of soil nail walls."
+    },
+    {
+      "section_id": "10.5.5",
+      "title": "Cost Data",
+      "summary": "Permanent soil nail walls on public transportation projects typically cost about $70 to $100 per square foot of wall (2014) and can save 10 to 30 percent compared with other common retaining structures when conventional procedures are used (pp. 10-78 to 10-79).",
+      "body": "The construction costs of permanent soil nail walls in public transportation projects typically range from approximately $70 to $100 per square foot of wall in 2014 (p. 10-78). Compared with typical cost ranges for other commonly used retaining structures on highway projects, soil nail walls can provide a 10 to 30 percent cost savings when conventional soil nailing construction procedures are used (pp. 10-78 to 10-79). Actual construction cost may be considerably lower or higher depending on the factors listed in Section 5.5.1 (GEC 7).",
+      "key_points": [
+        "Typical permanent wall cost about $70 to $100 per square foot (2014).",
+        "10 to 30 percent savings versus other common retaining structures."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Use for preliminary cost comparison of soil nail walls."
+    },
+    {
+      "section_id": "10.5.5.1",
+      "title": "Factors Affecting Cost and Construction Schedule",
+      "summary": "Factors affecting soil nail wall cost and schedule: specialty contractor availability, mobilization, access and ROW, working space and drill platform, variable ground, temporary face support or berms, drilling obstructions, casing needs, facing aesthetics, seismicity and frost, and extra verification tests (p. 10-79).",
+      "body": "Important factors in cost comparison for soil nail walls (p. 10-79; see GEC 7 for more) are: availability of specialty contractors skilled in soil nailing and shotcrete near the site; cost of mobilization; site accessibility and right-of-way; sufficient space to operate equipment, including a drill platform; large variations of ground conditions over small distances, requiring frequent changes of drilling equipment and procedures; need for temporary support of exposed soil between lifts, including an intermediate soil berm; difficult drilling due to obstructions (utilities, large aggregate or stone particles); need for in-hole stability such as casing to avoid collapse; special facing aesthetics such as precast panels or sculpted facings; regional conditions including high seismicity and frost susceptibility; and changing ground conditions requiring numerous additional verification load tests.",
+      "key_points": [
+        "Contractor availability, mobilization, access and working space.",
+        "Variable ground, obstructions, casing, temporary face support.",
+        "Aesthetic facings, seismicity, frost, extra verification tests."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to estimating cost and schedule risk for soil nail walls."
+    },
+    {
+      "section_id": "10.6.0",
+      "title": "Related and Alternative Technologies",
+      "summary": "Section heading for technologies related to the four primary reinforcement applications: deep patching, shored MSE walls, stable feature MSE walls, shoot-in nails, screw-in nails and construction working platforms (pp. 10-80 to 10-84).",
+      "body": "Section 6.0 (p. 10-80) describes related and alternative reinforced soil technologies: deep patching (6.1), shored MSE walls for steep terrain and low volume roads (6.2), stable feature MSE walls (6.3), shoot-in nails (6.4), screw-in nails (6.5) and construction working platforms (6.6).",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Entry point for reinforced soil technologies beyond the four primary applications."
+    },
+    {
+      "section_id": "10.6.1",
+      "title": "Deep Patching",
+      "summary": "Deep patch is a temporary mitigation for sliding road sections in steep terrain, usually side-cast fills: layers of soil reinforcement in the top of the failing embankment, built from the road by a small crew; it slows rather than stops movement; empirical design in Musser and Denning (2005), reviewed in FHWA (2012) (p. 10-80).",
+      "body": "The deep patch is a temporary mitigation technique for sliding roadway sections in steep terrain, typically on roads with chronic slide movements resulting mainly from side cast fill construction (p. 10-80). A main advantage is that it is built with equipment operating from the roadway, without accessing the toe of the failed area. It is generally not expected to completely arrest movement but to slow it to manageable levels. Deep patch repairs reinforce the top of a failing embankment with several layers of soil reinforcement (Figure 10-15). The work is typically done by a small crew of a laborer, hydraulic excavator and dump truck. Design determines the extent of the roadway failure from visual observations of cracking and then uses analytical or empirical methods for the reinforcement requirements. An empirical design procedure is in the Deep Patch Road Embankment Repair Application Guide (Musser and Denning 2005, USDA Forest Service with FHWA Federal Lands), and a review of the design methodology is in FHWA (2012).",
+      "key_points": [
+        "Temporary repair; slows rather than arrests movement.",
+        "Built from the roadway without toe access.",
+        "Empirical design: Musser and Denning (2005); review: FHWA (2012)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10-15: Deep patch roadway embankment repair. (Musser and Denning 2005; p. 10-80)"
+      ],
+      "tables": [],
+      "applicability": "Applies to temporary repair of chronically sliding roadway fills in steep terrain."
+    },
+    {
+      "section_id": "10.6.2",
+      "title": "Shored MSE Walls for Steep Terrains and Low Volume Roads",
+      "summary": "In steep terrain MSE walls need benches for reinforcement longer than 8 ft or 70% of wall height; where excavation is impractical, shoring (usually soil nail walls) stabilizes the back-cut with an MSE wall in front, forming a shored MSE (SMSE) wall that can reduce long-term pressures (FHWA 2006; GEC 11) (p. 10-81).",
+      "body": "In steep terrain, MSE wall construction requires excavation for a flat bench to accommodate reinforcements with a minimum length of greater than 8 feet or 70 percent of the wall height, and the required embedment is proportional to the steepness of the slope below the toe (p. 10-81). In some cases the excavation becomes substantial and unshored excavation is impractical, particularly where traffic must be maintained. Shoring, most often soil nail walls, has been used to stabilize the backslope (back-cut), with an MSE wall designed and built in front of it (Figure 10-16). If the shoring wall is designed as permanent, it can significantly reduce the long-term lateral pressures on the MSE wall. This configuration is a shored MSE (SMSE) wall; details are in FHWA (2006), with additional design and detailing guidance in GEC 11.",
+      "key_points": [
+        "MSE reinforcement minimum length greater than 8 ft or 70% of wall height.",
+        "Shoring usually soil nail walls; permanent shoring reduces long-term pressure on the MSE wall.",
+        "Guidance: FHWA (2006) and GEC 11."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10-16: Generic cross-section of a shored MSE (SMSE) wall system for steep terrains. (FHWA 2006; p. 10-81)"
+      ],
+      "tables": [],
+      "applicability": "Applies to MSE walls for widening low volume roads in steep terrain with limited excavation."
+    },
+    {
+      "section_id": "10.6.3",
+      "title": "Stable Feature (SFMSE) MSE Walls",
+      "summary": "MSE walls may be built in front of apparently stable features such as a rock face; depending on the space between wall face and feature, a stable feature MSE (SFMSE) wall may behave like an SMSE wall; guidelines and minimum geometry are in GEC 11 (p. 10-82).",
+      "body": "MSE walls can be considered in front of apparently stable features such as a rock face, as shown in Figure 10-17 (p. 10-82). Depending on the space between the MSE wall face and the stable feature, the behavior of the stable feature MSE (SFMSE) wall may be similar to that of a shored MSE (SMSE) wall. Guidelines for designing and detailing such cases are summarized in GEC 11; Figure 10-17 shows the minimum recommended geometry of an SFMSE wall system.",
+      "key_points": [
+        "SFMSE walls are built in front of stable features such as rock faces.",
+        "Behavior may resemble SMSE walls depending on the gap; guidance in GEC 11."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10-17: Minimum recommended geometry of a stable feature MSE (SFMSE) wall system. (GEC 11; p. 10-82)"
+      ],
+      "tables": [],
+      "applicability": "Applies to MSE walls constructed close in front of rock faces or other stable features."
+    },
+    {
+      "section_id": "10.6.4",
+      "title": "Shoot-In Nails",
+      "summary": "Shoot-in nails are launched at over 200 mph at pressures approaching 2,500 psi to build temporary nail walls; bars typically 1-1/2 in. in diameter and up to 20 ft long act as dowels in shear and bending, not as drilled and grouted soil nails; proprietary with limited design procedures (pp. 10-82 to 10-83).",
+      "body": "Shoot-in nails use a high pressure system to insert passive inclusions into the ground to construct a temporary soil nail wall (p. 10-82). The bars are launched into the soil at high speeds over 200 miles per hour at pressures approaching 2,500 psi. Bars can be perforated fiberglass, perforated galvanized steel tube or bare steel tubes, typically 1-1/2 inches in diameter and up to 20 feet long. An epoxy-coated small-diameter threaded bar can be inserted into the tube after pressure grouting to increase structural capacity. Installation is fast with little site impact, but nail penetration length may be hard to control. Advantages include rapid construction, easy monitoring and testing, limited headroom and right-of-way, and tolerance of large deformations; potential disadvantages are that it is a proprietary, licensed technology, needs specialized contractors and equipment, and lacks simple, comprehensive design procedures. Applications include landslide repair and roadway and embankment widening (p. 10-83). Because the bars are generally not drilled and grouted, they do not meet the GEC 7 definition of a soil nail; a shoot-in nail acts as a dowel, contributing mainly through shear and localized bending, with limited axial capacity without grout. See GeoTechTools, USDA (1994a, 1994b) and Malouf and Collin (2013).",
+      "key_points": [
+        "Launch speed over 200 mph at pressures approaching 2,500 psi.",
+        "Bars typically 1-1/2 in. diameter, up to 20 ft long.",
+        "Act as dowels (shear and bending), not as drilled and grouted nails.",
+        "Proprietary; lacks simple comprehensive design procedures."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10-18: Shoot-in nail installation. (p. 10-83)"
+      ],
+      "tables": [],
+      "applicability": "Applies to temporary nail walls, landslide repairs and widening using launched nails."
+    },
+    {
+      "section_id": "10.6.5",
+      "title": "Screw-In Nails",
+      "summary": "Screw-in (helical) soil nails are 1.5-in. square steel shafts with welded helices spaced about 3.6 times the helix diameter, installed by torque; they act as anchors by helix bearing, not as grouted soil nails; used where access is difficult or areas small; corrosion is the major concern (pp. 10-83 to 10-84).",
+      "body": "Screw-in soil nailing uses helical soil nails to stabilize retained soils (p. 10-83). The nails typically comprise a 1.5-inch square solid steel shaft with steel helices welded at regular intervals, installed with drilling equipment of sufficient torque to penetrate the native soils. Helix spacing is a function of helix diameter, typically about 3.6 times the diameter. Screw-in nails are typically used in places difficult to access or for small areas (Collin and Cowell 1998). The bars are not drilled and grouted and so do not meet the GEC 7 definition of a soil nail; a screw-in nail acts as an anchor, contributing to stability by bearing resistance of the helices rather than by bond stress along the reinforcement (pp. 10-83 to 10-84). The installation is shown in Figure 10-19. The major concern is corrosion, because galvanization and coatings are damaged during installation, increasing exposure. Detailed information is at GeoTechTools (GEC 7).",
+      "key_points": [
+        "Shaft typically 1.5-in. square solid steel; helix spacing about 3.6 times helix diameter.",
+        "Acts as an anchor by helix bearing, not by grout bond.",
+        "Corrosion is the major concern because coatings are damaged during installation."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10-19: Screw-in nail installation. (p. 10-84)"
+      ],
+      "tables": [],
+      "applicability": "Applies to helical nail stabilization at small or hard-to-access sites."
+    },
+    {
+      "section_id": "10.6.6",
+      "title": "Construction Working Platform",
+      "summary": "Construction working platforms use geosynthetic reinforcement in granular fill to support equipment and traffic over soft soils without mud waves or excessive ruts; design is based on local bearing capacity (with reinforced Nc values, Chapter 9) or slope stability, and is often done by the contractor (p. 10-84).",
+      "body": "Construction working platforms use geosynthetic reinforcement in granular fill to form a temporary platform that supports construction equipment and traffic over soft soils, avoiding mud waves and excessive ruts (p. 10-84). The geosynthetic layer increases the local bearing resistance of the soft subgrade. Design is commonly based on local bearing capacity or on slope stability; researchers have suggested different bearing capacity factors, Nc, for unreinforced versus geotextile-reinforced and geogrid-reinforced unpaved platforms, as covered in Chapter 9. A single geosynthetic layer is commonly used. Many ground modification techniques require heavy equipment on the soft soils to be modified, and contractors often use a working platform for temporary access and support, so platform design is often performed by the contractor.",
+      "key_points": [
+        "Geosynthetic in granular fill increases local bearing resistance of soft subgrade.",
+        "Design by local bearing capacity (reinforced Nc, Chapter 9) or slope stability.",
+        "Usually a single layer; often designed by the contractor."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to temporary equipment platforms over soft ground for ground modification work."
+    },
+    {
+      "section_id": "10.7.0",
       "title": "References",
-      "body": "The primary micropile design reference for US transportation practice is FHWA-NHI-05-039 (Sabatini et al., 2005), which provides full LRFD design procedures. Additional references include: Lizzi (1978) for original pali radice concept; Juran et al. (1999) for reticulated micropile networks; ADSC/DFI Micropile Committee design guidelines; and Post-Tensioning Institute (PTI) anchorage design standards applicable to high-load micropiles. AASHTO LRFD Bridge Design Specifications (2014) Section 10.9 provides resistance factors. For seismic applications, refer to FHWA-SA-98-086 (MCEER) for retrofitting with micropiles. ICE specification for ground treatment (2012) provides model specifications. Field performance case histories are compiled in DFI Deep Foundations (various years) and the ISSMGE TC212 proceedings.",
+      "summary": "Reference list for Chapter 10, including AASHTO (2010, 2014, 2015), FHWA (2008a) geosynthetics guidelines, GEC 7 (2015), GEC 11 (2009), FHWA (2006) SMSE, FHWA (2009) corrosion/degradation, FHWA (2011a, b) GRS-IBS and Holtz (1989) (pp. 10-85 to 10-88).",
+      "body": "The chapter's reference list (pp. 10-85 to 10-88) includes the AASHTO design, construction and materials specifications (2010, 2014, 2015), ASTM standards (2015), FHWA (2008a) Geosynthetic Design and Construction Guidelines, FHWA (2008b) Earth Retaining Structures, FHWA (2009) Corrosion/Degradation of Soil Reinforcements, FHWA (2006) Shored MSE Wall Systems, FHWA (2011a, 2011b) GRS-IBS, GEC 7 (2015), GEC 11 (2009), Holtz (1989), Berg et al. (1989), Bonaparte and Christopher (1987) and Musser and Denning (2005).",
       "key_points": [
-        "Primary US reference: FHWA-NHI-05-039 (Sabatini et al. 2005) with full LRFD procedures",
-        "AASHTO LRFD Section 10.9 for resistance factors",
-        "Lizzi (1978): original pali radice concept; Juran et al. (1999): reticulated networks",
-        "Seismic retrofit: FHWA-SA-98-086 (MCEER)",
-        "GEC-13 Chapter 10 overview only; FHWA-NHI-05-039 required for full design",
-        "ASTM D1143/D3689/D3966 load test standards"
+        "Holtz (1989); Bonaparte and Christopher (1987); Berg et al. (1989)."
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Bibliography and key design references for micropile design and construction."
+      "applicability": "Use to trace the sources cited in Chapter 10."
     }
   ]
 }
