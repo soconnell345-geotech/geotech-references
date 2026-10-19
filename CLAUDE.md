@@ -6,7 +6,7 @@
 > a list in this file. Backlog, TODO and "follow-up" notes further down are
 > history (owner's rule, 2026-10-12).
 
-Standalone geotechnical reference library: digitized equations, figures, tables, and structured reference text from UFC 3-220-10/20 (the UFC successors to NAVFAC DM 7.01/7.02), FHWA GEC series, and other standards.
+Standalone geotechnical reference library: digitized equations, figures, tables, and structured reference text from UFS 3-220-10 (DM 7.1, 16 January 2026) and UFC 3-220-20 (DM 7.2, 16 January 2025), the successors to NAVFAC DM 7.01/7.02, FHWA GEC series, and other standards.
 
 **Two complementary components per reference:**
 1. **Python lookup scripts** (`tables.py`, `figures.py`, sometimes `equations.py`) — Digitized design charts, tables, and equations as callable functions. Written manually by Claude Code from the source PDFs.
@@ -24,7 +24,7 @@ geotech_references/           # Python package (pip install -e .)
   _retrieval_db.py             # SQLite FTS5 retrieval layer — reference_search / reference_get / reference_query (v1.2.0); one row per section at every level (REF-24)
   _figures_db.py               # SQLite FTS5 figure-catalog retrieval — figure_search / figure_get / resolve_pdf
   _query_expansion.py          # Synonym query-expansion recall lever for reference_search/figure_search; EXPANSION_STRATEGY off/fill/rerank/auto (env GEOTECH_RETRIEVAL_EXPANSION, default auto). See "Lexical Query Expansion" below.
-  dm7_1/                       # UFC 3-220-10 Soil Mechanics (8 chapters)
+  dm7_1/                       # UFS 3-220-10 Soil Mechanics (DM 7.1), 16 Jan 2026 (8 chapters)
     chapter1.py ... chapter8.py
     text/                      # Structured chapter JSON (8 chapters, 457 sections, 2026-04-07)
     figures_catalog.json       # 223 figures (number, caption, page, text-enriched description)
@@ -420,7 +420,7 @@ A **scheduled remote agent** ("routine") runs automated quality control on this 
 
 The agent's state file, tracking two things:
 
-**Per-chapter QC status** — `references.<key>.text` and `references.<key>.python` blocks; each file entry has `status` (`pending` / `done` / `pdf_unreadable`), `qc_date`, `issues_fixed`, and `notes`. Edition metadata (`pdf_edition`, `extraction_edition`) is per-reference; when they differ, the agent flags edition changes in `notes` rather than overwriting content (relevant for dm7_1: JSON from the 2022 edition, PDF is 2026).
+**Per-chapter QC status** — `references.<key>.text` and `references.<key>.python` blocks; each file entry has `status` (`pending` / `done` / `pdf_unreadable`), `qc_date`, `issues_fixed`, and `notes`. Edition metadata (`pdf_edition`, `extraction_edition`) is per-reference; when they differ, the agent flags edition changes in `notes` rather than overwriting content (dm7_1 was once recorded as extracted from the 2022 UFC; REF-28 (2026-10-19) found its text, sections, figures and equations match the 2026 UFS print and moved its docstring pages to the 2026 printed pages).
 
 **Implementation gaps** — `references.<key>.implementation_gaps`: figures/tables referenced in the JSON text that have NO corresponding Python lookup function. These are **TODOs for weekday authoring sessions** (e.g., a parameter-lookup chart that should become a `figure_X_Y_*()` function). The agent only flags them; it never writes the function.
 

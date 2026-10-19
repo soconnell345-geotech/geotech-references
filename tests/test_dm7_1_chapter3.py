@@ -1,4 +1,4 @@
-"""Comprehensive tests for geotech.dm7_1.chapter3 (UFC 3-220-10, Chapter 3).
+"""Comprehensive tests for geotech.dm7_1.chapter3 (UFS 3-220-10, Chapter 3).
 
 Tests cover every public function with valid inputs (hand-calculated expected
 results), edge cases, and all ValueError validation branches.

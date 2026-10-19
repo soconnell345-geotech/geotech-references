@@ -1,5 +1,5 @@
 """
-UFC 3-220-10, Chapter 8: Correlations for Soil and Rock
+UFS 3-220-10, Chapter 8: Correlations for Soil and Rock
 
 Equations 8-1 through 8-45 covering correlations for estimating soil
 engineering properties from index tests, SPT, CPT, and dilatometer data.
@@ -15,7 +15,7 @@ Topics include:
     - Shear wave velocity
 
 Reference:
-    UFC 3-220-10, Soil Mechanics, 1 February 2022, Change 1, 11 March 2025
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 January 2026
 """
 
 import math
@@ -60,8 +60,8 @@ def spt_n_correction_for_pore_pressure(n60: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-1, p. 432.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-1, p. 396.
     """
     if n60 < 0.0:
         raise ValueError("n60 must be non-negative.")
@@ -98,8 +98,8 @@ def spt_friction_angle_roads(n60: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-2, p. 433.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-2, p. 397.
     """
     if n60 < 0.0:
         raise ValueError("n60 must be non-negative.")
@@ -134,8 +134,8 @@ def spt_friction_angle_buildings(n60: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-3, p. 433.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-3, p. 397.
     """
     if n60 < 0.0:
         raise ValueError("n60 must be non-negative.")
@@ -178,8 +178,8 @@ def spt_friction_angle_kulhawy_mayne(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-4, p. 434.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-4, p. 398.
     """
     if n60 < 0.0:
         raise ValueError("n60 must be non-negative.")
@@ -222,8 +222,8 @@ def spt_friction_angle_wolff(n1_60: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-5, p. 435.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-5, p. 399.
     """
     if n1_60 < 0.0:
         raise ValueError("n1_60 must be non-negative.")
@@ -259,8 +259,8 @@ def spt_friction_angle_hatanaka_uchida(n1_60: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-6, p. 435.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-6, p. 399.
     """
     if n1_60 < 0.0:
         raise ValueError("n1_60 must be non-negative.")
@@ -307,8 +307,8 @@ def cpt_friction_angle_mayne(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-7, p. 436.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-7, p. 400.
     """
     if qt <= 0.0:
         raise ValueError("qt must be positive.")
@@ -383,8 +383,8 @@ def cpt_friction_angle_robertson_campanella(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-8, p. 438.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-8, p. 402.
     Robertson and Campanella (1983); Robertson and Cabal (2014).
     """
     if qc <= 0.0:
@@ -431,8 +431,8 @@ def cpt_oc_nc_resistance_ratio(ocr: float, beta: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-9, p. 439.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-9, p. 403.
     """
     if ocr < 1.0:
         raise ValueError("ocr must be >= 1.0.")
@@ -478,8 +478,8 @@ def dmt_horizontal_stress_index(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-10, p. 442.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-10, p. 406.
     """
     if sigma_v_eff <= 0.0:
         raise ValueError("sigma_v_eff must be positive.")
@@ -513,8 +513,8 @@ def dmt_friction_angle_upper_bound(kd: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-11, p. 442.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-11, p. 406.
     """
     denom = 0.236 + 0.066 * kd
     if denom <= 0.0:
@@ -554,8 +554,8 @@ def dmt_friction_angle_lower_bound(kd: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-12, p. 442.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-12, p. 406.
     """
     if kd <= 0.0:
         raise ValueError("kd must be positive.")
@@ -596,8 +596,8 @@ def fully_softened_friction_angle(pi: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-13, p. 443.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-13, p. 407.
     """
     if pi < 0.0:
         raise ValueError("pi must be non-negative.")
@@ -636,8 +636,8 @@ def secant_friction_angle_shear_strength(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-14, p. 447.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-14, p. 411.
     """
     if sigma_ff_eff < 0.0:
         raise ValueError("sigma_ff_eff must be non-negative.")
@@ -682,8 +682,8 @@ def power_function_shear_strength(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-15, p. 447.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-15, p. 411.
     """
     if sigma_ff_eff < 0.0:
         raise ValueError("sigma_ff_eff must be non-negative.")
@@ -719,8 +719,8 @@ def residual_friction_angle_gibson(pi: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-16, p. 449.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-16, p. 413.
     """
     if pi < 0.0:
         raise ValueError("pi must be non-negative.")
@@ -765,8 +765,8 @@ def residual_friction_angle_stark_hussain(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-17, Table 8-6, p. 453.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-17, Table 8-6, p. 417.
     """
     if ll < 0.0:
         raise ValueError("ll must be non-negative.")
@@ -805,8 +805,8 @@ def undrained_strength_ratio_skempton(pi: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-18, p. 455.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-18, p. 419.
     """
     if pi < 0.0:
         raise ValueError("pi must be non-negative.")
@@ -841,8 +841,8 @@ def undrained_strength_ratio_hansbo(ll: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-19, p. 456.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-19, p. 420.
     """
     if ll < 0.0:
         raise ValueError("ll must be non-negative.")
@@ -888,8 +888,8 @@ def undrained_strength_ratio_oc(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-20, p. 460.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-20, p. 424.
     """
     if su_sigma_v_nc < 0.0:
         raise ValueError("su_sigma_v_nc must be non-negative.")
@@ -926,8 +926,8 @@ def undrained_strength_from_preconsolidation(sigma_p_eff: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-21, p. 461.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-21, p. 425.
     """
     if sigma_p_eff < 0.0:
         raise ValueError("sigma_p_eff must be non-negative.")
@@ -965,8 +965,8 @@ def undrained_strength_ratio_acu_from_icu(su_sigma_v_icu: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-22, p. 462.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-22, p. 426.
     """
     if su_sigma_v_icu < 0.0:
         raise ValueError("su_sigma_v_icu must be non-negative.")
@@ -1004,8 +1004,8 @@ def cpt_undrained_strength_nc(qc: float, nc: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-23, p. 462.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-23, p. 426.
     """
     if qc < 0.0:
         raise ValueError("qc must be non-negative.")
@@ -1049,8 +1049,8 @@ def cpt_undrained_strength_nk(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-24, p. 463.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-24, p. 427.
     """
     if nk <= 0.0:
         raise ValueError("nk must be positive.")
@@ -1092,8 +1092,8 @@ def cpt_undrained_strength_nkt(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-25, p. 463.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-25, p. 427.
     """
     if nkt <= 0.0:
         raise ValueError("nkt must be positive.")
@@ -1130,8 +1130,8 @@ def spt_undrained_strength_stroud_butler(n: float, pi: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-26, p. 464.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-26, p. 428.
     """
     if n < 0.0:
         raise ValueError("n must be non-negative.")
@@ -1173,8 +1173,8 @@ def intrinsic_compression_index(e_star_100: float, e_star_1000: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-27, p. 475.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-27, p. 439.
     """
     result = e_star_100 - e_star_1000
     if result <= 0.0:
@@ -1216,8 +1216,8 @@ def void_index(e: float, e_star_100: float, c_star_c: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-28, p. 475.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-28, p. 439.
     """
     if c_star_c <= 0.0:
         raise ValueError("c_star_c must be positive.")
@@ -1252,8 +1252,8 @@ def intrinsic_void_ratio_at_100kpa(e_l: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-29, p. 475.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-29, p. 439.
     """
     if e_l < 0.0:
         raise ValueError("e_l must be non-negative.")
@@ -1287,8 +1287,8 @@ def intrinsic_compression_index_from_el(e_l: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-30, p. 475.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-30, p. 439.
     """
     if e_l < 0.0:
         raise ValueError("e_l must be non-negative.")
@@ -1329,8 +1329,8 @@ def constrained_modulus_linear(m: float, sigma_v_eff: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-31, p. 478.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-31, p. 442.
     """
     if m < 0.0:
         raise ValueError("m must be non-negative.")
@@ -1374,8 +1374,8 @@ def constrained_modulus_nonlinear(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-32, p. 478.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-32, p. 442.
     """
     if m < 0.0:
         raise ValueError("m must be non-negative.")
@@ -1419,8 +1419,8 @@ def constrained_modulus_spt(f: float, n: float, pa: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-33, p. 478.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-33, p. 442.
     """
     if f < 0.0:
         raise ValueError("f must be non-negative.")
@@ -1461,8 +1461,8 @@ def constrained_modulus_cpt(alpha: float, qc: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-34, p. 481.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-34, p. 445.
     """
     if alpha < 0.0:
         raise ValueError("alpha must be non-negative.")
@@ -1504,8 +1504,8 @@ def secondary_compression_ratio(wn: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-35, p. 482.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-35, p. 446.
     """
     if wn < 0.0:
         raise ValueError("wn must be non-negative.")
@@ -1552,8 +1552,8 @@ def drained_youngs_modulus_from_undrained(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-36, p. 485.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-36, p. 449.
     """
     if eu < 0.0:
         raise ValueError("eu must be non-negative.")
@@ -1598,8 +1598,8 @@ def cbr_from_dcp_power(a_coeff: float, dcp: float, x: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-37, Table 8-24, p. 492.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-37, Table 8-24, p. 456.
     """
     if a_coeff < 0.0:
         raise ValueError("a_coeff must be non-negative.")
@@ -1674,8 +1674,8 @@ def cbr_from_dcp_nazzal(dcp: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-38, p. 492.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-38, p. 456.
     """
     if dcp <= 0.0:
         raise ValueError("dcp must be positive.")
@@ -1716,8 +1716,8 @@ def cbr_from_spt(n: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-39, p. 493.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-39, p. 457.
     """
     if n <= 0.0:
         raise ValueError("n must be positive.")
@@ -1760,8 +1760,8 @@ def hydraulic_conductivity_hazen(d10: float, c: float = 1.0) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-40, p. 494.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-40, p. 458.
     """
     if d10 <= 0.0:
         raise ValueError("d10 must be positive.")
@@ -1818,8 +1818,8 @@ def hydraulic_conductivity_kozeny_carman(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-41, p. 498.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-41, p. 462.
     """
     if e < 0.0:
         raise ValueError("e must be non-negative.")
@@ -1877,8 +1877,8 @@ def hydraulic_conductivity_carrier_beckman(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-42, p. 498.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-42, p. 462.
     """
     if e < 0.0:
         raise ValueError("e must be non-negative.")
@@ -2017,8 +2017,8 @@ def hydraulic_conductivity_benson_landfill(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-43, p. 499.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-43, p. 463.
     Benson et al. (1994).
     """
     if gamma_d <= 0.0:
@@ -2095,8 +2095,8 @@ def hydraulic_conductivity_benson_trast(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-44, p. 499.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-44, p. 463.
     Benson and Trast (1995).
     """
     if gamma_d <= 0.0:
@@ -2162,8 +2162,8 @@ def shear_wave_velocity_spt(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Equation 8-45, Tables 8-26 and 8-27, p. 500.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Equation 8-45, Tables 8-26 and 8-27, pp. 464-465.
     """
     if b < 0.0:
         raise ValueError("b must be non-negative.")
@@ -2219,8 +2219,8 @@ def table_8_6_stark_hussain(cf_range: str, sigma_n_range: str) -> dict:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Table 8-6, p. 453.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Table 8-6, p. 417.
     Stark & Hussain (2013).
     """
     key = (cf_range.lower().strip(), sigma_n_range.lower().strip())
@@ -2269,8 +2269,8 @@ def table_8_9_shansep_m(test_type: str) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Table 8-9, p. 460.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Table 8-9, p. 425.
     """
     key = test_type.lower().strip()
     if key not in _TABLE_8_9_SHANSEP_M:
@@ -2320,8 +2320,8 @@ def table_8_24_cbr_dcp(source: str) -> dict:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Table 8-24, p. 492.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Table 8-24, p. 456.
     """
     key = source.lower().strip()
     if key not in _TABLE_8_24_CBR_DCP:
@@ -2364,8 +2364,8 @@ def figure_8_46_f(pi: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 8, Figure 8-46, p. 477.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 8, Figure 8-46, p. 444.
     Stroud, M.A. (1974).
     """
     if pi < 0.0:

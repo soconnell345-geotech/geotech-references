@@ -1,12 +1,12 @@
 """
-UFC 3-220-10, Chapter 3: Laboratory Testing
+UFS 3-220-10, Chapter 3: Laboratory Testing
 
 Equations 3-1 through 3-5 covering compaction characterization, cyclic stress
 ratios, consolidation load increments, and hydraulic conductivity from
 consolidation test data.
 
 Reference:
-    UFC 3-220-10, Soil Mechanics, 1 February 2022, Change 1, 11 March 2025
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 January 2026
 """
 
 
@@ -41,8 +41,8 @@ def relative_compaction(gamma_d: float, gamma_d_max: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 3, Equation 3-1, p. 140.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 3, Equation 3-1, p. 141.
     """
     if gamma_d_max <= 0.0:
         raise ValueError("gamma_d_max must be positive.")
@@ -86,7 +86,7 @@ def relative_density_from_void_ratio(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
     Chapter 3, Equation 3-2, p. 141.
     """
     if e_max <= e_min:
@@ -133,7 +133,7 @@ def relative_density_from_dry_density(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
     Chapter 3, Equation 3-2, p. 141.
     """
     if gamma_d <= 0.0:
@@ -179,8 +179,8 @@ def cyclic_stress_ratio(tau_cyc: float, sigma_v_eff: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 3, Equation 3-3, p. 160.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 3, Equation 3-3, p. 161.
     """
     if sigma_v_eff <= 0.0:
         raise ValueError("sigma_v_eff must be positive.")
@@ -220,8 +220,8 @@ def load_increment_ratio(delta_sigma: float, sigma_0: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 3, Equation 3-4, p. 164.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 3, Equation 3-4, p. 165.
     """
     if sigma_0 <= 0.0:
         raise ValueError("sigma_0 must be positive.")
@@ -276,8 +276,8 @@ def hydraulic_conductivity_from_consolidation(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 3, Equation 3-5, p. 169.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 3, Equation 3-5, p. 170.
     """
     if c_v < 0.0:
         raise ValueError("c_v must be non-negative.")

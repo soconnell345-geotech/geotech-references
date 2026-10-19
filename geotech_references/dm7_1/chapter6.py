@@ -1,5 +1,5 @@
 """
-UFC 3-220-10, Chapter 6: Seepage and Drainage
+UFS 3-220-10, Chapter 6: Seepage and Drainage
 
 Equations 6-1 through 6-14 and 6-16 covering total hydraulic head, hydraulic
 gradient, Darcy's Law (volumetric flow rate and flow per unit width), discharge
@@ -13,7 +13,7 @@ Note: Equation 6-15 does not exist in this chapter; the label 6-15 is used
 for a figure and a table, not an equation.
 
 Reference:
-    UFC 3-220-10, Soil Mechanics, 1 February 2022, Change 1, 11 March 2025
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 January 2026
 """
 
 import math
@@ -54,7 +54,7 @@ def total_hydraulic_head(u: float, gamma_w: float, z: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
     Chapter 6, Equation 6-1, p. 284.
     """
     if gamma_w <= 0.0:
@@ -92,7 +92,7 @@ def hydraulic_gradient(h_L: float, L: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
     Chapter 6, Equation 6-2, p. 285.
     """
     if L <= 0.0:
@@ -132,7 +132,7 @@ def darcy_flow_rate(k: float, i: float, A: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
     Chapter 6, Equation 6-3, p. 286.
     """
     if k < 0.0:
@@ -176,7 +176,7 @@ def darcy_flow_rate_per_unit_width(k: float, i: float, y: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
     Chapter 6, Equation 6-4, p. 286.
     """
     if k < 0.0:
@@ -216,7 +216,7 @@ def discharge_velocity(k: float, i: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
     Chapter 6, Equation 6-5, p. 286.
     """
     if k < 0.0:
@@ -258,7 +258,7 @@ def seepage_velocity(v_d: float, n: float = None, e: float = None) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
     Chapter 6, Equation 6-6, p. 286.
     """
     if n is not None and e is not None:
@@ -308,7 +308,7 @@ def laplace_check_2d(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
     Chapter 6, Equation 6-7, p. 287.
     """
     return abs(d2h_dx2 + d2h_dy2) <= tolerance
@@ -345,7 +345,7 @@ def anisotropic_transformation_factor(k_max: float, k_min: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
     Chapter 6, Equation 6-8, p. 289.
     """
     if k_max <= 0.0:
@@ -398,7 +398,7 @@ def flow_net_flow_rate(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
     Chapter 6, Equation 6-9, p. 290.
     """
     if k <= 0.0:
@@ -443,7 +443,7 @@ def head_loss_per_drop(h_L: float, N_d: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
     Chapter 6, Equation 6-10, p. 291.
     """
     if N_d <= 0.0:
@@ -483,7 +483,7 @@ def pore_water_pressure(h_t: float, h_z: float, gamma_w: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
     Chapter 6, Equation 6-11, p. 291.
     """
     if gamma_w <= 0.0:
@@ -507,7 +507,7 @@ def hydraulic_conductivity_effective_grain_size(
     ----------
     beta_alpha : float
         Empirical or semi-empirical coefficient (cm/sec/mm^x).  Value
-        depends on the correlation used; see Table 6-5 of UFC 3-220-10.
+        depends on the correlation used; see Table 6-5 of UFS 3-220-10.
         Common values include 1.0 for Hazen's simplified form.
     D_alpha : float
         Effective grain size (mm).  The subscript alpha refers to the
@@ -530,7 +530,7 @@ def hydraulic_conductivity_effective_grain_size(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
     Chapter 6, Equation 6-12, p. 299.
     Kenney, T. C. et al. (1984).
     """
@@ -592,7 +592,7 @@ def kozeny_carman_hydraulic_conductivity(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
     Chapter 6, Equation 6-13, p. 300.
     Carrier, W. D. (2003).
     """
@@ -662,7 +662,7 @@ def kozeny_void_ratio_conductivity_ratio(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
     Chapter 6, Equation 6-14, p. 300.
     Kozeny, J. (1927).
     """
@@ -722,8 +722,8 @@ def geotextile_permeability_factor_of_safety(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 6, Equation 6-16, p. 326.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 6, Equation 6-16, p. 325.
     """
     if k_s is None or k_s <= 0.0:
         raise ValueError("k_s (base soil hydraulic conductivity) must be positive.")

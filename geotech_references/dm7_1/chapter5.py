@@ -1,5 +1,5 @@
 """
-UFC 3-220-10, Chapter 5: Analysis of Settlement and Volume Expansion
+UFS 3-220-10, Chapter 5: Analysis of Settlement and Volume Expansion
 
 Equations 5-1 through 5-28 covering consolidation mechanics, settlement
 calculations for coarse- and fine-grained soils, time rate of primary
@@ -7,7 +7,7 @@ consolidation, secondary compression, surcharge preconsolidation, and
 vertical drain design.
 
 Reference:
-    UFC 3-220-10, Soil Mechanics, 1 February 2022, Change 1, 11 March 2025
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 January 2026
 """
 
 import math
@@ -49,8 +49,8 @@ def overconsolidation_ratio(sigma_p: float, sigma_z0: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 5, Equation 5-1, p. 257.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 5, Equation 5-1, p. 224.
     """
     if sigma_z0 <= 0.0:
         raise ValueError("sigma_z0 must be positive.")
@@ -103,8 +103,8 @@ def undrained_shear_strength_from_ocr(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 5, Equation 5-2, p. 258.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 5, Equation 5-2, p. 225.
     """
     if usr_nc < 0.0:
         raise ValueError("usr_nc must be non-negative.")
@@ -156,8 +156,8 @@ def preconsolidation_stress_from_su(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 5, Equation 5-3, p. 259.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 5, Equation 5-3, p. 226.
     """
     if usr_nc <= 0.0:
         raise ValueError("usr_nc must be positive.")
@@ -204,8 +204,8 @@ def settlement_from_strain(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 5, Equation 5-4, p. 261.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 5, Equation 5-4, p. 227.
     """
     if len(epsilon_z) != len(H):
         raise ValueError("epsilon_z and H must have the same length.")
@@ -267,8 +267,8 @@ def immediate_settlement(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 5, Equation 5-5, p. 263.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 5, Equation 5-5, p. 229.
     """
     if Es <= 0.0:
         raise ValueError("Es must be positive.")
@@ -316,8 +316,8 @@ def corrected_spt_silty_sand(N_prime: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 5, Equation 5-6, p. 263.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 5, Equation 5-6, p. 229.
     """
     if N_prime < 0.0:
         raise ValueError("N_prime must be non-negative.")
@@ -380,8 +380,8 @@ def schmertmann_settlement(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 5, Equation 5-7, p. 266.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 5, Equation 5-7, p. 232.
     """
     if not (len(Iz) == len(Es) == len(dz)):
         raise ValueError("Iz, Es, and dz must have the same length.")
@@ -431,8 +431,8 @@ def schmertmann_embedment_correction(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 5, Equation 5-8, p. 266.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 5, Equation 5-8, p. 232.
     """
     net = q0 - sigma_z0
     if net <= 0.0:
@@ -471,8 +471,8 @@ def schmertmann_time_correction(t_years: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 5, Equation 5-9, p. 266.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 5, Equation 5-9, p. 232.
     """
     if t_years <= 0.0:
         raise ValueError("t_years must be positive.")
@@ -513,8 +513,8 @@ def modified_recompression_index(Cr: float, e0: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 5, Equation 5-10, p. 273.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 5, Equation 5-10, p. 239.
     """
     if e0 <= -1.0:
         raise ValueError("e0 must be greater than -1.")
@@ -557,8 +557,8 @@ def modified_compression_index(Cc: float, e0: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 5, Equation 5-11, p. 273.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 5, Equation 5-11, p. 239.
     """
     if e0 <= -1.0:
         raise ValueError("e0 must be greater than -1.")
@@ -613,8 +613,8 @@ def primary_consolidation_settlement_nc(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 5, Equation 5-12, p. 275.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 5, Equation 5-12, p. 241.
     """
     if sigma_z0 <= 0.0:
         raise ValueError("sigma_z0 must be positive.")
@@ -670,8 +670,8 @@ def primary_consolidation_settlement_oc_recompression(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 5, Equation 5-13, p. 275.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 5, Equation 5-13, p. 241.
     """
     if sigma_z0 <= 0.0:
         raise ValueError("sigma_z0 must be positive.")
@@ -739,8 +739,8 @@ def primary_consolidation_settlement_oc_beyond(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 5, Equation 5-14, p. 275.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 5, Equation 5-14, p. 241.
     """
     if sigma_z0 <= 0.0:
         raise ValueError("sigma_z0 must be positive.")
@@ -797,8 +797,8 @@ def time_factor_vertical(cv: float, t: float, Hdr: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 5, Equation 5-15, p. 279.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 5, Equation 5-15, p. 245.
     """
     if Hdr <= 0.0:
         raise ValueError("Hdr must be positive.")
@@ -851,8 +851,8 @@ def equivalent_layer_thickness(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 5, Equation 5-16, p. 285.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 5, Equation 5-16, p. 251.
     """
     if cv_n <= 0.0:
         raise ValueError("cv_n must be positive.")
@@ -895,8 +895,8 @@ def total_transformed_thickness(H_prime: List[float]) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 5, Equation 5-17, p. 285.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 5, Equation 5-17, p. 251.
     """
     if len(H_prime) == 0:
         raise ValueError("At least one layer must be provided.")
@@ -952,8 +952,8 @@ def secondary_compression_settlement(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 5, Equation 5-18, p. 288.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 5, Equation 5-18, p. 254.
     """
     if tp <= 0.0:
         raise ValueError("tp must be positive.")
@@ -995,8 +995,8 @@ def modified_secondary_compression_index_from_wn(wn: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 5, Equation 5-19, p. 288.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 5, Equation 5-19, p. 254.
     """
     if wn < 0.0:
         raise ValueError("wn must be non-negative.")
@@ -1046,8 +1046,8 @@ def surcharge_degree_of_consolidation(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 5, Equation 5-20, p. 297.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 5, Equation 5-20, p. 263.
     """
     if sigma_z0 <= 0.0:
         raise ValueError("sigma_z0 must be positive.")
@@ -1123,8 +1123,8 @@ def surcharge_degree_of_consolidation_with_secondary(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 5, Equation 5-21, p. 297.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 5, Equation 5-21, p. 263.
     """
     if sigma_z0 <= 0.0:
         raise ValueError("sigma_z0 must be positive.")
@@ -1188,8 +1188,8 @@ def time_factor_radial(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 5, Equation 5-22, p. 300.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 5, Equation 5-22, p. 266.
     """
     if Ur < 0.0 or Ur >= 1.0:
         raise ValueError("Ur must be in the range [0, 1).")
@@ -1240,8 +1240,8 @@ def drain_spacing_factor(n: float, approximate: bool = True) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 5, Equation 5-23, p. 301.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 5, Equation 5-23, p. 267.
     """
     if n <= 1.0:
         raise ValueError("n must be greater than 1.")
@@ -1287,8 +1287,8 @@ def equivalent_drain_diameter(a: float, b: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 5, Equation 5-24, p. 301.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 5, Equation 5-24, p. 267.
     """
     if a < 0.0:
         raise ValueError("a must be non-negative.")
@@ -1338,8 +1338,8 @@ def smear_factor(kh: float, ks: float, s: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 5, Equation 5-25, p. 301.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 5, Equation 5-25, p. 267.
     """
     if ks <= 0.0:
         raise ValueError("ks must be positive.")
@@ -1392,8 +1392,8 @@ def well_resistance_factor(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 5, Equation 5-26, p. 302.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 5, Equation 5-26, p. 268.
     """
     if qw <= 0.0:
         raise ValueError("qw must be positive.")
@@ -1438,8 +1438,8 @@ def combined_degree_of_consolidation(Uz: float, Ur: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 5, Equation 5-27, p. 302.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 5, Equation 5-27, p. 268.
     """
     if not (0.0 <= Uz <= 100.0):
         raise ValueError("Uz must be between 0 and 100.")
@@ -1488,8 +1488,8 @@ def required_drain_diameter(ch: float, t: float, Tr: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 5, Equation 5-28, p. 302.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 5, Equation 5-28, p. 268.
     """
     if Tr <= 0.0:
         raise ValueError("Tr must be positive.")
@@ -1540,8 +1540,8 @@ def figure_5_16_U_from_Tv(Tv: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 5, Figure 5-16, p. 279.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 5, Figure 5-16, p. 245.
     Terzaghi, K. (1943). Theoretical Soil Mechanics.
     """
     if Tv < 0.0:
@@ -1581,8 +1581,8 @@ def figure_5_16_Tv_from_U(U: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 5, Figure 5-16, p. 279.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 5, Figure 5-16, p. 245.
     Terzaghi, K. (1943). Theoretical Soil Mechanics.
     """
     if U < 0.0 or U >= 100.0:
@@ -1627,8 +1627,8 @@ def figure_5_30_Tr(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 5, Figures 5-30 / 5-31, pp. 303-304.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 5, Figures 5-30 / 5-31, pp. 269-270.
     """
     Fn = drain_spacing_factor(n, approximate=approximate)
     return time_factor_radial(Ur, Fn, Fs, Fr)
@@ -1668,8 +1668,8 @@ def table_5_6_Calpha_Cc(soil_type: str) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 5, Table 5-6, p. 281.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 5, Table 5-6, p. 254.
     Mesri & Godlewski (1977).
     """
     key = soil_type.lower().strip()
@@ -1713,8 +1713,8 @@ def figure_5_6_mu0(D_over_B: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 5, Figure 5-6, p. 264.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 5, Figure 5-6, p. 230.
     Janbu, Bjerrum & Kjaernsli (1956).
     """
     if D_over_B < 0.0:
@@ -1795,8 +1795,8 @@ def figure_5_6_mu1(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 5, Figure 5-6, p. 264.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 5, Figure 5-6, p. 230.
     Janbu, Bjerrum & Kjaernsli (1956).
     """
     if H_over_B <= 0.0:
