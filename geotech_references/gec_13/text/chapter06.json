@@ -1,182 +1,1015 @@
 {
   "reference_id": "FHWA-NHI-16-027",
   "reference_title": "Ground Modification Methods Reference Manual – Volume I",
-  "volume": 1,
+  "volume": 2,
   "chapter": 6,
   "chapter_title": "Column-Supported Embankments",
   "sections": [
     {
-      "section_id": "6.1",
-      "title": "Description",
-      "body": "Column-supported embankments (CSE) use vertical foundation elements (columns) beneath a load transfer platform (LTP) to support embankments over soft, compressible soils. The system transfers embankment loads through the LTP to the columns and then to competent bearing strata, bypassing weak subgrade materials. CSE systems are applicable where conventional ground improvement is inadequate or where strict settlement limits must be met. Common column types include driven piles, auger-cast piles, controlled modulus columns (CMC), deep mixed columns, vibro-concrete columns, and geosynthetic-encased stone columns. The LTP is typically constructed of compacted granular fill with one or more layers of geosynthetic reinforcement (geogrid or geotextile) to facilitate load transfer from the embankment fill to the column heads. CSE technology allows construction of embankments over peat, very soft clay, and other highly compressible soils where preloading or aggregate columns are ineffective.",
+      "section_id": "6.1.0",
+      "title": "Description and History",
+      "summary": "Introduces column-supported embankments (CSE) as a ground modification approach for building highway embankments over soft compressible soils when time constraints are critical, with or without a geosynthetic reinforced load transfer platform (LTP).",
+      "body": "Constructing highway embankments over soft compressible soils brings large settlements, embankment instability and long consolidation times, problems that led to many ground modification techniques: prefabricated vertical drains (PVDs), surcharge loading, geosynthetic reinforcement, stone columns, deep soil mixing and lightweight fill. When time constraints are critical to the success of a project, owners have resorted to column supported embankments (CSE), with or without a geosynthetic reinforced load transfer platform (LTP). The manual notes that in the last 25 years the technology has been used successfully by over a dozen state DOTs (p. 6-1).",
       "key_points": [
-        "Vertical columns beneath a load transfer platform (LTP) support embankments over soft/compressible soils",
-        "System transfers embankment loads through LTP to columns, bypassing weak subgrade",
-        "Common column types: driven piles, auger-cast piles, CMC, deep mixed columns, vibro-concrete columns",
-        "LTP typically granular fill with one or more geosynthetic reinforcement layers",
-        "Applicable where settlement must be minimized and conventional ground improvement is inadequate",
-        "Allows embankments over peat, very soft clay, and highly compressible soils"
-      ],
-      "equations": [],
-      "figures": [
-        "Figure 6-1: Schematic of column-supported embankment system showing columns, load transfer platform, geosynthetic reinforcement, and embankment fill"
-      ],
-      "tables": [],
-      "applicability": "Embankments over soft, compressible soils (peat, very soft clay, organic deposits) where strict settlement limits apply or conventional ground improvement is insufficient."
-    },
-    {
-      "section_id": "6.2",
-      "title": "Feasibility and Applicability",
-      "body": "CSE systems are most appropriate when: (1) the soft soil layer is too deep or too weak for aggregate columns or deep mixing; (2) differential settlement between the embankment and adjacent structures must be minimized; (3) construction schedule prohibits long preloading periods; or (4) environmental conditions preclude surcharging or dewatering. CSE is applicable to virtually any soft soil condition because the columns can be designed to reach competent bearing strata regardless of subgrade quality. Key feasibility considerations include access for column installation equipment (typically requires firm working platform), column spacing and depth to bearing strata, availability of suitable LTP materials, and cost relative to alternative approaches (deep foundations for the supported structure, longer preloading, realignment). Columns must be designed for both axial and lateral loads, including potential downdrag from consolidating soft soils around the columns.",
-      "key_points": [
-        "Preferred when soft soil is too deep/weak for aggregate columns, schedule prohibits preloading, or settlement limits are strict",
-        "Applicable to virtually any soft soil condition since columns reach competent bearing strata",
-        "Requires firm working platform for column installation equipment",
-        "Columns must be designed for axial loads, lateral loads, and potential downdrag",
-        "Cost comparison should include deep foundations, preloading, and realignment alternatives",
-        "Not limited by soft soil thickness or depth, unlike aggregate columns or preloading"
+        "CSE is used where time constraints rule out waiting for consolidation of soft foundation soil.",
+        "A CSE may be built with or without a geosynthetic reinforced load transfer platform (LTP)."
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Any embankment over soft compressible soils where columns can reach competent bearing strata."
+      "applicability": "Introduction to CSE technology for embankments over soft compressible soils."
     },
     {
-      "section_id": "6.3",
-      "title": "Design Concepts",
-      "body": "CSE design involves three primary components: (1) column design for axial and lateral capacity; (2) load transfer platform design to distribute embankment load to column heads; and (3) geosynthetic reinforcement design within the LTP. Load transfer efficiency (LTE) describes the fraction of embankment load carried by columns versus the subgrade. Several analytical methods are used for CSE design: the British Standard (BS 8006) method, the German EBGEO method, and the Hewlett and Randolph (1988) method for the LTP arch mechanism. The geosynthetic reinforcement is designed to provide tensile resistance to maintain the arch within the LTP and to limit differential settlement at the embankment surface. Column spacing, diameter, and LTP thickness are the primary design variables. A typical LTP thickness is 0.6–1.2 m. AASHTO does not yet have a dedicated LRFD specification for CSE, so most designs use service limit state (allowable stress) approaches with engineering judgment for resistance factors.",
+      "section_id": "6.1.1",
+      "title": "Description",
+      "summary": "Container heading for the description of a column-supported embankment system: the embankment on stiff columns, the support column types that may be used, and the load transfer platform that carries load onto the columns.",
+      "body": "This heading groups the description of the three parts of the system: the column-supported embankment itself (6.1.1.1), the support columns (6.1.1.2) and the load transfer platform (6.1.1.3), pp. 6-1 to 6-3.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Orientation to the components of a column-supported embankment."
+    },
+    {
+      "section_id": "6.1.1.1",
+      "title": "Column-supported Embankments",
+      "summary": "CSEs are stiff vertical columns that carry embankment load through soft soil to a firm foundation; columns close enough together allow soil arching so the full load reaches the columns. Columns are typically 4 to 6 ft apart, and an LTP reduces the number of columns needed.",
+      "body": "CSEs consist of stiff vertical columns designed to transfer the load of the embankment through the soft compressible soil layer to a firm foundation. The column type depends on design loads, constructability and cost. The embankment load must be effectively transferred to the columns to prevent punching of the columns through the embankment fill, which causes differential settlement at the embankment surface. If the columns are placed close enough together, soil arching will occur and the full embankment load will be transferred to the columns (Figure 6-1, p. 6-1). The columns in Figure 6-1 are spaced relatively close together (4 to 6 feet), and some battered columns may be required at the sides of the embankment to prevent lateral spreading. To significantly reduce the number of columns and increase the efficiency of the design, a load transfer platform (LTP), either geosynthetically reinforced or unreinforced, may be used (Figure 6-2, p. 6-2). Figure 6-2 defines the profile: general embankment fill over select fill and geosynthetic reinforcement, H = H1 + H2, surcharge q, side slope n:1, upper sand layer(s) if present, soft soil layer(s), bearing layer and dw.",
       "key_points": [
-        "Three design components: column design, load transfer platform design, and geosynthetic reinforcement design",
-        "Load transfer efficiency (LTE) = fraction of embankment load carried by columns vs. subgrade",
-        "Design methods: BS 8006 (arching), EBGEO (Germany), Hewlett & Randolph (1988) arch mechanism",
-        "Geosynthetic reinforcement provides tensile resistance to maintain LTP arch and limit differential settlement",
-        "Typical LTP thickness 0.6–1.2 m; primary variables are column spacing, diameter, LTP thickness",
-        "No dedicated AASHTO LRFD specification yet; most designs use allowable stress with engineering judgment"
+        "Columns spaced close enough together allow soil arching so the full embankment load is carried by the columns.",
+        "Without an LTP columns are relatively close (4 to 6 ft); battered columns may be needed at the sides against lateral spreading.",
+        "An LTP, reinforced or unreinforced, reduces the number of columns required."
       ],
-      "equations": [
-        "Eq 6-1: Stress reduction ratio SRR = σ_soil / σ_avg (ratio of stress on subgrade to average applied stress)",
-        "Eq 6-2: Arching efficiency E_arch = 1 - SRR (fraction of load transferred to columns via arching)",
-        "Eq 6-3: Tension in geosynthetic T_req = (W_T - F_arch) * s / (8 * ε_allow) (simplified membrane equation)"
-      ],
+      "equations": [],
       "figures": [
-        "Figure 6-2: Load transfer platform design showing column heads, granular fill arching zone, and geosynthetic reinforcement layers",
-        "Figure 6-3: Hewlett and Randolph (1988) soil arching model for column-supported embankments"
+        "Figure 6-1: Column-supported embankment.",
+        "Figure 6-2: Column-supported embankment with geosynthetic reinforcement."
       ],
       "tables": [],
-      "applicability": "Design of load transfer platform, column layout, and geosynthetic reinforcement for CSE systems."
+      "applicability": "Basic concept and geometry definitions for column-supported embankments."
     },
     {
-      "section_id": "6.4",
-      "title": "Column Types and Selection",
-      "body": "Column selection depends on soil conditions, required capacity, column stiffness, construction equipment availability, and cost. Driven piles (timber, concrete, or steel) are used where high axial capacity is required and installation equipment is accessible. Auger-cast-in-place (ACIP) piles offer low vibration and noise with good capacity in granular soils. Controlled modulus columns (CMC, also called rigid inclusions) are screw-type cast-in-place elements with high stiffness and precise installation; they are particularly suited to CSE because of their relatively small diameter (typically 250–450 mm) and ability to install at close spacing. Deep mixed columns provide large-diameter elements with moderate stiffness suitable for floating column designs where competent bearing strata are very deep. Geosynthetic-encased stone columns (GESC) combine drainage with reinforcement but are limited to lower loads. The critical design distinction is between end-bearing columns (columns seated in competent strata) and floating columns (columns that rely on skin friction in soft soils); end-bearing columns provide much better settlement control.",
+      "section_id": "6.1.1.2",
+      "title": "Support Columns",
+      "summary": "Lists the column types used in CSEs: steel H-piles, steel pipe piles, auger cast piles, precast concrete and timber piles, plus formed-in-place soil mix, aggregate and cement based columns; the technology is not tied to any one column type.",
+      "body": "Support columns used with this technology include steel H-piles, steel pipe piles, auger cast piles, precast concrete piles and timber piles. Conventional steel and concrete piles often provide higher axial capacity than a CSE requires and are therefore less economically attractive than timber piles and the newer formed-in-place column types: soil mix columns, aggregate columns and cement based columns (covered in Chapter 7 Soil Mixing and Chapter 5 Aggregate Columns). Column selection depends on the design loads, the foundation support layer, any stiff intermediate layers that must be penetrated, special equipment requirements, speed of installation, and local availability and cost. The technology is not dependent on any one column type, which lets the contractor select the most economical column for the design and performance requirements set by the specifying agency (pp. 6-2 to 6-3).",
       "key_points": [
-        "Column type depends on capacity, stiffness, equipment access, soil conditions, and cost",
-        "Driven piles: high capacity, higher vibration/noise, suited to accessible sites",
-        "CMC/rigid inclusions: small diameter (250-450 mm), high stiffness, precise installation, well-suited to CSE",
-        "Deep mixed columns: large diameter, moderate stiffness, suitable for floating designs in very deep soft soils",
-        "End-bearing columns (seat in competent strata) provide much better settlement control than floating columns",
-        "Geosynthetic-encased stone columns (GESC): drainage + reinforcement, limited to lower loads"
+        "Conventional steel and concrete piles often exceed the capacity a CSE needs and are less economical than timber piles and formed-in-place columns.",
+        "The technology is not dependent on any one column type; the contractor may pick the most economical column meeting the requirements."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Choosing among column types for a column-supported embankment."
+    },
+    {
+      "section_id": "6.1.1.3",
+      "title": "Load Transfer Platform",
+      "summary": "The LTP transfers embankment load to the columns without deformation between columns reflecting to the surface. Three types exist: a reinforced concrete mat (generally cost prohibitive), and granular fill with or without geosynthetic. Reinforced LTPs follow either the catenary or the beam method.",
+      "body": "The load transfer platform (LTP) efficiently transfers the embankment or structure load to the columns without allowing unacceptable deformations between columns that would reflect to the embankment surface. Three types are available. A reinforced concrete structural mat requires structural design; concrete mats have generally been found cost prohibitive and are not discussed further. The second and third types are select granular structural fill either reinforced with one or more layers of geosynthetic, or unreinforced; the chapter focuses on granular LTPs. There are two fundamental approaches to geosynthetic reinforced LTPs. The catenary method considers the reinforcement to act as one layer at the interface between the subgrade and columns and the embankment, acting as a catenary; select fill may or may not be used above it. The beam method considers multiple (3 or more) layers of reinforcement spaced vertically, typically 8 to 16 inches apart, within the LTP to create a beam of reinforced soil (p. 6-3).",
+      "key_points": [
+        "Concrete structural mats are generally cost prohibitive and are not covered further.",
+        "Granular LTPs may be reinforced with one or more geosynthetic layers or unreinforced.",
+        "Catenary method: one reinforcement layer at the column/subgrade interface acting as a catenary.",
+        "Beam method: 3 or more layers spaced typically 8 to 16 in. apart forming a reinforced soil beam."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Types of load transfer platform used with column-supported embankments."
+    },
+    {
+      "section_id": "6.1.2",
+      "title": "Historical Overview",
+      "summary": "History of CSE with geosynthetic reinforcement: first highway use in 1984 in Europe, first U.S. use in 1994 for a storage tank on vibro-concrete columns, early transportation use in 2001, and the shift in U.S. design practice from the beam method to the load and displacement compatibility (LDC) method.",
+      "body": "The first documented highway use of CSE with geosynthetic reinforcement was in 1984 for a bridge approach embankment in Europe (Reid and Buchanan 1984): concrete piles with reinforced concrete pile caps, a clear span between caps of 6.6 to 10 feet, one geosynthetic layer forming the LTP, and a 30-foot high embankment. The first U.S. application was in 1994 for a large-diameter molasses storage tank founded on vibro-concrete columns (VCC) and an LTP of well graded granular fill reinforced with three geogrid layers, chosen over a pile foundation with a concrete mat for time and cost savings (Figure 6-3). One of the first (2001) U.S. transportation projects used VCCs on a 6.6 to 10 feet center-to-center triangular spacing with a 3-foot thick LTP reinforced with three geogrid layers for an embankment at a river crossing, to eliminate the bump at the end of the bridge without waiting for consolidation (Young et al. 2003; Figure 6-4). More than 20 case histories were documented by 1999 (Han 1999). U.S. design practice first relied on the semi-empirical beam method; it is being replaced by the more analytically correct load and displacement compatibility (LDC) method (Sloan et al. 2013), and some designers use 2D and 3D numerical deformation analyses (pp. 6-3 to 6-6).",
+      "key_points": [
+        "First documented highway use: 1984 bridge approach in Europe, 30 ft embankment, one geosynthetic layer, 6.6 to 10 ft clear span between caps.",
+        "First U.S. use: 1994, VCCs with a three-geogrid LTP under a storage tank.",
+        "2001 transportation use: VCCs at 6.6 to 10 ft triangular spacing, 3 ft LTP with three geogrid layers.",
+        "The semi-empirical beam method is being replaced by the LDC method (Sloan et al. 2013)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-3: Storage tank terminal project (printed caption names the project).",
+        "Figure 6-4: Light rail embankment project (printed caption names the project)."
+      ],
+      "tables": [],
+      "applicability": "Background on the development of CSE practice and design methods."
+    },
+    {
+      "section_id": "6.1.3",
+      "title": "Focus and Scope",
+      "summary": "States the chapter's aim: identify problems solved by CSE, synthesize the current state of practice in CSE design and construction, give selection guidance, and provide references and typical costs for preliminary technical and economic evaluation.",
+      "body": "The focus of the chapter is to identify problems that have been successfully solved by CSEs and to synthesize the current state of the practice of CSE construction and design. It also gives guidance on the selection process for when and where to use CSEs. References are cited for more detailed technical information, and typical costs are given so that a preliminary technical and economic evaluation can be made of whether a CSE can solve a specific problem. The document is intended to serve as a reference on CSEs, discussing their construction, utilization and limitations (p. 6-6).",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Defines what the CSE chapter covers."
+    },
+    {
+      "section_id": "6.1.4",
+      "title": "Glossary",
+      "summary": "Defines terms used in the chapter: aggregate columns, CSE, cement based columns, driven pile columns, the LDC design method, the LTP, geosynthetics, PVDs, reinforcement and vibro-concrete columns (VCC).",
+      "body": "Definitions given on pp. 6-6 to 6-7: Aggregate columns are stone columns and rammed aggregate piers capable of supporting 25 to 150 kips of vertical load. A Column Supported Embankment (CSE) consists of stiff vertical columns designed to transfer embankment load through the soft compressible layer to a firm foundation. Cement based columns use Portland cement binder with aggregate and are more rigid than aggregate columns; concrete options include vibro-concrete columns (VCCs), controlled modulus columns (CMCs) and continuous flight auger (CFA) piles. Driven pile columns are conventional piles (steel H, steel pipe, timber) used to support an embankment. Load and Displacement Compatibility (LDC) is the CSE design methodology recommended in the chapter. The Load Transfer Platform (LTP) is select granular structural fill, reinforced with one or more geosynthetic layers or unreinforced, that transfers load to the columns without unacceptable deformation reflecting to the surface. Geosynthetics include geogrids, geotextiles and geostraps. A Prefabricated Vertical Drain (PVD) is a band-shaped product with a geotextile jacket around a plastic core. Reinforcement refers to inclusions with continuous soil-inclusion stress transfer. Vibro-Concrete Columns (VCC) are related to stone columns, with concrete replacing the stone.",
+      "key_points": [
+        "Aggregate columns: 25 to 150 kips vertical load.",
+        "LDC is the CSE design methodology recommended in the chapter."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Terminology for column-supported embankment design and construction."
+    },
+    {
+      "section_id": "6.1.5",
+      "title": "Primary References",
+      "summary": "Lists the four primary references for the chapter: Collin (2007), Filz and Smith (2007), Filz et al. (2012) and Sloan et al. (2013), covering U.S. LTP design practice, net loads on reinforcement, settlement and load transfer, and field tests with design recommendations.",
+      "body": "The primary references for the chapter (pp. 6-7 to 6-8) are: Collin (2007), on the U.S. state of practice for design of the geosynthetic reinforced LTP in CSEs (ASCE GSP 172); Filz and Smith (2007), on net vertical loads on geosynthetic reinforcement in CSEs (GSP 172); Filz, McGuire, Sloan, Collin and Smith (2012), on CSE settlement and load transfer (GeoCongress 2012 keynote, GSP 226); and Sloan, Filz and Collin (2013), on CSE field tests and design recommendations (Center for Geotechnical Practice, Virginia Tech).",
+      "key_points": [
+        "Collin (2007); Filz and Smith (2007); Filz et al. (2012); Sloan et al. (2013)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Where to find the source literature behind the CSE design guidance."
+    },
+    {
+      "section_id": "6.2.0",
+      "title": "Feasibility Considerations",
+      "summary": "Introduces the section on CSE feasibility: applications, advantages and disadvantages, feasibility evaluations (geotechnical, environmental, site), limitations and alternative improvement methods.",
+      "body": "This section discusses applications, advantages and disadvantages, feasibility evaluations, limitations, and alternative solutions for the CSE technology (p. 6-9).",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Overview of how to judge whether a CSE suits a project."
+    },
+    {
+      "section_id": "6.2.1",
+      "title": "Applications",
+      "summary": "CSEs support embankments over soft soil when there is no time for consolidation with PVDs and surcharge, or when settlement and stability govern. Transportation uses include embankment stabilization, roadway widening, bridge approach fills, and bridge abutment and other foundation support, including MSE walls on CSEs.",
+      "body": "CSEs have traditionally supported embankments over soft soil when time is not available for consolidation using PVDs and surcharge, or when differential or total settlement and overall stability are a concern. The main purpose is to transfer embankment load through the columns to a competent soil or rock layer below the soft soil. Transportation applications include embankment stabilization, roadway widening, bridge approach fill stabilization, and bridge abutment and other foundation support; other uses include storage tanks, building foundations and retaining wall support. For large area loads, CSE is a practical alternative where conventional embankments cannot be built due to stability, time or environmental considerations, including moderate to high fills and fills contained by MSE walls. For widening next to existing highways on soft soils, CSE mitigates differential settlement between existing and new construction. For bridge approaches CSE provides stability and reduces maintenance at the bridge joint; the manual cites a 2001 light rail approach embankment on VCCs with three geosynthetic layers (Young et al. 2003). Under favorable conditions CSEs can be built higher than a conventional approach embankment, so bridge length may be reduced, and fill can be placed quickly because little load reaches the soft soil. CSEs can support abutments, MSE walls and building foundations (pp. 6-9 to 6-10).",
+      "key_points": [
+        "Used when time is not available for consolidation, or when total/differential settlement and stability are a concern.",
+        "Transportation applications: embankment stabilization, roadway widening, bridge approach fill stabilization, bridge abutment and other foundation support.",
+        "CSEs can be built higher than conventional approach embankments on soft soil, potentially shortening bridges.",
+        "MSE walls may be supported on CSEs."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identifying project types where a CSE is appropriate."
+    },
+    {
+      "section_id": "6.2.2",
+      "title": "Advantages and Disadvantages of CSE",
+      "summary": "Container heading for the advantages of column-supported embankments (rapid one-stage construction, flexibility of column type) and their potential disadvantages (mainly high initial cost).",
+      "body": "This heading groups the advantages of CSE (6.2.2.1) and its potential disadvantages (6.2.2.2), pp. 6-10 to 6-11.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Weighing CSE against other embankment construction approaches."
+    },
+    {
+      "section_id": "6.2.2.1",
+      "title": "Advantages",
+      "summary": "Key advantage: construction can proceed rapidly in one stage with no waiting for pore pressure dissipation. CSEs can be cheaper than removal and replacement, can avoid vibration, greatly reduce total and differential settlement, may be more sustainable, and are not limited to one column type.",
+      "body": "CSEs are a technical and potentially economical alternative to surcharge loading with PVDs and to staged construction with or without geosynthetic reinforcement. The key advantage is that construction may proceed rapidly in one stage with no waiting for dissipation of pore water pressure in the soft foundation soil. CSEs are also more economical than removal and replacement of deep soft deposits, particularly on larger sites with shallow groundwater. Where infrastructure precludes high-vibration techniques, the column type can be selected to minimize or eliminate vibrations. Total and differential settlement may be drastically reduced compared with conventional approaches, and CSEs may be a sustainable alternative (e.g., less energy intensive than constructing and removing a temporary surcharge). A major benefit is that the technology is not limited to any one column type: columns with no spoils can be chosen for contaminated sites; cement based columns, auger cast-in-place piles or timber piles for very soft soil; stone columns or rammed aggregate piers may be more attractive in stronger soils (pp. 6-10 to 6-11).",
+      "key_points": [
+        "Construction may proceed rapidly in one stage with no waiting for pore pressure dissipation.",
+        "Often more economical than removal and replacement of deep soft soils.",
+        "Column type can be chosen to limit vibration or to avoid spoils on contaminated sites."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Advantages of CSE compared with conventional soft-ground embankment methods."
+    },
+    {
+      "section_id": "6.2.2.2",
+      "title": "Potential Disadvantages",
+      "summary": "The major disadvantage of CSE is often a high initial construction cost, though including time savings and reduced long-term maintenance in the economic analysis may make it far less costly than other solutions.",
+      "body": "A major disadvantage of CSE is often its high initial construction cost compared with other solutions. However, if the time savings and the reduced maintenance from improved long-term performance are included in the economic analysis, the cost may be far less than that of other solutions (p. 6-11).",
+      "key_points": [
+        "High initial construction cost is the main disadvantage.",
+        "Time savings and reduced maintenance should be included in the economic comparison."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Economic drawbacks to weigh when considering a CSE."
+    },
+    {
+      "section_id": "6.2.3",
+      "title": "Feasibility Evaluations",
+      "summary": "General feasibility criteria for CSE: embankment heights to date under about 50 ft; area replacement ratio typically 3.5 to 10% (as low as 2.5%); height above critical height; LTP fill friction angle at least 35 degrees; columns carry the whole load; clear span 10 ft or less; post-construction settlement typically under 2 to 4 in.",
+      "body": "CSE may be used whenever an embankment must be built on soft compressible soil; to date the technology has been limited to embankment heights less than about 50 feet. The depth of the soft layer is typically not critical because many column types can reach a firm layer below it. Factors to consider (pp. 6-11 to 6-12): (1) preliminary column spacing has typically been limited so that the area replacement ratio is between 3.5 and 10%, on some projects as low as 2.5%; the area replacement ratio is the plan area of the column (or of the column cap, if caps are used) divided by the plan area of the unit cell, the area of influence of each column; this is based on the empirical performance of documented case histories (see Section 4.2). (2) The embankment height should be greater than the critical height, the minimum height at which there is no practically significant differential settlement at the embankment surface; column or cap width and spacing strongly influence it (see Section 4.5). (3) LTP fill shall be a select structural fill with an effective friction angle of 35 degrees or more. (4) Columns shall be designed to carry the entire embankment load. (5) The clear span between columns should be 10 feet or less. (6) CSE typically reduces post-construction settlement of the embankment surface to less than 2 to 4 inches and differential settlement to less than 1 inch.",
+      "key_points": [
+        "Embankment heights to date less than about 50 ft.",
+        "Area replacement ratio typically 3.5 to 10%, as low as 2.5%; use cap area when column caps are used.",
+        "Embankment height should exceed the critical height.",
+        "LTP select fill effective friction angle >= 35 degrees.",
+        "Columns designed to carry the entire embankment load.",
+        "Clear span between columns <= 10 ft.",
+        "Post-construction settlement typically < 2 to 4 in.; differential settlement < 1 in."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Preliminary screening of CSE feasibility and column spacing."
+    },
+    {
+      "section_id": "6.2.3.1",
+      "title": "Geotechnical Considerations",
+      "summary": "Key geotechnical questions for CSE feasibility: whether soft soil extends to grade (needing a working platform), whether surface soils can act as or assist the LTP, and whether stiff intermediate strata block column penetration. These affect economy but are not deal breakers.",
+      "body": "The key geotechnical considerations when evaluating CSE feasibility are: (1) Does the soft compressible soil extend to grade so that a working platform will be required before installing the columns? (2) If soft soils do not extend to grade, are the surface soils adequate in strength, stiffness and layer thickness to act as the LTP or to assist the LTP in distributing embankment load to the columns? (3) Are there intermediate strata of relatively stiff or dense soils that cannot be penetrated by the columns? These factors affect the overall economy of the system but are not considered deal breakers for use of the technology (p. 6-12).",
+      "key_points": [
+        "A working platform may be needed if soft soil extends to grade.",
+        "Competent surface soils may act as or assist the LTP.",
+        "Impenetrable stiff intermediate strata affect economy but do not rule out CSE."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Geotechnical site questions when screening a CSE."
+    },
+    {
+      "section_id": "6.2.3.2",
+      "title": "Environmental Considerations",
+      "summary": "Column selection should consider environmental effects of installation, such as fines-laden jetting water from wet vibro-replacement stone columns and possible release of contaminants, and noise and vibration in urban settings; non-replacement column systems are an alternative.",
+      "body": "The selection of the most appropriate column system should consider the environmental effects of installation. For example, vibro-replacement stone columns are traditionally jetted in place, removing the finer portion of the influenced soil; the fines-laden jetting water must be temporarily contained for sediment deposition and disposal, regulations vary by jurisdiction, and unknown contaminants may be removed and transferred to the environment by the jetting water. The designer may select an alternate column system that does not replace the in situ soils, such as dry vibro-displacement stone columns or cement based columns. In urban environments where noise and vibration may be unacceptable, columns may be selected accordingly (p. 6-12).",
+      "key_points": [
+        "Wet vibro-replacement produces fines-laden water needing containment and may mobilize contaminants.",
+        "Non-replacement systems (dry vibro-displacement, cement based columns) avoid this.",
+        "Noise and vibration may govern column choice in urban areas."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Environmental factors in choosing CSE columns."
+    },
+    {
+      "section_id": "6.2.3.3",
+      "title": "Site Consideration",
+      "summary": "Few site constraints rule out CSE because column type can change with site conditions, including limited headroom; LTP thickness relative to groundwater can be a constraint, as in the printed example of a 4 ft LTP under an MSE wall leveling pad requiring excavation below the water table.",
+      "body": "Site conditions should always be considered when selecting a ground improvement technology. CSE may be used on sites with limited headroom because the column type can be changed to suit the site, and there are not many site constraints the technology cannot accommodate. An important consideration is the thickness of the LTP. For example, if an MSE wall is to be placed on the LTP, the MSE leveling pad is 2 feet below existing grade and the water table is 3 feet below existing grade, a 4-foot thick LTP would be difficult to construct because it would require 3 feet of excavation below the groundwater table (pp. 6-12 to 6-13).",
+      "key_points": [
+        "Column type can be changed for limited headroom and other site constraints.",
+        "LTP thickness relative to the groundwater table can make construction difficult."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Site constraints affecting CSE and LTP construction."
+    },
+    {
+      "section_id": "6.2.4",
+      "title": "Limitations",
+      "summary": "The major limitation of CSE is for very low embankments on soft soils starting at the ground surface, where columns may have to be so close to satisfy the critical height requirement that the system becomes uneconomical.",
+      "body": "The major limitation of this technology is that for very low height embankments on soft soil projects where the soft soils start at the ground surface, the columns may need to be so close together to satisfy the critical height design requirement that the CSE system becomes uneconomical (p. 6-13).",
+      "key_points": [
+        "Very low embankments on soft soil starting at grade may need uneconomically close column spacing to meet the critical height."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "When a CSE may not be economical."
+    },
+    {
+      "section_id": "6.2.5",
+      "title": "Alternative Improvement Methods",
+      "summary": "Alternatives to consider when evaluating CSE: surcharge preloading with or without PVDs, staged construction with or without geosynthetic reinforcement, lightweight fill, combinations of these, and a bridge structure instead of an embankment over soft soil.",
+      "body": "Alternate ground improvement systems to consider when evaluating CSE include surcharge pre-loading with or without PVDs, staged construction with or without geosynthetic reinforcement, lightweight fill, and combinations of these technologies. The chapters on Vertical Drains and Accelerated Consolidation, Lightweight Fills and Reinforced Soil Structures should be reviewed for these systems. Designers should also consider a bridge structure as an alternative to an embankment when crossing soft compressible soil sites (p. 6-13).",
+      "key_points": [
+        "Alternatives: surcharge with or without PVDs, staged construction, lightweight fill, combinations, or a bridge structure."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Comparing CSE with other soft-ground solutions."
+    },
+    {
+      "section_id": "6.3.0",
+      "title": "Materials and Construction",
+      "summary": "Introduces the materials and construction of the two main CSE components: the columns (materials, construction, column caps) and the load transfer platforms (granular material, geosynthetic reinforcement, construction).",
+      "body": "This section covers the materials and construction of CSE columns (Section 3.1: materials, construction and column caps) and of load transfer platforms (Section 3.2: granular material, geosynthetic reinforcement and construction), pp. 6-14 to 6-18.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Materials and construction practice for CSE columns and LTPs."
+    },
+    {
+      "section_id": "6.3.1",
+      "title": "Columns",
+      "summary": "Container heading for CSE columns: the column materials and types with their capacities (Table 6-1), column construction and working platforms, and column caps used to reduce the clear span.",
+      "body": "This heading groups the column materials (6.3.1.1), column construction (6.3.1.2) and column caps (6.3.1.3), pp. 6-14 to 6-16.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "CSE column materials and installation."
+    },
+    {
+      "section_id": "6.3.1.1",
+      "title": "Materials",
+      "summary": "Column options for CSE: driven piles (modulus 1,000 to 30,000 ksi; timber 1,000 ksi), CFA piles, cement based columns (often proprietary), and aggregate columns (modulus 5 to 9 ksi). Table 6-1 gives allowable capacity, typical lengths and diameters for each type.",
+      "body": "Many column types are available. Driven pile columns (timber, steel H, steel pipe, precast concrete, cast-in-place concrete shell, and shells driven without mandrel) are very stiff, with a modulus of elasticity between 1,000 and 30,000 ksi (1,000 ksi for timber); capacity per GEC 12 (2016). Continuous flight auger (CFA) piles use concrete and are stiff columns; capacity per GEC 8 (2007); settlement of these columns is typically governed by the capacity of the foundation soil. Other cement based columns (cemented aggregate or Portland cement concrete) are related to aggregate columns, are often proprietary, and some suit installation below the water table or in very soft soils. Aggregate columns (stone columns and rammed aggregate piers) have modulus values of 5 to 9 ksi, much lower than driven piles or cement based columns (design in Chapter 5). Table 6-1 (p. 6-15) lists allowable capacity (kips), typical lengths (ft) and diameters (in.): timber 25-100, 20-60, 12-18; steel H 100-450, 30-100, 10-14; steel pipe 175-550, 30-120, 10-48; precast concrete 100-450, 30-50, 10-24; cast-in-place shell (mandrel driven) 100-300, 20-120, 10-18; shells without mandrel 110-300, 20-75, 12-36; CFA 75-150, 20-75, 12-24; DMM 90-275, 20-90, 24-78; aggregate columns 25-150, 10-30, 24-48; VCC 50-300, 20-90, 18-24; CSV 5-10, 10-30, 5-7; CMC 50-150, 20-90, 12-24.",
+      "key_points": [
+        "Driven piles: modulus 1,000 to 30,000 ksi (timber 1,000 ksi).",
+        "Aggregate columns: modulus 5 to 9 ksi.",
+        "Timber pile allowable capacity 25 to 100 kips; steel pipe 175 to 550 kips; CFA 75 to 150 kips; VCC 50 to 300 kips; CMC 50 to 150 kips (Table 6-1).",
+        "Driven pile capacity per GEC 12 (2016); CFA per GEC 8 (2007)."
       ],
       "equations": [],
       "figures": [],
       "tables": [
-        "Table 6-1: Column types for column-supported embankments, typical diameter/capacity ranges, and applicability conditions"
+        "Table 6-1: Possible Column Types"
       ],
-      "applicability": "Column type selection for CSE based on soil conditions, capacity requirements, and construction constraints."
+      "applicability": "Selecting a column type and its typical capacity for a CSE."
     },
     {
-      "section_id": "6.5",
-      "title": "Load Transfer Platform and Geosynthetic Reinforcement",
-      "body": "The load transfer platform (LTP) consists of compacted granular fill (typically select structural fill with phi >= 35 degrees) placed above the column heads to a minimum height that allows soil arching to develop between column heads. The minimum LTP height is typically taken as 0.7 times the clear span between column heads (H_LTP >= 0.7*(s-d), where s = column center-to-center spacing and d = column head diameter). One or more layers of high-strength geosynthetic reinforcement (geogrid or woven geotextile) are placed within the LTP, typically at the base of the granular layer on top of the column heads or at mid-height of the LTP. The geosynthetic provides tensile membrane support between column heads, limiting differential settlement at the embankment surface. Required geosynthetic tensile strength depends on column spacing, column head size, embankment height and unit weight, and acceptable differential settlement. Geosynthetics with tensile strength of 100–400 kN/m are commonly specified for CSE applications.",
-      "key_points": [
-        "LTP: compacted granular fill (phi >= 35°) above column heads; minimum height H >= 0.7*(s-d)",
-        "Geosynthetic (geogrid or woven geotextile) placed at base or mid-height of LTP",
-        "Geosynthetic provides tensile membrane support between column heads",
-        "Required tensile strength depends on column spacing, head size, embankment geometry, and settlement limits",
-        "Typical geosynthetic strengths: 100–400 kN/m for CSE applications",
-        "Multiple geosynthetic layers may be used for larger spans or higher loads"
-      ],
-      "equations": [
-        "Eq 6-4: Minimum LTP height H_LTP = 0.7 * (s - d_col) where s = column spacing, d_col = column head diameter",
-        "Eq 6-5: Tensile load per unit width T = (q_subgrade * s²) / (8 * ε_s) from membrane analogy for single layer geosynthetic"
-      ],
-      "figures": [
-        "Figure 6-4: Load transfer platform cross-section showing granular fill, geosynthetic layers, and column head caps"
-      ],
-      "tables": [],
-      "applicability": "Design of granular LTP and geosynthetic reinforcement for load transfer in CSE systems."
-    },
-    {
-      "section_id": "6.6",
-      "title": "Settlement Analysis",
-      "body": "Settlement of CSE systems occurs from three sources: (1) compression of the LTP granular fill; (2) elastic and long-term creep of the columns; and (3) differential settlement between column heads and the surrounding subgrade. The total settlement at the embankment surface is controlled primarily by column compression, since arching transfers most of the load to columns and little load is applied to the subgrade. Differential settlement at the embankment surface is limited by the geosynthetic membrane action and the embankment's ability to distribute differential movements. Design differential settlement at the embankment surface typically should not exceed 1% of the column spacing for roads and 0.5% for high-performance applications. Column compression is calculated using elastic shortening equations; for end-bearing columns, creep is generally negligible for concrete or steel columns but must be considered for deep mixed columns or aggregate columns.",
-      "key_points": [
-        "Three settlement sources: LTP compression, column compression/creep, and differential settlement between column heads and subgrade",
-        "Total settlement controlled primarily by column compression, since arching directs load to columns",
-        "Design differential settlement limit: typically 1% of column spacing (roads), 0.5% (high-performance)",
-        "Column elastic shortening calculated from applied load, cross-section, and elastic modulus",
-        "Creep significant for deep mixed columns and aggregate columns; negligible for concrete/steel",
-        "Geosynthetic membrane limits differential settlement at embankment surface"
-      ],
-      "equations": [
-        "Eq 6-6: Elastic shortening δ_c = P_c * L / (E_c * A_c) where P_c = column load, L = column length, E_c = modulus, A_c = area"
-      ],
-      "figures": [],
-      "tables": [],
-      "applicability": "Settlement analysis for CSE systems including column compression and differential settlement at embankment surface."
-    },
-    {
-      "section_id": "6.7",
+      "section_id": "6.3.1.2",
       "title": "Construction",
-      "body": "CSE construction sequence typically consists of: (1) site preparation and establishment of working platform; (2) column installation; (3) installation of column head caps or granular pile caps; (4) placement and compaction of LTP granular fill; (5) placement of geosynthetic reinforcement; (6) continuation of LTP fill and additional geosynthetic layers if required; (7) construction of embankment fill above LTP. Quality control during column installation includes verification of column depth, diameter, and integrity through extraction testing, integrity testing, or load testing. The working platform must support the column installation rig without excessive rutting; typically 0.5–1.0 m of compacted granular fill is placed over the soft subgrade prior to column installation. Embankment construction should be staged if the soft subgrade could fail laterally; column batter or additional lateral analysis may be required for high embankments with steep side slopes.",
+      "summary": "Column installation uses specialized, often large and heavy equipment; construction guidance is in the Aggregate Columns and Soil Mixing chapters, GEC 8 and GEC 12. A working platform may be needed on soft soils, and any geosynthetic in it is not part of the LTP analysis.",
+      "body": "Column installation typically involves specialized construction equipment. The chapters on Aggregate Columns and Soil Mixing cover construction techniques and equipment for aggregate, cement based and soil mix columns; CFA piles are covered in GEC 8 (2007) and driven piles in GEC 12 (2016). Most column installation equipment is relatively large and may be heavy, so on soft soil projects a working platform may be required for access. The working platform may include a layer of geosynthetic reinforcement to stabilize the subgrade; this layer is solely for the working platform and should not be included in the LTP analysis. See Chapter 9 Pavement Support Stabilization Technologies for stabilization design and construction guidance (p. 6-15).",
       "key_points": [
-        "Construction sequence: site prep → columns → pile caps → LTP fill → geosynthetic → LTP fill → embankment",
-        "Working platform (0.5–1.0 m compacted granular fill) required before column installation on soft subgrade",
-        "Column QC: extraction testing, integrity testing, or load testing",
-        "Embankment fill should be staged if lateral failure of soft subgrade is possible",
-        "Column batter or lateral analysis required for high embankments with steep slopes",
-        "Geosynthetic seams must be oriented perpendicular to embankment axis (or as designed)"
+        "A working platform may be required on soft sites for heavy installation equipment.",
+        "Working-platform geosynthetic should not be counted in the LTP analysis."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Constructing CSE columns on soft sites."
+    },
+    {
+      "section_id": "6.3.1.3",
+      "title": "Column Caps",
+      "summary": "Column caps reduce the clear span between columns and are usually cast-in-place or precast concrete, possibly reinforced. Little design information exists; issues center on the column-to-cap connection for lateral loads and bending moments.",
+      "body": "Column caps are used to decrease the clear span between columns; a CSE with a geosynthetic LTP and column caps is shown in Figure 6-5. Caps usually consist of cast-in-place or precast concrete, and reinforcing steel may be required. There is currently little information on the design of column caps. Design issues focus on the connection between column and cap with respect to lateral loads and bending moments (how lateral loads are determined and where they are applied), pp. 6-15 to 6-16.",
+      "key_points": [
+        "Caps decrease the clear span between columns.",
+        "Little design guidance exists; the column-cap connection under lateral load and moment is the main issue."
       ],
       "equations": [],
       "figures": [
-        "Figure 6-5: CSE construction sequence: working platform, column installation, LTP granular fill, geosynthetic layers, and embankment fill"
+        "Figure 6-5: CSE with column caps."
       ],
       "tables": [],
-      "applicability": "Construction planning, sequencing, and quality control for column-supported embankment systems."
+      "applicability": "Use and design issues of column caps in a CSE."
     },
     {
-      "section_id": "6.8",
-      "title": "Specifications and Quality Assurance",
-      "body": "CSE specifications typically include column type, installation method, minimum length, minimum diameter, design capacity, and acceptance criteria. Column acceptance criteria include: static or dynamic load testing for driven piles, integrity testing (CSL, gamma-gamma, or low-strain PIT) for drilled elements, and compressive strength testing of coring or extracted samples for deep mixed columns. LTP specifications address compaction (minimum 95% modified Proctor), aggregate gradation, lift thickness, and geosynthetic placement requirements. Geosynthetic specifications include minimum tensile strength (in both principal directions), junction strength, aperture size, and installation damage reduction factors. Quality assurance for geosynthetic placement includes verification of overlap/seam lengths, protection from damage during fill placement, and confirmation of orientation. A geotechnical monitoring plan should specify settlement plate and piezometer locations and acceptable performance thresholds.",
+      "section_id": "6.3.2",
+      "title": "Load Transfer Platforms",
+      "summary": "LTPs covered in the manual are select granular structural fill, unreinforced or reinforced with one or more geosynthetic layers, or in situ unreinforced cohesionless soil.",
+      "body": "The LTPs covered in this manual consist of select granular structural fill, either non-reinforced or reinforced with one or more layers of geosynthetic reinforcement, or in situ unreinforced cohesionless soil (p. 6-16).",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Types of LTP addressed in the manual."
+    },
+    {
+      "section_id": "6.3.2.1",
+      "title": "Materials",
+      "summary": "LTP materials: a stiff, deep enough surface soil layer may act as the LTP, otherwise well graded frictional granular fill is used; reinforcement is a single high-strength geotextile or geogrid or several lower-strength biaxial geogrid layers, often with a cushion layer or nonwoven geotextile over the column tops.",
+      "body": "Granular material (3.2.1.1, p. 6-16): if a soil layer just below the ground surface is stiff enough and deep enough, it may act as the LTP; otherwise backfill is needed. Arching in the LTP soil above the columns is integral to stress transfer, so the soil in the arching zone should be frictional material with high shear strength. Well graded granular fill is ideal; non-select fill may be used above the platform for the rest of the embankment. Geosynthetic reinforcement (3.2.1.2, p. 6-17): typically either a single layer of high strength geotextile or geogrid, or several layers of lower strength biaxial geogrid. Type and strength depend on the design model (catenary or beam), column spacing and embankment height. Many designers require a cushion layer of fill between the column tops and the reinforcement, or a nonwoven needle-punched geotextile between pile top and geogrid, to eliminate abrasion and reduce stress concentrations; pile caps should have rounded, not sharp, edges.",
       "key_points": [
-        "Column acceptance: load testing (piles), integrity testing (drilled elements), coring (deep mixed columns)",
-        "LTP compaction: minimum 95% modified Proctor with specified aggregate gradation",
-        "Geosynthetic specs: tensile strength (both directions), junction strength, aperture size, installation damage factors",
-        "QA for geosynthetic: verify overlap/seam lengths, protection from fill damage, correct orientation",
-        "Geotechnical monitoring: settlement plates and piezometers with specified performance thresholds",
-        "Embankment fill compaction should exclude heavy compaction equipment directly over column heads during early stages"
+        "Arching-zone fill must be frictional with high shear strength; well graded granular fill is ideal.",
+        "Reinforcement: one high-strength geotextile/geogrid layer or several lower-strength biaxial geogrid layers.",
+        "A cushion layer or nonwoven geotextile over column tops reduces abrasion and stress concentration.",
+        "Pile caps should have rounded edges."
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Specification development and quality assurance for column installation, LTP, and geosynthetic reinforcement in CSE systems."
+      "applicability": "Selecting LTP fill and geosynthetic reinforcement."
     },
     {
-      "section_id": "6.9",
+      "section_id": "6.3.2.2",
+      "title": "Construction",
+      "summary": "LTP construction: roll reinforcement in the direction shown on drawings, remove wrinkles and slack, keep equipment off the geosynthetic with at least 6 in. of fill, consider seam type in design, and set compaction requirements and the first reinforcement level considering soft subgrade.",
+      "body": "Geosynthetic reinforcement should be rolled out in the direction indicated on the construction drawings (Figure 6-6). All wrinkles and slack should be removed before fill placement. No construction equipment should travel directly on the reinforcement, and a minimum of 6 inches of fill should be placed between the reinforcement and any equipment. Seam requirements shall be considered in design and selection of the reinforcement; LTPs to date have used both sewn and overlap seams. The select fill (Figure 6-7) should meet project requirements (Section 5 specifications). Compaction requirements should consider existing ground conditions: over soft subgrade it will be difficult to achieve 95% compaction in the first lift of select fill, though later lifts should reach it; the location of the first reinforcement layer should take this into account, and a reinforcement layer at subgrade helps achieve compaction in the first lift over soft subgrade (pp. 6-17 to 6-18).",
+      "key_points": [
+        "Remove wrinkles and slack; no equipment directly on the geosynthetic; at least 6 in. of fill under equipment.",
+        "Sewn and overlap seams have both been used; consider seam type in design.",
+        "95% compaction is hard to achieve in the first lift over soft subgrade; a reinforcement layer at subgrade helps."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-6: Load transfer platform reinforcement placement.",
+        "Figure 6-7: Load transfer platform select fill placement."
+      ],
+      "tables": [],
+      "applicability": "Field placement of LTP reinforcement and select fill."
+    },
+    {
+      "section_id": "6.4.0",
+      "title": "Design Concepts",
+      "summary": "U.S. CSE design has moved from the semi-empirical beam method to the load and displacement compatibility (LDC) method (Sloan et al. 2013); the beam method remains for preliminary LTP sizing, and 2D/3D numerical analyses are also used with care.",
+      "body": "CSE design has advanced significantly in the last decade. The early U.S. method was the beam method, a semi-empirical method developed from laboratory testing and observed full-scale performance; it was instrumental in advancing the technology as an easy, straightforward method. Today it is being replaced by the more analytically correct load and displacement compatibility (LDC) method (Sloan et al. 2013). For preliminary designs the beam method is still used to determine LTP thickness and reinforcement. For final design, once a geosynthetic reinforced LTP is found to be required, reinforcement properties may be based on the preliminary beam design with the settlement analysis performed using the LDC method. The LDC method is discussed in detail; the beam method is in Section 4.7. Some specialty contractors and consultants perform 2D and 3D numerical deformation analyses; many finite element and finite difference programs are available, but great care and experience are needed to develop a reliable model, select input parameters and perform quality control checks (p. 6-19).",
+      "key_points": [
+        "The LDC method (Sloan et al. 2013) is replacing the beam method.",
+        "Beam method still used for preliminary LTP thickness and reinforcement; LDC for final settlement analysis.",
+        "Numerical modeling requires great care, experience and quality control."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Choosing a design approach for column-supported embankments."
+    },
+    {
+      "section_id": "6.4.1",
+      "title": "Design Steps",
+      "summary": "CSE design must address strength limit states (column capacity, lateral extent, vertical load transfer, lateral sliding, global stability) and serviceability (reinforcement strain typically limited to 5 to 6%, column settlement). Gives the 13 general design steps from preliminary spacing to construction observation.",
+      "body": "CSE design must consider strength limit states and serviceability state criteria. The limit state failure modes (Figure 6-8, after BS8006 2010) are: columns carrying the vertical embankment load without failing (typically assumed to carry the full load); the lateral extent of columns needed to prevent slides at the toe beyond the outermost column; the foundation soil and/or LTP transferring vertical load to the columns; lateral sliding of the embankment on top of the columns; and global stability. For serviceability, strain in the LTP geosynthetic should be kept below a maximum threshold, typically 5 to 6%, to preclude unacceptable differential settlement at the top of the embankment, and column settlement must be analyzed (Figure 6-9). General design steps (pp. 6-21 to 6-22): 1. estimate preliminary column spacing (Section 2.3); 2. determine required column load; 3. select a preliminary column type; 4. determine column capacity for limit and serviceability states; 5. determine the extent of columns across the embankment width; 6. check critical embankment height and adjust spacing; 7. determine if an LTP is required; 8. if reinforced, determine reinforcement requirements from the spacing and revise spacing as required; 9. determine reinforcement for lateral spreading; 10. determine overall reinforcement requirements; 11. check global stability; 12. prepare drawings and specifications; 13. observe construction.",
+      "key_points": [
+        "Limit states: column capacity, lateral extent, vertical load transfer, lateral sliding, global stability.",
+        "Serviceability: geosynthetic strain typically kept below 5 to 6%; check column settlement.",
+        "Thirteen general design steps, from preliminary spacing to construction observation."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-8: Limit state failure modes.",
+        "Figure 6-9: Serviceability state."
+      ],
+      "tables": [],
+      "applicability": "Overall CSE design procedure and the failure modes to check."
+    },
+    {
+      "section_id": "6.4.1.1",
+      "title": "Design CSE with or without LTP",
+      "summary": "The trend has shifted from geosynthetic reinforced LTPs to unreinforced LTPs or no LTP; the chapter's design method applies to all three conditions, with the choice made on serviceability and economics. An LTP is a very small cost component of the overall system.",
+      "body": "CSE design has changed significantly over the last decade. In the previous version of the manual CSEs were designed almost exclusively with geosynthetic reinforced LTPs; the trend now is to design them with unreinforced LTPs or without an LTP altogether. The design methodology in the chapter is valid for all three conditions: no LTP, unreinforced LTP and reinforced LTP. The appropriate solution is selected on serviceability and economics, i.e., whether it meets the project settlement criteria and whether a solution without an LTP is more economical than one with an LTP that allows fewer columns at wider spacing. An LTP, reinforced or unreinforced, is a very small cost component of the overall system (p. 6-22).",
+      "key_points": [
+        "The design method applies with no LTP, an unreinforced LTP or a reinforced LTP.",
+        "Choice is based on settlement criteria and economics.",
+        "An LTP is a very small cost component of the system."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Deciding whether a CSE needs an LTP and whether to reinforce it."
+    },
+    {
+      "section_id": "6.4.2",
+      "title": "Column Design",
+      "summary": "Column load is based on tributary area, with embankment and surcharge carried entirely by the columns. The equivalent tributary diameter is 1.13 s for square and 1.05 s for triangular patterns; Eq. 6-1 gives the required nominal column load Qr. Typical loads are 25 to 75 kips at 5 ft spacing and 90 to 270 kips at 10 ft.",
+      "body": "Column type selection is most often based on constructability, load capacity versus stiffness, and cost. The required column load is typically based on the tributary area of each column, with the embankment and any surcharge assumed carried entirely by the columns. Figure 6-10 (Sloan et al. 2013) defines the unit cell: for a rectangular array Aunitcell = s1*s2 and s' = (s1^2+s2^2)^(1/2)/2 - d/2; for a triangular array Aunitcell = s1(s2^2 - s1^2/4)^(1/2) and s' = (s2^2+2s1^2)^(1/2)/3 - d/2; round column Ac = pi d^2/4, p = pi d; square column Ac = a^2, p = 4a, with equal-area conversion a = 0.866d. The polygonal tributary area can be approximated by an equivalent circle: the effective diameter De is 1.13 times the center-to-center spacing for a square pattern and 1.05 times for a triangular pattern (typical spacing 5 to 10 feet). Qr from Eq. 6-1 is the unfactored (nominal) load. Required loads are about 25 to 75 kips at 5 feet spacing and about 90 to 270 kips at 10 feet spacing for embankment heights of 10 to 30 feet. Table 6-1 with site conditions, constraints and cost is used to select a column type. Driven piles follow GEC 12 (2016), timber piles also Collin (2002), CFA piles GEC 8 (2007); cement based column capacity is typically designed by the contractor and verified with a static load test (pp. 6-22 to 6-24).",
+      "key_points": [
+        "Embankment and surcharge loads are assumed carried entirely by the columns.",
+        "Effective tributary diameter De = 1.13 s (square) or 1.05 s (triangular).",
+        "Surcharge q typically 250 psf.",
+        "Qr is unfactored: about 25 to 75 kips at 5 ft spacing and 90 to 270 kips at 10 ft spacing for H = 10 to 30 ft.",
+        "Equal-area square-round conversion a = 0.866d."
+      ],
+      "equations": [
+        "Eq. 6-1: Qr = pi (De/2)^2 (gamma H + q); required design vertical (nominal) load in the column, with De = effective tributary area diameter, H = embankment height, q = live and dead load surcharge (typically 250 psf), gamma = embankment unit weight"
+      ],
+      "figures": [
+        "Figure 6-10: Column layout and definition sketch for inputs to critical height and adapted Terzaghi method."
+      ],
+      "tables": [],
+      "applicability": "Computing required column load for a CSE from tributary area."
+    },
+    {
+      "section_id": "6.4.3",
+      "title": "Lateral Extent of Columns",
+      "summary": "Columns must extend close enough to the embankment edge that instability or settlement outside the supported area is not a problem; ReSSA can check edge stability, and BS8006 (2010) requires columns within a distance Lp of the toe given by Eq. 6-2.",
+      "body": "The lateral extent of the column system should reach sufficiently close to the embankment edge to ensure that any instability or differential settlement outside the column supported area will not be problematic (Figure 6-8b). Several approaches can check edge stability; the FHWA software ReSSA, for reinforced and unreinforced slopes and embankments, is an excellent tool. BS8006 (2010) requires that the columns extend to within a minimum distance Lp of the embankment toe so that settlement of the unsupported edge does not affect the crest (Figure 6-11). In Eq. 6-2, n is the embankment side slope, theta_p is the angle from vertical between the outer edge of the outermost column and the crest of the embankment, theta_p = (45 - phi_emb/2), and phi_emb is the effective friction angle of the embankment fill (pp. 6-24 to 6-25).",
+      "key_points": [
+        "ReSSA is suggested for checking edge stability.",
+        "BS8006 (2010): columns extend to within Lp of the toe.",
+        "theta_p = 45 - phi_emb/2, measured from vertical."
+      ],
+      "equations": [
+        "Eq. 6-2: Lp = H (n - tan theta_p); BS8006 maximum distance from the embankment toe to the outer edge of the outermost column, with n = side slope, theta_p = 45 - phi_emb/2"
+      ],
+      "figures": [
+        "Figure 6-11: Lateral extent of columns."
+      ],
+      "tables": [],
+      "applicability": "Setting how far columns extend under the embankment side slopes."
+    },
+    {
+      "section_id": "6.4.4",
+      "title": "Lateral Spreading",
+      "summary": "Lateral spreading force PLat (Eq. 6-3) is resisted by the foundation soil shear Rls = Ls Su (Eq. 6-4) with a recommended FS of 1.5; otherwise geosynthetic with long-term strength Tls >= PLat (Eq. 6-5) is added, anchored over length Le (Eq. 6-6).",
+      "body": "The potential for lateral spreading of the embankment must be analyzed (Figure 6-12). Resistance is provided by the shear strength of the foundation soils at the base of the embankment; if inadequate, geosynthetic reinforcement may be added instead of battered piles beneath the slope. This is critical because many vertical columns suitable for CSEs cannot provide adequate lateral resistance without failing. The required tensile force to prevent spreading PLat is given by Eq. 6-3, with Ka = tan^2(45 - phi_emb/2). Resistance without reinforcement is Eq. 6-4, with Su the undrained shear strength of the foundation soil and Ls the length of the side slope (Figure 6-11). A factor of safety Rls/PLat of 1.5 is recommended. If it cannot be achieved, a geosynthetic layer should be added; the reinforcement is typically designed to resist the entire PLat, with long-term design strength Tls greater than PLat (see GEC 11 (2009) for Tls), and multiple layers may be used. The minimum reinforcement length Le beyond the crest toward the toe, needed to develop the reinforcement strength without the side slope sliding across it, is Eq. 6-6, where ciemb is the coefficient of interaction for sliding between the geosynthetic and embankment fill (pp. 6-25 to 6-27).",
+      "key_points": [
+        "Many vertical columns cannot resist lateral spreading without failing; use soil shear or geosynthetic rather than battered piles.",
+        "Recommended factor of safety for lateral spreading Rls/PLat = 1.5.",
+        "Reinforcement typically designed for the entire PLat; Tls per GEC 11 (2009)."
+      ],
+      "equations": [
+        "Eq. 6-3: PLat = Ka [gamma (H^2/2) + q H]; required tensile force to prevent lateral spreading, Ka = tan^2(45 - phi_emb/2)",
+        "Eq. 6-4: Rls = (Ls) Su; resistance to lateral spreading without geosynthetic, Ls = side slope length, Su = undrained shear strength of foundation soil",
+        "Eq. 6-5: Tls >= PLat; reinforcement long-term design strength must be at least the lateral spreading force",
+        "Eq. 6-6: Le = PLat / (0.5 gamma H ciemb tan phi_emb); minimum reinforcement length beyond the crest toward the toe"
+      ],
+      "figures": [
+        "Figure 6-12: Lateral spreading."
+      ],
+      "tables": [],
+      "applicability": "Checking and reinforcing a CSE against lateral spreading."
+    },
+    {
+      "section_id": "6.4.5",
+      "title": "Critical Height",
+      "summary": "Critical height is the embankment height above which differential settlement at the CSE base produces no measurable differential settlement at the surface. Eq. 6-7 takes the larger of 1.5(s-a) and 1.15s'+1.44d; Eqs. 6-8 to 6-10 give maximum spacing for square, isosceles and equilateral arrays.",
+      "body": "Avoiding differential surface settlement matters for ride quality and overlying structures. It is influenced by column spacing and diameter, embankment height, subgrade support relative to column stiffness, and surface loading; it is likely for a low embankment with wide spacing and poor subgrade support. In this chapter critical height is the embankment height above which differential settlements at the base of the CSE do not produce measurable differential settlement at the surface, similar to Naughton's (2007) usage; others (Horgan and Sarsby 2002; Chen et al. 2008) define it as the height above which all additional fill and surcharge load goes completely to the pile caps. For CSEs without subgrade support, McGuire (2011) found Hcrit depends on column diameter and spacing, not significantly on fill relative density or geosynthetic reinforcement: Hcrit = 1.15s' + 1.44d (s' per Figure 6-10). Sloan's (2011) field tests agree with this and with the conventional Hcrit = 1.5(s - a) for square arrays. The GeoTechTools approach uses the larger of the two (Eq. 6-7). Where a square array of square pile caps is used and the embankment height is fixed, the column spacing can be estimated by Eq. 6-8; for round caps 0.886d (as printed) can be substituted for the cap width a. Eqs. 6-9 and 6-10 are for isosceles and equilateral triangular arrays (pp. 6-27 to 6-28).",
+      "key_points": [
+        "Critical height: height above which base differential settlement gives no measurable surface differential settlement.",
+        "Hcrit = max{1.5(s - a), 1.15s' + 1.44d}; the embankment height H must exceed it.",
+        "Spacing limits: s <= 1.2(H - a) square, 1.4(H - a) isosceles triangular, 1.5(H - a) equilateral triangular."
+      ],
+      "equations": [
+        "Eq. 6-7: H > Hcrit = max{1.5(s - a); 1.15s' + 1.44d}; critical embankment height",
+        "Eq. 6-8: s <= 1.2(H - a); column spacing for a square array of square pile caps",
+        "Eq. 6-9: s <= 1.4(H - a); column spacing for an isosceles triangular array",
+        "Eq. 6-10: s <= 1.5(H - a); column spacing for an equilateral triangular array"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Checking embankment height against column spacing to avoid surface differential settlement."
+    },
+    {
+      "section_id": "6.4.6",
+      "title": "Load Transfer Platform Design",
+      "summary": "Describes the load and displacement compatibility (LDC) method (Smith 2005; Filz and Smith 2006, 2007) for loads on the LTP and reinforcement: vertical equilibrium (Eq. 6-11) with displacement compatibility in an axisymmetric unit cell, solved in the GeogridBridge spreadsheet; applicable to reinforced and unreinforced LTPs.",
+      "body": "There are over a dozen methods to design the LTP; the practical one modeling the actual load transfer is the load displacement compatibility (LDC) method, developed by Smith (2005) and Filz and Smith (2006, 2007) and usable for unreinforced LTPs too. Its features: vertical equilibrium and displacement compatibility at the reinforcement level to distribute load among columns, soil, geosynthetic and embankment base; an axisymmetric unit cell for vertical load on the geosynthetic; a 3D representation and parabolic deformation between columns for tension (as in BS8006 2010); round columns or square caps in a square array; embankment response linear up to a limit state set by the Adapted Terzaghi Method; linear-elastic geosynthetic with nonlinear load-deflection from large displacement; clay between columns modeled with compression ratio, recompression ratio and preconsolidation pressure; and slippage at the soil-column interface. The embankment-around-column relation uses an elastic circular-load solution (Poulos and Davis 1974) up to the limit given by the Adapted Terzaghi Method (Russell and Pierpoint 1997) with K = 0.75. Column compression uses a constant modulus; if voids are expected under the LTP, ignore foundation soil support. Soil sheds load to the column by interface friction until column and soil settlements are equal; maximum differential settlement at subgrade is taken as twice the average (Russell et al. 2003), judged conservative. The equations are implemented in the GeogridBridge spreadsheet (Filz and Smith 2006) on GeoTechTools, which allows two fill types, J = 0 for no reinforcement, column properties varying with depth, two sand and two clay layers, and automatic solution. The method was validated against numerical analyses and case histories (Filz and Smith 2007; McGuire et al. 2009), pp. 6-28 to 6-33.",
+      "key_points": [
+        "LDC method applies to reinforced and unreinforced LTPs.",
+        "Limiting embankment stress from the Adapted Terzaghi Method with K = 0.75.",
+        "Maximum differential settlement at subgrade taken as twice the average (Russell et al. 2003), a conservative approximation.",
+        "GeogridBridge spreadsheet solves the equations; set J = 0 for no geosynthetic.",
+        "If voids may form beneath the LTP, ignore subgrade support."
+      ],
+      "equations": [
+        "Eq. 6-11: gamma H + q = as sigma_col,geotop + (1 - as) sigma_soil,geotop = as sigma_col,geobot + (1 + as) sigma_soil,geobot (as printed); vertical equilibrium of the unit cell, as = Ac/Aunitcell area replacement ratio"
+      ],
+      "figures": [
+        "Figure 6-13: Definition sketch for load and displacement compatibility (LDC) method."
+      ],
+      "tables": [],
+      "applicability": "Analyzing load transfer and settlement of a CSE load transfer platform."
+    },
+    {
+      "section_id": "6.4.6.1",
+      "title": "Generalized Adapted Terzaghi Method",
+      "summary": "Generalized Adapted Terzaghi Method for the limiting stress on the embankment base over soil: any column arrangement and cap area, up to two fill layers, and vertical shearing limited to below Hcrit. Parameter alpha (Eq. 6-12) and stress sigma_soil for three cases of H1, H2 and Hcrit (Eqs. 6-13 to 6-15).",
+      "body": "The Adapted Terzaghi Method for the limiting distribution of stress acting up on the base of the embankment agrees reasonably with numerical analyses and case histories (Russell and Pierpoint 1997; Filz and Smith 2006), with other rational methods (Hewlett and Randolph 1988; Kempfert et al. 2004a, 2004b, per McGuire and Filz 2008) and with Sloan's (2011) field tests, and is relatively simple. As presented by Russell and Pierpoint (1997) and Russell et al. (2003) it applies to a square arrangement of square columns and one fill. The generalized version accommodates any column arrangement and cap area (Figure 6-10); up to two embankment fill layers (an LTP fill and a lower quality fill above), differing in unit weight, friction angle and lateral earth pressure coefficient; and vertical shearing limited to the embankment below the critical height, with the weight above treated as surcharge (Filz and Smith 2006; Sloan et al. 2011). Inputs: H1,2 layer thicknesses (Figure 6-2), gamma1,2, K1,2, phi1,2, surcharge q, perimeter p, Aunitcell, Ac and Asoil = Aunitcell - Ac. The average upward stress on the embankment base over soil (sigma_soil,geotop, or sigma_soil without geosynthetic) is Eq. 6-13 for H1 + H2 <= Hcrit, Eq. 6-14 for H1 <= Hcrit <= H1 + H2, and Eq. 6-15 for Hcrit <= H1 (pp. 6-33 to 6-34).",
+      "key_points": [
+        "Generalized for any column arrangement, cap area and up to two fill layers.",
+        "Vertical shearing limited to below the critical height; fill above treated as surcharge.",
+        "Asoil = Aunitcell - Ac."
+      ],
+      "equations": [
+        "Eq. 6-12: alpha1,2 = p K1,2 tan phi1,2 / Asoil; combined parameter for each fill layer",
+        "Eq. 6-13: sigma_soil = (gamma1/alpha1)(1 - e^(-alpha1 H1)) + (gamma2/alpha2)(e^(-alpha1 H1))(1 - e^(-alpha2 H2)) + q (e^(-alpha1 H1))(e^(-alpha2 H2)); limiting stress on base over soil for H1 + H2 <= Hcrit",
+        "Eq. 6-14: sigma_soil = (gamma1/alpha1)(1 - e^(-alpha1 H1)) + (gamma2/alpha2)(e^(-alpha1 H1))(1 - e^(-alpha2 (Hcrit - H1))) + [q + (H1 + H2 - Hcrit) gamma2](e^(-alpha1 H1))(e^(-alpha2 (Hcrit - H1))); for H1 <= Hcrit <= H1 + H2",
+        "Eq. 6-15: sigma_soil = (gamma1/alpha1)(1 - e^(-alpha1 Hcrit)) + [q + (H1 - Hcrit) gamma1 + H2 gamma2](e^(-alpha1 H1)) (exponent as printed); for Hcrit <= H1"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Computing the limiting arching stress on the subgrade between CSE columns."
+    },
+    {
+      "section_id": "6.4.6.2",
+      "title": "Generalized Parabolic Method",
+      "summary": "Generalized parabolic method (BS8006 2010 with stress-strain compatibility, Filz and Smith 2006; adapted by Sloan 2011) for geogrid tension: Eq. 6-16 for biaxial geogrid over rectangular arrays with 0.5 <= s1/s2 <= 2, and Eq. 6-17 for biaxial geogrid over triangular arrays.",
+      "body": "At least three methods calculate tension in CSE geosynthetic reinforcement: the parabolic method (BS8006 2010), the tensioned membrane method (Collin 2004, 2007) and the embedded membrane method (Kempfert et al. 2004a, 2004b). The parabolic method agrees well with numerical analyses (Filz and Plaut 2009) and Sloan's (2011) field tests. BS8006 applies it to square caps in a square array without stress-strain compatibility; Filz and Smith (2006) added compatibility and Sloan (2011) adapted it to the Figure 6-10 geometries. For biaxial geogrid aligned with a rectangular array the solution is Eq. 6-16, where T is geogrid tension, sigma_net = sigma_soil,geotop - sigma_soil,geobot is the net vertical stress on the geogrid, Asoil is the geogrid area in a unit cell underlain by soil (Asoil = Ap in Figure 6-14), p is the column or cap perimeter and J the sum of the geogrid layer stiffnesses. Typically two to four geogrid layers are used, each rotated 90 degrees, so an average J is justified. Strain is epsilon = T/J. Eq. 6-16 is recommended for rectangular arrays with 0.5 <= s1/s2 <= 2, including square arrays, and (the print says Equation 6-10) also applies to radially isotropic geogrids over rectangular or triangular arrays in that range. For biaxial geogrid over a triangular array the solution, based on the assumptions in Figure 6-14, is Eq. 6-17, solved simultaneously for T1 and T2, with epsilon1 = T1/J1 and epsilon2 = T2/J2 (pp. 6-34 to 6-36).",
+      "key_points": [
+        "Parabolic method agrees well with numerical analyses (Filz and Plaut 2009) and field tests (Sloan 2011).",
+        "Typically two to four geogrid layers, each rotated 90 degrees; J is the sum of layer stiffnesses.",
+        "Eq. 6-16 valid for 0.5 <= s1/s2 <= 2; strain epsilon = T/J."
+      ],
+      "equations": [
+        "Eq. 6-16: 6T^3 - 6T(sigma_net Asoil/p)^2 - J(sigma_net Asoil/p)^2 = 0; geogrid tension for biaxial geogrid aligned with a rectangular column array",
+        "Eq. 6-17: 2aT1/sqrt(1 + J1/(6T1)) + 2aT2/sqrt(1 + J2/(6T2)) - sigma_net Asoil = 0 and T1 c1^2/J1 = T2 c2^2/J2; geogrid tensions for biaxial geogrid over a triangular column array"
+      ],
+      "figures": [
+        "Figure 6-14: Triangular column arrangements with biaxial geogrid."
+      ],
+      "tables": [],
+      "applicability": "Computing geogrid tension and strain in a reinforced LTP."
+    },
+    {
+      "section_id": "6.4.6.3",
+      "title": "Geosynthetic Properties",
+      "summary": "LTP design uses the long-term stiffness J (serviceability), taken from the isochronous creep curve at the design life and design strain, not from quick tests such as ASTM D6637, and the available long-term strength (strength state), the short-term strength divided by creep, installation damage and durability reduction factors (GEC 11 Chapter 3).",
+      "body": "The two geosynthetic values used in LTP design are the stiffness J and the available long-term strength, relating to the serviceability state and strength state respectively. J should be the long-term stiffness, not the load-displacement relationship from quick (short-term) tests such as ASTM D6637. J for LTP design is defined at the specified or selected design life and the reinforcement design strain: the isochronous creep curve at the design life (e.g., 50 or 75 years) defines J as the tensile strength corresponding to the design strain. The available long-term strength is the quick (short-term) tensile strength (e.g., ASTM D6637) divided by the product of creep, installation damage and durability reduction factors; the procedures are well established in Chapter 3 of GEC 11 (2009), pp. 6-36 to 6-37.",
+      "key_points": [
+        "Stiffness J: long-term, from the isochronous creep curve at the design life and design strain.",
+        "Long-term strength: short-term strength divided by the product of creep, installation damage and durability reduction factors.",
+        "Do not use quick-test (ASTM D6637) load-displacement as J."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selecting geosynthetic stiffness and strength values for LTP design."
+    },
+    {
+      "section_id": "6.4.7",
+      "title": "Beam Method",
+      "summary": "The semi-empirical beam method for preliminary LTP design: LTP thickness at least half the clear span, three or more reinforcement layers at least 8 in. apart, initial strain limited to 5%. Layer loads by Eqs. 6-18/6-19 and tension by Eq. 6-20 with Omega from Table 6-2.",
+      "body": "The beam method is simple and often used for preliminary LTP design, for example when the soft subgrade is not characterized well enough for the LDC method. Assumptions (p. 6-37): LTP thickness h is at least one-half the clear span (1/2 (s - d)); a minimum of three layers of extensible (geosynthetic) reinforcement; minimum vertical spacing between layers of 8 inches; select fill in the LTP; reinforcement primarily provides lateral confinement to facilitate arching within the LTP and secondarily supports the soil wedge below the arch; all vertical load from the embankment above the LTP goes to the columns; initial reinforcement strain limited to 5%. The load carried by each layer depends on the column pattern (square or triangular) and the vertical spacing. If the subgrade can support the first lift, the first layer is placed 6 to 10 inches above subgrade. Each layer carries the LTP fill within the soil wedge below the arch between that layer and the next above (Figure 6-14 'Beam method', as numbered in print). WTn = ((area at layer n + area at layer n+1)/2)(layer thickness)(LTP fill density)/(area at layer n). Tension is from tension membrane theory (Giroud et al. 1990), Eq. 6-20, with D = design span: (s-d)n for square spacing or (s-d)n tan 30 degrees for triangular spacing, and Omega from Table 6-2 (Young et al. 2003): Omega = 2.07, 1.47, 1.23, 1.08, 0.97 for strain 1, 2, 3, 4, 5% (pp. 6-37 to 6-39).",
+      "key_points": [
+        "LTP thickness h >= 1/2 (s - d); at least three reinforcement layers at least 8 in. apart.",
+        "Initial reinforcement strain limited to 5%.",
+        "First layer 6 to 10 in. above subgrade if the subgrade supports the first lift.",
+        "Omega = 2.07, 1.47, 1.23, 1.08, 0.97 at 1, 2, 3, 4, 5% strain (Table 6-2)."
+      ],
+      "equations": [
+        "Eq. 6-18: WTn = [(s - d)n^2 + (s - d)n+1^2] sin 60 deg (hn gamma / ((s - d)n^2 sin 60 deg)); uniform vertical load on reinforcement layer n for a triangular pattern",
+        "Eq. 6-19: WTn = [(s - d)n^2 + (s - d)n+1^2] (hn gamma / (s - d)n^2); uniform vertical load on reinforcement layer n for a square pattern",
+        "Eq. 6-20: Trpn = WTn Omega (D/2); tension in reinforcement layer n by tension membrane theory, D = design span"
+      ],
+      "figures": [
+        "Figure 6-14: Beam method."
+      ],
+      "tables": [
+        "Table 6-2: Values of Ω"
+      ],
+      "applicability": "Preliminary design of a multi-layer reinforced LTP by the beam method."
+    },
+    {
+      "section_id": "6.4.8",
+      "title": "Reinforcement Total Design Load",
+      "summary": "Lateral spreading and LTP reinforcement have been designed separately or combined; because lateral spreading needs high strength in one direction and the LTP needs biaxial reinforcement, separate reinforcements are generally recommended. Allowable long-term strength is used for lateral spreading.",
+      "body": "Separate geosynthetic layers for lateral spreading and for the LTP have been used, or the two force requirements have been combined and one geosynthetic able to resist their sum used. The tensile strength for lateral spreading may be relatively high compared with the LTP requirement, and its load direction is perpendicular to the embankment, needing strength in one direction, while the LTP load is bi-directional, needing a biaxial geogrid or geotextile. For these reasons separate reinforcements are generally recommended for lateral spreading and for the LTP. The allowable long-term tensile strength of the geosynthetic is used in the lateral spreading computations; as in Section 4.6.3, it is the quick (short-term) tensile strength (e.g., ASTM D6637) divided by the product of creep, installation damage and durability reduction factors (pp. 6-39 to 6-40).",
+      "key_points": [
+        "Separate reinforcements are generally recommended for lateral spreading (uniaxial) and the LTP (biaxial).",
+        "Use the allowable long-term tensile strength for lateral spreading."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Combining or separating lateral spreading and LTP reinforcement."
+    },
+    {
+      "section_id": "6.4.9",
+      "title": "Global Stability",
+      "summary": "Global stability can be checked with limit equilibrium software including column shear resistance and geosynthetic tension (BS8006 approach, Figure 6-15); when load is effectively transferred to the firm layer, global stability is rarely a problem and analyses are not generally required.",
+      "body": "Global stability of CSEs may be evaluated with limit equilibrium computer software, considering the added shear resistance of the columns and the tensile capacity of the geosynthetic reinforcement. The British Standard approach for including the benefit of columns and geosynthetic is shown in the figure printed as Figure 6-15 (cited in the text as Figure 6-16). For incorporating the columns see Chapter 5 Aggregate Columns, and for geosynthetic reinforcement see GEC 11 (2009). When the embankment load is effectively transferred to the firm foundation soil below the soft layer using the procedures above, there is very small potential for a global stability problem, and global stability analyses are consequently not generally required (pp. 6-40 to 6-41).",
+      "key_points": [
+        "Use limit equilibrium software including column shear resistance and geosynthetic tension.",
+        "With load effectively transferred to the firm layer, global stability analyses are not generally required."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-15: Variables used in global stability analysis."
+      ],
+      "tables": [],
+      "applicability": "Global stability checks for column-supported embankments."
+    },
+    {
+      "section_id": "6.5.0",
+      "title": "Construction Specifications and Quality Assurance",
+      "summary": "Unless the agency has CSE design, construction and inspection expertise, a performance specification is good practice; an experienced agency may use a method specification.",
+      "body": "Like other specialty construction, unless the specifying agency has expertise in the design, construction and inspection of CSEs, it is good practice to specify the work under a performance type specification. If the agency has the necessary experience, a method specification may be used (p. 6-42).",
+      "key_points": [
+        "Performance specification recommended unless the agency has CSE expertise."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Choosing a specification approach for a CSE."
+    },
+    {
+      "section_id": "6.5.1",
+      "title": "CSE Performance Specification",
+      "summary": "Performance specifications cover design and installation of columns and LTP; a guide performance specification with commentary is on GeoTechTools. The specification defines failure modes and minimum factors of safety, leaves design methods to the contractor, and the agency should check the design using the LDC method.",
+      "body": "Performance specifications shall include design and installation of the columns and the LTP. Column specifications are beyond the chapter's scope: see GEC 12 (2016) for driven piles, the other chapters for soil mix and aggregate columns, and GeoTechTools for cement based columns. During development of GeoTechTools, CSE specifications were evaluated, including the method and performance specifications in the previous manual and a draft state DOT LTP specification; with project experience these produced the Column-Supported Embankment Performance Guide Specification, a complete specification with commentary and instructions adaptable to a project, available on the GeoTechTools Technology Information page for CSEs. The specification shall clearly define the failure modes to be analyzed in the design-build contractor's submittal and the required minimum factors of safety, but the choice of design methods should be left to the contractor. As part of approval, the specifying agency should check the contractor's design using the LDC method (p. 6-42).",
+      "key_points": [
+        "A guide performance specification with commentary is available on GeoTechTools.",
+        "Specify failure modes and minimum factors of safety; leave design methods to the contractor.",
+        "The agency should check the contractor's design with the LDC method."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Writing a performance specification for a CSE."
+    },
+    {
+      "section_id": "6.5.2",
+      "title": "LTP Method Specification",
+      "summary": "If the agency wants a specific LTP design approach, a method specification for the LTP complementary to the CSE performance specification, or a combined performance/method specification, may be used; a guide LTP method specification is on GeoTechTools.",
+      "body": "If the specifying agency wants a specific design approach for the load transfer platform, a method specification for the LTP that complements the CSE performance specification may be used. Alternatively, a combined performance/method specification for the CSE and LTP could be developed. A guide method specification for an LTP is available on the GeoTechTools Technology Information page for Column-Supported Embankments, and should be modified as appropriate for the particular project requirements (pp. 6-42 to 6-43).",
+      "key_points": [
+        "An LTP method specification can complement the CSE performance specification.",
+        "A guide LTP method specification is on GeoTechTools."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Specifying a particular LTP design approach."
+    },
+    {
+      "section_id": "6.5.3",
+      "title": "Quality Assurance",
+      "summary": "QC/QA for CSE: verify LTP fill, embankment fill and geosynthetic properties and placement; test sections only for very large projects or performance specifications; monitor settlement and lateral displacement. Lists geosynthetic, fill and monitoring checks, including lift thickness limits of 10 in. and 6 in.",
+      "body": "QC/QA should verify the properties and placement of the LTP fill, embankment fill and geosynthetic reinforcement. Very large projects may budget a test section, but the need has diminished with experience; settlement and/or lateral displacement monitoring should be included, and industry QC/QA for the column type followed. Pre-production test sections should be considered only on very large projects or with a performance specification, where monitoring becomes the basis for acceptance, typically minimum total and/or differential settlement criteria. Geosynthetic checks: document manufacturer, model, lot and roll numbers; verify certified ultimate strength (ASTM D6637 geogrid or D4595 geotextile), creep resistance (D5262), durability and coefficient of interaction for sliding (D5321); inspect each roll; avoid prolonged UV exposure; remove deleterious materials; verify the geosynthetic is taut unless sagging is prescribed; keep equipment off it until minimum fill is placed, with no sharp turns; avoid large fill piles on the LTP; verify orientation, overlap and elevation; seams placed up with every stitch inspected. Fill checks: gradation, Atterberg limits, modified Proctor or min/max density, in situ density, and maximum lift thickness (10 inches for large compaction equipment, 6 inches for hand operated). Monitoring: surface survey and periodic resurvey, settlement plates at the reinforcement elevation, and inclinometers at the toe (pp. 6-43 to 6-45).",
+      "key_points": [
+        "Test sections only for very large projects or performance specifications.",
+        "Verify geosynthetic strength (ASTM D6637/D4595), creep (D5262) and interaction (D5321).",
+        "Maximum lift thickness: 10 in. for large compaction equipment, 6 in. for hand operated equipment.",
+        "Monitor with surface surveys, settlement plates at the reinforcement and inclinometers at the toe."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction quality assurance and monitoring for CSEs."
+    },
+    {
+      "section_id": "6.6.0",
+      "title": "Cost Data",
+      "summary": "Guidelines for budget estimates of the three main CSE cost components: the construction working platform (if required), the columns and the LTP, with GeoTechTools as an additional source.",
+      "body": "This section gives guidelines for preparing budget estimates so that the economic feasibility of a CSE can be evaluated, referring readers to GeoTechTools for further guidance on preliminary cost estimates. It provides cost information on the three main components of a CSE: the construction working platform (if required), the columns and the LTP (p. 6-46).",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Preliminary cost estimating for CSEs."
+    },
+    {
+      "section_id": "6.6.1",
+      "title": "Access and Mobility",
+      "summary": "Working platforms of geosynthetic and aggregate are often needed for equipment access; 2005 to 2010 DOT bids gave geosynthetic at $1.00 to $3.50/yd2 and granular fill at $7.00 to $20.00/ton delivered, with equipment and labor about equal to material cost.",
+      "body": "On many CSE sites the surface soils are so weak that a working platform is needed for equipment to move around. It typically consists of a geosynthetic reinforcement and a bridging layer of aggregate; its design is beyond the chapter's scope (see GeoTechTools and Chapter 9 Pavement Support Stabilization Technologies). Estimating its cost is straightforward. A review of DOT bids between 2005 and 2010 found geosynthetics for working platforms cost $1.00 to $3.50 per square yard including delivery, overlaps and waste, and granular fill $7.00 to $20.00 per ton delivered depending on region. Once the platform thickness is estimated, equipment and labor costs may be taken as about equal to the cost of the platform materials (p. 6-46).",
+      "key_points": [
+        "Working platform geosynthetic: $1.00 to $3.50/yd2 (2005-2010 bids).",
+        "Granular fill: $7.00 to $20.00/ton delivered.",
+        "Equipment and labor about equal to material cost."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Estimating working platform cost for a CSE site."
+    },
+    {
+      "section_id": "6.6.2",
+      "title": "Column Cost",
+      "summary": "Table 6-1 information can be used for a preliminary column cost estimate for production installation; mobilization, verification load tests and quality assurance testing and observation should be added.",
+      "body": "Information in Table 6-1 can be used to perform a preliminary estimate of the cost of the columns. The unit cost is for production column installation. Additional costs to consider are mobilization and column verification load tests; quality assurance testing and observation should also be considered (p. 6-46).",
+      "key_points": [
+        "Add mobilization, verification load tests and QA to production column cost."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Preliminary column cost estimate for a CSE."
+    },
+    {
+      "section_id": "6.6.3",
+      "title": "LTP Cost",
+      "summary": "LTP costs: reinforcement $8.35 to $12.00/yd2 (2005-2010 projects), granular fill $7.00 to $20.00/ton, thickness about (s-d)/2, labor about equal to materials. The worked estimate for 10 ft spacing and 20 in. columns gives a total of $76/yd2 of LTP plan area.",
+      "body": "LTP components are the geosynthetic reinforcement, the select LTP fill and the labor to install them. Reinforcement used on several projects built between 2005 and 2010 cost $8.35 to $12.00/yd2 including delivery, overlaps and waste; granular fill $7.00 to $20.00 per ton delivered depending on region. For preliminary cost the LTP thickness may be taken as one-half the clear spacing between columns, (s - d)/2, and equipment and labor costs as about equal to material costs. Printed example (p. 6-47) for 10 ft spacing, 20-inch columns, $10.00/yd2 reinforcement and $12.00/ton select fill: reinforcement $10/yd2; thickness (10 - 1.67)/2 = 4.1 ft; fill weight (4.1 ft)(125 pcf) = 520 psf; fill cost (520 psf)($6/1,000 lbs) = $3.12/ft2, about $28/yd2; material $38/yd2; labor $38/yd2; total $76/yd2 of LTP plan area (pp. 6-46 to 6-47).",
+      "key_points": [
+        "LTP reinforcement $8.35 to $12.00/yd2 (2005-2010).",
+        "Preliminary LTP thickness = (s - d)/2.",
+        "Worked estimate: 4.1 ft thick LTP, total $76/yd2 of LTP plan area."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Estimating LTP cost for a CSE."
+    },
+    {
+      "section_id": "6.7.0",
+      "title": "Case Histories",
+      "summary": "Introduces the chapter's two case histories of column-supported embankments at bridge approaches: controlled modulus columns under MSE walls, and capped steel pipe piles under a tall embankment.",
+      "body": "This section presents the manual's two case histories: controlled modulus column support of an MSE-walled bridge approach widening (7.1) and a pipe-pile CSE beneath a tall bridge approach embankment (7.2), pp. 6-48 to 6-55.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Field examples of CSE design and construction."
+    },
+    {
+      "section_id": "6.7.1",
+      "title": "Case History: CMC-Supported MSE Wall Approaches for a Bridge Widening",
+      "summary": "The manual's first case history: widening bridge approaches from two to three lanes with MSE walls, where controlled modulus columns (CMCs) replaced the specified stone columns as a value-engineered alternative, completed in 2010.",
+      "body": "This is the manual's first case history (printed section 7.1, p. 6-48), a parkway bridge approach widening constructed in 2010. The printed heading names the project; its basic information lists the location, owner, engineer, contractor, ground modification subcontractor and year constructed (2010).",
+      "key_points": [
+        "Constructed 2010.",
+        "Controlled modulus columns supported MSE walls for a bridge approach widening."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Case history of CMCs under MSE wall bridge approaches."
+    },
+    {
+      "section_id": "6.7.1.1",
+      "title": "Project Summary",
+      "summary": "Widening approaches from two to three lanes with a two-stage MSE wall originally on stone columns; a value-engineered CMC alternative allowed a one-stage wall, designed with a large 3D finite element model and supporting 2D models.",
+      "body": "When the roadway approaches to the bridge were widened from two to three lanes, a two-stage MSE retaining wall was designed to support the embankment and minimize encroachment on wetlands, with stone columns specified as ground improvement under the walls. The ground modification subcontractor proposed a value-engineered alternative using Controlled Modulus Columns (CMCs) instead of stone columns, which allowed a one-stage MSE wall instead of a two-stage wall; the owner and general contractor selected it. The CMC design used a large-scale 3D finite element model with several supporting 2D finite element models (Figure 6-17), which helped optimize the design and meet the target performance requirements (pp. 6-48 to 6-49).",
+      "key_points": [
+        "CMCs replaced stone columns, allowing a one-stage instead of two-stage MSE wall.",
+        "Design used a large-scale 3D finite element model with supporting 2D models."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-17: 3D numerical model of MSE wall and CMCs."
+      ],
+      "tables": [],
+      "applicability": "Value engineering of CSE columns for an MSE wall widening."
+    },
+    {
+      "section_id": "6.7.1.2",
+      "title": "Ground Conditions",
+      "summary": "Variable profile of controlled embankment fill over organics and sand; columns installed through the organics into dense sand at depths of 25 to 50 ft.",
+      "body": "The site had a variable soil profile, with varying depths of controlled embankment fill in the upper layers, underlain by organics and sand below. The columns were installed through the organics and founded in the dense sand at depth. Column depths varied from 25 to 50 feet (p. 6-49).",
+      "key_points": [
+        "Column depths 25 to 50 ft, founded in dense sand below organics."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Ground conditions of the first CSE case history."
+    },
+    {
+      "section_id": "6.7.1.3",
+      "title": "Ground Modification Solution",
+      "summary": "CMCs treated 1,400 linear ft of MSE wall on the south approach and 2,600 ft on the north, about 126,000 ft2 in total, with 2,129 columns installed in two phases; completed on schedule in summer 2010.",
+      "body": "CMCs were used for ground modification of 1,400 linear feet of MSE wall on the south approach and 2,600 linear feet on the north approach, a total treatment area of approximately 126,000 square feet. A total of 2,129 columns were installed in two phases (Figure 6-18). In phase one, columns were installed from a lower elevation in the strip zone of the MSE walls; after the wall was partially built, the remaining columns were installed from a higher elevation for embankment support. The MSE walls were designed by the wall system supplier. The ground modification was completed on schedule in the summer of 2010 (pp. 6-49 to 6-50).",
+      "key_points": [
+        "1,400 ft (south) and 2,600 ft (north) of MSE wall; about 126,000 ft2 treated.",
+        "2,129 CMCs installed in two phases."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-18: CMC installation Phase 2."
+      ],
+      "tables": [],
+      "applicability": "Phased CMC installation under MSE walls."
+    },
+    {
+      "section_id": "6.7.2",
+      "title": "Case History: Bridge over a River, Pipe-Pile CSE Approach Embankment",
+      "summary": "The manual's second case history: a 35 ft approach embankment for a design-build bridge over a river, on six strata with deep compressible clay loam, supported on a CSE of open-ended steel pipe piles with concrete pile caps and a geogrid reinforced LTP, built 2010 and 2011 and instrumented.",
+      "body": "The basic information for the bridge over the river (the manual's second case history, printed section 7.2, p. 6-50, whose heading names the bridge and river) is as follows: project location; owner: a state department of transportation; CSE engineer; contractor: a joint venture; year constructed: 2010-2014 (CSE was constructed in 2010 and 2011). The subsections give the project summary (a 35-foot tall approach embankment over multiple deep compressible strata), the ground conditions (six strata, Table 6-3) and the ground modification solution (open-ended steel pipe piles with pile caps, a load transfer platform with biaxial geogrid, and instrumentation), pp. 6-50 to 6-55.",
+      "key_points": [
+        "Year constructed 2010-2014; the CSE was constructed in 2010 and 2011.",
+        "Steel pipe pile columns with pile caps and a geogrid reinforced LTP under a 35 ft embankment."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Case history of a steel pipe pile CSE under a tall bridge approach embankment."
+    },
+    {
+      "section_id": "6.7.2.1",
+      "title": "Project Summary",
+      "summary": "A $130M design-build replacement bridge completed in 2014; a 35 ft tall approach embankment over multiple deep compressible strata needed ground modification for serviceability, global stability and schedule, and the team chose a CSE.",
+      "body": "A $130M design-build replacement bridge project was completed in 2014, carrying four lanes of traffic and a pedestrian trail over a river. A 35-foot tall approach embankment adjacent to the existing bridge embankment on the north side was in an area with multiple deep compressible strata (Figure 6-19). Strict performance requirements for serviceability and global stability, combined with a tight construction schedule, dictated ground modification beneath the embankment, and after evaluating several alternatives the design-build team elected to design and construct a CSE (p. 6-51).",
+      "key_points": [
+        "35 ft tall approach embankment over multiple deep compressible strata.",
+        "Serviceability, global stability and schedule led to a CSE."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-19: Cross section of column supported approach embankment (case history 7.2)."
+      ],
+      "tables": [],
+      "applicability": "Project setting for the second CSE case history."
+    },
+    {
+      "section_id": "6.7.2.2",
+      "title": "Ground Conditions",
+      "summary": "Six strata (Table 6-3): mixed sand-silt-clay to 50 ft, organic silty clay loam 50 to 110 ft, sand with gravel 110 to 125 ft, organic silty clay loam 125 to 150 ft, sand with gravel 150 to 185 ft, bedrock below 185 ft; columns tipped about 155 ft below grade; groundwater about 7 ft deep.",
+      "body": "The site stratigraphy consists of six strata (Table 6-3, p. 6-51), with average N60 (blows/ft) and depth from existing grade: I mixture of sand, silt and clay, N60 15, 0 to 50 ft; II slightly organic silty clay loam, 9, 50 to 110 ft; III sand with some gravel, 50, 110 to 125 ft; IV slightly organic silty clay loam, 11, 125 to 150 ft; V sand with some gravel, 75+, 150 to 185 ft; VI bedrock, 185+ ft. Strata II and IV and the fine-grained layers in Stratum I have very high natural moisture contents and relatively low shear strength; they would settle excessively under the full embankment load without mitigation and give unacceptably low global stability factors of safety. Strata III and V are medium dense to very dense coarse-grained layers with moderate moisture and relatively high shear strength. The CSE columns were tipped near the top of Stratum V, about 155 feet below existing grade. Groundwater was near the river elevation, about 7 feet below existing grade in non-flood conditions.",
+      "key_points": [
+        "Compressible strata II (50-110 ft) and IV (125-150 ft) with N60 9 and 11.",
+        "Columns tipped near the top of Stratum V, about 155 ft below grade.",
+        "Groundwater about 7 ft below existing grade."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 6-3: Brief Summary of Project Stratigraphy (case history 7.2)"
+      ],
+      "applicability": "Subsurface conditions of the second CSE case history."
+    },
+    {
+      "section_id": "6.7.2.3",
+      "title": "Ground Modification Solution",
+      "summary": "The CSE used 12.75 in. O.D. open-ended steel pipe piles on a 10 ft square grid with 5 ft diameter reinforced concrete caps and an LTP of select granular fill with three biaxial geogrid levels, designed per Collin (2007); columns designed by alpha and beta methods to a required tip elevation, and instrumented.",
+      "body": "A CSE was the primary settlement and stability mitigation, selected to protect the schedule relative to preloading or surcharging, avoid reliance on specialty subcontractors, reach the depth of improvement needed for stringent performance requirements, and provide a robust, reliable and economical system for the 100-year design life. Alternatives considered included extending the bridge, lightweight fill, preloading and surcharge, in situ mixing with cementitious materials and other column types; schedule, cost, reliability and the ability to self-perform led to the choice. The CSE used 12.75-inch O.D. open-ended steel pipe piles on a 10-foot center-to-center square grid, with an LTP of well-compacted free-draining select granular fill reinforced with three levels of biaxial geogrid (Figure 6-20). To reduce the span and LTP thickness, 5-foot diameter reinforced concrete caps were placed on each pile (Figure 6-21). The LTP was designed in general accordance with the Collin Method (Collin 2007); the columns by the alpha method in fine-grained soils and the beta method in sand layers, installed to a required tip elevation since their purpose was settlement control, which requires an extensive subsurface investigation (rotary borings and CPTu). Piles were installed with open-ended diesel hammers. Instrumentation (borehole settlement devices, piezometers, column strain gages, wall tiltmeters): piezometers, strain gages and tiltmeters worked well; multiple borehole settlement devices in single holes gave questionable data, and horizontal shape accelerometer arrays (SAA) are considered superior for future settlement monitoring (pp. 6-53 to 6-55).",
+      "key_points": [
+        "12.75 in. O.D. open-ended steel pipe piles at 10 ft square spacing with 5 ft diameter concrete caps.",
+        "LTP of select granular fill with three levels of biaxial geogrid, designed per Collin (2007).",
+        "Columns installed to a required tip elevation for settlement control.",
+        "Horizontal shape accelerometer arrays recommended over stacked borehole settlement devices."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-20: Cross section of load transfer platform (case history 7.2).",
+        "Figure 6-21: Pile columns and (near) pile caps installed (case history 7.2).",
+        "Figure 6-22: Completed north approach embankment and approach spans (case history 7.2)."
+      ],
+      "tables": [],
+      "applicability": "Design and monitoring of a pipe pile CSE with a geogrid LTP."
+    },
+    {
+      "section_id": "6.8.0",
+      "title": "Example Problems",
+      "summary": "Introduces two worked CSE example problems: a full design of a 20.5 ft MSE-walled approach embankment over 20 ft of soft clay, and a variant with 5 ft of sand at subgrade analyzing only the bridging layer decision.",
+      "body": "This section presents two worked examples (pp. 6-56 to 6-67). Example Problem 1 steps through the general design procedure for a column-supported approach embankment over soft clay; Example Problem 2 repeats the bridging-layer step for a profile with a sand layer at subgrade.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Worked examples applying the CSE design steps."
+    },
+    {
+      "section_id": "6.8.1",
+      "title": "Example Problem 1",
+      "summary": "Example 1 designs a CSE for a 20.5 ft high MSE-walled approach embankment over 20 ft of soft clay using the 12-step procedure, ending with 7 ft triangular spacing of 3 ft VCCs, a 3 ft bridging layer with two geogrid layers, and lateral spreading geosynthetic.",
+      "body": "Example Problem 1 (pp. 6-56 to 6-64) applies the general design steps to a 20.5-foot high approach embankment on 20 feet of soft clay with MSE walls on both sides. It is presented as a problem statement (8.1.1) and a solution in twelve steps (8.1.2).",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Complete worked design of a column-supported embankment."
+    },
+    {
+      "section_id": "6.8.1.1",
+      "title": "Problem Statement",
+      "summary": "A 20.5 ft high, 60 ft wide approach embankment retained by MSE walls (15 ft reinforcement) over 20 ft of soft clay (Su 250 psf, Cc ratio 0.18), groundwater 3 ft deep; paving at 60 days with a maximum post-pavement settlement of 2.5 in.",
+      "body": "A 20.5-foot high approach embankment is to be built over a 20-foot thick soft compressible clay layer with groundwater 3 feet below grade; time constraints led to a CSE. Soft clay: thickness 20 ft, unit weight 100 pcf, undrained shear strength 250 lb/ft2, Poisson's ratio 0.3, effective friction angle 24 degrees, at-rest coefficient 0.6, compression ratio 0.18, recompression ratio 0.01, coefficient of consolidation 0.35 ft2/day. Embankment fill (silty sand): 115 pcf, Poisson's ratio 0.33, phi' 30 degrees, Ka 0.33, Young's modulus 350,000 psf. Bridging layer (dense graded aggregate): 130 pcf, phi' 40 degrees, Young's modulus 750,000 psf. Because of right-of-way constraints the embankment edges are retained by MSE walls; embankment width 60 ft; MSE reinforcement length 15 ft (Figure 6-23). Paving occurs 60 days after embankment construction, and the maximum post-pavement settlement is 2.5 inches. Column design is not included, and the bearing layer is very stiff, so settlement into or of the bearing layer is not considered (pp. 6-56 to 6-57).",
+      "key_points": [
+        "H = 20.5 ft; soft clay 20 ft thick, Su = 250 psf; groundwater 3 ft below grade.",
+        "Fill 115 pcf, phi' 30 deg, Ka 0.33; bridging layer 130 pcf, phi' 40 deg.",
+        "Embankment 60 ft wide with MSE walls (15 ft reinforcement).",
+        "Maximum post-pavement settlement 2.5 in.; paving 60 days after construction."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-23: General cross-section."
+      ],
+      "tables": [],
+      "applicability": "Input data for the first CSE worked example."
+    },
+    {
+      "section_id": "6.8.1.2",
+      "title": "Solution",
+      "summary": "Twelve-step solution: 7 ft triangular spacing of 3 ft columns (ratio 17%), Qr = 113 kips, VCC columns, Hcrit 7.64 ft < 20.5 ft, settlement 2.9 in. without a bridging layer and 2.5 in. with a reinforced 3 ft layer, PLat 9,665 lb/ft vs. Rls 3,750 lb/ft, two lateral geosynthetic layers of 4,833 lb/ft.",
+      "body": "Step 1: use an area replacement ratio of 3.5 to 10% and clear span below H/1.5 = 13.7 ft but no more than 10 ft; a conservative 7 ft triangular spacing with 3 ft column top diameter is chosen: column area 7.07 ft2, s' = [(7^2 + 2*7^2)^(1/2)/3] - 3/2 = 2.54 ft, Aunitcell = 7(7^2 - 7^2/4)^(1/2) = 42.43 ft2, ratio 7.07/42.43 = 17% (Figure 6-24). Step 2: De = 1.05*7 = 7.35 ft; with an assumed 3 ft bridging layer (130 pcf), Qr = pi(7.35/2)^2 (115*17.5 + 130*3 + 250) = 113 kips. Step 3: aggregate, cement based or driven columns fit; a 3 ft VCC is assumed. Step 4: column capacity not included. Step 5: MSE walls on both sides, so columns span the full width. Step 6: Hcritical = 1.5*(2*2.54) = 7.64 ft < 20.5 ft OK. Step 7: GeogridBridge gives 2.9 in. post-pavement settlement without a bridging layer, more than 2.5 in., so one is required (Figures 6-25, 6-26). Step 8: a 3 ft bridging layer with two biaxial geogrid layers (long-term allowable strength 1,000 lb/ft, stiffness 24,000 lb/ft) gives 2.5 in., satisfying the requirement. Step 9: columns reach the edge, so lateral extent is not an issue. Step 10: PLat = 0.33(0.5*115*20.5^2 + 250*20.5) = 9,665 lb/ft; Rls = 15*250 = 3,750 lb/ft, so lateral spreading may occur; two layers of lateral spreading geosynthetic tying the walls together each need 4,833 lb/ft long-term strength (Figures 6-27, 6-28). Step 11: biaxial bridging and uniaxial lateral reinforcement are kept separate. Step 12: global stability not analyzed, as a true CSE has very little potential for global instability; Chapter 5 gives guidance if required (pp. 6-57 to 6-64).",
+      "key_points": [
+        "Area replacement ratio 17% for 7 ft triangular spacing of 3 ft columns.",
+        "Qr = 113 kips.",
+        "Hcritical = 7.64 ft < H = 20.5 ft.",
+        "Post-pavement settlement 2.9 in. without bridging layer; 2.5 in. with a 3 ft layer and two geogrids (J = 24,000 lb/ft).",
+        "PLat = 9,665 lb/ft exceeds Rls = 3,750 lb/ft; two geosynthetic layers at 4,833 lb/ft each."
+      ],
+      "equations": [
+        "Eq. 6-1: Qr = pi (De/2)^2 (gamma_e H2 + gamma_bl H1 + q) = pi (7.35/2)^2 (115*17.5 + 130*3 + 250) = 113 kips; required column load in the example",
+        "Eq. 6-3: PLat = Ka (0.5 gamma H^2 + q H) = 0.33 (0.5*115*20.5^2 + 250*20.5) = 9,665 lb/ft; lateral spreading force in the example",
+        "Eq. 6-4: Rls = Ls Su = 15*250 = 3,750 lb/ft; subgrade resistance in the example"
+      ],
+      "figures": [
+        "Figure 6-24: Unit cell for triangular column spacing.",
+        "Figure 6-25: GeogridBridge spreadsheet, Example Problem 1, no bridging layer.",
+        "Figure 6-26: GeogridBridge spreadsheet, Example Problem 1, with bridging layer.",
+        "Figure 6-27: Lateral spreading.",
+        "Figure 6-28: Lateral spreading geosynthetic."
+      ],
+      "tables": [],
+      "applicability": "Step-by-step CSE design calculations."
+    },
+    {
+      "section_id": "6.8.2",
+      "title": "Example Problem 2",
+      "summary": "Example 2 adds a 5 ft sand layer at subgrade above 20 ft of soft clay and checks only Step 7: with 7 ft triangular spacing post-pavement settlement is 0.9 in., so spacing is increased; at 7 ft 9 in. it is 2.1 in., within the 2.5 in. limit.",
+      "body": "Example Problem 2 is similar to Example 1, but with a 5-foot thick sand layer at subgrade over a 20-foot thick soft clay layer. Sand properties: thickness 5 ft, unit weight 125 pcf, effective friction angle 32 degrees, Poisson's ratio 0.33, at-rest earth pressure 0.5, Young's modulus 300,000 psf. Only Step 7 (whether a bridging layer is required) is analyzed, using the GeogridBridge spreadsheet (Figures 6-29 and 6-30). For a triangular column spacing of 7 feet the post-pavement settlement is 0.9 inches against the requirement of 2.5 inches or less, so the column spacing is increased to improve the economics; at a spacing of 7 feet 9 inches the post-pavement settlement is 2.1 inches (pp. 6-64 to 6-67).",
+      "key_points": [
+        "Sand at subgrade: 5 ft, 125 pcf, phi' 32 deg, E = 300,000 psf.",
+        "7 ft triangular spacing: 0.9 in. post-pavement settlement.",
+        "7 ft 9 in. spacing: 2.1 in., within the 2.5 in. limit."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-29: GeogridBridge spreadsheet, Example Problem 2, no bridging layer.",
+        "Figure 6-30: GeogridBridge spreadsheet, Example Problem 2, with bridging layer."
+      ],
+      "tables": [],
+      "applicability": "Effect of a competent subgrade layer on CSE spacing and bridging layer need."
+    },
+    {
+      "section_id": "6.9.0",
       "title": "References",
-      "body": "Key references for column-supported embankment design include: BS 8006:2010 (British Standard for reinforced and stabilized fills), EBGEO (German Recommendations for Ground Improvement, 2010), Hewlett and Randolph (1988) arching model, van Eekelen et al. (2012) updated arching models, and FHWA GEC-13 Chapter 6. For geosynthetic reinforcement design, refer to Holtz et al. (FHWA-HI-95-038), and for column design, refer to the applicable FHWA references for each column type (GEC-10 for drilled shafts, GEC-12 for driven piles, GEC-13 Chapters 7-8 for deep mixing and grouting). The AASHTO LRFD Bridge Design Specifications address pile and drilled shaft design but do not yet have a dedicated CSE specification; state DOT design guidelines (e.g., NYDOT, PennDOT) provide supplemental guidance.",
-      "key_points": [
-        "BS 8006:2010 and EBGEO (2010) are primary design standards for CSE",
-        "Hewlett & Randolph (1988) and van Eekelen et al. (2012) provide arching model references",
-        "Column design references: GEC-10 (drilled shafts), GEC-12 (driven piles), GEC-13 Ch 7-8 (deep mixing/grouting)",
-        "Geosynthetic design reference: Holtz et al. FHWA-HI-95-038",
-        "No dedicated AASHTO LRFD CSE specification; state DOT guidelines supplement",
-        "Field verification through load tests and settlement monitoring is essential for CSE projects"
-      ],
+      "summary": "Reference list for the chapter: research reports, dissertations, conference papers, codes and FHWA manuals on column-supported embankments, load transfer platforms and arching, including BS8006 (2010), Filz and Smith (2006), Russell and Pierpoint (1997) and Sloan et al. (2013).",
+      "body": "The chapter's reference list (pp. 6-68 to 6-71) cites research reports and doctoral dissertations (e.g., Smith 2005; McGuire 2011; Sloan 2011), journal and conference papers on arching and reinforced platforms (e.g., Hewlett and Randolph 1988; Russell and Pierpoint 1997; Han and Gabr 2002; Filz and Smith 2006, 2007), the British code BS8006 (2010), ASTM standards (2015), and FHWA manuals GEC 8 (2007), GEC 11 (2009) and GEC 12 (2016).",
+      "key_points": [],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Bibliography and key design references for column-supported embankment systems."
+      "applicability": "Source literature for column-supported embankment design."
     }
   ]
 }
