@@ -204,7 +204,7 @@ def total_horizontal_stress(sigma_h_eff: float, u: float) -> float:
 # ---------------------------------------------------------------------------
 # Table 4-2: Elastic solutions for change in vertical stress
 # (These are unnumbered equations in Table 4-2, presented between
-#  Equations 4-5 and 4-6 on pages 184-185.)
+#  Equations 4-5 and 4-6 on pages 185-186.)
 # ---------------------------------------------------------------------------
 
 def boussinesq_point_load(Q: float, x: float, y: float, z: float) -> float:

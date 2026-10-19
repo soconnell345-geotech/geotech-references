@@ -51,6 +51,23 @@ COVERS = [
     ("gec_12", None, "FHWA-NHI-16-009", None, False),
     ("gec_13", None, "FHWA-NHI-16-027", None, False),
     ("gec_7", None, "FHWA-NHI-14-007", None, False),
+    ("gec_4", None, "FHWA-IF-99-015", None, False),
+    ("gec_5", None, "FHWA-NHI-16-072", None, False),
+    ("gec_6", None, "FHWA-SA-02-054", None, False),
+    ("gec_8", None, "FHWA-HIF-07-03", None, False),
+    ("gec_9", None, "FHWA-HIF-18-031", None, False),
+    ("gec_14", None, "FHWA-HIF-17-016", None, False),
+    ("micropile", None, "FHWA-NHI-05-039", None, False),
+    ("em_2107", None, "EM 1110-2-2107", None, False),
+    ("fema_p2082", None, "FEMA P-2082-1", None, False),
+    ("ufc_expansive", None, "UFC 3-220-07", None, False),
+    ("eurocode_7_1", None, "EN 1997-1:2004", None, False),
+    ("eurocode_7_2", None, "EN 1997-2:2007", None, False),
+    # Not in the table: gec_11 cites each volume by its own number
+    # (FHWA-NHI-10-024 / -025), which one cover cannot check; fhwa_pavements,
+    # gsa_collapse and california_trenching cite a title, not a designation;
+    # aashto_1993 is a scan with no text layer; the wood_handbook PDF is not
+    # in docs/.
     pytest.param(
         "gec_10", None, "FHWA-NHI-18-024", None, False,
         marks=pytest.mark.xfail(strict=True, reason=(
