@@ -17,14 +17,14 @@ from geotech_references._retrieval import (
 class TestLoadChapter:
     """Tests for load_chapter()."""
 
-    @pytest.mark.parametrize("chapter", list(range(1, 12)))
+    @pytest.mark.parametrize("chapter", list(range(1, 11)))
     def test_all_chapters_load(self, chapter):
-        """All 11 GEC-13 chapter JSON files load without error."""
+        """All 10 printed GEC-13 chapters load without error."""
         data = load_chapter("gec_13", chapter)
         assert isinstance(data, dict)
         assert data["chapter"] == chapter
 
-    @pytest.mark.parametrize("chapter", list(range(1, 12)))
+    @pytest.mark.parametrize("chapter", list(range(1, 11)))
     def test_chapter_has_required_fields(self, chapter):
         """Each chapter has required top-level fields."""
         data = load_chapter("gec_13", chapter)
@@ -35,7 +35,7 @@ class TestLoadChapter:
         assert isinstance(data["sections"], list)
         assert len(data["sections"]) > 0
 
-    @pytest.mark.parametrize("chapter", list(range(1, 12)))
+    @pytest.mark.parametrize("chapter", list(range(1, 11)))
     def test_sections_have_required_fields(self, chapter):
         """Each section has required fields."""
         data = load_chapter("gec_13", chapter)
@@ -44,15 +44,15 @@ class TestLoadChapter:
             assert "title" in section
             assert "body" in section
 
-    @pytest.mark.parametrize("chapter", list(range(1, 7)))
+    @pytest.mark.parametrize("chapter", list(range(1, 6)))
     def test_vol1_chapters_have_volume_1(self, chapter):
-        """Volume I chapters (1-6) carry volume=1."""
+        """Volume I chapters (1-5) carry volume=1."""
         data = load_chapter("gec_13", chapter)
         assert data.get("volume") == 1
 
-    @pytest.mark.parametrize("chapter", list(range(7, 12)))
+    @pytest.mark.parametrize("chapter", list(range(6, 11)))
     def test_vol2_chapters_have_volume_2(self, chapter):
-        """Volume II chapters (7-11) carry volume=2."""
+        """Volume II chapters (6-10) carry volume=2."""
         data = load_chapter("gec_13", chapter)
         assert data.get("volume") == 2
 
@@ -85,13 +85,19 @@ class TestLoadChapter:
             for word in ("deep", "mixing", "mix")
         )
 
-    def test_chapter11_geosynthetic(self):
-        """Chapter 11 (Vol II) covers geosynthetic reinforcement."""
-        data = load_chapter("gec_13", 11)
-        assert any(
-            word in data["chapter_title"].lower()
-            for word in ("geosynthetic", "reinforcement", "geogrid")
-        )
+    def test_chapter10_reinforced_soil(self):
+        """Chapter 10 (Vol II) covers reinforced soil structures, soil nail
+        walls among them; the print has no chapter 11 (REF-25)."""
+        data = load_chapter("gec_13", 10)
+        assert "reinforced soil" in data["chapter_title"].lower()
+        assert any("soil nail" in s["title"].lower() for s in data["sections"])
+        with pytest.raises(FileNotFoundError):
+            load_chapter("gec_13", 11)
+
+    def test_chapter9_subgrade_stabilization(self):
+        """Chapter 9 is the printed subgrade stabilization chapter."""
+        data = load_chapter("gec_13", 9)
+        assert "stabiliz" in data["chapter_title"].lower()
 
     def test_nonexistent_chapter(self):
         """Loading a non-existent chapter raises FileNotFoundError."""
@@ -119,7 +125,7 @@ class TestRetrieveSection:
 
     def test_retrieve_vol2_section(self):
         """Can retrieve a section from a Vol II chapter."""
-        section = retrieve_section("gec_13", "7.1")
+        section = retrieve_section("gec_13", "7.1.0")
         assert "title" in section
         assert "deep" in section["body"].lower() or "mixing" in section["body"].lower()
 

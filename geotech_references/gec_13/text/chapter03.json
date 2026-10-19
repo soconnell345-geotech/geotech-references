@@ -1,153 +1,721 @@
 {
   "reference_id": "FHWA-NHI-16-027",
   "reference_title": "Ground Modification Methods Reference Manual – Volume I",
+  "volume": 1,
   "chapter": 3,
   "chapter_title": "Lightweight Fills",
   "sections": [
     {
       "section_id": "3.1.0",
-      "title": "Description and Types",
-      "body": "Lightweight fill materials are used to reduce the load applied to soft compressible soils beneath embankments, thereby reducing settlement and improving stability. By replacing conventional fill (unit weight 18-22 kN/m^3) with lightweight materials (unit weight 1-12 kN/m^3), the net stress increase on the foundation soil can be dramatically reduced, in some cases to near zero or even net negative (weight reduction). Lightweight fills are particularly valuable when construction over very soft soils cannot accommodate the time required for preloading and consolidation, or when adjacent structures or utilities would be adversely affected by settlement. The primary categories of lightweight fill materials used in transportation include expanded polystyrene (EPS) geofoam, foamed concrete (cellular concrete), and granular lightweight fills such as wood fiber, blast furnace slag, fly ash, expanded shale/clay/slate, and tire-derived aggregate (TDA). Material selection depends on required unit weight reduction, durability, environmental considerations, availability, and cost.",
+      "title": "Description and History",
+      "summary": "Opening part of the lightweight fills chapter: describes what lightweight fills are and why they are used, gives a historical overview with the density range of common lightweight fill materials (Table 3-1), sets out the focus and scope of the chapter, defines terms and acronyms and lists the primary references.",
+      "body": "Container heading (p. 3-1). It introduces the description of lightweight fills, their history of use in roadway embankments, the scope of the chapter, the terminology and acronyms used, and the primary references.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Read for an overview of lightweight fills before selecting a material for a highway project."
+    },
+    {
+      "section_id": "3.1.1",
+      "title": "Description",
+      "summary": "Compacted soil fills of sand, silt or clay generally weigh about 115 to 140 pcf, which can cause large settlement or reduced stability. Lightweight fill materials range from less than 1 to about 90 pcf and are used to reduce applied loads, settlement and its duration, lateral pressures on walls, landslide driving forces and seismic inertial forces.",
+      "body": "The unit density of most compacted soil fills (sands, silts or clays) generally ranges from about 115 to 140 pcf (p. 3-1). Using conventional earth fill can result in significant settlement or decreased stability on some projects, so an alternate fill with a lower unit density may be desirable to reduce applied earth loads. A lightweight fill can result in reduced settlement and/or increased stability. The large variety of lightweight fill materials gives densities ranging from less than 1 to about 90 pcf. Lightweight fills are most often used to reduce applied loads in order to (after Caltrans 2014): eliminate or significantly reduce the magnitude of embankment settlement; eliminate or significantly reduce the time required to achieve embankment settlement; reduce lateral pressure behind retaining walls, abutments and other structures; reduce the driving force in landslide repair; and increase embankment resistance to seismic loads, because low unit weight (density) gives lower seismic inertial forces.",
       "key_points": [
-        "Lightweight fills reduce load on soft soils by replacing conventional fill (18-22 kN/m^3) with lighter materials (1-12 kN/m^3)",
-        "Net stress increase can be reduced to near zero or even negative (weight reduction)",
-        "Useful when preloading time is unavailable or adjacent structures cannot tolerate settlement",
-        "Primary categories: EPS geofoam, foamed concrete, granular lightweight fills",
-        "Granular types: wood fiber, blast furnace slag, fly ash, expanded shale/clay/slate, tire-derived aggregate",
-        "Material selection depends on unit weight, durability, environmental factors, availability, and cost"
+        "Compacted soil fills generally weigh about 115 to 140 pcf (p. 3-1).",
+        "Lightweight fill materials range in density from less than 1 to about 90 pcf.",
+        "Uses: reduce settlement magnitude and time, reduce lateral pressure behind walls and abutments, reduce landslide driving force, increase seismic resistance (after Caltrans 2014)."
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Embankments over soft compressible soils where settlement reduction or stability improvement requires reduced fill weight."
+      "applicability": "Read when deciding whether a lower-density fill could solve a settlement, stability or lateral-pressure problem."
+    },
+    {
+      "section_id": "3.1.2",
+      "title": "Historical Overview",
+      "summary": "Lists common lightweight fills with their density and specific gravity ranges (Table 3-1) and traces their history: EPS-block geofoam since the 1960s-70s, foamed concrete from the late 1930s, wood fiber and slag fills, tire shreds since the mid 1980s, ESCS for geotechnical use since about 1980, and coal combustion products (fly ash, boiler slag) and expanded air-cooled blast furnace slag.",
+      "body": "Many lightweight fill materials have been used for roadway embankments; the common ones are in Table 3-1 (p. 3-1). All are lighter than conventional soils, and availability and cost vary by region (p. 3-2). PIARC (1997), Lightweight Filling Materials, is an authoritative reference. Geofoam is the generic term for expanded (EPS) and extruded (XPS) polystyrene used in geotechnical work; it began as frost insulation in the early 1960s, and EPS-block geofoam was first used as lightweight fill in 1972 (PIARC 1997; Horvath 1995). It is now widely used by state transportation agencies with well-established standards. Injecting foaming agents into concrete was developed in the late 1930s; lightweight cellular concrete (foamed concrete) is job-produced as cement/water slurry blended with preformed foam. Wood fiber has long been used by timber companies for roads over peat and for landslide repairs. Slag has been crushed, graded and sold for fill since about 1950. Tire shreds have been used since the mid 1980s; shredded tires form tire-derived aggregate (TDA) (FHWA 2010). As of 2013 about 96 percent of scrap tires are used in fuel, ground rubber, civil engineering and other markets; civil engineering uses about 172,000 tons, about 5 percent (p. 3-3). ESCS has been used geotechnically since about 1980 (behind bulkheads, roads over soft ground, slope fill). Fly ash fills date from 1950; about 2.8 million tons of fly ash and about 50,000 tons of boiler slag are used for embankment and structural fill per year (ACAA 2014). Little use of expanded air-cooled blast furnace slag (ACBFS) in embankments was found in a 2009 survey (Stroup-Gardiner and Wattenberg-Komas 2013c).",
+      "key_points": [
+        "Table 3-1 density (pcf) / specific gravity: Geofoam (RCPS) 0.70-3.00 / 0.01-0.05; Cellular concrete 20-80 / 0.4-1.3; Wood fiber 35-55 / 0.6-0.9; Tire shreds 37-73 / 0.6-1.2.",
+        "Table 3-1 continued: ESCS 37-65 / 0.6-1.0; Fly ash 70-90 / 1.1-1.4; Boiler slag 60-90 / 1.0-1.4; Expanded air-cooled slag 69-94 / 1.1-1.5.",
+        "EPS-block geofoam was first used as lightweight fill in 1972 (PIARC 1997; Horvath 1995).",
+        "Tire shreds used as lightweight fill since the mid 1980s; civil engineering uses about 5 percent of scrap tires (about 172,000 tons) (p. 3-3).",
+        "About 2.8 million tons of fly ash and about 50,000 tons of boiler slag are used yearly for embankment and structural fill (ACAA 2014)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 3-1: Densities and Specific Gravity for Various Lightweight Fill Materials"
+      ],
+      "applicability": "Read for typical density and specific gravity ranges when comparing candidate lightweight fill materials."
+    },
+    {
+      "section_id": "3.1.3",
+      "title": "Focus and Scope",
+      "summary": "The chapter is a technical summary of the common lightweight fills used in highway construction: typical design parameters, design and construction considerations, specifications, construction control, approximate costs and four case histories, intended for preliminary planning and not as a design manual.",
+      "body": "The technical summary presents an overview of the more common lightweight fill materials used in highway geotechnical applications, gives typical engineering parameters important for design, and presents design and construction considerations unique to each material, for preliminary planning (p. 3-3). It discusses specifications and construction control, references where detailed information is available, approximate costs, and four case histories (p. 3-4). The chapter should not be considered a design manual: the information is not presented in detail, and properties of some materials vary significantly with source and manufacturing process. The parameters given are typical values; a detailed design should include additional testing and evaluation of the contemplated material. Key references are listed in Section 1.5.",
+      "key_points": [
+        "Parameters in the chapter are typical values for preliminary planning (p. 3-3 to 3-4).",
+        "Detailed design requires additional testing of the actual lightweight fill source."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Read to understand the limits of the chapter's typical values before using them in design."
+    },
+    {
+      "section_id": "3.1.4",
+      "title": "Terminology and Acronyms",
+      "summary": "Defines EPS-block geofoam, geofoam, tire bales, tire chips, tire derived aggregate (TDA) and tire shreds, with their ASTM size ranges, and lists the abbreviations ACBFS, BFS, EPS, RCPS, TDA and XPS used in the chapter.",
+      "body": "Definitions (p. 3-4): EPS-block geofoam is the generic block-molded product form of expanded polystyrene used in small-strain geofoam applications. Geofoam is block or planar rigid cellular foam polymeric material used in geotechnical engineering (ASTM 2015). Tire bales are made by mechanically compressing and tying 100 automobile whole tires into a bale of approximately 2 cubic yards (Zornberg et al. 2005). Tire chips are pieces of scrap tire of basic geometrical shape, generally 12 to 50 mm (1/2 to 2 in.), with most wire removed (ASTM 2012). Tire derived aggregate (TDA) is pieces of scrap tire generally 12 to 305 mm (1/2 to 12 in.) intended for civil engineering use (ASTM 2012). Tire shreds are pieces generally 50 to 305 mm in size (ASTM 2012; printed as [1/2 to 12 inches]); NYSDOT (2015a) defines tire shreds as pieces between 2 and 12 inches. Abbreviations (p. 3-4 to 3-5): ACBFS air-cooled blast furnace slag; BFS blast furnace slag; EPS expanded polystyrene geofoam; RCPS rigid cellular polystyrene geofoam per ASTM D6817 (2015), covering both EPS and XPS; TDA tire derived aggregate; XPS extruded polystyrene geofoam.",
+      "key_points": [
+        "Tire chips: 12 to 50 mm; TDA: 12 to 305 mm; tire shreds: 50 to 305 mm (ASTM 2012).",
+        "A tire bale is about 100 compressed automobile tires, about 2 cubic yards (Zornberg et al. 2005).",
+        "RCPS covers both EPS and XPS geofoam under ASTM D6817."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Read when interpreting specification terms for geofoam and scrap tire fills."
+    },
+    {
+      "section_id": "3.1.5",
+      "title": "Primary References",
+      "summary": "Lists the key references for lightweight fills: ASTM D6817, D7180 and D6270; the NCHRP geofoam guidelines for embankments and slopes; wood fiber papers; the TDA usage guide; the ESCS reference manual; tire shred embankment guidelines; and the NCHRP Synthesis 435 volumes on recycled materials.",
+      "body": "The primary references (p. 3-5 to 3-6) are: ASTM D6817-15 rigid cellular polystyrene geofoam specification (ASTM 2015); ASTM D7180 guide for EPS geofoam in geotechnical projects (ASTM 2013); ASTM D6270 practice for scrap tires in civil engineering (ASTM 2012); Arellano et al. (2011) guidelines for geofoam in slope stability projects (NCHRP 24-11(02)); Allen and Kilian (1993) and Kilian and Ferry (1993) on wood fiber fills (TRR 1422); Cheng (2016) TDA usage guide; ESCSI (2007) reference manual for expanded shale, clay and slate; NYSDOT (2015) GEM-20 tire shred embankment guidelines; Stark et al. (2004a) NCHRP Report 529 and Stark et al. (2004b) NCHRP Web Document 65 on geofoam in highway embankments; and Stroup-Gardiner and Wattenberg-Komas (2013a-d), NCHRP Synthesis 435 volumes on recycled materials, scrap tires, slag and coal combustion byproducts.",
+      "key_points": [
+        "Stark et al. (2004a), NCHRP Report 529, is the main geofoam embankment guideline.",
+        "ASTM D6270 governs scrap tire use in civil engineering applications."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Read to find the detailed source documents for designing with a particular lightweight fill."
     },
     {
       "section_id": "3.2.0",
-      "title": "Geofoam (EPS)",
-      "body": "Expanded polystyrene (EPS) geofoam is the lightest fill material available for transportation applications, with typical unit weights of 0.12 to 0.32 kN/m^3 (density 12-32 kg/m^3) compared to approximately 20 kN/m^3 for conventional granular fill. EPS blocks are factory-manufactured in standard sizes (typically 610 x 1220 x 2440 mm or 760 x 1220 x 4880 mm) and placed in stacked courses to form the embankment core. The compressive resistance of EPS at 1% strain ranges from 40 to 140 kPa depending on density grade (EPS12 through EPS46 per ASTM D6817). Design considerations include buoyancy (EPS will float if submerged; requires drainage or ballast), differential icing (pavement over EPS cools faster than adjacent sections), fire protection during construction, and petroleum solvent resistance (requires protective geomembrane barriers). A reinforced concrete load distribution slab is typically placed over the EPS blocks to distribute traffic loads and prevent localized overstressing. EPS geofoam has been used successfully on hundreds of highway projects worldwide, with the first US application in 1989 on I-15 in Utah.",
+      "title": "Feasibility Considerations",
+      "summary": "Covers the functions lightweight fills serve and the related design considerations (load reduction, shear strength, compressibility, lateral pressures, drainage, adverse weather and seismic behavior), their advantages and potential disadvantages, and how they compare with alternative solutions.",
+      "body": "Container heading (p. 3-7). It introduces the functions and design considerations of lightweight fills, their advantages and potential disadvantages, and alternative solutions.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Read when judging whether lightweight fill is a feasible solution for a project."
+    },
+    {
+      "section_id": "3.2.1",
+      "title": "Functions and Design Considerations",
+      "summary": "Lightweight fills are used where the underlying soft soil cannot carry the design load or the estimated embankment settlement is too large; rather than improving or bypassing the foundation, they reduce the embankment load. The subsections summarize each function.",
+      "body": "Lightweight fill materials have many potential highway applications, principally where the capacity of the underlying soft soil is too low to carry the design load and/or the estimated settlement of the embankment is too large (p. 3-7). Under these conditions the foundation soils must be improved or bypassed, or the embankment load reduced; lightweight fills fulfill the latter function. A brief overview of lightweight fill use or function follows in the subsections: load reduction, shear strength, compressibility, lateral pressures, drainage characteristics, construction in adverse weather and seismic considerations.",
       "key_points": [
-        "Lightest available fill: unit weight 0.12-0.32 kN/m^3 (density 12-32 kg/m^3) vs 20 kN/m^3 for conventional fill",
-        "Factory-manufactured blocks in standard sizes, stacked to form embankment core",
-        "Compressive resistance at 1% strain: 40-140 kPa depending on EPS grade (EPS12-EPS46 per ASTM D6817)",
-        "Design considerations: buoyancy, differential icing, fire protection, solvent resistance",
-        "Reinforced concrete load distribution slab required over EPS blocks",
-        "First US highway application: I-15 in Utah (1989); hundreds of projects worldwide since"
+        "Lightweight fills reduce the embankment load instead of improving or bypassing the foundation soils (p. 3-7)."
       ],
-      "equations": [
-        "\\sigma_{allow} = \\sigma_{1\\%} / FS, allowable compressive stress on EPS (FS typically 1.2-1.5)",
-        "\\gamma_{EPS} = 0.12 \\text{ to } 0.32 \\text{ kN/m}^3, EPS geofoam unit weight range",
-        "\\Delta\\sigma_{net} = \\gamma_{fill} \\cdot H_{fill} - \\gamma_{EPS} \\cdot H_{EPS}, net stress change from EPS replacement"
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Read to match a project problem (soft foundation, excessive settlement) to the function of a lightweight fill."
+    },
+    {
+      "section_id": "3.2.1.1",
+      "title": "Load Reduction",
+      "summary": "On soft ground the main driving force is the embankment's own weight. Conventional remedies (removal and replacement, surcharging with or without drains, deep foundations, berms or flatter slopes, ground modification) cost time, money or right of way; a lightweight fill instead reduces driving forces, increasing global stability, and reduces settlement in proportion to the load reduction.",
+      "body": "When fill is placed on soft ground, the main driving force is the weight of the embankment itself (p. 3-7). Conventional methods of improving foundation stability (Holtz 1989) include: removing the soft soil and replacing it with compacted select fill; incremental surcharging with or without vertical drains to speed consolidation and strength gain; deep foundations to transfer some load through the weak deposits; stabilizing berms or flatter side slopes; and ground modification such as stone columns or soil mixing. All require extra time, cost, or additional right of way, and some require specialized equipment and experienced labor. It may then be more advantageous to use a lightweight fill to reduce the driving forces, increasing the overall global stability; the reduction depends on the fill type used (properties in Section 4). A secondary benefit is reduced settlement: settlement is reduced proportionately to the reduction in load.",
+      "key_points": [
+        "Settlement is reduced proportionately to the reduction in load (p. 3-7).",
+        "Alternatives to lightweight fill (Holtz 1989): removal and replacement, surcharging with/without drains, deep foundations, berms or flatter slopes, stone columns or soil mixing."
       ],
-      "figures": [
-        "Figure 3-1: Typical EPS geofoam embankment cross-section showing block layout, load distribution slab, and drainage provisions",
-        "Figure 3-2: EPS compressive stress-strain curves by density grade"
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Read when comparing lightweight fill against other ways of stabilizing an embankment on soft ground."
+    },
+    {
+      "section_id": "3.2.1.2",
+      "title": "Shear Strength",
+      "summary": "Granular lightweight fills have an angle of shearing resistance similar to natural soils, while cellular lightweight fills are characterized by a compressive strength. A slip surface through an embankment over weak ground passes through the lightweight fill, whose shear strength adds to global stability.",
+      "body": "Granular lightweight fills have an angle of shearing resistance similar to natural soils, while cellular lightweight fills are characterized by a compressive strength (p. 3-8). These properties give internal stability within the lightweight fill. For an embankment over a weak foundation, the shearing surface penetrates through the lightweight fill, and the shear strength developed within the lightweight fill tends to increase the overall global stability.",
+      "key_points": [
+        "Include the lightweight fill's own shear strength in global stability analyses; the slip surface passes through it (p. 3-8)."
       ],
-      "tables": [
-        "Table 3-1: EPS geofoam material properties by density grade (unit weight, compressive resistance, elastic modulus, flexural strength)"
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Read when setting up slope stability analyses of embankments built with lightweight fill."
+    },
+    {
+      "section_id": "3.2.1.3",
+      "title": "Compressibility",
+      "summary": "Cellular concrete, ESCS, fly ash, boiler slag and air-cooled slag compress and rebound much like soil or rock, but tire shreds and wood fiber are much more compressible and resilient and need at least 3 feet of soil cover before conventional pavement. EPS-block geofoam is linear to about 0.5 percent strain, then yields and creeps.",
+      "body": "Many lightweight fills, such as cellular concrete, ESCS, fly ash, boiler slag and air-cooled slag, have compressibility and elasticity similar to natural soils or rock (p. 3-8). Under static loading the internal compression is often similar to conventional earth fill, and under dynamic loading their resiliency is often similar to natural soils. For shredded tires or wood fibers, compressibility under load is significantly larger than for compacted soils and must be taken into account in design; their resiliency is also much larger than conventional soils, so a cover of at least 3 feet of soil must be placed over them to reduce the resiliency and allow conventional pavements. EPS-block geofoam stress-strain behavior is generally linear to stress levels of about 0.5 percent (as printed); beyond that, yielding occurs and the material is subject to time-dependent creep.",
+      "key_points": [
+        "Tire shred and wood fiber fills need at least 3 feet of soil cover to reduce resiliency under pavements (p. 3-8).",
+        "EPS-block geofoam is generally linear to about 0.5 percent, then yields and creeps (p. 3-8)."
       ],
-      "applicability": "Maximum weight reduction applications over very soft soils where conventional embankment construction is infeasible."
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Read when estimating internal compression of a lightweight fill or detailing pavement cover over it."
+    },
+    {
+      "section_id": "3.2.1.4",
+      "title": "Lateral Pressures",
+      "summary": "Lateral earth pressure equals the vertical overburden times the earth pressure coefficient, reduced by cohesion. Cellular concrete and EPS-block geofoam combine high cohesion with low density, which greatly reduces lateral pressure on adjacent walls, tunnels and abutment piles.",
+      "body": "The lateral earth pressure at any depth is a function of the vertical overburden pressure multiplied by the coefficient of earth pressure and then reduced by the cohesion of the deposit (p. 3-8). For lightweight fills such as cellular concrete or EPS-block geofoam, the cohesion of the material is high and the densities are relatively low. Both factors tend to greatly reduce the lateral earth pressure transmitted to adjacent structures such as retaining walls, tunnels, or pile foundations below bridge abutments.",
+      "key_points": [
+        "High cohesion and low density of cellular concrete and EPS geofoam greatly reduce lateral pressure on adjacent structures (p. 3-8)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Read when considering lightweight backfill to reduce earth pressure on walls, abutments or buried structures."
+    },
+    {
+      "section_id": "3.2.1.5",
+      "title": "Drainage Characteristics",
+      "summary": "Many granular lightweight fills drain very well, which benefits pavement subgrades (free water causes high pore pressure under traffic, pumping at concrete joints, rutting and frost heave) and removes hydrostatic pressure behind retaining walls.",
+      "body": "Many of the granular lightweight fill materials have excellent drainage characteristics (p. 3-9). This is favorable for pavement design because free water in the subgrade results in: high pore water pressure under traffic loading, which tends to weaken the soil; pumping at joints in reinforced concrete pavements; plastic deformation of the subgrade soils, leading to rutting; and heaving of the pavement where frost penetrates into the subgrade. Good drainage is also beneficial behind a retaining wall to eliminate hydrostatic pressures.",
+      "key_points": [
+        "Free-draining lightweight fills reduce pumping, rutting and frost heave in pavement subgrades and hydrostatic pressure behind walls (p. 3-9)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Read when drainage of the subgrade or wall backfill is a design concern."
+    },
+    {
+      "section_id": "3.2.1.6",
+      "title": "Construction in Adverse Weather",
+      "summary": "Conventional soils are difficult or impossible to place and compact in extremely cold or wet weather, but EPS-block geofoam, ESCS and low-density cellular concrete have been successfully installed in poor weather.",
+      "body": "It is difficult, if not impossible, to place and compact conventional soils during extremely cold or wet weather (p. 3-9). However, some lightweight fills, such as EPS-block geofoam, ESCS and low-density cellular concrete, have been successfully installed in poor weather.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Read when the construction schedule falls in cold or wet seasons."
+    },
+    {
+      "section_id": "3.2.1.7",
+      "title": "Seismic Considerations",
+      "summary": "Case histories exist of geofoam highway embankments that did not fail in a severe earthquake while adjacent soil embankment sections did (Expanded Polystyrene Development Organization 1994); the lower unit weight gives lower inertial forces under seismic loading.",
+      "body": "There have been case histories where a highway embankment constructed of geofoam did not fail in a severe earthquake, even though adjacent sections of a soil embankment did (Expanded Polystyrene Development Organization 1994) (p. 3-9). The lower unit weight of the material results in lower inertial forces under seismic loading.",
+      "key_points": [
+        "Lower unit weight means lower seismic inertial forces (p. 3-9)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Read when seismic stability of an embankment governs the choice of fill."
+    },
+    {
+      "section_id": "3.2.2",
+      "title": "Advantages and Potential Disadvantages",
+      "summary": "All lightweight fill materials have limits on their applicability; this section introduces the general advantages and the potential disadvantages of lightweight fills and of individual materials.",
+      "body": "All lightweight fill materials have limits on their applicability (p. 3-9). The advantages and potential disadvantages of all lightweight fill materials, and of individual materials as applicable, are listed and discussed in the two subsections that follow.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Read when weighing the benefits and limitations of lightweight fill for a project."
+    },
+    {
+      "section_id": "3.2.2.1",
+      "title": "Advantages",
+      "summary": "Lightweight fills may accelerate construction, reduce structural resistance requirements for lateral and vertical loads, reduce the magnitude and time of consolidation and settlement of embankments and structures, and eliminate or reduce stability problems.",
+      "body": "Lightweight fills may be used in several applications and to perform a variety of functions (p. 3-9). The primary advantages of using lightweight fills may include one or more of the following: accelerate construction; reduce structural resistance requirements for lateral loads; reduce structural resistance requirements for vertical loads (p. 3-10); reduce the magnitude of and time for consolidation of soft soils and settlement of embankments and structures; and eliminate or reduce stability problems of embankments and structures.",
+      "key_points": [
+        "Advantages: faster construction, lower lateral and vertical structural demands, less and faster settlement, fewer stability problems (p. 3-9 to 3-10)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Read when making the case for lightweight fill in an alternatives study."
+    },
+    {
+      "section_id": "3.2.2.2",
+      "title": "Potential Disadvantages",
+      "summary": "Limitations of lightweight fills, which proper evaluation, design and construction can overcome: local availability and haul costs, special handling and placement methods, durability (EPS needs protection from hydrocarbons; wood fiber decays; fly ash erodes), wood fiber creep settlement, leachate, and thermal insulation effects that call for 20 to 36 inches minimum of cover.",
+      "body": "Limitations can be overcome with proper evaluation, design and construction (p. 3-10). Availability: some areas have abundant wood fiber (lumber areas), fly ash and slag (industrial areas) or ESCS (near plants); unless locally available, transport costs can make a material non-competitive. Construction methods: all require special handling, transport, placement and compaction; fly ash behaves as silt, spongy when wet and needing dust control when dry; tire shreds are very resilient and need somewhat unconventional compaction; cellular concrete needs specialized on-site equipment. Durability: EPS-block geofoam deteriorates from hydrocarbon spills, so a concrete slab or geomembrane is generally placed over the blocks; wood fibers can decay over a long period, though recent studies indicate deterioration is limited to the outer surface; fly ash needs a soil surface to limit side slope erosion. Wood fiber fills undergo creep settlement for several years (WSDOT 2015), so pavement distress and maintenance should be anticipated. Environmental: some materials generate leachate; design methods and applicability limits have worked satisfactorily to date, but their cost should be considered (p. 3-11). Geothermal: most lightweight fills act as thermal insulation, which can accelerate flexible pavement deterioration and cause differential icing; this is controlled by placing a suitable thickness (20 to 36 inches minimum) of soil and/or paving materials over the fill.",
+      "key_points": [
+        "Transport costs can make a non-local lightweight fill non-competitive (p. 3-10).",
+        "Cover EPS blocks with a concrete slab or geomembrane against hydrocarbon spills (p. 3-10).",
+        "Wood fiber fills creep-settle for several years (WSDOT 2015).",
+        "Place 20 to 36 inches minimum of soil and/or paving over lightweight fill to control thermal effects and differential icing (p. 3-11)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Read when identifying risks and mitigation needs for a candidate lightweight fill."
+    },
+    {
+      "section_id": "3.2.3",
+      "title": "Alternative Solutions",
+      "summary": "The feasibility of a particular lightweight fill depends on the function of the modification and the method selected; feasibility evaluation covers technical issues, project delivery, performance criteria, quality assurance and non-technical issues, following the general process in Chapter 1.",
+      "body": "The feasibility of using a particular lightweight fill for a project depends upon the function(s) of the modification and the method(s) selected to carry out the function (p. 3-11). Feasibility evaluation includes identification and evaluation of technical issues, project development/delivery methods, performance criteria and quality assurance procedures, and non-technical issues that affect the use of ground improvement and geoconstruction technologies. A generalized summary of the evaluation process for ground modification technologies and materials is presented in Chapter 1.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Read when comparing lightweight fill with other ground modification methods for a project."
     },
     {
       "section_id": "3.3.0",
-      "title": "Foamed Concrete",
-      "body": "Foamed concrete (cellular concrete) is a cementitious lightweight fill with unit weight ranging from 3 to 8 kN/m^3, produced by introducing preformed foam into a cement-water slurry or cement-sand-water mixture. The material is mixed at a batch plant and pumped as a flowable fill into the embankment form. Unconfined compressive strengths range from 350 kPa to 3500 kPa depending on density and mix design, providing significantly higher structural capacity than EPS geofoam. Foamed concrete is self-leveling, does not require compaction, and can flow around and between existing utilities and structures. It is not susceptible to buoyancy, petroleum solvents, or biological degradation, which are concerns with EPS. Design considerations include thermal insulation effects, potential for shrinkage cracking, the need for a containment system to retain the flowable material during placement, and protection from groundwater erosion. Foamed concrete has been used for bridge approach fills, utility trench backfill, and embankments over soft ground on projects throughout the US and Europe.",
+      "title": "Lightweight Fill Materials",
+      "summary": "Describes the lightweight fill materials: manufactured and recycled materials, grouped as fills with compressive strength (geofoam, lightweight cellular concrete) and granular lightweight fills (tire shreds, wood fiber, ESCS, fly ash, blast furnace slag, boiler slag).",
+      "body": "Container heading (p. 3-12). It introduces the composition, manufacture and sources of the lightweight fill materials, grouped into fills with compressive strength and granular lightweight fills.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Read to learn what each lightweight fill material is and how it is produced."
+    },
+    {
+      "section_id": "3.3.1",
+      "title": "Introduction",
+      "summary": "Lightweight fills are manufactured (e.g., EPS-block geofoam, costlier but with unique properties) or recycled (industrial byproducts with low density, low cost or high permeability). For design they fall into two groups: materials with inherent compressive strength that behave like cohesive soils in undrained loading, and materials that behave like granular soils.",
+      "body": "Lightweight fill materials include manufactured and recycled materials (p. 3-12). Manufactured materials, such as EPS-block geofoam, are specifically developed for special design situations; they generally cost more than recycled materials but have unique properties that satisfy certain needs. Recycled materials are generally the product left over from an industrial or commercial process; some were once landfilled or stockpiled as waste, but many have been found to have properties such as low density, low unit cost or relatively high permeability that are desirable for fill. Their use in roadway embankments has increased during the past 30 years. For design and construction, lightweight fills are grouped into two broad categories: materials that have an inherent compressive strength and behave similarly to cohesive soils in undrained loading, and materials that behave and have properties similar to granular soils.",
       "key_points": [
-        "Unit weight 3-8 kN/m^3; produced by introducing preformed foam into cement slurry",
-        "UCS ranges from 350-3500 kPa depending on density and mix design",
-        "Self-leveling, no compaction required, can flow around existing utilities",
-        "Not susceptible to buoyancy, petroleum solvents, or biological degradation (advantages over EPS)",
-        "Design considerations: shrinkage cracking, containment system during placement, groundwater erosion protection",
-        "Used for bridge approach fills, utility trench backfill, and embankments over soft ground"
+        "Two design categories: fills with inherent compressive strength (behave like cohesive soils in undrained loading) and granular lightweight fills (p. 3-12)."
       ],
-      "equations": [
-        "\\gamma_{foam} = 3 \\text{ to } 8 \\text{ kN/m}^3, foamed concrete unit weight range",
-        "q_u = 350 \\text{ to } 3500 \\text{ kPa}, unconfined compressive strength range"
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Read to decide which design approach (compressive-strength or granular) applies to a fill material."
+    },
+    {
+      "section_id": "3.3.2",
+      "title": "Lightweight Fill Materials with Compressive Strength",
+      "summary": "Introduces the two lightweight fills characterized by a compressive strength: geofoam (EPS and XPS blocks) and lightweight cellular concrete (foamed concrete).",
+      "body": "Container heading (p. 3-12). It covers the lightweight fills that have an inherent compressive strength: geofoam and lightweight cellular concrete.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Read when considering geofoam or cellular concrete as lightweight fill."
+    },
+    {
+      "section_id": "3.3.2.1",
+      "title": "Geofoam",
+      "summary": "Geofoam is any cellular material used in geotechnical applications; the common lightweight fills are plant-manufactured block-molded EPS and XPS. EPS beads are expanded and fused into blocks typically 4 to 16 ft long, 12 to 48 in. wide and 24 to 48 in. thick. NCHRP Report 529 and Web Document 65 give design guidelines.",
+      "body": "Geofoam is the generic name for any cellular material used in geotechnical applications (p. 3-12). The most common geofoams used as lightweight fill are block-molded expanded polystyrene (EPS) and extruded polystyrene (XPS), both plant manufactured; EPS-block geofoam is widely used by state transportation agencies. EPS is made by expanding small polystyrene beads into spheres containing numerous closed cells, which are fused into blocks in a heated vacuum chamber. The product has extremely low density but relatively high strength and stiffness. Blocks are like a large brick, typically 4 to 16 feet long, 12 to 48 inches wide and 24 to 48 inches thick; sizes depend on the manufacturer's mold and blocks can be factory- or field-cut to any shape. Detailed design guidelines and recommended standards for EPS-block geofoam in embankments and bridge approach fills on soft ground are in NCHRP Report 529 (Stark et al. 2004a); the companion NCHRP Web Document 65 (Stark et al. 2004b) adds design examples, construction practices, details, case histories and economic analysis (p. 3-13). A summary was published by TRB (2013). Figure 3-1 shows EPS-block embankment construction.",
+      "key_points": [
+        "Typical EPS block: 4 to 16 ft long, 12 to 48 in. wide, 24 to 48 in. thick (p. 3-12).",
+        "NCHRP Report 529 (Stark et al. 2004a) is the design guideline and recommended standard for EPS-block geofoam embankments."
       ],
+      "equations": [],
       "figures": [
-        "Figure 3-3: Foamed concrete placement showing batch plant, pump line, and flowable fill in embankment form"
+        "Figure 3-1: Embankment construction with EPS-block geofoam."
       ],
-      "tables": [
-        "Table 3-2: Foamed concrete mix designs and properties (density, UCS, elastic modulus, thermal conductivity)"
+      "tables": [],
+      "applicability": "Read for background on EPS-block geofoam before design with it."
+    },
+    {
+      "section_id": "3.3.2.2",
+      "title": "Lightweight Cellular Concrete",
+      "summary": "Lightweight cellular concrete is cement-water slurry with preformed foam (fly ash and sand optional), pumped into place in lifts of 1 to 4 feet or more; no vibratory compaction is needed and subsequent lifts follow after at least 12 hours of curing. Quality is monitored by cast density, to which compressive strength is directly related.",
+      "body": "Lightweight cellular concrete is generally produced by introducing preformed foam (similar in appearance to shaving cream) into cement-water slurry (p. 3-13). The foam creates a network of discrete air cells in the cement matrix. Fly ash may partly replace cement, and the mixture may include some sand. The slurry is job-site produced or plant mixed and delivered by ready-mix truck. After the cement, water and foam are blended to the specified density, the slurry is pumped into place, generally cast in lifts of 1 to 4 feet or more depending on the application (p. 3-14). Being cementitious, it solidifies by hydration and vibratory compaction is not required; subsequent lifts generally can be placed after a minimum of 12 hours of curing. Quality of low-density cellular concrete is monitored through its cast density, starting with the wet cast density; compressive strength is directly related to cast density. Specialized firms supplying proprietary foaming agents typically blend the materials on site and pump them; it can be produced with one experienced person and the site mixing equipment, using cement and water delivered by a concrete supplier. Figure 3-2 shows cellular concrete as MSE wall backfill (Chapter 10).",
+      "key_points": [
+        "Cast in lifts of 1 to 4 ft or more; next lift after a minimum 12 hours curing (p. 3-14).",
+        "Compressive strength is directly related to cast density; quality is monitored by wet cast density."
       ],
-      "applicability": "Bridge approach fills and embankments where moderate weight reduction is needed with higher structural capacity than EPS."
+      "equations": [],
+      "figures": [
+        "Figure 3-2: Foamed concrete MSE wall backfill for light rail project (location omitted)."
+      ],
+      "tables": [],
+      "applicability": "Read for how cellular concrete fill is produced, placed and controlled."
+    },
+    {
+      "section_id": "3.3.3",
+      "title": "Granular Lightweight Fills",
+      "summary": "Introduces the lightweight fills that behave like granular soils: tire shreds, wood fiber, expanded shale, clay and slate (ESCS), fly ash, blast furnace slag and boiler slag.",
+      "body": "Container heading (p. 3-15). It covers the lightweight fills that behave like granular soils: tire shreds, wood fiber, ESCS, fly ash, blast furnace slag and boiler slag.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Read when considering a granular lightweight fill material."
+    },
+    {
+      "section_id": "3.3.3.1",
+      "title": "Tire Shreds",
+      "summary": "Tire shreds (TDA) are cut tires generally 4 to 8 inches, durable, free draining and light; a cubic yard holds about 75 car tires. Practice follows ASTM D6270: Type A gradation, 10-foot maximum thickness, geotextile encasement, soil cover, above the groundwater table. Soil-tire blends and tire bales (about 40 pcf) are also used.",
+      "body": "Tire shreds (shredded tires, TDA) are produced by mechanically cutting tires into chips generally 4 to 8 inches in size; they are durable, coarse grained, free draining and have a low compacted density (p. 3-15). Each cubic yard of fill contains about 75 passenger car tires; steel- and glass-belted tires are used. Figure 3-3 shows a moving soil embankment over soft clay and peat stabilized by replacing soil with geotextile-wrapped tire shred fill (Gale et al. 2013). Engineering criteria were developed in the 1990s (Humphrey 1996, 1998); FHWA (1997) noted at least 15 states and more than 70 successful projects, and open issues of exothermic reactions (three fires in 1995), particle size and shape, blended fill properties and field quality control (p. 3-16). A survey of 45 agencies found 14 states currently using tire shreds for embankments (Stroup-Gardiner and Wattenberg-Komas 2013a). Evaluations include Baker et al. (2003) and Sonti et al. (2003), covering spontaneous combustion lessons; NCHRP 435 and Cheng (2016) summarize properties and construction. Practice is in ASTM D6270 (2012): fills generally use Type A gradation and are limited to a 10-foot maximum thickness, encased in geotextile, covered with soil, and used above the groundwater table; more guidance is in NYSDOT GEM-20 (2015a), and use below the water table is discussed in ASTM D6270, NCHRP 435, Oman et al. (2013) and Edstrom et al. (2008) (p. 3-17). Costs are mainly shredding and haul, and some states give rebates. Tire bales of about 100 tires, about 2 cubic yards and about 1 ton, give about 40 pcf (Zornberg et al. 2005).",
+      "key_points": [
+        "Tire shreds generally 4 to 8 in.; about 75 passenger car tires per cubic yard of fill (p. 3-15).",
+        "ASTM D6270 practice: Type A gradation, 10-ft maximum thickness, geotextile encased, soil covered, above groundwater table (p. 3-16).",
+        "Tire bale: about 100 tires, about 2 cubic yards, about 1 ton, unit weight about 40 pcf (p. 3-17)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 3-3: Embankment fill construction with tire shreds (location omitted)."
+      ],
+      "tables": [],
+      "applicability": "Read when considering scrap tire shreds, tire-soil blends or tire bales as lightweight embankment fill."
+    },
+    {
+      "section_id": "3.3.3.2",
+      "title": "Wood Fiber",
+      "summary": "Wood fiber is sawmill waste (hog fuel, sawdust, planer chips), available only where a significant timber industry exists. Over 20 wood fiber fill projects since 1972, mostly landslide corrections and six embankments over soft soil, averaging about 26 years old, have been reviewed (Baker et al. 2003).",
+      "body": "Wood fiber includes any wood waste generated from handling logs at a sawmill: hog fuel, sawdust and planer chips (p. 3-17). Hog fuel is primarily bark and some pulverized wood stripped from logs at a pulp mill; sawdust is the small pieces from sawing lumber; planer chips are the excess removed when lumber is sawed to prescribed sizes. Availability is geographically limited to locations with a significant timber industry. The types of wood fiber used as lightweight fill are described by Kilian and Ferry (1993) and Allen and Kilian (1993). Figure 3-4 shows wood fiber placement. A summary of one state agency's use of wood fiber fill since its first construction in 1972 is in Baker et al. (2003) (p. 3-18): over 20 projects were identified, the majority landslide corrections and six embankment construction over soft soils, with an average project age of about 26 years; the agency notes it will continue using wood fiber as a primary source of geotechnical lightweight fill.",
+      "key_points": [
+        "Wood fiber types: hog fuel, sawdust, planer chips (p. 3-17).",
+        "Over 20 wood fiber fill projects since 1972, average age about 26 years (Baker et al. 2003)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 3-4: Embankment construction with wood fiber."
+      ],
+      "tables": [],
+      "applicability": "Read when considering wood fiber fill in a timber-producing region."
+    },
+    {
+      "section_id": "3.3.3.3",
+      "title": "Expanded Shale, Clay, and Slate (ESCS)",
+      "summary": "ESCS aggregate is made by heating shale, clay or slate in a rotary kiln to 1,000 to 1,200 degrees C; the dehydrated, vitrified particles are durable, chemically inert and relatively insensitive to moisture. It is relatively costly and mainly used for structural lightweight concrete, but also for some embankments.",
+      "body": "Synthetic aggregates are produced from shale, clays or slate heated in a rotary kiln to 1,000 to 1,200 degrees C (p. 3-18). The clay minerals montmorillonite, illite and kaolinite become completely dehydrated and will not re-hydrate under atmospheric conditions. The expanded vitrified mass is screened to the desired gradation; particles may be rounded, cubical or sub-angular, may have a hard ceramic outer shell with largely non-connected pores, and are durable, chemically inert and relatively insensitive to moisture (they absorb and retain some water). Production cost is relatively high, though comparable to other manufactured lightweight fills, so ESCS has generally been used as lightweight aggregate for structural concrete, but also for some embankment construction (p. 3-19). Where high-quality natural aggregates are no longer present, ESCS has been used as synthetic aggregate for normal roadway construction. Figure 3-5 shows expanded clay fill being placed.",
+      "key_points": [
+        "ESCS is kiln-fired at 1,000 to 1,200 degrees C; durable, chemically inert, absorbs some water (p. 3-18)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 3-5: Placing expanded clay fill."
+      ],
+      "tables": [],
+      "applicability": "Read when considering expanded shale, clay or slate aggregate as lightweight fill."
+    },
+    {
+      "section_id": "3.3.3.4",
+      "title": "Fly Ash",
+      "summary": "Fly ash is the fine, silt-sized, rounded siliceous residue of burning ground or powdered coal carried off in exhaust gases. ASTM C618 defines Class C (lignite or sub-bituminous coal; pozzolanic and some cementitious properties) and Class F (anthracite or some bituminous coals; pozzolanic). Demand for concrete has made it less competitive as fill.",
+      "body": "When coal is burned, the finer airborne residue carried to the stack and collected by a precipitator is fly ash: the finely divided residue from combustion of ground or powdered coal transported from the combustion chamber by exhaust gases (p. 3-19). It consists of very fine particles predominantly in the silt-sized range, rounded and siliceous. Its chemistry depends on the coal burned (p. 3-20). ASTM C618 defines two classes: Class C, from lignite or sub-bituminous coal, with pozzolanic and some cementitious properties (some Class C ashes may contain lime contents higher than 10 percent); and Class F, from anthracite or some bituminous coals meeting ASTM C618, with pozzolanic properties. In recent years the primary use of both classes has been in concrete to reduce cement content, which has raised fly ash cost to where it is less competitive with other lightweight fills. Fly ash is sometimes a partial cement replacement in lightweight cellular concrete.",
+      "key_points": [
+        "ASTM C618: Class C (lignite/sub-bituminous, pozzolanic and some cementitious) and Class F (anthracite/some bituminous, pozzolanic) (p. 3-20)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Read when considering coal fly ash as lightweight embankment fill."
+    },
+    {
+      "section_id": "3.3.3.5",
+      "title": "Blast Furnace Slag",
+      "summary": "Blast furnace slag from iron production is cooled into air-cooled, expanded or granulated slag. Air-cooled slag, angular and vesicular, is the predominant form (90 percent of 1992 sales); uniformly graded slag has the lowest density for lightweight fill. Steel slag is expansive and undesirable for embankments.",
+      "body": "Blast furnace slag is generated in iron production: the furnace is charged with iron ore, limestone and/or dolomite flux, and coke, producing molten iron and slag of silica and alumina combined with calcium and magnesium oxides (p. 3-20). Three types result from cooling: air-cooled slag, run into a pit, solidified under atmospheric conditions (possibly water sprayed), then dug, crushed and screened into angular, vesicular aggregate, the uniformly graded slag having the lowest density desirable for lightweight fill; expanded slag, treated with controlled water to increase its cellular nature; and granulated slag, quickly chilled into a glassy granular product. Air-cooled slag accounted for 90 percent of blast furnace slag sales in 1992 (Solomon 1993) (p. 3-21); expanded and granulated slag are lighter, costlier and mostly used for lightweight concrete or block. Oxides of silica, alumina, lime and magnesia make up 95 percent or more; the rest is manganese, iron and sulfur compounds, and slag high in soluble sulfur can be very acidic and corrosive. Steel slag contains expansive calcium and magnesium oxides, has caused heave of concrete slabs, and is undesirable for mass fills; the industry now separates it from blast furnace slag. Steel slag is used in asphaltic concrete surfacing.",
+      "key_points": [
+        "Uniformly graded air-cooled slag has the lowest density for lightweight fill (p. 3-20).",
+        "Steel slag is expansive and undesirable for embankments (p. 3-21)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Read when considering iron or steel slag as embankment fill."
+    },
+    {
+      "section_id": "3.3.3.6",
+      "title": "Boiler Slag",
+      "summary": "Boiler slag is a coal combustion byproduct from molten ash quenched in wet-bottom boilers: durable, angular black glassy particles usually 1/8 to 3/8 inch. About 25 percent of power plant ash is boiler slag, 65 percent fly ash and 10 percent dry bottom ash and cinders; dry bottom ash is too absorptive for most fills.",
+      "body": "Boiler slag is a coal combustion byproduct obtained from molten ash collected in wet, water-cooled bottom boilers (p. 3-21). Approximately 25 percent of all power plant ash produced is boiler slag, 65 percent fly ash and 10 percent dry bottom ash and cinders. Dry bottom ash is highly absorptive and not suitable for most embankment fills, but boiler slag is a durable aggregate. It forms when slag flows from the furnace molten and is discharged into cold water, where it crystallizes and solidifies into angular black glassy particles usually less than 1/8 inch to 3/8 inch in size, generally composed of silica and ferric oxide particles of angular and irregular shape.",
+      "key_points": [
+        "Power plant ash: about 25 percent boiler slag, 65 percent fly ash, 10 percent dry bottom ash and cinders (p. 3-21).",
+        "Boiler slag particles usually less than 1/8 to 3/8 inch, angular and glassy."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Read when considering boiler slag as a granular lightweight fill."
     },
     {
       "section_id": "3.4.0",
-      "title": "Granular Lightweight Fills",
-      "body": "Granular lightweight fills encompass a range of natural, manufactured, and recycled materials with unit weights between 5 and 15 kN/m^3. These materials are placed and compacted using conventional earthwork equipment, making them compatible with standard construction practices. Wood fiber (shredded wood waste) has unit weight of 6-10 kN/m^3 but is susceptible to biodegradation and spontaneous combustion if placed too thick without adequate compaction and moisture control. Blast furnace slag (air-cooled or expanded) has unit weight of 11-14 kN/m^3 with excellent durability and drainage characteristics. Fly ash (Class C or F) has unit weight of 12-16 kN/m^3 and can develop cementitious properties over time. Expanded shale, clay, and slate (ESCS) are kiln-produced lightweight aggregates with unit weight of 8-12 kN/m^3 and excellent long-term durability. Tire-derived aggregate (TDA, also called tire shreds) has unit weight of 5-8 kN/m^3 and provides good thermal insulation and drainage, but is limited to maximum fill heights of 3 m in a single layer due to potential for self-heating in thicker fills (ASTM D6270). Boiler slag, scoria, and pumice are additional granular lightweight options with regional availability.",
+      "title": "Design Concepts",
+      "summary": "Covers the factors to evaluate when choosing a lightweight fill and the design procedures and guideline tables (Tables 3-2 to 3-10) for fills with compressive strength (EPS-block geofoam, cellular lightweight concrete) and for granular lightweight fills.",
+      "body": "Container heading (p. 3-22). It presents the design considerations for selecting a lightweight fill and the design procedures, with guideline tables of engineering parameters and environmental, design and construction considerations for each material.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Read when designing an embankment, slope or backfill with lightweight fill."
+    },
+    {
+      "section_id": "3.4.1",
+      "title": "Design Considerations",
+      "summary": "Lightweight fill reduces the load on the foundation. Factors to evaluate: local availability; engineering properties for analysis (reduced density plus friction angle or cohesion in stability and settlement analyses; unique criteria for EPS and cellular concrete); drainage; durability, compressibility, absorption and degradation; design and construction features; and cost, which generally rises as unit weight falls.",
+      "body": "The function of lightweight fills is to reduce the load on the foundation (p. 3-22). Factors to evaluate in selecting candidate fills: (1) availability in the project's geographic area; (2) the material's geotechnical properties for design: the same or similar analyses as for conventional fills are used for granular lightweight fills, e.g., for slope stability include the reduced density plus the angle of shearing resistance or cohesion of the lightweight fill (Holtz 1989; Stark et al. 2004a), and for settlement use the reduced density; fills characterized by compressive strength (EPS-block geofoam, lightweight cellular concrete) have some unique design criteria (Stark et al. 2004a); (3) drainage requirements and characteristics; (4) durability, compressibility, water absorption, degradation potential and other unique characteristics; (5) design and construction features to offset environmental problems or erosion, and required field procedures; (6) cost of lightweight fill versus conventional construction, which varies with material availability at the site; and (7) cost of the various lightweight fills: costs generally increase as unit weight decreases, so design needs should be balanced with design requirements.",
       "key_points": [
-        "Unit weights range from 5-15 kN/m^3; placed with conventional earthwork equipment",
-        "Wood fiber: 6-10 kN/m^3; susceptible to biodegradation and combustion if too thick",
-        "Blast furnace slag: 11-14 kN/m^3; excellent durability and drainage",
-        "Fly ash: 12-16 kN/m^3; can develop cementitious properties over time",
-        "Expanded shale/clay/slate (ESCS): 8-12 kN/m^3; excellent long-term durability",
-        "Tire-derived aggregate (TDA): 5-8 kN/m^3; limited to 3 m fill height per layer (ASTM D6270 self-heating)",
-        "Additional options: boiler slag, scoria, pumice (regional availability)"
+        "For stability, use the fill's reduced density plus its friction angle or cohesion; for settlement, use the reduced density (p. 3-22).",
+        "EPS-block geofoam and cellular concrete have unique design criteria (Stark et al. 2004a).",
+        "Lightweight fill cost generally increases as unit weight decreases (p. 3-22)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Read when screening candidate lightweight fills and setting up the analyses for a design."
+    },
+    {
+      "section_id": "3.4.2",
+      "title": "Design Procedures",
+      "summary": "Tables 3-2 through 3-10 summarize typical engineering parameters and environmental, construction and design considerations of lightweight fills for preliminary planning; project-specific testing is required, especially for variable recycled materials, while manufactured fills can be specified by minimum strength or maximum density and confirmed by testing.",
+      "body": "As a guide for preliminary planning and design, Tables 3-2 through 3-10 summarize important geotechnical parameters for lightweight fill materials, along with environmental, construction and design considerations, each of which should be considered in design (p. 3-22 to 3-23). The design considerations are guidelines experience has proven appropriate for a given material; construction guidelines are field techniques developed to achieve proper densification and minimize construction problems. The tables are guidelines only: for each project site, additional testing should determine the design properties of the material to be used. This is especially true for recycled materials, whose chemical composition, gradation or shape after recycling can vary from one source to another. For manufactured lightweight fills, the minimum compressive strength or maximum density can be specified in advance and the product is relatively uniform; testing then confirms the desired strength or density was achieved.",
+      "key_points": [
+        "Table values are guidelines only; test the actual project material, especially recycled materials (p. 3-23).",
+        "Manufactured fills are specified by minimum compressive strength or maximum density and confirmed by testing."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Read before using the guideline tables of lightweight fill properties in a design."
+    },
+    {
+      "section_id": "3.4.2.1",
+      "title": "Fills with Compressive Strength",
+      "summary": "Introduces the design procedures for the two lightweight fills characterized by compressive strength: EPS-block geofoam and cellular lightweight concrete.",
+      "body": "Container heading (p. 3-23). It introduces the design procedures for EPS-block geofoam and cellular lightweight concrete, the lightweight fills characterized by a compressive strength.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Read when designing with EPS-block geofoam or cellular lightweight concrete."
+    },
+    {
+      "section_id": "3.4.2.1.1",
+      "title": "EPS-block Geofoam",
+      "summary": "EPS-block geofoam design (NCHRP Report 529; Arellano et al. 2011 for slopes) addresses strength and serviceability in three phases: external (global) stability, internal stability against immediate and creep compression, and the pavement system. Slope systems need multiple slip surfaces and interface strengths checked. Gives equivalent subgrade values (Table 3-2), ASTM D6817 grades and design and construction guidelines (Table 3-3).",
+      "body": "Key guidance is NCHRP Report 529 (Stark et al. 2004a) with Web Document 65 (Stark et al. 2004b), Horvath (1995), and Arellano et al. (2011) for slopes (p. 3-23). Design must address strength and serviceability; NCHRP 529 gives design flowcharts and charts. Design has three phases (Stark et al. 2004a) (p. 3-24): (1) external (global) stability, including settlement, bearing capacity and slope stability; (2) internal stability, so the EPS mass supports the pavement without excessive immediate and creep compression; (3) the pavement system over the geofoam subgrade. Slope systems (Figure 3-7) address the same three failure modes (flowcharts in Arellano et al. 2011 and TRB 2013), with slip surfaces above, below and through the geofoam (Figure 3-8) (p. 3-25). Stability analyses model the internal shear strength of the EPS, which correlates to its compressive strength, and the geofoam-geofoam, geofoam-soil and geofoam-geosynthetic interfaces, important under horizontal wind, water and seismic loads (p. 3-26). Pavements are designed with equivalent subgrade values (Table 3-2). ASTM D6817 lists seven EPS grades of 0.70 to 2.85 pcf with compressive resistance at 1 percent strain of 2.2 to 18.6 psi, and six XPS grades of 1.20 to 3.00 pcf and 2.9 to 40.6 psi; ASTM D7180 covers design and D7557 sampling. NCHRP 529 gave a combined material, product and construction standard, later extended to slopes (Arellano et al. 2011) (p. 3-27). The two standards differ mainly in the unit weight to compressive strength (elastic limit stress at 1 percent strain) relationship (Nichols 2008; Horvath 2012) (p. 3-28).",
+      "key_points": [
+        "Table 3-2 (density pcf: CBR %, Young's and resilient modulus psi): 1.25: 2, 725, 725; 1.5: 3, 1015, 1015; 2.0: 4, 1450, 1450 (Stark et al. 2004a).",
+        "ASTM D6817: seven EPS grades 0.70-2.85 pcf, 2.2-18.6 psi at 1% strain; six XPS grades 1.20-3.00 pcf, 2.9-40.6 psi (p. 3-26).",
+        "Table 3-3 parameters: dry density 0.75-2.0 pcf; compressive and flexural strength 6-14 psi; modulus 580-1450 psi; CBR 2-4; lateral pressure ratio from adjacent soil may be reduced to 0.1 (PIARC 1997).",
+        "Water absorption: blocks below water reached 4.8-6.4 pcf and above water 1.9-3.2 pcf after 10 years; use the highest densities in settlement and stability analyses (Table 3-3).",
+        "Provide cover for a minimum safety factor of 1.3 against uplift (buoyancy) below the water table (Table 3-3).",
+        "Cover blocks with a geomembrane or reinforced concrete slab against petroleum spills; side slopes 2H:1V or flatter, minimum cover 0.8 ft; shotcrete or similar UV protection on vertical faces (Table 3-3).",
+        "Construction: level subgrade (sand/gravel leveling course), at least two layers placed at right angles to avoid continuous joints (Figure 3-9), galvanized barbed plates for shear transfer, cover promptly against wind, buoyancy and sunlight (Table 3-3)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 3-6: Typical EPS-block geofoam applications involving standalone embankments.",
+        "Figure 3-7: Major components of an EPS-block geofoam slope system.",
+        "Figure 3-8: Multiple potential failure surfaces to consider with EPS-block geofoam slope systems.",
+        "Figure 3-9: Isometric view of typical EPS block layout."
+      ],
+      "tables": [
+        "Table 3-2: Equivalent Soil Subgrade Values of EPS-Block Geofoam for Pavement Design",
+        "Table 3-3: Expanded Polystyrene (EPS) Design and Construction Guidelines"
+      ],
+      "applicability": "Read when designing an EPS-block geofoam embankment, slope system or the pavement over it."
+    },
+    {
+      "section_id": "3.4.2.1.2",
+      "title": "Cellular Lightweight Concrete",
+      "summary": "Cellular lightweight concrete is placed as a nearly self-leveling liquid, pumpable up to 3,300 feet, hardening in 2 to 6 hours and solidifying in 24 hours; design is analogous to conventional concrete, specifying maximum cast unit weight and minimum compressive strength (generally 20 to 80 pcf and 10 to 300 psi). Table 3-4 lists design and construction considerations.",
+      "body": "Cellular lightweight concrete (foamed concrete) is placed as a liquid that is practically self-leveling and can be pumped as far as 3,300 feet (p. 3-28). It begins to harden 2 to 6 hours after placement and generally solidifies in 24 hours. Design is analogous to conventional concrete: specify the maximum cast unit weight and related minimum compressive strength as design dictates and with regard to local suppliers; the specifiable wet cast density and compressive strength generally range from 20 to 80 pcf and 10 to 300 psi. For pavement support (CROW 2003) (p. 3-29): heat conductivity is limited, so flexible pavements directly over it may not be advisable; dynamic modulus is nearly equal to static modulus, and to account for fatigue under repeated loads the tensile strength should carry a factor of safety of about 2, with steel mesh adding tensile capacity; Poisson's ratio is about 0.20; and cost increases with cast density. Table 3-4 (p. 3-30) summarizes design parameters and environmental, design and construction considerations.",
+      "key_points": [
+        "Pumpable up to 3,300 ft; hardens in 2 to 6 hours, solidifies in 24 hours (p. 3-28).",
+        "Specifiable wet cast density 20-80 pcf; compressive strength 10-300 psi depending on density.",
+        "Tensile strength factor of safety about 2 for fatigue; Poisson's ratio about 0.20 (CROW 2003).",
+        "Table 3-4: water absorption 1.4-15 psf; freeze-thaw resistance (100 cycles) 92-98%; lateral pressure negligible for loads applied directly over it, but pressures from adjacent soil may be transmitted undiminished.",
+        "Table 3-4: buoyancy risk below water table without confinement; use below frost or higher strength (over 37 pcf reported excellent freeze-thaw); prevent saturation with drainage blanket and drains.",
+        "Table 3-4: lift thickness not over 4 ft (heat of hydration), minimum 12-hour wait between lifts, scarify and clean lift surfaces; limit lifts to 2 ft where shaping is needed; tight formwork."
       ],
       "equations": [],
       "figures": [],
       "tables": [
-        "Table 3-3: Properties of granular lightweight fill materials (unit weight, friction angle, compressibility, durability, environmental considerations)"
+        "Table 3-4: Cellular Lightweight Concrete Design and Construction Considerations"
       ],
-      "applicability": "Moderate weight reduction using conventional construction methods where granular lightweight materials are regionally available."
+      "applicability": "Read when specifying and designing cellular lightweight concrete fill or pavement support."
+    },
+    {
+      "section_id": "3.4.2.2",
+      "title": "Granular Lightweight Fills",
+      "summary": "Granular lightweight fills are designed with the parameters in Tables 3-5 to 3-10 and conventional geotechnical methods for granular soils. The tables give density, friction angle, permeability, compressibility and gradation plus environmental, design and construction guidelines for tire shreds, wood fiber, ESCS, fly ash, air-cooled blast furnace slag and boiler slag.",
+      "body": "Design and construction criteria for granular lightweight fills are summarized in Tables 3-5 through 3-10; design proceeds using the indicated variables and conventional geotechnical methods for granular soils (p. 3-30). Tire shreds (Table 3-5, p. 3-31): limit layers to 10 ft, keep above the water table, wrap in geotextile, metal fragments 98 percent embedded, minimum 3-ft soil cap on top and side slopes, 2-ft soil surcharge for 60 days, top of tire shreds at least 5 ft below top of subgrade, multiple layers separated by 3 ft of soil, drain pipes at least 3 ft below the fill bottom and no air-admitting drains at its bottom; spread in lifts of 3 ft or less with a track dozer, compact with sheepsfoot or smooth drum rollers or D-8 dozer passes; expect 35 percent volume reduction in compaction plus 10 percent under cover. Wood fiber (Table 3-6, p. 3-32): leachate pH 4 to 6; 6-in. maximum size, under 30 percent finer than 0.5 in., fresh fiber, slopes 1.5H:1V or flatter, 2 ft or more cover, height about 16 ft maximum; 12 to 20-in. lifts, two passes of a loaded truck of 33 kips or more. ESCS (Table 3-7, p. 3-33): 2.5-ft slope cover, slopes 1.5H:1V or flatter, use phi = 35 degrees for lateral pressure, lifts 3 ft or less with 2 to 4 rubber-tired roller passes, spreading equipment 4.5 psi or less. Fly ash (Table 3-8, p. 3-34): drainage blanket where groundwater is high, 2-ft slope cover, 10-in. lifts. Air-cooled slag (Table 3-9, p. 3-35): placed like gravel and sand, usable below water. Boiler slag (Table 3-10, p. 3-36): 2-ft slope cover, AASHTO T 99 compaction, 6 to 10 passes, keep wet.",
+      "key_points": [
+        "Table 3-5 tire shreds: dry density 21-53 pcf loose, 30-73 pcf compacted; phi 19-30 deg; cohesion 100-230 psf (use 0); 5-40% strain over 200-4,200 psf; permeability 0.5-60 cm/sec; K 0.25-0.47.",
+        "Table 3-5 Type A gradation (ASTM D6270): 8-in. maximum; 100% passing 4-in., at least 95% passing 3-in., at most 50% passing 1.5-in., at most 5% passing 0.2-in. sieve.",
+        "Table 3-6 wood fiber: moist density 45-60 pcf; phi sawdust 25-27 deg, hogfuel 31 deg, wood chips 30-49 deg; permeability 1 x 10-5 m/s; 40% volume loss on compaction; subgrade reaction 1300-1450 psi in top 2 ft (about CBR 1).",
+        "Table 3-7 ESCS: dry density 50-65 pcf compacted, 40-54 pcf loose; phi 35 deg loose, 37-44 deg compacted; 3/16 to 1 in.; subgrade reaction 33-37 pci loose, 140-155 pci compacted; water content 8.5% rising to 28% in 1 year, about 34% long term.",
+        "Table 3-8 fly ash: 70-90 pcf compacted; phi 33-40 deg, c = 0 (Class F; Class C self-hardens); k 1 x 10-6 to 1 x 10-9 m/s; Cc 0.05-0.37, Ccr 0.006-0.04; 0.005-0.074 mm; Gs 1.9-2.5; non-plastic; leachate pH 6.2-11.5.",
+        "Table 3-9 air-cooled blast furnace slag: compacted moist density 70-94 pcf; graded from 4 in. down; phi 35-40 deg; water pH 8-12 (wash to 11 or less for AASHTO); absorption 1-6%; minus #200 limited to 5-7%; uniform grading for lightest fill.",
+        "Table 3-10 boiler slag: dry density 60-78 pcf loose, 82-102 pcf compacted; optimum moisture 8-20%; phi 38-42 deg; k 0.3-0.9 mm/s; non-plastic; soak water pH 6.7-7.0.",
+        "Tire shreds: anticipate 35% volume reduction during compaction plus 10% shrinkage under soil cover and base course (Table 3-5)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 3-5: Tire Shreds Design and Construction Guidelines",
+        "Table 3-6: Wood Fiber Design and Construction Guidelines",
+        "Table 3-7: Expanded Shale, Clay, and Slate (ESCS) Design and Construction Guidelines",
+        "Table 3-8: Fly Ash Design and Construction Guidelines",
+        "Table 3-9: Air-Cooled Blast Furnace Slag Design and Construction Guidelines",
+        "Table 3-10: Boiler Slag Design and Construction Guidelines"
+      ],
+      "applicability": "Read for design parameters and detailing rules when designing with a granular lightweight fill."
     },
     {
       "section_id": "3.5.0",
-      "title": "Design Considerations",
-      "body": "Design of lightweight fill embankments requires evaluation of global stability, settlement, bearing capacity, and interface behavior between the lightweight fill and surrounding materials. The primary design objective is to reduce the applied stress on the soft foundation soil to a level that meets settlement and stability requirements. The net stress increase at the foundation surface is the applied fill weight minus the weight of any excavated material, and must be checked against the bearing capacity and settlement tolerance. For EPS geofoam, additional design checks include block sliding at the EPS-pavement interface, hydrostatic uplift forces from groundwater, seismic inertial forces on the lightweight fill mass, and long-term creep of the EPS under sustained load. The dead load of the pavement structure and load distribution slab must be included in stress calculations. For TDA fills, self-heating potential per ASTM D6270 must be evaluated, which limits individual TDA layer thickness to 3 m with a minimum 0.5 m soil cover between TDA layers. All lightweight fill designs should include a conventional fill alternative for cost comparison.",
-      "key_points": [
-        "Design evaluates global stability, settlement, bearing capacity, and interface behavior",
-        "Net stress increase = applied fill weight - weight of excavated material",
-        "EPS checks: block sliding, hydrostatic uplift, seismic inertia, long-term creep under sustained load",
-        "Pavement and load distribution slab dead load must be included in stress calculations",
-        "TDA layer thickness limited to 3 m per ASTM D6270; minimum 0.5 m soil cover between TDA layers",
-        "Conventional fill alternative should be included for cost comparison"
-      ],
-      "equations": [
-        "\\Delta\\sigma_{net} = \\gamma_{lw} \\cdot H_{lw} + \\gamma_{soil} \\cdot H_{cover} + q_{pavement} - \\gamma_{excavated} \\cdot H_{exc}, net stress increase on foundation",
-        "FS_{sliding} = \\frac{\\mu \\cdot (W_{slab} + W_{pavement})}{F_{lateral}}, EPS block sliding factor of safety",
-        "FS_{buoyancy} = \\frac{W_{dead}}{U_{hydrostatic}}, factor of safety against hydrostatic uplift of EPS"
-      ],
-      "figures": [
-        "Figure 3-4: Design schematic for EPS geofoam embankment showing load distribution slab, drainage, and stress calculation geometry"
-      ],
+      "title": "Construction Specifications and Quality Assurance",
+      "summary": "Covers what specifications for lightweight fills should contain, for fills with inherent strength and for granular fills, and the field monitoring and construction control for EPS-block geofoam, foamed concrete, granular fills, tire shreds and wood fiber.",
+      "body": "Container heading (p. 3-37). It covers specification development and quality assurance and construction control for lightweight fills; guide specifications and quality assurance guidance are on the GeoTechTools website.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
       "tables": [],
-      "applicability": "Design methodology for lightweight fill embankments including stability, settlement, and material-specific design checks."
+      "applicability": "Read when writing specifications or planning inspection for a lightweight fill project."
     },
     {
-      "section_id": "3.6.0",
-      "title": "Specifications",
-      "body": "Specifications for lightweight fills must address material properties, placement procedures, and quality control requirements specific to each material type. EPS geofoam specifications reference ASTM D6817 for material classification and require compressive resistance testing (ASTM D1621), density testing, and dimensional tolerance verification for each block delivered. Foamed concrete specifications define target wet density, minimum unconfined compressive strength (typically at 28 days), maximum allowable shrinkage, and flowability requirements. TDA specifications reference ASTM D6270 for processing requirements (maximum particle size 300 mm for Type A, 75 mm for Type B), metal content limits, and self-heating mitigation measures including maximum layer thickness, soil separation layers, and drainage provisions. All lightweight fill specifications should include provisions for field density verification, test section construction, and instrumentation monitoring to verify design assumptions.",
+      "section_id": "3.5.1",
+      "title": "Specification Development",
+      "summary": "Specifications for fills with inherent strength (EPS-block geofoam, cellular concrete) state the material and tolerable density range, minimum compressive and/or flexural strength, and lift thickness or block dimensions. For granular fills they state material and delivered density, gradation, other tests, lift thickness, placement and compaction (method specs for tire shreds and wood fiber), and payment.",
+      "body": "Guide and example specifications and quality assurance guidance are on the GeoTechTools website (p. 3-37). For fills with inherent strength, compressive strength depends on the plant process for geofoam and is usually density related for cellular concrete; specifications should include the material type with maximum and minimum tolerable densities, the minimum compressive and/or flexural strength, and the lift thickness for cellular concrete or block dimensions for EPS-block geofoam. For granular-behaving fills, specifications should include: the material type with minimum and maximum density as delivered; the gradation; other tests as appropriate, e.g., durability by Los Angeles abrasion or percent water absorption; and the lift thickness, placement and compaction procedure. For materials resembling normal soil sizes, compaction can be specified as a percent of AASHTO maximum density; for shredded tires or wood fibers, the specification should describe the compaction method, including equipment type and number of passes, and test strips should be considered at the start if lift thickness or compaction is in doubt. Payment may be based on fill volume from planned final cross sections and the existing ground surface, so shrinkage is the contractor's responsibility (p. 3-38). Granular lightweight fills include wood fiber, blast furnace slag, fly ash and boiler slag, ESCS and tire shreds.",
       "key_points": [
-        "EPS geofoam: ASTM D6817 classification, ASTM D1621 compressive testing, density and dimensional tolerances",
-        "Foamed concrete: target wet density, minimum 28-day UCS, maximum shrinkage, flowability requirements",
-        "TDA: ASTM D6270 processing requirements, max particle size (300 mm Type A, 75 mm Type B), self-heating limits",
-        "TDA must include maximum layer thickness, soil separation layers, and drainage provisions",
-        "All lightweight fills: field density verification, test sections, instrumentation monitoring",
-        "Specifications must be material-specific due to unique properties of each fill type"
+        "Strength fills: specify density range, minimum compressive/flexural strength, and lift thickness or block dimensions (p. 3-37).",
+        "Tire shred and wood fiber compaction is specified by method: equipment and number of passes; use test strips if in doubt.",
+        "Pay by planned in-place volume so shrinkage is the contractor's responsibility (p. 3-38)."
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Contract specification requirements for lightweight fill materials, placement, and quality control."
+      "applicability": "Read when preparing a project specification for lightweight fill."
+    },
+    {
+      "section_id": "3.5.2",
+      "title": "Quality Assurance and Construction Control",
+      "summary": "Field monitoring of lightweight fills: density and compressive strength for EPS blocks and foamed concrete, block placement without continuous joints with shear plates, cover thickness and geomembrane seams; for granular fills, conventional control of lifts, passes, moisture, compaction and gradation; for tire shreds and wood fiber, lift thickness, passes, resiliency, steel content and wood decomposition checks.",
+      "body": "For cohesive lightweight fills, monitor density and compressive strength of the material supplied (p. 3-38). For EPS-block geofoam these follow from the grade delivered with manufacturer quality control documentation (some use a color scheme for grades); samples should be taken for quality assurance testing; placement should be observed to confirm no continuous joints and that shear transfer plates are installed between lifts; the geomembrane or concrete cover should be measured for thickness and complete enclosure, with geomembrane seams properly sealed (see Stark et al. 2004a, 2004b). For foamed concrete, sample fresh mix at the point of placement, as for concrete, for density and compressive strength; measure each lift to confirm it does not exceed the specified maximum and that one lift has hardened before the next; the material must support foot traffic before casting subsequent lifts. Granular lightweight fills follow conventional placement and compaction control: lift thickness, passes, moisture content and degree of compaction, plus gradation and contamination checks. For tire shreds or wood fibers, where compaction tests are not appropriate, monitor lift thickness and passes and observe or measure resiliency during passes; test sections at the start are desirable (p. 3-39; NYSDOT 2015a, 2015b; Cheng 2016). Check tire shreds for size, excessive steel wire and non-rubber material. Check wood fiber gradation daily for a blend of coarse and sawdust sizes, use only fresh fiber, and use the decomposition classification of Kilian and Ferry (1993) to exclude partially decomposed fiber.",
+      "key_points": [
+        "Foamed concrete must support foot traffic before the next lift is cast (p. 3-38).",
+        "Confirm EPS blocks have no continuous joints, shear plates between lifts, and a fully enclosing cover with sealed seams.",
+        "Check wood fiber gradation daily and exclude partially decomposed fiber (Kilian and Ferry 1993) (p. 3-39)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Read when planning field inspection and acceptance testing for lightweight fill construction."
+    },
+    {
+      "section_id": "3.6.0",
+      "title": "Cost Data",
+      "summary": "Covers the components of lightweight fill cost and typical cost ranges for EPS-block geofoam and other lightweight fills at source, delivered and in place (Tables 3-11 and 3-12), with an example project cost comparison (Table 3-13).",
+      "body": "Container heading (p. 3-40). It presents the factors that make up lightweight fill costs and typical published cost ranges.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Read when estimating the cost of a lightweight fill alternative."
+    },
+    {
+      "section_id": "3.6.1",
+      "title": "Cost Components",
+      "summary": "Lightweight fill cost depends on base material cost, transport (distance and mode), quantity, availability and placement or compaction costs. Compare on price per in-place cubic yard, not per ton. Gives cost ranges for EPS-block geofoam (Table 3-11), typical ranges for lightweight fills (Table 3-12) and an example project comparison (Table 3-13).",
+      "body": "Costs are highly variable and depend on (p. 3-40): the basic material cost (low for waste such as wood fiber; recycled materials slightly more for crushing, shredding and sieving); transportation distance and mode (barging can make a non-local slag cost effective); quantity and staging; availability (some, e.g., blast furnace slag, are scarce regionally); and placement or compaction costs above soil fill (moisture control for fly ash and boiler slag, covers for geofoam, more passes for tire shreds). Use a common denominator: suppliers quote per ton, but density varies widely and loose and compacted densities differ (e.g., TDA 25 to 35 pcf stockpiled and shipped versus 45 to 50 pcf compacted in place, Cheng 2016), so compare price per in-place cubic yard, converting with an estimated in-place density and a delivered cost per ton; prices are often FOB at the plant, so add transport. Different fill types or densities can give different safety factors and risks, or need different volumes for similar safety factors (p. 3-41). Prices in Table 3-12 come from literature, suppliers and agencies and vary; in-place tire shred fills as low as $2/yd3 have been reported and state recycling incentives may offset costs. Contact local suppliers and add transport. Table 3-13 compares fills for an example embankment project (Cheng 2016) (p. 3-42); costs include material, transportation and longevity but not installation or contractor overhead and profit. Also consider compaction methods, loose versus compacted volume, and specialty items such as geotextiles, geomembranes, drainage blankets or soil cover.",
+      "key_points": [
+        "Compare lightweight fill costs per in-place cubic yard, not per ton (p. 3-40).",
+        "Table 3-11 EPS-block geofoam: $40-$80/yd3 FOB at source; $40-$80 delivered; $40-$100 in place.",
+        "Table 3-12 (source / delivered / in place, $/yd3): EPS $40-60 / $60-125 / $40-100; cellular concrete n/d / $70-150 / $250-340; wood fiber n/d / $6-26 / $8-30; tire shreds n/d / $15-30 / n/d.",
+        "Table 3-12 at source ($/yd3): air-cooled blast furnace slag $6-8; expanded blast furnace slag $11-15; boiler slag $2-3; fly ash $12-16; ESCS $30-45.",
+        "Table 3-13 example totals: traditional soil fill $563K; pumice rock $633K; EPS-block geofoam $1,145K; expanded shale clay $490K; wood chips $545K; tire-derived aggregate $334K (Cheng 2016)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 3-11: Typical Cost Ranges for EPS-block Geofoam at Source, Delivered, and In-Place",
+        "Table 3-12: Typical Cost Ranges for Lightweight Fills",
+        "Table 3-13: Example Lightweight Fill Project Cost Comparison"
+      ],
+      "applicability": "Read when preparing a cost comparison of lightweight fill options for a project."
     },
     {
       "section_id": "3.7.0",
       "title": "Case Histories",
-      "body": "EPS geofoam has been used on numerous US highway projects to reduce embankment loading over soft soils. The Route 23 project in Wayne, New Jersey (2001) used 26,500 m^3 of EPS geofoam blocks for a 1.2 km embankment widening over 10-15 m of soft organic clay, reducing settlement from an estimated 600 mm (conventional fill) to less than 50 mm. The I-15 Reconstruction project in Salt Lake City, Utah used foamed concrete for bridge approach fills to eliminate the bump-at-the-bridge problem caused by differential settlement between the bridge and approach embankment. TDA has been used on several projects in Maine, Colorado, and Oregon for embankment fills and retaining wall backfill, achieving unit weight reductions of 50-70% compared to conventional granular fill. The Maine DOT Topsham project (1998) used 600 m^3 of TDA as lightweight retaining wall backfill, reducing lateral earth pressures by approximately 50%. These case histories demonstrate that lightweight fills are a mature, cost-effective technology when material availability and environmental constraints are properly addressed.",
-      "key_points": [
-        "Route 23, NJ (2001): 26,500 m^3 EPS geofoam; settlement reduced from 600 mm to < 50 mm over soft organic clay",
-        "I-15 Salt Lake City: foamed concrete bridge approach fills eliminated bump-at-the-bridge problem",
-        "TDA projects in Maine, Colorado, Oregon: 50-70% unit weight reduction vs conventional fill",
-        "Maine DOT Topsham (1998): TDA retaining wall backfill reduced lateral pressures by approximately 50%",
-        "Lightweight fills are mature and cost-effective when availability and environmental constraints are addressed",
-        "Long-term monitoring data confirm performance meets design expectations"
-      ],
+      "summary": "Introduces the manual's four case histories of lightweight fill in highway construction (EPS-block geofoam, foamed concrete, tire shreds and wood fiber), each giving the setting, design considerations, construction procedures and performance data, with references to the detailed literature.",
+      "body": "Four case histories illustrate the types of applications for lightweight fill in highway construction (p. 3-43). Each project description gives the setting, design considerations, construction procedures and performance data. They are brief synopses; the reader is referred to the technical literature listed for each case history for details.",
+      "key_points": [],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Documented field performance of lightweight fill technologies on US transportation projects."
+      "applicability": "Read for examples of how lightweight fills have been applied on highway projects."
+    },
+    {
+      "section_id": "3.7.1",
+      "title": "GeoFoam",
+      "summary": "The manual's case history of EPS-block geofoam used under a highway widening and shared-use path over soft organic and clay soils during a bridge replacement, avoiding excavation of 30 feet of unsuitable soil and a drainage system, with savings in time and cost.",
+      "body": "This is the manual's case history of EPS-block geofoam on a state transportation agency's bridge replacement and highway improvement project (p. 3-43). An existing 1951 through-truss bridge was being replaced with a network tied arch structure; each of two parallel structures carries four travel lanes, a high speed shoulder and a breakdown lane, with a shared-use path on one side. Among several innovative methods used to expedite the schedule and reduce maintenance costs, EPS-block geofoam lightweight fill forms the base of a breakdown lane, the adjacent travel lane and the shared-use path, which are underlain by soft organic and clay soils. Without the EPS blocks the contractor would have had to excavate down 30 feet to replace the unsuitable soils and install a drainage system before widening the highway; EPS gave significant time and cost savings. Typical EPS block fill sections on the embankment widening and the ramp are shown in Figures 3-10 and 3-11 (p. 3-44 to 3-45), and block placement on the widening, including around utilities, in Figure 3-12 (p. 3-46).",
+      "key_points": [
+        "EPS blocks avoided excavating 30 ft of soft organic and clay soils and installing a drainage system (p. 3-43)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 3-10: Typical embankment widening section (geofoam case history).",
+        "Figure 3-11: Typical ramp cross section (geofoam case history).",
+        "Figure 3-12: EPS block placement on embankment widening (geofoam case history)."
+      ],
+      "tables": [],
+      "applicability": "Read for an example of EPS-block geofoam in a highway widening over soft soils."
+    },
+    {
+      "section_id": "3.7.2",
+      "title": "Foamed Concrete",
+      "summary": "The manual's case history of foamed concrete used for balanced excavations on 12 projects (Harbuck 1993): 3 feet of 30 pcf foamed concrete weighs the same as 9 inches of 120 pcf fill. At a bridge replacement raising the approach grade 3 feet over 30 to 33 feet of very soft to soft clay, the upper 6 feet was built of 30 pcf foamed concrete.",
+      "body": "This is the manual's case history of foamed concrete fill, used by a state transportation agency on 12 separate projects, typically for balanced excavations (Harbuck 1993) (p. 3-46). Existing soils were excavated to the depth needed to balance the weight of the foamed concrete fill placed to a grade higher than existing, so no additional load was applied to the foundation. Generally, 3 feet of foamed concrete at 30 pcf weighs the same as 9 inches of existing fill at 120 pcf. In a typical example, a two-span structure over a railroad was replaced by a single span on the existing, structurally sound abutments, and the approach embankments had to be raised 3 feet. They were underlain by 30 to 33 feet of very soft to soft clay over loose silt grading to very compact silt (p. 3-47). Bearing capacity and slope stability analyses showed raising the grade could jeopardize the factor of safety. To reduce loading on the soft soils, the upper 6 feet below final grade was built of foamed concrete with a maximum unit weight of 30 pcf, and a drain was placed behind the existing abutment to reduce water pressure on it (Figure 3-13).",
+      "key_points": [
+        "Balanced excavation: 3 ft of 30 pcf foamed concrete weighs the same as 9 in. of 120 pcf fill (p. 3-46).",
+        "Upper 6 ft below final grade built of 30 pcf maximum foamed concrete to raise grade 3 ft over 30-33 ft of soft clay (p. 3-47)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 3-13: Foamed concrete fill behind existing abutment (foamed concrete case history)."
+      ],
+      "tables": [],
+      "applicability": "Read for an example of weight-balanced foamed concrete fill at a bridge approach on soft clay."
+    },
+    {
+      "section_id": "3.7.3",
+      "title": "Tire Shreds",
+      "summary": "The manual's case history of TDA lightweight fill replacement with soil reinforcement to stabilize a 160-foot roadway section on a moving slope, overloaded by about 7 feet of accumulated base course and asphalt repairs. Two geotextile-wrapped TDA zones (lower zone 10 feet thick) separated by 3 feet of low-permeability soil used about 133,000 tires and saved $740,000.",
+      "body": "Cheng (2016) gives several TDA case histories: embankments over soft soil, landslide stabilization, wall backfill, light rail vibration damping, landfill drainage and leach fields (p. 3-47). This is the manual's case history of TDA used as lightweight fill to stabilize an existing embankment (Cheng 2016; Kennec, Inc. 2007). A 160-foot section of county road had been settling and moving since the 1960s; repeated repairs with base course and asphalt built up about 7 feet, increasing the destabilizing load on the slope (p. 3-48). A repair using TDA lightweight fill replacement and soil reinforcement was designed (Figures 3-14 and 3-15). The fill replacement extended down to the underlying colluvium and consisted of compacted reinforced backfill, low-permeability cover soils and two zones of TDA (p. 3-51). The lower TDA zone was 10 feet thick, the maximum recommended fill height (Table 3-5); the upper and lower zones were separated by a 3-foot layer of low-permeability soil; and the TDA was wrapped in geotextile acting as a permeable separator between the finer soils and the open-graded TDA (Figure 3-16). The design included a surface water management plan and controls (p. 3-52). Approximately 133,000 waste tires were used in the two zones, and the repair saved $740,000 over the next option (Figure 3-17).",
+      "key_points": [
+        "Lower TDA zone 10 ft thick (the recommended maximum); zones separated by 3 ft of low-permeability soil; geotextile wrapped (p. 3-51).",
+        "About 133,000 waste tires used; $740,000 saved over the next option (p. 3-52)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 3-14: Slope cross section (tire shred case history).",
+        "Figure 3-15: Longitudinal section of fill replacement (tire shred case history).",
+        "Figure 3-16: Placement and compaction of TDA within geotextile wrap.",
+        "Figure 3-17: Completed repair (tire shred case history)."
+      ],
+      "tables": [],
+      "applicability": "Read for an example of tire-derived aggregate used to stabilize a moving roadway slope."
+    },
+    {
+      "section_id": "3.7.4",
+      "title": "Wood Fiber Embankment",
+      "summary": "The manual's case history of a 600-foot two-lane road embankment up to 44 feet high over very soft organic sandy silt (su 150 psf), built in 1987-88 with 35 feet of 38 pcf wood fiber and five geotextile layers (Allen and Kilian 1993). Settlement of 4.6 ft by 1992 matched the 5 ft estimate; cost $972,000 versus $1.5 million for stone columns.",
+      "body": "This is the manual's case history (Allen and Kilian 1993) of about 600 feet of two-lane road built over swampy terrain in 1987-88 (p. 3-52; Figure 3-18). Organic sandy silt had SPT values generally less than 1, water contents 94 to 364 percent (average 172), LL 61 to 90 and PL 53 to 65, and average UU strength of 150 psf (p. 3-53). Up to 44 feet of fill was needed with 2H:1V slopes. Granular fill could safely reach only 12 feet without strength gain; stage construction would take 20 months; and settlement under 44 feet of granular fill was expected to be 8 feet, unacceptable for a culvert at the base. To get a minimum factor of safety of 1.25 for slope stability and 1.5 for bearing capacity, lightweight wood fiber was used (p. 3-54): 5 feet of silty gravelly sand at the base to rise above groundwater, 35 feet of wood fiber, and 4 feet of granular subgrade on top. Stability analyses used 38 pcf and 40 degrees for the wood fiber and 125 pcf and 37 degrees for granular soil. Five geotextile layers in the lower granular fill and the wood fiber met stability and lateral spreading requirements until the foundation gained strength (about 8 months), designed with a creep limit of 60 percent of ultimate tensile strength. Estimated settlement was 5 feet plus 0.4 feet secondary over 20 years. Compacted density was 38 pcf, by routing haul equipment of at least 33,000 lbs over 1-foot lifts. Piezometer limits on pore pressure ratio were reached at 22 and 31 feet of fill, halting work for 52 and 130 days. Construction took just under 11 months; settlement was 3.3 feet at subgrade, 4 feet before paving and 4.6 feet in September 1992. Cost was $972,000 against $1,500,000 for stone columns and $1,700,000 for a bridge (p. 3-55).",
+      "key_points": [
+        "Foundation: SPT N generally less than 1; water content 94-364% (average 172%); average UU strength 150 psf (p. 3-53).",
+        "Required FS 1.25 slope stability and 1.5 bearing capacity; wood fiber 38 pcf, 40 deg; granular soil 125 pcf, 37 deg (p. 3-54).",
+        "Geotextiles designed with creep limit of 60% of ultimate tensile strength, needed about 8 months.",
+        "Measured settlement 3.3 ft at subgrade, 4 ft before paving, 4.6 ft in 1992 versus 5 ft estimated primary settlement.",
+        "Cost $972,000 versus $1,500,000 (stone columns) and $1,700,000 (bridge) (p. 3-55)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 3-18: Soil cross-section at wood fiber fill location (wood fiber case history)."
+      ],
+      "tables": [],
+      "applicability": "Read for an example of a reinforced wood fiber embankment built over very soft organic soil."
+    },
+    {
+      "section_id": "3.8.0",
+      "title": "References",
+      "summary": "Lists the sources cited in the lightweight fills chapter: ASTM standards for geofoam and scrap tires, NCHRP reports and syntheses on geofoam and recycled materials, Transportation Research Record papers on foamed concrete, ESCS and wood fiber, and agency guidelines for tire shred embankments.",
+      "body": "The chapter's reference list (p. 3-56 to 3-60) cites ASTM standards (D6817, D7180, D7557, D6270), NCHRP reports and syntheses (Stark et al. 2004a, 2004b; Arellano et al. 2011; Stroup-Gardiner and Wattenberg-Komas 2013a-d; Holtz 1989), Transportation Research Record papers (Harbuck 1993; Holm and Valsangkar 1993; Allen and Kilian 1993; Kilian and Ferry 1993), PIARC (1997), CROW (2003), Horvath (1995, 2012), Cheng (2016), Zornberg et al. (2005) and state agency guidelines and reports on tire shred fills.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Read to locate the original sources behind the chapter's lightweight fill guidance."
     }
-  ],
-  "volume": 1
+  ]
 }
