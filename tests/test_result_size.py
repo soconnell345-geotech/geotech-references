@@ -324,7 +324,18 @@ def test_figure_search_at_fifty_fits(q):
         == [h["figure_number"] for h in plain[:out["shown"]]]
 
 
-def test_figure_get_cuts_a_caption_that_ran_on():
+def test_figure_get_cuts_a_caption_that_ran_on(monkeypatch):
+    # The catalog's run-on captions are fixed (REF-27), so the row is made
+    # long here: the shaping must still cut a caption that runs on.
+    real = _figures_db._row_to_full
+
+    def long_row(row):
+        out = real(row)
+        if out["figure_number"] == "1-3" and out["reference"] == "gec_13":
+            out["caption"] += " page text that ran on" * 1500
+        return out
+
+    monkeypatch.setattr(_figures_db, "_row_to_full", long_row)
     whole = _figures_db.figure_get("gec_13", "1-3")
     assert _size(whole) > BUDGET          # a catalog caption that ran on
     out = _figures_db.figure_get("gec_13", "1-3", max_chars=BUDGET)
