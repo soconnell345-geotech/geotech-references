@@ -5,7 +5,7 @@ Tests cover all 45 public functions (Equations 8-1 through 8-45) with:
   - Edge-case tests where applicable
   - ValueError checks for every validation branch
 
-Reference: UFC 3-220-10, Chapter 8.
+Reference: UFS 3-220-10, Chapter 8.
 """
 
 import math

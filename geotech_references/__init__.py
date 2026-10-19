@@ -2,8 +2,8 @@
 
 Sub-packages
 ------------
-dm7_1 : UFC 3-220-10N (formerly NAVFAC DM 7.1) — Soil Mechanics
-dm7_2 : UFC 3-220-10N (formerly NAVFAC DM 7.2) — Foundations & Earth Structures
+dm7_1 : UFS 3-220-10 (DM 7.1), 16 January 2026 — Soil Mechanics
+dm7_2 : UFC 3-220-20 (DM 7.2), 16 January 2025 — Foundations & Earth Structures
 gec_6 : FHWA-SA-02-054 — Shallow Foundations
 gec_7 : FHWA-NHI-14-007 — Soil Nail Walls
 gec_10 : FHWA-NHI-10-016 — Drilled Shafts

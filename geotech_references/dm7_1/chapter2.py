@@ -1,12 +1,12 @@
 """
-UFC 3-220-10, Chapter 2: Field Exploration, Testing, and Instrumentation
+UFS 3-220-10, Chapter 2: Field Exploration, Testing, and Instrumentation
 
 Equations 2-1 through 2-3 covering undrained shear strength and sensitivity
 from the field vane shear test (VST), and the corrected field vane shear
 strength.
 
 Reference:
-    UFC 3-220-10, Soil Mechanics, 1 February 2022, Change 1, 11 March 2025
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 January 2026
 """
 
 import math
@@ -56,8 +56,8 @@ def undrained_shear_strength_vane(T_max: float, D: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 2, Section 2-9.1.2, Equation 2-1, p. 100.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 2, Section 2-9.1.2, Equation 2-1, p. 101.
     """
     if D <= 0.0:
         raise ValueError("D must be positive.")
@@ -107,8 +107,8 @@ def sensitivity_vane(s_u_fv: float, s_ur_fv: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 2, Section 2-9.1.2, Equation 2-2, p. 100.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 2, Section 2-9.1.2, Equation 2-2, p. 101.
     """
     if s_ur_fv <= 0.0:
         raise ValueError("s_ur_fv must be positive.")
@@ -164,8 +164,8 @@ def corrected_undrained_shear_strength_vane(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 2, Section 2-9.1.2, Equation 2-3, p. 101.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 2, Section 2-9.1.2, Equation 2-3, p. 102.
     """
     if s_u_fv < 0.0:
         raise ValueError("s_u_fv must be non-negative.")

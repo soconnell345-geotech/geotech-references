@@ -2,7 +2,7 @@
 DM7 Agent — Foundry-style wrapper for geotech-references DM7 modules.
 
 Wraps 340+ geotechnical equations from NAVFAC Design Manual 7
-(UFC 3-220-10 Soil Mechanics and UFC 3-220-20 Foundations & Earth Structures).
+(UFS 3-220-10 Soil Mechanics and UFC 3-220-20 Foundations & Earth Structures).
 
 Three entry-point functions:
   1. dm7_agent           - Run a DM7 equation
@@ -104,42 +104,42 @@ def _load_registry():
         "dm7_1_ch1": {
             "module": dm7_1_ch1,
             "category": "DM7.1 Ch1 - Identification & Classification",
-            "reference": "UFC 3-220-10, Chapter 1",
+            "reference": "UFS 3-220-10, Chapter 1",
         },
         "dm7_1_ch2": {
             "module": dm7_1_ch2,
             "category": "DM7.1 Ch2 - Field Exploration & Testing",
-            "reference": "UFC 3-220-10, Chapter 2",
+            "reference": "UFS 3-220-10, Chapter 2",
         },
         "dm7_1_ch3": {
             "module": dm7_1_ch3,
             "category": "DM7.1 Ch3 - Laboratory Testing",
-            "reference": "UFC 3-220-10, Chapter 3",
+            "reference": "UFS 3-220-10, Chapter 3",
         },
         "dm7_1_ch4": {
             "module": dm7_1_ch4,
             "category": "DM7.1 Ch4 - Distribution of Stresses",
-            "reference": "UFC 3-220-10, Chapter 4",
+            "reference": "UFS 3-220-10, Chapter 4",
         },
         "dm7_1_ch5": {
             "module": dm7_1_ch5,
             "category": "DM7.1 Ch5 - Consolidation & Settlement",
-            "reference": "UFC 3-220-10, Chapter 5",
+            "reference": "UFS 3-220-10, Chapter 5",
         },
         "dm7_1_ch6": {
             "module": dm7_1_ch6,
             "category": "DM7.1 Ch6 - Seepage & Drainage",
-            "reference": "UFC 3-220-10, Chapter 6",
+            "reference": "UFS 3-220-10, Chapter 6",
         },
         "dm7_1_ch7": {
             "module": dm7_1_ch7,
             "category": "DM7.1 Ch7 - Slope Stability",
-            "reference": "UFC 3-220-10, Chapter 7",
+            "reference": "UFS 3-220-10, Chapter 7",
         },
         "dm7_1_ch8": {
             "module": dm7_1_ch8,
             "category": "DM7.1 Ch8 - Correlations for Soil Properties",
-            "reference": "UFC 3-220-10, Chapter 8",
+            "reference": "UFS 3-220-10, Chapter 8",
         },
         "dm7_2_pro": {
             "module": dm7_2_pro,
@@ -337,7 +337,7 @@ def dm7_agent(method: str, parameters_json: str) -> str:
     """
     DM7 geotechnical equation calculator.
 
-    Implements 340+ equations from NAVFAC Design Manual 7 (UFC 3-220-10 Soil
+    Implements 340+ equations from NAVFAC Design Manual 7 (UFS 3-220-10 Soil
     Mechanics and UFC 3-220-20 Foundations & Earth Structures). Covers soil
     classification, stresses, consolidation, seepage, slope stability, soil
     property correlations, shear strength, earth pressure, bearing capacity,

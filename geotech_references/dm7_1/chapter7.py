@@ -1,12 +1,12 @@
 """
-UFC 3-220-10, Chapter 7: Slope Stability
+UFS 3-220-10, Chapter 7: Slope Stability
 
 Equations 7-1 through 7-6 covering factor of safety, seepage forces,
 geosynthetic reinforcement long-term design strength, pullout resistance,
 coefficient of interaction, and pullout resistance factor.
 
 Reference:
-    UFC 3-220-10, Soil Mechanics, 1 February 2022, Change 1, 11 March 2025
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 January 2026
 """
 
 import math
@@ -49,8 +49,8 @@ def factor_of_safety(s: float, tau: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 7, Equation 7-1, p. 384.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 7, Equation 7-1, p. 349.
     """
     if tau <= 0.0:
         raise ValueError("tau must be positive.")
@@ -96,8 +96,8 @@ def seepage_force(i: float, gamma_w: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 7, Equation 7-2, p. 392.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 7, Equation 7-2, p. 357.
     """
     if gamma_w <= 0.0:
         raise ValueError("gamma_w must be positive.")
@@ -150,8 +150,8 @@ def long_term_geosynthetic_strength(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 7, Equation 7-3, p. 405.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 7, Equation 7-3, p. 370.
     """
     if t_ult < 0.0:
         raise ValueError("t_ult must be non-negative.")
@@ -219,8 +219,8 @@ def geosynthetic_pullout_resistance(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 7, Equation 7-4, p. 407.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 7, Equation 7-4, p. 372.
     """
     if f_star < 0.0:
         raise ValueError("f_star must be non-negative.")
@@ -269,8 +269,8 @@ def coefficient_of_interaction(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 7, Equation 7-5, p. 407.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 7, Equation 7-5, p. 372.
     """
     if phi_eff_deg <= 0.0 or phi_eff_deg >= 90.0:
         raise ValueError(
@@ -319,8 +319,8 @@ def pullout_resistance_factor(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 7, Equation 7-6, p. 407.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 7, Equation 7-6, p. 372.
     """
     if c_i < 0.0:
         raise ValueError("c_i must be non-negative.")

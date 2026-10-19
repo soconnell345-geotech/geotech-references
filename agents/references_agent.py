@@ -34,7 +34,7 @@ _REFERENCE_CATALOG = {
         "submodules": ["chapter1", "chapter2", "chapter3", "chapter4",
                        "chapter5", "chapter6", "chapter7", "chapter8"],
         "has_text": True,
-        "citation": "UFC 3-220-10 — Soil Mechanics (2022, Change 1 2025)",
+        "citation": "UFS 3-220-10 — Soil Mechanics (DM 7.1), 16 January 2026",
     },
     "dm7_2": {
         "submodules": ["prologue", "chapter2", "chapter3", "chapter4",
@@ -90,7 +90,7 @@ _REFERENCE_CATALOG = {
     "ufc_pavement": {
         "submodules": ["equations", "tables"],
         "has_text": False,
-        "citation": "UFC 3-260-02 — Airfield Pavement Design",
+        "citation": "UFC 3-250-01 — Pavement Design for Roads and Parking Areas (14 November 2016)",
     },
 }
 

@@ -1,5 +1,5 @@
 """
-UFC 3-220-10, Chapter 1: Identification and Classification of Soil and Rock
+UFS 3-220-10, Chapter 1: Identification and Classification of Soil and Rock
 
 Equations 1-1 through 1-6 covering grain-size distribution coefficients for
 coarse-grained soil classification, the AASHTO group index, point load
@@ -7,7 +7,7 @@ strength index for rock classification, and the expansion index for
 expansive soils.
 
 Reference:
-    UFC 3-220-10, Soil Mechanics, 1 February 2022, Change 1, 11 March 2025
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 January 2026
 """
 
 import math
@@ -47,8 +47,8 @@ def coefficient_of_uniformity(D60: float, D10: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 1, Equation 1-1, p. 49.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 1, Equation 1-1, p. 15.
     """
     if D10 <= 0.0:
         raise ValueError("D10 must be positive.")
@@ -94,8 +94,8 @@ def coefficient_of_curvature(D60: float, D30: float, D10: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 1, Equation 1-2, p. 50.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 1, Equation 1-2, p. 16.
     """
     if D60 <= 0.0:
         raise ValueError("D60 must be positive.")
@@ -142,8 +142,8 @@ def aashto_group_index(F: float, LL: float, PI: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 1, Equation 1-3, p. 51.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 1, Equation 1-3, p. 17.
     """
     term1 = (F - 35.0) * (0.2 + 0.005 * (LL - 40.0))
     term2 = 0.01 * (F - 15.0) * (PI - 10.0)
@@ -177,8 +177,8 @@ def aashto_group_index_a2(F: float, PI: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 1, Equation 1-3, p. 51-52.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 1, Equation 1-3, pp. 17-18.
     """
     gi = 0.01 * (F - 15.0) * (PI - 10.0)
     return max(gi, 0.0)
@@ -226,8 +226,8 @@ def point_load_strength_index(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 1, Equations 1-4 and 1-5, p. 66.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 1, Equations 1-4 and 1-5, p. 32.
     """
     if d <= 0.0:
         raise ValueError("d must be positive.")
@@ -263,8 +263,8 @@ def size_correction_factor(D_e: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 1, Equation 1-5, p. 66.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 1, Equation 1-5, p. 32.
     """
     if D_e < 0.0:
         raise ValueError("D_e must be non-negative.")
@@ -309,8 +309,8 @@ def expansion_index(delta_H: float, H_i: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 1, Equation 1-6, p. 74.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 1, Equation 1-6, p. 40.
     """
     if H_i <= 0.0:
         raise ValueError("H_i must be positive.")

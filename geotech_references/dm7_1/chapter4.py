@@ -1,5 +1,5 @@
 """
-UFC 3-220-10, Chapter 4: Distribution of Stresses
+UFS 3-220-10, Chapter 4: Distribution of Stresses
 
 Equations 4-1 through 4-12 covering total vertical stress, pore water pressure,
 effective stress, horizontal stress, Boussinesq point load, line load, strip
@@ -7,7 +7,7 @@ load, rectangular loaded area, circular loaded area, pipe trench loads
 (Marston theory), tunnel stability, and shaft pressures in clay.
 
 Reference:
-    UFC 3-220-10, Soil Mechanics, 1 February 2022, Change 1, 11 March 2025
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 January 2026
 """
 
 import math
@@ -52,8 +52,8 @@ def total_vertical_stress(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 4, Equation 4-1, p. 178.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 4, Equation 4-1, p. 179.
     """
     sigma_v = 0.0
     for z_i, gamma_t_i in layers:
@@ -96,8 +96,8 @@ def pore_water_pressure(h_p: float, gamma_w: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 4, Equation 4-2, p. 178.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 4, Equation 4-2, p. 179.
     """
     if gamma_w <= 0.0:
         raise ValueError("gamma_w must be positive.")
@@ -128,8 +128,8 @@ def effective_vertical_stress(sigma_v: float, u: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 4, Equation 4-3, p. 180.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 4, Equation 4-3, p. 181.
     """
     return sigma_v - u
 
@@ -163,8 +163,8 @@ def effective_horizontal_stress(K: float, sigma_v_eff: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 4, Equation 4-4, p. 180.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 4, Equation 4-4, p. 181.
     """
     if K < 0.0:
         raise ValueError("K must be non-negative.")
@@ -195,8 +195,8 @@ def total_horizontal_stress(sigma_h_eff: float, u: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 4, Equation 4-5, p. 180.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 4, Equation 4-5, p. 181.
     """
     return sigma_h_eff + u
 
@@ -245,8 +245,8 @@ def boussinesq_point_load(Q: float, x: float, y: float, z: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 4, Table 4-2, p. 184.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 4, Table 4-2, p. 185.
     """
     if z <= 0.0:
         raise ValueError("z must be positive.")
@@ -291,8 +291,8 @@ def boussinesq_line_load(P: float, x: float, z: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 4, Table 4-2, p. 184.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 4, Table 4-2, p. 185.
     """
     if z <= 0.0:
         raise ValueError("z must be positive.")
@@ -335,12 +335,12 @@ def boussinesq_strip_load(
     Notes
     -----
     Both *alpha* and *gamma_angle* must be in radians.  See Figure 4-4 in
-    UFC 3-220-10 for the geometric definitions of these angles.
+    UFS 3-220-10 for the geometric definitions of these angles.
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 4, Table 4-2, p. 184.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 4, Table 4-2, p. 185.
     """
     return (q0 / math.pi) * (
         alpha + math.sin(alpha) * math.cos(alpha + 2.0 * gamma_angle)
@@ -395,8 +395,8 @@ def boussinesq_rectangular_load(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 4, Table 4-2, p. 184.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 4, Table 4-2, p. 185.
     """
     if x <= 0.0:
         raise ValueError("x must be positive.")
@@ -445,8 +445,8 @@ def boussinesq_circular_load(q0: float, r: float, z: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 4, Table 4-2, p. 185.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 4, Table 4-2, p. 186.
     """
     if r <= 0.0:
         raise ValueError("r must be positive.")
@@ -502,8 +502,8 @@ def boussinesq_triangular_load(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 4, Table 4-2, p. 185.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 4, Table 4-2, p. 186.
     """
     if a <= 0.0:
         raise ValueError("a must be positive.")
@@ -555,8 +555,8 @@ def boussinesq_slope_load(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 4, Table 4-2, p. 185.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 4, Table 4-2, p. 186.
     """
     if a <= 0.0:
         raise ValueError("a must be positive.")
@@ -606,8 +606,8 @@ def boussinesq_terrace_load(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 4, Table 4-2, p. 185.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 4, Table 4-2, p. 186.
     """
     if a <= 0.0:
         raise ValueError("a must be positive.")
@@ -652,8 +652,8 @@ def boussinesq_semi_infinite_load(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 4, Table 4-2, p. 185.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 4, Table 4-2, p. 186.
     """
     if R <= 0.0:
         raise ValueError("R must be positive.")
@@ -699,8 +699,8 @@ def rigid_pipe_trench_load(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 4, Equation 4-6, p. 194.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 4, Equation 4-6, p. 195.
     """
     if gamma_t <= 0.0:
         raise ValueError("gamma_t must be positive.")
@@ -729,11 +729,11 @@ def trench_load_coefficient(
         Width of the trench (ft or m).  Must be positive.
     K : float
         Lateral earth pressure coefficient for the trench fill
-        (dimensionless).  See Table 4-3 in UFC 3-220-10 for
+        (dimensionless).  See Table 4-3 in UFS 3-220-10 for
         recommended values.
     mu_prime : float
         Coefficient of friction between the trench fill and the
-        trench walls (dimensionless).  See Table 4-3 in UFC 3-220-10
+        trench walls (dimensionless).  See Table 4-3 in UFS 3-220-10
         for recommended values.
 
     Returns
@@ -748,8 +748,8 @@ def trench_load_coefficient(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 4, Equation 4-7, p. 194.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 4, Equation 4-7, p. 195.
     """
     if H <= 0.0:
         raise ValueError("H must be positive.")
@@ -800,8 +800,8 @@ def flexible_pipe_trench_load(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 4, Equation 4-8, p. 196.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 4, Equation 4-8, p. 197.
     """
     if gamma_t <= 0.0:
         raise ValueError("gamma_t must be positive.")
@@ -845,8 +845,8 @@ def flexible_pipe_prism_load(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 4, Equation 4-9, p. 197.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 4, Equation 4-9, p. 198.
     """
     if gamma_t <= 0.0:
         raise ValueError("gamma_t must be positive.")
@@ -870,7 +870,7 @@ def undrained_stability_factor(
     Computes the undrained stability factor (N_crit) used to evaluate
     ground behavior for tunnels in fine-grained soils and silty sands
     above the water table.  Higher values indicate less stable ground
-    conditions (see Table 4-9 in UFC 3-220-10).
+    conditions (see Table 4-9 in UFS 3-220-10).
 
     .. math::
         N_{crit} = \\frac{\\sigma'_v - \\sigma_t}{s_u}
@@ -900,8 +900,8 @@ def undrained_stability_factor(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 4, Equation 4-10, p. 203.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 4, Equation 4-10, p. 204.
     """
     if s_u <= 0.0:
         raise ValueError("s_u must be positive.")
@@ -939,8 +939,8 @@ def shaft_critical_depth_clay(s_u: float, gamma_t: float) -> float:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 4, Equation 4-11, p. 209.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 4, Equation 4-11, p. 210.
     """
     if s_u < 0.0:
         raise ValueError("s_u must be non-negative.")
@@ -987,8 +987,8 @@ def shaft_horizontal_pressure_clay(
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 4, Equation 4-12, p. 210.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 4, Equation 4-12, p. 211.
     """
     if gamma_eff <= 0.0:
         raise ValueError("gamma_eff must be positive.")
@@ -1037,8 +1037,8 @@ def table_4_3_trench_fill(fill_type: str) -> dict:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 4, Table 4-3, p. 194.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 4, Table 4-3, p. 195.
     """
     key = fill_type.lower().strip()
     if key not in _TABLE_4_3_TRENCH_FILL:
@@ -1090,8 +1090,8 @@ def table_4_9_tunnel_behavior(N_crit_range: str) -> str:
 
     References
     ----------
-    UFC 3-220-10, Soil Mechanics, 1 Feb 2022, Change 1, 11 Mar 2025,
-    Chapter 4, Table 4-9, p. 203.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
+    Chapter 4, Table 4-9, p. 205.
     """
     key = N_crit_range.strip()
     if key not in _TABLE_4_9_TUNNEL_BEHAVIOR:

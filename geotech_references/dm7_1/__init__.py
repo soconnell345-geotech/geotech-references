@@ -1,5 +1,5 @@
 """
-UFC 3-220-10 Soil Mechanics (DM 7.1)
+UFS 3-220-10 Soil Mechanics (DM 7.1), Unified Facilities Supplement, 16 January 2026
 
 Chapters:
     1 - Identification and Classification of Soil and Rock
