@@ -1,213 +1,1449 @@
 {
   "reference_id": "FHWA-NHI-16-027",
   "reference_title": "Ground Modification Methods Reference Manual – Volume I",
+  "volume": 1,
   "chapter": 5,
   "chapter_title": "Aggregate Columns",
   "sections": [
     {
       "section_id": "5.1.0",
-      "title": "Stone Columns - Description",
-      "body": "Stone columns (also called vibro-replacement or vibro stone columns) are columnar inclusions of compacted coarse aggregate installed in soft cohesive or loose granular soils to improve bearing capacity, reduce settlement, accelerate consolidation, and mitigate liquefaction. Stone columns are constructed by vibro-replacement: a vibroflot is used to create a cylindrical cavity in the soil, which is then backfilled in lifts with well-graded coarse aggregate (typically 25-75 mm crushed stone) and compacted in place by the vibroflot. The resulting column is typically 600-1000 mm in diameter, installed to depths of 5-20 m, and spaced at 1.5-3.5 m centers in triangular or square patterns. Stone columns improve the ground through three mechanisms: (1) reinforcement by creating stiff inclusions that attract a disproportionate share of the applied load (stress concentration), (2) drainage by providing radial drainage paths that accelerate consolidation similar to vertical drains, and (3) densification of adjacent granular soils through vibration and lateral displacement during installation. The technology was first used in the US by the FHWA in the early 1970s and has since become one of the most widely used ground improvement methods for embankments and structures on soft ground.",
+      "title": "Introduction",
+      "summary": "Introduction to the aggregate columns chapter (p. 5-1): describes the technology, its history, the focus and scope of the technical summary, the primary references and related cement-based column technologies (VCCs and CMCs).",
+      "body": "Chapter 5 opens (p. 5-1) with the introduction to aggregate columns, a ground modification technique that covers both stone columns and rammed aggregate piers. The introduction is organized into the description and history of the technology (Section 1.1), a historical overview (1.2), the focus and scope of the technical summary (1.3), the primary references (1.4) and related technologies such as vibro-concrete columns and controlled modulus columns (1.5).",
       "key_points": [
-        "Columnar inclusions of compacted coarse aggregate (25-75 mm crushed stone) installed by vibro-replacement",
-        "Typical diameter 600-1000 mm, depth 5-20 m, spacing 1.5-3.5 m in triangular or square patterns",
-        "Three improvement mechanisms: reinforcement (stress concentration), drainage, and densification of adjacent soil",
-        "Improves bearing capacity, reduces settlement, accelerates consolidation, and mitigates liquefaction",
-        "First used in US by FHWA in early 1970s; now one of the most widely used ground improvement methods",
-        "Constructed using vibroflot to create cavity, then backfilled and compacted in lifts with aggregate"
-      ],
-      "equations": [],
-      "figures": [
-        "Figure 5-1: Stone column installation sequence showing probe insertion, cavity creation, aggregate backfill, and compaction",
-        "Figure 5-2: Stone column group layout showing triangular pattern with unit cell concept"
-      ],
-      "tables": [],
-      "applicability": "Soft cohesive soils and loose granular soils where bearing capacity, settlement, and/or liquefaction improvements are needed."
-    },
-    {
-      "section_id": "5.1.1",
-      "title": "Stone Column Applicability",
-      "body": "Stone columns are most effective in soft to medium stiff cohesive soils with undrained shear strength (s_u) in the range of 15 to 50 kPa. Below s_u = 15 kPa, the soil may not provide sufficient lateral confinement to develop the column's load-carrying capacity, and alternative technologies (deep mixing, controlled modulus columns) should be considered. Above s_u = 50 kPa, the ground may not require improvement, or the improvement ratio may be too small to justify the cost. Stone columns are also effective in loose granular soils for liquefaction mitigation, where the drainage function is particularly valuable for rapid pore pressure dissipation. The technology is not suitable for peat or highly organic soils (organic content > 10%) due to extremely low lateral confinement and high compressibility. Groundwater table position does not significantly affect stone column performance since the aggregate is free-draining. Column lengths are limited by the depth to which the vibroflot can effectively displace and compact the soil, typically 15-20 m for conventional equipment and up to 30 m for specialized rigs.",
-      "key_points": [
-        "Most effective in soft to medium stiff cohesive soils with s_u = 15-50 kPa",
-        "Below s_u = 15 kPa: insufficient lateral confinement; consider deep mixing or CMC",
-        "Above s_u = 50 kPa: ground may not require improvement or improvement ratio too small",
-        "Effective for liquefaction mitigation in loose granular soils (drainage for pore pressure dissipation)",
-        "Not suitable for peat or highly organic soils (organic content > 10%)",
-        "Groundwater table does not significantly affect performance (aggregate is free-draining)",
-        "Typical depth limit 15-20 m (conventional), up to 30 m (specialized rigs)"
-      ],
-      "equations": [],
-      "figures": [
-        "Figure 5-3: Stone column applicability chart showing undrained shear strength range and organic content limits"
-      ],
-      "tables": [],
-      "applicability": "Screening criteria for stone column feasibility based on soil strength, organic content, and depth requirements."
-    },
-    {
-      "section_id": "5.1.2",
-      "title": "Area Replacement Ratio",
-      "body": "The area replacement ratio a_s is the fundamental geometric parameter for stone column design, defined as the ratio of the stone column cross-sectional area A_c to the total tributary area A of the unit cell. For a circular column of diameter d in a triangular pattern with spacing S, A_c = pi*d^2/4 and A = pi*d_e^2/4 where d_e = 1.050*S, giving a_s = (d/d_e)^2. Typical area replacement ratios range from 0.10 to 0.35 (10-35% of the ground area replaced by stone). Higher replacement ratios provide greater improvement but at increased cost. The area replacement ratio directly influences the stress concentration ratio, settlement reduction factor, and composite strength of the improved ground. For embankment support, a_s = 0.15-0.25 is common; for structural foundations requiring higher bearing capacity, a_s = 0.25-0.35 may be needed. The unit cell concept, where each column and its surrounding tributary soil area are treated as a composite, is the basis for most stone column design methods.",
-      "key_points": [
-        "Area replacement ratio a_s = A_c / A (column area / total unit cell area)",
-        "For circular column diameter d in triangular pattern spacing S: a_s = (d/d_e)^2 where d_e = 1.050*S",
-        "Typical range: a_s = 0.10-0.35 (10-35% ground area replaced by stone)",
-        "a_s directly influences stress concentration, settlement reduction, and composite strength",
-        "Embankment support: a_s = 0.15-0.25; structural foundations: a_s = 0.25-0.35",
-        "Unit cell concept: each column and tributary soil treated as composite element"
-      ],
-      "equations": [
-        "Eq 5-1: a_s = \\frac{A_c}{A} = \\frac{\\pi d^2 / 4}{\\pi d_e^2 / 4} = \\left(\\frac{d}{d_e}\\right)^2, area replacement ratio",
-        "Eq 5-2: d_e = 1.050 S \\text{ (triangular)}, d_e = 1.128 S \\text{ (square)}, equivalent unit cell diameter",
-        "Eq 5-3: A = \\frac{\\pi d_e^2}{4}, total unit cell area",
-        "Eq 5-4: A_c = \\frac{\\pi d^2}{4}, stone column cross-sectional area"
-      ],
-      "figures": [
-        "Figure 5-4: Unit cell concept showing stone column diameter d, tributary area diameter d_e, and area replacement ratio a_s"
-      ],
-      "tables": [],
-      "applicability": "Fundamental geometric design parameter linking stone column diameter and spacing to ground improvement level."
-    },
-    {
-      "section_id": "5.1.3",
-      "title": "Settlement Reduction Factor",
-      "body": "The settlement reduction factor n_0 (also denoted beta) relates the settlement of the improved ground to the settlement of the unimproved ground: S_improved = S_unimproved / n_0. The settlement reduction factor depends on the area replacement ratio a_s and the stress concentration ratio n = sigma_c/sigma_s (ratio of stress on the column to stress on the surrounding soil). Higher area replacement ratios and higher stress concentration ratios produce greater settlement reduction. For the basic Priebe method, n_0 is a function of a_s and the column friction angle phi_c. Typical settlement reduction factors range from 1.5 to 3.0 for area replacement ratios of 0.15 to 0.35. The stress concentration ratio n is the key parameter linking column stiffness to soil stiffness; typical values range from 2 to 5 for stone columns in soft clay, increasing with greater stiffness contrast between the column and surrounding soil. Equal strain conditions (where the column and soil settle equally) are assumed when a rigid load transfer platform or rigid footing is present above the columns.",
-      "key_points": [
-        "Settlement reduction factor n_0: S_improved = S_unimproved / n_0",
-        "n_0 depends on area replacement ratio a_s and stress concentration ratio n",
-        "Stress concentration ratio n = sigma_c / sigma_s (column stress / soil stress), typically 2-5 for soft clay",
-        "Typical n_0 range: 1.5-3.0 for a_s = 0.15-0.35",
-        "Priebe method: n_0 is function of a_s and column friction angle phi_c",
-        "Equal strain assumed under rigid load transfer platform or rigid footing",
-        "Higher a_s and higher n produce greater settlement reduction"
-      ],
-      "equations": [
-        "Eq 5-5: S_{improved} = \\frac{S_{unimproved}}{n_0}, settlement of improved ground",
-        "Eq 5-6: n = \\frac{\\sigma_c}{\\sigma_s}, stress concentration ratio (column stress / soil stress)",
-        "Eq 5-7: \\sigma_{avg} = a_s \\cdot \\sigma_c + (1 - a_s) \\cdot \\sigma_s, average applied stress over unit cell",
-        "Eq 5-8: n = \\frac{\\sigma_c}{\\sigma_s} = \\frac{E_c}{E_s} \\cdot \\text{(modular ratio, simplified)}"
-      ],
-      "figures": [
-        "Figure 5-5: Settlement reduction factor n_0 versus area replacement ratio a_s for various stress concentration ratios"
-      ],
-      "tables": [],
-      "applicability": "Estimating settlement reduction from stone column improvement for embankments and structural foundations."
-    },
-    {
-      "section_id": "5.2.0",
-      "title": "Rammed Aggregate Piers",
-      "body": "Rammed aggregate piers (RAPs), also known by the proprietary name Geopier, are short columnar inclusions of densely compacted aggregate installed using a displacement method and high-energy vertical ramming. Unlike stone columns which are installed by vibro-replacement, RAPs are constructed by driving a hollow mandrel or auger to the design depth, then backfilling the cavity in thin lifts (typically 300 mm) and ramming each lift vertically using a beveled tamper with high-energy impact (typically 12-30 kJ per blow). This vertical ramming process creates very high vertical stiffness and lateral prestress in the aggregate and surrounding soil, resulting in stiffness moduli 5-10 times higher than conventional stone columns. RAP diameters are typically 450-900 mm, with treatment depths of 2-8 m. RAPs are particularly effective for supporting isolated and continuous footings, floor slabs, and low-rise structures where settlements must be limited to 25 mm or less. The technology is also used for slope stabilization and lateral load resistance applications. RAPs achieve higher stress concentration ratios (n = 4-10) than conventional stone columns (n = 2-5) due to the superior compaction from vertical ramming.",
-      "key_points": [
-        "Short columnar inclusions of densely compacted aggregate installed by displacement and high-energy vertical ramming",
-        "Constructed by driving mandrel/auger, backfilling in 300 mm lifts, and ramming each lift with 12-30 kJ/blow",
-        "Vertical ramming creates high vertical stiffness and lateral prestress (5-10x stiffer than stone columns)",
-        "Typical diameter 450-900 mm, treatment depth 2-8 m",
-        "Effective for isolated/continuous footings, floor slabs, low-rise structures (settlements < 25 mm)",
-        "Stress concentration ratio n = 4-10 (vs n = 2-5 for conventional stone columns)",
-        "Also used for slope stabilization and lateral load resistance"
-      ],
-      "equations": [],
-      "figures": [
-        "Figure 5-6: RAP installation sequence showing mandrel displacement, aggregate placement, and vertical ramming",
-        "Figure 5-7: Comparison of stone column and RAP stiffness under load test"
-      ],
-      "tables": [],
-      "applicability": "Structural foundation support where high bearing capacity and minimal settlement (< 25 mm) are required at shallow treatment depths."
-    },
-    {
-      "section_id": "5.3.0",
-      "title": "Design - Priebe Method",
-      "body": "The Priebe (1995) method is the most widely used analytical design approach for stone columns and aggregate piers. The method calculates the settlement improvement factor n_0 based on the unit cell model, treating the stone column and its tributary soil as a composite element. The basic Priebe improvement factor n_0 is derived from cavity expansion theory and depends on the area replacement ratio a_s, the friction angle of the stone column material phi_c (typically 40-45 degrees for crushed stone), and the Poisson's ratio of the surrounding soil. The basic improvement factor is calculated as n_0 = 1 + a_s * [0.5 + f(nu_s, phi_c)] / (1 - a_s), where f is a function of the soil Poisson's ratio and column friction angle. Priebe also provides corrections for compressibility of the stone column (n_1) and for overburden depth effects (n_2), leading to the final settlement improvement factor that accounts for real field conditions. The improved ground composite modulus E_comp = n_0 * E_soil allows simplified settlement calculations using one-dimensional compression theory. The Priebe method assumes infinite column length, rigid loading, and negligible column compressibility in its basic form.",
-      "key_points": [
-        "Priebe (1995) is the most widely used design method for stone columns and aggregate piers",
-        "Based on unit cell model and cavity expansion theory",
-        "Basic improvement factor n_0 depends on a_s, column friction angle phi_c, and soil Poisson's ratio nu_s",
-        "phi_c typically 40-45 degrees for crushed stone aggregate",
-        "Corrections for column compressibility (n_1) and overburden depth effects (n_2)",
-        "Composite modulus E_comp = n_0 * E_soil for settlement calculation",
-        "Assumes infinite column length, rigid loading, and negligible column compressibility in basic form"
-      ],
-      "equations": [
-        "Eq 5-9: n_0 = 1 + a_s \\left[\\frac{1}{2} + f(\\nu_s, \\phi_c)\\right] / (1 - a_s), basic Priebe improvement factor",
-        "Eq 5-10: f(\\nu_s, \\phi_c) = \\frac{(1 - \\nu_s)(1 - a_s)}{2(1 - 2\\nu_s)} \\cdot \\frac{K_{ac}}{1 - K_{ac}}, Priebe auxiliary function",
-        "Eq 5-11: K_{ac} = \\tan^2(45^\\circ - \\phi_c/2), Rankine active earth pressure coefficient for column material",
-        "Eq 5-12: E_{comp} = n_0 \\cdot E_{soil}, composite ground modulus for settlement calculation",
-        "Eq 5-13: S_{improved} = \\frac{\\Delta\\sigma \\cdot H}{E_{comp}} = \\frac{\\Delta\\sigma \\cdot H}{n_0 \\cdot E_{soil}}, improved ground settlement"
-      ],
-      "figures": [
-        "Figure 5-8: Priebe basic improvement factor n_0 versus area replacement ratio a_s for various phi_c values (35-50 degrees)",
-        "Figure 5-9: Priebe design chart with corrections for column compressibility and depth effects"
-      ],
-      "tables": [
-        "Table 5-1: Recommended design parameters for Priebe method (phi_c, nu_s, E_column/E_soil ratios)"
-      ],
-      "applicability": "Analytical settlement reduction design for stone column and aggregate pier improved ground."
-    },
-    {
-      "section_id": "5.3.1",
-      "title": "Unit Cell Model and Stress Concentration",
-      "body": "The unit cell model is the fundamental analytical framework for aggregate column design. Each column and its surrounding tributary soil area are treated as a composite element that deforms under equal vertical strain when loaded by a rigid foundation or embankment with geosynthetic reinforcement. The applied stress is distributed between the column and soil in proportion to their stiffness: the stiffer column attracts a larger share of the stress (stress concentration), while the softer soil carries a reduced stress. The stress concentration ratio n = sigma_c/sigma_s is the key parameter linking column stiffness to improvement. For stone columns in soft clay, n typically ranges from 2 to 5; for rammed aggregate piers with higher stiffness, n = 4 to 10. The column and soil stresses are related through equilibrium: sigma_avg = a_s * sigma_c + (1-a_s) * sigma_s. Solving for the individual stresses gives sigma_s = sigma_avg / [1 + (n-1)*a_s] and sigma_c = n * sigma_s. The reduced stress on the soil produces less settlement, while the concentrated stress on the column must be checked against the column's structural capacity (bulging or shear failure).",
-      "key_points": [
-        "Unit cell: column + tributary soil as composite element under equal vertical strain",
-        "Stiffer column attracts larger stress share (stress concentration); softer soil carries reduced stress",
-        "Stress concentration ratio n = sigma_c/sigma_s: stone columns n = 2-5; RAPs n = 4-10",
-        "Equilibrium: sigma_avg = a_s * sigma_c + (1-a_s) * sigma_s",
-        "Soil stress: sigma_s = sigma_avg / [1 + (n-1)*a_s]; column stress: sigma_c = n * sigma_s",
-        "Reduced soil stress produces less settlement; column stress checked against structural capacity",
-        "Equal strain assumption valid under rigid footings or geosynthetic-reinforced load transfer platforms"
-      ],
-      "equations": [
-        "Eq 5-14: \\sigma_{avg} = a_s \\cdot \\sigma_c + (1 - a_s) \\cdot \\sigma_s, stress equilibrium over unit cell",
-        "Eq 5-15: \\sigma_s = \\frac{\\sigma_{avg}}{1 + (n - 1) \\cdot a_s}, stress on soil in improved ground",
-        "Eq 5-16: \\sigma_c = n \\cdot \\sigma_s = \\frac{n \\cdot \\sigma_{avg}}{1 + (n - 1) \\cdot a_s}, stress on stone column",
-        "Eq 5-17: n = \\frac{E_c}{E_s} \\cdot \\frac{1 + \\nu_s}{1 + \\nu_c} \\cdot \\frac{1 - 2\\nu_c}{1 - 2\\nu_s} \\approx \\frac{E_c}{E_s}, stress concentration ratio (simplified as modular ratio for 1D compression)"
-      ],
-      "figures": [
-        "Figure 5-10: Unit cell stress distribution showing stress concentration on column and stress reduction on soil"
-      ],
-      "tables": [],
-      "applicability": "Fundamental analytical framework for computing stress distribution and settlement in aggregate column improved ground."
-    },
-    {
-      "section_id": "5.4.0",
-      "title": "Construction",
-      "body": "Stone column construction uses two primary methods: wet top-feed and dry bottom-feed. In the wet top-feed method, the vibroflot is jetted into the ground using water, creating a cavity that is backfilled from the surface with aggregate that falls around the vibroflot as it is repeatedly raised and lowered to compact the stone. This method produces spoil (displaced soil mixed with water) that must be managed on site. In the dry bottom-feed method, the aggregate is fed through a hopper and delivery tube to the tip of the vibroflot, allowing placement without water jetting and significantly reducing spoil generation. The dry method is preferred in environmental sensitive areas and where spoil disposal is costly. Rammed aggregate pier construction differs significantly: a displacement mandrel is driven to the design depth, withdrawn to create a clean cavity, then aggregate is placed in 300 mm lifts and vertically rammed using the beveled mandrel at high frequency. Quality control during construction includes monitoring amperage (vibroflot power consumption increases as aggregate is compacted), aggregate consumption rate per unit length of column, and time per lift. Stone column construction productivity is typically 100-300 linear meters per day per rig.",
-      "key_points": [
-        "Two primary stone column methods: wet top-feed (water jetting, surface aggregate) and dry bottom-feed (aggregate via hopper)",
-        "Wet method produces spoil requiring management; dry method reduces spoil significantly",
-        "Dry method preferred in environmentally sensitive areas",
-        "RAP construction: displacement mandrel, aggregate in 300 mm lifts, vertical ramming at high frequency",
-        "QC monitoring: vibroflot amperage, aggregate consumption rate, time per lift",
-        "Amperage increase indicates aggregate compaction against surrounding soil",
-        "Productivity typically 100-300 linear meters per day per rig"
-      ],
-      "equations": [],
-      "figures": [
-        "Figure 5-11: Wet top-feed stone column construction showing water jetting, aggregate placement, and compaction sequence",
-        "Figure 5-12: Dry bottom-feed stone column construction showing hopper, delivery tube, and compaction"
-      ],
-      "tables": [
-        "Table 5-2: Comparison of wet top-feed and dry bottom-feed stone column construction methods (advantages, limitations, cost)"
-      ],
-      "applicability": "Construction methods, equipment, and quality control procedures for stone columns and rammed aggregate piers."
-    },
-    {
-      "section_id": "5.5.0",
-      "title": "Case Histories",
-      "body": "Stone columns and rammed aggregate piers have been used on thousands of projects worldwide for embankment support, structural foundations, and liquefaction mitigation. The I-78 highway embankment project in New Jersey used stone columns to support a 6 m high embankment over 10-15 m of soft marine clay (s_u = 15-30 kPa), with 900 mm diameter columns at 2.0 m triangular spacing (a_s = 0.18), achieving a settlement reduction factor of approximately 2.0 and reducing predicted settlement from 400 mm to 200 mm. The Port of Oakland, California used stone columns for liquefaction mitigation beneath wharf structures, with 750 mm diameter columns at 1.8 m spacing in loose hydraulic sand fill, increasing the post-treatment SPT N1(60) from 8-12 to 20-30. Rammed aggregate piers have been used for building foundation support throughout the US, with the GSA Federal Courthouse in Eugene, Oregon (2004) using 760 mm diameter RAPs at 1.5-2.0 m spacing to support column loads of 1500-4000 kN on soft alluvial soils, achieving footing settlements less than 12 mm. These case histories demonstrate that aggregate column technologies provide reliable, cost-effective ground improvement when properly designed and constructed, with typical cost savings of 20-40% compared to deep foundation alternatives.",
-      "key_points": [
-        "I-78, NJ: 900 mm stone columns at 2.0 m triangular (a_s=0.18) over soft clay; settlement reduced from 400 to 200 mm",
-        "Port of Oakland: stone columns for liquefaction mitigation in hydraulic fill; SPT N1(60) improved from 8-12 to 20-30",
-        "GSA Courthouse, Eugene OR (2004): 760 mm RAPs at 1.5-2.0 m for 1500-4000 kN column loads; settlements < 12 mm",
-        "Thousands of worldwide projects for embankment support, structural foundations, and liquefaction mitigation",
-        "Typical cost savings of 20-40% compared to deep foundation alternatives",
-        "Reliable performance when properly designed and constructed with adequate QC"
+        "Aggregate columns include stone columns and rammed aggregate piers (p. 5-1)."
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Documented field performance of stone columns and rammed aggregate piers for various applications."
+      "applicability": "Orientation to the chapter on aggregate column ground modification."
+    },
+    {
+      "section_id": "5.1.1",
+      "title": "Description and History",
+      "summary": "Aggregate columns have become established in the United States over the past 30 years as a ground modification technique for transportation facilities; they are ideally suited for clays, silts, loose silty sands and uncompacted fills (p. 5-1).",
+      "body": "Over the past 30 years aggregate column technology has become established in the United States as a viable ground modification technique and has been applied extensively for remediation and new construction of transportation facilities (p. 5-1). Conventional embankment construction methods such as preloading, dredging and soil displacement can often no longer be used because of environmental restrictions and post-construction maintenance expenses. Aggregate columns have a proven record of experience and are ideally suited for use in clays, silts, loose silty sands and uncompacted fills. The section introduces the history and development of aggregate columns, the focus and scope of the technical summary and the primary references.",
+      "key_points": [
+        "Ideally suited for clays, silts, loose silty sands and uncompacted fills (p. 5-1).",
+        "Used where preloading, dredging or soil displacement are restricted by environmental or maintenance concerns."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Screening whether aggregate columns suit a soft-ground transportation project."
+    },
+    {
+      "section_id": "5.1.1.1",
+      "title": "Description",
+      "summary": "Defines the term aggregate columns as covering both rammed aggregate piers and stone columns; where an attribute applies to only one type the specific column type is named (p. 5-1).",
+      "body": "The technical summary on aggregate columns includes both rammed aggregate piers and stone columns, and their similarities and differences are presented in the following sections (p. 5-1). When an attribute applies to both stone columns and rammed aggregate piers the manual uses the term aggregate columns. When an attribute is specific to only one of the two types, the column is identified as a stone column or a rammed aggregate pier.",
+      "key_points": [
+        "'Aggregate columns' = stone columns plus rammed aggregate piers (p. 5-1)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Terminology used throughout Chapter 5."
+    },
+    {
+      "section_id": "5.1.1.2",
+      "title": "Stone Columns",
+      "summary": "Stone columns are built by down-hole vibratory methods that introduce backfill to form dense, interlocked columns; the two techniques are vibro-replacement (wet, top feed) and vibro-displacement (dry, top or bottom feed) (pp. 5-1 to 5-2).",
+      "body": "Stone column construction is accomplished by down-hole vibratory methods (p. 5-1). Backfill material is introduced into the soil so that dense and sometimes deep columns of aggregate are formed, tightly interlocked with the surrounding soil. The technique is known as either vibro-replacement or vibro-displacement. Vibro-replacement generally refers to the wet, top feed process, in which jetting water aids penetration of the vibrator; part of the in situ soil is washed to the surface and replaced by the backfill (e.g. stone). A dry feed process with soils requiring predrilling also brings in situ soil to the surface. Vibro-displacement generally refers to the dry, top or bottom feed process; almost no in situ soil appears at the surface, as it is displaced by the backfill. The product of both methods is generically referred to as a stone column (p. 5-2).",
+      "key_points": [
+        "Vibro-replacement: wet, top feed; jetting water washes part of the in situ soil to the surface (p. 5-1).",
+        "Vibro-displacement: dry, top or bottom feed; soil is displaced, almost none reaches the surface (p. 5-1).",
+        "Both methods produce what is generically called a stone column (p. 5-2)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Distinguishing the wet and dry stone column installation methods."
+    },
+    {
+      "section_id": "5.1.1.3",
+      "title": "Rammed Aggregate Piers",
+      "summary": "Rammed aggregate piers are formed by drilling 18- to 36-inch holes, typically 7 to 33 ft deep, and ramming lifts of well-graded aggregate with a beveled tamper to form stiff, high-density columns (p. 5-2).",
+      "body": "Rammed aggregate piers are installed by drilling 18- to 36-inch diameter holes into the foundation soils and ramming lifts of well-graded aggregate within the holes to form stiff, high-density aggregate columns (p. 5-2). The drilled holes typically extend from 7 to 33 feet below grade. The first lift of aggregate forms a bulb below the bottom of the pier, and subsequent lifts are typically 12 inches thick. Ramming is done with a high-energy beveled tamper that both densifies the aggregate and forces it laterally into the sidewalls of the hole. This increases the lateral stress in the surrounding soil, further stiffening the stabilized composite soil mass.",
+      "key_points": [
+        "Hole diameter 18 to 36 inches; depth typically 7 to 33 ft (p. 5-2).",
+        "First lift forms a bottom bulb; subsequent lifts typically 12 inches (p. 5-2).",
+        "Ramming increases lateral stress in the surrounding soil (p. 5-2)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Describing rammed aggregate pier construction for design and specification."
+    },
+    {
+      "section_id": "5.1.2",
+      "title": "Historical Overview",
+      "summary": "History of deep vibratory methods from vibro-compaction (1936) to stone columns and rammed aggregate piers; Figure 5-1 shows the grain size ranges applicable to vibro-compaction and stone columns (pp. 5-2 to 5-3).",
+      "body": "Deep vibrators have been used for over 50 years to improve the bearing resistance and settlement performance of weak soils (p. 5-2). As early as 1936 methods and equipment allowed compaction of non-cohesive soils to depths of 60 feet; this process is now called vibro-compaction or vibro-flotation. Stone columns developed as a natural progression that extended vibro-systems beyond densification of clean granular soils (Figure 5-1). Soils whose grain size curves lie entirely on the coarse side of the hatched line in Figure 5-1 are readily compacted by vibro-compaction; soils whose curves fall to the right of the dotted line are not, and these soils led to stone column technology (p. 5-3). One of the first documented uses of stone columns was a historic structure completed in 1653 on hand-dug pits backfilled with stone; the concept was used in France in the 1830s (FHWA 1983), modern techniques began in Europe in the 1960s, and the technique reached the United States in the 1970s with only 21 projects in its first 12 years but over 400 by 1994. Rammed aggregate piers were developed in the United States in 1984 and refined over the last 25 years under a trade name; they are installed in 2 to 3 foot diameter holes 7 to 33 feet deep with well-graded or open graded aggregate.",
+      "key_points": [
+        "Vibro-compaction dates from 1936, to depths of 60 ft (p. 5-2).",
+        "Figure 5-1: soils coarse of the hatched line are readily vibro-compacted; finer soils led to stone columns (p. 5-3).",
+        "Stone column use in the US: 21 projects in the first 12 years, over 400 by 1994 (p. 5-3).",
+        "Rammed aggregate piers developed in the US in 1984 (p. 5-3)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-1: Soils applicable for stone columns."
+      ],
+      "tables": [],
+      "applicability": "Background on where vibro-compaction stops and stone columns apply by grain size."
+    },
+    {
+      "section_id": "5.1.3",
+      "title": "Focus and Scope",
+      "summary": "States that the technical summary gives guidance on applications, design, contracting methods and quality assurance for aggregate columns, with references for detail and typical costs for preliminary technical and economic evaluation (p. 5-3).",
+      "body": "The focus and scope of the technical summary on aggregate columns is to provide guidance on applications where the technology can be used, design, contracting methods and quality assurance (p. 5-3). References are cited where more detailed technical information can be obtained, and typical costs are given so that a preliminary technical and economic evaluation can be made of whether aggregate columns and related technologies are appropriate for a site and application. The document is intended to serve as a reference on aggregate columns and how they may best be used on a ground modification project, by discussing their construction, use and limitations.",
+      "key_points": [
+        "Covers applications, design, contracting methods and quality assurance (p. 5-3)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Defines what the chapter does and does not cover."
+    },
+    {
+      "section_id": "5.1.4",
+      "title": "Primary References",
+      "summary": "Lists the two primary references for the chapter: FHWA (1983) Design and Construction of Stone Columns (Barksdale and Bachus) and Collin (2007), the HITEC evaluation of rammed aggregate piers (p. 5-4).",
+      "body": "The primary references for aggregate columns are listed on p. 5-4: FHWA (1983), Design and Construction of Stone Columns, by Barksdale and Bachus, FHWA/RD-83/026, Volumes I and II; and Collin (2007), the technical evaluation report on rammed aggregate piers prepared by the Highway Innovative Technology Evaluation Center (HITEC), ASCE, 86 p.",
+      "key_points": [
+        "FHWA (1983), Barksdale and Bachus, FHWA/RD-83/026 (p. 5-4).",
+        "Collin (2007), HITEC evaluation report on rammed aggregate piers (p. 5-4)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Where to find the detailed design background for stone columns and rammed aggregate piers."
+    },
+    {
+      "section_id": "5.1.5",
+      "title": "Related Technologies",
+      "summary": "Related column technologies, many proprietary, use Portland cement binder or concrete to build stiffer columns; the two common cement based columns are vibro-concrete columns (VCCs) and controlled modulus columns (CMCs) (p. 5-4).",
+      "body": "A variety of column technologies are related and similar to aggregate columns (p. 5-4). Many are proprietary technologies developed by ground modification contractors; some are equipment and installation variations better suited to particular conditions, such as installation below the water table or in very soft soils. Many use a Portland cement binder with the aggregate, producing a more rigid (cemented aggregate) column, and another option is to build the column of concrete. Two common cement based columns are vibro-concrete columns (VCCs) and controlled modulus columns (CMCs). Cement based concrete columns may be used in softer soils, without casing, and give a stiffer element than aggregate columns.",
+      "key_points": [
+        "Cement based columns (VCCs, CMCs) give stiffer elements and can be used in softer soils without casing (p. 5-4)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Choosing between aggregate columns and cement based column alternatives in very soft soils."
+    },
+    {
+      "section_id": "5.1.5.1",
+      "title": "Vibro-Concrete Columns",
+      "summary": "VCCs replace the stone with concrete pumped through a bottom feed vibrator, forming an enlarged base and a continuous shaft; developed in Europe in 1976 for very soft clay or peat and first used in the US in 1994 (pp. 5-4 to 5-5).",
+      "body": "Vibro-concrete columns (VCC) are a sister technology to stone columns with concrete replacing the stone (p. 5-4). The non-proprietary process uses a vibro-displacement (bottom feed) depth vibrator to penetrate to a suitable bearing level. Concrete is pumped through the vibrator during initial withdrawal; the vibrator then re-penetrates the concrete, displacing it to form an enlarged base, and is slowly withdrawn while concrete is pumped at a maintained pressure to form a continuous shaft to ground level, where a slight mushroom assists load transfer. VCCs were first developed in Europe in 1976 because stone column capacity is significantly reduced in very soft clay or peat thicker than 1 to 2 column diameters. They combine the ground modification advantages of vibro-systems with the load carrying characteristics of a deep foundation (p. 5-5). The first US installation was in 1994 for an oil storage tank, and VCCs have supported embankments over soft organic soils in several states. GeoTechTools gives detailed guidance.",
+      "key_points": [
+        "Stone column capacity is significantly reduced in very soft clay or peat thicker than 1 to 2 column diameters; VCCs were developed for these soils (p. 5-4).",
+        "First US installation 1994 (p. 5-5)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Considering a concrete column where soft organic layers are too thick for stone columns."
+    },
+    {
+      "section_id": "5.1.5.2",
+      "title": "Controlled Modulus Columns",
+      "summary": "CMCs are proprietary, patented concrete columns built with a reverse displacement auger that pumps low slump concrete through its hollow stem; developed in France in the early 1990s and introduced in the USA and Canada in 2003 (p. 5-5).",
+      "body": "Controlled modulus columns (CMCs) are produced with a proprietary process and, like VCCs, the final product is a concrete column (p. 5-5). They are constructed with a reverse auger that displaces the site soil until an adequate bearing layer is reached; low slump concrete is pumped through the hollow stem as the auger is withdrawn. CMCs are a patented technology. The technique was developed in the early 1990s in France by a specialty contractor, which designed machines and tooling that let it grow rapidly in Europe, and it was introduced in the USA and Canada in 2003, the first project supporting a retail store.",
+      "key_points": [
+        "CMCs use a displacement auger and low slump concrete pumped through the hollow stem (p. 5-5).",
+        "Patented technology, introduced in North America in 2003 (p. 5-5)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Background on a proprietary concrete column alternative to aggregate columns."
+    },
+    {
+      "section_id": "5.1.5.3",
+      "title": "Design and Construction Considerations of VCCs and CMCs",
+      "summary": "Feasibility factors for VCCs and CMCs: allowable load depends on diameter, concrete strength and bearing layer; diameters 18-24 in. (VCC) and 10-18 in. (CMC); allowable loads 150-250 kips and 75-150 kips; lengths 20 to 75 ft (p. 5-5).",
+      "body": "A generalized summary of factors affecting feasibility of stabilizing soft ground with VCCs and CMCs is given on p. 5-5. (1) The allowable design load is a function of column diameter, allowable concrete strength and the strength of the bearing layer. Typical diameters are 18 to 24 inches for VCCs and 10 to 18 inches for CMCs; typical allowable design loads are 150 to 250 kips for VCCs and 75 to 150 kips for CMCs. (2) VCCs and CMCs are typically used in very soft clay and organic soils. (3) Typical lengths vary from 20 to 75 feet. GeoTechTools gives information on design, specification, quality assurance and construction of VCCs, which also guides other cement based column technologies.",
+      "key_points": [
+        "VCC diameter 18-24 in., allowable load 150-250 kips (p. 5-5).",
+        "CMC diameter 10-18 in., allowable load 75-150 kips (p. 5-5).",
+        "Typical lengths 20 to 75 ft; used in very soft clay and organic soils (p. 5-5)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Preliminary sizing and feasibility of VCCs and CMCs."
+    },
+    {
+      "section_id": "5.2.0",
+      "title": "Design Considerations",
+      "summary": "Aggregate column construction partially replaces or displaces unsuitable subsurface soil with a vertical column of compacted aggregate; the section covers applications, advantages and disadvantages, feasibility, limitations and alternatives (p. 5-6).",
+      "body": "Aggregate column construction involves the partial replacement or displacement of unsuitable subsurface soils with a vertical column of compacted aggregate (p. 5-6). Section 2.0 discusses applications, advantages and disadvantages, and design considerations for aggregate columns, including feasibility evaluations (geotechnical, environmental, site), limitations and alternative modification methods.",
+      "key_points": [
+        "Aggregate columns partially replace or displace unsuitable soil with compacted aggregate (p. 5-6)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Deciding whether aggregate columns are a candidate ground modification method."
+    },
+    {
+      "section_id": "5.2.1",
+      "title": "Applications",
+      "summary": "Aggregate columns increase bearing resistance, reduce total and differential settlement, accelerate settlement, improve slope stability and reduce liquefaction potential; applications include highways, embankments, warehouses and light industrial buildings (p. 5-6).",
+      "body": "Aggregate columns can be applied to increase bearing resistance, reduce total and differential settlements, accelerate the time rate of settlement, improve slope stability and reduce the liquefaction potential of soil (p. 5-6). Typical applications include foundation improvement for construction of highways, embankments, warehouses and light industrial buildings. The subsections cover embankments, bridge approach fills, bridge abutment and foundation support, and liquefaction.",
+      "key_points": [
+        "Functions: bearing, settlement reduction, faster settlement, slope stability, liquefaction mitigation (p. 5-6)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Matching aggregate column functions to project needs."
+    },
+    {
+      "section_id": "5.2.1.1",
+      "title": "Embankments",
+      "summary": "Aggregate columns stabilize large area loads such as highway embankments where conventional embankments fail stability, including moderate-to-high fills on soft soil, MSE-contained fills, slope stabilization and highway widening over soft soil (p. 5-6).",
+      "body": "A typical application is stabilization of large area loads such as highway embankments, where conventional embankments cannot be built for stability reasons (p. 5-6). Applications include moderate-to-high fills on soft soils, fills contained by mechanically stabilized earth, and construction on slopes where stability cannot otherwise be obtained. Slope stabilization is an important related application; a state DOT reported in 1987 using the dry bottom feed vibro-displacement method to solve a slide problem (Sung and Ramsey 1988). Highway widening adjacent to existing highways on moderate-to-high fills over soft cohesive soils, such as in wetlands, makes differential settlement between existing and new construction an important consideration in addition to stability; support of the new fill on aggregate columns is a viable alternative to conventional construction.",
+      "key_points": [
+        "Used where conventional embankments cannot be built for stability (p. 5-6).",
+        "Highway widening over soft soil: differential settlement between old and new fill is a key concern (p. 5-6)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Embankment and widening projects over soft cohesive soils."
+    },
+    {
+      "section_id": "5.2.1.2",
+      "title": "Bridge Approach Fills",
+      "summary": "Aggregate columns support bridge approach fills, improving stability and reducing settlement at the bridge joint; column-supported fills can be built higher and faster, possibly shortening bridges (pp. 5-6 to 5-7).",
+      "body": "Aggregate columns can support bridge approach fills, provide stability and reduce the costly maintenance problem of settlement at the joint between approach fill and bridge (p. 5-6). The manual cites a state DOT that used 13,000 lineal feet of aggregate columns in 1989 to support MSE walls at an overpass, and 42,000 lineal feet of 13 to 20 foot long columns in 1990 on another project. Column-supported embankments can be built to greater heights than conventional approach embankments over soft soils, so bridge lengths may be reduced by extending the approach fills (p. 5-7). Fills can also be placed faster because of accelerated drainage and consolidation and the increase in shear strength supplied by the columns.",
+      "key_points": [
+        "Reduces settlement at the bridge/approach joint (p. 5-6).",
+        "Higher approach fills may shorten bridges; faster fill placement from drainage and strength gain (p. 5-7)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Approach embankments on soft ground at bridges."
+    },
+    {
+      "section_id": "5.2.1.3",
+      "title": "Bridge Abutment and Foundation Support",
+      "summary": "Aggregate columns can support bridge abutments, MSE walls at abutments, and single span bridges with their abutments and approach fills as an alternative to piles, minimizing bridge-to-fill differential settlement (p. 5-7).",
+      "body": "Aggregate columns can support bridge abutments at sites not capable of supporting abutments on conventional shallow foundations; an important additional application at such sites is MSE walls supported on stone columns (p. 5-7). Another potentially cost effective alternative to pile foundations at unfavorable sites is to support single span bridges, their abutments and their approach fills on aggregate columns, which minimizes differential settlement between the bridge and approach fill.",
+      "key_points": [
+        "Single span bridge, abutments and approach fill all on aggregate columns minimizes differential settlement (p. 5-7)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Abutment support where shallow foundations alone are inadequate."
+    },
+    {
+      "section_id": "5.2.1.4",
+      "title": "Liquefaction",
+      "summary": "In seismic areas aggregate columns reduce the liquefaction potential of cohesionless soils beneath embankments, abutments and shallow foundations and around existing or proposed pile foundations (p. 5-7).",
+      "body": "In earthquake prone areas aggregate columns can be used to reduce the liquefaction potential of cohesionless soils supporting embankments, abutments and soils beneath shallow foundations (p. 5-7). They can also reduce the liquefaction potential of cohesionless soils surrounding existing or proposed pile foundations, an application used quite extensively for major bridges on pile foundations through liquefiable soils in the Pacific Northwest.",
+      "key_points": [
+        "Mitigates liquefaction under embankments, abutments, shallow foundations and around piles (p. 5-7)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Liquefaction mitigation in cohesionless soils."
+    },
+    {
+      "section_id": "5.2.2",
+      "title": "Advantages and Potential Disadvantages of Aggregate Columns",
+      "summary": "Container heading for the advantages and disadvantages of aggregate columns compared with deep foundations, removal and replacement, preloading and high-vibration methods (pp. 5-7 to 5-8).",
+      "body": "Section 2.2 (p. 5-7) sets out the advantages and the potential disadvantages of aggregate columns in two subsections, covering economy relative to deep foundations and excavation, low vibration, speed, seismic benefits and drainage, against the limits in very soft and organic soils, obstructions, cost, spoil handling and casing.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Weighing aggregate columns against other foundation and ground modification options."
+    },
+    {
+      "section_id": "5.2.2.1",
+      "title": "Advantages",
+      "summary": "Aggregate columns can replace deep foundations with shallow foundations, are cheaper than deep removal and replacement, are low-vibration, faster than preloading, reduce seismic settlement and provide drainage (pp. 5-7 to 5-8).",
+      "body": "Aggregate columns are a technical and potentially economical alternative to deep foundations, improving the soil enough to allow less expensive shallow foundations (p. 5-7). They are more economical than removal and replacement of deep poor bearing soils, particularly on larger sites with shallow groundwater. Where infrastructure precludes high-vibration techniques such as pile driving, dynamic compaction or deep blasting, the low-vibration aggregate column technique is often viable. Installation can be achieved quicker than preloading. In seismic areas aggregate columns can reduce dynamic settlements to acceptable levels and in some cases densify soils beyond the threshold of liquefaction (p. 5-8). With low fines content aggregate they also provide radial drainage and a vertical drainage path for excess pore pressure dissipation, as well as densifying liquefiable soils.",
+      "key_points": [
+        "Alternative to deep foundations; allows shallow foundations (p. 5-7).",
+        "Low-vibration; faster than preloading (p. 5-7).",
+        "Radial and vertical drainage when low fines aggregate is used (p. 5-8)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Making the case for aggregate columns over alternatives."
+    },
+    {
+      "section_id": "5.2.2.2",
+      "title": "Disadvantages",
+      "summary": "Aggregate columns are unsuitable in peat, organics and very soft clays thicker than a column diameter; obstructions may need predrilling; cost, spoil water, lateral displacement, contaminated spoil and casing are other drawbacks (p. 5-8).",
+      "body": "Aggregate columns are not a solution for all soft soil problems (p. 5-8). Strata of peat and other organic materials, and very soft clays thicker than the column diameter, can be inappropriate because they offer inadequate lateral support to form the column or ensure long-term performance. Dense overburden, boulders, cobbles or other obstructions may require predrilling for stone columns; rammed aggregate piers, which auger a hole, can generally overcome this. Cost relative to other solutions can be a disadvantage. Channeling and disposing of spoil water in wet feed construction, and lateral ground displacement in the dry process, may be major disadvantages at some locations. Spoil removal from rammed aggregate piers or predrilled stone columns may be a major disadvantage where soils are contaminated. Rammed aggregate piers are more costly when casing is required, and with casing may not densify granular soils as effectively as stone columns.",
+      "key_points": [
+        "Peat, organics and very soft clay thicker than the column diameter can be inappropriate (p. 5-8).",
+        "Obstructions may need predrilling for stone columns (p. 5-8).",
+        "Casing raises rammed aggregate pier cost and may reduce densification of granular soils (p. 5-8)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identifying site conditions that argue against aggregate columns."
+    },
+    {
+      "section_id": "5.2.3",
+      "title": "Feasibility Evaluations",
+      "summary": "Aggregate columns have been successful in improving embankment and slope stability, increasing bearing resistance, reducing total and differential settlement, reducing liquefaction potential and increasing the time rate of settlement (p. 5-8).",
+      "body": "The aggregate column technique has been successful in (1) improving stability of embankments and natural slopes, (2) increasing bearing resistance, (3) reducing total and differential settlements, (4) reducing liquefaction potential of cohesionless soils and (5) increasing the time rate of settlement (p. 5-8). The feasibility evaluation is discussed under geotechnical, environmental and site considerations.",
+      "key_points": [
+        "Five demonstrated benefits: stability, bearing, settlement, liquefaction, settlement rate (p. 5-8)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Framework for evaluating aggregate column feasibility."
+    },
+    {
+      "section_id": "5.2.3.1",
+      "title": "Geotechnical",
+      "summary": "Geotechnical feasibility: soils with under 15% passing #200 and under 2% clay densify; clayey soils are reinforced; typical limits include 110 kips per column, strengths 300 to 1000 psf, 50-70% settlement reduction, and maximum depths of 100 ft (stone columns) and 35 ft (RAPs) (pp. 5-8 to 5-9).",
+      "body": "Densification from vibro systems depends on soil type, silt and clay content, plasticity, initial relative density, vibrator type, stone shape and durability, column area, spacing and energy (p. 5-8). Soils with less than 15 percent passing the #200 sieve and clay contents below 2 percent densify from vibration; clayey soils do not, and improvement there is measured by the percent of soil replaced or displaced, i.e. reinforcement. Feasibility factors (p. 5-9): (1) column loading should be fairly uniform and is limited by lateral support; with good support a maximum of 110 kips per column is typical, and the composite factored bearing resistance is increased to 2,000 to 8,000 psf. (2) The most significant improvement is in compressible silts and clays with shear strength 300 to 1000 psf. (3) Do not use in highly sensitive soils; take special care in organics, peat or layers with undrained strength below 300 psf; organic layers thicker than one to two diameters make consistent diameters questionable. (4) Stone columns typically reduce settlement by 50 to 70 percent of the unimproved response and differential settlement to 5 to 15 percent; rammed aggregate piers can reduce settlement to under 1 inch in some conditions. (5) A practical upper limit for stone columns is an undrained strength of 1000 to 2000 psf; stiffer soils are commonly pre-bored at added cost. (6) Rammed aggregate piers in soils that do not stand open may need temporary casing. (7) Maximum practical depths are 100 feet for stone columns and 35 feet for rammed aggregate piers.",
+      "key_points": [
+        "Vibro densification works with <15% passing #200 and <2% clay (p. 5-8).",
+        "Typical maximum 110 kips per column; composite factored bearing 2,000-8,000 psf (p. 5-9).",
+        "Best improvement in silts and clays with su 300 to 1000 psf (p. 5-9).",
+        "Care where su < 300 psf, organics or peat; not for highly sensitive soils (p. 5-9).",
+        "Stone columns reduce settlement 50-70%; differential to 5-15% of unimproved (p. 5-9).",
+        "Stone column penetration limit su 1000 to 2000 psf; pre-bore beyond (p. 5-9).",
+        "Maximum practical depth: 100 ft stone columns, 35 ft rammed aggregate piers (p. 5-9)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Geotechnical screening of soils and loads for stone columns and rammed aggregate piers."
+    },
+    {
+      "section_id": "5.2.3.2",
+      "title": "Environmental Considerations",
+      "summary": "Installation method selection should consider environmental effects; soil spoils, particularly fines from air or water jetting, must be contained, and an alternate column system that does not replace in situ soil may be chosen (pp. 5-9 to 5-10).",
+      "body": "Selection of the aggregate column installation method should consider the environmental effects of installation (p. 5-9). Soil spoils must be contained, particularly fines from air or water jetting operations (p. 5-10). The designer may select an alternate column system that does not replace the in situ soils.",
+      "key_points": [
+        "Contain spoils, especially fines from jetting (p. 5-10)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Environmental review of aggregate column installation methods."
+    },
+    {
+      "section_id": "5.2.3.3",
+      "title": "Site Consideration",
+      "summary": "Aggregate column equipment needs headroom typically 8 to 10 ft more than the column penetration depth; adjacent structures must be monitored for heave with vibro-displacement stone columns (p. 5-10).",
+      "body": "Site conditions should always be considered when selecting a ground modification technology (p. 5-10). Installation of aggregate columns requires sufficient headroom for the construction equipment, typically 8 to 10 feet more than the depth of penetration of the column. Adjacent buildings and structures must be monitored for heave when vibro-displacement stone columns are used.",
+      "key_points": [
+        "Headroom typically 8 to 10 ft more than column depth (p. 5-10).",
+        "Monitor adjacent structures for heave with vibro-displacement (p. 5-10)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Site logistics for aggregate column equipment."
+    },
+    {
+      "section_id": "5.2.4",
+      "title": "Limitations",
+      "summary": "The major limitation is that aggregate columns are not appropriate in very soft, sensitive fine-grained soils and organics; stone may not be locally available, and rammed aggregate piers are limited in depth to typically 35 ft (p. 5-10).",
+      "body": "The major limitation of aggregate columns is that they are not appropriate in very soft and sensitive fine-grained soils and organics (p. 5-10). Stone may not be readily available near the project site, with potentially significant cost ramifications. Rammed aggregate piers have the additional limitation of column depth, typically 35 feet.",
+      "key_points": [
+        "Not appropriate in very soft, sensitive fine-grained soils and organics (p. 5-10).",
+        "Rammed aggregate pier depth typically limited to 35 ft (p. 5-10)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Recognizing when aggregate columns should not be used."
+    },
+    {
+      "section_id": "5.2.5",
+      "title": "Alternative Modification Methods",
+      "summary": "Alternatives similar in concept to aggregate piers include gravel drains, sand compaction piles and rammed stone columns; other alternatives (PVDs, deep and mass mixing, jet grout) are in Chapters 2, 7 and 8 (pp. 5-10 to 5-11).",
+      "body": "Alternative methods similar in concept to aggregate piers have been used: gravel drains, sand compaction piles and rammed stone columns (p. 5-10). Other alternatives are covered elsewhere in the manual (p. 5-11): prefabricated vertical drains with or without preloading (Chapter 2), deep and mass mixing methods (Chapter 7) and jetted grout columns (Chapter 8).",
+      "key_points": [
+        "PVDs - Chapter 2; deep and mass mixing - Chapter 7; jet grouting - Chapter 8 (p. 5-11)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Listing alternatives to compare with aggregate columns."
+    },
+    {
+      "section_id": "5.2.5.1",
+      "title": "Gravel Drains",
+      "summary": "Gravel drains, used in Japan, are built by backfilling inside a casing and densifying the stone with an interior vibrator; they drain well but do little to densify surrounding soil, and may not prevent liquefaction alone (p. 5-10).",
+      "body": "In Japan gravel drains are installed by backfilling inside a casing and densifying the stone with an interior vibrator as the casing is extracted (p. 5-10). This provides a good drain but does little to densify the soil outside the casing. For soils with high liquefaction potential, gravel drains alone may not handle the excess pore pressures and liquefaction may still occur.",
+      "key_points": [
+        "Good drainage but little densification outside the casing (p. 5-10)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Considering drainage-only columns for liquefaction."
+    },
+    {
+      "section_id": "5.2.5.2",
+      "title": "Sand Compaction Piles",
+      "summary": "Sand compaction piles are built by driving a steel casing with a vibratory hammer and filling it with sand as it is extracted; see Kitazume (2005) (p. 5-10).",
+      "body": "Sand compaction piles are also used extensively in Japan (p. 5-10). They are constructed by using a vibratory hammer to install a steel casing to the desired elevation; the casing is filled with sand as it is extracted. More information is in The Sand Compaction Pile Method (Kitazume 2005).",
+      "key_points": [
+        "Reference: Kitazume (2005) (p. 5-10)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Background on a sand-column alternative."
+    },
+    {
+      "section_id": "5.2.5.3",
+      "title": "Rammed Stone Columns",
+      "summary": "Rammed stone columns are built by driving a casing, placing granular backfill and dropping a heavy weight on it as the casing is withdrawn; slow (250 ft/shift/rig) and not economically competitive (pp. 5-10 to 5-11).",
+      "body": "In Belgium rammed stone columns have been constructed by driving a casing, placing granular backfill and dropping a heavy weight on the stone as the casing is extracted (p. 5-10). While some compaction of the surrounding soil can be achieved, it is a very slow process, about 250 ft per shift per rig, and therefore not economically competitive (p. 5-11).",
+      "key_points": [
+        "Production about 250 ft/shift/rig; not economically competitive (p. 5-11)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Background on a slow casing-and-drop-weight alternative."
+    },
+    {
+      "section_id": "5.3.0",
+      "title": "Construction Materials and Equipment",
+      "summary": "Container heading for construction methods, equipment and backfill materials for stone columns (Section 3.1) and rammed aggregate columns (Section 3.2) (p. 5-12).",
+      "body": "Section 3.0 (p. 5-12) describes construction materials and equipment, first for stone columns (vibro-replacement and vibro-displacement construction, equipment and backfill) and then for rammed aggregate columns (the replacement method and backfill).",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction methods and materials for aggregate columns."
+    },
+    {
+      "section_id": "5.3.1",
+      "title": "Stone Columns",
+      "summary": "Container for stone column construction: the vibro-replacement (wet, top feed) and vibro-displacement (dry, top or bottom feed) methods, the vibrator and rig equipment, and backfill gradation (pp. 5-12 to 5-23).",
+      "body": "Section 3.1 covers stone columns: construction by vibro-replacement and vibro-displacement with the equipment used (Section 3.1.1) and the backfill material (Section 3.1.2) (pp. 5-12 to 5-23).",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Stone column construction."
+    },
+    {
+      "section_id": "5.3.1.1",
+      "title": "Construction",
+      "summary": "Stone columns are built by vibro-replacement (wet, top feed) or vibro-displacement (dry, top or bottom feed); the dry process is typically required where environmental concerns are strong, the wet process is more economical otherwise (p. 5-12).",
+      "body": "The primary methods of constructing stone columns are vibro-replacement (wet, top feed) and vibro-displacement (dry, top or bottom feed) (p. 5-12). Where environmental concerns are strong, the dry process will typically be required; the wet process is more economical when environmental concerns are less relevant. The processes are illustrated in Figure 5-2 (top feed vibro-replacement) and Figure 5-3 (bottom feed vibro-displacement).",
+      "key_points": [
+        "Dry process where environmental concerns are strong; wet process more economical otherwise (p. 5-12)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-2: Top feed vibro-replacement.",
+        "Figure 5-3: Bottom feed vibro-displacement."
+      ],
+      "tables": [],
+      "applicability": "Choosing the stone column installation process."
+    },
+    {
+      "section_id": "5.3.1.1.1",
+      "title": "Vibro-Replacement (Wet, Top Feed)",
+      "summary": "The wet process jets water to open a hole, retracts the probe in increments and adds stone from the surface, re-penetrating each increment; best for soft to firm soils with su of 300 to 1000 psf and a high groundwater table (p. 5-13).",
+      "body": "The original stone column technique, vibro-replacement or the wet process, uses a high-pressure jet of water to open a hole that the probe follows into the ground (p. 5-13). The probe is then retracted in increments and stone is introduced into the void from the surface (Figure 5-2). After each increment the probe is lowered into the new column material, densifying and compacting the stone column and, depending on fines content, potentially the surrounding soil. The method is best suited for sites with soft to firm soils with undrained shear strengths of 300 to 1000 psf and a high groundwater table.",
+      "key_points": [
+        "Best for su 300 to 1000 psf and high groundwater (p. 5-13)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Wet top feed stone column installation."
+    },
+    {
+      "section_id": "5.3.1.1.2",
+      "title": "Vibro-Displacement (Dry, Top and Bottom Feed)",
+      "summary": "Dry top and bottom feed techniques avoid jetting water effluent; the vibrator enters by oscillation, deadweight, air jetting and/or pre-augering; stone is fed from the surface for short columns or through a tremie tube to the tip for deeper or unstable holes (p. 5-13).",
+      "body": "Because effluent from vibro-replacement contains the finer in situ soil, its containment, removal and disposal caused environmental problems, and dry top and bottom feed techniques were developed (p. 5-13). The vibrator is inserted without jetting water, using its oscillations and deadweight, air jetting and/or pre-augering. For shorter columns stone can still be fed from the surface into the annulus around the vibrator (Figure 5-2). For deeper treatment or where the hole may collapse, the stone is fed to the bottom of the vibrator through an attached tremie tube (Figure 5-3). The first major US use of the dry bottom feed system was a dam foundation in 1985 (Dobson 1987).",
+      "key_points": [
+        "No jetting water; uses vibration, deadweight, air jetting or pre-augering (p. 5-13).",
+        "Bottom feed through a tremie tube for deep or collapsing holes (p. 5-13)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Dry stone column installation where effluent is not acceptable."
+    },
+    {
+      "section_id": "5.3.1.1.3",
+      "title": "Equipment",
+      "summary": "Stone column equipment: vibrator on extension tubes with air or water jetting, crane or base machine, stone delivery system and control devices; vibrators 12-16 in. diameter, 10-16 ft long, 22-125 kW, up to 60 kips at 1200-3000 rpm; continuous construction records (pp. 5-13 to 5-22).",
+      "body": "Equipment comprises a vibrator suspended from extension tubes with air or water jetting, a crane or base machine, a stone delivery system and control and verification devices (p. 5-13). The vibrator ranges from 12 to 16 inches in diameter and about 10 to 16 feet long (Figures 5-4, 5-5). Horizontal vibrations near its base come from eccentric weights driven by an electric or hydraulic motor; early motors were 22 to 60 kW, recent ones up to 125 kW, with centrifugal forces up to 60 kips at 1200 to 3000 rpm (p. 5-15). Wear plates, fins, extension tubes and an elastic coupling isolating vibration from the crane are described. Water or air is fed to the vibrator nose to aid penetration; a 33-foot probe can be handled by a 40 ton crane with a 40-foot boom. Stone is handled by front end loaders; top feed end-dumps it into the hole, bottom feed uses a skip (or a 6-inch hose) feeding pipes to the vibrator nose (Figures 5-6 to 5-9). A marine double-lock gravel pump delivers stone to the vibrator tip underwater using air pressure (p. 5-19, Figure 5-10). Instrumentation recording depth, power consumption and stone consumption against time, used in the US since 1993, gives printouts for each column (p. 5-20, Figures 5-11, 5-12).",
+      "key_points": [
+        "Vibrator 12-16 in. diameter, about 10-16 ft long (p. 5-13).",
+        "Motors 22-60 kW early, up to 125 kW now; up to 60 kips at 1200-3000 rpm (p. 5-15).",
+        "A 33-ft probe can be handled by a 40 ton crane with a 40-ft boom (p. 5-15).",
+        "Construction instrumentation records depth, power and stone consumption (p. 5-20)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-4: Suspended vibrator.",
+        "Figure 5-5: Typical vibrator cross-section.",
+        "Figure 5-6: Truck mounted crane utilized for top feed vibro-replacement.",
+        "Figure 5-7: Stone column dry bottom feed rig.",
+        "Figure 5-8: Dry bottom feed rig.",
+        "Figure 5-9: Top feed vibro rig.",
+        "Figure 5-10: Marine double-lock gravel pump.",
+        "Figure 5-11: Quality control output over time for dry bottom feed vibro-displacement: depth (left), amperage (middle) and gravel (right).",
+        "Figure 5-12: Quality control output over depth for dry bottom feed vibro-displacement: amperage (left), compaction (middle), and column diameter over depth (right)."
+      ],
+      "tables": [],
+      "applicability": "Specifying and reviewing stone column rigs and construction records."
+    },
+    {
+      "section_id": "5.3.1.2",
+      "title": "Backfill Material",
+      "summary": "Stone column backfill depends on technique, subsoil, application and availability; vibro-replacement uses subangular or angular gravel of nearly uniform 1.0- to 2.5-inch grading; vibro-displacement uses well graded 0.4- to 3-inch (or 4-inch) stone; bottom feed is limited to 0.4 to 1.4 inch (p. 5-23).",
+      "body": "Size, gradation and shape of stone column backfill depend on the construction technique, the subsoil properties, the application and local availability of materials (p. 5-23). Drainage characteristics are crucial for liquefaction prevention and shear strength for slope stabilization, while neither is generally critical for increasing bearing resistance. For vibro-replacement, subangular or angular gravel of nearly uniform grading 1.0 to 2.5 inches is often used; it passes easily around the vibrating probe, and larger in situ material suspended in the water fills voids, giving a rigid column. Keeping flushing water flowing at all times washes out infiltrating fines and stabilizes the hole, and keeping the probe in the hole improves stability. For vibro-displacement, well graded backfill from 0.4 to 3 inches, or up to 4 inches, is generally used for interlock and void filling, the finer sizes giving an intermediate size between clay and gravel. The bottom feed method is restricted to about 0.4 to 1.4 inch aggregate to avoid blocking the equipment.",
+      "key_points": [
+        "Vibro-replacement: nearly uniform 1.0 to 2.5 in. subangular or angular gravel (p. 5-23).",
+        "Vibro-displacement: well graded 0.4 to 3 in. (up to 4 in.) (p. 5-23).",
+        "Bottom feed: about 0.4 to 1.4 in. to avoid blockage (p. 5-23)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Specifying stone column backfill gradation."
+    },
+    {
+      "section_id": "5.3.2",
+      "title": "Rammed Aggregate Columns",
+      "summary": "Container for rammed aggregate pier construction: the replacement method of drilling, placing and ramming lifts, the drill, tamper and loader equipment, and the backfill aggregate used (pp. 5-23 to 5-26).",
+      "body": "Section 3.2 covers rammed aggregate columns: construction by the replacement method with its equipment (Section 3.2.1) and the backfill material (Section 3.2.2) (pp. 5-23 to 5-26).",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Rammed aggregate pier construction."
+    },
+    {
+      "section_id": "5.3.2.1",
+      "title": "Construction",
+      "summary": "Rammed aggregate piers are built by the replacement method: excavate (cased if needed), place a 24-inch open graded stone lift and ram it to form a bulb, then ram 12-inch lifts; equipment is an excavator drill, an excavator tamper delivering 245 to 650 kip-lbf per foot per lift, and a skid-steer loader (pp. 5-23 to 5-26).",
+      "body": "The primary method for rammed aggregate piers is the replacement method (p. 5-23, Figure 5-13): excavate the pier to design depth, using casing if the hole will not stay open; place open graded stone at the bottom in a 24-inch thick lift; ram it; then place and ram 12-inch lifts until the top of column elevation is reached (p. 5-24). Equipment (Figures 5-14, 5-15; p. 5-26) consists of an excavator-mounted drill with typically 2- to 3-foot diameter tools, an excavator-mounted tamper (a modified concrete breaker with a composite alloy shaft and beveled hammer) capable of delivering 245 to 650 kip-lbf per 1 foot per lift of tamping energy, which densifies the aggregate and forces it laterally into the sidewalls, and a skid-steer loader, usually track-driven, delivering aggregate. The tamper should be at least 85% of the plan area of the cavity.",
+      "key_points": [
+        "Bottom lift 24 in. of open graded stone; subsequent lifts 12 in. (p. 5-24).",
+        "Tamping energy 245 to 650 kip-lbf per 1 ft per lift (p. 5-26).",
+        "Tamper at least 85% of the cavity plan area (p. 5-26)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-13: Replacement method, rammed aggregate pier construction process: from left to right, (1) make a cavity, (2) place stone at bottom of cavity, (3) ram stone to form bottom bulb, (4) place and ram thin lifts to form undulated side shaft.",
+        "Figure 5-14: Rammed aggregate pier tamper.",
+        "Figure 5-15: Replacement method, rammed aggregate pier with predrilling."
+      ],
+      "tables": [],
+      "applicability": "Rammed aggregate pier construction and equipment."
+    },
+    {
+      "section_id": "5.3.2.2",
+      "title": "Backfill Material",
+      "summary": "Clean 1- to 3-inch stone is commonly specified for the rammed aggregate pier bottom bulb; the same is used throughout if radial drainage is part of the design, otherwise a well-graded base course aggregate (p. 5-26).",
+      "body": "For rammed aggregate pier construction, clean 1- to 3-inch stone is commonly specified for the bottom bulb (p. 5-26). The same material is used throughout the pier if radial drainage of the pier is included in the design solution; otherwise a well-graded base course aggregate is used.",
+      "key_points": [
+        "Bottom bulb: clean 1 to 3 in. stone (p. 5-26).",
+        "Well-graded base course aggregate unless radial drainage is required (p. 5-26)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Specifying rammed aggregate pier aggregate."
+    },
+    {
+      "section_id": "5.4.0",
+      "title": "Design",
+      "summary": "Container heading for design of stone columns (Section 4.1), rammed aggregate piers (4.2), worked design examples (4.3) and design verification by load and in situ testing (4.4) (p. 5-27).",
+      "body": "Section 4.0 (p. 5-27) presents the design of aggregate columns: stone columns with the unit cell, area replacement ratio, stress ratio, capacity, settlement, rate of settlement, shear strength and seismic design; rammed aggregate piers with the two-layer settlement approach; two design examples; and design verification.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Design of stone columns and rammed aggregate piers."
+    },
+    {
+      "section_id": "5.4.1",
+      "title": "Stone Columns",
+      "summary": "Container for stone column design: design considerations, the procedure (unit cell, area replacement ratio, stress ratio, capacity, settlement, rate, shear strength) and seismic design (pp. 5-27 to 5-42).",
+      "body": "Section 4.1 covers stone column design: design considerations (4.1.1), the design procedure with the unit cell, area replacement ratio, spacing and diameter, stress ratio, vertical capacity, settlement, rate of settlement and shear strength increase (4.1.2), and seismic design (4.1.3) (pp. 5-27 to 5-42).",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Stone column design."
+    },
+    {
+      "section_id": "5.4.1.1",
+      "title": "Design Considerations",
+      "summary": "Stone column design is largely semi-empirical and similar for wet and dry methods; soil-column composites stiffen with closer spacing, larger area and higher stone friction angle; columns need lateral support against bulging, should end in a denser stratum, and attract load as the soil consolidates (pp. 5-27 to 5-28).",
+      "body": "Although backfill placement and gradation differ between vibro-replacement and vibro-displacement, the design approach is similar (p. 5-27). Design theory development is outside the scope; FHWA (1983) gives in-depth criteria, Priebe (1995) updated earlier work and was widely used, and GeoTechTools gives the most current guidance. Design is to a large extent semi-empirical; recommendations are given for bearing, settlement and stability and should be supplemented by experience and judgment. Methods range from semi-empirical to finite element, indexed to full-scale tests and models. Weak soils reinforced with stone columns act as a composite with stiffness increasing with reduced spacing, larger column area and stone friction angle. The columns are stiffer than the soil and rely on its lateral support, so they must have adequate lateral support to preclude bulging failure and typically terminate in a denser stratum to preclude bearing failure. Because the column settles less, it carries by arching a larger part of the load, and further consolidation transfers more load to it until equilibrium, decreasing settlement of the whole foundation (p. 5-28).",
+      "key_points": [
+        "Stone column design is largely semi-empirical (p. 5-27).",
+        "Columns need lateral support to prevent bulging and should end in a denser stratum (p. 5-27).",
+        "Load transfers to the stiffer column by arching as the soil consolidates (pp. 5-27 to 5-28)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Understanding the mechanics behind stone column design."
+    },
+    {
+      "section_id": "5.4.1.2",
+      "title": "Design Procedure",
+      "summary": "Seven-step embankment design process for stone columns: unimproved settlement and stability, assume area replacement ratio and diameter, find spacing, check column capacity, compute settlement, check time rate, check global stability (p. 5-28).",
+      "body": "Stone columns are selected to increase bearing resistance, reduce settlement, accelerate consolidation, increase shear strength, reduce liquefaction potential, or a combination (p. 5-28). Preliminary design methods are outlined. The generalized process for embankment support is: (1) design the embankment without stone columns to find overall settlement and global stability and whether ground modification is required; (2) assume an area replacement ratio and column diameter; (3) determine the spacing from them; (4) check the load bearing resistance of the column and revise the diameter if needed; (5) determine the total settlement of the embankment on stone columns; (6) check the time rate of settlement and consider changing spacing if too slow; (7) check global stability.",
+      "key_points": [
+        "Start from area replacement ratio and diameter, then spacing (p. 5-28).",
+        "Check capacity, settlement, time rate and global stability in turn (p. 5-28)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Preliminary design sequence for stone column supported embankments."
+    },
+    {
+      "section_id": "5.4.1.2.1",
+      "title": "Unit Cell Concept",
+      "summary": "For settlement and stability analysis the tributary soil around each column (a hexagon in a triangular pattern) is idealized as an equivalent circle of diameter De, the unit cell, with the column at its center (pp. 5-28 to 5-30).",
+      "body": "For settlement and stability analyses it is convenient to associate the tributary area of soil surrounding each stone column with that column (p. 5-28; Figures 5-16 and 5-17). Although the tributary area forms a regular hexagon about the column, it can be closely approximated by an equivalent circle of the same total area (p. 5-30). The resulting equivalent cylinder of diameter De, enclosing the tributary soil and one stone column, is known as the unit cell; the stone column is concentric with its exterior boundary.",
+      "key_points": [
+        "Unit cell: equivalent cylinder of diameter De with the same area as the tributary hexagon (p. 5-30).",
+        "The column is concentric with the unit cell (p. 5-30)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-16: Equilateral triangular pattern of stone columns.",
+        "Figure 5-17: Unit cell idealization."
+      ],
+      "tables": [],
+      "applicability": "Idealizing a column grid for settlement and stability calculations."
+    },
+    {
+      "section_id": "5.4.1.2.2",
+      "title": "Area Replacement Ratio",
+      "summary": "The area replacement ratio alpha_sc = A_sc / A (Eq. 5-1) is the fraction of the unit cell area replaced by compacted stone; typical values are 0.10 to 0.30; the area improvement ratio a_sc is its inverse (pp. 5-30 to 5-31).",
+      "body": "The volume of soil replaced by stone columns has an important effect on performance (p. 5-30). The area replacement ratio, alpha_sc, is defined as the fraction of soil tributary to the stone column replaced by stone (p. 5-31): alpha_sc = A_sc / A (Eq. 5-1), where A_sc is the area of the stone column after compaction and A is the total area within the unit cell. Typical ratios used are in the range 0.10 to 0.30. The literature also describes the ratio a_sc, the area improvement ratio, which is the inverse of the area replacement ratio.",
+      "key_points": [
+        "alpha_sc = A_sc / A (Eq. 5-1, p. 5-31).",
+        "A_sc is the column area after compaction; A is the unit cell area (p. 5-31).",
+        "Typical alpha_sc 0.10 to 0.30 (p. 5-31).",
+        "Area improvement ratio is the inverse of alpha_sc (p. 5-31)."
+      ],
+      "equations": [
+        "Eq. 5-1: alpha_sc = A_sc / A; area replacement ratio (A_sc = area of stone column after compaction, A = total area within the unit cell)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Quantifying how much soil a stone column grid replaces."
+    },
+    {
+      "section_id": "5.4.1.2.3",
+      "title": "Spacing and Diameter",
+      "summary": "Stone column diameters vary from 1.5 to 4 ft, typically 3.0 to 3.6 ft for the dry method and larger for wet; triangular, square or rectangular grids at 5 to 12 ft center-to-center, extending beyond the loaded area (p. 5-31).",
+      "body": "Stone column diameters vary between 1.5 and 4 feet but are typically 3.0 to 3.6 feet for the dry method and somewhat larger for the wet method (p. 5-31). Triangular, square or rectangular grid patterns are used, generally with center-to-center spacing of 5 to 12 feet. For footing support the columns are installed in rows or clusters. For both footing and wide area support they should extend beyond the loaded area.",
+      "key_points": [
+        "Diameter 1.5 to 4 ft; typically 3.0 to 3.6 ft (dry), larger (wet) (p. 5-31).",
+        "Spacing generally 5 to 12 ft center-to-center (p. 5-31).",
+        "Extend columns beyond the loaded area (p. 5-31)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Preliminary selection of stone column diameter and grid."
+    },
+    {
+      "section_id": "5.4.1.2.4",
+      "title": "Stress Ratio",
+      "summary": "Stress concentration (stress ratio) n = sigma_sc / sigma_soil (Eq. 5-2) under equal strain; measured 2.0 to 5.0; 2.5 often used for preliminary design; equilibrium q = sigma_sc alpha_sc + sigma_soil (1 - alpha_sc) (Eq. 5-3) gives the soil and column stresses (Eqs. 5-4, 5-5) (pp. 5-31 to 5-32).",
+      "body": "The relative stiffness of column and soil, and the column diameter and spacing, determine how the applied vertical load is shared (p. 5-31). Because deflections are approximately equal (the equal strain assumption, supported by field measurements and finite element analyses), the stiffer column carries a greater stress. The stress concentration or stress ratio n, the stress in the stone column divided by the in situ soil stress, depends on relative stiffness, column length, area ratio and the granular blanket over the columns. Measured values are generally 2.0 to 5.0, and theory indicates n increases with time, since secondary settlement of the cohesive soil exceeds that of the column. Selecting the design stress ratio is the key element of preliminary design and is largely experience based (p. 5-32). A high ratio (3 to 4) may be warranted for very weak soil and very tight spacing; for stronger soils and large spacings lower bound ratios (2 to 2.5) apply; 2.5 is often conservatively used for stability and bearing calculations. With n and alpha_sc, the column stress sigma_sc and soil stress sigma_soil for an average unit-cell stress q follow from Eqs. 5-2 to 5-5.",
+      "key_points": [
+        "n = sigma_sc / sigma_soil (Eq. 5-2, p. 5-32).",
+        "Measured n generally 2.0 to 5.0; increases with time (p. 5-31).",
+        "n of 3 to 4 for very weak soil and tight spacing; 2 to 2.5 for stronger soil and wide spacing (p. 5-32).",
+        "n = 2.5 is often conservatively used for preliminary stability and bearing (p. 5-32)."
+      ],
+      "equations": [
+        "Eq. 5-2: n = sigma_sc / sigma_soil; stress concentration (stress ratio), column stress over soil stress",
+        "Eq. 5-3: q = sigma_sc (alpha_sc) + sigma_soil (1 - alpha_sc); equilibrium of vertical forces over the unit cell",
+        "Eq. 5-4: sigma_soil = q / [1 + (n - 1) alpha_sc]; stress on the unimproved soil",
+        "Eq. 5-5: sigma_sc = n q / [1 + (n - 1) alpha_sc]; stress on the stone column"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Splitting the applied load between stone columns and soil."
+    },
+    {
+      "section_id": "5.4.1.2.5",
+      "title": "Stone Column Vertical Load Capacity",
+      "summary": "Failure modes of single columns and groups (Figures 5-18 to 5-20); avoid bulging in weak or organic layers; nominal bearing resistance q_n = c N_c (Eq. 5-6) with N_c 18 to 22 (22 for stiffer, 18 for low stiffness soils), a resistance factor of 3, and typical single column design loads of 40 to 60 kips (pp. 5-32 to 5-35).",
+      "body": "Possible failure modes of single stone columns and groups are illustrated in Figures 5-18 to 5-20 (p. 5-32). Local bulging failures in very weak or organic layers of limited thickness (Figure 5-19) should be avoided; bulging affects settlement magnitude and rate, stability and column strength (p. 5-35). A bulging analysis of a single column used for group behavior gives an approximate conservative solution. Rational prediction of group bearing under rigid or flexible loads is still developing, so experience and judgment should accompany theory. Group capacity is frequently taken as the single column capacity times the number of columns, which model studies indicate is slightly conservative for soft cohesive soils. The nominal bearing resistance of an isolated or group column is q_n = c N_c (Eq. 5-6), where c is the undrained shear strength of the surrounding cohesive soil and N_c the bearing capacity factor; values 18 to 22 give good estimates. Cavity expansion theory makes N_c depend on soil compressibility: N_c = 22 for soils with reasonably high initial stiffness (inorganic soft-to-stiff clays and silts) and 18 for low stiffness soils (peats, organic cohesive soils, very soft clays with PI > 30), based on back-analysis of field tests. A resistance factor of 3 is recommended with Eq. 5-6. Typical single column design loads are 40 to 60 kips in soft to medium stiff clays.",
+      "key_points": [
+        "q_n = c N_c (Eq. 5-6, p. 5-35).",
+        "N_c = 22 for stiffer inorganic soils; 18 for peats, organic soils and very soft clays with PI > 30 (p. 5-35).",
+        "Resistance factor of 3 recommended with Eq. 5-6 (p. 5-35).",
+        "Typical single column design loads 40 to 60 kips (p. 5-35).",
+        "Group capacity = single capacity x number of columns is slightly conservative in soft clay (p. 5-35)."
+      ],
+      "equations": [
+        "Eq. 5-6: q_n = c N_c; nominal bearing resistance of a stone column (c = undrained shear strength of surrounding cohesive soil, N_c = bearing capacity factor, 18 to 22)"
+      ],
+      "figures": [
+        "Figure 5-18: Failure modes of a single stone column in a homogenous soft layer.",
+        "Figure 5-19: Failure modes of a single stone column in a non-homogeneous cohesive soil.",
+        "Figure 5-20: Failure modes of stone column groups."
+      ],
+      "tables": [],
+      "applicability": "Estimating single and group stone column bearing resistance in cohesive soil."
+    },
+    {
+      "section_id": "5.4.1.2.6",
+      "title": "Settlement",
+      "summary": "Settlement reduction is expressed as the settlement ratio n (settlement without columns over settlement with columns) versus the area replacement or improvement ratio; Figure 5-21 compares theories and field data; the Priebe curve gives an upper bound and the FHWA (1983) Equilibrium Method, about equal to Balaam, an average or lower bound (pp. 5-36 to 5-37).",
+      "body": "Settlement reduction has been estimated by pseudo-elastic and elasto-plastic methods for isolated and widespread loading using the unit cell concept (p. 5-36). The predicted improvement is often expressed as the settlement ratio n, the ratio of settlement without stone columns to that with stone columns, related to the area replacement ratio (alpha_sc) or the area improvement ratio (1/alpha_sc). Settlement of the non-improved zone is found by conventional analyses. Theoretical predictions and field measurements are compared in Figure 5-21 (Greenwood and Kirsch 1984). Han (2015) presents three methods for granular column reinforced foundations: the stress reduction method, the improvement factor method and the elastic-plastic method. In Figure 5-21 the settlement ratio was found analytically as a function of E_sc/E_soil or of column strength relative to the soil shear strength c_u (p. 5-37). For preliminary estimates the Priebe curve may be used to evaluate the upper bound effectiveness and cost at various spacings. The Equilibrium Method of FHWA (1983) is roughly equivalent to the Balaam relationships in Figure 5-21 and represents an average or lower bound estimate suitable for preliminary analyses. The chapter prints no closed-form settlement improvement equation; the Priebe curve is read from the figure (applied in Section 4.3.2.3 with Figure 5-27).",
+      "key_points": [
+        "Settlement ratio n = settlement without columns / settlement with columns (p. 5-36).",
+        "Plotted against the area improvement ratio A/A_sc = 1/alpha_sc in Figure 5-21 (p. 5-36).",
+        "Priebe curve: upper bound effectiveness for preliminary estimates (p. 5-37).",
+        "FHWA (1983) Equilibrium Method ~ Balaam: average or lower bound (p. 5-37).",
+        "Han (2015): stress reduction, improvement factor and elastic-plastic methods (p. 5-36)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-21: Comparison of elastic theories and field observations."
+      ],
+      "tables": [],
+      "applicability": "Preliminary estimate of settlement reduction from stone columns."
+    },
+    {
+      "section_id": "5.4.1.2.7",
+      "title": "Rate of Settlement",
+      "summary": "Stone columns accelerate settlement by radial drainage, computed as for sand drains and PVDs (Chapter 2); smear is roughly modeled by reducing the column diameter by 50 to 80 percent of design diameter, with more smear for dry-displacement and sensitive clays (p. 5-37).",
+      "body": "Stone columns substantially alter the time rate of settlement because radial drainage governs (p. 5-37). Time-rate computations are therefore identical to those for vertical sand drains and prefabricated vertical drains (Chapter 2). The effect of disturbance or smear during installation, which reduces radial flow, can be roughly accounted for by reducing the column diameter by 50 to 80 percent of its design diameter. A larger disturbance or smear zone should be anticipated with the dry-displacement method and for all installations in sensitive clays.",
+      "key_points": [
+        "Compute as for PVDs and sand drains (Chapter 2) (p. 5-37).",
+        "Smear: reduce column diameter by 50 to 80 percent of design diameter (p. 5-37)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Time rate of consolidation for stone column reinforced clay."
+    },
+    {
+      "section_id": "5.4.1.2.8",
+      "title": "Shear Strength Increase",
+      "summary": "Average composite strength tau = (1 - alpha_sc) c_u + alpha_sc sigma_v tan phi_sc (Eq. 5-7) and unit weight (Eq. 5-8) for stability; may overestimate FS by 10% undrained; phi_sc 40 to 45 degrees; target FS 1.2 to 1.3; discrete column modeling now preferred (pp. 5-37 to 5-39).",
+      "body": "For slope stability an average shear strength of the soil/stone column composite has been used to estimate embankment stability (p. 5-37, Figure 5-22). Recent research shows the average strength approach may overestimate the factor of safety by 10% for an undrained condition (Zhang et al. 2014; Abusharar and Han 2011) (p. 5-38). The composite strength depends on the soil undrained strength, the column friction, the area replacement ratio, the stress ratio and the loading; close spacing and substantial overburden are needed to mobilize column friction. The average strength and unit weight are given by Eqs. 5-7 and 5-8, where tau is the average weighted shear strength, c_u the undrained strength of the in situ soil, gamma_soil and gamma_sc the unit weights of soil and column, phi_sc the column friction angle, sigma_v the stress due to embankment loading and alpha_sc the area replacement ratio (p. 5-39). The design friction angle of the stone typically varies from 40 to 45 degrees, lower for gravel mixtures and higher for angular crushed stone. In landslide remediation the stress ratio is 1 and the parameters are essentially a weighted average. Analyses may use total stress (phi = 0, end of construction) or effective stress (c = 0, long term); a target factor of safety of 1.2 to 1.3 is considered adequate. Slope stability programs can now model discrete stone columns instead of the average strength method (see GeoTechTools).",
+      "key_points": [
+        "tau = (1 - alpha_sc) c_u + alpha_sc sigma_v tan phi_sc (Eq. 5-7, p. 5-38).",
+        "Average strength may overestimate FS by 10% undrained (p. 5-38).",
+        "phi_sc typically 40 to 45 degrees (p. 5-39).",
+        "Landslide remediation: stress ratio of 1 (p. 5-39).",
+        "Target factor of safety 1.2 to 1.3 (p. 5-39)."
+      ],
+      "equations": [
+        "Eq. 5-7: tau = (1 - alpha_sc) c_u + alpha_sc sigma_v tan phi_sc; average weighted shear strength of the soil/stone column composite",
+        "Eq. 5-8: gamma_bar = gamma_sc alpha_sc + gamma_soil (1 - alpha_sc); average unit weight of the composite"
+      ],
+      "figures": [
+        "Figure 5-22: Notation used in average stress method stability analysis."
+      ],
+      "tables": [],
+      "applicability": "Composite strength parameters for stability analysis of column-supported embankments."
+    },
+    {
+      "section_id": "5.4.1.3",
+      "title": "Seismic Design",
+      "summary": "Stone columns mitigate liquefaction by densifying soil, aiding drainage and carrying more seismic stress; the simplified procedure presented considers only densification and suits preliminary design (pp. 5-39 to 5-40).",
+      "body": "Efforts in the United States have aimed at evaluating liquefaction potential from in situ density data and improving these soils (p. 5-39). Baez and Martin (1992), Hryciw (1995), Baez (1993) and Woeste et al. (2016) give recommendations on quantifying the benefits of stone columns and evaluating the safety factor against liquefaction. The benefits are densification of the soil around the column, facilitated drainage of excess pore water, and the stiffer column accepting higher seismic stress than the soil (p. 5-40). The simplified procedure presented considers only the benefit of soil densification; it is appropriate for preliminary designs and more rigorous analysis may be warranted for final design.",
+      "key_points": [
+        "Three benefits: densification, drainage, stiffer column carries more seismic stress (p. 5-40).",
+        "Simplified procedure counts densification only; preliminary design (p. 5-40)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Preliminary liquefaction mitigation design with stone columns."
+    },
+    {
+      "section_id": "5.4.1.3.1",
+      "title": "Soil Density",
+      "summary": "Liquefaction potential falls with density; cyclic stress ratio CSR_EQ = 0.65 (a_max/g) r_d (sigma_v/sigma_v') (Eq. 5-9) with depth-based r_d expressions; Figure 5-23 (Seed et al. 1985) relates CSR causing liquefaction to (N1)60 for M7.5 to set the required densification (pp. 5-40 to 5-41).",
+      "body": "Under cyclic loading pore pressure builds more slowly in dense than in loose sand, so liquefaction potential is reduced by increasing density (p. 5-40). Loose sands can deform greatly after initial liquefaction, while dense sands dilate at large strain and keep residual stiffness and strength. Seed et al. (1985) correlated cyclic stress ratio with corrected penetration resistance. The cyclic stress ratio is CSR_EQ = 0.65 (a_max/g) r_d (sigma_v/sigma_v') (Eq. 5-9), with a_max the maximum ground acceleration, sigma_v and sigma_v' the total and effective vertical stress at depth z, and r_d the stress reduction factor. For preliminary design (equations developed for metric units, as printed): r_d = 1.0 - 0.00765z for z <= 30 ft; r_d = 1.174 - 0.0267z for 30 ft < z <= 75 ft (p. 5-41); r_d = 0.744 - 0.008z for 75 ft < z <= 100 ft; r_d = 0.5 for z < 100 ft (as printed). Figure 5-23 relates the stress ratio causing liquefaction to (N1)60 for silty sands in a magnitude 7.5 earthquake and is used to estimate the required improvement in density.",
+      "key_points": [
+        "CSR_EQ = 0.65 (a_max/g) r_d (sigma_v/sigma_v') (Eq. 5-9, p. 5-40).",
+        "r_d = 1.0 - 0.00765z for z <= 30 ft (p. 5-40).",
+        "r_d = 1.174 - 0.0267z for 30 < z <= 75 ft; 0.744 - 0.008z for 75 < z <= 100 ft; 0.5 printed 'for z < 100 ft' (p. 5-41).",
+        "The manual notes the r_d equations were developed for metric units (p. 5-40)."
+      ],
+      "equations": [
+        "Eq. 5-9: CSR_EQ = 0.65 (a_max / g) r_d (sigma_v / sigma_v'); cyclic stress ratio induced by the earthquake"
+      ],
+      "figures": [
+        "Figure 5-23: Relationship between stress ratio causing liquefaction and (N1)60 values for silty sands for 7.5 magnitude earthquakes."
+      ],
+      "tables": [],
+      "applicability": "Required densification target for liquefaction mitigation."
+    },
+    {
+      "section_id": "5.4.1.3.2",
+      "title": "Spacing",
+      "summary": "Stone column spacing for liquefaction: find the required corrected SPT N from Figure 5-23, convert to relative density with Table 4-8, then use Figure 4-34 (Chapter 4) for spacing to reach that resistance midway between columns (p. 5-42).",
+      "body": "The spacing of stone columns for liquefaction mitigation may be determined by using Figure 5-23 to find the required corrected SPT N value, Table 4-8 of Chapter 4 (Deep Compaction) to correlate SPT N to relative density, and then Figure 4-34 of Chapter 4 to estimate the stone column spacing needed to improve the soil to the required penetration resistance at the mid-point between columns (p. 5-42).",
+      "key_points": [
+        "Figure 5-23 -> Table 4-8 -> Figure 4-34 (Chapter 4) (p. 5-42).",
+        "Target is the penetration resistance at the mid-point between columns (p. 5-42)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selecting stone column spacing for densification."
+    },
+    {
+      "section_id": "5.4.1.3.3",
+      "title": "Permeability",
+      "summary": "To avoid significant pore pressure generation in the column, its permeability should be at least two orders of magnitude larger than the treated soil, achieved by gradation selection with due regard to piping (p. 5-42).",
+      "body": "To avoid significant generation of pore water pressure within the stone column, its permeability should be at least two orders of magnitude larger than that of the treated soil (p. 5-42). This can be achieved by selecting the gradation of the stone column, with due regard to the piping considerations that follow.",
+      "key_points": [
+        "Column permeability at least 100 times the treated soil (p. 5-42)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Gradation selection for draining stone columns."
+    },
+    {
+      "section_id": "5.4.1.3.4",
+      "title": "Piping Prevention",
+      "summary": "Hydraulic gradients may exceed critical during shaking and move fines into the column; the recommended filter criterion is 20 D_S15 < D_G15 < 9 D_S85 (Eq. 5-10) (p. 5-42).",
+      "body": "Hydraulic gradients may exceed critical gradients (greater than one) and move fines from the natural soil into the open pore structure of the stone column during seismic loading, creating cavities and undesirable volume change, although the short duration of strong motion makes much movement unlikely (p. 5-42). Based on experimental data, the following relationship is recommended for piping prevention under any loading condition: 20 D_S15 < D_G15 < 9 D_S85 (Eq. 5-10), where D_S15 is the soil particle diameter passing 15 percent, D_G15 the gravel (stone) diameter passing 15 percent, and D_S85 the soil diameter passing 85 percent. Adherence ensures maximum permeability and prevents piping of the soil.",
+      "key_points": [
+        "20 D_S15 < D_G15 < 9 D_S85 (Eq. 5-10, p. 5-42)."
+      ],
+      "equations": [
+        "Eq. 5-10: 20 D_S15 < D_G15 < 9 D_S85; piping prevention (filter) criterion for stone column gradation"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Checking stone column gradation against the surrounding soil."
+    },
+    {
+      "section_id": "5.4.2",
+      "title": "Rammed Aggregate Piers",
+      "summary": "Container for rammed aggregate pier design: stress and replacement ratios, the seven-step design procedure, and the two-layer (upper reinforced zone plus lower zone) settlement analysis (pp. 5-42 to 5-46).",
+      "body": "Section 4.2 covers rammed aggregate pier design: design considerations including stress ratio and replacement ratio (4.2.1), the design procedure (4.2.2) and settlement analysis by the two-layer approach (4.2.3) (pp. 5-42 to 5-46).",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Rammed aggregate pier design."
+    },
+    {
+      "section_id": "5.4.2.1",
+      "title": "Design Considerations",
+      "summary": "Rammed aggregate pier design is almost identical to stone columns; rammed stone has phi 45 to 50 degrees and higher stiffness; use a stress ratio of 5 to 10 under flexible embankments, about 10 under rigid footings, and a minimum replacement ratio of 0.33 (pp. 5-42 to 5-43).",
+      "body": "The design concept for rammed aggregate piers is almost identical to that for stone columns, and for area wide improvement the design method is identical (pp. 5-42 to 5-43). Stone compacted by impact ramming typically has a somewhat higher effective friction angle, 45 to 50 degrees, and potentially higher modulus, so the pier-to-soil stiffness ratio and design stress ratio should be higher than for stone columns (p. 5-43). Although the manufacturer's design manual suggests stress ratios of 20 or higher, a stress ratio of 5 to 10 for area improvement under flexible embankment loading appears warranted until more field data support a higher ratio. Under rigid footings a somewhat higher ratio (10) may be considered, with settlements and pier capacity computed from the loads on each element. The loads on pier and soil follow from the chosen stress and replacement ratios; the design area replacement ratio is set after evaluating the unimproved settlement, and a minimum of 0.33 is generally recommended (HITEC report, Collin 2007).",
+      "key_points": [
+        "Rammed stone phi 45 to 50 degrees (p. 5-43).",
+        "Stress ratio 5 to 10 under flexible embankments; about 10 under rigid footings (p. 5-43).",
+        "Minimum area replacement ratio 0.33 (Collin 2007) (p. 5-43)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Choosing stress and replacement ratios for rammed aggregate piers."
+    },
+    {
+      "section_id": "5.4.2.2",
+      "title": "Design Procedures",
+      "summary": "Seven-step embankment design process for rammed aggregate piers, parallel to stone columns; the major difference is the settlement analysis (pp. 5-43 to 5-44).",
+      "body": "Rammed aggregate piers are selected to increase bearing resistance, reduce settlement, increase shear strength or a combination (p. 5-43). The generalized embankment process is: (1) design without piers to find settlement and global stability and whether improvement is needed; (2) assume an area replacement ratio and column diameter; (3) determine spacing; (4) check pier load bearing resistance and revise diameter if needed; (5) determine total settlement of the embankment on piers; (6) check time rate of settlement, changing spacing if too slow (p. 5-44); (7) check global stability. The process is similar to stone columns; the major difference is the settlement analysis presented next.",
+      "key_points": [
+        "Same seven steps as stone columns (pp. 5-43 to 5-44).",
+        "Settlement analysis is the main difference from stone column design (p. 5-44)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Preliminary design sequence for rammed aggregate pier supported embankments."
+    },
+    {
+      "section_id": "5.4.2.3",
+      "title": "Settlement Analysis",
+      "summary": "Rammed aggregate pier settlement uses a two-layer approach (Lawton et al. 1994; Fox and Cowell 1998; Wissmann et al. 2002): total settlement s_tot = s_uz + s_lz (Eq. 5-11), upper reinforced zone plus lower zone (p. 5-44).",
+      "body": "Rammed aggregate pier settlement control design is based on a two-layer settlement approach described by Lawton et al. (1994), Fox and Cowell (1998) and Wissmann et al. (2002) (p. 5-44). The piers create a stiffened, engineered upper zone of reduced compressibility; settlement below the reinforced zone, the lower zone, is evaluated by conventional geotechnical approaches. The total settlement s_tot is the sum of the upper zone settlement s_uz and the lower zone settlement s_lz: s_tot = s_uz + s_lz (Eq. 5-11).",
+      "key_points": [
+        "s_tot = s_uz + s_lz (Eq. 5-11, p. 5-44)."
+      ],
+      "equations": [
+        "Eq. 5-11: s_tot = s_uz + s_lz; total settlement as upper (reinforced) zone plus lower zone settlement"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Settlement of rammed aggregate pier supported embankments and structures."
+    },
+    {
+      "section_id": "5.4.2.3.1",
+      "title": "Settlement in the Rammed Aggregate Pier-Reinforced Zone",
+      "summary": "Upper zone: top-of-pier stress q_g = q [n_s / (n_s R_a - R_a + 1)] (Eq. 5-12) and s_uz = q_g / k_g (Eq. 5-13); n_s 4 to 45 for rigid footings, 5 to 10 suggested for embankments; k_g 75 to 360 pci for rigid footings (pp. 5-44 to 5-45).",
+      "body": "Settlement in the upper zone is estimated by first calculating the top-of-pier stress q_g = q [n_s / (n_s R_a - R_a + 1)] (Eq. 5-12), where q is the average applied bearing pressure, R_a the ratio of the cross-sectional area coverage of the piers to the matrix soil, and n_s the stress concentration ratio between piers and matrix soil (p. 5-44). Research shows n_s ranges from 4 to 45 for rigid footings; embankments and most MSE walls are not rigid, so ratios may be lower and should be chosen with care, with larger ratios at softer sites; 5 to 10 is suggested for settlement control of embankments (p. 5-45). The upper zone settlement is the top-of-pier stress divided by the pier stiffness modulus: s_uz = q_g / k_g (Eq. 5-13). Design stiffness modulus values range from 75 pci to 360 pci for rigid footings; conservative values should be used for embankments and transportation structures (Collin 2007).",
+      "key_points": [
+        "q_g = q [n_s / (n_s R_a - R_a + 1)] (Eq. 5-12, p. 5-44).",
+        "s_uz = q_g / k_g (Eq. 5-13, p. 5-45).",
+        "n_s 4 to 45 for rigid footings; 5 to 10 suggested for embankments (p. 5-45).",
+        "k_g 75 to 360 pci for rigid footings; use conservative values for embankments (p. 5-45)."
+      ],
+      "equations": [
+        "Eq. 5-12: q_g = q [ n_s / (n_s R_a - R_a + 1) ]; top-of-pier stress (q = average applied bearing pressure, R_a = area coverage ratio, n_s = stress concentration ratio)",
+        "Eq. 5-13: s_uz = q_g / k_g; settlement of the rammed aggregate pier-reinforced (upper) zone, k_g = pier stiffness modulus"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Upper-zone settlement of rammed aggregate pier reinforced soil."
+    },
+    {
+      "section_id": "5.4.2.3.2",
+      "title": "Settlement below the Rammed Aggregate Pier Reinforced Zone",
+      "summary": "Lower zone settlement by elastic s_lz = dq H / E (Eq. 5-14) for cohesionless or overconsolidated soil or consolidation s_lz = c_c [1/(1+e_o)] H log[(p_o + dq)/p_o] (Eq. 5-15) for normally consolidated clay; stress influence factor by Westergaard, or 1.0 under embankments (pp. 5-45 to 5-46).",
+      "body": "Settlement below the reinforced zone is evaluated by conventional approaches: elastic analysis with Eq. 5-14 for cohesionless or overconsolidated cohesive soils, s_lz = dq H / E, and consolidation analysis with Eq. 5-15 for normally consolidated cohesive soils, s_lz = c_c [1/(1 + e_o)] H log[(p_o + dq)/p_o] (p. 5-45). H is the lower zone thickness, E the matrix soil elastic modulus, c_c the matrix soil coefficient of compressibility, e_o its void ratio, p_o the vertical effective stress at mid-layer and dq the average bearing pressure applied by the embankment, the applied pressure times the stress influence factor I_sigma. I_sigma can come from Boussinesq or Westergaard; Westergaard is typically used because pier-reinforced soil is layered, but for embankments I_sigma in the lower zone is typically taken as 1.0 because of their lateral extent (p. 5-46). Elastic approaches suit granular and heavily overconsolidated cohesive soils, with modulus from correlations to SPT N, undrained strength, CPT tip resistance or other in situ tests; consolidation approaches suit normally or lightly overconsolidated cohesive soils.",
+      "key_points": [
+        "s_lz = dq H / E (Eq. 5-14, p. 5-45).",
+        "s_lz = c_c [1/(1+e_o)] H log[(p_o + dq)/p_o] (Eq. 5-15, p. 5-45).",
+        "I_sigma typically 1.0 in the lower zone under embankments (p. 5-46)."
+      ],
+      "equations": [
+        "Eq. 5-14: s_lz = (dq H) / E; elastic settlement of the lower zone (cohesionless or overconsolidated cohesive soils)",
+        "Eq. 5-15: s_lz = c_c [1 / (1 + e_o)] H log[(p_o + dq) / p_o]; consolidation settlement of the lower zone (normally consolidated cohesive soils)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Lower-zone settlement beneath rammed aggregate piers."
+    },
+    {
+      "section_id": "5.4.3",
+      "title": "Design Examples",
+      "summary": "Two worked examples: an embankment on soft clay over rock improved with rammed aggregate piers, and an embankment on soft clay over dense sand improved with stone columns using the Priebe curve (pp. 5-46 to 5-49).",
+      "body": "Section 4.3 (pp. 5-46 to 5-49) gives two design examples: settlement of an embankment over soft clay underlain by rock with rammed aggregate piers (4.3.1), and settlement of an embankment over soft clay underlain by dense sand with stone columns using the settlement ratio read from the Priebe curve (4.3.2).",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Worked settlement examples for aggregate column design."
+    },
+    {
+      "section_id": "5.4.3.1",
+      "title": "Rammed Aggregate Piers",
+      "summary": "Design example demonstrating the method to determine settlement of an embankment on soft clay over rock supported on rammed aggregate piers, with and without improvement (pp. 5-46 to 5-47).",
+      "body": "The first design example demonstrates the method to determine the settlement of an embankment supported on rammed aggregate piers (p. 5-46). It covers the problem statement, the settlement without ground improvement and the settlement with rammed aggregate piers.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Worked example of rammed aggregate pier settlement."
+    },
+    {
+      "section_id": "5.4.3.1.1",
+      "title": "Problem",
+      "summary": "Example 1: 20 ft embankment (gamma 125) on 15 ft normally consolidated soft clay (gamma_sat 120 pcf, c_c 0.25, e_o 0.7, c_v 0.1 ft2/day) over rock; piers at 5 ft spacing, 2.75 ft diameter (p. 5-46).",
+      "body": "A new embankment is to be built over a soft clay layer underlain by rock (p. 5-46, Figure 5-24). As printed in Figure 5-24, the embankment is 20 ft high with gamma = 125 (printed 'psf'); the soft clay is normally consolidated, 15 ft thick, gamma_sat = 120 pcf, c_c = 0.25, e_o = 0.7, c_v = 0.1 ft2/day, with the water table at the ground surface. The task is to determine the total settlement after construction. The column spacing is 5 feet and the column diameter is 2.75 feet.",
+      "key_points": [
+        "Embankment 20 ft, gamma 125; clay 15 ft, c_c 0.25, e_o 0.7 (p. 5-46).",
+        "Pier spacing 5 ft, diameter 2.75 ft (p. 5-46)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-24: Example problem 1 geometry."
+      ],
+      "tables": [],
+      "applicability": "Input data for the rammed aggregate pier example."
+    },
+    {
+      "section_id": "5.4.3.1.2",
+      "title": "Total Settlement Magnitude without Ground Improvement",
+      "summary": "Example 1 without improvement: p_o = 7.5 ft (120 - 62.4 pcf) = 432 psf, q = 125 x 20 = 2,500 psf, S = 0.25 [1/(1+0.7)] (15) log[(432+2500)/432] = 1.83 ft = 22 inches (pp. 5-46 to 5-47).",
+      "body": "Without ground improvement the effective stress at mid-clay is p_o = z (gamma_sat - gamma_w) = 7.5 ft (120 pcf - 62.4 pcf) = 432 psf, and the embankment load is q = gamma H = 125 pcf (20 ft) = 2,500 psf (p. 5-46). The consolidation settlement is S = c_c [1/(1 + e_o)] H log[(P_o + dq)/P_o] = 0.25 [1/(1 + 0.7)] (15) log[(432 + 2500)/432] = 1.83 ft = 22 inches (p. 5-47). The total expected settlement without ground improvement is 22 inches. The proposed column layout is shown in Figure 5-25 (s = 5 ft, n_s = 6, c_r = 2c_v, k_g = 65 pci).",
+      "key_points": [
+        "p_o = 432 psf; q = 2,500 psf (p. 5-46).",
+        "Unimproved settlement 1.83 ft = 22 inches (p. 5-47)."
+      ],
+      "equations": [
+        "S = c_c [1/(1 + e_o)] H log[(P_o + dq)/P_o] = 0.25 (1/1.7)(15) log(2932/432) = 1.83 ft (p. 5-47); unimproved consolidation settlement"
+      ],
+      "figures": [
+        "Figure 5-25: Aggregate column ground improvement layout."
+      ],
+      "tables": [],
+      "applicability": "Baseline settlement for the rammed aggregate pier example."
+    },
+    {
+      "section_id": "5.4.3.1.3",
+      "title": "Settlement Magnitude with Rammed Aggregate Piers",
+      "summary": "Example 1 with piers: d_e = 1.05 s = 5.25, R_a = A_g/a = 5.94/(5.25)^2 = 0.27, q_g = 2,500 [6/(6(0.27) - 0.27 + 1)] = 6,383 psf, s_uz = 6,383 psf / (65 pci x 144) = 0.68 inches (p. 5-47).",
+      "body": "With rammed aggregate piers (p. 5-47): the equivalent diameter is d_e = 1.05 s = 1.05 (5) = 5.25; the area ratio is R_a = A_g / a = 5.94 ft (printed unit; pier area) / (5.25 ft)^2 = 0.27; q = gamma H = 125 pcf (20 ft) = 2,500 psf. The top-of-pier stress from Eq. 5-12 with n_s = 6 is q_g = 2,500 psf [6 / (6(0.27) - 0.27 + 1)] = 6,383 psf. The upper zone settlement from Eq. 5-13 with k_g = 65 pci is s_uz = 6,383 psf / [(65 pci)(144 in2/ft2)] = 0.68 inches. The clay is underlain by rock, so this is the settlement worked in the example, compared with 22 inches unimproved.",
+      "key_points": [
+        "d_e = 1.05 s = 5.25 ft for s = 5 ft (p. 5-47).",
+        "R_a = 0.27 (p. 5-47).",
+        "q_g = 6,383 psf with n_s = 6 (p. 5-47).",
+        "s_uz = 0.68 inches with k_g = 65 pci (p. 5-47)."
+      ],
+      "equations": [
+        "R_a = A_g / a = 5.94 / (5.25)^2 = 0.27 (p. 5-47); area ratio in the example",
+        "d_e = 1.05 s = 1.05 (5) = 5.25 (p. 5-47); equivalent unit cell diameter for the example grid"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applying Eqs. 5-12 and 5-13 to an embankment."
+    },
+    {
+      "section_id": "5.4.3.2",
+      "title": "Stone Columns",
+      "summary": "Design example for an embankment on soft clay over dense sand improved with stone columns, using the Priebe curve settlement ratio (pp. 5-47 to 5-49).",
+      "body": "The second design example determines the settlement of an embankment over soft clay underlain by dense sand when supported on stone columns (pp. 5-47 to 5-49). It covers the problem statement, the unimproved settlement and the settlement with stone columns using the Priebe curve.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Worked example of stone column settlement."
+    },
+    {
+      "section_id": "5.4.3.2.1",
+      "title": "Problem",
+      "summary": "Example 2: 15 ft embankment (gamma 125 pcf, 40 ft crest, 2H:1V slopes) on 50 ft soft clay (gamma_sat 120 pcf, e_o 0.6, c_c 0.2) over dense sand (N1_60 = 48); columns 3.0 ft diameter at 5.7 ft spacing; no settlement of the sand (pp. 5-47 to 5-48).",
+      "body": "A new embankment is to be built over a soft clay layer underlain by dense sand with an average N1_60 = 48 (p. 5-47). Figure 5-26 shows a 15 ft high embankment with gamma = 125 pcf, a 40 ft crest and 2:1 slopes, on 50 ft of soft clay (gamma_sat = 120 pcf, e_o = 0.6, c_c = 0.2) with the water table at the ground surface (p. 5-48). The task is to determine the total settlement after construction. The column spacing is 5.7 feet and the diameter 3.0 feet. No settlement of the dense sand is assumed.",
+      "key_points": [
+        "Embankment 15 ft; clay 50 ft, c_c 0.2, e_o 0.6 (p. 5-48).",
+        "Column spacing 5.7 ft, diameter 3.0 ft (p. 5-48)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-26: Example problem 2 geometry and soils."
+      ],
+      "tables": [],
+      "applicability": "Input data for the stone column example."
+    },
+    {
+      "section_id": "5.4.3.2.2",
+      "title": "Total Settlement Magnitude without Ground Improvement",
+      "summary": "Example 2 without improvement: p_o = 25 ft (120 - 62.4 pcf) = 1,440 psf, q = 125 x 15 = 1,875 psf, S = 0.2 [1/(1+0.6)] (50) log[(1,440+1,875)/1,440] = 2.26 ft = 27 inches (p. 5-48).",
+      "body": "Without ground improvement (p. 5-48): p_o = z (gamma_sat - gamma_w) = 25 ft (120 pcf - 62.4 pcf) = 1,440 psf; q = gamma H = 125 pcf (15 ft) = 1,875 psf; and S = c_c [1/(1 + e_o)] H log[(P_o + dq)/P_o] = 0.2 [1/(1 + 0.6)] (50) log[(1,440 + 1,875)/1,440] = 2.26 ft = 27 inches.",
+      "key_points": [
+        "p_o = 1,440 psf; q = 1,875 psf (p. 5-48).",
+        "Unimproved settlement 2.26 ft = 27 inches (p. 5-48)."
+      ],
+      "equations": [
+        "S = 0.2 [1/(1 + 0.6)] (50) log[(1,440 + 1,875)/1,440] = 2.26 ft = 27 inches (p. 5-48); unimproved consolidation settlement"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Baseline settlement for the stone column example."
+    },
+    {
+      "section_id": "5.4.3.2.3",
+      "title": "Settlement Magnitude with Stone Columns",
+      "summary": "Example 2 with stone columns: A/A_sc = (5.7)^2/(3.0)^2 = 3.6; the Priebe curve in Figure 5-27 gives a settlement ratio of 2.7, so the improved settlement is 10 inches (27/2.7) (pp. 5-48 to 5-49).",
+      "body": "With stone columns the area ratio is A/A_sc = (5.7)^2 / (3.0)^2 = 3.6 (p. 5-48). Using the Priebe curve in Figure 5-27 (after Wallays et al. 1983, the same chart as Figure 5-21 with the Priebe curve for phi = 37.5 degrees), the settlement ratio at A/A_sc = 3.6 is 2.7 (p. 5-49). The settlement of the embankment with stone column ground improvement is therefore 10 inches, i.e. the unimproved 27 inches divided by the settlement ratio. This is how the chapter applies the settlement improvement concept of Section 4.1.2.6: improved settlement = unimproved settlement / n.",
+      "key_points": [
+        "A/A_sc = (5.7)^2/(3.0)^2 = 3.6 (p. 5-48).",
+        "Settlement ratio from the Priebe curve = 2.7 (p. 5-49).",
+        "Improved settlement 10 inches versus 27 inches unimproved (p. 5-49)."
+      ],
+      "equations": [
+        "A / A_sc = (5.7)^2 / (3.0)^2 = 3.6 (p. 5-48); area improvement ratio used to enter the Priebe curve"
+      ],
+      "figures": [
+        "Figure 5-27: Example problem 2 settlement ratio determination."
+      ],
+      "tables": [],
+      "applicability": "Applying the Priebe settlement ratio to an embankment."
+    },
+    {
+      "section_id": "5.4.4",
+      "title": "Design Verification",
+      "summary": "Field verification by load tests and in situ tests must be specified: short-term, long-term and composite shear load tests; short-term tests to 150% of design load, 1 inch at 150-200% as acceptance; long-term group tests on 3 to 4 columns within 9 to 12; proof tests at 150-200%; modulus and bottom stabilization tests for rammed piers (pp. 5-49 to 5-51).",
+      "body": "A field verification program of load tests and in situ tests must be developed and specified regardless of contracting method (p. 5-49). Load tests before, during and after production verify design assumptions. Three types: (1) short-term tests for ultimate column bearing; (2) long-term tests for consolidation settlement; (3) horizontal or composite shear tests for composite strength for stability (p. 5-50). The short-term single column test is most common, run after construction pore pressures dissipate, with increments of about 10 percent of ultimate for slow loading or 20 to 25 percent for rapid loading, generally to 150% of design load; an acceptance criterion of 1 inch at 150 to 200 percent of design load is reasonable for columns supporting a structure. Mitchell (1981) reported area-load settlement 5 to 10 times the short-term single column test settlement, with little confirming data, so long-term tests on a minimum of three to four columns within a group of 9 to 12 at the proposed spacing are recommended, loaded over the tributary area until 90-95 percent consolidation. Proof tests during production apply 150 to 200 percent of the design load. CPT, DMT and PMT can measure lateral stress change, but long-term group tests are recommended instead (p. 5-51), with extensive in situ testing in the initial investigation. For rammed aggregate piers, a Modulus test and a Bottom Stabilization test are used for quality assurance (Collin 2007).",
+      "key_points": [
+        "Three load test types: short-term, long-term, composite shear (p. 5-49).",
+        "Short-term increments 10% (slow) or 20-25% (rapid) of ultimate; to 150% of design (p. 5-50).",
+        "Acceptance: 1 inch at 150-200% of design load for structure support (p. 5-50).",
+        "Long-term: 3 to 4 columns within a group of 9 to 12, to 90-95% consolidation (p. 5-50).",
+        "Proof tests at 150-200% of design load (p. 5-50)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Planning load tests to verify aggregate column design."
+    },
+    {
+      "section_id": "5.5.0",
+      "title": "Construction Specifications and Quality Assurance",
+      "summary": "Unless the agency has expertise with aggregate columns a performance specification is good practice; an experienced agency may use a method specification (p. 5-52).",
+      "body": "Like other specialty construction, unless the specifying agency has expertise in the design, construction and inspection of aggregate columns, it is good practice to specify the work under a performance type specification (p. 5-52). If the agency has the necessary experience with the technique, a method specification may be used. The section covers the performance specification, field inspection and improvement verification.",
+      "key_points": [
+        "Performance specification unless the agency has aggregate column expertise (p. 5-52)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Choosing the specification type for aggregate column work."
+    },
+    {
+      "section_id": "5.5.1",
+      "title": "Aggregate Column Performance Specification",
+      "summary": "A guide specification for aggregate columns was developed for GeoTechTools from 21 agency specifications (2 rammed piers only, 14 stone columns only, 5 both); its outline has Parts 1 General, 2 Equipment and Materials, 3 Execution, 4 Payment (pp. 5-52 to 5-53).",
+      "body": "As part of GeoTechTools, 21 specifications by state DOTs and other agencies were reviewed: two applied only to rammed aggregate piers, 14 only to stone columns and five to both (p. 5-52). They were used to develop the Guide Specification for Aggregate Columns, with commentary and instructions, available at GeoTechTools and applicable to both column types. Its outline: Part 1 General (1.01 Introduction, 1.02 Intent, 1.03 Standards and References, 1.04 Definitions, 1.05 Scope of Work, 1.06 Submittals, 1.07 Qualified Contractors, 1.08 Quality Assurance); Part 2 Equipment and Materials (2.01 Equipment, 2.02 Backfill Materials) (p. 5-53); Part 3 Execution (3.01 Site Inspection, 3.02 Aggregate Column Construction, 3.03 Performance Criteria, 3.04 Field Quality Assurance, 3.05 Rejection of Aggregate Columns, 3.06 Excavation of Column Tops and Utilities, 3.07 Subgrade Preparation, 3.08 Restrictions); Part 4 Payment (4.01 Method of Payment).",
+      "key_points": [
+        "Guide specification developed from 21 agency specifications (p. 5-52).",
+        "Four parts: General; Equipment and Materials; Execution; Payment (pp. 5-52 to 5-53)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Drafting an aggregate column performance specification."
+    },
+    {
+      "section_id": "5.5.2",
+      "title": "Field Inspection and Improvement Verification",
+      "summary": "Verification and detailed field inspection of aggregate column construction are very important but often neglected; thorough surveillance by Engineer and Contractor and good communication among all parties are essential (p. 5-53).",
+      "body": "Verification and detailed field inspection of aggregate column construction is a very important but often neglected aspect (p. 5-53). Thorough field surveillance by both the Engineer and the Contractor is essential, and good communication should be maintained at all times between inspection personnel, the Contractor, the Project Engineer and the Designer. Subsections cover stone columns, rammed aggregate columns and verification testing.",
+      "key_points": [
+        "Thorough field surveillance by Engineer and Contractor is essential (p. 5-53)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Organizing inspection of aggregate column construction."
+    },
+    {
+      "section_id": "5.5.2.1",
+      "title": "Stone Columns",
+      "summary": "Stone column QA: stone tests per 5,000 tons; stone consumption per 5 ft to estimate diameter; average diameter per 50 columns, none under 90% of minimum; verticality within 2 in. in 10 ft; free-standing amps plus 40; 100 ft acceptance zones; records; in situ tests between columns; ASTM D1143 load tests; location within 4 in. (pp. 5-53 to 5-55).",
+      "body": "A stone column QA program uses several methods (p. 5-53). Gradation, specific gravity, loose and compacted density tests are run on the stone at one test per 5,000 tons before construction. Column integrity depends on minimum diameter and compacted density; stone consumption (buckets of known weight or volume) is monitored with depth, and from loose and compacted densities the diameter can be estimated (FHWA 1983), with measurements at a maximum of 5-foot increments (p. 5-54). Decreased consumption may indicate caving or inadequate displacement. For any 50 consecutive columns the average diameter must meet the contract, and no column may be under 90% of the minimum diameter. No column axis should be inclined more than 2 inches in 10 feet. Each lift is re-penetrated to the specified amperage, as a minimum the vibrator free-standing current plus at least 40 amps. Large areas are divided into acceptance zones about 100 feet on a side. Records include column number, verticality, top and bottom elevations, buckets of stone, amperage with depth, times, obstructions and a digital log. Post-construction QA depends on application (p. 5-55): where densification is needed, SPT, CPT or PMT at central points between columns, with the same method before and after. In soft saturated clays, short-term load tests per ASTM D1143 after pore pressures dissipate, and longer-term tests over about one week on 3 to 4 columns within a group of 9 to 12 if settlement governs. No column should be more than 4 inches from its specified center. Post-installation gradation cannot be grounds for rejection under a method specification if other provisions were followed.",
+      "key_points": [
+        "Stone tests: one per 5,000 tons (p. 5-53).",
+        "Diameter from stone consumption at max 5-ft increments; none < 90% of minimum (p. 5-54).",
+        "Verticality: no more than 2 in. in 10 ft (p. 5-54).",
+        "Amperage: free-standing reading plus at least 40 amps (p. 5-54).",
+        "Acceptance zones about 100 ft on a side (p. 5-54).",
+        "Location tolerance 4 in. (p. 5-55)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Quality assurance of stone column construction."
+    },
+    {
+      "section_id": "5.5.2.2",
+      "title": "Rammed Aggregate Columns",
+      "summary": "Rammed aggregate pier QC/QA: Bottom Stabilization (BSTA) tests, DCP testing with a 15 blows per 1.75 in. threshold, modulus tests (one per small project, 2 to 4 on larger, about one per 1,000 piers), uplift tests per ASTM D3689, location within 4 in., and daily installation reports (pp. 5-55 to 5-57).",
+      "body": "A rammed aggregate pier QC/QA program uses several methods (p. 5-55). The QC representative coordinates layout and elevations, observes installation, checks aggregate moisture, tests production piers and implements corrective measures. The Bottom Stabilization test (BSTA) re-tamps the pier bottom to verify displacement is acceptable (Collin 2007); a pattern of successful tests reduces it to spot checks (Fox and Cowell 1998) (p. 5-56). The Dynamic Cone Penetrometer verifies densification in the top few feet; if average resistance consistently exceeds 15 blows and less than 10% of tests fall below 15 blows per 1.75 inches, testing may be reduced to spot checks. Modulus tests, based on ASTM D1143, verify the stiffness modulus: typically one per small project, two to four on larger projects, and as a general rule one per 1,000 piers (Collin 2007). Uplift tests per ASTM D3689 verify tension performance, often run with the modulus test. Each pier center should be within four inches of plan. Daily reports record location, length and drilled diameter, planned and actual elevations, number of lifts and tamping time, average lift thickness, soil conditions, groundwater, unusual conditions and equipment. QA includes monitoring load test piers and tests, DCP testing and daily installation. Post-installation gradation testing cannot be grounds for rejection under a method specification if other provisions were followed (p. 5-57).",
+      "key_points": [
+        "BSTA test verifies the stabilized pier bottom (p. 5-55).",
+        "DCP: average > 15 blows and < 10% below 15 blows per 1.75 in. allows spot checks (p. 5-56).",
+        "Modulus tests: 1 per small project, 2-4 on larger, ~1 per 1,000 piers (p. 5-56).",
+        "Pier center within 4 in. of plan (p. 5-56)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Quality control and assurance of rammed aggregate pier construction."
+    },
+    {
+      "section_id": "5.5.2.3",
+      "title": "Verification Testing",
+      "summary": "Verification testing differs for granular and cohesive soils; Table 5-1 (Esrig and Bachus 1991) ranks test suitability 1 to 5; small plate tests are fast but shallow, large plate tests use a plate equal to the column diameter, and zone loading tests apply up to 3 times design pressure over 4 to 9 columns (pp. 5-57 to 5-58).",
+      "body": "Testing of ground reinforced by aggregate columns should address the different response of granular and cohesive soils (p. 5-57). In situ tests suit soils where densification is expected; load tests suit those and mixed and cohesive profiles. Table 5-1 (Esrig and Bachus 1991) ranks suitability from 1 (least) to 5 (most), granular/cohesive: dynamic cone 2/1; mechanical cone 3/1; electric cone 4/2 (best test for seismic liquefaction evaluation); boreholes + SPT 3/2; dilatometer 3/1; pressuremeter 3/1; small plate load test 1/1; large plate load test 2/2; zone loading 4/4 (best for realistic comparison with foundations); full-scale 5/5 (rare). Short duration tests on 2-foot diameter metal plates are most common in Great Britain for speed and cost but stress only shallow depths and can be misread, particularly with residual pore pressures (pp. 5-57 to 5-58); in the United States large plate tests with the plate equal to the column diameter are typically used. Zone loading or dummy footing tests apply up to 3 times the design bearing pressure over a group of typically 4 to 9 columns, at significant expense. The loaded area must be large enough to stress the critical layer, normally the weakest cohesive layer of significant thickness, which governs the allowable load (p. 5-58).",
+      "key_points": [
+        "Table 5-1 ranks tests 1 (least) to 5 (most suitable) (p. 5-57).",
+        "Electric cone 4 granular / 2 cohesive: best test for liquefaction evaluation (p. 5-57).",
+        "Zone loading 4/4: best realistic comparison with foundations (p. 5-57).",
+        "Zone load tests: up to 3x design pressure over 4 to 9 columns (p. 5-58).",
+        "Load must stress the critical (weakest significant cohesive) layer (p. 5-58)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 5-1: Suitability for Testing Aggregate Columns"
+      ],
+      "applicability": "Selecting verification tests for aggregate column reinforced ground."
+    },
+    {
+      "section_id": "5.6.0",
+      "title": "Cost Data",
+      "summary": "Budget estimate guidance: aggregate columns are paid per lineal foot; Table 5-2 Unit Costs (2007-2010 DOT bid tabs) gives $20-60/LF (typically $20-40), mobilization $20,000-100,000 per rig, geosynthetic $1.00-3.50/SY and granular fill $7-20/ton; loads are spread at 45 degrees to size the treatment area (pp. 5-59 to 5-61).",
+      "body": "Section 6.0 gives guidelines for budget estimates of aggregate column feasibility (p. 5-59). Price depends on labor, stone price and availability, weather and environment, so experienced contractors should be contacted to verify budget and feasibility. Costs are typically a bid item measured by the lineal foot (LF) including material, equipment, labor and incidentals, with mobilization possibly paid separately. Table 5-2, Unit Costs (p. 5-60), from state DOT bid tabs 2007 through 2010: aggregate columns, greater than 1,000 LF, $20.00 to $60.00 per LF (typical $20 to $40); mobilization, 1 rig, $20,000 to $100,000 (high price for moderate depth rigs $40,000; increases beyond 500 miles; phased work may need multiple mobilizations); embankment, greater than 5,000 CY, use agency data; working platform geosynthetic, greater than 5,000 SY, $1.00 to $3.50; granular fill material, greater than 2,500 tons, $7.00 to $20.00. A working platform is often required and should be included when comparing technologies. The treatment area should consider loads transmitted on a 45-degree angle around the treatment zone perimeter, which extends the area to improve (p. 5-61). A preliminary budget spreadsheet is at GeoTechTools.",
+      "key_points": [
+        "Aggregate columns $20-$60 per LF; typical $20-$40 (Table 5-2, p. 5-60).",
+        "Mobilization $20,000-$100,000 per rig (Table 5-2, p. 5-60).",
+        "Working platform geosynthetic $1.00-$3.50/SY; granular fill $7-$20/ton (p. 5-60).",
+        "Cost data from DOT bid tabs 2007-2010 (p. 5-60).",
+        "Spread loads at 45 degrees around the treatment perimeter (p. 5-61)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 5-2: Unit Costs"
+      ],
+      "applicability": "Preliminary budget estimates for aggregate columns."
+    },
+    {
+      "section_id": "5.7.0",
+      "title": "Case Histories",
+      "summary": "Representative transportation case histories illustrating rammed aggregate pier and stone column applications: piers under MSE walls at an interchange and stone columns stabilizing a highway slope (p. 5-62).",
+      "body": "Section 7.0 presents representative case histories of transportation-related construction projects to illustrate the application of rammed aggregate pier and stone column technologies (p. 5-62): rammed aggregate piers under MSE walls at a highway interchange, and stone columns for slope stabilization along a state highway.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Examples of aggregate column use on transportation projects."
+    },
+    {
+      "section_id": "5.7.1",
+      "title": "Rammed Aggregate Piers Case History",
+      "summary": "The manual's case history of rammed aggregate piers supporting MSE walls at a highway interchange, constructed in 2006, with subsurface conditions, construction, cost and measured performance (pp. 5-62 to 5-64).",
+      "body": "This is the manual's rammed aggregate pier case history (pp. 5-62 to 5-64): ground improvement with rammed aggregate piers for several MSE walls at a highway interchange, the first MSE wall application on rammed aggregate piers monitored and instrumented by an FHWA field office. Its subsections give the basic information, project summary, subsurface conditions, technology, construction process, cost and solution.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Case history of rammed aggregate piers under MSE walls."
+    },
+    {
+      "section_id": "5.7.1.1",
+      "title": "Basic Information",
+      "summary": "Basic information for the manual's rammed aggregate pier case history: a highway interchange project for a state DOT, with its engineers and contractor, constructed in 2006 (p. 5-62).",
+      "body": "The printed basic information (p. 5-62) lists the project name and location, the owner (a state department of transportation), the geotechnical and structural engineers, the contractor and the year constructed, 2006. Names of the project, place and firms are omitted here.",
+      "key_points": [
+        "Year constructed: 2006 (p. 5-62)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Context of the rammed aggregate pier case history."
+    },
+    {
+      "section_id": "5.7.1.2",
+      "title": "Project Summary",
+      "summary": "Rammed aggregate piers supported several MSE walls at a highway interchange; this was the first MSE wall application on rammed aggregate piers monitored and instrumented by an FHWA field office; the instrumented wall was up to 27 ft high (p. 5-62).",
+      "body": "The project consisted of ground improvement for support of several MSE walls at a highway interchange (p. 5-62). It was the first MSE wall application supported by rammed aggregate piers that was monitored and instrumented by an FHWA field office. The instrumented MSE wall had a maximum height of 27 feet.",
+      "key_points": [
+        "Instrumented MSE wall up to 27 ft high (p. 5-62)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Scope of the rammed aggregate pier case history."
+    },
+    {
+      "section_id": "5.7.1.2.1",
+      "title": "Subsurface Conditions",
+      "summary": "Soft to medium stiff clay to 30 ft, sandy silt to silty sand from 30 to 40 ft, and sand to silty sand to the maximum explored depth of 60 ft (p. 5-62).",
+      "body": "The soil consisted of soft to medium stiff clay to 30 feet below ground surface, underlain by sandy silt to silty sand from 30 to 40 feet, over sand to silty sand to the maximum explored depth of 60 feet (p. 5-62).",
+      "key_points": [
+        "Soft to medium stiff clay to 30 ft (p. 5-62)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Ground conditions in the rammed aggregate pier case history."
+    },
+    {
+      "section_id": "5.7.1.2.2",
+      "title": "Technology Used",
+      "summary": "Rammed aggregate piers saved 20 to 50% compared with deep foundation alternatives, allow spoil inspection, replace over-excavation or deep foundations, and allowed bearing pressures up to 10,000 psf (pp. 5-62 to 5-63).",
+      "body": "Rammed aggregate piers were a cost-effective solution, saving 20 to 50% compared with traditional deep foundation alternatives (p. 5-62). The method allows visible inspection of spoils and response to changing ground conditions, and is an effective replacement for massive over-excavation and replacement or for driven piles, drilled shafts or auger cast-in-place piles. The piers are formed by direct vertical ramming of successive lifts of high quality crushed rock into high stiffness elements; ramming also increases lateral stress and improves the surrounding soil (p. 5-63), giving settlement control and higher design bearing pressure, up to 10,000 psf.",
+      "key_points": [
+        "Savings of 20 to 50% versus deep foundations (p. 5-62).",
+        "Bearing pressure up to 10,000 psf (p. 5-63)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Why rammed aggregate piers were selected in the case history."
+    },
+    {
+      "section_id": "5.7.1.2.3",
+      "title": "The Construction Process",
+      "summary": "Installation by pre-augering a cavity (normally 5 to 30 ft deep) and ramming lifts of aggregate with a beveled tamper that densifies vertically and forces aggregate laterally into the sidewalls (p. 5-63).",
+      "body": "Installation uses pre-augering and vertical impact ramming energy (p. 5-63). A cavity is first drilled, normally about five to 30 feet deep depending on design; pre-drilling lets the soil between borings be seen. Aggregate is placed in lifts (Figure 5-28) and each lift is rammed with a patented beveled tamper, densifying the aggregate vertically and forcing it laterally into the cavity sidewalls, giving coupling with the surrounding soil and reliable settlement control.",
+      "key_points": [
+        "Drill depths normally about 5 to 30 ft (p. 5-63)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-28: Rammed aggregate pier installation."
+      ],
+      "tables": [],
+      "applicability": "Construction sequence in the rammed aggregate pier case history."
+    },
+    {
+      "section_id": "5.7.1.2.4",
+      "title": "Cost Information",
+      "summary": "Cost information for the manual's rammed aggregate pier case history supporting MSE walls: the printed total contract value of the project was $751,946 (p. 5-64).",
+      "body": "The printed cost information for the case history is a total contract value of $751,946 (p. 5-64).",
+      "key_points": [
+        "Total contract value $751,946 (p. 5-64)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Cost scale of the rammed aggregate pier case history."
+    },
+    {
+      "section_id": "5.7.1.2.5",
+      "title": "Solution",
+      "summary": "1,411 rammed aggregate piers at 4 to 9 ft centers under walls 14 ft or higher raised bearing and global stability factors of safety above 2.0 and 1.3; base displacement under 1.5 in.; modulus test 0.69 in. at over 22,000 psf, more than twice the design stiffness (p. 5-64).",
+      "body": "A total of 1,411 rammed aggregate piers at spacings of four to nine feet on center were installed beneath wall heights of 14 feet or greater (p. 5-64, Figure 5-29). The factors of safety for bearing resistance and global stability were increased to greater than 2.0 and 1.3 respectively, and the piers allowed rapid pore pressure dissipation by radial drainage. Horizontal displacement at the wall base was measured at less than one and a half inches. The modulus test showed a total movement of 0.69 inches at a stress of more than 22,000 psf, indicating a pier stiffness greater than twice the assumed design value.",
+      "key_points": [
+        "1,411 piers at 4 to 9 ft centers (p. 5-64).",
+        "FS bearing > 2.0, global stability > 1.3 (p. 5-64).",
+        "Modulus test: 0.69 in. at > 22,000 psf (p. 5-64)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-29: Completed MSE wall supported on rammed aggregate piers."
+      ],
+      "tables": [],
+      "applicability": "Outcome of the rammed aggregate pier case history."
+    },
+    {
+      "section_id": "5.7.2",
+      "title": "Stone Columns Case History",
+      "summary": "The manual's case history of dry bottom feed stone columns used in 1987 to stabilize a moving slope along a state highway, with ground conditions and monitored movement (pp. 5-65 to 5-66).",
+      "body": "This is the manual's stone column case history (pp. 5-65 to 5-66): dry bottom feed stone columns used to stabilize a moving slope along a state highway, documented by Sung and Ramsey (1988). Subsections give basic information, resources, and the project summary with subsurface conditions, technology, construction and performance monitoring.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Case history of stone columns for slope stabilization."
+    },
+    {
+      "section_id": "5.7.2.1",
+      "title": "Basic Information",
+      "summary": "Basic information for the manual's stone column case history: a slope stabilization along a state highway, constructed in 1987, with project name and location given in the print (p. 5-65).",
+      "body": "The printed basic information (p. 5-65) gives the project name and location (a state highway) and the year constructed, 1987. Project and place names are omitted here.",
+      "key_points": [
+        "Year constructed: 1987 (p. 5-65)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Context of the stone column case history."
+    },
+    {
+      "section_id": "5.7.2.2",
+      "title": "Resources",
+      "summary": "The source for the stone column case history is Sung and Ramsey (1988), a state DOT soil mechanics bureau report on slope stabilization by stone columns (p. 5-65).",
+      "body": "The resource for the case history is Sung, J.T. and Ramsey, I.S. (1988), a report on slope stabilization by stone columns prepared by the Soil Mechanics Bureau of a state department of transportation (p. 5-65).",
+      "key_points": [
+        "Source: Sung and Ramsey (1988) (p. 5-65)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Where to read more on the stone column case history."
+    },
+    {
+      "section_id": "5.7.2.3",
+      "title": "Project Summary",
+      "summary": "Project summary of the manual's stone column case history: stone columns were used to stabilize a 220 ft long moving slope along a state highway (p. 5-65).",
+      "body": "Stone columns were used to stabilize a 220 foot long slope along a state highway (p. 5-65).",
+      "key_points": [
+        "Slope length 220 ft (p. 5-65)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Scope of the stone column case history."
+    },
+    {
+      "section_id": "5.7.2.3.1",
+      "title": "Subsurface Conditions",
+      "summary": "A three meter silty clay layer over 10 to 20 ft of overconsolidated soft silty clay, underlain by silty gravel with artesian groundwater; clay liquidity index 1.0 and activity 0.5 (p. 5-65).",
+      "body": "The profile was a three meter thick layer of silty clay overlying a 10- to 20-foot layer of overconsolidated, soft silty clay, underlain by silty gravel in which artesian groundwater was encountered (p. 5-65). The liquidity index and activity of the clay were 1.0 and 0.5, respectively.",
+      "key_points": [
+        "Artesian groundwater in the underlying silty gravel (p. 5-65).",
+        "Clay liquidity index 1.0, activity 0.5 (p. 5-65)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Ground conditions in the stone column case history."
+    },
+    {
+      "section_id": "5.7.2.3.2",
+      "title": "Technology Used",
+      "summary": "A stabilizing berm, shear key and stone columns were considered; dry bottom feed stone columns were the most technically feasible, environmentally acceptable and economic solution (p. 5-65).",
+      "body": "A stabilizing berm, a shear key and stone columns were considered (p. 5-65). A berm would need additional right-of-way in a wetland, and a shear key extensive excavation. Stone columns installed by the dry bottom feed method were found to be the most technically feasible, environmentally acceptable and economic solution.",
+      "key_points": [
+        "Dry bottom feed stone columns chosen over a berm or shear key (p. 5-65)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selection of stone columns for slope stabilization."
+    },
+    {
+      "section_id": "5.7.2.3.3",
+      "title": "The Construction Process",
+      "summary": "Stone columns were installed through the soft clays into the gravel to intercept the slip plane near the gravel/clay interface at 16 ft depth (pp. 5-65 to 5-66).",
+      "body": "The stone columns were installed through the soft clays into the gravel layer to intercept the slip plane near the gravel/clay interface at a depth of 16 feet (p. 5-65). A photograph of installation is shown in Figure 5-30 (p. 5-66).",
+      "key_points": [
+        "Columns intercept the slip plane at 16 ft depth (p. 5-65)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-30: Stone column installation."
+      ],
+      "tables": [],
+      "applicability": "Installation in the stone column case history."
+    },
+    {
+      "section_id": "5.7.2.3.4",
+      "title": "Performance Monitoring",
+      "summary": "Slope movement of about 1/32 inch per day before construction; total movement of 1/8 inch during installation; little to no additional movement eight years after completion (p. 5-66).",
+      "body": "Before construction the slope moved approximately 1/32 inch per day (p. 5-66). During installation the total movement was 1/8 inch. Eight years after completion little to no additional movement had been recorded.",
+      "key_points": [
+        "Pre-construction movement about 1/32 in./day (p. 5-66).",
+        "Little to no movement eight years later (p. 5-66)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Performance of stone columns for slope stabilization."
+    },
+    {
+      "section_id": "5.8.0",
+      "title": "References",
+      "summary": "Reference list for Chapter 5: FHWA and HITEC reports, ASCE special publications, journal papers and conference proceedings on stone columns, rammed aggregate piers and liquefaction (pp. 5-67 to 5-68).",
+      "body": "The chapter's reference list (pp. 5-67 to 5-68) cites FHWA and HITEC reports, ASCE geotechnical special publications, journal papers, a textbook and conference proceedings on stone columns, rammed aggregate piers, settlement, slope stability and liquefaction. Examples include FHWA (1983), Barksdale and Bachus; Collin (2007); Priebe (1995); Han (2015); Seed et al. (1985); and Wallays et al. (1983).",
+      "key_points": [
+        "Key sources: FHWA (1983); Collin (2007); Priebe (1995); Han (2015) (pp. 5-67 to 5-68)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Finding the published sources behind Chapter 5."
     }
-  ],
-  "volume": 1
+  ]
 }

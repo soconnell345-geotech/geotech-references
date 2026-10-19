@@ -38,7 +38,7 @@
       "summary": "Apply Section 3-1 for concrete frame/wall/precast systems; the strength reduction factor for tie rebar in TENSION is Phi=0.75 (ACI 318 strut-and-tie); ACI 318 structural-integrity requirements must ALSO be met, taking the more stringent of the two codes wherever they overlap.",
       "body": "Apply the Tie Force requirements in Section 3-1, when applicable, for concrete frame and load-bearing wall structural systems, mixed systems with concrete elements, and framed/load-bearing wall systems with precast concrete floors. The strength reduction factor Phi for properly anchored, embedded, or spliced steel reinforcement in tension shall be taken as 0.75 (based on ACI 318 strut-and-tie models). The structural integrity requirements of ACI 318 for cast-in-place and precast concrete construction must be satisfied, as well as the Tie Force requirements in this document. Use the largest/most stringent requirement where ACI 318 and this UFC overlap.",
       "key_points": ["Phi=0.75 for tie rebar in tension (ACI 318 strut-and-tie basis)", "ACI 318 structural-integrity provisions apply IN ADDITION to Section 3-1's Tie Force requirements", "Reproduced in Appendix D: As=Ru/(0.75*1.25*fy)"],
-      "equations": [{"id": "n/a", "description": "Phi=0.75 for RC tie rebar in tension", "implemented_in": "ufc_collapse.reinforced_concrete.tie_rebar_phi"}],
+      "equations": [{"id": "n/a", "description": "Phi=0.75 for RC tie rebar in tension", "implemented_in": "geotech_references.ufc_collapse.reinforced_concrete.tie_rebar_phi"}],
       "figures": [], "tables": [],
       "applicability": "The RC-specific Phi factor used with every tie_forces.py equation for concrete construction."
     },
@@ -62,14 +62,14 @@
         "Per Table 3-4 Footnote A: RC beam-column joints are force-controlled, but the m-factor applied for the joint's Omega_LD comes from the adjacent beam hinge"
       ],
       "equations": [
-        {"id": "n/a", "description": "Table 4-1: RC beam nonlinear modeling (flexure)", "implemented_in": "ufc_collapse.reinforced_concrete.table_4_1_beam_flexure_modeling"},
-        {"id": "n/a", "description": "Table 4-1: RC beam nonlinear modeling (shear/development/embedment)", "implemented_in": "ufc_collapse.reinforced_concrete.table_4_1_beam_other_modeling"},
-        {"id": "n/a", "description": "Table 4-2: RC beam linear m-factors (flexure)", "implemented_in": "ufc_collapse.reinforced_concrete.table_4_2_beam_flexure_mfactor"},
-        {"id": "n/a", "description": "Table 4-2: RC beam linear m-factors (shear/development/embedment)", "implemented_in": "ufc_collapse.reinforced_concrete.table_4_2_beam_other_mfactor"},
-        {"id": "n/a", "description": "Table 4-3: two-way slab nonlinear modeling (flexure)", "implemented_in": "ufc_collapse.reinforced_concrete.table_4_3_slab_flexure_modeling"},
-        {"id": "n/a", "description": "Table 4-3: two-way slab nonlinear modeling (development/embedment)", "implemented_in": "ufc_collapse.reinforced_concrete.table_4_3_slab_other_modeling"},
-        {"id": "n/a", "description": "Table 4-4: two-way slab linear m-factors (flexure)", "implemented_in": "ufc_collapse.reinforced_concrete.table_4_4_slab_flexure_mfactor"},
-        {"id": "n/a", "description": "Table 4-4: two-way slab linear m-factors (development/embedment)", "implemented_in": "ufc_collapse.reinforced_concrete.table_4_4_slab_other_mfactor"}
+        {"id": "n/a", "description": "Table 4-1: RC beam nonlinear modeling (flexure)", "implemented_in": "geotech_references.ufc_collapse.reinforced_concrete.table_4_1_beam_flexure_modeling"},
+        {"id": "n/a", "description": "Table 4-1: RC beam nonlinear modeling (shear/development/embedment)", "implemented_in": "geotech_references.ufc_collapse.reinforced_concrete.table_4_1_beam_other_modeling"},
+        {"id": "n/a", "description": "Table 4-2: RC beam linear m-factors (flexure)", "implemented_in": "geotech_references.ufc_collapse.reinforced_concrete.table_4_2_beam_flexure_mfactor"},
+        {"id": "n/a", "description": "Table 4-2: RC beam linear m-factors (shear/development/embedment)", "implemented_in": "geotech_references.ufc_collapse.reinforced_concrete.table_4_2_beam_other_mfactor"},
+        {"id": "n/a", "description": "Table 4-3: two-way slab nonlinear modeling (flexure)", "implemented_in": "geotech_references.ufc_collapse.reinforced_concrete.table_4_3_slab_flexure_modeling"},
+        {"id": "n/a", "description": "Table 4-3: two-way slab nonlinear modeling (development/embedment)", "implemented_in": "geotech_references.ufc_collapse.reinforced_concrete.table_4_3_slab_other_modeling"},
+        {"id": "n/a", "description": "Table 4-4: two-way slab linear m-factors (flexure)", "implemented_in": "geotech_references.ufc_collapse.reinforced_concrete.table_4_4_slab_flexure_mfactor"},
+        {"id": "n/a", "description": "Table 4-4: two-way slab linear m-factors (development/embedment)", "implemented_in": "geotech_references.ufc_collapse.reinforced_concrete.table_4_4_slab_other_mfactor"}
       ],
       "figures": [],
       "tables": [

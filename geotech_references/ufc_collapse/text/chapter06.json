@@ -20,7 +20,7 @@
       "summary": "Lower-bound-to-expected-strength over-strength factors for masonry come from ASCE 41 Table 11-1, not reprinted in this UFC.",
       "body": "Apply the appropriate over-strength factors to the calculation of the design strengths for both Tie Forces and the Alternate Path method. The over-strength factors are provided in ASCE 41 Table 11-1, Factors to Translate Lower-Bound Masonry Properties to Expected Strength Masonry Properties.",
       "key_points": ["Over-strength source: ASCE 41 Table 11-1"],
-      "equations": [{"id": "n/a", "description": "Material-property source pointer", "implemented_in": "ufc_collapse.masonry_wood_cfs.masonry_material_code_references"}],
+      "equations": [{"id": "n/a", "description": "Material-property source pointer", "implemented_in": "geotech_references.ufc_collapse.masonry_wood_cfs.masonry_material_code_references"}],
       "figures": [], "tables": [],
       "applicability": "Feeds QCE determination for masonry Tie Force and Alternate Path calculations."
     },
@@ -30,7 +30,7 @@
       "summary": "The strength reduction factor Phi for masonry comes from ACI 530, by component and limit state.",
       "body": "For Tie Force and Alternate Path methods, use the appropriate strength reduction factor specified in ACI 530 Building Code Requirements for Masonry Structures for the component and behavior under consideration. If masonry components can be proven capable of carrying the required tie strengths while undergoing 0.20-rad rotation, use the appropriate Phi for each limit state considered.",
       "key_points": ["Phi source: ACI 530"],
-      "equations": [{"id": "n/a", "description": "Phi source pointer", "implemented_in": "ufc_collapse.masonry_wood_cfs.masonry_material_code_references"}],
+      "equations": [{"id": "n/a", "description": "Phi source pointer", "implemented_in": "geotech_references.ufc_collapse.masonry_wood_cfs.masonry_material_code_references"}],
       "figures": [], "tables": [],
       "applicability": "General Phi-factor pointer for masonry."
     },
@@ -49,7 +49,7 @@
       "summary": "General procedure per Section 3-2 (6-4.1); modeling/acceptance criteria are the ASCE 41 Chapter 11 Life-Safety values, unmodified by this UFC (6-4.2).",
       "body": "General (6-4.1): use the Alternate Path method in Section 3-2, where applicable, to verify that the structure can bridge over removed elements. Modeling and Acceptance Criteria (6-4.2): use the modeling parameters, nonlinear acceptance criteria and linear m-factors for the Life Safety condition from ASCE 41 Chapter 11 for primary and secondary components; use ASCE 41's modeling parameters and guidance for the analytical model.",
       "key_points": ["Masonry is the ONLY material chapter (besides wood/CFS) that does NOT replace any ASCE 41 acceptance-criteria table -- ASCE 41 Chapter 11 Life-Safety values apply directly"],
-      "equations": [{"id": "n/a", "description": "Modeling/acceptance-criteria source pointer", "implemented_in": "ufc_collapse.masonry_wood_cfs.masonry_alternate_path_modeling_source"}],
+      "equations": [{"id": "n/a", "description": "Modeling/acceptance-criteria source pointer", "implemented_in": "geotech_references.ufc_collapse.masonry_wood_cfs.masonry_alternate_path_modeling_source"}],
       "figures": [], "tables": [],
       "applicability": "The masonry-specific application of the general Alternate Path method."
     },

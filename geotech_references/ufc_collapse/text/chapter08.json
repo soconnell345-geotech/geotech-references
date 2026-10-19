@@ -20,7 +20,7 @@
       "summary": "ASCE 41 provides default expected-strength values for light-metal-framing shear walls; when a default LOWER-bound value is needed, multiply the expected-strength value by 0.85 -- the same rule and factor as wood (Section 7-1).",
       "body": "ASCE 41 provides default expected strength values for light metal framing shear walls. When default lower bound strength values are needed, multiply the expected strength values by 0.85.",
       "key_points": ["Lower-bound = 0.85 x expected strength (same rule as wood, Section 7-1)"],
-      "equations": [{"id": "n/a", "description": "CFS default lower-bound factor = 0.85", "implemented_in": "ufc_collapse.masonry_wood_cfs.cold_formed_steel_default_lower_bound_factor"}],
+      "equations": [{"id": "n/a", "description": "CFS default lower-bound factor = 0.85", "implemented_in": "geotech_references.ufc_collapse.masonry_wood_cfs.cold_formed_steel_default_lower_bound_factor"}],
       "figures": [], "tables": [],
       "applicability": "Feeds QCE/QCL determination for cold-formed steel Tie Force and Alternate Path calculations."
     },
@@ -30,7 +30,7 @@
       "summary": "Phi comes from the AISI/COS/NASPEC North American Specification for the Design of Cold-Formed Steel Structural Members.",
       "body": "For Tie Force and Alternate Path methods, use the appropriate strength reduction factor specified in AISI/COS/NASPEC AISI Standard North American Specification for the Design of Cold-Formed Steel Structural Members for the component and behavior under consideration. If cold formed steel components can be proven capable of carrying the required tie strengths while undergoing 0.20-rad rotation, use the appropriate Phi for each limit state considered.",
       "key_points": ["Phi source: AISI/COS/NASPEC North American Specification"],
-      "equations": [{"id": "n/a", "description": "Phi source pointer", "implemented_in": "ufc_collapse.masonry_wood_cfs.cold_formed_steel_material_code_references"}],
+      "equations": [{"id": "n/a", "description": "Phi source pointer", "implemented_in": "geotech_references.ufc_collapse.masonry_wood_cfs.cold_formed_steel_material_code_references"}],
       "figures": [], "tables": [],
       "applicability": "General Phi-factor pointer for cold-formed steel."
     },
@@ -49,7 +49,7 @@
       "summary": "General procedure per Section 3-2 (8-4.1); modeling/acceptance criteria are the ASCE 41 Chapter 12 Life-Safety values, unmodified by this UFC (8-4.2) -- identical structure to wood's Chapter 12 pointer.",
       "body": "General (8-4.1): use the Alternate Path method in Section 3-2, where applicable, to verify that the structure can bridge over removed elements. Modeling and Acceptance Criteria (8-4.2): use the modeling parameters, nonlinear acceptance criteria and linear m-factors for the Life Safety condition from ASCE 41 Chapter 12 for primary and secondary components; use ASCE 41's modeling parameters and guidance for the analytical model.",
       "key_points": ["No UFC-specific replacement tables -- ASCE 41 Chapter 12 Life-Safety values apply directly (same source chapter as wood)"],
-      "equations": [{"id": "n/a", "description": "Modeling/acceptance-criteria source pointer", "implemented_in": "ufc_collapse.masonry_wood_cfs.cold_formed_steel_alternate_path_modeling_source"}],
+      "equations": [{"id": "n/a", "description": "Modeling/acceptance-criteria source pointer", "implemented_in": "geotech_references.ufc_collapse.masonry_wood_cfs.cold_formed_steel_alternate_path_modeling_source"}],
       "figures": [], "tables": [],
       "applicability": "The cold-formed-steel-specific application of the general Alternate Path method, validated by Appendix G."
     },

@@ -62,13 +62,13 @@
         "Tables 5-1/5-2 (this UFC's own) replace ASCE 41 Tables 9-5/9-6/9-7 for the listed FR/PR connection types"
       ],
       "equations": [
-        {"id": "n/a", "description": "Column P/PCL force-/deformation-controlled classification", "implemented_in": "ufc_collapse.structural_steel.column_axial_classification"},
-        {"id": "n/a", "description": "Table 5-1: FR connection linear m-factors (function of beam depth d)", "implemented_in": "ufc_collapse.structural_steel.table_5_1_fr_connection_mfactor"},
-        {"id": "n/a", "description": "Table 5-1: PR (relatively stiff) connection linear m-factors", "implemented_in": "ufc_collapse.structural_steel.table_5_1_pr_stiff_connection_mfactor"},
-        {"id": "n/a", "description": "Table 5-1: PR (flexible) connection linear m-factors (function of bolt-group depth dbg)", "implemented_in": "ufc_collapse.structural_steel.table_5_1_pr_flexible_connection_mfactor"},
-        {"id": "n/a", "description": "Table 5-2: FR connection nonlinear modeling parameters (function of beam depth d)", "implemented_in": "ufc_collapse.structural_steel.table_5_2_fr_connection_modeling"},
-        {"id": "n/a", "description": "Table 5-2: PR (relatively stiff) connection nonlinear modeling parameters", "implemented_in": "ufc_collapse.structural_steel.table_5_2_pr_stiff_connection_modeling"},
-        {"id": "n/a", "description": "Table 5-2: PR (flexible) connection nonlinear modeling parameters (function of bolt-group depth dbg)", "implemented_in": "ufc_collapse.structural_steel.table_5_2_pr_flexible_connection_modeling"}
+        {"id": "n/a", "description": "Column P/PCL force-/deformation-controlled classification", "implemented_in": "geotech_references.ufc_collapse.structural_steel.column_axial_classification"},
+        {"id": "n/a", "description": "Table 5-1: FR connection linear m-factors (function of beam depth d)", "implemented_in": "geotech_references.ufc_collapse.structural_steel.table_5_1_fr_connection_mfactor"},
+        {"id": "n/a", "description": "Table 5-1: PR (relatively stiff) connection linear m-factors", "implemented_in": "geotech_references.ufc_collapse.structural_steel.table_5_1_pr_stiff_connection_mfactor"},
+        {"id": "n/a", "description": "Table 5-1: PR (flexible) connection linear m-factors (function of bolt-group depth dbg)", "implemented_in": "geotech_references.ufc_collapse.structural_steel.table_5_1_pr_flexible_connection_mfactor"},
+        {"id": "n/a", "description": "Table 5-2: FR connection nonlinear modeling parameters (function of beam depth d)", "implemented_in": "geotech_references.ufc_collapse.structural_steel.table_5_2_fr_connection_modeling"},
+        {"id": "n/a", "description": "Table 5-2: PR (relatively stiff) connection nonlinear modeling parameters", "implemented_in": "geotech_references.ufc_collapse.structural_steel.table_5_2_pr_stiff_connection_modeling"},
+        {"id": "n/a", "description": "Table 5-2: PR (flexible) connection nonlinear modeling parameters (function of bolt-group depth dbg)", "implemented_in": "geotech_references.ufc_collapse.structural_steel.table_5_2_pr_flexible_connection_modeling"}
       ],
       "figures": [],
       "tables": [

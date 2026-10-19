@@ -3,166 +3,1208 @@
   "reference_title": "Ground Modification Methods Reference Manual – Volume II",
   "volume": 2,
   "chapter": 7,
-  "chapter_title": "Deep Mixing",
+  "chapter_title": "Deep Mixing and Mass Mixing",
   "sections": [
     {
-      "section_id": "7.1",
-      "title": "Description",
-      "body": "Deep mixing (DM) is a ground improvement technology that mechanically blends in-situ soil with cementitious binders (Portland cement, lime, fly ash, slag, or combinations) to create a stiffer, stronger, and lower-permeability treated mass. Two primary installation methods are used: dry deep mixing (DDM), which injects dry binder through hollow mixing shafts, and wet deep mixing (WDM), which injects binder as a slurry. Mixing is accomplished by rotating augers and paddles as the mixing tool is advanced and withdrawn. DM is applicable to a wide range of soil types including soft clays, organic soils, peats, silts, and loose sands. Treated ground can be configured as isolated columns, overlapping columns forming walls or grids, or mass mixing of entire soil volumes. Applications include embankment support, retaining wall construction, liquefaction mitigation, excavation support, and environmental containment. The technology is widely used in Scandinavia (lime-cement columns), Japan (CDM and other wet methods), and increasingly in the US for transportation applications.",
+      "section_id": "7.1.0",
+      "title": "Description and History",
+      "summary": "Opening part of Chapter 7: introduces the deep mixing and mass mixing methods, how they blend binder with soil in situ to make soil-cement, their history, the focus and scope of the chapter, a recommended glossary, and the primary references (pp. 7-1 to 7-8).",
+      "body": "Part 1.0 of the chapter (pp. 7-1 to 7-8) describes deep mixing and mass mixing and their history. It contains an introduction (1.1), a description, historical overview, focus and scope for each method (1.2), a glossary of recommended terminology (1.3) and the primary references (1.4).",
       "key_points": [
-        "Mechanical blending of in-situ soil with cementitious binders (cement, lime, fly ash, slag)",
-        "Two methods: dry deep mixing (DDM, dry binder injection) and wet deep mixing (WDM, slurry injection)",
-        "Applicable to soft clays, organic soils, peats, silts, and loose sands",
-        "Configurations: isolated columns, overlapping walls/grids, mass mixing",
-        "Applications: embankment support, retaining walls, liquefaction mitigation, excavation support, containment",
-        "Well-established in Scandinavia (lime-cement columns) and Japan (CDM and wet methods)"
-      ],
-      "equations": [],
-      "figures": [
-        "Figure 7-1: Deep mixing installation sequence showing auger/paddle mixing tool advancing and withdrawing with binder injection",
-        "Figure 7-2: Deep mixed column configurations — isolated columns, overlapping wall, grid pattern, and mass mixing"
-      ],
-      "tables": [],
-      "applicability": "Soft clays, organic soils, peats, and silts where increased stiffness, strength, or reduced permeability is needed."
-    },
-    {
-      "section_id": "7.2",
-      "title": "Feasibility and Applicability",
-      "body": "Deep mixing is feasible in most fine-grained soils and organic soils that can be mechanically blended with binder. Key applicability factors include soil type and chemistry (highly organic soils and acidic soils may inhibit cement hydration), maximum depth of treatment (typically 20–30 m for conventional equipment, deeper with specialized rigs), presence of cobbles or obstructions (limits mixing tool penetration), and groundwater chemistry (sulfate-bearing groundwater can cause expansive reactions with cement). DM is not effective in coarse gravels or bedrock. Dry deep mixing is preferred for soft, high-water-content soils where water is needed for hydration; wet mixing is preferred for stiffer soils or where grout volumes must be controlled. Laboratory treatability testing (binder content optimization, unconfined compressive strength of treated specimens) is essential prior to field implementation to confirm target strengths are achievable.",
-      "key_points": [
-        "Feasible in most fine-grained and organic soils that can be mechanically blended",
-        "Highly organic soils (> 6% organic content) and acidic soils may inhibit cement hydration — treatability testing required",
-        "Maximum depth typically 20–30 m; deeper with specialized equipment",
-        "Cobbles, boulders, or dense soils limit mixing tool penetration",
-        "Sulfate-bearing groundwater can cause expansive reactions with cement binders",
-        "Laboratory treatability testing essential before field implementation to verify target strength"
+        "Covers introduction, description and history, glossary and primary references for both methods."
       ],
       "equations": [],
       "figures": [],
-      "tables": [
-        "Table 7-1: Applicability of deep mixing by soil type, binder type, and installation method"
-      ],
-      "applicability": "Screening criteria for deep mixing feasibility based on soil type, organic content, groundwater chemistry, and depth."
+      "tables": [],
+      "applicability": "Deep mixing support of embankments, walls, abutments and other structures on soft ground in transportation projects."
     },
     {
-      "section_id": "7.3",
-      "title": "Engineering Properties of Deep Mixed Soils",
-      "body": "The primary engineering property of deep mixed soil is unconfined compressive strength (qu), which depends on binder type and content, soil type, water content, curing time, and mixing energy. Typical design qu values range from 200–500 kPa for soft clay treated with lime-cement (Scandinavian practice) to 1,000–4,000 kPa for wet-mixed cement columns in soft clay. Elastic modulus of treated soil is approximately E_col = 50–200 × qu (MPa when qu in MPa). Permeability of DM-treated soil is typically 100–1000 times lower than untreated soil, making DM effective for groundwater cutoff walls. Shear strength of DM elements is taken as cu = 0.5 × qu for undrained conditions. Stress-strain behavior is brittle at high qu values; design must account for post-peak strength reduction. Variability of treated soil strength in the field is high; the coefficient of variation (COV) for qu typically ranges from 30–70%, requiring use of characteristic strength values (often the lower 10th or 20th percentile of field test results).",
+      "section_id": "7.1.1",
+      "title": "Introduction",
+      "summary": "Deep mixing and mass mixing blend a binder with soil in situ to produce soil-cement of higher strength and lower compressibility. Describes binders, the wet and dry methods, the types of mixing equipment, and three ways mass mixing generally differs from deep mixing (p. 7-1).",
+      "body": "Both the deep mixing method and the mass mixing method blend a binder with soil in situ to produce soil-cement with improved properties, such as increased strength and reduced compressibility, compared to the untreated soil. The improved ground can support embankments, retaining walls, bridge abutments and other structures. Deep mixing has also been used for seepage barriers, but because they are rarely needed in transportation projects that application is outside the chapter's scope (p. 7-1). Binders can be cement, lime, fly ash, slag or other materials, or blends; in current United States practice cement and slag-cement blends are most common. Pre-mixing the binder with water to a slurry that is mixed into the ground is the wet mixing method; delivering dry binder pneumatically is the dry mixing method. Equipment types include vertical-axis mixing equipment with blades on one or more shafts (single columns or overlapping columns from one set-up), cutter-type equipment with two wheels rotating in opposite directions about horizontal axes (rectangular elements), chainsaw-type mixers that cut continuous trenches as the track-mounted machine crawls, and horizontally rotating toothed drums on an excavator stick that treat large areas to relatively shallow depth. Binder injection ports are at or near the cutting and mixing blades or teeth. Deep mixing and mass mixing have no precise distinction. Mass mixing generally differs in three respects: (1) area coverage of 100% or nearly 100%; (2) typically lower design strength; and (3) treatment depth that may be less than in some deep mixing applications.",
       "key_points": [
-        "Unconfined compressive strength qu: 200–500 kPa (lime-cement, soft clay) to 1,000–4,000 kPa (wet-mixed cement)",
-        "Elastic modulus E_col ≈ 50–200 × qu (E in MPa, qu in MPa)",
-        "Permeability 100–1000× lower than untreated soil; suitable for groundwater cutoff",
-        "Undrained shear strength cu = 0.5 × qu",
-        "Brittle behavior at high qu; post-peak strength reduction must be considered in design",
-        "High field variability (COV = 30–70%); use characteristic (10th–20th percentile) strength for design"
+        "Soil-cement from in situ blending of binder and soil has increased strength and reduced compressibility.",
+        "Cement and slag-cement blends are the most common binders in current United States practice.",
+        "Wet method: binder-water slurry mixed into the ground; dry method: dry binder delivered pneumatically.",
+        "Equipment: vertical-axis shafts, horizontal-axis cutter wheels, chainsaw-type trenchers, and excavator-mounted toothed drums.",
+        "Mass mixing: 100% or nearly 100% coverage, typically lower design strength, and possibly shallower treatment than deep mixing.",
+        "Seepage barriers are outside the chapter's scope."
       ],
-      "equations": [
-        "Eq 7-1: Elastic modulus of DM column E_col = α_E × q_u, where α_E = 50–200 (dimensionless, E in same units as q_u)",
-        "Eq 7-2: Undrained shear strength c_u = 0.5 × q_u (from unconfined compressive strength)",
-        "Eq 7-3: Area replacement ratio a_s = (π/4 × d²) / A_t (same form as aggregate columns)"
-      ],
-      "figures": [
-        "Figure 7-3: Typical qu vs. binder content relationship for soft clay treated with cement (wet mixing)"
-      ],
-      "tables": [
-        "Table 7-2: Typical qu ranges for deep mixed soil by soil type, binder type, and mixing method"
-      ],
-      "applicability": "Engineering property characterization for design of deep mixed columns, walls, and mass mixing applications."
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selecting between deep mixing and mass mixing and understanding the binders and equipment used."
     },
     {
-      "section_id": "7.4",
-      "title": "Design of Deep Mixed Columns for Embankment Support",
-      "body": "DM columns supporting embankments are designed as stiff columnar inclusions that carry a disproportionate share of embankment load through stress concentration, similar to CSE systems. Design checks include: (1) bearing capacity of individual columns; (2) settlement analysis using unit cell or composite modulus approach; (3) global stability of the embankment including the treated zone; (4) internal stability of DM columns against bending and shear; and (5) punching failure of column heads through the LTP (if used). Column spacing is typically 1.0–2.5 m center-to-center. A load transfer platform (granular fill with or without geosynthetic reinforcement) is often used above DM columns, similar to CSE design (Chapter 6). Design in the US increasingly follows the Nordic Design Guidelines (EuroSoilStab 2002) or Japanese CDM design standards, adapted for local conditions. The composite modulus of the treated zone is: E_comp = a_s × E_col + (1-a_s) × E_soil, where a_s is the area replacement ratio.",
+      "section_id": "7.1.2",
+      "title": "Description, Historical Overview, Focus, and Scope",
+      "summary": "Container section describing deep mixing (1.2.1) and mass mixing (1.2.2): wet and dry methods, equipment, history of development and U.S. use, and the chapter's focus as a summary and overview of the FHWA (2013) deep mixing manual (pp. 7-1 to 7-5).",
+      "body": "This section is divided into a description and historical overview of deep mixing (Section 1.2.1, pp. 7-1 to 7-4) and of mass mixing (Section 1.2.2, pp. 7-4 to 7-5), together with the focus and scope of the chapter.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Deep mixing support of embankments, walls, abutments and other structures on soft ground in transportation projects."
+    },
+    {
+      "section_id": "7.1.2.1",
+      "title": "Deep Mixing",
+      "summary": "Deep mixing by the wet method (all soil types incl. organic soils and peat) and the dry method (soft fine-grained and organic soils, peat); elements, development since the 1960s, U.S. use since the 1990s, and the chapter's role as an overview of FHWA (2013) (pp. 7-1 to 7-4).",
+      "body": "Deep mixing can be done by the wet method (Figure 7-1) or the dry method (Figure 7-2). The wet method can be used in coarse-grained, fine-grained and organic soils and peat; for transportation projects it generally uses vertical-axis single-shaft or multiple-shaft equipment, or cutter soil mixing equipment with horizontally rotating cutting and mixing wheels. The dry method can be used in soft fine-grained soils and in organic soils and peat, generally with a vertical-axis single-column tool with cutting and mixing blades near the bottom of the shaft (p. 7-3). Each machine set-up creates a vertical element: a single cylinder, a set of overlapping cylinders, or a rectangular prism of soil-cement. The treated ground is commonly called soil-cement regardless of binder. Elements can be used individually or overlapped to form walls, grids or blocks. Important development of the method occurred outside the United States from the 1960s. U.S. transportation use began in the 1990s, with more than 20 major projects to date. Before about 2010, impediments were unfamiliarity, lack of accessible analysis and design procedures, and concern about QC/QA; these changed through FHWA and Army Corps of Engineers research and technology transfer and international deep mixing conferences in 2003, 2012 and 2015. Post-hurricane levee and floodwall projects, one involving approximately 1.7 million cubic yards of in-place soil-cement, built familiarity and robust QC/QA procedures and led to the FHWA deep mixing manual published in 2013. Deep mixing is now also commonly used for remediation of dams, which share settlement and stability issues with transportation embankments. Because FHWA (2013) and the other primary references give the information needed for design and construction, the chapter is a summary and overview (pp. 7-3 to 7-4).",
       "key_points": [
-        "Design checks: bearing capacity, settlement, global stability, column bending/shear, punching of column heads",
-        "Column spacing typically 1.0–2.5 m center-to-center",
-        "LTP (granular fill ± geosynthetic) often used above DM columns, same design as CSE (Chapter 6)",
-        "Composite modulus: E_comp = a_s × E_col + (1-a_s) × E_soil",
-        "Design references: Nordic EuroSoilStab (2002) and Japanese CDM standards adapted for US practice",
-        "Global stability must include potential failure surfaces through, around, or below the treated zone"
+        "Wet method: coarse-grained, fine-grained and organic soils and peat; dry method: soft fine-grained soils, organic soils and peat.",
+        "An element is a single cylinder, overlapping cylinders, or a rectangular prism formed at one machine set-up.",
+        "Elements can be used individually or overlapped into walls, grids or blocks.",
+        "U.S. transportation use began in the 1990s; more than 20 major projects completed.",
+        "One levee project involved approximately 1.7 million cubic yards of in-place soil-cement.",
+        "The chapter summarizes the FHWA (2013) deep mixing manual (FHWA-HRT-13-046)."
       ],
-      "equations": [
-        "Eq 7-4: Composite modulus E_comp = a_s × E_col + (1 - a_s) × E_soil",
-        "Eq 7-5: Average stress on DM column σ_col = σ_avg × n / (1 + (n-1) × a_s), where n = stress concentration ratio E_col/E_soil",
-        "Eq 7-6: Column bearing capacity Q_ult = q_u × A_col (end bearing on competent strata or compressive failure)"
-      ],
+      "equations": [],
       "figures": [
-        "Figure 7-4: Unit cell model for DM column analysis showing column, surrounding soil, and load distribution"
+        "Figure 7-1: Deep mixing by the wet method; insert shows double-axis mixing tool.",
+        "Figure 7-2: Deep mixing by the dry method; insert shows blades of mixing tool, with port for binder delivery on shaft."
       ],
       "tables": [],
-      "applicability": "Design of DM column arrays for embankment support including bearing capacity, settlement, and global stability."
+      "applicability": "Choosing between the wet and dry methods of deep mixing for the soils to be treated."
     },
     {
-      "section_id": "7.5",
-      "title": "Design of Deep Mixed Walls and Grid Patterns",
-      "body": "DM elements arranged in overlapping patterns form walls, panels, grids, or cellular structures used for excavation support, retaining walls, and liquefaction mitigation. Wall configurations are used as gravity retaining structures or tie-back walls. Grid and cellular configurations enclose volumes of untreated soil, with the treated material providing lateral confinement and shear resistance. For excavation support, DM walls are designed as cantilever or propped walls using conventional earth pressure methods, accounting for the lower stiffness and brittleness of DM compared to concrete. For liquefaction mitigation, DM grids limit the volume of liquefiable soil that can expand, reducing lateral spreading and post-liquefaction settlement. The degree of improvement for liquefaction is quantified by the treated area ratio A_r (ratio of treated area to total plan area), which typically ranges from 0.15–0.50 for liquefaction mitigation applications.",
+      "section_id": "7.1.2.2",
+      "title": "Mass Mixing",
+      "summary": "Mass mixing (higher replacement ratios, shallower depth, lower strength than deep mixing) by wet or dry method: shallow soil mixing with large-diameter single-axis equipment, and mass stabilization with an excavator-mounted horizontal-axis tool to about 20 feet; combined use with deep mixing (pp. 7-4 to 7-5).",
+      "body": "Mass mixing generally involves higher area replacement ratios (100% or nearly 100%), shallower treatment depths and lower strengths than deep mixing, but the two are very similar without a clear distinction, so a good understanding of deep mixing is necessary background (p. 7-4). It can be done by the wet or dry method and includes shallow soil mixing and mass stabilization. Shallow soil mixing generally uses large-diameter, single-axis, vertical-shaft equipment with the wet method, and has been used in the United States for several decades to support embankments and structures and to immobilize contaminants. Mass stabilization uses an excavator-mounted, horizontal-axis mixing tool (Figure 7-3). Pioneered outside the United States in the mid-1990s, it is generally done in that practice by the dry method with binder delivered pneumatically through the tool head; in the United States both dry and wet methods have been used. It generally gives complete coverage in a series of connected, overlapping blocks and can treat soils to a depth of about 20 feet (p. 7-5). Mass mixing has been combined with deep mixing by first mass mixing a platform and then installing deep mixed elements through it, with pre-drilling sometimes needed. The platform provides a working surface and acts as a load transfer platform that reduces the number of deep mixed elements. FHWA (2013) does not explicitly address mass mixing; the chapter advises learning deep mixing first and then reading for the differences.",
       "key_points": [
-        "Overlapping DM elements form walls, panels, grids, or cellular structures",
-        "Applications: excavation support, retaining walls, liquefaction mitigation, environmental containment",
-        "Gravity retaining walls: DM block designed for sliding, overturning, and bearing capacity",
-        "DM walls for excavation support: cantilever or propped design using earth pressure methods",
-        "Liquefaction mitigation: grid/cellular configuration limits liquefiable soil expansion",
-        "Area treatment ratio A_r = 0.15–0.50 for liquefaction mitigation"
+        "Mass mixing = shallow soil mixing plus mass stabilization.",
+        "Mass stabilization uses an excavator-mounted horizontal-axis tool and treats to about 20 feet.",
+        "A mass mixed platform can serve as working surface and load transfer platform for deep mixed elements installed through it.",
+        "Pre-drilling through the platform may be needed depending on its strength and the equipment power.",
+        "FHWA (2013) does not explicitly address mass mixing."
       ],
-      "equations": [
-        "Eq 7-7: Treated area ratio A_r = A_treated / A_total (plan area of DM elements / total plan area of treatment zone)"
-      ],
+      "equations": [],
       "figures": [
-        "Figure 7-5: DM wall, grid, and cellular configurations for retaining wall, excavation support, and liquefaction mitigation"
+        "Figure 7-3: Mass mixing; inset shows close-up of a mass mixing tool."
       ],
       "tables": [],
-      "applicability": "Design of DM walls and grids for earth retention, excavation support, and liquefaction mitigation."
+      "applicability": "Mass mixing (shallow soil mixing and mass stabilization) of soft ground at 100% or nearly 100% coverage in transportation projects."
     },
     {
-      "section_id": "7.6",
+      "section_id": "7.1.3",
+      "title": "Glossary",
+      "summary": "Recommended industry-wide terminology for deep and mass mixing: binder, binder content, binder factor, binder factor in-place, blade rotation number, column, element, mass mixing, soil-cement, strength, stroke, volume ratio, wall, water-to-binder ratio, wet and dry mixing (pp. 7-5 to 7-8).",
+      "body": "Recommended definitions (pp. 7-5 to 7-8). Binder: chemically reactive material (lime, cement, gypsum, blast furnace slag, fly ash or other hardening reagents) mixed with in situ soil to form soil-cement. Binder content: weight of dry binder to dry weight of soil treated. Binder factor: weight of dry binder to volume of soil treated. Binder factor in-place: weight of dry binder to volume of mixture (soil plus slurry for the wet method, or plus dry binder for the dry method). Blade rotation number (BRN): total mixing blade passes per meter of vertical shaft movement, for vertical-axis rotary methods; for horizontal-axis cutters, cutter wheel rotations per meter of depth may be reported. Column: pillar of treated soil from a single installation. Element: produced by one penetration and withdrawal at a single set-up; a chainsaw-type tool produces a continuous wall, not an element. Mass mixing: 100% or nearly 100% coverage, not more than about 30 feet deep, and lower strength than many deep mixing applications, with no precise dividing line. Soil-cement: mixture of in situ soil and binder. Strength: for design usually shear strength; in QC/QA usually unconfined compressive strength; always identify which. Stroke: one penetration and withdrawal cycle. Volume ratio: volume of slurry injected to volume of soil. Wall: overlapping columns or elements forming a continuous wall (shear wall or buttress, cutoff wall, excavation support wall). Water-to-binder ratio: weight of water to weight of dry binder, with slurry and total-water definitions. Also defined: restroke, retrieval, rotation speed, penetration/retrieval speed, withdrawal rate, dry and wet mixing.",
+      "key_points": [
+        "Binder factor = weight of dry binder per volume of soil to be treated; binder content = dry binder weight over dry soil weight.",
+        "BRN = total number of mixing blade passes per meter of vertical shaft movement.",
+        "Mass mixing per the glossary: 100% or nearly 100% coverage, not more than about 30 feet deep.",
+        "Design 'strength' usually means shear strength; QC/QA 'strength' usually means unconfined compressive strength.",
+        "Wet mixing total-water-to-binder ratio = (slurry water + soil water) / dry binder weight."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Consistent terminology in deep mixing and mass mixing design, specifications and QC/QA records."
+    },
+    {
+      "section_id": "7.1.4",
+      "title": "Primary References",
+      "summary": "Lists the primary references for deep mixing and mass mixing in transportation applications: ALLU (2007) mass stabilisation manual, FHWA (2013) deep mixing design manual FHWA-HRT-13-046, Kitazume and Terashi (2013), and the GeoTechTools website (p. 7-8).",
+      "body": "Primary references for deep mixing and mass mixing in transportation applications (p. 7-8): ALLU (2007), Mass Stabilisation Manual; FHWA (2013), Design Manual: Deep Mixing for Embankment and Foundation Support, FHWA-HRT-13-046 (Bruce et al.); Kitazume and Terashi (2013), The Deep Mixing Method; and the deep mixing and mass mixing sections of the GeoTechTools website.",
+      "key_points": [
+        "FHWA (2013) FHWA-HRT-13-046 is the principal design manual.",
+        "ALLU (2007) covers mass stabilisation."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Finding the detailed design and construction guidance this chapter summarizes."
+    },
+    {
+      "section_id": "7.2.0",
+      "title": "Deep Mixing",
+      "summary": "Part 2 of Chapter 7 on the deep mixing method: feasibility and considerations, construction and materials, the design overview and seven design steps, construction specifications and quality assurance, and cost data (pp. 7-9 to 7-23).",
+      "body": "Part 2.0 (pp. 7-9 to 7-23) covers the deep mixing method: feasibility and considerations (2.1), construction and materials (2.2), design overview and steps (2.3), construction specifications and quality assurance (2.4), and cost data (2.5).",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Deep mixing support of embankments, walls, abutments and other structures on soft ground in transportation projects."
+    },
+    {
+      "section_id": "7.2.1",
+      "title": "Feasibility and Considerations",
+      "summary": "Container section for deep mixing feasibility: applications, advantages and potential disadvantages, geotechnical, environmental and site feasibility evaluations, limitations, and alternative technologies (pp. 7-9 to 7-12).",
+      "body": "This section addresses whether deep mixing is suitable for a project: its applications (2.1.1), advantages and potential disadvantages (2.1.2), feasibility evaluations (2.1.3), limitations (2.1.4) and alternative solutions (2.1.5).",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Deep mixing support of embankments, walls, abutments and other structures on soft ground in transportation projects."
+    },
+    {
+      "section_id": "7.2.1.1",
+      "title": "Applications",
+      "summary": "Deep mixing increases strength and decreases compressibility of soft ground under embankments, retaining walls, abutments and bridge piers, unreinforced; with steel reinforcement for excavation support. Wet method suits large projects; dry method has lower mobilization but lower strengths (p. 7-9).",
+      "body": "In transportation infrastructure, deep mixing can increase the strength and decrease the compressibility of soft ground supporting embankments, retaining walls, abutments, bridge piers and other structures; in these applications the soil-cement is used without reinforcement. Deep mixing can also be used for excavation support, typically with vertical steel reinforcement and lateral bracing or tie-back anchors (p. 7-9). The wet method tends to be most useful for relatively large embankment projects because of mobilization costs, and in such cases it can also be economical for foundation support of retaining walls and abutments. The dry method tends to have lower mobilization costs and may suit many projects, although design strengths for dry mixed materials are generally lower than for wet mixed materials. Wet mixing equipment is more capable than the lighter dry mixing equipment where dense and hard materials must be penetrated.",
+      "key_points": [
+        "Soil-cement for embankment and structure support is used without reinforcement.",
+        "Excavation support typically uses vertical steel reinforcement with bracing or tie-backs.",
+        "Wet method: most useful for relatively large embankment projects due to mobilization cost.",
+        "Dry method: lower mobilization cost but generally lower design strengths.",
+        "Wet equipment penetrates dense and hard materials better than dry equipment."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Deciding whether and by which method deep mixing suits an embankment, structure or excavation support project."
+    },
+    {
+      "section_id": "7.2.1.2",
+      "title": "Advantages and Potential Disadvantages",
+      "summary": "Container section listing the advantages (2.1.2.1) and the potential disadvantages and limitations (2.1.2.2) of deep mixing compared with other ground improvement technologies (pp. 7-9 to 7-10).",
+      "body": "This section lists the advantages of deep mixing (Section 2.1.2.1) and its potential disadvantages (Section 2.1.2.2), pp. 7-9 to 7-10.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Deep mixing support of embankments, walls, abutments and other structures on soft ground in transportation projects."
+    },
+    {
+      "section_id": "7.2.1.2.1",
+      "title": "Advantages",
+      "summary": "Advantages of deep mixing: strengthens soft silts, clays, organic soils and peat; faster than PVDs with preload; prevents liquefaction; penetrates dense layers; allows steeper slopes; adjustable design; protects adjacent facilities; little spoil; no dewatering; low noise (pp. 7-9 to 7-10).",
+      "body": "Advantages of deep mixing listed on pp. 7-9 to 7-10: it increases the strength and decreases the compressibility of soft silts, clays, organic soils and peat; improves soft clay deposits more quickly than prefabricated vertical drains with preloads and surcharging; prevents liquefaction of loose sand deposits; powerful wet-mixing equipment can penetrate dense and strong layers to treat underlying weak, loose or compressible layers; permits reduced embankment footprint and fill volume through steeper side slopes or vertical walls; the plan arrangement, treatment depth and degree of improvement can be easily adjusted to design requirements and subsurface conditions; carries new loads placed next to existing facilities so they do not settle the existing facilities; has high production capacity with large equipment; treats materials in situ, reducing disposal problems (the dry method produces very little to no spoils, and wet-method spoils make excellent fill); stabilizes many contaminants; can be used on dry land and marine projects; is economical on large projects; needs no dewatering; and produces less noise and vibration than some other technologies.",
+      "key_points": [
+        "Improves soft clay faster than prefabricated vertical drains with preloading.",
+        "Prevents liquefaction of loose sand deposits.",
+        "Allows steeper side slopes or vertical walls, reducing footprint and fill volume.",
+        "Dry method produces very little to no spoils; wet-method spoils make excellent fill.",
+        "No dewatering needed; less noise and vibration than some other technologies."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Deep mixing support of embankments, walls, abutments and other structures on soft ground in transportation projects."
+    },
+    {
+      "section_id": "7.2.1.2.2",
+      "title": "Potential Disadvantages",
+      "summary": "Potential disadvantages of deep mixing: higher mobilization and unit costs than PVDs with preloading, need for specialized engineering familiarity, obstructions, buried utilities, heavy wet-method equipment on soft ground, spoils disposal, and elements not normally battered (p. 7-10).",
+      "body": "Potential disadvantages and limitations of deep mixing (p. 7-10): mobilization and unit costs can be higher than for other technologies such as prefabricated vertical drains with preloading; the engineer must be familiar with specialized design, construction, specification and QC/QA practices; cobbles, boulders, dense sand deposits, buried logs and other obstructions can interfere with penetration; buried utilities and structures must be avoided, and if they cannot be spanned and treatment immediately next to them is needed another technology such as jet grouting may be required; the wet method generally uses heavy equipment that can require timber mats or other techniques on soft ground; wet-method spoils may have to be hauled off site if there is no on-site use for the fill; and deep mixed elements are not normally installed at significant batters, which is generally not a limitation for highway applications where elements are almost always vertical.",
+      "key_points": [
+        "Mobilization and unit costs can exceed those of prefabricated vertical drains with preloading.",
+        "Obstructions (cobbles, boulders, dense sand, buried logs) can interfere with penetration.",
+        "Jet grouting may be needed immediately next to buried utilities or structures.",
+        "Heavy wet-method equipment may need timber mats on soft ground.",
+        "Elements are not normally installed at significant batters."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Deep mixing support of embankments, walls, abutments and other structures on soft ground in transportation projects."
+    },
+    {
+      "section_id": "7.2.1.3",
+      "title": "Feasibility Evaluations",
+      "summary": "Container section for deep mixing feasibility evaluations under three headings: geotechnical (soil types and penetrability), environmental considerations (contaminants, freezing), and site conditions (space, working platforms, groundwater, buried utilities) (p. 7-11).",
+      "body": "Feasibility of deep mixing is evaluated under geotechnical conditions (Section 2.1.3.1), environmental considerations (Section 2.1.3.2) and site conditions (Section 2.1.3.3), all on p. 7-11.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Deep mixing support of embankments, walls, abutments and other structures on soft ground in transportation projects."
+    },
+    {
+      "section_id": "7.2.1.3.1",
+      "title": "Geotechnical",
+      "summary": "Deep mixing is feasible in very soft to medium stiff clays, very loose to medium dense sands, very soft to medium stiff organic soils, and peat; wet equipment can penetrate stiff or dense layers, but gravels, cobbles, boulders and logs may need predrilling (p. 7-11).",
+      "body": "Deep mixing is a feasible ground improvement method in very soft to medium stiff clays, very loose to medium dense sands, very soft to medium stiff organic soils, and peat (p. 7-11). Powerful wet-method equipment can penetrate stiff clays and dense sands to reach underlying soft, loose and organic deposits, but dense gravels, cobbles, boulders, logs and other obstructions can make penetration difficult or impossible without predrilling or other pretreatment, which increases costs. Dry method equipment is typically lighter than wet method equipment and is not as capable of penetrating dense or hard layers.",
+      "key_points": [
+        "Feasible soils: very soft to medium stiff clays and organic soils, very loose to medium dense sands, and peat.",
+        "Dense gravels, cobbles, boulders and logs may require predrilling or pretreatment.",
+        "Dry method equipment is less capable of penetrating dense or hard layers."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Screening a site's soils for deep mixing feasibility."
+    },
+    {
+      "section_id": "7.2.1.3.2",
+      "title": "Environmental Considerations",
+      "summary": "Cement immobilizes contaminants, so deep mixing may be suitable or preferred in contaminated ground; deep mixing in freezing conditions needs insulated, heated slurry lines at added cost, and freeze-thaw damage should be considered above frost depth (p. 7-11).",
+      "body": "Cement is often used to treat contaminated ground in situ by immobilizing contaminants, so deep mixing may be a suitable or even preferred method for improving the mechanical behavior of contaminated ground (p. 7-11). Deep mixing has been done in freezing conditions using insulated and heated slurry delivery lines, which increases cost. The potential for freeze-thaw cycles to damage the soil-cement should be considered, but temperature fluctuations are not known to be detrimental below the frost depth.",
+      "key_points": [
+        "Deep mixing can improve contaminated ground while immobilizing contaminants.",
+        "Freezing conditions require insulated, heated slurry lines.",
+        "Freeze-thaw is not known to be detrimental below frost depth."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Deep mixing in contaminated ground or cold climates."
+    },
+    {
+      "section_id": "7.2.1.3.3",
+      "title": "Site Conditions",
+      "summary": "Site needs for deep mixing: space for an equipment yard and slurry batch plant for the wet method, little space for dry equipment, working platforms or mats on very soft ground, groundwater generally not a problem, and options for buried utilities (p. 7-11).",
+      "body": "For the wet method, space is needed for an equipment yard, a slurry batch plant and equipment maneuvering; comparatively little space is needed for lighter dry mixing equipment, and no slurry plant (p. 7-11). If near-surface ground is too soft to support the equipment, a working platform and/or timber mats or steel plates may be needed. High groundwater levels are not problematic except as they contribute to the need for a working platform or other equipment support. Buried utilities and structures can interfere with deep mixing; potential solutions are designing the ground improvement and overlying facilities to span the utility, relocating the utility, and using jet grouting between the deep mixing and the utility or structure.",
+      "key_points": [
+        "The wet method needs space for an equipment yard, slurry batch plant and maneuvering.",
+        "High groundwater is not problematic in itself.",
+        "Buried utilities: span them, relocate them, or jet grout between them and the deep mixing."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Planning site logistics for deep mixing."
+    },
+    {
+      "section_id": "7.2.1.4",
+      "title": "Limitations",
+      "summary": "Limitations of deep mixing: treatment depths typically limited to about 130 feet, and dense or hard soils, cobbles, boulders, obstructions, and buried utilities or structures can limit its application (p. 7-12).",
+      "body": "Limitations of deep mixing (p. 7-12): treatment depths are typically limited to about 130 feet; and dense or hard soils, cobbles, boulders, obstructions, and buried utilities or structures can limit the application of deep mixing.",
+      "key_points": [
+        "Treatment depth typically limited to about 130 feet.",
+        "Dense or hard soils, cobbles, boulders, obstructions and buried utilities can limit use."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Deep mixing support of embankments, walls, abutments and other structures on soft ground in transportation projects."
+    },
+    {
+      "section_id": "7.2.1.5",
+      "title": "Alternative Solutions (or Technologies)",
+      "summary": "Likely alternatives to deep mixing: prefabricated vertical drains with preloading and surcharging (often least expensive but slow), vibrating probe densification or deep dynamic compaction in coarse-grained soils, and piles, aggregate columns or vibro-concrete columns with column-supported embankments (p. 7-12).",
+      "body": "Likely alternatives to deep mixing, each to be evaluated for its ability to meet project objectives and for its own advantages, disadvantages and limitations (p. 7-12): prefabricated vertical drains with preloading and surcharging, often the least expensive option for compressible silts and clays, though it can take considerable time, settlements may continue, and new embankment placed next to existing embankment can settle the existing embankment; densification by vibrating probes or deep dynamic compaction, effective in coarse-grained soils where project conditions permit; and piles, aggregate columns or vibro-concrete columns with column-supported embankments, effective in many circumstances where deep mixing is also an option, with project size, constraints and subsurface conditions governing the choice.",
+      "key_points": [
+        "Prefabricated vertical drains with preloading: often least expensive for compressible silts and clays, but slow.",
+        "Vibro densification or deep dynamic compaction for coarse-grained soils.",
+        "Column-supported embankments on piles, aggregate columns or vibro-concrete columns."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Comparing deep mixing with other ground improvement options."
+    },
+    {
+      "section_id": "7.2.2",
+      "title": "Construction and Materials",
+      "summary": "Container section on deep mixing construction (mixing method variants, slurry plant, equipment, slurry injection during penetration or withdrawal, dry method practice) and materials (binders and water) (pp. 7-12 to 7-13).",
+      "body": "This section covers how deep mixing is constructed (Section 2.2.1) and the materials used (Section 2.2.2), pp. 7-12 to 7-13.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Deep mixing support of embankments, walls, abutments and other structures on soft ground in transportation projects."
+    },
+    {
+      "section_id": "7.2.2.1",
       "title": "Construction",
-      "body": "Dry deep mixing installation uses a hollow-stem auger with injection ports and paddle mixing blades. Dry binder (typically lime, cement, or lime-cement blend) is injected under low air pressure through the hollow stem as the tool withdraws. Multiple passes (down and up strokes) improve mixing uniformity. Wet deep mixing uses a slurry of binder and water pumped through the hollow shaft; the water-binder ratio of the slurry controls workability and final strength. Construction quality monitoring includes: total binder volume injected, mixing energy (torque and rotation counts), shaft penetration and withdrawal speed, and coring or continuous flight auger samples. Installation should be verified through core extraction and unconfined compression testing of field-treated specimens at 28 and 90 days. Typical production rates for DM are 100–400 lin m of column per day for single-auger equipment. Wet mixing using large-diameter (600–1000 mm) multi-auger equipment achieves higher production rates.",
+      "summary": "Deep mixing methods differ by wet/dry, vertical-axis, horizontal-axis or chainsaw mixing, end or shaft binder delivery, and slurry pressure. Covers the wet-method slurry plant, heavy equipment, slurry injection during penetration with double-stroking, cutter soil mixing, and dry method practice (pp. 7-12 to 7-13).",
+      "body": "Mixing methods differ by: wet or dry method; vertical-axis rotary (single- and multiple-axis), horizontal-axis rotary (cutter wheel and toothed-drum) and vertical chainsaw-type mixing; end or shaft delivery of binder for vertical-axis mixing; and low, medium or high pressure slurry delivery (p. 7-12). The wet method requires a slurry plant with binder storage silos, slurry mixing equipment, agitation tank(s) and pump(s); quality control of slurry preparation and delivery keeps proportions constant. Wet equipment is typically large and heavy, so working platforms with or without timber mats may be needed, and an excavator typically supports each rig to move mats and spoils (p. 7-13). Slurry can be delivered on penetration or withdrawal. For vertical-axis mixing, U.S. practice most commonly injects slurry during penetration through nozzles near the bottom of the shaft or the bottom cutting blades, so the slurry is mixed on both downstroke and upstroke. Good practice often includes double-stroking and/or dwell time at the bottom of the element where mixing blade passes would otherwise be fewer. For wet cutter wheel soil mixing, penetration often uses water to homogenize and fluidize the soil, then a slurry with a relatively low water-to-cement ratio is injected on withdrawal. The dry method uses lighter equipment that can often work without platforms (timber mats may be needed on very soft ground). Dry binder is stored in a track-mounted delivery unit and delivered pneumatically to ports near the blades; the single-axis tool rotates rapidly, advances on penetration with air only to break up the soil, and binder is delivered during withdrawal mixing.",
       "key_points": [
-        "DDM: hollow-stem auger injects dry binder under air pressure during withdrawal; multiple passes improve uniformity",
-        "WDM: slurry pumped through hollow shaft; water-binder ratio controls workability and strength",
-        "QC monitoring: binder volume, mixing energy (torque/rotations), penetration/withdrawal rate",
-        "Verification: core extraction + UCS testing at 28 and 90 days",
-        "Production rates: 100–400 lin m/day for single-auger equipment",
-        "Multi-auger wet mixing rigs achieve higher production rates"
+        "A wet-method slurry plant includes binder silos, slurry mixers, agitation tanks and pumps.",
+        "U.S. vertical-axis practice usually injects slurry on penetration so it is mixed on downstroke and upstroke.",
+        "Double-stroking and/or bottom dwell time help thorough mixing at the element base.",
+        "Cutter soil mixing: water on penetration, low water-to-cement-ratio slurry on withdrawal.",
+        "Dry method: air-only penetration, binder delivered pneumatically on withdrawal."
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Construction methods and quality control for dry and wet deep mixing installations."
+      "applicability": "Understanding deep mixing equipment and procedures for design and specification."
     },
     {
-      "section_id": "7.7",
-      "title": "Specifications and Quality Assurance",
-      "body": "DM specifications should define: binder type and minimum binder content (kg/m³ of treated soil); minimum unconfined compressive strength (qu) at 28 or 90 days; acceptance criteria for column integrity (no more than X% of cores below minimum qu); and installation parameters (mixing energy, withdrawal rate, binder injection rate). Recommended specifications distinguish between design strength (characteristic qu used in design calculations) and minimum acceptance qu (field cores that must exceed a lower threshold to be accepted). Typically, characteristic qu = 0.5 × average field qu, and minimum acceptance qu = 0.3 × average field qu. Quality assurance includes: wet grab samples during installation for laboratory qu testing; core borings through completed columns (minimum 5% of production); and settlement monitoring of the embankment. The FHWA Geotechnical Engineering Circular GEC-13 recommends at minimum one core per 200 lin m of production columns and one load test per project.",
+      "section_id": "7.2.2.2",
+      "title": "Materials",
+      "summary": "The most common deep mixing binders in U.S. practice are cement and slag-cement blends for both wet and dry methods; lime and lime-cement columns have been installed by the dry method; potable water is typically used for wet-method slurry (p. 7-13).",
+      "body": "The most common binder materials in United States practice are cement and slag-cement blends for both the wet and dry methods of deep mixing. Lime and lime-cement columns have also been installed using the dry method. Potable water is typically used to make the slurry for the wet method (p. 7-13).",
       "key_points": [
-        "Specifications: binder type and content (kg/m³), minimum qu at 28 or 90 days, installation parameters",
-        "Characteristic design qu ≈ 0.5 × average field qu; acceptance threshold ≈ 0.3 × average field qu",
-        "QA: wet grab samples during installation; core borings through completed columns (min 5% of production)",
-        "Minimum 1 core per 200 lin m of production; minimum 1 load test per project (GEC-13 recommendation)",
-        "Settlement monitoring of supported embankment during and after construction",
-        "Post-construction integrity testing may include low-strain pile integrity testing on column tops"
+        "Cement and slag-cement blends are the most common binders for wet and dry methods.",
+        "Lime and lime-cement columns have been installed by the dry method.",
+        "Potable water is typically used for wet-method slurry."
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Specification writing and quality assurance for deep mixing construction."
+      "applicability": "Selecting binders for deep mixing."
     },
     {
-      "section_id": "7.8",
+      "section_id": "7.2.3",
+      "title": "Design Overview",
+      "summary": "Introduces deep mixing design with a flowchart (Figure 7-4) of the project phases of data collection, design, procurement and construction, the first two forming the overall design process; leads into design considerations and the seven design steps (pp. 7-13 to 7-14).",
+      "body": "A flowchart for design and construction of deep mixing projects is given in Figure 7-4 (p. 7-14). The key project phases are data collection, design, procurement and construction. For present purposes the data collection and design phases can be considered parts of the overall design process. The section continues with design considerations (2.3.1), design steps (2.3.2) and primary design references (2.3.3).",
+      "key_points": [
+        "Project phases: data collection, design, procurement, construction.",
+        "Data collection and design together make up the overall design process."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-4: Flowchart for design and construction for DMM projects."
+      ],
+      "tables": [],
+      "applicability": "Deep mixing support of embankments, walls, abutments and other structures on soft ground in transportation projects."
+    },
+    {
+      "section_id": "7.2.3.1",
+      "title": "Design Considerations",
+      "summary": "Key deep mixing design considerations: line, grade and loading; settlement and factor of safety targets; surface and subsurface conditions incl. water content, organic content, obstructions and bearing layer; prior experience; bench-scale trials; field trials and demonstration elements; layout; iterative analyses (pp. 7-14 to 7-15).",
+      "body": "Key design considerations after the feasibility assessment (pp. 7-14 to 7-15): line, grade and loading; desired performance in settlement control and factor of safety against instability; existing surface conditions (topography, drainage, land use, utilities and facilities); and subsurface conditions, including stratigraphy with attention to weak layers, water content (for thoroughly mixed soils, the binder needed for a target strength increases with water content, while low water content plastic clays are hard to mix but pretreatment with water instead of slurry helps), organic content and type (finely divided organic colloids interfere with cementitious reactions more than fibrous organics and peat; slag-cement blends tend to give stronger mixtures than pure cement at the same binder factor in organic soils), buried logs, stumps and obstructions, and the depth, variability and consistency of the bearing layer. Further considerations: prior deep mixing experience in similar soils; bench-scale trials during design to confirm treatability and inform bidders; whether a field trial is needed during design (usually not) and whether demonstration elements are needed at the start of construction (usually so); selecting a configuration, which for embankments usually means isolated elements under the central portion and shear walls perpendicular to the centerline under the side slopes; iterative analyses to optimize configuration and strength, accounting for multiple failure modes and variability of field-mixed soil-cement; and developing plans and specifications.",
+      "key_points": [
+        "Binder needed for a target strength increases with soil water content.",
+        "Finely divided organics interfere with cementitious reactions more than fibrous organics.",
+        "Slag-cement blends tend to outperform pure cement at the same binder factor in organic soils.",
+        "Field trial during design: usually not needed; demonstration elements at start of construction: usually needed.",
+        "Embankments: isolated elements under the center, shear walls perpendicular to centerline under side slopes."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Planning the data and decisions needed for a deep mixing design."
+    },
+    {
+      "section_id": "7.2.3.2",
+      "title": "Design Steps",
+      "summary": "Introduces the seven deep mixing design steps from the FHWA (2013) manual: project requirements, subsurface conditions, trial soil-cement properties, trial geometry, settlement, stability, and plans and specifications (pp. 7-15 to 7-18).",
+      "body": "As described in the FHWA (2013) deep mixing manual, design includes seven steps addressing the key design considerations (p. 7-15): (1) establish project requirements; (2) establish representative subsurface conditions; (3) establish trial soil-cement property values; (4) establish trial deep mixed geometry; (5) evaluate settlement; (6) evaluate stability; and (7) prepare the plans and specifications. Steps 3 through 6 are iterated until the performance criteria are met.",
+      "key_points": [
+        "Seven steps, from FHWA (2013).",
+        "Steps 3 through 6 are iterated before plans and specifications are prepared."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Deep mixing support of embankments, walls, abutments and other structures on soft ground in transportation projects."
+    },
+    {
+      "section_id": "7.2.3.2.1",
+      "title": "Step 1: Establish Project Requirements",
+      "summary": "Design Step 1 for deep mixing: establish the line, grade and loading of the proposed construction and the desired performance in terms of settlement and factor of safety, which become the criteria the Step 5 and 6 analyses are checked against (p. 7-15).",
+      "body": "This step includes establishing line, grade, loading, and desired performance in terms of settlement and factor of safety (p. 7-15). These performance criteria are what the settlement and stability results of Steps 5 and 6 are compared against.",
+      "key_points": [
+        "Establish line, grade and loading.",
+        "Set settlement and factor of safety performance criteria."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Deep mixing support of embankments, walls, abutments and other structures on soft ground in transportation projects."
+    },
+    {
+      "section_id": "7.2.3.2.2",
+      "title": "Step 2: Establish Representative Subsurface Conditions",
+      "summary": "Design Step 2 for deep mixing: determine stratigraphy, soil property values and the likelihood of obstructions, plus treatability indicators such as particle size distribution, Atterberg limits, water content, organic content and whether organics are finely divided or fibrous (p. 7-16).",
+      "body": "This step includes determining the stratigraphy, soil property values, and the likelihood of encountering obstructions during field mixing (p. 7-16). Besides engineering properties such as strength and compressibility of the untreated soil, other characteristics are important for estimating treatability: particle size distribution, Atterberg limits, water content, organic content, and whether the organics are finely divided or fibrous.",
+      "key_points": [
+        "Determine stratigraphy, soil properties and likelihood of obstructions.",
+        "Treatability indicators: gradation, Atterberg limits, water content, organic content and organic type."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Deep mixing support of embankments, walls, abutments and other structures on soft ground in transportation projects."
+    },
+    {
+      "section_id": "7.2.3.2.3",
+      "title": "Step 3: Establish Trial Soil-Cement Property Values",
+      "summary": "Design Step 3 for deep mixing: estimate design strength and modulus of field-mixed soil-cement; achievable strength falls with higher water and organic content; mixing is easiest in loose sands; modulus from tests or correlation with UCS; consider strength variability per FHWA (p. 7-16).",
+      "body": "This step estimates the design strength and modulus of field-mixed soil-cement (p. 7-16). Practically achievable strengths tend to decrease as the untreated soil water content increases, as the organic content increases, and when the organics are finely divided. Thorough mixing is easiest for loose sands and silty sands, more difficult for plastic clays, and can be challenging for stiff plastic clays; pretreating plastic clays by mixing with water before mixing with slurry can make thorough mixing easier. The soil-cement modulus can be measured in laboratory tests or estimated from correlations with unconfined compressive strength. Practically achievable strengths can be estimated from bench-scale treatability tests and experience on prior projects in similar materials. Strength variability should also be considered, with guidance in the FHWA manual.",
+      "key_points": [
+        "Achievable strength decreases with higher water content, higher organic content and finely divided organics.",
+        "Mixing is easiest in loose sands and silty sands; harder in plastic clays; challenging in stiff plastic clays.",
+        "Modulus from laboratory tests or correlation with unconfined compressive strength.",
+        "Estimate achievable strength from bench-scale tests and prior project experience.",
+        "Consider strength variability (guidance in FHWA 2013)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Deep mixing support of embankments, walls, abutments and other structures on soft ground in transportation projects."
+    },
+    {
+      "section_id": "7.2.3.2.4",
+      "title": "Step 4: Establish Trial Deep Mixed Geometry",
+      "summary": "Design Step 4 for deep mixing: set the layout pattern, area replacement ratio in each zone and treatment depth; an efficient embankment layout uses isolated elements under the center and overlapping elements forming shear walls under the side slopes, perpendicular to the alignment (p. 7-16).",
+      "body": "This step establishes the general layout pattern and the area replacement ratio in different zones beneath the embankment, as well as the treatment depth (p. 7-16). A generally efficient layout for embankment support uses isolated elements beneath the central portion of the embankment and overlapping elements forming continuous shear walls beneath the side slopes. The shear walls are oriented perpendicular to the embankment alignment to provide stability for the side slopes.",
+      "key_points": [
+        "Define layout pattern, area replacement ratio by zone, and treatment depth.",
+        "Isolated elements under the embankment center; continuous shear walls under the side slopes.",
+        "Shear walls run perpendicular to the embankment alignment."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Deep mixing support of embankments, walls, abutments and other structures on soft ground in transportation projects."
+    },
+    {
+      "section_id": "7.2.3.2.5",
+      "title": "Step 5: Evaluate Settlement",
+      "summary": "Design Step 5 for deep mixing: compute compression of the treated zone as a composite of soil-cement elements and untreated soil, add compression of underlying layers computed as for floating pile groups; a low embankment may need a load transfer platform (p. 7-16).",
+      "body": "Settlement is usually evaluated by calculating the compression of the zone treated by deep mixing and then adding the compression of the underlying soil layers (p. 7-16). The treated zone is treated as a composite of the soil-cement elements and the untreated soil. Compression of the underlying layers can be calculated in the same way as compression of soil under 'floating' pile groups. If the embankment is low-height, a load transfer platform may be necessary (see Chapter 6).",
+      "key_points": [
+        "Settlement = compression of treated composite zone + compression of underlying layers.",
+        "Underlying layers are treated as under a floating pile group.",
+        "Low embankments may need a load transfer platform (Chapter 6)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Deep mixing support of embankments, walls, abutments and other structures on soft ground in transportation projects."
+    },
+    {
+      "section_id": "7.2.3.2.6",
+      "title": "Step 6: Evaluate Stability",
+      "summary": "Design Step 6 for deep mixing: check seven failure modes (a)-(g), from sliding above, beneath or through the treated zone to shear wall overturning/bearing, toe crushing, vertical shear and extrusion; then compare Steps 5-6 results with Step 1 criteria and adjust depth, area ratio or strength (p. 7-17).",
+      "body": "All potential failure modes must be evaluated to ensure adequate factors of safety (p. 7-17): (a) sliding of the embankment above the deep mixed zone; (b) sliding beneath the deep mixed zone; (c) sliding on surfaces through the deep mixed zone; (d) combined overturning of the shear walls and bearing capacity of the soil beneath their toe; (e) crushing of the shear wall toe when founded on a hard stratum; (f) shearing on vertical planes in the shear walls beneath the side slopes; and (g) extrusion of soil between parallel shear walls beneath the side slopes. Modes (a) through (c) can be evaluated with a limit equilibrium slope stability program, using appropriate composite shear strengths in each treated zone for mode (c); the FHWA manual describes methods for (d) through (g). Results of Steps 5 and 6 are compared with the Step 1 criteria. If settlements are too large or factors of safety too low, the design is made more robust by deepening elements, increasing area replacement ratio(s) and/or increasing soil-cement strength, with attention to the practically achievable strength (Step 3). If criteria are met by wide margins, depths, ratios or strength can be decreased to optimize cost.",
+      "key_points": [
+        "Seven failure modes (a)-(g) must be checked.",
+        "Modes (a)-(c) by limit equilibrium, with composite strengths in treated zones for (c).",
+        "Modes (d)-(g) by methods in the FHWA (2013) manual.",
+        "Remedies: deeper elements, higher area replacement ratio, higher strength (within achievable limits)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Deep mixing support of embankments, walls, abutments and other structures on soft ground in transportation projects."
+    },
+    {
+      "section_id": "7.2.3.2.7",
+      "title": "Step 7: Prepare the Plans and Specifications",
+      "summary": "Design Step 7 for deep mixing: after iterating Steps 3-6, prepare plans and specifications that leave means and methods to the contractor, specify minimum area replacement ratios, and use a statistically based strength specification, e.g., 2% of elements cored, 4 of 5 specimens and 90% overall passing (pp. 7-17 to 7-18).",
+      "body": "Once the design is finalized by iterating on Steps 3 through 6, the plans and specifications are prepared (pp. 7-17 to 7-18). They should give the contractor wide latitude in means and methods while requiring the specified outcomes. For example, specifying minimum area replacement ratios rather than specific element sizes and spacings is preferred, although limits on maximum spacing and minimum diameters and widths are needed. Strength should be specified statistically: a typical transportation specification might require that 2% of elements be cored and tested, that 4 out of 5 specimens from each cored hole have an unconfined compressive strength at least equal to the specified strength, and that 90% of specimens for the entire project exhibit at least this strength. For this to be effective, the specifications must also require contractor quality control reports from calibrated data acquisition systems for every installed element so the owner or engineer can check for atypical installations. Geometric accuracy requirements are also included.",
+      "key_points": [
+        "Specify outcomes, not means and methods.",
+        "Prefer minimum area replacement ratios, with limits on maximum spacing and minimum diameters and widths.",
+        "Typical: 2% of elements cored; 4 of 5 specimens per core at or above specified UCS; 90% of project specimens passing.",
+        "Require calibrated data acquisition records for every element."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Writing deep mixing plans and end-result specifications."
+    },
+    {
+      "section_id": "7.2.3.3",
+      "title": "Primary Design References",
+      "summary": "Lists the primary design references for deep mixing support systems in transportation applications: the FHWA (2013) deep mixing design manual FHWA-HRT-13-046, Kitazume and Terashi (2013) The Deep Mixing Method, and the deep mixing section of GeoTechTools (p. 7-18).",
+      "body": "Primary references for design of deep mixing support systems for transportation applications (p. 7-18): FHWA (2013), Design Manual: Deep Mixing for Embankment and Foundation Support, Rep. No. FHWA-HRT-13-046 (Bruce et al.); Kitazume and Terashi (2013), The Deep Mixing Method; and the deep mixing section of the GeoTechTools website.",
+      "key_points": [
+        "FHWA (2013) FHWA-HRT-13-046 is the main design reference."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Deep mixing support of embankments, walls, abutments and other structures on soft ground in transportation projects."
+    },
+    {
+      "section_id": "7.2.4",
+      "title": "Overview of Construction Specifications and Quality Assurance",
+      "summary": "Container section on deep mixing specifications and QA: specification development (end-result specifications, the FHWA guide specification), a summary of quality assurance (submittals, observations, coring and strength acceptance), and instrumentation, monitoring and construction control (pp. 7-18 to 7-22).",
+      "body": "This section covers specification development (2.4.1), a summary of quality assurance (2.4.2), and a summary of instrumentation, monitoring and construction control (2.4.3) for deep mixing, pp. 7-18 to 7-22.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Deep mixing support of embankments, walls, abutments and other structures on soft ground in transportation projects."
+    },
+    {
+      "section_id": "7.2.4.1",
+      "title": "Specification Development",
+      "summary": "A deep mixing guide specification is in FHWA (2013), with an updated version at GeoTechTools; all adapted specifications must be carefully edited. Deep mixing uses end-result specifications for geometry, mixing thoroughness and strength, with plan geometry specified in a normalized way (p. 7-18).",
+      "body": "A guide specification is available in the FHWA (2013) deep mixing report, and an updated version is available at GeoTechTools. Any guide specification or specification adapted from another project should be very carefully reviewed and edited for each new project (p. 7-18). Deep mixing specifications are end-result specifications in which the required geometry, thoroughness of mixing and strength of the improved ground are specified. Because contractors use different equipment and procedures, specifying means and methods is neither advisable nor possible. Even the plan view geometry is typically specified in a normalized fashion so that different size elements, within a specified range, can be used.",
+      "key_points": [
+        "Guide specification in FHWA (2013); updated version at GeoTechTools.",
+        "End-result specifications: geometry, thoroughness of mixing, strength.",
+        "Plan geometry specified in normalized form so element sizes may vary within a range."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Developing deep mixing specifications."
+    },
+    {
+      "section_id": "7.2.4.2",
+      "title": "Summary of Quality Assurance",
+      "summary": "Deep mixing QA: review contractor submittals (qualifications, bench-scale report, field demonstration elements cored top to bottom, work plan, QC plan, daily and summary reports), observe operations, select elements to core and representative specimens, and verify geometry, mixing and statistical strength criteria (pp. 7-19 to 7-20).",
+      "body": "Key elements of a thorough QA program (pp. 7-19 to 7-20): careful review of contractor submittals, including personnel qualifications (with an independent testing subcontractor); the contractor's own bench-scale mixing report, focused on mix designs suited to its equipment; a field demonstration element report, with test elements built before production and typically all cored top to bottom to determine thoroughness of mixing (defined as percent recovery of soil-cement per core run) and strength; a work plan; a QC plan; daily reports giving for each element its identification, location, top and bottom elevations, start and completion time, and logs versus depth of verticality, binder delivery rate, penetration/withdrawal rates, rotation rates and bottom treatment; and summary reports. The owner/engineer observes materials handling, slurry preparation and testing, mixing, coring, sampling, specimen storage and testing; selects the elements to be cored and the specimens to test, choosing specimens proportionately representative of the elements (a 3-inch specimen with a 1-inch clod of unmixed soil would not represent a 4-foot column unless the column held a boulder-sized clod); and checks geometry (plan dimensions, verticality, top and bottom elevations, overlap), thoroughness of mixing (specified minimum core recovery after excluding untreated material) and strength. Strength criteria are typically statistical, such as 80% of tests from each cored element and 90% of tests for the project exceeding the specified value; modern specifications typically do not require every result to meet a minimum.",
+      "key_points": [
+        "The contractor performs its own bench-scale mixing program even if the owner has done one.",
+        "Demonstration elements are typically cored top to bottom.",
+        "Specimens must be proportionately representative of the element.",
+        "Typical strength acceptance: 80% per cored element and 90% project-wide exceeding the specified value."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Planning QA for deep mixing construction."
+    },
+    {
+      "section_id": "7.2.4.3",
+      "title": "Summary of Instrumentation, Monitoring, and Construction Control",
+      "summary": "Deep mixing QC/QA relies on demonstrated means and methods repeated on production elements, plus coring of selected elements. Lists calibration, redundant sensors, binder reconciliation, slurry tests, records, drilling index, wet-grab samples, core recovery criteria (80-85% per run, 90% overall), 4-of-5 UCS testing, failure options and televiewers (pp. 7-20 to 7-22).",
+      "body": "The QC/QA philosophy is that the contractor demonstrates suitable materials, means and methods on heavily tested validation elements, observed by the owner/engineer, and then controls and documents that the same practices are used on production elements; the owner/engineer also selects a limited number of production elements for full-depth coring and testing, mostly tested by the contractor's laboratory and some by the owner/engineer (p. 7-20). Activities (pp. 7-21 to 7-22): calibration of all transducers and instruments; redundant systems for depth, rotation rate and penetration rate; reconciling delivery tickets with binder used; weighing dry binder and water for slurry; mud balance and Marsh funnel viscosity tests; geometric records; records of binder delivery, penetration/withdrawal and rotation rates, bottom treatment and sometimes power consumption, from which a drilling index (power consumption divided by penetration rate) can indicate penetration into a bearing layer; wet-grab samples for early strength indication, though acceptance is ordinarily by full-depth core recovery and UCS tests; core logs, with recovery of at least 80% or 85% of well mixed soil-cement per core run and 90% overall per boring; UCS tests on 5 representative specimens per core boring, 4 of 5 to meet the specified strength and 90% project-wide; standard options when an element fails, such as a second boring with 10 specimens of which 8 must pass, then a remediation plan for the shift's elements; optical televiewer logs with wet-grab samples where coarse particles prevent coring, with triple-tube wire-line coring giving some of the best core; and protection and trimming of the soil-cement.",
+      "key_points": [
+        "Drilling index example: power consumption divided by penetration rate.",
+        "Core recovery: at least 80% or 85% well mixed soil-cement per core run; 90% overall per boring.",
+        "UCS: 5 specimens per core boring, 4 of 5 passing; 90% of production specimens passing project-wide.",
+        "Second core boring after a failure may need 10 specimens with 8 passing.",
+        "Triple-tube wire-line coring has given some of the best core results."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction control and acceptance testing of deep mixed elements."
+    },
+    {
+      "section_id": "7.2.5",
+      "title": "Cost Data",
+      "summary": "Factors influencing deep mixing cost: wet vs dry method, treatment volume, element depths, specified UCS (recent projects about 100 psi to 500 psi, lower end most common), soil types, embedment into a hard layer, environmental conditions, binder availability, field trials, access, mobilization and QC/QA requirements (pp. 7-22 to 7-23).",
+      "body": "Factors that influence the cost of deep mixing projects (pp. 7-22 to 7-23): wet versus dry method; treatment volume; typical and maximum element depths; the specified unconfined compressive strength, which on recent projects has varied from about 100 psi to 500 psi, with the lower end of this range most common; soil types to be treated; depth of embedment into a hard bearing layer; environmental conditions requiring special health and safety precautions and/or off-site disposal of spoils; availability of binder materials; extent of field trial testing; site access; mobilization/demobilization cost; and normal versus excessively restrictive QC/QA requirements.",
+      "key_points": [
+        "Specified UCS on recent projects: about 100 psi to 500 psi, lower end most common (p. 7-23).",
+        "Excessively restrictive QC/QA requirements raise cost."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Estimating and controlling deep mixing cost."
+    },
+    {
+      "section_id": "7.2.5.1",
+      "title": "Cost Components",
+      "summary": "Typical deep mixing cost components from FHWA (2013): wet-method mobilization $80,000 to $150,000 per rig (site 200 miles from the contractor's yard), unit cost $75 to $115 per cubic yard, QC/QA participation 3% to 5%, engineering about 10%; recent mobilization can exceed $150,000; dry method cheaper (p. 7-23).",
+      "body": "According to the FHWA (2013) deep mixing manual (p. 7-23), mobilization/demobilization for the wet method can be $80,000 to $150,000 per mixing rig, including support equipment, for a site 200 miles from a qualified contractor's yard; unit costs can range from $75 to $115 per cubic yard, with lower costs sometimes on large projects in competitive markets; the contractor's QC/QA participation can be estimated at 3% to 5% of production deep mixing costs; and engineering for design and construction services may be about 10% of deep mixing construction cost. Actual costs depend heavily on market conditions, project size, ground conditions and project-specific constraints. Recent information indicates mobilization/demobilization can exceed $150,000 per rig and associated support equipment. Mobilization and unit costs for the dry method are typically less than for the wet method, though the dry method applies to a narrower range of conditions and project types.",
+      "key_points": [
+        "Wet-method mobilization/demobilization: $80,000 to $150,000 per rig (recently can exceed $150,000).",
+        "Unit cost: $75 to $115 per cubic yard.",
+        "QC/QA participation: 3% to 5% of production cost; engineering: about 10%.",
+        "Dry method costs are typically lower but it applies more narrowly."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Preliminary cost estimates for deep mixing."
+    },
+    {
+      "section_id": "7.3.0",
+      "title": "Mass Mixing",
+      "summary": "Part 3 on mass mixing: read deep mixing first; mass mixing has 100% or nearly 100% coverage, lower design strength and shallower treatment, and includes shallow soil mixing (large vertical-axis shafts) and mass stabilization (excavator-mounted horizontal drum) (pp. 7-24 to 7-40).",
+      "body": "Because mass mixing and deep mixing are so closely related with no distinct boundary, a person interested in mass mixing should first learn about deep mixing, then read this part and consult the mass mixing section of GeoTechTools (p. 7-24). Mass mixing differs from deep mixing in that (1) area coverage is 100% or nearly 100%, whereas deep mixing coverage is typically much less than 100%; (2) design strength is typically lower; and (3) treatment depth is typically less. Mass mixing includes shallow soil mixing, done with large-diameter vertical-axis rotating shafts with mixing blades, and mass stabilization, done with a horizontal-axis mixing drum mounted on the stick of an excavator. Part 3.0 covers feasibility, construction and materials, design with a worked example, specifications and QA, cost data and a case history.",
+      "key_points": [
+        "Learn deep mixing first; then read for differences.",
+        "Mass mixing: 100% or nearly 100% coverage, lower design strength, shallower treatment.",
+        "Two forms: shallow soil mixing and mass stabilization."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Mass mixing (shallow soil mixing and mass stabilization) of soft ground at 100% or nearly 100% coverage in transportation projects."
+    },
+    {
+      "section_id": "7.3.1",
+      "title": "Feasibility Considerations",
+      "summary": "Mass mixing suits applications benefiting from wide coverage at 100% or nearly 100% replacement ratio where lower strengths than deep mixing are acceptable; its uniformity is operator dependent and strength variability may exceed that of well-controlled deep mixing (p. 7-24).",
+      "body": "Mass mixing is usually intended for applications that benefit from wide coverage at a 100% or nearly 100% replacement ratio, but for which strengths lower than typically specified for deep mixing are acceptable (p. 7-24). The uniformity of mass mixed soil-cement is operator dependent, and strength variability may be greater than for well-controlled deep mixing operations. Subsections cover applications, advantages and disadvantages, feasibility evaluations, limitations and alternatives.",
+      "key_points": [
+        "Wide coverage at 100% or nearly 100% replacement ratio with lower strengths.",
+        "Uniformity is operator dependent; strength variability may be greater than deep mixing."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Mass mixing (shallow soil mixing and mass stabilization) of soft ground at 100% or nearly 100% coverage in transportation projects."
+    },
+    {
+      "section_id": "7.3.1.1",
+      "title": "Applications",
+      "summary": "Mass mixing limits settlement and increases shear strength of roadway and railway embankment foundations, supports storage tanks, stabilizes excavations, serves land reclamation and contaminant fixation, and forms load transfer and working platforms over deep mixed elements (Figure 7-5) (p. 7-24).",
+      "body": "Mass mixing has proven effective at limiting settlement and increasing the shear strength of roadway and railway embankment foundation soils. It has also been used to support structures such as petroleum storage tanks, to stabilize excavations, in land reclamation projects, and for contaminant fixation (p. 7-24). Mass mixing has been used to create load transfer platforms over deep mixed elements that carry the transferred loads to more competent materials at depth (Figure 7-5, p. 7-25). The mass mixed load transfer platform also serves as a construction working platform for installing the deep mixed elements and for later construction.",
+      "key_points": [
+        "Limits settlement and increases shear strength under roadway and railway embankments.",
+        "Used for tanks, excavation stabilization, land reclamation and contaminant fixation.",
+        "Mass mixed platform over deep mixed elements acts as load transfer and working platform."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-5: Mass mixing to create a load-transfer platform and construction working platform."
+      ],
+      "tables": [],
+      "applicability": "Mass mixing (shallow soil mixing and mass stabilization) of soft ground at 100% or nearly 100% coverage in transportation projects."
+    },
+    {
+      "section_id": "7.3.1.2",
+      "title": "Advantages and Potential Disadvantages",
+      "summary": "Container section listing the principal advantages (3.1.2.1) and potential disadvantages (3.1.2.2) of mass mixing compared with deep mixing (pp. 7-25 to 7-26).",
+      "body": "This section compares mass mixing with deep mixing, listing advantages (Section 3.1.2.1) and potential disadvantages (Section 3.1.2.2), pp. 7-25 to 7-26.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Mass mixing (shallow soil mixing and mass stabilization) of soft ground at 100% or nearly 100% coverage in transportation projects."
+    },
+    {
+      "section_id": "7.3.1.2.1",
+      "title": "Advantages",
+      "summary": "Principal advantages of mass mixing over deep mixing: typically less expensive per unit volume (though treatment volume per foot of depth is larger because of the larger area replacement ratio), and it can be done rapidly (p. 7-25).",
+      "body": "The principal advantages of mass mixing in comparison to deep mixing (p. 7-25) are that it is typically less expensive than deep mixing on a unit volume basis, although the treatment volume per foot of depth is larger because of the larger area replacement ratio, and that it can be done rapidly.",
+      "key_points": [
+        "Less expensive per unit volume than deep mixing.",
+        "Larger treatment volume per foot of depth.",
+        "Can be done rapidly."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Mass mixing (shallow soil mixing and mass stabilization) of soft ground at 100% or nearly 100% coverage in transportation projects."
+    },
+    {
+      "section_id": "7.3.1.2.2",
+      "title": "Potential Disadvantages",
+      "summary": "Principal disadvantages of mass mixing: equipment cannot easily penetrate dense or stiff soils; mass stabilization depth limited to about 20 feet (shallow soil mixing 50 feet or more); QC records only total binder and mixing time per cell, so quality is more operator dependent (pp. 7-25 to 7-26).",
+      "body": "The principal disadvantages of mass mixing in comparison to deep mixing (pp. 7-25 to 7-26): mass mixing equipment cannot easily penetrate dense or stiff soils; the maximum treatment depth for mass stabilization (mixing drum on a backhoe stick) is limited to about 20 feet, whereas 'shallow' soil stabilization with large-diameter single-axis equipment can extend to 50 feet or more; and quality control, monitoring and documentation for mass stabilization are not usually as comprehensive as for modern deep mixing, because binder delivery and mixing energy at every plan location and depth in a cell are not typically monitored or recorded. Instead, only the total binder delivered and total mixing time in a treated cell are recorded, and the quality and uniformity of the product are more operator dependent than for deep mixing.",
+      "key_points": [
+        "Cannot easily penetrate dense or stiff soils.",
+        "Mass stabilization limited to about 20 feet; shallow soil mixing can reach 50 feet or more.",
+        "Only total binder and total mixing time per cell are recorded for mass stabilization."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Mass mixing (shallow soil mixing and mass stabilization) of soft ground at 100% or nearly 100% coverage in transportation projects."
+    },
+    {
+      "section_id": "7.3.1.3",
+      "title": "Feasibility Evaluations",
+      "summary": "Container section for mass mixing feasibility evaluations: geotechnical (soft organic soils, peat, soft clays and silts, hydraulic fill, sludges), environmental considerations (as for deep mixing), and site conditions (equipment space) (p. 7-26).",
+      "body": "Feasibility of mass mixing is evaluated under geotechnical conditions (Section 3.1.3.1), environmental considerations (Section 3.1.3.2) and site conditions (Section 3.1.3.3), on p. 7-26.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Mass mixing (shallow soil mixing and mass stabilization) of soft ground at 100% or nearly 100% coverage in transportation projects."
+    },
+    {
+      "section_id": "7.3.1.3.1",
+      "title": "Geotechnical",
+      "summary": "Mass mixing applies to soft organic soils and peat, soft clays, soft silt, hydraulic fill and sludges; its equipment is generally not designed to penetrate stiff clays or dense sands, and logs, stumps or building debris prevent it from advancing (p. 7-26).",
+      "body": "Mass mixing is applicable in soft organic soils and peat, soft clays, soft silt, hydraulic fill, and sludges (p. 7-26). Mass mixing equipment is generally not designed to penetrate stiff clays or dense sands, whereas powerful wet-method deep mixing equipment can penetrate such materials. Obstructions such as logs, stumps or building debris will prevent mass mixing equipment from advancing.",
+      "key_points": [
+        "Applicable soils: soft organic soils, peat, soft clays, soft silt, hydraulic fill, sludges.",
+        "Not designed to penetrate stiff clays or dense sands.",
+        "Logs, stumps and building debris stop mass mixing equipment."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Mass mixing (shallow soil mixing and mass stabilization) of soft ground at 100% or nearly 100% coverage in transportation projects."
+    },
+    {
+      "section_id": "7.3.1.3.2",
+      "title": "Environmental Considerations",
+      "summary": "Environmental considerations for mass mixing are essentially those for deep mixing, but with 100% area coverage mass mixing can stabilize contaminants over the entire treatment area (p. 7-26).",
+      "body": "The environmental considerations for mass mixing are essentially the same as for deep mixing (cement immobilization of contaminants, freezing conditions, freeze-thaw above the frost depth), although with 100% area coverage, mass mixing can stabilize contaminants over the entire treatment area (p. 7-26).",
+      "key_points": [
+        "Same environmental considerations as deep mixing.",
+        "100% coverage stabilizes contaminants over the whole treated area."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Mass mixing (shallow soil mixing and mass stabilization) of soft ground at 100% or nearly 100% coverage in transportation projects."
+    },
+    {
+      "section_id": "7.3.1.3.3",
+      "title": "Site Conditions",
+      "summary": "Site-condition feasibility for mass mixing is similar to deep mixing; wet-method shallow soil mixing with large single-axis shafts needs more equipment space than dry-method mass stabilization with a horizontal-axis drum (p. 7-26).",
+      "body": "Feasibility considerations regarding site conditions for mass mixing are similar to those for deep mixing (p. 7-26). Shallow soil mixing operations, using large-diameter single-axis rotating shafts with mixing blades and the wet method, require more equipment space than mass stabilization operations using a horizontal-axis mixing drum and the dry method.",
+      "key_points": [
+        "Similar site considerations to deep mixing.",
+        "Wet shallow soil mixing needs more space than dry mass stabilization."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Mass mixing (shallow soil mixing and mass stabilization) of soft ground at 100% or nearly 100% coverage in transportation projects."
+    },
+    {
+      "section_id": "7.3.1.4",
+      "title": "Limitations",
+      "summary": "Limitations of mass mixing: treatment depths typically about 50 feet for shallow soil mixing equipment and about 20 feet for mass stabilization equipment; it cannot penetrate dense or stiff soils, cobbles, boulders or obstructions; buried utilities limit use (p. 7-26).",
+      "body": "Limitations of mass mixing (p. 7-26): treatment depths are typically limited to about 50 feet for shallow soil mixing equipment and to about 20 feet for mass stabilization equipment; and mass mixing equipment typically cannot penetrate dense or stiff soils, cobbles, boulders or other obstructions, while buried utilities or structures can limit its application.",
+      "key_points": [
+        "Depth: about 50 feet (shallow soil mixing), about 20 feet (mass stabilization).",
+        "Cannot penetrate dense or stiff soils, cobbles, boulders or obstructions."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Mass mixing (shallow soil mixing and mass stabilization) of soft ground at 100% or nearly 100% coverage in transportation projects."
+    },
+    {
+      "section_id": "7.3.1.5",
+      "title": "Alternative Solutions (or Technologies)",
+      "summary": "Alternatives to mass mixing: excavation and replacement where poor soils are of limited depth and groundwater is absent or controllable; for deeper poor soils compared with shallow soil mixing, the alternatives listed for deep mixing (pp. 7-26 to 7-27).",
+      "body": "When poor quality soils extend only to a limited depth, excavation and replacement can be an expedient alternative to mass mixing, provided groundwater does not interfere with excavation or can be controlled (p. 7-26). When poor soils extend deeper, and the comparison is to the 'shallow' soil mixing method, the alternative technologies listed for deep mixing (prefabricated vertical drains with preloading, densification, and column-supported embankments) can be considered (p. 7-27).",
+      "key_points": [
+        "Excavation and replacement for shallow poor soils if groundwater is controllable.",
+        "For deeper soils, consider the deep mixing alternatives."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Mass mixing (shallow soil mixing and mass stabilization) of soft ground at 100% or nearly 100% coverage in transportation projects."
+    },
+    {
+      "section_id": "7.3.2",
+      "title": "Construction and Materials",
+      "summary": "Container section on mass mixing construction, covering shallow soil mixing with large-diameter single shafts and mass stabilization with excavator-mounted drums in marked cells, and on materials, which are typically the same as for deep mixing (p. 7-27).",
+      "body": "This section describes construction by shallow soil mixing and mass stabilization (Section 3.2.1) and the materials used (Section 3.2.2), p. 7-27.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Mass mixing (shallow soil mixing and mass stabilization) of soft ground at 100% or nearly 100% coverage in transportation projects."
+    },
+    {
+      "section_id": "7.3.2.1",
+      "title": "Construction",
+      "summary": "Container heading for mass mixing construction methods: shallow soil mixing (3.2.1.1) with large-diameter single-shaft equipment, and mass stabilization (3.2.1.2) with a horizontal-axis drum on an excavator stick (p. 7-27).",
+      "body": "Mass mixing is constructed either by shallow soil mixing (Section 3.2.1.1) or by mass stabilization (Section 3.2.1.2), described on p. 7-27.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Mass mixing (shallow soil mixing and mass stabilization) of soft ground at 100% or nearly 100% coverage in transportation projects."
+    },
+    {
+      "section_id": "7.3.2.1.1",
+      "title": "Shallow Soil Mixing",
+      "summary": "Shallow soil mixing uses large-diameter (about 10 feet) single-shaft equipment to make overlapping columns for complete or nearly complete coverage, usually with pumped slurry (dry binder in very soft ground), and needs working platforms; it is not surface stabilization (p. 7-27).",
+      "body": "Shallow soil mixing generally uses relatively large-diameter (about 10 feet), single-shaft mixing equipment, arranged to create a series of overlapping columns giving complete or nearly complete coverage (p. 7-27). It most often uses pumped slurry, requiring a slurry plant similar to that for wet-method deep mixing; in very soft ground or sludges dry binder can be delivered pneumatically. Either way, the binder is conveyed through the mixing shaft to the mixing blades. Working platforms and/or timber mats are necessary for the equipment on soft surfaces. Shallow soil mixing is not surface stabilization, in which soil and binder are blended typically to a depth of 1 foot or less and compacted in lifts.",
+      "key_points": [
+        "Shaft diameter about 10 feet; overlapping columns.",
+        "Usually pumped slurry; dry binder in very soft ground or sludges.",
+        "Not surface stabilization (1 foot or less, compacted in lifts)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Mass mixing (shallow soil mixing and mass stabilization) of soft ground at 100% or nearly 100% coverage in transportation projects."
+    },
+    {
+      "section_id": "7.3.2.1.2",
+      "title": "Mass Stabilization",
+      "summary": "Mass stabilization uses a horizontal-axis mixing drum on an excavator stick, with slurry or dry binder; contiguous rectangular cells are marked and each fully treated before the next, the operator moving the drum vertically and horizontally in multiple passes (p. 7-27).",
+      "body": "Mass stabilization employs a horizontal-axis mixing drum attached to the stick of an excavator, with binder in slurry or dry form delivered to the drum (p. 7-27). Contiguous rectangular cells are marked with cord or by other means, and each cell is fully treated before moving to the next. The operator moves the rotating drum vertically and horizontally to achieve treatment, typically making multiple passes through each point in the cell.",
+      "key_points": [
+        "Excavator-mounted horizontal-axis drum.",
+        "Contiguous rectangular cells treated one at a time.",
+        "Multiple passes through each point in a cell."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Mass mixing (shallow soil mixing and mass stabilization) of soft ground at 100% or nearly 100% coverage in transportation projects."
+    },
+    {
+      "section_id": "7.3.2.2",
+      "title": "Materials",
+      "summary": "The materials used for mass mixing are typically the same as for deep mixing: cement and slag-cement blends most commonly in U.S. practice, lime or lime-cement by the dry method, and potable water for slurry (p. 7-27).",
+      "body": "The materials used for mass mixing are typically the same as for deep mixing (p. 7-27), that is, the binders and water described in Section 2.2.2: cement and slag-cement blends most commonly, lime or lime-cement with the dry method, and potable water for slurry.",
+      "key_points": [
+        "Same materials as deep mixing."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Mass mixing (shallow soil mixing and mass stabilization) of soft ground at 100% or nearly 100% coverage in transportation projects."
+    },
+    {
+      "section_id": "7.3.3",
+      "title": "Design",
+      "summary": "Mass mixing design is similar to deep mixing design except that several deep mixing failure modes need not be considered, and mass mixed soil-cement strength may be more variable than deep mixed soil-cement built with good QC (p. 7-27).",
+      "body": "The design process for mass mixing is similar to that for deep mixing, except that several failure modes for deep mixed systems do not need to be considered. The strength of mass mixed soil-cement may also be more variable than that of deep mixed soil-cement constructed with good quality control (p. 7-27). The section covers design considerations, the design procedure, a design example and primary design references.",
+      "key_points": [
+        "Fewer failure modes than deep mixing.",
+        "Strength may be more variable than well-controlled deep mixing."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Mass mixing (shallow soil mixing and mass stabilization) of soft ground at 100% or nearly 100% coverage in transportation projects."
+    },
+    {
+      "section_id": "7.3.3.1",
+      "title": "Design Considerations",
+      "summary": "Mass mixing design considerations are similar to deep mixing, except that coverage is complete or nearly complete, so no decisions about isolated elements, shear walls or grid arrangements are needed (p. 7-28).",
+      "body": "Design considerations for mass mixing are similar to those for deep mixing (Section 2.3.1), except that the coverage area is complete or nearly complete, so it is not necessary to decide on the use of isolated elements, shear walls or grid arrangements (p. 7-28).",
+      "key_points": [
+        "No need to choose isolated elements, shear walls or grids."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Mass mixing (shallow soil mixing and mass stabilization) of soft ground at 100% or nearly 100% coverage in transportation projects."
+    },
+    {
+      "section_id": "7.3.3.2",
+      "title": "Design Procedure",
+      "summary": "Introduces the seven-step mass mixing design procedure, similar to deep mixing; with 100% or nearly 100% coverage there is no need to check safety against vertical shearing or extrusion (p. 7-28).",
+      "body": "The design procedure for mass mixing is similar to that for deep mixing, with the steps listed in the following subsections (p. 7-28). Because 100% or nearly 100% area coverage is provided, it is not necessary to check for safety against vertical shearing or extrusion.",
+      "key_points": [
+        "Same seven steps as deep mixing.",
+        "No vertical shearing or extrusion checks needed at 100% or nearly 100% coverage."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Mass mixing (shallow soil mixing and mass stabilization) of soft ground at 100% or nearly 100% coverage in transportation projects."
+    },
+    {
+      "section_id": "7.3.3.2.1",
+      "title": "Step 1: Establish Project Requirements",
+      "summary": "Mass mixing design Step 1 is the same as for deep mixing: establish the line, grade and loading and the desired performance in terms of settlement and factor of safety (p. 7-28).",
+      "body": "This step is the same as for deep mixing (p. 7-28): establish line, grade, loading, and desired performance in terms of settlement and factor of safety (Section 2.3.2.1).",
+      "key_points": [
+        "Same as deep mixing Step 1."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Mass mixing (shallow soil mixing and mass stabilization) of soft ground at 100% or nearly 100% coverage in transportation projects."
+    },
+    {
+      "section_id": "7.3.3.2.2",
+      "title": "Step 2: Establish Representative Subsurface Conditions",
+      "summary": "Mass mixing design Step 2 is the same as for deep mixing: determine stratigraphy, soil property values, likelihood of obstructions, and treatability indicators such as water and organic content (p. 7-28).",
+      "body": "This step is the same as for deep mixing (p. 7-28): determine the stratigraphy, soil property values, likelihood of obstructions, and the characteristics that govern treatability (Section 2.3.2.2).",
+      "key_points": [
+        "Same as deep mixing Step 2."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Mass mixing (shallow soil mixing and mass stabilization) of soft ground at 100% or nearly 100% coverage in transportation projects."
+    },
+    {
+      "section_id": "7.3.3.2.3",
+      "title": "Step 3: Establish Trial Soil-Cement Property Values",
+      "summary": "Mass mixing design Step 3 involves the same considerations as deep mixing, but because area coverage is 100% or nearly 100%, lower strengths are generally used, and mass mixed strength is generally more variable than modern deep mixing (p. 7-28).",
+      "body": "This step involves the same considerations as for deep mixing (p. 7-28). However, because the percent area coverage is large (100% or nearly 100%), lower strengths are generally used for mass mixing than for deep mixing. It should also be recognized at this stage that the strength of soil-cement produced by mass mixing is generally more variable than that produced by modern deep mixing methods.",
+      "key_points": [
+        "Lower design strengths than deep mixing.",
+        "Strength generally more variable than modern deep mixing."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Mass mixing (shallow soil mixing and mass stabilization) of soft ground at 100% or nearly 100% coverage in transportation projects."
+    },
+    {
+      "section_id": "7.3.3.2.4",
+      "title": "Step 4: Establish Trial Mass Mixed Geometry",
+      "summary": "Mass mixing Step 4: 100% coverage with single columns needs spacing-to-diameter ratios of 0.707 (square) or 0.866 (triangular), with overlap areas of 57% and 21%; 98% coverage in a triangular array needs 0.929 with 7% overlap; treatment depth also set (p. 7-28).",
+      "body": "For vertical-axis single-column elements, 100% coverage can be achieved with spacing-to-diameter ratios of 0.707 for a square array and 0.866 for an equilateral triangular array (p. 7-28). The corresponding column overlap areas are 57% and 21% of the treated areas for square and triangular arrays, so equilateral triangular arrays are more efficient than square arrays. In many situations 100% coverage may not be necessary; for example, if 98% coverage is acceptable for a triangular array, the necessary spacing-to-diameter ratio is 0.929, and the column overlap areas are only 7% of the treated area. The mass mixing geometry also includes the treatment depth, which may be important for stability and settlement control.",
+      "key_points": [
+        "100% coverage: s/d = 0.707 (square array), 0.866 (equilateral triangular array).",
+        "Overlap areas: 57% (square) and 21% (triangular) of treated area.",
+        "98% coverage, triangular: s/d = 0.929 with 7% overlap.",
+        "Triangular arrays are more efficient than square arrays."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Mass mixing (shallow soil mixing and mass stabilization) of soft ground at 100% or nearly 100% coverage in transportation projects."
+    },
+    {
+      "section_id": "7.3.3.2.5",
+      "title": "Step 5: Evaluate Settlement",
+      "summary": "Mass mixing Step 5: settlement is evaluated the same way as for deep mixing (compression of the treated zone plus underlying layers), but a separate load transfer platform would not be necessary in a mass mixing application (p. 7-29).",
+      "body": "Settlement is evaluated in the same way as for deep mixing (compression of the treated zone plus compression of underlying layers, Section 2.3.2.5). However, a separate load transfer platform would not be necessary in a mass mixing application (p. 7-29).",
+      "key_points": [
+        "Same settlement approach as deep mixing.",
+        "No separate load transfer platform needed."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Mass mixing (shallow soil mixing and mass stabilization) of soft ground at 100% or nearly 100% coverage in transportation projects."
+    },
+    {
+      "section_id": "7.3.3.2.6",
+      "title": "Step 6: Evaluate Stability",
+      "summary": "Mass mixing Step 6: failure modes (a) sliding above, (b) beneath and (c) through the mass mixed zone, and under lateral loading (d) overturning with toe bearing and (e) toe crushing on a hard stratum; (a)-(c) by limit equilibrium; then compare with Step 1 and adjust size, depth or strength (p. 7-29).",
+      "body": "This step is similar to the deep mixing stability evaluation but with fewer failure modes (p. 7-29). The principal modes are: (a) sliding of the embankment above the mass mixed zone; (b) sliding beneath it; (c) sliding on surfaces through it; (d) combined overturning of the mass mixed zone and bearing capacity of the soil beneath its toe if the zone is laterally loaded; and (e) crushing of the toe if the zone is founded on a hard stratum and laterally loaded. Modes (a) through (c) can be evaluated with a limit equilibrium slope stability program; the FHWA deep mixing manual describes methods easily adapted for (d) and (e). Results of Steps 5 and 6 are compared with the Step 1 criteria. If settlements are too large or factors of safety too low, the mass mixed zone is made larger or deeper and/or the soil-cement strength increased, considering the practically achievable strength (Step 3). If criteria are met by wide margins, treatment volume and/or strength can be reduced to optimize cost.",
+      "key_points": [
+        "Five failure modes (a)-(e); (d) and (e) only under lateral loading.",
+        "Modes (a)-(c) by limit equilibrium slope stability analysis.",
+        "Remedies: larger or deeper zone, or higher strength within achievable limits."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Mass mixing (shallow soil mixing and mass stabilization) of soft ground at 100% or nearly 100% coverage in transportation projects."
+    },
+    {
+      "section_id": "7.3.3.2.7",
+      "title": "Step 7: Prepare the Plans and Specifications",
+      "summary": "Mass mixing Step 7: after iterating Steps 3 through 6, prepare plans and specifications that give the contractor wide latitude in means and methods while requiring specified outcomes, with a statistically based strength specification (p. 7-29).",
+      "body": "Upon finalizing the design by iterating on Steps 3 through 6, the plans and specifications for construction can be prepared (p. 7-29). They should allow the contractor wide latitude in means and methods while still requiring that the specified outcomes be achieved. Regarding strength, a statistically based specification should be used.",
+      "key_points": [
+        "Outcome-based specification.",
+        "Statistically based strength specification."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Mass mixing (shallow soil mixing and mass stabilization) of soft ground at 100% or nearly 100% coverage in transportation projects."
+    },
+    {
+      "section_id": "7.3.3.3",
+      "title": "Design Example",
+      "summary": "Worked mass mixing design example (pp. 7-29 to 7-35): a 20-foot embankment with 2H:1V slopes on 15 feet of very soft silty organic soil, mass mixed to the bearing layer with dry slag-cement; covers properties, geometry, settlement and Spencer stability analyses.",
+      "body": "A design example (pp. 7-29 to 7-35) applies the seven-step procedure to an embankment on very soft silty organic soil treated by dry-method mass mixing. Steps 1 and 2 set the geometry, loads, soil properties and criteria; Step 3 derives soil-cement modulus and design shear strength; Step 4 fixes the mass mixed geometry; Step 5 estimates compression; Step 6 checks stability with infinite slope and Spencer's method analyses; Step 7 prepares plans and specifications.",
+      "key_points": [
+        "Example of dry-method mass mixing under a 20-foot embankment.",
+        "Uses FHWA (2013) factors to convert specified field UCS to design shear strength."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Mass mixing (shallow soil mixing and mass stabilization) of soft ground at 100% or nearly 100% coverage in transportation projects."
+    },
+    {
+      "section_id": "7.3.3.3.1",
+      "title": "Steps 1 and 2",
+      "summary": "Example Steps 1-2: 20-ft embankment, 2H:1V slopes, 70-ft crest, 250 psf traffic surcharge, on 15 ft of very soft silty organic soil (80 pcf, 50 psf) over a hard layer; fill 125 (unit weight), phi 33 deg; criteria FS 1.3 above, FS 1.5 through, settlement at most 2 in. (pp. 7-29 to 7-31).",
+      "body": "A 20-foot high embankment is proposed with 2H:1V side slopes and a 70-foot crest width, with a 250 psf traffic surcharge for design (p. 7-29). The subsurface consists of 15 feet of very soft silty organic soil over a hard bearing layer (Figure 7-6, p. 7-31). The embankment soil is compacted sandy silt with a unit weight of 125 (printed as 'psf' on p. 7-30; Figure 7-6 gives 125 lbs/ft3) and a friction angle of 33 degrees; the silty organic soil has a unit weight of 80 pcf and a shear strength of 50 psf. Design requirements: (1) factor of safety at least 1.3 for sliding entirely in the embankment above the soil-cement; (2) at least 1.5 for sliding through the embankment, the soil-cement and the silty organic soil beyond it; and (3) embankment settlement not more than 2 inches. The required values differ because the 33-degree friction angle is conservative and more reliable than the soil-cement strength estimate, and shallow sliding at the slope surface has smaller consequences than a large mass through the embankment, soil-cement and untreated soil (p. 7-30). Figure 7-6 tabulates mass mixing at 85 lbs/ft3 and undrained cohesion 930 psf.",
+      "key_points": [
+        "Embankment 20 ft high, 2H:1V slopes, 70-ft crest; traffic surcharge 250 psf.",
+        "15 ft of very soft silty organic soil: 80 pcf, shear strength 50 psf, over hard bearing layer.",
+        "Fill: compacted sandy silt, 125 lbs/ft3 (Figure 7-6), friction angle 33 degrees.",
+        "Criteria: FS >= 1.3 above soil-cement; FS >= 1.5 through it; settlement <= 2 inches."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-6: Cross-section and material properties for design example."
+      ],
+      "tables": [],
+      "applicability": "Worked example of setting project requirements and subsurface conditions for mass mixing."
+    },
+    {
+      "section_id": "7.3.3.3.2",
+      "title": "Step 3: Establish Trial Soil-Cement Property Values",
+      "summary": "Example Step 3: field UCS 26 psi (3700 psf) by dry method with slag-cement at binder factor 8.5 pcf; unit weight 80 to about 85 pcf; E50 = 150 qu, Poisson's ratio 0.1, M about 560,000 psf; design shear strength = (0.5)(0.8)(1.0)(0.63)(3700 psf) = 930 psf (p. 7-32).",
+      "body": "From published literature, a design-phase laboratory program and industry experts, a field-mixed unconfined compressive strength of 26 psi (3700 psf) was judged reliably and economically achievable by the dry method with a slag-cement blend at a binder factor of 8.5 pounds per cubic foot (p. 7-32). The specifications will require a UCS, not a binder factor, but the binder factor estimates the slight unit weight increase from about 80 pcf untreated to about 85 pcf. For settlement, the secant Young's modulus at 50% of UCS, E50, can be taken as 150 times the UCS per FHWA (2013), with Poisson's ratio 0.1. As printed: E50 = 150(26 psi) = 3,840 psi = 550,000 psf, and M = E50(1 - nu)/((1 + nu)(1 - 2nu)) = 560,000 psf, nearly the same as E50. For stability, FHWA (2013) applies four factors to the specified field strength: 0.5 to convert UCS to shear strength; 0.8 to convert peak unconfined strength to confined large-strain strength against progressive failure; a curing factor of 1.0 for 28 days; and a variability factor (FHWA 2013 Sections 5.4.8 and 6.1.3). Using a factor of 1.5, a coefficient of variation of 0.6 and a 70% probability that the actual strength equals or exceeds the desired field strength, the variability factor is 0.63 (FHWA 2013 Table 12). Design shear strength ssc = (0.5)(0.8)(1.0)(0.63)(3700 psf) = 930 psf. With 100% area coverage there is no reduction for area replacement ratio.",
+      "key_points": [
+        "Field UCS 26 psi (3700 psf); dry method, slag-cement blend, binder factor 8.5 pcf.",
+        "Unit weight rises from about 80 pcf to about 85 pcf.",
+        "E50 = 150 x UCS; Poisson's ratio 0.1; printed E50 = 3,840 psi = 550,000 psf; M = 560,000 psf.",
+        "Design shear strength factors: 0.5 x 0.8 x 1.0 (28-day curing) x 0.63 (variability) = 930 psf.",
+        "Variability factor 0.63 for CV 0.6, 70% probability, factor 1.5 (FHWA 2013 Table 12).",
+        "No area replacement reduction at 100% coverage."
+      ],
+      "equations": [
+        "Unnumbered equation, p. 7-32: E50 = 150(26 psi) = 3,840 psi = 550,000 psf; secant Young's modulus at 50% of UCS taken as 150 times the UCS (FHWA 2013). Values as printed.",
+        "Unnumbered equation, p. 7-32: M = E50 (1 - nu)/((1 + nu)(1 - 2 nu)) = (550,000 psf)(1 - 0.1)/((1 + 0.1)(1 - 2(0.1))) = 560,000 psf; constrained modulus from E50 and Poisson's ratio.",
+        "Unnumbered equation, p. 7-32: ssc = (0.5)(0.8)(1.0)(0.63)(3700 psf) = 930 psf; design shear strength of soil-cement from specified field UCS times conversion, large-strain, curing and variability factors."
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Converting a specified field UCS to design modulus and shear strength for mass mixed or deep mixed soil-cement."
+    },
+    {
+      "section_id": "7.3.3.3.3",
+      "title": "Step 4: Establish Trial Mass Mixed Geometry",
+      "summary": "Example Step 4: the trial mass mixed zone (Figure 7-6) extends from the ground surface down 15 feet to the hard bearing layer and 10 feet beyond the toe of the embankment (p. 7-33).",
+      "body": "The trial mass mixed geometry is shown in Figure 7-6. The mass mixing extends from the ground surface down 15 feet to the hard bearing layer, and it extends 10 feet beyond the toe of the embankment (p. 7-33). With 100% coverage the whole zone is treated as soil-cement.",
+      "key_points": [
+        "Treated depth 15 ft to the bearing layer.",
+        "Treatment extends 10 ft beyond the embankment toe."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Worked example of setting mass mixed treatment geometry."
+    },
+    {
+      "section_id": "7.3.3.3.4",
+      "title": "Step 5: Evaluate Settlement",
+      "summary": "Example Step 5: compression of the soil-cement = applied stress divided by modulus; constrained modulus near the center, small difference from E at nu = 0.1; (15 ft)((20 ft)(125 pcf) + 250 psf)/(550,000 psf) = 0.075 ft = 0.9 inch, under the 2-inch limit (p. 7-33).",
+      "body": "Compression of the soil-cement is calculated by dividing the applied stress by the appropriate modulus (p. 7-33). Near the embankment center compression is approximately one-dimensional and the constrained modulus applies; near the edge some shear distortion occurs, but the applied load is smaller. Because Poisson's ratio is small, the Young's and constrained moduli differ little. Using either value, compression of the soil-cement is less than 1.0 inch, e.g., (15 ft)((20 ft)(125 pcf) + 250 psf)/(550,000 psf) = 0.075 ft = 0.9 inches. If compression of the underlying bearing layer is also small, settlement will be less than the acceptable 2 inches.",
+      "key_points": [
+        "Compression = thickness x applied stress / modulus.",
+        "Calculated compression 0.075 ft = 0.9 inch, below the 2-inch criterion."
+      ],
+      "equations": [
+        "Unnumbered equation, p. 7-33: (15 ft)((20 ft)(125 pcf) + 250 psf)/(550,000 psf) = 0.075 ft = 0.9 inches; one-dimensional compression of the 15-ft soil-cement zone under embankment plus traffic surcharge."
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Worked example of a soil-cement compression estimate."
+    },
+    {
+      "section_id": "7.3.3.3.5",
+      "title": "Step 6: Evaluate Stability",
+      "summary": "Example Step 6: sliding above the soil-cement checked by infinite slope, FS = tan(33 deg)/0.5 = 1.3; sliding through embankment, soil-cement and untreated soil by Spencer's method gives FS 1.55 (circular) and 1.50 (non-circular), both acceptable (pp. 7-33 to 7-35).",
+      "body": "For the Figure 7-6 configuration, the only stability failure modes of concern are (1) sliding of the embankment above the soil-cement and (2) sliding through the embankment, the soil-cement and the silty organic soil beyond the treated zone (p. 7-33). For sliding above the soil-cement, the lowest factor of safety is the infinite slope value, tan(33 deg)/0.5 = 1.3, which is acceptable. Surfaces through the embankment, soil-cement and untreated soil were analyzed with Spencer's method, with thorough searches for critical circular and non-circular surfaces. The critical circular surface has a factor of safety of 1.55 (Figure 7-7, p. 7-34) and the critical non-circular surface 1.50 (Figure 7-8, p. 7-35), both acceptable under the Step 1 criteria. Because settlement and stability criteria are satisfied, no further iterations are necessary.",
+      "key_points": [
+        "Infinite slope FS above soil-cement = tan(33 deg)/0.5 = 1.3.",
+        "Spencer's method: critical circular FS 1.55; critical non-circular FS 1.50.",
+        "Criteria satisfied; no further iteration."
+      ],
+      "equations": [
+        "Unnumbered equation, p. 7-33: FS = tan(33 deg)/0.5 = 1.3; infinite slope factor of safety for the 2H:1V cohesionless embankment slope."
+      ],
+      "figures": [
+        "Figure 7-7: Slope stability analysis results for circular sliding surfaces.",
+        "Figure 7-8: Slope stability analysis results for non-circular sliding surfaces."
+      ],
+      "tables": [],
+      "applicability": "Worked example of stability checks for a mass mixed embankment foundation."
+    },
+    {
+      "section_id": "7.3.3.3.6",
+      "title": "Step 7",
+      "summary": "Example Step 7: with the settlement and stability criteria satisfied, prepare the plans and specifications for procurement and construction of the mass mixed embankment foundation, specifying the required unconfined compressive strength rather than a binder factor (p. 7-33).",
+      "body": "Prepare the plans and specifications for procurement and construction (p. 7-33). As noted in Step 3 of the example, the specifications are written around the required unconfined compressive strength and do not require any particular binder factor.",
+      "key_points": [
+        "Prepare plans and specifications.",
+        "Specify required UCS, not binder factor."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Completing the mass mixing design example."
+    },
+    {
+      "section_id": "7.3.3.4",
+      "title": "Primary Design References",
+      "summary": "Lists the primary design references for deep mixing and mass mixing support systems: FHWA (2013) FHWA-HRT-13-046, Kitazume and Terashi (2013), ALLU (2007) Mass Stabilisation Manual, and the deep mixing and mass mixing sections of GeoTechTools (p. 7-36).",
+      "body": "Primary design references (p. 7-36): FHWA (2013), Design Manual: Deep Mixing for Embankment and Foundation Support, FHWA-HRT-13-046 (Bruce et al.); Kitazume and Terashi (2013), The Deep Mixing Method; ALLU (2007), Mass Stabilisation Manual; and the deep mixing and mass mixing sections of the GeoTechTools website.",
+      "key_points": [
+        "ALLU (2007) addresses mass stabilisation; FHWA (2013) addresses deep mixing."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Mass mixing (shallow soil mixing and mass stabilization) of soft ground at 100% or nearly 100% coverage in transportation projects."
+    },
+    {
+      "section_id": "7.3.4",
+      "title": "Construction Specifications and Quality Assurance",
+      "summary": "Container section on mass mixing specifications and QA: specification development with an outline of section headings, quality assurance alternatives to coring for weak soil-cement, and instrumentation, monitoring and construction control (pp. 7-36 to 7-39).",
+      "body": "This section covers specification development (3.4.1), a summary of quality assurance (3.4.2), and a summary of instrumentation, monitoring and construction control (3.4.3) for mass mixing, pp. 7-36 to 7-39.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Mass mixing (shallow soil mixing and mass stabilization) of soft ground at 100% or nearly 100% coverage in transportation projects."
+    },
+    {
+      "section_id": "7.3.4.1",
+      "title": "Specification Development",
+      "summary": "Mass mixing example specifications are at GeoTechTools and must be carefully edited; like deep mixing they are end-result specifications. Gives an outline: General (scope, references, qualifications, submittals), Materials and Equipment, Execution (mix design, demonstration, production, QC/QA, acceptance, remediation), Measurement and Payment (pp. 7-36 to 7-38).",
+      "body": "Example specifications are available at GeoTechTools; any adapted from other mass mixing projects should be very carefully reviewed and edited (p. 7-36). Like deep mixing, mass mixing uses end-result specifications because of substantial differences in contractor equipment and procedures. A mass mixing specification may include: 1. General (scope, project objectives and site conditions; references; qualifications of contractor project and personnel experience; submittals of qualifications, equipment, materials, laboratory mix design report, field demonstration section plan and report, work plan, QC/QA plan, daily reports and summary report); 2. Materials and Equipment; 3. Execution (laboratory mix design program; field demonstration section; production mixing; QC and QA of materials, equipment, geometry, mixing process, sampling and testing, in situ testing and field load testing; acceptance criteria for geometry, consistency of process control and unconfined compressive strength; remedial work); and 4. Measurement and Payment (mobilization, laboratory mix design testing and field demonstration program as lump sums; mixing including QC/QA measurements, testing and documentation as a price per cubic yard) (pp. 7-36 to 7-38).",
+      "key_points": [
+        "End-result specifications for mass mixing.",
+        "Acceptance criteria: geometry, consistency of process control, unconfined compressive strength.",
+        "Payment: lump sums for mobilization, mix design and demonstration; mixing per cubic yard."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Drafting a mass mixing specification."
+    },
+    {
+      "section_id": "7.3.4.2",
+      "title": "Summary of Quality Assurance",
+      "summary": "Mass mixing QA is like deep mixing except for weak soil-cement: core is hard to recover below 100 psi UCS (done as low as 50 psi), so wet grab sampling, cone or blade penetrometers, and full-scale embankment load tests are used; lower variability factors or higher FS may be warranted (pp. 7-38 to 7-39).",
+      "body": "QA for mass mixing is similar to deep mixing except for coring and testing when the soil-cement strength is low (p. 7-38). Coring has succeeded on projects specifying UCS as low as 50 psi, but core is generally hard to recover for soil-cement under 100 psi, particularly if strength is variable and the material contains clumps of unmixed soil at the scale of the core diameter. Other QA methods are therefore often used: wet grab sampling right after mixing when the mixture is fluid enough, using a bucket with a door or flap, with specimens formed in molds like concrete cylinders and tested in unconfined compression; cone penetrometers where the soil-cement is not too strong, or for very low strengths the blade penetrometer test developed for dry-method deep-mixed columns, whose welded blade tests more material and gives less erratic results; and full-scale embankment load tests monitored with settlement plates and inclinometer casings. Coring remains preferred but is impractical for weak soil-cement. Because QC/QA is typically less thorough than for deep mixing, somewhat lower variability factors and/or larger factors of safety may be warranted, judged case by case; the design example applied a lower variability factor than a deep mixing project with good QC/QA would normally use (p. 7-39).",
+      "key_points": [
+        "Core recovery difficult below about 100 psi UCS; coring achieved as low as 50 psi.",
+        "Alternatives: wet grab samples, cone or blade penetrometers, full-scale embankment load tests.",
+        "Lower variability factors and/or larger FS may be warranted for mass mixing."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Quality assurance of low-strength mass mixed soil-cement."
+    },
+    {
+      "section_id": "7.3.4.3",
+      "title": "Summary of Instrumentation, Monitoring, and Construction Control",
+      "summary": "Instrumentation, monitoring and construction control for shallow soil mixing are similar to vertical-axis deep mixing; for mass stabilization with an excavator-mounted drum, geometry and thoroughness are operator dependent, so close QC and QA observation is essential (p. 7-39).",
+      "body": "Instrumentation, monitoring and construction control for shallow soil mixing are similar to the corresponding equipment and processes for deep mixing with vertical-axis mixing equipment (p. 7-39). For mass stabilization with a horizontal-axis mixing drum mounted on an excavator, mixing geometry and thoroughness are operator dependent, and close observation of construction by QC and QA personnel is essential.",
+      "key_points": [
+        "Shallow soil mixing: monitored like vertical-axis deep mixing.",
+        "Mass stabilization: operator dependent; close QC/QA observation essential."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Mass mixing (shallow soil mixing and mass stabilization) of soft ground at 100% or nearly 100% coverage in transportation projects."
+    },
+    {
+      "section_id": "7.3.5",
+      "title": "Cost Data",
+      "summary": "The factors that influence the cost of mass mixing are similar to those that influence the cost of deep mixing, such as treatment volume, depth, specified strength, soil types, binder availability, site access and QC/QA requirements (p. 7-39).",
+      "body": "The factors that influence the cost of mass mixing are similar to those that influence the cost of deep mixing (p. 7-39), listed in Section 2.5. Cost components are given in Section 3.5.1.",
+      "key_points": [
+        "Same cost factors as deep mixing."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Mass mixing (shallow soil mixing and mass stabilization) of soft ground at 100% or nearly 100% coverage in transportation projects."
+    },
+    {
+      "section_id": "7.3.5.1",
+      "title": "Cost Components",
+      "summary": "Mass mixing mobilization costs can be $25,000 to $150,000 including support equipment; unit costs $15 to $75 per cubic yard, lower on large projects in competitive markets; the same factors and qualifications as for deep mixing cost estimates apply (p. 7-39).",
+      "body": "Mobilization costs for mass mixing can be in the range of $25,000 to $150,000, including support equipment (p. 7-39). Unit costs can be in the range of $15 to $75 per cubic yard, with lower costs associated with large projects in competitive markets. The same types of factors and qualifications used for estimating deep mixing costs also apply to mass mixing costs.",
+      "key_points": [
+        "Mobilization: $25,000 to $150,000.",
+        "Unit cost: $15 to $75 per cubic yard."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Preliminary cost estimates for mass mixing."
+    },
+    {
+      "section_id": "7.3.6",
+      "title": "Case History",
+      "summary": "Case history (Gamin and Mann 2010): dry-method mass stabilization at 100% coverage of about 12 ft of very soft organic silt under MSE-wall approaches and a bridge founded on MSE fill; design shear strength 2,160 psf; 5 ft x 20 ft cells; blade penetrometer QC at one test per 2,500 sq ft (pp. 7-39 to 7-40).",
+      "body": "A two-lane, four-span, 218-foot-long bridge was built over a discharge canal to improve truck access (Gamin and Mann 2010). Approach embankments are supported by MSE walls and the bridge is founded directly on the MSE wall fill. Criteria: total and differential settlements limited to 1 inch and 0.5 inch, and factors of safety for overall stability and MSE wall bearing capacity at least 2 and 3 (p. 7-39). The subsurface was several feet of sand over very soft organic silt averaging 12 feet thick, over limestone or dense cemented sand. Dry-method mass mixing stabilized the organic silt at 100% coverage, extending 5 feet beyond the MSE wall footings; a design shear strength of 2,160 psf satisfied the criteria. A laboratory mix design program with Portland cement set the target binder weight per unit volume (p. 7-40). The upper sand was stripped and stockpiled; an excavator-mounted horizontal-axis tool blended dry binder into the silt in adjacent cells about 5 feet by 20 feet; a geotextile and the sand were then placed as surcharge during curing. QC controlled binder dose and mixing energy, with logs of cell, target and actual binder and total mixing time. QA used the blade penetrometer test at a minimum of one test per 2,500 square feet, supplemented by SPT borings and coring; with a relatively high binder factor, tests were done one to four days after mixing and cells lacking strength were re-mixed. Petroleum-contaminated soil was encountered; because the dry method produces no spoils and cement stabilizes petroleum contamination, no additional work was needed.",
+      "key_points": [
+        "Criteria: total settlement 1 inch, differential 0.5 inch; FS overall 2, bearing 3.",
+        "Organic silt averaging 12 ft thick treated at 100% coverage, 5 ft beyond MSE wall footings.",
+        "Design shear strength of soil-cement 2,160 psf; Portland cement binder.",
+        "Cells about 5 ft by 20 ft; blade penetrometer at least one test per 2,500 sq ft, 1 to 4 days after mixing.",
+        "Dry method produced no spoils; contaminated soil stabilized without extra work."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Example of dry-method mass stabilization supporting MSE walls and a bridge on very soft organic silt."
+    },
+    {
+      "section_id": "7.4.0",
       "title": "References",
-      "body": "Key references for deep mixing design and construction include: FHWA-RD-99-167 (Porbaha et al., 1998) and FHWA-HRT-13-046 (Bruce et al., 2013) for US design practice; EuroSoilStab (2002) Nordic Design Guidelines; Japanese CDM Manual (CDM Association, 2008); Kitazume & Terashi (2013) textbook; and ASCE Geo-Institute publications on deep mixing (Denies & Huybrechts, 2015; O'Brien et al., 2009). The ICE specification for ground treatment (Institution of Civil Engineers, 2012) provides model specifications. For environmental applications, the EPA Engineering Issue document on in-situ soil mixing (EPA 542-F-06-020) provides additional guidance. Case histories and workshop proceedings from the International Symposium on Deep Mixing and Admixture Stabilization (2009, 2012) document field performance.",
+      "summary": "Reference list for Chapter 7 on deep mixing and mass mixing: ALLU (2007), FHWA (2013) FHWA-HRT-13-046, Gamin and Mann (2010), Kitazume and Terashi (2013), and the GeoTechTools website (p. 7-41).",
+      "body": "Chapter 7 references (p. 7-41): ALLU (2007), Mass Stabilisation Manual; FHWA (2013), Design Manual: Deep Mixing for Embankment and Foundation Support, FHWA-HRT-13-046; Gamin and Mann (2010), Mass Stabilization for Environmentally Sensitive Projects, Transportation Research Record No. 2201, pp. 62-69; Kitazume and Terashi (2013), The Deep Mixing Method; and the deep mixing and mass mixing sections of GeoTechTools.",
       "key_points": [
-        "Primary US reference: FHWA-HRT-13-046 (Bruce et al., 2013) for deep mixing design practice",
-        "Nordic design reference: EuroSoilStab (2002) — widely used for lime-cement column design",
-        "Japanese CDM Manual (2008) and Kitazume & Terashi (2013) for wet mixing practice",
-        "ICE specification (2012) provides model specifications for deep mixing construction",
-        "EPA 542-F-06-020 for environmental containment applications",
-        "International symposium proceedings document field performance case histories"
+        "ALLU (2007)",
+        "FHWA (2013)",
+        "Gamin and Mann (2010)",
+        "Kitazume and Terashi (2013)"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Bibliography and design references for deep mixing applications."
+      "applicability": "Locating the published sources cited in Chapter 7."
     }
   ]
 }

@@ -61,7 +61,36 @@ def test_gec12_chapter7_static_methods_follow_the_print():
     assert ids["7.2.1.3.2"].startswith("Alpha")
     assert ids["7.2.1.3.4"].startswith("Beta")
     assert "Rock" in ids["7.2.1.4"]
-    assert "7.2.1.1" not in ids and "7.2.1.6" not in ids
+    # 7.2.1.1 and 7.2.1.2 are the printed General and Static Analysis
+    # Overview (pp. 227-232), no longer the static methods
+    assert ids["7.2.1.1"] == "General"
+    assert ids["7.2.1.2"] == "Static Analysis Overview"
+    assert "7.2.1.6" not in ids
+
+
+def test_gec12_ref25_sections_follow_the_print():
+    """REF-25: GEC-12 7.1 has the printed subsections, the group tension
+    sections carry their page-heading numbers, and 7.2.8 holds 7.2.8.1."""
+    data = json.loads((csn.PKG / "gec_12" / "text" / "chapter07.json").read_text(
+        encoding="utf-8"))
+    tree = {}
+
+    def walk(secs, parent):
+        for s in secs or []:
+            tree[s["section_id"]] = (s["title"], parent)
+            walk(s.get("subsections"), s["section_id"])
+
+    walk(data["sections"], None)
+    assert [sid for sid, (_, p) in tree.items() if p == "7.1"] == [
+        "7.1.1", "7.1.2", "7.1.3", "7.1.4", "7.1.5", "7.1.6"]
+    assert tree["7.1.5"][0] == "Resistance Factors"
+    assert tree["7.2.3.2"][0] == "Axial Tension Resistance of Pile Groups"
+    assert [sid for sid, (_, p) in tree.items() if p == "7.2.3.2"] == [
+        "7.2.3.2.2", "7.2.3.2.3"]
+    assert tree["7.2.8.1"][1] == "7.2.8"
+    ch2 = json.loads((csn.PKG / "gec_12" / "text" / "chapter02.json").read_text(
+        encoding="utf-8"))
+    assert not [s for s in ch2["sections"] if s["section_id"].startswith("2.10.")]
 
 
 # ---------------------------------------------------------------------------

@@ -67,6 +67,24 @@ _LEADER_PG = re.compile(r"\.{2,}\s*(\d+)\s*$")
 # Trailing bare page number (no dotted leader); guard against caption-internal
 # numbers by requiring it to be the very last token.
 _TRAIL_PG = re.compile(r"(?<![\d-])(\d{1,4})\s*$")
+# A chapter-page number ("1 - 4", "A-28") at the end of an entry, the way the
+# micropile manual and the appendices print them. The page is the number after
+# the dash; the chapter is the figure's own.
+_CHAPTER_PG = re.compile(r"(?<![\w-])(?:\d{1,2}|[A-Z])\s*-\s*(\d{1,4})\s*$")
+# Headings that end a List of Figures: the next list, or the body.
+_LOF_END = re.compile(
+    r"^\s*(?:LIST OF (?:TABLES|SYMBOLS|APPENDICES|ABBREVIATIONS|ACRONYMS)"
+    r"|ACRONYMS(?: AND ABBREVIATIONS)?|CHAPTER\s+1)\s*$", re.I)
+#: A caption longer than this ran on into the page text (BACKLOG REF-27):
+#: the longest real caption in the library is under 500 characters.
+MAX_CAPTION_CHARS = 500
+# What a caption that ran on carries: another figure's entry, a list heading,
+# a running header or a list of symbols.
+_RUN_ON = re.compile(
+    r"Figure\s+(?:[A-Z]{1,3}|\d+)\s*[-.]\s*\d+\s*[.:]\s+[A-Z]"
+    r"|Table\s+\d+\s*[-.]\s*\d+\.\s+[A-Z]"
+    r"|LIST OF (?:FIGURES|TABLES|SYMBOLS|APPENDICES)"
+    r"|FHWA[- ]NHI-\d\d-\d{3}\s+Chapter")
 # Smart quotes / dashes / replacement char -> ASCII (PyMuPDF emits these; the
 # Windows console renders them as the replacement glyph).
 _SMART = {0x201C: '"', 0x201D: '"', 0x2018: "'", 0x2019: "'",
@@ -87,8 +105,8 @@ def _is_lof_noise(line: str) -> bool:
         return True
     if re.match(r"(?i)^\d{1,2}\s+[A-Za-z]+\s+\d{4}$", s):   # "16 January 2025"
         return True
-    if re.match(r"(?i)^[ivxlcdm]{1,6}$", s):          # roman front-matter page no.
-        return True
+    if re.match(r"(?i)^[ivxlcdm]{1,6}(?:\s*-\s*[ivxlcdm]{1,6})?$", s):
+        return True                                   # roman page no. ("i - xii")
     if re.match(r"(?i)^list of (figures|tables)$", s):
         return True
     return False
@@ -103,14 +121,35 @@ def _clean_caption(seg: str) -> tuple[str, int | None]:
         printed = int(lm.group(1))
         seg = _LEADER_PG.sub("", seg)
     else:
-        tm = _TRAIL_PG.search(seg)
-        if tm:
+        cm = _CHAPTER_PG.search(seg)
+        tm = None if cm else _TRAIL_PG.search(seg)
+        if cm:
+            printed = int(cm.group(1))
+            seg = seg[:cm.start()]
+        elif tm:
             printed = int(tm.group(1))
             seg = seg[:tm.start()]
     cap = re.sub(r"\.{2,}", "", seg).translate(_SMART)
     # Strip leading colon too: GEC entries read "Figure 2.1: <caption>".
     cap = re.sub(r"\s+", " ", cap).strip(" .-:")
     return cap, printed
+
+
+def _running_lines(pages: list[list[str]]) -> set[str]:
+    """Lines printed on every page of a multi-page list (its running header and
+    footer: "FHWA NHI-05-039", "Micropile Design & Construction", "December
+    2005"), which would otherwise join the caption of the entry they follow."""
+    if len(pages) < 2:
+        return set()
+    sets = [{_header_key(ln) for ln in lines if _header_key(ln)} for lines in pages]
+    common = set.intersection(*sets)
+    return {ln for ln in common if not _FIG_MARKER.search(ln)}
+
+
+def _header_key(line: str) -> str:
+    """A line without the page number a running header carries ("i-xii")."""
+    return re.sub(r"(?i)\s+[ivxlc]{1,6}\s*-\s*[ivxlc]{1,6}\s*$", "",
+                  line).strip()
 
 
 def _parse_list_of_figures(doc) -> tuple[list[dict], "int | None"]:
@@ -131,17 +170,30 @@ def _parse_list_of_figures(doc) -> tuple[list[dict], "int | None"]:
             break
     kept: list[str] = []
     if start is not None:
+        pages: list[list[str]] = []
+        whole: list[list[str]] = []         # each page as printed, for headers
         for i in range(start, min(start + 14, doc.page_count)):
-            text = doc[i].get_text()
+            lines = [ln.translate(_SMART) for ln in doc[i].get_text().splitlines()]
+            if i > start and not _FIG_MARKER.search("\n".join(lines)):
+                break                       # a page with no figure entry
             lof_pages.append(i)
-            if i > start and re.search(r"^\s*LIST OF TABLES\s*$", text, re.I | re.M):
-                for ln in text.splitlines():
-                    if re.search(r"(?i)^\s*list of tables\s*$", ln):
-                        break
-                    if not _is_lof_noise(ln):
-                        kept.append(ln.strip())
+            whole.append(lines)
+            # on the first page the list starts at its heading (a list of
+            # tables may come before it on the same page)
+            first = 0
+            if i == start:
+                first = next(k for k, ln in enumerate(lines) if re.search(
+                    r"(?i)^\s*list of figures\s*$", ln))
+            end = next((k for k in range(first + 1, len(lines))
+                        if _LOF_END.match(lines[k])), None)
+            pages.append(lines[first:end])
+            if end is not None:
                 break
-            kept.extend(ln.strip() for ln in text.splitlines() if not _is_lof_noise(ln))
+        # A line printed on every page of the list is its running header.
+        running = _running_lines(whole)
+        for lines in pages:
+            kept.extend(ln.strip() for ln in lines
+                        if not _is_lof_noise(ln) and _header_key(ln) not in running)
     else:
         # No "LIST OF FIGURES" heading: fall back to the contiguous run of
         # front-matter pages dense with dotted-leader figure entries (some
@@ -167,7 +219,11 @@ def _parse_list_of_figures(doc) -> tuple[list[dict], "int | None"]:
                         if not _is_lof_noise(ln))
 
     blob = "\n".join(kept)
-    markers = list(_FIG_MARKER.finditer(blob))
+    # An entry starts a line or follows the previous entry's page number; a
+    # marker inside a caption ("Equations Used in Each Cell in Figure 6-35")
+    # is a cross-reference, not an entry.
+    markers = [m for m in _FIG_MARKER.finditer(blob)
+               if re.search(r"(?:^|\n|[\d.])\s*$", blob[:m.start()][-12:] or "\n")]
     figs: list[dict] = []
     for k, m in enumerate(markers):
         end = markers[k + 1].start() if k + 1 < len(markers) else len(blob)
@@ -479,6 +535,9 @@ def build_catalog(package: str) -> dict:
         "figures": out_figs,
     }
 
+    for problem in caption_problems(catalog):
+        print(f"[{package}] caption check: {problem}")
+
     out_path = _PACKAGE_DIR / package / "figures_catalog.json"
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(
@@ -489,6 +548,24 @@ def build_catalog(package: str) -> dict:
         f"estimated {len(out_figs) - resolved}; text-enriched {enriched}) -> {out_path}"
     )
     return catalog
+
+
+def caption_problems(catalog: dict) -> list[str]:
+    """Captions that ran on into the page text (BACKLOG REF-27): longer than
+    :data:`MAX_CAPTION_CHARS`, or carrying another figure's entry, a list
+    heading or a running header. Empty when every caption is one caption."""
+    out = []
+    for f in catalog.get("figures", []):
+        cap = f.get("caption") or ""
+        why = []
+        if len(cap) > MAX_CAPTION_CHARS:
+            why.append(f"{len(cap):,} characters")
+        m = _RUN_ON.search(cap)
+        if m:
+            why.append(f"runs on into {m.group(0)!r}")
+        if why:
+            out.append(f"Figure {f.get('figure_number')}: {'; '.join(why)}")
+    return out
 
 
 def _packages_with_pdf() -> list[str]:

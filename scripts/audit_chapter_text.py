@@ -6,30 +6,43 @@ Runs structural and consistency checks on the chapter JSONs produced by
 build_chapter_text.py. Catches LLM hallucinations and schema drift without
 requiring a second LLM pass over the source content.
 
-Checks performed:
-  1. Schema validity (same checks as build_chapter_text)
+Checks performed (on every section at every level, nested ``subsections``
+included):
+  1. Required fields present (``REQUIRED_FIELDS``; a nested subsection needs
+     only its number, title and body). ``summary`` is optional: it is the
+     short text a ``reference_search`` hit shows, written for some
+     references, and a reference without it is searched on its title and
+     body (BACKLOG REF-05; REF-06 is the summaries still to write). When a
+     summary is there it is at most 700 characters, and at least 50 unless
+     the body it summarises is short.
   2. Equation cross-reference coverage — every equation referenced in the
      equation module's docstrings (Eq X-Y) must appear in some section
   3. Equation cross-reference resolvability — every implemented_in field
-     must point to a real, importable function
-  4. Section ID format and ordering
-  5. Required fields present
-  6. Key-point sanity (3-12 items, each <= 300 chars)
-  7. Body length floor (>= 100 chars)
+     must point to a real, importable function (fully qualified,
+     ``geotech_references.<ref>.<module>.<function>``)
+  4. Section ID format (``SECTION_ID``: dot, UFC hyphen-then-dot, prologue,
+     a combined range, GEC-11's lettered level "3.5.2.a")
+  5. Key points: at most 12, each <= 300 chars (a section may have none)
+  6. Body floor: a section with no subsections has a body of at least a
+     sentence (20 chars), or a summary or key points that say what a
+     one-line printed section ("See UFC 3-250-07.") covers
+  7. Applicability at least 10 chars where present
   8. Section ID uniqueness within a chapter
 
 Usage
 -----
+    python audit_chapter_text.py              # every reference with text
     python audit_chapter_text.py dm7_1
-    python audit_chapter_text.py dm7_2 --manifest scripts/manifests/dm7_2.json
     python audit_chapter_text.py dm7_1 --chapter 5
 """
 
 from __future__ import annotations
 
 import argparse
+import contextlib
 import importlib
 import inspect
+import io
 import json
 import re
 import sys
@@ -149,6 +162,55 @@ def _is_container(sid: str, sections: list, index: int) -> bool:
     return False
 
 
+#: A section number: FHWA/GEC dot form ('5.7.2'), UFC hyphen-then-dot form
+#: ('4-2.1'), prologue ('P-1'), a combined section ('5.15-5.16'), and the
+#: lettered level GEC-11 prints ('3.5.2.a', '4.4.7.k').
+SECTION_ID = re.compile(r"^[0-9P]+([-.][0-9]+)*(\.[a-z])?$")
+
+#: Fields every section carries. ``summary`` is not among them: it is the
+#: short text a ``reference_search`` hit shows, written for DM7 and some
+#: other references, and a reference without it is searched on its title
+#: and body (BACKLOG REF-05, REF-06).
+REQUIRED_FIELDS = ("section_id", "title", "body", "key_points", "equations",
+                   "figures", "tables", "applicability")
+#: A subsection a file nests inside its section (GEC-12's ``subsections``)
+#: carries its own number, title and text and shares the rest with the
+#: section it sits in.
+REQUIRED_NESTED_FIELDS = ("section_id", "title", "body")
+
+#: A body shorter than this, in a section with no subsections, is a stub.
+#: Codes print one-sentence sections ("This section is removed in its
+#: entirety.", GSA 2016 Section 4.3), so the floor is a sentence, not a
+#: paragraph.
+BODY_MIN_CHARS = 20
+SUMMARY_MIN_CHARS = 50
+SUMMARY_MAX_CHARS = 700
+#: A summary shorter than SUMMARY_MIN_CHARS is a stub only where the body
+#: it summarises is longer than this.
+SUMMARY_STUB_BODY_CHARS = 200
+
+
+def _flat_sections(sections: list) -> list[tuple[str, dict, bool, bool]]:
+    """Every section at every level, in file order, as ``(location, section,
+    is_container, is_nested)``. A section is a container when the file nests
+    subsections in it or lists sections numbered under it after it."""
+    out: list[tuple[str, dict, bool, bool]] = []
+
+    def walk(secs, where, nested):
+        for i, sec in enumerate(secs or []):
+            loc = f"{where}[{i}]"
+            if not isinstance(sec, dict):
+                out.append((loc, sec, False, nested))
+                continue
+            sid = sec.get("section_id", "")
+            holds = bool(sec.get("subsections"))
+            out.append((loc, sec, holds or _is_container(sid, secs, i), nested))
+            walk(sec.get("subsections"), f"{loc}.subsections", True)
+
+    walk(sections, "sections", False)
+    return out
+
+
 def validate_schema(chapter_json: dict) -> list[str]:
     errors: list[str] = []
     required_top = [
@@ -167,59 +229,53 @@ def validate_schema(chapter_json: dict) -> list[str]:
         return errors
 
     seen_ids: dict[str, int] = defaultdict(int)
-    for i, sec in enumerate(sections):
-        loc = f"sections[{i}]"
+    for loc, sec, container, nested in _flat_sections(sections):
         if not isinstance(sec, dict):
             errors.append(f"{loc}: not an object")
             continue
-        for k in (
-            "section_id",
-            "title",
-            "summary",
-            "body",
-            "key_points",
-            "equations",
-            "figures",
-            "tables",
-            "applicability",
-        ):
-            if k not in sec:
-                errors.append(f"{loc}: missing key '{k}'")
-        summary = sec.get("summary", "")
-        if isinstance(summary, str):
-            if len(summary) < 50:
-                errors.append(f"{loc}: summary < 50 chars")
-            elif len(summary) > 700:
-                errors.append(f"{loc}: summary > 700 chars")
         sid = sec.get("section_id", "")
+        where = f"{loc} ({sid})" if sid else loc
+        for k in REQUIRED_NESTED_FIELDS if nested else REQUIRED_FIELDS:
+            if k not in sec:
+                errors.append(f"{where}: missing key '{k}'")
+        body = sec.get("body", "")
+        summary = sec.get("summary", "")
+        if summary is not None and not isinstance(summary, str):
+            errors.append(f"{where}: summary is not a string")
+        elif summary:
+            if len(summary) > SUMMARY_MAX_CHARS:
+                errors.append(f"{where}: summary > {SUMMARY_MAX_CHARS} chars")
+            elif (len(summary) < SUMMARY_MIN_CHARS and isinstance(body, str)
+                  and len(body) > SUMMARY_STUB_BODY_CHARS):
+                errors.append(f"{where}: summary < {SUMMARY_MIN_CHARS} chars "
+                              f"for a {len(body)}-char body")
         if sid:
             seen_ids[sid] += 1
-            # FHWA/GEC dot form, UFC hyphen-then-dot form, prologue P.x or P-x
-            if not re.match(r"^[0-9P]+([-.][0-9]+)*$", sid):
+            if not SECTION_ID.match(sid):
                 errors.append(f"{loc}: section_id '{sid}' has invalid format")
-        body = sec.get("body", "")
-        kp_list = sec.get("key_points", []) if isinstance(sec.get("key_points"), list) else []
-        summary_ok = len(sec.get("summary", "")) >= 100
-        # Allow empty body if the section is a container OR if it has a
-        # substantive summary plus at least two key_points (a stub section
-        # that carries its content in bullets rather than prose).
-        has_substance = _is_container(sid, sections, i) or (summary_ok and len(kp_list) >= 2)
-        if isinstance(body, str) and len(body) < 100 and not has_substance:
-            errors.append(
-                f"{loc} ({sid}): body is shorter than 100 chars with no summary/key_points backup"
-            )
+        if not isinstance(body, str):
+            errors.append(f"{where}: body is not a string")
+        elif len(body.strip()) < BODY_MIN_CHARS and not container and not (
+                len(summary or "") >= SUMMARY_MIN_CHARS or sec.get("key_points")):
+            # a code may print a pointer ("See UFC 3-250-07.") as the whole
+            # section; its summary or key points then say what it covers
+            errors.append(f"{where}: body is shorter than {BODY_MIN_CHARS} "
+                          "chars with no subsections, summary or key points")
         kp = sec.get("key_points")
-        if isinstance(kp, list):
-            if not (1 <= len(kp) <= 12):
-                errors.append(f"{loc} ({sid}): key_points has {len(kp)} items (expected 1-12)")
+        if kp is not None and not isinstance(kp, list):
+            errors.append(f"{where}: key_points is not a list")
+        elif isinstance(kp, list):
+            if len(kp) > 12:
+                errors.append(f"{where}: key_points has {len(kp)} items (at most 12)")
             for j, p in enumerate(kp):
                 if not isinstance(p, str):
                     errors.append(f"{loc}.key_points[{j}]: not a string")
                 elif len(p) > 300:
                     errors.append(f"{loc}.key_points[{j}]: exceeds 300 chars")
         ap = sec.get("applicability", "")
-        if isinstance(ap, str) and len(ap) < 10:
-            errors.append(f"{loc} ({sid}): applicability is too short")
+        if (not nested or "applicability" in sec) and isinstance(ap, str) \
+                and len(ap) < 10:
+            errors.append(f"{where}: applicability is too short")
 
     duplicates = [sid for sid, count in seen_ids.items() if count > 1]
     if duplicates:
@@ -287,7 +343,9 @@ def audit_chapter(
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
-    parser.add_argument("reference", help="Reference id (e.g., dm7_1)")
+    parser.add_argument("reference", nargs="?", default=None,
+                        help="Reference id (e.g., dm7_1); every reference "
+                             "with chapter text when left out")
     parser.add_argument(
         "--chapter",
         type=int,
@@ -296,7 +354,29 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    text_dir = PACKAGE_DIR / args.reference / "text"
+    if args.reference is None:
+        if args.chapter is not None:
+            sys.exit("--chapter needs a reference")
+        refs = sorted(d.parent.name for d in PACKAGE_DIR.glob("*/text")
+                      if any(d.glob("*.json")))
+        failed = []
+        for ref in refs:
+            if audit_reference(ref, None, quiet=True):
+                failed.append(ref)
+        print("=" * 60)
+        if failed:
+            print(f"AUDIT FAILED — {len(failed)} of {len(refs)} references: "
+                  + ", ".join(failed))
+            return 1
+        print(f"AUDIT PASSED — {len(refs)} references, 0 errors")
+        return 0
+    return audit_reference(args.reference, args.chapter)
+
+
+def audit_reference(reference: str, chapter: int | None,
+                    quiet: bool = False) -> int:
+    """Audit one reference's chapters; 0 when every chapter passes."""
+    text_dir = PACKAGE_DIR / reference / "text"
     if not text_dir.is_dir():
         sys.exit(f"No text/ directory at {text_dir}")
 
@@ -304,19 +384,29 @@ def main() -> int:
     if not json_files:
         sys.exit(f"No chapter JSONs found in {text_dir}")
 
-    if args.chapter is not None:
+    if chapter is not None:
         json_files = [
-            f for f in json_files if f.stem in (f"chapter{args.chapter:02d}", "prologue" if args.chapter == 0 else "")
+            f for f in json_files if f.stem in (f"chapter{chapter:02d}", "prologue" if chapter == 0 else "")
         ]
         if not json_files:
-            sys.exit(f"Chapter {args.chapter} not found")
+            sys.exit(f"Chapter {chapter} not found")
 
     total_errors = 0
     for jf in json_files:
         chapter_json = load_chapter_json(text_dir, jf.name)
-        errs, _ = audit_chapter(args.reference, chapter_json, jf.name)
+        if quiet:
+            with contextlib.redirect_stdout(io.StringIO()) as buf:
+                errs, _ = audit_chapter(reference, chapter_json, jf.name)
+            if errs:
+                print(buf.getvalue(), end="")
+        else:
+            errs, _ = audit_chapter(reference, chapter_json, jf.name)
         total_errors += errs
 
+    if quiet:
+        verdict = "passed" if not total_errors else f"{total_errors} errors"
+        print(f"{reference}: {len(json_files)} chapters, {verdict}")
+        return 1 if total_errors else 0
     print()
     print("=" * 60)
     if total_errors == 0:

@@ -433,13 +433,29 @@ def printed_headings(ref: str, pdfs: list[tuple[str, Path]], style: str):
             if ch is not None:
                 cands.append(Heading(num, title, vol, page, i, {"page"}, chapter=ch))
 
-        # 2. the outline
+        # 2. the outline. An entry whose number does not sit under the
+        #    numbered entry the outline nests it in is a misprint of the
+        #    sub-number (GEC-13 ch 10 prints "2.1.2.1 Advantages" under
+        #    "2.2.1"); it and the page heading it came from are left out, so
+        #    the increasing-run filter keeps the real numbers around it.
         outline: list[Heading] = []
-        for _, t, p in data["toc"]:
+        stack: list[tuple[int, str]] = []
+        misprinted: set[tuple[str, int]] = set()
+        for lvl, t, p in data["toc"]:
             m = head_re.match(t) if p > 0 else None
+            while stack and stack[-1][0] >= lvl:
+                stack.pop()
             if not m:
                 continue
             num = m.group("num")
+            above = stack[-1][1] if stack else None
+            if above and above.endswith(".0"):
+                above = above[:-2]        # "2.0" is the chapter-level "2"
+            if (above and level(num) == level(above) + 1
+                    and parent_of(num) != above):
+                misprinted.add((num, p))
+                continue
+            stack.append((lvl, num))
             ch = chapter_for(num, p)
             if ch is None:
                 continue
@@ -452,6 +468,7 @@ def printed_headings(ref: str, pdfs: list[tuple[str, Path]], style: str):
             outline.append(Heading(num, strip_leaders(m.group("title")), vol, p, idx,
                                    {"outline"}, chapter=ch))
 
+        cands = [h for h in cands if (h.num, h.page) not in misprinted]
         groups: dict[str, list[Heading]] = defaultdict(list)
         if not local:
             cands = _lis(cands, key=lambda h: num_key(h.num))

@@ -147,7 +147,7 @@ references/                    # (legacy) source PDFs (git-ignored)
 | gec_10 | FHWA-NHI-18-024 Drilled Shafts (2018) | 12 | 195 | All 18 chapters complete (ch 1-18) |
 | gec_11 | FHWA-NHI-10-024 MSE Walls & Slopes | 17 | 130 | All 11 chapters complete (ch 1-11) |
 | gec_12 | FHWA-NHI-16-009 Driven Piles | 16 | 147 | Vol I (ch 1-8) body-only; Vol II (ch 9-18) pending |
-| gec_13 | FHWA-NHI-16-027 Ground Modification | 18 | 168 | All 11 chapters complete (Vol I ch 1-6, Vol II ch 7-11) |
+| gec_13 | FHWA-NHI-16-027 Ground Modification | 18 | 168 | All 10 printed chapters (Vol I ch 1-5, Vol II ch 6-10); ch 3-10 rebuilt from the print 2026-10-19 (REF-25) |
 | micropile | FHWA-NHI-05-039 Micropile Design | 14 | 108 | 10 chapters (complete) |
 | fema_p2192 | FEMA P-2192 SDC Determination (2024) | 10 | 132 | - |
 | noaa_frost | NOAA Frost Protected Shallow Foundations | 9 | 86 | - |
@@ -206,7 +206,7 @@ references/                    # (legacy) source PDFs (git-ignored)
 
 **Figure/Equation Functions** (6): Vibro-compaction soil suitability number (Fig 4-3, Brown 1977 SN formula); aggregate column area replacement ratio (Fig 5-2, triangular/square pattern); stone column settlement improvement factor (Fig 5-5, Priebe 1995 SRF formula); deep mixed zone composite modulus (Eq 7-4, parallel model); groutability ratio for permeation grouting (Eq 8-1, N = D15_soil/D85_grout); long-term design strength for geosynthetics (Eq 11-1, LTDS = T_ult/RF_product)
 
-**Text**: All 11 chapters — Vol I ch 1-6 (Introduction, Vertical Drains, Lightweight Fills, Deep Compaction, Aggregate Columns, Column-Supported Embankments); Vol II ch 7-11 (Deep Mixing, Grouting, Soil Nailing, Micropiles, Geosynthetic Reinforcement)
+**Text**: The 10 printed chapters — Vol I ch 1-5 (Introduction, PVDs and Fill Preloading, Lightweight Fills, Deep Compaction, Aggregate Columns); Vol II ch 6-10 (Column-Supported Embankments, Deep Mixing and Mass Mixing, Grouting, Pavement Support Stabilization Technologies, Reinforced Soil Structures). Section ids are '<chapter>.<printed local number>' ('5.4.1.2.2'), since the print restarts its numbers in each chapter. Ch 3-10 were rebuilt from the print on 2026-10-19 (REF-25): the earlier files were written from memory, and their chapters 9-11 (Soil Nailing, Micropiles, Geosynthetic Reinforcement) were not the manual's.
 
 ## Figure Retrieval & Vision Read-Off
 

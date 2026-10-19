@@ -129,7 +129,7 @@ def test_the_old_top_level_ids_still_resolve():
 # ---------------------------------------------------------------------------
 
 GEC12_72_CHILDREN = ["7.2.1", "7.2.2", "7.2.3", "7.2.4", "7.2.5", "7.2.6",
-                     "7.2.7", "7.2.9", "7.2.10"]
+                     "7.2.7", "7.2.8", "7.2.9", "7.2.10"]
 
 
 @pytest.mark.parametrize("get", [
@@ -153,7 +153,7 @@ def test_a_parent_lists_its_children_not_their_text(get):
     assert [s["section_id"] for s in small["subsections"]] == [
         "7.2.3.1", "7.2.3.2"]
     assert [s["section_id"] for s in small["subsections"][1]["subsections"]] \
-        == ["7.2.3.2.1", "7.2.3.2.2", "7.2.3.2.3"]
+        == ["7.2.3.2.2", "7.2.3.2.3"]   # the printed headings (pp. 291-292)
     assert _size(small) <= _retrieval.SUBSECTIONS_INLINE_MAX_CHARS
 
 
@@ -162,9 +162,9 @@ def test_a_nested_section_says_where_it_sits():
     assert sec["title"].startswith("Nordlund")
     assert sec["parent_id"] == "7.2.1"
     assert sec["under"].startswith("7.2 Strength Limit States > 7.2.1 ")
-    # where the file nests a section under another number, the file wins
+    # a nested section sits under the section the file nests it in
     assert _retrieval_db.reference_get("gec_12", "7.2.8.1")["parent_id"] \
-        == "7.2.7"
+        == "7.2.8"
 
 
 def test_a_flat_listed_section_sits_under_its_number():
@@ -206,7 +206,7 @@ def test_search_finds_the_subsection_and_says_where_it_sits(auto_expansion):
 #: GEC-12 sections with subsections, found by their own title in the top
 #: five with those subsections indexed beside them: short subsections do
 #: not crowd out their parent.
-GEC12_PARENTS = ["7.2.1", "7.2.2", "7.2.3", "7.2.3.2", "7.2.4", "7.2.7",
+GEC12_PARENTS = ["7.2.1", "7.2.2", "7.2.3", "7.2.3.2", "7.2.4", "7.2.8",
                  "7.3.5", "7.3.6", "7.3.7", "7.4", "7.7", "7.10", "7.10.1"]
 
 

@@ -43,46 +43,105 @@
       "subsections": [
         {
           "section_id": "7.1.1",
-          "title": "Driving Point Resistance",
-          "body": "Discusses how piles develop resistance through a combination of shaft resistance along the pile perimeter and toe resistance at the pile tip. The relative contribution of shaft versus toe resistance depends on soil conditions and pile geometry."
+          "title": "Static Analysis Methods in Limit State Design",
+          "body": "There are four general types of static analysis in this chapter (pp. 212-213). They determine: (1) the nominal resistance in axial compression of a pile or pile group - the long-term resistance, the resistance of layers subject to scour, liquefaction or downdrag or otherwise unsuitable for long-term support, the minimum pile penetration, pile lengths for bid quantities, the soil resistance at the time of driving (SRD) and the required nominal driving resistance Rndr; (2) the nominal resistance in axial tension, which in some cases also sets the minimum penetration; (3) the nominal lateral resistance and lateral deformation, by soil-structure interaction methods that also guide pile section selection; and (4) the settlement of a pile group under the structure's service loads. The factored resistance of a pile or pile group is the smaller of the factored geotechnical resistance of the surrounding soil or rock and the factored structural resistance of the pile(s). Vertical (settlement) and lateral deformation of pile groups are computed with factored loads at the service limit state. The static resistance along the shaft and at the toe can be estimated from laboratory shear strength parameters, in-situ test data (SPT, CPT), or geomaterial parameters back-analysed from performance data.",
+          "key_points": [
+            "Four static analyses: axial compression, axial tension, lateral resistance and deformation, pile group settlement",
+            "Factored resistance = smaller of the factored geotechnical resistance and the factored structural resistance",
+            "Settlement and lateral deformation of groups use factored loads at the service limit state"
+          ]
         },
         {
           "section_id": "7.1.2",
-          "title": "Resistance Factors",
-          "body": "AASHTO (2014) provides resistance factors calibrated for each static and dynamic method. Static analysis methods range from phi = 0.25 to 0.50. Dynamic methods have higher phi values (0.65-0.80) reflecting greater reliability when verified during construction."
+          "title": "Events During and After Pile Driving",
+          "body": "The soil and weaker rock in which a pile is installed are almost always disturbed (p. 214). The degree of disturbance depends on the soil and rock type and density, the pile type (displacement or low-displacement) and the installation method (driven, vibrated, drilled, jetted); for driven piles substantial disturbance and remolding is unavoidable. Over the long term, scour, settlement, pore pressure fluctuations, seismic and other extreme events may occur, and are addressed in the strength, extreme event and service limit states so that the embedment and foundation stiffness are sufficient.",
+          "subsections": [
+            {
+              "section_id": "7.1.2.1",
+              "title": "Cohesionless Soils",
+              "body": "The resistance of piles driven into cohesionless soil depends primarily on the relative density of the soil (pp. 214-216). Driving increases the relative density of loose to medium dense soil close to the pile through vibration and lateral displacement, most of all next to displacement piles; Broms (1966) and later studies found the zone of densification extends 3 to 5.5 diameters from the pile shaft and 3 to 5 diameters below the pile toe (Figure 7-1). Large-displacement piles such as closed-end pipe and precast concrete piles densify cohesionless soil more than low-displacement open-end pipe or steel H-piles. In dense sands and gravels, negative pore pressures generated during driving can temporarily increase the resistance; as they dissipate the resistance decreases (relaxation), as the shear strength equation shows (Eq. 7-1). In saturated cohesionless silts and loose to medium dense fine sands, driving can generate high positive pore pressures that temporarily reduce the resistance; the gain with time (setup) is generally quicker than in clays because pore pressures dissipate faster.",
+              "equations": [
+                "Eq. 7-1: tau = c + (sigma - u) tan(phi), the shear strength of soil"
+              ],
+              "figures": [
+                "Figure 7-1: Compaction of cohesionless soils during pile driving (after Broms 1966)"
+              ]
+            },
+            {
+              "section_id": "7.1.2.2",
+              "title": "Cohesive Soils",
+              "body": "When piles are driven into saturated cohesive soil, the soil near the pile is disturbed and radially compressed (pp. 216-217). In soft or normally consolidated clays the zone of disturbance is generally within one pile diameter around the pile; in saturated stiff clays there are also changes in secondary structure (closing of fissures), remolding and loss of previous stress history effects next to the pile. Figure 7-2 (after Broms 1966) shows the disturbance zone and the heave that displacement piles can cause. The disturbance generates high excess positive pore pressures that temporarily reduce the shear strength, the nominal geotechnical resistance and the blow count; as the soil reconsolidates, the shear strength and resistance increase (setup), the opposite of relaxation. The zone and magnitude of disturbance depend on the soil sensitivity, the driving method and the pile geometry. Limited data for partially saturated cohesive soils indicate that driving does not generate high pore pressures, so significant setup does not occur.",
+              "figures": [
+                "Figure 7-2: Disturbance of cohesive soils during pile driving (after Broms 1966)"
+              ]
+            },
+            {
+              "section_id": "7.1.2.3",
+              "title": "Additional Soil Resistance Considerations",
+              "body": "Many projects need more than one static analysis (pp. 217-219): one for the number and length of piles to support the structure loads, and a second for the resistance the pile will meet during installation, which sets the capability of the driving equipment and the minimum pile section for drivability. At a bridge pier subject to scour (Figure 7-3) the first analysis neglects the soil in the scour zone, which may not be available for long-term support, and the second includes it because it resists driving; piles driven through loose uncompacted fill (Figure 7-4) are treated the same way. The resistance computed in the scourable or unsuitable layer is added to the required nominal resistance to give the required nominal driving resistance. The plans should give the controlling factored load, the nominal resistance, the required nominal driving resistance and the minimum penetration depth: in the manual's example 420 kips of soil resistance must be overcome to reach the minimum penetration for a 300-kip nominal resistance in compression, and specifying only the 300 kips could be misinterpreted and lead to claims (driving criteria: Chapter 17).",
+              "figures": [
+                "Figure 7-3: Situation where two static analyses are necessary due to scour",
+                "Figure 7-4: Situation where two static analyses are necessary due to fill materials"
+              ]
+            }
+          ]
         },
         {
           "section_id": "7.1.3",
-          "title": "Soil Response to Pile Driving",
-          "body": "Pile driving causes significant soil disturbance. In cohesionless soils, the disturbed zone extends 3-5 pile diameters (Figure 7-1). In cohesive soils, the remolded zone is about 1-2 pile diameters (Figure 7-2). These disturbances result in time-dependent resistance changes (setup and relaxation)."
+          "title": "Load Transfer",
+          "body": "The nominal resistance Rn of a pile in homogeneous soil is the sum of the shaft resistance Rs and the toe resistance Rp (Eq. 7-2, p. 219). The equation assumes the pile toe and shaft have both moved enough relative to the adjacent soil to develop the nominal shaft and toe resistances at the same time; generally the displacement needed to mobilize the shaft resistance is smaller than that needed for the toe. This approach has been used for all piles except very large piles, more than 36 inches in diameter or width. Figure 7-5 shows typical load transfer profiles, as obtained from a static load test with strain gages or telltales along the shaft: (a) no shaft resistance, the full head load reaching the toe; (b) uniform shaft resistance, typical of cohesive soil; (c) triangular shaft resistance, typical of cohesionless soil.",
+          "equations": [
+            "Eq. 7-2: Rn = Rs + Rp"
+          ],
+          "figures": [
+            "Figure 7-5: Typical load transfer profiles"
+          ]
         },
         {
           "section_id": "7.1.4",
-          "title": "Changes in Soil Resistance with Time",
-          "body": "Shaft resistance in cohesive soils typically increases after driving (soil setup) as excess pore water pressures dissipate. In some cohesionless soils, relaxation can reduce toe resistance after driving. Both phenomena must be considered."
+          "title": "Effective Stress",
+          "body": "The vertical effective stress at a depth is the total vertical stress from the weight of the overlying soil minus the pore water pressure there (pp. 221-222). An Effective Stress Diagram plots it against depth and is used in many static resistance and settlement calculations. It needs the total unit weight and thickness of each layer (from the boring logs, density tests on undisturbed cohesive samples, or SPT N values with the visual classification) and the depth of the water table; the total vertical stress is summed layer by layer (Section 5.2.2) and the pore pressure is the unit weight of water (62.4 lb/ft3) times the height of water. The design water table should be compared with the levels found in the subsurface exploration and allow for seasonal variation. Figures 7-6 and 7-7 are examples with the water table below and above the ground surface.",
+          "figures": [
+            "Figure 7-6: Effective stress diagram - water table below ground surface",
+            "Figure 7-7: Effective stress diagram - water table above ground surface"
+          ]
         },
         {
           "section_id": "7.1.5",
-          "title": "Static Analysis Methods Overview",
-          "body": "Eight static analysis methods are presented: Nordlund (cohesionless), Alpha/Tomlinson (cohesive), P2A/API (mixed), Beta/Effective Stress (all soils), Brown/SPT (cohesionless), Eslami-Fellenius/CPT (all soils), and Nottingham-Schmertmann/CPT (all soils)."
+          "title": "Resistance Factors",
+          "body": "Resistance factors for driven pile design are in AASHTO (2014) Table 10.6.5.2.3-1 (pp. 223-226). A resistance factor is a statistically based multiplier on the nominal resistance from a specific analysis method, tied with the load factors to a target reliability index beta; it is not a direct replacement for an allowable stress design factor of safety. With a static analysis the factored resistance Rr is at most the shaft resistance times the shaft method's resistance factor plus the toe resistance times the toe method's factor (Eq. 7-3), with Rs = fs As and Rp = qp Ap (Eqs. 7-4, 7-5). Table 7-1 gives the static analysis factors: compression - alpha-method 0.35, Schmertmann (1975) 0.50, Nordlund 0.45, the beta-method differing between AASHTO and the manual, Brown (2001), API RP2A and Eslami and Fellenius not in AASHTO; block failure in cohesive soil 0.60; tension - Nordlund 0.35, alpha 0.25, beta 0.20, lambda 0.30, SPT 0.25, CPT 0.40; group uplift 0.50; lateral 1.0. Where the nominal resistance is found by a static load test, dynamic testing, wave equation analysis or a dynamic formula, the field method's factor phi_dyn is used (Table 7-2): 0.80 for a static load test with dynamic testing, 0.75 for a static load test alone or dynamic testing of every production pile, 0.65 for dynamic testing of at least two piles per site condition and 2 % of production piles, 0.50 for the wave equation at end of drive, 0.40 for the FHWA Modified Gates formula, 0.10 for the Engineering News formula; in tension 0.60 for a static load test and 0.50 for dynamic testing with signal matching. For a small group (fewer than 3 piles per substructure unit in this manual) AASHTO recommends reducing the factors in Tables 7-1 and 7-2 by 20 %. The AASHTO calibration considered few large diameter pipe piles (Brown and Thompson 2015), which a designer of piles over 24 inches should consider.",
+          "key_points": [
+            "Static analysis: Rr <= phi_stat Rs + phi_stat Rp (Eq. 7-3)",
+            "Table 7-1: Nordlund 0.45, alpha-method 0.35, Schmertmann 0.50 in compression; uplift 0.20-0.40; group uplift 0.50",
+            "Table 7-2: field methods 0.10 (Engineering News) to 0.80 (static load test with dynamic testing)",
+            "Reduce the factors by 20 % for a group of fewer than 3 piles"
+          ],
+          "equations": [
+            "Eq. 7-3: Rr <= phi Rn = phi_stat Rs + phi_stat Rp",
+            "Eq. 7-4: Rs = fs As",
+            "Eq. 7-5: Rp = qp Ap"
+          ],
+          "tables": [
+            "Table 7-1: Resistance Factors for Static Analysis Methods Presented in this Manual (modified from AASHTO 2014)",
+            "Table 7-2: Resistance Factors for Field Determination Methods (after AASHTO 2014)"
+          ]
         },
         {
           "section_id": "7.1.6",
-          "title": "Software for Static Analysis",
-          "body": "Several software programs automate static analysis calculations including APILE, UniPile, AllPile, and SPT97. APILE implements Nordlund, Alpha, P2A (API), and Schmertmann CPT methods. UniPile implements Beta and Eslami-Fellenius methods."
+          "title": "Interdiscipline Communication and Coordination",
+          "body": "Design and construction need clear communication among the structural, geotechnical, geologic, hydraulic and construction professionals (p. 227). Figure 2-3 in Chapter 2 gives the flow chart of the driven pile design and construction process with the main areas of coordination in LRFD design and construction, and Tables 2-4 and 2-5 detail what is communicated. Effective communication is essential to a cost-effective foundation that meets all the strength, extreme event and service limit state requirements."
         }
       ]
     },
     {
       "section_id": "7.2",
       "title": "Strength Limit States",
-      "body": "This major section covers the strength limit state design of driven piles under axial compression, tension, and lateral loading. It presents eight static analysis methods for single pile axial capacity, pile group behavior in compression, axial tension resistance, time-dependent resistance changes (setup and relaxation), lateral resistance, pile length estimation, groundwater effects, scour, and downdrag. Each method includes step-by-step procedures, equations, design charts, and AASHTO-calibrated resistance factors.",
+      "body": "This major section covers the strength limit state design of driven piles under axial compression, tension, and lateral loading. It presents seven static analysis methods for single piles in soil (Section 7.2.1.3) and methods for piles to rock (Section 7.2.1.4), pile group behavior in compression, axial tension resistance, time-dependent resistance changes (setup and relaxation), lateral resistance, pile length estimation, groundwater effects, scour, and downdrag. Each method includes step-by-step procedures, equations, design charts, and AASHTO-calibrated resistance factors.",
       "key_points": [
-        "Eight static analysis methods for single pile axial compression capacity",
+        "Seven static analysis methods for single piles in soil (7.2.1.3) plus piles to rock (7.2.1.4)",
         "Nordlund method is the primary method for cohesionless soils",
         "Alpha (Tomlinson) method is the primary method for cohesive soils",
         "Group capacity is the lesser of sum of individual pile capacities and block failure capacity",
-        "Tension resistance limited to 50% of skin friction for Nordlund method",
         "Setup factors can increase long-term resistance 2-5x or more in some clays",
         "Downdrag loads should be considered as additional load, not reduced resistance"
       ],
@@ -93,20 +152,39 @@
       "subsections": [
         {
           "section_id": "7.2.1",
-          "title": "Nominal Axial Compression Resistance of Single Piles",
-          "body": "Presents eight static analysis methods for calculating the nominal axial compression resistance of single driven piles. Each method has specific applicability depending on soil type and available subsurface data. The Nordlund method is recommended for cohesionless soils using SPT data, the Alpha method for cohesive soils, the Beta method as a general effective stress approach, and CPT-based methods when cone penetration data are available.",
+          "title": "Determination of Nominal Resistance for Single Piles",
+          "body": "Static analysis methods for the nominal axial resistance of a single driven pile (printed pp. 227-278): the general approach (7.2.1.1), an overview of the methods and when each applies (7.2.1.2), seven methods for piles in soil (7.2.1.3: Nordlund, alpha, P2A/API, effective stress beta, Brown, Eslami and Fellenius, Nottingham and Schmertmann), piles to soft and weak or hard rock (7.2.1.4), and software for the computations (7.2.1.5). The FHWA recommended methods are Nordlund in cohesionless soils, the alpha-method in cohesive soils and the API method for large diameter pipe piles.",
           "key_points": [
-            "Nordlund method: primary method for cohesionless soils using SPT correlations",
-            "Alpha (Tomlinson) method: total stress method for cohesive soils using undrained shear strength",
-            "P2A (API RP2A) method: offshore-derived method applicable to mixed soil profiles",
-            "Beta (Effective Stress) method: general method using effective stress parameters",
-            "Brown method: SPT N60-based method for cohesionless soils",
-            "Eslami-Fellenius method: CPT-based method for all soil types",
-            "Nottingham-Schmertmann method: CPT-based method for all soil types",
-            "Rock resistance via uniaxial compressive strength (Section 7.2.1.4)",
-            "Static analysis software overview (Section 7.2.1.5)"
+            "Nordlund method (7.2.1.3.1): cohesionless soils, effective friction angle",
+            "Alpha-method (7.2.1.3.2): cohesive soils, undrained shear strength",
+            "P2A (API RP2A) method (7.2.1.3.3): mixed soil profiles; recommended for large diameter pipe piles",
+            "Effective stress beta-method (7.2.1.3.4): mixed soil profiles",
+            "Brown method (7.2.1.3.5): mixed soil profiles, SPT data",
+            "Eslami and Fellenius (7.2.1.3.6) and Nottingham and Schmertmann (7.2.1.3.7): CPT data",
+            "Piles to rock (7.2.1.4) and software for the computations (7.2.1.5)"
           ],
           "subsections": [
+            {
+              "section_id": "7.2.1.1",
+              "title": "General",
+              "body": "Numerous static analysis methods are available for the nominal geotechnical resistance of a single pile (printed pp. 227-229). Section 7.2.1.3 details methods for piles in cohesionless, cohesive and layered profiles from SPT or laboratory data, and methods based on CPT results. A method should have proven agreement with full-scale field results in soil conditions like the project's, with the pile type and installation conditions (impact or vibratory driving) to be used, and some AASHTO resistance factors require specific procedures for the soil strength properties. A static analysis iteratively assumes a pile depth. Regional geology or construction control may justify local calibration of methods and resistance factors. Table 7-3 compares the methods in AASHTO (2014) with those in the manual: Meyerhof (1976, SPT) 0.30, Nordlund 0.45, alpha-method 0.35, beta-method (AASHTO) 0.25, lambda-method 0.40 and Schmertmann (1975, CPT) 0.50 have AASHTO resistance factors; API RP2A, Brown (2001) and Eslami and Fellenius (1997) have none; the manual's beta-method follows Fellenius (1991) and differs from AASHTO's.",
+              "tables": [
+                "Table 7-3: Summary of Static Analysis Methods in GEC-12 and AASHTO (2014) for Determination of Nominal Resistance"
+              ]
+            },
+            {
+              "section_id": "7.2.1.2",
+              "title": "Static Analysis Overview",
+              "body": "Agencies often specify design methods based on experience; the methods in this chapter should be chosen by their applicability to the soil conditions, the pile type and the laboratory or in-situ data (printed pp. 229-232). Tables 7-4 and 7-5 give an overview of methods for cohesionless and cohesive soils; in layered profiles the applicable method is used in each layer, and Table 7-3 identifies methods for mixed profiles and the CPT methods. Static analyses typically estimate the pile length for a given nominal resistance to set the contract quantities; the lengths and resistance are then confirmed during construction by a field resistance determination method and a driving criterion (Chapter 17). Where static analysis alone is the resistance determination method and piles are driven to a predetermined toe elevation, the design pile lengths must address site variability. The FHWA recommended methods are the Nordlund method in cohesionless soils (7.2.1.3.1), the alpha-method in cohesive soils (7.2.1.3.2) and the API method for large diameter pipe piles (7.2.1.3.3), based on FHWA experience with their reliability for conventional pile types.",
+              "key_points": [
+                "FHWA recommends Nordlund (cohesionless), alpha (cohesive) and API (large diameter pipe piles)",
+                "Static analysis sets contract lengths; a field method and driving criterion confirm them"
+              ],
+              "tables": [
+                "Table 7-4: Methods of Static Analysis for Piles in Cohesionless Soils",
+                "Table 7-5: Methods of Static Analysis for Piles in Cohesive Soils"
+              ]
+            },
             {
               "section_id": "7.2.1.3.1",
               "title": "Nordlund Method (Cohesionless Soils)",
@@ -311,21 +389,22 @@
             },
             {
               "section_id": "7.2.1.5",
-              "title": "Software Overview for Static Analysis",
-              "body": "Several software programs automate static analysis calculations: APILE implements Nordlund, Alpha, P2A, and Schmertmann methods; UniPile implements Beta and Eslami-Fellenius methods; AllPile covers multiple methods; SPT97 is an SPT-based program.",
+              "title": "Software for Single Pile Nominal Resistance Computations",
+              "body": "FHWA previously sponsored the DRIVEN program, which used the FHWA recommended Nordlund and alpha-methods (printed pp. 274-278). The public domain version is no longer available from FHWA; a commercial version, DrivenPiles, was released in 2015. Table 7-15 lists the static analysis methods in commercially available programs (AllPile, A-Pile, DrivenPiles, FB-Deep, Unipile), alphabetically; FHWA endorses no program. An example soil profile (Figure 7-23) is analysed with DRIVEN using the FHWA method (Figure 7-24), APILE using the Nordlund and alpha methods (Figure 7-25) and UNIPILE using the beta-method (Figure 7-26). DRIVEN and APILE, though both using the FHWA method, differ by about 10 % in toe and nominal resistance at the final 125 ft penetration and at layer transitions, because APILE averages the toe resistance around layer transitions; UNIPILE, using effective stresses in all layers, gives a lower resistance.",
               "key_points": [
-                "APILE: Nordlund, Alpha, P2A (API), Schmertmann CPT methods",
-                "UniPile: Beta (effective stress) and Eslami-Fellenius CPT methods",
-                "AllPile: multiple methods in a single interface",
-                "SPT97: SPT N-value based calculations",
-                "All programs require engineering judgment to verify input and output"
+                "DRIVEN (FHWA method) is no longer distributed by FHWA; DrivenPiles is its commercial successor (2015)",
+                "Table 7-15: methods in AllPile, A-Pile, DrivenPiles, FB-Deep and Unipile",
+                "Programs using the same method can differ by about 10 % through coding details"
               ],
               "equations": [],
               "figures": [
-                "Figure 7-16: Typical APILE output (resistance vs depth)"
+                "Figure 7-23: Soil profile for computer software comparison",
+                "Figure 7-24: Nominal resistance from DRIVEN program using FHWA method",
+                "Figure 7-25: Nominal resistance from APILE program using FHWA Method",
+                "Figure 7-26: Nominal resistance from UNIPILE program using Beta Method"
               ],
               "tables": [
-                "Table 7-11: Summary of static analysis software capabilities"
+                "Table 7-15: Summary of Computer Analysis Software for Axial Single Pile Analysis"
               ]
             }
           ]
@@ -376,54 +455,71 @@
         },
         {
           "section_id": "7.2.3",
-          "title": "Axial Tension Resistance of Single Piles and Pile Groups",
-          "body": "Axial tension (uplift) resistance consists only of shaft resistance; there is no toe contribution. AASHTO specifies reduced resistance factors for tension compared to compression. For groups in uplift, the resistance is the lesser of the sum of individual pile uplift capacities and the weight of the soil block enclosed by the group.",
+          "title": "Design for Axial Tension Resistance",
+          "body": "Uplift resistance has become increasingly important for structures subject to seismic loading and in some cases sets the minimum pile penetration, where an axial tension load test can pay for itself through its higher resistance factor (printed p. 288; procedures in Kyfor et al. 1992 and Chapter 9). The factored uplift resistance of a single pile is the nominal shaft resistance from an AASHTO static analysis method times the uplift resistance factor phi_up (Eq. 7-38). A pile group's uplift resistance is the lesser of the sum of the individual pile resistances in tension and the resistance of the group as a block (Eqs. 7-39 to 7-41).",
           "key_points": [
-            "Tension resistance = shaft resistance only (no toe component)",
-            "AASHTO resistance factors for uplift range from 0.15 to 0.35 for static methods",
-            "Nordlund method: uplift shaft resistance limited to 50% of compression shaft resistance (Eq 7-38)",
-            "Alpha method: uplift uses same adhesion values but with uplift resistance factor",
-            "Beta method: uplift shaft resistance same as compression but with uplift phi factor",
-            "Group uplift = minimum of individual pile sum and weight of enclosed soil block",
-            "Cohesive soils: group uplift includes perimeter adhesion plus soil block weight (Eq 7-41)"
+            "Single pile: Rr = phi_up Rs, shaft resistance only (Eq. 7-38)",
+            "phi_up from Table 7-1 (0.20-0.40) is 80 % of the compression shaft factor, so Rs is not reduced further",
+            "Tension static load test: phi_up up to 0.60; dynamic test with signal matching: up to 0.50",
+            "Group: lesser of the sum of individual pile resistances and the block resistance (phi_ug = 0.50)",
+            "Cohesionless soil block: effective weight of soil above the toe within a 1H:4V spread (Figure 7-33)",
+            "Cohesive soil block: Rug = 2D(B + Z)su + Wg (Eq. 7-41, Figure 7-34)"
           ],
           "equations": [
-            "Eq 7-38: R_n_uplift = 0.50 * R_s_Nordlund (Nordlund uplift = 50% of compression shaft)",
-            "Eq 7-39: R_n_uplift = R_s_Alpha (Alpha method uplift = full shaft resistance)",
-            "Eq 7-40: R_group_uplift = min(SUM(R_ni_uplift), W_block) (group uplift)",
-            "Eq 7-41: R_group_uplift_cohesive = 2*D*(B_g+Z_g)*c_a + W_g (group uplift in clay)"
+            "Eq. 7-38: Rr = phi Rn = phi_up Rs (single pile in tension)",
+            "Eq. 7-39: Rr = phi Rn = phi_ug Rug (pile group in tension)",
+            "Eq. 7-40: Rr = phi Rug = phi_up Rs n (sum of the individual piles)",
+            "Eq. 7-41: Rn = Rug = 2D(B + Z)su + Wg (group block in cohesive soil)"
           ],
           "figures": [
-            "Figure 7-20: Group uplift failure mechanism in cohesive soil"
+            "Figure 7-32: Design chart for nominal and factored resistance in axial tension",
+            "Figure 7-33: Uplift of pile group in cohesionless soil (after Tomlinson 1994)",
+            "Figure 7-34: Uplift of pile group in cohesive soils (after Tomlinson 1994)"
           ],
           "tables": [
-            "Table 7-13: AASHTO resistance factors for uplift on single piles and groups"
+            "Table 7-1: Resistance Factors for Static Analysis Methods Presented in this Manual (modified from AASHTO 2014)"
           ],
           "subsections": [
             {
               "section_id": "7.2.3.1",
-              "title": "Single Pile Uplift",
-              "body": "Single pile uplift resistance is the shaft resistance calculated by any of the static methods, with method-specific reduction factors applied."
+              "title": "Axial Tension Resistance of Single Piles",
+              "body": "In fine grained cohesive soils loaded undrained the shaft resistance is generally taken as equal in compression and uplift (De Nicola and Randolph 1993) (printed pp. 288-290). In free-draining soils it has been customary to take the uplift shaft resistance as about 70 % of the compression shaft resistance, and De Nicola and Randolph concluded piles have lower uplift than compression shaft resistance; API (1993) and a case reported by Altaee et al. (1992) take them as about equal. Under cyclic or sustained uplift the resistance can fall from a peak to a residual value in clays, and particle degradation can reduce it in sands (Tomlinson 1994). The factored uplift resistance is the nominal shaft resistance from any AASHTO static analysis method times phi_up from Table 7-1 (Eq. 7-38); per AASHTO Article C10.7.3.10 phi_up is 80 % of the compression shaft factor, so the shaft resistance is not reduced further. With a tension static load test an uplift resistance factor up to 0.60 may be used, and with dynamic tests with signal matching up to 0.50. Figure 7-32 is a design chart for uplift loading computed with the FHWA method (Nordlund / alpha-method) in APILE.",
+              "equations": [
+                "Eq. 7-38: Rr = phi Rn = phi_up Rs"
+              ],
+              "figures": [
+                "Figure 7-32: Design chart for nominal and factored resistance in axial tension"
+              ]
             },
             {
               "section_id": "7.2.3.2",
-              "title": "Group Uplift",
-              "body": "Group uplift is checked against both the sum of individual pile uplift resistances and the weight of the soil block enclosed by the pile group perimeter.",
+              "title": "Axial Tension Resistance of Pile Groups",
+              "body": "Group uplift resistance often sets the minimum pile penetration and can control the design, for example under cofferdam seals with large buoyancy forces, cantilever segmental construction, and seismic, vessel impact or debris loading, or where piles in tension are driven to a shallow bearing stratum (printed pp. 290-293). AASHTO (2014) limits the group uplift resistance to the lesser of the sum of the individual pile resistances in tension and the resistance of the group as a block; its specifications are considered relatively conservative, particularly in cohesionless soils. The factored group resistance is phi_ug Rug with phi_ug = 0.50 (Eq. 7-39). The printed contents number the two subsections that follow 7.2.3.2.1 and 7.2.3.2.2; the headings in the text, used here, number them 7.2.3.2.2 and 7.2.3.2.3.",
+              "equations": [
+                "Eq. 7-39: Rr = phi Rn = phi_ug Rug"
+              ],
               "subsections": [
                 {
-                  "section_id": "7.2.3.2.1",
-                  "title": "Group Uplift in Cohesionless Soils",
-                  "body": "In cohesionless soils, the group uplift resistance is typically controlled by the sum of individual pile uplift capacities."
-                },
-                {
                   "section_id": "7.2.3.2.2",
-                  "title": "Group Uplift in Cohesive Soils",
-                  "body": "In cohesive soils, the group uplift may be controlled by the block failure mode with perimeter adhesion plus the weight of the soil block (Eq 7-41)."
+                  "title": "Axial Tension Resistance of Groups in Cohesionless Soils",
+                  "body": "In cohesionless soils AASHTO (2014) Article 10.7.3.11 limits the nominal group resistance in tension to the lesser of two resistances (printed pp. 291-292): the sum of the individual pile nominal shaft resistances times the uplift resistance factor of the analysis method times the number of piles (Eq. 7-40), and the effective weight of the block of soil extending upward from the pile toe level at a slope of 1H:4V (Tomlinson 1994; Figure 7-33), the weight of the piles in the block taken as equal to the weight of soil. (Printed contents: 7.2.3.2.1.)",
+                  "equations": [
+                    "Eq. 7-40: Rr = phi Rug = phi_up Rs n"
+                  ],
+                  "figures": [
+                    "Figure 7-33: Uplift of pile group in cohesionless soil (after Tomlinson 1994)"
+                  ]
                 },
                 {
                   "section_id": "7.2.3.2.3",
-                  "title": "Tension in Cohesive Soils",
-                  "body": "The uplift resistance in cohesive soils must account for the adhesion along the pile-soil interface. The adhesion values are the same as those used for compression but the resistance factor is lower."
+                  "title": "Axial Tension Resistance of Groups in Cohesive Soils",
+                  "body": "In cohesive soils AASHTO (2014) Article 10.7.3.11 limits the nominal group uplift resistance to the lesser of Eq. 7-40 and Eq. 7-41, the block resistance from the weight of the pile/soil block including the pile cap and the undrained shear resistance along the group perimeter (printed pp. 292-293; Figure 7-34): Rug = 2D(B + Z)su + Wg, with D the embedded pile length, B and Z the group width and length, su the weighted average undrained shear strength over the embedded depth along the group perimeter, and Wg the effective weight of the pile/soil block including the cap. (Printed contents: 7.2.3.2.2.)",
+                  "equations": [
+                    "Eq. 7-41: Rn = Rug = 2D(B + Z)su + Wg"
+                  ],
+                  "figures": [
+                    "Figure 7-34: Uplift of pile group in cohesive soils (after Tomlinson 1994)"
+                  ]
                 }
               ]
             }
@@ -513,22 +609,33 @@
         {
           "section_id": "7.2.7",
           "title": "Groundwater Effects and Buoyancy",
-          "body": "Groundwater affects pile capacity through effective stress changes and buoyancy effects on the pile. Effective stress reduction below the water table reduces both shaft and toe resistance. The buoyant unit weight of the pile below the water table reduces its effective weight. Artesian conditions require special consideration.",
+          "body": "The nominal resistance in axial compression and tension and the lateral resistance can change with the groundwater elevation through the resulting change in vertical effective stress (printed p. 302). Droughts, regional construction such as tunnels, or local excavation dewatering can lower the groundwater; a temporary lowering increases the effective stress on the pile, so a pile driven to the required nominal resistance under it will have less than the required resistance when the groundwater returns to its normal elevation. Buoyant forces should also be considered: a closed-end pipe pile driven through soft soils to rock or a hard bearing layer may need a thicker wall or other measures, since buoyancy can raise a sealed closed-end pile off the bearing layer if the shaft resistance alone cannot resist it.",
           "key_points": [
-            "Effective stress below water table reduces shaft and toe resistance",
-            "Buoyant pile weight affects net downward load on pile",
-            "Artesian conditions can significantly reduce effective stresses and capacity",
-            "Perched water tables and seasonal fluctuations must be considered",
-            "Use lowest anticipated groundwater table for conservative design"
+            "A temporarily lowered water table increases effective stress: piles driven then lose resistance when it recovers",
+            "Buoyancy can lift a sealed closed-end pipe pile off its bearing layer if the shaft resistance is insufficient"
+          ],
+          "equations": [],
+          "figures": [],
+          "tables": []
+        },
+        {
+          "section_id": "7.2.8",
+          "title": "Site Dewatering",
+          "body": "Dewatering a site during construction temporarily increases the effective stresses and the soil shear strength, so piles develop more resistance at a shallower penetration and the soil resistance to reach a specified depth is greater (printed pp. 302-303); a pile type not checked for this may not be drivable to the required depth. When dewatering stops the water table rises, the effective stresses and shear strength fall, and piles driven to the nominal resistance in the dewatered condition have less than the required nominal resistance. Where significant dewatering is needed, multiple static analyses should give the nominal resistance and drivability in the short-term dewatered condition and the long-term nominal resistance afterwards. Dewatering can also increase the drag force on nearby deep foundations or cause consolidation settlement of nearby structures, which should be evaluated in design.",
+          "key_points": [
+            "Dewatering raises resistance during driving and lowers it once the water table recovers",
+            "Analyse both the dewatered (driving) and the long-term condition",
+            "Check effects on adjacent structures: drag force and consolidation settlement"
           ],
           "equations": [],
           "figures": [],
           "tables": [],
+          "applicability": "Driven pile sites dewatered during construction, and structures near them.",
           "subsections": [
             {
               "section_id": "7.2.8.1",
               "title": "Artesian Conditions",
-              "body": "Artesian pressure conditions reduce effective stresses below the artesian pressure head elevation, significantly reducing shaft and toe resistance. Static analysis must use the reduced effective stresses."
+              "body": "Artesian conditions develop where a permeable layer or aquifer is confined between two impermeable layers and outcrops at an elevation higher than where it is met in-situ; the effective stresses on the pile then depend directly on the head of water (printed p. 303). They can give lower than expected nominal resistance in the layer and vertical groundwater migration along the pile-soil interface; Harris et al. (2003) describe a case where effective stress parameters back-calculated from static load tests were much lower than expected because of artesian conditions. A detailed subsurface exploration can identify them; designs whose nominal resistance needs pile lengths that punch through confining layers should be avoided, and artesian conditions should be noted on the foundation plans."
             }
           ]
         },
@@ -1129,7 +1236,8 @@
       "figures": [
         "Figure 7-66: Minimum penetration requirements for various conditions"
       ],
-      "tables": []
+      "tables": [],
+      "applicability": "Setting minimum pile penetration depths for driven piles from all limit state requirements."
     },
     {
       "section_id": "7.6",
@@ -1158,7 +1266,8 @@
       ],
       "cross_references": {
         "wave_equation": "Rndr is the target resistance for wave equation bearing graph analysis in the wave_equation module"
-      }
+      },
+      "applicability": "Establishing the required nominal driving resistance (Rndr) to use in construction control."
     },
     {
       "section_id": "7.7",
@@ -1259,7 +1368,8 @@
       "tables": [],
       "cross_references": {
         "pile_group": "Batter pile group analysis extends the rigid cap group analysis in pile_group module"
-      }
+      },
+      "applicability": "Projects with battered (inclined) driven piles."
     },
     {
       "section_id": "7.9",
@@ -1274,7 +1384,8 @@
       ],
       "equations": [],
       "figures": [],
-      "tables": []
+      "tables": [],
+      "applicability": "Driven piles in environments that can corrode or deteriorate steel, concrete or timber piles."
     },
     {
       "section_id": "7.10",
@@ -1408,10 +1519,12 @@
             "Tomlinson (1994): limiting unit toe resistance of 105 ksf for open-end pipes in cohesionless soils",
             "Eq 7-90: Tomlinson equation for open-end pipe in stiff clay with confirmed plug",
             "Forced plugging via constrictor plate (Figures 6-14, 6-15) reduces uncertainty",
+            "Static load test recommended for large diameter OEP (>18 in) or shaft-resistance H-piles"
+          ],
+          "figures": [
             "Figure 7-82: APILE API method comparison of plugged, unplugged, and auto plug",
             "Figure 7-83: Open toe vs plugged toe mechanisms (Paikowsky and Whitman 1990)",
-            "Figure 7-84: H-pile plugging illustration (Tomlinson 1994)",
-            "Static load test recommended for large diameter OEP (>18 in) or shaft-resistance H-piles"
+            "Figure 7-84: H-pile plugging illustration (Tomlinson 1994)"
           ]
         }
       ]
