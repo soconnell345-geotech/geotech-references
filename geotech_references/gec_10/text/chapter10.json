@@ -1,6 +1,6 @@
 {
   "reference_id": "FHWA-NHI-18-024",
-  "reference_title": "Drilled Shafts: Construction Procedures and LRFD Design Methods",
+  "reference_title": "Drilled Shafts: Construction Procedures and LRFD Design Methods (2018)",
   "chapter": 10,
   "chapter_title": "Geotechnical Design for Axial Loading",
   "sections": [
@@ -63,37 +63,151 @@
     {
       "section_id": "10.3.5",
       "title": "Calculate Nominal Side and Base Resistances (Step 5)",
-      "body": "Cohesionless soils — side resistance: Beta method (effective stress): fs = βσ'v; β = K tan δ; for SPT: β = 1.5 - 0.245z^0.5 (Rollins et al. 2005) for N60 ≥ 15; limits: β ≤ 1.8 for z ≤ 5 m, β ≤ 1.2 for z > 5 m; for CPT: direct method. Cohesionless soils — base resistance: qb = Nq*σ'v (AASHTO O'Neill & Reese 1999 method); Nq based on SPT N-value; CPT-based methods also available. Cohesive soils — side resistance: Alpha (total stress) method: fs = α*su; α from O'Neill and Reese (1999): α = 0.55 for su/pa ≤ 1.5; α = 0.55 - 0.1(su/pa - 1.5) for 1.5 ≤ su/pa ≤ 2.5; FSU method from Reese and O'Neill (1988). Cohesive soils — base resistance: qb = Ncp*su; Ncp = 9 for L/B ≥ 3 (AASHTO); reduction for lower L/B. Rock — side resistance: fs = τmax based on socket diameter, rock type, and qu; Carter & Kulhawy (1988) normalized method; Horvath & Kenney (1979) for soft rock; Rowe & Armitage (1987) for rough sockets. Rock — base resistance: qb = 3qu for L/B > 0.5 (AASHTO); or qb = Ksp*qu using Rowe & Armitage bearing capacity factor. RESISTANCE FACTORS (AASHTO 2017): side resistance — with load test: 0.65 (O'Neill and Reese method); without load test: 0.45; base resistance — with load test: 0.50; without load test: 0.40; uplift side resistance — with load test: 0.60; without load test: 0.40.",
+      "body": "[p. 10-9] This step calculates the geotechnical resistances for axial compression or uplift loads. The methods are those of Article 10.8 of the 2017 AASHTO LRFD Bridge Design Specifications, unless research supported by full-scale axial load tests warrants a different approach. For the two components of compression resistance (side and base), the summation of factored resistances on the right side of Equation 10-1 is: Sum(phi_i R_i) = Sum over i = 1 to n of phi_S,i R_SN,i + phi_B R_BN (Eq. 10-2), where R_SN,i is the nominal side resistance of layer i, phi_S,i the resistance factor for side resistance in layer i, n the number of layers providing side resistance, R_BN the nominal base resistance and phi_B the resistance factor for base resistance. Nominal side resistance of a layer is the nominal unit side resistance f_SN times the cylindrical area, layer thickness Delta z_i times the circumference: R_SN = pi B Delta z_i f_SN (Eq. 10-3), with B the shaft diameter. Nominal base resistance is the nominal unit base resistance q_BN times the area at the base: R_BN = (pi B^2 / 4) q_BN (Eq. 10-4). Nominal unit side resistance is evaluated in effective stress for cohesionless soil layers; in total stress for end-of-construction (undrained) conditions in cohesive soil layers (effective stress analysis if the long-term, fully drained side resistance is important); and in terms of uniaxial compressive strength in rock. The methods for each category of geomaterial follow in 10.3.5.1 (cohesionless soils), 10.3.5.2 (cohesive soils) and 10.3.5.3 (rock).",
       "key_points": [
-        "Cohesionless side: Beta method fs = βσ'v; β = 1.5 - 0.245z^0.5 for N60 ≥ 15",
-        "Cohesive side: Alpha method fs = αsu; α = 0.55 for su/pa ≤ 1.5",
-        "Cohesive base: qb = 9su for L/B ≥ 3",
-        "Rock side: Carter & Kulhawy (1988) normalized method; rough sockets increase resistance",
-        "Rock base: qb = 3qu for L/B > 0.5 (AASHTO); or Ksp*qu per Rowe & Armitage",
-        "Resistance factors: φside = 0.65 (with load test) / 0.45 (without); φbase = 0.50 (with) / 0.40 (without)"
+        "Eq. 10-2: sum of factored resistances = sum of phi_S,i R_SN,i over the n side layers + phi_B R_BN",
+        "Eq. 10-3: R_SN = pi B (Delta z_i) f_SN; Eq. 10-4: R_BN = (pi B^2/4) q_BN",
+        "Side resistance: effective stress in cohesionless soil, total stress (undrained, end of construction) in cohesive soil, uniaxial compressive strength in rock",
+        "Methods follow Article 10.8 of the 2017 AASHTO LRFD Bridge Design Specifications"
       ],
       "equations": [
-        "Beta method: fs = βσ'v; β = 1.5 - 0.245z^0.5 (Rollins 2005) for cohesionless side resistance",
-        "Alpha method: fs = αsu; α = 0.55 (su/pa ≤ 1.5), α = 0.55 - 0.1(su/pa - 1.5) (1.5 ≤ su/pa ≤ 2.5)",
-        "Cohesive base: qb = Ncp*su; Ncp = 9 for L/B ≥ 3",
-        "Rock base: qb = 3qu for L/B > 0.5 (AASHTO 2017)"
+        "Eq. 10-2: Sum(phi_i R_i) = Sum[i=1..n](phi_S,i R_SN,i) + phi_B R_BN — factored axial compression resistance",
+        "Eq. 10-3: R_SN = pi B (Delta z_i) f_SN — nominal side resistance of layer i",
+        "Eq. 10-4: R_BN = (pi B^2 / 4) q_BN — nominal base resistance"
       ],
       "figures": [],
       "tables": [],
-      "applicability": "Computation of nominal side and base resistance for all geomaterial types"
+      "applicability": "Nominal side and base resistance of drilled shafts in compression or uplift; the geomaterial-specific methods are in 10.3.5.1 to 10.3.5.3"
+    },
+    {
+      "section_id": "10.3.5.1",
+      "title": "Cohesionless Soils",
+      "body": "SIDE RESISTANCE [p. 10-10]. Nominal side resistance is the frictional resistance over the cylindrical soil-shaft interface; the unit side resistance is proportional to the normal stress on the interface (Figure 10-4). By Equation 10-3: R_SN = pi B Delta z f_SN = pi B Delta z (sigma'_v K tan delta) (Eq. 10-5), where sigma'_v is the average vertical effective stress over Delta z, K = sigma'_h/sigma'_v is the coefficient of horizontal soil stress, sigma'_h the horizontal effective stress, and delta the effective stress angle of friction for the soil-shaft interface. Combining terms: beta = K tan delta (Eq. 10-6) and f_SN = sigma'_v beta (Eq. 10-7); beta is the side resistance coefficient (the 'beta method'). Chen and Kulhawy (2002) evaluate K and delta separately and then combine them to beta. [p. 10-11] K is a function of the at-rest value K_o and of the change in horizontal stress caused by construction, K/K_o. A first-order approximation is K/K_o = 1 (no stress change from construction). For 'normal' (uncemented) soils K_o follows Mayne and Kulhawy (1982): K_o = (1 - sin phi') OCR^(sin phi') <= K_p (Eq. 10-8), with OCR = sigma'_p / sigma'_v (Eq. 10-9), sigma'_p the effective vertical preconsolidation stress, and K_p = tan^2(45 deg + phi'/2) (Eq. 10-10) the upper bound. From SPT N-values, Mayne (2007): sigma'_p / p_a ~ 0.47 (N60)^m (Eq. 10-11), with m = 0.6 for clean quartzitic sands and m = 0.8 for silty sands to sandy silts (e.g., Piedmont residual soils), p_a atmospheric pressure in the units of sigma'_p (e.g., 2,116 psf). For gravelly soils, Kulhawy and Chen (2007): sigma'_p / p_a = 0.15 N60 (Eq. 10-12). Substituting Eqs. 10-9 to 10-12 into Eq. 10-6 gives beta ~ (1 - sin phi') (sigma'_p / sigma'_v)^(sin phi') tan phi' <= K_p tan phi' (Eq. 10-13), with sigma'_p from Eq. 10-11 for sandy soils and Eq. 10-12 for gravelly soils. [pp. 10-11, 10-12] beta at shallow depth is limited to its value at a depth of 7.5 ft, a vertical effective stress of about 900 psf; at lower confining stress the correlations for friction angle and preconsolidation stress are not validated. beta from Eq. 10-13 goes into Eq. 10-7 for the unit side resistance and into Eq. 10-5 for R_SN of each cohesionless layer. The principal limitation is the reliance on N-values and their correlations with friction angle and preconsolidation stress. Resistance factors have not been established for this method by a probability-based calibration with the AASHTO LRFD load factors; calibration to ASD with a factor of safety FS = 2.5 gives phi_S = 0.55 for side resistance in cohesionless soils, recommended until a reliability-based calibration is done. The method assumes no change in K from construction, which holds for dry, slurry (wet-hole) and casing methods with minimal sidewall disturbance, proper handling of slurry and casing and prompt concrete placement; otherwise K can fall to 2/3 of K_o, or lower if the soil caves. Where permanent casing extends through cohesionless soil, AASHTO (2007a) states no specific data are available but casing reduction factors of 0.60 to 0.75 are commonly used; side resistance may be neglected over the depth of permanent casing in very soft soils or where scour is expected. Scour: all material above the total scour line is assumed removed, and the change in stress affects beta (Section 10.5). ILLUSTRATIVE EXAMPLE 10-1 [pp. 10-12 to 10-14]: shaft B = 5 ft; layer 1 (0 to 15 ft, N60 = 9, (N1)60 = 14, gamma = 115 pcf) and layer 2 (15 to 33 ft, N60 = 27, (N1)60 = 28, gamma_sat = 125 pcf) of silty sand. The friction angle is taken as phi' = delta = 27.5 + 9.2 log[(N1)60] = 38 deg and 41 deg (Chen and Kulhawy, 2002), so delta = phi'. sigma'_v at mid-layer 862.5 and 2,288.4 psf; sigma'_p = 2,116 x 0.47 (N60)^0.8 = 5,768 and 13,890 psf; OCR 6.7 and 6.1; K_o 1.24 and 1.13 (K_p 4.20 and 4.81); beta = K tan delta = 0.97 and 0.98; f_SN = 837 and 2,248 psf (the printed layer 2 line shows beta as 1.08 while the printed summary table gives 0.98); R_SN,1 = 197.2 kips, R_SN,2 = 635.6 kips, sum 833 kips. BASE RESISTANCE [pp. 10-14, 10-15]. Base resistance develops with downward displacement, and the displacement for full mobilization varies widely because excavation releases stress beneath the base and base cleaning varies; direct empirical correlation with SPT N-values from load tests is recommended for routine design (Reese and O'Neill, 1989): q_BN (tsf) = 0.60 N60 <= 30 tsf (Eq. 10-14), N60 the average between the base and two diameters below it, the field value with no overburden correction (at 60 percent hammer efficiency). It rests on compression tests on shafts with clean bases at settlements of five percent of the base diameter; the 30 tsf limit is the largest value in those tests. It applies to cohesionless soils with N-values of 50 blows per foot or less; above 50, load testing is recommended, otherwise q_BN is limited to the upper bound of Eq. 10-14. The resistance factor phi = 0.50 specified in AASHTO (2007) was set by fitting to FS = 2.75 with the reliability-based factors of Paikowsky et al. (2004) (Allen, 2005). Bearing capacity theory may be used instead, but because the displacement to mobilize full base resistance varies widely, Eq. 10-14 is recommended for routine design.",
+      "key_points": [
+        "Eq. 10-5: R_SN = pi B Delta z (sigma'_v K tan delta); Eq. 10-6: beta = K tan delta; Eq. 10-7: f_SN = sigma'_v beta; delta = interface friction angle (taken equal to phi' in Example 10-1)",
+        "Eq. 10-8 to 10-10: K_o = (1 - sin phi') OCR^(sin phi') <= K_p, OCR = sigma'_p/sigma'_v, K_p = tan^2(45 + phi'/2)",
+        "Eq. 10-11: sigma'_p/p_a ~ 0.47 (N60)^m, m = 0.6 clean quartzitic sands, 0.8 silty sands to sandy silts; Eq. 10-12: sigma'_p/p_a = 0.15 N60 for gravelly soils",
+        "Eq. 10-13: beta ~ (1 - sin phi')(sigma'_p/sigma'_v)^(sin phi') tan phi' <= K_p tan phi'; beta limited to its value at 7.5 ft depth (about 900 psf)",
+        "Side resistance factor phi_S = 0.55 in cohesionless soils (calibrated to ASD, FS = 2.5)",
+        "Eq. 10-14: q_BN (tsf) = 0.60 N60 <= 30 tsf, N60 <= 50 (load test above 50); base phi = 0.50 (FS = 2.75)"
+      ],
+      "equations": [
+        "Eq. 10-5: R_SN = pi B Delta z f_SN = pi B Delta z (sigma'_v K tan delta) — nominal side resistance, cohesionless soil",
+        "Eq. 10-6: beta = K tan delta",
+        "Eq. 10-7: f_SN = sigma'_v beta",
+        "Eq. 10-8: K_o = (1 - sin phi') OCR^(sin phi') <= K_p (Mayne and Kulhawy, 1982)",
+        "Eq. 10-9: OCR = sigma'_p / sigma'_v",
+        "Eq. 10-10: K_p = tan^2(45 deg + phi'/2)",
+        "Eq. 10-11: sigma'_p / p_a ~ 0.47 (N60)^m — m = 0.6 clean quartzitic sands, m = 0.8 silty sands to sandy silts (Mayne, 2007)",
+        "Eq. 10-12: sigma'_p / p_a = 0.15 N60 — gravelly soils (Kulhawy and Chen, 2007)",
+        "Eq. 10-13: beta ~ (1 - sin phi') (sigma'_p / sigma'_v)^(sin phi') tan phi' <= K_p tan phi'",
+        "Eq. 10-14: q_BN (tsf) = 0.60 N60 <= 30 tsf (Reese and O'Neill, 1989)"
+      ],
+      "figures": [
+        "Figure 10-4: Frictional model of unit side resistance, drilled shaft in cohesionless soil",
+        "Figure 10-5: Subsurface profile and drilled shaft for Illustrative Examples 10-1, 10-2, 10-3 and 10-5"
+      ],
+      "tables": [],
+      "applicability": "Side and base resistance of drilled shafts in cohesionless soil (sand, gravel, nonplastic silt)"
+    },
+    {
+      "section_id": "10.3.5.2",
+      "title": "Cohesive Soils",
+      "body": "SIDE RESISTANCE [pp. 10-15 to 10-18]. Short-term undrained side resistance in cohesive layers is in terms of undrained shear strength: R_SN = pi B Delta z f_SN = pi B Delta z (alpha s_u) (Eq. 10-15), s_u the average undrained shear strength over Delta z and alpha the adhesion coefficient (the 'alpha method'). Laboratory strength tests of undisturbed samples are recommended for s_u; in-situ tests should be calibrated against laboratory tests. UC and UU tests are less reliable than CIUC triaxial tests (sample disturbance, strain rate, drainage), so UC and UU values are first converted to CIUC (Chen and Kulhawy, 1993): s_u(UC)/s_u(CIUC) = 0.893 + 0.513 log(s_u(UC)/sigma'_vo) (Eq. 10-16); s_u(UU)/s_u(CIUC) = 0.911 + 0.499 log(s_u(UU)/sigma'_vo) (Eq. 10-17), sigma'_vo the vertical effective stress. The adhesion factor (Chen et al., 2011; Figure 10-6), recommended as a revision to the expressions in AASHTO LRFD (2017a), is alpha = 0.30 + 0.17 / (s_u(CIUC)/p_a) (Eq. 10-18), p_a atmospheric pressure in consistent units. It is common practice to neglect side resistance over the top 5 ft of the shaft, or to the depth of seasonal moisture change, subject to local experience. Permanent casing through cohesive soil reduces side resistance; reduction factors of 50 to 75 percent for steel piles compared with driven concrete piles are a guide, with no specific data for cased shafts, which may sit near the lower end. Illustrative Example 10-2 [p. 10-18]: a stiff clay layer of 27 ft with mean s_u = 2,000 psf (UU): sigma'_vo = 3,697 psf, s_u/sigma'_vo = 0.541, s_u(CIUC) = 2,000 / (0.911 + 0.499 log 0.541) = 2,571 psf (as printed), alpha = 0.30 + 0.17/(2,571/2,116) = 0.44, f_SN = 1,131 psf, R_SN,3 = 479.7 kips. The alpha method assumes design for short-term undrained loading by total stress is adequate for routine design; for very heavily overconsolidated clay (OCR > 8) the fully drained side resistance may be considered, using Eq. 10-5 with c' = 0, phi' from CD or CU triaxial tests, the interface friction angle taken equal to phi', and K = K_o from in-situ measurements or OCR. No resistance factor is recommended for fully drained side resistance in cohesive soils. BASE RESISTANCE [pp. 10-19, 10-20]. Total stress bearing capacity (O'Neill and Reese, 1999): q_BN = N*_c s_u (Eq. 10-19), s_u the mean undrained shear strength over a depth of 2B below the base. For depth at least 3 times the diameter and s_u at least 2,000 psf, N*_c = 9.0; for smaller s_u, N*_c is taken from Table 10-2 (500 psf: 6.5; 1,000 psf: 8.0; 2,000 psf and above: 9.0; linear interpolation between). For embedment D < 3B: q_BN = (2/3) [1 + D/(6B)] N*_c s_u (Eq. 10-20), N*_c from Table 10-2. The resistance factor phi = 0.40 (Table 8-4) for base resistance by this method is based on Allen (2005), fitting to ASD FS = 2.75 and the reliability analysis of Paikowsky et al. (2004). Fully drained base resistance in heavily overconsolidated clay (OCR > 8) can be analysed by bearing capacity theory with c' and phi'; it is not addressed in AASHTO (2017a). Example 10-3 [p. 10-20]: q_BN = 9.0 (2,571 psf) = 23.1 ksf, R_BN = pi/4 (5 ft)^2 x 23.1 ksf = 453.6 kips.",
+      "key_points": [
+        "Eq. 10-15: R_SN = pi B Delta z (alpha s_u); Eq. 10-16/10-17 convert UC/UU strength to CIUC; Eq. 10-18: alpha = 0.30 + 0.17/(s_u(CIUC)/p_a)",
+        "Neglect side resistance over the top 5 ft (or the depth of seasonal moisture change)",
+        "Eq. 10-19: q_BN = N*_c s_u; N*_c = 9.0 for D >= 3B and s_u >= 2,000 psf; Table 10-2 gives 6.5 at 500 psf and 8.0 at 1,000 psf",
+        "Eq. 10-20: q_BN = (2/3)[1 + D/(6B)] N*_c s_u for D < 3B",
+        "Base resistance factor phi = 0.40 (Table 8-4); Example 10-5 applies 0.45 to cohesive side resistance"
+      ],
+      "equations": [
+        "Eq. 10-15: R_SN = pi B Delta z f_SN = pi B Delta z (alpha s_u) — nominal side resistance, cohesive soil (alpha method)",
+        "Eq. 10-16: s_u(UC)/s_u(CIUC) = 0.893 + 0.513 log(s_u(UC)/sigma'_vo) (Chen and Kulhawy, 1993)",
+        "Eq. 10-17: s_u(UU)/s_u(CIUC) = 0.911 + 0.499 log(s_u(UU)/sigma'_vo) (Chen and Kulhawy, 1993)",
+        "Eq. 10-18: alpha = 0.30 + 0.17 / (s_u(CIUC)/p_a) (Chen et al., 2011)",
+        "Eq. 10-19: q_BN = N*_c s_u (O'Neill and Reese, 1999)",
+        "Eq. 10-20: q_BN = (2/3) [1 + D/(6B)] N*_c s_u, D < 3B"
+      ],
+      "figures": [
+        "Figure 10-6: Correlation of side resistance coefficient alpha to undrained shear strength (Chen et al., 2011)"
+      ],
+      "tables": [
+        "Table 10-2: Bearing capacity factor N*_c (s_u 500 psf: 6.5; 1,000 psf: 8.0; 2,000 psf and above: 9.0)"
+      ],
+      "applicability": "Side and base resistance of drilled shafts in cohesive soil (clay, plastic silt), undrained end-of-construction condition"
+    },
+    {
+      "section_id": "10.3.5.3",
+      "title": "Rock",
+      "body": "SIDE RESISTANCE [pp. 10-20 to 10-22]. Unit side resistance in rock is evaluated from the mean uniaxial compressive strength q_u of the rock layer: f_SN / p_a = C sqrt(q_u / p_a) (Eq. 10-21), p_a atmospheric pressure in the units of q_u and C a regression coefficient from load test results. Kulhawy et al. (2005), the most recent regression of load test data, give a mean C = 1.0; Eq. 10-21 with C = 1.0 is recommended for 'normal' rock sockets. q_u should come from laboratory uniaxial compression tests (ASTM) on specimens at field moisture content; estimating q_u from point load or Schmidt hammer tests may be inappropriate, and specimens allowed to dry give higher q_u and overestimate resistance. The q_u used in Eq. 10-21 should not exceed the compressive strength of the shaft concrete, unless load tests demonstrate higher side resistance. 'Normal' means sockets constructed with conventional equipment with nominally clean sidewalls and no special procedures or artificial roughening; rock prone to smearing or rapid deterioration (clay shales; Appendix B) is outside the normal range. Rock mass that cannot be excavated without caving is also outside the normal category and may show lower side resistance than Eq. 10-21 with C = 1.0. Where caving or instability of the socket is anticipated (e.g., 'plug-ahead' or 'grout-ahead' installation), O'Neill and Reese (1999) is recommended: f_SN / p_a = 0.65 alpha_E sqrt(q_u / p_a) (Eq. 10-22), with alpha_E from the RQD and the joint condition in Table 10-3. Table 10-3, side resistance reduction factor for caving rock, joint modification factor alpha_E [p. 10-21]: RQD 100 percent: 1.00 (closed joints), 0.85 (open or gouge-filled joints); RQD 70: 0.85, 0.55; RQD 50: 0.60, 0.55; RQD 30: 0.50, 0.50; RQD 20: 0.45, 0.45. In summary, Eq. 10-21 with C = 1.0 is recommended for routine design of rock sockets; for highly fractured or weathered rock that cannot be drilled without artificial support (casing or the plug-ahead method), or where caving is anticipated, Eq. 10-22 with the Table 10-3 reduction factors is recommended. The resistance factor recommended with Eqs. 10-21 and 10-22 is phi = 0.55, based on fitting to ASD with FS = 2.5, 'as presented in Table 8-4' (p. 10-21; Table 8-4 on p. 8-14 prints 0.50 for side resistance in rock: both are printed and are not reconciled here). [pp. 10-21, 10-22] Artificial roughening of sockets (grooving tools or other measures) can increase side resistance; regression of load test data by Kulhawy and Prakoso (2007) suggests a mean value C = 1.9 with use of Eq. 10-22 for roughened sockets. It is strongly recommended that load tests or local experience be used to verify values of C greater than 1.0. BASE RESISTANCE [pp. 10-22 to 10-25]. q_BN = N*_cr q_u (Eq. 10-23), N*_cr an empirical bearing capacity factor for rock. Prakoso and Kulhawy (2002; Figure 10-7): 14 load tests at 9 sites, mean N*_cr = 3.38, COV = 35.4 percent; a lower bound N*_cr = 2.5 (consistent with Rowe and Armitage, 1987) incorporates most points; the Zhang and Einstein (1998) data give a mean 3.56, COV = 61.0 percent. N*_cr = 2.5 is recommended when q_u is the only parameter used and (1) the base bears on massive or tightly jointed rock (no compressible seams or joints) to at least one diameter below the base, (2) no solution cavities or voids exist beneath the base, and (3) a clean base can be achieved and verified. The AASHTO (2017a) resistance factor for Eq. 10-23 with N*_cr = 2.5 is phi = 0.50 (FS = 2.5); larger N*_cr is justified when verified by local experience or load testing. For fractured rock mass, bearing capacity with the Hoek-Brown criterion (Turner and Ramey, 2010): sigma'_1 = sigma'_3 + q_u [m_b (sigma'_3/q_u) + s]^a (Eq. 10-24); with GSI, m_b/m_i = exp[(GSI - 100)/28] (Eq. 10-25), s = exp[(GSI - 100)/9] (Eq. 10-26), a = 1/2 + (1/6)[exp(-GSI/15) - exp(-20/3)] (Eq. 10-27). The overburden parameter A = sigma'_vb + q_u [m_b (sigma'_vb/q_u) + s]^a (Eq. 10-28), sigma'_vb the vertical effective stress at the socket tip; q_BN = A + q_u [m_b (A/q_u) + s]^a (Eq. 10-29). N*_cr = 2.5 can be used as an upper bound on base resistance unless local experience or load tests validate higher values (Figure 10-8). The recommended resistance factor for Eq. 10-29 is phi = 0.50 (FS = 2.5). [p. 10-25] Base resistance may instead be governed by the structural strength of the concrete in bearing (Chapter 12); the structural bearing resistance factor is phi = 0.70 against the geotechnical phi = 0.50, so the factored resistances are compared case by case. Example 10-4 [pp. 10-26 to 10-28]: 6 ft socket, 10 ft deep, q_u = 2,500 psi (360 ksf): f_SN = 2.116 x 1.0 x sqrt(300/2.116) = 27.6 ksf as printed (the printed expression evaluates to 25.2 ksf; the printed R_SN follows the 27.6), R_SN = 27.6 x (6 pi) x 10 = 5,202 kips; q_BN = 2.5 (360) = 900 ksf, R_BN = 25,447 kips, phi R_BN = 0.50 (25,447) = 12,723 kips, governing over the structural 19,380 kips.",
+      "key_points": [
+        "Eq. 10-21: f_SN/p_a = C sqrt(q_u/p_a); C = 1.0 (Kulhawy et al., 2005) for normal sockets",
+        "Eq. 10-22: f_SN/p_a = 0.65 alpha_E sqrt(q_u/p_a) for caving or fractured rock; alpha_E from Table 10-3 (RQD, joint condition)",
+        "Roughened sockets: mean C = 1.9 with Eq. 10-22 (Kulhawy and Prakoso, 2007); verify C > 1.0 by load test or local experience",
+        "Side resistance factor phi = 0.55 in the chapter text (p. 10-21, FS = 2.5, 'as presented in Table 8-4'); Table 8-4 (p. 8-14) prints 0.50",
+        "Eq. 10-23: q_BN = N*_cr q_u with N*_cr = 2.5 for competent rock, phi = 0.50",
+        "Eqs. 10-24 to 10-29: Hoek-Brown base resistance for fractured rock, phi = 0.50; q_u not above the concrete strength"
+      ],
+      "equations": [
+        "Eq. 10-21: f_SN / p_a = C sqrt(q_u / p_a) — unit side resistance, normal rock socket, C = 1.0",
+        "Eq. 10-22: f_SN / p_a = 0.65 alpha_E sqrt(q_u / p_a) — caving or fractured rock (O'Neill and Reese, 1999); alpha_E from Table 10-3; C = 1.9 for roughened sockets",
+        "Eq. 10-23: q_BN = N*_cr q_u — unit base resistance in rock, N*_cr = 2.5",
+        "Eq. 10-24: sigma'_1 = sigma'_3 + q_u [m_b (sigma'_3/q_u) + s]^a — Hoek-Brown criterion",
+        "Eq. 10-25: m_b/m_i = exp[(GSI - 100)/28]",
+        "Eq. 10-26: s = exp[(GSI - 100)/9]",
+        "Eq. 10-27: a = 1/2 + (1/6)[exp(-GSI/15) - exp(-20/3)]",
+        "Eq. 10-28: A = sigma'_vb + q_u [m_b (sigma'_vb/q_u) + s]^a",
+        "Eq. 10-29: q_BN = A + q_u [m_b (A/q_u) + s]^a"
+      ],
+      "figures": [
+        "Figure 10-7: Base resistance factor for rock (Prakoso and Kulhawy, 2002)",
+        "Figure 10-8: Bearing capacity factor N*_cr versus GSI for base resistance of fractured rock mass",
+        "Figure 10-9: Ground profile and trial shaft for Illustrative Example 10-4"
+      ],
+      "tables": [
+        "Table 10-3: Side resistance reduction factor for caving rock, alpha_E by RQD (100, 70, 50, 30, 20 percent) for closed and for open or gouge-filled joints"
+      ],
+      "applicability": "Side and base resistance of rock-socketed drilled shafts, normal and caving or roughened sockets"
+    },
+    {
+      "section_id": "10.3.6",
+      "title": "Evaluate Trial Design for Strength Limit States (Step 6)",
+      "body": "[pp. 10-28, 10-29] Step 6 applies resistance factors to the nominal resistances of Step 5 and checks each strength limit state from Step 2, for each loading mode and each trial design, against Eq. 10-1: Sum(eta_i gamma_i F_i) <= Sum(phi_i R_i). Recommended resistance factors for the nominal resistances calculated by the methods above are in Table 8-4. When compressive resistances are determined from one or more static load tests, AASHTO (2017a) allows a resistance factor as high as 0.70; the value selected is a matter of engineering judgment and accounts for the number of load tests and the subsurface variability (Chapter 13). Illustrative Example 10-5 [p. 10-29]: factored demand Sum(gamma Q) = 766 kips (Strength I). Factors from Table 8-4 as used in the example: side resistance in compression, cohesionless soil 0.55; cohesive soil 0.45; base resistance, cohesive soil 0.40. Factored resistances: layer 1 197.2 x 0.55 = 108.5 kips; layer 2 635.6 x 0.55 = 349.6 kips; layer 3 side 479.7 x 0.45 = 215.9 kips; layer 3 base 453.6 x 0.40 = 181.4 kips; Sum(phi R) = 855.4 kips. 766 kips < 855.4 kips; C/D = 855.4/766 = 1.12 > 1.0, so the trial design satisfies the strength limit state.",
+      "key_points": [
+        "Eq. 10-1 check: Sum(eta gamma F) <= Sum(phi R); resistance factors from Table 8-4",
+        "Static load test: AASHTO (2017a) allows phi up to 0.70, by judgment",
+        "Example 10-5 factors: 0.55 cohesionless side, 0.45 cohesive side, 0.40 cohesive base; factored resistance 855.4 kips vs demand 766 kips"
+      ],
+      "equations": [
+        "Eq. 10-1: Sum(eta_i gamma_i F_i) <= Sum(phi_i R_i) — LRFD check for strength limit states"
+      ],
+      "figures": [],
+      "tables": [
+        "Table 8-4: LRFD resistance factors for axial compression and uplift of drilled shafts"
+      ],
+      "applicability": "Strength limit state check of a trial drilled shaft design in axial compression"
     },
     {
       "section_id": "10.4",
       "title": "Design for Uplift",
-      "body": "Uplift capacity: side resistance only (base resistance = 0 for uplift). Nominal uplift resistance Rup = sum of nominal unit side resistances over shaft length (same methods as compression). AASHTO resistance factor for uplift side resistance with load test: φup = 0.60; without load test: φup = 0.40. Service limit state for uplift: control of axial deflection (extension under uplift) and progressive debonding of concrete from soil. Design check: factored uplift demand ≤ φup*Rup. For combined uplift and moment, interaction between side resistance and flexural demands must be checked.",
+      "body": "[pp. 10-37 to 10-40] Uplift arises, for example, where moment on a pier footing is resisted by a couple of uplift in shafts on one side and compression in shafts on the other (Figure 10-14), and from construction loads, adjacent-span loading, seismic and impact events. A shaft in uplift is resisted by its weight and by side resistance on the shaft-geomaterial interface (Figure 10-15). AASHTO (2017a) requires uplift resistance of a single straight-sided shaft to be estimated in a manner similar to side resistance in compression, so nominal unit side resistances come from the methods of Section 10.3.5. Base resistance (tip suction) is not relied on: its prediction is not sufficiently reliable. The shaft weight is treated as a negative force effect on the left side of Eq. 10-1, not as resistance, so the strength limit state is Sum(phi_i R_i) = Sum over i = 1 to n of phi_S,i R_SN,i (numbered 10-32 in the print, p. 10-39). Resistance factors for uplift side resistance are in Table 8-4; the uplift values are less by 0.10 than the equivalent compression factors (Allen, 2005; AASHTO, 2017a), an interim procedure pending reliability-based calibration. Where side resistance comes from one or more static uplift load tests at the site, AASHTO (2017a) allows phi = 0.60 for all geomaterials, applied with judgment on how well production shafts match the test conditions; otherwise a lower factor is used. If the uplift is caused by an extreme event (earthquake, ice, vessel impact), the uplift resistance factor can be taken as 0.80 (p. 10-40).",
       "key_points": [
-        "Uplift capacity: side resistance only; base resistance = 0",
-        "Resistance factors: φup = 0.60 with load test; 0.40 without",
-        "Service limit: control axial extension; check progressive debonding"
+        "Uplift resistance is side resistance only; base resistance is not relied on",
+        "Uplift phi values are 0.10 less than the compression values (Table 8-4)",
+        "phi = 0.60 for all geomaterials where based on static uplift load tests; 0.80 for extreme event uplift",
+        "Shaft weight is a negative force effect in Eq. 10-1, not a resistance"
       ],
-      "equations": [],
-      "figures": [],
-      "tables": [],
+      "equations": [
+        "Sum(phi_i R_i) = Sum[i=1..n](phi_S,i R_SN,i) — factored uplift resistance (side resistance only; numbered 10-32 in the print, p. 10-39)"
+      ],
+      "figures": [
+        "Figure 10-14: Typical loading combination resulting in uplift",
+        "Figure 10-15: Forces and idealized geomaterial layering for computation of uplift resistance"
+      ],
+      "tables": [
+        "Table 8-4: LRFD resistance factors, uplift side resistance 0.10 below compression"
+      ],
       "applicability": "Design of drilled shafts subjected to net uplift forces"
     },
     {
