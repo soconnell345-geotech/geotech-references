@@ -1,5 +1,7 @@
 """Tests for GEC-11 table lookup functions."""
 
+import math
+
 import pytest
 
 from geotech_references.gec_11.tables import (
@@ -181,26 +183,74 @@ class TestTable34:
 # ============================================================================
 
 class TestTable36:
-    """Tests for table_3_6_pullout_parameters()."""
+    """Tests for table_3_6_pullout_parameters(), pinned to the printed Table
+    3-6 (FHWA-NHI-10-024 Vol I, p. 3-17) and Section 3.4.2 (pp. 3-16, 3-20,
+    3-21; REF-42)."""
 
     def test_all_entries(self):
         results = table_3_6_pullout_parameters()
         assert len(results) == 5
 
+    def test_original_keys_kept(self):
+        for r in table_3_6_pullout_parameters():
+            for k in ("reinforcement", "F_star_at_top", "F_star_at_6m",
+                      "alpha", "notes"):
+                assert k in r
+
     def test_ribbed(self):
         results = table_3_6_pullout_parameters("ribbed")
         assert len(results) == 1
-        assert results[0]["alpha"] == 1.0
+        r = results[0]
+        assert r["alpha"] == 1.0
+        # Eq. 3-4 / 3-5: 1.2 + log Cu at the top (2.0 max), tan(phi) at 6 m
+        assert r["F_star_at_top"] == "1.2 + log10(Cu), 2.0 maximum"
+        assert r["F_star_at_6m"] == "tan(phi)"
+        assert r["F_star_top_max"] == 2.0
+        # Cu unknown -> Cu = 4 -> F* = 1.8 at the top (bold, p. 3-20)
+        assert r["Cu_if_unknown"] == 4
+        assert r["F_star_top_if_Cu_unknown"] == 1.8
+        assert 1.2 + math.log10(4) == pytest.approx(1.8, abs=0.005)
+        assert r["equations"] == ["3-4", "3-5"]
+
+    def test_ribbed_is_not_tan_phi_at_all_depths(self):
+        r = table_3_6_pullout_parameters("ribbed")[0]
+        assert r["F_star_at_top"] != r["F_star_at_6m"]
+
+    def test_smooth_strip_has_no_printed_default(self):
+        r = table_3_6_pullout_parameters("smooth")[0]
+        assert "0.4" not in r["F_star_at_top"]
+        assert "no default printed" in r["F_star_at_top"]
+        assert r["alpha"] == 1.0
+
+    def test_steel_grid_equations_3_6_and_3_7(self):
+        r = table_3_6_pullout_parameters("steel grid")[0]
+        assert r["F_star_at_top"] == "20 * (t/St)"
+        assert r["F_star_at_6m"] == "10 * (t/St)"
+        assert r["alpha"] == 1.0
+        assert r["equations"] == ["3-6", "3-7"]
+        assert "24 in." in r["notes"]
 
     def test_geogrid(self):
         results = table_3_6_pullout_parameters("geogrid")
         assert len(results) == 1
-        assert results[0]["alpha"] == 0.8
+        r = results[0]
+        assert r["alpha"] == 0.8
+        # Eq. 3-8: F* = (2/3) tan(phi) for geosynthetic sheets, no test data
+        assert r["F_star_at_top"] == r["F_star_at_6m"] == "(2/3) * tan(phi)"
+        assert r["equations"] == ["3-8"]
 
     def test_geotextile(self):
         results = table_3_6_pullout_parameters("geotextile")
         assert len(results) == 1
-        assert results[0]["alpha"] == 0.6
+        r = results[0]
+        assert r["alpha"] == 0.6
+        assert r["F_star_at_top"] == r["F_star_at_6m"] == "(2/3) * tan(phi)"
+
+    def test_note_i_on_every_row(self):
+        for r in table_3_6_pullout_parameters():
+            assert "Table 3-1" in r["default_fill_limit"]
+            assert "Cu >= 4" in r["default_fill_limit"]
+            assert "tests must be run" in r["default_fill_limit"]
 
     def test_no_match(self):
         results = table_3_6_pullout_parameters("nonexistent")
