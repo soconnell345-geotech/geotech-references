@@ -448,16 +448,18 @@ def reference_search(
                 rows = run(_qe.combined_query(q))
             elif strategy == "auto":
                 # Rerank the literal+synonym union (recall), but PIN the literal
-                # top-1 so an already-good query keeps its best hit (precision).
+                # top-N (EXPANSION_PIN, default 1) so an already-good query keeps its best hit (precision).
                 literal = run(q)
                 combined = _qe.combined_query(q)
                 if combined == q:
                     rows = literal            # no synonyms to add
                 elif not literal:
-                    rows = run(combined)      # nothing to pin; rerank the union
+                    # nothing to pin: the query with its terms swapped for
+                    # their synonyms, then its words OR-ed with the synonyms
+                    rows = _qe.zero_literal_hits(q, run, want, key=lambda r: (r["reference"], r["section_id"]))
                 else:
                     rows = _qe.merge_hits(
-                        [literal[0]], run(combined), want,
+                        literal[:_qe.EXPANSION_PIN], run(combined), want,
                         key=lambda r: (r["reference"], r["section_id"]),
                     )
             else:

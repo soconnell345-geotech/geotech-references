@@ -249,3 +249,143 @@ def test_figure_fill_preserves_literal_top_and_never_shrinks():
     assert off and fill
     assert off[0]["figure_number"] == fill[0]["figure_number"]
     assert len(fill) >= len(off)
+
+
+# ---------------------------------------------------------------------------
+# REF-03: the curated map
+# ---------------------------------------------------------------------------
+
+def test_bare_cu_does_not_fire_undrained_strength():
+    # Cu is also the coefficient of uniformity (UFC 3-220-10 Sec. 1-3.3.2)
+    assert "undrained" not in expand_query("coefficient of uniformity cu")
+    assert "undrained shear strength" in expand_query("su of soft clay")
+
+
+def test_bare_compaction_does_not_fire_compaction_control():
+    # deep dynamic compaction / vibro-compaction are ground improvement
+    assert "proctor" not in expand_query("dynamic compaction depth of improvement")
+    assert "proctor" not in expand_query("vibro-compaction of loose sand")
+    assert "relative compaction" in expand_query("degree of compaction of fill")
+
+
+def test_term_inside_a_longer_matched_term_does_not_fire_its_group():
+    exp = expand_query("negative skin friction on piles")
+    assert "downdrag" in exp
+    assert "side resistance" not in exp and "shaft resistance" not in exp
+    # the shorter term alone still fires its own group
+    assert "side resistance" in expand_query("skin friction of piles")
+
+
+def test_liquefaction_demand_and_capacity_stay_apart():
+    assert "crr" not in expand_query("csr from the earthquake")
+    assert "csr" not in expand_query("crr of the sand")
+    assert expand_query("liquefaction") == ""  # no dead triggering forms
+
+
+@pytest.mark.parametrize("query, expected", [
+    ("PVD spacing", "wick drain"),
+    ("PVDs spacing", "wick drain"),
+    ("CSR", "cyclic stress ratio"),
+    ("(N1)60 to phi", "n160"),
+    ("N160 to phi", '"n1 60"'),
+    ("p-y method", '"p y curve"'),
+    ("t-z curves", '"load transfer curve"'),
+    ("CPT", "cone penetration test"),
+    ("SPT", "standard penetration test"),
+    ("DMT", "dilatometer"),
+    ("PMT", "pressuremeter"),
+    ("UCS of rock", "uniaxial compressive strength"),
+    ("RQD", "rock quality designation"),
+    ("EPS blocks", "geofoam"),
+    ("stone column", "aggregate pier"),
+    ("vibroflotation", '"vibro compaction"'),
+    ("DSM", "deep mixing"),
+    ("CFA piles", "continuous flight auger"),
+    ("MSE", "mechanically stabilized earth"),
+])
+def test_added_groups_fire(query, expected):
+    assert expected in expand_query(query)
+
+
+@pytest.mark.parametrize("query", [
+    "(N1)60 to phi", "N1(60) correlation", "p-y curves", "t-z curves",
+    "augered cast-in-place piles", "MSE wall", "what is RQD",
+])
+def test_expanded_queries_are_valid_fts(query):
+    for strategy in ("fill", "auto", "rerank"):
+        hits = _with_strategy(strategy, _retrieval_db.reference_search,
+                              query, limit=5)
+        assert hits and all("error" not in h for h in hits), (strategy, hits)
+
+
+def test_spelling_of_a_form_already_used_is_not_added_again():
+    exp = expand_query("N1(60) correlation")
+    assert '"n1 60"' not in exp and "n160" in exp
+
+
+def test_substituted_query():
+    from geotech_references._query_expansion import substituted_query
+    assert substituted_query("wick drain smear zone") == (
+        '("prefabricated vertical drain" OR pvd OR "wick drain" OR '
+        '"vertical drain") AND smear AND zone')
+    assert substituted_query("hello world") is None
+    assert substituted_query('"wick drain" smear') is None
+    assert substituted_query("pvd OR smear") is None
+
+
+def test_auto_zero_literal_keeps_the_words_the_groups_do_not_cover():
+    # The literal AND query matches nothing; swapping "wick drain" for its
+    # group keeps "smear zone" in the query (FHWA-NHI-16-027 Sec. 2.4.3).
+    q = "wick drain smear zone"
+    assert _literal(_retrieval_db.reference_search, q, limit=5) == []
+    auto = _with_strategy("auto", _retrieval_db.reference_search, q, limit=5)
+    assert ("gec_13", "2.4.3") in [(h["reference"], h["section_id"]) for h in auto]
+
+
+def test_auto_pin_n_keeps_the_literal_top_n():
+    import geotech_references._query_expansion as qe
+    q = "undrained shear strength of clay"
+    off = _literal(_retrieval_db.reference_search, q, limit=5)
+    saved = qe.EXPANSION_PIN
+    try:
+        for pin in (1, 2, 3):
+            qe.EXPANSION_PIN = pin
+            auto = _with_strategy("auto", _retrieval_db.reference_search, q, limit=5)
+            key = lambda h: (h["reference"], h["section_id"])
+            assert [key(h) for h in auto[:pin]] == [key(h) for h in off[:pin]]
+    finally:
+        qe.EXPANSION_PIN = saved
+
+
+# ---------------------------------------------------------------------------
+# REF-07: the gold set
+# ---------------------------------------------------------------------------
+
+def _gold():
+    import importlib.util
+    from pathlib import Path
+    path = Path(__file__).resolve().parents[1] / "scripts" / "eval_retrieval_gold.py"
+    spec = importlib.util.spec_from_file_location("eval_retrieval_gold", path)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def test_gold_set_is_well_formed():
+    cases = _gold().load_cases()
+    assert len(cases) >= 40
+    assert len({c["id"] for c in cases}) == len(cases)
+    assert {c["kind"] for c in cases} == {
+        "method", "table value", "figure", "definition", "limit"}
+    assert len({r[0] for c in cases for r in c["relevant"]}) >= 12
+    for c in cases:
+        for ref, sid in c["relevant"]:
+            assert "error" not in _retrieval_db.reference_get(ref, sid), (c["id"], ref, sid)
+
+
+def test_gold_recall_expansion_never_loses_to_literal():
+    mod = _gold()
+    res = mod.evaluate(mod.load_cases(), [("off", 1), ("fill", 1), ("auto", 1)])
+    for k in mod.KS:
+        assert res["auto"]["recall"][k] >= res["off"]["recall"][k]
+        assert res["auto"]["recall"][k] >= res["fill"]["recall"][k]
