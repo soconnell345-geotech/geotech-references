@@ -276,7 +276,7 @@ def alpha_tomlinson_transition(s_u: float, P_a: float) -> float:
     Applies to upper 10b of the stiff clay layer when overlain by soft clay.
 
     .. math::
-        \\alpha = 0.44 \\left(\\frac{s_u}{P_a}\\right)^{-0.28}
+        \\alpha = 0.28 \\left(\\frac{s_u}{P_a}\\right)^{-0.44}
 
     Parameters
     ----------
@@ -292,13 +292,13 @@ def alpha_tomlinson_transition(s_u: float, P_a: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-9, p. 454.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-9, printed p. 416 (PDF p. 454).
     """
     if s_u <= 0.0:
         raise ValueError("s_u must be positive.")
     if P_a <= 0.0:
         raise ValueError("P_a must be positive.")
-    return 0.44 * (s_u / P_a) ** (-0.28)
+    return 0.28 * (s_u / P_a) ** (-0.44)
 
 
 def alpha_chen_drilled_shaft(s_u_ICU: float, P_a: float) -> float:
@@ -444,7 +444,11 @@ def alpha_coleman_CFA(s_u: float, P_a: float) -> float:
     Valid for normalized strengths in the range 0.24 to 1.42.
 
     .. math::
-        \\alpha = \\left(\\frac{s_u}{P_a}\\right)^{-0.53}
+        \\alpha = 0.53 \\left(\\frac{s_u}{P_a}\\right)^{-1}
+
+    The printed Equation 6-15 shows ``0.53 (s_u/P_a)`` with no legible
+    exponent. Curve E of Figure 6-14 (vector data) is 0.53 / (s_u/P_a):
+    alpha 1.32 at 0.4, 0.53 at 1.0, 0.39 at 1.37. The exponent is -1.
 
     Parameters
     ----------
@@ -466,17 +470,17 @@ def alpha_coleman_CFA(s_u: float, P_a: float) -> float:
         raise ValueError("s_u must be positive.")
     if P_a <= 0.0:
         raise ValueError("P_a must be positive.")
-    return (s_u / P_a) ** (-0.53)
+    return 0.53 / (s_u / P_a)
 
 
 def alpha_API_P2A(s_u: float, sigma_z_eff: float) -> float:
     """Alpha by API P2A method – Randolph and Murphy (1985) (Equations 6-16, 6-17).
 
     .. math::
-        \\alpha = \\left(\\frac{s_u}{\\sigma'_z}\\right)^{-0.5}
+        \\alpha = 0.5 \\left(\\frac{s_u}{\\sigma'_z}\\right)^{-0.5}
         \\quad \\text{for } s_u/\\sigma'_z \\leq 1
 
-        \\alpha = \\left(\\frac{s_u}{\\sigma'_z}\\right)^{-0.25}
+        \\alpha = 0.5 \\left(\\frac{s_u}{\\sigma'_z}\\right)^{-0.25}
         \\quad \\text{for } s_u/\\sigma'_z > 1
 
     Parameters
@@ -499,9 +503,9 @@ def alpha_API_P2A(s_u: float, sigma_z_eff: float) -> float:
         raise ValueError("sigma_z_eff must be positive.")
     ratio = s_u / sigma_z_eff
     if ratio <= 1.0:
-        alpha = ratio ** (-0.5)
+        alpha = 0.5 * ratio ** (-0.5)
     else:
-        alpha = ratio ** (-0.25)
+        alpha = 0.5 * ratio ** (-0.25)
     return min(alpha, 1.0)
 
 
