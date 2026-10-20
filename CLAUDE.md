@@ -370,7 +370,7 @@ the GeotechStaffEngineer HANDOFF P6); image embeddings remain rejected.
 - **Reaches the Funhouse consultant for free** — the reviewer/consult sub-agent
   calls these same `reference_db`/`figure_db` functions via adapters, so it picks up
   `auto` with no funhouse_agent change.
-- **Tests:** `tests/test_query_expansion.py` (64).
+- **Tests:** `tests/test_query_expansion.py` (65).
 
 ### Curation and the gold set (REF-03, REF-07; 2026-10-20)
 - **Removed:** bare `cu` (also the coefficient of uniformity, UFS 3-220-10
