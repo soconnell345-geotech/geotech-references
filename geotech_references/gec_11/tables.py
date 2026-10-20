@@ -253,42 +253,127 @@ def table_3_4_electrochemical_geosynth(polymer: str = "") -> list:
 # ============================================================================
 # Table 3-6: Pullout Capacity Design Parameters
 # ============================================================================
+# Source: FHWA-NHI-10-024 (Nov 2009) Vol I, Table 3-6 (p. 3-17), with the F*
+# defaults of Section 3.4.2 (p. 3-20: Eqs. 3-4 to 3-7; p. 3-21: Eq. 3-8) and
+# alpha of p. 3-16. Table 3-6 itself lists, per reinforcement type, which
+# parameter comes from tests ("Obtain Tan rho from tests") and the alpha
+# default; the F* defaults are the equations of Section 3.4.2.
+#
+# Note (i) of Table 3-6 (printed p. 3-17): the empirical values may be used
+# for F* in the absence of product- and backfill-specific test data, "provided
+# granular reinforced fill as specified in Table 3-1 for MSE walls is used and
+# Cu >= 4. For fill outside these limits, tests must be run." Every row
+# carries it in "default_fill_limit". Note (ii): pullout testing to determine
+# alpha is recommended if alpha is less than 1.0.
+#
+# Row fields: reinforcement, F_star_at_top, F_star_at_6m, alpha, notes (the
+# original keys) plus equations, printed_pages, default_fill_limit and, where
+# the print gives them, F_star_top_max, Cu_if_unknown, F_star_top_if_Cu_unknown.
+
+_TABLE_3_6_NOTE_I = (
+    "Note (i), p. 3-17: the defaults may be used only with granular reinforced "
+    "fill as specified in Table 3-1 for MSE walls and Cu >= 4; for fill outside "
+    "these limits, pullout tests must be run."
+)
 
 _TABLE_3_6 = [
     {
-        "reinforcement": "Ribbed steel strips",
-        "F_star_at_top": "tan(phi)",
+        "reinforcement": "Ribbed steel strips (inextensible strips)",
+        "F_star_at_top": "1.2 + log10(Cu), 2.0 maximum",
         "F_star_at_6m": "tan(phi)",
         "alpha": 1.0,
-        "notes": "F* = tan(phi) at all depths; alpha = 1.0",
+        "F_star_top_max": 2.0,
+        "Cu_if_unknown": 4,
+        "F_star_top_if_Cu_unknown": 1.8,
+        "equations": ["3-4", "3-5"],
+        "printed_pages": ["3-17", "3-20"],
+        "default_fill_limit": _TABLE_3_6_NOTE_I,
+        "notes": (
+            "F* = tan(rho) = 1.2 + log Cu at the top of the structure, 2.0 "
+            "maximum (Eq. 3-4); F* = tan(phi) at a depth of 20 ft (6 m) and "
+            "below (Eq. 3-5); Cu = D60/D10 of the backfill. If the specific "
+            "Cu is unknown at design time, assume Cu = 4 (F* = 1.8 at the top "
+            "of the wall) for reinforced fill meeting Section 3.1 (printed in "
+            "bold, p. 3-20). Table 3-6: inextensible strips, alpha = 1.0. "
+            "The print gives the top and the 6 m values only; it does not "
+            "state how F* varies between them."
+        ),
     },
     {
-        "reinforcement": "Smooth steel strips",
-        "F_star_at_top": "0.4",
-        "F_star_at_6m": "0.4",
+        "reinforcement": "Smooth steel strips (inextensible strips)",
+        "F_star_at_top": "tan(rho) from tests; no default printed",
+        "F_star_at_6m": "tan(rho) from tests; no default printed",
         "alpha": 1.0,
-        "notes": "F* = 0.4 constant; alpha = 1.0",
+        "equations": [],
+        "printed_pages": ["3-17"],
+        "default_fill_limit": _TABLE_3_6_NOTE_I,
+        "notes": (
+            "Table 3-6 has one row for inextensible strips: Tan rho from "
+            "tests, or use default values; alpha = 1.0. The only default F* "
+            "the section prints for strips is the ribbed-strip pair of Eqs. "
+            "3-4 and 3-5 (p. 3-20); no separate F* for smooth strips is "
+            "printed (the 0.4 this row carried before is not in the 2009 "
+            "print)."
+        ),
     },
     {
-        "reinforcement": "Steel grids (w-transverse bars)",
+        "reinforcement": "Steel grids (bar mats and welded wire; inextensible grids)",
         "F_star_at_top": "20 * (t/St)",
         "F_star_at_6m": "10 * (t/St)",
         "alpha": 1.0,
-        "notes": "t = transverse bar diameter, St = transverse spacing",
+        "equations": ["3-6", "3-7"],
+        "printed_pages": ["3-17", "3-20", "3-21"],
+        "default_fill_limit": _TABLE_3_6_NOTE_I,
+        "notes": (
+            "For transverse spacing St > 6 in. (150 mm): F* = Fq * alpha_beta "
+            "= 40 alpha_beta = 40 (t/2St) = 20 (t/St) at the top of the "
+            "structure (Eq. 3-6) and = 20 alpha_beta = 20 (t/2St) = 10 (t/St) "
+            "at a depth of 20 ft (6 m) and below (Eq. 3-7); t is the "
+            "thickness of the transverse bar; St must be uniform along the "
+            "reinforcement; the maximum St is 24 in. (610 mm). Table 3-6: for "
+            "St <= Sopt, Tan rho from tests (Sopt = t Fq / (2 tan phi)); for "
+            "St > Sopt, Fq from tests or default values, alpha_beta = t/2St; "
+            "alpha = 1.0 (*for longitudinal bars/wires spaced more than 6 in., "
+            "alpha may be less than 1.0 and pullout tests are required)."
+        ),
     },
     {
-        "reinforcement": "Geogrids",
-        "F_star_at_top": "0.8 * tan(phi)",
-        "F_star_at_6m": "0.8 * tan(phi)",
+        "reinforcement": "Geogrids (extensible grids)",
+        "F_star_at_top": "(2/3) * tan(phi)",
+        "F_star_at_6m": "(2/3) * tan(phi)",
         "alpha": 0.8,
-        "notes": "Default; project-specific pullout tests may increase",
+        "equations": ["3-8"],
+        "printed_pages": ["3-16", "3-17", "3-21"],
+        "default_fill_limit": _TABLE_3_6_NOTE_I,
+        "notes": (
+            "For geosynthetic (geogrid and geotextile) sheet reinforcement, "
+            "in the absence of test data F* is conservatively taken as "
+            "(2/3) tan(phi) (Eq. 3-8, i.e. 0.67 tan phi), phi the peak "
+            "friction angle (MSE walls with select granular backfill: 34 deg "
+            "maximum unless tests support more; RSS: by test, 28 deg lower "
+            "bound often used). Table 3-6: extensible grids, alpha = 0.8 "
+            "(also p. 3-16: alpha = 0.8 for geogrids absent test data); when "
+            "the minimum grid opening / D50 is greater than 1, Tan rho from "
+            "tests for St <= Sopt and Fq from tests (alpha_beta = fb t/2St) "
+            "for St > Sopt, and when it is less than 1, Tan rho from tests. "
+            "Pullout testing for alpha is recommended where alpha < 1.0 "
+            "(note ii)."
+        ),
     },
     {
-        "reinforcement": "Geotextiles",
-        "F_star_at_top": "0.67 * tan(phi)",
-        "F_star_at_6m": "0.67 * tan(phi)",
+        "reinforcement": "Geotextiles (extensible sheets)",
+        "F_star_at_top": "(2/3) * tan(phi)",
+        "F_star_at_6m": "(2/3) * tan(phi)",
         "alpha": 0.6,
-        "notes": "Default; limited use in permanent MSE walls",
+        "equations": ["3-8"],
+        "printed_pages": ["3-16", "3-17", "3-21"],
+        "default_fill_limit": _TABLE_3_6_NOTE_I,
+        "notes": (
+            "Extensible sheets: Tan rho from tests; alpha = 0.6 (also p. "
+            "3-16: alpha = 0.6 for geotextiles absent test data). In the "
+            "absence of test data F* = (2/3) tan(phi) (Eq. 3-8). Pullout "
+            "testing for alpha is recommended where alpha < 1.0 (note ii)."
+        ),
     },
 ]
 
