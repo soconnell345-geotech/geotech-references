@@ -159,14 +159,26 @@ def test_alpha_method_unit_shaft_resistance_alpha_one():
 # ==========================================================================
 
 def test_alpha_tomlinson_transition_basic():
-    # s_u=100, P_a=100 => alpha = 0.44*(100/100)^-0.28 = 0.44*1 = 0.44
-    assert alpha_tomlinson_transition(100.0, 100.0) == pytest.approx(0.44, rel=1e-4)
+    # Eq 6-9 as printed (UFC 3-220-20 printed p. 416): alpha = 0.28 (s_u/P_a)^-0.44
+    # s_u=100, P_a=100 => 0.28 * 1 = 0.28
+    assert alpha_tomlinson_transition(100.0, 100.0) == pytest.approx(0.28, rel=1e-4)
 
 
 def test_alpha_tomlinson_transition_ratio_2():
-    # s_u=200, P_a=100 => 0.44*(2.0)^-0.28
-    expected = 0.44 * 2.0 ** (-0.28)
-    assert alpha_tomlinson_transition(200.0, 100.0) == pytest.approx(expected, rel=1e-4)
+    # s_u=200, P_a=100 => 0.28*(2.0)^-0.44 = 0.28 * 0.73706 = 0.20638
+    assert alpha_tomlinson_transition(200.0, 100.0) == pytest.approx(0.20638, abs=1e-4)
+
+
+@pytest.mark.parametrize("ratio, expected", [
+    (0.5, 0.28 * 0.5 ** -0.44),    # 0.37984
+    (1.0, 0.28),
+    (2.0, 0.28 * 2.0 ** -0.44),    # 0.20638
+    (0.71, 0.28 * 0.71 ** -0.44),  # 0.32519
+])
+def test_alpha_tomlinson_transition_printed_form(ratio, expected):
+    # coefficient 0.28 on the front, exponent -0.44 on the ratio (not swapped)
+    assert alpha_tomlinson_transition(ratio * 100.0, 100.0) == pytest.approx(expected, rel=1e-9)
+    assert expected == pytest.approx(0.28 * ratio ** (-0.44), rel=1e-12)
 
 
 def test_alpha_tomlinson_transition_raises_su_zero():
@@ -293,14 +305,19 @@ def test_alpha_salgado_drilled_shaft_raises_Pa_zero():
 # ==========================================================================
 
 def test_alpha_coleman_CFA_basic():
-    # s_u=100, P_a=100 => (1.0)^-0.53 = 1.0
-    assert alpha_coleman_CFA(100.0, 100.0) == pytest.approx(1.0, rel=1e-4)
+    # Curve E of Fig. 6-14 is 0.53 / (s_u/P_a): s_u=P_a => 0.53
+    assert alpha_coleman_CFA(100.0, 100.0) == pytest.approx(0.53, rel=1e-4)
 
 
 def test_alpha_coleman_CFA_ratio_half():
-    # s_u=50, P_a=100 => (0.5)^-0.53
-    expected = 0.5 ** (-0.53)
-    assert alpha_coleman_CFA(50.0, 100.0) == pytest.approx(expected, rel=1e-4)
+    # s_u=50, P_a=100 => 0.53 / 0.5 = 1.06 (Fig. 6-14 Curve E: 1.06 at 0.5)
+    assert alpha_coleman_CFA(50.0, 100.0) == pytest.approx(1.06, rel=1e-4)
+
+
+def test_alpha_coleman_CFA_curve_E_points():
+    # Curve E read off the vector figure: 0.53 at 1.0, 0.41 at 1.3, 0.39 at 1.37
+    assert alpha_coleman_CFA(130.0, 100.0) == pytest.approx(0.4077, abs=1e-3)
+    assert alpha_coleman_CFA(142.0, 100.0) == pytest.approx(0.3732, abs=1e-3)
 
 
 def test_alpha_coleman_CFA_raises_su_zero():
@@ -318,19 +335,24 @@ def test_alpha_coleman_CFA_raises_Pa_zero():
 # ==========================================================================
 
 def test_alpha_API_P2A_ratio_le_1():
-    # s_u=50, sigma=100 => ratio=0.5 <= 1 => alpha = 0.5^-0.5 = 1.41421
-    # but capped at 1.0
-    assert alpha_API_P2A(50.0, 100.0) == pytest.approx(1.0, rel=1e-4)
+    # Eq 6-16: alpha = 0.5 * ratio^-0.5. ratio=0.5 => 0.5*1.41421 = 0.70711
+    assert alpha_API_P2A(50.0, 100.0) == pytest.approx(0.70711, rel=1e-4)
+
+
+def test_alpha_API_P2A_capped_at_ratio_quarter():
+    # printed: alpha capped at 1.0 when the ratio is below 0.25 (0.5*0.25^-0.5 = 1)
+    assert alpha_API_P2A(25.0, 100.0) == pytest.approx(1.0, rel=1e-9)
+    assert alpha_API_P2A(10.0, 100.0) == pytest.approx(1.0, rel=1e-9)
 
 
 def test_alpha_API_P2A_ratio_equals_1():
-    # ratio=1 => 1^-0.5 = 1.0
-    assert alpha_API_P2A(100.0, 100.0) == pytest.approx(1.0, rel=1e-4)
+    # ratio=1 => 0.5 (both Eq 6-16 and 6-17 give 0.5 here)
+    assert alpha_API_P2A(100.0, 100.0) == pytest.approx(0.5, rel=1e-4)
 
 
 def test_alpha_API_P2A_ratio_gt_1():
-    # s_u=200, sigma=100 => ratio=2 > 1 => alpha = 2^-0.25
-    expected = 2.0 ** (-0.25)
+    # s_u=200, sigma=100 => ratio=2 > 1 => alpha = 0.5 * 2^-0.25 = 0.42045
+    expected = 0.5 * 2.0 ** (-0.25)
     assert alpha_API_P2A(200.0, 100.0) == pytest.approx(expected, rel=1e-4)
 
 
