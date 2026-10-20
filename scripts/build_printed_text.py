@@ -15,9 +15,16 @@ off the print instead of being written by hand:
    or two to a line) is replaced by ``[Eq. 9-5]`` and listed in the
    section's ``equations`` with the words that introduce it; the equation
    itself is read on the printed page;
-4. the List of Figures and List of Tables give each figure's and table's
+4. a table's cells, which come out the same way, are kept as a line of
+   text ("0 5.14 1.0 0.0 23 18.1 ...") on a page that prints a table
+   caption, and on a page with no caption when they are numbers but not a
+   chart's axis; a table printed as a picture gets its rows from the
+   manifest's ``printed_tables`` (``number``, ``caption_start``, ``rows``),
+   read off the page by hand;
+5. the List of Figures and List of Tables give each figure's and table's
    number, caption and printed page; a section lists the figures and tables
-   whose captions are printed in it, and the figure catalog
+   whose captions are printed in it (a caption counts only when the words
+   after it match the list's), and the figure catalog
    (``figures_catalog.json``) gets each figure's PDF page from the page
    that prints its caption.
 
@@ -70,16 +77,48 @@ _CONTENTS = re.compile(
     rf"(\d{{1,2}})\s*[-{_DASH}.]\s*(\d{{1,3}})"
     rf"(?=\s+(?:\d{{1,2}}\.\d|APPENDIX|LIST)|\s*$)")
 #: A List of Figures / Tables entry: "6-15 Taylor's chart ... ...... 6-28".
+#: A few entries print no dotted leader, the page straight after the
+#: caption's closing "." or ")" ("... (after NAVFAC, 1986b) 10-18").
 _LIST_ENTRY = re.compile(
-    rf"(?<![\w.-])(\d{{1,2}}-\d{{1,3}}[a-z]?)\s+(.+?)\s*(?:\.{{2,}}|\s\.)\s*"
+    rf"(?<![\w.-])(\d{{1,2}}-\d{{1,3}}[a-z]?)\s+(.+?)\s*(?:\.{{2,}}|\s\.|(?<=[.)])(?=\s))\s*"
     rf"(\d{{1,2}})\s*[-{_DASH}]\s*(\d{{1,3}})(?=\s|$)")
-#: A caption as printed under a figure or over a table.
-_CAPTION = re.compile(r"^(Figure|Table)\s+(\d{1,2}-\d{1,3})(?:([a-z])|\(([a-z])\))?(?:[.:]\s|$)")
+#: A caption as printed under a figure or over a table ("Figure 5–8." is
+#: printed with an en dash, "Figure 5-34." alone on its line).
+_CAPTION = re.compile(rf"^(Figure|Table)\s+(\d{{1,2}})[-{_DASH}](\d{{1,3}})(?:([a-z])|\(([a-z])\))?"
+                      r"(?:[.:](?:\s|$)|$)")
 
 
 def _caption_number(m) -> str:
     """'9-37' plus the letter printed as '9-37a' or '9-37(a)'."""
-    return m.group(2) + (m.group(3) or m.group(4) or "")
+    return f"{m.group(2)}-{m.group(3)}" + (m.group(4) or m.group(5) or "")
+
+
+def _caption_text(lines: list[str], k: int, m) -> str:
+    """The words a caption line at ``lines[k]`` prints after its number, or
+    the next line's where the number stands alone ("Table 10-1")."""
+    rest = lines[k][m.end():].strip()
+    if rest:
+        return rest
+    return next((ln for ln in lines[k + 1:k + 4] if ln), "")
+
+
+def _is_caption(lines: list[str], k: int, m, listed: dict) -> bool:
+    """Whether the caption-like line ``lines[k]`` is the caption the List of
+    Figures or Tables names, not a sentence that happens to start a line
+    with "Figure 5-2." ("... shown in / Figure 5-2.  The grain size ...")."""
+    entry = listed.get(_caption_number(m))
+    if entry is None:
+        return False
+    a = _norm(_caption_text(lines, k, m))[:40]
+    b = _norm(entry["caption"])[:16]
+    if not a or not b:
+        return False
+    if difflib.SequenceMatcher(None, a[:16], b).ratio() >= 0.6:
+        return True
+    # a caption printed with a word or two more than the list gives
+    # ("Load test load application ..." for "Load application ...")
+    match = difflib.SequenceMatcher(None, a, b).find_longest_match(0, len(a), 0, len(b))
+    return match.size >= 12
 #: A bare equation number printed beside an equation object.
 _EQ_NUMBER = re.compile(r"^\(?(\d{1,2}-\d{1,3}[a-z]?)\)?$")
 #: An equation set in type, its number at the end of the line.
@@ -91,6 +130,9 @@ _REF_WORD = re.compile(r"(?:Figures?|Tables?|Equations?|Eqs?\.?|Sections?|Exampl
 #: that a section fetched through the app's reference tools fits its
 #: 16,000-character result with the section's other fields.
 MAX_BODY_CHARS = 12000
+#: ... and so is one whose section, as JSON with its equations, figures
+#: and tables (a Greek letter is six characters there), is over this.
+MAX_SECTION_JSON_CHARS = 14000
 
 # Words kept in capitals when a heading printed in capitals is title-cased.
 _ACRONYMS = {
@@ -269,19 +311,69 @@ def _is_short(ln: str) -> bool:
     return 0 < len(ln) <= 3
 
 
+#: Glyphs of an equation object, never of a table's cells.
+_MATH_GLYPH = re.compile(r"[=⎟⎠⎞⎜⎝⎛⎥⎦⎤⎢⎣⎡∑]")
+_CELL_NUMBER = re.compile(r"^[-+]?\d*\.?\d+%?$")
+#: Stream lines after a line holding "=" (or after an equation object)
+#: within which a bare "6-3" is that equation's number.
+_EQ_NUMBER_REACH = 4
+
+
+def _is_table_cells(run: list[str], label, figure_pages, table_pages) -> bool:
+    """Whether a run of short lines is a table's cells ("5.4", "1.1", "GW")
+    rather than an equation object's glyphs or a figure's lettering: no
+    equation glyph in it, and on a page that prints a table caption, or a
+    run of numbers on a page that prints no figure caption."""
+    if any(_MATH_GLYPH.search(x) for x in run):
+        return False
+    numeric = all(_CELL_NUMBER.match(x) for x in run)
+    # a chart's axis ("0 4 8 12 16 20 0 0.1 0.2 ...") is not a table
+    if (numeric and label in figure_pages | table_pages
+            and _is_axis_ticks([float(x.rstrip("%")) for x in run])):
+        return False
+    if label in table_pages:
+        return True
+    # elsewhere, an uncaptioned table of numbers ("1 36 25 100 142 1.5")
+    if label in figure_pages or not numeric:
+        return False
+    return not _is_axis_ticks([float(x.rstrip("%")) for x in run])
+
+
+def _is_axis_ticks(values: list[float]) -> bool:
+    """Whether numbers read as one to three evenly spaced, rising scales,
+    one of them at least four ticks long."""
+    scales, longest, n = 0, 0, 0
+    while n < len(values):
+        m = n + 1
+        if m < len(values) and values[m] > values[n]:
+            step = values[m] - values[n]
+            while (m + 1 < len(values)
+                   and abs(values[m + 1] - values[m] - step) <= 1e-6 * max(1, step)):
+                m += 1
+            m += 1
+        if m - n < 2:
+            return False
+        scales, longest, n = scales + 1, max(longest, m - n), m
+    return scales <= 3 and longest >= 4
+
+
 def render_body(stream, start, end, pages, captions_on_page, eq_ids,
-                chapter="", figs=None):
+                chapter="", figs=None, tables_on_page=frozenset()):
     """The printed text of stream[start:end] as paragraphs, with page markers
     and equation markers; equation ids found are appended to ``eq_ids`` as
     (id, preceding words, page label)."""
     paras, cur, last_page = [], [], None
     k = start
     prev_text = ""
+    eq_at = None  # (page index, stream position) of the last line with "="
 
     def flush():
         if cur:
             paras.append(" ".join(cur))
             cur.clear()
+
+    def is_number(m):
+        return bool(m) and m.group(1).split("-")[0] == chapter
 
     while k < end:
         i, ln = stream[k]
@@ -289,8 +381,9 @@ def render_body(stream, start, end, pages, captions_on_page, eq_ids,
             last_page = i
             if pages[i]["label"]:
                 cur.append(f"[p. {pages[i]['label']}]")
-        # A run of glyphs one or two to a line is an equation object (or a
-        # figure's lettering); its printed number, if any, follows it.
+        # A run of glyphs one or two to a line is an equation object, a
+        # figure's lettering or a table's cells. An equation's printed
+        # number follows it or, as "6-3" is three characters, ends it.
         if _is_short(ln):
             j = k
             while j < end and (_is_short(stream[j][1]) or not stream[j][1]) \
@@ -298,13 +391,23 @@ def render_body(stream, start, end, pages, captions_on_page, eq_ids,
                 j += 1
             n_short = sum(_is_short(stream[t][1]) for t in range(k, j))
             if n_short >= 4:
-                nxt = stream[j][1] if j < end else ""
-                m = _EQ_NUMBER.match(nxt)
-                if m and stream[j][0] == i and m.group(1).split("-")[0] == chapter:
-                    eq = m.group(1)
+                run = [stream[t][1] for t in range(k, j) if stream[t][1]]
+                nums = [_EQ_NUMBER.match(x).group(1) for x in run
+                        if is_number(_EQ_NUMBER.match(x))]
+                nxt = _EQ_NUMBER.match(stream[j][1]) if j < end else None
+                if is_number(nxt) and stream[j][0] == i:
+                    nums.append(nxt.group(1))
+                    j += 1
+                if not nums and _is_table_cells(run, pages[i]["label"],
+                                                captions_on_page,
+                                                tables_on_page):
+                    cur.append(" ".join(run))
+                    k = j
+                    continue
+                for eq in nums:
                     cur.append(f"[Eq. {eq}]")
                     eq_ids.append((eq, prev_text, pages[i]["label"]))
-                    j += 1
+                eq_at = (i, j - 1)
                 k = j
                 continue
         if not ln:
@@ -318,11 +421,16 @@ def render_body(stream, start, end, pages, captions_on_page, eq_ids,
             cur.append(f"{m.group(1)} [Eq. {eq}]")
             eq_ids.append((eq, prev_text, pages[i]["label"]))
             prev_text = (prev_text + " " + m.group(1))[-240:]
+            eq_at = (i, k)
             k += 1
             continue
         m = _EQ_NUMBER.match(ln)
-        if (m and m.group(1).split("-")[0] == chapter and cur
-                and "=" in cur[-1] and "[Eq." not in cur[-1]):
+        # the number of an equation set over lines ("qt = Nt" / "tp" /
+        # "9-13"), of one whose number is a line or two below it, or of
+        # the second of two equations numbered together ("6-2" / "6-3")
+        if (is_number(m) and eq_at and eq_at[0] == i
+                and k - eq_at[1] <= _EQ_NUMBER_REACH
+                and not _REF_WORD.search(prev_text)):
             eq = m.group(1)
             cur.append(f"[Eq. {eq}]")
             eq_ids.append((eq, prev_text, pages[i]["label"]))
@@ -330,6 +438,8 @@ def render_body(stream, start, end, pages, captions_on_page, eq_ids,
             continue
         cur.append(ln)
         prev_text = (prev_text + " " + ln)[-240:]
+        if "=" in ln:
+            eq_at = (i, k)
         k += 1
     flush()
     paras = [_clean_ws(p) for p in paras]
@@ -351,6 +461,7 @@ def _drop_figure_lettering(paras, captions_on_page):
         if (page in captions_on_page and body and len(body) < 60
                 and not re.search(r"[.:;]\s*$", body)
                 and not body.startswith(("Figure", "Table", "["))
+                and "[Eq. " not in body
                 and not re.match(r"^\d+(\.\d+)*\s", body)):
             marker = " ".join(re.findall(r"\[p\. [^\]]+\]", p))
             if marker:
@@ -363,9 +474,9 @@ def _drop_figure_lettering(paras, captions_on_page):
 def _cut_caption(para: str, figs: dict) -> str:
     """A figure caption paragraph ends where the List of Figures caption
     ends; what follows it is the figure's own lettering."""
-    m = re.match(r"^((?:\[p\. [^\]]+\]\s*)?Figure\s+(\d{1,2}-\d{1,3})(?:([a-z])|\(([a-z])\))?"
+    m = re.match(rf"^((?:\[p\. [^\]]+\]\s*)?Figure\s+(\d{{1,2}})[-{_DASH}](\d{{1,3}})(?:([a-z])|\(([a-z])\))?"
                  r"(?:\s*\(Continued\))?[.:]\s)", para)
-    num = m and m.group(2) + (m.group(3) or m.group(4) or "")
+    num = m and f"{m.group(2)}-{m.group(3)}" + (m.group(4) or m.group(5) or "")
     if not m or num not in figs:
         return para
     tail = _norm(figs[num]["caption"])[-12:]
@@ -384,12 +495,18 @@ def split_long(sec: dict, limit: int = MAX_BODY_CHARS) -> list[dict]:
     boundary. The letters are not printed: each part's title and
     applicability say which printed pages of the section it holds."""
     body = sec["body"]
-    if len(body) <= limit:
+    overhead = len(json.dumps(dict(sec, body="")))
+
+    def fits(text):
+        return (len(text) <= limit
+                and len(json.dumps(text)) + overhead <= MAX_SECTION_JSON_CHARS)
+
+    if fits(body):
         return [sec]
     paras = body.split("\n\n")
     chunks, cur = [], []
     for p in paras:
-        if cur and len("\n\n".join(cur + [p])) > limit:
+        if cur and not fits("\n\n".join(cur + [p])):
             chunks.append(cur)
             cur = []
         cur.append(p)
@@ -428,13 +545,34 @@ def split_long(sec: dict, limit: int = MAX_BODY_CHARS) -> list[dict]:
 
 
 def _listed_in(items: list[str], text: str) -> list[str]:
-    """The figures or tables of ``items`` whose captions are in ``text``."""
-    here = set()
-    for line in re.split(r"\n\n|\] ", text):
-        m = _CAPTION.match(line.strip())
+    """The figures or tables of ``items`` whose captions are in ``text``: a
+    paragraph or page that starts "Figure 6-16." or "Table 8-2 Bearing ..."
+    (a table's number and caption are printed on two lines)."""
+    out = []
+    for it in items:
+        kind, num = it.split(":")[0].split(" ", 1)
+        m = re.match(r"(\d+)-(\d+)([a-z]?)$", num)
+        if not m:
+            continue
+        letter = rf"(?:{m.group(3)}|\({m.group(3)}\))" if m.group(3) else ""
+        if re.search(rf"(?:^|\n\n|\] ){kind}\s+{m.group(1)}[-{_DASH}]{m.group(2)}"
+                     rf"{letter}(?![\da-z])", text):
+            out.append(it)
+    return out
+
+
+def add_printed_tables(body: str, printed: list[dict]) -> str:
+    """A table printed as a picture, with no text on its page, followed by
+    its rows as read off the page: the manifest's ``printed_tables``, each
+    ``{"number", "caption_start", "rows"}``."""
+    for t in printed:
+        m = re.search(rf"Table {re.escape(t['number'])}\s+{re.escape(t['caption_start'])}"
+                      r"[^\n]*", body)
         if m:
-            here.add(f"{m.group(1)} {_caption_number(m)}")
-    return [it for it in items if it.split(":")[0] in here]
+            body = (body[:m.end()] + f"\n\n[Table {t['number']} is printed as a "
+                    f"picture; its rows, read off the page:] {t['rows']}"
+                    + body[m.end():])
+    return body
 
 
 def _eq_description(words: str, eq: str, label: str | None) -> str:
@@ -457,13 +595,18 @@ def build_volume(vol: dict, manifest_dir: Path, skip: set[int]) -> tuple[dict, l
 
     # where each caption is printed: the page whose lines start with it
     printed_at: dict[tuple[str, str], list[int]] = {}
+    caption_lines: set[tuple[int, str]] = set()
     for i, p in enumerate(pages):
-        for ln in p["lines"]:
+        lines = p["lines"]
+        for k, ln in enumerate(lines):
             m = _CAPTION.match(ln)
-            if m:
+            if m and _is_caption(lines, k, m, figs if m.group(1) == "Figure" else tabs):
                 printed_at.setdefault((m.group(1), _caption_number(m)), []).append(i)
+                caption_lines.add((i, ln))
     captions_on_page = {pages[i]["label"] for (kind, _), idx in printed_at.items()
                         if kind == "Figure" for i in idx}
+    tables_on_page = {pages[i]["label"] for (kind, _), idx in printed_at.items()
+                      if kind == "Table" for i in idx}
 
     chapters, catalog = {}, []
     for ch in vol["chapters"]:
@@ -501,18 +644,24 @@ def build_volume(vol: dict, manifest_dir: Path, skip: set[int]) -> tuple[dict, l
                     k += 1
             eq_ids: list = []
             body = render_body(stream, k, t, pages, captions_on_page, eq_ids,
-                               chapter=str(n), figs=figs)
-            page_from = pages[stream[s][0]]["label"] if s < len(stream) else None
-            page_to = pages[stream[max(s, t - 1)][0]]["label"] if t > s else page_from
+                               chapter=str(n), figs=figs,
+                               tables_on_page=tables_on_page)
+            body = add_printed_tables(body, vol.get("printed_tables", []))
+            # the printed pages the section runs over (a chapter's last,
+            # blank page prints no number)
+            labels = [pages[stream[q][0]]["label"] for q in range(s, t)
+                      if pages[stream[q][0]]["label"]]
+            page_from = labels[0] if labels else None
+            page_to = labels[-1] if labels else None
             seg_idx = {stream[q][0] for q in range(s, t)}
             sec_figs = [f"Figure {num}: {figs[num]['caption'] if num in figs else ''}".rstrip(": ")
                         for (kind, num), idx in sorted(printed_at.items(), key=lambda x: (x[1][0], x[0]))
                         if kind == "Figure" and any(i in seg_idx for i in idx)
-                        and _caption_in_segment(stream, s, t, "Figure", num)]
+                        and _caption_in_segment(stream, s, t, "Figure", num, caption_lines)]
             sec_tabs = [f"Table {num}: {tabs[num]['caption'] if num in tabs else ''}".rstrip(": ")
                         for (kind, num), idx in sorted(printed_at.items(), key=lambda x: (x[1][0], x[0]))
                         if kind == "Table" and any(i in seg_idx for i in idx)
-                        and _caption_in_segment(stream, s, t, "Table", num)]
+                        and _caption_in_segment(stream, s, t, "Table", num, caption_lines)]
             title = title_case(h["title"])
             if h["sid"] == f"{n}.0" and len(re.sub(r"\[[^\]]*\]", "", body).strip()) < 20:
                 continue
@@ -556,12 +705,16 @@ def build_volume(vol: dict, manifest_dir: Path, skip: set[int]) -> tuple[dict, l
             target = next((i for i, p in enumerate(pages)
                            if _label_num(p["label"]) == f["page"]), None)
             estimated = True
+        # the page that prints the caption: a few List of Figures pages are
+        # a page or two off the print (Fig. 9-17: listed 9-57, printed 9-55)
+        printed = (pages[target]["label"] if target is not None and not estimated
+                   and pages[target]["label"] else f"{f['page'][0]}-{f['page'][1]}")
         catalog.append({
             "figure_number": num,
             "caption": f["caption"],
             "chapter": int(num.split("-")[0]),
             "pdf_page_index": target,
-            "printed_page": f"{f['page'][0]}-{f['page'][1]}",
+            "printed_page": printed,
             "page_estimated": estimated,
             "description": "",
             "pdf_path": str(pdf.relative_to(REPO)).replace("\\", "/"),
@@ -570,10 +723,11 @@ def build_volume(vol: dict, manifest_dir: Path, skip: set[int]) -> tuple[dict, l
     return chapters, catalog
 
 
-def _caption_in_segment(stream, s, t, kind, num) -> bool:
+def _caption_in_segment(stream, s, t, kind, num, caption_lines) -> bool:
     for q in range(s, t):
         m = _CAPTION.match(stream[q][1])
-        if m and m.group(1) == kind and _caption_number(m) == num:
+        if (m and m.group(1) == kind and _caption_number(m) == num
+                and stream[q] in caption_lines):
             return True
     return False
 

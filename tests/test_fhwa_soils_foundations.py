@@ -53,10 +53,44 @@ def test_every_section_carries_its_printed_pages():
 
 
 def test_section_bodies_fit_the_reference_tools():
-    # the app sends at most 16,000 characters of a tool's result
+    # the app sends at most 16,000 characters of a tool's result, and
+    # wraps a section in about 300 more
     for c in _chapters():
         for s in c["sections"]:
-            assert len(json.dumps(s)) < 15000, s["section_id"]
+            assert len(json.dumps(s)) <= 14000, s["section_id"]
+
+
+def test_every_listed_equation_is_marked_in_its_section():
+    # a short paragraph holding an equation on a page with a figure was
+    # dropped as figure lettering, leaving Eq. 9-42 (p. 9-132) listed only
+    for c in _chapters():
+        for s in c["sections"]:
+            for e in s["equations"]:
+                assert f"[{e['id']}]" in s["body"], (s["section_id"], e["id"])
+    sec = _retrieval.retrieve_section(REF, "2.1.7")
+    assert "PI = LL – PL [Eq. 2-11]" in sec["body"]
+
+
+def test_table_cells_read_row_by_row():
+    # Table 8-2 (p. 8-20), cited by the bearing capacity worked example
+    sec = _retrieval.retrieve_section(REF, "8.4.2")
+    assert "[p. 8-20]" in sec["body"]
+    assert "0 5.14 1.0 0.0 23 18.1 8.7 8.2 1 5.4 1.1 0.1" in sec["body"]
+    assert "30 30.1 18.4 22.4" in sec["body"]
+    # the axis of Figure 8-15 on the same page is not a table
+    assert "0 5 10 15 20 25 30 35 40 45" not in sec["body"]
+
+
+def test_table_printed_as_a_picture_carries_its_rows():
+    # Table 10-1 (p. 10-18) has no text layer; the manifest supplies its
+    # rows, which the retaining-wall module cites for adhesion
+    sec = _retrieval.retrieve_section(REF, "10.2.4")
+    body = sec["body"]
+    cap = body.index("[p. 10-18] Table 10-1 Wall friction and adhesion")
+    rows = body[cap:]
+    assert "Clean sound rock | 0.70 | 35." in rows
+    assert "Medium stiff cohesive soil (24 - 48 kPa) | 24 - 36." in rows
+    assert "Very stiff cohesive soil (96 - 192 kPa) | 45 - 62." in rows
 
 
 def test_section_lookup_janbu_charts():
@@ -92,9 +126,11 @@ def test_search_finds_taylor_and_janbu():
 
 def test_figure_lookup_cited_figures():
     # cited by the app: slope Figs. 6-14 to 6-16 and 6-19, sheet pile 10-10
+    # 7-12's list entry has no dotted leader; 9-17's caption is on p. 9-55
     expected = {"6-14": ("6-27", 1, 376), "6-15": ("6-28", 1, 377),
                 "6-16": ("6-34", 1, 383), "6-19": ("6-39", 1, 388),
-                "10-10": ("10-22", 2, 311)}
+                "10-10": ("10-22", 2, 311), "10-17": ("10-39", 2, 328),
+                "7-12": ("7-27", 1, 436), "9-17": ("9-55", 2, 164)}
     for num, (page, vol, idx) in expected.items():
         fig = _figures_db.figure_get(REF, num)
         assert fig["printed_page"] == page, num
