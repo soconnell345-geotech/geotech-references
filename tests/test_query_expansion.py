@@ -256,7 +256,7 @@ def test_figure_fill_preserves_literal_top_and_never_shrinks():
 # ---------------------------------------------------------------------------
 
 def test_bare_cu_does_not_fire_undrained_strength():
-    # Cu is also the coefficient of uniformity (UFC 3-220-10 Sec. 1-3.3.2)
+    # Cu is also the coefficient of uniformity (UFS 3-220-10 Sec. 1-3.3.2)
     assert "undrained" not in expand_query("coefficient of uniformity cu")
     assert "undrained shear strength" in expand_query("su of soft clay")
 
@@ -340,6 +340,21 @@ def test_auto_zero_literal_keeps_the_words_the_groups_do_not_cover():
     assert _literal(_retrieval_db.reference_search, q, limit=5) == []
     auto = _with_strategy("auto", _retrieval_db.reference_search, q, limit=5)
     assert ("gec_13", "2.4.3") in [(h["reference"], h["section_id"]) for h in auto]
+
+
+def test_auto_zero_literal_a_fired_group_keeps_the_query_words():
+    # Neither the literal nor the substituted AND query matches; the slots
+    # are filled by the query's words OR-ed with the synonyms, not by the
+    # synonyms alone, so "layout" and "embankment" still rank the hits
+    # (FHWA-NHI-16-027 Ch. 7, deep mixing for embankment support).
+    from geotech_references._query_expansion import or_fallback
+    q = "DSM column layout for embankment support"
+    assert _literal(_retrieval_db.reference_search, q, limit=5) == []
+    assert or_fallback(q)
+    auto = _with_strategy("auto", _retrieval_db.reference_search, q, limit=5)
+    keys = [(h["reference"], h["section_id"]) for h in auto]
+    assert {("gec_13", "7.2.3.2.4"), ("gec_13", "7.2.0"),
+            ("gec_13", "7.1.2.1")} & set(keys), keys
 
 
 def test_auto_pin_n_keeps_the_literal_top_n():

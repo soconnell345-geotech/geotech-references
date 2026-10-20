@@ -53,7 +53,7 @@ SYNONYM_GROUPS: list[list[str]] = [
      "coefficient of earth pressure at rest", "ko"],
     ["lateral earth pressure", "earth pressure coefficient", "horizontal stress"],
     # --- strength / index ---------------------------------------------------
-    # No bare "cu": it is also the coefficient of uniformity (UFC 3-220-10
+    # No bare "cu": it is also the coefficient of uniformity (UFS 3-220-10
     # Sec. 1-3.3.2, Cu = D60/D10) and the CU triaxial test (Sec. 3-2.4.1.3).
     ["undrained shear strength", "undrained strength", "su", "cohesion"],
     ["friction angle", "angle of internal friction", "effective friction angle",
@@ -68,12 +68,15 @@ SYNONYM_GROUPS: list[list[str]] = [
     # --- in situ tests ------------------------------------------------------
     ["standard penetration test", "spt"],
     # Not "cone penetrometer": the dynamic cone penetrometer (DCP) is another
-    # test (UFC 3-220-10 Sec. 2-7.4).
+    # test (UFS 3-220-10 Sec. 2-7.4).
     ["cone penetration test", "cpt", "cptu", "piezocone"],
     ["dilatometer", "dmt"],
     ["pressuremeter", "pmt"],
     # (N1)60 is printed (N1)60, N1(60) and N1,60; all index as "n1 60".
-    ["(n1)60", "n1(60)", "n160", "corrected blow count", "normalized blow count",
+    # Not "corrected blow count": UFS 3-220-10 uses it for N60, the
+    # energy-corrected count (Sec. 5-11, 8-5.3.1); "normalized" is the
+    # overburden-corrected (N1)60 (Sec. 2-7.1.1).
+    ["(n1)60", "n1(60)", "n160", "normalized blow count",
      "normalised blow count"],
     # --- foundations --------------------------------------------------------
     ["bearing capacity", "ultimate bearing", "bearing resistance"],
@@ -231,15 +234,20 @@ def substituted_query(query: str) -> str | None:
 def zero_literal_hits(query: str, run, want: int, key) -> list:
     """Hits for a query whose literal (AND) form matched nothing: first the
     query with its named terms swapped for their groups
-    (:func:`substituted_query`), then the synonyms alone (what ``auto`` did
-    before), each filling the slots the one before left."""
+    (:func:`substituted_query`), then the query's words OR-ed with the
+    synonyms, each filling the slots the one before left. The words stay in
+    the second query so a group that fires cannot crowd out the OR-of-words
+    fallback the query would have had without it ("DSM column layout for
+    embankment support" keeps "layout" and "embankment")."""
     rows: list = []
     sub = substituted_query(query)
     if sub:
         rows = run(sub)
     exp = expand_query(query)
     if exp and len(rows) < want:
-        rows = merge_hits(rows, run(exp), want, key)
+        words = or_fallback(query)
+        rows = merge_hits(rows, run(f"{words} OR {exp}" if words else exp),
+                          want, key)
     return rows
 
 

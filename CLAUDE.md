@@ -383,30 +383,38 @@ the GeotechStaffEngineer HANDOFF P6); image embeddings remain rejected.
   the side-resistance group; terms match whole words with an optional plural
   ("PVDs"); a term with punctuation goes to FTS5 as the phrase of its tokens
   (`(N1)60`, `N1(60)` -> `"n1 60"`, the way the index tokenizes the print).
-- **Added:** PVD/wick drain/vertical drain, CSR, (N1)60/N160, p-y, t-z/load-
-  transfer curve, CPT/CPTu/piezocone (not "cone penetrometer": the DCP is
-  another test), SPT, DMT, PMT, UCS/uniaxial compressive strength (no bare
-  `qu`: FHWA-NHI-14-007 uses it for the nail bond strength), RQD, geofoam/
-  EPS, stone column/aggregate column/aggregate pier, vibro-compaction/
-  vibroflotation, deep mixing/DSM/DMM, CFA/auger cast/ACIP, bare `mse`.
+- **Added:** PVD/wick drain/vertical drain, CSR, (N1)60/N160/normalized
+  blow count (not "corrected blow count": UFS 3-220-10 uses it for N60),
+  p-y, t-z/load-transfer curve, CPT/CPTu/piezocone (not "cone
+  penetrometer": the DCP is another test), SPT, DMT, PMT, UCS/uniaxial
+  compressive strength (no bare `qu`: FHWA-NHI-14-007 uses it for the nail
+  bond strength), RQD, geofoam/EPS, stone column/aggregate column/aggregate
+  pier, vibro-compaction/vibroflotation, deep mixing/DSM/DMM, CFA/auger
+  cast/ACIP, bare `mse`.
 - **Zero-hit queries under `auto`:** a query whose literal AND form matches
   nothing is run with its named terms swapped for their groups
-  (`substituted_query`) before the synonyms alone, so "wick drain smear zone"
-  still has to say "smear".
+  (`substituted_query`), so "wick drain smear zone" still has to say
+  "smear"; the slots left are filled by the query's words OR-ed with the
+  synonyms (`zero_literal_hits`), so a group that fires does not crowd out
+  the OR-of-words fallback ("DSM column layout for embankment support").
 - **`EXPANSION_PIN`** (env `GEOTECH_RETRIEVAL_PIN`, default 1): how many
   literal hits `auto` keeps in place. Pin 2 and 3 measured lower; 1 stays.
 - **Gold set** `scripts/retrieval_gold.json` (54 cases over 17 references;
   kinds method / table value / figure / definition / limit; each with the
   sections a good search returns, 69 of 85 located on their printed page) and
   `scripts/eval_retrieval_gold.py` (recall@3/5/10 per strategy, MRR, top-1
-  changes, `--pins`, `--per-case`). Before -> after, `auto`: R@3 38 -> 40,
-  R@5 42 -> 45, R@10 45 -> 47 of 54; `off` (no synonyms and no OR fallback)
-  31/35/37 unchanged; top-1 changed vs literal 10 both times.
-- **Still open** (BACKLOG): the live librarian eval; ranking misses no synonym
-  fixes (p-multipliers, EC7 design approach 1, bearing-capacity FOS, trench
-  earth pressures, DSM layout).
+  changes, `--pins`, `--per-case`). Before -> after, `auto`: R@3 38 -> 41,
+  R@5 42 -> 46, R@10 45 -> 48 of 54; `off` (no synonyms and no OR fallback)
+  31/35/37 unchanged. The script's "top-1 changed" (10) counts queries the
+  literal answers with nothing; of the 44 it answers, `auto` changes the
+  top-1 of none. **The set is in sample:** it was written with the
+  curation, and most cases use a group's vocabulary, so it shows the
+  groups work, not how much they lift questions nobody tuned on.
+- **Still open** (BACKLOG): a held-out question set; the live librarian
+  eval; ranking misses no synonym fixes (p-multipliers, EC7 design approach
+  1, bearing-capacity FOS, trench earth pressures).
 
-## Agent Pattern## Agent Pattern
+## Agent Pattern
 
 All 14 agents follow the 3-function Foundry pattern:
 
