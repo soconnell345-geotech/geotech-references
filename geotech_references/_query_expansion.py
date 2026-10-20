@@ -23,9 +23,18 @@ Design contract (so precision is preserved):
   few standard, corpus-unambiguous notations (``su``, ``phi``, ``ka``, ``kp``,
   ``ko``). Avoid bare ambiguous single letters here.
 
-Keep entries DEFENSIBLE (true equivalences a geotechnical engineer would accept).
-Add groups as real recall misses are observed (see
-``scripts/eval_retrieval_recall.py``).
+* A term is found as a whole word or phrase (an optional plural ending
+  allowed), and **longest match wins**: a term found only inside a longer
+  matched term of another group ("skin friction" inside "negative skin
+  friction") does not fire its group.
+* Under ``auto``, a query whose literal AND form matches nothing is run with
+  its named terms swapped for their groups (:func:`substituted_query`), so the
+  words the groups do not cover still have to match.
+
+Keep entries DEFENSIBLE (true equivalences a geotechnical engineer would accept)
+and spelled as the manuals print them; check a new form against the chapter
+text before adding it. Measure with ``scripts/eval_retrieval_gold.py`` (the
+hand-curated gold set, REF-07).
 """
 
 from __future__ import annotations
@@ -44,26 +53,56 @@ SYNONYM_GROUPS: list[list[str]] = [
      "coefficient of earth pressure at rest", "ko"],
     ["lateral earth pressure", "earth pressure coefficient", "horizontal stress"],
     # --- strength / index ---------------------------------------------------
-    ["undrained shear strength", "undrained strength", "su", "cu", "cohesion"],
+    # No bare "cu": it is also the coefficient of uniformity (UFS 3-220-10
+    # Sec. 1-3.3.2, Cu = D60/D10) and the CU triaxial test (Sec. 3-2.4.1.3).
+    ["undrained shear strength", "undrained strength", "su", "cohesion"],
     ["friction angle", "angle of internal friction", "effective friction angle",
      "phi"],
     ["relative density", "density index"],
     ["overconsolidation ratio", "ocr", "preconsolidation"],
+    # No bare "qu": FHWA-NHI-14-007 Sec. 4.5 uses qu for the soil-nail bond
+    # strength, and other manuals for the ultimate bearing pressure.
+    ["unconfined compressive strength", "uniaxial compressive strength", "ucs",
+     "unconfined compression test"],
+    ["rock quality designation", "rqd"],
+    # --- in situ tests ------------------------------------------------------
+    ["standard penetration test", "spt"],
+    # Not "cone penetrometer": the dynamic cone penetrometer (DCP) is another
+    # test (UFS 3-220-10 Sec. 2-7.4).
+    ["cone penetration test", "cpt", "cptu", "piezocone"],
+    ["dilatometer", "dmt"],
+    ["pressuremeter", "pmt"],
+    # (N1)60 is printed (N1)60, N1(60) and N1,60; all index as "n1 60".
+    # Not "corrected blow count": UFS 3-220-10 uses it for N60, the
+    # energy-corrected count (Sec. 5-11, 8-5.3.1); "normalized" is the
+    # overburden-corrected (N1)60 (Sec. 2-7.1.1).
+    ["(n1)60", "n1(60)", "n160", "normalized blow count",
+     "normalised blow count"],
     # --- foundations --------------------------------------------------------
     ["bearing capacity", "ultimate bearing", "bearing resistance"],
     ["settlement", "consolidation settlement", "compression settlement"],
     ["drilled shaft", "bored pile", "caisson"],
     ["driven pile", "displacement pile"],
+    ["continuous flight auger", "cfa", "auger cast", "augered cast-in-place",
+     "acip"],
     ["pile setup", "soil setup", "pile freeze", "setup factor"],
     ["downdrag", "negative skin friction", "neutral plane"],
     ["side resistance", "skin friction", "shaft resistance", "unit side resistance"],
     ["end bearing", "toe resistance", "tip resistance", "base resistance"],
+    ["p-y curve", "p-y"],
+    ["t-z curve", "t-z", "load-transfer curve"],
     ["pullout resistance", "pullout capacity"],
     ["bond strength", "grout to ground bond", "bond stress"],
     # --- walls / reinforcement ---------------------------------------------
     ["soil nail", "soil nail wall", "nailed wall"],
     ["ground anchor", "tieback", "anchored wall"],
-    ["mse wall", "mechanically stabilized earth", "reinforced soil wall"],
+    ["mse wall", "mse", "mechanically stabilized earth", "reinforced soil wall"],
+    # --- ground improvement (FHWA-NHI-16-027 wording) -----------------------
+    ["prefabricated vertical drain", "pvd", "wick drain", "vertical drain"],
+    ["stone column", "aggregate column", "aggregate pier", "vibro-replacement"],
+    ["vibro-compaction", "vibroflotation", "vibro-flotation"],
+    ["deep mixing", "deep soil mixing", "dsm", "dmm"],
+    ["geofoam", "eps", "expanded polystyrene"],
     # --- water / seepage ----------------------------------------------------
     ["groundwater", "water table", "phreatic surface", "gwt"],
     ["permeability", "hydraulic conductivity"],
@@ -72,11 +111,16 @@ SYNONYM_GROUPS: list[list[str]] = [
     ["factor of safety", "safety factor"],
     ["resistance factor", "lrfd resistance factor"],
     # --- seismic ------------------------------------------------------------
-    ["liquefaction", "cyclic resistance ratio", "crr", "liquefaction triggering"],
+    # Demand and capacity stay apart: CSR is the load, CRR the resistance
+    # (FHWA-NHI-16-027 Sec. 4.1.6).
+    ["cyclic stress ratio", "csr"],
+    ["cyclic resistance ratio", "crr", "liquefaction resistance"],
     ["seismic", "earthquake", "pseudostatic"],
     ["site class", "site classification", "vs30"],
     # --- earthwork ----------------------------------------------------------
-    ["compaction", "relative compaction", "proctor"],
+    # No bare "compaction": it fires on deep dynamic compaction and
+    # vibro-compaction (ground improvement), not compaction control.
+    ["relative compaction", "degree of compaction", "proctor"],
     ["slope stability", "slope failure", "circular failure surface"],
     ["scour", "erosion"],
 ]
@@ -101,6 +145,14 @@ EXPANSION_STRATEGY = os.environ.get("GEOTECH_RETRIEVAL_EXPANSION", "auto").strip
 if EXPANSION_STRATEGY not in _VALID_STRATEGIES:
     EXPANSION_STRATEGY = "auto"
 
+# How many literal hits ``auto`` keeps in place before the reranked union
+# (env GEOTECH_RETRIEVAL_PIN). 1 is the measured default; see
+# scripts/eval_retrieval_gold.py --pins.
+try:
+    EXPANSION_PIN = max(1, int(os.environ.get("GEOTECH_RETRIEVAL_PIN", "1")))
+except ValueError:
+    EXPANSION_PIN = 1
+
 
 def combined_query(query: str) -> str:
     """Build the single 'rerank' MATCH: the literal AND-group OR the synonyms.
@@ -113,18 +165,90 @@ def combined_query(query: str) -> str:
     return f"({query}) OR {exp}"
 
 
+def _term_pattern(term: str) -> re.Pattern:
+    """A term found as a whole word or phrase, with an optional plural ending
+    ("pvds", "p-y curves"), so ``ka`` does not fire inside ``make``."""
+    return re.compile(rf"(?<![\w]){re.escape(term)}(?:e?s)?(?![\w])")
+
+
+def _spans(norm_query: str, term: str) -> list[tuple[int, int]]:
+    return [m.span() for m in _term_pattern(term).finditer(norm_query)]
+
+
 def _contains_term(norm_query: str, term: str) -> bool:
     """True if ``term`` appears in the already-normalized (lower, single-space)
-    query. Multi-word / hyphenated terms match as substrings; single tokens match
-    on word boundaries so ``ka`` does not fire inside ``make``."""
-    if " " in term or "-" in term:
-        return term in norm_query
-    return re.search(rf"\b{re.escape(term)}\b", norm_query) is not None
+    query, as a whole word or phrase."""
+    return bool(_spans(norm_query, term))
 
 
 def _as_fts_term(term: str) -> str:
-    """Quote multi-word / hyphenated terms as FTS5 phrases; leave tokens bare."""
-    return f'"{term}"' if (" " in term or "-" in term) else term
+    """A bare token stays bare; anything else becomes an FTS5 phrase of its
+    word characters, the way the index tokenizes it ("(n1)60" -> "n1 60")."""
+    if re.fullmatch(r"[a-z0-9]+", term):
+        return term
+    return '"' + " ".join(re.findall(r"[a-z0-9]+", term)) + '"'
+
+
+def _matches(norm_query: str) -> list[tuple[int, int, int]]:
+    """``(start, end, group)`` of every term the query names, longest match
+    first: a term found only inside a longer matched term of ANOTHER group
+    ("skin friction" inside "negative skin friction") is left out."""
+    found = []
+    for gi, group in enumerate(SYNONYM_GROUPS):
+        for term in group:
+            found.extend((a, b, gi) for a, b in _spans(norm_query, term))
+    return [(a, b, gi) for a, b, gi in found
+            if not any(a2 <= a and b <= b2 and (b2 - a2) > (b - a) and g2 != gi
+                       for a2, b2, g2 in found)]
+
+
+def _matched_groups(norm_query: str) -> list[int]:
+    """The groups the query names (see :func:`_matches`)."""
+    return sorted({gi for _, _, gi in _matches(norm_query)})
+
+
+def substituted_query(query: str) -> str | None:
+    """The query AND-matched with each named term replaced by its group's
+    forms: "wick drain smear zone" -> ``("prefabricated vertical drain" OR
+    pvd OR "wick drain" OR "vertical drain") AND smear AND zone``. None when no
+    group fires or the query already uses FTS5 syntax (quotes, operators)."""
+    if not query or '"' in query or re.search(r"\b(OR|AND|NOT|NEAR)\b", query):
+        return None
+    norm = re.sub(r"\s+", " ", query.lower()).strip()
+    spans = sorted(_matches(norm), key=lambda m: (m[0], -(m[1] - m[0])))
+    if not spans:
+        return None
+    parts, pos = [], 0
+    for a, b, gi in spans:
+        if a < pos:
+            continue  # overlaps a span already taken
+        parts += [t for t in re.findall(r"[a-z0-9]+", norm[pos:a])
+                  if t not in _FTS_OPS]
+        forms = list(dict.fromkeys(_as_fts_term(t) for t in SYNONYM_GROUPS[gi]))
+        parts.append("(" + " OR ".join(forms) + ")")
+        pos = b
+    parts += [t for t in re.findall(r"[a-z0-9]+", norm[pos:]) if t not in _FTS_OPS]
+    return " AND ".join(parts)
+
+
+def zero_literal_hits(query: str, run, want: int, key) -> list:
+    """Hits for a query whose literal (AND) form matched nothing: first the
+    query with its named terms swapped for their groups
+    (:func:`substituted_query`), then the query's words OR-ed with the
+    synonyms, each filling the slots the one before left. The words stay in
+    the second query so a group that fires cannot crowd out the OR-of-words
+    fallback the query would have had without it ("DSM column layout for
+    embankment support" keeps "layout" and "embankment")."""
+    rows: list = []
+    sub = substituted_query(query)
+    if sub:
+        rows = run(sub)
+    exp = expand_query(query)
+    if exp and len(rows) < want:
+        words = or_fallback(query)
+        rows = merge_hits(rows, run(f"{words} OR {exp}" if words else exp),
+                          want, key)
+    return rows
 
 
 def expand_query(query: str) -> str:
@@ -143,22 +267,23 @@ def expand_query(query: str) -> str:
     norm = re.sub(r"\s+", " ", query.lower()).strip()
 
     added: list[str] = []
-    seen: set[str] = set()
-    for group in SYNONYM_GROUPS:
-        if not any(_contains_term(norm, t) for t in group):
-            continue
-        for term in group:
+    # a form the query already uses, in any spelling ("N1(60)" and "(N1)60"
+    # are one phrase to the index), is not added again
+    seen: set[str] = {_as_fts_term(t) for g in SYNONYM_GROUPS for t in g
+                      if _contains_term(norm, t)}
+    for gi in _matched_groups(norm):
+        for term in SYNONYM_GROUPS[gi]:
             if _contains_term(norm, term):
                 continue  # already expressed in the query
-            key = term.lower()
-            if key in seen:
+            fts = _as_fts_term(term)
+            if fts in seen:
                 continue
-            seen.add(key)
-            added.append(term)
+            seen.add(fts)
+            added.append(fts)
 
     if not added:
         return ""
-    return " OR ".join(_as_fts_term(t) for t in added)
+    return " OR ".join(added)
 
 
 _FTS_OPS = {"or", "and", "not", "near"}

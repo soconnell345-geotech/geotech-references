@@ -23,7 +23,7 @@ geotech_references/           # Python package (pip install -e .)
   _retrieval.py                # Reference text retrieval (load, search, retrieve by section) at every section level; section_entries() = the one section tree both layers use; fit_hits() / fit_record() shape a result to a caller's max_chars. See "Section levels" and "Results that fit a size limit" below.
   _retrieval_db.py             # SQLite FTS5 retrieval layer — reference_search / reference_get / reference_query (v1.2.0); one row per section at every level (REF-24)
   _figures_db.py               # SQLite FTS5 figure-catalog retrieval — figure_search / figure_get / resolve_pdf
-  _query_expansion.py          # Synonym query-expansion recall lever for reference_search/figure_search; EXPANSION_STRATEGY off/fill/rerank/auto (env GEOTECH_RETRIEVAL_EXPANSION, default auto). See "Lexical Query Expansion" below.
+  _query_expansion.py          # Synonym query-expansion recall lever for reference_search/figure_search; EXPANSION_STRATEGY off/fill/rerank/auto (env GEOTECH_RETRIEVAL_EXPANSION, default auto), EXPANSION_PIN (env GEOTECH_RETRIEVAL_PIN, default 1). See "Lexical Query Expansion" below.
   dm7_1/                       # UFS 3-220-10 Soil Mechanics (DM 7.1), 16 Jan 2026 (8 chapters)
     chapter1.py ... chapter8.py
     text/                      # Structured chapter JSON (8 chapters, 457 sections, 2026-04-07)
@@ -82,6 +82,7 @@ scripts/                       # Content generation tools (NOT installed with th
   audit_chapter_text.py        # Validate generated JSON (schema, eq coverage, implemented_in links)
   build_printed_text.py        # Chapter text + figure catalog read off the printed pages (no API): sections from the printed contents, bodies in the print's wording with [p. 6-28] markers, equation objects as [Eq. 9-5], figures/tables from the Lists of Figures/Tables. Manifest "text_build": "printed". Used for fhwa_soils_foundations (REF-29)
   check_section_numbers.py     # Chapter JSON section numbers vs the printed PDF (outline + page headings; no API). --detail lists what needs a reader, --apply writes only definite renumberings (section_id values only). Test: tests/test_section_numbers.py (skips without the PDFs). REF-23
+  eval_retrieval_gold.py       # recall@3/5/10 per expansion strategy on the hand-curated gold set retrieval_gold.json (54 cases, 17 references). REF-07
   eval_subsection_retrieval.py # 14 questions answered in a subsection (8 references): replays search -> fetch, reports recall@5 and characters read; --titles --save/--compare = the ranking guard (top-level sections found by their own title). Test: tests/test_subsection_retrieval.py. REF-24
   chapter_schema.json          # JSON schema for chapter files
   manifests/                   # Per-reference manifest files (chapter page ranges + PDF paths)
@@ -344,8 +345,8 @@ returns exactly what it always did; the app passes 14,000.
 
 ## Lexical Query Expansion (recall lever)
 
-> Status: built + tested on branch `ref-retrieval-expansion` (2026-06-08),
-> **uncommitted** — a master-level agent owns the merge. Default is ON (`auto`).
+> Status: on master since 2026-06; curated and measured on a gold set
+> 2026-10-20 (REF-03/REF-07, below). Default is ON (`auto`).
 
 Both FTS5 retrieval layers (`reference_search` for text, `figure_search` for
 figures) are lexical (BM25 + porter stemming), which closes *morphological* gaps
@@ -371,19 +372,49 @@ the GeotechStaffEngineer HANDOFF P6); image embeddings remain rejected.
 - **Reaches the Funhouse consultant for free** — the reviewer/consult sub-agent
   calls these same `reference_db`/`figure_db` functions via adapters, so it picks up
   `auto` with no funhouse_agent change.
-- **Tests:** `tests/test_query_expansion.py` (27); full suite **3702 passed**.
+- **Tests:** `tests/test_query_expansion.py` (65).
 
-### Remaining items (this feature)
-- [ ] **Live Funhouse reviewer-agent eval** (owner-gated, costs API) — validate the
-      lift end-to-end with the consultant on a synonym-phrased question set.
-- [ ] **Curate `SYNONYM_GROUPS`** from observed recall misses (the eval's
-      "no trusted GT" rows hint at vocabulary gaps); keep entries defensible.
-- [ ] **Grow the eval's labeled set** (currently 9 trusted cases — small) toward a
-      hand-curated gold set for a firmer recall@k estimate.
-- [ ] **Owner decision at merge:** keep `auto` as the default, or ship opt-in
-      (env-flip to `off`/`fill`).
-- [ ] **Optional precision tuning:** `rerank`/`auto` reorder ranks 2–5 of good
-      queries; if that matters, pin top-N instead of top-1.
+### Curation and the gold set (REF-03, REF-07; 2026-10-20)
+- **Removed:** bare `cu` (also the coefficient of uniformity, UFS 3-220-10
+  Sec. 1-3.3.2, and the CU triaxial test); bare `compaction` (fired on deep
+  dynamic compaction and vibro-compaction); the dead `liquefaction
+  triggering` form (no section in the library says it) and bare
+  `liquefaction` from the CRR group. CSR (demand) and CRR (capacity) are
+  separate groups (FHWA-NHI-16-027 Sec. 4.1.6).
+- **Fixed:** longest match wins, so "negative skin friction" no longer fires
+  the side-resistance group; terms match whole words with an optional plural
+  ("PVDs"); a term with punctuation goes to FTS5 as the phrase of its tokens
+  (`(N1)60`, `N1(60)` -> `"n1 60"`, the way the index tokenizes the print).
+- **Added:** PVD/wick drain/vertical drain, CSR, (N1)60/N160/normalized
+  blow count (not "corrected blow count": UFS 3-220-10 uses it for N60),
+  p-y, t-z/load-transfer curve, CPT/CPTu/piezocone (not "cone
+  penetrometer": the DCP is another test), SPT, DMT, PMT, UCS/uniaxial
+  compressive strength (no bare `qu`: FHWA-NHI-14-007 uses it for the nail
+  bond strength), RQD, geofoam/EPS, stone column/aggregate column/aggregate
+  pier, vibro-compaction/vibroflotation, deep mixing/DSM/DMM, CFA/auger
+  cast/ACIP, bare `mse`.
+- **Zero-hit queries under `auto`:** a query whose literal AND form matches
+  nothing is run with its named terms swapped for their groups
+  (`substituted_query`), so "wick drain smear zone" still has to say
+  "smear"; the slots left are filled by the query's words OR-ed with the
+  synonyms (`zero_literal_hits`), so a group that fires does not crowd out
+  the OR-of-words fallback ("DSM column layout for embankment support").
+- **`EXPANSION_PIN`** (env `GEOTECH_RETRIEVAL_PIN`, default 1): how many
+  literal hits `auto` keeps in place. Pin 2 and 3 measured lower; 1 stays.
+- **Gold set** `scripts/retrieval_gold.json` (54 cases over 17 references;
+  kinds method / table value / figure / definition / limit; each with the
+  sections a good search returns, 69 of 85 located on their printed page) and
+  `scripts/eval_retrieval_gold.py` (recall@3/5/10 per strategy, MRR, top-1
+  changes, `--pins`, `--per-case`). Before -> after, `auto`: R@3 38 -> 41,
+  R@5 42 -> 46, R@10 45 -> 48 of 54; `off` (no synonyms and no OR fallback)
+  31/35/37 unchanged. The script's "top-1 changed" (10) counts queries the
+  literal answers with nothing; of the 44 it answers, `auto` changes the
+  top-1 of none. **The set is in sample:** it was written with the
+  curation, and most cases use a group's vocabulary, so it shows the
+  groups work, not how much they lift questions nobody tuned on.
+- **Still open** (BACKLOG): a held-out question set; the live librarian
+  eval; ranking misses no synonym fixes (p-multipliers, EC7 design approach
+  1, bearing-capacity FOS, trench earth pressures).
 
 ## Agent Pattern
 

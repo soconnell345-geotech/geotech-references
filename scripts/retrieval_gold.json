@@ -1,0 +1,1488 @@
+{
+ "about": "Hand-curated gold set for reference_search (REF-07). Each case is a question as the agent would phrase it, the kind of question, and the sections a good search must return (any one counts as a hit). Sections were chosen by reading the chapter text and checked against the printed manual; 'printed' names the manual, the section and the printed page it starts on. 'located' gives, for the sections whose numbered heading was found in the PDF, the PDF file, the 1-based PDF page of the heading and the page number printed on it (null where the page carries none in its text layer).",
+ "cases": [
+  {
+   "id": "pvd-spacing",
+   "kind": "method",
+   "query": "PVD spacing design",
+   "relevant": [
+    [
+     "gec_13",
+     "2.4.2"
+    ]
+   ],
+   "printed": "FHWA-NHI-16-027 Sec. 2.4.2 Drain Spacing Design"
+  },
+  {
+   "id": "pvd-smear",
+   "kind": "method",
+   "query": "wick drain smear zone",
+   "relevant": [
+    [
+     "gec_13",
+     "2.4.3"
+    ]
+   ],
+   "printed": "FHWA-NHI-16-027 Sec. 2.4.3 Smear Zone Effects"
+  },
+  {
+   "id": "stone-col-capacity",
+   "kind": "method",
+   "query": "stone column vertical load capacity",
+   "relevant": [
+    [
+     "gec_13",
+     "5.4.1.2.5"
+    ]
+   ],
+   "printed": "FHWA-NHI-16-027 Sec. 5.4.1.2.5 Stone Column Vertical Load Capacity",
+   "located": [
+    {
+     "section": [
+      "gec_13",
+      "5.4.1.2.5"
+     ],
+     "pdf": "GEC 13 Vol 1.pdf",
+     "pdf_page": 358,
+     "printed_page": "5-32"
+    }
+   ]
+  },
+  {
+   "id": "agg-pier-settlement",
+   "kind": "method",
+   "query": "aggregate pier settlement reduction",
+   "relevant": [
+    [
+     "gec_13",
+     "5.4.3.2.3"
+    ],
+    [
+     "gec_13",
+     "5.4.3.2"
+    ]
+   ],
+   "printed": "FHWA-NHI-16-027 Sec. 5.4.3.2.3 Settlement Magnitude with Stone Columns",
+   "located": [
+    {
+     "section": [
+      "gec_13",
+      "5.4.3.2.3"
+     ],
+     "pdf": "GEC 13 Vol 1.pdf",
+     "pdf_page": 374,
+     "printed_page": "5-48"
+    },
+    {
+     "section": [
+      "gec_13",
+      "5.4.3.2"
+     ],
+     "pdf": "GEC 13 Vol 1.pdf",
+     "pdf_page": 373,
+     "printed_page": "5-47"
+    }
+   ]
+  },
+  {
+   "id": "vibroflotation",
+   "kind": "method",
+   "query": "vibroflotation densification of loose sand",
+   "relevant": [
+    [
+     "gec_13",
+     "4.1.2.2"
+    ],
+    [
+     "gec_13",
+     "4.1.7.2"
+    ],
+    [
+     "gec_13",
+     "4.3.0"
+    ],
+    [
+     "gec_13",
+     "4.1.8.2"
+    ]
+   ],
+   "printed": "FHWA-NHI-16-027 Sec. 4.1.2.2 / 4.1.7.2 Vibro-compaction",
+   "located": [
+    {
+     "section": [
+      "gec_13",
+      "4.1.2.2"
+     ],
+     "pdf": "GEC 13 Vol 1.pdf",
+     "pdf_page": 223,
+     "printed_page": "4-5"
+    },
+    {
+     "section": [
+      "gec_13",
+      "4.1.7.2"
+     ],
+     "pdf": "GEC 13 Vol 1.pdf",
+     "pdf_page": 230,
+     "printed_page": "4-12"
+    },
+    {
+     "section": [
+      "gec_13",
+      "4.3.0"
+     ],
+     "pdf": "GEC 13 Vol 1.pdf",
+     "pdf_page": 282,
+     "printed_page": "4-64"
+    },
+    {
+     "section": [
+      "gec_13",
+      "4.1.8.2"
+     ],
+     "pdf": "GEC 13 Vol 1.pdf",
+     "pdf_page": 230,
+     "printed_page": "4-12"
+    }
+   ]
+  },
+  {
+   "id": "dsm-geometry",
+   "kind": "method",
+   "query": "DSM column layout for embankment support",
+   "relevant": [
+    [
+     "gec_13",
+     "7.2.3.2.4"
+    ],
+    [
+     "gec_13",
+     "7.2.0"
+    ],
+    [
+     "gec_13",
+     "7.1.2.1"
+    ]
+   ],
+   "printed": "FHWA-NHI-16-027 Sec. 7.2.3.2.4 Step 4: Establish Trial Deep Mixed Geometry",
+   "located": [
+    {
+     "section": [
+      "gec_13",
+      "7.2.3.2.4"
+     ],
+     "pdf": "GEC 13 Vol 2.pdf",
+     "pdf_page": 110,
+     "printed_page": "7-16"
+    },
+    {
+     "section": [
+      "gec_13",
+      "7.2.0"
+     ],
+     "pdf": "GEC 13 Vol 2.pdf",
+     "pdf_page": 103,
+     "printed_page": "7-9"
+    },
+    {
+     "section": [
+      "gec_13",
+      "7.1.2.1"
+     ],
+     "pdf": "GEC 13 Vol 2.pdf",
+     "pdf_page": 95,
+     "printed_page": "7-1"
+    }
+   ]
+  },
+  {
+   "id": "geofoam-design",
+   "kind": "method",
+   "query": "EPS geofoam embankment design",
+   "relevant": [
+    [
+     "gec_13",
+     "3.4.2.1.1"
+    ],
+    [
+     "gec_13",
+     "3.3.2.1"
+    ]
+   ],
+   "printed": "FHWA-NHI-16-027 Sec. 3.4.2.1.1 EPS-block Geofoam",
+   "located": [
+    {
+     "section": [
+      "gec_13",
+      "3.4.2.1.1"
+     ],
+     "pdf": "GEC 13 Vol 1.pdf",
+     "pdf_page": 173,
+     "printed_page": "3-23"
+    },
+    {
+     "section": [
+      "gec_13",
+      "3.3.2.1"
+     ],
+     "pdf": "GEC 13 Vol 1.pdf",
+     "pdf_page": 162,
+     "printed_page": "3-12"
+    }
+   ]
+  },
+  {
+   "id": "dynamic-compaction",
+   "kind": "method",
+   "query": "dynamic compaction depth of improvement",
+   "relevant": [
+    [
+     "gec_13",
+     "4.1.2.1"
+    ],
+    [
+     "gec_13",
+     "4.1.7.1"
+    ],
+    [
+     "gec_13",
+     "4.2.0"
+    ],
+    [
+     "gec_13",
+     "4.1.8.1"
+    ]
+   ],
+   "printed": "FHWA-NHI-16-027 Sec. 4.1.7.1 Deep Dynamic Compaction",
+   "located": [
+    {
+     "section": [
+      "gec_13",
+      "4.1.2.1"
+     ],
+     "pdf": "GEC 13 Vol 1.pdf",
+     "pdf_page": 222,
+     "printed_page": "4-4"
+    },
+    {
+     "section": [
+      "gec_13",
+      "4.1.7.1"
+     ],
+     "pdf": "GEC 13 Vol 1.pdf",
+     "pdf_page": 229,
+     "printed_page": "4-11"
+    },
+    {
+     "section": [
+      "gec_13",
+      "4.2.0"
+     ],
+     "pdf": "GEC 13 Vol 1.pdf",
+     "pdf_page": 232,
+     "printed_page": "4-14"
+    },
+    {
+     "section": [
+      "gec_13",
+      "4.1.8.1"
+     ],
+     "pdf": "GEC 13 Vol 1.pdf",
+     "pdf_page": 230,
+     "printed_page": "4-12"
+    }
+   ]
+  },
+  {
+   "id": "neutral-plane",
+   "kind": "method",
+   "query": "neutral plane method for downdrag on piles",
+   "relevant": [
+    [
+     "dm7_2",
+     "6-5.8.4.2"
+    ],
+    [
+     "dm7_2",
+     "6-5.7"
+    ]
+   ],
+   "printed": "UFC 3-220-20 Sec. 6-5.8.4.2 Neutral Plane Method",
+   "located": [
+    {
+     "section": [
+      "dm7_2",
+      "6-5.8.4.2"
+     ],
+     "pdf": "ufc_3_220_20_2025.pdf",
+     "pdf_page": 485,
+     "printed_page": "447"
+    }
+   ]
+  },
+  {
+   "id": "nordlund",
+   "kind": "method",
+   "query": "Nordlund method driven pile in sand",
+   "relevant": [
+    [
+     "gec_12",
+     "7.2.1.3.1"
+    ]
+   ],
+   "printed": "FHWA-NHI-16-009 Sec. 7.2.1.3.1 Nordlund Method",
+   "located": [
+    {
+     "section": [
+      "gec_12",
+      "7.2.1.3.1"
+     ],
+     "pdf": "GEC 12 vol 1.pdf",
+     "pdf_page": 278,
+     "printed_page": "232"
+    }
+   ]
+  },
+  {
+   "id": "beta-pile",
+   "kind": "method",
+   "query": "beta method effective stress shaft resistance of piles",
+   "relevant": [
+    [
+     "gec_12",
+     "7.2.1.3.4"
+    ]
+   ],
+   "printed": "FHWA-NHI-16-009 Sec. 7.2.1.3.4 Beta Method",
+   "located": [
+    {
+     "section": [
+      "gec_12",
+      "7.2.1.3.4"
+     ],
+     "pdf": "GEC 12 vol 1.pdf",
+     "pdf_page": 301,
+     "printed_page": "255"
+    }
+   ]
+  },
+  {
+   "id": "py-method",
+   "kind": "method",
+   "query": "p-y curves for laterally loaded piles",
+   "relevant": [
+    [
+     "gec_9",
+     "6.3"
+    ],
+    [
+     "dm7_2",
+     "6-6.4.2"
+    ]
+   ],
+   "printed": "FHWA-HIF-18-031 Sec. 6.3 P-Y Method",
+   "located": [
+    {
+     "section": [
+      "gec_9",
+      "6.3"
+     ],
+     "pdf": "GEC 9.pdf",
+     "pdf_page": 72,
+     "printed_page": "68"
+    },
+    {
+     "section": [
+      "dm7_2",
+      "6-6.4.2"
+     ],
+     "pdf": "ufc_3_220_20_2025.pdf",
+     "pdf_page": 497,
+     "printed_page": "459"
+    }
+   ]
+  },
+  {
+   "id": "p-multipliers",
+   "kind": "table value",
+   "query": "p-multipliers for pile groups under lateral load",
+   "relevant": [
+    [
+     "gec_9",
+     "7.2"
+    ]
+   ],
+   "printed": "FHWA-HIF-18-031 Sec. 7.2 Group Effects in Lateral Loading",
+   "located": [
+    {
+     "section": [
+      "gec_9",
+      "7.2"
+     ],
+     "pdf": "GEC 9.pdf",
+     "pdf_page": 102,
+     "printed_page": "98"
+    }
+   ]
+  },
+  {
+   "id": "tz-curves",
+   "kind": "method",
+   "query": "t-z curves load transfer settlement of pile",
+   "relevant": [
+    [
+     "dm7_2",
+     "6-5.8.4.2"
+    ],
+    [
+     "dm7_2",
+     "6-5.8.4.3"
+    ],
+    [
+     "gec_12",
+     "8.8"
+    ],
+    [
+     "gec_12",
+     "7.3.6.2"
+    ]
+   ],
+   "printed": "UFC 3-220-20 Sec. 6-5.8.4.2; FHWA-NHI-16-009 Sec. 7.3.6.2",
+   "located": [
+    {
+     "section": [
+      "dm7_2",
+      "6-5.8.4.2"
+     ],
+     "pdf": "ufc_3_220_20_2025.pdf",
+     "pdf_page": 485,
+     "printed_page": "447"
+    },
+    {
+     "section": [
+      "dm7_2",
+      "6-5.8.4.3"
+     ],
+     "pdf": "ufc_3_220_20_2025.pdf",
+     "pdf_page": 486,
+     "printed_page": "448"
+    },
+    {
+     "section": [
+      "gec_12",
+      "8.8"
+     ],
+     "pdf": "GEC 12 vol 1.pdf",
+     "pdf_page": 513,
+     "printed_page": "467"
+    }
+   ]
+  },
+  {
+   "id": "cfa-piles",
+   "kind": "method",
+   "query": "CFA pile side shear and end bearing",
+   "relevant": [
+    [
+     "gec_8",
+     "5.2-5.3"
+    ],
+    [
+     "dm7_2",
+     "6-4.3"
+    ]
+   ],
+   "printed": "FHWA-HIF-07-03 Sec. 5.2-5.3 Side-Shear and End-Bearing Capacity Methods"
+  },
+  {
+   "id": "auger-cast",
+   "kind": "definition",
+   "query": "auger cast pile advantages and limitations",
+   "relevant": [
+    [
+     "gec_8",
+     "3.2"
+    ],
+    [
+     "dm7_2",
+     "6-4.3"
+    ]
+   ],
+   "printed": "FHWA-HIF-07-03 Sec. 3.2 Advantages and Limitations of CFA Piles",
+   "located": [
+    {
+     "section": [
+      "gec_8",
+      "3.2"
+     ],
+     "pdf": "GEC 8.pdf",
+     "pdf_page": 38,
+     "printed_page": "15"
+    }
+   ]
+  },
+  {
+   "id": "mse-pullout",
+   "kind": "method",
+   "query": "MSE pullout internal stability check",
+   "relevant": [
+    [
+     "gec_11",
+     "4.4.7.h"
+    ]
+   ],
+   "printed": "FHWA-NHI-10-024 Sec. 4.4.7.h Internal Stability with Respect to Pullout Failure"
+  },
+  {
+   "id": "mse-length",
+   "kind": "limit",
+   "query": "MSE wall reinforcement length and embedment depth",
+   "relevant": [
+    [
+     "gec_11",
+     "4.4.3"
+    ]
+   ],
+   "printed": "FHWA-NHI-10-024 Sec. 4.4.3 Step 3",
+   "located": [
+    {
+     "section": [
+      "gec_11",
+      "4.4.3"
+     ],
+     "pdf": "GEC 11 Vol 1.pdf",
+     "pdf_page": 153,
+     "printed_page": null
+    }
+   ]
+  },
+  {
+   "id": "geosyn-rf",
+   "kind": "limit",
+   "query": "resistance factor for geosynthetic reinforcement",
+   "relevant": [
+    [
+     "gec_11",
+     "3.5.2.f"
+    ]
+   ],
+   "printed": "FHWA-NHI-10-024 Sec. 3.5.2.f LRFD Geosynthetic Reinforcement Resistance Factor",
+   "located": [
+    {
+     "section": [
+      "gec_11",
+      "3.5.2.f"
+     ],
+     "pdf": "GEC 11 Vol 1.pdf",
+     "pdf_page": 130,
+     "printed_page": null
+    }
+   ]
+  },
+  {
+   "id": "bc-equation",
+   "kind": "method",
+   "query": "bearing capacity equation shape and depth correction factors",
+   "relevant": [
+    [
+     "gec_6",
+     "5.2.2"
+    ],
+    [
+     "gec_6",
+     "5.2.3"
+    ],
+    [
+     "gec_6",
+     "5.2.4"
+    ]
+   ],
+   "printed": "FHWA-SA-02-054 Sec. 5.2.2 / 5.2.3",
+   "located": [
+    {
+     "section": [
+      "gec_6",
+      "5.2.2"
+     ],
+     "pdf": "GEC 6.pdf",
+     "pdf_page": 57,
+     "printed_page": "51"
+    },
+    {
+     "section": [
+      "gec_6",
+      "5.2.3"
+     ],
+     "pdf": "GEC 6.pdf",
+     "pdf_page": 61,
+     "printed_page": "1"
+    },
+    {
+     "section": [
+      "gec_6",
+      "5.2.4"
+     ],
+     "pdf": "GEC 6.pdf",
+     "pdf_page": 68,
+     "printed_page": "62"
+    }
+   ]
+  },
+  {
+   "id": "bc-fos",
+   "kind": "limit",
+   "query": "factor of safety for bearing capacity of footings",
+   "relevant": [
+    [
+     "gec_6",
+     "5.2.6"
+    ]
+   ],
+   "printed": "FHWA-SA-02-054 Sec. 5.2.6 Bearing Capacity Factors of Safety",
+   "located": [
+    {
+     "section": [
+      "gec_6",
+      "5.2.6"
+     ],
+     "pdf": "GEC 6.pdf",
+     "pdf_page": 70,
+     "printed_page": "64"
+    }
+   ]
+  },
+  {
+   "id": "presumptive",
+   "kind": "table value",
+   "query": "presumptive bearing pressure on rock from RQD",
+   "relevant": [
+    [
+     "gec_6",
+     "5.2.7"
+    ]
+   ],
+   "printed": "FHWA-SA-02-054 Sec. 5.2.7 Presumptive Bearing Capacities (Table 5-9)",
+   "located": [
+    {
+     "section": [
+      "gec_6",
+      "5.2.7"
+     ],
+     "pdf": "GEC 6.pdf",
+     "pdf_page": 71,
+     "printed_page": "65"
+    }
+   ]
+  },
+  {
+   "id": "ec7-bearing",
+   "kind": "method",
+   "query": "Eurocode 7 bearing resistance analytical method",
+   "relevant": [
+    [
+     "eurocode_7_1",
+     "6.5.2.2"
+    ],
+    [
+     "eurocode_7_1",
+     "16-2"
+    ]
+   ],
+   "printed": "EN 1997-1:2004 6.5.2.2; Annex D",
+   "located": [
+    {
+     "section": [
+      "eurocode_7_1",
+      "6.5.2.2"
+     ],
+     "pdf": "eurocode_7_-_geotechnical_designen.1997.1.2004.pdf",
+     "pdf_page": 65,
+     "printed_page": "63"
+    }
+   ]
+  },
+  {
+   "id": "ec7-da1",
+   "kind": "table value",
+   "query": "design approach 1 partial factors",
+   "relevant": [
+    [
+     "eurocode_7_1",
+     "2.4.7.3.4.2"
+    ]
+   ],
+   "printed": "EN 1997-1:2004 2.4.7.3.4.2 Design Approach 1",
+   "located": [
+    {
+     "section": [
+      "eurocode_7_1",
+      "2.4.7.3.4.2"
+     ],
+     "pdf": "eurocode_7_-_geotechnical_designen.1997.1.2004.pdf",
+     "pdf_page": 34,
+     "printed_page": "32"
+    }
+   ]
+  },
+  {
+   "id": "rqd-def",
+   "kind": "definition",
+   "query": "what is RQD",
+   "relevant": [
+    [
+     "dm7_1",
+     "1-4.3.1"
+    ]
+   ],
+   "printed": "UFS 3-220-10 Sec. 1-4.3.1 Rock Quality Designation",
+   "located": [
+    {
+     "section": [
+      "dm7_1",
+      "1-4.3.1"
+     ],
+     "pdf": "ufc_3_220_10_2026.pdf",
+     "pdf_page": 59,
+     "printed_page": "31"
+    }
+   ]
+  },
+  {
+   "id": "pmt-def",
+   "kind": "definition",
+   "query": "PMT test procedure",
+   "relevant": [
+    [
+     "dm7_1",
+     "2-9.1.1"
+    ],
+    [
+     "eurocode_7_2",
+     "4.9"
+    ]
+   ],
+   "printed": "UFS 3-220-10 Sec. 2-9.1.1 Pressuremeter Test",
+   "located": [
+    {
+     "section": [
+      "dm7_1",
+      "2-9.1.1"
+     ],
+     "pdf": "ufc_3_220_10_2026.pdf",
+     "pdf_page": 126,
+     "printed_page": "98"
+    },
+    {
+     "section": [
+      "eurocode_7_2",
+      "4.9"
+     ],
+     "pdf": "en.1997.2.2007-1.pdf",
+     "pdf_page": 57,
+     "printed_page": "55"
+    }
+   ]
+  },
+  {
+   "id": "dmt-def",
+   "kind": "definition",
+   "query": "dilatometer test",
+   "relevant": [
+    [
+     "dm7_1",
+     "2-7.3"
+    ],
+    [
+     "eurocode_7_2",
+     "4.10"
+    ]
+   ],
+   "printed": "UFS 3-220-10 Sec. 2-7.3 Flat Plate Dilatometer; EN 1997-2 4.10",
+   "located": [
+    {
+     "section": [
+      "dm7_1",
+      "2-7.3"
+     ],
+     "pdf": "ufc_3_220_10_2026.pdf",
+     "pdf_page": 114,
+     "printed_page": "86"
+    },
+    {
+     "section": [
+      "eurocode_7_2",
+      "4.10"
+     ],
+     "pdf": "en.1997.2.2007-1.pdf",
+     "pdf_page": 58,
+     "printed_page": "56"
+    }
+   ]
+  },
+  {
+   "id": "cpt-def",
+   "kind": "definition",
+   "query": "cone penetration test",
+   "relevant": [
+    [
+     "dm7_1",
+     "2-7.2"
+    ],
+    [
+     "eurocode_7_2",
+     "4.3"
+    ]
+   ],
+   "printed": "UFS 3-220-10 Sec. 2-7.2; EN 1997-2 4.3",
+   "located": [
+    {
+     "section": [
+      "dm7_1",
+      "2-7.2"
+     ],
+     "pdf": "ufc_3_220_10_2026.pdf",
+     "pdf_page": 111,
+     "printed_page": "83"
+    },
+    {
+     "section": [
+      "eurocode_7_2",
+      "4.3"
+     ],
+     "pdf": "en.1997.2.2007-1.pdf",
+     "pdf_page": 44,
+     "printed_page": "42"
+    }
+   ]
+  },
+  {
+   "id": "spt-def",
+   "kind": "definition",
+   "query": "SPT procedure and hammer energy",
+   "relevant": [
+    [
+     "dm7_1",
+     "2-7.1"
+    ],
+    [
+     "eurocode_7_2",
+     "4.6"
+    ]
+   ],
+   "printed": "UFS 3-220-10 Sec. 2-7.1 Standard Penetration Test (SPT)",
+   "located": [
+    {
+     "section": [
+      "dm7_1",
+      "2-7.1"
+     ],
+     "pdf": "ufc_3_220_10_2026.pdf",
+     "pdf_page": 109,
+     "printed_page": "81"
+    },
+    {
+     "section": [
+      "eurocode_7_2",
+      "4.6"
+     ],
+     "pdf": "en.1997.2.2007-1.pdf",
+     "pdf_page": 51,
+     "printed_page": "49"
+    }
+   ]
+  },
+  {
+   "id": "ucs-test",
+   "kind": "definition",
+   "query": "UCS test of soil",
+   "relevant": [
+    [
+     "dm7_1",
+     "3-2.4.2.1"
+    ],
+    [
+     "dm7_1",
+     "3-3.1"
+    ]
+   ],
+   "printed": "UFS 3-220-10 Sec. 3-2.4.2.1 Unconfined Compression Test (ASTM D2166)",
+   "located": [
+    {
+     "section": [
+      "dm7_1",
+      "3-2.4.2.1"
+     ],
+     "pdf": "ufc_3_220_10_2026.pdf",
+     "pdf_page": 180,
+     "printed_page": "152"
+    },
+    {
+     "section": [
+      "dm7_1",
+      "3-3.1"
+     ],
+     "pdf": "ufc_3_220_10_2026.pdf",
+     "pdf_page": 199,
+     "printed_page": "171"
+    }
+   ]
+  },
+  {
+   "id": "csr-def",
+   "kind": "definition",
+   "query": "CSR in cyclic triaxial and simple shear tests",
+   "relevant": [
+    [
+     "dm7_1",
+     "3-2.5.1"
+    ],
+    [
+     "dm7_1",
+     "3-2.5.1.1"
+    ]
+   ],
+   "printed": "UFS 3-220-10 Sec. 3-2.5.1",
+   "located": [
+    {
+     "section": [
+      "dm7_1",
+      "3-2.5.1"
+     ],
+     "pdf": "ufc_3_220_10_2026.pdf",
+     "pdf_page": 188,
+     "printed_page": "160"
+    },
+    {
+     "section": [
+      "dm7_1",
+      "3-2.5.1.1"
+     ],
+     "pdf": "ufc_3_220_10_2026.pdf",
+     "pdf_page": 188,
+     "printed_page": "160"
+    }
+   ]
+  },
+  {
+   "id": "nsf-def",
+   "kind": "definition",
+   "query": "negative skin friction",
+   "relevant": [
+    [
+     "dm7_2",
+     "6-5.7"
+    ]
+   ],
+   "printed": "UFC 3-220-20 Sec. 6-5.7 Negative Skin Friction"
+  },
+  {
+   "id": "cu-def",
+   "kind": "definition",
+   "query": "coefficient of uniformity cu of a sand",
+   "relevant": [
+    [
+     "dm7_1",
+     "1-3.3.2"
+    ],
+    [
+     "gec_5",
+     "4.1-4.10"
+    ]
+   ],
+   "printed": "UFS 3-220-10 Sec. 1-3.3.2 Classification of Coarse-Grained Soils",
+   "located": [
+    {
+     "section": [
+      "dm7_1",
+      "1-3.3.2"
+     ],
+     "pdf": "ufc_3_220_10_2026.pdf",
+     "pdf_page": 43,
+     "printed_page": "15"
+    }
+   ]
+  },
+  {
+   "id": "site-class",
+   "kind": "table value",
+   "query": "site class definitions shear wave velocity",
+   "relevant": [
+    [
+     "fema_p2082",
+     "20.2"
+    ],
+    [
+     "fema_p2082",
+     "20.1"
+    ]
+   ],
+   "printed": "FEMA P-2082-1 Sec. 20.2 (Table 20.2-1)",
+   "located": [
+    {
+     "section": [
+      "fema_p2082",
+      "20.2"
+     ],
+     "pdf": "fema_p2082_2020_nehrp.pdf",
+     "pdf_page": 124,
+     "printed_page": "86"
+    },
+    {
+     "section": [
+      "fema_p2082",
+      "20.1"
+     ],
+     "pdf": "fema_p2082_2020_nehrp.pdf",
+     "pdf_page": 124,
+     "printed_page": "86"
+    }
+   ]
+  },
+  {
+   "id": "n160-phi",
+   "kind": "table value",
+   "query": "N160 correlation to friction angle",
+   "relevant": [
+    [
+     "gec_12",
+     "5.2.3.2"
+    ]
+   ],
+   "printed": "FHWA-NHI-16-009 Sec. 5.2.3.2 (Table 5-5)",
+   "located": [
+    {
+     "section": [
+      "gec_12",
+      "5.2.3.2"
+     ],
+     "pdf": "GEC 12 vol 1.pdf",
+     "pdf_page": 168,
+     "printed_page": "122"
+    }
+   ]
+  },
+  {
+   "id": "es-spt",
+   "kind": "table value",
+   "query": "elastic modulus from (N1)60",
+   "relevant": [
+    [
+     "gec_12",
+     "5.2.4"
+    ]
+   ],
+   "printed": "FHWA-NHI-16-009 Sec. 5.2.4 (Table 5-11)",
+   "located": [
+    {
+     "section": [
+      "gec_12",
+      "5.2.4"
+     ],
+     "pdf": "GEC 12 vol 1.pdf",
+     "pdf_page": 176,
+     "printed_page": "130"
+    }
+   ]
+  },
+  {
+   "id": "dr-n160",
+   "kind": "table value",
+   "query": "relative density from normalised blow count",
+   "relevant": [
+    [
+     "eurocode_7_2",
+     "7.6.1"
+    ]
+   ],
+   "printed": "EN 1997-2:2007 Annex F"
+  },
+  {
+   "id": "su-spt",
+   "kind": "table value",
+   "query": "undrained shear strength from SPT",
+   "relevant": [
+    [
+     "dm7_1",
+     "8-3.4"
+    ]
+   ],
+   "printed": "UFS 3-220-10 Sec. 8-3.4 Correlations with Standard Penetration Test",
+   "located": [
+    {
+     "section": [
+      "dm7_1",
+      "8-3.4"
+     ],
+     "pdf": "ufc_3_220_10_2026.pdf",
+     "pdf_page": 455,
+     "printed_page": "427"
+    }
+   ]
+  },
+  {
+   "id": "su-cpt",
+   "kind": "table value",
+   "query": "undrained shear strength from CPT cone factor Nkt",
+   "relevant": [
+    [
+     "dm7_1",
+     "8-3.3"
+    ]
+   ],
+   "printed": "UFS 3-220-10 Sec. 8-3.3 Correlations with Cone Penetration Test",
+   "located": [
+    {
+     "section": [
+      "dm7_1",
+      "8-3.3"
+     ],
+     "pdf": "ufc_3_220_10_2026.pdf",
+     "pdf_page": 454,
+     "printed_page": "426"
+    }
+   ]
+  },
+  {
+   "id": "phi-cpt",
+   "kind": "table value",
+   "query": "friction angle from CPT",
+   "relevant": [
+    [
+     "dm7_1",
+     "8-2.1.3"
+    ]
+   ],
+   "printed": "UFS 3-220-10 Sec. 8-2.1.3 Correlations with Cone Penetration Test",
+   "located": [
+    {
+     "section": [
+      "dm7_1",
+      "8-2.1.3"
+     ],
+     "pdf": "ufc_3_220_10_2026.pdf",
+     "pdf_page": 427,
+     "printed_page": "399"
+    }
+   ]
+  },
+  {
+   "id": "e-pmt",
+   "kind": "table value",
+   "query": "undrained modulus from SPT and PMT",
+   "relevant": [
+    [
+     "dm7_1",
+     "8-5.2.3"
+    ]
+   ],
+   "printed": "UFS 3-220-10 Sec. 8-5.2.3",
+   "located": [
+    {
+     "section": [
+      "dm7_1",
+      "8-5.2.3"
+     ],
+     "pdf": "ufc_3_220_10_2026.pdf",
+     "pdf_page": 479,
+     "printed_page": "451"
+    }
+   ]
+  },
+  {
+   "id": "liq-screen",
+   "kind": "limit",
+   "query": "liquefaction susceptibility screening fines content",
+   "relevant": [
+    [
+     "gec_5",
+     "5.5-5.7"
+    ]
+   ],
+   "printed": "FHWA NHI-16-072 Sec. 5.5-5.7",
+   "located": [
+    {
+     "section": [
+      "gec_5",
+      "5.5-5.7"
+     ],
+     "pdf": "GEC 5.pdf",
+     "pdf_page": 181,
+     "printed_page": null
+    }
+   ]
+  },
+  {
+   "id": "crr",
+   "kind": "method",
+   "query": "CRR versus CSR liquefaction assessment",
+   "relevant": [
+    [
+     "gec_13",
+     "4.1.6"
+    ]
+   ],
+   "printed": "FHWA-NHI-16-027 Sec. 4.1.6",
+   "located": [
+    {
+     "section": [
+      "gec_13",
+      "4.1.6"
+     ],
+     "pdf": "GEC 13 Vol 1.pdf",
+     "pdf_page": 226,
+     "printed_page": "4-8"
+    }
+   ]
+  },
+  {
+   "id": "rel-compaction",
+   "kind": "limit",
+   "query": "relative compaction requirement for fill",
+   "relevant": [
+    [
+     "dm7_2",
+     "3-5.1"
+    ]
+   ],
+   "printed": "UFC 3-220-20 Sec. 3-5.1 Compaction Requirements"
+  },
+  {
+   "id": "ec7-compaction",
+   "kind": "limit",
+   "query": "degree of compaction of fill",
+   "relevant": [
+    [
+     "eurocode_7_1",
+     "3.3.5"
+    ]
+   ],
+   "printed": "EN 1997-1:2004 3.3.5 Degree of compaction",
+   "located": [
+    {
+     "section": [
+      "eurocode_7_1",
+      "3.3.5"
+     ],
+     "pdf": "eurocode_7_-_geotechnical_designen.1997.1.2004.pdf",
+     "pdf_page": 43,
+     "printed_page": "41"
+    }
+   ]
+  },
+  {
+   "id": "compaction-curve",
+   "kind": "figure",
+   "query": "compaction curves dry unit weight versus water content",
+   "relevant": [
+    [
+     "dm7_2",
+     "3-2.2.1"
+    ]
+   ],
+   "printed": "UFC 3-220-20 Sec. 3-2.2.1 (Figure 3-3)",
+   "located": [
+    {
+     "section": [
+      "dm7_2",
+      "3-2.2.1"
+     ],
+     "pdf": "ufc_3_220_20_2025.pdf",
+     "pdf_page": 147,
+     "printed_page": "109"
+    }
+   ]
+  },
+  {
+   "id": "schmertmann-iz",
+   "kind": "figure",
+   "query": "Schmertmann strain influence factor diagram",
+   "relevant": [
+    [
+     "dm7_1",
+     "5-4.1.2"
+    ]
+   ],
+   "printed": "UFS 3-220-10 Sec. 5-4.1.2",
+   "located": [
+    {
+     "section": [
+      "dm7_1",
+      "5-4.1.2"
+     ],
+     "pdf": "ufc_3_220_10_2026.pdf",
+     "pdf_page": 259,
+     "printed_page": "231"
+    }
+   ]
+  },
+  {
+   "id": "plasticity-chart",
+   "kind": "figure",
+   "query": "plasticity chart for fine grained soils",
+   "relevant": [
+    [
+     "dm7_1",
+     "1-3.3.1"
+    ],
+    [
+     "gec_5",
+     "4.16-4.17"
+    ]
+   ],
+   "printed": "UFS 3-220-10 Sec. 1-3.3.1 (Figure 1-2)",
+   "located": [
+    {
+     "section": [
+      "dm7_1",
+      "1-3.3.1"
+     ],
+     "pdf": "ufc_3_220_10_2026.pdf",
+     "pdf_page": 42,
+     "printed_page": "14"
+    }
+   ]
+  },
+  {
+   "id": "layer-coef",
+   "kind": "figure",
+   "query": "AASHTO layer coefficients for base and subbase",
+   "relevant": [
+    [
+     "aashto_1993",
+     "2.3.5"
+    ]
+   ],
+   "printed": "AASHTO 1993 Part II Sec. 2.3.5 Layer Coefficients"
+  },
+  {
+   "id": "design-cbr",
+   "kind": "method",
+   "query": "selection of design CBR for subgrade",
+   "relevant": [
+    [
+     "ufc_pavement",
+     "5-4"
+    ],
+    [
+     "ufc_pavement",
+     "6-5"
+    ],
+    [
+     "ufc_pavement",
+     "7-4"
+    ]
+   ],
+   "printed": "UFC 3-250-01 Sec. 5-4 Selection of Design CBR Values",
+   "located": [
+    {
+     "section": [
+      "ufc_pavement",
+      "5-4"
+     ],
+     "pdf": "ufc_3_250_01_2016.pdf",
+     "pdf_page": 34,
+     "printed_page": "14"
+    },
+    {
+     "section": [
+      "ufc_pavement",
+      "6-5"
+     ],
+     "pdf": "ufc_3_250_01_2016.pdf",
+     "pdf_page": 36,
+     "printed_page": "16"
+    },
+    {
+     "section": [
+      "ufc_pavement",
+      "7-4"
+     ],
+     "pdf": "ufc_3_250_01_2016.pdf",
+     "pdf_page": 39,
+     "printed_page": "19"
+    }
+   ]
+  },
+  {
+   "id": "lime-content",
+   "kind": "table value",
+   "query": "lime content for lime modified soil",
+   "relevant": [
+    [
+     "ufc_stabilization",
+     "3-2.3"
+    ]
+   ],
+   "printed": "UFC 3-250-11 Sec. 3-2.3",
+   "located": [
+    {
+     "section": [
+      "ufc_stabilization",
+      "3-2.3"
+     ],
+     "pdf": "ufc_3_250_11_2020.pdf",
+     "pdf_page": 27,
+     "printed_page": "19"
+    }
+   ]
+  },
+  {
+   "id": "trench-pressure",
+   "kind": "method",
+   "query": "earth pressures for trench shoring in granular soil",
+   "relevant": [
+    [
+     "california_trenching",
+     "4-3"
+    ]
+   ],
+   "printed": "Caltrans T&S Manual Sec. 4-3",
+   "located": [
+    {
+     "section": [
+      "california_trenching",
+      "4-3"
+     ],
+     "pdf": "California Trenching and Shoring Manual.pdf",
+     "pdf_page": 56,
+     "printed_page": null
+    }
+   ]
+  },
+  {
+   "id": "micropile-bond",
+   "kind": "table value",
+   "query": "grout to ground bond strength micropile",
+   "relevant": [
+    [
+     "micropile",
+     "5.9.1-5.9.2"
+    ]
+   ],
+   "printed": "FHWA-NHI-05-039 Sec. 5.9.1-5.9.2 (Table 5-3)",
+   "located": [
+    {
+     "section": [
+      "micropile",
+      "5.9.1-5.9.2"
+     ],
+     "pdf": "FHWA Micropile Manual.pdf",
+     "pdf_page": 110,
+     "printed_page": "5-18"
+    }
+   ]
+  },
+  {
+   "id": "hoek-brown",
+   "kind": "method",
+   "query": "Hoek-Brown criterion rock mass strength",
+   "relevant": [
+    [
+     "gec_5",
+     "9.5-9.8"
+    ]
+   ],
+   "printed": "FHWA NHI-16-072 Sec. 9.5-9.8"
+  }
+ ]
+}
