@@ -56,17 +56,9 @@ geotech_references/           # Python package (pip install -e .)
     tables.py                  # 13 table lookup functions (bond stress, pipe/rebar, elastic modulus)
     figures.py                 # 1 figure lookup function (limiting lateral modulus)
     text/                      # Structured chapter JSON (10 chapters, 70 sections, complete)
-  fema_p2192/                  # FEMA P-2192 Seismic Design Category (2024) — text extraction skipped (separate ASCE 7 effort)
-    tables.py                  # 10 functions (SDC, site class, Fa/Fv, risk category)
-  noaa_frost/                  # NOAA Frost Protected Shallow Foundations — being superseded by USACE TM 5-852-4 (pending)
-    equations.py               # 5 physics equations (Stefan, Berggren, latent heat)
-    tables.py                  # 4 soil thermal property lookups
   ufc_backfill/                # UFC 3-220-04N Backfill for Subsurface Structures — text extraction skipped (content covered by DM7)
     equations.py               # 3 equations (compaction pressure, filter criteria, RC check)
     tables.py                  # 5 tables (compaction, material, lift, equipment, drainage)
-  ufc_dewatering/              # UFC 3-220-05 Dewatering and Groundwater Control
-    equations.py               # 6 equations (Thiem, Dupuit, Sichardt, superposition)
-    tables.py                  # 3 tables (permeability, method selection, screen slot)
   ufc_expansive/               # UFC 3-220-07 Foundations in Expansive Soils
     equations.py               # 5 equations (activity, free swell, swell pressure, heave, pier)
     tables.py                  # 4 tables (swell potential, active zone, foundation, void space)
@@ -99,13 +91,10 @@ agents/
   gec12_agent.py               # GEC-12 Foundry-style 3-function wrapper
   gec13_agent.py               # GEC-13 Foundry-style 3-function wrapper
   micropile_agent.py           # Micropile Foundry-style 3-function wrapper
-  fema_p2192_agent.py          # FEMA P-2192 Foundry-style 3-function wrapper
-  noaa_frost_agent.py          # NOAA Frost Foundry-style 3-function wrapper
   ufc_backfill_agent.py        # UFC 3-220-04N Foundry-style 3-function wrapper
-  ufc_dewatering_agent.py      # UFC 3-220-05 Foundry-style 3-function wrapper
   ufc_expansive_agent.py       # UFC 3-220-07 Foundry-style 3-function wrapper
-  ufc_pavement_agent.py        # UFC 3-250-01 Foundry-style 3-function wrapper (agent references UFC 3-260-02 — update when equations.py/tables.py are audited)
-tests/                         # 3,529 tests (pytest)
+  ufc_pavement_agent.py        # UFC 3-250-01 Foundry-style 3-function wrapper
+tests/                         # 6,256 tests collected (`pytest --collect-only -q`, 2026-10-21)
 docs/                          # Source PDFs (UFC/GEC/micropile/pavement) — used by build_figure_catalog.py and figure read-off
 references/                    # (legacy) source PDFs (git-ignored)
 ```
@@ -120,25 +109,25 @@ references/                    # (legacy) source PDFs (git-ignored)
 - **Shared helpers**: `_linterp` in `_interpolation.py` (was duplicated in 5 chapters)
 - **Plot functions**: `plot_figure_*()` with `(ax=None, show=True, **kwargs)` signature
 
-## DM7 Inventory (382 functions, 2,008 tests)
+## DM7 Inventory (393 functions, 2,014 tests; counted 2026-10-21 with `inspect` and `pytest --collect-only -q`)
 
 | Module | Chapter | Topic | Functions | Tests |
 |--------|---------|-------|-----------|-------|
-| dm7_1 | 1 | Identification & Classification | 24 | 174 |
-| dm7_1 | 2 | Field Exploration & Testing | 20 | 97 |
-| dm7_1 | 3 | Laboratory Testing | 18 | 109 |
-| dm7_1 | 4 | Distribution of Stresses | 17 | 90 |
-| dm7_1 | 5 | Consolidation & Settlement | 42 | 232 |
-| dm7_1 | 6 | Seepage & Drainage | 19 | 82 |
-| dm7_1 | 7 | Slope Stability | 10 | 44 |
-| dm7_1 | 8 | Correlations for Soil Properties | 35 | 143 |
-| dm7_2 | Pro | Prologue — Index Properties | 12 | 111 |
-| dm7_2 | 2 | Earth Pressures | 26 | 147 |
-| dm7_2 | 3 | Shallow Foundations | 22 | 120 |
-| dm7_2 | 4 | Deep Foundations | 42 | 195 |
-| dm7_2 | 5 | Bearing Capacity (Deep) | 62 | 271 |
-| dm7_2 | 6 | Retaining Structures | 37 | 122 |
-| dm7_2 | 7 | Slope Stability (Earth Structures) | 16 | 71 |
+| dm7_1 | 1 | Identification & Classification | 7 | 47 |
+| dm7_1 | 2 | Field Exploration & Testing | 3 | 29 |
+| dm7_1 | 3 | Laboratory Testing | 6 | 47 |
+| dm7_1 | 4 | Distribution of Stresses | 23 | 134 |
+| dm7_1 | 5 | Consolidation & Settlement | 37 | 227 |
+| dm7_1 | 6 | Seepage & Drainage | 15 | 119 |
+| dm7_1 | 7 | Slope Stability | 6 | 61 |
+| dm7_1 | 8 | Correlations for Soil Properties | 50 | 228 |
+| dm7_2 | Pro | Prologue — Index Properties | 13 | 95 |
+| dm7_2 | 2 | Earth Pressures | 10 | 75 |
+| dm7_2 | 3 | Shallow Foundations | 11 | 105 |
+| dm7_2 | 4 | Deep Foundations | 35 | 212 |
+| dm7_2 | 5 | Bearing Capacity (Deep) | 69 | 245 |
+| dm7_2 | 6 | Retaining Structures | 83 | 247 |
+| dm7_2 | 7 | Slope Stability (Earth Structures) | 25 | 143 |
 
 ## GEC Module Inventory
 
@@ -152,12 +141,9 @@ references/                    # (legacy) source PDFs (git-ignored)
 | gec_13 | FHWA-NHI-16-027 Ground Modification | 18 | 168 | All 10 printed chapters (Vol I ch 1-5, Vol II ch 6-10); ch 3-10 rebuilt from the print 2026-10-19 (REF-25) |
 | micropile | FHWA-NHI-05-039 Micropile Design | 14 | 108 | 10 chapters (complete) |
 | fhwa_soils_foundations | FHWA NHI-06-088 / NHI-06-089 Soils and Foundations Reference Manual, Vols I-II (Dec 2006) | 0 | 12 | All 12 chapters (Vol I ch 1-7, Vol II ch 8-12; appendices A-E not built), 511 sections, 295 figures, 200 tagged equation numbers (formulas not typed in: app BACKLOG REF-38); read off the print by `scripts/build_printed_text.py` (REF-29): bodies are the print's own wording with page markers, no summaries or key points; 4 sections over 14,000 characters split into lettered parts (`9.2.a`), the letters not printed; Tables 4-8 and 10-1, printed as pictures, typed in from the page (manifest key `printed_tables`) |
-| fema_p2192 | FEMA P-2192 SDC Determination (2024) | 10 | 132 | - |
-| noaa_frost | NOAA Frost Protected Shallow Foundations | 9 | 86 | - |
 | ufc_backfill | UFC 3-220-04N Backfill | 8 | 87 | - |
-| ufc_dewatering | UFC 3-220-05 Dewatering | 9 | 75 | - |
 | ufc_expansive | UFC 3-220-07 Expansive Soils | 9 | 55 | - |
-| ufc_pavement | UFC 3-250-01 Roads/Streets/Walks/Storage (**NOTE: equations.py/tables.py still from UFC 3-260-02 airfield — pending audit**) | 9 | 54 | - |
+| ufc_pavement | UFC 3-250-01 Pavement Design for Roads, Streets, Walks, and Storage Areas (rebuilt 2026-07 from the real document; no longer the UFC 3-260-02 airfield coding, audit done) | 53 | - | 21 chapters |
 | eurocode_7_1 | EN 1997-1:2004 Eurocode 7 Part 1 General Rules (Annex A partial factors, DA1-DA3, Annex C/D/E/F/G/H methods) | 31 | 134 | All 21 chapters (Sections 1-12 + Annexes A-J) |
 | eurocode_7_2 | EN 1997-2:2007 Eurocode 7 Part 2 Ground Investigation (CPT/PMT/SPT/DP/FVT/DMT/PLT correlations) | 43 | 133 | 9 chapters (body + all annexes) |
 | aashto_1993 | AASHTO 1993 Pavement Design Guide (flexible SN / rigid D equations, layer coefficients, reliability; FULL Appendix D LEF tables D.1-D.18 in lef.py — closed-form equations are in Volume 2 Appendix MM, NOT in this scan; Section 3.2 composite-k worksheet in composite_k.py, chart-read; Appendix G swell/frost-heave loss + Table 3.1 performance-period iteration in environmental.py; scanned source read visually; US units) | ~45 | 308+ | 11 chapters (Part I-II full, III/IV stubs) |
@@ -345,7 +331,7 @@ returns exactly what it always did; the app passes 14,000.
 
 ## Lexical Query Expansion (recall lever)
 
-> Status: on master since 2026-06; curated and measured on a gold set
+> Status: on master since 2026-06 and released in refs 1.3.0 (2026-07-05); curated and measured on a gold set
 > 2026-10-20 (REF-03/REF-07, below). Default is ON (`auto`).
 
 Both FTS5 retrieval layers (`reference_search` for text, `figure_search` for
@@ -418,16 +404,16 @@ the GeotechStaffEngineer HANDOFF P6); image embeddings remain rejected.
 
 ## Agent Pattern
 
-All 14 agents follow the 3-function Foundry pattern:
+The per-reference agents follow the 3-function Foundry pattern:
 
 ```python
-# Pattern (replace {name} with dm7, gec6, gec7, gec10, gec11, gec12, gec13, micropile, fema_p2192, noaa_frost, ufc_backfill, ufc_dewatering, ufc_expansive, ufc_pavement)
+# Pattern (replace {name} with dm7, gec6, gec7, gec10, gec11, gec12, gec13, micropile, ufc_backfill, ufc_expansive, ufc_pavement, and so on for the other files in agents/)
 {name}_agent(method: str, params_json: str) -> str
 {name}_list_methods(category: str = "") -> str
 {name}_describe_method(method: str) -> str
 ```
 
-DM7 agent auto-discovers 340+ functions via `inspect.getmembers()`. GEC/micropile agents wrap text retrieval + figure/table lookup functions. FEMA/NOAA/UFC agents wrap table/equation lookup functions (no text retrieval).
+DM7 agent auto-discovers 340+ functions via `inspect.getmembers()`. GEC/micropile agents wrap text retrieval + figure/table lookup functions. UFC agents wrap table/equation lookup functions (no text retrieval).
 
 ## Weekend QC Agent (scheduled remote routine)
 
@@ -475,4 +461,4 @@ Each gap entry has `type` (figure/table), `id` (e.g., "Figure 2-4"), `section`, 
 
 - Python 3.10+ (developed on 3.14.3)
 - No required dependencies (numpy/scipy/matplotlib are optional, used by some functions)
-- Tests: `pytest tests/ -q` (expect 3,529 passed)
+- Tests: `pytest tests/ -q` (6,256 tests collected on 2026-10-21 by `pytest --collect-only -q`)

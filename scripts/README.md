@@ -6,6 +6,10 @@ validation work.
 
 ## Overview
 
+> `build_chapter_text.py` is retired: chapter JSON is now written by hand
+> from the printed pages (see the repo's `CLAUDE.md`). `build_printed_text.py`,
+> `build_figure_catalog.py` and `check_section_numbers.py` are the live tools.
+
 The **chapter text extraction pipeline** converts source PDF documents into
 structured JSON files matching the schema used by `geotech_references._retrieval_db`.
 Once a reference has its `text/chapterNN.json` files in place, the existing
@@ -107,29 +111,27 @@ should be ~$0.008/page.
 
 ---
 
-## Reference text coverage status (2026-05-02)
+## Reference text coverage status (2026-10-21)
 
 | Reference | Sections | Summary fields | Status |
 |---|---|---|---|
-| `dm7_1` | 457 | ✅ all | Complete — 8 chapters, 307/307 equations |
-| `dm7_2` | 438 | ✅ all | Complete — prologue + 6 chapters, 307/307 equations |
-| `micropile` | 70 | ✅ all | Complete — all 10 chapters manually annotated |
-| `gec_6` | 127 | ❌ none | Body-only (10 ch); manifest ready for full-schema re-extraction |
-| `gec_7` | 37 | ❌ none | Body-only (ch 1-5 only); manifest ready for ch 6-10 + schema upgrade |
-| `gec_10` | 45 | ❌ none | Body-only (5 of 22 ch); manifest ready for full extraction |
-| `gec_11` | 0 | n/a | Empty; manifest ready (7 chapters) |
-| `gec_12` | 109 | ❌ none | Body-only (Vol I ch 1-8); Vol II manifest ready for ch 9-18 |
-| `gec_13` | 50 | ❌ none | Body-only (5 ch); manifest ready for full-schema re-extraction |
-| `fema_p2192` | — | n/a | Skipped — separate ASCE 7 effort |
-| `noaa_frost` | — | n/a | Being superseded by USACE TM 5-852-4 (pending) |
-| `ufc_backfill` | — | n/a | Skipped — content covered by DM7 |
-| `ufc_dewatering` | — | n/a | PDF available; manifest pending |
-| `ufc_expansive` | — | n/a | PDF available; manifest pending |
-| `ufc_pavement` | — | n/a | Switching to UFC 3-250-01 (roads/streets); PDF available, manifest pending. **Existing equations.py/tables.py coded from UFC 3-260-02 airfield — needs audit** |
+| `dm7_1` | 457 | all | Complete: 8 chapters |
+| `dm7_2` | 438 | all | Complete: prologue + 6 chapters |
+| `micropile` | 69 | all | Complete: 10 chapters |
+| `gec_6` | 127 | none | Body-only, 10 chapters |
+| `gec_7` | 37 | none | Body-only, chapters 1-5 |
+| `gec_10` | 124 | none | 2018 edition (FHWA-NHI-18-024), all 18 chapters |
+| `gec_11` | 183 | none | Vols I and II, 11 chapters |
+| `gec_12` | 187 | none | Body-only, chapters 1-8 |
+| `gec_13` | 773 | 747 of 773 | 10 chapters, rebuilt from the print |
+| `ufc_pavement` | 317 | all | UFC 3-250-01 (2016) rebuilt from the real document; 21 chapters |
+| `ufc_backfill`, `ufc_expansive` | - | n/a | No chapter text |
 
-**Pipeline next steps:** run GEC extractions in Foundry with GPT (validate
-pipeline first on one GEC chapter), then add manifests for UFC dewatering,
-expansive, and pavement (UFC 3-250-01) once GEC validation is complete.
+Section and summary counts are from `geotech_references._retrieval_db.list_indexed_references()`
+(2026-10-21), which lists all 31 packages that have chapter text; the other
+packages (GEC-4, 5, 8, 9, 14, the UFC practice manuals, Eurocode 7, and so on)
+are listed there with their own counts. Deleted modules (`fema_p2192`,
+`noaa_frost`, `ufc_dewatering`) are no longer in the library.
 
 ---
 

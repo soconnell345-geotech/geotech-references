@@ -6,15 +6,15 @@ dm7_1 : UFS 3-220-10 (DM 7.1), 16 January 2026 — Soil Mechanics
 dm7_2 : UFC 3-220-20 (DM 7.2), 16 January 2025 — Foundations & Earth Structures
 gec_6 : FHWA-SA-02-054 — Shallow Foundations
 gec_7 : FHWA-NHI-14-007 — Soil Nail Walls
-gec_10 : FHWA-NHI-10-016 — Drilled Shafts
+gec_10 : FHWA-NHI-18-024 — Drilled Shafts (2018 edition)
 gec_11 : FHWA-NHI-10-024 — MSE Walls & Slopes
 gec_12 : FHWA-NHI-16-009 — Driven Pile Foundations
 gec_13 : FHWA-NHI-16-027 — Ground Modification Methods
 micropile : FHWA-NHI-05-039 — Micropile Design & Construction
 ufc_backfill : UFC 3-220-04N — Backfill for Subsurface Structures
 ufc_expansive : UFC 3-220-07 — Foundations in Expansive Soils
-ufc_pavement : UFC 3-250-01 (2016) — Pavement Design for Roads and Parking
-             Areas (REBUILT 2026-07 from the actual document: mixed-traffic
+ufc_pavement : UFC 3-250-01 (2016) — Pavement Design for Roads, Streets,
+             Walks, and Storage Areas (REBUILT 2026-07 from the actual document: mixed-traffic
              equivalent ESALs, CBR flexible design curve E-1, rigid Eq 13-1
              + reinforced design, overlays Ch 15, joints/dowels, frost Ch 19,
              subsurface drainage Ch 20; US customary)
