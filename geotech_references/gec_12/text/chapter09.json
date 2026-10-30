@@ -1,0 +1,224 @@
+{
+  "reference_id": "FHWA-NHI-16-009",
+  "reference_title": "Design and Construction of Driven Pile Foundations",
+  "chapter": 9,
+  "chapter_title": "Static Load Testing",
+  "sections": [
+    {
+      "section_id": "9.1",
+      "title": "General",
+      "summary": "Static load testing is the most accurate method for determining driven pile load capacity. Tests may be performed during the design stage (to establish design parameters) or construction stage (to verify nominal resistance). Program goals must be clearly established before selecting test type and frequency. AASHTO resistance factors for static load tests are in Table 9-1; factors of 0.75 to 0.80 apply when one test per site condition is performed, versus 0.40 for dynamic formulas.",
+      "body": "Static load testing of piles is the most accurate method of determining load capacity. Depending upon the size of the project and other project variables, static load tests may be performed either during the design stage or construction stage. Conventional load test types include the axial compression, axial tension, and lateral load test.\n\nReasons to perform static load tests include: (1) providing design verification or design refinement information on nominal resistance and load-transfer; (2) confirming the ability of the subsurface materials to provide the nominal geotechnical resistance; (3) determining or calibrating resistance factors for new static design methods; and (4) verifying the adequacy of specified installation criteria. A static load test program should be considered when the cost of construction verification testing is justified by expected savings from better foundation design.\n\nThe goal and objectives of a static load test program should be clearly established, while the type and frequency of tests should be selected to provide the required knowledge. A significantly different level of effort and instrumentation is required if the goal is simply to confirm nominal resistance versus obtaining detailed load-transfer information for design improvement.\n\nStatic load testing during design should be performed at a representative site location; during construction, it should confirm that piles achieve the required nominal resistance at the planned penetration depth. The number of load tests and their location should be selected based on site variability. The AASHTO resistance factor for nominal resistance by static load testing is based on performing one load test per site condition.",
+      "key_points": [
+        "Static load test is most accurate method for determining pile capacity",
+        "May be performed during design stage (parameter determination) or construction stage (resistance verification)",
+        "Program goals and instrumentation level must be established before selecting test type and frequency",
+        "Resistance factor phi = 0.75 to 0.80 with static load test vs. 0.40 for Modified Gates dynamic formula",
+        "Number and location of tests should reflect site variability; one test per site condition for AASHTO phi",
+        "Load transfer data from instrumented tests is extremely valuable for improving design efficiency"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        {
+          "table_id": "9-1",
+          "description": "Resistance Factors Based on Static Load Testing of Driven Piles (modified from AASHTO 2014) — by test condition and whether dynamic testing is also performed"
+        }
+      ],
+      "applicability": "Overview of static load test program development, objectives, and resistance factors for driven pile foundations per AASHTO LRFD."
+    },
+    {
+      "section_id": "9.2",
+      "title": "Axial Compression Load Test",
+      "summary": "Axial compression tests per ASTM D1143 are the most common pile load test type. The AASHTO-recommended quick load test procedure (2-4 hours) loads piles to 200% of design load in 5% increments with 2.5-minute holds. Nominal resistance (failure load) is defined using the Davisson offset criterion: for piles ≤ 24 in, sf = Delta + b/120 + 0.15 in; for piles > 36 in, sf = Delta + b/30. Elastic deformation Delta = QL/(AE). Load cells are the primary load measurement means; jack pressure as a backup only.",
+      "body": "Piles are most frequently tested in axial compression. The basic mechanism includes: (1) loading incrementally from the pile head using a predetermined loading sequence or at a continuous constant rate; (2) recording time, applied load, and pile head movement; (3) optional concurrent strain measurements along the shaft for load transfer details. Figure 9-1 illustrates the basic test setup.\n\nCompression Load Test Equipment (ASTM D1143): Compression loads are most often applied by hydraulically jacking against a beam anchored by piles or ground anchors, or by jacking against a weighted platform. The primary load measurement is with a calibrated load cell; jack pressure from a calibrated pressure gage may be used as backup only. Pile head movements are measured by dial gages or LVDTs referenced to an independent reference beam or wire. Care must be taken to protect reference beams from vibration and thermal changes.\n\nRecommended Loading Method: The quick load test procedure (ASTM D1143, AASHTO 2014 recommendation) is preferred because it can be performed in 2 to 4 hours, reducing costs and construction delays. The quick test applies load in increments of 5 percent of the anticipated failure load, with each increment held for 2.5 minutes; loading continues until continuous jacking is required to maintain the test load, or until 200 percent of the estimated design load is reached.\n\nPresentation and Interpretation (Section 9.2.4): Results are presented as a load-movement curve per ASTM D1143. The Davisson offset limit method (AASHTO 2014) is used to define the nominal geotechnical resistance (failure load Qf). For piles 24 inches or less in diameter, Qf corresponds to a pile head movement of: sf = Delta + b/120 + 0.15 (Eq. 9-2), where Delta is the elastic deformation (Eq. 9-1) and b is pile width or diameter. For piles > 36 inches, sf = Delta + b/30 (Eq. 9-3). For piles between 24 and 36 inches, linear interpolation is used. Methods based on maximum allowable gross movements are not recommended because they overestimate resistance for short piles and underestimate it for long piles.",
+      "key_points": [
+        "ASTM D1143; loads typically applied by hydraulic jack against anchored reaction beam or weighted platform",
+        "Load measurement: calibrated load cell required; jack pressure is backup only",
+        "AASHTO quick test: 5% increments, 2.5-min hold, to 200% design load or continuous jacking required",
+        "Eq 9-1: Delta = QL/(AE) — elastic deformation of pile (inches)",
+        "Eq 9-2: sf = Delta + b/120 + 0.15 in (Davisson criterion, piles <= 24 in diameter)",
+        "Eq 9-3: sf = Delta + b/30 (Davisson criterion, piles > 36 in diameter); interpolate between 24-36 in",
+        "Gross movement methods not recommended — overestimate Rs for short piles, underestimate for long piles"
+      ],
+      "equations": [
+        {
+          "equation_id": "9-1",
+          "description": "Elastic deformation of pile — used in Davisson offset criterion",
+          "latex": "\\Delta = \\frac{Q L}{A E}",
+          "variables": {
+            "Delta": "elastic deformation of pile (inches)",
+            "Q": "test load (kips)",
+            "L": "pile length below dial gage or LVDT measurement location (inches)",
+            "A": "pile cross-sectional area (in^2)",
+            "E": "elastic modulus of pile material (ksi)"
+          },
+          "notes": "Used to compute the elastic component of the Davisson offset limit",
+          "implemented_in": null
+        },
+        {
+          "equation_id": "9-2",
+          "description": "Davisson offset criterion for nominal geotechnical resistance — piles 24 inches or less in diameter",
+          "latex": "s_f = \\Delta + \\frac{b}{120} + 0.15",
+          "variables": {
+            "s_f": "measured pile head movement at nominal resistance (inches)",
+            "Delta": "elastic deformation of pile per Eq. 9-1 (inches)",
+            "b": "pile width or diameter (inches)"
+          },
+          "notes": "b/120 term is the Davisson offset for piles <= 24 in; b is the nominal pile dimension used in design",
+          "implemented_in": null
+        },
+        {
+          "equation_id": "9-3",
+          "description": "Davisson offset criterion for nominal geotechnical resistance — piles greater than 36 inches in diameter",
+          "latex": "s_f = \\Delta + \\frac{b}{30}",
+          "variables": {
+            "s_f": "measured pile head movement at nominal resistance (inches)",
+            "Delta": "elastic deformation of pile per Eq. 9-1 (inches)",
+            "b": "pile width or diameter (inches)"
+          },
+          "notes": "Larger offset required for larger piles to mobilize toe resistance; interpolate for 24-36 in piles",
+          "implemented_in": null
+        }
+      ],
+      "figures": [],
+      "tables": [
+        {
+          "table_id": "9-2",
+          "description": "Standard Loading Schedule for Axial Compression Load Tests — load increments as percent of design load with hold times"
+        }
+      ],
+      "applicability": "Axial compression static load test procedures, equipment, loading method, and interpretation of driven pile nominal resistance using the Davisson offset criterion."
+    },
+    {
+      "section_id": "9.3",
+      "title": "Tension Load Test",
+      "summary": "Tension (uplift) load tests per ASTM D3689 determine axial tension resistance of piles, which is critical for pile groups subject to large uplift from cofferdam seals, cantilever bridge construction, seismic, or vessel impact loads. Tension loads are typically applied by centering a hydraulic jack on reaction beams. Tension test results represent a lower-bound on nominal resistance since no toe resistance is mobilized. The quick load test procedure is recommended; resistance factors are in Table 9-1.",
+      "body": "Tension load tests are performed to determine axial tension (uplift) resistance of piles. The uplift resistance is often a significant factor in determining minimum pile penetration requirements for pile groups subject to large uplift loading demand including cofferdam seals that create large buoyancy forces, cantilever segmental bridge construction, as well as seismic, vessel impact, or debris loading. The basic mechanics of a tension test are similar to compression testing, with the applied load direction reversed.\n\nTension Load Test Equipment (ASTM D3689): Tension loads are most often applied by centering a hydraulic jack on reaction beams supported by reaction piles or by mats and cribbing supported by the ground. The jack can be a center-hole jack allowing a rod or prestressing strand threaded through the jack to make connection to the pile head. Care must be taken to avoid eccentric loading. LVDTs or dial gages referenced to an independent beam measure pile head movement.\n\nTension Test Loading Methods: Slow maintained load (SML) tests are most commonly used. The quick load test procedure may also be used. Interpretation of tension test results is similar to compression test interpretation; a load-movement curve is constructed per ASTM D3689. Tension test results represent a lower bound on pile resistance because no toe resistance is mobilized and pile-soil behavior differs under upward loading versus downward loading. Resistance factors for uplift from static load tests are lower than for compression (see Table 9-1).",
+      "key_points": [
+        "ASTM D3689; determines uplift resistance critical for cofferdam seals, seismic, vessel impact loading",
+        "Tension loads applied via hydraulic jack on reaction beams bearing on reaction piles or ground",
+        "Center-hole jack connected to pile head via rod or prestressing strand — avoid eccentric loading",
+        "Tension results are lower bound: no toe resistance mobilized; soil-pile behavior differs from compression",
+        "Resistance factors for uplift from static tests are lower than for compression — see Table 9-1",
+        "Quick load test procedure recommended; SML also used"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Static tension load test procedures and equipment for determining driven pile uplift resistance per ASTM D3689."
+    },
+    {
+      "section_id": "9.4",
+      "title": "Lateral Load Test",
+      "summary": "Lateral load tests per ASTM D3966 determine pile response to lateral loading, increasingly important for seismic, vessel impact, noise walls, and large overhead signs. Most lateral tests are performed on single piles with a free head condition; however, service conditions are typically pile groups with fixed heads, so results must be interpreted with appropriate head condition corrections. Deflected shape versus depth from instrumented tests provides valuable input to p-y curve calibration.",
+      "body": "Lateral load tests are performed on projects where piles are subjected to significant lateral loads. The importance of determining pile response to lateral loading has greatly increased with regard to extreme event limit states such as seismic and vessel impact. Lateral load testing has also increased due to greater use of noise walls and large overhead signs. Most lateral load tests are performed on a single pile with a free head condition. In service, most piles are installed in groups with a fixed head condition, so lateral test results must be interpreted and adjusted for the head condition.\n\nLateral Load Test Equipment (ASTM D3966): Lateral loads are most often applied by a hydraulic jack acting against a reaction system (reaction piles, deadman, or weighted platform), or by a hydraulic jack acting between two piles. When jacking between two piles, pulling the piles toward one another is the preferred arrangement as the system forms a two-force member with no net reaction on surrounding soil. LVDTs or dial gages measure lateral pile head displacement; a clinometer or inclinometer may be used to measure rotation.\n\nFor instrumented lateral load tests, strain gages along the pile length allow derivation of the deflected shape, moment distribution, and p-y response versus depth. This information is extremely valuable for calibrating p-y curve models (Chapter 5) for local soil conditions and pile types. The deflection profile is obtained by double-integrating the strain-derived moment distribution; shear and soil resistance profiles are then obtained by additional differentiation.\n\nLateral Test Loading Methods: Several loading methods are detailed in ASTM D3966. The quick test method is most commonly used to minimize soil creep effects during the test. Lateral resistance is governed by deformation criteria in the service limit state rather than by a strength limit state; therefore, no resistance factor is provided for lateral load testing.",
+      "key_points": [
+        "ASTM D3966; driven by seismic, vessel impact, noise walls, overhead sign loads",
+        "Most tests on single pile with free head; service is typically fixed-head groups — apply corrections",
+        "Jack between two piles (pulling together) preferred to avoid net soil reaction on surrounding ground",
+        "Strain gages along shaft yield deflected shape, moment, and p-y response for model calibration",
+        "Lateral resistance governed by service-limit-state deformation criteria — no LRFD strength resistance factor",
+        "Quick test method preferred to minimize creep effects"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Static lateral load test procedures and instrumentation for determining driven pile lateral response, head condition considerations, and p-y curve calibration."
+    },
+    {
+      "section_id": "9.5",
+      "title": "Load Transfer Evaluations",
+      "summary": "Instrumented static load tests can determine unit shaft and toe resistance distributions along the pile. Telltale rods (extensometers) measure relative pile deformation between fixed points; average load between two telltales is Qavg = AE(R1-R2)/L (Eq. 9-4). Toe resistance Rp is estimated from Qavg and applied head load Q using Eq. 9-5 (uniform shaft resistance) or Eq. 9-6 (triangular distribution). Residual loads from driving can significantly affect load transfer interpretations if unaccounted for — residual loads cause apparent negative shaft resistance in the upper portion of the pile.",
+      "body": "The magnitude of shaft and toe resistances or the unit shaft resistance values can be determined through instrumented static load tests. Load transfer evaluation along the pile shaft is determined through the use of telltale rods (extensometers) or through surface-mounted or embedded strain gages.\n\nUse of Telltales (Section 9.5.1): Telltales are thin steel rods that extend from the pile head to a selected point in the pile, encased within a slightly larger tube. LVDTs or dial gages measure the relative movement between the rod attachment point on the pile and the pile head. The average load in the pile between two measuring points (Kyfor et al. 1992): Qavg = AE(R1-R2)/L (Eq. 9-4), where R1 and R2 are deflection readings at the upper and lower measurement locations, and L is the length between measuring points. The estimated toe resistance from an applied test load Q: for uniform shaft resistance, Rp = 2Qavg - Q (Eq. 9-5); for triangular (linearly increasing) resistance, Eq. 9-6 applies. The estimated shaft resistance is the applied head load minus the toe resistance.\n\nUse of Strain Gages (Section 9.5.2): When detailed load transfer data is desired, strain gages are required because telltale measurements alone are insufficient due to unaccounted residual loads. Vibrating wire weldable strain gages on steel piles and sister bars in concrete piles are recommended. Multiple gages along the pile length allow determination of the complete load transfer distribution.\n\nResidual Load (Section 9.5.3): During driving, residual loads can be locked into a pile that does not completely rebound after hammer blows. This is especially common for flexible piles with large shaft resistances and large toe quakes. Residual loads cause apparent negative shaft resistance in the upper portion of an instrumented test pile, leading to underestimation of actual toe resistance. When residual loads are suspected, specialized analysis techniques must be used to separate measured loads from residual loads.",
+      "key_points": [
+        "Telltales measure relative deformation between pile sections; strain gages provide complete load distribution",
+        "Eq 9-4: Qavg = AE(R1-R2)/L — average pile load between two telltale points (Kyfor et al. 1992)",
+        "Eq 9-5: Rp = 2*Qavg - Q (toe resistance, uniform shaft resistance assumption)",
+        "Eq 9-6: Rp estimate for triangular (linearly increasing) shaft resistance distribution",
+        "Residual loads from driving cause apparent negative shaft resistance in upper pile and underestimate Rp",
+        "Vibrating wire weldable strain gages on steel piles; sister bars in concrete piles"
+      ],
+      "equations": [
+        {
+          "equation_id": "9-4",
+          "description": "Average pile load between two telltale measurement points",
+          "latex": "Q_{avg} = \\frac{A E (R_1 - R_2)}{L}",
+          "variables": {
+            "Q_avg": "average load in pile between two points (kips)",
+            "A": "pile cross-sectional area (in^2)",
+            "E": "elastic modulus of pile material (ksi)",
+            "R1": "deflection reading at upper measurement location (inches)",
+            "R2": "deflection reading at lower measurement location (inches)",
+            "L": "length of pile between measuring points under no-load condition (inches)"
+          },
+          "notes": "From Kyfor et al. (1992); basis for estimating toe resistance from telltale measurements",
+          "implemented_in": null
+        },
+        {
+          "equation_id": "9-5",
+          "description": "Estimated toe resistance from telltale measurements — uniform shaft resistance distribution",
+          "latex": "R_p = 2 Q_{avg} - Q",
+          "variables": {
+            "R_p": "nominal toe resistance (kips)",
+            "Q_avg": "average pile load between measuring points per Eq. 9-4 (kips)",
+            "Q": "test load applied at pile head (kips)"
+          },
+          "notes": "Assumes uniform unit shaft resistance along pile; applied Q and Rp are the only two forces",
+          "implemented_in": null
+        },
+        {
+          "equation_id": "9-6",
+          "description": "Estimated toe resistance from telltale measurements — triangular (linearly increasing) shaft resistance distribution",
+          "latex": "R_p = 3 Q_{avg} - 2Q",
+          "variables": {
+            "R_p": "nominal toe resistance (kips)",
+            "Q_avg": "average pile load between measuring points per Eq. 9-4 (kips)",
+            "Q": "test load applied at pile head (kips)"
+          },
+          "notes": "Assumes shaft resistance increases linearly from 0 at pile head to maximum at pile toe",
+          "implemented_in": null
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Instrumentation and interpretation of load transfer distributions in driven pile static load tests using telltale rods and strain gages."
+    },
+    {
+      "section_id": "9.6",
+      "title": "Practical Issues and Considerations",
+      "summary": "Static load tests are the most reliable but also most expensive method for pile resistance determination. Cost alone should not preclude testing — load transfer data provides enormous value in design refinement. Delays are minimized by deciding early in design whether to perform tests. Construction stage tests require clear specification of number, locations, wait time before testing (for setup), and reaction system details. Failure to specify lead time requirements and reaction pile locations is a common source of construction delays.",
+      "body": "Static load tests are the most reliable and most expensive method for determination of nominal geotechnical resistance or lateral deformation. Static load tests are sometimes avoided because of cost concerns or potential time delays in design or construction. While the economic benefits of performing a static load test should be carefully considered, cost alone should not be the deciding factor. Load transfer information from axial tests or deflected shape versus depth behavior in lateral load tests is extremely valuable when evaluated by knowledgeable instrumentation specialists.\n\nDelays to a project in the design or construction stage usually occur when the decision to perform static load tests is added late in the project. During a design-stage program, delays can be minimized by determining early in the project whether a static load test program should be performed. In the construction stage, delays can be minimized by clearly specifying: (i) the number and locations of static load tests; (ii) the time necessary for reaction system installation; (iii) the time required for pile set-up before testing; and (iv) the test method and acceptance criteria.\n\nStatic load test program development and oversight should be performed by an experienced foundation engineer. Additional concerns include ensuring that reaction systems do not interfere with production piles, that the load cell and instrumentation are calibrated, that weather protection is provided for sensitive equipment, and that reference beams are isolated from vibration and temperature changes during the test.",
+      "key_points": [
+        "Cost alone should not preclude static load testing — load transfer value often exceeds test cost",
+        "Delays minimized by deciding early in design whether load tests are needed",
+        "Construction-stage tests: specify number, locations, reaction system, setup time, acceptance criteria in advance",
+        "Common delay cause: failure to specify lead time and reaction pile locations in contract documents",
+        "Experienced foundation engineer required for program development and oversight",
+        "Reference beams must be isolated from vibration and temperature changes during test"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Practical guidance for planning and executing static load test programs, including cost-benefit considerations and sources of delay in design and construction stages."
+    },
+    {
+      "section_id": "9.7",
+      "title": "Advantages, Disadvantages, and Limitations",
+      "summary": "Advantages: most reliable method; allows rational design; higher resistance factors (0.75-0.80); may reduce pile lengths or increase factored load. Disadvantages: high cost; time required for setup and testing; minimal information on driving stresses or pile damage. Limitations: cannot account for long-term settlement, downdrag, or pile group action. Static test results can be misleading on sites with highly variable soil conditions; one test per site condition may be insufficient on variable sites.",
+      "body": "Advantages of performing static load tests:\n1. A static load test allows a more rational design. Confirmation of geomaterial resistance through static load testing is considerably more reliable than resistance estimates from static analyses and dynamic formulas.\n2. An improved knowledge of pile-soil behavior is obtained that may allow a reduction in pile lengths or an increase in the factored pile load, either of which may result in potential savings in foundation costs.\n3. With the improved knowledge of pile-soil behavior, a higher resistance factor may be used on the determined nominal resistance. Resistance factors between 0.75 and 0.80 are recommended when static load tests are utilized, as compared to a resistance factor of 0.40 when using the Modified Gates dynamic formula.\n4. The nominal resistance determined from load testing allows confirmation that the factored load may be adequately supported at the planned pile penetration depth.\n\nDisadvantages: load test cost; time required for setup, performance, and result interpretation (especially for tests with load transfer data); minimal information on driving stress levels or on the extent of pile damage.\n\nLimitations: static load test results cannot be used to account for long-term settlement, downdrag from consolidating soils, or to adequately represent pile group action. Static load test results can also be misleading on projects with highly variable soil conditions — site variability should be carefully considered when relying on a single test pile result.",
+      "key_points": [
+        "Resistance factor phi = 0.75-0.80 with static test vs. 0.40 with Modified Gates formula — significant cost savings",
+        "Can allow reduction in pile lengths or increase in factored load — may offset test cost",
+        "Disadvantage: high cost; no information on driving stresses or pile damage",
+        "Cannot account for: long-term settlement, downdrag from consolidating soils, pile group action",
+        "Results can be misleading on highly variable sites — consider site variability before relying on one test",
+        "Results interpretation time is significant for tests with load transfer data"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Summary of the benefits, costs, and limitations of static load testing for driven pile foundations in LRFD design."
+    }
+  ]
+}
