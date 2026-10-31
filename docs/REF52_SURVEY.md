@@ -1337,6 +1337,38 @@ these two changed what a live run returned. The review fixed both
   Icc/3 for q' ≤ σ'p as printed (p. 127). `normally_consolidated=True`
   gives (q' - σ'p) × B^0,7 × Icc (p. 127) and refuses q' < σ'p.
 
+The adapter returns `eurocode_7_2.tables` too. REF-52 did not touch that
+file, but the review checked its lookups against the printed tables and
+fixed these, each of which changed a return:
+- Table D.2 (p. 114) prints very plastic clay and very plastic silt in
+  one cell beside both qc rows. The code gave the clay only qc < 2 MPa
+  and the silt only qc > 2 MPa, so the other half raised an error. Both
+  soils now take both rows.
+- Table E.4 (p. 123): marl (A and B: k = 1,8 bored, 2,6 full
+  displacement) was missing. Weathered rock prints no k; footnote a says
+  to take the closest soil category, and the code now says so when asked.
+- Table F.3 (p. 126): coarse sand at ID = 40 % read 41 (uniform) and 43
+  (well-graded); the print gives 38 and 41.
+- Table L.1 (p. 144): particle density (10 g) and consistency limits
+  (300 g) are printed across sand and gravelly soil too, not clay and
+  silt only; the gravelly water-content cell gives MMS for D = 2 mm to
+  10 mm.
+- Table L.2 (p. 145): the kg column was misaligned (16 mm gave 0,6 kg,
+  31,5 mm 15 kg, 37,5 mm 25 kg; the print gives 1,5, 10 and 15) and
+  omitted 22,4 mm (4 kg). Every printed row is now in the lookup, the
+  gram rows down to D ≤ 2 mm (100 g) included.
+- Table M.1 (p. 150): loss on ignition prints 3-5 (no comparable
+  experience) and 1-3 (with). The code returned 3 and 1; like the other
+  rows it now returns the upper ends, 5 and 3, and gives the printed
+  range beside them.
+- Table V.1 (p. 173): every minimum thickness is "15 mm and/or 10 times
+  max particle size", and test (3)'s minimum diameter is the same. The
+  code gave the thickness as 15 mm alone and test (3)'s diameter without
+  the 15 mm.
+- Table 2.1 (p. 25): CPT's R3 for rock type carries footnote e, "soft
+  rock only"; the code had "R3c". Page comments for Q.1, S.1 and W.1
+  now give pp. 165, 168 and 176.
+
 Fixed with them, though no live result changed:
 - The `equation_g3_stiffness_coefficient_from_dp` docstring gave the
   DPH range for sands as 3 ≤ N10H ≤ 30; G.3 prints ≤ 10 (p. 130). The

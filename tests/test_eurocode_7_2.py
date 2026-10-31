@@ -170,6 +170,14 @@ class TestTableD2:
         with pytest.raises(ValueError):
             table_d2_alpha_oedometer("sand", 7.0)
 
+    def test_very_plastic_clay_and_silt_share_both_rows(self):
+        # One printed cell holds both soils beside both qc rows (p.114).
+        for soil in ("very_plastic_clay", "very_plastic_silt"):
+            low = table_d2_alpha_oedometer(soil, 1.0)
+            assert (low["alpha_min"], low["alpha_max"]) == (2, 6)
+            high = table_d2_alpha_oedometer(soil, 3.0)
+            assert (high["alpha_min"], high["alpha_max"]) == (1, 2)
+
     def test_invalid_soil_type(self):
         with pytest.raises(ValueError):
             table_d2_alpha_oedometer("granite", 1.0)
@@ -308,6 +316,16 @@ class TestTableE2E3E4:
         r = table_e4_pmt_pile_compression_factor("sand_and_gravel", "a", "displacement")
         assert r["k"] == 4.2
 
+    def test_pile_compression_factor_marl(self):
+        r = table_e4_pmt_pile_compression_factor("marl", "b", "bored")
+        assert r["k"] == 1.8
+        r = table_e4_pmt_pile_compression_factor("marl", "a", "displacement")
+        assert r["k"] == 2.6
+
+    def test_pile_compression_factor_weathered_rock_refused(self):
+        with pytest.raises(ValueError, match="closest soil category"):
+            table_e4_pmt_pile_compression_factor("weathered_rock", "a", "bored")
+
 
 # ============================================================================
 # Table F.1 / F.2 / F.3: SPT correlations
@@ -347,6 +365,10 @@ class TestTableF1F2F3:
     def test_phi_from_id_interpolated(self):
         r = table_f3_phi_from_density_index(50, "fine", "uniform")
         assert 34 < r["phi_deg"] < 36
+
+    def test_phi_from_id_coarse_at_40(self):
+        assert table_f3_phi_from_density_index(40, "coarse", "uniform")["phi_deg"] == pytest.approx(38)
+        assert table_f3_phi_from_density_index(40, "coarse", "well_graded")["phi_deg"] == pytest.approx(41)
 
 
 # ============================================================================
@@ -411,9 +433,21 @@ class TestTableL1L2:
         r = table_l2_min_mass_sieving(75)
         assert r["mms_kg"] == pytest.approx(120)
 
+    def test_min_mass_sieving_printed_rows(self):
+        printed = {1.0: 0.1, 2: 0.1, 2.8: 0.15, 5.6: 0.25, 11.2: 0.6, 16: 1.5,
+                   22.4: 4, 31.5: 10, 37.5: 15, 45: 25, 63: 70}
+        for d, kg in printed.items():
+            assert table_l2_min_mass_sieving(d)["mms_kg"] == pytest.approx(kg), d
+
+    def test_particle_density_and_limits_masses_span_all_soils(self):
+        assert table_l1_sample_mass("particle_density")["sand_g"] == 10
+        assert table_l1_sample_mass("consistency_limits")["sand_g"] == 300
+
     def test_min_mass_sieving_out_of_range(self):
         with pytest.raises(ValueError):
-            table_l2_min_mass_sieving(1.0)
+            table_l2_min_mass_sieving(0)
+        with pytest.raises(ValueError):
+            table_l2_min_mass_sieving(80)
 
 
 # ============================================================================
@@ -428,6 +462,14 @@ class TestMinTestCounts:
     def test_m1_particle_size_no_experience(self):
         r = table_m1_classification_test_count("particle_size_distribution", False)
         assert r["min_count"] == 6
+
+    def test_m1_loss_on_ignition(self):
+        r = table_m1_classification_test_count("loss_on_ignition", False)
+        assert r["min_count"] == 5
+        assert r["printed_range"] == "3-5"
+        r = table_m1_classification_test_count("loss_on_ignition", True)
+        assert r["min_count"] == 3
+        assert r["printed_range"] == "1-3"
 
     def test_m1_invalid_test(self):
         with pytest.raises(ValueError):
@@ -471,6 +513,7 @@ class TestTableV1:
         r = table_v1_swelling_test_specimens("swelling_pressure_zero_volume_change")
         assert r["min_specimens"] == 3
         assert r["min_thickness_mm"] == 15
+        assert "10x max particle size" in r["min_thickness"]
 
     def test_invalid(self):
         with pytest.raises(ValueError):

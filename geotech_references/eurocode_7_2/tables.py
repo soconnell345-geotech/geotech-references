@@ -35,7 +35,8 @@ _TABLE_2_1_ROWS = {
         "C2F1", "C3F3", "C3F3", "-", "-", "C2F2", "-", "-", "-",
     ],
     "type_of_rock": [
-        "-", "-", "-", "R1", "R1", "R2", "R3c", "R3", "R2", "-",
+        # CPT's R3 carries footnote e), "soft rock only" (p.25)
+        "-", "-", "-", "R1", "R1", "R2", "R3 (soft rock only)", "R3", "R2", "-",
         "-", "-", "-", "-", "-", "-", "-", "-", "-",
     ],
     "extension_of_layers": [
@@ -323,10 +324,14 @@ _TABLE_D2 = {
         (None, 2.0, 3, 6),
         (2.0, None, 1, 2),
     ],
+    # The print sets "Very plastic clay" and "Very plastic silt" in one cell
+    # beside both qc rows, so both rows apply to both soils (p.114).
     "very_plastic_clay": [
         (None, 2.0, 2, 6),
+        (2.0, None, 1, 2),
     ],
     "very_plastic_silt": [
+        (None, 2.0, 2, 6),
         (2.0, None, 1, 2),
     ],
     "very_organic_silt": [
@@ -778,6 +783,8 @@ _TABLE_E4 = {
     ("chalk", "a"): {"plm_range": "< 0.7 MPa", "k_bored": 1.1, "k_displacement": 1.6},
     ("chalk", "b"): {"plm_range": "1.0-2.5 MPa", "k_bored": 1.4, "k_displacement": 2.2},
     ("chalk", "c"): {"plm_range": "> 3.0 MPa", "k_bored": 1.8, "k_displacement": 2.6},
+    ("marl", "a"): {"plm_range": "1.5-4.0 MPa", "k_bored": 1.8, "k_displacement": 2.6},
+    ("marl", "b"): {"plm_range": "> 4.5 MPa", "k_bored": 1.8, "k_displacement": 2.6},
 }
 
 
@@ -790,9 +797,11 @@ def table_e4_pmt_pile_compression_factor(soil_category: str, plm_category: str,
     Parameters
     ----------
     soil_category : str
-        'clay_and_silt', 'sand_and_gravel', or 'chalk'.
+        'clay_and_silt', 'sand_and_gravel', 'chalk', or 'marl'.  The print
+        gives no k for weathered rock (footnote a: choose k for the closest
+        soil category), so 'weathered_rock' is refused with that advice.
     plm_category : str
-        'a', 'b', or 'c'.
+        'a', 'b', or 'c' ('a' or 'b' for marl).
     pile_type : str
         'bored' (bored piles and small displacement piles) or
         'displacement' (full displacement piles).
@@ -813,10 +822,15 @@ def table_e4_pmt_pile_compression_factor(soil_category: str, plm_category: str,
     if pt not in ("bored", "displacement"):
         raise ValueError(f"Unknown pile_type '{pile_type}'. Use bored or displacement")
     key = (sc, pc)
+    if sc == "weathered_rock":
+        raise ValueError(
+            "Table E.4 gives no k for weathered rock; its footnote a says to "
+            "choose k for the closest soil category (p.123)"
+        )
     if key not in _TABLE_E4:
         raise ValueError(
             f"Unknown (soil_category, plm_category) combination '{key}'. "
-            f"Valid soil_category: clay_and_silt, sand_and_gravel, chalk"
+            f"Valid soil_category: clay_and_silt, sand_and_gravel, chalk, marl"
         )
     row = _TABLE_E4[key]
     k = row["k_bored"] if pt == "bored" else row["k_displacement"]
@@ -929,8 +943,8 @@ _TABLE_F3 = {
     ("fine", "well_graded"): [36, 38, 41, 43],
     ("medium", "uniform"): [36, 38, 41, 43],
     ("medium", "well_graded"): [38, 41, 43, 44],
-    ("coarse", "uniform"): [41, 41, 43, 44],
-    ("coarse", "well_graded"): [43, 43, 44, 46],
+    ("coarse", "uniform"): [38, 41, 43, 44],
+    ("coarse", "well_graded"): [41, 43, 44, 46],
 }
 
 
@@ -1095,25 +1109,30 @@ def table_h1_phi_e_from_wst(density_category: str, soil_type: str = "sand") -> d
 
 # ============================================================================
 # Annex L / Table L.1 (partial): minimum mass of soil required for tests on
-# disturbed samples (printed p.143; selected rows -- water content, particle
-# density, consistency limits, density index)
+# disturbed samples (printed p.144; selected rows -- water content, particle
+# density, consistency limits, density index).  The particle density and
+# consistency limits specimen masses are printed across all three soil
+# columns.
 # ============================================================================
 
 _TABLE_L1 = {
     "water_content": {"initial_mass": "at least twice specimen mass",
                        "clay_silt_g": 30, "sand_g": 100,
-                       "gravelly_soil": "0.3 x MMS, min 500 g"},
+                       "gravelly_soil": "D = 2 mm to 10 mm: MMS; "
+                                        "D > 10 mm: 0.3 x MMS, min 500 g"},
     "particle_density": {"initial_mass": "100 g",
-                          "clay_silt_g": 10, "sand_g": None,
-                          "gravelly_soil": None,
+                          "clay_silt_g": 10, "sand_g": 10,
+                          "gravelly_soil": "10 g",
                           "note": "particle size < 4 mm"},
     "consistency_limits": {"initial_mass": "500 g",
-                            "clay_silt_g": 300, "sand_g": None,
-                            "gravelly_soil": None,
+                            "clay_silt_g": 300, "sand_g": 300,
+                            "gravelly_soil": "300 g",
                             "note": "particle size < 0.4 mm"},
     "density_index": {"initial_mass": "8 kg",
                        "clay_silt_g": None, "sand_g": None,
-                       "gravelly_soil": None},
+                       "gravelly_soil": None,
+                       "note": "specimen mass depends on soil behaviour "
+                               "during the test"},
 }
 
 
@@ -1151,12 +1170,10 @@ def table_l1_sample_mass(test: str) -> dict:
 # diameter (printed p.145)
 # ============================================================================
 
-_TABLE_L2_D_MM = [2, 4, 10, 16, 20, 31.5, 37.5, 45, 63, 75]
-_TABLE_L2_MMS_KG = [0.1, 0.2, 0.5, 0.6, 2, 15, 25, 25, 70, 120]
-# NOTE: below 2 mm the standard tabulates grams (100 g at D<=2mm, 150 g at
-# 2.8mm, 200 g at 4mm, 250 g at 5.6mm, 400 g at 8mm, 500 g at 10mm,
-# 600 g at 11.2mm) as a separate fine sub-table; this lookup covers the
-# coarser (kg) sub-table from D=2mm upward for the primary particle sizes.
+# Every printed row: kg from 16 mm up, grams from 11.2 mm down (here in kg);
+# the last row is D <= 2 mm, 100 g.
+_TABLE_L2_D_MM = [2, 2.8, 4, 5.6, 8, 10, 11.2, 16, 20, 22.4, 31.5, 37.5, 45, 63, 75]
+_TABLE_L2_MMS_KG = [0.1, 0.15, 0.2, 0.25, 0.4, 0.5, 0.6, 1.5, 2, 4, 10, 15, 25, 70, 120]
 
 
 def table_l2_min_mass_sieving(largest_particle_mm: float) -> dict:
@@ -1166,8 +1183,9 @@ def table_l2_min_mass_sieving(largest_particle_mm: float) -> dict:
     ----------
     largest_particle_mm : float
         Largest particle diameter present in significant proportion
-        (10% or more by dry mass), in mm.  Valid range 2-75 mm (the kg
-        sub-table; see note for the finer gram-scale sub-table).
+        (10% or more by dry mass), in mm.  Must be > 0 and at most 75 mm;
+        up to 2 mm the print gives 100 g, and between printed sizes the
+        mass is interpolated linearly.
 
     Returns
     -------
@@ -1178,11 +1196,11 @@ def table_l2_min_mass_sieving(largest_particle_mm: float) -> dict:
     Raises
     ------
     ValueError
-        If largest_particle_mm is outside 2-75 mm.
+        If largest_particle_mm is not above 0 or is above 75 mm.
     """
-    if largest_particle_mm < 2 or largest_particle_mm > 75:
+    if largest_particle_mm <= 0 or largest_particle_mm > 75:
         raise ValueError(
-            f"largest_particle_mm must be 2-75 (kg sub-table), got {largest_particle_mm}"
+            f"largest_particle_mm must be above 0 and at most 75, got {largest_particle_mm}"
         )
     mms = _linterp(largest_particle_mm, _TABLE_L2_D_MM, _TABLE_L2_MMS_KG)
     return {"largest_particle_mm": largest_particle_mm, "mms_kg": round(mms, 3)}
@@ -1196,10 +1214,16 @@ def table_l2_min_mass_sieving(largest_particle_mm: float) -> dict:
 # ============================================================================
 
 _TABLE_M1_CLASSIFICATION = {
-    # test: (count_no_experience, count_with_experience)
-    "particle_size_distribution": (6, 4),  # "4-6" / "2-4": using max of each range
+    # test: (count_no_experience, count_with_experience), the upper end of
+    # each printed range (p.150): "4-6" / "2-4", "3-5" / "1-3", "3-5" / "1-3"
+    "particle_size_distribution": (6, 4),
     "consistency_limits": (5, 3),
-    "loss_on_ignition": (3, 1),
+    "loss_on_ignition": (5, 3),
+}
+_TABLE_M1_PRINTED = {
+    "particle_size_distribution": ("4-6", "2-4"),
+    "consistency_limits": ("3-5", "1-3"),
+    "loss_on_ignition": ("3-5", "1-3"),
 }
 
 
@@ -1217,8 +1241,8 @@ def table_m1_classification_test_count(test: str, comparable_experience: bool) -
     Returns
     -------
     dict
-        Keys: test, comparable_experience, min_count_range (printed as
-        "lo-hi" upper/lower recommended count from the standard's range).
+        Keys: test, comparable_experience, min_count (the upper end of the
+        printed range), printed_range (the range as printed, e.g. "3-5").
 
     Raises
     ------
@@ -1233,10 +1257,12 @@ def table_m1_classification_test_count(test: str, comparable_experience: bool) -
         )
     hi, lo = _TABLE_M1_CLASSIFICATION[key]
     count = lo if comparable_experience else hi
+    no_exp, with_exp = _TABLE_M1_PRINTED[key]
     return {
         "test": key,
         "comparable_experience": comparable_experience,
         "min_count": count,
+        "printed_range": with_exp if comparable_experience else no_exp,
     }
 
 
@@ -1257,17 +1283,17 @@ _VARIABILITY_TEST_COUNTS = {
         "medium": {"none": 3, "medium": 2, "extensive": 2},  # 0.95 <= r < 0.98
         "high": {"none": 4, "medium": 3, "extensive": 2},  # r < 0.95
     },
-    "oedometer": {  # Table Q.1, printed p.166
+    "oedometer": {  # Table Q.1, printed p.165
         "low": {"none": 2, "medium": 2, "extensive": 1},  # range < ~20%
         "medium": {"none": 3, "medium": 2, "extensive": 2},  # ~20-50%
         "high": {"none": 4, "medium": 3, "extensive": 2},  # range > ~50%
     },
-    "permeability": {  # Table S.1, printed p.169
+    "permeability": {  # Table S.1, printed p.168
         "low": {"none": 3, "medium": 2, "extensive": 1},  # kmax/kmin <= 10
         "medium": {"none": 5, "medium": 3, "extensive": 2},  # 10 < ratio <= 100
         "high": {"none": 5, "medium": 4, "extensive": 3},  # ratio > 100
     },
-    "rock_uniaxial_compression": {  # Table W.1, printed p.177 (also used
+    "rock_uniaxial_compression": {  # Table W.1, printed p.176 (also used
         # for Brazil and triaxial tests on rock per Annex W)
         "low": {"none": 2, "medium": 1, "extensive": 0},  # s < 20
         "medium": {"none": 3, "medium": 2, "extensive": 1},  # 20 < s < 50
@@ -1347,17 +1373,22 @@ def table_min_test_count(test_family: str, variability: str,
 # (printed p.173)
 # ============================================================================
 
+# Every minimum thickness is printed "15 mm and/or 10 times max particle size".
+_V1_THICKNESS = "15 mm and/or 10x max particle size"
 _TABLE_V1 = {
     "swelling_pressure_zero_volume_change": {
-        "min_thickness_mm": 15, "min_diameter_ratio": "2.5x thickness",
+        "min_thickness_mm": 15, "min_thickness": _V1_THICKNESS,
+        "min_diameter_ratio": "2.5x thickness",
         "min_specimens": 3,
     },
     "swelling_strain_radially_confined_axial_surcharge": {
-        "min_thickness_mm": 15, "min_diameter_ratio": "4x thickness",
+        "min_thickness_mm": 15, "min_thickness": _V1_THICKNESS,
+        "min_diameter_ratio": "4x thickness",
         "min_specimens": "3 + duplicates for water content",
     },
     "swelling_strain_unconfined": {
-        "min_thickness_mm": 15, "min_diameter_ratio": "10x max particle size",
+        "min_thickness_mm": 15, "min_thickness": _V1_THICKNESS,
+        "min_diameter_ratio": "15 mm and/or 10x max particle size",
         "min_specimens": "3 + duplicates for water content",
     },
 }
@@ -1379,7 +1410,8 @@ def table_v1_swelling_test_specimens(test_type: str) -> dict:
     Returns
     -------
     dict
-        Keys: test_type, min_thickness_mm, min_diameter_ratio, min_specimens.
+        Keys: test_type, min_thickness_mm, min_thickness (as printed),
+        min_diameter_ratio, min_specimens.
 
     Raises
     ------
