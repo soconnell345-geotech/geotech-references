@@ -103,6 +103,11 @@ rendered from the PDF, tables and figures with printed pages.
 | GEC-7 ch 5 Resisting Mechanisms and Limit States | 97-142 | 7de8a5d | 36 | Bodies not from the page; Eqs 5.1-5.31 now read off the rendered pages. |
 | GEC-12 ch 7 top-level 7.1-7.10 | 211-398 | f71bb95 | 10 | Setup "2-5x", group settlement "1.5-3x", angular distortion "0.004-0.008", "minimum 10 ft into the bearing stratum", phi "0.25-0.50" and "0.65-0.80", Rndr "< Rn with setup", "flange width" for H-pile impedance; none printed in ch 7. Wrong objects: 7.1 held misnumbered Eq 7-1 to 7-5, Figures 7-1 to 7-3, Tables 7-1/7-2; 7.5, 7.6 and 7.7 cited Figures 7-66 to 7-71, which are p-y and wedge figures in 7.3.7. 7.6 now holds Eqs 7-85/7-86 and Table 7-32 as printed (Rn = 200/0.65 = 308 kips; Rndr = 308 + 50 + 100/0.65 = 512 kips). Eq 7-87 and Figure 7-81 moved to 7.10.3, Eqs 7-88 to 7-90 to 7.10.7. |
 | GEC-12 7.2.1.3.1-7.2.1.3.7 static methods in soil | 232-268 | b469bd9, dbb836c | 7 | Nordlund listed Figures 7-4 to 7-8 and Tables 7-3/7-4 (printed Figures 7-8 to 7-16, Tables 7-6/7-7); alpha Figures 7-9 to 7-11 (printed 7-17, 7-18) and Eqs 7-10/7-11 as total resistances (printed unit fs = Ca = alpha su, qp = Nc su); Eqs 7-6 to 7-33 shuffled (Eq 7-12 held the cohesionless shaft formula; printed fs = alpha su); resistance factors API 0.25, beta 0.25, Brown 0.30, Eslami-Fellenius 0.50 (Table 7-1: not in AASHTO). |
+| GEC-12 7.2 subsections: 7.2.1.3-7.2.1.5, 7.2.2, 7.2.4-7.2.6, 7.2.9, 7.2.10 | 227-307 | a48e88b | 18 | No 7.2.1.3 heading (7.2.1.3.4-7.2.1.3.7 held as one range); 7.2.1.4.1, 7.2.1.4.2 and 7.2.4.2.1 missing; 7.2.2.1 mistitled; 7.2.2 listed Figures 7-17 to 7-19 and Table 7-12 and 7.2.4 Figure 7-21 (alpha-method and CPT objects of 7.2.1.3); printed Eqs 7-34 to 7-37 and 7-42 to 7-47, Figures 7-22 to 7-31, 7-35, 7-36 and Tables 7-13 to 7-17 now in their sections. |
+| GEC-12 7.3 subsections | 309-375 | 4357c5e | 28 | Single-span angular distortion "0.008" (Table 7-18: 0.005); 7.3.2 described an S-0 load-settlement curve and the Davisson criterion (print: Duncan and Tan's S-0 differential settlement concept); Meyerhof SPT settlement "q sqrt(Bg)/(0.96 N60)" (print Eq 7-50: 4 pf If sqrt(B)/N1(60)); Janbu Eqs 7-60 to 7-69 not the printed ones; downdrag Eqs 7-70 to 7-72 not printed (print: 1.25 Qd + gamma_p DF < Pr, tsoil = Dil - Dnp, Sdd = tsoil gamma_p Delta_sigma/Es); lateral squeeze Eq 7-74 an FOS formula (print gamma_f hf > 3 su); 7.3.7 to 7.3.9 cited Figures 7-51 to 7-59 (downdrag figures); four printed headings missing. |
+| GEC-12 7.4 subsections | 376-388 | 809875a | 9 | Seismic Eqs 7-76 to 7-80 renumbered and branches added (print: Pe(x) = Csm W, the rising branch Eq 7-77, As, SDS, and Eq 7-80 the clean sand blow count); ice Eqs 7-81 to 7-83 not printed (print: the Extreme Event II combination and AASHTO's adhesion forces); vessel force "0.5 m v^2/a" (print Eq 7-84: 8.15 V sqrt(DWT)); Figures 7-60 to 7-65 cited (print 7-77 to 7-79); five printed headings missing. |
+| GEC-12 7.7 subsections | 392-395 | e8809f7 | 3 | Mostly as printed; "increase H-pile section size" (print: a heavier section without increasing the size). |
+| GEC-12 7.10 subsections | 398-410 | 0a96e1b | 8 | Mostly as printed; Figures 7-82 to 7-84 had paraphrased captions and no pages; Eqs 7-88 to 7-90 had no variable lists; the 7.10.5 title had an unprinted comma. |
 
 Figure catalogs: the text-enriched figure descriptions (titles, applicability
 and key points of the sections citing a figure) were refreshed for gec_7 and
@@ -123,29 +128,24 @@ because main's longer text came from the old sections that cited them:
   sections, whose text is shorter).
 - gec_12 7-1, 7-2, 7-3 (now cited only by 7.1.2.1-7.1.2.3, which hold a
   title and no key points) and 7-81 (7.10.3).
-- gec_12 7-66 to 7-71: empty. Main's 7.5-7.7 cited them wrongly; they are
-  printed in 7.3.7.2 (7-66 to 7-69) and 7.3.7.4 (7-70, 7-71), whose
-  figure lists are empty (the 7.3.7 figure lists need their own check
-  against the print).
+- gec_12 7-66 to 7-71 were empty after f71bb95 (main's 7.5-7.7 cited them
+  wrongly); the rebuilt 7.3.7.3 and 7.3.7.4 cite them again.
+
+All of ch 7's subsections are now from the page: every Eq 7-1 to 7-90,
+Figure 7-1 to 7-84 and Table 7-1 to 7-32 sits in the section that prints it.
 
 ## Found but not fixed
 
-GEC-12 ch 7 subsections (from `check_section_numbers.py gec_12`, unchecked):
+Nothing left from the ch 7 work. Fixed after 2a350c5:
 
-- 13 printed headings with no section: 7.2.1.3, 7.2.1.4.1, 7.2.1.4.2,
-  7.2.4.2.1, 7.3.1.1, 7.3.5.2.1, 7.3.5.2.2, 7.3.7.6.1, 7.4.2.1, 7.4.2.2,
-  7.4.3.1, 7.4.3.2, 7.4.3.3.
-- 7.2.1.3.4-7.2.1.3.7 held as one range; 7.3.7.3 is extra.
-- Titles: 7.2.2.1 (printed "Pile Groups in Cohesionless Soils"), 7.3.6.2
-  (printed "Methods for Reducing Downdrag and Drag Force"), 7.3.1 (printed
-  "Tolerable Vertical Deformations and Angular Distortion"), 7.4.1 (printed
-  "Extreme Event Scour During Check Flood").
-- 7.3.1 lists Table 7-18 as "Tolerable movement criteria for highway bridges
-  and structures"; printed "Tolerable Movement Criteria for Bridges".
-- 7.2.2 lists Figures 7-17 to 7-19 (block failure, Converse-Labarre) and
-  Table 7-12 (group resistance factors), and 7.2.4 Figure 7-21 (relaxation);
-  those numbers are the alpha-method and CPT figures and the CPT Cf table in
-  7.2.1.3. Their own figure and table lists need the check against the print.
+- `check_section_numbers.py` missed the printed "7.3.7.3 p-y Method"
+  (p. 356) because a title had to start with a capital; it now also takes a
+  lowercase curve name (5c92acd). Over all references this adds only GEC-12
+  7.3.7.3, DM7.2 6-6.4.2 "p-y Analyses" and GEC-5 8.10.2 "p-y Curves".
+- GEC-12 7.2.3 repeated its subsections' Eqs 7-38 to 7-41 and Figures 7-32
+  to 7-34, and Table 7-1 (printed in 7.1.5); removed (6f5f933).
+- GEC-12 ch 14 had no 14.2 heading; "14.2 Generic Driven Pile Specification"
+  (Vol II p. 284) now holds 14.2.1-14.2.8 (0916650).
 
 ## Chapters from the original build (8d48ece) or the same kind of build (unchecked)
 
@@ -231,18 +231,45 @@ reworked part of the chapter from the print, not that it was rebuilt whole.
 - GEC-12 7.2.1.3.7: under Eq 7-29 (p. 263) Ks comes "from Figure 7-20" (the
   clay curve); Step 2a and Eq 7-32 (p. 267) take it from Figure 7-19, the
   sand curves. 7.2.1.3.3's heading is printed "P2A Method".
+- GEC-12 7.2: 7.2.1.4.1 sends the soil methods to "Section 7.2.2" (they are
+  in 7.2.1.3); 7.2.2 sends group settlement to "Section 7.3.2" (it is
+  7.3.5); Eq 7-43's variable list prints "Rs" for the initial shaft
+  resistance; the contents number 7.2.3.2.2 and 7.2.3.2.3 one lower than
+  the page headings (page headings kept).
+- GEC-12 7.3: Eq 7-55 gives Delta_sigma'd in "inches" (a stress); 7.3.5.3
+  spreads the load at "30 degrees", Figure 7-44 draws 1H:2V; 7.3.5.3 Step 1a
+  puts the shaft resistance footing at 2/3 D for Figure 7-46 (b, c and d),
+  while Figure 7-46(c) and 7.3.5.5 put case (c) at 8/9 D; 7.3.5.6 calls the
+  Janbu strain equations "seven" then "these four"; Eq 7-62 (j = 0.5) prints
+  sqrt(sigma'p) where Eq 7-60 with j = 0.5 and sigma_r = 2 ksf gives
+  sqrt(sigma'1) (kept as printed, marked "as printed"); 7.3.7.3 ends a
+  sentence "illustrated in Figure" with no number (Figure 7-68); 7.3.7.4 has
+  a stray "Table"; 7.3.7.6 points to Table 7-22 for the lower Pm cases (they
+  are in Table 7-23); Figure 7-49 credits "Goudrealt", the text Goudreault.
+- GEC-12 7.4: Figure 7-77 labels SD1 = Fc S1, the text Fv S1; 7.4.3.2
+  applies the 600 kip force "at an angle of 0 to 15 feet from the edge of
+  pavement" and its heading is printed "Vehicle Collison".
 
 ## Gates
 
 - `python scripts/audit_chapter_text.py <ref>`: gec_6, gec_7, gec_12, gec_13
   all exit 0 (0 errors).
 - `python scripts/check_section_numbers.py gec_7 gec_12 gec_6`: exit 0; the
-  flags left are the earlier REF-30 ones (gec_12 3.0, 7.2.2.1, 7.3.6.2,
-  7.3.7.3; gec_6 chapter "x.0" introductions and 4.3.3).
+  flags left are gec_12 3.0 and gec_6 chapter "x.0" introductions and
+  4.3.3; 7.2.2.1, 7.3.6.2 and 7.3.7.3 are fixed.
+- The app's `test_citations.py` (from the app branch, this library on
+  PYTHONPATH): exit 0, 5 passed, after each ch 7 commit.
+- The retrieval eval's CPT question keeps its original search, "CPT pile
+  capacity effective cone resistance", as a strict xfail: the new short
+  7.3.5.2.2 (Meyerhof's CPT settlement of pile groups, not a capacity
+  method) ranks 3rd and pushes Eslami and Fellenius (7.2.1.3.6) to 6th (app
+  BACKLOG REF-48). A second case in the manual's wording, "pile resistance
+  from CPT effective cone tip resistance", reaches 7.2.1.3.6 and passes.
 - Targeted tests (GEC-6/7/12/13 text, figures and tables, retrieval,
   section numbers, subsections, result size, cover citations, figure
-  captions and ids, query expansion; 19 files): exit 0, 838 passed, 2
-  xfailed, on the final tree.
+  captions and ids, query expansion; 19 files): exit 0, 838 passed, 3
+  xfailed, on the final tree (the third xfail is the CPT question above;
+  the manual-wording case adds one test).
 - After the rebuild (f71bb95 and the catalog and notes commits): audits for
   gec_7 (10 chapters) and gec_12 (18 chapters) exit 0;
   `check_section_numbers.py gec_7 gec_12` exit 0, with gec_7 ch 1-5

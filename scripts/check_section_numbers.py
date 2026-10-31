@@ -119,7 +119,9 @@ UNIT_WORDS = {
 
 NUM_DOTTED = r"(?:\d{1,2}|[A-Z])(?:\.\d{1,3}){1,6}"
 NUM_UFC = r"(?:\d{1,2}|[A-Z])-\d{1,3}(?:\.\d{1,3}){0,5}"
-TITLE_START = r"[A-ZΑ-Ωα-ω\"'‘“(]"
+# A title starts with a capital, a quote or a bracket, or with a lowercase
+# curve name such as "p-y" or "t-z" (GEC-12 "7.3.7.3 p-y Method").
+TITLE_START = r"(?:[A-ZΑ-Ωα-ω\"'‘“(]|[a-z]-[a-z]\b)"
 LINE_END = re.compile(r"((\.\s?){3,}|\s)\s*[\dA-Z]{1,3}([.\-]\d{1,4})?\s*$")
 
 

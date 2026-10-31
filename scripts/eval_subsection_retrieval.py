@@ -62,7 +62,8 @@ K = 5
 APP_REFERENCE_CAP = 16000
 
 # ref, the section that answers, the question, and the search the librarian
-# would send for it.
+# would send for it; ``known_miss`` says why a search does not reach its
+# section yet (the test expects that case to fail).
 QUESTIONS = [
     dict(ref="gec_12", target="7.2.1.3.1",
          question="Which static method gives shaft and toe resistance of a "
@@ -78,7 +79,13 @@ QUESTIONS = [
     dict(ref="gec_12", target="7.2.1.3.6",
          question="How is pile capacity estimated from a CPT with effective "
                   "cone resistance?",
-         query="CPT pile capacity effective cone resistance"),
+         query="CPT pile capacity effective cone resistance",
+         known_miss="a short CPT settlement section (7.3.5.2.2) outranks the "
+                    "capacity methods; app BACKLOG REF-48"),
+    dict(ref="gec_12", target="7.2.1.3.6",
+         question="How is pile resistance estimated from the effective cone "
+                  "tip resistance of a CPT?",
+         query="pile resistance from CPT effective cone tip resistance"),
     dict(ref="gec_12", target="7.2.3.2.2",
          question="What controls the uplift resistance of a pile group in "
                   "cohesionless soil?",
