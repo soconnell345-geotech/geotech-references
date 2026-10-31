@@ -1323,14 +1323,13 @@
       "subsections": [
         {
           "section_id": "7.4.1",
-          "title": "Scour During Check Flood",
-          "body": "For the extreme event limit state, the full scour depth at the check flood (500-year event) is used. All shaft resistance and lateral support in the scour zone is removed. The pile must still have adequate factored resistance below the scour depth.",
+          "title": "Extreme Event Scour During Check Flood",
+          "body": "Bridges over rivers, bodies of water and tidal areas see repeated aggradation or degradation in the scour zone, which affects foundation resistance (pp. 376-377). The check flood is an extreme event unlikely during the design life; Arneson et al. (2012) give its design requirements, with the soil in the scour zone assumed removed and providing no geotechnical resistance to lateral, axial compression or tension loads. For the applicable factored loads the piles must have adequate factored axial and lateral resistance. The check flood differs from the design flood: the 500-year check flood has a different and typically deeper scour prism; loads for structural modelling at the extreme event limit state are unfactored; and resistance factors are 1.0 for geotechnical resistance to lateral and axial compression loads and 0.8 or less for uplift. Overall stability during the check flood should be evaluated, including storm surges, tides or other floods, and debris loads. Piles should be driven deep enough to overcome the loss of shaft resistance in the scour prism. Load combinations with the check flood are in Section 7.4.4 and HEC-18; Section 7.2.9 covers scour design.",
           "key_points": [
-            "Check flood = 500-year event per AASHTO",
-            "Full scour depth at check flood for extreme event design",
-            "Remove all resistance in scour zone",
-            "Pile must develop adequate resistance below scour depth",
-            "Lateral support loss increases effective unsupported pile length"
+            "Soil in the check flood scour zone provides no geotechnical resistance (Arneson et al. 2012)",
+            "500-year check flood: different, typically deeper scour prism than the design flood",
+            "Resistance factors 1.0 for lateral and axial compression, 0.8 or less for uplift; structural modelling loads unfactored",
+            "Check overall stability and debris loads during the check flood; drive past the shaft resistance lost to scour"
           ],
           "equations": [],
           "figures": [],
@@ -1338,73 +1337,138 @@
         },
         {
           "section_id": "7.4.2",
-          "title": "Seismic Design",
-          "body": "Comprehensive seismic design procedures for pile foundations including site classification, seismic hazard analysis, spectral acceleration computation, and liquefaction potential assessment. Site classification per AASHTO uses shear wave velocity in the upper 30 m (Vs30), SPT N-value (N-bar), or undrained shear strength (su-bar). Site factors Fpga, Fa, and Fv modify the mapped spectral accelerations for local site conditions. Seismic zones determine the level of analysis required.",
+          "title": "Seismic and Seismic Induced Downdrag",
+          "body": "Seismic pile design issues include liquefaction effects on soil resistance, ground movements, seismic foundation loads and seismic drag forces (p. 377). Under AASHTO (2014) bridges are designed for a low probability of collapse but may suffer significant damage or disruption of service. The pseudo-static approach commonly used for many bridges is covered in 7.4.2.1 and liquefaction in 7.4.2.2; GEC-3 (Kavazanjian et al. 2011) and FHWA-NHI-15-004 (Marsh et al. 2014) should be consulted for the seismic design procedure.",
           "key_points": [
-            "Site classification: Class A (hard rock) through F (special study) per Table 7-26",
-            "Three site classification criteria: Vs30, average N60 in upper 30 m, average su in upper 30 m",
-            "Site factors Fpga, Fa (short period), Fv (long period) from Tables 7-27 through 7-29",
-            "Seismic zones 1-4 based on SD1 value (Table 7-30)",
-            "Zone 1: SD1 < 0.15 (low seismic); Zone 4: SD1 >= 0.50 (high seismic)",
-            "Spectral acceleration Csm from Eq 7-76 through 7-79",
-            "Liquefaction assessment required for Zones 3 and 4",
-            "Liquefaction triggers for saturated loose sand: N1_60 < 25 and PGA >= 0.10g"
+            "Design for a low probability of collapse; damage or disruption of service may be accepted (AASHTO 2014)",
+            "Pseudo-static analysis is common; see GEC-3 and FHWA-NHI-15-004 for detailed procedures"
           ],
-          "equations": [
-            "Eq 7-76: As = Fpga * PGA (design peak ground acceleration)",
-            "Eq 7-77: SDS = Fa * Ss (design short-period spectral acceleration)",
-            "Eq 7-78: SD1 = Fv * S1 (design 1-second spectral acceleration)",
-            "Eq 7-79: Csm = SDS for Tm <= Ts; Csm = SD1/Tm for Tm > Ts (seismic response coefficient)",
-            "Eq 7-80: Ts = SD1/SDS (corner period between constant accel and constant velocity)"
-          ],
-          "figures": [
-            "Figure 7-60: Site classification flowchart",
-            "Figure 7-61: Design response spectrum construction",
-            "Figure 7-62: Liquefaction susceptibility chart (N1_60 vs CSR)",
-            "Figure 7-63: Spectral acceleration vs period for different site classes"
-          ],
-          "tables": [
-            "Table 7-26: AASHTO site classification definitions (Class A through F)",
-            "Table 7-27: Site factor Fpga at zero period (PGA)",
-            "Table 7-28: Site factor Fa for short-period spectral acceleration (0.2 sec)",
-            "Table 7-29: Site factor Fv for long-period spectral acceleration (1.0 sec)",
-            "Table 7-30: AASHTO seismic zone definitions by SD1 value",
-            "Table 7-31: Liquefaction analysis requirements by seismic zone"
+          "equations": [],
+          "figures": [],
+          "tables": [],
+          "subsections": [
+            {
+              "section_id": "7.4.2.1",
+              "title": "AASHTO Recommendations for the Equivalent Static Seismic Force",
+              "body": "Earthquake ground displacements are transmitted from the foundation to the superstructure, where the resulting accelerations generate inertial forces applied back to the foundation; the foundation must resist liquefaction effects, ground movement, drag forces and the increased superstructure loads, so the seismic loads must be determined before the required nominal geotechnical resistance (pp. 378-382). The design earthquake is the 1000 year event (AASHTO 2014), and AASHTO Article 3.10 gives the steps to the elastic seismic response coefficient Csm and the equivalent static horizontal seismic force, Eq. 7-76. Step 1: obtain PGA, Ss and S1 from the USGS seismic maps in Chapter 3 of AASHTO (2014) or the USGS design maps application. Step 2: classify the site A to F with Table 7-26 from the average shear wave velocity, SPT N-value and undrained shear strength over the upper 100 feet. Step 3: determine the site factors Fpga, Fa and Fv from Tables 7-27 to 7-29, interpolating linearly; Site Class F needs a site-specific investigation with dynamic response analysis. Step 4: build the design response spectrum (Figure 7-77) and determine Csm, by hand with Eqs. 7-77 to 7-79; Figure 7-77 shows Csm rising from As to SDS at To, constant at SDS to Ts, then SD1/Tm. The structural engineer applies Pe(x) to the superstructure by AASHTO Article 4.7.4.3; the minimum analysis depends on the seismic zone (Table 7-30), bridge regularity and operational class. In Seismic Zones 2 to 4 a liquefaction assessment is required for multispan bridges. For the Extreme Event I check the factored seismic loads are applied to the foundation for axial, lateral and overturning analysis, with resistance factors of 1.0 for axial compression and 0.8 or less for lateral and uplift (AASHTO 2014).",
+              "key_points": [
+                "Equivalent static horizontal seismic force Pe(x) = Csm W (Eq. 7-76), 1000 year design earthquake",
+                "Site class A to F from the upper 100 feet (Table 7-26); site factors Fpga, Fa, Fv from Tables 7-27 to 7-29 by linear interpolation",
+                "Site Class F requires a site-specific investigation with dynamic response analysis",
+                "Csm from the design response spectrum (Figure 7-77); rising branch by Eqs. 7-77 to 7-79",
+                "Table 7-30 seismic zones by SD1: Zone 1 <= 0.15, Zone 2 <= 0.30, Zone 3 <= 0.50, Zone 4 > 0.50",
+                "Zones 2 to 4: liquefaction assessment required for multispan bridges",
+                "Extreme Event I: resistance factor 1.0 for axial compression, 0.8 or less for lateral and uplift"
+              ],
+              "equations": [
+                "Eq. 7-76: Pe(x) = Csm W; Pe(x) equivalent static horizontal seismic force acting on the superstructure, Csm elastic seismic response coefficient (dimensionless), W equivalent weight of the superstructure (p. 378)",
+                "Eq. 7-77: Csm = As + (SDS - As)(Tm / To); As peak seismic ground acceleration coefficient modified by the short-period site factor, SDS Csm at a period of 0.2 second, Tm period of vibration of the mth mode, To reference period = 0.2 Ts, Ts corner period = SD1 / SDS, SD1 Csm at a period of 1.0 second = Fv S1 (p. 381)",
+                "Eq. 7-78: As = FPGA PGA; FPGA zero period site factor, PGA peak ground acceleration coefficient (p. 381)",
+                "Eq. 7-79: SDS = Fa Ss; Fa short period site factor, Ss short period spectral coefficient (p. 381)"
+              ],
+              "figures": [
+                "Figure 7-77: Design response spectrum (after AASHTO 2014) (p. 381)"
+              ],
+              "tables": [
+                "Table 7-26: Site Class Definition (p. 379)",
+                "Table 7-27: Site Factor Values, Fpga, at Zero Period Acceleration (p. 380)",
+                "Table 7-28: Site Factor Values, Fa, for Short Period Coefficient Ss (p. 380)",
+                "Table 7-29: Site Factor Values, Fv, for Long Period Coefficient, S1 (p. 380)",
+                "Table 7-30: Seismic Zones (p. 382)"
+              ]
+            },
+            {
+              "section_id": "7.4.2.2",
+              "title": "Liquefaction",
+              "body": "Liquefaction is a loss of shear strength and stiffness from pore water pressure built up during cyclic loading; saturated, very loose to medium dense, fine to medium sands and non-plastic silts are most susceptible, and it has also occurred in such gravels (pp. 382-385). Where peak acceleration will exceed 0.1g, liquefaction susceptibility should be evaluated, commonly by the Seed et al. (1983) procedure (Lam and Martin 1986; AASHTO 2014 Article 10.5.4 commentary; GEC-3 Chapter 6, Kavazanjian et al. 2011). If the soils liquefy in the design event, the piles must accommodate the loss of resistance in the liquefied zone, the seismic loads, the vertical and horizontal displacements and the resulting drag force, or the liquefaction potential may be mitigated by ground improvement. Piles must penetrate the liquefiable zone and develop adequate resistance below; compression, uplift and lateral resistance during the event are evaluated with residual strengths for the liquefiable layers. Residual strengths can be approximated from SPT values (Seed 1987; Seed and Harder 1990; Olson and Stark 2002; Idriss and Boulanger 2007); Figure 7-78 gives the Idriss and Boulanger residual strength ratio sr / sigma'vo against the equivalent clean sand blow count, with N corrected for energy, overburden and fines (Table 7-31, Eq. 7-80). Kramer (2008) proposed a weighted residual strength: 20% each from Idriss (1998), Olson and Stark (2002) and Idriss and Boulanger (2007), and 40% from the Kramer-Wang hybrid model (Kramer and Wang 2007). After liquefaction the layer consolidates as pore pressures dissipate (settlement per Kavazanjian et al. 2011). Fellenius and Siegel (2008) note that liquefaction above the pre-liquefaction neutral plane has limited effect on the pile, while liquefaction below it increases the axial compression load and pile settlement; the pile must carry the increased drag force and the post-liquefaction settlement must meet the performance criteria. Lateral spread can impose large bending moments, so piles in liquefiable soils should be flexible and ductile; maximum moment is often evaluated in a p-y analysis with Reese's soft clay curve, low residual strength and high epsilon_50 in the liquefied layer. Brandenberg et al. (2007) centrifuge tests support p-multipliers of 0.05 in loose sand and 0.30 in dense sand for fully liquefied granular layers.",
+              "key_points": [
+                "Evaluate liquefaction susceptibility where peak acceleration exceeds 0.1g",
+                "Piles must penetrate the liquefiable zone; use residual strengths in liquefied layers for axial and lateral analyses",
+                "(N1)60-e = (N1)60 + Ncorr (Eq. 7-80); Table 7-31 Ncorr: 0-9% fines 0, 10-24% 1, 25-49% 2, 50-74% 4, over 75% 5",
+                "Kramer (2008) weighted residual strength: 20% Idriss (1998), 20% Olson and Stark (2002), 20% Idriss and Boulanger (2007), 40% Kramer-Wang",
+                "Liquefaction below the pre-liquefaction neutral plane increases pile load and settlement; above it has limited effect (Fellenius and Siegel 2008)",
+                "Lateral spread: flexible, ductile piles; p-multipliers 0.05 loose sand, 0.30 dense sand in fully liquefied layers (Brandenberg et al. 2007)"
+              ],
+              "equations": [
+                "Eq. 7-80: (N1)60-e = (N1)60 + Ncorr; (N1)60-e equivalent clean sand blow count, (N1)60 SPT N value corrected for energy and overburden stress, Ncorr correction for percent fines from Table 7-31 (p. 384)"
+              ],
+              "figures": [
+                "Figure 7-78: Correlation between the Residual Undrained Strength Ratio, sr / sigma'vo and equivalent clean sand SPT blow count, (N1)60-e (Idriss and Boulanger 2007) (p. 383)"
+              ],
+              "tables": [
+                "Table 7-31: Blow Count Correction, Ncorr, for the Equivalent Clean Sand Blow Count, (N1)60-e (p. 384)"
+              ]
+            }
           ]
         },
         {
           "section_id": "7.4.3",
-          "title": "Ice Loads and Vessel Collision",
-          "body": "Covers extreme event loading from ice forces and vessel collision on pile foundations. Ice forces include static thermal expansion, dynamic ice breaking, and static ice pressure. Vessel collision forces depend on vessel type, size, speed, and waterway geometry.",
+          "title": "Ice and Collisions",
+          "body": "Vehicle and vessel collision and ice loads are in the Extreme Event II load combination of AASHTO (2014), each treated as an independent extreme event although they often occur with other loads such as large wind loads (pp. 385-386). Because they are typically applied to the superstructure they are analysed as structural load cases and do not directly alter the geotechnical resistance as scour and earthquakes do. The Extreme Event II limit state equation is Eq. 7-81; ice, vehicle collision and vessel collision enter it as separate events.",
           "key_points": [
-            "Ice loads: static thermal, dynamic breaking, pressure (Eq 7-81 through 7-83)",
-            "Dynamic ice force: F = Cn * p * t * w (Eq 7-82)",
-            "Static ice pressure: F = Ca * p * t * w (Eq 7-83)",
-            "Vessel collision: F = 0.5 * m * v^2 / a (kinetic energy approach, Eq 7-84)",
-            "AASHTO LRFD Guide Specifications for Vessel Collision (AASHTO 2010)",
-            "Pier protection structures (fender systems, dolphins) can reduce collision loads"
+            "Ice, vehicle collision and vessel collision are separate events in Extreme Event II (Eq. 7-81)",
+            "They are structural load cases and do not directly change the geotechnical resistance"
           ],
           "equations": [
-            "Eq 7-81: F_ice_thermal = alpha * E_ice * t * w * Delta_T (thermal ice force)",
-            "Eq 7-82: F_ice_dynamic = C_n * p * t * w (dynamic ice breaking force)",
-            "Eq 7-83: F_ice_static = C_a * p * t * w (static ice pressure force)",
-            "Eq 7-84: F_vessel = 0.5 * m * v^2 / a (vessel collision force from kinetic energy)"
+            "Eq. 7-81: sum gamma_i Qi = gamma_p DL + 0.5 LL + 1.0 WA + 1.0 FR + 1.0 (IC or CT or CV); gamma_i load factor, Qi force effect, gamma_p load factor for permanent loads (Table 2-3), DL dead loads, LL live loads, WA water load, FR friction load, IC ice load, CT vehicular collision force, CV vessel collision force (p. 385)"
           ],
-          "figures": [
-            "Figure 7-64: Ice loading on pile foundation",
-            "Figure 7-65: Vessel collision force determination"
-          ],
-          "tables": []
+          "figures": [],
+          "tables": [],
+          "subsections": [
+            {
+              "section_id": "7.4.3.1",
+              "title": "Ice Loads",
+              "body": "AASHTO (2014) covers ice loads in freshwater lakes and rivers; saltwater ice is left to specialists (p. 386). Ice forces are assumed to act directly on piers under four conditions: dynamic impact of ice sheets, static load from thermal expansion of ice sheets around piers, load from hanging dams or ice jams, and static uplift or vertical load from ice adhesion when water levels fluctuate (AASHTO 2014 Section 3.9). Dynamic ice forces depend on floe size, ice strength and thickness and pier geometry (Montgomery et al. 1984), with presumed ice crushing strengths in AASHTO (2014). Thermal expansion and hanging dam or ice jam loads are carried in the static structural analysis and produce alternative foundation load cases. For vertical forces from ice adhesion under rapid water level fluctuation, AASHTO (2014) gives Eq. 7-82 for circular piers and Eq. 7-83 for oblong piers.",
+              "key_points": [
+                "Four ice conditions: dynamic sheet impact, thermal expansion, hanging dams or ice jams, adhesion uplift with water level changes",
+                "Vertical adhesion force: Eq. 7-82 circular piers, Eq. 7-83 oblong piers (AASHTO 2014)"
+              ],
+              "equations": [
+                "Eq. 7-82: F = 80 ti^2 (0.35 + 0.03 R / ti^0.75), circular piers; F vertical force, ti ice thickness (feet), R radius of pier (feet) (p. 386)",
+                "Eq. 7-83: F = 0.2 ti^1.25 C + 80 ti^2 (0.35 + 0.03 R / ti^0.75), oblong piers; C perimeter of pier excluding half circles at the ends (feet) (p. 386)"
+              ],
+              "figures": [],
+              "tables": []
+            },
+            {
+              "section_id": "7.4.3.2",
+              "title": "Vehicle Collison",
+              "body": "Vehicular collision should be evaluated where piers are within 30 feet of the roadway edge or 50 feet of a railway centerline (p. 387). Without crash protection, an equivalent 600 kip static force is applied 5 feet above grade (the print continues 'at an angle of 0 to 15 feet from the edge of pavement'), based on full scale tractor trailer tests; for wall piers a distributed load no more than 5 feet wide by 2 feet high may be applied instead if suitable for the anticipated vehicle. A barrier (embankment, guardrail or other crash protection) may redirect or absorb the collision; AASHTO (2014) requires it to be structurally independent of the pier and ground mounted, 54 inches high within 10 feet of the pier and 42 inches high beyond.",
+              "key_points": [
+                "Evaluate where piers are within 30 ft of the roadway edge or 50 ft of a railway centerline",
+                "Equivalent static force 600 kips applied 5 ft above grade without crash protection",
+                "Barriers: independent of the pier, ground mounted, 54 in. high within 10 ft of the pier, 42 in. beyond"
+              ],
+              "equations": [],
+              "figures": [],
+              "tables": []
+            },
+            {
+              "section_id": "7.4.3.3",
+              "title": "Vessel Collision",
+              "body": "Bridges over navigable water should be designed for vessel impact; bow, deck house or mast impacts typically load the superstructure, while a head on collision with a pier should consider the full vessel mass (pp. 387-388). A design vessel of representative deadweight tonnage (DWT) is selected from the vessels passing the bridge, and the head on force is Eq. 7-84. The equivalent static force is applied as 100% parallel to the channel centerline or 50% normal to it, and both cases evaluated. Overall stability is checked with a point load at the mean high water level (Figure 7-79); all substructure components exposed to direct impact must resist the applied loads (AASHTO 2014).",
+              "key_points": [
+                "Head on pier impact Ps = 8.15 V sqrt(DWT) (Eq. 7-84)",
+                "Apply 100% parallel to the channel centerline or 50% normal to it; evaluate both",
+                "Overall stability with the point load at mean high water (Figure 7-79)"
+              ],
+              "equations": [
+                "Eq. 7-84: Ps = 8.15 V sqrt(DWT); Ps equivalent static vessel impact force (kips), DWT deadweight tonnage (tonne), V vessel impact velocity (ft/s) (p. 387)"
+              ],
+              "figures": [
+                "Figure 7-79: Application of equivalent impact force (after AASHTO 2014) (p. 388)"
+              ],
+              "tables": []
+            }
+          ]
         },
         {
           "section_id": "7.4.4",
           "title": "Combined Extreme Events",
-          "body": "AASHTO load combinations for extreme events require evaluation of different combinations of extreme loads with permanent and transient loads. Load factors and resistance factors specific to extreme event limit states apply.",
+          "body": "AASHTO (2014) gives two extreme event combinations with scour: Extreme Event I with earthquake loading, and Extreme Event II with ice, vessel and vehicle collisions and hydraulic loads (p. 388). Because the check flood and the earthquake together have a low probability (Arneson et al. 2012), scour for the mean discharge or normal non-flood flow may be used in Extreme Event I. For Extreme Event II, research on the joint probability during the check flood is ongoing and judgment should be based on site-specific factors; if ice or debris jams call for a more extreme flood than the check flood, that flood may be used.",
           "key_points": [
-            "Extreme Event I: earthquake + permanent loads + live load fraction",
-            "Extreme Event II: ice/collision/check flood + permanent loads + live load",
-            "Resistance factor phi = 1.0 for geotechnical resistance in extreme events",
-            "Multiple extreme events not combined simultaneously (e.g., no earthquake + vessel collision)"
+            "Extreme Event I (earthquake): scour for mean discharge or normal non-flood flow may be used",
+            "Extreme Event II (ice, collisions, hydraulic loads): site-specific judgment; a larger flood may govern with ice or debris jams"
           ],
           "equations": [],
           "figures": [],
