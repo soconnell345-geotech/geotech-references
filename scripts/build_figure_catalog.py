@@ -85,7 +85,8 @@ _RUN_ON = re.compile(
     r"Figure\s+(?:[A-Z]{1,3}|\d+)\s*[-.]\s*\d+\s*[.:]\s+[A-Z]"
     r"|Table\s+\d+\s*[-.]\s*\d+\.\s+[A-Z]"
     r"|LIST OF (?:FIGURES|TABLES|SYMBOLS|APPENDICES)"
-    r"|FHWA[- ]NHI-\d\d-\d{3}\s+Chapter")
+    r"|FHWA[- ]NHI-\d\d-\d{3}(?:\s+(?:Chapter|Table of Contents|GEC ?\d)|\s*$)"
+    r"|TABLE OF CONTENTS \(continued\)|\bLOF-\d")
 # Smart quotes / dashes / replacement char -> ASCII (PyMuPDF emits these; the
 # Windows console renders them as the replacement glyph).
 _SMART = {0x201C: '"', 0x201D: '"', 0x2018: "'", 0x2019: "'",
@@ -110,30 +111,60 @@ def _is_lof_noise(line: str) -> bool:
         return True                                   # roman page no. ("i - xii")
     if re.match(r"(?i)^list of (figures|tables)$", s):
         return True
+    if re.match(r"^LOF-\d{1,2}$", s):                  # GEC-10's list page label
+        return True
     return False
 
 
 def _clean_caption(seg: str) -> tuple[str, int | None]:
     """Split a between-markers segment into (caption, printed_page)."""
+    cap, printed, _ = _split_entry(seg)
+    return cap, printed
+
+
+def _split_entry(seg: str) -> tuple[str, "int | None", "str | None"]:
+    """``(caption, printed_page, page_token)`` of a between-markers segment;
+    the token is the entry's page as the list prints it ("12-12", "306"),
+    None when the entry ends with no page."""
     seg = re.sub(r"\s+", " ", seg).strip()
-    printed = None
+    printed = token = None
     lm = _LEADER_PG.search(seg)
     if lm:
-        printed = int(lm.group(1))
+        printed, token = int(lm.group(1)), lm.group(1)
         seg = _LEADER_PG.sub("", seg)
     else:
         cm = _CHAPTER_PG.search(seg)
         tm = None if cm else _TRAIL_PG.search(seg)
         if cm:
-            printed = int(cm.group(1))
+            printed, token = int(cm.group(1)), re.sub(r"\s+", "", cm.group(0))
             seg = seg[:cm.start()]
         elif tm:
-            printed = int(tm.group(1))
+            printed, token = int(tm.group(1)), tm.group(1)
             seg = seg[:tm.start()]
     cap = re.sub(r"\.{2,}", "", seg).translate(_SMART)
     # Strip leading colon too: GEC entries read "Figure 2.1: <caption>".
     cap = re.sub(r"\s+", " ", cap).strip(" .-:")
-    return cap, printed
+    return cap, printed, token
+
+
+def prints_after_caption(text: str, figure_number: str, caption: str,
+                         token: str) -> bool:
+    """True when ``text`` (a figure's page) prints ``token`` right after the
+    last word of the figure's caption, on the same line ("Figure 7-31. ...
+    Example 7-3"): the number is the caption's own, not the list's page for
+    the figure."""
+    words = re.findall(r"[A-Za-z0-9]+", caption.translate(_SMART))
+    if not words or not token:
+        return False
+    text = text.translate(_SMART)
+    num = r"\s*[-.]\s*".join(re.escape(p) for p in re.split(r"[-.]", figure_number))
+    tok = r"[ \t]*-[ \t]*".join(re.escape(p) for p in re.split(r"\s*-\s*", token))
+    tail = re.compile(rf"(?i)(?<![A-Za-z0-9]){re.escape(words[-1])}[ \t.,:;)]*"
+                      rf"[ \t]{tok}(?!\d)")
+    for m in re.finditer(rf"(?i)Figure\s+{num}(?!\d)", text):
+        if tail.search(text, m.end(), m.end() + len(caption) + 200):
+            return True
+    return False
 
 
 def _running_lines(pages: list[list[str]]) -> set[str]:
@@ -159,7 +190,8 @@ def _parse_list_of_figures(doc) -> tuple[list[dict], "int | None"]:
     Segments the section text on figure markers (robust to entries glued
     inline and to header/footer noise across page breaks). Returns
     ``(figs, lof_last_page)``: a list of ``{figure_number, caption,
-    printed_page}`` dicts in document order, plus the last PDF page index the
+    printed_page, list_page}`` dicts in document order (``list_page`` is the
+    page token the entry ends with, as printed), plus the last PDF page index the
     figure list occupies (so body resolution can start after the front matter).
     ``lof_last_page`` is ``None`` when no list is found.
     """
@@ -215,9 +247,14 @@ def _parse_list_of_figures(doc) -> tuple[list[dict], "int | None"]:
             else:
                 break
         lof_pages = run
-        for i in run:
-            kept.extend(ln.strip() for ln in doc[i].get_text().splitlines()
-                        if not _is_lof_noise(ln))
+        whole = [[ln.translate(_SMART) for ln in doc[i].get_text().splitlines()]
+                 for i in run]
+        # GEC-11's running head ("FHWA NHI-10-024 / Table of Contents / ...
+        # November 2009") would join the last entry on each page (REF-51)
+        running = _running_lines(whole)
+        for lines in whole:
+            kept.extend(ln.strip() for ln in lines
+                        if not _is_lof_noise(ln) and _header_key(ln) not in running)
 
     blob = "\n".join(kept)
     # An entry starts a line or follows the previous entry's page number; a
@@ -228,10 +265,10 @@ def _parse_list_of_figures(doc) -> tuple[list[dict], "int | None"]:
     figs: list[dict] = []
     for k, m in enumerate(markers):
         end = markers[k + 1].start() if k + 1 < len(markers) else len(blob)
-        cap, printed = _clean_caption(blob[m.end():end])
+        cap, printed, token = _split_entry(blob[m.end():end])
         figs.append(
             {"figure_number": _fig_id(m.group(1)),
-             "caption": cap, "printed_page": printed}
+             "caption": cap, "printed_page": printed, "list_page": token}
         )
     return figs, (max(lof_pages) if lof_pages else None)
 
@@ -392,10 +429,8 @@ def _resolve_pages(doc, figs: list[dict], body_start: int) -> dict:
 
     Returns a small stats dict.
     """
-    norm_pages = [
-        _norm(re.sub(r"\s+", " ", doc[i].get_text()))
-        for i in range(doc.page_count)
-    ]
+    texts = [doc[i].get_text() for i in range(doc.page_count)]
+    norm_pages = [_norm(re.sub(r"\s+", " ", t)) for t in texts]
 
     for f in figs:
         key = _norm(f"Figure {f['figure_number']}")
@@ -408,6 +443,12 @@ def _resolve_pages(doc, figs: list[dict], body_start: int) -> dict:
                     idx = i
                     break
         f["pdf_page_index"] = idx
+        # The number an entry ends with is its page unless the figure's own
+        # page prints it as the end of the caption (REF-51).
+        if idx is not None and f.get("list_page") and prints_after_caption(
+                texts[idx], f["figure_number"], f["caption"], f["list_page"]):
+            f["caption"] = f"{f['caption']} {f['list_page']}"
+            f["printed_page"] = None
 
     # Fallback 1: median printed->index offset for figures still unresolved,
     # over the figure's own chapter: a list that prints chapter-page numbers

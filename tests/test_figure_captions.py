@@ -107,6 +107,36 @@ def test_gec10_chapter_16_numbered_as_its_pages_print():
     assert len(numbers) == figs["figure_count"] == 380
 
 
+def test_a_caption_ends_where_its_list_page_number_begins():
+    """REF-51: the page number a List of Figures entry ends with, and the
+    list's running head after it, are not caption text; a number the
+    caption itself prints stays."""
+    want = {
+        ("gec_10", "12-3"): ("Example, trial drilled shaft for illustration of "
+                             "structural design. (a) subsurface profile and loads; "
+                             "(b) trial section"),
+        ("gec_10", "5-1"): ("Dry Cohesive or Cemented Soils May Provide Naturally "
+                            "Stable Ground Conditions"),
+        ("gec_10", "12-4"): ("Shear and Moment versus depth diagrams for example "
+                             "trial shaft shown in Figure 12-3"),
+        ("gec_8", "3.2"): "Examples of Difficult Conditions for Augured Piles",
+        ("gec_11", "3-9"): "Geocell face unit with vegetation",
+        ("gec_13", "6-1"): "Column-supported embankment",
+        ("gec_5", "6-31"): ("PORE PRESSURE DISSIPATION MEASUREMENTS FROM CPTU IN "
+                            "SOFT, CLAYEY SILT"),
+        # the list line "FIGURE 5-10 TO DETERMINE ..." was a record of its own
+        ("gec_5", "5-11"): ("RELOADING TEST ON SPECIMEN FROM FIGURE 5-10 TO "
+                            "DETERMINE SWELL PRESSURE"),
+    }
+    for (ref, number), caption in want.items():
+        figs = _load(ROOT / "geotech_references" / ref / "figures_catalog.json")
+        got = [f["caption"] for f in figs["figures"] if f["figure_number"] == number]
+        assert got == [caption], (ref, number, got)
+    gec5 = _load(ROOT / "geotech_references" / "gec_5" / "figures_catalog.json")
+    numbers = [f["figure_number"] for f in gec5["figures"]]
+    assert len(numbers) == len(set(numbers)) == gec5["figure_count"] == 256
+
+
 # ---------------------------------------------------------------------------
 # the parser's pieces (no PDFs needed)
 # ---------------------------------------------------------------------------
@@ -120,6 +150,59 @@ def test_chapter_page_numbers_end_an_entry():
     # a number inside the caption is not its page
     assert bfc._clean_caption(" Spreadsheet Calculations Based on Eq. 6-12 to "
                               "Obtain Hult for the Example Problem ....6 - 55")[1] == 55
+    # the page as the list prints it
+    assert bfc._split_entry(" Trial section ..... 12-12") == ("Trial section", 12, "12-12")
+    assert bfc._split_entry(" Augured Piles18") == ("Augured Piles", 18, "18")
+    assert bfc._split_entry(" Pile Cap Detail") == ("Pile Cap Detail", None, None)
+    assert bfc._is_lof_noise("LOF-6")
+
+
+def test_a_number_its_figure_page_prints_is_the_captions():
+    """REF-51: an entry's last number is its page unless the figure's own page
+    prints it as the end of the caption."""
+    assert bfc.prints_after_caption(
+        "Figure 7-31. Soldier Pile Wall with Sloping Ground, Example 7-3\n7-36\n",
+        "7-31", "Soldier Pile Wall with Sloping Ground, Example", "7-3")
+    # the page number printed under a caption is the page
+    assert not bfc.prints_after_caption("Figure 1-1. Design Example.\n1-3\n",
+                                        "1-1", "Design Example", "1-3")
+    # the same words elsewhere on the page do not count
+    assert not bfc.prints_after_caption("Table 4 gives Example 3\n\nFigure 2-1. "
+                                        "Wall Example\n", "2-1", "Wall Example", "3")
+    fitz = pytest.importorskip("fitz")
+    doc = fitz.open()
+    for text in ("", "Figure 2-1. Retaining Wall Example 3", "Figure 2-2. Footing Plan"):
+        doc.new_page().insert_text((72, 400), text)
+    figs = [{"figure_number": "2-1", "caption": "Retaining Wall Example",
+             "printed_page": 3, "list_page": "3"},
+            {"figure_number": "2-2", "caption": "Footing Plan",
+             "printed_page": 4, "list_page": "4"}]
+    bfc._resolve_pages(doc, figs, body_start=1)
+    assert [(f["caption"], f["printed_page"]) for f in figs] == [
+        ("Retaining Wall Example 3", None), ("Footing Plan", 4)]
+
+
+def test_a_list_with_no_heading_drops_its_running_head():
+    """REF-51: GEC-11's list has no "LIST OF FIGURES" line of its own; the
+    running head printed on each of its pages is not the last entry's text."""
+    fitz = pytest.importorskip("fitz")
+    doc = fitz.open()
+    for entries in ((("1-1", "Site plan", "1-2"), ("1-2", "Boring log", "1-3"),
+                     ("1-3", "Grain size curve", "1-4")),
+                    (("2-1", "Pile cap", "2-2"), ("2-2", "Drill rig", "2-5"),
+                     ("2-3", "Load test", "2-9"))):
+        page = doc.new_page()
+        y = 72
+        for number, caption, pg in entries:
+            page.insert_text((72, y), f"Figure {number}. {caption} ........ {pg}")
+            y += 20
+        for line in ("FHWA NHI-10-024", "Table of Contents", "November 2009"):
+            page.insert_text((72, y), line)
+            y += 14
+    figs, _ = bfc._parse_list_of_figures(doc)
+    assert [(f["caption"], f["list_page"]) for f in figs] == [
+        ("Site plan", "1-2"), ("Boring log", "1-3"), ("Grain size curve", "1-4"),
+        ("Pile cap", "2-2"), ("Drill rig", "2-5"), ("Load test", "2-9")]
 
 
 def test_running_headers_are_dropped():
