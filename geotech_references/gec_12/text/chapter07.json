@@ -1653,120 +1653,128 @@
         {
           "section_id": "7.10.1",
           "title": "Minimum Pile Spacing, Clearance, and Cap Embedment",
-          "body": "AASHTO (2014) recommends minimum center-to-center pile spacing of 2.5 pile diameters or 30 inches. Pile cap edge should be greater than 9 inches from the side of the nearest pile. Spacing less than 3.0 diameters can create construction difficulties and reduce group axial and lateral resistances. The pile head should extend a minimum of 12 inches into the pile cap. When a reinforced concrete bent cap is cast in place atop piles, the concrete cover should be a minimum of 6 inches on all sides.",
+          "body": "AASHTO (2014) recommends a minimum center-to-center pile spacing of 30 inches or 2.5 pile diameters, and a distance from the cap edge to the side of the nearest pile greater than 9 inches (pp. 398-399). Spacing under 3.0 diameters can cause construction difficulties and lower group axial and lateral resistance, so a smaller cap should be weighed against those effects. The pile head should extend at least 12 inches into the cap, after trimming any damaged head down to undamaged material; piles attached by embedded bars or strands should extend at least 6 inches. A cast in place reinforced concrete bent cap should have at least 6 inches of cover on all sides of the piles, with extra allowance for the specified maximum pile misalignment; where pile reinforcement is anchored into the cap per AASHTO (2014) Article 5.13.4.1, the projection may be less than 6.0 inches.",
           "key_points": [
-            "Minimum spacing: 2.5 pile diameters or 30 inches per AASHTO",
-            "Recommended spacing: >= 3.0 diameters to avoid construction difficulties",
-            "Cap edge: >= 9 inches from nearest pile side",
-            "Pile head: minimum 12 inches into pile cap (6 inches if embedded bars/strands)",
-            "Concrete cover: minimum 6 inches on all sides in cast-in-place bent caps"
+            "Minimum spacing 30 inches or 2.5 diameters; cap edge more than 9 inches from the nearest pile (AASHTO 2014)",
+            "Spacing under 3.0 diameters can cause construction problems and lower group resistance",
+            "Pile head embedment at least 12 inches, or 6 inches when attached by embedded bars or strands",
+            "Bent caps: at least 6 inches of cover on all sides, plus an allowance for misalignment"
           ],
+          "equations": [],
+          "figures": [],
+          "tables": [],
           "subsections": [
             {
               "section_id": "7.10.1.1",
               "title": "Special Considerations for Large Pile Sizes",
-              "body": "AASHTO does not address minimum pile spacing or cap embedment for large diameter open end pipe piles. Brown and Thompson (2015) present limited details. Large diameter pipe pile to cap connections use reinforcing cage and/or shear studs. Minimum spacing approximately 3 pile diameters center-to-center. Pile heads typically extend 3 feet into the pile cap for adequate structural connection."
+              "body": "AASHTO does not address minimum spacing or cap embedment for large diameter open end pipe piles; Brown and Thompson (2015) give limited details and most agencies have no standard details (p. 399). One connection cleans out the pipe to the needed depth, inserts a reinforcing cage extending into the cap, and fills the pile with a concrete plug, cleaned out in some designs to the scour depth or mudline and in others only for the load transfer length. Another uses an internal cage with welded shear studs on the outside of the pile within the cap, frequently at least two rows. Large diameter pile heads typically extend on the order of 3 feet into the cap. For spacing, drilled shaft minimum spacing guidance may be an appropriate comparison; the layout in Brown and Thompson (2015) shows about 3 diameters center-to-center, and greater spacing may suit the lateral load demand for which these piles are often chosen.",
+              "key_points": [
+                "Large diameter pile heads typically extend about 3 feet into the cap, with a rebar cage, or cage and at least two rows of shear studs",
+                "Spacing on the order of 3 diameters center-to-center (Brown and Thompson 2015); more may suit lateral demand"
+              ],
+              "equations": [],
+              "figures": [],
+              "tables": []
             }
           ]
         },
         {
           "section_id": "7.10.2",
           "title": "Identification of High Rebound Soils",
-          "body": "During pile driving, the hammer impact causes temporary compression. In certain soil types (dense silty sand, hard silty clay, glacial tills, silt, and other fine grained saturated soils), the deformed soil can spring back close to its original position (high elastic rebound). This is generally due to increased pore water pressure near the pile toe. When pile driving is paused, pore water pressure dissipates and smaller rebound occurs. Pile driving equipment with heavy rams operating at short hammer strokes is helpful in these conditions.",
+          "body": "Hammer impact temporarily compresses the soil and pile; in some soils the system springs back close to its original position, making it difficult to continue driving and reach the nominal resistance (Hussein et al. 2006) (p. 400). This high, or elastic, rebound is generally due to increased pore water pressure near the toe; it grows as driving continues, leading to refusal-like conditions, and reduces if driving pauses and pore pressure dissipates. It can occur with displacement piles in dense silty sand, hard silty clay, glacial tills, silt and other saturated fine grained soils (Likins 1983; Hussein et al. 2006; Cosentini et al. 2010). Research continues on soil properties or in-situ tests that identify these soils beyond soil type and saturation; local experience is valuable, and heavy rams at short strokes help.",
           "key_points": [
-            "High rebound in dense silty sand, hard silty clay, glacial tills, saturated fine-grained soils",
-            "Caused by increased pore water pressure from driving near pile toe",
-            "Leads to refusal-like driving conditions despite incomplete pile penetration",
-            "Pausing driving allows pore pressure dissipation and reduced rebound",
-            "Heavy rams with short strokes recommended for high rebound soils"
-          ]
+            "High rebound comes from pore pressure build-up near the toe and can cause refusal-like driving",
+            "Occurs with displacement piles in dense silty sand, hard silty clay, glacial till, silt and other saturated fine grained soils",
+            "Heavy rams at short strokes help; local experience is valuable"
+          ],
+          "equations": [],
+          "figures": [],
+          "tables": []
         },
         {
           "section_id": "7.10.3",
           "title": "Soil and Pile Heave",
-          "body": "When piles are driven, soil is displaced causing both upward (heave) and lateral movements of previously driven piles. Greater soil volume displaced = greater heave potential. Heave is particularly troublesome for piles supported primarily by toe resistance, as the pile may be lifted from the bearing stratum. A step-by-step procedure adapted from Haggerty and Peck (1971) for estimating soil and pile heave in saturated insensitive clay is presented. The equilibrium depth d is where upward pushing and downward resisting forces on the pile shaft are equal (Eq 7-87, Figure 7-81).",
+          "body": "Driving displaces soil, which can heave and move previously driven piles laterally and harm their resistance and adjacent facilities (Hagerty and Peck 1971) (pp. 400-402). The larger the displaced volume, the greater the risk; heave of toe resistance piles is particularly troublesome because the pile may be lifted off the bearing stratum, reducing resistance and increasing settlement. Saturated insensitive clays behave incompressibly during driving and have the greatest heave potential, so vertical and lateral soil movements should be considered in design for cohesive soils, with a low displacement pile or a modified installation such as predrilling evaluated if they may be significant. Procedure adapted from Haggerty and Peck, for saturated insensitive clay, a regular driving sequence and a level surface: Step 1, (a) divide the volume of inserted piles by the volume of soil enclosed by the foundation to get the volumetric displacement ratio, (b) take the normalized soil heave (heave / pile length) as half that ratio, (c) multiply by the average pile length for the ground surface heave. Step 2, find the equilibrium depth d where the upward pushing and downward resisting shaft forces are equal (Figure 7-81), iterating with alpha-method adhesion (Section 7.2.1.3.2) and only shaft resistance resisting. Step 3, compute the percentage of pile length resisting heave with Eq. 7-87 and multiply the soil heave by it for the pile heave. Sagaseta and Whittle (2001) used the shallow strain path method, which typically gives a reasonable first estimate of pile heave.",
           "key_points": [
-            "Soil displacement from driving causes heave and lateral movements",
-            "Detrimental to resistance of previously driven piles and adjacent structures",
-            "Toe-bearing piles: heave can lift pile from bearing stratum",
-            "Saturated insensitive clays: incompressible behavior, greatest heave potential",
-            "Step-by-step heave estimation: volumetric displacement ratio, equilibrium depth d, then heave",
-            "Eq 7-87: L% = (D-d)/D for pile length resisting heave",
-            "Figure 7-81: Force balance diagram for pile heave estimation",
-            "Consider low-displacement piles or predrilling to reduce heave"
+            "Saturated insensitive clays have the greatest heave potential; heave can lift toe bearing piles off the bearing stratum",
+            "Normalized soil heave = half the volumetric displacement ratio; times average pile length = surface heave",
+            "Equilibrium depth d from alpha-method adhesion, shaft resistance only (Figure 7-81)",
+            "Pile heave = soil heave x L% (Eq. 7-87)",
+            "Consider low displacement piles or predrilling where heave may be significant"
           ],
           "equations": [
             "Eq. 7-87: L% = (D - d) / D; L% = percentage of pile length resisting heaving soil (%), D = pile embedded length (ft), d = equilibrium depth (ft) (p. 401)"
           ],
           "figures": [
             "Figure 7-81: Balance of forces on pile subject to heave (after Haggerty and Peck 1971) (p. 402)"
-          ]
+          ],
+          "tables": []
         },
         {
           "section_id": "7.10.4",
           "title": "Piles Driven Through Embankment Fills",
-          "body": "Piles driven through approach embankment fills should penetrate a minimum of 10 feet below original grade unless refusal driving conditions are encountered on bedrock or a competent bearing layer. To minimize drag forces, piles should not be driven through embankments constructed over compressible materials until after 90% of primary settlement is complete.",
+          "body": "Approach embankments are often built before pile driving (pp. 402-403). Piles driven through embankment fill should penetrate at least 10 feet below original grade unless refusal is met on bedrock or a competent bearing layer; another foundation type may be more effective where refusal occurs less than 10 feet below the embankment base, which the subsurface exploration should ideally identify. To minimize drag forces, piles should not be driven through embankments or built over compressible materials until 90% of primary settlement is complete.",
           "key_points": [
-            "Minimum penetration: 10 feet below original grade through embankment fill",
-            "Delay driving until 90% primary settlement complete to minimize downdrag",
-            "Identify potential refusal-causing bearing layers via subsurface exploration",
-            "Alternative foundation type may be needed if refusal occurs less than 10 ft below embankment base"
-          ]
+            "Penetrate at least 10 feet below original grade unless refusal on bedrock or a competent layer",
+            "Drive through embankments over compressible soils only after 90% of primary settlement"
+          ],
+          "equations": [],
+          "figures": [],
+          "tables": []
         },
         {
           "section_id": "7.10.5",
-          "title": "Effect of Predrilling, Jetting, and Vibratory Installation on Nominal Resistance",
-          "body": "Predrilling, jetting, and vibratory installation methods cause greater soil disturbance than standard impact driving. Shaft resistance in the jetted zone is reduced by approximately 50% per Poulos and Davis (1980). Shaft resistance over a predrilled depth is reduced 50-85% depending on hole size per McClelland et al. (1969). Vibratory installed piles generally develop lower nominal resistance than impact driven piles. Impact driving a specific final depth of vibratory installed piles may restore resistance.",
+          "title": "Effect of Predrilling, Jetting and Vibratory Installation on Nominal Resistance",
+          "body": "Piles are sometimes predrilled or jetted to reach the required penetration or to reduce concerns such as ground vibrations (pp. 403-404). Jetting is effective in freely eroding sands and usually ineffective in cohesive soils; predrilling suits clays and thin rock layers, with a hole slightly smaller than, equal to or slightly larger than the pile. Both disturb the soil more than standard static calculations assume, so their effect on compression, uplift and lateral resistance should be evaluated: Poulos and Davis (1980) reduce shaft resistance in the jetted zone by 50% for a pile jetted then driven, and McClelland et al. (1969) report shaft resistance decreases over a predrilled depth of 50 to 85%, depending on hole size. Mosher (1987), at five sites, found piles vibrated into sand mostly had lower nominal resistance than impact driven piles, with equal time dependent changes for both, though impact driving a vibrated pile raised its resistance to that of an impact driven pile. O'Neill and Vipulanandan (1989) found in the laboratory that impact driven piles had 25% greater unit shaft and 15 to 20% higher unit toe resistance in medium dense to dense uniform fine sand, but 20 to 30% lower unit shaft and about 30% lower unit toe resistance in very dense uniform fine sand. Ghose-Hajra et al. (2015) found impact driven H-piles and open end pipe piles in soft Louisiana clay always had greater resistance than vibrated companions at comparable times. Vibratory installation therefore affects the achievable resistance; design and construction staff should communicate and evaluate it when proposed, and impact driving the final depth of vibrated piles may meet performance requirements at lower cost.",
           "key_points": [
-            "Jetting reduces shaft resistance by ~50% in jetted zone (Poulos and Davis 1980)",
-            "Predrilling reduces shaft resistance by 50-85% depending on hole size",
-            "Vibratory installation: lower resistance than impact driving in most cases",
-            "Impact driving vibratory-installed piles can restore resistance",
-            "Time-dependent soil strength changes (setup) occur equally for both methods",
-            "Must evaluate effects on compression, uplift, and lateral resistance"
-          ]
+            "Jetting suits sands, predrilling suits clays and thin rock layers; both reduce resistance and must be evaluated",
+            "Jetted then driven: reduce shaft resistance in the jetted zone by 50% (Poulos and Davis 1980)",
+            "Predrilled zone: shaft resistance decreases 50 to 85% depending on hole size (McClelland et al. 1969)",
+            "Vibratory installation generally gives lower resistance than impact driving; impact driving the final depth can recover it"
+          ],
+          "equations": [],
+          "figures": [],
+          "tables": []
         },
         {
           "section_id": "7.10.6",
           "title": "Densification Effects on Nominal Resistance and Installation Conditions",
-          "body": "Driving piles in cohesionless soils influences the surrounding soil to a distance of about 3 to 5 pile diameters. Soil displacement and vibrations from driving pile groups can further densify cohesionless materials. Studies indicate friction angle may increase by up to 4 degrees for piles in loose to medium dense sands. Densification can cause significant construction problems if scour, seismic, or other considerations require achieving penetration depths that cannot be achieved. Install piles from center of group outward to reduce group densification effects.",
+          "body": "Driving a pile in cohesionless soil affects the soil to about 3 to 5 pile diameters away (Figure 7-1), and displacement and vibration from driving groups can further densify it, especially with displacement piles (pp. 404-405). Soil resistance, and resistance during driving, can then be significantly higher than calculated for a single pile; cofferdam confinement or the installation sequence can aggravate this, so piles should be installed from the center of the group outward. Densification can prevent reaching the penetration needed for scour, seismic or other reasons and should be considered in design. Meyerhof (1959) and Kishida (1967) indicate friction angle increases of up to 4 degrees are not uncommon in loose to medium dense sands, less in dense sands or soils with significant fines. As a constructability check, static analyses with higher strength parameters than used for design should assess the resistance to be overcome; they may point to a low displacement pile, wider spacing or an installation aid.",
           "key_points": [
-            "Densification zone: 3-5 pile diameters from pile in cohesionless soils",
-            "Friction angle increase: up to 4 degrees in loose to medium dense sands",
-            "Less increase in dense sands or soils with significant fines",
-            "Can prevent achieving required penetration depths",
-            "Install from center outward to reduce group densification effects",
-            "Cofferdam confinement can further aggravate densification",
-            "May require low-displacement piles, increased spacing, or installation aids"
-          ]
+            "Driving affects cohesionless soil to about 3 to 5 pile diameters; groups and displacement piles densify it further",
+            "Install piles from the center of the group outward",
+            "Friction angle increase up to 4 degrees is not uncommon in loose to medium dense sands (Meyerhof 1959; Kishida 1967)",
+            "Constructability check: static analysis with higher strength parameters than for design"
+          ],
+          "equations": [],
+          "figures": [],
+          "tables": []
         },
         {
           "section_id": "7.10.7",
           "title": "Plugging of Open Pile Sections",
-          "body": "Open pile sections (open-end pipe piles and H-piles) may behave as low displacement piles (coring through soil) or as displacement piles if a soil plug forms near the pile toe. Plugging of pipe piles in medium dense to dense sands generally begins at a penetration-to-diameter ratio of 20 (can be as high as 35). For pipe piles in soft to stiff clays, plugging can occur at ratios of 10 to 20. For large diameter open-end pipe piles (>36 inches), plugging during driving is less likely. The static resistance of an open-end pipe pile should be calculated from the lesser of plugged (Eq 7-88) and unplugged (Eq 7-89) conditions. The Tomlinson equation (Eq 7-90) applies to open-end pipe piles in stiff clays. H-piles are more likely to be plugged than pipe piles due to smaller flange distance. Static load tests are recommended for large diameter open-end pipe piles (>18 inches) due to plugging uncertainty.",
+          "body": "Open pile sections, open end pipe piles and H-piles, may core through the soil as low displacement piles or act as displacement piles if a plug forms at the toe; it is generally desired that they stay unplugged during driving and plug under static load (pp. 405-410). Stevens (1988) reported pipe piles in clay do not plug during driving if accelerations along the plug zone exceed 22 g; Holloway and Beddard (1995) found a large hammer blow let the plug slip while a lesser blow met plugged-type toe resistance, so penetration is helped by designing for a large hammer (wave equation analyses give segment accelerations). Static calculations must decide plugged or unplugged behaviour: in medium dense to dense sands plugging generally begins at a penetration to diameter ratio of 20 but can be as high as 35 (O'Neill and Raines 1991; Raines et al. 1992; Paikowsky and Whitman 1990), and in soft to stiff clays at 10 to 20; under static load plugging may occur above 20 in dense sands and clays or 20 to 30 in medium sands, though it is hard to predict. Piles larger than 36 inches are significantly less likely to plug during driving; static plugging is more likely but uncertain, and internal constrictor plates (Figures 6-14, 6-15) are sometimes used. Brown and Thompson (2015) summarize practice for large diameter open end piles and postulate that inertia prevents plugging during driving. Paikowsky and Whitman (1990) take the static resistance of an open end pipe pile as the lesser of Eqs. 7-88 and 7-89 (Figure 7-83). Open end piles should use a lower unit toe resistance than closed end piles; interior unit shaft resistance is typically 1/3 to 1/2 of the exterior. In cohesionless soils Tomlinson (1994) limits unit toe resistance to 105 ksf, as plug yielding governs; use the Paikowsky and Whitman equations with that limit once Meyerhof's limiting value (Figure 7-15) exceeds 105 ksf. In stiff clays with a plug confirmed in the field, Tomlinson gives Eq. 7-90, to be used for piles under 24 inches in predominantly cohesive soils; for 24 to 36 inch and larger piles plugging under static load is less certain and should be analysed carefully. APILE computes plugged, unplugged and automatically determined resistance (Figure 7-82, a 30 inch pipe). H-piles are more likely to plug under static load: the box area is used for toe resistance in cohesionless and cohesive soils, but toe resistance on rock is governed by structural strength on the steel area without any plug; the box perimeter may be used for shaft resistance in cohesionless soils, and in most cohesive soils adhesion on the outer flanges plus su on the two remaining box faces, though sheared clay lumps in stiff clays may leave only the flange exteriors effective (Figure 7-84). Because open sections are more uncertain and plugs respond differently to static and dynamic load, a static load test is recommended for open end pipe piles over 18 inches or H-piles carrying load mainly in shaft resistance.",
           "key_points": [
-            "Open pipe piles: core vs plug behavior during driving and under static load",
-            "Plugging in dense sand: penetration/diameter ratio of 20-35",
-            "Plugging in soft-stiff clay: ratio of 10-20",
-            "Large diameter pipe (>36 in): less likely to plug during driving",
-            "H-piles: more likely to be plugged (smaller flange gap)",
-            "Design resistance = lesser of plugged (Eq 7-88) and unplugged (Eq 7-89) conditions",
-            "Interior shaft resistance: typically 1/3 to 1/2 of exterior shaft resistance",
-            "Tomlinson (1994): limiting unit toe resistance of 105 ksf for open-end pipes in cohesionless soils",
-            "Eq 7-90: Tomlinson equation for open-end pipe in stiff clay with confirmed plug",
-            "Forced plugging via constrictor plate (Figures 6-14, 6-15) reduces uncertainty",
-            "Static load test recommended for large diameter OEP (>18 in) or shaft-resistance H-piles"
-          ],
-          "figures": [
-            "Figure 7-82: APILE API method comparison of plugged, unplugged, and auto plug",
-            "Figure 7-83: Open toe vs plugged toe mechanisms (Paikowsky and Whitman 1990)",
-            "Figure 7-84: H-pile plugging illustration (Tomlinson 1994)"
+            "Desired: unplugged during driving, plugged under static load; large hammer blows help keep the plug slipping",
+            "Plugging in dense sand generally from penetration/diameter 20 (up to 35); in soft to stiff clay 10 to 20",
+            "Piles over 36 inches rarely plug during driving; static plugging is uncertain",
+            "Static resistance = lesser of plugged (Eq. 7-88) and unplugged (Eq. 7-89) (Paikowsky and Whitman 1990)",
+            "Interior unit shaft resistance about 1/3 to 1/2 of exterior; limit unit toe resistance to 105 ksf in cohesionless soils (Tomlinson 1994)",
+            "Stiff clay with a confirmed plug, piles under 24 in.: Rn = 0.8 Ca As + 4.5 su Ap (Eq. 7-90)",
+            "H-piles: box area for toe in soil; steel area only on rock",
+            "Static load test recommended for open end pipe piles over 18 in. and shaft-bearing H-piles"
           ],
           "equations": [
-            "Eq. 7-88: Rn = fso Aso + qp App; plugged condition, open end pipe pile (Paikowsky and Whitman 1990) (p. 406)",
-            "Eq. 7-89: Rn = fso Aso + fsi Asi + qp Ap - Wp; unplugged condition, open end pipe pile (p. 406)",
-            "Eq. 7-90: Rn = 0.8 Ca As + 4.5 su Ap; open end pipe pile in stiff clay when a plug forms and is carried down (Tomlinson 1994); Ca from Figure 7-17, su average at the toe, Ap plugged toe area (p. 407)"
-          ]
+            "Eq. 7-88: Rn = fso Aso + qp App, plugged condition; Rn nominal resistance (kips), fso exterior unit shaft resistance (ksf), Aso pile exterior surface area (ft2), qp unit toe resistance (ksf), App cross sectional area of pile and soil plug at the toe (ft2) (p. 406)",
+            "Eq. 7-89: Rn = fso Aso + fsi Asi + qp Ap - Wp, unplugged condition; fsi interior unit shaft resistance (ksf), Asi pile interior surface area (ft2), Ap cross sectional area of pile material at the toe (ft2), Wp weight of soil plug (kips) (p. 406)",
+            "Eq. 7-90: Rn = 0.8 Ca As + 4.5 su Ap; open end pipe pile in stiff clay when a plug forms and is carried down (Tomlinson 1994); Ca pile adhesion from Figure 7-17 (ksf), As pile shaft surface area (ft2), su average undrained shear strength at the toe (ksf), Ap toe area of a plugged pile (ft2) (p. 407)"
+          ],
+          "figures": [
+            "Figure 7-82: Variation in expected static resistance from APILE API method based on plugged, unplugged, and automatic calculated plugging (p. 408)",
+            "Figure 7-83: Plugging of open end pipe piles (after Paikowsky and Whitman 1990) (p. 409)",
+            "Figure 7-84: Plugging of H-piles (after Tomlinson 1994) (p. 409)"
+          ],
+          "tables": []
         }
       ]
     }
