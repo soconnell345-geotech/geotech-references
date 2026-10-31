@@ -89,6 +89,24 @@ def test_micropile_lists_every_printed_figure_once():
     assert not any(f["page_estimated"] for f in figs["figures"])
 
 
+def test_gec10_chapter_16_numbered_as_its_pages_print():
+    """REF-51: GEC-10's List of Figures names as Figure 16-2 the DFI rating
+    chart its body prints as Table 16-3, so chapter 16 holds the body's 16
+    figures under the labels their pages print; the list line "Figure 12-3."
+    that ends Figure 12-4's entry is not a figure."""
+    figs = _load(ROOT / "geotech_references" / "gec_10" / "figures_catalog.json")
+    ch16 = {f["figure_number"]: (f["pdf_page_index"], f["caption"])
+            for f in figs["figures"] if f["figure_number"].startswith("16-")}
+    assert sorted(ch16, key=lambda n: int(n[3:])) == [f"16-{k}" for k in range(1, 17)]
+    assert ch16["16-2"] == (495, "Crosshole Sonic Log for a Drilled Shaft with Known "
+                                 "Inclusions (Likens et al., 2007) (1 m = 3.281 ft)")
+    assert ch16["16-10"][0] == 505
+    assert ch16["16-10"][1].startswith("Results from Gamma-Gamma Logging")
+    numbers = [f["figure_number"] for f in figs["figures"]]
+    assert numbers.count("12-3") == 1
+    assert len(numbers) == figs["figure_count"] == 380
+
+
 # ---------------------------------------------------------------------------
 # the parser's pieces (no PDFs needed)
 # ---------------------------------------------------------------------------
