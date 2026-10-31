@@ -5,79 +5,399 @@
   "chapter_title": "Planning and Scoping for Site Characterization Activities",
   "sections": [
     {
-      "section_id": "3.1-3.3",
-      "title": "Information Requirements, Existing Information, and Site Reconnaissance",
-      "summary": "Three broad requirements for site characterization: (1) characterize stratigraphy and soil/rock units; (2) establish reliable design parameters and groundwater conditions; (3) identify and characterize geotechnical hazards. Existing information: web-based mapping (USGS, NRCS, Google Earth), geologic maps, historical records, aerial photographs, satellite imagery (InSAR for subsidence). Site reconnaissance provides first-hand account and reveals conditions overlooked by desk studies. Most maps have inadequate spatial resolution for geotechnical site characterization.",
-      "body": "Three broad requirements: (1) characterize stratigraphy and general soil/rock characteristics; (2) establish reliable design parameter values and groundwater conditions; (3) identify and characterize hazards.\n\nExisting information: GIS tools and web-based mapping have dramatically improved access to existing information. USGS topographic maps (soil type, drainage, etc.), NRCS Web Soil Survey (corrosion-risk ratings, fill/cut conditions), Google Earth and aerial photography (land use, drainage patterns, potential fills), interferometric radar (InSAR) for surface deformation/subsidence, historical aerial photographs for previous site use. Limitations: most maps have inadequate spatial resolution; ratings may not apply to specific soil conditions.\n\nSite reconnaissance: Provides first-hand account. Reveals local GWT seeps, unusual vegetation, past land use (contamination, fills), exposed geologic features. Most valuable early in the planning process to direct field investigations. Must be performed by a qualified person familiar with ground behavior.",
+      "section_id": "3.1",
+      "title": "Information Requirements for Design and Construction",
+      "summary": "Three broad requirements: characterize stratigraphy and soil and rock units, establish reliable design parameters and groundwater conditions, and identify hazards. Required parameters depend on material, feature, limit states, agency methods and equipment; ten scoping activities follow.",
+      "body": "Most programs have three broad requirements: (1) characterize stratigraphy and general soil and rock characteristics and their variation; (2) establish reliable values for design parameters and characterize groundwater; (3) identify and characterize hazards. The first and third are similar for most projects (more borings where stratigraphy is variable; hazard methods depend on geology); the second varies with the features, consequences of poor performance, site, ground conditions, loads and extreme events (p. 3-2), so the manual focuses on design parameters. Common parameters: strength, compressibility or stiffness, in situ stress, stress history, water table, seepage parameters, pore pressures, and in situ test parameters as surrogates. Required parameters depend on soil or rock type, feature type, limit states, agency requirements and design methods, and equipment; e.g., driven piles may be designed by \"rational\" strength-based methods or by SPT or CPT methods, so requirements depend on the design methods. Scopes should be developed by: (1) understanding the project, constraints, schedule and procurement; (2) assessing anticipated soil and rock (p. 3-3); (3) identifying design conditions, limit states and methods; (4) identifying required parameters; (5) constructability issues; (6) suitable characterization methods given capabilities; (7) relative merits of measurement types; (8) estimating the number of measurements for appropriate reliability; (9) a scope and plan considering cost and schedule; (10) communicating it to those executing it. These are best completed by geotechnical design engineers with geologists, structural and construction engineers, managers and field crews. (pp. 3-1 to 3-3)",
       "key_points": [
-        "Three requirements: stratigraphy characterization, reliable design parameters + GWT, hazard identification",
-        "Web-based mapping tools (GIS, USGS, NRCS, Google Earth) provide rapid access to preliminary information",
-        "InSAR (interferometric radar) can identify subsidence associated with groundwater withdrawal or underground construction",
-        "Most maps have inadequate spatial resolution for geotechnical characterization — supplement with field investigation",
-        "Site reconnaissance is essential — reveals conditions overlooked by desk studies"
+        "Three requirements: stratigraphy, design parameters and groundwater, hazards (p. 3-1).",
+        "Required parameters depend on design methods (e.g., rational vs SPT/CPT pile methods) (p. 3-2).",
+        "Ten scoping activities, including estimating the number of measurements (pp. 3-2 to 3-3)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Initial planning and information gathering for geotechnical site characterization programs"
+    },
+    {
+      "section_id": "3.2",
+      "title": "Collection and Interpretation of Existing Information",
+      "summary": "Existing information is one of the most effective ways to improve planning and scoping: it anticipates ground conditions, guides methods and identifies hazards; online maps, imagery and GIS now give near instantaneous access at little cost.",
+      "body": "Collection and interpretation of existing information informs planners of anticipated ground conditions so appropriate methods can be selected, and often is the initial basis for identifying hazards that dictate the type and scope of investigations. Capabilities have improved dramatically (p. 3-4): maps, images and reports are available electronically, often at little or no cost, through Google Earth, Google Maps, GIS and other online services. (pp. 3-3 to 3-4)",
+      "key_points": [
+        "Existing information improves scoping and hazard identification (p. 3-3).",
+        "Online tools give near instantaneous access (p. 3-4)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Initial planning and information gathering for geotechnical site characterization programs"
+    },
+    {
+      "section_id": "3.2.1",
+      "title": "Desk Study",
+      "summary": "Table 3-1 lists maps and data sources. NRCS soil surveys (SSURGO, Web Soil Survey) characterize shallow (< 5 ft) soils; USGS and state maps give topography, geology, faults, mines and sinkholes; historical maps show past uses. Maps lack resolution for design but guide scoping.",
+      "body": "Table 3-1 (p. 3-5) summarizes publicly available sources and their uses. NRCS soil survey maps and data are extremely valuable for shallow (< 5 feet) soils; SSURGO often gives USCS and AASHTO classifications, moisture characteristics, Atterberg limits, hydrologic class, grain size, some chemistry and use ratings, overlaid on photographs or topography with the Web Soil Survey (Figure 3-1, corrosion risk). USGS and state agencies map topography, bedrock and quaternary geology and faults, and states map mines, sinkholes, bedrock depth and type, surficial geology and hydrology (USGS National Geologic Map Database); Figures 3-2 to 3-4 show a topographic map, 1993 Midwest flood damage and karst areas with known sinkholes for one region. Historical USGS and Sanborn maps may show past industry (contamination), abandoned foundations, excavations or fills affecting stress history, and sinkholes or mines (p. 3-6). Most maps have inadequate spatial resolution for geotechnical characterization and their ratings may not suit design (p. 3-8), so they cannot replace investigations but are highly valuable for preliminary evaluation and hazard identification. Technical papers on similar sites and even the popular press can add useful information. (pp. 3-4 to 3-8)",
+      "key_points": [
+        "Table 3-1: maps and data sources and their uses (p. 3-5).",
+        "NRCS soil survey data for shallow (< 5 ft) soils (p. 3-4).",
+        "Historical maps show contamination, old foundations, fills, mines (p. 3-6).",
+        "Maps lack resolution for design but guide scoping (p. 3-8)."
       ],
       "equations": [],
       "figures": [
-        "Figure 3-1: Corrosion-risk ratings from the NRCS Web Soil Survey interactive tool",
-        "Figure 3-2: USGS topographic map",
-        "Figure 3-3: Areas of known damage from 1993 Midwest Floods",
-        "Figure 3-4: Karstic conditions and locations of known sinkholes"
+        "Figure 3-1: Corrosion-risk ratings from the NRCS Web Soil Survey interactive tool (NRCS, 2016)",
+        "Figure 3-2: USGS topographic map (NRCS, 2016)",
+        "Figure 3-3: Areas of known damage from 1993 Midwest Floods (courtesy Community Commons)",
+        "Figure 3-4: Karstic conditions and locations of known sinkholes (courtesy Community Commons)"
+      ],
+      "tables": [
+        "Table 3-1: Useful maps and data sources for existing information - map/data source, use, source(s): USGS topographic maps (topography, crude land use; USGS); aerial photographs (land use, vegetation, structures, hazards; Google Earth, Google Maps, NAIP, others); physiographic landforms, surficial and bedrock geology (general soil/rock type; USGS, state agencies); bedrock depth contours (crude bedrock depths; state agencies); soil survey maps and data (map scale soil types, quantitative classification, problematic soils; NRCS, state agencies); fault maps; flood inundation maps (FEMA, USGS, USACE, state agencies); stream gage records (USGS National Water Information System); climatic data (NOAA National Centers for Environmental Information); mine location/type; sinkhole/karst maps; natural hazards information; landfill/Superfund sites; impaired streams; hydrologic maps (springs); utility maps (selecting locations); well maps and logs (groundwater; state agencies); Sanborn Fire Insurance maps (historical land use, environmental hazards; Library of Congress)"
+      ],
+      "applicability": "Initial planning and information gathering for geotechnical site characterization programs"
+    },
+    {
+      "section_id": "3.2.2",
+      "title": "Open Source and Commercial Remote Sensing Data",
+      "summary": "Air photos show hazards and variability; airborne lidar \"bare-earth\" imagery (Figure 3-5) reveals landslides and sinkholes under vegetation; radar gives terrain attributes and InSAR subsidence; hyperspectral imagery may indicate land use, moisture and soil type.",
+      "body": "Open source and commercial remote sensing has become widely available. Recent and historical air photos show current and past uses and hazards (past industry, old landslides) and potential variability (a meandering stream suggests variable alluvium), and past excavations may suggest changed in situ stress or random fill; Google Earth and Maps give high quality images, commercial and government sources higher resolution. \"Bare-earth\" imagery from airborne lidar (Anderson, 2013) reveals historical landslides, sinkholes and other deformations hidden by vegetation (Figure 3-5, p. 3-9). Radar gives terrain attributes (slope, elevation, aspect); interferometric radar (InSAR) shows larger scale surface deformation, e.g., subsidence from groundwater withdrawal or underground construction (Rosenblad, et al., 2013); hyperspectral imagery may indicate vegetation, land use, moisture and possibly soil or rock type (Chabrillat, et al., 2002). Mulder, et al. (2011) summarizes remote sensing techniques. (pp. 3-8 to 3-9)",
+      "key_points": [
+        "Lidar bare-earth imagery reveals hidden landslides and sinkholes (Figure 3-5) (p. 3-8).",
+        "InSAR identifies subsidence (Rosenblad, et al., 2013) (p. 3-9).",
+        "Hyperspectral imagery for large-scale characterization (p. 3-9)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 3-5: Aerial photograph (left) and associated “bare-earth” lidar image (right) of vegetated area (from Anderson, 2013)"
       ],
       "tables": [],
       "applicability": "Initial planning and information gathering for geotechnical site characterization programs"
     },
     {
-      "section_id": "3.4-3.5",
-      "title": "Influence of Number of Measurements and Direct vs. Indirect Measurements",
-      "summary": "More measurements reduce uncertainty in design parameters. For a uniform site, ~5 measurements may suffice; for a highly variable site, 25+ may be needed to fall within 25% of the true mean. LRFD motivates more measurements: variable resistance factors (higher φ with reduced uncertainty) produce more efficient designs. Direct measurements (e.g., triaxial Su) measure the property directly. Indirect measurements (transformations) estimate properties via empirical correlations (e.g., Su from SPT N or CPT qc) and carry additional uncertainty. Combining direct and indirect reduces total uncertainty.",
-      "body": "Statistical sampling concept: Available measurements are samples from a large population. More measurements reduce variability of the estimated mean. For a highly variable site: ~10 measurements required to reduce range to 25% of actual mean; ~40 measurements to reduce to 10% of actual mean. For a uniform site: fewer measurements sufficient. Most engineers underestimate uncertainty when few measurements are available.\n\nLRFD implications: AASHTO LRFD uses variable resistance factors that depend on the quantity and type of measurements. Greater numbers of measurements → higher resistance factor (lower required conservatism) → potentially more efficient design. Figure 3-12 shows percentage of AASHTO LRFD designs that achieve target reliability vs. number of measurements; with very few measurements, many designs will be under-reliable or over-reliable.\n\nDirect measurements: Measurements of the quantity of interest (e.g., undrained shear strength from unconsolidated undrained triaxial test, effective friction angle from consolidated drained triaxial test). Direct measurements are generally more reliable but often more expensive and require higher quality sampling.\n\nIndirect measurements (transformations): Measurements of a related quantity transformed to design parameters via empirical correlations. Examples: Su from SPT N, from CPT qc, from vane shear; φ' from CPT qc. Transformations introduce additional uncertainty beyond measurement uncertainty. Cannot be considered functionally equivalent to a direct measurement. However, combining direct and indirect measurements can produce meaningful reductions in uncertainty. Transformations are used throughout this manual for estimating properties from field tests.",
+      "section_id": "3.2.3",
+      "title": "Historical Data",
+      "summary": "Historical investigation data help but need care: index properties (grain size, Atterberg limits) change little, while water content, strength and compressibility can change quickly, and old data may not meet current standards. Extensive data can shift investigations to confirmation; data management systems store them.",
+      "body": "Agencies keep records of prior investigations, common for widenings and bridge replacements, and sometimes performance data. Their use for design parameters needs care (p. 3-10): grain size distribution and Atterberg limits remain practically consistent, but water content, strength and compressibility may change dramatically over short periods, physio-chemical changes occur, data quality may not meet current practice, and laboratory data are harder to find than boring logs. Historical data are an efficient basis for preliminary interpretation, and when extensive and appropriate the investigation can become one of confirming interpretations with more limited testing. Products are increasingly stored in geotechnical data management systems (agency or commercial, public or restricted), with data transfer standards under development (Chapter 13). (pp. 3-9 to 3-10)",
       "key_points": [
-        "Variable site: ~10 measurements to fall within 25% of true mean; ~40 for within 10%",
-        "LRFD: higher resistance factor with more measurements incentivizes sufficient investigation quantity",
-        "Direct measurements: measure the design parameter directly (e.g., Su from triaxial); more reliable",
-        "Indirect measurements (transformations): estimate parameter via empirical correlation (e.g., Su from SPT N); additional uncertainty",
-        "Combining direct and indirect measurements can meaningfully reduce uncertainty"
+        "Index properties stable; water content, strength, compressibility may change (p. 3-10).",
+        "Old data may not meet current standards (p. 3-10).",
+        "Extensive historical data shift investigations to confirmation (p. 3-10)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Initial planning and information gathering for geotechnical site characterization programs"
+    },
+    {
+      "section_id": "3.3",
+      "title": "Site Reconnaissance",
+      "summary": "Site reconnaissance has no substitute: it reveals seeps and other hazards, confirms desk study concerns and checks access (soft soils, gates, topography, power lines, utilities) and resources (benchmarks, water supply).",
+      "body": "There remains no substitute for on-site reconnaissance (p. 3-11): it gives a first-hand account and can reveal overlooked conditions such as localized groundwater \"seeps\" or other hazards, and confirms issues from the desk study. It is important for planning field work: access for equipment (soft surficial soils, gates, uneven topography, distressed vegetation, flags, clearing, power lines, underground utilities) and resources (benchmarks, water supply); effective reconnaissance dramatically reduces field problems. (pp. 3-10 to 3-11)",
+      "key_points": [
+        "No substitute for on-site reconnaissance (p. 3-10).",
+        "Reveals seeps and hazards; checks access and resources (p. 3-11)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Initial planning and information gathering for geotechnical site characterization programs"
+    },
+    {
+      "section_id": "3.4",
+      "title": "Influence of Number of Measurements",
+      "summary": "Design reliability depends on the reliability of design parameters, which depends on the quantity and quality of measurements; this section addresses quantity (3.4.1 to 3.4.6), section 3.5 type.",
+      "body": "The cost effectiveness and reliability of designs depend directly on the reliability of design parameters, which depends on both quantity and quality of measurements. The section presents general perspectives, the effect of the number of measurements on the mean value, on estimates of variability and uncertainty, and on the reliability of designs; type or quality is in section 3.5. (p. 3-11)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Determining appropriate quantity and type of measurements for reliable design parameter characterization"
+    },
+    {
+      "section_id": "3.4.1",
+      "title": "General Perspectives on Reliability of Geotechnical Design Parameters",
+      "summary": "Confidence improves with more measurements; properties can be characterized to any uncertainty with enough data. Variability is the consistency of a property within a stratum (site specific, handled by design); uncertainty is confidence in an estimate (reduced by more measurements).",
+      "body": "Parameters from few measurements have great uncertainty and may be inappropriate whatever the methods (Christian, 2004); properties can theoretically be characterized to any desired uncertainty with enough measurements (Baecher, 1982, 1983; Christian, 2004; Mitchell, 2009). The quantitative effect is seldom evaluated (p. 3-12), and heavy reliance on qualitative judgment risks inconsistent parameters, scopes and reliability; LRFD and target reliabilities increase recognition of the link, informing rather than replacing judgment. \"Variability\" is the consistency of actual properties or measurements within a site or stratum; \"uncertainty\" is the confidence in an estimate of a property or parameter. A parameter may have little variability but much uncertainty (few measurements) or the reverse. Variability is site specific and best addressed by design decisions (foundation type, ground improvement, sizing); uncertainty can be reduced dramatically by additional measurements and is governed largely by the investigation scope. (pp. 3-11 to 3-12)",
+      "key_points": [
+        "Enough measurements can reach any desired uncertainty (p. 3-11).",
+        "Variability = consistency within a stratum; uncertainty = confidence in an estimate (p. 3-12).",
+        "Variability addressed by design; uncertainty by more measurements (p. 3-12)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Determining appropriate quantity and type of measurements for reliable design parameter characterization"
+    },
+    {
+      "section_id": "3.4.2",
+      "title": "Statistical “Sampling” for Geotechnical Site Characterization",
+      "summary": "Measurements are statistical samples from a large population of possible values. A simulated population of 7800 su values shows subsamples of n = 4 (Figure 3-6) giving widely different interpretations, while n = 20 (Figure 3-7) gives consistent ones.",
+      "body": "Available measurements are \"samples\" in the statistical sense, estimates drawn from a large population of possible values rather than deterministic measures of in situ conditions. A simulated population of 7800 undrained shear strength (su) measurements for one layer illustrates this: three subsamples of n = 4 (Figure 3-6, p. 3-14) give interpretations substantially different from each other and from the \"true\" population trend, enough to affect designs, whereas subsamples of n = 20 (Figure 3-7) give interpretations consistent with each other and the true su (p. 3-15). A design on Figure 3-6c's interpretation would likely miss the target reliability; those of 3-6b and 3-6d would be conservative and costlier. The population is generally unknown and one cannot know whether measurements are representative; one controls only their quantity and quality, and statistical measures of representativeness (Chapter 11) can guide scoping. (pp. 3-13 to 3-15)",
+      "key_points": [
+        "Measurements are samples from a population of possible values (p. 3-13).",
+        "n = 4 subsamples give widely different su interpretations (Figure 3-6) (p. 3-13).",
+        "n = 20 subsamples agree with the true su (Figure 3-7) (p. 3-15).",
+        "Only quantity and quality of measurements can be controlled (p. 3-15)."
       ],
       "equations": [],
       "figures": [
-        "Figure 3-6: Alternative samples from population of su measurements showing variability with n=4",
-        "Figure 3-7: Alternative samples from population of su measurements showing reduced variability with n=20",
-        "Figure 3-8: Histograms of mean su from subsamples of size n=5 and n=20",
-        "Figure 3-12: Percentages of spread footings achieving target probability of failure vs. number of measurements",
-        "Figure 3-15: Empirical transformation between Is (point load index) and qu (UCS)"
+        "Figure 3-6: Alternative samples of size n=4 from population of simulated su measurements: (a) population, (b) subsample one, (c) subsample two, and (d) subsample three",
+        "Figure 3-7: Alternative samples of size n=20 from population of simulated su measurements: (a) population, (b) subsample one, (c) subsample two, and (d) subsample three"
       ],
       "tables": [],
       "applicability": "Determining appropriate quantity and type of measurements for reliable design parameter characterization"
     },
     {
-      "section_id": "3.6-3.9",
-      "title": "Sample Quality, Time-Varying Conditions, and Developing Scope",
-      "summary": "Sample disturbance from stress relief and mechanical disturbance affects measured properties; collect more samples than needed for testing. Time-varying conditions: groundwater and effective stress changes can produce unconservative results if sampling occurs when effective stresses are higher than during construction. Scope development uses risk equation R = pf × C (Eq 3.1) to prioritize investigations where consequences are greatest. AASHTO 2014 Table 3-2 provides minimum exploration guidelines. On-site geotechnical engineer required to modify scope when unexpected conditions are encountered.",
-      "body": "Sample quality: Sample disturbance from stress relief, mechanical disturbance, and gas exsolution reduces reliability of laboratory tests. Higher quality samples (Shelby tubes, piston samplers, Laval samplers) produce more reliable results. Collection of more samples than needed is recommended since some samples are inevitably damaged. Sample quality is addressed in greater detail in Chapters 6 and 7.\n\nTime-varying conditions: The primary mechanism causing changes in soil properties over time is changes in effective stress resulting from changes in groundwater conditions. If sampling is conducted when effective stresses are higher than those that will exist during construction, measured properties may be unconservative. Important to consider timing of investigations relative to anticipated construction and operating conditions.\n\nDeveloping scope: Risk equation: R = pf × C (Eq 3.1) where R = quantitative risk, pf = probability of failure, and C = consequences. Where consequences are greatest, more rigorous investigations are justified. Scope must be balanced with budget constraints and practical limitations. AASHTO 2014 Table 3-2 provides guidelines for minimum number, location, and depth of exploration points for various structure types. However, these minimum guidelines should be supplemented based on site variability and design requirements.\n\nKey scoping requirements: (1) borings to characterize stratigraphy along alignment and at structure locations; (2) additional measurements for design parameter characterization (number depends on variability); (3) specialized investigations for identified hazards. Field investigations must be directed by on-site qualified engineer or geologist so scope can be modified when unexpected conditions are encountered.",
+      "section_id": "3.4.3",
+      "title": "Influence of Number of Measurements on Estimates for Geotechnical Design Parameters",
+      "summary": "From 10,000 simulated investigations, mean su (true 1392 psf) ranged 715 to 2840 psf (5th-95th percentiles) with n = 5 and 1050 to 1890 psf with n = 20. For a uniform site 9 measurements bring estimates within 25 percent and 40 within 10 percent; a variable site needs more than 50.",
+      "body": "Histograms of the interpreted mean su at z = 7 feet from 10,000 simulated investigations (Figure 3-8, p. 3-16) show the most likely estimate is near the true mean for n = 5 and n = 20, but errors are likelier and larger with n = 5: true mean 1392 psf; practical range (5th and 95th percentiles) 715 to 2840 psf for n = 5 (under by about 50 percent or over by a factor of two) and 1050 to 1890 psf for n = 20 (under 25 percent, over 35 percent). Site variability matters (Figure 3-9, p. 3-17; populations in Figure 3-10): for n = 3 to 50, median estimates match the true mean at both sites, but for the uniform site three measurements give 350 psf (55 percent of the true mean) to 1175 psf (190 percent), nine measurements (p. 3-18) bring the range within 25 percent and forty within 10 percent; for the variable site three measurements give 63 psf (1 percent) to 6000 psf (875 percent) and more than fifty are needed to come within 25 percent. The range shrinks rapidly with a few added measurements when n < 10, less so for larger n. Interpretation here was automatic regression without judgment, so ranges are likely overstated (p. 3-19), though judgment may bias toward lesser values; results assume a single stratum population. (pp. 3-15 to 3-19)",
       "key_points": [
-        "Collect more field samples than needed — some will be damaged and unsuitable for testing",
-        "Effective stress changes with GWT level: sampling during high-stress conditions can produce unconservative properties",
-        "Risk equation: R = pf × C — prioritize investigations where consequences are greatest",
-        "AASHTO 2014 Table 3-2: minimum exploration point guidelines — supplement based on variability and design requirements",
-        "On-site geotechnical engineer or geologist required to direct field investigations and modify scope when needed"
+        "n = 5: mean su 715 to 2840 psf vs true 1392 psf (p. 3-16).",
+        "n = 20: 1050 to 1890 psf (p. 3-16).",
+        "Uniform site: 9 measurements within 25 percent, 40 within 10 percent (p. 3-18).",
+        "Variable site: more than 50 measurements to reach 25 percent (p. 3-18).",
+        "A few more measurements help most when n < 10 (p. 3-18)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 3-8: Histograms of mean su from subsamples of size: (a) n=5, and (b) n=20",
+        "Figure 3-9: Interpreted mean su from subsamples of different sizes: (a) relatively uniform site, and (b) highly variable site (adapted from Loehr, et al., 2015)",
+        "Figure 3-10: Simulated populations of su measurements for: (a) relatively uniform site and (b) highly variable site"
+      ],
+      "tables": [],
+      "applicability": "Determining appropriate quantity and type of measurements for reliable design parameter characterization"
+    },
+    {
+      "section_id": "3.4.4",
+      "title": "Influence of Number of Measurements on Estimates of Variability and Uncertainty",
+      "summary": "The number of measurements also controls estimates of uncertainty: COV of the mean su (model uncertainty, COVmodel) falls with n, is larger for variable sites, is very uncertain for small n and approaches zero for large n (Figure 3-11).",
+      "body": "The number of measurements influences the accuracy of estimates of variability and uncertainty (Baecher and Christian, 2003; Loehr, et al., 2015), required for some features by AASHTO (2014) and for resistance factor selection by some agencies (MoDOT, 2015; EPRI, 2012). Figure 3-11 (p. 3-20) plots ranges of the coefficient of variation of the mean su, COVμsu, the uncertainty in the estimated su, generally the appropriate measure for design, often denoted COVmodel (model uncertainty, Chapter 11). Its range and median decrease with n, are smaller at the uniform site (variable sites need more measurements for a given reliability), are extremely wide for small n (uncertainty may be badly under- or overestimated) and approach zero asymptotically as n grows. (pp. 3-19 to 3-20)",
+      "key_points": [
+        "COVμsu = model uncertainty, COVmodel (p. 3-19).",
+        "Decreases with n; larger at variable sites (Figure 3-11) (p. 3-19).",
+        "Very unreliable estimate of uncertainty for small n (pp. 3-19 to 3-20)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 3-11: Ranges of COVμsu determined from subsamples of different sizes for: (a) relatively uniform site and (b) highly variable site (adapted from Loehr, et al., 2015)"
+      ],
+      "tables": [],
+      "applicability": "Determining appropriate quantity and type of measurements for reliable design parameter characterization"
+    },
+    {
+      "section_id": "3.4.5",
+      "title": "Influence of Number of Measurements for Geotechnical Design",
+      "summary": "Simulated spread footings (Loehr et al., 2015) were satisfactory if pf was 0.5 to 1.5 pT. With AASHTO LRFD a uniform site was nearly always satisfactory or over-reliable even with three su values; a variable site was under-reliable in nearly 50 percent of cases with few values, needing 14 for < 10 percent and 20 for < 5 percent.",
+      "body": "Loehr et al. (2015) repeatedly sized spread footings from su estimated by random subsamples of the Figure 3-10 populations, computed their probability of failure from the true properties (p. 3-21) and compared it with the target. \"Satisfactory\": 0.5 pT <= pf <= 1.5 pT; \"over-reliable\": pf < 0.5 pT; \"under-reliable\": pf > 1.5 pT, the thresholds set from \"perfect\" characterization, which still gives 0.5 to 1.5 pT from design method uncertainty. With AASHTO LRFD (AASHTO, 2014), the uniform site (Figure 3-12, p. 3-22) was satisfactory or over-reliable in the vast majority of cases even with three measurements; the variable site (Figure 3-13) was under-reliable in nearly 50 percent of cases with few measurements, fourteen measurements reducing that likelihood below 10 percent and twenty below 5 percent. The two sites bracket typical variability (p. 3-23); satisfactory cases are few for all n. With resistance factors that vary with parameter uncertainty (MoDOT, EPRI; Phoon, et al., 1995, 2000; Loehr, et al., 2011a, b, c, 2013b), the uniform site (Figure 3-14, MoDOT, 2015) shows satisfactory cases increasing with n, over-reliable decreasing and under-reliable practically constant, controlled by the resistance factors (p. 3-24). The motivation for more measurements then becomes maximizing satisfactory, efficient designs, decided by comparing the cost of measurements with savings from larger resistance factors, consistent with the value proposition; with constant factors, scoping is driven by limiting under-reliable designs, harder to cost. Quantitative results depend on the design method; qualitative trends apply generally. (pp. 3-20 to 3-24)",
+      "key_points": [
+        "Satisfactory: 0.5 pT <= pf <= 1.5 pT (p. 3-21).",
+        "Uniform site: satisfactory or over-reliable even with 3 su values (p. 3-21).",
+        "Variable site: about 50 percent under-reliable with few values (p. 3-21).",
+        "14 values for < 10 percent under-reliable, 20 for < 5 percent (p. 3-21).",
+        "Uncertainty-based resistance factors keep under-reliable cases constant (Figure 3-14) (p. 3-23)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 3-12: Percentages of spread footings that practically achieve target probability of failure when designed using AASHTO LRFD provisions for a relatively uniform site: (a) “satisfactory” cases, and (b) “under-reliable” and “over-reliable” cases (adapted from Loehr, et al., 2015)",
+        "Figure 3-13: Percentages of spread footings that practically achieve target probability of failure when designed using AASHTO LRFD provisions for a variable site: (a) “satisfactory” cases, and (b) “under-reliable” and “over-reliable” cases, (adapted from Loehr, et al., 2015)",
+        "Figure 3-14: Percentages of spread footings that practically achieve target probability of failure when designed using MoDOT LRFD provisions for a uniform site: (a) “satisfactory” cases, and (b) “under-reliable” and “over-reliable” cases (adapted from Loehr, et al., 2015)"
+      ],
+      "tables": [],
+      "applicability": "Determining appropriate quantity and type of measurements for reliable design parameter characterization"
+    },
+    {
+      "section_id": "3.4.6",
+      "title": "Application of Judgment for Establishing Appropriate Number of Measurements",
+      "summary": "Errors from few measurements come from statistical sampling, not human error, and cannot be controlled by directed sampling; only enough measurements control them. No single number suits all sites; judgment, geology, experience, preliminary data and phased investigations set it.",
+      "body": "Small numbers of measurements give a substantial likelihood that estimates are well above or below the appropriate value, from statistical sampling rather than human or sampling error, and selective or directed sampling cannot control this (p. 3-25) since the population is unknown; the primary control is sufficient measurements. Because the number needed depends strongly on site variability, seldom known beforehand, considerable judgment is needed: there is no universally appropriate number; it depends on variability, feature type and design method. Judgment can be informed by depositional geology, experience, historical or preliminary measurements, or \"phasing\" investigations; alternatively assume a variability, scope, check the assumption against the measurements and investigate further if needed. (pp. 3-24 to 3-25)",
+      "key_points": [
+        "Sampling errors cannot be controlled by directed sampling (p. 3-24).",
+        "No universally appropriate number of measurements (p. 3-25).",
+        "Phase investigations or check assumed variability (p. 3-25)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Determining appropriate quantity and type of measurements for reliable design parameter characterization"
+    },
+    {
+      "section_id": "3.5",
+      "title": "Influence of Type of Measurements",
+      "summary": "Direct measurements need no explicit transformation (qu of rock, su from UC or triaxial, c' and phi', Cc, Cr, sigma'p); indirect ones (CPT, SPT, Is, pocket penetrometer, Atterberg limits) add transformation uncertainty (Figure 3-15), but many representative indirect measurements can beat few direct ones.",
+      "body": "Reliability also depends on type and quality. su can be measured by triaxial, unconfined compression, pocket penetrometer, torvane and lab vane tests or estimated from SPT, CPT and field vane (FVT), not equivalent or equally reliable; the quantitative methods assume direct, unbiased measures. A \"direct measurement\" (p. 3-26) needs no explicit transformation: uniaxial compression for rock qu; unconfined or triaxial compression for su; direct shear or triaxial for c' and phi'; one-dimensional consolidation for Cc, Cr and sigma'p; its uncertainty comes from specimen and test variability. An \"indirect\" or \"surrogate measurement\" needs a transformation: CPT qc or qt for su or phi'; SPT N for su or phi'; point load index Is for qu; pocket penetrometer or torvane for su or qu; Atterberg limits for peak or residual phi' or compressibility; borehole permeability tests for k. Transformations may be empirical (\"correlations\", Figure 3-15, Is to qu from Rusnak and Mark, 2000, p. 3-27), theoretical or combined, and add their own uncertainty. Indirect estimates are often less reliable, but can be more reliable when many can be obtained cheaply and relate reliably, or when direct samples are hard to get (rocky soils); Peck (1967): elaborate tests on few samples have serious shortcomings given heterogeneity (p. 3-28). \"Perfect\" direct tests on unrepresentative samples are less reliable than \"imperfect\" indirect measurements on representative ones (SPT and CPT in clean coarse soils). Direct tests can carry systematic bias (UU su affected by disturbance, rate and stress path), whose uncertain corrections act like transformations. Combining direct and indirect measurements may substantially reduce uncertainty (Loehr, et al., 2013a); one indirect measurement may not \"count\" as one direct measurement (p. 3-29). Where a design method takes in situ data directly (SPT or CPT pile methods), those are \"direct\" inputs and the transformation uncertainty belongs to the method. Methods: Chapter 11 and Appendix 3. (pp. 3-25 to 3-29)",
+      "key_points": [
+        "Direct: no explicit transformation (qu, su, c', phi', Cc, Cr, sigma'p) (p. 3-26).",
+        "Indirect: CPT, SPT, Is, pocket penetrometer, Atterberg limits, borehole k (p. 3-26).",
+        "Transformation adds uncertainty (Figure 3-15, Rusnak and Mark, 2000) (p. 3-27).",
+        "Imperfect indirect on representative samples can beat perfect direct on unrepresentative ones (p. 3-28).",
+        "In situ inputs to empirical design methods count as direct (p. 3-29)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 3-15: Empirical transformation between Is and qu (denoted as UCS) from Rusnak and Mark (2000)"
+      ],
+      "tables": [],
+      "applicability": "Determining appropriate quantity and type of measurements for reliable design parameter characterization"
+    },
+    {
+      "section_id": "3.6",
+      "title": "Influence of Boring, Sampling and Testing Methods",
+      "summary": "Drilling, sampling and testing can bias measurements: sample disturbance (from drilling, handling, sealing, lab preparation and stress relief), rate and stress path; even in situ tests (SPT loosened by inflow, plugged by large particles). Empirical methods embed typical bias; index properties are insensitive.",
+      "body": "Sections 3.4 and 3.5 presume unbiased measurements, but practices can introduce substantial bias, most commonly \"sample disturbance\", plus loading rate and stress path (p. 3-30; Hvorslev, 1949; Santagata and Germaine, 2002), to be considered in scoping. Disturbance arises from poor drilling before sampling, handling and transport, sealing and laboratory preparation, and inevitably from stress relief, motivating in situ tests, which can still be biased: SPT in coarse soils biased low if groundwater inflow loosens the base or high if large particles plug the sampler. Many design methods are empirical, inherently accounting for \"typical\" bias, so eliminating one source can introduce unintended bias; theoretical methods may rely on compensating biases (Ladd and Foott, 1974; Ladd, 1991). Most index properties are insensitive to sample quality, so methods can be chosen more liberally for classification borings. (pp. 3-29 to 3-30)",
+      "key_points": [
+        "Sample disturbance from drilling, handling, sealing, lab preparation, stress relief (p. 3-30).",
+        "SPT in coarse soils biased by inflow or plugging (p. 3-30).",
+        "Empirical methods embed typical bias (p. 3-30).",
+        "Index properties insensitive to sample quality (p. 3-30)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Developing and executing an appropriate scope of site characterization investigations"
+    },
+    {
+      "section_id": "3.7",
+      "title": "Considerations for Time Varying Conditions",
+      "summary": "Conditions vary with time, mainly through groundwater: su, total stress parameters and OCR change with effective stress (sigma'p only if exceeded), while index, effective stress strength and many stiffness properties are practically time invariant. Protect samples, test promptly and monitor groundwater.",
+      "body": "Changing groundwater (precipitation, runoff, tides, pumping, irrigation, drainage) changes effective stress and thus properties, as do continuing consolidation and permanent changes from development. Most susceptible: undrained shear strength, total stress strength parameters and overconsolidation ratio; preconsolidation stress only if new effective stresses exceed past ones. Practically time invariant: many index properties, effective stress strength parameters and many stiffness and compressibility parameters; intact rock is often treated as independent of small changes. Physical or chemical alteration also occurs, e.g., shales losing strength with stress relief or exposure. For scoping: protect samples and test promptly, and consider changes between sampling and construction (p. 3-32), which may be unconservative if sampling is during high effective stress (dry summer) and construction during low (wet spring), affecting in situ tests too. Address by monitoring groundwater over time (Chapter 10), in design (deep foundations) or in specifications (overexcavation). (pp. 3-31 to 3-32)",
+      "key_points": [
+        "Groundwater is the main cause of time-varying properties (p. 3-31).",
+        "su, total stress parameters, OCR change with effective stress (p. 3-31).",
+        "Index, effective stress strength, stiffness practically time invariant (p. 3-31).",
+        "Sampling in a dry season may be unconservative (p. 3-32)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Developing and executing an appropriate scope of site characterization investigations"
+    },
+    {
+      "section_id": "3.8",
+      "title": "Selection from Among Alternative Methods of Investigation",
+      "summary": "Seldom is one method clearly best; whether many simple or fewer refined measurements is better often has no definitive answer. Keep objectivity, evaluate parameter reliability quantitatively during and after investigations (Chapter 11), balance cost and value, and learn from post mortems.",
+      "body": "Many alternative methods exist and seldom is one clearly more advantageous; preferences from experience are appropriate but planners should stay objective, choosing methods from information needs, ground conditions and uses. There is no recipe; whether more simple or fewer refined measurements is preferable often lacks a definitive answer, leaving selection to judgment and standards of practice. Quantitative evaluation of parameter reliability during and after investigations (Chapter 11, Appendix 3) gives objective feedback (p. 3-33) that improves judgment. An \"optimum\" scope is not practical for every project; scopes should balance cost and value; hindsight will show scopes larger or smaller than needed, and \"post mortem\" evaluation builds judgment. Engineers should be engaged during execution to adapt to unanticipated conditions. (pp. 3-32 to 3-33)",
+      "key_points": [
+        "No method is clearly best in general (p. 3-32).",
+        "Evaluate parameter reliability quantitatively for feedback (pp. 3-32 to 3-33).",
+        "Balance cost and value; learn from post mortems (p. 3-33)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Developing and executing an appropriate scope of site characterization investigations"
+    },
+    {
+      "section_id": "3.9",
+      "title": "Considerations for Different Levels of Site Characterization",
+      "summary": "Lesser scopes for low-consequence features (rest areas) and extensive ones for signature projects are rational, since risk R = pf x C = (1 - r) x C (Eq. 3.1), but lesser scopes are a policy decision to accept lower reliability, and variable sites still need more measurements.",
+      "body": "Practice has used levels of characterization by consequence: ancillary structures (rest areas, toll plazas) a few borings and tests; routine bridges \"typical\" scopes with one or more borings per bent and more testing; \"signature\" projects (major river crossings, interchanges) extensive borings and testing, possibly special or advanced tests. This is rational because lesser consequences permit lesser reliability without inappropriate risk, risk being the probability of an undesirable event times its consequences (Eq. 3.1, p. 3-34). Such practice does produce lesser reliability, increasing the likelihood of missing the LRFD target (section 3.4), in effect a policy decision to accept lesser reliability, to be made carefully; codes such as AASHTO LRFD set minimum requirements reflecting importance and consequences. Site variability also governs: more variable formations need more measurements, so lesser-consequence features do not necessarily warrant lesser scopes; both consequences and site characteristics must be considered. (pp. 3-33 to 3-34)",
+      "key_points": [
+        "Risk R = pf x C = (1 - r) x C (Eq. 3.1) (p. 3-34).",
+        "Lesser scopes are a policy decision to accept lower reliability (p. 3-34).",
+        "Variable sites need more measurements regardless of consequence (p. 3-34)."
       ],
       "equations": [
-        {
-          "equation_id": "3-1",
-          "description": "Quantitative risk for geotechnical design decision making",
-          "latex": "R = p_f \\cdot C",
-          "variables": {
-            "R": "quantitative risk (financial)",
-            "p_f": "probability of an undesirable event (failure)",
-            "C": "consequences associated with the undesirable event (generally financial)"
-          },
-          "implemented_in": null
-        }
+        "Eq. 3.1: R = pf x C = (1 - r) x C; R = quantitative risk, pf = probability of an undesirable event, C = consequences of the undesirable event (generally in financial terms), r = reliability (p. 3-34)"
       ],
       "figures": [],
-      "tables": [
-        "Table 3-2: Guidelines for minimum number, location, and depth of exploration points (adapted from AASHTO 2014)"
+      "tables": [],
+      "applicability": "Developing and executing an appropriate scope of site characterization investigations"
+    },
+    {
+      "section_id": "3.10",
+      "title": "Development of Scope for Field Investigations",
+      "summary": "Field investigations include borings, in situ soundings, samples, geophysics, geologic mapping and groundwater characterization; their scope must meet the three requirements of section 3.1, balance value and cost against the risk of omitting them, and meet code minimums.",
+      "body": "Field investigations generally involve test borings, in situ test soundings and sampling for laboratory testing, possibly geophysical measurements (with or independent of drilling), geologic mapping of outcrops, and groundwater characterization. The scope should satisfy the three requirements of section 3.1 (p. 3-35): stratigraphy, reliable design parameters and hazards, considering the value and cost of activities and the consequences and risks if they are not performed, balancing investigation cost against the cost of designing and building to mitigate risk without the information, and meeting minimum code and standard requirements. (pp. 3-34 to 3-35)",
+      "key_points": [
+        "Borings, soundings, samples, geophysics, mapping, groundwater (p. 3-34).",
+        "Meet the three requirements and code minimums (p. 3-35).",
+        "Balance investigation cost against risk mitigation cost (p. 3-35)."
       ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Developing and executing an appropriate scope of site characterization investigations"
+    },
+    {
+      "section_id": "3.10.1",
+      "title": "Developing Preliminary Scopes",
+      "summary": "Start with exploration points for stratigraphy (Table 3-2, after AASHTO 2014): at least one per 100 ft of bridge substructure and one per 100 to 200 ft of wall, tighter where variable; stagger locations, pair borings with soundings, and extend depths two to three foundation widths below the foundation.",
+      "body": "First estimate the number and location of \"exploration points\" (borings and in situ soundings) for stratigraphy, then adapt for hazards and testing needs. Table 3-2 (p. 3-36) minimums are a good start: at least one point per 100 feet of substructure for bridge foundations and abutments and one per 100 to 200 feet of alignment for retaining walls; similar spacing for notable cuts and fills; greater for general corridor sections; bridge-like spacing for sign, tower and ancillary foundations. Adapt to anticipated variability, much closer where stratigraphy is variable, using historical borings and surface geophysics (seismic, resistivity, electromagnetic for general stratigraphy and depth to rock) to widen spacing, justify tighter spacing (p. 3-36) or target anomalies. Stratigraphy is three-dimensional (p. 3-37): do not place all points on one line; stagger along the centerline and toward the front or back; consider traffic, utilities, structures and access; alternate borings and soundings, and place some close together for site specific transformations; scanning geophysics helps between points. Depths should extend below the volume influenced by construction: for foundations two to three times the nominal plan dimension below the foundation depth; for slopes and walls below where their influence becomes negligible, through poor materials and possibly into rock. (pp. 3-35 to 3-37)",
+      "key_points": [
+        "Table 3-2: minimum number, location and depth of exploration points (AASHTO, 2014) (p. 3-36).",
+        "One point per 100 ft of bridge substructure; one per 100-200 ft of wall (p. 3-35).",
+        "Stagger points; pair borings and soundings (p. 3-37).",
+        "Depth two to three foundation widths below the foundation (p. 3-37)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 3-2: Guidelines for minimum number, location, and depth of exploration points (adapted from AASHTO, 2014) - application, minimum number and location, minimum depth. Retaining walls: at least one exploration point, points every 100-200 ft, more behind anchored walls; depth below wall bottom where stress increase is less than 10 percent of existing effective overburden stress, and below soft compressible soils into competent bearing material. Shallow foundations: at least one per substructure, at least two for substructures wider than 100 ft in plan, more for erratic conditions; depth below footing where stress increase is less than 10 percent of existing overburden stress, below soft soils into competent material, at least 10 ft into competent rock if met first, more in highly variable rock or boulders. Deep foundations: at least one per embankment (as printed), at least two for substructures wider than 100 ft, more for erratic conditions; depth below anticipated tip the greater of 20 ft or twice the maximum foundation group dimension, below soft soils, at least 10 ft into competent rock for piles on rock, and for drilled shafts the greater of 10 ft, three shaft diameters (single shafts) or twice the maximum group dimension below the anticipated tip. Embankment foundations: at least one per embankment, one at each bridge abutment, one per 300 ft staggered transversely, at least three transversely, more for erratic conditions; depth the greater of where induced vertical stress is less than 10 percent of the applied stress at the embankment base or twice the embankment height, unless a competent hard stratum is met shallower. Excavated slopes: one per 300 ft of slope, at least three transversely, more for erratic conditions; depth equal to the maximum slope height below the minimum excavation elevation unless a competent hard stratum is shallower, and below soft or weak strata that might affect stability"
+      ],
+      "applicability": "Developing and executing an appropriate scope of site characterization investigations"
+    },
+    {
+      "section_id": "3.10.2",
+      "title": "Refining Preliminary Scope",
+      "summary": "Refine the plan for hazards (karst, mines) and parameter needs; specify drilling, borehole support, sampling and in situ methods; set sampling intervals by use (a thin weak seam can govern slopes, not deep foundations); distribute sampling uniformly with extra in governing units; phase investigations and characterize groundwater.",
+      "body": "Evaluate the stratigraphy plan for design parameters and hazards: more points may be needed for suspected karst or mines (p. 3-38) or for variable properties in consistent stratigraphy (section 3.11). Specify drilling method, borehole support, sampling and in situ test methods, state-of-the-practice for performance-test samples and in situ test borings, possibly changing methods between strata, chosen with drillers, with close communication as work proceeds. Set sampling and testing intervals by stratigraphy, needed numbers and use: a thin weak clay seam may hardly affect deep foundations (average strength governs) but may dominate a slope or wall (Hendron and Patton, 1985), so sporadic sampling may suit one and not the other; an on-site engineer or geologist should direct the work (p. 3-39). Distribute sampling approximately uniformly, with additional sampling in units that dominate performance, and enough measurements in each significant unit (smaller intervals in thin units). Information is often lacking at first: evaluate existing information, keep a qualified person on site, and phase investigations (widely spaced preliminary explorations and simple tests, then targeted work, coordinated with design phases); small projects may need conservative scopes or on-site adaptation (p. 3-40). Characterize groundwater during and over longer periods; failure to identify artesian conditions or high flows can greatly affect costs (Clayton, 2001; Boeckmann and Loehr, 2016). (pp. 3-37 to 3-40)",
+      "key_points": [
+        "More points for karst, mines or variable properties (pp. 3-37 to 3-38).",
+        "Specify drilling, support, sampling and in situ methods (p. 3-38).",
+        "A thin weak seam can govern slopes and walls (Hendron and Patton, 1985) (p. 3-38).",
+        "Phase investigations; on-site engineer or geologist (p. 3-39).",
+        "Characterize groundwater over time (p. 3-40)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Developing and executing an appropriate scope of site characterization investigations"
+    },
+    {
+      "section_id": "3.11",
+      "title": "Development of Scope for Laboratory and Field Testing",
+      "summary": "Testing scope follows the required parameters: include enough measurements for COVmodel <= 0.3 (an interim threshold) in each important stratum: about twenty direct measurements for highly variable strata, fewer than five for uniform ones, more if indirect; collect spare samples; assign index tests liberally.",
+      "body": "Scopes for laboratory and field testing are driven by the required design parameters (section 3.1) and the type and quantity of measurements needed. Section 3.4.5 and Loehr et al. (2015) suggest under-reliable designs are unlikely when parameters have model uncertainty COVmodel (Chapter 11) less than about 0.3, so scopes should give COVmodel <= 0.3 for important strata and parameters (p. 3-41); other thresholds may suit other parameters and methods, so 0.3 is an interim requirement. The number of tests depends on stratum variability, test reliability and transformation reliability: about twenty direct measurements may be needed for highly variable strata, fewer than five for strata with little variability; more indirect measurements, similar numbers only if the transformation is quite reliable, and some transformations are too unreliable alone, needing alternative or combined measurements. The numbers apply to each important stratum, preferably from several borings; fewer suffice in unimportant strata; collect more samples than needed since some will be poor (p. 3-42). Sufficient index tests, quick and cheap and possible on poorer samples, should be assigned liberally to classify materials, identify populations and support collective interpretation (Chapter 11). (pp. 3-40 to 3-42)",
+      "key_points": [
+        "COVmodel <= 0.3 for important strata (interim threshold) (p. 3-40).",
+        "About 20 direct measurements for highly variable strata; < 5 for uniform (p. 3-41).",
+        "More indirect measurements needed (p. 3-41).",
+        "Collect spare samples; assign index tests liberally (p. 3-42)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Developing and executing an appropriate scope of site characterization investigations"
+    },
+    {
+      "section_id": "3.12",
+      "title": "Special Considerations for Alternative Contracting Methods",
+      "summary": "Design-build needs deliberate attention: pre-bid investigations must let bidders price confidently and limit differing site condition claims without undue risk, and contracts should require post-award investigation meeting minimum levels, with owner approval (Clayton, 2001).",
+      "body": "The concepts apply to all delivery methods, but alternative contracting can introduce challenges and perverse incentives; Clayton (2001) concluded innovative contracting may increase overruns unless characterization practice changes. All design-build projects include a pre-award program, necessarily more limited because foundation locations are unknown; it should give bidders sufficient information to bid and reduce differing site condition claims, with enough detail and reliability not to impose undue risk, which raises bids (p. 3-43). Post-award characterization by the design-build contractor should be contractually required at minimum levels for similar projects plus project requirements, with owner approvals to ensure acceptable reliability. (pp. 3-42 to 3-43)",
+      "key_points": [
+        "Pre-bid data must let bidders price and limit claims (p. 3-42).",
+        "Contracts require post-award investigation at minimum levels (p. 3-43).",
+        "Owner approval of post-award characterization (p. 3-43)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Developing and executing an appropriate scope of site characterization investigations"
+    },
+    {
+      "section_id": "3.13",
+      "title": "Communication and Execution of Site Characterization Activities",
+      "summary": "Document and communicate the plan clearly; agencies use in-house crews, contractors or both. Instructions should cover ten items, from locations, methods and access to sampling intervals, logs, sample care, hole closure, groundwater, lab testing and communication with the geotechnical designer.",
+      "body": "The final planning step is documenting and communicating the plan to those executing it. Practices vary: some states use agency crews almost exclusively, others contractors, most a combination (specialized tests, workload balance, district or statewide crews, contracted geophysics, consultant oversight on large projects). Plans must be communicated clearly and designers involved during execution; in-house communication may be brief, contractor communication lengthy and contractual (p. 3-44). Instructions should document: (1) planned locations, documentation of actual locations and allowable deviations; (2) drilling, sampling and testing methods and equipment and allowed field modifications; (3) site access, utility clearance, traffic and environmental controls; (4) sampling and testing intervals or depths and protocols for problems; (5) field logs and records; (6) sample care and storage through delivery and in the laboratory; (7) completion or closure of borings (grout, monitoring wells); (8) groundwater monitoring and instrumentation; (9) laboratory testing and sample selection; (10) routine communication with the geotechnical design engineer. Adaptations are commonly needed, so communication should continue throughout. (pp. 3-43 to 3-44)",
+      "key_points": [
+        "Communicate the plan clearly; designers involved in execution (p. 3-43).",
+        "Ten items for investigation instructions (p. 3-44).",
+        "Expect adaptations; keep communicating (p. 3-44)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
       "applicability": "Developing and executing an appropriate scope of site characterization investigations"
     }
   ]
