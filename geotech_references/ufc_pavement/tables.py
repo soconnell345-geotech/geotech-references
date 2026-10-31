@@ -1211,8 +1211,24 @@ _TABLE_19_2_ROWS = (
     ("F4", "d", "Varved clays and other fine-grained, banded sediments",
      None, ("CL", "CL-ML")),
 )
+# Rows of Table 20-2 (Chapter 20, pdf_page 124, printed 105) for the USCS
+# types Table 19-2 does not list: the same frost groups and percentages,
+# with more dual symbols.
+_TABLE_20_2_EXTRA_ROWS = (
+    ("F1", "", "Gravelly soils", (6.0, 10.0), ("GW-GC", "GP-GC")),
+    ("F2", "a", "Gravelly soils", (10.0, 20.0), ("GM-GC",)),
+    ("F2", "b", "Sands", (6.0, 15.0), ("SW-SC", "SP-SC", "SM-SC")),
+    ("F3", "a", "Gravelly soils", (20.0, None), ("GM-GC",)),
+    ("F3", "b", "Sands, except very fine silty sands", (15.0, None),
+     ("SM-SC",)),
+    ("F4", "b", "Very fine sands", (15.0, None), ("SM-SC",)),
+)
+# Table 20-2 writes the dual symbols GC-GM, SC-SM and CL-ML (ASTM D2487
+# order) as GM-GC, SM-SC and ML-CL.
+_USCS_ORDER_ALIASES = {"GC-GM": "GM-GC", "SC-SM": "SM-SC", "ML-CL": "CL-ML"}
 _FROST_GROUPS = ("NFS", "PFS", "S1", "S2", "F1", "F2", "F3", "F4")
 _TABLE_19_2_REF = "UFC 3-250-01, Table 19-2 (pdf_page 89, printed 70)"
+_TABLE_20_2_REF = "UFC 3-250-01, Table 20-2 (pdf_page 124, printed 105)"
 _PARA_19_2_2_REF = "UFC 3-250-01, para 19-2.2 (pdf_page 87, printed 68)"
 
 
@@ -1254,7 +1270,13 @@ def table_19_2_frost_classification(uscs_class, finer_than_0_02mm_pct=None,
       percentage: not in a row of the table; para 19-2.2 (pdf_page 87,
       printed 68) says "Occasionally, GC or SC materials may occur within
       the F2 group, although they normally fall into the F3 category", so
-      F3 is returned with ``listed_in_table`` False.
+      F3 is returned with ``listed_in_table`` False (Table 20-2 prints GC
+      10-20 % and SC 6-15 % under F2; named in the note).
+
+    A dual symbol Table 19-2 does not list but Table 20-2 (Chapter 20,
+    pdf_page 124, printed 105) does -- GW-GC and GP-GC (F1, 6-10 %),
+    GM-GC, SW-SC, SP-SC, SM-SC -- takes Table 20-2's row, cited, with
+    ``listed_in_table`` False.
 
     Parameters
     ----------
@@ -1281,9 +1303,10 @@ def table_19_2_frost_classification(uscs_class, finer_than_0_02mm_pct=None,
     Raises
     ------
     ValueError
-        If the symbol is not in Table 19-2 (e.g. OL, OH, PT, GW-GC), the
-        percentage is needed but not given, or the symbol and percentage
-        fall in no printed row (e.g. GW over 6 %, SM at 6 % or less).
+        If the symbol is in neither Table 19-2 nor Table 20-2 (e.g. OL,
+        OH, PT), the percentage is needed but not given, or the symbol and
+        percentage fall in no printed row (e.g. GW over 6 %, SM at 6 % or
+        less, GW-GC over 10 %).
     """
     if frost_group is not None:
         g = str(frost_group).strip().upper()
@@ -1305,18 +1328,26 @@ def table_19_2_frost_classification(uscs_class, finer_than_0_02mm_pct=None,
         }
 
     sym = str(uscs_class).strip().upper().replace(" ", "")
+    sym = _USCS_ORDER_ALIASES.get(sym, sym)
     rows = [r for r in _TABLE_19_2_ROWS if sym in r[4]]
+    from_20_2 = not rows
+    if from_20_2:
+        rows = [r for r in _TABLE_20_2_EXTRA_ROWS if sym in r[4]]
     if not rows:
-        listed = sorted({s for r in _TABLE_19_2_ROWS for s in r[4]}
-                        | {"GC", "SC"})
+        listed = sorted({s for r in _TABLE_19_2_ROWS + _TABLE_20_2_EXTRA_ROWS
+                         for s in r[4]})
         raise ValueError(
-            f"Table 19-2 lists no frost group for '{uscs_class}' (it lists "
-            f"{', '.join(listed)}). Give the frost group set by a "
-            "laboratory frost test as frost_group."
+            f"Tables 19-2 and 20-2 list no frost group for '{uscs_class}' "
+            f"(they list {', '.join(listed)}). Give the frost group set by "
+            "a laboratory frost test as frost_group."
         )
     fines = finer_than_0_02mm_pct
     base = {"uscs_class": sym, "finer_0_02mm_pct": fines,
-            "reference": _TABLE_19_2_REF}
+            "reference": (f"{_TABLE_19_2_REF}; {_TABLE_20_2_REF}" if from_20_2
+                          else _TABLE_19_2_REF)}
+    where = (f"Table 19-2 does not list {sym}; Table 20-2 (Chapter 20, "
+             "pdf_page 124, printed 105) prints it" if from_20_2
+             else f"Table 19-2 prints {sym}")
 
     if all(r[3] is None for r in rows):        # fine-grained: no fines range
         first, others = rows[0], rows[1:]
@@ -1339,17 +1370,20 @@ def table_19_2_frost_classification(uscs_class, finer_than_0_02mm_pct=None,
                     note=(f"{why} Para 19-2.2 (pdf_page 87, printed 68): "
                           "\"Occasionally, GC or SC materials may occur "
                           "within the F2 group, although they normally fall "
-                          "into the F3 category.\" F3 is returned; a "
-                          "laboratory frost test can set the group "
-                          "(frost_group)."),
-                    reference=f"{_TABLE_19_2_REF}; {_PARA_19_2_2_REF}")
+                          "into the F3 category.\" Table 20-2 (pdf_page "
+                          "124, printed 105) prints GC at 10-20 % and SC at "
+                          "6-15 % under F2. F3 is returned; a laboratory "
+                          "frost test can set the group (frost_group)."),
+                    reference=(f"{_TABLE_19_2_REF}; {_PARA_19_2_2_REF}; "
+                               f"{_TABLE_20_2_REF}"))
 
     if fines is None:
         if sym in ("GC", "SC"):
             return _gc_sc_f3(
                 f"No percentage finer than 0.02 mm given for {sym}.")
         raise ValueError(
-            f"Table 19-2 sets the frost group of {sym} by the percentage "
+            f"{'Table 20-2' if from_20_2 else 'Table 19-2'} sets the frost "
+            f"group of {sym} by the percentage "
             "finer than 0.02 mm by weight; give finer_than_0_02mm_pct."
         )
     if fines < 0 or fines > 100:
@@ -1376,31 +1410,38 @@ def table_19_2_frost_classification(uscs_class, finer_than_0_02mm_pct=None,
         printed = "; ".join(
             f"{_t192_label(r)} {_t192_range_text(r[3])} %" for r in rows)
         raise ValueError(
-            f"Table 19-2 has no row for {sym} with {fines:g} % finer than "
-            f"0.02 mm (it prints {sym} at: {printed}). Give the frost group "
-            "set by a laboratory frost test as frost_group."
+            f"{where} only at: {printed}; there is no row for {sym} with "
+            f"{fines:g} % finer than 0.02 mm. Give the frost group set by a "
+            "laboratory frost test as frost_group."
         )
-    if len(hits) > 1 and sym == "SM":
+    if len(hits) > 1 and sym in ("SM", "SM-SC"):
         hits.sort(key=lambda r: r[0] != "F4")     # F4 (b) first
     first, others = hits[0], hits[1:]
     out = dict(base, frost_group=first[0], subgroup=first[1],
                description=(f"{first[2]}, {_t192_range_text(first[3])} % "
                             f"finer than 0.02 mm -- {', '.join(first[4])}"),
-               listed_in_table=True,
+               listed_in_table=not from_20_2,
                also_printed=[_t192_label(r) for r in others])
+    notes = []
+    if from_20_2:
+        notes.append(f"{where} under {_t192_label(first)} ({first[2]}, "
+                     f"{_t192_range_text(first[3])} %), which is returned.")
     if others:
-        out["note"] = (
-            f"Table 19-2 also prints {sym} at {fines:g} % under "
+        notes.append(
+            f"{'Table 20-2' if from_20_2 else 'Table 19-2'} also prints "
+            f"{sym} at {fines:g} % under "
             + "; ".join(f"{_t192_label(r)} ({r[2]}, "
                         f"{_t192_range_text(r[3])} %)" for r in others)
             + ".")
         if first[0] == "PFS":
-            out["note"] += (" Footnote ***: PFS soils require a laboratory "
-                            "test to determine the frost design soils "
-                            "classification.")
-        if sym == "SM":
-            out["note"] += (" F4 (b) is for very fine silty sands; both take "
-                            "index 3.5 in Table 19-3.")
+            notes.append("Footnote ***: PFS soils require a laboratory "
+                         "test to determine the frost design soils "
+                         "classification.")
+        if (first[0], first[1]) == ("F4", "b"):
+            notes.append("F4 (b) is for very fine sands; both take index "
+                         "3.5 in Table 19-3.")
+    if notes:
+        out["note"] = " ".join(notes)
     return out
 
 

@@ -680,9 +680,40 @@ class TestFrostClassification:
         assert "19-2.2" in r["note"]
         assert table_19_2_frost_classification("GC")["frost_group"] == "F3"
 
-    @pytest.mark.parametrize("uscs", ["OL", "OH", "PT", "GW-GC", "SC-SM"])
+    def test_gc_10_to_20_is_f3_naming_table_20_2s_f2(self):
+        # Table 20-2 (pdf_page 124, printed 105) prints GC 10-20 % under
+        # F2; para 19-2.2 says GC normally falls in F3.
+        r = table_19_2_frost_classification("GC", 15.0)
+        assert r["frost_group"] == "F3"
+        assert r["also_printed"] == ["F2"]
+        assert "Table 20-2" in r["note"]
+        assert "Table 20-2" in r["reference"]
+
+    @pytest.mark.parametrize("uscs", ["GW-GC", "GP-GC"])
+    def test_gw_gc_gp_gc_take_table_20_2_f1(self, uscs):
+        # Not in Table 19-2; Table 20-2 prints them F1 at 6-10 %.
+        r = table_19_2_frost_classification(uscs, 8.0)
+        assert (r["frost_group"], r["subgroup"]) == ("F1", "")
+        assert r["listed_in_table"] is False
+        assert "Table 20-2" in r["note"]
+        assert "Table 20-2 (pdf_page 124, printed 105)" in r["reference"]
+
+    def test_gw_gc_outside_table_20_2_range_refused(self):
+        with pytest.raises(ValueError, match="Table 20-2.*F1 6-10"):
+            table_19_2_frost_classification("GW-GC", 12.0)
+
+    def test_sc_sm_reads_table_20_2_sm_sc(self):
+        # Table 20-2 writes the ASTM dual symbol SC-SM as SM-SC.
+        r = table_19_2_frost_classification("SC-SM", 10.0)
+        assert (r["frost_group"], r["subgroup"]) == ("F2", "b")
+        assert r["listed_in_table"] is False
+        r = table_19_2_frost_classification("SC-SM", 20.0)
+        assert (r["frost_group"], r["subgroup"]) == ("F4", "b")
+        assert r["also_printed"] == ["F3 (b)"]
+
+    @pytest.mark.parametrize("uscs", ["OL", "OH", "PT"])
     def test_unlisted_symbols_refused(self, uscs):
-        with pytest.raises(ValueError, match="lists no frost group"):
+        with pytest.raises(ValueError, match="list no frost group"):
             table_19_2_frost_classification(uscs, 10.0)
 
     @pytest.mark.parametrize("uscs,pct", [
