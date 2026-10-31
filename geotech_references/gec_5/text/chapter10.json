@@ -5,93 +5,999 @@
   "chapter_title": "Measurement and Interpretation of Groundwater Conditions and Hydraulic Properties of Soil and Rock",
   "sections": [
     {
-      "section_id": "10.1-10.3",
-      "title": "Groundwater Concepts and Measurement Devices",
-      "summary": "Total hydraulic head h = ze + u/γw; Darcy's law: q = k × i × A. Anisotropy: kh/kv = 0.9–2.2 (glacial till); 2–10 (varved clay). Groundwater in monitoring wells (screened pipe; allow equilibration) or piezometers. Piezometer types: standpipe (simple), pneumatic (no water in tubes), vibrating wire (data logger). CPT in sands: u0 = hydrostatic; CPTU in clays: dissipation test needed for u0. Clean drilling (hollow stem auger, clean water) required to avoid contaminating measurements.",
-      "body": "Hydraulic head: h = he + hp = ze + u/γw (ignoring velocity head). Pressure head hp = u/γw; elevation head he = ze. For no-flow condition, hydraulic head is constant with depth. Darcy's law: q = k × i × A where i = dh/dl. Valid for laminar flow conditions (Re < 1-10).\n\nMonitoring wells: PVC or steel pipe with screened section (typically 1.5 m long) surrounded by sand pack; bentonite seal above sand pack; grout seal to surface. Allow equilibration time after drilling — time depends on k (minutes for sands; days to weeks for clays). Standpipe piezometer response time per Hvorslev (1951).\n\nPiezometer types: (1) Standpipe — open pipe, simplest, slow response in low-k soils; good for most sands and gravels. (2) Twin-tube hydraulic — closed system, no water in tubes; good for low-k soils. (3) Pneumatic — twin-tube diaphragm; no water in lines, suitable for freezing conditions; less expensive. (4) Electrical resistance — strain gauge; rapid response; data logger compatible. (5) Vibrating wire — most common for permanent installations; automatic data logger; high accuracy and long-term reliability.\n\nCPT/CPTU groundwater: In coarse-grained soils, measured pore pressure u2 = u0 (hydrostatic) since drainage is complete. In fine-grained soils, excess pore pressures develop during cone advance; dissipation tests required to determine u0 (initial pore pressure). Dissipation test: stop cone advance, record pore pressure decay vs. time; ch from Robertson et al. (1992) chart.\n\nGeophysical methods: Time-domain electromagnetic (TEM), seismic refraction (Vp changes at water table), self-potential (SP) for seepage detection.",
+      "section_id": "10.1",
+      "title": "Uses for Hydraulic Properties and Groundwater Conditions for Design and Construction",
+      "summary": "Groundwater conditions set effective stresses, guide property measurement and drive below-grade construction choices and risk. Investigations find groundwater location, piezometric head in confined aquifers and flow direction and rate (plus sources and pumping effects for dewatering). Conditions are three-dimensional and time varying, so piezometers in each stratigraphic unit are monitored over time.",
+      "body": "Groundwater conditions determine effective stresses governing geotechnical performance, are needed to measure and interpret properties, and may dramatically influence below-grade construction means and risk. Objectives for most transportation projects: location of groundwater, magnitude of piezometric head in confined aquifers, and direction and rate of flow; for dewatering, also sources of flow (lakes, rivers, coasts), stratigraphic effects and the influence of pumping; sometimes water quality and disposal or remediation. Conditions are inevitably three-dimensional and time varying (this cannot be emphasized enough): levels, pore pressures and flows change with discharge and recharge, driven mainly by seasonal precipitation, local pumping, tides near shorelines and stream or river levels (p. 10-2). Monitoring objectives: water levels and pressures, water quality, subsurface hydrogeology, aquifer hydraulic characteristics. Monitoring wells or piezometers in boreholes are needed at several locations and depths over time, ideally in each stratigraphic unit. Hydraulic properties feed predictions of flow (into excavations) and pore pressure (effects of embankments or cuts); analyses are only as accurate as their parameters; properties come from laboratory, in situ and borehole flow tests. (pp. 10-1 to 10-2)",
       "key_points": [
-        "Total head: h = ze + u/γw; Darcy's law: q = k × i × A",
-        "Monitoring wells: allow equilibration time; days to weeks for low-k soils",
-        "Vibrating wire piezometers most common for permanent installations — data logger compatible",
-        "CPTU in fine-grained soils: u2 ≠ u0 during advance; dissipation test required for u0",
-        "Clean drilling required — hollow stem auger or clean water drilling fluid"
+        "Groundwater conditions are inevitably three-dimensional and time varying (p. 10-1).",
+        "Main drivers: seasonal precipitation, local pumping, tides, stream or river levels (p. 10-2).",
+        "Monitoring objectives: water levels and pressures, quality, hydrogeology, aquifer characteristics (p. 10-2).",
+        "Ideally a piezometer in each stratigraphic unit (p. 10-2).",
+        "Seepage analyses are only as accurate as the parameters used (p. 10-2)."
       ],
-      "equations": [
-        {
-          "equation_id": "10-head",
-          "description": "Total hydraulic head (ignoring velocity head)",
-          "latex": "h = z_e + \\frac{u}{\\gamma_w}",
-          "variables": {
-            "h": "total hydraulic head (length)",
-            "z_e": "elevation head above selected datum",
-            "u": "pore water pressure",
-            "gamma_w": "unit weight of water"
-          },
-          "implemented_in": null
-        },
-        {
-          "equation_id": "10-Darcy",
-          "description": "Darcy's law for flow through soil",
-          "latex": "q = k \\cdot i \\cdot A",
-          "variables": {
-            "q": "volumetric flow rate",
-            "k": "hydraulic conductivity",
-            "i": "hydraulic gradient = dh/dl",
-            "A": "cross-sectional area of flow"
-          },
-          "implemented_in": null
-        }
-      ],
-      "figures": [
-        "Figure 10-2: Measured values of total head with depth",
-        "Figure 10-3: Diagram illustrating Darcy's Law",
-        "Figure 10-8: Twin-tube hydraulic piezometer schematic",
-        "Figure 10-10: Electrical resistance gage piezometer",
-        "Figure 10-11: Vibrating wire piezometer"
-      ],
-      "tables": [
-        "Table 10-3: Summary of methods for determining hydraulic conductivity",
-        "Table 10-4: Reported hydraulic conductivity anisotropy (kh/kv) for various soils"
-      ],
-      "applicability": "Groundwater level measurement and piezometer selection for transportation geotechnical projects"
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Groundwater investigation objectives and uses of hydraulic properties for design and construction"
     },
     {
-      "section_id": "10.9-10.15",
-      "title": "Hydraulic Conductivity Testing and Estimation",
-      "summary": "Field tests for hydraulic conductivity: auger hole seepage (variable head in unlined hole), slug/bail tests in standpipe piezometers (Hvorslev and Cooper-Bredehoeft analysis), packer tests in rock boreholes (constant or falling head), Guelph permeameter (constant head in hand-augered hole), pumping tests (most representative; Theis confined equation: k = Q×W(u)/(4πb) per observation well drawdown). Laboratory tests: flexible-wall permeameter (ASTM D5084, preferred for low-k soils), rigid-wall permeameter, consolidation cell. Correlations: Hazen equation k = C × D10² (C ≈ 1.0 cm/s, D10 in cm) for clean sands; Kozeny-Carman for granular soils. For clays: k decreases with increasing PI and Cc.",
-      "body": "Field tests for hydraulic conductivity: (1) Auger hole seepage test — open borehole below water table; variable head; suitable for relatively permeable soils. (2) Slug/bail tests in standpipe piezometers — Hvorslev method (straight-line method on semi-log plot) and Cooper-Bredehoeft (type curve matching); kh from Bourdon equation. (3) Packer tests in rock — isolate zone with inflatable packers; apply constant head or falling head; measures krock for specific zone. (4) Guelph permeameter — constant head in hand-augered hole; quick measurement of kfs (field-saturated hydraulic conductivity). (5) Boutwell two-stage permeameter — obtains both kv and kh from same hole. (6) Pumping tests — most representative; for confined aquifer: k = Q×W(u)/(4πb) (Theis equation, Eq 10.24) where W(u) = well function.\n\nLaboratory tests: Flexible-wall permeameter (ASTM D5084) — specimen in latex membrane under controlled effective stress; preferred for low-k soils (< 10-5 cm/s). Rigid-wall permeameter — simpler but sidewall leakage risk. Consolidation test k = cv × mv × γw calculated indirectly.\n\nCorrelations for granular soils: Hazen equation: k = C × D10² where C ≈ 0.8–1.2 cm/s (D10 in cm) for clean, uniform sands. Kozeny-Carman equation: k = f(e, gradation) — applicable for sands and gravels; NOT for clayey soils.\n\nCorrelations for fine-grained soils: k from PI, CC, and Ck (coefficient relating k to e). kh estimated from CPTU t50 (time for 50% dissipation) per empirical chart (Figure 10-37). DMT: kh from DMT DMTC dissipation test.",
+      "section_id": "10.2",
+      "title": "Fundamental Concepts of Seepage through Soil and Rock",
+      "summary": "Groundwater flows from higher to lower hydraulic head; by Bernoulli h = he + hp + hv = he + u/gamma_w + v^2/2g (Eq. 10.1). Velocity head is small and usually neglected except in clean gravel, clean coarse sand and highly fractured rock, so flow is driven by elevation and pore water pressure.",
+      "body": "Groundwater flows from higher hydraulic potential (head) to lower. Bernoulli's equation (Eq. 10.1) splits total head h into elevation head he relative to a datum, pressure head hp = u/gamma_w and velocity head hv = v^2/2g. Flow through most soil and rock is slow enough that velocity head is small and often neglected, except for clean gravel, clean coarse sand and highly fractured rock with large open discontinuities; flow is predominantly driven by elevation and pore water pressure (p. 10-3). (pp. 10-2 to 10-3)",
       "key_points": [
-        "Pumping tests most representative for kh; Theis equation for confined aquifer interpretation",
-        "Slug tests (Hvorslev, Cooper-Bredehoeft): simple but only point estimate of kh near well screen",
-        "Flexible-wall permeameter (ASTM D5084) preferred for low-k soils",
-        "Hazen: k = C × D10² (C ≈ 1.0 cm/s, D10 in cm); clean uniform sands only",
-        "kh from CPTU t50 dissipation time — empirical chart (Figure 10-37)"
+        "Velocity head often neglected except clean gravel, clean coarse sand, highly fractured rock (p. 10-3)."
       ],
       "equations": [
-        {
-          "equation_id": "10-Hazen",
-          "description": "Hazen empirical equation for hydraulic conductivity of granular soils",
-          "latex": "k = C \\cdot D_{10}^2",
-          "variables": {
-            "k": "hydraulic conductivity (cm/s)",
-            "C": "Hazen constant ≈ 0.8–1.2 cm/s (various sources give C in this range)",
-            "D_10": "effective grain size — grain size at 10% finer (cm)"
-          },
-          "implemented_in": null
-        }
+        "Eq. 10.1: h = he + hp + hv = he + u/gamma_w + v^2/(2g); h = total head, he = elevation head relative to a datum, hp = pressure head, hv = velocity head, u = pore water pressure, gamma_w = unit weight of water, v = velocity of flow, g = gravitational acceleration (p. 10-2)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Hydraulic head, Darcy's law, temporal groundwater variation and constant and falling head measurement of hydraulic conductivity"
+    },
+    {
+      "section_id": "10.2.1",
+      "title": "Temporal Changes in Pore Water Pressures and Water Levels",
+      "summary": "Water levels and pressures change with hydraulic boundary conditions, dramatically at some sites and little at others. Figure 10-1 shows 18 months of standpipe levels at an alluvial site: shallow alluvium follows the nearby river while deeper rock is artesian; Figure 10-2 shows the total head profiles.",
+      "body": "Fluctuation magnitude varies with the regional groundwater regime. Figure 10-1 shows piezometric elevations from standpipe piezometers over 18 months at an alluvial site: levels in shallow alluvial soils fluctuate with the nearby river while deeper rock strata are governed by artesian conditions from an unknown source. Figure 10-2 (p. 10-4) shows total head profiles for several dates. (pp. 10-3 to 10-4)",
+      "key_points": [
+        "18 months of piezometer levels at an alluvial site (Figure 10-1) (p. 10-3).",
+        "Shallow levels follow the river; deeper rock artesian (p. 10-3)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10-1: Groundwater level fluctuations at an alluvial site",
+        "Figure 10-2: Measured values of total head with depth from data in Figure 10-1"
+      ],
+      "tables": [],
+      "applicability": "Hydraulic head, Darcy's law, temporal groundwater variation and constant and falling head measurement of hydraulic conductivity"
+    },
+    {
+      "section_id": "10.2.2",
+      "title": "Water Flow and Hydraulic Conductivity",
+      "summary": "Flow through most soil and rock follows Darcy's Law: q is proportional to head loss delta h = hA - hB and inversely to flow length l (Figure 10-3), q = k(hA - hB)/l A = kiA (Eq. 10.2), k the hydraulic conductivity, high in open porous materials and low in materials of low porosity.",
+      "body": "Darcy found, for the inclined cylinder of saturated soil in Figure 10-3 (Das, 1985a, p. 10-5), that flow rate q is directly proportional to the head loss delta h = hA - hB between two points at distance l and inversely proportional to l: rotating the cylinder to raise delta h raises q; horizontal (hA = hB) gives no flow; a shorter path gives more flow. A proportionality constant depending on the porous medium was needed: Eq. 10.2, with A the cross-sectional area of flow and i = delta h/l the hydraulic gradient; q has units of volume per time [L^3/T]. k, the hydraulic conductivity, is generally considered a soil property, high in open porous materials and low in materials of low porosity. (pp. 10-4 to 10-5)",
+      "key_points": [
+        "Darcy's Law governs flow through most soil or rock (p. 10-4).",
+        "q = k i A, i = (hA - hB)/l (Eq. 10.2) (p. 10-5).",
+        "k generally considered a soil property (p. 10-5)."
+      ],
+      "equations": [
+        "Eq. 10.2: q = k (hA - hB)/l x A = k i A; k = hydraulic conductivity, A = cross-sectional area of flow, i = (hA - hB)/l = delta h/l = hydraulic gradient (p. 10-5)"
       ],
       "figures": [
-        "Figure 10-21: Direct measurement of hydraulic conductivity in Shelby tube",
-        "Figure 10-23: Schematic of a flexible-wall permeameter",
-        "Figure 10-24: Shape factor for auger hole seepage tests",
-        "Figure 10-37: Empirical relationship between kh and CPTU t50"
+        "Figure 10-3: Diagram illustrating Darcy’s Law (from Das, 1985a)"
+      ],
+      "tables": [],
+      "applicability": "Hydraulic head, Darcy's law, temporal groundwater variation and constant and falling head measurement of hydraulic conductivity"
+    },
+    {
+      "section_id": "10.2.3",
+      "title": "Fundamental Means for Measurement of Hydraulic Conductivity",
+      "summary": "Tests are constant head, k = ql/(delta h A) = Ql/(delta h A t) (Eq. 10.3), or falling head, k = [al/(A delta t)] ln(h1/h2) (Eq. 10.4) (Figure 10-4). Constant head is simple but slow, so used for high k (clean sands); falling head is quicker. Field tests use the same ideas with flow solutions for two- or three-dimensional flow.",
+      "body": "Laboratory and field tests (sections 10.11 to 10.14) are mostly constant head or falling head (Figure 10-4, Sevee, 2006). Constant head: the total head difference is kept constant (constant level baths or Mariotte devices, p. 10-6), flow volume Q over time t is measured, and k follows from Eq. 10.3. Falling head: an initial head difference is applied and its decline observed; Eq. 10.4 with a the inflow pipette or standpipe area, l the specimen length, A the specimen area, h1 and h2 heads at two times, delta t = t2 - t1; k is computed for each pair of readings. Constant head tests are simple and robust but can take long for measurable flow, inviting evaporation and temperature errors, so they are generally run only on high-k specimens (clean sands) (p. 10-7). Falling head tests are quicker, needing only a measurable head change, controlled by pipette diameter. Field tests use similar concepts with alternative expressions or numerical methods for two- or three-dimensional flow. (pp. 10-5 to 10-7)",
+      "key_points": [
+        "Constant head: Mariotte devices or constant level baths keep head constant (p. 10-6).",
+        "Falling head: compute k for each pair of standpipe readings (p. 10-6).",
+        "Constant head tests generally only on high-k specimens such as clean sands (p. 10-7).",
+        "Falling head tests can often be performed more quickly (p. 10-7)."
+      ],
+      "equations": [
+        "Eq. 10.3: k = q l/(delta h A) = Q l/(delta h A t); constant head; Q = total volume of flow, t = time over which flow is measured (p. 10-6)",
+        "Eq. 10.4: k = [a l/(A delta t)] ln(h1/h2); falling head; a = cross-sectional area of inflow pipette or standpipe, l = specimen length in the direction of flow, A = specimen area perpendicular to flow, h1, h2 = heads at two times, delta t = t2 - t1 (p. 10-6)"
+      ],
+      "figures": [
+        "Figure 10-4: Conceptual permeability tests: (a) constant head setup, and (b) falling head setup (from Sevee, 2006)"
+      ],
+      "tables": [],
+      "applicability": "Hydraulic head, Darcy's law, temporal groundwater variation and constant and falling head measurement of hydraulic conductivity"
+    },
+    {
+      "section_id": "10.3",
+      "title": "Boring and Sampling Requirements",
+      "summary": "Laboratory k needs high quality undisturbed samples without smearing (trim if suspected) and larger samples than for strength tests, since cracks and fissures can dominate; fractured rock needs field tests. Borings for hydraulic tests should avoid mineral slurries (filter cake) and use clean methods (casing, hollow stem augers, clean water).",
+      "body": "Requirements are largely those for other purposes, with special considerations. Laboratory hydraulic conductivity of soil or intact rock needs high quality undisturbed samples; smearing can artificially limit flow and reduce measured k, so trim specimens carefully if suspected. Larger samples are often desirable because small cracks and fissures absent from small samples can dominate k; fractured rock cannot practically be replicated in the laboratory, so field tests are common there. Borehole tests address sampling problems but need care: avoid mineral slurries, which form a filter cake that influences measurements, and use clean drilling methods (casing, hollow stem augers, clean water as drilling fluid) (p. 10-8). (pp. 10-7 to 10-8)",
+      "key_points": [
+        "High quality undisturbed samples; trim specimens if smearing is suspected (p. 10-7).",
+        "Larger samples often desirable; fractured rock needs field tests (p. 10-7).",
+        "Avoid mineral slurries (filter cake) in borings for hydraulic tests (p. 10-7)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Boring and sampling for groundwater observation and hydraulic conductivity tests"
+    },
+    {
+      "section_id": "10.4",
+      "title": "Evaluation of Groundwater Conditions from Observations During Drilling",
+      "summary": "Drilling observations (moisture changes, fluid or soil color, gain or loss of circulation) and borehole water levels at end of drilling, after tool removal, after interruptions and at intervals (24, 48 hours) give indications only: levels take hours to weeks to equilibrate in silts and clays and show a single time, so monitoring wells or piezometers are needed.",
+      "body": "Useful observations during drilling: visible changes in moisture content, changes in color of drilling fluid or soil, sudden gains or losses of circulation fluid, recorded in field and final boring logs with borehole and casing or auger depths. Record fluid levels at the end of drilling (before tooling is removed), after tool removal, after prolonged interruptions and at intervals after completion (e.g., 24 hours, 48 hours). These are heavily influenced by drilling procedures and prone to misinterpretation: levels in silts and clays may need hours, days or weeks to equilibrate; low-k soils may appear dry; boreholes may collapse (the caved depth in sands below the water table approximates the groundwater level, but not in clayey soils). Even accurate levels show only a single point in time, so long-term observations in monitoring wells or piezometers are needed. (p. 10-8)",
+      "key_points": [
+        "Record levels at end of drilling, after tool removal, after interruptions and at intervals (24, 48 hours) (p. 10-8).",
+        "Silts and clays may need hours, days or weeks to equilibrate (p. 10-8).",
+        "Borehole levels represent a single point in time; long-term observations needed (p. 10-8)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Groundwater level and pore water pressure observation (borings, monitoring wells, piezometers, CPTU, geophysics) for transportation geotechnical projects"
+    },
+    {
+      "section_id": "10.5",
+      "title": "Investigation of Groundwater Conditions Using Monitoring Wells",
+      "summary": "A monitoring well is an open pipe with a long screen (Figure 10-5), suited to hydrostatic or unconfined, uniform flow and to sampling (floating hydrocarbons), not to confined flow with different heads by stratum. ASTM D5092 governs design: 1 to 8 inch pipe, slots matched to a clean silica sand filter pack (Table 10-1), and an annular isolation seal.",
+      "body": "A monitoring well is an open pipe in a drilled hole with a screened section, commonly over most of the boring or the range of expected fluctuation (Figure 10-5, Nielsen and Schalla, 2006). It suits largely hydrostatic conditions or unconfined flow consistent through all strata; it is not useful for confined flow where head differs between strata and may mislead when flow is complex, where piezometers in each stratum are needed. Wells also allow sampling, especially where light hydrocarbons that float on water are suspected. ASTM D5092 covers design and installation (p. 10-9): pipe and borehole size, slot size and filter pack. Pipe may be PVC, HDPE, Teflon, fiberglass or stainless steel, typically 1 to 8 inches in diameter; larger pipes take bailers, pumps and instruments but respond more slowly. The filter pack (usually clean washed silica sand) keeps formation particles out without significant head loss; slots match the filter pack, which matches the formation (Table 10-1, ASTM D5092, 2010, p. 10-10). Filter fabric may wrap the screen; an annular isolation seal above the filter pack keeps surface water out. (pp. 10-8 to 10-10)",
+      "key_points": [
+        "Not useful for confined flow where head differs between strata (p. 10-8).",
+        "ASTM D5092 for design and installation (p. 10-9).",
+        "Pipe diameters typically 1 to 8 inches; smaller responds more quickly (p. 10-9).",
+        "Annular isolation seal immediately above the filter pack (p. 10-10)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10-5: Typical monitoring well (from Nielsen and Schalla, 2006)"
       ],
       "tables": [
-        "Table 10-5: Summary of laboratory methods for determining hydraulic conductivity",
-        "Table 10-9: Advantages and disadvantages of different infiltrometers",
-        "Table 10-10: Direct push methods for determining in situ hydraulic conductivity",
-        "Table 10-11: Summary of α values for estimating constrained modulus from qc"
+        "Table 10-1: Recommended filter characteristics for common screen slot sizes (ASTM D5092, 2010) - slot no., screen size (mm), mesh size, D1, D10, D30 (mm), Cu, roundness (Powers scale): 5, 0.125, 100, 0.09-0.12, 0.14-0.17, 0.17-0.21, 1.3-2.0, 2-5; 10, 0.25, 20-40, 0.25-0.35, 0.4-0.5, 0.5-0.6, 1.1-1.6, 3-5; 20, 0.50, 10-20, 0.7-0.9, 1.0-1.2, 1.2-1.5, 1.1-1.6, 3-6; 30, 0.75, 10-20, 0.7-0.9, 1.0-1.2, 1.2-1.5, 1.1-1.6, 3-6 (as printed, the same as slot 20); 40, 1.0, 8-12, 1.2-1.4, 1.6-1.8, 1.7-2.0, 1.1-1.6, 4-6; 60, 1.5, 6-9, 1.5-1.8, 2.3-2.8, 2.5-3.0, 1.1-1.7, 4-6; 80, 2.0, 4-8, 2.0-2.4, 2.4-3.0, 2.6-3.1, 1.1-1.7, 4-6"
       ],
+      "applicability": "Groundwater level and pore water pressure observation (borings, monitoring wells, piezometers, CPTU, geophysics) for transportation geotechnical projects"
+    },
+    {
+      "section_id": "10.6",
+      "title": "Investigation of Groundwater Conditions Using Piezometers",
+      "summary": "Piezometers, sealed to respond only to head near their depth, are generally the most reliable means for groundwater conditions; several give pressure profiles, gradients and flow directions. Types range from open standpipe to pneumatic, vibrating wire and fiber-optic (Table 10-2); only open standpipes allow sampling, at the cost of longer response time.",
+      "body": "Unlike monitoring wells, piezometers are sealed in the ground to respond only to hydraulic head near the piezometer depth. They measure groundwater pressure (pressure head) at a point; several establish profiles, hydraulic gradients and flow directions. Types: open standpipe, pneumatic, vibrating wire, fiber-optic transducer; Table 10-2 (modified from Dunnicliff, 1993, p. 10-11) gives advantages and limitations. Only open standpipe piezometers allow groundwater sampling, with longer response time. (pp. 10-10 to 10-11)",
+      "key_points": [
+        "Piezometers are generally the most reliable means for groundwater conditions (p. 10-10).",
+        "Only open standpipe piezometers allow sampling; longer response time (p. 10-11).",
+        "Observation wells give undesirable vertical connection between strata (Table 10-2) (p. 10-11)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 10-2: Instruments for measuring groundwater pressure (modified from Dunnicliff, 1993) - observation (monitoring) well: simple, easily installed, inexpensive; undesirable vertical connection between strata, can mislead. Open standpipe: reliable, simple, inexpensive, successful record, can sample groundwater and measure k; potential long time lag, filter can plug from repeated inflow/outflow. Twin-tube hydraulic: no moving inaccessible parts, reliable, cavity can be flushed, can measure k; elaborate terminals, periodic flushing, many details, tubing well above minimum piezometric elevation. Pneumatic: short lag, calibrated part accessible, no freezing; details, may deteriorate, may need backflushing, generally manual reading. Vibrating wire: easy to read, short lag, minimal lead wire effects, measures negative pressure, no freezing; special manufacturing to minimize zero shift. Bonded electrical resistance: easy to read, short lag, negative pressure, no freezing; low output, lead wire effects, uncertain long-term stability, moisture and temperature errors. Multipoint: detailed pressure-depth at one location, simple installation; individual filter pack and seal difficult. Multipoint push-in: detailed pressure-depth, simple installation; limited number of points"
+      ],
+      "applicability": "Groundwater level and pore water pressure observation (borings, monitoring wells, piezometers, CPTU, geophysics) for transportation geotechnical projects"
+    },
+    {
+      "section_id": "10.6.1",
+      "title": "Standpipe Piezometers",
+      "summary": "Standpipe piezometers have short screens (often 1 to 3 ft with filter pack) sealed above and below (Figure 10-6), or are pushed or driven (Figure 10-7). Levels are read per ASTM D4750. Time lag for 90 percent response follows Penman (1960), t = 3.3 x 10^-6 d^2 ln(L/D + sqrt(1 + (L/D)^2))/(kL) days (Eq. 10.5), about 3 days in the printed clay example.",
+      "body": "Like monitoring wells but with a much shorter screened section, often about 1 to 3 feet including filter pack, carefully sealed to prevent short circuiting and usually grouted (Figure 10-6, Dunnicliff, 1993). Pushed or driven standpipes with a conical point (p. 10-13) offer easy, quick, cheap installation, no cuttings, positive seal, known geometry, recovery after use and no isolation seal, but risk clogging and smearing, are hard to install in dense soils, gravel, cobbles or boulders, and are typically under about 1.5 inches in diameter; Parry (1971) used a sliding sleeve to protect the screen (Figure 10-7). The equilibrium level gives total head (relative to a datum) or pressure head (relative to the screen); ASTM D4750 covers level measurement; automated instruments must account for atmospheric pressure. Time lag depends on screen and filter pack size, riser diameter and formation k (Eq. 10.5, Penman, 1960). Example: 1.5-in riser in a 3-inch borehole in clay with k about 1 x 10^-6 cm/s and a 1-ft sand pack takes about 3 days (p. 10-14). A larger sand pack and smaller riser reduce lag, within limits of drilling equipment and sampling or instrument needs. Other piezometers are essentially zero volume displacement, responding almost immediately, but cannot sample water or measure k. (pp. 10-12 to 10-14)",
+      "key_points": [
+        "Screen lengths (with filter pack) often about 1 to 3 feet (p. 10-12).",
+        "Pushed or driven piezometers typically less than about 1.5 inches in diameter (p. 10-13).",
+        "ASTM D4750: liquid levels in boreholes, wells and standpipes (p. 10-13).",
+        "Automated level readings must account for atmospheric pressure (p. 10-13).",
+        "Example time lag about 3 days in clay with k about 1 x 10^-6 cm/s (p. 10-14).",
+        "Other piezometers have essentially zero volume displacement but cannot sample or measure k (p. 10-14)."
+      ],
+      "equations": [
+        "Eq. 10.5: t = 3.3 x 10^-6 [d^2 ln(L/D + sqrt(1 + (L/D)^2))]/(k L) (Penman, 1960); t = time for 90 percent response (days), d = standpipe inside diameter (cm), L = length of sand pack or screen (cm), D = diameter of sand pack or screen (cm), k = formation hydraulic conductivity (cm/s) (p. 10-13)"
+      ],
+      "figures": [
+        "Figure 10-6: Standpipe piezometer installed in a borehole (from Dunnicliff, 1993)",
+        "Figure 10-7: Pushed/driven open standpipe piezometer (from Dunnicliff, 1993)"
+      ],
+      "tables": [],
+      "applicability": "Groundwater level and pore water pressure observation (borings, monitoring wells, piezometers, CPTU, geophysics) for transportation geotechnical projects"
+    },
+    {
+      "section_id": "10.6.2",
+      "title": "Twin-tube Hydraulic Piezometers",
+      "summary": "Twin-tube hydraulic piezometers are closed, fluid-filled, with a gage or transducer on each tube (Figure 10-8): equal readings confirm saturation, and the system can be re-saturated by flushing. They can be logged automatically; relatively expensive but effective for long-term monitoring (Dunnicliff, 1993).",
+      "body": "A twin-tube hydraulic piezometer (Figure 10-8) is a closed, fluid-filled piezometer connected to dual pressure gages or transducers. Both gages read the same if the system is saturated and differ if it becomes unsaturated, when it can be re-saturated by flushing fluid through it. Readings can be logged automatically with transducers and a data acquisition system. Relatively expensive, but quite effective for long-term monitoring (Dunnicliff, 1993). (p. 10-15)",
+      "key_points": [
+        "Dual gages check saturation; re-saturate by flushing (p. 10-15).",
+        "Relatively expensive but effective for long-term monitoring (p. 10-15)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10-8: Twin-tube hydraulic piezometer (from Dunnicliff, 1993)"
+      ],
+      "tables": [],
+      "applicability": "Groundwater level and pore water pressure observation (borings, monitoring wells, piezometers, CPTU, geophysics) for transportation geotechnical projects"
+    },
+    {
+      "section_id": "10.6.3",
+      "title": "Pneumatic Piezometers",
+      "summary": "Pneumatic piezometers use a twin-tube diaphragm transducer (Figure 10-9): gas (nitrogen or dry air) pressure that just balances the water pressure on the diaphragm is read at the console. Inexpensive and robust, installed in a sand pack and sealed (or pushed in soft clay), but not easily automated and largely supplanted.",
+      "body": "A filter element (porous plastic, sintered stainless steel or bronze) fronts a flexible rubber diaphragm held closed by water pressure (Figure 10-9). Controlled gas (usually nitrogen or dry air) applied to the inlet tube lifts the diaphragm when it exceeds the water pressure, and return flow appears in the outlet tube; with the inlet closed, gas bleeds off until the diaphragm closes, when gas pressure equals water pressure and is read on the console gage. Transducers are inexpensive, installed in a borehole with a small sand pack, the rest sealed with bentonite or grout; pushing from the borehole bottom is usually possible only in soft clay with a conical tip (p. 10-17). Generally robust, but not easily automated, so largely supplanted. (pp. 10-16 to 10-17)",
+      "key_points": [
+        "Gas pressure balancing the diaphragm equals water pressure (p. 10-16).",
+        "Not easily automated; largely supplanted by alternative piezometers (p. 10-17)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10-9: Typical pneumatic piezometer (from Dunnicliff, 1993)"
+      ],
+      "tables": [],
+      "applicability": "Groundwater level and pore water pressure observation (borings, monitoring wells, piezometers, CPTU, geophysics) for transportation geotechnical projects"
+    },
+    {
+      "section_id": "10.6.4",
+      "title": "Strain Gage Piezometers",
+      "summary": "Strain gage piezometers read water pressure from strain gages on a diaphragm behind a saturated porous element (Figures 10-10, 10-11): electrical resistance (simple, fast, but sensitive to resistance, zero drift, temperature, noise), vibrating wire (more stable, for long-term monitoring) or fiber-optic (stable, immune to electrical noise). They suit automated logging.",
+      "body": "A cylindrical chamber about the size of a large pen holds a diaphragm, protected by a saturated porous element, instrumented with strain gages calibrated to water pressure and cabled to a readout. Electrical resistance gages (Figure 10-10, as in a piezocone) need simple electronics and sample rapidly but are sensitive to external resistance (cable length, water) and subject to zero drift, temperature effects and electrical noise. Vibrating wire gages (Figure 10-11) need slightly more expensive electronics but are generally more stable, particularly for long-term monitoring. Fiber-optic gages need specialized readout but are largely immune to electrical noise and quite stable. All lend themselves to automated acquisition and logging. (p. 10-17)",
+      "key_points": [
+        "Electrical resistance: zero drift, temperature effects, electrical noise (p. 10-17).",
+        "Vibrating wire: generally more stable for long-term monitoring (p. 10-17).",
+        "Fiber-optic: largely immune to electrical noise (p. 10-17)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Groundwater level and pore water pressure observation (borings, monitoring wells, piezometers, CPTU, geophysics) for transportation geotechnical projects"
+    },
+    {
+      "section_id": "10.6.5",
+      "title": "Installation of Piezometer Elements",
+      "summary": "Twin-tube, pneumatic and strain gage piezometers go in predrilled holes or are pushed with a conical point (Figure 10-12), never driven. Several depths at one location use adjacent borings or nested piezometers in one borehole (Figure 10-13; no more than three or four, with careful seals); separate closely spaced borings are generally preferable.",
+      "body": "These piezometers are installed in predrilled boreholes or fitted with a conical point and pushed (Figure 10-12, p. 10-19), at the base of a borehole or from the surface; they should generally not be driven. Figures 10-10 and 10-11 (p. 10-18) are printed here. For several elevations at one plan location, drill adjacent individual boreholes or nest piezometers in a single borehole (Figure 10-13); nesting saves space, time and cost but needs careful seals between piezometers, a larger borehole, and typically no more than three or four installations, and risks erroneous readings, so separate but closely spaced boreholes are generally preferable. (pp. 10-17 to 10-19)",
+      "key_points": [
+        "Twin-tube, pneumatic and strain gage piezometers should generally not be driven (p. 10-17).",
+        "Typically no more than three or four nested installations per hole (p. 10-19).",
+        "Separate, closely spaced boreholes generally preferable (p. 10-19)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10-10: Electrical resistance gage piezometer (from Dunnicliff, 1993)",
+        "Figure 10-11: Vibrating wire piezometer (from Dunnicliff, 1993)",
+        "Figure 10-12: Push-in pneumatic piezometer (from Dunnicliff, 1993)"
+      ],
+      "tables": [],
+      "applicability": "Groundwater level and pore water pressure observation (borings, monitoring wells, piezometers, CPTU, geophysics) for transportation geotechnical projects"
+    },
+    {
+      "section_id": "10.7",
+      "title": "Evaluation of Groundwater Conditions Using In situ Test Measurements",
+      "summary": "CPTU measures in situ pore pressure directly in clean coarse-grained soils, giving the groundwater level (Figure 10-14). In fine-grained soils readings include excess pore pressure; use sand lenses (Figure 10-15) or dissipation tests, which also give ch or k (section 10.14.2). DMT dissipation and seismic CPT or DMT give indirect information.",
+      "body": "CPTU efficiently measures in situ pore water pressure. In clean coarse-grained soils, which drain fast enough to prevent excess pore pressure, readings are effectively in situ pore pressure and the groundwater level is straightforward (Figure 10-14, p. 10-20). In fine-grained soils, pushing generates excess pore pressure, so readings combine in situ and excess pressure (Figure 10-15, Mayne, 2007, p. 10-21); readings in sand lenses can give in situ pressure and the groundwater level; otherwise CPTU dissipation tests (Chapter 6) measure in situ pressure at selected depths, taking more time but also estimating coefficient of consolidation or hydraulic conductivity (section 10.14.2). Figure 10-13 (piezometer methods, Dalton et al., 1991) is printed here. DMT dissipation tests infer pore pressure; seismic CPT and DMT can identify saturated soils (section 10.8). (pp. 10-19 to 10-21)",
+      "key_points": [
+        "CPTU pore pressures in clean coarse-grained soils are effectively in situ values (p. 10-19).",
+        "In fine-grained soils use sand lenses or dissipation tests (p. 10-21).",
+        "Seismic CPT and DMT can identify saturated soils (p. 10-21)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10-13: Alternative methods for determining variation of pore water pressures with depth using piezometers (from Dalton, et al., 1991)",
+        "Figure 10-14: Example CPTU measurements showing location of groundwater level in clean sand",
+        "Figure 10-15: Example CPTU measurements in clayey soil with sand lenses (from Mayne, 2007)"
+      ],
+      "tables": [],
+      "applicability": "Groundwater level and pore water pressure observation (borings, monitoring wells, piezometers, CPTU, geophysics) for transportation geotechnical projects"
+    },
+    {
+      "section_id": "10.8",
+      "title": "Evaluation of Groundwater Conditions Using Geophysical Measurements",
+      "summary": "Geophysical methods for groundwater either locate and map the groundwater surface (section 10.8.1) or locate and map groundwater flow and seepage paths (section 10.8.2).",
+      "body": "Several geophysical methods evaluate groundwater conditions, divided into those used to locate and map the groundwater surface and those used to locate and map groundwater flow and seepage paths. (p. 10-22)",
+      "key_points": [
+        "Two groups: groundwater surface; flow and seepage paths (p. 10-22)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Groundwater level and pore water pressure observation (borings, monitoring wells, piezometers, CPTU, geophysics) for transportation geotechnical projects"
+    },
+    {
+      "section_id": "10.8.1",
+      "title": "Location of Groundwater Surface",
+      "summary": "Methods detect changes in electrical properties or seismic velocity from pore water; sharp in coarse soils, gradual in fine soils with capillary rise. Resistivity soundings (electrode separation about three times the depth, shallow), TDEM (better beyond 150 ft; no electrodes; not near metal), seismic refraction (about 50 ft with a sledge hammer) and GPR (100-MHz to 50 to 65 ft in dry granular soil; clay attenuates).",
+      "body": "Geophysics detects changes in physical properties, primarily electrical properties or seismic velocity, caused by pore water. In coarse soils with small capillary rise the water table and saturated zone nearly coincide, giving an abrupt change; in fine soils capillary saturation makes the transition gradual. Resistivity soundings pass current through two outer electrodes and measure voltage across two inner ones, expanding spacing about a fixed center; apparent resistivity vs. spacing is inverted to a resistivity model; electrode separation must be about three times the investigation depth, so best for shallow work. Time domain electromagnetics (TDEM): a transmitter loop induces secondary currents, stronger in conductive layers; voltage vs. time gives a sounding curve and a layer model (Figure 10-16, Wightman et al., 2004, p. 10-23); better for deeper investigation (> 150 feet), no electrodes, may fail near metal structures (fences, bridges). Seismic refraction detects the compression wave velocity contrast at the saturated interface; best in coarse soils; limited to about 50 feet or less with a sledge hammer source, deeper with larger sources. GPR detects dielectric contrast by reflected electromagnetic waves; a 100-MHz antenna can reach 50 to 65 feet in ideal dry granular soils; clay may limit penetration to several feet. (pp. 10-22 to 10-23)",
+      "key_points": [
+        "Gradual transition in fine-grained soils with capillary rise (p. 10-22).",
+        "Resistivity electrode separation about three times the investigation depth (p. 10-22).",
+        "TDEM better for depths > 150 feet; not where metal structures are present (p. 10-22).",
+        "Seismic refraction about 50 feet or less with a sledge hammer (p. 10-23).",
+        "GPR 100-MHz: 50 to 65 feet in dry granular soils; clay may limit to several feet (p. 10-23)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10-16: Illustration of Time-domain Electromagnetic method (from Wightman, et al., 2004)"
+      ],
+      "tables": [],
+      "applicability": "Groundwater level and pore water pressure observation (borings, monitoring wells, piezometers, CPTU, geophysics) for transportation geotechnical projects"
+    },
+    {
+      "section_id": "10.8.2",
+      "title": "Investigation of Groundwater Flow",
+      "summary": "The self-potential (spontaneous polarization, SP) method passively measures electrical potentials between two surface points; fluid flow generates positive or negative anomalies depending on flow direction (Figure 10-17). Simple and inexpensive; interpret voltage vs. distance for anomalies.",
+      "body": "SP is a passive technique measuring electrical potentials between two points on the ground surface; one source of self-potentials is fluid flow (Figure 10-17, Wightman et al., 2004). The anomaly may be positive or negative depending on flow direction (p. 10-24). Measurements are simple and inexpensive, with two electrodes at constant spacing or, more commonly, one fixed as a permanent reference; voltage is plotted against distance to find anomalies. (pp. 10-23 to 10-24)",
+      "key_points": [
+        "SP anomalies may be positive or negative depending on flow direction (p. 10-24).",
+        "Simple and inexpensive; commonly one electrode fixed as reference (p. 10-24)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10-17: Self-potential anomalies from flowing water (Wightman, et al., 2004)"
+      ],
+      "tables": [],
+      "applicability": "Groundwater level and pore water pressure observation (borings, monitoring wells, piezometers, CPTU, geophysics) for transportation geotechnical projects"
+    },
+    {
+      "section_id": "10.9",
+      "title": "Methods for Evaluating Hydraulic Conductivity of Soil and Rock",
+      "summary": "When current groundwater conditions will not represent project life or construction will alter them, seepage analyses need hydraulic conductivity, also needed for flow quantities. Table 10-3 compares estimation from index properties, direct and indirect laboratory measurements, direct field measurements (borehole, pumping, infiltrometer) and indirect field (direct push) measurements.",
+      "body": "Measured groundwater conditions may not reflect conditions over project life or after construction alters them, so seepage analyses requiring hydraulic conductivity are needed; k also gives flow quantities for construction. Approaches range from estimates from index properties to laboratory and field flow tests, plus indirect in situ tests (Table 10-3, p. 10-25): index estimates are crude first-order approximations (grain size for coarse soils, void ratio for fine soils, fracture characteristics for rock) for preliminary evaluation or small projects; direct laboratory tests give good control but representative samples are hard to get; indirect laboratory (consolidation) tests add transformation errors; direct field tests (borehole, pumping, infiltrometer) are more representative of field k and in situ stress but boundary conditions are hard to control and tests may be slow and costly; indirect field (direct push) methods are faster but subject to correlation errors and remolding. (pp. 10-24 to 10-25)",
+      "key_points": [
+        "Seepage analyses need hydraulic conductivity when conditions will change (p. 10-24).",
+        "Index-property estimates: crude, for preliminary evaluation or small projects (Table 10-3) (p. 10-25).",
+        "Direct field measurements more representative of field k (Table 10-3) (p. 10-25)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 10-3: Summary of methods for determining hydraulic conductivity - estimation from index properties (Atterberg limits, grain size, weight-volume, rock fractures, soil/rock type): crude first order approximation, grain size for coarse soils, void ratio for fine soils, fractures for rock, for preliminary evaluation or small projects; direct laboratory (fixed-wall, flexible-wall tests): representative specimens needed, good control of boundary conditions and flow, representative samples hard to obtain; indirect laboratory (1-D consolidation): same issues plus transformation errors; direct field (borehole, pumping, infiltrometer tests): quality boreholes needed, boundary conditions hard to control, more representative field k including macroscale effects, better in situ stress, may be slow and costly; indirect field (direct push methods): often much faster, transformation errors from correlations, remolding during installation"
+      ],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    },
+    {
+      "section_id": "10.10",
+      "title": "Factors Affecting Hydraulic Conductivity from Laboratory Tests",
+      "summary": "Several factors influence laboratory hydraulic conductivity and should be understood to interpret tests: specimen size, stress level, sample disturbance, hydraulic gradient, permeant, temperature and anisotropy (sections 10.10.1 to 10.10.7).",
+      "body": "It is often difficult to assess each factor independently, but they must be understood to interpret laboratory measurements properly; the more important ones are discussed in sections 10.10.1 to 10.10.7. (p. 10-25)",
+      "key_points": [
+        "Factors are often difficult to assess independently (p. 10-25)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    },
+    {
+      "section_id": "10.10.1",
+      "title": "Size of Test Specimens",
+      "summary": "Larger specimens tend to give greater k because they better represent formations with cracks, fissures or lenses. In fractured rock with open discontinuities flow is mainly through discontinuities (secondary hydraulic conductivity), so intact rock k is seldom the concern.",
+      "body": "Specimen size introduces a scale effect: larger specimens generally give greater k because they are more likely to represent the parent formation, particularly with macro features such as cracks, fissures or lenses of dissimilar material. In fractured rock masses with open discontinuities the predominant flow paths are the discontinuities, 'secondary' hydraulic conductivity (p. 10-26), analogous to discontinuities controlling rock mechanical behavior (Chapter 9); intact rock k is seldom a predominant concern for fractured rock masses. (pp. 10-25 to 10-26)",
+      "key_points": [
+        "Larger specimens tend to produce greater k (p. 10-25).",
+        "Flow through discontinuities is 'secondary' hydraulic conductivity (p. 10-26)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    },
+    {
+      "section_id": "10.10.2",
+      "title": "Stress Level",
+      "summary": "Higher stresses consolidate specimens, reduce void ratio and close micro-cracks, reducing hydraulic conductivity; replicate in situ stresses as far as possible in laboratory tests.",
+      "body": "Higher stresses produce more consolidation and lower void ratio, and can close micro-cracks and other structural features, both reducing hydraulic conductivity; consideration should be given to replicating in situ stresses in the laboratory. (p. 10-26)",
+      "key_points": [
+        "Replicate in situ stresses to the extent possible (p. 10-26)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    },
+    {
+      "section_id": "10.10.3",
+      "title": "Sample Disturbance",
+      "summary": "Smearing during sampling reduces apparent k; cracks and fissures from sampling, handling or stress relief increase it; fabric changes alter it. High quality undisturbed samples are required.",
+      "body": "Smearing during sampling impedes flow and reduces apparent hydraulic conductivity; small cracks and fissures from sampling, transportation, handling or stress relief increase measured k over in situ values; disturbance may alter natural fabric and structure. High quality undisturbed samples are therefore required. (p. 10-26)",
+      "key_points": [
+        "Smearing reduces, sampling cracks increase, measured k (p. 10-26)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    },
+    {
+      "section_id": "10.10.4",
+      "title": "Hydraulic Gradient",
+      "summary": "Darcy's law assumes k independent of gradient, not strictly true. Field gradients are about 0.005 to 0.30, too small for practical laboratory tests, which use much larger gradients; ASTM D5084 recommends maximum gradients from 2 to 30 by soil k, exceedable if shown not to affect k.",
+      "body": "Darcy's equation presumes k independent of hydraulic gradient, not strictly true for all materials. Typical field gradients are about 0.005 to 0.30, too small for routine laboratory testing because flow takes too long, so much larger gradients are applied, which in some materials makes measured k differ from field values. ASTM D5084 recommends maximum gradients from 2 to 30 for soils of different k (p. 10-27), but allows exceeding them if greater gradients are shown not to affect k for the soil tested. (pp. 10-26 to 10-27)",
+      "key_points": [
+        "Typical field gradients about 0.005 to 0.30 (p. 10-26).",
+        "ASTM D5084 maximum gradients 2 to 30 (p. 10-27)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    },
+    {
+      "section_id": "10.10.5",
+      "title": "Permeant",
+      "summary": "Permeant composition can dramatically affect k; the field liquid is ideal but rarely practical, so a standard laboratory permeant of 0.005N to 0.01N CaSO4 solution is generally used.",
+      "body": "The composition of the permeant liquid can dramatically affect hydraulic conductivity. Using the actual field permeant is ideal but generally impractical, so routine tests use a standard permeant prepared as a 0.005N to 0.01N solution of CaSO4. (p. 10-27)",
+      "key_points": [
+        "Standard permeant: 0.005N to 0.01N CaSO4 solution (p. 10-27)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    },
+    {
+      "section_id": "10.10.6",
+      "title": "Temperature",
+      "summary": "Temperature changes water viscosity; most laboratory tests run warmer than ground temperatures, and k is reported at 20 degrees C: k20 = kmeasured (mu_t/mu_20) (Eq. 10.6).",
+      "body": "Temperature affects hydraulic conductivity through the viscosity of water. Most laboratory tests are run at temperatures greater than typical below-ground field temperatures. k is routinely reported at a standard 20 degrees C, correcting the measured value by Eq. 10.6 with mu_t the viscosity at test temperature and mu_20 at 20 degrees C. (p. 10-27)",
+      "key_points": [
+        "k reported at a standard 20 degrees C (Eq. 10.6) (p. 10-27)."
+      ],
+      "equations": [
+        "Eq. 10.6: k20 = kmeasured (mu_t / mu_20); mu_t = viscosity of water at the test temperature, mu_20 = viscosity at 20 degrees C (p. 10-27)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    },
+    {
+      "section_id": "10.10.7",
+      "title": "Anisotropy of Hydraulic Conductivity",
+      "summary": "Many soils have kh different from kv: natural (varves, fissures, layering) or induced (particle orientation from compaction or consolidation). Test oriented specimens (Figure 10-18) or special cells. Chapuis and Gill (1989) relate rk = kh/kv to density index Ie = (e0 - e)/(e0 - e1) (Eq. 10.7, Figure 10-19); Table 10-4 gives reported ranges.",
+      "body": "Natural anisotropy is reported for many clays and fine-grained soils (Mitchell, 1956; Rowe, 1964; Kenney, 1976; Leroueil et al., 1992); fissures, joints or layering cause it, e.g., varves in lacustrine deposits make kh > kv. Induced anisotropy arises in compacted or consolidated clays from particle orientation perpendicular to compaction or vertical stress (Basak, 1972; Al-Tabbaa and Wood, 1987; Leroueil et al., 1990; Dewhurst et al., 1996). Horizontal or radial k matters for radial flow to wells or wick drains and for slope stability (p. 10-28). Test horizontal and vertical specimens from block samples (Figure 10-18, Chapuis and Gill, 1989) or large thin-walled tubes, or use special permeameters or consolidometers on one specimen (Moore, 1979). Chapuis and Gill (1989) related rk = kh/kv to the density index Ie (Eq. 10.7): e0 the loosest-state void ratio (emax for sand, e at w = LL for clay), e1 the densest (emin for sand, e at Modified Proctor maximum dry unit weight for clay); Ie = 1 densest, 0 loosest (Figure 10-19, p. 10-29). Table 10-4 gives reported ranges. (pp. 10-27 to 10-29)",
+      "key_points": [
+        "Varves make horizontal k greater than vertical (p. 10-27).",
+        "Radial k matters for flow to wells or wick drains (p. 10-28).",
+        "Ie = 1 in the densest state, 0 in the loosest (p. 10-28).",
+        "Table 10-4: varved clay rk 2 to 10 (p. 10-29)."
+      ],
+      "equations": [
+        "Eq. 10.7: Ie = (e0 - e)/(e0 - e1); e0 = void ratio in the loosest state (= emax for sand, e at w = LL for clay), e1 = void ratio in the densest state (= emin for sand, e at maximum dry unit weight from Modified Proctor for clay) (p. 10-28)"
+      ],
+      "figures": [
+        "Figure 10-18: Trimming oriented specimens to determine hydraulic conductivity anisotropy (from Chapuis and Gill, 1989)",
+        "Figure 10-19: Relationship between hydraulic conductivity anisotropy ratio and density index (from Chapuis and Gill, 1989)"
+      ],
+      "tables": [
+        "Table 10-4: Reported hydraulic conductivity anisotropy - rk = kh/kv: varved clay 2 - 10 (Chan and Kenney, 1973; Wu et al., 1978); glacial till 0.9 - 2.2; loess 0.5 - 2.6; marine clay 0.7 - 1.4 (Lumb and Holt, 1968); Boston Blue Clay 0.7 - 4.0 (Olsen, 1962; Haley and Aldrich, 1969)"
+      ],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    },
+    {
+      "section_id": "10.11",
+      "title": "Evaluation of Hydraulic Conductivity Using Laboratory Tests",
+      "summary": "Laboratory k is measured in rigid-wall or flexible-wall permeameters by constant or falling head; Table 10-5 summarizes consolidation tests, Shelby tube, compaction mold, double-ring, granular, controlled vertical stress, oversized rigid-wall and flexible-wall permeameters.",
+      "body": "Hydraulic conductivity is directly measured in the laboratory with rigid-wall or flexible-wall permeameters, as constant head or falling head tests. Table 10-5 (p. 10-30) summarizes common methods; sections 10.11.1 to 10.11.7 describe them. (pp. 10-29 to 10-30)",
+      "key_points": [
+        "Table 10-5: flexible-wall common for undisturbed fine-grained soils; can back pressure saturate (p. 10-30)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 10-5: Summary of laboratory methods for determining hydraulic conductivity - consolidation test: indirect k from coefficient of consolidation or direct flow tests; Shelby tube permeameter: inexpensive, undisturbed samples; compaction mold permeameter: k vs. density, common for compacted clay landfill liners and covers; double-ring rigid wall: evaluates sidewall leakage; rigid-wall for granular soils: usually constant head on large specimens; controlled vertical stress rigid-wall: influence of vertical stress; oversized rigid-wall: oversized cell, bentonite seal, less sidewall leakage; flexible-wall: undisturbed fine-grained soils, confining stress control, back pressure saturation and saturation check"
+      ],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    },
+    {
+      "section_id": "10.11.1",
+      "title": "One-dimensional Consolidation Tests",
+      "summary": "Consolidation tests give k indirectly from consolidation theory, k = cv Delta_w mv as printed (Eq. 10.8), for each load increment, plotted against average void ratio; or directly by flow through the oedometer at the end of an increment (Figure 10-20). Small specimens (2.5 to 4.0 in. diameter, under 1 in. thick) may suffer scale effects.",
+      "body": "Conventional 1-D consolidation tests (Chapter 6) give an indirect k, because theory transforms the rate of compression. From consolidation theory (Holtz and Kovacs, 1981), Eq. 10.8 with cv the coefficient of consolidation (graphically from time-deformation for each increment), mv the coefficient of compressibility (slope of strain vs. effective stress for the increment), and a symbol printed as Delta_w and defined as 'the density of water'. k can be computed per increment and plotted against average void ratio. k can also be measured directly in an adapted oedometer at the end of an increment, by constant or falling head (Figure 10-20, Daniel, 1994, p. 10-31). The oedometer test is useful for k vs. void ratio or k at a given vertical effective stress, but small specimens (2.5 to 4.0-inch diameter, less than 1-inch thick) may cause scale effects. (pp. 10-30 to 10-31)",
+      "key_points": [
+        "Consolidation-based k is an indirect measurement (p. 10-30).",
+        "Eq. 10.8 as printed uses Delta_w, 'the density of water' (p. 10-30).",
+        "k per increment plotted against average void ratio (p. 10-30).",
+        "Small oedometer specimens may suffer scale effects (p. 10-31)."
+      ],
+      "equations": [
+        "Eq. 10.8: k = cv x Delta_w x mv (symbol printed as Delta_w, defined as 'the density of water'); cv = coefficient of consolidation, mv = coefficient of compressibility (slope of strain vs. effective stress for the load increment) (p. 10-30)"
+      ],
+      "figures": [
+        "Figure 10-20: One-dimensional consolidation cell used for direct measurement of hydraulic conductivity (from Daniel, 1994)"
+      ],
+      "tables": [],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    },
+    {
+      "section_id": "10.11.2",
+      "title": "Thin-Wall Shelby Tube Permeameters",
+      "summary": "The Shelby tube itself serves as a rigid-wall cell, cut to length between end caps with recessed porous stones and O-ring seals (Figure 10-21), for 3 to 4 inch tubes; inexpensive and simple; usually falling head tests.",
+      "body": "An alternative to the oedometer for undisturbed samples uses the sampling tube as a rigid-wall cell (Figure 10-21, Daniel, 1994, p. 10-32): a thin-walled Shelby tube is cut to fit between two end caps, sample ends trimmed so porous stones sit recessed, and O-rings seal the caps. Equipment is inexpensive and the procedure simple; end caps fit tubes from 3 to 4 inches outside diameter; falling head tests are generally performed. (pp. 10-31 to 10-32)",
+      "key_points": [
+        "End caps for Shelby tubes 3 to 4 inches outside diameter (p. 10-31).",
+        "Generally falling head tests (p. 10-31)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10-21: Direct measurement of hydraulic conductivity in Shelby tube (from Daniel, 1994)"
+      ],
+      "tables": [],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    },
+    {
+      "section_id": "10.11.3",
+      "title": "Compaction Mold Permeameters",
+      "summary": "Compacted soils are tested in the steel compaction mold as the rigid-wall cell (Figure 10-22), commonly 4 or 6 inch diameter; a top cap with space lets initially unsaturated fine-grained specimens swell when saturated, as at low field confining stress.",
+      "body": "Samples compacted in the steel mold during the compaction test are trimmed, fitted with end caps and permeated (Figure 10-22, Daniel, 1994, p. 10-33); commonly 4- or 6-inch diameter. The top cap may sit on the specimen or leave a small space so initially unsaturated fine-grained specimens can expand on saturation, more closely simulating field behavior at low vertical stress; expansion depends on mineralogy, plasticity, initial saturation and void ratio. (pp. 10-32 to 10-33)",
+      "key_points": [
+        "Commonly 4- or 6-inch diameter specimens (p. 10-32).",
+        "Top cap space allows swelling on saturation (p. 10-32)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10-22: Direct measurement of hydraulic conductivity in compaction mold (from Daniel, 1994)"
+      ],
+      "tables": [],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    },
+    {
+      "section_id": "10.11.4",
+      "title": "Double-Ring Compaction Mold Permeameters",
+      "summary": "Double-ring rigid-wall permeameters have an inner ring on each end cap so flow through the inner and outer rings is measured separately; a difference from the overall sample, which includes the wall, is attributed to sidewall leakage.",
+      "body": "To address sidewall leakage in rigid-wall permeameters, a smaller inner ring on each end cap separately measures inner and outer flow. Separate inflow and outflow control lets the inner k be checked against the overall sample; since the overall sample includes the rigid outer wall, any difference may be attributed to sidewall leakage. (p. 10-33)",
+      "key_points": [
+        "Differences between inner and overall k attributed to sidewall leakage (p. 10-33)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    },
+    {
+      "section_id": "10.11.5",
+      "title": "Oversized Rigid-Wall Permeameter",
+      "summary": "An oversized rigid-wall permeameter fills the annulus between sample and wall with very low k material such as bentonite, which expands to seal the surfaces and reduce sidewall leakage.",
+      "body": "An oversized rigid-wall permeameter eliminates sidewall leakage by filling the annulus between sample and wall with very low hydraulic conductivity material such as bentonite, which expands to seal the sample and wall surfaces. (p. 10-33)",
+      "key_points": [
+        "Bentonite in the annulus reduces sidewall leakage (p. 10-33)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    },
+    {
+      "section_id": "10.11.6",
+      "title": "Variable Vertical Stress Rigid-Wall Permeameter",
+      "summary": "A rigid-wall permeameter with a floating piston (air pressure, or a plunger loaded by weights or air) applies controlled vertical stress, since field vertical stress affects k; also used for slurry and soil-bentonite materials for slurry or diaphragm walls, simulating depth and consolidation.",
+      "body": "Typical rigid-wall permeameters apply no vertical stress, though field vertical stress may influence k. An internal floating piston on the specimen, loaded by air pressure, controls vertical stress; alternatively the piston connects to a plunger through the top cap, loaded in a fixture by hanging weights or air pressure. The cell also suits bentonite slurries or soil-bentonite mixes for slurry or diaphragm walls: different vertical stresses simulate depth in the wall or show consolidation and void ratio effects on k. (p. 10-34)",
+      "key_points": [
+        "Floating piston applies controlled vertical stress (p. 10-34).",
+        "Useful for slurry and soil-bentonite wall materials (p. 10-34)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    },
+    {
+      "section_id": "10.11.7",
+      "title": "Flexible-Wall Permeameters",
+      "summary": "Flexible-wall permeameters (ASTM D5084) confine the specimen in a membrane (Figure 10-23): confining pressure simulates in situ stress, saturation is checked by Skempton's B, and sidewall leakage is minimal; common for undisturbed fine-grained soils, rigid-wall for compacted soils (Table 10-6).",
+      "body": "Flexible-wall permeameters are common for natural or undisturbed samples, also compacted soils, and more for fine-grained than granular soils. The specimen is encapsulated in a flexible membrane under confining stress, minimizing sidewall leakage (Figure 10-23, Daniel, 1994, p. 10-35); equipment and procedures are in ASTM D5084. Advantages: confining pressure simulates in situ stress and allows consolidation under different stresses; saturation checked by Skempton's B parameter; the membrane conforms to the specimen, so little chance of sidewall leakage. Choice between rigid and flexible walls depends on project requirements and scope (Table 10-6, section 10.12); rigid-wall is perhaps more common for compacted soils, flexible-wall for undisturbed soils; sample size, equipment, budget and time also matter. (pp. 10-34 to 10-35)",
+      "key_points": [
+        "ASTM D5084 for flexible-wall equipment and procedures (p. 10-34).",
+        "Saturation checked by Skempton's B parameter (p. 10-34).",
+        "Rigid-wall perhaps more common for compacted soils; flexible-wall for undisturbed (p. 10-35)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10-23: Schematic of a flexible-wall permeameter (from Daniel, 1994)"
+      ],
+      "tables": [],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    },
+    {
+      "section_id": "10.12",
+      "title": "Evaluation of Hydraulic Conductivity from Borehole Measurements",
+      "summary": "Field-scale flow is often controlled by macro features, so laboratory tests may be biased by small samples. Field methods: borehole, direct push, field pumping and infiltrometer tests. Open-borehole tests are the most common field methods for soils (compacted clays use infiltrometers) (Table 10-7). Table 10-6 (rigid vs. flexible wall) is printed here.",
+      "body": "Groundwater flow at field scale is often controlled by cracks, fissures and sand lenses, so all laboratory tests are subject to small-sample bias, and field tests are attractive; they range from very simple to very complex, in four classes: borehole methods, direct push methods, field pumping tests and infiltrometer methods. Tests in open boreholes are the most common field methods for soils, except compacted clays, generally tested with infiltrometers (p. 10-36). Table 10-6 (modified from Daniel, 1994) compares rigid-wall permeameters (simple, cheap, large cells and gravels, swelling and zero or variable vertical stress possible; but sidewall leakage, no horizontal stress control, no back pressure saturation or B check, longer testing for low k) with flexible-wall (back pressure saturation, B check, principal stress control, essentially no sidewall leakage, faster for low k, directional tests; but costly, complex, careful trimming, membrane compatibility, hard at low stress). (pp. 10-35 to 10-36)",
+      "key_points": [
+        "Laboratory tests are subject to bias from small sample sizes (p. 10-35).",
+        "Four classes of field tests: borehole, direct push, pumping, infiltrometer (p. 10-35).",
+        "Open-borehole tests most common in soils; compacted clays use infiltrometers (p. 10-36)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 10-6: Summary of advantages and disadvantages of rigid- and flexible-wall permeameters (modified from Daniel, 1994) - rigid-wall advantages: simple equipment and operation; low cost; very large cells easily made; large particles (gravels) testable; wide range of cell materials (chemically resistant); unrestrained vertical swelling; zero vertical stress; variable vertical stress with special permeameter. Disadvantages: sidewall leakage possible; no horizontal stress control; leakage if specimen shrinks; no back pressure saturation; no B-parameter check; longer testing for low k. Flexible-wall advantages: back pressure saturation; B-parameter check; principal stress control; sidewall leakage essentially eliminated even with rough walls; faster for low k; directional flow by orienting specimens. Disadvantages: high equipment cost; complex equipment and procedures; careful handling and trimming; membrane-permeant chemical compatibility; difficult at low stress levels"
+      ],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    },
+    {
+      "section_id": "10.12.1",
+      "title": "Auger Hole Method",
+      "summary": "Auger hole method (Spangler and Handy, 1973): observe water rise in a hole of radius r drilled depth d below the water table; k = 0.617 (r/(S d))(delta h/delta t) (Eq. 10.9), S from h/d and r/d (Figure 10-24). Approximate, for fine-grained soils holding an open hole, d/r > 100; repeat and flush; sensitive to smearing. Table 10-7 lists borehole methods.",
+      "body": "One of the simplest methods for rapid field k, best for approximate values in fine-grained soils that keep an open borehole. A hole of radius r is drilled to depth d below the water table and water rise observed over time, giving delta h and delta t; Eq. 10.9 with S a factor depending on h/d and r/d (Figure 10-24, p. 10-38). Applicable only when the hole is long relative to its radius (d/r > 100) (p. 10-37). Repeat the test several times, removing water to flush loose particles; results depend strongly on hole quality and disturbance (smearing). Table 10-7 (p. 10-37) summarizes borehole methods: auger hole (very approximate), open-end (constant head out the casing end), piezometer slug test (the most common), packer, Guelph, Boutwell (horizontal and vertical k) and self-boring (most complex, profiles k in clays). (pp. 10-36 to 10-37)",
+      "key_points": [
+        "Best for approximate k in fine-grained soils that hold an open hole (p. 10-36).",
+        "Applicable only for d/r > 100 (p. 10-37).",
+        "Results highly dependent on hole quality and smearing (p. 10-37).",
+        "Table 10-7: piezometer slug test is the most common borehole test (p. 10-37)."
+      ],
+      "equations": [
+        "Eq. 10.9: k = 0.617 (r/(S d)) (delta h/delta t); r = borehole radius, d = depth of borehole below the water table, S = factor depending on h/d and r/d (Figure 10-24) (p. 10-36)"
+      ],
+      "figures": [],
+      "tables": [
+        "Table 10-7: Borehole methods for determining in situ hydraulic conductivity - auger hole: simple, inexpensive, rate of inflow into an open hole, very approximate; open-end: approximate, constant head in casing, flow out the casing end; piezometer slug test: falling head (inflow or outflow) in a slotted screen piezometer, the most common; packer pumping: pressurized packers seal a test zone in an open hole; Guelph permeameter: constant head in shallow holes; Boutwell permeameter: two stages give horizontal and vertical k; self-boring permeameter: most complex, profiles k in clays"
+      ],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    },
+    {
+      "section_id": "10.12.2",
+      "title": "Open End Pumping Tests",
+      "summary": "Open end pumping test: casing below the water table is cleaned and kept full at constant head (Figure 10-25); k = Q/(5.5 r H) (Eq. 10.10), r casing radius, H head above the water table. A small soil volume is tested, but tests can be repeated as the casing advances.",
+      "body": "An approximate field method: casing is installed below the water table (Figure 10-25, Spangler and Handy, 1973), cleaned out, and clean water added to keep a constant water level; the volume of water Q added to keep the head is measured and k follows from Eq. 10.10 with r the casing radius and H the head above the water table. The top of the casing is a convenient constant level. A disadvantage is the small volume of soil tested, but tests can be run as drilling proceeds, advancing the casing for each test. (pp. 10-37 to 10-38)",
+      "key_points": [
+        "Constant level conveniently kept at the top of the casing (p. 10-37).",
+        "Small volume tested; repeatable at several depths as the casing advances (p. 10-37)."
+      ],
+      "equations": [
+        "Eq. 10.10: k = Q/(5.5 r H); Q = volume of water added to maintain the constant head (as printed), r = casing radius, H = head of water above the water table (p. 10-37)"
+      ],
+      "figures": [
+        "Figure 10-24: Shape factor for auger hole seepage tests (from Spangler and Handy, 1973)"
+      ],
+      "tables": [],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    },
+    {
+      "section_id": "10.12.3",
+      "title": "Slug/Bail Tests in Standpipe Piezometers",
+      "summary": "Slug or bail tests in standpipe piezometers or wells, among the most common field methods: raise or lower the level and observe recovery (to about 80 percent); log head vs. time is straight (Figure 10-26); k = 2.3 a m/F (Eq. 10.11) with Chapuis (1989) shape factors for open-bottom (Eq. 10.12) or sealed-base wells (Eq. 10.13).",
+      "body": "A slug raises the level (outward flow); removing it, or bailing or pumping (bail test), lowers it; the head change is observed over time. Full equilibrium is not needed; a rule of thumb is to observe recovery of 80 percent (p. 10-39). Raised or lowered, interpretation is the same: log head vs. time is typically straight (Figure 10-26, Lutenegger and DeGroot, 1992, p. 10-40), and k follows from Eq. 10.11 with a the standpipe area, m the slope and F a shape factor. Chapuis (1989): with the sand pack open to the hole bottom (horizontal and vertical flow) Eq. 10.12, L the screen length and D the hole diameter; with the base sealed (bentonite plug, horizontal flow only) Eq. 10.13. Head is the absolute unrecovered head (level at time t minus pre-test level); for bail tests the datum must be below the well base to keep signs correct. Alternatives: Hvorslev (1951), Bouwer and Rice (1976), Nguyen and Pinder (1984). (pp. 10-38 to 10-40)",
+      "key_points": [
+        "Slug tests are one of the most common field methods for k (p. 10-38).",
+        "Rule of thumb: observe recovery of 80 percent (p. 10-39).",
+        "Log head vs. time typically a straight line (Figure 10-26) (p. 10-39).",
+        "Base sealed (bentonite plug): horizontal flow only, Eq. 10.13 (p. 10-40).",
+        "Bail tests: datum below the well base (p. 10-40)."
+      ],
+      "equations": [
+        "Eq. 10.11: k = 2.3 a m / F; a = cross-sectional area of the standpipe, m = slope of log head vs. time, F = shape factor (p. 10-39)",
+        "Eq. 10.12: F = 2 pi L / ln[L/D + sqrt(1 + (L/D)^2)] (Chapuis, 1989), sand pack open to the bottom of the hole; L = screened length, D = hole diameter (p. 10-40)",
+        "Eq. 10.13: F = 2 pi L / ln[L/D + sqrt(1 + (L/D)^2)] - 2.75D, base of the well sealed (horizontal flow only) (p. 10-40)"
+      ],
+      "figures": [
+        "Figure 10-25: Schematic diagram of open end pumping test (from Spangler and Handy, 1973)",
+        "Figure 10-26: Typical results from a slug test in clay (from Lutenegger and DeGroot, 1992)"
+      ],
+      "tables": [],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    },
+    {
+      "section_id": "10.12.4",
+      "title": "Packer Pumping Tests",
+      "summary": "Packer tests seal a borehole segment with one or two pneumatic packers (Figure 10-27), apply constant pressure and measure flow q; for L/d above about 5, k = q/(2 pi L H) ln(L/r) (Eq. 10.14), H the pressure as head above the water table. Many tests per hole; often used in rock.",
+      "body": "One or two pneumatic packers seal off a borehole segment (Figure 10-27, Sevee, 2006); a constant fluid pressure is applied and flow measured to give q. For test zone length to diameter L/d greater than about 5, Eq. 10.14, with H the equivalent head of fluid above the water table from the applied pressure (p. 10-41). Many tests can be run in one borehole and they are often used for rock strata; tests may repeat at one depth with different H to check k vs. H. Equipment is simple but q must be measured carefully. (pp. 10-40 to 10-41)",
+      "key_points": [
+        "Applicable for test zone L/d greater than about 5 (p. 10-41).",
+        "Often used for the hydraulic conductivity of rock strata (p. 10-41)."
+      ],
+      "equations": [
+        "Eq. 10.14: k = q/(2 pi L H) ln(L/r); L/d of the test zone greater than about 5; q = flow rate, H = equivalent head of fluid above the water table (p. 10-41)"
+      ],
+      "figures": [
+        "Figure 10-27: Schematic of a borehole packer test (Sevee, 2006)"
+      ],
+      "tables": [],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    },
+    {
+      "section_id": "10.12.5",
+      "title": "Guelph Permeameter",
+      "summary": "The Guelph permeameter (Reynolds and Elrick, 1986) runs a constant head test in a small hand-augered hole with a Mariotte siphon (Figure 10-28); simplest calculation k = Cq/(2 pi H^2 + C pi r^2) (Eq. 10.15), C from H/r (Figure 10-29).",
+      "body": "A Mariotte siphon maintains constant head in a borehole (Reynolds and Elrick, 1986; Figure 10-28). The screen is small, about 1.25 inches, so small hand-augered holes suffice; the annulus is filled with clean silica sand. Flow into the hole is read from a graduated reservoir. The simplest of several calculations is Eq. 10.15 (p. 10-42), C a dimensionless constant depending on H/r, q the steady flow rate, H the steady depth of liquid and r the hole radius; C from Figure 10-29 (Daniel, 1989, p. 10-43). (pp. 10-41 to 10-43)",
+      "key_points": [
+        "Screen about 1.25 inches; small hand-augered holes (p. 10-41).",
+        "C depends on H/r (Figure 10-29) (p. 10-42)."
+      ],
+      "equations": [
+        "Eq. 10.15: k = C q / (2 pi H^2 + C pi r^2); C = dimensionless constant dependent on H/r, q = steady-state flow rate, H = steady depth of liquid in the borehole, r = borehole radius (p. 10-42)"
+      ],
+      "figures": [
+        "Figure 10-28: Schematic of a Guelph permeameter (from Reynolds and Elrick, 1986)",
+        "Figure 10-29: Values of constant C for Guelph permeameter (from Daniel, 1989)"
+      ],
+      "tables": [],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    },
+    {
+      "section_id": "10.12.6",
+      "title": "Boutwell Two-Stage Permeameter",
+      "summary": "The Boutwell two-stage permeameter: Stage I falling head through grouted casing, k1 = (Bd^2/(11D(t2 - t1))) ln(h1/h2) (Eq. 10.16) until steady; Stage II with the hole extended about 1 to 1.5D, k2 = (A/B) ln(h1/h2) (Eqs. 10.17 to 10.19). k2/k1 (Eq. 10.20) gives m; kh = m k1, kv = k1/m (Eqs. 10.21, 10.22).",
+      "body": "A modified open-end test varying the test zone geometry to get vertical and horizontal k. Stage I: casing in a drilled hole, annulus sealed with bentonite grout (Figure 10-30, Daniel, 1989, p. 10-44); falling head test, k1 from Eq. 10.16, plotted against time until steady (p. 10-43). Stage II: the hole is extended below the casing by augering or a thin-walled tube, typically about 1 to 1.5D long (especially on compacted clay liners); falling head k2 from Eq. 10.17 with A and B from Eqs. 10.18 and 10.19, continued until k2 is practically constant. kh and kv follow by finding m from k2/k1 (Eq. 10.20) against m and L/D, then Eqs. 10.21 and 10.22. Easy to use, giving both horizontal and vertical k (p. 10-45). (pp. 10-43 to 10-45)",
+      "key_points": [
+        "Stage I complete at steady k1 (p. 10-43).",
+        "Stage II extension typically about 1 to 1.5D (p. 10-43).",
+        "kh = m k1, kv = k1/m (Eqs. 10.21, 10.22) (p. 10-44)."
+      ],
+      "equations": [
+        "Eq. 10.16: k1 = (B d^2/(11 D (t2 - t1))) ln(h1/h2) (Stage I) (p. 10-43)",
+        "Eq. 10.17: k2 = (A/B) ln(h1/h2) (Stage II) (p. 10-43)",
+        "Eq. 10.18: A = d^2 ln(L/D + sqrt(1 + (L/D)^2)) (p. 10-43)",
+        "Eq. 10.19: B = 8D (L/D)(t2 - t1)[1 - 0.562 e^(-1.57(L/D))] (p. 10-44)",
+        "Eq. 10.20: k2/k1 = m [ln(L/D + sqrt(1 + (L/D)^2)) / ln(mL/D + sqrt(1 + (mL/D)^2))] (p. 10-44)",
+        "Eq. 10.21: kh = m k1 (p. 10-44)",
+        "Eq. 10.22: kv = k1 / m (p. 10-44)"
+      ],
+      "figures": [
+        "Figure 10-30: Schematic of Boutwell permeameter: (a) Stage I and (b) Stage II (from Daniel, 1989)"
+      ],
+      "tables": [],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    },
+    {
+      "section_id": "10.12.7",
+      "title": "Self-Boring (Reaming) Permeameter",
+      "summary": "The self-boring (reaming) permeameter (Lafleur et al., 1987; Tavenas et al., 1990) enlarges a 4-inch auger hole to about 4.8 inches while advancing, isolates the zone with packers (L/D = 2 standard) and runs falling or constant head tests from the top down, removing smear and profiling k in clays; highly specialized.",
+      "body": "A 4-inch auger hole is drilled; a self-boring fixture over it enlarges the hole to about 4.8 inches while advancing to test depth, cuttings falling to the hole bottom (Figure 10-31, Chandler et al., 1990); inflatable packers isolate the test zone; the standard probe has L/D = 2, variable. It is designed to remove the smeared zone, apply low heads, finish in reasonable time and give a continuous profile of k (Lafluer et al., 1987, as printed); highly specialized. Falling or constant head tests start at the top of the hole (p. 10-46). (pp. 10-45 to 10-46)",
+      "key_points": [
+        "Hole enlarged from 4 to about 4.8 inches; standard L/D = 2 (p. 10-45).",
+        "Removes smeared zone and profiles k in clays (pp. 10-45 to 10-46)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10-31: Schematic of a self-boring permeameter (from Chandler, et al., 1990)"
+      ],
+      "tables": [],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    },
+    {
+      "section_id": "10.12.8",
+      "title": "Field Pumping Tests",
+      "summary": "Field pumping tests pump one well and observe drawdown in observation wells; most accurate large-scale k, useful for dewatering, but costly. Unconfined: k = q ln(r1/r2)/(pi(h1^2 - h2^2)) (Eq. 10.23); confined: k = q ln(r1/r2)/(2 pi B(h1 - h2)) (Eq. 10.24), assuming homogeneous aquifer, constant thickness, flat water table, laminar flow, full penetration.",
+      "body": "Pumping tests also give transmissivity, storage or specific yield, long-term rates, well efficiency and leakage (Driscoll, 1986; Powers et al., 2007); here only k. They need multiple boreholes and time, but give the most accurate large-scale k, useful where dewatering is needed. In an unconfined aquifer the steady surface forms a cone of depression; drawdown at two observation wells (extending below maximum drawdown) gives k from Eq. 10.23 for radial flow in homogeneous soil, r1 and h1 at the far well, r2 and h2 at the near well, datum below the pumping well base. In a confined aquifer, Eq. 10.24 with B the aquifer thickness (p. 10-47), assuming the pumping well penetrates the full thickness. Both assume a homogeneous aquifer of constant thickness, no water table slope, laminar flow and full penetration of the well intake. (pp. 10-46 to 10-47)",
+      "key_points": [
+        "Most accurate means for large-scale k; useful where dewatering is needed (p. 10-46).",
+        "Unconfined aquifer forms a cone of depression (p. 10-46).",
+        "Eq. 10.24 assumes the pumping well penetrates the full aquifer (p. 10-47)."
+      ],
+      "equations": [
+        "Eq. 10.23: k = q ln(r1/r2) / (pi (h1^2 - h2^2)), unconfined aquifer; r1, r2 = distances from the pumping well to the far and near observation wells, h1, h2 = heads at the far and near wells (p. 10-46)",
+        "Eq. 10.24: k = q ln(r1/r2) / (2 pi B (h1 - h2)), confined aquifer; B = aquifer thickness (p. 10-47)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    },
+    {
+      "section_id": "10.13",
+      "title": "Evaluation of Hydraulic Conductivity Using Infiltrometer Methods",
+      "summary": "Infiltrometers measure infiltration rate, mainly for compacted clay liners and covers, also near-surface fractured or fissured layers in test pits. Table 10-8 lists open and sealed single- and double-ring infiltrometers and air-entry permeameters; Table 10-9 gives their advantages and disadvantages (Daniel, 1989).",
+      "body": "Infiltrometers measure the rate of infiltration of water into the ground, often for compacted clays (landfill or lagoon liners, landfill final covers), and in test pits for near-surface layers hard to sample, such as weathered clays, residual soils and some glacial deposits. Reviews: Daniel (1989), Sai and Anderson (1990), Fernuik and Haug (1990), Trautwein and Boutwell (1994). Table 10-8 (p. 10-47) summarizes methods; Table 10-9 (modified from Daniel, 1989, p. 10-48) gives advantages and disadvantages: all give vertical k and none can be used on steep slopes; open rings have low cost but cannot easily measure very low k and must account for evaporation; sealed rings can measure low k; the air-entry permeameter is relatively quick but tests a small volume and needs assumptions. (pp. 10-47 to 10-48)",
+      "key_points": [
+        "Infiltrometers commonly used for compacted clay liners and covers (p. 10-47).",
+        "Table 10-9: infiltrometers cannot be used on steep slopes (p. 10-48)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 10-8: Infiltrometer methods for determining hydraulic conductivity of compacted clay liners and covers - open single-ring: ring or box embedded in the surface, infiltration observed; sealed single-ring: sealed against evaporation; open double-ring: outer ring keeps flow vertical in the inner ring, simple; sealed double-ring: both rings sealed against evaporation; air-entry permeameter: smaller than most rings; double-ring air-entry permeameter: sealed, vertical flow as double rings",
+        "Table 10-9: Advantages and disadvantages of different infiltrometers (modified from Daniel, 1989) - open single-ring: low cost, easy, very large rings possible, vertical k; very low k hard, evaporation, lateral spreading, long tests, wetting front estimated, not on steep slopes. Open double-ring: low cost, minimal lateral spreading, vertical k; very low k hard, evaporation, long tests, wetting front, not on steep slopes. Sealed single-ring: low cost, vertical k, can measure low k; small volume, long tests, wetting front, not on steep slopes. Sealed double-ring: moderate cost, minimal lateral spreading, vertical k, low k; long tests, wetting front, not on steep slopes. Air-entry permeameter: moderate cost, relatively short test, vertical k, low k; small volume, not on steep slopes, important assumptions needed"
+      ],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    },
+    {
+      "section_id": "10.13.1",
+      "title": "Open Single-Ring Infiltrometer",
+      "summary": "Open single-ring infiltrometer (SRI): a ring sealed in a shallow bentonite-grouted trench, filled and monitored (Figure 10-32); I = Q/(At) = q/A (Eq. 10.25), k = I/i = I/((H + Lf + Pf)/Lf) (Eq. 10.26), Pf usually zero, Lf from tensiometers or water contents. Cheap and any size; evaporation controlled with a dummy ring.",
+      "body": "The ring (steel or fiberglass, open top) is embedded in a shallow trench sealed with bentonite-based grout, filled, and the water level monitored. Flow is one-dimensional while the wetting front is inside the ring, then spreads laterally. Infiltration rate by Eq. 10.25 (I, Q total flow, A ring area, t elapsed time, q flow rate) and k by Eq. 10.26 (p. 10-49), with H the water depth in the ring, Lf the wetting front depth and Pf the suction head at the wetting front, which can be found from k at different suctions but is usually assumed zero. Lf comes from tensiometers at several depths or water contents after the test. In initially unsaturated compacted soils, infiltration rate and k decrease with time. The SRI is simple, inexpensive and of almost unlimited size; very low rates are hard to measure and evaporation must be controlled, usually with a 'dummy' ring on an impermeable base (Figure 10-32, Trautwein and Boutwell, 1994). (pp. 10-48 to 10-49)",
+      "key_points": [
+        "Flow one-dimensional only while the wetting front is inside the ring (p. 10-48).",
+        "Pf usually assumed zero (p. 10-49).",
+        "Lf from tensiometers or post-test water contents (p. 10-49).",
+        "Evaporation measured with a 'dummy' ring (p. 10-49)."
+      ],
+      "equations": [
+        "Eq. 10.25: I = Q/(A t) = q/A; I = infiltration rate, Q = total quantity of flow, A = area of the ring, t = elapsed time, q = flow rate (p. 10-49)",
+        "Eq. 10.26: k = I/i = I / ((H + Lf + Pf)/Lf); i = hydraulic gradient, H = depth of water in the ring, Lf = depth of the wetting front, Pf = suction head at the wetting front (usually assumed zero) (p. 10-49)"
+      ],
+      "figures": [
+        "Figure 10-32: Schematic of open single-ring infiltrometer (from Trautwein and Boutwell, 1994)"
+      ],
+      "tables": [],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    },
+    {
+      "section_id": "10.13.2",
+      "title": "Sealed Single-Ring Infiltrometer",
+      "summary": "Sealed single-ring infiltrometer (SSRI): a covered ring in a bentonite-grouted trench with level measured by an external standpipe or Mariotte system (Figure 10-33), removing evaporation errors; k from Eq. 10.26, typically with Pf = 0. The air-entry permeameter is a special SSRI.",
+      "body": "To eliminate evaporation errors, the ring is installed and sealed in a narrow trench with bentonite grout as before, but covered, and the water level measured with an external standpipe or Mariotte system (Figure 10-33, Trautwein and Boutwell, 1994, p. 10-50). k from Eq. 10.26, typically with Pf = 0. The air-entry permeameter (section 10.13.5) is a special SSRI. (pp. 10-49 to 10-50)",
+      "key_points": [
+        "Covered ring removes evaporation errors (p. 10-49).",
+        "k from Eq. 10.26 with Pf = 0 typically (p. 10-50)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10-33: Schematic of sealed single-ring infiltrometer (from Trautwein and Boutwell, 1994)"
+      ],
+      "tables": [],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    },
+    {
+      "section_id": "10.13.3",
+      "title": "Open Double-Ring Infiltrometer",
+      "summary": "Open double-ring infiltrometer (DRI): an outer ring keeps flow one-dimensional in the inner ring; both filled, level usually constant; inner-ring infiltration from Eq. 10.25 and k from Eq. 10.26, more accurate than the SRI because both assume one-dimensional vertical flow.",
+      "body": "Two rings or boxes are installed at the surface like an SRI; the outer ring maintains one-dimensional flow within the inner ring. Both are filled and the water level usually kept constant. Inner-ring infiltration rate from Eq. 10.25 and k from Eq. 10.26; the main advantage over the SRI is one-dimensional flow, improving accuracy since both equations assume one-dimensional vertical flow. (p. 10-50)",
+      "key_points": [
+        "Outer ring maintains one-dimensional flow in the inner ring (p. 10-50)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    },
+    {
+      "section_id": "10.13.4",
+      "title": "Sealed Double-Ring Infiltrometer",
+      "summary": "Sealed double-ring infiltrometer (SDRI, ASTM D3385): sealed rings with a flexible bag on the inner ring, weighed periodically (Figure 10-34); tensiometers track the wetting front; k from Eqs. 10.25, 10.26 with Pf = 0. Tests very low infiltration rates over weeks or months, essentially unattended.",
+      "body": "Equipment and procedure are in ASTM D3385. Dual rings are embedded and sealed; a small flexible bag on the inner ring is periodically removed and weighed to find flow; the arrangement is covered (Figure 10-34, Trautwein and Boutwell, 1994, p. 10-51). Tensiometers often monitor the wetting front. Infiltration from Eq. 10.25 and k from Eq. 10.26, usually with Pf = 0. The SDRI avoids many shortfalls of other infiltrometers, permits very low infiltration rates, and can run for weeks or months essentially unattended. (pp. 10-50 to 10-51)",
+      "key_points": [
+        "ASTM D3385 (p. 10-50).",
+        "Permits testing at very low infiltration rates (p. 10-51).",
+        "Can run weeks or months essentially unattended (p. 10-51)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10-34: Schematic of sealed double-ring infiltrometer (from Trautwein and Boutwell, 1994)"
+      ],
+      "tables": [],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    },
+    {
+      "section_id": "10.13.5",
+      "title": "Air Entry Permeameter",
+      "summary": "Air-entry permeameter (AEP, Bouwer): a 24-inch ring embedded 4 inches with a reservoir and vacuum gage (Figure 10-35); after the wetting front advances 4 to 6 inches the supply is closed and maximum vacuum is the air-entry pressure; k from Eq. 10.27 as printed. Rapid for k about 1 x 10^-7 cm/s but small volume; double-ring AEP (Figure 10-36).",
+      "body": "Developed by Bouwer (1966, 1978, 1986) as a simple, rapid method above the water table (Figure 10-35): a steel ring about 24 inches in diameter embedded about 4 inches, with a graduated reservoir and vacuum gage on top. Infiltration is read from reservoir volume changes; after the wetting front advances about 4 to 6 inches the supply is turned off and the maximum vacuum recorded as the air-entry pressure. In the Modified AEP the wetting front depth is found with tensiometers or post-test water contents. k from Eq. 10.27 as printed, with k in m/s, Wf the depth to the wetting front, q the flow rate just before the valve is closed (m3/s), Pa the air-entry pressure (m of water on the gage) printed as equal to Pg x G x Wf, H the water height above the soil (m), A the ring area (m2) and G the gage height above the soil (m). AEPs rapidly measure k on the order of 1 x 10^-7 cm/s in natural and compacted soils (Nordquist et al., 1986; Haile and Brown, 1988) (p. 10-52), but test a small, possibly unrepresentative volume; Trautwein and Boutwell (1994) suggest a double-ring air-entry permeameter (DRAEP, Figure 10-36). (pp. 10-51 to 10-52)",
+      "key_points": [
+        "Ring about 24 inches in diameter embedded about 4 inches (p. 10-51).",
+        "Supply off after the wetting front advances about 4 to 6 inches (p. 10-51).",
+        "Eq. 10.27 as printed has Wf in numerator and denominator; Pa printed as Pg x G x Wf (pp. 10-51 to 10-52).",
+        "Rapid for k on the order of 1 x 10^-7 cm/s; small test volume (p. 10-52)."
+      ],
+      "equations": [
+        "Eq. 10.27: k = q Wf / (A H Wf (0.5 Pa)) (as printed); k in m/s, Wf = depth to the wetting front, q = flow rate just before the supply valve is closed (m3/s), Pa = air-entry pressure (m of water on gage), printed as equal to Pg x G x Wf, H = height of water above the soil (m), A = ring area (m2), G = height of vacuum gage above the soil surface (m) (p. 10-51)"
+      ],
+      "figures": [
+        "Figure 10-35: Schematic of air entry permeameter (from Trautwein and Boutwell, 1994)",
+        "Figure 10-36: Schematic of double-ring air entry permeameter (from Trautwein and Boutwell, 1994)"
+      ],
+      "tables": [],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    },
+    {
+      "section_id": "10.14",
+      "title": "Evaluation of Hydraulic Conductivity Using In situ Field Tests",
+      "summary": "In situ direct push tests determine k without a borehole by pushing or driving a probe: pushed or driven porous probe, piezocone (CPTU) and flat dilatometer (DMT) dissipation tests, and the BAT probe (Table 10-10).",
+      "body": "Hydraulic conductivity can be determined in many deposits by pushing or driving a probe without a borehole: a driven or pushed porous probe, the piezocone (CPTU), the flat dilatometer (DMT) and the BAT system, summarized in Table 10-10 (p. 10-53). (pp. 10-52 to 10-53)",
+      "key_points": [
+        "Table 10-10: CPTU and DMT dissipation tests in fine-grained soils (p. 10-53)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 10-10: Direct push methods for determining in situ hydraulic conductivity - pushed probe: porous element on a pushed or driven standpipe, falling or constant head; piezocone: excess pore pressure dissipation in fine-grained soils, very small filter; dilatometer: dissipation in fine-grained soils; BAT probe: sealed pressure transducer attachment to the standard BAT probe"
+      ],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    },
+    {
+      "section_id": "10.14.1",
+      "title": "Driven/Pushed Porous Probe",
+      "summary": "A pushed or driven porous probe avoids drilling; falling head tests are read like slug tests (Eq. 10.11), constant head tests use a pressure console and graduated volume. Clogging, smearing or remolding and post-installation consolidation matter most in soft clays (Tavenas et al., 1986; Lutenegger and DeGroot, 1992).",
+      "body": "Push-in piezometers avoid drilling a borehole. Falling head tests are like slug tests, using Eq. 10.11. Constant head tests fill the probe with water and connect it to a pressure control console and graduated volume measure, holding pressure constant while recording flow volume over time. Problems: clogging of the filter during installation, smearing or remolding of adjacent soil, consolidation after installation, most important in soft clays (Tavenas et al., 1986; Lutenegger and DeGroot, 1992). (p. 10-53)",
+      "key_points": [
+        "Falling head test interpreted with Eq. 10.11 (p. 10-53).",
+        "Installation effects most important in soft clays (p. 10-53)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    },
+    {
+      "section_id": "10.14.2",
+      "title": "Piezocone (CPTU) Dissipation Tests",
+      "summary": "CPTU dissipation gives ch (section 6.13), so kh = ch gamma_w mv (Eq. 10.28) with mv = 1/M = 1/(alpha qc) (Eq. 10.29, alpha from Table 10-11). Use in fine-grained soils with k up to about 1 x 10^-4 cm/s; t50 under about 10 s is error-prone. Ventura (1983): k = 10^-1/(z t50) cm/s (Eq. 10.30); Figure 10-37 relates kh to t50.",
+      "body": "Piezocone dissipation tests measure k indirectly from the coefficient of horizontal consolidation ch (Chapter 6, section 6.13): Eq. 10.28 with kh in m/s, gamma_w the unit weight of water (kN/m3) and mv the coefficient of volume change (m2/kN), estimated from the constrained modulus M and tip resistance qc by Eq. 10.29 with alpha from Table 10-11 (p. 10-54). Dissipation tests give reasonable k in soils producing a realistic dissipation curve (Figure 6-31): predominantly fine-grained soils with an upper limit of about k = 1 x 10^-4 cm/s, since t50 is unreliable in granular soils; t50 less than about 10 seconds may carry considerable error. Alternatively, with consistent cone characteristics (size, pore pressure element location), Ventura (1983) relates k and t50 by Eq. 10.30, z the test depth in meters. Parez and Fauriel (1988) give a chart for kh from t50 with a porous element behind the tip; Robertson et al. (1992) compared laboratory kh with t50 (Figure 10-37, Mayne, 2007, p. 10-55). (pp. 10-53 to 10-55)",
+      "key_points": [
+        "kh = ch gamma_w mv (Eq. 10.28) (p. 10-53).",
+        "Table 10-11: alpha 3 to 8 for CL with qc < 7 bar (p. 10-54).",
+        "Upper limit about k = 1 x 10^-4 cm/s; predominantly fine-grained soils (p. 10-54).",
+        "t50 less than about 10 seconds may have considerable errors (p. 10-54).",
+        "Ventura (1983): k = 10^-1/(z t50) cm/s, z = depth in meters (Eq. 10.30) (p. 10-54)."
+      ],
+      "equations": [
+        "Eq. 10.28: kh = ch gamma_w mv; kh = horizontal hydraulic conductivity (m/s), ch = coefficient of horizontal consolidation, gamma_w = unit weight of water (kN/m3), mv = coefficient of volume change (m2/kN) (p. 10-53)",
+        "Eq. 10.29: mv = 1/M = 1/(alpha qc); M = constrained modulus, qc = cone tip resistance, alpha from Table 10-11 (p. 10-54)",
+        "Eq. 10.30: k = (10^-1)/(z t50) (cm/s) (Ventura, 1983); z = depth of the test (m), t50 = time for 50 percent dissipation (p. 10-54)"
+      ],
+      "figures": [
+        "Figure 10-37: Empirical relationship between kh and CPTU t50 (from Mayne, 2007)"
+      ],
+      "tables": [
+        "Table 10-11: Summary of α values for estimating constrained modulus from qc - alpha by soil type and qc: clay of low plasticity (CL) qc < 7 bar 3 < alpha < 8, 7 < qc < 20 bar 2 < alpha < 5, qc > 20 bar 1 < alpha < 2.5; silts of low plasticity (ML) qc > 20 bar 1 < alpha < 6, qc < 20 bar 1 < alpha < 3; highly plastic silts and clays (MH, CH) qc < 20 bar 2 < alpha < 6; organic silts (OL) qc < 12 bar 2 < alpha < 8; peat and organic clay (Pt OH) qc < 7 bar: 50 < w < 100 1.5 < alpha < 4, 100 < w < 200 1 < alpha < 1.5, w > 200 0.4 < alpha < 1"
+      ],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    },
+    {
+      "section_id": "10.14.3",
+      "title": "Flat Dilatometer",
+      "summary": "DMT dissipation tests give ch (section 6.13), and with mv = 1/M estimated from the dilatometer modulus ED (Chapter 8), k follows from Eq. 10.28.",
+      "body": "Hydraulic conductivity can be estimated from DMT time-pressure dissipation tests with Eq. 10.28: ch from the DMT dissipation test (section 6.13) and mv = 1/M estimated from the dilatometer modulus ED (Chapter 8). (p. 10-55)",
+      "key_points": [
+        "mv = 1/M estimated from the dilatometer modulus ED (p. 10-55)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    },
+    {
+      "section_id": "10.14.4",
+      "title": "BAT Probe",
+      "summary": "The BAT groundwater sampling probe (sintered porous element behind a 60-degree cone) with an auxiliary pressure transducer kit (Figure 10-38) measures gas pressure change in a sealed evacuated vial; by Boyle's law k follows from Eq. 10.31 as printed.",
+      "body": "The BAT system samples groundwater at discrete depths with a hermetically sealed technique: a stainless steel body with a sintered stainless steel porous element behind a 60-degree conical point, resembling a piezocone but measuring no force or pore pressure; a septum seals the probe. For k, an auxiliary kit (pressure transducer and readout, Figure 10-38, Trautwein and Boutwell, 1994, p. 10-56) lowers an evacuated sealed glass vial on extension rods; a double-ended hypodermic needle connects probe and vial and gas pressure change is recorded. By Boyle's law the pressure change gives a volume change and k (Eq. 10.31), with Po the initial gas pressure and Vo the initial gas volume in the vial, Pt the average measured pressure between t1 and t, P3 the net pressure applied to the chamber, Pt/t the rate of change of pressure and F a shape factor. (pp. 10-55 to 10-56)",
+      "key_points": [
+        "Porous element behind a 60-degree conical point; no force or pore pressure measured (p. 10-55).",
+        "Boyle's law converts vial pressure change to volume change (p. 10-55)."
+      ],
+      "equations": [
+        "Eq. 10.31: k = (Po Vo / F)(1 / ((Pt^2 P3)(Pt/t))) (as printed); Po = initial gas pressure in the vial, Vo = initial gas volume in the vial, Pt = average measured pressure between t1 and t, P3 = net pressure applied to the chamber, Pt/t = rate of change of pressure, F = shape factor (p. 10-56)"
+      ],
+      "figures": [
+        "Figure 10-38: BAT system for determining hydraulic conductivity (from Trautwein and Boutwell, 1994)"
+      ],
+      "tables": [],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    },
+    {
+      "section_id": "10.15",
+      "title": "Estimation of Hydraulic Conductivity from Correlations",
+      "summary": "For preliminary design, estimate k from more easily measured soil properties, with engineering judgment, rather than guessing: grain size and density for granular soils (section 10.15.1), void ratio for fine-grained soils (section 10.15.2).",
+      "body": "Approximate k estimates for preliminary design can be made by several approaches with engineering judgment; it is more desirable to base initial estimates on other more easily measured soil properties than simply to guess. (p. 10-56)",
+      "key_points": [
+        "Estimate k from easily measured properties rather than guessing (p. 10-56)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    },
+    {
+      "section_id": "10.15.1",
+      "title": "Estimating Hydraulic Conductivity for Granular Soils",
+      "summary": "For granular soils grain size and density govern k (Figure 10-39). Hazen (1911): k = C D10^2 (Eq. 10.32), cm/s with D10 in cm, C about 90 to 120 (often 100). Shepherd (1989): k = c d^2, c = a x^b (Eqs. 10.33, 10.34). Carrier (2003): Kozeny-Carman k = 1.99 x 10^4 Deff^2 (1/SF^2)(e^3/(1 + e)) (Eqs. 10.35, 10.36) for silts, sands and gravelly sands at 20 degrees C.",
+      "body": "Grain size characteristics (mean size, gradation, uniformity coefficient) and density (void ratio, porosity) are the two most important factors (Figure 10-39, Sevee, 2006, p. 10-57). Hazen (1911), from clean loose sand, Eq. 10.32: k in cm/s, D10 the effective size in cm, C typically about 90 to 120, often 100 (p. 10-58). Shepherd (1989), Eq. 10.33 (c a constant for all factors other than grain size, d particle diameter); from 19 published data sets, c = a x^b (Eq. 10.34) with x = D50; a about 1000 to 200,000 for k in gallons/day/ft2, b about 1.1 to 2.0. Carrier (2003) recommends Kozeny-Carman, accounting for grain size and density (Eq. 10.35): k in cm/s, Deff the effective grain size in cm (Eq. 10.36, fi the fraction between two sieves, Dl-i and Ds-i the larger and smaller openings, summed over all sieves), e void ratio, SF a shape factor of 6.6 rounded, 7.5 medium angularity, 8.4 angular (Loudon, 1952). Not appropriate for clayey soils or gravelly soils with non-laminar flow; appropriate for silts, sands and gravelly sands; strictly for 20 degrees C, with other forms for other temperatures (Carrier, 2003) (p. 10-59). (pp. 10-57 to 10-59)",
+      "key_points": [
+        "Grain size and density are the two most important factors (p. 10-57).",
+        "Hazen C typically 90 to 120, often 100 (p. 10-58).",
+        "Shepherd a about 1000 to 200,000 (gallons/day/ft2), b about 1.1 to 2.0 (p. 10-58).",
+        "SF = 6.6 rounded, 7.5 medium angularity, 8.4 angular (Loudon, 1952) (p. 10-58).",
+        "Kozeny-Carman not for clayey or gravelly soils with non-laminar flow (p. 10-59)."
+      ],
+      "equations": [
+        "Eq. 10.32: k = C x D10^2 (Hazen, 1911); k in cm/s, C = constant (typically 90 to 120, often 100), D10 = effective grain size (10 percent finer) in cm (p. 10-57)",
+        "Eq. 10.33: k = c d^2 (Shepherd, 1989); c = constant, d = particle diameter (p. 10-58)",
+        "Eq. 10.34: c = a x^b; x = mean grain size D50, a and b = regression coefficients (p. 10-58)",
+        "Eq. 10.35: k = 1.99 x 10^4 x Deff^2 x (1/SF^2) x (e^3/(1 + e)) (Kozeny-Carman; Carrier, 2003); k in cm/s, Deff = effective grain size in cm, SF = shape factor, e = void ratio; 20 degrees C (p. 10-58)",
+        "Eq. 10.36: Deff = 100% / sum(fi / (Dl-i^0.404 x Ds-i^0.595)); fi = fraction of particles between two sieve sizes, Dl-i, Ds-i = larger and smaller sieve openings (p. 10-58)"
+      ],
+      "figures": [
+        "Figure 10-39: Hydraulic conductivity for sands as a function of porosity (from Sevee, 2006)"
+      ],
+      "tables": [],
+      "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
+    },
+    {
+      "section_id": "10.15.2",
+      "title": "Estimating Hydraulic Conductivity for Fine-Grained Soils",
+      "summary": "In fine-grained soils void ratio governs k: log k vs. e is nearly linear for a clay (Figure 10-40) but differs between clays by over 2 orders of magnitude (Figure 10-41), converging at e about 0.2 to 0.3. Mesri et al. (1994): k = 6.5 x 10^-11 [(e/CF)/(Ac + 1)]^4 m/s (Eq. 10.37); Tavenas et al. (1983): Ck = 0.5(e) (Eq. 10.38), Ck about 0.4 to 1.6.",
+      "body": "Porosity or void ratio is the most important factor because particle sizes span a small range, mostly below 0.074 mm (No. 200 sieve), so packing matters; pore-size distribution controls k but is hard to quantify routinely. For a given clay k and void ratio are fairly uniquely related, log k vs. e nearly linear (Figure 10-40, Leroueil et al., 1990, p. 10-60); different soft clays differ by more than 2 orders of magnitude at a fixed void ratio (Figure 10-41, Terzaghi et al., 1996), converging near e of 0.2 to 0.3. Mesri et al. (1994), accounting for clay content and mineralogy: Eq. 10.37 with k in m/s, CF the clay size fraction (percent < 0.002 mm) and Ac = PI/CF the activity. The change of permeability index Ck = delta e/delta log k; Tavenas et al. (1983) relate it to in situ void ratio for soft clays by Eq. 10.38; large Ck means small changes in k; typical soft clay Ck about 0.4 to 1.6. (pp. 10-59 to 10-60)",
+      "key_points": [
+        "Void ratio is the most important factor for fine-grained soils (p. 10-59).",
+        "Soft clays differ by more than 2 orders of magnitude in k at a fixed e (p. 10-59).",
+        "Ck = delta e/delta log k (p. 10-59).",
+        "Typical soft clay Ck about 0.4 to 1.6 (p. 10-60)."
+      ],
+      "equations": [
+        "Eq. 10.37: k = 6.5 x 10^-11 [(e/CF)/(Ac + 1)]^4 (Mesri et al., 1994); k in m/s, e = void ratio, CF = clay size fraction (percent < 0.002 mm), Ac = PI/CF = clay activity (p. 10-59)",
+        "Eq. 10.38: Ck = 0.5(e) (Tavenas et al., 1983); Ck = delta e/delta log k, e = in situ void ratio (p. 10-59)"
+      ],
+      "figures": [
+        "Figure 10-40: Hydraulic conductivity of a clay as a function of void ratio (Leroueil, et al., 1990)",
+        "Figure 10-41: Relationship between k and e for five different clays (from Terzaghi, et al., 1996)"
+      ],
+      "tables": [],
       "applicability": "Field and laboratory hydraulic conductivity measurement and estimation from correlations"
     }
   ]
