@@ -8,63 +8,61 @@
     {
       "section_id": "6.1",
       "title": "Overview of Typical Pile Types",
-      "summary": "Overview of driven pile types: timber, steel H-piles, steel pipe piles (closed/open end), prestressed concrete, concrete cylinder, Monotube, Tapertube, Spin Fin, and composite. Tables 6-1 to 6-7 provide technical summaries. Max driving stresses: 0.9*phi_da*Fy for steel; phi_da*(0.85*f'c-f_pe) for PS concrete in compression.",
-      "body": "This section provides an overview of the most common driven pile types used in transportation projects, organized by material: timber, steel (H-piles and pipe piles), prestressed concrete, concrete cylinder, monotube, tapertube, spin fin, and composite piles. A pile classification chart (Figure 6-1) categorizes load bearing piles into concrete, steel, timber, and composite families, with further subdivision by installation method. Technical summary tables (Tables 6-1 through 6-7) present key properties for each pile type including typical lengths, material specifications, factored resistance ranges, maximum driving stresses, advantages, disadvantages, and remarks.",
+      "summary": "Tables 6-1 to 6-7 (after NAVFAC 1982, preliminary guidance) give lengths, specifications, typical factored resistance, maximum driving stress, advantages and disadvantages: timber 50-120 kips, H 260-1,600, pipe 100-1,250 closed end and 660-6,500 open end, prestressed concrete 350-3,000, Monotube 100-450, Tapertube 200-850, composite 100-1,250 kips. Driving stress: timber phi_da(2.6 Fco), steel 0.9 phi_da Fy, prestressed phi_da(0.85 f'c - fpe) in compression.",
+      "body": "(pp. 155-163) The economic choice of pile type and section depends on the subsurface conditions, loads, performance criteria, construction limits and schedule, and foundation support cost; piles for earth retention are outside the manual, and splices and toe protection are in Chapter 16 (chapter introduction, p. 155). Figure 6-1 classifies piles by material, configuration, installation technique and equipment; piles can also be classed by load transfer (shaft, toe or both). Tables 6-1 to 6-7, modified from NAVFAC (1982), summarize the common driven pile types and are preliminary guidance only, to be confirmed by local practice; the typical factored resistance may be controlled by structural or geotechnical resistance, in turn limited by installation or performance. Drilled and bored piles appear in Figure 6-1 but are outside the manual (drilled shafts, Brown et al. 2010; CFA piles, Brown et al. 2007; micropiles, Sabatini et al. 2005). The typical illustrations print these sizes: timber butt 12-22 in., toe 5-9 in. (Figure 6-2); H-piles 8-18 in. (Figure 6-3); plain pipe 8-48 in. typical with 5/16 to 1 in. shell, cored pipe 12-36 in. (Figure 6-4); prestressed concrete 10-30 in. square, 20-36 in. hollow square, 10-24 in. octagonal, 36-66 in. round hollow (Figure 6-5); Monotube 8-18 in., 0.15-0.24 in. shell, minimum toe 8 in. (Figure 6-6); Tapertube 8-24 in., 0.312-0.5 in. shell, minimum toe 8 in. (Figure 6-7).",
       "key_points": [
-        "Pile types classified into four main categories: concrete, steel, timber, and composite",
-        "Timber piles: 15-120 ft lengths, 50-120 kips factored resistance, ASTM D25 specification",
-        "Steel H-piles: 15-200 ft lengths, 260-1600 kips factored resistance, ASTM A572 Grade 50 standard",
-        "Steel pipe piles: 15-200 ft lengths, 100-6500 kips factored resistance, closed end or open end",
-        "Prestressed concrete piles: 30-150 ft lengths, 350-3000 kips factored resistance",
-        "Monotube piles: 15-100 ft, 100-450 kips; Tapertube piles: 50-150 ft, 200-850 kips",
-        "Composite piles: 50-200 ft lengths, 100-1250 kips, made from two or more materials",
-        "Maximum driving stress formulas provided for each pile type to prevent installation damage"
+        "Tables 6-1 to 6-7 (modified from NAVFAC 1982) are preliminary guidance, to be confirmed by local practice",
+        "Timber (Table 6-1): 15-75 ft Southern Pine, 15-120 ft Douglas Fir; 50-120 kips; ASTM D25, AWPA UC4A-UC4C, UC5A-UC5C",
+        "Steel H (Table 6-2): 15-200 ft; 260-1,600 kips; ASTM A572, A588 or A690 Grade 50, 60 (A572 Grade 50 standard)",
+        "Steel pipe (Table 6-3): 15-200 ft; 100-1,250 kips closed end (D <= 30 in.) with concrete fill; 660-6,500 kips open end (16 in. <= D <= 72 in.) no concrete",
+        "Prestressed concrete (Table 6-4): 30-150 ft; 350-2,200 kips solid square; 1,500-3,000 kips spun cast cylinder",
+        "Monotube (Table 6-5) 15-100 ft, 100-450 kips; Tapertube (Table 6-6) 50-150 ft, 200-850 kips; composite (Table 6-7) 50-200 ft, 100-1,250 kips",
+        "Timber maximum driving stress: sigma_dr = phi_da (2.6 Fco), phi_da = 1.15; Fco = 1.25 ksi Douglas Fir, 1.20 ksi Southern Pine",
+        "Steel H, pipe, Monotube and Tapertube: sigma_dr = 0.9 phi_da Fy, phi_da = 1.00 (non-composite during driving for pipe and tapered shells)",
+        "Prestressed concrete: compression sigma_dr = phi_da (0.85 f'c - fpe); tension phi_da (0.095 sqrt(f'c) + fpe) normal, phi_da (fpe) severe conditions; phi_da = 1.00; ksi",
+        "Composite piles: driving stress varies with the materials; the weakest material governs structural design",
+        "Drilled shafts, CFA piles and micropiles are outside the manual (Brown et al. 2010, 2007; Sabatini et al. 2005)"
       ],
-      "equations": [
-        "sigma_dr = phi_da * (2.6 * F_co) for timber piles, phi_da = 1.15",
-        "sigma_dr = 0.9 * phi_da * F_y for steel H-piles and pipe piles, phi_da = 1.00",
-        "sigma_dr = phi_da * (0.85 * f'c - f_pe) for prestressed concrete in compression, phi_da = 1.00",
-        "sigma_dr = phi_da * (0.095 * sqrt(f'c) + f_pe) for prestressed concrete in tension (normal conditions)"
-      ],
+      "equations": [],
       "figures": [
-        "Figure 6-1: Pile classification chart",
-        "Figure 6-2: Timber pile typical illustration",
-        "Figure 6-3: Steel H-pile typical illustration",
-        "Figure 6-4: Steel pipe piles typical illustration",
-        "Figure 6-5: Precast, prestressed concrete typical illustration",
-        "Figure 6-6: Monotube pile typical illustration",
-        "Figure 6-7: Tapertube pile typical illustration",
-        "Figure 6-8: Composite piles typical illustration"
+        "Figure 6-1: Pile classification chart (p. 156)",
+        "Figure 6-2: Timber pile typical illustration (p. 157)",
+        "Figure 6-3: Steel H-pile typical illustration (p. 158)",
+        "Figure 6-4: Steel pipe piles typical illustration (p. 159)",
+        "Figure 6-5: Precast, prestressed concrete typical illustration (p. 160)",
+        "Figure 6-6: Monotube pile typical illustration (p. 161)",
+        "Figure 6-7: Tapertube pile typical illustration (p. 162)",
+        "Figure 6-8: Composite piles typical illustration (p. 163)"
       ],
       "tables": [
-        "Table 6-1: Timber Piles Technical Summary",
-        "Table 6-2: Steel H-Piles Technical Summary",
-        "Table 6-3: Steel Pipe Piles Technical Summary",
-        "Table 6-4: Precast, Prestressed Concrete Technical Summary",
-        "Table 6-5: Monotube Pile Technical Summary",
-        "Table 6-6: Tapertube Piles Technical Summary",
-        "Table 6-7: Composite Piles Technical Summary"
+        "Table 6-1: Timber Piles Technical Summary (p. 157)",
+        "Table 6-2: Steel H-Piles Technical Summary (p. 158)",
+        "Table 6-3: Steel Pipe Piles Technical Summary (p. 159)",
+        "Table 6-4: Precast, Prestressed Concrete Technical Summary (p. 160)",
+        "Table 6-5: Monotube Pile Technical Summary (p. 161)",
+        "Table 6-6: Tapertube Piles Technical Summary (p. 162)",
+        "Table 6-7: Composite Piles Technical Summary (p. 163)"
       ],
       "applicability": "Reference for initial screening and comparison of driven pile types based on structural capacity, typical dimensions, material specifications, and driving stress limits."
     },
     {
       "section_id": "6.2",
       "title": "Timber Piles",
-      "summary": "Round, tapered timber piles (butt 12-22 in., toe 5-9 in.); Southern Pine to 75 ft, Douglas Fir to 120 ft (ASTM D25; AWPA C3 treatment). Factored resistance 50-120 kips; best as friction piles in granular soils, where the taper increases shaft resistance. Permanently submerged piles last indefinitely; treated marine piles 25-50 years depending on climate. Splices are difficult and undesirable. Preservatives: CCA (Southern Pine), ACZA (Douglas Fir), creosote.",
-      "body": "Timber piles are round, tapered cross sections made from Southern Pine or Douglas Fir tree trunks, driven with the smaller end as the pile toe. Southern Pine lengths reach 75 feet and Douglas Fir up to 120 feet. They are best suited for friction piles supporting modest loads in sands, silts, and clays, and are not recommended for driving through dense gravel, boulders, or till due to vulnerability to damage at the pile head and toe. Durability is generally not a concern below the permanent water table, but piles subjected to wetting and drying cycles require preservative treatment (CCA for Southern Pine, ACZA for Douglas Fir). Timber piles are favored for bridge fender systems and small jetties due to good energy absorption.",
+      "summary": "Round tapered piles of Southern Pine (to 75 ft) or Douglas Fir (to 120 ft) (ASTM D25, AWPA C3); 50-120 kips (Table 6-1); best as friction piles in sands, silts and clays, not for hard driving or toe bearing on rock. Splices difficult and undesirable. Durable below the permanent water table; otherwise treat (CCA Southern Pine, ACZA Douglas Fir, creosote dual treatment in southern waters). Treated marine piles about 50 years north, 25 years south (Graham 1995).",
+      "body": "(pp. 164-165) Timber piles are usually round and tapered, from Southern Pine (lengths up to 75 ft) or west coast Douglas Fir (up to 120 ft), driven small end down; oak and others are now infrequent. ASTM D25 covers dimensions, straightness and knots; AWPA C3 covers preservative penetration and retention. They suit modest loads as friction piles in sands, silts and clays, the taper increasing shaft resistance particularly in loose sands; they are not recommended through dense gravel, boulders or till or as toe bearing piles on rock, being vulnerable at head and toe in hard driving. Overdriving crushes or brooms the head (control with a cushioned helmet and/or metal strapping; use a metal toe shoe in hard driving). Wood's energy absorption suits fender systems and small jetties. Splices are difficult and undesirable; AASHTO (2010) LRFD Bridge Construction Specifications allow them only if specified and approved. Durability is generally not a concern below the permanent water table; above it or under wetting and drying, insects, bacteria and fungi cause decay unless treated: CCA for Southern Pine, ACZA for Douglas Fir; creosote is common in some areas and prohibited in others, and in southern waters must be part of a dual treatment with CCA or ACZA because of limnoria tripunctata. Cracks extending below cut-off need the trimmed end retreated. Graham (1995): permanently submerged foundation piles last indefinitely; fully embedded treated piles partly above groundwater with a concrete cap about 100 years or longer; treated land trestle piles as long as local utility poles (about 75 years north, 40 years south); fresh water about 5 to 10 years less than land trestles; brackish water by local experience; treated marine piles about 50 years north and 25 years south.",
       "key_points": [
-        "Round tapered cross section: butt diameter 12-22 in, toe diameter 5-9 in",
-        "Southern Pine: up to 75 ft; Douglas Fir: up to 120 ft",
-        "Factored resistance 50-120 kips; best as friction piles in granular materials",
-        "ASTM D25 for pile dimensions; AWPA C3 for preservative treatment",
-        "Permanently submerged piles last indefinitely; treated marine piles last 25-50 years depending on climate",
-        "Splices are difficult and undesirable per AASHTO (2010)",
-        "Preservative treatments: CCA (Southern Pine), ACZA (Douglas Fir), creosote (common but regionally restricted)",
-        "Taper is effective in increasing shaft resistance, particularly in loose sands"
+        "Southern Pine up to 75 ft; Douglas Fir up to 120 ft; ASTM D25 dimensions, AWPA C3 treatment",
+        "Best for modest loads as friction piles in sands, silts and clays; taper increases shaft resistance in loose sands",
+        "Not for dense gravel, boulders, till or toe bearing on rock: head and toe damage in hard driving",
+        "Control brooming with a cushioned helmet or metal strapping; use a metal toe shoe in hard driving",
+        "Splices difficult and undesirable; only if specified and approved (AASHTO 2010 construction specifications)",
+        "Treatments: CCA (Southern Pine), ACZA (Douglas Fir); creosote only as dual treatment in southern waters (limnoria tripunctata)",
+        "Graham (1995): submerged piles last indefinitely; capped embedded treated piles about 100 years or longer",
+        "Land trestles about 75 years north, 40 years south; fresh water 5 to 10 years less; treated marine piles about 50 north, 25 south"
       ],
       "equations": [],
       "figures": [
-        "Figure 6-9: Timber piles photograph"
+        "Figure 6-9: Timber piles (p. 164)"
       ],
       "tables": [],
       "applicability": "Low to moderate load applications, friction piles in granular soils, fender systems, and projects where piles remain below the permanent water table."
@@ -72,22 +70,22 @@
     {
       "section_id": "6.3",
       "title": "Steel H-Piles",
-      "summary": "Rolled wide-flange H-piles, 8-18 in. sizes, flange width about equal to depth; ASTM A572 Grade 50 (A588, A690 for corrosion resistance). Factored resistance 260-1,600 kips; lengths 15-200 ft. Little soil displacement; plugging can occur. Toe shoes recommended for dense soil, boulders or rock. Corrosion about 0.003 in./year in fill or disturbed natural soils. Easy to splice, extend or cut; poor as friction piles in granular soils.",
-      "body": "Steel H-piles are rolled wide flange sections with flange widths approximately equal to section depth, manufactured in standard sizes from 8 to 18 inches. They are produced to ASTM A572 Grade 50 steel (A36 no longer readily available), with high-strength low-alloy options ASTM A588 (atmospheric) and A690 (marine) also available. H-piles are very effective when driven into soft rock and can develop resistance through shaft, toe, or a combination. They displace minimal soil, reducing heave problems, though plugging can occur when soil adheres to the web and flanges creating a closed-end behavior. Corrosion is generally not a practical problem in natural soils but requires attention in fill materials and near the water table. Splices are easy using full penetration groove welds.",
+      "summary": "Rolled wide flange sections, 8 to 18 in., ASTM A572 Grade 50 (A588/A690 for corrosion, Grade 60 available); 260-1,600 kips (Table 6-2). Low displacement, very effective into soft rock, but may plug, and as friction piles in granular soils often run long. Corrosion matters in fill at or above the water table (coatings, encasement, cathodic protection, heavier section). Easy to splice or cut; toe shoes for dense soil, obstructions and sloping rock.",
+      "body": "(pp. 166-168) H-piles are rolled wide flange sections with flange width about equal to depth and, in most sections, equal flange and web thickness, in standard sizes of 8 to 18 in.; W-sections are occasionally used, project by project. They meet ASTM A572 Grade 50 (A36 is no longer readily available); high strength low alloy A588 (atmospheric) and A690 (marine) improve corrosion resistance but are hard to obtain with long lead times; all three are Grade 50 and some sections come in A572 Grade 60. H-piles are very effective driven into soft rock and can be driven very hard with modern high impact velocity hammers with little toe damage; they develop shaft, toe or combined resistance. Being low displacement they pass dense granular layers and very stiff clays more easily and reduce heave, but they may plug (soil adheres to the web and inside flanges and the pile drives as a displacement pile below the plug), strongly affecting driving and nominal resistance. As friction piles in some granular deposits they often do not plug in driving, show low dynamic resistance and run long; they may plug under slower static load. Corrosion is not a practical problem in natural soil (no oxygen), but in fill at or above the water table moderate corrosion may need protection; in 2013 an H-pile pier of the I-43 Leo Frigo Bridge settled suddenly from severe corrosion. Protection: high strength low alloy steels, coatings (coal-tar epoxies, fusion bonded epoxies, metallized zinc or aluminum, phenolic mastics), cast-in-place or precast concrete encasement, cathodic protection, or a heavier section; the text points to Section 6.14.1 for corrosion losses, which are printed in Section 6.12.1. Some aggressive soils preclude steel piles. Length is easily extended or cut, suiting variable strata; splices are full penetration groove welds by qualified welders, or proprietary splices (Chapter 16). AASHTO needs no steel load transfer cap if the head is embedded 12 in. in the cap. Shoes are recommended through or into very dense soil, boulders or obstructions and on sloping rock. H-piles tend to deviate at obstructions; length for length steel costs more than concrete, but high resistance per weight can lower driving cost.",
       "key_points": [
-        "Rolled wide flange sections, 8-18 inch standard sizes, flange width approximately equal to depth",
-        "ASTM A572 Grade 50 is standard; A588 and A690 available for corrosion resistance",
-        "Factored resistance 260-1600 kips; lengths 15-200 ft",
-        "Minimal soil displacement reduces heave problems during pile group installation",
-        "Plugging can occur: soil adheres to web and flanges creating closed-end behavior",
-        "Pile toe shoes recommended for driving through dense soil, boulders, or into rock",
-        "Easy to splice with full penetration groove welds; easy to extend or cut",
-        "Corrosion rate approximately 0.003 in/year in fill or disturbed natural soils",
-        "Problematic as friction piles in granular deposits due to low dynamic resistance and pile running"
+        "Rolled wide flange, flange width about equal to depth; standard sizes 8 to 18 in.",
+        "ASTM A572 Grade 50 standard (A36 no longer readily available); A588 and A690 for corrosion resistance, long lead times; some A572 Grade 60",
+        "Very effective into soft rock; hard driving with little toe damage",
+        "Low displacement: easier through dense layers and stiff clays, less heave; may plug and drive as a displacement pile",
+        "As friction piles in granular soils often do not plug in driving, low dynamic resistance, length overruns",
+        "Corrosion not a practical problem in natural soil; protect in fill at or above the water table (2013 I-43 Leo Frigo Bridge pier)",
+        "Protection: coatings, concrete encasement, cathodic protection, high strength low alloy steel, or a heavier section",
+        "Splices by full penetration groove welds or proprietary splices; 12 in. embedment needs no load transfer cap (AASHTO)",
+        "Toe shoes for very dense soil, boulders, obstructions and sloping rock"
       ],
       "equations": [],
       "figures": [
-        "Figure 6-10: H-piles with driving shoes"
+        "Figure 6-10: H-piles with driving shoes (p. 166)"
       ],
       "tables": [],
       "applicability": "Best suited for toe bearing on rock or dense soil, projects requiring variable pile lengths, and where soil heave must be minimized. Not ideal as friction piles in loose granular materials."
@@ -96,47 +94,73 @@
       "section_id": "6.4",
       "title": "Steel Pipe Piles",
       "summary": "Closed end (typically 8-30 in. diameter): friction, toe bearing, both, or rock socketed; factored resistance 100-1,250 kips (D <= 30 in., concrete filled); can be inspected after driving; used extensively in seismic areas for ductility. Open end (8-160 in. available): hard driving, high lateral resistance, major river bridges and vessel impact; factored resistance 660-6,500 kips (16 in. <= D <= 72 in., no concrete); may plug, increasing toe resistance; constrictor plates force plugging. ASTM A252, API-5L, API-2B.",
-      "body": "Steel pipe piles are available in closed end and open end configurations, with diameters ranging from 8 to 160 inches. Closed end pipes (6.4.1) typically range from 8-30 inches diameter with wall thicknesses of 0.188-1 inch, formed by welding a flat steel plate to the toe. They can be used as friction piles, toe bearing piles, or rock socketed piles, and are extensively used in seismic areas due to ductility. Open end pipes (6.4.2) are used when hard driving conditions, significant penetration depths, or debris are expected. Large diameter open end pipes (greater than 36 inches) are frequently selected for main bridge piers due to high lateral resistance, and may form soil plugs during driving that significantly increase toe resistance. Constrictor plates can be installed to force plugged behavior. Pipe piles are specified to ASTM A252, API-5L, or API-2B.",
+      "body": "(p. 168) Steel pipe piles are covered as closed end pipe (Section 6.4.1, typically 8 to 30 in.) and open end pipe (Section 6.4.2, 8 to 160 in.); both are specified by grade to ASTM A252, API-5L or API-2B, and used pipe not produced to ASTM standards must be evaluated by an engineer for condition, drivability and weldability before approval.",
       "key_points": [
-        "Closed end: 8-30 in diameter typical, wall thickness 0.188-1 in, toe plate 0.75-2 in thick",
-        "Open end: 8-160 in diameter available, wall thickness 0.5 in or greater",
-        "Closed end factored resistance: 100-1,250 kips (D <= 30 in with concrete fill)",
-        "Open end factored resistance: 660-6,500 kips (16 in <= D <= 72 in, no concrete)",
-        "ASTM A252 Grade 2 or 3, API-5L, or API-2B specifications; ACI 318 for concrete fill",
-        "Closed end can be internally inspected after driving; may be concrete filled with reinforcement",
-        "Open end pipes may form soil plug increasing toe resistance (plugging discussed in Section 7.10.7)",
-        "Large diameter open end pipes used for major river bridges, vessel impact, and seismic design",
-        "Constrictor plates force plugged behavior during driving for large diameter open end pipes"
+        "Closed end pipe (6.4.1) typically 8 to 30 in.; open end pipe (6.4.2) 8 to 160 in.",
+        "Specified by grade to ASTM A252, API-5L or API-2B",
+        "Used pipe not to ASTM standards must be evaluated by an engineer before approval"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Closed end pipes for variable-length friction or end bearing applications, especially seismic zones. Open end pipes for hard driving, large lateral loads, scour, vessel impact, and major bridge piers."
+    },
+    {
+      "section_id": "6.4.1",
+      "title": "Closed End Steel Pipe",
+      "body": "(pp. 168-169) Seamless, welded or spiral welded pipe, typically 8 to 30 in. (larger sizes are usually driven open), with walls of 0.188 to 1 in., closed by welding a 0.75 to 2 in. flat plate to the toe, thicker for larger diameters or harder driving; a cruciform-reinforced plate or conical point with rounded nose limits toe distortion on weathered rock or boulders (Figure 6-11). They serve as friction, toe bearing, combined or rock socketed piles, suit variable lengths because splicing is easy, and are used extensively in seismic areas for ductility. They may be left open or concrete filled, with a reinforcing cage or a structural shape such as an H-section; reinforcement is needed only where the concrete may be in tension (uplift, high lateral load, unsupported length). Most are driven from the head, but thin wall closed end pipe can be bottom driven with a removable mandrel, then inspected internally before concreting. Splices are full penetration groove welds; proprietary sleeves only if full strength in bending and tension (unless deep where moment and tension are small) (Chapter 16). The H-pile corrosion discussion also applies.",
+      "key_points": [
+        "Typically 8 to 30 in. diameter, 0.188 to 1 in. wall; toe plate 0.75 to 2 in.",
+        "Cruciform-reinforced plate or conical point on weathered rock or boulders",
+        "Friction, toe bearing, combined or rock socketed; used extensively in seismic areas for ductility",
+        "Concrete fill with cage or H-section; reinforcement only where concrete may be in tension",
+        "Thin wall pipe may be mandrel driven and inspected internally before concreting",
+        "Full penetration groove weld splices; proprietary sleeves only if full strength in bending and tension"
       ],
       "equations": [],
       "figures": [
-        "Figure 6-11: Typical 16 inch closed end pipe pile",
-        "Figure 6-12: 42 inch diameter spiral weld open end pipe for main river pier",
-        "Figure 6-13: Large diameter open end pipe piles",
-        "Figure 6-14: Constrictor plate (isometric and plan view)",
-        "Figure 6-15: Constrictor plate installed inside pipe pile"
+        "Figure 6-11: Typical 16 inch closed end pipe pile (p. 169)"
       ],
       "tables": [],
-      "applicability": "Closed end pipes for variable-length friction or end bearing applications, especially seismic zones. Open end pipes for hard driving, large lateral loads, scour, vessel impact, and major bridge piers."
+      "applicability": "Closed end pipe piles for friction, end bearing or rock socketed support, including seismic areas."
+    },
+    {
+      "section_id": "6.4.2",
+      "title": "Open End Steel Pipe",
+      "body": "(pp. 170-172) Used where hard driving, deep penetration or debris is expected; 8 to 160 in. diameter, walls commonly 0.5 in. or more, seamless, rolled and welded or spiral welded. Large diameter open end pipe means over 36 in. (Brown and Thompson 2015), chosen to resist vessel impact and overturning moments or for scour, ice or seismic design, and for fender systems, mooring dolphins, offshore facilities and main piers of major river bridges; they bear in dense sand or soft rock or act as long friction piles (Figures 6-12, 6-13). They may be rock socketed or may plug in dense material, acting closed end with much higher toe resistance (Section 7.10.7); the plug should not be removed unless the pile is to be cleaned out and concreted or the plug prevents required penetration. Large diameter pipe typically cores in driving (soil inertia) but plugs under static load; some projects add a constrictor plate inside to force plugging (Figures 6-14, 6-15; Section 16.3.3). Piles are seldom cleaned out full length unless a rock socket or short lengths are planned; reinforcement and uplift dowels may be added. Internal or external cutting shoes reduce toe damage, and in hard conditions (sloping rock, cobbles, boulders) a thicker wall over the bottom two diameters is common.",
+      "key_points": [
+        "8 to 160 in. diameter; walls commonly 0.5 in. or more",
+        "Large diameter means over 36 in. (Brown and Thompson 2015): vessel impact, overturning, scour, ice, seismic",
+        "May plug in dense material and act closed end (Section 7.10.7); keep the plug unless cleaning out to concrete",
+        "Large diameter pipe cores during driving but plugs under static load; constrictor plates force plugging",
+        "Cutting shoes and a thicker wall over the bottom two diameters for hard driving",
+        "Not recommended as friction piles in granular material (length and cost overruns, Table 6-3)"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-12: 42 inch diameter, spiral weld, open end, pipe for main river pier (p. 171)",
+        "Figure 6-13: Large diameter open end pipe piles (p. 171)",
+        "Figure 6-14: Constrictor plate (p. 172)",
+        "Figure 6-15: Constrictor plate installed inside pipe pile (p. 172)"
+      ],
+      "tables": [],
+      "applicability": "Open end and large diameter pipe piles for hard driving, high lateral demand and major bridge piers."
     },
     {
       "section_id": "6.5",
       "title": "Monotube Piles",
       "summary": "Proprietary longitudinally fluted, tapered shell driven without a mandrel and filled with concrete: toe 8 or 8.5 in., butt 12-18 in., taper length 10-75 ft; shell 0.15-0.24 in. (9 to 3 gage). Non-tapered extensions in 20 and 40 ft lengths. Factored resistance 100-450 kips; lengths 15-100 ft. Best suited as a friction pile in granular soils, where the taper improves unit shaft resistance.",
-      "body": "The Monotube pile is a proprietary pile driven without a mandrel, longitudinally fluted and tapered over the lower pile section. Nominal pile toe diameters of 8 or 8.5 inches taper to butt diameters of 12, 14, 16, or 18 inches over tapered section lengths of 10 to 75 feet. Non-tapered extensions in 20 and 40 foot lengths can be spliced to the lower tapered section. Shell thicknesses range from 9 to 3 gage (0.15 to 0.24 inches). The fluted and tapered design provides several functional advantages: flutes add stiffness for handling lightweight piles, increase surface area, and are cold-formed to increase yield point above 50 ksi. After driving, Monotube piles are filled with concrete.",
+      "body": "(p. 173) The Monotube is a proprietary pile driven without a mandrel, longitudinally fluted and tapered over its lower section: toe 8 or 8.5 in. tapering to a butt of 12, 14, 16 or 18 in. over 10 to 75 ft, with non-tapered 20 and 40 ft extensions, in 9 to 3 gage shells (about 0.15 to 0.24 in.). Extensions are spliced by inserting the slightly smaller bottom of the extension into the driven section and fillet welding the interface, often with four V notches at 90 degrees to lengthen the weld. Piles are concrete filled after driving. Flutes stiffen the light pile for handling and driving and add surface area, the taper improves resistance per unit length in compression, and cold working of the flutes raises the yield point above 50 ksi.",
       "key_points": [
-        "Proprietary pile driven without a mandrel, filled with concrete after driving",
-        "Longitudinally fluted shell with tapered lower section",
-        "Toe diameter 8 or 8.5 in, butt diameter 12-18 in, taper length 10-75 ft",
-        "Shell thickness 0.15-0.24 in (9 to 3 gage); cold working increases yield above 50 ksi",
-        "Non-tapered extensions available in 20 and 40 ft lengths",
-        "Factored resistance 100-450 kips; typical lengths 15-100 ft",
-        "Spliced by inserting smaller bottom section of extension into top of previously driven section",
-        "Best suited as friction pile in granular soils; tapered section improves unit shaft resistance"
+        "Proprietary, fluted and tapered, driven without a mandrel, concrete filled after driving",
+        "Toe 8 or 8.5 in., butt 12, 14, 16 or 18 in., taper 10 to 75 ft; extensions 20 and 40 ft",
+        "Shell 9 to 3 gage (about 0.15 to 0.24 in.); cold working raises yield above 50 ksi",
+        "Splice: extension inserted and fillet welded, often with four V notches",
+        "Best suited as a friction pile in granular soils (Table 6-5)"
       ],
       "equations": [],
       "figures": [
-        "Figure 6-16: Tapered Monotube section (right) with add-on sections (left)"
+        "Figure 6-16: Tapered Monotube section (right) with add-on sections (left) (p. 173)"
       ],
       "tables": [],
       "applicability": "Friction piles in granular soils where increased shaft resistance from taper is advantageous. Suitable for relatively shorter pile lengths."
@@ -145,20 +169,16 @@
       "section_id": "6.6",
       "title": "Tapertube Piles",
       "summary": "Tapered lower section shaped as a 12-sided polygon (15-30 ft long; toe 8-14 in., head 12-24 in.; wall 0.1875-0.625 in.; yield 50 ksi) with ASTM A252 Grade 3 pipe extensions (yield 45 ksi), joined by full penetration welds. Factored resistance 200-850 kips; lengths 50-150 ft. Best suited as a friction pile in granular soils.",
-      "body": "The Tapertube pile consists of a tapered, 12-sided polygon lower section with conventional steel pipe pile material as the upper add-on sections. The 15 to 30 foot long tapered section has pile toe diameters from 8 to 14 inches and pile head diameters of 12 to 24 inches, with wall thicknesses ranging from 0.1875 to 0.625 inches. The tapered tube bottom section has a yield strength of 50 ksi, and the upper pipe sections conform to ASTM A252 Grade 3 with a yield strength of 45 ksi. The tapered and pipe sections are connected using full penetration welds. After driving from the top, piles are filled with concrete.",
+      "body": "(p. 174) A tapered 12 sided polygon lower section, 15 to 30 ft long, toe 8 to 14 in. and head 12 to 24 in., walls 0.1875 to 0.625 in., yield 50 ksi, with conventional ASTM A252 Grade 3 pipe (yield 45 ksi) as add-on sections joined by full penetration welds (or specialty sleeve splices, Chapter 16). Driven from the top and concrete filled after driving. Figure 6-7 prints a shell thickness of 0.312 to 0.5 in.",
       "key_points": [
-        "12-sided polygon tapered lower section with cylindrical pipe pile upper extensions",
-        "Tapered section: 15-30 ft long, toe diameter 8-14 in, head diameter 12-24 in",
-        "Wall thickness 0.1875-0.625 in; tapered section yield strength 50 ksi",
-        "Upper pipe: ASTM A252 Grade 3, yield strength 45 ksi",
-        "Factored resistance 200-850 kips; typical lengths 50-150 ft",
-        "Full penetration weld connection between tapered and pipe sections",
-        "Standard pipe piles may be spliced to tapered sections",
-        "Best suited as friction pile in granular soils"
+        "12 sided tapered lower section 15 to 30 ft long; toe 8 to 14 in., head 12 to 24 in.",
+        "Tapered walls 0.1875 to 0.625 in. (text), yield 50 ksi; Figure 6-7 prints 0.312 to 0.5 in.",
+        "Upper pipe ASTM A252 Grade 3, yield 45 ksi; full penetration weld or sleeve splices",
+        "Driven from the top and concrete filled; best suited as a friction pile in granular soils (Table 6-6)"
       ],
       "equations": [],
       "figures": [
-        "Figure 6-17: Tapertube piles (courtesy DFP Foundation Products, LLC)"
+        "Figure 6-17: Tapertube piles (courtesy DFP Foundation Products, LLC) (p. 174)"
       ],
       "tables": [],
       "applicability": "Friction piles in granular soils where increased shaft resistance from taper is beneficial and higher factored resistance than Monotube piles is needed."
@@ -167,7 +187,7 @@
       "section_id": "6.7",
       "title": "Spin Fin Piles",
       "summary": "Pipe pile with helical fins wound around the bottom that cause rotation during driving. Cap restraint creates a plugging effect increasing tension (uplift) resistance; fins increase compression bearing area. Well suited for projects requiring enhanced uplift resistance (seismic applications) and sites with limited overburden over hard bearing strata.",
-      "body": "The Spin Fin pile is a variation of a pipe pile introduced on the west coast in 1983. It features an outside thread of fins that gradually wind around the bottom portion of the pile, causing the pile to rotate into the ground during driving. The pile cap restrains rotation, resulting in a plugging effect that increases tension resistance. The fins also increase compression resistance by increasing the bearing area in the fin section. Spin Fin piles are particularly attractive for projects needing increased uplift resistance such as seismic events, or in soils with limited overburden overlying a hard bearing layer.",
+      "body": "(pp. 174-176) A pipe pile variation introduced on the west coast in 1983, with an outside thread of fins winding around the bottom portion that rotate the pile into the ground in driving. The cap then restrains rotation, giving a plugging effect that increases tension resistance (Figure 6-18), attractive where uplift resistance is needed (seismic events) or where limited overburden overlies a hard bearing layer such as glacial till over bedrock. The fins also add bearing area in compression.",
       "key_points": [
         "Pipe pile with helical fins wound around the bottom portion",
         "Fins cause pile to rotate into the ground during driving",
@@ -179,8 +199,8 @@
       ],
       "equations": [],
       "figures": [
-        "Figure 6-18: Spin Fin pile load transfer illustration (compression and tension)",
-        "Figure 6-19: 30 inch diameter Spin Fin pile photograph"
+        "Figure 6-18: Spin Fin pile load transfer illustration (p. 175)",
+        "Figure 6-19: 30 inch diameter Spin Fin pile (p. 176)"
       ],
       "tables": [],
       "applicability": "Projects requiring enhanced uplift resistance, seismic applications, and sites with limited overburden over hard bearing strata."
@@ -188,22 +208,21 @@
     {
       "section_id": "6.8",
       "title": "Prestressed Concrete Piles",
-      "summary": "Shapes: solid square (8-24 in.), square hollow (20-36 in.), octagonal (10-24 in.), round hollow (36-66 in.). Factored resistance 350-2,200 kips (solid square), 1,500-3,000 kips (spun cast cylinder); lengths 30-150 ft; f'c 5-6 ksi. Prestress keeps cracks closed, giving better durability than reinforced concrete; more vulnerable to damage from hard layers during driving. Splicing is difficult and should be anticipated in design. Strand per ASTM A416/A421/A882; ACI 318.",
-      "body": "Prestressed concrete piles range from solid square sections (8-24 in) to solid or hollow octagonal (10-24 in) and round hollow (36-66 in) sections, with the concrete under continuous compression from prestressing strands. Pre-tensioned piles are cast to full length in permanent beds, while post-tensioned piles are manufactured in sections and assembled on site. Prestressing steel must conform to ASTM A416, A421, and A882. The primary advantage over reinforced concrete piles is durability: the continuous compression keeps hairline cracks closed, improving weathering and corrosion resistance. However, prestressed piles are more vulnerable to damage from striking hard layers during driving due to reduced axial compression strength from the prestressing force. Concrete compressive strength is typically 5-6 ksi at 28 days.",
+      "summary": "Solid square to octagonal sections, larger ones hollow; pre- or post-tensioned (ASTM A416, A421, A882); f'c typically 5 to 6 ksi; 350-2,200 kips solid square, 1,500-3,000 kips spun cast cylinder (Table 6-4). Prestress keeps cracks closed for durability but makes piles more vulnerable on hard layers; tension can be high in easy driving. Splicing is difficult; plan splice details where seismic head reinforcement is needed. Figure 6-20 and Figure 6-5 print different square size ranges.",
+      "body": "(pp. 176-178) Sections range from the common solid square to solid octagonal, larger ones cast with an internal void; piles are pre-tensioned (full length in permanent beds) or post-tensioned (usually cylindrical sections assembled at the plant or site) (Figures 6-20, 6-21). Strands or wires in a spiral are tensioned, conforming to ASTM A416, A421 and A882; prestressing lets piles be lighter and longer than reinforced piles of the same size. Epoxy coated strands, used in extreme environments, should be sand dusted for bond, with coated ties or spirals too, but coating is generally unnecessary because prestress keeps the concrete in compression. The main advantage over reinforced concrete is durability (hairline cracks kept closed), and tensile stresses in driving and handling are less critical. They are more vulnerable to damage on hard layers or obstructions (prestress lowers axial compression capacity), and large tension stresses can arise in easy driving in soft soils. Cutoff and splicing problems weigh more on contractors who drive them infrequently; where seismic head reinforcement is needed and lengths vary, a splice detail must extend it into the cap. 28 day strength is typically 5 to 6 ksi. High performance (Moser 2011), ultra-high performance (Vande Voort et al. 2008) and lightweight aggregate (Belk 2013) concretes have been studied but are not mainstream. Figure 6-20 prints sizes of 8-24 in. solid square, 20-36 in. hollow square, 10-24 in. solid and 20-24 in. hollow octagonal and 36-66 in. round hollow; Figure 6-5 prints 10-30 in. for the square section.",
       "key_points": [
-        "Shapes: solid square (8-24 in), square hollow (20-36 in), octagonal (10-24 in), round hollow (36-66 in)",
-        "Factored resistance: 350-2,200 kips (solid square), 1,500-3,000 kips (spun cast cylinder)",
-        "Typical lengths 30-150 ft; concrete f'c = 5-6 ksi at 28 days",
-        "Pre-tensioned piles cast to full length; post-tensioned piles assembled from sections",
-        "Prestressing keeps cracks closed, improving durability and corrosion resistance vs reinforced concrete",
-        "More vulnerable to damage from hard layers during driving due to reduced compression strength",
-        "Splicing is difficult and should be anticipated in design; seismic reinforcement extension may be needed",
-        "ASTM A416/A421/A882 for prestressing steel; ACI 318 for concrete"
+        "Solid square to octagonal; larger sections hollow; pre-tensioned or post-tensioned",
+        "Prestressing steel ASTM A416, A421, A882; lighter and longer than reinforced piles of the same size",
+        "Durability: prestress keeps hairline cracks closed; epoxy coating generally not needed",
+        "Vulnerable on hard layers and obstructions; large tension stresses possible in easy driving in soft soils",
+        "Plan splice details where seismic head reinforcement is needed and lengths may vary",
+        "28 day f'c typically 5 to 6 ksi",
+        "Figure 6-20 sizes: 8-24 in. solid square, 20-36 in. hollow square, 10-24 in. octagonal, 36-66 in. round hollow (Figure 6-5: 10-30 in. square)"
       ],
       "equations": [],
       "figures": [
-        "Figure 6-20: Typical prestressed concrete piles (cross sections)",
-        "Figure 6-21: Square prestressed concrete piles photograph"
+        "Figure 6-20: Typical prestressed concrete piles (p. 177)",
+        "Figure 6-21: Square prestressed concrete piles (p. 177)"
       ],
       "tables": [],
       "applicability": "High capacity bearing or friction piles, marine structures requiring durability, and projects where corrosion resistance is critical. Not ideal for sites with hard driving obstructions."
@@ -211,63 +230,146 @@
     {
       "section_id": "6.9",
       "title": "Concrete Cylinder Piles",
-      "summary": "Spun-cast cylinder piles: 36-66 in. diameter, 5-6.5 in. wall, 8 ksi concrete, post-tensioned to about 1.5 ksi prestress; excellent resistance to chloride intrusion. Bed-cast: 60 in. diameter, 7.5 in. wall, 5.5 ksi concrete, pretensioned. ICP piles: 10-48 in. diameter. Cylinder piles may extend to the superstructure, eliminating a cap; jetting to near depth followed by impact driving is common; vent holes relieve internal water pressure.",
-      "body": "Concrete cylinder piles include spun-cast, bed-cast (non-spun), and Industrial Concrete Products (ICP) types. Spun-cast cylinder piles (6.9.1) are hollow concrete sections cast in 8, 12, or 16 foot lengths, available in diameters of 36, 42, 54, and 66 inches with wall thicknesses of 5-6.5 inches. The centrifugal casting process creates high density concrete achieving 8 ksi compressive strength with excellent chloride resistance, post-tensioned to approximately 1.5 ksi. Bed-cast cylinders (6.9.2) are pretensioned, produced in single lengths at 60 inch diameter with 7.5 inch wall and 5.5 ksi concrete. ICP piles (6.9.3) are pretensioned and spun, ranging from 10-48 inch diameter in section lengths of 20-138 feet. Cylinder piles often extend directly to the superstructure, eliminating pile caps.",
+      "summary": "Spun cast (36-66 in., 8 ksi, post-tensioned to about 1.5 ksi, excellent chloride resistance), bed cast (60 in., 7.5 in. wall, 5.5 ksi, pretensioned) and ICP piles (10-48 in., pretensioned and spun). They often extend to the superstructure, avoiding a cap; jetting then impact driving is common; vent holes relieve internal water and gas pressure.",
+      "body": "(p. 178) Cylinder piles are spun cast (6.9.1), bed cast (6.9.2) or Industrial Concrete Products piles (6.9.3). They are sometimes difficult to drive but usually extend to the superstructure support level, avoiding a pile cap with substantial savings. Jetting is often used to near the final depth, then impact driving to the nominal resistance; jetting must be controlled to limit loss of lateral resistance and disturbance below the jetting elevation. Periodic vent holes in the wall relieve internal water pressure in driving and, later, gas pressure from decomposing organic soil.",
       "key_points": [
-        "Spun-cast: 36-66 in diameter, 5-6.5 in wall, 8 ksi concrete, post-tensioned at 1.5 ksi prestress",
-        "Bed-cast: 60 in diameter, 7.5 in wall, 5.5 ksi concrete, pretensioned, single-length production",
-        "ICP piles: 10-48 in diameter, 2.25-5.9 in wall, pretensioned and spun, welded steel end plates for splicing",
-        "Cylinder piles may eliminate pile cap by extending directly to superstructure support level",
-        "Jetting commonly used for installation to near-depth, followed by impact driving for resistance",
-        "Vent holes in pile wall reduce internal water pressure during driving and gas buildup in service",
-        "Spun-cast piles have excellent chloride intrusion resistance",
-        "Well suited for marine structures, land trestles, and high lateral resistance applications"
+        "Spun cast (6.9.1), bed cast (6.9.2) and ICP piles (6.9.3)",
+        "Usually extend to the superstructure support level, avoiding a pile cap",
+        "Jetting to near depth, then impact driving; control jetting to protect lateral resistance",
+        "Vent holes relieve internal water pressure in driving and gas pressure in service"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Marine structures, land trestles, and applications requiring high lateral resistance, bending capacity, and corrosion resistance. May eliminate pile cap costs."
+    },
+    {
+      "section_id": "6.9.1",
+      "title": "Spun-Cast Cylinder Piles",
+      "body": "(pp. 179-180) Hollow piles cast in 8, 12 or 16 ft sections, generally 36, 42, 54 and 66 in. in diameter with 5, 6 or 6.5 in. walls by diameter. Centrifugal spinning gives dense concrete virtually impervious to moisture, routinely 8 ksi. Cured sections are joined with adhesive compound, post-tensioned and the ducts grouted, giving a typical prestress of 1.5 ksi; chloride penetration and permeability tests show excellent resistance to chloride intrusion (Figures 6-22, 6-23). Used for marine structures and land trestles, with high corrosion and lateral resistance; air entrainment and adequate spiral reinforcement guard against freeze-thaw. The piles usually extend above ground and resist combined axial load and bending (Hartman et al. 2007).",
+      "key_points": [
+        "Sections 8, 12 or 16 ft; diameters 36, 42, 54, 66 in.; walls 5, 6 or 6.5 in.",
+        "Spun concrete routinely 8 ksi, virtually impervious; excellent chloride resistance",
+        "Post-tensioned to a typical prestress of 1.5 ksi, ducts grouted",
+        "Marine structures and land trestles; air entrainment and spiral reinforcement against freeze-thaw"
       ],
       "equations": [],
       "figures": [
-        "Figure 6-22: Typical spun-cast concrete cylinder pile section",
-        "Figure 6-23: Concrete cylinder pile photograph"
+        "Figure 6-22: Typical spun-cast concrete cylinder pile section (p. 179)",
+        "Figure 6-23: Concrete cylinder pile (p. 180)"
       ],
       "tables": [],
-      "applicability": "Marine structures, land trestles, and applications requiring high lateral resistance, bending capacity, and corrosion resistance. May eliminate pile cap costs."
+      "applicability": "Spun-cast cylinder piles for marine structures and trestles."
+    },
+    {
+      "section_id": "6.9.2",
+      "title": "Bed-Cast Cylinder Piles",
+      "body": "(p. 180) Cast in a bed with forms, in a single piece to the required length, and pretensioned rather than post-tensioned; without spun-cast density and low porosity they lack the same chloride resistance. Typical specified strength 5.5 ksi, diameter 60 in., wall 7.5 in.",
+      "key_points": [
+        "Single piece, pretensioned, cast in forms",
+        "Less chloride resistance than spun-cast piles",
+        "Typically 5.5 ksi, 60 in. diameter, 7.5 in. wall"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Bed-cast cylinder piles."
+    },
+    {
+      "section_id": "6.9.3",
+      "title": "Industrial Concrete Products (ICP) Piles",
+      "body": "(p. 180) Pretensioned and spun while curing, which forcibly removes water and densifies the mix. Cast in sections with steel end plates welded for field splices. Sizes from 10 in. diameter with a 2.25 in. wall to 48 in. with a 5.9 in. wall; section lengths 20 to 39 ft for the smallest up to 33 to 138 ft for the largest. Supplied open end with a flat shoe or an X-pointed shoe.",
+      "key_points": [
+        "Pretensioned and spun; sections with welded steel end plates",
+        "10 in. diameter, 2.25 in. wall to 48 in. diameter, 5.9 in. wall",
+        "Section lengths 20-39 ft (smallest) to 33-138 ft (largest)",
+        "Open end with a flat shoe or an X-pointed shoe"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "ICP spun pretensioned cylinder piles."
     },
     {
       "section_id": "6.10",
       "title": "Composite Piles",
       "summary": "Two or more sections of different materials combined for site-specific conditions: precast concrete + H-pile (scour, uplift or corrosive surface soils), steel pipe + H-pile (bending resistance above, low displacement below), corrugated shell + timber (timber below the permanent water table), corrugated shell + pipe. Factored resistance 100-1,250 kips; lengths 50-200 ft. The weakest material governs structural design.",
-      "body": "Composite piles are made up of two or more sections of different materials or pile types, with the upper section typically precast concrete, steel pipe, or corrugated shell, and the lower section steel H, steel pipe, or timber. They have limited application and are used under special conditions. The main sub-types include: precast concrete-steel H-pile composites (6.10.1) used for scour, uplift, or corrosive surficial soils; steel pipe-H-pile composites (6.10.2) combining pipe bending resistance with H-pile low displacement; corrugated shell-timber composites (6.10.3) with timber below the water table and concrete-filled shell above; and corrugated shell-pipe composites (6.10.4) using mandrel-driven shell over a pipe pile lower section.",
+      "body": "(p. 181) A composite pile has two or more sections of different materials or pile types: the upper section often precast concrete, steel pipe or corrugated shell, the lower steel H, steel pipe or timber. They have limited application under special conditions; common types are in Sections 6.10.1 to 6.10.4. Table 6-7: the weakest material governs structural design and factored resistance, and good joints are hard to attain except for concrete with H or pipe.",
       "key_points": [
-        "Two or more sections of different materials combined for specific site conditions",
-        "Typical lengths 50-200 ft; factored resistance 100-1,250 kips",
-        "Precast concrete-H-pile: for scour, uplift, or corrosive surficial soil conditions",
-        "Steel pipe-H-pile: pipe bending resistance upper + low displacement H-pile lower",
-        "Corrugated shell-timber: timber below permanent water table, concrete-filled shell above",
-        "Corrugated shell-pipe: mandrel-driven shell upper over pipe pile lower",
-        "Weakest material governs structural design and factored resistance",
-        "Difficult to attain good joints between materials except for concrete-H or pipe composites"
+        "Two or more sections of different materials or pile types; limited, special conditions",
+        "Upper: precast concrete, steel pipe or corrugated shell; lower: steel H, steel pipe or timber",
+        "Weakest material governs structural design and factored resistance (Table 6-7)",
+        "Good joints hard to attain except concrete with H or pipe (Table 6-7)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Special conditions such as scour zones, corrosive surficial soils, uplift requirements, or where a single pile type cannot satisfy both upper and lower section design requirements."
+    },
+    {
+      "section_id": "6.10.1",
+      "title": "Precast Concrete - Steel H-pile Composite Piles",
+      "body": "(p. 181) A lower H-pile or pipe section embedded in an upper precast concrete section, used where scour or uplift needs penetration a displacement pile cannot reach, where surficial soils are highly corrosive, or other conditions (Figure 6-24).",
+      "key_points": [
+        "H-pile or pipe stinger below precast concrete",
+        "For scour or uplift penetration beyond a displacement pile, or corrosive surficial soils"
       ],
       "equations": [],
       "figures": [
-        "Figure 6-24: Precast concrete piles with H-pile stinger",
-        "Figure 6-25: Steel pipe-H-pile composite piles"
+        "Figure 6-24: Precast concrete piles each with H-pile stinger (p. 181)"
       ],
       "tables": [],
-      "applicability": "Special conditions such as scour zones, corrosive surficial soils, uplift requirements, or where a single pile type cannot satisfy both upper and lower section design requirements."
+      "applicability": "Concrete-steel composite piles for scour, uplift or corrosive surface soils."
+    },
+    {
+      "section_id": "6.10.2",
+      "title": "Steel Pipe - H-pile Composite Piles",
+      "body": "(p. 182) A steel pipe upper section transitioning to an H-pile lower section, where lateral load needs pipe bending resistance above and dense soils need a low displacement pile below to reach minimum penetration or the bearing layer (Figure 6-25).",
+      "key_points": [
+        "Pipe above for bending resistance; H-pile below for low displacement penetration of dense soils"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-25: Steel pipe - H-pile composite piles (p. 182)"
+      ],
+      "tables": [],
+      "applicability": "Pipe over H-pile composite piles."
+    },
+    {
+      "section_id": "6.10.3",
+      "title": "Corrugated Shell - Timber Composite Piles",
+      "body": "(pp. 182-183) The treated or untreated timber section is driven permanently below the groundwater level, a corrugated steel shell is connected to its head with a wedge ring driven into the wood, and the shell is filled with concrete to cutoff.",
+      "key_points": [
+        "Timber permanently below groundwater; concrete filled corrugated shell above",
+        "Shell connected to the timber head with a wedge ring"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Shell over timber composite piles."
+    },
+    {
+      "section_id": "6.10.4",
+      "title": "Corrugated Shell - Pipe Composite Piles",
+      "body": "(p. 183) A pipe pile lower section and corrugated shell upper section, mandrel driven; the mandrel aligns the two if it reaches the pipe head or into the pipe. Joints may be sleeve, welded or drive-sleeve; the pile is then concreted to cutoff and excess shell removed.",
+      "key_points": [
+        "Pipe below, corrugated shell above, mandrel driven",
+        "Sleeve, welded or drive-sleeve joints; concreted to cutoff"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Shell over pipe composite piles."
     },
     {
       "section_id": "6.11",
       "title": "Pile Types Infrequently Used on Transportation Projects",
       "summary": "Specialty types: Fundex (screwed, pipe-cased cast-in-place pile; unfactored design loads of 40 to 125 tons; minimal vibration and noise), Tubex (similar, casing left in place; up to 230 tons unfactored if grouted), pressure injected footings (Franki; enlarged base, best in loose granular soils), mandrel-driven corrugated shells (rare in new work, met in rehabilitation), and reinforced concrete piles (replaced by prestressed in the U.S.). Fundex and Tubex need only 20 ft of overhead clearance.",
-      "body": "Several pile types exist that are used in specialty applications or were more common historically. Fundex piles (6.11.1) are pipe-cased, cast-in-place displacement piles screwed into the ground with an 18-inch boring tip, installed for 40-125 ton unfactored design loads with minimal vibrations. Tubex piles (6.11.2) are similar but the casing remains in place; a grout-injected version handles up to 230 tons. Pressure injected footings (6.11.3), or Franki piles, are driven cast-in-place piles best for loose to medium dense granular soils, using a bottom-driven concrete plug to form an enlarged base. Mandrel driven piles (6.11.4) were historically common using corrugated shells but are rarely used for new construction. Reinforced concrete piles (6.11.5) have been replaced by prestressed concrete in the U.S. but remain common in Europe, Australia, and Asia.",
+      "body": "(p. 183) Some types serve specialty applications and others, more common in the past, may be met where existing foundations are reused: Fundex, Tubex, mandrel driven and reinforced concrete piles and pressure injected footings. New designs with these systems, or reuse of existing foundations, should rely on experience and field testing (load and integrity tests).",
       "key_points": [
-        "Fundex piles: screwed pipe-cased CIP displacement pile, 40-125 ton capacity, minimal vibration",
-        "Tubex piles: similar to Fundex but casing remains in place, up to 230 tons if grouted",
-        "Pressure injected footings (Franki piles): bottom-driven concrete plug with enlarged base, best in loose granular soils",
-        "Mandrel driven piles: corrugated steel shells, rarely used for new construction, may be encountered in rehabilitation",
-        "Reinforced concrete piles: replaced by prestressed in U.S., still common internationally",
-        "Fundex and Tubex advantages: minimal vibration, low noise, confined space installation, 20 ft overhead clearance",
-        "Wave equation analysis required for mandrel driven pile construction control (not dynamic formulas)",
-        "These pile types may be encountered in widening or rehabilitation of existing structures"
+        "Fundex, Tubex, pressure injected footings, mandrel driven and reinforced concrete piles",
+        "May be met when existing foundations are reused on reconstruction projects",
+        "Use experience and field load and integrity tests for new designs or reuse"
       ],
       "equations": [],
       "figures": [],
@@ -275,83 +377,352 @@
       "applicability": "Specialty applications, confined space or vibration-sensitive sites, and rehabilitation projects where existing foundations using these pile types are encountered."
     },
     {
-      "section_id": "6.12",
-      "title": "Design Considerations in Aggressive Subsurface Environments",
-      "summary": "Aggressive if pH < 4.5 or resistivity < 2,000 ohm-cm; for 2,000-5,000 ohm-cm, aggressive if chloride > 100 ppm or sulfate > 200 ppm; above 5,000 ohm-cm non-aggressive. Steel in fill or disturbed soil: about 0.003 in./year. Average marine rates (Fig. 6-29, Morley and Bruce 1983): splash 0.0035, intertidal 0.0016, low water 0.0035, immersion 0.002, buried 0.0008 in./year. AASHTO R 27-01 for non-marine steel. Options: heavier sections, cathodic protection, encasement, coatings, sulfate-resistant cement.",
-      "body": "This section addresses pile deterioration from corrosion, chemical attack, abrasion, and biological degradation. An aggressive environment is identified when soil pH is less than 4.5, resistivity is less than 2,000 ohm-cm, or when chloride content exceeds 100 ppm or sulfate exceeds 200 ppm for intermediate resistivity soils (2,000-5,000 ohm-cm). Steel pile corrosion (6.12.1) is assessed using the AASHTO R 27-01 two-phase procedure with separate protocols for non-marine and marine environments. Marine corrosion rates (after Morley and Bruce 1983) vary by zone: 0.0035 in/year in splash zone, 0.002 in/year in immersion zone, and 0.0008 in/year in buried zone. Concrete pile deterioration (6.12.2) is caused by sulfate and chloride attack. Timber piles (6.12.3) are subject to bacteria, fungi, insect, and marine borer attack, mitigated by preservative treatments per Table 6-8. Design options for aggressive environments (6.12.4) include heavier sections, cathodic protection, concrete encasement, protective coatings, and sulfate-resistant cement.",
+      "section_id": "6.11.1",
+      "title": "Fundex Piles",
+      "body": "(p. 183) A pipe-cased, cast-in-place displacement pile screwed into the ground with an 18 in. boring tip on a 14 in. drilling mandrel, pushed by a drill table under constant vertical load and torque. At the bearing layer or required depth a cage is suspended, concrete placed and the mandrel oscillated out, leaving the tip; typical unfactored design loads are 40 to 125 tons. Advantages: minimal vibration and very low noise, equipment for confined places, and a removable mast needing only 20 ft of overhead clearance.",
       "key_points": [
-        "Aggressive environment: pH < 4.5, resistivity < 2,000 ohm-cm, or chloride > 100 ppm / sulfate > 200 ppm",
-        "Resistivity > 5,000 ohm-cm considered non-aggressive; 2,000-5,000 requires additional testing",
-        "Steel corrosion rate in fill/disturbed soils: 0.003 in/year conservative estimate",
-        "Marine corrosion zones: splash (0.0035 in/yr), intertidal (0.0016 in/yr), low water (0.0035 in/yr), immersion (0.002 in/yr), buried (0.0008 in/yr)",
-        "AASHTO R 27-01 Phase I/II assessment procedure for non-marine steel pile corrosion",
-        "Sulfate attacks concrete through expansive reaction with Portland cement causing cracking and spalling",
-        "Chlorides corrode reinforcement steel causing expansion, bursting, and loss of bond",
-        "Timber preservative retention requirements vary by use category and wood species (Table 6-8)",
-        "Design options: heavier sections, cathodic protection, concrete encasement, coatings, sulfate-resistant cement, sleeving"
+        "Screwed in with an 18 in. tip on a 14 in. mandrel; mandrel withdrawn after concreting",
+        "Typical unfactored design loads 40 to 125 tons",
+        "Minimal vibration, very low noise; 20 ft overhead clearance"
       ],
       "equations": [],
-      "figures": [
-        "Figure 6-26: Soil sampling and testing protocol for corrosion assessment (non-marine)",
-        "Figure 6-27: Procedure for uniform or macrocell corrosion assessment (non-marine)",
-        "Figure 6-28: Procedure for electrochemical testing, corrosion monitoring, and mitigation",
-        "Figure 6-29: Loss of thickness by corrosion for steel piles in seawater (after Morley and Bruce 1983)"
+      "figures": [],
+      "tables": [],
+      "applicability": "Fundex screwed displacement piles."
+    },
+    {
+      "section_id": "6.11.2",
+      "title": "Tubex Piles",
+      "body": "(p. 184) Installed like Fundex piles, but the steel casing and drill point stay in place; the cased hole can be inspected before concrete and reinforcement, and sections can be spliced for length or headroom. Diameters typically 14 in. or more; a grout injected version takes unfactored design loads up to 230 tons and insulates the casing from corrosive environments. Same low vibration, low noise, confined space and 20 ft clearance advantages.",
+      "key_points": [
+        "Casing and drill point left in place; inspected before concreting",
+        "Typically 14 in. or more; grouted version up to 230 tons unfactored",
+        "Grout insulates the casing from corrosive environments"
       ],
-      "tables": [
-        "Table 6-8: Preservative Retention Requirements (after Collin 2002)"
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Tubex cased screwed piles."
+    },
+    {
+      "section_id": "6.11.3",
+      "title": "Pressure Injected Footings (PIF)",
+      "body": "(p. 184) Franki piles, best in loose to medium dense granular soils: a temporary casing is bottom driven by a drop weight on a zero slump concrete plug; at depth the casing is restrained and the plug driven out, and an enlarged base is formed with small batches of zero slump concrete. Widely spaced reinforcement lets the stiff mix reach the outside; the uncased shaft is compacted with the drop weight in short lifts as the casing is withdrawn, or, with a high workability mix, by a vibrator on the tube.",
+      "key_points": [
+        "Best in loose to medium dense granular soils",
+        "Casing bottom driven on a zero slump plug; enlarged base formed by driving out concrete",
+        "Shaft compacted in short lifts as the casing is withdrawn"
       ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Pressure injected footings (Franki piles)."
+    },
+    {
+      "section_id": "6.11.4",
+      "title": "Mandrel Driven Piles",
+      "body": "(p. 185) Thin corrugated steel shells, constant, steadily tapered or step tapered (typically about 1 in. per 8 ft), screw-connected with O-ring gaskets, were mandrel driven in many soils except with cobbles and boulders; shells could collapse under hydrostatic pressure before concreting, and they best suited friction piles in granular material. Raymond Step Taper, Armco Hel-Cor, Republic Corwel and Guild piles are mostly no longer made; thin wall pipe has also been mandrel driven on a reinforced toe. Rarely used now but met in widening or rehabilitation. Reusable mandrels gave good drivability and resistance at low material cost; construction control should use a wave equation analysis accounting for the mandrel, never a dynamic formula; costs rise if piles must go deeper than the mandrel on site.",
+      "key_points": [
+        "Thin corrugated shells, tapers about 1 in. per 8 ft; collapse risk under hydrostatic pressure",
+        "Rarely used for new construction; met in widening or rehabilitation",
+        "Construction control by wave equation including the mandrel; never a dynamic formula",
+        "Costly if piles must exceed the mandrel length on site"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Mandrel driven shell piles met in rehabilitation work."
+    },
+    {
+      "section_id": "6.11.5",
+      "title": "Reinforced Concrete Piles",
+      "body": "(pp. 185-187) Replaced in the U.S. by prestressed piles but met on rehabilitation or widening; reinforcing to ASTM A82, A615 and A884, high strength uplift steel to ASTM A722. More prone to handling and driving damage from tension than prestressed piles, but with lower net compressive stress, less head cracking and easier splicing; splices were placed below ground or mudline against corrosion. Jointed square piles of high density concrete, typically 10 to 16 in., had mechanical joints (bayonet fittings, wedges) that had to be aligned to avoid energy loss and bending; best for friction piles in sand, gravel and clay. Hexagonal jointed sections improved stress distribution and torsion. Cold weather driving through ice and water could crack piles from temperature gradients. Non-jointed piles, often cast on site for very large projects, were square and hard to lengthen: lap after breaking down the head, butt joint in a steel sleeve with epoxy, or epoxied dowels, all needing careful alignment. Seismic head reinforcement needed splice details when lengths varied. Still used routinely in Europe, Australia and many Asian countries.",
+      "key_points": [
+        "No longer used in the U.S.; met in rehabilitation or widening; still routine in Europe, Australia and Asia",
+        "Reinforcing ASTM A82, A615, A884; uplift steel ASTM A722",
+        "More prone to tension damage than prestressed piles, but easier to splice",
+        "Jointed square piles typically 10 to 16 in. with mechanical joints; joints must be aligned",
+        "Lengthening by lap, sleeved epoxy butt joint or epoxied dowels, with careful alignment"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Reinforced concrete piles in existing foundations."
+    },
+    {
+      "section_id": "6.12",
+      "title": "Design Considerations in Aggressive Subsurface Environments",
+      "summary": "Aggressive if pH < 4.5 or resistivity < 2000 ohm-cm; for 2000-5000 ohm-cm, aggressive if chloride > 100 ppm or sulfate > 200 ppm; above 5000 ohm-cm non-aggressive. Steel in fill or disturbed soil about 0.003 in./year (6.12.1.1); marine rates by zone in Figure 6-29 (6.12.1.2); sulfate and chloride attack on concrete (6.12.2); timber decay and borers, Table 6-8 retentions (6.12.3); design options (6.12.4).",
+      "body": "(pp. 187-188) Every design should consider deterioration over the design life from corrosion, chemical attack, abrasion and other factors; categorizing an aggressive condition needs the in-situ soils, fills and groundwater. Resistivity and pH tests generally identify it, and if either indicates aggressive conditions the design should assume them; a corrosion or degradation specialist should be retained for major projects. pH below 4.5 or resistivity below 2000 ohm-cm means aggressive; between 2000 and 5000 ohm-cm, chloride and sulfate tests are run and over 100 ppm chloride or 200 ppm sulfate means aggressive; above 5000 ohm-cm is non-aggressive (tests in Chapter 5). Contaminated soil and groundwater can badly damage piles; acidic groundwater is common with organic soils, industrial contamination or mine runoff, so the exploration should show contamination and, if industrial, its likely maximum concentrations and extent. Steel is Section 6.12.1, concrete 6.12.2, timber 6.12.3 and design options 6.12.4.",
+      "key_points": [
+        "pH < 4.5 or resistivity < 2000 ohm-cm: design for an aggressive environment",
+        "2000 to 5000 ohm-cm: aggressive if chloride > 100 ppm or sulfate > 200 ppm",
+        "Resistivity > 5000 ohm-cm: non-aggressive",
+        "If either pH or resistivity indicates aggressive conditions, design for them",
+        "Retain a corrosion or degradation specialist for major projects",
+        "Define contamination: likely maximum concentrations and lateral and vertical extent"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
       "applicability": "All projects where piles are installed in contaminated soils, marine environments, fill materials, low pH soils, or other aggressive subsurface conditions requiring durability assessment."
     },
     {
-      "section_id": "6.13",
-      "title": "Selection of Pile Type and Size for Further Evaluation",
-      "summary": "Selection uses Tables 6-1 to 6-7 (properties), Table 6-9 (subsurface conditions), Table 6-10 (shape effects). Displacement piles densify cohesionless and remold cohesive soils; non-displacement cause minimal disturbance. Final selection from 2–5 candidate types based on comprehensive cost analysis including pile caps, load testing, and constructability.",
-      "body": "The selection of appropriate pile types for a project involves consideration of pile characteristics, subsurface conditions, and performance criteria using the technical summary tables (Tables 6-1 through 6-7), pile type recommendations for subsurface conditions (Table 6-9), and pile shape effects (Table 6-10). Project-specific factors include vibrations from driving, access limitations in urban or remote areas, local material and contractor availability, waterborne operation constraints, and steep terrain. When multiple pile types satisfy requirements, the final selection should be based on a comprehensive cost analysis including pile caps, load testing, time delays, and constructability. Alternate foundation designs should be considered for inclusion in contract documents on major projects.",
+      "section_id": "6.12.1",
+      "title": "Corrosion of Steel Piles",
+      "body": "(p. 188) Steel piles through contaminated soil and groundwater may corrode fast and should be designed for it; corrosion of steel or steel reinforced piles may also occur in disturbed ground, landfills or cinder fills, or low pH soils, and should be evaluated in marine environments and where tides wet and dry the pile. Rates depend on temperature, pH, oxygen access and the chemistry of the surrounding water.",
       "key_points": [
-        "Selection process uses Tables 6-1 to 6-7 (properties), Table 6-9 (subsurface conditions), Table 6-10 (shape effects)",
-        "Table 6-9 recommendations: boulders (non-displacement with shoe), loose soil (tapered pile), downdrag (bond breaker), scour (uniform section), coarse gravel (PS concrete)",
-        "Table 6-10 shape effects: displacement piles densify cohesionless and remold cohesive soils; non-displacement piles cause minimal disturbance",
-        "Tapered piles (timber, monotube, tapertube) provide increased densification and shaft resistance in granular soils",
-        "Vibrations may dictate equipment selection, predrilling, or vibration monitoring",
-        "Urban/remote access may restrict equipment size and pile type",
-        "Local material availability and contractor capability can be decisive factors",
-        "Carry candidate pile types forward for detailed design; base final choice on over-all cost analysis"
+        "High rates in contaminated soil and groundwater, disturbed ground, landfills, cinder fills, low pH soils",
+        "Evaluate in marine environments and tidal wetting and drying",
+        "Rate depends on temperature, pH, oxygen and water chemistry"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Screening steel piles for corrosion."
+    },
+    {
+      "section_id": "6.12.1.1",
+      "title": "Corrosion in Non-Marine Environments",
+      "body": "(pp. 188-192) AASHTO R 27-01 (2010) gives a Phase I and Phase II assessment for steel piling in non-marine applications. Phase I gathers the pile cap position relative to the water table, soil characteristics and contaminants; if the cap is at or above the water table, Phase II takes continuous samples to 3 ft below the water table for laboratory tests (Figure 6-26), evaluates uniform or macrocell corrosion (Figure 6-27), and decides on electrochemical testing, monitoring and mitigation (Figure 6-28). The charts omit chemical contamination, stray DC currents and high microbe concentrations, which need a corrosion specialist. For steel in fill or disturbed natural soil a conservative rate is 0.003 in. per year; Morley (1979) reported 0.002 in. per year immersed in fresh water, up to 0.013 in. per year at the waterline in canals (debris abrasion and/or cell action). See also NCHRP Report 408 (Beavers and Dunn 1998; listed as Beavers and Durr in the references).",
+      "key_points": [
+        "AASHTO R 27-01 (2010): Phase I screening, Phase II if the cap is at or above the water table",
+        "Phase II: continuous samples to 3 ft below the water table, laboratory tests (Figure 6-26)",
+        "Flow charts omit chemical contamination, stray DC currents and microbes: consult a specialist",
+        "Fill or disturbed natural soil: conservative rate 0.003 in./year",
+        "Fresh water immersion 0.002 in./year; canal waterline up to 0.013 in./year (Morley 1979)"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-26: Soil sampling and testing protocol for corrosion assessment of steel piles in non-marine applications (p. 189)",
+        "Figure 6-27: Procedure for uniform or macrocell corrosion assessment of steel piles in non-marine applications (p. 190)",
+        "Figure 6-28: Procedure for determination of electrochemical testing, corrosion monitoring and corrosion mitigation techniques (p. 191)"
+      ],
+      "tables": [],
+      "applicability": "Corrosion assessment of steel piles on land and in fresh water."
+    },
+    {
+      "section_id": "6.12.1.2",
+      "title": "Corrosion in Marine Environments",
+      "body": "(pp. 192-193) In salt water the pile passes zones with different rates (Tomlinson 1994): atmospheric (above the highest water or airborne spray), splash (above mean high tide, exposed to waves, spray and wash), intertidal (between mean high and low tide), continuous immersion (below lowest low tide) and underground (below the mudline). Figure 6-29 (Morley and Bruce 1983) gives average and 95 % maximum probable losses: splash 0.0035 (0.0071) in./year; intertidal 0.0016 (0.0043); low water 0.0035 (0.0071), abrasion locally up to 0.161; immersion 0.002 (0.0055); buried 0.0008 (0.002). In corrosive environments apply one of the options in Section 6.12.4.",
+      "key_points": [
+        "Zones: atmospheric, splash, intertidal, continuous immersion, underground (Tomlinson 1994)",
+        "Splash 0.0035 in./year (95 % max probable 0.0071); intertidal 0.0016 (0.0043)",
+        "Low water 0.0035 (0.0071), abrasion may locally reach 0.161 in./year",
+        "Immersion 0.002 (0.0055); buried 0.0008 (0.002) in./year (Figure 6-29, Morley and Bruce 1983)"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-29: Loss of thickness by corrosion for steel piles in seawater (after Morley and Bruce 1983) (p. 193)"
+      ],
+      "tables": [],
+      "applicability": "Corrosion allowances for steel piles in seawater."
+    },
+    {
+      "section_id": "6.12.2",
+      "title": "Sulfate and Chloride Attack on Concrete Piles",
+      "body": "(pp. 193-194) Precast and cast-in-place concrete is attacked in soils high in sulfate or chloride; the rate depends on soil pH, solubility of the salt, groundwater movement and concrete density. Sulfate ions react expansively with Portland cement, cracking and spalling the pile and reducing structural resistance; remedies are dense, less permeable concrete, sulfate-resisting cement, cement with 25 % pozzolanic material, or a sleeve barrier. Chlorides corrode the reinforcement, whose products expand and burst the concrete, accelerating and destroying bond; remedies are more cover and galvanized or epoxy coated reinforcement.",
+      "key_points": [
+        "Rate depends on soil pH, salt solubility, groundwater movement and concrete density",
+        "Sulfate: expansive reaction with Portland cement, cracking and spalling",
+        "Sulfate remedies: dense concrete, sulfate-resisting cement, 25 % pozzolan, sleeve barrier",
+        "Chloride: corrodes reinforcement, bursting concrete and loss of bond",
+        "Chloride remedies: more cover, galvanized or epoxy coated reinforcement"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Durability of concrete piles in sulfate or chloride bearing soils."
+    },
+    {
+      "section_id": "6.12.3",
+      "title": "Bacteria, Fungi, Insect, and Marine Borer Attacks on Timber Piles",
+      "body": "(pp. 194-195) On land timber is attacked by bacteria, fungi, termites and beetles, and in water by bacteria, fungi and marine borers, which have re-emerged where polluted water improved. Arsenate and creosote pressure treatments are most effective; in southern waters creosote must be combined with other treatments (limnoria tripunctata). Table 6-8 gives AWPI recommended retentions by use, preservative and species, subject to environmental restrictions. Species is usually not specified unless better suited; land and fresh water piles need less treatment than marine piles; a timber specialist should advise for chemical wastes. Table 6-8 retentions (pcf), Southern Pine creosote / Douglas Fir creosote / Southern Pine CCA / Douglas Fir ACZA: foundation and land and fresh water 12/17/0.8/1.0; marine north of Delaware or San Francisco 16/16/1.5/1.5; marine south of New Jersey or San Francisco 20/20/2.5/2.5; marine dual treatment 20/20/1.0/1.0. Footnotes: creosote suffices where Teredo but not limnoria tripunctata is expected; dual treatment or high CCA/ACZA retention where both are expected without pholads; dual treatment where limnoria tripunctata and pholads are expected.",
+      "key_points": [
+        "Land: bacteria, fungi, termites, beetles; water: bacteria, fungi, marine borers",
+        "Arsenate and creosote pressure treatments most effective; dual treatment in southern waters",
+        "Table 6-8 foundation and land/fresh water: 12 pcf SP creosote, 17 DF creosote, 0.8 SP CCA, 1.0 DF ACZA",
+        "Marine north of Delaware or San Francisco: 16, 16, 1.5, 1.5 pcf",
+        "Marine south of New Jersey or San Francisco: 20, 20, 2.5, 2.5 pcf; dual treatment 20, 20, 1.0, 1.0 pcf",
+        "Consult a timber specialist for chemical waste environments"
       ],
       "equations": [],
       "figures": [],
       "tables": [
-        "Table 6-9: Pile Type Selection Based on Subsurface and Hydraulic Conditions",
-        "Table 6-10: Pile Type Selection Based on Pile Shape Effects"
+        "Table 6-8: Preservative Retention Requirements (after Collin 2002) (p. 195)"
+      ],
+      "applicability": "Preservative treatment of timber piles."
+    },
+    {
+      "section_id": "6.12.4",
+      "title": "Design Options for Piles Subject to Degradation or Abrasion",
+      "body": "(pp. 195-196) Options: a heavier steel section for extra thickness (not effective in running water with active bedload); cathodic protection below the water table or in marine environments (costly, periodic anode replacement); concrete encasement above the mud line (may alter impact absorption); copper-bearing steel against atmospheric corrosion (costlier); sleeving or encapsulating cast-in-place piles with metal casings or polymer or fiberglass jackets; low water/cement ratio, resistant aggregate and minimum suitable air content for abrasion resistance of precast piles; metallic or isocyanate-cured epoxy paint or fusion bonded epoxy on exposed sections, or coal-tar epoxies in marine environments (both less effective in running water with bedload). Coatings cannot be replaced after driving, so they must survive transport, handling, leads and driving abrasion; shaft resistance of a coated pile may differ significantly from an uncoated one.",
+      "key_points": [
+        "Heavier steel section (not effective in running water with active bedload)",
+        "Cathodic protection: costly, periodic anode replacement",
+        "Concrete encasement above the mud line; copper-bearing steel for atmospheric corrosion",
+        "Sleeves or jackets for cast-in-place piles; dense, abrasion resistant mixes for precast piles",
+        "Epoxy or coal-tar epoxy coatings; cannot be replaced after driving, must survive handling and driving",
+        "Coatings may change shaft resistance significantly"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selecting protection for piles in corrosive or abrasive settings."
+    },
+    {
+      "section_id": "6.13",
+      "title": "Selection of Pile Type and Size for Further Evaluation",
+      "summary": "Select from Tables 6-1 to 6-7 (characteristics), Table 6-9 (subsurface and hydraulic conditions) and Table 6-10 (shape effects), plus site issues (vibration, access, local materials, waterborne work, terrain). Where several types qualify, carry candidates forward and choose on overall foundation cost including caps, load tests and delays; consider alternate designs on major projects.",
+      "body": "(pp. 196-199) Pile selection weighs pile characteristics, subsurface conditions and performance criteria using Tables 6-1 to 6-7 (characteristics and uses), Table 6-9 (recommendations for subsurface and hydraulic conditions, modified from Cheney and Chassie 1993) and Table 6-10 (placement effects of shape). Site issues also count: vibrations (pile type, equipment, predrilling, monitoring of adjacent structures), restricted access in urban or remote areas, local materials and contractors, shorter sections for waterborne work, and steep terrain. Where several types meet all requirements the choice should rest on a cost analysis of the overall foundation, carrying candidate types forward to size them for loads and constructability, and including time and space limits, delays, load testing and differences in caps and other elements; on major projects alternate foundation designs should be considered in the contract documents where savings are possible. Table 6-9: boulders over the bearing stratum, heavy non-displacement pile with a cast steel shoe and a contingent predrilling item; loose cohesionless soil, tapered pile; downdrag and drag force, avoid batter piles and consider a bitumen or plastic bond breaker; deep soft clay, rough concrete piles; artesian pressure, solid prestressed, tapered piles with collapse strength or thick wall closed end pipe (H-piles without shoes may serve; no mandrel driven thin shells; heave common for closed end piles); scour, uniform section pile able to act as a column, tapered only if the taper extends well below scour; coarse gravel, prestressed concrete where hard driving is expected (H and open end pipe often run long). Table 6-10: displacement piles (closed end pipe, precast concrete) raise lateral stress, densify cohesionless and temporarily weaken cohesive soils, may heave or displace earlier piles, and setup in large groups in sensitive clays may take up to six months; non-displacement piles (H, open end pipe) disturb little but are not suited to friction piles in coarse granular soils; tapered piles (timber, Monotube, Tapertube) densify soil and give high resistance for short penetration in granular soils.",
+      "key_points": [
+        "Use Tables 6-1 to 6-7, Table 6-9 (subsurface and hydraulic conditions) and Table 6-10 (shape effects)",
+        "Site issues: vibrations, access, local materials and contractors, waterborne work, steep terrain",
+        "Several feasible types: choose on overall foundation cost, carrying candidates forward",
+        "Consider alternate foundation designs in contract documents on major projects",
+        "Table 6-9: boulders, heavy non-displacement pile with cast steel shoe plus contingent predrilling",
+        "Table 6-9: downdrag, avoid batter piles, consider a bitumen or plastic bond breaker",
+        "Table 6-9: artesian pressure, no mandrel driven thin shells; scour, uniform section acting as a column",
+        "Table 6-9: coarse gravel, prestressed concrete where hard driving is expected; H and open pipe run long",
+        "Table 6-10: displacement piles densify cohesionless soils, may heave earlier piles; setup up to six months in sensitive clays",
+        "Table 6-10: non-displacement piles disturb little but are poor friction piles in coarse granular soils",
+        "Table 6-10: tapered piles give high resistance for short penetration in granular soils"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 6-9: Pile Type Selection Based on Subsurface and Hydraulic Conditions (p. 198)",
+        "Table 6-10: Pile Type Selection Based on Pile Shape Effects (p. 199)"
       ],
       "applicability": "Pile type selection and elimination process for any driven pile foundation project, considering technical requirements, site constraints, and economic factors."
     },
     {
       "section_id": "6.14",
       "title": "Historical Price Information",
-      "summary": "Historical bid price data (2013–2016) from seven state DOTs (CA, FL, IN, MD, NC, PA, TX) for preliminary cost estimating. Sample ranges: HP 12x53 $49–$150/ft; 18 in PS concrete $90–$113/ft. Unit price scope varies significantly by state. Always update with current agency bid data — prices and specifications change over time.",
-      "body": "This section presents historical bid price data from several state transportation agencies to assist in preliminary cost estimating for pile foundations. Data are compiled from California (CALTRANS 2014), Florida (FDOT 2015), Indiana (INDOT 2015), Maryland (MDSHA 2015), North Carolina (NCDOT 2015), Pennsylvania (PennDOT 2013-2015), and Texas (TxDOT 2015-2016). Prices are reported as weighted average unit prices per linear foot for furnishing and/or driving piles, though the scope of work included in the unit price varies significantly by state agency. Designers should consult the most current price information from the appropriate agency as prices and specifications change over time.",
+      "summary": "Statewide pile bid prices from seven agencies (Tables 6-11 to 6-17: California 2014, Florida 2015, Indiana 2015, Maryland July 2015, North Carolina 2015, Pennsylvania April 2013 to April 2015, Texas March 2015 to February 2016) for preliminary estimates. Pay item scope differs by agency (furnish and drive separate or combined; shoes and splices incidental or not); use current agency data.",
+      "body": "(p. 199) Many state agencies post bid and award data for cost estimating; their standard specifications should be read for the work description and measurement and payment. Tables 6-11 to 6-17 give recent statewide prices for several agencies; work descriptions differ, some list furnishing and driving separately and others combine them, and shoes, splices, sleeves, load tests and mobilization may or may not be incidental. Designers should use the most current agency prices, as histories and specifications change (p. 206).",
       "key_points": [
-        "California (Table 6-11): HP 10x57 furnish $30.53/ft, drive $2,034.57/ea; 24 in CIS pipe furnish $135.31/ft",
-        "Florida (Table 6-12): 18 in PS concrete $93.73/ft, 24 in PS concrete $90.12/ft; HP 12x53 $49.11/ft",
-        "Indiana (Table 6-13): Steel pipe and H-pile prices $42-$95/ft; pile shoes $113-$400/ea",
-        "Maryland (Table 6-14): HP 14x89 $60.25/ft most common (66,092 ft, 9 projects); timber $21.19/ft",
-        "North Carolina (Table 6-15): 16 in PS concrete $73.39/ft; HP14x73 galvanized $71.52/ft; galvanized pipe $101-$215/ft",
-        "Pennsylvania (Table 6-16): HP 12x74 $70.31/ft (63,600 ft, 47 projects); HP 14x89 $85.00/ft",
-        "Texas (Table 6-17): 16 in PS concrete $113.38/ft, 18 in PS concrete $100.20/ft; HP 12x53 $150.00/ft",
-        "Unit price scope varies by state: some include furnish and drive combined, others separate"
+        "Read each agency's specification for the work description and measurement and payment",
+        "Furnish and drive priced separately by some agencies, combined by others",
+        "Shoes, splices, sleeves, load tests and mobilization may or may not be incidental",
+        "Use current agency price information; histories and specifications change"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Preliminary cost estimating for driven pile foundations. Prices are historical and should be updated with current agency bid data for project-specific estimates."
+    },
+    {
+      "section_id": "6.14.1",
+      "title": "California",
+      "body": "(p. 200) Under the CALTRANS specification the furnished cost covers any length installed including splices; driving covers installing and cutting off, tips or shoes and predrilling. Table 6-11 gives 2014 quantity, weighted unit price and number of projects; furnished items per linear foot, driven items per individually driven section. Pile class 90, 140 or 200 is the service limit state axial compression resistance in kips of prestressed concrete piles. Examples: furnish HP 10x57 $30.53, HP 14x89 $45.55, HP 14x117 $63.69 per ft; 24, 30 and 48 in. CIS shell pipe $135.31, $145.00, $448.19 per ft; drive HP 14x89 $1,050.00 and 48 in. pipe $23,130.43 each.",
+      "key_points": [
+        "Furnish includes installed length and splices; drive includes cutoff, tips or shoes, predrilling",
+        "Furnish priced per linear foot; drive per individually driven section",
+        "Class 90, 140, 200 = service axial compression resistance (kips) of prestressed piles"
       ],
       "equations": [],
       "figures": [],
       "tables": [
-        "Table 6-11: CALTRANS 2014 Contract Cost Data",
-        "Table 6-12: FDOT 2015 Historical Cost Information",
-        "Table 6-13: INDOT 2015 Unit Price Summaries",
-        "Table 6-14: MDSHA Price Index Published July 2015",
-        "Table 6-15: 2015 NCDOT Bid Quantities and Averages",
-        "Table 6-16: 2015 PennDOT Bid Quantities and Averages",
-        "Table 6-17: TxDOT 12-Month Project Bid Averages"
+        "Table 6-11: CALTRANS, 2014 Contract Cost Data (p. 200)"
       ],
-      "applicability": "Preliminary cost estimating for driven pile foundations. Prices are historical and should be updated with current agency bid data for project-specific estimates."
+      "applicability": "Preliminary pile cost estimates (California 2014 data)."
+    },
+    {
+      "section_id": "6.14.2",
+      "title": "Florida",
+      "body": "(p. 201) FDOT drives mainly prestressed concrete piles; its 2015 Historical Cost Summary is a 12 month statewide moving average ending January 31, 2016. Prices per linear foot include furnishing, driving and splices; points or shoes are per each. Examples (Table 6-12): prestressed 14 in. square $230.00, 18 in. $93.73, 24 in. $90.12 per ft; HP 12x53 $49.11, HP 14x89 $90.57 per ft; point protection $240.24 to $340.69 each. The table lists 'STEEL PILING, 24\" DIA. PIPE' twice ($224.28 and $121.27).",
+      "key_points": [
+        "12 month statewide moving average ending January 31, 2016",
+        "Per foot price includes furnish, drive and splices; points and shoes per each",
+        "Prestressed 18 in. square $93.73/ft, 24 in. $90.12/ft; HP 12x53 $49.11/ft"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 6-12: FDOT 2015 Historical Cost Information (p. 201)"
+      ],
+      "applicability": "Preliminary pile cost estimates (Florida 2015 data)."
+    },
+    {
+      "section_id": "6.14.3",
+      "title": "Indiana",
+      "body": "(p. 202) Steel piles are used almost exclusively across the Midwest. INDOT 2015 weighted average prices are per linear foot installed, including furnish, drive and splices, and for closed end pipe the end plate and concrete fill; conical tips, inside cutting shoes, H-pile shoes and mobilization are separate. Examples (Table 6-13): 14 in. pipe $42.10 to $58.51 per ft by wall; HP 12x53 $44.21, HP 14x89 $109.50 per ft; pile shoes $113.85 to $400.00 each.",
+      "key_points": [
+        "Per foot price includes furnish, drive, splices, and plate and concrete for closed end pipe",
+        "Tips, shoes and mobilization are separate pay items",
+        "14 in. pipe $42.10-$58.51/ft; HP 12x53 $44.21/ft; shoes $113.85-$400.00 each"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 6-13: INDOT 2015 Unit Price Summaries (p. 202)"
+      ],
+      "applicability": "Preliminary pile cost estimates (Indiana 2015 data)."
+    },
+    {
+      "section_id": "6.14.4",
+      "title": "Maryland",
+      "body": "(p. 203) The MDSHA price index is updated twice a year; Table 6-14 is the July 2015 index. Furnish and drive form one per foot item with mobilization and splices incidental; H-pile shoes are separate, per item. Projects mainly use steel piles. Examples: untreated timber $21.19, HP 12x53 $47.74, HP 14x89 $60.25, HP 14x102 $106.51 per ft; pile points $119.63 and $126.00 each.",
+      "key_points": [
+        "Furnish and drive in one per foot item; mobilization and splices incidental",
+        "H-pile shoes separate, per item",
+        "Untreated timber $21.19/ft; HP 14x89 $60.25/ft"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 6-14: MDSHA Price Index Published July 2015 (p. 203)"
+      ],
+      "applicability": "Preliminary pile cost estimates (Maryland 2015 data)."
+    },
+    {
+      "section_id": "6.14.5",
+      "title": "North Carolina",
+      "body": "(p. 204) Both concrete and steel piles are driven. NCDOT 2015 average bids are per linear foot, with points and plates separate. Examples (Table 6-15): prestressed 12, 16 and 24 in. $58.94, $73.39, $144.80 per ft; HP 12x53 $49.45, HP 14x73 galvanized $71.52 per ft; galvanized pipe $101.47 to $215.00 per ft; predrilling $20.38 per ft; steel pile points $386.19 each.",
+      "key_points": [
+        "Per foot prices; points and plates separate",
+        "Prestressed 16 in. $73.39/ft; HP 14x73 galvanized $71.52/ft",
+        "Galvanized pipe $101.47-$215.00/ft"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 6-15: 2015 NCDOT Bid Quantities and Averages (p. 204)"
+      ],
+      "applicability": "Preliminary pile cost estimates (North Carolina 2015 data)."
+    },
+    {
+      "section_id": "6.14.6",
+      "title": "Pennsylvania",
+      "body": "(p. 205) PennDOT price history covers projects let April 2013 to April 2015; most use steel piles, many H-piles to rock. The per foot price includes furnish, drive, splices and cutoff; driving shoes are separate, except timber pile shoes. Examples (Table 6-16): treated timber $40.00, cast-in-place concrete $74.37 per ft; HP 12x74 $70.31, HP 14x89 $85.00 per ft; pile tips $104.08 to $151.59 each.",
+      "key_points": [
+        "Projects let April 2013 to April 2015; mostly steel, many H-piles to rock",
+        "Per foot price includes furnish, drive, splices and cutoff; shoes separate except timber",
+        "HP 12x74 $70.31/ft; HP 14x89 $85.00/ft"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 6-16: 2015 PennDOT Bid Quantities and Averages (p. 205)"
+      ],
+      "applicability": "Preliminary pile cost estimates (Pennsylvania 2013-2015 data)."
+    },
+    {
+      "section_id": "6.14.7",
+      "title": "Texas",
+      "body": "(p. 206) TxDOT 12 month statewide moving average, March 1, 2015 to February 28, 2016; prices per linear foot in place, with splices and tips separate; most Texas piles are concrete and averages are updated monthly. Examples (Table 6-17): prestressed 16, 18, 20 and 24 in. square $113.38, $100.20, $118.80, $135.00 per ft; HP 12x53 $150.00 per ft.",
+      "key_points": [
+        "12 month moving average March 1, 2015 to February 28, 2016; updated monthly",
+        "Per foot in place; splices and tips separate; mostly concrete piles",
+        "Prestressed 16 in. $113.38/ft, 18 in. $100.20/ft"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 6-17: TxDOT 12-Month Project Bid Averages (p. 206)"
+      ],
+      "applicability": "Preliminary pile cost estimates (Texas 2015-2016 data)."
     }
   ]
 }
