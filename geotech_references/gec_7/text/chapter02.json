@@ -8,144 +8,517 @@
     {
       "section_id": "2.1",
       "title": "Introduction",
-      "body": "This chapter provides an overview of the main elements and the construction sequence of soil nail walls, along with common applications and project conditions favorable for the use of soil nailing. Feasibility evaluations and factors affecting costs are also discussed. The information in this chapter helps engineers make initial assessments of whether soil nailing is appropriate for a specific project.",
+      "summary": "Soil nail walls are built top-down: the ground is excavated in lifts, and nails and an initial shotcrete facing are installed at each lift, followed by a final shotcrete or CIP facing. Nails are most often at 4 to 6 ft vertical spacing, comparable to the typical stable lift height of 3 to 5 ft (more in some soils); horizontal spacing is often also 4 to 6 ft. Nails and facing both contribute to stability. Best where the ground can stand in short vertical or sub-vertical unsupported cuts. Mostly permanent in U.S. roadways; also temporary shoring.",
+      "body": "2.1 Introduction (p. 9). The chapter describes common applications of soil nails in roadway projects, typical components and the construction sequence, favorable and unfavorable subsurface conditions for cost-effective construction (to aid feasibility evaluation), and the main factors affecting construction cost. Soil nail walls are constructed top-down: the ground is excavated in lifts of limited height, and soil nails and an initial shotcrete facing are installed at each lift; a final shotcrete or cast-in-place-concrete (CIP) facing is installed afterward. Nails are most often installed at a vertical spacing of 4 to 6 ft, comparable to the typical height of a stable excavation lift, which is commonly 3 to 5 ft and could be more in some soils. The horizontal spacing is often also 4 to 6 ft. Figure 2.1 shows a wall built to permit excavation in the right-of-way for a road widening. Both the soil nails and the initial and final facing contribute to stability: the nails support the soil and transfer loads to the soil mass behind the wall; the facing supports the soil between nails and immediately behind the face, provides structural continuity, and makes the wall act as a unit. Soil nail walls can be more advantageous than other top-down systems where the ground can temporarily sustain short, vertical or sub-vertical unsupported cuts (Section 2.7). They are permanent structures in most U.S. roadway projects, but are also built as temporary structures (service life of a few months) to shore temporary excavations.",
       "key_points": [
-        "Overview of main elements and construction sequence",
-        "Common applications for soil nailing in highway projects",
-        "Feasibility evaluation framework",
-        "Factors affecting project costs"
+        "Top-down construction: excavate a lift, install nails and initial shotcrete facing, repeat; then final facing",
+        "Nail vertical spacing most often 4 to 6 ft; horizontal spacing often 4 to 6 ft",
+        "Stable excavation lift commonly 3 to 5 ft high, more in some soils",
+        "Nails transfer load to the soil behind; facing supports soil between nails and makes the wall act as a unit",
+        "Suited to ground that can stand in short vertical or sub-vertical unsupported cuts",
+        "Mostly permanent in U.S. roadway projects; also temporary shoring (a few months)"
       ],
       "equations": [],
-      "figures": [],
+      "figures": [
+        {
+          "figure_id": "Figure 2.1",
+          "title": "Typical cross-section of a soil nail wall",
+          "description": "Cross-section identifying the components: tendons, grout, corrosion protection, initial and final facing with WWM, waler and bearing bars, bearing plate, nut, washer, headed studs and strip drain. Modified after Porterfield et al. (1994).",
+          "page": 12
+        }
+      ],
       "tables": [],
-      "applicability": "Initial project feasibility assessment for soil nail walls."
+      "applicability": "Overview of soil nail wall construction and where it fits."
     },
     {
       "section_id": "2.2",
       "title": "Elements of a Soil Nail Wall",
-      "body": "A soil nail wall system consists of three main components: (1) soil nails, including the steel tendon (solid or hollow bar), centralizers, grout (neat cement), and corrosion protection (epoxy coating or encapsulation); (2) the facing, which includes an initial facing (typically 75-100 mm shotcrete with WWM) and a final facing (150-200 mm CIP concrete or shotcrete); and (3) other components including bearing plates, hex nuts, washers, headed studs, geocomposite drainage strips, and a toe drain pipe. Soil nails are typically #6 to #10 (19 to 32 mm diameter) Grade 60 or Grade 75 threaded bars, installed at horizontal and vertical spacings of 1.2 to 1.8 m (4 to 6 ft) and inclinations of 10 to 20 degrees below horizontal.",
+      "summary": "The components used in U.S. practice, identified in Figure 2.1: soil nails (tendons, grout, corrosion protection; 2.2.1), facing (2.2.2) and other components (connection components and drainage; 2.2.3). Chapter 3 describes them in more detail.",
+      "body": "2.2 Elements of a Soil Nail Wall (p. 9). The components of soil nail walls used in U.S. practice are identified in Figure 2.1 and briefly described in 2.2.1 to 2.2.3; more detailed descriptions are in Chapter 3.",
+      "key_points": [],
+      "equations": [],
+      "figures": [
+        {
+          "figure_id": "Figure 2.1",
+          "title": "Typical cross-section of a soil nail wall",
+          "description": "Cross-section identifying the components: tendons, grout, corrosion protection, initial and final facing with WWM, waler and bearing bars, bearing plate, nut, washer, headed studs and strip drain. Modified after Porterfield et al. (1994).",
+          "page": 12
+        }
+      ],
+      "tables": [],
+      "applicability": "Components of a soil nail wall; see the subsections."
+    },
+    {
+      "section_id": "2.2.1",
+      "title": "Soil Nails",
+      "summary": "Tendons (bars) mobilize tension as the retained soil moves, during or after excavation or under applied loads; solid bars are grouted in stable drill holes, hollow bars drill the hole with a sacrificial bit and stay in place (Chapter 10); both are typically fully threaded. Neat cement grout, placed by tremie under gravity, transfers shear and tension to the ground and gives some corrosion protection. Permanent nails need corrosion protection, more for corrosive soils and lower risk tolerance: grout alone is the lowest level, encapsulation the highest; epoxy coating, galvanization or sacrificial steel also used.",
+      "body": "2.2.1 Soil Nails (pp. 9-10). Tendons: the ground reinforcing elements behind the wall, equivalent to (steel) bars; the terms are used interchangeably. Tensile stress in each tendon mobilizes in response to lateral movement and deformation of the retained soil, which can occur during excavation, after excavation without external loads (time-dependent deformation), or after excavation when external loads such as surcharge or traffic are applied. Tendons can be solid or hollow bars. Solid bars are placed in stable drill holes and grouted in place. Hollow bars are fitted with a sacrificial drill bit, drill the hole, and remain as the permanent reinforcement (Chapter 10). Both are typically fully threaded. Grout: usually Portland cement and water; it transfers shear stresses between the deforming ground and the tendons, transfers tensile stresses from the tendons to the surrounding stable soil, and provides some corrosion protection. It is placed in the drill holes under gravity by the tremie method. Corrosion protection: permanent soil nails require chemical and/or physical protection; the required level is greater for soils with higher corrosion potential and for projects with lower risk tolerance. The lowest level in U.S. practice is grout alone. Encapsulation of the bar, with a protective sheath and phased grouting, provides the highest level. Fusion-bonded epoxy coating, galvanization or sacrificial steel can also be used (Chapter 7).",
       "key_points": [
-        "Three main components: soil nails, facing, and ancillary elements",
-        "Soil nail tendons: #6 to #10 bars (19-32 mm), Grade 60 or 75",
-        "Typical spacing: 1.2-1.8 m horizontal and vertical",
-        "Typical inclination: 10-20 degrees below horizontal",
-        "Initial facing: 75-100 mm shotcrete with WWM",
-        "Final facing: 150-200 mm CIP concrete or shotcrete",
-        "Drainage: geocomposite strips and toe drain pipe"
+        "Tendon tension mobilizes with lateral movement of the retained soil (during or after excavation, or under applied loads)",
+        "Solid bars grouted in stable drill holes; hollow bars drill with a sacrificial bit and stay in place (Chapter 10)",
+        "Both solid and hollow bars typically fully threaded",
+        "Grout (cement and water), tremied under gravity: transfers shear and tension, gives some corrosion protection",
+        "Corrosion protection increases with corrosion potential and lower risk tolerance",
+        "Grout alone = lowest level; encapsulation = highest; also epoxy coating, galvanization, sacrificial steel (Chapter 7)"
       ],
       "equations": [],
-      "figures": ["Figure 2.1: Typical cross section of a soil nail wall"],
+      "figures": [
+        {
+          "figure_id": "Figure 2.1",
+          "title": "Typical cross-section of a soil nail wall",
+          "description": "Cross-section identifying the components: tendons, grout, corrosion protection, initial and final facing with WWM, waler and bearing bars, bearing plate, nut, washer, headed studs and strip drain. Modified after Porterfield et al. (1994).",
+          "page": 12
+        }
+      ],
       "tables": [],
-      "applicability": "Design and specification of soil nail wall components."
+      "applicability": "Components of the soil nail itself."
+    },
+    {
+      "section_id": "2.2.2",
+      "title": "Facing",
+      "summary": "Facing has an initial and a final component. The initial facing, usually reinforced shotcrete, is applied at each lift soon after excavation, before or after nail installation, for temporary stability and to receive the bearing plate. The final facing (CIP reinforced concrete, reinforced shotcrete or precast panels) gives structural continuity for the design life and may carry an aesthetic finish. Initial facing reinforcement: welded-wire mesh over the lift with laps, horizontal waler bars and vertical bearing bars at the nail heads; fibers in some temporary facings in soft or weathered rock.",
+      "body": "2.2.2 Facing (pp. 10-11). Shotcrete: facing consists of an initial and a final component. Soon after excavation, the initial facing is applied on the exposed soil at each lift, before or after nail installation, to provide temporary stability and protection; it also receives the bearing plate. The final facing is constructed over the initial facing, provides structural continuity throughout the design life, and may include an aesthetic finish. The initial facing most commonly consists of reinforced shotcrete; the final facing generally consists of CIP reinforced concrete, reinforced shotcrete, or precast concrete panels. Initial facing reinforcement: (i) welded-wire mesh (WWM) over the entire excavation lift, and effectively the whole wall with lap splices; (ii) horizontal bars (waler bars) around nail heads for bending resistance in the horizontal direction; and (iii) vertical bearing bars at nail heads for bending resistance in the vertical direction (Figure 2.1). Steel or synthetic fiber is another option, particularly for temporary facing in soft or weathered rock. A shotcrete final facing is reinforced like the initial facing; CIP or precast final facing typically uses rebar mesh.",
+      "key_points": [
+        "Initial facing applied at each lift for temporary stability; receives the bearing plate",
+        "Initial facing most commonly reinforced shotcrete",
+        "Final facing: CIP reinforced concrete, reinforced shotcrete or precast panels; structural continuity for the design life",
+        "Initial facing reinforcement: WWM with lap splices, horizontal waler bars, vertical bearing bars at nail heads",
+        "Steel or synthetic fiber an option, particularly for temporary facing in soft or weathered rock",
+        "CIP or precast final facing: rebar mesh typical"
+      ],
+      "equations": [],
+      "figures": [
+        {
+          "figure_id": "Figure 2.1",
+          "title": "Typical cross-section of a soil nail wall",
+          "description": "Cross-section identifying the components: tendons, grout, corrosion protection, initial and final facing with WWM, waler and bearing bars, bearing plate, nut, washer, headed studs and strip drain. Modified after Porterfield et al. (1994).",
+          "page": 12
+        }
+      ],
+      "tables": [],
+      "applicability": "Initial and final facing of a soil nail wall."
+    },
+    {
+      "section_id": "2.2.3",
+      "title": "Other Components",
+      "summary": "Connection components (nuts, washers, bearing plates, headed studs) tie the nail to the facing; the headed studs, attached to the bearing plate, are embedded in the final facing. The drainage system, commonly geocomposite strip drains, collects perched groundwater or infiltrated surface water behind the facing and directs it away from the wall; it covers commonly 10-20%, or more, of the excavation face, depending on strip spacing and available widths.",
+      "body": "2.2.3 Other Components (p. 11). Connection components: the nail is connected to the facing through nuts, washers, bearing plates and headed studs; the headed studs are attached to the bearing plate and become embedded within the final facing (Figure 2.1). Drainage system: installed behind the wall to (i) collect perched groundwater or infiltrated surface water present behind the facing, and (ii) direct it away from the wall. It commonly consists of composite geosynthetic drainage strips (geocomposite strip drains). It does not cover the full wall area: coverage is commonly 10-20%, or more, of the excavation face, depending on the selected strip drain spacing and available commercial widths.",
+      "key_points": [
+        "Connection: nuts, washers, bearing plates, headed studs; studs embedded in the final facing",
+        "Drainage collects perched groundwater or infiltrated surface water and directs it away from the wall",
+        "Geocomposite strip drains commonly cover 10-20%, or more, of the excavation face"
+      ],
+      "equations": [],
+      "figures": [
+        {
+          "figure_id": "Figure 2.1",
+          "title": "Typical cross-section of a soil nail wall",
+          "description": "Cross-section identifying the components: tendons, grout, corrosion protection, initial and final facing with WWM, waler and bearing bars, bearing plate, nut, washer, headed studs and strip drain. Modified after Porterfield et al. (1994).",
+          "page": 12
+        }
+      ],
+      "tables": [],
+      "applicability": "Connection and drainage components."
     },
     {
       "section_id": "2.3",
       "title": "Construction Sequence",
-      "body": "Soil nail wall construction follows a top-down sequence: (1) excavate soil to a depth slightly below the next level of soil nails (typically 1-2 m lifts); (2) drill holes for soil nails at the design spacing and inclination; (3) install soil nail tendons with centralizers; (4) grout the drill holes using tremie method from bottom up; (5) install drainage strips if needed; (6) place initial facing of shotcrete with WWM over the exposed cut face; (7) install bearing plates and secure with hex nuts; (8) repeat steps 1-7 for subsequent lifts until full wall height is achieved; (9) install final facing after all nails are installed and initial facing is cured.",
+      "summary": "Step 1 excavation: initial lift 2.5 to 7 ft, typically 3 to 5 ft, slightly below the first nail row; the face must stand unsupported typically one to two days. Step 2 drilling, holes typically unsupported. Step 3 tendon and tremie grout by gravity or low pressure (less than 5 to 10 psi); strip drains between nails. Step 4 initial facing, typically lightly reinforced 4-in. shotcrete with WWM at mid-thickness; bearing plate pressed in; nut wrench-tightened within 24 hours; 3-day strength (72 h for planning) before the next lift. Steps 5-6 repeat, then final facing and drainage.",
+      "body": "2.3 Construction Sequence (pp. 13-14; Figure 2.2). Step 1, Excavation: the initial lift (unsupported cut) may range between 2.5 and 7 ft but is typically 3 to 5 ft, reaching slightly below the first row of nails. The face must remain unsupported until the nails and initial facing are installed, typically one to two days; the soil type may limit the lift depth; the excavated platform must be wide enough for safe access of the installation equipment. Step 2, Drilling of Nail Holes: specialized drilling equipment operates from the platform; the holes typically remain unsupported. Step 3A, Nail Installation and Grouting: the tendon and a tremie grout pipe are placed in the hole, which is filled with grout under gravity or a nominal low pressure (less than 5 to 10 psi); with hollow bars, drilling and grouting are one operation. Step 3B, Installation of Strip Drains: strip drains are placed on the face between adjacent nails, continuously from the top of the excavation to slightly below its bottom, and unrolled down to the next lift. Step 4, Construction of Initial Shotcrete Facing: before the next lift is excavated, an initial facing is applied, typically a lightly reinforced 4-in. thick shotcrete layer with WWM in the middle of the thickness and horizontal and vertical bars around the nail heads. As the shotcrete starts to cure, a steel bearing plate is placed over the protruding tendon and lightly pressed into the fresh shotcrete; hex nuts and washers are installed and the nut is wrench-tightened within 24 hours of shotcrete placement. Some nails may be proof or verification tested before the next lift. The shotcrete should attain its minimum specified 3-day compressive strength before subsequent excavation; for planning, consider a 72-hour curing period. Step 5, Construction of Subsequent Levels: Steps 1 to 4 are repeated; the strip drain is unrolled to the next lift; a new WWM panel overlaps at least one full mesh cell with the panel above; the shotcrete is continued from the previous lift. Step 6, Construction of Final Facing: after the bottom is reached and nails are installed and tested, the final facing is built (CIP reinforced concrete, reinforced shotcrete or prefabricated panels), and weepholes, a foot drain and drainage ditches are installed to discharge water from the strip drains. Variations: shotcrete may be applied at each lift right after excavation and before drilling, particularly where face stability is a concern; or the hole may be grouted before the tendon is placed in the wet grout.",
       "key_points": [
-        "Top-down construction in 1-2 m lifts",
-        "Drill holes, install tendons with centralizers, grout from bottom up",
-        "Install drainage strips before shotcrete if needed",
-        "Apply initial shotcrete facing with WWM",
-        "Secure bearing plates with hex nuts",
-        "Repeat for each excavation lift",
-        "Install final facing after all nails are placed"
+        "Initial lift 2.5 to 7 ft, typically 3 to 5 ft, slightly below the first nail row",
+        "Face must stand unsupported until nails and facing are in, typically one to two days",
+        "Grout placed by tremie under gravity or low pressure (less than 5 to 10 psi); hollow bars drill and grout in one operation",
+        "Strip drains placed between nails and unrolled down to the next lift",
+        "Initial facing typically lightly reinforced 4-in. shotcrete, WWM at mid-thickness",
+        "Bearing plate pressed into fresh shotcrete; hex nut wrench-tightened within 24 hours",
+        "Minimum 3-day shotcrete strength before the next lift; 72 hours for planning",
+        "WWM panels overlap at least one full mesh cell",
+        "Final facing: CIP concrete, reinforced shotcrete or prefabricated panels; weepholes, foot drain, ditches",
+        "Variations: shotcrete before drilling where face stability is a concern; grout before inserting the tendon"
       ],
       "equations": [],
-      "figures": ["Figure 2.3: Typical soil nail wall construction sequence"],
+      "figures": [
+        {
+          "figure_id": "Figure 2.2",
+          "title": "Typical soil nail wall construction sequence",
+          "description": "Illustration of Steps 1 to 6: excavation, drilling, nail installation and grouting with strip drains, initial shotcrete facing, subsequent levels, final facing. Modified after Porterfield et al. (1994).",
+          "page": 15
+        }
+      ],
       "tables": [],
-      "applicability": "Construction sequencing for all soil nail wall projects."
+      "applicability": "Step-by-step construction of a soil nail wall."
     },
     {
       "section_id": "2.4",
       "title": "Applications of Soil Nail Walls",
-      "body": "Common applications for soil nail walls include: (1) roadway cut stabilization for new alignments or widening; (2) excavation support for bridge abutments and end slopes; (3) stabilization of existing retaining structures by adding nails through the facing; (4) stabilization of tunnel portals; (5) slope stabilization adjacent to highways; (6) repair of existing retaining walls; and (7) temporary excavation support during construction. Soil nail walls have been successfully used for wall heights up to approximately 18 m (60 ft), although the most common range is 4 to 12 m (13 to 40 ft).",
+      "summary": "Roadway applications: roadway cuts, road widening under existing bridge abutments, tunnel portals, repair and reconstruction of existing retaining structures, hybrid soil nail systems, and shored MSE (SMSE) walls (2.4.1 to 2.4.7).",
+      "body": "2.4 Applications of Soil Nail Walls (pp. 16-21). Subsections 2.4.1 Overview to 2.4.7 Shored Mechanically Stabilized Earth (SMSE) Walls.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Roadway applications of soil nail walls; see the subsections."
+    },
+    {
+      "section_id": "2.4.1",
+      "title": "Overview",
+      "summary": "Soil nail walls can be used for roadway cuts, road widening under existing bridge abutments, tunnel portals, repair and reconstruction of existing retaining structures, hybrid soil nail systems, and shored MSE walls. Figure 2.3 shows construction of a wall on a large cut face.",
+      "body": "2.4.1 Overview (p. 16). Soil nail walls can be used in the following roadway applications: roadway cuts; road widening under existing bridge abutments; tunnel portals; repair and reconstruction of existing retaining structures; hybrid soil nail systems; and Shored Mechanically Stabilized Earth (SMSE) walls. Figure 2.3 shows the construction of a soil nail wall for a large cut face.",
       "key_points": [
-        "Roadway cuts for new alignments or widening",
-        "Excavation support for bridge abutments",
-        "Stabilization of existing retaining structures",
-        "Tunnel portal stabilization",
-        "Slope stabilization adjacent to highways",
-        "Repair of existing retaining walls",
-        "Common wall heights: 4-12 m; maximum approximately 18 m"
+        "Roadway cuts; road widening under bridge abutments; tunnel portals",
+        "Repair and reconstruction of retaining structures; hybrid systems; SMSE walls"
       ],
       "equations": [],
-      "figures": ["Figure 2.4: Application for roadway cut", "Figure 2.5: Bridge abutment application"],
+      "figures": [
+        {
+          "figure_id": "Figure 2.3",
+          "title": "Construction of soil nail wall",
+          "description": "Photo of soil nail wall construction on a large cut face. Courtesy of Schnabel Engineering.",
+          "page": 16
+        }
+      ],
       "tables": [],
-      "applicability": "All highway projects where soil nail walls may be considered."
+      "applicability": "List of roadway applications."
+    },
+    {
+      "section_id": "2.4.2",
+      "title": "Roadway Cuts",
+      "summary": "Soil nailing suits roadway cuts because it needs limited excavation and reasonable right-of-way and clearing limits, reducing environmental impact; the small equipment may also reduce traffic impact. Runoff-control details vary (Section 6.9).",
+      "body": "2.4.2 Roadway Cuts (pp. 16-17). Soil nailing is attractive in roadway cuts because limited excavation and reasonable right-of-way (ROW) and clearing limits are required (Figure 2.4), which helps reduce environmental impacts along the corridor. The impact to traffic may also be reduced because the installation equipment is relatively small. Details may vary from Figure 2.4, particularly those for runoff control; see Section 6.9 'Drainage and Details.'",
+      "key_points": [
+        "Limited excavation and reasonable ROW and clearing limits reduce environmental impact",
+        "Small equipment may reduce traffic impact",
+        "Runoff-control details vary: Section 6.9"
+      ],
+      "equations": [],
+      "figures": [
+        {
+          "figure_id": "Figure 2.4",
+          "title": "Roadway cut supported with soil nails",
+          "description": "Schematic roadway cut supported with soil nails. Modified after Porterfield et al. (1994).",
+          "page": 17
+        }
+      ],
+      "tables": [],
+      "applicability": "Soil nail walls for roadway cuts."
+    },
+    {
+      "section_id": "2.4.3",
+      "title": "Road Widening Under Existing Bridge Abutments",
+      "summary": "Useful for underpass widening where the abutment slope must be removed: cost may be comparable to other systems, but the small rig works within limited overhead and traffic may not need to stop. Nails must avoid the girders and abutment foundation: upper nails within the clear space between girders and parallel to them; lower rows positioned to miss the foundation. Vertical micropiles with soil nails have supported modified abutments on shallow foundations over embankments, keeping the bridge in service.",
+      "body": "2.4.3 Road Widening Under Existing Bridge Abutments (pp. 17-18). Soil nail walls can be advantageous for underpass widening when an existing bridge abutment slope must be removed. The cost may be comparable to other applicable systems, but the soil nail drill rig is relatively small, can operate within limited overhead, and traffic along the underpass road may not need to be totally interrupted. The location, length and inclination of the nails must be planned so they do not interfere with the existing girders or intersect the abutment foundation: the upper nails must be positioned within the clear space between girders and parallel to them, and the lower rows positioned and oriented to avoid the foundation elements below (Figure 2.5). Vertical micropiles and soil nails have also been used in modified abutments where an existing bridge was supported on shallow foundations on top of an embankment: the micropiles support the modified abutment and prevent settlement by transferring bridge loads below the new road grade, while the soil nail wall retains the excavated soil. Because overhead clearances are small, the combination can expedite construction while the bridge remains operational.",
+      "key_points": [
+        "Small rig works within limited overhead; underpass traffic may not need to be stopped",
+        "Upper nails within the clear space between girders and parallel to them",
+        "Lower rows positioned and oriented to avoid the abutment foundation",
+        "Micropiles plus soil nails for abutments on shallow foundations over embankments; bridge stays in service"
+      ],
+      "equations": [],
+      "figures": [
+        {
+          "figure_id": "Figure 2.5",
+          "title": "Road widening under existing bridge",
+          "description": "Soil nail wall for road widening under an existing bridge. Source: Porterfield et al. (1994).",
+          "page": 18
+        }
+      ],
+      "tables": [],
+      "applicability": "Underpass widening below existing bridge abutments."
+    },
+    {
+      "section_id": "2.4.4",
+      "title": "Tunnel Portals",
+      "summary": "Soil nails can stabilize tunnel portals. Additional checks: vertical stability of the shotcrete facing above the tunnel, possible transfer of nail loads to the tunnel structure, and interaction with the tunnel's initial shotcrete support and lining. The layout may differ: nails installed with a suitable horizontal splay and vertical orientation to avoid the tunnel support components.",
+      "body": "2.4.4 Tunnel Portals (pp. 18-19). Tunnel portals can be stabilized with soil nails. The principle is similar to road cuts, but other aspects must be considered: the vertical stability of the shotcrete facing above the tunnel; the potential transfer of soil nail loads to the tunnel structure at the portal; and the interaction between the nails and the initial shotcrete support and lining near the portal, which must be fully evaluated. The nail layout may differ from conventional roadway use: nails must be installed with an appropriate horizontal splay and suitable vertical orientation to avoid interfering with the tunnel support components.",
+      "key_points": [
+        "Check vertical stability of the shotcrete facing above the tunnel",
+        "Consider transfer of nail loads to the tunnel structure and interaction with its support and lining",
+        "Splay and orient nails to avoid the tunnel support components"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Soil nailing at tunnel portals."
+    },
+    {
+      "section_id": "2.4.5",
+      "title": "Repair and Reconstruction of Existing Retaining Structures",
+      "summary": "Soil nails can stabilize or strengthen failing or distressed retaining structures, e.g. MSE walls deforming from poor design or construction: nails drilled through a sufficiently stable face carry load to stable soil behind the reinforced block. Drilling and grouting must not harm the existing wall and must give a stable hole through backfill and drainage material; the face may need stabilizing first. Similar for crib, gabion and masonry walls. The bearing plate must transfer load without damaging the existing facing and may control the design.",
+      "body": "2.4.5 Repair and Reconstruction of Existing Retaining Structures (p. 19). Soil nails can stabilize and/or strengthen failing or distressed retaining structures. For example, some MSE walls show excessive deformation due to poor design, poor construction, or both. Soil nails can be installed directly through the face of an MSE wall if the existing face is stable enough to resist drilling; as the wall continues to deform, its backfill and facing transfer loads to the nails, which transfer them to stable soil behind the MSE-reinforced block. Of particular concern are the drilling and grouting procedures, which should not be detrimental to the stability of the existing wall and should create a stable drill hole through the wall backfill and any drainage material behind it. In some cases the MSE wall face must be stabilized before drilling to prevent partial or total collapse. Similar considerations apply to crib walls, gabions and masonry walls. Selecting an appropriate bearing plate for nails stabilizing MSE and masonry walls is very important: it must fully transfer loads without damage to the existing facing, and in some cases the maximum load at the bearing plate may control the design.",
+      "key_points": [
+        "Nails through the face of a distressed MSE wall carry load to stable soil behind the reinforced block",
+        "Face must be stable enough to drill through; may need stabilizing first",
+        "Drilling and grouting must not harm the existing wall; stable hole through backfill and drainage material",
+        "Also for crib, gabion and masonry walls",
+        "Bearing plate must transfer load without damaging the existing facing; may control design"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Using soil nails to repair existing retaining walls."
+    },
+    {
+      "section_id": "2.4.6",
+      "title": "Hybrid Soil Nail Walls",
+      "summary": "Soil nails combined with other systems: MSE and soil nail walls may be more economical in cut/fill than full-height MSE or drilled shaft walls (Wood et al. 2009). With ground anchors: where utilities block the upper rows, the facing can cantilever in the upper 8 to 10 ft with one or two anchor rows at the bottom of the cantilever and nails below. Soil nails are not generally suited to deep-seated slip surfaces; anchors can be added, or long anchors used with nails in tiered walls for global stability.",
+      "body": "2.4.6 Hybrid Soil Nail Walls (pp. 19-20). Soil nail walls can be combined with other wall systems, such as ground anchor walls and MSE walls, to combine the advantages of each, for complex layouts or where other systems are too costly. MSE and soil nail walls together may give a more economical design in cut/fill situations than traditional full-height MSE walls or drilled shaft retaining walls (Wood et al. 2009; Figure 2.6). Soil nails combined with ground anchors may be used where utilities or other underground obstructions prevent nails in the upper sections: the facing can be designed to work in cantilever in the upper 8 to 10 ft, with one or two rows of ground anchors providing horizontal restraint at the bottom of the cantilever and soil nails in the rows below. Soil nails are not generally well suited to address instability along deep-seated slip surfaces; where a proposed cut has deep-seated instability potential, ground anchors can be introduced with the nails. Soil nails may also support the top of the slope in tiered walls, where one or two rows of relatively long ground anchors intersect the slip plane and provide global stability.",
+      "key_points": [
+        "MSE plus soil nail walls may be more economical in cut/fill than full-height MSE or drilled shaft walls (Wood et al. 2009)",
+        "Utilities in the upper zone: facing cantilevers 8 to 10 ft with one or two ground anchor rows, nails below",
+        "Soil nails not generally suited to deep-seated slip surfaces; add ground anchors",
+        "Tiered walls: nails at the top of the slope, long anchors through the slip plane for global stability"
+      ],
+      "equations": [],
+      "figures": [
+        {
+          "figure_id": "Figure 2.6",
+          "title": "Hybrid soil nail/MSE wall",
+          "description": "Hybrid soil nail and MSE wall in a cut/fill section. Source: Wood et al. (2009).",
+          "page": 20
+        }
+      ],
+      "tables": [],
+      "applicability": "Combining soil nails with MSE walls or ground anchors."
+    },
+    {
+      "section_id": "2.4.7",
+      "title": "Shored Mechanically Stabilized Earth (SMSE) Walls",
+      "summary": "Used to widen low-volume roads by fill in steep terrain, where the bench excavation for an MSE wall becomes impractical, particularly with traffic maintained. The soil nail wall first shores the back-cut, then a conventional MSE wall is built in front. A permanent soil nail wall can significantly reduce long-term lateral pressures on the MSE wall (SMSE). ASD details in FHWA-CFL/TD-06-001 (Morrison et al. 2006); LRFD update in GEC 11, FHWA-NHI-10-024 (Berg et al. 2009).",
+      "body": "2.4.7 Shored Mechanically Stabilized Earth (SMSE) Walls (pp. 20-21). Soil nail walls are increasingly combined with MSE walls to widen low-volume roads by fill placement in steep terrain. MSE construction in steep terrain requires excavating a flat bench for the reinforcement, and the required embedment increases with the steepness of the slope below the toe; if the slope is too steep the excavation becomes impractical, particularly where traffic must be maintained. A soil nail wall can shore the backslope (back-cut) first, allowing a conventional MSE wall to be built in front of it (Figure 2.7). If the soil nail wall is designed as permanent, the nails can significantly reduce the long-term lateral pressures on the MSE wall; this configuration is an SMSE wall. Details are given in the ASD platform in FHWA-CFL/TD-06-001 (Morrison et al. 2006) and updated in the LRFD platform in FHWA-NHI-10-024/FHWA GEC 11 (Berg et al. 2009).",
+      "key_points": [
+        "Widening low-volume roads by fill in steep terrain where MSE bench excavation is impractical",
+        "Soil nail wall shores the back-cut; conventional MSE wall built in front",
+        "Permanent nails significantly reduce long-term lateral pressure on the MSE wall (SMSE)",
+        "ASD: FHWA-CFL/TD-06-001 (Morrison et al. 2006); LRFD: GEC 11, FHWA-NHI-10-024 (Berg et al. 2009)"
+      ],
+      "equations": [],
+      "figures": [
+        {
+          "figure_id": "Figure 2.7",
+          "title": "SMSE wall for steep terrain",
+          "description": "Generic cross-section of a shored MSE wall. Modified after Morrison et al. (2006).",
+          "page": 21
+        }
+      ],
+      "tables": [],
+      "applicability": "Shored MSE walls for road widening in steep terrain."
     },
     {
       "section_id": "2.5",
-      "title": "Advantages and Limitations",
-      "body": "Advantages of soil nail walls include: lower cost than many conventional retaining wall systems (typically 10-30% savings); relatively fast construction; easily adaptable to varying site geometry and wall alignment changes; less disruptive to traffic; less right-of-way required compared to conventional cut slopes; and flexible system that can tolerate relatively large deformations without structural distress. Limitations include: not suitable where large surcharges exist close behind the wall crest; potential for excessive deformation for structures sensitive to movement; difficulty in high-groundwater conditions; limited effectiveness in soft fine-grained soils prone to creep; and corrosion concerns for permanent applications in aggressive ground conditions.",
+      "title": "Advantages and Limitations of Soil Nailing",
+      "summary": "Advantages in construction, performance and cost (2.5.1) and the main limitations (2.5.2).",
+      "body": "2.5 Advantages and Limitations of Soil Nailing (pp. 21-23). Subsections 2.5.1 Advantages (2.5.1a Construction, 2.5.1b Performance, 2.5.1c Cost) and 2.5.2 Limitations.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Advantages and limitations of soil nailing; see the subsections."
+    },
+    {
+      "section_id": "2.5.1",
+      "title": "Advantages",
+      "summary": "Construction: smaller ROW (nails shorter than anchors); less traffic disruption and environmental impact than drilled shafts or soldier piles; less congestion than braced excavations; fast; easy field adjustment around obstructions; less overhead restriction; suits remote sites; multipurpose equipment; many qualified contractors; handles curves. Performance: flexible, tolerates large movements; deflections usually tolerable with controlled construction; good seismic performance; more redundancy than anchored walls; sculpted facings. Cost: cheaper than concrete gravity walls over about 12 to 15 ft; equal to or cheaper than anchored walls.",
+      "body": "2.5.1 Advantages (pp. 21-22). Advantages fall into three categories. 2.5.1a Construction: smaller ROWs than most competing systems, including ground anchors, as soil nails are typically shorter; less disruption to traffic and less environmental impact than drilled shafts or soldier pile walls, which need relatively large equipment; less congestion in the excavation than braced excavations; relatively fast installation; easy adjustments to nail inclination and location around obstructions such as boulders, piles or utilities (adjusting ground anchors often requires changing the soldier pile layout or adding walers, which is costly); not as restricted by overhead limits as soldier piles, important under bridges; may be more cost-effective at remote sites because the smaller equipment is more readily mobilized; multipurpose equipment also usable for underpinning or protecting adjacent movement-sensitive structures; a relatively large number of qualified contractors; widespread knowledge among engineers; and curves and bends accommodated more easily than other top-down systems that need straight segments. 2.5.1b Performance: relatively flexible, accommodating comparatively large total and differential movements; measured deflections usually within tolerable limits in roadway projects when construction is properly controlled; good performance during seismic events; more redundancy than anchored walls, with more reinforcing elements per unit area; sculpted facings give a more natural appearance. 2.5.1c Cost: conventional soil nail walls tend to be more economical than conventional concrete gravity walls taller than approximately 12 to 15 ft, and are typically equivalent in cost or more cost-effective than ground anchor walls when conventional procedures are used.",
       "key_points": [
-        "Cost savings of 10-30% compared to conventional systems",
-        "Fast construction with minimal traffic disruption",
-        "Easily adaptable to varying site geometry",
-        "Less right-of-way required than conventional cut slopes",
-        "Flexible system tolerant of large deformations",
-        "Not suitable with large surcharges near wall crest",
-        "Limited effectiveness in soft fine-grained soils or high groundwater",
-        "Corrosion concerns for permanent walls in aggressive environments"
+        "Smaller ROW than most competing systems, including ground anchors",
+        "Less traffic disruption and environmental impact than drilled shafts or soldier pile walls",
+        "Fast; easy adjustment of nail location and inclination around obstructions",
+        "Less restricted by overhead limits than soldier piles (useful under bridges)",
+        "Multipurpose equipment; many qualified contractors; curves accommodated easily",
+        "Flexible; deflections usually tolerable with controlled construction; good seismic performance",
+        "More redundancy than anchored walls",
+        "More economical than concrete gravity walls taller than about 12 to 15 ft",
+        "Equal to or more cost-effective than ground anchor walls with conventional procedures"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Feasibility evaluation and comparison with alternative retention systems."
+      "applicability": "Comparing soil nail walls with other top-down systems."
+    },
+    {
+      "section_id": "2.5.2",
+      "title": "Limitations",
+      "summary": "Strict movement criteria need added measures and cost, and very strict criteria may rule soil nails out. Utilities behind the wall restrict nail location, inclination and length, especially in upper rows. Not well suited where large amounts of groundwater seep into the excavation; a temporary unsupported face is needed. Permanent walls need permanent underground easements. Tendons may interfere with some communication lines (e.g., optic fiber) next to the wall.",
+      "body": "2.5.2 Limitations (p. 23). Where strict wall movement criteria exist, additional measures to limit deflections may be required, adding cost; with very strict criteria soil nails may not be feasible. Utilities behind the wall will likely restrict the location, inclination and length of nails, particularly in the upper rows. Soil nail walls are not well suited where large amounts of groundwater seep into the excavation, and they require a temporary unsupported excavation face during construction. Permanent soil nail walls require permanent underground easements. Soil nail tendons may interfere with certain communication lines (e.g., optic fiber) running immediately adjacent to the wall.",
+      "key_points": [
+        "Strict movement criteria add cost; very strict criteria may make soil nails infeasible",
+        "Utilities restrict nail location, inclination and length, especially upper rows",
+        "Not well suited to large groundwater seepage into the excavation",
+        "Needs a temporary unsupported excavation face",
+        "Permanent underground easements required",
+        "Tendons may interfere with adjacent communication lines (e.g., optic fiber)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Conditions that limit the use of soil nail walls."
     },
     {
       "section_id": "2.6",
-      "title": "Feasibility Evaluation",
-      "body": "A feasibility evaluation should be performed early in the project to determine if soil nailing is viable. Key factors include: soil type and stratigraphy (must be able to stand in a near-vertical cut of 1-2 m for a short period); groundwater conditions (water table preferably below excavation bottom); wall geometry and height; proximity to existing structures (deformation tolerance); construction access and available equipment; right-of-way constraints and underground utilities; corrosion potential of the ground; and seismic considerations.",
+      "title": "Evaluation of Soil Nail Walls",
+      "summary": "Feasibility evaluation (2.6.1), main risks and their management (2.6.2), and aesthetics (2.6.3).",
+      "body": "2.6 Evaluation of Soil Nail Walls (pp. 23-25). Subsections 2.6.1 Overview, 2.6.2 Main Risks and Risk Management, 2.6.3 Aesthetics.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Feasibility evaluation of soil nail walls; see the subsections."
+    },
+    {
+      "section_id": "2.6.1",
+      "title": "Overview",
+      "summary": "Feasibility evaluation covers technical and economic aspects: prevailing ground conditions (Chapter 4), advantages, disadvantages and risks for the application, comparison with alternatives such as anchored or braced walls, and a preliminary cost evaluation. Assess whether a stable test cut is feasible: stable cuts can be 3 to 5 ft high, but taller cuts of 4 to 6 ft would be more indicative of favorable conditions. Poor test-section stability may also signal other problems such as caving of uncased holes.",
+      "body": "2.6.1 Overview (p. 23). The feasibility evaluation should encompass technical and economic considerations and include: an evaluation of the prevailing ground conditions; an assessment of the advantages, disadvantages and risks of soil nail walls for the application; a comparison with alternative systems such as ground anchor or braced walls; and a preliminary evaluation of costs. Ground conditions are discussed in Chapter 4; the evaluation should include assessing the feasibility of a stable test cut section. While stable cuts can be between 3 and 5 ft high, taller cuts, between 4 and 6 ft, would be more indicative of favorable subsurface conditions. Unfavorable stability observed in test sections may also be related to other undesirable conditions, such as caving of uncased drill holes. In-depth comparisons with alternative systems are not presented.",
       "key_points": [
-        "Evaluate soil ability to stand unsupported in 1-2 m cuts for short periods",
-        "Groundwater preferably below excavation bottom",
-        "Consider wall geometry, height, and proximity to structures",
-        "Assess deformation tolerance of nearby structures",
-        "Evaluate construction access and equipment requirements",
-        "Check right-of-way constraints and underground utilities",
-        "Assess corrosion potential and seismic considerations"
+        "Evaluate ground conditions, risks, alternatives (anchored or braced walls) and preliminary cost",
+        "Assess feasibility of a stable test cut section",
+        "Stable cuts 3 to 5 ft; 4 to 6 ft cuts more indicative of favorable conditions",
+        "Poor test-cut stability may signal other problems, e.g. caving of uncased holes"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Early-stage project feasibility assessment."
+      "applicability": "Scope of a soil nail wall feasibility evaluation."
+    },
+    {
+      "section_id": "2.6.2",
+      "title": "Main Risks and Risk Management",
+      "summary": "Common risks: inadequate subsurface investigation, parameter selection, analysis model, QC/QA, and performance monitoring. Soil nail risks: corrosion, groundwater seepage, unconfirmed pullout design values, and key design elements (global stability, deformation) missed when design is delegated to an unprepared Contractor. Management: the Owner obtains site data and evaluates corrosion potential and risk tolerance; sets reasonable movement criteria with monitoring and action plans; evaluates groundwater; verification and proof testing on all projects; global stability and deformation analyses before bid, shared with the Contractor.",
+      "body": "2.6.2 Main Risks and Risk Management (pp. 24-25). Risks common to all earth-supporting systems include the lack of: a thorough and adequate subsurface investigation; adequate selection of design parameters; a proper analysis model; thorough construction QC and QA; and verification of short- and long-term performance by geotechnical monitoring (generally only needed where sensitive structures exist behind the wall or other long-term risks arise). Risks specific to soil nail walls: corrosion may impact the long-term performance of steel bars and other metallic components if not properly considered; large amounts of groundwater seeping into the excavation may complicate construction, particularly of the lower lifts, and high groundwater may affect long-term performance; design procedures require effective confirmation of the pullout resistance used in design; and significant risks arise if key design elements are not adequately considered in specifications and schedule, e.g., global stability or deformation analyses missed when the Owner delegates the entire design to a Contractor who lacks the resources or schedule. Risk management measures: the Owner must obtain sufficient site data for internal and external design and ensure that the corrosion potential is thoroughly evaluated by the Owner's engineer (or make it the Contractor's responsibility), to indicate the required protection level; the Owner should state its tolerance to corrosion risk and ability to cover protection costs. The Owner's engineer must select reasonable movement criteria; if strict deformation control is required, evaluate ground movement in design, possibly by numerical analyses, consider short- and possibly long-term monitoring, and develop action plans for monitoring and remedial response during construction; this may show soil nails are not cost-effective. The Owner's engineer must evaluate groundwater and seepage potential in the geotechnical report and design; drainage may be needed, and soil nails may prove not cost-effective. A verification and proof load test program must be conducted on all soil nail projects to confirm the pullout resistance used in design. The Owner should have its engineer perform global stability and deformation analyses (if needed) before bids and make the results available to the Contractor; if delegated, the contract documents must clearly describe the Contractor's design qualifications and submittals, the scope, design criteria and performance criteria.",
+      "key_points": [
+        "Common risks: poor investigation, parameter selection, analysis model, QC/QA, lack of monitoring",
+        "Soil nail risks: corrosion, groundwater seepage, unconfirmed pullout resistance, design elements missed when delegated",
+        "Owner obtains site data and has corrosion potential evaluated; states corrosion risk tolerance",
+        "Reasonable movement criteria; numerical analyses, monitoring and action plans where deformation control is strict",
+        "Evaluate groundwater and seepage in the geotechnical report and design",
+        "Verification and proof load testing required on all soil nail projects",
+        "Global stability and deformation analyses before bids, shared with the Contractor",
+        "If design is delegated: define Contractor qualifications, submittals, scope, design and performance criteria"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identifying and managing soil nail project risks."
+    },
+    {
+      "section_id": "2.6.3",
+      "title": "Aesthetics",
+      "summary": "Aesthetics can drive wall-type decisions and is often the only aspect the Owner gives input on. Shotcrete is rough and irregular; troweling or brooming improves it. At added cost, shotcrete and concrete can be dyed, sculpted or molded to look like rock, stone or brick, and the nail head can support other facings such as MSE panels; these options can be expensive compared to a shotcrete permanent facing (Chapter 3).",
+      "body": "2.6.3 Aesthetics (p. 25). The aesthetics of a soil nail wall can be an important decision factor for an Owner considering wall types, and designers should be sensitive to it, as it is often the only aspect of wall construction the Owner may provide input on. Shotcrete facing has a rough and irregular appearance, which can be improved by trowels or brooms. Further options at a cost: shotcrete and concrete can be dyed, sculpted and/or molded to represent natural rock formations, stone or brickwork, and the protruding nail head can be configured as a connection supporting other facings, such as MSE wall panels. These options can be expensive compared to shotcrete as a permanent facing (Chapter 3).",
+      "key_points": [
+        "Aesthetics often the only aspect the Owner gives input on",
+        "Shotcrete rough and irregular; trowel or broom finish improves it",
+        "Dyed, sculpted or molded shotcrete or concrete; nail heads can support other facings (e.g., MSE panels)",
+        "Aesthetic options can be expensive compared to a shotcrete permanent facing"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Facing appearance options and their cost."
     },
     {
       "section_id": "2.7",
-      "title": "Favorable and Unfavorable Soil Conditions",
-      "body": "Favorable soil conditions for soil nailing include: stiff to hard fine-grained soils with low to moderate plasticity and low moisture content; dense to very dense granular soils with apparent cohesion or cementation; weathered rock; and glacial soils (tills). Unfavorable conditions include: dry, cohesionless soils (loose sand or gravel without fines, unable to stand unsupported); soils with high groundwater; soft to very soft fine-grained soils (Su < 25 kPa); highly organic or peat soils; highly corrosive ground; soils susceptible to piping or running; expansive clays; and loess with high moisture content. Marginal conditions may include: soils with cobbles and boulders (drilling difficulties) and soils with relict slip surfaces.",
+      "title": "Favorable/Unfavorable Soil Conditions for Soil Nailing",
+      "summary": "Ground conditions that make soil nailing favorable (2.7.2), difficult or marginal (2.7.3), or unfavorable (2.7.4).",
+      "body": "2.7 Favorable/Unfavorable Soil Conditions for Soil Nailing (pp. 25-31). Subsections 2.7.1 Overview to 2.7.4 Unfavorable Soil Conditions for Soil Nailing.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Ground suitability for soil nailing; see the subsections."
+    },
+    {
+      "section_id": "2.7.1",
+      "title": "Overview",
+      "summary": "Soil nail walls can be used in a wide range of soils. Favorable conditions make them more cost-effective than other techniques; mixed stratigraphy is fine if each layer is suitable and stable. Unfavorable conditions may make soil nailing marginal, risky or costlier than alternatives.",
+      "body": "2.7.1 Overview (pp. 25-26). Soil nail walls can be used in a wide range of soil types and ground conditions. Project experience shows that certain favorable conditions make soil nailing more cost-effective than other techniques. Walls can generally be built without complications in a mixed stratigraphy as long as the individual layers consist of suitable, stable materials. Certain unfavorable conditions can be marginal or difficult and may make soil nails risky and/or more costly than other techniques. The following subsections present favorable, difficult and unfavorable conditions.",
       "key_points": [
-        "Favorable: stiff to hard fine-grained soils with low PI",
-        "Favorable: dense granular soils with apparent cohesion",
-        "Favorable: weathered rock, glacial tills",
-        "Unfavorable: dry cohesionless soils that cannot stand unsupported",
-        "Unfavorable: high groundwater, soft clays (Su < 25 kPa)",
-        "Unfavorable: highly organic, highly corrosive, or piping-susceptible soils",
-        "Marginal: cobbles/boulders, relict slip surfaces"
+        "Usable in a wide range of soils; mixed stratigraphy acceptable if each layer is suitable and stable",
+        "Unfavorable conditions make soil nailing risky or costlier than alternatives"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Soil suitability assessment for soil nail wall feasibility."
+      "applicability": "Introduction to ground suitability for soil nailing."
+    },
+    {
+      "section_id": "2.7.2",
+      "title": "Favorable Ground Conditions for Soil Nailing",
+      "summary": "Favorable: soil stands in a 4- to 6-ft vertical cut for one to two days; nails in permeable ground are above the water table; holes stay open uncased until grouted. Below the water table only in low-permeability fine-grained soils, checking pore pressures and larger deflections. Well suited: dense to very dense granular soils with apparent cohesion (fines under 10-15%, N60 > 30 bpf; 200-300 psf apparent cohesion for a 4-ft cut); weathered rock with favorably oriented weakness planes; stiff to hard fine-grained soils (N60 >= 9 bpf; low creep if PI < 15); engineered fill; some residual soils; glacial till.",
+      "body": "2.7.2 Favorable Ground Conditions for Soil Nailing (pp. 26-28). Soil nailing has proven attractive and feasible where: the excavated soil can stand unsupported in a 4- to 6-ft high vertical or nearly vertical cut for one to two days; nails installed in a relatively permeable formation are above the groundwater table; and drill holes remain stable without casing until the tendons are installed and the hole is grouted. Conditions are presumed favorable when field tests show competent soils above the water table. Walls can be built below the water table if nails are in low-permeability fine-grained soils with little seepage, though this may not be feasible for other reasons or cost-effective; the designer must consider the long-term evolution of pore pressures and its effect on internal and global stability, and the potential for excessive deflection, which tends to be larger in saturated, low-permeability fine-grained soils (likely with some plasticity) than in granular soils; the Contractor must use drilling procedures that do not deteriorate the ground. Well-suited ground: (1) Dense to very dense granular soils with apparent cohesion: dense to very dense sand, gravel or both, with some fines (typically less than 10 to 15 percent) or weak natural cementation, and SPT N60 greater than 30 blows per foot (bpf). Capillary forces can give apparent cohesion in fine sands if they stay unsaturated (neither dry nor saturated). There are no widely accepted criteria for the minimum apparent cohesion, so local experience plays a significant role; stand-up ability can be checked with test pits or face cuts. A minimum apparent cohesion of 200 to 300 psf is necessary for stability of 4-ft tall unsupported faces. To avoid losing it: limit exposure in dry weather to no more than a few hours, prevent surface water infiltration behind the excavation, and prevent seepage toward the face. (2) Weathered rock with adverse weakness planes (heading as printed): suitable as long as weakness planes, if present, have favorable orientations; approximately uniform weathering is desirable so one drilling method suffices; highly variable weathering means the Contractor must drill varied conditions, which may raise costs. (3) Stiff to hard fine-grained soils: stiff to hard clays, clayey silts, silty clays, sandy clays and sandy silts; stiff if SPT N60 is 9 bpf or greater, with caution where N values come from non-automatic hammers or antiquated methods, supplemented by other field or laboratory tests. The potential for excessive long-term creep-like displacement is low in fine-grained soils with PI less than 15. (4) Engineered fill: suitable if a mixture of well-graded granular material (approximately 90 percent of the mix or more) and fine-grained soil with LL and PI less than 40 and 20, placed with acceptable compaction (at least 90 percent of Standard Proctor, ASTM D698 or AASHTO T99); the age of the fill is critical, and young embankment fills may be problematic. (5) Residual soils: some, including lateritic soil, may be acceptable, considering spatial variability and drainage. (6) Glacial till: often dense, well-graded granular material with relatively small fines content, but may present installation difficulties (Section 2.7.4).",
+      "key_points": [
+        "Soil stands unsupported in a 4- to 6-ft vertical or near-vertical cut for one to two days",
+        "Nails in permeable ground above the groundwater table; holes stable uncased until grouted",
+        "Below the water table only in low-permeability fine-grained soils; check pore pressures and larger deflections",
+        "Dense to very dense granular soils: fines typically < 10-15% or weak cementation, N60 > 30 bpf",
+        "Minimum apparent cohesion 200 to 300 psf for a 4-ft tall unsupported face",
+        "Weathered rock with favorably oriented weakness planes and roughly uniform weathering",
+        "Stiff to hard fine-grained soils: N60 >= 9 bpf; creep potential low where PI < 15",
+        "Engineered fill: ~90%+ well-graded granular, fines LL < 40 and PI < 20, >= 90% Standard Proctor; young fills problematic",
+        "Some residual and lateritic soils; glacial till (with caveats)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Ground conditions well suited to soil nail walls."
+    },
+    {
+      "section_id": "2.7.3",
+      "title": "Difficult Soil Conditions for Soil Nailing",
+      "summary": "Difficult or marginal conditions, where walls have been built successfully but not necessarily as the most cost-effective option: non-engineered fill (acceptable if similar to engineered fill; new or poorly compacted fills risk irregular nail capacity and excessive deformation) and residual soils with unsuitable materials such as mica or shale giving low strength or stiffness.",
+      "body": "2.7.3 Difficult Soil Conditions for Soil Nailing (p. 28). Soil conditions less favorable than those in 2.7.2 are difficult or marginal; walls have been installed successfully in them, but not necessarily as the most cost-effective option. Examples: non-engineered fill, where nails may be successful if the fill has characteristics similar to engineered fill, while newly placed non-engineered embankments or fills placed with inadequate compaction methods or energy may be problematic because of irregular nail capacity and excessive deformations; and residual soils with unsuitable conditions, containing materials (e.g., mica, shale) that impart low strength or stiffness.",
+      "key_points": [
+        "Built successfully, but not necessarily the most cost-effective option",
+        "Non-engineered fill: acceptable if similar to engineered fill; new or poorly compacted fill problematic",
+        "Residual soils with mica or shale: low strength or stiffness"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Marginal ground for soil nailing."
+    },
+    {
+      "section_id": "2.7.4",
+      "title": "Unfavorable Soil Conditions for Soil Nailing",
+      "summary": "Unfavorable: dry poorly graded cohesionless soils; granular soils with high groundwater; cobbles and boulders; soft to very soft fine-grained soils (N60 < 4 bpf); collapsible soils; organic soils; highly corrosive soil or groundwater (cinder, slag); weathered rock with unfavorable weakness planes; karst; loess (collapse on wetting); some glacial tills; expansive soils. Also: frost action and freeze-thaw, vibration settlement of very loose (N60 <= 4) and loose (4 < N60 <= 10) granular soils, liquefaction, and weak zones such as utility trenches. Walls may still be built at higher cost.",
+      "body": "2.7.4 Unfavorable Soil Conditions for Soil Nailing (pp. 28-31). Soil nail walls are generally unsuitable, or more difficult and expensive, in: dry, poorly graded cohesionless soils, where without cohesion vertical or near-vertical cuts are difficult; granular soils with high groundwater, which may need drainage, cause drill holes to collapse (especially in loose granular soils, requiring casing and cost) and hamper shotcrete where seepage reaches the face; soils with cobbles and boulders, which make drilling difficult and costly; soft to very soft fine-grained soils with SPT N60 less than 4 bpf, which even slightly above 4 bpf may be highly plastic with low bond resistance (needing unreasonably long nails) and creep; collapsible soils, which can appear competent but undergo large sudden volume change on saturation, even without added load, causing problems in excavation or deteriorating long-term bond; organic soils (organic silt, organic clay, peat), with very low shear resistance and bond and possibly uneconomical or unfeasible designs; fibrous peat may be highly heterogeneous and anisotropic, needing very long nails, and organic soils tend to be more corrosive; highly corrosive soil or groundwater, especially detrimental for permanent walls, e.g. cinder and slag; weathered rock with unfavorable weakness planes (joints, fractures, shears, faults, bedding, schistosity, cleavage), which affect hole stability and grouting and may form unstable blocks that deteriorate after excavation (gouge, uplift and lateral water pressures, seepage forces), and large open joints or voids cause excessive grout loss; karst formations, where grouting is not appropriate due to excessive grout loss; loess, acceptable when dry but liable to collapse and lose strength when water collects, so collapse potential upon wetting must be evaluated and water kept away, with unusually long nails possible and regrouting (atypical, costlier) used to raise bond; glacial till with boulders, cobbles and coarse gravel (drilling difficulty), granular till with significant preconsolidation (stress relief may destabilize the face, possibly needing vertical drilled bars), and fine-grained overconsolidated till (stress relief and outward movement continuing over time); and expansive soils, which may induce localized facing pressure and deteriorate bond. Other aspects: prolonged freezing may cause frost action in saturated granular soils and silt, raising localized facing pressures; repeated freeze-thaw near the surface may reduce bond and shotcrete-soil adhesion, so freeze-thaw should be considered in shotcrete design; very loose (N60 <= 4) and loose (4 < N60 <= 10) granular soils may settle excessively from construction vibration; loose and very loose saturated granular soil may liquefy in seismic regions, and densification adds significant cost; weak zones behind the wall, such as continuous utility trenches parallel and close to the wall with poorly compacted or unsuitable backfill, may promote instability. Walls may still be constructible in these conditions, but at greater cost, possibly with stricter performance requirements and monitoring; such conditions also affect alternative support systems.",
+      "key_points": [
+        "Dry, poorly graded cohesionless soils: vertical cuts difficult",
+        "Granular soils with high groundwater: drainage, caving holes, casing, shotcrete problems",
+        "Cobbles and boulders: drilling difficulty, cost and delay",
+        "Soft to very soft fine-grained soils (N60 < 4 bpf): low bond, long nails, creep",
+        "Collapsible soils, organic soils, highly corrosive soil or groundwater (cinder, slag)",
+        "Weathered rock with unfavorable weakness planes: unstable blocks, grout loss",
+        "Karst: grouting not appropriate (grout loss)",
+        "Loess: evaluate collapse potential on wetting; regrouting has been used to raise bond",
+        "Glacial till with boulders or stress relief; expansive soils",
+        "Very loose (N60 <= 4) and loose (4 < N60 <= 10) granular soils may settle from construction vibration",
+        "Also consider frost action, freeze-thaw, liquefaction, and weak zones such as utility trenches"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Ground conditions that make soil nailing unsuitable or costly."
     },
     {
       "section_id": "2.8",
-      "title": "Factors Affecting Costs",
-      "body": "Major factors affecting soil nail wall costs include: wall height and length (primary cost driver); soil nail length, diameter, and spacing; drilling method and ground conditions (harder ground increases cost); type and level of corrosion protection; type of facing (shotcrete vs. CIP concrete, initial vs. final facing); drainage provisions; right-of-way and access constraints; local labor and material costs; contractor experience; project size (mobilization costs amortized over larger projects); and load testing requirements. Cost comparisons should be made with alternative systems including soldier pile and lagging, anchored walls, MSE walls, and conventional gravity walls.",
+      "title": "Factors Affecting Costs and Construction Schedule",
+      "summary": "Cost factors: access and ROW; unfavorable soils; groundwater, seepage and dewatering; materials; mobilization; local contractors; working space; temporary support or berms between lifts; drilling obstructions; casing; anchors near large infrastructure; long-term monitoring; high corrosion protection; variable ground; extra verification tests; facing aesthetics; seismicity and frost. Permanent soil nail walls in public transportation projects typically cost about $70 to $100 per square foot of wall (2014) and can give 10 to 30 percent savings over other common retaining structures.",
+      "body": "2.8 Factors Affecting Costs and Construction Schedule (pp. 31-32). Factors to consider in cost comparison: site accessibility and right-of-way; unfavorable soil conditions; high permanent groundwater in granular soils; excessive seepage on the facing regardless of source or soil type; excessive groundwater in the excavation and temporary dewatering; material availability, including bar size and cement type; mobilization cost; availability of specialty contractors skilled in soil nailing and shotcrete near the site; space to operate equipment, including a drill platform; temporary support of exposed soil between lifts, including an intermediate soil berm; difficult drilling from obstructions (utilities, large aggregate or stones, deep foundations behind abutments); in-hole stability measures such as casing; ground anchors or other means to limit deflection next to large existing infrastructure; long-term monitoring; high levels of corrosion protection; large variations of ground over short distances requiring frequent changes of drilling equipment and procedures; changing ground requiring numerous additional verification tests; special facing aesthetics, including precast panels or sculpted facings; and regional conditions including high seismicity and frost susceptibility. Logistics of other systems should also be considered: ability to drill or drive soldier piles, easements for long anchors, schedule issues for access in front of the wall, and existing and proposed utilities. Construction costs of permanent soil nail walls in public transportation projects typically range from approximately $70 to $100 per square foot of wall in 2014, though actual costs may be considerably lower or higher depending on these factors. Compared with typical costs of other common retaining structures on U.S. highway projects, soil nail walls can provide 10 to 30 percent cost savings.",
       "key_points": [
-        "Primary cost driver: wall height and length",
-        "Ground conditions and drilling method significantly affect cost",
-        "Corrosion protection level affects cost substantially",
-        "Facing type: shotcrete vs CIP concrete",
-        "Compare with alternatives: soldier pile, anchored walls, MSE, gravity walls",
-        "Contractor experience and project size affect unit costs",
-        "Load testing requirements add to project cost"
+        "Access and ROW, unfavorable soils, groundwater, seepage and dewatering",
+        "Materials, mobilization, local specialty contractors, working space",
+        "Temporary support between lifts, drilling obstructions, casing, anchors near large infrastructure",
+        "Long-term monitoring, high corrosion protection, variable ground, extra verification tests",
+        "Facing aesthetics; seismicity and frost",
+        "Typical cost ~$70 to $100 per square foot of wall (2014)",
+        "10 to 30 percent savings versus other common retaining structures"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Cost estimation and comparison with alternative retention systems."
+      "applicability": "Preliminary cost and schedule comparison of soil nail walls."
     }
   ]
 }

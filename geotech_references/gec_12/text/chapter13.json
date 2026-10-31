@@ -1,0 +1,256 @@
+{
+  "reference_id": "FHWA-NHI-16-009",
+  "reference_title": "Design and Construction of Driven Pile Foundations",
+  "volume": 2,
+  "chapter": 13,
+  "chapter_title": "Dynamic Formulas",
+  "sections": [
+    {
+      "section_id": "13.1",
+      "title": "Background",
+      "summary": "Dynamic formulas equate hammer potential energy to resistance times set (Eq 13-1) and correlate poorly with load tests. AASHTO (2014) includes the FHWA modified Gates and an AASHTO modified Engineering News formula, neither for nominal resistance over 600 kips. Engineering News (EOD) has mean 1.22 and COV 0.74; Modified Gates 0.96 and 0.41; both overpredict from restrike data. Formulas poorly model the driving system, assume a rigid pile and treat soil resistance as constant and equal to static.",
+      "body": "13.1 (p. 261): only set per blow could be observed, so energy concepts equating hammer potential energy to resistance times set were developed (Eq 13-1); some formulas add pile weight, drive system losses or temporary compression, but all correlate poorly with static load tests. AASHTO (2014) includes the FHWA modified Gates formula and an AASHTO modified Engineering News formula; both AASHTO specifications say not to use a dynamic formula above 600 kips. 13.1.1 (pp. 262-265): Wellington (1892) developed Engineering News for timber piles driven by drop hammers in sand. A 1941 ASCE committee database (mean failure load 91 tons) led Peck (1942) to note that taking every pile as 91 tons would be statistically closer than any formula studied (Likins et al. 2012). Actual factors of safety from Engineering News: 1/2 to 16 (Chellis 1961), 2/3 to 20 (Sowers 1979); Hiley, Gates, Janbu and Pacific Coast formulas were more dependable (Fragasny et al. 1988). Rausche et al. (1996), extended for the 1998 manual (Figure 13-1, Table 13-1): Engineering News EOD mean 1.22, COV 0.74; Modified Gates EOD 0.96, 0.41; from restrike 1.89, 0.46 and 1.33, 0.48. Engineering News gave an average factor of safety of 2.3 against the theoretical 6.0, ranging 0.6 to 13.1, with 12% at 1.0 or less; failures usually show as long term settlement. Hidden reserve from redundancy is reduced in LRFD designs with fewer, larger piles; the AASHTO Engineering News version gives nominal resistance but keeps the inherent problems. 13.1.2 (pp. 265-266): formulas consider only potential energy, not anvil, helmet and cushions that shape the peak force and its duration; they assume a rigid pile, ignoring wave travel in a long elastic rod; and they treat soil resistance as constant and equal to static, ignoring the viscous dynamic resistance from the high shear rate.",
+      "key_points": [
+        "Eq 13-1: W h = Rn sb (hammer potential energy = resistance x set per blow)",
+        "AASHTO (2014) formulas: FHWA modified Gates and AASHTO modified Engineering News; not above 600 kips",
+        "Peck (1942): a constant 91 tons would beat every formula in the 1941 ASCE database",
+        "Engineering News EOD: mean 1.22, COV 0.74; Modified Gates EOD: mean 0.96, COV 0.41",
+        "From restrike data both overpredict: Engineering News 1.89, Modified Gates 1.33",
+        "Engineering News actual factor of safety 0.6 to 13.1 (average 2.3 vs theoretical 6.0); 12% at 1.0 or less",
+        "Table 13-1: CAPWAP BOR mean 0.92, COV 0.22; standard WEAP BOR 1.22, 0.35",
+        "Formulas ignore driving system losses, pile flexibility and dynamic soil resistance"
+      ],
+      "equations": [
+        {
+          "eq_id": "13-1",
+          "description": "Basic dynamic formula energy concept",
+          "formula": "W * h = R_n * s_b",
+          "variables": {
+            "W": "ram weight",
+            "h": "ram stroke",
+            "R_n": "nominal resistance",
+            "s_b": "set per blow"
+          },
+          "notes": "p. 261",
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        {
+          "figure_id": "13-1",
+          "title": "Log normal probability density function for four resistance predictions",
+          "description": "Log normal probability density of predicted/static load test resistance at beginning of restrike (BOR), with (mean, COV, number of piles): standard WEAP (1.22, 0.35, 99), adjusted WEAP (1.16, 0.35, 99), original CAPWAP (0.92, 0.22, 99), static analysis (1.30, 0.68, 89). CAPWAP gives the narrowest, highest peak; static analysis the widest.",
+          "page": 264
+        }
+      ],
+      "tables": [
+        {
+          "table_id": "13-1",
+          "title": "Mean Values and Coefficients of Variation for Various Methods",
+          "description": "Mean (predicted/static load test) and COV: Standard WEAP BOR 1.22, 0.35 (99 piles); hammer performance adjusted WEAP BOR 1.16, 0.35 (99); CAPWAP BOR 0.92, 0.22 (99); static analysis 1.30, 0.68 (89); Engineering News EOD 1.22, 0.74 (139) and BOR 1.89, 0.46 (122); Modified Gates EOD 0.96, 0.41 (139) and BOR 1.33, 0.48 (122). WEAP, CAPWAP and static rows from Rausche et al. (1996).",
+          "page": 265
+        }
+      ],
+      "applicability": "Why dynamic formulas are the least reliable field method for nominal resistance."
+    },
+    {
+      "section_id": "13.2",
+      "title": "Resistance Factors for Dynamic Formulas",
+      "summary": "AASHTO (2014) resistance factors: 0.40 for the FHWA modified Gates formula and 0.10 for the AASHTO modified Engineering News formula, each for end of driving only; reduce by 20% for non-redundant foundations of 4 piles or less. AASHTO (2010) construction specifications recommend the Gates formula when a formula sets the driving criterion; other formulas must be calibrated to static load tests. WSDOT and MnDOT formulas are not in AASHTO.",
+      "body": "13.2 (pp. 266-267): only the FHWA modified Gates and AASHTO modified Engineering News formulas have AASHTO resistance factors (Table 13-2). If a dynamic formula sets the driving criterion, AASHTO (2010) LRFD Bridge Construction Specifications Article 4.4.4.5 recommends the FHWA modified Gates formula; any other formula should be calibrated to measured static load tests for its resistance factor. AASHTO (2014) resistance factors are 0.40 for Gates and 0.10 for Engineering News, reflecting their lower reliability; for non-redundant foundations of 4 piles or less, reduce the factor by a further 20%. The WSDOT and MnDOT formulas are not in AASHTO; their agency factors are in Section 13.3.3.",
+      "key_points": [
+        "AASHTO: phi_dyn = 0.40 FHWA modified Gates, end of driving only",
+        "AASHTO: phi_dyn = 0.10 AASHTO modified Engineering News, end of driving only",
+        "Non-redundant foundations (4 piles or less): reduce the resistance factor by a further 20%",
+        "AASHTO (2010) construction Art. 4.4.4.5: use FHWA modified Gates if a formula sets the criterion",
+        "Other formulas must be calibrated to static load tests; WSDOT and MnDOT factors are not in AASHTO"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        {
+          "table_id": "13-2",
+          "title": "Resistance Factors for Dynamic Formulas",
+          "description": "FHWA modified Gates, EOD only (13.3.1): 0.40; AASHTO modified Engineering News, EOD only (13.3.2): 0.10; WSDOT formula, EOD only (13.3.3.1): not in AASHTO; MnDOT formula (13.3.3.2): not in AASHTO, see text.",
+          "page": 267
+        }
+      ],
+      "applicability": "Resistance factors for nominal resistance from dynamic formulas."
+    },
+    {
+      "section_id": "13.3",
+      "title": "Dynamic Formulas",
+      "summary": "FHWA modified Gates (Eq 13-2): Rndr = 1.75 sqrt(Ed) log10(10 Nb) - 100 (kips, ft-lbs, blows/in.), with Eqs 13-3 and 13-4 for blows per foot. AASHTO modified Engineering News (Eq 13-5): Rndr = 12 Ed / (sb + 0.1). WSDOT (Eq 13-6): Rndr = 6.6 Feff Ed ln(10 Nb), phi 0.55 (0.45 non-redundant). MPF12 (Eq 13-7): Rndr = 40 sqrt(Wh/1000) log(10/sb), Eq 13-8 for timber with 20; Wh at most 85% of rated energy. Gates, Engineering News and WSDOT are for end of driving only; MPF12 was proposed for restrike too.",
+      "body": "13.3.1 (p. 268): AASHTO prefers the FHWA modified Gates formula for small projects (better correlation); the version here gives kips and includes Gates's 80% efficiency on the rated energy; units must be as specified (Eqs 13-2 to 13-4). Formulas are calibrated on end of driving blow counts against later load tests, so they already include setup or relaxation; AASHTO gives phi 0.40 and end of drive use only. 13.3.2 (p. 269): Engineering News estimates long term resistance from set, so restrike set should not be used; AASHTO modified version Eq 13-5, one of the least accurate formulas, phi 0.10, end of drive only. 13.3.3 (pp. 269-273): agency formulas consider hammer type, pile type and size and geology. WSDOT (Allen 2005) from 141 load tests (Paikowsky et al. 2004 database): Eq 13-6 with Feff 0.55 air/steam, 0.35 closed-end diesel, 0.47 open-end diesel on steel, 0.37 open-end diesel on timber or concrete, 0.58 hydraulic, 0.28 drop hammers; Nb averaged over the last four inches; includes about 30 to 70% setup, so not for restrike; Monte Carlo reliability, phi 0.55 for target beta 2.3 (redundant) and 0.45 for beta 3.0 (4 piles or less); adopted in Washington, New Mexico and Illinois (Table 13-3). MPF12 (Paikowsky et al. 2009, 2014): MnDOT/LT 2008 database of 40 H-pile, 65 closed-end and 12 open-end pipe sets, later expanded; Wh limited to 85% of maximum rated energy; target beta 2.33; phi 0.50 pipe, 0.60 H-piles, 0.50 non-voided prestressed concrete up to 24 in., 0.80 voided prestressed concrete 20 to 54 in. (to be revisited), all for 2 to 15 blows per inch; timber piles use a 0.5 modifier (Eq 13-8), phi 0.60. The study proposed MPF12 for end of driving or restrike without change, unusual for a dynamic formula.",
+      "key_points": [
+        "Eq 13-2 Gates: Rndr = 1.75 sqrt(Ed) log10(10 Nb) - 100; Rndr kips, Ed ft-lbs, Nb blows/inch",
+        "Eqs 13-3, 13-4: Nft = 12 (10^x), x = [(Rndr + 100)/(1.75 sqrt(Ed))] - 1",
+        "Eq 13-5 Engineering News: Rndr = 12 Ed / (sb + 0.1); Ed ft-kips, sb inches",
+        "Eq 13-6 WSDOT: Rndr = 6.6 Feff Ed ln(10 Nb); Feff 0.28 to 0.58 by hammer type",
+        "WSDOT phi 0.55 (beta 2.3) redundant, 0.45 (beta 3.0) non-redundant; includes about 30-70% setup",
+        "Eq 13-7 MPF12: Rndr = 40 sqrt(Wh/1000) log(10/sb); Wh at most 85% of rated energy",
+        "MPF12 phi: 0.50 pipe, 0.60 H, 0.50 non-voided prestressed to 24 in., 0.80 voided 20-54 in.; 2-15 blows/in.",
+        "Eq 13-8 MPF12 timber: Rndr = 20 sqrt(Wh/1000) log(10/sb), phi 0.60",
+        "Gates, Engineering News and WSDOT already include setup: end of driving only; MPF12 proposed for restrike too"
+      ],
+      "equations": [
+        {
+          "eq_id": "13-2",
+          "description": "FHWA modified Gates formula",
+          "formula": "R_ndr = 1.75 * sqrt(E_d) * log10(10 * N_b) - 100",
+          "variables": {
+            "R_ndr": "nominal driving resistance (kips)",
+            "E_d": "developed hammer energy (ft-lbs); if ram velocity is not measured, ram weight W (lbs) times stroke h (ft)",
+            "N_b": "pile penetration resistance (blows/inch)"
+          },
+          "notes": "p. 268. Includes Gates's 80% efficiency on rated energy; AASHTO phi 0.40, end of driving only.",
+          "implemented_in": null
+        },
+        {
+          "eq_id": "13-3",
+          "description": "FHWA modified Gates formula, blows per foot",
+          "formula": "N_ft = 12 * 10^x",
+          "variables": {
+            "N_ft": "pile penetration resistance (blows/foot)",
+            "x": "exponent from Eq 13-4"
+          },
+          "notes": "p. 268",
+          "implemented_in": null
+        },
+        {
+          "eq_id": "13-4",
+          "description": "Exponent for Eq 13-3",
+          "formula": "x = [(R_ndr + 100) / (1.75 * sqrt(E_d))] - 1",
+          "variables": {
+            "x": "exponent",
+            "R_ndr": "nominal driving resistance (kips)",
+            "E_d": "developed hammer energy (ft-lbs)"
+          },
+          "notes": "p. 268",
+          "implemented_in": null
+        },
+        {
+          "eq_id": "13-5",
+          "description": "AASHTO modified Engineering News formula",
+          "formula": "R_ndr = 12 * E_d / (s_b + 0.1)",
+          "variables": {
+            "R_ndr": "nominal driving resistance (kips)",
+            "E_d": "developed hammer energy (ft-kips)",
+            "s_b": "permanent pile set (inches)"
+          },
+          "notes": "p. 269. AASHTO phi 0.10, end of driving only.",
+          "implemented_in": null
+        },
+        {
+          "eq_id": "13-6",
+          "description": "WSDOT pile driving formula",
+          "formula": "R_ndr = 6.6 * F_eff * E_d * ln(10 * N_b)",
+          "variables": {
+            "R_ndr": "nominal pile resistance measured during driving (kips)",
+            "F_eff": "hammer efficiency factor: 0.55 air/steam; 0.35 closed-end diesel; 0.47 open-end diesel on steel; 0.37 open-end diesel on timber or concrete; 0.58 hydraulic; 0.28 drop",
+            "E_d": "developed energy = W * h (ft-kips)",
+            "W": "ram weight (kips)",
+            "h": "observed ram stroke (feet)",
+            "N_b": "blows for 1.0 inch of permanent set, averaged over the last four inches of driving"
+          },
+          "notes": "p. 270 (Allen 2005). Not in AASHTO; WSDOT phi 0.55 redundant, 0.45 non-redundant.",
+          "implemented_in": null
+        },
+        {
+          "eq_id": "13-7",
+          "description": "Minnesota Pile Formula 2012 (MPF12), steel and concrete piles",
+          "formula": "R_ndr = 40 * sqrt(W * h / 1000) * log(10 / s_b)",
+          "variables": {
+            "R_ndr": "nominal driving resistance (kips)",
+            "W": "ram weight (lbs)",
+            "h": "observed ram stroke (feet)",
+            "s_b": "permanent set of last hammer blow (inches)",
+            "W*h": "not to exceed 85% of manufacturer's maximum rated energy (ft-lbs)"
+          },
+          "notes": "p. 271 (Paikowsky et al. 2014). Not in AASHTO; phi 0.50 to 0.80 by pile type for 2 to 15 blows per inch.",
+          "implemented_in": null
+        },
+        {
+          "eq_id": "13-8",
+          "description": "MPF12 for timber piles",
+          "formula": "R_ndr = 20 * sqrt(W * h / 1000) * log(10 / s_b)",
+          "variables": {
+            "R_ndr": "nominal driving resistance (kips)",
+            "W": "ram weight (lbs)",
+            "h": "observed ram stroke (feet)",
+            "s_b": "permanent set of last hammer blow (inches)",
+            "W*h": "not to exceed 85% of manufacturer's maximum rated energy (ft-lbs)"
+          },
+          "notes": "p. 272. phi 0.60 for 2 to 15 blows per inch.",
+          "implemented_in": null
+        }
+      ],
+      "figures": [],
+      "tables": [
+        {
+          "table_id": "13-3",
+          "title": "Pile Types and Sizes Contained in WSDOT Formula Database",
+          "description": "WSDOT database by pile type: precast concrete 12-36 in., failure loads 308-1797 kips, 49 sets; closed-end pipe 10-48 in. O.D., 237-1300, 46; H-pile 10-14 in., 214-1239, 29; open-end pipe 24-60 in. O.D., 586-1984, 9; concrete cylinder 20-54 in. O.D., 324-1452, 5; Monotube 227-463, 2; timber 200, 1.",
+          "page": 271
+        }
+      ],
+      "applicability": "Computing nominal driving resistance with the FHWA, AASHTO, WSDOT and MnDOT dynamic formulas."
+    },
+    {
+      "section_id": "13.4",
+      "title": "Dynamic Formula Case History",
+      "summary": "A 50 ft, 24 in. square prestressed concrete pile (factored load 380 kips) was driven 45 ft with an ICE I-46 to 49 bl/ft, restruck, load tested (510 kips, Davisson) and restruck again. At end of driving the MnDOT formula came closest (585 kips, +15%); Engineering News gave 2872 kips (+463%). Overall the wave equation (1% under) and dynamic testing with signal matching came closest, and factored dynamic test results from beginning of restrike matched the load test factored resistance best.",
+      "body": "13.4 (pp. 273-276): soil was 30 ft of loose to medium dense sand over 5 ft of medium dense cemented sand and limestone over the medium dense to dense sand bearing layer. End of driving: 49 bl/ft at an average stroke of 8.14 ft. Restrike after 5 days: 4, 2, 2 and 2 blows per inch (stroke 8.05 to 8.55 ft); static load test one week after driving; second restrike after the load test: 4, 3, 3, 3, 3, 3, 3 and 4 blows per inch (stroke 7.21 ft). Wave equation used a fixed stroke bearing graph with GRLWEAP ST defaults; signal matching used CAPWAP; the load test used the Davisson offset limit (Table 13-4). With end of driving inputs the MnDOT formula was closest; overall the wave equation (1% underprediction) and dynamic testing with signal matching (4% underprediction, per the text) were closest. Factored dynamic test results from beginning of restrike correlated best with the load test factored resistance (Table 13-5).",
+      "key_points": [
+        "Case: 24 in. square prestressed pile, ICE I-46, 49 bl/ft at end of driving; static load test 510 kips",
+        "End of driving: EN 2872 kips (+463%), Gates 710 (+39%), WSDOT 950 (+86%), MnDOT 585 (+15%)",
+        "Wave equation BOR-2 505 kips (-1%); dynamic testing BOR-1 523 kips (+3%), BOR-2 490 kips (-4%)",
+        "Factored: dynamic testing BOR-1 340 kips vs load test 332 kips (phi 0.75)",
+        "Formula restrike values not recommended by AASHTO or the developers"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        {
+          "table_id": "13-4",
+          "title": "Case History – Comparison of Calculated Nominal Resistances",
+          "description": "Nominal resistance (kips) and difference from the 510 kip static load test at EOD, BOR-1, EOR-1 and BOR-2: AASHTO EN 2872, 2799, 1734, 2507 (+463 to +240%); Gates 710, 701, 570, 658; WSDOT 950, 934, 806, 837; MnDOT 585, 579, 485, 548 (+15 to -5%); wave equation 560, 560, 440, 505; dynamic test and signal matching 600, 523, 460, 490. Restrike formula values not recommended.",
+          "page": 275
+        },
+        {
+          "table_id": "13-5",
+          "title": "Case History – Comparison of Factored Resistance",
+          "description": "Maximum factored resistance (kips) and difference from the static load test value of 332 kips (phi 0.75): AASHTO EN EOD 287 (-13%); Gates EOD 284 (-14%); WSDOT EOD 522 (+58%); MnDOT EOD 293 (-12%); wave equation BOR-2 253 (-24%); dynamic testing BOR-1 340 (+3%) and BOR-2 319 (-4%).",
+          "page": 276
+        }
+      ],
+      "applicability": "Comparing dynamic formulas with wave equation, dynamic testing and a static load test."
+    },
+    {
+      "section_id": "13.5-13.6",
+      "title": "Advantages, Disadvantages, and Limitations, and Practical Issues and Considerations",
+      "summary": "Dynamic formulas give an immediate criterion with little judgment, but ignore the driving system, hammer variation and pile stiffness losses and are inaccurate and unreliable; wave equation analysis and dynamic testing are superior. AASHTO limits them to 600 kips, the IBC to 160 kips. They may be justified on small projects or with a hard bearing layer, but cannot assess driving stresses. INDOT found formula piles carried 21% less factored load, were 10-20% longer and cost 39% more per kip.",
+      "body": "13.5 (p. 277): formulas estimate resistance quickly from hammer energy and set with little judgment; the driving criterion is immediately available with minimal delay. They do not consider the whole system (hammer, pile and soil), hammer variation or energy losses from pile stiffness; the primary disadvantages are accuracy and reliability, overcome by wave equation analysis or dynamic testing. AASHTO's 600 kip limit is well beyond the historical databases; the International Building Code limits formulas to 160 kips; formulas rest on Newtonian impact theory, invalidated by hammer and pile cushions. 13.6 (pp. 277-278): formula use is often 'justified' by few piles (extra length cheaper than testing or delay) or a hard bearing layer such as bedrock (little extra length), but driving stresses must still be controlled and a formula cannot assess them. INDOT compared 2009-2014 bridge projects controlled by the FHWA modified Gates formula or by dynamic testing with signal matching (test piles monitored in driving and restrike 1 to 7 days later) (Zaheer et al. 2015; Table 13-6): formula piles carried 21% less factored load, were 10 to 20% longer for the same load, cost 39% more per kip supported and 9.2% more per linear foot.",
+      "key_points": [
+        "Advantages: immediate driving criterion, minimal delay, simple inputs (energy and set)",
+        "Disadvantages: whole system, hammer variation and pile stiffness ignored; poor accuracy and reliability",
+        "Wave equation analysis and dynamic testing are superior to dynamic formulas",
+        "AASHTO limit 600 kips (beyond the databases); International Building Code 160 kips",
+        "Newtonian impact theory is invalidated by hammer and pile cushions",
+        "Small projects or hard bearing layers may justify a formula, but it cannot assess driving stresses",
+        "INDOT (Zaheer et al. 2015): formula piles 21% less factored load, 10-20% longer, 39% more per kip, 9.2% more per foot"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        {
+          "table_id": "13-6",
+          "title": "INDOT Dynamic Formula and Dynamic Testing Comparison",
+          "description": "INDOT 2009-2014, FHWA modified Gates vs dynamic testing with signal matching: plan length 246,052 vs 995,100 ft; paid length 216,664 vs 937,873 ft; underrun 29,408 lf (13.6%) vs 57,227 lf (6.1%); cost $11,653,634 vs $46,178,800; average unit cost $53.79 vs $49.24 per lf (totals 1,241,152 ft, $57,832,434, $50.09).",
+          "page": 278
+        }
+      ],
+      "applicability": "When dynamic formulas may still be used and what they cost."
+    }
+  ]
+}

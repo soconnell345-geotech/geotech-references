@@ -1,0 +1,323 @@
+{
+  "reference_id": "FHWA-NHI-16-009",
+  "reference_title": "Design and Construction of Driven Pile Foundations",
+  "volume": 2,
+  "chapter": 11,
+  "chapter_title": "Rapid Load Testing",
+  "sections": [
+    {
+      "section_id": "11.1-11.3",
+      "title": "Requirements, Background on Rapid Load Test Methods, and Rapid Load Test Applications",
+      "summary": "Rapid load tests (ASTM D7383) evaluate axial compressive resistance of any driven pile. The force pulse should exceed the nominal plus dynamic resistance, stay above 50% of the peak for 4L/C and above the pre-load for at least 12L/C, and be measured by a force transducer rated at least 10% above the target. Statnamic burns solid fuel to launch a reaction mass (at least 5% of the target force, about 20 g), testing up to 9,000 kips; cushioned drop weights of 5 to 15% of the target force are the alternative.",
+      "body": "Chapter introduction and 11.1 (pp. 123-124): rapid load tests evaluate nominal axial compressive resistance of all driven pile types, on land or water, saving time and cost for high loads or difficult access (ASTM D7383). The Section 9.1.1 reasons and prerequisites apply; stratigraphy and parameters should be known. A target peak force should exceed the nominal geotechnical resistance plus the dynamic soil resistance; the force should exceed 50% of the actual peak for 4L/C and exceed the apparatus pre-load for at least 12L/C (shorter if extra force or movement gages are used along the pile). Force by a calibrated transducer rated at least 10% above the target peak; displacement by calibrated transducers, with approved secondary devices (Figure 11-1). 11.2.1 Statnamic (pp. 125-129): developed in 1988 by Berminghammer Foundation Equipment and TNO; solid fuel burned in a pressure chamber accelerates the reaction mass upward (about 20 g) and pushes the pile down equally; venting unloads; load cell and accelerometers measure load and acceleration; reaction mass typically at least 5% of the target peak force; licensed to a single US source. Piles or groups with combined static and dynamic resistance under 9,000 kips can be tested, vertical or battered, on land or water. Capacity grew from 22 kips (1988) to 3600 kips (1992), 6800 kips (1994) and 9000 kips (2005). Catch: hydraulic (1000 kip loads), mechanical (up to 4,400 kips) or gravel retention (up to 9,000 kips). Load magnitude and rate are set by piston and cylinder, fuel, reaction mass and venting; acceleration is integrated to velocity and displacement. 11.2.2 Cushioned drop weights (pp. 130-131): a weight of 5 to 15% of the target peak force falls on springs or cushions over a load cell, often with a catch: Fundex Pseudo Static Pile Load Tester (up to 800 kips, Williams 2014), Hybridnamic (rams to 85 tons; drop weights to 170 kips mobilize about 1700 kips), APPLE (rams to 160 kips, about 1600 kips). 11.3 Applications (p. 132): primarily nominal axial compressive resistance, from small timber, steel and concrete piles to large open-end pipe and cylinder piles, with strain gages for interpretation and load transfer; attractive for large open-end pipe piles (high resistance; the longer, lower-acceleration pulse sometimes reduces plug slippage); combustion gas devices have also tested piles and groups laterally.",
+      "key_points": [
+        "ASTM D7383; primarily nominal axial compressive resistance of all driven pile types",
+        "Target peak force > nominal plus dynamic soil resistance",
+        "Force above 50% of peak for 4L/C and above the pre-load for at least 12L/C",
+        "Force transducer rated at least 10% above the target peak force",
+        "Statnamic: reaction mass at least 5% of target force, accelerated about 20 g; up to 9,000 kips",
+        "Catch systems: hydraulic (1000 kips), mechanical (to 4,400 kips), gravel retention (to 9,000 kips)",
+        "Cushioned drop weight 5 to 15% of target peak force (Fundex, Hybridnamic, APPLE)",
+        "Attractive for large open-end pipe piles: high resistance and less plug slippage"
+      ],
+      "equations": [],
+      "figures": [
+        {
+          "figure_id": "11-1",
+          "title": "Typical axial compressive force pulse",
+          "description": "After ASTM D7383.",
+          "page": 124
+        },
+        {
+          "figure_id": "11-2",
+          "title": "Statnamic concept",
+          "description": "Courtesy of Berminghammer Foundation Equipment.",
+          "page": 126
+        },
+        {
+          "figure_id": "11-3",
+          "title": "1000 kip hydraulic catch device on prestressed concrete pile",
+          "description": "Courtesy of Applied Foundation Testing.",
+          "page": 127
+        },
+        {
+          "figure_id": "11-4",
+          "title": "Statnamic test in progress with gravel catch mechanism - 9,000 kip device",
+          "description": "Courtesy of Applied Foundation Testing.",
+          "page": 128
+        },
+        {
+          "figure_id": "11-5",
+          "title": "Statnamic raw force and displacement measurements versus time",
+          "description": "Courtesy of Berminghammer Foundation Equipment.",
+          "page": 129
+        },
+        {
+          "figure_id": "11-6",
+          "title": "Statnamic load versus displacement",
+          "description": "Courtesy of Berminghammer Foundation Equipment.",
+          "page": 129
+        },
+        {
+          "figure_id": "11-7",
+          "title": "Drop weight rapid load test systems: (a) Fundex system (courtesy Foundation Constructors Inc.) and (b) Hybridnamic system",
+          "description": "",
+          "page": 131
+        },
+        {
+          "figure_id": "11-8",
+          "title": "APPLE 32 ton modular rapid load test system with transducer",
+          "description": "",
+          "page": 131
+        }
+      ],
+      "tables": [],
+      "applicability": "Requirements and equipment for rapid load testing of driven piles."
+    },
+    {
+      "section_id": "11.4",
+      "title": "Rapid Load Test Interpretation Methods",
+      "summary": "Rapid results overestimate resistance in some soils, so they are interpreted (UPM, MUP, SUP, fully mobilized UPM, Sheffield) and reduced by loading rate factors (rock 0.96, sand 0.91, silt 0.69, clay 0.65). Wave number Nw = Dw/L = c tL/L (Eq 11-1). UPM (Nw > 12, rigid body): Fu(tumax) = Fstn - Fa at maximum displacement (Eq 11-5), C4 from Eq 11-6, curve from Eq 11-7. Net set should reach at least 3% of the diameter. AASHTO gives no resistance factor; SCDOT and McVay et al. give agency values.",
+      "body": "11.4 (pp. 132-144). Early Statnamic correlations on toe-bearing piles in till and rock agreed without adjustment (Janes et al. 1991), but later tests overestimated resistance in some soils from loading rate effects (Janes and Campanella 1994). Displacement must be sufficient: Miyasaka et al. (2009) found maximum displacement of 1 to 3% of the diameter could overpredict and recommended permanent displacement of 3% or more; Holscher et al. (2012) recommended maximum displacement over 5% of the equivalent diameter. Wave number (Middendorp and Bielefeld 1995), Eq 11-1. 11.4.1 UPM (Middendorp et al. 1992): rigid-body translation for Nw greater than 12; forces Fstn, Fa, Fu, Fv, Fp (Eqs 11-2, 11-3), with Fp taken into Fv (Eq 11-4). Five stages (Figure 11-10): assembly; launch (elastic soil); fuel burning with highest inertia and damping and peak load at its end; venting, with maximum displacement at the end of Stage 4 where velocity and damping are zero (Eq 11-5); rebound to permanent set. Eq 11-5 gives one point, possibly at large displacement (a Chapter 9 movement criterion may give less). With viscous damping C4 times velocity, constant resistance through Stage 4 (perfectly plastic soil), C4 from Eq 11-6 and the derived curve from Eq 11-7 (Figure 11-11). 11.4.2 MUP (Justason 1997): for high toe resistance, adds a toe accelerometer and uses head-toe average motion in the UPM procedure. 11.4.3 SUP (Mullins et al. 2002): the rigid-body UPM can overpredict for long slender piles (Brown 1995) and MUP is problematic for Nw under 10; segments instrumented with strain gages and accelerometers, each with Nw greater than 12, analyzed by MUP and summed. 11.4.4 Fully mobilized UPM (Miyasaka et al. 2009): UPM overpredicted by up to 1.43 without enough movement; agreement once normalized maximum displacement exceeded 2.8% and net displacement 1.5%; minimum net permanent displacement of 3% of diameter proposed; ASTM D7383 also cautions. 11.4.5 Sheffield Method (Brown 2004; Brown and Hyde 2006; Holscher et al. 2012 App. D): for clay with mostly shaft resistance, not for sands or rock; rate parameters alpha and beta, preferably from variable-rate triaxial tests, rule of thumb Eq 11-9 and beta = 0.2; Eq 11-8; no Paikowsky factors. 11.4.6 Loading rate reduction (Paikowsky 2006, NCHRP 21-08, 34 Statnamic-static pairs): 0.96 rock, 0.91 sand, 0.69 silt, 0.65 clay, applied to UPM, MUP and SUP derived curves; Weaver and Rollins (2010) found 0.47 +/- 0.14 for drilled shafts in clay (consider lower factors in cohesive soils, especially below 5% displacement); Brown and Powell (2013), Eq 11-10. No clay correlations exist for drop weight systems. 11.4.7 Resistance factors: none in AASHTO (2014). SCDOT (2010), redundant piles: 0.70 toe bearing in rock or very dense sand, 0.65 friction piles; non-redundant 0.55; no increase for multiple tests unless calibrated to a static test. McVay et al. (2003, UPM, beta 2.5, 34 driven piles): redundant 0.70 in rock and non-cohesive soils, 0.60 in mixed layers; non-redundant 0.60 and 0.50; not recommended in clay without a calibrating static test. Drop weight tests with signal matching might use the dynamic testing factor; the designer decides considering redundancy, number of tests and reliability.",
+      "key_points": [
+        "Eq 11-1: Nw = Dw/L = c tL/L; UPM rigid-body assumption for Nw > 12",
+        "Eq 11-4: Fu(t) = Fstn(t) - Fa(t) - Fv(t), pore pressure resistance taken into Fv",
+        "Eq 11-5: Fu(tumax) = Fstn(tumax) - Fa(tumax) at maximum displacement (velocity zero)",
+        "Eq 11-6: C4 = [Fstn(t4) - Fu(tumax) - m a(t4)] / V(t4); Eq 11-7: Fu(t) = Fstn(t) - m a(t) - C4 V(t)",
+        "MUP adds a toe accelerometer (high toe resistance); SUP uses instrumented segments each with Nw > 12",
+        "Net permanent displacement at least 3% of pile diameter to avoid overprediction",
+        "Loading rate reduction factors: rock 0.96, sand 0.91, silt 0.69, clay 0.65 (Paikowsky 2006)",
+        "Sheffield Method (Eqs 11-8, 11-9) for clay only; Eq 11-10: xi = -0.0033 LL + 0.69",
+        "No AASHTO resistance factor; SCDOT redundant 0.70/0.65, non-redundant 0.55",
+        "McVay et al. (2003): 0.70/0.60 redundant, 0.60/0.50 non-redundant; not in clay without static calibration"
+      ],
+      "equations": [
+        {
+          "eq_id": "11-1",
+          "description": "Wave number",
+          "formula": "N_w = D_w / L = c * t_L / L",
+          "variables": {
+            "N_w": "wave number (unitless)",
+            "D_w": "wave length (feet)",
+            "L": "total pile length (feet)",
+            "c": "wave speed of pile material (ft/s)",
+            "t_L": "load duration (seconds)"
+          },
+          "notes": "p. 133 (Middendorp and Bielefeld 1995).",
+          "implemented_in": null
+        },
+        {
+          "eq_id": "11-2",
+          "description": "Force equilibrium on the pile in a Statnamic test",
+          "formula": "F_stn(t) = F_a(t) + F_u(t) + F_v(t) + F_p(t)",
+          "variables": {
+            "F_stn": "Statnamic induced load (kips)",
+            "F_a": "pile inertia force (kips)",
+            "F_u": "static soil resistance (kips)",
+            "F_v": "dynamic soil resistance (kips)",
+            "F_p": "resistance from pore pressure (kips)"
+          },
+          "notes": "p. 134",
+          "implemented_in": null
+        },
+        {
+          "eq_id": "11-3",
+          "description": "Static soil resistance from the equilibrium",
+          "formula": "F_u(t) = F_stn(t) - F_a(t) - F_v(t) - F_p(t)",
+          "variables": {
+            "F_u": "static soil resistance (kips)",
+            "F_stn": "Statnamic induced load (kips)",
+            "F_a": "pile inertia force (kips)",
+            "F_v": "dynamic soil resistance (kips)",
+            "F_p": "resistance from pore pressure (kips)"
+          },
+          "notes": "p. 134",
+          "implemented_in": null
+        },
+        {
+          "eq_id": "11-4",
+          "description": "Static soil resistance with pore pressure resistance taken as part of F_v",
+          "formula": "F_u(t) = F_stn(t) - F_a(t) - F_v(t)",
+          "variables": {
+            "F_u": "static soil resistance (kips)",
+            "F_stn": "Statnamic induced load (kips)",
+            "F_a": "pile inertia force (kips)",
+            "F_v": "dynamic soil resistance (kips)"
+          },
+          "notes": "p. 134",
+          "implemented_in": null
+        },
+        {
+          "eq_id": "11-5",
+          "description": "Static resistance at maximum displacement (unloading point)",
+          "formula": "F_u(t_umax) = F_stn(t_umax) - F_a(t_umax)",
+          "variables": {
+            "F_u": "static soil resistance",
+            "F_stn": "Statnamic induced load",
+            "F_a": "pile inertia force",
+            "t_umax": "time at maximum displacement"
+          },
+          "notes": "p. 136. Velocity, and so viscous damping, is zero at maximum displacement.",
+          "implemented_in": null
+        },
+        {
+          "eq_id": "11-6",
+          "description": "Damping constant",
+          "formula": "C_4 = [F_stn(t_4) - F_u(t_umax) - m * a(t_4)] / V(t_4)",
+          "variables": {
+            "C_4": "damping constant",
+            "F_stn": "Statnamic induced load",
+            "F_u": "static soil resistance",
+            "m": "mass of pile",
+            "a": "acceleration of pile",
+            "V": "velocity of pile",
+            "t_4": "time at beginning of Stage 4",
+            "t_umax": "time at maximum displacement"
+          },
+          "notes": "p. 137",
+          "implemented_in": null
+        },
+        {
+          "eq_id": "11-7",
+          "description": "Derived static load at any time (UPM)",
+          "formula": "F_u(t) = F_stn(t) - m * a(t) - C_4 * V(t)",
+          "variables": {
+            "F_u": "static soil resistance",
+            "F_stn": "Statnamic induced load",
+            "m": "mass of pile",
+            "a": "acceleration of pile",
+            "C_4": "damping constant",
+            "V": "velocity of pile"
+          },
+          "notes": "p. 137. C_4 assumed constant through the event.",
+          "implemented_in": null
+        },
+        {
+          "eq_id": "11-8",
+          "description": "Sheffield Method static resistance (cohesive soils)",
+          "formula": "F_u(t) = [F_t(t) - m*a(t)] / {1 + (F_t(t)/F_max) * alpha * [(V(t)/V_o)^beta - (V_static/V_o)^beta]}",
+          "variables": {
+            "F_u": "static soil resistance",
+            "F_t": "force measured on pile head",
+            "F_max": "maximum measured force applied during testing",
+            "m": "mass of pile",
+            "a": "acceleration of pile",
+            "V": "velocity of pile",
+            "V_static": "velocity used to determine parameters alpha and beta",
+            "V_o": "normalizing constant",
+            "alpha": "material dependent parameter 1",
+            "beta": "material dependent parameter 2"
+          },
+          "notes": "p. 140. Clay with mostly shaft resistance; not for sands or rock (Holscher et al. 2012).",
+          "implemented_in": null
+        },
+        {
+          "eq_id": "11-9",
+          "description": "Rule of thumb Sheffield rate parameter alpha",
+          "formula": "alpha = 0.031 * PI + 0.46",
+          "variables": {
+            "alpha": "material dependent parameter 1",
+            "PI": "Plasticity Index"
+          },
+          "notes": "p. 141. From a small, mostly European cohesive data set; beta = 0.2.",
+          "implemented_in": null
+        },
+        {
+          "eq_id": "11-10",
+          "description": "UPM loading rate reduction factor for clay from liquid limit (Brown and Powell 2013)",
+          "formula": "xi = -0.0033 * LL + 0.69",
+          "variables": {
+            "xi": "loading rate reduction factor",
+            "LL": "liquid limit (%)"
+          },
+          "notes": "p. 142",
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        {
+          "figure_id": "11-9",
+          "title": "Free body diagram of pile forces in a Statnamic test",
+          "description": "After Middendorp et al. 1992.",
+          "page": 135
+        },
+        {
+          "figure_id": "11-10",
+          "title": "Five stages of a Statnamic test",
+          "description": "After Middendorp et al. 1992.",
+          "page": 135
+        },
+        {
+          "figure_id": "11-11",
+          "title": "Derived Statnamic load displacement curve with rate effects",
+          "description": "Courtesy of Berminghammer Foundation Equipment.",
+          "page": 138
+        },
+        {
+          "figure_id": "11-12",
+          "title": "Normalized resistance versus normalized displacement",
+          "description": "After Miyasaka et al. 2009.",
+          "page": 140
+        },
+        {
+          "figure_id": "11-13",
+          "title": "Variation of the UPM loading rate reduction factor versus the soil liquid limit",
+          "description": "After Brown and Powell 2013.",
+          "page": 142
+        }
+      ],
+      "tables": [],
+      "applicability": "Deriving static resistance from rapid load tests: UPM family, Sheffield Method, rate factors, resistance factors."
+    },
+    {
+      "section_id": "11.5-11.6",
+      "title": "Lateral Loading Application and Case History",
+      "summary": "Statnamic lateral tests were studied in NCHRP Report 461 (Brown et al. 2001); the largest lateral Statnamic load to date is 2,700 kips, limited by group response, not the device. Case history: a 42 in. open-end pipe pile, 111 ft long in mixed soils, tested 7 months after driving with 3840 kips; MUP with an assumed toe acceleration of half the head value and a weighted rate factor of 0.856; failure by elastic deflection plus D/30 at 2,480 kips.",
+      "body": "11.5 Lateral Loading Application (p. 144): Statnamic lateral loading was studied in NCHRP Report 461, Static and Dynamic Lateral Loading of Pile Groups (Brown et al. 2001); a nine-pile group test is shown (Figure 11-14); the maximum lateral Statnamic load applied to date is 2,700 kips, a limit of the group response rather than the device. 11.6 Case History (pp. 145-146): in 2004 a 42 in. O.D. x 0.75 in. open-end pipe pile, 111 ft long, in clay with interbedded sands and silts over 46 ft, sands to 95 ft and interbedded sands and clayey silts to 118 ft, was Statnamic tested about 7 months after installation with a 4270 kip device applying 3840 kips (Figure 11-15). Without a toe accelerometer, the tester assumed toe acceleration was half the head acceleration for the MUP analysis, applied a site-weighted loading rate reduction factor of 0.856, and used the FHWA large-pile criterion of the time (elastic deflection plus diameter/30), giving a failure load of 2,480 kips.",
+      "key_points": [
+        "Lateral Statnamic testing studied in NCHRP Report 461 (Brown et al. 2001)",
+        "Largest lateral Statnamic load to date 2,700 kips, limited by group response",
+        "Case: 42 in. open-end pipe pile tested with 3840 kips seven months after driving",
+        "MUP with assumed toe acceleration of half the head acceleration; rate factor 0.856",
+        "Failure load 2,480 kips by elastic deflection plus D/30"
+      ],
+      "equations": [],
+      "figures": [
+        {
+          "figure_id": "11-14",
+          "title": "Lateral Statnamic test on nine pile group",
+          "description": "Courtesy of Utah State University.",
+          "page": 144
+        },
+        {
+          "figure_id": "11-15",
+          "title": "Statnamic test result",
+          "description": "Courtesy Minnesota DOT.",
+          "page": 145
+        }
+      ],
+      "tables": [],
+      "applicability": "Lateral Statnamic testing and an example interpretation of a large open-end pipe pile test."
+    },
+    {
+      "section_id": "11.7-11.8",
+      "title": "Advantages, Disadvantages, and Limitations, and Practical Issues and Considerations",
+      "summary": "Rapid tests cost about one quarter to one half of an equivalent static test, need no reaction piles, and keep open-end pile plugs better than dynamic tests. Disadvantages: rate effects must be corrected; the pulse must exceed static plus dynamic resistance (high pile stress); at least 3% net displacement is needed; mobilization can be costly; no load redundancy without strain gages. Small set may under- or overpredict resistance; use weighted rate factors in layered soils.",
+      "body": "11.7 (pp. 146-147). Advantages: lower cost (about one quarter to one half of an equivalent static test, depending on load, site and labor; more savings with multiple tests or higher resistance), shorter setup, on-site mobility; one or two tests per day with the gravel catch, more with the hydraulic catch or drop weights; segmental reaction mass (typically 5 to 10% of the applied load) handled with small hoisting equipment; slower loading than dynamic tests helps keep open-section plugs, closer to static behavior; no reaction piles and a small footprint. Disadvantages: rate effects must be corrected in all soils, with correlations and resistance factor calibration still in progress; the pulse must exceed the combined static and dynamic resistance, problematic in soils with high dynamic resistance (in the case history the applied load was 55% above the derived resistance and the pile stress 40.3 ksi, roughly 90% of guaranteed yield); a net head displacement of at least 3% of diameter is required for full mobilization with UPM (Miyasaka et al. 2009); mobilization can be costly given few systems; without strain gages there is no redundant check of the applied load. 11.8 (p. 148): unlike a static test, limited movement does not guarantee a conservative result: small set in dense granular soil or hard rock likely underpredicts, while in other soils and soft rock the pulse may not cause failure and the resistance may be overpredicted, so permanent displacement should be at least 3% of diameter. In layered soils use a weighted rate factor by share of resistance (50% sand at 0.91 and 50% clay at 0.65 gives 0.78; 75% clay and 25% sand gives 0.71). Keep pile stresses below the strength limit state driving stress limits.",
+      "key_points": [
+        "Cost about one quarter to one half of an equivalent static load test",
+        "No reaction piles; reaction mass typically 5 to 10% of the applied load",
+        "Slower loading keeps open-section soil plugs better than high strain dynamic tests",
+        "Pulse must exceed combined static and dynamic resistance; check pile stresses",
+        "Net permanent displacement at least 3% of pile diameter (UPM)",
+        "Small set may underpredict (dense granular, hard rock) or overpredict (other soils, soft rock)",
+        "Layered soils: weighted loading rate reduction factor, e.g. 0.78 for half sand, half clay",
+        "Without strain gages there is no redundant check of applied load"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Weighing rapid load testing and avoiding its interpretation pitfalls."
+    }
+  ]
+}
