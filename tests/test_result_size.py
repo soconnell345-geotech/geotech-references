@@ -196,18 +196,19 @@ def test_the_broadest_search_fits(ref):
 # ---------------------------------------------------------------------------
 
 def test_a_missing_number_names_what_is_near_it_in_plain_retrieval():
-    # 7.2.1.6 is not printed; 14.2 is printed but held only through its
-    # children
-    for sid, near in (("7.2.1.6", "nearest section above it: 7.2.1 "),
-                      ("14.2", "sections numbered under it: 14.2.1-14.2.2 ")):
+    # GEC-12 7.2.1.6 is not printed; GEC-11 4.4 is printed but held only
+    # through its children
+    for ref, sid, near in (
+            ("gec_12", "7.2.1.6", "nearest section above it: 7.2.1 "),
+            ("gec_11", "4.4", "sections numbered under it: 4.4.1 ")):
         with pytest.raises(KeyError) as e:
-            _retrieval.retrieve_section("gec_12", sid)
+            _retrieval.retrieve_section(ref, sid)
         msg = str(e.value)
         assert near in msg
         with pytest.raises(KeyError) as e:
-            _retrieval_db.reference_get("gec_12", sid)
-        assert msg.split("not found in reference 'gec_12'")[1] \
-            == str(e.value).split("not found in reference 'gec_12'")[1]
+            _retrieval_db.reference_get(ref, sid)
+        assert msg.split(f"not found in reference '{ref}'")[1] \
+            == str(e.value).split(f"not found in reference '{ref}'")[1]
 
 
 def test_a_missing_number_with_nothing_near_it_says_so_plainly():
