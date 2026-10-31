@@ -137,8 +137,16 @@ def cfa_allowable_capacity_kN(
     safety_factor : float, optional
         Factor of safety.  Default 2.5, GEC-8's general minimum.
     sf_2_conditions_met : bool, optional
-        True when all four conditions of p. 138 are met, so that GEC-8
-        allows a factor of safety down to 2.0.  Default False.
+        True only when all four conditions of p. 138 are met, so that
+        GEC-8 allows a factor of safety of 2.0: (1) at least one
+        conventional static load test (per ASTM Standard D1143-81) is
+        performed at the site, to a load exceeding the computed ultimate by
+        50% or to a load producing displacement equal to 5% of the pile
+        diameter, whichever comes first; (2) automated monitoring systems
+        are used on production piles; (3) the site geology, stratigraphy,
+        and soil properties are not highly variable; (4) the site
+        conditions do not pose difficult construction conditions for CFA
+        piles.  Default False.
 
     Returns
     -------
