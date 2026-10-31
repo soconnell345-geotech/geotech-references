@@ -1,6 +1,9 @@
 # REF-52: printed headings with no section, across the library
 
 Survey only (2026-10-31): no heading was added and no text file changed.
+GEC-10 has since been written from the print; see "GEC-10 written from the
+print" at the end. The gec_10 row in the table is the survey's count, before
+that work.
 `scripts/check_section_numbers.py --detail` was run over every reference whose
 PDF is in `docs/`, on main 1c9a642 (gec_7 re-run on dd09a27, after
 REF-46). Every missing heading was then listed with
@@ -234,3 +237,167 @@ python scripts/check_section_numbers.py --detail --json <out>.json
 The counting above takes each chapter once and intersects the missing sets of
 files that share a chapter number. The tools used (survey, classifier, peek)
 are scratch scripts outside the repo.
+
+## GEC-10 written from the print
+
+GEC-10 (FHWA-NHI-18-024, 2018) was rewritten chapter by chapter on
+fix/ref52, one commit per chapter (ch 1, 3, 4, 5, 7, 9 to 18). Every
+printed heading now has its own section, with its body read off its
+printed page. Each equation, figure and table sits in the section that
+prints it. Equations were read off rendered pages, symbol by symbol.
+Chapters 2, 6 and 8 already had a section for every printed heading and
+were not changed. The REF-40 sections of
+ch 10 (10.1, 10.2, 10.3.5 to 10.4), which match the 2018 print, were
+left as they were.
+
+`check_section_numbers.py gec_10` now reads 408 printed, 391 matched,
+17 missing and 1 extra (it was 122 with a section of their own and 284
+missing):
+- The 17 missing are ch 13 numbers that only the PDF outline carries
+  (13.2.3.1.2, 13.2.3.2 with 13.2.3.2.1-8, 13.2.3.3, 13.3.1.1-2,
+  13.3.2.1-2, 13.3.3.1-2). The page headings number the same headings
+  differently, and the sections follow the page (see ch 13 below).
+- The 1 extra is 17.6 Summary. The page prints it as "7.6 SUMMARY" and
+  the outline leaves it out.
+
+### Values the old files gave that the chapter does not print
+
+These were replaced with the printed text. Where the print gives a
+value, it is in brackets.
+- ch 3: old 3.6 held sleeve-port and permeation grouting (that text is
+  4.4.2's) and cited Appendix H [Appendix F, p. 3-16].
+- ch 5: old 5.3 said permanent casing "eliminates side resistance in the
+  cased zone" [p. 5-22/23: casing in an oversized hole cannot be relied
+  on; impact-driven casing is like a driven pipe pile]. Old 5.4 gave
+  slurry limits that the 2018 manual prints nowhere (bentonite 8.5-9.0
+  lb/gal, Marsh 28-40 s, 1.15 g/cm3 or less, pH 7.5-11; polymer 34-80 s,
+  1.01 g/cm3 or less, pH 7-12) and an unprinted table [ch 5 text: Marsh
+  28-50 s, polymer 32-135 s, sand 4 % and 1 %; App. D X.3.4: 64.3-72 pcf,
+  28-50 s, pH 8-11, sand 4.0 % max].
+- ch 7: old 7.4 to 7.7 gave 500-1000 psi before drilling within about 5
+  diameters, cement 600-800 lb/cy, slump 6-8 and 8-10 in., slump flow
+  20-28 in., bleed 0.4 cm3/cm2 or less, f'c 4000 psi, 50-90 F, 2 cylinders
+  per 100 cy and a 5-10 % volume overage [initial set and 3 diameters
+  clear spacing; dry slump 6 to 9 in., tremie slump about 9 in., slump
+  flow 16 to 22 in.]. Table 7-2's admixture ranges (0-5, 0-15, 3-5, 5-15
+  oz/cwt), which the text layer drops, were read off the rendered page.
+- ch 9: old 9.3.2 described Broms' method [9.3.2 is the equivalent-fixity
+  planning estimate, Mn about 27 D^3 or 40 D^3; Broms is only an
+  alternative in 9.3.4]. Old 9.3.3 gave three Matlock (1970) soft-clay
+  p-y equations that the 2018 manual does not print; they were dropped.
+- ch 10: old 10.5 gave "gamma_EQ = 0.5 for Extreme Event II". Old 10.6
+  gave "gamma_DD = 1.25 for Strength I and IV", resistance below the
+  neutral plane equal to factored loads plus factored downdrag,
+  bituminous coating, isolation collars and residual-strength
+  post-liquefaction downdrag [drag is not present at the geotechnical
+  strength limit, only structural strength and service;
+  post-liquefaction drag is 50 % of the pre-earthquake beta side
+  resistance].
+- ch 11: AASHTO minimum spacing 2.5B and 3.0B, eta = 0.65 at 3B in cohesive
+  soils, an equivalent footing "at 2/3 of embedded depth" with a
+  Terzaghi-Meyerhof-DeBeer correction, and two unnumbered group equations
+  [typical minimum 3 diameters, sometimes 2.5; group effects below 4
+  diameters axially and 5 laterally; cohesive eta from the block, Eq.
+  11-2; cohesionless eta 0.65, 0.80 and 1.0 at 2.5, 3 and 4 or more
+  diameters; equivalent footing at D/3 above the toe, spread 1H:2V].
+  11.5 keeps Table 11-1's values in its body, because test_gec10_text
+  pins them there. The table object sits in 11.5.1, where it is printed.
+- ch 13: resistance factors "up to 0.65-0.75 with a load test against
+  0.50-0.55 without", lateral tests to "more than 1/2 in." causing damage,
+  Statnamic "for medium-high capacity" and the Davisson criterion [rapid
+  test: 0.05 below the AASHTO static-test value, max 0.65; high-strain
+  dynamic: 0.10 below, max 0.60; the 1/2 inch is for uplift and
+  bi-directional upward movement].
+- ch 14: old 14.5 gave the same unprinted slurry limits as old 5.4. Old
+  14.7 gave location (+/-3 in.) and alignment (1/4 in. per 10 ft)
+  tolerances that the chapter does not print.
+- ch 15: sediment limits (dry hole 2 in.; wet hole 1.5 in. where side
+  shear is critical, 2.5 in. where end bearing is) and an eight-item list
+  [Table 15-2].
+- ch 16: TIP "typically 12-72 hours after placement" and sonic echo "PIT,
+  ASTM D5882" [TIP results within 2 to 3 days, with a window of several
+  days; no ASTM standard is cited for sonic echo].
+- ch 17: an ASTM D6760 "flaw" definition (that wording is ch 16's; ch 17
+  prints "Defect (noun) - a fault or flaw"), a four-step evaluation
+  sequence, epoxy injection and jacketing, and sleeve-port side grouting.
+- ch 18: markup "typically 5-15 %" [the print says reasonable markups
+  cannot be quoted without knowing where costs are carried], inflation
+  adjustment by the ENR index, unit conversion, and "mobilization
+  negligible for large projects". The old Table 18-2 string named the
+  FDOT cost template, which is Figure 18-1. Printed Table 18-2 is the
+  Galveston bid tabulation.
+
+### Print inconsistencies, kept as printed
+
+No reading was chosen; the sections give what the page prints.
+- ch 7: 7.6.4 says 3,500-4,000 psi is adequate, and 7.5 says 4,000-5,000
+  psi is the typical requirement.
+- ch 9: Figure 9-17's caption cites Equations 9-6 and 9-7, but the terms
+  it defines are those of Eqs. 9-3 and 9-4. The text says 9.3.3.5 covers
+  selecting p-y models; that is in 9.3.3.4, and 9.3.3.5 covers scour.
+  9.3.5 cites a Section 9.2.5 that does not exist. 9.4.2.5 cites Figure
+  9-5 (a sign structure). p. 9-18 gives concrete ultimate strain about
+  0.003 and steel 0.0020, while Figure 9-19 plots concrete to 0.0038.
+- ch 10: the failure-threshold equation is numbered 10-31 (p. 10-32), but
+  the text and Example 10-6 call it Equation 10-30. Other slips: p. 10-32
+  "Step 11-6"; Example 10-6 cites "Figure 13-10" twice for Figure 10-10;
+  p. 10-33 cites Section 13.3.3 for 10.3.5. 10.3.7 places the
+  closed-form equations in Appendix C and the solutions in Appendix D,
+  and the p. 10-36 list of cases ends "..., and" after two items. Figure
+  10-20 prints "Goudrealt".
+- ch 11: 11.4.1.3 cites Section 11.6 for group settlement (11.4.2). Eqs.
+  11-11 and 11-12 use C_cr, but the symbol list defines C_r. In Example
+  11.6.2 (2 x 3 group), K_Psi = 7,672,800 k-ft/(in/in) uses x_i in feet,
+  but Delta_z multiplies Psi_G by x_i in inches. The printed R_z = 173,
+  496 and 819 kips do not satisfy moment equilibrium (2 x 24 ft x
+  (819 - 173) = 31,008 kip-ft against 2,700 kip-ft applied); consistent
+  units give about 468, 497 and 525 kips. Figure 11-11's caption prints
+  "25.4 min = 1 inch".
+- ch 12: the shear equation labels print 12-11, 12-12a, 12-13b, 12-14 to
+  12-18, with no 12-12b or 12-13a, and the text cites them one lower. p.
+  12-19 prints "0.5 phi V_u = 0.5 (0.90) 306" where phi V_c is meant. The
+  upper-bound check compares 2,424 kips with "> 482.9 kips", the nominal
+  V_c + V_s. p. 12-3 calls w_c = 0.145 a water-to-cement ratio (it is the
+  unit weight in kcf). Table 12-2 prints "00030" for the 80 ksi
+  compression-control limit. Other slips: Figure 12-11 "Docketed"; p.
+  12-22 "l_ab" for l_db; "Section 12-6" for 12.6; "permissable".
+- ch 13: the page headings and the PDF outline number 13.2.3.x, 13.3.1.x,
+  13.3.2.x and 13.3.3.x differently, and the sections follow the page:
+  - page 13.2.3.1.1 Hydraulie Jack, 13.2.3.3.2 Load Cell, 13.2.3.4 with
+    13.2.3.4.1-8, 13.2.3.5; outline 13.2.3.1.2, 13.2.3.2 with
+    13.2.3.2.1-8, 13.2.3.3;
+  - page 13.3.1.3-9, outline 13.3.1.1-7;
+  - 13.3.2 and 13.3.3: page .3-.5, outline .1-.3.
+
+  The text's cross-references fit neither scheme ("Section 13.2.3.5" for
+  strain gauges, "Section 13.2.3.3" for gauges) or only the outline
+  ("Section 13.3.2.1"). Headings 13.2.2.3.4-8 (high-strain dynamic,
+  uplift) sit under 13.2.2.3 Rapid Load Test in both. The List of
+  Figures gives Figure 13-6 the caption of Figure 13-5. Other slips:
+  p. 13-17 "6.6-ft (2000 mm)" and p. 13-18 "6.28-ft (2,000-mm)"; figure
+  citations that point to the wrong figure on pp. 13-51 (13-19 for
+  13-18), 13-52 (13-30 for 13-27), 13-53 (13-9) and 13-59 (13-56 for
+  13-54); "Uplifting Test"; "Robinsons et al. (2002)".
+- ch 15: "paymemt" and "preformed" for payment and performed.
+- ch 16: the List of Figures and List of Tables carry a DFI (2018) CSL
+  rating figure (16-2) and table (16-3) that are not printed on the pages.
+  So their numbers run one ahead of the page captions from Figure 16-2
+  and Table 16-3; the sections use the page captions. p. 16-5 still
+  cites "Class C of Table 16-3", the unprinted DFI table; the printed
+  Table 16-3 is the TIP table. p. 16-15 gives 1.35 percent as the
+  probability of a reading three standard deviations below the mean (a
+  normal distribution gives 0.135 percent). The Eq. 16-3 symbol list
+  prints "G" for g. p. 16-23 core sizes overlap: NX for 1/2-inch
+  aggregate, and 4-inch for 1/4 to 1 inch. The 16.4 heading prints
+  "INTEGITY"; the text has "decibals", "gamma-gammma" and "impedence".
+- ch 17: p. 17-5 cites deficiencies as Sections 17.3 and 17.4, evaluation
+  as 17.5 and remediation as 17.6, one ahead of the headings (17.3, 17.4
+  and 17.5). Table 17-1 gives CSL Class A as "FAT Increase < 15%" and
+  "Energy Reduction <= 9 dB", with Classes B and C "see Table 16-2".
+  Table 16-2 rates by velocity reduction and puts 6.1 to 9 dB in
+  Questionable. p. 17-4 refers to the "CSL Rating Criteria of Chapter
+  16", the DFI criteria that are not printed. Typos: "Decibals",
+  "paramters"; the summary heading prints "7.6".
+- ch 18: Table 18-1 prints a 12-month quantity of "1,.250" (SIGN MTS
+  54 IN). Table 18-2 prints the 72-in. Engineer's estimate as "$475.001".
+  The 18.4 heading prints "PUBLICALLY".
