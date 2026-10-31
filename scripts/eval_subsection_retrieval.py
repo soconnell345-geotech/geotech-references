@@ -79,9 +79,7 @@ QUESTIONS = [
     dict(ref="gec_12", target="7.2.1.3.6",
          question="How is pile capacity estimated from a CPT with effective "
                   "cone resistance?",
-         query="CPT pile capacity effective cone resistance",
-         known_miss="a short CPT settlement section (7.3.5.2.2) outranks the "
-                    "capacity methods; app BACKLOG REF-48"),
+         query="CPT pile capacity effective cone resistance"),
     dict(ref="gec_12", target="7.2.1.3.6",
          question="How is pile resistance estimated from the effective cone "
                   "tip resistance of a CPT?",
