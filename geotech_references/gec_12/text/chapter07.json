@@ -177,185 +177,187 @@
             {
               "section_id": "7.2.1.3.1",
               "title": "Nordlund Method (Cohesionless Soils)",
-              "body": "The Nordlund (1963, 1979) method is the primary static analysis procedure for calculating the shaft and toe resistance of piles driven into cohesionless soils. It accounts for soil displacement volume, pile taper, pile material friction coefficient, and soil friction angle. The method uses four design charts (Figures 7-4 through 7-8) and provides both shaft and toe resistance components. The pile-soil friction angle delta is determined from the pile volume and soil friction angle. A limiting unit toe resistance prevents unrealistic values at depth. This is the most widely used method for driven piles in sand and gravel.",
+              "body": "7.2.1.3.1 Nordlund Method - Cohesionless Soils (pp. 232-245). The Nordlund Method (1963) is based on field observations and considers the shape of pile taper and its soil displacement in calculating the shaft resistance. It also accounts for the differences in soil-pile coefficient of friction for different pile materials, and is based on load test programs in cohesionless soils with timber, H, closed end pipe, Monotube and Raymond step taper piles, generally 10 to 20 inches wide. Large diameter open end pipe piles, concrete cylinder piles, 24 inch and greater square prestressed concrete piles and 16 and 18 inch H-pile sections are not in the calibration database; the method tends to over predict the nominal resistance for pile widths larger than 24 inches, and alternative static analysis methods should be evaluated for these pile types and sizes. The shaft resistance is a function of the friction angle of the soil, the friction angle on the sliding surface, the pile taper, the effective unit weight of the soil, the pile length, the minimum pile perimeter and the volume of soil displaced (Figure 7-8, Eq. 7-6); for a pile of uniform cross section (omega = 0) in layers of the same effective unit weight and friction angle it becomes Eq. 7-7. The soil friction angle phi influences most of the calculations; without laboratory data it can be estimated from corrected SPT N values (Section 5.2.3). Figures 7-8 to 7-14 give the design parameters, and Tables 7-6 and 7-7 give the coefficient of lateral earth pressure. Nordlund placed no limiting value on the shaft resistance but recommended that the vertical effective stress at the pile toe used for the toe resistance be limited to 3 ksf. Procedure (Steps 1-6 shaft, 7-9 toe): (1) delineate the soil profile into layers and determine phi for each (effective stress diagram, Section 7.1.4; corrected SPT N values (N1)60, Section 5.1.1; phi from Table 5-5 without laboratory or in-situ data); (2) delta from the displaced soil volume per unit length V and phi, using the delta/phi ratio for the pile type from Figure 7-9; (3) K_delta for V and the taper angle omega from Figures 7-10 to 7-13, interpolating linearly on phi and log-linearly on V between the 0.1, 1.0 and 10.0 ft3/ft curves (Tables 7-6 and 7-7 give interpolated values for uniform piles, omega = 0); (4) the correction factor C_F from Figure 7-14 with phi and delta/phi; (5) the average vertical effective stress at the midpoint of each layer (no limiting value); (6) the shaft resistance of each layer by Eq. 7-8, summed to Rs, using the 'box' area for H-piles (Section 7.10.7 for open sections); (7) alpha_t from Figure 7-16(a) for the pile length to diameter ratio and N'q from Figure 7-16(b), with phi near the toe (from SPT data, the average (N1)60 from the toe to 3 diameters below it); (8) the vertical effective stress at the toe, limited to 3 ksf; (9) Rp by Eq. 7-9, limited to qL Ap with qL from Figure 7-15, using the lesser value; for steel H and open end pipe piles the toe area (steel only, or steel and enclosed soil) is chosen from past experience and local correlations with static load tests; (10) Rn = Rs + Rp; (11) the factored resistance (Section 7.1.5, Eq. 7-3). AASHTO (2014) gives a resistance factor for this method in Table 7-1 (0.45 in sand); the factor of the field verification method, phi_dyn (Table 7-2), may also be used.",
               "key_points": [
-                "Primary method for cohesionless soils per AASHTO; phi = 0.45",
-                "Shaft resistance depends on soil friction angle, pile displacement volume, pile taper, and pile-soil friction",
-                "Unit toe resistance limited by alpha_t coefficient to prevent unrealistic values at depth",
-                "Requires soil friction angle (from SPT N-value correlations in Chapter 5)",
-                "Step-by-step procedure with 6 design charts (Figures 7-4 through 7-8)",
-                "Applicable to timber, steel, and concrete pile types",
-                "Correction factor C_F accounts for difference between delta/phi ratio and assumed Nordlund curve"
+                "Nordlund Method for piles in cohesionless soils; AASHTO (2014) resistance factor 0.45 in sand (Table 7-1)",
+                "Calibration piles were generally 10 to 20 in. wide; the method tends to over predict nominal resistance for pile widths larger than 24 in.",
+                "Shaft resistance depends on phi, the friction angle on the sliding surface, pile taper, effective unit weight, pile length, minimum perimeter and displaced volume (Eq. 7-6)",
+                "delta/phi from Figure 7-9; K_delta from Figures 7-10 to 7-13 or Tables 7-6 and 7-7; C_F from Figure 7-14",
+                "No limit on the shaft resistance; the vertical effective stress at the toe is limited to 3 ksf",
+                "Rp = alpha_t N'q Ap sigma'p (Eq. 7-9), alpha_t and N'q from Figure 7-16, limited to qL Ap with qL from Figure 7-15",
+                "H-piles: 'box' area for shaft resistance; the toe area of H and open end pipe piles from experience and local load-test correlations"
               ],
               "equations": [
-                "Eq 7-6: Rs = SUM(K_delta * C_F * p_d * cos(omega) * Delta_d / cos(omega)) (shaft resistance)",
-                "Eq 7-7: K_delta from charts based on displaced soil volume V and phi",
-                "Eq 7-8: Rp = alpha_t * N'_q * A_t (toe resistance)",
-                "Eq 7-9: q_L = alpha_t * N'_q (limiting unit toe resistance)"
+                "Eq. 7-6: Rn = sum from d = 0 to d = D of K_delta C_F sigma'd [sin(delta + omega) / cos(omega)] Cd Delta_d + alpha_t N'q Ap sigma'p; d depth (ft), D embedded pile length (ft), K_delta coefficient of lateral earth pressure at depth d, C_F correction factor for K_delta when delta is not equal to phi, sigma'd vertical effective stress at the center of depth increment d, delta friction angle between pile and soil, omega angle of pile taper from vertical, Cd pile perimeter at depth d (ft), Delta_d length of pile segment, alpha_t dimensionless factor (dependent on pile depth-width relationship), N'q bearing capacity factor, Ap pile toe area, sigma'p vertical effective stress at the pile toe (ksf) (p. 233)",
+                "Eq. 7-7: Rn = K_delta C_F sigma'd sin(delta) Cd Delta_d + alpha_t N'q Ap sigma'p; pile of uniform cross section (omega = 0) and embedded length D in soil layers of the same effective unit weight and friction angle (p. 233)",
+                "Eq. 7-8: Rs = K_delta C_F sigma'd sin(delta) Cd D; shaft resistance (kips) of each soil layer for a uniform pile cross section, summed to the nominal shaft resistance (Step 6) (p. 244)",
+                "Eq. 7-9: Rp = alpha_t N'q Ap sigma'p; nominal toe resistance (kips), limited to qL Ap with qL from Figure 7-15 (Step 9) (p. 244)"
               ],
               "figures": [
-                "Figure 7-4: Nordlund design relationship for K_delta (phi = 25 deg)",
-                "Figure 7-5: Nordlund design relationship for K_delta (phi = 30 deg)",
-                "Figure 7-6: Nordlund design relationship for K_delta (phi = 35 deg)",
-                "Figure 7-7: Nordlund design relationship for K_delta (phi = 40 deg)",
-                "Figure 7-8: Nordlund alpha_t coefficient vs pile embedment depth ratio"
+                "Figure 7-8: Nordlund's general equation diagram for nominal resistance (p. 234)",
+                "Figure 7-9: Relationship of delta/phi and pile soil displacement, V, for various pile types (after Nordlund 1979) (p. 235)",
+                "Figure 7-10: Design curve for evaluating K_delta for piles when phi = 25 degrees (after Nordlund 1979) (p. 235)",
+                "Figure 7-11: Design curve for evaluating K_delta for piles when phi = 30 degrees (after Nordlund 1979) (p. 236)",
+                "Figure 7-12: Design curve for evaluating K_delta for piles when phi = 35 degrees (after Nordlund 1979) (p. 237)",
+                "Figure 7-13: Design curve for evaluating K_delta for piles when phi = 40 degrees (after Nordlund 1979) (p. 237)",
+                "Figure 7-14: Correction factor for K_delta when delta is not equal to phi (after Nordlund 1979) (p. 238)",
+                "Figure 7-15: Relationship between maximum unit toe resistance and friction angle for cohesionless soils (after Meyerhof 1976) (p. 238)",
+                "Figure 7-16: Chart for estimating alpha_t coefficient and bearing capacity factor N'q (after Bowles 1977) (p. 239)"
               ],
               "tables": [
-                "Table 7-3: Nordlund delta/phi ratio values by pile type and displaced volume",
-                "Table 7-4: Nordlund correction factor C_F values"
+                "Table 7-6: Design Table for Evaluating K_delta for Piles when omega = 0 degrees and Displaced Volume V = 0.10 to 1.00 ft3/ft (p. 240)",
+                "Table 7-7: Design Table for Evaluating K_delta for Piles when omega = 0 degrees and Displaced Volume V = 1.0 to 10 ft3/ft (p. 241)"
               ]
             },
             {
               "section_id": "7.2.1.3.2",
               "title": "Alpha Method (Cohesive Soils)",
-              "body": "The Alpha method (Tomlinson 1957, 1971) is a total stress approach for calculating shaft and toe resistance of piles in cohesive soils. The adhesion factor alpha relates pile-soil adhesion to the soil undrained shear strength. The Alpha method accounts for pile type, soil layering, and the effect of overlying granular deposits on the adhesion of underlying clays. Adhesion values are obtained from Figures 7-9 through 7-11 based on undrained shear strength and pile embedment ratio. Toe resistance is calculated using Nc = 9 bearing capacity factor.",
+              "body": "7.2.1.3.2 alpha-Method - Cohesive Soils (pp. 245-251). For piles in clay a total stress analysis is often used, with the nominal resistance calculated from the undrained shear strength. It assumes the shaft resistance is independent of the vertical effective stress and the unit shaft resistance is an empirical adhesion factor times the undrained shear strength. The unit shaft resistance equals the adhesion, the shear stress between the pile surface and the soil at failure (Eq. 7-10). The adhesion factor alpha depends on the nature and strength of the clay, pile dimension, method of installation and time effects; it varies within wide limits and decreases rapidly with increasing shear strength. Figure 7-17 should generally be used for adhesion, unless one of the special soil stratigraphy cases of Figure 7-18 is present; where either could be used, the inexperienced user should take the smaller value. The charts cover undrained shear strengths from about 0.5 ksf to 3.5 to 5.0 ksf, depending on the chart; users should confirm a chart's applicability with local correlations between static resistance calculations and static load tests, particularly near its limits. Figure 7-17 gives the pile adhesion Ca against su by pile type and embedded length to diameter ratio D/b, D being the lesser of the length from the ground surface to the bottom of the clay layer or to the pile toe. Figure 7-18 gives alpha against su for unique stratigraphy and embedment, used only for the adhesion of a stiff clay layer in that condition (clay layers of different consistency each get their own alpha): the top graph for piles driven through sand or sandy gravel into stiff clay (the highest alpha, falling with penetration into the clay), the middle graph for soft clay over stiff clay (alpha rising with penetration into the stiff clay), the bottom graph for stiff clay without different overlying strata (a gap forms along the upper shaft, so alpha is reduced at shallow penetration). In highly overconsolidated clays where su exceeds the upper limits of Figures 7-17 and 7-18, alpha is calculated by API Recommended Practice 2A (1993), Section 7.2.1.3.3. For H-piles in cohesive soils the shaft resistance is taken on the 'box' area: Ca on the exterior flange area plus su on the two remaining sides, approximated by the corrugated pile curve of Figure 7-17 times the box area (Section 7.10.7). In clays with large shrink-swell potential the adhesion in the shrink-swell zone is ignored. The unit toe resistance is qp = Nc su (Eq. 7-11), Nc usually taken as 9 for deep foundations. On smaller piles the toe resistance is a low percentage of the nominal resistance and is sometimes ignored; on larger piles the movement to mobilize the toe resistance is several times that for the shaft, by which the shaft resistance may have dropped to a residual value. Procedure: (1) delineate layers and determine Ca from Figure 7-17 or alpha from Figure 7-18 for each, with su, D and b (Section 7.2.1.3.3 where su exceeds the charts); (2) fs by Eq. 7-10; (3) the shaft resistance of each layer, summed to Rs; (4) qp by Eq. 7-11; (5) Rp (Section 7.10.7 for open sections); (6) Rn = Rs + Rp; (7) the factored resistance (Section 7.1.5, Eq. 7-3). AASHTO (2014) gives a resistance factor for this method in Table 7-1 (0.35); phi_dyn of the field verification method (Table 7-2) may also be used.",
               "key_points": [
-                "Total stress method using undrained shear strength su; phi = 0.35",
-                "Adhesion factor alpha depends on su, pile type, and soil layering",
-                "Three charts for different soil/pile combinations (Figures 7-9 through 7-11)",
-                "Figure 7-9: concrete or timber piles in stiff clay without overlying sand",
-                "Figure 7-10: concrete or timber piles in stiff clay with overlying sand",
-                "Figure 7-11: steel piles in stiff clay (any overlying condition)",
-                "Toe bearing capacity factor Nc = 9 for piles penetrating >= 3B into bearing layer",
-                "Unit toe resistance: q_p = 9 * su at the pile toe"
+                "Total stress method for piles in cohesive soils, fs = Ca = alpha su (Eq. 7-10); AASHTO (2014) resistance factor 0.35 (Table 7-1)",
+                "Figure 7-17 (adhesion Ca by pile type and D/b) is generally used; Figure 7-18 (adhesion factor alpha) for its three stratigraphy cases; where either applies the inexperienced user takes the smaller value",
+                "The charts cover su from about 0.5 ksf to 3.5-5.0 ksf; confirm with local load-test correlations, particularly near the limits",
+                "su above the charts (highly overconsolidated clays): alpha by API RP 2A (1993), Section 7.2.1.3.3",
+                "H-piles: 'box' area with the corrugated pile curve of Figure 7-17",
+                "Ignore the adhesion in the shrink-swell zone of clays with large shrink-swell potential",
+                "Unit toe resistance qp = Nc su (Eq. 7-11), Nc usually taken as 9 for deep foundations"
               ],
               "equations": [
                 "Eq. 7-10: fs = Ca = alpha su; fs unit shaft resistance, Ca adhesion (ksf), su undrained shear strength (ksf), alpha adhesion factor (p. 245)",
                 "Eq. 7-11: qp = Nc su; qp unit toe resistance, Nc bearing capacity factor (usually taken as 9 for deep foundations), su undrained shear strength (ksf) (p. 248)"
               ],
               "figures": [
-                "Figure 7-9: Adhesion for piles in stiff clays without overlying sand (Tomlinson)",
-                "Figure 7-10: Adhesion for piles in stiff clays with overlying sand (Tomlinson)",
-                "Figure 7-11: Adhesion for steel piles in stiff clays (Tomlinson)"
+                "Figure 7-17: Adhesion values for piles in cohesive soils (after Tomlinson 1979) (p. 248)",
+                "Figure 7-18: Adhesion factors for driven piles in clay (Tomlinson 1980) (p. 249)"
               ],
               "tables": []
             },
             {
               "section_id": "7.2.1.3.3",
               "title": "P2A (API RP2A) Method",
-              "body": "The P2A method follows the API Recommended Practice 2A-LRFD (1993) for fixed offshore platforms, adapted for onshore driven pile design. It provides both shaft and toe resistance calculations for cohesionless and cohesive soils. For cohesionless soils, the unit shaft resistance is the product of the lateral earth pressure coefficient K and effective overburden stress times tan(delta), with limiting values from Table 7-5. For cohesive soils, the adhesion factor alpha varies from 1.0 for low su/sigma'v ratios to a minimum of 0.5 for high ratios. Toe resistance uses Nq bearing capacity factors from Table 7-5 for sands and Nc = 9 for clays.",
+              "body": "7.2.1.3.3 API Method - Mixed Soil Profiles (pp. 251-255; the heading is printed 'P2A Method'). The American Petroleum Institute static analysis procedure was developed for offshore construction, which almost exclusively uses large diameter open end steel pipe piles driven by impact hammer to final penetration (API 1993). NCHRP Report 20-05 (Brown and Thompson 2015) defines large diameter open end pipe piles as 36 inches in diameter or greater, steel pipe or concrete cylinder piles; their use on transportation projects has increased significantly. Cohesive soil: the unit shaft resistance is fs = alpha su (Eq. 7-12), alpha from psi = su/sigma'vo by Eqs. 7-13 to 7-15. An alpha of 1.0 is recommended for unconsolidated clays; for very long piles, where residual strengths are approached through extended driving and soil displacement, API (1993) recommends engineering judgment. The unit toe resistance is qp = 9 su (Eq. 7-16). The pile may be unplugged during driving but plugged under static loads; both cases should be considered in the static analysis and drivability study. Cohesionless soil: fs = K_delta sigma'vo tan(delta) (Eq. 7-17), with K_delta = 0.8 for tension and compression of unplugged open end pipe piles and 1.0 for the plugged or closed end case (API 1993); qp = sigma'vo Nq (Eq. 7-18). Table 7-8 (modified from API 1993) gives the soil-pile friction angle, limiting unit shaft resistance, Nq and limiting unit toe resistance for steel pipe piles in cohesionless siliceous soil; site exploration and testing data should be used in lieu of these guidelines where necessary. Procedure: (1) cohesive layers: average su and sigma'vo at mid-layer, alpha from su/sigma'vo by Eq. 7-13 or 7-14; cohesionless layers: delta, sigma'vo at mid-layer and K_delta from the pile type and loading direction; (2) fs by Eq. 7-12 in cohesive layers or Eq. 7-17 in cohesionless layers (with the limiting unit shaft resistance); (3) Rs by Eq. 7-4; (4) qp by Eq. 7-16 for a toe in a cohesive layer, or Nq from Table 7-8 and Eq. 7-18 in a cohesionless layer (with the limiting unit toe resistance); (5) Rp by Eq. 7-5 (Section 7.10.7 on plugging); (6) Rn = Rs + Rp; (7) the factored resistance with the factor of the field verification method. Paikowsky (2004, NCHRP Report 507) evaluated the method's reliability in cohesive soils but not in sands or mixed profiles, and AASHTO (2014) gives no resistance factor for it, so phi_dyn (Table 7-2) is used at the strength limit state.",
               "key_points": [
-                "Derived from offshore platform pile design, adapted for onshore use; phi = 0.25",
-                "Cohesionless shaft: f_s = K * sigma'_v * tan(delta) with limiting values",
-                "Cohesive shaft: alpha ranges from 0.5 to 1.0 based on su/sigma'_v ratio",
-                "Cohesionless toe: q_p = sigma'_v * Nq with limiting values from Table 7-5",
-                "Cohesive toe: q_p = 9 * su",
-                "Relatively low resistance factor (0.25) due to limited calibration data"
+                "API RP2A (1993) offshore procedure; suited to large diameter (36 in. and greater) open end pipe piles",
+                "Cohesive shaft: fs = alpha su (Eq. 7-12), alpha = 0.5 psi^-0.5 for psi <= 1.0 and 0.5 psi^-0.25 for psi > 1.0, psi = su/sigma'vo (Eqs. 7-13 to 7-15); alpha of 1.0 recommended for unconsolidated clays",
+                "Cohesive toe: qp = 9 su (Eq. 7-16)",
+                "Cohesionless shaft: fs = K_delta sigma'vo tan(delta) (Eq. 7-17); K_delta 0.8 unplugged open end, 1.0 plugged or closed end",
+                "Cohesionless toe: qp = sigma'vo Nq (Eq. 7-18); Table 7-8 gives delta, Nq and the limiting unit shaft and toe resistances",
+                "Consider both the unplugged (driving) and plugged (static loading) conditions",
+                "No AASHTO (2014) resistance factor; use phi_dyn of the field verification method (Table 7-2)"
               ],
               "equations": [
-                "Eq 7-12: f_s = K * sigma'_v * tan(delta) (unit shaft resistance, cohesionless)",
-                "Eq 7-13: alpha = 0.5 * (su/sigma'_v)^(-0.5) for su/sigma'_v <= 1.0",
-                "Eq 7-14: alpha = 0.5 * (su/sigma'_v)^(-0.25) for su/sigma'_v > 1.0",
-                "Eq 7-15: f_s = alpha * su (unit shaft resistance, cohesive)",
-                "Eq 7-16: q_p = sigma'_v * N_q (unit toe resistance, cohesionless)",
-                "Eq 7-17: q_p = 9 * su (unit toe resistance, cohesive)",
-                "Eq 7-18: R_n = SUM(f_si * A_si) + q_p * A_t (total nominal resistance)"
+                "Eq. 7-12: fs = alpha su; unit shaft resistance in cohesive soil, alpha dimensionless adhesion factor, su undrained shear strength at the location in question (ksf) (p. 251)",
+                "Eq. 7-13: alpha = 0.5 psi^-0.5 when psi <= 1.0 (p. 251)",
+                "Eq. 7-14: alpha = 0.5 psi^-0.25 when psi > 1.0 (p. 251)",
+                "Eq. 7-15: psi = su / sigma'vo; su undrained shear strength at the sample depth (ksf), sigma'vo vertical effective stress at the sample depth (ksf) (p. 251)",
+                "Eq. 7-16: qp = 9 su; unit toe resistance in cohesive soil (p. 252)",
+                "Eq. 7-17: fs = K_delta sigma'vo tan(delta); unit shaft resistance in cohesionless soil, K_delta coefficient of lateral earth pressure, sigma'vo vertical effective stress (ksf), delta friction angle between the soil and pile wall (p. 252)",
+                "Eq. 7-18: qp = sigma'vo Nq; unit toe resistance in cohesionless soil, sigma'vo vertical effective stress (ksf), Nq dimensionless bearing capacity factor (p. 252)"
               ],
               "figures": [],
               "tables": [
-                "Table 7-5: P2A design parameters for cohesionless soils (delta, Nq, f_s limit, q_p limit by soil type)"
+                "Table 7-8: Design Parameter Guidelines for Cohesionless Siliceous Soil (after API 1993) (p. 253)"
               ]
             },
             {
               "section_id": "7.2.1.3.4-7.2.1.3.7",
               "title": "Effective Stress Methods",
-              "body": "Two effective stress approaches are presented: the Beta method and the Brown method. The Beta method (Esrig and Kirby 1979) computes shaft and toe resistance using effective stresses and is applicable to all soil types. The Brown method (2001) uses corrected SPT N60 values to estimate capacity in cohesionless soils. Additionally, two CPT-based methods are presented: Eslami-Fellenius and Nottingham-Schmertmann.",
+              "body": "Sections 7.2.1.3.4 to 7.2.1.3.7 (pp. 255-268) give four further static analysis methods for single piles in soil: the effective stress beta-method for mixed soil profiles (7.2.1.3.4), the Brown method for mixed soil profiles from SPT data (7.2.1.3.5), and two methods from CPT data, Eslami and Fellenius (7.2.1.3.6) and Nottingham and Schmertmann (7.2.1.3.7).",
               "subsections": [
                 {
                   "section_id": "7.2.1.3.4",
                   "title": "Beta Method (Effective Stress)",
-                  "body": "The Beta method computes unit shaft resistance as the product of the Beta coefficient and the effective overburden stress. The Beta coefficient is related to the soil friction angle and OCR. For normally consolidated clays, Beta typically ranges from 0.2 to 0.3; for overconsolidated clays, Beta can exceed 1.0. Toe resistance uses Nt bearing capacity factor. The method is applicable to all soil types and is the primary method for mixed profiles.",
+                  "body": "7.2.1.3.4 Effective Stress beta-Method - Mixed Soil Profiles (pp. 255-258). Static resistance in cohesionless, cohesive and layered soils can also be calculated by an effective stress method, developed to model the long term drained shear strength conditions; the effective stress friction angle phi' is used in parameter selection. The unit shaft resistance is fs = beta sigma'vo (Eq. 7-19), beta being the Bjerrum-Burland coefficient K_delta tan(delta); the unit toe resistance is qp = Nt sigma'p (Eq. 7-20). Table 7-9 gives Fellenius's (2014) recommended ranges of beta and Nt by soil type and phi'. Fellenius notes that the factors affecting beta and Nt include the soil composition (grain size distribution, angularity and mineralogical origin of the grains), the original soil density and the density due to pile installation, and the soil strength; values can deviate significantly from the table, and beta seldom exceeds 1.0. For sedimentary cohesionless deposits Nt ranges from about 30 to 120; in very dense deposits such as glacial tills it can be much higher but can also approach 30. In clays an Nt of 3 gives a toe resistance similar to a traditional undrained analysis, so a relatively low Nt is recommended in clays unless local correlations suggest higher values. Selected coefficients should be confirmed with local correlations between static resistance calculations and load tests. The method places no limiting values on the shaft or toe resistance. Procedure: (1) layers and phi' (effective stress diagram, Section 7.1.4; sigma'vo at the midpoint of each layer; phi' from laboratory or in-situ data, or for cohesionless layers from (N1)60 by a method in Section 5.2.3); (2) beta from local experience or Table 7-9; (3) fs by Eq. 7-19; (4) the shaft resistance of each layer, summed to Rs (Section 7.10.7 for open sections); (5) qp by Eq. 7-20, Nt from local experience or Table 7-9 and sigma'p at the toe; (6) Rp by Eq. 7-5; (7) Rn = Rs + Rp; (8) the factored resistance (Section 7.1.5, Eq. 7-3). AASHTO (2014) gives no resistance factor for the beta-method by Fellenius (Table 7-1: the AASHTO beta-method is based on Skempton), so phi_dyn (Table 7-2) is used at the strength limit state.",
                   "key_points": [
-                    "General effective stress method applicable to all soil types; phi = 0.25",
-                    "Unit shaft resistance: f_s = Beta * sigma'_v",
-                    "Beta = K_s * tan(delta), where K_s is the lateral earth pressure coefficient on pile shaft",
-                    "Normally consolidated clays: Beta = 0.2-0.3; OC clays: Beta up to 2.0",
-                    "Toe resistance: q_p = N_t * sigma'_vt (Nt from effective stress bearing capacity theory)",
-                    "Implemented in UniPile software"
+                    "Effective stress method for cohesionless, cohesive and layered soils, modelling long term drained conditions with phi'",
+                    "fs = beta sigma'vo (Eq. 7-19), beta = K_delta tan(delta); qp = Nt sigma'p (Eq. 7-20)",
+                    "Table 7-9 (after Fellenius 2014): beta and Nt ranges by soil type and phi'; beta seldom exceeds 1.0",
+                    "Nt about 30 to 120 in sedimentary cohesionless deposits; a relatively low Nt in clays (Nt of 3 is similar to an undrained analysis) unless local correlations suggest higher",
+                    "No limiting values on the shaft or toe resistance",
+                    "No AASHTO (2014) resistance factor for the Fellenius beta-method; use phi_dyn (Table 7-2)"
                   ],
                   "equations": [
-                    "Eq 7-19: f_s = Beta * sigma'_v (unit shaft resistance)",
-                    "Eq 7-20: q_p = N_t * sigma'_vt (unit toe resistance)"
+                    "Eq. 7-19: fs = beta sigma'vo; beta Bjerrum-Burland beta coefficient = K_delta tan(delta), sigma'vo average vertical effective stress along the pile shaft (ksf), K_delta coefficient of lateral earth pressure, delta friction angle between pile and soil (p. 255)",
+                    "Eq. 7-20: qp = Nt sigma'p; Nt toe resistance coefficient, sigma'p vertical effective stress at the pile toe (ksf) (p. 255)"
                   ],
-                  "figures": [
-                    "Figure 7-12: Beta coefficient vs OCR for various soil types"
-                  ],
+                  "figures": [],
                   "tables": [
-                    "Table 7-6: Nt bearing capacity factors for Beta method"
+                    "Table 7-9: Approximate Range of beta and Nt Coefficients (after Fellenius 2014) (p. 256)"
                   ]
                 },
                 {
                   "section_id": "7.2.1.3.5",
                   "title": "Brown Method (SPT N60)",
-                  "body": "Brown (2001) developed a method that uses corrected SPT N60 values to estimate driven pile capacity in cohesionless soils. Unit shaft resistance is computed directly from N60 with depth-dependent coefficients. The method was calibrated against a load test database.",
+                  "body": "7.2.1.3.5 Brown Method - Mixed Soil Profiles - SPT Data (pp. 258-260). The Brown Method (2001) is a simple empirical method using SPT N60 values for the unit shaft and unit toe resistance, based on correlations with 71 static load tests from Caltrans projects in a wide variety of soil types, with closed end pipe, open end pipe, H-piles and precast concrete piles; it considers compression and uplift loading and the installation method (impact driving and partial vibratory installation). The average unit shaft resistance is fs = Fvs (Ab + Bb N60) (Eq. 7-21), with N60 taken as 50 if greater than 50 and as 3 if less than 3. Brown recommended the shaft resistance be the unit shaft resistance times the 'box' perimeter for H-piles rather than the actual pile/soil contact area, and only the external surface area for open end pipe piles. Ab, Bb and Fvs are given in Table 7-10. For impact driven piles qp = 3.55 N60 (Eq. 7-22), multiplied by 0.56 for vibratory installed piles; Rp = qp (Ap + App Fp) (Eq. 7-23), Ap being the actual steel area at the toe for H-piles and open end pipe piles. The method is recommended only for preliminary length estimates until a greater experience base exists; Caltrans continues to study and expand it (Olson and Shantz 2004). AASHTO (2014) gives no resistance factor for it, so the factor of the applicable field verification method, phi_dyn, should be used.",
                   "key_points": [
-                    "SPT N60-based method for cohesionless soils; phi = 0.30",
-                    "Unit shaft resistance from N60 with depth-dependent coefficients",
-                    "Calibrated against pile load test database",
-                    "Separate equations for shaft and toe resistance"
+                    "Empirical SPT N60 method from 71 Caltrans static load tests in a wide variety of soils (closed and open end pipe, H and precast concrete piles; compression and uplift)",
+                    "fs = Fvs (Ab + Bb N60) (Eq. 7-21); N60 limited to 3-50; Fvs 1.0 impact, 0.68 vibratory; Ab, Bb from Table 7-10",
+                    "Shaft area: 'box' perimeter for H-piles; external surface only for open end pipe piles",
+                    "qp = 3.55 N60 for impact driven piles (Eq. 7-22), times 0.56 for vibratory installation; Rp = qp (Ap + App Fp) (Eq. 7-23)",
+                    "Recommended only for preliminary length estimates",
+                    "No AASHTO (2014) resistance factor; use phi_dyn of the field verification method"
                   ],
                   "equations": [
-                    "Eq 7-21: f_s = a * N60 (unit shaft resistance, with depth limits)",
-                    "Eq 7-22: q_p = b * N60 (unit toe resistance, with limiting value)",
-                    "Eq 7-23: Coefficients a and b from Table 7-7"
+                    "Eq. 7-21: fs = Fvs (Ab + Bb N60); fs average unit shaft resistance (ksf), Fvs factor for pile driving method (1.0 for impact or 0.68 for vibratory), Ab Brown's regression analysis factor based on soil type (ksf), Bb Brown's regression analysis factor based on soil type (ksf/bpf), N60 SPT N-value corrected for 60% energy transfer (p. 258)",
+                    "Eq. 7-22: qp = 3.55 N60; unit toe resistance (ksf) of impact driven piles, multiplied by 0.56 for vibratory installed piles (p. 259)",
+                    "Eq. 7-23: Rp = qp (Ap + App Fp); Rp pile toe resistance (kips), Ap cross sectional area of the pile material at the pile toe (ft2), App cross sectional area of soil plug (ft2) for open end pipe piles or H-piles at the pile toe, Fp plug mobilization factor, 0.42 for pipe piles or 0.67 for H-piles (p. 259)"
                   ],
                   "figures": [],
                   "tables": [
-                    "Table 7-7: Brown method coefficients a and b for shaft and toe resistance"
+                    "Table 7-10: Input Factors for Brown's Method (p. 260)"
                   ]
                 },
                 {
                   "section_id": "7.2.1.3.6",
                   "title": "Eslami and Fellenius CPT Method",
-                  "body": "Eslami and Fellenius (1997) developed a CPT-based method that uses the effective cone tip resistance (q_E = q_c - u_2) to estimate pile capacity. Soil is classified into five types based on the relationship between q_E and sleeve friction f_s. A toe coefficient C_t is applied to the geometric average of q_E in the influence zone around the pile toe.",
+                  "body": "7.2.1.3.6 Eslami and Fellenius Method - CPT Data (pp. 260-262). The unit shaft resistance is correlated to the average effective cone tip resistance, with a shaft correlation coefficient applied based on the soil profile: fs = Cs qE (Eq. 7-24), with the Eslami cone stress qE = qt - U2 (Eq. 7-25) and qt = qc + U2 (1 - a) (Eq. 7-26); Cs is given by soil type in Table 7-11 (after Fellenius 2014). The unit toe resistance qp = Cp qEg (Eq. 7-27) uses the geometric average of the cone tip resistance over the influence zone at the pile toe, after correction for pore pressure on the cone shoulder and for effective stress. The zone of influence depends on the pile diameter b: from 4b below to 8b above the toe when the pile is installed through a weak zone overlying a dense zone, and from 4b below to 2b above the toe when it is driven through a dense soil into a weak soil. The toe correction coefficient Cp is 1.0 in most cases; because larger piles need more movement to mobilize the toe resistance, Cp = 12/b (b in inches) for pile diameters greater than 16 inches (Eq. 7-28). Procedure: (1) obtain CPT results with cone stress and pore pressure measurements; (2) fs for each depth increment by Eq. 7-24 with Table 7-11; (3) the shaft resistance of each layer and Rs by Eq. 7-4; (4) qp by Eq. 7-27; (5) Rp by Eq. 7-5; (6) Rn = Rs + Rp; (7) the factored resistance (Section 7.1.5, Eq. 7-3). AASHTO (2014) gives no resistance factor for this method, so phi_dyn (Table 7-2) is used at the strength limit state.",
                   "key_points": [
-                    "CPT-based method using effective cone resistance q_E = q_c - u_2; phi = 0.50",
-                    "Highest resistance factor (0.50) of all static methods due to CPT reliability",
-                    "Five soil types classified by q_E vs f_s relationship",
-                    "Shaft resistance: f_s = C_s * q_E where C_s depends on soil type (Table 7-8)",
-                    "Toe resistance: q_p = C_t * q_Eg (geometric average in influence zone)",
-                    "Influence zone: 4B below to 4B above pile toe"
+                    "CPT method with pore pressure: fs = Cs qE (Eq. 7-24), qE = qt - U2 (Eq. 7-25), qt = qc + U2 (1 - a) (Eq. 7-26)",
+                    "Cs by soil type from Table 7-11, from 8.0% for soft sensitive soil to 0.4% for sand",
+                    "qp = Cp qEg (Eq. 7-27), qEg the geometric average of the corrected cone tip resistance over the toe influence zone",
+                    "Influence zone 4b below to 8b above the toe (through a weak zone into a dense zone) or 4b below to 2b above (through a dense soil into a weak soil)",
+                    "Cp = 1.0 in most cases; Cp = 12/b (b in inches) for pile diameters greater than 16 in. (Eq. 7-28)",
+                    "No AASHTO (2014) resistance factor; use phi_dyn (Table 7-2)"
                   ],
                   "equations": [
-                    "Eq 7-24: q_E = q_c - u_2 (effective cone tip resistance)",
-                    "Eq 7-25: f_s = C_s * q_E (unit shaft resistance)",
-                    "Eq 7-26: q_Eg = (q_E1 * q_E2 * ... * q_En)^(1/n) (geometric average)",
-                    "Eq 7-27: q_p = C_t * q_Eg (unit toe resistance)",
-                    "Eq 7-28: C_t and C_s coefficients from Table 7-8"
+                    "Eq. 7-24: fs = Cs qE; fs unit shaft resistance (ksf), Cs shaft correlation coefficient from Table 7-11, qE Eslami cone stress (p. 260)",
+                    "Eq. 7-25: qE = qt - U2; U2 pore water pressure measured at the cone shoulder (p. 260)",
+                    "Eq. 7-26: qt = qc + U2 (1 - a); qc measured cone tip stress, a ratio between the shoulder area (cone base) unaffected by the pore water pressure and the total area (p. 260)",
+                    "Eq. 7-27: qp = Cp qEg; Cp toe correction coefficient equal to 1.0 in most cases, qEg geometric average of the cone tip resistance (ksf) over the influence zone after correction for pore pressure on the shoulder and adjustment to effective stress (p. 261)",
+                    "Eq. 7-28: Cp = 12 / b; for pile diameters greater than 16 inches, b pile width or diameter (inches) (p. 261)"
                   ],
-                  "figures": [
-                    "Figure 7-13: Eslami-Fellenius soil classification chart (q_E vs f_s)"
-                  ],
+                  "figures": [],
                   "tables": [
-                    "Table 7-8: Eslami-Fellenius C_s shaft correlation coefficients by soil type",
-                    "Table 7-9: Eslami-Fellenius C_t toe coefficients"
+                    "Table 7-11: Cs Values for Eslami and Fellenius Method (after Fellenius 2014) (p. 261)"
                   ]
                 },
                 {
                   "section_id": "7.2.1.3.7",
                   "title": "Nottingham and Schmertmann CPT Method",
-                  "body": "Nottingham and Schmertmann (1975) developed a CPT-based method using the measured cone tip resistance q_c and sleeve friction f_s to estimate pile capacity. The method uses a friction ratio approach for shaft resistance and an averaging technique for toe resistance in the influence zone around the pile toe. Different reduction factors apply to mechanical and electric cone data.",
+                  "body": "7.2.1.3.7 Nottingham and Schmertmann Method - CPT Data (pp. 262-268). An empirical procedure used in U.S. practice, from Nottingham and Schmertmann (1975) as summarized in FHWA-TS-78-209, 'Guidelines for Cone Penetration Test, Performance and Design' (Schmertmann 1978). In cohesionless soils the nominal shaft resistance is derived from the CPT unit sleeve friction (Eq. 7-29), Ks being the ratio of unit pile shaft resistance to unit cone sleeve friction as a function of the full penetration depth D, with the sleeve friction averaged over 0 to 8b and 8b to D. The transfer function Ks varies with total penetration (depth of embedment / pile diameter), pile material and cone type; no limit was imposed on sleeve friction in the original procedure. Without sleeve friction data, Rs = Cf sum(qc As) (Eq. 7-30), Cf from Table 7-12. In cohesive soils Rs = alpha' fs As (Eq. 7-31), alpha' being the ratio of pile shaft resistance to cone sleeve friction, patterned after Tomlinson's alpha-method, which varies with fs as shown in Figure 7-20; the method is expected to be less appropriate in sensitive soils, where the friction sleeve meets severely disturbed soil behind the cone tip. The toe resistance (Figure 7-21) uses an averaging scheme over 8 pile diameters above to as much as 3.75 diameters below the toe, favoring the lower qc values; the authors refer to a 'limit' qc of 105 to 315 ksf applied to qp unless local experience warrants higher values, and with mechanical cone soundings in cohesive soils qp is reduced by 40 percent for toe resistance effects on the base of the friction sleeve. Soil plugging (Section 7.10.7) needs careful consideration in choosing the toe area of low displacement open ended pipe and H-piles. Procedure: (1) delineate layers from qc and fs; (2) the shaft resistance of each layer: in cohesionless soils from the layer's average fs and K, with K from Figure 7-19 for the full pile penetration depth to diameter ratio (not the layer's), d being the toe depth or the depth to the bottom of the layer, whichever is less, the 'box' area for H-piles, Eq. 7-32 below a depth of 8b, and Eq. 7-30 without sleeve friction data; in cohesive soils Eq. 7-31; (3) Rs as the sum of the layers; (4) qp by Eq. 7-33; (5) Rp, using only the steel area at the toe of steel H and unfilled open end pipe piles unless there is reasonable assurance and experience that a plug will form (then the 'box' area or the full pipe area); (6) Rn = Rs + Rp; (7) the factored resistance (Section 7.1.5, Eq. 7-3). AASHTO (2014) gives a resistance factor for this method in Table 7-1 (Schmertmann 1975, 0.50); phi_dyn (Table 7-2) may also be used. Under Eq. 7-29 (p. 263) the print takes Ks from Figure 7-20; Step 2a and Eq. 7-32 take it from Figure 7-19, the sand curves.",
                   "key_points": [
-                    "CPT-based method using q_c and f_s data; phi = 0.50",
-                    "Shaft resistance uses friction ratio approach with depth-dependent K factors",
-                    "Toe resistance from cone tip averaging in influence zone (8B below to 4B above toe)",
-                    "Minimum path rule for averaging toe resistance to prevent overestimation",
-                    "Different factors for mechanical vs electric cone penetrometers",
-                    "Implemented in DRIVEN and APILE software"
+                    "CPT method of Nottingham and Schmertmann (1975), FHWA-TS-78-209; AASHTO (2014) resistance factor 0.50 (Table 7-1)",
+                    "Cohesionless shaft: Rs = Ks [(1/2)(fs As) over 0 to 8b + (fs As) over 8b to D] (Eq. 7-29), Ks from Figure 7-19 for the full penetration ratio; Rs = Ks fs As below 8b (Eq. 7-32)",
+                    "Without sleeve friction data: Rs = Cf sum(qc As) (Eq. 7-30), Cf from Table 7-12",
+                    "Cohesive shaft: Rs = alpha' fs As (Eq. 7-31), alpha' from Figure 7-20; less appropriate in sensitive soils",
+                    "Toe: qp = (qc1 + qc2)/2 (Eq. 7-33), averaging qc from xb below (x = 0.7 to 3.75) to 8b above the toe with the minimum path rule (Figure 7-21)",
+                    "A 'limit' qc of 105 to 315 ksf on qp; qp reduced 40% for mechanical cone soundings in cohesive soils",
+                    "Steel H and unfilled open end pipe piles: steel area at the toe unless a soil plug is reasonably assured"
                   ],
                   "equations": [
-                    "Eq 7-29: f_s = K * f_sc (unit shaft resistance from cone sleeve friction)",
-                    "Eq 7-30: K factor from Figure 7-14 based on depth and cone type",
-                    "Eq 7-31: q_p = (q_c1 + q_c2) / 2 * 1/(2*y) (toe resistance average path)",
-                    "Eq 7-32: q_c1 = average q_c from toe to 0.7-4B below toe (minimum path rule)",
-                    "Eq 7-33: q_c2 = average q_c from toe to 8B above toe (upward averaging)"
+                    "Eq. 7-29: Rs = Ks [(1/2)(fs As)(0 to 8b) + (fs As)(8b to D)]; Ks ratio of unit pile shaft resistance to unit cone sleeve friction as a function of the full penetration depth D, fs average unit sleeve friction over the depth interval indicated by the subscript, As pile shaft surface area over the fs depth interval, b pile width or diameter, D embedded pile length, 0 to 8b the segment from the ground surface to a depth of 8b, 8b to D the segment from a depth of 8b to the pile toe (p. 263)",
+                    "Eq. 7-30: Rs = Cf sum(qc As); Cf correction from Table 7-12, qc average cone tip resistance along the pile length, As pile shaft surface area (p. 263)",
+                    "Eq. 7-31: Rs = alpha' fs As; cohesive soils, alpha' ratio of pile shaft resistance to cone sleeve friction (patterned after Tomlinson's alpha-method; Figure 7-20), fs unit sleeve friction, As pile shaft surface area (p. 263)",
+                    "Eq. 7-32: Rs = Ks fs As; cohesionless layers below a depth of 8b, Ks from Figure 7-19 as a function of the full penetration depth D (p. 267)",
+                    "Eq. 7-33: qp = (qc1 + qc2) / 2; qc1 average qc over a distance xb below the pile toe (path 1-2-3 of Figure 7-21), computed for x from 0.7 to 3.75 with the minimum path rule along path 2-3 and the minimum value used, qc2 average qc over a distance 8b above the pile toe (path 3-4 of Figure 7-21) with the same minimum path rule (p. 268)"
                   ],
                   "figures": [
-                    "Figure 7-14: Schmertmann K factors for shaft resistance from CPT",
-                    "Figure 7-15: Nottingham-Schmertmann toe resistance averaging procedure"
+                    "Figure 7-19: Penetrometer design curves for pile shaft friction in sand (after FHWA Implementation Package, FHWA-TS-78-209) (p. 265)",
+                    "Figure 7-20: Design curve for pile shaft friction in clay (after Schmertmann 1978) (p. 265)",
+                    "Figure 7-21: Illustration of Nottingham and Schmertmann Procedure for estimating pile toe resistance (FHWA-TS-78-209) (p. 266)"
                   ],
                   "tables": [
-                    "Table 7-10: Nottingham-Schmertmann maximum unit toe resistance values"
+                    "Table 7-12: CPT Cf Values (p. 264)"
                   ]
                 }
               ]
