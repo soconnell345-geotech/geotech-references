@@ -47,6 +47,18 @@ Printed page numbers; GEC-7 printed = PDF - 40, GEC-12 Vol II printed = PDF - 32
 Chapter titles in `scripts/manifests/gec_12_v2.json` now follow the printed
 headings (ch 10, 14, 16, 18).
 
+Figure records (found by the independent spot-check of 9948a59): 11 GEC-12
+figure records carried the description of the table with the same number,
+Figures 12-3 to 12-7, 13-1, 18-1 and 18-3 to 18-6 (e.g. Figure 18-3, a
+photograph of Blue Nylon hammer cushion disks, held Table 18-3's diesel
+hammer problems). The check scripts' helper applied a description keyed by
+number to the figure and the table alike. Each now has a description read
+off its page; captions and pages were already as printed. Sweep of every
+figure record in the chapters this work touched (GEC-12 ch 7 and 9-18,
+GEC-7 ch 1-10): no other figure shares a table's description; the four
+with more than half their words in some table's description (GEC-7 Figures
+5.7, 6.5, 7.2, 9.6) describe their own figures.
+
 ## Merged summaries (main's sections that had none)
 
 - **GEC-6 ch 1-10 (127 summaries):** every number and capitalised name
@@ -168,6 +180,15 @@ reworked part of the chapter from the print, not that it was rebuilt whole.
   cites "Eq 8-48" where Eq 8-51 is applied.
 - GEC-12 3.5.5 and 5.2.5 point to Sections 6.13 and 6.14; the material is in
   6.12.
+- GEC-12 6.8: Figure 6-20 prints the square solid prestressed pile as 8-24
+  in. (the 6.8 summary's "square 8-24 in."); Figure 6-5 prints 10-30 in.
+- GEC-12 12.5.2: "any stroke greater than 8.2 feet at a penetration
+  resistance of 90 blows/foot is acceptable"; the Figure 12-5 curve is above
+  9 ft at 90 blows/ft. Figure 12-6 gives the pile penetrations as 65 and 70
+  ft "below excavation" (piles 50 and 52 ft long); the text has 49 ft below
+  excavation (65.5 ft below river bed) and bedrock 70 ft below river bed.
+  12.5.3 says Figure 12-7 includes transferred energy; that plot is in
+  Figure 12-8.
 - GEC-7 2.7.2: the heading wording is kept as printed.
 - GEC-7 3.3.7: CIP contraction joints at 90-100 ft are called "similar to"
   shotcrete facings, given as 45-90 ft; a reference to "Section 3.5" for
@@ -205,3 +226,8 @@ reworked part of the chapter from the print, not that it was rebuilt whole.
   9 and 10 still without a section of their own, plus four ch 9 ranges
   (9.3.4-9.3.5, 9.3.6-9.3.7, 9.4.2-9.4.3, 9.4.4-9.4.6), the rescue branch's
   structure; the same 19 test files exit 0, 838 passed, 2 xfailed.
+- Test count: these 19 files collect 840 tests (838 passed + 2 xfailed) on
+  this branch and at 9948a59 alike, counted per file with `pytest --co`. The
+  independent spot-check reported 936 passed and 2 xfailed for its run;
+  that is not what these 19 files collect at either commit here, so the two
+  runs' file lists are worth comparing before quoting either number.
