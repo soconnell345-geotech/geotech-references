@@ -160,8 +160,9 @@ def test_a_parent_lists_its_children_not_their_text(get):
 def test_a_nested_section_says_where_it_sits():
     sec = _retrieval_db.reference_get("gec_12", "7.2.1.3.1")
     assert sec["title"].startswith("Nordlund")
-    assert sec["parent_id"] == "7.2.1"
+    assert sec["parent_id"] == "7.2.1.3"
     assert sec["under"].startswith("7.2 Strength Limit States > 7.2.1 ")
+    assert sec["under"].endswith("> 7.2.1.3 Nominal Resistance of Single Piles in Soils")
     # a nested section sits under the section the file nests it in
     assert _retrieval_db.reference_get("gec_12", "7.2.8.1")["parent_id"] \
         == "7.2.8"
@@ -177,11 +178,16 @@ def test_a_flat_listed_section_sits_under_its_number():
 
 
 def test_a_missing_number_names_what_is_near_it():
+    # 7.2.1.6 is not printed; 14.2 is printed but held only through its
+    # children (14.2.1-14.2.2 ... 14.2.6-14.2.8)
     with pytest.raises(KeyError) as e:
-        _retrieval_db.reference_get("gec_12", "7.2.1.3")
-    assert "7.2.1 " in str(e.value) and "7.2.1.3.1 Nordlund" in str(e.value)
+        _retrieval_db.reference_get("gec_12", "7.2.1.6")
+    assert "nearest section above it: 7.2.1 " in str(e.value)
+    with pytest.raises(KeyError) as e:
+        _retrieval_db.reference_get("gec_12", "14.2")
+    assert "14.2.5 Section X.05" in str(e.value)
     with pytest.raises(KeyError):
-        _retrieval.retrieve_section("gec_12", "7.2.1.3")
+        _retrieval.retrieve_section("gec_12", "7.2.1.6")
 
 
 # ---------------------------------------------------------------------------
@@ -194,7 +200,7 @@ def test_search_finds_the_subsection_and_says_where_it_sits(auto_expansion):
     assert "7.2.1.3.1" in ids
     hit = hits[ids.index("7.2.1.3.1")]
     assert hit["under"].startswith("7.2 Strength Limit States > 7.2.1 ")
-    assert hit["parent_id"] == "7.2.1"
+    assert hit["parent_id"] == "7.2.1.3"
     assert "body" not in hit
 
     legacy = _retrieval.search_sections("gec_12", "Nordlund")
@@ -271,7 +277,7 @@ def test_list_chapters_includes_nested_sections():
     sections = [s for c in _retrieval.list_chapters("gec_12")
                 for s in c["sections"]]
     by_id = {s["section_id"]: s for s in sections}
-    assert by_id["7.2.1.3.1"]["parent_id"] == "7.2.1"
+    assert by_id["7.2.1.3.1"]["parent_id"] == "7.2.1.3"
     assert "parent_id" not in by_id["7.2"]
     # a flat reference keeps the shape it had
     for c in _retrieval.list_chapters("dm7_1"):
