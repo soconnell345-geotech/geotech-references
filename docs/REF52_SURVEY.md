@@ -599,3 +599,120 @@ No reading was chosen. Page numbers are printed page numbers.
 - ch 10: soil nailing lists "Weathered rock with adverse weakness planes"
   as well suited and "with unfavorable weakness planes" as unfavorable,
   and "Glacial till" in both lists (pp. 10-62/63).
+
+## GEC-9 written from the print
+
+GEC-9 (FHWA-HIF-18-031, April 2018) was rewritten from the print on
+fix/ref52, one commit per chapter (ch 1 to 13). The June 2026 files held
+59 condensed sections. Every printed heading now has its own section,
+with its body read off its printed pages, 187 in all (ch 6 34, ch 11 30,
+ch 12 23, ch 7 18, ch 13 16, ch 10 14). Each equation, figure and table
+sits in the section whose pages print it. A figure printed after a
+section's text, before the next heading, stays with that section.
+Equations were read off rendered pages, symbol by symbol: ch 6 now holds
+Eqs. 6-1 to 6-22 (the old file had 9 unnumbered ones) and ch 11 holds
+Eqs. 11-1 to 11-61 (the old file had 13). Captions come from the List of
+Figures and List of Tables (pp. vii-xi), which match the body captions.
+
+`check_section_numbers.py gec_9` now reads 187 printed and 187 matched,
+with 0 missing (it was 62 with a section of their own and 125 missing).
+Old 3.4 was dropped because the print has no 3.4; its text is printed as
+3.3.4 and 3.3.5. No retrieval eval case moved: test_query_expansion
+passed after every chapter, and so did the gec_9 cases elsewhere in the
+suite.
+
+### What the old files held that the print does not
+
+- Figure captions that are not the print's. In ch 12 all five listed
+  captions were wrong: for example, old "Figure 12-2: Strain gauge pair
+  placement" is printed as "Example of a one-way lateral load test set up
+  on a deep foundation". Figure 12-6 was missing.
+- Duplicated figures. Ch 6 listed Figure 6-6 twice, once captioned "Pile
+  group interaction in SWM model". Old 10.4 listed Figure 2-11 again; it
+  is now in ch 2 only.
+- Titles with added words: 7.2 (": Group Efficiency and P-Multipliers"),
+  8.3 ("Seismic Design"; printed "Seismic") and 10.3 ("Using the Liang
+  and Zeng Method"; printed "Drilled Shaft Analysis").
+- Eq. 11-34 was written as Pn = P0 0.658^(P0/Pe). The print sets P0/Pe on
+  the line after 0.658, not raised (see below).
+- The old ch 6 depth-to-zero-shear formula for cohesionless soil used
+  gamma. Eq. 6-16 prints gamma'.
+
+### Print inconsistencies, kept as printed
+
+No reading was chosen. Page numbers are printed page numbers (PDF page
+minus 4).
+- ch 3: pp. 33 and 34 cite "Table 3-2" for the recommendations that
+  Table 3-3 gives.
+- ch 4: p. 40 says "substituted into Equation 4-1", but no Equation 4-1
+  is printed.
+- ch 5: p. 61 ("Section 5.3.1") and p. 62 ("Sections 5.3.1, 5.3.2, and
+  5.3.3") point to the roles printed as 5.2.1 to 5.2.3.
+- ch 6:
+  - p. 64 prints "see Error! Reference source not found."
+  - The same paper is "Davisson and Robinson 1985" on p. 93 and 1965
+    elsewhere.
+  - Eq. 6-13 prints gamma z, while the text calls the term the vertical
+    effective stress (gamma'z).
+  - Eq. 6-15 is printed as Pt = gamma' Bb Lmin^2 Kp/(2 Lmin) - Mt/Lmin.
+    Its first term is a force per length; Mt/Lmin is a force.
+- ch 7:
+  - The same paper is "Mokwa and Duncan (2001)" on p. 106 and "Duncan
+    and Mokwa (2001)" on p. 112.
+  - The batter wording disagrees. P. 114 says a modifying constant of 0
+    to 1 (head toward the load) "reduces the p value, which reduces the
+    deflection". P. 115 has "outwardly battered piles (pile head inclined
+    toward the load)", while pp. 113 and 114 call outward batter "away
+    from the load".
+  - The list in 7.4.2 is printed numbered 7 to 9 (p. 110).
+- ch 8:
+  - The Extreme Event lateral resistance factor is 0.80 on p. 116 and
+    1.0 on pp. 117 and 122.
+  - P. 118 reads "For periods less than or equal to, the elastic"; T0 is
+    missing.
+  - Abutments and piers are "located 30 feet from the edge of roadway"
+    (p. 123).
+- ch 9: the last value of Table 9-1 is printed ".25" (p. 129).
+- ch 10:
+  - On p. 132, an unnumbered heading "Initial Geotechnical Resistance
+    Assessment" runs into the next sentence.
+  - P. 133 says "As the program is based upon a 2-dimensional finite
+    element method (FEM) model" without naming a program.
+  - The Eq. 10-1 legend has "Ci'Ii" and "PiIi = Interslice force", and
+    the equation prints C'_I (p. 135).
+  - P. 141 cites "Chapter 6 of this report" for micropile slope design.
+- ch 11:
+  - No Equation 11-58 is printed; 11-57 is followed by 11-59.
+  - Eq. 11-34 prints "Pn = P0 0.658 P0/Pe" with the fraction on the line.
+  - Eq. 11-48 has no condition printed; only Eq. 11-47 carries "If
+    Pu/Pr < 0.2".
+  - P. 145 cites "Table 11-2" for nh, but Table 11-2 gives casing yield
+    strengths.
+  - The depth-to-fixity paragraph is printed twice (pp. 145 and 146).
+  - The toe is "fixed for both translation and rotation (pinned)" (p. 144).
+  - The concrete failure strain is "approximately up to approximately
+    0.0038" (p. 144).
+  - The compression-controlled strain limit is printed as 0.003 (p. 154).
+  - The units of Est, Ep and ecu are printed as "(in2)" (pp. 155 to 157).
+  - The legends cite "AASHTO (2014) Section 8.5.2.3" and "Table 8-6"
+    (p. 156).
+  - P. 166 names Equations 11-37 and 11-39 for the compact and
+    noncompact Mn cases, which Eqs. 11-40 and 11-42 print.
+  - The text gives 235 MPa for Figure 11-10, and the figure's note says
+    234 MPa (pp. 171 and 172).
+  - The Eq. 11-61 legend gives "Et" for the modulus of steel (p. 174).
+- ch 12:
+  - The cross-references point to the wrong sections. P. 181 has
+    "external instrumentation (see Section 12.6)"; instrumentation is
+    12.3. P. 187 has bending moments "see Section 12.7"; data analysis
+    is 12.4.
+  - Eqs. 12-1, 12-2 and 12-4 print the curvature as the glyph "Ø"; the
+    text uses phi.
+  - Procedure A "consists of 1) load increments ..." has no 2) (p. 184).
+  - The shape arrays are "Shape accelerator arrays (SAAs)" on p. 187 and
+    "Shape Array Accelerometers (SAA)" on p. 189.
+  - Piecewise fitting gives p "at the group center point" (p. 192).
+- ch 13: the pre-bored hole is limited to "not more than 6 inches than
+  the largest dimension of the pile" (p. 201).
+
+Smaller typos are not listed.
