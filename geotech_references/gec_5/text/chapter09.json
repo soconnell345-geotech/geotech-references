@@ -5,98 +5,570 @@
   "chapter_title": "Measurement and Interpretation of Rock Properties",
   "sections": [
     {
-      "section_id": "9.1-9.4",
-      "title": "Intact Rock Properties",
-      "summary": "Intact rock properties measured by: (1) uniaxial compressive strength qu (ASTM D7012): peak axial stress at failure; E50 from slope of stress-strain curve at 50% of qu; (2) Brazilian tensile strength (ASTM D3967): σt = 2P/(πDl); (3) direct shear on rock joints (ASTM D5607): peak and residual friction angle φj with optional JRC roughness quantification; (4) point load index Is (ASTM D5731): qu ≈ 22 × Is(50) (correction to 50 mm diameter); (5) Schmidt hammer rebound R → qu and E50 per Table 9-3 and 9-4. Sample selection: avoid weathered, fractured, or mechanically damaged specimens; sufficient L/D ratio (≥ 2.0 for UCS).",
-      "body": "Intact rock strength and stiffness: The uniaxial compressive strength qu (or UCS) is the axial stress at failure in an unconfined compression test. E50 = Young's modulus at 50% of qu from the axial stress-strain curve. Poisson's ratio from simultaneous lateral strain measurements. Tests on intact specimens; values must be adjusted for in situ rock mass quality using classification systems.\n\nBrazilian tensile strength (ASTM D3967): Indirect tensile test on disk-shaped specimen; σt = 2P/(πDl) where P = load, D = diameter, l = thickness. Useful when direct tensile strength is needed.\n\nDirect shear on rock joints (ASTM D5607): Peak and residual friction angles for natural or manufactured discontinuities. Joint roughness coefficient (JRC) from Barton and Choubey (1977) quantifies surface texture; smooth = 0, very rough = 20. JRC combined with JCS (joint compressive strength) and φr (residual friction angle) gives strength envelope.\n\nPoint load index (ASTM D5731): Quick field test on drill core or irregular rock lumps; Is = P/De² where De = equivalent diameter. Normalize to 50 mm: Is(50). Empirical: qu ≈ 22 × Is(50) for irregular lumps; correlation varies by rock type.\n\nSchmidt hammer: R value → qu and E50 from Table 9-3 (Deere and Miller 1966) and Table 9-4. Simple portable tool for preliminary assessment. Large scatter in correlations; should not replace direct UCS testing for design.",
+      "section_id": "9.1",
+      "title": "Uses for Rock Properties in Design and Construction",
+      "summary": "Intact rock and rock mass strength, stiffness and hydraulic properties govern design of rock slopes, foundations on and in rock, rock fill and tunnels, foundation selection, seismic ground motions and aggregate use, and construction: ripping versus blasting, casing, slurry, grouting, drainage, abrasion, degradation and pile driving.",
+      "body": "Strength and stiffness of intact rock and rock masses significantly affect design, construction and performance of rock slopes, shallow foundations on rock, deep foundations on or in rock, rock fill embankments and tunnels. Rock characteristics and depth to rock strongly influence foundation selection (shallow or deep, type of deep foundation), which affects reliability, constructability and cost. Secondary effects: stiffness of rock strata affects seismic wave propagation and earthquake ground motions; suitability of rock as aggregate and rock fill. Accuracy of rock properties from site characterization drives the reliability and cost of designed features. For construction, rock properties may dictate whether a formation can be ripped or needs drilling and blasting; hydraulic properties affect casing or slurry, rock mass grouting, drainage and cofferdams; some rock is highly abrasive (specialized tooling), some degrades rapidly (stability during construction and long term), and rock may limit driven pile depths or damage piles. (pp. 9-1 to 9-2)",
       "key_points": [
-        "UCS (ASTM D7012): qu = peak axial stress; E50 from stress-strain at 50% qu; L/D ≥ 2.0",
-        "Brazilian tensile: σt = 2P/(πDl) — indirect; use when direct tensile needed",
-        "Point load index: qu ≈ 22 × Is(50); quick field test but significant scatter",
-        "Schmidt hammer R → qu and E50 (Tables 9-3, 9-4); preliminary screening only",
-        "JRC (0–20) + JCS + φr: Barton-Choubey discontinuity shear strength parameters"
+        "Rock characteristics and depth to rock strongly influence foundation selection (p. 9-1).",
+        "Rock properties may dictate ripping versus drilling and blasting (p. 9-1).",
+        "Abrasive or rapidly degrading rock poses construction challenges (p. 9-2).",
+        "Rock may limit driven pile depths or damage driven piles (p. 9-2)."
       ],
-      "equations": [
-        {
-          "equation_id": "9-Brazilian",
-          "description": "Brazilian indirect tensile strength of intact rock",
-          "latex": "\\sigma_t = \\frac{2P}{\\pi D l}",
-          "variables": {
-            "sigma_t": "indirect tensile strength",
-            "P": "maximum applied load at failure",
-            "D": "diameter of rock disk specimen",
-            "l": "axial length (thickness) of rock disk specimen"
-          },
-          "implemented_in": null
-        }
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Role of intact rock and rock mass properties in design and construction of rock slopes, foundations, rock fill and tunnels"
+    },
+    {
+      "section_id": "9.2",
+      "title": "Fundamental Concepts in Rock Behavior",
+      "summary": "Intact rock is pressure-dependent like soil but stronger and stiffer, often with real tensile strength (Figure 9-1); rock mass behavior is governed by discontinuities, so design relies on empirical methods fed by intact rock and discontinuity characteristics (Figure 9-2). Intact strength spans orders of magnitude (Table 9-1); durability and water in discontinuities also matter.",
+      "body": "Intact rock strength and stiffness depend on confining stress (Figure 9-1, p. 9-2); stiff soils and soft rock form a practical continuum, and intact rock often has considerable tensile strength. Rock masses are often 'blocky' collections of intact pieces cut by discontinuities (cracks and fissures, fractures, joints, bedding planes, cleavage, foliations, faults). 'Intact rock' means pieces largely devoid of significant discontinuities; 'rock mass' includes all discontinuities at field scale, and rock mass characteristics govern performance (p. 9-3). Design is largely empirical; inputs are intact rock type, weathering or alteration and strength, and discontinuity type, orientation, roughness, spacing, persistence and aperture, plus infilling and seepage (Figure 9-2, Wyllie, 1999, p. 9-4); many methods rely on rock mass classification systems. Intact strength varies by orders of magnitude, sometimes within one rock type (Table 9-1, after Goodman, 1989, p. 9-5); simple, consistent intact tests are perhaps more important than elaborate ones. Durability: most rock degrades slowly, but many shale formations degrade over minutes to days on exposure to air or water; durability tests are in Chapter 4. Water: shales with swelling clay minerals and some infillings lose strength when wet; water pressure in discontinuities reduces effective normal stress and so shear strength, so groundwater conditions and their change by construction must be characterized (p. 9-6). (pp. 9-2 to 9-6)",
+      "key_points": [
+        "Intact rock strength and stiffness depend on confining stress; considerable tensile strength (Figure 9-1) (p. 9-2).",
+        "Rock mass characteristics govern performance on or in rock (p. 9-3).",
+        "Empirical methods need intact rock and discontinuity inputs (Figure 9-2) (p. 9-4).",
+        "Table 9-1: qu from 1,650 psi (Nevada Test Site tuff) to 51,500 psi (John Day basalt) (p. 9-5).",
+        "Many shales degrade over minutes to days on exposure to air or water (pp. 9-4 to 9-5).",
+        "Water pressure in discontinuities reduces effective normal stress and shear strength (p. 9-6)."
       ],
+      "equations": [],
       "figures": [
-        "Figure 9-3: Result from uniaxial compression test on intact rock",
-        "Figure 9-7: Axial stress vs. axial strain from uniaxial compression test",
-        "Figure 9-8: Different definitions of rock modulus from stress-strain curve",
-        "Figure 9-11: Relationship between Schmidt hammer R and qu",
-        "Figure 9-14: Relationship between static and dynamic constrained modulus"
+        "Figure 9-1: Typical strength envelope for intact rock",
+        "Figure 9-2: Schematic illustration of rock mass showing relevant characteristics that affect mechanical behavior (Wyllie, 1999)"
       ],
       "tables": [
-        "Table 9-3: Transformations to transform Schmidt hammer R to qu",
-        "Table 9-4: Selected relations to transform rebound hammer R to E50",
-        "Table 9-10: Values of material constant mi for Hoek-Brown criterion"
+        "Table 9-1: Representative strengths for different types of intact rock (after Goodman, 1989) - qu (psi), ratio qu/qt: Berea sandstone 10,700, 63.0; Navajo sandstone 31,030, 26.3; Tensleep sandstone 10,500, no ratio; Hackensack siltstone 17,800, 41.5; Monticello Dam s.s. (greywacke) 11,500, no ratio; Solenhofen limestone 35,500, 61.3; Bedford limestone 7,400, 32.3; Tavernalle limestone 14,200, 25.0; Oneota dolomite 12,600, 19.7; Lockport dolomite 13,100, 29.8; Flaming Gorge shale 5,100, 167.6; Micaceous shale 10,900, 36.3; Dworshak Dam gneiss (45 degrees to foliation) 23,500, 23.5; Quartz mica schist (perpendicular to schistocity) 8,000, 100.4; Baraboo quartzite 46,400, 29.1; Taconic marble 8,990, 53.0; Cherokee marble 9,700, 37.4; Nevada Test Site granite 20,500, 12.1; Pikes Peak granite 32,800, 19.0; Cedar City tonalite 14,700, 15.9; Palisades diabase 34,950, 21.1; Nevada Test Site basalt 21,500, 11.3; John Day basalt 51,500, 24.5; Nevada Test Site tuff 1,650, 10.0"
+      ],
+      "applicability": "Intact rock versus rock mass behavior, discontinuities, empirical design inputs, intact rock strength ranges, durability and water effects"
+    },
+    {
+      "section_id": "9.3",
+      "title": "Boring and Sampling Requirements for Characterization of Intact Rock and Rock Masses",
+      "summary": "Rock is sampled with core barrels that cut core (double-tube generally recommended, triple-tube in difficult rock). Discontinuities are characterized from core (CR, RQD, FF), drilling observations, oriented cores, inclined borings, downhole viewers, MWD and nearby exposures. Measure CR, RQD and FF promptly; wrap or wax moisture-sensitive core.",
+      "body": "Rock sampling needs specialized tooling; samples are cut with core barrels rather than pushed tubes. Double-tube barrels are generally recommended to limit core damage and raise recovery; triple-tube barrels may suit particularly challenging formations. Coring is straightforward in competent rock; difficulties arise in degradable or highly fractured rock. Discontinuities are harder to characterize: core recovery (CR), rock quality designation (RQD) and fracture frequency (FF) (Chapter 4), drilling observations (fluid color, gain or loss of fluid, rod drops, drilling rates), oriented cores, inclined borings where vertical or near-vertical discontinuities matter, downhole viewers, measurement while drilling (MWD), and nearby exposures in quarries, road cuts or natural outcrops (section 9.5). Core goes into wood or heavy cardboard core boxes; measure CR, RQD and FF as soon as possible because shales and mudstones can degrade quickly. Intermediate or moisture-sensitive materials should be wrapped in plastic and/or waxed. Guidance: Savidge et al. (2006), ASTM D2113, ASTM D5079, AASHTO T225. (pp. 9-6 to 9-7)",
+      "key_points": [
+        "Double-tube core barrels generally recommended; triple-tube in particularly challenging rock (p. 9-6).",
+        "CR, RQD and FF (Chapter 4) give some discontinuity characterization (p. 9-6).",
+        "Inclined borings may be needed for vertical or near-vertical discontinuities (p. 9-6).",
+        "Measure CR, RQD and FF as soon after extraction as possible (p. 9-7).",
+        "Wrap or wax core of moisture-sensitive or intermediate materials (p. 9-7).",
+        "Guidance: Savidge et al. (2006), ASTM D2113, ASTM D5079, AASHTO T225 (p. 9-7)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Rock coring, core handling and discontinuity characterization from borings"
+    },
+    {
+      "section_id": "9.4",
+      "title": "Measurement and Interpretation of Intact Rock Properties",
+      "summary": "Uniaxial compressive strength qu is by far the most common intact rock strength measure; tensile and shear strength of intact rock are measured less often (tunnels, slopes in rock lacking significant discontinuities); discontinuity shear strength more often; indirect measures include Brazilian tension, point load, hardness and seismic velocity.",
+      "body": "Several measures establish intact rock strength and stiffness. By far the most common is the uniaxial compressive strength, qu. Tensile and shear strength of intact rock are measured less frequently because they are seldom required for geotechnical design in rock, but may matter for tunnels and rock slopes in rock masses lacking significant discontinuities. Shear strength of specific discontinuities is measured more often because it affects rock slope and tunnel stability. Indirect measures: Brazilian 'indirect' tensile strength, point load strength index, hardness measurements and seismic velocity. (p. 9-7)",
+      "key_points": [
+        "qu is by far the most common measure of rock strength (p. 9-7).",
+        "Discontinuity shear strength is measured more frequently than intact shear strength (p. 9-7)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Intact rock strength and stiffness measurement for foundation design and rock mass characterization"
+    },
+    {
+      "section_id": "9.4.1",
+      "title": "Uniaxial Compressive Strength",
+      "summary": "qu is measured in the uniaxial compression test (ASTM D7012) on cut core: qu = Pmax/A (Eq. 9.1), from the maximum load where failure is not obvious. Strain measurement is optional but recommended. qu is unconfined, a 'reference' strength for classification systems and empirical relations, whose inputs must match their development.",
+      "body": "qu, the most common intact rock strength, comes from the uniaxial compression test (ASTM D7012), similar to the unconfined compression test for soil (section 7.4.2) and to concrete cylinder tests, on core cut to suitable dimensions; it can also be estimated from indirect tests (section 9.4.5). An example result is Figure 9-3 (p. 9-8). qu = Pmax/A (Eq. 9.1). Brittle rock fails abruptly; where failure is less obvious, use the maximum applied load. Displacement or strain measurement is not required but recommended, to interpret behavior and obtain intact modulus (section 9.4.4). qu has no confinement and may not reflect in situ confined strength (Figure 9-1), but it is a common input to rock mass classification and empirical relations, a 'reference' value; inputs should be consistent with how the empirical methods were developed. (pp. 9-7 to 9-9)",
+      "key_points": [
+        "Uniaxial compression test ASTM D7012 (p. 9-7).",
+        "qu = Pmax/A (Eq. 9.1) (p. 9-8).",
+        "Use the maximum applied load when failure is not obvious (p. 9-8).",
+        "Strain measurements recommended for intact rock modulus (p. 9-8).",
+        "qu is a 'reference' strength; inputs consistent with the empirical methods (pp. 9-8 to 9-9)."
+      ],
+      "equations": [
+        "Eq. 9.1: qu = Pmax / A; Pmax = applied axial load at failure, A = specimen cross-sectional area (p. 9-8)"
+      ],
+      "figures": [
+        "Figure 9-3: Example result from uniaxial compression test"
+      ],
+      "tables": [],
+      "applicability": "Intact rock strength and stiffness measurement for foundation design and rock mass characterization"
+    },
+    {
+      "section_id": "9.4.2",
+      "title": "Shear Strength of Intact Rock",
+      "summary": "Intact rock shear strength depends on confinement and is seldom measured; when needed (soft rock, slopes) use triaxial (AASHTO T226, ASTM D7012) or direct shear (ASTM D5607) tests with high-stress equipment. qTX = sigma1f - sigma3f = Pmax/A (Eq. 9.2); direct shear tau = Ps/A and sigma = Pn/A on the nominal initial area (Eqs. 9.3, 9.4); peak and residual envelopes.",
+      "body": "Intact rock shear strength is a function of confining stress (Figure 9-1). It is seldom measured because design methods are mostly empirical, but may be needed for relatively soft rock that can affect features such as rock slopes. Use triaxial (AASHTO T226, ASTM D7012) or direct shear (ASTM D5607) tests, similar to soil tests (Chapter 7) but with equipment for greater stresses. Each triaxial test gives the triaxial compressive strength qTX (Eq. 9.2); several tests at different confining pressures give a failure envelope such as Mohr-Coulomb (Figure 9-4, ASTM D7012, 2014, p. 9-10). Direct shear tests over a range of normal stresses give shear stress-displacement curves and an envelope (Figure 9-5, ASTM D5607, 2008); tau = Ps/A (Eq. 9.3) and sigma = Pn/A (Eq. 9.4), by convention on the nominal initial area A. Where the curve shows a peak then strain softening, peak (tau_peak) and residual (tau_resid) strengths can both be established (section 7.7); both envelopes can be appropriate (p. 9-11). (pp. 9-9 to 9-11)",
+      "key_points": [
+        "Triaxial: AASHTO T226, ASTM D7012; direct shear: ASTM D5607 (p. 9-9).",
+        "Several triaxial tests at different confining pressures give a Mohr-Coulomb envelope (Figure 9-4) (p. 9-9).",
+        "Direct shear stresses use the nominal initial area A (p. 9-10).",
+        "Peak and residual strength envelopes can both be appropriate (p. 9-11)."
+      ],
+      "equations": [
+        "Eq. 9.2: qTX = (sigma1f - sigma3f) = Pmax / A; sigma1f, sigma3f = major and minor principal stresses at failure, Pmax = applied axial load at failure, A = specimen cross-sectional area (p. 9-9)",
+        "Eq. 9.3: tau = Ps / A; Ps = applied shear load, A = nominal initial cross-sectional area (p. 9-9)",
+        "Eq. 9.4: sigma = Pn / A; Pn = applied normal load (p. 9-10)"
+      ],
+      "figures": [
+        "Figure 9-4: Construction of Mohr-Coulomb failure envelope from measurements of triaxial tests on intact rock (from ASTM D7012, 2014)",
+        "Figure 9-5: Results from direct shear tests performed on intact rock (from ASTM D5607, 2008)"
+      ],
+      "tables": [],
+      "applicability": "Intact rock strength and stiffness measurement for foundation design and rock mass characterization"
+    },
+    {
+      "section_id": "9.4.3",
+      "title": "Tensile Strength of Intact Rock",
+      "summary": "Tensile strength qt is considerably less than qu, in a proportion that varies among rock types (Figure 9-6, Perras and Diederichs, 2014). Direct tension test (ASTM D2936): qt = Pmax/A (Eq. 9.5); it is difficult, so the split (Brazilian) tension test (ASTM D3967, section 9.4.5) is more common.",
+      "body": "qt is considerably less than qu; its relation to compressive strength and the Mohr-Coulomb envelope is in Figure 9-1. Figure 9-6 compares qt and qu (UCS) from several studies: a general relationship often exists for a rock type or formation, but the proportionality varies substantially among rock types. Tensile strength has limited use for transportation but matters for tunnels and underground spaces (p. 9-12). The direct tension test (ASTM D2936) loads a specimen in tension; displacements are generally not measured; qt = Pmax/A (Eq. 9.5). Specimen preparation and avoiding bending or torsion make it difficult, so the split ('Brazilian split') tension test (ASTM D3967) is more commonly used to measure tensile strength indirectly (section 9.4.5). (pp. 9-11 to 9-12)",
+      "key_points": [
+        "qt/qu proportionality varies substantially among rock types (Figure 9-6) (p. 9-11).",
+        "Direct tension test ASTM D2936; displacements generally not measured (p. 9-12).",
+        "Split tension test (ASTM D3967) more commonly performed (p. 9-12)."
+      ],
+      "equations": [
+        "Eq. 9.5: qt = Pmax / A; Pmax = maximum applied (tensile) load, A = specimen cross-sectional area (p. 9-12)"
+      ],
+      "figures": [
+        "Figure 9-6: Comparison of qt and qu for intact rock specimens (from Perras and Diederichs, 2014)"
+      ],
+      "tables": [],
+      "applicability": "Intact rock strength and stiffness measurement for foundation design and rock mass characterization"
+    },
+    {
+      "section_id": "9.4.4",
+      "title": "Intact Rock Modulus",
+      "summary": "With axial and lateral strain measured in uniaxial compression, sigma_a = P/A and epsilon_a = delta L/L (Eqs. 9.6, 9.7); Young's modulus is tangent, average or secant (Figure 9-8), most commonly E50, tangent at 50 percent of qu. Lateral strain (Eq. 9.8) gives Poisson's ratio (Eq. 9.9); for isotropic rock G and K follow (Eqs. 9.10, 9.11).",
+      "body": "Elastic constants come from uniaxial compression tests (section 9.4.1) with axial and lateral strain measured. Axial stress sigma_a (Eq. 9.6) and axial strain epsilon_a = delta L/L (Eq. 9.7), L the initial undeformed height; Figure 9-7 shows the axial stress-strain response. Young's modulus is the slope of that curve: tangent values at a fixed percentage of qu, an average over the linear portion, or secant values (Figure 9-8, ASTM D7012, 2014, p. 9-13); E50, the slope of the tangent at 50 percent of qu, is most commonly reported. With lateral strain epsilon_l = delta D/D (Eq. 9.8, Figure 9-9), Poisson's ratio follows from Eq. 9.9, with slopes taken at a consistent percentage of qu (p. 9-14). For isotropic material, G and K follow from E and nu (Eqs. 9.10, 9.11). Constants from triaxial tests are not E and nu because of the confinement (p. 9-15). (pp. 9-12 to 9-15)",
+      "key_points": [
+        "E50: slope of the tangent at 50 percent of qu, most commonly reported (Figure 9-7) (p. 9-12).",
+        "Tangent, average and secant moduli (Figure 9-8, ASTM D7012) (pp. 9-12 to 9-13).",
+        "Take slopes for nu at a consistent percentage of qu (p. 9-14).",
+        "G = E/(2(1 + nu)), K = E/(3(1 - 2 nu)) for isotropic material (Eqs. 9.10, 9.11) (p. 9-14).",
+        "Triaxial-test constants are not E and nu (p. 9-15)."
+      ],
+      "equations": [
+        "Eq. 9.6: sigma_a = P / A; axial stress (p. 9-12)",
+        "Eq. 9.7: epsilon_a = delta L / L; delta L = change in specimen height, L = initial undeformed specimen height (p. 9-12)",
+        "Eq. 9.8: epsilon_l = delta D / D; delta D = change in specimen diameter, D = initial diameter (p. 9-14)",
+        "Eq. 9.9: nu = -(slope of sigma_a vs. epsilon_a curve) / (slope of sigma_a vs. epsilon_l curve) = -E / (slope of sigma_a vs. epsilon_l curve) (p. 9-14)",
+        "Eq. 9.10: G = E / (2(1 + nu)); shear modulus, isotropic material (p. 9-14)",
+        "Eq. 9.11: K = E / (3(1 - 2 nu)); bulk modulus, isotropic material (p. 9-14)"
+      ],
+      "figures": [
+        "Figure 9-7: Axial stress versus axial strain response from uniaxial compression test on intact rock",
+        "Figure 9-8: Different methods for establishing Young’s modulus from uniaxial compression tests (from ASTM D7012, 2014)",
+        "Figure 9-9: Uniaxial compression test results showing σa versus εa and εl to illustrate method for calculating Poisson’s ratio (from ASTM D7012, 2014)"
+      ],
+      "tables": [],
+      "applicability": "Intact rock strength and stiffness measurement for foundation design and rock mass characterization"
+    },
+    {
+      "section_id": "9.4.5",
+      "title": "Evaluation of Intact Rock Properties from Indirect Measurements",
+      "summary": "Indirect tests (point load, hardness, split tension, seismic velocity) are quicker and cheaper but need transformations that add uncertainty. Is(50) (ASTM D5731) gives qu = k Is(50) + b (Eq. 9.12, Table 9-2; k about 15 to 30); rebound R (ASTM D5873) gives qu by exponential or power fits (Eqs. 9.13, 9.14, Tables 9-3, 9-4); wave velocity gives modulus by theory; split tension To = 2P/(pi l D) (Eq. 9.15).",
+      "body": "Indirect tests are quicker and cheaper but need theoretical or empirical transformations, adding variability and uncertainty (Chapter 3). Point load strength index (ASTM D5731): conical platens (Figure 9-10), quick in laboratory or field, on short core or irregular lumps, useful in highly fractured rock. Is is corrected for specimen size to Is(50) (50-mm core) (p. 9-16) and transformed to qu by Eq. 9.12; zero-intercept relations (b = 0) are common. Table 9-2 (after Singh et al., 2012, p. 9-17) lists relations; k generally ranges about 15 to 30, greater for strong rock, lesser for weaker rock. Uncertainty is substantial across diverse rock types (Figure 9-11, after Osouli et al., 2014); rock-type, formation or local site-specific relations reduce it. Portable hardness tests are quick and non-destructive: the Schmidt or rebound hammer (ASTM D5873, Figure 9-12) gives rebound number R, related to qu by exponential (Eq. 9.13) or power (Eq. 9.14) functions (Aydin, 2009) or linear relations (Figure 9-13, Tandon and Gupta, 2015); Table 9-3 (p. 9-19) gives R to qu and Table 9-4 (p. 9-20) R to E50. Equotip and DynaPocket devices, from metal hardness testing, impart less energy. Seismic velocity (Chapter 8; pulse velocity ASTM D2845, resonant column) gives modulus by wave theory; small-strain moduli exceed large-strain laboratory values but correlate well (Figure 9-14, Deere and Miller, 1966); field velocities through the rock mass are often lower than on intact specimens (section 9.7). Velocity-qu relations are empirical and poor across rock types (Figure 9-15); not recommended except as approximate preliminary estimates (Tandon and Gupta, 2015). Split tension (ASTM D3967): diametral load on a cylinder (Figure 9-16) until it splits; To from elasticity theory (Eq. 9.15), purely theoretical (p. 9-22). (pp. 9-15 to 9-22)",
+      "key_points": [
+        "Indirect measurements add variability and uncertainty (Chapter 3) (p. 9-15).",
+        "Point load test ASTM D5731; correct Is to Is(50) for a 50-mm core (pp. 9-15 to 9-16).",
+        "k generally about 15 to 30: greater for strong rock, lesser for weaker rock (p. 9-16).",
+        "Local or site-specific Is(50)-qu transformations reduce uncertainty (p. 9-16).",
+        "Schmidt (rebound) hammer test ASTM D5873; rebound number R (p. 9-17).",
+        "Equotip and DynaPocket impart substantially less energy than the Schmidt hammer (p. 9-19).",
+        "Velocity-modulus relation is theoretical; seismic moduli exceed large-strain laboratory values (p. 9-20).",
+        "Sonic velocity for qu not recommended except approximate preliminary estimates (p. 9-20).",
+        "Split tension test ASTM D3967; To from elasticity theory (pp. 9-21 to 9-22)."
+      ],
+      "equations": [
+        "Eq. 9.12: qu = k x Is(50) + b; k, b = empirically established coefficients (b = 0 for zero-intercept relations) (p. 9-16)",
+        "Eq. 9.13: qu = a x e^(bR); R = measured rebound number, a, b = empirical coefficients (Aydin, 2009) (p. 9-17)",
+        "Eq. 9.14: qu = a x R^b (p. 9-17)",
+        "Eq. 9.15: To = 2P / (pi l D); P = maximum applied load, l = axial length of specimen, D = specimen diameter (p. 9-21)"
+      ],
+      "figures": [
+        "Figure 9-10: Point load strength index test on segment of rock core",
+        "Figure 9-11: Relationship between Is(50) and qu for several rock types (after Osouli, et al., 2014)",
+        "Figure 9-12: Apparatus for Schmidt hammer test (Photo courtesy Controls Group)",
+        "Figure 9-13: Empirical transformation from Schmidt hammer rebound (R) to qu (adapted from Tandon and Gupta, 2015)",
+        "Figure 9-14: Relationship between static and dynamics measurements of constrained modulus under uniaxial compressive stress up to 5000 psi (from Deere and Miller, 1966)",
+        "Figure 9-15: Empirical measurements of sonic velocity (Vp) and qu (from Tandon and Gupta, 2015)",
+        "Figure 9-16: Split tension test on a cylindrical concrete specimen (from ASTM C496, 2011)"
+      ],
+      "tables": [
+        "Table 9-2: Summary of relations proposed to transform Is(50) to qu. (after Singh, et al., 2012) - qu = k Is(50), country, rock type, reference: 23.7, United Kingdom, various, Broch & Franklin (1972); 23.9, South Africa, sandstones, Bieniawski (1975); 29, United Kingdom, sedimentary rock, Hassani et al. (1980); 20, Australia, sedimentary rock, Read et al. (1980); 20 to 25, ISRM (1985); 26.5, United Kingdom, limestone, Hawkins & Olver (1986); 24.8, United Kingdom, sandstone, Hawkins & Olver (1986); qu = 21.8 Is(50) + 6210, United States, sedimentary, O'Rourke (1989); 17.4, United States, sandstone, Vallejo et al. (1989); 12.6, United States, shale, Vallejo et al. (1989); 23.4, India, quartzite, Singh & Singh (1993); 14.7, 18, 12.6, Canada, siltstone, sandstone, shale, Das (1985b); 24, various, sandstone/limestone, Smith (1997); 12.6, various, shale, Smith (1997); 21.8, 20.2, 20.6, 21.9, United States, shale, siltstone, sandstone, limestone, Rusnak & Mark (2000); 21.0, 14.0, 14.2, 11.3, 20.2, 25, United States, shale, black shale, sandy shale, claystone, limestone, shale limestone, Osouli et al. (2014)",
+        "Table 9-3: Selected relations for transforming rebound hammer R to qu - qu = 1246 R - 34890 (psi), various, Deere and Miller (1966); qu = 6.9 x 10^(1.348 log(gamma R) - 1.325) (MPa), various, Aufmuth (1973); qu = 2 R (MPa), sedimentary, Singh et al. (1983); qu = 4.84 R - 7.61 (MPa), anhydrite, siltstone, sandstone, limestone, O'Rourke (1989); qu = 4.184 R - 65.792 (MPa), carbonate rock, Sachpazis (1990); qu = 8.36 R - 416 (MPa), granite, Tugrul and Zarif (1999); qu = 0.994 R - 0.383 (MPa), no rock type given, Haramy and DeMarco (1985); qu = 2.208 e^(0.067R) (MPa), chalk, limestone, sandstone, marble, granite and syenite, Katz et al. (2000); qu = e^(0.059R + 0.818) (MPa), gypsum, Yilmaz and Sedir (2002); qu = 4 x 10^-6 R^4.2917 (MPa), limestone, marble, basalt and sandstone, Yasar and Erdogan (2004a); qu = 1.910 R - 10.30 (MPa), quartzite, granite, gneiss, metabasics and dolomite, Tandon and Gupta (2015)",
+        "Table 9-4: Selected relations to transform rebound hammer R to E50 - E50 = (0.259 R - 4.29) x 10^6 (psi), various, Deere and Miller (1966); E50 = 0.00013 R^3.09074 (MPa), chalk, limestone, sandstone, marble, granite and syenite, Katz et al. (2000); E50 = e^(0.054R + 1.146) (MPa), gypsum, Yilmaz and Sendir (2002)"
       ],
       "applicability": "Intact rock strength and stiffness measurement for foundation design and rock mass characterization"
     },
     {
-      "section_id": "9.5-9.8",
-      "title": "Rock Mass Classification and Deformability",
-      "summary": "Rock mass classification systems: RMR (Rock Mass Rating, ASTM D5878/Bieniawski 1989) — sums 5 parameters: UCS, RQD, discontinuity spacing, discontinuity condition, groundwater; range 0–100 (0 = very poor, 100 = excellent). GSI (Geological Strength Index, Hoek et al. 2013) — from rock mass structure and discontinuity surface condition charts; quantitative version from Jcond89 and RQD. Rock mass modulus Em from Hoek and Diederichs (2006): Em = Ei × [0.02 + (1-D/2)/(1+e^((60+15D-GSI)/11))]; D = disturbance factor (0 = undisturbed, 1 = heavily blasted). Hoek-Brown failure criterion for rock masses: σ1 = σ3 + qu × (mb×σ3/qu + s)^a; mb, s, a from GSI and mi (Table 9-10).",
-      "body": "Discontinuity characterization: Strike and dip describe planar orientation; plotted on stereonets for stability analysis. Downhole televiewer (acoustic or optical) provides high-resolution images of borehole wall for discontinuity characterization without core orientation tools.\n\nRMR system (ASTM D5878, Bieniawski 1989): Five parameter rating system (Table 9-5): (1) UCS of intact rock; (2) RQD; (3) Spacing of discontinuities; (4) Condition of discontinuities (roughness, opening, infill, weathering, length); (5) Groundwater conditions. Sum of 5 ratings (0–100): 81–100 = Class I Very Good; 61–80 = Class II Good; 41–60 = Class III Fair; 21–40 = Class IV Poor; 0–20 = Class V Very Poor. Correction for joint orientation applied for specific applications.\n\nGSI (Geological Strength Index, Hoek et al.): Reflects rock mass structure (blockiness) and surface condition of discontinuities. Estimated from chart (Figure 9-23) or quantitative chart (Figure 9-24) using Jcond89 (Table 9-7) and RQD.\n\nRock mass modulus: Em from Hoek and Diederichs (2006): Em = Ei × [0.02 + (1-D/2) / (1 + e^((60+15D-GSI)/11))] where Ei = intact rock modulus, D = disturbance factor. Table 9-9 provides guidance on D. Also from plate load tests, pressure meter (Chapter 8 methods), and seismic velocity.\n\nHoek-Brown failure criterion: σ1 = σ3 + qu × (mb × σ3/qu + s)^a where mb = mi × exp((GSI-100)/(28-14D)); s and a depend on GSI (Equations 9.31, 9.32). Represents curved failure envelope for interlocked rock masses; can be converted to approximate Mohr-Coulomb c' and φ' for given stress range.",
+      "section_id": "9.4.6",
+      "title": "Selection of Specimens for Measurement of Intact Rock Properties",
+      "summary": "Specimens come from core long enough to test; ASTM D7012 uniaxial specimens need length at least twice the diameter; core at least NQ (about 2 in.), HQ often preferable, especially in soft rock. Select across the range of core quality; poorer rock may not yield testable core or survive coring, biasing strength high, especially in weak rock.",
+      "body": "Specimens are selected from core segments of sufficient size. Uniaxial compression (ASTM D7012) needs length at least twice the core diameter. Core for direct mechanical tests should generally be at least NQ (approximately 2 inch nominal diameter); larger core (HQ) is often more desirable and more representative of in situ strength, especially in soft rock. Other sizes are in the ASTM or AASHTO standards (Appendix 1). Select specimens representative of the range of core quality (hardness tests, section 9.4.5 help). Poorer rock may not give testable segments or be recovered at all, so measurements tend toward higher-quality rock and strength estimates greater than appropriate; bias is particularly challenging in weak rock. Rock mass classification (discontinuities and their condition) presumably reflects some of this bias. (p. 9-23)",
       "key_points": [
-        "RMR (ASTM D5878): 5 parameters; sum 0-100; Class I (81-100) excellent to Class V (0-20) very poor",
-        "GSI: rock mass structure + discontinuity surface condition; quantified from Jcond89 and RQD",
-        "Hoek-Diederichs rock mass modulus: Em = Ei × [0.02 + (1-D/2)/(1+e^((60+15D-GSI)/11))]",
-        "Disturbance factor D: 0 = undisturbed in situ; 1 = heavily blasted — reduces Em significantly",
-        "Hoek-Brown: σ1 = σ3 + qu(mb×σ3/qu + s)^a; mb, s, a from GSI and mi (Table 9-10)"
+        "Specimen length at least twice the diameter (ASTM D7012) (p. 9-23).",
+        "At least NQ core (about 2 inch nominal diameter); HQ often more desirable (p. 9-23).",
+        "Specimen selection tends to bias strength estimates high (p. 9-23)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Intact rock strength and stiffness measurement for foundation design and rock mass characterization"
+    },
+    {
+      "section_id": "9.4.7",
+      "title": "Special Considerations for Degradable Rock",
+      "summary": "Weak or degradable rock is hard to core and degrades on exposure: wrap or wax core, test quickly or in the field, use special drilling fluids if needed and run durability tests (Chapter 4). Indirect in situ tests (Texas Cone Penetrometer, modified SPT) rely on correlations and add substantial uncertainty to qu (Loehr et al., 2013a).",
+      "body": "Weak and/or degradable rock is difficult to core without severe damage and may degrade quickly on exposure. Wrap core in plastic and/or wax it on extraction to limit moisture changes, test as quickly as possible, and consider field testing; special drilling fluids may be required; evaluate degradability with durability tests (Chapter 4). Some agencies use in situ tests: the Texas Department of Transportation uses the Texas Cone Penetrometer test, and others a modified Standard Penetration Test. These indirect tests rely on empirical correlations and often add substantial uncertainty to qu estimates (Loehr et al., 2013a), but there may be little choice where intact samples are hard to obtain and test. (pp. 9-23 to 9-24)",
+      "key_points": [
+        "Wrap and/or wax degradable core; test as quickly as possible (p. 9-23).",
+        "Texas Department of Transportation uses the Texas Cone Penetrometer test (p. 9-24).",
+        "Such tests add substantial uncertainty to qu estimates (Loehr et al., 2013a) (p. 9-24)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Intact rock strength and stiffness measurement for foundation design and rock mass characterization"
+    },
+    {
+      "section_id": "9.5",
+      "title": "Characterization of Discontinuities in Rock",
+      "summary": "Rock mass performance depends on intact rock (section 9.4) and discontinuity features: type; spacing, orientation, aperture and persistence; number of sets; and condition (roughness, infilling type and quantity, seepage). They are measured on rock core and by mapping exposed rock at or near the site.",
+      "body": "Performance of features in or on rock is dictated by the rock mass, which depends on intact rock (section 9.4) and discontinuities (Figure 9-2). Discontinuity features: type; geometry (spacing, orientation, aperture = width perpendicular to the discontinuity, persistence = discontinuity length); number of distinct sets; and condition (roughness, type and quantity of infilling, seepage). These, or surrogate measurements, come from rock core from borings and from mapping exposed rock at or near the site. (p. 9-24)",
+      "key_points": [
+        "Aperture = width perpendicular to the discontinuity; persistence = discontinuity length (p. 9-24).",
+        "Measured on rock core and by mapping exposed rock (p. 9-24)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Characterization of rock discontinuities (orientation, condition, roughness, infilling and shear strength) for rock slopes, foundations and tunnels"
+    },
+    {
+      "section_id": "9.5.1",
+      "title": "Representation of Discontinuity Orientation",
+      "summary": "Discontinuity orientation is given by strike and dip, or dip and dip direction (Figure 9-17): strike as a compass bearing (S60W) or azimuth (240 degrees); dip is inclination from horizontal in the dip direction, which is perpendicular to strike. Stereo nets show many orientations and identify sets (Figure 9-18: 326 televiewer measurements, two sets).",
+      "body": "Discontinuities are three-dimensional; orientation is most commonly described by strike and dip, or dip and dip direction (Figure 9-17, p. 9-25). Strike is the plan orientation of a horizontal line in the plane, as a compass bearing (S60W, 60 degrees west of south) or azimuth from north (240 degrees). Dip is the inclination of the plane from horizontal, measured in the dip direction; dip direction is the plan orientation of the dip vector, along maximum plunge and perpendicular to strike. Either pair fully defines a plane. Stereo nets (Wyllie and Mah, 1998; Wyllie, 1999) display many orientations: Figure 9-18 shows 326 discontinuities from a borehole televiewer (section 9.5.2) at a site in northern Minnesota, with two sets: near-horizontal bedding planes and predominantly vertical fractures of the intact rock. (pp. 9-24 to 9-25)",
+      "key_points": [
+        "Strike: plan orientation of a horizontal line through the plane (p. 9-24).",
+        "Dip measured in the dip direction, perpendicular to strike (p. 9-24).",
+        "Stereo net of 326 discontinuities shows two sets (p. 9-25)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 9-17: Dip and Dip Direction for a planar feature"
+      ],
+      "tables": [],
+      "applicability": "Characterization of rock discontinuities (orientation, condition, roughness, infilling and shear strength) for rock slopes, foundations and tunnels"
+    },
+    {
+      "section_id": "9.5.2",
+      "title": "Characterization of Discontinuities from Borehole and Rock Core Measurements",
+      "summary": "Core and boreholes give apparent spacing and sometimes infilling, but coring can add drilling-induced fractures, wash out infilling and lose orientation (oriented coring is possible but error-prone). CR, RQD and FF are common surrogates for orientation-insensitive design. Downhole viewers now largely resolve orientation from boreholes (Figures 9-18, 9-19).",
+      "body": "Borehole and core measurements give apparent discontinuity spacing (along the borehole) and sometimes infilling information or samples, but coring may introduce drilling-induced fractures and wash away infilling (fluid observation can hint at it). Orientation is usually lost in coring; oriented coring marks the core and records borehole orientation, but is challenging and prone to error; map nearby outcrops of the same formations where possible (section 9.5.3). More commonly, surrogate rock mass quality measures are used: core recovery (CR), RQD and fracture frequency (FF) (Chapter 4), which cannot build stereo nets but serve design not sensitive to orientation. Downhole viewers and analysis software now largely resolve orientation from boreholes: borehole walls are mapped after coring and discontinuities measured by largely automated methods (Figure 9-19, televiewer, p. 9-28); these orientations built the stereo net in Figure 9-18. (pp. 9-25 to 9-27)",
+      "key_points": [
+        "Coring may introduce drilling-induced fractures and wash away infilling (p. 9-25).",
+        "Oriented coring possible but challenging and prone to error (p. 9-26).",
+        "CR, RQD and FF serve design not sensitive to orientation (p. 9-27).",
+        "Downhole viewers largely resolve discontinuity orientation from boreholes (p. 9-27)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 9-18: Stereo net developed from acoustic televiewer measurements (courtesy of Dan Brown and Associates)"
+      ],
+      "tables": [],
+      "applicability": "Characterization of rock discontinuities (orientation, condition, roughness, infilling and shear strength) for rock slopes, foundations and tunnels"
+    },
+    {
+      "section_id": "9.5.3",
+      "title": "Characterization of Discontinuities from Mapping of Rock Exposures",
+      "summary": "Field mapping of exposed faces measures dip and dip direction, aperture, spacing, infilling and water flow (ISRM, 1978); lidar is promising (Figure 9-20). Exposures may not represent conditions at depth (stress relief, weathering), usually biasing conservatively; combine with borehole data or test pits; for excavated rock slopes, outcrop mapping may be more reliable.",
+      "body": "Field mapping of exposed rock faces at or near the site measures dip and dip direction, aperture, spacing, infilling and water flow; important discontinuities or infilling may be sampled for laboratory testing; ISRM (1978) gives guidance. Remote sensing such as lidar (Figure 9-20, Kemeny and Turner, 2008, p. 9-29) may improve efficiency and accuracy, though less developed than downhole tools. Observations may not represent the site (Marinos et al., 2005, p. 9-28): conditions change over short distances and elevations, and exposures may differ from conditions below ground through stress relief, weathering or alteration, usually giving less favorable, conservative indications; excessive conservatism raises construction cost. Combine borehole measurements and exposures, or use test pits or excavations, to find such bias. For excavated slopes in rock, outcrop mapping may better characterize long-term performance of rock cuts (p. 9-29). (pp. 9-27 to 9-29)",
+      "key_points": [
+        "ISRM (1978) guidance on characterizing discontinuities (p. 9-27).",
+        "Interpret 'nearby' exposures with caution (Marinos et al., 2005) (p. 9-28).",
+        "Exposures usually give conservative indications; excessive conservatism adds cost (p. 9-29).",
+        "For excavated rock slopes, outcrop mapping may better reflect long-term performance (p. 9-29)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 9-19: Downhole televiewer measurements (courtesy of Dan Brown and Associates)",
+        "Figure 9-20: Comparison of discontinuity orientation for exposed rock face from conventional mapping and automated lidar mapping (from Kemeny and Turner, 2008)"
+      ],
+      "tables": [],
+      "applicability": "Characterization of rock discontinuities (orientation, condition, roughness, infilling and shear strength) for rock slopes, foundations and tunnels"
+    },
+    {
+      "section_id": "9.5.4",
+      "title": "Shear Strength of Rock Discontinuities",
+      "summary": "Discontinuity shear strength is needed mainly for rock slopes with unfavorable joint orientation. For rough, clean discontinuities s = c + sigma' tan(phi + i) (Eq. 9.16, Wyllie, 1999); Barton (1973): s = sigma' tan(phi + JRC log10(JCS/sigma')) (Eq. 9.17). Laboratory (ASTM D5607) and field (ASTM D4554) tests are uncommon; thick infilling may control strength.",
+      "body": "Design in rock often uses kinematic considerations or rock mass quality, but specific discontinuity shear strength is sometimes needed, most commonly for rock slope stability with unfavorable joint orientation. It is usually estimated from discontinuity characteristics. For rough, clean discontinuities without significant infilling, Eq. 9.16 (Wyllie, 1999): c and phi are Mohr-Coulomb parameters of the interface without asperities, sigma' the effective normal stress, i the frictional resistance from roughness. Barton (1973), from artificial rough interfaces, gives Eq. 9.17 with JRC the joint roughness coefficient (section 9.5.5) and JCS the compressive strength of the rock on the discontinuity surface (p. 9-30). Where critical, measure in the laboratory (ASTM D5607, core specimens cast in encapsulating material) or field (ASTM D4554, needing reaction for normal stress); both are uncommon and challenging. With infilling, thickness and strength of the infilling may control; measure or estimate conservatively (Wyllie, 1999). (pp. 9-29 to 9-30)",
+      "key_points": [
+        "Most commonly needed for rock slope stability with unfavorable joint orientation (p. 9-29).",
+        "Laboratory ASTM D5607; field ASTM D4554 (p. 9-30).",
+        "Infilled discontinuities: measure or estimate conservatively (Wyllie, 1999) (p. 9-30)."
       ],
       "equations": [
-        {
-          "equation_id": "9-Hoek-Diederichs",
-          "description": "Rock mass modulus from Hoek and Diederichs (2006)",
-          "latex": "E_m = E_i \\left[0.02 + \\frac{1 - D/2}{1 + e^{(60 + 15D - GSI)/11}}\\right]",
-          "variables": {
-            "E_m": "rock mass deformation modulus",
-            "E_i": "intact rock modulus from laboratory tests",
-            "D": "disturbance factor (0 = undisturbed; 0.5 = partially blasted; 1.0 = heavily blasted)",
-            "GSI": "Geological Strength Index"
-          },
-          "implemented_in": null
-        },
-        {
-          "equation_id": "9-HB",
-          "description": "Hoek-Brown failure criterion for rock masses",
-          "latex": "\\sigma_1 = \\sigma_3 + q_u \\left(m_b \\frac{\\sigma_3}{q_u} + s\\right)^a",
-          "variables": {
-            "sigma_1": "major principal stress at failure",
-            "sigma_3": "minor principal stress (confining stress)",
-            "q_u": "uniaxial compressive strength of intact rock",
-            "m_b": "mb = mi × exp((GSI-100)/(28-14D)); reduced Hoek-Brown constant for rock mass",
-            "s": "strength parameter from GSI: s = exp((GSI-100)/(9-3D))",
-            "a": "strength parameter from GSI: a = 0.5 + (1/6)(e^(-GSI/15) - e^(-20/3))"
-          },
-          "implemented_in": null
-        }
+        "Eq. 9.16: s = c + sigma' tan(phi + i) (Wyllie, 1999); c, phi = Mohr-Coulomb parameters for the interface without asperities, sigma' = effective normal stress on the discontinuity, i = frictional resistance from roughness of the asperities (p. 9-30)",
+        "Eq. 9.17: s = sigma' tan(phi + JRC log10(JCS / sigma')) (Barton, 1973); JRC = joint roughness coefficient, JCS = compressive strength of the rock on the discontinuity surface (p. 9-30)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Characterization of rock discontinuities (orientation, condition, roughness, infilling and shear strength) for rock slopes, foundations and tunnels"
+    },
+    {
+      "section_id": "9.5.5",
+      "title": "Surface Roughness",
+      "summary": "Roughness raises frictional resistance and dilation. Barton and Choubey (1977) give ten reference profiles with JRC values (Figure 9-21); profile-gauge traces (Figure 9-22) are compared with them; electronic scanning improves precision and captures 3D roughness. As printed, the text sends JRC strength to 'Equation 9.20'; Barton's relation is Eq. 9.17.",
+      "body": "Rougher discontinuities have greater frictional resistance and dilation. Barton and Choubey (1977) proposed ten roughness profiles (Figure 9-21) as a reference scale with Joint Roughness Coefficients (JRC). The text states that JRC can be used to estimate discontinuity shear strength 'using Equation 9.20' (as printed; Barton's JRC relation is Eq. 9.17, section 9.5.4); JRC also feeds some rock mass classification systems (section 9.6). Conventionally a carpenter's profile gauge (Figure 9-22, p. 9-32) captures the trace for comparison with Figure 9-21. Electronic scanning (Hong et al., 2006; Ficker and Martisek, 2015) improves precision and repeatability, captures three-dimensional roughness and will likely predominate. Wyllie (1999) describes alternatives where roughness is critical. (pp. 9-30 to 9-32)",
+      "key_points": [
+        "Ten reference roughness profiles with JRC values (Barton and Choubey, 1977) (p. 9-31).",
+        "JRC also used in some rock mass classification systems (p. 9-31).",
+        "As printed, JRC shear strength refers to Equation 9.20; Barton's relation is Eq. 9.17 (p. 9-31).",
+        "Wyllie (1999) describes alternatives where roughness is critical (p. 9-32)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 9-21: Standard profiles for discontinuity roughness and the Joint Roughness Coefficient (after Barton and Choubey, 1977)",
+        "Figure 9-22: Profile gauge for measuring discontinuity roughness (courtesy of Controls Group)"
+      ],
+      "tables": [],
+      "applicability": "Characterization of rock discontinuities (orientation, condition, roughness, infilling and shear strength) for rock slopes, foundations and tunnels"
+    },
+    {
+      "section_id": "9.5.6",
+      "title": "Discontinuity Infilling",
+      "summary": "Thick infilling may control discontinuity behavior; its properties, especially shear strength, can be measured on samples, usually from exposed faces since coring washes infilling away. Small quantities limit testing to index tests; samples of the whole discontinuity with infilling allow direct shear tests.",
+      "body": "With substantial infilling, discontinuity performance may be controlled more by the infilling than by the surrounding intact rock, so its characteristics (especially shear strength) may be measured on samples. Infilling is often washed away in coring but can often be sampled from exposed faces. Small quantities may restrict testing to index tests; larger, better samples allow direct strength tests; samples of the discontinuity with its infilling allow direct shear tests on the entire discontinuity. (p. 9-32)",
+      "key_points": [
+        "Infilling is often washed away during coring; sample exposed faces (p. 9-32).",
+        "Direct shear tests can be run on the entire discontinuity with infilling (p. 9-32)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Characterization of rock discontinuities (orientation, condition, roughness, infilling and shear strength) for rock slopes, foundations and tunnels"
+    },
+    {
+      "section_id": "9.6",
+      "title": "Rock Mass Classification",
+      "summary": "Most transportation design in rock uses empirical procedures that rely on rock mass classification ratings, either directly or through engineering properties derived from them; this section describes commonly used systems, and later sections use the ratings for rock mass modulus and strength.",
+      "body": "Most transportation design and construction in rock uses empirically established procedures that rely on one of several rock mass classification systems, so ratings are an important input. Some designs use the ratings directly; others use more fundamental engineering properties established from them. This section describes commonly used systems; sections 9.7 and 9.8 use the ratings for rock mass modulus and strength. (p. 9-32)",
+      "key_points": [
+        "Classification ratings are an important and necessary design input (p. 9-32)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Rock mass classification, deformability, and strength characterization for transportation foundation design"
+    },
+    {
+      "section_id": "9.6.1",
+      "title": "Alternative Rock Mass Classification Systems",
+      "summary": "Historically the most widely used systems (ASTM D5878) are the Rock Mass Rating (RMR, Geomechanics Classification) and the Q-system, both from tunneling and now used more broadly, including borability, rippability, dredgability and erodibility; RMR is generally preferred for transportation. The simpler GSI system targets design properties and has become the recommended system for transportation.",
+      "body": "Several systems exist (ASTM D5878). The Rock Mass Rating (RMR) system (Geomechanics Classification) and the Q-system (printed as 'a.k.a. the CSIR system', after the Council for Scientific and Industrial Research) were developed for tunnels and adapted to other applications, including constructability (borability, rippability, dredgability, erodibility). RMR is more broadly applicable and generally preferred for transportation. The Geological Strength Index (GSI) (Hoek, 1994; Hoek and Brown, 1997; Marinos and Hoek, 2000, 2001) is intended for developing design properties of rock masses rather than direct empirical design; conceptually simpler and broadly applicable, it has become the recommended system for transportation. Others (Rock Structure Rating, RSR; Unified Rock Classification System, URCS) are more restrictive and not presented. (p. 9-33)",
+      "key_points": [
+        "RMR more broadly applicable and generally preferred for most transportation applications (p. 9-33).",
+        "GSI has become the recommended rock mass classification system for transportation (p. 9-33).",
+        "RSR and URCS not presented (p. 9-33)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Rock mass classification, deformability, and strength characterization for transportation foundation design"
+    },
+    {
+      "section_id": "9.6.2",
+      "title": "Rock Mass Rating (RMR) Classification System",
+      "summary": "RMR sums ratings for five parameters (qu, RQD, discontinuity spacing, discontinuity condition, groundwater): RMR = sum of R1 to R5 (Eq. 9.18, Table 9-5). A sixth, R6, adjusts for discontinuity orientation relative to tunnels, foundations or slopes, from 0 (most favorable) to as low as -60 (Table 9-6). RMR runs 0 (very poor) to 100 (excellent).",
+      "body": "RMR uses five basic parameters, with a sixth sometimes used for stability of specific problems; originally for tunnels and mining, extended to excavated slopes and foundations. Parameters: uniaxial compressive strength qu, RQD, discontinuity spacing S, discontinuity condition, groundwater conditions, and orientation of discontinuities. RMR is the sum of the first five ratings (Eq. 9.18, Table 9-5, printed in section 9.6.3). R6 adjusts the basic RMR for the feature type (slope, foundation, tunnel) and the strike and dip of discontinuities relative to it, from 0 for the most favorable condition to as low as -60 for unfavorable orientations in excavated slopes (Table 9-6) (p. 9-34). RMR ranges 0 (very poor) to 100 (excellent) and feeds specific design methods. Modifications: Bieniawski (1989), Hoek et al. (1995), Wyllie (1999). (pp. 9-33 to 9-34)",
+      "key_points": [
+        "Originally for tunnels and mining; extended to excavated slopes and foundations (p. 9-33).",
+        "RMR = R1 + ... + R5 (Eq. 9.18) (p. 9-34).",
+        "R6 from 0 to as low as -60 for excavated slopes (Table 9-6) (p. 9-34).",
+        "Modifications: Bieniawski (1989), Hoek et al. (1995), Wyllie (1999) (p. 9-34)."
+      ],
+      "equations": [
+        "Eq. 9.18: RMR = sum of Ri for i = 1 to 5; Ri = ratings for qu, RQD, discontinuity spacing, discontinuity condition and groundwater (Table 9-5) (p. 9-34)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Rock mass classification, deformability, and strength characterization for transportation foundation design"
+    },
+    {
+      "section_id": "9.6.3",
+      "title": "Geological Strength Index (GSI) Classification System",
+      "summary": "GSI (0 to 100) rates block interlocking and discontinuity surface condition to assess rock mass strength and stiffness. It comes from the qualitative chart (Figure 9-23), from borehole data as GSI = 1.5 JCond89 + RQD/2 (Eq. 9.19, Hoek et al., 2013; Tables 9-7, 9-8) or the quantitative chart (Figure 9-24); Figure 9-25 is for heterogeneous rock masses. The RMR Tables 9-5 and 9-6 are printed here.",
+      "body": "GSI rests on two characteristics controlling rock mass behavior: degree of interlocking of intact blocks and condition of discontinuity surfaces. Ratings run 0 to 100; greater ratings mean tightly interlocked blocks and tighter, rougher surfaces. It is effective across a broad range of conditions and increasingly adopted for transportation. Tables 9-5 (RMR ratings) and 9-6 (R6) (ASTM D5878, 2008) are printed on p. 9-35. GSI was first assigned from qualitative descriptions (Figure 9-23, Marinos et al., 2005, p. 9-36), straightforward with rock exposures but challenging with only borehole data. Hoek et al. (2013) proposed quantitative methods; the most practical from boreholes is Eq. 9.19 (p. 9-37), with JCond89 from Table 9-7 using the criteria of Table 9-8 (section 9.7), or the quantitative chart (Figure 9-24). Figure 9-25 (Marinos and Hoek, 2001) is for heterogeneous rock masses such as alternating harder and softer layers, and heavily altered masses like the lower row of Figure 9-23 (Hoek et al., 2013). (pp. 9-34 to 9-37)",
+      "key_points": [
+        "Higher GSI: tightly interlocked blocks, tighter and rougher surfaces (p. 9-34).",
+        "Table 9-5: RMR ratings (ASTM D5878, 2008) (p. 9-35).",
+        "Figure 9-23 is challenging with only borehole measurements (p. 9-35).",
+        "Most practical borehole method: Eq. 9.19 (Hoek et al., 2013) (p. 9-37).",
+        "Figure 9-25 for heterogeneous or heavily altered rock masses (p. 9-37).",
+        "Table 9-7: JCond89 ratings 30, 25, 20, 10, 0 (p. 9-37)."
+      ],
+      "equations": [
+        "Eq. 9.19: GSI = 1.5 JCond89 + RQD/2; JCond89 = joint condition rating (Bieniawski, 1989), Table 9-7 with the criteria of Table 9-8 (p. 9-37)"
       ],
       "figures": [
-        "Figure 9-19: Downhole televiewer measurements",
-        "Figure 9-23: Qualitative chart for estimation of GSI in rock (Marinos et al. 2005)",
-        "Figure 9-24: Quantitative version of the GSI chart (Hoek et al. 2013)",
-        "Figure 9-25: GSI for heterogeneous rock masses",
-        "Figure 9-36: Comparison of Hoek-Brown failure criterion with approximate Mohr-Coulomb envelope"
+        "Figure 9-23: Qualitative chart for estimation of geological strength index (GSI) in rock (from Marinos, et al., 2005)"
       ],
       "tables": [
-        "Table 9-5: Rock Mass Rating (RMR) system of rock mass classification (ASTM D5878)",
-        "Table 9-6: RMR system: class descriptions and engineering properties",
-        "Table 9-7: Definition of JCond89 for estimating GSI",
-        "Table 9-8: Guidelines for classifying discontinuity condition",
-        "Table 9-10: Values of material constant mi for Hoek-Brown criterion"
+        "Table 9-5: Rock Mass Rating (RMR) system of rock mass classification (from ASTM D5878, 2008) - 1 strength of intact rock: point-load strength index > 10, 4-10, 2-4, 1-2 MPa (low range: uniaxial test preferred); uniaxial compressive strength > 250, 100-250, 50-100, 25-50, 5-25, 1-5, < 1 MPa; rating 15, 12, 7, 4, 2, 1, 0. 2 drill core RQD 90-100, 75-90, 50-75, 25-50, < 25 percent; rating 20, 17, 13, 8, 3. 3 spacing of discontinuities > 2 m, 0.6-2 m, 200-600 mm, 60-200 mm, < 60 mm; rating 20, 15, 10, 8, 5. 4 condition of discontinuities: very rough, not continuous, no separation, unweathered wall rock 30; slightly rough, separation < 1 mm, slightly weathered walls 25; slightly rough, separation < 1 mm, highly weathered walls 20; slickensided, or gouge < 5 mm thick, or separation 1-5 mm, continuous 10; soft gouge > 5 mm thick or separation > 5 mm, continuous 0. 5 groundwater: inflow per 10 m tunnel length none, < 10, 10-25, 25-125, > 125 litres/min, or ratio joint water pressure to major principal stress 0, 0.0-0.1, 0.1-0.2, 0.2-0.5, > 0.5, or general conditions completely dry, damp, wet, dripping, flowing; rating 15, 10, 7, 4, 0",
+        "Table 9-6: RMR System parameter R6 (from ASTM D5878, 2008) - R6 by strike and dip orientation of joints, very favourable, favourable, fair, unfavourable, very unfavourable: tunnels 0, -2, -5, -10, -12; foundations 0, -2, -7, -15, -25; slopes 0, -5, -25, -50, -60",
+        "Table 9-7: Definition of JCond89 for estimating GSI (Bieniawski, 1989; Hoek, et al., 2013) - JCond89 rating: very rough surfaces, not continuous, no separation, unweathered wall rock 30; slightly rough surfaces, separation < 1 mm, slightly weathered wall rock 25; slightly rough surfaces, separation < 1 mm, highly weathered wall rock 20; slickensided surfaces, or gouge < 5 mm thick, or separation 1-5 mm, continuous discontinuity 10; soft gouge > 5 mm thick, or separation > 5 mm, continuous discontinuity 0"
+      ],
+      "applicability": "Rock mass classification, deformability, and strength characterization for transportation foundation design"
+    },
+    {
+      "section_id": "9.7",
+      "title": "Evaluation of Rock Mass Modulus",
+      "summary": "Rock mass modulus can be measured directly in situ (section 9.7.1) or estimated indirectly from rock mass quality: RQD (9.7.2), RMR (9.7.3) and GSI (9.7.4). Table 9-8, printed here, gives the discontinuity condition guidelines (persistence, separation, roughness, infilling, weathering) used for JCond89.",
+      "body": "Rock mass modulus can be an important design input. It can be obtained from direct in situ measurements and from indirect means, generally based on the rock mass ratings of section 9.6. Table 9-8 (Bieniawski, 1989; Hoek et al., 2013, p. 9-38) rates five discontinuity characteristics from 6 to 0 for classifying discontinuity condition (used with Table 9-7 for JCond89 in section 9.6.3). (pp. 9-37 to 9-38)",
+      "key_points": [
+        "Direct in situ measurements or indirect estimates from rock mass ratings (p. 9-37).",
+        "Table 9-8: ratings 0 to 6 for five discontinuity characteristics (p. 9-38)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 9-8: Guidelines for classifying discontinuity condition (Bieniawski, 1989; Hoek, et al., 2013) - persistence (length) < 1 m 6, 1 to 3 m 4, 3 to 10 m 2, 10 to 20 m 1, > 20 m 0; separation (aperture) none 6, < 0.1 mm 5, 0.1 to 1.0 mm 4, 1 to 5 mm 1, > 5 mm 0; roughness very rough 6, rough 5, slightly rough 3, smooth 1, slickensided 0; infilling (gouge) none 6, hard < 5 mm 4, hard > 5 mm 2, soft < 5 mm 2, soft > 5 mm 0; weathering unweathered 6, slightly 5, moderately 3, highly 1, decomposed 0"
+      ],
+      "applicability": "Rock mass classification, deformability, and strength characterization for transportation foundation design"
+    },
+    {
+      "section_id": "9.7.1",
+      "title": "Evaluation of Rock Mass Modulus from in situ Test Measurements",
+      "summary": "In situ rock mass modulus: borehole dilatometer, Gd = kR pi L d^2/rho, Ed = 2(1 + nuR) Gd, kR = ks kT/(ks - kT) (Eqs. 9.20 to 9.22, ISRM, 1987); borehole jack (ASTM D4971), Ecalc = 1.24 JE delta Qh/(delta D/D) for nu = 0.25 (Eq. 9.23), corrected by Figure 9-28; rigid plate load test, E = (1 - nu^2) P/(2 Wa R) (Eq. 9.24); and seismic velocities (velocity index, rippability).",
+      "body": "Direct methods: borehole dilatometer, borehole jack, plate load tests and in situ seismic tests. The borehole dilatometer, like a pressuremeter, applies uniform radial pressure through a flexible sleeve and measures expansion (Figure 9-26, p. 9-41); Figures 9-24 and 9-25 (GSI charts, section 9.6.3) are printed on pp. 9-39 to 9-40. Gd and Ed follow from Eqs. 9.20 and 9.21 (ISRM, 1987), L the membrane length, d the borehole diameter, nuR Poisson's ratio of the rock, rho the pump constant (fluid volume per turn of the pump wheel); kR, the rock stiffness over the membrane length, from Eq. 9.22 with ks the hydraulic system stiffness and kT the overall system plus rock stiffness (ratio D/C in Figure 9-26). Rock stiffness is closer to the apparatus stiffness than soil, so careful calibration is required (Wyllie, 1999). The borehole jack (ASTM D4971), often preferable in stiff rock, applies directional pressure through steel platens (Figure 9-27, strong limestone); for full contact and nu = 0.25, Eq. 9.23 with JE the jack efficiency ratio, delta Qh the hydraulic pressure increment, delta D the hole diameter change and D the initial diameter. The text refers to 'Equation 9.26' for this relation and its Poisson's ratio dependence and correction (as printed; the jack relation is Eq. 9.23); the effect of nu is minor. Correct with Figure 9-28 (Etrue vs. Ecalc) when intact rock modulus is high relative to steel (p. 9-43). Jack and dilatometer measure horizontal modulus, so consider anisotropy and loading direction. Plate load tests (ASTM D4394, D4395; Figure 9-29, Coates and Gyenge, 1966) need large reaction, often in adits; the loaded area must engage representative discontinuities; for a rigid circular plate Eq. 9.24 with nu Poisson's ratio of the rock, P total load, Wa average deflection, R plate radius (p. 9-44). Field seismic velocities through the rock mass are lower than laboratory velocities on intact specimens; the velocity index VI, the square of the ratio of in situ seismic to laboratory sonic velocity, relates to RQD (Figure 9-30, Coon and Merritt, 1970; Deere et al., 1967; Deere and Deere, 1989). Field velocities also guide rippability (Figure 9-31, Caterpillar D10R; seismic refraction, Chapter 8). (pp. 9-38 to 9-46)",
+      "key_points": [
+        "Borehole dilatometer needs careful calibration (p. 9-41).",
+        "kT = ratio D/C in Figure 9-26 (p. 9-41).",
+        "Borehole jack (ASTM D4971) often preferable to the dilatometer in stiff rock (p. 9-42).",
+        "As printed, the text cites Equation 9.26 for the borehole jack modulus; the jack relation is Eq. 9.23 (pp. 9-42 to 9-43).",
+        "Correct Ecalc to Etrue with Figure 9-28 (p. 9-43).",
+        "Jack and dilatometer measure horizontal modulus; consider anisotropy and loading direction (p. 9-43).",
+        "Plate load tests ASTM D4394, D4395; loaded area must engage representative discontinuities (p. 9-44).",
+        "VI = (in situ seismic velocity / laboratory sonic velocity)^2; low VI means lower RQD (Figure 9-30) (p. 9-45).",
+        "Rippability charts from seismic velocity (Figure 9-31) (p. 9-46)."
+      ],
+      "equations": [
+        "Eq. 9.20: Gd = kR pi L d^2 / rho (ISRM, 1987); kR = rock stiffness over the membrane length, L = cell membrane length, d = borehole diameter, rho = pump constant (fluid volume displaced per turn of the pump wheel) (p. 9-41)",
+        "Eq. 9.21: Ed = 2(1 + nuR) Gd; nuR = Poisson's ratio of the rock (p. 9-41)",
+        "Eq. 9.22: kR = ks kT / (ks - kT); ks = stiffness of the hydraulic system, kT = stiffness of overall system plus rock (ratio D/C in Figure 9-26) (p. 9-41)",
+        "Eq. 9.23: Ecalc = 1.24 JE delta Qh / (delta D / D); full contact, assumed Poisson's ratio 0.25; JE = jack efficiency ratio, delta Qh = increment in hydraulic pressure, delta D = change in hole diameter, D = initial hole diameter (p. 9-42)",
+        "Eq. 9.24: E = (1 - nu^2) P / (2 Wa R); rigid circular plate, deformation at the plate center; nu = Poisson's ratio of the rock, P = total load on the plate, Wa = average plate deflection, R = plate radius (p. 9-44)"
+      ],
+      "figures": [
+        "Figure 9-24: Quantitative version of the geologic strength index (GSI) chart (from Hoek, et al., 2013)",
+        "Figure 9-25: Qualitative method for establishing GSI for heterogeneous rock masses (from Marinos, et al., 2005)",
+        "Figure 9-26: Typical pressure-dilation graph for borehole dilatometer (after ISRM, 1987)",
+        "Figure 9-27: Pressure-displacement plot for borehole jack",
+        "Figure 9-28: Relationship between Etrue and Ecalc (after ASTM D4971)",
+        "Figure 9-29: Example plate load test result (from Coates and Gyenge, 1966)",
+        "Figure 9-30: Relationship between RQD and Velocity Index (from Coon and Merritt, 1970)",
+        "Figure 9-31: Rippability chart for Caterpillar D10R ripper (Caterpillar, 2015)"
+      ],
+      "tables": [],
+      "applicability": "Rock mass classification, deformability, and strength characterization for transportation foundation design"
+    },
+    {
+      "section_id": "9.7.2",
+      "title": "Estimation of Rock Mass Modulus from RQD",
+      "summary": "O'Neill et al. (1996): estimate rock mass modulus EM from RQD, intact modulus ER and whether joints are open or closed, using the ratio EM/ER in Table 9-9, interpolating linearly between tabulated values.",
+      "body": "When in situ measurements of rock mass modulus are not available, it can be estimated from rock mass quality. O'Neill et al. (1996) proposed EM from measured RQD, measured or estimated intact rock modulus ER, and whether discontinuities are open or closed: multiply ER by the ratio EM/ER from Table 9-9 (p. 9-47), with linear interpolation between tabulated values. (pp. 9-46 to 9-47)",
+      "key_points": [
+        "Use when in situ modulus measurements are not available (p. 9-46).",
+        "Interpolate linearly between tabulated values (p. 9-47).",
+        "Table 9-9: closed joints 1.00, 0.70, 0.15, 0.05 at RQD 100, 70, 50, 20 (p. 9-47)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 9-9: Ratio of rock mass modulus to intact rock modulus (O’Neill, et al., 1996) - RQD (percent), EM/ER closed joints, open joints: 100, 1.00, 0.60; 70, 0.70, 0.10; 50, 0.15, 0.10; 20, 0.05, 0.05"
+      ],
+      "applicability": "Rock mass classification, deformability, and strength characterization for transportation foundation design"
+    },
+    {
+      "section_id": "9.7.3",
+      "title": "Estimation of Rock Mass Modulus from Rock Mass Rating",
+      "summary": "From RMR: Bieniawski (1978) EM = 2 RMR - 100 GPa for RMR > 50 (Eq. 9.25); Serafim and Pereira (1983) EM = 10^((RMR - 10)/40) GPa (Eq. 9.26) (Figure 9-32). Serafim and Pereira is preferable for RMR < 60, either for 60 < RMR < 85; above 85 both exceed the data, so consider an upper bound EM about 70 GPa or EM = ER.",
+      "body": "Bieniawski (1978) recommended the linear relation Eq. 9.25 for RMR greater than 50; Serafim and Pereira (1983), over a broader RMR range, Eq. 9.26; both in GPa. Figure 9-32 (p. 9-48) shows both with measurements: both are practically consistent with data for RMR about 55 to 85. Bieniawski predicts EM lower than most observations below 55 and EM = 0 for RMR <= 50; Serafim and Pereira fits better for RMR <= 50 but over-predicts above about 80 ('very good rock'), especially above 90. So Serafim and Pereira is generally preferable for RMR < 60, either for 60 < RMR < 85; for RMR > 85 take care, both exceeding available measurements: consider an 'upper bound' EM about 70 GPa, or EM equal to ER. Other relations may be considered (Hoek and Diederichs, 2006). (pp. 9-47 to 9-48)",
+      "key_points": [
+        "Both relations consistent with data for RMR about 55 to 85 (p. 9-47).",
+        "Bieniawski predicts EM = 0 for RMR <= 50 (p. 9-47).",
+        "Serafim and Pereira over-predicts for RMR above about 80, especially above 90 (p. 9-47).",
+        "Serafim and Pereira preferable for RMR < 60; either for 60 < RMR < 85 (p. 9-47).",
+        "RMR > 85: upper bound EM about 70 GPa, or EM = ER (pp. 9-47 to 9-48)."
+      ],
+      "equations": [
+        "Eq. 9.25: EM = 2 RMR - 100 (in GPa), when RMR is greater than 50 (Bieniawski, 1978) (p. 9-47)",
+        "Eq. 9.26: EM = 10^((RMR - 10)/40) (in GPa) (Serafim and Pereira, 1983) (p. 9-47)"
+      ],
+      "figures": [
+        "Figure 9-32: Relation between EM and RMR (after Bieniawski, 1978; Serafim and Pereira, 1983)"
+      ],
+      "tables": [],
+      "applicability": "Rock mass classification, deformability, and strength characterization for transportation foundation design"
+    },
+    {
+      "section_id": "9.7.4",
+      "title": "Estimation of Rock Mass Modulus from Geological Strength Index",
+      "summary": "Hoek and Diederichs (2006): simplified EM = 100,000 (1 - D/2)/(1 + e^((75 + 25D - GSI)/11)) (Eq. 9.27) and rigorous EM = ER (0.2 + (1 - D/2)/(1 + e^((60 + 15D - GSI)/11))) (Eq. 9.28, 0.2 as printed), D = 0 (none) to 1 (substantial disturbance). The rigorous relation is significantly more reliable when ER can be measured. Valid for isotropic rock masses.",
+      "body": "Hoek and Diederichs (2006), from a large collection of in situ tests, proposed a simplified relation (Eq. 9.27) and a more rigorous one (Eq. 9.28), with D an empirical disturbance factor for blasting damage or stress relief (0 = no disturbance, 1 = substantial) and ER the intact rock modulus. Little direct guidance on D exists; Hoek and Diederichs (2006) give illustrative examples (p. 9-49). The simplified relation needs no ER. Figures 9-33 (simplified, rock mass modulus in MPa) and 9-34 (rigorous, normalized modulus) compare them with data for D = 0, 0.5 and 1. Eq. 9.28 prints the constant as 0.2; the curves of Figure 9-34 start near 0.02 at low GSI and reach about 1.0 at GSI 100 for D = 0 (kept as printed). The rigorous relation is significantly more reliable and should be used when ER can be practically acquired. The equations assume an isotropic collection of intact blocks, not controlled by one or two dominant discontinuities; this depends on scale: discontinuity spacing should be less than about one-half of a characteristic dimension of the feature 'for use of Equations 9.30 and 9.31 to be appropriate' (as printed) (p. 9-50; Marinos et al., 2005). Discontinuity orientation also affects modulus: a gouge-filled discontinuity at right angles to loading is unfavorable for settlement; one parallel to loading, or dipping toward an open face, for sliding. (pp. 9-48 to 9-50)",
+      "key_points": [
+        "D from blasting damage or stress relief, 0 to 1; Hoek and Diederichs (2006) give examples (pp. 9-48 to 9-49).",
+        "Figure 9-33 plots the simplified relation in MPa for D = 0, 0.5, 1 (p. 9-49).",
+        "Eq. 9.28 prints 0.2; Figure 9-34's curves start near 0.02 at low GSI and reach about 1.0 at GSI 100 for D = 0 (pp. 9-48 to 9-49).",
+        "Rigorous relation significantly more reliable; use when ER can be acquired (p. 9-49).",
+        "Discontinuity spacing less than about one-half the characteristic feature dimension (p. 9-50).",
+        "As printed, that condition is stated for Equations 9.30 and 9.31 (p. 9-50).",
+        "Discontinuity orientation also affects rock mass modulus (p. 9-50)."
+      ],
+      "equations": [
+        "Eq. 9.27: EM = 100,000 x ((1 - D/2) / (1 + e^((75 + 25D - GSI)/11))) (Simplified Hoek and Diederichs); D = disturbance factor (p. 9-48)",
+        "Eq. 9.28: EM = ER x (0.2 + (1 - D/2) / (1 + e^((60 + 15D - GSI)/11))) (Hoek and Diederichs); ER = intact rock modulus; constant 0.2 as printed (Figure 9-34's curves start near 0.02 at low GSI) (p. 9-48)"
+      ],
+      "figures": [
+        "Figure 9-33: Simplified Hoek and Diederichs (2006) relation for estimating EM from GSI",
+        "Figure 9-34: Rigorous Hoek and Diederichs (2006) relation for estimating EM from GSI"
+      ],
+      "tables": [],
+      "applicability": "Rock mass classification, deformability, and strength characterization for transportation foundation design"
+    },
+    {
+      "section_id": "9.8",
+      "title": "Evaluation of Shear Strength of Rock Masses",
+      "summary": "Where many discontinuities govern, rock mass strength follows the Hoek-Brown criterion (Hoek et al., 2002), a curved envelope (Figure 9-35): sigma'1 = sigma'3 + qu(mb sigma'3/qu + s)^a (Eq. 9.29), mb = mi e^((GSI - 100)/(28 - 14D)) (Eq. 9.30, mi from Table 9-10), s and a from GSI and D (Eqs. 9.31, 9.32). Equivalent Mohr-Coulomb phi' and c' over sigma_t to sigma'3max follow from Eqs. 9.33, 9.34 (Figure 9-36). Not for extremely poor rock.",
+      "body": "Where distinct discontinuities control, design needs their individual shear strength (section 9.5.4). Where the collection of intact blocks formed by numerous discontinuities governs, model the rock mass with empirical envelopes; whether it is isotropic is scale dependent (section 9.7.4). The most common model is the Hoek-Brown criterion (Hoek and Brown, 1980; revisions, Hoek and Marinos, 2007; current version Hoek et al., 2002): a curved envelope (Figure 9-35, Hoek, 1983, p. 9-51) with high instantaneous friction angle at low normal stress from block interlocking, falling as intact rock shears at higher stress, and instantaneous cohesion rising with normal stress. In major and minor principal effective stresses it is Eq. 9.29, qu the intact rock uniaxial compressive strength, mb a reduced value of the material constant mi (Eq. 9.30; mi by rock type from Table 9-10, Marinos and Hoek, 2001, p. 9-52, numbers in parentheses estimates, foliated metamorphic values for specimens tested normal to bedding or foliation), GSI and D as before, and s and a from Eqs. 9.31 and 9.32 (p. 9-53). The text then says 'Equation 9.32 can be used directly for design with some commercial software' (as printed; the criterion is Eq. 9.29). Many methods need Mohr-Coulomb c' and phi'; for minor principal effective stress from the tensile strength sigma_t to sigma'3max they are approximated by Eqs. 9.33 and 9.34 (Hoek et al., 2002), compared in Figure 9-36; Hoek et al. (2002) guide the choice of sigma'3max. GSI and Hoek-Brown may not suit extremely poor (highly weathered and fractured) rock, which may be treated as a dense soil (Castelli et al., 2015). (pp. 9-50 to 9-54)",
+      "key_points": [
+        "Hoek-Brown is the most common model for the strength of fractured rock masses (p. 9-50).",
+        "Current version: Hoek et al. (2002) (p. 9-50).",
+        "D = disturbance factor (p. 9-51).",
+        "Table 9-10: mi, e.g., sandstones 17 +/- 4, granite 32 +/- 3, claystones 4 +/- 2 (p. 9-52).",
+        "Mohr-Coulomb fit over sigma_t to sigma'3max (Eqs. 9.33, 9.34, Hoek et al., 2002) (p. 9-53).",
+        "As printed, 'Equation 9.32 can be used directly' with some commercial software (p. 9-53).",
+        "Extremely poor rock: shear strength may be estimated as a dense soil (Castelli et al., 2015) (p. 9-53)."
+      ],
+      "equations": [
+        "Eq. 9.29: sigma'1 = sigma'3 + qu (mb sigma'3 / qu + s)^a; qu = uniaxial compressive strength of intact rock, mb = reduced value of material constant mi, s and a = dimensionless constants for rock mass condition (p. 9-51)",
+        "Eq. 9.30: mb = mi e^((GSI - 100)/(28 - 14D)); mi from Table 9-10, GSI = geologic strength index, D = disturbance factor (p. 9-51)",
+        "Eq. 9.31: s = e^((GSI - 100)/(9 - 3D)) (p. 9-53)",
+        "Eq. 9.32: a = 1/2 + 1/6 (e^(-GSI/15) - e^(-20/3)) (p. 9-53)",
+        "Eq. 9.33: phi' = sin^-1[6a mb (s + mb sigma'3max/qu)^(a-1) / (2(1 + a)(2 + a) + 6a mb (s + mb sigma'3max/qu)^(a-1))] (Hoek et al., 2002) (p. 9-53)",
+        "Eq. 9.34: c' = qu [(1 + 2a)s + (1 - a) mb sigma'3max/qu] (s + mb sigma'3max/qu)^(a-1) / ((1 + a)(2 + a) sqrt(1 + 6a mb (s + mb sigma'3max/qu)^(a-1) / ((1 + a)(2 + a)))); minor principal effective stress from sigma_t to sigma'3max (Hoek et al., 2002) (p. 9-53)"
+      ],
+      "figures": [
+        "Figure 9-35: Shear strength envelope defined by Hoek-Brown failure criterion (Hoek, 1983)",
+        "Figure 9-36: Comparison of Hoek-Brown failure criterion with approximate Mohr-Coulomb envelope (from Hoek, et al., 2002)"
+      ],
+      "tables": [
+        "Table 9-10: Values of material constant, mi (from Marinos and Hoek, 2001) - mi by rock type, class, group and texture (coarse, medium, fine, very fine); numbers in parentheses are estimates. Sedimentary clastic: conglomerates (21 +/- 3), breccias (19 +/- 5); sandstones 17 +/- 4; siltstones 7 +/- 2, greywackes (18 +/- 3); claystones 4 +/- 2, shales (6 +/- 2), marls (7 +/- 2). Non-clastic carbonates: crystalline limestone (12 +/- 3), sparitic limestones (10 +/- 2), micritic limestones (9 +/- 2), dolomites (9 +/- 3); evaporites: gypsum 8 +/- 2, anhydrite 12 +/- 2; organic: chalk 7 +/- 2. Metamorphic non foliated: marble 9 +/- 3, hornfels (19 +/- 4), metasandstone (19 +/- 3), quartzites 20 +/- 3; slightly foliated: migmatite (29 +/- 3), amphibolites 26 +/- 6, gneiss 28 +/- 5; foliated (tested normal to bedding or foliation): schists 12 +/- 3, phyllites (7 +/- 3), slates 7 +/- 4. Igneous plutonic light: granite 32 +/- 3, diorite 25 +/- 5, granodiorite (29 +/- 3); plutonic dark: gabbro 27 +/- 3, norite 20 +/- 5, dolerite (16 +/- 5); hypabyssal: porphyries (20 +/- 5), diabase (15 +/- 5), peridotite (25 +/- 5); volcanic lava: rhyolite (25 +/- 5), andesite 25 +/- 5, dacite (25 +/- 3), basalt (25 +/- 5); pyroclastic: agglomerate (19 +/- 3), volcanic breccia (19 +/- 5), tuff (13 +/- 5)"
       ],
       "applicability": "Rock mass classification, deformability, and strength characterization for transportation foundation design"
     }

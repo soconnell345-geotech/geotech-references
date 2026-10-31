@@ -5,55 +5,336 @@
   "chapter_title": "Identification and Characterization of Geotechnical Hazards",
   "sections": [
     {
-      "section_id": "12.1-12.3",
-      "title": "Karst, Sinkholes, and Underground Mines",
-      "summary": "Karst: dissolution of carbonate rock creates sinkholes, caves, and caverns; collapse sinkholes form suddenly without warning. Desk study: topographic maps, LiDAR, geologic maps. At least one boring per deep foundation location in karst terrain. Geophysical methods (ASTM D6429): gravity survey (void as density anomaly), seismic reflection, GPR, resistivity, TDR, borehole tomography — all depth-limited. Underground mines: undocumented workings common; desk study from mine maps; GPR detects voids beneath pavements.",
-      "body": "Karst hazards: Dissolution of carbonate rock (limestone, dolomite) and evaporites (gypsum, halite) creates network of subsurface features. Surface expressions: sinkholes (circular depressions), irregular bedrock depth, irregular rock quality, loss of drilling fluid, 'rod drops' during boring. Types: solution sinkholes (gradual, slow), cover-subsidence sinkholes (gradual, fill descends into void), cover-collapse sinkholes (sudden, catastrophic). Impacts: foundation settlement, collapse, irregular bearing, loss of groundwater.\n\nDesk study for karst: topographic maps for closed depressions; LiDAR for subtle surface expressions (Figure 12-5); geologic maps; published karst maps; previous site investigations; observation wells for loss of groundwater.\n\nField investigation for karst: Borings spaced close enough to detect karst features; minimum one boring per deep foundation location. Borings must penetrate through rock to confirm rock quality below apparent top of rock. Document all rod drops, drilling fluid losses, and voids encountered in boring log.\n\nGeophysical methods (ASTM D6429): Gravity survey — detects voids as density anomaly; 5–50 ft measurement spacing; effectiveness decreases with depth. Seismic reflection — locates irregular rock surface; receivers spaced 1–10 ft; depth of investigation ≈ 1–2× furthest receiver distance. Electrical resistivity — low resistivity = voids/fractured rock. TDR and GPR — shallow voids and cavities under pavements. Borehole tomography — between borings; images velocity and attenuation of rock.\n\nUnderground mines: Undocumented workings from 19th-20th century are common near historic mining districts. Desk study: mine maps from state archives, MSHA, USGS. Field: GPR for voids beneath pavements; borings through suspected mine workings. Surface subsidence features (Figure 12-16) are indicators of mine collapse.",
+      "section_id": "12.1",
+      "title": "Objectives for Identification and Characterization of Geotechnical Hazards",
+      "summary": "Unidentified geotechnical hazards can have dramatic financial and human consequences. Identifying them is one of the foremost objectives of site characterization; once judged to present risk, hazards are characterized so risks can be quantified and mitigated, preferably early in project development when mitigation is cheaper.",
+      "body": "Failure to identify and properly characterize geotechnical hazards can have dramatic financial and human consequences; hazards introduce risk to design, construction and preservation. Identification is therefore one of the foremost objectives of site characterization. Hazards judged to present risks are then characterized more thoroughly so risks can be quantified and mitigated. Identifying and characterizing hazards early in project development often allows more cost-effective mitigation. (p. 12-1)",
       "key_points": [
-        "Karst: minimum one boring per deep foundation; document rod drops and fluid loss in boring logs",
-        "Cover-collapse sinkholes form suddenly — require careful field investigation and geophysics",
-        "ASTM D6429 geophysical methods: gravity, seismic reflection, GPR, resistivity, TDR — depth-limited",
-        "GPR most effective for locating shallow voids and mine workings under pavements",
-        "Underground mines: consult historical mine maps; confirm with borings through suspected workings"
+        "Hazard identification is one of the foremost objectives of site characterization (p. 12-1).",
+        "Identify and characterize hazards early in project development (p. 12-1)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Objectives for identifying and characterizing geotechnical hazards on transportation projects"
+    },
+    {
+      "section_id": "12.2",
+      "title": "Karst Hazards",
+      "summary": "Karst forms by dissolution of soluble rock (limestone, dolomite; also gypsum, salt). Sinkholes form gradually (solution, subsidence) or suddenly (collapse, Figure 12-1a), often triggered by lowered groundwater; bedrock may be pinnacled (Figure 12-1b). Karst occurs in nearly every state, especially Florida, Kentucky, Tennessee, Texas and Missouri (Figure 12-3).",
+      "body": "'Karst' refers to landscapes with surface and underground features formed by dissolution of soluble rock, most commonly carbonate rocks (limestone, dolomite) but also evaporites (gypsum, salt rock). Weakly acidic groundwater in fractures enlarges openings into networks of caves and caverns (p. 12-2). Sinkholes form gradually as exposed bedrock dissolves (solution sinkholes) or soil moves into cavities (subsidence sinkholes), or suddenly when a cavern roof can no longer support the overburden (collapse sinkholes, Figure 12-1a); changes in stress, e.g., lowering of groundwater levels, often initiate sudden collapse. Flow along fractures and joints creates 'pinnacled' bedrock (Figure 12-1b); mature karst has disappearing streams and springs (Figure 12-2). Karst occurs in nearly every state, especially Florida, Kentucky, Tennessee, Texas and Missouri (Figure 12-3, Weary and Doctor, 2014). (pp. 12-1 to 12-2)",
+      "key_points": [
+        "Karst most commonly in carbonate rocks; also evaporites (p. 12-1).",
+        "Solution, subsidence and collapse sinkholes (p. 12-2).",
+        "Lowering of groundwater levels often initiates sudden collapse (p. 12-2).",
+        "Karst especially prevalent in Florida, Kentucky, Tennessee, Texas and Missouri (p. 12-2)."
       ],
       "equations": [],
       "figures": [
-        "Figure 12-5: Comparison of aerial photograph and LiDAR imagery showing depressions",
-        "Figure 12-8: Gravity anomaly indicating void below surface",
-        "Figure 12-10: Seismic refraction for detecting subsurface voids",
-        "Figure 12-11: Resistivity image showing low values indicating voids or fractured rock",
-        "Figure 12-13: Borehole tomography",
-        "Figure 12-16: Surface water in subsidence feature over underground mine",
-        "Figure 12-17: GPR for voids beneath pavement"
+        "Figure 12-1: Surface expressions of karst: (a) sinkhole in Tennessee and (b) pinnacled bedrock"
+      ],
+      "tables": [],
+      "applicability": "Karst and underground mine hazard identification and characterization for transportation projects"
+    },
+    {
+      "section_id": "12.2.1",
+      "title": "Implications of Karst Hazard for Transportation Projects",
+      "summary": "Karst affects support of structures and flow of water and contaminants. Collapse sinkholes may form without warning; pinnacled bedrock can vary by tens of feet over short distances, with voids and soil seams threatening deep foundations (Figure 12-4, Brown, 1990) and constructability (artesian water, concrete overpours). Contaminants travel rapidly; sinkholes may flood.",
+      "body": "Karst is a hazard because it can negatively impact (1) support conditions for structures and (2) flow of water and/or contaminants; conditions are highly variable and unpredictable. Foundation impacts range from excessive settlement to total collapse; collapse sinkholes may develop without warning, subsidence sinkholes show gradual settlement, and infilled sinkholes, solution cavities and clay seams make support highly variable (p. 12-3). Depth to intact rock can fluctuate by tens of feet over short distances; collapsed blocks, infill, clay seams and residual soil between pinnacles make competent bedrock hard to identify, risking insufficient support or erroneous quantities; voids or soil-filled seams beneath deep foundations threaten integrity (Figure 12-4, Brown, 1990). Artesian conditions, soil seams, rock blocks, sudden groundwater flow into shafts and large concrete overpours hinder construction (p. 12-4). Flow in karst is governed by interconnected fissures and caves, not rock permeability; contaminants can be rapidly transported over large distances; springs and artesian conditions occur; sinkhole depressions may flood if drainage is blocked (p. 12-5). (pp. 12-2 to 12-5)",
+      "key_points": [
+        "Karst impacts support conditions and flow of water and contaminants (p. 12-2).",
+        "Collapse sinkholes may develop without warning (p. 12-3).",
+        "Depth to intact rock can fluctuate by tens of feet over short distances (p. 12-4).",
+        "Contaminants can be rapidly transported over large distances in karst (p. 12-4)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 12-2: Features of extreme karst landscape (Waltham and Fookes, 2003)",
+        "Figure 12-3: Map of karst and potential karst areas in soluble rocks in the contiguous United States (Weary and Doctor, 2014)",
+        "Figure 12-4: Commonly encountered problems in pinnacled limestone (Brown, 1990)"
+      ],
+      "tables": [],
+      "applicability": "Karst and underground mine hazard identification and characterization for transportation projects"
+    },
+    {
+      "section_id": "12.2.2",
+      "title": "Identification and Characterization of Karst Hazards",
+      "summary": "Karst investigation: a desk study (geologic maps, USGS karst map, bare-earth lidar, Figure 12-5), site reconnaissance of surface features (lidar, InSAR), and subsurface exploration: a boring at each deep foundation, deeper than about two diameters (Figure 12-6), plus geophysics. Tables 12-1 and 12-2 (ASTM D6429) rate GPR and gravity preferred for voids, GPR and seismic for bedrock depth.",
+      "body": "Elements: (1) desk study of susceptibility and evidence of karst; (2) surface features; (3) subsurface features. Desk study: geologic setting governs susceptibility (carbonate and evaporite rocks; pseudo-karst from lava flows, piping or permafrost melt); state and USGS geologic maps and the USGS digital karst map (Weary and Doctor, 2014); topographic maps and aerial photos show large depressions but miss small ones; 'bare-earth' lidar reveals small features (Figure 12-5, p. 12-6); also sinkhole articles, geophysical studies and nearby reports. Surface: document depressions, collapse features, pinnacles, disappearing streams and springs; inspect rock cuts; airborne lidar detects sinkholes (Zhu, et al., 2014); InSAR tracks subsidence and developing sinkholes. Subsurface: drilling is the primary tool, with relatively many closely spaced borings; at least one boring at each deep foundation and several for large shafts, pile groups and footings (p. 12-7); extend well beyond foundation depth: stress beneath a loaded area drops to 10% at about two diameters (Figure 12-6). Geophysics (EM conductivity, GPR, resistivity, seismic, gravity) covers lateral variability for voids and depth to bedrock (Tables 12-1, 12-2; ASTM D6429, 2011); detection worsens with depth and with weathered or irregular rock, so consult a geophysicist (p. 12-8). GPR: excellent resolution, 50 feet or more in sand and rock, under a few feet in clay (Figure 12-7). Microgravity: 5 to 50 ft spacing; voids smaller than their depth are hard to detect (Figure 12-8, p. 12-9). Seismic reflection: spread 1 to 2 times the depth, receivers 1 to 10 ft (Figure 12-9); refraction cannot directly detect a void, depth about one third of the spread (Figure 12-10); resistivity array about three times the depth (Figure 12-11) (p. 12-10). FDEM 2 to 200 ft (p. 12-11); TDEM affected by power lines and metal (Figure 12-12); surface waves (p. 12-12; Figure 12-13 on p. 12-13); crosshole tomography images anomalies between borings (Figure 12-14, p. 12-13). (pp. 12-5 to 12-13)",
+      "key_points": [
+        "Three elements: desk study, surface features, subsurface features (p. 12-5).",
+        "'Bare-earth' lidar reveals small surface depressions (p. 12-5).",
+        "At least one boring at each deep foundation location in karst (p. 12-7).",
+        "Stress drops to 10% at about two diameters below a loaded area (p. 12-7).",
+        "Table 12-1: GPR and gravity preferred (A) for voids and sinkholes (p. 12-8).",
+        "Table 12-2: GPR and seismic reflection/refraction preferred (A) for depth to bedrock (p. 12-8).",
+        "GPR penetration 50 feet or more in sand and rock; under a few feet in clay (p. 12-8).",
+        "Voids smaller than the depth to their top are difficult to detect by gravity (p. 12-9).",
+        "Refraction cannot directly detect a void in rock (p. 12-10)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 12-5: Comparison of aerial photograph and lidar imagery showing detection of small surface depressions (black arrows) using lidar imagery (Illinois State Geological Survey, 2016)",
+        "Figure 12-6: Stress distribution beneath a square foundation",
+        "Figure 12-7: GPR for detecting subsurface voids (Wightman, et al., 2004)",
+        "Figure 12-8: Idealized gravity measurements over a subsurface void (Wightman, et al., 2004)",
+        "Figure 12-9: Seismic reflection measurements for detecting subsurface voids (Wightman, et al., 2004)",
+        "Figure 12-10: Seismic refraction measurements for detecting subsurface voids (Wightman, et al., 2004)",
+        "Figure 12-11: Example resistivity image showing low values indicative of voids or highly fractured rocks (Wightman, et al., 2004)",
+        "Figure 12-12: Time-domain electromagnetic measurements (Wightman, et al., 2004)",
+        "Figure 12-13: Changes in surface wave motions due to subsurface voids (Wightman, et al., 2004)",
+        "Figure 12-14: Subsurface cross-hole seismic tomography method (Wightman, et al., 2004)"
       ],
       "tables": [
-        "Table 12-1: Applicability of geophysical methods for identifying voids and sinkholes (ASTM D6429)"
+        "Table 12-1: Applicability of geophysical methods for identifying voids and sinkholes (ASTM D6429, 2011) - voids and sinkholes: ground penetrating radar A; gravity A; seismic reflection/refraction B; resistivity B; frequency domain electromagnetics B; time domain electromagnetics B (A = preferred, B = alternative)",
+        "Table 12-2: Applicability of geophysical methods for identifying depth to bedrock (ASTM D6429, 2011) - depth to bedrock: ground penetrating radar A; seismic reflection/refraction A; gravity B; DC resistivity B; frequency domain electromagnetics B; time domain electromagnetics B (A = preferred, B = alternative)"
       ],
       "applicability": "Karst and underground mine hazard identification and characterization for transportation projects"
     },
     {
-      "section_id": "12.4-12.7",
-      "title": "Seismic, Groundwater, Slope, and Geoenvironmental Hazards",
-      "summary": "Seismic hazards: site amplification (Vs30 and AASHTO site class Table 12-4); liquefaction (SPT (N1)60 and CPT qt from Youd et al. 2001); seismic slope instability (pseudo-static or Newmark displacement method). Groundwater hazards: artesian conditions require piezometers; seepage-induced instability. Landslides/rockfall: identify from desk study (USGS, topographic maps, LiDAR), inclinometers, field reconnaissance. Rock slope failure modes: planar, wedge, toppling, circular. Geoenvironmental hazards: contaminant characterization; phased investigation approach.",
-      "body": "Seismic hazards: (1) Ground shaking intensity: Vs30 used for AASHTO/IBC site classification (site class A-F); site factors Fpga and Fv amplify PGA and spectral acceleration. AASHTO 2012 Table 12-4 provides Fpga by site class and PGA level. (2) Liquefaction: assess susceptibility (loose saturated cohesionless soils, (N1)60 < 30), triggering (SPT and CPT methods per Youd et al. 2001), and consequences (lateral spreading, settlement, strength loss). Site characterization: determine spatial limits of liquefiable soil, GWT depth, maximum anticipated liquefaction depth, and SPT/CPT measurements. (3) Slope instability: pseudo-static limit equilibrium with horizontal coefficient kh = 0.5A (AASHTO), or Newmark displacement analysis.\n\nGroundwater hazards: Artesian conditions — confined aquifer pore pressure > overburden stress; identify from borehole observations (water rising above ground) or piezometers. Seepage-induced hazards: uplift (foundation design), piping, liquefaction of granular soils. Characterize by piezometer network.\n\nLandslide and rockfall hazards: Landslides identified from desk study (USGS landslide database, aerial photography, LiDAR, geologic mapping), then confirmed by field investigation (slope inclinometers, borings for failure surface location and characterization). Rock slope failure modes: planar (rock slab slides along single discontinuity), wedge (intersection of two discontinuities), toppling (rotation of rock blocks), circular (in weak/heavily jointed rock). Rockfall conditions: steep slopes, extensive subvertical joint sets, freeze-thaw, undercutting.\n\nGeoenvironmental hazards: Contaminants from waste piles, USTs, landfills, or industrial operations. Phased investigation: desk study → surface reconnaissance → limited subsurface → comprehensive. Characterize extent, concentration, and migration pathways.",
+      "section_id": "12.3",
+      "title": "Underground Mine Hazards",
+      "summary": "Abandoned mine openings for coal, minerals and metals, often undocumented and forgotten, may fail beneath transportation facilities; MSHA estimates about 300,000 abandoned mines in the Appalachian region alone.",
+      "body": "Mining for coal, minerals and metals leaves underground openings and access and ventilation shafts, many undocumented and forgotten (p. 12-14); their support may fail, impacting facilities above and nearby. Hazards are abundant in historical coal mining states, though non-coal mines also pose hazards. MSHA estimates about 300,000 abandoned mines in the Appalachian region alone (MSHA, 2016), often near populated areas and major facilities. (pp. 12-13 to 12-14)",
       "key_points": [
-        "AASHTO site class from Vs30; site factor Fpga from Table 12-4 for site amplification",
-        "Liquefaction: SPT (N1)60 and CPT qt methods (Youd et al. 2001); need spatial limits, GWT, and SPT/CPT data",
-        "Newmark displacement analysis for seismic slope stability; requires seismic hazard and yield acceleration",
-        "Landslide investigation: desk study (USGS, LiDAR) then inclinometers + borings for failure surface",
-        "Rock slope failure: planar, wedge, toppling, circular — assess from discontinuity orientation stereonets"
+        "About 300,000 abandoned mines in the Appalachian region alone (MSHA, 2016) (p. 12-14)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Karst and underground mine hazard identification and characterization for transportation projects"
+    },
+    {
+      "section_id": "12.3.1",
+      "title": "Implications of Underground Mine Hazards for Transportation Projects",
+      "summary": "Mine hazards act like karst voids: settlement of bridges and structures, loss of foundation support, roadway sinkholes and drainage problems (Figure 12-15, I-470 and I-70 in Ohio).",
+      "body": "Impacts are similar to karstic voids: settlement of bridges and structures over mines, loss of foundation support above openings, roadway sinkholes or settlement features, and surface drainage issues; Figure 12-15 shows surface effects along I-470 and I-70 in Ohio (Lefchik, et al., 2003). (p. 12-14)",
+      "key_points": [
+        "Impacts similar to karstic voids (p. 12-14)."
       ],
       "equations": [],
       "figures": [
-        "Figure 12-19: Route 17 landslide from Loma Prieta earthquake",
-        "Figure 12-22: Settings that produce artesian conditions",
-        "Figure 12-23: Modes of rock slope failure leading to rockfall events",
-        "Figure 12-24: Landslide event affecting highway",
-        "Figure 12-25: Rockfall event in Glenwood Canyon, CO affecting I-70"
+        "Figure 12-15: Surface effects from subsurface mines in Ohio: (a) I-470 and (b) I-70 (Lefchik, et al., 2003)"
       ],
+      "tables": [],
+      "applicability": "Karst and underground mine hazard identification and characterization for transportation projects"
+    },
+    {
+      "section_id": "12.3.2",
+      "title": "Identification and Characterization of Underground Mine Hazards",
+      "summary": "As for karst: desk study of mine maps (state programs, OSMRE repository, MSHA links; maps incomplete, e.g., Ohio 4,000 mapped and about 2,000 unmapped mines), surface evidence (openings, waste piles, orange seeps, cracks, dips, ponding, Figure 12-16; lidar, InSAR) and subsurface methods of section 12.2.2 (GPR, Figure 12-17).",
+      "body": "Elements: (1) desk study of past mining; (2) surface features; (3) subsurface openings. Desk studies rely on published abandoned mine maps, state abandoned mine land programs, geophysical studies and nearby reports; OSMRE keeps a national mine map repository; several states and MSHA provide digital maps (p. 12-15). Maps may give only approximate locations and a portion of mines: Ohio has maps for 4,000 abandoned mines but estimates about 2,000 more without detailed maps (Ruegsegger, 1999). Surface evidence of mining: openings, structures, waste piles, railroad spurs, orange-colored seeps or springs; deformation: cracks or dips in roadways, displaced drainage structures, moving bridges, poles, culverts and guardrails, unusual vegetation, drag patches, water impoundments (Figure 12-16, p. 12-16); lidar and aerial photos help over large areas; InSAR and photogrammetry detect active movement if large enough. Subsurface techniques are essentially those for karst (section 12.2.2); Figure 12-17 shows GPR checking for voids beneath I-77 during mine repair. (pp. 12-14 to 12-16)",
+      "key_points": [
+        "Mine maps may show only approximate locations and a portion of mines (p. 12-15).",
+        "Orange-colored water seeps or springs indicate past mining (p. 12-15).",
+        "Subsurface techniques essentially the same as for karst (p. 12-15)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 12-16: Surface water collected in subsidence feature in Missouri (Lefchik, et al., 2003)",
+        "Figure 12-17: Use of GPR to check for voids beneath a pavement during work to repair a mine (Lefchik, et al., 2003)"
+      ],
+      "tables": [],
+      "applicability": "Karst and underground mine hazard identification and characterization for transportation projects"
+    },
+    {
+      "section_id": "12.4",
+      "title": "Seismic Hazards",
+      "summary": "Seismic hazard depends on source proximity and characteristics, path attenuation and local soil and rock, expressed as ground motion with a probability of exceedance; USGS maps for AASHTO use 7 percent PE in 75 years for rock (Figure 12-18). Seismic regions need additional soil parameters for site effects, liquefaction and settlement.",
+      "body": "Seismic hazard is the potential for earthquakes to produce adverse effects on facilities, a function of (1) proximity to sources, (2) source characteristics (magnitude potential, recurrence, depth, fault type), (3) attenuation along the path and (4) local soil and rock. It is expressed as a ground motion parameter (PGA, response spectrum values) with a probability of exceedance (PE); USGS maps for AASHTO use 7 percent PE in 75 years for rock sites (Figure 12-18, Marsh, et al., 2014, p. 12-17). Much of the western U.S. and portions of the central and eastern U.S. are high hazard. Site characterization in seismic regions is more extensive because additional parameters are needed for site effects, liquefaction susceptibility or excessive settlement (p. 12-17). (pp. 12-16 to 12-17)",
+      "key_points": [
+        "USGS maps for AASHTO: 7 percent PE in 75 years for rock sites (p. 12-16).",
+        "Seismic regions need additional soil parameters (p. 12-16)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 12-18: USGS 2008 seismic hazard map for seismic design coefficient at one second period for 7 percent PE in 75 years and competent (B/C boundary) soil (Marsh, et al., 2014)"
+      ],
+      "tables": [],
+      "applicability": "Characterization of seismic, groundwater, slope instability, and geoenvironmental hazards for transportation projects"
+    },
+    {
+      "section_id": "12.4.1",
+      "title": "Implications of Seismic Hazards for Transportation Projects",
+      "summary": "Earthquakes raise loads (inertial forces causing slope failures, Figure 12-19) and may cut resistance: liquefaction of loose saturated cohesionless soils (bearing loss, flow slides, lateral spreading, settlement, Figure 12-20), settlement of dry or partly saturated sands (4 to 6 inches over 40 ft of sand, Seed and Silver, 1972) and surface fault rupture (Figure 12-21).",
+      "body": "Earthquake motions increase imposed load and sometimes decrease soil resistance. Inertial forces in slopes and embankments cause instability or deformation (Figure 12-19, Route 17 landslide, Loma Prieta); motions depend on near-surface soil and rock (p. 12-17). Liquefaction (Chapter 5): positive pore pressures in loose, saturated, cohesionless soils cause substantial strength loss, with bearing capacity reduction, flow slides, lateral spreading, settlement and increased wall pressures (Figure 12-20); site characterization must assess susceptibility and residual strengths (p. 12-18). Dry or partially saturated loose cohesionless soils contract and settle: Seed and Silver (1972) report 4 to 6 inches for a building on shallow foundations over a 40-ft sand deposit (p. 12-19). Surface fault rupture can produce abrupt movements of several inches to tens of feet, catastrophic to structures spanning the fault (Figure 12-21, Kocaeli). (pp. 12-17 to 12-19)",
+      "key_points": [
+        "Earthquakes increase loading and may decrease soil resistance (p. 12-17).",
+        "Liquefaction consequences: bearing loss, flow slides, lateral spreading, settlement, wall pressures (p. 12-17).",
+        "Seed and Silver (1972): 4 to 6 inches settlement over a 40-ft sand deposit (p. 12-19).",
+        "Fault rupture: several inches to tens of feet (p. 12-19)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 12-19: Route 17 landslide from Loma Prieta earthquake (from Kavazanjian, et al., 2011)",
+        "Figure 12-20: Disrupted fill and pavement due to liquefaction in Rio Estrella, Costa Rica during 1991 earthquake (Kavazanjian, et al., 2011)",
+        "Figure 12-21: Collapse of overpass on highway in Kocaeli, Turkey earthquake (from Erdik, 2001)"
+      ],
+      "tables": [],
+      "applicability": "Characterization of seismic, groundwater, slope instability, and geoenvironmental hazards for transportation projects"
+    },
+    {
+      "section_id": "12.4.2",
+      "title": "Identification and Characterization of Geotechnical Seismic Hazards",
+      "summary": "Seismic hazard assessment (Kavazanjian et al., 2011) needs Vs in the top 100 ft for Site Class (Table 12-3) and site factors Fpga (Table 12-4) and Fv for pseudo-static or Newmark analyses with undrained total stress strengths; liquefaction screening by hazard level, geologic age (Table 12-5) and soil indices; investigations to 80 ft or 20 ft below pile tips; residual strength, settlement (Tokimatsu and Seed) and fault screening.",
+      "body": "Beyond conventional data (stratigraphy, groundwater, bedrock depth, classification, unit weight, relative density, in situ tests), additional parameters are needed (Kavazanjian et al., 2011) (p. 12-19). Seismic slope instability: pseudo-static limit equilibrium with a seismic coefficient from site-adjusted PGA (mapped Site Class B PGA x Fpga), or displacement-based Newmark analysis. Site Class follows average Vs in the top 100 feet (Table 12-3) and Fpga follows Table 12-4, so measure the Vs profile (Chapter 8); in most cases use undrained total stress strengths in seismic stability (p. 12-20). Displacement methodology also needs long-period site factor Fv, so Vs to 100 feet again; rock slopes need rock mass strength (Chapter 9) (p. 12-21). Liquefaction: Buckle et al. (2006) evaluate need by seismic hazard level (site-class-adjusted spectral accelerations, Vs in the top 100 ft); then screening by geologic age and depositional environment (very low susceptibility in Table 12-5 needs no analysis) and, below the water table, clay content, LL, w, liquidity index, (N1)60 or cone resistance; evidence of prior liquefaction requires evaluation regardless, so review earthquake history and reconnaissance reports (p. 12-22). Detailed evaluation (Chapter 5): spatial limits of liquefiable deposits, groundwater (piezometers for seasonal fluctuation), maximum depth of liquefaction and in situ tests; explore at least 80 feet below the surface or lowest finished grade, and for deep foundations at least 20 feet below the tips or 80 feet, whichever deeper (p. 12-23). Residual strength from SPT (Idriss and Boulanger, 2007) or CPT (Olson and Johnson, 2008). Settlement: Tokimatsu and Seed (1987) needs (N1)60, total vertical stress and Gmax. Fault rupture: no significant hazard without a fault trace or if the fault is not active; low in the central and eastern U.S.; in the west review geologic maps, reconnaissance and lidar, geophysics, USGS fault maps (magnitude 6+ sources in 1,600,000 years), trenching and borings (p. 12-24). (pp. 12-19 to 12-24)",
+      "key_points": [
+        "Site Class from average Vs in the top 100 feet (Table 12-3) (p. 12-20).",
+        "Mapped PGA is for Site Class B; adjust with Fpga (Table 12-4) (p. 12-20).",
+        "Undrained total stress strengths in most seismic stability models (p. 12-20).",
+        "Table 12-4: Site Class E Fpga 2.5 at PGA < 0.10, 0.9 at PGA > 0.50 (p. 12-21).",
+        "Very low susceptibility deposits (Table 12-5) need no liquefaction analysis (p. 12-21).",
+        "Prior liquefaction requires evaluation regardless of screening (p. 12-22).",
+        "Explore at least 80 ft, or 20 ft below deep foundation tips, whichever deeper (p. 12-23).",
+        "Tokimatsu and Seed (1987) settlement needs (N1)60, total vertical stress, Gmax (p. 12-23).",
+        "Fault rupture hazard low in the central and eastern U.S. (p. 12-23)."
+      ],
+      "equations": [],
+      "figures": [],
       "tables": [
-        "Table 12-4: Values for site factor Fpga at zero period (AASHTO 2012)"
+        "Table 12-3: Site class definitions (AASHTO, 2012) - A: hard rock, measured vs > 5,000 ft/s; B: rock, 2,500 < vs < 5,000 ft/s; C: very dense soil and soil rock, 1,200 < vs < 2,500 ft/s, or N > 50 blows/ft, or su > 2.0 ksf; D: stiff soil, 600 < vs < 1,200 ft/s, or 15 < N < 50 blows/ft, or 1.0 < su < 2.0 ksf; E: vs < 600 ft/s, or N < 15 blows/ft, or su < 1.0 ksf, or more than 10 ft of soft clay (PI > 20, w > 40 percent and su < 0.5 ksf); F: site-specific evaluation: peats or highly organic clays (H > 10 ft, H = thickness of soil), very high plasticity clays (H > 25 ft with PI > 75), very thick soft/medium stiff clays (H > 120 ft). Exceptions: where properties are not known in sufficient detail, investigate to determine the site class; E and F not assumed unless the authority having jurisdiction determines they could be present or geotechnical data establish them (bars denote averages: vs, N, su)",
+        "Table 12-4: Values for site factor (Fpga) at zero period on acceleration spectrum (AASHTO, 2012) - Fpga at PGA < 0.10, 0.20, 0.30, 0.40, > 0.50: A 0.8, 0.8, 0.8, 0.8, 0.8; B 1.0, 1.0, 1.0, 1.0, 1.0; C 1.2, 1.2, 1.1, 1.0, 1.0; D 1.6, 1.4, 1.2, 1.1, 1.0; E 2.5, 1.7, 1.2, 0.9, 0.9; F * (site-specific investigation and dynamic site response analysis). Straight-line interpolation for intermediate PGA",
+        "Table 12-5: Liquefaction susceptibility of sedimentary deposits during strong ground motion (Youd and Perkins, 1978) - likelihood that saturated cohesionless sediments are susceptible, by age < 500 yr modern, Holocene > 11 ka, Pleistocene 11 ka - 2 Ma, pre-Pleistocene > 2 Ma (general distribution of cohesionless sediments first). (a) Continental: river channel (locally variable) very high, high, low, very low; floodplain (locally variable) high, moderate, low, very low; alluvial fan and plain (widespread) moderate, low, low, very low; marine terraces and plains (widespread) --, low, very low, very low; delta and fan-delta (widespread) high, moderate, low, very low; lacustrine and playa (variable) high, moderate, low, very low; colluvium (variable) high, moderate, low, very low; talus (widespread) low, low, very low, very low; dunes (widespread) high, moderate, low, very low; loess (variable) high, high, high, unknown; glacial till (variable) low, low, very low, very low; tuff (rare) low, low, very low, very low; tephra (widespread) high, high, ?, ?; residual soils (rare) low, low, very low, very low; sebka (locally variable) high, moderate, low, very low. (b) Coastal: delta (widespread) very high, high, low, very low; estuarine (locally variable) high, moderate, low, very low; beach high wave-energy (widespread) moderate, low, very low, very low; beach low wave-energy (widespread) high, moderate, low, very low; lagoonal (locally variable) high, moderate, low, very low; fore shore (locally variable) high, moderate, low, very low. (c) Artificial: uncompacted fill (variable) very high; compacted fill (variable) low"
       ],
+      "applicability": "Characterization of seismic, groundwater, slope instability, and geoenvironmental hazards for transportation projects"
+    },
+    {
+      "section_id": "12.5",
+      "title": "Groundwater Hazards",
+      "summary": "Groundwater affects effective stress, slope stability (seepage forces, quick conditions) and excavation constructability; this section covers artesian conditions (a confined aquifer with head above the ground surface, Figure 12-22; 'sub-artesian' below it) and high flows in open gravels, fractured rock and voids.",
+      "body": "Hydrostatic and flowing water govern effective stress and hence strength and stiffness; seepage forces may cause slope instability or quick conditions under high upward gradients; groundwater governs excavation inflow, dewatering and stability. Inadequate characterization often leads to poor performance or failure (Chapter 10 covers methods). Two hazards: artesian conditions and high groundwater flows. Artesian: a permeable aquifer confined by a less permeable formation and connected to a source with head above the ground surface (Figure 12-22, p. 12-25); the term is sometimes used for head at or above the surface, and 'sub-artesian' for head above the overlying formation but below the surface; here artesian means head above the ground surface. High flow rates arise from high hydraulic conductivity (open gravels, fractured rock, voids) with sufficient gradient (p. 12-24). (pp. 12-24 to 12-25)",
+      "key_points": [
+        "Seepage forces may produce quick conditions under high upward gradients (p. 12-24).",
+        "Artesian here: confined aquifer head above the ground surface (p. 12-24).",
+        "High flows in open gravels, fractured rock and voids (p. 12-24)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 12-22: Settings that produce artesian conditions (Earth Science Australia, 2017)"
+      ],
+      "tables": [],
+      "applicability": "Characterization of seismic, groundwater, slope instability, and geoenvironmental hazards for transportation projects"
+    },
+    {
+      "section_id": "12.5.1",
+      "title": "Implications of Groundwater Hazards for Transportation Projects",
+      "summary": "Artesian conditions can cause heave or blowout of excavations, change dewatering design and cause caving and poor concrete in drilled shafts (countered by casing above grade, heavy mud or permanent casing); upward flow in borings lowers SPT N-values. High flows cause similar shaft problems and piping or erosion.",
+      "body": "Artesian conditions affect design, construction and operation; especially important for excavation stability, where they can cause heave or blow out; dewatering design differs for gravity flow and artesian conditions. In drilled shafts they cause caving and inconsistent concrete placement; casing may be kept well above the ground surface, heavy drilling mud used for static head, or casing left permanently through the aquifer. Upward flow in a boring disturbs soil, and SPT N-values will commonly be much lower than representative. High flows likewise cause caving and concreting problems in shafts and excavations and may cause piping and erosion. (p. 12-25)",
+      "key_points": [
+        "Artesian conditions can cause heave or blow out of excavations (p. 12-25).",
+        "Upward flow in borings commonly gives much lower SPT N-values (p. 12-25).",
+        "High flow rates may cause piping and erosion (p. 12-25)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Characterization of seismic, groundwater, slope instability, and geoenvironmental hazards for transportation projects"
+    },
+    {
+      "section_id": "12.5.2",
+      "title": "Identification and Characterization of Groundwater Hazards",
+      "summary": "Artesian conditions show as rapid inflow in borings (log it), confirmed by piezometers or CPTU over time; raise casing above grade for static head or use push-in piezometers. High flows show as inflow and borehole instability; SP surveys, k measurements, multiple pressures and monitoring after rain characterize them; karst may need dye tracing.",
+      "body": "Artesian conditions are identified by borings, piezometers or CPTU; borings penetrating the confining layer often experience rapid inflow, which should be logged (p. 12-26). Characterization measures water pressures in the formation over time (Chapter 10); upward flow hampers piezometer seals; extending casing above the ground surface can counter moderate pressure; push-in piezometers may be preferred. High flows also show as rapid inflow and borehole instability; self-potential surveys detect flowing water (Chapter 10); characterization needs hydraulic conductivity, multiple pressure measurements for gradients, and monitoring over time since flows peak during and after heavy precipitation. In karst, flow is dominated by the macro-scale network of voids, fractures and conduits; dye tracing can characterize flow paths. (pp. 12-25 to 12-26)",
+      "key_points": [
+        "Note rapid inflow on boring logs (p. 12-26).",
+        "Push-in piezometers may be preferred under artesian pressure (p. 12-26).",
+        "Dye tracing for subsurface flow paths in karst (p. 12-26)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Characterization of seismic, groundwater, slope instability, and geoenvironmental hazards for transportation projects"
+    },
+    {
+      "section_id": "12.6",
+      "title": "Landslide and Rockfall Hazards",
+      "summary": "Landslides (rotational, translational, earthflows; slow to catastrophic, continuous or episodic) are triggered by earthquakes, blasting, cuts and fills, erosion, scour and pore pressure rise. Rockfall from planar, wedge, toppling and circular failures or block fall-out (Figure 12-23) follows weathering, erosion, raveling, water pressure, poor blasting and vibration.",
+      "body": "Landslide and rockfall hazards are gravity-driven movements of earthen material. Slopes may become unstable from changes in loading or resistance; triggers include earthquakes, blasting, cut and fill, erosion, scour, gradual or drainage-related pore pressure build-up and excessive precipitation. Movements are rotational, translational or earthflows, from small slumps to several square miles, imperceptibly slow to catastrophic within seconds, near continuous ('near continuously', as printed) or episodic (p. 12-26). Rockfall is episodic falling of fragments from steep slopes by planar sliding, wedge sliding, toppling, circular sliding (Figure 12-23) or block fall-out, typically from weathering and erosion: differential weathering of layers, erosion of matrix around boulders (boulder fall), raveling by freeze-thaw, cement weathering and root jacking (Turner and Schuster, 2012); water pressure changes in discontinuities, poor blasting or excavation damage and vibrations also trigger rockfall (p. 12-27). (pp. 12-26 to 12-27)",
+      "key_points": [
+        "Landslide movements: rotational, translational, earthflows (p. 12-26).",
+        "Rockfall modes: planar, wedge, toppling, circular sliding (Figure 12-23) (p. 12-27).",
+        "Poor blasting may destabilize rock slopes (p. 12-27)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Characterization of seismic, groundwater, slope instability, and geoenvironmental hazards for transportation projects"
+    },
+    {
+      "section_id": "12.6.1",
+      "title": "Implications of Landslide and Rockfall Hazards for Transportation Projects",
+      "summary": "Landslides and rockfalls damage or close facilities and endanger travelers: a massive highway slope failure in Idaho (Figure 12-24) and the 2010 Glenwood Canyon rockfall that closed I-70 for over three days (Figure 12-25).",
+      "body": "Landslides and rockfalls can dramatically affect facilities, causing extensive damage or long closures. Figure 12-24 is cited in the text as a massive slope failure in Idaho along a highway (its caption: 'Landslide event affecting highway (Courtesy of USGS/Photo by D. Krammer)'). Figure 12-25 shows the 2010 Glenwood Canyon, Colorado rockfall that closed Interstate 70 for over three days and required substantial repairs. Even small movements or rockfalls reaching the roadway endanger the travelling public. (p. 12-27)",
+      "key_points": [
+        "Glenwood Canyon 2010 rockfall closed I-70 for over three days (p. 12-27)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Characterization of seismic, groundwater, slope instability, and geoenvironmental hazards for transportation projects"
+    },
+    {
+      "section_id": "12.6.2",
+      "title": "Identification and Characterization of Landslide and Rockfall Hazards",
+      "summary": "Landslides: desk study and hazard maps, site signs (scarps, tension cracks, hummocky ground, tilted trees), lidar; then geometry, rate, extent and depth of movement (instruments, InSAR), groundwater over time within, around and below the slide, continuous sampling for thin weak layers and slickensides, and strengths. Rockfall: records, talus and fresh scars, susceptible conditions, discontinuity data and coring.",
+      "body": "Landslides are often identified from prior movement: desk study of reports and articles, state landslide hazard maps, site observation of scarps, tension cracks, hummocky terrain, curved or tilted trees, deformed pavement and tilted structures, and aerial photos and lidar for large areas (p. 12-29). Characterization: slope geometry; magnitude and rate, spatial extent and depth of movement and slide surface; groundwater and its changes; stratigraphy; design parameters. Geometry from maps, remote sensing or surveys; instrumentation, differential lidar, photogrammetry and InSAR for movement. Groundwater monitoring (Chapter 10) within, around and below the zone of movement. Borings with continuous sampling to find thin weak layers; log slickensides, clay gouge and striations; core rock for discontinuity depth and orientation (Chapter 9); unit weight, pore pressures and drained or undrained strengths (Chapter 7) (p. 12-30). Rockfall: literature, hazard maps, news, agency accident and maintenance records; site evidence (blocks, boulders, talus, fresh detachment surfaces); susceptible conditions: steep slopes, interconnected discontinuities, blocks in weak or erodible material, water in joints, lack of obstructions such as trees (p. 12-31); alternating competent and erodible strata; raveling. Describe rock type, discontinuity orientation, spacing, persistence, roughness, aperture, filling, seepage and number of sets; core for strength, RQD, CR and spacing (Chapters 4 and 9); monitor with instruments, surveys and remote sensing. (pp. 12-27 to 12-31)",
+      "key_points": [
+        "Signs of movement: scarps, tension cracks, hummocky terrain, tilted trees, deformed pavement (p. 12-29).",
+        "Monitor groundwater within, around and below the zone of movement (p. 12-30).",
+        "Continuous sampling to identify thin, weak layers (p. 12-30).",
+        "Log slickensides, clay gouge and striations (p. 12-30).",
+        "Rockfall-prone: steep slopes, interconnected discontinuities, erodible matrix, water, no obstructions (p. 12-31)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 12-23: Modes of rock slope failure leading to rockfall events (Turner and Schuster, 2012)",
+        "Figure 12-24: Landslide event affecting highway (Courtesy of USGS/Photo by D. Krammer)",
+        "Figure 12-25: Rockfall event in Glenwood Canyon, CO affecting I-70 in 2010 (CDOT, 2017)"
+      ],
+      "tables": [],
+      "applicability": "Characterization of seismic, groundwater, slope instability, and geoenvironmental hazards for transportation projects"
+    },
+    {
+      "section_id": "12.7",
+      "title": "Landfill and Geoenvironmental Hazards",
+      "summary": "Landfill hazards are uncontrolled fills of soil, debris, organics, rubble or refuse with poor properties; geoenvironmental hazards are contaminant releases (waste piles, unlined fills, leaking tanks or impoundments, agriculture), sometimes long forgotten. Both must be identified and characterized for mitigation.",
+      "body": "Landfill hazards are heterogeneous mixtures of soil, construction debris, organic material, rubble or refuse placed in an uncontrolled manner, with undesirable properties for facilities near, on or in them; their presence, extent and characteristics should be characterized (p. 12-32). Geoenvironmental hazards are contaminant releases from waste piles, unlined waste fills, leaking underground or above ground tanks, leaking impoundments or agricultural sources; prior land use may be long forgotten and hazards unrecognized. (pp. 12-31 to 12-32)",
+      "key_points": [
+        "Uncontrolled fills placed in an uncontrolled manner (p. 12-31).",
+        "Contaminant sources include unlined fills, leaking tanks and agriculture (p. 12-32)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Characterization of seismic, groundwater, slope instability, and geoenvironmental hazards for transportation projects"
+    },
+    {
+      "section_id": "12.7.1",
+      "title": "Implications of Landfill and Geoenvironmental Hazards for Transportation Projects",
+      "summary": "Uncontrolled fills have poor, variable strength and stiffness, causing settlement (including from decomposition, collapse and voids), instability and piping; avoid or remediate after proper delineation. Contamination threatens health, attacks concrete or steel piles and adds delay and remediation cost.",
+      "body": "Unidentified landfill material leads to poor performance: dumped fill has poor strength and stiffness, excessive and differential settlement and stability problems; decomposition, collapse of large objects and voids cause long-term settlement; water may cause piping or 'running' of fines. Uncontrolled fills should generally be avoided or remediated, and because mitigation is costly their extent must be characterized, or delays, costs and poor performance follow. Contaminated sites threaten human health (personnel, workers, public), may attack construction materials (deterioration of concrete, corrosion of steel piles), and add delay and remediation cost if not identified. (p. 12-32)",
+      "key_points": [
+        "Uncontrolled fills should generally be avoided or remediated (p. 12-32).",
+        "Contamination may deteriorate concrete or corrode steel piles (p. 12-32)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Characterization of seismic, groundwater, slope instability, and geoenvironmental hazards for transportation projects"
+    },
+    {
+      "section_id": "12.7.2",
+      "title": "Identification and Characterization of Landfill and Geoenvironmental Hazards",
+      "summary": "Landfills: desk study of prior use, maps and imagery, reconnaissance, and borings sized to depth and extent (often no need for fill properties if it will be remediated); seismic, resistivity or GPR for lateral extent. Contamination: desk study, visual signs, special drilling with health and safety precautions, sealing, spoil-free in situ tests, ASTM D5088 decontamination, and sampling plus electrical methods for plumes.",
+      "body": "Landfill identification starts with a desk study (prior use, news articles, nearby reports, historical maps and aerial imagery) and reconnaissance (p. 12-33). Drilling most directly defines depth and lateral extent; where the fill will be remediated its engineering properties are often not needed; obstructions may need special drilling; follow health and safety precautions if contamination is suspected. Seismic (surface wave, refraction), resistivity or GPR can delineate fill, especially with metals. Contamination: desk study and site signs (dead vegetation, containment ponds, tanks, industrial activity); special drilling and sampling with precautions (hazmat suits, masks, respirators, air monitoring); prevent contaminant transport (casing, careful sealing); in situ tests without drilling spoils are appealing; decontaminate equipment per ASTM D5088. Define lateral extent and sample soil or water for type and concentration; electrical and electromagnetic methods can map plumes when properties differ enough from groundwater. (pp. 12-32 to 12-33)",
+      "key_points": [
+        "Uncontrolled fill to be remediated often needs no engineering properties (p. 12-33).",
+        "Decontaminate samplers and equipment per ASTM D5088 (p. 12-33).",
+        "Electrical and electromagnetic methods can map contaminant plumes (p. 12-33)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
       "applicability": "Characterization of seismic, groundwater, slope instability, and geoenvironmental hazards for transportation projects"
     }
   ]

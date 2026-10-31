@@ -5,74 +5,438 @@
   "chapter_title": "Measurement and Interpretation of Stress-Strain and Stiffness Properties",
   "sections": [
     {
-      "section_id": "8.1-8.5",
-      "title": "Uses and Measurement of Small-Strain Stiffness",
-      "summary": "Stiffness properties are used for settlement of shallow foundations on sands (Schmertmann 1970), deflection analysis, dynamic analysis (site amplification, liquefaction), pavement design (subgrade modulus), and p-y analysis of laterally loaded piles. Small-strain shear modulus Gmax is the upper bound; Gmax = ρVs² where Vs = shear wave velocity. Gmax from in situ seismic tests: crosshole (ASTM D4428), downhole, seismic CPT (SCPT), suspension logging, and surface wave methods (MASW, passive arrays). MASW resolves Vs profiles to ~30 m depth. Vs30 (average Vs in upper 30 m) is the AASHTO/IBC site classification parameter.",
-      "body": "Uses for stiffness properties: (1) settlement analysis for shallow foundations on sands and granular soils; (2) deflection analysis of structures; (3) dynamic analysis — site response, liquefaction assessment, and site amplification (Vs30 for site classification); (4) pavement subgrade modulus; (5) p-y analysis for laterally loaded piles; (6) evaluation of ground vibrations.\n\nSmall-strain stiffness (Gmax): Maximum shear stiffness at very small strains (<0.001%). Gmax = ρ × Vs² where Vs = shear wave velocity and ρ = mass density. Shear wave velocity Vs is the most direct measurement of Gmax. Also expressed as Emax = 2(1+ν) × Gmax where ν = Poisson's ratio (~0.2–0.35 for most soils).\n\nIn situ seismic methods: (1) Crosshole test (ASTM D4428): Source and receivers in separate boreholes at same depth; measures Vs and Vp at specific depths; most accurate but requires ≥2 boreholes. (2) Downhole test: Single borehole receiver, surface source; multiple depths. (3) Seismic CPT (SCPT): Seismic source at surface, geophone in CPT module; provides Vs profile with each push. (4) Suspension logging: Borehole probe with source and receivers; good for deep profiles. (5) Surface wave methods: MASW (Multichannel Analysis of Surface Waves) — active source at surface; resolves Vs profile to ~30 m; no boreholes required. Passive methods (ReMi, SPAC) extend to greater depths. Vs30 = average Vs in upper 30 m per AASHTO/IBC site class.",
+      "section_id": "8.1",
+      "title": "Uses for Stress-Strain and Stiffness Properties",
+      "summary": "Deformation properties (Table 8-1) include compression indices, constrained, secant, pressuremeter and dilatometer moduli, subgrade reaction, p-y curves, small-strain moduli and modulus reduction, used for static settlement and dynamic response (vibration, site response, site class by Vs over the top 100 ft).",
+      "body": "Table 8-1 (p. 8-2) summarizes how deformation properties are represented and used. Consolidation properties, the most common, are in Chapter 6. Familiar moduli are G, E and M; others are measurement-specific (pressuremeter EM, dilatometer ED); some use spring models (coefficient of subgrade reaction, p-y curves for laterally loaded deep foundations). Static foundation settlement is the most common use: consolidation properties for fine soils, undrained moduli for immediate settlement (Skempton and Bjerrum, 1957), secant Es at intermediate strains for semi-empirical methods on coarse soils (Schmertmann, 1970b; Schmertmann et al., 1978), EM (Menard and Rousseau, 1962; Briaud, 1992), ED (Schmertmann, 1986; Marchetti et al., 2001), subgrade reaction (NAVFAC, 1986; Terzaghi, 1955; Honjo et al., 2005) and p-y curves (Reese and Welch, 1975). Dynamic uses (p. 8-3): foundation vibration needs small-strain G (Gazetas, 1983); earthquake site response needs small-strain G and modulus reduction curves; codes classify sites by average Vs in the top 100 ft; Vs also assesses liquefaction (Chapter 5). (pp. 8-1 to 8-3)",
       "key_points": [
-        "Gmax = ρVs²; Vs from seismic testing is the most reliable measurement of Gmax",
-        "Vs30 (average Vs in upper 30 m) is AASHTO/IBC site classification parameter for seismic site class",
-        "MASW: surface wave method; no boreholes needed; depth to ~30 m; passive methods extend deeper",
-        "Crosshole test (ASTM D4428): most accurate in situ Vs measurement; requires ≥2 boreholes"
+        "Table 8-1: deformation properties, symbols, applications and sections (p. 8-2).",
+        "Static settlement is the most common use (p. 8-1).",
+        "Site classification by average Vs in the top 100 ft (p. 8-3)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 8-1: Common deformation properties used for geotechnical applications - static: compression indices Cc, Cr, C_alpha, consolidation settlements, 6.8; tangent constrained modulus M, consolidation settlements, 6.9; equivalent or secant modulus Es, immediate settlements and settlement on coarse soils, 8.8.1; pressuremeter modulus EM, settlements and laterally loaded piles, 8.8.3; dilatometer modulus ED, foundation settlement, 8.8.4; coefficient of subgrade reaction k, soil-structure interaction and settlement on coarse soils, 8.9; p-y modulus E_p-y, laterally loaded piles, 8.10; small-strain moduli Gmax, Emax, foundation settlement, 8.4, 8.5; modulus reduction E/Emax, foundation settlement, 8.8.2; dynamic: small-strain shear modulus Gmax, foundation dynamics, site response, soil-structure interaction, 8.4, 8.5; modulus reduction G/Gmax, earthquake site response, 8.6, 8.7; shear wave velocity Vs, site classification and liquefaction, 8.4 (section numbers as printed)"
+      ],
+      "applicability": "Stress-strain and stiffness properties of soil for static settlement and dynamic response analyses"
+    },
+    {
+      "section_id": "8.2",
+      "title": "General Stress-Strain Response of Soil",
+      "summary": "Soil stiffness is highly nonlinear: Gmax applies below the elastic threshold (typically 0.001 to 0.01 percent); wave velocities give G = Vs^2 rho, M = Vp^2 rho, E = VL^2 rho (Eqs. 8.1 to 8.3), rho = gamma_t/g (Eq. 8.4); laboratory modulus reduction curves are scaled to field Gmax (Eq. 8.5).",
+      "body": "Soil response in monotonic shear is highly nonlinear (Figure 8-1): the initial tangent modulus Gmax (Go) is the largest and applies to static and dynamic loading (Lo Presti et al., 1997); secant moduli G1, G2... fall with strain, plotted against log strain (Figure 8-2, p. 8-4). Below the elastic or linear threshold strain, typically 0.001 to 0.01 percent (Stokoe et al., 1999), soil is linear-elastic with Gmax. Small-strain stress-wave velocities (section 8.4) are the most reliable and economical way to get small-strain moduli: Eqs. 8.1 to 8.3 (p. 8-3), Vs being largely unaffected by pore water; rho from Eq. 8.4; Poisson's ratio from any two velocities for isotropic material. Soils show inherent (cross-anisotropic, horizontal plane usually stiffer) and stress-induced anisotropy (Clayton, 2011). Large-strain behavior needs laboratory tests or correlations, shown as modulus reduction curves G/Gmax against log strain; laboratory moduli are usually lower than field from disturbance (Figure 8-3, p. 8-5), so correct them by Eq. 8.5. Estimated curves are in section 8.8 and working-strain moduli in section 8.9 (p. 8-6). (pp. 8-3 to 8-6)",
+      "key_points": [
+        "Elastic threshold typically 0.001 to 0.01 percent (Stokoe et al., 1999) (p. 8-3).",
+        "G = Vs^2 rho (Eq. 8.1) (p. 8-3).",
+        "M = Vp^2 rho; E = VL^2 rho (Eqs. 8.2, 8.3) (p. 8-4).",
+        "rho = gamma_t/g (Eq. 8.4) (p. 8-4).",
+        "Scale laboratory curves to field Gmax (Eq. 8.5) (p. 8-5)."
       ],
       "equations": [
-        {
-          "equation_id": "8-Gmax",
-          "description": "Maximum small-strain shear modulus from shear wave velocity",
-          "latex": "G_{max} = \\rho V_s^2",
-          "variables": {
-            "G_max": "maximum small-strain shear modulus",
-            "rho": "mass density of soil = γ/g",
-            "V_s": "shear wave velocity"
-          },
-          "implemented_in": null
-        }
+        "Eq. 8.1: G = Vs^2 x rho; Vs = shear wave velocity, rho = mass density (p. 8-3)",
+        "Eq. 8.2: M = Vp^2 x rho; Vp = constrained compression wave velocity, M = constrained modulus (p. 8-4)",
+        "Eq. 8.3: E = VL^2 x rho; VL = unconstrained (longitudinal rod wave) compression wave velocity, E = Young's modulus (p. 8-4)",
+        "Eq. 8.4: rho = gamma_t / g; gamma_t = total unit weight, g = acceleration of gravity (p. 8-4)",
+        "Eq. 8.5: G_gamma-field = (G_gamma-lab / Gmax-lab) x Gmax-field; laboratory modulus at strain gamma scaled to the measured in situ small-strain shear modulus (p. 8-5)"
       ],
       "figures": [
-        "Figure 8-4: Common intrusive methods to measure small-strain velocity: crosshole, downhole, seismic CPT, suspension logging",
-        "Figure 8-6: General testing arrangement for refraction surveys"
+        "Figure 8-1: Nonlinear stiffness of soil in shear: (a) general stress-strain response, and (b) secant shear modulus at different strain levels",
+        "Figure 8-2: Variation of shear modulus with shearing strain",
+        "Figure 8-3: Variation in small-strain modulus measured in the lab and field (Stokoe and Santamarina, 2000)"
+      ],
+      "tables": [],
+      "applicability": "Stress-strain and stiffness properties of soil for static settlement and dynamic response analyses"
+    },
+    {
+      "section_id": "8.3",
+      "title": "Boring and Sampling Requirements for Measurement of Stress-Strain and Stiffness Properties",
+      "summary": "Laboratory stiffness measurements are sensitive to disturbance, so sample as for consolidation and strength (Chapters 6, 7); seismic borings need careful position and orientation, grouted casing and inclination surveys.",
+      "body": "Laboratory stiffness and stress-strain measurements for most soils are sensitive to disturbance, so samples should be taken by low-disturbance methods consistent with Chapters 6 and 7. Borings for seismic velocity measurements have special requirements: orientation and position matter more than for exploratory borings, casings must be carefully grouted for intrusive seismic tests, and inclination surveys are needed so distances between boreholes with depth are known. (p. 8-6)",
+      "key_points": [
+        "Sample as for consolidation and strength tests (p. 8-6).",
+        "Seismic borings: grouted casing, inclination surveys (p. 8-6)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Boring and sampling for laboratory stiffness tests and borehole seismic velocity measurements"
+    },
+    {
+      "section_id": "8.4",
+      "title": "Evaluation of Small-Strain Modulus from Stress-Wave Velocity Measurements",
+      "summary": "Best practice is to measure stress-wave velocities in the field (strains well below the elastic threshold) and convert by Eqs. 8.1 and 8.2; use shear waves at saturated sites since compression waves there reflect the water.",
+      "body": "The best practice for small-strain modulus is field measurement of stress-wave velocities converted by Eqs. 8.1 and 8.2; field sources excite strains well below the elastic threshold, and these dynamic values serve static analyses (Jamiolkowski et al., 1994; Lo Presti et al., 1997). Shear (s-) waves have particle motion transverse to propagation, give G and do not travel through fluid, so are largely unaffected by water; compression (p-) waves relate to M, but in saturated soil reflect the bulk modulus of water, so use Vs for stiffness at saturated sites and Vp to find where soil becomes saturated (p. 8-7). Methods are intrusive (penetrating the ground) or non-intrusive (from the surface). (pp. 8-6 to 8-7)",
+      "key_points": [
+        "Field stress-wave velocity is best practice (p. 8-6).",
+        "Use Vs at saturated sites; Vp reflects the water (p. 8-7)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "In situ seismic testing for small-strain shear modulus measurement"
+    },
+    {
+      "section_id": "8.4.1",
+      "title": "Intrusive Field Methods for Stress-Wave Measurements",
+      "summary": "Intrusive methods (Figure 8-4): crosshole (ASTM D4428, boreholes 10 to 15 ft apart, inclination surveys), downhole (ASTM D7400, one borehole), seismic CPT, seismic DMT (receivers 0.5 m apart, true interval Vs), seismic SPT and suspension PS logging (fluid-filled borehole, deep).",
+      "body": "Intrusive methods lower sensors into boreholes or push a probe (Figure 8-4, p. 8-8). Crosshole (ASTM D4428): direct travel times between boreholes with source and receivers at the same depth; vertical impacts give vertically polarized s-waves; boreholes 10 to 15 ft apart limit near-field effects and refracted arrivals; inclination surveys and grouting are needed; reliable with good vertical resolution but costly. Downhole (ASTM D7400): surface source to borehole receivers, one borehole, straight ray paths usually assumed, more uncertain at depth (p. 8-9). Seismic CPT (ASTM D5778; Campanella et al., 1986): downhole-type measurements without a borehole. Seismic DMT: a module with receivers 0.5 m apart behind the blade gives true interval Vs plus DMT moduli (Martin and Mayne, 1997; Marchetti et al., 2008). Seismic SPT: an uphole test using the split spoon as source (Kim et al., 2004; Bang and Kim, 2007), agreeing well with SCPT (p. 8-10). Suspension PS logging (Kitsunezaki, 1980; Nigbor and Imai, 1994): a device over 5 m long with receivers about 1 m apart in a fluid-filled borehole, suited to deep (several hundred feet) uncased holes but not soft soil with stiff casing. (pp. 8-7 to 8-10)",
+      "key_points": [
+        "Crosshole ASTM D4428: boreholes 10 to 15 ft apart (p. 8-8).",
+        "Downhole ASTM D7400: one borehole; more uncertain at depth (p. 8-8).",
+        "Seismic DMT receivers 0.5 m apart (p. 8-9).",
+        "Suspension logging for deep fluid-filled boreholes (p. 8-10)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 8-4: Common intrusive methods to measure small-strain velocity: (a) crosshole, (b) downhole, (c) seismic CPT, and (d) suspension logging (Stokoe and Santamarina, 2000)"
       ],
       "tables": [],
       "applicability": "In situ seismic testing for small-strain shear modulus measurement"
     },
     {
-      "section_id": "8.6-8.9",
-      "title": "Gmax Correlations and Modulus Degradation",
-      "summary": "Gmax from laboratory and indirect methods: resonant column (RC) and torsional shear (TS) tests measure small-strain Gmax and modulus reduction curves. Hardin-Richart (1963): Gmax = A × F(e) × σ'm^n (Eq 8.7) for coarse-grained soils. Gmax from SPT N60: Imai and Tonouchi (1982) Gmax = 325 × N60^0.68 (kPa, sand); Table 8-6. Gmax from CPT/CPTU: various correlations in Table 8-7/8-8. Modulus reduction at working strains: G/Gmax vs. shear strain curve; Es for shallow foundation settlement from G/Gmax. Pressuremeter: Ep = 2(1+ν) × Vo × (ΔP/ΔV). Constrained modulus M from CPT: M = α × qc (Table 10-11 for α).",
-      "body": "Laboratory measurement of Gmax: Resonant column (RC) test and torsional shear (TS) test measure Gmax at very small strains and modulus reduction curves at larger strains up to about 0.1%. Both require high quality undisturbed specimens.\n\nGmax correlation with stress and void ratio (Hardin and Richart 1963, Eq 8.7): Gmax = A × F(e) × σ'm^n where A = soil stiffness constant, F(e) = void ratio function, σ'm = mean effective stress, n = stress exponent. Table 8-2 provides A, F(e), and n for coarse-grained soils.\n\nGmax from SPT N60 (indirect, Table 8-6): Examples — Imai and Tonouchi (1982): Gmax = 325 × N60^0.68 (kPa, sand). Multiple alternative correlations available; all carry substantial uncertainty.\n\nGmax from CPT (indirect, Tables 8-7, 8-8): Various correlations relating Gmax and Vs to measured qt, fs, and σ'vo. From DMT: Gmax estimated from ED (dilatometer modulus) ratio, approximate only.\n\nModulus reduction: G/Gmax decreases from 1.0 at very small strains to near 0 at large strains. Working strains for most structures are typically 0.01–0.3%. Figure 8-15 shows recommended modulus degradation ratios. Design modulus Es = G/Gmax × 2(1+ν)/(1+ν/other) at appropriate strain level. Pressuremeter: Ep = 2(1+ν) × Vo × (ΔP/ΔV) over appropriate stress increment. DMT constrained modulus: MDMT = RM × ED where RM is a function of ID and KD (Marchetti 2001). p-y models: Table 8-13 lists common p-y models for lateral pile analysis.",
+      "section_id": "8.4.2",
+      "title": "Non-Intrusive Field Methods for Stress-wave Measurements",
+      "summary": "Non-intrusive methods: reflection and refraction surveys (refraction needs velocity increasing with depth, spread about three times the depth) and surface wave methods (SASW, MASW, ReMi, passive arrays), using VR = f x lambda_R (Eq. 8.6) and inversion of a dispersion curve to a Vs profile.",
+      "body": "Non-intrusive methods work from the surface. Reflection surveys record body waves reflected at impedance boundaries (Figure 8-5); shear wave reflection can profile Vs shallowly (Williams et al., 2005) but is uncommon. Refraction uses critically refracted arrivals (Figure 8-6, p. 8-11): inverse slopes give layer velocities and slope breaks thicknesses; it needs velocity increasing with depth and a spread about three times the profiling depth. Surface wave methods, now among the most common, use Rayleigh waves influencing about one wavelength deep, with Eq. 8.6 (p. 8-12); lower frequency reaches deeper. Receivers record surface motion (Figure 8-7, SASW; MASW 24 to 48 receivers), giving a dispersion curve inverted to a Vs profile. Active methods: SASW (Stokoe et al., 1994), MASW (Park et al., 1999); passive: ReMi (Louie, 2001), with more assumptions and possible errors, and two-dimensional arrays for deep profiles. Surface waves are simple and cheap and handle stiff-over-soft profiles, but complex dispersion can mislead (Cox et al., 2014) and resolution falls with depth (p. 8-13). (pp. 8-10 to 8-13)",
       "key_points": [
-        "Hardin-Richart (1963): Gmax = A × F(e) × σ'm^n; Table 8-2 for coarse-grained soils",
-        "Gmax from SPT: substantial uncertainty; Imai and Tonouchi (1982) Gmax = 325N60^0.68 (kPa, sand)",
-        "Modulus degradation curve G/Gmax vs. strain; working strains for structures typically 0.01–0.3%",
-        "Pressuremeter modulus Ep = 2(1+ν) × Vo × (ΔP/ΔV)",
-        "Constrained modulus from CPT: M = α × qc; α from Table 10-11"
+        "Refraction needs velocity increasing with depth; spread about 3 times depth (p. 8-11).",
+        "VR = f x lambda_R (Eq. 8.6) (p. 8-12).",
+        "Dispersion curve inverted to a Vs profile (p. 8-12).",
+        "Resolution decreases with depth (p. 8-13)."
       ],
       "equations": [
-        {
-          "equation_id": "8-7",
-          "description": "Hardin-Richart relationship for maximum shear modulus of coarse-grained soils",
-          "latex": "G_{max} = A \\cdot F(e) \\cdot \\sigma_m'^n",
-          "variables": {
-            "G_max": "maximum small-strain shear modulus (kPa)",
-            "A": "soil stiffness constant (from Table 8-2)",
-            "F_e": "void ratio function (from Table 8-2)",
-            "sigma_m_prime": "mean effective stress = (σ'v + 2σ'h)/3 (kPa)",
-            "n": "stress exponent ≈ 0.5 for most soils (from Table 8-2)"
-          },
-          "implemented_in": null
-        }
+        "Eq. 8.6: VR = f x lambda_R; VR = Rayleigh wave velocity, f = excitation frequency, lambda_R = wavelength (p. 8-12)"
       ],
       "figures": [
-        "Figure 8-12: Gmax/ED ratio for estimating Gmax from DMT",
+        "Figure 8-5: Data collection methods for reflection surveys: (a) normal moveout (b) common offset and (c) common depth point (Stokoe and Santamarina, 2000)",
+        "Figure 8-6: General testing arrangement for refraction surveys showing arrival of critically refracted waves (Stokoe and Santamarina, 2000)",
+        "Figure 8-7: Data collection arrangement for SASW Surface Wave Method (Stokoe and Santamarina, 2000)"
+      ],
+      "tables": [],
+      "applicability": "In situ seismic testing for small-strain shear modulus measurement"
+    },
+    {
+      "section_id": "8.5",
+      "title": "Laboratory Measurement of Small-Strain Modulus",
+      "summary": "Laboratory small-strain moduli usually fall below field values, mainly from disturbance, so field velocities are preferred; frequency effects are minor and laboratory paths are only inches long.",
+      "body": "Small-strain modulus can be measured in the laboratory, but laboratory and field values typically differ and field stress-wave velocity is preferred. Disturbance generally lowers laboratory values; strain rate and frequency matter little for Gmax, though stiffness rises somewhat with frequency, especially in high plasticity soils (Stokoe et al., 1999); laboratory waves travel inches versus tens or hundreds of feet in the field, so non-homogeneous soils differ (p. 8-14). Methods: bender elements, resonance, and direct stress-strain measurement. (pp. 8-13 to 8-14)",
+      "key_points": [
+        "Field velocities preferred to laboratory values (p. 8-13).",
+        "Disturbance lowers laboratory small-strain modulus (p. 8-13)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Laboratory measurement of small-strain modulus and the effect of sample disturbance"
+    },
+    {
+      "section_id": "8.5.1",
+      "title": "Bender Elements",
+      "summary": "Bender elements (piezoelectric, about 8 to 15 mm) excite and detect waves across specimens in triaxial cells, oedometers and resonant columns; near-field effects complicate arrival picking; kHz frequencies.",
+      "body": "Bender elements are small piezoelectric transducers (typically 8 to 15 mm) that bend under voltage and generate charge when bent, exciting and detecting shear and compression waves across specimens; they are built into triaxial cells, oedometers and resonant columns. Velocity is distance over travel time; near-field effects can complicate arrival times (Lee and Santamarina, 2005); frequencies are in the kHz range, far above field methods (tens to hundreds of Hz). (p. 8-14)",
+      "key_points": [
+        "Bender elements 8 to 15 mm (p. 8-14).",
+        "kHz frequencies; near-field effects (p. 8-14)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Laboratory measurement of small-strain modulus and the effect of sample disturbance"
+    },
+    {
+      "section_id": "8.5.2",
+      "title": "Resonance Testing",
+      "summary": "Resonance tests find a specimen's resonant frequency to get wave velocity; the resonant column gives small-strain modulus and modulus reduction up to about 0.1 percent strain.",
+      "body": "Resonance testing measures the resonant frequency of a specimen excited in shear or compression; with known dimensions and boundary conditions (including added mass) the wave velocity follows. The resonant column device gives small-strain modulus and modulus reduction curves up to about 0.1 percent strain (p. 8-15); simpler devices suffice for small strains only (Kalinski and Thummaluru, 2005). (pp. 8-14 to 8-15)",
+      "key_points": [
+        "Resonant column to about 0.1 percent strain (p. 8-14)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Laboratory measurement of small-strain modulus and the effect of sample disturbance"
+    },
+    {
+      "section_id": "8.5.3",
+      "title": "Direct Measurement from Stress-Strain Curve",
+      "summary": "Direct small-strain moduli from stress-strain curves are uncommon because conventional equipment cannot measure strains below the elastic threshold; modified triaxial, DSS and torsional shear devices can.",
+      "body": "Direct measurement from stress-strain curves is uncommon because strains below the elastic threshold (typically 0.01 to 0.001 percent) cannot be measured accurately by conventional equipment. Modified triaxial (Goto et al., 1991) and direct simple shear (Doroudian and Vucetic, 1995) devices, and torsional shear (Isenhower et al., 1987), can. (p. 8-15)",
+      "key_points": [
+        "Conventional equipment cannot resolve threshold strains (p. 8-15)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Laboratory measurement of small-strain modulus and the effect of sample disturbance"
+    },
+    {
+      "section_id": "8.5.4",
+      "title": "Effects of Sample Disturbance",
+      "summary": "Disturbance lowers laboratory moduli: disturbed dense sand had less than half the undisturbed small-strain shear modulus, the difference vanishing at large strain, with a higher elastic threshold (Figure 8-8).",
+      "body": "Laboratory moduli are affected by sampling disturbance. Katayama et al. (1986) measured modulus reduction for a dense sand undisturbed and disturbed (Figure 8-8, from Ishihara, 1996, p. 8-16): at small strains the disturbed shear modulus was less than half the undisturbed, the difference diminishing with strain to practically nothing at large strains, and the disturbed elastic threshold was greater. (p. 8-15)",
+      "key_points": [
+        "Disturbed small-strain G less than half undisturbed (Figure 8-8) (p. 8-15).",
+        "Difference negligible at large strain (p. 8-15)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Laboratory measurement of small-strain modulus and the effect of sample disturbance"
+    },
+    {
+      "section_id": "8.6",
+      "title": "Estimation of Small-Strain Modulus from Indirect Methods",
+      "summary": "Field Vs gives the most reliable Gmax; indirect estimates from soil properties or in situ tests carry significant uncertainty and suit only preliminary, feasibility or comparison use.",
+      "body": "The most reliable Gmax comes from field Vs (section 8.4). For preliminary assessments, feasibility studies or comparison with measurements in similar soils, indirect relationships estimate Gmax from other properties or in situ tests; they involve significant uncertainty and give approximate values only. (p. 8-15)",
+      "key_points": [
+        "Indirect Gmax estimates approximate only (p. 8-15)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Gmax estimation from correlations and modulus reduction for settlement and stiffness analysis"
+    },
+    {
+      "section_id": "8.6.1",
+      "title": "Estimation of Small-Strain Shear Modulus from Soil Index Properties",
+      "summary": "Coarse soils: Gmax = A F(e) sigma'm^n (Eq. 8.7, Hardin and Richart, 1963) with F(e) by Eqs. 8.8 to 8.11 and A, n in Table 8-2; Seed and Idriss Gmax = 1000 K2,max sqrt(sigma'm) psf (Eq. 8.12, Table 8-3); Menq (Eq. 8.13). Fine soils: Hardin (1978) Eq. 8.14 with OCR^k (Table 8-4), A = 625, n = 0.5.",
+      "body": "In coarse soils Gmax depends mainly on void ratio and mean effective stress sigma'm: Eq. 8.7 (Hardin and Richart, 1963), A a stiffness coefficient, F(e) a void ratio function (Eqs. 8.8 to 8.11) and n an exponent (p. 8-16). A and n vary by soil (Table 8-2, Kokusho, 1987, p. 8-17); the relations are empirical, so site-specific relations reduce uncertainty. Seed and Idriss (1970): Eq. 8.12 with K2,max from relative density (Table 8-3), 80 to 180 for gravels. Menq (2003) used D50 and Cu (Eq. 8.13, p. 8-18), CG3 = 1400 ksf, b1 = -0.20, x = -1 - (D50/20)^0.75, nG = 0.48 Cu^0.09. In fine soils Gmax depends on e, PI and OCR: Hardin (1978), Eq. 8.14 (after Rowe, 1971; Janbu, 1963; Hardin and Black, 1968), with k from PI (Table 8-4), A = 625, n = 0.5 and F(e) by Eq. 8.8. (pp. 8-15 to 8-18)",
+      "key_points": [
+        "Gmax = A F(e) sigma'm^n (Eq. 8.7) (p. 8-16).",
+        "F(e) = 1/(0.3 + 0.7 e^2) (Eq. 8.8, Hardin, 1978) (p. 8-16).",
+        "Table 8-2: A and n for coarse soils (Kokusho, 1987) (p. 8-17).",
+        "Gmax = 1000 K2,max sqrt(sigma'm) psf (Eq. 8.12); Table 8-3 K2,max by Dr (p. 8-17).",
+        "K2,max for gravels 80 to 180 (p. 8-17).",
+        "Fine soils: Eq. 8.14 with A = 625, n = 0.5, k from Table 8-4 (p. 8-18)."
+      ],
+      "equations": [
+        "Eq. 8.7: Gmax = A x F(e) x sigma'm^n; A = soil stiffness coefficient, F(e) = void ratio function, n = exponent, sigma'm = mean effective stress (Hardin and Richart, 1963) (p. 8-16)",
+        "Eq. 8.8: F(e) = 1 / (0.3 + 0.7 e^2) (Hardin, 1978) (p. 8-16)",
+        "Eq. 8.9: F(e) = (2.97 - e)^2 / (1 + e); angular-grained soils (Hardin and Black, 1968) (p. 8-16)",
+        "Eq. 8.10: F(e) = (2.17 - e)^2 / (1 + e); round-grained soils (Hardin and Black, 1968) (p. 8-16)",
+        "Eq. 8.11: F(e) = e^1.3 (as printed) (Bellotti et al., 1996) (p. 8-16)",
+        "Eq. 8.12: Gmax = 1000 x K2,max x sqrt(sigma'm) (in psf); K2,max = soil modulus coefficient, a function of e or Dr (Seed and Idriss, 1970) (p. 8-17)",
+        "Eq. 8.13: Gmax = CG3 x Cu^b1 x e^x x (sigma'm / pa)^nG; CG3 = 1400 ksf, b1 = -0.20, x = -1 - (D50/20)^0.75, nG = 0.48 Cu^0.09 (Menq, 2003) (p. 8-18)",
+        "Eq. 8.14: Gmax = A x F(e) x OCR^k x pa^(1 - n) x sigma'm^n; k from PI (Table 8-4); Hardin (1978) found A = 625, n = 0.5 with F(e) of Eq. 8.8 (p. 8-18)"
+      ],
+      "figures": [
+        "Figure 8-8: Shear modulus for undisturbed and disturbed dense sand (from Ishihara, 1996)"
+      ],
+      "tables": [
+        "Table 8-2: Values of A, F(e), and n for coarse-grained soils (modified from Kokusho, 1987) - Gmax = A F(e) sigma'm^n, Gmax and sigma'm in kPa: round Ottawa sand (Hardin and Richart, 1963) F(e) = (2.17 - e)^2/(1 + e), A 7000, n 0.5; angular crushed quartz (Hardin and Richart, 1963) (2.97 - e)^2/(1 + e), 3300, 0.5; eleven clean sands (Iwasaki et al., 1978) (2.17 - e)^2/(1 + e), 9000, 0.38; Toyoura sand (Kokusho, 1980) (2.17 - e)^2/(1 + e), 8400, 0.5; three clean sands (Yu and Richart, 1984) (2.17 - e)^2/(1 + e), 7000, 0.5; ballast (Prange, 1981) (2.97 - e)^2/(1 + e), 7230, 0.38; crushed rock (Kokusho and Esashi, 1981) (2.17 - e)^2/(1 + e), 13000, 0.55; round gravel (Kokusho and Esashi, 1981) (2.17 - e)^2/(1 + e), 8400, 0.60; gravel (Tanaka et al., 1987) (2.17 - e)^2/(1 + e), 3080, 0.60; round gravel (Goto et al., 1987) (2.17 - e)^2/(1 + e), 1200, 0.885",
+        "Table 8-3: K2,max values for sand (estimated from Seed and Idriss, 1970) - Dr (%) and K2,max: 30, 34; 40, 40; 45, 43; 60, 52; 75, 61; 90, 70",
+        "Table 8-4: Values of k as a function of PI (Hardin, 1978) - PI and k: 0, 0; 20, 0.18; 40, 0.30; 60, 0.41; 80, 0.48; > 100, 0.50"
+      ],
+      "applicability": "Gmax estimation from correlations and modulus reduction for settlement and stiffness analysis"
+    },
+    {
+      "section_id": "8.6.2",
+      "title": "Estimation of Small-Strain Shear Modulus from Indirect In situ Measurements",
+      "summary": "In situ tests induce large strains, so Gmax and Vs transformations are preliminary: Vs = a N^b (Eq. 8.15; Table 8-5), Gmax from N60 (Table 8-6), CPT (Tables 8-7, 8-8) and DMT (Gmax/ED about 1.5 to 3 in sands; Table 8-9; Figure 8-12); SCPT Vs preferred where available.",
+      "body": "SPT, CPT and DMT induce large strains, so their Gmax or Vs relations are empirical with considerable variability, for preliminary estimates. SPT: Vs = a N^b (Eq. 8.15, p. 8-19), mostly with N60; Figures 8-9 (Ohta and Goto, 1978) and 8-10 (Sykora and Stokoe, 1983) show scatter; Table 8-5 (after Wair et al., 2012, p. 8-20) lists forms; Gmax-N60 relations for sands in Table 8-6 (Imai and Tonouchi, 1982; Seed et al., 1986, p. 8-21). CPT: measure Vs by SCPT where possible; otherwise Tables 8-7 and 8-8 (Mayne and Rix; Rix and Stokoe; Figure 8-11). DMT: Gmax/ED depends on KD and ID (Figure 8-12, Marchetti et al., 2008, p. 8-22); for sands it falls in about 1.5 to 3, so Gmax is a multiple of ED (Table 8-9); for silts and clays only rough estimates from Figure 8-12. Hryciw (1990) used Ko from DMT with sigma'vo and gamma_d, average error 23 percent. (pp. 8-18 to 8-22)",
+      "key_points": [
+        "Vs = a N^b (Eq. 8.15) (p. 8-19).",
+        "Table 8-5: Vs-N60 transformations (Wair et al., 2012) (p. 8-20).",
+        "Table 8-6: Gmax from N60 for sands (p. 8-21).",
+        "Tables 8-7, 8-8: Gmax and Vs from CPT (p. 8-21).",
+        "Sands Gmax/ED about 1.5 to 3; Table 8-9 (p. 8-21)."
+      ],
+      "equations": [
+        "Eq. 8.15: Vs = a x N^b; a, b = empirical constants, N usually N60 (p. 8-19)"
+      ],
+      "figures": [
+        "Figure 8-9: Shear wave velocity versus N-value relationship from Ohta and Goto (1978)",
+        "Figure 8-10: Arithmetic plot of Vs versus N-value (from Sykora and Stokoe, 1983)",
+        "Figure 8-11: Measurements used to develop transformations between cone tip resistance and: (a) Gmax (Mayne and Rix, 1993), and (b) Vs (Mayne and Rix, 1995)",
+        "Figure 8-12: Ratio of GmaxED ⁄ as a function of: (a) KD, and (b) ID (Marchetti, et al., 2008)"
+      ],
+      "tables": [
+        "Table 8-5: Transformations between Vs and N60 for all soil types (modified from Wair, et al., 2012) - Vs (m/s), r^2, notes: Ohba and Toriuma (1970) 82.5 N60^0.31, --, alluvium; Ohsaki and Iwasaki (1973) 78.0 N60^0.39, --, Quaternary alluvium; Ohta and Goto (1978) 82.1 N60^0.35, 0.52, Holocene alluvium; Ohta and Goto (1978) 89.5 N60^0.27, 0.61, Pleistocene alluvium; Ohta and Goto (1978) 130.3 N60^0.27, 0.61, Holocene, Pleistocene, Tertiary alluvium and fill; Imai and Tonouchi (1982) 93.7 N60^0.31, 0.75, Tertiary; Imai and Tonouchi (1982) 105.2 N60^0.32, 0.51; Lin et al. (1984) 62.0 N60^0.50; Sisman (1995) 31.0 N60^0.51; Iyisan (1996) 48.6 N60^0.52; Jafari et al. (1997) 20.0 N60^0.85; Kiku et al. (2001) 66.1 N60^0.29; Hasancebi and Ulusay (2007) 104.8 N60^0.26, 0.53, Quaternary alluvium",
+        "Table 8-6: Transformations between Gmax and SPT N60-values - Imai and Tonouchi (1982) Gmax = 325 N60^0.68, sand, Gmax in ksf; Seed et al. (1986) Gmax = 20000 (N1)60^0.333 sqrt(sigma'm), sand, Gmax and sigma'm in psf",
+        "Table 8-7: Transformations between Gmax and CPT tip resistance - Rix and Stokoe (1991) Gmax = 1634 qc^0.25 sigma'vo^0.375, quartz sand, kPa; Mayne and Rix (1993) Gmax = 49.4 qt^0.695 e^-1.130, clay, Gmax and qt in MPa",
+        "Table 8-8: Transformations between Vs and CPT tip and sleeve resistance - Rix and Stokoe (1991) Vs = 277 qt^0.13 sigma'vo^0.27, quartz sand, Vs in m/s, qt and sigma'vo in MPa; Mayne and Rix (1995) Vs = 1.75 qt^0.627, soft to stiff clay, Vs in m/s, qt in kPa; Mayne (2006) Vs = 118.8 log fs + 18.5, saturated clays, silts and sands, Vs in m/s, fs in kPa",
+        "Table 8-9: Transformations between ED and Gmax for sand - Baldi et al. (1986) Gmax/ED = 2.72 +/- 0.59, sand, calibration chamber tests; Bellotti et al. (1986) Gmax/ED = 2.2 +/- 0.7, sand, field tests"
+      ],
+      "applicability": "Gmax estimation from correlations and modulus reduction for settlement and stiffness analysis"
+    },
+    {
+      "section_id": "8.7",
+      "title": "Evaluation of Modulus Degradation Curves from Laboratory Measurements",
+      "summary": "Modulus degradation curves are measured in the laboratory: resonant column (ASTM D4015) to about 0.1 percent strain, torsional shear, combined RC-TS devices; triaxial needs local strain sensors (to 0.0001 percent), DSS special equipment.",
+      "body": "Modulus degradation (reduction) curves describe stiffness over a broad strain range (Figure 8-2) for earthquake and some settlement analyses. The resonant column test (ASTM D4015) vibrates a specimen to resonance and varies torque, giving G from below the elastic threshold to about 0.1 percent strain at hundreds of Hz. Torsional shear tests measure stress-strain directly at low frequency and few cycles (p. 8-23); combined resonant column-torsional shear devices exist (Isenhower et al., 1987). Conventional triaxial tests with external sensors cannot resolve small strains, but local deformation measurement reaches about 0.0001 percent (Goto et al., 1991); DSS needs specialized equipment (Lanzo et al., 1997). (pp. 8-22 to 8-23)",
+      "key_points": [
+        "Resonant column ASTM D4015 to about 0.1 percent strain (p. 8-22).",
+        "Local triaxial strain to 0.0001 percent (Goto et al., 1991) (p. 8-23)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Gmax estimation from correlations and modulus reduction for settlement and stiffness analysis"
+    },
+    {
+      "section_id": "8.8",
+      "title": "Estimation of Modulus Degradation from Empirical Relationships",
+      "summary": "Modulus reduction curves are usually estimated from index properties, e.g., Vucetic and Dobry (1991) by plasticity (Figure 8-13), Ishibashi and Zhang, Darendeli (confining stress), Menq (D50, Cu); monotonic curves for settlement differ from cyclic curves for earthquakes (GEC-3).",
+      "body": "Laboratory curves are expensive and uncommon for transportation projects, so curves are estimated from empirical relations with index properties (Seed and Idriss, 1970); shape depends on sigma'm, e, OCR, PI, age and strain rate. Vucetic and Dobry (1991) related curves to plasticity (Figure 8-13, p. 8-24); Ishibashi and Zhang (1993) and Darendeli (2001) include confining pressure; Menq (2003) used D50 and Cu for sands and gravels. Curves are critical for earthquake site response (GEC-3, Kavazanjian et al., 2011). Settlement methods combine reduction curves with small-strain moduli (Lehane and Fahey, 2002; Lee and Salgado, 1999; Burns and Mayne, 1996), but curves from cyclic tests differ from monotonic ones (Lo Presti et al., 1997), so static settlement curves (section 8.9) differ from earthquake curves. (pp. 8-23 to 8-24)",
+      "key_points": [
+        "Vucetic and Dobry (1991) curves by plasticity (Figure 8-13) (p. 8-23).",
+        "Cyclic and monotonic reduction curves differ (p. 8-24)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 8-13: Modulus reduction curves for fine-grained soils of different plasticity (Vucetic and Dobry, 1991)"
+      ],
+      "tables": [],
+      "applicability": "Gmax estimation from correlations and modulus reduction for settlement and stiffness analysis"
+    },
+    {
+      "section_id": "8.9",
+      "title": "Modulus Values at Intermediate Strain Levels for Settlement Analysis",
+      "summary": "Settlement methods need one modulus consistent with field strains: s = (q B I/Es)(1 - nu^2) (Eq. 8.16); foundation strains are orders of magnitude above Gmax strains (Figure 8-14), so reduced moduli are needed.",
+      "body": "Many settlement methods for shallow and deep foundations need a single modulus, the elastic, equivalent or secant modulus Es, consistent with imposed strains. Displacement at the center of a surface load is Eq. 8.16, q being applied stress, B width, I an influence factor and nu Poisson's ratio. Foundation strains are usually orders of magnitude greater than those for Gmax (Figure 8-14, p. 8-25), so reduced moduli consistent with working strains are needed, from laboratory tests or the approaches below. (pp. 8-24 to 8-25)",
+      "key_points": [
+        "s = (q B I/Es)(1 - nu^2) (Eq. 8.16) (p. 8-24).",
+        "Working strains far above Gmax strains (Figure 8-14) (p. 8-24)."
+      ],
+      "equations": [
+        "Eq. 8.16: s = (q B I / Es) x (1 - nu^2); q = applied stress, B = width of loaded area, I = settlement influence factor, Es = equivalent elastic modulus, nu = Poisson's ratio (p. 8-24)"
+      ],
+      "figures": [
+        "Figure 8-14: Modulus variation with strain compared with strain range of common field tests"
+      ],
+      "tables": [],
+      "applicability": "Gmax estimation from correlations and modulus reduction for settlement and stiffness analysis"
+    },
+    {
+      "section_id": "8.9.1",
+      "title": "Simple Estimates for Equivalent Modulus",
+      "summary": "Preliminary Es from soil type (Table 8-10, AASHTO, 2014) or (N1)60 (Table 8-11); Es/qc ratios depend on many factors (Jamiolkowski et al., 1988); all approximate.",
+      "body": "Preliminary equivalent moduli come from soil descriptions or in situ tests: Table 8-10 gives typical Es and nu by soil type and Table 8-11 Es from (N1)60 (AASHTO, 2014). CPT transformations multiply qc by a constant, but Es/qc depends on many factors (Jamiolkowski et al., 1988). These are approximate only. (p. 8-25)",
+      "key_points": [
+        "Typical Es and nu by soil type in Table 8-10 (AASHTO, 2014) (p. 8-25).",
+        "Es from (N1)60 in Table 8-11; Es/qc depends on many factors (p. 8-25)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Gmax estimation from correlations and modulus reduction for settlement and stiffness analysis"
+    },
+    {
+      "section_id": "8.9.2",
+      "title": "Equivalent Modulus Using Modulus Degradation",
+      "summary": "Better: Es = (E/Emax) Emax (Eq. 8.17) = (E/Emax) 2 rho Vs^2 (1 + nu) (Eq. 8.18) from measured Vs and a reduction ratio from Figure 8-15 by factor of safety (Burns and Mayne, 1996), for intact clays and uncemented sands; nu about 0.1 to 0.2 for drained coarse soils.",
+      "body": "A better alternative uses measured small-strain modulus and an estimated reduction curve (Burns and Mayne, 1996): Eq. 8.17, Emax (Eo) being the small-strain Young's modulus; with E = 2G(1 + nu) and Eq. 8.1 it becomes Eq. 8.18 (p. 8-26), needing Vs, rho and E/Emax. Poisson's ratio is about 0.1 to 0.2 for drained loading of coarse soils (Table 8-10 lists 0.25 for fine sand and 0.2 to 0.4 for sand). E/Emax for foundations on intact, uncemented soils comes from Figure 8-15 (p. 8-27) with the anticipated factor of safety, a first-order fit to laboratory tests and full-scale load tests (Burns and Mayne, 1996; Kates, 1996); for highly structured clays or cemented sands it gives conservative settlements by Eq. 8.16. (pp. 8-25 to 8-27)",
+      "key_points": [
+        "Es = (E/Emax) Emax (Eq. 8.17) (p. 8-25).",
+        "Es = (E/Emax) 2 rho Vs^2 (1 + nu) (Eq. 8.18) (p. 8-26).",
+        "nu about 0.1 to 0.2 for drained coarse soils (p. 8-26).",
+        "E/Emax from Figure 8-15 by factor of safety (p. 8-26)."
+      ],
+      "equations": [
+        "Eq. 8.17: Es = (E / Emax) x Emax; Emax = small-strain Young's modulus (Eo), E/Emax = modulus reduction ratio (p. 8-25)",
+        "Eq. 8.18: Es = (E / Emax) x 2 rho Vs^2 (1 + nu); from E = 2G(1 + nu) and Eq. 8.1 (p. 8-26)"
+      ],
+      "figures": [
         "Figure 8-15: Recommended modulus degradation ratio for intact clays and uncemented sands"
       ],
       "tables": [
-        "Table 8-2: Values of A, F(e), and n for coarse-grained soils (modified from Kokusho 1987)",
-        "Table 8-6: Transformations between Gmax and SPT N60-values",
-        "Table 8-7 and 8-8: Transformations between Gmax/Vs and CPT measurements",
-        "Table 8-13: Common p-y models for different soil or rock conditions"
+        "Table 8-10: Typical values for Es and ν for different soil types (modified from AASHTO, 2014) - Es (ksi), nu: clay soft sensitive 0.347 to 2.08, medium stiff to stiff 2.08 to 6.94, very stiff 6.94 to 13.89, nu 0.4 to 0.5; loess 2.08 to 8.33, nu 0.1 to 0.3; silt 0.278 to 2.78, nu 0.3 to 0.35; fine sand loose 1.11 to 1.67, medium dense 1.67 to 2.78, dense 2.78 to 4.17, nu 0.25; sand loose 1.39 to 4.17, medium dense 4.17 to 6.94, dense 6.94 to 11.11, nu 0.2 to 0.36 (loose) to 0.3 to 0.4 (dense); gravel loose 4.17 to 11.11, medium dense 11.11 to 13.89, dense 13.89 to 27.78, nu 0.2 to 0.35 (loose) to 0.3 to 0.4 (dense)",
+        "Table 8-11: Transformations between Es and SPT (N1)60 (modified from AASHTO, 2014) - Es (ksi): silts, sandy silts, slightly cohesive materials 0.056 (N1)60; clean fine to medium sands and slightly silty sands 0.097 (N1)60; coarse sands and sands with little gravel 0.139 (N1)60; sandy gravels and gravels 0.167 (N1)60"
       ],
       "applicability": "Gmax estimation from correlations and modulus reduction for settlement and stiffness analysis"
+    },
+    {
+      "section_id": "8.9.3",
+      "title": "Pressuremeter Modulus",
+      "summary": "The pressuremeter modulus EM, not Young's modulus, is used directly in settlement and lateral pile methods: EM = 2(1 + nu)(Vo + Vm) Delta_P/Delta_V (Eq. 8.19) or (1 + nu)(Rp + Delta_Rm) Delta_P/d Delta_R (Eq. 8.20), nu usually 0.33; Eu-r from unload-reload.",
+      "body": "PMT and DMT give moduli at intermediate strains suited to settlement (Figure 8-14). The pressuremeter modulus EM is not Young's modulus but is used directly in settlement methods (Menard and Rousseau, 1962; Briaud, 1992; Baguelin et al., 1978) and for laterally loaded piles (Briaud, 1997); Lutenegger and DeGroot (1995) review them. A pre-bored Menard test (Figure 8-16, p. 8-28) includes loading, creep and an unload-reload cycle. From pressure against probe volume, Eq. 8.19 (ASTM D4719, p. 8-27), nu usually 0.33, Vo the initial probe volume, Vm the average volume over the range and Delta_P/Delta_V the linear slope; from unload-reload it is Eu-r. From pressure against radius, Eq. 8.20, Rp the uninflated radius and Delta_Rm the radius increase where EM is measured. (pp. 8-27 to 8-28)",
+      "key_points": [
+        "EM is not Young's modulus (p. 8-27).",
+        "EM = 2(1 + nu)(Vo + Vm) Delta_P/Delta_V (Eq. 8.19, ASTM D4719) (p. 8-27).",
+        "nu usually 0.33 (p. 8-28).",
+        "Eu-r from unload-reload slope (p. 8-28)."
+      ],
+      "equations": [
+        "Eq. 8.19: EM = 2 (1 + nu) (Vo + Vm) Delta_P / Delta_V; nu = Poisson's ratio (usually 0.33), Vo = initial probe volume, Vm = average probe volume over the stress range, Delta_P/Delta_V = slope of the linear portion (ASTM D4719) (p. 8-27)",
+        "Eq. 8.20: EM = (1 + nu) (Rp + Delta_Rm) Delta_P / d Delta_R (as printed); Rp = uninflated probe radius, Delta_Rm = radius increase to where EM is measured (ASTM D4719) (p. 8-28)"
+      ],
+      "figures": [
+        "Figure 8-16: Typical measurements from a pre-bored pressuremeter test"
+      ],
+      "tables": [],
+      "applicability": "Gmax estimation from correlations and modulus reduction for settlement and stiffness analysis"
+    },
+    {
+      "section_id": "8.9.4",
+      "title": "Dilatometer Modulus",
+      "summary": "The dilatometer modulus ED = 34.7 (p1 - po) (Eq. 8.21, ASTM D6635) is not Young's modulus; settlement uses MDMT = RM ED (Eq. 8.22) with RM from ID and KD (Marchetti et al., 2001).",
+      "body": "The dilatometer modulus ED (ASTM D6635), also not Young's modulus, follows from elastic theory as Eq. 8.21, p1 and po being the corrected expansion and lift-off pressures. Settlement analyses use the constrained modulus MDMT = RM ED (Eq. 8.22, p. 8-29), RM a function of ID and KD (Marchetti et al., 2001); DMT moduli have predicted shallow foundation settlements well (Marchetti, 1980; Schmertmann, 1986; Mayne and Frost, 1988); Lutenegger and DeGroot (1995) review the methods. (pp. 8-28 to 8-29)",
+      "key_points": [
+        "ED = 34.7 (p1 - po) (Eq. 8.21) (p. 8-28).",
+        "MDMT = RM ED (Eq. 8.22) (p. 8-28)."
+      ],
+      "equations": [
+        "Eq. 8.21: ED = 34.7 (p1 - po); p1 = corrected expansion pressure, po = corrected lift-off pressure (ASTM D6635) (p. 8-28)",
+        "Eq. 8.22: MDMT = RM x ED; RM = function of ID and KD (Marchetti et al., 2001) (p. 8-29)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Gmax estimation from correlations and modulus reduction for settlement and stiffness analysis"
+    },
+    {
+      "section_id": "8.10",
+      "title": "Other Soil Stiffness Properties",
+      "summary": "The coefficient of subgrade reaction and p-y curves are not unique soil properties or true moduli but contrived spring models, long effective for specific problems.",
+      "body": "Additional stiffness properties are the coefficient of subgrade reaction and p-y curves for laterally loaded deep foundations. Neither is a unique or fundamental soil property nor a true modulus; both are contrived spring models with several approximations, but both have long proven effective and practical for specific classes of problems. (p. 8-29)",
+      "key_points": [
+        "Not unique soil properties or true moduli (p. 8-29).",
+        "Spring models effective for specific problems (p. 8-29)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Coefficient of subgrade reaction and p-y curves for soil-structure interaction, mats and laterally loaded deep foundations"
+    },
+    {
+      "section_id": "8.10.1",
+      "title": "Coefficient of Subgrade Reaction",
+      "summary": "ks = q/delta (Eq. 8.23), a spring constant in force per cubic length for mats, rigid pavements and laterally loaded piles; it depends on loaded area size, shape, pressure and location; plate load values (ASTM D1194; Table 8-12, 0.3 m plates) must be adjusted to the foundation.",
+      "body": "The vertical coefficient (\"modulus\") of subgrade reaction ks is used in Winkler-type analyses of mat foundations and rigid pavements, the horizontal coefficient sometimes for laterally loaded piles (Terzaghi, 1955). It comes from a linear spring model relating deformation delta to bearing pressure q (Eq. 8.23), with units of force per cubic length. ks depends on the size and shape of the loaded area, the pressure and the location under the foundation. Values often come from plate load tests (ASTM D1194); Table 8-12 (Das, 2011, p. 8-30) gives typical values for a 0.3 m square plate, which must be adjusted for size, shape and depth (Terzaghi, 1955). Relations to modulus (Vesic and Saxena, 1970; Scott, 1981) and local relations to SPT N (Moayed and Naeini, 2006; Moayed and Janbaz, 2011) exist; Christopher et al. (2006) give guidance. (pp. 8-29 to 8-30)",
+      "key_points": [
+        "ks = q/delta (Eq. 8.23) (p. 8-29).",
+        "ks depends on loaded area size, shape, pressure, location (p. 8-29).",
+        "Table 8-12: k0.3 for 0.3 m plates (Das, 2011) (p. 8-30).",
+        "Adjust plate values for size, shape and depth (Terzaghi, 1955) (p. 8-29)."
+      ],
+      "equations": [
+        "Eq. 8.23: ks = q / delta; q = applied bearing pressure, delta = settlement or deformation (p. 8-29)"
+      ],
+      "figures": [],
+      "tables": [
+        "Table 8-12: Typical subgrade reaction values for 0.3 m by 0.3 m square loading (Das, 2011) - k0.3 (MN/m3): dry or moist sand loose 8 to 25, medium 25 to 125, dense 125 to 375; saturated sand loose 10 to 15, medium 35 to 40, dense 130 to 150; clay stiff 10 to 25, very stiff 25 to 50, hard > 50"
+      ],
+      "applicability": "Coefficient of subgrade reaction and p-y curves for soil-structure interaction, mats and laterally loaded deep foundations"
+    },
+    {
+      "section_id": "8.10.2",
+      "title": "p-y Curves",
+      "summary": "p-y curves are nonlinear springs for laterally loaded deep foundations, p (force per unit pile length) against deflection y (Figure 8-17); the secant \"p-y modulus\" is not a true modulus. Full-scale lateral load tests are most reliable; usually general models by soil or rock type are used (Table 8-13).",
+      "body": "p-y curves resemble the coefficient of subgrade reaction as conceptual springs but are generally nonlinear and used only for laterally loaded deep foundations. p is the soil reaction, in force per unit pile length, to lateral deflection y, generally a nonlinear function of y (Figure 8-17, after Reese et al., 2006, p. 8-31). A secant value is commonly called the \"p-y modulus\", but it is not really a modulus and should not be used as one. The most reliable p-y curves come from full-scale lateral load tests on the foundation being considered, generally reserved for large projects where lateral response controls design. More commonly curves are selected from general families for soil or rock types (Table 8-13, Pando et al., 2006); local or regional models also exist. Reese et al. (2006) and Brown et al. (2010) give more information. (pp. 8-30 to 8-31)",
+      "key_points": [
+        "p = soil reaction per unit pile length; y = lateral deflection (p. 8-30).",
+        "\"p-y modulus\" is not a true modulus (p. 8-30).",
+        "Full-scale lateral load tests most reliable (p. 8-30).",
+        "Table 8-13: Matlock (1970) soft clay; Reese et al. (1974) sands; API (1993) sands (p. 8-31)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 8-17: Example p-y curve (after Reese, et al., 2006)"
+      ],
+      "tables": [
+        "Table 8-13: Common p-y models for different soil or rock conditions (Pando, et al., 2006) - soft clay with free water, Matlock (1970); stiff clay with free water, Reese et al. (1975); stiff clay without free water, Welch and Reese (1972), Reese and Welch (1975); sands, Reese et al. (1974); sands, API (1993); soils with cohesion and friction, Evans and Duncan (1982); weak rock, Reese (1997); strong rock, Nyman (1980)"
+      ],
+      "applicability": "Coefficient of subgrade reaction and p-y curves for soil-structure interaction, mats and laterally loaded deep foundations"
     }
   ]
 }
