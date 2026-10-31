@@ -653,12 +653,33 @@ class TestFrostClassification:
         assert r["frost_group"] == group
         assert r["listed_in_table"] is True
 
-    def test_bins_take_their_printed_upper_bound(self):
-        # "0-3" then "3-10": 3 % is the sands' NFS bin; a symbol's lowest
-        # printed range takes its lower bound (GM "6 to 10").
-        assert table_19_2_frost_classification("SW", 3.0)["frost_group"] == "NFS"
-        assert table_19_2_frost_classification("GM", 6.0)["frost_group"] == "F1"
-        assert table_19_2_frost_classification("GM", 20.0)["frost_group"] == "F2"
+    @pytest.mark.parametrize("uscs,pct,group,other", [
+        ("GM", 10.0, "F2", "F1"), ("GW", 3.0, "S1", "PFS (a)"),
+        ("GP", 1.5, "PFS", "NFS (a)"), ("GW-GM", 6.0, "F1", "S1"),
+        ("GP-GM", 10.0, "F2", "F1"), ("SW-SM", 6.0, "F2", "S2"),
+    ])
+    def test_shared_end_goes_to_more_susceptible_row(self, uscs, pct, group,
+                                                     other):
+        # A percentage on an end two rows share takes the later, more
+        # frost-susceptible row (para 19-2's order) and names the other.
+        r = table_19_2_frost_classification(uscs, pct)
+        assert r["frost_group"] == group
+        assert other in r["also_printed"]
+        assert f"row gives {other}" in r["note"]
+
+    def test_sands_at_3_are_pfs_naming_s2_and_nfs(self):
+        r = table_19_2_frost_classification("SP", 3.0)
+        assert r["frost_group"] == "PFS"
+        assert r["also_printed"] == ["S2", "NFS (b)"]
+
+    @pytest.mark.parametrize("uscs,pct,group", [
+        ("GM", 6.0, "F1"), ("GM", 20.0, "F2"), ("SM", 6.0, "F2"),
+        ("SM", 15.0, "F2"), ("GW", 6.0, "S1"), ("SW", 0.0, "NFS"),
+    ])
+    def test_unshared_ends_are_in_their_row(self, uscs, pct, group):
+        r = table_19_2_frost_classification(uscs, pct)
+        assert r["frost_group"] == group
+        assert "end two rows share" not in r.get("note", "")
 
     def test_sw_3_to_6_is_pfs_with_s2_also_printed(self):
         r = table_19_2_frost_classification("SW", 5.0)
@@ -686,34 +707,29 @@ class TestFrostClassification:
         r = table_19_2_frost_classification("GC", 15.0)
         assert r["frost_group"] == "F3"
         assert r["also_printed"] == ["F2"]
-        assert "Table 20-2" in r["note"]
-        assert "Table 20-2" in r["reference"]
+        assert "drainage table" in r["note"]
 
-    @pytest.mark.parametrize("uscs", ["GW-GC", "GP-GC"])
-    def test_gw_gc_gp_gc_take_table_20_2_f1(self, uscs):
-        # Not in Table 19-2; Table 20-2 prints them F1 at 6-10 %.
-        r = table_19_2_frost_classification(uscs, 8.0)
-        assert (r["frost_group"], r["subgroup"]) == ("F1", "")
-        assert r["listed_in_table"] is False
-        assert "Table 20-2" in r["note"]
-        assert "Table 20-2 (pdf_page 124, printed 105)" in r["reference"]
-
-    def test_gw_gc_outside_table_20_2_range_refused(self):
-        with pytest.raises(ValueError, match="Table 20-2.*F1 6-10"):
-            table_19_2_frost_classification("GW-GC", 12.0)
-
-    def test_sc_sm_reads_table_20_2_sm_sc(self):
-        # Table 20-2 writes the ASTM dual symbol SC-SM as SM-SC.
-        r = table_19_2_frost_classification("SC-SM", 10.0)
-        assert (r["frost_group"], r["subgroup"]) == ("F2", "b")
-        assert r["listed_in_table"] is False
-        r = table_19_2_frost_classification("SC-SM", 20.0)
-        assert (r["frost_group"], r["subgroup"]) == ("F4", "b")
-        assert r["also_printed"] == ["F3 (b)"]
+    @pytest.mark.parametrize("uscs,pct,printed", [
+        ("GW-GC", 8.0, "F1 (Gravelly soils, 6-10 %)"),
+        ("GP-GC", 8.0, "F1 (Gravelly soils, 6-10 %)"),
+        ("SC-SM", 10.0, "F2 (b) (Sands, 6-15 %)"),
+        ("GC-GM", 15.0, "F2 (a) (Gravelly soils, 10-20 %)"),
+    ])
+    def test_duals_only_table_20_2_prints_refused_naming_it(self, uscs, pct,
+                                                            printed):
+        # Table 20-2 is Chapter 20's drainage table (para 20-3.3.4); para
+        # 19-2 makes Table 19-2 the frost design table. The refusal names
+        # what the drainage table prints and the laboratory frost test.
+        with pytest.raises(ValueError) as exc:
+            table_19_2_frost_classification(uscs, pct)
+        msg = str(exc.value)
+        assert "drainage table" in msg
+        assert printed in msg
+        assert "frost_group" in msg
 
     @pytest.mark.parametrize("uscs", ["OL", "OH", "PT"])
     def test_unlisted_symbols_refused(self, uscs):
-        with pytest.raises(ValueError, match="list no frost group"):
+        with pytest.raises(ValueError, match="lists no frost group"):
             table_19_2_frost_classification(uscs, 10.0)
 
     @pytest.mark.parametrize("uscs,pct", [
