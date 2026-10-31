@@ -167,6 +167,28 @@ def test_rows_join_words_set_on_lines_of_their_own():
                                       "second row"]
 
 
+def test_captions_set_side_by_side_are_two_captions():
+    """REF-51: two captions sharing a row under two figures each keep their
+    own words, the second one's credit line included."""
+    line = lambda text, x, bottom: {"bbox": (x, bottom - 10, x + 6 * len(text), bottom),
+                                    "spans": [{"text": text}]}
+    block = {"lines": [line("Figure ", 90, 500), line("2-5. ", 132, 500),
+                       line("Grader", 162, 500), line("(credit A).", 200, 500),
+                       line("Figure ", 330, 500), line("2-6. ", 372, 500),
+                       line("Scraper", 402, 500), line("(credit B)", 340, 514)]}
+    cols = bfc._block_columns(block)
+    caps = [bfc._block_caption("\n".join(rows), bfc._FIG_MARKER) for rows in cols]
+    assert caps == [("2-5", "Grader (credit A)"), ("2-6", "Scraper (credit B)")]
+    # a label a space after the text before it is running text, one column
+    prose = {"lines": [line("as shown in", 90, 500), line("Figure 2-5. ", 160, 500),
+                       line("The next", 232, 500)]}
+    assert len(bfc._block_columns(prose)) == 1
+    pav = _load(ROOT / "geotech_references" / "fhwa_pavements" / "figures_catalog.json")
+    got = {f["figure_number"]: f["caption"] for f in pav["figures"]}
+    assert (got["8-8"], got["8-9"]) == ("Bulldozer (photo courtesy of Komatsu)",
+                                        "Motor grader (photo courtesy of Caterpillar)")
+
+
 def test_a_contents_page_does_not_place_a_figure(tmp_path):
     """The first caption block on a page that is not a list of entries wins:
     a contents page's block, an in-text mention and a "(continued)" label do

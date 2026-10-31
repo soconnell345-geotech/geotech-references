@@ -497,6 +497,25 @@ def _repo_relative_pdf_path(manifest: dict) -> str:
 CAPTION_BLOCK_LINES = 5
 
 
+#: The least gap (pt) before a label that opens a second caption on the same
+#: row; words of running text are a space apart.
+COLUMN_GAP = 18
+
+
+def _row_parts(block: dict) -> list[list[tuple]]:
+    """A text block's printed rows, each its lines as ``(left, right, text)``
+    left to right; lines whose bottoms are within 3 pt are one row."""
+    rows: list[list] = []
+    for line in block.get("lines", []):
+        text = "".join(s["text"] for s in line["spans"])
+        x0, x1, bottom = line["bbox"][0], line["bbox"][2], line["bbox"][3]
+        if rows and abs(rows[-1][0] - bottom) < 3:
+            rows[-1][1].append((x0, x1, text))
+        else:
+            rows.append([bottom, [(x0, x1, text)]])
+    return [sorted(parts) for _, parts in rows]
+
+
 def _block_rows(block: dict) -> list[str]:
     """A PyMuPDF ``dict`` text block as the rows it prints, left to right.
 
@@ -504,15 +523,39 @@ def _block_rows(block: dict) -> list[str]:
     "Figure " "6-18. " "Example " ...); lines whose bottoms are within 3 pt
     are one printed row.
     """
-    rows: list[list] = []
-    for line in block.get("lines", []):
-        text = "".join(s["text"] for s in line["spans"])
-        x, bottom = line["bbox"][0], line["bbox"][3]
-        if rows and abs(rows[-1][0] - bottom) < 3:
-            rows[-1][1].append((x, text))
-        else:
-            rows.append([bottom, [(x, text)]])
-    return [" ".join(t for _, t in sorted(parts)) for _, parts in rows]
+    return [" ".join(t for _, _, t in parts) for parts in _row_parts(block)]
+
+
+def _block_columns(block: dict, marker=None) -> list[list[str]]:
+    """A text block as the columns of rows it prints.
+
+    Two captions set side by side under two figures share a row
+    (FHWA-NHI-05-037: "Figure 8-8. Bulldozer (photo courtesy of Komatsu).
+    Figure 8-9. Motor grader" over "(photo courtesy of Caterpillar)"). A
+    label that opens :data:`COLUMN_GAP` or more after the text before it
+    starts a second column, which takes that row and the rows below it from
+    the label's left edge on.
+    """
+    marker = marker or _FIG_MARKER
+    split = None
+    cols: list[list] = [[], []]
+    for parts in _row_parts(block):
+        if split is None:
+            for j in range(1, len(parts)):
+                rest = " ".join(t for _, _, t in parts[j:]).translate(_SMART)
+                if parts[j][0] - parts[j - 1][1] >= COLUMN_GAP \
+                        and marker.match(rest.lstrip()):
+                    split = parts[j][0]
+                    break
+        if split is None:
+            cols[0].append(parts)
+            continue
+        for k, side in enumerate(([p for p in parts if p[0] < split - 2],
+                                  [p for p in parts if p[0] >= split - 2])):
+            if side:
+                cols[k].append(side)
+    return [[" ".join(t for _, _, t in parts) for parts in col]
+            for col in cols if col]
 
 
 def _block_caption(block_text: str, marker) -> "tuple[str, str] | None":
@@ -579,18 +622,18 @@ def _figs_from_body(doc, marker=None) -> list[dict]:
         for block in page.get_text("dict")["blocks"]:
             if "lines" not in block:                        # an image block
                 continue
-            rows = _block_rows(block)
-            for row in rows:
-                lm = marker.match(row.translate(_SMART).lstrip())
-                if lm:
-                    labels_on_page.setdefault(i, set()).add(_fig_id(lm.group(1)))
-            hit = _block_caption("\n".join(rows), marker)
-            if hit:
-                order += 1
-                blocks.setdefault(hit[0], []).append(
-                    {"figure_number": hit[0], "caption": hit[1],
-                     "printed_page": None, "pdf_page_index": i,
-                     "page_estimated": False, "_order": order})
+            for rows in _block_columns(block, marker):
+                for row in rows:
+                    lm = marker.match(row.translate(_SMART).lstrip())
+                    if lm:
+                        labels_on_page.setdefault(i, set()).add(_fig_id(lm.group(1)))
+                hit = _block_caption("\n".join(rows), marker)
+                if hit:
+                    order += 1
+                    blocks.setdefault(hit[0], []).append(
+                        {"figure_number": hit[0], "caption": hit[1],
+                         "printed_page": None, "pdf_page_index": i,
+                         "page_estimated": False, "_order": order})
         text = page.get_text()
         for m in marker.finditer(text):
             num = _fig_id(m.group(1))
