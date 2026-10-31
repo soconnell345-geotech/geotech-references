@@ -107,3 +107,89 @@ commit):
   figure captions and ids, query expansion): 838 passed, 2 xfailed, 1
   failed. The one failure is the strict XPASS of the REF-48 question above;
   nothing else changed.
+
+## GEC-6 (branch `fix/ref45-gec6`)
+
+Printed page = PDF page - 6. Chapters 1-4 and 6-10 were fixed in place;
+chapter 5 was rebuilt in printed order. As for GEC-12, most of what changed
+in the chapters fixed in place was omission; the examples list the wrong
+statements found. This branch also carries the GEC-12 section above
+(cherry-picked from 286686d), so the GEC-6 section can be merged after
+`fix/ref45-gec12`: the two files differ only by this appended section.
+
+| Chapter | Pages read | Errors fixed | Examples |
+|---|---|---|---|
+| ch 1 Introduction (99ed0ee) | 1-4, all | Fixed in place | 1.2 as printed: pile support is "wise, if not essential" for scour, poor ground, vessel impact, seismicity and congested urban sites, not "only" there; substructure about 50 percent of replacement cost; 6 mm (1/4 in.); 1.3 adds the interim revisions. |
+| ch 2 Case Histories of Shallow Foundations (5c6a212) | 5-22, all | Fixed in place | 2.7.2's center pier layer is a 1.5-3.0 m thick hard clayey sand to clayey gravel under the sand, not a gravel layer at 1.5-3.0 m; 2.7.3 removed loose soil only under the piers (the abutment fill went on the existing ground); the 2.5 "overlap" is not printed; objects as captioned strings with pages in the section that prints them. |
+| ch 3 Shallow Foundation Feasibility (483d9dd) | 23-28, all | Fixed in place | 3.1.2: the bearing capacity and the short- and long-term settlement must be evaluated (the file had "bearing capacity for short- and long-term settlement" and a drained bearing capacity the print does not name); cohesionless soils "no long-term consolidation", IGM design "slope stability governs" and potholing "to avoid claims" are not printed. |
+| ch 4 Subsurface Exploration and Testing (6045ffb) | 29-46, all | Fixed in place | Eqs 4-4 and 4-5 were missing; Eqs 4-1 to 4-21 read from the page; Figure 4-5 moved to 4.4.2, where it is printed; the PMT settlement method "has potential" (the file said it applies); consolidation tests "usually essential" and shear tests "considered" (the file said required). |
+| ch 5 Geotechnical Design (25c6271) | 47-102, all | Rebuilt: 5 printed headings added (5.2.1.1-5.2.1.3, 5.2.7.1, 5.2.7.2), 41 sections | Eqs 5-1 to 5-41, the 23 figures and 15 tables with pages and values; Table 5-13 lists 13 rock types and Table 5-14 16 (the file said 14 and 17); preconsolidated soils are "up to" an order of magnitude less compressible (the file said about 10 times); the ground water rise is "to the ground surface" and halves the unit weight terms; 5.2.11 names only seismic loads (the file added wind and ice); 5.2.8 asks for an "adequate" FS, not FS = 3.0; Figure 5-19 has six curves; 5.3.5's foundation soil check is not printed; Eq 5-38 P_v and Eq 5-41 a_1b defined as printed. Restored: the net-pressure reporting rule, the interim 1.5-2 multiplier to avoid, Load Groups VII-XI, the local-shear exceptions (tan 38 example), the Gifford and Briaud studies and the D'Appolonia drawbacks. |
+| ch 6 Shallow Foundation Design for Bridges (9a9078e) | 103-122, all | Fixed in place | Figure 6-2 was missing; Eqs 6-1 to 6-13 read from the page; Table 6-2 with its load group descriptions. Restored: the Appendix C rework of examples 1 and 3, the aggradation, contraction and pier scour detail, channel migration (design floodplain footings for the worst scour; footings migration could expose as in the main channel), keys into softer rock with pneumatic tools, the weathered rock excavation rules and the 1991 FHWA scourability memorandum, TM 5-852-6, permafrost, the 1-2 percent self-weight rule, Munfakh et al. (2000) for expansion testing and ground improvement, the concrete-and-steel margin of 6.5. Not printed: "most" frost-susceptible (the print says "common"), at-rest design "as a conservative approach", "OCR significantly affects", fill in front "often" poorly compacted. |
+| ch 7 Minor Structure Support on Shallow Foundations (96cec58) | 123-124, all | Fixed in place | The overturning factors are "greater than about" 2.0 and 1.5; 7.4's "all applicable load cases" is not printed. |
+| ch 8 Shallow Foundation Design for Buildings (5381047) | 125-132, all | Fixed in place | 8.3 has no printed text: the file's body was invented and its "settlement governs for wide footings and granular soils" is not printed (now a pointer); not printed: code minimums "may be exceeded", "good engineering practice", "compensated foundations", the computed 12.5 mm; deepening a narrow footing "may be" more practical than a key, and bearing capacity "generally" does not govern mats. |
+| ch 9 Construction Documents (fd37041) | 133-136, all | Fixed in place | 9.1 has no printed text (the file's body was invented; now a pointer); Figure 9-1 was a raw id/title/description record whose "15 m of embankment before abutment construction" and "3H:1V end slope" paraphrased a printed 15 m (50 ft) minimum dimension and a "3 min : 1" slope; 9.1.1 restores the backfill reference, drainage detail, specification items, soft or liquefiable soils, special shoring and payment. |
+| ch 10 Inspection and Construction Monitoring (9e2c70b) | 137-140, all | Fixed in place | The print says dewatering in a clay profile can induce consolidation and that wells improve the stability of sloped excavations; the file had wells inducing consolidation. The fill testing list belongs to 10.3 (the file put it in 10.2.3). 10.2 has no printed text (now a pointer). |
+
+### GEC-6: found but not fixed
+
+- The section checker flags 4.3.3 In Situ Testing as misnumbered (target
+  4.3). 4.3.3 is a printed heading; its title matches the 4.3 title
+  "Subsurface Explorations and In Situ Testing". This is a false flag.
+  The 5.0 title difference and the 6.0, 7.0, 8.0 and 10.0 introductions
+  flagged as extra are the accepted chapter introductions.
+- Retrieval eval (`scripts/eval_retrieval_gold.py --per-case`, against
+  main 8ed9e19): auto recall@5 stays 41/54; only the rerank arm moves
+  (R@10 43 -> 42, MRR@10 0.571 -> 0.559). The queries were left as they
+  are.
+  - presumptive ("presumptive bearing pressure on rock from RQD",
+    relevant gec_6 5.2.7 only): rerank rank 1 -> 2; off, fill and auto
+    stay at 1. The new 5.2.7.2 Rock, which now holds Table 5-9 and the
+    RQD text, ranks first. The gold could list 5.2.7.2 as well.
+  - ec7-compaction (eurocode_7_1 3.3.5): rerank rank 10 -> not in the top
+    10; rel-compaction (dm7_2 3-5.1): rerank rank 4 -> 5. GEC-6 5.3.5
+    Footings on Structural Fills, now with its printed compaction text,
+    ranks first for both queries in the rerank arm. The other arms are
+    unchanged.
+
+### GEC-6: print inconsistencies (kept as printed)
+
+- 2.7.2 names Nevada DOT "Type 1 Class B" aggregate base; Table 5-10
+  names "Type 1A Aggregate Base".
+- 4.3.2: the extremity rule prints "over 9 m (100 ft)"; the sentence before
+  prints 9 m (30 ft). 4.3.3 prints "Riaund & Miran, 1992" and "ASTM 3441".
+- Table 4-3 gives gamma_w = 9.8 kN/m3; 4.4.3 gives 9.81.
+- At D_W = D_f, Table 5-3 gives C_W-gamma = 0.5, but Eq 5-9 gives
+  0.5 + 0.5 D_f/(1.5B_f + D_f).
+- Figure 5-8 prints B_f* = B_f L_f / 2(B_f + L_f) for a rectangle, which
+  gives B_f/4 at L_f = B_f; the line above prints B_f* = B_f for a square.
+- The RQD example of 0.5 m (18 in) of a 1.5 m (60 in) run gives 0.33 in
+  metric and 0.30 in inches.
+- 5.2.3.4 prints "Munfahk et al., 2000"; 5.3.4.2 and 5.3.6 print Munfakh.
+- 5.3.4 names six Gifford methods but says "each of the five"; Figure 5-17
+  shows five (no Oweis).
+- 5.2.8 refers to AASHTO SLD Load Groups VII through XI; Table 6-2 lists
+  Groups I to X.
+- Kept as printed: Table 5-7 note 4's "40 mm" minimum depth below grade,
+  Table 5-6 note 5's "joint spacing greater than 2 mm", Table 5-11's "0.04
+  to 0.006" for uniform silts, the Eq 5-24 stress subscript "v f", and
+  Eq 5-22's C_r where the text says C_R.
+- 6.2.1 cites "Table 6-1" for general guidelines on design against scour;
+  Table 6-1 is the design-step list. Table 6-1 cites bearing capacity
+  "(Section 5.1)" and settlement "(Section 5.2)", printed in 5.2 and 5.3,
+  and structural design "(Section 6.5)", printed in 6.6. Table 6-2 prints
+  "Groups I though III".
+- Figure 9-1 Note 1: highway embankment and select material "shall be
+  placed simultaneously of the vertical payment line".
+
+### GEC-6: gates
+
+On the final tree of `fix/ref45-gec6`:
+
+- `python scripts/audit_chapter_text.py gec_6`: exit 0 (10 chapters).
+- `python scripts/check_section_numbers.py gec_6`: exit 0; printed 127,
+  matched 126 (the flags above).
+- The app's `test_citations.py` (this library on PYTHONPATH): exit 0, 5
+  passed.
+- The 19 targeted test files: 838 passed, 3 xfailed. The REF-48 question
+  stays an expected failure on this branch (it starts from main, without
+  the GEC-12 rebuild).
