@@ -104,9 +104,10 @@ def table_5_4_p_multiplier(
     than a soil's printed rows holds its widest printed row, and every
     value returned states its basis.
 
-    With no soil type, ``pm`` is the lowest Pm the table prints for the
-    row at that spacing, and ``rows`` lists every printed soil so a soil
-    can be chosen.  Stiff Clay has two printed rows (Brown et al. 1987, at
+    With no soil type, ``pm`` is the lowest Pm over the table's soils for
+    the row, each soil read at that spacing as its basis says (printed,
+    linear between printed rows, or its widest printed row held), and
+    ``rows`` lists every printed soil so a soil can be chosen.  Stiff Clay has two printed rows (Brown et al. 1987, at
     51 mm and 30 mm deflection); ``pm`` is the lower and both are listed.
 
     Parameters
@@ -119,8 +120,9 @@ def table_5_4_p_multiplier(
         Table 5.4 soil type: 'stiff_clay', 'medium_clay', 'clayey_silt',
         'very_dense_sand', 'medium_dense_sand', 'loose_medium_sand' or
         'loose_fine_sand'.  Left empty (default), ``pm`` is the lowest Pm
-        Table 5.4 prints for the row at that spacing (the module's choice,
-        not a printed default) and ``rows`` lists every soil's row.
+        over Table 5.4's soils for the row (the module's choice, not a
+        printed default; at a spacing wider than a soil's printed rows its
+        widest printed row is held) and ``rows`` lists every soil's row.
 
     Returns
     -------
@@ -183,10 +185,15 @@ def table_5_4_p_multiplier(
     elif soil_key:
         basis = ("the lower of the soil's two printed rows ("
                  + lowest["basis"] + ")")
-    else:
+    elif spacing_over_b == 3.0:
         basis = ("no soil type given: the lowest Pm Table 5.4 prints for "
-                 "this row at this spacing (" + lowest["soil_type"] + ", "
+                 "this row at 3B (" + lowest["soil_type"] + ", "
                  + lowest["reference"] + "); give soil_type for one soil")
+    else:
+        basis = ("no soil type given: the lowest Pm over Table 5.4's soils "
+                 "for this row (" + lowest["soil_type"] + ", "
+                 + lowest["reference"] + ": " + lowest["basis"]
+                 + "); give soil_type for one soil")
 
     return {
         "row_position": row_key,

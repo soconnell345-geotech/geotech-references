@@ -228,6 +228,14 @@ class TestTable54PMultiplier:
         assert r["pm"] == pytest.approx(0.60, abs=0.001)
         assert "no soil type given" in r["basis"]
 
+    def test_no_soil_wider_spacing_says_row_held(self):
+        # No soil is printed at 6B: the basis says the widest printed row is
+        # held, not that the table prints a value at this spacing.
+        r = table_5_4_p_multiplier("2nd", 6.0)
+        assert r["pm"] == pytest.approx(0.40, abs=0.001)
+        assert "held" in r["basis"]
+        assert "at this spacing" not in r["basis"]
+
     def test_lead_higher_than_trailing(self):
         r1 = table_5_4_p_multiplier("lead", 3.0, "very_dense_sand")
         r2 = table_5_4_p_multiplier("3rd", 3.0, "very_dense_sand")
