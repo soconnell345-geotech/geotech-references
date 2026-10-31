@@ -801,3 +801,197 @@ minus 21).
   - Table 21 step 9 prints "delta_tn - delta_r6 = delta_e6" (p. 144).
 
 Smaller typos are not listed.
+
+## GEC-5 written from the print
+
+GEC-5 (FHWA-NHI-16-072, November 2016) was rewritten from the print on
+fix/ref52, one commit per chapter (ch 1 to 13). The June 2026 files held
+30 sections, 28 of them ranges such as 9.1-9.4 and 10.9-10.15. Every
+printed heading now has its own section, with its body read off its
+printed pages, 390 in all (ch 10 58, ch 5 56, ch 4 47, ch 7 40, ch 6 32,
+ch 11 32, ch 9 28, ch 3 24, ch 8 24, ch 12 19, ch 2 15, ch 13 11, ch 1
+4). Each equation, figure and table sits in the section whose pages
+print it. A figure printed after a section's text, before the next
+heading, stays with that section; Figures 13-5 to 13-8, cited in 13.5.3,
+print in 13.5.4. GEC-5 numbers equations with a point (Eq. 4.26) and
+figures and tables with a hyphen (Figure 4-17), and the files keep that.
+Equations were read off rendered pages, symbol by symbol, 227 in all:
+Eq. 3.1, Eqs. 4.1 to 4.32, 5.1 to 5.14, 6.1 to 6.24 (with 6.9a to 6.9c),
+7.1 to 7.28, 8.1 to 8.23, 9.1 to 9.34, 10.1 to 10.38 and 11.1 to 11.31.
+Chapters 1, 2, 12 and 13 print none. Table values were read off the
+pages, rendered where the text layer loses symbols (Table 12-5 is an
+image). The Lists of Figures and Tables (pp. xv-xl) print captions in
+capitals and often differ from the body captions; the files use the body
+captions. Eight body captions the automatic match missed were read by
+hand: Tables 5-15, 8-13 and 10-11 and Figures 9-17, 9-22, 11-2, 11-12
+and 11-26. The List of Tables' text layer also loses the Table 10-11
+entry.
+
+`check_section_numbers.py gec_5` now reads 390 printed and 390 matched,
+with 0 ranges and 0 missing (it was 2 matched, 28 ranges and 91
+missing). 35 printed headings were in no old range at all: 3.10 to 3.13,
+4.11 to 4.14, 6.13 and 6.14 with their subsections, 8.10 to 8.10.2,
+10.4 to 10.8.2 (groundwater observation in borings, wells, piezometers,
+CPTU and geophysics), 11.6 (outliers) and 11.7 (observational method).
+
+Four retrieval gold entries named old ranges and now name the printed
+sections (as in df580ff): cu-def 4.1-4.10 to 4.4.1, plasticity-chart
+4.16-4.17 to 4.16.1, liq-screen 5.5-5.7 to 5.6.1 and 5.6.2, and
+hoek-brown 9.5-9.8 to 9.8 (Eq. 9.29, p. 9-50). No query was reworded.
+Ranks moved as follows (rerank, unless a mode is named):
+- cu-def 2 to 1 and plasticity-chart 3 to 2, in all modes; hoek-brown
+  stays 1.
+- liq-screen 1 to not in the top 10, in all modes. The top hits are
+  gec_10 9.4.2.1 and gec_5 12.4.2 (seismic liquefaction screening, with
+  Table 12-5).
+- py-method 9 to not in the top 10, in all modes. gec_5 8.10.2 "p-y
+  Curves" is now first; the gold names gec_9 6.3 and dm7_2 6-6.4.2.
+- rqd-def 1 to 2 (fill and rerank); dmt-def 4 to 7 (auto 5 to 7; gec_5
+  10.14.3 and 10.14 rank above); stone-col-capacity 7 to 5; spt-def 3 to
+  4 (off and fill); phi-cpt 6 to 7.
+
+Rerank R@10 went from 41 to 39 of 54 and MRR@10 from 0.510 to 0.491; the
+two cases lost are liq-screen and py-method. test_query_expansion and
+the gec_5 cases passed after every chapter.
+
+### What the old files held that the print does not
+
+- Equation ids that are not the print's. The old files held 25
+  equations for the 227 printed. Their ids were descriptive ("4-Cu",
+  "4-RQD", "6-cv", "7-MC", "7-SHANSEP", "7-Su-CPT", "8-Gmax",
+  "9-Brazilian", "9-Hoek-Diederichs", "9-HB", "10-head", "10-Darcy",
+  "10-Hazen", "11-sigma-total", "11-sigvo") or hyphenated numbers ("3-1",
+  "4-12", "5-2", "8-7") where the print uses a point.
+- 9-Hoek-Diederichs held the constant 0.02 where Eq. 9.28 prints 0.2
+  (see below).
+- Captions not the print's. Old Figure 7-15 carried Figure 7-12's
+  caption ("Total stress strength envelopes for saturated soils"); the
+  print's 7-15 is "Stress-induced anisotropy for undrained shear strength
+  of normally consolidated clays (Ladd, 1991)". Old Table 9-6 "RMR
+  system: class descriptions and engineering properties" is printed "RMR
+  System parameter R6 (from ASTM D5878, 2008)". Old Figure 12-13
+  "Borehole tomography" is printed "Changes in surface wave motions due
+  to subsurface voids"; tomography is Figure 12-14.
+- A merged entry, "Table 8-7 and 8-8".
+- Tables 10-3 and 10-4 sat in 10.1-10.3; they print in 10.9 and 10.10.7.
+
+### Print inconsistencies, kept as printed
+
+No reading was chosen. Page numbers are printed page numbers
+(chapter-page; PDF page 49 is p. 1-1).
+- ch 3: the deep foundations row of Table 3-2 asks for "at least one
+  exploration point per embankment" (p. 3-36).
+- ch 4:
+  - Table 4-2 gives the No. 40 sieve as 0.0425 mm (medium sand 0.0425
+    to 2.00 mm, fine sand 0.075 to 0.0425 mm). P. 4-3 gives the No. 200
+    opening as 0.074 mm, while Table 4-2 and 4.4.2 use 0.075 mm.
+  - The inch and mm columns of Table 4-23 disagree: 0.02-0.8 in.
+    (0.425-2 mm), 0.8-2 in. (2-4.75 mm), 2 in. (> 4.75 mm).
+  - The Begemann (1965) bands overlap: Rf < 2.5 % sand, > 3.5 % clay, 2
+    to 4 % mixed (p. 4-30).
+  - Eqs. 4.31 (ID = 10^(1.67 - 0.67 Ic-RW)) and 4.32 (Ic-RW = 2.5 - 1.5
+    log ID) are called equivalent (p. 4-36); inverting 4.31 gives 2.49
+    and 1.49.
+  - In Table 4-13 the A-7 "11 min" for PI carries a footnote mark with
+    no footnote.
+  - The 4.8.1 to 4.8.3 headings read "Liquid Limit", "Plastic Limit" and
+    "Shrinkage Limit" in the body and "Determining the ..." in the Table
+    of Contents (the files use the Table of Contents).
+- ch 5:
+  - Table 5-15 scores pH 2 to 4.5 as 6, 5 to 6 as 0, 7 to 9 as 6 and
+    10.5 to 12 as 2, which leaves gaps (4.5-5, 6-7, 9-10.5). Its maximum
+    total is 21, while Table 5-16 stops at 20 (p. 5-43).
+  - Table 5-12 gives IJ "= 6", "3 to 5" and "< 2", which leaves IJ = 2
+    unassigned.
+  - Figure 5-7 credits "Van der Mere, 1964" (p. 5-15); the text has "Van
+    der Merwe (1964)" (p. 5-14).
+- ch 6:
+  - Figure 6-4 credits "Bozozuk, 1971"; the text says Bozozuk (1970).
+  - The first row of Table 6-1 prints "1" for the volumetric strain; the
+    next row is 1-2.
+  - 6.6.2 sends the stress-history terms to Table 6-2; they are in Table
+    6-3 (p. 6-16).
+  - Eq. 6.23 prints (25)(7.5 mm)^2/t50 = 14.06 mm^2/t50 (p. 6-42); 25 x
+    56.25 mm^2 is 1406 mm^2.
+  - Table 6-6 prints the Larsson and Eskilson relation as OCR = 10(0.16KD
+    - 2.5).
+  - 6.14.3 gives Calpha/Cc for peats as 0.06 +/- 0.01 (p. 6-47); 5.4.5
+    gives 0.075 +/- 0.01 (p. 5-27).
+  - Figure 6-36 labels its lines Cc = PI/74 and Cur = PI/370; its
+    regression header gives PI/73 and PI/385, and Table 6-15 has PI/73.
+  - 6.8 prints pa = 100 kPa = 14.7 psi (p. 6-19).
+- ch 7:
+  - Eq. 7.1 prints s = c' + tan phi' (p. 7-2) and Eq. 7.4 sT = c + tan
+    phi (p. 7-13), with no normal stress.
+  - 7.2.1 says d and tan psi are "as shown in Table 7-4"; they are in
+    Table 7-1 (p. 7-4).
+  - Table 7-1 has two rows named "p-q diagram". Its (sigma1 - sigma3)
+    vs. sigma'3 and sigma'1 vs. sigma'3 rows list the abscissa as (sigma1
+    - sigma3) or sigma'1 and the ordinate as sigma'3, while Figure 7-4
+    plots sigma'3 on the abscissa (p. 7-5).
+  - Table 7-4 repeats Table 7-3's caption ("Estimates for normalized
+    undrained strength parameters, S and m"); it lists levels of
+    investigation.
+  - 7.6.9 computes sigma'N "as (cos^2 phi')/(1 - sin phi')", with no
+    stress (p. 7-57).
+- ch 8:
+  - 8.3 has no title in the Table of Contents; the body prints "Boring
+    and Sampling Requirements for Measurement of Stress-Strain and
+    Stiffness Properties".
+  - The Sections column of Table 8-1 cites 6.8, 6.9, 8.8.1 to 8.8.4,
+    8.9, 8.10 and 8.6 to 8.7; the printed headings put those subjects at
+    6.7, 6.8, 8.9.1 to 8.9.4, 8.10.1, 8.10.2 and 8.7 to 8.8 (pp. 8-1 to
+    8-2).
+  - Eq. 8.11 prints F(e) = e^1.3 (Bellotti et al., 1996), which rises
+    with e, while Eqs. 8.8 to 8.10 fall with e (p. 8-16).
+  - 8.9.2 gives nu of about 0.1 to 0.2 for drained coarse soils (p.
+    8-26); Table 8-10 gives 0.25 for fine sand and 0.2-0.36 and 0.3-0.4
+    for sand and gravel.
+- ch 9:
+  - Eq. 9.28 prints EM = ER (0.2 + ...) (p. 9-48). The curves of Figure
+    9-34 start near 0.02 at low GSI and reach about 1.0 at GSI 100.
+  - 9.5.5 sends the JRC shear strength to "Equation 9.20" (p. 9-31);
+    Barton's relation is Eq. 9.17, and 9.20 is the dilatometer Gd.
+  - 9.7.1 cites "Equation 9.26" twice for the borehole jack modulus (pp.
+    9-42 to 9-43); the jack relation is Eq. 9.23.
+  - 9.7.4 gives the isotropy condition "for use of Equations 9.30 and
+    9.31" (p. 9-50); the GSI modulus relations are Eqs. 9.27 and 9.28.
+  - 9.8 says "Equation 9.32 can be used directly for design" (p. 9-53);
+    Eq. 9.32 defines a, and the criterion is Eq. 9.29.
+  - 9.6.1 calls the Q-system "a.k.a. the CSIR system" (p. 9-33).
+- ch 10:
+  - Eq. 10.8 prints k = cv Delta_w mv with "Delta_w is the density of
+    water" (p. 10-30); Eq. 10.28 uses gamma_w, the unit weight.
+  - Eq. 10.27 prints k = q Wf/(A H Wf (0.5 Pa)), with Wf above and below
+    the line, and "Pa ... equal to Pg x G x Wf" with Pg not defined (pp.
+    10-51 to 10-52).
+  - The slot 20 and slot 30 rows of Table 10-1 are the same except for
+    the screen size (p. 10-10).
+  - Eq. 10.10 calls Q the "volume of water added" (p. 10-37); k = Q/(5.5
+    r H) needs a flow rate.
+  - Figure 10-40 credits Leroueil et al. 1983 in the List of Figures and
+    1990 in the body.
+  - "Lafluer et al., 1987" and "Lafleur et al., 1987" are both printed
+    on p. 10-45.
+- ch 11:
+  - Eq. 11.25 prints sigma_y = sigma_d^2 sigma_s^2/(sigma_d^2 +
+    sigma_s^2) (p. 11-30). The combined values of Table 11-4 equal the
+    square root of that expression (94 and 223 give 87; 366 and 382 give
+    265).
+  - 11.9.2 has S = 0.25 and m = 0.77 "determined from CUIC tests" (p.
+    11-44); Figure 11-21's caption says CIUC.
+  - The List of Figures gives pages one later than the captions for
+    Figures 11-16 to 11-26 (Figure 11-16 is listed on 11-36 and printed
+    on 11-35).
+- ch 12:
+  - Figure 12-6 is captioned "Stress distribution beneath a square
+    foundation"; the text describes "a circular loaded area" (p. 12-7).
+  - The seismic refraction paragraph is headed "Surface Refraction:" (p.
+    12-10).
+  - Figure 12-24 is "Landslide event affecting highway (Courtesy of
+    USGS/Photo by D. Krammer)" in the body (p. 12-28), "LANDSLIDE EVENT
+    AFFECTING HIGHWAY 3 IN TAIWAN (PETLEY, 2010)" in the List of
+    Figures, and "The massive slope failure in Idaho along a highway" in
+    the text (p. 12-27).
+
+Smaller typos are not listed.
