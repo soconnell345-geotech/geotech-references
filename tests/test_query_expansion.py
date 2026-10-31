@@ -374,6 +374,73 @@ def test_auto_pin_n_keeps_the_literal_top_n():
 
 
 # ---------------------------------------------------------------------------
+# REF-48: an OR-ed query ranks the sections holding more of its words first
+# ---------------------------------------------------------------------------
+
+def test_query_concepts():
+    from geotech_references._query_expansion import query_concepts
+    assert query_concepts("wick drain smear zone") == [
+        '("prefabricated vertical drain" OR pvd OR "wick drain" OR '
+        '"vertical drain")', "smear", "zone"]
+    assert query_concepts("alpha beta") == ["alpha", "beta"]
+    assert query_concepts("alpha") == []
+    assert query_concepts('"wick drain" smear') == []
+
+
+def _held_db(texts):
+    import sqlite3
+    conn = sqlite3.connect(":memory:")
+    conn.execute("CREATE VIRTUAL TABLE sections_fts USING fts5(body)")
+    conn.executemany("INSERT INTO sections_fts(rowid, body) VALUES (?, ?)",
+                     list(enumerate(texts, 1)))
+    return conn
+
+
+def test_by_concepts_held_most_first_order_kept_within_a_count(monkeypatch):
+    conn = _held_db(["alpha beta", "alpha beta gamma", "alpha",
+                     "gamma beta alpha delta", "beta alpha"])
+    rows = [{"rid": i} for i in (1, 2, 3, 4, 5)]
+    order = _retrieval_db._by_concepts_held(
+        conn, rows, ["alpha", "beta", "gamma", "delta"])
+    assert [r["rid"] for r in order] == [4, 2, 1, 5, 3]
+    # past the pool the hits keep the order they came in
+    monkeypatch.setattr(_retrieval_db, "_BEST_MATCH_POOL", 3)
+    order = _retrieval_db._by_concepts_held(
+        conn, rows, ["alpha", "beta", "gamma", "delta"])
+    assert [r["rid"] for r in order] == [2, 1, 3, 4, 5]
+
+
+def test_or_ed_words_short_section_does_not_outrank_the_methods():
+    # No GEC-12 section holds all six words. Eslami and Fellenius
+    # (7.2.1.3.6) and Nottingham and Schmertmann (7.2.1.3.7) hold five, the
+    # few lines of Meyerhof's CPT settlement method (7.3.5.2.2) four, which
+    # BM25 alone ranked above both.
+    q = "CPT pile capacity effective cone resistance"
+    assert _literal(_retrieval_db.reference_search, q,
+                    reference="gec_12", limit=5) == []
+    auto = _with_strategy("auto", _retrieval_db.reference_search, q,
+                          reference="gec_12", limit=5)
+    ids = [h["section_id"] for h in auto]
+    assert {"7.2.1.3.6", "7.2.1.3.7"} <= set(ids[:2]), ids
+    assert "7.3.5.2.2" not in ids[:2], ids
+
+
+def test_or_fallback_pages_are_cut_from_one_order():
+    # no section holds both words and neither names a synonym group, so
+    # every page comes from the OR-of-words fallback
+    from geotech_references._query_expansion import expand_query
+    q = "wick triggering"
+    assert _literal(_retrieval_db.reference_search, q, limit=5) == []
+    assert expand_query(q) == ""
+    whole = _retrieval_db.reference_search(q, limit=20)
+    pages = [h for off in (0, 5, 10, 15)
+             for h in _retrieval_db.reference_search(q, limit=5, offset=off)]
+    key = lambda h: (h["reference"], h["section_id"])
+    assert len(whole) == 20
+    assert [key(h) for h in pages] == [key(h) for h in whole]
+
+
+# ---------------------------------------------------------------------------
 # REF-07: the gold set
 # ---------------------------------------------------------------------------
 

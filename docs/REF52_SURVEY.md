@@ -513,8 +513,8 @@ chapter. Ch 1 (17 -> 77 sections) and ch 2 (9 -> 80) were rewritten from
 the print: the June 2026 files were not the chapters' text (see below).
 In ch 4, 6, 8, 9 and 10 the headings REF-25 had folded into their parents
 became their own sections, written from their printed pages: ch 4 22,
-ch 6 2, ch 8 78 (105 -> 183), ch 9 71 (168 -> 239), ch 10 24 (103 ->
-127). Ch 3 and 5 had no gaps. Each equation, figure and table sits in the
+ch 6 2, ch 8 78 (105 -> 183), ch 9 71 (168 -> 239), ch 10 29 (103 ->
+132). Ch 3 and 5 had no gaps. Each equation, figure and table sits in the
 section whose pages print it. Equations re-read off rendered pages, symbol
 by symbol: Eqs. 2-1 to 2-3 (new), 8-2 to 8-6 (unchanged). Figure 8-22
 takes its printed caption ("used in Swedish grouting practice"; it read
@@ -522,7 +522,7 @@ takes its printed caption ("used in Swedish grouting practice"; it read
 
 `check_section_numbers.py gec_13` now reads 1,136 printed, 1,097 matched
 (it was 771), 0 range and 39 missing. The 39 are outline lines (Checker
-quirks). The 3 misnumbered and 2 extra rows are print numbering slips,
+quirks). The 5 misnumbered and 5 extra rows are print numbering slips,
 held:
 - ch 4: two headings printed 2.6.1.4 (Predicted and Actual Densification
   Procedure, pp. 4-55/56); the first is 4.2.6.1.4.a.
@@ -530,13 +530,20 @@ held:
   Considerations, p. 9-74); Geotechnical is 9.5.1.3.1.a. 'Potential
   Disadvantages' printed 8.2.1.2 under 8.1.2 (p. 9-114) is 9.8.1.2.2;
   'Advantages' printed 9.2.1.1 under 9.1.2 (p. 9-130) is 9.9.1.2.1.
-- ch 10: 'Potential Disadvantages' printed 2.1.2.2 under 4.1.2 (p. 10-45)
-  is 10.4.1.2.2.
+- ch 10: 'Advantages' and 'Potential Disadvantages' printed 2.1.2.1 and
+  2.1.2.2 under 2.2.1 (p. 10-8) are 10.2.2.1.1 and 10.2.2.1.2;
+  'Geotechnical', 'Environmental Considerations' and 'Site Conditions'
+  printed 2.1.3.1 to 2.1.3.3 under 2.2.2 (p. 10-9) are 10.2.2.2.1 to
+  10.2.2.2.3 (split out on fix/ref52-gec13; they were folded into their
+  parents). 'Potential Disadvantages' printed 2.1.2.2 under 4.1.2 (p.
+  10-45) is 10.4.1.2.2.
 
 tests/test_query_expansion.py: the "wick drain smear zone" case pinned
 2.4.3, the old file's "Smear Zone Effects"; printed 4.3 is Preliminary
 Spacing Design. It now expects 2.3.2.1 (printed 3.2.1, where the print
 discusses the smear zone), returned by the same, unchanged query.
+scripts/retrieval_gold.json follows: pvd-smear names 2.3.2.1 and pvd-spacing
+names 2.4.2 Design Procedure and 2.4.3 Preliminary Spacing Design.
 
 ### Values the old files gave that the chapter does not print
 
