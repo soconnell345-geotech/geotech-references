@@ -1241,9 +1241,13 @@ One retrieval gold entry named an old annex key and now names the
 printed clause: dr-n160 7.6.1 to F.1. No query was reworded. No old
 annex id appears in the app. The review of sections 1 to 6 (74cf1b2)
 moved pmt-def's gold from 4.9, the field vane test, to 4.4 and 4.4.1,
-and let cpt-def's gold accept 4.3.1. spt-def (4.6) and dmt-def (4.10)
-still name section 4 headings that carry no text of their own; their
-Objectives clauses are 4.6.1 and 4.10.1. They were left as they are.
+and let cpt-def's gold accept 4.3.1. In the same way spt-def's gold
+now also accepts 4.6.1 Objectives (p. 49) and dmt-def's 4.10.1
+Objectives (p. 56), beside the headings 4.6 and 4.10, which carry no
+text of their own. No rank moved: the headings still score first
+(spt-def 6 in fill, auto and rerank; dmt-def 4 in auto, 3 in rerank).
+4.6.1 is not in the top 50 for "SPT procedure and hammer energy", and
+4.10.1 ranks 43 for "dilatometer test".
 
 Ranks moved as follows from refs main 158e408 (sections 1 to 6 merged,
 with the review fixes) to after the annexes (rerank, unless a mode is
