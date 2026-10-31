@@ -7,12 +7,11 @@
     {
       "section_id": "1.1",
       "title": "Purpose",
-      "summary": "GEC-8 provides a state-of-the-practice manual for the design and construction of continuous flight auger (CFA) piles, including augered cast-in-place (ACIP) piles, drilled displacement (DD) piles, and screw piles. The document uses Allowable Stress Design (ASD) because LRFD resistance factors had not yet been calibrated for CFA piles at the time of publication (2007). The intended audience is engineers and construction specialists involved in design, construction, and contracting of foundation elements for transportation structures.",
-      "body": "The purpose of this document is to develop a state-of-the-practice manual for the design and construction of continuous flight auger (CFA) piles, including those piles commonly referred to as augered cast-in-place (ACIP) piles, drilled displacement (DD) piles, and screw piles. An Allowable Stress Design (ASD) procedure is presented in this document as resistance (strength reduction) factors have not yet been calibrated for CFA piles for a Load Resistance Factored Design (LRFD) approach. The intended audience for this document is engineers and construction specialists involved in the design, construction, and contracting of foundation elements for transportation structures.",
+      "summary": "GEC-8 is a state-of-the-practice manual for the design and construction of continuous flight auger (CFA) piles, including augered cast-in-place (ACIP), drilled displacement (DD) and screw piles. It presents an Allowable Stress Design (ASD) procedure because resistance factors had not yet been calibrated for CFA piles for LRFD.",
+      "body": "The document develops a state-of-the-practice manual for the design and construction of continuous flight auger (CFA) piles, including piles commonly referred to as augered cast-in-place (ACIP) piles, drilled displacement (DD) piles and screw piles. An Allowable Stress Design (ASD) procedure is presented because resistance (strength reduction) factors have not yet been calibrated for CFA piles for a Load Resistance Factored Design (LRFD) approach. The intended audience is engineers and construction specialists involved in the design, construction and contracting of foundation elements for transportation structures. (p. 1)",
       "key_points": [
-        "GEC-8 covers CFA piles including ACIP piles, drilled displacement (DD) piles, and screw piles",
-        "Uses ASD (not LRFD) — LRFD resistance factors not calibrated for CFA piles at time of publication (2007)",
-        "Audience: engineers and construction specialists for transportation structure foundations"
+        "CFA piles include ACIP, drilled displacement (DD) and screw piles (p. 1).",
+        "Design is presented as ASD; resistance factors for LRFD had not been calibrated for CFA piles (p. 1)."
       ],
       "equations": [],
       "figures": [],
@@ -22,13 +21,12 @@
     {
       "section_id": "1.2",
       "title": "Background",
-      "summary": "CFA piles have been widely used in commercial construction but underutilized for U.S. transportation structures due to perceived QC difficulties and incompatibility with traditional prescriptive design-bid-build contracting. GEC-8 presents a performance-based approach: specialty contractors propose methods, full-scale load testing verifies capacity, and automated monitoring and recording devices confirm construction parameters for every production pile. This shifts responsibility for foundation performance to the contractor or design-build team.",
-      "body": "CFA piles have been used worldwide and also in the U.S. commercial market, but have not been used frequently for support of transportation structures in the United States. This underutilization is a result of perceived difficulties in quality control and of the difficulties associated with incorporating a rapidly developing (and often proprietary) technology into the traditional, prescriptive design-bid-build concept. Recent advances in automated monitoring and recording devices will alleviate concerns of quality control, as well as provide an essential tool for a performance-based contracting process.\n\nA performance-based approach is presented to allow the specialty contractors greater freedom to compete in providing the most cost-effective foundation system while satisfying the project requirements. The performance specification places a greater responsibility for the resulting foundation performance on the contractor or design-build team. Rather than rigorous prescriptive specifications, a comprehensive testing program is used to verify performance. Full-scale load testing is used to verify the load carrying capabilities of the foundations provided. Automatic monitoring and recording devices are used during construction of both test piles and production piles to establish construction parameters (down-force, torque, grout take, etc.), and to verify that these parameters are met for every production pile. Full-scale load testing may be performed on production piles throughout the project, as selected by the owner.",
+      "summary": "CFA piles had seldom been used for U.S. transportation structures because of perceived quality-control difficulties and the fit of a proprietary technology to design-bid-build. Automated monitoring now supports a performance-based approach: the contractor carries more responsibility, verified by full-scale load tests and monitored installation parameters.",
+      "body": "CFA piles have been used worldwide and in the U.S. commercial market but not frequently for transportation structures in the United States, because of perceived difficulties in quality control and in incorporating a rapidly developing (often proprietary) technology into the prescriptive design-bid-build concept. Automated monitoring and recording devices alleviate the quality-control concerns and support performance-based contracting. In the performance-based approach the specialty contractor or design-build team has greater freedom and greater responsibility for foundation performance; instead of rigorous prescriptive specifications, a comprehensive testing program verifies performance. Full-scale load tests verify load carrying capability; automatic monitoring during construction of test and production piles establishes the construction parameters (down-force, torque, grout take) and verifies they are met for every production pile; load tests may also be performed on production piles selected by the owner. The document covers pile types, materials, equipment and procedures, QC/QA, a performance specification adaptable to projects, methods for static axial capacity of single piles with a comparison of U.S. and European methods, group effects on axial capacity and settlement, lateral capacity of single piles and groups, and a step-by-step selection and design method. (p. 1)",
       "key_points": [
-        "CFA piles underutilized in U.S. transportation due to QC concerns and design-bid-build incompatibility",
-        "Performance-based approach: contractor freedom + comprehensive testing program rather than prescriptive specs",
-        "Automated monitoring during construction verifies construction parameters (down-force, torque, grout take) for every pile",
-        "Full-scale load testing verifies capacity; may be performed on production piles throughout the project"
+        "Performance-based approach: comprehensive testing program instead of prescriptive specifications (p. 1).",
+        "Automatic monitoring establishes down-force, torque and grout take and verifies them for every production pile (p. 1).",
+        "Full-scale load tests may be performed on production piles selected by the owner (p. 1)."
       ],
       "equations": [],
       "figures": [],
@@ -36,16 +34,27 @@
       "applicability": "Rationale for performance-based approach to CFA pile specification in transportation projects"
     },
     {
-      "section_id": "1.3-1.4",
-      "title": "Document Organization",
-      "summary": "GEC-8 is organized into 8 technical chapters plus references and two appendices. Chapter 2: CFA pile types and mechanisms. Chapter 3: applications for transportation projects. Chapter 4: construction techniques and materials. Chapter 5: static capacity evaluation (recommended and alternative methods). Chapter 6: recommended step-by-step design method with annotated example. Chapter 7: QC/QA procedures including automated monitoring. Chapter 8: guide performance specification. Appendix A compares capacity estimation methods; Appendix B provides spreadsheet solutions.",
-      "body": "References are listed in Chapter 9. The document is organized as follows: Chapter 2 — description of CFA pile types and basic mechanisms (main components, equipment, and construction sequence); Chapter 3 — applications for transportation projects (advantages/limitations, favorable and unfavorable conditions, illustrative applications); Chapter 4 — construction techniques, materials, and recommended practices; Chapter 5 — evaluation and comparison of various existing methods used in the United States and Europe to calculate the static capacity of CFA piles; Chapter 6 — recommended step-by-step design method including an annotated example; Chapter 7 — use of automated QC/QA equipment and guidelines; Chapter 8 — guide construction performance specification for CFA piles; Chapter 9 — references. Appendix A compares methods for estimating static axial capacity; Appendix B provides spreadsheet solutions for axial capacity of single piles.",
+      "section_id": "1.3",
+      "title": "Relevant Publications",
+      "summary": "Chapter 9 lists the references used in developing the manual, including key publications on the design of augered pile foundations and existing FHWA and AASHTO publications on engineering principles related to CFA piles.",
+      "body": "A list of the references used in the development of the manual is presented in Chapter 9. They include key publications on the design of augered pile foundations and existing Federal Highway Administration and AASHTO publications that include engineering principles related to CFA piles. (p. 2)",
       "key_points": [
-        "8 technical chapters: introduction through guide specification, plus references",
-        "Chapter 5 evaluates and compares capacity methods (recommended + alternatives)",
-        "Chapter 6 provides the recommended 5-step design process with annotated example",
-        "Chapter 7 covers automated monitoring QC/QA procedures",
-        "Appendix A: method comparison; Appendix B: spreadsheet capacity solutions"
+        "References are listed in Chapter 9 (p. 2)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Where the GEC-8 references and related FHWA and AASHTO publications are listed"
+    },
+    {
+      "section_id": "1.4",
+      "title": "Document Organization",
+      "summary": "Organization: Ch 2 pile types and basic mechanisms; Ch 3 applications for transportation projects; Ch 4 construction techniques and materials; Ch 5 static capacity methods (U.S. and European); Ch 6 step-by-step design with an annotated example; Ch 7 QC/QA; Ch 8 guide performance specification; Ch 9 references; Appendix A method comparisons; Appendix B spreadsheet solutions.",
+      "body": "The document is organized as follows: Chapter 2, description of CFA pile types and basic mechanisms (main system components, typical equipment, construction sequence); Chapter 3, applications for transportation projects (advantages and limitations, favorable and unfavorable project and geotechnical conditions); Chapter 4, construction techniques, materials and recommended practice; Chapter 5, evaluation and comparison of U.S. and European methods for the static capacity of CFA piles; Chapter 6, a step-by-step generalized method for selection and design, with an annotated example; Chapter 7, QC/QA procedures and automated QC/QA equipment; Chapter 8, guide construction specifications (a performance specification); Chapter 9, references; Appendix A, comparisons of methods for estimating the static axial capacity of CFA piles; Appendix B, spreadsheet solutions for axial capacity of single CFA piles. (p. 2)",
+      "key_points": [
+        "Chapter 5 gives the capacity methods; Chapter 6 the step-by-step design with an example (p. 2).",
+        "Chapter 8 is a performance specification (p. 2).",
+        "Appendix A compares capacity methods; Appendix B gives spreadsheet solutions (p. 2)."
       ],
       "equations": [],
       "figures": [],
