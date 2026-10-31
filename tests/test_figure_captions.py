@@ -42,6 +42,8 @@ def test_the_filed_captions():
         ("gec_8", "A.17"): ("Comparison of Study Results - Axial Capacity in "
                             "Cohesionless Soils"),
         ("gec_12", "8-12"): "One-way beam shear critical sections from pile(s)",
+        # the List of Figures drops "shaft"; the figure's page prints it
+        ("gec_12", "3-6"): "Nominal shaft resistance and pile support cost",
         ("gec_12", "D-125"): "Inspectors Chart for ICE I-36 V2 at the South Abutment",
         ("micropile", "8-8"): "Baroid Mud Balance Test",
     }
@@ -87,6 +89,21 @@ def test_running_headers_are_dropped():
     assert "FHWA NHI-05-039" in running
     assert "Micropile Design & Construction" in running
     assert not any("Figure" in ln for ln in running)
+
+
+def test_the_caption_printed_on_a_figure_page():
+    page = ("labeled\nRs, presented once again in Figure 3-6 and\n"
+            "Figure 3-6 presents plots of both\n \n"
+            "Figure 3-6 \nNominal shaft resistance and pile support cost.  \n")
+    assert bfc._page_caption(page, "3-6") == \
+        "Nominal shaft resistance and pile support cost"
+    # another number, and an in-text reference only
+    assert bfc._page_caption(page, "3-60") is None
+    assert bfc._page_caption("as Figure 3-6 shows.\n", "3-6") is None
+    # a caption over two lines ends at its period
+    assert bfc._page_caption("Figure 7-21 Illustration of the\nprocedure "
+                             "(FHWA-TS-78-209).\nNext paragraph.", "7-21") == \
+        "Illustration of the procedure (FHWA-TS-78-209)"
 
 
 def test_a_run_on_caption_is_flagged():

@@ -13,7 +13,7 @@
       "pdf_page_index": 57,
       "printed_page": 12,
       "page_estimated": false,
-      "description": "Loads, Load Combinations, and Load Factors Determining factored foundation loads for all limit states. Used at the start of pile design to establish demand. Structural engineer provides these loads to the foundation specialist. Total factored load: Q = sum(eta_i * gamma_i * Q_i) where eta_i is load modifier, gamma_i is load factor Load modifiers account for ductility, redundancy, and operational classification Load factors gamma_p for permanent loads have max and min values (Table 2-3); use the more critical DC components/attachments: gamma_p max=1.25, min=0.90 DD downdrag (Tomlinson alpha): gamma_p max=1.40, min=0.25; DD downdrag (lambda): max=1.05, min=0.30 Structural analysis reactions at column-cap joint become axial, lateral, and moment force effects Multiple iterations between",
+      "description": "Loads, Load Combinations, and Load Factors Determining factored foundation loads for all limit states. Used at the start of pile design to establish demand. Structural engineer provides these loads to the foundation specialist. Eq. 2-1: Q = sum(eta_i gamma_i Q_i); eta_i load modifier, gamma_i load factor, Q_i force effect Table 2-2 gives the load combination and load factors for each limit state Strength I: gamma_p on the permanent loads, 1.75 on LL, IM, CE, BR, PL and LS, 1.20 on TU Table 2-3: DC 1.25/0.90 (Strength IV only 1.50/0.90); DD Tomlinson alpha 1.40/0.25; DD lambda 1.05/0.30; DW 1.50/0.90 Table 2-3: EH active 1.50/0.90, at-rest 1.35/0.90; EV retaining walls and abutments 1.35/1.00; ES 1.50/0.75 Use the maximum or minimum gamma_p, whichever gives the more critical combination",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -24,7 +24,7 @@
       "pdf_page_index": 58,
       "printed_page": 13,
       "page_estimated": false,
-      "description": "Loads, Load Combinations, and Load Factors Determining factored foundation loads for all limit states. Used at the start of pile design to establish demand. Structural engineer provides these loads to the foundation specialist. Total factored load: Q = sum(eta_i * gamma_i * Q_i) where eta_i is load modifier, gamma_i is load factor Load modifiers account for ductility, redundancy, and operational classification Load factors gamma_p for permanent loads have max and min values (Table 2-3); use the more critical DC components/attachments: gamma_p max=1.25, min=0.90 DD downdrag (Tomlinson alpha): gamma_p max=1.40, min=0.25; DD downdrag (lambda): max=1.05, min=0.30 Structural analysis reactions at column-cap joint become axial, lateral, and moment force effects Multiple iterations between",
+      "description": "Loads, Load Combinations, and Load Factors Determining factored foundation loads for all limit states. Used at the start of pile design to establish demand. Structural engineer provides these loads to the foundation specialist. Eq. 2-1: Q = sum(eta_i gamma_i Q_i); eta_i load modifier, gamma_i load factor, Q_i force effect Table 2-2 gives the load combination and load factors for each limit state Strength I: gamma_p on the permanent loads, 1.75 on LL, IM, CE, BR, PL and LS, 1.20 on TU Table 2-3: DC 1.25/0.90 (Strength IV only 1.50/0.90); DD Tomlinson alpha 1.40/0.25; DD lambda 1.05/0.30; DW 1.50/0.90 Table 2-3: EH active 1.50/0.90, at-rest 1.35/0.90; EV retaining walls and abutments 1.35/1.00; ES 1.50/0.75 Use the maximum or minimum gamma_p, whichever gives the more critical combination",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -35,7 +35,7 @@
       "pdf_page_index": 64,
       "printed_page": 19,
       "page_estimated": false,
-      "description": "The Driven Pile Design and Construction Process Complete design-construction process for driven pile foundations. Figure 2-3 flow chart applies to all design-bid-build projects; design-build contracts vary in early steps but the key activities remain the same. Figure 2-3: a 32-block flow chart; lead roles shown by border style (structural, geotechnical, construction engineer) Planning (Blocks 1-8): performance requirements, geometry, site conditions, exploration, candidate foundation systems, 2-5 candidate pile types Preliminary design (Blocks 9-19): structural and geotechnical resistance vs depth, penetration for compression, tension, lateral load and deformation Block 16: eliminate candidates that cannot reach the required resistance within 30-120 blows/ft (120 blows/ft = refusal) Block",
+      "description": "The Driven Pile Design and Construction Process Complete design-construction process for driven pile foundations. Figure 2-3 flow chart applies to all design-bid-build projects; design-build contracts vary in early steps but the key activities remain the same. Figure 2-3: a 32-block flow chart; lead roles shown by border style (structural, geotechnical, construction engineer) Planning (Blocks 1-8): performance requirements, geometry, site conditions, exploration, candidate foundation systems, 2-5 candidate pile types Preliminary design (Blocks 9-19): structural and geotechnical resistance vs depth, penetration for compression, tension, lateral load and deformation Block 16: eliminate candidates not drivable within 30-120 blows/ft; 120 blows/ft is refusal, 96 blows/ft (8 blows/in) may be a",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -57,7 +57,7 @@
       "pdf_page_index": 101,
       "printed_page": 56,
       "page_estimated": false,
-      "description": "Foundation Support Cost and Cost Optimization Example Cost optimization of driven pile foundations using foundation support cost analysis and resistance factor selection. Example uses HP 14x117 H-pile with layered soil profile (soft clay/medium sand/stiff clay/dense sand/bedrock) Static analysis via FHWA method in APILE determines nominal resistance (shaft + toe) versus depth Pile cost generally linear with depth; support cost ($/kip) = pile cost / nominal resistance at that depth HP 14x117 with 50 ksi yield: nominal structural resistance = 1720 kips; factored structural resistance = 1032 kips (no shoe) or 860 kips (with shoe) Resistance factors for field verification: phi_dyn = 0.80 (SLT + 2% DLT), 0.75 (SLT or 100% DLT), 0.65 (2% DLT), 0.50 (WEA), 0.40 (FHWA Gates DF) Required nominal",
+      "description": "Cost Optimization Example HP 14x117 by the FHWA method in APILE; terminations 60 ft (150 kips), 70 ft (300 kips), 110 ft (1000 kips), rock near 118 ft Support cost ($/kip) = pile cost / nominal resistance: $39 at 60 ft, $19 at 70 ft, $9 at 110 ft, $5.50 at 118 ft (1722 kips) Nominal structural resistance 1720 kips; factored 1032 kips (no shoe) or 860 kips (severe driving, shoe) phi_dyn: 0.80 SLT and 2% DLT; 0.75 SLT or 100% DLT; 0.65 2% DLT; 0.50 WEA; 0.40 FHWA modified Gates R_ndr = P_r / phi_dyn; Table 3-3: 1290 kips and 116 ft for SLT and 2% DLT up to 2580 kips and rock for Gates (P_r 1032 kips) A drivability check can preclude using the maximum factored structural resistance HP 14x73 (P_r 520 kips): 104 ft with phi_dyn 0.80 against 116 ft with 0.40 Uplift support cost plateaus:",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -68,7 +68,7 @@
       "pdf_page_index": 102,
       "printed_page": 57,
       "page_estimated": false,
-      "description": "Foundation Support Cost and Cost Optimization Example Cost optimization of driven pile foundations using foundation support cost analysis and resistance factor selection. Example uses HP 14x117 H-pile with layered soil profile (soft clay/medium sand/stiff clay/dense sand/bedrock) Static analysis via FHWA method in APILE determines nominal resistance (shaft + toe) versus depth Pile cost generally linear with depth; support cost ($/kip) = pile cost / nominal resistance at that depth HP 14x117 with 50 ksi yield: nominal structural resistance = 1720 kips; factored structural resistance = 1032 kips (no shoe) or 860 kips (with shoe) Resistance factors for field verification: phi_dyn = 0.80 (SLT + 2% DLT), 0.75 (SLT or 100% DLT), 0.65 (2% DLT), 0.50 (WEA), 0.40 (FHWA Gates DF) Required nominal",
+      "description": "Cost Optimization Example HP 14x117 by the FHWA method in APILE; terminations 60 ft (150 kips), 70 ft (300 kips), 110 ft (1000 kips), rock near 118 ft Support cost ($/kip) = pile cost / nominal resistance: $39 at 60 ft, $19 at 70 ft, $9 at 110 ft, $5.50 at 118 ft (1722 kips) Nominal structural resistance 1720 kips; factored 1032 kips (no shoe) or 860 kips (severe driving, shoe) phi_dyn: 0.80 SLT and 2% DLT; 0.75 SLT or 100% DLT; 0.65 2% DLT; 0.50 WEA; 0.40 FHWA modified Gates R_ndr = P_r / phi_dyn; Table 3-3: 1290 kips and 116 ft for SLT and 2% DLT up to 2580 kips and rock for Gates (P_r 1032 kips) A drivability check can preclude using the maximum factored structural resistance HP 14x73 (P_r 520 kips): 104 ft with phi_dyn 0.80 against 116 ft with 0.40 Uplift support cost plateaus:",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -79,7 +79,7 @@
       "pdf_page_index": 102,
       "printed_page": 57,
       "page_estimated": false,
-      "description": "Foundation Support Cost and Cost Optimization Example Cost optimization of driven pile foundations using foundation support cost analysis and resistance factor selection. Example uses HP 14x117 H-pile with layered soil profile (soft clay/medium sand/stiff clay/dense sand/bedrock) Static analysis via FHWA method in APILE determines nominal resistance (shaft + toe) versus depth Pile cost generally linear with depth; support cost ($/kip) = pile cost / nominal resistance at that depth HP 14x117 with 50 ksi yield: nominal structural resistance = 1720 kips; factored structural resistance = 1032 kips (no shoe) or 860 kips (with shoe) Resistance factors for field verification: phi_dyn = 0.80 (SLT + 2% DLT), 0.75 (SLT or 100% DLT), 0.65 (2% DLT), 0.50 (WEA), 0.40 (FHWA Gates DF) Required nominal",
+      "description": "Cost Optimization Example HP 14x117 by the FHWA method in APILE; terminations 60 ft (150 kips), 70 ft (300 kips), 110 ft (1000 kips), rock near 118 ft Support cost ($/kip) = pile cost / nominal resistance: $39 at 60 ft, $19 at 70 ft, $9 at 110 ft, $5.50 at 118 ft (1722 kips) Nominal structural resistance 1720 kips; factored 1032 kips (no shoe) or 860 kips (severe driving, shoe) phi_dyn: 0.80 SLT and 2% DLT; 0.75 SLT or 100% DLT; 0.65 2% DLT; 0.50 WEA; 0.40 FHWA modified Gates R_ndr = P_r / phi_dyn; Table 3-3: 1290 kips and 116 ft for SLT and 2% DLT up to 2580 kips and rock for Gates (P_r 1032 kips) A drivability check can preclude using the maximum factored structural resistance HP 14x73 (P_r 520 kips): 104 ft with phi_dyn 0.80 against 116 ft with 0.40 Uplift support cost plateaus:",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -90,7 +90,7 @@
       "pdf_page_index": 103,
       "printed_page": 58,
       "page_estimated": false,
-      "description": "Foundation Support Cost and Cost Optimization Example Cost optimization of driven pile foundations using foundation support cost analysis and resistance factor selection. Example uses HP 14x117 H-pile with layered soil profile (soft clay/medium sand/stiff clay/dense sand/bedrock) Static analysis via FHWA method in APILE determines nominal resistance (shaft + toe) versus depth Pile cost generally linear with depth; support cost ($/kip) = pile cost / nominal resistance at that depth HP 14x117 with 50 ksi yield: nominal structural resistance = 1720 kips; factored structural resistance = 1032 kips (no shoe) or 860 kips (with shoe) Resistance factors for field verification: phi_dyn = 0.80 (SLT + 2% DLT), 0.75 (SLT or 100% DLT), 0.65 (2% DLT), 0.50 (WEA), 0.40 (FHWA Gates DF) Required nominal",
+      "description": "Cost Optimization Example HP 14x117 by the FHWA method in APILE; terminations 60 ft (150 kips), 70 ft (300 kips), 110 ft (1000 kips), rock near 118 ft Support cost ($/kip) = pile cost / nominal resistance: $39 at 60 ft, $19 at 70 ft, $9 at 110 ft, $5.50 at 118 ft (1722 kips) Nominal structural resistance 1720 kips; factored 1032 kips (no shoe) or 860 kips (severe driving, shoe) phi_dyn: 0.80 SLT and 2% DLT; 0.75 SLT or 100% DLT; 0.65 2% DLT; 0.50 WEA; 0.40 FHWA modified Gates R_ndr = P_r / phi_dyn; Table 3-3: 1290 kips and 116 ft for SLT and 2% DLT up to 2580 kips and rock for Gates (P_r 1032 kips) A drivability check can preclude using the maximum factored structural resistance HP 14x73 (P_r 520 kips): 104 ft with phi_dyn 0.80 against 116 ft with 0.40 Uplift support cost plateaus:",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -101,7 +101,7 @@
       "pdf_page_index": 105,
       "printed_page": 60,
       "page_estimated": false,
-      "description": "Foundation Support Cost and Cost Optimization Example Cost optimization of driven pile foundations using foundation support cost analysis and resistance factor selection. Example uses HP 14x117 H-pile with layered soil profile (soft clay/medium sand/stiff clay/dense sand/bedrock) Static analysis via FHWA method in APILE determines nominal resistance (shaft + toe) versus depth Pile cost generally linear with depth; support cost ($/kip) = pile cost / nominal resistance at that depth HP 14x117 with 50 ksi yield: nominal structural resistance = 1720 kips; factored structural resistance = 1032 kips (no shoe) or 860 kips (with shoe) Resistance factors for field verification: phi_dyn = 0.80 (SLT + 2% DLT), 0.75 (SLT or 100% DLT), 0.65 (2% DLT), 0.50 (WEA), 0.40 (FHWA Gates DF) Required nominal",
+      "description": "Cost Optimization Example HP 14x117 by the FHWA method in APILE; terminations 60 ft (150 kips), 70 ft (300 kips), 110 ft (1000 kips), rock near 118 ft Support cost ($/kip) = pile cost / nominal resistance: $39 at 60 ft, $19 at 70 ft, $9 at 110 ft, $5.50 at 118 ft (1722 kips) Nominal structural resistance 1720 kips; factored 1032 kips (no shoe) or 860 kips (severe driving, shoe) phi_dyn: 0.80 SLT and 2% DLT; 0.75 SLT or 100% DLT; 0.65 2% DLT; 0.50 WEA; 0.40 FHWA modified Gates R_ndr = P_r / phi_dyn; Table 3-3: 1290 kips and 116 ft for SLT and 2% DLT up to 2580 kips and rock for Gates (P_r 1032 kips) A drivability check can preclude using the maximum factored structural resistance HP 14x73 (P_r 520 kips): 104 ft with phi_dyn 0.80 against 116 ft with 0.40 Uplift support cost plateaus:",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -112,7 +112,7 @@
       "pdf_page_index": 106,
       "printed_page": 61,
       "page_estimated": false,
-      "description": "Foundation Support Cost and Cost Optimization Example Cost optimization of driven pile foundations using foundation support cost analysis and resistance factor selection. Example uses HP 14x117 H-pile with layered soil profile (soft clay/medium sand/stiff clay/dense sand/bedrock) Static analysis via FHWA method in APILE determines nominal resistance (shaft + toe) versus depth Pile cost generally linear with depth; support cost ($/kip) = pile cost / nominal resistance at that depth HP 14x117 with 50 ksi yield: nominal structural resistance = 1720 kips; factored structural resistance = 1032 kips (no shoe) or 860 kips (with shoe) Resistance factors for field verification: phi_dyn = 0.80 (SLT + 2% DLT), 0.75 (SLT or 100% DLT), 0.65 (2% DLT), 0.50 (WEA), 0.40 (FHWA Gates DF) Required nominal",
+      "description": "Cost Optimization Example HP 14x117 by the FHWA method in APILE; terminations 60 ft (150 kips), 70 ft (300 kips), 110 ft (1000 kips), rock near 118 ft Support cost ($/kip) = pile cost / nominal resistance: $39 at 60 ft, $19 at 70 ft, $9 at 110 ft, $5.50 at 118 ft (1722 kips) Nominal structural resistance 1720 kips; factored 1032 kips (no shoe) or 860 kips (severe driving, shoe) phi_dyn: 0.80 SLT and 2% DLT; 0.75 SLT or 100% DLT; 0.65 2% DLT; 0.50 WEA; 0.40 FHWA modified Gates R_ndr = P_r / phi_dyn; Table 3-3: 1290 kips and 116 ft for SLT and 2% DLT up to 2580 kips and rock for Gates (P_r 1032 kips) A drivability check can preclude using the maximum factored structural resistance HP 14x73 (P_r 520 kips): 104 ft with phi_dyn 0.80 against 116 ft with 0.40 Uplift support cost plateaus:",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -123,7 +123,7 @@
       "pdf_page_index": 110,
       "printed_page": 65,
       "page_estimated": false,
-      "description": "Pile Driving Induced Vibrations Assessment and mitigation of pile driving vibration effects on adjacent structures and soil settlement. Vibrations depend on soil type, pile type/section, hammer, penetration resistance, toe depth, and distance from pile Damage from two mechanisms: vibration-induced soil densification/settlement and direct vibration effects on structures Significant settlements can occur at peak particle velocities as low as 0.1-0.2 in/sec in loose sands Safe vibration levels typically 0.5-4 in/sec peak particle velocity (Wiss 1981); NFPA 495 limits are frequency-dependent Bay (2003): Class II soils (SPT-N 5-15, n=1.5) and Class III soils (SPT-N 15-50, n=1.1) vibration charts Pile impedance EA/C affects vibration: low impedance piles transmit more energy to soil along shaft",
+      "description": "Pile Driving Induced Vibrations Assessment and mitigation of pile driving vibration effects on adjacent structures and soil settlement. Vibrations depend on soil type, pile type/section, hammer, penetration resistance, toe depth, and distance from pile Damage from two mechanisms: vibration-induced soil densification/settlement and direct vibration effects on structures Significant settlements can occur at peak particle velocities as low as 0.1-0.2 in/sec in loose sands Typically recommended 'safe' levels 0.5-4 in/sec peak particle velocity (Wiss 1981); NFPA 495 limits are frequency-dependent Bay (2003): Class II soils (SPT-N 5-15, n=1.5) and Class III soils (SPT-N 15-50, n=1.1) vibration charts Pile impedance EA/C affects vibration: low impedance piles transmit more energy to soil along",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -134,7 +134,7 @@
       "pdf_page_index": 112,
       "printed_page": 67,
       "page_estimated": false,
-      "description": "Pile Driving Induced Vibrations Assessment and mitigation of pile driving vibration effects on adjacent structures and soil settlement. Vibrations depend on soil type, pile type/section, hammer, penetration resistance, toe depth, and distance from pile Damage from two mechanisms: vibration-induced soil densification/settlement and direct vibration effects on structures Significant settlements can occur at peak particle velocities as low as 0.1-0.2 in/sec in loose sands Safe vibration levels typically 0.5-4 in/sec peak particle velocity (Wiss 1981); NFPA 495 limits are frequency-dependent Bay (2003): Class II soils (SPT-N 5-15, n=1.5) and Class III soils (SPT-N 15-50, n=1.1) vibration charts Pile impedance EA/C affects vibration: low impedance piles transmit more energy to soil along shaft",
+      "description": "Pile Driving Induced Vibrations Assessment and mitigation of pile driving vibration effects on adjacent structures and soil settlement. Vibrations depend on soil type, pile type/section, hammer, penetration resistance, toe depth, and distance from pile Damage from two mechanisms: vibration-induced soil densification/settlement and direct vibration effects on structures Significant settlements can occur at peak particle velocities as low as 0.1-0.2 in/sec in loose sands Typically recommended 'safe' levels 0.5-4 in/sec peak particle velocity (Wiss 1981); NFPA 495 limits are frequency-dependent Bay (2003): Class II soils (SPT-N 5-15, n=1.5) and Class III soils (SPT-N 15-50, n=1.1) vibration charts Pile impedance EA/C affects vibration: low impedance piles transmit more energy to soil along",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -189,7 +189,7 @@
       "pdf_page_index": 118,
       "printed_page": 73,
       "page_estimated": false,
-      "description": "Unanticipated Occurrences Awareness of how external activities and unanticipated events can damage existing driven pile foundations. Foundation long-term performance assessed by total and differential settlement Unanticipated outside influences can compromise existing foundation performance Fill stockpile case (I-495, Delaware, 2014): ~50,000 ton stockpile near four piers caused lateral soil movement, deformed H-piles, cracked pile caps, and tilted 50-ft columns up to 2 feet Adjacent construction case (I-65, Wildcat Creek, 2015): new driven H-pile foundation released artesian pressures and sand beneath adjacent spread footing pier, causing up to 10 inches settlement and 7 inches rotation Both cases demonstrate the importance of considering effects of activities adjacent to existing pile",
+      "description": "Fill Stockpile I-495 near Wilmington, Delaware, summer 2014 (printed '2104'): columns 50 ft tall nearly 2 ft out of alignment A roughly 50,000 ton fill stockpile caused lateral soil movement, deformed H-piles and cracked pile caps Four piers tilted; the structure had performed as expected until the stockpile",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -200,7 +200,7 @@
       "pdf_page_index": 119,
       "printed_page": 74,
       "page_estimated": false,
-      "description": "Unanticipated Occurrences Awareness of how external activities and unanticipated events can damage existing driven pile foundations. Foundation long-term performance assessed by total and differential settlement Unanticipated outside influences can compromise existing foundation performance Fill stockpile case (I-495, Delaware, 2014): ~50,000 ton stockpile near four piers caused lateral soil movement, deformed H-piles, cracked pile caps, and tilted 50-ft columns up to 2 feet Adjacent construction case (I-65, Wildcat Creek, 2015): new driven H-pile foundation released artesian pressures and sand beneath adjacent spread footing pier, causing up to 10 inches settlement and 7 inches rotation Both cases demonstrate the importance of considering effects of activities adjacent to existing pile",
+      "description": "Fill Stockpile I-495 near Wilmington, Delaware, summer 2014 (printed '2104'): columns 50 ft tall nearly 2 ft out of alignment A roughly 50,000 ton fill stockpile caused lateral soil movement, deformed H-piles and cracked pile caps Four piers tilted; the structure had performed as expected until the stockpile",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -222,7 +222,7 @@
       "pdf_page_index": 136,
       "printed_page": 91,
       "page_estimated": false,
-      "description": "Soil Sampling Methods Soil sampling equipment and techniques for driven pile site characterization programs. Disturbed samples: split barrel sampler (SPT), sonic cores, or test pits Standard SPT sampler: 1.375 in ID, 2 in OD (ASTM D1586) Undisturbed samples: thin walled tubes (Shelby tubes, ASTM D1587), piston samplers, Pitcher sampler No sample will be completely undisturbed even with utmost care Thin walled tubes are typically used for fine-grained soils Piston samplers prevent soil from entering tube before sampling Pitcher sampler is attractive for alternating hard and soft layers",
+      "description": "Soil Sampling Methods Soil sampling equipment and techniques for driven pile site characterization programs. Disturbed samples: split barrel sampler (SPT), sonic cores, or test pits Standard SPT sampler: 1.375 in ID, 2 in OD (ASTM D1586) Split barrel samplers: 1.5 to 2.5 in. diameter, 18 or 24 in. long; disturbed samples not for strength or compressibility tests Undisturbed samples: thin walled tubes (Shelby tubes, ASTM D1587), piston samplers, Pitcher sampler No sample will be completely undisturbed even with utmost care Thin walled tubes are typically used for fine-grained soils Piston samplers prevent soil from entering tube before sampling Pitcher sampler is attractive for alternating hard and soft layers",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -233,7 +233,7 @@
       "pdf_page_index": 136,
       "printed_page": 91,
       "page_estimated": false,
-      "description": "Soil Sampling Methods Soil sampling equipment and techniques for driven pile site characterization programs. Disturbed samples: split barrel sampler (SPT), sonic cores, or test pits Standard SPT sampler: 1.375 in ID, 2 in OD (ASTM D1586) Undisturbed samples: thin walled tubes (Shelby tubes, ASTM D1587), piston samplers, Pitcher sampler No sample will be completely undisturbed even with utmost care Thin walled tubes are typically used for fine-grained soils Piston samplers prevent soil from entering tube before sampling Pitcher sampler is attractive for alternating hard and soft layers",
+      "description": "Soil Sampling Methods Soil sampling equipment and techniques for driven pile site characterization programs. Disturbed samples: split barrel sampler (SPT), sonic cores, or test pits Standard SPT sampler: 1.375 in ID, 2 in OD (ASTM D1586) Split barrel samplers: 1.5 to 2.5 in. diameter, 18 or 24 in. long; disturbed samples not for strength or compressibility tests Undisturbed samples: thin walled tubes (Shelby tubes, ASTM D1587), piston samplers, Pitcher sampler No sample will be completely undisturbed even with utmost care Thin walled tubes are typically used for fine-grained soils Piston samplers prevent soil from entering tube before sampling Pitcher sampler is attractive for alternating hard and soft layers",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -255,7 +255,7 @@
       "pdf_page_index": 147,
       "printed_page": 102,
       "page_estimated": false,
-      "description": "In-Situ Soil Testing Overview of in-situ testing methods for driven pile foundation design parameter determination. Primary in-situ tests: SPT (ASTM D1586), CPT/CPTu (ASTM D5778), VST (ASTM D2573) Lesser-used devices: PMT (ASTM D4719), DMT (ASTM D6635), dynamic cone All in-situ tests are index tests requiring local correlations In-situ tests should be benchmarked to laboratory tests where possible Each test method applies different loading conditions (orientation, rate of strain) In absence of adequate testing, engineer must use conservative approach with additional uncertainty",
+      "description": "In-Situ Soil Testing Overview of in-situ testing methods for driven pile foundation design parameter determination. Table 5-1: field and laboratory tests for each design parameter in cohesionless soil, cohesive soil and rock Primary in-situ tests: SPT, CPT, CPTu, SCPTu and vane shear; lesser used: PMT and DMT All in-situ tests are index tests that require local correlations; benchmark to laboratory tests where possible Without an adequate testing program a more conservative, less certain design results (not recommended) Table 5-2 (printed in 5.1.1) summarizes each in-situ method's use, advantages and disadvantages",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -266,7 +266,7 @@
       "pdf_page_index": 149,
       "printed_page": 104,
       "page_estimated": false,
-      "description": "Standard Penetration Test SPT execution, energy correction, and overburden normalization for driven pile design correlations. N value = sum of blows for 2nd and 3rd 6-inch drive increments 140 lb hammer, 30 inch drop height (ASTM D1586) Typical energy transfer: donut ~45%, safety ~60%, automatic ~80% SPT hammers should undergo yearly calibration per ASTM D4633 N60 = N * (ER/60) -- energy correction to 60% reference (N1)60 = Cn * N60 -- overburden stress correction Cn = 0.77 * log(40/sigma'vo) <= 2.0 (Peck et al. 1974, AASHTO recommended) Cn = (pa/sigma'vo)^n (Lio and Whitman 1986; n=1 for clays, 0.5 for sands) Correction of N values in cohesive soils is generally not necessary Safety hammer N values can be 1.9 to 2.7 times automatic hammer N values at the same site",
+      "description": "Standard Penetration Test SPT execution, energy correction, and overburden normalization for driven pile design correlations. 140 lb hammer, 30 in. drop; N = blows for the 2nd and 3rd 6 in. intervals; 50/x recorded on refusal Energy transfer typically about 45 % donut, 60 % safety, 80 % automatic; varies by hammer and crew Calibrate SPT hammers yearly to ASTM D4633 Finno (1989): safety hammer N 1.9 to 2.7 times automatic hammer N in adjacent borings Record the hammer type on every log; report N60 Design charts in the manual use N60 (60 % energy transfer) Eq. 5-1: N60 = N (ER/60); Eq. 5-2: (N1)60 = Cn N60 Eq. 5-3: Cn = 0.77 log(40/sigma'vo) <= 2.0, sigma'vo in ksf (Peck et al. 1974, AASHTO) Eq. 5-4: Cn = (pa/sigma'vo)^n; n = 1 in clays (Olsen 1997), 0.5 in sandy soils Correction of N",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -277,7 +277,7 @@
       "pdf_page_index": 150,
       "printed_page": 105,
       "page_estimated": false,
-      "description": "Standard Penetration Test SPT execution, energy correction, and overburden normalization for driven pile design correlations. N value = sum of blows for 2nd and 3rd 6-inch drive increments 140 lb hammer, 30 inch drop height (ASTM D1586) Typical energy transfer: donut ~45%, safety ~60%, automatic ~80% SPT hammers should undergo yearly calibration per ASTM D4633 N60 = N * (ER/60) -- energy correction to 60% reference (N1)60 = Cn * N60 -- overburden stress correction Cn = 0.77 * log(40/sigma'vo) <= 2.0 (Peck et al. 1974, AASHTO recommended) Cn = (pa/sigma'vo)^n (Lio and Whitman 1986; n=1 for clays, 0.5 for sands) Correction of N values in cohesive soils is generally not necessary Safety hammer N values can be 1.9 to 2.7 times automatic hammer N values at the same site",
+      "description": "Standard Penetration Test SPT execution, energy correction, and overburden normalization for driven pile design correlations. 140 lb hammer, 30 in. drop; N = blows for the 2nd and 3rd 6 in. intervals; 50/x recorded on refusal Energy transfer typically about 45 % donut, 60 % safety, 80 % automatic; varies by hammer and crew Calibrate SPT hammers yearly to ASTM D4633 Finno (1989): safety hammer N 1.9 to 2.7 times automatic hammer N in adjacent borings Record the hammer type on every log; report N60 Design charts in the manual use N60 (60 % energy transfer) Eq. 5-1: N60 = N (ER/60); Eq. 5-2: (N1)60 = Cn N60 Eq. 5-3: Cn = 0.77 log(40/sigma'vo) <= 2.0, sigma'vo in ksf (Peck et al. 1974, AASHTO) Eq. 5-4: Cn = (pa/sigma'vo)^n; n = 1 in clays (Olsen 1997), 0.5 in sandy soils Correction of N",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -288,7 +288,7 @@
       "pdf_page_index": 151,
       "printed_page": 106,
       "page_estimated": false,
-      "description": "Standard Penetration Test SPT execution, energy correction, and overburden normalization for driven pile design correlations. N value = sum of blows for 2nd and 3rd 6-inch drive increments 140 lb hammer, 30 inch drop height (ASTM D1586) Typical energy transfer: donut ~45%, safety ~60%, automatic ~80% SPT hammers should undergo yearly calibration per ASTM D4633 N60 = N * (ER/60) -- energy correction to 60% reference (N1)60 = Cn * N60 -- overburden stress correction Cn = 0.77 * log(40/sigma'vo) <= 2.0 (Peck et al. 1974, AASHTO recommended) Cn = (pa/sigma'vo)^n (Lio and Whitman 1986; n=1 for clays, 0.5 for sands) Correction of N values in cohesive soils is generally not necessary Safety hammer N values can be 1.9 to 2.7 times automatic hammer N values at the same site",
+      "description": "Standard Penetration Test SPT execution, energy correction, and overburden normalization for driven pile design correlations. 140 lb hammer, 30 in. drop; N = blows for the 2nd and 3rd 6 in. intervals; 50/x recorded on refusal Energy transfer typically about 45 % donut, 60 % safety, 80 % automatic; varies by hammer and crew Calibrate SPT hammers yearly to ASTM D4633 Finno (1989): safety hammer N 1.9 to 2.7 times automatic hammer N in adjacent borings Record the hammer type on every log; report N60 Design charts in the manual use N60 (60 % energy transfer) Eq. 5-1: N60 = N (ER/60); Eq. 5-2: (N1)60 = Cn N60 Eq. 5-3: Cn = 0.77 log(40/sigma'vo) <= 2.0, sigma'vo in ksf (Peck et al. 1974, AASHTO) Eq. 5-4: Cn = (pa/sigma'vo)^n; n = 1 in clays (Olsen 1997), 0.5 in sandy soils Correction of N",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -299,7 +299,7 @@
       "pdf_page_index": 152,
       "printed_page": 107,
       "page_estimated": false,
-      "description": "Standard Penetration Test SPT execution, energy correction, and overburden normalization for driven pile design correlations. N value = sum of blows for 2nd and 3rd 6-inch drive increments 140 lb hammer, 30 inch drop height (ASTM D1586) Typical energy transfer: donut ~45%, safety ~60%, automatic ~80% SPT hammers should undergo yearly calibration per ASTM D4633 N60 = N * (ER/60) -- energy correction to 60% reference (N1)60 = Cn * N60 -- overburden stress correction Cn = 0.77 * log(40/sigma'vo) <= 2.0 (Peck et al. 1974, AASHTO recommended) Cn = (pa/sigma'vo)^n (Lio and Whitman 1986; n=1 for clays, 0.5 for sands) Correction of N values in cohesive soils is generally not necessary Safety hammer N values can be 1.9 to 2.7 times automatic hammer N values at the same site",
+      "description": "Standard Penetration Test SPT execution, energy correction, and overburden normalization for driven pile design correlations. 140 lb hammer, 30 in. drop; N = blows for the 2nd and 3rd 6 in. intervals; 50/x recorded on refusal Energy transfer typically about 45 % donut, 60 % safety, 80 % automatic; varies by hammer and crew Calibrate SPT hammers yearly to ASTM D4633 Finno (1989): safety hammer N 1.9 to 2.7 times automatic hammer N in adjacent borings Record the hammer type on every log; report N60 Design charts in the manual use N60 (60 % energy transfer) Eq. 5-1: N60 = N (ER/60); Eq. 5-2: (N1)60 = Cn N60 Eq. 5-3: Cn = 0.77 log(40/sigma'vo) <= 2.0, sigma'vo in ksf (Peck et al. 1974, AASHTO) Eq. 5-4: Cn = (pa/sigma'vo)^n; n = 1 in clays (Olsen 1997), 0.5 in sandy soils Correction of N",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -310,7 +310,7 @@
       "pdf_page_index": 155,
       "printed_page": 110,
       "page_estimated": false,
-      "description": "Cone Penetration Test CPT/CPTu testing and soil behavior type classification for driven pile design parameter evaluation. 60-degree conical tip, 1.55 or 2.33 in2 cross section, pushed at 0.8 in/sec Measures cone tip resistance (qc), sleeve friction (fs), and pore pressure (u) Corrected tip resistance qt accounts for pore pressure geometrical effects Friction ratio Rf = fs/qt used for Robertson (1990) soil behavior type classification CPT can provide continuous profile of subsurface stratigraphy Correlations for Dr, phi', su, and SPT N60 from CPT data CPT is operator independent and highly repeatable Limitations: cannot push through dense/coarse deposits (SPT N > 30-40), no soil samples obtained 300 to 1200 ft of penetration testing per day depending on equipment and conditions Local",
+      "description": "Cone Penetration Test CPT/CPTu testing and soil behavior type classification for driven pile design parameter evaluation. Cone 1.55 or 2.33 in.2 with a 60 degree tip, pushed at 0.8 in./sec by a 10 to 40 kip ram (ASTM D5778) Measures qc, fs and u (u2 position); qt = qc corrected for pore pressure; Rf = fs/qt 300 to 1200 ft of sounding per day CPTu, SCPTu (shear wave velocity) and RCPTu (resistivity) variants Robertson (1990) soil behavior type chart (Figure 5-8) Correlations for Dr, phi', su, liquefaction and N60; accurate in cohesionless, less so in cohesive soils Continuous, economical, operator independent and highly repeatable Limits: soils with N above about 30 to 40 hard to penetrate; no samples; marine work needs a fixed platform",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -321,7 +321,7 @@
       "pdf_page_index": 155,
       "printed_page": 110,
       "page_estimated": false,
-      "description": "Cone Penetration Test CPT/CPTu testing and soil behavior type classification for driven pile design parameter evaluation. 60-degree conical tip, 1.55 or 2.33 in2 cross section, pushed at 0.8 in/sec Measures cone tip resistance (qc), sleeve friction (fs), and pore pressure (u) Corrected tip resistance qt accounts for pore pressure geometrical effects Friction ratio Rf = fs/qt used for Robertson (1990) soil behavior type classification CPT can provide continuous profile of subsurface stratigraphy Correlations for Dr, phi', su, and SPT N60 from CPT data CPT is operator independent and highly repeatable Limitations: cannot push through dense/coarse deposits (SPT N > 30-40), no soil samples obtained 300 to 1200 ft of penetration testing per day depending on equipment and conditions Local",
+      "description": "Cone Penetration Test CPT/CPTu testing and soil behavior type classification for driven pile design parameter evaluation. Cone 1.55 or 2.33 in.2 with a 60 degree tip, pushed at 0.8 in./sec by a 10 to 40 kip ram (ASTM D5778) Measures qc, fs and u (u2 position); qt = qc corrected for pore pressure; Rf = fs/qt 300 to 1200 ft of sounding per day CPTu, SCPTu (shear wave velocity) and RCPTu (resistivity) variants Robertson (1990) soil behavior type chart (Figure 5-8) Correlations for Dr, phi', su, liquefaction and N60; accurate in cohesionless, less so in cohesive soils Continuous, economical, operator independent and highly repeatable Limits: soils with N above about 30 to 40 hard to penetrate; no samples; marine work needs a fixed platform",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -332,7 +332,7 @@
       "pdf_page_index": 157,
       "printed_page": 112,
       "page_estimated": false,
-      "description": "Cone Penetration Test CPT/CPTu testing and soil behavior type classification for driven pile design parameter evaluation. 60-degree conical tip, 1.55 or 2.33 in2 cross section, pushed at 0.8 in/sec Measures cone tip resistance (qc), sleeve friction (fs), and pore pressure (u) Corrected tip resistance qt accounts for pore pressure geometrical effects Friction ratio Rf = fs/qt used for Robertson (1990) soil behavior type classification CPT can provide continuous profile of subsurface stratigraphy Correlations for Dr, phi', su, and SPT N60 from CPT data CPT is operator independent and highly repeatable Limitations: cannot push through dense/coarse deposits (SPT N > 30-40), no soil samples obtained 300 to 1200 ft of penetration testing per day depending on equipment and conditions Local",
+      "description": "Cone Penetration Test CPT/CPTu testing and soil behavior type classification for driven pile design parameter evaluation. Cone 1.55 or 2.33 in.2 with a 60 degree tip, pushed at 0.8 in./sec by a 10 to 40 kip ram (ASTM D5778) Measures qc, fs and u (u2 position); qt = qc corrected for pore pressure; Rf = fs/qt 300 to 1200 ft of sounding per day CPTu, SCPTu (shear wave velocity) and RCPTu (resistivity) variants Robertson (1990) soil behavior type chart (Figure 5-8) Correlations for Dr, phi', su, liquefaction and N60; accurate in cohesionless, less so in cohesive soils Continuous, economical, operator independent and highly repeatable Limits: soils with N above about 30 to 40 hard to penetrate; no samples; marine work needs a fixed platform",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -343,7 +343,7 @@
       "pdf_page_index": 158,
       "printed_page": 113,
       "page_estimated": false,
-      "description": "Vane Shear Test Measurement of undrained shear strength and clay sensitivity for pile design in soft to medium clays. Best suited for soft to medium clays (su < 1 ksf); not suitable in silt, sand, or gravel Four-bladed vane forced into undisturbed soil and rotated at 6 deg/min Measures both peak and remolded shear strengths for sensitivity determination Sensitivity provides qualitative indication of clay setup potential for pile drivability Rod friction must be subtracted to determine actual shear strength Can be used to depths of 13 to 20 feet without casing bore hole Quick and economical test; compares well with UC results at shallow depths",
+      "description": "Vane Shear Test Measurement of undrained shear strength and clay sensitivity for pile design in soft to medium clays. For undrained shear strength of soft to medium clays Four bladed vane forced into undisturbed soil and rotated until the soil shears Peak and remolded strengths give the sensitivity; rod friction must be subtracted Most accurate su for clays with su less than 1 ksf (ASTM D2573) Sensitivity is a qualitative, not quantitative, indicator of soil setup Only 13 to 20 ft deep without casing the bore hole (Table 5-2)",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -354,7 +354,7 @@
       "pdf_page_index": 171,
       "printed_page": 126,
       "page_estimated": false,
-      "description": "Effective Stress Friction Angle Correlations, Cohesionless Soils Correlating in-situ test results (SPT N and CPT qc) to effective friction angle for cohesionless soil pile design. AASHTO Table 5-5: (N1)60 < 4 -> phi' 25-30; (N1)60=10 -> 30-35; (N1)60=30 -> 35-40; (N1)60=50 -> 38-43 Meyerhof Table 5-6: very loose (<4 blows, <30 deg) to very dense (>50 blows, >45 deg) Schmertmann Eq. 5-14: phi' = atan[N60 / (12.2 + 20.3*(sigma'vo/pa))]^0.34 Hatanaka/Uchida Eq. 5-15: phi' = sqrt(20*(N1)60) + 20 Kulhawy/Chen Eq. 5-16: phi' = 27.5 + 9.2*log[(N1)60] CPT Meyerhof Table 5-7: qc < 4 tsf (<30 deg) to qc > 50 tsf (>45 deg) Robertson/Campanella Eq. 5-17: phi' = atan[0.1 + 0.38*log(qc/sigma'vo)] For saturated fine sand or silty sand, N = 15 + (N'-15)/2 for N' > 15 Reduce phi' by 5 deg for clayey sand,",
+      "description": "Effective Stress Friction Angle Correlations, Cohesionless Soils Correlating in-situ test results (SPT N and CPT qc) to effective friction angle for cohesionless soil pile design. Know whether a correlation uses N or (N1)60 (AASHTO 2014) Table 5-5 (AASHTO): (N1)60 < 4: 25-30; 4: 27-32; 10: 30-35; 30: 35-40; 50: 38-43 degrees Table 5-6 (Meyerhof 1956): very loose N < 4, phi' < 30 to very dense N > 50, phi' > 45; -5 deg clayey sand, +5 deg gravelly sand Saturated fine or silty sand: N = 15 + (N' - 15)/2 for N' > 15 Eq. 5-14 (Schmertmann 1975 via Kulhawy and Mayne 1990): phi' = arctan{[N60 / (12.2 + 20.3 sigma'vo/pa)]^0.34} Eq. 5-15 (Hatanaka and Uchida 1996): phi' = sqrt(20 (N1)60) + 20 Eq. 5-16 (Kulhawy and Chen 2007): phi' = 27.5 + 9.2 log[(N1)60] Table 5-7 (Meyerhof 1976): qc < 4 tsf,",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -376,7 +376,7 @@
       "pdf_page_index": 176,
       "printed_page": 131,
       "page_estimated": false,
-      "description": "Deformation Elastic modulus estimation and consolidation settlement calculations for driven pile serviceability limit state. Hooke's Law: sigma = E * epsilon (Eq. 5-22) Shear modulus: G = E / (2*(1+v)) (Eq. 5-23) E50 (50% secant modulus) commonly used for soil modulus determination Table 5-10: Clay soft sensitive Es 50-300 ksf; Sand dense Es 1000-1600 ksf; Gravel dense Es 2000-4000 ksf Table 5-11: Es from SPT -- 8*(N1)60 ksf for silts to 24*(N1)60 ksf for sandy gravels Table 5-12: Es = 2*qc for sandy soils from CPT Consolidation settlement equations use Cc, Cr, e0, H0, sigma'vo, delta_sigma, sigma_p NC soil: Sc = sum[Cc/(1+e0) * H0 * log((sigma'vo + delta_sigma)/sigma'vo)] OC soil (within recompression): Sc = sum[Cr/(1+e0) * H0 * log((sigma'vo + delta_sigma)/sigma'vo)] OC soil (exceeds",
+      "description": "Elastic Deformation Elastic soil modulus estimates for pile deformation analysis. Eq. 5-22: sigma = E epsilon (Hooke's law) E50: secant from the origin to half the peak stress (Figure 5-12) Eq. 5-23: G = E / [2 (1 + v)] Table 5-10: soft sensitive clay 50-300 ksf; dense sand 1,000-1,600 ksf; dense gravel 2,000-4,000 ksf Table 5-11: Es = 8 (N1)60 silts, 14 (N1)60 clean fine-medium sands, 20 (N1)60 coarse sands, 24 (N1)60 gravels (ksf) Table 5-12: Es = 2 qc for sandy soils Tabulated values are preliminary; testing should confirm or supersede them",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -387,7 +387,7 @@
       "pdf_page_index": 178,
       "printed_page": 133,
       "page_estimated": false,
-      "description": "Deformation Elastic modulus estimation and consolidation settlement calculations for driven pile serviceability limit state. Hooke's Law: sigma = E * epsilon (Eq. 5-22) Shear modulus: G = E / (2*(1+v)) (Eq. 5-23) E50 (50% secant modulus) commonly used for soil modulus determination Table 5-10: Clay soft sensitive Es 50-300 ksf; Sand dense Es 1000-1600 ksf; Gravel dense Es 2000-4000 ksf Table 5-11: Es from SPT -- 8*(N1)60 ksf for silts to 24*(N1)60 ksf for sandy gravels Table 5-12: Es = 2*qc for sandy soils from CPT Consolidation settlement equations use Cc, Cr, e0, H0, sigma'vo, delta_sigma, sigma_p NC soil: Sc = sum[Cc/(1+e0) * H0 * log((sigma'vo + delta_sigma)/sigma'vo)] OC soil (within recompression): Sc = sum[Cr/(1+e0) * H0 * log((sigma'vo + delta_sigma)/sigma'vo)] OC soil (exceeds",
+      "description": "Primary Consolidation Settlement Primary consolidation settlement of cohesive layers below pile groups. Consolidation test (AASHTO T216 / ASTM D2435) gives cv, Cc, Cr (Cs) and C_alpha e-log sigma'v curve gives the preconsolidation stress sigma_p (Figure 5-13) Eq. 5-24 NC: Sc = sum Cc/(1+eo) Ho log[(sigma'vo + delta_sigma)/sigma'vo] Eq. 5-25 OC, within recompression: same with Cr Eq. 5-26 OC, beyond sigma_p: Cr term to sigma_p plus Cc term beyond",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -398,7 +398,7 @@
       "pdf_page_index": 201,
       "printed_page": 156,
       "page_estimated": false,
-      "description": "Overview of Typical Pile Types Reference for initial screening and comparison of driven pile types based on structural capacity, typical dimensions, material specifications, and driving stress limits. Pile types classified into four main categories: concrete, steel, timber, and composite Timber piles: 15-120 ft lengths, 50-120 kips factored resistance, ASTM D25 specification Steel H-piles: 15-200 ft lengths, 260-1600 kips factored resistance, ASTM A572 Grade 50 standard Steel pipe piles: 15-200 ft lengths, 100-6500 kips factored resistance, closed end or open end Prestressed concrete piles: 30-150 ft lengths, 350-3000 kips factored resistance Monotube piles: 15-100 ft, 100-450 kips; Tapertube piles: 50-150 ft, 200-850 kips Composite piles: 50-200 ft lengths, 100-1250 kips, made from two",
+      "description": "Overview of Typical Pile Types Reference for initial screening and comparison of driven pile types based on structural capacity, typical dimensions, material specifications, and driving stress limits. Tables 6-1 to 6-7 (modified from NAVFAC 1982) are preliminary guidance, to be confirmed by local practice Timber (Table 6-1): 15-75 ft Southern Pine, 15-120 ft Douglas Fir; 50-120 kips; ASTM D25, AWPA UC4A-UC4C, UC5A-UC5C Steel H (Table 6-2): 15-200 ft; 260-1,600 kips; ASTM A572, A588 or A690 Grade 50, 60 (A572 Grade 50 standard) Steel pipe (Table 6-3): 15-200 ft; 100-1,250 kips closed end (D <= 30 in.) with concrete fill; 660-6,500 kips open end (16 in. <= D <= 72 in.) no concrete Prestressed concrete (Table 6-4): 30-150 ft; 350-2,200 kips solid square; 1,500-3,000 kips spun cast cylinder",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -409,7 +409,7 @@
       "pdf_page_index": 202,
       "printed_page": 157,
       "page_estimated": false,
-      "description": "Overview of Typical Pile Types Reference for initial screening and comparison of driven pile types based on structural capacity, typical dimensions, material specifications, and driving stress limits. Pile types classified into four main categories: concrete, steel, timber, and composite Timber piles: 15-120 ft lengths, 50-120 kips factored resistance, ASTM D25 specification Steel H-piles: 15-200 ft lengths, 260-1600 kips factored resistance, ASTM A572 Grade 50 standard Steel pipe piles: 15-200 ft lengths, 100-6500 kips factored resistance, closed end or open end Prestressed concrete piles: 30-150 ft lengths, 350-3000 kips factored resistance Monotube piles: 15-100 ft, 100-450 kips; Tapertube piles: 50-150 ft, 200-850 kips Composite piles: 50-200 ft lengths, 100-1250 kips, made from two",
+      "description": "Overview of Typical Pile Types Reference for initial screening and comparison of driven pile types based on structural capacity, typical dimensions, material specifications, and driving stress limits. Tables 6-1 to 6-7 (modified from NAVFAC 1982) are preliminary guidance, to be confirmed by local practice Timber (Table 6-1): 15-75 ft Southern Pine, 15-120 ft Douglas Fir; 50-120 kips; ASTM D25, AWPA UC4A-UC4C, UC5A-UC5C Steel H (Table 6-2): 15-200 ft; 260-1,600 kips; ASTM A572, A588 or A690 Grade 50, 60 (A572 Grade 50 standard) Steel pipe (Table 6-3): 15-200 ft; 100-1,250 kips closed end (D <= 30 in.) with concrete fill; 660-6,500 kips open end (16 in. <= D <= 72 in.) no concrete Prestressed concrete (Table 6-4): 30-150 ft; 350-2,200 kips solid square; 1,500-3,000 kips spun cast cylinder",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -420,7 +420,7 @@
       "pdf_page_index": 203,
       "printed_page": 158,
       "page_estimated": false,
-      "description": "Overview of Typical Pile Types Reference for initial screening and comparison of driven pile types based on structural capacity, typical dimensions, material specifications, and driving stress limits. Pile types classified into four main categories: concrete, steel, timber, and composite Timber piles: 15-120 ft lengths, 50-120 kips factored resistance, ASTM D25 specification Steel H-piles: 15-200 ft lengths, 260-1600 kips factored resistance, ASTM A572 Grade 50 standard Steel pipe piles: 15-200 ft lengths, 100-6500 kips factored resistance, closed end or open end Prestressed concrete piles: 30-150 ft lengths, 350-3000 kips factored resistance Monotube piles: 15-100 ft, 100-450 kips; Tapertube piles: 50-150 ft, 200-850 kips Composite piles: 50-200 ft lengths, 100-1250 kips, made from two",
+      "description": "Overview of Typical Pile Types Reference for initial screening and comparison of driven pile types based on structural capacity, typical dimensions, material specifications, and driving stress limits. Tables 6-1 to 6-7 (modified from NAVFAC 1982) are preliminary guidance, to be confirmed by local practice Timber (Table 6-1): 15-75 ft Southern Pine, 15-120 ft Douglas Fir; 50-120 kips; ASTM D25, AWPA UC4A-UC4C, UC5A-UC5C Steel H (Table 6-2): 15-200 ft; 260-1,600 kips; ASTM A572, A588 or A690 Grade 50, 60 (A572 Grade 50 standard) Steel pipe (Table 6-3): 15-200 ft; 100-1,250 kips closed end (D <= 30 in.) with concrete fill; 660-6,500 kips open end (16 in. <= D <= 72 in.) no concrete Prestressed concrete (Table 6-4): 30-150 ft; 350-2,200 kips solid square; 1,500-3,000 kips spun cast cylinder",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -431,7 +431,7 @@
       "pdf_page_index": 204,
       "printed_page": 159,
       "page_estimated": false,
-      "description": "Overview of Typical Pile Types Reference for initial screening and comparison of driven pile types based on structural capacity, typical dimensions, material specifications, and driving stress limits. Pile types classified into four main categories: concrete, steel, timber, and composite Timber piles: 15-120 ft lengths, 50-120 kips factored resistance, ASTM D25 specification Steel H-piles: 15-200 ft lengths, 260-1600 kips factored resistance, ASTM A572 Grade 50 standard Steel pipe piles: 15-200 ft lengths, 100-6500 kips factored resistance, closed end or open end Prestressed concrete piles: 30-150 ft lengths, 350-3000 kips factored resistance Monotube piles: 15-100 ft, 100-450 kips; Tapertube piles: 50-150 ft, 200-850 kips Composite piles: 50-200 ft lengths, 100-1250 kips, made from two",
+      "description": "Overview of Typical Pile Types Reference for initial screening and comparison of driven pile types based on structural capacity, typical dimensions, material specifications, and driving stress limits. Tables 6-1 to 6-7 (modified from NAVFAC 1982) are preliminary guidance, to be confirmed by local practice Timber (Table 6-1): 15-75 ft Southern Pine, 15-120 ft Douglas Fir; 50-120 kips; ASTM D25, AWPA UC4A-UC4C, UC5A-UC5C Steel H (Table 6-2): 15-200 ft; 260-1,600 kips; ASTM A572, A588 or A690 Grade 50, 60 (A572 Grade 50 standard) Steel pipe (Table 6-3): 15-200 ft; 100-1,250 kips closed end (D <= 30 in.) with concrete fill; 660-6,500 kips open end (16 in. <= D <= 72 in.) no concrete Prestressed concrete (Table 6-4): 30-150 ft; 350-2,200 kips solid square; 1,500-3,000 kips spun cast cylinder",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -442,7 +442,7 @@
       "pdf_page_index": 205,
       "printed_page": 160,
       "page_estimated": false,
-      "description": "Overview of Typical Pile Types Reference for initial screening and comparison of driven pile types based on structural capacity, typical dimensions, material specifications, and driving stress limits. Pile types classified into four main categories: concrete, steel, timber, and composite Timber piles: 15-120 ft lengths, 50-120 kips factored resistance, ASTM D25 specification Steel H-piles: 15-200 ft lengths, 260-1600 kips factored resistance, ASTM A572 Grade 50 standard Steel pipe piles: 15-200 ft lengths, 100-6500 kips factored resistance, closed end or open end Prestressed concrete piles: 30-150 ft lengths, 350-3000 kips factored resistance Monotube piles: 15-100 ft, 100-450 kips; Tapertube piles: 50-150 ft, 200-850 kips Composite piles: 50-200 ft lengths, 100-1250 kips, made from two",
+      "description": "Overview of Typical Pile Types Reference for initial screening and comparison of driven pile types based on structural capacity, typical dimensions, material specifications, and driving stress limits. Tables 6-1 to 6-7 (modified from NAVFAC 1982) are preliminary guidance, to be confirmed by local practice Timber (Table 6-1): 15-75 ft Southern Pine, 15-120 ft Douglas Fir; 50-120 kips; ASTM D25, AWPA UC4A-UC4C, UC5A-UC5C Steel H (Table 6-2): 15-200 ft; 260-1,600 kips; ASTM A572, A588 or A690 Grade 50, 60 (A572 Grade 50 standard) Steel pipe (Table 6-3): 15-200 ft; 100-1,250 kips closed end (D <= 30 in.) with concrete fill; 660-6,500 kips open end (16 in. <= D <= 72 in.) no concrete Prestressed concrete (Table 6-4): 30-150 ft; 350-2,200 kips solid square; 1,500-3,000 kips spun cast cylinder",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -453,7 +453,7 @@
       "pdf_page_index": 206,
       "printed_page": 161,
       "page_estimated": false,
-      "description": "Overview of Typical Pile Types Reference for initial screening and comparison of driven pile types based on structural capacity, typical dimensions, material specifications, and driving stress limits. Pile types classified into four main categories: concrete, steel, timber, and composite Timber piles: 15-120 ft lengths, 50-120 kips factored resistance, ASTM D25 specification Steel H-piles: 15-200 ft lengths, 260-1600 kips factored resistance, ASTM A572 Grade 50 standard Steel pipe piles: 15-200 ft lengths, 100-6500 kips factored resistance, closed end or open end Prestressed concrete piles: 30-150 ft lengths, 350-3000 kips factored resistance Monotube piles: 15-100 ft, 100-450 kips; Tapertube piles: 50-150 ft, 200-850 kips Composite piles: 50-200 ft lengths, 100-1250 kips, made from two",
+      "description": "Overview of Typical Pile Types Reference for initial screening and comparison of driven pile types based on structural capacity, typical dimensions, material specifications, and driving stress limits. Tables 6-1 to 6-7 (modified from NAVFAC 1982) are preliminary guidance, to be confirmed by local practice Timber (Table 6-1): 15-75 ft Southern Pine, 15-120 ft Douglas Fir; 50-120 kips; ASTM D25, AWPA UC4A-UC4C, UC5A-UC5C Steel H (Table 6-2): 15-200 ft; 260-1,600 kips; ASTM A572, A588 or A690 Grade 50, 60 (A572 Grade 50 standard) Steel pipe (Table 6-3): 15-200 ft; 100-1,250 kips closed end (D <= 30 in.) with concrete fill; 660-6,500 kips open end (16 in. <= D <= 72 in.) no concrete Prestressed concrete (Table 6-4): 30-150 ft; 350-2,200 kips solid square; 1,500-3,000 kips spun cast cylinder",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -464,7 +464,7 @@
       "pdf_page_index": 207,
       "printed_page": 162,
       "page_estimated": false,
-      "description": "Overview of Typical Pile Types Reference for initial screening and comparison of driven pile types based on structural capacity, typical dimensions, material specifications, and driving stress limits. Pile types classified into four main categories: concrete, steel, timber, and composite Timber piles: 15-120 ft lengths, 50-120 kips factored resistance, ASTM D25 specification Steel H-piles: 15-200 ft lengths, 260-1600 kips factored resistance, ASTM A572 Grade 50 standard Steel pipe piles: 15-200 ft lengths, 100-6500 kips factored resistance, closed end or open end Prestressed concrete piles: 30-150 ft lengths, 350-3000 kips factored resistance Monotube piles: 15-100 ft, 100-450 kips; Tapertube piles: 50-150 ft, 200-850 kips Composite piles: 50-200 ft lengths, 100-1250 kips, made from two",
+      "description": "Overview of Typical Pile Types Reference for initial screening and comparison of driven pile types based on structural capacity, typical dimensions, material specifications, and driving stress limits. Tables 6-1 to 6-7 (modified from NAVFAC 1982) are preliminary guidance, to be confirmed by local practice Timber (Table 6-1): 15-75 ft Southern Pine, 15-120 ft Douglas Fir; 50-120 kips; ASTM D25, AWPA UC4A-UC4C, UC5A-UC5C Steel H (Table 6-2): 15-200 ft; 260-1,600 kips; ASTM A572, A588 or A690 Grade 50, 60 (A572 Grade 50 standard) Steel pipe (Table 6-3): 15-200 ft; 100-1,250 kips closed end (D <= 30 in.) with concrete fill; 660-6,500 kips open end (16 in. <= D <= 72 in.) no concrete Prestressed concrete (Table 6-4): 30-150 ft; 350-2,200 kips solid square; 1,500-3,000 kips spun cast cylinder",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -475,7 +475,7 @@
       "pdf_page_index": 208,
       "printed_page": 163,
       "page_estimated": false,
-      "description": "Overview of Typical Pile Types Reference for initial screening and comparison of driven pile types based on structural capacity, typical dimensions, material specifications, and driving stress limits. Pile types classified into four main categories: concrete, steel, timber, and composite Timber piles: 15-120 ft lengths, 50-120 kips factored resistance, ASTM D25 specification Steel H-piles: 15-200 ft lengths, 260-1600 kips factored resistance, ASTM A572 Grade 50 standard Steel pipe piles: 15-200 ft lengths, 100-6500 kips factored resistance, closed end or open end Prestressed concrete piles: 30-150 ft lengths, 350-3000 kips factored resistance Monotube piles: 15-100 ft, 100-450 kips; Tapertube piles: 50-150 ft, 200-850 kips Composite piles: 50-200 ft lengths, 100-1250 kips, made from two",
+      "description": "Overview of Typical Pile Types Reference for initial screening and comparison of driven pile types based on structural capacity, typical dimensions, material specifications, and driving stress limits. Tables 6-1 to 6-7 (modified from NAVFAC 1982) are preliminary guidance, to be confirmed by local practice Timber (Table 6-1): 15-75 ft Southern Pine, 15-120 ft Douglas Fir; 50-120 kips; ASTM D25, AWPA UC4A-UC4C, UC5A-UC5C Steel H (Table 6-2): 15-200 ft; 260-1,600 kips; ASTM A572, A588 or A690 Grade 50, 60 (A572 Grade 50 standard) Steel pipe (Table 6-3): 15-200 ft; 100-1,250 kips closed end (D <= 30 in.) with concrete fill; 660-6,500 kips open end (16 in. <= D <= 72 in.) no concrete Prestressed concrete (Table 6-4): 30-150 ft; 350-2,200 kips solid square; 1,500-3,000 kips spun cast cylinder",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -486,7 +486,7 @@
       "pdf_page_index": 209,
       "printed_page": 164,
       "page_estimated": false,
-      "description": "Timber Piles Low to moderate load applications, friction piles in granular soils, fender systems, and projects where piles remain below the permanent water table. Round tapered cross section: butt diameter 12-22 in, toe diameter 5-9 in Southern Pine: up to 75 ft; Douglas Fir: up to 120 ft Factored resistance 50-120 kips; best as friction piles in granular materials ASTM D25 for pile dimensions; AWPA C3 for preservative treatment Permanently submerged piles last indefinitely; treated marine piles last 25-50 years depending on climate Splices are difficult and undesirable per AASHTO (2010) Preservative treatments: CCA (Southern Pine), ACZA (Douglas Fir), creosote (common but regionally restricted) Taper is effective in increasing shaft resistance, particularly in loose sands",
+      "description": "Timber Piles Low to moderate load applications, friction piles in granular soils, fender systems, and projects where piles remain below the permanent water table. Southern Pine up to 75 ft; Douglas Fir up to 120 ft; ASTM D25 dimensions, AWPA C3 treatment Best for modest loads as friction piles in sands, silts and clays; taper increases shaft resistance in loose sands Not for dense gravel, boulders, till or toe bearing on rock: head and toe damage in hard driving Control brooming with a cushioned helmet or metal strapping; use a metal toe shoe in hard driving Splices difficult and undesirable; only if specified and approved (AASHTO 2010 construction specifications) Treatments: CCA (Southern Pine), ACZA (Douglas Fir); creosote only as dual treatment in southern waters (limnoria tripunctata)",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -497,7 +497,7 @@
       "pdf_page_index": 211,
       "printed_page": 166,
       "page_estimated": false,
-      "description": "Steel H-Piles Best suited for toe bearing on rock or dense soil, projects requiring variable pile lengths, and where soil heave must be minimized. Not ideal as friction piles in loose granular materials. Rolled wide flange sections, 8-18 inch standard sizes, flange width approximately equal to depth ASTM A572 Grade 50 is standard; A588 and A690 available for corrosion resistance Factored resistance 260-1600 kips; lengths 15-200 ft Minimal soil displacement reduces heave problems during pile group installation Plugging can occur: soil adheres to web and flanges creating closed-end behavior Pile toe shoes recommended for driving through dense soil, boulders, or into rock Easy to splice with full penetration groove welds; easy to extend or cut Corrosion rate approximately 0.003 in/year in",
+      "description": "Steel H-Piles Best suited for toe bearing on rock or dense soil, projects requiring variable pile lengths, and where soil heave must be minimized. Not ideal as friction piles in loose granular materials. Rolled wide flange, flange width about equal to depth; standard sizes 8 to 18 in. ASTM A572 Grade 50 standard (A36 no longer readily available); A588 and A690 for corrosion resistance, long lead times; some A572 Grade 60 Very effective into soft rock; hard driving with little toe damage Low displacement: easier through dense layers and stiff clays, less heave; may plug and drive as a displacement pile As friction piles in granular soils often do not plug in driving, low dynamic resistance, length overruns Corrosion not a practical problem in natural soil; protect in fill at or above the",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -508,7 +508,7 @@
       "pdf_page_index": 214,
       "printed_page": 169,
       "page_estimated": false,
-      "description": "Steel Pipe Piles Closed end pipes for variable-length friction or end bearing applications, especially seismic zones. Open end pipes for hard driving, large lateral loads, scour, vessel impact, and major bridge piers. Closed end: 8-30 in diameter typical, wall thickness 0.188-1 in, toe plate 0.75-2 in thick Open end: 8-160 in diameter available, wall thickness 0.5 in or greater Closed end factored resistance: 100-1,250 kips (D <= 30 in with concrete fill) Open end factored resistance: 660-6,500 kips (16 in <= D <= 72 in, no concrete) ASTM A252 Grade 2 or 3, API-5L, or API-2B specifications; ACI 318 for concrete fill Closed end can be internally inspected after driving; may be concrete filled with reinforcement Open end pipes may form soil plug increasing toe resistance (plugging discussed",
+      "description": "Closed End Steel Pipe Closed end pipe piles for friction, end bearing or rock socketed support, including seismic areas. Typically 8 to 30 in. diameter, 0.188 to 1 in. wall; toe plate 0.75 to 2 in. Cruciform-reinforced plate or conical point on weathered rock or boulders Friction, toe bearing, combined or rock socketed; used extensively in seismic areas for ductility Concrete fill with cage or H-section; reinforcement only where concrete may be in tension Thin wall pipe may be mandrel driven and inspected internally before concreting Full penetration groove weld splices; proprietary sleeves only if full strength in bending and tension",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -519,7 +519,7 @@
       "pdf_page_index": 216,
       "printed_page": 171,
       "page_estimated": false,
-      "description": "Steel Pipe Piles Closed end pipes for variable-length friction or end bearing applications, especially seismic zones. Open end pipes for hard driving, large lateral loads, scour, vessel impact, and major bridge piers. Closed end: 8-30 in diameter typical, wall thickness 0.188-1 in, toe plate 0.75-2 in thick Open end: 8-160 in diameter available, wall thickness 0.5 in or greater Closed end factored resistance: 100-1,250 kips (D <= 30 in with concrete fill) Open end factored resistance: 660-6,500 kips (16 in <= D <= 72 in, no concrete) ASTM A252 Grade 2 or 3, API-5L, or API-2B specifications; ACI 318 for concrete fill Closed end can be internally inspected after driving; may be concrete filled with reinforcement Open end pipes may form soil plug increasing toe resistance (plugging discussed",
+      "description": "Open End Steel Pipe Open end and large diameter pipe piles for hard driving, high lateral demand and major bridge piers. 8 to 160 in. diameter; walls commonly 0.5 in. or more Large diameter means over 36 in. (Brown and Thompson 2015): vessel impact, overturning, scour, ice, seismic May plug in dense material and act closed end (Section 7.10.7); keep the plug unless cleaning out to concrete Large diameter pipe cores during driving but plugs under static load; constrictor plates force plugging Cutting shoes and a thicker wall over the bottom two diameters for hard driving Not recommended as friction piles in granular material (length and cost overruns, Table 6-3)",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -530,7 +530,7 @@
       "pdf_page_index": 216,
       "printed_page": 171,
       "page_estimated": false,
-      "description": "Steel Pipe Piles Closed end pipes for variable-length friction or end bearing applications, especially seismic zones. Open end pipes for hard driving, large lateral loads, scour, vessel impact, and major bridge piers. Closed end: 8-30 in diameter typical, wall thickness 0.188-1 in, toe plate 0.75-2 in thick Open end: 8-160 in diameter available, wall thickness 0.5 in or greater Closed end factored resistance: 100-1,250 kips (D <= 30 in with concrete fill) Open end factored resistance: 660-6,500 kips (16 in <= D <= 72 in, no concrete) ASTM A252 Grade 2 or 3, API-5L, or API-2B specifications; ACI 318 for concrete fill Closed end can be internally inspected after driving; may be concrete filled with reinforcement Open end pipes may form soil plug increasing toe resistance (plugging discussed",
+      "description": "Open End Steel Pipe Open end and large diameter pipe piles for hard driving, high lateral demand and major bridge piers. 8 to 160 in. diameter; walls commonly 0.5 in. or more Large diameter means over 36 in. (Brown and Thompson 2015): vessel impact, overturning, scour, ice, seismic May plug in dense material and act closed end (Section 7.10.7); keep the plug unless cleaning out to concrete Large diameter pipe cores during driving but plugs under static load; constrictor plates force plugging Cutting shoes and a thicker wall over the bottom two diameters for hard driving Not recommended as friction piles in granular material (length and cost overruns, Table 6-3)",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -541,7 +541,7 @@
       "pdf_page_index": 217,
       "printed_page": 172,
       "page_estimated": false,
-      "description": "Steel Pipe Piles Closed end pipes for variable-length friction or end bearing applications, especially seismic zones. Open end pipes for hard driving, large lateral loads, scour, vessel impact, and major bridge piers. Closed end: 8-30 in diameter typical, wall thickness 0.188-1 in, toe plate 0.75-2 in thick Open end: 8-160 in diameter available, wall thickness 0.5 in or greater Closed end factored resistance: 100-1,250 kips (D <= 30 in with concrete fill) Open end factored resistance: 660-6,500 kips (16 in <= D <= 72 in, no concrete) ASTM A252 Grade 2 or 3, API-5L, or API-2B specifications; ACI 318 for concrete fill Closed end can be internally inspected after driving; may be concrete filled with reinforcement Open end pipes may form soil plug increasing toe resistance (plugging discussed",
+      "description": "Open End Steel Pipe Open end and large diameter pipe piles for hard driving, high lateral demand and major bridge piers. 8 to 160 in. diameter; walls commonly 0.5 in. or more Large diameter means over 36 in. (Brown and Thompson 2015): vessel impact, overturning, scour, ice, seismic May plug in dense material and act closed end (Section 7.10.7); keep the plug unless cleaning out to concrete Large diameter pipe cores during driving but plugs under static load; constrictor plates force plugging Cutting shoes and a thicker wall over the bottom two diameters for hard driving Not recommended as friction piles in granular material (length and cost overruns, Table 6-3)",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -552,7 +552,7 @@
       "pdf_page_index": 217,
       "printed_page": 172,
       "page_estimated": false,
-      "description": "Steel Pipe Piles Closed end pipes for variable-length friction or end bearing applications, especially seismic zones. Open end pipes for hard driving, large lateral loads, scour, vessel impact, and major bridge piers. Closed end: 8-30 in diameter typical, wall thickness 0.188-1 in, toe plate 0.75-2 in thick Open end: 8-160 in diameter available, wall thickness 0.5 in or greater Closed end factored resistance: 100-1,250 kips (D <= 30 in with concrete fill) Open end factored resistance: 660-6,500 kips (16 in <= D <= 72 in, no concrete) ASTM A252 Grade 2 or 3, API-5L, or API-2B specifications; ACI 318 for concrete fill Closed end can be internally inspected after driving; may be concrete filled with reinforcement Open end pipes may form soil plug increasing toe resistance (plugging discussed",
+      "description": "Open End Steel Pipe Open end and large diameter pipe piles for hard driving, high lateral demand and major bridge piers. 8 to 160 in. diameter; walls commonly 0.5 in. or more Large diameter means over 36 in. (Brown and Thompson 2015): vessel impact, overturning, scour, ice, seismic May plug in dense material and act closed end (Section 7.10.7); keep the plug unless cleaning out to concrete Large diameter pipe cores during driving but plugs under static load; constrictor plates force plugging Cutting shoes and a thicker wall over the bottom two diameters for hard driving Not recommended as friction piles in granular material (length and cost overruns, Table 6-3)",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -563,7 +563,7 @@
       "pdf_page_index": 218,
       "printed_page": 173,
       "page_estimated": false,
-      "description": "Monotube Piles Friction piles in granular soils where increased shaft resistance from taper is advantageous. Suitable for relatively shorter pile lengths. Proprietary pile driven without a mandrel, filled with concrete after driving Longitudinally fluted shell with tapered lower section Toe diameter 8 or 8.5 in, butt diameter 12-18 in, taper length 10-75 ft Shell thickness 0.15-0.24 in (9 to 3 gage); cold working increases yield above 50 ksi Non-tapered extensions available in 20 and 40 ft lengths Factored resistance 100-450 kips; typical lengths 15-100 ft Spliced by inserting smaller bottom section of extension into top of previously driven section Best suited as friction pile in granular soils; tapered section improves unit shaft resistance",
+      "description": "Monotube Piles Friction piles in granular soils where increased shaft resistance from taper is advantageous. Suitable for relatively shorter pile lengths. Proprietary, fluted and tapered, driven without a mandrel, concrete filled after driving Toe 8 or 8.5 in., butt 12, 14, 16 or 18 in., taper 10 to 75 ft; extensions 20 and 40 ft Shell 9 to 3 gage (about 0.15 to 0.24 in.); cold working raises yield above 50 ksi Splice: extension inserted and fillet welded, often with four V notches Best suited as a friction pile in granular soils (Table 6-5)",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -574,7 +574,7 @@
       "pdf_page_index": 219,
       "printed_page": 174,
       "page_estimated": false,
-      "description": "Tapertube Piles Friction piles in granular soils where increased shaft resistance from taper is beneficial and higher factored resistance than Monotube piles is needed. 12-sided polygon tapered lower section with cylindrical pipe pile upper extensions Tapered section: 15-30 ft long, toe diameter 8-14 in, head diameter 12-24 in Wall thickness 0.1875-0.625 in; tapered section yield strength 50 ksi Upper pipe: ASTM A252 Grade 3, yield strength 45 ksi Factored resistance 200-850 kips; typical lengths 50-150 ft Full penetration weld connection between tapered and pipe sections Standard pipe piles may be spliced to tapered sections Best suited as friction pile in granular soils",
+      "description": "Tapertube Piles Friction piles in granular soils where increased shaft resistance from taper is beneficial and higher factored resistance than Monotube piles is needed. 12 sided tapered lower section 15 to 30 ft long; toe 8 to 14 in., head 12 to 24 in. Tapered walls 0.1875 to 0.625 in. (text), yield 50 ksi; Figure 6-7 prints 0.312 to 0.5 in. Upper pipe ASTM A252 Grade 3, yield 45 ksi; full penetration weld or sleeve splices Driven from the top and concrete filled; best suited as a friction pile in granular soils (Table 6-6)",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -607,7 +607,7 @@
       "pdf_page_index": 222,
       "printed_page": 177,
       "page_estimated": false,
-      "description": "Prestressed Concrete Piles High capacity bearing or friction piles, marine structures requiring durability, and projects where corrosion resistance is critical. Not ideal for sites with hard driving obstructions. Shapes: solid square (8-24 in), square hollow (20-36 in), octagonal (10-24 in), round hollow (36-66 in) Factored resistance: 350-2,200 kips (solid square), 1,500-3,000 kips (spun cast cylinder) Typical lengths 30-150 ft; concrete f'c = 5-6 ksi at 28 days Pre-tensioned piles cast to full length; post-tensioned piles assembled from sections Prestressing keeps cracks closed, improving durability and corrosion resistance vs reinforced concrete More vulnerable to damage from hard layers during driving due to reduced compression strength Splicing is difficult and should be anticipated",
+      "description": "Prestressed Concrete Piles High capacity bearing or friction piles, marine structures requiring durability, and projects where corrosion resistance is critical. Not ideal for sites with hard driving obstructions. Solid square to octagonal; larger sections hollow; pre-tensioned or post-tensioned Prestressing steel ASTM A416, A421, A882; lighter and longer than reinforced piles of the same size Durability: prestress keeps hairline cracks closed; epoxy coating generally not needed Vulnerable on hard layers and obstructions; large tension stresses possible in easy driving in soft soils Plan splice details where seismic head reinforcement is needed and lengths may vary 28 day f'c typically 5 to 6 ksi Figure 6-20 sizes: 8-24 in. solid square, 20-36 in. hollow square, 10-24 in. octagonal, 36-66",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -618,7 +618,7 @@
       "pdf_page_index": 222,
       "printed_page": 177,
       "page_estimated": false,
-      "description": "Prestressed Concrete Piles High capacity bearing or friction piles, marine structures requiring durability, and projects where corrosion resistance is critical. Not ideal for sites with hard driving obstructions. Shapes: solid square (8-24 in), square hollow (20-36 in), octagonal (10-24 in), round hollow (36-66 in) Factored resistance: 350-2,200 kips (solid square), 1,500-3,000 kips (spun cast cylinder) Typical lengths 30-150 ft; concrete f'c = 5-6 ksi at 28 days Pre-tensioned piles cast to full length; post-tensioned piles assembled from sections Prestressing keeps cracks closed, improving durability and corrosion resistance vs reinforced concrete More vulnerable to damage from hard layers during driving due to reduced compression strength Splicing is difficult and should be anticipated",
+      "description": "Prestressed Concrete Piles High capacity bearing or friction piles, marine structures requiring durability, and projects where corrosion resistance is critical. Not ideal for sites with hard driving obstructions. Solid square to octagonal; larger sections hollow; pre-tensioned or post-tensioned Prestressing steel ASTM A416, A421, A882; lighter and longer than reinforced piles of the same size Durability: prestress keeps hairline cracks closed; epoxy coating generally not needed Vulnerable on hard layers and obstructions; large tension stresses possible in easy driving in soft soils Plan splice details where seismic head reinforcement is needed and lengths may vary 28 day f'c typically 5 to 6 ksi Figure 6-20 sizes: 8-24 in. solid square, 20-36 in. hollow square, 10-24 in. octagonal, 36-66",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -629,7 +629,7 @@
       "pdf_page_index": 224,
       "printed_page": 179,
       "page_estimated": false,
-      "description": "Concrete Cylinder Piles Marine structures, land trestles, and applications requiring high lateral resistance, bending capacity, and corrosion resistance. May eliminate pile cap costs. Spun-cast: 36-66 in diameter, 5-6.5 in wall, 8 ksi concrete, post-tensioned at 1.5 ksi prestress Bed-cast: 60 in diameter, 7.5 in wall, 5.5 ksi concrete, pretensioned, single-length production ICP piles: 10-48 in diameter, 2.25-5.9 in wall, pretensioned and spun, welded steel end plates for splicing Cylinder piles may eliminate pile cap by extending directly to superstructure support level Jetting commonly used for installation to near-depth, followed by impact driving for resistance Vent holes in pile wall reduce internal water pressure during driving and gas buildup in service Spun-cast piles have",
+      "description": "Spun-Cast Cylinder Piles Spun-cast cylinder piles for marine structures and trestles. Sections 8, 12 or 16 ft; diameters 36, 42, 54, 66 in.; walls 5, 6 or 6.5 in. Spun concrete routinely 8 ksi, virtually impervious; excellent chloride resistance Post-tensioned to a typical prestress of 1.5 ksi, ducts grouted Marine structures and land trestles; air entrainment and spiral reinforcement against freeze-thaw",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -640,7 +640,7 @@
       "pdf_page_index": 225,
       "printed_page": 180,
       "page_estimated": false,
-      "description": "Concrete Cylinder Piles Marine structures, land trestles, and applications requiring high lateral resistance, bending capacity, and corrosion resistance. May eliminate pile cap costs. Spun-cast: 36-66 in diameter, 5-6.5 in wall, 8 ksi concrete, post-tensioned at 1.5 ksi prestress Bed-cast: 60 in diameter, 7.5 in wall, 5.5 ksi concrete, pretensioned, single-length production ICP piles: 10-48 in diameter, 2.25-5.9 in wall, pretensioned and spun, welded steel end plates for splicing Cylinder piles may eliminate pile cap by extending directly to superstructure support level Jetting commonly used for installation to near-depth, followed by impact driving for resistance Vent holes in pile wall reduce internal water pressure during driving and gas buildup in service Spun-cast piles have",
+      "description": "Spun-Cast Cylinder Piles Spun-cast cylinder piles for marine structures and trestles. Sections 8, 12 or 16 ft; diameters 36, 42, 54, 66 in.; walls 5, 6 or 6.5 in. Spun concrete routinely 8 ksi, virtually impervious; excellent chloride resistance Post-tensioned to a typical prestress of 1.5 ksi, ducts grouted Marine structures and land trestles; air entrainment and spiral reinforcement against freeze-thaw",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -651,7 +651,7 @@
       "pdf_page_index": 226,
       "printed_page": 181,
       "page_estimated": false,
-      "description": "Composite Piles Special conditions such as scour zones, corrosive surficial soils, uplift requirements, or where a single pile type cannot satisfy both upper and lower section design requirements. Two or more sections of different materials combined for specific site conditions Typical lengths 50-200 ft; factored resistance 100-1,250 kips Precast concrete-H-pile: for scour, uplift, or corrosive surficial soil conditions Steel pipe-H-pile: pipe bending resistance upper + low displacement H-pile lower Corrugated shell-timber: timber below permanent water table, concrete-filled shell above Corrugated shell-pipe: mandrel-driven shell upper over pipe pile lower Weakest material governs structural design and factored resistance Difficult to attain good joints between materials except for",
+      "description": "Precast Concrete - Steel H-pile Composite Piles Concrete-steel composite piles for scour, uplift or corrosive surface soils. H-pile or pipe stinger below precast concrete For scour or uplift penetration beyond a displacement pile, or corrosive surficial soils",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -662,7 +662,7 @@
       "pdf_page_index": 227,
       "printed_page": 182,
       "page_estimated": false,
-      "description": "Composite Piles Special conditions such as scour zones, corrosive surficial soils, uplift requirements, or where a single pile type cannot satisfy both upper and lower section design requirements. Two or more sections of different materials combined for specific site conditions Typical lengths 50-200 ft; factored resistance 100-1,250 kips Precast concrete-H-pile: for scour, uplift, or corrosive surficial soil conditions Steel pipe-H-pile: pipe bending resistance upper + low displacement H-pile lower Corrugated shell-timber: timber below permanent water table, concrete-filled shell above Corrugated shell-pipe: mandrel-driven shell upper over pipe pile lower Weakest material governs structural design and factored resistance Difficult to attain good joints between materials except for",
+      "description": "Steel Pipe - H-pile Composite Piles Pipe over H-pile composite piles. Pipe above for bending resistance; H-pile below for low displacement penetration of dense soils",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -673,7 +673,7 @@
       "pdf_page_index": 234,
       "printed_page": 189,
       "page_estimated": false,
-      "description": "Design Considerations in Aggressive Subsurface Environments All projects where piles are installed in contaminated soils, marine environments, fill materials, low pH soils, or other aggressive subsurface conditions requiring durability assessment. Aggressive environment: pH < 4.5, resistivity < 2,000 ohm-cm, or chloride > 100 ppm / sulfate > 200 ppm Resistivity > 5,000 ohm-cm considered non-aggressive; 2,000-5,000 requires additional testing Steel corrosion rate in fill/disturbed soils: 0.003 in/year conservative estimate Marine corrosion zones: splash (0.0035 in/yr), intertidal (0.0016 in/yr), low water (0.0035 in/yr), immersion (0.002 in/yr), buried (0.0008 in/yr) AASHTO R 27-01 Phase I/II assessment procedure for non-marine steel pile corrosion Sulfate attacks concrete through",
+      "description": "Corrosion in Non-Marine Environments Corrosion assessment of steel piles on land and in fresh water. AASHTO R 27-01 (2010): Phase I screening, Phase II if the cap is at or above the water table Phase II: continuous samples to 3 ft below the water table, laboratory tests (Figure 6-26) Flow charts omit chemical contamination, stray DC currents and microbes: consult a specialist Fill or disturbed natural soil: conservative rate 0.003 in./year Fresh water immersion 0.002 in./year; canal waterline up to 0.013 in./year (Morley 1979)",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -684,7 +684,7 @@
       "pdf_page_index": 235,
       "printed_page": 190,
       "page_estimated": false,
-      "description": "Design Considerations in Aggressive Subsurface Environments All projects where piles are installed in contaminated soils, marine environments, fill materials, low pH soils, or other aggressive subsurface conditions requiring durability assessment. Aggressive environment: pH < 4.5, resistivity < 2,000 ohm-cm, or chloride > 100 ppm / sulfate > 200 ppm Resistivity > 5,000 ohm-cm considered non-aggressive; 2,000-5,000 requires additional testing Steel corrosion rate in fill/disturbed soils: 0.003 in/year conservative estimate Marine corrosion zones: splash (0.0035 in/yr), intertidal (0.0016 in/yr), low water (0.0035 in/yr), immersion (0.002 in/yr), buried (0.0008 in/yr) AASHTO R 27-01 Phase I/II assessment procedure for non-marine steel pile corrosion Sulfate attacks concrete through",
+      "description": "Corrosion in Non-Marine Environments Corrosion assessment of steel piles on land and in fresh water. AASHTO R 27-01 (2010): Phase I screening, Phase II if the cap is at or above the water table Phase II: continuous samples to 3 ft below the water table, laboratory tests (Figure 6-26) Flow charts omit chemical contamination, stray DC currents and microbes: consult a specialist Fill or disturbed natural soil: conservative rate 0.003 in./year Fresh water immersion 0.002 in./year; canal waterline up to 0.013 in./year (Morley 1979)",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -695,7 +695,7 @@
       "pdf_page_index": 236,
       "printed_page": 191,
       "page_estimated": false,
-      "description": "Design Considerations in Aggressive Subsurface Environments All projects where piles are installed in contaminated soils, marine environments, fill materials, low pH soils, or other aggressive subsurface conditions requiring durability assessment. Aggressive environment: pH < 4.5, resistivity < 2,000 ohm-cm, or chloride > 100 ppm / sulfate > 200 ppm Resistivity > 5,000 ohm-cm considered non-aggressive; 2,000-5,000 requires additional testing Steel corrosion rate in fill/disturbed soils: 0.003 in/year conservative estimate Marine corrosion zones: splash (0.0035 in/yr), intertidal (0.0016 in/yr), low water (0.0035 in/yr), immersion (0.002 in/yr), buried (0.0008 in/yr) AASHTO R 27-01 Phase I/II assessment procedure for non-marine steel pile corrosion Sulfate attacks concrete through",
+      "description": "Corrosion in Non-Marine Environments Corrosion assessment of steel piles on land and in fresh water. AASHTO R 27-01 (2010): Phase I screening, Phase II if the cap is at or above the water table Phase II: continuous samples to 3 ft below the water table, laboratory tests (Figure 6-26) Flow charts omit chemical contamination, stray DC currents and microbes: consult a specialist Fill or disturbed natural soil: conservative rate 0.003 in./year Fresh water immersion 0.002 in./year; canal waterline up to 0.013 in./year (Morley 1979)",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -706,7 +706,7 @@
       "pdf_page_index": 238,
       "printed_page": 193,
       "page_estimated": false,
-      "description": "Design Considerations in Aggressive Subsurface Environments All projects where piles are installed in contaminated soils, marine environments, fill materials, low pH soils, or other aggressive subsurface conditions requiring durability assessment. Aggressive environment: pH < 4.5, resistivity < 2,000 ohm-cm, or chloride > 100 ppm / sulfate > 200 ppm Resistivity > 5,000 ohm-cm considered non-aggressive; 2,000-5,000 requires additional testing Steel corrosion rate in fill/disturbed soils: 0.003 in/year conservative estimate Marine corrosion zones: splash (0.0035 in/yr), intertidal (0.0016 in/yr), low water (0.0035 in/yr), immersion (0.002 in/yr), buried (0.0008 in/yr) AASHTO R 27-01 Phase I/II assessment procedure for non-marine steel pile corrosion Sulfate attacks concrete through",
+      "description": "Corrosion in Marine Environments Corrosion allowances for steel piles in seawater. Zones: atmospheric, splash, intertidal, continuous immersion, underground (Tomlinson 1994) Splash 0.0035 in./year (95 % max probable 0.0071); intertidal 0.0016 (0.0043) Low water 0.0035 (0.0071), abrasion may locally reach 0.161 in./year Immersion 0.002 (0.0055); buried 0.0008 (0.002) in./year (Figure 6-29, Morley and Bruce 1983)",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -1641,7 +1641,7 @@
       "pdf_page_index": 475,
       "printed_page": 430,
       "page_estimated": false,
-      "description": "Pile Section Definitions Section property calculations for H-piles, pipe piles, and concrete piles. Pile shape and dimensions affect axial compression and flexural resistance modes Moment of inertia formulas provided for solid circular, voided circular, and solid square sections Elastic section modulus S = I/c for moment stress evaluation H-pile section properties tabulated in Figure 8-2 (Skyline Steel 2015) Reference AISC (2011) shape tables for detailed strong and weak axis properties Select sections from locally available stock to avoid scheduling delays",
+      "description": "Pile Section Definitions Section property calculations for H-piles, pipe piles, and concrete piles. Largest stresses occur at the greatest distance from the neutral axis Eq. 8-2: I = pi D^4 / 64 (solid circular); Eq. 8-3: I = pi (D^4 - D1^4) / 64 (voided circular) Eq. 8-4: I = b^4 / 12 (solid square); Eq. 8-5: S = I / c H-pile properties: Figure 8-2 (modified from Skyline Steel 2015) or AISC (2011) tables Select sections commonly available from local suppliers to avoid delays",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -1652,7 +1652,7 @@
       "pdf_page_index": 476,
       "printed_page": 431,
       "page_estimated": false,
-      "description": "Pile Section Definitions Section property calculations for H-piles, pipe piles, and concrete piles. Pile shape and dimensions affect axial compression and flexural resistance modes Moment of inertia formulas provided for solid circular, voided circular, and solid square sections Elastic section modulus S = I/c for moment stress evaluation H-pile section properties tabulated in Figure 8-2 (Skyline Steel 2015) Reference AISC (2011) shape tables for detailed strong and weak axis properties Select sections from locally available stock to avoid scheduling delays",
+      "description": "Pile Section Definitions Section property calculations for H-piles, pipe piles, and concrete piles. Largest stresses occur at the greatest distance from the neutral axis Eq. 8-2: I = pi D^4 / 64 (solid circular); Eq. 8-3: I = pi (D^4 - D1^4) / 64 (voided circular) Eq. 8-4: I = b^4 / 12 (solid square); Eq. 8-5: S = I / c H-pile properties: Figure 8-2 (modified from Skyline Steel 2015) or AISC (2011) tables Select sections commonly available from local suppliers to avoid delays",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -1663,7 +1663,7 @@
       "pdf_page_index": 476,
       "printed_page": 431,
       "page_estimated": false,
-      "description": "Pile Section Definitions Section property calculations for H-piles, pipe piles, and concrete piles. Pile shape and dimensions affect axial compression and flexural resistance modes Moment of inertia formulas provided for solid circular, voided circular, and solid square sections Elastic section modulus S = I/c for moment stress evaluation H-pile section properties tabulated in Figure 8-2 (Skyline Steel 2015) Reference AISC (2011) shape tables for detailed strong and weak axis properties Select sections from locally available stock to avoid scheduling delays",
+      "description": "Pile Section Definitions Section property calculations for H-piles, pipe piles, and concrete piles. Largest stresses occur at the greatest distance from the neutral axis Eq. 8-2: I = pi D^4 / 64 (solid circular); Eq. 8-3: I = pi (D^4 - D1^4) / 64 (voided circular) Eq. 8-4: I = b^4 / 12 (solid square); Eq. 8-5: S = I / c H-pile properties: Figure 8-2 (modified from Skyline Steel 2015) or AISC (2011) tables Select sections commonly available from local suppliers to avoid delays",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -1674,7 +1674,7 @@
       "pdf_page_index": 479,
       "printed_page": 434,
       "page_estimated": false,
-      "description": "Effective Length and Buckling Buckling analysis for partially embedded or scour-exposed piles. Piles act as columns; effective length factor K depends on end conditions K values range from 0.65 (fixed-fixed) to 2.0 (free-free) per AASHTO (2014) Buckling primarily a concern for piles through water, air, liquefiable soils, or very soft soils Research indicates even soft soils provide adequate lateral support against buckling Rotationally fixed pile top requires cap connection design per Rollins and Stenlund (2010) Computer software (LPILE) can evaluate buckling with pile-soil interaction model",
+      "description": "Effective Length and Buckling Buckling analysis for partially embedded or scour-exposed piles. Toe generally fixed in translation and rotation; use the design K from Figure 8-4 Figure 8-4 design K: 0.65, 0.80, 1.0, 1.2, 2.1, 2.0 (theoretical 0.5, 0.7, 1.0, 1.0, 2.0, 2.0) Severe scour under a pier cap: rotation fixed, translation free Rollins and Stenlund (2010): design the cap connection to exceed the pile moment capacity Bethlehem Steel (1970): H-pile through 31 ft water and 29 ft organic silt, 200 tons, no buckling Coduto et al. (2016): even the softest soils prevent underground buckling under axial load Chance (2003): critical buckling load from LPILE with incremental loads (more conservative)",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -1685,7 +1685,7 @@
       "pdf_page_index": 508,
       "printed_page": 463,
       "page_estimated": false,
-      "description": "Structural Resistance (Concrete) Structural resistance calculations for reinforced and prestressed concrete driven piles. Factored axial resistance: Pr = phi_c * Pn (Eq. 8-64) Spiral reinforcement: Pn = 0.85[0.85*f'c*(Ag-Astr-Aps) + Fyr*Astr - Aps*(fpe - Est*ecu)] Tie reinforcement: factor is 0.80 instead of 0.85 Biaxial flexure: Mr = phi_f * Mn (Eq. 8-67) Interaction check for Pu >= 0.10*phi*f'c*Ag: 1/Prxy = 1/Prx + 1/Pry - 1/(phi*Po) Interaction check for Pu < 0.10*phi*f'c*Ag: Mux/Mrx + Muy/Mry <= 1.0 FB-Pier generates 3D failure surface from stacked interaction diagrams Resistance factors: tension controlled RC phi_c=0.90, PS phi_c=1.00, compression PS phi_c=0.75",
+      "description": "Biaxial Flexure Biaxial flexure of prestressed concrete piles. Eq. 8-67: Mr = phi_f Mn Eq. 8-68: 1/Prxy = 1/Prx + 1/Pry - 1/(phi Po) <= 1.0 if Pu >= 0.10 phi f'c Ag (Eq. 8-69 for the axial term) Eq. 8-70: Mux/Mrx + Muy/Mry <= 1.0 if Pu < 0.10 phi f'c Ag FB-Pier: stacked interaction diagrams form a 3-D failure surface; check whether the force vector lies inside Figure 8-5: 18 in. solid square pile, 16 strands, f'c = 8 ksi, effective prestress 1200 psi",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -1696,7 +1696,7 @@
       "pdf_page_index": 514,
       "printed_page": 469,
       "page_estimated": false,
-      "description": "Layout of Pile Groups Preliminary pile group layout and load distribution for driven pile foundations. Number of piles estimated by dividing factored axial load by single pile resistance, rounded up ~15% Minimum center-to-center spacing: 2.5 feet or 2.5 pile diameters per AASHTO, 3.0 diameters recommended Rigid Cap Method used for hand calculation of pile forces (Eq. 8-79) Maximum single pile load must not exceed factored structural resistance Software (GROUP, FB-Pier) uses t-z and p-y curves for refined analysis If moments in one direction are larger, unsymmetrical cap layout may be desirable Critical load combination must be checked, not just the largest axial load",
+      "description": "Layout of Pile Groups Preliminary pile group layout and load distribution for driven pile foundations. Use GROUP or FB-Pier (t-z, p-y) or the hand rigid cap method Eq. 8-78: n ~= Pu / Rr, rounded up (say 15 % or more for moments and lateral loads) Lateral or tension loads may govern and need more piles AASHTO minimum spacing: lesser of 2.5 ft or 2.5 diameters; 3.0 diameters more practical Eq. 8-79: Pui = (Puz + Wc + Ws)/n + Mux y/sum(y^2) + Muy x/sum(x^2) Check every factored load combination, not just the largest axial load If Pui exceeds the factored structural resistance, add piles or widen spacing",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -1707,7 +1707,7 @@
       "pdf_page_index": 517,
       "printed_page": 472,
       "page_estimated": false,
-      "description": "Preliminary Design of Pile Bent and Group Caps Preliminary sizing and structural adequacy checks for pile cap design including punching shear, beam shear, and flexure. Cap thickness estimated as t_cap = Pui/12 + 30 (inches) Effective shear depth dv = max(0.9*ds, 0.72*h) Minimum pile embedment: 12 inches after damaged material removal, or 6 inches with embedded bars/strands Minimum center-to-center spacing: 30 inches or 2.5 pile diameters Minimum edge of cap to side of pile: 9 inches Two-way (punching) shear checked around column and individual/paired piles One-way beam shear checked at critical sections from column face and pile face Cap flexural resistance: Mu = sum(Rr*(x,y)) <= phi*Mn Cap moment resistance for preliminary design using d-a/2 approximation",
+      "description": "Preliminary Design of Pile Bent and Group Caps Preliminary sizing and structural adequacy checks for pile cap design including punching shear, beam shear, and flexure. Preliminary cap size for cost estimating; CRSI Design Guide for Pile Caps (Mays 2015) Spacing >= 30.0 in. or 2.5 diameters; >= 9 in. cap edge to pile side (AASHTO 10.7.1.2) Embedment >= 12.0 in. after removing damaged material, or 6.0 in. with embedded bars or strands Eq. 8-80: tcap = Pui/12 + 30 (in.), including embedment and 3 in. clear space Eq. 8-81: dv = tcap - dc - ds - df, not less than the greater of 0.9 ds or 0.72 h; for preliminary sizing dv may be taken as that greater value Eqs. 8-82 to 8-84: column punching perimeter bo (square, rectangular, circular) Two-way shear: Vu (Eqs. 8-85, 8-86), Vn (Eqs. 8-87 to 8-90),",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -1718,7 +1718,7 @@
       "pdf_page_index": 519,
       "printed_page": 474,
       "page_estimated": false,
-      "description": "Preliminary Design of Pile Bent and Group Caps Preliminary sizing and structural adequacy checks for pile cap design including punching shear, beam shear, and flexure. Cap thickness estimated as t_cap = Pui/12 + 30 (inches) Effective shear depth dv = max(0.9*ds, 0.72*h) Minimum pile embedment: 12 inches after damaged material removal, or 6 inches with embedded bars/strands Minimum center-to-center spacing: 30 inches or 2.5 pile diameters Minimum edge of cap to side of pile: 9 inches Two-way (punching) shear checked around column and individual/paired piles One-way beam shear checked at critical sections from column face and pile face Cap flexural resistance: Mu = sum(Rr*(x,y)) <= phi*Mn Cap moment resistance for preliminary design using d-a/2 approximation",
+      "description": "Preliminary Design of Pile Bent and Group Caps Preliminary sizing and structural adequacy checks for pile cap design including punching shear, beam shear, and flexure. Preliminary cap size for cost estimating; CRSI Design Guide for Pile Caps (Mays 2015) Spacing >= 30.0 in. or 2.5 diameters; >= 9 in. cap edge to pile side (AASHTO 10.7.1.2) Embedment >= 12.0 in. after removing damaged material, or 6.0 in. with embedded bars or strands Eq. 8-80: tcap = Pui/12 + 30 (in.), including embedment and 3 in. clear space Eq. 8-81: dv = tcap - dc - ds - df, not less than the greater of 0.9 ds or 0.72 h; for preliminary sizing dv may be taken as that greater value Eqs. 8-82 to 8-84: column punching perimeter bo (square, rectangular, circular) Two-way shear: Vu (Eqs. 8-85, 8-86), Vn (Eqs. 8-87 to 8-90),",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -1729,7 +1729,7 @@
       "pdf_page_index": 520,
       "printed_page": 475,
       "page_estimated": false,
-      "description": "Preliminary Design of Pile Bent and Group Caps Preliminary sizing and structural adequacy checks for pile cap design including punching shear, beam shear, and flexure. Cap thickness estimated as t_cap = Pui/12 + 30 (inches) Effective shear depth dv = max(0.9*ds, 0.72*h) Minimum pile embedment: 12 inches after damaged material removal, or 6 inches with embedded bars/strands Minimum center-to-center spacing: 30 inches or 2.5 pile diameters Minimum edge of cap to side of pile: 9 inches Two-way (punching) shear checked around column and individual/paired piles One-way beam shear checked at critical sections from column face and pile face Cap flexural resistance: Mu = sum(Rr*(x,y)) <= phi*Mn Cap moment resistance for preliminary design using d-a/2 approximation",
+      "description": "Preliminary Design of Pile Bent and Group Caps Preliminary sizing and structural adequacy checks for pile cap design including punching shear, beam shear, and flexure. Preliminary cap size for cost estimating; CRSI Design Guide for Pile Caps (Mays 2015) Spacing >= 30.0 in. or 2.5 diameters; >= 9 in. cap edge to pile side (AASHTO 10.7.1.2) Embedment >= 12.0 in. after removing damaged material, or 6.0 in. with embedded bars or strands Eq. 8-80: tcap = Pui/12 + 30 (in.), including embedment and 3 in. clear space Eq. 8-81: dv = tcap - dc - ds - df, not less than the greater of 0.9 ds or 0.72 h; for preliminary sizing dv may be taken as that greater value Eqs. 8-82 to 8-84: column punching perimeter bo (square, rectangular, circular) Two-way shear: Vu (Eqs. 8-85, 8-86), Vn (Eqs. 8-87 to 8-90),",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -1740,7 +1740,7 @@
       "pdf_page_index": 521,
       "printed_page": 476,
       "page_estimated": false,
-      "description": "Preliminary Design of Pile Bent and Group Caps Preliminary sizing and structural adequacy checks for pile cap design including punching shear, beam shear, and flexure. Cap thickness estimated as t_cap = Pui/12 + 30 (inches) Effective shear depth dv = max(0.9*ds, 0.72*h) Minimum pile embedment: 12 inches after damaged material removal, or 6 inches with embedded bars/strands Minimum center-to-center spacing: 30 inches or 2.5 pile diameters Minimum edge of cap to side of pile: 9 inches Two-way (punching) shear checked around column and individual/paired piles One-way beam shear checked at critical sections from column face and pile face Cap flexural resistance: Mu = sum(Rr*(x,y)) <= phi*Mn Cap moment resistance for preliminary design using d-a/2 approximation",
+      "description": "Preliminary Design of Pile Bent and Group Caps Preliminary sizing and structural adequacy checks for pile cap design including punching shear, beam shear, and flexure. Preliminary cap size for cost estimating; CRSI Design Guide for Pile Caps (Mays 2015) Spacing >= 30.0 in. or 2.5 diameters; >= 9 in. cap edge to pile side (AASHTO 10.7.1.2) Embedment >= 12.0 in. after removing damaged material, or 6.0 in. with embedded bars or strands Eq. 8-80: tcap = Pui/12 + 30 (in.), including embedment and 3 in. clear space Eq. 8-81: dv = tcap - dc - ds - df, not less than the greater of 0.9 ds or 0.72 h; for preliminary sizing dv may be taken as that greater value Eqs. 8-82 to 8-84: column punching perimeter bo (square, rectangular, circular) Two-way shear: Vu (Eqs. 8-85, 8-86), Vn (Eqs. 8-87 to 8-90),",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -1751,7 +1751,7 @@
       "pdf_page_index": 523,
       "printed_page": 478,
       "page_estimated": false,
-      "description": "Preliminary Design of Pile Bent and Group Caps Preliminary sizing and structural adequacy checks for pile cap design including punching shear, beam shear, and flexure. Cap thickness estimated as t_cap = Pui/12 + 30 (inches) Effective shear depth dv = max(0.9*ds, 0.72*h) Minimum pile embedment: 12 inches after damaged material removal, or 6 inches with embedded bars/strands Minimum center-to-center spacing: 30 inches or 2.5 pile diameters Minimum edge of cap to side of pile: 9 inches Two-way (punching) shear checked around column and individual/paired piles One-way beam shear checked at critical sections from column face and pile face Cap flexural resistance: Mu = sum(Rr*(x,y)) <= phi*Mn Cap moment resistance for preliminary design using d-a/2 approximation",
+      "description": "Preliminary Design of Pile Bent and Group Caps Preliminary sizing and structural adequacy checks for pile cap design including punching shear, beam shear, and flexure. Preliminary cap size for cost estimating; CRSI Design Guide for Pile Caps (Mays 2015) Spacing >= 30.0 in. or 2.5 diameters; >= 9 in. cap edge to pile side (AASHTO 10.7.1.2) Embedment >= 12.0 in. after removing damaged material, or 6.0 in. with embedded bars or strands Eq. 8-80: tcap = Pui/12 + 30 (in.), including embedment and 3 in. clear space Eq. 8-81: dv = tcap - dc - ds - df, not less than the greater of 0.9 ds or 0.72 h; for preliminary sizing dv may be taken as that greater value Eqs. 8-82 to 8-84: column punching perimeter bo (square, rectangular, circular) Two-way shear: Vu (Eqs. 8-85, 8-86), Vn (Eqs. 8-87 to 8-90),",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
@@ -1762,7 +1762,7 @@
       "pdf_page_index": 523,
       "printed_page": 478,
       "page_estimated": false,
-      "description": "Preliminary Design of Pile Bent and Group Caps Preliminary sizing and structural adequacy checks for pile cap design including punching shear, beam shear, and flexure. Cap thickness estimated as t_cap = Pui/12 + 30 (inches) Effective shear depth dv = max(0.9*ds, 0.72*h) Minimum pile embedment: 12 inches after damaged material removal, or 6 inches with embedded bars/strands Minimum center-to-center spacing: 30 inches or 2.5 pile diameters Minimum edge of cap to side of pile: 9 inches Two-way (punching) shear checked around column and individual/paired piles One-way beam shear checked at critical sections from column face and pile face Cap flexural resistance: Mu = sum(Rr*(x,y)) <= phi*Mn Cap moment resistance for preliminary design using d-a/2 approximation",
+      "description": "Preliminary Design of Pile Bent and Group Caps Preliminary sizing and structural adequacy checks for pile cap design including punching shear, beam shear, and flexure. Preliminary cap size for cost estimating; CRSI Design Guide for Pile Caps (Mays 2015) Spacing >= 30.0 in. or 2.5 diameters; >= 9 in. cap edge to pile side (AASHTO 10.7.1.2) Embedment >= 12.0 in. after removing damaged material, or 6.0 in. with embedded bars or strands Eq. 8-80: tcap = Pui/12 + 30 (in.), including embedment and 3 in. clear space Eq. 8-81: dv = tcap - dc - ds - df, not less than the greater of 0.9 ds or 0.72 h; for preliminary sizing dv may be taken as that greater value Eqs. 8-82 to 8-84: column punching perimeter bo (square, rectangular, circular) Two-way shear: Vu (Eqs. 8-85, 8-86), Vn (Eqs. 8-87 to 8-90),",
       "pdf_path": "docs/GEC 12 vol 1.pdf",
       "volume": 1
     },
