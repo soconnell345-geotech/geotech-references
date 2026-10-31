@@ -446,16 +446,27 @@
     {
       "section_id": "8.2.3.2",
       "title": "Feasibility Evaluations",
-      "summary": "Feasibility of permeation grouting: fines limits (readily groutable <12%, moderately 12-15%, marginally 15-20%, ungroutable >20%); groutability ratios N = (D15)soil/(D85)grout (Eq. 8-2) and Nc = (D10)soil/(D95)grout (Eq. 8-3): grouting consistently possible if N > 24 or Nc > 11, not possible if N < 11 or Nc < 6; cement-type soil size limits; Hazen's equation (Eq. 8-4); permeability-based injectability ranges.",
-      "body": "Feasibility depends on soil type, stratigraphy, site history, soil permeability, grout properties and effects on groundwater. A 'groutable' soil accepts a given grout under practical pressures at an economical flow rate (p. 8-28). Geotechnical (2.3.2.1): particulate grouts permeate only coarse soils such as medium to coarse sands and gravels. Sand permeability may vary three or four orders of magnitude, from 0.4 in/s for medium clean sands to 4 x 10^-5 in/s for sand with 25% or more silts and clays; permeation grouting is recommended only in predominantly sandy materials with less than 15% silts and clays. Soils are readily groutable with less than 12% fines, moderately groutable at 12-15%, marginally groutable at 15-20%, and usually ungroutable above about 20% fines. Groutability ratios (King and Bush 1963), supported by De Paoli et al. (1992) for stable, low-cohesion grouts, are given by Eq. 8-2 and 8-3: grouting is consistently possible if N > 24 or Nc > 11, and not possible when N < 11 or Nc < 6 (p. 8-29). Soil sizes: Type I and II Portland cement, soils coarser than 0.024 in.; Type III, coarser than 0.016 in.; bentonite, coarser than 0.01 in.; microfine cement, coarser than 0.002 in. Hazen's equation (Eq. 8-4) approximates injectability (Lees and Chuaqui 2003). Landry et al. (2000), with small-scale field testing recommended: readily groutable 0.04 >= k >= 4 x 10^-4 in/s; marginally 4 x 10^-4 to 4 x 10^-5; practically ungroutable 4 x 10^-5 to 4 x 10^-6; regular cement k > 0.04, microfine cement k > 0.002, solution grouts k > 4 x 10^-5 in/s. Chemical permeation is most effective below 10% fines, less effective above 15%, not possible above 20% (p. 8-30). Environmental (2.3.2.2): early acrylamide incidents led to bans on all but non-toxic silicate grouts. Project conditions (2.3.2.3): gradually thickening mixes from w/c 2.0 used after 1991; dilute unstable mixes at w/c 4.0 to 8.0 were needed in deep, hot mines (p. 8-31).",
+      "summary": "Permeation grouting feasibility depends on soil type, stratigraphy, site history, permeability, grout properties and groundwater effects; a 'groutable' soil accepts a given grout under practical pressures at an economical flow rate. Geotechnical, environmental and project conditions follow.",
+      "body": "Feasibility depends on soil type, stratigraphy, site history, soil permeability, grout properties and effects on groundwater, discussed in 8.2.3.2.1 to 8.2.3.2.3. A 'groutable' soil is one that will, under practical pressure limitations, accept permeation by a given grout at a flow rate that makes the project economically feasible. (p. 8-28)",
       "key_points": [
-        "Fines: readily groutable < 12%, moderately 12-15%, marginally 15-20%, ungroutable > about 20% (p. 8-28)",
-        "Eq. 8-2/8-3: grouting consistently possible if N > 24 or Nc > 11; not possible if N < 11 or Nc < 6 (p. 8-29)",
-        "Type I/II cement: soils coarser than 0.024 in.; Type III: 0.016 in.; bentonite: 0.01 in.; microfine cement: 0.002 in. (p. 8-30)",
-        "Landry et al. (2000): readily groutable 0.04 to 4 x 10^-4 in/s; marginally 4 x 10^-4 to 4 x 10^-5 in/s; practically ungroutable 4 x 10^-5 to 4 x 10^-6 in/s",
-        "Injectable: regular cement k > 0.04 in/s; microfine cement k > 0.002 in/s; solution grouts k > 4 x 10^-5 in/s",
-        "Chemical permeation: most effective < 10% fines, less effective > 15%, not possible > 20%",
-        "Permeation recommended only in predominantly sandy soils with < 15% silts and clays"
+        "A groutable soil accepts the grout at practical pressures and an economical flow rate (p. 8-28)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Checking whether a soil can be permeation grouted and with which grout (particulate, microfine or solution)."
+    },
+    {
+      "section_id": "8.2.3.2.1",
+      "title": "Geotechnical",
+      "summary": "Particulate grouts permeate only medium to coarse sands and gravels; permeation is recommended with less than 15% silts and clays (readily groutable < 12% fines, moderately 12-15%, marginally 15-20%, ungroutable > about 20%). Groutability ratios N (Eq. 8-2) and Nc (Eq. 8-3): possible if N > 24 or Nc > 11, not if N < 11 or Nc < 6. Hazen (Eq. 8-4) and Landry et al. (2000) permeability ranges guide injectability.",
+      "body": "Particulate grouts can permeate only coarse soils such as medium to coarse sands and gravels. Sand permeability may vary three or four orders of magnitude, from 0.4 in/s for medium clean sands to as low as 4 x 10^-5 in/s for sand with 25% or more silts and clays; at very low permeability the injection rate at permissible pressures may be too slow, so permeation grouting is recommended only in predominantly sandy materials with less than 15% silts and clays. Soils are readily groutable with less than 12% fines, moderately groutable at 12-15%, marginally groutable at 15-20%, and usually ungroutable above about 20% fines; Figure 8-6 (Karol 2003, p. 8-29) shows grain-size ranges amenable to typical silicate grouts. Groutability ratios (King and Bush 1963), supported by De Paoli et al. (1992) for correctly balanced (stable, low cohesion) grouts, are N (Eq. 8-2) and Nc (Eq. 8-3): grouting is consistently possible if N > 24 or Nc > 11 and not possible when N < 11 or Nc < 6. Applicable soil sizes: Type I and II Portland cement, soils coarser than 0.024 in.; Type III, coarser than 0.016 in.; bentonite, coarser than 0.01 in.; microfine cement, coarser than 0.002 in. (p. 8-30). Microfine cements have also been used for fracture grouting in silts and clays; for ultrafine cements no distinct relation between penetrability and maximum cement grain size was observed (Warner 2003): grain shape, surface condition and polarity govern, slag-based grouts being weakly polar and ultrafine cement grouts strongly polar, needing high shear mixing. Hazen's equation (Eq. 8-4), fairly accurate for undisturbed sandy soils (Lees and Chuaqui 2003), approximates injectability. Landry et al. (2000), recommending small-scale field tests, rate groutability by initial permeability: readily groutable between 0.04 and 4 x 10^-4 in/s, marginally groutable between 4 x 10^-4 and 4 x 10^-5 in/s, practically ungroutable between 4 x 10^-5 and 4 x 10^-6 in/s (each printed in the form '0.04 <= k <= 4 x 10-4'); injectable with regular cement grouts k > 0.04 in/s, with microfine cement k > 0.002 in/s, with solution grouts k > 4 x 10^-5 in/s. Chemical grouts penetrate smaller pores, have lower viscosity and better-controlled set times but cost more and are more complex; chemical permeation is most effective below 10% fines, less effective above 15%, and not possible above 20%. (pp. 8-28 to 8-30)",
+      "key_points": [
+        "Fines: readily groutable < 12%, moderately 12-15%, marginally 15-20%, ungroutable > about 20% (p. 8-28).",
+        "Eq. 8-2/8-3: grouting consistently possible if N > 24 or Nc > 11; not possible if N < 11 or Nc < 6 (p. 8-29).",
+        "Type I/II cement: soils coarser than 0.024 in.; Type III 0.016 in.; bentonite 0.01 in.; microfine cement 0.002 in. (p. 8-30).",
+        "Injectable: regular cement k > 0.04 in/s; microfine cement k > 0.002 in/s; solution grouts k > 4 x 10^-5 in/s (p. 8-30).",
+        "Chemical permeation: most effective < 10% fines, less effective > 15%, not possible > 20% (p. 8-30)."
       ],
       "equations": [
         "Eq. 8-2: N = (D15)SOIL / (D85)GROUT; groutability ratio for soils (King and Bush 1963) (p. 8-29)",
@@ -469,22 +480,118 @@
       "applicability": "Checking whether a soil can be permeation grouted and with which grout (particulate, microfine or solution)."
     },
     {
+      "section_id": "8.2.3.2.2",
+      "title": "Environmental",
+      "summary": "Sodium silicate and acrylamide were used in early trials; water poisoning linked to acrylamide grouting in Japan in 1974 led to a ban on all chemical grouts except non-toxic silicate grouts. Acrylate grouts, a friendlier replacement, are used in U.S. sewer sealing.",
+      "body": "Sodium silicate and acrylamide grouts were used in early grouting trials. Incidents of water poisoning linked to acrylamide grouting in Japan in 1974 led to a ban on all chemical grouting compounds except non-toxic silicate-based grouts. Acrylate grouts, a more environmentally friendly replacement with properties similar to acrylamide, are used by a specialized sewer-sealing industry in the United States. (p. 8-31)",
+      "key_points": [
+        "1974 acrylamide poisoning in Japan led to a ban on all but non-toxic silicate grouts (p. 8-31).",
+        "Acrylate grouts replace acrylamide in U.S. sewer sealing (p. 8-31)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Checking whether a soil can be permeation grouted and with which grout (particulate, microfine or solution)."
+    },
+    {
+      "section_id": "8.2.3.2.3",
+      "title": "Project Conditions",
+      "summary": "Grout selection also depends on project conditions, structural requirement and soil permeability; gradually thickening mixes from w/c 2.0 were regular after 1991, while deep, hot South African gold mines needed dilute, unstable mixes of w/c 4.0 to 8.0 at high velocity below 3,000 ft.",
+      "body": "Grout selection is also affected by project conditions; analysis of the structural requirement and the soil permeability is an important part of design. Gradually thickening grout mixes starting at w/c 2.0 were used regularly in civil engineering practice after 1991 (Littlejohn 2003). In the gold mines of South Africa, where high temperatures formed grout barriers below 3,000 feet, high pressure injection of dilute, unstable cement grouts at w/c 4.0 to 8.0 and high velocities was needed to prevent early sedimentation and reach longer distances. (p. 8-31)",
+      "key_points": [
+        "Thickening mixes from w/c 2.0 regular after 1991 (Littlejohn 2003) (p. 8-31).",
+        "Deep hot mines needed w/c 4.0 to 8.0 at high velocity (p. 8-31)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Checking whether a soil can be permeation grouted and with which grout (particulate, microfine or solution)."
+    },
+    {
       "section_id": "8.2.3.3",
       "title": "Design Considerations",
-      "summary": "Permeation grouting design: clear quantitative objectives; permanence of grouts (silicates not permanent); grout pipe spacing 1.6-5 ft for waterproofing and 3.3-5.2 ft for structural (typical 4 ft); sleeve-port pipes (tubes-a-manchette); grout volume from porosity (0.25-0.45; 350 L per m3 at 0.35) plus 5-15% for edge dilution; pumps and chemical handling; grout types, w/c 0.5-6, silicate 25-30% (waterproofing) or 40-60% (structural).",
-      "body": "Clear, quantitative objectives are a prerequisite. A program needs a suitable grout, drilling equipment, procedures and hole pattern; a structural objective is often to give non-cohesive ground enough cohesion to prevent collapses or runs into excavations, tunnels or shafts. Many grouts (including properly formulated particulate grouts) are permanent (service life over 20 years), but most structural chemical grouting is needed for only days to months, and sodium silicate grouts cannot be regarded as permanent (Naudts 1995, Baker 1982) (p. 8-31). Hole spacing can be designed from equations (Xanthakos et al. 1994); for preliminary work: Spacing (2.3.3.1) 1.6 to 5 ft for waterproofing and 3.3 to 5.2 ft for structural use, typically 4 ft. Equipment (2.3.3.2): sleeve-port pipes ('tubes-a-manchette', Figure 8-7) should be used on all permeation projects: a 1- to 2-in. plastic pipe with ports usually on 1-ft centers under rubber sleeves, set in a brittle cement-bentonite sheath, injected bottom-up with a double packer and re-injectable. Grout bulbs are commonly elliptical, height to diameter about 0.80, since horizontal exceeds vertical permeability (pp. 8-32 to 8-33). Grout quantities (2.3.3.3): groutable soils have porosities of 0.25 to 0.45; at 0.35 porosity, 350 liters (92.5 gal) of grout per cubic meter of soil; porosity may be split, e.g., 10% particulate and 25% chemical; add 5% to 15% for 'edge dilution' (p. 8-33). Construction equipment (2.3.3.4): continuous mixing plant with set time 5 to 50 minutes, pressure and rate sensors, 'Y' fitting with check valves, tanks for one day of material (p. 8-34). Grout types (2.3.3.5): chemical or particulate; cement particle size, viscosity and pressure filtration coefficient control effectiveness; w/c 0.5 to 6; soil-cement ratio 4 to 6 by volume with w/c 0.33 to 2; silicate 25-30% for waterproofing, 40-60% for structural strength (p. 8-35; Figure 8-8).",
+      "summary": "Permeation grouting design needs clear quantitative objectives, a suitable grout, drilling equipment, procedures and hole pattern; structural grouting often gives cohesionless ground enough cohesion to stop runs. Sodium silicate is not permanent; hole spacing can be designed by equations, and preliminary guidelines follow.",
+      "body": "Clear, quantitative objectives established early are a basic prerequisite. A successful program needs a suitable grout, correct drilling equipment, procedures and grout hole pattern; for structural grouting the objective is often to give non-cohesive ground enough cohesion to prevent collapses or soil 'runs' into excavations, tunnels or shafts. Many grouts, including properly formulated particulate grouts, are permanent (service life over 20 years under normal conditions), but most structural chemical grouting is needed for only days to months, and sodium silicate grouts cannot be regarded as permanent (Naudts 1995, Baker 1982); in grout underpinning the cohesion replaces strength lost by reduced confinement, a permanent effect. Hole spacing can be designed with well-defined equations (Xanthakos et al. 1994) from soil granulometry, grout rheology, flow rates and limiting pressures; for preliminary cost and feasibility the guidelines in 8.2.3.3.1 to 8.2.3.3.5 may be used. (pp. 8-31 to 8-32)",
       "key_points": [
-        "Grout pipe spacing: 1.6-5 ft (waterproofing), 3.3-5.2 ft (structural); typical 4 ft (p. 8-32)",
-        "Use sleeve-port pipes (tubes-a-manchette) on all permeation projects; ports usually on 1-ft centers",
-        "Grout bulbs typically elliptical, height/diameter about 0.80 (p. 8-33)",
-        "Porosity 0.25-0.45; at n = 0.35, 350 L (92.5 gal) grout per m3; add 5-15% for edge dilution",
-        "Sodium silicate grouts are not permanent; properly formulated particulate grouts can last over 20 years",
-        "Cement grout w/c 0.5 to 6; silicate content 25-30% waterproofing, 40-60% structural (p. 8-35)",
-        "Chemical plant: set time 5 to 50 minutes; sensors for pressure and rate (p. 8-34)"
+        "Sodium silicate grouts are not permanent; properly formulated particulate grouts can last over 20 years (p. 8-31).",
+        "Spacing can be designed by equations (Xanthakos et al. 1994); guidelines serve preliminary work (p. 8-32)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Preliminary design of permeation grouting: spacing, quantities, equipment and grout selection."
+    },
+    {
+      "section_id": "8.2.3.3.1",
+      "title": "Spacing",
+      "summary": "Permeation grout pipes are spaced 1.6 to 5 ft for waterproofing and 3.3 to 5.2 ft for structural applications, typically 4 ft for each.",
+      "body": "Spacing of grout pipes may vary from 1.6 to 5 feet for waterproofing and from 3.3 to 5.2 feet for structural applications; a typical number for each is 4 feet. (p. 8-32)",
+      "key_points": [
+        "1.6-5 ft (waterproofing), 3.3-5.2 ft (structural); typical 4 ft (p. 8-32)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Preliminary design of permeation grouting: spacing, quantities, equipment and grout selection."
+    },
+    {
+      "section_id": "8.2.3.3.2",
+      "title": "Equipment",
+      "summary": "Use sleeve-port pipes (tubes-a-manchette, Figure 8-7) on all permeation projects: a 1 to 2 in. plastic pipe with ports on about 1 ft centers under rubber sleeves, set in a weak cement-bentonite sheath, injected bottom-up with a double packer and re-injectable. Grout bulbs are often elliptical (height/diameter about 0.80); unexpected ungroutable lenses control grout migration.",
+      "body": "Sleeve-port grout pipes ('tubes-a-manchette', Figure 8-7, Kutzner 1996) should be used on all permeation grouting projects rather than end-of-casing injection while the casing is withdrawn. They allow a planned primary-secondary program horizontally and vertically: a one- to two-inch plastic pipe with holes at distinct levels, usually on 1-foot centers, each covered by a rubber sleeve acting as a one-way valve, set in a slightly oversized hole with a brittle, weak cement-bentonite sheath that fractures when a double packer expands the sleeve. Ports can be injected in any sequence, always bottom up, re-injected, water tested to estimate permeability before or after grouting, and used for cross-hole shear wave tests (p. 8-33). Horizontal and vertical permeability should be evaluated to predict bulb shape: elliptical isolated bulbs with height to diameter about 0.80 are common since horizontal permeability exceeds vertical; anisotropy affects pipe and port spacing and primary-secondary sequence. Unexpected ungroutable lenses control the direction and migration of grout and can greatly affect the program. Borings for the grout pipes should confirm the stratigraphy, and drillers should report all changes in drilling rate and wash water. (pp. 8-32 to 8-33)",
+      "key_points": [
+        "Sleeve-port pipes (tubes-a-manchette) on all permeation projects; ports usually on 1 ft centers (p. 8-32).",
+        "Bulbs typically elliptical, height/diameter about 0.80 (p. 8-33).",
+        "Ungroutable lenses control grout migration; drillers report drilling and wash water changes (p. 8-33)."
       ],
       "equations": [],
       "figures": [
-        "Figure 8-7: Mode of operation of a tube-a-manchette.",
+        "Figure 8-7: Mode of operation of a tube-a-manchette."
+      ],
+      "tables": [],
+      "applicability": "Preliminary design of permeation grouting: spacing, quantities, equipment and grout selection."
+    },
+    {
+      "section_id": "8.2.3.3.3",
+      "title": "Grout Quantities",
+      "summary": "Grout volume follows porosity (0.25 finer to 0.45 coarser), assuming all voids filled: at 0.35, 92.5 gal (350 L) per cubic meter of soil; porosity may be split between particulate and chemical grout (e.g., 10% and 25%); add 5% to 15% for edge dilution.",
+      "body": "Grout volume needs a fairly accurate porosity estimate. Typical groutable soils have porosities of 0.25 (finer) to 0.45 (coarser), and the total void space is commonly assumed filled: at 0.35 porosity, 92.5 gallons (350 liters) of grout per cubic meter (1.308 cubic yards) of soil. Larger pores may be treated first with an economical particulate grout, splitting the 35% porosity, e.g., 10% particulate and 25% chemical; since chemical grout is a major cost, porosity has important cost consequences. Porosity is often estimated from SPT N correlations; unit weight and specific gravity tests on relatively undisturbed samples are better, and pre-grouting permeability tests indicate amenability to grout types. Add 5% to 15% grout volume for 'edge dilution', depending on project scale. (p. 8-33)",
+      "key_points": [
+        "Porosity 0.25-0.45; at 0.35, 92.5 gal (350 L) per m3 of soil (p. 8-33).",
+        "Add 5% to 15% grout volume for edge dilution (p. 8-33)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Preliminary design of permeation grouting: spacing, quantities, equipment and grout selection."
+    },
+    {
+      "section_id": "8.2.3.3.4",
+      "title": "Construction Equipment",
+      "summary": "Chemical permeation plant: continuous mixing (or batch with QA) giving set times of 5 to 50 minutes, pumps with pressure and rate sensors and variable rate at constant ratios; separate lines to a 'Y' fitting with check valves, baffle, sampling valve and flushing connection; metal tanks holding at least one day's chemicals.",
+      "body": "Chemical permeation equipment must suit the work (particulate grout equipment is in Section 4). Pumps: the plant is usually continuous mixing, able to supply, proportion, mix and pump grout with a set time of 5 to 50 minutes; batch systems may be used with appropriate QA. Each main pump should record pressure and rate of injection with non-corrodible sensors working regardless of grout viscosity, and vary its rate while keeping component ratios constant. Piping and accessories: separate hoses carry base grout and reactant to a 'Y' fitting with check valves, followed by a baffling chamber, an accessible sampling valve beyond the mixing point, and a water-flushing connection behind the 'Y'; distribution to the holes is monitored by automatic recording flow indicators and gages; batch mixing needs no 'Y'. Chemical tanks: metal, protected from accidental discharge, holding at least one day's grouting materials against delivery delays. (p. 8-34)",
+      "key_points": [
+        "Continuous mixing plant with set time 5 to 50 minutes (p. 8-34).",
+        "Pumps record pressure and injection rate (p. 8-34).",
+        "Tanks hold at least one day's materials (p. 8-34)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Preliminary design of permeation grouting: spacing, quantities, equipment and grout selection."
+    },
+    {
+      "section_id": "8.2.3.3.5",
+      "title": "Grout Types and Selection",
+      "summary": "Permeation grouts are chemical (solutions) or particulate (cement, soil, clay); cement-based grouts have economic, technical and environmental benefits. Cement grout w/c 0.5 to 6; soil-cement 4 to 6 by volume with w/c 0.33 to 2; silicate 25-30% for waterproofing, 40-60% for strength; ultra-fine cements (U.S. since 1983) permeate finer sands (Figure 8-8).",
+      "body": "Two grout types are used: chemical grouts (materials in solution) and particulate grouts (cement, soil, clay or mixtures). Research favors cement-based grouts economically, technically and environmentally (Weaver and Bruce 2007, Xanthakos et al. 1994); cement particle size, viscosity and internal stability (pressure filtration coefficient) control effectiveness more than ability to penetrate fine soils (p. 8-35). Selection should consider water flow rates, gel times, durability and the required residual permeability. Cement grout w/c should vary from 0.5 to 6; lower w/c gives higher strength and less segregation but is harder to inject (Mitchell 1981); additives improve permeation, prevent flocculation and control set. Soil-cement grouts use soil to cement of four to six by volume with w/c 0.33 to 2. Chemical grouts are mostly silicates, lignin, resins, acrylamides and urethanes; sodium silicate is used extensively, the others little for cost and toxicity; 25 to 30 percent silicate for waterproofing, 40 to 60 percent for structural strength. Portland cement permeates only gravels and coarse sands; ultra-fine cements, introduced in the U.S. in 1983, permeate finer sands without a filter cake. Penetrability of grout types is shown in Figure 8-8 (after Karol 1990). (pp. 8-34 to 8-35)",
+      "key_points": [
+        "Cement grout w/c 0.5 to 6; soil-cement 4 to 6 by volume, w/c 0.33 to 2 (p. 8-35).",
+        "Silicate content 25-30% for waterproofing, 40-60% for structural strength (p. 8-35).",
+        "Ultra-fine cements (U.S. since 1983) permeate finer sands (Figure 8-8) (p. 8-35)."
+      ],
+      "equations": [],
+      "figures": [
         "Figure 8-8: Penetrability of various grout types."
       ],
       "tables": [],
@@ -508,13 +615,37 @@
     {
       "section_id": "8.2.3.5",
       "title": "Case Histories",
-      "summary": "Two permeation grouting case histories: (1) multiple-pass permeation grouting with stable cement-based suspensions and an acrylamide curtain to encapsulate liquid low-level radioactive waste in trenches, reducing hydraulic conductivity by up to five orders of magnitude (Naudts et al. 2012); (2) field trials of sodium silicate, microfine powder and microfine cement in outwash sands for tunnel support (Brachman et al. 2004).",
-      "body": "Case History 1: Multiple pass permeation grouting to encapsulate and contain radioactive waste (Naudts et al. 2012). The program hydraulically isolated 34 million quarts of liquid low-level radioactive waste in two trenches (one 295 ft long by 15.7 ft deep; the other three cells 98 ft long by 15.7 ft deep) for a target of 200 years. Multiple-pass, multiple-stage, multiple-hole permeation grouting through driven steel sleeve pipes used five stable, balanced cement-based suspension mixes (Class F fly ash, pre-hydrated biopolymer to cut pressure filtration, superplasticizer), and an acrylamide curtain was built in the surrounding soil; work was monitored by a computer-aided grout evaluation system after a verification trench. Lugeon values dropped to zero after 4 to 5 passes; hydraulic conductivity fell by up to five orders of magnitude in the crushed stone (4 x 10^-3 to 4 x 10^-8 in/s) and two orders in the soil (4 x 10^-5 to 4 x 10^-7 in/s), below the 4.0 x 10^-6 in/s target (pp. 8-36 to 8-37). Case History 2: Permeation grouting in outwash sands (Brachman et al. 2004). Field trials compared sodium silicate, microfine powder and microfine cement for temporary support of sandy soil for two 20.33-ft-diameter light rail tunnels (Figure 8-9). Fines varied from 1% to 28%: 11 of 13 samples readily groutable, one moderately and one not groutable. Twelve holes at 4 ft center-to-center on a triangular grid, depths 34.5 to 45 ft, with mixes per Table 8-2. Seismic velocity after four days showed microfine cement (very high injection pressures) gave a non-uniform mass, microfine powder gave no strength gain even after a month (low temperature, lack of oxygen, poor mixing), and sodium silicate was most successful, giving a well-permeated hard soil mass (pp. 8-37 to 8-39).",
+      "summary": "Two permeation grouting case histories: containment of liquid radioactive waste in trenches (Naudts et al. 2012) and field trials in outwash sands for tunnel support (Brachman et al. 2004).",
+      "body": "Heading for the permeation grouting case histories, 8.2.3.5.1 (containment of radioactive waste) and 8.2.3.5.2 (outwash sands for tunnel support); it has no text of its own. (p. 8-36)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Precedents for permeation grouting for containment and tunnel support in granular soils."
+    },
+    {
+      "section_id": "8.2.3.5.1",
+      "title": "Case History 1: Multiple Pass Permeation Grouting to Encapsulate and Contain Radioactive Waste at Oakridge National Laboratory, Oakridge, Tennessee (Naudts et al. 2012)",
+      "summary": "Multiple-pass permeation grouting with five stable cement-based mixes through driven sleeve pipes, plus an acrylamide curtain, isolated 34 million quarts of liquid low-level radioactive waste in two trenches for 200 years; Lugeon values fell to zero after 4 to 5 passes and conductivity dropped up to five orders of magnitude.",
+      "body": "The program hydraulically isolated 34 million quarts of liquid low-level radioactive waste (LLLW) in two trenches: multiple-pass, multiple-stage, multiple-hole grouting inside the trenches through vertically driven steel sleeve pipes with five stable, balanced, durable cement-based suspension mixes, and later a grout curtain of acrylamide (able to permeate fine fissures) in the soil around and below. Work was monitored in real time by the Computer Aided Grout Evaluation System (CAGES), and final permeability was below the 4.0 x 10^-6 in/s target. Trench 5 (295 feet by 15.7 feet deep) and Trench 7 (three cells, 98 feet by 15.7 feet deep) were to be contained for at least 200 years; a verification trench confirmed the design; the gravel had to be fully grouted without water or grout surfacing. Mixes used Class F fly ash (durability, slower hydration, less thermal shrinkage), pre-hydrated biopolymer (lower pressure filtration, no dry-packing) and superplasticizer; the two-component acrylamide grout is listed (p. 8-37). Lugeon values fell to zero after 4 to 5 passes; 9,000 ft3 of grout went into Trench 5, 5,332 ft3 into Trench 7, and 12,570 ft3 of acrylamide into both. Conductivity fell up to five orders of magnitude in the crushed stone (4 x 10^-3 to 4 x 10^-8 in/s) and two orders in the surrounding soil (4 x 10^-5 to 4 x 10^-7 in/s), showing low-pressure permeation grouting can safely contain liquid radioactive waste without drilling or bringing contaminants to the surface. (pp. 8-36 to 8-37)",
       "key_points": [
-        "Case 1: stable cement suspensions plus acrylamide curtain; Lugeon values to zero after 4-5 passes",
-        "Case 1: conductivity reduced up to five orders of magnitude in crushed stone, two in soil",
-        "Case 2: injection points 4 ft apart on a triangular grid, 34.5-45 ft deep",
-        "Case 2: sodium silicate most successful; microfine cement non-uniform; microfine powder failed to cure"
+        "Five stable cement-based mixes plus an acrylamide curtain; CAGES monitoring (p. 8-36).",
+        "Lugeon values to zero after 4 to 5 passes (p. 8-37).",
+        "Conductivity down up to five orders in crushed stone, two in soil (p. 8-37)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "A permeation grouting case history from the manual."
+    },
+    {
+      "section_id": "8.2.3.5.2",
+      "title": "Case History 2: Permeation Grouting in Outwash Sands, Edmonton, Alberta, Canada (Brachman et al. 2004)",
+      "summary": "Field trials of sodium silicate, microfine powder and microfine cement in outwash sand for temporary tunnel support (two 20.33 ft diameter tunnels): fines 1% to 28%; 12 holes 4 ft apart on a triangular grid, 34.5 to 45 ft deep (Table 8-2, Figure 8-9). Sodium silicate gave a well-permeated hard mass; microfine cement was non-uniform; microfine powder never gained strength.",
+      "body": "Field trials evaluated sodium silicate, microfine powder and microfine cement for temporary support of sandy soil during tunneling, in conditions like those of a planned light rail extension with two tunnels 20.33 feet in diameter and 1,155 feet long through a sandy outwash deposit; the trial site had five layers (Figure 8-9, p. 8-38). Fines (finer than No. 200) averaged 1% to 28%: the poorly graded sand was mostly readily groutable (11 of 13 samples), one moderately and one not groutable by groutability ratio (8.2.3.2.1). Grouts went through 12 holes at 4 feet center-to-center on a triangular grid, 34.5 to 45 feet deep, with compositions in Table 8-2 (Grout A holes 1-3, B 4-7, C 8-12; quantities printed as 'quarts (Liters)'). Seismic velocities after four days, correlated to strength gain (p. 8-39): microfine cement, which needed very high injection pressures, gave a non-uniform mass; microfine powder gave no strength gain even after a month (low temperature, lack of oxygen, poor mixing in the ground); sodium silicate was most successful, giving a well-permeated hard soil mass. (pp. 8-37 to 8-39)",
+      "key_points": [
+        "12 holes, 4 ft apart on a triangular grid, 34.5-45 ft deep (p. 8-38).",
+        "Sodium silicate most successful; microfine cement non-uniform; microfine powder did not cure (p. 8-39)."
       ],
       "equations": [],
       "figures": [
@@ -523,7 +654,7 @@
       "tables": [
         "Table 8-2: Components of Permeation Grouts Used by Brachman et al. 2004"
       ],
-      "applicability": "Precedents for permeation grouting for containment and tunnel support in granular soils."
+      "applicability": "A permeation grouting case history from the manual."
     },
     {
       "section_id": "8.2.4",
@@ -561,14 +692,52 @@
     {
       "section_id": "8.2.4.2",
       "title": "Feasibility Evaluations",
-      "summary": "Compaction grouting feasibility rests on a specialty contractor's input and a test program; no equations exist to design spacing, rates or volumes, but much case experience guides practice. Effective in free-draining soils (gravels, sands, coarser silts), not economical in fine-grained soils; grout needs high internal friction; slump up to 3 in. for void filling. Site assessment by SPT, CPT and geophysics.",
-      "body": "As in all specialty geotechnical processes, a specialty contractor's input should be sought starting with a well-conceived test program, especially when the purpose is to raise a settled structure or compensate for ground loosening beneath a structure next to soft-ground tunneling. There are no mathematical equations to accurately design grout hole spacing, rates of injection, limiting volumes and so on, as there are for permeation grouting; there is, however, much documented project experience (pp. 8-40 to 8-41). Geotechnical (2.4.2.1): densification by compaction grouting may be expected to be effective in all relatively free-draining soils, including gravels, sands and coarser silts; in fine-grained soils pore pressures may not dissipate and improvement may not be economical. The grout must have high internal friction so the bulbs keep their 'spheroidal' shape; otherwise fracturing and lensing make densification ineffective (Warner et al. 1992). For LMG used to fill voids or cut off water, a slightly higher slump (up to 3 inches) or polypropylene fibers may be preferable. Environmental (2.4.2.2): minimal adverse impact because the grout is confined to its zone of influence; computer-controlled directional drilling and injection control and imaging improve precision. Project conditions (2.4.2.3): SPT and CPT are typically used for site assessment; for sinkholes or flow sealing, piezometric data and geophysics (GPR, resistivity, electromagnetic imaging, tomography) give wider coverage; access must always be considered (p. 8-41).",
+      "summary": "Compaction grouting feasibility: involve a specialty contractor from a well-conceived test program, especially to raise settled structures or compensate for tunneling losses; no equations design hole spacing, injection rates or volumes, but much documented experience guides the work.",
+      "body": "As in all specialty geotechnical processes, a specialty contractor's input should be sought from the development of a well-conceived test program, especially when the purpose is to raise a settled structure or compensate for ground loosening under an existing structure next to soft ground tunneling. Unlike permeation grouting, there are no mathematical equations to accurately design grout hole spacing, rates of injection, limiting volumes and so on, but much project experience and many documented case histories guide implementation (some in 8.2.4.5). Geotechnical, environmental and site factors follow (p. 8-41). (pp. 8-40 to 8-41)",
       "key_points": [
-        "Seek specialty contractor input and a test program",
-        "No equations exist for compaction grouting spacing, rates or volumes; design relies on experience",
-        "Effective in free-draining soils: gravels, sands, coarser silts; not economical in fine-grained soils",
-        "Grout must have high internal friction to keep spheroidal bulbs (Warner et al. 1992)",
-        "Void filling or water cut-off LMG may use slump up to 3 in. or polypropylene fibers"
+        "No equations design compaction grouting spacing, rates or volumes; experience guides it (p. 8-40).",
+        "Seek specialty contractor input from the test program onward (p. 8-40)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Judging whether compaction grouting will densify a given soil."
+    },
+    {
+      "section_id": "8.2.4.2.1",
+      "title": "Geotechnical",
+      "summary": "Compaction grouting densifies relatively free-draining soils (gravels, sands, coarser silts); in fine-grained soils pore pressures may not dissipate. The grout needs high internal friction so bulbs stay spheroidal, else fracturing and lensing; void-filling or cut-off LMG may use slump up to 3 in. or polypropylene fibers.",
+      "body": "Densification by compaction grouting may be expected to be effective in all relatively free-draining soils, including gravels, sands and coarser silts; in fine-grained soils pore pressures may not dissipate and improvement may not be economically achievable. Grout mix design is critical: the grout must have high internal friction so the bulbs keep their 'spheroidal' shape, otherwise fracturing and lensing make densification ineffective (Warner et al. 1992). For LMG used to fill voids or cut off water, other rheology may be preferable, e.g., a slightly higher slump (up to 3 inches) or polypropylene fibers. (p. 8-41)",
+      "key_points": [
+        "Effective in relatively free-draining soils: gravels, sands, coarser silts (p. 8-41).",
+        "High internal friction keeps bulbs spheroidal; otherwise fracturing and lensing (p. 8-41).",
+        "Void filling or cut-off LMG: slump up to 3 in. or fibers (p. 8-41)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Judging whether compaction grouting will densify a given soil."
+    },
+    {
+      "section_id": "8.2.4.2.2",
+      "title": "Environmental Conditions",
+      "summary": "Compaction grouting has minimal surface and soil impact since grout stays within its zone of influence; computer controlled directional drilling and advanced injection control and imaging give safer, more precise injection.",
+      "body": "Compaction grouting has minimal adverse impact on the surface environment and soils because the grout is confined to its zone of influence. Digital computer controlled directional drilling with grouting gives very high control for safer, more precise injection, and advanced injection control and imaging improve understanding of soil-grout interaction. (p. 8-41)",
+      "key_points": [
+        "Minimal environmental impact; grout confined to its zone of influence (p. 8-41)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Judging whether compaction grouting will densify a given soil."
+    },
+    {
+      "section_id": "8.2.4.2.3",
+      "title": "Project Conditions",
+      "summary": "Site assessment uses SPT and CPT; for sinkholes or flow sealing, piezometric data and geophysics (GPR, electrical resistivity, electromagnetic imaging, tomography) cover more ground than single borings; access always matters.",
+      "body": "Conventional measurements such as SPT and CPT are typically used for site assessment. For sinkhole remediation or flow sealing, piezometric data and geophysical techniques (ground penetrating radar, electrical resistivity, electromagnetic imaging and tomography) give more far-ranging data than a single borehole. Site conditions always include access. (p. 8-41)",
+      "key_points": [
+        "SPT and CPT for site assessment; geophysics for sinkholes and flow sealing (p. 8-41)."
       ],
       "equations": [],
       "figures": [],
@@ -578,15 +747,81 @@
     {
       "section_id": "8.2.4.3",
       "title": "Design Considerations",
-      "summary": "Compaction grouting design: pipe spacing 8-15 ft (tunneling), 6.6-16 ft (site improvement), 3.3-10 ft (remedial under structures), 10-30 ft primaries for sinkholes; pipe at least 3 in.; LMG volume 3-12% of treated soil; pug mixer and pumps from 1/2 cu ft/min; stages 1-3 ft; mixes of 3-6 sacks cement per cu yd silty sand, 10-25% fines, max 1 in. slump; injection 1.5-2.0 cu ft/min, perimeter first.",
-      "body": "Spacing (2.4.3.1): for densification or re-densification, grout pipes are typically at 8 to 15 ft intervals for tunneling, 6.6 to 16 ft for site improvement, and 3.3 to 10 ft for remedial work on existing structures; primary holes for locating and sealing sinkholes or channel flows are typically 10 to 30 ft, usually with tertiary holes to verify performance. The pipe diameter should be at least 3 inches to carry low-slump grout without plugging (pp. 8-41 to 8-42). Grout quantities (2.4.3.2): for most densification projects the LMG volume ranges from 3 to 12% of the soil volume treated; void filling stages may take tens of cubic meters. Construction equipment (2.4.3.3): mixers, pumps and hoses per Warner (1982); pumps must inject from 1/2 cu ft/min upward; a pug mixer gives uniform mixing; ready-mix delivery is possible if each load meets the slump criterion; site batching gives more control. Grout pipes are steel casing; grout is injected while withdrawing the pipe in stages typically 1 to 3 ft (p. 8-42). Grout types (2.4.3.4): soil-cement mixes with low w/c (Mitchell 1981); zero-slump LMG from cement, clay and fly ash; Type I or II Portland cement; sand with not less than 10% and not more than 25% fines; about three to six sacks of cement per bulk cubic yard of silty sand, with not more than 1 in. slump at the header; gravel, fibers or anti-washout agents as needed; no cement where a 'hard point' must be avoided, as in a dam core. Grout injection (2.4.3.5): optimal rate usually 1.5 to 2.0 cu ft/min (Warner and Byle 2012); excessive rates build pore pressure, can damage structures and reduce the improved radius; use slower rates near walls, slopes and embankments; inject perimeter holes before interior holes (p. 8-43).",
+      "summary": "Heading for compaction grouting design considerations: spacing, grout quantities, construction equipment, grout types and selection, and grout injection (8.2.4.3.1 to 8.2.4.3.5).",
+      "body": "Heading for compaction grouting design considerations, 8.2.4.3.1 to 8.2.4.3.5; it has no text of its own. (p. 8-41)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Preliminary layout, quantities, mix and injection rate for compaction grouting."
+    },
+    {
+      "section_id": "8.2.4.3.1",
+      "title": "Spacing",
+      "summary": "Compaction grout pipes are typically 8 to 15 ft apart for tunneling, 6.6 to 16 ft for site improvement and 3.3 to 10 ft for remedial work under structures; sinkhole or channel primary holes 10 to 30 ft with tertiary holes; pipe diameter at least 3 in.",
+      "body": "For densification or re-densification, grout pipes are typically at 8 to 15 feet intervals for tunneling projects, 6.6 to 16 feet for site improvement, and 3.3 to 10 feet for remedial work on existing structures. Primary holes for locating and sealing sinkholes or channel flows are spaced to suit the problem, typically 10 to 30 feet, and tertiary holes are usually needed to ensure and verify performance. The pipe diameter should be at least 3 inches to carry low slump material without plugging and to minimize shear resistance. (pp. 8-41 to 8-42)",
       "key_points": [
-        "Pipe spacing: 8-15 ft tunneling, 6.6-16 ft site improvement, 3.3-10 ft remedial; 10-30 ft sinkhole primaries (p. 8-41)",
-        "Grout pipe diameter at least 3 in. (p. 8-42)",
-        "LMG volume typically 3-12% of treated soil volume",
-        "Stages typically 1-3 ft; pumps from 1/2 cu ft/min",
-        "Mix: 3-6 sacks cement per cu yd silty sand, sand fines 10-25%, slump not more than 1 in. (p. 8-43)",
-        "Injection rate usually 1.5-2.0 cu ft/min (Warner and Byle 2012); grout perimeter holes first"
+        "8-15 ft (tunneling), 6.6-16 ft (site improvement), 3.3-10 ft (remedial work) (p. 8-41).",
+        "Sinkhole primary holes 10 to 30 ft, with tertiary holes (p. 8-41).",
+        "Grout pipe at least 3 in. in diameter (p. 8-42)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Preliminary layout, quantities, mix and injection rate for compaction grouting."
+    },
+    {
+      "section_id": "8.2.4.3.2",
+      "title": "Grout Quantities",
+      "summary": "LMG volume depends on soil type, existing and required density, or void size: typically 3 to 12% of the treated soil volume for densification; void-filling stages may take tens of cubic meters.",
+      "body": "LMG quantities depend on the soil type, its existing density and the density required, or on the size of the void to be filled. For most densification projects the LMG volume ranges between 3 and 12% of the volume of soil treated, whereas individual void filling stages may consume tens of cubic meters of grout. (p. 8-42)",
+      "key_points": [
+        "Densification: 3 to 12% of treated soil volume (p. 8-42)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Preliminary layout, quantities, mix and injection rate for compaction grouting."
+    },
+    {
+      "section_id": "8.2.4.3.3",
+      "title": "Construction Equipment",
+      "summary": "LMG needs its own mixing and pumping equipment (Warner 1982): pumps injecting from 1/2 ft3/min upward, a pug mixer feeding the pump continuously, ready-mix only with each truck's slump tested; site batching gives more control. Steel casing grout pipes are withdrawn in stages of typically 1 to 3 ft.",
+      "body": "Low mobility grout needs different mixing, pumping and delivery equipment than fluid grouts; requirements for mixers, pumps and hoses are in 'Compaction Grouting - the First Thirty Years' (Warner 1982), and specialty firms keep developing their own. Mixers and pumps: pumps must inject from 1/2 cubic feet/minute upward; the mixer should be a pug mixer giving complete uniform mixing with enough capacity to feed the pump continuously; the pump must deliver the grout at appropriate rates and pressures to the pipe head. Ready-mix in mixer trucks may sometimes be used, each load tested for slump and rejected if out of criteria, on delivery or during pumping. Site batching gives the contractor more control of grout properties and limits waste and delays. Grout pipes: steel casing strong enough to hold the hole and resist jacking and pumping pressures; grout is usually injected while withdrawing the pipe from maximum depth in stages typically 1 to 3 feet. (p. 8-42)",
+      "key_points": [
+        "Pumps inject from 1/2 ft3/min upward; pug mixer (p. 8-42).",
+        "Test each ready-mix load for slump (p. 8-42).",
+        "Steel casing withdrawn in stages typically 1 to 3 ft (p. 8-42)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Preliminary layout, quantities, mix and injection rate for compaction grouting."
+    },
+    {
+      "section_id": "8.2.4.3.4",
+      "title": "Grout Types and Selection",
+      "summary": "LMG: low w/c soil-cement mixes; zero-slump mixes of cement, clay and fly ash; Type I or II cement; sand with 10 to 25% fines; about three to six sacks of cement per bulk cubic yard of silty sand, slump not over 1 in. at the header; gravel, fibers or anti-washout agents as needed; no cement where a hard point must be avoided (dam core).",
+      "body": "Soil-cement grouts with low w/c are used for high viscosity LMG (Mitchell 1981); zero slump LMG is made with cement, clay and fly ash. Portland Type I or II cement is normally used. Fine aggregate is usually sand with not less than 10% and not more than 25% fines, which may be supplemented with fly ash, bentonite or aggregate washings. Proportions are about three to six sacks of cement per bulk cubic yard of silty sand, with water for a pumpable mix of not more than 1 in. slump at the grout pipe header. Other additives may include gravel, coarse sand, fibers or anti-washout agents; in some cases, e.g., sinkhole remediation in a dam core, no cement is added so no 'hard point' forms. (p. 8-43)",
+      "key_points": [
+        "Sand with 10 to 25% fines; three to six sacks of cement per bulk cubic yard (p. 8-43).",
+        "Slump not more than 1 in. at the header (p. 8-43).",
+        "No cement in a dam core, to avoid a hard point (p. 8-43)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Preliminary layout, quantities, mix and injection rate for compaction grouting."
+    },
+    {
+      "section_id": "8.2.4.3.5",
+      "title": "Grout Injection",
+      "summary": "Optimal compaction grouting injection is usually 1.5 to 2.0 ft3/min (Warner and Byle 2012); excessive rates build pore pressure, can damage nearby structures and cut the improved radius, needing more holes; go slower near walls, slopes and water-retaining embankments; inject perimeter holes before interior ones.",
+      "body": "The optimal injection rate for compaction grouting usually falls within 1.5 to 2.0 cubic feet per minute (Warner and Byle 2012). Rate greatly affects effectiveness: excessive pumping, particularly in fine-grained soils, builds excess pore pressure that can damage adjacent structures, and a higher rate injects less grout before refusal, reducing the effective radius of improved soil and requiring more holes. Slower rates should be used in sensitive areas near retaining walls, downslopes or water retaining embankments. For compaction grouting, jacking and void filling, perimeter holes are injected before interior holes, from the perimeter inward. (p. 8-43)",
+      "key_points": [
+        "Optimal rate usually 1.5 to 2.0 ft3/min (Warner and Byle 2012) (p. 8-43).",
+        "High rates build pore pressure and reduce the improved radius (p. 8-43).",
+        "Inject from the perimeter inward (p. 8-43)."
       ],
       "equations": [],
       "figures": [],
@@ -611,25 +846,53 @@
     {
       "section_id": "8.2.4.5",
       "title": "Case Histories",
-      "summary": "Three compaction grouting case histories under roadways: (1) stabilizing settlement of a fill and rock-armored slope over a failed culvert, with volumetric seismic imaging for QA (Haramy et al. 2012); (2) bottom-up compaction grouting of a loose embankment beneath a subsiding highway; (3) combined void-fill and compaction grouting of piped roadway fill (Lynch et al. 2011), leading to a seismic-velocity pay factor (Eq. 8-5, Table 8-4).",
-      "body": "Case History 1 (Haramy et al. 2012): compaction grouting stabilized roadway settlement (over 4 in. per year) caused by piping from a failed 2-ft culvert through a 65-ft-high, 131-ft-long rock armored slope. The culvert was lined, armor voids were grouted, and the fill was densified with holes on four longitudinal lines 6.5 ft apart, holes at 13.1 ft staggered 6.5 ft (Figure 8-11), to bedrock at 6.5 to 30 ft, grouted bottom-up in 1-ft lifts. A volumetric seismic method (High Definition Imaging) monitored grout propagation in near real time as QA (pp. 8-44 to 8-45). Case History 2 (Lynch et al. 2011): loose embankment and voids under a highway; staggered holes at 4 ft to 10 ft depth, about 4 ft from the edge, in poorly graded fine sand with SPT 5 to 14; maximum slump 1.8 in.; two sites took 79 and 107 holes and 4.2 and 15.3 cu yd. Near-surface grouting produced a 'pitcher's mound' effect from low overburden; measured slump may not reflect the grout's stress state under pumping (pp. 8-45 to 8-46). Case History 3 (Lynch et al. 2011): void-fill plus compaction grouting of piped roadway fill, pipes 2 to 17 ft deep, w/c 0.77 by weight (1.17 by volume), mix in Table 8-3. Both cases called for 3D seismic tomography guidelines (same locations for geophones and sources, same starting velocity, distant benchmarks, straight parallel lines, planar layout) and led to a pay factor based on the Seismic Volume Improvement Factor (Eq. 8-5): pay factor 0.90 for SVIF < -100, 0.95 for -100 to -50, 1.0 for -50 to 50, 1.10 for 50 to 100, and 1.20 for SVIF > 100 (Table 8-4) (pp. 8-46 to 8-48).",
+      "summary": "Compaction grouting case histories under park roadways: a failed culvert under an armored slope (Haramy et al. 2012) and loose, piped embankments under two highways with seismic pay factors (Lynch et al. 2011).",
+      "body": "Heading for the compaction grouting case histories, 8.2.4.5.1 and 8.2.4.5.2 (the latter also carrying the unnumbered Case History 3); it has no text of its own. (p. 8-44)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Precedents and seismic-velocity QA/pay factors for compaction grouting under roadways."
+    },
+    {
+      "section_id": "8.2.4.5.1",
+      "title": "Case History 1: Rocky Mountain National Park, Colorado (Haramy et al. 2012)",
+      "summary": "Compaction grouting stabilized roadway settlement (over 4 in. per year) from piping at a failed 2 ft culvert in a 65 ft high armored rock slope: culvert lined, armor voids grouted, fill densified on four lines 6.5 ft apart with holes 13.1 ft apart staggered 6.5 ft (Figure 8-11), to bedrock at 6.5 to 30 ft; seismic High Definition Imaging tracked grout in near real time.",
+      "body": "Compaction grouting stabilized roadway settlement caused by piping at a failed culvert, and the historic placed-rock armored slope below the outboard lane was rehabilitated without harming its historic and aesthetic value. A volumetric non-destructive seismic method gave subsurface data over the whole area, unlike point tests such as SPT. The site was a rock slope armor 65 feet high and 131 feet long with a 2 foot culvert at the center; pavement settled more than 4 inches per year, and video showed a culvert break with piping by groundwater flow. The culvert was lined, the armor stabilized by grouting its voids through holes in the pavement, and the fill densified by compaction grouting on four longitudinal lines 6.5 feet apart across the roadway, holes 13.1 feet apart in each line, staggered 6.5 feet from the nearest in adjacent lines (Figure 8-11, p. 8-45). Holes stopped at bedrock, generally 6.5 to 30 feet below the pavement; grout was injected from the bottom under consistent pressure while withdrawing the pipe in 1-foot increments. Pre- and post-grouting seismic velocities analyzed by High Definition Imaging (HDI) monitored volumetric grout propagation in near real time, a valuable quality assurance tool. (pp. 8-44 to 8-45)",
       "key_points": [
-        "Case 1: hole lines 6.5 ft apart, holes 13.1 ft on line, staggered 6.5 ft; 1-ft lifts (p. 8-44)",
-        "Case 2: maximum slump 1.8 in.; 'pitcher's mound' effect near the surface (p. 8-46)",
-        "Case 3: mix w/c 0.77 by weight (1.17 by volume) (Table 8-3)",
-        "SVIF pay factors: 0.90 (< -100), 0.95 (-100 to -50), 1.0 (-50 to 50), 1.10 (50 to 100), 1.20 (> 100) (Table 8-4)"
+        "Settlement over 4 in. per year from piping at a failed 2 ft culvert (p. 8-44).",
+        "Four lines 6.5 ft apart; holes 13.1 ft apart staggered 6.5 ft (Figure 8-11) (p. 8-44).",
+        "Holes to bedrock at 6.5 to 30 ft; grouted bottom up in 1 ft increments (p. 8-45).",
+        "HDI seismic imaging monitored grout propagation (p. 8-45)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 8-11: Compaction grouting layout (Case History 1)."
+      ],
+      "tables": [],
+      "applicability": "A compaction grouting case history from the manual."
+    },
+    {
+      "section_id": "8.2.4.5.2",
+      "title": "Case History 2: Zion - Mt. Carmel Highway, Zion National Park, Utah (Lynch et al. 2011)",
+      "summary": "Bottom-up compaction grouting of a loose, voided highway embankment (staggered holes at 4 ft to 10 ft depth, fine sand with SPT 5 to 14, slump at most 1.8 in.; 79 and 107 holes took 4.2 and 15.3 yd3), and (unnumbered Case History 3) void-fill plus compaction grouting of another roadway (mix in Table 8-3), led to seismic tomography guidance and a pay factor on the Seismic Volume Improvement Factor (Eq. 8-5, Table 8-4).",
+      "body": "Compaction grouting remedied severe pavement subsidence and cracking caused by loose embankment material and voids; bottom-up grouting stabilized the embankment, and the top 3 feet of roadway was then replaced with geosynthetic-reinforced fill for drainage; repeated patching had left asphalt over 3 feet thick. Holes were drilled in a staggered pattern at 4 feet to 10 feet depth, typically about 4 feet from the pavement edge, in loosely consolidated poorly graded fine sand with SPT 5 (very loose) to 14 (medium dense) (p. 8-46); maximum slump was specified as 1.8 inches. Two sites took 79 and 107 holes and 4.2 and 15.3 cubic yards. Near-surface grouting needs precautions: the sphere of influence makes a 'pitcher's mound' and overburden is too low to resist injection pressure; measured slump may not reflect the grout's stress state under pump and casing pressure. Printed under this heading without a number, Case History 3 (Apache Trail, Tonto National Forest, Arizona, Lynch et al. 2011) had similar problems and combined void-fill and compaction grouting of piped loose fill under the highway and retaining walls; pipes 2 to 17 feet deep; mix w/c 0.77 by weight (1.17 by volume) per Table 8-3 (masonry sand and silt topsoil 1,350 lb each, cement and fly ash 432 lb each, retarder 24 ounces, water 40 gallons), with a thixotropic admixture and foam (p. 8-47). Both cases call for 3D seismic tomography guidelines: accuracy rises when geophones and transmission points share locations; also use the same starting velocity, distant benchmarks, straight parallel lines and planar layouts. Performance specifications set a pay factor from the Seismic Volume Improvement Factor (Eq. 8-5), the ratio of the average velocity difference to the pre-grouting mean velocity: pay factor 0.90 for SVIF < -100, 0.95 for -100 to -50, 1.0 for -50 to 50, 1.10 for 50 to 100, 1.20 above 100 (Table 8-4, p. 8-48, whose header gives SVIF in m/s while Eq. 8-5 gives a percent, as printed). (pp. 8-45 to 8-48)",
+      "key_points": [
+        "Staggered holes at 4 ft to 10 ft depth; SPT 5 to 14; slump at most 1.8 in. (p. 8-45).",
+        "79 and 107 holes took 4.2 and 15.3 yd3 (p. 8-46).",
+        "Near-surface grouting makes a 'pitcher's mound' (p. 8-46).",
+        "Unnumbered Case History 3: mix w/c 0.77 by weight (Table 8-3) (p. 8-46).",
+        "Pay factor from SVIF (Eq. 8-5): 0.90 to 1.20 (Table 8-4) (p. 8-48)."
       ],
       "equations": [
         "Eq. 8-5: SVIF = [sum over j=1..n of dv_j] / (n x v_mean,pre-grouting) x 100%; Seismic Volume Improvement Factor, dv_j = velocity change at data point j between pre- and post-grouting, n = number of data points, v_mean,pre-grouting = mean pre-grouting velocity (p. 8-47)"
       ],
-      "figures": [
-        "Figure 8-11: Compaction grouting layout (Case History 1)."
-      ],
+      "figures": [],
       "tables": [
         "Table 8-3: Grout Mix Used for Case History 3 Grouting",
         "Table 8-4: Potential Pay Factor Specification Developed from Seismic Data Analysis for Grouting"
       ],
-      "applicability": "Precedents and seismic-velocity QA/pay factors for compaction grouting under roadways."
+      "applicability": "A compaction grouting case history from the manual."
     },
     {
       "section_id": "8.2.5",
@@ -664,14 +927,37 @@
     {
       "section_id": "8.2.5.2",
       "title": "Advantages and Potential Disadvantages",
-      "summary": "Bulk void filling is usually economical and often the only viable solution; drilling and grouting extend the exploration program. Advantages: low unit cost with cheap fillers, minimal disturbance, tailored strength, full roof contact, verifiable. Disadvantages: difficulty filling voids completely and containing grout in the target zone (barriers, accelerated grouts, fabric forms, Figure 8-12).",
-      "body": "Advantages (2.5.2.1): bulk void filling is usually an economical way to solve these problems and, on many occasions, is the only viable solution when a void or cavity affects surface structures. As with other grouting, the drilling and grouting should be considered an extension of the exploration program while also remediating the problem. Advantages are: low cost per unit volume of materials when inexpensive fillers are used; minimum disturbance of existing surface structures; grout strength can be tailored to the in-situ condition; it essentially yields full roof contact; grout can penetrate all locations without fear of the grout flowing, settling or being washed away; and effectiveness can be verified (p. 8-49). Potential disadvantages (2.5.2.2): two challenges are common. One is the difficulty of filling the voids completely with grout; the second is containing the grout within the zone to be stabilized, although low-slump grout 'barriers,' accelerated grouts and grout-filled fabric forms have been used to minimize this problem, as illustrated in Figure 8-12 (pp. 8-49 to 8-50).",
+      "summary": "Heading for the advantages (8.2.5.2.1) and potential disadvantages (8.2.5.2.2) of bulk void filling.",
+      "body": "Heading for the advantages and potential disadvantages of bulk void filling, 8.2.5.2.1 and 8.2.5.2.2; it has no text of its own. (p. 8-49)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Weighing bulk void filling against alternatives for cavities and mines."
+    },
+    {
+      "section_id": "8.2.5.2.1",
+      "title": "Advantages",
+      "summary": "Bulk void filling is usually economical and often the only viable fix when a cavity affects surface structures; drilling and grouting extend the exploration. Advantages: low material cost with cheap fillers, minimal disturbance, tailored strength, essentially full roof contact, no washout, verifiable effectiveness.",
+      "body": "Bulk void filling is usually an economical way to solve these problems and, on many occasions, the only viable solution when a void or cavity affects surface structures. As in other grouting, the drilling and grouting should be treated as an extension of the exploration program while also remediating the problem. Advantages: low cost per unit volume of materials with inexpensive fillers; minimum disturbance of existing surface structures; grout strength tailored to the in-situ condition; essentially full roof contact; grout can penetrate all locations without fear of flowing, settling or being washed away; and effectiveness can be verified. (p. 8-49)",
       "key_points": [
-        "Usually economical; often the only viable solution for voids affecting structures",
-        "Drilling and grouting are an extension of the exploration program",
-        "Advantages: low unit cost with fillers, little disturbance, tailored strength, full roof contact, verifiable",
-        "Challenges: filling voids completely and containing grout in the target zone",
-        "Containment aids: low-slump grout barriers, accelerated grouts, grout-filled fabric forms"
+        "Often the only viable solution when a void affects surface structures (p. 8-49).",
+        "Drilling and grouting extend the exploration program (p. 8-49).",
+        "Essentially full roof contact; effectiveness can be verified (p. 8-49)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Weighing bulk void filling against alternatives for cavities and mines."
+    },
+    {
+      "section_id": "8.2.5.2.2",
+      "title": "Potential Disadvantages",
+      "summary": "Two common challenges: filling the voids completely, and containing grout in the zone to be stabilized, eased by low slump grout barriers, accelerated grouts and grout-filled fabric forms (Figure 8-12).",
+      "body": "Bulk void filling commonly has two potential challenges: the difficulty of filling the voids completely with grout, and containing the grout within the zone to be stabilized; low slump grout 'barriers', accelerated grouts and grout-filled fabric forms have been used to minimize the latter, as illustrated in Figure 8-12 (p. 8-50). (pp. 8-49 to 8-50)",
+      "key_points": [
+        "Hard to fill voids completely and to contain the grout (p. 8-49).",
+        "Low slump barriers, accelerated grouts and fabric forms contain grout (Figure 8-12) (p. 8-50)."
       ],
       "equations": [],
       "figures": [
@@ -699,21 +985,56 @@
     {
       "section_id": "8.2.5.4",
       "title": "Design Overview",
-      "summary": "Void filling design: grout materials range from non-cementitious waste to high-strength low-slump concrete; scour repair with filled tubes or bags uses a fine aggregate concrete (Table 8-5: cement 37-47, fly ash 11-14, sand 134-144, water 33-37 lb/cu ft). Remove clay infill first; intermittent grouting with 30-1,000 cu ft or more per period; split spacing to refusal, final grid 10 ft or less; monitoring by borehole cameras, instruments and volume/pressure analysis.",
-      "body": "Grout types and selection (2.5.4.1): materials range from non-cementitious waste to high-strength, low-slump concrete depending on purpose; void filling usually encompasses other grouting techniques, so the LMG, fissure grouting and HMG sections should be reviewed. For scoured zones filled with concrete-filled tubes or bags, a fine aggregate concrete (structural grout) is recommended, with typical proportions in Table 8-5: cement 37-47 lb/cu ft (650-750 kg/m3), fly ash 11-14 (180-220), sand 134-144 (2150-2300), water 33-37 (525-600) (p. 8-51). Design procedure (2.5.4.2): good grouting practice can fill voids completely, but clay or other erodible infill is best removed first by flushing with air, water and/or dispersant; trapped clay can be removed under prolonged differential head. The extent of a cavity is unknown after one grout hole, and geophysics may not help. Intermittent grouting (inject, wait several hours, inject again) may be needed; the maximum quantity per injection period varies from about 30 to 1,000 cu ft or more, and a limit per hole may be set, unlike fissure grouting practice. At refusal the cavity portion penetrated is assumed filled; further holes are drilled on a split spacing until results are achieved. If pressures do not build or the cavity is too large, a grout curtain should contain the grout, or different materials and methods (foams, accelerators, cutoff diaphragms or formed walls, hot bitumen, excavation, grout-filled bags) considered. Final grids of 10 ft or less are not unusual for 'tightening' (pp. 8-51 to 8-52). Performance monitoring (2.5.4.3): borehole cameras in adjacent holes, instruments for heave and settlement, geophysics, and above all close analysis of grout volumes and pressures in each phase (p. 8-52).",
+      "summary": "Overview of bulk void filling design: grout type selection, grouting program design and performance monitoring (8.2.5.4.1 to 8.2.5.4.3).",
+      "body": "This part gives an overview of design considerations for bulk void filling: grout type selection (8.2.5.4.1), grouting program design (8.2.5.4.2) and performance monitoring (8.2.5.4.3). (p. 8-51)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Designing grout mixes, injection sequence and monitoring for bulk void filling."
+    },
+    {
+      "section_id": "8.2.5.4.1",
+      "title": "Grout Types and Selection",
+      "summary": "Void filling materials range from non-cementitious waste to high-strength low-slump concrete and draw on LMG, fissure grouting and HMG practice; for scour zones filled with concrete-filled tubes or bags a fine aggregate concrete (structural grout) is recommended, with mix ranges in Table 8-5.",
+      "body": "Materials vary from non-cementitious waste to high-strength, low-slump concrete depending on the purpose; void filling usually encompasses one or more other grouting techniques, so the sections on LMG, fissure grouting and HMG should be reviewed. For scoured zones filled with concrete-filled tubes or bags, a fine aggregate concrete (structural grout) is recommended; Table 8-5 gives typical proportions: cement 37-47 lb/ft3 (650-750 kg/m3), fly ash 11-14 (180-220), sand 134-144 (2150-2300), water 33-37 (525-600). (p. 8-51)",
       "key_points": [
-        "Scour repair fine aggregate concrete (Table 8-5): cement 37-47, fly ash 11-14, sand 134-144, water 33-37 lb/cu ft",
-        "Remove clay or erodible infill by flushing with air, water and/or dispersant before grouting",
-        "Intermittent grouting: about 30 to 1,000 cu ft or more per injection period (p. 8-52)",
-        "Split-spaced holes to refusal; final grid of 10 ft or less not unusual",
-        "If pressure does not build, contain grout with a curtain or change materials/methods",
-        "Monitor with borehole cameras, heave/settlement instruments and grout volume/pressure records"
+        "Review LMG, fissure grouting and HMG practice for void filling (p. 8-51).",
+        "Scour zones in tubes or bags: fine aggregate concrete (Table 8-5) (p. 8-51)."
       ],
       "equations": [],
       "figures": [],
       "tables": [
         "Table 8-5: Typical Range of Material Mix Proportions for Void Filling Applications"
       ],
+      "applicability": "Designing grout mixes, injection sequence and monitoring for bulk void filling."
+    },
+    {
+      "section_id": "8.2.5.4.2",
+      "title": "Design Procedure/Program",
+      "summary": "Remove clay or erodible infill first (air, water, dispersant). One hole does not show a cavity's extent; intermittent grouting, 30 to 1,000 ft3 or more per injection period, and a per-hole limit may be used. At refusal split-spaced holes follow; if pressures will not build, use a containment curtain or other materials; final grids of 10 ft or less are not unusual.",
+      "body": "Good grouting practice can fill voids completely, but clay or other erodible infill is best removed first by flushing with air, water and/or dispersant; clay trapped in grouted karst cavities can be removed by prolonged differential head. A cavity's extent is unknown after one grout hole, and geophysics may not help (p. 8-52). Intermittent grouting (inject, wait several hours, inject again) may be needed; the maximum quantity per injection period varies from about 30 to 1,000 cubic feet or more, and a maximum per hole may be set, unlike fissure grouting practice. At refusal the penetrated part of the cavity is assumed filled, and more holes are grouted on a split spacing sequence until results are achieved. If pressures fail to build or the cavity is too large, a grout curtain should control the flow of grout from the cavity, or radically different materials and methods be considered (foaming agents or accelerators, cutoff diaphragms or formed concrete walls, hot bitumen, excavation, grout filled bags), with further exploration and design proceeding without delaying the project. Final grid spacings of 10 feet or less are not unusual for 'tightening'. (pp. 8-51 to 8-52)",
+      "key_points": [
+        "Remove clay infill first by flushing (p. 8-51).",
+        "Intermittent grouting; 30 to 1,000 ft3 or more per injection period (p. 8-52).",
+        "Split spacing after refusal; final grids of 10 ft or less (p. 8-52)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Designing grout mixes, injection sequence and monitoring for bulk void filling."
+    },
+    {
+      "section_id": "8.2.5.4.3",
+      "title": "Performance Monitoring",
+      "summary": "Monitor bulk void grouting with borehole cameras in adjacent holes, heave and settlement instruments, geophysics, and above all close analysis of grout volumes and pressures in each phase.",
+      "body": "Several adjacent holes are drilled before grouting; borehole cameras in adjacent holes can verify that grout injection meets requirements. Instrumentation can monitor heave and settlement, while close analysis of grout volumes and pressures in each phase remains the classic monitoring technique; geophysical methods may also help. (p. 8-52)",
+      "key_points": [
+        "Grout volumes and pressures per phase are the classic monitoring technique (p. 8-52)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
       "applicability": "Designing grout mixes, injection sequence and monitoring for bulk void filling."
     },
     {
@@ -736,23 +1057,80 @@
     {
       "section_id": "8.2.5.6",
       "title": "Case Histories",
-      "summary": "Four bulk void filling case histories: (1) sinkhole remediation under roads with sand/cement/fly ash grout and foamed grout (McGillivray et al. 2012); (2) hot bitumen with LMG and HMG to stop a high-flow quarry inflow (Bruce and Chuaqui 2012); (3) seepage cutoff in karstic limestone with LMG, bitumen and MPSP grouting (Walz et al. 2003); (4) abandoned coal mine filling with LMG barrier and HMG infill (Greenwood and Hill 2012).",
-      "body": "Case History 1 (McGillivray et al. 2012): road sinkholes in karst under 30 to 60 ft of sand or clayey sand over 5 to 20 ft of plastic clay over porous limestone (Figure 8-13). Grout holes into the limestone 5 ft apart in three rows beyond the sinkhole, 13 pipes at 46 to 77 ft; one 2003 job took 408 cu yd of grout costing $45,000, about two-thirds of the total. Adding foam (grout-foam 60 to 40) saved about 20 to 25%; foamed grout strength was 290 psi versus about 4000 psi (p. 8-54). Case History 2 (Bruce and Chuaqui 2012): two conduits about 20 x 30 ft at 250 and 305 ft depth carried a 35,000 gal/min inflow to a quarry floor more than 330 ft deep (Figure 8-14). Hot bitumen, pumpable above 400 F and set by cooling, was injected with LMG and HMG; HMG wells were 10 ft upstream of the bitumen wells; delivery lines must be kept hot (pp. 8-54 to 8-56; Figure 8-15). Case History 3 (Walz et al. 2003): a sudden inflow over 35,000 gal/min into a dolomitic limestone quarry less than 1,500 ft from a river; the goal was 8,000 gal/min total inflow, requiring river inflow below 3,000 gal/min. An intercepting cutoff about 50 ft from the riverbank was built in nine phases: 'cold karst' with LMG and slurry through multiple packer sleeve pipes (MPSP), then 'hot karst' with hot bitumen from the downstream row backed by upstream slurry; river flow into the quarry essentially stopped (pp. 8-56 to 8-58). Case History 4 (Greenwood and Hill 2012): subsidence of 12 to 39 in. over areas up to 300 ft across; an LMG barrier (slump 2 to 4 in., holes at 10 to 20 ft) around the perimeter, HMG infill inside, strength above the 500 psi overburden, cutoff pressure 21 psi at the gage, plus LMG support columns (Figure 8-16) (pp. 8-58 to 8-59).",
+      "summary": "Four bulk void filling case histories: road sinkholes in karst, hot bitumen grouting of a quarry inflow, a seepage cutoff in karstic limestone, and coal mine remediation.",
+      "body": "Two case histories use bulk void filling for subsurface voids; the third and fourth, as printed, describe bituminous grout and cemented paste for mine backfill (8.2.5.6.1 to 8.2.5.6.4). (p. 8-53)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Precedents for sinkhole, quarry inflow and mine void grouting."
+    },
+    {
+      "section_id": "8.2.5.6.1",
+      "title": "Case History 1: Sinkhole Remediation in Hillsborough County, Florida (McGillivray et al. 2012)",
+      "summary": "A county's rapid-response sinkhole program in karst (30 to 60 ft of sand over 5 to 20 ft of plastic clay over porous limestone, Figure 8-13): holes 5 ft apart in three rows into limestone, 13 pipes 46 to 77 ft deep; a 2003 job took 408 yd3 of grout for $45,000; foamed grout (60 to 40) saved 20 to 25%.",
+      "body": "A county program remediated road failures from sinkholes in karstic limestone, where sandy overburden erodes into limestone voids; the county and an engineer-contractor team set up a rapid response system with pre-set costs. The typical profile is 30 to 60 feet of sand or clayey sand over a 5 to 20 foot stratum of highly plastic clay over very porous weathered limestone (Figure 8-13, p. 8-54). Remediation installs grout pipes within and around the depression and pumps sand/cement/fly ash grout above the sinkhole to stop vertical seepage, compact disturbed soils and fill open voids; sinkholes were found by loss of drilling fluid. Holes were drilled into the limestone 5 feet apart in three rows extending beyond the sinkhole, 13 pipes at depths of 46 to 77 feet. A 2003 highway sinkhole job used 408 cubic yards of grout costing $45,000, about two-thirds of total cost. Adding synthetic foam (CLSM) at grout-foam ratios of 60 to 40 saved about 20 to 25%; foamed grout reached 290 psi in the laboratory against about 4000 psi for typical grout, and pumped easily at low pressure. (pp. 8-53 to 8-54)",
       "key_points": [
-        "Case 1: holes 5 ft apart in three rows; foamed grout (60:40) saved 20-25%, 290 psi vs about 4000 psi",
-        "Case 2: hot bitumen (pumpable above 400 F) sealed a 35,000 gal/min conduit inflow with LMG/HMG",
-        "Case 3: cold karst grouted with LMG/MPSP first, then hot karst with bitumen backed by slurry",
-        "Case 4: LMG barrier slump 2-4 in., holes 10-20 ft; HMG infill; cutoff pressure 21 psi"
+        "Profile: 30-60 ft sand over 5-20 ft plastic clay over porous limestone (Figure 8-13) (p. 8-53).",
+        "Holes 5 ft apart in three rows; 13 pipes 46 to 77 ft deep (p. 8-54).",
+        "408 yd3 of grout for $45,000 in 2003; foamed grout saved 20 to 25% (p. 8-54)."
       ],
       "equations": [],
       "figures": [
-        "Figure 8-13: Typical soil layer profile (Case History 1).",
+        "Figure 8-13: Typical soil layer profile (Case History 1)."
+      ],
+      "tables": [],
+      "applicability": "A bulk void filling case history from the manual."
+    },
+    {
+      "section_id": "8.2.5.6.2",
+      "title": "Case History 2: Hot Bitumen Grouting, Lonestar Quarry, Missouri (Bruce and Chuaqui 2012)",
+      "summary": "Hot bitumen with LMG and HMG stopped a 35,000 gal/min karst inflow through two conduits about 20 x 30 ft at 250 and 305 ft depth into a quarry more than 330 ft deep (Figures 8-14, 8-15); bitumen pumps above 400 F and sets by cooling; HMG wells 10 ft upstream of bitumen wells; delivery lines must be kept hot.",
+      "body": "Hot bitumen with low- and high-mobility cement grouts stopped a high inflow into a heavily karstic quarry, with hydraulic gradient rising with depth. The source was a river about 3280 feet away, from which two conduits about 20 x 30 feet, centered 250 and 305 feet below grade, carried 35,000 gallons/minute to the quarry floor more than 330 feet below grade (Figure 8-14, p. 8-55; credit printed 'Bruce and Chauqui 2012'). A small leak flooded the quarry within two weeks. Not a highway case, but notable for hot bitumen under high flow (also used in Florida karst, Bruce et al. 2001). Bitumen pumps easily above 400 F and cures by cooling, not by a time-dependent reaction, so it sets before dilution or washout; it was first injected upstream of the target, and the hardening bitumen adhered to the pathway walls (Figure 8-15, p. 8-56). Vertical holes within 20 feet located the best bitumen, LMG and HMG injection points as the conduit geometry was learned; HMG wells were 10 feet upstream of the bitumen wells. Solidifying on cooling is also bitumen's main drawback: down-hole pre-heating must keep the exit temperature high so it does not freeze in the delivery tubing. (pp. 8-54 to 8-56)",
+      "key_points": [
+        "Two conduits about 20 x 30 ft at 250 and 305 ft carried 35,000 gal/min (p. 8-55).",
+        "Bitumen pumpable above 400 F, sets by cooling (p. 8-55).",
+        "HMG wells 10 ft upstream of bitumen wells; keep delivery lines hot (p. 8-56)."
+      ],
+      "equations": [],
+      "figures": [
         "Figure 8-14: Illustration showing conduit inflow into a quarry (Case History 2).",
-        "Figure 8-15: Bulk void filling using bitumen (Case History 2).",
+        "Figure 8-15: Bulk void filling using bitumen (Case History 2)."
+      ],
+      "tables": [],
+      "applicability": "A bulk void filling case history from the manual."
+    },
+    {
+      "section_id": "8.2.5.6.3",
+      "title": "Case History 3: Ground Seepage Cutoff in Karstic Limestone - West Virginia Limestone Quarry (Walz et al. 2003)",
+      "summary": "A sudden inflow over 35,000 gal/min into a dolomitic limestone quarry less than 1,500 ft from a river was cut off by an intercepting grout curtain about 50 ft from the riverbank, built in nine phases: cold karst with LMG and slurry via multiple packer sleeve pipes, then hot karst with hot bitumen backed by slurry; river inflow essentially stopped.",
+      "body": "A dolomitic limestone quarry less than 1,500 feet from a river had a sudden inflow in April 1997 after blasting and severe floods, from an apparent vortex in the river, initially over 35,000 gallons/minute, far beyond pit pumping capacity; sandbag cofferdams failed, pumping stopped in May 1997 and the pit flooded (p. 8-57). The hydrogeology was baselined with deep piezometer wells (level, pH, conductivity, temperature) monitored through remediation. The goal was 8,000 gallons/minute total inflow with the quarry dewatered, needing river inflow below 3,000 gallons/minute. Of sealing the river cavities, an intercepting cutoff, or treatment near the quarry, the cutoff was favored, about 50 feet from the riverbank. Challenges: very high flow through possibly multiple conduits, mud-filled karst prone to erosion, piping and blow-out as gradient rose, grout migrating upstream. Jet grouting, polyurethane, LMG, hot bitumen, accelerated cement slurries (HMG), the multiple packer sleeve pipe (MPSP) system and grout-filled bags were assessed for feasibility, likely short- and long-term success and cost. Grouting took nine phases, with stringers allowing simultaneous bitumen and slurry injection in one hole: 'Cold Karst' (open voids, no flow) with LMG and slurry via MPSP, then 'Hot Karst' (flowing) with hot bitumen from the downstream row backed by slurry from the upstream row (p. 8-58). Wells, quarry levels, flow and the river eddy showed success: river inflow essentially stopped. Lessons: well-designed, monitored grouting works in the most adverse conditions; study all information before and during the work; all stakeholders must partner fully. (pp. 8-56 to 8-58)",
+      "key_points": [
+        "Inflow over 35,000 gal/min; target river inflow below 3,000 gal/min (p. 8-57).",
+        "Cutoff about 50 ft from the riverbank, nine phases (p. 8-57).",
+        "Cold karst with LMG and slurry via MPSP; hot karst with hot bitumen backed by slurry (p. 8-58)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "A bulk void filling case history from the manual."
+    },
+    {
+      "section_id": "8.2.5.6.4",
+      "title": "Case History 4: Coal Mine Remediation in South Central Illinois (Greenwood and Hill 2012)",
+      "summary": "An abandoned coal mine with surface subsidence of 12 to 39 in. over depressions up to 300 ft across was filled: an LMG barrier (slump 2 to 4 in., holes 10 to 20 ft) around the perimeter, HMG infill inside, strength above the 500 psi overburden, cutoff pressure 21 psi at the gage, and LMG support columns (Figure 8-16).",
+      "body": "Low and high mobility cementitious grouts filled an abandoned coal mine; down-hole cameras and lighting improved grout quantity estimates and scheduling in unmapped, inaccessible mines. Subsidence there gives surface settlements of 12 to 39 inches over depressions up to 300 feet in diameter, damaging pavements and slabs. A barrier of stiff LMG (slump 2 to 4 inches) is built around the perimeter at a set distance from the structures, with primary and secondary holes at 10 to 20 foot spacing, and a high mobility, low viscosity grout (HMG) fills the space inside, spreading through continuous unobstructed voids. Mixes of cement, fly ash, bentonite and water differ in rheology for barrier and infill; compressive strength is designed to exceed the typical 500 psi overburden pressure, injection is mostly by gravity head, and the cutoff pressure was 21 psi at the gage head (p. 8-59). Supplemental LMG columns reduced load on existing coal pillars (Figure 8-16). Quality control used grout sampling and testing, test drilling, downhole video (verifying the mine map) and real-time flow, specific gravity and pressure data; computerized data collection greatly improved efficiency and quality. (pp. 8-58 to 8-59)",
+      "key_points": [
+        "Subsidence 12 to 39 in. over depressions up to 300 ft across (p. 8-58).",
+        "LMG barrier (slump 2 to 4 in., holes 10 to 20 ft) and HMG infill (p. 8-58).",
+        "Cutoff pressure 21 psi at the gage head; LMG columns relieve pillars (Figure 8-16) (p. 8-59)."
+      ],
+      "equations": [],
+      "figures": [
         "Figure 8-16: Supplemental column grouting in an abandoned mine (Case History 4)."
       ],
       "tables": [],
-      "applicability": "Precedents for sinkhole, quarry inflow and mine void grouting."
+      "applicability": "A bulk void filling case history from the manual."
     },
     {
       "section_id": "8.2.6",
@@ -789,14 +1167,37 @@
     {
       "section_id": "8.2.6.2",
       "title": "Advantages and Potential Disadvantages",
-      "summary": "Slabjacking advantages: often the most economical and fastest repair, little disruption, remote equipment, increased load capacity, longer service life from reduced deflections, smoother ride; most effective with minimal structural damage. Disadvantages: existing cracks may open, may not be cost-effective on small jobs, may not address the cause, not effective on badly distressed pavement.",
-      "body": "Advantages (2.6.2.1): slabjacking is frequently the most economical repair method; it is usually faster than other solutions, especially removal and replacement; it can be planned with little disruption to the existing facility and done at times of light or no traffic; the equipment can be remote from the repair location for maximum accessibility; increased load capacity of the slab is provided; the service life of concrete pavement is extended by reducing deflections; a smoother riding surface is established; and it is most effective when the pavement has undergone minimal structural damage (pp. 8-60 to 8-61). Potential disadvantages (2.6.2.2): cracks already present may tend to open up when the slab is treated unless care is taken; slabjacking may not be cost-effective on small projects; it may not address the original cause of the settlement; and it is not very effective on pavements that have already undergone significant structural damage (distresses) (p. 8-61).",
+      "summary": "Heading for the advantages (8.2.6.2.1) and potential disadvantages (8.2.6.2.2) of slabjacking.",
+      "body": "Heading for the advantages and potential disadvantages of slabjacking, 8.2.6.2.1 and 8.2.6.2.2; it has no text of its own. (p. 8-60)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Deciding whether slabjacking suits a settled pavement or slab."
+    },
+    {
+      "section_id": "8.2.6.2.1",
+      "title": "Advantages",
+      "summary": "Slabjacking is often the most economical and fastest repair, can run with little disruption at light traffic, keeps equipment remote from the repair, adds slab load capacity, extends pavement life by reducing deflection, gives a smoother ride, and works best with minimal structural damage.",
+      "body": "Advantages: frequently the most economical repair; usually faster than other solutions, especially removal and replacement; can be planned with little disruption and done at times of light or no traffic; equipment can be remote from the repair location; increases slab load capacity; extends concrete pavement service life by reducing deflections (p. 8-61); gives a smoother riding surface; and is most effective when the pavement has had minimal structural damage. (pp. 8-60 to 8-61)",
       "key_points": [
-        "Often most economical and fastest repair; little traffic disruption",
-        "Increases slab load capacity and service life by reducing deflections; smoother ride",
-        "Most effective when pavement has minimal structural damage",
-        "Existing cracks may open; may not address the cause of settlement",
-        "May not be cost-effective on small projects or effective on badly distressed pavement"
+        "Often the most economical and fastest repair (p. 8-60).",
+        "Reduces deflections and extends pavement life (p. 8-61).",
+        "Most effective with minimal structural damage (p. 8-61)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Deciding whether slabjacking suits a settled pavement or slab."
+    },
+    {
+      "section_id": "8.2.6.2.2",
+      "title": "Potential Disadvantages",
+      "summary": "Slabjacking may open existing cracks, may not pay on small projects, may not address the cause of settlement, and is not very effective on pavements already significantly damaged.",
+      "body": "Disadvantages: cracks already present may open when the slab is treated unless care is taken; it may not be cost-effective on small projects; it may not address the original cause of settlement; and it is not very effective on pavements that already have significant structural damage (distresses). (p. 8-61)",
+      "key_points": [
+        "May open existing cracks; may not fix the cause of settlement (p. 8-61).",
+        "Not very effective on significantly distressed pavements (p. 8-61)."
       ],
       "equations": [],
       "figures": [],
@@ -821,15 +1222,50 @@
     {
       "section_id": "8.2.6.4",
       "title": "Design Overview",
-      "summary": "Slabjacking design: grout of Portland cement, fine sand and water (5-10% cement gives strength over 480 Pa as printed), sand 100% passing #8 with not more than 20% finer than 0.002 in., accelerators, pozzolan 15-50% of cement weight for pumpability; define cause, end result and tolerances; injection holes on a 5-6 ft grid; monitor lift with string line or lasers.",
-      "body": "Grout types and selection (2.6.4.1): most slabjacking can be done with Portland cement, fine sand and water, with bentonite and chemical admixtures for rheology. Cement content of 5% to 10%, depending on sand gradation and admixtures, will be sufficient to provide a grout strength in excess of 480 Pa (as printed); higher cement gives higher strength. Water is adjusted for consistency. Sand should ideally be well graded, 100% passing a #8 (2.36-mm) sieve, with not more than 20% finer than 0.002 inches. Calcium chloride or high early strength cement accelerates set, and shrinkage or expansion control admixtures can be added. Where exceptionally high strengths or excessively coarse sands are involved, admixtures are generally not used, and pozzolan (15 to 50% of the cement weight) improves pumpability (pp. 8-61 to 8-62). Design procedure (2.6.4.2): the underlying cause and desired end result must be determined first; re-leveling of settlement may need future leveling, and a pavement to be overlaid may need virtually no lifting; the engineer should specify performance requirements and tolerances. Existing cracks will remain visible, and restored slabs will contain patched injection holes usually on a grid of 5 to 6 ft, so surface finish should be considered in advance. Performance monitoring (2.6.4.3): the objectives are to fill voids and raise the slab to about its original elevation without further damage; a string line can verify this, while lasers monitor more accurately (p. 8-62).",
+      "summary": "Overview of slabjacking design: grout type selection, grouting program design and performance monitoring (8.2.6.4.1 to 8.2.6.4.3).",
+      "body": "This part gives an overview of design considerations (printed 'for bulk void filling and slabjacking'): grout type selection (8.2.6.4.1), grouting program design (8.2.6.4.2) and performance monitoring (8.2.6.4.3). (p. 8-61)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Mix design, layout and monitoring for slabjacking."
+    },
+    {
+      "section_id": "8.2.6.4.1",
+      "title": "Grout Types and Selection",
+      "summary": "Most slabjacking uses Portland cement, fine sand and water, with bentonite or admixtures for rheology; 5% to 10% cement gives strength 'in excess of 480 Pa' (as printed); well graded sand all passing #8 with not more than 20% finer than 0.002 in.; accelerators or shrinkage control as needed; pozzolan at 15 to 50% of cement weight for pumpability with coarse sands or high strength.",
+      "body": "Most slabjacking can be done with a grout of Portland cement, fine sand and water, with bentonite and chemical admixtures for rheology. Cement content of 5% to 10%, depending on sand gradation and admixtures, gives a grout strength 'in excess of 480 Pa' (as printed); more cement gives higher strength. Water is adjusted for consistency. Sand should ideally be well graded, 100% passing a #8 (2.36 mm) sieve with not more than 20% finer than 0.002 inches. Calcium chloride or high early strength cement accelerates set, and admixtures can control shrinkage or expansion. Where exceptionally high strength is needed or very coarse sand must be used, admixtures are generally not used, and pozzolan at 15 to 50% of the cement weight improves pumpability (p. 8-62). (pp. 8-61 to 8-62)",
       "key_points": [
-        "Grout: Portland cement, fine sand, water; 5-10% cement (strength printed as in excess of 480 Pa)",
-        "Sand 100% passing #8 (2.36 mm), not more than 20% finer than 0.002 in. (p. 8-61)",
-        "Pozzolan 15-50% of cement weight improves pumpability (p. 8-62)",
-        "Determine cause and end result; specify performance requirements and tolerances",
-        "Injection holes usually on a 5-6 ft grid",
-        "Monitor lift with a string line or, more accurately, lasers"
+        "Portland cement, fine sand and water; cement 5% to 10% (p. 8-61).",
+        "Sand 100% passing #8, not more than 20% finer than 0.002 in. (p. 8-61).",
+        "Pozzolan at 15 to 50% of cement weight for pumpability (p. 8-62)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Mix design, layout and monitoring for slabjacking."
+    },
+    {
+      "section_id": "8.2.6.4.2",
+      "title": "Design Procedure/Program",
+      "summary": "Determine the cause and the end result first; re-leveling may need repeating, and slabs to be overlaid need little lift; specify performance requirements and tolerances. Existing cracks stay visible, and patched injection holes on a grid of 5 to 6 ft remain, so surface finish matters.",
+      "body": "Before slabjacking, determine the underlying cause and the desired result. Re-leveling for settlement may need repeating; a pavement to be overlaid may need virtually no lift. The engineer should specify the performance requirements and tolerances accurately. Most settled slabs have some cracks; slabjacking need not create new ones, but existing cracks stay visible. Restored slabs carry patched injection holes, usually on a grid of 5 to 6 feet, so surface finish should be considered in advance; minor defects tolerable on a highway may not be on a tennis court. (p. 8-62)",
+      "key_points": [
+        "Determine the cause and desired result; specify tolerances (p. 8-62).",
+        "Patched injection holes on a grid of 5 to 6 ft (p. 8-62)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Mix design, layout and monitoring for slabjacking."
+    },
+    {
+      "section_id": "8.2.6.4.3",
+      "title": "Performance Monitoring",
+      "summary": "Slabjacking aims to fill voids and raise the slab to about its original elevation without damage; a string line can check this, lasers more accurately.",
+      "body": "The objectives are to fill voids and raise the slab to its approximate original elevation without further damage. Instrumentation as simple as a string line can check this, though lasers give more accurate monitoring of the grouting. (p. 8-62)",
+      "key_points": [
+        "String line or, more accurately, lasers monitor the lift (p. 8-62)."
       ],
       "equations": [],
       "figures": [],
@@ -854,21 +1290,62 @@
     {
       "section_id": "8.2.6.6",
       "title": "Case Histories",
-      "summary": "Three slabjacking case histories: (1) trial cementitious grouting under airport rigid pavement with pressure control, LVDT, GPR and FWD evaluation (Ni and Cheng 2012); (2) injected high-density polyurethane lifting a bridge end panel and slab (Soltesz 2002); (3) a state DOT study of polyurethane slab jacking of bridge approach slabs over five years (Abu and Labarca 2007).",
-      "body": "Case History 1 (Ni and Cheng 2012): trial grouting under PCC airport slabs used a mix with w/c 0.8 and a 7% additive by cement weight; a circulating injection system kept the pressure increment over initial contact pressure below 7.1 psi to prevent uncontrolled heave; slabs were monitored with LVDTs on reference beams, voids found by GPR, and FWD tests on four slabs showed lower deflections (Figure 8-17). Grout volume exceeded slab area times the 0.04 in. maximum allowed heave, attributed to thick voids or permeation of the subbase (pp. 8-63 to 8-64). Case History 2 (Soltesz 2002): a two-component high-density polyurethane (polyhydroxy compound with catalysts and water, plus an isocyanate) was injected through 0.63-in. holes to lift a slab 3.5 to 4 in.; advantages are fast set (up to 90% of strength within 15 minutes), high strength, fewer smaller holes, light weight and low water infiltration. Six 20-in.-deep holes, then holes at 4 ft spacing to fill voids; 10.5 hours, $9.10 per lb, $42,260 for 4649 lb. Settlement after 24 months was 0.08 to 0.4 in., mostly in the first three months; samples gave 47.5 psi (low density) and 97.3 psi (high density) (pp. 8-64 to 8-65). Case History 3 (Abu and Labarca 2007): polyurethane injected through 5/8-in. holes under bridge approach slabs at two interstate and highway sites; quantities were 3,240 lb versus a 600 lb estimate (Figure 8-18) and 1,043 lb versus 550 lb, showing the need for GPR before lifting. Costs ($243 and $117 per sq yd) were below slab replacement ($425 per sq yd) but above HMA overlay ($45 and $63) and mudjacking. Foam injection was judged practical for differential settlement but not economical for filling voids (pp. 8-65 to 8-67).",
+      "summary": "Three slabjacking case histories: trial cement grouting under airport rigid pavement, polyurethane slabjacking of a bridge end panel and slab, and a DOT study of polyurethane lifting of interstate approach slabs.",
+      "body": "Heading for the slabjacking case histories, 8.2.6.6.1 to 8.2.6.6.3; it has no text of its own. (p. 8-63)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Precedents for cement-grout and polyurethane slabjacking of pavements and approach slabs."
+    },
+    {
+      "section_id": "8.2.6.6.1",
+      "title": "Case History 1: Trial Grouting Under Rigid Pavement in Magong Airport, Penghu, Taiwan (Ni and Cheng 2012)",
+      "summary": "Trial cement grouting under airport PCC slabs: w/c 0.8 with a 7% additive; a circulating injection system kept pressure under 7.1 psi above contact pressure; LVDTs on reference beams tracked heave; GPR found voids; FWD showed lower deflections on all four slabs (Figure 8-17).",
+      "body": "Trial grouting with cementitious grout remediated settlement under Portland cement concrete (PCC) airport slabs. Laboratory tests chose a mix of w/c 0.8 with a 7% additive by weight of cement for stability, flow, set time, shrinkage and strength. A circulating grout injection system (Figure 8-36) controlled header pressure, keeping the increase over initial contact pressure below 7.1 psi to prevent uncontrolled heave. LVDT displacement gages on two reference beams monitored slab elevation on four trial slabs; GPR located voids, and falling weight deflectometer (FWD) tests showed lower deflections for all four slabs, i.e., higher load capacity (Figure 8-17, p. 8-64: grouting and monitoring holes, filled and unfilled voids, FWD points). Grout volume exceeded slab area times the 0.04 in. maximum allowed heave, attributed to thick voids or permeation into the subbase. Holes were cleaned and patched with quick-setting material. (pp. 8-63 to 8-64)",
       "key_points": [
-        "Case 1: w/c 0.8 grout; pressure increment kept below 7.1 psi; FWD showed reduced deflections",
-        "Case 2: polyurethane foam reaches up to 90% strength within 15 minutes; settlement 0.08-0.4 in. after 24 months",
-        "Case 3: polyurethane quantities 2 to 5 times estimates; GPR recommended before lifting",
-        "Case 3: polyurethane cheaper than slab replacement but dearer than overlay; not economical for void filling"
+        "Mix w/c 0.8 with a 7% additive (p. 8-63).",
+        "Injection pressure kept under 7.1 psi above contact pressure (p. 8-63).",
+        "FWD deflections lower on all four slabs (p. 8-63)."
       ],
       "equations": [],
       "figures": [
-        "Figure 8-17: Results from concrete slab 3 monitoring (Case History 1).",
+        "Figure 8-17: Results from concrete slab 3 monitoring (Case History 1)."
+      ],
+      "tables": [],
+      "applicability": "A slabjacking case history from the manual."
+    },
+    {
+      "section_id": "8.2.6.6.2",
+      "title": "Case History 2: Injected Polyurethane Slabjacking for Concrete Slab and Bridge End Panel Stabilization, Oregon (Soltesz 2002)",
+      "summary": "A two-component high density polyurethane (URETEK method) lifted a bridge end panel and slab 3.5 to 4 in. through 0.63 in. holes: six 20 in. holes, then holes at 4 ft to fill voids; 10.5 hours, 4,649 lb at $9.10/lb ($42,260). Settlement after 24 months was 0.08 to 0.4 in., mostly in the first three months.",
+      "body": "Slabjacking stabilized a bridge end panel and adjacent concrete slab with the URETEK method: a high density polyurethane from two components (a polyhydroxy compound with catalysts and water, and an isocyanate). After profiling, 0.63 inch holes were drilled through the pavement; the foam's large volume increase lifts the slab. Advantages of polyurethane foam: up to 90% of full compressive strength within 15 minutes; high compressive and tensile strength; fewer, smaller holes; lightweight, so no added subgrade settlement; low water infiltration from closed cells (p. 8-65). The design lift was 3.5 to 4 inches: six holes 20 inches deep took URETEK 486 polyurethane ('form', as printed) to raise the slab, then holes at 4 feet spacing over the slab filled remaining voids, all sealed with cementitious grout. The work took 10.5 hours at $9.10 per lb, $42,260 for 4649 lb. Two years of monitoring (3 to 24 months against a baseline 4 days after lifting) showed 0.08 to 0.4 inches of settlement, mostly in the first three months; low and high density field samples averaged 47.5 and 97.3 psi after 23 months, and laboratory tests showed no strength loss from field exposure. (pp. 8-64 to 8-65)",
+      "key_points": [
+        "Foam reaches up to 90% of strength within 15 minutes (p. 8-65).",
+        "Lift 3.5 to 4 in.; 4,649 lb in 10.5 hours, $42,260 (p. 8-65).",
+        "Settlement 0.08 to 0.4 in. after 24 months, mostly in 3 months (p. 8-65)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "A slabjacking case history from the manual."
+    },
+    {
+      "section_id": "8.2.6.6.3",
+      "title": "Case History 3: Wisconsin Department of Transportation Report - Slabjacking Study on Interstate Highways (Abu and Labarca 2007)",
+      "summary": "A DOT tested polyurethane (URETEK) lifting of approach slabs at two interstate sites over five years: lifts up to 1.5 in.; grout used was five and two times the estimates (3,240 and 1,043 lb), showing the need for GPR first (Figure 8-18). It cost $243 and $117/yd2 against $425/yd2 for replacement; practical for differential settlement, not for filling voids.",
+      "body": "The state DOT investigated the URETEK method for differential settlement of concrete bridge approach slabs at two test sites over five years; literature showed successes in Louisiana, Michigan and Oregon. High-density polyurethane was injected through 5/8-inch holes. On the first site (I-39 at US 78) slab lifts of up to 1.5 inches were needed, with extra holes where slabs did not rise; the two driving lanes took 3,240 lb, five times the contractor's 600 lb estimate (grout hole layout, Figure 8-18, p. 8-66). On the second (US 12, approach slabs of the left and center lanes) county forces helped drill, with no loss through joints; 1,043 lb was used, twice the 550 lb estimate. The excess quantities show the need for GPR before lifting to size voids. URETEK cost $243/yd2 (I-39) and $117/yd2 (US 12), less than slab replacement ($425/yd2) but more than HMA overlay ($45 and $63/yd2) and mud-jacking. After five years the I-39 slab had re-settled slightly with better ride than before; US 12 ride was adequate with no new cracks (p. 8-67). Foam injection is a practical fix for differential slab settlement but is economically not viable for filling voids under pavement. (pp. 8-65 to 8-67)",
+      "key_points": [
+        "Grout used five and two times the estimates; GPR needed first (p. 8-66).",
+        "URETEK $243 and $117/yd2 vs $425/yd2 replacement (p. 8-66).",
+        "Practical for differential settlement, not economical for void filling (p. 8-67)."
+      ],
+      "equations": [],
+      "figures": [
         "Figure 8-18: Slab jacking grout hole layout at an interstate test site (Case History 3)."
       ],
       "tables": [],
-      "applicability": "Precedents for cement-grout and polyurethane slabjacking of pavements and approach slabs."
+      "applicability": "A slabjacking case history from the manual."
     },
     {
       "section_id": "8.2.7",
@@ -894,15 +1371,114 @@
     {
       "section_id": "8.2.7.1",
       "title": "Applications",
-      "summary": "Jet grouting applications: water control (horizontal and vertical, static water, contaminated soils with precautions), settlement control, underpinning (since 1986 in the U.S.; doubles as excavation support), scour protection, excavation support (including pre-placed cross bracing and reinforcement), liquefaction mitigation (cemented mass or cellular structure), karst treatment, and remedial treatment of gaps in retaining walls.",
-      "body": "Water control (2.7.1.1): effective in horizontal and vertical water control under static water conditions, since the grouted mass is generally less permeable and stronger than the in-situ soil; usable in contaminated soils with precautions for cleaning equipment, protecting personnel and disposing of spoils. Settlement control (2.7.1.2): provides foundation support through weak soft soils to competent strata by increasing the strength of the weaker soils. Underpinning (2.7.1.3): a viable alternative to conventional underpinning since its U.S. introduction in 1986; serving as both underpinning and excavation support it can have a considerable economic advantage; it is comparatively safe, since personnel never work beneath the structure and no load transfer connection to the existing foundation is needed. Scour protection (2.7.1.4): effective around bridge piers and marine works. Excavation support (2.7.1.5): can be done immediately next to and through adjacent footings, giving a vibration-less, safe and designable support; can place cross bracing before excavation to prevent inward deflection; steel reinforcement can be placed in the soilcrete for axial and lateral capacity (p. 8-69). Liquefaction mitigation (2.7.1.6): transforms liquefiable soil into a cemented mass or creates a cellular or honeycomb structure to stiffen it. Treatment of karst (2.7.1.7): used to remove clay from karstic features and replace it with engineered grout (Bruce 2003). Remedial treatments, gaps in retaining walls (2.7.1.8): columns used to improve strength or reduce permeability of soils at retaining walls (pp. 8-69 to 8-70).",
+      "summary": "Heading for eight jet grouting applications: water control, settlement control, underpinning, scour protection, excavation support, liquefaction mitigation, karst treatment, and remedial treatment of gaps in retaining walls.",
+      "body": "Heading for the jet grouting applications, 8.2.7.1.1 to 8.2.7.1.8; it has no text of its own. (p. 8-69)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identifying where jet grouting can solve a ground problem."
+    },
+    {
+      "section_id": "8.2.7.1.1",
+      "title": "Water Control",
+      "summary": "Jet grouting controls water horizontally and vertically under static water, the grouted mass being less permeable and stronger than the soil; usable in contaminated soils with precautions for equipment, personnel and spoil.",
+      "body": "Jet grouting has shown its effectiveness for horizontal and vertical water control under static water conditions, since the grouted mass is generally less permeable and stronger than the in-situ soil. It can be used in contaminated soils with appropriate precautions for cleaning equipment, protecting personnel and disposing of spoil. (p. 8-69)",
       "key_points": [
-        "Water control under static water conditions; grouted mass less permeable and stronger than soil",
-        "Underpinning without personnel beneath the structure; doubles as excavation support",
-        "Scour protection at bridge piers and marine works",
-        "Excavation support next to and through footings; pre-placed cross bracing; reinforcement possible",
-        "Liquefaction mitigation by cemented mass or cellular (honeycomb) structure",
-        "Karst clay replacement; sealing gaps in retaining walls"
+        "Effective for water control under static water conditions (p. 8-69)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identifying where jet grouting can solve a ground problem."
+    },
+    {
+      "section_id": "8.2.7.1.2",
+      "title": "Settlement Control",
+      "summary": "Jet grouting gives foundation support through weak soft soils to competent strata by strengthening the weak soils.",
+      "body": "Jet grouting has been used to provide foundation support through weaker, soft soils to more competent bearing strata by increasing the strength of the weaker soils. (p. 8-69)",
+      "key_points": [
+        "Strengthens weak soils to carry loads to competent strata (p. 8-69)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identifying where jet grouting can solve a ground problem."
+    },
+    {
+      "section_id": "8.2.7.1.3",
+      "title": "Underpinning",
+      "summary": "Since its U.S. introduction in 1986 jet grouting is a viable underpinning alternative; one element can both underpin and support excavation, and no one works beneath the structure and no load transfer connection is needed.",
+      "body": "Jet grouting has become a viable alternative to conventional underpinning since its introduction into the United States in 1986. Serving both as underpinning element and excavation support, it can have a considerable economic advantage. It is comparatively safe: personnel never work beneath the structure, and no load transfer connection between existing foundation and underpinning units is needed. (p. 8-69)",
+      "key_points": [
+        "Introduced in the U.S. in 1986 (p. 8-69).",
+        "Underpins and supports excavation at once; no work beneath the structure (p. 8-69)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identifying where jet grouting can solve a ground problem."
+    },
+    {
+      "section_id": "8.2.7.1.4",
+      "title": "Scour Protection",
+      "summary": "Jet grouting has proven an effective means of scour protection around bridge piers and marine works.",
+      "body": "Jet grouting has proven to be an effective means of providing scour protection around bridge piers and marine works. (p. 8-69)",
+      "key_points": [
+        "Scour protection around bridge piers and marine works (p. 8-69)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identifying where jet grouting can solve a ground problem."
+    },
+    {
+      "section_id": "8.2.7.1.5",
+      "title": "Excavation Support",
+      "summary": "Jet grouting next to and through adjacent footings gives vibration-less, safe, designable excavation support; it can place cross bracing before excavation, and steel reinforcement in the soilcrete adds axial and lateral capacity.",
+      "body": "Jet grouting can be done immediately next to and through footings adjacent to the excavation, a vibration-less, safe and designable method of excavation support. It can also place excavation cross bracing before excavation to prevent inward deflection, and steel reinforcement placed in the soilcrete enhances axial and lateral capacity. (p. 8-69)",
+      "key_points": [
+        "Vibration-less excavation support next to and through footings (p. 8-69).",
+        "Steel reinforcement in soilcrete adds axial and lateral capacity (p. 8-69)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identifying where jet grouting can solve a ground problem."
+    },
+    {
+      "section_id": "8.2.7.1.6",
+      "title": "Liquefaction Mitigation",
+      "summary": "Jet grouting turns potentially liquefiable soils into a cemented mass or forms a cellular (honeycomb) structure that stiffens the soil mass.",
+      "body": "Jet grouting transforms potentially liquefiable soils into a cemented mass or can create a 'cellular structure or honeycombs' to stiffen the soil mass. (p. 8-69)",
+      "key_points": [
+        "Cemented mass or honeycomb cells stiffen liquefiable soil (p. 8-69)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identifying where jet grouting can solve a ground problem."
+    },
+    {
+      "section_id": "8.2.7.1.7",
+      "title": "Treatment of Karst",
+      "summary": "Jet grouting has been used to remove clay from karst features and replace it with engineered grout (Bruce 2003).",
+      "body": "Jet grouting has been used to remove clay from karstic features and replace it with engineered grout (Bruce 2003). (p. 8-70)",
+      "key_points": [
+        "Removes clay from karst features and replaces it with grout (p. 8-70)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identifying where jet grouting can solve a ground problem."
+    },
+    {
+      "section_id": "8.2.7.1.8",
+      "title": "Remedial Treatments - Gaps in Retaining Walls",
+      "summary": "Jet grouted columns have been used to strengthen or reduce the permeability of soils at retaining walls.",
+      "body": "Grout columns produced by jet grouting have been used to improve the strength or reduce the permeability of soils at retaining walls. (p. 8-70)",
+      "key_points": [
+        "Columns strengthen or seal soils at retaining walls (p. 8-70)."
       ],
       "equations": [],
       "figures": [],
@@ -912,15 +1488,50 @@
     {
       "section_id": "8.2.7.2",
       "title": "Feasibility Evaluations",
-      "summary": "Jet grouting treats clays to gravel, best in cohesionless or soft cohesive soils, above or below the water table, to depths over 150 ft (commonly under 100 ft). Not recommended in highly plastic soils or fibrous peat without pre-cutting; open-graded soils lose grout. Organics, low pH or flowing groundwater affect quality; CO2 emissions reduced; suited to congested, variable sites needing strength over 435 psi.",
-      "body": "Geotechnical (2.7.2.1): jet grouting can treat soils ranging from clays to gravel, with best results in cohesionless or soft cohesive soils. It can be performed above or below the groundwater table and has been installed to depths greater than 150 ft, although common applications are less than 100 ft deep. Its use in highly plastic soils and fibrous peat, which are less erodible, is not recommended unless particular action is taken, such as pre-cutting with water only. Very coarse or open-graded soils let the grout travel considerable distances and leave the zone to be treated. Soilcrete strength reflects the cement added and the initial soil type and consistency: sands and gravels give higher strength and more homogeneous soilcrete than silts and clays. Environmental (2.7.2.2): soilcrete quality is affected by organics, very low pH or flowing groundwater (Burke 2012). Efficiency gains have reduced carbon dioxide emissions from about 3.75 lb/cu ft (60 kg/m3) for triple-fluid jet grouting to less than 0.63 lb/cu ft (10 kg/m3) (Yoshida 2010). Jet grouting produces spoil, which can be re-used in earthworks (Pinto et al. 2012). Project conditions (2.7.2.3): jet grouting is particularly well suited to areas with a high density of structures or utilities, very variable ground, ground not amenable to other grouting techniques, and where significant strength (say over 435 psi) is required from the treated mass (p. 8-70).",
+      "summary": "Heading for jet grouting feasibility evaluations: geotechnical, environmental and project conditions (8.2.7.2.1 to 8.2.7.2.3).",
+      "body": "Heading for jet grouting feasibility evaluations, 8.2.7.2.1 to 8.2.7.2.3; it has no text of its own. (p. 8-70)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Screening a site and soil profile for jet grouting."
+    },
+    {
+      "section_id": "8.2.7.2.1",
+      "title": "Geotechnical",
+      "summary": "Jet grouting treats clays to gravels, best in cohesionless or soft cohesive soils, above or below water, beyond 150 ft (commonly under 100 ft). Not for highly plastic soils or fibrous peat without pre-cutting with water; open-graded soils lose grout. Sands and gravels give stronger, more homogeneous soilcrete than silts and clays.",
+      "body": "Jet grouting can treat soils from clays to gravel, with best results in cohesionless or soft cohesive soils. It works above or below the groundwater table and has been installed deeper than 150 feet, though common applications are under 100 feet deep. It is not recommended in less erodible highly plastic soils and fibrous peat unless, for example, they are pre-cut with water only. Very coarse or open graded soils let grout travel far beyond the intended zone. Soilcrete strength reflects the cement added and the initial soil type and consistency: sands and gravels give higher strength and more homogeneous soilcrete than silts and clays. (p. 8-70)",
       "key_points": [
-        "Treats clays to gravel; best in cohesionless or soft cohesive soils",
-        "Installed deeper than 150 ft; common applications less than 100 ft (p. 8-70)",
-        "Not recommended in highly plastic soils or fibrous peat unless pre-cut with water",
-        "Open-graded soils let grout escape the treatment zone",
-        "Organics, very low pH or flowing groundwater affect soilcrete quality (Burke 2012)",
-        "Suited where strength over about 435 psi is required"
+        "Best in cohesionless or soft cohesive soils; above or below water (p. 8-70).",
+        "Installed deeper than 150 ft; commonly under 100 ft (p. 8-70).",
+        "Not for highly plastic soils or fibrous peat without pre-cutting (p. 8-70)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Screening a site and soil profile for jet grouting."
+    },
+    {
+      "section_id": "8.2.7.2.2",
+      "title": "Environmental",
+      "summary": "Organics, very low pH or flowing groundwater degrade soilcrete (Burke 2012); efficiency gains cut CO2 from about 3.75 lb/ft3 (60 kg/m3) for triple-fluid to under 0.63 lb/ft3 (10 kg/m3) (Yoshida 2010); spoil can be reused in earthworks.",
+      "body": "Soilcrete quality is affected by organics or very low pH in the groundwater, or by flowing groundwater (Burke 2012). Efficiency improvements have reduced carbon dioxide emissions from about 3.75 lb/cubic feet (60 kg/m3) for triple-fluid jet grouting to less than 0.63 lb/cubic feet (10 kg/m3) (Yoshida 2010). Jet grouting produces spoil from erosion, which can be re-used in earthworks (Pinto et al. 2012). (p. 8-70)",
+      "key_points": [
+        "Organics, low pH and flowing groundwater degrade soilcrete (p. 8-70).",
+        "Spoil can be reused in earthworks (p. 8-70)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Screening a site and soil profile for jet grouting."
+    },
+    {
+      "section_id": "8.2.7.2.3",
+      "title": "Project Conditions",
+      "summary": "Jet grouting suits areas dense with structures or utilities, very variable ground, ground other grouting cannot treat, and where significant strength (say over 435 psi) is needed.",
+      "body": "Jet grouting is particularly well suited to areas with a high density of structures or utilities, very variable ground or ground not amenable to other grouting techniques, and where significant strength (say over 435 psi) is required of the treated mass. (p. 8-70)",
+      "key_points": [
+        "Suits congested sites, variable ground and strengths over about 435 psi (p. 8-70)."
       ],
       "equations": [],
       "figures": [],
@@ -930,22 +1541,58 @@
     {
       "section_id": "8.2.7.3",
       "title": "Design Considerations",
-      "summary": "Jet grouting design: 3- to 5-ft columns for underpinning and excavation support, sequenced for no more than 3 ft of temporary bridging; single-fluid soilcrete UCS guide (Table 8-6): sands/gravels 750-1,250 psi, silts/silty sands 500-750, clays 250-500, organics/peat < 250; strength rises with cement content; field test required; design values <= 50% of ultimate strength; columns 2.5-15 ft; w/c 0.8-1.2.",
-      "body": "When jet grouting is used for underpinning and excavation support, three- to five-foot-diameter columns are typically designed, sequenced so that no more than three feet of temporary bridging is required from the existing foundation. The single-fluid soilcrete strengths of Table 8-6 (Burke 2004) can guide feasibility: clean sands and gravel 750 to 1,250 psi; silts and silty sands 500 to 750 psi; clays 250 to 500 psi; organic silts and peats less than 250 psi (p. 8-71). Whatever the system, strength is a function of the cement content of the final product; the triple fluid system typically has higher replacement, hence more cement and higher strength; double-fluid strengths may be lower due to air entrainment. Acceptance requires at least a minimum number of jet grout samples to exceed a minimum 28-day unconfined compressive strength, both set by the engineer (ASCE 2009). Excavation support and underpinning should be designed by standard procedures for the loads transferred through the underpinned foundation. Because final strength depends on the in-situ soil and the contractor's equipment, means and methods, a production field test is essential to confirm column size, shape, verticality, homogeneity and strength. Design values should be restricted to 50% or less of the ultimate strength values (fc) to accommodate soilcrete variability (p. 8-71). Spacing (2.7.3.1): columns can be 2.5 to 15 ft in diameter depending on method, and can be overlapped in continuous rows in a primary/secondary sequence. Grout quantities (2.7.3.2): less dependent on soil than other grouting; they reflect the design requirement, e.g., load and achievable bearing capacity. Grout types (2.7.3.3): Portland cement with w/c 0.8 to 1.2, as low as 0.5 in three-fluid work; bentonite and additives relatively rare; slag cements of typically 50% slag and 50% Portland cement increasingly used (pp. 8-71 to 8-72).",
+      "summary": "Jet grouted underpinning and excavation support typically uses 3 to 5 ft columns sequenced so no more than 3 ft of temporary bridging is needed; Table 8-6 gives single-fluid soilcrete strengths; strength follows cement content; a production field test is essential and design values are limited to 50% or less of ultimate strength.",
+      "body": "For underpinning and excavation support, three- to five-foot diameter columns are typically designed, sequenced so that no more than three feet of temporary bridging is needed from the existing foundation. Table 8-6 (Burke 2004) gives single-fluid soilcrete unconfined strengths as a guide: clean sands and gravel 750 to 1,250 psi; silts and silty sands 500 to 750; clays 250 to 500; organic silts and peats less than 250. For any system strength depends on the cement content in the product; triple fluid usually replaces more soil and so is stronger, and double fluid may be weaker from entrained air, though site details and the contractor's means govern. Acceptance needs at least a minimum number of samples above a minimum 28-day unconfined strength, both set by the engineer (ASCE 2009). Design follows standard procedures for the loads transferred; since final strength depends on the soil and the contractor's equipment and methods, a production field test is essential to confirm size, shape, verticality, homogeneity and strength, and design values should be restricted to 50% or less of the ultimate strength (fc) for soilcrete variability. (p. 8-71)",
       "key_points": [
-        "Underpinning/excavation support columns typically 3-5 ft; no more than 3 ft of temporary bridging",
-        "Table 8-6 single-fluid UCS: sands/gravel 750-1,250 psi; silts/silty sands 500-750; clays 250-500; organics/peats < 250",
-        "Strength is a function of cement content; triple fluid usually strongest",
-        "Production field test essential to confirm size, shape, verticality, homogeneity and strength",
-        "Design values <= 50% of ultimate soilcrete strength (fc) (p. 8-71)",
-        "Column diameters 2.5-15 ft; overlapping rows in primary/secondary sequence",
-        "Grout w/c 0.8-1.2 (as low as 0.5 for three-fluid); slag cements 50/50 increasingly used (p. 8-72)"
+        "Underpinning columns 3 to 5 ft; temporary bridging no more than 3 ft (p. 8-71).",
+        "Single-fluid soilcrete: 750-1,250 psi sands and gravel to < 250 psi organics (Table 8-6) (p. 8-71).",
+        "Production field test essential; design values <= 50% of ultimate strength (p. 8-71)."
       ],
       "equations": [],
       "figures": [],
       "tables": [
         "Table 8-6: Range of Typical Soilcrete Strengths – Single-Fluid System"
       ],
+      "applicability": "Preliminary sizing, strength and grout selection for jet grouted columns."
+    },
+    {
+      "section_id": "8.2.7.3.1",
+      "title": "Spacing",
+      "summary": "Jet grouted columns range from 2.5 to 15 ft in diameter depending on the method, and can interlock in continuous rows built in primary/secondary sequence.",
+      "body": "Jet grouted columns can be 2.5 to 15 feet in diameter depending on the grouting method; interconnected, overlapping columns can be built in continuous rows in a primary/secondary sequence. (p. 8-71)",
+      "key_points": [
+        "Columns 2.5 to 15 ft in diameter; overlapping rows in primary/secondary sequence (p. 8-71)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Preliminary sizing, strength and grout selection for jet grouted columns."
+    },
+    {
+      "section_id": "8.2.7.3.2",
+      "title": "Grout Quantities",
+      "summary": "Jet grout quantities depend less on soil than other grouting and reflect the design requirement, e.g., for underpinning, the load and the bearing capacity the soil can achieve.",
+      "body": "Jet grout quantities are less dependent on soil conditions than other grouting and so reflect the design requirement; for underpinning, the treated quantity and quality depend on the imposed load and the ultimate bearing capacity achievable in the in-situ soil. (p. 8-72)",
+      "key_points": [
+        "Quantities follow the design requirement more than soil conditions (p. 8-72)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Preliminary sizing, strength and grout selection for jet grouted columns."
+    },
+    {
+      "section_id": "8.2.7.3.3",
+      "title": "Grout Types and Selection",
+      "summary": "Jet grout is typically Portland cement at w/c 0.8 to 1.2 (as low as 0.5 in three-fluid work); bentonite and other additives are rare; slag cements, typically 50% slag and 50% Portland cement, are increasingly used.",
+      "body": "The grout typically consists of Portland cement with water/cement ratios of 0.8 to 1.2, although values as low as 0.5 have been used in three-fluid applications. Bentonite and other additives may be used on specific projects but are relatively rare. Slag cements, typically 50% slag and 50% Portland cement, are increasingly used. (p. 8-72)",
+      "key_points": [
+        "w/c 0.8 to 1.2; as low as 0.5 in three-fluid work (p. 8-72).",
+        "Slag cements typically 50% slag, 50% Portland cement (p. 8-72)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
       "applicability": "Preliminary sizing, strength and grout selection for jet grouted columns."
     },
     {
@@ -972,13 +1619,23 @@
     {
       "section_id": "8.2.7.5",
       "title": "Case History",
-      "summary": "One jet grouting case history: reinforced jet-grouted soil-cement columns stabilizing a steep (to 1.1:1) 58.5-ft-deep highway ramp cut in faulted carbonate rock, raising the factor of safety from 1.2 to the required 1.5, with soil nails and a geocell face (Meyers et al. 2003).",
-      "body": "Case History 1 (Meyers et al. 2003): stabilization of excavation of deep cut sections using jet grouting for highway ramp construction. Design constraints required a very steep slope (1:1) to avoid encroaching on an adjacent historical property; the final section was cut to 58.5 ft deep, with slope varying from 2:1 to 1.1:1 to 2:1 within 105 ft, to meet the owner's requirement of a factor of safety of 1.5 for permanent slopes. Retaining wall configurations did not give feasible solutions. Reinforced soil-cement columns forming 'cut-off' walls were built by jet grouting, and the slope face was stabilized with a geocell product pinned by drilled soil anchors. The site was a highly faulted, folded and fractured carbonate formation (limestone and dolomite) prone to solution weathering and sinkholes. Slope stability analysis showed steel-pipe-reinforced jet grouted columns raised the factor of safety from 1.2 to the minimum 1.5. Columns 2.5 ft in diameter were placed in a zigzag pattern in two rows, one near the toe and one at one-third of the slope length from the toe (Figure 8-21); soil nails of 4-inch neat cement grout with 1-inch steel bars were built on a 15 ft x 15 ft grid over the slope (p. 8-74). Columns were built in three stages with a method installing column and reinforcement together. UCS tests gave acceptable values (approximately greater than 500 psi) when sulfur caps rather than neoprene caps were used. The final cost was $1,300,000 for the slope. Jet grouting was found effective, highly cost-effective and quicker than alternatives such as retaining walls (p. 8-75).",
+      "summary": "One jet grouting case history: steel-reinforced jet grouted columns stabilizing a steep deep cut for highway ramps.",
+      "body": "Heading for the jet grouting case history, 8.2.7.5.1; it has no text of its own. (p. 8-74)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Precedent for jet-grouted reinforced columns in a steep cut slope."
+    },
+    {
+      "section_id": "8.2.7.5.1",
+      "title": "Case History 1: Stabilization of Excavation of Deep Cut Sections Using Jet Grouting, Interstate 78 to Route 33 Ramp Construction, Pennsylvania Department of Transportation (Meyers et al. 2003)",
+      "summary": "A 58.5 ft deep ramp cut with slopes of 2:1 to 1.1:1 in faulted, sinkhole-prone carbonate rock was stabilized by steel-pipe-reinforced 2.5 ft jet grouted columns in two zigzag rows (toe and one-third up) plus soil nails on a 15 ft grid (Figure 8-21), raising FS from 1.2 to the required 1.5; strengths above about 500 psi; cost $1,300,000.",
+      "body": "Ramps between two highways were built below ground level, and a very steep (1:1) slope was needed to avoid an adjacent historic property. The final cut was 58.5 feet deep with slopes varying from 2:1 to 1.1:1 to 2:1 over 105 feet, to meet the agency's factor of safety of 1.5 for permanent slopes; retaining wall configurations were not feasible. Reinforced soil-cement 'cut-off' walls were built by jet grouting and the face stabilized with a 'geo-cell' product pinned by drilled soil anchors. The ground was highly faulted, folded and fractured limestone and dolomite prone to solution weathering and sinkholes. Stability analysis showed steel-pipe-reinforced jet grouted columns raised the factor of safety from 1.2 to 1.5: 2.5 foot columns in a zigzag pattern in two rows, one near the toe and one a third of the slope length up (Figure 8-21, p. 8-75); soil nails of 4 inch neat cement grout with 1 inch bars on a 15 ft x 15 ft grid covered the slope. The specification called for three-stage column construction with a patented method installing column and reinforcement together. Unconfined strengths were acceptable (about greater than 500 psi) when sulfur rather than neoprene caps were used in testing. The slope cost $1,300,000; jet grouting was effective, highly cost-effective and faster than alternatives such as retaining walls. (pp. 8-74 to 8-75)",
       "key_points": [
-        "Cut 58.5 ft deep, slope up to 1.1:1; required factor of safety 1.5",
-        "Steel-pipe-reinforced jet grout columns raised FS from 1.2 to 1.5",
-        "2.5-ft columns in two zigzag rows: near the toe and at one-third slope length",
-        "Soil nails on a 15 ft x 15 ft grid; UCS > about 500 psi with sulfur caps"
+        "Cut 58.5 ft deep, slopes 2:1 to 1.1:1; FS raised from 1.2 to 1.5 (p. 8-74).",
+        "2.5 ft steel-reinforced columns in two zigzag rows; soil nails on a 15 ft grid (p. 8-74).",
+        "Strengths about greater than 500 psi with sulfur caps; cost $1,300,000 (p. 8-75)."
       ],
       "equations": [],
       "figures": [
@@ -1022,14 +1679,36 @@
     {
       "section_id": "8.2.8.2",
       "title": "Advantages and Potential Disadvantages",
-      "summary": "Rock fissure grouting can repair weak or permeable rock where alternatives are costly removal or abandonment; it reduces permeability and deformability and increases shear strength (Lombardi 2003). Inefficiencies from poor design and practice: uplift from excessive pressure, premature plugging, wrong hole spacing or orientation, inappropriate verification; avoided by experienced personnel.",
-      "body": "Advantages (2.8.2.1): rock fissure grouting can repair weak or permeable rock masses where limited alternatives exist, ranging from costly removal and replacement to abandoning the site. The main advantages (Lombardi 2003) are reducing the permeability of the rock mass, reducing its deformability, and increasing its strength, particularly against shear forces (p. 8-77). Potential disadvantages (2.8.2.2): inefficiencies arise from poor design and poor field practice, including inducing uplift and damage to foundations from excessive pressures; premature plugging of fissures by thickening the mix too quickly, by unsuitable injection methods or formulations, or by inappropriate drilling and flushing techniques; improper spacing or orientation of grout holes; and inappropriate verification. These can be rectified by knowledgeable and experienced personnel designing, constructing, supervising, inspecting and controlling the drilling and grouting operations (p. 8-77).",
+      "summary": "Heading for the advantages (8.2.8.2.1) and potential disadvantages (8.2.8.2.2) of rock fissure grouting.",
+      "body": "The advantages and disadvantages of rock fissure grouting follow in 8.2.8.2.1 and 8.2.8.2.2. (p. 8-76)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Benefits and pitfalls of rock fissure grouting programs."
+    },
+    {
+      "section_id": "8.2.8.2.1",
+      "title": "Advantages",
+      "summary": "Rock fissure grouting repairs weak or permeable rock where the alternatives are costly removal and replacement or abandoning the site; it reduces permeability and deformability and raises strength, particularly in shear (Lombardi 2003).",
+      "body": "Rock fissure grouting can repair weak or permeable rock masses where the limited alternatives range from costly removal and replacement to abandoning the site. Its main advantages (Lombardi 2003) are reducing the permeability of the rock mass, reducing its deformability, and increasing its strength, particularly against shear forces. (p. 8-77)",
       "key_points": [
-        "Reduces rock mass permeability and deformability; increases shear strength (Lombardi 2003)",
-        "Risk: uplift and foundation damage from excessive pressure",
-        "Risk: premature plugging from thickening too quickly or poor drilling/flushing",
-        "Risk: improper hole spacing/orientation and inappropriate verification",
-        "Mitigated by experienced design, construction and inspection personnel"
+        "Reduces permeability and deformability of the rock mass (p. 8-77).",
+        "Increases rock mass strength, particularly in shear (p. 8-77)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Benefits and pitfalls of rock fissure grouting programs."
+    },
+    {
+      "section_id": "8.2.8.2.2",
+      "title": "Potential Disadvantages",
+      "summary": "Poor design and field practice cause uplift and foundation damage from excessive pressure, premature plugging of fissures, improper hole spacing or orientation, and inappropriate verification; knowledgeable, experienced personnel rectify these.",
+      "body": "Inefficiencies come from poor design and field practice: uplift and damage to foundations from excessive pressures; premature plugging of fissures by thickening the mix too quickly, unsuitable injection methods or formulations, or inappropriate drilling and flushing; improper hole spacing or orientation; and inappropriate verification. These are rectified by knowledgeable, experienced personnel designing, building, supervising, inspecting and controlling the drilling and grouting. (p. 8-77)",
+      "key_points": [
+        "Excessive pressure causes uplift and foundation damage (p. 8-77).",
+        "Premature plugging from thickening too quickly or poor flushing (p. 8-77)."
       ],
       "equations": [],
       "figures": [],
@@ -1039,19 +1718,55 @@
     {
       "section_id": "8.2.8.3",
       "title": "Feasibility Evaluations",
-      "summary": "Rock grouting feasibility: groutability ratio NR = width of fissure / (D95)grout (Eq. 8-6); grouting consistently possible for NR > 5, not possible for NR < 2, and grout fineness and rheology should be engineered so the feasibility number is nearer 3 than 5. Measure in-situ permeability (Lugeon tests, 1 Lu = 0.5 x 10^-6 in/s), staged up-and-down pressures; environmental risk to water bodies; thorough investigation and design-phase test program.",
-      "body": "Geotechnical (2.8.3.1): the main consideration in grouting rock fissures, for water control or structural improvement, is the grain size of the particulate grout compared with the width of the fracture. The groutability ratio NR for rock fissures is given by Eq. 8-6, where D is the grout diameter and the subscript is the percent finer (Mitchell 1981). As rock characteristics cannot be changed, the fineness of the grout should be controlled and its rheology engineered so that the NR number for rock grouting feasibility is nearer 3 than 5, with: NR > 5, grouting consistently possible; NR < 2, grouting not possible (pp. 8-77 to 8-78). In-situ permeability must be measured in advance since it governs design, construction and verification; rock mass stability is also vital. The Lugeon value is convenient for grout curtain design (Weaver and Bruce 2007) and is printed as equal to 0.11 inch^2/psi (1 L/m/bar) at a test pressure of 145 psi (10 bar); 1 Lugeon (Lu) = 0.5 x 10^-6 inches/second (1.3 x 10^-5 cm/s). Testing at different pressures in an up-and-down order (low-moderate-high-moderate-low) helps study the elasticity of fissure openings, grout flow, voids (Houlsby 1990, Weaver and Bruce 2007) and hydrofracture (Littlejohn 1992) (p. 8-78). Environmental (2.8.3.2): grout leaking into a body of water may deplete oxygen or change pH and cause a fish kill. Project conditions (2.8.3.3): a thorough investigation is needed since rock may be weak, fractured, voided, highly permeable, erodible or soluble; in situ permeability (Lugeon) testing and an optical televiewer are essential; a design-phase test program is often warranted to develop the final design and cost estimate, tied to the local geology (p. 8-78).",
+      "summary": "Heading for rock fissure grouting feasibility: geotechnical, environmental and project conditions (8.2.8.3.1 to 8.2.8.3.3).",
+      "body": "Factors affecting the geotechnical, environmental and site-related feasibility of rock fissure grouting follow in 8.2.8.3.1 to 8.2.8.3.3. (p. 8-77)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Checking whether a particulate grout can penetrate rock fissures, and investigating rock for grouting."
+    },
+    {
+      "section_id": "8.2.8.3.1",
+      "title": "Geotechnical",
+      "summary": "The groutability ratio NR = width of fissure / (D95)GROUT (Eq. 8-6, Mitchell 1981): grouting consistently possible for NR > 5, not possible for NR < 2; grout fineness and rheology are engineered so NR is 'nearer 3 than 5' (as printed). Measure in-situ permeability in Lugeons first; up-and-down pressure stepping reveals fissure elasticity, voids and hydrofracture.",
+      "body": "The main consideration for sealing fissures, for water control or structural improvement, is the grain size of the particulate grout against the width of the fracture. The groutability ratio for rock fissures is NR = (Width of fissure) / (D95)GROUT (Eq. 8-6), where D is the grout particle diameter and the subscript the percent finer (Mitchell 1981). Since the rock cannot be changed, the grout's fineness and rheology are engineered so that NR 'is nearer 3 than 5', as printed, with NR > 5 grouting consistently possible and NR < 2 not possible (p. 8-78). The in-situ permeability of the rock mass must be measured in advance, as it governs design, construction and verification; rock mass stability also matters. The Lugeon value is convenient for grout curtain design (Weaver and Bruce 2007); as printed it 'is defined as the permeability of grout in the rock mass and is equal to 0.11 inch2/psi (1 L/m/bar) at a test pressure of 145 psi (10 bar)', and 1 Lugeon (Lu) = 0.5 x 10^-6 inches/second (1.3 x 10^-5 cm/s). Testing at pressures in up-and-down order (low-moderate-high-moderate-low) shows the elasticity of fissure openings, grout flow characteristics, voids (Houlsby 1990, Weaver and Bruce 2007) and hydrofracture (Littlejohn 1992). (pp. 8-77 to 8-78)",
       "key_points": [
-        "Eq. 8-6: NR = width of fissure / (D95)grout (p. 8-77)",
-        "NR > 5: grouting consistently possible; NR < 2: grouting not possible (p. 8-78)",
-        "Engineer grout fineness and rheology so the NR feasibility number is nearer 3 than 5",
-        "1 Lugeon = 0.5 x 10^-6 in/s (1.3 x 10^-5 cm/s); Lugeon test pressure 145 psi (10 bar)",
-        "Pressure tests in up-and-down order (low-moderate-high-moderate-low)",
-        "Lugeon testing and optical televiewer are essential; design-phase test program often warranted"
+        "NR = width of fissure / (D95)GROUT (Eq. 8-6) (p. 8-77).",
+        "NR > 5 grouting consistently possible; NR < 2 not possible (p. 8-78).",
+        "1 Lugeon = 0.5 x 10^-6 in./s (1.3 x 10^-5 cm/s); 1 L/m/bar at 10 bar (p. 8-78).",
+        "Up-and-down pressure stepping reveals fissure elasticity, voids and hydrofracture (p. 8-78)."
       ],
       "equations": [
         "Eq. 8-6: NR = (Width of fissure) / (D95)GROUT; groutability ratio for rock fissures, D = grout particle diameter, subscript = percent finer (Mitchell 1981) (p. 8-77)"
       ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Checking whether a particulate grout can penetrate rock fissures, and investigating rock for grouting."
+    },
+    {
+      "section_id": "8.2.8.3.2",
+      "title": "Environmental",
+      "summary": "Take care where rock grout could leak into a water body: oxygen depletion or a pH change could kill fish.",
+      "body": "Care must be taken when grouting rock where grout could leak into a body of water; oxygen depletion by the grout or its effect on the water's pH could cause a fish kill. (p. 8-78)",
+      "key_points": [
+        "Grout leaking into water can deplete oxygen or change pH and kill fish (p. 8-78)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Checking whether a particulate grout can penetrate rock fissures, and investigating rock for grouting."
+    },
+    {
+      "section_id": "8.2.8.3.3",
+      "title": "Project Conditions",
+      "summary": "A thorough subsurface investigation precedes any decision, since rock masses vary widely and may be erodible or soluble; in-situ (Lugeon) permeability testing and an optical televiewer are essential, and a design-phase test program is often warranted before the final design and cost estimate.",
+      "body": "Before deciding on grouting, a thorough subsurface investigation is needed: rock masses can be highly variable (weak or loose rock, stress fractures, large voids, open fractures, high permeability), and some are erodible or soluble. In-situ permeability testing (Lugeon value) and an optical televiewer are essential. A design phase test program is often warranted; its data support the final grouting design and cost estimate, and the site-specific explanation should be tied to the local geology. (p. 8-78)",
+      "key_points": [
+        "Lugeon testing and an optical televiewer are essential (p. 8-78).",
+        "A design phase test program is often warranted (p. 8-78)."
+      ],
+      "equations": [],
       "figures": [],
       "tables": [],
       "applicability": "Checking whether a particulate grout can penetrate rock fissures, and investigating rock for grouting."
@@ -1074,20 +1789,43 @@
     {
       "section_id": "8.2.8.5",
       "title": "Design Considerations",
-      "summary": "Rock grouting design: extent, rows, materials, hole spacing/inclination/diameter, quantities, methods, performance and verification, monitoring and contract documents, with a clearly stated goal (residual permeability or strength). Balanced multi-component particulate grouts; water flush, pressure washing and testing; pressure rules of thumb 1 to 4 times overburden weight (Figure 8-22); upstage, downstage and MPSP methods (Table 8-9); real-time computer monitoring mandatory.",
-      "body": "Design defines extent, rows, materials, hole spacing, inclination and diameter, quantities, methods, verification, monitoring and contract documents. The goal must be clearly stated, e.g., a specific residual permeability by post-grouting tests, or increased strength or homogeneity by core testing, load testing or cross-hole seismic methods (p. 8-79). Grout types (2.8.5.1): primarily particulate; traditional practice was incorrectly based on neat cement, while current practice uses balanced multi-component formulations with controlled fluid and set properties (ASCE 2003; Weaver and Bruce 2007). Design procedure (2.8.5.2): record discontinuity frequency and aperture and in-situ permeability; water flush is essential for fissure grouting; holes are flushed, pressure washed and pressure tested immediately before grouting, at pressures not exceeding, and used to set, the maximum allowable grouting pressure. Rules of thumb for grouting pressure range from 1 to 4 times the theoretical weight of rock above the injection point (Figure 8-22); the maximum safe pressure must be confirmed by preconstruction testing (pp. 8-79 to 8-80). Methods for stable rock are upstage, downstage with top-hole packer, and downstage with down-hole packer (Figure 8-23; Table 8-9). Downstage consolidates from the top down and adapts depth and stage length but needs rig moves and redrilling; upstage drills in one pass and is cheaper but has a predetermined depth and risks collapse and upward grout escape. Competent dam rock suits upstage, historically most common; the top stage is often downstaged; in extremely weathered or collapsing ground the multiple packer sleeve pipe (MPSP, Figure 8-24) is preferred (Bruce and Gallavresi 1988) (pp. 8-81 to 8-83). Performance monitoring (2.8.5.3): real-time computer monitoring/recording should always be mandatory (Bruce 2012); computerized monitoring is now standard practice, and performance must also be monitored in service (pp. 8-83 to 8-84).",
+      "summary": "A rock grouting design defines the extent, rows, materials, hole spacing, inclination and diameter, quantities, equipment and parameters, performance and verification requirements, monitoring and contract documents; its goal, a residual permeability or a gain in strength or homogeneity, must be stated precisely.",
+      "body": "Designing a grouting program means defining the areal extent, the number of rows of grout holes, the grout materials, initial hole spacing, inclination and diameter, grout quantities, equipment, methods and parameters, performance and verification requirements, monitoring tools, and the plans and specifications. The precise goal must be stated: a specific residual permeability measured by post-grouting tests, or an increase in rock mass strength or homogeneity shown by core testing, load testing or cross-hole seismic methods. (p. 8-79)",
       "key_points": [
-        "State a clear goal: residual permeability, or increased strength/homogeneity",
-        "Use balanced, stable multi-component particulate grouts, not neat cement",
-        "Water flush is essential for fissure grouting; pressure test before grouting",
-        "Grouting pressure rules of thumb: 1 to 4 times the rock weight above the injection point; confirm by testing (p. 8-80)",
-        "Table 8-9: downstage aids hole stability and adapts depth; upstage is one-pass, cheaper and easier to control",
-        "MPSP preferred in extremely weathered or collapsing ground (Bruce and Gallavresi 1988)",
-        "Real-time computer monitoring should always be mandatory (p. 8-83)"
+        "State the goal precisely: residual permeability or strength/homogeneity gain (p. 8-79)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Designing a rock fissure grouting program: materials, pressures, staging method and monitoring."
+    },
+    {
+      "section_id": "8.2.8.5.1",
+      "title": "Grout Types and Selection",
+      "summary": "Rock fissure grouting uses particulate grouts formulated for penetrability and durability; traditional neat cement practice was incorrect, and current practice uses balanced multi-component formulations with controlled fluid and set properties (ASCE 2003; Weaver and Bruce 2007).",
+      "body": "Rock fissure grouting is done mainly with particulate grouts whose formulation must give the fluid and set properties for penetrability and a durable product (Bruce et al. 1998). Traditional practice was incorrectly based on neat cement grouts; current practice uses suites of multi-component, balanced formulations with carefully controlled fluid and set properties (ASCE 2003). Weaver and Bruce (2007) describe cement-based grout properties and constituents in detail. (p. 8-79)",
+      "key_points": [
+        "Particulate grouts; balanced multi-component mixes, not neat cement (p. 8-79)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Designing a rock fissure grouting program: materials, pressures, staging method and monitoring."
+    },
+    {
+      "section_id": "8.2.8.5.2",
+      "title": "Design Procedure/Program and Considerations",
+      "summary": "Investigate leakage potential, geology, stress, hydrogeology, geochemistry and discontinuity frequency and aperture. Water flushing is essential; pressure washing and testing must not exceed, and should set, the maximum grouting pressure. Pressure rules of thumb run 1 to 4 times the rock weight above the injection point (Figure 8-22). Upstage, downstage (Figure 8-23, Table 8-9) or MPSP (Figure 8-24).",
+      "body": "The investigation covers leakage potential, areal and structural geology, in-situ stress, hydrogeology, geochemistry and compatibility of ground and grout; discontinuity frequency and aperture and in-situ permeability are vital, and anomalies are found and treatment planned. Drilling and flushing methods are usually the contractor's, but water flush is essential for fissure grouting, removing cuttings and turbidity (p. 8-80). Pressure washing and pressure testing come immediately before grouting, at pressures not exceeding, and used to set, the maximum allowable grouting pressure; washing continues until clay is removed from an interconnected hole or surface leak or while the water take at a given pressure keeps rising, and a clay dispersant may help; a clean water pressure test, at one or several pressures, often follows (Houlsby 1990). Rules of thumb for grouting pressure range from 1 to 4 times the theoretical weight of rock above the injection point (Figure 8-22, printed caption 'Swedish grouting practice'); the maximum safe pressure must be confirmed in preconstruction testing. Stable rock is grouted upstage (ascending), downstage with a top hole packer, or downstage with a down hole packer (Figure 8-23, p. 8-81); Table 8-9 (p. 8-82) compares them: downstage consolidates from the top, allows rising pressure with depth, flexible hole depth and stage length, but is discontinuous, wasteful and prone to deviation; upstage drills in one pass, is cheaper and easier to control, but fixes the depth, risks collapse, stuck packers and upward escape of grout. Upstage suits the competent rock of most dam sites and has been most common; downstage is in more demand at difficult remedial and hazardous waste sites, and often only the top stage is downstaged. In extremely weathered or collapsing ground the multiple packer sleeve pipe (MPSP, Figure 8-24, p. 8-83) is preferred (Bruce and Gallavresi 1988). (pp. 8-79 to 8-83)",
+      "key_points": [
+        "Water flush essential; washing and test pressures set the maximum grouting pressure (p. 8-80).",
+        "Pressure rules of thumb 1 to 4 times the rock weight above the injection point (Figure 8-22) (p. 8-80).",
+        "Upstage vs downstage trade-offs in Table 8-9 (p. 8-82).",
+        "MPSP for extremely weathered or collapsing ground (Figure 8-24) (p. 8-83)."
       ],
       "equations": [],
       "figures": [
-        "Figure 8-22: Rock grouting injection pressures used in national grouting practice (Weaver and Bruce 2007).",
+        "Figure 8-22: Rock grouting injection pressures used in Swedish grouting practice.",
         "Figure 8-23: Rock grouting techniques: upstage (left) and downstage (right).",
         "Figure 8-24: Multiple packer sleeve pipe (MPSP) process."
       ],
@@ -1097,17 +1835,55 @@
       "applicability": "Designing a rock fissure grouting program: materials, pressures, staging method and monitoring."
     },
     {
+      "section_id": "8.2.8.5.3",
+      "title": "Performance Monitoring",
+      "summary": "Real-time computer monitoring and recording of drilling, pressure testing and grouting should always be mandatory; drilling records fill gaps between borings in the as-built profile. First used in the U.S. in 1983, computerized monitoring is now standard; the grouted mass is then monitored in service (seepage, pressure, movement).",
+      "body": "Detailed performance monitoring and evaluation is integral to the program. Real-time evaluation of drilling, pressure test and grouting records lets technical changes be made as work proceeds, so real time computer monitoring and recording should always be mandatory (Bruce 2012). Borings are limited by cost, so drilling rate deviations and cuttings reveal unexpected conditions and 'fill in the gaps' in the geologic profile, recorded in the as-built report. Computerized monitoring gives instantaneous, accurate progress data for the crews (p. 8-84); first used in the United States in 1983 by the Bureau of Reclamation at a Colorado dam, it is now standard in North America. The grouted rock mass must also be monitored over time: seepage flows and pressures for water tightness, structural movements for blanket grouting. (pp. 8-83 to 8-84)",
+      "key_points": [
+        "Real time computer monitoring should always be mandatory (p. 8-83).",
+        "Drilling records fill gaps between borings (p. 8-83).",
+        "Monitor the grouted mass in service (p. 8-84)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Designing a rock fissure grouting program: materials, pressures, staging method and monitoring."
+    },
+    {
       "section_id": "8.2.8.6",
       "title": "Cost Data",
-      "summary": "Rock grouting bidding: separate pay items per work aspect; quantities vary, so contracts allow changes without changing unit prices; drilling paid per linear foot (redrilling set grout typically 50% of rock drilling rate), pressure testing and washing hourly, materials by weight, injection per pump hour. Estimates from test grouting, borings, experience and unit takes; a grout curtain may cost $25 to $80 per square yard.",
-      "body": "Bidding methods (2.8.6.1): rock grouting may be part of a general contract or a separate contract. As for all grouting, pay items for individual aspects of the work are listed separately, the approach of choice of government agencies. Routine instrumentation is typically included in other items. Because of uncertainty, accurate quantity estimates are extremely difficult, and contracts often reserve the right to increase or eliminate any part of the program without changing unit prices. Grout and exploratory hole drilling are paid per linear foot drilled, usually including washing; pressure testing and washing are separate hourly items; redrilling set grout is typically priced at 50% of the rock drilling rate; materials are paid by weight of each component injected; and grout injection by the pump hour (p. 8-84). Cost estimation methods (2.8.6.2): quantities can only be approximated; specifications and bid items should let estimated quantities vary substantially without affecting unit prices, but a concerted effort must still be made to estimate drilling and grout take, using pre-construction test grouting, boring evaluations, experience and unit-take estimates. Drawings and specifications should give hole spacing, sequencing, direction, maximum angle and depth, and allowable deviation. Additional items: drilling exploratory and verification holes (per linear foot), drilling drain holes (separate items by size and location), and instrumentation (monitoring may be separate). Input should be sought from agencies and specialty contractors. As a general guide, a grout curtain may cost $25 to $80 per square yard of curtain, including all drilling, grouting and materials (pp. 8-84 to 8-85).",
+      "summary": "Heading for rock grouting cost data: bidding methods (8.2.8.6.1) and cost estimation methods (8.2.8.6.2).",
+      "body": "Heading for rock grouting cost data, 8.2.8.6.1 and 8.2.8.6.2; it has no text of its own. (p. 8-84)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Structuring bid items and estimating cost for rock grouting."
+    },
+    {
+      "section_id": "8.2.8.6.1",
+      "title": "Bidding Methods",
+      "summary": "Rock grouting pay items are listed separately, as agencies prefer; contracts reserve the right to change quantities at unit prices. Drilling is paid per linear foot actually drilled, pressure testing and washing by the hour, redrilling set grout at 50% of rock drilling, materials by weight, and injection by the pump hour.",
+      "body": "Rock grouting may be in a general or separate contract; as for all grouting, pay items for each aspect are listed separately, the approach government agencies prefer from experience, with routine instrumentation usually within other items. Because of the uncertainty and exploratory nature of grouting, accurate quantity estimates are extremely difficult, and many contracts reserve the right to increase or eliminate any part without changing unit prices. Grout and exploratory hole drilling is paid by the linear feet actually drilled, usually including washing; pressure testing and washing are often separate hourly items, since the inspector may direct their duration. Re-drilling set grout is typically priced at 50% of the rock drilling rate; materials are paid by weight of each component injected; grout injection is paid by the pump hour. (p. 8-84)",
       "key_points": [
-        "List separate pay items for each aspect of grouting work",
-        "Drilling per linear ft; redrilling set grout typically 50% of rock drilling rate (p. 8-84)",
-        "Pressure testing and washing hourly; materials by weight; injection per pump hour",
-        "Allow quantities to vary without changing unit prices",
-        "Estimate from test grouting, borings, experience and unit takes",
-        "Grout curtain: about $25 to $80 per sq yd including drilling, grouting and materials (p. 8-85)"
+        "Separate pay items for each aspect of the work (p. 8-84).",
+        "Redrilling set grout at 50% of the rock drilling rate (p. 8-84).",
+        "Materials by weight; injection by the pump hour (p. 8-84)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Structuring bid items and estimating cost for rock grouting."
+    },
+    {
+      "section_id": "8.2.8.6.2",
+      "title": "Cost Estimation Methods",
+      "summary": "Quantities can only be approximated and vary widely, so bid items must allow it without changing unit prices; estimate drilling and grout take from test grouting, borings, experience and unit takes; show hole spacing, sequence, angle, depth and deviation; add exploratory and verification holes, drain holes and instrumentation. A grout curtain 'may cost $25 to $80 per square yard' (as printed).",
+      "body": "Drilling and grouting quantities can only be approximated before construction, and grouting items often vary substantially, so specifications and bid items should let quantities vary without affecting unit prices; still, drilling and grout materials (grout take) must be estimated with care, from pre-construction test grouting, boring evaluations, experience and unit-take estimates (p. 8-85). Drawings and specifications should show hole spacing, sequencing, direction, maximum angle and depth and allowable deviation, with drilling quantities per item and the related water testing, grouting and materials spelled out. Also include: drilling exploratory and verification holes (paid per linear foot drilled); drilling drain holes (separate items per hole size, and for open and gallery work, in linear feet); and instrumentation other than the drilling and grouting data systems (which can be priced separately), with monitoring possibly a separate item. Rock type and the grouting objective drive cost; seek input from agencies and specialty contractors. As a guide, a grout curtain 'may cost $25 to $80 per square yard of curtain', as printed, including drilling, grouting and materials; 8.2.8.4 prints '$25 and $80 per sq. feet' for recent curtains in carbonate terrain. (pp. 8-84 to 8-85)",
+      "key_points": [
+        "Bid items must let quantities vary without changing unit prices (p. 8-84).",
+        "Include exploratory, verification and drain holes and instrumentation (p. 8-85).",
+        "Grout curtain '$25 to $80 per square yard' here; '$25 and $80 per sq. feet' in 8.2.8.4 (p. 8-85)."
       ],
       "equations": [],
       "figures": [],
@@ -1117,13 +1893,24 @@
     {
       "section_id": "8.2.8.7",
       "title": "Case Histories",
-      "summary": "Two rock grouting case histories: (1) computer monitoring and analysis of grout curtains at three dams, with monitoring Levels 1-3 (dipstick and gage; real-time data collection; advanced integrated analytical systems) (Dreese et al. 2003); (2) multi-phase grouting of a karstic limestone dam foundation from 1942 to 2011, with balanced stable grouts, computer control and Lugeon closure criteria (Bruce et al. 2014).",
-      "body": "Case History 1 (Dreese et al. 2003): computer monitoring and real-time analysis give more data, higher grouting pressures, faster and more consistent operations and better use of resources; plots of Lugeon value, or flow divided by effective pressure, against time flag problems such as unsafe pressures. Level 1, dipstick and gage, used before 2000, readings every 5 to 15 minutes plotted by hand; Level 2, real-time electronic collection, display and storage; Level 3, advanced integrated analytical systems combining data, display, query and CAD. Level 3 is recommended for projects over $750,000 and Level 2 for projects over $250,000 (p. 8-86). At one dam about 180 ft high and 2,000 ft long, a triple-row curtain used neat grout with Level 1 on the first row and balanced, stable modified grouts with Level 2 on the others (lower cohesion, bleed and pressure filtration, strength above 200 psi); quality improved at reduced cost (Figures 8-25, 8-26). A limestone ridge seepage project used stable grouts and Level 2 monitoring, cut permeability by up to three orders of magnitude, with residual about 1 Lugeon (Figures 8-27, 8-28). At a third dam, a single-line curtain 1100 ft long to 120 ft deep met a 5-Lugeon criterion; 3D displays located an unexpected permeable dike (Figures 8-29, 8-30) (pp. 8-87 to 8-93). Case History 2 (Bruce et al. 2014): a 5,736-ft-long dam up to 258 ft high on karstic limestone developed sinkholes and muddy flow in 1968. Phase 1 (1942-43): 600 downstage holes, neat grout w/c 0.66, holes on 10-ft centers about 50 ft deep. Phase 2 (1968-75): emergency holes 6.75 in. at 2.5 ft centers grouted by gravity, then 852 holes and two concrete diaphragm walls (1975-79). Phase 3 (2007-08): two-line curtain 3,840 ft long with balanced stable grout, targets 10 Lugeons in the wall zone and 3 Lugeons below it. Phase 4 (2009-11): LMG and HMG, about 274,000 linear ft drilled and 375,000 gallons injected (Figures 8-31 to 8-33) (pp. 8-93 to 8-96).",
+      "summary": "Two case histories of grout curtains in dams, the most important application of rock grouting.",
+      "body": "Two case histories describe grout curtains in dams, the most important application of rock grouting (8.2.8.7.1 and 8.2.8.7.2). (p. 8-85)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Precedents for dam foundation grout curtains and computer monitoring of rock grouting."
+    },
+    {
+      "section_id": "8.2.8.7.1",
+      "title": "Case History 1: State of the Art in Computer Monitoring and Analysis of Grouting - Penn Forest Dam, Pennsylvania; Patoka Lake Seepage Remediation Project, Indiana, and Hunting Run Dam Project, Virginia (Dreese et al. 2003)",
+      "summary": "Three dam projects show computer monitoring: levels 1 (dipstick and gage), 2 (real-time collection, e.g., CAGES) and 3 (integrated analysis with CAD), level 3 recommended above $750,000 and level 2 above $250,000. Stable grouts and monitoring cut cost; one curtain reached about 1 Lugeon, another found an unknown dike (Figures 8-25 to 8-30).",
+      "body": "Dreese et al. (2003) describe the benefits of computer monitoring and real-time analysis on three projects: more data, higher grouting pressures, faster and consistent grouting, and better use of staff. Plots of Lugeon value or flow divided by effective pressure against time flag unsafe pressures. Level 1, dipstick and gage, was used before 2000 with readings every 5 to 15 minutes and manual plots; Level 2 collects, displays and stores real-time flow and pressure (e.g., CAGES), though patterns are hard to spot in the data; Level 3, Advance Integrated Analytical (AIA) systems such as IntelliGrout, adds analysis, queries and CAD. Level 3 is recommended for projects over $750,000 and Level 2 over $250,000 (p. 8-86). A dam about 180 ft high and 2,000 ft long (Figure 8-25) had a triple-row curtain: Line A neat cement with Level 1, Lines B and C stable grouts (bentonite, fly ash, Welan gum, superplasticizer) with Level 2, giving slightly higher viscosity, lower cohesion, less bleed, lower pressure filtration and strength still above 200 psi; quality improved at lower cost (Figure 8-26). A limestone ridge between a dam abutment and spillway (Figure 8-27), grouted under best value selection with a full-time geologist, fell up to three orders of magnitude in permeability to about 1 Lugeon (Figure 8-28), an alternative to a concrete cutoff wall. A single-line curtain 1100 ft long and up to 120 ft deep, criterion 5 Lugeons (Figures 8-29, 8-30), used 2D and 3D water test displays to find an unknown weathered dike under the conduit; the curtain cost about $1.1 million. (pp. 8-86 to 8-93)",
       "key_points": [
-        "Monitoring Level 3 recommended above $750,000 project cost, Level 2 above $250,000 (p. 8-86)",
-        "Balanced stable grouts: lower cohesion, bleed and pressure filtration; strength above 200 psi",
-        "Stable grouts plus computer monitoring reached about 1 Lugeon residual; a 5-Lugeon criterion met elsewhere",
-        "Karst dam: phased grouting 1942-2011; Phase 3 targets 10 Lugeons (wall zone) and 3 Lugeons (below wall)"
+        "Level 3 monitoring above $750,000; Level 2 above $250,000 (p. 8-86).",
+        "Stable grouts with Level 2 improved quality at lower cost (p. 8-88).",
+        "Residual permeability about 1 Lugeon (Figure 8-28) (p. 8-90).",
+        "3D displays found an unknown weathered dike; curtain about $1.1 million (p. 8-92)."
       ],
       "equations": [],
       "figures": [
@@ -1132,7 +1919,24 @@
         "Figure 8-27: Dam abutment ridge grouting (Case History 1).",
         "Figure 8-28: Lugeon values – post-grouting (Case History 1).",
         "Figure 8-29: Grouting operations at a dam (Case History 1).",
-        "Figure 8-30: Dam grouting, 2D and 3D water test display (Case History 1).",
+        "Figure 8-30: Dam grouting, 2D and 3D water test display (Case History 1)."
+      ],
+      "tables": [],
+      "applicability": "Precedents for dam foundation grout curtains and computer monitoring of rock grouting."
+    },
+    {
+      "section_id": "8.2.8.7.2",
+      "title": "Case History 2: Wolf Creek Reservoir (Bruce et al. 2014)",
+      "summary": "A 5,736 ft long, 258 ft high dam on karstic limestone was grouted over decades: 1942-43 downstage neat cement; 1968-75 emergency grouting and cutoff walls; 2007-08 a two-line stable-grout curtain to 10 Lugeons at the wall and 3 below; 2009-11 about 274,000 ft of drilling and 375,000 gal of grout (Figures 8-31 to 8-33).",
+      "body": "The dam is 5,736 feet long and up to 258 feet high on karstic limestone with interconnected solution channels; in 1968 two sinkholes near the downstream toe and muddy flow showed piping (Figure 8-31). Phase 1 (1942-1943): six hundred holes along 4,380 ft of core trench, downstage with neat cement at average w/c 0.66, generally on 10 ft centers and 50 ft deep, 32,761 ft in all. Phase 2 (1968-1971, 1973-1975): emergency grouting with 6.75 in. holes at 2.5 ft centers drilled at no more than 0.6 ft per minute (p. 8-94), filled by gravity through 1.5 in. pipes to refusal (Figure 8-32); then 852 holes along the proposed cutoff wall, and in 1975-79 two concrete diaphragm walls, 2,200 ft along the crest and 600 ft, mostly 95 ft deep, at the toe (Figure 8-33). Phase 3 (2007-2008, interim risk reduction): a two-line curtain 3,840 ft along the proposed wall and a 200 ft single-line curtain, drilled from an upstream platform with water-powered down the hole (WDTH) rotary percussion drills, using a balanced, stable grout (water, cement, hydrated bentonite slurry, polymer, superplasticizer) to a maximum of 10 Lugeons at the wall and 3 Lugeons below it (p. 8-95). Phase 4 (2009-2011): LMG double-line pre-grouting of the embankment-rock contact, double- and single-line HMG curtains, fan grouting and a critical area curtain, about 274,000 ft of drilling and 375,000 gallons of grout, with the barrier wall built without slurry loss (p. 8-96). Success came from evolving drilling, stable HMGs, colloidal mixing, computer control with CAD, and zone-specific pressures instead of rules of thumb. (pp. 8-93 to 8-96)",
+      "key_points": [
+        "Phase 1: 600 holes, downstage neat cement, w/c 0.66 (p. 8-93).",
+        "Phase 3 curtain criteria: 10 Lugeons at the wall, 3 below (p. 8-95).",
+        "Phase 4: about 274,000 ft drilled, 375,000 gal of grout (p. 8-96).",
+        "Zone-specific pressures instead of rules of thumb (p. 8-96)."
+      ],
+      "equations": [],
+      "figures": [
         "Figure 8-31: Karst dam (Case History 2).",
         "Figure 8-32: Karst dam – grout curtain layout (Case History 2).",
         "Figure 8-33: Karst dam – cutoff walls and grout lines (Case History 2)."
@@ -1611,15 +2415,115 @@
     {
       "section_id": "8.5.2.2",
       "title": "Bid Items",
-      "summary": "Recommended grouting bid items: mobilization/demobilization (lump sum, guaranteed); environmental protection (lump sum); drilling grout holes per linear foot (separate items by diameter, depth, angle; redrilling typically 50% of rock drilling rate); pressure washing and testing by time; grout placement by volume or pump hour; connections per hookup; grout materials by volume or weight; injection parameter recording and analysis paid separately.",
-      "body": "Experience indicates the following items should be in any estimate or bid schedule for drilling and grouting. Mobilization and demobilization, lump sum: equipment must be assembled and removed regardless of the work done, so a separate item guarantees payment (p. 8-124). Environmental protection, lump sum: retention of the environment in its natural state as far as possible. Drilling grout holes, per linear foot (rock, soil, grout): a minimum diameter is generally specified; separate items for different diameters, depths, angles or special conditions such as galleries; redrilling set grout through no fault of the contractor typically paid at 50% of the rock drilling rate. Pressure washing and pressure testing: preliminary washing is part of drilling, but pressure washing and testing are paid separately, measured by time, and may be combined in one item. Grout placement, by volume or pump hour: labor, equipment and supplies (other than materials) to mix and inject. Connections to grout holes, lump sum or per connection: hookup labor is independent of placement (p. 8-125). Grout materials, by volume or weight: separate items for each material except water, estimated from experience, geology and test grouting, consistent with placement volumes. Grout injection parameter recording and analysis: where warranted, the computer-based system is paid separately as a lump sum or weekly or monthly fixed cost (p. 8-126).",
+      "summary": "Experience indicates eight items for any drilling and grouting estimate or bid schedule (8.5.2.2.1 to 8.5.2.2.8).",
+      "body": "Experience indicates that the items in 8.5.2.2.1 to 8.5.2.2.8 should be included in any estimate or bid schedule for a drilling and grouting program. (p. 8-124)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Writing the bid item list for a drilling and grouting contract."
+    },
+    {
+      "section_id": "8.5.2.2.1",
+      "title": "Mobilization and Demobilization, Lump Sum",
+      "summary": "Equipment must be brought in and removed whatever the amount of work, so a separate lump sum item guarantees the contractor payment regardless of the other items.",
+      "body": "Drilling and grouting equipment must be assembled at the site before grouting starts and removed when it ends, regardless of the work actually performed, so a separate pay item should be in the specifications, guaranteeing the contractor payment whether or not work under the other items is performed. (p. 8-124)",
       "key_points": [
-        "Mobilization/demobilization as a guaranteed lump sum",
-        "Drilling per linear ft; separate items by diameter, depth, angle or special conditions",
-        "Redrilling set grout typically 50% of the rock drilling rate (p. 8-125)",
-        "Pressure washing and testing paid separately by time",
-        "Grout placement by volume or pump hour; materials by volume or weight (except water)",
-        "Computer monitoring paid separately as lump sum or recurring fixed cost (p. 8-126)"
+        "Separate lump sum item, paid regardless of other work (p. 8-124)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Writing the bid item list for a drilling and grouting contract."
+    },
+    {
+      "section_id": "8.5.2.2.2",
+      "title": "Environmental Protection, Lump Sum",
+      "summary": "A separate lump sum item may cover environmental protection: keeping the environment in its natural state as far as possible during construction.",
+      "body": "A separate pay item may be included. Environmental protection is defined as retaining the environment in its natural state to the greatest possible extent during construction. (p. 8-124)",
+      "key_points": [
+        "Optional separate lump sum item for environmental protection (p. 8-124)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Writing the bid item list for a drilling and grouting contract."
+    },
+    {
+      "section_id": "8.5.2.2.3",
+      "title": "Drilling Grout Holes, Linear Foot Rock, Soil, Grout",
+      "summary": "Drilling is paid per linear foot, with a minimum diameter specified and separate items for different diameters, depths, angles or special conditions such as galleries; redrilling set grout through no fault of the contractor is typically paid at 50% of the rock drilling rate.",
+      "body": "A minimum hole diameter is generally specified; different diameters need separate pay items, and separate items may suit different depths or angles or special conditions such as drilling from a gallery or tunnel. If grout must be drilled out of a hole after set through no fault of the contractor, a special redrilling payment should be provided, typically 50% of the rock drilling rate. (p. 8-125)",
+      "key_points": [
+        "Separate items by diameter, depth, angle or special conditions (p. 8-125).",
+        "Redrilling set grout typically 50% of the rock drilling rate (p. 8-125)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Writing the bid item list for a drilling and grouting contract."
+    },
+    {
+      "section_id": "8.5.2.2.4",
+      "title": "Pressure Washing and Pressure Testing",
+      "summary": "Preliminary washing is part of drilling, but pressure washing and testing are paid separately, measured by time, possibly in one combined item, with their amounts estimated.",
+      "body": "Preliminary washing of the hole is usually paid as part of drilling. Pressure washing and testing are essential parts of the program and should be a separate item, ordinarily measured by the time required; being closely related, both may be combined in one pay item. Though actual washing depends on conditions, the expected amounts of washing and testing should be estimated. (p. 8-125)",
+      "key_points": [
+        "Pressure washing and testing paid separately, by time (p. 8-125).",
+        "Both may be combined in one item (p. 8-125)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Writing the bid item list for a drilling and grouting contract."
+    },
+    {
+      "section_id": "8.5.2.2.5",
+      "title": "Grout Placement, by Volume or Pump Hour",
+      "summary": "Grout placement covers labor, equipment and supplies other than materials to mix and inject, paid by volume of mixed grout and/or by the pump hour; a quantity must be estimated even though unknown.",
+      "body": "The placement item covers labor, equipment and supplies (other than grouting materials) to mix and inject the grout, often paid by volume of mixed grout and/or by the pump hour. A quantity must be estimated even though the actual amount is unknown; payment by the hour, covering labor and equipment, may suit some cases. (p. 8-125)",
+      "key_points": [
+        "Paid by volume of mixed grout and/or pump hour (p. 8-125)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Writing the bid item list for a drilling and grouting contract."
+    },
+    {
+      "section_id": "8.5.2.2.6",
+      "title": "Connections to Grout Holes, Lump Sum or Per Connection",
+      "summary": "Hooking up to a grout hole is independent of placing grout, so a fixed or bid price per hookup may be paid.",
+      "body": "The labor to hook up to a grout hole is independent of placing grout, so a separate payment, a fixed or bid price per hookup or connection, may be desirable. (p. 8-125)",
+      "key_points": [
+        "Fixed or bid price per hookup (p. 8-125)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Writing the bid item list for a drilling and grouting contract."
+    },
+    {
+      "section_id": "8.5.2.2.7",
+      "title": "Grout Materials, by Volume or Weight",
+      "summary": "Each grout material except water gets its own item by volume or weight, estimated from experience, geology and test grouting, distinct from placement and consistent with the placed volume.",
+      "body": "Separate pay items should be set for each grout material (except water), with quantities by volume or weight from past experience, the geology and any test grouting. They must be clearly distinguished from Grout Placement, and the placed grout volume must be consistent with the material weights. (p. 8-126)",
+      "key_points": [
+        "Separate item per material except water (p. 8-126).",
+        "Placed volume consistent with material weights (p. 8-126)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Writing the bid item list for a drilling and grouting contract."
+    },
+    {
+      "section_id": "8.5.2.2.8",
+      "title": "Grout Injection Parameter Recording and Analysis",
+      "summary": "Where real-time monitoring and analysis is warranted, the computer-based system is paid separately as a lump sum or a weekly or monthly fixed cost.",
+      "body": "If a project warrants a high degree of real time parameter monitoring and analysis, the computer-based system should be paid separately, as a lump sum or as a weekly or monthly recurrent fixed cost. (p. 8-126)",
+      "key_points": [
+        "Computer monitoring paid as lump sum or recurring fixed cost (p. 8-126)."
       ],
       "equations": [],
       "figures": [],
@@ -1689,15 +2593,89 @@
     {
       "section_id": "8.5.3.4",
       "title": "Rock Grouting Specifications",
-      "summary": "Rock fissure grouting specification items and payment methods (Weaver and Bruce 2007): mobilization/demobilization (lump sum, typically 50-60% on mobilization), drilling and redrilling (per linear foot, reduced redrilling rate), special flushing (per crew hour), water-pressure testing (per crew hour or per test), grouting (per pump hour, per kg or lb of materials, possibly monthly QA/QC; e.g., paddle mixers and w/c > 2 by weight unacceptable), standby (per crew hour).",
-      "body": "Weaver and Bruce (2007) suggested items and tasks to define in technical specifications for rock fissure grouting (p. 8-131). Mobilization and demobilization: lump sum (typically 50-60% on mobilization, balance on demobilization); project phases, duration restraints, site location, facilities on arrival and for others, site preparation (grout caps, access roads, scaffolding). Drilling and redrilling: per linear foot, with a reduced redrilling rate for hardened grout; hole quantities, location, length, orientation and inclination; stage length and method (upstage vs. downstage); minimum diameter; unacceptable events (e.g., air flush in rock); special methods; deviation tolerances and measurement; actions for extreme events (major flush loss, rod drops); logging; environmental restrictions; standpipes or casing; routine washing (pp. 8-131 to 8-132). Special flushing: per crew hour; purpose, duration and method, pressure and flow limits, flushing aids, spoils. Water-pressure testing: per crew hour for multiple-pressure or extended tests, per test for simple short (e.g., 5 to 10 minute) tests; purpose, limits, durations, upstage vs. downstage, data recording and analysis, investigatory and verification testing. Grouting: per pump hour, per kilogram (or lb) of materials and possibly per month for specified QA/QC monitoring; stage length and method, sequencing to closure, delays between adjacent holes, pressures and flow rates, refusal criteria, preconstruction testing, QA/QC, data accuracy, mix properties and plan to change them, unusual situations (runaway takes, zero takes, interconnections, surface leaks), equipment, unacceptable methods (e.g., paddle mixers, w/c ratio > 2 by weight), materials, backfilling, relation of drilling and permeability testing to takes, communication (pp. 8-132 to 8-133). Standby: per crew hour; circumstances under which the owner instructs, crew size and composition (p. 8-133).",
+      "summary": "Items and tasks Weaver and Bruce (2007) suggest defining in rock fissure grouting specifications, each with a recommended payment method (8.5.3.4.1 to 8.5.3.4.6).",
+      "body": "Weaver and Bruce (2007) suggested the items and related tasks in 8.5.3.4.1 to 8.5.3.4.6 to be addressed and defined in the technical specifications for rock fissure grouting. (p. 8-131)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Writing a rock fissure grouting specification and payment terms."
+    },
+    {
+      "section_id": "8.5.3.4.1",
+      "title": "Mobilization and Demobilization",
+      "summary": "Paid as a lump sum, typically 50-60% on mobilization and the balance on demobilization; define phases, duration restraints, site location, facilities and site preparation (grout caps, access roads, scaffolding).",
+      "body": "Recommended payment: lump sum, typically 50-60% on mobilization and the balance on demobilization. Define the number of project phases (interim moves), duration restraints, site location, facilities on site on arrival and for other parties, and site preparation (e.g., grout caps, access roads, scaffolding). (p. 8-131)",
       "key_points": [
-        "Mobilization lump sum, typically 50-60% paid on mobilization",
-        "Drilling per linear ft with reduced rate for redrilling hardened grout; air flush in rock unacceptable",
-        "Water-pressure testing per crew hour, or per test for simple 5-10 minute tests",
-        "Grouting per pump hour and per kg/lb of materials; refusal criteria and closure sequencing specified",
-        "Unacceptable: paddle mixers, w/c ratio > 2 by weight (p. 8-133)",
-        "Standby per crew hour"
+        "Lump sum, typically 50-60% on mobilization (p. 8-131)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Writing a rock fissure grouting specification and payment terms."
+    },
+    {
+      "section_id": "8.5.3.4.2",
+      "title": "Drilling and Redrilling",
+      "summary": "Paid per linear foot with a reduced redrilling rate for hardened grout; define holes, stage length and method, minimum diameter, unacceptable events (e.g., air flush in rock), deviation tolerances, extreme events, logging, environmental limits, casing and routine washing.",
+      "body": "Recommended payment: per linear foot, with a reduced redrilling rate for hardened grout. Define hole quantities, location, length, orientation, inclination and number; stage length and method (printed 'State length'), e.g., upstage vs. downstage; hole diameter (usually a minimum); unacceptable events (e.g., air flush in rock); special drilling methods (e.g., coring for investigation or verification); deviation and straightness tolerances and their measurement; action in extreme events (major flush loss, rod drops); logging and interpretation (p. 8-132); environmental restrictions (spoils, dust); standpipes or casing; routine hole washing. (pp. 8-131 to 8-132)",
+      "key_points": [
+        "Per linear foot, reduced rate for redrilling hardened grout (p. 8-131).",
+        "Air flush in rock an unacceptable event (p. 8-131)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Writing a rock fissure grouting specification and payment terms."
+    },
+    {
+      "section_id": "8.5.3.4.3",
+      "title": "Special Flushing",
+      "summary": "Paid per crew hour; define purpose and measures of success, duration and method, pressure and flow limits, flushing aids and spoil handling.",
+      "body": "Recommended payment: per crew hour. Define the purpose and measures of success, duration and method of flushing, minimum and maximum pressures and flow rates, use of flushing aids, and handling of spoils. (p. 8-132)",
+      "key_points": [
+        "Per crew hour (p. 8-132)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Writing a rock fissure grouting specification and payment terms."
+    },
+    {
+      "section_id": "8.5.3.4.4",
+      "title": "Water-Pressure Testing",
+      "summary": "Paid per crew hour for multiple-pressure or extended tests, per test for simple short (e.g., 5 to 10 minute) tests; define purpose, limits, durations, upstage vs. downstage, data methods and verification testing.",
+      "body": "Recommended payment: per crew hour for multiple-pressure or extended tests; per test for simple, short (e.g., 5 to 10 minute) tests. Define purpose and measures of success, pressure and flow limits, durations at each pressure, upstage vs. downstage, methods and accuracy of data recording, calculation, display and analysis, and investigatory and verification testing. (p. 8-132)",
+      "key_points": [
+        "Per crew hour, or per test for simple 5 to 10 minute tests (p. 8-132)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Writing a rock fissure grouting specification and payment terms."
+    },
+    {
+      "section_id": "8.5.3.4.5",
+      "title": "Grouting",
+      "summary": "Paid per pump hour, per kg (or lb) of materials, and possibly per month for QA/QC monitoring; define staging, sequencing to closure, pressures and flow, refusal criteria, testing, QA/QC, mixes, unusual situations, equipment, unacceptable methods (e.g., paddle mixers, w/c > 2 by weight), materials and backfilling.",
+      "body": "Recommended payment: per pump hour, per kilogram (or lbs) of materials, and possibly per month for specified QA/QC monitoring if not otherwise included. Define stage length and method; primary, secondary, tertiary sequencing to closure; delays between adjacent holes or phases (p. 8-133); pressures and flow rates; refusal criteria; preconstruction laboratory or field tests; routine QA/QC; data accuracy; grout mix properties and a plan to change them; procedures for runaway takes, zero takes, interconnections and surface leaks; equipment including packers and lines; unacceptable methods (e.g., paddle mixers, w/c ratio > 2 by weight); usable materials; hole backfilling; relation of drilling and permeability testing to takes; and communication. (pp. 8-132 to 8-133)",
+      "key_points": [
+        "Per pump hour and per kg (or lb) of materials (p. 8-132).",
+        "Refusal criteria and sequencing to closure specified (p. 8-133).",
+        "Unacceptable: paddle mixers, w/c ratio > 2 by weight (p. 8-133)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Writing a rock fissure grouting specification and payment terms."
+    },
+    {
+      "section_id": "8.5.3.4.6",
+      "title": "Standby",
+      "summary": "Paid per crew hour; define when the owner instructs standby and the crew size and composition.",
+      "body": "Recommended payment: per crew hour. Define the circumstances under which the owner instructs standby and the crew size and composition. (p. 8-133)",
+      "key_points": [
+        "Per crew hour (p. 8-133)."
       ],
       "equations": [],
       "figures": [],
