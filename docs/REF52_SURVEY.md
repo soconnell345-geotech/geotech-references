@@ -1033,20 +1033,26 @@ to 5.4.3 (static axial capacity of drilled displacement piles), 5.8 to
 
 One retrieval gold entry named an old range and now names the printed
 sections (as in df580ff): cfa-piles 5.2-5.3 to 5.2 and 5.3, beside dm7_2
-6-4.3. No query was reworded. Ranks moved as follows from before ch 1 to
-after ch 8 (rerank, unless a mode is named):
+6-4.3. auger-cast's gold, gec_8 3.2, is now a heading with no text of
+its own, so the gold also accepts the sections that print its advantages
+and limitations: 3.2.1 (p. 15), 3.2.2.1 (p. 16), 3.2.2.2 (p. 17) and
+3.2.3 (p. 20). No query was reworded. Ranks moved as follows from refs
+main before GEC-8 (39f779f, with the GEC-5 review fixes) to after ch 8
+(rerank, unless a mode is named):
 - cfa-piles 3 to 2 (off and fill 3 to 1, auto 4 to 1).
-- py-method not in the top 10 to 10, in all modes.
 - neutral-plane 2 to 1; nsf-def 2 to 1.
-- auger-cast 3 to 4. Its gold, gec_8 3.2, is now a heading with no text
-  of its own; the content sits in 3.2.1 to 3.2.3. The gold was left as
-  it is.
+- auger-cast 3 to 4, scored by dm7_2 6-4.3. GEC-8's own text left the
+  top 10: the best of 3.2.1 to 3.2.3 is 3.2.2.1 at 14. Their text says
+  "favorable" and "unfavorable", where the old 3.2 text also said
+  "advantages" and "limitations" (REF-54).
 - stone-col-capacity 5 to 7. The gold is gec_13 5.4.1.2.5; the top 8 are
   all gec_13 and dm7_2 sections, in a new order.
+- py-method stays 1 (gec_5 8.10.2).
 
-Rerank R@10 went from 39 to 40 of 54 and MRR@10 from 0.491 to 0.512;
-R@1 went from 32 to 31 and R@5 from 35 to 34. test_query_expansion and
-the gec_8 tests passed after every chapter.
+Rerank R@10 stays 40 of 54 and MRR@10 went from 0.509 to 0.528; R@3 went
+from 33 to 32 and R@5 from 36 to 35 (off, fill and auto R@10 unchanged
+at 33, 38 and 43). test_query_expansion and the gec_8 tests passed after
+every chapter.
 
 ### What the old files held that the print does not
 
