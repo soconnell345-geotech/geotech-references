@@ -243,8 +243,8 @@ def _norm_fig_ref(s) -> str:
     ": caption" so GEC-style citations match the bare figure id.
     """
     if isinstance(s, dict):
-        s = (s.get("number") or s.get("figure_number") or s.get("id")
-             or s.get("label") or s.get("ref") or "")
+        s = (s.get("number") or s.get("figure_number") or s.get("figure_id")
+             or s.get("id") or s.get("label") or s.get("ref") or "")
     s = (str(s) if s is not None else "").strip()
     if s.lower().startswith("figure"):
         s = s[len("figure"):].strip()
