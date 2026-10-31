@@ -8,245 +8,1168 @@
     {
       "section_id": "5.1",
       "title": "Introduction",
-      "summary": "Framework for resisting mechanisms and limit states in soil nail wall design: load transfer mechanisms, ASD/LRFD design framework, load combinations, and all required limit state categories — overall stability, geotechnical strength, structural strength, and service.",
-      "body": "This chapter presents the resisting mechanisms for soil nail walls and describes the limit states that must be evaluated in design. The chapter covers load transfer mechanisms, the design framework for both ASD and LRFD, load combinations and load factors, limit state categories, overall stability, geotechnical strength limit states, structural strength limit states, and service limit states (deformations). Understanding these mechanisms and limit states is essential for performing comprehensive soil nail wall design.",
+      "summary": "Introduces the load and resisting mechanisms and the limit states for soil nail wall design, and a design framework that follows LRFD principles combined with the ASD aspects used in soil nail design software (SNAP-2, Siel 2014). The LRFD resistance factors for each limit state are back-calculated from ASD factors of safety.",
+      "body": "5.1 Introduction (p. 97). This chapter introduces the load and resisting mechanisms and the relevant limit states to consider in the design of soil nail walls. It presents a design framework following LRFD principles combined with ASD aspects as used in soil nail design software, SNAP-2 (Siel 2014). Resistance factors used in an LRFD framework for each limit state are back-calculated from ASD factors of safety.",
       "key_points": [
-        "Resisting mechanisms and limit states for soil nail wall design",
-        "Load transfer mechanisms between soil, grout, and tendon",
-        "Design framework: ASD and LRFD approaches",
-        "Limit states: overall stability, geotechnical strength, structural strength, service",
-        "Comprehensive evaluation of all limit states required"
+        "Load and resisting mechanisms and limit states for soil nail walls",
+        "LRFD principles combined with the ASD aspects of soil nail software (SNAP-2, Siel 2014)",
+        "LRFD resistance factors back-calculated from ASD factors of safety"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Framework for evaluating all limit states in soil nail wall design."
+      "applicability": "Scope of the resisting mechanisms and limit states chapter."
     },
     {
       "section_id": "5.2",
       "title": "Load Transfer Mechanisms",
-      "summary": "Primary mechanism is soil-grout friction mobilized by ground deformation. Maximum tensile force Tmax develops at the critical slip surface; nail head force To ≈ 60–100% of Tmax via Eq 5.1: To = Tmax*[0.6 + 0.057*(Smax_ft - 3)]. Maximum nail load Tmax = min(RT, RF, RPO) (Eq 5.2).",
-      "body": "The primary load transfer mechanism in a soil nail wall is through soil-nail interaction. As the ground deforms outward due to excavation, tensile forces develop in the nails through friction between the grout and the surrounding soil (bond or pullout resistance). The maximum tensile force in a nail (Tmax) develops at the intersection of the nail with the critical slip surface. The portion of the nail behind the slip surface provides pullout resistance; the portion in front provides resistance through the facing connection. The nail head force (To) is the force at the facing connection. For typical conditions, To is approximately 60-100% of Tmax. A simplified relationship is To = Tmax[0.6 + 0.057(Smax[ft] - 3)], where Smax is the maximum nail spacing in feet (Eq. 5.1). The maximum tensile load in a soil nail is the minimum of the pullout resistance behind the slip surface (RT), the nail tensile strength (RF), and the pullout resistance in front of the slip surface (RPO) (Eq. 5.2).",
+      "summary": "Load transfer during top-down construction (Figure 5.1): the first lift stands unsupported; soil deformation loads the facing, which passes load to the nails and, by shear along the grout-soil interface, to the soil. Nail force rises from the facing to Tmax near the critical slip surface and falls toward the nail end; deeper lifts load lower nails more and may unload upper nails. Nail forces rise up to about 15% after construction (creep, relaxation), covered by bond strength choice. Check intermediate and final stages, including an unsupported lift before nailing (Figure 5.2).",
+      "body": "5.2 Load Transfer Mechanisms (pp. 97-99; printed in the body as 'Load Transfer in Soil Nail Walls'). The load-transfer mechanisms from construction to completion: the initial lift height is chosen so that, at the end of Excavation Phase 1 (Figure 5.1), the soil behind the excavation is stable and can remain unsupported before any nails are installed; only soil resistance along potential slip surfaces participates. The upper soil tends to deform outward through Excavation Phase 1, after the first row of nails (Nail 1) and the initial facing are placed; the deformation generates lateral earth pressure on the facing, transferred to the nails and from the nails to the soil by shear mobilized along the grout-soil interface. Axial tensile force T1 develops in Nail 1 and varies with distance x along it: it increases from the facing (x = 0) to a maximum (Tmax) near the critical slip surface for that stage and decreases toward the nail end (x = L). In Excavation Phase 2 the critical slip surface is larger, causing more facing pressure, a larger T1 and larger interface shear, and the location of Tmax moves farther back. After Nail 2 and its facing are installed, further movement transfers more load to Nail 1 and loads Nail 2. Increasing lateral deformation through the last stage (Excavation Phase N) keeps increasing interface shear and axial force in the lowest and intermediate nails, whose maximum force is likely reached at the final excavation phase; loads in upper nails may redistribute and possibly decrease, and stability analyses may show upper nails as ineffective in tension for deep slip surfaces extending behind their ends (Section 5.6), but they remain important for local stability. Nail forces tend to increase moderately, up to approximately 15 percent, after the end of construction, over time and for long-term conditions (Plumelle et al. 1990; Holman and Tuozzolo 2009), mainly due to soil creep and stress relaxation; these increases are not explicit in design but should be considered by selecting bond strengths that account for creep. Design must consider both intermediate and final excavation stages to find the most critical case at each nail level. The critical situation for most designs arises when a combination of loads (dead, live and extreme loads such as earthquake) acts on the wall, but a critical case may also occur after a lift is excavated and before the nails and shotcrete are installed at that level (Figure 5.2), made worse when seepage forces act on the open face.",
       "key_points": [
-        "Primary mechanism: tension mobilized through soil-grout friction",
-        "Maximum tensile force (Tmax) at intersection with critical slip surface",
-        "Nail behind slip surface provides pullout resistance",
-        "Nail head force To approximately 60-100% of Tmax",
-        "To = Tmax[0.6 + 0.057(Smax[ft] - 3)] (Eq 5.1)",
-        "Tmax_i = min(RTi, RFi, RPOi) (Eq 5.2)",
-        "Load transfer depends on ground deformation and nail-soil interface friction"
+        "First lift height chosen so the cut stands unsupported before nailing",
+        "Soil deformation loads the facing; load passes to the nails and by grout-soil shear to the soil",
+        "Nail force rises from the facing to Tmax near the critical slip surface, then falls toward the nail end",
+        "Deeper lifts move the slip surface and Tmax back and load lower nails more; upper nails may unload",
+        "Upper nails stay important for local stability",
+        "Post-construction nail force increase up to about 15% (creep, stress relaxation); allow for it in bond strength",
+        "Check intermediate and final stages, including an unsupported lift before nailing, worse with seepage"
       ],
-      "equations": [
-        "Eq 5.1: To = Tmax * [0.6 + 0.057 * (Smax_ft - 3)] -- Maximum nail load at head",
-        "Eq 5.2: Tmax_i = min(RT_i, RF_i, RPO_i) -- Maximum load in a soil nail"
-      ],
+      "equations": [],
       "figures": [
-        "Figure 5.1: Soil-nail interaction and load transfer",
-        "Figure 5.2: Distribution of tensile force along a soil nail"
+        {
+          "figure_id": "Figure 5.1",
+          "title": "Potential slip surfaces and soil nail tensile forces",
+          "description": "Excavation phases 1 to N with critical slip surfaces and the tensile force distribution along Nail 1.",
+          "page": 98
+        },
+        {
+          "figure_id": "Figure 5.2",
+          "title": "Potential critical stability case during construction",
+          "description": "Unsupported excavation lift before nails and shotcrete are installed.",
+          "page": 99
+        }
       ],
       "tables": [],
-      "applicability": "Understanding of fundamental load transfer mechanisms in soil nail walls."
+      "applicability": "How load develops in soil nails during staged construction."
+    },
+    {
+      "section_id": "5.2.1",
+      "title": "Soil-Nail Interaction and Tensile Force Distribution",
+      "summary": "Interface shear q is non-uniform and reverses along the nail; the maximum force lies near, not on, the critical slip surface (Figures 5.3, 5.4). Measured maximum forces (Figure 5.5) normalized by Ka gamma_s H SV SH range 0.4-1.1, averaging 0.75 in the upper two thirds: Tmax ~ 0.75 Ka gamma_s H SV SH there, about half that in the lower third. Head force To is smaller (0.50-0.60 Ka gamma_s H SV SH; Figure 5.6); Eq 5.1 (Clouterre 2002) gives To from Tmax and Smax, about 0.7 Tmax at 5 ft. Tmax_i = min(RT, RF, RPO) (Eq 5.2); all nails are designed for the largest Tmax_i.",
+      "body": "5.2.1 Soil-Nail Interaction and Tensile Force Distribution (pp. 100-105). 5.2.1a Overview: the interaction between nails, soil and facing is complex and redistributes nail tensile forces; the mobilized grout-soil shear stress q is in general not uniform and changes direction along the nail (Figures 5.3a, b), and the maximum force occurs along the nail (Figure 5.3c). 5.2.1b Maximum Tensile Force Distribution: the force a tendon can develop depends on where it crosses the slip surface; the location of maximum force is close to, but generally does not coincide with, the critical slip surface. Figure 5.4 shows loads and their locations changing from nail to nail; the length Lp behind the slip surface develops pullout resistance, so the upper nail T1 contributes little (small Lp) and T2, T3 more. The maximum force is limited by the tendon tensile strength and by the facing resistances (5.2.1c); soil forces T must not exceed resistances R. Figure 5.5 (full-scale instrumented walls, Byrne et al. 1998): the maximum force in the upper portion occurred about 0.3H to 0.4H behind the facing and in the lower portion about 0.15H to 0.2H behind it. Measured forces normalized by gamma_s, SV, SH, H and Ka represent long-term service forces, excluding frost and earthquake; they range from 0.4 to 1.1, averaging about 0.75 in the upper two thirds, increasing from about 0.5-0.6 near the top to 0.75-0.85 in the central third, decreasing to about 0.4-0.5 in the lower third and 0 at the bottom (consistent with Plumelle et al. 1990; Holman and Tuozzolo 2009). Hence Tmax in the upper two thirds ranges from about 0.50 Ka gamma_s H SV SH to 1.1 Ka gamma_s H SV SH, with an average Tmax = 0.75 Ka gamma_s H SV SH; in the lower third about 50 percent of the upper value. Briaud and Lim (1997) suggested an average Tmax = 0.65 Ka gamma_s H SV SH for the top row and half of this for lower rows, with no cohesion. The average nail force is smaller than one estimated from the full active pressure, so apparent pressure over the tributary area SV x SH may be used to check nail forces routinely calculated by limit equilibrium. 5.2.1c Tensile Forces at the Wall Facing: the nail head force To is smaller than forces along the nail. Figure 5.6 shows working (in-service) normalized head forces, excluding frost: values vary from about 0.6 to 1.0 overall and 0.40 to 0.70 in the upper two thirds (as printed), with an average from To = 0.50 Ka gamma_s H SV SH to 0.60 Ka gamma_s H SV SH, consistent with walls in Germany (Gassler and Gudehus 1981), France (FHWA 1993a) and others (Holman and Tuozzolo 2009); soil arching redistributes load, and closer spacings give smaller head forces than tributary areas suggest. Clouterre (2002) suggested Eq 5.1 for the working head force; for a typical 5-ft spacing To ~ 0.7 Tmax under normal loading and slope; To is limited by the minimum facing resistance. SNAP-2 computes the facing force by Rankine theory and checks it against the resistance (Siel 2014), but Eq 5.1 is preferred in the Chapter 6 procedures. 5.2.1d Considerations for Design: nail tensile load is limited by the minimum of pullout resistance RPO and tendon tensile resistance RT, and at the facing by the minimum facing resistance RF (Figure 5.7); Tmax_i, from limit-equilibrium analyses, is given by Eq 5.2: pullout controls if RPO is least, tension if RT is least (printed 'RT < RP and RF'), facing controls To if RF is least. Limit-equilibrium analyses cannot reproduce the actual deformation and load mobilization of this top-down system, and loads vary greatly with nail layout even for layouts with the same overall factor of safety (Chapter 6). Usually all nails have the same RT and RF but different pullout resistance because Lp differs (Point A in Figure 5.7). All nails are designed for Tmax, the maximum Tmax_i of all nails, so other rows are over-designed for the critical slip surface but matter for other surfaces and stages; optimizing individual nails is rarely done.",
+      "key_points": [
+        "Grout-soil shear q is non-uniform and reverses along the nail; maximum force near, not on, the slip surface",
+        "Only the length Lp behind the slip surface develops pullout; upper nails contribute least",
+        "Measured Tmax at 0.3H-0.4H behind the face (upper part), 0.15H-0.2H (lower part)",
+        "Normalized Tmax 0.4-1.1, average 0.75 in the upper two thirds: Tmax = 0.75 Ka gamma_s H SV SH",
+        "Lower third: about 50% of the upper value; Briaud and Lim (1997): 0.65 Ka gamma_s H SV SH top row",
+        "Head force To = 0.50-0.60 Ka gamma_s H SV SH on average; closer spacing lowers it (arching)",
+        "Eq 5.1 (Clouterre 2002): To from Tmax and Smax; To ~ 0.7 Tmax at 5-ft spacing",
+        "Eq 5.2: Tmax_i = min(RT, RF, RPO); all nails designed for the largest Tmax_i",
+        "Limit-equilibrium nail loads vary with layout even at equal factor of safety"
+      ],
+      "equations": [
+        {
+          "eq_id": "Eq 5.1",
+          "description": "Maximum soil nail load at head",
+          "formula": "To = Tmax [0.6 + 0.057 (Smax[ft] - 3)]",
+          "variables": {
+            "To": "nail head tensile force (working conditions)",
+            "Tmax": "maximum nail tensile force",
+            "Smax": "maximum of SV and SH (ft)"
+          },
+          "notes": "Clouterre (2002). For a typical 5-ft spacing, To ~ 0.7 Tmax.",
+          "implemented_in": null
+        },
+        {
+          "eq_id": "Eq 5.2",
+          "description": "Maximum load in a soil nail",
+          "formula": "Tmax_i = minimum of (R_Ti, R_Fi, R_POi)",
+          "variables": {
+            "Tmax_i": "maximum load in nail i",
+            "R_Ti": "tensile resistance of nail i",
+            "R_Fi": "facing resistance of nail i",
+            "R_POi": "pullout resistance of nail i"
+          },
+          "notes": null,
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        {
+          "figure_id": "Figure 5.3",
+          "title": "Stress-transfer mechanism in soil nails",
+          "description": "(a) basic soil layout; (b) schematic distribution of shear stresses at the grout-soil interface; (c) schematic distribution of resulting tensile forces.",
+          "page": 100
+        },
+        {
+          "figure_id": "Figure 5.4",
+          "title": "Location of maximum tensile forces in soil nails",
+          "description": "Tensile force distribution in each nail and the length Lp behind the slip surface. Modified after Byrne et al. (1998).",
+          "page": 101
+        },
+        {
+          "figure_id": "Figure 5.5",
+          "title": "Summary of maximum nail tensile forces measured in soil nail walls",
+          "description": "Normalized maximum nail forces versus normalized depth. From Byrne et al. (1998).",
+          "page": 103
+        },
+        {
+          "figure_id": "Figure 5.6",
+          "title": "Summary of facing tensile forces measured in soil nail walls",
+          "description": "Normalized nail head forces versus normalized depth. From Byrne et al. (1998).",
+          "page": 104
+        },
+        {
+          "figure_id": "Figure 5.7",
+          "title": "Limitations to tensile forces in nails",
+          "description": "(a) pullout resistance controls, (b) tensile resistance controls.",
+          "page": 106
+        }
+      ],
+      "tables": [],
+      "applicability": "Nail force distribution, head forces and the controlling resistance."
     },
     {
       "section_id": "5.3",
       "title": "Design Framework",
-      "summary": "LRFD-based slope stability procedures are not available, so ASD-based limit-equilibrium analyses give the loads and slip surfaces, and the limit states are then checked in LRFD with AASHTO (2014) load factors; resistance factors fit the previous edition's FS where applicable. ASD: Sum(Qi) ≤ Rall = Rn/FS (Eq 5.3; minimum FS in Table 5.1). LRFD: phi*Rn ≥ Sum(gamma_i*eta_i*Qi), eta_i = 1.0 for soil nail walls (Eq 5.4). CDR = phi*Rn / Sum(gamma_i*Qi) ≥ 1.0 (Eq 5.5).",
-      "body": "Soil nail wall design can be performed using either the Allowable Stress Design (ASD) or Load and Resistance Factor Design (LRFD) methodology. In ASD, the design equation is Sum(Qi) <= Rn / FS (Eq. 5.3), where Qi are the load effects, Rn is the nominal resistance, and FS is the factor of safety. In LRFD, the design equation is phi * Rn >= Sum(gamma_i * eta_i * Qi) (Eq. 5.4), where phi is the resistance factor, gamma_i are load factors, and eta_i are load modifier factors. The capacity-to-demand ratio (CDR) is defined as CDR = phi * Rn / Sum(gamma_i * Qi) >= 1.0 (Eq. 5.5). LRFD is the required methodology for all transportation projects per AASHTO (2014). Resistance factors in this manual were back-calibrated from ASD factors of safety to maintain consistency with established practice.",
+      "summary": "The manual's framework takes account of ASD factors of safety and integrates LRFD principles. Because LRFD-based slope stability procedures are not available, ASD-based stability calculations quantify loads and slip geometries, and those values are then used in limit state checks (5.3.1 to 5.3.4).",
+      "body": "5.3 Design Framework (pp. 106-107; printed in the body as 'Introduction to Design Framework'). The manual introduces a framework that (i) takes into account factors of safety (FS) as previously used in ASD and (ii) integrates LRFD principles. Soil nail design was previously completed with ASD and limit-equilibrium slope stability analyses; designers today are limited to ASD-based slope stability procedures because LRFD-based ones are not available. A soil nail wall design must therefore use ASD-based stability calculations to quantify loads and slip plane geometries, then use those values to perform limit state checks. Subsections 5.3.1 to 5.3.4.",
       "key_points": [
-        "ASD: Sum(Qi) <= Rn / FS (Eq 5.3)",
-        "LRFD: phi * Rn >= Sum(gamma_i * eta_i * Qi) (Eq 5.4)",
-        "CDR = phi * Rn / Sum(gamma_i * Qi) >= 1.0 (Eq 5.5)",
-        "LRFD required for all transportation projects per AASHTO 2014",
-        "Resistance factors back-calibrated from ASD safety factors",
-        "Load modifier factors eta_i typically set to 1.0"
+        "Framework combines ASD factors of safety with LRFD principles",
+        "No LRFD slope stability procedures exist; ASD stability analyses give loads and slip geometry",
+        "Limit state checks then made on those values"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Overall ASD-LRFD design framework for soil nail walls."
+    },
+    {
+      "section_id": "5.3.1",
+      "title": "Use of LRFD and ASD Platforms",
+      "summary": "Structural resistances are verified in LRFD format with AASHTO (2014) load factors and results of ASD-based stability analysis. The resistance factors were derived to relate to AASHTO (2014) load factors, be compatible with (not necessarily equal to) AASHTO factors for comparable structures, relate to the previous manual's FS where applicable, and be consistent with the minimum frequency of verification load testing.",
+      "body": "5.3.1 Use of LRFD and ASD Platforms (p. 107). The manual presents a procedure to verify structural resistances in an LRFD format using AASHTO (2014) load factors and results from ASD-based slope stability analysis. The LRFD resistance factors were derived to be: (i) related to AASHTO (2014) load factors; (ii) compatible with (but not necessarily equal to) those in AASHTO (2014) for comparable structures; (iii) related to FS in the previous version of the manual, where applicable, to fit past practice until new research emerges; and (iv) consistent with the minimum required frequency of verification load testing.",
+      "key_points": [
+        "LRFD verification with AASHTO (2014) load factors and ASD stability results",
+        "Resistance factors compatible with, not necessarily equal to, AASHTO factors for comparable structures",
+        "Resistance factors tied to the previous manual's FS and to minimum load-testing frequency"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Basis of the manual's LRFD resistance factors."
+    },
+    {
+      "section_id": "5.3.2",
+      "title": "Allowable Stress Design (ASD)",
+      "summary": "ASD design condition: sum of load effects <= Rall = Rn/FS (Eq 5.3), with one FS for all uncertainty. Table 5.1 gives minimum FS (same as the previous edition): overall stability 1.5 static (1.35 for some non-critical permanent walls), 1.1 seismic; excavation short term 1.25-1.33; basal heave 2.0 short, 2.5 long term (2.3 seismic); pullout 2.0/1.5; lateral sliding 1.5/1.1; tendon Grades 60 and 75 1.8/1.35, Grades 95 and 150 2.0/1.50; facing flexure and punching 1.5/1.1; headed studs A307 2.0/1.5, A325 1.7/1.3.",
+      "body": "5.3.2 Allowable Stress Design (ASD) (pp. 107-108). The ASD design condition is Eq 5.3: the effect of all combined loads on a component in a given limit state, sum(Qi), must not exceed the allowable value Rall = Rn/FS, where Rn is the ultimate capacity and FS the single factor accounting for all design, material and construction uncertainty; allowable values represent working conditions. Table 5.1 gives minimum recommended factors of safety (static / seismic), the same as the previous edition: overall stability FSOS 1.5 (note 2: some Owners may accept 1.35 for non-critical permanent structures with sufficient geotechnical information and successful local experience) / 1.1 (note 6: 1.0 when horizontal seismic coefficients are derived from estimated allowable seismic deformations); overall, short-term excavation condition FSOS 1.25-1.33 (temporary lifts unsupported up to 2 days; larger value for critical structures or more uncertain soils) / NA; basal heave FSBH 2.0 (permanent walls, short term) and 2.5 (permanent walls, long term) / 2.3; pullout FSPO 2.0 / 1.5; lateral sliding FSLS 1.5 / 1.1; tendon tensile strength FST 1.8 / 1.35 (Grades 60 and 75) and 2.0 / 1.50 (Grades 95 and 150); facing flexural FSFF 1.5 / 1.1; facing punching shear FSFP 1.5 / 1.1; headed stud tensile FSFH 2.0 / 1.5 (A307 bolt) and 1.7 / 1.3 (A325 bolt). Note 1: limit state and symbol nomenclature differ from the previous manual, reflecting LRFD terminology in AASHTO (2014).",
+      "key_points": [
+        "Eq 5.3: sum(Qi) <= Rall = Rn / FS; one FS covers all uncertainty",
+        "Overall stability FSOS 1.5 static (1.35 accepted by some Owners for non-critical permanent walls), 1.1 seismic",
+        "Seismic FSOS 1.0 when seismic coefficients come from allowable seismic deformations",
+        "Temporary unsupported lift (up to 2 days): FSOS 1.25-1.33",
+        "Basal heave FSBH 2.0 short term, 2.5 long term, 2.3 seismic",
+        "Pullout FSPO 2.0 static, 1.5 seismic; lateral sliding 1.5 / 1.1",
+        "Tendon FST 1.8 / 1.35 (Grades 60, 75); 2.0 / 1.50 (Grades 95, 150)",
+        "Facing flexure and punching 1.5 / 1.1; headed studs A307 2.0 / 1.5, A325 1.7 / 1.3"
       ],
       "equations": [
-        "Eq 5.3: Sum(Qi) <= Rn / FS -- ASD design equation",
-        "Eq 5.4: phi * Rn >= Sum(gamma_i * eta_i * Qi) -- LRFD design equation",
-        "Eq 5.5: CDR = phi * Rn / Sum(gamma_i * Qi) >= 1.0 -- Capacity-to-demand ratio"
+        {
+          "eq_id": "Eq 5.3",
+          "description": "General design equation in ASD",
+          "formula": "sum(Q_i) <= R_all = R_n / FS",
+          "variables": {
+            "Q_i": "load effects acting on the component in a given limit state",
+            "R_all": "allowable stress (value) of the component",
+            "R_n": "ultimate capacity of the component",
+            "FS": "factor of safety"
+          },
+          "notes": null,
+          "implemented_in": null
+        }
       ],
       "figures": [],
       "tables": [
-        "Table 5.1: Minimum factors of safety for ASD design of soil nail walls",
-        "Table 5.2: LRFD load factors and load combinations for soil nail walls"
+        {
+          "table_id": "Table 5.1",
+          "title": "Minimum Recommended Factors of Safety for the Design of Soil Nail Walls Using the ASD Method",
+          "description": "Minimum static and seismic factors of safety for overall, geotechnical and structural limit states, with notes.",
+          "page": 108
+        }
       ],
-      "applicability": "ASD and LRFD design methodology for all soil nail wall limit states."
+      "applicability": "ASD factors of safety for soil nail walls."
+    },
+    {
+      "section_id": "5.3.3",
+      "title": "Load and Resistance Factor Design (LRFD)",
+      "summary": "ASD slope stability results must be checked with LRFD procedures for all limit states: phi Rn >= sum(gamma_i eta_i Qi) (Eq 5.4), eta_i = 1.0 for soil nail walls. Nominal resistance equals strength; for soils it is a mean value. Load factors come from AASHTO (2014), which has no soil nail resistance factors; the manual's are given per limit state. Capacity-to-demand ratio CDR = phi Rn / sum(gamma_i Qi) >= 1.0 (Eq 5.5).",
+      "body": "5.3.3 Load and Resistance Factor Design (LRFD) (pp. 109-110). Transportation structures are designed on an LRFD platform; ASD slope stability results must be checked with LRFD procedures, verifying that no limit state is exceeded. The LRFD condition is Eq 5.4, with Rn the nominal resistance of a component for a limit state, phi its resistance factor, Qi a load or effect, gamma_i its load factor and eta_i the load modification factor for ductility, redundancy or operational classification (equal to 1.0 for soil nail walls). Nominal resistances include tendon yield strength, nail pullout resistance, soil shear strength and facing resistances; 'strength' (ASD) is equivalent to 'nominal resistance' (LRFD). Nominal resistances of soils and other natural materials are mean values, obtained by the Chapter 4 methods. Load factors are defined in AASHTO (2014), but resistance factors for soil nail walls are not; the manual gives them per mechanism and limit state. The objective is a factored resistance greater than the factored load, quantified by the capacity-to-demand ratio CDR (Eq 5.5).",
+      "key_points": [
+        "Eq 5.4: phi Rn >= sum(gamma_i eta_i Qi), eta_i = 1.0 for soil nail walls",
+        "Nominal resistance (LRFD) = strength (ASD); soil nominal resistances are mean values",
+        "Load factors from AASHTO (2014); soil nail resistance factors from this manual",
+        "Eq 5.5: CDR = phi Rn / sum(gamma_i Qi) >= 1.0"
+      ],
+      "equations": [
+        {
+          "eq_id": "Eq 5.4",
+          "description": "General design equation in LRFD",
+          "formula": "phi R_n >= sum(gamma_i eta_i Q_i, i=1..N)",
+          "variables": {
+            "R_n": "nominal resistance of a component for a given limit state",
+            "phi": "resistance factor related to R_n",
+            "Q_i": "generic load (or effect)",
+            "gamma_i": "load factor associated with Q_i",
+            "eta_i": "load-modification factor (ductility, redundancy, operational classification); 1.0 for soil nail walls",
+            "i": "1 to N, the loads or effects in the limit state"
+          },
+          "notes": null,
+          "implemented_in": null
+        },
+        {
+          "eq_id": "Eq 5.5",
+          "description": "Capacity-to-demand ratio",
+          "formula": "CDR = phi R_n / sum(gamma_i Q_i, i=1..N) >= 1.0",
+          "variables": {
+            "CDR": "capacity-to-demand ratio",
+            "phi": "resistance factor",
+            "R_n": "nominal resistance",
+            "gamma_i": "load factor",
+            "Q_i": "load or effect"
+          },
+          "notes": null,
+          "implemented_in": null
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "LRFD design condition and capacity-to-demand ratio."
+    },
+    {
+      "section_id": "5.3.4",
+      "title": "Calibration of Resistance Factors",
+      "summary": "A reliability calibration for pullout (NCHRP Report 701, Lazarte 2011) was only preliminary because load test data were inconsistent and many tests did not reach maximum pullout. The manual's resistance factors were back-calibrated from Table 5.1's FS. Pullout factors are valid only with proof tests on at least 5% of production nails and project-specific verification tests (more for more soil types, variability, larger walls; Chapter 9). Using ASD programs with back-calibrated factors is interim.",
+      "body": "5.3.4 Calibration of Resistance Factors (pp. 110-111). The most advanced calibration methods use reliable statistical data and adequate methods for acceptable reliability, but consistent and complete soil nail databases are limited (NCHRP Report 701, Lazarte 2011). That research calibrated a pullout resistance factor from a load test database; data inconsistencies, incomplete installation information and poor documentation, and above all tests that did not apply enough force to reach the expected maximum pullout resistance, meant only a preliminary reliability-based set of pullout factors. The manual's resistance factors were back-calibrated from the safety factors in Table 5.1, with the basis given for each limit state; this allows LRFD verifications or designs with existing ASD slope stability procedures. The factors are valid for a minimum frequency of load testing in a performance monitoring program (Chapter 9): pullout factors are valid as long as proof load tests are conducted during construction on a minimum of 5 percent of the total production nails; the number of verification tests is project-specific, with more for (i) more soil types behind the wall, (ii) higher property variability even in one soil, and (iii) larger and longer walls. Using ASD-based programs with factors calibrated from FS is an interim provision; one limitation is that ASD programs cannot apply different load factors to different load components.",
+      "key_points": [
+        "NCHRP Report 701 (Lazarte 2011) gave only a preliminary reliability-based pullout factor set",
+        "Manual resistance factors back-calibrated from the Table 5.1 safety factors",
+        "Pullout factors valid only with proof tests on at least 5% of production nails",
+        "More verification tests for more soil types, higher variability, larger and longer walls (Chapter 9)",
+        "Interim approach: ASD programs cannot apply different load factors to different loads"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Basis and validity conditions of the resistance factors."
     },
     {
       "section_id": "5.4",
       "title": "Load Combinations and Load Factors",
-      "summary": "Load combinations (Table 5.2): Strength I, Extreme Event I (seismic) and Service I (all factors 1.0; used for overall stability and deformation, so unfactored loads). Table 5.3 permanent load factors (max/min): DC 1.25/0.90; DW 1.50/0.65; EH active 1.50/0.90; EH at-rest 1.35/0.90; EV overall stability 1.00; EV retaining walls 1.35/1.00; ES 1.50/0.75. Because ASD programs handle load factors poorly, only gamma_EV = 1.35 is used for static LRFD checks; other loads can be entered as the load times gamma/gamma_EV.",
-      "body": "Load factors for LRFD design are obtained from AASHTO (2014). The primary load combinations are: Strength I (for static conditions without wind or seismic), Service I (for overall stability and deformation checks), and Extreme Event I (for seismic conditions). Permanent load factors (gamma_p) for Strength I are given in Table 5.3 and include: DC (dead loads) max 1.25/min 0.90; DW (wearing surfaces) max 1.50/min 0.65; EH active earth pressure max 1.50/min 0.90; EH at-rest max 1.35/min 0.90; EV overall stability 1.00; EV retaining walls max 1.35/min 1.00; ES earth surcharge max 1.50/min 0.75. Load factors for service limit states are gamma = 1.0 for all loads. Overall stability and deformation checks use Service I with unfactored loads.",
+      "summary": "Load combinations (5.4.1) and load factors (5.4.2) for LRFD verification of soil nail walls.",
+      "body": "5.4 Load Combinations and Load Factors (pp. 111-113). Subsections 5.4.1 Load Combinations and 5.4.2 Load Factors.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Load combinations and factors; see the subsections."
+    },
+    {
+      "section_id": "5.4.1",
+      "title": "Load Combinations",
+      "summary": "Soil nail design in highway projects generally considers Service Limit State I, Strength Limit State I and Extreme-Event Limit State I (earthquake), consistent with earth-retaining structures in AASHTO (2014) Articles 3.11.6.1 and 3.11.6.2.",
+      "body": "5.4.1 Load Combinations (p. 111). Structural design must consider simultaneous load types in load combinations. For soil nail design in highway projects in an LRFD framework the combinations generally include Service Limit State I, Strength Limit State I and Extreme-Event Limit State I (earthquake loads), consistent with those for earth-retaining structures in Articles 3.11.6.1 and 3.11.6.2 of AASHTO (2014).",
       "key_points": [
-        "Strength I: static conditions (primary strength check)",
-        "Service I: overall stability and deformation checks (unfactored loads)",
-        "Extreme Event I: seismic conditions",
-        "DC: max 1.25 / min 0.90",
-        "EH active: max 1.50 / min 0.90",
-        "EH at-rest: max 1.35 / min 0.90",
-        "EV overall stability: 1.00; EV retaining walls: max 1.35 / min 1.00",
-        "ES earth surcharge: max 1.50 / min 0.75",
-        "Service limit state load factors = 1.0 for all loads"
+        "Service I, Strength I and Extreme-Event I (earthquake)",
+        "Consistent with AASHTO (2014) Articles 3.11.6.1 and 3.11.6.2"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "LRFD load combinations for soil nail walls."
+    },
+    {
+      "section_id": "5.4.2",
+      "title": "Load Factors",
+      "summary": "Permanent loads DC, DW, EH, ES, EV; transient LL, LS, construction equipment; extreme EQ. Table 5.2: Strength I gamma_p and 1.75 transient; Extreme Event I gamma_p and 1.00 EQ; Service I all 1.00. Table 5.3 gamma_p max/min: DC 1.25/0.90, DW 1.50/0.65, EH active 1.50/0.90, at-rest 1.35/0.90, EV overall 1.00, EV walls 1.35/1.00, ES 1.50/0.75. Only gamma_EV = 1.35 is used for static LRFD checks (ASD programs). Overall stability and deformation use Service I (unfactored); other loads may be entered as load x gamma/gamma_EV.",
+      "body": "5.4.2 Load Factors (pp. 111-113). The combinations include permanent, transient and extreme-event loads, with factors from AASHTO (2014) Tables 3.4.1-1 and 3.4.1-2. Permanent loads for earth-retaining structures may include DC (dead loads of structural components and attachments), DW (wearing surfaces and utilities, when supporting a bridge abutment or roadway), EH (horizontal earth pressure), ES (earth surcharge) and EV (vertical pressure from earth fill dead load); EH and EV are treated differently from other earth-retaining structures because of soil nail software limitations (Section 5.6). Transient loads may include vehicular live load (LL), live load surcharge (LS), construction equipment and other live surcharge, including equipment in intermediate stages; superstructure loads may reach an abutment (AASHTO 2014 Article 3.11.6.4), but soil nail walls supporting bridges are outside the manual's scope, and abutment wall settlement may need consideration in bridge design. Extreme-event loads are earthquake (EQ; Section 6.8). Table 5.2 (AASHTO 2014): Strength I, permanent gamma_p (Table 5.3), transient 1.75, extreme NA; Extreme Event I, gamma_p, NA, 1.00; Service I, 1.00, 1.00, 1.00; only permanent and extreme-event factors are used in the manual's verifications. gamma_p takes the maximum when a load destabilizes and the minimum when it stabilizes (AASHTO 2014 Article 3.4.1). Table 5.3 (maximum / minimum): DC 1.25 / 0.90; DW 1.50 / 0.65; EH active 1.50 / 0.90; EH at-rest 1.35 / 0.90; EV overall stability 1.00 / N/A; EV retaining walls and abutments 1.35 / 1.00 (used in the manual primarily for static loads); ES 1.50 / 0.75. Because ASD programs cannot handle separate load factors, only the maximum vertical earth load factor, gamma_EV = 1.35, is used for static LRFD verifications, justified by model-wall analyses showing vertical earth load effects larger than horizontal; an interim provision. Service load factors are 1.0 for all loads: overall stability (Section 5.6) and deformation (Section 5.9) use Service I with unfactored loads, overall stability being treated as a service limit state for lack of compatible LRFD limit-equilibrium methods. To apply different factors to loads other than soil weight (surcharge, traffic) in an ASD program, enter each such load as its value times gamma/gamma_EV.",
+      "key_points": [
+        "Permanent: DC, DW, EH, ES, EV; transient: LL, LS, construction equipment; extreme: EQ",
+        "Table 5.2: Strength I transient 1.75; Extreme Event I EQ 1.00; Service I all 1.00",
+        "Maximum gamma_p for destabilizing, minimum for stabilizing loads",
+        "Table 5.3: DC 1.25/0.90, DW 1.50/0.65, EH active 1.50/0.90, EH at-rest 1.35/0.90",
+        "Table 5.3: EV overall stability 1.00; EV walls 1.35/1.00; ES 1.50/0.75",
+        "Static LRFD checks use only gamma_EV = 1.35 (interim, ASD software limits)",
+        "Overall stability and deformation checks use Service I, unfactored loads",
+        "Other loads in ASD programs entered as load x gamma / gamma_EV"
       ],
       "equations": [],
       "figures": [],
       "tables": [
-        "Table 5.3: Load factors (gamma_p) for permanent loads"
+        {
+          "table_id": "Table 5.2",
+          "title": "Load Factors and Load Combinations Based on AASHTO (2014)",
+          "description": "Permanent, transient and extreme-event load factors for Strength I, Extreme Event I and Service I.",
+          "page": 112
+        },
+        {
+          "table_id": "Table 5.3",
+          "title": "Load Factors, gamma_p, for Permanent Loads",
+          "description": "Maximum and minimum load factors for DC, DW, EH (active, at-rest), EV and ES.",
+          "page": 113
+        }
       ],
-      "applicability": "Load factor selection for all soil nail wall limit state checks."
+      "applicability": "Load factors for LRFD verification of soil nail walls."
     },
     {
       "section_id": "5.5",
       "title": "Limit States",
-      "summary": "All limit states required for soil nail wall design: overall stability (internal/global/basal heave, Figs 5.8a–c), geotechnical strength (lateral sliding, pullout, Figs 5.8d–e), structural strength (nail tension, facing flexure, punching shear, headed stud tension, Figs 5.8f–i), extreme event (seismic), and service (deformation).",
-      "body": "The following limit state checks must be performed: (a) Overall stability: internal stability (slip surface through nails, Figure 5.8a), global stability (slip surface beyond nails, Figure 5.8b), basal heave (Figure 5.8c). (b) Strength limit states -- Geotechnical: lateral sliding stability (Figure 5.8d), nail pullout (Figure 5.8e); Structural: nail in tension (Figure 5.8f), facing bending/flexure (Figure 5.8g), facing punching shear (Figure 5.8h), headed stud tension in final facing (Figure 5.8i). (c) Extreme event limit state: earthquake loads. (d) Service limit states: lateral displacement and wall settlement. Each limit state has specific resistance factors and minimum factors of safety.",
+      "summary": "Checks for service, strength and extreme limit states (Figure 5.8): overall stability (internal, global, basal heave), strength (lateral sliding, pullout, nail tension, facing flexure, punching shear, headed studs), extreme (earthquake) and service (lateral displacement, settlement); 5.5.1 to 5.5.4.",
+      "body": "5.5 Limit States (pp. 114-115). The following checks must be considered for service, strength and extreme limit states in soil nail wall design (5.5.1 to 5.5.4), illustrated in Figure 5.8.",
       "key_points": [
-        "Overall stability: internal, global, and basal heave",
-        "Geotechnical strength: lateral sliding, nail pullout",
-        "Structural strength: nail tension, facing bending, punching shear, headed stud tension",
-        "Extreme event: earthquake loading",
-        "Service: lateral displacement and wall settlement",
-        "Each limit state has specific resistance factors (Tables 5.4-5.11)"
+        "Overall stability, strength, extreme and service limit states (Figure 5.8)"
       ],
       "equations": [],
       "figures": [
-        "Figure 5.8: Potential limit states in soil nail walls (a through i)"
+        {
+          "figure_id": "Figure 5.8",
+          "title": "Potential limit states in soil nail walls",
+          "description": "(a) internal stability; (b) global stability; (c) basal heave; (d) lateral sliding; (e) pullout; (f) nail in tension; (g) facing bending; (h) facing punching shear; (i) headed stud in tension.",
+          "page": 115
+        }
       ],
       "tables": [],
-      "applicability": "Complete list of limit state checks required for soil nail wall design."
+      "applicability": "List of limit states to check."
+    },
+    {
+      "section_id": "5.5.1",
+      "title": "Overall Stability",
+      "summary": "Internal stability with nail contribution (Figure 5.8a), general global stability with no nail contribution (Figure 5.8b), and global stability by basal heave (Figure 5.8c).",
+      "body": "5.5.1 Overall Stability (p. 114). Internal stability, with stability contribution from nails (Figure 5.8a); general global stability, with no stability contribution from nails (Figure 5.8b); and global stability by basal heave (Figure 5.8c).",
+      "key_points": [
+        "Internal stability (with nails), global stability (without nails), basal heave"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Overall stability checks."
+    },
+    {
+      "section_id": "5.5.2",
+      "title": "Strength Limit States",
+      "summary": "Geotechnical: lateral sliding (Figure 5.8d) and nail pullout (5.8e). Structural: nail in tension (5.8f), facing bending (5.8g), facing punching shear (5.8h) and headed stud in tension (5.8i). Sliding is in general a special case of global stability, treated as geotechnical to illustrate LRFD with load factors >= 1.0.",
+      "body": "5.5.2 Strength Limit States (p. 114). Geotechnical limit states: lateral sliding stability (Figure 5.8d) and nail pullout (Figure 5.8e). Structural limit states: nail in tension (Figure 5.8f); facing bending or flexure (Figure 5.8g); facing punching shear (Figure 5.8h); and facing headed stud in tension (Figure 5.8i). Footnote: sliding stability is in general a special case of the global stability limit state; it is considered a geotechnical limit state to illustrate the use of LRFD with load factors >= 1.0.",
+      "key_points": [
+        "Geotechnical: lateral sliding, nail pullout",
+        "Structural: nail tension, facing flexure, facing punching shear, headed stud tension",
+        "Sliding is a special case of global stability, used to illustrate LRFD with load factors >= 1.0"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Strength limit state checks."
+    },
+    {
+      "section_id": "5.5.3",
+      "title": "Extreme-Limit States",
+      "summary": "Earthquake loads.",
+      "body": "5.5.3 Extreme-Limit States (p. 114). Earthquake loads.",
+      "key_points": [
+        "Extreme limit state: earthquake loads"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Extreme-event check."
+    },
+    {
+      "section_id": "5.5.4",
+      "title": "Service Limit States (Deformations)",
+      "summary": "Lateral displacement and wall settlement.",
+      "body": "5.5.4 Service Limit States (Deformations) (p. 114). Lateral displacement and wall settlement.",
+      "key_points": [
+        "Service limit states: lateral displacement and wall settlement"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Deformation checks."
     },
     {
       "section_id": "5.6",
       "title": "Overall Stability of Soil Nail Walls",
-      "summary": "Overall stability covers internal stability (slip through nails), global stability (slip beyond nails), and basal heave. Resistance factors: phi_OS = 0.65 static / 0.90 seismic (Table 5.4); phi_BH = 0.65 short-term / 0.50 long-term (Table 5.5). Analysis programs: SNAIL, SNAILZ, GoldNail, SNAP-2. Equilibrium Eqs 5.6–5.16.",
-      "body": "Overall stability involves internal stability (slip surface through nails with pullout resistance contribution), global stability (slip surface beyond nails with no nail contribution), and basal heave. Internal stability is evaluated using two-dimensional limit-equilibrium analyses (planar, bi-linear, parabolic, log spiral, or circular slip surfaces). Common programs include SNAIL, SNAILZ, GoldNail, and SNAP-2. Global stability uses conventional slope stability programs (Slope/W, XSTABL, Slide). For the idealized wedge analysis, the factored resistance is phi * N * tan(phi_s) = phi * [(W+Q)cos(alpha) + T*sin(beta)] * tan(phi_s) (Eq. 5.6), and the factored driving force is gamma*(W+Q)*sin(alpha) - T*cos(beta) (Eq. 5.7). The mobilized pullout resistance T under equilibrium can be computed from Eq. 5.8. Resistance factors for overall stability (Table 5.4): static phi_OS = 0.65, seismic phi_OS = 0.90.",
+      "summary": "Overall stability: internal and global stability, an idealized wedge example, resistance factors and basal heave (5.6.1 to 5.6.6).",
+      "body": "5.6 Overall Stability of Soil Nail Walls (pp. 116-125). Subsections 5.6.1 Overview to 5.6.6 Basal Heave.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Overall stability; see the subsections."
+    },
+    {
+      "section_id": "5.6.1",
+      "title": "Overview",
+      "summary": "Overall stability is checked for internal stability (soil and nails contribute) and global stability (as defined here, no nail contribution), and may include special conditions such as basal heave.",
+      "body": "5.6.1 Overview (p. 116). Overall stability of soil nail walls is analyzed and checked for internal and global stability. Internal stability involves contributions from both the soil and the nails; global stability (as defined herein) involves no contribution from the nails. Overall stability may also cover special conditions such as basal heave.",
       "key_points": [
-        "Internal stability: slip surface through nails with pullout resistance",
-        "Global stability: slip surface beyond nails with no nail contribution",
-        "Basal heave: soft fine-grained soils beneath excavation",
-        "Limit-equilibrium programs: SNAIL, SNAILZ, GoldNail, SNAP-2",
-        "Factored resistance: phi * [(W+Q)cos(alpha) + T*sin(beta)] * tan(phi_s) (Eq 5.6)",
-        "Factored driving force: gamma*(W+Q)*sin(alpha) - T*cos(beta) (Eq 5.7)",
-        "Resistance factors: static phi_OS = 0.65, seismic phi_OS = 0.90 (Table 5.4)"
+        "Internal stability: soil and nails contribute",
+        "Global stability (as defined here): no nail contribution",
+        "Special cases such as basal heave"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Definitions of internal and global stability."
+    },
+    {
+      "section_id": "5.6.2",
+      "title": "Internal Stability",
+      "summary": "Slip surfaces through soil and some or all nails; nail pullout behind the surface contributes (tension is checked separately, 5.8.1). Evaluated by 2-D limit equilibrium for the lowest FS; surface shape (planar, bilinear, parabolic, log spiral, circular) matters little if exits are similar. Programs: SNAIL, SNAILZ, GoldNail, SNAP-2 (only one checking the facing), SNAIL Plus; Slope/W, XSTABL, Slide. Allowable bond = bond strength x 1/FSPO. Limit equilibrium puts the largest nail forces low on the wall, unlike measurements; shorten lower nails.",
+      "body": "5.6.2 Internal Stability (pp. 116-118). Internal stability must be considered for slip surfaces through the soil and some or all of the nails; soil strength may be frictional, cohesive or both depending on soil type and whether loading is drained or undrained. Where the surface intersects nails, the mobilized pullout resistance behind it contributes; nail tensile resistance is treated separately as a structural limit state (Section 5.8.1). Internal stability is routinely evaluated with two-dimensional limit-equilibrium analyses as in conventional ASD slope stability: many surfaces are analyzed for the lowest FS, which must equal or exceed the minimum acceptable FS, and the analysis gives the critical slip surface and the nail tensile forces. Procedures consider planar (Sheahan and Oral 2002), bilinear (Stocker et al. 1979; Caltrans 1991), parabolic (Shen et al. 1981), log spiral (Christopher et al. 1990) and circular (Golder 1993; Siel 2014) surfaces; the shape generally does not significantly affect the FS (Long et al. 1990) if surfaces exit in front of the wall and behind it at about the same locations. Analyses are most commonly done with dedicated programs: SNAIL (Caltrans 1991), SNAILZ (Caltrans 2007), GoldNail (Golder 1993) and FHWA's SNAP-2 (Siel 2014); of these only SNAP-2 checks facing strengths. Any may be used if the user understands how parameters are used; others include the updated SNAIL and the commercial SNAIL Plus. General programs such as Slope/W (Geostudio 2012), XSTABL (Softpile 2013) or Slide 6.0 (Rocscience 2013) can model multi-level generic reinforcement but are cumbersome for design scenarios; they may be needed to verify global stability, which most dedicated programs cannot address correctly. Minimum safety factors (Table 5.1) are entered into ASD programs; e.g., SNAILZ and GoldNail use allowable bond stresses equal to the bond strength times a user reduction factor equal to 1/FSPO; preliminary dimensions and tendon yield strength are entered as a trial design. Limit-equilibrium programs cannot reproduce actual nail force distributions: measured walls (Section 5.2.1b) show the largest forces in the upper two thirds, a result of top-down staged construction, while limit-equilibrium programs tend to predict larger forces near the bottom (at least for homogeneous conditions and uniform lengths), considering equilibrium but ignoring kinematics and deformation. They yield safe designs meeting the minimum stability criteria (printed cross-reference 'Section 6.6.3 Resistance Factors for Overall Stability'; the heading of that title in this chapter is 5.6.5) but nail force distributions that may not be optimal for limiting deformation near the top, or larger than actual loads. A simple counter is to make nails in the lower half increasingly shorter toward the bottom (Section 6.3.3e).",
+      "key_points": [
+        "Slip surfaces through soil and nails; pullout behind the surface contributes; tension checked in 5.8.1",
+        "2-D limit equilibrium for the lowest FS, which must meet the minimum FS",
+        "Surface shape matters little if entry and exit points are similar (Long et al. 1990)",
+        "Dedicated programs: SNAIL, SNAILZ, GoldNail, SNAP-2, SNAIL Plus; only SNAP-2 checks the facing",
+        "General programs (Slope/W, XSTABL, Slide) model reinforcement; needed to verify global stability",
+        "SNAILZ/GoldNail allowable bond = bond strength x reduction factor (= 1/FSPO)",
+        "Limit equilibrium overpredicts lower-nail forces versus measured upper-two-thirds maxima",
+        "Counter by shortening nails toward the bottom of the wall (Section 6.3.3e)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Internal stability analysis of soil nail walls."
+    },
+    {
+      "section_id": "5.6.3",
+      "title": "Global Stability",
+      "summary": "Global stability (2-D limit equilibrium, ASD) is better done with general slope stability programs: SNAIL and SNAILZ treat resistance under the toe by a simple passive approach, GoldNail passes surfaces only through the toe, while SNAP-2 lets surfaces pass above, at or below the toe with proper limit-equilibrium resistance (used for Appendix C). Minimum FS are similar to internal stability; special cases are basal heave (5.6.6) and lateral sliding (5.7.3).",
+      "body": "5.6.3 Global Stability (p. 118). Global stability is also routinely evaluated with two-dimensional limit-equilibrium analyses in an ASD framework, more adequately with general slope stability programs than with dedicated soil nail software, most of which has limitations. Slip surfaces in SNAIL and SNAILZ extend under the toe, but the programs estimate resistance under the toe by a simple passive approach; in GoldNail surfaces pass only through the toe; in SNAP-2 surfaces can pass above, at or under the toe and the resistance under the toe uses an appropriate limit-equilibrium formulation. The Appendix C design example uses SNAP-2. Minimum safety factors for global stability are similar to those for internal stability; special cases are Section 5.6.6 'Basal Heave' and Section 5.7.3 'Lateral Sliding Stability.'",
+      "key_points": [
+        "Global stability better analyzed with general slope stability programs",
+        "SNAIL/SNAILZ: simple passive resistance under the toe; GoldNail: surfaces only through the toe",
+        "SNAP-2: surfaces above, at or below the toe with limit-equilibrium resistance (Appendix C example)",
+        "Minimum FS similar to internal stability; basal heave and lateral sliding are special cases"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Global stability analysis and software limits."
+    },
+    {
+      "section_id": "5.6.4",
+      "title": "Idealized Example",
+      "summary": "A manual check of a single-nail wall with a planar wedge (Figure 5.9) to illustrate the forces; hand calculations are rare and serve to spot-check software. Factored resistance phi[(W+Q) cos alpha + T sin beta] tan phi_s (Eq 5.6) equals factored driving force gamma (W+Q) sin alpha - T cos beta (Eq 5.7), giving the mobilized T (Eq 5.8); the ASD form (Eq 5.9) uses FS. Overall stability is checked at Service I (gamma = 1.0), where phi is about 1/FS.",
+      "body": "5.6.4 Idealized Example (pp. 118-120). A manual check of internal stability illustrates the interaction of forces; manual calculations for complete design are rarely performed but can spot-check computer results; LRFD and ASD checks are shown. Figure 5.9: a generic single-nail wall of height H; the nail is inclined i from horizontal; the slip surface is a plane inclined alpha from horizontal defining a wedge, at angle beta to the nail. T is mobilized up to its nominal pullout resistance behind the slip surface; loads are an external surcharge Q and the wedge weight W; RS is the resultant nominal soil resistance; the soil is purely frictional; for simplicity Q and W take the same load factor. Taking components parallel to the slip plane, the factored resistance from the normal components of W, Q and T is Eq 5.6, with phi the resistance factor for soil strength, N the normal force and phi_s the ultimate friction angle. The parallel component of T is treated as a driving force (it could also be factored); the factored driving force is Eq 5.7. Equilibrium (factored driving force = factored resistance) gives T (Eq 5.8), from which the nail length and section and facing characteristics may be developed. In ASD the frictional resistance is reduced to N tan phi_s/FS and loads are unfactored, giving Eq 5.9. Overall stability should be investigated at the Service I combination with an appropriate resistance factor; with gamma = 1.0 for permanent loads, comparing Eqs 5.8 and 5.9 shows phi approximately equal to 1/FS. Real slip surfaces are more complex and hand analysis is impractical; programs do it efficiently, and back-calibrating a resistance factor from FS once the load factor is defined still applies.",
+      "key_points": [
+        "Hand checks are rare; use them to spot-check software",
+        "Single nail, planar wedge at alpha, nail at beta to the slip plane, frictional soil (Figure 5.9)",
+        "Eq 5.6 factored resistance; Eq 5.7 factored driving force; Eq 5.8 mobilized T (LRFD)",
+        "Eq 5.9: ASD form with FS and unfactored loads",
+        "Overall stability at Service I (gamma = 1.0): phi approximately 1/FS"
       ],
       "equations": [
-        "Eq 5.6: Factored resistance = phi * [(W+Q)*cos(alpha) + T*sin(beta)] * tan(phi_s)",
-        "Eq 5.7: Factored driving force = gamma * (W+Q) * sin(alpha) - T * cos(beta)",
-        "Eq 5.8: T = (W+Q) * [(gamma/phi)*sin(alpha) - cos(alpha)*tan(phi_s)] / [cos(beta)/phi + sin(beta)*tan(phi_s)]",
-        "Eq 5.9: T = (W+Q) * [FS*sin(alpha) - cos(alpha)*tan(phi_s)] / [FS*cos(beta) + sin(beta)*tan(phi_s)]",
-        "Eq 5.10: R_S = S_u * N_c * B'_e (if B'_e < D_B) -- Nominal soil resistance for basal heave",
-        "Eq 5.11: R_S = S_u * N_c * D_B (if B'_e >= D_B) -- Nominal soil resistance for basal heave",
-        "Eq 5.12: q = (B'_e * H * gamma_s + Q - S_u1 * H) / B'_e -- Total pressure at base of soil block",
-        "Eq 5.13: phi_BH * 5.14 * S_u >= gamma_EV * q -- Basal heave stability",
-        "Eq 5.14: phi_BH * 5.14 * S_u >= gamma_EV * [H * gamma_s - Q / B_e] -- With external load",
-        "Eq 5.15: phi_BH * 5.14 * S_u >= gamma_EV * (H * gamma_s) -- Simplified basal heave",
-        "Eq 5.16: FS = 5.14 * S_u / (H * gamma_s) = gamma_EV / phi_BH -- Factor of safety against basal heave"
+        {
+          "eq_id": "Eq 5.6",
+          "description": "Factored resistance",
+          "formula": "Factored resistance = phi N tan(phi_s) = phi [(W + Q) cos(alpha) + T sin(beta)] tan(phi_s)",
+          "variables": {
+            "phi": "resistance factor for soil strength",
+            "N": "normal force on slip surface",
+            "phi_s": "ultimate friction angle of soil",
+            "W": "weight of the wedge",
+            "Q": "external surcharge",
+            "T": "nail force",
+            "alpha": "slip plane inclination from horizontal",
+            "beta": "angle between the nail and the slip plane"
+          },
+          "notes": null,
+          "implemented_in": null
+        },
+        {
+          "eq_id": "Eq 5.7",
+          "description": "Factored driving force",
+          "formula": "Factored driving force = gamma (W + Q) sin(alpha) - T cos(beta)",
+          "variables": {
+            "gamma": "load factor applied to W and Q",
+            "W": "weight of the wedge",
+            "Q": "external surcharge",
+            "T": "nail force",
+            "alpha": "slip plane inclination",
+            "beta": "angle between nail and slip plane"
+          },
+          "notes": null,
+          "implemented_in": null
+        },
+        {
+          "eq_id": "Eq 5.8",
+          "description": "Mobilized pullout resistance under equilibrium",
+          "formula": "T = (W + Q) [(gamma/phi) sin(alpha) - cos(alpha) tan(phi_s)] / [cos(beta)/phi + sin(beta) tan(phi_s)]",
+          "variables": {
+            "T": "mobilized nail force",
+            "gamma": "load factor",
+            "phi": "resistance factor",
+            "phi_s": "ultimate friction angle of soil"
+          },
+          "notes": null,
+          "implemented_in": null
+        },
+        {
+          "eq_id": "Eq 5.9",
+          "description": "Mobilized pullout resistance using ASD approach",
+          "formula": "T = (W + Q) [FS sin(alpha) - cos(alpha) tan(phi_s)] / [FS cos(beta) + sin(beta) tan(phi_s)]",
+          "variables": {
+            "T": "mobilized nail force",
+            "FS": "factor of safety",
+            "phi_s": "ultimate friction angle of soil"
+          },
+          "notes": null,
+          "implemented_in": null
+        }
       ],
       "figures": [
-        "Figure 5.9: Simple wedge for overall stability verification",
-        "Figure 5.10: Basal heave for soft fine-grained soils and stiff layer cases",
-        "Figure 5.11: Bearing capacity factor Nc for basal heave (function of H/Be and Be/Le)"
+        {
+          "figure_id": "Figure 5.9",
+          "title": "Simple wedge for overall stability verification",
+          "description": "Single-nail wall of height H with a planar wedge, surcharge Q, weight W, nail force T and soil resistance Rs.",
+          "page": 119
+        }
+      ],
+      "tables": [],
+      "applicability": "Illustrative hand check of overall stability."
+    },
+    {
+      "section_id": "5.6.5",
+      "title": "Resistance Factors for Overall Stability",
+      "summary": "Table 5.4: phi_OS = 0.65 static and 0.90 seismic, back-calibrated from the Table 5.1 safety factors and rounded up to the nearest 0.05; valid whether or not the slip surface intersects the nails.",
+      "body": "5.6.5 Resistance Factors for Overall Stability (pp. 120-121). Resistance factors for overall stability (Table 5.4) were back-calibrated from the ASD safety factors in Table 5.1 and rounded up to the nearest 0.05: static phi_OS = 0.65; seismic loading phi_OS = 0.90. They are valid regardless of whether the slip surface intersects the nails, and give designs consistent with past ASD practice and in alignment with AASHTO (2014).",
+      "key_points": [
+        "Table 5.4: phi_OS = 0.65 static, 0.90 seismic",
+        "Back-calibrated from Table 5.1 and rounded up to the nearest 0.05",
+        "Valid whether or not the slip surface intersects the nails"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        {
+          "table_id": "Table 5.4",
+          "title": "Resistance Factors for Overall Stability",
+          "description": "phi_OS for static and seismic loading.",
+          "page": 121
+        }
+      ],
+      "applicability": "LRFD resistance factors for overall stability."
+    },
+    {
+      "section_id": "5.6.6",
+      "title": "Basal Heave",
+      "summary": "Evaluate basal heave where soft fine-grained soils lie beneath the excavation (uncommon for soil nail walls). AASHTO (2014) 11.9.5.2 commentary: heave may occur for Su < 0.15 gamma_s' H. Resistance RS = Su Nc B'e or Su Nc DB (Eqs 5.10, 5.11), B'e ~ 0.707 Be, Nc from Figure 5.11 (5.14 conservatively for long, wide excavations); base pressure q (Eq 5.12); check phi_BH 5.14 Su >= gamma_EV q (Eqs 5.13-5.15), gamma_EV = 1.35. Table 5.5: phi_BH = 0.65 short term, 0.50 long term. Lateral squeeze is a variation, not presented.",
+      "body": "5.6.6 Basal Heave (pp. 121-125). 5.6.6a Methodology: evaluate basal heave where soft, fine-grained soils lie beneath the excavation (Figure 5.8c); an excessive excavation depth may cause the bottom to heave. It is uncommon for soil nail walls, which are rarely built over or in soft fine-grained soils, but the check allows a feasibility evaluation. AASHTO (2014) Article 11.9.3 commentary guides anchored walls and may be applied to other top-down construction; Section 11.9.5.2 commentary indicates heave may occur under a wall in or over soft clays with Su < 0.15 gamma_s' H (gamma_s' buoyant unit weight, H wall height), and such a wall should be embedded. Soil nail walls over soft clays are more susceptible than embedded systems because most nails are not embedded below the toe; an alternative support system may be necessary if the potential is significant. If the excavation is entirely in fine-grained soils, the nominal resistance RS develops along a composite slip surface (Figure 5.10); width B'e depends on the excavation width Be (ideally without nail influence) or a stiff layer within depth DB. RS (force per linear foot) is Su Nc B'e if B'e < DB (Eq 5.10) or Su Nc DB if B'e >= DB (Eq 5.11), with Su the undrained strength below the wall, Nc the cohesion factor (Figure 5.11), B'e ~ 0.707 Be and DB the depth to stiff soil. Nail contribution is disregarded (nails are particularly inefficient for this limit state). Nc depends on H/Be and Be/Le (excavation height, width, length); for very long walls (Be/Le ~ 0) and very wide excavations (H/Be ~ 0), Nc = 5.14 conservatively. The total pressure at the base of the block is Eq 5.12, with Qi total load at the block base, gamma_s unit weight behind the wall, Q external dead or live load, and Su1 the undrained strength of the soil behind the block (not factored, as a simplification that appears neutral); if B'e >= DB, DB replaces B'e. Stability: Eq 5.13 with phi_BH the resistance factor and gamma_EV = 1.35 (Table 5.3). Disregarding the shear resistance behind the wall (Terzaghi), heave will not occur if Eq 5.14 holds (printed with a minus sign before Q/B'e, while Eq 5.12 adds Q; DB replaces B'e if B'e >= DB), and with Q = 0 if Eq 5.15 holds. 5.6.6b Resistance Factors for Basal Heave: rewriting Eq 5.15 as Eq 5.16 (FS = 5.14 Su / (H gamma_s) = gamma_EV / phi_BH) and fitting the minimum FS of 2.0 (short term) and 2.5 (long term) from Table 5.1 gives Table 5.5: permanent wall short term phi_BH = 0.65, long term phi_BH = 0.50. 5.6.6c Lateral Squeeze: abutment walls over soft soils under unbalanced embankment load may squeeze laterally, a service limit state controlled by deformation; it is not presented, being considered a variation of basal heave (both controlled by low strength and high compressibility of fine-grained soils).",
+      "key_points": [
+        "Check basal heave where soft fine-grained soils lie beneath the excavation; uncommon for soil nail walls",
+        "AASHTO (2014) 11.9.5.2 commentary: heave may occur where Su < 0.15 gamma_s' H",
+        "Most nails are not embedded below the toe, so soil nail walls are more susceptible than embedded walls",
+        "RS = Su Nc B'e (B'e < DB) or Su Nc DB (B'e >= DB); B'e ~ 0.707 Be; nails disregarded",
+        "Nc from Figure 5.11; 5.14 conservatively for very long, very wide excavations",
+        "Eq 5.13: phi_BH 5.14 Su >= gamma_EV q, gamma_EV = 1.35",
+        "Eq 5.16: FS = 5.14 Su / (H gamma_s) = gamma_EV / phi_BH",
+        "Table 5.5: phi_BH = 0.65 short term, 0.50 long term (permanent walls)",
+        "Lateral squeeze is a service-type variation of basal heave, not presented"
+      ],
+      "equations": [
+        {
+          "eq_id": "Eq 5.10",
+          "description": "Nominal soil resistance (B'e < DB)",
+          "formula": "R_S = S_u N_c B'_e",
+          "variables": {
+            "R_S": "nominal soil resistance at the excavation base (force per linear foot of wall)",
+            "S_u": "undrained shear strength of fine-grained soil below the wall",
+            "N_c": "factor for cohesion (Figure 5.11)",
+            "B'_e": "width of soil block causing heave, ~0.707 Be"
+          },
+          "notes": null,
+          "implemented_in": null
+        },
+        {
+          "eq_id": "Eq 5.11",
+          "description": "Nominal soil resistance (B'e >= DB)",
+          "formula": "R_S = S_u N_c D_B",
+          "variables": {
+            "R_S": "nominal soil resistance",
+            "S_u": "undrained shear strength below the wall",
+            "N_c": "factor for cohesion (Figure 5.11)",
+            "D_B": "depth to top of stiff soil under the excavation"
+          },
+          "notes": null,
+          "implemented_in": null
+        },
+        {
+          "eq_id": "Eq 5.12",
+          "description": "Total pressure at the base of the soil block",
+          "formula": "q = sum(Q_i) / B'_e = (B'_e H gamma_s + Q - S_u1 H) / B'_e",
+          "variables": {
+            "q": "total pressure at the base of the soil block",
+            "Q_i": "total load at the block base",
+            "gamma_s": "unit weight of soil behind the wall",
+            "Q": "external load (dead or live)",
+            "S_u1": "undrained shear strength of soil behind the block",
+            "H": "excavation height"
+          },
+          "notes": "If B'e >= DB, DB replaces B'e.",
+          "implemented_in": null
+        },
+        {
+          "eq_id": "Eq 5.13",
+          "description": "Basal heave stability",
+          "formula": "phi_BH 5.14 S_u >= gamma_EV q",
+          "variables": {
+            "phi_BH": "resistance factor for basal heave",
+            "S_u": "undrained shear strength below the wall",
+            "gamma_EV": "load factor, 1.35 (Table 5.3)",
+            "q": "total pressure at block base (Eq 5.12)"
+          },
+          "notes": null,
+          "implemented_in": null
+        },
+        {
+          "eq_id": "Eq 5.14",
+          "description": "Basal heave stability with external load",
+          "formula": "phi_BH 5.14 S_u >= gamma_EV [H gamma_s - Q / B'_e]",
+          "variables": {
+            "phi_BH": "resistance factor for basal heave",
+            "gamma_EV": "load factor",
+            "Q": "external load",
+            "B'_e": "width of soil block"
+          },
+          "notes": "As printed, with a minus sign before Q/B'e (Eq 5.12 adds Q). Shear resistance behind the wall disregarded. DB replaces B'e if B'e >= DB.",
+          "implemented_in": null
+        },
+        {
+          "eq_id": "Eq 5.15",
+          "description": "Simplified expression for basal heave stability",
+          "formula": "phi_BH 5.14 S_u >= gamma_EV (H gamma_s)",
+          "variables": {
+            "phi_BH": "resistance factor",
+            "S_u": "undrained shear strength",
+            "gamma_EV": "load factor",
+            "H": "excavation height",
+            "gamma_s": "soil unit weight"
+          },
+          "notes": "Q = 0.",
+          "implemented_in": null
+        },
+        {
+          "eq_id": "Eq 5.16",
+          "description": "Factor of safety against basal heave",
+          "formula": "FS = 5.14 S_u / (H gamma_s) = gamma_EV / phi_BH",
+          "variables": {
+            "FS": "factor of safety against basal heave",
+            "gamma_EV": "load factor",
+            "phi_BH": "resistance factor"
+          },
+          "notes": null,
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        {
+          "figure_id": "Figure 5.10",
+          "title": "Basal heave",
+          "description": "(a) deposit of soft fine-grained soils; (b) soft fine-grained soil underlain by a stiff layer. Modified after Terzaghi et al. (1996) and Sabatini et al. (1999).",
+          "page": 123
+        },
+        {
+          "figure_id": "Figure 5.11",
+          "title": "Bearing capacity factor (Nc) for determining basal heave",
+          "description": "Nc versus H/Be and Be/Le. Modified after Terzaghi et al. (1996) and Sabatini et al. (1999).",
+          "page": 124
+        }
       ],
       "tables": [
-        "Table 5.4: Resistance factors for overall stability (phi_OS: static 0.65, seismic 0.90)",
-        "Table 5.5: Resistance factors for basal heave (phi_BH: short-term 0.65, long-term 0.50)"
+        {
+          "table_id": "Table 5.5",
+          "title": "Resistance Factors for Basal Heave",
+          "description": "phi_BH for permanent walls, short-term and long-term conditions.",
+          "page": 125
+        }
       ],
-      "applicability": "Overall stability evaluation including internal, global, and basal heave checks."
+      "applicability": "Basal heave check for walls over soft fine-grained soils."
     },
     {
       "section_id": "5.7",
       "title": "Geotechnical Strength Limit States",
-      "summary": "Pullout resistance factor phi_PO = 0.65 (static and seismic) when bond verified by field load testing (Table 5.6). Lateral sliding modeled as rigid block: phi_LS*Rs ≥ gamma_EH*Pa*cos(delta) + gamma_ES*ES (Eq 5.17); Rs = c_b*B_L + (W+Pa*sin(delta))*tan(phi'_fb) (Eq 5.18). phi_LS = 1.00 static / 0.90 seismic (Table 5.7). Ka by Coulomb (Eq 5.21) or Rankine (Eq 5.22).",
-      "body": "Geotechnical strength limit states include nail pullout resistance and lateral sliding stability. Nail pullout: the resistance factors for pullout (Table 5.6) are static phi_PO = 0.65 and seismic phi_PO = 0.65, valid as long as bond strengths are verified by field load testing. Lateral sliding: occurs when a weak soil layer underlies the reinforced block. The soil nail wall is modeled as a rigid block with earth pressure Pa acting behind it. Lateral sliding stability is verified using phi_LS * R_s >= gamma_EH * P_a * cos(delta) + gamma_ES * ES (Eq. 5.17), where R_s = c_b * B_L + (W + P_a * sin(delta)) * tan(phi'_fb) (Eq. 5.18). The lateral earth thrust P_a = gamma_s * H_1^2 * K_a / 2 (Eq. 5.19). Active earth pressure coefficient Ka by Coulomb theory (Eq. 5.21) or Rankine theory (Eq. 5.22/5.23). Resistance factors for lateral sliding (Table 5.7): static phi_LS = 1.00, seismic phi_LS = 0.90.",
+      "summary": "Geotechnical strength limit states: overview, nail pullout resistance and lateral sliding stability (5.7.1 to 5.7.3).",
+      "body": "5.7 Geotechnical Strength Limit States (pp. 125-131). Subsections 5.7.1 Overview to 5.7.3 Lateral Sliding Stability.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Geotechnical strength limit states; see the subsections."
+    },
+    {
+      "section_id": "5.7.1",
+      "title": "Overview",
+      "summary": "Geotechnical strength limit states occur when soil resistance is fully mobilized along a potential slip surface; this section covers nail pullout and lateral sliding of the reinforced soil mass.",
+      "body": "5.7.1 Overview (p. 125). Geotechnical strength limit states occur when the soil resistance is fully mobilized along a potential slip surface. The two described are nail pullout and lateral sliding of the reinforced soil mass.",
       "key_points": [
-        "Pullout resistance factors: static phi_PO = 0.65, seismic phi_PO = 0.65 (Table 5.6)",
-        "Pullout factors valid when bond verified by field load testing",
-        "Lateral sliding: rigid block model with earth pressure behind wall",
-        "phi_LS * R_s >= gamma_EH * Pa * cos(delta) + gamma_ES * ES (Eq 5.17)",
-        "R_s = c_b * B_L + (W + Pa * sin(delta)) * tan(phi'_fb) (Eq 5.18)",
-        "Pa = gamma_s * H_1^2 * Ka / 2 (Eq 5.19)",
-        "Ka by Coulomb (Eq 5.21) or Rankine (Eq 5.22, 5.23) theory",
-        "Lateral sliding factors: static phi_LS = 1.00, seismic phi_LS = 0.90 (Table 5.7)"
+        "Nail pullout and lateral sliding of the reinforced mass"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Scope of geotechnical strength limit states."
+    },
+    {
+      "section_id": "5.7.2",
+      "title": "Nail Pullout Resistance",
+      "summary": "Table 5.6: phi_PO = 0.65 for static and seismic loading, back-calibrated from ASD safety factors; valid only if bond strengths are verified by field load testing at the minimum frequency (Section 5.3.4, Chapter 9).",
+      "body": "5.7.2 Nail Pullout Resistance (pp. 125-126). The resistance factors are back-calibrated from ASD safety factors (the print says 'resistance factors for overall stability' here, but Table 5.6 gives pullout): Table 5.6, static phi_PO = 0.65, seismic loading phi_PO = 0.65. They are valid as long as bond strengths are verified by field load testing at the minimum frequency in Section 5.3.4 and Chapter 9 'Construction Inspection and Performance Monitoring.'",
+      "key_points": [
+        "Table 5.6: phi_PO = 0.65 static and seismic",
+        "Valid only if bond strengths are verified by load testing at the minimum frequency (5.3.4, Chapter 9)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        {
+          "table_id": "Table 5.6",
+          "title": "Resistance Factors for Pullout",
+          "description": "phi_PO for static and seismic loading.",
+          "page": 126
+        }
+      ],
+      "applicability": "LRFD resistance factor for nail pullout."
+    },
+    {
+      "section_id": "5.7.3",
+      "title": "Lateral Sliding Stability",
+      "summary": "Lateral sliding, a special case of global stability, may occur over a weak layer beneath the reinforced block with no nail contribution; check with a general slope program or as a rigid block (Figure 5.12) at Strength I: phi_LS Rs >= gamma_EH Pa cos delta + gamma_ES ES (Eq 5.17), Rs = cb BL + (W + Pa sin delta) tan phi'_fb (Eq 5.18), Pa = gamma_s H1^2 Ka / 2 (Eqs 5.19, 5.20), Ka by Coulomb or Rankine (Eqs 5.21-5.23); gamma_EH = gamma_ES = 1.50. Use fully softened or residual strength on fissured clays. Table 5.7: phi_LS 1.00 static, 0.90 seismic.",
+      "body": "5.7.3 Lateral Sliding Stability (pp. 126-131). 5.7.3a Methodology: lateral sliding is not present in most designs but is a special case of global stability that may arise when a weak layer underlies the reinforced block (Figure 5.8d) and nails do not contribute. It can be checked with a general slope program forcing slip surfaces along the weak layer (soil nail programs generally cannot model horizontal segments), or like sliding of a gravity structure by a simplified manual procedure that also illustrates LRFD. The wall is a rigid block loaded by a generally non-horizontal earth pressure acting beyond the longest nail (no nail contribution), with a permanent earth surcharge QES behind it whose horizontal effect is ES (Figure 5.12). The case is Strength I; lateral loads by Coulomb or Rankine theory (AASHTO 2014 Article 3.11.5.1). The horizontal earth load EH is Pa cos delta, with Pa the lateral thrust and delta the friction angle between the block and retained soil, typically the soil friction angle but possibly taken equal to the backslope inclination beta_eq if safe. Check Eq 5.17, with phi_LS the resistance factor, Rs the nominal base resistance per unit width, gamma_EH = 1.5 the maximum load factor for horizontal earth loads (printed 'from Table 5.3 for Strength I, and Table 5.3 for permanent loads, active conditions'), gamma_ES = 1.50 for the horizontal surcharge effect ES. Rs by Eq 5.18, with cb the effective cohesion along the base, BL the length of the horizontal slip surface where cb acts, W the reinforced mass weight and phi'_fb the effective base friction angle (remolded or residual values may apply); W and Pa sin delta implicitly carry the minimum gamma_EV = 1.00, and the vertical effect of QES is omitted for simplicity. The active thrust per unit width is Eq 5.19 over the effective height H1 (Eq 5.20; alpha face batter angle). With no slope break within 2H of the wall the slope is infinite and beta_eq = beta; with a break within 2H, beta_eq = tan^-1(Delta H / 2H), Delta H the rise over 2H. Ka for cohesionless retained soil by Coulomb (Eq 5.21; phi_f friction angle of the retained soil, theta = alpha + 90 degrees the inclination of the back of the facing), more general than Rankine; for walls with alpha < 8 degrees, Rankine (Eq 5.22); for a vertical wall, horizontal ground and delta = 0, Eq 5.23. Where sliding occurs along stiff fissured clays, use the fully softened strength for phi_f, or the residual strength if significant shearing and displacement have occurred along the base. 5.7.3b Resistance Factors for Lateral Sliding: back-calibrated from ASD safety factors with maximum load factors 1.50 for EH and ES and minimum 1.0 for EV (Table 5.3): Table 5.7, static phi_LS = 1.00, seismic phi_LS = 0.90.",
+      "key_points": [
+        "Special case of global stability over a weak layer under the reinforced block; nails ignored",
+        "General slope programs or a rigid-block manual check (Figure 5.12) at Strength I",
+        "Eq 5.17: phi_LS Rs >= gamma_EH Pa cos(delta) + gamma_ES ES, gamma_EH = gamma_ES = 1.50",
+        "Eq 5.18: Rs = cb BL + (W + Pa sin(delta)) tan(phi'_fb), W and Pa sin(delta) at gamma_EV = 1.00",
+        "Eqs 5.19-5.20: Pa = gamma_s H1^2 Ka / 2 over effective height H1",
+        "beta_eq = beta for infinite slopes; tan^-1(Delta H / 2H) for a break within 2H",
+        "Ka by Coulomb (Eq 5.21); Rankine (Eq 5.22) for alpha < 8 degrees; tan^2(45 - phi_f/2) for the simplest case",
+        "Fissured clays: fully softened strength; residual where significant base shearing occurred",
+        "Table 5.7: phi_LS = 1.00 static, 0.90 seismic"
       ],
       "equations": [
-        "Eq 5.17: phi_LS * R_s >= gamma_EH * P_a * cos(delta) + gamma_ES * ES -- Lateral sliding stability",
-        "Eq 5.18: R_s = c_b * B_L + (W + P_a * sin(delta)) * tan(phi'_fb) -- Nominal resistance at base",
-        "Eq 5.19: P_a = gamma_s * H_1^2 * K_a / 2 -- Lateral earth thrust",
-        "Eq 5.20: H_1 = H + (B_L - H * tan(alpha)) * tan(beta_eq) -- Effective height for earth pressure",
-        "Eq 5.21: K_a = sin^2(theta + phi_f) / [sin^2(theta) * sin(theta - delta) * (1 + sqrt(sin(phi_f + delta) * sin(phi_f - beta) / (sin(theta - delta) * sin(theta + beta))))^2] -- Coulomb Ka",
-        "Eq 5.22: K_a = cos(beta) * [cos(beta) - sqrt(cos^2(beta) - cos^2(phi_f))] / [cos(beta) + sqrt(cos^2(beta) - cos^2(phi_f))] -- Rankine Ka",
-        "Eq 5.23: K_a = tan^2(45 - phi_f / 2) -- Rankine Ka for vertical wall, horizontal backfill"
+        {
+          "eq_id": "Eq 5.17",
+          "description": "Lateral sliding stability",
+          "formula": "phi_LS R_s >= gamma_EH P_a cos(delta) + gamma_ES ES",
+          "variables": {
+            "phi_LS": "resistance factor for lateral sliding",
+            "R_s": "nominal soil resistance per unit width at the base of the soil block",
+            "gamma_EH": "maximum load factor for horizontal earth loads = 1.5",
+            "gamma_ES": "maximum load factor for horizontal effect of permanent surcharge = 1.50",
+            "ES": "horizontal component of the permanent earth surcharge",
+            "P_a": "lateral earth thrust",
+            "delta": "friction angle between reinforced block and retained soil (may be taken as beta_eq)"
+          },
+          "notes": null,
+          "implemented_in": null
+        },
+        {
+          "eq_id": "Eq 5.18",
+          "description": "Nominal resistance of soil at the base of soil block",
+          "formula": "R_s = c_b B_L + (W + P_a sin(delta)) tan(phi'_fb)",
+          "variables": {
+            "c_b": "effective soil cohesion strength along the base",
+            "B_L": "length of horizontal slip surface where c_b acts",
+            "W": "weight of reinforced soil mass",
+            "phi'_fb": "effective friction angle at base (remolded or residual values may apply)"
+          },
+          "notes": null,
+          "implemented_in": null
+        },
+        {
+          "eq_id": "Eq 5.19",
+          "description": "Lateral earth thrust",
+          "formula": "P_a = gamma_s H_1^2 K_a / 2",
+          "variables": {
+            "gamma_s": "unit weight of soil behind the wall",
+            "H_1": "effective height over which earth pressure acts",
+            "K_a": "active earth pressure coefficient"
+          },
+          "notes": null,
+          "implemented_in": null
+        },
+        {
+          "eq_id": "Eq 5.20",
+          "description": "Effective height over which earth pressure acts",
+          "formula": "H_1 = H + (B_L - H tan(alpha)) tan(beta_eq)",
+          "variables": {
+            "H_1": "effective height",
+            "H": "wall height",
+            "B_L": "length of horizontal slip surface",
+            "alpha": "face batter angle",
+            "beta_eq": "equivalent backslope angle"
+          },
+          "notes": null,
+          "implemented_in": null
+        },
+        {
+          "eq_id": "Eq 5.21",
+          "description": "Active earth pressure coefficient according to Coulomb theory",
+          "formula": "K_a = sin^2(theta + phi_f) / { sin^2(theta) sin(theta - delta) [1 + sqrt( sin(phi_f + delta) sin(phi_f - beta) / (sin(theta - delta) sin(theta + beta)) )]^2 }",
+          "variables": {
+            "phi_f": "friction angle of soil retained behind the reinforced mass",
+            "theta": "inclination of the back of the wall face from horizontal (theta = alpha + 90 degrees)",
+            "delta": "friction angle between block and retained soil",
+            "beta": "backslope angle"
+          },
+          "notes": null,
+          "implemented_in": null
+        },
+        {
+          "eq_id": "Eq 5.22",
+          "description": "Active earth pressure coefficient according to Rankine theory",
+          "formula": "K_a = cos(beta) [cos(beta) - sqrt(cos^2(beta) - cos^2(phi_f))] / [cos(beta) + sqrt(cos^2(beta) - cos^2(phi_f))]",
+          "variables": {
+            "beta": "backslope angle",
+            "phi_f": "friction angle of retained soil"
+          },
+          "notes": "For walls with alpha < 8 degrees.",
+          "implemented_in": null
+        },
+        {
+          "eq_id": "Eq 5.23",
+          "description": "Active earth pressure coefficient (vertical wall, horizontal backfill, no interface friction)",
+          "formula": "K_a = tan^2(45 - phi_f / 2)",
+          "variables": {
+            "phi_f": "friction angle of retained soil (degrees)"
+          },
+          "notes": "alpha = 0, beta = 0, delta = 0.",
+          "implemented_in": null
+        }
       ],
       "figures": [
-        "Figure 5.12: Lateral sliding of a soil nail wall (broken and infinite slope geometry)"
+        {
+          "figure_id": "Figure 5.12",
+          "title": "Lateral sliding of a soil nail wall",
+          "description": "Rigid reinforced block with earth thrust Pa, surcharge, base slip surface and equivalent backslope.",
+          "page": 130
+        }
       ],
       "tables": [
-        "Table 5.6: Resistance factors for pullout (phi_PO: static 0.65, seismic 0.65)",
-        "Table 5.7: Resistance factors for lateral sliding (phi_LS: static 1.00, seismic 0.90)"
+        {
+          "table_id": "Table 5.7",
+          "title": "Resistance Factors for Lateral Sliding",
+          "description": "phi_LS for static and seismic loading.",
+          "page": 131
+        }
       ],
-      "applicability": "Geotechnical strength limit state checks for pullout and lateral sliding."
+      "applicability": "Lateral sliding check of the reinforced soil block."
     },
     {
       "section_id": "5.8",
       "title": "Structural Strength Limit States",
-      "summary": "Nail tension resistance factors: phi_T = 0.75 (A615 Grade 60/75), 0.65 (A722 Grade 150) (Table 5.8). Facing modeled as two-way slab; flexure phi_FF = 0.90, punching shear phi_FP = 0.90 (Tables 5.9–5.10). Headed studs: phi_FH = 0.70 (A307) to 0.80 (A325) static, 0.65/0.75 seismic (Table 5.11). Bending moment from Eq 5.29.",
-      "body": "Structural strength limit states include: (a) Nail tensile resistance: resistance factors (Table 5.8) are phi_T = 0.75 for Grade 60/75 (A615) static and seismic, phi_T = 0.65 for Grade 150 (A722) static and seismic. (b) Facing flexural/bending resistance: the facing is modeled as a two-way slab supported by nails. Bending moment m_v = a_s_eq * f_y_W * (h_i/2 - a_s_eq * f_y_W / (1.7 * f'_c)) (Eq. 5.29). Resistance factors for flexure (Table 5.9): phi_FF = 0.90 for both static and seismic. (c) Punching shear: evaluated at the nail-facing connection for both initial and final facings. Resistance factors (Table 5.10): phi_FP = 0.90 for both static and seismic. (d) Headed stud tension in final facing: resistance factors (Table 5.11) vary by bolt type: A307 static phi_FH = 0.70, A325 static phi_FH = 0.80; A307 seismic phi_FH = 0.65, A325 seismic phi_FH = 0.75.",
+      "summary": "Structural strength limit states: nail tensile resistance and the facing limit states of flexure, punching shear and headed studs in tension (5.8.1 to 5.8.5).",
+      "body": "5.8 Structural Strength Limit States (pp. 131-140). Subsections 5.8.1 Nail Tensile Resistance to 5.8.5 Headed Stud in Tension in Final Facing.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Structural strength limit states; see the subsections."
+    },
+    {
+      "section_id": "5.8.1",
+      "title": "Nail Tensile Resistance",
+      "summary": "Table 5.8, back-calibrated with gamma_EV = 1.35 static and 1.00 seismic: phi_T = 0.75 for Grades 60/75 (ASTM A615) and 0.65 for Grade 95/150 (ASTM A722), for both static and seismic loading.",
+      "body": "5.8.1 Nail Tensile Resistance (p. 131). Resistance factors for tensile resistance were back-calibrated with gamma_EV = 1.35 for static conditions and gamma_EV = 1.00 for seismic loading to match ASD designs. Table 5.8: static, tendon Grades 60/75 (ASTM A615) phi_T = 0.75; static, Grade 95/150 (ASTM A722) phi_T = 0.65; seismic, Grades 60/75 phi_T = 0.75; seismic, Grade 95/150 phi_T = 0.65.",
       "key_points": [
-        "Nail tensile: phi_T = 0.75 (A615 Grade 60/75), phi_T = 0.65 (A722 Grade 150)",
-        "Facing modeled as two-way slab supported by nails",
-        "Facing flexure: phi_FF = 0.90 for initial and final facing (Table 5.9)",
-        "Bending moment from Eq 5.29 using equivalent reinforcement area",
-        "Punching shear: phi_FP = 0.90 for initial and final facing (Table 5.10)",
-        "Headed stud tension: phi_FH = 0.70 (A307) to 0.80 (A325) static (Table 5.11)",
-        "Compressive resistance c = 0.85 * f'c * a (Eq 5.24)",
-        "Tensile resistance t = f_y_W * a_s_eq (Eq 5.25)"
+        "Back-calibrated with gamma_EV = 1.35 static, 1.00 seismic",
+        "Table 5.8: phi_T = 0.75 for Grades 60/75 (ASTM A615), static and seismic",
+        "Table 5.8: phi_T = 0.65 for Grade 95/150 (ASTM A722), static and seismic"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        {
+          "table_id": "Table 5.8",
+          "title": "Resistance Factors for Tendon in Tension",
+          "description": "phi_T by tendon grade for static and seismic loading.",
+          "page": 131
+        }
+      ],
+      "applicability": "LRFD resistance factors for nail tendon tension."
+    },
+    {
+      "section_id": "5.8.2",
+      "title": "Overview of Facing Limit States",
+      "summary": "Facing-nail head limit states (Figure 5.13): bending/flexure, considered separately for initial and final facings (initial facing disregarded in final facing design); punching shear around the nails, separately for each facing; and headed stud tension, final facing only. Facing and nail head hardware must give resistances exceeding the maximum head force To.",
+      "body": "5.8.2 Overview of Facing Limit States (pp. 131-132). The strength limit states at the facing-nail head connection (Figure 5.13): Bending/Flexure, when the facing moment exceeds its resistance, considered separately for initial and final facings, the initial facing being disregarded in the design of the final facing (Figure 5.13b); Punching Shear, in the facing around the nails, evaluated separately for initial and final facings (Figures 5.13c, d); and Headed Stud Tensile, when the stud tensile resistance is exceeded, final facing only (Figure 5.13e). The facing and nail head elements must provide resistance in excess of the maximum nail head force To for each limit state, with appropriate facing dimensions, strength and reinforcement and suitable hardware (bearing plate, nut, headed studs).",
+      "key_points": [
+        "Flexure: initial and final facings separately; initial facing ignored for final facing design",
+        "Punching shear around the nails, initial and final facings separately",
+        "Headed stud tension applies to the final facing only",
+        "Facing and hardware resistances must exceed the maximum head force To"
+      ],
+      "equations": [],
+      "figures": [
+        {
+          "figure_id": "Figure 5.13",
+          "title": "Limit states in soil nail wall facings",
+          "description": "(a) typical facing layout; (b) bending of a facing section; (c) punching shear in initial facing; (d) punching shear in final facing; (e) tension of headed studs. Modified after Lazarte (2011).",
+          "page": 134
+        }
+      ],
+      "tables": [],
+      "applicability": "Facing limit states to verify."
+    },
+    {
+      "section_id": "5.8.3",
+      "title": "Facing Flexural Strength Limit State",
+      "summary": "The facing is a continuous two-way slab supported by the nails; flexure fails by yield lines (Figure 5.14), positive moments between nails and negative around them, vertical (mV) and horizontal (mH) moments. Resistance by reinforced concrete formulas with steel at mid-thickness (Figure 5.15): c = 0.85 f'c a, t = fy_W as_eq, equivalent rebar area (Eqs 5.24-5.28), mv = as_eq fy_W (hi/2 - as_eq fy_W / 1.7 f'c) (Eq 5.29), at nail heads and mid-span in both directions. Table 5.9: phi_FF = 0.90 static and seismic.",
+      "body": "5.8.3 Facing Flexural Strength Limit State (pp. 132-139). 5.8.3a Introduction: lateral earth pressures cause bending in the facing, considered a continuous two-way slab supported by the nails; the limit state is reached when increasing pressure produces a yielding mechanism (yield lines across the slab, Figure 5.14). Moments produce tension on the outside between nails (positive) and on the inside around the nails (negative), about horizontal axes (vertical moments mV, Figure 5.13b) and vertical axes (horizontal moments mH). Maximum moments depend on SH and SV, initial and final facing thicknesses hi and hf, reinforcement layout, type and strength (WWM and any rebar) and shotcrete/concrete resistance (Seible 1996). 5.8.3b Bending Mechanisms: resistances follow conventional reinforced concrete formulas for a section of thickness hi (or hf) with reinforcement (WWM alone or with rebar) at mid-section (Figure 5.15); mv acts about a horizontal axis and generates a compressive force c over the compression extent a and a tensile force per unit length t; d is the distance from the compression edge to the tension steel centroid, with di and df half of hi and hf. Nominal compressive resistance Eq 5.24 (f'c shotcrete or concrete strength; a extent of compression, uniform stress assumed); SH may be taken as the section width but forces and moments are per unit length. Nominal tensile resistance Eq 5.25 (fy_W WWM yield strength, assumed primary; as_eq equivalent area per unit width), more generally Eq 5.26 with WWM area per unit width as_W, rebar yield strength fy_R, rebar area As_R and S = SH or SV. Equivalent rebar area for different yield strengths, Eq 5.27, and total equivalent area per unit length, Eq 5.28 (as printed, Eq 5.27 already divides As_R by S and Eq 5.28 divides A's_R by S again). Force equilibrium (c = t) and moment equilibrium (mv = t z, z = d - a/2) give Eq 5.29 (the text prints 'hi = di/2'; the definition above makes di half of hi). All reinforcement is assumed to yield and its centroid in each direction to be at mid-section; Eq 5.29 is used in Chapter 6. Moments must be evaluated around the nail heads and in the span between nails, in both directions; commonly WWM plus rebar around nail heads and WWM only in the span of the initial facing, and rebar only, both ways, in the final facing (Chapter 3). 5.8.3c Resistance Factors for Flexure at Facing: back-calibrated with gamma_EV = 1.35 static and 1.00 seismic; Table 5.9: initial and final facing, phi_FF = 0.90 static and 0.90 seismic.",
+      "key_points": [
+        "Facing is a continuous two-way slab supported by nails; flexural failure by yield lines",
+        "Positive moments between nails, negative around nails; vertical (mV) and horizontal (mH) moments",
+        "Eq 5.24: c = 0.85 f'c a; Eq 5.25: t = fy_W as_eq",
+        "Eqs 5.26-5.28: rebar converted to an equivalent WWM area by fy_R / fy_W",
+        "Eq 5.29: mv = as_eq fy_W (hi/2 - as_eq fy_W / (1.7 f'c)); all steel yields, centroid at mid-section",
+        "Check at nail heads and mid-span in both directions",
+        "Table 5.9: phi_FF = 0.90 static and seismic, initial and final facing"
       ],
       "equations": [
-        "Eq 5.24: c = 0.85 * f'_c * a -- Nominal compressive resistance of facing",
-        "Eq 5.25: t = f_y_W * a_s_eq -- Nominal tensile resistance of reinforcement",
-        "Eq 5.26: t = f_y_W * a_s_W + f_y_R * A_s_R / S = (a_s_W + A'_s_R / S) * f_y_W -- Bending force in facing",
-        "Eq 5.27: A'_s_R = (f_y_R / f_y_W) * A_s_R / S -- Equivalent cross-sectional area of rebar",
-        "Eq 5.28: a_s_eq = a_s_W + A'_s_R / S -- Total equivalent area per unit length",
-        "Eq 5.29: m_v = a_s_eq * f_y_W * (h_i / 2 - a_s_eq * f_y_W / (1.7 * f'_c)) -- Bending moment in facing"
+        {
+          "eq_id": "Eq 5.24",
+          "description": "Nominal compressive resistance",
+          "formula": "c = 0.85 f'_c a",
+          "variables": {
+            "c": "compressive force per unit length",
+            "f'_c": "shotcrete/concrete compressive strength",
+            "a": "extent of area in compression across section (uniform stress assumed)"
+          },
+          "notes": null,
+          "implemented_in": null
+        },
+        {
+          "eq_id": "Eq 5.25",
+          "description": "Nominal tensile resistance",
+          "formula": "t = f_y_W a_s_eq",
+          "variables": {
+            "t": "tensile force per unit length",
+            "f_y_W": "yield strength of WWM (primary reinforcement)",
+            "a_s_eq": "equivalent cross-sectional area per unit width"
+          },
+          "notes": null,
+          "implemented_in": null
+        },
+        {
+          "eq_id": "Eq 5.26",
+          "description": "Bending force in initial facing",
+          "formula": "t = f_y_W a_s_W + f_y_R A_s_R / S = (a_s_W + (f_y_R / f_y_W) A_s_R / S) f_y_W = (a_s_W + A'_s_R / S) f_y_W",
+          "variables": {
+            "f_y_W": "yield strength of WWM",
+            "a_s_W": "cross-sectional area per unit width of WWM",
+            "f_y_R": "yield strength of rebar",
+            "A_s_R": "cross-sectional area of rebar",
+            "S": "SH or SV"
+          },
+          "notes": null,
+          "implemented_in": null
+        },
+        {
+          "eq_id": "Eq 5.27",
+          "description": "Equivalent cross-sectional area of rebar",
+          "formula": "A'_s_R = (f_y_R / f_y_W) x A_s_R / S",
+          "variables": {
+            "A'_s_R": "equivalent cross-sectional area of rebar",
+            "f_y_R": "yield strength of rebar",
+            "f_y_W": "yield strength of WWM",
+            "A_s_R": "cross-sectional area of rebar",
+            "S": "SH or SV"
+          },
+          "notes": "As printed; Eq 5.28 divides A'_s_R by S again.",
+          "implemented_in": null
+        },
+        {
+          "eq_id": "Eq 5.28",
+          "description": "Total equivalent area per unit length",
+          "formula": "a_s_eq = a_s_W + A'_s_R / S",
+          "variables": {
+            "a_s_eq": "total equivalent area per unit length",
+            "a_s_W": "WWM area per unit width",
+            "A'_s_R": "equivalent rebar area (Eq 5.27)",
+            "S": "SH or SV"
+          },
+          "notes": null,
+          "implemented_in": null
+        },
+        {
+          "eq_id": "Eq 5.29",
+          "description": "Bending moment",
+          "formula": "m_v = a_s_eq f_y_W (h_i / 2 - a_s_eq f_y_W / (1.7 f'_c))",
+          "variables": {
+            "m_v": "bending moment per unit length about a horizontal axis",
+            "a_s_eq": "equivalent steel area per unit length",
+            "f_y_W": "yield strength of WWM",
+            "h_i": "initial facing thickness",
+            "f'_c": "shotcrete/concrete compressive strength"
+          },
+          "notes": null,
+          "implemented_in": null
+        }
       ],
       "figures": [
-        "Figure 5.13: Limit states in soil nail wall facings (bending, punching shear, headed stud)",
-        "Figure 5.14: Bending mechanism and nail force in facing",
-        "Figure 5.15: Section showing bending mechanism in initial facing"
+        {
+          "figure_id": "Figure 5.14",
+          "title": "Bending mechanism and nail force in facing",
+          "description": "Yield lines in the facing slab around and between nails. Modified after Lazarte (2011).",
+          "page": 136
+        },
+        {
+          "figure_id": "Figure 5.15",
+          "title": "Section showing bending mechanism in initial facing",
+          "description": "Facing section with compression block, tension reinforcement at mid-thickness and moment mv.",
+          "page": 138
+        }
       ],
       "tables": [
-        "Table 5.8: Resistance factors for tendon in tension (phi_T: A615 0.75, A722 0.65)",
-        "Table 5.9: Resistance factors for flexure at facing (phi_FF = 0.90)",
-        "Table 5.10: Resistance factors for punching shear at facing (phi_FP = 0.90)",
-        "Table 5.11: Resistance factors for headed stud in tension (phi_FH: A307 0.70, A325 0.80)"
+        {
+          "table_id": "Table 5.9",
+          "title": "Resistance Factors for Flexure Resistance at Facing",
+          "description": "phi_FF for initial and final facings, static and seismic.",
+          "page": 139
+        }
       ],
-      "applicability": "Structural strength limit state checks for nails, facing, and connections."
+      "applicability": "Facing flexural resistance and its resistance factor."
+    },
+    {
+      "section_id": "5.8.4",
+      "title": "Punching Shear Strength Limit State",
+      "summary": "Resistance factors for punching shear at the facing, back-calibrated with gamma_EV = 1.35 static and 1.00 seismic: Table 5.10, phi_FP = 0.90 for initial and final facings, static and seismic.",
+      "body": "5.8.4 Punching Shear Strength Limit State (p. 139). Resistance factors for punching at the facing were back-calibrated with gamma_EV = 1.35 for static conditions and 1.00 for seismic loading to match ASD designs. Table 5.10: initial and final facing, phi_FP = 0.90 static and 0.90 seismic.",
+      "key_points": [
+        "Back-calibrated with gamma_EV = 1.35 static, 1.00 seismic",
+        "Table 5.10: phi_FP = 0.90 static and seismic, initial and final facing"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        {
+          "table_id": "Table 5.10",
+          "title": "Resistance Factors for Punching Shear at Facing",
+          "description": "phi_FP for initial and final facings, static and seismic.",
+          "page": 139
+        }
+      ],
+      "applicability": "LRFD resistance factor for facing punching shear."
+    },
+    {
+      "section_id": "5.8.5",
+      "title": "Headed Stud in Tension in Final Facing",
+      "summary": "Resistance factors for headed studs in tension in the final facing, back-calibrated with gamma_EV = 1.35 static and 1.00 seismic: Table 5.11, phi_FH = 0.70 (A307, equivalent to AWS D1.1 Type B studs, fy = 60 ksi) and 0.80 (A325) static; 0.65 and 0.75 seismic.",
+      "body": "5.8.5 Headed Stud in Tension in Final Facing (pp. 139-140). Resistance factors for headed studs in tension in the final facing were back-calibrated with gamma_EV = 1.35 for static conditions and 1.00 for seismic loading. Table 5.11: static, A307 steel bolt phi_FH = 0.70; static, A325 steel bolt phi_FH = 0.80; seismic, A307 phi_FH = 0.65; seismic, A325 phi_FH = 0.75. Note: A307 is equivalent to AWS D1.1 Type B studs, with fy = 60 ksi.",
+      "key_points": [
+        "Table 5.11 static: phi_FH = 0.70 (A307), 0.80 (A325)",
+        "Table 5.11 seismic: phi_FH = 0.65 (A307), 0.75 (A325)",
+        "A307 equivalent to AWS D1.1 Type B studs, fy = 60 ksi"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        {
+          "table_id": "Table 5.11",
+          "title": "Resistance Factors for Headed Stud in Tension in Final Facings",
+          "description": "phi_FH for A307 and A325 studs, static and seismic.",
+          "page": 140
+        }
+      ],
+      "applicability": "LRFD resistance factors for headed studs in the final facing."
     },
     {
       "section_id": "5.9",
       "title": "Service Limit States (Deformations)",
-      "summary": "Maximum displacement: delta_h/H = 1/1000 (rock/stiff), 1/500 (sandy), 1/333 (fine-grained) (Table 5.12, Eq 5.30). Deformation zone behind wall: D_DEF = C*(1-tan(alpha))*H (Eq 5.31); C = 0.8/1.25/1.5 by soil type. Valid for L/H ≥ 0.7 and FS_OS ≥ 1.5. Deflections > 0.005H during construction are cause for concern. Movements may continue up to 6 months after construction; long-term deformations may increase up to 15% beyond those observed soon after.",
-      "body": "Service limit states address lateral and vertical displacements of the soil nail wall. Maximum long-term horizontal and vertical displacements at the top of the wall can be estimated as delta_v approximately equal to delta_h = (delta_h / H)_i * H (Eq. 5.30), where (delta_h / H)_i depends on soil conditions: 1/1000 for weathered rock and stiff soil, 1/500 for sandy soil, and 1/333 for fine-grained soil (Table 5.12). The constant C depends on soil type: 0.8 for weathered rock/stiff soil, 1.25 for sandy soil, and 1.5 for fine-grained soil. The distance of significant deformation behind the wall is D_DEF = C * (1 - tan(alpha)) * H (Eq. 5.31). These estimates are valid for L/H >= 0.7, negligible surcharge, and FS_OS >= 1.5. Horizontal deflections greater than 0.005H during construction should be a cause for concern. Post-construction deformations may increase up to 15% beyond initial values over 6 months.",
+      "summary": "Service limit states: estimating wall deformations and comparing them with tolerable limits (5.9.1, 5.9.2).",
+      "body": "5.9 Service Limit States (Deformations) (pp. 140-142). Subsections 5.9.1 Introduction and 5.9.2 Soil Nail Wall Displacements.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Deformation checks; see the subsections."
+    },
+    {
+      "section_id": "5.9.1",
+      "title": "Introduction",
+      "summary": "Maximum lateral and vertical wall movements must be estimated in design and be less than the wall's tolerable deformation limits.",
+      "body": "5.9.1 Introduction (p. 140). The maximum lateral and vertical movements of the wall must be estimated as part of design and must be less than the tolerable deformation limits for the wall.",
       "key_points": [
-        "delta_v approximately equal to delta_h = (delta_h/H)_i * H (Eq 5.30)",
-        "delta_h/H: 1/1000 (rock/stiff), 1/500 (sandy), 1/333 (fine-grained) (Table 5.12)",
-        "Deformation zone: D_DEF = C * (1 - tan(alpha)) * H (Eq 5.31)",
-        "C values: 0.8 (rock/stiff), 1.25 (sandy), 1.5 (fine-grained)",
-        "Valid for L/H >= 0.7, negligible surcharge, FS_OS >= 1.5",
-        "Construction deflections > 0.005H are cause for concern",
-        "Post-construction deformations may increase 15% over 6 months"
+        "Estimate maximum lateral and vertical movements; keep them below tolerable limits"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Requirement to estimate wall movement."
+    },
+    {
+      "section_id": "5.9.2",
+      "title": "Soil Nail Wall Displacements",
+      "summary": "Most movement in granular soils occurs during or shortly after excavation; maximum horizontal movement at the top; settlement of similar order. Long-term top movement delta_v ~ delta_h = (delta_h/H)i H (Eq 5.30, Clouterre 1991), valid for L/H >= 0.7, negligible surcharge, FSOS >= 1.5; Table 5.12: (delta_h/H)i 1/1000, 1/500, 1/333 and C 0.8, 1.25, 1.5 (weathered rock and stiff soil, sand, fine-grained). DDEF = C (1 - tan alpha) H (Eq 5.31). Over 0.005H during construction is a concern. Movement may continue up to 6 months, up to 15% more.",
+      "body": "5.9.2 Soil Nail Wall Displacements (pp. 140-142). A soil nail wall is a passive system and some deformation should be expected; the wall and soil deform outward during and after construction. In predominantly granular soils most movement occurs during or shortly after excavation, and post-construction movement is generally small unless the wall, its foundation or the retained soil deteriorates; creep of retained fine-grained soils may raise nail forces and wall deflection after construction. Maximum horizontal displacements commonly occur at the top; settlements are generally small and of the same order as the horizontal top movement. Lateral deflections are larger for taller walls and increasing nail spacing, inclination and surcharge, and smaller with more wall batter, stiffer soil or closer nail spacing; vertical displacements depend on similar factors, are largest near the facing and commonly smaller than the lateral top deflection. The maximum long-term horizontal and vertical top displacements delta_h and delta_v (printed 'Figure 5.20'; the deformation figure is Figure 5.16) may be estimated by Eq 5.30 (Clouterre 1991), valid for (i) L/H >= 0.7 (L nail length, H wall height), (ii) negligible surcharge and (iii) FSOS >= 1.5. Table 5.12 (modified from Clouterre 1993 and Byrne et al. 1998): (delta_h/H)i = 1/1000 weathered rock and stiff soil, 1/500 sandy soil, 1/333 fine-grained soil; C = 0.8, 1.25, 1.5. Ground deformation can be significant up to DDEF behind the wall (Eq 5.31; alpha wall batter angle, C from Table 5.12). Where critical or sensitive structures are nearby, a project-specific assessment of wall movement effects is warranted, by numerical methods and/or data from similar walls in similar ground. Horizontal deflections greater than 0.005H during construction should be a cause for concern, as they generally represent an upper limit of acceptable performance. Deformations may be mitigated by battering the wall, longer nails in the upper portion, more nail steel per unit wall area, or in some cases ground anchors with the nails. Monitoring shows movement can continue after construction, sometimes up to 6 months, longer in soils with creep potential; long-term deformation may increase up to 15 percent beyond that observed soon after construction, adding nail tension. High plasticity fine-grained soils (approximately PI > 20) with high water contents (LI > 0.2) tend to deform for longer due to creep.",
+      "key_points": [
+        "Granular soils: most movement during or shortly after excavation",
+        "Maximum horizontal movement at the top; settlement of the same order, largest near the facing",
+        "Eq 5.30: delta_v ~ delta_h = (delta_h/H)i x H (Clouterre 1991)",
+        "Eq 5.30 valid for L/H >= 0.7, negligible surcharge, FSOS >= 1.5",
+        "Table 5.12 (delta_h/H)i: 1/1000 weathered rock and stiff soil, 1/500 sand, 1/333 fine-grained",
+        "Eq 5.31: DDEF = C (1 - tan(alpha)) H, C = 0.8, 1.25, 1.5",
+        "Horizontal deflection above 0.005H during construction is a cause for concern",
+        "Mitigate with batter, longer upper nails, more steel, or ground anchors",
+        "Post-construction movement up to 6 months, up to 15% more; longer for PI > 20 and LI > 0.2"
       ],
       "equations": [
-        "Eq 5.30: delta_v ~ delta_h = (delta_h / H)_i * H -- Maximum long-term displacement at wall top",
-        "Eq 5.31: D_DEF = C * (1 - tan(alpha)) * H -- Distance of significant deformation behind wall"
+        {
+          "eq_id": "Eq 5.30",
+          "description": "Maximum long-term horizontal and vertical displacement at the top of wall",
+          "formula": "delta_v ~ delta_h = (delta_h / H)_i x H",
+          "variables": {
+            "delta_h": "maximum long-term horizontal displacement at top of wall",
+            "delta_v": "maximum long-term vertical displacement at top of wall",
+            "(delta_h/H)_i": "ratio depending on soil conditions (Table 5.12)",
+            "H": "wall height"
+          },
+          "notes": "Clouterre (1991). Valid for L/H >= 0.7, negligible surcharge, FSOS >= 1.5.",
+          "implemented_in": null
+        },
+        {
+          "eq_id": "Eq 5.31",
+          "description": "Distance of significant soil deformation behind the wall",
+          "formula": "D_DEF = C (1 - tan(alpha)) H",
+          "variables": {
+            "D_DEF": "distance behind the wall of significant ground deformation",
+            "alpha": "wall batter angle",
+            "C": "soil-dependent coefficient (Table 5.12)",
+            "H": "wall height"
+          },
+          "notes": null,
+          "implemented_in": null
+        }
       ],
       "figures": [
-        "Figure 5.16: Deformation of soil nail walls showing delta_h, delta_v, D_DEF, and deformed pattern"
+        {
+          "figure_id": "Figure 5.16",
+          "title": "Deformation of soil nail walls",
+          "description": "Deformed pattern, delta_h, delta_v and the distance DDEF behind the wall. Modified after Clouterre (1991) and Byrne et al. (1998).",
+          "page": 142
+        }
       ],
       "tables": [
-        "Table 5.12: Values of (delta_h/H)_i and C as functions of soil conditions"
+        {
+          "table_id": "Table 5.12",
+          "title": "Values of (delta_h/H)i and C as Functions of Soil Conditions",
+          "description": "(delta_h/H)i and C for weathered rock and stiff soil, sandy soil and fine-grained soil. Modified from Clouterre (1993) and Byrne et al. (1998).",
+          "page": 141
+        }
       ],
-      "applicability": "Deformation estimation and service limit state evaluation for soil nail walls."
+      "applicability": "Estimating soil nail wall deformation."
     }
   ]
 }
