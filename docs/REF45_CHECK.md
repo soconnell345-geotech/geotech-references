@@ -193,3 +193,132 @@ On the final tree of `fix/ref45-gec6`:
 - The 19 targeted test files: 838 passed, 3 xfailed. The REF-48 question
   stays an expected failure on this branch (it starts from main, without
   the GEC-12 rebuild).
+
+## Micropile Design and Construction, FHWA NHI-05-039 (branch `fix/ref45-micropile`)
+
+Branch from main 63fb31f (after the GEC-12 and GEC-6 merges). Printed
+pages are chapter-page labels (5-10 is chapter 5, page 10). All ten
+chapters were wrong throughout: the files had 69 sections for 203 printed
+headings (the section checker matched 62 and found 132 missing), merged
+neighbouring headings into ids such as 5.9.1-5.9.2, gave objects no
+pages, and carried many statements, and most of the ch 5 equations, that
+are not printed. Every chapter was rebuilt from the print, one section per
+printed heading; a heading with no printed text under it is a short
+pointer to its subsections. The section checker now matches all 203. The
+figure catalog was not changed (132 figures; ch 1-8 have 3, 5, 14, 18,
+27, 44, 13 and 8).
+
+| Chapter | Pages read | Result | Examples |
+|---|---|---|---|
+| ch 1 Introduction (463af89) | 1-1 to 1-8, all | Rebuilt: 4 sections (the file had five) | The file's 1.4 "FHWA Classification System Overview" and 1.5 "Report Organization" are not printed in ch 1 (1.4 is the references). Not printed: FOREVER as a French FHWA project, 3000 kN design loads, first U.S. use in the mid-1970s, w/c 0.45-0.50. |
+| ch 2 Micropile Classification (4981ec2) | 2-1 to 2-9, all | Rebuilt: 4 sections (the file had four) | The file's 2.4 "Classification Summary" (eight combinations, designer and contractor roles) is not printed; 2.4 is the references. Figures 2-1 to 2-5 carry their printed captions; Table 2-1 read from the page with its sub-types. Not printed: Type B "most common in the US", CASE 2 "settlement reduction". |
+| ch 3 Applications (c2e201b) | 3-1 to 3-21, all | Rebuilt: 16 sections (the file had five; 3.2.1-3.2.7, 3.3, 3.3.1 and 3.5 were missing) | The file's nine figure captions were not the printed ones; the twelve case histories as printed. Not printed: design loads of 300 to 3000 kN, FOREVER and Trinh in 3.3.4, "Approach 1 more common in the U.S.". |
+| ch 4 Construction Techniques and Materials (ea4778e) | 4-1 to 4-35, all | Rebuilt: 21 sections (the file had five) | The file's fifteen figure captions were not the printed ones ("Rotary Duplex Drilling" as Figure 4-1, a "Symmetrix" figure); Tables 4-1 to 4-5 read from the page. Not printed: bentonite limited to 2 percent, "Type B the most common U.S. method", bond strength rising from Type A to D, hollow bars 517-862 MPa and threadbars 517-1035 MPa. |
+| ch 5 Design of Micropiles for Structural Support (f77e6cb) | 5-1 to 5-82, all | Rebuilt: 52 sections (the file had 15, with merged ids 5.9.1-5.9.2, 5.9.3-5.9.4 and 5.15-5.16) | Eqs 5-1 to 5-32 read off the rendered pages, including 5-4a to 5-4c; the file's Eqs 5-11 to 5-32 were mostly not the printed equations ("Meyerhof 0.92 q sqrt(B)/N", "verification load = 2.0 P", "Fa/(0.47 Fy)"). Figures 5-1 to 5-27 and Tables 5-1 to 5-13 with pages. The two subsections the print numbers 5.21.1 and 5.21.2 under 5.20 are folded into the 5.20 body with their printed numbers; 5.21.1 and 5.21.2 are the seismic subsections. |
+| ch 6 Design of Micropiles for Soil Slope Stabilization (1d1ca74) | 6-1 to 6-68, all | Rebuilt: 35 sections (the file had ten) | Eqs 6-1 to 6-15 read off the rendered pages; the file numbered the P = 0 and P = Pult capacity rules 6-7 and 6-8 (printed 6-6 and 6-7) and attributed Eq 6-12 to "Broms (1964)" (the print gives Ito and Matsui (1975) as stated by Hassiotis et al. (1997)). The file's Blue Trail key point carried the SUM-271 counts (154 micropiles, 41 anchors); Blue Trail used 478 micropiles and 40 ground anchors. Table 6-3 values (365, 523 and 558 kN) read from the page. |
+| ch 7 Micropile Load Testing (b30d5ea) | 7-1 to 7-28, all | Rebuilt: 29 sections (the file had eight) | Tables 7-1 and 7-2 load schedules read row by row; Table 7-3 proof test frequencies. The file called the creep test "the key acceptance criterion"; the print says the creep criteria very rarely govern. Not printed: "report creep measurements at each load hold", "document any deviations". |
+| ch 8 Construction Monitoring and Inspection (2b16647) | 8-1 to 8-18, all | Rebuilt: 16 sections (the file had seven) | The work plan has 19 printed elements (the file said 15); Tables 8-1 and 8-2 read from the page. Not printed: "owner agency performs both QA and QC" under the method approach. |
+| ch 9 Contracting Methods (bdfa058) | 9-1 to 9-9, all | Rebuilt: 12 sections (the file had six; 9.3.1-9.3.3 and 9.5.1-9.5.3 were missing) | Contractor minimums as printed (five successful projects in five years; a supervising engineer with three years and three projects; three load test reports; superintendents and drill operators with three projects in five years). Not printed: "years in business, footage installed", value engineering savings "split with owner". |
+| ch 10 Cost Estimating (6d71120) | 10-1 to 10-10, all | Rebuilt: 14 sections (the file had four) | Tables 10-1 to 10-7 read from the page, each in the section that prints it (the file put Table 10-1 in 10.1 and Table 10-5 under 10.3); the sample problems as printed ($300 x (1 + 85/100) = $555 per meter, $6,660 per 12-m micropile; $300 x (1 + 10/100) = $330 per meter, $6,600 per 20-m micropile). |
+
+### Micropile: found but not fixed
+
+- Retrieval eval (`scripts/eval_retrieval_gold.py --per-case`, against
+  main 63fb31f): recall@3, @5 and @10 unchanged in the off, fill and auto
+  arms (auto 35, 41 and 44 of 54); rerank recall@5 38 -> 37; MRR@10 off
+  0.466 -> 0.463, fill 0.531 -> 0.528, auto 0.565 -> 0.559, rerank 0.515
+  -> 0.502. No query was reworded.
+  - micropile-bond ("grout to ground bond strength micropile"): its gold
+    id 5.9.1-5.9.2 was the file's merged section and no longer exists, so
+    `test_gold_set_is_well_formed` failed. The gold now names 5.9.2, the
+    section that prints Table 5-3 (p. 5-21, PDF page 113); the query is
+    unchanged. Ranks off 4, fill 4, auto 2 -> 3, rerank 1 -> 2: the
+    rebuilt 1.2 and 2.1 (the micropile definition and classification)
+    rank above it.
+  - plasticity-chart (dm7_1 1-3.3.1): rank 2 -> 3 in every arm; DM 7.1
+    and FHWA Pavements 4.7.2 swap places. No micropile section is in the
+    top five; the move comes from the changed corpus statistics.
+  - stone-col-capacity (gec_13 5.4.1.2.5): rerank rank 5 -> 6; the other
+    arms are unchanged.
+- The search index lives in the temp folder and is rebuilt only when a
+  chapter file is newer than it, so two checkouts sharing one temp folder
+  can search each other's index. The evals above ran with a temp folder
+  per checkout. This affects only side-by-side checkouts, not an
+  installed library (noted, not fixed).
+- The section checker reports 9.3.2 and 9.5.2 as ambiguous: the contents
+  print 9.5.2 Postbid Design as a second "9.3.2". The body prints 9.5.2.
+
+### Micropile: print inconsistencies (kept as printed)
+
+- Contents: 6.6.4 "Bending Momemt"; 9.5.2 printed as "9.3.2"; the 5.2 and
+  6.7 titles differ between the contents and the body (6.7 "Design
+  Examples" in the contents, "Design Example" in the body).
+- 2.1 prints "micopiles"; Figure 3-7 prints "Underpining"; Figure 6-9
+  prints "Uplsope"; 9.3.2 prints "Microple".
+- 2.3 says the sub-classes (A1 to A3) indicate drill casing and
+  reinforcement, then calls the 1, 2, 3 of the combined designation the
+  "grouting method".
+- Table 4-2 gives the #18 bar yield as "1335 (3000)" kip-units where
+  Table 4-3 gives 1335 (300); the Table 4-2 caption says "Yield and
+  Ultimate Strengths" but only yield is tabulated; the Table 4-2 notes
+  give fu = 690 MPa (102 ksi) for Grade 520 and 700 MPa (104 ksi) for
+  Grade 550, while the Table 4-3 notes print "Grade 500" with fy = 520
+  MPa and fu = 690 MPa (100 ksi), and Grade 550 with fu = 700 MPa (102
+  ksi).
+- 5.6 refers to coupled sections "previously discussed in Chapter 3"
+  (printed in ch 4). Eq 5-5 uses l where its variable list says L.
+  5.9.3 Steps 1 and 2 both cite Eq 5-14. Eq 5-12 uses D/Bg <= 2.5 while
+  Eq 5-13 uses D/Lg > 2.5. CCTG "5 mm (0.196 mm)". 5.17 prints "fill has
+  recently been placed on the earlier". Brown et al. is cited as both
+  1988 and 1998. 5.18.2 calls the combined stress check "Eqs. 5-4 and
+  5-6" where its Step 6 uses Eq 5-3 or 5-6 (Eq 5-4 gives the casing
+  section properties), and cites Sections 5.5.3 and 5.18.3 for threaded
+  connection weakness (5.5.3 is Selection of Micropile Cross Section).
+- Table 5-12 prints dense sand as "96,000 - 76,000" kPa, and medium dense
+  sand as 29,000-96,000 kPa against 600-1,000 ksf. Table 5-8 skips 200 to
+  300 kPa. The ch 5 reference list prints "Meyerhoff".
+- PDF pages 171-174 and 175-178 both print pages 5-79 to 5-82 (the
+  ch 5 references appear twice). The two subsections under 5.20 are
+  printed as 5.21.1 and 5.21.2.
+- 6.7.2 says the micropile was modeled with Approach 2 of 6.6.2.2 (a
+  restraining force input directly) but describes varying the shear
+  strength assigned to the micropile until the target factor of safety
+  was reached, which is Approach 1.
+- 6.7.4: "Labove is approximately 10 m (3.28 ft)".
+- 6.7.6: the step list says to change M "in Step 1" and Q "in Step 5" and
+  to repeat "steps 1 through 4" comparing Mult "in step 3"; trial M and Q
+  are input in Step 2 and Mult is compared in Step 4.
+- 6.7.7 labels the interpolated downslope value "Hult (psi_us) ... 450 kN"
+  (psi_ds = 21 degrees). Figure 6-35 heads its Hult-soil/pile column in
+  kN/m; the text gives the value at the 10-m slip surface as 753 kN.
+- The 6.7 summary prints the proof test load as "760 kN (171 kN)".
+- 7.4.1.2 says the first cycle raises the load to 15 percent of the design
+  load and returns to the alignment load; Table 7-1's cycle 1 goes to
+  0.45 DL. 7.4.3.2 calls 1.3 DL "the maximum test load" of a proof test;
+  7.4.2.1 and Table 7-2 take it to 1.60 DL. Table 7-3 gives slope
+  stabilization proof tests "to a test load of 2.0 times Pult"; the 6.7
+  summary gives 1.6 times. The text cites "Bermingham and Jane (1989)";
+  the references list Bermingham and James.
+- 8.2 says the contractor under the method approach provides "quality
+  assurance". 8.6.3 prints the 28-day strength as "25 and 40 MPa (3,600
+  and 5,800 ksi)".
+- 9.4 (Performance Specifications) lists the owner and contractor items
+  under "In the design/build method".
+- 10.2.2 gives the common casings as 140, 175 and 241 mm (9-5/8 in.);
+  Table 10-2 lists 139.7, 177.8 and 244.5 mm. 10.3.3.2 prints "10 to 12
+  meters (330 to 40 ft)".
+
+### Micropile: gates
+
+On the final tree of `fix/ref45-micropile`:
+
+- `python scripts/audit_chapter_text.py micropile`: exit 0 (10 chapters).
+- `python scripts/check_section_numbers.py micropile`: exit 0; printed
+  203, matched 203 (the 9.3.2/9.5.2 contents misprint shows as 2
+  ambiguous).
+- The 19 targeted test files plus `test_micropile_figures.py` and
+  `test_micropile_tables.py`: 1017 passed, 2 xfailed;
+  `test_dm7_2_chapter6.py` and `test_gec13_tables.py` (which also name
+  micropile): 335 passed.
+- The app's `test_citations.py` (this library on PYTHONPATH): exit 0, 5
+  passed.
