@@ -8,103 +8,153 @@
     {
       "section_id": "1.1",
       "title": "Overview",
-      "body": "This manual was developed to provide updated, comprehensive guidance for the design and construction of soil nail walls for highway applications. The manual supersedes the previous Soil Nail Walls manual (FHWA-IF-03-017, Lazarte et al. 2003) and incorporates current LRFD design methodology consistent with the AASHTO LRFD Bridge Design Specifications (AASHTO 2014). Soil nailing is an in-situ soil reinforcement technique in which steel reinforcing elements (soil nails) are installed into the ground, typically as an excavation proceeds from the top down.",
+      "summary": "The manual gives guidance for the design and construction of soil nail walls. Main additions over the previous version (Lazarte et al. 2003): the LRFD platform, design considerations for hollow bar soil nails (HBSNs), more thorough corrosion criteria, and a design example based on SNAP-2 (Siel 2014). Written for Owners, bridge, structural, geotechnical and roadway engineers, geologists, reviewers, specification and construction staff. 'Soil nail' covers inclusions in soil and in soft and weathered rock. Only permanent walls are addressed.",
+      "body": "1.1 Overview (p. 1). This manual provides guidance for the design and construction of soil nail walls. The most significant additions with respect to the previous version of the document are: implementation of the Load and Resistance Factor Design (LRFD) platform; design considerations for hollow bars used as soil nails (HBSNs); more thorough corrosion criteria for soil nail design; and a design example based on the SNAP-2 computer program (Siel 2014). The primary audience is Owners (typically a public Agency); engineers specializing in bridge, structure, geotechnical and roadway design; and engineering geologists and consulting engineers providing technical reviews or engaged in the design, procurement and construction of permanent soil nail systems. It is also intended for management, specification and contracting specialists and for construction engineers. The term 'soil nail' refers to inclusions in soils and in soft and weathered rock, and is used regardless of the material the wall supports. The document only addresses permanent walls and includes a design framework implemented in LRFD for permanent structures.",
       "key_points": [
-        "Supersedes FHWA-IF-03-017 (Lazarte et al. 2003)",
-        "Incorporates LRFD methodology consistent with AASHTO 2014",
-        "Soil nailing is an in-situ reinforcement technique using steel reinforcing elements",
-        "Top-down construction sequence as excavation proceeds",
-        "Primary audience: geotechnical, structural, and highway engineers"
+        "Additions: LRFD platform, hollow bar soil nails (HBSNs), more thorough corrosion criteria, SNAP-2 design example (Siel 2014)",
+        "Audience: Owners, design engineers, geologists, reviewers, specification, contracting and construction staff",
+        "'Soil nail' covers inclusions in soil and in soft and weathered rock",
+        "Addresses permanent walls only, with an LRFD design framework"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "General introduction to the GEC-7 soil nail walls manual."
+      "applicability": "Scope and audience of the soil nail wall manual."
     },
     {
       "section_id": "1.2",
-      "title": "Purpose of the Manual",
-      "body": "The purpose of this manual is to provide comprehensive, state-of-practice guidance for the design and construction of soil nail walls used in highway infrastructure. The manual is intended for use by engineers responsible for design and construction of highway projects. It presents procedures consistent with LRFD methodology, and addresses both permanent and temporary soil nail wall applications. The manual also provides guidance on subsurface investigation, material selection, corrosion protection, construction inspection, and performance monitoring.",
+      "title": "Purpose",
+      "summary": "To provide updated, state-of-the-practice information for selecting, designing and constructing soil nail walls for roadway projects, aimed at safe and cost-effective designs and at helping Owners identify and manage the risks of soil nail wall projects. The manual covers only soil nail systems giving long-term support of excavation for a permanent structure; it does not address temporary soil nail support of excavation or landslide stabilization.",
+      "body": "1.2 Purpose (p. 1). The purpose of this manual is to provide updated, state-of-the-practice information for selecting, designing and constructing soil nail walls for roadway projects. The information is aimed at producing safe and cost-effective soil nail designs and at helping Owners to identify and manage the risks associated with soil nail wall projects. The manual focuses solely on soil nail systems providing long-term support of excavation of a permanent structure. It does not specifically address soil nails used as temporary structures for temporary support of excavation, or to stabilize landslides.",
       "key_points": [
-        "Comprehensive state-of-practice guidance for soil nail wall design and construction",
-        "Consistent with LRFD methodology per AASHTO 2014",
-        "Addresses both permanent and temporary applications",
-        "Covers subsurface investigation, materials, corrosion protection",
-        "Provides construction inspection and performance monitoring guidance"
+        "Updated, state-of-the-practice information for selecting, designing and constructing soil nail walls for roadways",
+        "Aims: safe, cost-effective designs; help Owners identify and manage project risks",
+        "Permanent walls (long-term support of excavation) only",
+        "Not addressed: temporary support of excavation, landslide stabilization"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "All soil nail wall projects for highway structures."
+      "applicability": "Purpose and limits of the manual."
     },
     {
       "section_id": "1.3",
       "title": "Definition of Soil Nails",
-      "body": "Soil nails are closely spaced, passive inclusions installed in existing ground to support an excavation or stabilize a slope. They are passive elements because they are not post-tensioned at installation and their reinforcing action is mobilized as the ground deforms. Soil nails are typically steel bars (solid or hollow), installed at a slight downward inclination (typically 10 to 20 degrees from horizontal) in drilled holes that are then grouted. The reinforced soil mass behind the facing acts as a gravity retaining structure. The facing, typically shotcrete reinforced with welded wire mesh (WWM) or rebar, provides connectivity between nails and prevents local soil raveling.",
+      "summary": "Soil nails are reinforcing, passive elements drilled and grouted sub-horizontally to support excavations in soil or soft and weathered rock. They work mainly in tension from deformation of the retained ground, transfer load by bond along the grout-ground interface, have resistances estimated by established procedures, carry long-term corrosion protection, interact with the facing, are load tested, and are subject to routine QC/QA. Post-tensioned elements are ground anchors (AASHTO Article 11.9; GEC-4). Proprietary 'nail' systems that do not meet the definition are described in Appendix G.",
+      "body": "1.3 Definition of Soil Nails (pp. 1-2). The definition distinguishes the elements addressed in the manual from systems that resemble them but differ fundamentally, and incorporates resisting mechanisms, materials, construction methods, and construction Quality Control (QC) and Quality Assurance (QA). Soil nails are reinforcing, passive elements that are drilled and grouted sub-horizontally in the ground to support excavations in soil, or in soft and weathered rock, that: contribute to the stability of earth-resisting systems mainly through tension as a result of the deformation of the retained soil or weathered rock mass; transfer tensile loads to the surrounding ground through shear stresses (bond stresses) along the grout-ground interface; develop resistances that can be estimated with established design procedures; have long-term, demonstrable corrosion protection; interact structurally with the facing of the excavation; are load-tested according to prescribed methods; and are routinely subject to construction QC/QA according to established procedures. Reinforcing elements that are post-tensioned, even if installed next to conventional soil nails, are ground anchors and are not addressed; see Article 11.9 of AASHTO (2014) and Geotechnical Engineering Circular No. 4, FHWA-IF-99-015 (Sabatini et al. 1999). As the reinforced-soil block deforms toward the excavation, shear stresses develop at the grout-ground interface and the nails extend, producing axial tension in the tendon; the tension increases from the nail head to a maximum and then decreases as the nail transfers load to the ground. The tensile resistance of the tendon and the pullout resistance of the nail are the main resisting mechanisms. Other techniques that insert bars or rods into soil, some proprietary and some using 'nail' in their names, do not meet the definition; they and their differences from soil nails are described in Appendix G.",
       "key_points": [
-        "Soil nails are closely spaced passive inclusions in existing ground",
-        "Not post-tensioned; reinforcing action mobilized by ground deformation",
-        "Typically steel bars (solid or hollow) installed at 10-20 degrees below horizontal",
-        "Installed in drilled holes that are grouted",
-        "Reinforced soil mass acts as a gravity retaining structure",
-        "Facing (typically shotcrete with WWM or rebar) provides connectivity"
+        "Passive reinforcing elements, drilled and grouted sub-horizontally, in soil or soft and weathered rock",
+        "Work mainly in tension, mobilized by deformation of the retained ground",
+        "Load transfer by bond (shear) stress along the grout-ground interface",
+        "Must have established design procedures, long-term corrosion protection, facing interaction, load testing and routine QC/QA",
+        "Post-tensioned elements are ground anchors: AASHTO (2014) Article 11.9; GEC-4 (Sabatini et al. 1999)",
+        "Tendon tension rises from the head to a maximum, then falls as load transfers to the ground",
+        "Main resisting mechanisms: tendon tensile resistance and nail pullout resistance",
+        "Look-alike systems that are not soil nails: Appendix G"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Fundamental definition and concept of soil nailing technique."
+      "applicability": "Deciding whether a reinforcing system is a soil nail covered by the manual."
     },
     {
       "section_id": "1.4",
       "title": "Background",
-      "body": "Soil nailing originated from the New Austrian Tunneling Method (NATM) used in the 1960s-1970s. The first documented soil nail wall was constructed in 1972 near Versailles, France, for an 18-m deep railroad cut. The technique was introduced in North America in the late 1970s. In the U.S., the first soil nail wall demonstration project was constructed in 1986 on a highway project in Cumberland Gap, Tennessee. FHWA-sponsored research programs (1996-2003) led to the first comprehensive design manual (FHWA-IF-03-017). The technique has since become one of the most commonly used top-down earth retention systems in transportation projects.",
+      "summary": "Background in three parts: the European origins of soil nailing (1.4.1), its development in the United States (1.4.2), and the FHWA and other documents that led U.S. practice (1.4.3).",
+      "body": "1.4 Background (pp. 3-5). Section 1.4.1 Historical Origins of Soil Nail Walls; 1.4.2 Developments in the United States; 1.4.3 Leading Historic Documents in the United States.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "History of soil nailing; see the subsections."
+    },
+    {
+      "section_id": "1.4.1",
+      "title": "Historical Origins of Soil Nail Walls",
+      "summary": "Grouted metal reinforcement with shotcrete facing derives from the New Austrian Tunneling Method for rock excavation support (Rabcewicz 1964-1965), later extended to rock slopes (Lang 1961) and then to soil. In 1972 soil nails stabilized an approximately 60-ft high sand cut for a railroad widening near Versailles, France. First German use 1975; Karlsruhe University and Bauer research 1975-1981; the French Clouterre program started in 1986.",
+      "body": "1.4.1 Historical Origins of Soil Nail Walls (p. 3). Inserting and grouting metallic reinforcement into the ground, combined with a shotcrete facing to support an excavation, derives from the rock-excavation support system known as the New Austrian Tunneling Method (Rabcewicz 1964a, 1964b and 1965); the passive steel bars are known as rock bolts in the tunnel industry. The concept was extended to rock-slope stabilization (Lang 1961) and later to slopes and excavations in soil. In 1972 soil nails were used to stabilize an approximately 60-ft high cut-slope in sand for a railroad-widening project near Versailles, France (Rabejac and Toudic 1974); the method proved cost-effective and faster than other conventional support methods. Soil nailing then became common in France and other European countries. The first use in earth-retaining systems in Germany was in 1975 (Stocker et al. 1979). The University of Karlsruhe and the contractor Bauer ran a research program from 1975 through 1981 with full-scale testing of experimental walls (Gässler and Gudehus 1981; Schlosser and Unterreiner 1991). The French Clouterre research program, with private and public participants, started in 1986 and involved full-scale testing, monitoring of in-service walls, field testing and numerical simulations (Schlosser 1983; Clouterre 1993 and 2000).",
       "key_points": [
-        "Originated from the New Austrian Tunneling Method (NATM) in the 1960s-1970s",
-        "First documented soil nail wall: 1972 near Versailles, France (18-m railroad cut)",
-        "Introduced in North America in the late 1970s",
-        "First U.S. demonstration project: 1986, Cumberland Gap, Tennessee",
-        "FHWA research programs (1996-2003) led to first design manual FHWA-IF-03-017",
-        "Leading documents: FHWA-IF-03-017 (2003), Clouterre (1991, France), BS 8006 (UK)"
+        "Derived from the New Austrian Tunneling Method (Rabcewicz 1964a, 1964b, 1965); rock bolts plus shotcrete",
+        "Extended to rock slopes (Lang 1961), then to soil slopes and excavations",
+        "1972: ~60-ft high sand cut for railroad widening near Versailles, France (Rabejac and Toudic 1974)",
+        "Germany: first use 1975; Karlsruhe-Bauer full-scale research 1975-1981",
+        "France: Clouterre research program from 1986 (Clouterre 1993, 2000)"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Historical context for soil nail wall technology development."
+      "applicability": "Historical origins of soil nailing."
+    },
+    {
+      "section_id": "1.4.2",
+      "title": "Developments in the United States",
+      "summary": "One of the first U.S. uses was in 1976: a 45-ft deep excavation in dense lacustrine silty sands for the Good Samaritan Hospital, Portland, Oregon, built in nearly half the time and at about 85 percent of the cost of conventional support. In 1984 FHWA funded a prototype 40-ft high wall near Cumberland Gap, Kentucky (Nicholson 1986). Use has grown for roadways because of feasibility and cost: smaller equipment, greater redundancy, smaller easements than ground anchors, and more qualified contractors.",
+      "body": "1.4.2 Developments in the United States (pp. 3-4). One of the first applications in the U.S. was in 1976, when soil nails supported a 45-ft deep excavation in lacustrine, dense, silty sands for the expansion of the Good Samaritan Hospital in Portland, Oregon; the system was estimated to have been completed in nearly half the time and at about 85 percent of the cost of conventional excavation-support systems (Byrne et al. 1998). In 1984 FHWA funded a demonstration project for a prototype, 40-ft high soil nail wall near Cumberland Gap, Kentucky (Nicholson 1986). Since then the use of soil nail walls for roadway projects has increased greatly, owing to the technical feasibility and cost-competitiveness of soil nailing. For certain subsurface and project conditions soil nailing is more advantageous than other top-down earth retaining systems because the construction equipment is smaller and it provides greater structural redundancy (more reinforcing elements per unit of wall area). Easements tend to be smaller because soil nails are shorter than ground anchors for the same wall height. The number of qualified soil nail specialty contractors, and the experience of engineers and Owners, especially state transportation agencies, have also increased.",
+      "key_points": [
+        "1976: 45-ft deep excavation, Good Samaritan Hospital, Portland, Oregon; ~half the time, ~85% of the cost (Byrne et al. 1998)",
+        "1984: FHWA demonstration, prototype 40-ft high wall near Cumberland Gap, Kentucky (Nicholson 1986)",
+        "Advantages over other top-down systems: smaller equipment, greater redundancy",
+        "Smaller easements than ground anchors (shorter elements for the same wall height)",
+        "More qualified specialty contractors and Owner experience over time"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "U.S. history of soil nail walls."
+    },
+    {
+      "section_id": "1.4.3",
+      "title": "Leading Historic Documents in the United States",
+      "summary": "FHWA documents: Elias and Juran (1991), the first FHWA design and construction document; the 1993 European scanning tour (FHWA 1993a) and the translated French manual (FHWA 1993b); Demonstration Project 103 (1994) with the field inspectors manual (Porterfield et al. 1994) and the updated design manual (Byrne et al. 1998); the previous version of this manual (Lazarte et al. 2003); multimedia modules (Smith 2007); HBSN corrosion review (Samtani and Nowatzki 2010) and HBSN pullout tests (Cadden et al. 2010). SHRP 2 GeoTechTools (2013).",
+      "body": "1.4.3 Leading Historic Documents in the United States (pp. 4-5). FHWA's sponsorship of demonstration and research projects contributed greatly to soil nail use in roadway projects since the early 1990s. The first FHWA-published design and construction document was by Elias and Juran (1991). In 1993 FHWA sponsored a technical scanning tour of European countries and published its findings (FHWA 1993a), and commissioned the English translation of the French national soil nailing manual (FHWA 1993b). In 1994 FHWA initiated Demonstration Project 103 to disseminate soil nailing among state transportation agencies, and published the 'Soil Nailing Field Inspectors Manual, Demonstration Project 103' for construction QC/QA (Porterfield et al. 1994). The project led to the update of the 1991 design document (Byrne et al. 1998). FHWA also published the previous version of this manual (Lazarte et al. 2003). In 2007 FHWA developed multimedia presentation modules describing ground anchors and soil nails in roadway construction (Smith 2007). In 2010 FHWA published a review of factors affecting the corrosion of HBSNs with recommendations to mitigate them (Samtani and Nowatzki 2010), and FHWA-CFL/TD-10-001 (Cadden et al. 2010) with the results of an HBSN pullout testing program whose objectives were to estimate HBSN bond stress at four test sites, assess correlations with published bond resistances of conventional pre-drilled solid bar soil nails, and recommend standard procedures for HBSN pullout tests. The Strategic Highway Research Program (SHRP 2) launched the GeoTechTools web-based information and guidance system (SHRP 2013), which FHWA is implementing with state transportation agencies in cooperation with AASHTO and TRB.",
+      "key_points": [
+        "Elias and Juran (1991): first FHWA soil nail design and construction document",
+        "1993: European scanning tour (FHWA 1993a); French national manual translated (FHWA 1993b)",
+        "1994: Demonstration Project 103; field inspectors manual (Porterfield et al. 1994); design update (Byrne et al. 1998)",
+        "Previous version of this manual: Lazarte et al. (2003)",
+        "HBSNs: corrosion review (Samtani and Nowatzki 2010); pullout tests at four sites (Cadden et al. 2010, FHWA-CFL/TD-10-001)",
+        "SHRP 2 GeoTechTools (SHRP 2013), implemented with AASHTO and TRB"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Source documents behind U.S. soil nail practice."
     },
     {
       "section_id": "1.5",
       "title": "Design Philosophy",
-      "body": "This manual presents soil nail wall design using the LRFD methodology as specified in AASHTO (2014). Resistance factors have been back-calibrated from ASD-based factors of safety to maintain consistency with past successful practice. Load factors are obtained from the AASHTO LRFD Bridge Design Specifications. Overall stability is treated as a service limit state using a resistance factor approach, while other geotechnical and structural limit states are treated as strength limit states. Seismic design follows the extreme event limit state provisions.",
+      "summary": "The framework verifies structural capacities in LRFD format with AASHTO (2014) load factors, while using ASD-based limit-equilibrium soil nail programs to find nominal loads and slip surfaces. Resistance factors are correlated with the AASHTO load factors to give designs equal to or slightly more conservative than the previous ASD factors of safety, rounded to the nearest 0.05, compatible with but not necessarily equal to AASHTO values for other earth-retention structures, and tied to a minimum frequency of verification testing. Service, strength and extreme-event limit states are considered.",
+      "body": "1.5 Design Philosophy (p. 5). The document includes a framework that allows users to: verify structural capacities in the conventional LRFD equation format, using load factors from the AASHTO 'LRFD Bridge Design Specifications' (2014); use conventional Allowable Stress Design (ASD)-based, limit-equilibrium computer programs developed specifically for soil nail walls to determine nominal loads in the wall components; incorporate resistance factors correlated to AASHTO (2014) load factors that give designs equal to or slightly more conservative than designs based on the ASD factors of safety (FS) of previous versions of this manual; incorporate correlated resistance factors rounded to the closest 0.05 that are reasonable and compatible with, but not necessarily equal to, those in AASHTO (2014) for other earth-retention structures and limit states; and incorporate correlated resistance factors consistent with a minimum required frequency of verification testing. The design therefore relies on ASD-based stability calculations to quantify soil nail loads and slip surface geometries, and then uses these results to perform LRFD checks. The LRFD framework considers service, strength and extreme-event limit states, consistent with AASHTO (2014).",
       "key_points": [
-        "LRFD methodology per AASHTO (2014)",
-        "Resistance factors back-calibrated from ASD-based safety factors",
-        "Load factors from AASHTO LRFD Bridge Design Specifications",
-        "Overall stability treated as service limit state",
-        "Geotechnical and structural checks treated as strength limit states",
-        "Seismic design follows extreme event limit state provisions"
+        "LRFD checks of structural capacities with AASHTO (2014) load factors",
+        "ASD-based limit-equilibrium soil nail programs give nominal loads and slip surfaces",
+        "Resistance factors give designs equal to or slightly more conservative than previous ASD factors of safety",
+        "Resistance factors rounded to the closest 0.05; compatible with, not necessarily equal to, AASHTO values",
+        "Resistance factors tied to a minimum required frequency of verification testing",
+        "Service, strength and extreme-event limit states, consistent with AASHTO (2014)"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Design philosophy applicable to all soil nail wall LRFD design."
+      "applicability": "The ASD-stability plus LRFD-check basis used throughout the manual."
     },
     {
       "section_id": "1.6",
       "title": "Document Organization",
-      "body": "The manual is organized into ten chapters and seven appendices. Chapter 1 provides an introduction. Chapter 2 covers applications and feasibility evaluations. Chapter 3 addresses construction materials and methods. Chapter 4 discusses information required for design, including subsurface investigation and design parameter selection. Chapter 5 presents resisting mechanisms and limit states. Chapter 6 provides step-by-step design procedures. Chapter 7 covers corrosion protection. Chapter 8 discusses contracting approaches and specifications. Chapter 9 covers construction inspection and performance monitoring. Chapter 10 addresses considerations for hollow bar soil nails. Appendices A through G provide supplementary information including design examples.",
+      "summary": "Ten chapters: 2 applications and feasibility; 3 construction materials and methods; 4 information required for design; 5 resisting mechanisms and limit states, with the calibration of resistance factors; 6 design, with special geometries, drainage, frost and creep, and the Appendix C example; 7 corrosion protection; 8 contracting and specifications; 9 inspection, load testing and monitoring; 10 hollow bar soil nails. Appendices A (reinforcement data) to G (similar technologies).",
+      "body": "1.6 Document Organization (pp. 5-7). Chapter 2 'Applications and Feasibility Evaluations': use of soil nails in roadway projects, main components and construction sequence, favorable and unfavorable ground conditions, feasibility evaluations, Owner risks, and factors affecting costs and schedule. Chapter 3 'Construction Materials and Methods': main components, equipment and construction methods. Chapter 4 'Information Required for Design': field and laboratory testing data and soil and rock parameters (including bond resistance), and information for corrosion potential, seismic design and frost action. Chapter 5 'Resisting Mechanisms and Limit States': resisting and load transfer mechanisms and the calibration of resistance factors. Chapter 6 'Design of Soil Nail Walls': main design steps, strength and service limit state checks, and special considerations (special wall geometries, drainage, frost, creeping soil), illustrated by the design example in Appendix C. Chapter 7 'Corrosion Protection': corrosion phenomena, criteria for selecting protection levels as a function of corrosion potential, and protection systems (epoxy-coated bars, grout and other elements). Chapter 8 'Contracting Approaches and Specifications': procurement and key considerations for construction specifications. Chapter 9 'Construction Inspection and Performance Monitoring': QC/QA, inspection, proof and verification load testing, and instrumentation and monitoring during construction and long term. Chapter 10 'Considerations for Hollow Bar Soil Nails': special corrosion, testing and QC/QA considerations for HBSNs. Appendices: A Reinforcement Data Reference; B Charts for Preliminary Designs; C Design Example; D Construction Details for Soil Nail Walls; E Procedural Construction Specifications; F Performance-Based Construction Specifications; G Similar Technologies.",
       "key_points": [
-        "10 chapters and 7 appendices (A through G)",
-        "Chapters 1-5: background, feasibility, materials, investigation, mechanics",
-        "Chapter 6: step-by-step design procedures (core design chapter)",
-        "Chapter 7: corrosion protection",
-        "Chapters 8-9: contracting, inspection, and monitoring",
-        "Chapter 10: hollow bar soil nails",
-        "Appendices include design examples"
+        "Ch 2 applications and feasibility; Ch 3 materials and methods; Ch 4 information required for design",
+        "Ch 5 resisting mechanisms, limit states, calibration of resistance factors",
+        "Ch 6 design steps and special considerations; design example in Appendix C",
+        "Ch 7 corrosion protection; Ch 8 contracting and specifications",
+        "Ch 9 inspection, load testing, monitoring; Ch 10 hollow bar soil nails",
+        "Appendices A-G: reinforcement data, preliminary design charts, design example, details, procedural and performance specifications, similar technologies"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Organization and scope of the two-volume manual."
+      "applicability": "Finding which chapter or appendix covers a topic."
     }
   ]
 }
