@@ -7,12 +7,12 @@
     {
       "section_id": "17.1",
       "title": "Introduction",
-      "body": "Final step of a drilled shaft project: official acceptance of as-built shafts by the engineer in responsible charge. Acceptance requires complete installation records and demonstration that shaft conforms to Plans and Specifications including post-construction integrity testing. Imperfections are to be expected; a robust design should be tolerant of small unavoidable flaws. An imperfection requires remediation when the shaft is insufficient to meet strength and serviceability requirements during design life. Key terms: anomaly — deviation from norm; often detected by NDT, may or may not be a defect; flaw — deviation from planned shape or material characteristics; defect — flaw that may significantly detract from drilled shaft performance (ASTM D6760); deficient — insufficient or inadequate; remediation — correcting a fault or deficiency; repair — restore to condition meeting performance requirements.",
+      "body": "[p. 17-1] The final step of a drilled shaft project is official acceptance of the as-built shafts by the engineer in responsible charge, which requires official records fully documenting the installation and demonstrating conformance with the Plans and Specifications, including post-construction integrity testing; if installation criteria are not satisfied, additional measures could be required before final acceptance. The chapter outlines assessment and acceptance, follow-up evaluation where construction records and/or NDT suggest possible defects, and remediation and repair where a shaft is not adequate. Perfection in drilled shaft construction is an unattainable ideal: small imperfections are expected and a robust design should tolerate small, unavoidable flaws which may or may not be detected; an imperfection is a deficiency requiring remediation when the shaft is insufficient or inadequate to meet strength and serviceability requirements during the design life. Definitions: anomaly - deviation from the norm, an irregularity, often an anomalous pattern in integrity test measurements, which may or may not represent a defect; defect (noun) - a fault or flaw; deficient - insufficient or inadequate; mitigation - to make less severe; remediation - act or process of correcting a fault or deficiency; repair - restore to condition necessary to meet performance requirements. The chapter speaks of remediation or repair of a deficiency; mitigation might be sufficient in some cases, and even a detected defect may need no remediation if its location or extent leaves the foundation not deficient.",
       "key_points": [
-        "Acceptance requires complete installation records + NDT results + conformance with Plans and Specs",
-        "Anomaly → Flaw → Defect: increasing severity per ASTM D6760 terminology",
-        "Defect requires remediation only if shaft is deficient (insufficient to meet performance requirements)",
-        "Perfection is unattainable; robust design tolerates small unavoidable flaws"
+        "Acceptance needs official installation records showing conformance with Plans and Specifications, including integrity testing",
+        "Perfection is unattainable; a robust design tolerates small, unavoidable flaws",
+        "Defined: anomaly, defect, deficient, mitigation, remediation, repair",
+        "A defect needs no remediation if its location or extent leaves the shaft not deficient"
       ],
       "equations": [],
       "figures": [],
@@ -22,33 +22,59 @@
     {
       "section_id": "17.2",
       "title": "Assessment of Completed Drilled Shafts",
-      "body": "Two categories of information for acceptance: (1) field observations during construction (inspection records per Chapter 15); (2) NDT results (CSL, TIP, GGL per Chapter 16). Process (Figure 17-1): review inspection records → review NDT results → accept or reject → if anomalies, engineering evaluation → accept as-is or remediate. Inspection records review: check casing, excavation log, slurry properties, base cleanout, cage inspection, concrete testing, volume monitoring; foundation design engineer is responsible for timely review. NDT recommendation: require NDT for ALL drilled shafts constructed using wet methods (slurry or water); also for all load test and technique shafts; consider also for dry construction with challenging conditions (congested cage, excavation stability concerns). NDT anomaly classification per Table 17-1: Class A (acceptable) — CSL FAT increase <15%, energy reduction <9 dB; TIP radius reduction Rr <6%, local cover >3 in.; GGL <3 standard deviations below mean. Class B (conditionally acceptable) — CSL per Table 16-2 intermediate values. Class C (abnormal) — CSL FAT increase per Table 16-2; TIP Rr >6% or local cover <3 in.; GGL >3 SD below mean. Decision process: Class A = accept; Class B = review records, may require additional action; Class C = further evaluation required (CT tomography, coring, additional testing).",
+      "body": "[pp. 17-1 to 17-2] Figure 17-1 outlines the steps to final acceptance, an expanded version of Step 21 ('Observe and Evaluate Construction of Production Shafts') and Step 22 ('Post-Construction Evaluation and Report') of the overall process in Chapter 8. The basis of acceptance has two categories: (1) field observations during construction (inspection records), and (2) evaluations of concrete integrity by one or more of the Chapter 16 NDT methods.",
       "key_points": [
-        "Require NDT on ALL wet-method shafts; all load test and technique shafts",
-        "Class A: acceptable — no action required",
-        "Class B: conditionally acceptable — review records; may need further action",
-        "Class C: abnormal — further evaluation required (CSL tomography, coring)",
-        "Foundation design engineer responsible for timely review of inspection records and NDT"
+        "Figure 17-1: acceptance process, expanding Steps 21 and 22 of Chapter 8",
+        "Acceptance rests on inspection records and NDT evaluation of concrete integrity"
       ],
       "equations": [],
       "figures": [
-        "Figure 17-1: Drilled shaft assessment and acceptance process flowchart",
-        "Figure 17-2: Detailed engineering evaluation and remediation process"
+        "Figure 17-1: Drilled Shaft Assessment and Acceptance Process"
+      ],
+      "tables": [],
+      "applicability": "Post-construction NDT interpretation and acceptance decisions"
+    },
+    {
+      "section_id": "17.2.1",
+      "title": "Evaluation Based on Installation and Inspection Records",
+      "body": "[pp. 17-2 to 17-3] Complete written documentation (Chapter 15) is the permanent record of the as-built shafts and the primary basis of quality assurance. Forms vary between agencies and projects but as a minimum should document casing inspection and installation, excavation logs, drilling fluid properties and handling, base cleanout, reinforcing cage inspection and installation, concrete testing and placement, and post-construction integrity testing (guidance in Chapter 15, the Guide Specification of Chapter 14 and Appendix D; sample forms in Appendix E). The forms must confirm as-built location, dimensions and elevations and document compliance with the specifications and the approved Drilled Shaft Installation Plan. The engineer in responsible charge, typically the foundation design engineer, reviews the records and decides in a timely manner; when later columns or piers depend on approval, records should be an organized package provided as soon as possible to avoid schedule delays. If the records meet all criteria the next step is evaluating NDT results; rejection leads to engineering evaluation of the cause, which may result in acceptance or corrective action.",
+      "key_points": [
+        "Minimum records: casing, excavation logs, drilling fluid, base cleanout, cage, concrete, integrity testing",
+        "Records must confirm as-built location, dimensions, elevations and compliance with the Installation Plan",
+        "Engineer in responsible charge reviews records promptly; organized package avoids schedule delays"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Review of drilled shaft inspection records for acceptance"
+    },
+    {
+      "section_id": "17.2.2",
+      "title": "Evaluation Based on NDT",
+      "body": "[pp. 17-3 to 17-6] CSL, TIP and GGL are routine QA tests of roughly comparable cost, in most cases not a significant increase in shaft cost, and easily justified. Recommended approach: require NDT on all shafts built with concrete placed under slurry or water ('wet' methods) and on all load-test and technique shafts; consider it for dry or cased shafts if excavation stability or concrete placement is a concern (e.g., a congested cage). CT can further evaluate CSL anomalies; TIP is currently the only method assessing the entire cross section; some agencies combine GGL and CSL (outside and core), or TIP and CSL. Alternatives: access tubes in all shafts with tests only when a question arises, or a specified percentage tested routinely with more tests if anomalies or observations warrant. Table 17-1 (as printed): CSL FAT increase Class A (Acceptable) < 15%, energy reduction ('Decibals') Class A <= 9 dB, Classes B (Conditionally Acceptable) and C (Abnormal) 'see Table 16-2'; TIP radius reduction Rr Class A <= 6%, Class C > 6%; local cover Class A >= 3 in, Class C < 3 in; GGL standard deviations below mean Class A < 3, Class C >= 3; no Class B for TIP or GGL. Satisfactory NDT and acceptable records: approve. CSL Class B: review records carefully, especially near the upper limit; a correlating construction observation indicates a significant defect. Class C: further evaluation, often another method or commonly CT to verify and bound the anomaly (refer to the CSL Rating Criteria of Chapter 16). Coring should not automatically be next: for small or non-critical anomalous zones the engineer may judge coring unwarranted and must document the rationale in the permanent record. Cores showing competent concrete of acceptable strength allow acceptance, considering shaft diameter and the number and locations of core holes; with only one core boring, consider more. Coring finding defective concrete leads to engineering evaluation (Figure 17-2 expands the evaluation and remediation blocks of Figure 17-1). Incidents best addressed before concreting is complete: sidewall sloughing (restore stability per Chapter 4, adjust diameter or length); loosening of ground; inflow into a dry hole (flood and finish by wet methods); tremie problems (joint failure, lost seal, withdrawal, loss of workability), where stopping, removing fluid concrete and the cage and restarting another day may be least expensive, or a planned cold joint and completion in the dry if concrete is above groundwater or within permanent casing; sloughing or inflow during concreting (abandon and re-excavate). The contractor decides on abandoning placement; the inspector observes and reports. Contingency plans belong in the Drilled Shaft Installation Plan and pre-construction meetings.",
+      "key_points": [
+        "NDT on all wet-method shafts and all load-test and technique shafts; consider for dry shafts with concerns",
+        "Table 17-1 Class A: CSL FAT increase < 15%, energy reduction <= 9 dB; TIP Rr <= 6%, cover >= 3 in; GGL < 3 std dev",
+        "Table 17-1 Class C: CSL see Table 16-2; TIP Rr > 6% or cover < 3 in; GGL >= 3 std dev",
+        "Class C: further evaluation, commonly crosshole tomography; coring not automatic, document the rationale",
+        "Competent cores allow acceptance; with only one core boring consider more",
+        "Tremie problems: removing fluid concrete and restarting may be least expensive"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 17-2: Flow Chart of the Evaluation and Remediation Process"
       ],
       "tables": [
-        "Table 17-1: Anomalous readings by NDT method — Class A/B/C for CSL (FAT%, RE dB), TIP (Rr%, local cover), GGL (standard deviations)"
+        "Table 17-1: Anomalous Readings by NDT Method - CSL: FAT increase Class A (Acceptable) < 15%, energy reduction (dB) Class A <= 9 dB, Class B (Conditionally Acceptable) and Class C (Abnormal) see Table 16-2; TIP: radius reduction Rr Class A <= 6%, Class C > 6%; local cover Class A >= 3 in, Class C < 3 in; GGL: standard deviations below mean Class A < 3, Class C >= 3; no Class B for TIP or GGL"
       ],
-      "applicability": "Post-construction NDT interpretation and acceptance decisions"
+      "applicability": "Acceptance criteria for drilled shaft NDT results (Table 17-1)"
     },
     {
       "section_id": "17.3",
       "title": "Types of Deficiencies in Completed Shafts",
-      "body": "Geotechnical strength or serviceability deficiencies: insufficient shaft length to mobilize required resistance; poor quality bearing material at tip; loosening of soil around shaft due to caving or poor construction; excessive settlement due to inadequate consolidation of bearing material after improper base cleanout. Structural deficiencies: zones of weak or absent concrete (necking, void, soil inclusion); discontinuity in reinforcement; insufficient cover; geometric defects (misalignment exceeding tolerance). Common causes of structural defects: concrete flow blocked by rebar or debris; slurry contamination of concrete; loss of slurry head during concrete placement; premature casing extraction; caving during excavation; separation of tremie from concrete; tremie joints failure. During construction incidents that may be addressed before completion: sidewall sloughing (restore stability); loosening of ground (change methods, adjust diameter/length); inflow of water in dry hole (flood and use wet methods); tremie problems (stop, remove fluid concrete before set, restart after re-excavating).",
+      "body": "[p. 17-7] The remainder of the chapter deals with deficiencies and remediation in completed shafts; the defects described may require remediation if their magnitude and location are sufficient to affect the strength or serviceability of the shaft.",
       "key_points": [
-        "Geotechnical deficiencies: insufficient length, poor bearing material, loose soil, excessive settlement",
-        "Structural deficiencies: weak concrete zones, necking, voids, soil inclusions, discontinuous reinforcement",
-        "Tremie problems may allow re-excavation and restart if concrete is still fluid",
-        "Document all incidents; communicate to design engineer promptly for decisions"
+        "Defects need remediation only if magnitude and location affect strength or serviceability"
       ],
       "equations": [],
       "figures": [],
@@ -56,35 +82,330 @@
       "applicability": "Deficiency identification; pre- and post-completion problem classification"
     },
     {
-      "section_id": "17.4",
-      "title": "Evaluation",
-      "body": "Engineering evaluation process when defect is identified: (1) determine location and extent of defect from NDT, coring, video, construction records; (2) classify defect type (structural vs. geotechnical) and assess severity; (3) determine whether defect causes shaft to be deficient (fails to meet design requirements); (4) if not deficient, document rationale and accept; (5) if deficient, develop remediation plan. Engineering judgment for Class C NDT results: coring is not automatically required; for small anomalies in non-critical locations, engineer may accept with documented rationale. If coring performed and finds competent concrete with acceptable strength: accept (document number and locations of cores taken). If coring finds defective concrete: proceed to engineering evaluation of impact on performance and develop remediation plan.",
+      "section_id": "17.3.1",
+      "title": "Geotechnical Strength or Serviceability",
+      "body": "[p. 17-7] A structurally sound shaft can still be deficient in geotechnical strength or serviceability: incorrect dimensions or location, or construction problems causing inadequate axial or lateral resistance; existing structures may be deficient from changed ground conditions or loadings. Conservative design regarding axial or lateral resistance of shallow soils makes the design more tolerant of construction disturbance, and a sensitivity analysis may show a cost-effective design with little reliance on shallow strata for side resistance; being overly conservative in lateral resistance at shallow depths can be costly, so judgment is required.",
       "key_points": [
-        "Evaluation steps: locate defect → classify → assess whether deficient → accept or remediate",
-        "Coring not automatically required for Class C NDT results; engineering judgment required",
-        "Accept with documented rationale when defect location/extent does not render shaft deficient",
-        "Only one core boring: consider additional borings to verify no significant defect was missed"
+        "Geotechnical deficiencies: wrong dimensions or location, or construction causing low axial or lateral resistance",
+        "Low reliance on shallow strata makes designs tolerant of construction disturbance"
       ],
       "equations": [],
       "figures": [],
+      "tables": [],
+      "applicability": "Geotechnical deficiencies in completed drilled shafts"
+    },
+    {
+      "section_id": "17.3.1.1",
+      "title": "Incorrect Dimension or Location",
+      "body": "[p. 17-7] Incorrect dimension or length may come from simple errors or inattention to ground actually encountered. Example: anticipated tip elevation +75 ft with a required 30-ft penetration into shale anticipated below elevation +105 ft; if rock is deeper than anticipated, the shaft must be lengthened to provide the 30-ft socket, or axial resistance may be reduced. A shaft out of position from a survey error may see unanticipated eccentricity.",
+      "key_points": [
+        "Lengthen the shaft when rock is deeper than anticipated to keep the required socket",
+        "Survey errors cause unanticipated eccentricity"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Shaft length or location errors affecting geotechnical resistance"
+    },
+    {
+      "section_id": "17.3.1.2",
+      "title": "Inadequate Base Resistance",
+      "body": "[pp. 17-7 to 17-8] Inadequate base resistance can result from: weak soil at the base from founding in the wrong stratum; weak soil from inadequate cleaning or sediment from slurry leaving loose debris between concrete and bearing material; loosening of the bearing stratum by instability at the bottom before concreting; weak concrete or segregated aggregate from concrete dropped through water; subsidence or loss of bearing, e.g., vibrations from nearby pile driving, construction of deeper shafts in close proximity, or a previously undetected void beneath a shaft in karst or mining areas.",
+      "key_points": [
+        "Causes: wrong stratum, poor cleaning or slurry sediment, base loosening, concrete dropped through water",
+        "Subsidence: nearby pile driving, deeper adjacent shafts, voids in karst or mined ground"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Causes of inadequate drilled shaft base resistance"
+    },
+    {
+      "section_id": "17.3.1.3",
+      "title": "Inadequate Axial Side Resistance",
+      "body": "[p. 17-8] Inadequate axial side resistance can result from: failure to recover temporary casing within a zone contributing side resistance; softening of soil or rock at the sidewall from excessive exposure or seepage (some shales and claystones weather rapidly in an open excavation); excessive sidewall contamination from long exposure to bentonite slurry; loosening of soil from excavation instability; settlement of soils from adjacent embankment construction or stockpiles.",
+      "key_points": [
+        "Causes: unrecovered temporary casing, sidewall softening, bentonite buildup, loosening, adjacent fill settlement"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Causes of inadequate drilled shaft side resistance"
+    },
+    {
+      "section_id": "17.3.1.4",
+      "title": "Inadequate Lateral Resistance Around Shaft",
+      "body": "[p. 17-8] Inadequate lateral resistance can result from failure to recover temporary casing installed in an oversized hole, collapse of the excavation disturbing surrounding soil, or other operations such as installing and extracting temporary piles.",
+      "key_points": [
+        "Causes: unrecovered casing in an oversized hole, excavation collapse, temporary pile installation and extraction"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Causes of inadequate lateral resistance around drilled shafts"
+    },
+    {
+      "section_id": "17.3.2",
+      "title": "Structural Strength",
+      "body": "[p. 17-8] Structural deficiencies can occur even with adequate geotechnical strength. Structural demands on shafts loaded primarily in axial compression are usually low, so the greatest concerns are structural defects within the length subject to significant bending moments.",
+      "key_points": [
+        "Greatest structural concern: defects where bending moments are significant"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Structural deficiencies in completed drilled shafts"
+    },
+    {
+      "section_id": "17.3.2.1",
+      "title": "Incorrect Dimensions or Location",
+      "body": "[p. 17-8] A shaft built in the incorrect location or with incorrect dimensions or reinforcing may require evaluation of structural performance.",
+      "key_points": [
+        "Wrong location, dimensions or reinforcing may need structural evaluation"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Structural evaluation of mislocated or misdimensioned shafts"
+    },
+    {
+      "section_id": "17.3.2.2",
+      "title": "Structural Defects in Concrete",
+      "body": "[pp. 17-8 to 17-9] Structural defects in concrete are among the most common problems, partly because Chapter 16 integrity tests now find even minor flaws and partly because shafts are larger and longer with very congested cages, often with embedded column reinforcement; designers should follow Chapters 6 and 7 for constructability of cages and concrete. Causes: soil inclusions from sidewall sloughing during placement; soil inclusions from settlement of suspended solids in the drilling fluid (Chapter 7); entrapped laitance from excessive bleeding, segregation and/or loss of workability (Chapter 5); cold joints or trapped laitance or debris from interrupted tremie placement; breach of the tremie seal from improper withdrawal or a sudden drop in concrete level (e.g., flow into voids as casing is withdrawn); leaching from water inflow through joints or voids (artesian conditions require a positive head at all times); necking or displacement from arching within temporary casing as it is withdrawn; infiltration of drilling fluid into tremie joints; incorrect lower-strength mix, poor workability, or failure to maintain minimum slump throughout placement.",
+      "key_points": [
+        "Common: integrity tests now find minor flaws; large congested shafts are harder to concrete",
+        "Causes: soil inclusions, laitance, interrupted tremie, seal breach, leaching, necking in casing",
+        "Also drilling fluid in tremie joints, wrong mix, loss of slump"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Causes of structural defects in drilled shaft concrete"
+    },
+    {
+      "section_id": "17.3.2.3",
+      "title": "Inadequate Cover or Exposed Reinforcement",
+      "body": "[p. 17-9] Some concrete defects compromise cover around the reinforcement, from trapped debris or laitance or loss of workability blocking flow through the cage. Reinforcement that is or may be exposed to corrosion within the structure's life is a deficiency which may require remediation.",
+      "key_points": [
+        "Cover loss from debris, laitance or blocked flow through the cage",
+        "Reinforcement exposed to corrosion within the design life may need remediation"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Inadequate concrete cover in drilled shafts"
+    },
+    {
+      "section_id": "17.3.2.4",
+      "title": "Structurally Damaged Shaft Due to Overload after Construction",
+      "body": "[p. 17-9] A shaft overloaded to structural yield needs remediation; existing structures may suffer vessel or truck impact beyond the shaft's strength, and the authors know of shafts hit by a work barge or runaway equipment during construction. If the strength of a damaged foundation cannot be assured, a conservative assessment must be made for remediation.",
+      "key_points": [
+        "Impact or overload to yield requires remediation",
+        "If damaged strength cannot be assured, assess conservatively"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Drilled shafts damaged by overload or impact"
+    },
+    {
+      "section_id": "17.4",
+      "title": "Evaluation",
+      "body": "[pp. 17-9 to 17-11] Full restoration sometimes needs only a cursory evaluation and modest repair, generally for structural defects near the top repaired by chipping and reforming (e.g., Caltrans standardized mitigation plans the contractor may choose without further evaluation); otherwise engineering evaluation comes first. Geotechnical strength: evaluate the actual demand on the specific shaft (often less than the group design load); evaluate site-specific conditions, possibly with more exploration, which may justify more resistance elsewhere to offset a deficiency (e.g., a stuck temporary casing); proof test the shaft (rapid, dynamic or static load test), which should allow a higher resistance factor for that shaft, not defined by AASHTO LRFD at present and requiring designer judgment. Structural strength is generally dominated by flexure: a p-y model (Chapters 9 and 12) with actual demands and ground conditions gives the moment at the defect, often small at depth. Within permanent casing the as-built composite section may be considered; a steel shell filled with lower strength concrete might suffice. Evaluate sections with low strength concrete or soil inclusions on a conservative assessment of defect character and extent from integrity testing, coring and other techniques; exposed reinforcement may be discounted (buckling, corrosion). Sarhan and O'Neill (2002) discuss flexural behavior with minor flaws; advanced analyses may be warranted to support repair decisions. Turner and Turner (2016): finite element 'fiber model' discretizing the section into fibers with uniaxial stress-strain behavior for steel, confined, unconfined and defective concrete. Case history: hydro-jetting through drilled access tubes and high-strength grout left defective concrete in 'shadow' zones behind longitudinal bars, and the repair was initially rejected; modeling shadow zones as zero strength (Figure 17-3), moment-curvature analysis (Figure 17-4) showed a slight decrease but adequate resistance to factored demands, and the repair was accepted; commercially available software can do this.",
+      "key_points": [
+        "Near-top defects may be chipped and reformed with little evaluation (Caltrans standardized plans)",
+        "Geotechnical: actual shaft demand, site-specific ground, proof load test (higher resistance factor by judgment)",
+        "Structural: p-y analysis for moment at the defect; credit permanent casing; discount exposed bars",
+        "Fiber model moment-curvature analysis of defective sections (Turner and Turner, 2016)"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 17-3: (a) As-Designed Drilled Shaft Cross Section, (b) Fiber Model of Repaired Shaft (Turner and Turner, 2016)",
+        "Figure 17-4: Moment-Curvature Analysis Results for As-Designed and As-Repaired Sections (Turner and Turner, 2016)"
+      ],
       "tables": [],
       "applicability": "Engineering evaluation of detected anomalies and defects"
     },
     {
       "section_id": "17.5",
       "title": "Remediation Methods",
-      "body": "Ground improvement: improve soil resistance around deficient shaft using grouting, jet grouting, or other ground improvement methods to increase side or base resistance. Supplemental foundations and/or structural bridging: install additional drilled shafts, micropiles, or other foundations adjacent to deficient shaft; install structural cap or beam to bridge load from deficient shaft to adjacent foundations. Excavation and replacement: excavate deficient shaft and replace with new shaft; applicable when shaft is relatively shallow or defect is near top; avoid for deep shafts or shafts already incorporated into structure above. Structural enhancement: add reinforcement, jacketing, or other structural elements to strengthen deficient zone in shaft; may involve coring, cleaning, injecting epoxy or grout into defect zone. Grouting: pressure grouting to fill voids or strengthen weak concrete; sleeve-port tube grouting along shaft sides; post-grouting through tubes preinstalled at shaft base (Appendix H) for base resistance enhancement. Case histories: examples in Chapter 17 illustrate successful remediation of various defect types.",
+      "body": "[p. 17-12] After a deficiency in geotechnical or structural strength is determined, a remediation plan is required that restores performance in a constructible and reliable way and includes monitoring or verification that the remediation succeeded. The measures that follow have been used successfully; the list is not exhaustive.",
       "key_points": [
-        "Ground improvement: increase side/base resistance around deficient shaft",
-        "Supplemental foundations: additional drilled shafts or micropiles adjacent; structural cap to bridge",
-        "Excavation and replacement: applicable for shallow shafts; avoid for deep or already-integrated shafts",
-        "Structural enhancement: epoxy or grout injection into defect zone; jacketing",
-        "Grouting: post-grouting for base resistance; sleeve-port tubes for side; pressure grouting for voids"
+        "Remediation plan must be constructible, reliable, and include monitoring or verification"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
       "applicability": "Remediation of deficient drilled shafts after construction"
+    },
+    {
+      "section_id": "17.5.1",
+      "title": "Ground Improvement",
+      "body": "[p. 17-12] Ground improvement restores geotechnical strength where existing materials were disturbed in construction or by environmental factors: penetration grouting to fill voids around a shaft (e.g., casing left in an oversized hole); compaction grouting to restore density of loosened granular soils below or around a shaft; vibro-compacted stone columns to improve density and reduce liquefaction susceptibility; grouting loose material below the base by drilling through the shaft (more a replacement technique, Section 17.5.5.1). Shallow soils for lateral loads may be excavated and replaced with flowable fill (cement-stabilized sand placed like fluid concrete without compaction); other options include deep soil mixing, jet grouting, lime stabilization and vibratory compacted stone columns. Rollins et al. (2010) give recommendations for ground improvement to improve lateral performance of deep foundations.",
+      "key_points": [
+        "Penetration grouting, compaction grouting, vibro-compacted stone columns",
+        "Shallow soils for lateral loads: replace with flowable fill; soil mixing, jet grouting, lime",
+        "Rollins et al. (2010) for lateral performance improvement"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Ground improvement to remediate drilled shaft resistance"
+    },
+    {
+      "section_id": "17.5.2",
+      "title": "Supplemental Foundations and/or Structural Bridging",
+      "body": "[pp. 17-12 to 17-13] Where strength or stiffness is less than required, adding deep foundation elements to supplement or replace the shaft may be most effective; additional shafts or micropiles are generally most suitable near an existing shaft. A common cap must address strain compatibility: shear distribution depends on relative stiffness, so stiff new elements in rock beside a softer existing shaft can impose high cap shear and moment (Figure 17-5), while micropiles may be less stiff than a large existing shaft; pre-loading new elements can address strain compatibility.",
+      "key_points": [
+        "Supplement or replace with additional shafts or micropiles",
+        "Common cap: relative stiffness governs shear and moment (strain compatibility); pre-load new elements"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 17-5: Differing Relative Stiffness of Deep Foundation Elements Can Affect Shear Forces and Bending Moment in Cap"
+      ],
+      "tables": [],
+      "applicability": "Supplemental foundations for deficient drilled shafts"
+    },
+    {
+      "section_id": "17.5.2.1",
+      "title": "Additional Shafts",
+      "body": "[pp. 17-13 to 17-14] Underpinning with 'straddle shafts' ('sister shafts') supplements or replaces a defective shaft; chipping away the existing shaft is usually unnecessary unless it is so damaged it is a liability. Figure 17-6: straddle shafts completely replacing pile foundations of an Arizona bridge undermined by scour. Figure 17-7: a structurally sound column on a single 6-ft shaft deficient in axial resistance received a 4-ft shaft on each side, built as close as possible to keep the cap small, analyzed as an elliptically shaped barrette with end bearing only from the two new, deeper shafts; the column was roughened and tied to a new post-tensioned cap with dowels.",
+      "key_points": [
+        "Straddle (sister) shafts supplement or replace; removing the old shaft usually unnecessary",
+        "Example: two 4-ft sister shafts beside a 6-ft shaft, analyzed as an elliptical barrette"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 17-6: Use of Straddle Shafts to Replace an Existing Foundation (photo by B. Berkovitz)",
+        "Figure 17-7: Use of Sister Shafts to Supplement an Existing Foundation (McGillivray and Brown, 2007)"
+      ],
+      "tables": [],
+      "applicability": "Straddle or sister shafts to remediate drilled shafts"
+    },
+    {
+      "section_id": "17.5.2.2",
+      "title": "Micropiles",
+      "body": "[pp. 17-14 to 17-15] Micropiles, typically 12 inches or smaller, are steel members (pipe or high strength bar) grouted into the bearing material (FHWA-NHI-05-039, Sabatini et al., 2005); small equipment suits restricted access or low headroom. They can be drilled through an existing accessible shaft to anchor it into an underlying formation (Figure 17-8), even through integrity test tubes, with high strength or conventional bars needing sufficient development length to bond to the shaft, and then add structural strength. Around a shaft (Figure 17-9) they can be very close, minimizing the cap: 10.75-inch O.D. steel pipe casing to rock with a 75 ksi grouted bar forming a rock socket, and a cap formed around column and micropiles as in Figure 17-7.",
+      "key_points": [
+        "Micropiles (12 in. or smaller; FHWA-NHI-05-039) suit restricted access or low headroom",
+        "Can be drilled through the shaft or its access tubes; bars need development length",
+        "Example: 10.75-in. O.D. casing to rock with 75 ksi grouted bar socket"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 17-8: Use of Micropiles Drilled Through Existing Drilled Shaft"
+      ],
+      "tables": [],
+      "applicability": "Micropiles to remediate drilled shafts"
+    },
+    {
+      "section_id": "17.5.3",
+      "title": "Excavation and Replacement",
+      "body": "[pp. 17-15 to 17-16] Excavation and replacement suits structural defects in relatively shallow shafts accessible from the surface: poor concrete at the top of a large shaft removed by hand with impact tools, or within the cage by a drilled shaft rig with rotary tools; if surrounding soil can be excavated in the dry, defective concrete can be chipped from outside and the upper shaft re-cast in a form (Figure 17-10). Figure 17-9 (micropiles supplementing an existing foundation, McGillivray and Brown, 2007, Section 17.5.2.2) is printed in this section's pages.",
+      "key_points": [
+        "Shallow defects: remove by hand or rig within the cage, or chip from outside in the dry and re-cast"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 17-9: Use of Micropiles to Supplement an Existing Foundation (McGillivray and Brown, 2007)",
+        "Figure 17-10: Excavation and Replacement of Defective Concrete Using (a) Drilling Tool within the Cage and (b) Hand Methods (photos courtesy Caltrans)"
+      ],
+      "tables": [],
+      "applicability": "Excavation and replacement of defective shaft concrete"
+    },
+    {
+      "section_id": "17.5.4",
+      "title": "Structural Enhancement",
+      "body": "[pp. 17-16 to 17-18] Structural enhancement increases strength without fully removing the defect. If the center is drilled out (Figure 17-10a), a structural steel or pipe section can be cast in with high strength concrete: Figure 17-11, a core defect excavated several feet beyond the defective zone and a 30-inch diameter steel pipe centered and grouted in, giving flexural resistance equal to or greater than the as-designed section (overhead sign shaft, primarily wind lateral load); a central drilled section might also extend into the bearing formation for geotechnical strength. Additional bars can form a structural 'bridge' from sound concrete above to sound concrete below: Figure 17-12, seven No. 18 bars in a 10-ft shaft, through seven 4-1/4 inch holes drilled through the defect into competent concrete, each enlarged to 2 ft diameter by hydrodemolition in the target zone, a bar centered in each hole and grouted; above and below, each bar was grouted in a 4-1/4 inch hole over its development length.",
+      "key_points": [
+        "Cast-in steel pipe (e.g., 30-in.) restores flexural resistance of a cored-out shaft",
+        "Added bars bridge a defect: seven No. 18 bars in 2-ft hydrodemolished holes in a 10-ft shaft",
+        "Bars developed in 4-1/4 in. grouted holes above and below the repair zone"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 17-11: Use of a Steel Section Cast into a Drilled Shaft to Form Structural Bridge",
+        "Figure 17-12: Structural Enhancement using Additional Reinforcing Bars"
+      ],
+      "tables": [],
+      "applicability": "Structural enhancement of defective drilled shafts"
+    },
+    {
+      "section_id": "17.5.5",
+      "title": "Grouting",
+      "body": "[p. 17-18] Grouting may directly treat the defective area to improve or restore structural and/or geotechnical strength: at the base for loose material below the shaft, within the shaft for structural defects, or around the shaft for soil bond and/or cover for corrosion protection.",
+      "key_points": [
+        "Grouting at the base, within the shaft, or around the perimeter"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Grouting to remediate drilled shafts"
+    },
+    {
+      "section_id": "17.5.5.1",
+      "title": "Grouting at the Base of the Shaft",
+      "body": "[pp. 17-18 to 17-19] A base defect from trapped material or segregated aggregate can sometimes be treated by grouting the base: drill at least two holes through the full length to circulate fluid through the soft zone (access tubes or investigation drill or core holes); wash or flush with water or air-water down one tube and return through the other(s); after a clear return, inject grout in one hole until clean grout returns from the other(s), then seal the returns and pressure grout; monitor for upward movement and log grout volume and pressure versus time as for planned base grouting (Appendix H). High-pressure air-water is effective except in cohesionless material, where no air and low water pressures must be used so as not to undermine the shaft or nearby shafts. Monitor solids in the return to judge washing efficiency; in rock the base may be inspected by television camera or borescope.",
+      "key_points": [
+        "At least two holes through the shaft; wash, then grout until clean returns, seal and pressure grout",
+        "Monitor upward movement; log grout volume and pressure versus time (Appendix H)",
+        "No air and low water pressure in cohesionless material"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Base grouting repair of drilled shafts"
+    },
+    {
+      "section_id": "17.5.5.2",
+      "title": "Grouting Within the Shaft",
+      "body": "[pp. 17-19 to 17-21] Grouting can repair defective concrete within a shaft; removing low strength material is the hardest part. Hydrodemolition (high pressure water jets) through access holes has been used with success (Figures 17-13 and 17-14, video verifying removal; case history Daita et al., 2018): nozzle pressures over 40,000 psi cut concrete at close range (within a foot or so) if not shadowed by reinforcing, but removing large quantities is not normally feasible. After flushing, pump dry or vacuum the hole if seepage allows; Figure 17-15 shows a core through a grouted repair with grout stringers. The technique can remediate soil inclusions or low strength concrete and often restores required structural strength, but not a perfect condition: post-treatment cores or CSL should improve but will not be anomaly-free. For suspected segregated aggregate confirmed by core holes and flushing, permeation grouting with microfine grout may be feasible: pump grout sequentially until clean returns, cap each return and raise pressure, and assess by CSL after the grout sets. Defects outside the cage in granular soils below groundwater are not suited, since hydroblasting would erode unstable soils; consider jet grouting around the perimeter.",
+      "key_points": [
+        "Hydrodemolition over 40,000 psi cuts concrete within about a foot; not for large volumes",
+        "Grouted repairs improve but do not eliminate anomalies in cores or CSL",
+        "Permeation grouting with microfine grout for segregated aggregate; verify by CSL",
+        "Not for defects outside the cage in granular soil below groundwater"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 17-13: Hydrodemolition Equipment",
+        "Figure 17-14: Video Inspection of Drilled Shaft Remediation: (a) Snapshot from Video Inspection, and (b) Downhole Video Camera",
+        "Figure 17-15: Concrete Core Through Grouted Concrete Repair (photo from Ryan McTigue, Raito, Inc.)"
+      ],
+      "tables": [],
+      "applicability": "Hydrodemolition and grouting repair within drilled shafts"
+    },
+    {
+      "section_id": "17.5.5.3",
+      "title": "Grouting Around the Perimeter of the Shaft",
+      "body": "[pp. 17-21 to 17-22] If the shaft is structurally sufficient except for cover, or a void exists between shaft and soil, perimeter grouting may be considered: for a stuck casing, tremie grout into the void through small diameter tubes may restore lateral resistance; for voids or defects below groundwater, jet grouting can erode soil or weak material and encase the shaft. Jet grouting uses sideward nozzles (grout, water and air combinations) to cut and flush soil and replace it with grout, forming columns from 3 ft to more than 7 ft in diameter depending on the flushing system and parameters (pressure, rotation speed, lifting rate) (Figure 17-16, Axtell and Stark, 2008). Nozzle pressure, typically around 1000 psi, is much lower than for hydrodemolition, cutting soil or weak inclusions but not good concrete, so it suits encapsulating a shaft (Figure 17-17); columns can start and stop at chosen elevations, and jet grouting can also stabilize the shaft and soil before internal hydrodemolition and grouting.",
+      "key_points": [
+        "Stuck casing void: tremie grout through small tubes",
+        "Jet grouting columns 3 ft to over 7 ft; nozzle pressure about 1000 psi does not erode good concrete",
+        "Columns can be limited to the treatment zone"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 17-16: Jet Grouting Photos and Illustration",
+        "Figure 17-17: Jet Grouting Application for Drilled Shaft Repair"
+      ],
+      "tables": [],
+      "applicability": "Jet grouting and perimeter grouting of drilled shafts"
+    },
+    {
+      "section_id": "17.6",
+      "title": "Summary",
+      "body": "[p. 17-23] Inspection records and NDT methods establish whether completed shafts meet the Plans and Specifications; where records and/or NDT suggest possible defects, follow-up evaluation assesses their effect on strength and serviceability, and inadequate shafts are remediated. When a defect is detected, understand its cause to avoid it on future shafts and to define its extent. Not all defects are deficiencies that must be repaired; the most effective repair depends on location and type. A good quality control plan should be agreed and implemented before remediation, including core holes used for both investigation and repair, pre-repair and post-repair CSL or 3DT thermography, and post-repair core holes and tests if needed. The heading prints '7.6 SUMMARY'.",
+      "key_points": [
+        "Not all defects are deficiencies requiring repair",
+        "Understand the cause of a defect to prevent recurrence and define its extent",
+        "Agree a QC plan before remediation: core holes, pre- and post-repair CSL or thermography"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Summary of drilled shaft assessment, acceptance and remediation"
     }
   ]
 }
