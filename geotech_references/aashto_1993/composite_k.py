@@ -32,17 +32,17 @@ printed worked examples (exact, called out by value in each docstring) or
 direct visual chart reads (multiple points per curve, not single-point
 anchors) -- with any smoothing formula required to reproduce every read
 point to a stated, tested tolerance (asserted in
-``tests/test_aashto_1993_composite_k.py``). Two functions (Figure 3.3's
-subbase-thickness dependence, Figure 3.4's rigid-foundation-depth
-dependence) have NO printed numeric anchor away from their one reference
-value and rely on lower-confidence direct chart reads instead (explicitly
-flagged, with a wider stated tolerance, in their own section docstrings)
-rather than an unanchored fitted exponent.
+``tests/test_aashto_1993_composite_k.py``). Figure 3.3 is read at every
+printed curve and Dsb gridline and worked by its own construction (REF-58);
+Figure 3.4's rigid-foundation-depth dependence has NO printed numeric
+anchor away from its one reference value and relies on lower-confidence
+direct chart reads instead (flagged, with a wider stated tolerance, in its
+own section docstring) rather than an unanchored fitted exponent.
 
 Chained end-to-end, this module reproduces the guide's own Table 3.3
 worked example (composite k -> rigid-foundation correction -> relative
 damage per season -> average -> back-solved effective k -> loss-of-support
-correction) to within about 3% (see
+correction) to within about 4% (see
 ``tests/test_aashto_1993_composite_k.py``).
 """
 
@@ -123,150 +123,187 @@ def loss_of_support_values(material=None) -> dict:
 # k(infinity), Assuming a Semi-Infinite Subgrade Depth
 # (pdf_page 128, printed II-39). CHART READ-OFF.
 #
-# This is a 3-variable (Dsb, Esb, MR), 4-quadrant nomograph with a "turning
-# line": (1) project up from Dsb on the shared thickness axis to the Esb
-# curve; (2) project that height right to the turning line; (3) separately
-# project up from the SAME Dsb value to the MR curve in the lower quadrant,
-# then right to the turning line; (4) a vertical line from the turning-line
-# point combines with the Esb-quadrant height to land on a k_inf diagonal
-# (traced directly for the printed worked example; pdf_page 128).
+# A 3-variable (Dsb, Esb, MR), 4-quadrant nomograph with a turning line:
+# up from Dsb to the Esb curve and across; up from the same Dsb to the MR
+# curve in the lower quadrant, across to the turning line, then vertically
+# to meet the Esb height on a k_inf diagonal. The chart is read here and
+# its own construction followed, not fitted with a formula.
 #
-#   k_inf = (MR/19.4) * [1 + A*(Esb/MR)^B * dsb_scale(Dsb)]
+# How it was read (REF-58, from the GM-298 read of 2026-10-31): the scanned
+# page rendered at its scan resolution (about 305 dpi). Every printed
+# curve's height (scan pixels, downward) was measured at each even Dsb
+# gridline (6-18 in) by fitting the curve's ink locally; the eleven k_inf
+# diagonals (50-2000 pci) and the turning line by where they cross the
+# gridline rows. Then
 #
-# The (MR/19.4) factor is the guide's own bare-roadbed relation
-# (equations.modulus_subgrade_reaction_simple), so the bracket is the
-# subbase's amplification factor. This function is only meaningful over
-# the digitized chart range Dsb=6-18 in (dsb_scale is CLAMPED, not
-# extrapolated to 0, outside that range -- see the note flag below); for
-# the true no-subbase case, callers should use
-# ``equations.modulus_subgrade_reaction_simple`` directly (this is exactly
-# what ``effective_modulus_subgrade_reaction`` does when no Dsb/Esb is
-# given for a period), not this function with a vanishingly small dsb_in.
+#   y_E = height of the Esb curve at Dsb    (upper quadrant)
+#   y_M = height of the MR curve at Dsb     (lower quadrant)
+#   x_t = y_M + c_t(y_M)                    (turning line, x - y = c_t)
+#   c   = x_t - y_E                         (the diagonal through (x_t, y_E))
+#   k_inf from c, log-interpolated between the drawn diagonals.
 #
-# A, B (the Esb/MR power law, held at the reference Dsb=6 in) fit (exact
-# 2-point log-log solve) to the two most-separated of FOUR printed anchors,
-# all at Dsb=6 in (Table 3.3 worked example, pdf_page 132, printed II-43 --
-# the guide's own fully-worked seasonal example uses a 6-inch granular
-# subbase throughout):
-#   Esb=50,000 psi, MR=20,000 psi -> k_inf=1,100 pci  (F-1=0.0670)
-#   Esb=15,000 psi, MR= 2,500 psi -> k_inf=  160 pci  (F-1=0.2416)  <- fit pts
-#   Esb=15,000 psi, MR= 4,000 psi -> k_inf=  230 pci  (F-1=0.1155)  <- check
-#   Esb=20,000 psi, MR= 7,000 psi -> k_inf=  410 pci  (F-1=0.1363)  <- check
-# Plus a 5th anchor, Figure 3.3's OWN standalone worked example (same page):
-#   Esb=20,000 psi, MR= 7,000 psi -> k_inf=  400 pci  (F-1=0.1086)
-# (identical inputs to the anchor immediately above -- the guide's own two
-# independent reads of the same chart point differ by ~2.5%, which sets a
-# natural noise floor for this whole digitization).
-# Cross-checking the fitted A, B against the 3rd/4th/5th anchors gives
-# predicted k_inf = 231 (act. 230, +0.5%) and 390 (act. 400-410, -2.4% to
-# -4.8%) -- i.e. within the guide's own reading noise.
+# Esb and MR are interpolated between curves in log(Esb), log(MR); Dsb
+# linearly between gridlines. Checked against the five printed anchors,
+# all at Dsb = 6 in: the figure's own example (Esb 20,000, MR 7,000 -> 400;
+# read 391) and the four Table 3.3 rows (pdf_page 132, printed II-43:
+# 1,100 -> 1,085; 160 -> 154; 230 -> 230; 410 -> 391), within 5 %, the
+# spread of the guide's own two reads of one point (400 and 410).
 #
-# dsb_scale(Dsb) -- a DENSITY READ GRID, not a fitted exponent -- replaces
-# the smooth power-law extrapolation. Every printed numeric example in this
-# guide happens to use Dsb=6 in, so there is no printed anchor away from
-# Dsb=6; the two additional points below are direct visual chart reads,
-# tracing the same 4-quadrant construction as the worked example but at
-# Dsb=12 in and Dsb=18 in gridlines (Esb=20,000/MR=7,000 held fixed,
-# pdf_page 128 -- narrow high-DPI column crops through both the Esb and MR
-# quadrants). Confidence is markedly lower than the Dsb=6 anchors (a raster
-# scan with no vector data does not support pixel-exact reads of this
-# 4-quadrant construction away from the one example the guide traces with
-# arrows) -- treat these two points as +/-20-25%:
-#   Dsb= 6 in -> dsb_scale = 1.00  (anchor-defined; F-1 above is *this*
-#                                    quantity, read directly)
-#   Dsb=12 in -> dsb_scale = 1.16  (chart read; ESB/MR curve families are
-#                                    visibly more spread apart / less
-#                                    converged at Dsb=12 than at Dsb=6)
-#   Dsb=18 in -> dsb_scale = 1.30  (chart read, same method, Dsb=18 in)
-# Linearly interpolated (clamped outside 6-18 in) via ``_linterp``.
-#
-# Net effect: at Esb/MR=2.857 (the Table 3.3 June-Oct point), k_inf only
-# rises from 390 pci (Dsb=6) to 399 pci (Dsb=18) -- a modest ~2% change,
-# because the Dsb-scale multiplies the *amplification* term (which is
-# itself only ~8-11% for this Esb/MR ratio), not the full k_inf. This is
-# a real (if imprecise) chart-based finding, not an assumption -- treat it
-# as this function's single largest accuracy limitation and cross-check
-# Figure 3.3 directly for designs with Dsb far from 6 in, or where the
-# Esb/MR ratio is far from the 2.5-6.0 range spanned by the anchors.
+# Outside the printed curves: Dsb below 6 in, Esb below 15,000 psi or MR
+# below 1,000 psi raise ValueError (reading off the lowest curve would
+# overstate k); Dsb above 18 in, Esb above 1,000,000 psi or MR above
+# 20,000 psi use the nearest printed curve with a note (understates k); a
+# construction landing beyond the 2,000 pci diagonal is held at 2,000 pci
+# with a note.
 # ============================================================================
 
-_COMPK_A = 0.01750
-_COMPK_B = 1.4650
-_COMPK_DSB_VALUES = [6.0, 12.0, 18.0]
-_COMPK_DSB_SCALE = [1.00, 1.16, 1.30]
+# Upper quadrant: heights of the nine Esb curves at each even Dsb gridline,
+# in _COMPK_ESB order.
+_COMPK_ESB = (1_000_000, 600_000, 400_000, 200_000, 100_000, 75_000, 50_000,
+              30_000, 15_000)
+_COMPK_UPPER = {
+    18: (945.5, 974.2, 999.2, 1034.7, 1074.7, 1090.8, 1112.1, 1141.7, 1180.3),
+    16: (990.7, 1018.2, 1040.3, 1072.9, 1112.6, 1127.1, 1146.9, 1176.5, 1212.3),
+    14: (1037.1, 1062.4, 1083.1, 1114.5, 1153.7, 1166.1, 1185.5, 1211.9, 1246.0),
+    12: (1092.4, 1115.3, 1134.5, 1164.3, 1200.4, 1212.1, 1230.5, 1254.0, 1286.4),
+    10: (1155.9, 1177.8, 1194.6, 1222.9, 1254.7, 1265.1, 1281.4, 1304.6, 1333.1),
+    8: (1233.2, 1251.9, 1266.8, 1293.1, 1319.0, 1330.3, 1344.5, 1364.5, 1390.3),
+    6: (1328.5, 1342.8, 1355.8, 1377.1, 1397.1, 1407.6, 1420.4, 1434.5, 1459.5),
+}
+# Lower quadrant: heights of the nine MR curves, in _COMPK_MR order. (Dsb
+# 8 in, MR 10,000: the curve is not resolved at that gridline; 2203.5 is
+# set from its neighbours' steps between Dsb 10, 8 and 6.)
+_COMPK_MR = (1000, 2000, 3000, 5000, 7000, 10_000, 12_000, 16_000, 20_000)
+_COMPK_LOWER = {
+    18: (1747.7, 1832.0, 1882.5, 1942.3, 1986.8, 2030.3, 2052.6, 2087.3, 2114.2),
+    16: (1765.5, 1855.1, 1906.1, 1968.8, 2012.2, 2055.2, 2079.2, 2114.0, 2141.8),
+    14: (1785.8, 1878.9, 1931.1, 1993.3, 2039.8, 2081.2, 2108.6, 2141.8, 2173.0),
+    12: (1811.5, 1907.2, 1959.3, 2025.2, 2071.8, 2115.3, 2141.5, 2178.6, 2207.7),
+    10: (1843.0, 1939.3, 1992.9, 2062.7, 2107.5, 2156.6, 2183.0, 2218.0, 2251.0),
+    8: (1879.6, 1981.2, 2034.1, 2110.0, 2152.0, 2203.5, 2232.0, 2270.9, 2302.6),
+    6: (1926.8, 2032.5, 2087.1, 2167.4, 2214.7, 2269.3, 2296.6, 2335.9, 2370.7),
+}
+# The k_inf diagonals x - y = c, as drawn, and the turning line
+# x - y = -339.5 at y = 1770 rising to -334.5 at y = 2480.
+_COMPK_K_LINES = (50, 100, 200, 300, 400, 500, 600, 800, 1000, 1500, 2000)
+_COMPK_K_C = (69.5, 190.5, 312.0, 380.5, 433.5, 480.5, 515.5, 557.0, 600.5,
+              673.0, 724.5)
 
 _COMPK_ESB_RANGE = (15000.0, 1000000.0)
 _COMPK_MR_RANGE = (1000.0, 20000.0)
 _COMPK_DSB_RANGE = (6.0, 18.0)
+_FIG33_REF = "AASHTO 1993 Guide, Figure 3.3 (pdf_page 128, printed II-39)"
+
+
+def _compk_turning_c(y):
+    return -339.5 + (y - 1770.0) * (5.0 / 710.0)
+
+
+def _compk_curve_height(table, labels, dsb, value):
+    pairs = sorted(zip((math.log10(v) for v in labels), range(len(labels))))
+    logs = [p[0] for p in pairs]
+    order = [p[1] for p in pairs]
+    ds = sorted(table)
+    heights = [_linterp(math.log10(value), logs, [table[d][i] for i in order])
+               for d in ds]
+    return _linterp(dsb, [float(d) for d in ds], heights)
 
 
 def composite_k_subbase(mr_psi, esb_psi, dsb_in) -> dict:
     """Composite modulus of subgrade reaction k_inf, semi-infinite subgrade
-    depth (Figure 3.3 nomograph read-off; see module/section docstring for
-    the read-grid derivation and anchor points).
+    depth, read off Figure 3.3 (pdf_page 128, printed II-39) by the chart's
+    own construction (see the section note above for how it was read).
 
-        k_inf = (MR/19.4) * [1 + 0.0175*(Esb/MR)^1.465 * dsb_scale(Dsb)]
-
-    dsb_scale is a 3-point read grid (Dsb=6/12/18 in -> 1.00/1.16/1.30,
-    linearly interpolated), NOT a fitted exponent -- see section docstring
-    for provenance and the (wider) tolerance away from Dsb=6 in.
+    Checked against the guide's five printed reads, all at Dsb = 6 in
+    (the figure's example Esb 20,000 / MR 7,000 -> 400 pci, read 391; the
+    Table 3.3 rows 1,100 / 160 / 230 / 410 pci, read 1,085 / 154 / 230 /
+    391), within 5 %.
 
     Parameters
     ----------
     mr_psi : float
-        Roadbed soil resilient modulus for the season, psi, > 0. Digitized
-        chart range approximately 1,000-20,000 psi.
+        Roadbed soil resilient modulus for the season, psi. Printed curves
+        1,000-20,000 psi.
     esb_psi : float
-        Subbase elastic (resilient) modulus for the season, psi, > 0.
-        Digitized chart range 15,000-1,000,000 psi (the 9 printed curves).
+        Subbase elastic (resilient) modulus for the season, psi. Printed
+        curves 15,000-1,000,000 psi.
     dsb_in : float
-        Subbase thickness, inches, > 0. Digitized chart range
-        approximately 6-18 in.
+        Subbase thickness, inches. Printed scale 6-18 in.
 
     Returns
     -------
     dict
         {'mr_psi', 'esb_psi', 'dsb_in', 'k_inf_pci', 'chart_read',
-        'equation', 'reference', 'note'?}.
+        'method', 'reference', 'note'?}.
 
     Raises
     ------
     ValueError
-        If mr_psi, esb_psi, or dsb_in <= 0.
+        If an input is <= 0, or Dsb is below 6 in, Esb below 15,000 psi
+        or MR below 1,000 psi (below the printed curves; reading off the
+        lowest curve would overstate k). Above the printed curves the
+        nearest curve is used with a note (understates k).
     """
-    if mr_psi <= 0:
-        raise ValueError(f"mr_psi must be > 0, got {mr_psi}")
-    if esb_psi <= 0:
-        raise ValueError(f"esb_psi must be > 0, got {esb_psi}")
-    if dsb_in <= 0:
-        raise ValueError(f"dsb_in must be > 0, got {dsb_in}")
+    for name, val in (("mr_psi", mr_psi), ("esb_psi", esb_psi),
+                      ("dsb_in", dsb_in)):
+        if val is None or val <= 0:
+            raise ValueError(f"{name} must be > 0, got {val}")
+    if dsb_in < _COMPK_DSB_RANGE[0]:
+        raise ValueError(
+            f"Subbase thickness {dsb_in} in is below Figure 3.3's printed "
+            f"Dsb scale ({_COMPK_DSB_RANGE[0]:g}-{_COMPK_DSB_RANGE[1]:g} in); "
+            "read the chart and give k directly, or use the roadbed alone "
+            "(equations.modulus_subgrade_reaction_simple)."
+        )
+    if esb_psi < _COMPK_ESB_RANGE[0]:
+        raise ValueError(
+            f"Subbase modulus {esb_psi} psi is below Figure 3.3's lowest "
+            f"printed curve ({_COMPK_ESB_RANGE[0]:,.0f} psi); give k directly "
+            "or use the roadbed alone."
+        )
+    if mr_psi < _COMPK_MR_RANGE[0]:
+        raise ValueError(
+            f"Roadbed modulus {mr_psi} psi is below Figure 3.3's lowest "
+            f"printed curve ({_COMPK_MR_RANGE[0]:,.0f} psi); give k directly."
+        )
+    notes = []
+    dsb = dsb_in
+    if dsb > _COMPK_DSB_RANGE[1]:
+        dsb = _COMPK_DSB_RANGE[1]
+        notes.append(f"Dsb {dsb_in} in is above the printed scale; the "
+                     f"{_COMPK_DSB_RANGE[1]:g}-in gridline was used "
+                     "(understates k).")
+    esb = esb_psi
+    if esb > _COMPK_ESB_RANGE[1]:
+        esb = _COMPK_ESB_RANGE[1]
+        notes.append(f"Esb {esb_psi:,.0f} psi is above the highest printed "
+                     "curve; the 1,000,000-psi curve was used (understates k).")
+    mr = mr_psi
+    if mr > _COMPK_MR_RANGE[1]:
+        mr = _COMPK_MR_RANGE[1]
+        notes.append(f"MR {mr_psi:,.0f} psi is above the highest printed "
+                     "curve; the 20,000-psi curve was used (understates k).")
 
-    r = esb_psi / mr_psi
-    scale = _linterp(dsb_in, _COMPK_DSB_VALUES, _COMPK_DSB_SCALE)
-    amplification = 1 + _COMPK_A * r ** _COMPK_B * scale
-    k_inf = (mr_psi / 19.4) * amplification
+    y_e = _compk_curve_height(_COMPK_UPPER, _COMPK_ESB, dsb, esb)
+    y_m = _compk_curve_height(_COMPK_LOWER, _COMPK_MR, dsb, mr)
+    c = y_m + _compk_turning_c(y_m) - y_e
+    if c > _COMPK_K_C[-1]:
+        k_inf = float(_COMPK_K_LINES[-1])
+        notes.append("The construction lands beyond the highest drawn "
+                     "diagonal; k_inf held at 2,000 pci.")
+    else:
+        log_k = _linterp(c, list(_COMPK_K_C),
+                         [math.log10(k) for k in _COMPK_K_LINES])
+        k_inf = 10 ** log_k
 
     out = {
         "mr_psi": mr_psi, "esb_psi": esb_psi, "dsb_in": dsb_in,
         "k_inf_pci": round(k_inf, 1), "chart_read": True,
-        "equation": ("k_inf = (MR/19.4)*[1 + 0.0175*(Esb/MR)^1.465*dsb_scale(Dsb)]; "
-                    "dsb_scale read grid: Dsb=6/12/18in -> 1.00/1.16/1.30"),
-        "reference": "AASHTO 1993 Guide, Figure 3.3 (pdf_page 128, printed II-39)",
+        "method": ("Figure 3.3 read off the printed chart (curve heights at "
+                   "the Dsb gridlines, the turning line and the k diagonals; "
+                   "the chart's own construction)"),
+        "reference": _FIG33_REF,
     }
-    notes = []
-    if not (_COMPK_ESB_RANGE[0] <= esb_psi <= _COMPK_ESB_RANGE[1]):
-        notes.append(
-            f"esb_psi outside the digitized chart range {_COMPK_ESB_RANGE} psi -- extrapolated."
-        )
-    if not (_COMPK_MR_RANGE[0] <= mr_psi <= _COMPK_MR_RANGE[1]):
-        notes.append(
-            f"mr_psi outside the digitized chart range {_COMPK_MR_RANGE} psi -- extrapolated."
-        )
-    if not (_COMPK_DSB_RANGE[0] <= dsb_in <= _COMPK_DSB_RANGE[1]):
-        notes.append(
-            f"dsb_in outside the digitized chart range {_COMPK_DSB_RANGE} in -- extrapolated "
-            "(dsb_scale read grid clamped at the nearest end)."
-        )
     if notes:
         out["note"] = " ".join(notes)
     return out
@@ -616,15 +653,16 @@ def effective_modulus_subgrade_reaction(seasonal, slab_d_in, dsb_in=None,
     132, printed II-43): 12 monthly periods (6 in granular subbase, depth
     to rigid foundation 5 ft, projected slab thickness 9 in, LS=1.0) ->
     printed effective k=540 pci, LS-corrected k=170 pci. This module
-    reproduces that to within about 3% (effective k ~525.5, -2.7%;
-    LS-corrected k ~166.3, -2.2%) -- see
-    ``tests/test_aashto_1993_composite_k.py`` for the exact figures. Most
-    of the remaining error traces to ``composite_k_subbase`` (the Esb/MR
-    power law is within ~5% of its own printed anchors, and is the only
-    piece of the chain without an exact per-row match); the Figure 3.4
-    rigid-foundation step is now exact at Dsg=5 ft (the depth used
+    reproduces that to within about 4% (see
+    ``tests/test_aashto_1993_composite_k.py`` for the exact figures). Most
+    of the remaining error traces to ``composite_k_subbase`` (Figure 3.3
+    read off the chart, within 5% of the guide's own printed reads, which
+    themselves differ by 2.5% for one point); the Figure 3.4
+    rigid-foundation step is exact at Dsg=5 ft (the depth used
     throughout Table 3.3) since it is anchored to 4 real printed
-    (MR, k_inf, k) triples, not a single point.
+    (MR, k_inf, k) triples, not a single point. A Figure 3.3 note (an
+    input above the printed curves) is carried on the period's row and in
+    ``notes``; an input below them raises ValueError.
 
     Parameters
     ----------
@@ -660,14 +698,15 @@ def effective_modulus_subgrade_reaction(seasonal, slab_d_in, dsb_in=None,
         'composite_k_pci', 'k_rigid_foundation_pci'?, 'u_r'), 'n_periods',
         'ur_sum', 'ur_avg', 'effective_k_pci',
         'k_corrected_for_loss_of_support_pci', 'ls', 'slab_d_in', 'dsb_in',
-        'esb_psi', 'dsg_ft', 'equation', 'reference'}.
+        'esb_psi', 'dsg_ft', 'equation', 'reference', 'notes'?}.
 
     Raises
     ------
     ValueError
         If seasonal is empty, slab_d_in <= 0, a period is missing
-        'mr_psi' or has mr_psi <= 0, or the back-solved effective k would
-        be non-physical (average relative damage too large for this slab
+        'mr_psi' or has mr_psi <= 0, a subbase input is below Figure 3.3's
+        printed curves, or the back-solved effective k would be
+        non-physical (average relative damage too large for this slab
         thickness).
     """
     if not seasonal:
@@ -677,6 +716,7 @@ def effective_modulus_subgrade_reaction(seasonal, slab_d_in, dsb_in=None,
 
     has_subbase = dsb_in is not None and dsb_in > 0
     rows = []
+    notes = []
     for i, period in enumerate(seasonal):
         if "mr_psi" not in period:
             raise ValueError(f"seasonal[{i}] is missing the required key 'mr_psi'")
@@ -691,6 +731,10 @@ def effective_modulus_subgrade_reaction(seasonal, slab_d_in, dsb_in=None,
             k_composite = comp["k_inf_pci"]
             row["esb_psi"] = period_esb
             row["composite_k_pci"] = k_composite
+            if "note" in comp:
+                row["note"] = comp["note"]
+                if comp["note"] not in notes:
+                    notes.append(comp["note"])
         else:
             simple = modulus_subgrade_reaction_simple(mr)
             k_composite = simple["k_pci"]
@@ -726,7 +770,7 @@ def effective_modulus_subgrade_reaction(seasonal, slab_d_in, dsb_in=None,
     ls_result = k_loss_of_support(k_effective, ls)
     k_corrected = ls_result["k_corrected_pci"]
 
-    return {
+    out = {
         "rows": rows,
         "n_periods": n,
         "ur_sum": round(ur_sum, 4),
@@ -736,10 +780,14 @@ def effective_modulus_subgrade_reaction(seasonal, slab_d_in, dsb_in=None,
         "k_corrected_for_loss_of_support_pci": k_corrected,
         "slab_d_in": slab_d_in, "dsb_in": dsb_in, "esb_psi": esb_psi,
         "dsg_ft": dsg_ft,
-        "equation": ("Table 3.2 worksheet: per-period composite k (Fig. 3.3, or "
-                    "MR/19.4 with no subbase) -> rigid-foundation correction "
-                    "(Fig. 3.4, if dsg_ft<10) -> relative damage u_r (Fig. 3.5) "
-                    "-> average u_r -> back-solved effective k -> loss-of-support "
-                    "correction (Fig. 3.6)"),
+        "equation": ("Table 3.2 worksheet: per-period composite k (Fig. 3.3 "
+                    "read off the printed chart, or MR/19.4 with no subbase) "
+                    "-> rigid-foundation correction (Fig. 3.4, if dsg_ft<10) "
+                    "-> relative damage u_r (Fig. 3.5) -> average u_r -> "
+                    "back-solved effective k -> loss-of-support correction "
+                    "(Fig. 3.6)"),
         "reference": "AASHTO 1993 Guide, Table 3.2 (pdf_page 127, printed II-38)",
     }
+    if notes:
+        out["notes"] = notes
+    return out

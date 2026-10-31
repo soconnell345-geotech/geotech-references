@@ -169,129 +169,209 @@ def swell_rate_constant_theta(moisture_supply_frac, soil_fabric_frac) -> dict:
 # ============================================================================
 # G.1 Roadbed Swelling -- Figure G.3: Chart for Estimating the Approximate
 # Potential Vertical Rise VR of Natural Soils (pdf_page 397, printed G-4).
-# CHART READ-OFF -- a two-panel graphical-multiplication chart: a LEFT panel
-# (Plasticity Index PI, 0-80, vs an unlabeled shared "height" axis, one
-# curve per moisture condition) feeds a RIGHT panel (height vs VR, 0-10 in,
-# one straight line per roadbed thickness, all through the origin).
+# CHART READ-OFF of a two-panel chart printed turned on the page: a LEFT
+# panel (Plasticity Index 0-80 against an unlabelled shared height, one
+# curve per moisture condition) feeds a RIGHT panel (the same height
+# against VR 0-4 in, one curve per layer thickness: 2, 5, 10, 15, 20, 25
+# and 30 ft, and one marked "Greater than 30 ft Thickness"). Up from the
+# PI to the condition curve, across to the thickness curve, down to VR.
 #
-# EXACT anchor (printed on the chart itself, guide's own worked example):
-# PI=50, "Optimum Conditions" curve, 2 ft thickness of layer -> VR=0.83 in.
-# This fixes the shared height scale: H_optimum(PI=50) := 1.0.
+# How it was read (REF-58, from the GM-298 read of 2026-10-31): the scanned
+# page rendered at its scan resolution (about 305 dpi); PI 0 and 80 and VR
+# 0 to 4 in located by their gridlines; heights are scan pixels above the
+# chart's bottom edge (its top edge is at 1272). Each condition curve was
+# read for its PI at twenty heights from its lowest drawn point to the top
+# edge (or, for "optimum", to the PI 80 edge); each thickness curve was
+# followed outward from the origin and read down page columns every 25 px.
+# The 20, 25 and 30 ft curves are one stroke below VR about 1.7 in (25 and
+# 30 ft until about 2.3 in), where the tables share points. VR is linear in
+# height between read points and linear in thickness between curves.
 #
-# LEFT PANEL (condition curves vs PI). No further printed numeric anchor
-# exists on this chart, so the PI-dependence is modeled as a power law
-# through a threshold PI0 (each condition needs less PI to reach a given
-# height than a better-controlled one):
-#   H(PI; PI0) = ((PI - PI0) / 20)^1.71,  PI >= PI0,  else 0
-# PI0 = 30 for "optimum" reuses the guide's OWN printed swell-probability
-# threshold (Appendix G.1 text: "probability...100 percent if PI...greater
-# than 30"), which sets H_optimum(50) = 1.0 exactly (anchor). PI0 = 25
-# ("average") and PI0 = 20 ("minimum") are read directly from the rendered
-# chart (the three condition curves are visibly offset in PI by roughly
-# this spacing, "Minimum Natural Dry" reaching a given height at the
-# lowest PI, "Optimum" at the highest); the shared exponent 1.71 is a
-# visual convexity read of the "optimum" curve's shape between PI~35 and
-# PI~68. This gives H_average(50)=1.46, H_minimum(50)=2.00 relative to the
-# H=1.0 anchor -- TREAT THESE AS COARSE (+/-30-40%) -- there is no
-# independent printed check for the condition-to-condition spacing.
+# Checked against the guide's own reads: the chart's printed example (PI
+# 50, average conditions, 5 ft -> 0.83 in; the dashed construction is
+# drawn at 0.86 on the printed VR scale) reads 0.85; Appendix H Table H.1
+# (pdf_page 408, printed H-3: optimum, roadbed > 30 ft) PI 38 / 46 / 48 /
+# 51 / 56 / 60 / 62 / 65 / 67 / 71 -> 0.28 / 0.70 / 0.82 / 1.04 / 1.34 /
+# 1.80 / 1.86 / 2.00 / 2.20 / 2.60 in, all reproduced within 0.15 in, and
+# PI 15 and 19 -> 0.00 (below where the optimum curve starts).
 #
-# RIGHT PANEL (thickness lines through the origin: VR = height * slope).
-# slope(2 ft) = 0.83 EXACT (= VR anchor / H_optimum(50)=1.0). The other six
-# thickness slopes are direct visual chart reads (where each labeled line
-# crosses the same reference height as the anchor), COARSE (+/-20-25%):
-#   thickness (ft):  2     5     10    15    20    25    30
-#   slope (VR/H):   0.83  1.05  1.55  1.95  2.15  2.30  2.45
-# Per the guide's own Table G.1 note, thicknesses greater than 30 ft use
-# 30 ft (clamped here, not extrapolated).
+# The G.1 text (pdf_page 394, printed G-1) says "for thicknesses greater
+# than 30 feet, use 30 feet"; the chart's "Greater than 30 ft" curve lies
+# on the 30 ft curve up to VR about 3.3 in and runs up to 0.08 in under it
+# at the top edge, so the 30 ft curve is used, as the text says.
 # ============================================================================
 
-_VR_CONDITION_PI0 = {"minimum": 20.0, "average": 25.0, "optimum": 30.0}
-_VR_HEIGHT_EXPONENT = 1.71
-_VR_HEIGHT_SCALE = 20.0
+# Condition curves: (PI, height) along each curve, lowest drawn point to
+# the top edge (optimum: to the PI 80 edge, at height about 1153).
+_VR_CONDITION_CURVES = {
+    "minimum": ((19.4, 35), (22.7, 100), (25.1, 164), (27.3, 229),
+                (29.3, 295), (31.3, 360), (33.1, 425), (35.0, 490),
+                (36.7, 555), (38.3, 621), (40.1, 685), (41.4, 750),
+                (43.0, 817), (44.3, 881), (45.6, 946), (46.9, 1013),
+                (48.2, 1077), (49.2, 1142), (50.4, 1208), (51.4, 1272)),
+    "average": ((25.8, 40), (29.4, 100), (32.3, 164), (35.0, 229),
+                (37.5, 295), (40.2, 360), (42.2, 425), (44.5, 490),
+                (46.6, 555), (48.6, 621), (50.6, 685), (52.4, 750),
+                (54.3, 817), (56.2, 881), (57.8, 946), (59.4, 1013),
+                (61.1, 1077), (62.7, 1142), (64.2, 1208), (65.8, 1272)),
+    "optimum": ((33.3, 35), (39.3, 100), (43.0, 164), (46.4, 229),
+                (49.6, 295), (52.8, 360), (55.5, 425), (58.3, 490),
+                (60.8, 555), (63.3, 621), (65.6, 685), (68.0, 750),
+                (70.1, 817), (72.2, 881), (74.2, 946), (76.1, 1013),
+                (77.9, 1077), (79.6, 1142), (80.0, 1153)),
+}
+_VR_CONDITION_NAMES = {
+    "minimum": "Minimum Natural Dry Conditions (No Moisture Control)",
+    "average": "Average Conditions (Normal Field Control Moisture & Density)",
+    "optimum": ("Optimum Conditions (Closely Controlled Moisture & Density "
+                "Throughout Life of Facility)"),
+}
 
-_VR_THICKNESS_VALUES = [2.0, 5.0, 10.0, 15.0, 20.0, 25.0, 30.0]
-_VR_THICKNESS_SLOPES = [0.83, 1.05, 1.55, 1.95, 2.15, 2.30, 2.45]
+_VR_20FT = ((0, 0.0), (107, 0.338), (215, 0.671), (321, 1.013),
+            (428, 1.342), (537, 1.667), (650, 1.977), (765, 2.277),
+            (882, 2.571), (1002, 2.853), (1124, 3.131), (1248, 3.4),
+            (1272, 3.452))
+_VR_30FT = (tuple(p for p in _VR_20FT if p[0] <= 537)
+            + ((570, 1.78), (595, 1.862), (620, 1.94), (645, 2.022),
+               (670, 2.09), (695, 2.166), (714, 2.23), (745, 2.313),
+               (795, 2.477), (820, 2.554), (845, 2.628), (870, 2.705),
+               (895, 2.782), (920, 2.858), (945, 2.938), (970, 3.019),
+               (995, 3.086), (1020, 3.16), (1039, 3.225), (1070, 3.307),
+               (1095, 3.387), (1120, 3.466), (1145, 3.546), (1170, 3.622),
+               (1220, 3.775), (1245, 3.85), (1270, 3.93)))
+# Thickness curves: thickness (ft) -> ((height, VR in), ...).
+_VR_THICKNESS_CURVES = {
+    2.0: ((0, 0.0), (100, 0.083), (164, 0.119), (229, 0.151), (295, 0.184),
+          (360, 0.217), (425, 0.246), (490, 0.281), (555, 0.311),
+          (621, 0.34), (741, 0.38), (817, 0.429), (881, 0.462),
+          (946, 0.493), (1013, 0.52), (1077, 0.549), (1142, 0.576),
+          (1272, 0.639)),
+    5.0: ((0, 0.0), (134, 0.217), (269, 0.425), (408, 0.611), (552, 0.754),
+          (698, 0.88), (847, 0.981), (995, 1.074), (1145, 1.15),
+          (1272, 1.20)),
+    10.0: ((0, 0.0), (113, 0.315), (231, 0.613), (352, 0.899),
+           (475, 1.172), (601, 1.43), (729, 1.679), (860, 1.913),
+           (992, 2.141), (1126, 2.359), (1261, 2.567), (1272, 2.583)),
+    15.0: ((0, 0.0), (108, 0.335), (214, 0.676), (445, 1.284),
+           (561, 1.586), (676, 1.888), (794, 2.176), (916, 2.453),
+           (1042, 2.71), (1174, 2.944), (1272, 3.097)),
+    20.0: _VR_20FT,
+    25.0: (tuple(p for p in _VR_30FT if p[0] <= 745)
+           + ((770, 2.369), (795, 2.439), (820, 2.505), (845, 2.572),
+              (870, 2.639), (895, 2.711), (920, 2.778), (945, 2.848),
+              (970, 2.916), (995, 2.98), (1020, 3.049), (1039, 3.099),
+              (1070, 3.183), (1095, 3.255), (1120, 3.321), (1145, 3.385),
+              (1170, 3.457), (1195, 3.526), (1220, 3.59), (1245, 3.662),
+              (1270, 3.731))),
+    30.0: _VR_30FT,
+}
+_VR_THICKNESSES = sorted(_VR_THICKNESS_CURVES)
 
 
-def _vr_height(pi, condition):
-    key = str(condition).strip().lower()
-    if key not in _VR_CONDITION_PI0:
-        raise ValueError(
-            f"Unknown condition '{condition}'. Use one of: "
-            f"{', '.join(_VR_CONDITION_PI0)}"
-        )
-    pi0 = _VR_CONDITION_PI0[key]
-    if pi <= pi0:
-        return 0.0
-    return ((pi - pi0) / _VR_HEIGHT_SCALE) ** _VR_HEIGHT_EXPONENT
+def _vr_on_curve(thickness_ft, h):
+    pts = _VR_THICKNESS_CURVES[thickness_ft]
+    return _linterp(h, [p[0] for p in pts], [p[1] for p in pts])
 
 
-def _vr_thickness_slope(thickness_ft):
-    return _linterp(thickness_ft, _VR_THICKNESS_VALUES, _VR_THICKNESS_SLOPES)
+def _vr_at(thickness_ft, h):
+    t_lo = max(t for t in _VR_THICKNESSES if t <= thickness_ft)
+    t_hi = min(t for t in _VR_THICKNESSES if t >= thickness_ft)
+    v_lo = _vr_on_curve(t_lo, h)
+    if t_hi == t_lo:
+        return v_lo
+    v_hi = _vr_on_curve(t_hi, h)
+    return v_lo + (thickness_ft - t_lo) / (t_hi - t_lo) * (v_hi - v_lo)
 
 
 def potential_vertical_rise(pi, condition, thickness_ft) -> dict:
-    """Potential vertical rise VR of natural soils (Figure G.3 chart read-off).
+    """Potential vertical rise VR of natural soils (Figure G.3, read off the
+    printed chart; see the section note above for how it was read).
 
-        VR = H(PI; condition) * slope(thickness_ft)
-
-    where H is the left-panel condition curve (power law through a
-    condition-specific PI threshold) and slope is the right-panel
-    thickness line's slope (VR per unit H, both lines through the origin).
-    See section docstring above for the full derivation and stated
-    tolerances (EXACT at the printed anchor; COARSE, +/-20-40%, elsewhere).
-
-    Verified against the guide's own printed worked example (Figure G.3,
-    pdf_page 397, printed G-4): PI=50, condition='optimum',
-    thickness_ft=2 -> VR=0.83 in EXACTLY (by construction).
+    Up from the plasticity index to the moisture-condition curve, across
+    to the layer-thickness curve, down to VR. The chart's printed example
+    (PI 50, average conditions, 5 ft -> 0.83 in) reads 0.85 in, and the
+    Appendix H Table H.1 reads (optimum, > 30 ft) are reproduced within
+    0.15 in.
 
     Parameters
     ----------
     pi : float
-        Plasticity index of the swelling layer (ASTM D 424 / AASHTO T 90),
-        >= the condition's threshold (20/25/30 for minimum/average/optimum)
-        for a nonzero result.
+        Plasticity index of the swelling layer (ASTM D 424 / AASHTO T 90).
+        Below where the condition's curve starts (PI 19.4 / 25.8 / 33.3 for
+        minimum / average / optimum) the chart shows no rise and VR is 0.0
+        (flagged); past where the curve leaves the chart (PI 51.4 / 65.8 /
+        80) the chart gives no VR and ValueError is raised.
     condition : str
         One of 'minimum' (Minimum Natural Dry Conditions, no moisture
         control), 'average' (Normal Field Control Moisture & Density), or
         'optimum' (Closely Controlled Moisture & Density Throughout Life
         of Facility).
     thickness_ft : float
-        Thickness of the swelling roadbed layer, feet, > 0. Clamped to
-        [2, 30] per the guide's own "greater than 30 feet, use 30 feet"
-        note; values below 2 ft are also clamped (chart does not extend
-        below the 2 ft curve) with a note.
+        Thickness of the swelling roadbed layer, feet, > 0. The chart's
+        curves run 2-30 ft (interpolated linearly between them); above
+        30 ft the 30 ft curve is used, as G.1 says (pdf_page 394, printed
+        G-1); below 2 ft the 2 ft curve is used with a note (overstates VR).
 
     Returns
     -------
     dict
-        {'pi', 'condition', 'thickness_ft', 'vr_in', 'chart_read',
-         'equation', 'reference', 'note'?}.
+        {'pi', 'condition', 'thickness_ft', 'vr_in', 'below_chart',
+         'chart_read', 'method', 'reference', 'note'?}.
 
     Raises
     ------
     ValueError
-        If condition is unrecognized or thickness_ft <= 0.
+        If condition is unrecognized, thickness_ft <= 0, or the PI is past
+        where the condition's curve leaves the chart.
     """
-    if thickness_ft <= 0:
+    key = str(condition).strip().lower()
+    if key not in _VR_CONDITION_CURVES:
+        raise ValueError(
+            f"Unknown condition '{condition}'. Use one of: "
+            f"{', '.join(_VR_CONDITION_CURVES)}"
+        )
+    if thickness_ft is None or thickness_ft <= 0:
         raise ValueError(f"thickness_ft must be > 0, got {thickness_ft}")
     notes = []
-    t_clamped = thickness_ft
-    if thickness_ft > 30.0:
-        t_clamped = 30.0
-        notes.append("thickness_ft > 30 ft; clamped to 30 ft per the guide's own note.")
-    elif thickness_ft < 2.0:
-        t_clamped = 2.0
-        notes.append("thickness_ft < 2 ft; clamped to the chart's minimum digitized curve (2 ft).")
-
-    h = _vr_height(pi, condition)
-    slope = _vr_thickness_slope(t_clamped)
-    vr = h * slope
+    t = thickness_ft
+    if t > 30.0:
+        t = 30.0
+        notes.append("Thickness above 30 ft: the 30 ft curve is used, as "
+                     "G.1 says (pdf_page 394, printed G-1).")
+    elif t < 2.0:
+        t = 2.0
+        notes.append("Thickness below the chart's 2 ft curve: the 2 ft "
+                     "curve is used (overstates VR).")
+    curve = _VR_CONDITION_CURVES[key]
+    pi_lo, h_lo = curve[0]
+    pi_hi, h_hi = curve[-1]
+    if pi > pi_hi:
+        top = _vr_at(t, h_hi)
+        raise ValueError(
+            f"PI {pi} is past where the '{key}' curve leaves Figure G.3 "
+            f"(PI {pi_hi:g}); the chart gives no VR there. VR exceeds "
+            f"{top:.2f} in (the chart edge for this thickness); estimate it "
+            "from swell tests and give vr_in directly."
+        )
+    below = pi < pi_lo
+    if below:
+        vr = 0.0
+        notes.append(
+            f"PI {pi} is below where the '{key}' curve starts (PI "
+            f"{pi_lo:g}); the chart shows no rise (VR there about "
+            f"{_vr_at(t, h_lo):.2f} in).")
+    else:
+        h = _linterp(pi, [p[0] for p in curve], [float(p[1]) for p in curve])
+        vr = _vr_at(t, h)
     out = {
-        "pi": pi, "condition": str(condition).strip().lower(),
+        "pi": pi, "condition": key,
         "thickness_ft": thickness_ft, "vr_in": round(vr, 3),
+        "below_chart": below,
         "chart_read": True,
-        "equation": "VR = H(PI;condition) * slope(thickness_ft); H=((PI-PI0)/20)^1.71",
+        "method": (f"Figure G.3 read off the printed chart: PI up to the "
+                   f"{_VR_CONDITION_NAMES[key]} curve, across to the "
+                   f"{t:g} ft thickness curve (linear between printed "
+                   "curves), down to VR"),
         "reference": "AASHTO 1993 Guide, Figure G.3 (pdf_page 397, printed G-4)",
     }
     if notes:

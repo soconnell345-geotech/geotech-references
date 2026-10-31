@@ -152,19 +152,52 @@ class TestLayerCoefficientA1:
 
 
 class TestLayerCoefficientA2Cement:
-    def test_200_psi(self):
-        assert tb.layer_coefficient_a2_cement_treated(200)["a2"] == pytest.approx(0.10, abs=1e-6)
+    """Figure 2.8 (pdf_page 112, printed II-23): a2 read straight across
+    from the UCS scale's labelled ticks. The 800 psi tick sits on the
+    printed 0.22 dashed line; 200 psi reads about 0.126 (between the 0.12
+    and 0.14 ticks), 1000 psi about 0.25."""
 
-    def test_800_psi(self):
-        assert tb.layer_coefficient_a2_cement_treated(800)["a2"] == pytest.approx(0.22, abs=1e-6)
+    def test_800_psi_on_the_022_line(self):
+        assert tb.layer_coefficient_a2_cement_treated(800)["a2"] == pytest.approx(0.22, abs=0.003)
+
+    def test_ticks_read_across(self):
+        for ucs, a2 in ((200, 0.126), (400, 0.155), (600, 0.188), (1000, 0.25)):
+            assert tb.layer_coefficient_a2_cement_treated(ucs)["a2"] == pytest.approx(a2, abs=0.005)
+
+    def test_linear_between_ticks(self):
+        assert tb.layer_coefficient_a2_cement_treated(300)["a2"] == pytest.approx(
+            (0.126 + 0.155) / 2, abs=0.001)
+
+    def test_below_lowest_tick_raises(self):
+        with pytest.raises(ValueError, match="lowest labelled tick"):
+            tb.layer_coefficient_a2_cement_treated(150)
+
+    def test_above_top_tick_held_with_note(self):
+        r = tb.layer_coefficient_a2_cement_treated(1200)
+        assert r["a2"] == pytest.approx(0.25, abs=0.003)
+        assert "top tick" in r["note"]
 
 
 class TestLayerCoefficientA2Bituminous:
-    def test_800_lb(self):
-        assert tb.layer_coefficient_a2_bituminous_treated(800)["a2"] == pytest.approx(0.20, abs=1e-6)
+    """Figure 2.9 (pdf_page 113, printed II-24): the 1600 lb tick sits on
+    the printed 0.30 dashed line and 1200 lb at 0.25; the 0.20 dashed line
+    falls just below the 800 lb tick (800 lb reads about 0.204)."""
 
-    def test_1600_lb(self):
-        assert tb.layer_coefficient_a2_bituminous_treated(1600)["a2"] == pytest.approx(0.30, abs=1e-6)
+    def test_1600_lb_on_the_030_line(self):
+        assert tb.layer_coefficient_a2_bituminous_treated(1600)["a2"] == pytest.approx(0.30, abs=0.003)
+
+    def test_ticks_read_across(self):
+        for lb, a2 in ((200, 0.126), (400, 0.161), (800, 0.204), (1200, 0.25), (1800, 0.32)):
+            assert tb.layer_coefficient_a2_bituminous_treated(lb)["a2"] == pytest.approx(a2, abs=0.005)
+
+    def test_below_lowest_tick_raises(self):
+        with pytest.raises(ValueError, match="lowest labelled tick"):
+            tb.layer_coefficient_a2_bituminous_treated(100)
+
+    def test_above_top_tick_held_with_note(self):
+        r = tb.layer_coefficient_a2_bituminous_treated(2000)
+        assert r["a2"] == pytest.approx(0.32, abs=0.003)
+        assert "top tick" in r["note"]
 
 
 class TestUnboundK1K2:

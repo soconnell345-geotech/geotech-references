@@ -122,7 +122,7 @@
       "pdf_page_index": 112,
       "printed_page": "II-23",
       "page_estimated": false,
-      "description": "Alignment nomograph, a2 vs 7-day unconfined compressive strength (and an alternate elastic modulus scale). No printed closed-form equation; digitized at 3 dashed cross-alignment points in tables.layer_coefficient_a2_cement_treated."
+      "description": "Parallel scales: a2, 7-day unconfined compressive strength and elastic modulus. No printed closed-form equation; a2 read straight across from each labelled UCS tick (200-1000 psi) in tables.layer_coefficient_a2_cement_treated."
     },
     {
       "figure_number": "2.9",
@@ -131,7 +131,7 @@
       "pdf_page_index": 113,
       "printed_page": "II-24",
       "page_estimated": false,
-      "description": "Alignment nomograph, a2 vs Marshall stability (and an alternate elastic modulus scale). Digitized at 3 dashed cross-alignment points in tables.layer_coefficient_a2_bituminous_treated."
+      "description": "Parallel scales: a2, Marshall stability and elastic modulus. a2 read straight across from each labelled Marshall stability tick (200-1800 lb) in tables.layer_coefficient_a2_bituminous_treated."
     },
     {
       "figure_number": "3.1",
@@ -158,7 +158,7 @@
       "pdf_page_index": 128,
       "printed_page": "II-39",
       "page_estimated": false,
-      "description": "4-quadrant turning-line nomograph (roadbed MR + subbase modulus/thickness -> composite k, semi-infinite subgrade). Digitized in composite_k.composite_k_subbase (chart-read anchor grid); the full seasonal worksheet is composite_k.effective_modulus_subgrade_reaction; the no-subbase simplification remains equations.modulus_subgrade_reaction_simple."
+      "description": "4-quadrant turning-line nomograph (roadbed MR + subbase modulus/thickness -> composite k, semi-infinite subgrade). Read off the chart in composite_k.composite_k_subbase (every curve at each Dsb gridline, the turning line and the k diagonals; the chart's own construction); the full seasonal worksheet is composite_k.effective_modulus_subgrade_reaction; the no-subbase simplification remains equations.modulus_subgrade_reaction_simple."
     },
     {
       "figure_number": "3.4",
@@ -230,7 +230,7 @@
       "pdf_page_index": 397,
       "printed_page": "G-4",
       "page_estimated": false,
-      "description": "Potential vertical rise VR from plasticity index, moisture condition, and layer thickness (two-panel chart). Coarse chart read in environmental.potential_vertical_rise (calibrated to the printed anchor; ~20-40% stated tolerance)."
+      "description": "Potential vertical rise VR from plasticity index, moisture condition, and layer thickness (two-panel chart). Read off the chart in environmental.potential_vertical_rise (each condition and thickness curve; the printed example and Appendix H Table H.1 reproduced)."
     },
     {
       "figure_number": "G.4",

@@ -315,76 +315,117 @@ def layer_coefficient_a1_asphalt(eac_psi) -> dict:
 
 
 # ============================================================================
-# Figure 2.8: Structural layer coefficient a2 for cement-treated base vs
-# 7-day unconfined compressive strength. CHART READ-OFF (alignment
-# nomograph), digitized at the dashed cross-alignment points visible in the
-# printed chart (pdf_page 112, printed II-23).
+# Figures 2.8 and 2.9: structural layer coefficient a2 for cement-treated
+# and bituminous-treated bases. Each chart is a set of parallel vertical
+# scales (a2; the material property; modulus): a2 is read straight across
+# from the property's tick. CHART READ-OFF (REF-58, from the GM-298 read of
+# 2026-10-31): the labelled ticks of each property scale were located on
+# the scanned page and read across to the a2 scale, linearly between a2
+# ticks; between property ticks a2 is linear. The dashed lines printed on
+# each chart (Fig. 2.8: 0.10 / 0.16 / 0.22 / 0.28; Fig. 2.9: 0.10 / 0.20 /
+# 0.30) mark a2 values, not ticks of the property scale.
+#
+# Below the lowest labelled tick the scale is not read (ValueError); above
+# the top tick a2 is held at the top tick's value with a note.
 # ============================================================================
 
-_A2_CEMENT_UCS = [200, 400, 800]
-_A2_CEMENT_VAL = [0.10, 0.16, 0.22]
+# Figure 2.8 (pdf_page 112, printed II-23): 7-day UCS (psi) -> a2.
+_A2_CEMENT_SCALE = ((200, 0.126), (400, 0.155), (600, 0.188), (800, 0.220),
+                    (1000, 0.250))
+# Figure 2.9 (pdf_page 113, printed II-24): Marshall stability (lb) -> a2.
+_A2_BITUMINOUS_SCALE = ((200, 0.126), (400, 0.161), (600, 0.180),
+                        (800, 0.204), (1000, 0.230), (1200, 0.250),
+                        (1400, 0.275), (1600, 0.300), (1800, 0.320))
+
+
+def _a2_across(value, scale, what, unit):
+    lo, hi = scale[0][0], scale[-1][0]
+    if value is None or value < lo:
+        raise ValueError(
+            f"{what} {value} {unit} is below the lowest labelled tick of the "
+            f"printed scale ({lo} {unit}); give the layer coefficient "
+            "directly."
+        )
+    if value > hi:
+        return scale[-1][1], (
+            f"{what} {value} {unit} is above the printed scale's top tick "
+            f"({hi} {unit}); a2 = {scale[-1][1]} at {hi} {unit} used.")
+    for (x0, a0), (x1, a1) in zip(scale, scale[1:]):
+        if x0 <= value <= x1:
+            return a0 + (a1 - a0) * (value - x0) / (x1 - x0), None
+    return scale[-1][1], None  # pragma: no cover
 
 
 def layer_coefficient_a2_cement_treated(ucs_7day_psi) -> dict:
     """Cement-treated base layer coefficient a2 vs 7-day UCS (Figure 2.8, chart).
 
-    Chart-read-off (alignment nomograph) at 3 digitized dashed
-    cross-alignment points: UCS(psi) -> a2 = 200->0.10, 400->0.16, 800->0.22.
-    The printed chart's alternate Modulus scale is NOT digitized here (only
-    the UCS scale, the more commonly specified property); interpolation is
-    clamped at the chart's read endpoints for UCS outside [200, 800] psi.
+    Read straight across from the UCS scale's labelled ticks (psi -> a2):
+    200 -> 0.126, 400 -> 0.155, 600 -> 0.188, 800 -> 0.220, 1000 -> 0.250;
+    linear between ticks. The chart's modulus scale is not read here.
 
     Parameters
     ----------
     ucs_7day_psi : float
         7-day unconfined compressive strength of the cement-treated base
-        (ASTM D 1633), psi.
+        (ASTM D 1633), psi. The printed scale's ticks run 200-1000 psi.
 
     Returns
     -------
     dict
-        {'ucs_7day_psi', 'a2', 'chart_read', 'reference'}.
+        {'ucs_7day_psi', 'a2', 'chart_read', 'reference', 'note'?}.
+
+    Raises
+    ------
+    ValueError
+        If the UCS is below the scale's lowest labelled tick (200 psi).
+        Above 1000 psi a2 is held at 0.250 with a note.
     """
-    a2 = _linterp(ucs_7day_psi, _A2_CEMENT_UCS, _A2_CEMENT_VAL)
-    return {
+    a2, note = _a2_across(ucs_7day_psi, _A2_CEMENT_SCALE, "7-day UCS", "psi")
+    out = {
         "ucs_7day_psi": ucs_7day_psi, "a2": round(a2, 3), "chart_read": True,
         "reference": "AASHTO 1993 Guide, Figure 2.8 (pdf_page 112, printed II-23)",
     }
-
-
-# ============================================================================
-# Figure 2.9: Structural layer coefficient a2 for bituminous-treated base
-# vs Marshall stability. CHART READ-OFF, digitized at the dashed
-# cross-alignment points (pdf_page 113, printed II-24).
-# ============================================================================
-
-_A2_BIT_MARSHALL = [200, 800, 1600]
-_A2_BIT_VAL = [0.10, 0.20, 0.30]
+    if note:
+        out["note"] = note
+    return out
 
 
 def layer_coefficient_a2_bituminous_treated(marshall_stability_lb) -> dict:
     """Bituminous-treated base layer coefficient a2 vs Marshall stability (Fig. 2.9, chart).
 
-    Chart-read-off (alignment nomograph) at 3 digitized dashed
-    cross-alignment points: Marshall stability (lb) -> a2 = 200->0.10,
-    800->0.20, 1600->0.30.
+    Read straight across from the Marshall stability scale's labelled
+    ticks (lb -> a2): 200 -> 0.126, 400 -> 0.161, 600 -> 0.180,
+    800 -> 0.204, 1000 -> 0.230, 1200 -> 0.250, 1400 -> 0.275,
+    1600 -> 0.300, 1800 -> 0.320; linear between ticks. The chart's
+    modulus scale is not read here.
 
     Parameters
     ----------
     marshall_stability_lb : float
-        Marshall stability (AASHTO T 245 / ASTM D 1559), lb.
+        Marshall stability (AASHTO T 245 / ASTM D 1559), lb. The printed
+        scale's labelled ticks used run 200-1800 lb.
 
     Returns
     -------
     dict
-        {'marshall_stability_lb', 'a2', 'chart_read', 'reference'}.
+        {'marshall_stability_lb', 'a2', 'chart_read', 'reference', 'note'?}.
+
+    Raises
+    ------
+    ValueError
+        If the stability is below 200 lb. Above 1800 lb a2 is held at
+        0.320 with a note.
     """
-    a2 = _linterp(marshall_stability_lb, _A2_BIT_MARSHALL, _A2_BIT_VAL)
-    return {
+    a2, note = _a2_across(marshall_stability_lb, _A2_BITUMINOUS_SCALE,
+                          "Marshall stability", "lb")
+    out = {
         "marshall_stability_lb": marshall_stability_lb, "a2": round(a2, 3),
         "chart_read": True,
         "reference": "AASHTO 1993 Guide, Figure 2.9 (pdf_page 113, printed II-24)",
     }
+    if note:
+        out["note"] = note
+    return out
 
 
 # ============================================================================

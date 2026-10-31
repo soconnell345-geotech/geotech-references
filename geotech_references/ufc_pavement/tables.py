@@ -12,7 +12,9 @@ estimates (stated tolerance in each docstring), not substitutes for PCASE or
 a field test. Every anchor that traces to one of the guide's own printed
 worked examples (Appendix G) is called out explicitly and matches exactly;
 anchors without that traceability are visual read-offs of the rendered
-chart and are noted as approximate.
+chart and are noted as approximate. Figures E-1 and F-1 are read along
+every printed curve (REF-58) and reproduce every Appendix G read of them;
+Table 19-2 refuses a soil it does not list rather than give it a group.
 """
 
 import math
@@ -1183,101 +1185,280 @@ def table_19_1_distress_modes(distress_mode) -> dict:
 
 # ============================================================================
 # Table 19-2: Frost Design Soil Classification (Chapter 19, pdf_page 89,
-# printed 70)
+# printed 70). The rows as printed: frost group, subgroup, kind of soil,
+# percentage finer than 0.02 mm by weight, and the typical USCS types.
+# Para 19-2 (pdf_page 86, printed 67): "For frost design purposes, soils
+# are divided into eight groups as shown in Table 19-2", listed in about the
+# order of increasing susceptibility to frost heave.
 # ============================================================================
 
-_USCS_FROST_RULES = [
-    ("ml", 0, 100, "F4", "a"), ("mh", 0, 100, "F4", "a"), ("ol", 0, 100, "F4", "a"),
-    ("ch", 0, 100, "F3", "c"), ("cl-ml", 0, 100, "F4", "c"), ("cl", 0, 100, "F3", "c"),
-    ("oh", 0, 100, "F3", "c"), ("pt", 0, 100, "F4", "d"),
-    ("sm", 15.01, 100, "F4", "b"), ("sm", 6, 15, "F2", "b"), ("sm", 3, 6, "S2", ""), ("sm", 0, 3, "NFS", "b"),
-    ("sc", 15.01, 100, "F3", "b"), ("sc", 0, 15, "F3", "b"),
-    ("sw-sm", 6, 15, "F2", "b"), ("sw-sm", 3, 6, "S2", ""),
-    ("sp-sm", 6, 15, "F2", "b"), ("sp-sm", 3, 6, "S2", ""),
-    ("sw", 3, 10, "PFS", "b"), ("sw", 0, 3, "NFS", "b"),
-    ("sp", 3, 10, "PFS", "b"), ("sp", 0, 3, "NFS", "b"),
-    ("gm", 20.01, 100, "F3", "a"), ("gm", 10, 20, "F2", "a"), ("gm", 6, 10, "F1", ""), ("gm", 3, 6, "S1", ""),
-    ("gc", 20.01, 100, "F3", "a"), ("gc", 6, 20, "F2", "a"),
-    ("gw-gm", 20.01, 100, "F3", "a"), ("gw-gm", 10, 20, "F2", "a"), ("gw-gm", 6, 10, "F1", ""), ("gw-gm", 3, 6, "S1", ""),
-    ("gp-gm", 10, 20, "F2", "a"), ("gp-gm", 6, 10, "F1", ""), ("gp-gm", 3, 6, "S1", ""),
-    ("gw-gc", 6, 20, "F2", "a"), ("gp-gc", 6, 20, "F2", "a"),
-    ("gw", 3, 6, "S1", ""), ("gw", 1.5, 3, "PFS", "a"), ("gw", 0, 1.5, "NFS", "a"),
-    ("gp", 3, 6, "S1", ""), ("gp", 1.5, 3, "PFS", "a"), ("gp", 0, 1.5, "NFS", "a"),
-]
+_TABLE_19_2_ROWS = (
+    ("NFS", "a", "Gravels, crushed stone, crushed rock", (0.0, 1.5),
+     ("GW", "GP")),
+    ("NFS", "b", "Sands", (0.0, 3.0), ("SW", "SP")),
+    ("PFS", "a", "Gravels, crushed stone, crushed rock", (1.5, 3.0),
+     ("GW", "GP")),
+    ("PFS", "b", "Sands", (3.0, 10.0), ("SW", "SP")),
+    ("S1", "", "Gravelly soils", (3.0, 6.0), ("GW", "GP", "GW-GM", "GP-GM")),
+    ("S2", "", "Sandy soils", (3.0, 6.0), ("SW", "SP", "SW-SM", "SP-SM")),
+    ("F1", "", "Gravelly soils", (6.0, 10.0), ("GM", "GW-GM", "GP-GM")),
+    ("F2", "a", "Gravelly soils", (10.0, 20.0), ("GM", "GW-GM", "GP-GM")),
+    ("F2", "b", "Sands", (6.0, 15.0), ("SM", "SW-SM", "SP-SM")),
+    ("F3", "a", "Gravelly soils", (20.0, None), ("GM", "GC")),
+    ("F3", "b", "Sands, except very fine silty sands", (15.0, None),
+     ("SM", "SC")),
+    ("F3", "c", "Clays, PI > 12", None, ("CL", "CH")),
+    ("F4", "a", "All silts", None, ("ML", "MH")),
+    ("F4", "b", "Very fine silty sands", (15.0, None), ("SM",)),
+    ("F4", "c", "Clays, PI > 12", None, ("CL", "CL-ML")),
+    ("F4", "d", "Varved clays and other fine-grained, banded sediments",
+     None, ("CL", "CL-ML")),
+)
+# Table 20-2 (Chapter 20's drainage table, para 20-3.3.4; pdf_page 124,
+# printed 105) prints these dual symbols that Table 19-2 does not. They are
+# named in the refusal, never used to classify.
+_TABLE_20_2_EXTRA_ROWS = (
+    ("F1", "", "Gravelly soils", (6.0, 10.0), ("GW-GC", "GP-GC")),
+    ("F2", "a", "Gravelly soils", (10.0, 20.0), ("GM-GC",)),
+    ("F2", "b", "Sands", (6.0, 15.0), ("SW-SC", "SP-SC", "SM-SC")),
+    ("F3", "a", "Gravelly soils", (20.0, None), ("GM-GC",)),
+    ("F3", "b", "Sands, except very fine silty sands", (15.0, None),
+     ("SM-SC",)),
+    ("F4", "b", "Very fine sands", (15.0, None), ("SM-SC",)),
+)
+# Table 20-2 writes the dual symbols GC-GM, SC-SM and CL-ML (ASTM D2487
+# order) as GM-GC, SM-SC and ML-CL.
+_USCS_ORDER_ALIASES = {"GC-GM": "GM-GC", "SC-SM": "SM-SC", "ML-CL": "CL-ML"}
+_FROST_GROUPS = ("NFS", "PFS", "S1", "S2", "F1", "F2", "F3", "F4")
+_TABLE_19_2_REF = "UFC 3-250-01, Table 19-2 (pdf_page 89, printed 70)"
+_TABLE_20_2_REF = "UFC 3-250-01, Table 20-2 (pdf_page 124, printed 105)"
+_PARA_19_2_2_REF = "UFC 3-250-01, para 19-2.2 (pdf_page 87, printed 68)"
 
-_FROST_GROUP_DESCRIPTIONS = {
-    ("gw_gp", "0-1.5"): "Gravels/crushed stone/rock, 0-1.5% finer than 0.02mm",
-    ("sw_sp", "0-3"): "Sands, 0-3% finer than 0.02mm",
-    ("gw_gp", "1.5-3"): "Gravels/crushed stone/rock, 1.5-3% finer than 0.02mm",
-    ("sw_sp", "3-10"): "Sands, 3-10% finer than 0.02mm",
-    ("gravelly", "3-6"): "Gravelly soils, 3-6% finer than 0.02mm",
-    ("sandy", "3-6"): "Sandy soils, 3-6% finer than 0.02mm",
-    ("gravelly", "6-10"): "Gravelly soils, 6-10% finer than 0.02mm",
-    ("gravelly", "10-20"): "Gravelly soils, 10-20% finer than 0.02mm",
-    ("sandy", "6-15"): "Sands, 6-15% finer than 0.02mm",
-    ("gravelly", ">20"): "Gravelly soils, > 20% finer than 0.02mm",
-    ("sandy", ">15"): "Sands (except very fine silty sands), > 15% finer than 0.02mm",
-    ("clay", "pi>12"): "Clays, PI > 12",
-    ("silt", "all"): "All silts",
-    ("varved", "all"): "Varved clays and other banded fine-grained sediments",
-}
+
+def _t192_range_text(rng):
+    if rng is None:
+        return "--"
+    lo, hi = rng
+    return f"over {lo:g}" if hi is None else f"{lo:g}-{hi:g}"
 
 
-def table_19_2_frost_classification(uscs_class, finer_than_0_02mm_pct=None) -> dict:
+def _t192_label(row):
+    return f"{row[0]} ({row[1]})" if row[1] else row[0]
+
+
+def table_19_2_frost_classification(uscs_class, finer_than_0_02mm_pct=None,
+                                    frost_group=None) -> dict:
     """Frost design soil classification (Table 19-2, Chapter 19; pdf_page 89,
-    printed 70).
+    printed 70), as printed.
 
-    Classifies soil into frost susceptibility groups NFS, PFS, S1, S2, or
-    F1-F4. S1/S2 soils are suitable for subbase in frost areas; F-groups
-    require frost thickness design (Section 19-6).
+    Groups NFS, PFS, S1, S2 and F1-F4. Each row prints a kind of soil, a
+    range of percentage finer than 0.02 mm (for the granular soils) and
+    the USCS types it covers. A soil the table does not list is refused,
+    not given a group: the symbol and percentage must fall in a printed
+    row. A printed range "a-b" includes both ends; "Over a" is above a. A
+    percentage on an end two rows share (GM at 10 %: F1 6-10 and F2
+    10-20) takes the more frost-susceptible row, the later one in the
+    table (para 19-2), and names the other.
+
+    Where the print gives more than one row, the first is returned and the
+    others are listed in ``also_printed``:
+
+    - SW or SP from 3 to 6 %: PFS (b) (3-10, footnote ***: "requires
+      laboratory test to determine frost design soils classification");
+      S2 (3-6) also prints SW, SP.
+    - SM over 15 %: F4 (b) (very fine silty sands); F3 (b) is "Sands,
+      except very fine silty sands". Both take index 3.5 in Table 19-3.
+    - CL: F3 (c) "Clays, PI > 12"; F4 (c) also prints "Clays, PI > 12" for
+      CL and CL-ML, and F4 (d) varved clays. All take index 3.5.
+    - GC at 20 % or less, SC at 15 % or less, or either without a
+      percentage: not in a row of the table; para 19-2.2 (pdf_page 87,
+      printed 68) says "Occasionally, GC or SC materials may occur within
+      the F2 group, although they normally fall into the F3 category", so
+      F3 is returned with ``listed_in_table`` False.
+
+    A dual symbol Table 19-2 does not list (GW-GC, GP-GC, GM-GC, SW-SC,
+    SP-SC, SM-SC) is refused; the message names the group Table 20-2,
+    Chapter 20's drainage table, prints for it. A laboratory frost test
+    sets the frost design group (footnote ***), given as ``frost_group``.
 
     Parameters
     ----------
     uscs_class : str
-        USCS soil classification symbol (e.g. 'ML', 'SM', 'GW').
+        USCS soil classification symbol (e.g. 'ML', 'SM', 'GW-GM').
     finer_than_0_02mm_pct : float, optional
-        Percentage of particles finer than 0.02 mm by weight. Required for
-        granular soils where the group depends on fines content; not needed
-        for fine-grained soils (ML, MH, CL, CH, OL, OH, PT).
+        Percentage finer than 0.02 mm by weight. Required for the granular
+        symbols (GW, GP, GM, SW, SP, SM and their duals); not used for the
+        fine-grained ones (ML, MH, CL, CH, CL-ML).
+    frost_group : str, optional
+        A frost group set by other means (a laboratory frost test, as
+        footnote *** asks for PFS soils, or the Government Civil
+        Engineer's classification, para 19-2.4, pdf_page 89, printed 70).
+        When given it is returned as the group, with a note; the table is
+        not consulted.
 
     Returns
     -------
     dict
         {'uscs_class', 'finer_0_02mm_pct', 'frost_group', 'subgroup',
-         'description', 'reference'}.
+         'description', 'listed_in_table', 'also_printed', 'reference',
+         'note'?}.
 
     Raises
     ------
     ValueError
-        If uscs_class is not recognized, or fines content is required but
-        not supplied.
+        If the symbol is not in Table 19-2 (e.g. OL, OH, PT, GW-GC), the
+        percentage is needed but not given, or the symbol and percentage
+        fall in no printed row (e.g. GW over 6 %, SM under 6 %).
     """
-    key = uscs_class.lower().strip()
-    fines = finer_than_0_02mm_pct if finer_than_0_02mm_pct is not None else 0.0
-    for (uscs_pat, f_min, f_max, group, subgroup) in _USCS_FROST_RULES:
-        if key == uscs_pat and f_min <= fines <= f_max:
-            return {
-                "uscs_class": uscs_class.upper(),
-                "finer_0_02mm_pct": finer_than_0_02mm_pct,
-                "frost_group": group, "subgroup": subgroup,
-                "description": f"{uscs_class.upper()} -- frost group {group}{subgroup}",
-                "reference": "UFC 3-250-01, Table 19-2 (pdf_page 89, printed 70)",
-            }
-    raise ValueError(
-        f"Unable to classify uscs_class='{uscs_class}' with "
-        f"finer_0_02mm={finer_than_0_02mm_pct}% using Table 19-2. "
-        "Provide finer_than_0_02mm_pct for granular soils."
-    )
+    if frost_group is not None:
+        g = str(frost_group).strip().upper()
+        if g not in _FROST_GROUPS:
+            raise ValueError(
+                f"Unknown frost_group '{frost_group}'. Valid: "
+                f"{', '.join(_FROST_GROUPS)}."
+            )
+        return {
+            "uscs_class": str(uscs_class).strip().upper(),
+            "finer_0_02mm_pct": finer_than_0_02mm_pct,
+            "frost_group": g, "subgroup": "",
+            "description": f"frost group {g}, given",
+            "listed_in_table": None, "also_printed": [],
+            "note": ("Frost group given by the caller (e.g. set by a "
+                     "laboratory frost test, Table 19-2 footnote ***); "
+                     "Table 19-2 was not consulted."),
+            "reference": _TABLE_19_2_REF,
+        }
+
+    lab = ("A laboratory frost test sets the frost design group (Table 19-2 "
+           "footnote ***); give it as frost_group.")
+    sym = str(uscs_class).strip().upper().replace(" ", "")
+    sym = _USCS_ORDER_ALIASES.get(sym, sym)
+    rows = [r for r in _TABLE_19_2_ROWS if sym in r[4]]
+    if not rows:
+        drainage = [r for r in _TABLE_20_2_EXTRA_ROWS if sym in r[4]]
+        if drainage:
+            printed = "; ".join(f"{_t192_label(r)} ({r[2]}, "
+                                f"{_t192_range_text(r[3])} %)"
+                                for r in drainage)
+            raise ValueError(
+                f"Table 19-2, the frost design table (para 19-2), does not "
+                f"list {sym}. Table 20-2, Chapter 20's drainage table (para "
+                f"20-3.3.4, pdf_page 124, printed 105), prints it under "
+                f"{printed}, but it is not the frost design "
+                f"classification. {lab}"
+            )
+        listed = sorted({s for r in _TABLE_19_2_ROWS for s in r[4]}
+                        | {"GC", "SC"})
+        raise ValueError(
+            f"Table 19-2 lists no frost group for '{uscs_class}' (it lists "
+            f"{', '.join(listed)}). {lab}"
+        )
+    fines = finer_than_0_02mm_pct
+    base = {"uscs_class": sym, "finer_0_02mm_pct": fines,
+            "reference": _TABLE_19_2_REF}
+
+    if all(r[3] is None for r in rows):        # fine-grained: no fines range
+        first, others = rows[0], rows[1:]
+        out = dict(base, frost_group=first[0], subgroup=first[1],
+                   description=f"{first[2]} -- {', '.join(first[4])}",
+                   listed_in_table=True,
+                   also_printed=[_t192_label(r) for r in others])
+        if others:
+            out["note"] = (
+                f"Table 19-2 also prints {sym} under "
+                + "; ".join(f"{_t192_label(r)} ({r[2]})" for r in others)
+                + "; F3 and F4 both take index 3.5 in Table 19-3.")
+        return out
+
+    def _gc_sc_f3(why):
+        return dict(base, frost_group="F3", subgroup="",
+                    description=(f"{sym}: normally F3 (para 19-2.2); not in "
+                                 "a row of Table 19-2 at this percentage"),
+                    listed_in_table=False, also_printed=["F2"],
+                    note=(f"{why} Para 19-2.2 (pdf_page 87, printed 68): "
+                          "\"Occasionally, GC or SC materials may occur "
+                          "within the F2 group, although they normally fall "
+                          "into the F3 category.\" F3 is returned. "
+                          "(Table 20-2, Chapter 20's drainage table, prints "
+                          "GC at 10-20 % and SC at 6-15 % under F2.) " + lab),
+                    reference=f"{_TABLE_19_2_REF}; {_PARA_19_2_2_REF}")
+
+    if fines is None:
+        if sym in ("GC", "SC"):
+            return _gc_sc_f3(
+                f"No percentage finer than 0.02 mm given for {sym}.")
+        raise ValueError(
+            f"Table 19-2 sets the frost group of {sym} by the percentage "
+            "finer than 0.02 mm by weight; give finer_than_0_02mm_pct."
+        )
+    if fines < 0 or fines > 100:
+        raise ValueError(
+            f"finer_than_0_02mm_pct must be 0-100, got {fines}")
+
+    def _in(rng):
+        lo, hi = rng
+        return fines > lo if hi is None else lo <= fines <= hi
+
+    hits = [r for r in rows if r[3] is not None and _in(r[3])]
+    if not hits:
+        if sym in ("GC", "SC"):
+            return _gc_sc_f3(
+                f"Table 19-2 lists {sym} only "
+                + "; ".join(f"{_t192_range_text(r[3])} % ({_t192_label(r)})"
+                            for r in rows) + f"; {fines:g} % given.")
+        printed = "; ".join(
+            f"{_t192_label(r)} {_t192_range_text(r[3])} %" for r in rows)
+        raise ValueError(
+            f"Table 19-2 has no row for {sym} with {fines:g} % finer than "
+            f"0.02 mm (it prints {sym} at: {printed}). {lab}"
+        )
+    # A row ending where another starts gives way to the later, more
+    # frost-susceptible row (para 19-2's order).
+    ended = [r for r in hits if r[3][1] == fines
+             and any(o[3][0] == fines for o in hits)]
+    hits = [r for r in hits if r not in ended]
+    if len(hits) > 1 and sym == "SM":
+        hits.sort(key=lambda r: r[0] != "F4")     # F4 (b) first
+    first, others = hits[0], hits[1:]
+    out = dict(base, frost_group=first[0], subgroup=first[1],
+               description=(f"{first[2]}, {_t192_range_text(first[3])} % "
+                            f"finer than 0.02 mm -- {', '.join(first[4])}"),
+               listed_in_table=True,
+               also_printed=[_t192_label(r) for r in others + ended])
+    notes = []
+    if others:
+        notes.append(
+            f"Table 19-2 also prints {sym} at {fines:g} % under "
+            + "; ".join(f"{_t192_label(r)} ({r[2]}, "
+                        f"{_t192_range_text(r[3])} %)" for r in others)
+            + ".")
+    if ended:
+        notes.append(
+            f"{fines:g} % is an end two rows share: {_t192_label(first)} "
+            f"({_t192_range_text(first[3])} %), the more frost-susceptible, "
+            "is returned; Table 19-2's "
+            + " and ".join(f"{_t192_range_text(r[3])} % row gives "
+                           f"{_t192_label(r)}" for r in ended)
+            + ".")
+    if first[0] == "PFS":
+        notes.append("Footnote ***: PFS soils require a laboratory test to "
+                     "determine the frost design soils classification.")
+    if (first[0], first[1]) == ("F4", "b"):
+        notes.append("F4 (b) is for very fine silty sands; both take index "
+                     "3.5 in Table 19-3.")
+    if notes:
+        out["note"] = " ".join(notes)
+    return out
 
 
 # ============================================================================
 # Table 19-3: Frost-Area Soil Support Indexes for Subgrade Soils, Flexible
-# Pavement Design (Chapter 19, pdf_page 100, printed 81)
+# Pavement Design (Chapter 19, pdf_page 99, printed 80)
 # ============================================================================
 
 def table_19_3_frost_support_index(frost_group) -> dict:
     """Frost-area soil support index for flexible pavement design
-    (Table 19-3, Chapter 19; pdf_page 100, printed 81).
+    (Table 19-3, Chapter 19; pdf_page 99, printed 80).
 
     Used as if it were a CBR value when entering the Appendix E design
     curves for the reduced subgrade strength method; not measurable by CBR
@@ -1319,7 +1500,7 @@ def table_19_3_frost_support_index(frost_group) -> dict:
             "subgrade strength method; weighted annual average, not "
             "measurable by CBR test."
         ),
-        "reference": "UFC 3-250-01, Table 19-3 (pdf_page 100, printed 81)",
+        "reference": "UFC 3-250-01, Table 19-3 (pdf_page 99, printed 80)",
     }
 
 
@@ -1659,137 +1840,142 @@ def table_21_1_aggregate_gradation(gradation_no) -> dict:
 # ============================================================================
 # Figure E-1: Single Axle, Dual-Tire Load, Flexible Pavement Design Curve
 # (Appendix E, pdf_page 211, printed 192) -- the general-purpose 18-kip ESAL
-# design curve used throughout the guide's own worked examples (the closest
-# analog to a universal "design curve", since this UFC does not use a
-# Design Index bin system).
+# design curve used throughout the guide's own worked examples.
 #
-# CHART READ digitization: thickness (in, y-axis) vs. subgrade CBR (1-100,
-# log x-axis), family of 8 curves (10, 50, 100, 1000, 10000, 100000,
-# 1000000, 10000000 passes). SEVEN anchor points are traced EXACTLY to the
-# guide's own printed worked examples (Appendix G, Tables G-1/G-3, Sections
-# G-3.1/G-8.10) plus the figure's own printed usage-guideline arrow;
-# additional points are visual read-offs of the rendered chart used only to
-# shape the curves between/beyond the verified anchors. Treat un-cited grid
-# points as approximate (~+/-10%).
+# CHART READ off the printed curves (REF-58, from the GM-298 read of
+# 2026-10-31): the chart is a raster embedded in the PDF (520 x 664 px; CBR
+# 1, 10 and 100 at x = 48, 276 and 504; 0 and 30 in at y = 598 and 28, 19
+# px per inch). Each of the eight curves (10 to 10,000,000 passes) was
+# followed along its length from the left frame, the curve-number labels
+# bridged, then smoothed over three samples and thinned to the points
+# below (0.5 px tolerance). Each curve runs from CBR 1 to the CBR where it
+# meets the axis; thickness is linear in log(CBR) between points and
+# linear in log(passes) between curves.
+#
+# Checked against every Figure E-1 read printed in Appendix G: G-1
+# (pdf_page 275, printed 256) CBR 3 at 1,000,000 passes 16.4 in (read
+# 16.4) and CBR 4 at 1,395,400 passes 14 in (13.9); G-3 (pdf_pages
+# 277-279, printed 258-260) at 5,000,000 passes CBR 10 7.8 in (7.8), CBR 7
+# 9.8 (9.8), CBR 4 14.5 (14.5), CBR 25 3.4 (3.4). G-8.10 (pdf_page 286,
+# printed 267) says CBR 3.5 at 1,200,000 passes gives 16 in; the curves
+# give 15.1 there.
 # ============================================================================
 
-_FIG_E1_CBR = [1, 2, 3, 4, 5, 7, 10, 15, 20, 25, 30, 40, 50, 70, 100]
+# passes -> ((CBR, thickness in), ...) along the printed curve, CBR 1 to
+# the axis.
+_FIG_E1 = {
+    10_000_000: ((1, 30.00), (1.1, 29.03), (1.28, 27.01), (1.69, 23.73),
+                 (2.66, 18.79), (3.85, 15.22), (5.54, 11.90), (6.41, 10.68),
+                 (7.34, 9.72), (9.41, 8.31), (13.9, 6.33), (24.9, 3.63),
+                 (29, 2.75), (31.4, 2.16), (33.3, 1.51), (34.5, 0.80),
+                 (34.7, 0.00)),
+    1_000_000: ((1, 28.59), (1.24, 25.80), (1.42, 24.26), (1.65, 22.53),
+                (2.19, 19.52), (2.72, 17.44), (3.15, 15.94), (3.94, 13.86),
+                (5.63, 10.79), (6.41, 9.82), (8.48, 8.23), (10.6, 7.06),
+                (20.3, 4.06), (24.7, 3.06), (27.7, 2.32), (29, 1.91),
+                (30.1, 1.48), (31.2, 0.78), (31.5, 0.00)),
+    100_000: ((1, 26.55), (1.1, 25.36), (1.49, 21.89), (2.07, 18.48),
+              (3.6, 13.26), (4.47, 11.42), (5.5, 9.83), (6.8, 8.58),
+              (9.76, 6.75), (20.7, 3.26), (22.6, 2.71), (25.2, 1.95),
+              (26.7, 1.29), (27.3, 0.82), (27.6, 0.00)),
+    10_000: ((1, 23.92), (1.1, 22.79), (1.24, 21.50), (1.55, 19.16),
+             (1.81, 17.69), (2.88, 13.32), (3.96, 10.68), (4.81, 9.34),
+             (6.4, 7.78), (8.94, 6.17), (15.1, 3.83), (17.8, 3.01),
+             (18.9, 2.65), (20.5, 2.08), (21.9, 1.46), (22.7, 0.76),
+             (23, 0.00)),
+    1_000: ((1, 20.51), (1.29, 18.03), (1.92, 14.29), (2.31, 12.65),
+            (3.12, 10.24), (3.6, 9.30), (4.19, 8.42), (4.93, 7.58),
+            (7.16, 5.84), (11.7, 3.69), (14.2, 2.70), (15.6, 2.16),
+            (17.1, 1.33), (17.5, 0.88), (17.9, 0.00)),
+    100: ((1, 15.89), (1.31, 13.49), (1.42, 12.65), (1.89, 10.49),
+          (2.17, 9.53), (2.78, 8.12), (3.28, 7.30), (4.17, 6.17),
+          (7.61, 3.60), (9.62, 2.46), (10.5, 1.92), (11.3, 1.31),
+          (11.7, 0.86), (11.9, 0.00)),
+    50: ((1, 14.16), (1.41, 11.22), (1.76, 9.68), (1.98, 8.94), (2.56, 7.59),
+         (3.02, 6.77), (6.85, 3.27), (7.58, 2.79), (8.6, 2.10), (9.32, 1.52),
+         (9.75, 1.10), (10, 0.64), (10.1, 0.00)),
+    10: ((1, 9.25), (1.42, 7.40), (2.24, 5.41), (4, 3.08), (4.73, 2.27),
+         (5.36, 1.56), (5.64, 1.16), (5.84, 0.72), (6.01, 0.00)),
+}
+_FIG_E1_PASSES = sorted(_FIG_E1)
 
-# Table is built and transposed from per-CBR columns (each column: 8
-# thickness values at passes = 10, 50, 100, 1e3, 1e4, 1e5, 1e6, 1e7) so
-# monotonicity (thickness up with passes, down with CBR) can be checked by
-# inspection. CBR=3 and CBR=5 columns are pinned exactly to their 1e6-passes
-# anchors (16.4in, 10.5in); CBR=4/7/10/25 columns are pinned exactly to
-# their back-solved 1e7-passes anchors (15.1/10.65/8.65/3.71in, solved from
-# the Appendix G 5,000,000-pass interpolated check points -- see the
-# function docstring). All other values are visual read-offs of the
-# rendered chart shaped to preserve monotonicity; see docstring tolerance.
-_FIG_E1_COLUMNS_BY_CBR = {
-    1: [9.0, 13.0, 15.5, 19.0, 21.5, 23.0, 24.5, 29.0],
-    2: [6.0, 9.5, 11.5, 14.5, 16.5, 18.0, 19.3, 23.5],
-    3: [4.3, 7.0, 8.7, 11.5, 13.3, 15.0, 16.4, 19.8],
-    4: [3.3, 5.6, 7.0, 9.5, 11.0, 12.5, 13.6, 15.1],
-    5: [2.6, 4.5, 5.7, 7.8, 9.0, 10.0, 10.5, 13.0],
-    7: [1.6, 2.9, 3.8, 5.4, 6.4, 7.3, 8.0, 10.65],
-    10: [0.7, 1.6, 2.3, 3.6, 4.4, 5.1, 5.7, 8.65],
-    15: [0, 0.3, 0.6, 1.6, 2.4, 3.1, 3.8, 6.3],
-    20: [0, 0, 0.2, 0.8, 1.5, 2.3, 3.2, 4.9],
-    25: [0, 0, 0, 0.3, 0.9, 1.8, 2.7, 3.71],
-    30: [0, 0, 0, 0, 0.05, 0.2, 0.4, 3.0],
-    40: [0, 0, 0, 0, 0, 0, 0.05, 2.0],
-    50: [0, 0, 0, 0, 0, 0, 0, 1.3],
-    70: [0, 0, 0, 0, 0, 0, 0, 0.5],
-    100: [0, 0, 0, 0, 0, 0, 0, 0],
-}
-_FIG_E1_PASSES = [10, 50, 100, 1_000, 10_000, 100_000, 1_000_000, 10_000_000]
-_FIG_E1_CURVES = {
-    passes: [_FIG_E1_COLUMNS_BY_CBR[cbr][i] for cbr in _FIG_E1_CBR]
-    for i, passes in enumerate(_FIG_E1_PASSES)
-}
+
+def _fig_e1_on_curve(passes, cbr):
+    pts = _FIG_E1[passes]
+    if cbr >= pts[-1][0]:
+        return 0.0
+    return _linterp(math.log10(cbr), [math.log10(p[0]) for p in pts],
+                    [p[1] for p in pts])
 
 
 def figure_e1_flexible_thickness(cbr, passes) -> dict:
-    """Required total flexible-pavement thickness above the subgrade, for
-    an 18,000-lb single-axle dual-tire ESAL (Figure E-1, Appendix E;
-    pdf_page 211, printed 192). CHART READ (see module note).
+    """Required thickness of cover (in) above a layer of this CBR, for an
+    18,000-lb single-axle dual-tire ESAL (Figure E-1, Appendix E; pdf_page
+    211, printed 192), read along the printed curves (see the section note
+    above).
 
-    Verified anchors (all EXACT, from Appendix G): (CBR=3, passes=1e6) ->
-    16.4in (G-1, Table G-1); (CBR=10, passes=5e6) -> 7.8in (G-3.1);
-    (CBR=7, passes=5e6) -> 9.8in (G-3.1); (CBR=4, passes=5e6) -> 14.5in
-    (G-3.1); (CBR=25, passes=5e6) -> 3.4in (G-3.1); (CBR=3.5 [FASSI],
-    passes=1.2e6) -> 16in (G-8.10); (CBR=5, passes=1e6) -> ~10.5in (the
-    figure's own printed usage-guideline arrow).
+    Reproduces every Appendix G read of the chart: (CBR 3, 1,000,000) ->
+    16.4 in and (CBR 4, 1,395,400) -> 14 in (G-1); at 5,000,000 passes CBR
+    10 / 7 / 4 / 25 -> 7.8 / 9.8 / 14.5 / 3.4 in (G-3).
 
     Parameters
     ----------
     cbr : float
-        Subgrade (or frost-area soil support index, Table 19-3) CBR.
-        Interpolated within 1-100 (log scale); clamped at the endpoints.
+        Subgrade (or frost-area soil support index, Table 19-3) CBR, >= 1
+        (the chart's CBR axis runs 1-100). Past the CBR where a curve
+        meets the axis the thickness is 0.0 (no cover needed over that
+        layer).
     passes : float
         Design passes of an 18,000-lb (8,200-kg) single-axle, dual-tire
-        ESAL. Interpolated within 10-10,000,000; clamped at the endpoints.
-        Values in between the 8 printed curves are log-interpolated.
+        ESAL, 10-10,000,000 (the printed curves). Between curves the
+        thickness is linear in log(passes).
 
     Returns
     -------
     dict
         {'cbr', 'passes', 'thickness_in', 'chart_read', 'tolerance',
-         'reference'}.
+         'reference', 'note'?}.
 
     Raises
     ------
     ValueError
-        If cbr or passes is not positive, or the (cbr, passes) combination
-        falls in the chart's "curve not yet started" (near-zero thickness)
-        corner where no meaningful design point exists.
+        If cbr is below 1, or passes is outside 10-10,000,000.
     """
-    if cbr <= 0:
-        raise ValueError(f"cbr must be > 0, got {cbr}")
-    if passes <= 0:
-        raise ValueError(f"passes must be > 0, got {passes}")
-
-    c = min(max(cbr, _FIG_E1_CBR[0]), _FIG_E1_CBR[-1])
-    p = min(max(passes, _FIG_E1_PASSES[0]), _FIG_E1_PASSES[-1])
-    log_cbr = math.log10(c)
-    log_grid = [math.log10(x) for x in _FIG_E1_CBR]
-
-    def _thickness_at(passes_curve):
-        ys = _FIG_E1_CURVES[passes_curve]
-        xs, vals = [], []
-        for x, y in zip(log_grid, ys):
-            if y is not None:
-                xs.append(x)
-                vals.append(y)
-        return _linterp(log_cbr, xs, vals)
-
-    lower_p = max(pp for pp in _FIG_E1_PASSES if pp <= p)
-    upper_p = min(pp for pp in _FIG_E1_PASSES if pp >= p)
-    t_lower = _thickness_at(lower_p)
-    if upper_p == lower_p:
-        thickness = t_lower
-    else:
-        t_upper = _thickness_at(upper_p)
-        # log-interpolate on passes
-        log_lo, log_hi, log_p = math.log10(lower_p), math.log10(upper_p), math.log10(p)
-        frac = (log_p - log_lo) / (log_hi - log_lo)
-        thickness = t_lower + frac * (t_upper - t_lower)
-
-    if thickness <= 0:
+    if cbr is None or cbr < 1.0:
         raise ValueError(
-            f"CBR={cbr} at passes={passes:g} falls outside the plotted "
-            "curve (thickness would be ~0 or undefined) -- CBR is too high "
-            "for this traffic level to require cover; no minimum-thickness "
-            "governance is applied here (see Table 7-2 separately)."
+            f"CBR {cbr} is below Figure E-1's CBR axis (1-100)."
         )
-    return {
+    if passes is None or not 10 * (1 - 1e-9) <= passes <= 1e7 * (1 + 1e-9):
+        raise ValueError(
+            f"{passes} passes is outside Figure E-1's curves (10 to "
+            "10,000,000 passes of the 18-kip single axle)."
+        )
+    p = min(max(passes, 10), 10_000_000)
+    hi = next(n for n in _FIG_E1_PASSES if n >= p)
+    lo = max(n for n in _FIG_E1_PASSES if n <= p)
+    t_hi = _fig_e1_on_curve(hi, cbr)
+    if hi == lo:
+        thickness = t_hi
+    else:
+        t_lo = _fig_e1_on_curve(lo, cbr)
+        f = ((math.log10(p) - math.log10(lo))
+             / (math.log10(hi) - math.log10(lo)))
+        thickness = t_lo + f * (t_hi - t_lo)
+    out = {
         "cbr": cbr, "passes": passes, "thickness_in": round(thickness, 1),
         "chart_read": True,
         "tolerance": (
-            "verified exactly at 7 Appendix-G-anchored (CBR,passes) points; "
-            "other grid points are visual read-offs, ~+/-10%"
-        ),
+            "read along each printed curve (about 0.05 in a pixel); every "
+            "Appendix G read of it (G-1, G-3) reproduced within 0.1 in; "
+            "interpolated in log(passes) between curves"),
         "reference": "UFC 3-250-01, Figure E-1 (pdf_page 211, printed 192)",
     }
+    if thickness <= 0.0:
+        out["note"] = (
+            f"CBR {cbr} is past the end of the curves for {passes:g} passes "
+            "(where they meet the axis): no cover is needed over this layer "
+            "by Figure E-1; Table 7-2's minimum thicknesses still apply.")
+    return out
 
 
 # ============================================================================
@@ -2764,178 +2950,209 @@ def figure_e_vehicle_allowable_passes(vehicle, cbr, thickness_in, tol=0.01,
 
 # ============================================================================
 # Figure F-1: Rigid Pavement Design Curve -- Single Axle, Dual Tire Load
-# (Appendix F; pdf_page 243, printed 224). CHART READ -- read-grid digitization.
+# (Appendix F; pdf_page 243, printed 224). CHART READ off the print.
 #
-# Figure F-1 is a genuine two-family "cross" nomograph, not a simple single
-# family of curves: flexural strength (left axis, 100-1000 psi, linear) is
-# projected horizontally onto a family of 7 straight, mutually parallel
-# k-lines (k = 25/50/100/200/300/400/500 pci), then projected vertically
-# onto a family of 8 N-lines (passes = 1,000/3,000/10,000/30,000/100,000/
-# 1,000,000/10,000,000/50,000,000), then horizontally onto the thickness
-# axis (right axis, 4-12 in, linear). The whole figure is a single scanned
-# raster image in the source PDF (0 vector drawings, axis labels not in the
-# text layer), so both families were digitized by rendering the page at
-# 600-1200 dpi and locating the actual ink programmatically (connected-
-# component regression on the binarized curves, calibrated against the
-# printed axis gridlines) rather than by eye.
+# Worked as para 13-3 (pdf_page 56, printed 37) says: from the 28-day
+# flexural strength across to the k curve, down (or up) to the pass-level
+# line, across to the thickness scale.
 #
-# k-family (RELIABLE): all 7 lines were traced where they are cleanly
-# separated (flexural 1000-720 psi, before they cross the N-family), giving
-# a precise (x-intercept-at-flexural=1000, slope) pair per line from
-# 1,600-12,000 fitted pixels each -- among the best-supported reads in this
-# module. Validated directly: with this k-family alone, the predicted
-# (flexural, k) intersection point for BOTH Appendix G anchors below lands
-# within 0.1 in of a real traced curve.
+# How it was read (REF-58, from the GM-298 read of 2026-10-31): the chart
+# is a raster embedded in the PDF (560 x 696 px; flexural strength 1,000
+# and 100 psi at y = 51 and 660, thickness 12 and 4 in at the same
+# heights; frame x = 58 to 506). Each pass-level line is straight: fitted
+# by least squares to its ink (residual 0.5-0.9 px). Each k curve was
+# tracked row by row from the top edge, the curve labels masked, and
+# fitted with one smooth curve (residual 0.3 px); its x is tabled below
+# every 25 psi from 1,000 psi down to where it leaves the chart. Between k
+# curves x is interpolated in log(k); between pass-level lines the height
+# in log(passes).
 #
-# N-family (NECESSARILY LOWER CONFIDENCE): the N-lines are only cleanly
-# separable near the thickness axis and in short local runs near the two
-# Appendix G anchor points -- through the middle of the chart the two
-# families overlap into a dense crossing lattice that cannot be reliably
-# decomposed into 8 individual traced curves. Rather than force an
-# unreliable full decomposition, thickness is modeled as a LOG-LINEAR
-# interpolation in passes between two real, short, directly-traced local
-# segments (~100 pdf-points each) anchored exactly at the two Appendix G
-# worked examples below. This reproduces both printed examples to within
-# 0.02 in and gives well-behaved (monotonic, in-range) results across the
-# full k x flexural x passes grid tested, but is explicitly weaker away
-# from the two anchors -- see tolerance in the function's return value.
-#
-# A follow-up attempt traced all 8 individual N-lines locally near the
-# thickness axis (where each is briefly separable) to densify this
-# interpolation beyond the two anchors. That attempt was NOT adopted: line
-# IDENTITY (which traced segment is which of the 8 printed passes values)
-# could not be reliably resolved. Cross-checking one candidate assignment
-# against the independently-verified real trace of the 20,000,000-passes
-# anchor (extended rightward from the exact G-7 point to x~372, giving a
-# directly-traced thickness of ~9.16-9.17 in there) showed the candidate
-# "10,000,000-passes" near-axis segment reading HIGHER (~10.03 in) at that
-# same x -- a physical impossibility (more passes cannot require LESS
-# thickness). Rather than paper over an unverified identification with
-# monotonicity-forcing tricks, the simpler, fully-verified 2-anchor model
-# below is kept as authoritative; the near-axis traces were not incorporated.
+# Checked against every Figure F-1 read printed in Appendix G: G-7
+# (pdf_page 283, printed 264) 650 psi, k 100, 20,000,000 passes 8.1 in
+# (read 8.1); G-8.11 (pdf_page 286, printed 267) 650 psi, k 325, 1,200,000
+# passes 6.3 in (6.3); G-8.12 (pdf_pages 286-287) 650 psi, k 50, 1,200,000
+# passes "a pavement slab 8 in thick" (7.8, 8 in once rounded up).
 # ============================================================================
 
-# k-family: (x_at_flexural_1000, slope) in pdf-points-per-pdf-point, fit by
-# connected-component linear regression on the rendered page (600 dpi),
-# flexural = 1000 down to 720 psi (before N-family crossing). All 7 lines
-# confirmed straight and mutually parallel (slopes cluster at 0.31-0.34).
-_FIG_F1_K_GRID = {
-    500: (138.43, 0.3122),
-    400: (152.80, 0.3249),
-    300: (169.54, 0.3189),
-    200: (188.08, 0.3371),
-    100: (206.71, 0.3326),
-    50: (222.22, 0.3135),
-    25: (235.98, 0.3277),
+_FIG_F1_Y1000, _FIG_F1_Y100 = 51.0, 660.0
+_FIG_F1_PX_T = (_FIG_F1_Y100 - _FIG_F1_Y1000) / 8.0   # px per inch
+_FIG_F1_R_STEP = 25.0
+_FIG_F1_K_MAX = 500.0   # Table 10-1 note 2 (pdf_page 50, printed 31): "a k
+#                         of 500 psi/in will be the maximum used for design"
+
+# k (pci) -> x (chart px) of the k curve at R = 1000, 975, ... psi, down to
+# where the curve leaves the chart at its right edge.
+_FIG_F1_K_X = {
+    500: (58.1, 61.8, 65.9, 70.5, 75.4, 80.6, 86.1, 91.8, 97.7, 103.9, 110.4,
+          117.3, 124.5, 132.1, 140.2, 148.8, 158.1, 167.9, 178.6, 190.0,
+          202.3, 215.6, 230.1, 245.9, 263.3, 282.4, 303.7, 327.6, 354.6,
+          385.4, 420.8, 461.8),
+    400: (75.5, 80.4, 85.4, 90.5, 95.7, 101.2, 106.9, 112.8, 119.0, 125.5,
+          132.3, 139.5, 147.0, 155.1, 163.6, 172.7, 182.4, 192.8, 204.0,
+          216.0, 229.0, 243.0, 258.3, 274.9, 293.1, 313.1, 335.4, 360.2,
+          388.2, 420.1, 456.7),
+    300: (97.4, 102.5, 107.4, 112.5, 117.7, 123.3, 129.2, 135.4, 142.0, 148.9,
+          156.2, 163.9, 171.9, 180.5, 189.5, 199.1, 209.3, 220.2, 231.8,
+          244.4, 258.0, 272.6, 288.5, 305.8, 324.8, 345.6, 368.7, 394.5,
+          423.4, 456.4, 494.2),
+    200: (122.1, 127.2, 132.6, 138.1, 144.0, 150.0, 156.4, 163.0, 169.9,
+          177.2, 184.8, 192.8, 201.2, 210.1, 219.6, 229.7, 240.4, 251.9,
+          264.1, 277.2, 291.3, 306.5, 322.9, 340.8, 360.3, 381.9, 405.9,
+          433.0, 463.7),
+    100: (146.0, 152.0, 157.5, 163.0, 168.7, 174.7, 181.2, 188.0, 195.1,
+          202.5, 210.3, 218.4, 226.9, 235.9, 245.4, 255.5, 266.4, 278.0,
+          290.6, 304.1, 318.7, 334.4, 351.3, 369.7, 389.8, 412.0, 436.9,
+          465.4),
+    50: (167.1, 172.1, 177.5, 183.3, 189.4, 195.8, 202.5, 209.5, 216.7, 224.3,
+         232.2, 240.6, 249.3, 258.6, 268.4, 278.9, 290.2, 302.3, 315.5, 329.7,
+         345.2, 362.0, 380.3, 400.3, 422.0, 445.6, 471.3),
+    25: (184.7, 191.0, 196.9, 202.8, 208.9, 215.2, 222.0, 229.2, 236.9, 245.1,
+         253.8, 263.0, 272.7, 282.8, 293.5, 304.7, 316.5, 329.0, 342.2, 356.3,
+         371.4, 387.6, 405.1, 423.9, 444.4, 466.5, 490.4),
 }
-_FIG_F1_K_VALUES = sorted(_FIG_F1_K_GRID)
-# pdf-y units per 1-psi drop in flexural strength (from the flexural axis's
-# 10 printed gridlines, 1000 down to 100 psi, fit by linear regression --
-# spacing consistent to +/-1%).
-_FIG_F1_Y_PER_PSI = 0.50753
+# passes -> (slope, intercept) of the pass-level line, y = slope * x + b.
+_FIG_F1_LINES = {
+    50_000_000: (-1.5215, 700.3),
+    10_000_000: (-1.4552, 715.7),
+    1_000_000: (-1.3564, 738.0),
+    100_000: (-1.2542, 762.9),
+    30_000: (-1.1972, 775.8),
+    10_000: (-1.1430, 787.8),
+    3_000: (-1.0844, 803.4),
+    1_000: (-1.0249, 816.2),
+}
+_FIG_F1_KS = sorted(_FIG_F1_K_X)
+_FIG_F1_NS = sorted(_FIG_F1_LINES)
 
-# N-family anchors: exact (x, thickness) at the two Appendix G worked
-# examples, each with a LOCALLY-TRACED slope (real pixel tracing along that
-# specific N-line for ~100 pdf-points, not assumed/guessed).
-_FIG_F1_ANCHOR_LOW = {"passes": 1_200_000, "x": 224.2, "thickness_in": 6.3, "slope": 0.00446}
-_FIG_F1_ANCHOR_HIGH = {"passes": 20_000_000, "x": 265.84, "thickness_in": 8.1, "slope": 0.01076}
+
+def _fig_f1_x_on_k(k, flexural_psi):
+    xs = _FIG_F1_K_X[k]
+    i = (1000.0 - flexural_psi) / _FIG_F1_R_STEP
+    if i > len(xs) - 1 + 1e-9:
+        return None
+    i0 = min(int(math.floor(i)), len(xs) - 2)
+    f = i - i0
+    return xs[i0] + f * (xs[i0 + 1] - xs[i0])
 
 
-def _fig_f1_x(flexural_psi, k_psi_in):
-    """x-position (pdf points) where the flexural-strength/k-line
-    intersection sits, per the k-family read-grid."""
-    k = min(max(k_psi_in, _FIG_F1_K_VALUES[0]), _FIG_F1_K_VALUES[-1])
-    if k in _FIG_F1_K_GRID:
-        top_x, slope = _FIG_F1_K_GRID[k]
-    else:
-        lo = max(kk for kk in _FIG_F1_K_VALUES if kk <= k)
-        hi = min(kk for kk in _FIG_F1_K_VALUES if kk >= k)
-        f = (math.log10(k) - math.log10(lo)) / (math.log10(hi) - math.log10(lo))
-        top_x = _FIG_F1_K_GRID[lo][0] + f * (_FIG_F1_K_GRID[hi][0] - _FIG_F1_K_GRID[lo][0])
-        slope = _FIG_F1_K_GRID[lo][1] + f * (_FIG_F1_K_GRID[hi][1] - _FIG_F1_K_GRID[lo][1])
-    return top_x + slope * _FIG_F1_Y_PER_PSI * (1000 - flexural_psi)
+def _fig_f1_bracket(values, v):
+    hi = next(p for p in values if p >= v)
+    lo = max(p for p in values if p <= v)
+    return lo, hi
 
 
 def figure_f1_rigid_thickness(flexural_psi, k_psi_in, passes) -> dict:
-    """Required plain-concrete (or RCCP) slab thickness for a single-axle,
-    dual-tire 18,000-lb equivalent load (Figure F-1, Appendix F; pdf_page
-    243, printed 224). CHART READ -- read-grid digitization of a two-family
-    cross nomograph (see module note above); treat as an engineering
-    estimate, not a substitute for PCASE.
+    """Required plain-concrete slab thickness (in) for an 18,000-lb
+    single-axle dual-tire load (Figure F-1, Appendix F; pdf_page 243,
+    printed 224), read off the printed chart as para 13-3 works it (see
+    the section note above).
 
-    Verified EXACTLY against two Appendix G worked examples: (flexural=650
-    psi, k=100 pci, passes=20,000,000) -> 8.1 in (G-7, pdf_page 283-284,
-    printed 264-265); (flexural=650 psi, k=325 pci, passes=1,200,000) ->
-    6.3 in (G-8.11, pdf_page 287, printed 268).
+    Reproduces every Appendix G read of the chart: (650 psi, k 100,
+    20,000,000) -> 8.1 in (G-7); (650 psi, k 325, 1,200,000) -> 6.3 in
+    (G-8.11); (650 psi, k 50, 1,200,000) -> 7.8 in, "a pavement slab 8 in
+    thick" once rounded up (G-8.12).
 
     Parameters
     ----------
     flexural_psi : float
-        28-day concrete flexural strength, psi. Interpolated within
-        100-1000 psi; clamped at the endpoints.
+        28-day concrete flexural strength, psi, 100-1,000 (the printed
+        scale).
     k_psi_in : float
-        Modulus of subgrade (or subgrade+base) reaction, psi/in (pci).
-        Interpolated within 25-500 psi/in (log scale); clamped at the
-        endpoints.
+        Modulus of subgrade (or subgrade+base) reaction, psi/in (pci), at
+        least 25 (the lowest curve; Table 10-1 note 1 makes 25 the minimum
+        used for design). Above 500 it is taken as 500 (Table 10-1 note 2).
     passes : float
-        Design equivalent 18,000-lb single-axle, dual-tire passes.
-        Log-interpolated (extrapolated beyond the two anchors) within
-        1,000-50,000,000; clamped at the endpoints.
+        Design equivalent 18,000-lb single-axle, dual-tire passes,
+        1,000-50,000,000 (the printed pass-level lines).
 
     Returns
     -------
     dict
-        {'flexural_psi', 'k_psi_in', 'passes', 'thickness_in', 'chart_read',
-         'tolerance', 'reference'}.
+        {'flexural_psi', 'k_psi_in', 'passes', 'thickness_in',
+         'below_chart', 'chart_read', 'tolerance', 'reference', 'note'?}.
+        A reading under the chart's 4 in is returned as 4.0 with
+        ``below_chart`` set (para 13-3's 6 in minimum slab governs).
 
     Raises
     ------
     ValueError
-        If flexural_psi or k_psi_in is not positive, or passes is not
-        positive.
+        If k is below 25 pci, the flexural strength is outside 100-1,000
+        psi, passes are outside 1,000-50,000,000, or the reading is off
+        the chart (a k curve that has left it, or more than 12 in).
     """
-    if flexural_psi <= 0:
-        raise ValueError(f"flexural_psi must be > 0, got {flexural_psi}")
-    if k_psi_in <= 0:
-        raise ValueError(f"k_psi_in must be > 0, got {k_psi_in}")
-    if passes <= 0:
-        raise ValueError(f"passes must be > 0, got {passes}")
-
-    flex = min(max(flexural_psi, 100), 1000)
-    p = min(max(passes, 1_000), 50_000_000)
-    x = _fig_f1_x(flex, k_psi_in)
-
-    low, high = _FIG_F1_ANCHOR_LOW, _FIG_F1_ANCHOR_HIGH
-    th_low = low["thickness_in"] + low["slope"] * (x - low["x"])
-    th_high = high["thickness_in"] + high["slope"] * (x - high["x"])
-    log_lo, log_hi = math.log10(low["passes"]), math.log10(high["passes"])
-    frac = (math.log10(p) - log_lo) / (log_hi - log_lo)
-    thickness = th_low + frac * (th_high - th_low)
-
-    clamped = thickness < 4.0 or thickness > 12.0
-    thickness = min(max(thickness, 4.0), 12.0)
-
-    if 0.0 <= frac <= 1.0:
-        tol = (
-            "within the two anchors' passes range (1.2M-20M): interpolated "
-            "against exact Appendix-G anchors and a locally-traced curve "
-            "segment on each side, ~+/-10%"
+    notes = []
+    k = k_psi_in
+    if k is None or k < 25.0:
+        raise ValueError(
+            f"k {k_psi_in} pci is below Figure F-1's lowest curve (25 pci; "
+            "Table 10-1 note 1 makes 25 the minimum used for design)."
         )
+    if k > _FIG_F1_K_MAX:
+        notes.append(
+            f"k {k_psi_in:g} pci taken as {_FIG_F1_K_MAX:g} pci, the maximum "
+            "used for design (Table 10-1 note 2, pdf_page 50, printed 31).")
+        k = _FIG_F1_K_MAX
+    if flexural_psi is None or not 100.0 <= flexural_psi <= 1000.0:
+        raise ValueError(
+            f"Flexural strength {flexural_psi} psi is outside Figure F-1's "
+            "scale (100-1,000 psi)."
+        )
+    if passes is None or not 1000 * (1 - 1e-9) <= passes <= 5e7 * (1 + 1e-9):
+        raise ValueError(
+            f"{passes} passes is outside Figure F-1's pass-level lines "
+            "(1,000 to 50,000,000)."
+        )
+    p = min(max(passes, 1000), 50_000_000)
+
+    k_lo, k_hi = _fig_f1_bracket(_FIG_F1_KS, k)
+    x_lo = _fig_f1_x_on_k(k_lo, flexural_psi)
+    x_hi = _fig_f1_x_on_k(k_hi, flexural_psi)
+    if x_lo is None or x_hi is None:
+        raise ValueError(
+            f"At {flexural_psi:g} psi the k {k:g} curve has left Figure "
+            "F-1 (beyond its right edge); the chart gives no thickness."
+        )
+    if k_hi == k_lo:
+        x = x_lo
     else:
-        tol = (
-            "outside the two anchors' passes range (extrapolated beyond "
-            "1.2M-20M passes, or a k/flexural combination far from both "
-            "anchors' x-position): the k-family read-grid itself is solid, "
-            "but the N-family extrapolation is a lower-confidence, "
-            "clamped estimate, ~+/-20-25%"
-        )
-    if clamped:
-        tol += "; result clamped to the chart's printed 4-12 in range"
+        f = ((math.log10(k) - math.log10(k_lo))
+             / (math.log10(k_hi) - math.log10(k_lo)))
+        x = x_lo + f * (x_hi - x_lo)
 
-    return {
+    n_lo, n_hi = _fig_f1_bracket(_FIG_F1_NS, p)
+    y_lo = _FIG_F1_LINES[n_lo][0] * x + _FIG_F1_LINES[n_lo][1]
+    y_hi = _FIG_F1_LINES[n_hi][0] * x + _FIG_F1_LINES[n_hi][1]
+    if n_hi == n_lo:
+        y = y_lo
+    else:
+        f = ((math.log10(p) - math.log10(n_lo))
+             / (math.log10(n_hi) - math.log10(n_lo)))
+        y = y_lo + f * (y_hi - y_lo)
+    t = 12.0 - (y - _FIG_F1_Y1000) / _FIG_F1_PX_T
+    if t > 12.0 + 1e-6:
+        raise ValueError(
+            f"Figure F-1 reads {t:.1f} in, above its 12 in scale, for "
+            f"{flexural_psi:g} psi, k {k:g} pci, {p:,.0f} passes."
+        )
+    below = t < 4.0
+    if below:
+        notes.append(
+            f"Figure F-1 reads {t:.1f} in, under its 4 in scale; 4.0 is "
+            "returned (the 6 in minimum slab of para 13-3, pdf_page 56, "
+            "printed 37, governs).")
+        t = 4.0
+    out = {
         "flexural_psi": flexural_psi, "k_psi_in": k_psi_in, "passes": passes,
-        "thickness_in": round(thickness, 1),
+        "thickness_in": round(t, 1),
+        "below_chart": below,
         "chart_read": True,
-        "tolerance": tol,
+        "tolerance": (
+            "read off the printed Figure F-1 (about 0.02 in a pixel); "
+            "every Appendix G read of it (G-7, G-8.11, G-8.12) reproduced; "
+            "interpolated in log(k) and log(passes) between the drawn "
+            "curves and lines"),
         "reference": "UFC 3-250-01, Figure F-1 (pdf_page 243, printed 224)",
     }
+    if notes:
+        out["note"] = " ".join(notes)
+    return out

@@ -64,36 +64,79 @@ class TestSwellRateConstantTheta:
 # ============================================================================
 
 class TestPotentialVerticalRise:
-    def test_printed_worked_example_exact(self):
-        # PI=50, Optimum Conditions, 2 ft thickness -> VR=0.83 in (printed
-        # on the chart itself; exact by construction, this is the anchor
-        # that calibrates the whole function).
-        r = env.potential_vertical_rise(50, "optimum", 2)
-        assert r["vr_in"] == pytest.approx(0.83)
+    """Figure G.3 read off the printed chart (REF-58)."""
+
+    def test_printed_worked_example(self):
+        # The chart's own example: PI 50, average conditions, 5 ft layer ->
+        # VR (0.83) in (the dashed construction is drawn at about 0.86 on
+        # the printed VR scale).
+        r = env.potential_vertical_rise(50, "average", 5)
+        assert r["vr_in"] == pytest.approx(0.83, abs=0.04)
         assert r["chart_read"] is True
+        assert r["below_chart"] is False
+
+    @pytest.mark.parametrize("pi,vr_printed", [
+        (38, 0.28), (46, 0.70), (48, 0.82), (51, 1.04), (56, 1.34),
+        (60, 1.80), (62, 1.86), (65, 2.00), (67, 2.20), (71, 2.60),
+    ])
+    def test_appendix_h_table_h1(self, pi, vr_printed):
+        # Table H.1 (pdf_page 408, printed H-3): optimum moisture, roadbed
+        # thickness > 30 ft; the guide's own reads scatter about 0.1 in
+        # about the chart (PI 60's 1.80 sits above its neighbours' trend).
+        r = env.potential_vertical_rise(pi, "optimum", 40)
+        assert r["vr_in"] == pytest.approx(vr_printed, abs=0.15)
+
+    @pytest.mark.parametrize("pi", [15, 19])
+    def test_appendix_h_zero_rows(self, pi):
+        # Table H.1 prints 0.00 for PI 15 and 19, below where the optimum
+        # curve starts (PI about 33).
+        r = env.potential_vertical_rise(pi, "optimum", 40)
+        assert r["vr_in"] == 0.0
+        assert r["below_chart"] is True
 
     def test_condition_ordering_minimum_gt_average_gt_optimum(self):
-        # At a fixed PI and thickness, less moisture/density control ->
-        # more swell (physically sensible ordering shown in the figure).
         vmin = env.potential_vertical_rise(50, "minimum", 2)["vr_in"]
         vavg = env.potential_vertical_rise(50, "average", 2)["vr_in"]
         vopt = env.potential_vertical_rise(50, "optimum", 2)["vr_in"]
         assert vmin > vavg > vopt
 
-    def test_below_condition_threshold_gives_zero(self):
+    def test_below_curve_start_gives_zero_with_note(self):
         r = env.potential_vertical_rise(25, "optimum", 5)
         assert r["vr_in"] == 0.0
+        assert "starts" in r["note"]
+
+    def test_past_curve_top_raises(self):
+        # The minimum-moisture curve leaves the top of the chart at PI
+        # about 51; the chart gives no VR past it.
+        with pytest.raises(ValueError, match="leaves Figure G.3"):
+            env.potential_vertical_rise(55, "minimum", 10)
 
     def test_thickness_monotonic_increasing(self):
-        v_thin = env.potential_vertical_rise(50, "optimum", 2)["vr_in"]
-        v_thick = env.potential_vertical_rise(50, "optimum", 30)["vr_in"]
-        assert v_thick > v_thin
+        prev = 0.0
+        for t in (2, 5, 10, 15, 20, 25, 30):
+            v = env.potential_vertical_rise(60, "average", t)["vr_in"]
+            assert v > prev
+            prev = v
 
-    def test_thickness_clamped_above_30(self):
+    def test_thickness_linear_between_curves(self):
+        v10 = env.potential_vertical_rise(55, "average", 10)["vr_in"]
+        v15 = env.potential_vertical_rise(55, "average", 15)["vr_in"]
+        v12 = env.potential_vertical_rise(55, "average", 12.5)["vr_in"]
+        assert v12 == pytest.approx((v10 + v15) / 2, abs=0.002)
+
+    def test_thickness_above_30_uses_30(self):
+        # G.1 (pdf_page 394, printed G-1): "for thicknesses greater than
+        # 30 feet, use 30 feet".
         r30 = env.potential_vertical_rise(50, "optimum", 30)
         r40 = env.potential_vertical_rise(50, "optimum", 40)
         assert r40["vr_in"] == pytest.approx(r30["vr_in"])
-        assert "note" in r40
+        assert "30 ft" in r40["note"]
+
+    def test_thickness_below_2_uses_2_with_note(self):
+        r1 = env.potential_vertical_rise(50, "average", 1)
+        r2 = env.potential_vertical_rise(50, "average", 2)
+        assert r1["vr_in"] == pytest.approx(r2["vr_in"])
+        assert "overstates" in r1["note"]
 
     def test_unknown_condition_raises(self):
         with pytest.raises(ValueError):
