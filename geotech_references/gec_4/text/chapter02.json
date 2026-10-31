@@ -5,62 +5,412 @@
   "chapter_title": "Ground Anchors and Anchored Systems",
   "sections": [
     {
+      "section_id": "2.1",
+      "title": "Introduction",
+      "summary": "The chapter adopts the standardized terminology of AASHTO Task Force 27 (1990) and PTI (1996) and presents ground anchor materials, anchored system construction and applications.",
+      "body": "The AASHTO Task Force 27 (1990) and PTI (1996) documents introduced standardized terminology and definitions of ground anchor components, which are adopted throughout the document. The chapter presents ground anchor materials, anchored system construction and anchored system applications. (p. 4)",
+      "key_points": [
+        "Terminology of AASHTO Task Force 27 (1990) and PTI (1996) adopted (p. 4).",
+        "Covers anchor materials, anchored system construction and applications (p. 4)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Standard ground anchor terminology (AASHTO Task Force 27, 1990; PTI, 1996) used throughout GEC-4"
+    },
+    {
       "section_id": "2.2",
       "title": "Ground Anchors",
-      "summary": "A prestressed grouted ground anchor is a structural element that transmits tensile load into the ground via grout. Components: (1) anchorage (head + bearing plate + trumpet); (2) unbonded length (free to elongate, bondbreaker sleeve prevents grout bond); (3) tendon bond length (bonded to grout, transfers load). Four types: Type A — straight shaft gravity-grouted (rock and very stiff/hard clay); Type B — straight shaft pressure-grouted (coarse granular and fissured rock, grout >0.35 MPa); Type C — post-grouted (multiple injections to enlarge grout body); Type D — underreamed (firm/hard cohesive soil, end-bearing supplement). Grout: w/c = 0.4–0.55, min 21 MPa at stressing.",
-      "body": "A prestressed grouted ground anchor transmits an applied tensile load into the ground through a cement-grouted drill hole. The anchor consists of: (1) anchorage — anchor head + bearing plate + trumpet at the wall face; (2) free stressing (unbonded) length — allows elastic elongation; protected by smooth bondbreaker sleeve; (3) tendon bond length — bonded to grout, located behind the critical failure surface. The anchor bond length is the portion of the drill hole that is grouted and transfers load to the ground.\n\nThe tendon includes prestressing steel, corrosion protection, sheaths, centralizers, and spacers, but excludes the grout. A sheath is a smooth or corrugated tube that protects the unbonded length from corrosion. Centralizers position the tendon to provide minimum grout cover. Spacers separate multiple strands or bars to ensure individual bonding to grout.\n\nFour main anchor types: Type A — straight shaft gravity-grouted (tremie method) for rock and very stiff to hard cohesive soils. Type B — straight shaft pressure-grouted; grout injected at >0.35 MPa for coarse granular soils and weak fissured rock; increases normal stress and effective diameter of grout bulb. Type C — post-grouted; multiple delayed injections via check-valve tubes enlarge the gravity-grouted anchor body; most complex but highest capacity. Type D — underreamed (series of bells), used in firm to hard cohesive soils; mobilizes end-bearing in addition to side shear.\n\nTendon materials: Bar tendons per ASTM A722 — diameters 26, 32, 36, 45, 64 mm; uncoupled lengths up to ~18 m; max design load ~2,077 kN for 64 mm bar; adjustable load after lock-off. Strand tendons per ASTM A416 — 15 mm diameter seven-wire strand, multiple strands, no practical length limit; lower relaxation properties. Epoxy-coated bars (AASHTO M284) and epoxy-coated filled strand (per ASTM A882 supplement) provide additional corrosion protection. Indented strand per ASTM A886.\n\nCement grout: neat cement grout per ASTM C150; w/c = 0.4 to 0.55; Type I cement; min 21 MPa compressive strength at anchor stressing. Sand-cement grout acceptable for large diameter drill holes. Plasticizers may be used for high-temperature or long-distance pumping applications.",
+      "summary": "Heading for ground anchors: general components (2.2.1), anchor types (2.2.2), tendon materials (2.2.3) and cement grout (2.2.4).",
+      "body": "Heading for ground anchors: general components (2.2.1), anchor types (2.2.2), tendon materials (2.2.3) and cement grout (2.2.4); it has no text of its own. (p. 4)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Ground anchor types, tendon materials, and grout specifications for highway applications"
+    },
+    {
+      "section_id": "2.2.1",
+      "title": "General",
+      "summary": "A prestressed grouted ground anchor (tieback) transmits tension into soil or rock through anchorage, unbonded (free stressing) length and bond length (Figures 1 to 3). The tendon is the prestressing steel, corrosion protection, sheaths, centralizers and spacers, excluding grout and (here, unlike PTI) the anchorage.",
+      "body": "A prestressed grouted ground anchor is a structural element installed in soil or rock that transmits an applied tensile load into the ground; grouted ground anchors, referred to simply as ground anchors or as \"tiebacks\", are installed in grout filled drill holes. Basic components are (1) the anchorage, (2) the free stressing (unbonded) length and (3) the bond length (Figure 1). The anchorage, the anchor head, bearing plate and trumpet, transmits the prestressing force from the prestressing steel (bar or strand) to the ground surface or the supported structure (p. 5; Figures 2 and 3 for bar and strand tendons). The unbonded length is the part of the prestressing steel free to elongate elastically and transfer the resisting force from the bond length to the structure; a bondbreaker, a smooth plastic sleeve over the tendon there, prevents bonding to the grout, allowing unobstructed elongation during testing and stressing and leaving the steel unbonded after lock-off. The tendon bond length is the length of prestressing steel bonded to the grout and transmitting the load into the ground; the anchor bond length should be behind the critical failure surface. The tendon includes the prestressing steel (strands or bars), corrosion protection, sheaths (sheathings), centralizers and spacers, and excludes the grout; PTI (1996) also includes the anchorage, but here the tendon is assumed not to. The sheath is a smooth or corrugated pipe or tube protecting the unbonded prestressing steel from corrosion; centralizers position the tendon for the specified minimum grout cover; spacers separate the elements of multiple element tendons so each is bonded to the grout. The grout is a Portland cement based mixture that transfers load from tendon to ground and protects the tendon from corrosion. (pp. 4 to 6)",
       "key_points": [
-        "Ground anchor components: anchorage (head/plate/trumpet), unbonded length (bondbreaker sleeve), tendon bond length",
-        "Type A: gravity-grouted (rock/stiff clay); Type B: pressure-grouted >0.35 MPa (granular/fissured rock)",
-        "Type C: post-grouted (multiple injections via check valves); Type D: underreamed (end-bearing in stiff clay)",
-        "Bar tendons: ASTM A722, 26–64 mm dia., up to 18 m uncoupled; strand: ASTM A416, 15 mm, no length limit",
-        "Grout: w/c = 0.4–0.55, Type I Portland cement; min 21 MPa at stressing per ASTM C150"
+        "Components: anchorage, unbonded (free stressing) length, bond length (Figure 1) (p. 4).",
+        "Anchorage = anchor head, bearing plate and trumpet (Figures 2, 3) (p. 4).",
+        "Bondbreaker sleeve keeps the unbonded length free to elongate (p. 5).",
+        "Anchor bond length located behind the critical failure surface (p. 5).",
+        "Tendon excludes grout and, here, the anchorage (unlike PTI 1996) (p. 5)."
       ],
       "equations": [],
       "figures": [
         "Figure 1: Components of a ground anchor",
         "Figure 2: Anchorage components for a bar tendon",
-        "Figure 3: Anchorage components for a strand tendon",
-        "Figure 4: Main types of grouted ground anchors (after Littlejohn, 1990)",
-        "Figure 5: Cut away view of bar tendon",
+        "Figure 3: Anchorage components for a strand tendon"
+      ],
+      "tables": [],
+      "applicability": "Ground anchor components, types, tendon materials and grout for highway applications"
+    },
+    {
+      "section_id": "2.2.2",
+      "title": "Types of Ground Anchors",
+      "summary": "Heading for the types of ground anchors: general (2.2.2.1), straight shaft gravity-grouted (2.2.2.2), straight shaft pressure-grouted (2.2.2.3), post-grouted (2.2.2.4) and underreamed (2.2.2.5).",
+      "body": "Heading for the types of ground anchors: general (2.2.2.1), straight shaft gravity-grouted (2.2.2.2), straight shaft pressure-grouted (2.2.2.3), post-grouted (2.2.2.4) and underreamed anchors (2.2.2.5); it has no text of its own. (p. 6)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selection among straight shaft gravity-grouted, pressure-grouted, post-grouted and underreamed ground anchors"
+    },
+    {
+      "section_id": "2.2.2.1",
+      "title": "General",
+      "summary": "Three main U.S. types: straight shaft gravity-grouted (Type A), straight shaft pressure-grouted (Type B) and post-grouted (Type C); underreamed (Type D) is uncommon (Figure 4). The contractor usually selects drilling, within engineer limits that protect nearby structures from ground loss and heave.",
+      "body": "Three main ground anchor types are used in U.S. practice: (1) straight shaft gravity-grouted ground anchors (Type A); (2) straight shaft pressure-grouted ground anchors (Type B); and (3) post-grouted ground anchors (Type C). The underreamed anchor (Type D) is not commonly used today. The types are shown in Figure 4 (p. 7). Drilling methods include rotary, percussion, rotary/percussive or auger drilling (Bruce, 1989). Drilling procedures are usually selected by the contractor, but site conditions may lead the engineer to limit the method, which must not harm structures near the anchors or on the surface; excessive ground loss into the hole and surface heave are the primary causes of such damage. Large diameter hollow stem augered anchors should be discouraged in sands and gravels, since the auger tends to remove more soil than its net volume, possibly losing support of the hole. Drill casing is used in unstable soil or rock, with water or air flushing the cuttings; air flushing needs caution, as excess air pressure may remove groundwater and fines, leading to hole collapse, or cause ground heave (p. 7). (pp. 6 to 7)",
+      "key_points": [
+        "Types A (gravity-grouted), B (pressure-grouted), C (post-grouted); D (underreamed) uncommon (Figure 4) (p. 6).",
+        "Contractor usually selects drilling; engineer may limit it (p. 6).",
+        "Ground loss and heave are the main causes of damage to nearby structures (p. 6).",
+        "Discourage large hollow stem augers in sands and gravels (p. 6).",
+        "Caution with air flushing: collapse or heave (pp. 6 to 7)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 4: Main types of grouted ground anchors (modified after Littlejohn, 1990)"
+      ],
+      "tables": [],
+      "applicability": "Selection among straight shaft gravity-grouted, pressure-grouted, post-grouted and underreamed ground anchors"
+    },
+    {
+      "section_id": "2.2.2.2",
+      "title": "Straight Shaft Gravity-Grouted Ground Anchors",
+      "summary": "Gravity-grouted straight shaft anchors suit rock and very stiff to hard cohesive soils, drilled by rotary or hollow-stem auger and tremie grouted, cased or uncased; pullout resistance is shear at the grout/ground interface.",
+      "body": "Straight shaft gravity-grouted ground anchors are typically installed in rock and very stiff to hard cohesive soil deposits using rotary drilling or hollow-stem auger methods, and grouted in the straight borehole by tremie (gravity displacement) methods. The borehole may be cased or uncased depending on its stability. Pullout resistance depends on the shear resistance mobilized at the grout/ground interface. (p. 7)",
+      "key_points": [
+        "For rock and very stiff to hard cohesive soils (p. 7).",
+        "Rotary or hollow-stem auger drilling; tremie grouted (p. 7).",
+        "Resistance from shear at the grout/ground interface (p. 7)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selection among straight shaft gravity-grouted, pressure-grouted, post-grouted and underreamed ground anchors"
+    },
+    {
+      "section_id": "2.2.2.3",
+      "title": "Straight Shaft Pressure-Grouted Ground Anchors",
+      "summary": "Pressure-grouted straight shaft anchors suit coarse granular soils and weak fissured rock, also fine grained cohesionless soils; grout is injected above 0.35 MPa as auger or casing is withdrawn, raising normal stress on the grout bulb and its effective diameter.",
+      "body": "Straight shaft pressure-grouted ground anchors are most suitable for coarse granular soils and weak fissured rock, and are also used in fine grained cohesionless soils. Grout is injected into the bond zone at pressures greater than 0.35 MPa; the hole is typically drilled with a hollow stem auger or rotary techniques with casing, and grout is injected under pressure as the auger or casing is withdrawn until the whole anchor bond length is grouted. Compared with tremie grouting this increases pullout resistance by (1) increasing the normal stress (confining pressure) on the grout bulb through local compaction of the surrounding material and (2) increasing the effective diameter of the grout bulb. (p. 8)",
+      "key_points": [
+        "For coarse granular soils, weak fissured rock and fine grained cohesionless soils (p. 8).",
+        "Grout injected at more than 0.35 MPa during withdrawal (p. 8).",
+        "Higher normal stress and larger effective bulb diameter than tremie grouting (p. 8)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selection among straight shaft gravity-grouted, pressure-grouted, post-grouted and underreamed ground anchors"
+    },
+    {
+      "section_id": "2.2.2.4",
+      "title": "Post-grouted Ground Anchors",
+      "summary": "Post-grouted anchors enlarge gravity grouted bodies by delayed injections, one or two days apart, through a sealed tube with check valves; high pressure grout fractures the set grout and wedges it outward. Systems use a packer per valve or pump without valve control.",
+      "body": "Post-grouted ground anchors use delayed multiple grout injections, each separated by one or two days, to enlarge the grout body of straight shafted gravity grouted anchors. Postgrouting is through a sealed grout tube installed with the tendon, with check valves in the bond zone that allow additional grout to be injected at high pressure into the set initial grout, fracturing it and wedging it outward into the soil to enlarge the grout body. One system uses a packer to isolate each valve; the other pumps grout down the post-grout tube without controlling which valves open. (p. 8)",
+      "key_points": [
+        "Delayed multiple injections one or two days apart (p. 8).",
+        "Sealed grout tube with check valves in the bond zone (p. 8).",
+        "Packer-isolated valves or uncontrolled pumping (p. 8)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selection among straight shaft gravity-grouted, pressure-grouted, post-grouted and underreamed ground anchors"
+    },
+    {
+      "section_id": "2.2.2.5",
+      "title": "Underreamed Anchors",
+      "summary": "Underreamed anchors are tremie grouted holes with enlargement bells for firm to hard cohesive deposits; they add end bearing to side shear, but the underreams must be formed and cleaned carefully.",
+      "body": "Underreamed anchors consist of tremie grouted boreholes with a series of enlargement bells or underreams, usable in firm to hard cohesive deposits. Besides side shear, the principal load transfer mechanism of other anchors, resistance may be mobilized in end bearing. Care must be taken to form and clean the underreams. (p. 8)",
+      "key_points": [
+        "Tremie grouted holes with enlargement bells (p. 8).",
+        "Firm to hard cohesive deposits (p. 8).",
+        "End bearing added to side shear; form and clean underreams carefully (p. 8)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selection among straight shaft gravity-grouted, pressure-grouted, post-grouted and underreamed ground anchors"
+    },
+    {
+      "section_id": "2.2.3",
+      "title": "Tendon Materials",
+      "summary": "Heading for tendon materials: steel bar and strand (2.2.3.1), spacers and centralizers (2.2.3.2), epoxy-coated bar and filled strand (2.2.3.3), and other anchor types and materials (2.2.3.4).",
+      "body": "Heading for tendon materials: steel bar and strand tendons (2.2.3.1), spacers and centralizers (2.2.3.2), epoxy-coated bar and epoxy-coated filled strand (2.2.3.3), and other anchor types and tendon materials (2.2.3.4); it has no text of its own. (p. 8)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selection of bar, strand, epoxy-coated and alternative tendon materials and their spacers and centralizers"
+    },
+    {
+      "section_id": "2.2.3.1",
+      "title": "Steel Bar and Strand Tendons",
+      "summary": "Bars (ASTM A722) of 26 to 64 mm in lengths up to about 18 m, a 64-mm bar resisting design loads up to about 2,077 kN, couplers beyond; easier to stress and adjust. Strand tendons (ASTM A416; indented A886) of multiple 15-mm seven-wire strands have no practical load or length limit; strand couplers not for routine use.",
+      "body": "Bar and strand tendons are both common for soil and rock anchors on U.S. highways, specified by ASTM A722 and ASTM A416 respectively; indented strand by ASTM A886. Bars are commonly available in 26, 32, 36, 45 and 64 mm diameters in uncoupled lengths up to approximately 18 m; a single 64-mm bar can resist design loads up to approximately 2,077 kN; couplers extend bars beyond 18 m or where space limits length. Compared with strands, bars are easier to stress and their load can be adjusted after lock-off. Strand tendons (p. 9) comprise multiple seven-wire strands, commonly 15 mm in diameter, with no practical load or length limitations; tendon steels have low enough relaxation to minimize long-term load losses. Strand couplers exist but are rarely used, since strand tendons can be made in any length; they are not recommended for routine projects, the coupler diameter being much larger than the strand, but may repair damaged tendons, with corrosion protection at the coupler verified. (pp. 8 to 9)",
+      "key_points": [
+        "Bars per ASTM A722; strands per ASTM A416; indented strand ASTM A886 (p. 8).",
+        "Bars 26 to 64 mm, uncoupled lengths up to about 18 m (p. 8).",
+        "A single 64-mm bar resists design loads up to about 2,077 kN (p. 8).",
+        "Bars easier to stress; load adjustable after lock-off (p. 8).",
+        "15-mm seven-wire strands; no practical load or length limit; couplers not routine (p. 9)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selection of bar, strand, epoxy-coated and alternative tendon materials and their spacers and centralizers"
+    },
+    {
+      "section_id": "2.2.3.2",
+      "title": "Spacers and Centralizers",
+      "summary": "Spacer/centralizer units at regular intervals (typically 3 m) along the bond zone give strand tendons 6 to 13 mm interstrand spacing and at least 13 mm outer grout cover; noncorrosive, free-flowing (Figure 5).",
+      "body": "Spacer/centralizer units are placed at regular intervals (e.g., typically 3 m) along the anchor bond zone. For strand tendons, spacers usually provide a minimum interstrand spacing of 6 to 13 mm and a minimum outer grout cover of 13 mm. Spacers and centralizers should be made of non-corrosive materials and permit free flow of grout. Figures 5 and 6 show cut away sections of a bar and a strand tendon. (p. 9)",
+      "key_points": [
+        "Spacer/centralizers typically every 3 m along the bond zone (p. 9).",
+        "Interstrand spacing 6 to 13 mm; outer grout cover at least 13 mm (p. 9).",
+        "Non-corrosive and free-flowing for grout (Figure 5) (p. 9)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5: Cut away view of bar tendon"
+      ],
+      "tables": [],
+      "applicability": "Selection of bar, strand, epoxy-coated and alternative tendon materials and their spacers and centralizers"
+    },
+    {
+      "section_id": "2.2.3.3",
+      "title": "Epoxy-Coated Bar and Epoxy-Coated Filled Strand",
+      "summary": "Epoxy-coated bar (AASHTO M284) and filled strand (supplement to ASTM A882), used more for dam tiedowns, add corrosion protection; unfilled coated strand is not recommended. Deduct the strand's own creep (PTI 1996) from measured creep in acceptance testing.",
+      "body": "Epoxy-coated bar (AASHTO M284) and epoxy-coated filled strand (supplement to ASTM A882), not used extensively for highways, are increasingly used for dam tiedowns; the coating adds a layer of corrosion protection in the unbonded and bond lengths compared with bare steel. In filled strand the center wire is also coated; unfilled epoxy-coated strand is not recommended, since water may enter the gaps around the center wire and cause corrosion. Unlike bare strand, creep deformations of the epoxy-coated filled strands themselves are relatively significant during testing, and must be deducted from total creep movement to measure bond zone movement reliably; estimates of their intrinsic creep are in PTI (1996). Figure 6 shows a cut away strand tendon. (p. 10)",
+      "key_points": [
+        "Epoxy-coated bar (AASHTO M284) and filled strand (ASTM A882 supplement) (p. 10).",
+        "Unfilled epoxy-coated strand not recommended (p. 10).",
+        "Deduct the coated strand's own creep from measured creep (PTI 1996) (p. 10)."
+      ],
+      "equations": [],
+      "figures": [
         "Figure 6: Cut away view of strand tendon"
       ],
       "tables": [],
-      "applicability": "Ground anchor types, tendon materials, and grout specifications for highway applications"
+      "applicability": "Selection of bar, strand, epoxy-coated and alternative tendon materials and their spacers and centralizers"
+    },
+    {
+      "section_id": "2.2.3.4",
+      "title": "Other Anchor Types and Tendon Materials",
+      "summary": "Grade 60 and 75 grouted bars, helical, plate and mechanical rock anchors are also used, but the document's design and testing methods are for cement grouted anchors with high strength prestressing steel. FRP tendons are under research and not in current U.S. practice.",
+      "body": "Alternative anchor types and tendon materials used in the U.S. include Grade 60 and Grade 75 grouted steel bars, helical anchors, plate anchors and mechanical rock anchors. The design and testing methods in the document are for cement grouted anchors using high strength prestressing steels and may not be appropriate for these alternatives. Fiber reinforced plastic (FRP) prestressing tendons are being researched (e.g., Schmidt et al., 1994) (p. 11): high tensile strength, corrosion resistant and lightweight, but not used in current U.S. practice; fiberglass and stainless steel have been used experimentally, cost and/or construction concerns restricting their use. (pp. 10 to 11)",
+      "key_points": [
+        "Alternatives: Grade 60/75 grouted bars, helical, plate and mechanical rock anchors (p. 10).",
+        "Document methods apply to cement grouted, high strength prestressing steel anchors (p. 10).",
+        "FRP tendons under research, not in current U.S. practice (p. 11)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selection of bar, strand, epoxy-coated and alternative tendon materials and their spacers and centralizers"
+    },
+    {
+      "section_id": "2.2.4",
+      "title": "Cement Grout",
+      "summary": "Anchor grout is typically neat cement grout (ASTM C150); sand-cement for large holes, pea gravel-sand-cement outside the encapsulation. A w/c ratio of 0.4 to 0.55 with Type I cement normally gives at least 21 MPa at stressing; admixtures rarely needed, plasticizers for heat or long pumping.",
+      "body": "Anchor grout for soil and rock anchors is typically a neat cement grout (no aggregate) conforming to ASTM C150; sand-cement grout may be used for large diameter holes, and pea gravel-sand-cement grout outside the tendon encapsulation. High speed mixers commonly ensure uniform mixing. A water/cement (w/c) ratio of 0.4 to 0.55 by weight with Type I cement normally provides a minimum compressive strength of 21 MPa at the time of stressing. Special additives may be needed to improve flow on some projects; admixtures are not typically required, but plasticizers may help at high temperatures and for long pumping distances. (p. 11)",
+      "key_points": [
+        "Neat cement grout per ASTM C150; sand-cement for large holes (p. 11).",
+        "w/c 0.4 to 0.55 with Type I cement: at least 21 MPa at stressing (p. 11).",
+        "Admixtures not typically required; plasticizers for heat or long pumping (p. 11)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Ground anchor components, types, tendon materials and grout for highway applications"
     },
     {
       "section_id": "2.3",
       "title": "Anchored Walls",
-      "summary": "The most common anchored wall in the U.S. is the soldier beam and lagging wall — discrete steel soldier beams at 1.5–3 m spacing spanned by timber (or shotcrete) lagging, with one or more levels of ground anchors. Drilled-in soldier beams use lean-mix concrete (min 0.35 MPa) below excavation subgrade and lean-mix above (to allow scraping). Construction sequence: top-down in 1.2–1.5 m lifts; halt excavation 0.6 m below anchor level, install and test anchor, lock-off, then continue. Continuous wall systems (sheet piles, slurry walls, secant pile walls) do not require lagging and are commonly used for temporary SOE.",
-      "body": "Soldier beam and lagging walls are the most commonly used anchored wall type in the U.S. Horizontal soldier beam spacing typically varies from 1.5 to 3 m. Steel beams (WF or HP shapes) may be driven or drilled-in. Drilled-in soldier beams are placed in excavated holes backfilled with structural concrete from the bottom to the excavation subgrade, then lean-mix concrete (1 bag Portland cement per cubic yard; max ~1 MPa) from subgrade to grade. Lean-mix concrete is scraped off during lagging installation. CLSM (flowable fill with cement, fine aggregate, and fly ash) may substitute for lean-mix concrete; min 0.35 MPa required. Driven soldier beams use HP shapes or steel sheet piles; connected to anchors via thru-beam connections (for small diameter anchors) or horizontal wales.\n\nLagging: Excavation in 1.2–1.5 m lifts (smaller in cohesionless or soft ground with limited stand-up time). Lagging installed from top-down immediately after excavation. Timber or reinforced shotcrete lagging placed between or in front of soldier beam flanges. Gaps between vertically adjacent lagging boards accommodate drainage ('louvers'). Concrete lagging has been used but is difficult to trim and may crack during anchor testing.\n\nConstruction sequence (soldier beam and lagging): (1) Install soldier beams; (2) Excavate and install lagging top-down; (3) When excavation reaches 0.6 m below anchor level, halt excavation; (4) Install, test, and lock-off ground anchor; (5) Continue excavation to next anchor level or final depth; (6) After reaching final depth, install drainage, permanent concrete facing.\n\nContinuous walls (sheet-pile, slurry walls, tangent/secant pile): Act as both vertical and horizontal wall elements. Sheet-pile walls driven in one phase. Continuous walls must address water pressure (watertight connection at anchor/wall interface needed for hydrostatic conditions).",
+      "summary": "Heading for anchored walls: general (2.3.1), soldier beam and lagging walls (2.3.2) and continuous walls (2.3.3).",
+      "body": "Heading for anchored walls: general (2.3.1), soldier beam and lagging walls (2.3.2) and continuous walls (2.3.3); it has no text of its own. (p. 11)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Design and construction of soldier beam and lagging walls and continuous anchored wall systems"
+    },
+    {
+      "section_id": "2.3.1",
+      "title": "General",
+      "summary": "Anchored walls are nongravity cantilevered walls with one or more anchor levels, using discrete (soldier beam) or continuous (sheet-pile) elements driven or drilled below grade; support from element stiffness, passive resistance and anchors. Facings usually CIP concrete; continuous elements need none.",
+      "body": "Anchored walls stabilizing excavations and slopes are a common highway application of ground anchors. They are nongravity cantilevered walls with one or more levels of anchors, using discrete (e.g., soldier beam) or continuous (e.g., sheet-pile) vertical elements driven or drilled below the finished excavation grade; nongravity cantilevered walls are supported by the shear and bending stiffness of the vertical elements and passive resistance below grade, and anchored walls add the lateral resistance of the anchors against horizontal pressures (earth, water, seismic). Discrete elements are often steel piles or drilled shafts spanned by a structural facing, permanent facings usually cast-in-place (CIP) concrete, though timber lagging or precast panels have been used. Continuous elements need no separate facing: steel sheet-piles, CIP or precast panels in slurry trenches (slurry or diaphragm walls), tangent/secant piles, soil-cement columns and jet grouted columns. (p. 11)",
       "key_points": [
-        "Soldier beam and lagging: most common U.S. type; soldier beam spacing 1.5–3 m; timber lagging excavated top-down in 1.2–1.5 m lifts",
-        "Drilled-in soldier beam backfill: structural concrete below subgrade; lean-mix (min 0.35 MPa) above for easy scraping",
-        "Halt excavation 0.6 m below anchor elevation; install, test, and lock-off anchor before continuing",
-        "Lagging boards require 'louver' gaps for drainage between vertically adjacent boards",
-        "Continuous walls (sheet-pile, slurry, secant): no lagging required; water pressure must be addressed explicitly"
+        "Nongravity cantilevered walls with one or more anchor levels (p. 11).",
+        "Discrete (soldier beam) or continuous (sheet-pile) elements (p. 11).",
+        "Support: element stiffness, passive resistance and anchors (p. 11).",
+        "Permanent facings usually CIP concrete; continuous walls need no facing (p. 11)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Design and construction of soldier beam and lagging walls and continuous anchored wall systems"
+    },
+    {
+      "section_id": "2.3.2",
+      "title": "Soldier Beam and Lagging Wall",
+      "summary": "Heading for soldier beam and lagging walls: general (2.3.2.1), soldier beams (2.3.2.2), lagging (2.3.2.3) and construction sequence (2.3.2.4).",
+      "body": "Heading for soldier beam and lagging walls: general (2.3.2.1), soldier beams (2.3.2.2), lagging (2.3.2.3) and construction sequence (2.3.2.4); it has no text of its own. (p. 12)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction of soldier beam and lagging anchored walls: soldier beams, lagging and construction sequence"
+    },
+    {
+      "section_id": "2.3.2.1",
+      "title": "General",
+      "summary": "Soldier beam and lagging walls, the most common U.S. anchored walls, span discrete elements with timber lagging or reinforced shotcrete; buildable in most ground but limited stand-up time in cohesionless soils and soft clays needs care; highly pervious (Figure 7).",
+      "body": "Soldier beam and lagging walls are the most commonly used anchored wall system in the U.S.: discrete vertical elements spanned by lagging, typically timber but possibly reinforced shotcrete. They can be built in most ground, but care is needed in ground such as cohesionless soils and soft clays with limited \"stand-up\" time for lagging installation; they are highly pervious. The construction sequence for a permanent wall is shown in Figure 7. (p. 12)",
+      "key_points": [
+        "Most common U.S. anchored wall system (p. 12).",
+        "Timber lagging or reinforced shotcrete between discrete elements (p. 12).",
+        "Limited stand-up time in cohesionless soils and soft clays (p. 12).",
+        "Highly pervious; construction sequence in Figure 7 (p. 12)."
       ],
       "equations": [],
       "figures": [
-        "Figure 7: Construction sequence for permanent soldier beam and lagging wall",
-        "Figure 8: Comparison of concrete gravity wall and anchored wall for a depressed roadway"
+        "Figure 7: Construction sequence for permanent soldier beam and lagging wall"
       ],
+      "tables": [],
+      "applicability": "Construction of soldier beam and lagging anchored walls: soldier beams, lagging and construction sequence"
+    },
+    {
+      "section_id": "2.3.2.2",
+      "title": "Soldier Beam",
+      "summary": "Soldier beams at 1.5 to 3 m: drilled-in steel sections backfilled with structural or lean-mix concrete to subgrade and lean-mix (about 1 MPa; specify at least 0.35 MPa, or CLSM) above; or driven HP or sheet sections with thru-beam connections or wales. Sidewinder connections and exposed wales are not for permanent walls.",
+      "body": "Soldier beams are installed from the ground surface to final elevation first, horizontal spacing typically 1.5 to 3 m; they may be steel beams or drilled shafts, the latter seldom with timber lagging. Drilled-in soldier beams: wide flange (WF) or double channel sections in holes backfilled with structural or lean-mix concrete from the bottom to excavation subgrade, chosen for the lateral and vertical capacity of the embedded part (chapter 5), and lean-mix from subgrade to surface, scraped off during lagging and anchor installation (structural concrete there is extremely hard to remove). Lean-mix typically has one 94 lb bag of Portland cement per cubic yard and strength not typically above about 1 MPa; controlled low strength material (CLSM, \"flowable fill\", with fine aggregate and fly ash) is an alternative; specifications should require a minimum strength of 0.35 MPa while keeping it easy to remove. Anchors are installed between the sections, the spacing set by the anchor type; hole diameters depend on the shape and anchor diameter; replacement anchors can go anywhere along the beam; connections on the front face or between sections, prefabricated for small diameter anchors, made after installation for large ones. Driven soldier beams: HP shapes or sheet piles, which must reach the embedment without significant damage, helped by drive shoes or \"points\" and high strength steel; if they cannot, they should be drilled-in. Thru-beam connections or horizontal wales connect the anchors. A thru-beam connection (p. 14), cut in the beam before driving for a small diameter anchor, applies the load at the beam center in line with the web; it cannot take large-diameter anchors (over about 150 mm) and suits projects with few expected anchor failures, since a failed anchor must be removed or a new connection made. A \"sidewinder connection\", offset from center and loading the flange, subjects the beam to bending and torsion; usable with a replacement anchor in a temporary support of excavation wall, it is not recommended for permanent walls. Wales may be on the face or recessed behind the front flange; exposed wales need well protected anchorages, are unattractive and corrode, and are not recommended for permanent walls; front-face wales need a thick CIP facing, recessed wales allow a normal facing but need costly individual fabrication and welding. If a wale is added during construction, check the horizontal clear distance to the travel lanes. (pp. 13 to 14)",
+      "key_points": [
+        "Horizontal spacing typically 1.5 to 3 m (p. 13).",
+        "Drilled-in: structural or lean-mix concrete to subgrade, lean-mix above (p. 13).",
+        "Lean-mix about 1 MPa; specify at least 0.35 MPa for lean-mix or CLSM (p. 13).",
+        "Driven: HP or sheet sections; drill in if they cannot reach depth (p. 13).",
+        "Thru-beam connections not for anchors over about 150 mm (p. 14).",
+        "Sidewinder connections and exposed wales not recommended for permanent walls (p. 14)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction of soldier beam and lagging anchored walls: soldier beams, lagging and construction sequence"
+    },
+    {
+      "section_id": "2.3.2.3",
+      "title": "Lagging",
+      "summary": "Excavate in 1.2 to 1.5 m lifts (less with short stand-up time) and place lagging top-down promptly, behind or on the flanges, backpacked; louvers leave drainage gaps between boards, otherwise provide other drainage. Concrete lagging is problematic (tolerances, no trimming, cracking at anchors).",
+      "body": "After soldier beam installation the soil in front is excavated in lifts, commonly 1.2 to 1.5 m, smaller where stand-up time is limited, and lagging is placed top-down as soon as possible to limit erosion into the excavation, after trimming a reasonably smooth contact surface. Lagging behind the front flange is cut to length, placed between adjacent flanges and secured against the webs with wood wedges or shims; it can also be attached to the front flange with clips or welded studs, rarely behind the back flange. Gaps between lagging and retained ground must be backpacked for good contact. A spacer (\"louver\") nailed to the top of each board end leaves a drainage gap between vertically adjacent boards, wide enough to drain without letting soil fall out; boards in close contact are typically unacceptable, but where waterproofing requires no gap the contractor must provide alternate drainage. Concrete lagging (p. 15) is problematic: difficult handling, very tight tolerances on beam position for standard lengths, very difficult trimming, no field splicing, and possible cracking near anchors during testing or stressing. (pp. 14 to 15)",
+      "key_points": [
+        "Excavate in 1.2 to 1.5 m lifts; smaller with limited stand-up time (p. 14).",
+        "Place lagging top-down as soon as possible; backpack gaps (p. 14).",
+        "Louvers leave drainage gaps; otherwise contractor provides drainage (p. 14).",
+        "Concrete lagging problematic (p. 15)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction of soldier beam and lagging anchored walls: soldier beams, lagging and construction sequence"
+    },
+    {
+      "section_id": "2.3.2.4",
+      "title": "Construction Sequence",
+      "summary": "Excavate to about 0.6 m below each anchor level (deeper only if the wall is designed for it), install, test and lock off the anchor, and repeat to final depth; then drainage elements and, for permanent walls, a precast or CIP facing. Shotcrete facing needs drainage behind it.",
+      "body": "Top-down lagging continues until the excavation is about 0.6 m below the design elevation of an anchor; excavation then stops and the anchor is installed. Deeper excavation (more than 0.6 m) below an anchor level may be needed to fabricate the connection or for equipment access, and the wall must be designed for it. The anchor is drilled and grouted, load tested once the grout has an appropriate minimum strength, and locked off at an appropriate load; excavation and lagging continue to the next anchor level, the cycle repeating to final depth. Prefabricated drainage elements may then be placed at design spacings and connected to a collector at the wall base. Shotcrete instead of timber lagging can be effective, but being of low permeability it needs drainage behind it (chapter 5). Permanent walls typically get a precast or CIP concrete facing. (p. 15)",
+      "key_points": [
+        "Excavate about 0.6 m below each anchor level before installing it (p. 15).",
+        "Design the wall for any deeper excavation (p. 15).",
+        "Test and lock off each anchor before excavating further (p. 15).",
+        "Shotcrete needs drainage behind it; permanent walls get a precast or CIP facing (p. 15)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction of soldier beam and lagging anchored walls: soldier beams, lagging and construction sequence"
+    },
+    {
+      "section_id": "2.3.3",
+      "title": "Continuous Walls",
+      "summary": "Anchored continuous walls (sheet-pile, tangent or secant pile, slurry, soil mixed) are common for temporary support; sheet piles are driven in one phase, may be infeasible in hard ground or obstructions, and are normally steel. Continuous walls must be designed for water pressure, with watertight connections against permanent hydrostatic forces.",
+      "body": "Ground anchors are also used with continuous walls such as sheet-pile, tangent or secant pile, slurry or soil mixed walls, commonly for temporary excavation support. Sheet-pile walls are built in one phase, interlocking sheets driven to final elevation, often with a template in difficult driving, but may not be feasible in hard ground or with obstructions; steel sheets are normally used, being more available and stronger than precast concrete. Other continuous wall construction is covered in FHWA-HI-99-007 (1999). Continuous walls act as both vertical and horizontal elements; excavation and anchor installation cycle from the top and between anchor levels. Water pressure behind them must be considered in design, and where they resist permanent hydrostatic forces the anchor/wall connection must be watertight. (p. 15)",
+      "key_points": [
+        "Continuous walls common for temporary excavation support (p. 15).",
+        "Sheet piles may be infeasible in hard ground or with obstructions; normally steel (p. 15).",
+        "Other continuous walls: FHWA-HI-99-007 (1999) (p. 15).",
+        "Design for water pressure; watertight connections against permanent hydrostatic forces (p. 15)."
+      ],
+      "equations": [],
+      "figures": [],
       "tables": [],
       "applicability": "Design and construction of soldier beam and lagging walls and continuous anchored wall systems"
     },
     {
       "section_id": "2.4",
       "title": "Applications of Ground Anchors",
-      "summary": "Ground anchors are used in three main highway applications: (1) retaining walls for grade separations (depressed roadways, widenings, realignments, bridge abutments) — advantages over gravity walls include no select backfill, no temporary support, and eliminated deep foundations; (2) slope and landslide stabilization — anchors combined with walls, horizontal beams, or concrete blocks to resist sliding mass forces, which may be larger than typical retaining wall forces; (3) tiedown structures — resist vertical uplift from hydrostatic or overturning forces in underwater or subterranean applications.",
-      "body": "Highway retaining walls: Anchored walls are used for grade separations to construct depressed roadways, widenings, and realignments. Compared to concrete gravity walls, permanent anchored walls eliminate the need for: temporary excavation support; select backfill; and deep foundation support. Construction time and ROW acquisition are also reduced. Applications include new bridge abutment construction and end slope removal for existing bridge abutments.\n\nSlope and landslide stabilization: Ground anchors are used in combination with walls, horizontal beams, or concrete blocks to stabilize slopes and landslides. The required stabilization force may be considerably greater than that for a typical highway retaining wall. Horizontal beams or concrete blocks transfer anchor loads to the slope surface. Cost, aesthetics, and long-term maintenance affect the selection of surface connection system.\n\nTiedown structures: Permanent ground anchors resist vertical uplift forces from hydrostatic or overturning loads. Used where a structure has insufficient dead weight to counteract uplift. Advantages: reduced concrete volume in slabs; reduced excavation/dewatering. Disadvantages: large load variations from settlement and heave; difficulty of watertight anchor-slab connections; stress variations in slab. Rock anchor tiedowns are also used to stabilize concrete dams (overturning, sliding, earthquake resistance).",
+      "summary": "Heading for applications of ground anchors: highway retaining walls (2.4.1), slope and landslide stabilization (2.4.2) and tiedown structures (2.4.3).",
+      "body": "Heading for applications of ground anchors: highway retaining walls (2.4.1), slope and landslide stabilization (2.4.2) and tiedown structures (2.4.3); it has no text of its own. (p. 16)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selection of ground anchor applications for highway retaining walls, slope stabilization, and tiedown structures"
+    },
+    {
+      "section_id": "2.4.1",
+      "title": "Highway Retaining Walls",
+      "summary": "Anchored walls serve depressed roadways, widenings and realignments, and bridge abutment construction or end slope removal; a gravity wall costs more because it needs temporary support, select backfill and possibly deep foundations (Figure 8).",
+      "body": "Anchored walls are commonly used for grade separations to build depressed roadways, roadway widenings and realignments; their advantages over conventional concrete gravity walls are described in \"section 1.2\" (as printed; the list is in 1.3). Figure 8 compares a gravity wall and a permanent anchored wall for a depressed roadway: the gravity wall is more expensive because it requires temporary excavation support, select backfill and possibly deep foundation support. Anchored walls may also be used for new bridge abutments and end slope removal at existing abutments (FHWA-RD-97-130, 1998). (p. 16)",
       "key_points": [
-        "Retaining walls: eliminates temporary support, select backfill, and deep foundations for highway cut walls",
-        "Slope stabilization: stabilization force may be much greater than typical wall loads; use with horizontal beams or concrete blocks",
-        "Tiedowns: resist hydrostatic or overturning uplift; challenges include load variation with GWT change and watertight connections"
+        "Depressed roadways, widenings, realignments (p. 16).",
+        "Gravity wall costs more: temporary support, select backfill, deep foundations (Figure 8) (p. 16).",
+        "Also new abutments and end slope removal (FHWA-RD-97-130) (p. 16)."
       ],
       "equations": [],
       "figures": [
-        "Figure 9: Applications of ground anchors and anchored systems (retaining wall, slope, tiedown, dam)"
+        "Figure 8: Comparison of concrete gravity wall and anchored wall for a depressed roadway"
+      ],
+      "tables": [],
+      "applicability": "Selection of ground anchor applications for highway retaining walls, slope stabilization, and tiedown structures"
+    },
+    {
+      "section_id": "2.4.2",
+      "title": "Slope and Landslide Stabilization",
+      "summary": "Anchors with walls, beams or blocks permit deep cuts (Figure 9a) and stabilize landslides (Figure 9b) with forces possibly much larger than for a highway wall; beams or blocks need ground that does not run or compress at the face.",
+      "body": "Ground anchors are often combined with walls, horizontal beams or concrete blocks to stabilize slopes and landslides. Soil and rock anchors permit relatively deep cuts for new highways (Figure 9a) and can provide a large enough force to stabilize the ground mass above a landslide or slip surface (Figure 9b), possibly considerably more than a typical highway retaining wall needs. Horizontal beams or blocks may transfer the anchor loads to the slope surface provided the ground does not \"run\" or compress and can resist the reactions at the face; cost, aesthetics and long-term maintenance of the exposed face affect the choice. (p. 17)",
+      "key_points": [
+        "Anchors permit relatively deep cuts (Figure 9a) (p. 17).",
+        "Landslide stabilization forces may far exceed wall needs (Figure 9b) (p. 17).",
+        "Beams or blocks need ground that does not run or compress (p. 17)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selection of ground anchor applications for highway retaining walls, slope stabilization, and tiedown structures"
+    },
+    {
+      "section_id": "2.4.3",
+      "title": "Tiedown Structures",
+      "summary": "Tiedown anchors resist hydrostatic or overturning uplift (Figure 9c), reducing slab concrete and excavation or dewatering, but anchor loads vary with settlement and heave, watertight connections are difficult and slab stresses vary. Rock anchor tiedowns also stabilize concrete dams (Figure 9d).",
+      "body": "Permanent ground anchors may resist vertical uplift from hydrostatic or overturning forces, e.g. underwater where the structure's dead weight is insufficient (Figure 9c). Advantages: (1) less slab concrete than a dead weight slab; (2) less excavation and/or dewatering. Disadvantages: (1) potentially large variations in anchor load from settlement and heave of the structure; (2) difficulty making watertight connections at the anchor-slab interface, particularly important for hydrostatic applications; and (3) variations in slab stresses. A major uplift slab with tiedowns was built for the Central Artery Project in Boston, Massachusetts (Druss, 1994). Although not a highway application, permanent rock anchor tiedowns may stabilize concrete dams (Figure 9d), whose upgrades for maximum flood and earthquake standards benefit from added resistance to overturning, sliding and earthquake loading. Figure 9 (p. 18) shows the applications. (pp. 17 to 18)",
+      "key_points": [
+        "Tiedowns resist hydrostatic or overturning uplift (Figure 9c) (p. 17).",
+        "Advantages: less slab concrete, less excavation or dewatering (p. 17).",
+        "Disadvantages: load variation, watertight connections, slab stresses (p. 17).",
+        "Rock anchor tiedowns for concrete dams (Figure 9d) (p. 17)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 9: Applications of ground anchors and anchored systems"
       ],
       "tables": [],
       "applicability": "Selection of ground anchor applications for highway retaining walls, slope stabilization, and tiedown structures"
