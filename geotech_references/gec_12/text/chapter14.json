@@ -8,15 +8,14 @@
     {
       "section_id": "14.1",
       "title": "Overview of Plan and Specification Requirements",
-      "summary": "Piles cannot be inspected after installation, so plans and specifications matter. Plans should show pile locations and numbering, type, section and estimated length, toe details, splices, cutoff elevation, cap connection, estimated and minimum toe elevations, batter, H-pile orientation, Rr, Rn, Rndr, and boring locations and results. A bare '300 kips' is ambiguous: state the factored resistance, resistance factor, nominal resistance, unsuitable layer resistance, setup or relaxation, and Rndr.",
-      "body": "14.1 (pp. 281-283): plans, details and specifications for piling are the foundation designer's responsibility with materials and construction personnel. Plans should include: pile locations; a numbering system; pile type, section and estimated length; toe details (driving shoe, closure plate); splicing details; cutoff elevation; cap connection details; estimated toe elevation; minimum toe elevation if needed; batter and direction; H-pile orientation; factored resistance Rr; nominal resistance Rn; nominal driving resistance Rndr; boring locations and exploration results. The designer must use compatible language, especially for Rndr; problems arise when plans give only one resistance without the resistance factor of the control method or losses from scour, liquefaction or relaxation. 'Piles shall have a resistance of 300 kips' could mean Rr, Rn or Rndr; plans should state the factored resistance, resistance factor, nominal resistance, resistance of unsuitable layers (scour, liquefaction and their elevations), setup or relaxation, and the resulting Rndr. The generic specification (FHWA Geotechnical Guideline 13, updated from ASD to LRFD; AASHTO (2010) construction specifications are similar) needs agency review before use, includes commentary, and covers driven piles only. Design-bid-build uses agency standard specifications (agency takes the risk); design-build uses performance specifications (design-builder takes the risk); CM/GC uses standard specifications. Table 14-1 lists items to include.",
+      "summary": "Piles cannot be inspected after installation, so plans and specifications matter. Plans should list pile locations, numbering, type, toe and splice details, cutoff, cap connection, estimated and minimum toe elevations, batter, H-pile orientation, Rr, Rn, Rndr and borings; state the factored resistance, resistance factor, nominal resistance, unsuitable layer resistance, setup or relaxation and the resulting Rndr. Table 14-1 lists specification items.",
+      "body": "14.1 Overview of Plan and Specification Requirements (pp. 281 to 283). Contract plans and specifications are the foundation designer's responsibility with materials and construction personnel. Plans should include: pile locations; a numbering system identifying each pile in a group or bent; type, section and estimated length; toe details (driving shoe, closure plate); splice details; cutoff elevation; cap connection details; estimated toe elevation; minimum toe elevation if needed; batter and direction; H-pile orientation; factored resistance Rr; nominal resistance Rn; nominal driving resistance Rndr; boring locations and exploration results. Language must be compatible, especially for the nominal driving resistance: 'piles shall have a resistance of 300 kips' could mean factored, nominal or nominal driving resistance, so plans should state the factored resistance, the resistance factor, the nominal resistance, the added resistance of unsuitable layers (scour, liquefaction and their elevations), post-driving changes (setup or relaxation) and the resulting Rndr. The chapter's generic specification (from FHWA Geotechnical Guideline 13, updated from ASD to LRFD; AASHTO LRFD Bridge Construction Specifications 2010 are similar) must be reviewed and modified before use; its commentary explains the provisions; it covers only driven piles. Design-bid-build uses agency standard specifications (agency takes the risk); design-build uses performance specifications (design-builder takes the risk); CM/GC uses standard specifications. Table 14-1 items: pile materials (type, grade, strength; coating; transportation and handling); driving system (hammer; hammer and pile cushions; helmet and inserts; leads; followers; predrilling, jetting and spudding equipment); installation (sequence; location and alignment tolerances; shoe or toe protection; splices; cutoff; cap connection; heave; rejection criteria); resistance verification (static, dynamic and rapid load testing; wave equation; dynamic formulas); payment (measurement; pay items).",
       "key_points": [
-        "Piles cannot be inspected after installation; specifications and monitoring are of prime importance",
-        "Plans: locations, numbering, type, section, estimated length, toe details, splices, cutoff, cap connection, toe elevations, batter",
-        "Plans must give factored resistance Rr, nominal resistance Rn and nominal driving resistance Rndr",
-        "A bare '300 kips' is ambiguous; state resistance factor, unsuitable layers, setup or relaxation, and Rndr",
-        "Generic specification from FHWA Geotechnical Guideline 13, updated to LRFD; needs agency review",
-        "Design-bid-build: agency takes the risk; design-build: design-builder takes the risk"
+        "Plans should show pile type, toe details, splices, cutoff and toe elevations, batter, Rr, Rn and Rndr",
+        "Avoid ambiguous 'resistance of 300 kips': state factored, nominal and nominal driving resistance",
+        "State the resistance factor, unsuitable-layer resistance and setup/relaxation behind Rndr",
+        "Generic specification (FHWA GT-13, now LRFD) must be reviewed and modified before use",
+        "Table 14-1: items a driven pile specification should include"
       ],
       "equations": [],
       "figures": [],
@@ -33,215 +32,265 @@
     {
       "section_id": "14.2",
       "title": "Generic Driven Pile Specification",
-      "summary": "A generic driven pile specification (pp. 284-330) in eight sections: X.01 Description, X.02 Submittals and Approvals, X.03 Materials, X.04 Driving Equipment and Appurtenances, X.05 Determination of Nominal Resistance, X.06 Preparation and Driving, X.07 Method of Measurement and X.08 Basis of Payment.",
-      "body": "14.2 (pp. 284-330): a generic driven pile specification in eight sections, opening with its own contents list (pp. 284-285). Section X.01 Description (p. 286). Section X.02 Submittals and Approvals (p. 287): the pile installation plan, and approval of the pile driving equipment by wave equation or by an alternate method. Section X.03 Materials (p. 295). Section X.04 Driving Equipment and Appurtenances (p. 296): pile hammers, and the drive system components and accessories (hammer cushion, helmet, pile cushion, leads, followers, jets, predrilling equipment, spuds). Section X.05 Determination of Nominal Resistance (p. 303): axial compression by static load test, dynamic testing with signal matching, rapid load test, wave equation analysis or dynamic formula; axial tension by static load test or dynamic testing with signal matching; lateral resistance by static load test. Section X.06 Preparation and Driving (p. 316): site work, preparation of piling, and driving (test, probe and indicator piles, production piles, driving stress, installation sequence, tolerances, heaved piles, obstructions, refusal, splices, cutoffs, unsatisfactory piles). Section X.07 Method of Measurement (p. 325). Section X.08 Basis of Payment (p. 329).",
+      "summary": "The generic driven pile specification's contents: X.01 Description; X.02 Submittals and Approvals (installation plan, equipment approval by wave equation or alternate method); X.03 Materials; X.04 Driving Equipment and Appurtenances; X.05 Determination of Nominal Resistance (compression, tension, lateral); X.06 Preparation and Driving; X.07 Method of Measurement; X.08 Basis of Payment.",
+      "body": "14.2 Generic Driven Pile Specification (pp. 284 to 285). The specification opens with its contents list (pp. 284-285): X.01 Description (p. 286); X.02 Submittals and Approvals (p. 287): A pile installation plan, B pile driving equipment approval by wave equation, C approval by alternate method; X.03 Materials (p. 295); X.04 Driving Equipment and Appurtenances (p. 296): A pile hammers, B drive system components (hammer cushion, helmet, pile cushion, leads, followers, jets, predrilling equipment, spuds); X.05 Determination of Nominal Resistance (p. 303): A axial compression (static load tests, dynamic testing with signal matching, rapid load tests, wave equation analysis, dynamic formula), B axial tension (static load tests, dynamic testing with signal matching), C lateral resistance (static load tests); X.06 Preparation and Driving (p. 316): A site work, B preparation of piling, C driving (test, probe and indicator piles through unsatisfactory piles); X.07 Method of Measurement (p. 325): items A to P; X.08 Basis of Payment (p. 329).",
       "key_points": [
         "Eight specification sections, X.01 Description to X.08 Basis of Payment (pp. 286-330)",
         "Driving equipment is approved by wave equation analysis or by an alternate method (Section X.02)",
-        "Nominal resistance: compression by static, dynamic, rapid load test, wave equation or dynamic formula; tension by static or dynamic test; lateral by static load test (Section X.05)"
+        "Nominal resistance by static, dynamic, rapid load tests, wave equation or dynamic formula (Section X.05)"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "The layout of a generic driven pile specification and where each provision sits.",
-      "subsections": [
+      "applicability": "The layout of a generic driven pile specification and where each provision sits."
+    },
+    {
+      "section_id": "14.2.1",
+      "title": "Section X.01 Description",
+      "summary": "Furnish and drive piles of the designated type to the location, elevation, penetration and/or nominal resistance shown; with test piles, plan lengths are estimates and the Engineer sets order lengths; perform specified load tests. The Owner estimates lengths and contractors should not be penalized for inaccurate estimates.",
+      "body": "14.2.1 Section X.01 Description (p. 286). The item covers furnishing and driving foundation piles of the designated type and dimensions, including cutting off or building up, installed at the location and to the elevation, penetration and/or nominal resistance shown or as directed. Without test piles the Contractor furnishes the dimensions shown; with test piles, plan lengths are for estimating and the Engineer sets production lengths after test piles are driven and tested; order list lengths are those remaining after cutoff, and the Contractor adds length for fresh heading and its methods without compensation. Specified static, dynamic and/or rapid load tests are performed at the locations shown. Commentary: the Owner can assure proper installation and the Contractor expect equitable pay; the Owner estimates lengths for the nominal resistances from design-phase exploration, testing and analysis and expected variability; contractors should not be held accountable or indirectly penalized for inaccurate estimated lengths; the Contractor installs undamaged piles to the specified length, and the bid reflects cost and perceived risk.",
+      "key_points": [
+        "With test piles, plan lengths are estimates; the Engineer sets order lengths",
+        "Owner is responsible for estimated pile lengths; contractors not penalized for inaccuracies",
+        "Contractor installs designated piles undamaged to the specified length"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Scope clause of a generic driven pile specification."
+    },
+    {
+      "section_id": "14.2.2",
+      "title": "Section X.02 Submittals and Approvals",
+      "summary": "Pile installation plan 30 days before driving (13 items). Equipment approved by wave equation (Pile and Driving Equipment Data Form, Figure 14-1): required blow count 30 to 96 blows/ft and stresses within phi_da limits (steel 0.90 fy; prestressed concrete tension 0.095 sqrt(f'c) + fpe, or fpe in severe corrosion, compression 0.85 f'c - fpe; timber 2.6 Fco; phi_da 1.0, timber 1.15). Table 14-2 resistance factors; alternate approval by rated energy (Table 14-3).",
+      "body": "14.2.2 Section X.02 Submittals and Approvals (pp. 287 to 295). A) The Contractor submits a Pile Driving Installation Plan at least 30 days before driving: (1) equipment lists and hammer data sheets; (2) methods to determine field hammer energy, with calibrations; (3) follower and (4) template drawings; (5) load test equipment, instrumentation, procedures, reaction frame and pile arrangement and calibrations; (6) driving sequence; (7) schedule; (8) preconstruction survey and protection of nearby structures and utilities; (9) shop drawings; (10) preventing pile movement during fill placement within 15 ft; (11) placing reinforcement and concrete in pipe piles; (12) preventing batter pile deflection until the cap is cast; (13) splice locations and proprietary splices. B) Equipment approval is by wave equation unless a dynamic formula is specified; nothing is transported before written approval; the Pile and Driving Equipment Data Form (Figure 14-1) is submitted at least 30 days before driving, with follower drawings (commentary: wave equation approval cuts costs and claims; disputed rejections answered by a PE-sealed wave equation at the Contractor's cost; the form is used by the inspector even without wave equation approval). The required blow count at the required nominal resistance must be between 30 and 96 blows per foot (commentary: below practical refusal, 10 blows per inch). Stresses must not exceed phi_da limits (AASHTO 2014 phi_da = 1.0, timber 1.15): steel compression phi_da x 0.90 fy; prestressed concrete tension phi_da x (0.095 sqrt(f'c) + fpe) normally (ksi), phi_da x fpe in severe corrosive environments; compression phi_da x (0.85 f'c - fpe); timber compression phi_da x 2.6 Fco (AASHTO Table 8.4.1.4-1). Acceptance within 14 days, revisions within 7 days; unsuitable systems are modified at the Contractor's expense; changes need revised analyses and give no time extension. Commentary: Rndr is the resistance overcome (including unsuitable, liquefiable and scour zone soils) to reach the depth where the factored resistance is achieved with the field method's resistance factor; it depends on unsuitable layers, minimum penetration, temporary strength changes and installation methods (jetting, predrilling); it must be on the plans; optimum installation is below the bearing graph's maximum curvature (typically about 84 to 96 blows/ft). Table 14-2 (after AASHTO 2014): compression, static load test plus dynamic testing on at least 2 piles per site condition and 2% of production piles 0.80; static load test without dynamic testing 0.75; dynamic testing on 100% of piles 0.75; dynamic testing on 2 piles per site condition and 2% of piles 0.65; wave equation at end of drive 0.50; FHWA Modified Gates 0.40; Engineering News 0.10; tension, static load test 0.60, dynamic testing 0.50 (no AASHTO factor for rapid load tests, Section 11.4.7). C) Where a dynamic formula verifies resistance, hammers must have rated energy at least the Table 14-3 minimum for the nominal resistance (bands 180 and under, 181-300, 301-420, 421-540, 541-600, over 600 kips; values left for the agency) and the formula blow count must not exceed 10 blows per inch; the agency develops the table by wave equation (too large: stress problems or under 30 blows/ft; too small: over 120 blows/ft) for routine projects in uniform soils only.",
+      "key_points": [
+        "Pile installation plan due 30 days before driving (13 required items)",
+        "Wave equation approval: 30 to 96 blows/ft at the required nominal resistance",
+        "Steel: compression <= phi_da x 0.90 fy (phi_da = 1.0; timber 1.15)",
+        "Prestressed concrete: tension <= phi_da (0.095 sqrt(f'c) + fpe); compression <= phi_da (0.85 f'c - fpe)",
+        "Timber: compression <= phi_da x 2.6 Fco",
+        "Table 14-2: phi 0.80/0.75/0.75/0.65/0.50/0.40/0.10 compression; 0.60/0.50 tension",
+        "Alternate approval by minimum rated energy (Table 14-3) with formula blow count <= 10 blows/in."
+      ],
+      "equations": [],
+      "figures": [
         {
-          "section_id": "14.2.1-14.2.2",
-          "title": "Section X.01 Description and Section X.02 Submittals and Approvals",
-          "summary": "Test pile results set production lengths. A Pile Installation Plan is due 30 days before the first pile. Equipment is approved by wave equation unless a dynamic formula is specified: 30 to 96 bl/ft at the required resistance and stresses within limits (phi_da 1.0, timber 1.15): steel 0.90 fy; prestressed tension 0.095 sqrt(f'c) + fpe, or fpe in severe environments; compression 0.85 f'c - fpe; timber 2.6 Fco. For formula projects the alternate method uses minimum rated energies (Table 14-3) and at most 10 blows/in.",
-          "body": "X.01 (p. 286): furnish and drive piles of the designated type and dimensions; with test piles, plan lengths are estimates and the Engineer sets production lengths after testing; the contractor adds length for fresh heading without compensation. Commentary: the owner estimates lengths and contractors should not be penalized for inaccurate estimates. X.02 A (pp. 287-288): the Pile Driving Installation Plan, due 30 days before the first pile, lists equipment (with hammer data sheets), field hammer energy methods and calibrations, follower and template drawings, load test equipment and calibrations, driving sequence, schedule, preconstruction surveys of nearby structures and utilities, shop drawings, measures against pile movement during fill within 15 ft, reinforcement and concrete placement in pipe piles, batter pile support, and splice details. X.02 B (pp. 288-293): equipment approved by wave equation unless a formula is specified; none brought to site before written approval; the Pile and Driving Equipment Data Form (Figure 14-1) due 30 days before driving, and submitted even when the wave equation is not used. Criteria: 30 to 96 bl/ft at the required resistance (below practical refusal of 10 blows/in.) and stresses within limits with phi_da 1.0 (timber 1.15): steel compression 0.90 of minimum yield; prestressed tension 0.095 sqrt(f'c) + fpe (ksi) in normal and fpe in severe corrosive environments; prestressed compression 0.85 f'c - fpe; timber compression 2.6 Fco. Response in 14 calendar days, revisions in 7; no changes without written approval and no time extension for revisions. Commentary: Rndr includes unsuitable, liquefiable and scour zone resistance, minimum penetration, driving gains or losses and jetting or predrilling effects; show it on the plans; optimum driving is below the bearing graph's maximum curvature, typically 84 to 96 bl/ft (Table 14-2 factors; none for rapid load tests). X.02 C (pp. 294-295): when a formula controls, hammers must meet the rated energies of Table 14-3 and the formula blow count must not exceed 10 blows/in.; agencies build the table from wave equation analyses (too large: stress problems or under 30 bl/ft; too small: over 120 bl/ft) for routine projects in uniform soils only.",
-          "key_points": [
-            "Pile Driving Installation Plan due 30 days before driving the first pile",
-            "No driving equipment to site before written approval; data form (Figure 14-1) due 30 days before driving",
-            "Wave equation approval: 30 to 96 bl/ft at the required nominal resistance, below 10 blows/in. practical refusal",
-            "phi_da = 1.0 for all pile types except timber (1.15)",
-            "Steel: compression <= phi_da x 0.90 x minimum yield strength",
-            "Prestressed concrete tension: phi_da (0.095 sqrt(f'c) + fpe) normal; phi_da fpe severe corrosive (ksi)",
-            "Prestressed concrete compression: phi_da (0.85 f'c - fpe); timber: phi_da x 2.6 Fco",
-            "Engineer responds within 14 calendar days, revisions within 7",
-            "Rndr includes resistance of unsuitable, liquefiable and scour zone soils; show it on the plans",
-            "Alternate (formula) approval: minimum rated energy by resistance (Table 14-3), at most 10 blows/in."
-          ],
-          "equations": [],
-          "figures": [
-            {
-              "figure_id": "14-1",
-              "title": "Drive system submittal form",
-              "description": "",
-              "page": 289
-            }
-          ],
-          "tables": [
-            {
-              "table_id": "14-2",
-              "title": "Resistance Factors for Field Determination Methods",
-              "description": "AASHTO compression phi_dyn: static load test on at least one pile per site condition plus dynamic testing with signal matching of at least two piles per site condition, not less than 2% of production piles, 0.80; static load test without dynamic testing 0.75; dynamic testing with signal matching on 100% of production piles 0.75; dynamic testing of at least two piles per site condition, not less than 2%, 0.65; wave equation alone at end of drive 0.50; FHWA modified Gates 0.40; Engineering News 0.10. Tension: static load test 0.60; dynamic testing with signal matching 0.50.",
-              "page": 293
-            },
-            {
-              "table_id": "14-3",
-              "title": "Alternate Approval Method Minimum Pile Hammer Requirements",
-              "description": "Minimum manufacturer's rated hammer energy (ft-lbs) by nominal resistance bands of 180 kips and under, 181-300, 301-420, 421-540, 541-600 and over 600 kips; the energy column is left blank for each agency to fill from wave equation analyses (see commentary).",
-              "page": 294
-            }
-          ],
-          "applicability": "Contractor submittals and driving equipment approval in a driven pile specification."
-        },
-        {
-          "section_id": "14.2.3-14.2.4",
-          "title": "Section X.03 Materials and Section X.04 Driving Equipment and Appurtenances",
-          "summary": "Materials follow agency standard specifications. Hammers: air, steam, diesel or hydraulic; drop hammers only if permitted, not for concrete piles or resistance over 120 kips, ram at least 2.0 kips and the helmet plus pile weight, drop at most 12 ft. Stroke and energy must be observable for each hammer type. Vibratory production piles need a load test or impact restrike, and every tenth pile restruck. Durable hammer cushions; concrete pile cushions at least 4 in. with a formula, new for each pile.",
-          "body": "X.03 (pp. 295-296): concrete, reinforcing, prestressing, structural steel, shoe castings, shells, timber, preservative and coatings per agency standard specifications. X.04 A (pp. 296-298): drop hammers, if permitted, not for concrete piles or above 120 kips, ram at least 2.0 kips and not less than helmet plus pile, drop at most 12.0 ft, with guides. Air/steam hammers within manufacturer ranges with accessible gauges; striking parts at least one third of helmet plus pile and at least 2.75 kips, waived with wave equation approval. Open-end diesels: stroke rings, a stroke vs blows per minute chart and an automatic stroke display. Closed-end diesels: bounce chamber gauge near ground and a chart calibrated within 60 days. Hydraulic hammers: kinetic energy or impact velocity display. Vibratory hammers only after the toe elevation is set by load testing or impact restrike of test piles (contractor's cost), controlled by power, penetration rate or toe elevation, with the first of every 10 piles restruck. Commentary: give inspectors hammer manuals; consider energy readouts (Section 15.19); no formula predicts vibratory resistance. X.04 B (pp. 298-302): hammer cushions of durable manufactured material (no wood, wire rope or asbestos) with a striker plate, inspected at each structure or every 100 hours and replaced if over 25% thinner; helmets guided by the leads, timber helmet at most 2.0 in. larger than the head; concrete pile cushions of plywood or hardwood, thickness by wave equation (at least 4 in. with a formula), new for each pile, replaced if compressed over half or burning, used cushions for restrike (cushions may exceed 18 in.; harden after 1000 to 1500 blows; under 50 blows unsuitable for restrike); fixed or swinging leads; followers only if approved, by wave equation, steel follower area at least 20% of a concrete pile, impedance 50 to 200% for steel or timber, first two piles checked, resistance verified by testing; jets removed 5 ft above the minimum toe, then impact driven; predrilling and spuds as specified.",
-          "key_points": [
-            "Drop hammers: not for concrete piles or above 120 kips; ram >= 2.0 kips and >= helmet plus pile; drop <= 12 ft",
-            "Air/steam striking parts >= 1/3 of helmet plus pile and >= 2.75 kips (waived with wave equation approval)",
-            "Open-end diesel: stroke rings, stroke-blow rate chart, automatic stroke display",
-            "Closed-end diesel: bounce chamber gauge and chart calibrated within 60 days; hydraulic: energy display",
-            "Vibratory: toe elevation set by load test or impact restrike; first of every 10 piles restruck",
-            "Hammer cushion: no wood, wire rope or asbestos; inspect every 100 hours, replace if 25% thinner",
-            "Concrete pile cushion: at least 4 in. with a formula; new each pile; replace if compressed half or burning",
-            "Followers: wave equation; steel area >= 20% of concrete pile; impedance 50-200% for steel or timber piles",
-            "Jets removed 5 ft above the minimum toe elevation; final driving with an impact hammer"
-          ],
-          "equations": [],
-          "figures": [],
-          "tables": [],
-          "applicability": "Hammer, cushion, lead, follower, jetting and predrilling requirements in a driven pile specification."
-        },
-        {
-          "section_id": "14.2.5",
-          "title": "Section X.05 Determination of Nominal Resistance",
-          "summary": "Compression: static load tests (ASTM D1143 quick test, 150% of nominal resistance, failure by Eq 14-1 for piles 24 in. or less, Eq 14-2 over 36 in., interpolated between, at least 5 days after driving), dynamic testing with signal matching (restrike after up to 24 hours or per Table 14-4, warm hammer, 3 in. or 20 blows), rapid load tests, wave equation, or the Gates formula (Eqs 14-3 to 14-5, not over 600 kips). Tension: ASTM D3689 with Eq 14-6, or signal matching shaft resistance. Lateral: ASTM D3966 to 200% of design load.",
-          "body": "A1 Static load tests (pp. 303-305): ASTM D1143 quick test to plunging failure or system capacity, loading system for 150% of nominal resistance, load cell and spherical bearing plate; PE-prepared apparatus plans, calibrations within 30 days; reaction piles of the production type, redriven if they rise 0.25 in. or more; failure by Eq 14-1 (24 in. or less) or Eq 14-2 (over 36 in.), interpolated for 24 to 36 in.; more than 1/4 in. of heave may require redriving; at least 5 days after driving. Commentary: wait at least 2 weeks in clays and shales, 5 days to a week in sandy silts and sands; measure toe load; jack gauges read 10 to 20% high from ram friction. A2 Dynamic testing (pp. 305-309): ASTM D4945; signal matching at end of driving and each restrike; personnel rated on the PDCA/PDI proficiency test; test at least half the reaction piles and the load test pile; from 2 piles per site condition (at least 2%) to 100%; gages 2 to 3 diameters below the head, about 1 hour per pile, 4 x 4 ft manlift, power and an 8 x 8 ft shelter as needed; stresses held within X.02 B limits; restrike after up to 24 hours (or Table 14-4), hammer warmed with at least 20 blows, at most 3 in. or 20 blows. A3 Rapid load tests (pp. 309-310): ASTM D7383; peak force above nominal plus dynamic resistance, above 50% of peak for 4L/C and above the pre-load for at least 12L/C (less with extra gages); transducer 10% above target; interpretation names its rate factor; no AASHTO resistance factor; at least 5 days after driving. A4 Wave equation (p. 311): penetration resistance reached within 5 ft of the estimated toe elevation. A5 Dynamic formula (pp. 311-313): only if the contract says so, not above 600 kips, not with damaged heads or followers; Gates Eqs 14-3 to 14-5; FHWA recommends minimizing formulas. B Tension (pp. 313-315): ASTM D3689 quick test to 150%, failure by Eq 14-6 times phi_up, or restrike signal matching shaft resistance times phi_up. C Lateral (pp. 315-316): ASTM D3966 standard procedure to 200% of design lateral load, deflection vs depth by inclinometers or a ShapeAccelArray.",
-          "key_points": [
-            "Static compression test: ASTM D1143 quick test; loading system for 150% of nominal resistance; load cell required",
-            "Eq 14-1 (24 in. or less): sf = delta + (0.15 + b/120); Eq 14-2 (over 36 in.): sf = delta + b/30; interpolate between",
-            "Static test at least 5 days after driving; commentary: 2 weeks in clays and shales",
-            "Reaction piles rising 0.25 in. or more are redriven; test pile heave over 1/4 in. may require redriving",
-            "Jack pressure gauges commonly read 10-20% high; use a load cell",
-            "Dynamic test restrike after up to 24 hours (or Table 14-4); warm hammer 20 blows; at most 3 in. or 20 blows",
-            "Rapid load test: force above 50% of peak for 4L/C and above pre-load for 12L/C; at least 5 days after driving",
-            "Wave equation: penetration resistance reached within 5 ft of estimated toe elevation",
-            "Formula (Gates, Eqs 14-3 to 14-5) not above 600 kips, not with damaged heads or followers",
-            "Tension: Eq 14-6 sf = delta + 0.15 times phi_up, or signal matching shaft resistance times phi_up",
-            "Lateral: ASTM D3966 to 200% of design lateral load with deflection vs depth"
-          ],
-          "equations": [
-            {
-              "eq_id": "14-1",
-              "description": "Failure criterion, static compression test, piles 24 in. or less",
-              "formula": "s_f = Delta + (0.15 + b/120)",
-              "variables": {
-                "s_f": "pile head movement at failure (inches)",
-                "Delta": "elastic deformation of total pile length (inches)",
-                "b": "pile diameter or width of side for square piles (inches)"
-              },
-              "notes": "p. 303",
-              "implemented_in": null
-            },
-            {
-              "eq_id": "14-2",
-              "description": "Failure criterion, static compression test, piles over 36 in.",
-              "formula": "s_f = Delta + b/30",
-              "variables": {
-                "s_f": "pile head movement at failure (inches)",
-                "Delta": "elastic deformation of total pile length (inches)",
-                "b": "pile diameter or width of side for square piles (inches)"
-              },
-              "notes": "p. 304. Interpolate linearly between Eqs 14-1 and 14-2 for 24 to 36 in.",
-              "implemented_in": null
-            },
-            {
-              "eq_id": "14-3",
-              "description": "FHWA modified Gates formula (specification form)",
-              "formula": "R_ndr = 1.75 * sqrt(E_d) * log10(10 * N_b) - 100",
-              "variables": {
-                "R_ndr": "nominal driving resistance (kips)",
-                "E_d": "developed hammer energy W*h during the observed set (ft-lbs)",
-                "W": "ram weight (lbs)",
-                "h": "average hammer stroke during set observation (ft)",
-                "N_b": "number of hammer blows per inch (blows/in)"
-              },
-              "notes": "p. 311. Not above 600 kips; not with damaged heads or followers.",
-              "implemented_in": null
-            },
-            {
-              "eq_id": "14-4",
-              "description": "Blows per foot for the required resistance (Gates)",
-              "formula": "N_ft = 12 * 10^x",
-              "variables": {
-                "N_ft": "number of hammer blows for final foot of driving (blows/ft)",
-                "x": "exponent from Eq 14-5"
-              },
-              "notes": "p. 311",
-              "implemented_in": null
-            },
-            {
-              "eq_id": "14-5",
-              "description": "Exponent for Eq 14-4",
-              "formula": "x = [(R_ndr + 100) / (1.75 * sqrt(E_d))] - 1",
-              "variables": {
-                "x": "exponent",
-                "R_ndr": "nominal driving resistance (kips)",
-                "E_d": "developed hammer energy W*h during the observed set (ft-lbs)"
-              },
-              "notes": "p. 311",
-              "implemented_in": null
-            },
-            {
-              "eq_id": "14-6",
-              "description": "Failure criterion, static tension test",
-              "formula": "s_f = Delta + 0.15",
-              "variables": {
-                "s_f": "pile head upward movement at failure (inches)",
-                "Delta": "elastic lengthening of the total pile length (inches)"
-              },
-              "notes": "p. 314. Factored tension resistance = failure load x phi_up (Table 14-2).",
-              "implemented_in": null
-            }
-          ],
-          "figures": [],
-          "tables": [
-            {
-              "table_id": "14-4",
-              "title": "Common Time Delay for Restrike Based Upon Soil Type",
-              "description": "Restrike delay by soil type: clean sands 1 day; silty sands 2 days; sandy silts 3-5 days; silty clays 7-14 days; shales 10-14 days (longer times sometimes required for the last two).",
-              "page": 308
-            }
-          ],
-          "applicability": "Specifying how nominal resistance is verified in compression, tension and lateral loading."
-        },
-        {
-          "section_id": "14.2.6-14.2.8",
-          "title": "Section X.06 Preparation and Driving, Section X.07 Method of Measurement, and Section X.08 Basis of Payment",
-          "summary": "Excavate before driving and finish abutment fill settlement first. Test piles short of Rndr 1 ft above estimated toe set up 12 to 24 hours. Groups are driven from the center outward or across from an outside row. Tolerances: 1:50 vertical, 1:25 batter, 6 in. (3 in. for bents), cutoff +1.5/-4 in. Heave redrive over 0.25 in. (end bearing) or 1.5 in. (shaft). Practical refusal 10 blows/in. for 3 inches; absolute 20 blows for 1 in. or less. Separate pay items split fixed from variable costs.",
-          "body": "X.06 A (pp. 316-318): excavate to grade where practical; place abutment fill and let settlement finish first; fill predrilled voids with sand; no spuds in lieu of predrilling without approval; stop predrilling at least 5 ft above the plan toe except for end bearing on rock or hardpan; predrill through fills over 5 ft thick with holes no larger than the pile's greatest dimension plus 6 in. B (pp. 318-319): plane heads, strands cut below the surface, chamfered concrete and timber heads; timber collars above 200 kips; cast steel shoes (ASTM A148 Grade 90-60), A36 closure plates; welded plate H-pile shoes not recommended; mark piles every foot with cumulative distance every 5 ft. C (pp. 319-325): test piles with the approved system; if Rndr is not reached 1 ft above the estimated toe, set up 12 to 24 hours and redrive with a warm hammer (20 blows); order list within 7 days. Production piles to resistance, resistance and minimum toe, or toe elevation, with blow counts and hammer performance recorded; jetted and vibratory piles judged by impact driving; follower criteria checked by testing. Group sequence from the center outward or from an outside row across. Tolerances: 0.25 in./ft (1:50) vertical, 0.5 in./ft (1:25) batter; head within 6 in. (3 in. for bents); at least 4 in. from the cap edge; cutoff 1.5 in. above to 4 in. below; embedment at least 8 in. Heave: redrive end bearing piles over 0.25 in. and shaft piles over 1.5 in. Practical refusal 10 blows/in. for at most 3 consecutive inches; absolute refusal 20 blows for 1 in. or less; on hard rock 5 blows per 1/4 in. or 10 per 1/2 in. No timber splices; steel splices per AWS D1.1. Treated timber cutoffs get copper naphthenate (2% copper). A concrete pile with a crack around its whole periphery is defective; misaligned piles are not forced into position. X.07 (pp. 325-329): mobilization 75% when satisfactory driving starts and 25% at completion; furnished and driven piles separate; splices only beyond plan lengths. X.08 (pp. 329-330): Table 14-5.",
-          "key_points": [
-            "Abutment fill placed and settlement complete before driving",
-            "Predrilling stops at least 5 ft above plan toe except end bearing on rock or hardpan",
-            "Test piles short of Rndr 1 ft above estimated toe: set up 12 to 24 hours, redrive with a warm hammer",
-            "Group sequence: center outward, or from an outside row progressively across",
-            "Tolerances: 1:50 vertical, 1:25 batter; head 6 in. (3 in. bents); cutoff +1.5/-4 in.; embedment >= 8 in.",
-            "Heave: redrive end bearing piles over 0.25 in., shaft piles over 1.5 in.",
-            "Practical refusal 10 blows/in. for at most 3 consecutive inches; absolute refusal 20 blows for 1 in. or less",
-            "Hard rock: absolute refusal 5 blows per 1/4 in. or 10 blows per 1/2 in.",
-            "No timber pile splices; concrete pile with a full-periphery crack is defective",
-            "Mobilization paid 75% at start of satisfactory driving, 25% at completion",
-            "Separate pay items split fixed costs (mobilization, splices, shoes) from length-dependent costs"
-          ],
-          "equations": [],
-          "figures": [],
-          "tables": [
-            {
-              "table_id": "14-5",
-              "title": "Basis of Payment",
-              "description": "Pay units: mobilization and demobilization lump sum; piles and test piles furnished and driven per linear foot or each; static, rapid and lateral load tests, dynamic pile tests (during driving, during restrike), splices, shoes and pile cutoffs (over 5 ft lengths only) each; predrilling and jetting per linear foot or each; spudding and delays per hour.",
-              "page": 330
-            }
-          ],
-          "applicability": "Installation, tolerance, refusal and payment provisions of a driven pile specification."
+          "figure_id": "14-1",
+          "title": "Drive system submittal form",
+          "description": "",
+          "page": 289
         }
-      ]
+      ],
+      "tables": [
+        {
+          "table_id": "14-2",
+          "title": "Resistance Factors for Field Determination Methods",
+          "description": "AASHTO compression phi_dyn: static load test on at least one pile per site condition plus dynamic testing with signal matching of at least two piles per site condition, not less than 2% of production piles, 0.80; static load test without dynamic testing 0.75; dynamic testing with signal matching on 100% of production piles 0.75; dynamic testing of at least two piles per site condition, not less than 2%, 0.65; wave equation alone at end of drive 0.50; FHWA modified Gates 0.40; Engineering News 0.10. Tension: static load test 0.60; dynamic testing with signal matching 0.50.",
+          "page": 293
+        },
+        {
+          "table_id": "14-3",
+          "title": "Alternate Approval Method Minimum Pile Hammer Requirements",
+          "description": "Minimum manufacturer's rated hammer energy (ft-lbs) by nominal resistance bands of 180 kips and under, 181-300, 301-420, 421-540, 541-600 and over 600 kips; the energy column is left blank for each agency to fill from wave equation analyses (see commentary).",
+          "page": 294
+        }
+      ],
+      "applicability": "Submittals, hammer approval criteria and resistance factors in a driven pile specification."
+    },
+    {
+      "section_id": "14.2.3",
+      "title": "Section X.03 Materials",
+      "summary": "Materials per the agency's standard specification subsections: portland cement concrete, reinforcing and prestressing steel, structural steel, shoe castings, cast-in-place shells, timber piles and treatment, protective coatings; see the AASHTO LRFD Bridge Construction Specifications (3rd Edition).",
+      "body": "14.2.3 Section X.03 Materials (pp. 295 to 296). Materials meet subsections for portland cement concrete, reinforcing steel, prestressing strands and post-tensioning tendons, structural steel, castings for pile shoes, steel shells for cast-in-place piles, timber piles, timber preservative and treatment, and protective coatings. Commentary: insert the agency's standard specification sections; no generic materials section is possible given the combinations of materials and controls; adjust the list to the agency's specifications and pile type; the 3rd Edition AASHTO LRFD Bridge Construction Specifications add text and commentary on pile materials.",
+      "key_points": [
+        "Materials clauses come from the agency's standard specifications",
+        "List: concrete, reinforcing/prestressing steel, structural steel, shoe castings, shells, timber, coatings"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Materials clause of a generic driven pile specification."
+    },
+    {
+      "section_id": "14.2.4",
+      "title": "Section X.04 Driving Equipment and Appurtenances",
+      "summary": "Hammers: drop hammers not for concrete piles or over 120 kips (ram >= 2.0 kips, drop <= 12 ft); air/steam striking parts >= 1/3 of helmet plus pile and >= 2.75 kips unless wave equation approved; OED stroke display; CED bounce chamber gauge; hydraulic energy readout; vibratory only after impact verification (restrike first of every 10). Hammer cushions: no wood, wire rope or asbestos, replace at 25% loss. Pile cushion new each pile, >= 4 in. with a formula. Followers, jets, predrilling, spuds.",
+      "body": "14.2.4 Section X.04 Driving Equipment and Appurtenances (pp. 296 to 302). A) Air, steam, diesel or hydraulic hammers; drop hammers, if permitted, not for concrete piles or nominal resistance over 120 kips, ram at least 2.0 kips and not less than helmet plus pile, drop at most 12.0 ft, with guides. Air/steam hammers within manufacturer ranges with adequate plant, hose and accessible gauges; striking parts at least one third of helmet plus pile and at least 2.75 kips (waived with wave equation approval). Open end diesels: stroke rings, manufacturer's stroke-blow rate chart and an automatic stroke display device. Closed end diesels: bounce chamber gauge near ground and a chart calibrated within 60 days. Hydraulic hammers: field display of kinetic energy or impact velocity. Vibratory hammers for production piles only after toe elevation is set by load tests and/or impact restrikes at the Contractor's cost, controlled by power, penetration rate or toe elevation, with the first of every 10 piles restruck by impact. Commentary: inspectors need hammer manuals (Chapters 15 and 18; FHWA/RD 86/160; DFI guides); require kinetic energy readouts on large projects (Section 15.19); no formula predicts vibratory resistance (Section 7.10.5), so consider restrike dynamic testing. B) 1 Hammer cushion: durable manufactured material per the manufacturer; wood, wire rope and asbestos disallowed; striker plate; inspected at each structure start or every 100 hours; replaced when over 25% thinner. 2 Helmet: plane, guided by leads, no torsion; timber piles: least inside dimension within 2.0 in. of the head diameter; concrete heads plane and perpendicular. 3 Pile cushion: same area as the concrete pile top, plywood or hardwood, thickness by wave equation (at least 4 in. with a dynamic formula), new for each pile, replaced if compressed over half or burning, kept dry; used cushion (the end of driving one) for restrikes (commentary: thicknesses over 18 in. used for tension; wood hardens after about 1000 to 1500 blows; cushions with fewer than 50 blows unsuitable for restrikes). 4 Leads: fixed or swinging (embedded or templated, pile gate), long enough to avoid followers. 5 Followers only if approved, with wave equation; steel follower area at least 20% of a concrete pile's, impedance 50 to 200% of steel or timber piles; first two piles checked (commentary: erratic energy loss, check by static or dynamic testing). 6 Jets only if approved; removed 5 ft above minimum toe elevation, then impact driven; restrikes of jetted groups. 7 Predrilling (commentary: smaller than pile diagonal for alignment, heave or vibration; up to largest pile dimension plus 6 in. for embankments or obstructions; backfill with sand, pea gravel or grout). 8 Spuds to displace obstructions.",
+      "key_points": [
+        "Drop hammers: not for concrete piles or Rn > 120 kips; ram >= 2.0 kips; drop <= 12 ft",
+        "Air/steam striking parts >= 1/3 of helmet + pile and >= 2.75 kips (unless wave equation approved)",
+        "OED stroke display, CED bounce chamber gauge, hydraulic energy readout required",
+        "Vibratory production piles: first of every 10 restruck with an impact hammer",
+        "Hammer cushion: no wood, wire rope or asbestos; replace if > 25% thinner",
+        "Pile cushion: new each pile; >= 4 in. with a dynamic formula; replace if compressed > 1/2",
+        "Steel follower: area >= 20% of concrete pile; impedance 50 to 200% for steel/timber piles",
+        "Jets removed 5 ft above the minimum toe elevation; finish with impact driving"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Hammer and drive system requirements in a driven pile specification."
+    },
+    {
+      "section_id": "14.2.5",
+      "title": "Section X.05 Determination of Nominal Resistance",
+      "summary": "Compression: static test per ASTM D1143 quick method to plunging (150% loading capacity), failure sf = Delta + (0.15 + b/120) for b <= 24 in. (Eq. 14-1), Delta + b/30 over 36 in. (Eq. 14-2), interpolated between; dynamic testing per ASTM D4945 with restrike (Table 14-4 delays); rapid tests per ASTM D7383; wave equation; Modified Gates (Eqs. 14-3 to 14-5) up to 600 kips. Tension: ASTM D3689, sf = Delta + 0.15 (Eq. 14-6). Lateral: ASTM D3966 to 200%.",
+      "body": "14.2.5 Section X.05 Determination of Nominal Resistance (pp. 303 to 316). A) Axial compression, by: 1 Static load tests per ASTM D1143 quick method to geotechnical plunging failure or system capacity, loading system 150% of nominal resistance, load cell and spherical bearing plate, PE-prepared apparatus plans, calibrations within 30 days; reaction piles of production type, redriven if permanently raised 0.25 in. or more; no timber or tapered reaction piles in permanent locations. Failure is the load giving head movement sf = Delta + (0.15 + b/120) for piles 24 in. or less (Eq. 14-1; Delta elastic deformation of total pile length, b diameter or side, in inches), sf = Delta + b/30 for piles over 36 in. (Eq. 14-2), with linear interpolation for 24 to 36 in. Re-drive if heave exceeds 1/4 in.; test no sooner than 5 days after driving; cut off unused piles 1 ft below footing or grade. Commentary: test after equilibrium (clays at least 2 weeks, sandy silts and sands 5 days to a week, shales at least 2 weeks; Section 7.2.4); measure toe load (strain gages, telltales); jack gauges read 10 to 20% high from ram friction; add reporting sections when the Contractor's firm tests; state review time (Chapter 9). 2 Dynamic testing with signal matching per ASTM D4945 at end of initial driving and each restrike (commentary: ASTM D4945 alone is insufficient; PDCA/PDI proficiency levels; test half the reaction piles and the load test pile, and restrike it after the static test; 2 piles per site condition and 2% up to 100%, Section 10.3). Gages 2 to 3 diameters below the head; 4 x 4 ft manlift; about 1 hour per pile; 10 amp, 115 volt power; 8 x 8 ft shelter on barges; stresses held to X.02 B limits; restrike after up to 24 hours (or Table 14-4) with a warmed hammer (20 blows), at most 3 in. or 20 blows. Table 14-4 restrike delays: clean sands 1 day, silty sands 2, sandy silts 3-5, silty clays 7-14, shales 10-14 days (longer sometimes); too short a delay causes overruns; state analysis time. 3 Rapid load tests per ASTM D7383 (combustion gas or cushioned drop weight); peak force over target resistance plus dynamic resistance, pulse above 50% of peak for 4L/C and above static pre-load for at least 12L/C (less with added gages); load cell 10% over peak; interpretation with stated loading rate reduction factor; no sooner than 5 days (commentary: Sections 11.4.1-11.4.5; no AASHTO resistance factor, Section 11.4.7). 4 Wave equation: penetration resistance reached within 5 ft of the estimated toe elevation. 5 Dynamic formula only if specified, not over 600 kips, not with damaged heads or followers: Modified Gates Rndr = 1.75 sqrt(Ed) log10(10 Nb) - 100 (Eq. 14-3; Ed = W h in ft-lbs during the observed set, Nb blows/in.), Nft = 12 (10^x) (Eq. 14-4), x = [(Rndr + 100)/(1.75 sqrt(Ed))] - 1 (Eq. 14-5). Commentary: set criteria for the nominal driving resistance including unsuitable layers and minimum toe elevations; FHWA recommends wave equation over formulas (Chapter 12). B) Axial tension: 1 static tests per ASTM D3689, failure at upward movement sf = Delta + (0.15) (Eq. 14-6; Delta elastic lengthening), factored by phi_up from Table 14-2; 2 dynamic testing: restrike signal matching shaft resistance times phi_up. C) Lateral: ASTM D3966 standard procedure to 200% of design lateral load (one standard, 7 optional procedures), deflection versus depth by in-place inclinometers or Shape Accel Array.",
+      "key_points": [
+        "Compression failure: sf = Delta + (0.15 + b/120) for b <= 24 in. (Eq. 14-1)",
+        "Large piles (> 36 in.): sf = Delta + b/30 (Eq. 14-2); interpolate for 24 to 36 in.",
+        "Static tests no sooner than 5 days; clays and shales at least 2 weeks recommended",
+        "Restrike delays (Table 14-4): sands 1 day to shales 10-14 days",
+        "Rapid load test pulse > 50% of peak for 4L/C and above static preload for >= 12L/C",
+        "Wave equation criterion met within 5 ft of estimated toe elevation",
+        "Modified Gates (Eqs. 14-3 to 14-5) only if specified, <= 600 kips",
+        "Tension failure: sf = Delta + 0.15 in. (Eq. 14-6), times phi_up",
+        "Lateral load tests per ASTM D3966 to 200% of design load"
+      ],
+      "equations": [
+        {
+          "eq_id": "14-1",
+          "description": "Failure criterion, static compression test, piles 24 in. or less",
+          "formula": "s_f = Delta + (0.15 + b/120)",
+          "variables": {
+            "s_f": "pile head movement at failure (inches)",
+            "Delta": "elastic deformation of total pile length (inches)",
+            "b": "pile diameter or width of side for square piles (inches)"
+          },
+          "notes": "p. 303",
+          "implemented_in": null
+        },
+        {
+          "eq_id": "14-2",
+          "description": "Failure criterion, static compression test, piles over 36 in.",
+          "formula": "s_f = Delta + b/30",
+          "variables": {
+            "s_f": "pile head movement at failure (inches)",
+            "Delta": "elastic deformation of total pile length (inches)",
+            "b": "pile diameter or width of side for square piles (inches)"
+          },
+          "notes": "p. 304. Interpolate linearly between Eqs 14-1 and 14-2 for 24 to 36 in.",
+          "implemented_in": null
+        },
+        {
+          "eq_id": "14-3",
+          "description": "FHWA modified Gates formula (specification form)",
+          "formula": "R_ndr = 1.75 * sqrt(E_d) * log10(10 * N_b) - 100",
+          "variables": {
+            "R_ndr": "nominal driving resistance (kips)",
+            "E_d": "developed hammer energy W*h during the observed set (ft-lbs)",
+            "W": "ram weight (lbs)",
+            "h": "average hammer stroke during set observation (ft)",
+            "N_b": "number of hammer blows per inch (blows/in)"
+          },
+          "notes": "p. 311. Not above 600 kips; not with damaged heads or followers.",
+          "implemented_in": null
+        },
+        {
+          "eq_id": "14-4",
+          "description": "Blows per foot for the required resistance (Gates)",
+          "formula": "N_ft = 12 * 10^x",
+          "variables": {
+            "N_ft": "number of hammer blows for final foot of driving (blows/ft)",
+            "x": "exponent from Eq 14-5"
+          },
+          "notes": "p. 311",
+          "implemented_in": null
+        },
+        {
+          "eq_id": "14-5",
+          "description": "Exponent for Eq 14-4",
+          "formula": "x = [(R_ndr + 100) / (1.75 * sqrt(E_d))] - 1",
+          "variables": {
+            "x": "exponent",
+            "R_ndr": "nominal driving resistance (kips)",
+            "E_d": "developed hammer energy W*h during the observed set (ft-lbs)"
+          },
+          "notes": "p. 311",
+          "implemented_in": null
+        },
+        {
+          "eq_id": "14-6",
+          "description": "Failure criterion, static tension test",
+          "formula": "s_f = Delta + 0.15",
+          "variables": {
+            "s_f": "pile head upward movement at failure (inches)",
+            "Delta": "elastic lengthening of the total pile length (inches)"
+          },
+          "notes": "p. 314. Factored tension resistance = failure load x phi_up (Table 14-2).",
+          "implemented_in": null
+        }
+      ],
+      "figures": [],
+      "tables": [
+        {
+          "table_id": "14-4",
+          "title": "Common Time Delay for Restrike Based Upon Soil Type",
+          "description": "Restrike delay by soil type: clean sands 1 day; silty sands 2 days; sandy silts 3-5 days; silty clays 7-14 days; shales 10-14 days (longer times sometimes required for the last two).",
+          "page": 308
+        }
+      ],
+      "applicability": "Specifying how nominal resistance is verified in compression, tension and lateral loading."
+    },
+    {
+      "section_id": "14.2.6",
+      "title": "Section X.06 Preparation and Driving",
+      "summary": "Site work, predrilling (stop 5 ft above plan toe except end bearing; embankments over 5 ft; hole <= pile dimension + 6 in.), pile preparation (collars over 200 kips timber; cast steel shoes; marking), test piles (set up 12-24 h), production piles, sequence, tolerances (0.25 in./ft vertical, 0.5 in./ft batter; 6 in., 3 in. bents), heave (0.25 in. end bearing, 1.5 in. friction), refusal (10 blows/in. for 3 in.; 20 blows for 1 in.), splices, cutoff, unsatisfactory piles.",
+      "body": "14.2.6 Section X.06 Preparation and Driving (pp. 316 to 325). A) Site work: 1 excavate to grade before driving; fill placed and settled before driving at abutments (piles first only where minimal settlement is expected). 2 Predrilling as specified, then impact driving to criteria, voids filled with sand; no spuds in lieu (commentary: except end bearing piles, stop at least 5 ft above plan toe; to rock or hardpan for end bearing); disturbed piles redriven, at the Contractor's cost unless the method was specified. 3 Predrilling through compacted fill or embankments over 5 ft, diameter at most the greatest pile dimension plus 6 in. B) Preparation: 1 heads plane and perpendicular, strands cut below the surface, concrete and timber heads chamfered; 2 timber collars or bands over 200 kips; 3 shoes of cast steel ASTM A148 (Grade 90-60) for H-piles and open pipes, closure plates A36 or better (commentary: welded plate H-pile shoes not recommended, Chapter 16); 4 marking at 1 ft with cumulative distance every 5 ft, inch marks over 10 ft if directed. C) Driving: 1 test, probe and indicator piles first, slightly longer than production; not reaching Rndr 1 ft above estimated toe, set up 12 to 24 hours and redrive with a warmed hammer (20 blows), splice if needed; record blows per foot and per inch near the end and in the first foot of redrive; order list within 7 days (commentary: recommended for long friction piles, large resistance relative to load, concrete piles). 2 Production piles to nominal resistance, plus minimum toe elevation, or designated toe elevation, documenting blow count and stroke, velocity or blow rate; jetted piles judged on post-jetting impact driving; follower criteria verified by static or dynamic testing; vibratory piles: first of each ten impact driven, remaining nine to similar toe, power and rate; hammer approval does not relieve damage responsibility. 3 Driving stresses within X.02 B. 4 Sequence: from the center outward or from one side across. 5 Tolerances: 0.25 in./ft (1:50) from vertical, 0.5 in./ft (1:25) from batter; head within 6 in. of plan (3 in. for bents); at least 4 in. from cap edges; cutoff 1.5 in. above to 4 in. below plan, at least 8 in. embedment; overloading evaluated, redesign at the Contractor's cost (commentary: sloping bedrock cases; tolerances of 3 in. or less impractical). 6 Heave: redrive end bearing piles over 0.25 in., shaft resistance piles over 1.5 in.; paid if sequence followed. 7 Unforeseeable obstructions paid. 8 Practical refusal 10 blows per inch for at most 3 consecutive inches; absolute refusal 20 blows for 1 in. or less; on hard rock 5 blows per 1/4 in. or 10 blows per 1/2 in.; at maximum fuel or stroke unless approved lower (commentary: warranties void above 10 blows per inch for 6 to 12 in. or 20 blows per inch for more than 1 in.; avoid extended driving above 10 blows per inch). 9 Splices: full length wherever practical, never splice timber; steel per AWS D1.1 by certified welders, unwelded mechanical splices only for compression piles. 10 Cutoff; treated timber cut areas with copper naphthenate (at least 2% copper); marine timber capped. 11 Unsatisfactory piles: a concrete pile with a crack around the entire periphery is defective; remedies by replacement, adjacent piles, build-ups, extended footings or added cap steel.",
+      "key_points": [
+        "Predrilling stops at least 5 ft above plan toe (except end bearing); hole <= pile dimension + 6 in.",
+        "Test piles not reaching Rndr: set up 12 to 24 hours, then redrive with a warmed hammer",
+        "Tolerances: 0.25 in./ft vertical, 0.5 in./ft batter; head within 6 in. (3 in. for bents)",
+        "Cutoff 1.5 in. above to 4 in. below plan; at least 8 in. cap embedment",
+        "Redrive heaved piles: > 0.25 in. end bearing, > 1.5 in. shaft resistance",
+        "Practical refusal 10 blows/in. for 3 in.; absolute refusal 20 blows for <= 1 in.",
+        "Hard rock: 5 blows per 1/4 in. or 10 blows per 1/2 in.",
+        "Never splice timber piles; unwelded mechanical splices only for compression piles",
+        "Concrete pile with a crack around the entire periphery is defective"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Installation, tolerance, heave and refusal clauses of a driven pile specification."
+    },
+    {
+      "section_id": "14.2.7",
+      "title": "Section X.07 Method of Measurement",
+      "summary": "Measurement items A to P: mobilization lump sum (75% at start of satisfactory driving, 25% at completion); piles and test piles furnished and driven per foot or each; static, dynamic (driving or restrike), rapid and lateral load tests each; splices only beyond plan lengths; shoes; predrilling; jetting; cutoff; spudding; delays and rig moves by time.",
+      "body": "14.2.7 Section X.07 Method of Measurement (pp. 325 to 329). A) Mobilization: lump sum, 75% when equipment is mobilized and satisfactory driving has begun, 25% on completion; labor of manipulating equipment is in the pile unit price. B) Piles furnished per linear foot or each, including approved extensions, not replacements of accepted piles damaged later. C) Piles driven per foot or each, including all related costs not otherwise paid. D) Test piles furnished and E) driven likewise. F) Static load tests per completed test, reaction and test piles not in the structure included; Contractor-option tests not paid. G) Dynamic tests (during driving or restrike) each, plus the applicable pile items; unspecified tests needing repositioning or delay (e.g., a second longer term restrike at the owner's request) paid per hour. H) Rapid load tests each, including site preparation. I) Lateral load tests each (a two-pile push or pull is one test). J) Splices only where required beyond plan estimated lengths. K) Pile shoes installed (or within the furnished pile price if stated). L) Predrilling, M) jetting, N) cutoff (including disposal), O) spudding, P) delays, downtime or out of sequence moves caused by the owner, recorded per occurrence.",
+      "key_points": [
+        "Mobilization: 75% when satisfactory driving starts, 25% at completion",
+        "Separate items for piles furnished and piles driven (per foot or each)",
+        "Splices paid only when required beyond plan estimated lengths",
+        "Owner-caused delays and out-of-sequence moves measured by time"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Measurement clauses of a driven pile specification."
+    },
+    {
+      "section_id": "14.2.8",
+      "title": "Section X.08 Basis of Payment",
+      "summary": "Pay items and units (Table 14-5): mobilization lump sum; piles and test piles furnished and driven per linear foot or each; load tests, splices, shoes and cutoffs (over 5 ft only) each; predrilling and jetting per foot or each; spudding and delays per hour. Separate fixed-cost items and furnished/driven items treat length overruns and underruns equitably.",
+      "body": "14.2.8 Section X.08 Basis of Payment (pp. 329 to 330). Accepted quantities are paid at contract unit prices for each pile size and type as full compensation. Table 14-5 (pay item: unit): mobilization and demobilization: lump sum; piles furnished, piles driven, test pile furnished, test pile driven: linear foot or each; static load test, dynamic pile test (during driving), dynamic pile test (during restrike), rapid load test, lateral load test, pile splices, pile shoes: each; predrilling, jetting: linear foot or each; pile cut-off (over 5 ft lengths only): each; spudding (punching), delays, downtime or out-of-sequence moves: per hour. Commentary: separating major fixed costs from variable costs avoids folding mobilization, splices and shoes into a per-foot price, which under-recovers costs on underruns and overpays on overruns; ordered length is the agency's responsibility, and separate furnished and driven items pay actual materials and installation even with modest overruns or underruns.",
+      "key_points": [
+        "Table 14-5 pay items: lump sum mobilization; per foot or each for piles; each for tests",
+        "Separate fixed-cost items avoid inequity from length overruns or underruns",
+        "Separate furnished and driven items; ordered length is the agency's responsibility"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        {
+          "table_id": "14-5",
+          "title": "Basis of Payment",
+          "description": "Pay units: mobilization and demobilization lump sum; piles and test piles furnished and driven per linear foot or each; static, rapid and lateral load tests, dynamic pile tests (during driving, during restrike), splices, shoes and pile cutoffs (over 5 ft lengths only) each; predrilling and jetting per linear foot or each; spudding and delays per hour.",
+          "page": 330
+        }
+      ],
+      "applicability": "Payment clauses of a driven pile specification."
     }
   ]
 }
