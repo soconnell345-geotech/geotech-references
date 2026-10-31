@@ -5,36 +5,486 @@
   "chapter_title": "Load Testing and Transfer of Load to the Anchored System",
   "sections": [
     {
-      "section_id": "7.1-7.4",
-      "title": "Load Testing Methods and Acceptance Criteria",
-      "summary": "Every production ground anchor is tested. Three test types: (1) performance tests (~5% of anchors) — multi-cycle incremental loading to 133% DL; (2) proof tests (~95%) — single cycle to 133% DL; (3) extended creep tests — required for PI > 20 or LL > 50 (~8 hours). Acceptance: creep ≤ 1 mm/log cycle at test load; apparent free length 80–120% of design (soil) or 80–130% (rock). Lock-off load: 75–100% of design load.",
-      "body": "Load testing purpose: Verify that the anchor can carry the design load without excessive deformation and that load transfer to the ground is mobilized as assumed. The testing uses a hydraulic jack against a bearing plate to apply load to the tendon. Movements are measured with a dial gauge referenced to an independent fixed datum.\n\nPerformance tests: Multi-cycle loading per Table 21. Each cycle loads from alignment load (AL) — typically 10% of design load — up to the maximum load for that cycle, then back to AL; elastic and residual movements are recorded. Load cycles progress from 0.25DL to 1.0DL (first four cycles), then to 1.33DL (cycle 5) for permanent anchors. At test load, a 10-minute creep hold is performed with movements recorded at 1, 2, 3, 4, 5, 6, and 10 minutes. Elastic movement and residual movement are plotted per Figure 69-70.\n\nProof tests: Single loading cycle to test load (133% of DL for permanent anchors) with a 10-minute creep hold. All production piles not subjected to performance tests receive proof tests.\n\nExtended creep tests: Required for anchors in soils with PI > 20 or LL > 50. Minimum two anchors per project in creep-susceptible soils. Test duration approximately 8 hours with load held at specified fractions of design load (per Table 23). The test identifies whether anchor exhibits unacceptable creep at the design load. Creep curves plotted as movement vs. log time for each load level.\n\nAcceptance criteria: (1) Creep — movement rate at test load must be decreasing; creep movement during final 10 minutes ≤ 1 mm (proof test) or ≤ 2 mm for extended creep. (2) Apparent free length — calculated from elastic movement and known tendon properties; must be within 80–120% of designed free length for soil anchors; 80–130% for rock anchors. If anchor fails, decision tree (Figure 73) guides whether to postgrout, lock off at reduced load, or reject and replace.\n\nLock-off load: Typically 75 to 100% of design load, allowing for subsequent creep/relaxation to bring the long-term load to the desired level.\n\nLift-off tests: Performed after lock-off to confirm the actual tendon load. Gradually re-apply load until the strand or bar 'lifts off' the anchor head — the load at which this occurs is the installed tendon load.",
+      "section_id": "7.1",
+      "title": "Introduction",
+      "summary": "Every ground anchor is tested above its design load before service; with acceptance criteria this verifies it carries the design load without excessive deformation and that load transfer develops behind the critical surface; accepted anchors are then locked off.",
+      "body": "For anchored systems each ground anchor is tested after installation and before service to loads exceeding the design load. With specific acceptance criteria, testing verifies the anchor can carry the design load without excessive deformation and that the assumed load transfer has developed behind the assumed critical failure surface. After acceptance the anchor is stressed to a specified load and \"locked-off\". (p. 137)",
       "key_points": [
-        "Every production anchor tested; performance tests on ~5%, proof tests on ~95%",
-        "Performance test: multi-cycle loading to 133% DL; proof test: single cycle to 133% DL",
-        "Creep hold: 10 minutes at test load; movements at 1,2,3,4,5,6,10 min",
-        "Extended creep test (~8 hrs) required for PI > 20 or LL > 50 — minimum 2 anchors per project",
-        "Acceptance: creep ≤ 1 mm/log cycle; apparent free length 80–120% of design (soil), 80–130% (rock)",
-        "Anchor failing acceptance: decision tree per Figure 73 — postgrout, reduce lock-off, or reject/replace",
-        "Lock-off load: 75–100% of design load; lift-off test confirms installed tendon load"
+        "Every anchor tested above design load before service (p. 137).",
+        "Verifies capacity, deformation and load transfer behind the critical surface (p. 137)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Ground anchor load test procedures and acceptance criteria for permanent and temporary anchors"
+    },
+    {
+      "section_id": "7.2",
+      "title": "Concepts for Monitoring Anchor Bond Zone Capacity",
+      "summary": "Bond zones mobilize resistance by strain (Figure 64); uniform load propagation with a fictitious anchorage point (Figure 65) is not valid for soil anchors. Since the 1970s capacity is monitored by creep: beyond 2 mm per log cycle, movement continues; the critical creep tension Tc marks a sharp break (Figure 66).",
+      "body": "The bond zone develops resistance by straining under tension applied at the anchorage; tendon strains are greatest at the top and decrease along the bond zone, and load transfer at a given strain depends on the ground's stress-strain behavior. Figure 64 shows two skin friction versus strain curves: A, ground mobilizing most skin friction at very little strain; B, weaker ground needing more strain to a peak and softening to a residual value. Early testing assumed uniform propagation down the bond length (p. 138), the load centroid, the \"fictitious anchorage point\" (FAP), migrating toward the tendon end (Figure 65), with all load transfer mobilized when the FAP neared the bond midpoint; this is not valid for soil anchors and only approximates most rock anchors. The current approach for soils, used since the 1970s, rests on creep of the grout body under constant load: the creep rate relates directly to load (Figure 66a, p. 139), and when it exceeds 2 mm per log cycle of time additional load gives unacceptable continuing movement; each bond zone has a maximum load, the critical creep tension Tc, where the creep rate breaks sharply upward (Figure 66b). Monitoring small creep movements (typically under 1 mm) needs equipment that measures absolute load and, more importantly, holds a constant load for a substantial period. (pp. 137 to 139)",
+      "key_points": [
+        "Bond zone strains greatest at the top (Figure 64) (p. 137).",
+        "Uniform propagation (FAP, Figure 65) not valid for soil anchors (p. 138).",
+        "Creep above 2 mm per log cycle means unacceptable continuing movement (p. 138).",
+        "Critical creep tension Tc at the sharp break in creep rate (Figure 66) (p. 138).",
+        "Equipment must hold a constant load (p. 138)."
       ],
       "equations": [],
       "figures": [
-        "Figure 65: Strain distribution and fictitious anchorage point (FAP) in bond zone",
-        "Figure 66: Evaluation of critical creep tension",
-        "Figure 67: Typical equipment for load testing of strand ground anchor",
-        "Figure 68: Typical equipment for load testing of bar ground anchor",
-        "Figure 69: Plotting of performance test data (after PTI 1996)",
-        "Figure 70: Plotting of elastic and residual movement for performance test",
-        "Figure 71: Plotting of proof test data",
-        "Figure 72: Extended creep test data plot",
-        "Figure 73: Ground anchor acceptance decision tree (PTI 1996)"
+        "Figure 64: Skin friction versus strain diagrams for ground anchors",
+        "Figure 65: Stress propagation in bond length of ground anchor",
+        "Figure 66: Evaluation of critical creep tension"
+      ],
+      "tables": [],
+      "applicability": "Ground anchor load test procedures and acceptance criteria for permanent and temporary anchors"
+    },
+    {
+      "section_id": "7.3",
+      "title": "Testing and Stressing Equipment",
+      "summary": "Heading for testing and stressing equipment: general (7.3.1) and equipment used in load testing (7.3.2).",
+      "body": "Heading for testing and stressing equipment: general (7.3.1) and equipment used in load testing (7.3.2); it has no text of its own. (p. 139)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Load testing equipment for ground anchors: jack and pump, stressing anchorage, gauges, load cells and jack chair"
+    },
+    {
+      "section_id": "7.3.1",
+      "title": "General",
+      "summary": "Each anchor is load tested at the surface by tensioning the strand or bar and measuring load and movement, with jack and pump, stressing anchorage, pressure gauges and load cells, dial gauge and jack chair (Figures 67, 68).",
+      "body": "Each ground anchor is load tested to verify capacity, at the ground surface, by tensioning the prestressing steel (strand or bar) and measuring load and movement. Typical setups are shown for strand (Figure 67, p. 140) and bar (Figure 68, section 7.3.2.1) tendons; equipment includes (1) hydraulic jack and pump, (2) stressing anchorage, (3) pressure gauges and load cells, (4) dial gauge for movement, (5) jack chair. (pp. 139 to 140)",
+      "key_points": [
+        "Test by tensioning the tendon and measuring load and movement (p. 139).",
+        "Five equipment items; Figure 67 strand setup (pp. 139 to 140)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 67: Typical equipment for load testing of strand ground anchor"
+      ],
+      "tables": [],
+      "applicability": "Load testing equipment for ground anchors: jack and pump, stressing anchorage, gauges, load cells and jack chair"
+    },
+    {
+      "section_id": "7.3.2",
+      "title": "Equipment Used in Load Testing",
+      "summary": "Heading for equipment used in load testing: hydraulic jack and pump, stressing anchorage, pressure gauges and load cells, dial gauge and jack chair (7.3.2.1 to 7.3.2.5).",
+      "body": "Heading for equipment used in load testing: hydraulic jack and pump (7.3.2.1), stressing anchorage (7.3.2.2), pressure gauges and load cells (7.3.2.3), dial gauge to measure movement (7.3.2.4) and jack chair (7.3.2.5); it has no text of its own. (p. 140)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Load testing equipment for ground anchors: jack and pump, stressing anchorage, gauges, load cells and jack chair"
+    },
+    {
+      "section_id": "7.3.2.1",
+      "title": "Hydraulic Jack and Pump",
+      "summary": "The jack loads all tendon elements concentrically and simultaneously (never single strands), with ram travel of at least 152 mm (restroking allowed), each increment within 60 seconds and the test load within 75 percent of the jack and pump pressure rating.",
+      "body": "A hydraulic jack and pump apply load at the anchor head or a pulling head. The jack must load the tendon concentrically and all prestressing elements simultaneously; loading a single strand of a multistrand tendon should not be allowed. Ram travel shall be at least 152 mm and preferably not less than the theoretical elongation at the maximum test load; restroking may be allowed for greater elongations. The jack should apply and release load incrementally, apply each increment within 60 seconds and apply the maximum test load (the test load) within 75 percent of the jack and pump pressure rating. For long, high capacity anchors where 60 seconds is not possible, deformation readings begin when the load is reached. Figure 68 (p. 141) shows typical bar anchor test equipment. (pp. 140 to 141)",
+      "key_points": [
+        "Concentric load on all elements; no single-strand loading (p. 140).",
+        "Ram travel at least 152 mm; restroking allowed (p. 140).",
+        "Increment within 60 s; test load within 75 percent of pressure rating (p. 140)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 68: Typical equipment for load testing of bar ground anchor"
+      ],
+      "tables": [],
+      "applicability": "Load testing equipment for ground anchors: jack and pump, stressing anchorage, gauges, load cells and jack chair"
+    },
+    {
+      "section_id": "7.3.2.2",
+      "title": "Stressing Anchorage",
+      "summary": "The stressing anchorage grips the steel in front of the jack: for bars a countersunk bearing plate and nut, often with a short coupled extension bar; for strands similar to the anchor head.",
+      "body": "A stressing anchorage in front of the jack head grips the prestressing steel during loading. For bar tendons it is generally a bearing plate with a countersunk hole and a nut; production bars are commonly ordered to in-place length and extended for testing by a short bar segment and coupler. For strand tendons it can resemble the anchor head. The stressing anchorage rests on a bearing plate on the front of the jack (printed \"sits on front of the jack\"). (p. 141)",
+      "key_points": [
+        "Bar: countersunk bearing plate and nut; coupled extension bar (p. 141).",
+        "Strand: similar to the anchor head (p. 141)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Load testing equipment for ground anchors: jack and pump, stressing anchorage, gauges, load cells and jack chair"
+    },
+    {
+      "section_id": "7.3.2.3",
+      "title": "Pressure Gauges and Load Cells",
+      "summary": "Load is read on the jack pressure gauge; creep tests need a load cell too, as gauges miss jack losses and temperature effects. Calibrate within 45 working days of submittal, keep a second certified gauge on site, gauges graduated in 690 kPa or less.",
+      "body": "The standard load monitor is a pressure gauge on the jack pump, alone or with a center hole load cell in the stressing train; the gauge gives the absolute load. For extended holds, load cells monitor a constant load while the pump is adjusted, since jack load losses are not reflected accurately by the gauge and temperature affects jack and gauge. Proof and lift-off tests usually use a gauge alone; all tests with extended holds (all creep tests) need a load cell with the gauge. Calibrate gauges and load cells within 45 working days of the date submitted for project approval, with certifications and graphs from the contractor before use; keep a second certified gauge on site for periodic checks; graduations shall be 690 kPa or less. (p. 142)",
+      "key_points": [
+        "Pressure gauge gives absolute load (p. 142).",
+        "Load cell required for all creep tests (p. 142).",
+        "Calibration within 45 working days; second certified gauge on site (p. 142).",
+        "Gauge graduations 690 kPa or less (p. 142)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Load testing equipment for ground anchors: jack and pump, stressing anchorage, gauges, load cells and jack chair"
+    },
+    {
+      "section_id": "7.3.2.4",
+      "title": "Dial Gauge to Measure Movement",
+      "summary": "Tendon movement is read by a dial gauge on an independent support, to 0.025 mm, aligned with the tendon, with travel beyond the maximum elongation; travels over 100 mm are not recommended (use reset gauges).",
+      "body": "Total tendon movement is commonly measured with a dial gauge on a tripod or other support independent of the structure, measuring and read to the nearest 0.025 mm, with travel exceeding the maximum elongation, aligned perpendicular to the tendon end or measurement plane. Dial gauges with travel over 100 mm are not recommended; for elongations over 100 mm, two or more shorter gauges may be used, reset at interim points. (p. 142)",
+      "key_points": [
+        "Independent support; read to 0.025 mm (p. 142).",
+        "Travel over 100 mm not recommended; reset shorter gauges (p. 142)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Load testing equipment for ground anchors: jack and pump, stressing anchorage, gauges, load cells and jack chair"
+    },
+    {
+      "section_id": "7.3.2.5",
+      "title": "Jack Chair",
+      "summary": "A jack chair over the bar anchor head lets testing proceed with the nut in place and gives nut access at lock-off; it must transfer 100 percent of SMTS; on strands it lets wedges be set after the test.",
+      "body": "For bar anchors a jack chair over the anchor head rests on the bearing plate, allowing testing with the nut in place and access to the nut while transferring the lock-off load. It must transfer 100 percent of the specified minimum tensile strength (SMTS) of the prestressing steel to the bearing plate. On strand tendons it lets wedges be placed and set after the test. (p. 142)",
+      "key_points": [
+        "Jack chair allows testing with the nut in place (p. 142).",
+        "Must transfer 100 percent SMTS (p. 142)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Load testing equipment for ground anchors: jack and pump, stressing anchorage, gauges, load cells and jack chair"
+    },
+    {
+      "section_id": "7.4",
+      "title": "Anchor Load Testing",
+      "summary": "Heading for anchor load testing: introduction, performance tests, proof tests, extended creep testing and acceptance criteria (7.4.1 to 7.4.5).",
+      "body": "Heading for anchor load testing: introduction (7.4.1), performance tests (7.4.2), proof tests (7.4.3), extended creep testing (7.4.4) and acceptance criteria (7.4.5); it has no text of its own. (p. 142)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Ground anchor load test procedures and acceptance criteria for permanent and temporary anchors"
+    },
+    {
+      "section_id": "7.4.1",
+      "title": "Introduction",
+      "summary": "Every production anchor is load tested by a performance, proof or extended creep test, with short creep tests within performance and proof tests; proof tests are the most common. Acceptance rests on allowable creep and elastic movement.",
+      "body": "Uniquely, every anchor in a completed structure is load tested for capacity and load-deformation behavior before service. Acceptance or rejection rests on (1) performance tests, (2) proof tests, (3) extended creep tests (p. 143), with shorter creep tests within performance and proof tests. Proof tests are the most common, done on most anchors; the numbers of performance and extended creep tests depend on temporary or permanent use and ground type. Every anchor receives one of these tests, compared with acceptance criteria based on allowable creep and elastic movements. (pp. 142 to 143)",
+      "key_points": [
+        "Every anchor tested: performance, proof or extended creep test (p. 142).",
+        "Proof tests most common (p. 143).",
+        "Acceptance by allowable creep and elastic movement (p. 143)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Ground anchor load test procedures and acceptance criteria for permanent and temporary anchors"
+    },
+    {
+      "section_id": "7.4.2",
+      "title": "Performance Tests",
+      "summary": "Heading for performance tests: general, procedures, recording and analysis of performance test data (7.4.2.1 to 7.4.2.4).",
+      "body": "Heading for performance tests: general (7.4.2.1), procedures for performance test (7.4.2.2), recording of performance test data (7.4.2.3) and analysis of performance test data (7.4.2.4); it has no text of its own. (p. 143)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Ground anchor load test procedures and acceptance criteria for permanent and temporary anchors"
+    },
+    {
+      "section_id": "7.4.2.1",
+      "title": "General",
+      "summary": "Performance tests cycle load on a production anchor to verify capacity, load-deformation behavior, causes of movement and the unbonded length; done on the first two or three anchors and at least two percent of the rest, more in creep-prone or variable ground.",
+      "body": "Performance tests incrementally load and unload a production anchor to verify capacity, establish load-deformation behavior, identify causes of movement and verify that the actual unbonded length is at least that assumed; they also help interpret proof tests. They are commonly done on the first two or three production anchors and thereafter on at least two percent of the rest, with more where creep susceptible soils are suspected or ground varies; in variable ground locate test anchors near borings if possible. (p. 143)",
+      "key_points": [
+        "Verify capacity, load-deformation, unbonded length (p. 143).",
+        "First two or three anchors, then at least two percent (p. 143)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Ground anchor load test procedures and acceptance criteria for permanent and temporary anchors"
+    },
+    {
+      "section_id": "7.4.2.2",
+      "title": "Procedures for Performance Test",
+      "summary": "Load cycles (Table 21) from an alignment load (no more than 5 percent DL) through 0.25 to 1.33DL; test load 120 to 150 percent of DL (133 permanent, 120 temporary, 150 for creeping soils). Hold 10 minutes, extended to 60 if creep exceeds the limit (Figure 69).",
+      "body": "Table 21 (p. 144) gives the load schedule. An alignment load (AL), typically no more than five percent of the design load (DL), aligns the equipment, and the displacement gauges are zeroed on its stabilization (Figure 69, p. 145). Cycle 1 raises the load to 0.25DL, recording total movement (Point 1), then returns to AL; cycles repeat to the maximum load, the test load: cycle 2 to 0.50DL, 3 to 0.75DL, 4 to 1.00DL, 5 to 1.2DL, 6 to 1.33DL, each returning to AL to record residual movement delta_r and give elastic movement delta_e = delta_t - delta_r. The test load may be 120 to 150 percent of DL, commonly 133 percent for permanent and 120 percent for temporary anchors, 150 percent for potentially creeping soils or without an independent dial gauge reference. At the test load (p. 145) a constant load is held for ten minutes with readings at 1, 2, 3, 4, 5, 6 and 10 minutes, the creep test; if movement between 1 and 10 minutes exceeds the maximum (section 7.4.5.2), the hold is extended 50 minutes with readings at 20, 30, 40, 50 and 60. Then unload to AL (cycle 6 continued, printed \"delta_tn - delta_r6 = delta_e6\") and adjust to lock-off if criteria are met, otherwise see section 7.4.5.4. Anchors with excessive creep may be used at reduced load, replaced, or, only if postgroutable, regrouted and retested. (pp. 143 to 145)",
+      "key_points": [
+        "Alignment load no more than five percent of DL (p. 143).",
+        "Table 21: six cycles to 1.33DL, elastic = total - residual (p. 144).",
+        "Test load 120 to 150 percent DL: 133 permanent, 120 temporary (p. 143).",
+        "Hold 10 min (1 to 10 min readings), extend to 60 min if needed (p. 145).",
+        "Excessive creep: reduced load, replace, or regrout if postgroutable (p. 145)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 69: Plotting of performance test data (after PTI, 1996)"
       ],
       "tables": [
-        "Table 21: Steps for the performance test",
+        "Table 21: Steps for the performance test"
+      ],
+      "applicability": "Ground anchor load test procedures and acceptance criteria for permanent and temporary anchors"
+    },
+    {
+      "section_id": "7.4.2.3",
+      "title": "Recording of Performance Test Data",
+      "summary": "Load is read on the gauge with a load cell holding it constant during creep tests; total movement is elastic plus residual (Figure 70), elastic being total at cycle maximum less residual at AL. Creep runs 1 to 10 minutes from reaching the test load; deduct strand creep for epoxy-coated filled strand.",
+      "body": "Load magnitudes come from the jack gauge, a load cell confirming a constant load during creep testing. Load-deformation data for each increment are plotted as in Figure 70 (p. 146), recording movement at each increment and at AL. Total movement delta_t comprises elastic movement delta_e (tendon elongation and elastic anchor movement through the ground), which acceptance requires, and residual movement delta_r (grout elongation and movement of the whole anchor through the ground), the net irrecoverable movement on relaxing to AL (delta_r6 in Figure 69). Elastic movement (p. 146) is total movement at the cycle's maximum load less movement at AL (Table 21); residual movement, not used for acceptance, indicates the ground-grout bond's stress-strain behavior. In the creep portion, movement at 1, 2, 3, 4, 5, 6 and 10 minutes is recorded from the time point 6 (Figure 69) is read, and movement from one to ten minutes compared with the criterion; if not met the load is held 50 more minutes and movement between 6 and 60 minutes compared. Creep criteria were set for bare strand; for epoxy-coated filled strand, strand creep is significant and should be deducted to find ground creep. (pp. 145 to 146)",
+      "key_points": [
+        "Load cell keeps load constant during creep tests (p. 145).",
+        "Total = elastic + residual movement (Figure 70) (p. 145).",
+        "Elastic = total at cycle maximum - movement at AL (p. 146).",
+        "Deduct strand creep for epoxy-coated filled strand (p. 146)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 70: Plotting of elastic and residual movement for a performance test (after PTI, 1996)"
+      ],
+      "tables": [],
+      "applicability": "Ground anchor load test procedures and acceptance criteria for permanent and temporary anchors"
+    },
+    {
+      "section_id": "7.4.2.4",
+      "title": "Analysis of Performance Test Data",
+      "summary": "Elastic movements from each cycle (Table 21) are plotted against load (Figure 70) with the residual curve; a soil anchor's elastic movement at the test load must exceed a minimum, a rock anchor's lie between a minimum and a maximum (section 7.4.5.3).",
+      "body": "One acceptance criterion is the measured elastic movement. Elastic movements from each performance test cycle are computed by the Table 21 equations, calculated for each cycle and plotted against load (Figure 70) (p. 147), with the residual movement curve. A soil anchor is acceptable for elastic movement if the elastic movement at the test load exceeds a specified minimum; for a rock anchor it must lie between a specified minimum and maximum (section 7.4.5.3). (pp. 146 to 147)",
+      "key_points": [
+        "Elastic movement per cycle plotted against load (p. 147).",
+        "Soil: above a minimum; rock: between minimum and maximum (p. 147)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Ground anchor load test procedures and acceptance criteria for permanent and temporary anchors"
+    },
+    {
+      "section_id": "7.4.3",
+      "title": "Proof Tests",
+      "summary": "Heading for proof tests: general (7.4.3.1) and procedures, recording and analysis of proof test data (7.4.3.2).",
+      "body": "Heading for proof tests: general (7.4.3.1) and proof test procedures and recording and analysis of proof test data (7.4.3.2); it has no text of its own. (p. 147)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Ground anchor load test procedures and acceptance criteria for permanent and temporary anchors"
+    },
+    {
+      "section_id": "7.4.3.1",
+      "title": "General",
+      "summary": "The proof test is a single cycle with a hold at the test load, load by the jack gauge (load cell only where performance tests show creep over 1 mm per log cycle); significant deviation from performance data calls for a performance test on the next anchor.",
+      "body": "The proof test is a single load cycle with a hold at the test load, load measured by the jack pressure gauge; load cells are needed only for creep tests in soils where performance tests show a creep rate over 1 mm per log cycle of time. It evaluates anchors not performance tested, on the same factors as performance tests; where proof data deviate significantly from previous performance data, an additional performance test is recommended on the next adjacent anchor. (p. 147)",
+      "key_points": [
+        "Single cycle with a hold at the test load (p. 147).",
+        "Load cell only where creep exceeds 1 mm per log cycle (p. 147).",
+        "Deviations: performance test the next anchor (p. 147)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Ground anchor load test procedures and acceptance criteria for permanent and temporary anchors"
+    },
+    {
+      "section_id": "7.4.3.2",
+      "title": "Proof Test Procedures and Recording and Analysis of Proof Test Data",
+      "summary": "Table 22: alignment load; increments 0.25 to 1.33DL (1.20DL for temporary anchors); hold ten minutes; optional unload to AL for residual movement; lock off if acceptable. Plot total movement (Figure 71); without unloading, estimate residual from performance tests.",
+      "body": "The proof test follows Table 22 (p. 147): Step 1, apply the alignment load, total movement taken as zero; Step 2, apply and record total movement at 0.25DL, 0.50DL, 0.75DL, 1.00DL, 1.20DL and 1.33DL (the test load), which may be 1.20DL for temporary support of excavation anchors; Step 3, hold the test load ten minutes recording total movement; Step 4 (optional), unload to AL and record residual movement; Step 5, if acceptable reduce (or after Step 4 increase) to the lock-off load, otherwise follow section 7.4.5.4. Total movements are plotted as in Figure 71 (p. 148). With an unload cycle, residual and elastic movements at the test load are calculated as for performance tests; without one, residual movement may be estimated from performance tests on other production anchors of the project. (pp. 147 to 148)",
+      "key_points": [
+        "Table 22: proof test steps, test load 1.33DL (1.20DL temporary) (p. 147).",
+        "Hold test load ten minutes (p. 147).",
+        "Optional unload for residual movement (p. 147).",
+        "Figure 71: plotting of proof test data (p. 148)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 71: Plotting of proof test data (after PTI, 1996)"
+      ],
+      "tables": [
+        "Table 22: Test procedure for ground anchor proof test"
+      ],
+      "applicability": "Ground anchor load test procedures and acceptance criteria for permanent and temporary anchors"
+    },
+    {
+      "section_id": "7.4.4",
+      "title": "Extended Creep Testing",
+      "summary": "Heading for extended creep testing: general, procedures, and recording and analysis of extended creep test data (7.4.4.1 to 7.4.4.3).",
+      "body": "Heading for extended creep testing: general (7.4.4.1), procedures for extended creep test (7.4.4.2) and recording and analysis of extended creep test data (7.4.4.3); it has no text of its own. (p. 148)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Ground anchor load test procedures and acceptance criteria for permanent and temporary anchors"
+    },
+    {
+      "section_id": "7.4.4.1",
+      "title": "General",
+      "summary": "Extended creep tests (about 8 hours) are required in cohesive soil with PI > 20 or LL > 50, on at least two anchors, and on several production anchors where performance or proof tests need extended holds.",
+      "body": "An extended creep test is a long test (e.g., approximately 8 hours) evaluating creep deformation. It is required for anchors in cohesive soil with plasticity index (PI) over 20 or liquid limit (LL) over 50, on a minimum of two anchors; where performance or proof tests need extended holds, several production anchors should be tested. (p. 148)",
+      "key_points": [
+        "About 8 hours (p. 148).",
+        "Required in cohesive soil with PI > 20 or LL > 50, at least two anchors (p. 148)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Ground anchor load test procedures and acceptance criteria for permanent and temporary anchors"
+    },
+    {
+      "section_id": "7.4.4.2",
+      "title": "Procedures for Extended Creep Test",
+      "summary": "Increments as for performance tests, each held with readings while load stays within 0.35 MPa of the test pressure; Table 23 holds for permanent anchors: 10, 30, 30, 45, 60 and 300 minutes at 0.25 to 1.33DL.",
+      "body": "The arrangement resembles performance or proof tests and the increments match the performance test. At each cycle the load is held constant for a set period while movement is recorded; it is reasonably constant if the deviation from the test pressure does not exceed 0.35 MPa. Table 23 (p. 149), permanent anchors (cycle, maximum load, total observation period, reading times in minutes): 1, 0.25DL, 10, 1 to 10; 2, 0.50DL, 30, 1 to 30; 3, 0.75DL, 30, 1 to 30; 4, 1.00DL, 45, 1 to 45; 5, 1.20DL, 60, 1 to 60; 6, 1.33DL, 300, 1 to 300 (readings at 1, 2, 3, 4, 5, 6, 10, 15, 20, 25, 30, 45, 60 and 300 as reached). Temporary anchors: FHWA-RD-82-047 (1982). (pp. 148 to 149)",
+      "key_points": [
+        "Load constant within 0.35 MPa of test pressure (p. 148).",
+        "Table 23: holds 10, 30, 30, 45, 60, 300 min at 0.25 to 1.33DL (p. 149)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
         "Table 23: Load schedule and observation periods for extended creep test for permanent anchor"
       ],
       "applicability": "Ground anchor load test procedures and acceptance criteria for permanent and temporary anchors"
+    },
+    {
+      "section_id": "7.4.4.3",
+      "title": "Recording and Analysis of Extended Creep Test Data",
+      "summary": "Plot extended creep data as in Figure 72: creep movement is total movement less the one-minute reading, creep rate the slope per log cycle of time, evaluated for each load hold against the maximum specified rate.",
+      "body": "Extended creep data are plotted as in Figure 72 (p. 149), one curve per load hold. Creep movement at any time is total movement less the movement at one minute; the creep rate is the slope of the curve per log cycle of time. Creep rates for each curve are compared with the maximum specified rate for acceptance. (p. 149)",
+      "key_points": [
+        "Creep movement = total - one-minute reading (p. 149).",
+        "Creep rate = slope per log cycle, each hold (Figure 72) (p. 149)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 72: Plotting of extended creep test data (after PTI, 1996)"
+      ],
+      "tables": [],
+      "applicability": "Ground anchor load test procedures and acceptance criteria for permanent and temporary anchors"
+    },
+    {
+      "section_id": "7.4.5",
+      "title": "Acceptance Criteria",
+      "summary": "Heading for acceptance criteria: general, creep, apparent free length, the acceptance decision tree and modification of design or installation (7.4.5.1 to 7.4.5.5).",
+      "body": "Heading for acceptance criteria: general (7.4.5.1), creep (7.4.5.2), apparent free length (7.4.5.3), ground anchor acceptance decision tree (7.4.5.4) and modification of design or installation procedures (7.4.5.5); it has no text of its own. (p. 150)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Ground anchor load test procedures and acceptance criteria for permanent and temporary anchors"
+    },
+    {
+      "section_id": "7.4.5.1",
+      "title": "General",
+      "summary": "An anchor goes into service at the lock-off load if its creep and elastic movements meet specified limits; an acceptance decision tree covers anchors that fail a criterion.",
+      "body": "An anchor may be put into service at the lock-off load after testing if specified criteria are met, limiting creep (movement during load holds) and elastic movement. They are integrated into an acceptance decision tree describing procedures when a criterion is not met. (p. 150)",
+      "key_points": [
+        "Criteria limit creep and elastic movement (p. 150).",
+        "Decision tree for failures (p. 150)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Ground anchor load test procedures and acceptance criteria for permanent and temporary anchors"
+    },
+    {
+      "section_id": "7.4.5.2",
+      "title": "Creep",
+      "summary": "Creep acceptance: performance and proof tests at most 1 mm between 1 and 10 minutes, or at most 2 mm between 6 and 60 minutes after extension; extended creep tests at most 2 mm per log cycle over the final log cycle, or 50 percent of the load with acceptable creep.",
+      "body": "Creep testing, within performance or proof tests or as extended creep tests, is performed on each production anchor to evaluate grout body creep through the ground; total movement during holds must stay below a limit. For performance and proof tests, total movement at the test load should not exceed 1 mm between 1 and 10 minutes; otherwise the hold is extended 50 minutes and the anchor is acceptable if movement does not exceed 2 mm between 6 and 60 minutes. For extended creep tests, total movement in any hold should not exceed 2 mm per logarithmic cycle of time (PTI, 1996) over the final log cycle of each increment; alternatively the anchor load may be reduced to 50 percent of the load at which acceptable creep was measured over the final log cycle. (p. 150)",
+      "key_points": [
+        "Performance and proof: <= 1 mm from 1 to 10 min (p. 150).",
+        "Extended hold: <= 2 mm from 6 to 60 min (p. 150).",
+        "Extended creep test: <= 2 mm per log cycle over the final cycle (PTI 1996) (p. 150).",
+        "Else load reduced to 50 percent of the acceptable-creep load (p. 150)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Ground anchor load test procedures and acceptance criteria for permanent and temporary anchors"
+    },
+    {
+      "section_id": "7.4.5.3",
+      "title": "Apparent Free Length",
+      "summary": "Apparent free length La = At Es delta_e/P x 1/10^9 (Eq. 49) judges elastic movement; minimum = jack length + 80 percent of design unbonded length (retest with two cycles if short); Es may be reduced 3 to 5 percent for long multistrand tendons; maximum (100 percent free + 50 percent bond + jack length) only for sound rock proof tests.",
+      "body": "The apparent free length, the tendon length not bonded to ground or grout judged from elastic movement at the test load, is the basis for elastic movement acceptance, La by Eq. 49 (La m; At mm2; Es kPa; delta_e mm; P kN), At the steel area, Es its Young's modulus, delta_e the elastic movement at the test load and P the test load minus the alignment load. For proof tests without measured or estimated residual movement, total movement may replace elastic movement (p. 151). Long multistrand tendons may have a lower modulus than the single-strand value, so PTI (1996) allows a 3 to 5 percent reduction of the manufacturer's modulus. Minimum Apparent Free Length Criterion: if La exceeds the minimum, defined as the jack length plus 80 percent of the design unbonded length, the unbonded length is assumed adequately developed; a shorter La may mean load transfer along the unbonded length, inside the slip surface assumed for overall stability, or friction from misaligned stressing equipment or tendon; the anchor may then be cycled twice from AL to the test load to reduce friction and La recalculated. A larger minimum may be specified where redistribution of friction could cause unacceptable movement or tendon friction could transfer load in the unbonded length. Maximum Apparent Free Length Criterion: used when uniform propagation was assumed (Figure 65), limiting elastic movements to 100 percent of the free length plus 50 percent of the bond length plus the jack length; uniform bond is not valid for soil anchors and only approximates most rock anchors, so its main use is as an alternate criterion for proof tests in sound rock with creep tests waived; anchors failing it are creep tested before rejection. (pp. 150 to 151)",
+      "key_points": [
+        "La = At Es delta_e / P x 1/10^9 (Eq. 49) (p. 150).",
+        "Proof tests without residual: total movement may be used (p. 151).",
+        "Es may be reduced 3 to 5 percent for long multistrand tendons (PTI 1996) (p. 151).",
+        "Minimum La = jack length + 80 percent of design unbonded length (p. 151).",
+        "Short La: two load cycles to reduce friction, then recalculate (p. 151).",
+        "Maximum La criterion only as alternate for sound rock proof tests (p. 151)."
+      ],
+      "equations": [
+        "Eq. 49: La = (At Es delta_e / P) x (1 / 10^9); apparent free length of the tendon, At = cross sectional area of the prestressing steel (mm2), Es = Young's modulus of the prestressing steel (kPa), delta_e = elastic movement at the test load (mm), P = test load minus alignment load (kN), La in m (p. 150)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Ground anchor load test procedures and acceptance criteria for permanent and temporary anchors"
+    },
+    {
+      "section_id": "7.4.5.4",
+      "title": "Ground Anchor Acceptance Decision Tree",
+      "summary": "PTI decision tree (Figure 73): failing minimum apparent free length, lock off at no more than 50 percent of the maximum test load or replace; passing it but failing creep, postgrout and pass an enhanced 60-minute test (1 mm from 1 to 60 minutes), else replace or lock off at 50 percent. Permanent connections may not be off-center.",
+      "body": "The PTI (1996) decision tree (Figure 73, p. 153) omits the maximum apparent free length criterion, not routinely used, and guides field action when criteria are not met; such anchors may be locked off at a reduced load or replaced. The first decision is the minimum apparent free length criterion, which must be met for lock-off at the design lock-off load. Anchors That Pass Apparent Free Length Criterion: if they fail the creep test they may, if possible, be post-grouted and retested under an enhanced creep test, more stringent than creep and extended creep tests: a 60-minute hold at the test load, lock-off allowed (printed \"at the design test load\") if total movement does not exceed 1 mm between 1 and 60 minutes; otherwise, or if post-grouting is impossible, reject and replace or lock off at 50 percent of the load held without detectable movement. Anchors That Fail Minimum Apparent Free Length Criterion: lock off at no more than 50 percent of the maximum load attained in testing, or reject and replace. Figure 73 labels the reduced lock-off \"50% of the maximum acceptable test load\". Replacements must meet all specifications; relocation needs the design engineer's approval; with prefabricated connections the failed anchor is removed from the connection or a new one fabricated. Connections may not be offset from the soldier beam center for permanent anchors, as off-center connections induce adverse bending and torsion in the beam and bending in the tendon. (pp. 152 to 153)",
+      "key_points": [
+        "Figure 73: PTI acceptance decision tree (p. 152).",
+        "Minimum apparent free length must pass for design lock-off (p. 152).",
+        "Creep failure: postgrout, enhanced test, <= 1 mm from 1 to 60 min (p. 152).",
+        "Otherwise replace or lock off at 50 percent (p. 152).",
+        "Permanent connections not offset from the beam center (p. 152)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 73: Ground anchor acceptance decision tree (after PTI, 1996)"
+      ],
+      "tables": [],
+      "applicability": "Ground anchor load test procedures and acceptance criteria for permanent and temporary anchors"
+    },
+    {
+      "section_id": "7.4.5.5",
+      "title": "Modification of Design or Installation Procedures",
+      "summary": "Multiple early or adjacent failures call for reassessing ground, design and installation: change method or anchor type, lengthen the anchor or bond or change inclination, or add anchors to reduce design load, with owner approval in writing.",
+      "body": "Multiple failures early in construction or of adjacent anchors should prompt reassessment of subsurface conditions and/or design and installation. Common modifications: (1) change installation method or anchor type; (2) increase anchor or bond length or change inclination; (3) reduce design load by adding anchors. Proposed changes are submitted to the owner in writing for review and approval before implementation. (p. 154)",
+      "key_points": [
+        "Multiple failures: reassess ground, design, installation (p. 154).",
+        "Change method or type, lengthen, re-incline, or add anchors (p. 154).",
+        "Owner approval in writing (p. 154)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Ground anchor load test procedures and acceptance criteria for permanent and temporary anchors"
+    },
+    {
+      "section_id": "7.5",
+      "title": "Anchor Lock-off Load",
+      "summary": "Lock-off generally 75 to 100 percent of design load (75 for temporary walls allowing movement; above 100 for landslides). Seating losses about 1.6 mm (bar) and 6.4 mm (bare strand), wedges seated at no less than 50 percent of ultimate; relaxation about 4 percent (strand) and 2 percent (bar).",
+      "body": "After acceptance the anchor load is reduced to the specified \"lock-off\" load and transferred from the jack to the anchorage, which carries it to the wall or structure. The designer selects lock-off, generally 75 to 100 percent of the design load from apparent envelopes: about 75 percent for temporary support of excavation where large movements are permitted; 100 percent typically gives some net inward wall movement, apparent envelopes exceeding actual loads; more than 100 percent may be needed for landslides, sized to the restraint force for the target slope factor of safety, with structural elements to carry it. Transfer inevitably loses load in seating, generally about 1.6 mm for bar and 6.4 mm for bare strand tendons (FHWA-DP-68-1R, 1988); strand wedges must be seated at no less than 50 percent of the tendon's ultimate load to prevent slip if load later rises; epoxy coated strand loses more as wedges bite through the coating; the ram is extended by the expected seating loss after reaching lock-off. Long-term relaxation losses may be estimated as 4 percent for strand and 2 percent for bar tendons (FHWA-DP-68-1R, 1988), specifics from the supplier; the transferred load may be raised accordingly from lift-off results (p. 155) so it relaxes to the desired long-term load. (pp. 154 to 155)",
+      "key_points": [
+        "Lock-off generally 75 to 100 percent of design load (p. 154).",
+        "About 75 percent for temporary walls; > 100 percent for landslides (p. 154).",
+        "Seating loss about 1.6 mm (bar), 6.4 mm (bare strand) (p. 154).",
+        "Wedges seated at no less than 50 percent of ultimate (p. 154).",
+        "Relaxation about 4 percent (strand), 2 percent (bar) (p. 154)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Ground anchor lock-off load selection, seating and relaxation losses, and lift-off testing"
+    },
+    {
+      "section_id": "7.6",
+      "title": "Lift-off Testing",
+      "summary": "A lift-off test after transfer verifies tendon load: reapply load until the wedge plate or nut lifts off, shown by a sudden drop in the rate of load increase; it must be within five percent of the specified lock-off load, else adjust and repeat.",
+      "body": "After transfer to the anchorage, a lift-off test verifies the tendon load. Strand tendons are reloaded until, for restressable heads, the wedge plate lifts off the bearing plate without unseating wedges, or, with the jack on the anchor head, the wedges lift out of the wedge plate; bar tendons until the nut lifts off the bearing plate without turning. Lift-off shows as a sudden decrease in the rate of load increase on the jack gauge. The measured load should be within five percent of the specified lock-off load; otherwise adjust the tendon load and repeat. (p. 155)",
+      "key_points": [
+        "Lift-off verifies tendon load (p. 155).",
+        "Sudden decrease in rate of load increase marks lift-off (p. 155).",
+        "Within five percent of lock-off load (p. 155)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Ground anchor lock-off load selection, seating and relaxation losses, and lift-off testing"
     }
   ]
 }

@@ -5,229 +5,1373 @@
   "chapter_title": "Design of Anchored Systems",
   "sections": [
     {
-      "section_id": "5.1-5.2",
-      "title": "Introduction and Evaluation of Earth Pressures",
-      "summary": "Apparent earth pressure (AEP) envelopes — not triangular active pressure — are used to design flexible anchored walls. For sands: trapezoidal, pa = 0.65 KA γH (Eq 10b); total load = 0.65 KA γH². For stiff-to-hard fissured clays: trapezoidal from Table 5 (ranges 0.2γH to 0.4γH maximum ordinate for permanent walls using drained parameters). For soft-to-medium clays: based on stability number Ns = γH/Su (Eq 9). For Ns ≤ 4, stiff clay envelope applies; for Ns > 5.14, modified soft clay envelope. AEP envelopes give conservative anchor loads for entire excavation history but do not predict actual loads at any stage.",
-      "body": "Design steps for anchored walls (Table 4): (1) establish project requirements; (2) evaluate subsurface conditions; (3) evaluate design parameters and factors of safety; (4) establish wall and anchor geometry; (5) estimate earth pressures and water pressures; (6) calculate anchor loads; (7) design structural components; (8) evaluate overall stability; (9) evaluate wall and ground movements.\n\nApparent earth pressure envelopes: For flexible anchored walls constructed top-down, actual earth pressure distribution is not triangular active. Apparent earth pressure envelopes are trapezoidal empirical envelopes derived from field measurements. They provide conservative estimates of anchor loads and wall bending moments for the entire excavation history but do not represent actual load at any stage. Staged construction analyses (beam on elastic foundation) may be needed where actual loads are required.\n\nSand: Recommended trapezoidal AEP, pa = 0.65 KA γH (Eq 10b) over the middle 75% of wall height, with linear decrease to zero at top and bottom. Total load = 0.65 KA γH². Stability number not applicable.\n\nStiff to hard fissured clays: Trapezoidal envelopes from literature (Table 5 — Terzaghi and Peck 1967, Schnabel 1982, Winter 1990, Ulrich 1989, FHWA-RD-75-130 1976). For permanent walls, drained effective stress analysis is required because undrained strength may decrease over time in fissured OC clay. Use zero cohesion (fully softened) for permanent design.\n\nSoft to medium clays: Stability number Ns = γH/Su (Eq 9) governs. For Ns > 5.14, the failure surface may penetrate significantly below the excavation base, requiring large lower anchor loads. Table 6 and limit equilibrium (Table 16, 17) methods used when Ns is large.\n\nWater pressures: Permanent soldier beam and lagging walls typically designed with drainage. Net seepage pressure calculated from flownet; uniform surcharge: Δσh = K × qs (Eq 18).",
+      "section_id": "5.1",
+      "title": "Introduction",
+      "summary": "Chapter 5 gives analysis procedures for ground anchors and anchored systems, emphasizing permanent soldier beam and lagging walls; Table 4 lists the 13 typical design steps, from project requirements to lagging, wales, drainage and connections.",
+      "body": "The chapter presents analysis procedures for the design of ground anchors and anchored systems; design concepts for permanent systems also apply to critical temporary systems. Emphasis is on permanently anchored soldier beam and lagging walls, most common for highway work; temporary support of excavation (SOE) walls (sheet-pile or soldier beam and lagging), landslide and slope stabilization systems and tiedowns are also covered. \"Anchored system\" is used for concepts applicable to all systems, \"anchored wall\" for walls only. Table 4 (p. 47, modified after FHWA-RD-81-150, 1982) is a general flow chart assuming an anchored wall has been judged suitable (wall type selection: FHWA-SA-96-038, 1997): Step 1, establish project requirements (geometry, external loading, temporary and/or permanent, seismic, performance criteria, construction constraints); Step 2, evaluate subsurface conditions and soil and rock properties; Step 3, evaluate design properties, establish design factors of safety and select the level of corrosion protection; Step 4, select the lateral earth pressure distribution for the final height and add water, surcharge and seismic pressures (staged construction analysis may be needed in marginal soils); Step 5, calculate horizontal anchor loads and wall bending moments, adjusting vertical anchor locations for an optimum moment distribution; Step 6, evaluate anchor inclination from right-of-way, anchoring strata and underground structures; Step 7, resolve each horizontal anchor load into a vertical component and a force along the anchor; Step 8, evaluate horizontal spacing and calculate individual anchor loads; Step 9, select the anchor type; Step 10, evaluate vertical and lateral capacity of the wall below subgrade; Step 11, evaluate internal and external stability; Step 12, estimate maximum lateral wall movements and ground surface settlements; Step 13, select lagging and design walers, facing drainage and connections. Step 1 precedes wall selection and is not discussed further. Detailed selection of anchors, soldier beams, connections and facing is typically made by the contractor, but the engineer should ensure the components are consistent with all performance requirements. (pp. 46 to 47)",
       "key_points": [
-        "AEP envelopes — trapezoidal, not triangular active — used for flexible anchored wall design",
-        "Sand: pa = 0.65 KA γH (Eq 10b) over middle 75% of wall; total load = 0.65 KA γH²",
-        "Stiff-hard clay: trapezoidal envelopes from Table 5; permanent walls require drained (zero cohesion) analysis",
-        "Soft-medium clay: stability number Ns = γH/Su governs; Ns > 5.14 → failure surface penetrates below excavation",
-        "AEP envelopes overestimate moments near subgrade and underestimate anchor loads vs. triangular assumption"
+        "Emphasis on permanent soldier beam and lagging walls; also SOE walls, slopes, tiedowns (p. 46).",
+        "Table 4: 13 typical design steps for an anchored wall (p. 47).",
+        "Component details typically chosen by the contractor; engineer checks performance (p. 46)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 4: Typical design steps for an anchored wall (modified after FHWA-RD-81-150, 1982)"
+      ],
+      "applicability": "Anchored system design procedure overview and the typical design steps for an anchored wall"
+    },
+    {
+      "section_id": "5.2",
+      "title": "Evaluation of Earth Pressures for Wall Design",
+      "summary": "Heading for evaluation of earth pressures for wall design: introduction, background, Terzaghi and Peck diagrams, recommended diagrams for sands, stiff to hard clays and soft to medium clays, stratified soils, sliding wedge, water pressures and surface loads (5.2.1 to 5.2.10).",
+      "body": "Heading for evaluation of earth pressures for wall design (5.2.1 introduction, 5.2.2 background, 5.2.3 Terzaghi and Peck apparent earth pressure diagrams, 5.2.4 sands, 5.2.5 stiff to hard fissured clays, 5.2.6 soft to medium clays, 5.2.7 stratified soil profiles, 5.2.8 sliding wedge analysis, 5.2.9 water pressures, 5.2.10 surface loads); it has no text of its own. (p. 47)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Apparent earth pressure, water and surcharge loading for anchored wall design in sand, stiff clay and soft clay"
+    },
+    {
+      "section_id": "5.2.1",
+      "title": "Introduction",
+      "summary": "Unanchored flexible cantilever walls deform enough for full active pressure (Rankine or Coulomb); top-down anchored walls do not, pressures being higher than active at the upper anchor. Methods: apparent earth pressure, sliding wedge and limit equilibrium.",
+      "body": "The earth pressure distribution on an anchored wall depends on the magnitude and distribution of lateral wall deformations. Relatively flexible nongravity cantilevered walls (unanchored sheet-pile or soldier beam and lagging) can deform enough to induce active pressures over the full height, so theoretical Rankine or Coulomb diagrams can be used. For top-down anchored walls (p. 48) the deformation pattern is more complex: soil strength, wall stiffness, anchor inclination, vertical spacing and lock-off loads govern it, and higher than active pressures develop at the upper anchor, which restrains outward movement. The section covers earth pressures for temporary SOE and permanent anchored walls with flexible elements, by apparent earth pressure, sliding wedge-type and limit equilibrium calculations. (pp. 47 to 48)",
+      "key_points": [
+        "Unanchored flexible walls: full active pressure, Rankine or Coulomb (p. 47).",
+        "Top-down anchored walls: higher than active pressure at the upper anchor (p. 48).",
+        "Methods: apparent earth pressure, sliding wedge, limit equilibrium (p. 48)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Apparent earth pressure, water and surcharge loading for anchored wall design in sand, stiff clay and soft clay"
+    },
+    {
+      "section_id": "5.2.2",
+      "title": "Background",
+      "summary": "Apparent earth pressure diagrams (Terzaghi and Peck 1967, Peck 1969) are semi-empirical envelopes for braced struts, modified by Henkel (1971) for soft clay and by FHWA-RD-97-130 for anchored walls. They give reasonable anchor loads in competent soils but not actual loads; use staged or limit equilibrium analyses where needed.",
+      "body": "Apparent earth pressure diagrams are semi-empirical, originally developed by Terzaghi and Peck (1967) and Peck (1969) for conservative strut design in internally braced excavations, for homogeneous profiles: (1) drained loading in sands, (2) undrained loading in stiff to hard fissured clays, (3) undrained loading in soft to medium clays. Two modifications used in the manual: Henkel (1971) changed the maximum ordinate equation for soft to medium clay, assuming deep-seated movement (backcalculated KA showed Peck's method underpredicted, Henkel's more accurate); FHWA-RD-97-130 (1998) redistributes the sand and stiff to hard clay diagram, pressures concentrating at the anchors (section 4.4.4), so the uppermost and lowermost anchor locations must be known. Apparent envelopes have given reasonable anchor loads and conservative bending moments between anchors for flexible walls in competent soils, permit hand calculations (p. 49) and envelope the whole excavation history, but are not actual loads; staged construction (soil-structure interaction, e.g., beam on elastic foundation) analyses may be used where actual loads are needed and where (1) nearby foundations load the wall, (2) large surcharges must be resisted, or (3) preexisting instabilities or weakness planes exist. Limit equilibrium calculations (trial wedge or slope stability programs) suit highly stratified soils, deep-seated or interface failure surfaces and complicated surcharges; they are as valid as apparent diagrams in homogeneous profiles, but apparent diagrams are more expedient and are recommended. (pp. 48 to 49)",
+      "key_points": [
+        "Terzaghi and Peck (1967), Peck (1969) diagrams for braced struts (p. 48).",
+        "Henkel (1971) soft clay and FHWA-RD-97-130 anchored-wall modifications (p. 48).",
+        "Apparent envelopes are not actual loads; staged analyses where needed (p. 49).",
+        "Limit equilibrium for stratified soils, deep surfaces, complex surcharges (p. 49).",
+        "Apparent diagrams recommended as more expedient (p. 49)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Apparent earth pressure, water and surcharge loading for anchored wall design in sand, stiff clay and soft clay"
+    },
+    {
+      "section_id": "5.2.3",
+      "title": "Terzaghi and Peck Apparent Earth Pressure Diagrams",
+      "summary": "Terzaghi and Peck envelopes (Figure 23), not recommended in their original form, are rectangular or trapezoidal: sands p = 0.65 KA gamma H; stiff-hard fissured clays 0.2 to 0.4 gamma H; soft to medium clays KA gamma H with KA = 1 - m 4Su/(gamma H). Clays are classed by the stability number Ns = gamma H/Su (Eq. 9).",
+      "body": "The Terzaghi and Peck (1967) and Peck (1969) diagrams, not recommended herein in their original form, frame the recommended ones. They envelope pressures back-calculated from measured strut loads in braced excavations and give conservative design loads (if one strut reached the diagram load, others would be less). Figure 23 (p. 50) summarizes the rectangular or trapezoidal envelopes, maximum ordinate p: (a) sands, p = 0.65 KA gamma H, KA = tan^2(45 - phi'/2), rectangular; (b) stiff-hard fissured clays, p = 0.2 gamma H to 0.4 gamma H, trapezoidal over 0.25H, 0.5H, 0.25H; (c) soft to medium clays, p = 1.0 KA gamma H with KA = 1 - m 4Su/(gamma H), m = 1.0 except as noted (section 5.2.6), over 0.25H and 0.75H. Bases: excavations deeper than 6 m and relatively wide, with movements large enough to mobilize full strength; groundwater below the base for sands and unimportant for clays (water pressure not considered); homogeneous soil, drained for sands and undrained for clays (short-term only); diagrams apply only to the exposed wall, not the embedded part (p. 50). For clays the apparent pressure relates to the stability number Ns (Eq. 9), gamma = total unit weight (kN/m3), Su = average undrained strength below the excavation base (kPa), H = excavation depth (m); low Ns marks stiff to hard clays and high Ns soft to medium clays. (pp. 49 to 50)",
+      "key_points": [
+        "Original Terzaghi and Peck diagrams frame but are not the recommended diagrams (p. 49).",
+        "Figure 23: sands 0.65 KA gamma H; stiff clays 0.2 to 0.4 gamma H; soft clays KA gamma H (p. 50).",
+        "Bases: H > 6 m, no water pressure, homogeneous, short-term loading (p. 49).",
+        "Diagrams apply to the exposed portion only (p. 50).",
+        "Ns = gamma H/Su (Eq. 9) (p. 50)."
       ],
       "equations": [
-        {
-          "equation_id": "5-9",
-          "description": "Stability number for flexible anchored walls in cohesive soils",
-          "latex": "N_s = \\frac{\\gamma H}{S_u}",
-          "variables": {
-            "N_s": "stability number (Ns > 5.14 → critical failure surface penetrates below excavation base)",
-            "gamma": "total unit weight of soil",
-            "H": "height of wall (excavation depth)",
-            "S_u": "average undrained shear strength over wall height"
-          },
-          "implemented_in": null
-        },
-        {
-          "equation_id": "5-10b",
-          "description": "Maximum pressure ordinate of apparent earth pressure diagram for sands",
-          "latex": "p_a = 0.65 K_A \\gamma H",
-          "variables": {
-            "p_a": "maximum apparent earth pressure ordinate for sand",
-            "K_A": "Rankine active earth pressure coefficient",
-            "gamma": "total unit weight of soil",
-            "H": "excavation height"
-          },
-          "implemented_in": null
-        },
-        {
-          "equation_id": "5-18",
-          "description": "Increase in lateral earth pressure due to uniform vertical surcharge",
-          "latex": "\\Delta\\sigma_h = K \\cdot q_s",
-          "variables": {
-            "Delta_sigma_h": "increase in lateral earth pressure",
-            "K": "appropriate earth pressure coefficient (KA or Ko)",
-            "q_s": "applied vertical surcharge stress"
-          },
-          "implemented_in": null
-        }
+        "Eq. 9: Ns = gamma H / Su; stability number for clays, gamma = total unit weight of the clay (kN/m3), Su = average undrained shear strength of the clay below the base of the excavation (kPa), H = excavation depth (m) (p. 50)"
       ],
       "figures": [
-        "Figure 23: Terzaghi and Peck apparent pressure envelopes (sand and clay)",
-        "Figure 24: Recommended apparent earth pressure diagram for sands",
+        "Figure 23: Terzaghi and Peck apparent pressure envelopes (after Terzaghi and Peck, 1967)"
+      ],
+      "tables": [],
+      "applicability": "Apparent earth pressure, water and surcharge loading for anchored wall design in sand, stiff clay and soft clay"
+    },
+    {
+      "section_id": "5.2.4",
+      "title": "Recommended Apparent Earth Pressure Diagram for Sands",
+      "summary": "For sands KA = tan^2(45 - phi'/2) (Eq. 10a), p = 0.65 KA gamma H (Eq. 10b), total load 0.65 KA gamma H^2, distributed on the trapezoid of Figure 24 (one or multiple anchor levels), valid short and long term; add water and surcharge pressures explicitly.",
+      "body": "For sands the Figure 23a coefficient is Eq. 10a and the maximum ordinate Eq. 10b (p. 51), phi' being the sand's effective friction angle; the total lateral load of the rectangular diagram is 0.65 KA gamma H^2. The recommended envelope for one and multiple anchor levels is trapezoidal (Figure 24, p. 51): (a) one level, ordinate rising over 2/3 H1, constant over 1/3 H, falling over 2/3 (H - H1), p = total load/(2/3 H) (approximately KA gamma H); (b) multiple levels, rising over 2/3 H1 and falling over 2/3 Hn+1, p = total load/(H - 1/3 H1 - 1/3 Hn+1); total load = 0.65 KA gamma H^2; H1 = ground surface to uppermost anchor, Hn+1 = excavation base to lowermost anchor, Thi = horizontal load in anchor i, R = reaction resisted by the subgrade. Unlike Terzaghi and Peck, the upper and lower anchor locations must be known (p. 52). The trapezoid suits sands because pressures concentrate at anchors through arching, zero pressure at the surface is appropriate without surcharge, pressures rise to the upper anchor, and in medium dense to very dense sands pressures fall below the lowest anchor from passive resistance below the base. It applies to short-term (temporary) and long-term (permanent) loading; water and surcharge pressures are added explicitly. (pp. 50 to 52)",
+      "key_points": [
+        "KA = tan^2(45 - phi'/2) (Eq. 10a); p = 0.65 KA gamma H (Eq. 10b) (pp. 50 to 51).",
+        "Total load 0.65 KA gamma H^2 (p. 51).",
+        "Figure 24: trapezoid, 2/3 H1 at top and 2/3 Hn+1 at bottom (p. 51).",
+        "Upper and lower anchor locations must be known (p. 52).",
+        "Valid for temporary and permanent loading; add water and surcharge explicitly (p. 52)."
+      ],
+      "equations": [
+        "Eq. 10a: KA = tan^2(45 - phi'/2); active earth pressure coefficient for the sand apparent earth pressure diagram, phi' = effective stress friction angle of the sand (p. 50)",
+        "Eq. 10b: p = 0.65 KA gamma H; maximum ordinate of the Terzaghi and Peck apparent earth pressure diagram for sands (p. 51)"
+      ],
+      "figures": [
+        "Figure 24: Recommended apparent earth pressure diagram for sands"
+      ],
+      "tables": [],
+      "applicability": "Apparent earth pressure, water and surcharge loading for anchored wall design in sand, stiff clay and soft clay"
+    },
+    {
+      "section_id": "5.2.5",
+      "title": "Recommended Apparent Earth Pressure Diagram for Stiff to Hard Fissured Clays",
+      "summary": "Stiff to hard fissured clays (Ns < 4), temporary: choose p from experience; Table 5 envelopes have similar total loads; use Figure 27 with a total load of about 3H^2 to 6H^2 kN/m (minimum 3H^2), only for controlled short durations without free water. Permanent: use the larger of that and 0.65 KA gamma H^2 with KA from the fully softened phi'.",
+      "body": "Temporary Conditions. Although diagrams are proposed, the design diagram should rest on previous successful experience in similar soils, since pressures depend most on fissuring or jointing and strength loss with time, not the intact strength. Table 5 (p. 53) summarizes trapezoidal envelopes (b1, b2, b3 as fractions of H; range of p; total load): Terzaghi and Peck (1967) 0.25, 0.50, 0.25, 0.2 to 0.4 gamma H, 0.15 to 0.30 gamma H^2; Schnabel (1982) 0.20, 0.60, 0.20, 0.2 gamma H, 0.16 gamma H^2; Winter (1990) 0.20, 0.60, 0.20, 0.2 to 0.32 gamma H, 0.16 to 0.26 gamma H^2; Ulrich (1989) as Terzaghi and Peck; FHWA-RD-75-130 (1976) 0, 1.0, 0, 0.15 to 0.30 gamma H, 0.15 to 0.30 gamma H^2; this work (multiple anchor levels, H1 = Hn+1 = H/4) 0.17, 0.66, 0.17, 0.2 to 0.4 gamma H, 0.17 to 0.33 gamma H^2 (Schnabel and Winter assume gamma = 19.6 kN/m3). Total loads are similar, but an upper range p doubles the load of a lower range p. For Terzaghi and Peck with gamma = 20 kN/m3 the load is 3H^2 to 6H^2 kN/m. Ulrich (1989) measured seven walls (five in overconsolidated Houston soils, Ns < 4; Figure 25, p. 54): p about 0.1 to 0.25 gamma H (1.5H^2 to 3.75H^2), Site 3 0.25 to 0.35 gamma H (3.75H^2 to 5.25H^2). Winter (1990), a 23-m Seattle excavation in overconsolidated silts and clays, locked anchors off at 50 percent of design load; design envelope 30H psf against actual 19H and 22H psf (65 to 75 percent), total loads 3.77H^2 kN/m against 2.38H^2 to 2.76H^2 kN/m (Figure 26, p. 55). Measured loads agree with the 0.2 gamma H lower bound; 0.4 gamma H is conservative. Figure 27 (p. 56) is the recommended envelope for temporary excavations in stiff to hard fissured clays (Ns < 4): trapezoid as for sands with p approximately 0.2 gamma H to 0.4 gamma H, total load 3H^2 to 6H^2 kN/m per meter (H in meters). Alternative similar diagrams may be used with a total load of at least 3H^2 kN/m, the recommended minimum for all cases; for a critical temporary wall with 3H^2 to 4H^2 kN/m or less, the contractor should demonstrate successful use in similar ground. The temporary diagram applies only for a controlled short duration with no available free water (p. 56); otherwise evaluate the long-term diagram. Permanent Condition (p. 57). Excavation induces negative excess porewater pressures that temporarily raise strength; unloaded soil draws in water and softens, sometimes rapidly, faster with tension cracks, sandy or silty layers, cracks and fissures, so long-term pressures may exceed temporary ones. Compare the temporary total force with 0.65 KA gamma H^2, KA from the drained (for most walls the fully softened) friction angle, and design for the larger; e.g., a fully softened phi' of about 39 degrees matches Terzaghi and Peck at 0.2 gamma H, about 22 degrees at 0.4 gamma H. (pp. 52 to 57)",
+      "key_points": [
+        "Base temporary diagrams on experience in similar fissured clays (p. 52).",
+        "Table 5: trapezoidal envelopes for temporary excavations in stiff to hard clays (p. 53).",
+        "Measured loads (Ulrich 1989, Winter 1990) near the 0.2 gamma H lower bound (pp. 53 to 55).",
+        "Figure 27: p about 0.2 to 0.4 gamma H; total load 3H^2 to 6H^2 kN/m (p. 56).",
+        "Minimum total load 3H^2 kN/m for all cases (p. 55).",
+        "Temporary diagram only for controlled short duration without free water (p. 56).",
+        "Permanent: larger of temporary load and 0.65 KA gamma H^2, fully softened phi' (p. 57)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 25: Measured anchor loads for seven projects (after Ulrich, 1989)",
+        "Figure 26: Wall pressure envelopes (after Winter, 1990)",
         "Figure 27: Recommended apparent earth pressure envelope for stiff to hard clays"
       ],
       "tables": [
-        "Table 4: Typical design steps for an anchored wall",
         "Table 5: Summary of trapezoidal apparent pressure envelopes for temporary excavations in stiff to hard clays"
       ],
-      "applicability": "Earth pressure selection for anchored wall design — sand, stiff clay, and soft clay conditions"
+      "applicability": "Apparent earth pressure, water and surcharge loading for anchored wall design in sand, stiff clay and soft clay"
+    },
+    {
+      "section_id": "5.2.6",
+      "title": "Recommended Apparent Earth Pressure Diagram for Soft to Medium Clays",
+      "summary": "Soft to medium clays (Ns > 4): Terzaghi and Peck KA = 1 - m 4Su/(gamma H) (Eq. 11) with m = 0.4 for Ns > 6 may be unconservative; use Henkel's KA (Eqs. 12, 13, Figure 28) for Ns > 5.14 and KA = 0.22 for 4 < Ns < 5.14 (Figure 29); use limit equilibrium for variable strength profiles.",
+      "body": "Temporary and permanent walls may be built in soft to medium clays (Ns > 4) if a competent bond-zone layer is within reasonable depth below the excavation; permanent walls are seldom used where soft clay extends well below the base. The Terzaghi and Peck diagram (Figure 23c) has been used for temporary walls with the total stress coefficient of Eq. 11, m an empirical factor for base instability in deep soft clay excavations: m = 0.4 where deep soft clay underlies the excavation and Ns exceeds 6, otherwise 1.0 (Peck, 1969); m = 0.4 for Ns > 6 may underestimate loads and is not conservative. Those diagrams ignore soil failure below the base (p. 58), which can cause very large movements; for Ns > 6 large zones yield, increasing support loads and risking base instability. Instead of m = 0.4, Henkel's (1971) Eq. 12 should be used for KA in the maximum ordinate of Figure 23c, d being the depth of the failure surface below the cut, Su the strength of the soil the excavation extends through and Sub the strength providing bearing resistance (Figure 28, p. 58, base failure mechanism with x, B, Delta H, H and d); for unloading at the ground surface, Eq. 13 (d, x and Delta H in m, Sub in kPa). Figure 29 (p. 59, Su = Sub, d/H = 0.1 to 1.0) shows that for 4 < Ns < 6 Terzaghi and Peck with m = 0.4 is overly conservative relative to Henkel, and for Ns < 5.14 Henkel's equation is not valid and m = 1.0 gives unrealistically low pressures. For 4 < Ns < 5.14 use a constant KA = 0.22 (p. 59): at Ns = 4 the soft clay diagram with KA = 0.22 gives a total load of 0.193 gamma H^2, equal to the stiff clay diagram with p = 0.26 gamma H, consistent with measurements (Figures 25, 26), a rational transition to Henkel (Ns > 5.14). Henkel's method needs a constant strength on the retained side and below subgrade; otherwise use limit equilibrium (section 5.7.3). (pp. 57 to 59)",
+      "key_points": [
+        "Soft to medium clays: Ns > 4; need a competent bond layer (p. 57).",
+        "Eq. 11 KA = 1 - m 4Su/(gamma H); m = 0.4 for Ns > 6 not conservative (p. 57).",
+        "Henkel's KA (Eqs. 12, 13; Figure 28) for Ns > 5.14 (p. 58).",
+        "KA = 0.22 for 4 < Ns < 5.14 (Figure 29) (p. 59).",
+        "Limit equilibrium where strength varies (section 5.7.3) (p. 59)."
+      ],
+      "equations": [
+        "Eq. 11: KA = 1 - m (4Su / (gamma H)); total stress active earth pressure coefficient for the Terzaghi and Peck soft to medium clay diagram, m = empirical factor for base instability (0.4 where deep soft clay underlies the excavation and Ns > 6, otherwise 1.0) (p. 57)",
+        "Eq. 12: KA = 1 - 4Su / (gamma H) + 2 sqrt(2) (d / H) (1 - 5.14 Sub / (gamma H)); Henkel's total stress earth pressure coefficient, d = depth of the failure surface below the cut, Su = undrained strength of the soil the excavation extends through, Sub = strength of the soil providing bearing resistance (p. 58)",
+        "Eq. 13: KA = 1 - 4Su / (gamma H) + (2 sqrt(2) d / H) {1 + (Delta H / H) (1 + (H + Delta H) / ((2 - x) sqrt(2) d)) - (Sub / (gamma H)) (5.14 + 2 Su Delta H / (sqrt(2) Sub d))}; Henkel's solution with unloading at the ground surface, Delta H and x as in Figure 28 (d, Delta H, x in m; Sub in kPa) (p. 58)"
+      ],
+      "figures": [
+        "Figure 28: Henkel’s mechanism of base failure",
+        "Figure 29: Values of KA based on Terzaghi and Peck envelope and Henkel's method"
+      ],
+      "tables": [],
+      "applicability": "Apparent earth pressure, water and surcharge loading for anchored wall design in sand, stiff clay and soft clay"
+    },
+    {
+      "section_id": "5.2.7",
+      "title": "Loading Diagrams for Stratified Soil Profiles",
+      "summary": "For stratified soils: compute the total active load over the excavation height (trial wedge if complex), multiply by 1.3 (more for strict deformation control) and distribute on the Figure 24 trapezoid; not for failure surfaces below the base or irregular surcharges (use limit equilibrium, section 5.7.3).",
+      "body": "Apparent diagrams were developed for reasonably homogeneous profiles. For stratified soils a redistribution of calculated active pressures may be used, but not where the critical failure surface extends below the excavation base or surcharge is irregular: (1) evaluate the active earth pressure and total active load over the excavation height by conventional methods with full strength mobilization, or by trial wedge analysis for complicated stratification, irregular ground surface or irregular surcharge; (2) increase the total load by a factor of 1.3 for anchored soldier beam or sheet-pile walls, more where strict deformation control is required; (3) distribute the factored force on the trapezoid of Figure 24. Where surcharges or ground surfaces are irregular or failure surfaces deep-seated, limit equilibrium slope stability programs may be used (section 5.7.3); the print reads \"usping\". (p. 60)",
+      "key_points": [
+        "Total active load over excavation height (trial wedge if complex) (p. 60).",
+        "Factor 1.3 for anchored soldier beam or sheet-pile walls (p. 60).",
+        "Distribute on the Figure 24 trapezoid (p. 60).",
+        "Not for deep failure surfaces or irregular surcharge (p. 60)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Apparent earth pressure, water and surcharge loading for anchored wall design in sand, stiff clay and soft clay"
+    },
+    {
+      "section_id": "5.2.8",
+      "title": "Sliding Wedge Analysis Method",
+      "summary": "The sliding wedge method (Figure 30) finds the horizontal force PREQ to stabilize a vertical cut with phi'mob = tan^-1(tan phi'/FS) and passive resistance over embedment d (Eq. 14), iterating alpha and d for the maximum, then redistributing it into an apparent envelope (FHWA-RD-98-065).",
+      "body": "A sliding wedge force equilibrium method may give the total horizontal load to stabilize a vertical cut (Figure 30, p. 61: (a) example wall, (b) free body, (c) force vectors; after FHWA-RD-98-065, 1998), for a wall of height H in soil of friction angle phi' behind and in front, the critical surface passing in front of the bond zone so full anchor loads act. Strength is factored by the target factor of safety, phi'mob = tan^-1(tan phi'/FS); passive resistance develops over the embedment d, with an interface friction angle delta = phi'mob for the passive coefficient. PREQ, the external horizontal force for stability, combines the horizontal anchor force T cos i and the embedded wall's lateral resistance SPH; taking PREQ horizontal implies the soldier beam's vertical resistance SPV equals and opposes T sin i, to be verified by section 5.6 (p. 61). PREQ is given by Eq. 14, terms per Figure 30 (W soil weight, R frictional strength component, Pp passive resultant, T anchor force, SPH and SPV wall resistances, phi soil friction angle, delta interface friction, i anchor inclination, alpha failure surface inclination, xi = d/H). Solve iteratively over alpha and d for the greatest PREQ, then redistribute it into an apparent pressure envelope for anchor loads and exposed-wall moments; details in FHWA-RD-98-065 (1998). (pp. 60 to 61)",
+      "key_points": [
+        "Strength factored: phi'mob = tan^-1(tan phi'/FS) (p. 60).",
+        "Passive resistance over embedment d with delta = phi'mob (p. 60).",
+        "PREQ by Eq. 14; iterate alpha and d for the maximum (p. 61).",
+        "Check vertical equilibrium (SPV = T sin i) by section 5.6 (p. 61).",
+        "Redistribute PREQ into an apparent envelope (p. 61)."
+      ],
+      "equations": [
+        "Eq. 14: PREQ = (1/2) gamma H^2 [ (1 + xi)^2 / tan(alpha) - Kp xi^2 ( sin(delta) + cos(delta) / tan(alpha - phi) ) ] tan(alpha - phi); horizontal force required to stabilize a vertical cut by the sliding wedge force equilibrium method, xi = d/H, alpha = inclination of the potential failure surface, delta = interface friction angle, Kp = passive earth pressure coefficient (Figure 30) (p. 61)"
+      ],
+      "figures": [
+        "Figure 30: Force equilibrium method for anchored walls (after FHWA-RD-98-065, 1998)"
+      ],
+      "tables": [],
+      "applicability": "Apparent earth pressure, water and surcharge loading for anchored wall design in sand, stiff clay and soft clay"
+    },
+    {
+      "section_id": "5.2.9",
+      "title": "Water Pressures",
+      "summary": "Permanent soldier beam walls are drained, not designed for large water loads; temporary walls may resist seepage forces. With the head dissipated uniformly along the shortest flow path (Figure 31), Uf at the toe (Eq. 15), the largest net pressure Uc (Eq. 16), and Un without seepage (Eq. 17) (Figure 32).",
+      "body": "Permanent soldier beam and lagging walls typically are not designed for large water loads: surface water is collected in ditches at the top and subsurface water by prefabricated drainage elements between the wall and the permanent facing (section 5.11.2). Temporary systems may need to resist seepage forces behind and beneath the wall. Figure 31 (p. 62, after CIRIA, 1984) is a typical flow net in homogeneous soil (H depth of excavation, d wall embedment, i and j depths to water). Porewater pressure may be simplified by assuming the head difference (H + i - j) dissipates uniformly along the shortest flow path (2d + H - i - j) down the back and up the front of the wall, giving more than hydrostatic pressure in front and less than hydrostatic behind (Figure 32, p. 63, modified after CIRIA, 1984). The toe pressure Uf, equal on both sides, is Eq. 15; the largest net pressure, at the water table within the excavation, is Eq. 16 (Figure 32b); without seepage the net pressure is Eq. 17 (p. 63). Effective horizontal pressures with seepage: CIRIA (1984) and FHWA-HI-97-021 (1997). Special drainage conditions, e.g., a wall acting as a drain, need proper flow nets, as pressures vary with distance behind the wall; for normal designs the simple flow net and Figure 32 procedures usually suffice. (pp. 62 to 63)",
+      "key_points": [
+        "Permanent walls drained, not designed for large water loads (p. 62).",
+        "Head (H + i - j) dissipated uniformly along 2d + H - i - j (p. 62).",
+        "Uf (Eq. 15), Uc (Eq. 16), Un without seepage (Eq. 17) (pp. 62 to 63).",
+        "Wall acting as a drain needs a proper flow net (p. 63)."
+      ],
+      "equations": [
+        "Eq. 15: Uf = [2 (d + H - j)(d - i) / (2d + H - i - j)] gamma_w; porewater pressure at the bottom of the wall, equal on either side, H = depth of excavation, d = wall embedment depth, i and j = depths to water (Figure 31) (p. 62)",
+        "Eq. 16: Uc = (H + i - j) [2 (d - i) / (2d + H - i - j)] gamma_w; largest net water pressure on the wall, at the level of the water table within the excavation (p. 62)",
+        "Eq. 17: Un = (H + i - j) gamma_w; net water pressure with no seepage (p. 63)"
+      ],
+      "figures": [
+        "Figure 31: Flow net for a retaining wall (after CIRIA, 1984)",
+        "Figure 32: Gross and net water pressures across a retaining wall (modified after CIRIA, 1984)"
+      ],
+      "tables": [],
+      "applicability": "Apparent earth pressure, water and surcharge loading for anchored wall design in sand, stiff clay and soft clay"
+    },
+    {
+      "section_id": "5.2.10",
+      "title": "Earth Pressures Due To Surface Loads",
+      "summary": "Heading for earth pressures due to surface loads: uniform surcharge loads (5.2.10.1) and point, line and strip loads (5.2.10.2).",
+      "body": "Heading for earth pressures due to surface loads: uniform surcharge loads (5.2.10.1) and point loads, line loads and strip loads (5.2.10.2); it has no text of its own. (p. 64)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Apparent earth pressure, water and surcharge loading for anchored wall design in sand, stiff clay and soft clay"
+    },
+    {
+      "section_id": "5.2.10.1",
+      "title": "Uniform Surcharge Loads",
+      "summary": "A uniform surcharge qs adds Delta sigma_h = K qs (Eq. 18) over the full wall height. Design for about 12 kPa live load where traffic comes within half the wall height (AASHTO 1996); add stockpiles, cranes and buildings within a distance equal to the wall height.",
+      "body": "Surcharge loads are vertical loads at the ground surface assumed to give a uniform increase in lateral stress over the entire wall height (Eq. 18), Delta sigma_h (kPa) the lateral increase, qs (kPa) the vertical surcharge stress and K a dimensionless earth pressure coefficient. Highway examples: (1) dead load surcharges (approach slab, concrete pavement); (2) live load surcharges from traffic; (3) construction equipment or material storage. Where traffic comes within half the wall height of the face, design for a live load surcharge of approximately 12 kPa (AASHTO, 1996); for noncritical temporary walls actual surcharges may be used instead. Temporary and permanent designs should include unusual surcharges such as large stockpiles and heavy cranes, added explicitly to the envelope; loads from existing buildings within a horizontal distance equal to the wall height must be considered. The heading is printed \"5.2.10.1Uniform Surcharge Loads\". (p. 64)",
+      "key_points": [
+        "Delta sigma_h = K qs (Eq. 18), uniform over the wall height (p. 64).",
+        "Live load surcharge about 12 kPa where traffic within H/2 (AASHTO 1996) (p. 64).",
+        "Add unusual surcharges explicitly; buildings within one wall height (p. 64)."
+      ],
+      "equations": [
+        "Eq. 18: Delta sigma_h = K qs; increase in lateral earth pressure from a uniform vertical surcharge stress qs at the ground surface, K = appropriate earth pressure coefficient (Delta sigma_h, qs in kPa) (p. 64)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Apparent earth pressure, water and surcharge loading for anchored wall design in sand, stiff clay and soft clay"
+    },
+    {
+      "section_id": "5.2.10.2",
+      "title": "Point Loads, Line Loads, and Strip Loads",
+      "summary": "Point, line and strip loads act over limited areas, so their lateral pressure varies with depth; compute it from elasticity-based equations (NAVFAC 1982) and add it explicitly to the design envelope.",
+      "body": "Point loads, line loads and strip loads are vertical surface loads over limited areas, so the lateral pressure increase is not constant with depth as for uniform surcharges. It is typically calculated from equations based on elasticity theory for lateral stress distribution with depth (NAVFAC, 1982), and the resulting pressures are added explicitly to the design earth pressure envelope. The heading is printed \"5.2.10.2Point Loads, Line Loads, and Strip Loads\". (p. 64)",
+      "key_points": [
+        "Lateral pressure from limited-area loads varies with depth (p. 64).",
+        "Elasticity-based equations (NAVFAC 1982), added to the envelope (p. 64)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Apparent earth pressure, water and surcharge loading for anchored wall design in sand, stiff clay and soft clay"
     },
     {
       "section_id": "5.3",
       "title": "Ground Anchor Design",
-      "summary": "Anchor loads from the AEP diagram using the tributary area method. Total anchor load T resolved into horizontal (Th = T cosθ, Eq 20) and vertical (Tv = T sinθ, Eq 21) components. Minimum unbonded length: 4.5 m for strand, 3 m for bar; extend H/5 or 1.5 m behind critical failure surface. Maximum soil anchor bond length: 9–12 m (beyond that, capacity does not significantly increase). Rock anchor bond length: 3–10 m. Presumptive ultimate bond stresses from Table 7 (PTI 1996) for rock, cohesive, and cohesionless soils; pressure-grouted anchors achieve higher capacity than gravity-grouted. Anchor design load ≤ 60% SMTS; test load ≤ 80% SMTS. Anchor spacing ≥ 1.2 m horizontal and vertical.",
-      "body": "Calculation of anchor loads: The tributary area method distributes the apparent earth pressure to each anchor level. For multi-level walls, each anchor carries the tributary area of the AEP diagram, and the reaction force R at the wall toe carries the bottom tributary area. Horizontal anchor load: Th = T cosθ (Eq 20); vertical anchor load: Tv = T sinθ (Eq 21).\n\nUnbonded length: Minimum unbonded length is 4.5 m for strand tendons and 3 m for bar tendons, to prevent significant load reductions from anchor creep. Extend a minimum of H/5 or 1.5 m (whichever is greater) behind the critical potential failure surface to allow for minor load transfer in the grout column. The bond length must be located in appropriate ground for anchoring and at sufficient distance behind the failure surface.\n\nCompression anchors: Designed so that the grout body is in compression rather than tension. May achieve higher capacity in certain soils. Two main types: Type 1 — tendon fixed at or near the bond zone bottom, so grout is compressed by a load plate; Type 2 — tendon fixed near the bond zone top, and the grout body transfers load to soil in compression.\n\nAnchor bond length — soil: Maximum effective bond length is 9 to 12 m. Bond lengths greater than 12 m do not significantly increase capacity in uniform soil unless special procedures are used. Ultimate load transfer capacity estimated from soil type and SPT N (Table 6 for preliminary design). Presumptive ultimate bond stresses from Table 7 (PTI 1996): gravity-grouted cohesionless 0.07–0.14 MPa; pressure-grouted cohesionless higher; cohesive 0.03–0.07 MPa for gravity-grouted. Allowable anchor load = ultimate bond stress × π × D × L / FS (FS = 2.0 minimum).\n\nAnchor bond length — rock: Typical bond lengths 3 to 10 m with minimum 3 m. Ultimate load from rock type (Table 8): granite/basalt 1.7–3.1 MPa; dolomitic limestone 1.4–2.1 MPa. Lower values if rock mass controlled by discontinuities.\n\nTendon selection: Design load ≤ 60% SMTS; temporary/test load ≤ 80% SMTS. Table 10: properties of 15-mm strands (ASTM A416 Grade 270). Performance tests load to 150% of design load. Proof tests load to 133% of design load.\n\nAnchor spacing: Horizontal and vertical spacing ≥ 1.2 m. Uppermost anchor selected to minimize cantilever deformation and to ensure passive resistance is adequate during anchor proof testing.",
+      "summary": "Heading for ground anchor design: introduction, critical failure surface, anchor loads from apparent diagrams, unbonded length, compression anchors, bond length, spacing and prestressing steel (5.3.1 to 5.3.8).",
+      "body": "Heading for ground anchor design (5.3.1 introduction, 5.3.2 location of critical potential failure surface, 5.3.3 anchor loads from apparent earth pressure diagrams, 5.3.4 unbonded length, 5.3.5 compression anchors, 5.3.6 anchor bond length, 5.3.7 spacing requirements, 5.3.8 prestressing steel element); it has no text of its own. (p. 65)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Ground anchor load calculation, unbonded and bond length design, spacing and tendon selection for anchored walls"
+    },
+    {
+      "section_id": "5.3.1",
+      "title": "Introduction",
+      "summary": "Ground anchors serve excavation wall support, slope and landslide stabilization and tiedowns; the section covers the critical failure surface, anchor loads from apparent diagrams, unbonded and bond lengths, allowable tendon loads, spacing and inclination.",
+      "body": "Ground anchors are used for temporary and permanent excavation wall support, slope and landslide stabilization and tiedown systems. The section presents common anchor design procedures: locating the critical potential failure surface, calculating anchor loads from apparent earth pressure diagrams, designing the unbonded and bond lengths, allowable load requirements for the prestressing steel, and horizontal and vertical spacing and inclination. (p. 65)",
       "key_points": [
-        "Anchor load from tributary area of AEP diagram; Th = T cosθ (Eq 20), Tv = T sinθ (Eq 21)",
-        "Min unbonded length: 4.5 m (strand), 3 m (bar); extend H/5 or 1.5 m behind critical failure surface",
-        "Soil bond length: effective maximum 9–12 m; beyond 12 m, capacity does not increase significantly",
-        "Rock bond length: 3–10 m typical; ultimate bond from Table 8 (e.g., granite 1.7–3.1 MPa)",
-        "Table 7 (PTI 1996): presumptive ultimate bond stresses — cohesionless 0.07–0.14 MPa (gravity), cohesive 0.03–0.07 MPa",
-        "Design load ≤ 60% SMTS; test/temporary load ≤ 80% SMTS; performance test to 150% design; proof test to 133%"
+        "Covers failure surface, anchor loads, unbonded and bond length, tendon, spacing (p. 65)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Ground anchor load calculation, unbonded and bond length design, spacing and tendon selection for anchored walls"
+    },
+    {
+      "section_id": "5.3.2",
+      "title": "Location of Critical Potential Failure Surface",
+      "summary": "The bond zone must lie behind the critical failure surface (the no-load zone ends there); the unbonded length typically extends H/5 or 1.5 m beyond it. In cohesionless soils the surface rises from the excavation corner at 45 + phi'/2; sliding wedge or limit equilibrium methods refine it.",
+      "body": "The bond zone must be located far enough behind the critical potential failure surface that load is not transferred into the \"no-load\" zone, the zone between that surface and the wall, also called the unbonded length. The unbonded length is typically extended a minimum of H/5 (H = wall height) or 1.5 m behind the critical surface; minimum requirements are in section 5.3.4. In cohesionless soils the critical surface may be assumed to rise from the excavation corner at 45 degrees + phi'/2 from horizontal (the active wedge); the sliding wedge method (section 5.2.8) locates it more accurately, and limit equilibrium (section 5.7.3) and trial wedge analyses handle general ground, surcharges and variable stratigraphy. (p. 65)",
+      "key_points": [
+        "Bond zone behind the critical surface; no-load zone = unbonded length (p. 65).",
+        "Unbonded length extended H/5 or 1.5 m behind the critical surface (p. 65).",
+        "Cohesionless soils: surface at 45 + phi'/2 from the excavation corner (p. 65)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Ground anchor load calculation, unbonded and bond length design, spacing and tendon selection for anchored walls"
+    },
+    {
+      "section_id": "5.3.3",
+      "title": "Calculation of Ground Anchor Loads from Apparent Earth Pressure Diagrams",
+      "summary": "Anchor loads come from apparent envelopes by the tributary area or hinge method (Figures 33, 34), both assuming a hinge and strut support at subgrade. Th = Thi s (Eq. 19), design load T = Th/cos theta (Eq. 20), Tv = T sin theta (Eq. 21). In weak toe soils the lowest anchor may also carry R.",
+      "body": "Anchor loads for flexible walls can be estimated from apparent envelopes by the tributary area method or the hinge method, developed for hand calculation of statically indeterminate systems; both have given reasonable anchor loads and moments in competent soils. Figure 33 (p. 66) treats a one-level wall: tributary area, T1 = load over H1 + H2/2 and R = load over H2/2; hinge, T1 from sum of moments about C = 0 and R = total earth pressure - T1. Figure 34 (p. 67) treats a multi-level wall. Both assume a hinge (zero moment) at subgrade acting as a strut support, reasonable for walls penetrating competent materials; the maximum moment typically occurs in the exposed wall. In competent materials R is resisted by passive resistance below subgrade (p. 66), the wall being embedded deep enough, the lowest anchor carrying only its tributary area and R the load from the base to midheight between base and lowest anchor. In weak materials sufficient passive capacity may not exist regardless of embedment; the lowest anchor may then carry its load plus R, or soil-structure interaction analyses (e.g., beam on elastic foundation) may design continuous beams with small toe reactions, assigning all load to the lowest anchor possibly being overly conservative. Figures 33 and 34 give Thi, the horizontal anchor load per unit width; the total horizontal load is Eq. 19, s the horizontal spacing; the design load for the bond zone is Eq. 20 (p. 67), theta the inclination below horizontal; the vertical component is Eq. 21. (pp. 65 to 67)",
+      "key_points": [
+        "Tributary area or hinge method (Figures 33, 34) (p. 65).",
+        "Hinge and strut support assumed at subgrade (p. 65).",
+        "Competent toe: R by passive resistance; weak toe: lowest anchor may carry R too (p. 66).",
+        "Th = Thi s (Eq. 19); T = Th/cos theta (Eq. 20); Tv = T sin theta (Eq. 21) (pp. 66 to 67)."
       ],
       "equations": [
-        {
-          "equation_id": "5-20",
-          "description": "Horizontal component of total anchor load",
-          "latex": "T_h = T \\cos\\theta",
-          "variables": {
-            "T_h": "horizontal component of anchor load",
-            "T": "total anchor load",
-            "theta": "angle of anchor inclination below horizontal"
-          },
-          "implemented_in": null
-        },
-        {
-          "equation_id": "5-21",
-          "description": "Vertical component of total anchor load",
-          "latex": "T_v = T \\sin\\theta",
-          "variables": {
-            "T_v": "vertical component of anchor load",
-            "T": "total anchor load",
-            "theta": "angle of anchor inclination below horizontal"
-          },
-          "implemented_in": null
-        }
+        "Eq. 19: Th = Thi s; total horizontal anchor load, Thi = horizontal component of anchor load per unit width of wall (Figures 33 and 34), s = horizontal spacing between adjacent anchors (p. 66)",
+        "Eq. 20: T = Th / cos theta; anchor design load used in designing the anchor bond zone, theta = inclination of the anchor below the horizontal (p. 67)",
+        "Eq. 21: Tv = T sin theta; vertical component of the total anchor load (p. 67)"
       ],
       "figures": [
         "Figure 33: Calculation of anchor loads for one-level wall",
-        "Figure 34: Calculation of anchor loads for multi-level wall",
-        "Figure 35: Types of compression anchors",
+        "Figure 34: Calculation of anchor loads for multi-level wall"
+      ],
+      "tables": [],
+      "applicability": "Ground anchor load calculation, unbonded and bond length design, spacing and tendon selection for anchored walls"
+    },
+    {
+      "section_id": "5.3.4",
+      "title": "Design of the Unbonded Length",
+      "summary": "Minimum unbonded length is 4.5 m for strand and 3 m for bar tendons, against seating losses; often longer, typically H/5 or 1.5 m behind the critical surface. Grout bond and unbonded zones in one stage; two-stage grouting is not recommended.",
+      "body": "The minimum unbonded length for rock and soil anchors is 4.5 m for strand tendons and 3 m for bar tendons, to prevent significant load reductions from seating losses during load transfer after testing. Longer unbonded lengths may be needed (p. 68) to (1) place the bond length a minimum distance behind the critical surface, (2) place the bond zone in appropriate ground, (3) ensure overall stability, (4) accommodate long-term movements; in general the unbonded length extends at least H/5 or 1.5 m behind the critical surface (section 5.3.2) to allow minor load transfer to the grout column above the bond zone. As a rule bond and unbonded zones are grouted in one stage for hole stability and continuous grout cover for corrosion protection. Large diameter anchors with unbonded lengths just behind the critical surface have been grouted in two stages (bond length grouted and tested, then the unbonded length grouted), but this is not recommended since local ground collapse can compromise grout corrosion protection. (pp. 67 to 68)",
+      "key_points": [
+        "Minimum unbonded length 4.5 m (strand), 3 m (bar) (p. 67).",
+        "Typically extended H/5 or 1.5 m behind the critical surface (p. 68).",
+        "Grout bond and unbonded zones in one stage; two-stage grouting not recommended (p. 68)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Ground anchor load calculation, unbonded and bond length design, spacing and tendon selection for anchored walls"
+    },
+    {
+      "section_id": "5.3.5",
+      "title": "Compression Anchors",
+      "summary": "Compression anchors (end plate or composite, Figure 35) load the bond grout at least partly in compression, limiting load transfer into the no-load zone; check grout compressive strain, consider predesign tests for permanent use; composite tendon bond length 50 to 100 percent of the anchor bond length in cohesive soils.",
+      "body": "In compression anchors the bond-length grout is at least partially loaded in compression. In a typical tension anchor (Figure 1) the anchor and tendon bond lengths coincide and load transfers first at the top of the bond zone, risking transfer into the \"no-load zone\", a concern for large diameter anchors in some cohesive soils needing large residual movements to develop bond. Two types have been used: (1) an anchor with an end plate (Figure 35a, p. 69), whose whole grout column is in compression; (2) a composite design with the top of the tendon bond length extended into the anchor bond length (Figure 35b), whose grout above the tendon bond length is in compression. They minimize load transfer above the bond zone. Design should consider grout compressive strains, kept within tolerable limits; for permanent use a predesign test program may be warranted unless prior experience or research verifies performance. They are not commonly used for small diameter anchors in cohesionless deposits but may be for large diameter anchors in cohesive soils, where composite designs typically use a tendon bond length of 50 to 100 percent of the anchor bond length. (pp. 68 to 69)",
+      "key_points": [
+        "End plate and composite compression anchors (Figure 35) (p. 68).",
+        "Minimize load transfer into the no-load zone (p. 68).",
+        "Check grout compressive strain; predesign tests for permanent use (p. 68).",
+        "Composite: tendon bond length 50 to 100 percent of anchor bond length in cohesive soils (p. 68)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 35: Types of compression anchors"
+      ],
+      "tables": [],
+      "applicability": "Ground anchor load calculation, unbonded and bond length design, spacing and tendon selection for anchored walls"
+    },
+    {
+      "section_id": "5.3.6",
+      "title": "Design of the Anchor Bond Length",
+      "summary": "Estimate minimum capacity for straight shaft gravity-grouted anchors (design load 260 to 1160 kN, 9 to 18 m long, 10 to 45 degrees). Soil: Table 6 transfer loads with FS 2.0, bond lengths 4.5 to 12 m (Table 7 bond stresses); rock: Table 8 with FS 3.0 (2.0 in intermediate geomaterials), 3 to 10 m. Predesign or preproduction tests (133 percent) verify.",
+      "body": "Bond capacity estimates rest on field experience but depend on drilling (hole cleaning, time open), hole diameter, grouting method and pressure and bond length, left largely to the specialty contractor (p. 70); the designer defines a minimum capacity achievable in the ground, estimated for the simplest anchor, the straight shaft gravity-grouted anchor, and verified by testing each anchor. Typical small diameter anchors: design load 260 to 1160 kN (hole generally under 150 mm, hollow stem augered about 300 mm); total length 9 to 18 m, with minimum unbonded lengths of 3 m (bar) and 4.5 m (strand); inclination 10 to 45 degrees, commonly 15 to 30 degrees below horizontal, as flat as possible, grouting below 10 degrees uncommon without special techniques. Preliminary assumption: with no right-of-way limit, 15 degrees and bond length 12 m in soil or 7.5 m in rock (soil-and-rock anchors designed as all soil, 12 m); with restricted right-of-way, 30 degrees and bond length to within 0.6 m of the right-of-way line, checking the minimum unbonded length (p. 71). Soil Anchors: ultimate transfer load from Table 6 (p. 71, overburden-corrected SPT): sand and gravel loose (4-10) 145, medium dense (11-30) 220, dense (31-50) 290 kN/m; sand 100, 145, 190; sand and silt 70, 100, 130; low-plasticity silt-clay or fine micaceous sand or silt, stiff (10-20) 30, hard (21-40) 60; allowable load = bond length x transfer load / 2.0. Soil bond lengths are typically 4.5 to 12 m, little gain beyond 12 m without special methods; in strain sensitive soils bond stress peaks at the top and shifts down (Figure 36, p. 72), adding little capacity. Pressure grouting in cohesionless soils raises normal stress (use the as-drilled diameter); Table 7 (p. 73, after PTI, 1996) gives measured average ultimate bond stresses (MPa) for rock, cohesive and cohesionless soils, e.g., gravity-grouted 0.03 to 0.07 (cohesive), 0.07 to 0.14 (cohesionless); large stresses do not imply large capacity per length (diameter governs). Post-grouting in cohesive soil can add 20 to 50 percent or more per phase, three phases the common limit (PTI, 1996). Rock Anchors (p. 74): bond lengths 3 to 10 m, minimum 3 m; Table 8: granite or basalt 730, dolomitic limestone 580, soft limestone 440, sandstone 440, slates and hard shales 360, soft shales 150 kN/m; allowable = bond length x transfer load / 3.0 for discontinuities; weak rocks (intermediate geomaterials, 0.5 to 5.0 MPa) use 2.0. PTI (1996): ultimate rock-grout bond about 10 percent of unconfined compressive strength, maximum 3.1 MPa. Where grout modulus/rock modulus < 1 load transfers in the upper 1.5 to 3 m, so average bond stresses may give longer than needed bonds. Predesign and Preproduction Load Testing (p. 75): predesign tests (separate owner contract, rarely done; appendix D; FHWA-DP-90-068-003) find creep-limited loads, adding tendon capacity if tests exceed 80 percent SMTS; preproduction performance tests (section 7.3.2) to 133 percent of design load with extended creep tests (section 7.3.4) from 25 to 133 percent are cheaper, quicker (one day against five) and match production ground. (pp. 69 to 75)",
+      "key_points": [
+        "Estimate minimum capacity for straight shaft gravity-grouted anchors (p. 70).",
+        "Typical: 260 to 1160 kN; 9 to 18 m long; 10 to 45 degrees (p. 70).",
+        "Preliminary: 15 degrees, 12 m bond in soil, 7.5 m in rock (p. 70).",
+        "Table 6 soil transfer loads; FS 2.0 (p. 71).",
+        "Soil bond lengths 4.5 to 12 m; Table 7 bond stresses (PTI 1996) (pp. 71 to 73).",
+        "Post-grouting adds 20 to 50 percent per phase, up to three phases (p. 72).",
+        "Table 8 rock transfer loads; FS 3.0, 2.0 in intermediate geomaterials (p. 74).",
+        "Rock bond 10 percent of UCS, maximum 3.1 MPa (PTI 1996) (p. 74).",
+        "Preproduction performance tests to 133 percent of design load (p. 75)."
+      ],
+      "equations": [],
+      "figures": [
         "Figure 36: Mobilization of bond stress for a tension anchor"
       ],
       "tables": [
-        "Table 6: Presumptive average ultimate values of unit bond stress for small diameter straight shaft soil anchors",
-        "Table 7: Presumptive average ultimate bond stress for ground/grout interface (PTI 1996) — rock, cohesive, cohesionless",
-        "Table 8: Presumptive average ultimate values of unit bond stress for rock anchors",
-        "Table 10: Properties of 15-mm diameter prestressing steel strands (ASTM A416 Grade 270)"
+        "Table 6: Presumptive ultimate values of load transfer for preliminary design of small diameter straight shaft gravity-grouted ground anchors in soil",
+        "Table 7: Presumptive average ultimate bond stress for ground/grout interface along anchor bond zone (after PTI, 1996)",
+        "Table 8: Presumptive ultimate values of load transfer for preliminary design of ground anchors in rock"
       ],
-      "applicability": "Ground anchor load calculation, bond length design, and tendon selection for anchored walls"
+      "applicability": "Ground anchor load calculation, unbonded and bond length design, spacing and tendon selection for anchored walls"
     },
     {
-      "section_id": "5.4-5.6",
-      "title": "Wall Structural Design and Embedded Portion Capacity",
-      "summary": "Soldier beam bending moments calculated by tributary area method. Allowable bending stress: Fb = 0.55 Fy for permanent/critical walls; 20% increase allowed for positive moments in temporary SOE walls. Steel: Grade 36 (Fy = 248 MPa) or Grade 50 (Fy = 345 MPa). Timber lagging thickness from Table 12. Lateral capacity of embedded wall from Broms method (for soldier beams) or Wang-Reese method; passive resistance reduced by FS = 1.5. Axial capacity: FS = 2.5 on skin friction and end bearing for clay; 2.0 on skin friction, 2.5 on end bearing for sand. β method: fs = β σ'v; β = 1.5 - 0.42z^0.34 for sands with N ≥ 15.",
-      "body": "Wall bending moments: Calculated using the tributary area method (figures 38, 39). For competent soils, maximum bending moment occurs in the exposed portion of the wall. For walls penetrating deep weak deposits, the maximum may occur in the embedded portion. The bending moment from the tributary area method is multiplied by soldier beam spacing for soldier beams.\n\nAllowable bending stress: Fb = 0.55 Fy for permanent walls and critical temporary walls. For temporary SOE walls, a 20% increase in allowable stress may be allowed for positive bending moments between anchors; no increase for negative moments at anchor locations or at toe. Steel grades: Grade 36 (Fy = 248 MPa) and Grade 50 (Fy = 345 MPa) most common.\n\nTimber lagging: Thickness from Table 12 (after FHWA-RD-75-130, 1976) based on soil type, depth, and clear span between soldier beams (1.5–3.0 m). Table 12 covers competent soils, caving soils, and cohesive soils by USCS classification.\n\nLateral capacity of embedded portion: Anchored walls derive support from anchors and passive soil resistance below excavation subgrade. Prior to first anchor, wall acts as cantilever. Passive resistance evaluated by Broms method (for soldier beam and lagging walls) or Wang-Reese method. For sheet-pile walls, passive earth pressure coefficient reduced by FS = 1.5. Required embedment depth: passive resistance / reaction force R ≥ 1.5 (Broms); or per Wang-Reese. No passive resistance assumed over 1.5× soldier beam width above base (figure 41c).\n\nAxial capacity of soldier beams: Driven or drilled-in per deep foundation methods (FHWA-HI-97-013). Interface friction = 0° assumed above excavation base. FS on skin friction and end bearing (Table 14): clay 2.5/2.5; sand 2.0/2.5. Effective stress analysis for driven beams in sand (β method): fs = β × po (Eq 25/29). For sands with N ≥ 15: β = 1.5 - 0.42z^0.34 (0.25 < β < 1.2). For N < 15: β = (N/15)(1.5 - 0.42z^0.34). For gravels: β = 2.0 - 0.15z^0.75. For drilled-in shafts in clay: unit end-bearing from Nc* factors (Table 15) and adhesion correlation (Figure 46 after Tomlinson 1980).",
+      "section_id": "5.3.7",
+      "title": "Spacing Requirements for Ground Anchors",
+      "summary": "Anchors carry tributary areas. Place the upper anchor for cantilever deformation and passive capacity during 133 percent testing (section 5.11.4). Soil anchors need 4.5 m overburden over the bond zone center; soldier beams typically 1.5 to 3 m apart; minimum horizontal spacing 1.2 m (Figure 37).",
+      "body": "Each anchor is commonly designed for a tributary area from horizontal and vertical spacing; tendon size and strength, drilling and grouting, diameter and length are chosen to carry it for the service life. Spacing depends on (1) a stiff system to control movement, (2) existing underground structures, (3) the vertical wall elements. The uppermost anchor (p. 76) is positioned for allowable cantilever deformation and to avoid exceeding the retained soil's passive capacity during proof and performance testing, typically to 133 percent of design load; large upper loads (surcharge, landslide) or weak or disturbed soils may exceed it, pushing beams or sheet piles into the ground and cracking lagging; check per section 5.11.4. Soil anchors need a minimum overburden of 4.5 m over the center of the bond zone (Figure 37a) against grout leakage and surface heave from pressure grouting, and for gravity-grouted anchors to provide overburden pressure. Figure 37 (p. 76) also shows minimum unbonded length 3 m (bar) and 4.5 m (strand), the bond zone a distance of 1.5 m or 0.2H, whichever is greater, behind the potential failure surface, and horizontal anchor spacing Sh > 1.2 m (plan view). Maximum horizontal spacing depends on allowable anchor loads and beam or sheet flexural capacity: typically 1.5 to 3 m for driven and up to 3 m for drilled-in soldier beams. The minimum spacing limits group effects, which reduce capacity, and intersection from drilling deviations. (pp. 75 to 76)",
       "key_points": [
-        "Allowable bending stress: Fb = 0.55 Fy (permanent); 20% increase allowed for SOE positive moments only",
-        "Timber lagging thickness from Table 12 — based on soil type, depth, and clear span (1.5–3.0 m)",
-        "Lateral passive resistance FS = 1.5 for Broms and Wang-Reese; no passive over 1.5B above excavation base (soldier beams)",
-        "Axial FS: clay — 2.5 on friction, 2.5 on end bearing; sand — 2.0 on friction, 2.5 on end bearing",
-        "β method for sands (N ≥ 15): β = 1.5 - 0.42z^0.34 (0.25 ≤ β ≤ 1.2)"
+        "Tributary area design (p. 75).",
+        "Upper anchor: cantilever deformation and passive capacity at 133 percent tests (p. 76).",
+        "Minimum 4.5 m overburden over the bond zone center (Figure 37a) (p. 76).",
+        "Figure 37: bond zone 1.5 m or 0.2H behind the failure surface; Sh > 1.2 m (p. 76).",
+        "Soldier beams typically 1.5 to 3 m (driven), up to 3 m (drilled-in) (p. 76)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 37: Vertical and horizontal spacing requirements for ground anchors"
+      ],
+      "tables": [],
+      "applicability": "Ground anchor load calculation, unbonded and bond length design, spacing and tendon selection for anchored walls"
+    },
+    {
+      "section_id": "5.3.8",
+      "title": "Selection of Prestressing Steel Element",
+      "summary": "Design load at most 60 percent, lock-off at most 70 percent and maximum test load at most 80 percent of SMTS; testing to 133 percent gives 0.6 SMTS, 150 percent gives 0.53 SMTS. Table 9 gives ASTM A722 bars, Table 10 15-mm Grade 270 strands, Table 11 trumpet openings.",
+      "body": "The prestressing steel (strand or bar) must transmit load from the bond zone to the structure without breakage, with separate factors on design and lock-off loads: design load not over 60 percent of SMTS, lock-off load not over 70 percent and maximum test load not over 80 percent. With a maximum test load of 133 percent of design load the allowable design load is (0.8/1.33) SMTS or 0.6 SMTS; at 150 percent, (0.8/1.5) SMTS or 0.53 SMTS. Table 9 (p. 77, ASTM A722 bars) lists Grade 150 bars 1, 1-1/4, 1-3/8, 1-3/4 and 2-1/2 in. (26, 32, 36, 45, 64 mm; ultimate 127.5 to 778.0 kips, 568 to 3461 kN) and Grade 160 bars 1, 1-1/4, 1-3/8 in. (26, 32, 36 mm; 136.0 to 252.8 kips, 605 to 1125 kN), with forces at 0.8, 0.7 and 0.6 fpu Aps; the 2-1/2 in. row prints 622.4, 435.7 and 466.8 kips. Table 10 (p. 78, ASTM A416 Grade 270 (metric 1860)) lists 1 to 19 15-mm strands, area 140 mm2 (0.217 in.2) per strand, ultimate 260.7 kN (58.6 kips) per strand, 0.6 fpu Aps 156 kN for 1 strand up to 2972 kN for 19. Larger strand tendons exist; 13-mm or Grade 250 (metric 1725) strand is in ASTM A416. Anchor type and size should be set before designing the bond zone since hole diameter depends on tendon size; Table 11 (p. 78) gives minimum trumpet openings (mm), Class II/Class I corrosion protection: 4, 7, 9, 11, 13, 17 strands 102/150, 115/165, 127/178, 140/191, 153/203, 165/216; bars 26, 32, 36 mm 64/89, 70/95, 76/102. (pp. 77 to 78)",
+      "key_points": [
+        "Design load <= 0.60 SMTS; lock-off <= 0.70; maximum test load <= 0.80 (p. 77).",
+        "Test to 133 percent: 0.6 SMTS; to 150 percent: 0.53 SMTS (p. 77).",
+        "Table 9: ASTM A722 bars (p. 77).",
+        "Table 10: 15-mm Grade 270 strands, 1 to 19 strands (p. 78).",
+        "Table 11: minimum trumpet openings by tendon and corrosion class (p. 78)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 9: Properties of prestressing steel bars (ASTM A722)",
+        "Table 10: Properties of 15-mm diameter prestressing steel strands (ASTM A 416, Grade 270 (metric 1860))",
+        "Table 11: Guidance relationship between tendon size and trumpet opening size"
+      ],
+      "applicability": "Ground anchor load calculation, unbonded and bond length design, spacing and tendon selection for anchored walls"
+    },
+    {
+      "section_id": "5.4",
+      "title": "Wall Design Based on Lateral Pressures",
+      "summary": "Heading for wall design based on lateral pressures: soldier beams and sheet piles (5.4.1), temporary lagging (5.4.2), and wales and permanent facing (5.4.3).",
+      "body": "Heading for wall design based on lateral pressures: design of soldier beams and sheet-piles (5.4.1), lagging for temporary support (5.4.2) and wales and permanent facing (5.4.3); it has no text of its own. (p. 78)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Structural design of soldier beams, sheet piles, lagging, wales and permanent facing for anchored walls"
+    },
+    {
+      "section_id": "5.4.1",
+      "title": "Design of Soldier Beams and Sheet-Piles",
+      "summary": "Exposed-wall moments by the hinge (Figure 38) or tributary area method (Figure 39; maximum positive moment about pl^2/10); multiply by soldier beam spacing. Fb = 0.55 Fy (20 percent increase for positive moments in temporary SOE walls); Sreq = Mmax/Fb (Eq. 22). Check intermediate stages where they may govern.",
+      "body": "Soldier beam and lagging and sheet-pile walls resist apparent envelopes plus surcharge, water and seismic forces. Figure 38 (p. 79) gives exposed-wall moments by the hinge method and Figure 39 (p. 80) by the tributary area method; the exposed portion is between ground surface and excavation bottom. In competent soils (most sands, stiff clays) Mmax occurs in the exposed wall; in deep weak deposits it may occur in the embedded portion (section 5.5). The negative moment at the first anchor comes from moments about that anchor; elements are taken as continuous between supports. Maximum positive moment between anchors is 1/10 p l^2 for the tributary area method (p maximum ordinate, l vertical anchor spacing) and at the point of zero shear for the hinge method; both are conservative but may not locate the maximum. Figure 39 prints, for one level, MB = (13/54) H1^2 p, T1 = (23H^2 - 10HH1) p / (54(H - H1)), R = (2/3) Hp - T1, zero shear at x = (1/9) sqrt(26H^2 - 52HH1), MBC = Rx - p x^3 / (4(H - H1)); for multiple levels MB = (13/54) H1^2 p, T1 = (2/3 H1 + H2/2) p, T2 = (H2/2 + Hn/2) p, Tn = (Hn/2 + 23Hn+1/48) p, R = (3/16 Hn+1) p, maximum moment below B = pL^2/10 with L the larger of H2, Hn, Hn+1. Sheet-pile walls use moment per unit width; soldier beam moments are multiplied by center-to-center spacing (p. 80). For permanent and critical temporary walls Fb = 0.55 Fy (p. 81), steel commonly Grade 36 (Fy = 248 MPa) or Grade 50 (Fy = 345 MPa); temporary SOE walls may take a 20 percent increase for positive moments between anchors, none for negative moments at anchors (printed \"movements\"). Sreq by Eq. 22 (S in mm3, Mmax in kN-m, Fb in MPa); the section chosen depends on preference, cost, constructability and the anchor connection. For permanent walls in uniform competent ground, checking the final stage suffices if (1) adequate passive resistance exists below the excavation, (2) apparent diagrams are used, (3) over-excavation below each anchor is minimal (FHWA-RD-97-130, 1998); check the initial cantilever stage for large concentrated surcharges or berms. Staged analyses are needed where intermediate stages may govern: (1) triangular pressure diagrams, (2) excavation well below an anchor before stressing it, (3) a cutoff wall retaining water, (4) weak soil below the excavation, (5) nearby structures. (pp. 78 to 81)",
+      "key_points": [
+        "Hinge (Figure 38) or tributary area (Figure 39) moments (pp. 78 to 80).",
+        "Tributary area maximum positive moment pl^2/10 (p. 79).",
+        "Soldier beam moment = moment per unit width x beam spacing (p. 80).",
+        "Fb = 0.55 Fy; 20 percent increase for positive moments in temporary SOE walls (p. 81).",
+        "Sreq = Mmax/Fb (Eq. 22) (p. 81).",
+        "Final stage suffices in uniform competent ground; else staged analysis (p. 81)."
       ],
       "equations": [
-        {
-          "equation_id": "5-29",
-          "description": "Beta factor for axial side friction of drilled-in soldier beams in sand (FHWA 1999 method)",
-          "latex": "\\beta = 1.5 - 0.42 z^{0.34} \\quad (N \\geq 15 \\text{ blows/300mm}); \\quad 0.25 \\leq \\beta \\leq 1.2",
-          "variables": {
-            "beta": "lateral earth pressure factor for axial side friction (dimensionless)",
-            "z": "depth to midpoint of pile segment (meters)",
-            "N": "SPT blowcount (blows/300 mm)"
-          },
-          "implemented_in": null
-        }
+        "Eq. 22: Sreq = Mmax / Fb; required section modulus of the soldier beam or sheet pile, Mmax = maximum bending moment, Fb = allowable bending stress (0.55 Fy) (S in mm3, Mmax in kN-m, Fb in MPa) (p. 81)"
       ],
       "figures": [
-        "Figures 38-39: Calculation of wall bending moments using tributary area method",
-        "Figure 40: Relationship between lateral earth pressure, wall deflection, and depth of wall embedment",
-        "Figure 41: Broms method for evaluating ultimate passive resistance",
-        "Figure 43: Comparison of Broms and Wang-Reese method for wall in clay",
-        "Figure 44: Chart for estimating beta coefficient versus soil type friction angle (after Fellenius 1991)",
-        "Figure 46: Adhesion values for piles in cohesive soils (after Tomlinson 1980)"
+        "Figure 38: Calculation of wall bending moments using hinge method",
+        "Figure 39: Calculation of wall bending moments using tributary area method"
       ],
+      "tables": [],
+      "applicability": "Structural design of soldier beams, sheet piles, lagging, wales and permanent facing for anchored walls"
+    },
+    {
+      "section_id": "5.4.2",
+      "title": "Design of Lagging for Temporary Support",
+      "summary": "Temporary timber lagging thickness comes from experience (Table 12, FHWA-RD-75-130: 50 to 150 mm by soil, depth and clear span); permanent timber lagging must be designed structurally (AASHTO 5.6.6). Concrete lagging is not recommended.",
+      "body": "Temporary timber lagging thickness rests on experience or semi-empirical rules; Table 12 (p. 82, after FHWA-RD-75-130, 1976) gives roughcut construction grade thicknesses for clear spans of 1.5, 1.8, 2.1, 2.4, 2.7 and 3.0 m. Competent soils (silt or fine sand and silt above the water table, ML, SM-ML; sands and gravels medium dense to dense; stiff to very stiff non-fissured clays, CL, CH; medium clays with gamma H/Su < 5): depth 0-8 m, 50, 75, 75, 75, 100, 100 mm; 8-18 m, 75, 75, 75, 100, 100, 125 mm. Difficult soils (loose sand and silty sand; clayey sands medium dense to dense below the water table, SC; heavily overconsolidated fissured clay; cohesionless silt or fine sand and silt below the water table): 0-8 m, 75, 75, 75, 100, 100, 125 mm; 8-18 m, 75, 75, 100, 100, 125, 125 mm. Potentially dangerous soils (soft clays gamma H/Su > 5; slightly plastic silts below the water table; loose clayey sands below the water table): 0-5 m, 75, 75, 100, 125 mm; 5-8 m, 75, 100, 125, 150 mm; 8-11 m, 100, 125, 150 mm, longer spans blank. Notes: soldier beam and lagging use in potentially dangerous soils is questionable; values for construction grade lumber; local experience may take precedence. Contractors may use other thicknesses for temporary SOE walls with demonstrated performance in similar ground. Permanent timber lagging has replaced a concrete face; it must be designed to structural guidelines, with problems of (1) fire protection, (2) limited timber service life, (3) anchor corrosion protection (p. 83); see AASHTO (1996) section 5.6.6. Concrete lagging is not recommended for anchored walls because top-down placement is difficult. (pp. 81 to 83)",
+      "key_points": [
+        "Table 12: temporary lagging thickness by soil, depth and span (p. 82).",
+        "Contractors may use other thicknesses with demonstrated performance (p. 81).",
+        "Permanent timber lagging designed structurally (AASHTO 1996 5.6.6) (p. 83).",
+        "Concrete lagging not recommended (p. 83)."
+      ],
+      "equations": [],
+      "figures": [],
       "tables": [
-        "Table 12: Recommended thickness of temporary timber lagging (FHWA-RD-75-130 1976)",
-        "Table 14: Recommended factors of safety for axial capacity of driven and drilled-in soldier beams",
+        "Table 12: Recommended thickness of temporary timber lagging (after FHWA-RD-75-130, 1976)"
+      ],
+      "applicability": "Structural design of soldier beams, sheet piles, lagging, wales and permanent facing for anchored walls"
+    },
+    {
+      "section_id": "5.4.3",
+      "title": "Design of Wales and Permanent Facing",
+      "summary": "Wales and permanent facing resist apparent, surcharge, water and seismic pressures; Table 13 moments per 1 m height: simple span pl^2/8 (no arching) or pl^2/12 (arching), continuous pl^2/10 or pl^2/12. CIP facing 200 to 300 mm; wales over fewer than three spans pl^2/8, three or more pl^2/10.",
+      "body": "Wales and permanent facing resist apparent earth pressures, surcharges, water and seismic pressures. Table 13 (after AASHTO, 1996) gives maximum moments in a 1 m height (p = maximum ordinate of the total pressure envelope along the span, l = span between supports): simple span without soil arching (soft cohesive soils; rigid concrete facing tight against soil) pl^2/8; simple span with soil arching (granular or stiff cohesive soil with flexible facing; rigid facing with room for the soil to arch) pl^2/12; continuous facing without arching pl^2/10; continuous with arching pl^2/12. Cast-in-place (CIP) facings are typically 200 to 300 mm thick, structurally sound and tolerant of some soldier beam deviation; large misalignment needs extra concrete. Precast facing may pay with a local fabricator and storage; panels are designed as simple spans between beams. Wale moments depend on connection fixity: fewer than three spans pl^2/8, three or more continuous at pl^2/10. External wales are uncommon in permanent work (aesthetics, corrosion protection, protrusion); internal wales between adjacent beam flanges have served where replacement anchors were needed. (p. 83)",
+      "key_points": [
+        "Table 13: pl^2/8, pl^2/12, pl^2/10, pl^2/12 by span and arching (p. 83).",
+        "CIP facing typically 200 to 300 mm (p. 83).",
+        "Precast panels designed as simple spans (p. 83).",
+        "Wales: fewer than three spans pl^2/8; three or more pl^2/10 (p. 83)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 13: Maximum design bending moments for wales and permanent facing (after AASHTO, 1996)"
+      ],
+      "applicability": "Structural design of soldier beams, sheet piles, lagging, wales and permanent facing for anchored walls"
+    },
+    {
+      "section_id": "5.5",
+      "title": "Lateral Capacity of Embedded Portion of Wall",
+      "summary": "Heading for lateral capacity of the embedded portion of the wall: general (5.5.1), ultimate passive resistance (5.5.2), penetration depth (5.5.3) and comparison of Wang-Reese and Broms (5.5.4).",
+      "body": "Heading for lateral capacity of embedded portion of wall: general (5.5.1), evaluation of ultimate passive resistance (5.5.2), depth of penetration below excavation (5.5.3) and comparison of the Wang-Reese and Broms methods for competent soils (5.5.4); it has no text of its own. (p. 84)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Lateral capacity and embedment depth of the embedded portion of soldier beam and sheet-pile anchored walls"
+    },
+    {
+      "section_id": "5.5.1",
+      "title": "General",
+      "summary": "The embedded wall resists the reaction R and active pressure below the base; it acts as a cantilever before the first anchor. Depending on penetration, support ranges from free earth support to fixed earth support (Figure 40).",
+      "body": "Anchored walls derive support from anchors above final grade and passive resistance along the embedded portion. Before the first anchor is stressed the wall is a nongravity cantilever resisted entirely by passive resistance; during later excavation the embedment temporarily resists the unanchored height; at final height the anchors carry most load above the base while the embedded portion carries the lower part of the apparent envelope (reaction R) and active pressure on its back. Stability and wall stresses depend on wall stiffness, penetration and soil strength and stiffness. Figure 40 (p. 85) relates penetration, pressure distribution and deflected shape: (a) \"free earth support\", passive pressure insufficient to prevent deflection and rotation at the toe point D, the element extended just deep enough for stability, no negative moments induced; (b) and (c) deeper, preventing deflection at D but not rotation; (d) \"fixed earth support\", passive pressures on both sides preventing deflection and rotation at D. (p. 84)",
+      "key_points": [
+        "Embedded wall resists R and active pressure below the base (p. 84).",
+        "Cantilever action before the first anchor is stressed (p. 84).",
+        "Free earth support to fixed earth support with deeper penetration (Figure 40) (p. 84)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Lateral capacity and embedment depth of the embedded portion of soldier beam and sheet-pile anchored walls"
+    },
+    {
+      "section_id": "5.5.2",
+      "title": "Evaluation of Ultimate Passive Resistance",
+      "summary": "Heading for evaluation of ultimate passive resistance: soldier beam and lagging walls (5.5.2.1) and continuous walls (5.5.2.2).",
+      "body": "Heading for evaluation of ultimate passive resistance: soldier beam and lagging walls (5.5.2.1) and continuous walls (5.5.2.2); it has no text of its own. (p. 84)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Lateral capacity and embedment depth of the embedded portion of soldier beam and sheet-pile anchored walls"
+    },
+    {
+      "section_id": "5.5.2.1",
+      "title": "Soldier Beam and Lagging Walls",
+      "summary": "Soldier beam passive resistance by Broms (1965) (Figure 41): drained, 3Kp sigma'v b over three beam widths (Rankine Kp); undrained, 9Su b, none over the top 1.5b. Wang-Reese (appendix B) also fits. Use flange width for driven beams, full hole diameter for drilled-in beams (lean-mix at least 0.35 MPa).",
+      "body": "The passive (excavation) side must resist the reaction R with an adequate factor of safety. For discrete elements below subgrade, Broms (1965) relationships for laterally loaded piles have been typical (Figure 41, p. 86): in cohesionless soils and drained cohesive conditions, passive resistance acts over three times the beam width b with the Rankine passive coefficient (3Kp sigma'v b); in cohesive soils (undrained), over one width, constant over most of the depth at nine times the undrained strength (9Su b), with none over a depth of 1.5 times the beam width (figure 41c, p. 85). Figure 40 (p. 85) belongs to section 5.5.1. Back-calculated passive resistances also compared favorably with Wang and Reese (1986) for cantilevered drilled shaft walls (p. 86), which consider several failure mechanisms in sands and clays, pile spacing and soil squeezing between piles (appendix B); comparisons follow in 5.5.4. Width for lateral resistance: driven beams, the flange width; drilled-in beams with structural concrete, the full diameter; with lean-mix concrete, the full diameter provided the backfill strength is no less than 0.35 MPa. (pp. 84 to 86)",
+      "key_points": [
+        "Broms (1965): drained 3Kp sigma'v b (Rankine Kp) (p. 84).",
+        "Undrained 9Su b over one width, none over the top 1.5b (pp. 84 to 85).",
+        "Wang-Reese (1986) method in appendix B (p. 86).",
+        "Width: flange (driven); full diameter (drilled-in; lean-mix >= 0.35 MPa) (p. 86)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 40: Relationship between lateral earth pressure, wall deflection, and depth of wall embedment",
+        "Figure 41: Broms method for evaluating ultimate passive resistance"
+      ],
+      "tables": [],
+      "applicability": "Lateral capacity and embedment depth of the embedded portion of soldier beam and sheet-pile anchored walls"
+    },
+    {
+      "section_id": "5.5.2.2",
+      "title": "Continuous Walls",
+      "summary": "Continuous wall passive resistance follows section 4.4.2, with interface friction 0.5 phi' to 1.0 phi' for cohesionless soils (Figures 16, 17), depending on construction, wall element and axial load transfer.",
+      "body": "For continuous wall elements, passive resistance follows section 4.4.2. For cohesionless soils (Figures 16 and 17) an interface friction angle delta of 0.5 phi' to 1.0 phi' is typical, the value depending on the construction method, the wall element (steel sheet-pile, tangent or secant pile, slurry wall) and axial load transfer in the embedded portion. (p. 86)",
+      "key_points": [
+        "Passive resistance per section 4.4.2 (p. 86).",
+        "delta = 0.5 phi' to 1.0 phi' for cohesionless soils (p. 86)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Lateral capacity and embedment depth of the embedded portion of soldier beam and sheet-pile anchored walls"
+    },
+    {
+      "section_id": "5.5.3",
+      "title": "Depth of Penetration below Excavation",
+      "summary": "Embedment by lateral capacity uses FS 1.5: Wang-Reese ultimate resistance/R >= 1.5, or Kp (delta = 0) divided by 1.5 for Broms and sheet piles; add active pressure below the base in cohesionless soils. In weak soils (Ns > 4) limit penetration to about 20 percent of H and design as a cantilever from the lowest anchor.",
+      "body": "Competent Soil Conditions. Penetration by lateral capacity generally uses a factor of safety of 1.5: with Wang-Reese, the depth where ultimate passive resistance/R >= 1.5 (p. 87); with Broms or for continuous sheet-pile walls, the passive coefficient is reduced by 1.5 and the resistance compared directly with R; Broms uses the Rankine coefficient with delta = 0 degrees; with Wang-Reese in competent sands and clays, use the envelope of minimum resistance over the failure mechanisms. R is the apparent diagram area from the base to midheight between base and lowermost anchor (section 5.3.3); for cohesionless soils the active pressure below the base over the beam width or a unit sheet-pile width is an added driving force; in competent cohesive soils it may be negative and is neglected. Weak Underlying Layer. Lateral capacity below the base is limited in very loose to loose granular soils (large movements needed, wall possibly overstressed first) and soft to medium clays: undrained with Ns > 4, net pressure stays on the active side whatever the embedment, so no passive resistance develops. Penetration should then be limited to a nominal depth of about 20 percent of the excavation depth unless needed for vertical loads (section 5.6), basal stability (section 5.8.2) or movement control; the embedded portion is designed as a cantilever fixed at the lowest anchor (example in appendix C), the section chosen for the larger of the exposed-wall moment above the lowest anchor and that cantilever moment. (pp. 86 to 87)",
+      "key_points": [
+        "FS 1.5 on lateral capacity (p. 86).",
+        "Wang-Reese: resistance/R >= 1.5; Broms: Kp (delta = 0) divided by 1.5 (p. 87).",
+        "Add active pressure below the base in cohesionless soils (p. 87).",
+        "Ns > 4 clays: no passive resistance develops (p. 87).",
+        "Weak layers: penetration about 20 percent of H; cantilever from the lowest anchor (p. 87)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Lateral capacity and embedment depth of the embedded portion of soldier beam and sheet-pile anchored walls"
+    },
+    {
+      "section_id": "5.5.4",
+      "title": "Comparison of Wang-Reese and Broms Method for Competent Soils",
+      "summary": "For example walls in sand (Figure 42) and clay (Figure 43) at FS 1.5, Wang-Reese gives less embedment than Broms; either may be used. COM624P checks fixity: reversed curvature in the embedded portion indicates fixed-earth support.",
+      "body": "Required embedments by Wang-Reese and Broms are compared in Figure 42 (sand) and Figure 43 (clay) (p. 88), R from the sand and stiff to hard clay apparent envelopes (spreadsheets in appendix B). At a factor of safety of 1.5 Wang-Reese predicts less embedment than Broms; either method may be used. COM624P (FHWA-SA-91-048, 1993) can verify fixity (free or fixed earth support) for the embedment from either analysis (p. 88); reversed curvature of the deflected embedded wall indicates fixed-earth support. (pp. 87 to 88)",
+      "key_points": [
+        "Figures 42 (sand), 43 (clay): Wang-Reese less embedment than Broms at FS 1.5 (p. 87).",
+        "Either method may be used (p. 87).",
+        "COM624P checks fixity; reversed curvature = fixed-earth support (pp. 87 to 88)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 42: Comparison of Broms and Wang-Reese method for wall in sand",
+        "Figure 43: Comparison of Broms and Wang-Reese method for wall in clay"
+      ],
+      "tables": [],
+      "applicability": "Lateral capacity and embedment depth of the embedded portion of soldier beam and sheet-pile anchored walls"
+    },
+    {
+      "section_id": "5.6",
+      "title": "Axial Capacity of Wall",
+      "summary": "Heading for axial capacity of the wall: introduction (5.6.1), axial load evaluation (5.6.2), driven soldier beams (5.6.3) and drilled-in soldier beams (5.6.4).",
+      "body": "Heading for axial capacity of wall: introduction (5.6.1), axial load evaluation (5.6.2), axial capacity design of driven soldier beams (5.6.3) and of drilled-in soldier beams (5.6.4); it has no text of its own. (p. 88)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Axial capacity of driven and drilled-in soldier beams for anchored walls"
+    },
+    {
+      "section_id": "5.6.1",
+      "title": "Introduction",
+      "summary": "Vertical anchor components plus wall weight and other vertical loads must be carried to avoid bearing failure or excessive settlement; driven or predrilled soldier beams are designed by driven pile (FHWA-HI-97-013) or drilled shaft (FHWA-SA-99-019) methods.",
+      "body": "The sum of the vertical anchor components and other vertical loads (wall dead weight, permanent live loads) must be considered in designing wall elements against bearing failure and excessive vertical movement. Soldier beams are driven or placed in predrilled holes backfilled with lean-mix or structural concrete (p. 89); conventional driven pile and drilled shaft analyses apply, described further in FHWA-HI-97-013 (1996) for driven piles and FHWA-SA-99-019 (1999) for drilled-in piles. (pp. 88 to 89)",
+      "key_points": [
+        "Vertical anchor components and dead loads checked for bearing and settlement (p. 88).",
+        "Driven pile (FHWA-HI-97-013) and drilled shaft (FHWA-SA-99-019) methods (p. 89)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Axial capacity of driven and drilled-in soldier beams for anchored walls"
+    },
+    {
+      "section_id": "5.6.2",
+      "title": "Axial Load Evaluation",
+      "summary": "Permanent walls: all external vertical loads resisted by side friction and end bearing of the embedded portion, Qa = Qult/FS (Eq. 23) with Table 14 factors (clays 2.5 and 2.5; sands 2.0 skin, 2.5 end); temporary SOE walls may use lower factors with small settlement shown.",
+      "body": "External vertical loads are (1) vertical anchor forces, (2) dead weight of beams, lagging and facing, (3) other external loads; harder to estimate are (1) load transferred to the retained ground above subgrade and (2) downdrag as the retained ground settles. For permanent walls all external vertical loads are assumed resisted by side friction and end bearing in the embedded portion, with factors of safety by soil type. Research (FHWA-RD-97-066, 1998) and case histories indicate: load transfers to the ground above subgrade in dense to very dense sands or stiff to hard clays, but when it may shift to the embedded portion is unknown; flat anchors minimize axial load; downdrag falls to zero when the wall settles about 2.5 mm relative to the ground; downdrag likely acts on walls in soft to medium clays or loose to medium dense sands founded on a firm stratum; hence the conservative assumption. Table 14 (p. 90) factors for driven and drilled-in soldier beams in permanent walls (skin friction/end bearing): clays 2.5/2.5, sands 2.0/2.5, set to minimize vertical movement; lower values may follow site-specific load tests. Allowable capacity is Eq. 23. Temporary SOE walls may count axial support above subgrade and use lower factors if the designer shows vertical settlement will be small, so the anchor-wall connection is not overstressed and resulting lateral movements are acceptable. (pp. 89 to 90)",
+      "key_points": [
+        "All external vertical loads carried by the embedded portion (permanent walls) (p. 89).",
+        "Downdrag removed by about 2.5 mm relative wall settlement (p. 89).",
+        "Qa = Qult/FS (Eq. 23) (p. 89).",
+        "Table 14: clays 2.5/2.5; sands 2.0 skin, 2.5 end bearing (p. 90).",
+        "Lower factors for temporary SOE walls if settlement shown small (p. 90)."
+      ],
+      "equations": [
+        "Eq. 23: Qa = Qult / FS; allowable axial capacity of driven and drilled-in soldier beams, Qult = ultimate axial capacity, FS = factor of safety (Table 14) (p. 89)"
+      ],
+      "figures": [],
+      "tables": [
+        "Table 14: Recommended factors of safety for axial capacity of driven and drilled-in soldier beams"
+      ],
+      "applicability": "Axial capacity of driven and drilled-in soldier beams for anchored walls"
+    },
+    {
+      "section_id": "5.6.3",
+      "title": "Axial Capacity Design of Driven Soldier Beams",
+      "summary": "Heading for axial capacity design of driven soldier beams: general (5.6.3.1), effective stress analysis (5.6.3.2) and total stress analysis in clays (5.6.3.3).",
+      "body": "Heading for axial capacity design of driven soldier beams: general (5.6.3.1), effective stress analysis (5.6.3.2) and total stress analysis for driven soldier beams in clays (5.6.3.3); it has no text of its own. (p. 90)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Axial capacity of driven and drilled-in soldier beams for anchored walls"
+    },
+    {
+      "section_id": "5.6.3.1",
+      "title": "General",
+      "summary": "The driven soldier beam guidance is excerpted from FHWA-HI-97-013 (1996), which should be consulted for supplementary information.",
+      "body": "The guidance on design of driven piles for axial capacity is excerpted from FHWA Report No. FHWA-HI-97-013 (1996), which should be consulted for supplementary information. (p. 90)",
+      "key_points": [
+        "Excerpted from FHWA-HI-97-013 (1996) (p. 90)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Axial capacity of driven and drilled-in soldier beams for anchored walls"
+    },
+    {
+      "section_id": "5.6.3.2",
+      "title": "Effective Stress Analysis for Driven Soldier Beams",
+      "summary": "Driven beams in cohesionless soil or drained clay: Qult = fs As + qt At (Eq. 24), fs = beta po (Eq. 25, beta = Ks tan delta, Figure 44), qt = Nt pt (Eq. 26, Figure 45); po averaged by superposition about the embedded midpoint, pt from the tip depth below the excavation base.",
+      "body": "For driven piles in cohesionless soils or effective stress (drained) analysis in cohesive soils, Eq. 24 gives Qult, fs the unit skin friction, As the pile perimeter (printed \"perimeter of the of the pile\"), qt the unit end bearing and At the enclosed \"box\" area (the actual steel area for piles on predominantly gravelly soils or rock) (Qult kN; fs, qt kPa; As, At m2). Unit skin friction is Eq. 25 (p. 91), beta = Ks tan delta, po the average vertical effective stress along the shaft, Ks an earth pressure coefficient, delta the pile-soil interface friction angle. po is evaluated by elastic superposition of vertical effective stress on both sides about the midpoint of the embedded beam; for uniform soil, 0.5 x excavation height x unit weight plus 0.5 x embedded length x unit weight. Unit end bearing is Eq. 26, Nt the toe bearing coefficient and pt the vertical effective stress at the tip from the tip depth below the excavation base. Charts give beta (Figure 44, p. 91) and Nt (Figure 45, p. 92) against drained friction angle for clay, silt, sand and gravel (after Fellenius, 1991); confirm with local correlations between static calculations and load tests where possible. (pp. 90 to 92)",
+      "key_points": [
+        "Qult = fs As + qt At (Eq. 24), box area for At (p. 90).",
+        "fs = beta po (Eq. 25), beta = Ks tan delta (Figure 44) (pp. 90 to 91).",
+        "po by superposition: 0.5 gamma H plus 0.5 gamma embedded length for uniform soil (p. 91).",
+        "qt = Nt pt (Eq. 26), pt from tip depth below the base (Figure 45) (p. 91)."
+      ],
+      "equations": [
+        "Eq. 24: Qult = fs As + qt At; ultimate axial capacity of a driven pile (soldier beam), fs = unit skin friction, As = perimeter (surface) area, qt = unit end bearing, At = enclosed \"box\" cross section area (steel area on gravelly soils or rock) (Qult kN; fs, qt kPa; As, At m2) (p. 90)",
+        "Eq. 25: fs = beta po; unit skin friction, beta = Ks tan delta, po = average vertical effective stress along the shaft, Ks = earth pressure coefficient, delta = pile-soil interface friction angle (p. 90)",
+        "Eq. 26: qt = Nt pt; unit end bearing, Nt = toe bearing coefficient, pt = vertical effective stress at the pile tip measured from the base of the excavation (p. 91)"
+      ],
+      "figures": [
+        "Figure 44: Chart for estimating β coefficient versus soil type friction angle (after Fellenius, 1991)",
+        "Figure 45: Chart for estimating Nt coefficients versus soil type friction angle (after Fellenius, 1991)"
+      ],
+      "tables": [],
+      "applicability": "Axial capacity of driven and drilled-in soldier beams for anchored walls"
+    },
+    {
+      "section_id": "5.6.3.3",
+      "title": "Total Stress Analysis for Driven Soldier Beams in Clays",
+      "summary": "Driven beams in clay (total stress): fs = ca = alpha Su (Eq. 27), alpha from Figure 46 (corrugated steel curve over the box surface for H-piles); qt = Su Nc (Eq. 28) with Nc = 9 for anchored walls.",
+      "body": "A total stress analysis may be used for driven soldier beams in clay. Unit shaft resistance is Eq. 27, ca the pile-soil adhesion at failure and alpha an empirical adhesion factor reducing the average undrained strength along the embedded length; Figure 46 (p. 93, after Tomlinson, 1980) gives adhesion against undrained strength for concrete, timber and corrugated steel piles and smooth steel piles (D > 40b and D = 10b; D = depth to the clay layer bottom or pile toe, whichever is less, b = pile diameter); for driven H-piles use the corrugated steel curve over the \"box\" surface area. Unit end bearing is Eq. 28; Nc depends on diameter and embedment and should be taken as 9 for anchored walls. (pp. 92 to 93)",
+      "key_points": [
+        "fs = ca = alpha Su (Eq. 27) (p. 92).",
+        "Figure 46 adhesion (Tomlinson 1980); corrugated steel curve over box area for H-piles (p. 92).",
+        "qt = Su Nc (Eq. 28), Nc = 9 (p. 92)."
+      ],
+      "equations": [
+        "Eq. 27: fs = ca = alpha Su; unit shaft resistance of a driven soldier beam in clay, ca = adhesion between pile and soil at failure, alpha = empirical adhesion factor (Figure 46), Su = average undrained shear strength (p. 92)",
+        "Eq. 28: qt = Su Nc; unit end bearing in a total stress analysis for cohesive soil, Nc = bearing capacity factor, taken as 9 for anchored wall applications (p. 92)"
+      ],
+      "figures": [
+        "Figure 46: Adhesion values for piles in cohesive soils (after Tomlinson, 1980)"
+      ],
+      "tables": [],
+      "applicability": "Axial capacity of driven and drilled-in soldier beams for anchored walls"
+    },
+    {
+      "section_id": "5.6.4",
+      "title": "Axial Capacity Design Of Drilled-in Soldier Beams",
+      "summary": "Heading for axial capacity design of drilled-in soldier beams: general, cohesionless soils, cohesive soils and concrete backfill of predrilled holes (5.6.4.1 to 5.6.4.4).",
+      "body": "Heading for axial capacity design of drilled-in soldier beams: general (5.6.4.1), cohesionless soils (5.6.4.2), cohesive soils (5.6.4.3) and design issues for concrete backfill of predrilled soldier beam holes (5.6.4.4); it has no text of its own. (p. 93)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Axial capacity of driven and drilled-in soldier beams for anchored walls"
+    },
+    {
+      "section_id": "5.6.4.1",
+      "title": "General",
+      "summary": "The guidance estimates axial capacity of drilled-in soldier beams in cohesionless or cohesive deposits; for intermediate geomaterials or rock use FHWA-SA-99-019 (1999).",
+      "body": "The following guidance may be used to estimate axial capacity of drilled-in soldier beams in cohesionless or cohesive deposits. For more complex soil types (e.g., intermediate geomaterials) or rock, compute capacity by the methods of FHWA Report No. FHWA-SA-99-019 (1999). (p. 93)",
+      "key_points": [
+        "Cohesionless and cohesive deposits; FHWA-SA-99-019 for IGMs and rock (p. 93)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Axial capacity of driven and drilled-in soldier beams for anchored walls"
+    },
+    {
+      "section_id": "5.6.4.2",
+      "title": "Cohesionless Soils",
+      "summary": "Drilled-in beams in cohesionless soil (drilled shaft method): Qult by Eq. 24, fs = beta po (Eq. 29) with beta = 1.5 - 0.42z^0.34 (0.25 to 1.2) for N >= 15, N/15 times that for N < 15, 2.0 - 0.15z^0.75 for gravels; qt (kPa) = 57.5N (Eq. 30), uncorrected N.",
+      "body": "Capacity follows conventional drilled shaft design: Eq. 24 with As the surface area and At the cross section area of the drilled-in beam. Unit skin friction is Eq. 29 (p. 94), po the average vertical effective stress and beta = 1.5 - 0.42z^0.34, 0.25 <= beta <= 1.2, for sands with SPT N >= 15 blows/300 mm (z in meters); beta = N/15 (1.5 - 0.42z^0.34) for sands with N < 15; beta = 2.0 - 0.15z^0.75 for gravelly soils. beta accounts for lateral stress changes from open hole drilling, fluid concrete and granular soil-concrete friction; z is measured from the top of the wall to the midpoint of the embedded beam in uniform soil, po being 0.5 x excavation height x unit weight plus 0.5 x embedded length x unit weight; in layered soil evaluate beta at each layer's midpoint. Unit end bearing is Eq. 30, N the uncorrected average SPT N within two base diameters of the base; values are ultimate at settlements of about five percent of the base diameter. (pp. 93 to 94)",
+      "key_points": [
+        "Qult by Eq. 24 with shaft surface and cross section areas (p. 93).",
+        "fs = beta po (Eq. 29); beta = 1.5 - 0.42z^0.34, 0.25 to 1.2 for N >= 15 (p. 94).",
+        "beta = N/15 (1.5 - 0.42z^0.34) for N < 15; 2.0 - 0.15z^0.75 for gravels (p. 94).",
+        "qt (kPa) = 57.5N (Eq. 30), uncorrected N, at about 5 percent settlement (p. 94)."
+      ],
+      "equations": [
+        "Eq. 29: fs = beta po; unit skin friction of a drilled-in soldier beam in cohesionless soil, po = average vertical effective stress, beta = 1.5 - 0.42 z^0.34 with 0.25 <= beta <= 1.2 for sands with SPT N >= 15 blows/300 mm, beta = (N/15)(1.5 - 0.42 z^0.34) for sands with N < 15, beta = 2.0 - 0.15 z^0.75 for gravelly soils, z in meters from the top of the wall (p. 94)",
+        "Eq. 30: qt (kPa) = 57.5 N; unit end bearing of a drilled-in soldier beam in cohesionless soil, N = uncorrected average SPT N value within two diameters of the base (ultimate, at settlement of about five percent of the base diameter) (p. 94)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Axial capacity of driven and drilled-in soldier beams for anchored walls"
+    },
+    {
+      "section_id": "5.6.4.3",
+      "title": "Cohesive Soils",
+      "summary": "Drilled-in beams in clay (total stress): fs = alpha Su (Eq. 31), alpha = 0.29 + 0.19 Su/po, Su from CU tests; end bearing qt = Nc* Su (Eq. 32) for D >= 5B, Su from UU tests and Nc* from Table 15 (6.5 to 9.0); for D < 5B qt = [0.667 + 0.0667(D/B)] Nc* Su (Eq. 33).",
+      "body": "A total stress analysis gives the undrained capacity. Unit skin friction is Eq. 31, alpha = 0.29 + 0.19 Su/po and Su the undrained strength from consolidated undrained triaxial tests. End bearing: for depth to shaft base D >= 5B, Eq. 32, D the embedment below the excavation base, B the shaft diameter, Su from unconsolidated undrained (UU) triaxial tests and Nc* from Table 15 (p. 95): Su 24 kPa, 6.5; 48 kPa, 8.0; 96 kPa, 8.7; over 96 kPa, 9.0; for D < 5B, Eq. 33. (pp. 94 to 95)",
+      "key_points": [
+        "fs = alpha Su (Eq. 31), alpha = 0.29 + 0.19 Su/po, CU Su (p. 94).",
+        "D >= 5B: qt = Nc* Su (Eq. 32), UU Su (p. 94).",
+        "Table 15: Nc* 6.5, 8.0, 8.7, 9.0 for Su 24, 48, 96, > 96 kPa (p. 95).",
+        "D < 5B: qt = [0.667 + 0.0667(D/B)] Nc* Su (Eq. 33) (p. 95)."
+      ],
+      "equations": [
+        "Eq. 31: fs = alpha Su; unit skin friction of a drilled-in soldier beam in clay, alpha = 0.29 + 0.19 Su/po, Su = undrained shear strength from consolidated undrained triaxial tests (p. 94)",
+        "Eq. 32: qt = Nc* Su; unit end bearing for depth to shaft base D >= 5B, D = embedment below the base of the excavation, B = shaft diameter, Su from unconsolidated undrained (UU) triaxial tests, Nc* = bearing capacity factor (Table 15) (p. 94)",
+        "Eq. 33: qt = [0.667 + 0.0667 (D/B)] Nc* Su; unit end bearing for depth to shaft base D < 5B (p. 95)"
+      ],
+      "figures": [],
+      "tables": [
         "Table 15: Bearing capacity factors for evaluation of end bearing in drilled shafts in clays"
       ],
-      "applicability": "Structural design of soldier beams, lagging, and embedded portion of anchored walls"
+      "applicability": "Axial capacity of driven and drilled-in soldier beams for anchored walls"
     },
     {
-      "section_id": "5.7-5.8",
-      "title": "Anchored Slopes, Landslide Stabilization, and Ground Mass Stability",
-      "summary": "Anchored slope stabilization uses ground anchors to increase the normal stress on the failure surface and provide a resisting force against sliding. Minimum design: one anchor level + wall penetrating failure surface, or two anchor levels. Anchor forces modeled in limit equilibrium as point loads at the wall-anchor intersection (components from horizontal and vertical). For deep soft clay, Ns = γH/Su governs basal stability: FS = Nc × Su / γH (Eq 37). External stability (overall rotational failure through anchor bond zone): FS ≥ 1.3.",
-      "body": "Anchored slopes and landslide stabilization: Prestressed ground anchors act against the thrust of the potential slip surface and increase normal stress on it. A wall with one anchor level must penetrate the failure surface; a wall with two anchor levels need not penetrate the failure surface. The restraint force provided by ground anchors is modeled in limit equilibrium as a point load at the anchor-wall intersection; for Case 1 (wall penetrating failure surface), only horizontal component acts on the failure surface; for Case 2 (wall not penetrating), both horizontal and vertical components act.\n\nBasal stability (soft to medium clay): Bottom heave potential evaluated using Terzaghi bearing capacity approach. For excavations with wide footprint where shearing resistance along exterior of failure block is negligible:\nFS = Nc × Su / γH (Eq 37)\nFor shallow deposits or narrow excavations:\nFS = Nc × Su / γH + Ds × Su / (γH × B) (Eq 36)\nwhere Nc is from Figure 51 (depends on H/B and B/L), Ds is depth to hard stratum below excavation. Minimum FS for basal stability depends on site conditions.\n\nExternal stability (overall rotation through anchor bond zone): Modeled as slope stability problem. Critical failure surfaces include deep circular failure through and behind the wall. FS ≥ 1.3 minimum; FS ≥ 1.5 for critical permanent applications.",
+      "section_id": "5.6.4.4",
+      "title": "Design Issues for Concrete Backfill of Predrilled Soldier Beam Holes",
+      "summary": "Structural concrete (at least 21 MPa) makes the whole drilled shaft effective; lean-mix may let the beam punch through. For permanent lean-mix walls use the deeper of a drilled shaft analysis and a driven beam analysis (Ks = 2, delta = 35 degrees, box perimeter and area).",
+      "body": "Recommended backfill is structural concrete from the hole bottom to the excavation base and lean-mix above, for strength and load transfer in the permanent embedded portion and easily removed fill for lagging, though contractors often propose lean-mix full depth to avoid two small concrete pours. With structural concrete of at least 21 MPa and proper placement, load transfers from steel to concrete and the whole drilled shaft section resists vertical load, so the wall is analyzed as a drilled shaft (sections 5.6.4.2, 5.6.4.3). Lean-mix may be too weak for load transfer and the beam may \"punch\" through. For permanent drilled-in walls backfilled with lean-mix, perform both analyses and use the greater embedment: Analysis 1, a drilled shaft with the full section effective (sections 5.6.4.2, 5.6.4.3); Analysis 2, the beam punching through, by the driven beam procedures (sections 5.6.3.2, 5.6.3.3): (1) Eq. 25 skin friction with Ks = 2, delta = 35 degrees and the \"box\" perimeter for As; (2) Eq. 26 or 28, by soil type at the shaft bottom, for end bearing on the \"box\" area. (p. 95)",
       "key_points": [
-        "Minimum anchored slope design: one anchor + wall penetrating failure surface, or two anchors + wall above failure surface",
-        "Limit equilibrium model: anchor force as point load at wall-anchor intersection",
-        "Basal stability: FS = Nc × Su / γH for wide excavation in soft clay (Eq 37)",
-        "External stability: FS ≥ 1.3 (minimum); FS ≥ 1.5 for critical permanent applications",
-        "Comparison of AEP, sliding wedge, and limit equilibrium methods (Table 18) — differ by 7–10% for cohesionless soils"
+        "Structural concrete (>= 21 MPa): full drilled shaft section effective (p. 95).",
+        "Lean-mix: beam may punch through (p. 95).",
+        "Permanent lean-mix walls: deeper of drilled shaft and driven beam analyses (p. 95).",
+        "Punch-through analysis: Ks = 2, delta = 35 degrees, box perimeter and area (p. 95)."
       ],
-      "equations": [
-        {
-          "equation_id": "5-37",
-          "description": "Factor of safety against basal heave for wide excavation in soft clay",
-          "latex": "FS = \\frac{N_c \\cdot S_u}{\\gamma H}",
-          "variables": {
-            "FS": "factor of safety against basal heave",
-            "N_c": "bearing capacity factor from Figure 51 (depends on H/B, B/L geometry)",
-            "S_u": "undrained shear strength of soil below excavation base",
-            "gamma": "total unit weight of soil",
-            "H": "excavation depth"
-          },
-          "implemented_in": null
-        }
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Axial capacity of driven and drilled-in soldier beams for anchored walls"
+    },
+    {
+      "section_id": "5.7",
+      "title": "Anchored Slopes and Landslide Stabilization Systems",
+      "summary": "Heading for anchored slopes and landslide stabilization systems: general, design concepts, limit equilibrium calculations, wall resistance in limit equilibrium and comparison of methods (5.7.1 to 5.7.5).",
+      "body": "Heading for anchored slopes and landslide stabilization systems: general (5.7.1), design concepts (5.7.2), limit equilibrium calculations (5.7.3), modeling lateral wall resistance in limit equilibrium analyses (5.7.4) and comparison of methods in homogeneous soils (5.7.5); it has no text of its own. (p. 96)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Anchored slopes and landslide stabilization, limit equilibrium modeling of anchor restraint forces"
+    },
+    {
+      "section_id": "5.7.1",
+      "title": "General",
+      "summary": "Prestressed anchors with walls, beams or blocks stabilize slopes and landslides by resisting thrust and raising normal stress; apparent envelopes may underestimate the restraint force, so use limit equilibrium, except for steep failure surfaces where apparent diagrams give more.",
+      "body": "Ground anchors with walls, horizontal beams or anchor blocks can stabilize unstable slopes and landslides: prestressed anchors act against the thrust of the potential slip surface and increase its normal stress, and compressing the soil inhibits softening with time (Morgenstern, 1982). Restraint forces from apparent envelopes (section 5.2) may significantly underestimate the force for a target factor of safety, so limit equilibrium analyses should be used for anchor and wall loads; where failure surfaces are steep, apparent diagrams may give greater forces and should then govern design. (p. 96)",
+      "key_points": [
+        "Anchors resist thrust and raise normal stress on the slip surface (p. 96).",
+        "Apparent envelopes may underestimate restraint; use limit equilibrium (p. 96).",
+        "Steep failure surfaces: apparent diagrams may govern (p. 96)."
       ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Anchored slopes and landslide stabilization, limit equilibrium modeling of anchor restraint forces"
+    },
+    {
+      "section_id": "5.7.2",
+      "title": "Design Concepts",
+      "summary": "Target slope FS is typically 1.2 to 1.3; check all planar and circular surfaces and downslope stability, using an envelope of maximum measured heads. Minimum design: one anchor level with a wall penetrating the failure surface or two levels with a wall that does not.",
+      "body": "The target factor of safety for slope and landslide stabilization is typically 1.2 to 1.3, higher with criticality, deformation control or uncertain strengths. Check all potential failure surfaces (planar and circular), several possibly below target, and verify downslope stability in front of the wall, since downslope movement reduces passive capacity. Hydraulic heads from piezometers for each water-bearing zone change seasonally and with construction; assume conservatively an envelope of maximum heads measured through the year. Required restraint depends on wall location relative to the slip surface and the mass stabilized: small for steep surfaces, large for long shallow ones; for very long slopes multiple anchored walls may pay. For an unstable or moving slope a minimum design is one anchor level with a wall penetrating the critical failure surface, or two levels with a wall that does not (p. 97), giving at least two restraint points. (pp. 96 to 97)",
+      "key_points": [
+        "Target FS typically 1.2 to 1.3 (p. 96).",
+        "Check all surfaces and downslope stability (p. 96).",
+        "Envelope of maximum measured heads (p. 96).",
+        "Minimum: one level with penetrating wall, or two levels (p. 97)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Anchored slopes and landslide stabilization, limit equilibrium modeling of anchor restraint forces"
+    },
+    {
+      "section_id": "5.7.3",
+      "title": "Limit Equilibrium Calculations",
+      "summary": "Heading for limit equilibrium calculations: overall approach (5.7.3.1), Method 1 analysis (5.7.3.2) and Method 2 analysis (5.7.3.3).",
+      "body": "Heading for limit equilibrium calculations: overall approach (5.7.3.1), Method 1 analysis (5.7.3.2) and Method 2 analysis (5.7.3.3); it has no text of its own. (p. 97)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Anchored slopes and landslide stabilization, limit equilibrium modeling of anchor restraint forces"
+    },
+    {
+      "section_id": "5.7.3.1",
+      "title": "Overall Approach",
+      "summary": "No accepted way models anchor restraint in slice programs: Method 1 applies a surcharge or force at the face, Method 2 a force at the slice base where the surface crosses the anchor; both localize normal stress. Use both if possible against a target (typically 1.3), with a force-and-moment method (Table 16).",
+      "body": "Limit equilibrium slice programs can examine anchored walls, slopes and landslides, but practice has no accepted method of modeling prestressed anchor restraint; programs distribute anchor forces differently, so calculated forces should be reviewed critically against hand solutions (FHWA-RD-98-065, 1998). Method 1, a surcharge or concentrated force equal to the total restraint at the wall or slope face, sends a large vertical force to one slice base, giving an unrealistically high factor for that slice while neighbors are unaffected. Method 2, a concentrated force at the slice base where the failure surface crosses the anchor (as for geosynthetic reinforcement), likewise localizes the increase. Both give similar results for a planar surface of constant inclination in homogeneous soil, but may differ for irregular surfaces and stratified soils. Analyze with Method 1 or 2 (ideally both) and compare the factor of safety for a given restraint with the target (typically 1.3); search with a method satisfying moment and force equilibrium if available (p. 98), else simpler methods for the search and the full method for the specific surface. If factors exceed the target the restraint may be used; if less, increase it to the target, judging reasonableness and re-analyzing where results are extreme or sensitive (printed \"than the calculated anchor restraint\"). Analyze each critical section; use planar surfaces in predominantly cohesionless soils or along well-defined interfaces and circular surfaces for temporary walls in soft to medium clays. Table 16 (p. 98): Step 1, geometry, stratigraphy, surcharges, water; Step 2, strength and unit weight; Step 3, a force-and-moment method and search parameters; Step 4, apply face force (Method 1) or model anchors as reinforcement (Method 2), giving vertical walls a slight batter against numerical instability; Step 5, critical surface and factor; Step 6, repeat 4 and 5, increasing the force or tension to the target. (pp. 97 to 98)",
+      "key_points": [
+        "No accepted method for modeling anchor restraint in slice programs (p. 97).",
+        "Method 1: face surcharge or force; Method 2: force at slice base at the anchor (p. 97).",
+        "Both localize normal stress; compare with target FS typically 1.3 (p. 97).",
+        "Use a force-and-moment equilibrium method (p. 98).",
+        "Planar surfaces in cohesionless soils; circular for soft to medium clays (p. 98).",
+        "Table 16: six-step procedure (p. 98)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 16: Procedure to evaluate total lateral earth load using slope stability computer programs"
+      ],
+      "applicability": "Anchored slopes and landslide stabilization, limit equilibrium modeling of anchor restraint forces"
+    },
+    {
+      "section_id": "5.7.3.2",
+      "title": "Method 1 Analysis",
+      "summary": "Method 1 (Figure 47): Case 1, wall penetrates the critical surface, only horizontal anchor components act on it with wall lateral capacity below (5.7.4); Case 2, both components act. In deep weak clay, place the force resultant 0.3H to 0.5H above the base and follow Table 17 (Figure 48).",
+      "body": "Method 1 considers Case 1, the wall penetrating the potential critical surface, and Case 2, not penetrating it (Figure 47, p. 99, after FHWA-RD-97-130, 1998). In Case 1 the vertical anchor component is assumed transmitted below the critical surface at the wall, so only the horizontal component acts on it, and the total surcharge is resisted by the anchors and the lateral capacity of the wall below the surface (p. 99; section 5.7.4); in Case 2 both components act on the surface. Where homogeneous weak cohesive soil extends far below the base (at least about 20 percent of the wall height, p. 100), the critical surface may penetrate well below the excavation and lower anchors carry large loads; the resultant of the modeling force should be located between 0.3H and 0.5H above the excavation bottom. Table 17 (section 5.7.3.3) and Figure 48 (p. 100, after FHWA-RD-97-130, 1998) give the procedure for a surface penetrating well below the wall; the resultant of the total stabilizing load moves lower as the surface deepens. (pp. 98 to 100)",
+      "key_points": [
+        "Case 1: wall penetrates surface, horizontal component only (Figure 47) (p. 98).",
+        "Case 2: both components transmitted to the surface (p. 99).",
+        "Deep weak clay: resultant 0.3H to 0.5H above the base (p. 100).",
+        "Table 17 and Figure 48 procedure for deep surfaces (p. 100)."
+      ],
+      "equations": [],
       "figures": [
-        "Figure 47: Modeling the ground anchor force in limit equilibrium analysis",
-        "Figure 49: Total passive force for example wall in cohesionless soil",
-        "Figure 50: Comparison of limit equilibrium methods for cohesive soils",
-        "Figure 51: Analysis of basal stability (after Terzaghi 1943)"
+        "Figure 47: Modeling the ground anchor force in limit equilibrium analysis (after FHWA-RD-97-130, 1998)",
+        "Figure 48: Limit equilibrium analyses used to evaluate total lateral earth load for anchored systems constructed in weak cohesive soils analysis (after FHWA-RD-97-130, 1998)"
+      ],
+      "tables": [],
+      "applicability": "Anchored slopes and landslide stabilization, limit equilibrium modeling of anchor restraint forces"
+    },
+    {
+      "section_id": "5.7.3.3",
+      "title": "Method 2 Analysis",
+      "summary": "Method 2 models each anchor as high capacity reinforcement, force full in front of the bond zone falling linearly to zero at the end (as for soil nails); wall restraint per 5.7.4. Table 17 gives the seven-step procedure for weak cohesive soils.",
+      "body": "In Method 2 the anchor is a high capacity reinforcement, its axial force modeled along the anchor and bond zone: full capacity for all positions in front of the bond zone, varying linearly to zero at the anchor end, as for soil nails (FHWA-DP-96-69R, 1998). Multiple anchor levels may be modeled with a reasonable layout and inclinations; where the failure surface crosses the wall its added restraint may be modeled (section 5.7.4). Table 17 (p. 101), total lateral load for anchored systems in weak cohesive soils: Steps 1 and 2 as Table 16; Step 3, analyze a circular surface intersecting the excavation bottom by a force-and-moment method; Step 4, apply face surcharge or forces for the anchor restraint, with a slight batter for vertical walls; Step 5, evaluate that surface's factor; Step 6, increase the force to the target; Step 7, search for the most critical surface with half the Step 6 load over the upper half of the wall and increase a force over the lower half until the target is reached. (pp. 100 to 101)",
+      "key_points": [
+        "Anchor as reinforcement: full force in front of the bond zone to zero at the end (p. 100).",
+        "Similar to soil nail analyses (FHWA-DP-96-69R) (p. 100).",
+        "Table 17: seven-step procedure for weak cohesive soils (p. 101)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 17: Procedure to evaluate total lateral earth load for anchored systems constructed in weak cohesive soils"
+      ],
+      "applicability": "Anchored slopes and landslide stabilization, limit equilibrium modeling of anchor restraint forces"
+    },
+    {
+      "section_id": "5.7.4",
+      "title": "Modeling Lateral Wall Resistance in Limit Equilibrium Analyses",
+      "summary": "Where the critical surface crosses the embedded wall, include the lesser of the wall's allowable shear capacity and the passive force below the surface (section 5.5; Figure 49), modeled as a one-unit-wide cohesive element, divided by soldier beam spacing.",
+      "body": "When the critical surface intersects the embedded wall, its resistance may be included: the lesser of (1) the wall's shear capacity, constant and taken as the allowable shear capacity of the vertical element, and (2) the total passive force over the wall from the failure surface to the toe. Section 5.5 methods give the passive force; Figure 49 (p. 102) shows it, Broms and Wang-Reese, for a 6 m embedded portion of the section 5.5.4 cohesionless example against depth of the failure surface. The force Fp may be modeled as a one-unit wide element with cohesive strength equal to that minimum force; for soldier beam walls it is reduced by the beam spacing to a per unit basis. (pp. 101 to 102)",
+      "key_points": [
+        "Lesser of allowable wall shear and passive force below the surface (p. 101).",
+        "Figure 49: total passive force for the example wall (p. 101).",
+        "Model as a unit-width cohesive element; divide by beam spacing (p. 101)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 49: Total passive force for example wall in cohesionless soil"
+      ],
+      "tables": [],
+      "applicability": "Anchored slopes and landslide stabilization, limit equilibrium modeling of anchor restraint forces"
+    },
+    {
+      "section_id": "5.7.5",
+      "title": "Comparison of Methods to Evaluate Required Earth Load in Homogeneous Soils",
+      "summary": "In homogeneous cohesionless soil, KREQ = PREQ/(0.5 gamma H^2) from apparent envelope, sliding wedge and limit equilibrium agree within 7 to 10 percent (Table 18); in soft clays (Ns > 4) Rankine is unconservative when the surface passes below the base and Ns > 5; use Henkel or limit equilibrium (Figure 50).",
+      "body": "Cohesionless Soils. PREQ to stabilize a cut is carried by anchors and the subgrade reaction. Table 18 (p. 103) compares KREQ = PREQ/(1/2 gamma H^2) by (1) the sand apparent envelope (total 0.65 KA gamma H^2, 1.3 times Rankine active), (2) sliding wedge (section 5.2.8) and (3) limit equilibrium Method 1 (section 5.7.3), the last two with FS 1.3 on strength: phi' 25, 0.53, 0.58, 0.59 (10 percent); 30, 0.43, 0.46, 0.46 (7); 35, 0.35, 0.38, 0.37 (7); 40, 0.28, 0.31, 0.29 (8); percent difference = (maximum - minimum)/maximum x 100. All are similar, especially at higher strengths; with competent soil below, any is reasonable but the apparent envelope is most expedient. Cohesive Soils. For temporary systems in soft to medium clays with Ns > 4, earth loads by Henkel (Eq. 12), Rankine and limit equilibrium (Bishop, Spencer, Corps of Engineers; only Spencer satisfies moment and force equilibrium) are compared in Figure 50 (p. 104, after FHWA-RD-98-065, 1998). Limit equilibrium compares favorably with Rankine where the surface meets the wall corner; where it extends below the excavation (e.g., d/H = 0.2), Henkel and Bishop agree reasonably and are upper bounds. Where the critical surface extends below the base and Ns > 5, Rankine is unconservative; use Henkel or limit equilibrium and redistribute the total into the soft to medium clay diagram (Figure 23c). (pp. 102 to 104)",
+      "key_points": [
+        "Table 18: KREQ by three methods within 7 to 10 percent (p. 103).",
+        "Apparent envelope most expedient in homogeneous sands (p. 102).",
+        "Soft clays: Henkel and Bishop upper bounds when the surface passes below the base (p. 103).",
+        "Ns > 5 and deep surface: Rankine unconservative; use Henkel or limit equilibrium (p. 103)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 50: Comparison of limit equilibrium methods for cohesive soils (after FHWA-RD-98-065, 1998)"
       ],
       "tables": [
-        "Table 16: Procedure to evaluate total lateral earth load for anchored systems in cohesionless soils",
-        "Table 17: Procedure to evaluate total lateral earth load for anchored systems in weak cohesive soils",
-        "Table 18: Values of KREQ in cohesionless soil using various earth pressure methods"
+        "Table 18: Values of KREQ in cohesionless soil using various methods to evaluate earth pressures"
       ],
-      "applicability": "Design of anchored slope stabilization systems and evaluation of basal stability and external stability"
+      "applicability": "Anchored slopes and landslide stabilization, limit equilibrium modeling of anchor restraint forces"
     },
     {
-      "section_id": "5.9-5.11",
-      "title": "Tiedown Design, Seismic Design, and Other Issues",
-      "summary": "Tiedown anchor design resists hydrostatic or overturning uplift. Rock tiedowns: bond zone in compression at 45° cone; FS = 2–3 against rock mass failure. Soil tiedowns: uplift capacity Qu = Qtu + Qsu (Eq 38). Seismic design: Mononobe-Okabe equation with horizontal seismic coefficient kh and vertical coefficient kv; AASHTO uses kh = 0.5A (A = PGA from seismic risk map, 10% in 50 years); permanent seismic deformations from Hynes and Franklin (1984) chart. Wall movements ≤ 0.1% to 0.5% of wall height. Drainage systems behind anchored walls to prevent hydrostatic pressure buildup.",
-      "body": "Tiedown design: Tiedowns resist vertical uplift from hydrostatic or overturning forces. Rock tiedowns resist uplift via a rock cone failure at ~45° from anchorage; FS = 2 to 3 against overall rock mass stability per BS8081 (1989). The conservative 45° cone assumption means actual FS is typically higher. Soil tiedowns: Uplift capacity Qu = Qtu + Qsu (Eq 38) where Qtu = tip resistance (typically small, often neglected) and Qsu = side resistance from ground-grout bond. For hydrostatic tiedowns (e.g., Boston Central Artery), critical issues include watertight connections and load variations from groundwater level changes.\n\nSeismic design: Pseudo-static analysis using Mononobe-Okabe (M-O) equation. Seismic active earth pressure coefficient KAE from Figure 56. AASHTO (1996) seismic coefficient kh = 0.5A (A = PGA, 10% probability of exceedance in 50 years). Vertical coefficient kv = 0 to 0.2A. For potentially liquefiable soils, densification or other ground improvement methods should be applied. Permanent seismic deformations estimated using Hynes and Franklin (1984) chart (Figure 58).\n\nWall and ground movements: Horizontal movements at top of wall typically 0.1% to 0.5% of wall height; vertical settlements behind wall 0 to 0.5% of wall height extending to about 3H behind the wall. Maximum wall movement typically at mid-height. Several sources of movement: cantilever (first anchor), wall settlement (end bearing mobilization), elastic elongation of tendon, anchor yielding/load redistribution.\n\nDrainage: Horizontal drains installed at back of wall; prefabricated drainage composites. Anchored walls interfere with natural drainage in existing slopes — hydrostatic buildup must be relieved.",
+      "section_id": "5.8",
+      "title": "Ground Mass Stability",
+      "summary": "Heading for ground mass stability: introduction (5.8.1), basal stability (5.8.2) and external stability (5.8.3).",
+      "body": "Heading for ground mass stability: introduction (5.8.1), basal stability (5.8.2) and external stability (5.8.3); it has no text of its own. (p. 105)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Ground mass stability of anchored systems: basal heave in soft clay and external stability by limit equilibrium"
+    },
+    {
+      "section_id": "5.8.1",
+      "title": "Introduction",
+      "summary": "Ground mass stability checks internal stability (bond zone behind the critical surface, section 5.3.2), basal stability and external stability with the anchor and structural restraint forces.",
+      "body": "The analyses check whether soil strength and the location and magnitude of restraint from the anchors and other structural components give an acceptable factor of safety against (1) internal, (2) basal and (3) external instability. Internal stability calculations locate the bond zone behind the critical potential failure surface (section 5.3.2). (p. 105)",
       "key_points": [
-        "Rock tiedown FS = 2–3 against 45° cone failure (BS8081); conservative assumption means actual FS higher",
-        "Soil tiedown uplift: Qu = Qtu + Qsu; side resistance governs for deep anchors",
-        "Seismic: AASHTO kh = 0.5A (A = PGA from risk map, 10%/50yr); Mononobe-Okabe for KAE",
-        "Horizontal wall movement typically 0.1–0.5% of wall height; vertical settlement extends to ~3H behind wall",
-        "Drainage systems required behind anchored walls — hydrostatic pressure buildup is a common failure cause"
+        "Internal, basal and external stability checked (p. 105).",
+        "Internal stability locates the bond zone (section 5.3.2) (p. 105)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Ground mass stability of anchored systems: basal heave in soft clay and external stability by limit equilibrium"
+    },
+    {
+      "section_id": "5.8.2",
+      "title": "Basal Stability",
+      "summary": "Heading for basal stability: general (5.8.2.1) and bottom heave potential in soft to medium clays (5.8.2.2).",
+      "body": "Heading for basal stability: general (5.8.2.1) and evaluation of bottom heave potential in soft to medium clays (5.8.2.2); it has no text of its own. (p. 105)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Ground mass stability of anchored systems: basal heave in soft clay and external stability by limit equilibrium"
+    },
+    {
+      "section_id": "5.8.2.1",
+      "title": "General",
+      "summary": "Basal failure modes are bottom heave in cohesive soils, critical for temporary walls in soft to medium clays, and piping in cohesionless soils, not discussed since soldier beam walls are usually excavated dry or with lowered groundwater.",
+      "body": "Common basal failure modes are bottom heave in cohesive soils and piping in cohesionless soils. Heave occurs when soils at the base are weak relative to the overburden stresses from the retained side; it may be critical for temporary anchored systems in soft to medium clays but not for other soils. Piping occurs with enough water head to produce critical velocities at the base; it is not discussed because most soldier beam and lagging walls are excavated in the dry or after lowering groundwater. (p. 105)",
+      "key_points": [
+        "Bottom heave critical for temporary systems in soft to medium clays (p. 105).",
+        "Piping not discussed: excavation typically in the dry (p. 105)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Ground mass stability of anchored systems: basal heave in soft clay and external stability by limit equilibrium"
+    },
+    {
+      "section_id": "5.8.2.2",
+      "title": "Evaluation of Bottom Heave Potential in Soft to Medium Clays",
+      "summary": "Basal heave FS = Nc Su/(H(gamma - Su/B')) (Eq. 34); minimum with B' limit (Eq. 35), D for a near stiff stratum (Eq. 36), Nc/Ns for very wide cuts (Eq. 37), Nc from Janbu (Figure 51). Minimum FS 2.5 permanent, 1.5 support of excavation; lower values call for limit equilibrium or Henkel.",
+      "body": "Heave and large lateral pressure increases result when retained soil weight approaches the bearing capacity at the base. Traditional braced excavation methods are likely conservative for anchored walls as they ignore shear resistance of the grouted anchor body. For a cut in soft clay H deep and B wide (Figure 51, p. 106, modified after Terzaghi et al., 1996), the retained block exerts on strip cd a pressure equal to its weight less shear along plane bd; bearing capacity is Nc Su; for cuts of infinite length FS is Eq. 34. From the failure geometry \"B' cannot exceed B sqrt(2)\" (p. 106, as printed), and the minimum FS is printed as Eq. 35 with Su sqrt(2)/B in the denominator. With a stiff stratum near the cut bottom B' equals the depth D, giving Eq. 36 (p. 107), usable for shallow deposits. In moderate to deep deposits with very wide excavations the exterior shear is negligible and Eqs. 34 and 35 reduce to Eq. 37, Ns = gamma H/Su. Nc depends on H/B and B/L; Janbu et al. (1956) footing values (Figure 51c, curves for B/L = 0 rectangular, 0.5, and 1 square and circular) may be used; Nc is greater for short (slotted) excavations, but unless staged lengths are specified, assume the contractor removes the whole length of each lift. Large movements occur as bearing capacity is approached regardless of support strength; O'Rourke and O'Donnell (1997) found that for B/H of 0.5 to 4 deep rotational (external) stability factors are likely below basal heave factors. Current practice is a minimum basal heave FS of 2.5 for permanent and 1.5 for support of excavation facilities; lowest anchor loads rise as FS falls, and lower factors call for limit equilibrium or Henkel's method for design pressures. (pp. 105 to 107)",
+      "key_points": [
+        "FS = Nc Su/(H(gamma - Su/B')) (Eq. 34) (p. 105).",
+        "Minimum FS printed as Eq. 35; stiff stratum at depth D: Eq. 36 (pp. 106 to 107).",
+        "Very wide cuts: FS = Nc/Ns (Eq. 37) (p. 107).",
+        "Nc from Janbu et al. (1956) by H/B and B/L (Figure 51) (p. 107).",
+        "Assume full-length lifts unless staged lengths specified (p. 107).",
+        "Minimum basal heave FS 2.5 permanent, 1.5 SOE (p. 107)."
       ],
       "equations": [
-        {
-          "equation_id": "5-38",
-          "description": "Uplift capacity of soil tiedown anchor",
-          "latex": "Q_u = Q_{tu} + Q_{su}",
-          "variables": {
-            "Q_u": "total uplift capacity of soil tiedown anchor",
-            "Q_tu": "tip resistance (typically small for soil tiedowns)",
-            "Q_su": "side resistance from ground-grout interface bond"
-          },
-          "implemented_in": null
-        }
+        "Eq. 34: FS = Nc Su / (H (gamma - Su / B')); factor of safety against basal heave for cuts of infinite length, Nc = bearing capacity factor, Su = undrained shear strength, H = excavation depth, B' = width of the failure block (Figure 51) (p. 105)",
+        "Eq. 35: FS = Nc Su / (H (gamma - Su sqrt(2) / B)); minimum factor of safety for Eq. 34, B = excavation width (p. 106)",
+        "Eq. 36: FS = Nc Su / (H (gamma - Su / D)); basal heave factor of safety with a stiff stratum near the bottom of the cut, B' equal to depth D (p. 107)",
+        "Eq. 37: FS = Nc / (gamma H / Su) = Nc / Ns; basal heave factor of safety for very wide excavations in moderate to deep deposits, Ns = stability number gamma H/Su (p. 107)"
       ],
       "figures": [
-        "Figure 55: Forces behind a gravity wall (Mononobe-Okabe seismic analysis)",
-        "Figure 56: Effects of seismic coefficients and friction angle on seismic active pressure coefficient KAE",
-        "Figure 58: Permanent seismic deformation chart (after Hynes and Franklin 1984)",
+        "Figure 51: Analysis of basal stability (modified after Terzaghi et al., 1996)"
+      ],
+      "tables": [],
+      "applicability": "Ground mass stability of anchored systems: basal heave in soft clay and external stability by limit equilibrium"
+    },
+    {
+      "section_id": "5.8.3",
+      "title": "External Stability",
+      "summary": "Heading for external stability: introduction (5.8.3.1) and evaluation by limit equilibrium (5.8.3.2).",
+      "body": "Heading for external stability: introduction (5.8.3.1) and evaluation of external stability using limit equilibrium (5.8.3.2); it has no text of its own. (p. 107)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Ground mass stability of anchored systems: basal heave in soft clay and external stability by limit equilibrium"
+    },
+    {
+      "section_id": "5.8.3.1",
+      "title": "Introduction",
+      "summary": "An anchored system is externally stable if slip surfaces behind or through the anchors exceed the target FS, minimum 1.3 (1.5 for critical permanent work). Use undrained strength for temporary walls in soft clay, short and long term for permanent walls, drained for stiff clays.",
+      "body": "Conventional limit equilibrium slope stability methods can evaluate external stability; the system is externally stable if potential slip surfaces passing behind or through the anchors exceed the target factor of safety. This matters most near structures or where soft soil lies below the wall. Temporary SOE systems in soft to medium clays use short-term (undrained) strengths and temporary loads; permanent systems in soils are checked short and long term; in stiff clays short term may not be critical but long term with drained strengths may be (strength selection, chapter 4). Walls on rock anchors are normally externally adequate, but weak planes oriented adversely should be checked (p. 108). The minimum acceptable factor is 1.3; a higher value (e.g., 1.5) may be used for critical permanent applications. (pp. 107 to 108)",
+      "key_points": [
+        "Slip surfaces behind or through anchors must exceed the target FS (p. 107).",
+        "Undrained for temporary soft clay; short and long term for permanent (p. 107).",
+        "Check adverse weak planes in rock (p. 108).",
+        "Minimum external FS 1.3; 1.5 for critical permanent work (p. 108)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Ground mass stability of anchored systems: basal heave in soft clay and external stability by limit equilibrium"
+    },
+    {
+      "section_id": "5.8.3.2",
+      "title": "Evaluation of External Stability Using Limit Equilibrium",
+      "summary": "Check surfaces passing just behind each anchor level (Figure 52); anchors the surface passes in front of give full design load, anchors it crosses a share by uniform bond stress. Lengthen anchors or improve bond where external stability fails.",
+      "body": "Potential failure surfaces passing behind or through the anchors must be checked; with multiple levels, surfaces just behind each anchor level (Figure 52). A surface behind one level may pass in front of or through the bond zone of others, whose restraint may be partly included: the full design load where the surface passes in front of an anchor, a proportional load assuming bond stress uniform over the bond length where it crosses one. If external stability requirements cannot be met, anchors may be lengthened or bond and load transfer improved. (p. 108)",
+      "key_points": [
+        "Check surfaces just behind each anchor level (Figure 52) (p. 108).",
+        "Full load for anchors in front of the surface; proportional for anchors crossed (p. 108).",
+        "Lengthen anchors or improve bond if needed (p. 108)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 52: Failure surfaces for external stability evaluations"
+      ],
+      "tables": [],
+      "applicability": "Ground mass stability of anchored systems: basal heave in soft clay and external stability by limit equilibrium"
+    },
+    {
+      "section_id": "5.9",
+      "title": "Tiedown Design",
+      "summary": "Heading for tiedown design: introduction, rock tiedown uplift, soil tiedown uplift and hydrostatic uplift (5.9.1 to 5.9.4).",
+      "body": "Heading for tiedown design: introduction (5.9.1), uplift capacity of rock tiedown anchors (5.9.2), uplift capacity of soil tiedown anchors (5.9.3) and design of tiedown anchors to resist hydrostatic uplift (5.9.4); it has no text of its own. (p. 109)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Tiedown anchor design for uplift: rock cone breakout, soil anchor side resistance and hydrostatic uplift"
+    },
+    {
+      "section_id": "5.9.1",
+      "title": "Introduction",
+      "summary": "Tiedowns are vertical or downward inclined anchors under uplift (towers, dams, underwater slabs), designed for individual anchor capacity and overall stability of the enveloped ground mass.",
+      "body": "Tiedowns are vertical or downward inclined ground anchors under uplift, e.g., foundations of structures subject to overturning or uplift such as transmission towers, and vertical anchors resisting hydrostatic uplift in gravity dams and underwater slabs. They are designed against (1) individual anchor capacity to resist uplift and (2) overall stability of the ground mass enveloped by the tiedown group. The section covers overall stability for individual and grouped rock and soil tiedowns and design for slabs under hydrostatic load. (p. 109)",
+      "key_points": [
+        "Two failure mechanisms: anchor capacity and ground mass stability (p. 109)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Tiedown anchor design for uplift: rock cone breakout, soil anchor side resistance and hydrostatic uplift"
+    },
+    {
+      "section_id": "5.9.2",
+      "title": "Uplift Capacity of Rock Tiedown Anchors",
+      "summary": "Rock tiedowns fail by cone breakout, grout/rock shear or tendon/grout shear; for h/D > 15 interface failure dominates. Shallow anchors: capacity = weight of an inverted cone (60 degrees in soft, fissured or weathered rock, 90 otherwise, Figure 53), overlapping cones reduced; FS typically 2 to 3 (BS 8081).",
+      "body": "Mechanisms for rock tiedowns: (1) overall rock mass stability engaging an inverted cone or wedge (cone breakout, Figure 53), (2) shear along the grout/rock interface, (3) shear along the tendon/grout interface. Capacity depends on h/D, h the depth to the top of the bond zone and D the anchor diameter; for h/D > 15 failure at the grout/rock interface dominates, more specifically at the rock/grout interface in weak rocks (mudstones, shales) and at the tendon/grout interface in strong rocks; shallow anchors in weak mudstones may combine interface shear and cone breakout. Deep anchors in weak rock or where interface shear governs follow section 5.3.6. For shallow anchors or where rock mass stability governs, capacity is taken as the effective weight of a cone or wedge (Figure 53a), usually ignoring rock shear strength, so an anchor whose cone weight exceeds the design load is safe. Designers place the apex at the top, midpoint or bottom of the bond zone with an included angle of 60 to 90 degrees; Figure 53a (p. 110) shows the apex at mid-bond (L/2) with 60 degrees used when the rock mass is soft, heavily fissured or weathered and 90 degrees in all other rock, to be used without model or full-scale test results. Soil overburden above the rock is taken as a cylinder; overlapping cones (Figure 53b) reduce capacity below that of single anchors. Factors of safety for rock mass stability are typically 2 to 3 (British Standards Institution BS8081, 1989) (p. 110), possibly lower given ignored shear strength in competent, not highly fissured rock, higher in highly fissured or loose rock. (pp. 109 to 110)",
+      "key_points": [
+        "Cone breakout, grout/rock and tendon/grout shear (p. 109).",
+        "h/D > 15: grout/rock interface failure dominates (p. 109).",
+        "Shallow anchors: weight of inverted cone, rock shear ignored (p. 109).",
+        "Figure 53: 60 degrees in soft/fissured/weathered rock, 90 otherwise (p. 110).",
+        "FS typically 2 to 3 (BS 8081, 1989) (p. 110)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 53: Inverted cone mechanisms for overall rock mass stability"
+      ],
+      "tables": [],
+      "applicability": "Tiedown anchor design for uplift: rock cone breakout, soil anchor side resistance and hydrostatic uplift"
+    },
+    {
+      "section_id": "5.9.3",
+      "title": "Uplift Capacity of Soil Tiedown Anchors",
+      "summary": "Soil tiedowns are usually deep, so grout/ground side resistance governs: Qu = Qtu + Qsu (Eq. 38), tip suction taken as zero, Qsu by section 5.3.6 or Kulhawy (1985) (Eq. 39) with delta/phi = 1, K/Ko 2/3 to 1 for gravity anchors and K from Table 19 for pressure grouted anchors.",
+      "body": "For soil tiedowns, cone breakout governs shallow anchors and soil/grout interface shear deep ones; a grouted soil anchor in uplift behaves like a small diameter drilled shaft. Uplift soil anchors are typically deep (p. 111), so uplift resistance is Eq. 38, Qu the uplift capacity, Qtu the tip and Qsu the side resistance; suction tip resistance is commonly zero for drained (long-term) uplift of drilled-in elements, so capacity comes from grout-ground skin resistance, by section 5.3.6 or Kulhawy (1985), Eq. 39: Delta zi layer thickness, D anchor diameter, K/Ko a stress modification factor for construction, and at each layer's mid-depth sigma'v vertical effective stress, delta interface friction angle, Ko in situ horizontal stress coefficient and phi soil friction angle. delta/phi may be taken as 1 for soil anchors. For gravity anchors K/Ko is typically 2/3 to 1: 1 for dry installations with minimal disturbance, less than 2/3 under water or in very loose or running sands with significant disturbance. Low pressure (under 1 MPa) and gravity-grouted anchors warrant no increase of K above Ko; high pressure grouted anchors do, per Table 19 (after Kulhawy et al., 1983), K for loose, compact, dense: silt 1, 4, 10; fine sand 1.5, 6, 15; medium sand 5, 12, 20; coarse sand and gravel 10, 20, 30; load tests should confirm design values. (pp. 110 to 111)",
+      "key_points": [
+        "Deep soil tiedowns: grout/ground side resistance governs (p. 111).",
+        "Qu = Qtu + Qsu (Eq. 38); tip suction taken as zero (p. 111).",
+        "Kulhawy (1985) Qsu (Eq. 39); delta/phi = 1 (p. 111).",
+        "Gravity anchors K/Ko 2/3 to 1; no K increase below 1 MPa grout pressure (p. 111).",
+        "Table 19: K for pressure grouted anchors by soil and density (p. 111)."
+      ],
+      "equations": [
+        "Eq. 38: Qu = Qtu + Qsu; uplift capacity of a soil tiedown anchor, Qtu = tip resistance (commonly zero for drained uplift), Qsu = side resistance (p. 111)",
+        "Eq. 39: Qsu = pi D (K / Ko) sum_{i=1}^{N} (sigma'v)_i (Ko)_i tan[phi_i (delta/phi)_i] Delta z_i; side resistance of a grouted soil anchor (Kulhawy, 1985), D = anchor diameter, K/Ko = stress modification factor for construction, Delta z_i = thickness of layer i, sigma'v = vertical effective stress, Ko = in situ horizontal stress coefficient, delta = interface friction angle, phi = soil friction angle, each at the layer mid-depth (p. 111)"
+      ],
+      "figures": [],
+      "tables": [
+        "Table 19: Horizontal stress coefficient, K, for pressure grouted anchors (after Kulhawy et al., 1983)"
+      ],
+      "applicability": "Tiedown anchor design for uplift: rock cone breakout, soil anchor side resistance and hydrostatic uplift"
+    },
+    {
+      "section_id": "5.9.4",
+      "title": "Design of Tiedown Anchors to Resist Hydrostatic Uplift",
+      "summary": "Tiedowns resisting hydrostatic uplift (e.g., Boston Central Artery): equilibrium U = W1 + W2, U = gamma_w h L (Figure 54), side friction neglected; on compressible ground, size the steel for the maximum service load as movements cycle anchor loads.",
+      "body": "Tiedowns can resist uplift from hydrostatic pressure, a notable U.S. use being a depressed roadway of the Boston Central Artery project (Druss, 1994). Issues: (1) general stability of the enclosed ground mass, (2) anchor load changes from movement (surface heave, consolidation settlement, creep) of that mass, (3) corrosion protection and watertightness (chapter 6). Equilibrium (Figure 54) holds when U = W1 + W2, W1 and W2 the total weights of the structure and the enclosed ground and U the total uplift from pressure gamma_w h (U = gamma_w h L); the mobilized soil mass is bounded as Figure 54 shows (30 or 45 degrees); friction on the structure's sidewalls may conservatively be neglected. On compressible ground, construction, groundwater fluctuation, consolidation and creep may change anchor loads significantly over the service life (p. 113), cycling tension; if the tendon may be further tensioned after lock-off, size the prestressing steel for the maximum service load. (pp. 112 to 113)",
+      "key_points": [
+        "Equilibrium U = W1 + W2; U = gamma_w h L (Figure 54) (p. 112).",
+        "Sidewall friction conservatively neglected (p. 112).",
+        "Size prestressing steel for the maximum service load on compressible ground (p. 113)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 54: Stability of structure subjected to hydrostatic uplift"
+      ],
+      "tables": [],
+      "applicability": "Tiedown anchor design for uplift: rock cone breakout, soil anchor side resistance and hydrostatic uplift"
+    },
+    {
+      "section_id": "5.10",
+      "title": "Seismic Design",
+      "summary": "Heading for seismic design: introduction (5.10.1), internal stability by pseudo-static theory (5.10.2) and external stability (5.10.3).",
+      "body": "Heading for seismic design: introduction (5.10.1), internal stability using pseudo-static theory (5.10.2) and external stability (5.10.3); it has no text of its own. (p. 113)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Seismic design of anchored walls by Mononobe-Okabe pseudo-static and seismic deformation analysis"
+    },
+    {
+      "section_id": "5.10.1",
+      "title": "Introduction",
+      "summary": "Anchored walls performed well in the Whittier (1987) and Northridge (1994) earthquakes. Design checks internal failure (tendons, anchors, wall) and external global failure, usually by pseudo-static analysis excerpted from GEC No. 3 (FHWA-SA-97-076).",
+      "body": "Few observations exist, but they indicate good performance of anchored walls in strong shaking; most reported retaining wall failures were quay gravity walls with liquefied backfill or foundation soils. After the 1987 Whittier earthquake, Ho et al. (1990) surveyed ten anchored walls in Los Angeles (one designed for seismic forces) and found little to no loss of integrity; the same followed the 1994 Northridge earthquake (Ho, personal communication, 1998). Two failure modes are considered: internal (failure of a tendon, anchor or the wall) and external (global failure, the surface passing beyond the anchors and below the toe). Assessment needs seismic effects on active and passive pressures, resulting anchor loads and equilibrium of potential sliding masses, most commonly by pseudo-static analysis; information is excerpted from FHWA-SA-97-076 (1997), GEC No. 3, which covers seismic site characterization and design. (p. 113)",
+      "key_points": [
+        "Good observed performance (Whittier 1987, Northridge 1994) (p. 113).",
+        "Internal and external failure modes (p. 113).",
+        "Pseudo-static analysis; excerpted from GEC No. 3 (FHWA-SA-97-076) (p. 113)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Seismic design of anchored walls by Mononobe-Okabe pseudo-static and seismic deformation analysis"
+    },
+    {
+      "section_id": "5.10.2",
+      "title": "Internal Stability Using Pseudo-Static Theory",
+      "summary": "Heading for internal stability using pseudo-static theory: lateral earth pressure (5.10.2.1), wall design considerations (5.10.2.2) and liquefaction (5.10.2.3).",
+      "body": "Heading for internal stability using pseudo-static theory: lateral earth pressure (5.10.2.1), wall design considerations (5.10.2.2) and liquefaction (5.10.2.3); it has no text of its own. (p. 113)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Seismic design of anchored walls by Mononobe-Okabe pseudo-static and seismic deformation analysis"
+    },
+    {
+      "section_id": "5.10.2.1",
+      "title": "Lateral Earth Pressure",
+      "summary": "Mononobe-Okabe (Coulomb-based, drained cohesionless backfill, wall free to yield): PAE and PPE by Eqs. 40 to 46 (Figure 55), KAE charted in Figure 56. Use kh of one-half to two-thirds PGA/g, ignore vertical acceleration, and place the resultants at mid-height of the wall and of the embedded section.",
+      "body": "The pseudo-static Mononobe-Okabe method (Okabe, 1926; Mononobe, 1929), based on Coulomb theory, assumes the wall moves enough for active conditions, the backfill is completely drained and cohesionless (p. 114), and the ground motion is a horizontal inertia force kh Ws and a vertical force kv Ws (upward) or -kv Ws (downward), Ws the sliding wedge weight (Figure 55, p. 115) and kh, kv fractions of g. Dynamic active and passive pressures are Eqs. 40 and 41 with KAE (Eqs. 42, 43), KPE (Eqs. 44, 45) and theta (Eq. 46); gamma effective unit weight of the backfill, H wall height, phi backfill friction angle, delta wall/backfill friction angle, i backfill surface slope, beta slope of the wall back. Figure 56 (p. 116, after Lam and Martin, 1986) gives KAE for phi = 20 to 45 degrees, vertical walls and level backfill, delta = phi/2, kh 0 to 0.5 and kv 0 to 0.2. The main challenges are choosing kh and the pressure distribution. Per GEC No. 3, kh of one-half to two-thirds of the peak horizontal ground acceleration divided by g appears to limit deformations to small values acceptable for highway facilities; vertical acceleration is usually ignored, as vertical motions are not considered to load anchors significantly. The total seismic active pressure may be taken uniform over the height, its resultant at mid-height; the passive resultant at the toe is placed at mid-height of the embedded section. The heading is printed \"5.10.2.1Lateral Earth Pressure\"; Eq. 45's bracket is printed \"1 +\" like Eq. 43's. (pp. 113 to 116)",
+      "key_points": [
+        "Mononobe-Okabe assumptions: active yielding, drained cohesionless backfill (p. 113).",
+        "PAE, PPE by Eqs. 40 to 46 (p. 114).",
+        "Figure 56: KAE for phi 20 to 45, delta = phi/2 (Lam and Martin 1986) (p. 115).",
+        "kh = 1/2 to 2/3 of PGA/g; vertical acceleration usually ignored (p. 115).",
+        "Resultants at mid-height of wall and of embedded section (p. 115)."
+      ],
+      "equations": [
+        "Eq. 40: PAE = (1/2) KAE gamma H^2 (1 - kv); Mononobe-Okabe dynamic active earth pressure force, gamma = effective unit weight of the backfill, H = height of the wall, kv = vertical seismic coefficient (p. 114)",
+        "Eq. 41: PPE = (1/2) KPE gamma H^2 (1 - kv); Mononobe-Okabe dynamic passive earth pressure force (p. 114)",
+        "Eq. 42: KAE = cos^2(phi - theta - beta) / (cos theta cos^2 beta cos(beta + delta + theta) D); seismic active earth pressure coefficient, phi = backfill friction angle, delta = wall/backfill friction angle, beta = slope of the back of the wall (p. 114)",
+        "Eq. 43: D = [1 + [sin(phi + delta) sin(phi - theta - i) / (cos(delta + beta + theta) cos(i - beta))]^(1/2)]^2; term in Eq. 42, i = slope of the backfill surface (p. 114)",
+        "Eq. 44: KPE = cos^2(phi - theta + beta) / (cos theta cos^2 beta cos(delta - beta + theta) D'); seismic passive earth pressure coefficient (p. 114)",
+        "Eq. 45: D' = [1 + [sin(phi + delta) sin(phi + i - theta) / (cos(delta - beta + theta) cos(i - beta))]^(1/2)]^2; term in Eq. 44, as printed (p. 114)",
+        "Eq. 46: theta = tan^-1(kh / (1 - kv)); seismic inertia angle, kh and kv = horizontal and vertical seismic coefficients as fractions of g (p. 114)"
+      ],
+      "figures": [
+        "Figure 55: Forces behind a gravity wall",
+        "Figure 56: Effect of seismic coefficients and friction angle on seismic active pressure coefficient (after Lam and Martin, 1986)"
+      ],
+      "tables": [],
+      "applicability": "Seismic design of anchored walls by Mononobe-Okabe pseudo-static and seismic deformation analysis"
+    },
+    {
+      "section_id": "5.10.2.2",
+      "title": "Wall Design Considerations",
+      "summary": "Brittle elements (grout/tendon bond) are designed for peak force using the site- and geometry-adjusted PGA; ductile elements (tendons, steel walls) for kh = 0.5 PGA; FS 1.1 for both. Design PGA averages the free field base value and the amplified top value.",
+      "body": "Brittle elements, e.g., the grout/tendon bond (section 4.2.2), should be governed by the peak force, using the peak ground acceleration (PGA) adjusted for local soil and wall geometry in the Mononobe-Okabe equation, with a factor of safety of 1.1. Ductile elements (tendons, steel sheet pile and soldier beam walls, sometimes the grout/ground bond, which may be brittle depending on soil) should be governed by cumulative permanent deformation: in lieu of a deformation analysis, a pseudo-static analysis with kh = 0.5 PGA should be appropriate, since Newmark analyses of translational slope failures show deformations for a yield acceleration of half the PGA are relatively small (no more than several centimeters) for all magnitudes; factor of safety 1.1. The free field PGA with local soil effects may be assumed at the wall base; the top PGA considers amplification by wall geometry; the design PGA may be the average of top and bottom values. The heading is printed \"5.10.2.2Wall Design Considerations\". (p. 116)",
+      "key_points": [
+        "Brittle elements: peak force from adjusted PGA; FS 1.1 (p. 116).",
+        "Ductile elements: kh = 0.5 PGA; FS 1.1 (p. 116).",
+        "Design PGA = average of free field base and amplified top values (p. 116)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Seismic design of anchored walls by Mononobe-Okabe pseudo-static and seismic deformation analysis"
+    },
+    {
+      "section_id": "5.10.2.3",
+      "title": "Liquefaction",
+      "summary": "Stabilize potentially liquefiable soils behind or in front of the wall where economical (densification, penetration grouting); otherwise take them as an equivalent fluid at saturated unit weight. Never form the bond zone in liquefiable soil.",
+      "body": "Where economically feasible, potentially liquefiable soils behind or in front of an anchored wall should be stabilized, by densification (before construction for foundation soils, or during or after backfill placement) and penetration grouting. If they cannot be stabilized, assume they exert an equivalent fluid pressure based on the saturated unit weight. The anchor bond zone should not be formed in liquefiable soil. The heading is printed \"5.10.2.3Liquefaction\". (p. 117)",
+      "key_points": [
+        "Stabilize liquefiable soils where economical (p. 117).",
+        "Otherwise equivalent fluid pressure at saturated unit weight (p. 117).",
+        "No bond zone in liquefiable soil (p. 117)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Seismic design of anchored walls by Mononobe-Okabe pseudo-static and seismic deformation analysis"
+    },
+    {
+      "section_id": "5.10.3",
+      "title": "External Stability",
+      "summary": "Heading for external stability: pseudo-static analysis (5.10.3.1) and seismic deformation analysis (5.10.3.2).",
+      "body": "Heading for external stability: pseudo-static analysis (5.10.3.1) and seismic deformation analysis (5.10.3.2); it has no text of its own. (p. 117)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Seismic design of anchored walls by Mononobe-Okabe pseudo-static and seismic deformation analysis"
+    },
+    {
+      "section_id": "5.10.3.1",
+      "title": "Pseudo-Static Analysis",
+      "summary": "Pseudo-static limit equilibrium with surfaces behind the anchors and beneath the toe; keep bond zones outside the Mononobe-Okabe wedge, whose inclination rho_A flattens with acceleration (Eq. 47, Figure 57). AASHTO: kh = 0.5A, minimum FS 1.1.",
+      "body": "External stability is evaluated by pseudo-static limit equilibrium analysis with surfaces passing behind the anchors and beneath the toe; the critical surface verifies proposed anchor lengths. The bond zone should lie outside the active Mononobe-Okabe wedge, which flattens with acceleration per Eq. 47, rho_A the inclination of the failure surface from horizontal, a = phi - i - theta, b = phi - beta - theta. As it flattens the surface extends farther; Figure 57 (p. 118) shows rho_A and the dynamic active and passive coefficients against kh, so static anchor lengths may need increasing for full seismic anchorage. AASHTO (1996) recommends kh = 0.5A for pseudo-static external stability, A the PGA from the AASHTO seismic risk map (10 percent probability of exceedance in 50 years), with a minimum factor of safety of 1.1. The heading is printed \"5.10.3.1Pseudo-Static Analysis\". (pp. 117 to 118)",
+      "key_points": [
+        "Surfaces behind anchors and beneath the toe (p. 117).",
+        "Bond zone outside the Mononobe-Okabe wedge; rho_A by Eq. 47 (Figure 57) (p. 117).",
+        "Static anchor lengths may need increasing (p. 117).",
+        "AASHTO: kh = 0.5A; minimum FS 1.1 (p. 118)."
+      ],
+      "equations": [
+        "Eq. 47: rho_A = (phi - theta) + tan^-1( ({tan(tan a + cot b)[1 + tan(delta + beta + theta) cot b]}^(1/2) - tan a) / (1 + tan(delta + beta + theta)(tan a + cot b)) ), a = phi - i - theta, b = phi - beta - theta; inclination from horizontal of the Mononobe-Okabe active failure surface, as printed (p. 117)"
+      ],
+      "figures": [
+        "Figure 57: Variation of failure surface inclination with horizontal acceleration coefficient"
+      ],
+      "tables": [],
+      "applicability": "Seismic design of anchored walls by Mononobe-Okabe pseudo-static and seismic deformation analysis"
+    },
+    {
+      "section_id": "5.10.3.2",
+      "title": "Seismic Deformation Analysis",
+      "summary": "Alternatively, a Newmark-type analysis finds the yield acceleration ky (FS = 1.0) for surfaces behind the anchors and estimates permanent displacement from ky/PGA (Figure 58, Hynes and Franklin 1984) or a formal Newmark analysis, using the free field PGA.",
+      "body": "As an alternative to pseudo-static design, external stability may be assessed by a Newmark-type seismic deformation analysis: a pseudo-static analysis gives the yield acceleration ky for surfaces behind the anchors, the smallest horizontal seismic coefficient reducing the factor of safety to 1.0. The ratio of ky to PGA gives the permanent displacement from design charts (Figure 58, p. 119, after Hynes and Franklin, 1984; upper bound, mean and mean plus one standard deviation) or a formal Newmark analysis (FHWA-SA-97-076, 1997). Use the free field PGA, which includes local site effects and better represents average acceleration over the excavation height than the amplified top-of-wall PGA. The heading is printed \"5.10.3.2Seismic Deformation Analysis\". (pp. 118 to 119)",
+      "key_points": [
+        "Yield acceleration ky: seismic coefficient giving FS = 1.0 (p. 118).",
+        "Displacement from ky/PGA (Figure 58) or a Newmark analysis (p. 118).",
+        "Use the free field PGA (pp. 118 to 119)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 58: Permanent seismic deformation chart (after Hynes and Franklin, 1984)"
+      ],
+      "tables": [],
+      "applicability": "Seismic design of anchored walls by Mononobe-Okabe pseudo-static and seismic deformation analysis"
+    },
+    {
+      "section_id": "5.11",
+      "title": "Other Design Issues",
+      "summary": "Heading for other design issues: wall and ground movements, drainage, appurtenances, the upper anchor test load and fill walls (5.11.1 to 5.11.5).",
+      "body": "Heading for other design issues: wall and ground movements (5.11.1), drainage systems (5.11.2), wall system appurtenances (5.11.3), resisting the upper anchor test load (5.11.4) and anchored walls for fill applications (5.11.5); it has no text of its own. (p. 119)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Anchored wall movements, drainage, appurtenances, upper anchor test load and fill walls"
+    },
+    {
+      "section_id": "5.11.1",
+      "title": "Wall and Ground Movements",
+      "summary": "In sands and stiff clays lateral wall movement averages about 0.2 percent H (maximum 0.5 percent H) and settlement behind the wall about 0.15 percent H (maximum 0.5 percent H); Figure 59 gives settlement profiles, Curves I and II for permanent walls. Flat anchors and adequate axial capacity limit settlement.",
+      "body": "Movement control needs vary: permanent walls in granular soils with no nearby structures pose little concern, but movement may be the main issue for urban temporary excavation support. Estimates come from semi-empirical performance data. In sands and stiff clays maximum lateral wall movement averages about 0.2%H with a maximum of about 0.5%H (H wall height), and maximum settlement behind the wall averages about 0.15%H with a maximum of about 0.5%H. Figure 59 (p. 120) gives settlement profiles behind braced and anchored walls (settlement/depth of excavation against distance/depth of excavation): Curve I sands, Curve II stiff to very hard clays, Curve III soft to medium clays; Curves I and II are commonly used for permanent anchored walls; settlements increase rapidly in soft to medium clays with marginal basal stability. Movements (p. 120): (1) cantilever movement before the first anchor, (2) wall settlement mobilizing end bearing, (3) elastic tendon elongation with load increase, (4) anchor yielding or load redistribution in the bond zone, (5) mass movement behind the anchors; the last three translate the wall and are small in competent soils. Excessive vertical settlement may cause significant lateral movement and high wall/anchor interface stresses; minimize it with flat anchors and an embedded portion designed for the axial loads. (pp. 119 to 120)",
+      "key_points": [
+        "Lateral movement about 0.2%H average, 0.5%H maximum (sands, stiff clays) (p. 119).",
+        "Settlement about 0.15%H average, 0.5%H maximum (p. 119).",
+        "Figure 59: Curves I (sands), II (stiff clays), III (soft clays) (p. 120).",
+        "Flat anchors and axial capacity limit wall settlement (p. 120)."
+      ],
+      "equations": [],
+      "figures": [
         "Figure 59: Settlement profile behind braced and anchored walls"
       ],
       "tables": [],
-      "applicability": "Tiedown anchor design, seismic design of anchored walls, and wall movement and drainage considerations"
+      "applicability": "Anchored wall movements, drainage, appurtenances, upper anchor test load and fill walls"
+    },
+    {
+      "section_id": "5.11.2",
+      "title": "Drainage Systems for Anchored Walls and Slopes",
+      "summary": "Subsurface water is collected by prefabricated drainage elements between lagging and CIP facing (or gravel behind precast facing), led to collector pipes or weepholes; horizontal drains have limits; surface water is diverted by grading, ditches, dikes or extended wall elements.",
+      "body": "With cast-in-place (CIP) facing, subsurface flow is usually collected by prefabricated drainage elements between wall and lagging, full length elements attached to the lagging at final grade or single strips at designed spacings. With shotcrete instead of timber lagging, prefabricated vertical drains are spiked against the soil in segments, spliced by shingling with an overlap of one strip width. With precast facing the space between temporary face and facing may be gravel-filled as the drainage element. Water flows down to collector pipes or out through the facing in longitudinal/outlet pipes or weepholes. Where flows are large, horizontal drains, small diameter perforated pipes in nearly horizontal holes (p. 121), may relieve trapped water (e.g., a wall at the base of a steep slope), extending beyond the critical surface; but (1) install them only at final grade unless a perched water table exists, (2) control alignment to avoid the anchors, no splaying from one entry point, (3) they usually cannot lower water to finished grade, as equipment height sets the lowest elevation and drains slope upward, (4) effluent collection needs special design for aesthetics. Surface water is directed away by grading, ditches or pipes; dikes near the top or wall elements extended above grade keep it out of the excavation. (pp. 120 to 121)",
+      "key_points": [
+        "Prefabricated drainage elements behind CIP facing; gravel behind precast (p. 120).",
+        "Shotcrete: drains spliced with one strip width overlap (p. 120).",
+        "Horizontal drains: final grade, alignment control, cannot reach road grade (p. 121).",
+        "Surface water by grading, ditches, dikes (p. 121)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Anchored wall movements, drainage, appurtenances, upper anchor test load and fill walls"
+    },
+    {
+      "section_id": "5.11.3",
+      "title": "Wall System Appurtenances",
+      "summary": "Identify utilities, drainage, traffic barriers, parapets and noise walls early; nearby utilities may be damaged by wall deformation and affect anchor inclination and spacing; barrier loads (AASHTO 1996) and noise wall foundations must be designed.",
+      "body": "Existing and proposed appurtenances can significantly affect design, construction and cost and should be identified early: (1) underground utilities and drainage, (2) traffic barriers and parapet walls, (3) noise walls. The site investigation should locate all facilities; nearby telephone cables and gas and water lines may be overstressed by abrupt vertical and horizontal wall deformation, requiring relocation or protection that adds time and cost, and their location influences anchor inclination, spacing and construction sequence. Earth pressures from barrier and parapet dead weight and impact loads must be included (AASHTO, 1996) (p. 122). Noise wall foundations resist wind loads; noise walls may be cast integrally with or founded independently of the anchored wall. (pp. 121 to 122)",
+      "key_points": [
+        "Identify utilities, barriers, parapets and noise walls early (p. 121).",
+        "Utilities influence anchor inclination and spacing (p. 121).",
+        "Barrier loads per AASHTO 1996; noise wall foundations for wind (p. 122)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Anchored wall movements, drainage, appurtenances, upper anchor test load and fill walls"
+    },
+    {
+      "section_id": "5.11.4",
+      "title": "Resisting the Upper Anchor Test Load",
+      "summary": "Always check passive capacity at the uppermost anchor: Fp = 1.125 Kp gamma h1^2 s (Eq. 48, FHWA-RD-97-103), developed over 1.5 times the anchor depth; the allowable value, Fp/1.5, must exceed the upper anchor test load.",
+      "body": "Where the ground behind the upper wall is disturbed or the anchor load is high, the soldier beam may deflect excessively while the upper anchor is tested; the ground behind the beam must develop enough passive resistance, and for all designs the passive capacity at the uppermost anchor must be checked. The required passive capacity of the beam may be calculated by Eq. 48 (FHWA-RD-97-103, 1998), assuming passive resistance Fp develops over 1.5 times the depth to the upper anchor; Kp from Figure 16 or 17, h1 the depth to the upper anchor, s the horizontal spacing. A factor of safety of 1.5 on the maximum capacity gives the allowable resistance, which should exceed the upper anchor test load. (p. 122)",
+      "key_points": [
+        "Check passive capacity at the uppermost anchor for all walls (p. 122).",
+        "Fp = 1.125 Kp gamma h1^2 s (Eq. 48) over 1.5 h1 (p. 122).",
+        "Allowable = Fp/1.5, greater than the upper anchor test load (p. 122)."
+      ],
+      "equations": [
+        "Eq. 48: Fp = 1.125 Kp gamma h1^2 s; passive capacity of the soldier beam to resist the upper anchor test load, developed over 1.5 times the depth to the upper anchor, Kp from Figure 16 or 17, h1 = depth to the upper ground anchor, s = horizontal spacing (factor of safety 1.5 on Fp) (p. 122)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Anchored wall movements, drainage, appurtenances, upper anchor test load and fill walls"
+    },
+    {
+      "section_id": "5.11.5",
+      "title": "Anchored Walls for Fill Applications",
+      "summary": "Bottom-up fill anchored walls apply only to rehabilitation: backfill and stress anchors in stages, restressing to lock-off; design for actual (theoretical) earth pressures; use select backfill and light compaction. Where standard testing is impossible, test preproduction anchors to 200 percent.",
+      "body": "Highway anchored walls are usually built top-down; bottom-up construction in fill applies only to rehabilitating existing walls (FHWA-DP-90-068-003, 1990), new fill walls usually being mechanically stabilized earth. Sequence for two levels: install soldier beams (or confirm the existing wall can take the anchor loads); backfill and lag to about midheight between the anchor levels; install the bottom anchors; stress them without significant inward wall movement, possibly below lock-off (p. 123); backfill to at least 1 m above the top anchors; restress the bottom anchors to lock-off; install and temporarily stress the top anchors; backfill to finished grade; restress the top anchors to lock-off. Use select backfill compacted at low energy with small equipment to protect tendons; poor backfill settlement bends anchors at the connection, which they are not designed for. Design loads are earth pressures with the wall fully backfilled and surcharged; early anchors may not be testable to 133 percent, so they are stressed to a small nominal load and locked off, and restressed as backfill rises; after finished grade they may be tested to 133 percent if passive resistance and the face allow. Anchors carry actual earth pressure loads rather than apparent envelopes, wall movement following theoretical envelopes. Where standard testing is impossible, install preproduction anchors in similar ground, performance test them and load to 200 percent of production design load; passing implies production anchors would pass at 133 percent. (pp. 122 to 123)",
+      "key_points": [
+        "Bottom-up fill walls only for rehabilitation (p. 122).",
+        "Staged backfill, stressing and restressing to lock-off (pp. 122 to 123).",
+        "Select backfill, light compaction; anchors not designed for bending (p. 123).",
+        "Design for actual earth pressures, not apparent envelopes (p. 123).",
+        "Preproduction anchors to 200 percent where standard testing impossible (p. 123)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Anchored wall movements, drainage, appurtenances, upper anchor test load and fill walls"
     }
   ]
 }

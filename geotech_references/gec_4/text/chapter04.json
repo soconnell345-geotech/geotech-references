@@ -5,57 +5,187 @@
   "chapter_title": "Basic Principles of Anchored System Design",
   "sections": [
     {
-      "section_id": "4.1-4.2",
-      "title": "General Design Concepts and Failure Mechanisms",
-      "summary": "Anchored wall design creates an internally stable soil mass resisting internal failure modes (anchor pullout, tendon failure, wall bending/passive/axial failure, overturning, sliding, rotational failure). Key limits: tendon load ≤ 60% SMTS (final design) and ≤ 80% SMTS (test/temporary loading). Bond length >9–12 m in soil does not significantly increase capacity due to progressive mobilization. Creep-susceptible soils (organics; LI >0.2; LL >50; PI >20) require conservative design loads. Grout-tendon bond is not linearly proportional to grout strength. Lock-off load: typically 75–100% of design load.",
-      "body": "General design concept: An anchored wall creates an internally stable soil mass that resists external failure modes. Design concentrates on stability against: (a) tensile failure of tendon; (b) pullout failure of grout-ground bond; (c) pullout failure of grout-tendon bond; (d) failure of wall in bending; (e) insufficient passive capacity; (f) forward rotation before first anchor installed; (g) insufficient axial capacity of wall; (h) overturning; (i) sliding; (j) rotational failure of ground mass. Anchor bond length is located behind the critical failure surface; anchor loads must be transmitted behind the active zone.\n\nFailure of steel tendon: Tendon load must not exceed 60% of specified minimum tensile strength (SMTS) for final design. For temporary loading (e.g., load testing), 80% of SMTS is the maximum.\n\nFailure of ground mass: Shallow soil anchors — passive soil wedge failure at <4.5 m depth. Rock anchors — 45-degree cone failure for shallow installations; mass failure rare for anchors embedded >4.5 m.\n\nFailure of ground-grout bond: Bond mobilized progressively; load transfer starts nearest the load application and progresses deeper. Bond length beyond 9 to 12 m in uniform soil does not significantly increase capacity — upper bond zone degrades to residual strength before full length is mobilized. Creep-susceptible soils: organics, clay with LI = (wn-PL)/PI > 0.2 (Eq 1), LL > 50, or PI > 20. Use conservative design loads in such soils unless a predesign test program justifies higher values. Drill hole must be cleaned and grouted quickly after drilling to ensure ground-grout bond.\n\nFailure of grout-tendon bond: Three mechanisms: adhesion, friction, mechanical interlock (dominant for threadbars). Bond is not linearly proportional to grout compressive strength — a 25% increase in grout strength may increase bond by only 12%. Flaky rust lowers bond; wiping rust increases roughness and restores or exceeds bond of a clean bar. Request ASTM A981 bond test results from mill.\n\nSoldier beam failures: Lateral resistance most critical during stressing of first anchor and at final excavation. Apply FS = 1.5 to passive resistance. Interface wall friction = 0° assumed above excavation base (small relative movements; soil removal; small actual transfer). Axial capacity below excavation base per deep foundation methods; consider reduced effective stress from excavation stress relief and shear capacity between structural steel and lean-mix concrete backfill.\n\nLock-off load: typically 75 to 100% of design load.",
+      "section_id": "4.1",
+      "title": "General Design Concepts for Anchored Walls",
+      "summary": "An anchored wall creates an internally stable soil mass secure against the failure conditions of Figure 11 with limited movement. Anchors transfer the required force behind the active zone (Figure 12a), and bond lengths must extend past deep potential failure surfaces with inadequate factors of safety (Figure 12b).",
+      "body": "The concept of an anchored wall system is an internally stable soil mass resisting external failure modes at adequate serviceability. Design aims for a final wall secure against a range of potential failure conditions (Figure 11, p. 27: (a) tensile failure of tendon; (b) pullout of grout/ground bond; (c) pullout of tendon/grout bond; (d) wall bending failure; (e) insufficient passive capacity; (f) forward rotation, cantilever before the first anchor; (g) insufficient axial capacity; (h) overturning; (i) sliding; (j) rotational failure of the ground mass), limiting soil and wall movement on a practical, economical construction basis, and considering mobilization of resistance by both anchors and wall elements. The total anchor force needed for equilibrium follows from soil, water and external loads; anchors transmit the stabilizing forces back into the soil at a suitable distance behind the active zone loading the wall (Figure 12a, p. 28), which generally sets the minimum distance behind the wall of the anchor bond length. The bond length must also extend to intersect potentially critical failure surfaces passing behind the anchors and below the wall base (Figure 12b); the required depth follows from the deepest potential failure surfaces with insufficient factor of safety without anchor force. In summary: the wall should support the soil immediately adjacent to the excavation in equilibrium, typically governing the maximum anchor force and wall dimensions, strength and bending moments; and the anchors should extend deep enough to act on the range of shallow and deep-seated surfaces with inadequate factors of safety so they reach an acceptable factor of safety. (pp. 26 to 28)",
       "key_points": [
-        "Tendon load limit: ≤ 60% SMTS (final design); ≤ 80% SMTS (test/temporary loading)",
-        "Bond length >9–12 m in soil: no significant capacity increase due to progressive bond mobilization",
-        "Creep-susceptible soils: organics, LI>0.2, LL>50, PI>20 — use conservative loads unless predesign tests justify otherwise",
-        "Grout-tendon bond NOT linearly proportional to grout strength; ASTM A981 bond test required",
-        "Interface wall friction = 0° assumed above excavation base; axial capacity per deep foundation methods below",
-        "Lock-off load: 75–100% of design load"
+        "Design against the failure conditions of Figure 11 with limited movement (p. 26).",
+        "Anchor forces transmitted behind the active zone (Figure 12a) (p. 26).",
+        "Bond lengths intersect deep potential failure surfaces with inadequate FS (Figure 12b) (p. 26).",
+        "Wall support of adjacent soil governs anchor force and wall section (p. 26)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 11: Potential failure conditions to be considered in design of anchored walls",
+        "Figure 12: Contribution of ground anchors to wall stability"
+      ],
+      "tables": [],
+      "applicability": "General anchored wall design philosophy and failure mechanism identification"
+    },
+    {
+      "section_id": "4.2",
+      "title": "Failure Mechanisms of Anchored Systems",
+      "summary": "Heading for failure mechanisms of anchored systems: general (4.2.1), the ground anchor (4.2.2), soldier beams (4.2.3) and lagging (4.2.4).",
+      "body": "Heading for failure mechanisms of anchored systems: general (4.2.1), failure mechanisms of the ground anchor (4.2.2), failure of soldier beams (4.2.3) and failure of lagging (4.2.4); it has no text of its own. (p. 28)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Failure mechanisms of ground anchors, soldier beams and lagging to be checked in anchored system design"
+    },
+    {
+      "section_id": "4.2.1",
+      "title": "General",
+      "summary": "For economy the designer specifies only the parameters needed for long-term stability and leaves anchor details to the contractor; each installed anchor is tested above its design load. The designer must consider the possible failure mechanisms.",
+      "body": "Many types of anchored systems can usually meet a project's needs. For maximum economy the designer should specify only the parameters needed for long-term stability and leave final selection of anchor details to the contractor. Performance is evaluated by testing each installed anchor at loads exceeding the design load. To decide what to specify, the designer must consider the possible failure mechanisms. (p. 28)",
+      "key_points": [
+        "Specify only what long-term stability needs; contractor selects anchor details (p. 28).",
+        "Every installed anchor tested above design load (p. 28)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Failure mechanisms of ground anchors, soldier beams and lagging to be checked in anchored system design"
+    },
+    {
+      "section_id": "4.2.2",
+      "title": "Failure Mechanisms of the Ground Anchor",
+      "summary": "Anchor failures come from excessive static load. Tendon load at most 60 percent of SMTS in design and 80 percent temporarily; ground mass failure not a factor below 4.5 m; ground-grout bond mobilizes progressively, little gain beyond 9 to 12 m (Table 3); creep-prone soils (organic, LI > 0.2 by Eq. 1, LL > 50, PI > 20); grout-tendon bond by adhesion, friction, interlock (ASTM A981).",
+      "body": "Anchor failures are usually caused by excessive static loading from (1) tension during load testing or at lock-off, (2) excavation sequence, (3) surcharge by construction materials or equipment, (4) adjacent construction, or (5) a combination; mechanisms involve the steel tendon, the ground mass, the ground-grout zone and the grout-tendon zone. Steel tendon: failure is inevitable if load exceeds structural capacity, so the tendon load should not exceed 60 percent of the specified minimum tensile strength (SMTS) for final design and 80 percent of SMTS for temporary conditions (e.g., testing). Ground mass (p. 29): for shallow soil anchors, uplift of a soil mass in front of the bond zone then pullout, a shear surface resembling passive failure; practically not a factor for anchors embedded more than 4.5 m. Shallow rock anchors in sound bedrock fail along a cone at about 45 degrees from the anchorage, varying in fractured or bedded rock; rock mass failure seldom occurs below 4.5 m, the rock-grout or grout-tendon bond being much weaker than the rock. Ground-grout bond: skin friction depends on normal stress on the grout and adhesion and friction at the interface (underreamed anchors add base resistance); it mobilizes progressively from the loaded end along the bond length until the ultimate bond is exceeded at the far end and the anchor pulls out; improperly grouted anchors with grout between bearing plate and bond zone show no load transfer to the bond length. Table 3 (p. 30), small diameter anchors in uniform soil, cohesionless/cohesive: soil properties, friction angle and grain size distribution / adhesion and plasticity index; drilling, driven casing increases normal stress and friction / drilling without casing or with fluids decreases capacity; bond length, steady increase in capacity to 6 m with moderating increases to 12 m / steady increase for undrained strength less than 96 kPa; hole diameter, slight increase to 100 mm / increases to 300 mm; grout pressure, capacity increases with pressure / increases only with stage grouting, avoid high initial pressures; note: clean the hole and grout as quickly as possible after drilling. Increasing typical soil bond lengths beyond 9 to 12 m does not significantly increase resistance, possibly because upper interface resistance drops to residual; longer bonds need special procedures. Creep (p. 30): susceptible deposits are (1) organic soils, (2) clays with average liquidity index (LI) over 0.2, (3) clays with average liquid limit (LL) over 50, (4) clays with average plasticity index (PI) over 20; use conservative design loads and bond stresses for permanent anchors in them unless predesign or preproduction tests (section 5.3.6) justify otherwise. LI by Eq. 1: low LI means moisture near PL (potentially overconsolidated or stiff), LI near 1.0 near LL (potentially normally consolidated or soft). Grout-tendon bond (p. 31): adhesion, friction and mechanical interlock, the last dominant for threadbars; on smooth tendons bond mobilizes progressively, and after slip only friction (about half the maximum) remains. Bond is not linearly proportional to grout strength (e.g., 17.2 MPa bond for 27.6 MPa grout rises only 12 percent to 19.3 MPa when grout strength rises 25 percent to 34.5 MPa); added embedment adds bond at reduced unit values; flaky rust lowers bond but wiping the loosest rust gives a bond equal to or greater than unrusted bar; pitted bars cannot be accepted; loose powdery rust has no significant effect. Owners should request mill test reports for each lot, including strand bond capacity tests per ASTM A981 (1997, prompted by manufacturing residues reducing strand-grout bond). (pp. 28 to 31)",
+      "key_points": [
+        "Tendon load at most 60 percent SMTS (design), 80 percent SMTS (temporary, testing) (p. 28).",
+        "Ground mass failure not a factor for anchors deeper than 4.5 m (p. 29).",
+        "Ground-grout bond mobilizes progressively; little gain beyond 9 to 12 m (p. 29).",
+        "Table 3: factors influencing bond stress transfer in cohesionless and cohesive soils (p. 30).",
+        "Creep-prone: organic soils, LI > 0.2, LL > 50, PI > 20 (p. 30).",
+        "LI = (wn - PL)/PI (Eq. 1) (p. 30).",
+        "Request mill test reports with ASTM A981 strand bond tests (p. 31)."
       ],
       "equations": [
-        {
-          "equation_id": "4-1",
-          "description": "Liquidity index for identifying creep-susceptible clay soils",
-          "latex": "LI = \\frac{w_n - PL}{PI}",
-          "variables": {
-            "LI": "liquidity index (LI > 0.2 indicates creep-susceptible clay)",
-            "w_n": "natural moisture content of the clay",
-            "PL": "plastic limit",
-            "PI": "plasticity index = LL - PL"
-          },
-          "implemented_in": null
-        }
+        "Eq. 1: LI = (wn - PL) / PI; liquidity index, where the moisture content of a clay falls between its plastic and liquid limits, wn = moisture content, PL = plastic limit, PI = plasticity index (p. 30)"
       ],
-      "figures": [
-        "Figure 11: Potential failure conditions for anchored walls",
-        "Figure 12: Contribution of ground anchors to wall stability",
+      "figures": [],
+      "tables": [
         "Table 3: Typical factors influencing bond stress transfer for small diameter ground anchors"
       ],
-      "tables": [
-        "Table 3: Typical factors influencing bond stress transfer for small diameter ground anchors (cohesionless and cohesive soils)"
+      "applicability": "Failure mechanisms of ground anchors, soldier beams and lagging to be checked in anchored system design"
+    },
+    {
+      "section_id": "4.2.3",
+      "title": "Failure of Soldier Beams",
+      "summary": "Soldier beam lateral resistance is most critical when testing the first anchor and at final excavation; apply a safety factor of 1.5 to passive resistance. No vertical load transfer above the excavation base is assumed (wall friction 0); below it, use deep foundation methods with the averaged effective stress and checked load sharing for lean-mix fill.",
+      "body": "Soldier beams take lateral and vertical loads from the retained soil and anchor prestressing. Lateral resistance is most critical during stressing and testing of the first anchor level, often at shallow depth with low passive resistance behind the beam (p. 32), and at final excavation. Deflections are limited in design by a safety factor of 1.5 on passive resistance and in construction by tight upper lagging and not removing soil behind the beam; at final excavation passive resistance in front must restrain the toe for long-term loads and future undercuts. Vertical load transfer above grade to the soil behind the beam is hard to estimate and creates a negative wall friction angle on the active block, raising earth pressure; the document assumes no load transfer (interface wall friction angle = 0 degrees) above the excavation base because relative movements are small, removing soil from the face may reduce the \"bond\", and the transferred load is usually small; other procedures may be used with documentation of the movements needed. Below the base, vertical capacity follows common deep foundation procedures, with two issues: excavation stress relief reduces effective stress on the embedded part, commonly taken as the average of the effective stresses from the retained height behind and the soil depth in front; and for sections in predrilled holes, structural concrete fill shares axial and lateral load (lateral capacity on the hole diameter), but with nonstructural (\"lean-mix\") concrete the shear capacity between steel and fill may not allow load sharing and should be checked. (pp. 31 to 32)",
+      "key_points": [
+        "Most critical: first anchor testing and final excavation (p. 31).",
+        "Safety factor of 1.5 on passive resistance limits deflection (p. 32).",
+        "No vertical load transfer above the excavation base assumed (wall friction 0) (p. 32).",
+        "Effective stress below base: average of retained-side and front-side values (p. 32).",
+        "Check steel to lean-mix shear before assuming load sharing (p. 32)."
       ],
-      "applicability": "General anchored wall design philosophy and failure mechanism identification"
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Failure mechanisms of ground anchors, soldier beams and lagging to be checked in anchored system design"
+    },
+    {
+      "section_id": "4.2.4",
+      "title": "Failure of Lagging",
+      "summary": "Timber lagging usually carries temporary excavation loads only (pressure-treated lagging has carried permanent loads) and is excluded from the final facing design; it is sized from experience-based charts accounting for soil arching (FHWA-RD-75-130, 1976).",
+      "body": "Timber lagging generally supports only temporary loads during excavation, though pressure-treated timber lagging has supported permanent loads. Temporary lagging is not included in the structural design of the final wall face. It is not designed by traditional methods but sized from charts based on project experience that account for soil arching between adjacent soldier beams (FHWA-RD-75-130, 1976) (p. 33). The heading is printed \"4.2.4.\". (pp. 32 to 33)",
+      "key_points": [
+        "Timber lagging usually temporary; excluded from final facing design (p. 32).",
+        "Sized from experience charts accounting for soil arching (FHWA-RD-75-130) (p. 33)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Failure mechanisms of ground anchors, soldier beams and lagging to be checked in anchored system design"
     },
     {
       "section_id": "4.3",
       "title": "Selection of Soil Shear Strength Parameters for Design",
-      "summary": "Granular soil friction angle from SPT/CPT correlations. NC clay: undrained shear strength Su from CU triaxial tests; Su is testing-mode dependent — compression for active earth pressure, extension for passive (lateral) capacity. OC clay: undrained strength exceeds drained in short term but drained governs long-term — use drained effective stress analysis. For OC clay long-term analysis, use fully softened strength (zero cohesion intercept) because wall deformations are sufficient to mobilize peak cohesion loss. Use residual strength for walls at existing failure surfaces.",
-      "body": "Granular soil: Use drained effective stress friction angle φ'. Since undisturbed sampling of granular soil is difficult, φ' is typically estimated from SPT and CPT correlations.\n\nNormally to lightly OC clay (undrained condition governs short-term): Positive pore pressures develop during contractive shear, reducing effective stress and mobilized strength. Su from CU triaxial testing with pore pressure measurements is preferred. UC and UU tests may give erroneous results due to sampling disturbance. Su is not a unique property — it depends on test mode, loading rate, initial stress state. For anchored wall earth pressure analysis, Su from triaxial compression. For lateral capacity of wall toe (passive zone), Su from triaxial extension is more appropriate (extension loading path approximates excavation unloading; passive zone strength can be less than active zone strength in certain clays).\n\nHeavily OC clay: Excavation induces soil expansion with negative pore pressures that enhance short-term strength. Over time, pore pressures dissipate and strength decreases. OC clay is often fissured — local drainage can occur at discontinuities. Therefore, design analyses for OC clay should use drained effective stress parameters. Zero cohesion (c' = 0) should be used for long-term anchored wall design in stiff to hard fissured clays (fully softened strength), unless local experience supports use of cohesion. For walls at existing failure surfaces (e.g., active landslide stabilization), use residual strength per Stark and Eid (1994) correlations with clay size fraction and liquid limit.",
+      "summary": "Heading for selection of soil shear strength parameters: general (4.3.1), granular soils (4.3.2), normally consolidated clay (4.3.3), and overconsolidated clay undrained (4.3.4) and drained (4.3.5).",
+      "body": "Heading for selection of soil shear strength parameters for design: general (4.3.1), drained strength of granular soils (4.3.2), undrained strength of normally consolidated clay (4.3.3), undrained strength of overconsolidated clay (4.3.4) and drained strength of overconsolidated clay (4.3.5); it has no text of its own. (p. 33)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Shear strength selection for anchored wall earth pressure and stability analysis"
+    },
+    {
+      "section_id": "4.3.1",
+      "title": "General",
+      "summary": "Retained soil strength governs earth pressures, axial and lateral capacity of the embedded wall and external stability; emphasis is on temporary walls in soft to medium clays and walls in heavily overconsolidated stiff to hard clays.",
+      "body": "The section guides selection of soil shear strength parameters for anchored system design, needed to evaluate earth pressures on the wall, axial and lateral capacity of its embedded portion, and external stability. It emphasizes temporary walls in normally to lightly overconsolidated soft to medium clays and temporary and permanent walls in heavily overconsolidated stiff to hard clays. (p. 33)",
       "key_points": [
-        "Granular soil: drained φ' from SPT/CPT correlations; undisturbed sampling impractical",
-        "NC clay: Su from CU triaxial (preferred); UU and UC may be erroneous due to disturbance",
-        "Su mode-dependent: compression for active earth pressure; extension for passive/wall toe capacity",
-        "OC clay: use drained effective stress analysis for long-term; zero cohesion (fully softened strength)",
-        "Existing failure surface in OC clay: use residual strength per Stark and Eid (1994)"
+        "Strength governs earth pressure, embedded capacity and external stability (p. 33).",
+        "Emphasis on soft to medium clays (temporary) and stiff to hard overconsolidated clays (p. 33)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Shear strength selection for anchored wall earth pressure and stability analysis"
+    },
+    {
+      "section_id": "4.3.2",
+      "title": "Drained Shear Strength of Granular Soils",
+      "summary": "Granular soil strength is the drained friction angle phi', estimated from SPT or CPT results since undisturbed sampling is difficult.",
+      "body": "The drained shear strength of granular soil is conventionally the drained effective stress friction angle phi'. Because undisturbed sampling of granular deposits is difficult, the design friction angle may be estimated from in situ penetration tests such as the SPT and CPT. (p. 33)",
+      "key_points": [
+        "Drained friction angle phi' for granular soils (p. 33).",
+        "Estimated from SPT or CPT (p. 33)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Shear strength selection for anchored wall earth pressure and stability analysis"
+    },
+    {
+      "section_id": "4.3.3",
+      "title": "Undrained Shear Strength of Normally Consolidated Clay",
+      "summary": "Soft to medium clays contract in shear, generating positive pore pressures, so the short term undrained condition governs temporary walls. Prefer consolidated undrained triaxial tests with pore pressures; Su depends on test mode: compression for wall pressures, extension (or correlations) for toe capacity.",
+      "body": "Undrained instability develops mainly under contractive shear, typical of normally to lightly overconsolidated soft to medium clays: the tendency to contract cannot be realized at the rate of shearing, positive pore pressures reduce effective stress and frictional resistance, and short term undrained resistance is less than drained, so the short term condition is critical for temporary walls in these clays. Su may be found by in situ (CPT, FVT) and laboratory methods (Kulhawy and Mayne, 1990), typically triaxial tests on nominally undisturbed samples at natural water content; consolidated undrained triaxial tests with pore pressure measurement are preferred, unconfined and unconsolidated undrained tests possibly erroneous from disturbance and no reconsolidation. Su is not a fundamental property and depends on test mode, boundary conditions, loading rate, initial stress and other variables (p. 34), so the designer should consider how field strength differs from measured: for a temporary wall in soft to medium clay, earth pressures may use triaxial compression strength, but toe lateral capacity is better evaluated with triaxial extension strength, which better models excavation unloading, passive zone strength possibly being less than active zone strength in some clays; correlations can convert compression strength to other loading paths (Kulhawy and Mayne, 1990). (pp. 33 to 34)",
+      "key_points": [
+        "Contractive shear: short term undrained condition critical for temporary walls (p. 33).",
+        "Prefer CU triaxial tests with pore pressure measurement (p. 33).",
+        "Su depends on test mode (p. 34).",
+        "Compression strength for earth pressure; extension strength for toe capacity (p. 34)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Shear strength selection for anchored wall earth pressure and stability analysis"
+    },
+    {
+      "section_id": "4.3.4",
+      "title": "Undrained Shear Strength of Overconsolidated Clay",
+      "summary": "Excavation in overconsolidated clay produces negative pore pressures and temporarily higher undrained strength, but fissures allow rapid local drainage, so design in overconsolidated clays should use drained, effective stress parameters.",
+      "body": "Under excavation unloading, clay tends to expand as it mobilizes friction; this is resisted by negative pore pressures that raise effective stress and resistance, so short-term undrained strength and stability of an overconsolidated clay potentially exceed the drained values. Temporary and permanent walls are commonly built in stiff to hard overconsolidated clays, often fissured, allowing relatively rapid local drainage along discontinuities, so the period over which enhanced undrained strength applies cannot be defined with certainty. Design analyses in overconsolidated clays should therefore use drained, effective stress parameters. (p. 34)",
+      "key_points": [
+        "Excavation unloading gives temporarily higher undrained strength (p. 34).",
+        "Fissures allow rapid drainage (p. 34).",
+        "Design in overconsolidated clays with drained effective stress parameters (p. 34)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Shear strength selection for anchored wall earth pressure and stability analysis"
+    },
+    {
+      "section_id": "4.3.5",
+      "title": "Drained Shear Strength of Overconsolidated Clay",
+      "summary": "Drained stiff clay strength falls from peak to fully softened and, at large displacement, residual (Figure 13). Use zero cohesion for long-term walls in stiff to hard fissured clays unless local experience supports it; the fully softened strength is the conservative design value; residual where a failure surface exists (Stark and Eid, 1994).",
+      "body": "Figure 13 (p. 35) shows drained shearing of an overconsolidated stiff clay: relatively uniform displacement to the peak stress tau_p, then concentration on a newly formed failure plane and reduction to tau_d, approximately the strength of the same clay normally consolidated (the fully softened strength, as from laboratory consolidation of a slurry); in relatively high plasticity clays further displacement along a major discontinuity reduces it to the residual strength tau_r. The designer must choose peak, fully softened or residual strength. The extra peak strength from cohesion (c' in Figure 13) reduces rapidly with strain beyond peak, and flexible anchored wall deformations may reduce it appreciably, so unless local experience supports a reliable value, zero cohesion should be used for long-term (drained) analyses of walls in stiff to hard fissured clays; the conservative drained strength is the fully softened strength, from triaxial compression tests with pore pressure measurement. Residual strengths should be used where there is evidence of an existing failure surface in the clay (e.g., stabilizing an active landslide); Stark and Eid (1994) correlate residual friction angle with clay size fraction and liquid limit. (pp. 34 to 35)",
+      "key_points": [
+        "Peak, fully softened and residual strengths (Figure 13) (p. 34).",
+        "Zero cohesion for long-term analyses in stiff to hard fissured clays (p. 35).",
+        "Fully softened strength is the conservative drained design strength (p. 35).",
+        "Residual strength where a failure surface exists (Stark and Eid 1994) (p. 35)."
       ],
       "equations": [],
       "figures": [
-        "Figure 13: Simplified drained stress-displacement relationship for stiff clay (peak, fully softened, residual strengths)"
+        "Figure 13: Simplified drained stress-displacement relationship for a stiff clay (modified after CIRIA, 1984)"
       ],
       "tables": [],
       "applicability": "Shear strength selection for anchored wall earth pressure and stability analysis"
@@ -63,76 +193,95 @@
     {
       "section_id": "4.4",
       "title": "Earth Pressures",
-      "summary": "Active and passive earth pressures from Rankine theory (smooth wall, horizontal backslope): KA = (1-sinφ')/(1+sinφ') = tan²(45-φ'/2); KP = (1+sinφ')/(1-sinφ') = tan²(45+φ'/2). For cohesive soils: include c' terms. For undrained: KAT = 1 - 2Su/σv; KPT = 1 + 2Su/σv. Ko = 1-sinφ' (NC soil). Wall friction δ = 0.5φ' to 1.0φ' for passive resistance; δ = 0.5φ' for sheet-pile walls. Log-spiral method (not Coulomb) is recommended for passive pressure since Coulomb planar failure surface overestimates KP. For flexible anchored walls, trapezoidal apparent earth pressure envelopes (not triangular active) are used for design.",
-      "body": "Three earth pressure conditions: (1) active — minimum lateral pressure when wall moves away from retained soil; (2) passive — maximum lateral pressure when wall moves toward soil; (3) at-rest — no wall movement.\n\nRankine equations (smooth wall, horizontal backslope, cohesionless soil):\n- KA = (1 - sinφ')/(1 + sinφ') = tan²(45 - φ'/2) (Eq 2)\n- KP = (1 + sinφ')/(1 - sinφ') = tan²(45 + φ'/2) (Eq 3)\n\nFor cohesive soils (effective stress, c' and φ'):\n- σh(active) = KA × σ'v - 2c'√KA (Eq 4)\n- σh(passive) = KP × σ'v + 2c'√KP (Eq 5)\n\nFor undrained (total stress, φ=0, c=Su):\n- KAT = 1 - 2Su/σv (Eq 6)\n- KPT = 1 + 2Su/σv (Eq 7)\n\nEarth pressure at rest: Ko = 1 - sinφ' (Eq 8). Typical Ko: NC clay 0.55-0.65; sand 0.4-0.5; lightly OC clay (OCR≈4) up to 1; heavily OC clay (OCR>4) up to >2.\n\nLog-spiral method for passive pressures: Recommended over Coulomb (planar failure surface is unconservative for passive). Wall friction δ = 0.5φ' to 1.0φ' for passive calculations; δ = 0.5φ' for sheet-pile walls.\n\nInfluence of movement on earth pressure: Top-down construction with excavation, anchor installation, prestressing, and lock-off creates a non-triangular stress distribution. Model wall studies (FHWA-RD-98-067) show: cantilever stage — triangular active; anchor stressing — pressure bulge near anchor approaching passive; excavation to lower anchor level — reduced pressure between anchors, increased at anchors and subgrade; end of construction — trapezoidal distribution (apparent earth pressure envelope). Triangular active pressure assumption overestimates wall bending moments near subgrade and underestimates anchor loads. For flexible walls in competent ground, apparent earth pressure envelopes (trapezoidal) are appropriate. Walls in weak ground may experience large rotation developing full active conditions.",
+      "summary": "Heading for earth pressures: general (4.4.1), active and passive (4.4.2), at rest (4.4.3) and the influence of movement (4.4.4).",
+      "body": "Heading for earth pressures: general (4.4.1), active and passive earth pressure (4.4.2), earth pressure at rest (4.4.3) and influence of movement on earth pressure (4.4.4); it has no text of its own. (p. 36)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Earth pressure theory and apparent earth pressure concepts for flexible anchored wall design"
+    },
+    {
+      "section_id": "4.4.1",
+      "title": "General",
+      "summary": "Walls resist earth and water pressures from soil weight, earthquakes and surcharges; active, passive and at-rest conditions are considered. Linear theory simplifies processes depending on movement mode, flexibility, soil properties, prestress and interface friction, so flexible anchored walls use semi-empirical apparent pressure envelopes.",
+      "body": "A wall system resists the lateral earth and water pressures behind it, earth pressures arising mainly from the retained soil's weight, earthquake ground motion and surcharges. Three conditions are considered: (1) active, (2) passive and (3) at-rest earth pressure. Simple linear active and passive pressures from theory considerably simplify complex processes depending on (1) mode of wall movement (rotation, translation), (2) wall flexibility, (3) soil stiffness and strength, (4) horizontal prestress in the ground and (5) wall/soil interface friction. For anchored walls with flexible elements, semi-empirical \"apparent earth pressure envelopes\" are commonly used. (p. 36)",
       "key_points": [
-        "KA = tan²(45-φ'/2); KP = tan²(45+φ'/2) for Rankine smooth wall horizontal backslope",
-        "Undrained: KAT = 1 - 2Su/σv; KPT = 1 + 2Su/σv",
-        "Ko = 1-sinφ'; NC clay 0.55–0.65; sand 0.4–0.5; heavily OC (OCR>4) can exceed 2",
-        "Use log-spiral (not Coulomb) for passive pressure — Coulomb overestimates KP",
-        "Wall friction for passive: δ = 0.5φ' to 1.0φ'; δ = 0.5φ' recommended for sheet-pile walls",
-        "Apparent earth pressure envelopes (trapezoidal) used for flexible anchored wall design — not triangular active"
+        "Active, passive and at-rest conditions considered (p. 36).",
+        "Linear theory simplifies movement-dependent processes (p. 36).",
+        "Flexible anchored walls use apparent earth pressure envelopes (p. 36)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Earth pressure theory and apparent earth pressure concepts for flexible anchored wall design"
+    },
+    {
+      "section_id": "4.4.2",
+      "title": "Active and Passive Earth Pressure",
+      "summary": "For a smooth wall with level backslope (Rankine, Figures 14, 15), KA and KP by Eqs. 2 and 3; with c', Eqs. 4 and 5; undrained (phi = 0), KAT = 1 - 2Su/sigma_v and KPT = 1 + 2Su/sigma_v (Eqs. 6, 7). General cases: log-spiral charts (Figures 16, 17); Coulomb passive pressures are unreliable. Wall friction for passive pressure 0.5 to 1.0 phi', 0.5 phi' for sheet piles.",
+      "body": "Active and passive pressures are limiting horizontal stresses; for a smooth (zero wall friction) wall with a horizontal backslope (Rankine conditions, Figure 14, p. 37), an element under vertical effective stress sigma'v (Figure 15) can fail at B, the maximum horizontal stress, or at A, the minimum. The print ties both to outward wall movement: the maximum \"when significant outward movement of the wall increases the lateral earth pressure in the soil at the base of the wall\" and the minimum to \"the outward movement which reduces the lateral earth pressures behind the wall\" (p. 36, as printed). Figure 15 gives Eqs. 2 and 3 (p. 38), consistent with Rankine for cohesionless (c = 0) soil; for effective stress parameters phi' and c', Eqs. 4 and 5; for the undrained case (phi = 0, c = Su), the total stress coefficients of Eqs. 6 and 7, sigma_v being total vertical stress. Wall friction on active pressure is relatively small and often ignored; KA comes from the equations or, generally, the lower part of Figure 16 (wall inclination, p. 39) or Figure 17 (backslope inclination, p. 40), based on log-spiral failure surfaces; KP from their upper part. The Coulomb method (NAVFAC, 1982) gives reasonable KA but is unreliable for passive pressure, its planar surface being in error against log-spiral surfaces (p. 41), always giving higher passive pressures. Design wall friction for passive pressure in front of an excavation ranges from 0.5 phi' to 1.0 phi', depending on wall material, soil, construction and axial load transfer; 0.5 phi' is recommended for continuous sheet-pile walls; passive pressures for anchored walls are in section 5.5. (pp. 36 to 41)",
+      "key_points": [
+        "Rankine: KA = (1 - sin phi')/(1 + sin phi') = tan^2(45 - phi'/2) (Eq. 2) (p. 38).",
+        "KP = (1 + sin phi')/(1 - sin phi') = tan^2(45 + phi'/2) (Eq. 3) (p. 38).",
+        "With cohesion: Eqs. 4 and 5; undrained: KAT, KPT = 1 -/+ 2Su/sigma_v (Eqs. 6, 7) (p. 38).",
+        "Log-spiral charts (Figures 16, 17) for general cases (p. 38).",
+        "Coulomb unreliable for passive pressure (pp. 38 to 41).",
+        "Passive wall friction 0.5 to 1.0 phi'; 0.5 phi' for sheet-pile walls (p. 41)."
       ],
       "equations": [
-        {
-          "equation_id": "4-2",
-          "description": "Rankine active earth pressure coefficient for cohesionless soil (smooth wall, horizontal backslope)",
-          "latex": "K_A = \\frac{1 - \\sin\\phi'}{1 + \\sin\\phi'} = \\tan^2\\left(45 - \\frac{\\phi'}{2}\\right)",
-          "variables": {
-            "K_A": "active earth pressure coefficient",
-            "phi_prime": "effective friction angle of retained soil"
-          },
-          "implemented_in": null
-        },
-        {
-          "equation_id": "4-3",
-          "description": "Rankine passive earth pressure coefficient for cohesionless soil",
-          "latex": "K_P = \\frac{1 + \\sin\\phi'}{1 - \\sin\\phi'} = \\tan^2\\left(45 + \\frac{\\phi'}{2}\\right)",
-          "variables": {
-            "K_P": "passive earth pressure coefficient",
-            "phi_prime": "effective friction angle of soil"
-          },
-          "implemented_in": null
-        },
-        {
-          "equation_id": "4-6",
-          "description": "Total stress active earth pressure coefficient for undrained conditions (φ=0)",
-          "latex": "K_{AT} = 1 - \\frac{2S_u}{\\sigma_v}",
-          "variables": {
-            "K_AT": "total stress active earth pressure coefficient",
-            "S_u": "undrained shear strength",
-            "sigma_v": "total vertical stress"
-          },
-          "implemented_in": null
-        },
-        {
-          "equation_id": "4-7",
-          "description": "Total stress passive earth pressure coefficient for undrained conditions",
-          "latex": "K_{PT} = 1 + \\frac{2S_u}{\\sigma_v}",
-          "variables": {
-            "K_PT": "total stress passive earth pressure coefficient",
-            "S_u": "undrained shear strength",
-            "sigma_v": "total vertical stress"
-          },
-          "implemented_in": null
-        },
-        {
-          "equation_id": "4-8",
-          "description": "At-rest earth pressure coefficient for normally consolidated soil (Jaky formula)",
-          "latex": "K_o = 1 - \\sin\\phi'",
-          "variables": {
-            "K_o": "coefficient of earth pressure at rest",
-            "phi_prime": "effective friction angle"
-          },
-          "implemented_in": null
-        }
+        "Eq. 2: sigma'h(min) / sigma'v = KA = (1 - sin phi') / (1 + sin phi') = tan^2(45 - phi'/2); Rankine active earth pressure coefficient for a smooth wall with horizontal backslope in cohesionless soil, sigma'h(min) = minimum horizontal effective stress, sigma'v = vertical effective stress (p. 38)",
+        "Eq. 3: sigma'h(max) / sigma'v = KP = (1 + sin phi') / (1 - sin phi') = tan^2(45 + phi'/2); Rankine passive earth pressure coefficient, sigma'h(max) = maximum horizontal effective stress (p. 38)",
+        "Eq. 4: KA = tan^2(45 - phi'/2) - (2c' / sigma'v) tan(45 - phi'/2); active earth pressure coefficient for a cohesive soil with effective stress parameters phi' and c' (p. 38)",
+        "Eq. 5: KP = tan^2(45 + phi'/2) + (2c' / sigma'v) tan(45 + phi'/2); passive earth pressure coefficient for a cohesive soil with phi' and c' (p. 38)",
+        "Eq. 6: KAT = 1 - 2Su / sigma_v; total stress active earth pressure coefficient for the undrained case (phi = 0, c = Su), sigma_v = total vertical stress (p. 38)",
+        "Eq. 7: KPT = 1 + 2Su / sigma_v; total stress passive earth pressure coefficient for the undrained case (p. 38)"
       ],
       "figures": [
-        "Figure 14: Mobilization of Rankine active and passive horizontal pressures",
+        "Figure 14: Mobilization of Rankine active and passive horizontal pressures for a smooth retaining wall",
         "Figure 15: Limiting active and passive horizontal pressures",
         "Figure 16: Active and passive earth pressure coefficients (effect of wall inclination)",
-        "Figure 17: Active and passive earth pressure coefficients (effect of backslope inclination)",
-        "Figures 18-22: Lateral wall movements and earth pressures at various construction stages (FHWA-RD-98-067)"
+        "Figure 17: Active and passive earth pressure coefficients (effect of backslope inclination)"
+      ],
+      "tables": [],
+      "applicability": "Earth pressure theory and apparent earth pressure concepts for flexible anchored wall design"
+    },
+    {
+      "section_id": "4.4.3",
+      "title": "Earth Pressure at Rest",
+      "summary": "At rest Ko = sigma'h/sigma'v = 1 - sin phi' (Eq. 8): 0.55 to 0.65 for normally consolidated clay, 0.4 to 0.5 for sands, up to 1 for lightly and 2 or more for heavily overconsolidated clays. At-rest pressures (zero movement) are not practical for flexible anchored highway walls.",
+      "body": "Sand or clay normally consolidated under no lateral deformation (vertical compression only) and incremental vertical loading experiences earth pressure at rest, with Ko closely matching the empirical Eq. 8. Ko is typically 0.55 to 0.65 for normally consolidated clay and 0.4 to 0.5 for sands; for lightly overconsolidated clays (OCR <= 4) up to 1; for heavily overconsolidated clays (OCR > 4) up to or greater than 2. At-rest design pressures are not typically used for anchored walls with steel soldier beams or sheet piles: they assume no lateral deformation, possibly appropriate for heavily preloaded stiff walls, but zero movement is not practical for flexible anchored highway walls. (p. 41)",
+      "key_points": [
+        "Ko = 1 - sin phi' (Eq. 8) (p. 41).",
+        "Ko 0.55 to 0.65 (NC clay), 0.4 to 0.5 (sand); up to 1 (OCR <= 4), 2 or more (OCR > 4) (p. 41).",
+        "At-rest pressures not practical for flexible anchored walls (p. 41)."
+      ],
+      "equations": [
+        "Eq. 8: Ko = sigma'h / sigma'v = 1 - sin phi'; coefficient of earth pressure at rest for normally consolidated sand or clay (empirical) (p. 41)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Earth pressure theory and apparent earth pressure concepts for flexible anchored wall design"
+    },
+    {
+      "section_id": "4.4.4",
+      "title": "Influence of Movement on Earth Pressure",
+      "summary": "Top-down construction makes pressures differ from fully active: in a model wall 1.9 m high (FHWA-RD-98-067; Figures 18 to 22), cantilever stage triangular, stressing creates pressure bulbs (lock-off 75 to 100 percent of design load), excavation causes bulging and redistribution; the trapezoidal apparent envelope fits the final pressures. Weak ground may develop full active pressures.",
+      "body": "The stress distribution behind a wall depends on its deformation; with top-down construction cycles of excavation, anchor installation, prestressing and lock-off, pressures are typically not approximated by fully active (linearly increasing) conditions used for gravity or nongravity cantilevered walls: lower pressures over parts of the wall are offset by higher ones elsewhere, and where walls penetrate competent soils pressures are highest near the anchors and small along the embedded portion. A two-level model wall 1.9 m high with 0.38 m final toe embedment (p. 42; Figure 18; FHWA-RD-98-067, 1998) illustrates: cantilever stage, excavation just below the first anchor, pressures and deformation consistent with active (triangular) conditions above the excavation, a \"fixed-earth support\" condition (Figure 19); stressing the upper anchor (p. 43) pushes the beam against the ground, pressures possibly approaching full passive near the load, and at lock-off (typically 75 to 100 percent of the design load) a pressure bulb above active remains (Figure 20); excavation to the lower anchor (p. 44) bulges the wall, reducing pressure between the upper anchor and subgrade and redistributing load to the stiffer anchor and subgrade (Figure 21); at end of construction (p. 45) the lower anchor stressing makes a similar bulb and excavation to final grade bulges the wall between lower anchor and subgrade (Figure 22). The trapezoidal \"apparent earth pressure envelope\" in Figure 22 closely approximates the final pressures (chapter 5); fully active triangular envelopes would overestimate pressures near the subgrade, giving overly conservative bending moments and embedment, and underestimate anchor loads and moments at upper supports. The results apply to flexible walls in competent ground with load redistribution; walls in weak ground may rotate outward near the subgrade and develop full active pressures (chapter 5). (pp. 41 to 45)",
+      "key_points": [
+        "Top-down construction departs from fully active pressures (p. 41).",
+        "Model wall 1.9 m high, 0.38 m embedment (FHWA-RD-98-067; Figure 18) (p. 42).",
+        "Stressing creates pressure bulbs; lock-off typically 75 to 100 percent of design load (p. 43).",
+        "Trapezoidal apparent envelope approximates final pressures (Figure 22) (p. 45).",
+        "Weak ground may develop full active pressures (p. 45)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 18: Cross section of model wall (modified after FHWA-RD-98-067, 1998)",
+        "Figure 19: Lateral wall movements and earth pressures with excavation at first anchor level (cantilever stage) (modified after FHWA-RD-98-067, 1998)",
+        "Figure 20: Lateral wall movements and earth pressures during anchor stressing (modified after FHWA- RD-98-067, 1998)",
+        "Figure 21: Lateral wall movements and earth pressures with excavation at lower anchor level (modified after FHWA-RD-98-067, 1998)",
+        "Figure 22: Lateral wall movements and earth pressures with excavation at design grade (modified after FHWA-RD-98-067, 1998)"
       ],
       "tables": [],
       "applicability": "Earth pressure theory and apparent earth pressure concepts for flexible anchored wall design"

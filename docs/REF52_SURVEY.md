@@ -730,3 +730,81 @@ minus 4).
   the largest dimension of the pile" (p. 201).
 
 Smaller typos are not listed.
+
+## GEC-4 written from the print
+
+GEC-4 (FHWA-IF-99-015, June 1999) was rewritten from the print on
+fix/ref52, one commit per chapter (ch 1 to 9). The June 2026 files held
+21 sections, 12 of them ranges such as 5.9-5.11 and 9.1-9.5. Every
+printed heading now has its own section, with its body read off its
+printed pages, 241 in all (ch 5 83, ch 7 32, ch 9 30, ch 2 27, ch 6 22,
+ch 4 17, ch 8 14, ch 3 13, ch 1 3). Each equation, figure and table sits
+in the section whose pages print it. A figure printed after a section's
+text, before the next heading, stays with that section; one printed
+inside a later section's text goes there (Figure 40 in 5.5.2.1, Figure
+63 in 6.4.3). GEC-4 numbers figures, tables and equations straight
+through the document, not by chapter: Figures 1 to 73, Tables 1 to 23
+and Equations 1 to 49 (Equation 10 is printed as 10a and 10b). Equations
+were read off rendered pages, symbol by symbol: ch 4 holds Eqs. 1 to 8,
+ch 5 Eqs. 9 to 48 and ch 7 Eq. 49. Captions come from the List of
+Figures and List of Tables (pp. xiii-xix); the body caption of Figure 4
+is longer (it adds the Littlejohn paper title and the ASCE permission).
+
+`check_section_numbers.py gec_4` now reads 234 printed, 233 matched, 0
+ranges and 1 missing (it was 8 matched and 141 missing). The one
+missing, "9.9", is a misread of the caption "Figure A-4" (p. A-12) in
+appendix A, which has no text file. The 8 extras are printed headings
+the checker does not list: 3.5 (p. 24), and seven ch 5 headings printed
+with no space after the number ("5.2.10.1Uniform"): 5.2.10.1, 5.2.10.2,
+5.10.2.1 to 5.10.2.3, 5.10.3.1 and 5.10.3.2. No retrieval eval case
+moved: test_query_expansion and the gec_4 cases passed after every
+chapter, and test_every_section_resolves_in_the_db_within_the_app_cap
+passed at the end.
+
+### What the old files held that the print does not
+
+- Equation ids that are not the print's. Ch 4's were "4-1" to "4-8" and
+  Eqs. 4 and 5 were missing; ch 5 held seven equations with ids "5-9" to
+  "5-38". The print numbers them 1 to 49 through the document.
+- Grouped or misfiled objects: "Figures 18-22" and "Figures 38-39" as
+  single entries, and Table 3 listed among the figures in ch 4.
+- Captions not the print's: Tables 6 and 8 in ch 5, and six figures in
+  ch 7. For example, old "Extended creep test data plot" for Figure 72
+  is printed "Plotting of extended creep test data (after PTI, 1996)".
+- Missing sections: 6.5, 7.5 (lock-off load), 7.6 (lift-off testing),
+  8.5 and 9.6 (short-term and long-term monitoring) were not in the old
+  files at all.
+
+### Print inconsistencies, kept as printed
+
+No reading was chosen. Page numbers are printed page numbers (PDF page
+minus 21).
+- ch 2: p. 16 says the advantages of anchored walls "have been described
+  in section 1.2"; they are listed in 1.3.
+- ch 3: the Table 1 bands leave gaps: dense 25-50 then very dense
+  "> 51", and hard 31-60 then very hard ">61" (p. 24).
+- ch 4:
+  - P. 36 ties both the maximum (passive) and the minimum (active)
+    horizontal stress to "outward movement of the wall".
+  - The heading is printed "4.2.4." with a trailing period (p. 32).
+- ch 5:
+  - P. 106 says "B' cannot exceed B sqrt(2)", while Eq. 35 prints
+    Su sqrt(2)/B in the denominator.
+  - Table 9 (p. 77): the 2-1/2 in. Grade 150 row prints 0.8, 0.7 and
+    0.6 fpu Aps as 622.4, 435.7 and 466.8 kips.
+  - Eq. 45 (p. 114) prints the D' bracket as "1 +", the same sign as
+    Eq. 43.
+  - Eq. 47 (p. 117) prints the numerator as "tan(tan a + cot b)".
+  - Eq. 13 (p. 58) prints the term "(2 - x) sqrt(2) d", with x in m.
+  - Table 12 (p. 82) prints the soil symbols "GS" and "SM-SL".
+- ch 7:
+  - P. 152 says anchors passing the enhanced creep test "may be locked
+    off at the design test load"; Figure 73 says "lock-off at design
+    lock-off load".
+  - The reduced lock-off is "50 percent of the load that the anchor
+    holds without detectable movement" and "no greater than 50 percent
+    of the maximum load attained during testing" in the text (p. 152),
+    and "50% of the maximum acceptable test load" in Figure 73 (p. 153).
+  - Table 21 step 9 prints "delta_tn - delta_r6 = delta_e6" (p. 144).
+
+Smaller typos are not listed.

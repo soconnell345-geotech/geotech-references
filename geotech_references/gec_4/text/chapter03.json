@@ -5,37 +5,178 @@
   "chapter_title": "Site Investigation and Testing",
   "sections": [
     {
-      "section_id": "3.2-3.3",
-      "title": "Field Reconnaissance and Subsurface Investigation",
-      "summary": "Field reconnaissance collects surface topography, drainage, geologic patterns, access, areas of instability, utilities, and ROW information. Subsurface borings are placed along (wall alignment), behind (within anchor bond zone), and in front of (one wall height depth) the wall; typical spacing 15–30 m (soil) or 30–60 m (rock); depth ≥ 2× wall height. SPT (ASTM D1586) at 1.5 m intervals; thin-wall tube samples for cohesive soils (ASTM D1587); CPT (ASTM D3441) for continuous profile. Min 3 m rock core with RQD and discontinuity orientation. SPT N < 10 indicates ground may not be suitable for ground anchors in cohesionless soils.",
-      "body": "Field reconnaissance: Collect information on surface topography and land use, surface drainage patterns, geologic patterns (rock outcrops, landforms, existing excavations, settlement evidence), access and traffic control, areas of potential instability (organic/weak soils, steep terrain, unfavorably dipping rock, high groundwater), existing utilities and structures, and ROW/easements for anchor installation.\n\nSubsurface investigation: Borings at regular intervals along, behind, and in front of the wall alignment or slope face (figure 10). Typical boring spacing: 15 to 30 m for soil anchors; 30 to 60 m for rock anchors. Borings behind the wall are located within the anchor bond zone to identify weak or unsuitable layers. Depth guidelines: back and wall borings to at least twice the wall/slope height below grade; front borings to at least the wall height below the wall base; deeper if soft, weak, collapsible, or liquefiable soils may exist at depth. For steeply inclined or vertical anchors, borings must penetrate through the anchor bond zone depth. Additional borings may be needed to characterize a landslide slip surface.\n\nSoil sampling: SPT (ASTM D1586) samples at ~1.5 m intervals and at all changes in stratigraphy. Thin-wall tube samples (ASTM D1587) for cohesive soils. CPT (ASTM D3441) for continuous profile.\n\nRock investigation: Minimum 3 m rock core wherever bedrock is encountered within recommended investigation depths, and for all rock anchor designs. Describe rock type, mineral composition, texture, weathering, and discontinuities. Estimate intact strength from core recovery percentage and RQD. Record discontinuity strike and dip for sliding instability evaluation. Sample joint fill material for shear strength testing.\n\nGroundwater: Evaluate average high and low levels; measure with piezometers or observation wells; allow sufficient equilibration time after drilling. Groundwater affects lateral pressures, uplift forces, drainage design, watertight requirements, corrosion protection, and construction procedures. For tiedown structures, unanticipated groundwater level changes can increase or decrease anchor loads significantly.\n\nProblematic soils to identify: cohesionless sands/silts susceptible to raveling or liquefaction; weak layers susceptible to sliding; highly compressible high-plasticity clays or organics; obstructions and cemented layers affecting drilling and grouting.",
+      "section_id": "3.1",
+      "title": "Introduction",
+      "summary": "Site characterization (reconnaissance, subsurface investigation, in situ and laboratory testing) evaluates the ground that loads and supports an anchored system and its feasibility; its extent should match project scope, objectives (temporary or permanent) and constraints.",
+      "body": "The chapter describes basic site characterization and soil and rock property evaluation for ground anchor and anchored system design: field reconnaissance, subsurface investigation, in situ testing and laboratory testing. Soil and rock properties and behavior must be evaluated because these materials both load and support an anchored system. Site investigation and testing are needed to evaluate technical and economic feasibility; their extent should be consistent with the project scope (location, size, critical nature of the structure, budget), objectives (temporary or permanent structures) and constraints (geometry, constructability, performance, environmental impact). (p. 19)",
       "key_points": [
-        "Boring spacing: 15–30 m (soil anchors); 30–60 m (rock anchors); depth ≥ 2× wall height",
-        "Back borings within anchor bond zone; front borings to at least one wall height depth",
-        "SPT at 1.5 m intervals (ASTM D1586); thin-wall tubes for cohesive soils; CPT for continuous profile",
-        "Rock core: minimum 3 m; record RQD, core recovery, discontinuity orientations",
-        "SPT N < 10: ground may not be suitable for ground anchors in cohesionless soils",
-        "Identify problematic materials: raveling sands, weak sliding layers, compressible organics, obstructions"
+        "Covers reconnaissance, subsurface investigation, in situ and laboratory testing (p. 19).",
+        "Ground both loads and supports the anchored system (p. 19).",
+        "Extent consistent with project scope, objectives and constraints (p. 19)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Site investigation planning and execution for ground anchor and anchored wall projects"
+    },
+    {
+      "section_id": "3.2",
+      "title": "Field Reconnaissance",
+      "summary": "Field reconnaissance (site visit and documents) should record topography and land use, drainage and surface geology, access and traffic control, potentially unstable areas, existing utilities and structures, and available right-of-way and easements.",
+      "body": "Field reconnaissance involves visual inspection of the site and examination of available documents. Information collected should include: surface topography and adjacent land use; surface drainage patterns and surface geologic patterns, including rock outcrops, landforms, existing excavations and evidence of surface settlement; site access and traffic control requirements for investigation and construction; areas of potential instability such as organic or weak soils, steep terrain slide debris, unfavorably jointed or dipping rock, and high ground-water table; extent and condition (visible damage, corrosion) of existing above and below ground utilities and structures; and available right-of-way (ROW) and easements needed for installing the anchors and anchored systems. (p. 19)",
+      "key_points": [
+        "Visual inspection plus available documents (p. 19).",
+        "Record topography, drainage, surface geology and potential instability (p. 19).",
+        "Record access, utilities and structures, ROW and easements (p. 19)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Site investigation planning and execution for ground anchor and anchored wall projects"
+    },
+    {
+      "section_id": "3.3",
+      "title": "Subsurface Investigation",
+      "summary": "Heading for subsurface investigation: general (3.3.1), soil and rock stratigraphy (3.3.2) and groundwater (3.3.3).",
+      "body": "Heading for subsurface investigation: general (3.3.1), soil and rock stratigraphy (3.3.2) and groundwater (3.3.3); it has no text of its own. (p. 20)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Site investigation planning and execution for ground anchor and anchored wall projects"
+    },
+    {
+      "section_id": "3.3.1",
+      "title": "General",
+      "summary": "Subsurface investigation typically uses soil borings and rock coring, located as in Figure 10 for a permanent anchored wall or slope, giving stratigraphy and groundwater, in situ tests and samples. Guidance: AASHTO (1988) and FHWA-HI-97-021 (1997).",
+      "body": "Subsurface investigation for anchored systems typically involves soil borings and rock coring. Figure 10 gives guideline boring locations for a permanent anchored wall or slope. The investigation gives subsurface soil and rock stratigraphy and groundwater conditions and may include in situ soil or rock tests and disturbed and undisturbed samples for laboratory testing. Detailed guidance is in AASHTO (1988) and FHWA-HI-97-021 (1997). (p. 20)",
+      "key_points": [
+        "Soil borings and rock coring (p. 20).",
+        "Boring layout for a permanent anchored wall in Figure 10 (p. 20).",
+        "Guidance: AASHTO (1988), FHWA-HI-97-021 (1997) (p. 20)."
       ],
       "equations": [],
       "figures": [
         "Figure 10: Geotechnical boring layout for permanent anchored wall"
       ],
-      "tables": [
-        "Table 1: Soil density/consistency description based on SPT blowcount values (after AASHTO 1988) — cohesionless and cohesive scales"
+      "tables": [],
+      "applicability": "Site investigation planning and execution for ground anchor and anchored wall projects"
+    },
+    {
+      "section_id": "3.3.2",
+      "title": "Soil and Rock Stratigraphy",
+      "summary": "Identify raveling sands and silts, weak layers, compressible clays and organics, and obstructions. Borings along, behind (in the bond zone) and in front of the wall at 15 to 30 m (soil anchors) or 30 to 60 m (rock); back and wall borings to at least twice the wall height, front to one wall height below the base; samples about every 1.5 m; at least 3 m of rock core.",
+      "body": "Project-specific investigation should establish layer thickness, elevation and lateral extent, and identify problematic ground: cohesionless sands and silts that ravel (cave in) when exposed, especially with water, and may liquefy or densify under vibration; weak soil or rock layers susceptible to sliding; highly compressible high plasticity clays and organic soils susceptible to long-term (creep) deformation; and obstructions, boulders and cemented layers that hinder anchor drilling, grouting and wall element installation. Borings (Figure 10) should be at regular intervals along, behind and in front of the wall alignment or slope face, including the site extremities, typically 15 to 30 m apart for soil anchors and 30 to 60 m for rock anchors; back borings are within the anchor bond zone to find weak or unsuitable layers. Back and wall borings should reach at least twice the wall or slope height below the ground surface; front borings may stop at one wall height below the wall base; deeper if soft, weak, collapsible or liquefiable soils may exist at depth; for very steep or vertical anchors at least through the bond zone depth; more borings may be needed to define a landslide slip surface. Soil samples should be taken at regular intervals of approximately 1.5 m and at all strata changes, by SPT (ASTM D1586) and, in cohesive soils, thin-wall tubes (ASTM D1587); CPT (ASTM D3441) may give a continuous profile. At least 3 m of rock core should be recovered where bedrock lies within these depths and for all rock anchor designs, describing rock type, mineral composition, texture, weathering and discontinuities; core recovery and RQD give an estimate of intact rock strength; discontinuity orientations (strike and dip), possibly from nearby outcrops, allow sliding evaluation; soil joint infill should be sampled for shear testing (p. 22). Samples and cores should be preserved and available to the designer and, during bidding, the contractor. (pp. 21 to 22)",
+      "key_points": [
+        "Identify raveling, weak, compressible and obstructed ground (p. 21).",
+        "Boring spacing 15 to 30 m (soil anchors), 30 to 60 m (rock anchors) (p. 21).",
+        "Back and wall borings at least twice the wall height deep; front borings one wall height below the base (p. 21).",
+        "Samples about every 1.5 m and at strata changes (p. 21).",
+        "At least 3 m of rock core; record discontinuity orientations (p. 21).",
+        "Preserve samples and cores for designer and bidders (p. 22)."
       ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Site investigation planning and execution for ground anchor and anchored wall projects"
+    },
+    {
+      "section_id": "3.3.3",
+      "title": "Groundwater",
+      "summary": "Evaluate groundwater and perched zones: they affect stability, wall pressures, uplift, drainage, watertight connections, corrosion protection and construction. Consider high and low levels, aggressivity, seepage instability, dewatering and liquefaction; tiedown loads change with groundwater. Use piezometers or wells over time.",
+      "body": "The groundwater table and any perched zones must be evaluated: groundwater affects overall stability, lateral pressures on the facing, vertical uplift on structures, drainage design, watertight requirements at anchor connections, corrosion protection requirements and construction procedures. For systems within or near the groundwater table consider at least: average high and low groundwater levels; anchor corrosion potential from the groundwater's aggressivity; soil and/or rock slope instability from seepage forces; the need for excavation dewatering and specialized drilling and grouting; and liquefaction potential of cohesionless soils. For tiedown structures, unanticipated groundwater lowering can cause excessive consolidation settlement and lower anchor loads, and a rise can increase anchor loads above design loads. Water levels are often observed in open boreholes at or shortly after exploration, allowing time to reach equilibrium; piezometers or observation wells measure more accurately, and readings over time indicate fluctuations. (p. 22)",
+      "key_points": [
+        "Groundwater affects stability, pressures, uplift, drainage, connections, corrosion and construction (p. 22).",
+        "Consider high and low levels, aggressivity, seepage, dewatering, liquefaction (p. 22).",
+        "Tiedown anchor loads fall or rise with groundwater changes (p. 22).",
+        "Piezometers or observation wells measure more accurately (p. 22)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
       "applicability": "Site investigation planning and execution for ground anchor and anchored wall projects"
     },
     {
       "section_id": "3.4",
       "title": "Laboratory Soil and Rock Testing",
-      "summary": "Classification (ASTM D2487) and index properties (unit weight, moisture content, gradation, Atterberg limits) establish stratigraphy and initial design parameters. Shear strength: UC (ASTM D2166), direct shear (ASTM D3080), or triaxial compression (ASTM D4767) — both undrained and drained strengths required for permanent anchors in cohesive soils. Consolidation (ASTM D2435) needed for compressible soils or groundwater drawdown conditions. Electrochemical aggressivity for corrosion assessment: pH (ASTM G51), resistivity (ASTM G57), chlorides (ASTM D512), sulfates (ASTM D516).",
-      "body": "Classification and index properties: Classify per ASTM D2488 (visual) and ASTM D2487 (Unified Soil Classification). Unit weights, moisture content (ASTM D2216), gradation (ASTM D422), and Atterberg limits (ASTM D4318) are the primary index properties. Organic content per ASTM D2974 should be verified visually or by testing. Gradation informs drilling/grouting procedures and identifies liquefiable soils.\n\nShear strength: UC test (ASTM D2166), direct shear (ASTM D3080), triaxial compression (ASTM D4767). For permanent anchor applications in cohesive soils, both undrained and drained strengths are needed (short-term and long-term conditions). For cohesionless soils in critical applications, direct shear or triaxial testing for drained strength; otherwise, SPT/CPT correlations are typically used. Rock strength from UC (ASTM D2938), direct shear (ASTM D5607), or triaxial compression (ASTM D2664) on intact specimens — but field rock mass strength is typically controlled by discontinuities.\n\nConsolidation (ASTM D2435): Not commonly performed for stiff or cohesionless soils, but required when groundwater drawdown is anticipated in compressible soils or when long-term lateral movements may exceed tolerable limits.\n\nElectrochemical criteria (for permanent anchors): (1) pH — ASTM G51 / AASHTO T289; (2) electrical resistivity — ASTM G57 / AASHTO T288; (3) chloride content — ASTM D512 / AASHTO T291; (4) sulfate content — ASTM D516 / AASHTO T290. Aggressive conditions do not preclude anchored systems if proper corrosion protection is provided.",
+      "summary": "Heading for laboratory soil and rock testing: general (3.4.1), classification and index properties (3.4.2), shear strength (3.4.3), consolidation (3.4.4) and electrochemical criteria (3.4.5).",
+      "body": "Heading for laboratory soil and rock testing: general (3.4.1), classification and index properties (3.4.2), shear strength (3.4.3), consolidation (3.4.4) and electrochemical criteria (3.4.5); it has no text of its own. (p. 22)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Laboratory testing program for soil and rock property evaluation in anchored system design"
+    },
+    {
+      "section_id": "3.4.1",
+      "title": "General",
+      "summary": "Laboratory tests on recovered soil and rock evaluate properties needed for anchored system design; the section lists the typical tests with their ASTM and AASHTO specifications.",
+      "body": "Laboratory testing of soil and rock samples from subsurface exploration is often performed to evaluate specific properties needed for anchored system design; the section presents the tests typically performed with the appropriate ASTM and AASHTO specifications. (p. 22)",
       "key_points": [
-        "Both undrained and drained strengths required for permanent anchors in cohesive soils",
-        "Rock mass strength controlled by discontinuities — intact rock testing may not govern design",
-        "Consolidation testing needed when drawdown or compressible soil conditions may cause long-term movements",
-        "Electrochemical aggressivity: pH, resistivity, chlorides, sulfates per ASTM/AASHTO standards"
+        "Laboratory tests give properties needed for design (p. 22).",
+        "Tests listed with ASTM and AASHTO specifications (p. 22)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Laboratory testing program for soil and rock property evaluation in anchored system design"
+    },
+    {
+      "section_id": "3.4.2",
+      "title": "Classification and Index Properties",
+      "summary": "Classify samples (ASTM D2488, D2487; rock by URCS). Unit weight serves earth pressures and external stability; moisture content (D2216) and Atterberg limits (D4318; T89, T90) estimate clay compressibility, strength and anchor suitability; organics (D2974); grain size (D422; T88) guides drilling and grouting and flags liquefiable soils.",
+      "body": "All soil and rock core samples should be visually identified in the laboratory and classified per ASTM D2488 and ASTM D2487 or the Unified Rock Classification System (URCS). Index properties used in design are unit weight, moisture content, gradation and Atterberg limits. Unit weights of foundation and retained soil are used for earth pressures and external stability. Moisture content (ASTM D2216) and Atterberg limits (ASTM D4318; AASHTO T89, T90) may be used with correlations to estimate compressibility and shear strength of in situ clayey soils and the suitability of anchors in cohesive soils. Organic materials should be identified visually or per ASTM D2974. Grain size distribution (ASTM D422; AASHTO T88) helps develop drilling and grouting procedures and identify potentially liquefiable soils. (p. 23)",
+      "key_points": [
+        "Classify per ASTM D2488, D2487 or URCS (p. 23).",
+        "Unit weights for earth pressures and external stability (p. 23).",
+        "Moisture content and Atterberg limits for clay compressibility, strength and anchor suitability (p. 23).",
+        "Grain size for drilling and grouting procedures and liquefiable soils (p. 23)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Laboratory testing program for soil and rock property evaluation in anchored system design"
+    },
+    {
+      "section_id": "3.4.3",
+      "title": "Shear Strength",
+      "summary": "Soil strength by unconfined (D2166), direct shear (D3080) or triaxial (D4767) tests; for permanent anchors in cohesive soils obtain undrained and drained parameters for short- and long-term conditions; sand strength usually from SPT or CPT correlations. Intact rock strength (D2938, D5607, D2664) may estimate bond stress if no adverse discontinuities.",
+      "body": "Unconfined compression (ASTM D2166; AASHTO T208), direct shear (ASTM D3080; AASHTO T236) or triaxial compression (ASTM D4767; AASHTO T234) tests are typically used for soil shear strength; total and effective stress parameters of cohesive soils typically come from undrained triaxial tests with pore pressure measurement. For permanent anchor applications in cohesive soils both undrained and drained parameters should be obtained, and design should consider short-term and long-term conditions. For critical applications in cohesionless soils direct shear or triaxial tests can give drained strength, but it is usually evaluated from correlations with in situ tests (SPT, CPT); design strength selection is in chapter 4. Laboratory strength tests on intact rock are not often performed, rock mass strength typically being controlled by discontinuities; if no adverse planes of weakness exist, intact compressive strength from unconfined compression (ASTM D2938), direct shear (ASTM D5607) or triaxial compression (ASTM D2664; AASHTO T226) may be used to estimate ultimate bond stress (PTI 1996). (p. 23)",
+      "key_points": [
+        "Unconfined, direct shear or triaxial tests for soil strength (p. 23).",
+        "Permanent anchors in cohesive soils: undrained and drained parameters (p. 23).",
+        "Cohesionless strength usually from SPT or CPT correlations (p. 23).",
+        "Intact rock strength may estimate bond stress if no adverse discontinuities (PTI 1996) (p. 23)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Laboratory testing program for soil and rock property evaluation in anchored system design"
+    },
+    {
+      "section_id": "3.4.4",
+      "title": "Consolidation",
+      "summary": "Settlement analyses are uncommon in stiff and cohesionless soils but needed for systems in compressible soils with groundwater drawdown, whose settlement may harm nearby structures and cause excessive long-term wall movement; index tests give first estimates, consolidation tests (ASTM D2435; AASHTO T216) the parameters.",
+      "body": "Settlement analyses are not commonly performed for anchored systems in stiff and cohesionless soils, but should be for structures in compressible soils subject to groundwater drawdown, during construction and long term. Excessive settlement may damage nearby structures and cause long-term lateral movement of the anchored system beyond tolerable limits. Moisture content and Atterberg limits allow initial evaluation of settlement parameters; one-dimensional consolidation tests (ASTM D2435; AASHTO T216) give the parameters for a settlement analysis. (p. 23)",
+      "key_points": [
+        "Settlement analysis for compressible soils with groundwater drawdown (p. 23).",
+        "Settlement may harm nearby structures and cause long-term wall movement (p. 23).",
+        "Consolidation tests (ASTM D2435; AASHTO T216) (p. 23)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Laboratory testing program for soil and rock property evaluation in anchored system design"
+    },
+    {
+      "section_id": "3.4.5",
+      "title": "Electrochemical Criteria",
+      "summary": "For permanent systems evaluate ground aggressiveness by pH (G51; T289), resistivity (G57; T288), chloride (D512; T291) and sulfate (D516; T290); aggressive ground usually does not preclude anchors with proper corrosion protection (chapter 6).",
+      "body": "For permanent anchored systems the aggressiveness of the ground must be evaluated; aggressive conditions usually do not preclude anchored systems if proper corrosion protection is provided. Corrosion potential, of primary concern in aggressive soils, is evaluated from tests of: (1) pH (ASTM G51; AASHTO T289); (2) electrical resistivity (ASTM G57; AASHTO T288); (3) chloride content (ASTM D512; AASHTO T291); and (4) sulfate content (ASTM D516; AASHTO T290). Corrosion and protection are covered in chapter 6. (p. 24)",
+      "key_points": [
+        "Evaluate ground aggressiveness for permanent systems (p. 24).",
+        "Tests: pH, resistivity, chloride, sulfate (p. 24).",
+        "Aggressive ground does not preclude anchors with proper protection (chapter 6) (p. 24)."
       ],
       "equations": [],
       "figures": [],
@@ -45,19 +186,20 @@
     {
       "section_id": "3.5",
       "title": "In Situ Soil and Rock Testing",
-      "summary": "SPT is the most common in situ test for ground anchor applications; N < 10 may indicate cohesionless ground is not suitable for anchors. CPT (ASTM D3441) provides continuous stratigraphy and strength. FVT (ASTM D2573) for undrained shear strength in soft to medium clay. PMT (ASTM D4719) for Ko, OCR, in-situ stress, and modulus. DMT for Ko, OCR, undrained strength, and elastic modulus. Empirical correlations for these tests are published in Kulhawy and Mayne (1990). CPT and PMT guidance also available from FHWA-SA-91-043 and FHWA-IP-89-008.",
-      "body": "The SPT is the most common in situ geotechnical test used in evaluating ground anchor suitability in cohesionless soils. SPT N can estimate relative density and shear strength of sands; in cohesive soils, SPT N may indicate consistency but is not a reliable indicator of shear strength. For cohesionless soils, SPT N < 10 may indicate that the ground is not suitable for ground anchors.\n\nOther in situ tests applicable to anchored system design: (1) CPT (ASTM D3441) — provides continuous evaluation of stratigraphy, undrained shear strength in clay, and relative density in sand; suitable for sand, silt, and clay but not gravel; see FHWA-SA-91-043. (2) Vane shear test / FVT (ASTM D2573) — undrained shear strength in soft to medium clay only. (3) Pressuremeter test / PMT (ASTM D4719) — strength, Ko, OCR, in-situ stress, compressibility, and elastic shear modulus in a wide variety of materials; see FHWA-IP-89-008. (4) Flat plate dilatometer / DMT — soil type, Ko, OCR, undrained shear strength, and elastic modulus in sand and clay; see FHWA-SA-91-044. Empirical correlations for all tests are published in Kulhawy and Mayne (1990).",
+      "summary": "The SPT is the most common test for anchor suitability in cohesionless soils: N gives relative density (Table 1) and sand strength, N < 10 may mean ground unsuitable for anchors; in cohesive soils only consistency. CPT, FVT, PMT and DMT (Table 2) give preliminary values via correlations (Kulhawy and Mayne, 1990).",
+      "body": "In situ tests are often used to estimate the soil properties of section 3.4; in situ testing of rock exists but is less widespread. The SPT is the most common in situ test for evaluating anchor suitability in cohesionless soils: its blowcount N estimates relative density (Table 1) and shear strength of sandy soils, it is widespread in the U.S., and it gives a disturbed sample for identification and index tests. In cohesionless soils SPT N < 10 may indicate ground not suitable for ground anchors. In cohesive soils SPT blowcounts indicate consistency (Table 1) but not reliably shear strength. Table 1 (after AASHTO, 1988), SPT N in blows/300 mm: cohesionless relative density very loose 0-4, loose 5-10, medium dense 11-24, dense 25-50, very dense > 51; cohesive consistency very soft 0-1, soft 2-4, medium stiff 5-8, stiff 9-15, very stiff 16-30, hard 31-60, very hard > 61 (as printed). Other in situ tests for anchor suitability are (1) CPT, (2) vane shear test (FVT, ASTM D2573), (3) pressuremeter test (PMT, ASTM D4719) and (4) flat plate dilatometer test (DMT), covered by FHWA reports on the CPT (FHWA-SA-91-043, 1992), PMT (FHWA-IP-89-008, 1989) and DMT (FHWA-SA-91-044, 1992) (p. 25). Table 2 summarizes them: SPT, suitable for sand, not for soft to firm clays and gravels, giving stratigraphy, strength and relative density; CPT, sand, silt and clay, not gravel, giving continuous stratigraphy, sand strength, clay undrained strength, relative density, in situ stress and pore pressures; FVT, soft to medium clay, not sand and gravel, giving undrained shear strength; PMT, soft rock, dense sand, nonsensitive clay, gravel and till, not soft sensitive clays or loose silts and sands, giving strength, Ko, OCR, in situ stress, compressibility, hydraulic conductivity and elastic shear modulus; DMT, sand and clay, not gravel, giving soil type, Ko, OCR, undrained shear strength and elastic modulus. Empirical correlations (e.g., Kulhawy and Mayne, 1990), including local ones, give preliminary property estimates. (pp. 24 to 25)",
       "key_points": [
-        "SPT most common for anchored system suitability evaluation; N < 10 in cohesionless soils may preclude anchors",
-        "CPT: continuous stratigraphy and strength — preferred over SPT for soft soils where disturbed samples are unreliable",
-        "FVT: undrained shear strength in soft to medium clay only",
-        "PMT: widest range of properties — Ko, OCR, modulus, strength; suitable for most soil types and soft rock",
-        "DMT: Ko, OCR, undrained shear strength, elastic modulus in sand and clay"
+        "SPT most common for anchor suitability in cohesionless soils (p. 24).",
+        "SPT N < 10 in cohesionless soils may mean ground unsuitable for anchors (p. 24).",
+        "Table 1: relative density and consistency from SPT N (after AASHTO 1988) (p. 24).",
+        "SPT not a reliable measure of cohesive strength (p. 24).",
+        "CPT, FVT, PMT, DMT summarized in Table 2; correlations give preliminary values (p. 25)."
       ],
       "equations": [],
       "figures": [],
       "tables": [
-        "Table 2: Summary of common in situ tests for soils (SPT, CPT, FVT, PMT, DMT) — suitable soils and estimable properties"
+        "Table 1: Soil density/consistency description based on SPT blowcount values (after AASHTO, 1988)",
+        "Table 2: Summary of common in situ tests for soils"
       ],
       "applicability": "In situ testing selection and interpretation for ground anchor suitability and design parameter estimation"
     }

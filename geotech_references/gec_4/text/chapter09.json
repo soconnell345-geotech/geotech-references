@@ -5,21 +5,444 @@
   "chapter_title": "Construction Inspection and Performance Monitoring",
   "sections": [
     {
-      "section_id": "9.1-9.5",
-      "title": "Construction Inspection",
-      "summary": "Inspector verifies construction conforms to plans and specifications. Key activities: verify material certifications and corrosion protection integrity; monitor driven soldier beam plumb; verify drilled-in beam hole dimensions and backfill; confirm drill hole dimensions, cleanliness, and orientation; verify tendon unbonded and bond lengths and centralizer spacing; witness grouting (continuous flow, pressure monitored); witness anchor tests per Chapter 7; verify lagging dimensions and backpacking. Performance monitoring includes anchor load cells and wall movement surveys.",
-      "body": "Inspector role: The inspector is the primary mechanism to assure construction conforms to project plans and specifications. For the performance approach, the contractor is responsible for system performance, but the owner's inspector provides independent oversight. For design-build, the contractor conducts or is responsible for all required inspection activities; the owner provides independent quality assurance.\n\nMaterial inspection: Steel elements (sheet piles, soldier beams) accepted based on mill certificates. Timber lagging: verify dimensions and species/grade. Ground anchor tendons: verify corrosion protection continuity (encapsulation undamaged; grout completely filling sheaths; epoxy coating unbroken; trumpet and cover properly fitted). Non-conforming materials must be rejected or replaced unless approved in writing by the project engineer.\n\nVertical wall element installation: Drilled-in soldier beams — verify hole dimensions, structural/lean-mix concrete backfill; inclinometer casing installation if specified. Driven soldier beams — monitor alignment and plumbness; if excessively damaged, may require replacement with drilled-in beam.\n\nAnchor hole drilling: Verify hole diameter, depth, inclination, and alignment. Drill hole is considered clean if the full length of the tendon can be easily inserted to the desired depth. Verify hole is drilled to full design depth and grouted promptly after drilling.\n\nTendon installation: Verify that minimum bond and unbonded lengths are equal to or exceed specified values. Verify centralizer/spacer installation. For bar tendons, verify coupler installation where applicable.\n\nGrouting: Grout injected at the lowest point in the drill hole to fill without air voids. Grout must flow continuously as the grout tube, auger, or casing is withdrawn — withdrawal rate must be less than grout placement rate. Grouting equipment must include a pressure gauge; verify grout pressure and volume. After testing and lock-off, fill trumpet with grout and place cover; verify complete filling after grout sets.\n\nLagging installation: Timber lagging must be the proper thickness (per Table 12) and placed with proper louver gaps. Voids behind lagging must be backpacked promptly to prevent soil raveling.\n\nAnchor testing: Inspector witnesses all performance, proof, and extended creep tests. Test measurements should be plotted as the test proceeds to identify unusual behavior. Applied load must not be reduced below the alignment load during a test.\n\nPerformance monitoring: Wall movements monitored by survey or inclinometer during construction. Anchor loads monitored by load cells. Outward wall movement and significant load increase in anchor may indicate ground is weaker than anticipated; if anchor load approaches maximum test load, detension to design load and investigate.",
+      "section_id": "9.1",
+      "title": "Introduction",
+      "summary": "Inspection assures an anchored system is built to plans and specifications (materials, methods, short-term performance); monitoring assesses performance, short-term mostly during load tests and long-term continuing it. AASHTO (1990) Task Force 27 holds a Ground Anchors Inspector's Manual.",
+      "body": "Inspection is the primary means of assuring construction to plans and specifications; short-term and long-term monitoring assess performance. Inspection may be by the owner, the contractor or both depending on the contracting approach (method, performance or design-build); monitoring is usually by the owner. The chapter covers permanent systems built under performance specifications. Properly conducted inspection is vital to quality, evaluating (1) conformance of components to material specifications, (2) conformance of methods to execution specifications, (3) conformance to short-term performance specifications; the Ground Anchors Inspector's Manual in the AASHTO Task Force 27 report (AASHTO, 1990) is a valuable source. Short-term (during construction) monitoring is usually limited to load testing (performance, proof and extended creep tests), sometimes adding lateral wall movement, ground surface settlement and more extensive anchor measurements, often driven by performance requirements; long-term monitoring usually continues short-term measurements. (p. 164)",
       "key_points": [
-        "Verify tendon corrosion protection integrity: no damage to encapsulation, grout fills sheaths, epoxy coatings unbroken",
-        "Grout must flow continuously during withdrawal; withdrawal rate < grout placement rate; air voids not acceptable",
-        "Anchor test measurements plotted in real time to identify unusual behavior; load must never drop below alignment load",
-        "Timber lagging: proper thickness per Table 12; backpack voids behind lagging immediately",
-        "Monitor anchor loads during construction; outward movement + load increase → investigate possible weak ground condition"
+        "Inspection by owner, contractor or both, by contracting approach (p. 164).",
+        "Three conformance checks: materials, methods, short-term performance (p. 164).",
+        "Ground Anchors Inspector's Manual, AASHTO (1990) Task Force 27 (p. 164).",
+        "Short-term monitoring mostly during load tests (p. 164)."
       ],
       "equations": [],
       "figures": [],
       "tables": [],
       "applicability": "Construction inspection checklist and performance monitoring for anchored wall projects"
+    },
+    {
+      "section_id": "9.2",
+      "title": "Inspection Roles Under Certain Contract Approaches",
+      "summary": "Method approach: the owner inspects for strict compliance with its plans and specifications. Performance: the contractor does most inspection, the owner verifying materials, equipment, tolerances and sequencing. Design-build: the contractor inspects under an owner-approved QA plan, the owner doing random QC tests.",
+      "body": "Under the method approach the owner inspects against comprehensive material and procedural requirements of its plans and specifications, the contractor following them, to assure strict compliance with each component. Under the performance approach the contractor carries out many inspection activities and the owner a limited number required by the specifications, mainly verifying materials, equipment, construction tolerances (p. 165) and sequencing; the contractor selects equipment and procedures and must demonstrate the completed system meets the performance criteria. Under design-build all required inspection is by or the responsibility of the contractor per the owner-approved quality assurance plan, with random quality control tests by the owner. (pp. 164 to 165)",
+      "key_points": [
+        "Method: owner inspects for strict compliance (p. 164).",
+        "Performance: contractor inspects; owner verifies materials, equipment, tolerances, sequencing (pp. 164 to 165).",
+        "Design-build: contractor under owner-approved QA plan; owner random QC tests (p. 165)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction inspection checklist and performance monitoring for anchored wall projects"
+    },
+    {
+      "section_id": "9.3",
+      "title": "Pre-project Preparation",
+      "summary": "Before construction the inspector learns the project, specifications, site and subsurface conditions and the function of each component; responsibilities are set at a preconstruction meeting, and the project engineer is consulted on critical design aspects and difficult conditions.",
+      "body": "Before construction the inspector must understand the project and specification requirements, particularly inspection responsibilities, site and subsurface conditions and material and construction requirements. Responsibilities should be defined at a preconstruction meeting with the general contractor and all subcontractors (e.g., wall and excavation contractors). The inspector must understand the intended function of the system and its components, particularly for stability, from geotechnical reports, contract plans and specifications, and should contact the project engineer at the start to discuss critical design aspects and potentially difficult site and subsurface conditions. (p. 165)",
+      "key_points": [
+        "Responsibilities set at a preconstruction meeting (p. 165).",
+        "Inspector understands component functions and stability (p. 165).",
+        "Discuss critical design aspects with the project engineer (p. 165)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction inspection checklist and performance monitoring for anchored wall projects"
+    },
+    {
+      "section_id": "9.4",
+      "title": "Inspection of Construction Materials",
+      "summary": "Heading for inspection of construction materials: introduction, wall materials, ground anchor materials, and storage and handling (9.4.1 to 9.4.4).",
+      "body": "Heading for inspection of construction materials: introduction (9.4.1), inspection of wall materials (9.4.2), inspection of ground anchor materials (9.4.3) and storage and handling of construction materials (9.4.4); it has no text of its own. (p. 165)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction inspection checklist and performance monitoring for anchored wall projects"
+    },
+    {
+      "section_id": "9.4.1",
+      "title": "Introduction",
+      "summary": "Specifications set minimum requirements for wall and anchor materials, explicitly or by AASHTO and ASTM references (appendices E and F); conformance is by certification, product literature with visual inspection, or testing. Everything delivered is visually examined; nonconforming material is rejected unless corrected.",
+      "body": "Specifications describe acceptable materials and prefabricated elements. Wall components: steel beams, structural and lean-mix concrete, timber lagging, drainage elements (geosynthetics, aggregate, pipes) and cast-in-place or precast facing. Anchor components: prefabricated tendons (or materials for on-site fabrication), anchorage components, grout, spacers, centralizers and corrosion inhibiting materials such as greases and concrete. Minimum requirements are explicit or by reference to standards such as AASHTO and ASTM, referenced in the materials sections of the example specifications in appendix E and F (as printed); explicit requirements may be a prequalified product or characteristics (shape, dimensions, material property); storage and handling advice is commonly included. Conformance is assessed by (1) manufacturer or supplier certification, (2) product literature and visual inspection, or (3) conformance testing. All delivered materials and elements must be visually examined before installation for geometry and dimensions (p. 166) and for workmanship defects, contamination or handling damage; nonconforming materials are unacceptable unless corrected per specifications or by the project engineer's written approval. (pp. 165 to 166)",
+      "key_points": [
+        "Minimum requirements explicit or by AASHTO/ASTM reference (p. 165).",
+        "Conformance by certification, literature and visual check, or testing (p. 165).",
+        "All delivered materials visually examined (pp. 165 to 166).",
+        "Nonconforming materials rejected unless corrected or approved in writing (p. 166)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction inspection checklist and performance monitoring for anchored wall projects"
+    },
+    {
+      "section_id": "9.4.2",
+      "title": "Inspection of Wall Materials",
+      "summary": "Steel accepted on Mill Test Certificates, undamaged, sheet-piles straight with sound interlocks and beam lengths checked; anchor grout accepted on anchor tests and approved cement (cubes only for diagnosis); concrete to strength and cement type; drains, gravel and lagging on certification.",
+      "body": "Steel sheet-piles and soldier beams are generally accepted on satisfactory Mill Test Certificates, whose properties are checked against specifications; there should be no observable damage, sheet-piles should be straight, uniform and with interlocks in good condition, and soldier beam lengths are verified against the approved working drawings. Anchor cement grout is generally accepted on successful testing of the completed anchor and approved cement types; admixtures only as specified or approved by the design engineer; random grout cubes may be taken but are usually tested only to diagnose an anchor failure. Structural and lean-mix concrete must meet minimum strength and cement type; admixtures likewise; precast panels need a uniform exposed finish per specifications and an unexposed face without significant pockets or distortions. Geocomposite drains, drainage pipe, drainage gravel and timber lagging are accepted on manufacturer's certification and/or labeling; the geocomposite certification states it withstands design loadings at all planned locations without appreciable loss of hydraulic capacity; drainage gravel meets the specified gradation; specified stress grading and preservative treatment of lagging (usually only for lagging used as permanent facing) are verified by certification, and minimum lagging thickness if specified. (p. 166)",
+      "key_points": [
+        "Steel accepted on Mill Test Certificates (p. 166).",
+        "Anchor grout accepted on anchor tests; cubes only for diagnosis (p. 166).",
+        "Concrete: minimum strength and cement type (p. 166).",
+        "Geocomposite drains certified to keep hydraulic capacity under load (p. 166)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction inspection checklist and performance monitoring for anchored wall projects"
+    },
+    {
+      "section_id": "9.4.3",
+      "title": "Inspection of Ground Anchor Materials",
+      "summary": "Verify each tendon's diameter, total, unbonded and bond lengths and strict compliance of corrosion protection: undamaged steel, fully grouted undamaged encapsulation, unbroken epoxy, continuous transition between unbonded and bond lengths, inhibitor coverage; pregrout encapsulations from the low end on an inclined bed.",
+      "body": "Tendon materials (prestressing steels, encapsulations, spacers, centralizers, corrosion inhibiting compounds) must meet the specification minimums; for each tendon verify diameter, total length and unbonded and bonded zone lengths; submittals are in the ground anchor specification (appendix E). Corrosion protection must strictly comply with the required level and component dimensions; verify fabrication quality and condition (p. 167): (1) steel undamaged; (2) encapsulated tendons completely grout-filled between steel and tube, tube undamaged; (3) epoxy-coated tendons with unbroken coating; (4) continuity of protection at the unbonded to bonded transition; (5) inhibitors covering steel in individual strand and tendon sheaths. On-site assembly uses approved materials per manufacturer's procedures; when encapsulated tendons are pregrouted, voids are minimized by proper centralizers and grouting on an inclined, rigid frame or bed from the low end. Strand encapsulations are commonly grouted in the borehole with the anchor grout. (pp. 166 to 167)",
+      "key_points": [
+        "Verify tendon diameter and total, unbonded and bond lengths (p. 166).",
+        "Five corrosion protection checks (p. 167).",
+        "Pregrout encapsulations on an inclined bed from the low end (p. 167)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction inspection checklist and performance monitoring for anchored wall projects"
+    },
+    {
+      "section_id": "9.4.4",
+      "title": "Storage and Handling of Construction Materials",
+      "summary": "Store tendons off the ground, protected, lifted with fiber ropes or webbing at several supports; epoxy-coated steel on padded supports; cement dry (no caked cement), resin grouts within shelf life; timber stacked for air; precast panels and geocomposite protected.",
+      "body": "Tendons and reinforcement are stored and handled per manufacturer's recommendations: above the ground, protected from mechanical damage and weather, lifted with fiber ropes or webbing supported at several points to prevent excessive bending; epoxy coated steel transported and stored on wooden or padded supports, coatings repaired per manufacturer. Cement and resin materials are stored dry to prevent deterioration; caked or lumpy cement is not used; resin and cartridge grouts per manufacturer and not after shelf life. Timber is neatly stacked, untreated material above ground with air circulation, treated timber handled without breaking or penetrating outer fibers. Precast panels are stored, handled and hoisted to prevent cracking, lifting devices without damaging torsion or bending; geocomposite rolls wrapped against precipitation and debris and kept out of direct sunlight. (p. 167)",
+      "key_points": [
+        "Tendons off the ground, lifted with fiber ropes at several supports (p. 167).",
+        "No caked or lumpy cement; grouts within shelf life (p. 167).",
+        "Geocomposite kept out of direct sunlight (p. 167)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction inspection checklist and performance monitoring for anchored wall projects"
+    },
+    {
+      "section_id": "9.5",
+      "title": "Inspection of Construction Activities",
+      "summary": "Heading for inspection of construction activities: surface-water control, vertical wall elements, excavation, anchor construction and ancillary wall elements (9.5.1 to 9.5.5).",
+      "body": "Heading for inspection of construction activities: surface-water control (9.5.1), vertical wall element installation (9.5.2), excavation (9.5.3), anchor construction (9.5.4) and ancillary wall element installation (9.5.5); it has no text of its own. (p. 167)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction inspection checklist and performance monitoring for anchored wall projects"
+    },
+    {
+      "section_id": "9.5.1",
+      "title": "Surface-Water Control",
+      "summary": "Keep surface water out of the works throughout construction, grading each excavated level away from the wall and preventing overtopping; permanent drainage, if required, is in place at the end, keeping surface water off the wall face and out of the wall drains.",
+      "body": "Drainage measures preventing surface water entering the wall construction limits are maintained throughout; after each anchor level is excavated the surface is graded away from the wall for a relatively dry working area, and overtopping of the wall is prevented. If required, permanent drainage must be in place at the end of construction (p. 168), directing water away from the face at the final excavation level and the ground above, usually by grading or ditches and pipes; it should not let surface water enter the wall drains. (pp. 167 to 168)",
+      "key_points": [
+        "Grade each excavated level away from the wall (p. 167).",
+        "Prevent overtopping (p. 167).",
+        "Permanent drainage keeps surface water out of wall drains (p. 168)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction inspection checklist and performance monitoring for anchored wall projects"
+    },
+    {
+      "section_id": "9.5.2",
+      "title": "Vertical Wall Element Installation",
+      "summary": "Heading for vertical wall element installation: drilled-in soldier beams, driven soldier beams and sheet-piles (9.5.2.1 to 9.5.2.3).",
+      "body": "Heading for vertical wall element installation: drilled-in soldier beams (9.5.2.1), driven soldier beams (9.5.2.2) and sheet-piles (9.5.2.3); it has no text of its own. (p. 168)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction inspection checklist and performance monitoring for anchored wall projects"
+    },
+    {
+      "section_id": "9.5.2.1",
+      "title": "Drilled-in Soldier Beams",
+      "summary": "Soldier beams are predrilled for precise location, hard or bouldery ground or rock, prefabricated connections or low noise and vibration; prevent caving (casing or drilling fluid), clean to elevation, set, plumb and brace, check tolerances, backfill structural or lean-mix concrete to final excavation level, lean-mix above.",
+      "body": "Predrilling is used to (1) set beams precisely (as for precast facing), (2) penetrate very hard soils, cobbles or boulders, or rock, (3) allow prefabricated anchor connections, (4) minimize noise and vibration. The inspector watches drilling for significant deviation from the design ground conditions. Caving is prevented, particularly near settlement-sensitive structures or utilities, using casing or approved drilling fluids where it occurs. The hole is cleaned to the working drawing elevation; a nominal thickness of concrete may be placed at the bottom to help align the beam; the beam is inserted, oriented, plumbed and braced, and its plan location and top elevation measured against tolerances. The hole is backfilled with structural or lean-mix concrete to the final excavation level and with lean-mix concrete from there to the ground surface. (p. 168)",
+      "key_points": [
+        "Four reasons to predrill (p. 168).",
+        "Watch for deviation from design ground conditions (p. 168).",
+        "Casing or approved drilling fluid where caving occurs (p. 168).",
+        "Structural or lean-mix below final excavation level; lean-mix above (p. 168)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction inspection checklist and performance monitoring for anchored wall projects"
+    },
+    {
+      "section_id": "9.5.2.2",
+      "title": "Driven Soldier Beams",
+      "summary": "Driven beams: sized equipment, crane-supported leads for concentric blows, pre-driving condition survey and overhead clearance check (vibration, NCHRP Synthesis 253); reach tip elevation undamaged (driving shoe if hard), no overdriving past prefabricated connections; compare records; replace damaged beams or drill them in.",
+      "body": "Pile driving equipment should be appropriately sized and in good order, with crane supported leads holding hammer and beam aligned for concentric blows. Before driving, survey the condition of nearby structures and check overhead utility clearance; driven beams and sheet-piles produce vibrations that may damage adjacent structures (NCHRP Synthesis 253, 1997). Driven beams must reach the plan tip elevation undamaged; where alignment tolerances are very small or penetration difficult a driving shoe protects the tip; with prefabricated anchor connections beams must not go beyond the target elevation. Inspect pile tops after driving and compare driving records of adjacent piles, as differences may indicate different ground and a need to change procedures. Improperly driven, damaged or misaligned beams may be removed and replaced (p. 169) on the design engineer's recommendation. Where lateral movement is measured, an inclinometer casing may be attached in a steel angle welded between flange and web before driving. Excessively damaged driven beams call for drilled-in beams; see FHWA-HI-97-013 (1996). (pp. 168 to 169)",
+      "key_points": [
+        "Crane-supported leads for concentric blows (p. 168).",
+        "Pre-driving survey of nearby structures; NCHRP Synthesis 253 (p. 168).",
+        "Driving shoe for tight tolerances or hard driving (p. 168).",
+        "Compare adjacent driving records (p. 168).",
+        "Inclinometer casing in a welded angle (p. 169)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction inspection checklist and performance monitoring for anchored wall projects"
+    },
+    {
+      "section_id": "9.5.2.3",
+      "title": "Sheet-Piles",
+      "summary": "Sheet-piles are impact or vibratory driven (vibratory suits rounded-grain cohesionless and soft soils), in pairs or panels leading with the ball, often with a guide frame; check tops and interlocks in hard soils; cut tops straight to elevation if specified.",
+      "body": "Sheet-piles are driven with impact or vibratory hammers. With impact hammers, hammer and driving cap are chosen to prevent excessive damage to pile tops and to keep adjacent piles from being driven out of interlock; in relatively hard soils inspect regularly for damage to tops and the ball and socket of the interlock. Vibratory driving is especially suited to rounded-grain cohesionless and soft soils. Piles are driven in pairs or panels leading with the ball, since a leading socket may clog with soil; a guide frame (template) often gives horizontal and vertical alignment. If specified, tops are cut off neatly in a straight line at plan elevation. (p. 169)",
+      "key_points": [
+        "Vibratory driving suits rounded-grain cohesionless and soft soils (p. 169).",
+        "Lead with the ball, not the socket (p. 169).",
+        "Guide frame for alignment (p. 169)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction inspection checklist and performance monitoring for anchored wall projects"
+    },
+    {
+      "section_id": "9.5.3",
+      "title": "Excavation",
+      "summary": "Follow the specified excavation sequence and method (mass or slotted); limit overexcavation below each anchor level to 0.6 m or as specified; do not excavate below an anchor level until nearby anchors there are installed and locked off; sequence changes need the design engineer's approval.",
+      "body": "Excavation to the top of wall elevation precedes installation of vertical elements. The specified sequence of excavation and anchor installation maintains wall stability and integrity of surrounding structures; the specified sequence and methods (mass excavation or slotted) must be followed and overexcavation below each anchor elevation limited to 0.6 m, or as specified. Excavation below an anchor level must not begin until all nearby anchors at that level are installed and locked off; any sequence change needs the design engineer's prior approval. (p. 169)",
+      "key_points": [
+        "Overexcavation below each anchor limited to 0.6 m or as specified (p. 169).",
+        "No excavation below a level until its anchors are locked off (p. 169).",
+        "Sequence changes approved by the design engineer (p. 169)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction inspection checklist and performance monitoring for anchored wall projects"
+    },
+    {
+      "section_id": "9.5.4",
+      "title": "Anchor Construction",
+      "summary": "Heading for anchor construction: introduction, hole drilling, tendon insertion, grouting and anchorage installation (9.5.4.1 to 9.5.4.5).",
+      "body": "Heading for anchor construction: introduction (9.5.4.1), anchor hole drilling (9.5.4.2), tendon insertion (9.5.4.3), anchor grouting (9.5.4.4) and anchorage installation (9.5.4.5); it has no text of its own. (p. 169)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction inspection checklist and performance monitoring for anchored wall projects"
+    },
+    {
+      "section_id": "9.5.4.1",
+      "title": "Introduction",
+      "summary": "Anchor inspectors should know PTI (1996) and AASHTO (1990); drilling method and equipment are the contractor's unless specified; the inspector records methods and problems, and unapproved modifications need the design engineer's written approval.",
+      "body": "The section describes key anchor construction inspection activities; inspectors should know the detailed recommendations of PTI (1996) and AASHTO (1990). Unless specified, drilling methods and equipment are left to the contractor. The inspector observes and records the installation method and problems, and discusses with the contractor how to correct problems (p. 170); modifications not allowed by the specifications need the design engineer's written approval before implementation. The inspector must understand possible construction methods and recognize inappropriate practices. (pp. 169 to 170)",
+      "key_points": [
+        "Know PTI (1996) and AASHTO (1990) (p. 169).",
+        "Drilling method the contractor's unless specified (p. 169).",
+        "Unapproved modifications need written approval (p. 170)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction inspection checklist and performance monitoring for anchored wall projects"
+    },
+    {
+      "section_id": "9.5.4.2",
+      "title": "Anchor Hole Drilling",
+      "summary": "Drill at specified locations and tolerances (length, orientation, diameter), checking orientation throughout, never where the tendon must bend; log ground and watch for caving (cohesionless below water, fractured rock, artesian water) and its signs; use casing or fluids; no bentonite in uncased holes.",
+      "body": "Drilling method is the contractor's, accounting for specified concerns such as noise, vibration, hole alignment and damage to existing structures; failure to make a stable hole of adequate size within tolerance may require changing methods (hole instability, chapter 2; drilling methods, Section 7.3 of PTI, 1996). Holes are drilled at specified locations and tolerances (length, orientation, diameter); drilling beyond design length for better cleaning is common; never drill where the tendon must be bent to connect the anchorage; check vertical and horizontal orientation at the onset and during drilling. Record soil, rock and ground conditions, document unexpected conditions and sample where appropriate; visually classify cuttings and exposed soil for caving susceptibility: (1) cohesionless soils below groundwater, (2) highly fractured or weathered rock, (3) artesian pressures. Signs of caving: (1) drill steel cannot be withdrawn, (2) much soil removed with little advance, (3) abnormally large spoil pile, (4) settlement above the drill location, (5) tendon not easily inserted full length; with excessive caving halt and use drilling fluids or casing. Drilling muds and foams must be approved; bentonite mud should not be used in uncased holes as it weakens the grout/ground bond; drilling fluid control and disposal are the contractor's. (p. 170)",
+      "key_points": [
+        "Tolerances on length, orientation and diameter (p. 170).",
+        "Never drill where the tendon must bend (p. 170).",
+        "Caving-prone ground: three types; five signs of caving (p. 170).",
+        "No bentonite mud in uncased holes (p. 170)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction inspection checklist and performance monitoring for anchored wall projects"
+    },
+    {
+      "section_id": "9.5.4.3",
+      "title": "Tendon Insertion",
+      "summary": "Clean holes without ground loss and check them; confirm minimum bond and unbonded lengths and undamaged protection; remove flaky rust, reject pitted steel (Sason 1992 pictures); centralizers and spacers fixed and sized; on caving withdraw and redrill, never drive the tendon or cut the unbonded length.",
+      "body": "After drilling, uncased and drilled casing holes are cleaned of loose material within the design length, avoiding excessive cleaning in cohesionless soils that causes ground loss; uncased holes are inspected with a mirror, high intensity light or probing; if grouted before tendon insertion the depth is measured (p. 171). A hole may be considered clean if the tendon is easily inserted full length. Check each tendon's bond and unbonded lengths meet the specified minimums (maximums may apply for right-of-way); coatings, sheaths and encapsulations must be undamaged or repaired, else the tendon is not used. Just before insertion inspect exposed steel: remove loose flaky rust and look for pitting; steel with corrosion penetrating the surface is unsuitable; light non-flaky rust is not cause for rejection; the bond length must be clean (color pictures of strand corrosion in Sason, 1992). Centralizers are fixed at required intervals and sized for free grout flow; spacers separate strands for grout cover and to prevent intertwining. Anchors through a hollow-stem auger generally need no centralizers if the hole is kept full of grout of slump less than 225 mm during extraction; pressure-grouted anchors in coarse-grained soils need none when grout pressure exceeds 1 MPa. If caving occurs, withdraw the tendon and redrill; never drive the tendon or cut off unbonded length; the bond length may be shortened if it still exceeds the specified minimum, at risk of failing acceptance tests. (pp. 170 to 171)",
+      "key_points": [
+        "Hole clean if the tendon inserts easily full length (p. 171).",
+        "Reject pitted steel; light non-flaky rust acceptable (p. 171).",
+        "No centralizers via auger with grout slump < 225 mm (p. 171).",
+        "No centralizers for pressure grouting > 1 MPa in coarse soils (p. 171).",
+        "Never drive the tendon or cut the unbonded length (p. 171)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction inspection checklist and performance monitoring for anchored wall projects"
+    },
+    {
+      "section_id": "9.5.4.4",
+      "title": "Anchor Grouting",
+      "summary": "Grout promptly, reclean holes open over 8 to 12 hours, finish each anchor within an hour (PTI 1996), single stage, unbonded length by gravity or low pressure, 300 to 600 mm gap behind the trumpet; inject at the low point; record grout take; no auger reversal in the bond length.",
+      "body": "Grout before tendon insertion or as soon as practical afterward to limit caving; holes open longer than 8 to 12 hours are recleaned (PTI, 1996); equipment should allow continuous grouting completed in less than one hour per anchor (PTI, 1996); strands are aligned for the anchorage while grout is fluid. Grouting is one stage, bond and unbonded lengths filled in one injection, the unbonded length under gravity or low pressure, to a level leaving about a 300 to 600 mm gap behind the trumpet. Grout is injected at the lowest point (p. 172) to avoid air voids, flowing continuously as tube, auger or casing is withdrawn more slowly than grout is placed so the discharge stays below the grout surface. The pump pressure gauge is checked periodically and cleaned at least daily; head losses are calculated with representative hose lengths and elevations, high for low slump grout or very long anchors. The inspector records grout volume; grout take is volume placed divided by estimated hole volume; excessive takes may mean hydraulic fracturing (high pressure, or shallow overburden with low to moderate pressure) or flow into caving or natural voids (karst, talus); grout containment devices (GCDs) suit high grout loss. With hollow stem augers the auger must not be reversed while extracting from the bond length (soil mixes into grout), except one reversal at the bottom to release the bit. Post-grouting injects high pressure grout after the bond zone grout has initially hardened, the tendon being equipped beforehand. (pp. 171 to 172)",
+      "key_points": [
+        "Reclean holes open over 8 to 12 hours (PTI 1996) (p. 171).",
+        "Each anchor grouted in less than one hour (PTI 1996) (p. 171).",
+        "Single stage; 300 to 600 mm gap behind the trumpet (p. 171).",
+        "Grout take = volume placed / estimated hole volume (p. 172).",
+        "No auger reversal in the bond length except one at the bottom (p. 172)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction inspection checklist and performance monitoring for anchored wall projects"
+    },
+    {
+      "section_id": "9.5.4.5",
+      "title": "Anchorage Installation",
+      "summary": "Install the anchorage after grouting, aligned with the tendon, trumpet undamaged and overlapping unbonded protection; bearing plate perpendicular and centered without kinking; clean wedges; after lock-off fill trumpet and cover with grout and regrout until full.",
+      "body": "After grouting the anchorage is installed aligned with the tendon, keeping corrosion protection continuous near the anchorage; the trumpet must be undamaged and overlap the unbonded length protection; it may be slip fit, then possibly without a seal for trumpet grout, without damaging that protection. The bearing plate is perpendicular to the tendon, tendon centered, without bending or kinking the steel; unbonded length protection must not touch the bearing plate before, during or after stressing; wedge holes and wedges clean and rust-free to prevent strand slip and seat properly. After testing and lock-off (p. 173) the trumpet is grouted and a cover placed and filled per specifications, grout levels checked after setting and regrouted as needed for complete filling. (pp. 172 to 173)",
+      "key_points": [
+        "Trumpet undamaged and overlapping unbonded protection (p. 172).",
+        "Bearing plate perpendicular, tendon centered (p. 172).",
+        "Clean, rust-free wedges (p. 172).",
+        "Trumpet and cover grouted after lock-off, checked full (p. 173)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction inspection checklist and performance monitoring for anchored wall projects"
+    },
+    {
+      "section_id": "9.5.5",
+      "title": "Ancillary Wall Element Installation",
+      "summary": "Heading for ancillary wall element installation: timber lagging, wall drainage, horizontal drains and permanent facing (9.5.5.1 to 9.5.5.4).",
+      "body": "Heading for ancillary wall element installation: timber lagging installation (9.5.5.1), wall drainage system installation (9.5.5.2), horizontal drains (9.5.5.3) and permanent facing installation (9.5.5.4); it has no text of its own. (p. 173)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction inspection checklist and performance monitoring for anchored wall projects"
+    },
+    {
+      "section_id": "9.5.5.1",
+      "title": "Timber Lagging Installation",
+      "summary": "Install lagging in small lifts immediately after excavation, avoiding voids, behind flanges or outside with spacers for drainage; in running sand one board at a time, with shingles or plywood pushed in every few rows.",
+      "body": "Timber lagging is installed in sufficiently small lifts immediately after excavation to prevent soil loss between soldier beams, excavating carefully to avoid voids behind it; it may sit behind the flanges or outside the beams separated by spacers for drainage. In \"running\" sand, minimize soil loss, possibly placing one board at a time; thin wood shingles or plywood pushed into the retained soil every few rows may help. (p. 173)",
+      "key_points": [
+        "Small lifts immediately after excavation (p. 173).",
+        "Running sand: one board at a time (p. 173)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction inspection checklist and performance monitoring for anchored wall projects"
+    },
+    {
+      "section_id": "9.5.5.2",
+      "title": "Wall Drainage System Installation",
+      "summary": "With CIP facing, geocomposite drains go fabric side against the lagging at midspan and joints, spliced for continuity, repaired if torn, extended top to bottom, to a footing drain or weep holes with filters; footing drains are sloped perforated pipe in gravel.",
+      "body": "With cast-in-place (CIP) facing, vertical drainage is commonly a prefabricated geocomposite drain with geotextile on one side, secured tightly fabric side against the lagging at locations and dimensions on plans; splices per manufacturer keep continuity; torn or punctured fabric is replaced or patched with overlapping fabric. Drains are commonly at midspan between beams and at construction and expansion joints, extended down as excavation proceeds for continuous drainage top to bottom, connected at the base to a footing drain below finished grade or to weep holes through the wall, located with the drains, usually with a filter against them; drainage aggregate is usually encapsulated by filter fabric. Footing drains are commonly perforated pipe in drainage gravel, sloped as drawn. (p. 173)",
+      "key_points": [
+        "Fabric side against the lagging (p. 173).",
+        "Drains at midspan and joints, continuous top to bottom (p. 173).",
+        "Footing drain or filtered weep holes at the base (p. 173)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction inspection checklist and performance monitoring for anchored wall projects"
+    },
+    {
+      "section_id": "9.5.5.3",
+      "title": "Horizontal Drains",
+      "summary": "Horizontal drains for anchored slopes: slotted PVC pipe in an uncased hole, penetrations sealed, last section unperforated; watch discharge for sediment, flush clogged drains; falling discharge with rising piezometric level means declining efficiency, so add drains if flushing fails.",
+      "body": "Horizontal drains occasionally lower seepage pressures for anchored slopes: a small diameter uncased hole drilled back from the face (p. 174) fitted full length with slotted PVC pipe; wall penetrations sealed around the pipe and the last section left unperforated so water does not build up behind the facing; outlet commonly to the footing drain. Examine discharge for sediment indicating internal erosion; size perforations to the soil and wrap the pipe in geotextile; flush clogged drains by pumping water in. Efficiency is assessed with monitoring wells: a rise in groundwater with falling drain discharge means efficiency is decreasing; if flushing does not restore it, install more drains. Inspect slopes routinely for seepage and investigate its source. (pp. 173 to 174)",
+      "key_points": [
+        "Slotted PVC in an uncased hole; last section unperforated (pp. 173 to 174).",
+        "Sediment in discharge indicates internal erosion (p. 174).",
+        "Rising groundwater with falling discharge: efficiency decreasing (p. 174)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction inspection checklist and performance monitoring for anchored wall projects"
+    },
+    {
+      "section_id": "9.5.5.4",
+      "title": "Permanent Facing Installation",
+      "summary": "Precast or CIP facing and coping to plans, batter and alignment within tolerance; CIP forms tight and aligned, shear studs welded to soldier beams, no exposed reinforcement; precast panels positioned within tolerance on flexible connections, handled minimally.",
+      "body": "Facing and coping are usually precast panels or CIP concrete, installed per plans and specifications with batter and alignment within tolerance and the specified finish. CIP forms are well built, aligned and tight against leakage; shear studs are welded to soldier beams; surfaces free of defects and no reinforcement exposed. Precast panels are placed and supported to the working drawing position within tolerance, attached to soldier beams with connections flexible enough for installation tolerances, and handled minimally to avoid damage. (p. 174)",
+      "key_points": [
+        "Batter and alignment within tolerance (p. 174).",
+        "Shear studs welded to soldier beams (p. 174).",
+        "Flexible precast connections (p. 174)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Construction inspection checklist and performance monitoring for anchored wall projects"
+    },
+    {
+      "section_id": "9.6",
+      "title": "Short-Term and Long-Term Monitoring",
+      "summary": "Heading for short-term and long-term monitoring: anchor load tests, short-term wall performance and long-term monitoring (9.6.1 to 9.6.3).",
+      "body": "Heading for short-term and long-term monitoring: monitoring of anchor load tests (9.6.1), short-term monitoring of wall performance (9.6.2) and long-term monitoring (9.6.3); it has no text of its own. (p. 174)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Short-term and long-term performance monitoring of anchored walls, including monitoring of anchor load tests"
+    },
+    {
+      "section_id": "9.6.1",
+      "title": "Monitoring of Anchor Load Tests",
+      "summary": "During load tests: tendon stress never above 80 percent of SMTS, load never below the alignment load, plot as you go, no overlapping wedge bites, free length unbonded until accepted, lift-off after lock-off. Verify and calibrate equipment; scribe a circle round the dial gauge head; support the jack.",
+      "body": "Load testing and interpretation need careful control as the basis for acceptance or rejection (printed \"acceptance of rejection\"); the inspector keeps the forms and the contractor supplies bar and strand properties. Guidelines: tendon tensile stress never above 80 percent of the specified minimum tensile strength (SMTS); (p. 175) load never reduced below the alignment load; plot measurements as the test proceeds to spot unusual behavior; for strands avoid regripping that causes overlapping wedge bites or bites below the anchor head; for fully bonded anchors the free length stays unbonded until testing is complete and the anchor accepted; after lock-off a lift-off test verifies the intended load. Equipment suitability is verified: the jack in good order and able to load and unload incrementally; calibration graphs for jack, pressure gauge and load cell given to the inspector; the dial gauge in good order with adequate travel. Setup is inspected: equipment and dial gauge aligned, the gauge on an independent reference, and a circle scribed around the dial gauge head after the alignment load and watched for movement. The jack is supported during the alignment load; if it drops on release, support is reapplied and kept until the jack is removed. (pp. 174 to 175)",
+      "key_points": [
+        "Tendon stress never above 80 percent of SMTS (p. 174).",
+        "Load never below the alignment load (p. 175).",
+        "Plot as the test proceeds (p. 175).",
+        "Lift-off test after lock-off (p. 175).",
+        "Scribe a circle around the dial gauge head (p. 175)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Short-term and long-term performance monitoring of anchored walls, including monitoring of anchor load tests"
+    },
+    {
+      "section_id": "9.6.2",
+      "title": "Short-Term Monitoring of Wall Performance",
+      "summary": "Short-term monitoring is optical survey of soldier beam tops and visual inspection, expanded to anchor loads and subsurface movement if movement is unexpected. Overexcavation below unstressed anchors is the most common cause; an anchor nearing the test load is detensioned to design load and support added.",
+      "body": "Short-term monitoring generally uses optical surveys and frequent visual inspection: a baseline survey of soldier beam tops before excavation, resurveyed if visual signs of unexpected movement appear; unexpected or adverse movement expands monitoring to regular load measurement on selected anchors and subsurface movements, reduced once movement slows to an acceptable rate and the system is stable, and discontinued if nothing unusual is seen after a reasonable time. Excessively large movements during construction may indicate instability, defined by measuring wall movement, ground movement behind the wall and anchor loads; the most common cause is overexcavation below a row of unstressed anchors (p. 176). Outward movement with significant anchor load increase may mean weaker retained ground and higher wall loads; where anchor load approaches the maximum test load, detension to the design load, add support and investigate. Specifications may add criteria limiting lateral and vertical wall movement and settlement of adjacent structures and maintaining groundwater levels, most often for deep excavations, landslide stabilization and sensitive nearby structures; monitoring methods and criteria in the specifications must be followed. (pp. 175 to 176)",
+      "key_points": [
+        "Baseline optical survey of soldier beam tops (p. 175).",
+        "Expand to anchor loads and subsurface movement if needed (p. 175).",
+        "Most common cause: overexcavation below unstressed anchors (p. 175).",
+        "Anchor near maximum test load: detension to design load, add support (p. 176)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Short-term and long-term performance monitoring of anchored walls, including monitoring of anchor load tests"
+    },
+    {
+      "section_id": "9.6.3",
+      "title": "Long-Term Monitoring",
+      "summary": "Long-term monitoring is not a contract acceptance requirement but is done by the owner for critical systems or marginal ground, with strain gauges on anchors and soldier beams, inclinometers and settlement plates (see FHWA-RD-97-130 and Dunnicliff 1988).",
+      "body": "Long-term monitoring is generally not required for contract acceptance but is done by the owner to monitor wall performance and/or understand wall behavior, most often for critically important systems or systems in potentially marginal ground. It typically involves more extensive instrumentation (strain gauges for anchors and soldier beams, inclinometers and settlement plates for ground movement) and often continues short-term monitoring; more detail in FHWA-RD-97-130 (1998) and Dunnicliff (1988). (p. 176)",
+      "key_points": [
+        "Not a contract acceptance requirement (p. 176).",
+        "Critical systems or marginal ground (p. 176).",
+        "Strain gauges, inclinometers, settlement plates (p. 176)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Short-term and long-term performance monitoring of anchored walls, including monitoring of anchor load tests"
     }
   ]
 }

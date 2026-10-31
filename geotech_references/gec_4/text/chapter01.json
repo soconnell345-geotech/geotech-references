@@ -5,31 +5,49 @@
   "chapter_title": "Introduction",
   "sections": [
     {
-      "section_id": "1.1-1.2",
-      "title": "Purpose and Anchored System Service Life",
-      "summary": "GEC-4 provides state-of-the-practice information on cement-grouted, prestressed ground anchors and anchored systems for highway applications. Covered systems include flexible anchored walls, slope and landslide stabilization, and tiedown anchors. Permanent anchored systems have a service life of 75–100 years. Temporary systems are defined as those removed or inoperative within 18–36 months. Critical temporary systems are designed to the same criteria as permanent systems. SOE (support of excavation) temporary systems are designed to less restrictive criteria.",
-      "body": "The purpose of this document is to provide state-of-the-practice information on ground anchors and anchored systems for highway applications. Ground anchors discussed are cement-grouted, prestressed tendons installed in soil or rock. Anchored systems include flexible anchored walls, slopes supported using ground anchors, slope and landslide stabilization systems, and tiedown anchors. Design, construction, and load testing methods described are those currently used in U.S. practice.\n\nPermanent anchored systems are generally considered to have a service life of 75 to 100 years. Temporary systems have a service life of 18 to 36 months (or shorter/longer based on project conditions). This document subdivides temporary systems into 'support of excavation' (SOE) and 'critical' temporary systems. Critical temporary systems are designed to the same criteria as permanent systems. SOE systems are designed to less restrictive criteria (the contractor typically owns design responsibility). Design components that are less restrictive for SOE vs. permanent systems: (1) selection of timber lagging; (2) allowable stresses; (3) factors of safety; (4) axial load design; (5) surcharge loads; (6) seismic design criteria; and (7) anchor load testing.",
+      "section_id": "1.1",
+      "title": "Purpose",
+      "summary": "State-of-the-practice information on cement grouted, prestressed ground anchors in soil or rock and on anchored systems (flexible anchored walls, anchored slopes, landslide stabilization, tiedowns) for highway use; methods described are current U.S. practice and not prescriptive.",
+      "body": "The document provides state-of-the-practice information on ground anchors and anchored systems for highway applications. The ground anchors discussed are cement grouted, prestressed tendons installed in soil or rock; the anchored systems include flexible anchored walls, slopes supported using ground anchors, slope and landslide stabilization systems, and structures that incorporate tiedown anchors. The intended audience is geotechnical, structural, and highway design and construction specialists involved with design, construction, contracting and inspection. Ground anchors and anchored systems have become increasingly cost-effective through improvements in design methods, construction techniques, anchor component materials and on-site acceptance testing, increasing the use of both temporary and permanent anchors. Because anchoring practice is evolving, the information is not intended to be prescriptive; the design, construction and load testing methods described are those currently used in U.S. practice. (p. 1)",
       "key_points": [
-        "Covers cement-grouted prestressed anchors in soil/rock; anchored walls, slope stabilization, tiedown anchors",
-        "Permanent system service life: 75–100 years",
-        "Temporary systems: 18–36 months; critical temporary systems designed to same criteria as permanent",
-        "SOE systems: less restrictive on lagging, allowable stress, FS, axial load, surcharge, seismic, and load testing"
+        "Covers cement grouted, prestressed ground anchors in soil or rock (p. 1).",
+        "Anchored systems: flexible walls, anchored slopes, landslide stabilization, tiedowns (p. 1).",
+        "Audience: geotechnical, structural and highway design and construction specialists (p. 1).",
+        "Not prescriptive; describes current U.S. practice (p. 1)."
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Scope, service life classification, and design criteria framework for GEC-4"
+      "applicability": "Scope and intended audience of GEC-4 guidance on ground anchors and anchored systems for highway applications"
+    },
+    {
+      "section_id": "1.2",
+      "title": "Anchored System Service Life",
+      "summary": "Permanent anchored systems have a 75 to 100 year service life; temporary systems (AASHTO: removed or inoperative once permanent systems are complete) commonly 18 to 36 months. Critical temporary systems, designated by the owner, are designed as permanent; support of excavation (SOE) systems use less restrictive criteria.",
+      "body": "The document focuses on design methods and procedures for permanent ground anchors and anchored systems, generally considered to have a service life of 75 to 100 years, though anchored systems are also commonly used temporarily. The service life of temporary earth support is the time needed to support the ground while permanent systems are installed; following AASHTO, temporary systems are those removed or made inoperative when the permanent systems are complete, commonly stated as 18 to 36 months but shorter or longer depending on the project. Temporary systems are subdivided into \"support of excavation\" (SOE) and \"critical\" temporary systems. The owner generally decides which are critical, often from the need to restrict lateral movement of the support system to limit ground movement behind it; critical temporary systems are recommended to be designed to the same criteria as permanent systems. SOE systems are commonly designed to less restrictive criteria, often with design and performance assigned to the contractor, and their design is often based more on system stability than on limiting ground movement. The basic design recommendations apply to permanent and critical temporary systems (p. 2), and \"permanent anchored systems\" or \"permanent applications\" include critical temporary systems; differences for SOE systems are discussed where appropriate. Components generally less restrictive for temporary SOE systems are: (1) selection of timber lagging; (2) allowable stresses in structural components; (3) factors of safety; (4) design for axial load; (5) surcharge loads used to evaluate wall loadings; (6) seismic design criteria; and (7) anchor load testing. (pp. 1 to 2)",
+      "key_points": [
+        "Permanent anchored systems: service life 75 to 100 years (p. 1).",
+        "Temporary systems commonly 18 to 36 months (AASHTO definition) (p. 1).",
+        "Critical temporary systems designed to permanent criteria (p. 1).",
+        "SOE systems: less restrictive criteria, often contractor designed (p. 1).",
+        "Seven components less restrictive for SOE: lagging, stresses, FS, axial load, surcharge, seismic, testing (p. 2)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Service life classification of permanent, critical temporary and support-of-excavation anchored systems"
     },
     {
       "section_id": "1.3",
       "title": "Background",
-      "summary": "GEC-4 updates the FHWA (1988) design manual 'Permanent Ground Anchors' (FHWA-DP-68-1R). Key reference documents incorporated: AASHTO Task Force 27 (1990) 'In-Situ Soil Improvement Techniques' (generic ground anchor spec and inspection manual); PTI (1996) 'Recommendations for Prestressed Rock and Soil Anchors'. FHWA research from the 1990s on full-scale anchored walls (FHWA-RD-98-066, -067, -97-130) provides the basis for several design procedures adopted herein.",
-      "body": "Ground anchors were first used in the U.S. for temporary SOE systems by specialty contractors. Permanent ground anchor use for public highway projects became common only in the late 1970s. In 1979, FHWA authorized a permanent ground anchor demonstration project; two FHWA research reports (FHWA-RD-81-150/151/152) and a design manual (1984, updated 1988 as FHWA-DP-68-1R) were produced. During the demonstration project, five U.S. highway projects with permanent anchored systems were instrumented (FHWA-DP-90-068-003, 1990).\n\nGEC-4 was written to update the 1988 manual. Since 1988, advances include performance data from anchored wall monitoring, new construction materials and methods, and improved acceptance testing procedures. Most recently, FHWA research (FHWA-RD-97-130, -98-066, -98-067, 1998) on full-scale and large-scale model anchored walls provides the basis for several design procedures adopted herein. AASHTO Task Force 27 (1990) and PTI (1996) form the basis for the chapters on load testing and corrosion protection and for the generic ground anchor specification in Appendix E.",
+      "summary": "Permanent anchors became common in U.S. public works from the late 1970s. The FHWA demonstration project (1979-1982) produced FHWA-RD-81-150 to 152, FHWA-RD-82-047 and the FHWA (1988) manual this document updates, adding FHWA-RD-97-130 and RD-98-066/067 research, AASHTO Task Force 27 (1990) and PTI (1996).",
+      "body": "Ground anchors were first used in the U.S. for temporary support of excavation, typically designed and built by specialty contractors; permanent anchors on public projects became common only in the late 1970s and are now a common technique for earth retention and slope stabilization on highways. Benefits of anchored walls over concrete gravity walls for a highway cut include: unobstructed workspace for excavations; ability to withstand relatively large horizontal wall pressures without a significant increase in wall cross section; no need for temporary excavation support, since the anchored wall can be part of the permanent structure; no need for select backfill; no need for deep foundation support; reduced construction time; and reduced right-of-way (ROW) acquisition. In 1979 the FHWA Office of Technology Applications authorized a permanent ground anchor demonstration project to promote routine use, aiming to (1) study existing technology and installation procedures, (2) determine where more work was needed, (3) update technology, (4) develop a basic design manual and (5) solicit highway installations. Between 1979 and 1982 two FHWA research reports were completed (\"Permanent Ground Anchors\", FHWA-RD-81-150, 151 and 152, and \"Tiebacks\", FHWA-RD-82-047) and pilot projects begun; a design manual was developed in 1984 and updated in 1988 (FHWA-DP-68-1R) (p. 3), and five instrumented highway projects gave performance data (FHWA-DP-90-068-003, 1990). The document partly updates the FHWA (1988) manual \"Permanent Ground Anchors\", drawing on it for subsurface investigation and laboratory testing, basic anchoring principles, load testing and inspection, and adds advances since 1988, including FHWA research on anchored soldier beam and timber lagging walls (two full-scale and four large-scale model walls; settlement, axial load, downdrag and lateral movement; FHWA-RD-98-066 and FHWA-RD-98-067, 1998), several of whose recommended methods (FHWA-RD-97-130, 1998) are adopted. Acceptance testing has improved since FHWA (1988): AASHTO Task Force 27 \"In-Situ Soil Improvement Techniques\" (1990) included a generic construction specification and an inspection manual underlying many agency standards, and PTI \"Recommendations for Prestressed Rock and Soil Anchors\" (PTI, 1996) is commonly referenced. These two documents are the basis for the chapters on acceptance testing and corrosion protection and for the generic specification in appendix E. (pp. 2 to 3)",
       "key_points": [
-        "Updates FHWA (1988) 'Permanent Ground Anchors' (FHWA-DP-68-1R)",
-        "AASHTO Task Force 27 (1990) and PTI (1996) form the basis for load testing and corrosion chapters",
-        "FHWA-RD-97-130/98-066/98-067 research on full-scale and model walls informs design procedures",
-        "Generic ground anchor specification provided in Appendix E; Appendix F is anchored wall specification"
+        "Permanent anchors common on U.S. public projects since the late 1970s (p. 2).",
+        "Anchored wall benefits: workspace, high pressures, no temporary support, no select backfill or deep foundations, speed, less ROW (p. 2).",
+        "FHWA demonstration project 1979; reports FHWA-RD-81-150 to 152 and RD-82-047; manual 1984, updated 1988 (p. 2).",
+        "Updates FHWA (1988) with FHWA-RD-97-130, RD-98-066 and RD-98-067 research (p. 3).",
+        "Testing and corrosion protection based on AASHTO Task Force 27 (1990) and PTI (1996) (p. 3)."
       ],
       "equations": [],
       "figures": [],
