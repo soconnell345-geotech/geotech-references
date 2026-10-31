@@ -401,3 +401,101 @@ No reading was chosen; the sections give what the page prints.
 - ch 18: Table 18-1 prints a 12-month quantity of "1,.250" (SIGN MTS
   54 IN). Table 18-2 prints the 72-in. Engineer's estimate as "$475.001".
   The 18.4 heading prints "PUBLICALLY".
+
+## GEC-12 Vol II written from the print
+
+GEC-12 (FHWA-NHI-16-009, 2016) Vol II ch 9 to 18 was rewritten on
+fix/ref52, one commit per chapter. The range sections (such as
+"10.1-10.3" or "18.6-18.7") were split so that every printed heading has
+its own section, with its body read off its printed pages; the
+unnumbered chapter openings went into the first section. Each equation,
+figure and table sits in the section whose pages print it. REF-04's
+equation entries were kept. Those re-read off rendered pages, symbol by
+symbol, did not change: 9-2, 9-5 to 9-8, 10-1 to 10-7, 11-1 to 11-10,
+13-1 to 13-8, 14-1 to 14-6, 15-1 to 15-3 and 18-1 (ch 12, 16 and 17
+print none). Ch 14 was the one Vol II file that nested sections under
+`subsections`; it is now flat, like the others (`section_entries` reads
+both).
+
+`check_section_numbers.py gec_12` now reads 471 printed, 471 matched
+(it was 293), with 0 range and 0 missing. The 1 extra (3.0 Introduction)
+and the 2 ambiguous (7.2.3.2.2 and 7.2.3.2.3, which the contents number
+one lower than the page) are in Vol I and were not changed.
+
+### Print inconsistencies, kept as printed
+
+No reading was chosen; the sections give what the page prints. Page
+numbers are Vol II's printed page numbers.
+- ch 9: no 9.2.1 is printed (9.2 is followed by 9.2.2), and p. 18 cites
+  "Section 9.2.1" for the primary and back-up load systems (they are in
+  9.2.2). p. 42 says the telltale load distribution "calculated from Eq.
+  9-5 to 9-7" excludes residual load (the telltale equations are 9-4 to
+  9-6; 9-7 is the strain gage force). p. 28 says unloading is "in four
+  load decrements equal to 50% of the maximum load", while Table 9-2
+  steps 200-150-100-50-0 percent of design load (25 % of the maximum
+  each). "Measureand 2015" (p. 25) against "Measurand" (Figure 9-16);
+  "Sellers (2015)" (p. 47) against "Sellers 1995" (p. 37).
+- ch 10: three cross-references are one section off: p. 77 "Section
+  10.3" for Eqs. 10-1 and 10-2 (10.4) and "Section 10.7" for EMX
+  (10.8.2); p. 81 "Section 10.4" for wave mechanics (10.5). The fixed-end
+  sentence on pp. 65-66 is garbled ("... the particle velocity must be
+  zero material wave speed, C"). p. 97 says the compression stresses
+  exceed the 50 ksi yield of the A572 Grade 50 H-pile, but the printed
+  CSX 44.9, CSI 45.3 and CSB 49.5 ksi are below it (only the iCAP CSC,
+  52.3 ksi, exceeds it); "As noted earlier" points at no earlier
+  statement. "Hererra et al. (2009)" (p. 54) against the reference list's
+  "Herrera".
+- ch 11: p. 138 says the MUP single mass acceleration is "defined from
+  the average of the pile head and toe displacement", then runs the UPM
+  with "the average accelerations and velocities". p. 136 writes
+  Fu(tmax) where Eq. 11-5 writes Fu(tumax). "Municiapl" (p. 150).
+- ch 12: p. 159 says a bearing graph gives "two types of information"
+  and lists three. Example 3 (p. 172) gives 45 blows/ft through the
+  extremely dense layer, then says the resistance "increases to only 44
+  blows/foot" deeper. Example 4 gives the compression stress limit as
+  4.1 ksi (p. 175) and as 4.15 ksi (p. 177). p. 206 says "Section 12.8"
+  discusses the diesel stroke options (12.7.1). p. 248 gives the time
+  after impact "in m/s" (milliseconds elsewhere). Table 12-8 prints
+  "4.o" (p. 229).
+- ch 13: Table 13-6 (p. 278) does not close: the Gates underrun prints
+  29,408 lf against 246,052 - 216,664 = 29,388; the paid-length total
+  1,154,517 against 216,664 + 937,873 = 1,154,537; the underrun total
+  86,638 against 29,408 + 57,227 = 86,635.
+- ch 14: p. 301 (X.04 B 5) cites "Section X.06 C) 4" for the location and
+  alignment tolerances, which are X.06 C) 5. p. 314 cites "the commentary
+  of Section 14.2.5.1 A" (no such number; the commentary is under X.05
+  A) 1). The contents list (pp. 284-285) and the body title three
+  sub-items differently: X.06 B "Preparation of Piling" / "Preparation
+  of Piles for Driving", B 2 "Collars for Timber Piles" / "Collars and
+  Bands", X.06 C "Driving" / "Pile Driving". "Pile Marking for Prior to
+  Driving" (pp. 285, 318).
+- ch 15: p. 345 cites "Section 15.3" for templates (15.4). p. 391 cites
+  "Section 14.2.1 and 14.2.3" for the Pile Installation Plan and the
+  driving equipment (printed in 14.2.2 and 14.2.4). Table 15-2 (p. 380)
+  bands "416 to 540" and "540 to 600" share 540 kips, and its bands (301
+  to 415, 416 to 540) differ from Table 14-3's (301 to 420, 421 to 540).
+  p. 385 cites "Reinwall et al. (2014)" and a "Reinwall pile"; the
+  reference list (p. 394) prints "Reinhall". The 15.21 heading prints
+  "NOISE SUPPRESION"; Figure 15-45's caption prints "drving".
+- ch 16: p. 397 cites "Collin 2012"; the reference list (p. 431) prints
+  Collin (2002). 16.5.2 (p. 426) preheats to a minimum 70 F and keeps a
+  minimum 50 F until welding is done; the 16.5.4.1 checklist (p. 429)
+  says the area is preheated "and maintained at 70 degrees". The p. 395
+  sentence on attaching the toe protection device is garbled. p. 413
+  cites "Section 7.10 7". p. 419 spells the same splice "Herkules" and
+  "Hercules".
+- ch 17: p. 434 says a switch from the Gates formula (phi 0.40) to a
+  static load test (0.75) or 100 % dynamic testing "will result in an
+  87% reduction in the required nominal resistance"; the required
+  resistance scales by 0.40/0.75 = 0.53. The 63 % increase for 0.65 to
+  0.40 agrees with 0.65/0.40. p. 435 cites waiting periods "noted in
+  Section 14.5.2.1" (no such section; the restrike delays are Table 14-4
+  in 14.2.5). Example 2 (p. 444) prints 230/(1.2 x 0.9) = 212 kips
+  (212.96).
+- ch 18: Figure 18-2, the inspector's tools checklist (p. 452), is
+  captioned "Key components of the pile installation process", close to
+  Figure 18-1's. The Eq. 18-1 symbol list prints "blow per minute"; 18.7.4
+  item m opens with "...."; p. 494 prints "Double hydraulic hammers" for
+  double acting hydraulic hammers.
+
+Smaller typos are not listed.
