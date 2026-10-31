@@ -797,71 +797,78 @@
       "subsections": [
         {
           "section_id": "7.3.1",
-          "title": "Tolerable Deformations",
-          "body": "Establishes tolerable deformation criteria for pile-supported structures. Angular distortion (differential settlement / span length) is the primary criterion. For bridges, AASHTO (2014) recommends angular distortion limits. Total settlement limits depend on structure type and function.",
+          "title": "Tolerable Vertical Deformations and Angular Distortion",
+          "body": "Tolerable deformations are limited by the structure type and function, design service life, and anticipated performance at the respective displacement levels (pp. 309-310). Vertical, horizontal and rotational displacements should be considered, with tolerable movement criteria established by empirical procedures, structural analysis, or both (AASHTO 2014). Agencies often limit vertical deformation to restrictive values such as 1 inch or less without a rational basis; there is no technical reason for arbitrary limits, but there are practical ones, such as the tolerances of attached structures and utilities, drainage, ride quality and safety. Moulton (1985) studied 314 bridges and recommended limiting angular distortions for multi-span and simple span structures. Angular distortion (Figure 7-37) is the differential settlement of the foundation, Sd, over the span length, Ls, both in the same units. Table 7-18 gives Moulton's criteria as presented in SHRP 2 Project R19B; they were developed for longitudinal movements and should not be used for the transverse direction. Moulton also recommended limiting lateral deformation to 1.5 inches for all structures.",
           "key_points": [
-            "Angular distortion = differential settlement / span length",
-            "AASHTO bridge limit: angular distortion < 0.004 for multi-span bridges",
-            "Single span bridges more tolerant: angular distortion < 0.008",
-            "Total settlement typically 25-50 mm for bridges on piles",
-            "Lateral deflection limits depend on structural requirements and utility connections",
-            "Table 7-18 provides tolerable movement criteria for various structure types"
+            "Angular distortion = differential settlement Sd / span length Ls, same units (Figure 7-37)",
+            "Table 7-18 (Moulton 1985, 314 bridges): limiting Sd/Ls 0.004 radians for multi-span bridges, 0.005 radians for simple-span bridges",
+            "The angular distortion limits are for longitudinal movement only, not the transverse direction",
+            "Moulton recommended lateral deformation be limited to 1.5 inches for all structures",
+            "Arbitrary limits such as 1 inch or less have no technical basis; practical limits come from attached structures, utilities, drainage, ride quality and safety"
           ],
           "equations": [],
           "figures": [
-            "Figure 7-37: Angular distortion definition and tolerable limits"
+            "Figure 7-37: Angular distortion due to non-uniform bridge settlement (p. 309)"
           ],
           "tables": [
-            "Table 7-18: Tolerable movement criteria for highway bridges and structures"
+            "Table 7-18: Tolerable Movement Criteria for Bridges (p. 310)"
+          ],
+          "subsections": [
+            {
+              "section_id": "7.3.1.1",
+              "title": "Load Factor for Vertical Deformations",
+              "body": "AASHTO (2014) includes a load factor for vertical deformation or settlement, gamma_SE, to be considered on a project-specific basis, and recommends 1.0 in lieu of project-specific information to the contrary (p. 310). The factor is used to assess force effects of settlement on the structural design, such as secondary moments within a span from settlement of a substructure support. A settlement load factor of 1.25 does not mean computed settlements should be increased by 25% to limit the probability of exceeding tolerable settlement; the factor is applied to the limit state load combinations to determine the settlement effects on the service and strength limit states. Research on further guidance for gamma_SE was in progress.",
+              "key_points": [
+                "gamma_SE: AASHTO (2014) settlement load factor, 1.0 recommended absent project-specific information",
+                "It is applied to the limit state load combinations for settlement force effects (e.g. secondary moments), not as a multiplier on computed settlement"
+              ],
+              "equations": [],
+              "figures": [],
+              "tables": []
+            }
           ]
         },
         {
           "section_id": "7.3.2",
-          "title": "S-0 Concept (Load-Settlement Behavior)",
-          "body": "The S-0 (load-settlement) concept describes the relationship between applied load and pile head settlement. Settlement includes elastic compression of the pile, movement of the pile toe into the soil, and elastic compression of the soil beneath the pile toe. The shape of the S-0 curve depends on whether the pile is friction or end-bearing dominated.",
+          "title": "S-0 Concept for Vertical Deformations",
+          "body": "Because subsurface conditions vary and predicted and actual deformations differ, a bridge should be designed to accommodate a realistic differential settlement and angular distortion in the longitudinal direction using the S-0 concept of Duncan and Tan (1991) (pp. 310-312). The actual settlement of a substructure unit can be as large as the value calculated by a given method, while that of the adjacent unit can be zero instead of the value calculated by the same method. The maximum differential settlement between two adjacent foundations is therefore the maximum total settlement calculated for either foundation unit supporting the span, and the maximum angular distortion is that settlement divided by the span length; these are the design differential settlement, DSd, and the design angular distortion, DA. Figure 7-38 shows the computed settlement and angular distortion for a four span bridge on two abutments and three piers; Figure 7-39 shows the design values from the S-0 concept.",
           "key_points": [
-            "S-0 curve: complete load vs settlement relationship for a pile",
-            "Three settlement components: pile elastic compression, toe movement, soil compression below toe",
-            "Friction piles: gradual curving S-0 with large elastic compression",
-            "End-bearing piles: stiff response until toe capacity mobilized, then rapid settlement",
-            "Davisson offset method defines failure load from S-0 curve",
-            "Typical failure settlement = pile elastic compression + 4.0 mm + D/120"
+            "S-0 concept (Duncan and Tan 1991): one support settles the full calculated amount, the adjacent support settles zero",
+            "Design differential settlement DSd = maximum total settlement calculated for either support of the span",
+            "Design angular distortion DA = DSd / span length"
           ],
           "equations": [],
           "figures": [
-            "Figure 7-38: Typical S-0 curves for friction and end-bearing piles",
-            "Figure 7-39: Davisson failure criterion applied to S-0 curve"
+            "Figure 7-38: Example settlement and angular distortion profile (after Modjeski and Masters 2015) (p. 311)",
+            "Figure 7-39: Settlement profile with design differential settlement and design angular distortion from S-0 concept (after Modjeski and Masters 2015) (p. 312)"
           ],
           "tables": []
         },
         {
           "section_id": "7.3.3",
           "title": "Construction Point Concept",
-          "body": "The construction point concept recognizes that some settlement occurs during construction before the superstructure is connected. Settlement occurring before the connection is made does not affect the structure. Design should evaluate settlement under incremental loading at each construction stage.",
+          "body": "The settlements in Figure 7-39 assume all foundation loads are applied at once; in reality loads, and the settlements they cause, accumulate as construction progresses, so settlement and angular distortion should be evaluated separately relative to several critical points in the construction process (pp. 312-314). Figure 7-40 shows the typical construction sequence of a pier with the load applied at each stage and the resulting vertical deformation. In a typical bridge project the settlement after pier column and superstructure construction but before the wearing surface is often the most relevant; settlement before the superstructure is built may not matter to the superstructure design. Vertical deformation and angular distortion should be determined with the construction point concept in limit state designs. Figure 7-41 revisits the four span example: the calculated settlements and the S-0 maximum angular distortion, with the range of settlement and angular distortion from construction point load-deformation data shown hatched.",
           "key_points": [
-            "Settlement before superstructure connection does not affect angular distortion",
-            "Construction sequence timing affects how much settlement impacts the structure",
-            "Incremental loading analysis recommended for each construction stage",
-            "Figure 7-40: Construction point concept illustration",
-            "Particularly important for approach fills on soft ground"
+            "Evaluate settlement and angular distortion relative to key construction points, not for all loads applied at once",
+            "Settlement after pier column and superstructure construction but before the wearing surface is often the most relevant"
           ],
           "equations": [],
           "figures": [
-            "Figure 7-40: Construction point concept for settlement evaluation",
-            "Figure 7-41: Example construction sequence with settlement stages"
+            "Figure 7-40: Construction point concept: (a) identification of key construction points, (b) estimated load-deformation behavior (after Modjeski and Masters 2015) (p. 313)",
+            "Figure 7-41: Settlement profile with angular distortion from construction point concept (after Modjeski and Masters 2015) (p. 314)"
           ],
           "tables": []
         },
         {
           "section_id": "7.3.4",
-          "title": "Recommended Procedure for Settlement Analysis",
-          "body": "Recommends a systematic procedure for evaluating pile group settlement, considering the construction sequence, load increments, and appropriate analysis methods based on soil type.",
+          "title": "Recommended Procedure for Vertical Deformation Analysis",
+          "body": "Modjeski and Masters, Inc., et al. (2015), SHRP2 Report S2-R19B-RW-1, recommend the following procedure for vertical deformation (pp. 314-315). Step 1: compute the total foundation settlement at each substructure location with an appropriate method (Section 7.3.5): (a) Sta, the total settlement from all applicable loads in the Service I load combination; (b) Stp, the total settlement before the superstructure is built, from the applicable substructure loads in Service I; (c) the relevant total settlement Str = Sta - Stp. Step 2: (a) assume the relevant settlement at each support can be as large as calculated and the adjacent support settles zero, so the differential settlement Sd for a span is the larger relevant settlement of its two supports; (b) the angular distortion is Ad = Sd / Ls in radians (Figure 7-37). Step 3: the modified angular distortion Am is A times the settlement load factor gamma_SE. Step 4: check Am against owner-specified criteria, or, without them, limit angular distortion to 0.004 radians for multi-span and 0.005 radians for single span bridges; other limits may apply for vertical clearance, mitigation cost (larger foundations, realignment, ground improvement or surcharge), rideability, other structures' tolerable deformation, roadway drainage, aesthetics and safety. Step 5: evaluate the structural ramifications and modify the foundation design if necessary. The procedure is also recommended where foundations were designed for equal total settlement, because of the uncertainty of any settlement prediction.",
           "key_points": [
-            "Step 1: Determine construction sequence and load increments",
-            "Step 2: Estimate elastic compression of pile",
-            "Step 3: Estimate group settlement below pile toe using appropriate method",
-            "Step 4: Sum components and compare to tolerable limits",
-            "Select analysis method based on soil type and available data"
+            "Relevant settlement Str = Sta - Stp: Service I total settlement minus the settlement before the superstructure is built",
+            "Sd = the larger relevant settlement of a span's two supports (adjacent support assumed to settle zero); Ad = Sd / Ls",
+            "Modified angular distortion Am = gamma_SE x A, checked against owner criteria",
+            "Default limits without owner criteria: 0.004 radians multi-span, 0.005 radians single span",
+            "Also use the procedure for foundations designed for equal total settlement"
           ],
           "equations": [],
           "figures": [],
@@ -870,161 +877,184 @@
         {
           "section_id": "7.3.5",
           "title": "Pile Group Settlement",
-          "body": "Presents methods for estimating settlement of pile groups, which is generally larger than single pile settlement due to the increased zone of influence. The equivalent footing approach models the group as a shallow footing at some depth below the pile toe level. Different methods are used for cohesionless and cohesive soils.",
+          "body": "Pile groups in and over cohesionless soils produce only immediate settlement; groups in and over cohesive soils may produce immediate settlement plus primary consolidation and secondary compression over time (pp. 316-317). In highly overconsolidated clays most settlement is immediate; in normally consolidated clays primary consolidation is generally the major source. Group settlement is likely to be many times the settlement of a single pile carrying the same load per pile, because a considerable depth of soil around and below the group is stressed, against only a small zone around and below a single pile's toe (Figure 7-42). Methods for single pile settlement are not given because piles are usually installed in groups.",
           "key_points": [
-            "Group settlement typically 1.5-3x single pile settlement for friction piles",
-            "End-bearing groups on rock or dense sand may have settlement = single pile settlement",
-            "Equivalent footing concept: group modeled as footing at 2/3 pile embedment depth",
-            "Cohesionless soils: Meyerhof SPT and CPT methods (semi-empirical)",
-            "Cohesive soils: equivalent footing with consolidation analysis",
-            "Janbu tangent modulus method as general alternative",
-            "Neutral plane method for downdrag settlement"
+            "Cohesionless soils: immediate settlement only; cohesive soils: immediate plus consolidation and secondary compression",
+            "A group stresses a much deeper zone than a single pile, so its settlement can be many times larger (Figure 7-42)"
           ],
           "equations": [],
-          "figures": [],
+          "figures": [
+            "Figure 7-42: Stress zone from single pile and pile group (after Tomlinson 1994) (p. 316)"
+          ],
           "tables": [],
           "subsections": [
             {
               "section_id": "7.3.5.1",
-              "title": "Elastic Compression of Pile",
-              "body": "Elastic compression of the pile itself is a significant component of total pile head settlement, particularly for long piles. It depends on the load distribution along the pile, the pile cross-section, and the elastic modulus of the pile material.",
+              "title": "Elastic Compression of Piles",
+              "body": "The group settlement methods consider only soil settlement, so the elastic compression of the pile material under the axial load should be computed and added to the group settlement estimate (p. 317). It is given by Eq. 7-48. The modulus of elasticity is 29,000 ksi for steel piles; for concrete piles it varies with the concrete compression strength and is generally on the order of 4,000 ksi. The elastic compression of short piles is usually small and can often be neglected. For piles with significant shaft resistance much of the load is transferred to the soil along the pile, and Eq. 7-48 overestimates the elastic compression.",
               "key_points": [
-                "Elastic compression = P*L / (A*E) for uniform load (end-bearing)",
-                "For friction piles: 0.5 * P*L / (A*E) since load decreases linearly with depth",
-                "Composite piles: sum elastic compression of each material segment",
-                "Can be 10-30 mm or more for long piles"
+                "Add the pile's elastic compression (Eq. 7-48) to the soil settlement of the group",
+                "E = 29,000 ksi for steel; about 4,000 ksi for concrete",
+                "Eq. 7-48 overestimates the compression of piles with significant shaft resistance"
               ],
               "equations": [
-                "Eq 7-48: delta_e = P*L / (A*E) (elastic compression, end bearing)",
-                "Eq 7-49: delta_e = 0.5 * P*L / (A*E) (elastic compression, uniform shaft resistance)"
-              ],
-              "figures": [
-                "Figure 7-42: Load distribution assumptions for elastic compression calculation"
-              ],
-              "tables": []
-            },
-            {
-              "section_id": "7.3.5.2",
-              "title": "Settlement of Pile Groups in Cohesionless Soils",
-              "body": "For pile groups in cohesionless soils, the Meyerhof (1976) SPT and CPT methods provide semi-empirical estimates of group settlement. These methods correlate group settlement to the group load, group dimensions, and in-situ test data. The SPT method uses corrected N60 values and the CPT method uses average cone tip resistance in the influence zone below the pile toe.",
-              "key_points": [
-                "Meyerhof SPT method: s = (q_net * B_g * I) / (N60_bar) (Eq 7-50)",
-                "Meyerhof CPT method: s = (q_net * B_g * I) / (2 * q_c_bar) (Eq 7-52)",
-                "Influence factor I = 1 - D / (8 * B_g) >= 0.5",
-                "Average N60 or q_c from pile toe to B_g below pile toe",
-                "Settlement increases with group width and applied stress",
-                "Typically provides reasonable estimates for normally consolidated sands"
-              ],
-              "equations": [
-                "Eq 7-50: s = q * sqrt(B_g) / (0.96 * N60_bar) (Meyerhof SPT settlement, mm)",
-                "Eq 7-51: I = 1 - D / (8 * B_g) >= 0.5 (depth influence factor)",
-                "Eq 7-52: s = q * sqrt(B_g) / (2 * q_c_bar) (Meyerhof CPT settlement, mm)",
-                "Eq 7-53: B_g = (n-1)*s + b (group width, where s = pile spacing, b = pile diameter)",
-                "Eq 7-54: q = Q_g / (B_g * Z_g) (average applied stress on equivalent footing)"
-              ],
-              "figures": [
-                "Figure 7-43: Equivalent footing concept for pile group in cohesionless soil"
-              ],
-              "tables": []
-            },
-            {
-              "section_id": "7.3.5.3",
-              "title": "Settlement of Pile Groups in Cohesive Soils",
-              "body": "For pile groups in cohesive soils, the equivalent footing method places the footing at 2/3 of the pile embedment depth. The load spreads at 2V:1H below the equivalent footing. Consolidation settlement is computed for each sublayer using the compression index Cc or recompression index Cr. The method accounts for preconsolidation pressure to distinguish between normally consolidated and overconsolidated conditions.",
-              "key_points": [
-                "Equivalent footing at 2/3 pile embedment depth (D_b = 2D/3)",
-                "Load spreads at 2V:1H below equivalent footing",
-                "Settlement computed layer by layer using Cc/(1+e0) * log10(sigma'_f/sigma'_0)",
-                "NC soils: use Cc; OC soils: use Cr up to preconsolidation pressure, then Cc",
-                "Stress distribution computed at midpoint of each sublayer",
-                "Total settlement = sum of sublayer settlements",
-                "Must check influence depth (10% of overburden stress increase)"
-              ],
-              "equations": [
-                "Eq 7-55: s = SUM[Cc_i/(1+e0_i) * H_i * log10(sigma'_f_i / sigma'_0_i)] (NC settlement)",
-                "Eq 7-56: s = SUM[Cr_i/(1+e0_i) * H_i * log10(sigma'_f_i / sigma'_0_i)] (OC settlement, sigma'_f < sigma'_p)",
-                "Eq 7-57: s = SUM[Cr_i/(1+e0_i)*H_i*log10(sigma'_p_i/sigma'_0_i) + Cc_i/(1+e0_i)*H_i*log10(sigma'_f_i/sigma'_p_i)] (OC becoming NC)",
-                "Eq 7-58: Delta_sigma_v = Q_g / ((B_g + z_i)*(Z_g + z_i)) (stress increase at depth z_i below equivalent footing)"
-              ],
-              "figures": [
-                "Figure 7-44: Equivalent footing for pile group in cohesive soil",
-                "Figure 7-45: 2V:1H load spread below equivalent footing",
-                "Figure 7-46: Compression curve showing Cc and Cr on e-log(sigma') plot",
-                "Figure 7-47: Settlement computation for layered cohesive profile"
-              ],
-              "tables": [
-                "Table 7-19: Typical compression index Cc and recompression index Cr values by soil type"
-              ]
-            },
-            {
-              "section_id": "7.3.5.4",
-              "title": "Time Rate of Settlement",
-              "body": "For cohesive soils, consolidation settlement occurs over time as excess pore water pressures dissipate. The time rate is governed by the coefficient of consolidation cv, the drainage path length, and the drainage conditions (single or double drainage).",
-              "key_points": [
-                "Degree of consolidation U(t) from Terzaghi 1-D consolidation theory",
-                "Time factor Tv = cv * t / H_dr^2",
-                "Double drainage: H_dr = H/2; single drainage: H_dr = H",
-                "90% consolidation typically used for design",
-                "Horizontal drainage (radial consolidation) can accelerate settlement",
-                "cv from laboratory consolidation tests (odometer) or back-calculated from field data"
-              ],
-              "equations": [
-                "Eq 7-59: T_v = c_v * t / H_dr^2 (time factor for consolidation)"
+                "Eq. 7-48: Delta = Q L / (A E); Delta elastic compression, Q unfactored axial load (kips), L total pile length (inches), A pile cross sectional area (in2), E elastic modulus of pile material (ksi) (p. 317)"
               ],
               "figures": [],
               "tables": []
             },
             {
+              "section_id": "7.3.5.2",
+              "title": "Group Settlement in Cohesionless Soils",
+              "body": "Settlement in cohesionless soils is generally treated as elastic (pp. 317-318). Meyerhof (1976) gave elastic settlement correlations from SPT and CPT data (7.3.5.2.1 and 7.3.5.2.2), and settlement may also be estimated by the Hough (1959) method, Eq. 7-49, with the stress increase in each layer from the equivalent footing method considering the stratigraphy. Cheney and Chassie (2002) report FHWA experience that the Hough method is usually conservative and can overestimate settlement by a factor of 2, attributed to the original bearing capacity index chart being based on SPT donut hammer data. Based on the average energy differences between donut, safety and automatic hammers in the literature, Figure 7-43 now also correlates SPT N values from safety and automatic hammers with the bearing capacity index; the safety hammer values are considered N60 values.",
+              "key_points": [
+                "Hough (1959), Eq. 7-49: layer settlement from the bearing capacity index C' (Figure 7-43) and the stress increase from the equivalent footing",
+                "FHWA experience: Hough's method is usually conservative and can overestimate settlement by a factor of 2 (Cheney and Chassie 2002)",
+                "Figure 7-43 includes donut, safety and automatic hammer N values; safety hammer values are taken as N60"
+              ],
+              "equations": [
+                "Eq. 7-49: S = Ho (1/C') log[(sigma'vo + Delta_sigma) / sigma'vo]; S total layer settlement (feet), Ho initial layer thickness (feet), C' dimensionless bearing capacity index from Figure 7-43 for the layer's average corrected SPT N value and hammer type, sigma'vo vertical effective stress at the layer midpoint before the stress increase (ksf), Delta_sigma average change in vertical stress in the layer (ksf) (pp. 317-318)"
+              ],
+              "figures": [
+                "Figure 7-43: Values of the bearing capacity index, C', for granular soil (data from Hough 1959) (p. 318)"
+              ],
+              "tables": [],
+              "subsections": [
+                {
+                  "section_id": "7.3.5.2.1",
+                  "title": "Method Based on SPT Test Data",
+                  "body": "Meyerhof (1976) recommended that the settlement of a pile group in a homogeneous sand deposit not underlain by a more compressible soil at greater depth may be conservatively estimated by Eq. 7-50, or Eq. 7-51 for silty sand, with the embedment influence factor from Eq. 7-52 (p. 319). For piles in cohesionless soils underlain by cohesive deposits, the method of Section 7.3.5.3 should be used.",
+                  "key_points": [
+                    "Meyerhof (1976) SPT method for a homogeneous sand not underlain by more compressible soil; conservative",
+                    "Silty sand doubles the coefficient (Eq. 7-51)",
+                    "Sands over cohesive deposits: use Section 7.3.5.3"
+                  ],
+                  "equations": [
+                    "Eq. 7-50: S = 4 pf If sqrt(B) / N1(60); S estimated total settlement (inches), pf design foundation pressure (ksf), B width of pile group (feet), N1(60) average corrected SPT N value within a depth B below the pile toe, If influence factor for group embedment (p. 319)",
+                    "Eq. 7-51: S = 8 pf If sqrt(B) / N1(60), for silty sand (p. 319)",
+                    "Eq. 7-52: If = 1 - D'/(8B) >= 0.5; D' = 2/3 of the pile embedded length (feet) (p. 319)"
+                  ],
+                  "figures": [],
+                  "tables": []
+                },
+                {
+                  "section_id": "7.3.5.2.2",
+                  "title": "Method Based on CPT Test Data",
+                  "body": "Meyerhof (1976) recommended Eq. 7-53 to estimate maximum settlement from cone penetration test results for saturated cohesionless soils, with the embedment influence factor from Eq. 7-54 (pp. 319-320).",
+                  "key_points": [
+                    "Meyerhof (1976) CPT method for saturated cohesionless soils, using the average cone tip resistance within B below the pile toe"
+                  ],
+                  "equations": [
+                    "Eq. 7-53: S = pf B If / (2 qca); S estimated total settlement (inches), pf design foundation pressure (ksf), B width of pile group (feet), If influence factor for group embedment, qca average cone tip resistance within a depth B below the pile toe (ksf) (p. 319)",
+                    "Eq. 7-54: If = 1 - D'/(8B) >= 0.5; D' = 2/3 of the pile embedded length (feet) (p. 319)"
+                  ],
+                  "figures": [],
+                  "tables": []
+                }
+              ]
+            },
+            {
+              "section_id": "7.3.5.3",
+              "title": "Group Settlement in Cohesive Soils",
+              "body": "Terzaghi and Peck (1967) proposed evaluating pile group settlement with an equivalent footing at 1/3 D above the pile toe (Figure 7-44) (pp. 320-325). For vertical piles the footing's plan area (B)(Z) is the perimeter of the group (Figure 7-31); the load spreads within a frustum of a pyramid with side slopes at 30 degrees (drawn as 1H:2V in Figure 7-44) and causes uniform additional vertical stress at lower levels, equal to the group load over the frustum's base area at that level (Eq. 7-55). AASHTO (2014) Article 10.7.2.3.1 states that the load for group settlement is the permanently applied load. The footing depth should be adjusted to the stratigraphy and load transfer rather than fixed at 1/3 D above the toe: Figure 7-45 (Duncan and Buchignani 1976) covers a group driven through soft clay into a medium or firm layer, and Figure 7-46 covers (a) toe resistance piles in hard clay or sand over soft clay, (b) shaft resistance piles in clay, (c) shaft resistance piles in sand over clay and (d) shaft and toe resistance piles in a layered profile. Primary consolidation settlement follows from the stress increase with Eqs. 7-56 to 7-58 and the consolidation test parameters of Figure 7-47. Procedure: Step 1 (a) place the equivalent footing at the toe for toe resistance groups (Figure 7-46a) or at 2/3 D for shaft resistance groups; (b) size it to the group (Figure 7-31), or for batter piles to the group at 2/3 D (shaft) or D (toe) including the batter spread; (c) distribute the stress down to where the increase is less than 10% of the existing vertical effective stress; (d) divide the cohesive layers in that zone into layers 5 to 10 feet thick; (e) find sigma'vo and (f) the stress increase at each layer midpoint. Step 2: determine the consolidation parameters (Figure 7-47). Step 3: compute and sum each layer's settlement with Eq. 7-56, 7-57 or 7-58, and add the pile's elastic compression.",
+              "key_points": [
+                "Terzaghi and Peck (1967): equivalent footing at 1/3 D above the toe, plan area (B)(Z), load spread to depth",
+                "Stress increase Eq. 7-55 from the permanently applied load (AASHTO 2014 Art. 10.7.2.3.1)",
+                "Adjust the footing depth to the stratigraphy and load transfer (Figures 7-45, 7-46)",
+                "Toe resistance groups: footing at the toe; shaft resistance groups: footing at 2/3 D",
+                "Analyse down to where the stress increase is under 10% of sigma'vo, in layers 5 to 10 feet thick",
+                "Eq. 7-56 normally consolidated, Eq. 7-57 overconsolidated staying below sigma_p, Eq. 7-58 overconsolidated passing sigma_p",
+                "Add the elastic compression of the piles (Eq. 7-48) to the summed layer settlements"
+              ],
+              "equations": [
+                "Eq. 7-55: Delta_sigma'd = Q / [(B + z)(Z + z)]; Delta_sigma'd change in stress below the equivalent footing, Q unfactored permanent load (kips), B width of pile group (feet), Z length of pile group (feet), z depth below the equivalent footing (p. 320)",
+                "Eq. 7-56: Sc = sum_i^n [Cc / (1 + eo)] Ho log[(sigma'vo + Delta_sigma) / sigma'vo], normally consolidated (sigma'vo = sigma_p); Sc primary consolidation settlement (feet), eo initial void ratio, Ho initial layer height (feet), sigma'vo vertical effective stress at the layer midpoint before loading (psf), Delta_sigma additional pressure from structural loading (psf), Cc compression index (p. 323)",
+                "Eq. 7-57: Sc = sum_i^n [Cr / (1 + eo)] Ho log[(sigma'vo + Delta_sigma) / sigma'vo], overconsolidated with sigma'vo + Delta_sigma <= sigma_p; Cr recompression index (p. 323)",
+                "Eq. 7-58: Sc = sum_i^n {[Cr / (1 + eo)] Ho log(sigma_p / sigma'vo) + [Cc / (1 + eo)] Ho log[(sigma'vo + Delta_sigma) / sigma_p]}, overconsolidated with sigma'vo + Delta_sigma > sigma_p; sigma_p preconsolidation stress (psf) (p. 324)"
+              ],
+              "figures": [
+                "Figure 7-44: Equivalent footing concept (p. 320)",
+                "Figure 7-45: Stress distribution below equivalent footing for a pile group in firm clay (after Duncan and Buchignani, 1976) (p. 321)",
+                "Figure 7-46: Stress distribution below equivalent footing for a pile group (modified from Cheney and Chassie 2000) (p. 322)",
+                "Figure 7-47: Plot of void ratio vs. vertical effective stress from consolidation test (p. 323)"
+              ],
+              "tables": []
+            },
+            {
+              "section_id": "7.3.5.4",
+              "title": "Time Rate of Settlement in Cohesive Soils",
+              "body": "Settlement analyses in cohesive soils should also evaluate the time for the settlement to occur; the time for 90% consolidation is typically used as the total time for primary settlement (pp. 325-326). The time is calculated from Eq. 7-59 with the time factors of Table 7-19. Hv, the maximum distance water must travel from the compressible deposit to a more permeable layer, should not be confused with Ho in the settlement equations: for a cohesive layer with permeable granular layers above and below, Hv is half the layer thickness; with a permeable layer above and non-permeable rock below, Hv is the full thickness. Samtani and Nowatzki (2006) discuss the time rate of consolidation further.",
+              "key_points": [
+                "Time for 90% consolidation is typically taken as the time for primary settlement",
+                "Hv = half the layer thickness when drained top and bottom; full thickness when drained one side only",
+                "Table 7-19 time factors: 10% 0.008, 20% 0.031, 30% 0.071, 40% 0.126, 50% 0.197, 60% 0.287, 70% 0.403, 80% 0.567, 90% 0.848"
+              ],
+              "equations": [
+                "Eq. 7-59: t = T Hv^2 / Cv; t time for settlement to occur (days), T time factor for the percentage of primary consolidation (Table 7-19), Hv maximum vertical drainage path in the cohesive layer (feet), Cv coefficient of consolidation (ft2/day) (p. 326)"
+              ],
+              "figures": [],
+              "tables": [
+                "Table 7-19: Time Factors for Settlement (p. 326)"
+              ]
+            },
+            {
               "section_id": "7.3.5.5",
-              "title": "Settlement in Layered Soils",
-              "body": "For layered soil profiles, settlement is computed separately for each layer and summed. The stress distribution must account for load spreading through different soil types."
+              "title": "Group Settlement in Layered Soils",
+              "body": "Where piles are installed in layered cohesionless and cohesive soils, or a lower stratum of different consistency is affected by the group load, settlement depends on the stress increase in and compressibility of the affected layers (pp. 326-328). Figures 7-46(a), (c) and (d) locate the equivalent footing and the stress increase in each layer, and each layer's settlement is calculated with the equations of Section 7.3.5.2 or 7.3.5.3. Procedure: Step 1 (a) place the equivalent footing at the toe for toe resistance groups (Figure 7-46a), at 8/9 D for shaft resistance groups in sands over cohesive soils (Figure 7-46c), or at 2/3 D for shaft and toe resistance groups in layered soils (Figure 7-46d); (b) size it to the group (Figure 7-31), or for batter piles to the group at the footing depth (shaft) or at D (toe) including the batter spread; (c) distribute the stress down to where the increase is less than 10% of the existing vertical effective stress, using the permanently applied load (AASHTO 2014 Article 10.7.2.3.1); (d) divide that zone into layers 5 to 10 feet thick; (e) find sigma'vo and (f) the stress increase at each layer midpoint. Step 2: determine sigma_p, eo, Cr and Cc for each cohesive layer (Figure 7-47). Step 3: determine the bearing capacity index of each cohesionless layer from its average corrected N value and hammer type (Figure 7-43; safety hammer values are representative N60). Step 4: compute and sum the layer settlements and add the pile's elastic compression.",
+              "key_points": [
+                "Equivalent footing: at the toe (toe resistance), 8/9 D (shaft resistance in sand over clay), 2/3 D (shaft and toe resistance in layered soil)",
+                "Cohesive layers by Section 7.3.5.3 (Eqs. 7-56 to 7-58); cohesionless layers by Section 7.3.5.2 (C' from Figure 7-43)",
+                "Analyse to where the stress increase is under 10% of sigma'vo; add the piles' elastic compression"
+              ],
+              "equations": [],
+              "figures": [],
+              "tables": []
             },
             {
               "section_id": "7.3.5.6",
-              "title": "Janbu Tangent Modulus Method",
-              "body": "The Janbu (1963, 1967) tangent modulus method provides an alternative approach for settlement estimation using the tangent constrained modulus M = 1/mv as a function of stress level. The method is applicable to all soil types and uses a modulus number m and stress exponent j to characterize the soil compressibility.",
+              "title": "Group Settlement Using the Janbu Tangent Modulus Approach",
+              "body": "The preceding methods assume a linear relation between induced stress and strain, but except at very small strains the relation is non-linear: the same stress increase causes more strain at a low original stress than at a high one (Figure 7-48) (pp. 328-334). Janbu (1963, 1965) proposed a tangent modulus approach, referenced in the Canadian Foundation Engineering Manual (1985), that expresses the stress-strain relation by a dimensionless modulus number, m, from laboratory triaxial or oedometer tests, and a stress exponent, j, generally 0.5 for cohesionless soils and 0 for cohesive soils. Strain is computed with Eqs. 7-60 to 7-66 for normally consolidated and overconsolidated, cohesionless and cohesive soils; the modulus numbers come from Eqs. 7-67 to 7-69, or for preliminary estimates from the typical, normally conservative values of Table 7-20. Procedure: Step 1 (a) place the equivalent footing at the toe for toe resistance groups (Figure 7-46a), at 8/9 D for shaft resistance groups in sands over cohesive soils (Figure 7-46c), or at 2/3 D for shaft and toe resistance groups in layered soils (Figure 7-46d); (b) size it as in Section 7.3.5.5; (c) distribute the permanently applied load down to where the stress increase is less than 10% of the existing vertical effective stress; (d) divide that zone into layers 5 to 10 feet thick; (e) find sigma'vo, (f) sigma'p and whether the layer is normally or overconsolidated, and (g) the new effective stress sigma'1 at each midpoint. Step 2: determine the modulus number and stress exponent of each layer from laboratory data (or Table 7-20 for preliminary estimates). Step 3: select each layer's strain equation. Step 4: compute each layer's settlement over its thickness Ho, sum to the 10% depth, and add the pile's elastic compression. The approach is adaptable to any soil profile.",
               "key_points": [
-                "Alternative to Cc/Cr approach; applicable to all soil types",
-                "Tangent constrained modulus M = 1/m_v varies with stress level",
-                "Three soil types: j=0 (normally consolidated clay), j=0.5 (silt/sand), j=1 (dense sand/till)",
-                "Modulus number m from Table 7-20 based on soil type and density",
-                "Method accounts for stress-dependent compressibility",
-                "Particularly useful for mixed or non-standard soil profiles"
+                "Janbu (1963, 1965) tangent modulus: modulus number m and stress exponent j (0.5 cohesionless, 0 cohesive); reference stress sigma_r = 2 ksf",
+                "Cohesionless: Eq. 7-60 general, 7-61 dense coarse grained (j = 1), 7-62 sandy or silty (j = 0.5), 7-63 overconsolidated past sigma'p",
+                "Cohesive (j = 0): Eq. 7-64 normally consolidated, 7-65 overconsolidated past sigma'p, 7-66 overconsolidated staying below sigma'p",
+                "Modulus numbers: Eq. 7-67 from Es (cohesionless); Eqs. 7-68 and 7-69 from eo with Cc or Cr (cohesive)",
+                "Table 7-20 (Canadian Geotechnical Society 1985), e.g. dense sand mn 400-250 with j 0.5; soft silty clay and clayey silt 10-5 with j 0; peat 5-1",
+                "Strain times layer thickness Ho gives layer settlement; sum to the 10% stress depth and add the elastic compression"
               ],
               "equations": [
-                "Eq 7-60: epsilon = integral of d_sigma / M(sigma) (strain from stress increase)",
-                "Eq 7-61: M = m * sigma_r * (sigma'_v / sigma_r)^(1-j) for j > 0 (tangent modulus)",
-                "Eq 7-62: M = m * sigma_r / (1 + e_0) for j = 0 (NC clay tangent modulus)",
-                "Eq 7-63: epsilon = (1/m) * ln(sigma'_f / sigma'_0) for j = 0 (NC clay strain)",
-                "Eq 7-64: epsilon = (2/m) * [sqrt(sigma'_f/sigma_r) - sqrt(sigma'_0/sigma_r)] for j = 0.5 (silt strain)",
-                "Eq 7-65: epsilon = (1/m) * (sigma'_f - sigma'_0) / sigma_r for j = 1 (dense sand strain)",
-                "Eq 7-66: s = SUM(epsilon_i * H_i) (total settlement from strain and layer thickness)",
-                "Eq 7-67: OC strain uses reloading modulus number m_r",
-                "Eq 7-68: For OC soil becoming NC: strain = OC part + NC part",
-                "Eq 7-69: sigma_r = 100 kPa (reference stress)"
+                "Eq. 7-60: epsilon = [1 / (mn j)] [(sigma'1 / sigma_r)^j - (sigma'o / sigma_r)^j], cohesionless soils (j > 0); epsilon strain from the effective stress increase, mn dimensionless modulus number, j stress exponent (Table 7-20), sigma'1 new effective stress after the increase (ksf), sigma'o effective stress before the increase (ksf), sigma_r constant reference stress = 2 ksf (p. 330)",
+                "Eq. 7-61: epsilon = (1 / Es) [sigma'1 - sigma'o], dense coarse grained soils (j = 1); Es elastic modulus of soil (ksf) (p. 330)",
+                "Eq. 7-62: epsilon = (sqrt(2) / mn) [sqrt(sigma'p) - sqrt(sigma'o)], sandy or silty soil (j = 0.5), as printed; sigma'p preconsolidation stress (ksf) (p. 330)",
+                "Eq. 7-63: epsilon = (sqrt(2) / mnr) [sqrt(sigma'1) - sqrt(sigma'o)] + (sqrt(2) / mn) [sqrt(sigma'1) - sqrt(sigma'p)], overconsolidated sandy or silty soil with the final stress above sigma'p; mnr dimensionless recompression modulus number (p. 330)",
+                "Eq. 7-64: epsilon = (1 / mn) ln(sigma'1 / sigma'o), normally consolidated cohesive soil (j = 0) (p. 330)",
+                "Eq. 7-65: epsilon = (1 / mnr) ln(sigma'p / sigma'o) + (1 / mn) ln(sigma'1 / sigma'p), overconsolidated cohesive soil with the applied stress exceeding sigma'p (p. 330)",
+                "Eq. 7-66: epsilon = (1 / mnr) ln(sigma'1 / sigma'vo), overconsolidated cohesive soil with the applied stress not exceeding sigma'p (p. 331)",
+                "Eq. 7-67: mn = sqrt(2) Es / [sqrt(sigma'1) + sqrt(sigma'o)], cohesionless soils; Es soil modulus of elasticity (ksf) (p. 331)",
+                "Eq. 7-68: mn = 2.30 [(1 + eo) / Cc], cohesive soils; eo initial void ratio, Cc compression index (p. 331)",
+                "Eq. 7-69: mnr = 2.30 [(1 + eo) / Cr], cohesive soils; Cr recompression index (p. 331)"
               ],
               "figures": [
-                "Figure 7-48: Janbu tangent modulus concept (M vs sigma') for different soil types"
+                "Figure 7-48: Non-linear relation between stress and strain in soil (after Fellenius 1990) (p. 329)"
               ],
               "tables": [
-                "Table 7-20: Janbu modulus number m and stress exponent j by soil type"
+                "Table 7-20: Typical Modulus and Stress Exponent Values (after Canadian Geotechnical Society 1985) (p. 333)"
               ]
             },
             {
               "section_id": "7.3.5.7",
-              "title": "Neutral Plane Method for Settlement",
-              "body": "The neutral plane method (Fellenius 1989, 2004) provides a rational approach for evaluating pile settlement considering the load transfer mechanism along the pile. The neutral plane is the depth where the relative pile-soil movement is zero. Above the neutral plane, the soil settles more than the pile (negative shaft resistance/downdrag). Below the neutral plane, the pile settles more than the soil (positive shaft resistance). Settlement is computed at the neutral plane depth.",
+              "title": "Group Settlement Using the Neutral Plane Method",
+              "body": "Most group settlement methods set the equivalent footing depth from an assumed load transfer; a preferred solution is to find the depth of the neutral plane and place the equivalent footing at or below it (pp. 334-336). The neutral plane is where the unfactored permanent load plus the negative shaft resistance equals the positive shaft resistance plus the toe resistance; above it the soil settles more than the pile and transfers load to it, below it the pile settles more and transfers load to the soil, so pile settlement equals soil settlement at the neutral plane and is controlled by the soil compressibility below it. The design should aim to locate the neutral plane in competent soils, which usually keeps group settlement well within acceptable limits. Procedure (adapted from Goudreault and Fellenius 1994): Step 1, determine the nominal resistance Rn from a static calculation and plot Rn minus the shaft resistance to each depth (Curve A, Figure 7-49); Step 2, plot the unfactored permanent load Qd plus the shaft resistance to each depth (Curve B); Step 3, the neutral plane is where Curves A and B intersect. It moves if the permanent load or the soil resistance with depth changes (for example preaugering, jetting or bitumen coatings), so such changes require re-evaluation. Goudreault and Fellenius (1994) note that settlement between the neutral plane and the toe is generally small because the piles reinforce the soil, and for most cases recommend calculating group settlement with the neutral plane placed at the pile toe. The load is spread below the neutral plane at 1H:2V and soils are evaluated until the stress increase is less than 10%, generally with the Janbu method (Section 7.3.5.6) or the layered soil methods (Section 7.3.5.5).",
               "key_points": [
-                "Neutral plane: depth where pile and soil settlement are equal",
-                "Above neutral plane: soil settles more than pile (negative shaft resistance)",
-                "Below neutral plane: pile settles more than soil (positive shaft resistance)",
-                "Settlement at neutral plane = pile elastic compression + toe movement",
-                "Method integrates strength and service limit states into single framework",
-                "Figure 7-49 illustrates the unified neutral plane diagram"
+                "Neutral plane: depth where unfactored permanent load plus negative shaft resistance equals positive shaft plus toe resistance",
+                "Pile settlement equals soil settlement at the neutral plane; it is controlled by the soil below it",
+                "Locate the neutral plane in competent soils; place the equivalent footing at or below it",
+                "Curve A = Rn minus shaft resistance to depth; Curve B = Qd plus shaft resistance to depth; intersection = neutral plane (Figure 7-49)",
+                "Goudreault and Fellenius (1994): for most cases calculate group settlement with the neutral plane at the toe, 1H:2V spread"
               ],
               "equations": [],
               "figures": [
-                "Figure 7-49: Neutral plane method for downdrag settlement evaluation"
+                "Figure 7-49: Neutral plane (after Goudrealt and Fellenius 1994) (p. 335)"
               ],
               "tables": []
             }
@@ -1032,165 +1062,241 @@
         },
         {
           "section_id": "7.3.6",
-          "title": "Downdrag Settlement",
-          "body": "Addresses the service limit state evaluation of downdrag, where the pile settlement due to downdrag forces must be within tolerable limits. The neutral plane approach is used to compute settlement rather than treating downdrag as additional load (which is the strength limit state approach).",
+          "title": "Settlement Due to Downdrag",
+          "body": "When soil moves down relative to a pile it creates a drag force on, and within, the pile, and the potential for downward pile movement, called downdrag (pp. 336-341). The AASHTO approach treats drag force as an additional load at the geotechnical strength limit state, but drag force does not affect geotechnical strength: as the head load approaches the nominal resistance, all shaft resistance becomes positive and no drag force exists. The recommended approach (Section 7.3.6.1) is the neutral plane method of Fellenius (1989) as modified by Siegel et al. (2013), used for the structural strength and geotechnical service limit states. Drag force and downdrag always exist to some degree, from the stiffness contrast between pile and soil and from installation disturbance, so they should be evaluated in all driven pile designs: drag force in the structural strength limit state and downdrag movement in the geotechnical service limit state. The accumulation of negative shaft resistance with depth produces the drag force; a large drag force can develop in a consolidating deposit, and batter piles should be avoided where large soil settlement is expected. The maximum drag force and axial compression occur at the neutral plane. MnDOT strain gage data from a 12.75 inch concrete filled pipe pile show the neutral plane developing 30 feet above the toe (Figure 7-50); as the pile approaches the geotechnical strength limit the neutral plane moves up and the drag force reduces (Figure 7-51). Figure 7-52 illustrates soil and pile movement and the resulting forces; fill over a compressible layer (Figure 7-53) and groundwater lowering (Figure 7-54) are common causes. Briaud and Tucker (1993) listed conditions where drag force and downdrag merit careful consideration: total ground settlement over 4 inches; ground settlement after driving over 0.4 inches; embankment height over 5 feet; soft compressible layer thicker than 30 feet; water table lowered more than 10 feet; piles longer than 80 feet.",
           "key_points": [
-            "Service limit state: downdrag evaluated as settlement, not additional load",
-            "Neutral plane method (Fellenius 1989, Siegel 2013) for settlement computation",
-            "Settlement = pile compression above neutral plane + toe settlement",
-            "Bitumen coatings reduce downdrag forces but also reduce positive shaft resistance",
-            "Must check both strength (drag load) and service (settlement) limit states"
+            "Drag force does not reduce geotechnical strength; at the strength limit all shaft resistance is positive",
+            "Evaluate drag force (structural strength limit) and downdrag (geotechnical service limit) in all driven pile designs",
+            "Maximum drag force and maximum axial compression occur at the neutral plane",
+            "Avoid batter piles where large soil settlement is expected",
+            "Briaud and Tucker (1993): ground settlement > 4 in., post-driving settlement > 0.4 in., embankment > 5 ft, soft layer > 30 ft, water table drop > 10 ft, piles > 80 ft"
           ],
-          "equations": [
-            "Eq 7-70: s_downdrag = delta_pile + delta_toe (total downdrag settlement)",
-            "Eq 7-71: delta_pile = integral(P(z)/(A*E)) dz from 0 to neutral plane (pile elastic compression)",
-            "Eq 7-72: delta_toe = f(Q_toe, soil stiffness) (toe settlement from load transfer)"
-          ],
+          "equations": [],
           "figures": [
-            "Figure 7-50: Neutral plane method for downdrag settlement"
+            "Figure 7-50: Calculated load versus depth in 12.75 inch O.D. concrete filled pipe pile as a function of time (after MnDOT Geotechnical Manual) (p. 338)",
+            "Figure 7-51: Change in neutral plane, negative shaft resistance, and drag force during transition to geotechnical strength limit (after MnDOT Geotechnical Manual) (p. 339)",
+            "Figure 7-52: Conceptual illustration of soil and pile movement (left) and resulting neutral plane and pile forces (right) (adapted from Siegel et al. 2013) (p. 339)",
+            "Figure 7-53: Common downdrag situation due to fill weight (p. 340)",
+            "Figure 7-54: Common downdrag situation due to ground water lowering (p. 340)"
           ],
           "tables": [],
           "subsections": [
             {
               "section_id": "7.3.6.1",
-              "title": "Neutral Plane Approach for Downdrag",
-              "body": "The neutral plane is found by constructing the load distribution along the pile from both the top (dead load + drag force) and bottom (toe + positive shaft resistance). The intersection defines the neutral plane depth."
+              "title": "Recommended Approach for Downdrag",
+              "body": "Siegel et al. (2013) proposed a downdrag design approach using the neutral plane method within the LRFD framework; it is the FHWA recommended method (pp. 341-348). It does not treat drag force as an additional load to be supported: drag force is a settlement consideration at the geotechnical service limit state and a structural consideration at the pile structural limit state, and it develops on all piles. The analysis needs the unfactored structural loads for the permanent load, the stratigraphy with parameters for all layers, soil load-deformation models (instrumented load tests, or t-z and q-z models), and the amount, lateral extent and timeline of fill placement. All loads and resistances should be unfactored; factored values distort load transfer and give erroneous settlement and drag force. Procedure: Step 1, assume soil consolidation and ground settlement will occur. Step 2, determine the nominal shaft, mobilized toe and total mobilized resistance versus penetration depth (Figure 7-55); shaft resistance is typically fully mobilized at 0.10 inches or less, while full toe resistance may need a toe movement of 4 to 5% of the pile diameter (Figure 7-56). Step 3, select the toe elevation. Step 4, plot the accumulated shaft resistance with depth (Figure 7-57), the unfactored permanent load plus accumulated shaft resistance (Figure 7-58), and Rn minus accumulated shaft resistance for 100%, 50% and 0% mobilized toe resistance (Figure 7-59). Step 5, read the neutral plane, the maximum axial compression load and the drag force (Figure 7-60): in the example, 100% toe mobilization puts the neutral plane at 30 feet with a maximum load of 80 tons and a drag force of 40 tons over the 40 ton permanent load, and 0% puts it at 20 feet with 60 tons and 20 tons. Step 6, check the structural strength limit state with Eq. 7-70. No AASHTO load factor for drag force from the neutral plane procedure is yet available, so local calibration is required; Minnesota DOT has adopted 1.1 while its calibration is in progress, based on an equivalent minimum factor of safety of 1.5 for material strength. Step 7, calculate the downdrag settlement with respect to the neutral plane (Eqs. 7-71 and 7-72). Later effective stress changes such as approach fill placed after driving, or changes in the permanent load or toe elevation, alter the neutral plane, maximum load, drag force and downdrag settlement.",
+              "key_points": [
+                "FHWA recommended method (Siegel et al. 2013): drag force is a service limit settlement issue and a structural limit issue, not an added geotechnical load",
+                "Use unfactored loads and resistances throughout; factored values distort the load transfer",
+                "Shaft resistance mobilizes at about 0.10 inches or less; full toe resistance may need 4 to 5% of the pile diameter",
+                "Neutral plane, maximum axial load and drag force depend on the mobilized toe resistance (Figures 7-59, 7-60)",
+                "Structural check Eq. 7-70: 1.25 Qd + gamma_p DF < Pr; gamma_p needs local calibration (MnDOT uses 1.1)",
+                "Downdrag settlement from the compressible soil between the neutral plane and the incompressible layer (Eqs. 7-71, 7-72)",
+                "Re-run the analysis if fill, permanent load or toe elevation change"
+              ],
+              "equations": [
+                "Eq. 7-70: 1.25 (Qd) + gamma_p (DF) < Pr; Qd permanent load on pile (kips), DF drag force on pile (kips), gamma_p load factor for drag force in neutral plane analysis, Pr factored axial compression resistance of pile (kips) (p. 346)",
+                "Eq. 7-71: tsoil = Dil - Dnp; tsoil thickness of compressible soil beneath the neutral plane (feet), Dil depth from reference to top of incompressible layer (feet), Dnp depth from reference to neutral plane (feet) (p. 347)",
+                "Eq. 7-72: Sdd = tsoil (gamma_p Delta_sigma / Es); Sdd settlement due to downdrag (feet), gamma_p load factor for downdrag, Delta_sigma increase in vertical stress (ksf), Es elastic modulus of in-situ soil (ksf) (p. 347)"
+              ],
+              "figures": [
+                "Figure 7-55: Plot of static analysis results (after Siegel et al. 2013) (p. 342)",
+                "Figure 7-56: Plot of normalized toe resistance versus toe movement (after Siegel et al. 2013) (p. 343)",
+                "Figure 7-57: Axial load and resistance plot of cumulative shaft resistance vs. depth (after Siegel et al. 2013) (p. 344)",
+                "Figure 7-58: Axial load and resistance plot of unfactored permanent load plus cumulative shaft resistance vs depth (after Siegel et al. 2013) (p. 345)",
+                "Figure 7-59: Axial load and resistance plot including mobilized resistances (after Siegel et al. 2013) (p. 345)",
+                "Figure 7-60: Axial Load and resistance plot including neutral plane location based on mobilized toe resistance (after Siegel et al. 2013) (p. 346)"
+              ],
+              "tables": []
             },
             {
               "section_id": "7.3.6.2",
-              "title": "Settlement Computation",
-              "body": "Once the neutral plane is located, the pile settlement is computed as the sum of elastic pile compression from the pile head to the neutral plane and the toe settlement. The toe settlement can be estimated from load-transfer curves or published correlations."
+              "title": "Methods for Reducing Downdrag and Drag Force",
+              "body": "Where the permanent load and drag force exceed the structural strength limit state, or pile settlement exceeds the geotechnical service limit state, methods of mitigating the drag force should be evaluated (pp. 348-351). (a) Increase the structural resistance: a thicker wall pipe, a heavier H-pile section of the same size, or higher strength material; a larger pile also adds surface area and so drag force. (b) Increase the number of piles, reducing the permanent load and maximum axial force per pile. (c) Reduce soil settlement by preloading before pile installation, often with prefabricated vertical drains to shorten consolidation (Rixner et al. 1986, FHWA RD 86/168; Elias et al. 2004). (d) Use lightweight fill such as geofoam (Figure 7-61), foamed concrete, wood chips, blast furnace slag or expanded shales. (e) Use a friction reducer. Bitumen coatings, applied only over the negative shaft resistance zone, have reduced negative shaft resistance by 47% to 90% in case histories; Goudreault and Fellenius (1994) suggest an upper limit of 200 psf pile-soil shear resistance in the coated zone. The coating must be protected during driving, for example by an oversized collar welded where the bitumen ends (Figure 7-62), and the bitumen chosen for the climate at installation; coatings should not be specified casually. Plastic wrap is an economical friction reducer, particularly for abutment piles driven before MSE wall construction: Tawfig (1994) found 0.006 inch polyethylene sheets reduced pile-soil shear resistance by 78% for one wrap layer (about 200 psf) to 98% for two lubricated layers (about 20 psf). (f) Prevent direct soil-pile contact with sleeves or bentonite slurry, which are generally more expensive and less effective.",
+              "key_points": [
+                "Options: stronger pile section, more piles, preloading (with vertical drains), lightweight fill, friction reducers, sleeves or slurry",
+                "A larger pile size also increases surface area and therefore drag force",
+                "Bitumen coatings: 47% to 90% reduction in case histories; analyse with an upper limit of 200 psf in the coated zone (Goudreault and Fellenius 1994)",
+                "Plastic wrap: one layer about 200 psf, two lubricated layers about 20 psf (Tawfig 1994)",
+                "Sleeves and bentonite slurry are generally more expensive and less effective"
+              ],
+              "equations": [],
+              "figures": [
+                "Figure 7-61: Geofoam block approach embankment (courtesy MnDOT) (p. 349)",
+                "Figure 7-62: Over-sized collar for bitumen coating protection (p. 350)"
+              ],
+              "tables": []
             }
           ]
         },
         {
           "section_id": "7.3.7",
-          "title": "Lateral Deflection Analysis",
-          "body": "Covers methods for evaluating lateral deflection of single piles and pile groups under lateral loads. The p-y method is the primary approach, modeling the soil-pile interaction using nonlinear springs (p-y curves) along the pile length. Group effects are accounted for using p-multipliers that reduce the p-y spring stiffness for piles within a group. The strain wedge method is also discussed as an alternative approach.",
+          "title": "Horizontal Pile Foundation Deflection",
+          "body": "Vertical piles can be designed to withstand significant lateral loads, and modern analysis methods should be used to select the pile type and section rather than prescriptive values or added batter piles (pp. 351-353). A foundation of vertical piles only is more flexible, better at resisting dynamic loads and cheaper to build (Coduto 1994); Florida DOT often uses only vertical piles, including for ship impact (Bollman 1993). In seismic areas batter piles can deliver excessive horizontal forces to the structure, as in the 1989 Loma Prieta earthquake (Hadjian et al. 1992), so lateral loads should be resisted by ductile vertical piles and batter piles avoided whenever possible. Lateral load is resisted by the pile's flexural stiffness (E and I) and by soil compression and shear as the pile deflects (Figure 7-63). Design must evaluate the nominal structural resistance and the service deflection against performance criteria, and needs coordination between the geotechnical and structural engineers. Factors: geomaterial parameters (soil or rock type and properties, groundwater, coefficient of horizontal subgrade reaction), pile parameters (shape, material and dimensions, head restraint, installation method, group action) and load parameters (static monotonic or cyclic, or dynamic; eccentricity).",
           "key_points": [
-            "p-y method is the primary lateral analysis approach",
-            "p-y curves model nonlinear soil-pile interaction springs",
-            "Different p-y curves for different soil types (soft clay, stiff clay, sand)",
-            "Fixed vs free head conditions significantly affect deflection and moment",
-            "Group effects via p-multipliers (0.2-1.0 depending on position and spacing)",
-            "Leading row piles have higher p-multipliers than trailing rows",
-            "Strain wedge method suitable for short stiff piles",
-            "Computer programs: LPILE, COM624P, GROUP, FB-MultiPier"
+            "Vertical piles can resist significant lateral load; avoid batter piles in seismic areas",
+            "Lateral resistance comes from pile flexural stiffness plus soil compression and shear (Figure 7-63)",
+            "Check both nominal structural resistance and service deflection; geotechnical and structural engineers must coordinate"
           ],
-          "equations": [
-            "Eq 7-73: EI * d4y/dx4 + P_x * d2y/dx2 - p = 0 (beam on nonlinear foundation differential equation)"
-          ],
+          "equations": [],
           "figures": [
-            "Figure 7-51: p-y curve concept and typical shapes for different soil types",
-            "Figure 7-52: Single pile p-y model (beam on nonlinear springs)",
-            "Figure 7-53: Fixed vs free head pile deflection and moment distributions"
+            "Figure 7-63: Soil resistance to a lateral pile load (after Smith 1989) (p. 352)"
           ],
-          "tables": [
-            "Table 7-21: Recommended p-y curve types by soil condition",
-            "Table 7-22: Input parameters for p-y curves by soil type"
-          ],
+          "tables": [],
           "subsections": [
             {
               "section_id": "7.3.7.1",
               "title": "Pile Head Fixity",
-              "body": "The degree of rotational restraint at the pile head (fixed, free, or partial fixity) significantly affects the lateral deflection and bending moment distribution. Fixed head conditions reduce deflection but increase the negative moment at the pile head. Free head conditions allow rotation and result in larger deflection but lower pile head moments."
+              "body": "The pile to cap connection can behave as pinned, fixed, or in between depending on the detail (Wilson et al. 2006) (pp. 353-354). A pile extending only a nominal distance into the cap behaves as pinned: restrained against translation but free to rotate. A fixed connection needs the pile embedded two to three diameters into the cap or a specially designed connection, and restrains rotation and movement in all directions. At the service limit state a pinned head typically moves more horizontally than a fixed head (Figure 7-64); at the strength limit state a fixed head generally has a larger moment at the pile head, but may or may not have larger moments below it (Figure 7-65).",
+              "key_points": [
+                "Nominal embedment = pinned head; two to three diameters of embedment or a special connection = fixed head",
+                "Pinned heads deflect more at the service limit; fixed heads carry larger head moments at the strength limit"
+              ],
+              "equations": [],
+              "figures": [
+                "Figure 7-64: Effect of pile head fixity on translation at service limit state (after Wilson et al. 2006) (p. 354)",
+                "Figure 7-65: Effect of pile head fixity on moment in piles at strength limit state (after Wilson et al. 2006) (p. 354)"
+              ],
+              "tables": []
             },
             {
               "section_id": "7.3.7.2",
-              "title": "Lateral Design Methods Overview",
-              "body": "Two primary methods for lateral pile analysis: the p-y method (most common for long flexible piles) and the strain wedge method (better for short stiff piles). The p-y method models the pile as a beam on nonlinear springs. The strain wedge method computes passive soil resistance using a 3D failure wedge."
+              "title": "Lateral Design Methods",
+              "body": "Lateral soil resistance of vertical piles is designed from lateral load tests or analytical methods (pp. 355-356). Lateral load tests: full scale tests during design or construction finalize or confirm the design; loading rate, cyclic versus monotonic loading and axial load should be considered in the test procedure. They may not be economical on many projects but are essential where lateral load demand controls; Chapter 9 covers procedures and interpretation. Analytical methods: two common approaches, Broms' (1964a, 1964b) hand calculation and Reese's (1984) computer solution, both treat the pile as a beam on an elastic foundation (FHWA IP-84-11). Broms' method gives lateral loads and ground surface deflections by hand but ignores axial load. Reese's p-y method, originally in COM624 and now in its proprietary successor LPILE (Isenhower and Wang 2014), models the problem more completely and outputs moment, shear, soil and pile moduli and soil resistance with depth. The p-y method should be used for all major pile foundation projects and is the FHWA recommended lateral analysis method; LPILE, FBPIER and ALLPILE are common programs, none endorsed by FHWA.",
+              "key_points": [
+                "Lateral load tests are essential on projects controlled by lateral load demand (Chapter 9)",
+                "Broms' hand method gives ground surface loads and deflections but ignores axial load",
+                "The p-y method (Reese) is the FHWA recommended method and should be used for all major pile foundation projects"
+              ],
+              "equations": [],
+              "figures": [],
+              "tables": []
             },
             {
               "section_id": "7.3.7.3",
               "title": "p-y Method",
-              "body": "The p-y method solves the beam-on-nonlinear-foundation differential equation (Eq 7-73) using iterative finite difference techniques. Different p-y curve formulations are used for different soil types: Matlock (1970) for soft clay, Reese et al. (1975) for stiff clay below water table, Welch and Reese (1972) for stiff clay above water table, Reese et al. (1974) for sand, and API (1993) for sand. Software programs LPILE and COM624P automate this analysis.",
+              "body": "The p-y method, the most widely used nonlinear analysis, models soil resistance to lateral load as a series of nonlinear springs, where p is the soil resistance per unit pile length and y the lateral deflection (Figure 7-66) (pp. 356-361). Reese (1984, 1986) gave procedures for p-y curves for various soils, based on full sized instrumented pile tests and theory. The modulus of subgrade reaction is Eq. 7-73; the negative sign shows the resistance opposes deflection, and the modulus is the secant modulus of the p-y curve, constant only over a small range of deflection. Ductile curves (curve A, Figure 7-67) are typical of soft clays under static loading and of sands; brittle curves (curve B) occur in some stiff clays under dynamic loading. Curve shape depends mostly on soil properties, and also on depth, stress-strain behaviour, pile width, water table and static or cyclic loading. Table 7-21 gives representative epsilon_50 values for clays and Table 7-22 representative subgrade reaction moduli; p-y program documentation gives the curve construction procedures. The programs solve the pile-soil equations by finite differences, iterating to equilibrium and p-y compatibility in every element, and can vary flexural rigidity with moment to model cracking. For batter piles, Awoshika and Reese (1971) proposed a modifying constant of 0 to 2 on pult: 1 to 2 with the head inclined away from the load, 1 to 0 toward it; it agreed reasonably with tests on outward battered piles but less so for inward ones, so full scale tests should be considered on important projects. Output includes the generated p-y curves and deflection, slope, moment, shear, stress and soil reaction with depth (Figure 7-68). The analysis is for a single pile; extrapolating to groups and to effects of predrilling or jetting needs considerable care, and the analyst should verify that modelling assumptions (for example all elastic behaviour) hold in the results. Measured load test results should be compared with the predictions to evaluate the p-y curves (Figure 7-69).",
               "key_points": [
-                "Beam on nonlinear foundation: EI*d4y/dx4 + Px*d2y/dx2 - p = 0",
-                "Matlock (1970): soft clay below water table",
-                "Reese et al. (1975): stiff clay below water table",
-                "Welch and Reese (1972): stiff clay above water table",
-                "Reese et al. (1974): sand",
-                "API (1993): sand (alternative to Reese et al.)",
-                "Evans and Duncan (1982): weak rock",
-                "Iterative solution by finite difference method",
-                "Results: deflection, moment, shear, and soil reaction profiles"
+                "p = soil resistance per unit length, y = lateral deflection; k = -p/y is a secant modulus, not constant",
+                "Ductile p-y curves: soft clay under static load and sands; brittle: some stiff clays under dynamic load",
+                "Table 7-21 epsilon_50: soft clay 0.02, medium 0.01, stiff 0.007, very stiff 0.005, hard 0.004",
+                "Table 7-22 ks static (pci): soft clay 30, medium 100, stiff 500, very stiff 1000, hard 2000; loose sand 20 submerged, 25 above water table",
+                "Batter piles: pult modifier 1 to 2 when the head leans away from the load, 1 to 0 toward it (Awoshika and Reese 1971)",
+                "p-y analysis is for a single pile; take care extrapolating to groups; compare with load tests where done"
+              ],
+              "equations": [
+                "Eq. 7-73: k = -p / y; k modulus of subgrade reaction (psi), p soil resistance per unit pile length (lbs/inch), y lateral deflection (inch) (p. 356)"
+              ],
+              "figures": [
+                "Figure 7-66: Typical lateral analysis pile-soil model (p. 357)",
+                "Figure 7-67: Typical p-y curves for ductile and brittle soil (after Coduto 1994) (p. 358)",
+                "Figure 7-68: Graphical presentation of p-y analysis results (after Reese 1986) (p. 361)",
+                "Figure 7-69: Comparison of measured and COM624P predicted load-deflection behavior versus depth (after Kyfor et al. 1992) (p. 361)"
+              ],
+              "tables": [
+                "Table 7-21: Representative Values of epsilon_50 for Clays (p. 358)",
+                "Table 7-22: Representative Modulus of Subgrade Reaction Values, ks and kc, for Clays and Sands (p. 359)"
               ]
             },
             {
               "section_id": "7.3.7.4",
               "title": "Strain Wedge Method",
-              "body": "The strain wedge method (Norris 1986, Ashour et al. 1998) models the soil failure around a laterally loaded pile using a three-dimensional passive wedge. It relates the horizontal soil resistance to the horizontal strain in the passive wedge and provides p-y curves as output. The method is particularly suitable for short stiff piles and layered soils."
-            },
-            {
-              "section_id": "7.3.7.5",
-              "title": "Single Pile Lateral Analysis",
-              "body": "For single piles, the p-y analysis determines the lateral deflection, rotation, bending moment, shear force, and soil reaction distribution along the pile length. The analysis is performed for each load combination (service, strength, extreme event). Critical output includes maximum deflection (usually at pile head) and maximum bending moment (usually 3-8 pile diameters below ground)."
-            },
-            {
-              "section_id": "7.3.7.6",
-              "title": "Pile Group Lateral Analysis",
-              "body": "For pile groups under lateral loading, the p-y curves are modified using p-multipliers to account for pile-soil-pile interaction (shadowing) effects. Leading row piles have higher p-multipliers than trailing rows because they push into undisturbed soil. P-multipliers depend on pile spacing, number of rows, and row position. Brown et al. (1988) and others have developed p-multiplier values from full-scale lateral load tests.",
+              "body": "p-y methods suit piles that bend and deflect; for short stiff piles, which tend to rotate rather than bend, the strain wedge (SW) method may be more realistic (Norris 1986; Ashour et al. 1998a) (pp. 362-364). A three dimensional passive soil wedge resisting the lateral load is built into the beam on elastic foundation problem, with mobilized strains in the wedge relating passive resistance to horizontal displacement (Figure 7-70); later work added multiple soil layers and pile head conditions (Ashour et al. 2002). Soil parameters are assigned to each sublayer and the wedge shape changes with them (Figure 7-71), so the springs are not modelled independently along the pile as in p-y analysis (Figure 7-72), and group effects come from overlapping wedges. The method is implemented in software such as DFSAP and has correlated well with field tests, but has not come into widespread use; many agencies continue to use p-y analyses.",
               "key_points": [
-                "P-multipliers reduce p-y curves for group effects (shadowing)",
-                "Leading row: fm = 0.70-1.0; second row: fm = 0.40-0.85; third+ rows: fm = 0.30-0.70",
-                "P-multipliers depend on spacing (3D to 5D typical range)",
-                "Table 7-23: p-multiplier values from AASHTO (2014)",
-                "Table 7-24: p-multiplier values from research by Brown, Rollins, and others",
-                "Table 7-25: Summary of full-scale group lateral load tests",
-                "Programs GROUP and FB-MultiPier handle group lateral analysis",
-                "Rigid cap assumption used for most group analyses"
+                "Strain wedge method suits short stiff piles that rotate rather than bend",
+                "Group effects come from overlapping passive wedges; implemented in DFSAP, not yet widely used"
               ],
               "equations": [],
               "figures": [
-                "Figure 7-54: p-multiplier concept for pile group lateral analysis",
-                "Figure 7-55: Row position effect on p-multipliers",
-                "Figure 7-56: Shadowing effect in pile groups under lateral load"
+                "Figure 7-70: Strain wedge developed in soil (after Ashour et al. 1998a) (p. 362)",
+                "Figure 7-71: Proposed geometry of compound passive wedge (after Ashour et al. 1998a) (p. 363)",
+                "Figure 7-72: Soil-pile interaction with multiple soil layers (after Ashour et al. 1998a) (p. 364)"
+              ],
+              "tables": []
+            },
+            {
+              "section_id": "7.3.7.5",
+              "title": "Single Piles",
+              "body": "Lateral analysis software readily analyses a single pile; the applied loads should be factored loads at the strength, service and extreme event limit states, with a geotechnical resistance factor of 1.0 per AASHTO (2014) (p. 364). Pile bents often have a single row of piles and are modelled as a single pile along the bridge alignment and as a pile group in the perpendicular direction. More often piles are in groups of two or more rows; Section 7.3.7.6 applies to both a single pile (lead row) and pile groups.",
+              "key_points": [
+                "Factored loads at each limit state with a geotechnical resistance factor of 1.0 (AASHTO 2014)",
+                "Single-row bents: single pile along the alignment, pile group across it"
+              ],
+              "equations": [],
+              "figures": [],
+              "tables": []
+            },
+            {
+              "section_id": "7.3.7.6",
+              "title": "Pile Groups",
+              "body": "A pile group's lateral deflection is typically 2 to 3 times that of a single pile loaded to the same intensity (pp. 364-371). Trailing row piles have significantly less lateral resistance than lead row piles (Holloway et al. 1981; Brown et al. 1988) because of pile-soil-pile interaction, so laterally loaded groups have a group efficiency below 1. Brown et al. (1988) proposed a p-multiplier, Pm, applied to all p-y curves of the piles in a row by row position (Figure 7-73); in a 3 by 3 group in very dense sand at 3b spacing they found 0.8, 0.4 and 0.3 for the lead, middle and back rows. McVay et al. (1995) centrifuge tests at 3b and 5b showed Pm depends on soil density and spacing, with group efficiencies of about 0.74 at 3b and 0.93 at 5b in sand; Brown et al. (1987) found 0.7, 0.5 and 0.4 in stiff clay. Table 7-23 summarizes these and later studies; AASHTO (2014) averaged them without distinguishing soil or test type, so other Pm values may suit similar situations with lower Pm. The Brown and Bollman (1993) p-multiplier procedure is recommended. AASHTO Pm values: 0.8, 0.4 and 0.3 (third and later rows) at 3b; 1.0, 0.85 and 0.7 at 5b; interpolate between. The analyses can be run as multiple single pile p-y analyses or with group programs such as FB-Pier, FB-MultiPier or GROUP. Fayyazi et al. (2012) found that spacing within a row also matters: edge effects can overestimate group lateral resistance by as much as 30%. Procedure: Step 1, obtain the factored lateral loads. Step 2, develop single pile p-y curves from an instrumented lateral load test at the site, published correlations, or in-situ test data. Step 3, run p-y analyses with each row's Pm to get load-deflection and load-moment curves (Figure 7-74a). Step 4, average the load per pile at each deflection over all rows, and enter the group average curve with the lateral load divided by the number of piles to estimate the group deflection. Step 5, from the maximum moment versus deflection for each row (Figure 7-74b), find each row's maximum moment and stress at the group deflection and compare with the pile yield stress. Step 6, refine the evaluation considering superstructure-substructure interaction.",
+              "key_points": [
+                "Group deflection is typically 2 to 3 times single pile deflection at the same load intensity",
+                "Trailing rows resist less than the lead row; group efficiency is below 1",
+                "AASHTO (2014) Pm: 0.8, 0.4, 0.3 (third and later rows) at 3b spacing; 1.0, 0.85, 0.7 at 5b; interpolate between",
+                "Table 7-23 lists field, centrifuge and model studies; some situations have lower Pm than AASHTO",
+                "Edge effects within a row can overestimate group lateral resistance by up to 30% (Fayyazi et al. 2012)",
+                "Group deflection from the average load per pile on the row-averaged load-deflection curve (Figure 7-74a)",
+                "Check each row's maximum moment and stress at the group deflection against yield (Figure 7-74b)"
+              ],
+              "equations": [],
+              "figures": [
+                "Figure 7-73: Illustration of p-multiplier concept for lateral group analysis (p. 366)",
+                "Figure 7-74: Typical plots of (a) Load versus deflection and (b) Bending moment versus deflection for pile group analysis (adapted from Brown and Bollman 1993) (p. 369)"
               ],
               "tables": [
-                "Table 7-23: AASHTO (2014) p-multiplier values by row position and spacing",
-                "Table 7-24: p-multiplier values from published research studies",
-                "Table 7-25: Summary of full-scale pile group lateral load test programs"
+                "Table 7-23: Laterally Loaded Pile Group Studies (p. 367)"
+              ],
+              "subsections": [
+                {
+                  "section_id": "7.3.7.6.1",
+                  "title": "Lateral Resistance Increases Through Ground Improvement",
+                  "body": "Rollins and Brown (2011), NCHRP Report 698, evaluated ways to improve the lateral resistance of pile groups in weak near surface soils and concluded that soil replacement or ground improvement can significantly increase lateral resistance in soft clays and loose sands (pp. 371-373). Figure 7-75 shows the treatment areas around new and existing foundations. Tables 7-24 and 7-25 summarize the treatments, the increase in lateral resistance, the treatment costs, and the savings against the standard alternative of adding piles and enlarging the cap to resist the same load (column 3 of Table 7-25; savings in column 4 are column 3 less the ground improvement cost in column 2).",
+                  "key_points": [
+                    "Soil replacement or ground improvement can significantly increase lateral resistance in soft clays and loose sands (NCHRP Report 698)",
+                    "Table 7-24: e.g. jet grouting below the cap added 500 kips (160%) to 282 kips untreated; compacted fill to the cap edge added 23 kips (10%)",
+                    "Table 7-25 compares ground improvement cost with the cost of extra piles and a larger cap for the same lateral load"
+                  ],
+                  "equations": [],
+                  "figures": [
+                    "Figure 7-75: Ground improvement treatment areas for increased lateral resistance of pile groups in weak soils (Rollins and Brown 2011) (p. 372)"
+                  ],
+                  "tables": [
+                    "Table 7-24: Summary of Ground Improvement Method and Increase in Lateral Resistance (after Rollins and Brown 2011) (p. 373)",
+                    "Table 7-25: Summary of Ground Improvement Method and Associated Costs for Increase in Lateral Resistance after (Rollins and Brown 2011) (p. 373)"
+                  ]
+                }
               ]
             }
           ]
         },
         {
           "section_id": "7.3.8",
-          "title": "Lateral Squeeze",
-          "body": "Lateral squeeze occurs when soft soils are loaded by an embankment adjacent to a pile-supported abutment, causing lateral soil movements that load the piles horizontally. This is evaluated using Eq 7-74 and 7-75 to estimate the lateral force on piles from the embankment-induced soil movement.",
+          "title": "Lateral Squeeze of Foundation Soil and Solutions",
+          "body": "Abutments on piles driven through soft compressible cohesive soils may tilt forward or backward with the backfill and abutment geometry: unbalanced fill loads displace the soil laterally and may bend the piles (Figure 7-76) (pp. 374-375). Stockpiles beside a pier can have the same effect. Rules of thumb: lateral squeeze and tilting can occur if Eq. 7-74 holds, and the horizontal movement can then be estimated with Eq. 7-75. Primary mitigation: (a) delay abutment piling until fill settlement has stabilized (best solution); (b) provide expansion shoes large enough for the movement; (c) use steel H-piles for high flexural tensile strength; (d) use lightweight fill to reduce driving forces.",
           "key_points": [
-            "Soft soil under embankment can squeeze laterally toward bridge piles",
-            "Lateral soil movement imposes horizontal forces on piles",
-            "Most critical for abutment piles adjacent to approach embankments",
-            "Checked when soft layer thickness < 3x embankment height",
-            "Factor of safety against lateral squeeze from Eq 7-74",
-            "If FOS < 1.5, lateral pile analysis including imposed soil movement required"
+            "Lateral squeeze can occur if gamma_f hf > 3 su (Eq. 7-74)",
+            "Horizontal abutment movement about 0.25 times the vertical fill settlement (Eq. 7-75)",
+            "Best solution: install abutment piles after fill settlement has stabilized"
           ],
           "equations": [
-            "Eq 7-74: FOS = (2 * c_u * (1 + D_s/(B_e * sqrt(2)))) / (gamma_fill * H_fill) (FOS against lateral squeeze)",
-            "Eq 7-75: y_s = f(p, x, soil properties) (lateral soil movement profile for pile loading)"
+            "Eq. 7-74: gamma_f hf > 3 su; gamma_f unit weight of fill (pcf), hf height of fill (feet), su undrained shear strength of the soft cohesive soil (psf) (p. 374)",
+            "Eq. 7-75: Sh = 0.25 Sv; Sh horizontal abutment movement (inches), Sv vertical fill settlement (inches) (p. 374)"
           ],
           "figures": [
-            "Figure 7-57: Lateral squeeze mechanism at bridge abutment",
-            "Figure 7-58: Lateral squeeze evaluation geometry"
+            "Figure 7-76: Examples of abutment tilting due to lateral squeeze (p. 375)"
           ],
           "tables": []
         },
         {
           "section_id": "7.3.9",
           "title": "Overall Stability",
-          "body": "Overall stability of the pile-supported structure must be checked, particularly for bridge abutments on slopes, retaining structures, and piles near embankment edges. The global stability analysis includes the pile foundation and surrounding soil mass using limit equilibrium slope stability methods.",
+          "body": "Abutments on deep foundations are subject to overall stability failure; foundation stiffness may resist the shear loading, but global stability should be evaluated if the slip surface is below the pile tips or large earth loads are generated, and to a lesser extent for walls or cut slopes on structural elements (p. 375). Per AASHTO (2014) the Service I load combination and load factor are used, and where the stabilizing system includes a structural element (deep foundation) a resistance factor of 0.65 for sliding is recommended, the inverse of the typical ASD safety factor of 1.5. Sabatini et al. (1997), Duncan and Wright (2005) and Tanyu et al. (2008) cover slope stability.",
           "key_points": [
-            "Global stability check required per AASHTO for slopes and abutments",
-            "Limit equilibrium methods (Bishop, Spencer) used for global stability",
-            "Resistance factor phi_os = 0.65 for overall stability",
-            "Piles contribute to stability through shear and moment resistance",
-            "Must check stability during all construction stages"
+            "Global stability: Service I load combination; resistance factor 0.65 where a deep foundation is part of the stabilizing system (inverse of FS 1.5)"
           ],
           "equations": [],
-          "figures": [
-            "Figure 7-59: Overall stability analysis for pile-supported abutment"
-          ],
+          "figures": [],
           "tables": []
         }
       ]

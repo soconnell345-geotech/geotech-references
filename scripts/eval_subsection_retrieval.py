@@ -78,7 +78,7 @@ QUESTIONS = [
     dict(ref="gec_12", target="7.2.1.3.6",
          question="How is pile capacity estimated from a CPT with effective "
                   "cone resistance?",
-         query="CPT pile capacity effective cone resistance"),
+         query="pile resistance from CPT effective cone tip resistance"),
     dict(ref="gec_12", target="7.2.3.2.2",
          question="What controls the uplift resistance of a pile group in "
                   "cohesionless soil?",
