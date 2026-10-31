@@ -6,39 +6,110 @@
   "chapter_title": "Dynamic Testing and Signal Matching Analysis",
   "sections": [
     {
-      "section_id": "10.1-10.3",
-      "title": "Background, Applications for Dynamic Testing Methods, and Resistance Factors for Dynamic Testing",
-      "summary": "Dynamic testing uses strain and acceleration measured near the pile head during driving or restrike to assess driving system performance, stresses, integrity and nominal resistance; signal matching adds the resistance distribution and dynamic soil properties. The Case Method, PDA and CAPWAP came from Case Institute research (1964-1976). AASHTO resistance factors with signal matching: 0.65 (2 piles per site condition, >= 2% of production piles), 0.75 (100% of piles), 0.80 (with a static load test), 0.50 for tension.",
-      "body": "Chapter introduction and 10.1 Background (pp. 53-54): dynamic tests measure strain and acceleration near the pile head during driving or restrike to determine driving system performance, installation stresses, integrity and nominal geotechnical resistance; signal matching gives the soil resistance distribution and dynamic soil properties for wave equation analysis. The Case Method began with Eiber's (1958) Master thesis at Case Institute of Technology under Professor H.R. Nara (a rod driven into dry sand); ODOT and FHWA funded research from 1964 directed by Professors R.H. Scanlan and G.G. Goble, continuing until 1976, developing transducers, field equipment, model and full-scale correlations, the Case Method field solutions in the Pile Driving Analyzer (PDA) and the CAPWAP signal matching program. ODOT applied it from about 1968; commercial use began in 1972; FHWA Demonstration Project 66 extended it in the 1980s. Other systems: TNO's FPDS and TNOWAVE (Reiding et al. 1988), the Embedded Data Collector (EDC), and the PDR with Allwave-DLT. 10.2 Applications (pp. 54-56): dynamic testing costs much less and takes less time than static testing (Samtani and Nowatzki 2006). Nominal resistance: versus depth from start to end of driving; at the time of testing, with setup or relaxation from restrikes; signal matching refines resistance, distribution, quake and damping (adjusted per Section 12.6.9 for wave equation input). Hammer and driving system: transferred energy versus rated energy or wave equation predictions; cushion effects; strokes, pressures, batter; pre-ignition (diesel) or preadmission (air/steam); whether soil or hammer explains blow count changes. Stresses and integrity: compression and tension stresses versus limits; extent and location of damage (Rausche and Goble 1979); stress distribution from signal matching. 10.3 Resistance factors (AASHTO 2014, with signal matching): 0.65 when driving criteria come from testing two piles per site condition but no less than 2% of production piles; 0.75 for 100% of production piles; 0.80 with a successful static load test of one pile per site condition plus the 2-pile/2% testing; 0.50 for axial tension. They derive from NCHRP Report 507 (Paikowsky 2004), with Davisson static capacity and CAPWAP restrike capacity; other interpretation or signal matching methods may warrant local calibration. McVay and Wasman (2015) computed preliminary EDC factors for Florida DOT.",
+      "section_id": "10.1",
+      "title": "Background",
+      "summary": "Dynamic tests use strain and acceleration measured near the pile head during driving or restrike to assess the driving system, stresses, integrity and nominal resistance; signal matching refines the resistance distribution. History: Case Method and CAPWAP from Case Institute research (1958-1976, ODOT and FHWA), commercial since 1972; other systems TNO FPDS/TNOWAVE, EDC, PDR/Allwave-DLT.",
+      "body": "10.1 Background (pp. 53 to 54). Chapter introduction (p. 53): dynamic test methods use strain and acceleration measured near the pile head as a pile is driven or restruck to determine driving system performance, installation stresses, integrity and nominal geotechnical resistance; results should be further evaluated by signal matching for the relative soil resistance distribution and dynamic soil properties for wave equation analysis. Background: the Case Method began with a Master thesis at Case Institute of Technology (Eiber 1958, under Professor H.R. Nara), a rod driven into dry sand. ODOT and FHWA funded HPR research there from 1964, directed by Professors R.H. Scanlan and G.G. Goble, continuing under Goble to 1976. Over the 12 years: improved force and acceleration transducers, field recording and processing equipment, model piles tested statically and dynamically in Ohio, full scale piles statically tested by ODOT and others tested dynamically for correlations, and analysis methods: field solutions (Case Method) in the Pile Driving Analyzer (PDA) and the signal matching program CAPWAP (CAse Pile Wave Analysis Program) (Goble and Rausche 1970; Rausche et al. 1972; Goble et al. 1975). ODOT applied the results from about 1968; commercial use began in 1972; FHWA Demonstration Project 66 in the 1980s gathered more correlation data. Other systems, mainly European: TNO's FPDS with TNOWAVE (Reiding et al. 1988), the Embedded Data Collector (EDC) (Hererra et al. 2009), and the PDR system with Allwave-DLT (Middendorp and Verbeek 2010).",
       "key_points": [
-        "Measurements near the pile head: driving system performance, stresses, integrity, nominal resistance",
-        "Case Method, PDA and CAPWAP developed at Case Institute of Technology, 1964-1976",
-        "Restrike testing assesses setup or relaxation against end-of-initial-driving resistance",
-        "Signal matching soil parameters may need adjustment for wave equation input (Section 12.6.9)",
-        "phi = 0.65: signal matching on 2 piles per site condition, >= 2% of production piles",
-        "phi = 0.75: 100% of production piles; phi = 0.80: with a static load test per site condition",
-        "phi = 0.50 for axial tension from dynamic testing with signal matching",
-        "Factors based on Davisson static capacity and CAPWAP restrike analyses (NCHRP 507)"
+        "Dynamic tests: strain and acceleration near the pile head during driving or restrike",
+        "Give driving system performance, stresses, integrity and nominal resistance; refine by signal matching",
+        "Case Method and CAPWAP from Case Institute research funded by ODOT and FHWA (1964-1976)",
+        "Other systems: TNO FPDS/TNOWAVE, Embedded Data Collector, PDR/Allwave-DLT"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Uses of dynamic pile testing and its AASHTO resistance factors."
+      "applicability": "Background and history of dynamic pile testing and signal matching."
     },
     {
-      "section_id": "10.4-10.5",
-      "title": "Dynamic Testing and Basic Wave Mechanics",
-      "summary": "At least two strain transducers and two accelerometers are bolted diametrically opposite, two to three diameters below the pile head, to average non-uniform impact and bending; embedded gages on the axis of concrete piles need only one of each. Force F(t) = EA eps(t) (Eq 10-1); velocity V(t) = integral a(t) dt (Eq 10-2). Without resistance, force equals velocity times impedance EA/C. Resistance or a section increase raises force and lowers velocity at time 2X/C; a section reduction (damage) or free toe does the opposite.",
-      "body": "10.4 Dynamic Testing (pp. 57-62): a minimum of two strain transducers and two accelerometers, reusable and externally bolted to diametrically opposite sides two to three diameters below the head; two opposite strain transducers are required for a valid test. All pile types can be tested (concrete anchors in concrete, tapped holes in pipe, Monotube and Tapertube, bolts through H-pile webs, lag screws in timber); preparation takes 15 to 20 minutes per pile; restrike gages may be anywhere 2 or more diameters below the head; most restrike tests are about 20 blows or less. Signals go by Wi-Fi transmitter or cable; combined strain-acceleration units exist (Figure 10-2). Embedded gage sets (one strain transducer and one accelerometer on the pile axis two to three diameters below the head) suit concrete piles; keep them at least one diameter from cross-section changes; use external gages on voided sections or cylinder piles; extra embedded gages (e.g., near the toe) give stresses, load transfer or toe damage. Force by Eq 10-1 and velocity by Eq 10-2, processed in a PDA or an EDC laptop for energy, stresses, integrity and resistance each blow. 10.5 Basic Wave Mechanics (pp. 63-71): a uniform elastic rod (area A, modulus E, wave speed C) struck by a mass carries force equal to particle velocity times impedance EA/C until resistance or section changes act. A free end reflects a tensile wave (force zero, velocity doubles at 2L/C; easy driving, the pile 'runs'); a fixed end reflects compression (force doubles, velocity zero; hard driving to rock). Reflections from resistance or section changes arrive at 2X/C; resistance and section increases raise the force record and lower the velocity record; section reductions such as damage lower force and raise velocity. The rise time is from impact onset to peak velocity (Figure 10-11, after Hannigan 1990). Figure 10-12: minimal shaft and toe; minimal shaft and large toe; large shaft resistance.",
+      "section_id": "10.2",
+      "title": "Applications for Dynamic Testing Methods",
+      "summary": "Dynamic testing costs less and takes less time than static load testing and gives driving system and pile-soil information a static test cannot; control of stresses and integrity has led to fewer, higher resistance piles.",
+      "body": "10.2 Applications for Dynamic Testing Methods (p. 54). Samtani and Nowatzki (2006) note dynamic testing costs much less and takes less time than static load testing and gives information on the driving system and pile-soil response unavailable from a static test. Determining driving stresses and integrity has led to fewer, higher nominal resistance piles through better installation control. Applications follow in 10.2.1 to 10.2.3.",
       "key_points": [
-        "Two strain transducers and two accelerometers, diametrically opposite, 2-3 diameters below the head",
-        "Two opposite strain transducers are required for a valid test",
-        "Gage attachment 15-20 minutes per pile; restrike tests usually about 20 blows or less",
-        "Embedded gage set on the axis of a concrete pile: one strain transducer and one accelerometer",
-        "Eq 10-1: F(t) = EA eps(t); Eq 10-2: V(t) = integral a(t) dt",
-        "No resistance: force = velocity x impedance EA/C",
-        "Free end: tensile reflection (easy driving); fixed end: compression reflection (hard driving)",
-        "Resistance or section increase: force up, velocity down at 2X/C; damage: force down, velocity up"
+        "Cheaper and faster than static load tests",
+        "Gives driving system and pile-soil information a static test cannot",
+        "Better installation control has allowed fewer, higher resistance piles"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Overview of what dynamic pile testing is used for."
+    },
+    {
+      "section_id": "10.2.1",
+      "title": "Nominal Resistance",
+      "summary": "Nominal resistance applications: resistance versus depth during driving, resistance at the time of testing with setup or relaxation from restrikes, and signal matching for resistance distribution and quake and damping (adjusted for wave equation input per Section 12.6.9).",
+      "body": "10.2.1 Nominal Resistance (pp. 54 to 55). (a) Testing from start to end of driving gives nominal resistance versus penetration, helping profile the bearing stratum and production lengths. (b) Nominal resistance at the time of testing; setup or relaxation assessed by restriking several piles and comparing with end of initial driving. (c) Signal matching refines nominal resistance and soil resistance distribution and informs quake and damping for wave equation analysis; since the pile and soil models differ, signal matching soil parameters may need adjustment for wave equation input (Section 12.6.9).",
+      "key_points": [
+        "Nominal resistance versus depth by testing throughout driving",
+        "Setup or relaxation from restrike versus end of initial driving",
+        "Signal matching gives resistance distribution, quake and damping (adjust for wave equation, Section 12.6.9)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Using dynamic tests to determine pile nominal resistance and setup or relaxation."
+    },
+    {
+      "section_id": "10.2.2",
+      "title": "Hammer and Driving System Performance",
+      "summary": "Hammer and driving system applications: transferred energy versus rated energy or wave equation predictions, effects of cushions, strokes, pressures, batter and maintenance, pre-ignition or preadmission, and whether soil or hammer explains blow count changes.",
+      "body": "10.2.2 Hammer and Driving System Performance (p. 55). (a) Energy transferred to the pile compared with the manufacturer's rated energy and/or wave equation predictions; effect of hammer or pile cushion changes on blow count. (b) Drive system performance under different strokes, operating pressures, batter angles or maintenance, by comparing hammers or one hammer over time. (c) Hammer problems such as pre-ignition in diesel hammers or preadmission in air/steam hammers. (d) Whether soil behavior or hammer performance causes observed blow count changes.",
+      "key_points": [
+        "Transferred energy vs. rated energy or wave equation prediction",
+        "Effects of cushions, stroke, pressure, batter and maintenance",
+        "Detects diesel pre-ignition and air/steam preadmission",
+        "Separates soil effects from hammer effects on blow count"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Using dynamic tests to evaluate pile hammer and drive system performance."
+    },
+    {
+      "section_id": "10.2.3",
+      "title": "Driving Stresses and Pile Integrity",
+      "summary": "Stress and integrity applications: compression and tension driving stresses versus limits, extent and location of damage (Rausche and Goble 1979) without extraction, and stress distribution along the pile from signal matching.",
+      "body": "10.2.3 Driving Stresses and Pile Integrity (pp. 55 to 56). (a) Compression and tension driving stresses, helpful in adjusting installation procedures and for comparison with specified limits. (b) Extent and location of structural damage (Rausche and Goble 1979), so costly extraction may not be needed. (c) Compression and tension stress distribution along the pile from signal matching.",
+      "key_points": [
+        "Compression and tension driving stresses vs. specified limits",
+        "Damage extent and location without extraction (Rausche and Goble 1979)",
+        "Stress distribution along the pile from signal matching"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Using dynamic tests to check driving stresses and pile integrity."
+    },
+    {
+      "section_id": "10.3",
+      "title": "Resistance Factors for Dynamic Testing",
+      "summary": "AASHTO (2014) resistance factors: dynamic testing with signal matching on 2 piles per site condition (>= 2% of production) 0.65; on 100% of production piles 0.75; with a static load test 0.80; tension by dynamic test with signal matching 0.50. Based on Davisson static and CAPWAP restrike data (NCHRP 507); calibrate other methods (EDC: McVay and Wasman 2015, preliminary).",
+      "body": "10.3 Resistance Factors for Dynamic Testing (p. 56). AASHTO (2014) resistance factors for dynamic testing with signal matching: driving criteria from dynamic testing with signal matching on two piles per site condition but no less than 2% of production piles, 0.65; on 100% of production piles, 0.75; a successful static load test of one pile per site condition with dynamic testing and signal matching on two piles per site condition but no less than 2% of production piles, 0.80; nominal axial tension resistance from a dynamic test with signal matching, 0.50. The factors were developed from NCHRP Report 507 (Paikowsky 2004) data, with static nominal resistance at the Davisson offset limit and dynamic nominal resistance from CAPWAP at restrike; for a different static interpretation criterion or signal matching method, consider modifying or locally calibrating the factor. Florida DOT research (McVay and Wasman 2015) computed factors for the Embedded Data Collector (EDC) by FOSM with the UF and Tran methods; given the small database the values are preliminary.",
+      "key_points": [
+        "Dynamic test with signal matching, 2 piles per site condition (>= 2% of production): phi = 0.65",
+        "Signal matching on 100% of production piles: phi = 0.75; with a static load test: phi = 0.80",
+        "Tension from dynamic test with signal matching: phi = 0.50",
+        "Factors assume Davisson static failure and CAPWAP restrike analysis; calibrate other methods",
+        "EDC factors (McVay and Wasman 2015) preliminary"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selecting LRFD resistance factors for driving criteria set by dynamic testing."
+    },
+    {
+      "section_id": "10.4",
+      "title": "Dynamic Testing",
+      "summary": "Dynamic test system: at least two strain transducers and two accelerometers bolted diametrically opposite 2 to 3 diameters below the head (15 to 20 minutes per pile); embedded gages in concrete piles on the central axis; force F = EA eps (Eq. 10-1), velocity by integrating acceleration (Eq. 10-2); PDA or EDC processing.",
+      "body": "10.4 Dynamic Testing (pp. 57 to 62). A typical system has at least two strain transducers and two accelerometers, reusable and bolted to diametrically opposite sides two to three diameters below the head, compensating for non-uniform impacts and bending (two opposite strain transducers are required for a valid test). All pile types can be tested with external gages (Figure 10-1): concrete piles drilled through a template with a hammer drill, dust removed, concrete anchors set; pipe, Monotube and Tapertube piles drilled and tapped for high strength bolts; H-piles drilled through the web with gages on both web faces; timber piles with wood lag screws. Preparation takes 15 to 20 minutes per pile; for restrikes gages go at any convenient location 2 or more diameters below the head, and most restrikes are about 20 blows or less. Signals travel by Wi-Fi transmitter or splitter and main cable (Figure 10-2: separate accelerometer and strain transducer, or a combined unit). Concrete piles may use embedded gages: one strain transducer and one accelerometer cast two to three diameters below the head on the central axis, which eliminates bending and non-uniform impact effects; keep them at least one diameter from a cross section change (voided piles), and use external gages below the change, or for cylinder piles where a central gage is impossible (Figures 10-3, 10-4; the extra opposite sister bar gages in Figure 10-4 are not standard). Additional embedded gages elsewhere (e.g., near the toe) give stress, load transfer or toe damage insight. The acquisition system converts strain to force, F(t) = EA eps(t) (Eq. 10-1), and integrates acceleration to velocity, V(t) = integral a(t) dt (Eq. 10-2). Processing, storage and display are in a field unit such as the Pile Driving Analyzer (Figure 10-5) or a laptop such as the Embedded Data Collector (Figure 10-6), giving energy, stresses, integrity and nominal resistance for each blow in real time; stored records feed signal matching and summaries.",
+      "key_points": [
+        "At least two strain transducers and two accelerometers, diametrically opposite, 2 to 3 diameters below the head",
+        "Gage attachment about 15 to 20 minutes per pile; restrike gages 2+ diameters below the head",
+        "Embedded gages in concrete piles: one strain transducer and accelerometer on the central axis",
+        "Keep embedded gages at least one diameter from a cross section change",
+        "Force F(t) = EA eps(t) (Eq. 10-1); velocity V(t) = integral of a(t) dt (Eq. 10-2)"
       ],
       "equations": [
         {
@@ -102,7 +173,25 @@
           "title": "Embedded Data Collector system",
           "description": "Courtesy of Radise International.",
           "page": 62
-        },
+        }
+      ],
+      "tables": [],
+      "applicability": "Dynamic pile test equipment, gage installation and signal processing."
+    },
+    {
+      "section_id": "10.5",
+      "title": "Basic Wave Mechanics",
+      "summary": "Wave mechanics for interpreting records: force = velocity x impedance EA/C until resistance or section changes; a free end doubles velocity and zeroes force at 2L/C (easy driving), a fixed end doubles force and zeroes velocity (hard driving); resistance at depth X raises force and lowers velocity at 2X/C, damage the reverse.",
+      "body": "10.5 Basic Wave Mechanics (pp. 63 to 71). A uniform elastic rod (area A, modulus E, wave speed C) struck by a mass develops force F and particle velocity V with F = V x EA/C while no resistance acts. Free end (Figure 10-7): waves reach the end at L/C, a tensile reflection doubles the end velocity and makes the net force zero, and the wave returns in tension with velocity of the same sign. Near the head (Figure 10-8) force and velocity x EA/C are equal until 2L/C, when force goes to zero and velocity doubles, repeating at 2L/C intervals; typical of easy driving where the pile 'runs'. Fixed end (Figure 10-9): a compression reflection doubles the end force and makes velocity zero (the print's sentence on the fixed end is garbled: 'such a manner that the particle velocity must be zero material wave speed, C'); near the head (Figure 10-10) at 2L/C force increases and velocity goes to zero, typical of driving to rock. Records are proportional at impact and stay so until soil resistance or section changes; reflections arrive at 2X/C, X the distance to the effect. Soil resistance and section increases raise force and lower velocity; section reductions such as damage lower force and raise velocity. Figure 10-11 (after Hannigan 1990): small resistance at depth A and large at B with a free toe; the rise time is from impact onset to peak velocity; one rise time before 2A/C a small separation appears, records stay parallel to 2B/C, a large separation follows, and at 2L/C the free toe raises velocity and lowers force. Figure 10-12: (a) little separation and a large velocity increase at 2L/C - minimal shaft and toe resistance; (b) little separation and a large force increase at 2L/C - minimal shaft, large toe resistance; (c) large separation before 2L/C - large shaft resistance.",
+      "key_points": [
+        "No resistance: force = velocity x impedance EA/C",
+        "Free end: at 2L/C force goes to zero and velocity doubles (easy driving)",
+        "Fixed end: at 2L/C force increases and velocity goes to zero (driving to rock)",
+        "Soil resistance at depth X: force up, velocity down at 2X/C; damage: force down, velocity up",
+        "Separation before 2L/C indicates shaft resistance; behavior at 2L/C indicates toe resistance"
+      ],
+      "equations": [],
+      "figures": [
         {
           "figure_id": "10-7",
           "title": "Free end wave mechanics",
@@ -141,24 +230,36 @@
         }
       ],
       "tables": [],
-      "applicability": "Dynamic test instrumentation and qualitative interpretation of force and velocity records."
+      "applicability": "Qualitative interpretation of pile force and velocity records by wave mechanics."
     },
     {
       "section_id": "10.6",
       "title": "Dynamic Testing Methodology",
-      "summary": "Case Method: RTL from force and velocity at t1 and t2 = t1 + 2L/c (Eq 10-3); RSP = RTL - J[V(t1)(EA/c) + F(t1) - RTL] (Eq 10-4), J by toe soil type (Table 10-1). RSP suits low displacement piles and large shaft resistance; RMX, with J at least 0.4, suits delayed toe response. AASHTO gives no factor for Case Method results: signal matching is required. Energy Ep = integral F V dt (Eq 10-5); tension from wave down and up (Eqs 10-6, 10-7); BTA integrity (Table 10-2). CAPWAP matches measured wave up by adjusting the soil model.",
-      "body": "10.6 (pp. 72-91). Wave equation analysis (Chapter 12) is done before driving with assumed hammer and soil behavior, then refined with dynamic data (Section 12.6.9). Case Method results are computed in real time each blow, but AASHTO (2014) requires nominal resistance by signal matching, which is more accurate; dynamic data, signal matching and a refined wave equation together are the best basis for driving criteria. 10.6.1 Case Method: for a linearly elastic uniform pile, total static and dynamic resistance RTL by Eq 10-3; Goble et al. (1975) approximated damping as a factor times toe velocity, giving RSP (Eq 10-4). Case damping ranges by toe soil type gave RSP within 20% of Davisson static failure loads (Table 10-1); site-specific correlations from signal matching or static tests should be developed; Case damping is not Smith damping. RSP is best for low displacement piles and large shaft resistance; for displacement piles in soils with large toe quakes or large toe resistance, the maximum toe resistance is delayed and RMX (searching t1 for maximum resistance) should be used, with J at least 0.4 and about 0.2 to 0.4 higher than for RSP (Figure 10-13). Automatic RAU (minimal shaft resistance) and RA2 (toe plus moderate shaft) need no J. 10.6.2 Resistance distribution: relative magnitude from force-velocity separation, depth from 2X/C; magnitudes from signal matching; residual forces complicate closed-form solutions from embedded gages. 10.6.3 Energy: Eq 10-5; EMX is its maximum (Figure 10-14). 10.6.4 Stresses: CSX = gage force / area (example 795 kips / 324 in2 = 2.45 ksi); the maximum may be elsewhere (soft soil to rock). Tension from wave down (Eq 10-6) and wave up (Eq 10-7): TSN within the first 2L/C (example 0.05 ksi) and TSX over the full record (example 0.80 ksi); hard driving can cause high tension when the toe compression reflection reflects off the free head. 10.6.5 Integrity: force-velocity convergence before 2L/C means impedance reduction, i.e., damage in uniform piles; the Beta Method (Rausche and Goble 1979) gives BTA (Table 10-2; below 80% damaged or broken). EDC toe damage for concrete piles: prestress strain change over 50 microstrain across 10 consecutive blows (Verbeek and Middendorp 2011). BTT flags early toe reflections (Likins and Rausche 2014). 10.6.6 Signal matching (CAPWAP, iCAP, TNOWAVE, All-Wave DLT; models differ and must be understood) on blows at end of driving or beginning of restrike; the AASHTO factor rests on CAPWAP restrike analyses. CAPWAP models the pile as continuous segments with elasto-plastic springs and dashpots, drives it with measured wave down and matches computed to measured wave up; Zone 1 (shaft distribution, 2L/C after impact), Zone 2 (toe model, rise time + 3 ms), Zone 3 (total resistance, rise time + 5 ms; essential), Zone 4 (unloading, 20 ms); the match quality number sums the zones (Figures 10-16 to 10-23).",
+      "summary": "Distinguishes wave equation analysis (before driving: drivability, equipment checks, driving criteria; refined after testing per Section 12.6.9), Case Method field solutions (real time, each blow) and signal matching (one blow, more accurate; AASHTO requires it for nominal resistance); best use combines all three.",
+      "body": "10.6 Dynamic Testing Methodology (pp. 72 to 73). Case Method field solutions and signal matching such as CAPWAP analyze dynamic measurements and are sometimes confused with wave equation analysis (Chapter 12). The wave equation is typically run before field work: in design to check drivability of pile types and sections, in construction to check the contractor's equipment against resistance and penetration requirements, using assumed hammer performance and soil response; after test piles a refined analysis 'calibrates' it with dynamic measurement and signal matching results (Section 12.6.9). It relates nominal resistance to blow count, so it is used for driving criteria and for assessing resistance from observed blow count. During driving, Case Method nominal resistance is computed in real time for each blow (Section 10.6.1), but AASHTO (2014) requires nominal resistance by signal matching; other Case equations give stresses, integrity and energy. Signal matching uses one blow's force and velocity with wave equation type models to compute nominal resistance, resistance distribution, quake and damping, and stresses along the pile, more accurately than the Case Method (Section 10.6.6). Signal matching soil data plus measured drive system performance in a refined wave equation is the best use of the three methods for driving criteria.",
       "key_points": [
-        "AASHTO requires nominal resistance by signal matching; no factor for Case Method results",
-        "Eq 10-3: RTL = 1/2[F(t1) + F(t2)] + 1/2[V(t1) - V(t2)](EA/c), t2 = t1 + 2L/c",
-        "Eq 10-4: RSP = RTL - J[V(t1)(EA/c) + F(t1) - RTL]",
-        "Table 10-1 Case damping by toe soil; develop site-specific damping; Case damping is not Smith damping",
-        "RMX for delayed toe response; J at least 0.4 and 0.2-0.4 above the RSP value",
-        "RAU and RA2 automatic methods need no damping factor",
-        "Eq 10-5: Ep(t) = integral F V dt; EMX = maximum transferred energy",
-        "Eqs 10-6, 10-7: WD and WU = 1/2[F(t) +/- (EA/c)V(t)]; tension from their superposition",
-        "BTA (Rausche and Goble 1979): below 0.8 damaged or broken; BTT flags early toe reflection",
-        "CAPWAP: four match zones; Zone 3 match essential for total resistance"
+        "Wave equation: before driving (drivability, equipment, driving criteria); refined with test data (Section 12.6.9)",
+        "Case Method: real-time nominal resistance for every blow",
+        "AASHTO (2014) requires nominal resistance by signal matching",
+        "Best: signal matching soil parameters plus measured hammer performance in a refined wave equation"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Case Method, energy, stress and integrity computations and signal matching of dynamic test data."
+    },
+    {
+      "section_id": "10.6.1",
+      "title": "Nominal Resistance Determination by Case Method",
+      "summary": "Case Method: total resistance RTL (Eq. 10-3) from force and velocity at t1 and t1 + 2L/C; static RSP = RTL - J[V(t1) EA/c + F(t1) - RTL] (Eq. 10-4) with Case damping J by toe soil (Table 10-1); RMX searches t1 for maximum (J at least 0.4, 0.2 to 0.4 above RSP's); RAU and RA2 automatic; AASHTO gives no resistance factor for these.",
+      "body": "10.6.1 Nominal Resistance Determination by Case Method (pp. 73 to 76). Assuming a linearly elastic pile of constant section, the closed form one-dimensional wave solution gives total static plus dynamic resistance RTL = 1/2 [F(t1) + F(t2)] + 1/2 [V(t1) - V(t2)] (EA/c) (Eq. 10-3), t1 the first peak and t2 = t1 + 2L/C. Goble et al. (1975) approximated damping as a damping factor times toe velocity estimated from head measurements, giving the standard Case Method RSP = RTL - J [V(t1)(EA/c) + F(t1) - RTL] (Eq. 10-4), J the Case damping factor for the soil near the toe (unitless). Ranges of J were set where RSP was within 20% of the Davisson static failure load. Table 10-1 (soil at toe: Goble et al. 1975 original range; Pile Dynamics 2015 RSP; Pile Dynamics 2015 RMX): clean sands 0.05-0.20, 0.10-0.15, 0.40-0.50; silty sands 0.15-0.30, 0.15-0.25, 0.50-0.70; silts 0.20-0.45, 0.25-0.40, 0.60-0.80; silty clays 0.40-0.70, 0.40-0.70, 0.70-0.90; clay 0.60-1.10, 0.70 or higher, 0.90 or higher. Develop site specific damping from signal matching or static tests; Case damping is non-dimensional and differs from Smith damping (Chapter 12). RSP suits low displacement piles and large shaft resistance; for displacement piles with large toe quake or large toe resistance the maximum toe resistance is delayed and RSP may be low, so use the maximum Case Method RMX, which searches t1 for the maximum (Figure 10-13), with J at least 0.4 and about 0.2 to 0.4 above the RSP value. Automatic methods without a damping choice search for zero toe velocity: RAU for minimal shaft resistance, RA2 for toe plus moderate shaft resistance, as supplemental indicators. AASHTO (2014) gives no resistance factor for Case Method or other simple direct methods; signal matching is required for compliance.",
+      "key_points": [
+        "RTL = 1/2[F(t1) + F(t2)] + 1/2[V(t1) - V(t2)](EA/c) (Eq. 10-3), t2 = t1 + 2L/C",
+        "RSP = RTL - J[V(t1)(EA/c) + F(t1) - RTL] (Eq. 10-4); J = Case damping factor by toe soil",
+        "Table 10-1 RSP J: clean sand 0.10-0.15 ... clay 0.70+; RMX J: 0.40-0.50 ... 0.90+",
+        "RSP for low displacement piles and large shaft resistance; RMX for delayed toe resistance",
+        "RMX damping at least 0.4 and 0.2 to 0.4 above the RSP value",
+        "No AASHTO resistance factor for Case Method; signal matching required"
       ],
       "equations": [
         {
@@ -195,7 +296,51 @@
           },
           "notes": "p. 73 (Goble et al. 1975).",
           "implemented_in": null
-        },
+        }
+      ],
+      "figures": [
+        {
+          "figure_id": "10-13",
+          "title": "Examples of standard Case Method, RSP, and maximum Case Method, RMX, calculations for estimates of nominal resistance",
+          "description": "",
+          "page": 76
+        }
+      ],
+      "tables": [
+        {
+          "table_id": "10-1",
+          "title": "Summary of Case Damping Factors for RSP and RMX Equations",
+          "description": "Original Case damping correlation range (Goble et al. 1975) / recommended RSP range / recommended RMX range (Pile Dynamics 2015): clean sands 0.05-0.20 / 0.10-0.15 / 0.40-0.50; silty sands 0.15-0.30 / 0.15-0.25 / 0.50-0.70; silts 0.20-0.45 / 0.25-0.40 / 0.60-0.80; silty clays 0.40-0.70 / 0.40-0.70 / 0.70-0.90; clay 0.60-1.10 / 0.70 or higher / 0.90 or higher.",
+          "page": 75
+        }
+      ],
+      "applicability": "Estimating pile nominal resistance in the field by the Case Method equations."
+    },
+    {
+      "section_id": "10.6.2",
+      "title": "Soil Resistance Distributions",
+      "summary": "Relative soil resistance is read from force minus velocity x impedance within 2L/C, its depth from the reflection time 2X/C; magnitudes need signal matching; residual forces complicate closed form use of gages along the pile.",
+      "body": "10.6.2 Soil Resistance Distributions (p. 77). Relative soil resistance at a time within the 2L/C interval after impact is the difference between the force and velocity x impedance records, and its depth below the gages comes from the reflection time 2X/C ('As noted in Section 10.6', as printed; the wave mechanics are in 10.5). Magnitudes at depth should come from signal matching (Section 10.6.6). Forces from gages along the pile can be compared with signal matching forces at those depths, but residual forces from casting and/or driving greatly complicate any simple closed form solution.",
+      "key_points": [
+        "Relative resistance from force vs. velocity x impedance separation; depth from 2X/C",
+        "Magnitudes at depth from signal matching",
+        "Residual forces complicate closed-form use of embedded or external gages along the pile"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Reading soil resistance distribution from dynamic test records."
+    },
+    {
+      "section_id": "10.6.3",
+      "title": "Energy Transfer",
+      "summary": "Transferred energy E_p(t) = integral of F(t) V(t) dt (Eq. 10-5); its maximum, EMX, evaluates the hammer and driving system.",
+      "body": "10.6.3 Energy Transfer (pp. 77 to 78). Energy transferred to the pile head is the work done, the integral of force times velocity over time: E_p(t) = integral from 0 to t of F(t) V(t) dt (Eq. 10-5) in ft-kips, using force from strain and velocity from integrated acceleration (the text cites 'Section 10.3'; Eqs. 10-1 and 10-2 are in 10.4). Figure 10-14 illustrates it; EMX, the maximum of E_p(t), is used to evaluate hammer and driving system performance (cited as 'Section 10.7'; the evaluation is in 10.8.2).",
+      "key_points": [
+        "E_p(t) = integral of F(t) V(t) dt (Eq. 10-5)",
+        "EMX = maximum transferred energy, used for hammer performance evaluation"
+      ],
+      "equations": [
         {
           "eq_id": "10-5",
           "description": "Energy transferred at the gage location",
@@ -207,7 +352,32 @@
           },
           "notes": "p. 77. EMX is the maximum of E_p(t).",
           "implemented_in": null
-        },
+        }
+      ],
+      "figures": [
+        {
+          "figure_id": "10-14",
+          "title": "Energy transfer computation",
+          "description": "",
+          "page": 78
+        }
+      ],
+      "tables": [],
+      "applicability": "Computing hammer energy transferred to the pile from dynamic measurements."
+    },
+    {
+      "section_id": "10.6.4",
+      "title": "Driving Stresses",
+      "summary": "Compression stress at the gages from strain (maximum may be deeper, e.g., soft soil over rock); tension from wave down WD = 1/2[F + (EA/c)V] (Eq. 10-6) and wave up WU = 1/2[F - (EA/c)V] (Eq. 10-7). Example 18 in. prestressed pile: CSX 2.45 ksi, TSN 0.05 ksi, TSX 0.80 ksi.",
+      "body": "10.6.4 Driving Stresses (pp. 79 to 81). Compression stress at the gages comes from measured strain and modulus; the pile maximum may be larger elsewhere (e.g., soft soils to rock), found by signal matching or wave equation. Figure 10-15: 18 inch square prestressed pile with large toe resistance at 29 blows per inch; maximum compression force 795 kips over 324 in2 gives CSX 2.45 ksi. Tension comes from superposing wave down WD(t) = 1/2 [F(t) + (EA/c) V(t)] (Eq. 10-6) and wave up WU(t) = 1/2 [F(t) - (EA/c) V(t)] (Eq. 10-7). Maximum upward tension in wave up at 2L/C +/- 20% (point B, -62 kips) plus minimum downward compression in wave down between 0 and 2L/C (point C, 45 kips) gives net CTN -17 kips, TSN 0.05 ksi within the first 2L/C, consistent with hard driving. The full record is searched for later maxima: wave up -154 kips (D) plus the preceding wave down minimum -105 kips (E) gives -259 kips, TSX 0.80 ksi; high tension can occur in hard driving when the compression reflection from a fixed toe reflects at the free head as a downward tension wave.",
+      "key_points": [
+        "Compression stress from measured strain; maximum may be below the gages (use signal matching or wave equation)",
+        "WD = 1/2[F + (EA/c)V] (Eq. 10-6); WU = 1/2[F - (EA/c)V] (Eq. 10-7)",
+        "Tension from superposed wave up and wave down; search the full record (TSX)",
+        "Example: CSX 795 kips / 324 in2 = 2.45 ksi; TSX 259 kips -> 0.80 ksi",
+        "High tension possible in hard driving from reflection at the free head"
+      ],
+      "equations": [
         {
           "eq_id": "10-6",
           "description": "Downward traveling wave (wave down)",
@@ -241,23 +411,52 @@
       ],
       "figures": [
         {
-          "figure_id": "10-13",
-          "title": "Examples of standard Case Method, RSP, and maximum Case Method, RMX, calculations for estimates of nominal resistance",
-          "description": "",
-          "page": 76
-        },
-        {
-          "figure_id": "10-14",
-          "title": "Energy transfer computation",
-          "description": "",
-          "page": 78
-        },
-        {
           "figure_id": "10-15",
           "title": "Example compression and tension stress calculation",
           "description": "",
           "page": 80
-        },
+        }
+      ],
+      "tables": [],
+      "applicability": "Computing compression and tension driving stresses from dynamic records."
+    },
+    {
+      "section_id": "10.6.5",
+      "title": "Pile Integrity",
+      "summary": "Integrity: force-velocity convergence before 2L/C means impedance reduction, i.e., damage in uniform piles; Beta Method BTA (Table 10-2: 1.0 undamaged, 0.8-1.0 slightly damaged, 0.6-0.8 damaged, below 0.6 broken); EDC prestress-change method; BTT flags early toe reflections (Likins and Rausche 2014).",
+      "body": "10.6.5 Pile Integrity (pp. 81 to 82). Convergence of force and velocity before the rise time preceding 2L/C indicates reduced impedance EA/C, i.e., damage in a uniform pile (the text cites 'Section 10.4' for wave mechanics, which is 10.5). The Beta Method (Rausche and Goble 1979) rates severity by the convergence and assigns BTA, the approximate impedance reduction at the damage. Table 10-2: BTA 1.0 undamaged; 0.8-1.0 slightly damaged; 0.6-0.8 damaged; below 0.6 broken; piles below 80% are damaged or broken. Verbeek and Middendorp (2011), for concrete piles with EDC gages at head and toe: a prestress strain change of more than 50 microstrain over 10 consecutive blows identifies damage (not tension cracking). The original Beta method could miss near-toe damage with high toe resistance or reflections; Likins and Rausche (2014): with wave speed from an early blow, a reflection too early for 2L/C indicates near-toe damage, flagged by BTT changing from 100% to 1%. BTA and BTT apply to all pile types.",
+      "key_points": [
+        "Force-velocity convergence before 2L/C = impedance reduction = damage in uniform piles",
+        "Table 10-2 BTA: 1.0 undamaged; 0.8-1.0 slightly damaged; 0.6-0.8 damaged; < 0.6 broken",
+        "EDC: prestress strain change > 50 microstrain over 10 blows indicates damage",
+        "BTT drops from 100% to 1% for an early toe reflection (near-toe damage)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        {
+          "table_id": "10-2",
+          "title": "Pile Damage Guidelines",
+          "description": "After Rausche and Goble (1979). BTA 1.0 undamaged; 0.8-1.0 slightly damaged; 0.6-0.8 damaged; below 0.6 broken.",
+          "page": 81
+        }
+      ],
+      "applicability": "Assessing pile damage from dynamic records (Beta method, BTA and BTT)."
+    },
+    {
+      "section_id": "10.6.6",
+      "title": "Signal Matching",
+      "summary": "Signal matching (CAPWAP, iCAP, TNOWAVE, AllWave DLT) on end of driving or restrike blows: measured wave down drives the pile model, soil model adjusted until computed and measured wave up match; zones of influence (shaft, toe, total resistance, unloading); outputs: match quality, resistance distribution, quakes, damping, stresses, simulated static test.",
+      "body": "10.6.6 Signal Matching (pp. 82 to 91). Data are signal matched at events such as end of initial driving and beginning of restrike or key depths. Programs include CAPWAP, iCAP, TNOWAVE and All-Wave DLT; models differ, so analyst and user should understand them. Signal matching refines nominal resistance, distribution, quake and damping at one depth or time. The AASHTO factor was based on CAPWAP restrike data, so CAPWAP illustrates the method. CAPWAP replaces the hammer model with measured force and velocity: the pile is continuous segments, static resistance elasto-plastic springs and dynamic resistance dashpots (Figure 10-16); the boundary conditions (soil model) are the unknown. Starting from estimated distribution, quakes and damping, measured wave down drives the model, the computed wave up is compared with the measured, and the soil model is adjusted and rerun. Figure 10-17 zones: Zone 1, from the rise at tr before impact for 2L/C, governed by shaft resistance distribution; Zone 2, from the end of Zone 1 for tr + 3 ms, toe resistance and toe model (damping, quake, gap); Zone 3, from the end of Zone 1 for tr + 5 ms, overall nominal resistance (a good match there is essential); Zone 4, from the end of Zone 2 for 20 ms, soil unloading. The match quality number sums relative differences over the four zones (Figure 10-18); when no further improvement is possible the soil model is the best estimate. Outputs: final match (force), force and velocity, shaft resistance per segment over the load transfer diagram, simulated static load test (Figure 10-19); summary table of resistance by segment with unit shaft resistance, quake and damping, match quality, blow count, stresses and energy (Figure 10-20); extrema table, e.g., maximum compression 33.9 ksi at 30.2 ft and tension 2.56 ksi at 77.2 ft below the gages (Figure 10-21); Case Method table to pick the Case equation and damping that best correlate, e.g., RMX with J = 1.45 (Figure 10-22); pile profile and model (Figure 10-23).",
+      "key_points": [
+        "Programs: CAPWAP, iCAP, TNOWAVE, All-Wave DLT; AASHTO factor based on CAPWAP restrike",
+        "Measured wave down drives the model; soil model adjusted to match measured wave up",
+        "Zones: shaft distribution (2L/C), toe (tr + 3 ms), total resistance (tr + 5 ms), unloading (20 ms)",
+        "Outputs: resistance distribution, quakes, damping, stress extrema, simulated static load test",
+        "Case Method table selects the Case equation and damping for untested similar piles"
+      ],
+      "equations": [],
+      "figures": [
         {
           "figure_id": "10-16",
           "title": "Schematic of CAPWAP signal matching method",
@@ -307,37 +506,21 @@
           "page": 91
         }
       ],
-      "tables": [
-        {
-          "table_id": "10-1",
-          "title": "Summary of Case Damping Factors for RSP and RMX Equations",
-          "description": "Original Case damping correlation range (Goble et al. 1975) / recommended RSP range / recommended RMX range (Pile Dynamics 2015): clean sands 0.05-0.20 / 0.10-0.15 / 0.40-0.50; silty sands 0.15-0.30 / 0.15-0.25 / 0.50-0.70; silts 0.20-0.45 / 0.25-0.40 / 0.60-0.80; silty clays 0.40-0.70 / 0.40-0.70 / 0.70-0.90; clay 0.60-1.10 / 0.70 or higher / 0.90 or higher.",
-          "page": 75
-        },
-        {
-          "table_id": "10-2",
-          "title": "Pile Damage Guidelines",
-          "description": "After Rausche and Goble (1979). BTA 1.0 undamaged; 0.8-1.0 slightly damaged; 0.6-0.8 damaged; below 0.6 broken.",
-          "page": 81
-        }
-      ],
-      "applicability": "Case Method, energy, stress and integrity computations and signal matching of dynamic test data."
+      "tables": [],
+      "applicability": "Signal matching analysis of dynamic pile test records (CAPWAP and similar)."
     },
     {
-      "section_id": "10.7-10.8",
-      "title": "Considerations in Test Specification and Implementation, and Presentation and Interpretation of Dynamic Test Results",
-      "summary": "Dynamic tests may be specified on test piles, on a percentage of production piles, or for troubleshooting. AASHTO suggests at least two tests per site condition and 2% of production piles; more where installation or setup issues exist. Restrike whenever resistance is evaluated, often at 24 hours, with a longer restrike 2 to 6 days later in fine-grained soils, using a warmed-up hammer. Specify signal matching and PDCA proficiency. Energy transfer ratio averages range from about 26% to 69%.",
-      "body": "10.7 (pp. 91-93). Testing may cover test piles before production (driving criteria, order lengths), a percentage of production piles (QA on resistance, hammer, stresses, integrity, variability), or troubleshooting. Numbers depend on project size, variability, static test data and purpose; AASHTO suggests a minimum of two tests per site condition but no less than 2% of production piles on smaller projects; more (one or two per substructure is not unusual) where installation difficulties or time-dependent resistance matter; switching to 100% testing can pay off against length overruns. Restrike tests should be performed whenever resistance is evaluated dynamically, often 24 hours after driving; fine-grained soils need longer, with at least one longer-term restrike 2 to 6 days after the 24-hour restrike; use a warmed-up hammer. Where setup is large, a drop hammer (Figure 10-24) with a ram of about 2% of the desired nominal resistance may be needed. Specifications should state the signal matching method; the 0.65 factor rests on CAPWAP restrike analyses, so other methods, including iCAP, may warrant modified factors. Contractor-retained testing makes the contractor responsible for the owner's QA; some agencies contract directly or test in-house. Require PDCA 'Dynamic Measurement and Analysis Proficiency Test' levels (provisional to expert). 10.8 (pp. 94-111). Results go in a formal report to the construction engineer and foundation designer. PDA display: inputs LE, AR, EM, SP, WS, JC; force and velocity, wave up and displacement; t1 and t2 markers; separation between t1 and t2 shows shaft resistance, before t2 toe resistance; convergence before the rise preceding t2 shows damage (BTA; BTT 1% flags toe damage); codes in Table 10-3. Example: CSX 44.9 ksi, CSB 49.5 ksi above limits on H-piles to hard rock; ETR 49.9%. iCAP applies only to uniform piles (not non-uniform, spliced, damaged or cracked piles, large open-end pipe or unusual soils). Check CSX and TSX against limits, EMX against wave equation, and resistance against requirements using restrikes where soil strength changes. 10.8.2: energy transfer ratio (not hammer efficiency) averages range from about 26% (diesel on concrete) to 69% (hydraulic on steel) (Figures 10-26 to 10-29). Examples: diesel pre-ignition (ETR 29.4% versus 48.8%, pre-compression near 50% of impact; would end driving prematurely); H-pile damage (BTA 82%, BTT 1%, buckling 5 ft above the toe); setup (Case 154 to 682 kips after 3 days; signal matching 129 to 737 kips); relaxation (signal matching 471 to 330 kips after 3 days); results versus depth with fuel setting and cushion changes (Figures 10-37, 10-38).",
+      "section_id": "10.7",
+      "title": "Considerations in Test Specification and Implementation",
+      "summary": "Specify dynamic testing for test piles and/or a percentage of production piles; AASHTO minimum two per site condition and 2% of production; restrike tests whenever resistance is evaluated (24 hours, plus 2 to 6 days longer in fine grained soils, warmed-up hammer); drop weight with ram about 2% of the resistance; specify the signal matching method; PDCA proficiency levels.",
+      "body": "10.7 Considerations in Test Specification and Implementation (pp. 91 to 93). Dynamic testing may be specified for preselected test piles (ahead of or at the start of production, for driving criteria and order lengths), for a percentage of production piles per site condition (quality assurance of resistance, hammer, stresses, integrity, variability), or used unspecified to troubleshoot. The number depends on project size, variability, static test information and purpose; test more where damage risk is high or setup is relied on. AASHTO suggests at least two tests per site condition but no less than 2% of production piles on smaller projects; larger projects or those with installation difficulties or significant time dependent resistance should test more, one or two per substructure being not unusual; engineers should be able to adjust numbers and locations, e.g., 100% testing and its higher resistance factor may cost less than length overruns. Restrike tests should accompany any dynamic resistance evaluation, often 24 hours after driving; fine grained soils need longer, and at least one longer term restrike should be done 2 to 6 days after the 24 hour restrike, depending on soil; use a warmed up hammer. Where setup is large the production hammer may not mobilize all resistance; a drop hammer system (Figure 10-24) with a ram about 2% of the desired nominal resistance can be used. Specify signal matching requirements and method; the 0.65 factor is based on CAPWAP restrike analysis, and other methods, including the simplified automatic iCAP, may warrant a modified or calibrated factor. On design-build, testing is often by the team with owner verification; having the general contractor hire the tester puts the contractor in charge of the owner's QA, so some agencies contract directly or test in-house. Require testing personnel to reach a suitable level on the PDCA 'Dynamic Measurement and Analysis Proficiency Test' (provisional, basic, intermediate, advanced, master, expert).",
       "key_points": [
-        "AASHTO minimum: two dynamic tests per site condition, no less than 2% of production piles",
-        "Test more piles where installation difficulties or time-dependent resistance matter",
-        "Restrike whenever resistance is evaluated dynamically; often 24 hours, longer in fine-grained soils",
-        "Longer-term restrike 2 to 6 days after the 24-hour restrike; use a warmed-up hammer",
-        "Drop hammer ram about 2% of desired nominal resistance where setup is large",
-        "Specify the signal matching method (0.65 factor based on CAPWAP restrike analyses)",
-        "Require PDCA Dynamic Measurement and Analysis Proficiency levels for test personnel",
-        "Energy transfer ratio includes all drive system losses; averages about 26% to 69%",
-        "iCAP only for uniform piles"
+        "Test piles and/or a percentage of production piles; also troubleshooting",
+        "AASHTO minimum: two per site condition, not less than 2% of production piles",
+        "Restrike whenever resistance is evaluated: 24 h, plus a longer restrike 2 to 6 days later in fine-grained soils",
+        "Drop weight ram about 2% of the desired nominal resistance when setup is large",
+        "Specify the signal matching method (0.65 based on CAPWAP restrike)",
+        "Require PDCA dynamic testing proficiency levels"
       ],
       "equations": [],
       "figures": [
@@ -346,13 +529,68 @@
           "title": "APPLE drop weight system",
           "description": "",
           "page": 93
-        },
+        }
+      ],
+      "tables": [],
+      "applicability": "Specifying the number, timing and quality of dynamic pile tests."
+    },
+    {
+      "section_id": "10.8",
+      "title": "Presentation and Interpretation of Dynamic Test Results",
+      "summary": "Dynamic test results go in a formal report to both the construction engineer and the foundation designer, who should review them against design considerations (downdrag, scour, uplift, lateral loads, settlement).",
+      "body": "10.8 Presentation and Interpretation of Dynamic Test Results (p. 94). Summarize dynamic test results in a formal report to both the construction engineer, who should understand the information and its role, and the foundation designer, who should review them since many design considerations (downdrag, scour, uplift, lateral loads, settlement; Chapter 7) affect requirements.",
+      "key_points": [
+        "Formal report to both the construction engineer and the foundation designer",
+        "Designer reviews results against downdrag, scour, uplift, lateral load and settlement needs"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Reporting and reviewing dynamic pile test results."
+    },
+    {
+      "section_id": "10.8.1",
+      "title": "Field Results",
+      "summary": "Reading a PDA screen (Figure 10-25): pile inputs, force and velocity and wave up plots with t1 and t2 markers, separation for shaft and toe resistance, convergence for damage (BTA, BTT), output codes (Table 10-3). Example H-pile on rock: CSX 44.9 ksi, CSB 49.5 ksi, ETR 49.9%, RMX 748/737 kips, iCAP RUC 568 kips.",
+      "body": "10.8.1 Field Results (pp. 94 to 98). Figure 10-25 is a Pile Driving Analyzer 8G display. Inputs at upper left: length below gages LE, area AR, modulus EM, unit weight SP, wave speed WS, Case damping JC. The upper plot shows force and velocity proportionally, the lower wave up WU and displacement; the first full height line is t1 (impact), the second t2 = 2L/C, dotted lines the start of impact and toe reflection. Separation between t1 and t2 indicates shaft resistance (its size the total resistance above), separation from the rise before t2 toe resistance; convergence before the velocity rise preceding t2 indicates a section reduction or damage, expressed as BTA, and an early reflection gives BTT 1% (Section 10.6.5). Table 10-3 codes: CSX maximum compression stress at gages; CSI from an individual transducer; CSB computed at toe; TSX maximum computed tension; BTA integrity factor; BTT early toe reflection indicator; LTD length to damage; EMX maximum energy at gages; ETR energy transfer ratio (EMX/E rated); STK computed stroke; BPM operating rate; RMX maximum Case Method (J needed); RSP standard Case Method (J); RSU Case Method with unloading correction (J); RAU automatic, toe bearing, no shaft resistance; RA2 automatic, moderate shaft resistance; iCAP (extra software): RUC nominal resistance, SFC shaft, EBC toe, CSC maximum compression, CBC toe compression, TSC tension. Example: FMX 696 kips, CSX 44.9 ksi, CSI 45.3 ksi, CSB 49.5 ksi, described as above AASHTO limits and the A572 Grade 50 yield (as printed), so toe damage potential is high; BTA 100% and BTT 100% despite abrupt refusal on hard rock; EMX 21.2 ft-kips, ETR 49.9% of 42.4 ft-kips, STK 9.42 ft, BPM 38.6; RMX 748 and 737 kips at J 0.80 and 0.90; iCAP RUC 568 kips (SFC 28, EBC 539), MQ 3.90, CSC 52.3 ksi at the toe. iCAP applies only to uniform piles (not non-uniform, spliced with gaps, damaged, cracked concrete, uncertain properties, large open-end pipe, unusual soils). Check CSX and TSX against limits, EMX against wave equation or earlier tests, hammer speed against specifications, and nominal resistance against requirements, using restrikes where strength changes with time.",
+      "key_points": [
+        "PDA display: force and velocity with t1 and t2 (2L/C) markers; wave up and displacement",
+        "Separation between t1 and t2 = shaft resistance; convergence before t2 = damage (BTA)",
+        "Table 10-3 codes: CSX, CSI, CSB, TSX, BTA, BTT, LTD, EMX, ETR, STK, BPM, RMX, RSP, RSU, RAU, RA2, iCAP",
+        "iCAP applies only to uniform piles in ordinary soils",
+        "Check stresses vs. limits, energy vs. wave equation, resistance vs. requirement (restrike if setup)"
+      ],
+      "equations": [],
+      "figures": [
         {
           "figure_id": "10-25",
           "title": "Typical dynamic test display from Pile Driving Analyzer",
           "description": "",
           "page": 94
-        },
+        }
+      ],
+      "tables": [
+        {
+          "table_id": "10-3",
+          "title": "Description of Typical Dynamic Test Output Codes",
+          "description": "PDA output codes: CSX, CSI, CSB (compression stresses), TSX (tension), BTA, BTT, LTD (length to damage), EMX, ETR (EMX / rated energy), STK, BPM, RMX, RSP, RSU, RAU, RA2, and iCAP outputs RUC, SFC, EBC, CSC, CBC, TSC.",
+          "page": 96
+        }
+      ],
+      "applicability": "Interpreting dynamic test field displays and output quantities."
+    },
+    {
+      "section_id": "10.8.2",
+      "title": "Evaluation of Hammer and Drive System Performance",
+      "summary": "Energy transfer ratio (transferred / rated energy, not hammer efficiency) evaluates drive systems; average values range from about 26% (diesel on concrete) to 69% (hydraulic on steel) (Figure 10-26); histograms by hammer and pile type (Figures 10-27 to 10-29).",
+      "body": "10.8.2 Evaluation of Hammer and Drive System Performance (pp. 98 to 102). Drive system performance is judged from the energy transfer ratio, energy transferred to the pile head divided by the manufacturer's rated energy; it is not hammer efficiency, since it includes all driving system losses. It depends on stroke, fuel setting, helmet weight, cushions, pile impedance and length, soil resistance and dynamic properties, and hammer efficiency. Figure 10-26 gives transfer ratios by percentile for hammer-pile combinations; the 50th percentile is the average, from about 26% for a diesel hammer on a concrete pile to 69% for a hydraulic hammer on a steel pile. Figures 10-27 to 10-29 are histograms for diesel, single acting air/steam and single acting hydraulic hammers on steel or concrete/timber piles at end of drive.",
+      "key_points": [
+        "Energy transfer ratio = transferred / rated energy; includes all drive system losses",
+        "Average ratios about 26% (diesel on concrete) to 69% (hydraulic on steel)",
+        "Histograms by hammer type on steel or concrete/timber piles"
+      ],
+      "equations": [],
+      "figures": [
         {
           "figure_id": "10-26",
           "title": "Energy transfer ratios for select hammer and pile combinations",
@@ -376,13 +614,61 @@
           "title": "Histograms of energy transfer ratio for single acting hydraulic hammers on (a) steel piles and (b) concrete/timber piles",
           "description": "",
           "page": 102
-        },
+        }
+      ],
+      "tables": [],
+      "applicability": "Judging pile hammer performance from measured energy transfer ratios."
+    },
+    {
+      "section_id": "10.8.3",
+      "title": "Test Record Illustrating Problematic Hammer Performance",
+      "summary": "Diesel pre-ignition record (Figure 10-30): stroke 7.49 ft, impact 383 kips, 20.6 ft-kips, ETR 29.4% (about the 18th percentile) versus 481 kips, 34.2 ft-kips, 48.8% at a similar stroke without pre-ignition; pre-compression force near 50% of impact; undetected, driving would stop early.",
+      "body": "10.8.3 Test Record Illustrating Problematic Hammer Performance (pp. 103 to 104). A single acting diesel hammer run nearly continuously all day showed fuel pre-ignition (Figure 10-30): note the large force before impact compared with a typical record (Figure 10-31). Blow 986: stroke 7.49 ft, impact force 383 kips, transferred energy 20.6 ft-kips, ETR 29.4%, 10% below the diesel-on-steel mean and near the 18th percentile of Figure 10-26. Blow 2 of the same sequence, without pre-ignition: stroke 7.53 ft, 481 kips, 34.2 ft-kips, ETR 48.8%. The pre-compression force was almost 50% of the impact force, wasting energy compressing gases before impact; the lower energy gives higher blow counts at shallower depth, so undetected pre-ignition would end driving below the required resistance.",
+      "key_points": [
+        "Pre-ignition: large force before impact (almost 50% of impact force)",
+        "ETR 29.4% vs. 48.8% at similar stroke without pre-ignition",
+        "Undetected pre-ignition terminates driving prematurely below required resistance"
+      ],
+      "equations": [],
+      "figures": [
         {
           "figure_id": "10-30",
           "title": "Example dynamic test records on pre-igniting diesel hammer",
           "description": "",
           "page": 103
-        },
+        }
+      ],
+      "tables": [],
+      "applicability": "Recognizing diesel hammer pre-ignition in dynamic test records."
+    },
+    {
+      "section_id": "10.8.4",
+      "title": "Test Record Illustrating Pile Damage",
+      "summary": "Damage record (Figure 10-31): HP 14x117, 88.3 ft below gages; force-velocity convergence before 2L/C, BTA 82% at 83.2 ft and BTT 1%; extraction confirmed buckling 5 ft above the toe (Figure 10-32).",
+      "body": "10.8.4 Test Record Illustrating Pile Damage (p. 104). Figure 10-31: HP 14x117 H-pile driven by a single acting diesel hammer, 88.3 ft below gages; moderate shaft resistance on the lower pile and substantial toe resistance. A full height dash-dot line between t1 and t2 marks force-velocity convergence before 2L/C, an impedance reduction or damage; the BTA box turned black with BTA 82%, damage at 83.2 ft below gages from buckling and bending; BTT 1% flagged near-toe damage. Extraction confirmed damage 5 ft above the toe (Figure 10-32). Both figures are printed on p. 105, within the pages of 10.8.5.",
+      "key_points": [
+        "Convergence before 2L/C flagged by a dash-dot line and BTA warning",
+        "BTA 82% at 83.2 ft below gages; BTT 1% (near-toe damage)",
+        "Extraction confirmed buckling about 5 ft above the toe"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Recognizing pile damage in dynamic test records."
+    },
+    {
+      "section_id": "10.8.5",
+      "title": "Test Records Illustrating Soil Setup",
+      "summary": "Setup records: 14 in. closed end pipe in stiff silty clays; end of driving 9 blows/ft, Case 154 kips, signal matching 129 kips; 3-day restrike 8 blows/in, Case 682 kips (about 4.4 times), signal matching 737 kips (472 shaft, 265 toe); more shaft separation in the lower half and changed toe response.",
+      "body": "10.8.5 Test Records Illustrating Soil Setup (pp. 104 to 107). Figures 10-33 and 10-34: 14 inch O.D. x 0.50 inch wall closed end pipe pile, single acting diesel hammer, tested at initial driving and at restrike 3 days later; required nominal resistance 765 kips by dynamic testing with signal matching; minimum penetration 90 ft for lateral loads; stiff to very stiff silty clays with medium dense to dense silty sand and sandy silt layers. End of initial driving: 9 blows per foot at 5.8 ft stroke, impact 467 kips, 42.5 ft-kips, ETR 34.8%, Case Method 154 kips, signal matching 129 kips (75 shaft, 54 toe). Beginning of restrike: 8 blows per inch at 10.1 ft stroke, impact 866 kips, 81.0 ft-kips, ETR 66.5%, Case Method 682 kips (about 4.4 times end of driving), signal matching 737 kips (472 shaft, 265 toe); long term restrikes showed 765 kips would be reached. Restrike records show much greater force-velocity separation and a larger, steeper wave up, increasing from about midway to 2L/C, so the added shaft resistance is mainly on the lower half; changes at and after 2L/C reflect increased toe resistance, higher shaft and toe damping and lower toe quake. Figures 10-31 and 10-32 (Section 10.8.4) are printed in this section's pages.",
+      "key_points": [
+        "End of driving: 9 blows/ft, signal matching 129 kips; 3-day restrike: 8 blows/in, 737 kips",
+        "Case Method resistance about 4.4 times higher at restrike",
+        "Setup shows as larger force-velocity separation and steeper wave up, here on the lower half",
+        "Signal matching: higher toe resistance and damping, lower toe quake at restrike"
+      ],
+      "equations": [],
+      "figures": [
         {
           "figure_id": "10-31",
           "title": "Example dynamic test records indicating pile damage",
@@ -406,7 +692,23 @@
           "title": "Example test record illustrating soil setup - beginning of restrike data",
           "description": "",
           "page": 106
-        },
+        }
+      ],
+      "tables": [],
+      "applicability": "Recognizing soil setup in end-of-driving and restrike records."
+    },
+    {
+      "section_id": "10.8.6",
+      "title": "Test Records Illustrating Relaxation",
+      "summary": "Relaxation records: HP 12x74 in very dense clayey silt (N 37 to 100); end of driving 26 blows/ft, Case 456 kips, signal matching 471 kips; 3-day restrike 3 blows/in, Case 351 kips, signal matching 330 kips (235 shaft, 95 toe); less separation after 2L/C.",
+      "body": "10.8.6 Test Records Illustrating Relaxation (pp. 108 to 109). Figures 10-35 and 10-36: HP 12 x 74 H-pile in very dense clayey silt (SPT N 37 to 100, 87 near the toe), single acting diesel hammer, tested at initial driving and 3 days later; required nominal resistance 408 kips. End of initial driving: 26 blows per foot at 9.1 ft stroke, impact 738 kips, 38.6 ft-kips, ETR 55.0%, Case Method 456 kips, signal matching 471 kips (216 shaft, 255 toe). Beginning of restrike: 3 blows per inch at 8.3 ft stroke, impact 646 kips, 27.0 ft-kips, ETR 38.5%, Case Method 351 kips (about 100 kips less), signal matching 330 kips (235 shaft, 95 toe). The restrike shows less force-velocity separation at and after 2L/C and a lower, flatter wave up after the 2L/C marker.",
+      "key_points": [
+        "End of driving: signal matching 471 kips (255 toe); 3-day restrike: 330 kips (95 toe)",
+        "Relaxation mainly at the toe in very dense clayey silt",
+        "Shows as less separation and flatter wave up after 2L/C at restrike"
+      ],
+      "equations": [],
+      "figures": [
         {
           "figure_id": "10-35",
           "title": "Example test record illustrating relaxation - end of initial driving data",
@@ -418,7 +720,23 @@
           "title": "Example test record illustrating relaxation - beginning of restrike data",
           "description": "",
           "page": 109
-        },
+        }
+      ],
+      "tables": [],
+      "applicability": "Recognizing relaxation in end-of-driving and restrike records."
+    },
+    {
+      "section_id": "10.8.7",
+      "title": "Reporting of Dynamic Test Results",
+      "summary": "Report dynamic results versus depth with blow count (numerical, Figure 10-37; graphical, Figure 10-38); example 24 in. prestressed pile, APE D62-22, 1000 kips required, limits 3.80/1.50 ksi: fuel setting increases raised stresses, stroke and energy; a one hour restrike at 76 ft showed slight relaxation.",
+      "body": "10.8.7 Reporting of Dynamic Test Results (pp. 110 to 112). Matching blow numbers to the driving log gives numerical and graphical summaries versus penetration depth and blow count; specifications should require this for each tested pile. Example (Figures 10-37, 10-38): 24 inch square prestressed pile, APE D62-22 diesel hammer, required nominal resistance 1000 kips, stress limits 3.80 ksi compression and 1.50 ksi tension. Near 43 ft the fuel setting went from 1 to 2: compression and tension stresses, stroke and energy increased and blow count fell despite slightly higher resistance. Near 68 ft fuel setting 2 to 3 with a new pile cushion: same effects. At the estimated depth of 76 ft a one hour restrike showed slightly lower resistance, so the pile was driven deeper. Stresses stayed within limits throughout.",
+      "key_points": [
+        "Report results versus depth with blow count, numerically and graphically",
+        "Fuel setting increases raise stresses, stroke and energy and lower blow count",
+        "Example: a one hour restrike at 76 ft showed slight relaxation; pile driven deeper"
+      ],
+      "equations": [],
+      "figures": [
         {
           "figure_id": "10-37",
           "title": "Typical tabular presentation of dynamic test results",
@@ -432,26 +750,19 @@
           "page": 112
         }
       ],
-      "tables": [
-        {
-          "table_id": "10-3",
-          "title": "Description of Typical Dynamic Test Output Codes",
-          "description": "PDA output codes: CSX, CSI, CSB (compression stresses), TSX (tension), BTA, BTT, LTD (length to damage), EMX, ETR (EMX / rated energy), STK, BPM, RMX, RSP, RSU, RAU, RA2, and iCAP outputs RUC, SFC, EBC, CSC, CBC, TSC.",
-          "page": 96
-        }
-      ],
-      "applicability": "Specifying dynamic tests and reading their results for stresses, energy, integrity, setup and relaxation."
+      "tables": [],
+      "applicability": "Reporting dynamic pile test results versus depth."
     },
     {
       "section_id": "10.9",
       "title": "Case History",
-      "summary": "A small remote single-span bridge in 98 ft of medium dense to dense sand (SPT N 10 to 50): 12.75 in. closed-end pipe piles estimated at 39 ft for 326 kips ran to 75 ft with 235-245 kips. Test piles at the other abutment (16 in. pipe, 12.75 in. pipe, 14 in. tapered Monotube) and a 16-day restrike (16 in. pipe, 400 kips) showed two solutions. Static tests (230 kips at 95 ft; 220 kips at 43 ft) agreed with restrike results; Monotube piles proved most economical.",
-      "body": "10.9 Case History (pp. 112-114). A small single-span bridge in a remote area on a 98 ft deposit of moderately clean, medium dense to dense sands (SPT N 10 to 50); 12.75 in. O.D. closed-end pipe piles estimated 39 ft long for 326 kips; wave equation control and dynamic testing of one test pile per abutment for order lengths. At Abutment 1 the pile drove to 75 ft with 235 kips at end of drive and 245 kips at a one-day restrike. At Abutment 2: a 16 in. pipe pile reached 89 ft (222 kips; 280 kips at one-day restrike), then 112 ft (240 kips at end of redrive); two weeks later a 12.75 in. pipe at 95 ft (105 kips; 180 kips restrike) and a 14 in. Monotube with a 25 ft taper at 43 ft (190 kips; 205 kips restrike); a 16-day restrike of the 16 in. pile gave 400 kips. Solutions: Monotube piles to a much shorter depth for a reduced resistance, or 16 in. pipe piles about 92 ft deep for the original. Static load tests gave 230 kips (12.75 in. pipe, 95 ft) and 220 kips (Monotube, 43 ft), in good agreement with restrike results; a cost evaluation favored the Monotube piles.",
+      "summary": "Remote single span bridge on 98 ft of medium dense to dense sands: 12.75 in. pipe piles did not reach 326 kips at the estimated 39 ft; tests on 16 in. pipe and a 14 in. Monotube, restrikes and two static load tests (230 and 220 kips) led to Monotube piles as the most economical solution.",
+      "body": "10.9 Case History (pp. 112 to 114). Subsurface: 98 ft of moderately clean, medium dense to dense sands (SPT N 10 to 50); 12.75 inch O.D. closed end pipe piles estimated 39 ft long for 326 kips; wave equation construction control and one dynamically tested pile per abutment for order lengths; Case Method versus depth, checked by signal matching. Abutment 1: the 12.75 inch pile went to 75 ft with 235 kips at end of drive, 245 kips at a 1-day restrike. Abutment 2: a 16 inch pipe to 89 ft had 222 kips (280 kips at 1-day restrike), redriven to 112 ft with 240 kips; two weeks later a 12.75 inch pipe to 95 ft had 105 kips and a 14 inch Monotube with a 25 ft tapered section to 43 ft had 190 kips, rising to 180 and 205 kips at 1-day restrikes; a 16-day restrike of the 16 inch pipe gave 400 kips. Solutions: a Monotube to a much shorter depth for a reduced resistance, or 16 inch pipes about 92 ft deep for the original resistance. Two static load tests gave 230 kips (12.75 inch pipe at 95 ft) and 220 kips (Monotube at 43 ft), agreeing with restrike results given the extra time. Cost evaluation chose Monotube piles; routine dynamic testing on a small project solved an unexpected problem.",
       "key_points": [
-        "Estimated 39 ft pipe piles for 326 kips did not develop the resistance near that depth",
-        "Restrike tests showed setup: 16 in. pipe pile 280 kips at one day, 400 kips at 16 days",
-        "Static tests (230 and 220 kips) agreed with dynamic restrike resistances",
-        "Monotube piles to 43 ft were the most economical solution"
+        "12.75 in. pipe piles could not reach 326 kips near the estimated 39 ft",
+        "Restrikes and a 16-day restrike (400 kips on 16 in. pipe) showed setup",
+        "Static tests (230 and 220 kips) agreed with restrike dynamic results",
+        "Monotube piles chosen as most economical"
       ],
       "equations": [],
       "figures": [],
@@ -459,24 +770,38 @@
       "applicability": "Example of dynamic testing resolving an unexpected foundation problem on a small project."
     },
     {
-      "section_id": "10.10-10.11",
-      "title": "Advantages, Disadvantages, and Limitations, and Practical Issues and Considerations",
-      "summary": "Dynamic tests also check hammer performance, stresses and integrity; many piles can be tested in a day with immediate results. The hammer must mobilize all resistance: near 10 blows per inch, toe resistance may not be mobilized and results are lower bounds. Results reflect the time of testing, so restrikes are needed. Below 24 blows per foot dynamic methods can overpredict, above 120 underpredict. Open-end pipe and H-piles not on rock may plug under static but not dynamic loading. Signal matching distributions are uncertain.",
-      "body": "10.10 (pp. 114-115). Advantages: information on installation (hammer performance, stresses, integrity) besides resistance at driving and restrike; many piles per day; results immediately after each blow; supplements or reduces static tests on large projects and serves as construction control on small ones; resistance versus depth, location and time; early detection of installation problems; troubleshooting where not specified; basis for driving criteria and refined wave equation (Section 12.6.9). Disadvantages: the hammer must mobilize all resistance; shaft resistance mobilizes at a fraction of the toe movement, and as penetration resistance approaches 10 blows per inch the toe resistance may not be fully mobilized, giving lower-bound estimates (a larger hammer or higher stroke helps); results are at the time of testing, so restrikes after an appropriate wait are usually required. Limitation: large open-end pipe piles or H-piles not on rock may not plug during driving but plug under static load, giving more static resistance. 10.11 Practical issues (pp. 116-118): specifying 'a dynamic test' does not require the tester to furnish driving criteria; allow time for analysis and state when criteria are due. Below 24 blows per foot dynamic methods can overpredict (reduce stroke or fuel) and above 120 blows per foot underpredict (larger stroke or hammer, or drop hammer). Test at end of initial driving and at restrike to quantify time effects. Ideal restrike penetration resistance is 3 to 10 blows per inch; analyze an early high-energy blow, or a lower-energy blow below 24 blows per foot; superpose shaft resistance from several restrike blows and end-of-drive toe resistance only where toe relaxation is not a concern. Dynamic results may be conservative for open sections that plug statically. Shaft resistance can shift a segment, or between the last segment and the toe, without changing match quality, so distributions used for uplift, scour or drag force need care.",
+      "section_id": "10.10",
+      "title": "Advantages, Disadvantages, and Limitations",
+      "summary": "Advantages: driving system, stress and integrity data, many piles per day, immediate results, supplements or reduces static tests, resistance versus depth and time. Disadvantages: hammer must mobilize resistance (lower bound near 10 blows/in), results only at test time. Limitation: open sections may plug under static but not dynamic loading.",
+      "body": "10.10 Advantages, Disadvantages, and Limitations (pp. 114 to 115). Advantages: information on installation (hammer and drive system, stresses, integrity) beyond resistance at driving and restrike; many piles per day, economical and quick, results after each blow; on large projects supplements or reduces static tests with wider coverage, and on small projects is a viable control method; resistance versus depth, location and time (restrikes) to augment design or optimize lengths; early detection of installation problems such as poor hammer performance or high stresses; quick troubleshooting where not specified; basis for driving criteria and wave equation refinement (Section 12.6.9). Disadvantages: the hammer must mobilize all resistance; shaft resistance mobilizes at a fraction of the toe movement, and near 10 blows per inch toe resistance may not be fully mobilized, giving lower bound results (use a larger hammer or higher stroke); results reflect the time of testing, so restrikes after a waiting period, possibly needing another rig move, are required for long term resistance. Limitation: large open-end pipe or H-piles not on rock may not plug under dynamic loading but may plug under static loading, giving higher static resistance; experienced interpretation is needed.",
       "key_points": [
-        "Also checks hammer performance, stresses and integrity; many piles per day; immediate results",
-        "Near 10 blows per inch the toe resistance may not be fully mobilized: lower-bound results",
-        "Results apply at the time of testing; restrikes needed for long-term resistance",
-        "Below 24 blows/ft can overpredict; above 120 blows/ft can underpredict",
-        "Ideal restrike penetration resistance 3 to 10 blows per inch",
-        "Open-end pipe and H-piles not on rock may plug under static but not dynamic loading",
-        "'A dynamic test' does not require the tester to furnish driving criteria",
-        "Signal matching resistance distribution is uncertain by about one segment or shaft-toe split"
+        "Gives hammer, stress and integrity data; many piles per day; immediate results",
+        "Supplements or reduces static tests; viable control on small projects",
+        "Near 10 blows per inch, toe resistance may not be fully mobilized (lower bound)",
+        "Results apply at test time; restrikes needed for long-term resistance",
+        "Open sections may plug statically but not dynamically"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Strengths, limits and practical pitfalls of dynamic pile testing."
+      "applicability": "Weighing dynamic pile testing against other resistance verification methods."
+    },
+    {
+      "section_id": "10.11",
+      "title": "Practical Issues and Considerations",
+      "summary": "Practical issues: a dynamic test does not imply the tester furnishes driving criteria; over-prediction below 24 blows/ft and under-prediction above 120 blows/ft; results are at test time; restrike blow choice (3 to 10 blows/in ideal; superposition); conservative results for open sections; resistance distribution uncertainty for uplift, scour and drag force.",
+      "body": "10.11 Practical Issues and Considerations (pp. 116 to 118). (1) Specifying 'a dynamic test' does not require the tester to furnish driving criteria; allow time for analysis and reporting and state in the specifications if and when criteria are to be furnished. (2) Below 24 blows per foot dynamic methods can overpredict (static and dynamic resistance hard to separate; reduce stroke or fuel) and above 120 blows per foot underpredict (resistance not fully activated; larger stroke, higher fuel, bigger hammer or variable stroke drop hammer). (3) The result is the mobilized resistance at the time of test; test at end of initial driving and restrike to quantify setup or relaxation. (4) Restrike: ideally 3 to 10 blows per inch at the start; analyze an early, high energy, good quality blow; record blow count over the whole restrike; below 24 blows per foot choose a lower energy blow; with limited movement analyze several blows and superpose shaft resistance from early (upper) and later (lower) blows and, if appropriate, toe resistance from end of drive, only if toe relaxation is not a concern. (5) Dynamic results can be conservative: soil inside open pipe or between H flanges may slip dynamically but plug statically, changing shaft and toe resistance; extrapolate carefully. (6) Signal matching distribution is uncertain: resistance can shift one segment up or down, or between the last segment and the toe, without changing match quality, so use it for uplift, scour and drag force with care.",
+      "key_points": [
+        "Dynamic testing does not imply the tester furnishes driving criteria; specify it",
+        "Below 24 blows/ft tends to overpredict; above 120 blows/ft tends to underpredict",
+        "Restrike: 3 to 10 blows/in ideal; analyze an early high-energy blow; superpose with care",
+        "Open sections may plug statically but slip dynamically: results may be conservative",
+        "Signal matching distribution can shift between segments: caution for uplift, scour, drag force"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Practical cautions when specifying and interpreting dynamic pile tests."
     }
   ]
 }
