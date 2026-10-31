@@ -8,173 +8,692 @@
     {
       "section_id": "4.1",
       "title": "Introduction",
-      "body": "This chapter describes the information needed to design a soil nail wall, including subsurface investigation requirements, field and laboratory testing procedures, selection of design parameters, and evaluation of special conditions such as soil creep, corrosion potential, frost, and seismic loading. The subsurface investigation program must provide sufficient data to develop reliable design parameters, particularly soil shear strength and nail-ground bond strength.",
+      "summary": "Summarizes the information needed to design soil nail walls: initial information, field investigation and laboratory test data, and engineering properties for design, plus guidance on subsurface corrosion potential, frost effects and site seismic characterization.",
+      "body": "4.1 Introduction (p. 63). The chapter summarizes the information necessary for the design of soil nail walls: initial information, information from field investigations and laboratory testing, and engineering properties for design. It also gives guidance for obtaining data on subsurface corrosion potential, frost effects and site seismic characterization.",
       "key_points": [
-        "Subsurface investigation requirements for soil nail wall design",
-        "Field and laboratory testing procedures",
-        "Selection of design parameters (shear strength, bond strength)",
-        "Evaluation of special conditions: creep, corrosion, frost, seismic"
+        "Initial information, field and laboratory data, engineering properties for design",
+        "Also corrosion potential, frost effects and seismic site characterization"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "All soil nail wall design projects requiring subsurface investigation."
+      "applicability": "Scope of the design information chapter."
+    },
+    {
+      "section_id": "4.2",
+      "title": "Project-Specific Requirements and Initial Information",
+      "summary": "Project-specific requirements (4.2.1) and the review of initial site information (4.2.2) that precede the subsurface investigation.",
+      "body": "4.2 Project-Specific Requirements and Initial Information (pp. 63-64). Subsections 4.2.1 Project-Specific Requirements and 4.2.2 Initial Information.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Requirements and information gathered before investigation; see the subsections."
+    },
+    {
+      "section_id": "4.2.1",
+      "title": "Project-Specific Requirements",
+      "summary": "Engineers must know the requirements affecting design, construction and performance: site development plans (wall height, length, location), physical constraints (near abutments, steep terrain, waterways or scour), effects on movement-sensitive adjacent structures, access and ROW, overhead and lateral limits, utilities, aesthetics, traffic closures, and staging areas. A field reconnaissance is highly recommended.",
+      "body": "4.2.1 Project-Specific Requirements (p. 63). Engineers must become familiar with requirements that would affect the design, construction and performance of a soil nail wall, including but not limited to: preliminary site development plans showing the height, length and location of the wall(s) and related new infrastructure; physical constraints (wall near a bridge abutment, cut in steep terrain, near a waterway or subject to scour); potential effects of construction and use on existing or future adjacent structures sensitive to movement (bridge abutment, building, etc.); accessibility and ROW; overhead and lateral limitations; existing or new utilities in front of, under and behind the walls; aesthetics of the wall finish; need for partial or full traffic closure; and availability of staging areas. These are not unique to soil nail walls but must be carefully considered in the initial design stage; a field reconnaissance is highly recommended to ascertain some of them.",
+      "key_points": [
+        "Site plans: wall height, length, location",
+        "Physical constraints: bridge abutments, steep terrain, waterways and scour",
+        "Adjacent structures sensitive to wall movement",
+        "Access, ROW, overhead and lateral limits, utilities in front, under and behind the wall",
+        "Aesthetics, traffic closures, staging areas",
+        "Field reconnaissance highly recommended"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Project requirements to establish at the start of design."
+    },
+    {
+      "section_id": "4.2.2",
+      "title": "Initial Information",
+      "summary": "Review topography, historic land use, geologic, landslide and fault maps, air photographs, frost depth and seismic hazard maps; existing geotechnical reports (judging quality and applicability, with caution extrapolating from nearby sites); records and as-built data of adjacent structures and their allowable movement; and temporary or permanent surcharges (Chapter 5; AASHTO 2012). Conventional soil nail walls are not designed to resist scour: consider another wall type or protect the wall base.",
+      "body": "4.2.2 Initial Information (pp. 63-64). The engineer must review key site information, define design goals and plan an effective investigation. The review covers site topography, historic land use, local geologic information (geologic maps and other sources) and other relevant geologic data, including landslide and fault maps if applicable. Air photographs from USGS or others may help where geologic features such as landslides may affect the structure; frost penetration and seismic hazard maps are needed in regions subject to freezing or seismic hazard. Reviewing existing geotechnical reports and data is key; historic information is generally helpful, but its quality, completeness and applicability must be evaluated, and conditions from nearby areas extrapolated with caution because soil variability may be large. The engineer must also review design and construction records and as-built documentation of adjacent structures that may be affected, assess their allowable movement based on structure type, and evaluate monitoring data if available. The magnitude of temporary or permanent surcharge near the walls must be determined (vehicular or construction traffic, temporary stockpiles, existing or future structures, utilities, etc.); Chapter 5 discusses loads, and AASHTO (2012) gives bridge and roadway loads. Conventional soil nail walls are not designed to resist scour; if scour is significant, an alternative wall type should be considered, or appropriate protection of the wall base provided.",
+      "key_points": [
+        "Review topography, land use, geologic, landslide and fault maps, air photographs",
+        "Frost penetration and seismic hazard maps where applicable",
+        "Judge quality and applicability of existing geotechnical data; extrapolate with caution",
+        "Review adjacent structures' records; assess their allowable movement",
+        "Determine temporary and permanent surcharges (Chapter 5; AASHTO 2012)",
+        "Conventional soil nail walls are not designed for scour: another wall type or base protection"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Desk study before the subsurface investigation."
     },
     {
       "section_id": "4.3",
-      "title": "Subsurface Investigation",
-      "body": "The purpose of the subsurface investigation is to define the soil stratigraphy, groundwater conditions, and engineering properties of the ground. Minimum investigation requirements include: borings at intervals not exceeding 30 m (100 ft) along the wall alignment and extending at least 1.5 times the wall height below the proposed base; at least one boring at each end of the wall and at major changes in alignment or grade; SPT sampling at 0.75-1.5 m intervals; and groundwater monitoring. Additional investigation may include CPT soundings, geophysical surveys, and test pits. Critical items include identification of soft layers, groundwater conditions, obstructions (boulders, utilities), and corrosive ground conditions.",
+      "title": "Subsurface Investigations",
+      "summary": "Subsurface investigation for soil nail walls: objectives, boring layout and depth, field procedures (borings and SPT, CPT, other tests, test pits) and groundwater (4.3.1 to 4.3.5).",
+      "body": "4.3 Subsurface Investigations (pp. 64-72). Subsections 4.3.1 Introduction to 4.3.5 Groundwater.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Subsurface investigation; see the subsections."
+    },
+    {
+      "section_id": "4.3.1",
+      "title": "Introduction",
+      "summary": "Soil nail walls should only be allowed where site-specific geotechnical information meets the investigation objectives; new investigations are needed in most cases. After reviewing requirements and existing data, and ideally a reconnaissance, prepare a detailed work plan. Follow AASHTO (1988), GEC 5 (Sabatini et al. 2002), FHWA-NHI-01-031 (Mayne et al. 2001) and AASHTO (2012) Section 10.4, with ASTM/AASHTO test standards.",
+      "body": "4.3.1 Introduction (pp. 64-65). Soil nail walls should only be allowed for construction when site-specific geotechnical information, existing and/or new, fulfills the investigation objectives and requirements of this chapter and any project needs in Chapters 5 and 6. New investigations would be necessary in most cases, to provide information where none exists, close data gaps, or verify trends seen in historic investigations. After reviewing project requirements and existing information, and ideally a field reconnaissance, the engineer must develop a detailed work plan. Investigations should follow the AASHTO 'Manual on Subsurface Investigations' (AASHTO 1988), GEC 5 'Evaluation of Soil and Rock Properties' (FHWA-IF-02-034; Sabatini et al. 2002), and the 'Manual on Subsurface Investigations' (FHWA-NHI-01-031; Mayne et al. 2001); see also Section 10.4 of AASHTO (2012). Test procedures are in ASTM or AASHTO standards, and local agency standards may need to be consulted.",
       "key_points": [
-        "Borings at maximum 30 m (100 ft) intervals along wall alignment",
-        "Borings to minimum 1.5 times wall height below proposed base",
-        "At least one boring at each wall end and at major alignment changes",
-        "SPT sampling at 0.75-1.5 m intervals",
-        "Groundwater monitoring required",
-        "Supplemental CPT, geophysical, and test pit investigations as needed",
-        "Identify soft layers, groundwater, obstructions, corrosive conditions"
+        "Allow soil nail walls only with site-specific geotechnical information meeting the objectives",
+        "New investigations necessary in most cases",
+        "Detailed work plan after desk study and reconnaissance",
+        "Guidance: AASHTO (1988), GEC 5 (Sabatini et al. 2002), FHWA-NHI-01-031 (Mayne et al. 2001), AASHTO (2012) 10.4"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Subsurface investigation planning for soil nail wall projects."
+      "applicability": "Planning the subsurface investigation."
+    },
+    {
+      "section_id": "4.3.2",
+      "title": "Objectives",
+      "summary": "Determine stratigraphy; obtain representative samples; measure in situ and laboratory soil properties; assess soil and groundwater corrosion potential; and find groundwater levels, fluctuations and gradients, along the whole wall with enough tests to capture variability. High groundwater, especially in free-draining soils, is unfavorable. A two-phase investigation (preliminary, then final for design) is sensible where little data exist. Inadequate investigation leads to uneconomical designs, redesign, construction problems, cost, delay and unsafe performance.",
+      "body": "4.3.2 Objectives (pp. 65-66). The objectives are to: determine the subsurface stratigraphy; obtain representative samples for laboratory testing; measure in situ soil properties by field testing; measure soil properties in the laboratory; assess soil and groundwater corrosion potential; and evaluate the location and fluctuations of groundwater levels and gradients. The investigation must cover the entire extent of the proposed wall with enough tests and sampling locations to assess variation across the site. Locating and characterizing groundwater is extremely important, because high groundwater (particularly in free-drainage soils) is an unfavorable condition. The investigation may be done in one or several phases depending on complexity and existing data; with little or no information, two phases may be sensible: a preliminary investigation to identify the strata and whether the ground is favorable, difficult or unfavorable for soil nails, and a final investigation focused on the data for design and construction. The exploration plan must allow a site characterization sufficient for design and construction; a lack of thorough investigation leads to uneconomical designs, redesigns, construction difficulties, added cost and delay, and inadequate or unsafe performance.",
+      "key_points": [
+        "Stratigraphy, representative samples, field and laboratory properties",
+        "Soil and groundwater corrosion potential",
+        "Groundwater location, fluctuation and gradients; high groundwater is unfavorable",
+        "Cover the entire wall extent with enough tests to capture variability",
+        "Two phases (preliminary, then final) sensible where little data exist"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "What the soil nail subsurface investigation must establish."
+    },
+    {
+      "section_id": "4.3.3",
+      "title": "Requirements for Selecting Location and Number of Exploratory Borings",
+      "summary": "Borings along the centerline, in front of and behind the wall (Figure 4.1; AASHTO 2012 Table 10.4.2-1). Centerline: 100 to 200 ft apart, at least H below the excavation bottom. Behind: up to 150 ft apart, H to 1.5H behind the wall (1.5H to 2H for upward slopes), at least 2H below final grade. In front: up to 200 ft apart, 0.75H to H in front, at least H below the excavation bottom. Add H (0.5H in front) for soft soils, organics or peat; extend to the base of liquefiable deposits within about 2H; maximum generally about 50 ft; core at least 10 ft (two 5-ft runs) of weathered rock.",
+      "body": "4.3.3 Requirements for Selecting Location and Number of Exploratory Borings (pp. 66-68). The type, number, location and depth of borings and other tests depend on the wall dimensions, adjacent structures, existing and future grades, the project stage (feasibility, preliminary or final design), existing data and subsurface variability. AASHTO (2012) Table 10.4.2-1 'Minimum Number of Exploration Points and Depths of Exploration' gives guidance, and Figure 4.1 gives preliminary guidance for earth-retaining systems. Borings must be drilled along the centerline of, in front of, and behind the wall. Centerline borings should be spaced between 100 and 200 ft and advanced at least to a depth H below the planned bottom of the excavation, where H is the wall height at that location. Borings behind the wall should be spaced up to 150 ft along the alignment, located within H to 1.5H behind the wall, and advanced at least to a depth 2H below final grades; where the ground behind slopes up, they should be within 1.5H to 2H of the wall and deep enough to assess potentially larger sliding masses up the slope. Borings in front should be spaced up to 200 ft, located 0.75H to H in front of the wall, and advanced at least to H below the planned excavation bottom. Where soft to very soft fine-grained soils, organic silt or peat lie within these depths, increase the depth by at least H for borings along and behind the wall and 0.5H for borings in front. In areas of significant seismic risk, extend borings to the base of suspected liquefiable deposits (loose to very loose saturated cohesionless soils) within about 2H below the excavation bottom. In most cases the maximum boring depth may not need to exceed approximately 50 ft. If weathered rock is encountered within these depths, borings should extend into it so a core at least 10 ft long, in two 5-ft runs, can be obtained to inspect discontinuities. Boring depths must also be set relative to slip surfaces likely to affect the walls; some geologic conditions (joints, bedding) may require oriented rock cores.",
+      "key_points": [
+        "Borings along the centerline, in front of and behind the wall (Figure 4.1; AASHTO 2012 Table 10.4.2-1)",
+        "Centerline: spacing 100-200 ft; depth at least H below the excavation bottom",
+        "Behind: spacing up to 150 ft; H to 1.5H behind the wall; depth at least 2H below final grade",
+        "Upward slope behind: borings 1.5H to 2H from the wall, deep enough for larger sliding masses",
+        "In front: spacing up to 200 ft; 0.75H to H in front; depth at least H below the excavation bottom",
+        "Soft soils, organic silt or peat: deepen by H (behind and along) or 0.5H (in front)",
+        "Seismic areas: to the base of liquefiable deposits within about 2H",
+        "Maximum depth generally need not exceed about 50 ft",
+        "Weathered rock: core at least 10 ft in two 5-ft runs; oriented cores where joints or bedding matter"
+      ],
+      "equations": [],
+      "figures": [
+        {
+          "figure_id": "Figure 4.1",
+          "title": "Preliminary layout of borings",
+          "description": "Plan and section of boring locations and depths along, in front of and behind a wall of height H. Modified after Sabatini et al. (2002).",
+          "page": 67
+        }
+      ],
+      "tables": [],
+      "applicability": "Laying out borings for a soil nail wall."
     },
     {
       "section_id": "4.3.4",
-      "title": "Field Testing Procedures",
-      "body": "Field testing procedures include: (a) Standard Penetration Test (SPT) per ASTM D1586, the most common field test for soil nail wall investigations; (b) Cone Penetration Test (CPT) per ASTM D5778, useful for defining soil stratigraphy and estimating soil properties continuously with depth; (c) Vane Shear Test (VST) per ASTM D2573 for measuring undrained shear strength of soft to medium clays in situ; (d) Pressuremeter Test (PMT) per ASTM D4719; and (e) in-situ permeability tests. SPT N-values can be correlated to friction angle for granular soils and undrained shear strength for cohesive soils using established correlations.",
+      "title": "Field Procedures",
+      "summary": "Test borings (hollow-stem auger or wash borings) with SPT are the main tool: SPT suits most favorable soils, refusal = 50 blows for 1 in. or less, not gravels or boulders; thin-walled samplers for soft fine-grained soils; samples every 5 ft; correct to N60 and (N1)60. CPT gives continuous profiles but cannot penetrate hard or gravelly soils, gives no samples, and has no bond correlation. PMT estimates modulus and has a French bond correlation; VST only for soft fine-grained strata. Test pits at least 20-25 ft long, up to about 10 ft deep, open 1 to 2 days.",
+      "body": "4.3.4 Field Procedures (pp. 68-71). 4.3.4a Overview: general field procedures; see Sabatini et al. (2002) and Mayne et al. (2001); corrosion testing in Section 4.7. 4.3.4b Test Borings and Standard Penetration Testing (SPT): investigations are largely based on test borings advanced by rotary methods, including hollow-stem auger and wash borings, both allowing sampling; hollow-stem augers allow groundwater observation (4.3.5). SPT (ASTM D1586) and disturbed and undisturbed sampling are performed in the borings. SPT works in a wide range of soils favorable for soil nails; its disturbed samples suit cohesionless soils (sands and elastic silt) for index properties and corrosion testing; it can sample residual soil to weathered rock, driven to refusal (50 blows for a penetration of one inch or less). SPT is not amenable to gravels, boulders and fill with large particles: samples are unrepresentative and the blowcount biased or meaningless. For soft to very soft fine-grained soils, thin-walled samplers (Shelby, Osterberg, Gregory Undisturbed Sampler, other fixed-piston samplers) must be used to obtain relatively undisturbed samples for strength testing. SPT samples should generally be taken every 5 ft, more closely or continuously in thin soft layers, cavities or soils of expected high corrosion potential. Overburden strongly affects N and must be accounted for; N may need conversion to N60 for hammer efficiency, and (N1)60, normalized to 60 percent energy and 1 tsf overburden (ASTM D4633), should be used in some correlations. Use SPT correlations with caution because N values, even corrected, vary significantly. Where wall deflection and surface settlement need accurate estimates (e.g., finite element analyses), SPT modulus correlations may not be suitable; use oedometer or triaxial tests on undisturbed specimens or pressuremeter tests (Sabatini et al. 2002). 4.3.4c Cone Penetration Test (CPT, ASTM D5778): rapid, cost-effective continuous profiles that reveal thin layers, useful for thin weak layers behind walls; but more limited than SPT for soil nail design because soils suited to CPT are generally not ideal for soil nailing, and CPT cannot be performed in hard soils, gravelly soils, weathered rock or boulder deposits. CPT correlations may carry less variability than SPT ones, particularly for soft fine-grained soils; shear strength and elastic modulus can be estimated, but there are no widely available correlations between CPT parameters and soil nail bond strength. CPT has higher productivity than borings but gives no samples, though some contractors can push a tube sampler with the same equipment to obtain small disturbed samples for classification, index and corrosion tests; some probes give a continuous resistivity profile. Combining CPTs with fewer, well-placed SPT borings may suit long alignments in consistent geology. 4.3.4d Other Field Testing Techniques: the pressuremeter (PMT, ASTM D4719) and field vane (VST, ASTM D2573) are less widely used; the flat dilatometer (DMT) is rarely used. PMT works in many soils favorable for soil nailing, gives reasonable modulus estimates where deflection and settlement are critical, and a French correlation between PMT limit pressure (pL) and bond strength exists for sand, clay, gravel and weathered rock (Clouterre 2002). VST has no routine use for soil nail design (soft to medium fine-grained soils are unfavorable) but may be used if underlying fine-grained strata are critical to global stability. 4.3.4e Test Pits: show whether a face can stand unsupported. They should be at least 20- to 25-ft long and up to approximately 10 ft deep where possible, protected against collapse and meeting safety standards, preferably perpendicular to the wall; if parallel, in the cut zone at least 15 ft from the wall face. To evaluate stand-up time, leave them open 1 to 2 days with protection, inspected at least daily. They also reveal seeping groundwater and allow grab or undisturbed samples.",
       "key_points": [
-        "SPT (ASTM D1586): most common field test for soil nail walls",
-        "CPT (ASTM D5778): continuous soil profiling and property estimation",
-        "Vane Shear (ASTM D2573): in-situ Su measurement for soft to medium clays",
-        "Pressuremeter Test (ASTM D4719) for deformation properties",
-        "In-situ permeability tests for groundwater assessment",
-        "SPT N-values correlated to friction angle and undrained shear strength"
+        "Test borings by hollow-stem auger or wash boring; SPT per ASTM D1586",
+        "SPT refusal: 50 blows for 1 in. or less; not suited to gravels, boulders, large-particle fill",
+        "Thin-walled or fixed-piston samplers for soft to very soft fine-grained soils",
+        "SPT samples generally every 5 ft; closer or continuous in critical layers",
+        "Correct N to N60 and (N1)60 (60% energy, 1 tsf); use SPT correlations with caution",
+        "CPT (ASTM D5778): continuous profile, no samples, cannot push hard or gravelly soils; no bond correlation",
+        "PMT (ASTM D4719): modulus; French pL-bond correlation (Clouterre 2002); VST only for critical soft strata",
+        "Test pits >= 20-25 ft long, up to ~10 ft deep, perpendicular to the wall or >= 15 ft away if parallel",
+        "Leave test pits open 1 to 2 days to judge stand-up time; inspect daily"
       ],
       "equations": [],
       "figures": [],
-      "tables": [
-        "Table 4.2a: Correlations between SPT N-value and friction angle (granular soils)",
-        "Table 4.2b: Correlations between CPT tip resistance and friction angle"
+      "tables": [],
+      "applicability": "Field testing and sampling methods for soil nail projects."
+    },
+    {
+      "section_id": "4.3.5",
+      "title": "Groundwater",
+      "summary": "Identify static or perched groundwater: above the excavation bottom it affects temporary cut stability; fluctuations promote corrosion, affect stability and raise facing pressures; it also affects drill hole stability, grouting and drainage. Soil nail walls are not suited to high static water, significant perched water, or low to moderate seepage, especially in free-draining soils. Measure water during and at the end of drilling and at least 24 hours after; install some standpipe piezometers. Water content above the PL may indicate saturation.",
+      "body": "4.3.5 Groundwater (pp. 71-72). 4.3.5a Overview: static or perched groundwater must be identified because it affects design and long-term performance. Groundwater above the bottom of the excavation will likely affect the stability of temporarily unsupported cuts; observe test pits carefully for even small seepage. Fluctuations over time may promote corrosion, affect overall stability and increase facing pressures; groundwater may affect drill hole stability and the choice of grouting procedures and permanent drainage. Grossly underestimating groundwater elevation or gradients has serious consequences for any retaining system, particularly soil nail walls, which are not suited for high static groundwater, significant perched groundwater, or low to moderate seepage velocities, particularly in free-drainage soils. 4.3.5b Groundwater Observation Methods: obtain depth to water during drilling, at the end of drilling, and at least 24 hours after drilling. It is advisable to complete some borings as temporary slotted-PVC standpipe piezometers, monitored for days, weeks or longer depending on fluctuations and ground. Levels measured during drilling in cohesive or low-permeability soils do not generally represent stabilized levels, and a substantial wait may be needed for piezometer readings to stabilize. Moisture content and index properties also help: a fine-grained soil with water content above the plastic limit (PL) may be saturated and under positive pore pressure; in situ unit weight, specific gravity and water content can indicate whether a soil is above or below the water table (GEC 5, Sabatini et al. 2002).",
+      "key_points": [
+        "Groundwater above the excavation bottom affects temporary cut stability",
+        "Fluctuation promotes corrosion, affects stability and raises facing pressure",
+        "Not suited to high static water, significant perched water, or low to moderate seepage in free-draining soils",
+        "Read water levels during and at the end of drilling and at least 24 hours after",
+        "Complete some borings as standpipe piezometers; low-permeability soils need long stabilization",
+        "Water content above the PL may indicate saturation and positive pore pressure"
       ],
-      "applicability": "Field testing program for soil nail wall design."
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identifying and measuring groundwater for soil nail design."
     },
     {
       "section_id": "4.4",
-      "title": "Laboratory Testing",
-      "body": "Laboratory testing requirements include: (a) Classification tests: grain-size analysis (ASTM D422), Atterberg limits (ASTM D4318), moisture content (ASTM D2216), and unit weight (ASTM D7263); (b) Shear strength tests: direct shear (ASTM D3080), triaxial compression (ASTM D2850/D4767), and unconfined compression (ASTM D2166); (c) Corrosion-related tests: pH, resistivity, chloride content, sulfate content, and organic content. The selection of appropriate shear strength parameters (drained vs. undrained, peak vs. residual) depends on soil type, loading conditions, and expected strain levels.",
+      "title": "Laboratory Soil Testing",
+      "summary": "Laboratory tests for soil nail design: scope (4.4.1), classification and index tests (4.4.2), shear strength (4.4.3), deformability (4.4.4) and other tests (4.4.5).",
+      "body": "4.4 Laboratory Soil Testing (pp. 72-75). Subsections 4.4.1 Overview to 4.4.5 Other Testing.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Laboratory testing; see the subsections."
+    },
+    {
+      "section_id": "4.4.1",
+      "title": "Overview",
+      "summary": "Some engineering properties must come from laboratory tests, scoped to the project: index tests may suffice for less complex projects after a thorough field investigation; challenging conditions need a wider range of tests even with existing data.",
+      "body": "4.4.1 Overview (p. 72). Design requires some engineering properties to be determined by laboratory testing, with amount and scope depending on the project. For less complex projects, index tests may suffice if a thorough field investigation was performed. For challenging subsurface conditions, a wider range of tests must be considered even if some geotechnical information exists.",
       "key_points": [
-        "Classification: grain-size (D422), Atterberg limits (D4318), moisture (D2216)",
-        "Shear strength: direct shear (D3080), triaxial (D2850/D4767), UC (D2166)",
-        "Corrosion tests: pH, resistivity, chloride, sulfate, organic content",
-        "Selection of drained vs undrained shear strength depends on soil type",
-        "Peak vs residual strength depends on expected strain levels"
+        "Index tests may suffice for simpler projects after a thorough field investigation",
+        "Challenging ground needs a wider range of laboratory tests"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Scoping laboratory testing."
+    },
+    {
+      "section_id": "4.4.2",
+      "title": "Soil Classification and Index Tests",
+      "summary": "Table 4.1 lists classification, index and shear strength test standards. Grain size and Atterberg limits for USCS classification on all projects; Atterberg limits also screen creep (Section 4.6). In situ water content well above the PL indicates low strength and high compressibility; creep potential increases for LL > 50% or LI >= 0.2 (Byrne et al. 1996); moisture below about 5% in clean granular soils may mean cuts will not stand. Organic content (loss on ignition) where organics are suspected; specific gravity as needed.",
+      "body": "4.4.2 Soil Classification and Index Tests (pp. 72-74). Table 4.1 (a, b, c) lists the tests. Table 4.1a Classification: visual identification (ASTM D2488), USCS classification (D2487; AASHTO M145), particle-size analysis (D422-63; T88), fraction passing No. 200 sieve (D1140; T11). Table 4.1b Index parameters: moisture content (D2216; T265), Atterberg limits of the fines (D4318; T89, T90). Table 4.1c Shear strength: unconfined compression UC (D2166; T208), UU triaxial (D2850; T296), CU triaxial (D4767; T234), CD triaxial (D7181). The Table 4.1c tests are far more commonly used on fine-grained soils; triaxial extension tests may be considered for unloading behind a wall, but differences from compression are not expected to be large for soils favorable for soil nailing. Index tests (grain size and Atterberg limits) should be performed on all projects for USCS classification. Sieve analyses give gradation and fines content and help estimate hydraulic conductivity; Atterberg limits help estimate compressibility and strength of fine-grained soils and, for soil nails, the potential for creep (Section 4.6). Moisture contents significantly above the PL indicate low shear strength and high compressibility; if the in situ LL is greater than 50% the creep potential increases, as it does if the Liquidity Index (LI) is equal to or greater than 0.2 (Byrne et al. 1996); moisture contents below about 5% in granular soils with little fines may indicate that vertical cuts may not stand unsupported. Organic content testing (loss-on-ignition; printed 'D21974', T194) should be done where field observations or existing information suggest organics: organic soils with high moisture are generally more corrosive, weaker, more compressible and prone to creep. Specific gravity (D854, T100) may be needed in some cases.",
+      "key_points": [
+        "Table 4.1a classification: D2488, D2487/M145, D422-63/T88, D1140/T11",
+        "Table 4.1b index: moisture D2216/T265; Atterberg limits D4318/T89, T90",
+        "Table 4.1c strength: UC D2166/T208, UU D2850/T296, CU D4767/T234, CD D7181",
+        "Grain size and Atterberg limits for USCS classification on all projects",
+        "Creep potential increases where LL > 50% or LI >= 0.2 (Byrne et al. 1996)",
+        "Moisture below ~5% in clean granular soils: vertical cuts may not stand",
+        "Organic content (loss on ignition, T194) where organics are suspected"
       ],
       "equations": [],
       "figures": [],
       "tables": [
-        "Table 4.1a: Standard laboratory tests for soil classification",
-        "Table 4.1b: Standard laboratory tests for index properties",
-        "Table 4.1c: Standard laboratory tests for shear strength"
+        {
+          "table_id": "Table 4.1a",
+          "title": "Procedures and Laboratory Tests for Soils - Classification",
+          "description": "Visual identification, USCS classification, particle-size analysis, fraction passing No. 200, with ASTM and AASHTO standards.",
+          "page": 72
+        },
+        {
+          "table_id": "Table 4.1b",
+          "title": "Procedures and Laboratory Tests for Soils - Index Parameters",
+          "description": "Moisture content and Atterberg limits, with ASTM and AASHTO standards.",
+          "page": 72
+        },
+        {
+          "table_id": "Table 4.1c",
+          "title": "Procedures and Laboratory Tests for Soils - Shear Strength Tests",
+          "description": "UC, UU, CU and CD triaxial tests, with ASTM and AASHTO standards.",
+          "page": 73
+        }
       ],
-      "applicability": "Laboratory testing program for soil nail wall design."
+      "applicability": "Classification and index testing for soil nail design."
+    },
+    {
+      "section_id": "4.4.3",
+      "title": "Shear Strength Tests",
+      "summary": "Favorable soils are mostly granular, with strength from field correlations (4.5.4). Laboratory tests (Table 4.1c) are needed for stiff to hard fine-grained soils or the fill of an existing MSE wall. Direct shear may be used for fill compacted to in situ conditions, with its limitations (forced plane, uncontrolled pore pressure). Stiff overconsolidated clays that may soften: triaxial tests to a set strain or torsional ring shear (D6467).",
+      "body": "4.4.3 Shear Strength Tests (p. 74). Most soils favorable for soil nailing are predominantly granular, and their strength parameters are estimated from field-test correlations (Section 4.5.4) rather than laboratory tests. Where nails are installed in stiff to hard fine-grained soils or stabilize the structural fill of an existing MSE wall, strength should be estimated from laboratory tests such as those in Table 4.1c. The direct shear test (D3080, T236) may be used for fill compacted in the laboratory to in situ conditions, but it has limitations: the failure surface is forced along a horizontal plane, principal stress rotation and specimen anisotropy limit interpretation, and pore pressures are uncontrolled and impractical to measure. In stiff overconsolidated clays that may mobilize fully softened or residual strengths on deformation, parameters may be estimated from triaxial tests (up to a certain axial deformation) or the torsional ring shear device (D6467).",
+      "key_points": [
+        "Granular soils: strength from field correlations, not laboratory tests",
+        "Laboratory strength tests for stiff to hard fine-grained soils or existing MSE fill",
+        "Direct shear (D3080, T236) for compacted fill; forced plane and uncontrolled pore pressure",
+        "Stiff overconsolidated clays: triaxial to a set strain or torsional ring shear (D6467)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "When to measure shear strength in the laboratory."
+    },
+    {
+      "section_id": "4.4.4",
+      "title": "Deformability and Modulus",
+      "summary": "Where soft to medium fine-grained soils lie in or below the excavation, evaluate wall deflection, surface settlement and rebound, using one-dimensional consolidation tests (D2435, T216) or triaxial modulus. Results depend on stress path and specimen orientation and may not represent field unloading without special testing or interpretation.",
+      "body": "4.4.4 Deformability and Modulus (p. 74). Where soft to medium fine-grained soils exist throughout the excavation or immediately below its bottom, wall deflections, ground surface settlement and rebound must be evaluated. Compressibility can be measured with one-dimensional consolidation tests (D2435, T216), and modulus estimated from triaxial tests. Laboratory results may be sensitive to stress path and specimen orientation and may not represent field conditions unless special testing conditions or suitable interpretation account for differences from field loading or unloading.",
+      "key_points": [
+        "Evaluate deflection, settlement and rebound where soft to medium fine-grained soils exist",
+        "One-dimensional consolidation (D2435, T216); modulus from triaxial tests",
+        "Results sensitive to stress path and specimen orientation"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Compressibility and modulus testing."
+    },
+    {
+      "section_id": "4.4.5",
+      "title": "Other Testing",
+      "summary": "Not routine but useful to detect unfavorable conditions: collapse potential (D5333) and swelling potential (D4546, T258); in freezing areas, frost heave and thaw weakening susceptibility (D5918) on samples from layers exposed to long-term frost.",
+      "body": "4.4.5 Other Testing (p. 75). Tests not routinely used can detect unfavorable conditions: the collapse potential test (D5333) and swelling potential test (D4546, T258) for collapsible or swelling fine-grained soils. In areas exposed to freezing, special tests must establish frost heave potential and susceptibility to thaw weakening (D5918), on samples from layers exposed to long-term frost action.",
+      "key_points": [
+        "Collapse potential (D5333); swelling potential (D4546, T258)",
+        "Frost heave and thaw weakening (D5918) on layers exposed to long-term frost"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Tests for collapsible, expansive and frost-susceptible soils."
     },
     {
       "section_id": "4.5",
       "title": "Selection of Design Parameters",
-      "body": "Key design parameters include: (a) Unit weight: total and effective unit weights from lab measurements or correlations. (b) Shear strength: effective stress parameters (c', phi') for drained analysis of granular soils and long-term analysis of fine-grained soils; total stress parameters (Su) for short-term undrained analysis of fine-grained soils. (c) Bond strength (qu): the most critical parameter for soil nail design, representing the ultimate shear stress at the soil-grout interface. Preliminary bond strength values can be estimated from Tables 4.4a and 4.4b, which provide ranges based on soil type and drilling method. Final bond strengths must be verified by field pullout (verification and proof) tests during construction.",
-      "key_points": [
-        "Unit weight from lab measurements or correlations",
-        "Effective stress parameters (c', phi') for drained analysis",
-        "Total stress parameters (Su) for undrained analysis",
-        "Bond strength (qu): most critical parameter for soil nail design",
-        "Preliminary bond strength from Tables 4.4a/4.4b by soil type and drilling method",
-        "Bond strength must be verified by field pullout tests during construction"
-      ],
+      "summary": "Developing stratigraphy and design parameters: unit weight, shear strength, modulus and bond strength (4.5.1 to 4.5.6).",
+      "body": "4.5 Selection of Design Parameters (pp. 75-86). Subsections 4.5.1 Overview to 4.5.6 Bond Strength.",
+      "key_points": [],
       "equations": [],
       "figures": [],
-      "tables": [
-        "Table 4.3a: Elastic properties of soils by type",
-        "Table 4.4a: Estimated bond strength for coarse-grained soils (psi) by drilling method",
-        "Table 4.4b: Estimated bond strength for fine-grained soils (psi) by drilling method",
-        "Table 4.5: Estimated bond strength in rock",
-        "Table 4.6: Estimated pullout resistance per unit length"
-      ],
-      "applicability": "Design parameter selection for soil nail wall analysis."
+      "tables": [],
+      "applicability": "Selecting design parameters; see the subsections."
     },
     {
-      "section_id": "4.6",
-      "title": "Soil Creep Potential",
-      "body": "Soil creep can be a concern for permanent soil nail walls in fine-grained soils with high plasticity or high moisture content. Creep may cause long-term increase in nail tensile forces and wall deformation. Soils susceptible to creep include: clays with liquid limit greater than 50 (CH classification), clays with Liquidity Index (LI) greater than 0.2, and organic soils. When creep-susceptible soils are present, the design should account for potential long-term deformations using more conservative deformation estimates and more frequent monitoring.",
+      "section_id": "4.5.1",
+      "title": "Overview",
+      "summary": "From borings, field and laboratory tests, develop the stratigraphy and parameters for each stratum and identify variability. Locate soil, weathered rock and bedrock contacts (for global stability, whether nails reach harder layers, drilling methods, procedures, nail lengths) and moist, softer zones or water at the rock contact. Stratigraphy controls the sliding mass and the number and length of nails; variability sets the number of verification tests per deposit and matters more for long walls.",
+      "body": "4.5.1 Overview (p. 75). Once sufficient information is available, the designer must develop the site stratigraphy and design parameters for each stratum, and identify subsurface variability that may affect design. This involves locating contacts between soil, weathered rock and possibly bedrock, important for global stability analyses and for whether nails must extend near or into harder materials; contrasting conditions across a contact may affect drilling methods and equipment, construction procedures and nail lengths. Moist, softer zones or water at the rock contact must also be identified. The nature, extent and distribution of soil units affect drilling methods, control the shape and size of the potential sliding mass, and affect the number and length of nails. Variability dictates the number of nail verification tests needed to confirm design criteria for each major deposit and is more critical for long walls.",
       "key_points": [
-        "Creep concern for permanent walls in high-plasticity fine-grained soils",
-        "May cause long-term increase in nail tensile forces",
-        "Susceptible soils: CH clays (LL > 50), LI > 0.2, organic soils",
-        "Use conservative deformation estimates when creep-susceptible soils present",
-        "More frequent monitoring recommended"
+        "Develop stratigraphy and parameters for each stratum; identify variability",
+        "Locate soil, weathered rock and bedrock contacts; moist soft zones or water at the rock contact",
+        "Stratigraphy controls the sliding mass and nail number and length",
+        "Variability sets the number of verification tests per major deposit; more critical for long walls"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Evaluation of creep potential in fine-grained soils for permanent walls."
+      "applicability": "Building the design soil profile."
     },
     {
-      "section_id": "4.7",
-      "title": "Corrosion Potential Evaluation",
-      "body": "Evaluation of the ground corrosion potential is essential for permanent soil nail walls. Ground is considered aggressive (highly corrosive) if any of the following conditions exist: pH less than 4.5; resistivity less than 2,000 ohm-cm; chloride concentration greater than 200 ppm; sulfate concentration greater than 1,000 ppm; or presence of stray electrical currents. Testing standards are listed in Table 4.7. For aggressive ground, enhanced corrosion protection (encapsulation) is required per Chapter 7. For non-aggressive ground, simpler protection measures (epoxy coating or increased grout cover) may be adequate.",
+      "section_id": "4.5.2",
+      "title": "Soil Parameters for Design",
+      "summary": "Minimum parameters: depths of strata breaks, groundwater levels, and the unit weight, shear strength and bond strength of each major deposit where nails will be installed. Modulus and compressibility where deflection or surface movement must be estimated accurately; creep potential in fine-grained soils (4.6); corrosion potential for all soils with nails (4.7).",
+      "body": "4.5.2 Soil Parameters for Design (pp. 75-76). At a minimum, determine from field investigation and laboratory testing: depths of stratigraphy breaks; groundwater levels; unit weight of each major soil deposit; shear strength parameters of each major deposit; and bond strength of each major deposit where nails will be installed. Where accurate estimates of wall deflection or ground surface movement are needed, soil modulus and compressibility must also be determined from field and/or laboratory tests. The potential for soil creep must be assessed in fine-grained soils (Section 4.6), and the corrosion potential must be assessed for all soils where nails will be installed (Section 4.7).",
       "key_points": [
-        "Ground aggressive if: pH < 4.5, resistivity < 2,000 ohm-cm",
-        "Aggressive if: chloride > 200 ppm, sulfate > 1,000 ppm",
-        "Aggressive if stray electrical currents present",
-        "Enhanced corrosion protection (encapsulation) for aggressive ground",
-        "Simpler protection (epoxy coating, grout cover) for non-aggressive ground"
+        "Strata depths and groundwater levels",
+        "Unit weight, shear strength and bond strength of each major deposit",
+        "Modulus and compressibility where deflections must be estimated accurately",
+        "Creep potential for fine-grained soils (4.6); corrosion potential for all soils (4.7)"
       ],
       "equations": [],
       "figures": [],
-      "tables": ["Table 4.7: Corrosion evaluation laboratory test standards"],
-      "applicability": "Corrosion assessment for permanent soil nail wall design."
+      "tables": [],
+      "applicability": "Minimum parameter set for soil nail design."
+    },
+    {
+      "section_id": "4.5.3",
+      "title": "Unit Weight",
+      "summary": "Unit weight of granular and some fine-grained soils can be estimated from descriptions and relative density or correlations (Kulhawy and Mayne 1990); Figure 4.2 gives dry unit weight over unit weight of water versus relative density for USCS cohesionless soils without plastic fines; moist unit weight = gamma_d (1 + wn). Relative density from Table 4.2a or the friction angle. Fine-grained soils: laboratory tests on undisturbed tube samples; not for granular soils, whose samples are always disturbed.",
+      "body": "4.5.3 Unit Weight (pp. 76-77). Unit weight is used in stability analysis and design calculations. For granular and some fine-grained soils it can be estimated from soil descriptions with estimated relative density, or by correlations (e.g., Kulhawy and Mayne 1990). Figure 4.2 shows the dry unit weight (gamma_d, normalized by the unit weight of water gamma_w) of various USCS cohesionless soils without plastic fines as a function of relative density (Dr). To account for in situ moisture, the moist unit weight is gamma_moist = gamma_d (1 + wn), where wn is the in situ moisture content. Using Figure 4.2 requires the relative density, which can be estimated from Table 4.2a, or the friction angle. The unit weight of fine-grained soils may be determined in the laboratory on undisturbed Shelby tube (or similar) samples; the in situ unit weight of granular soils should not be estimated by laboratory testing because samples are always disturbed and in situ conditions cannot easily be reproduced.",
+      "key_points": [
+        "Granular soils: estimate from description and relative density or correlations (Kulhawy and Mayne 1990)",
+        "Figure 4.2: dry unit weight / gamma_w versus relative density for USCS cohesionless soils",
+        "Moist unit weight = gamma_d (1 + wn)",
+        "Relative density from Table 4.2a or the friction angle",
+        "Fine-grained soils: laboratory tests on undisturbed tube samples; not for granular soils"
+      ],
+      "equations": [],
+      "figures": [
+        {
+          "figure_id": "Figure 4.2",
+          "title": "Estimation of soil unit weight",
+          "description": "Dry unit weight normalized by unit weight of water versus relative density for USCS cohesionless soils without plastic fines. Modified after U.S. Navy (1982), Kulhawy and Mayne (1990).",
+          "page": 76
+        }
+      ],
+      "tables": [],
+      "applicability": "Estimating unit weight for stability analyses."
+    },
+    {
+      "section_id": "4.5.4",
+      "title": "Shear Strength",
+      "summary": "Cohesionless soils: effective friction angle from SPT (Table 4.2a) or CPT (Table 4.2b) correlations and Figure 4.3; free drainage can drop for fines above about 15 to 25%; short-term apparent cohesion of 50 to 150 psf may be used for temporary stages if shown to exist; design sands at <= 40 degrees, gravels <= 45. Overconsolidated clays long-term: fully softened or residual drained friction from CU tests with pore pressure, or Figure 4.4 versus PI. Undrained: Su from VST (Bjerrum correction) or CPT (Nk = 15, range 10 to 20) or CU tests; not from torvanes, pocket penetrometers or UC tests.",
+      "body": "4.5.4 Shear Strength (pp. 77-81). 4.5.4a Cohesionless Soils: for most projects the drained effective friction angle (phi_s'), the main strength component, can be estimated from SPT and CPT correlations. Effective stress analysis should be considered for these frequently free-draining soils; free drainage needs relatively high hydraulic conductivity, which can drop significantly for fines contents above about 15 to 25 percent passing the #200 sieve. Effective cohesion c' is estimated separately: cemented sands have cohesion that should be considered, keeping in mind possible loss from disturbance during excavation and degradation by internal or surface erosion over the project life. Partially saturated soils have apparent cohesion from matric suction; it is customary to ignore it, but the designer may consider it for temporary excavation stages if there is evidence it exists, adopting a short-term apparent cohesion between 50 psf and 150 psf. Preliminary friction angles come from Table 4.2a (SPT N60: 0-4 very loose, Dr < 20%, phi < 30 degrees; 4-10 loose, 20-40%, 30-35; 10-30 medium, 40-60%, 35-40; 30-50 dense, 60-80%, 40-45; > 50 very dense, > 80%, > 45; uncorrected values considered equivalent to N60; after Kulhawy and Mayne 1990 based on Meyerhof 1956) or Table 4.2b (normalized cone resistance qc/Pa: < 20 very loose, < 30 degrees; 20-40 loose, 30-35; 40-120 medium, 35-40; 120-200 dense, 40-45; > 200 very dense, > 45; Pa ~ 1 tsf; after Meyerhof 1956). Both tables note that sands should be selected with a friction angle <= 40 degrees and gravelly soils <= 45 degrees. Figure 4.3 shows the increase of friction angle with SPT N60 as a function of normalized effective overburden sigma'vo/Pa. 4.5.4b Cohesive Soils, Drained Conditions: strength depends on loading rate relative to drainage; cohesive soils are most often considered undrained in short-term excavation support, but drained strength must be considered for long-term stability. For heavily overconsolidated cohesive soils, long-term drained conditions with fully remolded (fully softened) or residual friction angles must be used rather than peak values, assessed from CU triaxial tests with pore pressure measurement. Without testing, the effective friction angle of clays may be estimated from PI with Figure 4.4 (not for remolded or residual values), with caution. 4.5.4c Cohesive Soils, Undrained Conditions: undrained strength should be considered for short-term stability where fine-grained soils are affected by the excavation, with undrained analyses of each lift immediately after excavation and before nail installation. Su should be assessed by field techniques (preferably CPT or VST; SPT for preliminary estimates) and laboratory tests that account for undrained response. VST results should be modified with the Bjerrum correction, which depends on PI (Kulhawy and Mayne 1990). CPT-based Su depends on qc, the cone factor Nk and the total overburden stress; reported Nk varies from about 10 to 20, and the practice is to assume Nk = 15, appropriate for most situations, with site-specific calibration against CU triaxial, VST and CPT data where possible. In overconsolidated clays, triaxial tests on carefully selected undisturbed specimens can give Su, which may vary with stress history, desiccation and fissuring; fissuring may reduce mass strength below small-specimen values. Evaluations should consider stress history, overburden and pore pressure; the preferred techniques are field VST and CU tests with pore pressure measurement. Design Su should not be based on mini-torvanes, pocket penetrometers or unconfined compression tests, which are affected by local specimen variations and surface drying and do not reflect strength along specific orientations. Correlations with index properties (Kulhawy and Mayne 1990; Sabatini et al. 2002) should only supplement measured values, with a review of moisture, fines and Atterberg limits to understand variability.",
+      "key_points": [
+        "Cohesionless: effective friction angle from SPT (Table 4.2a) or CPT (Table 4.2b); Figure 4.3 with sigma'vo/Pa",
+        "Free drainage can drop significantly for fines above about 15-25%",
+        "Short-term apparent cohesion 50-150 psf only for temporary stages, if shown to exist",
+        "Design friction angle: sands <= 40 degrees, gravelly soils <= 45 degrees",
+        "Table 4.2a: N60 10-30 medium, 35-40 degrees; 30-50 dense, 40-45 degrees",
+        "Overconsolidated clays long-term: fully softened or residual friction angle from CU tests with pore pressure",
+        "Figure 4.4: clay friction angle versus PI (not for remolded or residual values)",
+        "Undrained check of each lift before nails are installed",
+        "Su from VST (Bjerrum correction) or CPT with Nk = 15 (range 10-20); calibrate site-specifically",
+        "Not from mini-torvanes, pocket penetrometers or unconfined compression tests"
+      ],
+      "equations": [],
+      "figures": [
+        {
+          "figure_id": "Figure 4.3",
+          "title": "Friction angle of cohesionless soils as a function of normalized overburden",
+          "description": "Effective friction angle versus SPT N60 and normalized effective overburden sigma'vo/Pa. Modified after Schmertmann (1975).",
+          "page": 79
+        },
+        {
+          "figure_id": "Figure 4.4",
+          "title": "Relationship between friction angle and plasticity index",
+          "description": "Effective friction angle of clays versus PI. After Terzaghi, Peck, and Mesri (1996).",
+          "page": 80
+        }
+      ],
+      "tables": [
+        {
+          "table_id": "Table 4.2a",
+          "title": "Correlations between SPT N-values, CPT, and Friction Angle of Cohesionless Soils - SPT",
+          "description": "SPT N60 ranges with density description, relative density and friction angle; sands <= 40 and gravels <= 45 degrees.",
+          "page": 78
+        },
+        {
+          "table_id": "Table 4.2b",
+          "title": "Correlations between SPT N-values, CPT, and Friction Angle of Cohesionless Soils - CPT",
+          "description": "Normalized cone resistance qc/Pa ranges with density description, relative density and friction angle.",
+          "page": 78
+        }
+      ],
+      "applicability": "Selecting drained and undrained strength parameters."
+    },
+    {
+      "section_id": "4.5.5",
+      "title": "Compressibility and Modulus",
+      "summary": "Modulus and compressibility may be estimated from SPT or CPT correlations, of limited accuracy; PMT measures modulus directly but is rarely used because accurate moduli are seldom needed. Table 4.3a gives modulus and Poisson's ratio by soil type (e.g., sand medium dense 600-1,000 ksf); Table 4.3b Es = 8 to 24 (N1)60 ksf; Table 4.3c Es = 2 qc for sandy soils (after AASHTO 2014).",
+      "body": "4.5.5 Compressibility and Modulus (pp. 81-82). Compressibility and modulus may be estimated from correlations with SPT or CPT values, but their value is limited by potential inaccuracy. PMT can measure modulus directly over a range of strain but is rarely used for soil nails because accurate moduli are not often needed. Table 4.3a gives initial modulus estimates by soil type, and Tables 4.3b and 4.3c from SPT and CPT; Poisson's ratio (nu), used in numerical analyses, can be taken from Table 4.3a, or from triaxial and oedometer tests where needed (rarely). Table 4.3a (after AASHTO 2014), Es in ksf and nu: clay soft sensitive 50-300, clay medium stiff to stiff 300-1,000, clay very stiff 1,000-2,000 (nu 0.4-0.5 undrained); loess 300-1,200 (0.1-0.3); silt 40-400 (0.3-0.35); fine sand loose 160-240, medium dense 240-400, dense 400-600 (0.25); sand loose 200-600, medium dense 600-1,000 (0.20-0.36), dense 1,000-1,600 (0.30-0.40); gravel loose 600-1,600, medium dense 1,600-2,000 (0.20-0.35), dense 2,000-4,000 (0.30-0.40). Table 4.3b (after AASHTO 2014), Es in ksf: silts, sandy silts, slightly cohesive mixtures 8 (N1)60; clean fine to medium sands and slightly silty sands 14 (N1)60; coarse sands and sands with little gravel 20 (N1)60; sandy gravel and gravels 24 (N1)60. Table 4.3c (after AASHTO 2014): sandy soils Es = 2 qc (qc in ksf).",
+      "key_points": [
+        "SPT and CPT modulus correlations have limited accuracy; PMT rarely used",
+        "Table 4.3a: Es by soil type, e.g. clay medium stiff to stiff 300-1,000 ksf, sand medium dense 600-1,000 ksf",
+        "Poisson's ratio from Table 4.3a: clays 0.4-0.5 undrained, fine sand 0.25",
+        "Table 4.3b: Es = 8, 14, 20, 24 (N1)60 ksf from silts to gravels",
+        "Table 4.3c: sandy soils Es = 2 qc (ksf)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        {
+          "table_id": "Table 4.3a",
+          "title": "Elastic Properties of Soils Based on Soil Type",
+          "description": "Range of Young's modulus (ksf) and Poisson's ratio for clays, loess, silt, sands and gravels. After AASHTO (2014).",
+          "page": 82
+        },
+        {
+          "table_id": "Table 4.3b",
+          "title": "Elastic Properties of Soils Based on SPT N-values",
+          "description": "Es = 8, 14, 20 or 24 times (N1)60 (ksf) by soil type. After AASHTO (2014).",
+          "page": 82
+        },
+        {
+          "table_id": "Table 4.3c",
+          "title": "Elastic Properties of Soils Based on CPT Cone Tip Resistance (qc)",
+          "description": "Sandy soils Es = 2 qc (ksf). After AASHTO (2014).",
+          "page": 82
+        }
+      ],
+      "applicability": "Estimating soil modulus and Poisson's ratio."
+    },
+    {
+      "section_id": "4.5.6",
+      "title": "Bond Strength",
+      "summary": "Bond strength qu, the ultimate soil-grout shear strength (equivalent to nominal bond resistance), depends on ground and installation. Preliminary values from literature, correlations, load tests and local experience; final design needs load-test verification (Chapter 9). Tables 4.4a, 4.4b and 4.5 give presumptive gravity-grouted ranges in psi; use the median for fine-grained soils, somewhat higher for granular soils. Table 4.6 gives presumptive ultimate pullout per unit length rPO (kip/ft) versus (N1)60, from small-diameter ground anchors; qu = rPO / hole perimeter. Loess: pressure grouting or regrouting.",
+      "body": "4.5.6 Bond Strength (pp. 82-86). The pullout resistance of each nail depends on the nail length behind the slip surface, the grout body diameter and the soil-to-grout bond strength; HBSN bond is in Chapter 10. 4.5.6a Drilled and Grouted Soil Nails: the bond strength (qu) is the ultimate shear strength of the soil-to-grout interface, equivalent to a nominal bond resistance in LRFD; the manual uses 'bond strength' on either platform. It depends on ground conditions (soil type, overburden) and installation (drilling, hole cleaning, grouting procedure, grout). For preliminary design it can be estimated from literature, field-test correlations, load tests, and local experience; it is not measured in the laboratory. Final design requires verification by load tests (Chapter 9). Table 4.4 gives presumptive (nominal) ranges for gravity-grouted nails; the minimum and maximum correspond approximately to the least and most favorable conditions; the median for fine-grained soils is suitable as a preliminary value in many cases, while granular-soil values tend to be conservative, so somewhat higher than the median can be used in most cases. The designer must estimate bond from soil descriptions, strength and overburden, and any value used must be confirmed by load testing. Pressure grouting and post-grouting increase bond but are uncommon because of cost; the Contractor may instead enlarge the hole or improve cleaning. In unfavorable ground, procedures must be adjusted: in dry loess, gravity grouting moistens and weakens the hole walls, possibly causing collapse, and grout may permeate leaving voids; adequate bond has been achieved with pressure grouting or regrouting with a tremie tube. Table 4.4a, coarse-grained soils (psi; after Elias and Juran 1991): rotary drilled sand/gravel 15-26, silty sand 15-22, silt 9-11, Piedmont residual 6-17, fine colluvium 11-22; driven casing sand/gravel with low overburden 28-35, with high overburden 41-62 (low and high = effective overburden less than and greater than 1.5 tsf), dense moraine 55-70, colluvium 15-26; augered silty sand fill 3-6, silty fine sand 8-13, silty clayey sand 9-20. Table 4.4b, fine-grained soils (psi): rotary drilled silty clay 5-7; driven casing clayey silt 13-20; augered loess 4-11, soft clay 3-4, stiff clay 6-9, stiff clayey silt 6-15, calcareous sandy clay 13-20. Table 4.5, rock, rotary drilled (psi): marl/limestone 44-58, phyllite 15-44, chalk 73-87, soft dolomite 58-87, fissured dolomite 87-145, weathered sandstone 29-44, weathered shale 15-22, weathered schist 15-25, basalt 73-87, slate/hard shale 44-58; PTI (2005) gives presumptive values for gravity-grouted ground anchors. 4.5.6b Pullout Resistance per Unit Length: rPO, the ultimate pullout resistance per unit length, equals bond strength times the bond zone perimeter (also called ultimate load-transfer rate). Table 4.6 (after Sabatini et al. 1999) gives presumptive values from a correlation with (N1)60 for gravity-grouted ground anchors of small diameter (4 to 6 in.), in kip/ft: sand and gravel loose (4-10) 10, medium dense (11-30) 15, dense (31-50) 20; sand 7, 10, 13; sand and silt 5, 7, 9; silt-clay mixture of low plasticity or fine micaceous sand or silt mixtures stiff (10-20) 2, hard (21-40) 4. Bond strength = Table 4.6 value divided by the drill hole perimeter once the diameter is selected.",
+      "key_points": [
+        "Bond strength qu = ultimate soil-grout interface shear strength (nominal bond resistance)",
+        "Depends on soil type, overburden, drilling, hole cleaning, grouting and grout",
+        "Not measured in the laboratory; final design values must be verified by load tests (Chapter 9)",
+        "Tables 4.4a/4.4b/4.5: presumptive gravity-grouted ranges (psi) by soil or rock and drilling method",
+        "Median for fine-grained soils; somewhat higher than median for granular soils",
+        "Table 4.4a: low/high overburden boundary = 1.5 tsf effective",
+        "Pressure grouting and post-grouting increase bond but are uncommon (cost)",
+        "Dry loess: pressure grouting or regrouting with a tremie tube",
+        "Table 4.6: rPO (kip/ft) by soil and (N1)60, from 4-6 in. gravity-grouted ground anchors",
+        "qu = rPO / drill hole perimeter"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        {
+          "table_id": "Table 4.4a",
+          "title": "Estimated Bond Strength for Soil Nails in Coarse-Grained Soils",
+          "description": "Bond strength ranges (psi) by drilling method (rotary, driven casing, augered) and soil type. Modified after Elias and Juran (1991).",
+          "page": 84
+        },
+        {
+          "table_id": "Table 4.4b",
+          "title": "Estimated Bond Strength for Soil Nails in Fine-Grained Soils",
+          "description": "Bond strength ranges (psi) by drilling method and soil type. Modified after Elias and Juran (1991).",
+          "page": 85
+        },
+        {
+          "table_id": "Table 4.5",
+          "title": "Estimated Bond Strength for Soil Nails in Rock - Drilling Method: Rotary Drilled",
+          "description": "Bond strength ranges (psi) by rock type. Modified after Elias and Juran (1991).",
+          "page": 85
+        },
+        {
+          "table_id": "Table 4.6",
+          "title": "Presumptive Ultimate Values of Soil Nail Pullout Resistance per Unit Length",
+          "description": "rPO (kip/ft) by soil type, density or consistency and (N1)60, for 4- and 6-in. straight-shaft gravity-grouted ground anchors. Modified after Sabatini et al. (1999).",
+          "page": 86
+        }
+      ],
+      "applicability": "Estimating preliminary bond strength and pullout resistance per unit length."
+    },
+    {
+      "section_id": "4.6",
+      "title": "Soil Creep",
+      "summary": "All soils creep under sustained shear, little in granular soils, much more in fine-grained and organic soils, causing wall deformation and possibly strength loss; address it in stability analyses (e.g., fully softened strength). Creep can also occur at the grout-soil interface. No definitive criteria, but creep may occur in soils with LL >= 50, PI >= 20, Su <= 1,000 psf, LI >= 0.2, or organic soils. Keep stresses well below peak; evaluate creep by load testing during construction (Chapter 9).",
+      "body": "4.6 Soil Creep (pp. 86-87). All soils retained by a passive structure, even granular soils, tend to creep under sustained shear stress over time; the effect is small in granular soils but may be much more significant in fine-grained soils and soils with significant organic content. Creep tends to deform the wall and surrounding areas and, in fine-grained soils, may reduce shear strength. Creep of the soil mass can be addressed with appropriate soil mechanics procedures in slope stability analyses, which may include fully softened strength. Time-dependent displacement may also occur at the grout-soil interface under constant effective stress and may cause excessive lateral wall deflection. There are no definitive criteria to predict before construction which nails would creep, but creep may occur in soils that meet one of the following: LL >= 50; PI >= 20; Su <= 1,000 psf; liquidity index (LI) >= 0.2; or the soil is organic. Soil stresses should be kept well below peak values to reduce creep potential. Creep can be evaluated during construction by load testing individual test nails (Chapter 9).",
+      "key_points": [
+        "Creep small in granular soils, much larger in fine-grained and organic soils",
+        "Address soil-mass creep in stability analyses (e.g., fully softened strength)",
+        "Creep can also occur at the grout-soil interface",
+        "Creep may occur if LL >= 50, PI >= 20, Su <= 1,000 psf, LI >= 0.2, or soil is organic",
+        "Keep stresses well below peak; evaluate creep by load testing (Chapter 9)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Screening fine-grained and organic soils for creep."
+    },
+    {
+      "section_id": "4.7",
+      "title": "Soil Corrosion Potential",
+      "summary": "Assessing soil corrosion potential: properties to measure (4.7.1), field testing (4.7.2), laboratory testing (4.7.3) and corrosive soil types (4.7.4).",
+      "body": "4.7 Soil Corrosion Potential (pp. 87-90). Subsections 4.7.1 Overview to 4.7.4 Corrosive Soil Types.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Corrosion potential assessment; see the subsections."
+    },
+    {
+      "section_id": "4.7.1",
+      "title": "Overview",
+      "summary": "Corrosion potential is of primary concern and must be evaluated on every soil nail project, by laboratory testing of field samples and by field testing. Assess pH, electrical resistivity, chloride, sulfate and organic content, all measured in the laboratory (resistivity and pH also in the field), during feasibility and/or final investigations.",
+      "body": "4.7.1 Overview (p. 87). Corrosion potential is of primary concern in soil nail applications and must be evaluated in every soil nail project, through laboratory testing of samples from field investigations and through field testing. The properties to assess are pH, electrical resistivity, chloride content, sulfate content and organic content. All are measured in the laboratory; resistivity and pH can also be measured in the field. Each should be measured during the feasibility phase and/or final investigations.",
+      "key_points": [
+        "Corrosion potential must be evaluated on every soil nail project",
+        "Properties: pH, electrical resistivity, chloride, sulfate, organic content",
+        "All measured in the laboratory; resistivity and pH also in the field"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Corrosion properties to measure."
+    },
+    {
+      "section_id": "4.7.2",
+      "title": "Field Corrosion Testing",
+      "summary": "Field resistivity measurements are desirable: Schlumberger and Wenner arrays (Wightman et al. 2003; ASTM G57 Wenner four-electrode). Minimally invasive profiles identify problem zones, give independent checks of laboratory values and help choose sampling locations. Some CPT probes give continuous resistivity. Portable probes give pH, which should be verified in the laboratory.",
+      "body": "4.7.2 Field Corrosion Testing (p. 88). Field measurement of soil resistivity is desirable, using different arrays: the FHWA 'Application of Geophysical Methods to Highway Related Problems' (Wightman et al. 2003) describes the Schlumberger array and Wenner tests, and ASTM G57 (2012) describes the Wenner four-electrode method. These minimally invasive methods give resistivity profiles that may identify problematic zones, provide independent checks of laboratory values, and, if done before the geotechnical investigation, help plan where to sample for laboratory resistivity. Some special CPT probes give a continuous resistivity profile. Portable field pH probes exist; field pH values should generally be verified by laboratory testing.",
+      "key_points": [
+        "Field resistivity by Schlumberger or Wenner arrays (Wightman et al. 2003; ASTM G57)",
+        "Profiles identify problem zones and guide laboratory sampling",
+        "Some CPT probes give continuous resistivity",
+        "Verify field pH in the laboratory"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Field measurement of resistivity and pH."
+    },
+    {
+      "section_id": "4.7.3",
+      "title": "Testing of Corrosion Potential in Soil",
+      "summary": "Sample where nails and metal components contact the soil; at least three samples from each major deposit, more for aggressive or variable soils. Table 4.7 standards: pH ASTM G51; resistivity AASHTO T288; chloride T291; sulfate T290 (Method A); organic content ASTM D2974, AASHTO T194. Stray currents (rail, transmission lines, welding; worst in coastal areas) are of very small concern beyond about 100 to 200 ft (Elias 2000); experienced personnel should evaluate them by geophysical methods.",
+      "body": "4.7.3 Testing of Corrosion Potential in Soil (pp. 88-89). Investigation plans should include samples for corrosion testing from locations where nails and any metallic wall components may contact the soil. The number depends on project size and the aggressiveness and variability of the native materials; at least three samples from each major soil deposit are recommended, more where soils are known to be aggressive and/or variable. Table 4.7 laboratory standards: pH, ASTM G 51; soil resistivity, AASHTO T288; water-soluble chloride ion content, AASHTO T291; water-soluble sulfate content (Method A gravimetric), AASHTO T290; organic content, ASTM D2974 and AASHTO T194. Stray currents from power sources such as electric rail systems, electrical transmission systems and welding operations may also contribute, and are particularly damaging in coastal environments; they may be DC or AC and exist where the ground resistance becomes lower than that of the conduits. When the sources are more than about 100 to 200 ft from the nail tendons, the potential for stray current corrosion is very small (Elias 2000); it should be evaluated by experienced personnel using geophysical field methods.",
+      "key_points": [
+        "Sample where nails and metallic components contact the soil",
+        "At least three samples per major soil deposit; more if aggressive or variable",
+        "pH ASTM G51; resistivity AASHTO T288; chloride T291; sulfate T290 (Method A)",
+        "Organic content ASTM D2974, AASHTO T194",
+        "Stray current corrosion very small beyond about 100-200 ft from the source (Elias 2000)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        {
+          "table_id": "Table 4.7",
+          "title": "Laboratory Test Standards",
+          "description": "Standards for pH, soil resistivity, chloride, sulfate and organic content tests.",
+          "page": 88
+        }
+      ],
+      "applicability": "Laboratory corrosion testing and stray currents."
+    },
+    {
+      "section_id": "4.7.4",
+      "title": "Corrosive Soil Types",
+      "summary": "Aggressive soils (Elias et al. 2009): acidic soils (pH below 5), including pyritic soils of the Mid-Atlantic and Appalachia (may have pH < 4.5, SO4 1000-9000 ppm, Cl 200-600 ppm) and leached tropical residual soils; sodic soils of the arid West (pH > 7 or > 9, salts); calcareous soils (7 < pH < 9, mildly corrosive); organic soils (limit organic content to 1% by weight); industrial fills; coastal environments; road deicing salts. Corrosion potential of granular soils seems to rise at 60 to 80% saturation; assume more chlorides in the top 7 to 8 ft where deicing salts are used.",
+      "body": "4.7.4 Corrosive Soil Types (pp. 89-90). Certain environmental or chemical conditions make some soils more aggressive (Elias et al. 2009); the list does not imply soil nails are appropriate in them (e.g., permanent nails would not be installed in industrial refuse or peats). Acidic soils: naturally low pH (less than 5), including pyritic soils and soils with high soluble iron that can contain acidic iron sulfides; acidic (sulfate) soils occur where pyritic soils exist, such as the Mid-Atlantic States and Appalachia. These pyritic soils may have pH < 4.5, SO4 (1000-9000 ppm) and Cl (200-600 ppm). Residual soils of high-rainfall tropical regions (e.g., Hawaii, Guam) may be leached of soluble salts, lowering pH and raising corrosion potential. Sodic soils: western U.S. and arid environments; low hydraulic conductivity, possibly alkaline (pH > 7 or even > 9), with high dissolved salts (sodium cations, chloride and sulfate anions) brought up by capillarity under low precipitation and intense evaporation. Calcareous soils: alkaline (7 < pH < 9), possibly with large concentrations of sodium, calcium and calcium-magnesium carbonates and sulfates; mildly corrosive; derived from calcite, dolomite and gypsum; Florida, Texas, New Mexico and the western U.S. Organic soils: may form anaerobic pockets with sulfate-reducing bacteria and severe pitting (Chapter 7); organic content is part of the AASHTO corrosivity criteria (Table 7.1), and total organic content should be limited to 1% by weight of the total soil fraction to preclude anaerobic pockets; potentially organic soils include peats, mucks, cinder and bogs with unusually high water content, and soils with humic acid. Material of industrial origin: slag, fly ash, construction debris fills, some of which can raise pH, while acid mine tailings and refuse can have low pH. Coastal environments (Eastern, Southern and Western Seaboard States and Utah): atmospheric salts and salt-laden soils. Road deicing salts (Northern States) infiltrate soils. Other factors: the corrosion potential of granular soils seems to increase at a degree of saturation of 60 to 80%; where deicing salts are used, the top 7 to 8 ft of soil behind the wall should be assumed to contain a higher chloride concentration.",
+      "key_points": [
+        "Acidic soils: pH below 5; pyritic soils (Mid-Atlantic, Appalachia) may have pH < 4.5, SO4 1000-9000 ppm, Cl 200-600 ppm",
+        "Leached tropical residual soils (Hawaii, Guam): lower pH",
+        "Sodic soils (arid West): pH > 7 or > 9, high dissolved salts",
+        "Calcareous soils: 7 < pH < 9, mildly corrosive",
+        "Organic soils: limit total organic content to 1% by weight (Table 7.1 criteria)",
+        "Industrial fills, coastal environments, road deicing salts",
+        "Granular soil corrosion potential seems higher at 60-80% saturation",
+        "Deicing areas: assume higher chlorides in the top 7 to 8 ft"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Recognizing aggressive soils for corrosion protection selection."
     },
     {
       "section_id": "4.8",
       "title": "Frost Potential",
-      "body": "Frost penetration can affect soil nail walls by: (a) generating frost heave pressures on the facing; (b) reducing bond strength in the frost zone; and (c) causing ice lenses that reduce soil strength upon thawing. The frost depth must be determined for each project location. Soil nails should be designed such that effective bond length begins below the frost depth. The facing design should account for potential frost pressures, and adequate drainage is critical to minimize water availability for ice lens formation.",
+      "summary": "Ice lenses form with freezing temperatures, frost-susceptible soil and water, raising facing pressures and nail loads. Nail loads in the freezing season were about twice post-construction loads (Elias and Juran 1991); frost forces at nail heads can be 2.5 times seasonal maxima without frost (Kingsbury et al. 2002); expect increases when frost lasts over a week, largest within 5 ft of the face. Silts are highly susceptible, free-draining granular soils little. Frost depth in the continental U.S. ranges from about 0 to 6 ft. Insulation designed from frost depth and the Air Freezing Index (Section 6.10.14).",
+      "body": "4.8 Frost Potential (pp. 90-91). Soil nail walls in cold regions can see increased nail loads from frost. Ice lenses can form if temperatures fall below freezing, the ground contains frost-susceptible soils, and a water source (perched lenses or groundwater) exists. Ice formation can cause large facing pressures and nail loads; facing damage has been reported (Byrne et al. 1998), and settlement may occur on thawing. Elias and Juran (1991) surveyed monitored walls subject to frost: nail loads increase with frost penetration depth, intensity and duration of the freezing season, and proximity of water to the wall; loads during the freezing season were approximately twice those measured immediately after construction. Kingsbury et al. (2002) reported frost forces at nail heads up to 2.5 times the maximum seasonal forces without frost. Some increase in nail loads and facing pressures can be expected when frost in susceptible soils lasts more than one week; the largest increases occur near the facing and nail head connections, generally within 5 ft of the wall face, and the maximum forces do not generally coincide with frost development. Ice lenses wedge between particles (Hallin 2004), depending on soil type: little to no frost action generally occurs in free-draining granular materials, whose large voids let water freeze in place and accommodate expansion, while silts are generally highly susceptible (small voids, high capillary potential). Frost penetration depth is critical; it increases with latitude and climate and depends on soil, ranging in the continental U.S. from approximately 0 in the southernmost states to 6 ft in the north (contours e.g. FHWA-HRT-08-057, Selezneva et al. 2008). Heat loss is vertical near the ground surface behind the wall and horizontal through the facing, giving two- (occasionally three-) dimensional frost fronts, unlike pavements; thermal effects are as intense at the top and behind the facing when no insulation is provided (Duchesne 2003), so insulation may be provided. Insulation design should use frost penetration depth and a measure of freezing severity and duration: the Air Freezing Index (AFI, degree F-days, the sum over the cold season of daily average air temperatures below 32 degrees), approximately proportional to frost depth, with contours from the NOAA National Climatic Data Center. Design options including insulation: Section 6.10.14 'Frost Protection and Design for Frost.'",
       "key_points": [
-        "Frost heave pressures can act on facing",
-        "Bond strength reduced in frost zone",
-        "Ice lenses reduce soil strength upon thawing",
-        "Effective bond length should begin below frost depth",
-        "Facing design must account for frost pressures",
-        "Adequate drainage minimizes ice lens formation"
+        "Ice lenses need freezing temperatures, frost-susceptible soil and water",
+        "Freezing-season nail loads about twice post-construction loads (Elias and Juran 1991)",
+        "Frost forces at nail heads up to 2.5 times seasonal maxima without frost (Kingsbury et al. 2002)",
+        "Increases expected when frost lasts over one week; largest within 5 ft of the face",
+        "Silts highly frost susceptible; free-draining granular soils little",
+        "Frost depth in the continental U.S. about 0 to 6 ft",
+        "Heat loss vertical behind the wall and horizontal through the facing; insulation may be provided",
+        "Insulation design from frost depth and Air Freezing Index (degree F-days); Section 6.10.14"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Frost evaluation for soil nail walls in cold climates."
+      "applicability": "Assessing frost effects on soil nail walls."
     },
     {
       "section_id": "4.9",
       "title": "Seismic Data",
-      "body": "Seismic design parameters must be obtained for all soil nail wall projects in seismically active regions. Required parameters include: site classification based on average shear wave velocity in the upper 30 m (Eq. 4.1) or average SPT N-value (Eq. 4.2) per AASHTO (2014) and MCEER/ATC-49; Peak Ground Acceleration (PGA) from AASHTO seismic hazard maps; site-adjusted PGA using site coefficients FPGA (Table 4.9) and Fv (Table 4.10); and the design seismic coefficient kh for pseudo-static analysis. The design PGA is calculated as PGA_D = FPGA * PGA (Eq. 4.3), and the design spectral acceleration parameter S_D1 = Fv * S1 (Eq. 4.4).",
+      "summary": "Seismic design uses PGA (geometric mean of horizontal components), Ss and S1 from USGS maps in AASHTO (2014), based on a 1,000-year return period for Site Class B; Owners may choose longer. PGA and S1 are adjusted for site class (Table 4.8, from average vs, N60 or Su over the upper 100 ft by Eqs 4.1-4.2) with FPGA (Table 4.9) and Fv (Table 4.10): PGA_D = FPGA PGA (Eq 4.3), S_D1 = Fv S1 (Eq 4.4). Site Class F needs site-specific response analysis. PGA_D is the seismic coefficient input; S_D1 modifies it for deformation (Chapter 6).",
+      "body": "4.9 Seismic Data (pp. 91-95). Seismic loading must be considered in earthquake-prone regions. PGA is the main parameter, and peak ground velocity (PGV) is used in some aspects of seismic design of earth-retaining systems. The vertical component is routinely disregarded, so the geometric average of the two horizontal components is used and called PGA. Response spectra (5-percent damping) in modern codes, including AASHTO (2014), come from the USGS National Seismic Hazard Maps (Petersen et al. 2014) with three parameters: PGA (response at T = 0), Ss (T = 0.2 sec) and S1 (T = 1.0 sec). PGA is always used for earth-retaining systems; S1 when wall seismic deformation must be considered; Ss is not often needed. The AASHTO values for bridges are based on a 1,000-year return period, but Owners may adopt a longer return period. USGS maps are for a reference (mild) rock site, Site Class B; for soils (amplification) or hard rock (de-amplification), PGA and S1 must be modified with site factors FPGA and Fv, chosen from the subsurface conditions and the amplitudes of PGA and S1. Conditions are represented by one parameter: average shear-wave velocity (v_bar), average N60 (N_bar), or for cohesive soils average Su_bar, calculated over the upper 100 ft by wave-propagation (not arithmetic) averaging: v_bar = sum(di) / sum(di / vsi) (Eq 4.1) and N_bar = sum(di) / sum(di / Ni) (Eq 4.2), with sum(di) = 100 ft and Ni the field SPT blowcount without corrections, limited to 100 bpf; a similar equation applies to Su_bar. The site class is assigned from Table 4.8 (Kavazanjian et al. 2011): A hard rock vs > 5,000 ft/sec; B rock 2,500 to 5,000; C very dense soil and soft rock (printed truncated as 'soft') 1,200 to 2,500, N60 > 50, Su > 2,000 psf; D stiff soil 600 to 1,200, 15 to 50, 1,000 to 2,000 psf; E soft clay soil < 600, < 15, < 1,000 psf, or any profile with more than 10 ft of soil with PI > 20, wn >= 40% or Su < 500 psf; F profiles with soils vulnerable to failure or collapse under seismic loading (liquefiable, quick and highly sensitive clays, collapsible weakly cemented soils), peats and/or lightly organic clays thicker than 10 ft, very high plasticity clays (PI > 75) thicker than 25 ft, or very thick soft/medium stiff clays over 120 ft. Site Class F requires a site-specific dynamic site response analysis, with additional parameters (shear-wave velocity or small-strain shear modulus, modulus degradation and damping curves, possibly cyclic residual strengths; Kavazanjian et al. 2011). Table 4.9 FPGA for PGA <= 0.25, 0.5, 0.75, 1.0, >= 1.25: A 0.8 throughout; B 1.0; C 1.2, 1.2, 1.1, 1.0, 1.0; D 1.6, 1.4, 1.2, 1.1, 1.0; E 2.5, 1.7, 1.2, 0.9, 0.9. Table 4.10 Fv for S1 <= 0.1, 0.2, 0.3, 0.4, >= 0.5: A 0.8; B 1.0; C 1.7, 1.6, 1.5, 1.4, 1.3; D 2.4, 2.0, 1.8, 1.6, 1.5; E 3.5, 3.2, 2.8, 2.4, 2.4; F site-specific in both. Design values: PGA_D = FPGA PGA (Eq 4.3) and S_D1 = Fv S1 (Eq 4.4). PGA_D is input in stability analysis as a seismic coefficient and S_D1 is used to modify it for seismically induced deformations (Chapter 6).",
       "key_points": [
-        "Site classification based on Vs30 (Eq 4.1) or average SPT N (Eq 4.2)",
-        "PGA from AASHTO seismic hazard maps",
-        "Site-adjusted PGA using coefficients FPGA (Table 4.9) and Fv (Table 4.10)",
-        "Design PGA = FPGA * PGA (Eq 4.3)",
-        "Design S_D1 = Fv * S1 (Eq 4.4)",
-        "Seismic coefficient kh for pseudo-static analysis"
+        "PGA = geometric mean of the two horizontal components; vertical routinely disregarded",
+        "AASHTO (2014) PGA, Ss, S1 from USGS maps: 1,000-year return period, Site Class B",
+        "PGA always used for walls; S1 when seismic deformation is considered; Ss rarely",
+        "Site class from wave-propagation averages of vs, N or Su over the upper 100 ft (Eqs 4.1, 4.2; Table 4.8)",
+        "Field N without corrections, limited to 100 bpf, in Eq 4.2",
+        "Site Class F: site-specific dynamic site response analysis",
+        "PGA_D = FPGA PGA (Eq 4.3, Table 4.9); S_D1 = Fv S1 (Eq 4.4, Table 4.10)",
+        "Site Class D FPGA: 1.6 at PGA <= 0.25 to 1.0 at >= 1.25; Fv: 2.4 at S1 <= 0.1 to 1.5 at >= 0.5",
+        "PGA_D is the seismic coefficient input; S_D1 modifies it for deformation (Chapter 6)"
       ],
       "equations": [
-        "Eq 4.1: v_bar = sum(d_i) / sum(d_i / v_si) -- Average shear wave velocity in upper 30 m",
-        "Eq 4.2: N_bar = sum(d_i) / sum(d_i / N_i) -- Average SPT N-value in upper 30 m",
-        "Eq 4.3: PGA_D = FPGA * PGA -- Design peak ground acceleration",
-        "Eq 4.4: S_D1 = Fv * S1 -- Design spectral acceleration parameter"
+        {
+          "eq_id": "Eq 4.1",
+          "description": "Average shear wave velocity",
+          "formula": "v_bar = sum(d_i, i=1..n) / sum(d_i / v_si, i=1..n)",
+          "variables": {
+            "v_bar": "average shear-wave velocity over the upper 100 ft (ft/s)",
+            "d_i": "thickness of layer i; sum of d_i = 100 ft",
+            "v_si": "shear-wave velocity of layer i (ft/s)"
+          },
+          "notes": null,
+          "implemented_in": null
+        },
+        {
+          "eq_id": "Eq 4.2",
+          "description": "Average SPT N value",
+          "formula": "N_bar = sum(d_i, i=1..n) / sum(d_i / N_i, i=1..n)",
+          "variables": {
+            "N_bar": "average SPT blowcount over the upper 100 ft",
+            "d_i": "thickness of layer i; sum of d_i = 100 ft",
+            "N_i": "field SPT blowcount of layer i (ASTM D1586), uncorrected, limited to 100 bpf"
+          },
+          "notes": "A similar equation can be developed for Su_bar.",
+          "implemented_in": null
+        },
+        {
+          "eq_id": "Eq 4.3",
+          "description": "Design, site-corrected peak ground acceleration",
+          "formula": "PGA_D = F_PGA * PGA",
+          "variables": {
+            "PGA_D": "design peak ground acceleration",
+            "F_PGA": "site coefficient (Table 4.9)",
+            "PGA": "mapped peak ground acceleration (Site Class B)"
+          },
+          "notes": null,
+          "implemented_in": null
+        },
+        {
+          "eq_id": "Eq 4.4",
+          "description": "Design, site-corrected response acceleration at 1 second",
+          "formula": "S_D1 = F_v * S_1",
+          "variables": {
+            "S_D1": "design spectral response acceleration at 1 second",
+            "F_v": "site coefficient (Table 4.10)",
+            "S_1": "mapped spectral response acceleration at 1 second"
+          },
+          "notes": null,
+          "implemented_in": null
+        }
       ],
       "figures": [],
       "tables": [
-        "Table 4.8: Site class definitions based on Vs30 and N-bar",
-        "Table 4.9: Site coefficient FPGA as function of site class and PGA",
-        "Table 4.10: Site coefficient Fv as function of site class and S1"
+        {
+          "table_id": "Table 4.8",
+          "title": "Definition of Site Classes",
+          "description": "Site Classes A to F by average shear-wave velocity, SPT N60 and undrained strength over the upper 100 ft, with the Class E and F profile criteria. Kavazanjian et al. (2011).",
+          "page": 94
+        },
+        {
+          "table_id": "Table 4.9",
+          "title": "Site Coefficient FPGA",
+          "description": "FPGA by site class for PGA <= 0.25 to >= 1.25. Kavazanjian et al. (2011).",
+          "page": 94
+        },
+        {
+          "table_id": "Table 4.10",
+          "title": "Site Coefficient Fv",
+          "description": "Fv by site class for S1 <= 0.1 to >= 0.5. Kavazanjian (2011).",
+          "page": 95
+        }
       ],
-      "applicability": "Seismic parameter determination for soil nail wall design in seismic regions."
+      "applicability": "Site seismic parameters for soil nail wall design."
     }
   ]
 }
