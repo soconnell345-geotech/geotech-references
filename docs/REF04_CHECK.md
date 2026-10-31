@@ -6,7 +6,9 @@ against the PDFs in `docs/` (2026-10-30). Fixes were made from the printed
 page, never from memory: equations were rendered from the PDF and read symbol
 by symbol; table values, figure and table numbers, captions and page numbers
 were read off the page. Counts below are wrong or unprinted statements found
-and fixed (approximate where one sentence held several errors).
+and fixed (approximate where one sentence held several errors). After that
+check (9948a59), GEC-7 ch 1-5 and the GEC-12 ch 7 top-level sections were
+rebuilt from the print (see "Rebuilt from the print").
 
 ## What the merge kept and dropped
 
@@ -68,18 +70,76 @@ headings (ch 10, 14, 16, 18).
   limits differ from the print; lift heights are metric memory values (print
   2.5-7 ft, typically 3-5 ft); several figure titles are not the printed
   ones. A summary cannot be right where its body is wrong, so the files went
-  back to main's.
+  back to main's. The rebuild below then rewrote ch 1-5 from the print,
+  summaries included.
 
-## Found but not fixed (main's own files, outside the rescue branch)
+## Rebuilt from the print (after 9948a59)
 
-- **GEC-7 ch 1-5 bodies and key points** are not from the print (examples
-  above). The ch 5 values its summaries quote (Eq 5.1, Tables 5.3-5.12)
-  match the print. These chapters need a rebuild from the
-  print like GEC-13's (REF-25).
-- **GEC-12 ch 7 top-level bodies (7.1-7.10)** are generated overviews with
-  unprinted claims, e.g. setup "2-5 times", group settlement "1.5-3 times",
-  "minimum 10 ft into the bearing layer", predrilling "reduces shaft
-  resistance 50-85%". The numbered subsections are print-based.
+Main's GEC-7 ch 1-5 came from the original build (8d48ece) and its GEC-12
+ch 7 top-level sections from the same kind of build (84dbf77); neither was
+written from the page. Rebuilt REF-25 style: one section per printed heading
+to x.y.z (lettered sub-headings folded into their parent), bodies, key points
+and summaries paraphrased from the page in the print's US units, equations
+rendered from the PDF, tables and figures with printed pages.
+
+| Part | Pages | Commit | Sections | What main had wrong (examples) |
+|---|---|---|---|---|
+| GEC-7 ch 1 Introduction | 1-7 | 12607dd | 9 | Temporary walls in scope (print: permanent only); first use "1986 Cumberland Gap, Tennessee" (print: 1976 Portland, Oregon; the 1984 FHWA demonstration near Cumberland Gap, Kentucky). |
+| GEC-7 ch 2 Applications and Feasibility Evaluations | 9-32 | ea06a4c | 27 | Metric memory values (1-2 m lifts; print 2.5-7 ft, typically 3-5 ft); unprinted section titles. |
+| GEC-7 ch 3 Construction Materials and Methods | 33-62 | 1b39f70 | 20 | "100-200 mm holes", "150-200 mm facing", tendon grades in MPa; Figure 3.8 called "drainage details" (print: a centralizer photo); a stray 3.2.7. |
+| GEC-7 ch 4 Information Required for Design | 63-95 | 96df21a | 31 | Boring spacing and depth (4.3), creep criteria (4.6) and aggressive-ground limits (4.7) differ from the print. |
+| GEC-7 ch 5 Resisting Mechanisms and Limit States | 97-142 | 7de8a5d | 36 | Bodies not from the page; Eqs 5.1-5.31 now read off the rendered pages. |
+| GEC-12 ch 7 top-level 7.1-7.10 | 211-398 | f71bb95 | 10 | Setup "2-5x", group settlement "1.5-3x", angular distortion "0.004-0.008", "minimum 10 ft into the bearing stratum", phi "0.25-0.50" and "0.65-0.80", Rndr "< Rn with setup", "flange width" for H-pile impedance; none printed in ch 7. Wrong objects: 7.1 held misnumbered Eq 7-1 to 7-5, Figures 7-1 to 7-3, Tables 7-1/7-2; 7.5, 7.6 and 7.7 cited Figures 7-66 to 7-71, which are p-y and wedge figures in 7.3.7. 7.6 now holds Eqs 7-85/7-86 and Table 7-32 as printed (Rn = 200/0.65 = 308 kips; Rndr = 308 + 50 + 100/0.65 = 512 kips). Eq 7-87 and Figure 7-81 moved to 7.10.3, Eqs 7-88 to 7-90 to 7.10.7. |
+
+Figure catalogs: the text-enriched figure descriptions (titles, applicability
+and key points of the sections citing a figure) were refreshed for gec_7 and
+gec_12 from the rebuilt text, so the old claims no longer reach figure
+search. `_norm_fig_ref` in `scripts/build_figure_catalog.py` now reads the
+`figure_id` key the GEC-7 and GEC-12 Vol II chapters use; before, those
+citations were skipped (78 gec_7 and 328 gec_12 figures are enriched now,
+against 19 and 78).
+
+## Found but not fixed
+
+GEC-12 ch 7 subsections (from `check_section_numbers.py gec_12`, unchecked):
+
+- 13 printed headings with no section: 7.2.1.3, 7.2.1.4.1, 7.2.1.4.2,
+  7.2.4.2.1, 7.3.1.1, 7.3.5.2.1, 7.3.5.2.2, 7.3.7.6.1, 7.4.2.1, 7.4.2.2,
+  7.4.3.1, 7.4.3.2, 7.4.3.3.
+- 7.2.1.3.4-7.2.1.3.7 held as one range; 7.3.7.3 is extra.
+- Titles: 7.2.2.1 (printed "Pile Groups in Cohesionless Soils"), 7.3.6.2
+  (printed "Methods for Reducing Downdrag and Drag Force"), 7.3.1 (printed
+  "Tolerable Vertical Deformations and Angular Distortion"), 7.4.1 (printed
+  "Extreme Event Scour During Check Flood").
+- 7.3.1 lists Table 7-18 as "Tolerable movement criteria for highway bridges
+  and structures"; printed "Tolerable Movement Criteria for Bridges".
+
+## Chapters from the original build (8d48ece) or the same kind of build (unchecked)
+
+From the file history (the commit that added each chapter file). Not checked
+against the print here; "print pass" means a later REF-23/REF-25 commit
+reworked part of the chapter from the print, not that it was rebuilt whole.
+
+- **8d48ece (2026-02-23, the original build), still as built:** GEC-6
+  ch 1-10 (never touched since; its 127 merged summaries were checked, the
+  bodies were not); Micropile ch 1-5 (summaries added by ec96e39 "manual
+  annotation, no API"; ch 3-5 print pass). GEC-7 ch 1-5 rebuilt above.
+- **8d48ece, later rewritten by another bulk drop (method not checked):**
+  GEC-10 ch 9, 10, 11, 17, 18 (c855ee5, 2026-06-02; ch 9-11 and 18 print
+  pass since, ch 17 none); GEC-13 ch 1-2 (4220d5e, 2026-06-02; ch 2 print
+  pass). GEC-13 ch 3-5 were rebuilt from the print in REF-25.
+- **84dbf77 (2026-02-22, same kind):** GEC-12 Vol I ch 1, 3, 4, 5, 6 (no
+  print pass), ch 2, 7, 8 (print pass; ch 7 top level rebuilt above).
+- **5aa8108 (2026-04-15, "manual annotation, no API"):** Micropile ch 6-10.
+- Later bulk drops whose method this check did not look at: cf7c17f (DM7.1
+  ch 1-8, DM7.2), c855ee5 (GEC-10 ch 1-8, 12-16; GEC-11 ch 1-11), b0838af
+  (GEC-4, 5, 8, 9, 14), 1612e6a and 1176620
+  (FEMA P-2082, Caltrans trenching, FHWA pavements), c0552e7, c1fb7ce,
+  4c64e25 (Eurocode 7-1, 7-2, AASHTO 1993), 6869631 and 47be106 (UFC
+  pavement series), 0e65f9e, 1485139, 1d71743, 3ee90d1, 9e18826, ead7573
+  (GSA, UFC structural, EM 2107, EM 2104, UFC collapse, Wood Handbook).
+  1c3a9cc (FHWA Soils and Foundations, REF-29) says it was read off the
+  print.
 
 ## Could not be verified
 
@@ -108,6 +168,24 @@ headings (ch 10, 14, 16, 18).
   cites "Eq 8-48" where Eq 8-51 is applied.
 - GEC-12 3.5.5 and 5.2.5 point to Sections 6.13 and 6.14; the material is in
   6.12.
+- GEC-7 2.7.2: the heading wording is kept as printed.
+- GEC-7 3.3.7: CIP contraction joints at 90-100 ft are called "similar to"
+  shotcrete facings, given as 45-90 ft; a reference to "Section 3.5" for
+  sculpted faces (the material is 3.4.1). 3.2.6 prints "ASTM 1064M".
+- GEC-7 4.4.2 prints "D21974"; Table 4.8 ends with a truncated "Very dense
+  soil and soft".
+- GEC-7 ch 5: Eq 5.14 has a minus before Q/B'e where Eq 5.12 adds Q; Eq 5.27
+  already divides by S and Eq 5.28 divides by S again; 5.8.3 prints
+  "hi = di/2" (the definition makes di half of hi); 5.9.2 cites "Figure 5.20"
+  (the figure is 5.16); 5.6.2 cites "Section 6.6.3 Resistance Factors for
+  Overall Stability" (that heading is 5.6.5); 5.7.2 calls the pullout
+  factors "overall stability"; 5.7.3 takes gamma_EH "from Table 5.3 for
+  Strength I" (twice); 5.2.1 prints "RT < RP" for RPO, and gives To ranges of
+  0.6-1.0 overall and 0.40-0.70 in the upper two thirds; the body headings of
+  5.2 and 5.3 differ from the table of contents (TOC titles kept).
+- GEC-12 7.6 cites "Equation 7-85" for the Rndr example (it is Eq 7-86) and
+  a stray "Table" opens the sentence after Eq 7-86; 7.9's heading is printed
+  "DETERIORATON" and its text "marine bores".
 
 ## Gates
 
@@ -120,3 +198,10 @@ headings (ch 10, 14, 16, 18).
   section numbers, subsections, result size, cover citations, figure
   captions and ids, query expansion; 19 files): exit 0, 838 passed, 2
   xfailed, on the final tree.
+- After the rebuild (f71bb95 and the catalog and notes commits): audits for
+  gec_7 (10 chapters) and gec_12 (18 chapters) exit 0;
+  `check_section_numbers.py gec_7 gec_12` exit 0, with gec_7 ch 1-5
+  matching every printed heading and 66 printed headings in gec_7 ch 6, 7,
+  9 and 10 still without a section of their own, plus four ch 9 ranges
+  (9.3.4-9.3.5, 9.3.6-9.3.7, 9.4.2-9.4.3, 9.4.4-9.4.6), the rescue branch's
+  structure; the same 19 test files exit 0, 838 passed, 2 xfailed.

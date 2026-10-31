@@ -38,7 +38,7 @@ geotech_references/           # Python package (pip install -e .)
   gec_7/                       # FHWA-NHI-14-007 Soil Nail Walls
     tables.py                  # 13 table lookup functions (bond, pullout, resistance factors, seismic)
     figures.py                 # 2 figure lookup functions (friction angle vs SPT, basal heave Nc)
-    text/                      # Structured chapter JSON (ch 1-10, 78 sections; ch 6-10 checked against the print, REF-04)
+    text/                      # Structured chapter JSON (ch 1-10, 164 sections; ch 1-5 rebuilt from the print, ch 6-10 checked against it, REF-04)
   gec_10/                      # FHWA-NHI-18-024 Drilled Shafts (2018 edition)
     tables.py, figures.py      # 2018 edition: Table 8-4/9-1/10-2/11-1, Figure 10-6, Eq 10-21/22
     text/                      # All 18 chapters complete (FHWA-NHI-18-024, ch 1-18)
@@ -134,10 +134,10 @@ references/                    # (legacy) source PDFs (git-ignored)
 | Module | Reference | Functions | Tests | Text Chapters |
 |--------|-----------|-----------|-------|---------------|
 | gec_6 | FHWA-SA-02-054 Shallow Foundations | 13 | 121 | 10 chapters body-only; manifest ready |
-| gec_7 | FHWA-NHI-14-007 Soil Nail Walls | 15 | 101 | All 10 chapters; ch 1-5 body-only (not built from the print), ch 6-10 with equations, figures and tables, checked against the print page by page (REF-04, 2026-10-30) |
+| gec_7 | FHWA-NHI-14-007 Soil Nail Walls | 15 | 101 | All 10 chapters with equations, figures and tables; ch 1-5 rebuilt from the print, ch 6-10 checked against the print page by page (REF-04, 2026-10-30) |
 | gec_10 | FHWA-NHI-18-024 Drilled Shafts (2018) | 12 | 195 | All 18 chapters complete (ch 1-18) |
 | gec_11 | FHWA-NHI-10-024 MSE Walls & Slopes | 17 | 130 | All 11 chapters complete (ch 1-11) |
-| gec_12 | FHWA-NHI-16-009 Driven Piles | 16 | 147 | All 18 chapters; Vol I (ch 1-8) body-only; Vol II (ch 9-18) with equations, figures and tables, checked against the print page by page (REF-04, 2026-10-30); Vol II appendices A-C not built |
+| gec_12 | FHWA-NHI-16-009 Driven Piles | 16 | 147 | All 18 chapters; Vol I (ch 1-8) body-only, its ch 7 top-level sections 7.1-7.10 rebuilt from the print (REF-04); Vol II (ch 9-18) with equations, figures and tables, checked against the print page by page (REF-04, 2026-10-30); Vol II appendices A-C not built |
 | gec_13 | FHWA-NHI-16-027 Ground Modification | 18 | 168 | All 10 printed chapters (Vol I ch 1-5, Vol II ch 6-10); ch 3-10 rebuilt from the print 2026-10-19 (REF-25) |
 | micropile | FHWA-NHI-05-039 Micropile Design | 14 | 108 | 10 chapters (complete) |
 | fhwa_soils_foundations | FHWA NHI-06-088 / NHI-06-089 Soils and Foundations Reference Manual, Vols I-II (Dec 2006) | 0 | 12 | All 12 chapters (Vol I ch 1-7, Vol II ch 8-12; appendices A-E not built), 511 sections, 295 figures, 200 tagged equation numbers (formulas not typed in: app BACKLOG REF-38); read off the print by `scripts/build_printed_text.py` (REF-29): bodies are the print's own wording with page markers, no summaries or key points; 4 sections over 14,000 characters split into lettered parts (`9.2.a`), the letters not printed; Tables 4-8 and 10-1, printed as pictures, typed in from the page (manifest key `printed_tables`) |
