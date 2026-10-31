@@ -39,26 +39,88 @@
     {
       "section_id": "10.3",
       "title": "Step-by-Step Procedure: Design for Axial Load",
-      "body": "7-step LRFD design procedure: (1) Idealize subsurface profile — divide into geomaterial layers; classify each as cohesionless (GW, GP, GM, SW, SP, SM, ML), cohesive (GC, SC, CL, CH, MH), or rock. Scour conditions must be reflected in profiles. (2) Establish limit states and factored axial loads — review applicable limit states and load combinations per Chapter 8. (3) Assign geomaterial properties — cohesionless soils: SPT N60 and (N1)60, effective stress friction angle φ', σ'v; cohesive soils: undrained shear strength su; rock: uniaxial compressive strength qu, RQD, GSI. Use mean values for LRFD; COV limits: N-values ≤45%, su ≤35%. (4) Select trial lengths and diameters — L/B typically 3-30; soil depths to 100 ft and diameters to 8 ft are routine; depths to 200 ft and diameters to 12 ft are within range of well-equipped specialty contractors; rock sockets up to 50 ft possible; in-soil overburden diameter ≥6 in. larger than rock socket to allow rock drilling tools to pass. (5) Compute nominal unit side and base resistances (Step 5 — detailed design methods per Section 10.3.5). (6) Satisfy strength limit states — check ΣηiγiFi ≤ ΣφiRi; resistance factors φ per AASHTO and agency experience; iterate on length and diameter as needed. (7) Satisfy service limit states — conduct load-deformation analysis; mobilized side and base resistance at axial displacement corresponding to tolerable deformation.",
+      "body": "[pp. 10-3 to 10-4] A step-by-step LRFD procedure for drilled shafts under axial loading, depicted in the simplified flow chart of Figure 10-2 and an expanded description of Block 11 of the overall design process (Figure 8-1): (1) at each foundation location divide the subsurface strata into a finite number of geomaterial layers and assign each one type: cohesionless soil, cohesive soil or rock; (2) review the strength and service limit states to be satisfied and establish the corresponding axial load combinations and load factors for each foundation; (3) for each layer and each limit state/load case assign the geomaterial properties needed for the axial resistances; (4) select trial lengths and diameters, the minimum trial diameter possibly governed by lateral load (Chapter 9) or structural requirements (Chapter 12); (5) compute nominal unit side resistance for all layers the trial shaft passes through and nominal unit base resistance at the trial tip elevation; (6) iterating from Step 4 as necessary, adjust the trial design to satisfy the LRFD requirement for each strength limit state, Sum(eta_i gamma_i F_i) <= Sum(phi_i R_i) (Eq. 10-1), its parameters defined in Chapter 8 and resistance factors selected per AASHTO guidelines and agency experience; (7) conduct load-deformation analysis for each trial design and iterate from Step 4 as necessary to satisfy each service limit state, analyzing the side and base resistances mobilized at the axial displacement equal to the tolerable deformation of the structure. The results are combined with design for other loading modes (lateral, extreme events, structural) in the overall procedure of Chapter 8; details and examples of each step follow (10.3.1 to 10.3.8).",
       "key_points": [
-        "7-step procedure matching Block 11 of overall design process",
-        "Geomaterial classification: cohesionless, cohesive, or rock for each layer",
-        "Routine: soil to 100 ft depth, diameter to 8 ft; specialty: to 200 ft, to 12 ft diameter",
-        "In-soil overburden diameter ≥6 in. larger than rock socket for tool passage",
-        "COV limits: N-values ≤45%; su ≤35% for applying tabulated resistance factors",
-        "LRFD: ΣηiγiFi ≤ ΣφiRi for each applicable strength limit state"
+        "Seven steps: layers and types; limit states and loads; properties; trial dimensions; unit resistances; strength check; service check",
+        "Geomaterial types: cohesionless soil, cohesive soil, rock",
+        "Minimum trial diameter may be set by lateral load (Chapter 9) or structural needs (Chapter 12)",
+        "Strength check: Sum(eta gamma F) <= Sum(phi R) (Eq. 10-1); iterate from Step 4",
+        "Service check: resistances mobilized at the tolerable deformation"
       ],
       "equations": [
-        "Eq. 10-1: ΣηiγiFi ≤ ΣφiRi — LRFD check for strength limit states"
+        "Eq. 10-1: Sum(eta_i gamma_i F_i) <= Sum(phi_i R_i) - LRFD requirement for each strength limit state (parameters defined in Chapter 8)"
       ],
       "figures": [
-        "Figure 10-2: Flow chart of recommended steps for axial load design",
-        "Figure 10-3: Idealized geomaterial profile for computation of compression resistances"
+        "Figure 10-2: Flow Chart of Recommended Steps for Axial Load Design"
       ],
-      "tables": [
-        "Table 10-1: Geomaterial properties required for axial resistances — SPT N60, su, qu, RQD, GSI"
-      ],
+      "tables": [],
       "applicability": "Axial compression and uplift design for all drilled shafts"
+    },
+    {
+      "section_id": "10.3.1",
+      "title": "Idealized Geomaterial Layer Profiles (Step 1)",
+      "body": "[pp. 10-4 to 10-6] A design zone is an area where one or more drilled shafts will be installed and for which an idealized geomaterial layer profile is developed, e.g., a single bridge pier on one or more shafts, or each shaft if a boring is made at every shaft location. In each profile (Figure 10-3) each layer is assigned a number i, thickness Delta z_i and geomaterial type: (a) cohesionless soil, USCS GW, GP, GM, SW, SP, SM and ML (gravels and sands with less than 5 percent fines, gravels and sands with silty fines, and non-plastic silts); (b) cohesive soil, GC, SC, CL, CH and MH (clayey sands and gravels, lean and fat clays, and silts with liquid limit over 50); (c) rock, cohesive cemented geomaterial identified as rock on the basis of geologic origin. Dual classifications such as SM-SC and ML-CL may need laboratory direct shear or triaxial tests to decide whether drained or undrained loading governs; special or regionally important geomaterials are treated in Appendix B, and load testing with locally calibrated resistance factors is recommended for unusual or 'non-textbook' geomaterials. Scour is taken into account in the profiles: all resistances for strength and service limit states are evaluated for the scour design flood, while scour from the more severe scour design check flood is an extreme event. Scour changes subsurface stress, reduces embedment and so axial and lateral resistances, and may change the superstructure response and foundation force effects (Section 10.5; effects on axial resistance in 10.5.5). A spreadsheet or other tool is recommended at this stage, listing each layer's number, thickness and type, to which properties and side and base resistances are added in later steps.",
+      "key_points": [
+        "Design zone: one pier, or each shaft where each has a boring",
+        "Cohesionless: GW, GP, GM, SW, SP, SM, ML; cohesive: GC, SC, CL, CH, MH; rock by geologic origin",
+        "Dual classes (SM-SC, ML-CL) may need lab strength tests to choose drained or undrained analysis",
+        "Unusual geomaterials: Appendix B; load tests and local resistance factors",
+        "Strength and service resistances use the scour design flood; the check flood is an extreme event"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10-3: Idealized Geomaterial Profile for Computation of Compression Resistances"
+      ],
+      "tables": [],
+      "applicability": "Building idealized layer profiles and design zones for axial shaft design"
+    },
+    {
+      "section_id": "10.3.2",
+      "title": "Limit States and Factored Axial Loads (Step 2)",
+      "body": "[p. 10-6] For axial loading, Step 2 reviews the limit states, load combinations, load factors and scour conditions that pertain specifically to axial loading, as discussed in Section 10.2 and Chapter 8, and requires direct communication between the structural engineer and the foundation designer.",
+      "key_points": [
+        "Review axial limit states, load combinations, load factors and scour conditions (10.2, Chapter 8)",
+        "Requires direct communication between structural engineer and foundation designer"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Establishing the axial limit states and factored loads for drilled shaft design"
+    },
+    {
+      "section_id": "10.3.3",
+      "title": "Geomaterial Properties (Step 3)",
+      "body": "[pp. 10-6 to 10-7] For each layer the designer assigns the properties needed to evaluate side and base resistances (Table 10-1) for the methods of Section 10.3.5. Cohesionless soils are evaluated as fully drained, with no distinction between short- and long-term conditions. Cohesive soils are evaluated as undrained for short-term (end of construction) loading and fully drained for long-term loading; under most conditions the short-term undrained resistance is critical (less than the drained), so resistances are evaluated from su. Drained conditions may be worth considering, e.g., where a substantial portion of the shaft penetrates very heavily overconsolidated clay (OCR > 8) in which negative pore pressures can develop under short-term loading; then both are analyzed and the smaller resistance governs. In a layered profile the short-term resistance uses effective stress for cohesionless layers and total stress for cohesive layers; if the long-term drained response is critical, all layers are evaluated in effective stress. LRFD uses mean property values for each layer: compute the mean, standard deviation and COV (e.g., in a spreadsheet), plot each property with depth with a linear trend line, and select the value at layer mid-depth. To apply the Table 8-4 resistance factors the COV should not exceed 45 percent for N-values within a layer and 35 percent for undrained shear strength of a cohesive layer (CU or UU triaxial tests); otherwise obtain more data or reduce the resistance factors by judgment, and consider splitting the layer into sub-layers.",
+      "key_points": [
+        "Cohesionless: drained always; cohesive: undrained short-term usually critical, evaluated from su",
+        "Consider drained analysis too in very heavily overconsolidated clay (OCR > 8); smaller resistance governs",
+        "Use mean values at layer mid-depth from a trend line with depth",
+        "COV limits for Table 8-4 factors: 45 percent for N-values, 35 percent for su; else more data, lower phi or split layers"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 10-1: Geomaterial Properties Required for Axial Resistances - cohesionless soils (short- and long-term): SPT N-values N60 and (N1)60, average vertical effective stress sigma'v for each layer, effective stress friction angle phi'; cohesive soils: short-term undrained shear strength su, long-term effective stress cohesion and friction angle c' and phi' (1); rock: uniaxial compressive strength qu, RQD, Geological Strength Index GSI. (1) Long-term fully drained axial resistance in cohesive soils is not considered in AASHTO (2017) LRFD Specifications, design for undrained loading being assumed adequate for routine practice"
+      ],
+      "applicability": "Selecting geomaterial properties and their variability for axial shaft resistances"
+    },
+    {
+      "section_id": "10.3.4",
+      "title": "Select Trial Lengths and Diameters (Step 4)",
+      "body": "[pp. 10-7 to 10-8] Trial depths and diameters are selected for the axial force effects of each limit state from Step 2, starting from any lateral design (Chapter 9), with experience and knowledge of the ground. Rules of thumb: L/B generally 3 to 30; in soil, depths to 100 ft and diameters up to 8 ft are routine for construction in most cases; depths to 200 ft and diameters up to 12 ft are within the range of well-equipped specialty subcontractors but with increased construction risk; rock sockets up to 50 ft are possible but seldom warranted, common socket diameter B < 5 ft; sockets of 8 ft and larger are within the range of well-equipped, experienced specialty subcontractors; deeper and larger shafts are possible at premium cost and with major construction challenges; limiting depth to allow the dry method generally favors cost and inspection; a larger diameter may help remove boulders or rock fragments; structural considerations may govern, the shaft typically slightly larger than the column for installation tolerance, larger to reduce reinforcement congestion, with continuous or spliced reinforcement, in close consultation with the structural engineer; minimum concrete cover ranges from 3 to 6 inches depending on diameter (Chapter 6, project specifications, Chapter 14); overburden diameter at least 6 inches larger than the rock socket for rock drilling equipment; and for sign structures, a diameter large enough for the bearing or anchor plate. Where rock is within practical excavation depth, the base may sit on the rock, in a socket, or the shaft may 'float' above it; where all limit states can be met and scour is not an issue the most economical design usually avoids rock excavation, unless adequate resistance cannot be developed even with a very large diameter (say, up to 12 ft) and rock is close to the surface. Bearing on versus socketing depends on rock quality near the overburden interface, severe slope of the rock, and whether adequate resistance is possible without a socket; highly weathered, karstic or severely sloping rock, or scour down close to the rock surface, usually calls for a socket. In massive hard rock (e.g., qu > 10,000 psi) socketing is slow and costly, and a larger shaft bearing on the rock surface, or 6 to 12 inches into it to seal a casing, may be reasonable. A single large shaft is generally more cost effective than a group, with exceptions such as difficult access on steep slopes (smaller equipment instead of temporary walls or a trestle) or multiple small rock sockets; sometimes both options must be designed and compared on cost and constructability (groups in Chapter 11).",
+      "key_points": [
+        "L/B generally 3 to 30",
+        "Soil: to 100 ft deep and 8 ft diameter routine; to 200 ft and 12 ft for specialty subcontractors",
+        "Rock sockets up to 50 ft possible, seldom warranted; common socket B < 5 ft; 8 ft and larger for specialists",
+        "Cover 3 to 6 inches by diameter; overburden shaft at least 6 inches larger than the socket",
+        "Avoid rock excavation where all limit states are met and scour is not an issue",
+        "Massive hard rock (qu > 10,000 psi): bear on the surface or 6 to 12 inches in rather than a small socket",
+        "Single shaft usually cheaper than a group; compare where access or rock favors several small shafts"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Choosing trial shaft dimensions and whether to bear on, socket into or float above rock"
     },
     {
       "section_id": "10.3.5",
@@ -189,6 +251,48 @@
       "applicability": "Strength limit state check of a trial drilled shaft design in axial compression"
     },
     {
+      "section_id": "10.3.7",
+      "title": "Evaluate Trial Design for Service Limit States (Step 7)",
+      "body": "[pp. 10-30 to 10-37] Settlement criteria reflect structure function and type, service life and consequences of movement. Studies of tolerable bridge settlement (Moulton et al., 1985; Barker et al., 1991) led to rules of thumb such as an angular distortion between adjacent foundations of 0.008 radians in simple spans and 0.004 in continuous spans, but movement criteria are set per project with the structural engineer; a survey reported by Paikowsky et al. (2004) found tolerable bridge foundation settlement typically 0.25 to 2.0 inches. In LRFD terms the service limit state is the axial resistance at the tolerable deformation delta_service, checked by Sum(eta_i gamma_i F_i) <= Sum(phi_i R_i) (Eq. 10-30) with R_i the resistances at that deformation and phi_i and gamma_i currently taken as 1.0 (AASHTO, 2017a). Three methods are given: a simple hand method from field load tests (preliminary design, or showing settlement is not critical); numerical simulation of load transfer (layered soil and rock, planning load tests, cases where settlement may govern); and closed-form solutions for shafts on or socketed into rock or very dense geomaterials (details in Appendix C). COHESIONLESS AND COHESIVE SOILS, SIMPLE METHOD [pp. 10-30 to 10-35]: load test data normalized by the nominal resistance and plotted against displacement normalized by B give an average curve, a crude first-order estimate given the scatter, suited to preliminary analyses or checking whether deformation matters. The earlier O'Neill and Reese (1999) separate side and base curves are in Appendix C; Figure 10-10, adapted from Chen and Kulhawy (2002) from a worldwide database of compression tests on straight-sided shafts (46 data points for cohesionless and 56 for cohesive soils), combines both. Each curve is linear to delta/B = 0.4% at 50% normalized force, nonlinear between 0.4% and 4.0%, where the force at 4.0% is the interpreted failure threshold, and beyond it constant at 100% for cohesive soils and still rising for cohesionless soils. The axial force includes the shaft weight W; for cohesive soils the failure threshold is R_SN + R_BN, and for cohesionless soils R_SN plus the base resistance at delta/B = 4.0%, so the Eq. 10-14 base resistance (developed at 5 percent) is multiplied by 0.71. The data cover diameters 1 ft to 6.5 ft, depths 16 ft to 200 ft and depth/diameter 5.8 to 56.4, and use of the curves is limited to those ranges; displacements are butt displacements, including elastic shortening. Procedure: (1) failure threshold = R_SN + R_BN = Q_c + W (Eq. 10-31; the step cites 'Step 11-6' and the text 'Equation 10-30', as printed), W being the effective weight (total above and buoyant below the water table); (2) R_SN and R_BN from 10.3.5.2 for cohesive soils, and for cohesionless soils beta-method side resistance (10.3.5.1) and 0.71 times the Eq. 10-14 base resistance; (3) normalize the tolerable settlement, delta_service/B in percent; (4) read the normalized force from Figure 10-10; (5) multiply by the failure threshold to get the axial compressive force = R_service + W and subtract W; (6) use R_service in the right side of Eq. 10-1. Chen and Kulhawy (2002) used the beta method, the alpha method and bearing capacity theory for cohesive base resistance ('the methods presented in Section 13.3.3', as printed). The curves are average behavior, not rigorous predictions; in mixed profiles the base soil type sets the base resistance and the curve to use. Illustrative Example 10-6 [pp. 10-33 to 10-35]: the trial shaft of Examples 10-1 to 10-5, Service I tolerable settlement 1.5 inch under 575 kips; R_SN = 197.2 + 635.6 + 479.7 = 1,312.5 kips, R_BN = 453.6 kips, W = pi/4 (5 ft)^2 [15 ft (150 pcf) + 45 ft (150 - 62.4 pcf)] = 121,580 lb = 121.6 kips; failure threshold 1,766.1 kips; delta/B = 1.5/60 = 2.5%, normalized load 93% on the cohesive curve (Figure 10-11; 'Figure 13-10' in the step, as printed); R_service + W = 0.93 (1,766.1) = 1,642.5 kips, R_service = 1,521 kips > 575 kips, easily satisfied. Expected settlement: (575 + 121.6)/1,766 = 0.39 = 39 percent, normalized displacement 0.40% x (39/50) = 0.31%, settlement 0.0031 x 60 = 0.19 inch, under 0.2 inch. NUMERICAL SIMULATION OF LOAD TRANSFER [pp. 10-35 to 10-36]: for layered profiles or many load cases, the shaft is a linear spring and each layer a nonlinear t-z spring (cantilever spring and friction block), with a q-w_b spring at the base (Figure 10-12); the governing differential equation (Appendix D) is solved numerically, usually by finite differences, in commercial software. Accuracy depends entirely on the t-z and q-w_b curves, which research cannot yet predict with confidence for all conditions and which may depend on construction; on major projects instrumented design-phase load tests calibrate site-specific curves, assuming production shafts are built with similar methods and tools. APPROXIMATE CLOSED-FORM SOLUTIONS [pp. 10-36 to 10-37]: spreadsheet solutions for shafts in rock or very dense geomaterials, agreeing with elastic-plastic theory, finite element analysis and load test back-analysis, predict the top-of-socket displacement w_c under Q_c for an elastic cylinder (depth D, diameter B, E_c, nu_c) in rock mass (E_r, nu_r) over base rock (E_b, nu_b), with average axial stress sigma_b = 4Q_c/(pi B^2) (Figure 10-13); cases: rock-socketed shafts (Carter and Kulhawy, 1988) and shafts in dense cohesionless soils with SPT N-values > 50 (Mayne and Harris, 1993). The equations and inputs are given in Appendix C, the solutions in Appendix D (both as printed).",
+      "key_points": [
+        "Tolerable angular distortion often 0.008 rad (simple spans) and 0.004 rad (continuous); tolerable settlement typically 0.25 to 2.0 in.",
+        "Service check Eq. 10-30 with resistances at the tolerable deformation; phi and gamma = 1.0",
+        "Simple method (Figure 10-10, Chen and Kulhawy, 2002): linear to 0.4% of B at 50%, failure threshold at 4.0%",
+        "Cohesionless base resistance from Eq. 10-14 multiplied by 0.71 for 4% displacement",
+        "Valid for B 1 to 6.5 ft, depth 16 to 200 ft, D/B 5.8 to 56.4",
+        "Failure threshold = R_SN + R_BN = Q_c + W (Eq. 10-31)",
+        "Example 10-6: threshold 1,766.1 kips; R_service 1,521 kips > 575 kips; settlement about 0.19 in.",
+        "t-z / q-w_b numerical model; calibrate with instrumented load tests on major projects",
+        "Closed-form solutions for rock sockets (Carter and Kulhawy, 1988) and dense sands N > 50 (Mayne and Harris, 1993)"
+      ],
+      "equations": [
+        "Eq. 10-30: Sum(eta_i gamma_i F_i) <= Sum(phi_i R_i) - service limit state; R_i = resistances at the tolerable axial deformation; phi_i and gamma_i currently 1.0 (AASHTO, 2017a)",
+        "Eq. 10-31: failure threshold = R_SN + R_BN = Q_c + W - Q_c = compressive force at the shaft top; W = effective weight of the shaft (cited in the text as Equation 10-30)"
+      ],
+      "figures": [
+        "Figure 10-10: Normalized Load-Displacement Curve, Drilled Shaft in Axial Compression (Adapted from Chen and Kulhawy, 2002)",
+        "Figure 10-11: Analysis of Service Limit State Displacement for Example 10-6",
+        "Figure 10-12: Mechanistic Model of Axially Loaded Drilled Shaft (after Reese et al., 2006)",
+        "Figure 10-13: Axially Loaded Shaft in Rock or Very Hard Geomaterial, Elastic Analysis"
+      ],
+      "tables": [],
+      "applicability": "Service limit state settlement checks of single drilled shafts in soil and rock"
+    },
+    {
+      "section_id": "10.3.8",
+      "title": "Final Trial Design for Axial Compression",
+      "body": "[p. 10-37] The procedure is iterative: trial designs (Step 4) are evaluated for strength (Steps 5 and 6) and service (Step 7) limit states, and if a trial fails one or more limit states, or greatly exceeds all of them where a more economical design is possible, its dimensions are modified and re-analyzed through Steps 5, 6 and 7 until all applicable limit states for axial compression satisfy the LRFD criterion (Eq. 10-1). For compression this completes the procedure of Figure 10-2, Block 11 of the overall design process (Chapter 8).",
+      "key_points": [
+        "Iterate Steps 5 to 7 until all compression limit states satisfy Eq. 10-1",
+        "Also resize a trial that greatly exceeds all limit states",
+        "Completes Block 11 of the Chapter 8 process for compression"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Iterating trial shaft dimensions to a final axial compression design"
+    },
+    {
       "section_id": "10.4",
       "title": "Design for Uplift",
       "body": "[pp. 10-37 to 10-40] Uplift arises, for example, where moment on a pier footing is resisted by a couple of uplift in shafts on one side and compression in shafts on the other (Figure 10-14), and from construction loads, adjacent-span loading, seismic and impact events. A shaft in uplift is resisted by its weight and by side resistance on the shaft-geomaterial interface (Figure 10-15). AASHTO (2017a) requires uplift resistance of a single straight-sided shaft to be estimated in a manner similar to side resistance in compression, so nominal unit side resistances come from the methods of Section 10.3.5. Base resistance (tip suction) is not relied on: its prediction is not sufficiently reliable. The shaft weight is treated as a negative force effect on the left side of Eq. 10-1, not as resistance, so the strength limit state is Sum(phi_i R_i) = Sum over i = 1 to n of phi_S,i R_SN,i (numbered 10-32 in the print, p. 10-39). Resistance factors for uplift side resistance are in Table 8-4; the uplift values are less by 0.10 than the equivalent compression factors (Allen, 2005; AASHTO, 2017a), an interim procedure pending reliability-based calibration. Where side resistance comes from one or more static uplift load tests at the site, AASHTO (2017a) allows phi = 0.60 for all geomaterials, applied with judgment on how well production shafts match the test conditions; otherwise a lower factor is used. If the uplift is caused by an extreme event (earthquake, ice, vessel impact), the uplift resistance factor can be taken as 0.80 (p. 10-40).",
@@ -213,12 +317,9 @@
     {
       "section_id": "10.5",
       "title": "Design for Scour",
-      "body": "Scour reduces effective shaft length contributing to axial resistance. Design flood scour (Strength I): remove side and base resistance from scoured zone; check adequate resistance remains; also re-check lateral load resistance with reduced embedment. Scour check flood (Extreme Event II): more severe scour; check shaft tip depth provides adequate resistance. Three types of scour: general scour (entire channel cross-section), contraction scour (narrowing of flow area), local scour (around piers). Degradation scour (long-term channel bed lowering) must also be assessed. Side resistance above final scour elevation NOT counted. AASHTO: γEQ = 0.5 for Extreme Event II. Where scour controls, shaft must be extended deeper into the non-scoured stratum.",
+      "body": "[p. 10-40] Design for scour: 10.5.1 Background and Definitions; 10.5.2 Design Philosophy for Scour; 10.5.3 Analysis and Prediction of Scour; 10.5.4 Application to Drilled Shaft Design; 10.5.5 Effects of Scour on Axial Resistance.",
       "key_points": [
-        "Scour: remove side and base resistance from scoured zone for all limit states",
-        "Design flood scour: Strength I; Check flood scour: Extreme Event II",
-        "Degradation scour (long-term) must be assessed in addition to design and check flood scour",
-        "Side resistance above final scour elevation not counted"
+        "Subsections: definitions, design philosophy, scour analysis, application to shafts, effects on axial resistance"
       ],
       "equations": [],
       "figures": [],
@@ -226,15 +327,97 @@
       "applicability": "Drilled shaft design in stream environments subject to scour"
     },
     {
+      "section_id": "10.5.1",
+      "title": "Background and Definitions",
+      "body": "[p. 10-40] Bridge scour is the loss of soil by erosion from water flowing around bridge supports. Total scour at a highway crossing comprises (1) long-term aggradation and degradation of the river bed, (2) contraction scour at the bridge and (3) local scour at piers or abutments. Aggradation is the progressive buildup of the channel bed by sediment deposition and degradation its progressive lowering by erosion, both predicted to occur without the bridge. Contraction is narrowing of the channel by bridge construction or other factors, and contraction scour the removal of material across all or most of the channel width from the increased velocity. Local scour is erosion around obstacles from localized flow acceleration and vortices, at piers and abutments. Total scour is the sum of long-term degradation, contraction scour and local scour (Figure 10-16). Effects for drilled shaft design: changes in subsurface stress, reduced embedment and geotechnical resistances, and possible changes in structure response and foundation force effects. Channel migration, the lateral migration of an alluvial channel across its floodplain by bank erosion and point bar deposition, is not a specific scour component but can likewise remove or build up soil at piers and abutments.",
+      "key_points": [
+        "Total scour = long-term degradation + contraction scour + local scour (Figure 10-16)",
+        "Aggradation/degradation occur without the bridge; contraction scour from channel narrowing; local scour at piers and abutments",
+        "Effects: stress changes, reduced embedment and resistance, changed structural response",
+        "Channel migration can also remove or add soil at supports"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10-16: Components of Scour Affecting Bridge Supports on Deep Foundations"
+      ],
+      "tables": [],
+      "applicability": "Definitions of scour components affecting drilled shaft foundations"
+    },
+    {
+      "section_id": "10.5.2",
+      "title": "Design Philosophy for Scour",
+      "body": "[pp. 10-40 to 10-42] HEC-18, 'Evaluating Scour at Bridges' (Arneson et al., 2012), gives practical scour analysis methods and design procedures. Foundations for new bridges should withstand scour from floods larger than the hydraulic design flood, which the Owner selects on a risk basis; the minimum scour design flood and scour design check flood then follow Table 10-4 (QD = flood with a return interval of D years): hydraulic design Q10, scour design Q25, check Q50; Q25, Q50, Q100; Q50, Q100, Q200; Q100, Q200, Q500. Both scour floods exceed the hydraulic design flood, because that flood has a reasonably high likelihood of being exceeded in the service life and greater scour could cause failure, and for redundancy. Bridges must not fail under the worst conditions of the scour design flood and should be checked not to fail under the scour design check flood; the check flood is an extreme event, the scour design flood is not, and its scour applies to all strength and service limit states. Concepts: (1) design by an interdisciplinary team with hydraulic, geotechnical and structural expertise; (2) hydraulic studies are a necessary part of bridge design, covering waterway opening size (for upstream and downstream landowners and safe foundations) and scour calculations, scoped to the complexity, highway importance and consequences of failure; (3) scour formulas have limitations, so results are compared by judgment with site data: performance of existing structures in past floods, regulation and control of flood discharges, hydrologic characteristics and flood history, structural redundancy, and historical channel migration; (4) approach damage from rare floods is quickly repaired, but scour collapse or major damage creates safety hazards and long social and economic losses, so a higher hydraulic standard is warranted for foundations than for approaches.",
+      "key_points": [
+        "Scour design and check floods exceed the hydraulic design flood (Table 10-4, from HEC-18 Table 2.1)",
+        "Q10 -> Q25 / Q50; Q25 -> Q50 / Q100; Q50 -> Q100 / Q200; Q100 -> Q200 / Q500",
+        "Scour design flood: all strength and service limit states; check flood: extreme event",
+        "Interdisciplinary team; compare scour predictions with site history and judgment",
+        "Higher hydraulic standard for foundations than for approaches"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 10-4: Flood Frequencies for Hydraulic Design, Scour Design, and Scour Design Check Floods (based on Table 2.1, HEC-18) - hydraulic design Q10: scour design Q25, check Q50; Q25: Q50, Q100; Q50: Q100, Q200; Q100: Q200, Q500"
+      ],
+      "applicability": "Selecting scour design and check floods for bridge foundations"
+    },
+    {
+      "section_id": "10.5.3",
+      "title": "Analysis and Prediction of Scour",
+      "body": "[pp. 10-42 to 10-43] Scour is addressed in three stages: (1) a stream stability and geomorphic assessment per HEC-20, 'Stream Stability at Highway Structures' (Lagasse et al., 2012); (2) a scour analysis per HEC-18 (Arneson et al., 2012), which includes foundation design and is most relevant to drilled shafts (flow chart, Figure 10-17), existing scour-critical bridges going to a new design or Stage 3; (3) a plan of action for countermeasures, not applicable to new designs. Hydrologic and hydraulic analyses are usually by a hydraulic specialist with geotechnical input (subsurface profiles from borings and geophysics, USCS classification, erodibility of units), structural input (number, location and geometry of piers and abutments) and civil input (approach embankment limits, hydraulic structures through them). A scour prism is developed for each pier and abutment, and the team evaluates strength, service and extreme event limit states of the foundations with the scour prism removed; if unstable, the design is modified (longer bridge, longer spans, number, size and arrangement of shafts) or countered. Foundations are generally designed for the predicted scour rather than relying on measures such as rip-rap, whose long-term effectiveness is typically unreliable. Methods for degradation, contraction and local scour are in HEC-18 and not repeated; the principal output is the scour prism, the total volume removed by scour.",
+      "key_points": [
+        "Stages: stream stability (HEC-20), scour analysis with foundation design (HEC-18, Figure 10-17), countermeasures (not for new designs)",
+        "Geotechnical input: profiles, USCS classes, erodibility",
+        "Design for the scour prism at each pier and abutment rather than relying on rip-rap"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10-17: Flow Chart for Hydrology, Hydraulics, and Scour Analysis by HEC-18 (Adapted from Arneson et al., 2012)"
+      ],
+      "tables": [],
+      "applicability": "Scour analysis process and scour prism for drilled shaft design"
+    },
+    {
+      "section_id": "10.5.4",
+      "title": "Application to Drilled Shaft Design",
+      "body": "[pp. 10-43 to 10-44] AASHTO (2017a) requires two scour conditions: design flood scour for strength and service limit states, and check flood scour for the extreme limit state. The commentary to Article 10.5.5.2.1: 'Scour design for the design flood must satisfy the requirement that the factored foundation resistance after scour is greater than the factored load determined with the scoured soil removed. The resistance factors will be those used in the Strength Limit State, without scour.' So the Table 8-4 resistance factors apply to strength limit states under design flood scour, and the Table 8-4 Extreme Event II factors to the check flood. For each strength or service evaluation all material in the scour prism above the total scour line is removed and unavailable for axial or lateral support; the stress changes differ for scour over a large area (degradation and contraction) and a small area (local scour), the degraded and contracted streambed having the greater influence on stresses along the embedded length where local scour is limited. In Figure 10-18 the streambed drops from point A to point B by degradation plus contraction scour, with a local scour hole of depth ys (HEC-18) and a suggested top width w of 2.0 ys on each side of the pier (Arneson et al., 2012). Vertical stress is zero at the top of the embedded length (point C), is controlled by streambed elevation B at embedment of 1.5 ys or more, and varies linearly over the depth 1.5 ys.",
+      "key_points": [
+        "Design flood scour: strength and service with Table 8-4 strength factors; check flood: Extreme Event II factors",
+        "Remove all soil in the scour prism above the total scour line",
+        "Local scour hole top width 2.0 ys each side (Arneson et al., 2012)",
+        "Vertical stress zero at the embedded top, rising linearly to the degraded streambed value at 1.5 ys"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10-18: Illustration of Scour Prism and Effects on Drilled Shaft"
+      ],
+      "tables": [],
+      "applicability": "Applying scour prisms and stress changes to drilled shaft design"
+    },
+    {
+      "section_id": "10.5.5",
+      "title": "Effects of Scour on Axial Resistance",
+      "body": "[p. 10-45] Scour enters the beta-method side resistance in cohesionless soils (10.3.5.1) through sigma'_v in f_SN = sigma'_v beta (Eq. 10-7, reprinted), so the vertical stress changes of Figure 10-18 are applied over the portion in cohesionless layers. In cohesive soils (alpha method, 10.3.5.2) su and unit side resistance can be assumed unchanged by scour, and rock strength and resistances likewise. Other issues: column action from the longer unsupported length after scour; overlapping local scour holes at piers and abutments make scour indeterminate and possibly deeper, the top width on each side ranging from 1.0 to 2.8 times the local scour depth, 2.0 suggested; placing the top of a shaft-supported footing or cap below the streambed at the long-term degradation plus contraction scour depth minimizes obstruction and local scour, lower still where shafts could be eroded by river or tidal currents, though in deep water a cap at or above the mudline or at the waterline may be more cost effective; stub abutments in the embankment should be on shafts or piles extending below the thalweg (lowest streambed elevation) including long-term degradation and contraction scour, in case the thalweg shifts; and contraction and local scour estimates must consider any foundation cap and pier protection system.",
+      "key_points": [
+        "Cohesionless: scour lowers sigma'_v in f_SN = sigma'_v beta (Eq. 10-7)",
+        "Cohesive soil and rock resistances assumed unchanged by scour",
+        "Check column action over the longer unsupported length",
+        "Local scour top width 1.0 to 2.8 times depth, 2.0 suggested; overlapping holes may be deeper",
+        "Stub abutment foundations below the thalweg including degradation and contraction scour"
+      ],
+      "equations": [
+        "Eq. 10-7: f_SN = sigma'_v beta - beta-method unit side resistance, reprinted on p. 10-45; scour changes sigma'_v"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Adjusting axial side resistance for scour in cohesionless, cohesive and rock layers"
+    },
+    {
       "section_id": "10.6",
       "title": "Downdrag",
-      "body": "Downdrag occurs when soil settles relative to shaft, reversing side resistance direction from upward (positive) to downward (negative). Common causes: consolidation of soft soils under fill or surcharge; liquefaction-induced ground settlement; drainage of soft soils. AASHTO: downdrag is a load effect (DD, factored by γDD = 1.25 for Strength I and IV); added to structural load demands. Shaft length must be sufficient that resistance below neutral plane (where side resistance reverses) equals sum of factored structural loads plus factored downdrag. Strategies to reduce downdrag: bituminous coating on shaft (reduces side adhesion in settling stratum); preloading or surcharging fill before construction; slender shafts in settling zone; use of pile isolation collar. Post-liquefaction downdrag: shaft settles with liquefied zone; combined kinematic + downdrag loading; compute using residual strength of liquefied soils.",
+      "body": "[p. 10-45] Downdrag: 10.6.1 Occurrence; 10.6.2 Downdrag - Basic Concepts and Analysis; 10.6.3 Strategies to Address Downdrag.",
       "key_points": [
-        "Downdrag: soil settles relative to shaft; reverses side resistance to downward force",
-        "AASHTO: downdrag is load DD; γDD = 1.25 for Strength I and IV",
-        "Neutral plane: depth where cumulative side resistance equals structural + downdrag loads",
-        "Mitigation: bituminous coating; preloading; slender shafts in settling zone",
-        "Post-liquefaction downdrag: kinematic + downdrag; use residual strength of liquefied soils"
+        "Subsections: occurrence, neutral plane concepts and analysis, strategies"
       ],
       "equations": [],
       "figures": [],
@@ -242,10 +425,86 @@
       "applicability": "Drilled shafts in settling soils; fills over soft ground; post-liquefaction conditions"
     },
     {
+      "section_id": "10.6.1",
+      "title": "Occurrence",
+      "body": "[pp. 10-45 to 10-47] Downdrag is the downward movement of a deep foundation from drag loads transferred by shear from surrounding soil that moves down (settlement or slope movement); Briaud and Tucker (1997) note reports of 'extreme movements, differential settlements, and extensive damage' including highway bridges. Bridge abutments (Figure 10-19) are a common case: shafts, abutment and then fill, with settlement of fill (virtually any fill compresses with time, especially if poorly compacted) and of native soil under the fill, time-dependent in clay, which may also squeeze laterally against the shafts. Settling soils include loose sand (also from cyclic loading by earthquakes, traffic or groundwater fluctuation), soft to medium stiff clay, recent fill and liquefied soils; fill such as an approach embankment or lowered groundwater can induce consolidation long after installation. Briaud and Tucker (1997) criteria, any one requiring downdrag consideration: total ground settlement over 4 inches; settlement after installation over 0.4 inch; embankment height over 6 ft; compressible layer thicker than 30 ft. AASHTO (2017a) includes drag load DD in Strength I through V (Tables 8-2 and 8-3), implying it is resisted at both geotechnical and structural strength limits; this manual differs, concluding that drag forces are non-existent at the geotechnical strength limit, since the shaft movement to reach it would exceed the soil's, and should be limited to the structural strength limit state. For a shaft bearing in hard or stiff material drag can fully develop and factored drag loads are included for the structural check, though they are unlikely to control a solid reinforced concrete shaft. The tip elevation is typically controlled by penetrating through the strata causing downdrag. DD is also in the AASHTO Service I combinations, and downward movement is addressed in the geotechnical service limit state.",
+      "key_points": [
+        "Drag loads come from soil settling relative to the shaft; abutments are common (Figure 10-19)",
+        "Consider downdrag if ground settlement > 4 in., post-installation settlement > 0.4 in., fill > 6 ft, or compressible layer > 30 ft (Briaud and Tucker, 1997)",
+        "This manual, unlike AASHTO: drag load not at the geotechnical strength limit, only the structural strength limit",
+        "Drag rarely controls a solid concrete shaft; tip set by penetrating the downdrag strata",
+        "Downward movement checked at the service limit state (DD in Service I)"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10-19: Common Sources of Downdrag at Drilled Shaft Supported Bridge Abutments"
+      ],
+      "tables": [],
+      "applicability": "Recognizing downdrag conditions for drilled shafts and the limit states it affects"
+    },
+    {
+      "section_id": "10.6.2",
+      "title": "Downdrag - Basic Concepts and Analysis",
+      "body": "[pp. 10-47 to 10-48] The neutral plane is the depth above which the shaft carries drag forces and below which it develops resistance to the downward forces, the structure load plus drag load (Fellenius, 2006); establishing it is essential in any downdrag analysis. In Figure 10-20 Curve A is the nominal resistance Rn minus side resistance with depth and Curve B the sustained top load Q plus downdrag (assumed equal to side resistance); the neutral plane is at their intersection. The FHWA approach is in Section 7.3.6.1 of GEC 12 (Hannigan et al., 2016), the neutral plane method of Fellenius (1989) modified by Siegel et al. (2013), in LRFD form for the structural strength and geotechnical service limit states, needing the nominal sustained load at the shaft top, stratigraphy and layer parameters, load-deformation models (instrumented load tests, or t-z and q-z models) and fill placement amount, extent and timeline. Nominal unit drag load f_DN uses the 10.3.5 side resistance methods: beta for cohesionless soils, alpha for short-term undrained cohesive soils, and effective stress for long-term cohesive conditions where appropriate. Post-liquefaction drag is in 10.7 and groups in Chapter 11.",
+      "key_points": [
+        "Neutral plane: drag above, resistance below; intersection of Curves A and B (Figure 10-20)",
+        "Method: GEC 12 Section 7.3.6.1 (Fellenius, 1989, modified by Siegel et al., 2013)",
+        "Checks structural strength and geotechnical service limit states",
+        "Unit drag load f_DN from the beta, alpha or effective stress side resistance methods"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 10-20: Neutral Plane Concept (after Goudrealt and Fellenius 1994)"
+      ],
+      "tables": [],
+      "applicability": "Neutral plane analysis of drag load on drilled shafts"
+    },
+    {
+      "section_id": "10.6.3",
+      "title": "Strategies to Address Downdrag",
+      "body": "[p. 10-49] Axial resistance can be increased by increasing shaft size or adding shafts; a larger diameter attracts more drag load, while added length adds resistance without more drag and is more effective in most cases. Measures to reduce downdrag (Briaud and Tucker, 1997, for driven piles, also applicable): preloading to induce settlement before construction; lightweight fill to reduce surface load; permanent steel casing, with or without coating, to reduce adhesion in the downdrag zone; preventing contact with the compressible soils, e.g., permanent double casing with the annulus filled with a material such as styrofoam beads, limited to cases where lateral loading is not significant; and ground improvement to stiffen compressible layers. A larger diameter with fewer shafts in a group could reduce total downdrag on the foundation. Both approaches (changing the shafts or reducing settlement) should be considered and chosen on cost, constructability and project requirements.",
+      "key_points": [
+        "Lengthening adds resistance without more drag; widening attracts more drag",
+        "Reduce downdrag: preloading, lightweight fill, permanent casing, double casing with styrofoam annulus, ground improvement",
+        "Compare shaft changes with settlement reduction on cost and constructability"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Mitigating downdrag on drilled shafts"
+    },
+    {
+      "section_id": "10.7",
+      "title": "Seismic Considerations",
+      "body": "[pp. 10-49 to 10-52] LRFD seismic analysis and design of bridges is in the NHI manual by Marsh et al. (2014). The AASHTO Extreme Event I combination includes EQ; the structural engineer provides the factored axial demands and the shafts are designed to Eq. 10-1, using the 10.3.5 resistances with four seismic issues: effective stress reduction from excess pore pressure, liquefaction or cyclic softening, post-liquefaction downdrag, and extreme event resistance factors. EFFECTIVE STRESS [pp. 10-50 to 10-51]: in saturated loose granular soils excess pore pressure reduces sigma'_v and so beta-method side resistance (Eq. 10-7) even without liquefaction, to be considered for cohesionless layers at Extreme Event I. With r_u = Delta u / sigma'_v0 (Eq. 10-33), liquefaction occurs as r_u approaches 1; for 0 <= r_u < 1 the modified beta method f_SN = sigma'_v0 (1 - r_u) beta = sigma'_v0 (1 - r_u) K_o tan(delta) (Eq. 10-34; Boulanger and Brandenberg, 2004) applies, other parameters as pre-earthquake. r_u for FS_liq > 1 (triggering per Chapter 9) can be estimated from the Marcuson et al. (1990) fit r_u = 1/[1 + 15(FS_liq - 1.0)] (Eq. 10-35) or, since shear strain relates more closely to pore pressure generation, from gamma_max by Cetin and Bilge (2012) (Eq. 10-36, D_R in percent), shown by them to predict r_u more accurately than stress-based approaches. Apply to layers with FS_liq between 1.0 and 1.5; above 1.5 significant pore pressure is not expected, though the limit could be raised for critical projects in high seismic regions; for r_u close to 1.0 take a lower bound side resistance equal to the residual undrained strength su,r (Chapter 9). STRENGTH REDUCTIONS [pp. 10-51 to 10-52]: liquefied soil resistance (some fraction of su,r) can be taken as zero at Extreme Event I; blast tests by Rollins et al. (2018) confirmed essentially zero side resistance in liquefied soil and about pre-shaking side resistance in non-liquefied layers above, but AASHTO (2017a) 10.8.4 neglects side resistance in all layers above a liquefied zone; this likely underestimates resistance, but the tests are too limited for a general rule, so engineers should use judgment before neglecting it, particularly for thick non-liquefied soil over a thin liquefied layer. A shaft tip should never bear immediately above or in a liquefiable layer, which may govern tip elevation. Cyclic softening of saturated cohesive soils (Chu et al., 2008), most in sensitive low-OCR clays, can be approximated with the alpha method using 80 percent of the CIUC su (10.3.5.2); explicit procedures (Idriss and Boulanger, 2008) are rarely warranted except for major structures in critical seismic zones. POST-LIQUEFACTION DOWNDRAG [p. 10-52]: reconsolidation of liquefied layers and settlement of overlying layers cause drag loads, maximum at the end of reconsolidation (settlement after Ishihara and Yoshimine, 1992, in Idriss and Boulanger, 2008); drag from previously liquefied layers is 50 percent of the pre-earthquake beta-method side resistance (Rollins et al., 2018), and static side resistance above the liquefied zone. AASHTO (2017a) includes these DD loads as permanent loads in Extreme Event I with a load factor of 1.0 (consolidation drag excluded), but since reconsolidation occurs hours or days after shaking this appears misguided, and post-liquefaction drag loads should be considered only for structural strength and service limit states (10.6). EXTREME EVENT I RESISTANCE FACTORS [p. 10-52]: in Eq. 10-1, 1.0 for compression and 0.80 for uplift of single shafts under earthquake loading, the lower uplift value reflecting greater uncertainty in side-only resistance.",
+      "key_points": [
+        "Seismic issues: pore pressure, liquefaction or cyclic softening, post-liquefaction downdrag, resistance factors",
+        "Modified beta f_SN = sigma'_v0 (1 - r_u) beta for 0 <= r_u < 1 (Eq. 10-34); r_u from Eq. 10-35 or 10-36",
+        "Apply for FS_liq 1.0 to 1.5; lower bound side resistance su,r",
+        "Liquefied soil side resistance taken as zero; AASHTO 10.8.4 also neglects layers above (judgment advised)",
+        "Never bear the tip in or just above a liquefiable layer",
+        "Cyclic softening: alpha method with 80 percent of CIUC su",
+        "Post-liquefaction drag: 50 percent of pre-earthquake beta side resistance; structural strength and service only (manual's view)",
+        "Extreme Event I: phi = 1.0 compression, 0.80 uplift"
+      ],
+      "equations": [
+        "Eq. 10-33: r_u = Delta u / sigma'_v0 - excess pore water pressure ratio (pre-earthquake vertical effective stress)",
+        "Eq. 10-34: f_SN = sigma'_v0 (1 - r_u) beta = sigma'_v0 (1 - r_u) K_o tan(delta) - modified beta method for 0 <= r_u < 1 (Boulanger and Brandenberg, 2004)",
+        "Eq. 10-35: r_u = 1 / [1 + 15(FS_liq - 1.0)] - hyperbolic fit to Marcuson et al. (1990), FS_liq > 1",
+        "Eq. 10-36: r_u = exp{ln[1 - exp(-((-0.407 gamma_max)/(-0.486 + 0.025 ln sigma'_v0 - D_R/100)) * (0.620/(1 + gamma_max) + 1))]} - Cetin and Bilge (2012); D_R relative density in percent, gamma_max maximum cyclic shear strain"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Seismic reductions of axial shaft resistance, liquefaction drag and extreme event factors"
+    },
+    {
       "section_id": "10.8",
       "title": "Summary",
-      "body": "Chapter presented step-by-step LRFD procedure for design of drilled shafts under axial loading. Three geomaterial types (cohesionless, cohesive, rock) each with appropriate side and base resistance methods. Resistance factors depend on whether load testing is included in the project. Special considerations include scour, downdrag, and seismic effects on axial resistance. Design methods consistent with AASHTO LRFD 2017a.",
-      "key_points": [],
+      "body": "[p. 10-52] Axial design is one of the major steps of the overall design and construction process (Chapter 8). The chapter presents concepts and methods for LRFD design of single drilled shafts under axial loading, equations for nominal side and base resistance for each geomaterial category, examples of LRFD limit state checks in axial compression, and an idealized load-settlement model based on load test observations for evaluating the Service I limit state of shafts in soil; more rigorous load-displacement methods are in Appendix C.",
+      "key_points": [
+        "LRFD axial design of single shafts by geomaterial category, with worked limit state checks",
+        "Load test based load-settlement model for Service I; rigorous methods in Appendix C"
+      ],
       "equations": [],
       "figures": [],
       "tables": [],
