@@ -37,39 +37,158 @@
     {
       "section_id": "7.3",
       "title": "Placement of Concrete",
-      "body": "Concrete placement must be carefully planned for dry, cased, or wet excavation conditions. Dry excavation: free-fall placement allowed if concrete directed down through center of shaft via drop chute — concrete must not hit reinforcing cage or excavation sides; flexible hose not recommended; use stiff pipe drop chute or truck chute; free-fall distances up to 80 ft without problems for dry-mix concrete (Kiefer and Baker 1994, Bru et al. 1991, Baker and Gnaedinger 1960); highly flowable tremie concrete must NOT be placed by free fall (may segregate). Acceptable water at bottom of dry hole: <3 inches deep; no substantial inflow. Maximum seepage rate for dry placement: <12 inches/hour (1 inch/5 minutes); if exceeded, flood excavation and use tremie. Dry shaft with temporary casing: concrete head inside casing must exceed external fluid pressure at all times during casing extraction; overfill to account for volume filling annular space and cavities; concrete must retain workability through duration of casing extraction to prevent arching. Telescoping casing: concrete must fill void from bottom up as each section is removed; manage extraction sequence carefully to prevent water entrapment. Wet excavation (tremie or pumpline): use 'tremie concrete' mix; gravity tremie most common for depths >60 ft; pumpline also effective. Tremie requirements: steel only (no aluminum or PVC); inside diameter 8-12 in. (10 in. minimum for gravity tremie); watertight connections; smooth interior; clean (no hardened concrete). Segmental tremie for deeper shafts — disassembled as raised. Two methods to initiate concrete: (1) closed tremie with sacrificial closure plate; (2) open tremie with traveling plug. During placement: tremie bottom must remain ≥10 ft below rising concrete surface to prevent slurry/concrete mixing; slurry pumped to holding tank for reuse or disposal.",
+      "body": "[p. 7-2] Concrete placement must be carefully planned and executed to suit the methods of construction in Chapter 3. The subsections describe placement in dry excavations (7.3.1), in dry excavations within a cased hole (7.3.2) and in wet excavations (7.3.3: gravity tremie, pump, and the importance of slurry properties and bottom cleanliness), and completion at the shaft head (7.3.4).",
       "key_points": [
-        "Dry placement: free fall up to 80 ft with drop chute centering; concrete must not hit rebar or walls",
-        "Tremie concrete NOT suitable for free fall — may segregate",
-        "Seepage limit for dry placement: <1 inch per 5 minutes; if exceeded, flood and use tremie",
-        "Tremie: steel only; min 10 in. I.D.; watertight; smooth interior; clean",
-        "Tremie bottom must remain ≥10 ft below rising concrete surface",
-        "Concrete head inside casing must exceed external fluid pressure throughout casing extraction",
-        "Two tremie initiation methods: closed tremie with closure plate; open tremie with traveling plug"
+        "Placement planned for dry, cased-dry and wet excavations",
+        "Subsections: dry, cased, wet (tremie, pump, cleanliness), shaft head"
       ],
       "equations": [],
-      "figures": [
-        "Figure 7-1: Free fall concrete placement to avoid impacting reinforcement",
-        "Figure 7-2: Free fall using ready-mix truck chute",
-        "Figure 7-3: Placement via drop chute into dry excavation",
-        "Figure 7-4: Concrete pressure head requirement during casing extraction",
-        "Figure 7-5: Concrete placement with telescoping casing",
-        "Figure 7-6: Tremie segment contaminated with hardened concrete",
-        "Figure 7-7: Solid tremie pipes",
-        "Figure 7-8: Assembly of segmental tremie",
-        "Figure 7-9: Closure plate for closed tremie"
-      ],
+      "figures": [],
       "tables": [],
       "applicability": "Concrete placement planning and operations; quality control during placement"
     },
     {
+      "section_id": "7.3.1",
+      "title": "Placement in a Dry Shaft Excavation",
+      "body": "[pp. 7-2 to 7-4] A dry excavation without temporary casing is the simplest case. Concrete may generally be placed by free fall if directed down the center of the shaft without hitting the cage or the sides (Figure 7-1); impact against the sides could distort the cage or dislodge soil or debris into the concrete. The stream should be kept centered by a drop chute or other acceptable device: laborers with shovels generally cannot direct it adequately, and a flexible hose is not recommended; a short section of relatively stiff pipe works well, and where the ready-mix truck can be placed near the hole the last section of its chute can direct the flow (Figure 7-2). In Figure 7-3 concrete was lifted in buckets to the top of the column reinforcement and placed through a drop chute of stiff plastic tube with a hopper; a tremie pipe (7.3.3) may also serve as a simple drop chute. Discharge into the small space of the excavation eliminates segregation issues of free fall onto a flat surface, and detailed studies show free fall does not cause segregation or other significant adverse effects: Kiefer and Baker (1994), Bru et al. (1991) and Baker and Gnaedinger (1960) report that mixes designed for dry placement can be dropped freely up to about 80 ft without problems. Highly flowable tremie concrete (7.5.4) should not be placed by free fall because it may segregate. Free fall into a hole that is not completely dry mixes the concrete with water at the base, giving excess water or even washed aggregate. A small amount of water at the bottom (typically specified to be less than 3 inches deep) is acceptable if there is no substantial inflow; an inflow producing more than 12 inches of water per hour (1 inch per 5 minutes) is generally considered excessive. With excessive seepage (Figure 5-23) the excavation must be flooded to stop the inflow and concrete placed by the wet method (7.3.3). A tremie alone without flooding is not sufficient: inflow drips onto the rising concrete and contaminates it, and once the concrete passes the inflow a groundwater head greater than the concrete head can form water channels through the fresh concrete; flooding keeps a positive outward flow until the concrete has filled the hole.",
+      "key_points": [
+        "Free fall allowed in a dry hole if the stream is centered by a drop chute and does not hit the cage or sides",
+        "No shovels or flexible hoses to direct the stream; stiff pipe, truck chute or tremie as a drop chute",
+        "Dry-placement mixes can free fall up to about 80 ft without problems (Kiefer and Baker, 1994; Bru et al., 1991; Baker and Gnaedinger, 1960)",
+        "Tremie concrete should not be placed by free fall (segregation)",
+        "Water at the base typically specified less than 3 inches with no substantial inflow",
+        "Inflow over 12 inches per hour (1 inch per 5 minutes) is excessive: flood the hole and place by the wet method"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-1: Free Fall Concrete Placement to Avoid Concrete Impacting Reinforcement.",
+        "Figure 7-2: Free Fall Concrete Placement Using Ready-Mix Truck Chute.",
+        "Figure 7-3: Placement into a Dry Excavation Using a Drop Chute"
+      ],
+      "tables": [],
+      "applicability": "Free-fall concrete placement in dry drilled shaft excavations; seepage limits"
+    },
+    {
+      "section_id": "7.3.2",
+      "title": "Placement in a Dry Shaft Excavation within a Cased Hole",
+      "body": "[pp. 7-4 to 7-6] Where a dry excavation is achieved with temporary casing through water-bearing strata, fluid may accumulate outside the casing. When the casing seal is broken, the concrete head inside must give a pressure exceeding the fluid pressure outside, and be maintained to avoid inflow (a breach); the head drops as concrete flows out to fill the annulus and any voids (Figure 7-4). The fluid outside is often laden with silt and sand, so its unit weight may be significantly greater than clean water, and the concrete pressure at the casing base is somewhat less than the head measured near the tremie because of head losses through the cage; a substantial margin of excess head above the theoretical difference of Figure 7-4 is therefore needed. Overbreak or cavities of unknown size outside the casing make the head drop immediately when the seal is lost, so concrete must be supplied fast enough to keep a positive head inside above the fluid head to the ground surface outside (fluids expelled at the surface, Figure 5-11). The concrete must also stay workable throughout: even with dry conditions outside, loss of workability before extraction can cause arching in the casing, lifting the concrete and forming a neck below the casing, displacing the cage or preventing casing removal; concrete that does not flow through the cage loads it vertically and may rack or distort it, and a void on one side can drag the cage down toward it. With telescoping casing, concrete must fill the void from the bottom up as each section is removed, flowing from the inside out, with extraction managed to avoid trapping water (Figure 7-5). Initial placement into the deeper casing (Figure 7-5a) must not spill over the lower casing into the annulus between casings. The contractor may extract the inner casing first (Figure 7-5b) or the outer casing first while keeping a head in the inner casing; either way the concrete head must exceed any fluid head outside, and removing the outer casing lets concrete flow out to fill overbreak.",
+      "key_points": [
+        "When the casing seal breaks, the concrete head inside must exceed the fluid pressure outside, with a substantial margin",
+        "Outside fluid may be much heavier than water; head losses through the cage reduce pressure at the casing base",
+        "Overbreak and cavities drop the head at once: supply concrete fast enough",
+        "Lost workability can arch in the casing, neck the shaft, displace or distort the cage",
+        "Telescoping casing: fill from the bottom up, no spill into the annulus between casings, head above outside fluid"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-4: Concrete Pressure Head Requirement During Casing Extraction: (a) Prior to Lifting Casing; (b) as Casing is Lifted",
+        "Figure 7-5: Concrete Placement with Telescoping Casing: (a) Initial Placement of Concrete; (b) Initial Extraction of Inner Casing"
+      ],
+      "tables": [],
+      "applicability": "Concrete head and workability during temporary casing extraction in dry cased holes"
+    },
+    {
+      "section_id": "7.3.3",
+      "title": "Placement of Concrete in a Wet Excavation",
+      "body": "[p. 7-6] Where a wet excavation is required, or a sufficiently dry one cannot be kept (7.3.1), concrete must be placed underwater by tremie or pumpline. Underwater placement generally needs mixes different from dry placement; the manual calls concrete suitable for underwater placement tremie concrete. Whether by tremie or pumpline, tremie concrete must stay workable throughout placement and the bottom of the delivery tube must be kept sufficiently below the rising concrete surface. Both systems have been used successfully, though the gravity tremie is more common, especially in relatively deep (greater than 60 ft) shafts.",
+      "key_points": [
+        "Wet holes: underwater placement by tremie or pumpline with tremie concrete",
+        "Keep workability throughout and the tube bottom well below the rising concrete",
+        "Gravity tremie more common, especially for shafts deeper than 60 ft"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Underwater concrete placement in wet drilled shaft excavations"
+    },
+    {
+      "section_id": "7.3.3.1",
+      "title": "Placement by Gravity Tremie",
+      "body": "[pp. 7-7 to 7-12] A gravity tremie is a steel tube, usually with a hopper, fed by pump, bucket or directly from a truck; aluminum should never be used (reacts with concrete) and PVC is generally not robust enough. Inside diameters of 8 to 12 inches are most common; a 10-inch tube is generally the smallest that should be used for a gravity tremie. The tremie must be watertight and have a smooth, clean inner surface; hardened concrete inside increases friction and may block it (Figure 7-6: clean or discard). A smooth outside avoids catching the cage, although flanged tremies have been used if verticality is controlled and the cage is large enough. Shafts usually less than 40 to 50 ft long may use a solid one-piece tube (Figure 7-7); deeper shafts typically need a segmental tremie with waterproof (usually o-ring) joints (Figure 7-8), dismantled as it is withdrawn. Flow must be started so as to minimize contamination, either (1) a closed tremie sealed at the bottom with a cover plate, or (2) an open tremie with a traveling plug ahead of the concrete. A closed tremie is placed, filled and then opened; it must be watertight (check inside for leaks before charging), and its buoyancy may require added weight. The seal is normally a sacrificial closure plate, a steel plate sometimes with a rubber gasket, duct-taped to the flat base (Figure 7-9) or covered with plastic wrap and tied; external fluid pressure holds it, so excessive tape can make it hard to break off, and with external pressure approaching 1/2 psi per foot of depth the plate must resist the drilling fluid head. Pan-type or hat devices with o-rings, and hinged plates (which may catch the cage), are also used. The closed tremie rests on the bottom, is filled, and is lifted about 6 to 12 inches to break the plate away, producing a rush of concrete because the concrete pressure inside greatly exceeds the fluid pressure outside; the plate must release freely, and lifting more than a few inches risks concrete falling through the fluid. An open tremie is held a few inches off the bottom with a traveling plug (pig or rabbit) of polystyrene, closed cell foam or water-saturated foam rubber separating fluid and concrete; it must not be so compressible that it fails to separate under the hydrostatic pressure, nor so long that the tremie must be lifted far to clear it. During the first few feet, concrete delivery must be continuous until at least 10 ft of concrete head above the tremie tip is achieved, the tremie kept within a few inches of the bottom so a head is built and held inside it (Figure 7-10), especially in deep, large diameter shafts; a limited initial charge flowing freely can lose the head and let drilling fluid back-surge into the tremie, breaching the seal and contaminating a large volume of concrete (Figure 7-11), so sufficient concrete should be on site for the initial head before starting. The tremie end should remain embedded a minimum of 10 feet in the fresh concrete throughout, lifted as needed to keep flow; with good workability 20 feet or more is often possible, but excessive embedment can lift the cage. Loss of workability makes concrete fill the tremie without emptying, and segregation can block it; shaking or yo-yoing the tremie often re-establishes flow only by venting alongside the pipe to the surface (volcano flow), which entraps laitance or sediment (Figure 7-12); the remedy is a mix that stays workable throughout (7.5). Figure 7-13(a) shows trapped laitance on a shaft formed with a removable form in a lake, a durability and spalling concern, and 7-13(b) a defect from an interruption of concrete delivery, found by integrity testing and repaired (Chapters 16 and 17).",
+      "key_points": [
+        "Steel tremie only (never aluminum; PVC not robust); 8 to 12 inch I.D. common; 10 inch the smallest for gravity",
+        "Watertight, smooth and clean inside; solid tube for shafts usually under 40 to 50 ft, segmental (o-ring joints) deeper",
+        "Closed tremie with sacrificial plate (external pressure approaching 1/2 psi per ft of depth), lifted about 6 to 12 inches to start",
+        "Open tremie with a traveling plug (pig, rabbit) held a few inches off the bottom",
+        "Continuous delivery until at least 10 ft of concrete head above the tip; enough concrete on site first",
+        "Keep the tremie embedded a minimum of 10 ft throughout; 20 ft or more possible, but excessive embedment lifts the cage",
+        "Lost workability causes volcano flow and trapped laitance; fix the mix, not the handling"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-6: Tremie segment: (a) Contaminated with Hardened Concrete; (b) Worker Cleaning Tremie",
+        "Figure 7-7: Solid Tremie Pipes",
+        "Figure 7-8: Assembly of Segmental Tremie for Concrete Placement",
+        "Figure 7-9: Closure Plate for Closed Tremie",
+        "Figure 7-10: Control of Tremie to Establish Concrete Head",
+        "Figure 7-11: Breach of Tremie Due to Failure to Establish Concrete Head",
+        "Figure 7-12: Schematic of Concrete \"Vent\" Due to Loss in Workability During Tremie Concrete Placement",
+        "Figure 7-13: Effects of Loss in Concrete Mix Workability During Tremie Placement: (a) Trapped Laitance on Exposed Surface; (b) Effect of Interruption of Concrete Delivery"
+      ],
+      "tables": [],
+      "applicability": "Gravity tremie equipment, initiation and embedment for underwater concrete in drilled shafts"
+    },
+    {
+      "section_id": "7.3.3.2",
+      "title": "Placement by Pump",
+      "body": "[pp. 7-12 to 7-13] Concrete pumps often deliver to a gravity tremie, but a closed pump tremie can replace the gravity tremie, on identical principles. The line in the shaft is typically rigid steel pipe 4 to 6 inches in diameter joined to the delivery line by a short flexible hose (Figure 7-14), with clamp connectors and rubber seals; the crane can lift it during placement without a worker at the top directing flow. Starting flow and building head are as for a gravity tremie; a lean cement mix or commercial product typically lubricates the small line just before pumping. Flexible lines have occasionally been used but are harder to keep straight, hold near the bottom and control when starting, so rigid pipes are preferred. The pump must keep up with the flow out of the line, or the siphoning of gravity flow can cause cavitation and segregation (Gerwick, 1987). The line should keep a minimum 10-ft embedment but be lifted as the concrete rises; holding it at the bottom, even with flow, can lift the cage. Pumped concrete needs the same workability as gravity tremie concrete: if workability is lost, the pump pressure tends to push the line up and out of the concrete and workers struggle to hold it down, so defects can be expected; a closed pump tremie is not a panacea for gravity tremie problems.",
+      "key_points": [
+        "Closed pump tremie: rigid steel line 4 to 6 inches diameter, flexible hose at the top",
+        "Lubricate the line with a lean cement mix or product; rigid lines preferred over flexible",
+        "Pump must keep up or siphoning causes cavitation and segregation (Gerwick, 1987)",
+        "Minimum 10-ft embedment, lifted as concrete rises; holding at the bottom can lift the cage",
+        "Same workability as gravity tremie concrete; pumping is not a panacea"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-14: Pump Line Operations for Underwater Concrete Placement"
+      ],
+      "tables": [],
+      "applicability": "Pumped closed-tremie underwater concrete placement in drilled shafts"
+    },
+    {
+      "section_id": "7.3.3.3",
+      "title": "Importance of Slurry Properties and Bottom Cleanliness",
+      "body": "[pp. 7-13 to 7-14] Even with excellent tremie operations and a proper mix, defects can occur if the excavation is not clean or the slurry is heavily laden with sand. Even if the design does not rely on tip resistance (e.g., a wall shaft or one controlled by lateral loading), the base must be reasonably free of loose debris that the initial charge could stir up and later fold into the concrete as an inclusion. In general no more than 3 inches of loose sediment should be on the bottom before concrete placement to reduce the risk of soil inclusions; more restrictive requirements are typically used for shafts relying wholly or partly on tip resistance. The exhumed experimental shaft of Figure 7-15, cleaned with a cleanout bucket and airlift, showed good concrete over most of the base with a little debris displaced to the perimeter. Sand settling during placement can accumulate on the rising concrete and become entrapped; the slurry-filled hole is like a giant hydrometer test, and sand on the concrete at the end warns that the slurry was not clean enough. The concrete surface rolls from the tremie toward the perimeter, lodging surface debris around the reinforcement. Sand content just before placement must therefore be controlled (Chapter 5); polymer slurry does not keep sand or silt in suspension, so a lower sediment content must be specified with it. The guidelines in Chapter 5 and the Chapter 14 guide specifications are for routine construction; deep and/or large shafts with long placement times may need lower sand content, and it may be necessary to fully exchange the slurry, pumping dirty slurry from the bottom to a tank or desander while pumping fresh slurry in.",
+      "key_points": [
+        "Base reasonably free of loose debris even where tip resistance is not used",
+        "Generally no more than 3 inches of loose sediment before concreting; more restrictive where tip resistance is relied on",
+        "Sand settling from slurry gets entrapped as the concrete surface rolls to the perimeter",
+        "Lower sediment limits for polymer slurry; lower sand content or full slurry exchange for deep or large shafts"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-15: Exposed Bottom Surface of an Exhumed Drilled Shaft"
+      ],
+      "tables": [],
+      "applicability": "Base cleanliness and slurry sand content limits for tremie-placed drilled shaft concrete"
+    },
+    {
+      "section_id": "7.3.4",
+      "title": "Completion of Concrete Placement at Shaft Head",
+      "body": "[p. 7-15] At the end of tremie placement there is often up to several feet of contaminated concrete to remove, and even a dry hole can have contamination at the top from accumulated bleed water. With the top of shaft at or near the ground surface, workers can shovel it off until clean fresh concrete shows (Figure 7-16). A finished top of shaft below grade is harder: the contractor usually prefers to over-pour and remove slurry and contaminated concrete before it hardens, which needs casing left in place if the top is more than a few feet below grade; with a deep cutoff the contractor may have to jackhammer contaminated material after hardening. Deep cutoff elevations (more than 20 ft) may need additional safety considerations for worker entry.",
+      "key_points": [
+        "Up to several feet of contaminated concrete at the top after tremie placement; bleed water even in dry holes",
+        "Over-pour and remove before hardening; casing needed if the top is more than a few feet below grade",
+        "Cutoffs deeper than 20 ft need extra worker-entry safety measures"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-16: Over-pour of the Shaft Top Until Clean Concrete is Revealed"
+      ],
+      "tables": [],
+      "applicability": "Over-pour and removal of contaminated concrete at the shaft top, including below-grade cutoffs"
+    },
+    {
       "section_id": "7.4",
       "title": "Drilling Near a Recently Concreted Shaft",
-      "body": "Construction of adjacent drilled shafts within close proximity to a recently concreted shaft requires care. Vibrations and deformations from drilling operations can disturb fresh concrete before it achieves sufficient strength. Minimum clear distance between shafts and time delays before drilling adjacent shafts must be established. General practice: concrete should reach minimum strength (approximately 500-1000 psi) before drilling within about 5 shaft diameters. Specific requirements depend on mix design, temperature, and drilling method. Contractors should develop a sequence that avoids disturbing fresh concrete in adjacent shafts.",
+      "body": "[pp. 7-15 to 7-16] The Appendix D guide specification requires concrete in a recently concreted shaft to reach initial set before drilling or casing installation in its vicinity, defined as a clear spacing of three shaft diameters. The main reason is possible communication between nearby excavations, the fresh concrete's fluid pressure breaking through to the nearby excavation, particularly acute in karst, where more separation may be needed. Vibro-driving casing can also raise pore pressures near fresh concrete, possibly causing excessive bleed water or instability of the fluid concrete. There is little evidence of structural damage to concrete from normal drilled shaft operations: Bastian (1970) reports pile driving 18 ft from a freshly filled shell-pile, whose cores at three days were slightly stronger than the placement cylinders, and five other investigations showing fresh concrete unaffected by vibration, concluding that vibration during initial set is not detrimental and no minimum concreting radius should be set for that reason. A typical drilled shaft mix is expected to set within 24 hours; exceptionally long placements may need high dosages of hydration control admixtures that extend this, and silica fume or admixtures can sometimes shorten it. High-early-strength cement is generally not recommended for shaft diameters over 5 feet because of the heat of hydration. The contractor must manage the sequence of closely spaced shafts to meet the guide specification.",
       "key_points": [
-        "Vibrations from nearby drilling can disturb fresh concrete before it gains strength",
-        "General practice: wait until concrete reaches minimum strength before drilling within ~5 diameters",
-        "Establish clear distance and time delay criteria in specifications"
+        "Guide specification: initial set before drilling or casing within a clear spacing of three shaft diameters",
+        "Main risk: fresh concrete breaking through to a nearby excavation; more separation in karst",
+        "Vibro-driven casing can raise pore pressures near fresh concrete",
+        "Vibration does not damage setting concrete (Bastian, 1970)",
+        "Typical mixes set within 24 hours; avoid high-early-strength cement for diameters over 5 feet"
       ],
       "equations": [],
       "figures": [],
@@ -79,15 +198,10 @@
     {
       "section_id": "7.5",
       "title": "Concrete Mix Design",
-      "body": "Cementitious materials: portland cement (Type I/II most common); supplementary cementitious materials (SCM) include fly ash (Class C or F), ground granulated blast furnace slag (GGBFS), silica fume; SCMs improve workability retention, reduce heat of hydration, and can improve durability. Aggregate: maximum size typically ≤3/4 in. for reinforced shafts; smaller aggregate required for closely spaced reinforcement; gradation must allow flow through congested cage; well-graded aggregate reduces segregation tendency. Water: w/cm ratio typically 0.40-0.45 for good durability; higher ratios permitted for dry placement; lower ratios for aggressive environments. Chemical admixtures: water reducers/superplasticizers — high-range water reducers (HRWR) enable high slump at low w/cm; retarders — extend workability retention for long pours; viscosity modifying agents (VMA) — improve stability/cohesion and reduce segregation in highly flowable mixes; SRA (shrinkage reducing admixtures) for special cases. Self-consolidating concrete (SCC): highly flowable concrete (slump flow ≥20 in.) with high stability; suitable for wet or dry placement; gaining wide acceptance for drilled shafts; requires VMA for stability. Concrete mix proportions for wet placement (tremie concrete): target slump 8-10 in. or slump flow 20-28 in. (SCC); cement content typically 600-800 lb/cy; w/cm 0.40-0.50. Mix proportions for dry placement: target slump 6-8 in.; somewhat less restrictive on workability retention.",
+      "body": "[p. 7-16] Mixes must give the required properties for a completed shaft meeting the structural requirements without excessive risk of construction problems. The most important properties are those of the fresh concrete and their effect on construction (Figure 6-6 shows shafts built with a mix that did not flow adequately through the cage). Demands on hardened concrete are usually ordinary since structural stresses are modest: compressive strength requirements of 4,000 to 5,000 psi are typical and easily achieved, with a few isolated higher-strength cases, mostly for high-rise buildings. Subsections: 7.5.1 Cementitious Materials; 7.5.2 Aggregate and Water; 7.5.3 Chemical Admixtures; 7.5.4 Mixture Proportions; 7.5.5 Concrete Batching.",
       "key_points": [
-        "SCMs (fly ash, GGBFS, silica fume) improve workability retention and reduce heat of hydration",
-        "Maximum aggregate size: typically ≤3/4 in. for reinforced shafts",
-        "w/cm ratio: 0.40-0.45 for good durability in wet construction",
-        "HRWR (superplasticizer): enables high slump at low w/cm",
-        "VMA: improves stability and reduces segregation in highly flowable mixes",
-        "SCC (slump flow ≥20 in.): gaining wide acceptance for drilled shafts",
-        "Wet/tremie placement target slump: 8-10 in. or slump flow 20-28 in."
+        "Fresh concrete properties matter most",
+        "Compressive strength requirements of 4,000 to 5,000 psi are typical and easily achieved"
       ],
       "equations": [],
       "figures": [],
@@ -95,15 +209,206 @@
       "applicability": "Concrete mix design for drilled shafts; wet and dry placement conditions"
     },
     {
+      "section_id": "7.5.1",
+      "title": "Cementitious Materials",
+      "body": "[p. 7-16] Several cementitious materials are used to meet the often competing requirements for drilled shaft concrete. Portland cement is the most common, though part of it may be replaced with supplementary cementitious materials (SCMs) to improve the concrete (7.5.1.1, 7.5.1.2).",
+      "key_points": [
+        "Portland cement, partly replaced by SCMs"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selecting cementitious materials for drilled shaft concrete"
+    },
+    {
+      "section_id": "7.5.1.1",
+      "title": "Portland Cement",
+      "body": "[pp. 7-16 to 7-17] Portland cement should meet ASTM C 150 (2017). Type I or Type I/II is normally used. Type III (high-early-strength) should usually be avoided, especially in shafts with diameters greater than 5 feet. Type IV (low heat of hydration) may be considered for large shafts with high in-place temperatures and thermal gradients, though these are more commonly addressed otherwise (7.6.5). Type II (moderate sulfate resistance) and Type V (high sulfate resistance) cements, with limited tricalcium aluminate (C3A), should be considered where soil or groundwater sulfate is high; Type V may be scarce, but sulfate resistance can also come from SCMs and a sufficiently low water-to-cementitious materials ratio (w/cm).",
+      "key_points": [
+        "ASTM C 150 (2017); Type I or I/II normally",
+        "Avoid Type III, especially for diameters greater than 5 feet",
+        "Type IV possible for large shafts, though heat is usually handled otherwise (7.6.5)",
+        "Type II or V (limited C3A) for high sulfate; or SCMs and low w/cm"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Choosing the portland cement type for drilled shaft concrete"
+    },
+    {
+      "section_id": "7.5.1.2",
+      "title": "Supplementary Cementitious Materials",
+      "body": "[pp. 7-17 to 7-18] Adding SCMs, or replacing part of the Portland cement with them, may improve fresh and hardened concrete. Fly ash, slag cement and silica fume are industrial by-products. Class F fly ash (ASTM C 618, 2017) and silica fume are pozzolans, forming cementing materials with the calcium hydroxide in Portland cement; Class C fly ash is typically high in calcium oxide (CaO > 20%) and both hydraulic and pozzolanic, so strength develops faster than with Class F. Availability depends on local coal; Class F may contain unburned carbon (high loss on ignition, LOI) that makes air entrainment for freeze-thaw resistance difficult. Slag cement (ground-granulated blast-furnace slag) is commonly proportioned to replace 30 to 50 percent of Portland cement by weight; it must be ground before use and is specified by ASTM C 989 (2017) in Grades 80, 100 and 120 by reactivity index (28-day mortar strength of a 50-50 slag-Portland blend relative to pure Portland mortar). It is latent-hydraulic, usually ground slightly finer than Type I cement, and more sensitive to curing temperature; in cold weather its hydration is much retarded and setting extended. Large dosages of fly ash or slag slow strength gain but may give greater long-term strength, so test strength at 56 or 91 days instead of 28; fly ash plus slag combinations are also used. Silica fume (rich in silicon dioxide, 100 times finer than cement) gives a stronger, denser paste, raising early and long-term strength and lowering permeability (ACI 234R, 2000), but its high surface area greatly increases water demand, needing HRWR admixtures, and it is relatively expensive. SCMs convert calcium hydroxide to calcium silicate hydrate over time, reducing pore space for greater long-term strength, lower permeability and better durability; fly ash and silica fume also reduce bleeding. Fly ash and slag reduce heat of hydration (important for large shafts); SCMs retard set, extending workable time; fly ash's spherical particles reduce water demand, while slag's fineness and angularity increase it. Silica fume is used for very low permeability for long design lives but harms workability, so concrete experts should be consulted. Table 7-1 gives typical cement replacement dosages (percent of total cementitious material by weight), a general guide only: Class C fly ash 20 to 30 %; Class F fly ash 15 to 25 %; slag cement 30 to 50 %; silica fume 5 to 8 %; ternary mixtures with fly ash and slag typically contain up to 20% fly ash and 30% slag cement.",
+      "key_points": [
+        "Class F fly ash and silica fume are pozzolans; Class C fly ash (CaO > 20%) is also hydraulic and gains strength faster",
+        "Slag cement commonly replaces 30 to 50 percent of cement; ASTM C 989 Grades 80, 100, 120; slow in cold weather",
+        "High fly ash or slag dosages: test strength at 56 or 91 days instead of 28",
+        "Silica fume: denser, stronger, less permeable, but high water demand (needs HRWR) and harms workability",
+        "SCMs reduce long-term permeability and heat of hydration and retard set",
+        "Table 7-1: Class C fly ash 20 to 30 %, Class F 15 to 25 %, slag 30 to 50 %, silica fume 5 to 8 %; ternary up to 20% fly ash and 30% slag"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 7-1: Typical Proportions Of Pozzolanic Additives"
+      ],
+      "applicability": "Choosing fly ash, slag cement and silica fume dosages for drilled shaft concrete"
+    },
+    {
+      "section_id": "7.5.2",
+      "title": "Aggregate and Water",
+      "body": "[pp. 7-18 to 7-19] Natural aggregates are normally used; lightweight aggregates have no benefit in drilled shafts. Because natural aggregates are typically stronger and less permeable than the paste, conventional wisdom favors the largest possible well-graded aggregate to minimize paste, but this is offset by the need to flow through the cage. Aggregate size generally controls passing ability (Chapter 6), so relatively small coarse aggregate should be used. A nominal maximum size of 3/4 inch has performed well in routine dry placement without congested reinforcement; smaller sizes should be considered where bar clear spacing is restricted and/or tremie placement is anticipated. A nominal maximum of 1/2 inch has been used successfully in congested applications (Brown et al., 2007), and many agencies now routinely use 3/8-inch for congested reinforcement and tremie placement. Aspect ratio matters for crushed aggregate, oblong particles flowing worse than spherical ones. Aggregate should be well-graded and durable and meet ASTM specifications: C 33 (2016) Concrete Aggregates; C 87 (2017) organic impurities in fine aggregate; C 227 (2010), C 289 (2007), C 295 (2012) and C 586 (2011) for alkali silica reactivity (ASR). Mixing water need not be potable, but almost any drinkable natural water can be used (Kosmatka and Wilson, 2016); it should be low in chloride and sulfate, and questionable water can be checked by its effect on setting times and 7-day compressive strength, though these tests do not address long-term durability.",
+      "key_points": [
+        "Natural aggregate; no lightweight aggregate",
+        "Nominal maximum 3/4 inch for routine dry placement without congestion",
+        "1/2 inch used in congested cages (Brown et al., 2007); many agencies use 3/8 inch for congestion and tremie placement",
+        "Oblong crushed particles flow worse; aggregate well-graded, durable, per ASTM C 33 and ASR tests",
+        "Mixing water need not be potable but low in chloride and sulfate"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Aggregate size and water quality for drilled shaft concrete"
+    },
+    {
+      "section_id": "7.5.3",
+      "title": "Chemical Admixtures",
+      "body": "[p. 7-19] Chemical admixtures are often used to meet the demanding requirements, but success depends on preparation and batching, ambient temperature and sometimes complex interactions between admixtures; improper dispensing can cause erratic, undesirable behavior. Admixture companies should be consulted for the most suitable types and dosages for the project, materials and placement conditions, and dispensing must be carefully controlled and routinely inspected (see Section 1.7 of ACI 212.3R, 2004). Admixtures are covered by ACI and ASTM specifications (7.5.3.1 to 7.5.3.6).",
+      "key_points": [
+        "Admixture performance depends on batching, temperature and interactions",
+        "Consult suppliers on type and dosage; control and inspect dispensing (ACI 212.3R, 2004)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Using chemical admixtures in drilled shaft concrete"
+    },
+    {
+      "section_id": "7.5.3.1",
+      "title": "Air-entraining Admixtures",
+      "body": "[pp. 7-19 to 7-20] Air-entraining admixtures introduce and stabilize entrained air bubbles, commonly to improve freeze-thaw resistance. Not needed for many drilled shafts, they (ASTM C 260, 2016) can be used where freeze-thaw deterioration is possible, e.g., exposed secant pile walls. Entrained air generally improves workability and reduces bleeding but increases porosity and reduces strength (ACI 212.3R, 2004), and improves pumpability when at least 5 percent air is produced. Entrained air may be lost under substantial hydrostatic pressure in deep shafts, reducing workability so that surface tests do not represent workability at depth; use it only when truly needed for freeze-thaw resistance and allow for its effect when setting workability ranges.",
+      "key_points": [
+        "Use (ASTM C 260, 2016) only where freeze-thaw exposure is possible, e.g. exposed secant walls",
+        "Improves workability and bleeding but reduces strength; at least 5 percent air aids pumping",
+        "Air may be lost under hydrostatic pressure in deep shafts: surface workability tests then mislead"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Deciding on air entrainment for drilled shaft concrete"
+    },
+    {
+      "section_id": "7.5.3.2",
+      "title": "Set-Controlling Admixtures",
+      "body": "[p. 7-20] Set-controlling admixtures (retarding or hydration stabilizing) are often used to give time to complete placement. Retarders (ASTM C 494, 2017) consist of lignin, borax, sugars, tartaric acids and salts, frequently needed for large placements and in high temperatures (> 80 deg F); excessive retarder can keep concrete fluid too long and affect long-term strength. Hydration stabilizing (extended-set control) admixtures delay initial set, hydration then resuming without sacrificing hardened properties; they have been used successfully on many drilled shaft projects, are often more effective than conventional retarders, and are classified as Type D Retarders by ASTM C 494 (2017). Dosage should be set from expected ambient and concrete temperatures and the estimated haul time (with allowance for traffic delays); warm weather needs higher dosages. The dosage should be determined by trial placements replicating construction conditions, with a retained sample tested for workability retention.",
+      "key_points": [
+        "Retarders (ASTM C 494, 2017) for large pours and temperatures above 80 deg F; excess harms strength",
+        "Hydration stabilizers (Type D) are often more effective than conventional retarders",
+        "Dose for ambient and concrete temperature and haul time including delays; verify by trial placement"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Setting retarder and hydration stabilizer dosages for long placements"
+    },
+    {
+      "section_id": "7.5.3.3",
+      "title": "Accelerating Admixtures",
+      "body": "[p. 7-20] An accelerating admixture is \"an admixture that causes an increase in the rate of hydration of the hydraulic cement and thus shortens the time of setting, increases the rate of strength development, or both\" (ACI 116R, 2005). Accelerators should not be used in drilled shaft construction except in extraordinary situations, e.g., to minimize cement washout where a segment is placed in a stratum with rapidly flowing groundwater that casing cannot seal off. Concrete specialists should be consulted whenever accelerators are contemplated, and contractors must clean casings, pumps, pump lines and tremies quickly before setting occurs.",
+      "key_points": [
+        "Not used in drilled shafts except in extraordinary cases (rapidly flowing groundwater that casing cannot seal)",
+        "Consult concrete specialists; clean equipment quickly"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "When accelerators may be justified in drilled shaft concrete"
+    },
+    {
+      "section_id": "7.5.3.4",
+      "title": "Water Reducing Admixtures",
+      "body": "[p. 7-21] Water-reducing admixtures reduce the water needed for a given workability by reducing surface tension around the cement particles. ASTM C 494 (2017) types: low-range (water reducers), typical water reduction around 5% to 10%; mid-range, 6 to 12%; high-range (superplasticizers), 12% to 30%. Without water reducers, the w/cm generally needs to be 0.50 to 0.60 by weight for drilled shaft workability (cementitious materials including Portland cement and SCMs); more than half that water only lubricates the paste, giving a porous, permeable, weak concrete. With water reducers the w/cm can conveniently be 0.45 or lower: low-range reducers (lignosulfonates, hydroxylated carboxylic acids, ACI 212, 2004) give workable concrete at 0.40 to 0.45, and HRWR admixtures 0.35 or less with good workability. First (naphthalene) and second (melamine) generation HRWRs often lost workability rapidly (flash set); third generation polycarboxylates are designed to suit regional cements and, with set-controlling admixtures, keep their water reduction in hot weather. Inappropriate HRWRs can occasionally cause rapid setting, harmful if delays occur; highly fluid concrete with slow slump loss is preferred over very low w/cm concrete prone to rapid set, even if not quite as strong or durable. HRWRs should not be disallowed, but site- and material-specific slump loss measurements must precede production use, with trial batches using the project admixture at the placement ambient temperature, and a plan for managing HRWR mixtures should be required in the specifications (e.g., TxDOT, 2004).",
+      "key_points": [
+        "Low-range about 5% to 10% water reduction; mid-range 6 to 12%; high-range 12% to 30%",
+        "Without reducers w/cm generally 0.50 to 0.60; with them 0.45 or lower",
+        "Low-range reducers give w/cm 0.40 to 0.45; HRWR 0.35 or less",
+        "Polycarboxylate HRWRs with set control hold water reduction in hot weather",
+        "Prefer slow slump loss over very low w/cm with rapid set; trial-batch slump loss at placement temperature"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Water reducers and HRWRs in drilled shaft concrete; w/cm targets"
+    },
+    {
+      "section_id": "7.5.3.5",
+      "title": "Viscosity-Modifying Admixtures",
+      "body": "[p. 7-22] Viscosity-modifying admixtures (VMAs, anti-washout admixtures), typically of cellulose ether, welan gum or polyethylene glycol, are often used in highly workable mixes (tremie concrete, 7.5.4) to reduce segregation and bleeding by binding free water, raising cohesiveness and viscosity, and reducing variability of fresh properties. They should be used carefully: VMAs can make concrete thixotropic, stiffening when stationary and becoming fluid when disturbed, so it appears set but flows if displaced. If placement is interrupted this can affect flow from the tremie or pump line and lead to eruptive volcano flow (Figure 7-12) and trapped laitance, and can cause problems removing temporary casing, particularly segmental casing needing intermittent interruptions. VMAs work well as long as delays are avoided and the concrete keeps moving.",
+      "key_points": [
+        "VMAs (cellulose ether, welan gum, polyethylene glycol) reduce segregation and bleeding in tremie concrete",
+        "Thixotropy: concrete stiffens at rest, flows when disturbed; interruptions risk volcano flow and casing problems",
+        "Keep the concrete moving and avoid delays"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Using VMAs in tremie concrete"
+    },
+    {
+      "section_id": "7.5.3.6",
+      "title": "Other Admixtures",
+      "body": "[p. 7-22] Other admixtures for special cases include anti-bacterial and anti-fungal admixtures, alkali-reactivity reducers, corrosion inhibitors and pumping aids. Except for pumping aids (normally polymer products added before pumping to lubricate the lines), these are rarely used in drilled shafts, but readers should know they exist.",
+      "key_points": [
+        "Pumping aids common; anti-bacterial, alkali-reactivity reducers and corrosion inhibitors rarely used"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Special-purpose admixtures for drilled shaft concrete"
+    },
+    {
+      "section_id": "7.5.4",
+      "title": "Mixture Proportions",
+      "body": "[pp. 7-22 to 7-24] Mix design must set proportions of cement, water, SCMs, aggregate and admixtures that economically satisfy competing requirements; no single mix suits all shafts, places and times, so mixes should generally be project-specific by the trial mixture method (e.g., Kosmatka and Wilson, 2016), in the laboratory or at a batch plant, bracketing cement content, SCM dosage, admixture dosage, etc. Large projects may evaluate more than thirty mixtures; trial mixtures are commonly made at three w/cm values to interpolate the one meeting all requirements. A qualified concrete laboratory should do the testing, and new trials are needed if materials or conditions change (ambient temperature, aggregate or cement source, SCM type or dosage, admixture type, etc.). During trials, slump or slump flow should be measured over time, with temperature, total air (if required) and strength cylinders; for tremie concrete, stability should be checked with VSI tests (ASTM C 1611, 2005) and column static segregation tests (ASTM C 1610, 2006), important for mixes with extended set subject to vertical segregation, the static segregation not to exceed 10% (ACI 237, 2005). For large projects the final step should be a full-scale technique shaft with the producer's plant and the contractor's placement, reproducing rebar congestion, shaft size, placement temperature and conservative haul times with delays, assessing placement, fresh properties, strength, permeability and other requirements. Because admixture performance varies with small dosage changes, ambient conditions, other constituents and interactions, mixes without admixtures are desirable if they meet the requirements, or admixture use should be limited as far as possible. Table 7-2 gives conventional mixes for dry placement and Table 7-3 tremie mixes used successfully for wet placement; the best mix depends on local materials, climate and project requirements, with admixtures and dosages chosen by the producer with supplier input and verified by trials and technique shafts. Table 7-2 (Texas DOT / Kentucky Trans. Cabinet / Indiana DOT / Colorado DOT): target slump 6.5 / 6 / 7 - 10 / 7 inch; Type I or II cement 423 / 526 / 705 / 488 lb/yd3; Class F fly ash 141 / 132 / -- / 122; water 248 / 291 / 286 / 246; No. 67 coarse aggregate (3/4 in. max) -- / 1667 / -- / 1740; coarse aggregate (1/2 in. max) 1827 / -- / -- / --; AASHTO 8 coarse aggregate (3/8 in. max) -- / -- / 1710 / --; fine aggregate (SSD) 1390 / 1155 / 1120 / 1312; w/cm 0.44 / 0.44 / 0.41 / 0.40; sand-to-total aggregate (by volume) 0.44 / 0.27 / 0.40 / 0.43; extended-set control admixture 0-5 / 10 / 3-5 / -- oz/cwt; water reducing admixture 0-15 / 4 / 5-15 / 8.5 oz/cwt. Table 7-3 (Washington DOT / Mullica River, NJ Turnpike / I-35W, Minneapolis / Lumber River, SC): target consistency 7 - 9 inch slump / 18-24 inch slump flow / 24 inch slump flow / 18-24 inch slump flow; Type I or II cement 600 / 526 / 242 / 500 lb/yd3; Class F fly ash - / 132 / 108 / 250; GGBFS (slag) 181 / 0 / 359 / 0; water 315 (max) / 267 / 270 / 306; No. 67 CA (3/4 in. max) - / 0 / 1330 / 1071; No. 8 CA (3/8 in. max) 1601 / 1500 / 360 / 395; fine aggregate (sand, SSD) 1262 / 1363 / 1350 / 1366; w/cm 0.40 (max) / 0.405 / 0.38 / 0.41; sand-to-total aggregate (by volume) 0.45 / 0.48 / 0.44 / 0.48; extended-set control admixture 5.1 (max) / 4 (Sika) / Unknown / 8 (Delvo) oz/cwt; water reducing admixture 6.4 (max) / 7 (Sika 2100 SP) / 6 (BASF 7500) / 8-12 (Glenium 3030) oz/cwt; VMA 0 / 0 / 6 / 2 oz/cwt. For small projects of ordinary shafts without special delivery or placement demands, project-specific trials may be impractical, and agencies may develop standard mixes, generally several (e.g., dry placement and tremie; summer and winter; regional variants), all developed by the trial-mix process and periodically re-evaluated.",
+      "key_points": [
+        "No single mix suits all shafts: project-specific trial mixtures, often at three w/cm values; more than thirty on large projects",
+        "Re-run trials when materials or conditions change",
+        "Tremie mixes: VSI (ASTM C 1611) and column static segregation (ASTM C 1610), static segregation not over 10% (ACI 237, 2005)",
+        "Full-scale technique shaft as the final trial step on large projects",
+        "Use admixtures only as far as needed",
+        "Table 7-2 conventional (dry) mixes: w/cm 0.40 to 0.44, slump 6 to 10 inch",
+        "Table 7-3 tremie mixes: w/cm 0.38 to 0.41 (0.40 max WSDOT), slump flow 18-24 inch or 7 - 9 inch slump",
+        "Agencies may keep several standard mixes for small routine projects"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 7-2: Example Mixture Proportions For Conventional Drilled Shaft Concrete",
+        "Table 7-3: Example Mixture Proportions For Tremie Concrete"
+      ],
+      "applicability": "Developing and checking drilled shaft concrete mix proportions; example dry and tremie mixes"
+    },
+    {
+      "section_id": "7.5.5",
+      "title": "Concrete Batching",
+      "body": "[p. 7-25] Most drilled shaft concrete is mixed at ready-mix plants and trucked to the site, but large or remote projects may justify an on-site batch plant (Figure 7-17), giving the contractor more flexibility and control over the schedule, reducing delivery risk and easing long workability retention (which can affect mix designs). Some suppliers bring batched dry ingredients to be mixed with water when the contractor is ready, but such mixers have limited capacity, practical only for relatively small shafts.",
+      "key_points": [
+        "Ready-mix plants usual; on-site batch plants for large or remote projects reduce delivery risk",
+        "On-site mixing of dry ingredients practical only for small shafts"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-17: Worksite Concrete Batch Plant Capable of Batching 130 yd3/hr"
+      ],
+      "tables": [],
+      "applicability": "Choosing ready-mix or on-site batching for drilled shaft concrete"
+    },
+    {
       "section_id": "7.6",
       "title": "Concrete Performance Requirements",
-      "body": "Workability: slump 6-8 in. for dry placement; 8-10 in. for wet/cased placement; slump flow 20-28 in. for SCC. Measured by ASTM C143 (slump) or ASTM C1611 (slump flow). Stability: no visible aggregate segregation; bleeding ≤0.4 cm³/cm². Durability: maximum w/cm 0.45 for exposure to aggressive ground; concrete cover per AASHTO (typically 3 in. for non-corrosive, 4 in. for saltwater marine environment). Strength: minimum f'c typically 4000 psi (27.6 MPa) at 28 days; higher if structural requirements demand. Temperature: concrete temperature at placement 50-90°F (10-32°C) per AASHTO; concrete cooling or heating may be needed in extreme temperatures. Heat of hydration concerns for large diameter shafts — temperature difference between center and edge ≤35°F to prevent thermal cracking.",
+      "body": "[p. 7-25] Drilled shaft concrete must meet challenging performance requirements (7.2): workability and workability retention (7.6.1), stability (7.6.2), durability (7.6.3) and strength (7.6.4), with control of concrete temperatures (7.6.5) and communication of project requirements (7.6.6); each subsection gives mix design considerations for meeting the requirement.",
       "key_points": [
-        "Slump targets: 6-8 in. dry; 8-10 in. wet/cased; slump flow 20-28 in. SCC",
-        "Maximum w/cm: 0.45 for aggressive ground exposure",
-        "Concrete temperature at placement: 50-90°F (10-32°C)",
-        "Large diameter shafts: limit temperature differential ≤35°F to prevent thermal cracking",
-        "Minimum f'c: typically 4000 psi at 28 days"
+        "Workability and its retention, stability, durability, strength, temperature control, communication"
       ],
       "equations": [],
       "figures": [],
@@ -111,21 +416,204 @@
       "applicability": "Concrete specification and QC/QA requirements"
     },
     {
+      "section_id": "7.6.1",
+      "title": "Workability",
+      "body": "[p. 7-26] Workability is perhaps the most important characteristic: the concrete must self-consolidate and pass through the cage without vibration, and remain workable until placement is complete and any temporary casing is removed. It is particularly demanding for tremie or pumped placement. Requirements are given for conventional drilled shaft concrete placed in a dry hole, generally by free fall (7.6.1.1), and for tremie concrete placed through water or slurry by pump or gravity tremie (7.6.1.2), with workability retention in 7.6.1.3.",
+      "key_points": [
+        "Most important property: self-consolidation and passing ability without vibration, retained until casing is out"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Workability requirements for drilled shaft concrete"
+    },
+    {
+      "section_id": "7.6.1.1",
+      "title": "Conventional Drilled-Shaft Concrete",
+      "body": "[p. 7-26] The slump test is used almost exclusively for conventional mixes; it is not ideal, but no other field test is generally accepted. Concrete placed in a dry hole by free fall should have a slump of at least 6 inches and no greater than 9 inches; free fall of highly workable concrete such as tremie concrete should be avoided because of segregation. Workability is best achieved with rounded natural aggregate and natural sand; crushed stone, increasingly used as natural supplies deplete, needs higher paste content or more water reducer, and its dust must be washed away since it consumes water needed for lubrication and hydration.",
+      "key_points": [
+        "Dry free-fall placement: slump at least 6 inches and no greater than 9 inches",
+        "Avoid free fall of highly workable (tremie) concrete",
+        "Rounded aggregate best; crushed stone needs more paste or water reducer and must be washed of dust"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Slump requirements for dry-placed drilled shaft concrete"
+    },
+    {
+      "section_id": "7.6.1.2",
+      "title": "Tremie Concrete",
+      "body": "[pp. 7-26 to 7-27] Tremie concrete is concrete able to achieve sufficient compaction by self-weight when placed by tremie pipe or pumping under submerged conditions (EFFC-DFI, 2018); it should be more workable than conventional dry-placed concrete, and includes self-consolidating concrete (SCC) and mixes not considered SCC. Tremie concrete should generally have a slump of about 9 inches, but workability is better assessed by slump flow (ASTM C 1611, 2014): the cone is filled without rodding on a nonabsorbent surface, withdrawn, and the patty diameter measured. Slump flow relates inversely to yield stress (Figure 7-18); slump flow values between about 16 and 22 inches (400 to 550 mm) are generally desirable for drilled shaft tremie concrete. Greater slump flow may be specified for workability but is more prone to segregation and bleed, needing attention to stability; below 16 inches workability raises concern about flowing and filling the hole in the wet. The J-Ring test (ASTM C 1621, 2017) assesses passing ability, but its 1.735-inch clear dowel spacing is too close to represent drilled shaft reinforcement. Tremie mixes often have a greater sand-to-total aggregate ratio and cementitious content than conventional mixes, though Portland cement content may be lower because of SCMs, which delay setting and reduce maximum temperatures (Schindler and Folliard, 2005); greater fines and VMAs give high flowability, stability and reduced bleeding (Bailey et al., 2005).",
+      "key_points": [
+        "Tremie concrete compacts under self-weight when placed submerged (EFFC-DFI, 2018); includes SCC",
+        "Slump about 9 inches, but slump flow (ASTM C 1611) is the better measure",
+        "Slump flow about 16 to 22 inches (400 to 550 mm) generally desirable; more risks segregation, less risks poor filling",
+        "J-Ring dowel spacing (1.735 in.) is too close to represent shaft cages",
+        "Higher sand ratio and cementitious content, with SCMs and VMA"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-18: Relationship between yield stress (inverse measure of workability) and slump flow (from EFFC-DFI, 2018)"
+      ],
+      "tables": [],
+      "applicability": "Slump flow and mix characteristics for tremie concrete"
+    },
+    {
+      "section_id": "7.6.1.3",
+      "title": "Workability Retention",
+      "body": "[pp. 7-27 to 7-28] Workability must be maintained long enough to build the shaft: as a general rule concrete should remain workable for two hours greater than the estimated time to complete placement and remove temporary casing, the estimate including delivery time, casing extraction and some allowance for unforeseen delays. Figure 7-19 contrasts desirable workability loss (slowly decreasing slump or slump flow, staying above a minimum for the placement duration) with undesirable loss. In its example, placement is assumed to last four hours after batching with a slump exceeding 4 inches at that time (a commonly specified requirement); four hours is generally reasonable for routine shafts, but much more may be needed for large shafts or complex delivery (e.g., by barge). The undesirable curve starts appropriately but loses slump rapidly about 90 minutes after batching, as can happen with improper admixture dosages or unconsidered weather. Without adjusting retarder dosage, a temperature increase of about 18 deg F increases the rate of slump loss by a factor of approximately 2, so workability loss measured at 72 deg F in the laboratory misleads for placement at 90 deg F; evaluate workability loss at the expected field temperature.",
+      "key_points": [
+        "Workable for two hours more than the estimated placement and casing removal time, including delivery and delays",
+        "Commonly specified: slump above 4 inches at four hours after batching; longer for large shafts or barge delivery",
+        "About 18 deg F warmer roughly doubles the rate of slump loss: test at field temperature"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-19: Workability Loss Relationship from a Trial Mixture Design"
+      ],
+      "tables": [],
+      "applicability": "Specifying and testing workability retention of drilled shaft concrete"
+    },
+    {
+      "section_id": "7.6.2",
+      "title": "Stability",
+      "body": "[pp. 7-28 to 7-29] Mixes should be proportioned to prevent excessive bleeding or segregation, particularly acute for highly workable tremie mixes. The field slump flow test assigns a visual stability index (VSI) to the patty, from 0 (no segregation or bleed) to 3 (clear segregation and bleed) (ASTM C 1611, 2014); alternative tests exist (EFFC-DFI, 2018) but are not commonly performed. Acceptable limits are debated: Sliwinski (1980) defines acceptable bleeding as less than 1 percent of the depth of the pour as long as it does not occur through channels (Figure 7-20). The VSI for acceptable tremie concrete should generally be 1.0 or less. Excessive bleed calls for less mixing water and/or more cementitious material; air-entraining admixtures and VMAs also reduce bleeding.",
+      "key_points": [
+        "Visual stability index from the slump flow patty: 0 (none) to 3 (clear segregation and bleed)",
+        "Acceptable tremie concrete: VSI generally 1.0 or less",
+        "Bleeding less than 1 percent of pour depth acceptable if not through channels (Sliwinski, 1980)",
+        "Reduce bleed with less water, more cementitious material, air entrainment or VMA"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-20: Channel formed by excessive bleed water escaping near reinforcing cage."
+      ],
+      "tables": [],
+      "applicability": "Bleed and segregation limits for drilled shaft concrete"
+    },
+    {
+      "section_id": "7.6.3",
+      "title": "Durability",
+      "body": "[pp. 7-29 to 7-30] Durability is largely controlled by adequate low-permeability cover outside the reinforcement, which needs concrete with adequate passing ability and a cage kept in position with appropriate centralizers. Passing ability depends on workability, aggregate gradation and the spacing of bars and spirals/stirrups; a difference of more than a few inches between concrete levels inside and outside the cage during placement may indicate poor cover concrete. Permeability is controlled mainly by w/cm and the proportion of SCMs (7.5.1), and can be degraded by Alkali-Silica Reactivity (ASR), Delayed Ettringite Formation (DEF) or sulfate attack, which crack the cover. See Chapter 4 of ACI 318 for durability requirements. An aggressive environment exists where soil, rock or groundwater has free oxygen and/or carbon dioxide (partially saturated soils), high sulfates or chlorides, or is substantially acidic. ACI 318 (2008) Table 4.2.1 gives a maximum w/cm, minimum strength and cementitious composition by sulfate exposure; if water-soluble sulfate in soil exceeds 0.10 percent by mass or sulfate (SO4) in groundwater exceeds 150 ppm, follow ACI 318 (2008). Industrial contaminants (organic wastes, alkalis, salts) can be aggressive and need expert help. In aggressive conditions consider SCMs to reduce permeability; permanent casing can also help.",
+      "key_points": [
+        "Durability depends on low-permeability cover: passing ability plus centralized cages",
+        "Concrete levels inside and outside the cage differing by more than a few inches suggest poor cover",
+        "Aggressive: free oxygen/CO2, high sulfate or chloride, acidic; industrial contaminants need experts",
+        "Follow ACI 318 (2008) if soil sulfate exceeds 0.10 percent by mass or groundwater SO4 exceeds 150 ppm",
+        "SCMs or permanent casing in aggressive ground"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Concrete durability and sulfate exposure for drilled shafts"
+    },
+    {
+      "section_id": "7.6.4",
+      "title": "Strength",
+      "body": "[p. 7-30] Strength is normally specified as the 28-day compressive strength of 6-inch by 12-inch cylinders. Most drilled shaft mixes will be adequate with 28-day cylinder strengths of 3,500 to 4,000 psi. Higher strength helps where the designer uses very strong bearing strata with a reduced shaft area (higher concrete stresses) or where high combined bending and axial stresses apply; often the cement and SCM needed for workability and stability give far higher strength than design needs. Design strengths of 6,000 psi have been used for seismic requirements, achievable with lower w/cm for very low permeability, high-performance concrete; lower w/cm shortens setting time, so check workability retention, especially in warm weather, and higher-strength mixes have more cementitious material and higher curing temperatures.",
+      "key_points": [
+        "28-day strength on 6 by 12 inch cylinders; 3,500 to 4,000 psi adequate for most shaft mixes",
+        "Higher strength for small shafts on very strong strata or high combined bending and axial stress",
+        "6,000 psi used for seismic design; watch workability retention and curing temperature"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Specifying drilled shaft concrete strength"
+    },
+    {
+      "section_id": "7.6.5",
+      "title": "Control of Concrete Temperatures",
+      "body": "[pp. 7-30 to 7-32] Temperature affects constructability and may affect integrity and durability. High placement temperatures accelerate hydration and reduce workability, nonlinearly, the rate rising dramatically above 70 deg F (Figure 7-21: effect of initial temperature on heat generation under adiabatic conditions, Schindler, 2002). Large-diameter shafts behave like mass concrete, raising two concerns: delayed ettringite formation (DEF), internal expansion causing microcracking that may progress to severe cracking, and thermal cracking from large gradients. Plain Portland cement members above 158 deg F may experience DEF (Taylor et al., 2001); with enough fly ash or slag, up to about 170 deg F can be tolerated (Folliard et al., 2006), guidelines being at least 25% Class F fly ash, at least 35% Class C fly ash, or at least 35% slag cement. Thermal gradients depend on internal heat and the surrounding soil, rock or fluid; agency mass concrete specifications often limit the temperature differential to less than 35 deg F, but that derives from unreinforced concrete in Europe more than 50 years ago (Gajda and VanGeem, 2002) and likely has little relevance to reinforced, confined concrete. The authors know of no adverse performance of drilled shafts from thermal cracking or DEF, but 10-ft shafts in Florida (Mullins, 2006) reached 180 deg F, so the potential should be considered. In-place temperatures can be controlled by (1) limiting total cementitious content, (2) controlling the fresh placement temperature and (3) selecting cementitious material types; mixes should not exceed actual design strength needs, since extra Portland cement for an unnecessarily high strength raises heat and shortens set. Batch plant controls include ice for some mixing water, shading aggregate stockpiles and liquid nitrogen probes in the truck; Type II cement and high dosages of Class F fly ash and/or GGBF slag also control temperature and reduce DEF risk.",
+      "key_points": [
+        "Hydration rate rises dramatically above 70 deg F",
+        "DEF possible above 158 deg F with plain cement; up to about 170 deg F with at least 25% Class F, 35% Class C fly ash or 35% slag",
+        "Mass concrete limit of 35 deg F differential likely has little relevance to reinforced, confined shafts",
+        "No known drilled shaft failures from DEF or thermal cracking, but 180 deg F measured in 10-ft Florida shafts (Mullins, 2006)",
+        "Control by limiting cementitious content, cooling the fresh concrete (ice, shading, liquid nitrogen) and using Type II cement with fly ash or slag"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-21: Effect of different initial mixture temperatures on temperature development (shown in Watts/cm3) during adiabatic conditions (Schindler, 2002)."
+      ],
+      "tables": [],
+      "applicability": "Heat of hydration, DEF and thermal cracking in large-diameter drilled shafts"
+    },
+    {
+      "section_id": "7.6.6",
+      "title": "Communication of Project Specific Requirements for the Concrete",
+      "body": "[p. 7-32] Effective communication is needed among owner, designer, contractor and concrete producer; concrete requirements are too often poorly defined at bid, so competitive bidding may deliver a producer who underbid or cannot meet the requirements. Project-specific performance criteria must be clearly defined in the bid documents so time and cost can be allowed for mix development testing. Routine projects with placement under 3 hours and routine requirements can often use a standard mixture that has worked before; complex projects (large or deep shafts, congested reinforcement, complex delivery) seldom can and need substantial mix development. The owner and designer must communicate reinforcement, durability requirements, target service life and other requirements; contractors must tell the producer the handling and placement methods, estimated transport and placement durations and expected ambient temperatures; and the producer must work with the contractor on a suitable mix.",
+      "key_points": [
+        "Define concrete performance criteria clearly in bid documents",
+        "Standard mixes for routine projects with placement under 3 hours; complex projects need mix development",
+        "Owner, designer, contractor and producer each share their requirements and plans"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Specifying and communicating concrete requirements at bid"
+    },
+    {
       "section_id": "7.7",
       "title": "Specifications and QA/QC",
-      "body": "Quality control at batch plant: review and approve mix design before production; verify cementitious material types and proportions; check aggregate gradation and moisture; verify admixture dosages. QC tests at jobsite: slump (ASTM C143) or slump flow (ASTM C1611) measured before each truck discharge and when consistency changes; temperature measured each truck; cylinders for compressive strength (minimum 2 per 100 cy, plus first truck, per shift, or when changes observed). Addition of water at jobsite: NOT PERMITTED after initial mixing unless a retempering agent is specified; reduces w/cm control and may compromise strength and workability retention. Concrete volume monitoring during placement: actual volume of concrete placed should closely match theoretical shaft volume plus 5-10% typical overage; significant overage may indicate cavity or overbreak; significant underage may indicate a defect (necking, loss of concrete). Concrete volume plots are a real-time QC tool for identifying anomalies during placement.",
+      "body": "[pp. 7-32 to 7-33] Concrete was historically specified prescriptively with narrow limits on proportions, which caused costly problems on challenging projects; many if not most agencies have moved to performance-based specifications in which the contractor develops mixes meeting all requirements and the owner performs quality assurance. Agencies still almost universally require mix designs to be submitted for approval, keeping some control that can cause problems on projects with unusually demanding workability requirements; a truly performance-based specification would leave proportions to the contractor and require only that constructed shafts perform, and current practice is an interim step. The main obstacle is that tests of shaft dimensions, integrity and durability are not yet widely accepted for quality assurance, particularly durability, which is still addressed by constraining proportions; dimension and integrity testing is more mature. Better durability assurance is still needed, particularly for design lives of 75 years or more. Subsections: 7.7.1 batch plant QC; 7.7.2 jobsite tests; 7.7.3 addition of water.",
       "key_points": [
-        "Slump/slump flow measured before each truck discharge and when consistency changes",
-        "Minimum cylinders: 2 per 100 cy, plus first truck, per shift, or when changes observed",
-        "Addition of water at jobsite: NOT PERMITTED (compromises w/cm and workability retention)",
-        "Concrete volume monitoring: actual vs. theoretical volume — significant differences indicate anomalies",
-        "Significant volume overage: possible cavity or overbreak",
-        "Significant volume underage: possible necking or concrete loss"
+        "Move from prescriptive to performance-based specifications; mix approval still usual",
+        "Durability is hard to verify, so still controlled through proportions",
+        "Better durability assurance needed for design lives of 75 years or more"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
       "applicability": "Concrete quality control and quality assurance during production and placement"
+    },
+    {
+      "section_id": "7.7.1",
+      "title": "Quality Control at the Batch Plant",
+      "body": "[p. 7-33] Batch plant materials and operations must give consistent concrete. Check the nature and quantities of aggregates, cementitious materials, water and admixtures; proportioning errors found only at cylinder testing can cause great difficulty and delays. Kosmatka and Wilson (2016): \"specifications generally require that materials be measured for individual batches within the following percentages of accuracy: cementitious materials +/-1%, aggregates +/-2%, water +/-1%, and admixtures +/-3%.\" Aggregate changes during a project may need a new mix design, and aggregate moisture can change quickly, so added water must often be adjusted so the approved water content is never exceeded, even more critical with HRWR mixes at low w/cm; modern plants use real-time aggregate moisture probes. Hot aggregates and mixing water can accelerate setting, so the inspector should check component and mixture temperatures against the specifications.",
+      "key_points": [
+        "Check aggregate, cementitious, water and admixture quantities",
+        "Batch accuracy: cementitious +/-1%, aggregates +/-2%, water +/-1%, admixtures +/-3% (Kosmatka and Wilson, 2016)",
+        "Adjust batch water for aggregate moisture; never exceed the approved water content",
+        "Check component and mix temperatures"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Batch plant QC for drilled shaft concrete"
+    },
+    {
+      "section_id": "7.7.2",
+      "title": "Tests at the Jobsite",
+      "body": "[pp. 7-33 to 7-34] Jobsite testing time should be minimized so the hole is open as briefly as possible (caving) and concrete is placed fast enough to stay workable; batch plant inspection and timely ordering and delivery are emphasized, since rejecting delivered concrete interrupts placement, risking caving, sediment on the concrete and workability loss (venting, cage displacement, trouble removing casing). Delivery must let the pour finish without delay within the concrete's workable life, so the contractor estimates the as-built excavation volume (allowing losses and overpour) and the construction time with contingency, and passes the time to the producer to set retarder dosage. Jobsite testing verifies rather than controls: recommended minimum tests are temperature, slump or slump flow, total air (if required) and cylinders, with VSI (ASTM C 1611, 2005) for tremie mixes. Visual inspection at the hopper matters: cemented balls or segregated or concentrated aggregate or cement show inadequate mixing and may justify rejecting the rest of the truck, and poor flow through the tremie or pumpline may show poor workability or improper procedures. A set of cylinders is generally two 6 by 12 inch cylinders; at least one set should be made and tested per shaft, but not more than one set per truckload, taken quickly from each truck, not from the first or last part of the discharge, and cured and tested per the specifications. With tremie or pump placement the first concrete placed rises to the top, so for large pours workability retention should be checked by periodic slump or slump flow tests on the first load, sampled at the tremie or pumpline and kept sealed, out of sun and vibration, at temperatures similar to those below ground (often between 55 and 66 deg F in the contiguous 48 states), and agitated with a shovel before testing. Overpour the shaft to confirm clean concrete reaches the cutoff. With a drop chute, the first concrete stays at the bottom and should still remain workable until the last is placed so ground pressures are reestablished, particularly when temporary casing is removed during or right after placement.",
+      "key_points": [
+        "Minimize test time; avoid rejecting trucks mid-pour by inspecting at the plant",
+        "Contractor estimates as-built volume and pour time and tells the producer",
+        "Minimum tests: temperature, slump or slump flow, air if required, cylinders; VSI for tremie mixes",
+        "Reject trucks with cemented balls or segregation seen at the hopper",
+        "Cylinder set = two 6 by 12 inch; at least one set per shaft, not more than one per truckload; not from the first or last discharge",
+        "Check workability retention on first-load samples kept at ground temperature (often 55 to 66 deg F); overpour to clean concrete"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Jobsite concrete testing and sampling for drilled shafts"
+    },
+    {
+      "section_id": "7.7.3",
+      "title": "Addition of Water at Jobsite",
+      "body": "[pp. 7-34 to 7-35] When slump is too low, adding water in the truck raises workability but reduces strength and durability and may change the mix significantly and increase segregation. Sometimes part of the approved mix water is deliberately withheld at the plant for addition at the site; the amount allowed should be on the batch sheet, and if the truck can measure the added water accurately it can be added without harm, provided the drum is rotated enough to mix it uniformly. Bringing dry ingredients to mix at the site for very long or unpredictable hauls is discouraged because site quality control is inferior to the plant. If all permitted water has been added and slump is still insufficient, the inspector must note it and inform the contractor, who decides between adding water and ordering new concrete; where durable low-permeability concrete is essential in aggressive environments, excess water may be absolutely disallowed by the contract, and where permeability matters less the contractor may proceed at risk with extra verification samples, with evaluation and repair (Chapter 17) if deficiencies are found.",
+      "key_points": [
+        "Added water raises workability but cuts strength and durability and risks segregation",
+        "Withheld water may be added if stated on the batch sheet, measured and mixed in",
+        "Beyond permitted water: inspector records it; contractor adds water at risk or orders new concrete",
+        "Excess water may be absolutely disallowed in aggressive environments; otherwise extra samples and evaluation (Chapter 17)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Handling low-slump concrete and jobsite water additions"
     },
     {
       "section_id": "7.8",
