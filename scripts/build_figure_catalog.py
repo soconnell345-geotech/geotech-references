@@ -38,6 +38,7 @@ import json
 import re
 import statistics
 import sys
+from difflib import SequenceMatcher
 from pathlib import Path
 
 _SCRIPTS_DIR = Path(__file__).resolve().parent
@@ -330,8 +331,57 @@ def _chapter_of(figure_number: str):
     return None
 
 
+#: How alike a List of Figures caption and the caption printed on a figure's
+#: page must be (difflib ratio of the normalized text) for that page to be the
+#: figure's when the list words the caption differently: GEC-12 Vol I lists
+#: Figure 3-6 as "Nominal resistance and pile support cost", and its page
+#: (printed p. 60) prints "Nominal shaft resistance and pile support cost".
+NEAR_CAPTION_RATIO = 0.8
+#: How many pages either side of the page the printed-page offset predicts
+#: are searched for such a caption.
+NEAR_CAPTION_PAGES = 3
+#: Mathematical alphanumeric symbols: a page whose text layer spells a formula
+#: glyph by glyph (GEC-5 Figure 7-14's su/sigma'vc in math italic letters)
+#: gives the page, but the list's plain caption is kept.
+_MATH_ALNUM = re.compile("[\U0001D400-\U0001D7FF]")
+
+
+def _page_caption(text: str, figure_number: str) -> "str | None":
+    """The caption printed under ``Figure <n>`` on one page, or None.
+
+    The marker starts a line and a capitalized caption follows it (a sentence
+    such as "Figure 3-6 presents ..." does not count); the caption is the lines
+    after it, up to the one that ends with a period (at most four).
+    """
+    num = r"\s*[-.]\s*".join(re.escape(p) for p in re.split(r"[-.]",
+                                                            figure_number))
+    for m in re.finditer(
+            rf"(?m)^[ \t]*Figure\s+{num}(?!\d)(?![.-]\d)[ \t]*[.:]?[ \t]*",
+            text):
+        lines = []
+        for line in text[m.end():].split("\n"):
+            line = line.strip()
+            if not line:
+                if lines:
+                    break
+                continue
+            lines.append(line)
+            if line.endswith(".") or len(lines) == 4:
+                break
+        cap = re.sub(r"\s+", " ", " ".join(lines)).translate(_SMART)
+        cap = cap.strip(" .-:")
+        if cap[:1].isupper():
+            return cap
+    return None
+
+
 def _resolve_pages(doc, figs: list[dict], body_start: int) -> dict:
     """Resolve a ``pdf_page_index`` for every figure. Mutates ``figs`` in place.
+
+    A figure whose List of Figures caption is not printed word for word on any
+    page takes the page near its printed page whose caption is nearly the same,
+    and the caption as that page prints it (the figure's own page is the
+    record) unless the page's text spells a formula in math glyphs.
 
     Returns a small stats dict.
     """
@@ -359,6 +409,27 @@ def _resolve_pages(doc, figs: list[dict], body_start: int) -> dict:
         if f["pdf_page_index"] is not None and f["printed_page"]
     ]
     offset = int(statistics.median(offsets)) if offsets else 0
+
+    # A list caption worded differently from the figure's page: the page near
+    # the predicted one whose printed caption is nearly the same.
+    near_resolved = 0
+    for f in figs:
+        if f["pdf_page_index"] is not None or not f["caption"] \
+                or not f["printed_page"]:
+            continue
+        want = _norm(f["caption"])
+        expected = f["printed_page"] + offset
+        for i in range(max(body_start, expected - NEAR_CAPTION_PAGES),
+                       min(doc.page_count, expected + NEAR_CAPTION_PAGES + 1)):
+            cap = _page_caption(doc[i].get_text(), f["figure_number"])
+            if cap and SequenceMatcher(None, want, _norm(cap)).ratio() \
+                    >= NEAR_CAPTION_RATIO:
+                f["pdf_page_index"] = i
+                if not _MATH_ALNUM.search(cap):
+                    f["caption"] = cap
+                near_resolved += 1
+                break
+
     filled_offset = 0
     for f in figs:
         if f["pdf_page_index"] is None and f["printed_page"]:
@@ -391,6 +462,7 @@ def _resolve_pages(doc, figs: list[dict], body_start: int) -> dict:
     return {
         "total": len(figs),
         "caption_resolved": resolved,
+        "near_caption_resolved": near_resolved,
         "offset_filled": filled_offset,
         "interp_filled": filled_interp,
         "median_offset": offset,

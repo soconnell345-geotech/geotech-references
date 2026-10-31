@@ -9,13 +9,14 @@
       "section_id": "8.1",
       "title": "Introduction",
       "summary": "Chapter 8 addresses structural aspects and limit states for driven pile foundations per AASHTO (2014) LRFD specifications. Factored structural resistance must exceed factored loads. Topics include driving stress limits, group layout, preliminary cap design, in-service stress limits, and buckling. Material-specific provisions govern structural pile design: concrete (Article 5), steel (Article 6), and timber (Article 8).",
-      "body": "This chapter addresses the structural aspects and limit states for driven pile foundations following the AASHTO (2014) LRFD Bridge Design Specifications. The factored structural resistances for piles are a function of average section yield strength, factors for incision, loading rate, submersion, cross sectional shape, and analysis method for timber piles, resistance factor phi_i for variations in loading condition, materials, and method reliability, and load factor gamma_i to account for uncertainty in the factored service loads. AASHTO (2014) addresses the structural resistance of concrete piles in Article 5, steel piles in Article 6, and timber piles in Article 8.",
+      "body": "(pp. 427-428) Piles resist vertical loads, moments and lateral loads; this chapter covers the pile's structural limit states, which can govern where lateral and axial loads act together, as vessel impact, wind, scour and earthquake loads often do (chapter introduction, p. 427). It is not a full structural design treatment; see AASHTO (2014). A driven pile must pass stress and buckling checks under static design loads and under driving, so material limits are compared with factored driving stresses and factored design loads. The highest stresses almost always occur in driving, needed to overcome the nominal geotechnical plus dynamic resistance; the high strain rate and short duration allow a substantially higher driving stress limit than for static design. Wave equation analysis predicts driving stresses before installation and dynamic testing monitors them during it. Factored loads are in Chapter 2; AASHTO (2014) covers concrete piles in Article 5, steel in Article 6, timber in Article 8, and concrete filled steel pipe. Factored structural resistance depends on (1) average section yield strength (Fy for steel and reinforcement, f'c typically at 28 days, wood crushing strength), (2) timber factors for incision, loading rate, submersion, shape and analysis method, (3) the resistance factor phi_i, and (4) the load factor gamma_i. The chapter covers driving stress limits, group layout, preliminary cap design, in-service stress limits and buckling.",
       "key_points": [
-        "Structural resistance must exceed factored loads applied to the pile",
-        "AASHTO (2014) LRFD methodology governs structural pile design",
-        "Driving stress limits, group layout, preliminary cap design, in-service stress limits, and buckling are addressed",
-        "Factored structural resistance depends on yield strength, resistance factors, and load factors",
-        "Material-specific provisions: concrete (Article 5), steel (Article 6), timber (Article 8)"
+        "Not a comprehensive structural design treatment; see AASHTO (2014)",
+        "Material limits are compared with factored driving stresses and factored design loads",
+        "Highest stresses usually occur during driving; a substantially higher driving stress limit is allowed",
+        "Wave equation analysis predicts, and dynamic testing monitors, driving stresses",
+        "AASHTO articles: concrete 5, steel 6, timber 8",
+        "Resistance depends on yield strength, timber adjustment factors, resistance factor phi_i and load factor gamma_i"
       ],
       "equations": [],
       "figures": [],
@@ -26,14 +27,14 @@
       "section_id": "8.2",
       "title": "Basic Structural Properties of Driven Piles",
       "summary": "Primary pile materials are steel, concrete, and timber; each significantly affects nominal structural and driving resistance. Steel elastic modulus E_s = 29,000 ksi; concrete modulus E_c = 1820*sqrt(f'c) (Eq. 8-1); timber properties vary by species. Moment of inertia formulas are provided for solid circular, hollow circular, and solid square sections. Elastic section modulus S = I/c is used for moment-induced stress evaluation; H-pile and pipe pile section properties tabulated in Figures 8-1 through 8-3.",
-      "body": "Primary pile materials include steel, concrete, and timber. The properties of these materials significantly affect static nominal structural resistance and nominal driving resistance. Steel piles are produced to meet minimum design yield stress standards, concrete pile resistance depends on elastic modulus and compression strength, and timber pile properties vary by tree species. Section geometry and moment of inertia calculations are essential for evaluating combined axial and flexural loading.",
+      "body": "(p. 428) Material properties (Section 8.2.1), section definitions (8.2.2), and effective length and buckling (8.2.3) underlie the structural checks.",
       "key_points": [
         "Steel elastic modulus E_s = 29,000 ksi per AASHTO (2014)",
         "Concrete elastic modulus estimated from compression strength via Eq. 8-1",
         "Timber properties vary by species; Douglas-Fir and Southern Pine most common",
         "Moment of inertia formulas provided for circular, voided circular, and square sections",
         "Section modulus S = I/c used for moment-induced stress calculations",
-        "H-pile and pipe pile section properties tabulated in Figures 8-1 through 8-3"
+        "H-pile and pipe pile dimensions in Figures 8-1 and 8-3; H-pile section properties tabulated in Figure 8-2"
       ],
       "equations": [],
       "figures": [],
@@ -44,48 +45,22 @@
       "section_id": "8.2.1",
       "title": "Material Properties",
       "summary": "Steel pipe piles (ASTM A-252) have yield stress from 35 to 80 ksi; H-piles (ASTM A572) require minimum Fy = 50 ksi — A-36 grade is no longer manufactured. Concrete elastic modulus E_c = 1820*sqrt(f'c) (Eq. 8-1) for normal weight concrete. Timber species reference values: Douglas-Fir (Fco=1.25 ksi, Eo=1500 ksi), Southern Pine (Fco=1.20 ksi, Eo=1500 ksi), Red Oak (Fco=1.10 ksi, Eo=1250 ksi), Red Pine (Fco=0.90 ksi, Eo=1280 ksi).",
-      "body": "Steel piles are generally produced to meet a minimum design yield stress. Common steel pipe pile grades (ASTM A-252) range from 35 to 80 ksi yield stress, while H-pile grades (A-36 and ASTM A-572) range from 36 to 60 ksi. ASTM A572 now requires new H-pile sections to be produced with a minimum yield stress of 50 ksi, so A-36 grade H-piles are no longer manufactured. For concrete piles, the elastic modulus is estimated from the 28-day compression strength. Timber pile properties including compression stress parallel to grain and elastic modulus are provided for Douglas-Fir, Red Oak, Red Pine, and Southern Pine.",
+      "body": "(pp. 428-430) Steel, concrete and timber properties strongly affect static nominal structural resistance and nominal driving resistance. Steel piles are produced to a minimum yield stress (Table 8-1 pipe: ASTM A-252 Grade 2, 35 ksi; Grade 3, 45 ksi; Grade 3 (Mod), 50-80 ksi. Table 8-2 H-piles: A-36, 36 ksi; ASTM A-572-50, 50 ksi; A-572-60, 60 ksi). ASTM A572 requires new H-pile sections at a minimum of 50 ksi, so A-36 H-piles are no longer made. Es = 29,000 ksi for static calculations (AASHTO 2014). For concrete the modulus and strength limit, reinforcement adds tensile strength, and without test data AASHTO estimates the modulus by Eq. 8-1 (normal weight concrete, 145 pcf). Timber properties vary by species: Douglas-Fir and Southern Pine predominate, with Red Oak and Red Pine also used; AASHTO (2014) Article 8.4.1.4 reference values (Table 8-3) are modified by shape and size factors (Section 8.4).",
       "key_points": [
-        "Steel pipe pile grades: ASTM A-252 Grades 2, 3, and 3 (Mod), Fy = 35 to 80 ksi",
-        "Steel H-pile grades: A-36 (Fy=36 ksi), ASTM A-572-50 (Fy=50 ksi), A-572-60 (Fy=60 ksi)",
-        "A-36 H-piles no longer manufactured; ASTM A572 requires minimum 50 ksi",
-        "Concrete elastic modulus Ec = 1820*sqrt(f'c) assuming 145 pcf unit weight",
-        "Timber species: Douglas-Fir (Fco=1.25, Eo=1500 ksi), Southern Pine (Fco=1.20, Eo=1500 ksi)",
-        "Red Oak (Fco=1.10, Eo=1250 ksi) and Red Pine (Fco=0.90, Eo=1280 ksi) also used"
+        "Table 8-1 pipe: A-252 Grade 2 Fy = 35 ksi; Grade 3, 45 ksi; Grade 3 (Mod), 50-80 ksi",
+        "Table 8-2 H-pile: A-36, 36 ksi; A-572-50, 50 ksi; A-572-60, 60 ksi; A-36 H-piles no longer manufactured",
+        "Steel Es = 29,000 ksi for static calculations (AASHTO 2014)",
+        "Eq. 8-1: Ec = 1820 sqrt(f'c) (ksi), normal weight concrete 145 pcf",
+        "Table 8-3: Douglas-Fir Fco 1.25, Eo 1500; Red Oak 1.10, 1250; Red Pine 0.90, 1280; Southern Pine 1.20, 1500 ksi"
       ],
       "equations": [
-        {
-          "eq_id": "8-1",
-          "description": "Elastic modulus of concrete (ksi) from compression strength",
-          "formula": "E_c = 1820 * sqrt(f'_c)",
-          "variables": {
-            "E_c": "elastic modulus of concrete (ksi)",
-            "f_prime_c": "concrete compression strength at 28 days (ksi)"
-          },
-          "notes": "Assumes normal weight concrete with unit weight of 145 pcf.",
-          "implemented_in": null
-        }
+        "Eq. 8-1: Ec = 1820 sqrt(f'c); Ec = elastic modulus of concrete (ksi); f'c = concrete compression strength at 28 days unless otherwise specified (ksi); normal weight concrete, 145 pcf (p. 429)"
       ],
       "figures": [],
       "tables": [
-        {
-          "table_id": "8-1",
-          "title": "Common Steel Pipe Pile Grades and Yield Stress",
-          "description": "Lists ASTM A-252 pipe pile designations with yield stress values from 35 to 50-80 ksi.",
-          "page": 429
-        },
-        {
-          "table_id": "8-2",
-          "title": "Common Steel H-pile Grades and Yield Stress",
-          "description": "Lists A-36, ASTM A-572-50, and A-572-60 H-pile grades with yield stress from 36 to 60 ksi.",
-          "page": 429
-        },
-        {
-          "table_id": "8-3",
-          "title": "Timber Pile Compression Stress and Elastic Modulus Reference Values",
-          "description": "Reference values for Fco and Eo for Pacific Coast Douglas-Fir, Red Oak, Red Pine, and Southern Pine per AASHTO (2014) Article 8.4.1.4.",
-          "page": 430
-        }
+        "Table 8-1: Common Steel Pipe Pile Grades and Yield Stress (p. 429)",
+        "Table 8-2: Common Steel H-pile Grades and Yield Stress (p. 429)",
+        "Table 8-3: Timber Pile Compression Stress and Elastic Modulus Reference Values (after AASHTO 2014) (p. 430)"
       ],
       "applicability": "Material property selection for steel, concrete, and timber driven piles."
     },
@@ -93,82 +68,24 @@
       "section_id": "8.2.2",
       "title": "Pile Section Definitions",
       "summary": "Pile shape and element dimensions govern axial compression and flexural resistance modes. Moment of inertia formulas: solid circular I = pi*D^4/64 (Eq. 8-2), hollow circular I = pi*(D^4-D1^4)/64 (Eq. 8-3), solid square I = b^4/12 (Eq. 8-4). Elastic section modulus S = I/c (Eq. 8-5) is used to evaluate moment-induced stresses. H-pile dimensions and section properties are in Figures 8-1 and 8-2 (pipe pile dimensions in Figure 8-3); sections should be selected from locally available stock to avoid scheduling delays.",
-      "body": "Beyond material properties, the general shape and element dimensions affect modes of structural resistance. The relative thickness of steel limits the magnitude of force that can be transferred to the pile during driving or for structural considerations. Axial compression and flexural resistance are derived from the pile shape. Moment of inertia (I) is computed for various common shapes, and the elastic section modulus (S = I/c) is used to evaluate moment-induced stresses. Sections should be selected from those commonly available from local suppliers.",
+      "body": "(pp. 430-433) Shape and element dimensions govern how much force can be transferred in driving or service and the axial and flexural resistance; Figures 8-1 and 8-3 give H-pile and pipe pile dimensions and Figure 8-2 H-pile section properties. The largest stresses occur farthest from the neutral axis (outer edge of a pile, outermost piles of a group), so area, moment of inertia and edge distance are needed for combined axial and flexural checks. Moment of inertia comes from Eqs. 8-2 to 8-4, or AISC (2011) shape tables or Figure 8-2 for H-piles (strong and weak axis); the elastic section modulus from Eq. 8-5. Choose sections locally available, as suppliers do not stock every size.",
       "key_points": [
-        "Pile shape and dimensions affect axial compression and flexural resistance modes",
-        "Moment of inertia formulas provided for solid circular, voided circular, and solid square sections",
-        "Elastic section modulus S = I/c for moment stress evaluation",
-        "H-pile section properties tabulated in Figure 8-2 (Skyline Steel 2015)",
-        "Reference AISC (2011) shape tables for detailed strong and weak axis properties",
-        "Select sections from locally available stock to avoid scheduling delays"
+        "Largest stresses occur at the greatest distance from the neutral axis",
+        "Eq. 8-2: I = pi D^4 / 64 (solid circular); Eq. 8-3: I = pi (D^4 - D1^4) / 64 (voided circular)",
+        "Eq. 8-4: I = b^4 / 12 (solid square); Eq. 8-5: S = I / c",
+        "H-pile properties: Figure 8-2 (modified from Skyline Steel 2015) or AISC (2011) tables",
+        "Select sections commonly available from local suppliers to avoid delays"
       ],
       "equations": [
-        {
-          "eq_id": "8-2",
-          "description": "Moment of inertia for solid circular section",
-          "formula": "I = pi * D^4 / 64",
-          "variables": {
-            "I": "moment of inertia (in^4)",
-            "D": "outside diameter (inches)"
-          },
-          "notes": null,
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-3",
-          "description": "Moment of inertia for voided (hollow) circular section",
-          "formula": "I = pi * (D^4 - D1^4) / 64",
-          "variables": {
-            "I": "moment of inertia (in^4)",
-            "D": "outside diameter (inches)",
-            "D1": "inner diameter = D - 2t (inches)"
-          },
-          "notes": "D1 = 2*r1 = D - 2*t where t is wall thickness.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-4",
-          "description": "Moment of inertia for solid square section",
-          "formula": "I = b^4 / 12",
-          "variables": {
-            "I": "moment of inertia (in^4)",
-            "b": "width/height of square (inches)"
-          },
-          "notes": null,
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-5",
-          "description": "Elastic section modulus",
-          "formula": "S = I / c",
-          "variables": {
-            "S": "elastic section modulus (in^3)",
-            "I": "moment of inertia (in^4)",
-            "c": "distance from centroid to outer edge (inches)"
-          },
-          "notes": null,
-          "implemented_in": null
-        }
+        "Eq. 8-2: I = pi (D)^4 / 64, solid circular sections; I = moment of inertia (in^4); D = outside diameter (in.) (p. 432)",
+        "Eq. 8-3: I = pi [(D)^4 - (D1)^4] / 64, voided circular sections; D1 = inner diameter, 2 r1 = D - 2t (in.); t = pipe wall thickness (in.) (p. 432)",
+        "Eq. 8-4: I = b^4 / 12, solid square sections; b = width/height of square (in.) (p. 432)",
+        "Eq. 8-5: S = I / c; S = elastic section modulus (in^3); c = distance from centroid to outer edge (in.) (p. 432)"
       ],
       "figures": [
-        {
-          "figure_id": "8-1",
-          "title": "H-pile section dimensions",
-          "description": "Schematic showing H-pile cross section with flange width bf, depth d, web thickness tw, flange thickness tf, and fillet k dimensions.",
-          "page": 430
-        },
-        {
-          "figure_id": "8-2",
-          "title": "Table of H-pile section properties",
-          "description": "Comprehensive table of HP section properties from HP8x36 through HP18x204 including weight, area, depth, flange width, web/flange thickness, and X-axis and Y-axis properties (I, Z, S, r). Modified from Skyline Steel 2015.",
-          "page": 431
-        },
-        {
-          "figure_id": "8-3",
-          "title": "Pipe pile section dimensions",
-          "description": "Schematic showing pipe pile cross section with outside diameter D, wall thickness t, inner radius r1, and outer radius r2.",
-          "page": 431
-        }
+        "Figure 8-1: H-pile section dimensions (p. 430)",
+        "Figure 8-2: Table of H-pile section properties (modified from Skyline Steel 2015) (p. 431)",
+        "Figure 8-3: Pipe pile section dimensions (p. 431)"
       ],
       "tables": [],
       "applicability": "Section property calculations for H-piles, pipe piles, and concrete piles."
@@ -176,24 +93,20 @@
     {
       "section_id": "8.2.3",
       "title": "Effective Length and Buckling",
-      "summary": "Piles act as columns; the design effective length factor K ranges from 0.65 (both ends fixed) to 2.1 (toe fixed, head free to rotate and translate) (Figure 8-4, after AASHTO 2014). Buckling concerns arise primarily for piles through water, air, or liquefiable soils. Research by Bethlehem Steel (1970) and Coduto et al. (2016) indicates even soft soils provide adequate lateral support against underground buckling when a pile cap provides rotational fixity. LPILE software can evaluate pile-soil interaction and buckling under incremental axial loads.",
-      "body": "From a structural view, piles act as columns under axial or moment loads. An effective length is determined using an effective length factor K based on pile end conditions. Buckling is generally a concern when piles extend through water or air, or for liquefaction where confining stress is absent. Research by Bethlehem Steel Corporation (1970) and Coduto et al. (2016) suggests that even the softest soils provide enough lateral support to prevent underground buckling in piles subject to axial loads, especially when a cap provides rotational fixity. A more rigorous approach uses computer software such as LPILE to generate a pile-soil model and evaluate deflection under incremental loads.",
+      "summary": "Piles act as columns with effective length factor K from end conditions (Figure 8-4: design K 0.65, 0.80, 1.0, 1.2, 2.1, 2.0); the toe is usually fixed. Buckling matters through water, air or liquefied soil; load tests (Bethlehem Steel 1970) and Coduto et al. (2016) indicate even very soft soils prevent underground buckling under axial load. LPILE analysis (Chance 2003) is a more conservative check.",
+      "body": "(pp. 433-434) Piles act as columns; end conditions give the effective length factor K (Figure 8-4), with the toe generally fixed in translation and rotation. Without sufficient bracing (very soft soils, piles through water, large scour) the head may sway and the design K should be used; a pier cap subject to severe scour may give fixed rotation with free translation, and a bent cap may differ along and across its axis. Rollins and Stenlund (2010): for a rotationally fixed head, design the cap connection (embedment and reinforcement) to exceed the pile moment capacity rather than use a rule of thumb embedment. Buckling matters through water or air or in liquefaction, and concern has been raised for very soft soils or peat, but it depends on confining stress and load (Davisson 1963). Bethlehem Steel Corporation (1970) load tests: an H-pile through 31 ft of water and 29 ft of organic silt, where it sank under its own weight, settled 0.63 in. under 200 tons (0.02 in. net) without buckling; Coduto et al. (2016): even the softest soils prevent underground buckling under axial load, especially with a cap fixing the head. Chance (2003) gives a more conservative approach, finding the critical buckling load with software such as LPILE under incremental loads. Figure 8-4 design K values: 0.65, 0.80, 1.0, 1.2, 2.1 and 2.0 (theoretical 0.5, 0.7, 1.0, 1.0, 2.0, 2.0).",
       "key_points": [
-        "Piles act as columns; effective length factor K depends on end conditions",
-        "K values range from 0.65 (fixed-fixed) to 2.0 (free-free) per AASHTO (2014)",
-        "Buckling primarily a concern for piles through water, air, liquefiable soils, or very soft soils",
-        "Research indicates even soft soils provide adequate lateral support against buckling",
-        "Rotationally fixed pile top requires cap connection design per Rollins and Stenlund (2010)",
-        "Computer software (LPILE) can evaluate buckling with pile-soil interaction model"
+        "Toe generally fixed in translation and rotation; use the design K from Figure 8-4",
+        "Figure 8-4 design K: 0.65, 0.80, 1.0, 1.2, 2.1, 2.0 (theoretical 0.5, 0.7, 1.0, 1.0, 2.0, 2.0)",
+        "Severe scour under a pier cap: rotation fixed, translation free",
+        "Rollins and Stenlund (2010): design the cap connection to exceed the pile moment capacity",
+        "Bethlehem Steel (1970): H-pile through 31 ft water and 29 ft organic silt, 200 tons, no buckling",
+        "Coduto et al. (2016): even the softest soils prevent underground buckling under axial load",
+        "Chance (2003): critical buckling load from LPILE with incremental loads (more conservative)"
       ],
       "equations": [],
       "figures": [
-        {
-          "figure_id": "8-4",
-          "title": "Effective length factors, K",
-          "description": "Table showing theoretical and design K values for six end condition combinations: rotation/translation fixed-fixed (K=0.65), fixed-free rotation with fixed translation (K=0.80), both free with one end fixed translation (K=1.0), rotation fixed with free translation (K=1.2), one fixed and one free (K=2.1), and both free (K=2.0). After AASHTO (2014).",
-          "page": 434
-        }
+        "Figure 8-4: Effective length factors, K (after AASHTO 2014) (p. 434)"
       ],
       "tables": [],
       "applicability": "Buckling analysis for partially embedded or scour-exposed piles."
@@ -202,7 +115,7 @@
       "section_id": "8.3",
       "title": "Structural Considerations and Resistance Factors",
       "summary": "AASHTO (2014) nominal static design stress limits represent resistance consistently achievable with traditional driving equipment. Under LRFD, factored resistance must exceed factored loads (phi*Rn >= sum(eta_i*gamma_i*Q_i)). Factored loads are defined in AASHTO Article 3; driving stress limits are in material-specific articles: concrete (Art. 5), steel (Art. 6), timber (Art. 8). Resistance factors are applied to nominal structural resistance to obtain factored design resistance for each limit state.",
-      "body": "The limitations on nominal static design stresses for driven piles in various codes represent the static resistance that can be consistently developed with traditional driving equipment and methods. The factored resistance must be greater than factored loads applied to the pile. The recommended AASHTO limits for factored pile design stresses will generally keep driving stresses within recommended limits. Factored loads are covered in Article 3 of the AASHTO Specification (2014) while driving stress limits are presented in the respective pile material sections.",
+      "body": "(pp. 434-435) Code limits on nominal static design stresses generally reflect the static resistance that traditional driving equipment and methods can consistently develop. Factored resistance must exceed factored loads, and the AASHTO limits for factored design stresses generally keep driving stresses within limits. Factored loads: AASHTO Article 3; driving stress limits: Articles 5 (concrete), 6 (steel) and 8 (timber).",
       "key_points": [
         "Factored resistance must exceed factored loads per LRFD methodology",
         "AASHTO factored pile design stress limits keep driving stresses within recommended limits",
@@ -219,62 +132,23 @@
       "section_id": "8.3.1",
       "title": "Depth to Fixity",
       "summary": "Unbraced length is the distance between braced points resisting buckling. For piles through air or water, depth to fixity d_f approximates the effective column length for preliminary lateral analysis. For clay: d_f = 1.4*(E*Iw/Es)^0.25 (Eq. 8-6), where Es = 0.465*su (Eq. 8-7). For sand: d_f = 1.8*(E*Iw/nh)^0.2 (Eq. 8-8), using nh from Table 8-4. If a p-y lateral pile analysis has been performed, the depth-to-fixity concept is unnecessary.",
-      "body": "The unbraced length l is defined by AASHTO (2014) as the distance between two braced points that resist buckling or distortion modes. For embedded piles, the unbraced length is considered for scour and pile stickup through air and/or water. For preliminary analysis with lateral loads, the effective length K is taken as the total unsupported length plus an embedded depth to fixity. If a lateral pile analysis with p-y curves has been performed, the depth to fixity concept is unnecessary. The depth to fixity below ground is evaluated based on soil type: for clays using the clay soil modulus Es, and for sands using the rate of increase in soil modulus with depth nh.",
+      "body": "(pp. 435-436) AASHTO (2014) defines the unbraced length l as the distance between two braced points resisting buckling or distortion; for embedded piles it covers scour and stickup through air or water. For preliminary analysis with lateral load, the effective length for flexural or torsional resistance is the total unsupported length plus an embedded depth to fixity; after a p-y lateral analysis (Chapter 7) the concept is unnecessary, and most lateral software also finds buckling capacity. Preliminary depth to fixity: Eqs. 8-6 and 8-7 for clays, Eq. 8-8 for sands with nh from Table 8-4 (loose 0.417 dry or moist, 0.208 submerged; medium 1.110, 0.556; dense 2.780, 1.390 ksi/ft).",
       "key_points": [
-        "Unbraced length = distance between braced points resisting buckling",
-        "Depth to fixity needed for preliminary analysis; not needed if p-y analysis is performed",
-        "For clays: df = 1.4*(E*Iw/Es)^0.25, where Es = 0.465*su",
-        "For sands: df = 1.8*(E*Iw/nh)^0.2",
-        "Table 8-4 provides nh values for loose, medium, and dense sands",
-        "Most lateral analysis software includes buckling evaluation features"
+        "Unbraced length l: distance between braced points (AASHTO 2014); includes scour and stickup",
+        "Effective length for preliminary analysis: unsupported length plus depth to fixity",
+        "Not needed after a p-y lateral analysis",
+        "Eq. 8-6: clays df = 1.4 (E Iw / Es)^0.25, with Eq. 8-7 Es = 0.465 su",
+        "Eq. 8-8: sands df = 1.8 (E Iw / nh)^0.2",
+        "Table 8-4 nh (ksi/ft): loose 0.417 / 0.208, medium 1.110 / 0.556, dense 2.780 / 1.390 (dry or moist / submerged)"
       ],
       "equations": [
-        {
-          "eq_id": "8-6",
-          "description": "Depth to fixity for piles in clay",
-          "formula": "d_f = 1.4 * (E * I_w / E_s)^0.25",
-          "variables": {
-            "d_f": "depth to fixity below ground (ft)",
-            "E": "elastic modulus of pile material (ksi)",
-            "I_w": "weak axis moment of inertia of pile (ft^4)",
-            "E_s": "elastic modulus of clay soil (ksi)"
-          },
-          "notes": "E_s is determined from Eq. 8-7.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-7",
-          "description": "Elastic modulus of clay soil from undrained shear strength",
-          "formula": "E_s = 0.465 * s_u",
-          "variables": {
-            "E_s": "elastic modulus of clay soil (ksi)",
-            "s_u": "undrained shear strength of clay (ksf)"
-          },
-          "notes": null,
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-8",
-          "description": "Depth to fixity for piles in sand",
-          "formula": "d_f = 1.8 * (E * I_w / n_h)^0.2",
-          "variables": {
-            "d_f": "depth to fixity below ground (ft)",
-            "E": "elastic modulus of pile material (ksi)",
-            "I_w": "weak axis moment of inertia of pile (ft^4)",
-            "n_h": "rate of increase of soil modulus with depth (ksi/ft), Table 8-4"
-          },
-          "notes": null,
-          "implemented_in": null
-        }
+        "Eq. 8-6: df = 1.4 (E Iw / Es)^0.25, clays; df = depth to fixity below the ground (ft); E = elastic modulus of pile material (ksi); Iw = weak axis moment of inertia of pile (ft^4); Es = elastic modulus of clay soil (ksi) (p. 435)",
+        "Eq. 8-7: Es = 0.465 su; su = undrained shear strength of clay (ksf) (p. 435)",
+        "Eq. 8-8: df = 1.8 (E Iw / nh)^0.2, sands; nh = rate of increase of soil modulus with depth (Table 8-4) (ksi/ft) (p. 435)"
       ],
       "figures": [],
       "tables": [
-        {
-          "table_id": "8-4",
-          "title": "Rate of Increase of Soil Modulus with Depth for Sands (ksi/ft)",
-          "description": "Provides nh values for loose (0.417 dry, 0.208 submerged), medium (1.110 dry, 0.556 submerged), and dense (2.780 dry, 1.390 submerged) sands. After AASHTO (2014).",
-          "page": 436
-        }
+        "Table 8-4: Rate of Increase of Soil Modulus with Depth for Sands (ksi/ft) (after AASHTO 2014) (p. 436)"
       ],
       "applicability": "Preliminary fixity depth estimation for partially embedded piles subject to lateral loads or scour."
     },
@@ -282,27 +156,14 @@
       "section_id": "8.3.2",
       "title": "Limiting Slenderness Ratio",
       "summary": "For piles with an unbraced length through air or water, slenderness must be checked under axial compression. Non-composite steel piles must satisfy Kl/rs <= 120 (Eq. 8-9), where K is the effective length factor (Figure 8-4), l is the unsupported length plus depth to fixity, and rs = sqrt(I/A) is the minimum radius of gyration. Fully embedded piles are braced by soil and do not require a slenderness check.",
-      "body": "Piles extending through air or water are unbraced over some length and therefore for axial compression, the slenderness ratio should be checked during design. For non-composite steel piles which are not fully embedded, the slenderness ratio Kl/rs must not exceed 120, where K is the effective length factor, l is the unbraced length plus depth to fixity, and rs is the minimum radius of gyration.",
+      "body": "(p. 436) Piles through air or water are unbraced over some length, so the slenderness ratio should be checked for axial compression; non-composite steel piles not fully embedded must satisfy Eq. 8-9.",
       "key_points": [
-        "Slenderness ratio check required for piles with unbraced length through air or water",
-        "Limiting slenderness ratio: Kl/rs <= 120 for non-composite steel piles",
-        "K = effective length factor from Figure 8-4",
-        "l = unbraced length including laterally unsupported length plus df",
-        "rs = minimum radius of gyration = sqrt(I/A)"
+        "Check slenderness where piles extend through air or water",
+        "Eq. 8-9: K l / rs <= 120 for non-composite steel piles not fully embedded",
+        "l = laterally unsupported length plus df; rs = minimum radius of gyration sqrt(I/A)"
       ],
       "equations": [
-        {
-          "eq_id": "8-9",
-          "description": "Limiting slenderness ratio for non-composite steel piles",
-          "formula": "K*l / r_s <= 120",
-          "variables": {
-            "K": "effective length factor (Figure 8-4, dimensionless)",
-            "l": "unbraced length or laterally unsupported length plus df (inches)",
-            "r_s": "minimum radius of gyration = sqrt(I/A) (inches)"
-          },
-          "notes": "Applies to non-composite steel piles not fully embedded.",
-          "implemented_in": null
-        }
+        "Eq. 8-9: K l / rs <= 120, non-composite steel piles not fully embedded; K = effective length factor (Figure 8-4); l = unbraced length, or laterally unsupported length plus df (in.); rs = minimum radius of gyration, sqrt(I/A) (in.) (p. 436)"
       ],
       "figures": [],
       "tables": [],
@@ -312,153 +173,61 @@
       "section_id": "8.3.3",
       "title": "Resistance Factors",
       "summary": "AASHTO (2014) LRFD resistance factors applied to nominal structural resistance: Pr = phi_c*Pn (Eq. 8-13), Mr = phi_f*Mn (Eq. 8-14), Vr = phi_v*Vn (Eq. 8-15). Driving factors: phi_da = 1.0 for steel and concrete; 1.15 for timber. Structural factors from Table 8-6: steel H-pile axial phi_c = 0.60 (good conditions)/0.50 (severe); steel pipe phi_c = 0.70/0.60; combined axial+flexural phi_c = 0.70 (H-pile)/0.80 (pipe); flexure phi_f = 1.00 for steel; timber compression phi_c = 0.90, flexure phi_f = 0.85.",
-      "body": "The AASHTO (2014) LRFD approach applies resistance factors to calculated nominal structural resistance. The imposed factored load must be less than or equal to the factored resistance. Factored loads include axial (Pu), moment (Mu), and shear (Vu). Factored resistances are computed as phi*Pn for compression, phi*Mn for flexure, and phi*Vn for shear. AASHTO recommended resistance factors for driving and structural applications are provided in Tables 8-5 and 8-6 respectively. For example, a steel H-pile with good driving conditions and no pile tip needed has phi_c = 0.60 for axial compression, while for combined axial and flexural for undamaged piles phi_c = 0.70.",
+      "body": "(pp. 436-438) Sections 8.4 to 8.7 give step by step nominal structural resistance for timber, steel and concrete piles per AASHTO (2014); under LRFD a resistance factor is applied and the factored load must not exceed the factored resistance. Load combinations (Chapter 2) give the factored axial, moment and shear loads (Eqs. 8-10 to 8-12) and the factored resistances are Eqs. 8-13 to 8-15. Table 8-5 gives driving resistance factors (steel and concrete 1.0, timber 1.15) and Table 8-6 structural factors. The text's example: a steel H-pile with good driving conditions and a pile tip (point or shoe) uses phi_da = 1.0 in Eq. 8-33 and phi_c = 0.60 in Eq. 8-34; Table 8-6 lists 0.60 for H-piles where a pile tip is not necessary and 0.50 where it is.",
       "key_points": [
-        "LRFD: factored load <= factored resistance (phi * nominal resistance)",
-        "Factored axial load: sum(ni*gammai*Qi) = Pu",
-        "Factored resistance in compression: Pr = phi_c * Pn",
-        "Factored resistance in flexure: Mr = phi_f * Mn",
-        "Factored resistance in shear: Vr = phi_v * Vn",
-        "Driving resistance factors: steel phi_da=1.0, concrete phi_da=1.0, timber phi_da=1.15",
-        "Structural resistance factors vary by material, pile type, and loading condition (Table 8-6)"
+        "Factored load <= factored resistance (LRFD)",
+        "Eqs. 8-10 to 8-12: factored axial, moment and shear loads sum(n_i gamma_i) Q_i",
+        "Eqs. 8-13 to 8-15: Pr = phi_c Pn, Mr = phi_f Mn, Vr = phi_v Vn",
+        "Table 8-5 driving: steel and concrete phi_da = 1.0; timber 1.15",
+        "Table 8-6 steel axial: H 0.60, pipe 0.70 (good driving, no tip needed); H 0.50, pipe 0.60 (severe driving, tip needed)",
+        "Table 8-6 steel combined: axial H 0.70, pipe 0.80; flexure 1.00; shear 1.00",
+        "Table 8-6 concrete: tension controlled reinforced 0.90, prestressed 1.00; compression controlled prestressed 0.75",
+        "Table 8-6 timber: compression parallel to grain 0.90; flexure 0.85; shear 0.75"
       ],
       "equations": [
-        {
-          "eq_id": "8-10",
-          "description": "Factored axial load",
-          "formula": "sum(n_i * gamma_i * Q_i) = Q -> P_u",
-          "variables": {
-            "n_i": "load modifier",
-            "gamma_i": "load factor",
-            "Q_i": "service load",
-            "P_u": "factored axial load (kips)"
-          },
-          "notes": null,
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-11",
-          "description": "Factored moment load",
-          "formula": "sum(n_i * gamma_i * Q_i) = Q -> M_u",
-          "variables": {
-            "M_u": "factored moment load (kip-in)"
-          },
-          "notes": null,
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-12",
-          "description": "Factored shear load",
-          "formula": "sum(n_i * gamma_i * Q_i) = Q -> V_u",
-          "variables": {
-            "V_u": "factored shear load (kips)"
-          },
-          "notes": null,
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-13",
-          "description": "Factored resistance in axial compression",
-          "formula": "sum(phi_i * R_i) = phi_c * P_n = P_r",
-          "variables": {
-            "phi_c": "resistance factor for axial compression (Table 8-6)",
-            "P_n": "nominal resistance in axial compression (kips)",
-            "P_r": "factored resistance in axial compression (kips)"
-          },
-          "notes": null,
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-14",
-          "description": "Factored resistance in flexure",
-          "formula": "sum(phi_i * R_i) = phi_f * M_n = M_r",
-          "variables": {
-            "phi_f": "resistance factor for flexure (Table 8-6)",
-            "M_n": "nominal resistance in flexure (kip-in)",
-            "M_r": "factored resistance in flexure (kip-in)"
-          },
-          "notes": null,
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-15",
-          "description": "Factored resistance in shear",
-          "formula": "sum(phi_i * R_i) = phi_v * V_n = V_r",
-          "variables": {
-            "phi_v": "resistance factor for shear (Table 8-6)",
-            "V_n": "nominal resistance in shear (kips)",
-            "V_r": "factored resistance in shear (kips)"
-          },
-          "notes": null,
-          "implemented_in": null
-        }
+        "Eq. 8-10: sum(n_i gamma_i) Q_i = Q -> Pu; factored axial load (p. 437)",
+        "Eq. 8-11: sum(n_i gamma_i) Q_i = Q -> Mu; factored moment load (p. 437)",
+        "Eq. 8-12: sum(n_i gamma_i) Q_i = Q -> Vu; factored shear load (p. 437)",
+        "Eq. 8-13: sum(phi_i R_i) = phi_c Pn = Pr; factored resistance in axial compression (p. 437)",
+        "Eq. 8-14: sum(phi_i R_i) = phi_f Mn = Mr; factored resistance in flexure (p. 437)",
+        "Eq. 8-15: sum(phi_i R_i) = phi_v Vn = Vr; factored resistance in shear (p. 437)"
       ],
       "figures": [],
       "tables": [
-        {
-          "table_id": "8-5",
-          "title": "Resistance Factors During Pile Driving",
-          "description": "Provides pile drivability resistance factors: steel piles phi_da=1.0, concrete piles phi_da=1.0, timber piles phi_da=1.15. Per AASHTO 6.5.4.2, 5.5.4.2, and 8.5.4.2 respectively.",
-          "page": 438
-        },
-        {
-          "table_id": "8-6",
-          "title": "Structural Limit Resistance Factors for Piles in Compression",
-          "description": "Comprehensive table of resistance factors by pile material, design resistance type, and loading condition. Steel H-piles: axial good conditions phi_c=0.60, severe phi_c=0.50, combined axial/flexural phi_c=0.70; steel pipe piles: good phi_c=0.70, severe phi_c=0.60, combined phi_c=0.80; flexure both types phi_f=1.00; shear phi_v=1.00. Concrete: tension controlled RC phi_c=0.90, PS phi_c=1.00, compression controlled PS phi_c=0.75. Timber: compression phi_c=0.90, flexure phi_f=0.85, shear phi_v=0.75.",
-          "page": 438
-        }
+        "Table 8-5: Resistance Factors During Pile Driving (p. 438)",
+        "Table 8-6: Structural Limit Resistance Factors for Piles in Compression (p. 438)"
       ],
       "applicability": "LRFD resistance factor selection for structural design of all driven pile types."
     },
     {
       "section_id": "8.4",
       "title": "Timber Piles",
-      "summary": "Timber piles are round, tapered, and suited for modest loading levels; Douglas Fir and Southern Pine are the most common species in the US. Reference design values (Table 8-7) include Fco, Fbo, Fvo, and Eo. Adjusted resistance uses modification factors including format conversion C_KF = 2.5/phi (ASD to LRFD), wet service C_M = 1.0, size factor C_F (Eq. 8-16), and time effect C_lambda: 0.8 (Strength I), 1.0 (Strength II/III), 0.6 (Strength IV), 1.0 (Extreme Event I) per Table 8-8.",
-      "body": "Timber piles are typically round, tapered, and used for modest loading levels. Douglas Fir and Southern Pine are by far the most common types used in the United States. Reference design values in Table 8-7 include compression stress parallel to grain (Fco), flexural strength (Fbo), shear strength (Fvo), and elastic modulus (Eo). The reference values are modified by adjustment factors specific to the loading case and pile properties. The time effect factor C_lambda (Table 8-8) accounts for loading duration: Strength I uses C_lambda=0.8, Strength II and III use 1.0, and Strength IV uses 0.6.",
+      "summary": "Timber piles are round, tapered, and suited for modest loading levels; Douglas Fir and Southern Pine are the most common species in the US. Reference design values (Table 8-7) include Fco, Fbo, Fvo, and Eo. Adjusted resistance uses modification factors including format conversion C_KF = 2.5/phi, wet service C_M = 1.0, size factor C_F (Eq. 8-16), and time effect C_lambda: 0.8 (Strength I), 1.0 (Strength II/III), 0.6 (Strength IV), 1.0 (Extreme Event I) per Table 8-8.",
+      "body": "(pp. 439-440) Timber piles are round, tapered and used for modest loads; Douglas Fir and Southern Pine are by far the most common in the U.S. Table 8-7 reference values (Fco, Fbo, Fvo, Eo) are modified by adjustment factors for the load case and pile. The time effect factor C_lambda (Table 8-8) depends on limit state: AASHTO commentary uses Strength I where cumulative live load duration is two months, Strength II for less, and Strength IV for permanent loads. The size factor CF applies in flexure only where the critical section exceeds 12 in. diameter (area 144 in^2), by Eq. 8-16 with b the side of a square of equal area (Showalter 2012), else 1.0. A wet service factor CM = 1.0 is recommended; the volume, incising, deck and flat-use factors (Cv, Ci, Cd, Cfu) are taken as 1.0 for piles in the manual.",
       "key_points": [
-        "Timber piles are round, tapered, used for modest loading levels",
-        "Douglas Fir and Southern Pine are the predominant species in the US",
-        "Reference design values include Fco, Fbo, Fvo, and Eo (Table 8-7)",
-        "Time effect factor C_lambda varies by limit state (Table 8-8)",
-        "Size reduction factor C_F applied for sections with area > 144 in^2 in flexure",
-        "Wet service factor C_M = 1.0 recommended for piles",
-        "Several AASHTO adjustment factors (Cv, Ci, Cd, Cfu) set to 1.0 for piles"
+        "Round, tapered, modest loads; Douglas Fir and Southern Pine most common",
+        "Table 8-7 (ksi) Fco/Fbo/Fvo/Eo: Douglas-Fir 1.25/2.45/0.115/1500; Red Oak 1.10/2.45/0.135/1250",
+        "Table 8-7: Red Pine 0.90/1.90/0.085/1280; Southern Pine 1.20/2.40/0.110/1500",
+        "Table 8-8 C_lambda: Strength I 0.8; II 1.0; III 1.0; IV 0.6; Extreme Event I 1.0",
+        "Strength I for two months cumulative live load; Strength II for less; Strength IV for permanent loads",
+        "Eq. 8-16: CF = (12/b)^(1/9) only where the critical section exceeds 144 in^2",
+        "CM = 1.0 recommended; Cv, Ci, Cd, Cfu taken as 1.0 for piles"
       ],
       "equations": [
-        {
-          "eq_id": "8-16",
-          "description": "Size reduction factor for timber piles in flexure",
-          "formula": "C_F = (12/b)^(1/9)",
-          "variables": {
-            "C_F": "size factor",
-            "b": "depth of beam or width of dimension lumber (inches)"
-          },
-          "notes": "Applied only if critical section area > 144 in^2 (equivalent to 12-inch diameter). If area < 144 in^2, C_F = 1.0.",
-          "implemented_in": null
-        }
+        "Eq. 8-16: CF = (12 / b)^(1/9); CF = size factor; b = depth of beam or width of dimension lumber; applied only where the critical section exceeds 144 in^2, b being the side of a square of equal area (p. 440)"
       ],
       "figures": [],
       "tables": [
-        {
-          "table_id": "8-7",
-          "title": "Reference Design Values for Timber Piles, ksi",
-          "description": "Lists Fco, Fbo, Fvo, and Eo for Pacific Coast Douglas-Fir, Red Oak, Red Pine, and Southern Pine per AASHTO (2014). Includes footnotes on species subspecies and connection design.",
-          "page": 439
-        },
-        {
-          "table_id": "8-8",
-          "title": "Time Effect Factors",
-          "description": "Time effect factor C_lambda by limit state: Strength I = 0.8, Strength II = 1.0, Strength III = 1.0, Strength IV = 0.6, Extreme Event I = 1.0. After AASHTO (2014).",
-          "page": 439
-        }
+        "Table 8-7: Reference Design Values for Timber Piles, ksi (after AASHTO 2014) (p. 439)",
+        "Table 8-8: Time Effect Factors (after AASHTO 2014) (p. 439)"
       ],
       "applicability": "Structural design of timber driven piles per AASHTO (2014) Article 8."
     },
     {
       "section_id": "8.4.1",
-      "title": "Driving Stresses (Timber)",
+      "title": "Driving Stresses",
       "summary": "Timber pile driving may cause shearing or brooming near the pile top; stress concentrations also develop as the tapered section decreases toward the toe. AASHTO (2014) limits the maximum driving stress to sigma_dr = phi_da * (2.6 * Fco) (Eq. 8-17), where phi_da = 1.15 for timber and Fco is the reference compression stress parallel to grain (Table 8-7). This limit applies to both compression and tension driving stresses.",
-      "body": "Timber piles should be installed to limit excessive pile stress development that may result in shearing or brooming near the pile top. Additional stresses may develop along the pile as the tapered section decreases near the pile toe. AASHTO (2014) specifications limit maximum compression and tension driving stresses per Equation 8-17, using the driving resistance factor phi_da = 1.15 for timber piles.",
+      "body": "(pp. 440-441) Timber piles should be installed so as to avoid excessive stresses that shear or broom the head; stresses may also rise along the pile as the taper narrows toward the toe. AASHTO (2014) limits compression and tension driving stress by Eq. 8-17 with phi_da = 1.15.",
       "key_points": [
         "Driving may cause shearing or brooming near pile top",
         "Stress development increases as tapered section decreases near toe",
@@ -467,240 +236,99 @@
         "Fco = reference compression stress parallel to grain (Table 8-7)"
       ],
       "equations": [
-        {
-          "eq_id": "8-17",
-          "description": "Maximum driving stress for timber piles",
-          "formula": "sigma_dr = phi_da * (2.6 * F_co)",
-          "variables": {
-            "sigma_dr": "driving stress (ksi)",
-            "phi_da": "resistance factor during driving (1.15 for timber piles, Table 8-5)",
-            "F_co": "reference compression stress parallel to grain (ksi, Table 8-7)"
-          },
-          "notes": "Applies to both compression and tension driving stresses.",
-          "implemented_in": null
-        }
+        "Eq. 8-17: sigma_dr = phi_da (2.6 Fco), timber compression and tension driving stress limit; sigma_dr = driving stress (ksi); phi_da = 1.15 (Table 8-5); Fco = reference compression stress parallel to grain (Table 8-7) (p. 440)"
       ],
       "figures": [],
       "tables": [],
-      "applicability": "Driving stress evaluation for timber pile installation."
+      "applicability": "Timber pile driving stress limits."
     },
     {
       "section_id": "8.4.2",
-      "title": "Structural Resistance (Timber)",
-      "summary": "Timber pile structural resistance per AASHTO (2014) covers axial compression (Pr = phi*Pn, phi = 0.9, Eq. 8-18) and flexure (Mr = phi*Mn, phi = 0.85, Eq. 8-26). Adjusted compression: Fc = Fco*C_KF*C_M*C_F*C_i*C_lambda (Eq. 8-19); C_KF = 2.5/phi_c converts ASD to LRFD. Column stability factor C_p (Eq. 8-22) accounts for buckling when bracing is insufficient. Combined flexure and axial compression interaction (Eq. 8-30) must be satisfied when both loads are present.",
-      "body": "AASHTO (2014) summarizes axial and flexural resistance limits in Articles 8.6, 8.8, and 8.10. The structural resistance calculations use reference design values from Table 8-7, modified by adjustment factors including the format conversion factor C_KF, wet service factor C_M, size factor C_F, incising factor C_i, and time effect factor C_lambda. The adjustment factors for timber piles are generally set to 1.0 per AASHTO guidance, with the exception of C_KF which converts from ASD to LRFD format and C_lambda for time effects.",
+      "title": "Structural Resistance",
+      "summary": "Timber pile structural resistance per AASHTO (2014) covers axial compression (Pr = phi*Pn, phi = 0.9, Eq. 8-18) and flexure (Mr = phi*Mn, phi = 0.85, Eq. 8-26). Adjusted compression: Fc = Fco*C_KF*C_M*C_F*C_i*C_lambda (Eq. 8-19); format conversion factor C_KF = 2.5/phi_c. Column stability factor C_p (Eq. 8-22) accounts for buckling when bracing is insufficient. Combined flexure and axial compression interaction (Eq. 8-30) must be satisfied when both loads are present.",
+      "body": "(p. 441) AASHTO (2014) Articles 8.6, 8.8 and 8.10 give the axial and flexural resistance limits of timber; the checks below use Table 8-7 reference values, Table 8-8 time effect factors and Eq. 8-16, with factors not pertaining to piles taken as 1.0: axial compression parallel to grain (8.4.2.1), flexure (8.4.2.2) and combined flexure and axial compression (8.4.2.3).",
       "key_points": [
         "Axial compression resistance: Pr = phi * Pn with phi = 0.9",
         "Flexural resistance: Mr = phi * Mn with phi = 0.85",
-        "Format conversion factor C_KF = 2.5/phi converts ASD to LRFD",
+        "Format conversion factor C_KF = 2.5/phi",
         "Wet service factor C_M = 1.0, incising factor C_i = 1.0 for piles",
         "Column stability factor C_p accounts for buckling if insufficient bracing",
         "Combined flexure and axial compression interaction check required (Eq. 8-30)"
       ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Timber pile structural resistance (axial, flexure, combined)."
+    },
+    {
+      "section_id": "8.4.2.1",
+      "title": "Axial Compression Parallel to Grain",
+      "body": "(pp. 441-443) The factored resistance is Eq. 8-18 with phi = 0.9. Step 1: the adjusted compression resistance Fc from Eqs. 8-19 and 8-20 (AASHTO Article 8.4). Step 2: the nominal resistance Pn = Fc Ag Cp (Eq. 8-21), with Cp = 1.0 if the pile is sufficiently braced, otherwise Cp from Eqs. 8-22 to 8-25 (c = 0.85, KcE = 0.76, Le = KL from Figure 8-4).",
+      "key_points": [
+        "Eq. 8-18: Pr = phi Pn, phi = 0.9",
+        "Eq. 8-19: Fc = Fco CKF CM CF Ci C_lambda; Eq. 8-20: CKF = 2.5 / phi",
+        "Eq. 8-21: Pn = Fc Ag Cp; Cp = 1.0 if sufficiently braced",
+        "Eq. 8-22: Cp = (1 + B)/(2c) - sqrt{[(1 + B)/(2c)]^2 - B/c} <= 1.0, c = 0.85",
+        "Eqs. 8-23, 8-24: B = FcE / Fc <= 1.0; FcE = KcE E b^2 / Le^2, KcE = 0.76",
+        "Eq. 8-25 prints E = Eo Ct; Eq. 8-32 uses E = Eo CM Ci"
+      ],
       "equations": [
-        {
-          "eq_id": "8-18",
-          "description": "Factored resistance in axial compression for timber piles",
-          "formula": "P_r = phi * P_n",
-          "variables": {
-            "P_r": "factored resistance in axial compression (kips)",
-            "phi": "resistance factor (0.9 for timber compression parallel to grain)",
-            "P_n": "nominal resistance in axial compression (kips)"
-          },
-          "notes": null,
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-19",
-          "description": "Adjusted resistance in compression for timber piles",
-          "formula": "F_C = F_CO * C_KF * C_M * C_F * C_i * C_lambda",
-          "variables": {
-            "F_C": "adjusted resistance in compression (ksi)",
-            "F_CO": "reference resistance in compression (Table 8-7, ksi)",
-            "C_KF": "format conversion factor = 2.5/phi_c",
-            "C_M": "wet service factor (1.0 for piles)",
-            "C_F": "size factor (1.0 for piles, or Eq. 8-16)",
-            "C_i": "incising factor (1.0 for piles)",
-            "C_lambda": "time effect factor (Table 8-8)"
-          },
-          "notes": "phi_c = 0.9 for compression parallel to grain.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-20",
-          "description": "Format conversion factor for timber compression",
-          "formula": "C_KF = 2.5 / phi",
-          "variables": {
-            "C_KF": "format conversion factor",
-            "phi": "resistance factor (0.9 for compression)"
-          },
-          "notes": "Converts ASD reference values to LRFD format.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-21",
-          "description": "Nominal resistance in axial compression for timber",
-          "formula": "P_n = F_c * A_g * C_p",
-          "variables": {
-            "F_c": "adjusted resistance in compression (ksi)",
-            "A_g": "gross cross-sectional area (in^2)",
-            "C_p": "column stability factor"
-          },
-          "notes": "C_p = 1.0 if sufficiently braced.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-22",
-          "description": "Column stability factor for timber piles",
-          "formula": "C_p = (1+B)/(2c) - sqrt(((1+B)/(2c))^2 - B/c) <= 1.0",
-          "variables": {
-            "C_p": "column stability factor",
-            "B": "F_cE / F_c <= 1.0",
-            "c": "round timber pile factor (0.85)"
-          },
-          "notes": "If fully braced by soil, C_p = 1.0.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-23",
-          "description": "Ratio B for column stability",
-          "formula": "B = F_cE / F_c <= 1.0",
-          "variables": {
-            "F_cE": "critical buckling stress (ksi, Eq. 8-24)",
-            "F_c": "adjusted compression resistance (ksi)"
-          },
-          "notes": null,
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-24",
-          "description": "Critical buckling stress for timber piles",
-          "formula": "F_cE = K_cE * E * b^2 / L_e^2",
-          "variables": {
-            "F_cE": "critical buckling stress (ksi)",
-            "K_cE": "round timber pile factor (0.76)",
-            "E": "adjusted modulus of elasticity (ksi, Eq. 8-25)",
-            "b": "depth or width (inches)",
-            "L_e": "effective length = K*L (Figure 8-4, inches)"
-          },
-          "notes": null,
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-25",
-          "description": "Adjusted modulus of elasticity for timber",
-          "formula": "E = E_o * C_i",
-          "variables": {
-            "E": "adjusted modulus of elasticity (ksi)",
-            "E_o": "reference modulus of elasticity (Table 8-7, ksi)",
-            "C_i": "incising factor (1.0 for piles)"
-          },
-          "notes": null,
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-26",
-          "description": "Factored flexural resistance for timber piles",
-          "formula": "M_r = phi * M_n",
-          "variables": {
-            "M_r": "factored flexural resistance (kip-in)",
-            "phi": "resistance factor (0.85 for timber flexure)",
-            "M_n": "nominal flexural resistance (kip-in)"
-          },
-          "notes": null,
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-27",
-          "description": "Adjusted resistance in flexure for timber piles",
-          "formula": "F_b = F_bo * C_KF * C_M * C_F * C_fu * C_i * C_d * C_lambda",
-          "variables": {
-            "F_b": "adjusted resistance in flexure (ksi)",
-            "F_bo": "reference resistance in flexure (Table 8-7, ksi)",
-            "C_KF": "format conversion factor = 2.5/phi_f",
-            "C_M": "wet service factor (1.0 for piles)",
-            "C_F": "size factor (1.0 or Eq. 8-16)",
-            "C_fu": "flat use factor (1.0 for piles)",
-            "C_i": "incising factor (1.0 for piles)",
-            "C_d": "deck factor (1.0 for piles)",
-            "C_lambda": "time effect factor (Table 8-8)"
-          },
-          "notes": "phi_f = 0.85 for timber flexure.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-28",
-          "description": "Format conversion factor for timber flexure",
-          "formula": "C_KF = 2.5 / phi",
-          "variables": {
-            "C_KF": "format conversion factor",
-            "phi": "resistance factor (0.85 for flexure)"
-          },
-          "notes": null,
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-29",
-          "description": "Nominal flexural resistance for timber piles",
-          "formula": "M_n = F_b * S",
-          "variables": {
-            "M_n": "nominal flexural resistance (kip-in)",
-            "F_b": "adjusted resistance in flexure (ksi)",
-            "S": "elastic section modulus (in^3)"
-          },
-          "notes": null,
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-30",
-          "description": "Combined flexure and axial compression interaction for timber",
-          "formula": "(P_u/P_r)^2 + M_u / (M_r * (1 - P_u/(F_cE * A_g))) <= 1.0",
-          "variables": {
-            "P_u": "factored axial load (kips)",
-            "P_r": "factored resistance in axial compression (kips, Eq. 8-18)",
-            "M_u": "factored moment load (kip-in)",
-            "M_r": "factored resistance in flexure (kip-in, Eq. 8-26)",
-            "F_cE": "critical buckling stress (ksi, Eq. 8-24)",
-            "A_g": "gross cross-sectional area (in^2)"
-          },
-          "notes": "Must satisfy both beam rupture and lateral buckling checks.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-31",
-          "description": "Critical buckling stress for combined check (timber)",
-          "formula": "F_cE = K_cE * E * b^2 / L_e^2",
-          "variables": {
-            "K_cE": "round timber pile factor (0.76)",
-            "E": "adjusted modulus (Eq. 8-32)",
-            "b": "pile width or diameter (inches)",
-            "L_e": "effective length = K*L (inches)"
-          },
-          "notes": "Same form as Eq. 8-24.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-32",
-          "description": "Adjusted modulus for combined check (timber)",
-          "formula": "E = E_o * C_M * C_i",
-          "variables": {
-            "E_o": "reference modulus of elasticity (ksi, Table 8-7)",
-            "C_M": "wet service factor (1.0 for piles)",
-            "C_i": "incising factor (1.0 for piles)"
-          },
-          "notes": null,
-          "implemented_in": null
-        }
+        "Eq. 8-18: Pr = phi Pn; Pr = factored resistance in axial compression (kips); phi = 0.9 for timber compression parallel to grain; Pn = nominal resistance in axial compression (kips) (p. 441)",
+        "Eq. 8-19: Fc = Fco CKF CM CF Ci C_lambda; Fc = adjusted resistance in compression (ksi); Fco = reference resistance in compression (Table 8-7); CM = wet service factor (1.0 for piles); CF = size factor (1.0 or Eq. 8-16); Ci = incising factor (1.0, not applicable to piles); C_lambda = time effect factor (Table 8-8) (p. 441)",
+        "Eq. 8-20: CKF = 2.5 / phi; CKF = format conversion factor, phi_c = 0.9 (p. 441)",
+        "Eq. 8-21: Pn = Fc Ag Cp; Ag = gross cross-sectional area (in^2); Cp = column stability factor (1.0 if sufficiently braced) (p. 442)",
+        "Eq. 8-22: Cp = (1 + B)/(2c) - sqrt{[(1 + B)/(2c)]^2 - B/c} <= 1.0; c = round timber pile factor (0.85) (p. 442)",
+        "Eq. 8-23: B = FcE / Fc <= 1.0 (p. 442)",
+        "Eq. 8-24: FcE = KcE E b^2 / Le^2; KcE = round timber pile factor (0.76); b = depth or width (in.); Le = effective length KL (Figure 8-4) (in.) (p. 442)",
+        "Eq. 8-25: E = Eo Ct (as printed; the variable list defines CM and Ci, not Ct); Eo = reference modulus of elasticity (Table 8-7) (ksi) (p. 442)"
       ],
       "figures": [],
       "tables": [],
-      "applicability": "Complete structural resistance calculations for timber driven piles including axial compression, flexure, and combined loading."
+      "applicability": "Axial compression resistance of timber piles."
+    },
+    {
+      "section_id": "8.4.2.2",
+      "title": "Flexure",
+      "body": "(pp. 443-444) The factored flexural resistance is Eq. 8-26 with phi = 0.85, assuming a round pile (other shapes need their own consideration). Step 1: the adjusted flexural resistance Fb (Eqs. 8-27, 8-28). Step 2: Mn = Fb S (Eq. 8-29).",
+      "key_points": [
+        "Eq. 8-26: Mr = phi Mn, phi = 0.85",
+        "Eq. 8-27: Fb = Fbo CKF CM CF Cfu Ci Cd C_lambda; Eq. 8-28: CKF = 2.5 / phi",
+        "Eq. 8-29: Mn = Fb S",
+        "Round pile assumed; consider other shapes separately"
+      ],
+      "equations": [
+        "Eq. 8-26: Mr = phi Mn; Mr = factored flexural resistance (kip-in); phi = 0.85 for timber pile flexure; Mn = nominal flexural resistance (kip-in) (p. 443)",
+        "Eq. 8-27: Fb = Fbo CKF CM CF Cfu Ci Cd C_lambda; Fbo = reference resistance in flexure (Table 8-7); CKF = format conversion factor, phi_f = 0.85; CM = 1.0; CF = 1.0 or Eq. 8-16; Cfu flat use, Ci incising and Cd deck factors 1.0 (not applicable to piles); C_lambda = time effect factor (Table 8-8) (p. 443)",
+        "Eq. 8-28: CKF = 2.5 / phi (p. 443)",
+        "Eq. 8-29: Mn = Fb S; S = elastic section modulus (in^3); Fb = adjusted resistance in flexure (ksi) (p. 444)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Flexural resistance of timber piles."
+    },
+    {
+      "section_id": "8.4.2.3",
+      "title": "Combined Flexure and Axial Compression",
+      "body": "(p. 444) Combined loading must satisfy the beam rupture and lateral buckling check of Eq. 8-30, with FcE and E from Eqs. 8-31 and 8-32; if it fails, an alternative pile design is required.",
+      "key_points": [
+        "Eq. 8-30: (Pu/Pr)^2 + Mu / [Mr (1 - Pu/(FcE Ag))] <= 1.0",
+        "Eq. 8-31: FcE = KcE E b^2 / Le^2; Eq. 8-32: E = Eo CM Ci",
+        "If the check fails, an alternative pile design is required"
+      ],
+      "equations": [
+        "Eq. 8-30: (Pu / Pr)^2 + Mu / [Mr (1 - Pu / (FcE Ag))] <= 1.0; Pr from Eq. 8-18; Pu from Eq. 8-10; Mr from Eq. 8-26; Mu from Eq. 8-11; Ag = gross area (in^2) (p. 444)",
+        "Eq. 8-31: FcE = KcE E b^2 / Le^2; KcE = 0.76; b = pile width or diameter (in.); Le = KL (Figure 8-4) (in.) (p. 444)",
+        "Eq. 8-32: E = Eo CM Ci; CM and Ci = 1.0 for piles; Eo from Table 8-7 (p. 444)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Combined axial and flexural check of timber piles."
     },
     {
       "section_id": "8.5",
       "title": "Steel Piles",
       "summary": "Steel piles sustain higher driving stresses than concrete or timber; compression stress limit is sigma_dr = 0.9*Fy (phi_da = 1.0, Eq. 8-33). Tensile yielding does not typically occur during driving, so no tension limit is required. Primary types are H-piles and pipe piles. Structural checks per AASHTO Articles 6.9.4 and 6.12.2.2 cover axial compression, flexure, combined loading, and shear. Slender element factor Q and torsional buckling apply to H-piles extending through air or water.",
-      "body": "Steel piles can handle higher stresses than concrete or timber during driving, and the stress limit is governed by the steel yield strength. Several grades of steel are routinely produced and higher grades may be specified if warranted. Pile driving does not typically generate sufficiently high tensile stresses to yield steel piles, therefore a stress limit is only required in compression. Steel piles are primarily H-piles or pipe piles, and the structural resistance procedures address axial compression, flexure, combined loading, and shear for both section types.",
+      "body": "(p. 445) Steel pile driving stresses are Section 8.5.1, structural resistance 8.5.2 (axial compression, flexure, combined axial compression and flexure, shear) and a worked HP 14x117 example 8.5.3.",
       "key_points": [
         "Steel piles handle highest driving stresses among pile materials",
         "Driving stress limit governed by yield strength; only compression limit needed",
@@ -716,9 +344,9 @@
     },
     {
       "section_id": "8.5.1",
-      "title": "Driving Stresses (Steel)",
+      "title": "Driving Stresses",
       "summary": "Steel pile driving stresses are limited to compression only; tensile stresses during driving do not typically yield steel piles. Maximum compression driving stress: sigma_dr = phi_da * (0.9 * Fy) (Eq. 8-33), where phi_da = 1.0 for steel piles (Table 8-5). Yield stress Fy ranges from 35 to 80 ksi for pipe piles (ASTM A-252, Table 8-1) and from 36 to 60 ksi for H-piles (Table 8-2).",
-      "body": "For steel piles, AASHTO (2014) specifications limit nominal compression driving stresses to 0.9 times the yield stress, multiplied by the driving resistance factor phi_da = 1.0. Pile driving does not typically generate sufficient tensile stresses to yield steel piles, so tension driving stress limits are not required.",
+      "body": "(p. 445) Steel piles take higher driving stresses than concrete or timber, limited by yield strength (Table 8-1); higher grades may be specified. Driving does not usually generate tension high enough to yield steel, so only a compression limit is needed: Eq. 8-33 with phi_da = 1.0.",
       "key_points": [
         "Maximum driving stress: sigma_dr = phi_da * (0.9 * Fy)",
         "phi_da = 1.0 for steel piles (Table 8-5)",
@@ -726,423 +354,139 @@
         "Fy = yield stress of steel (Table 8-1 for pipe, Table 8-2 for H-piles)"
       ],
       "equations": [
-        {
-          "eq_id": "8-33",
-          "description": "Maximum driving stress for steel piles",
-          "formula": "sigma_dr = phi_da * (0.9 * F_y)",
-          "variables": {
-            "sigma_dr": "driving stress limit (ksi)",
-            "phi_da": "resistance factor during driving (1.0 for steel, Table 8-5)",
-            "F_y": "yield stress of steel (ksi, Table 8-1)"
-          },
-          "notes": "Compression only. Tension driving stress not required for steel piles.",
-          "implemented_in": null
-        }
+        "Eq. 8-33: sigma_dr = phi_da (0.9 Fy), steel compression driving stress limit; phi_da = 1.0 (Table 8-5); Fy = yield stress of steel (Table 8-1) (ksi) (p. 445)"
       ],
       "figures": [],
       "tables": [],
-      "applicability": "Driving stress evaluation for steel pile installation."
+      "applicability": "Steel pile driving stress limit."
     },
     {
       "section_id": "8.5.2",
-      "title": "Structural Resistance (Steel)",
+      "title": "Structural Resistance",
       "summary": "Steel pile structural resistance follows AASHTO Articles 6.9.4 and 6.12.2.2. Factored axial: Pr = phi_c*Pn (Eq. 8-34; phi_c = 0.60 for H-piles, 0.70 for pipe). Nominal axial uses inelastic buckling Pn = Po*0.658^(Po/Pe) (Eq. 8-43, Pe/Po >= 0.44) or elastic Pn = 0.877*Pe (Eq. 8-44). H-pile flexure depends on flange slenderness (lambda_f vs lambda_pf/lambda_rf); pipe pile flexure on D/t ratio. Combined axial-flexure: Eq. 8-57 (Pu/Pr < 0.2) or Eq. 8-58 (Pu/Pr >= 0.2).",
-      "body": "Steel pile structural resistance is evaluated for axial compression (Section 8.5.2.1), flexure (Section 8.5.2.2), combined axial compression and flexure (Section 8.5.2.3), and shear (Section 8.5.2.4). The step-by-step procedures follow AASHTO (2014) Articles 6.9.4 and 6.12.2.2. For axial compression, the nominal resistance considers both yield and buckling failure modes. For flexure, the procedure differs for H-sections (slenderness-based) and pipe piles (D/t ratio-based). The example calculations in Section 8.5.3 demonstrate the complete procedure for an HP14x117 pile.",
+      "body": "(p. 445) Steel pile structural resistance covers axial compression (8.5.2.1), flexure (8.5.2.2), combined axial compression and flexure (8.5.2.3) and shear (8.5.2.4), following AASHTO (2014) Articles 6.9.4 and 6.12.2.2; Section 8.5.3 works an HP 14x117.",
       "key_points": [
         "Factored axial resistance: Pr = phi_c * Pn (Eq. 8-34)",
         "Factored flexural resistance: Mr = phi_f * Mn (Eq. 8-45)",
         "Nominal axial resistance considers yield (Po) and elastic buckling (Pe)",
-        "If Pe/Po >= 0.44: Pn = Po * 0.658^(Po/Pe) (inelastic buckling)",
-        "If Pe/Po < 0.44: Pn = 0.877 * Pe (elastic buckling)",
-        "H-pile flexure: slenderness ratio determines compact, non-compact, or slender",
-        "Pipe pile flexure: D/t ratio determines plastic moment or local buckling controls",
-        "Combined checks differ for Pu/Pr < 0.2 vs >= 0.2"
+        "Sections: axial 8.5.2.1, flexure 8.5.2.2, combined 8.5.2.3, shear 8.5.2.4; example 8.5.3"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Steel pile structural resistance."
+    },
+    {
+      "section_id": "8.5.2.1",
+      "title": "Axial Compression",
+      "body": "(pp. 445-448) The factored resistance is Eq. 8-34; the nominal resistance considers strength and buckling. Step 1: the equivalent nominal yield resistance Po = Q Fy Ag (Eq. 8-35), Q = 1.0 for non-slender piles (slender members: AASHTO Article 6.9.4.2.2); the local buckling check is Eq. 8-36 with Eq. 8-37 for H-piles and Eq. 8-38 for unfilled pipe. Step 2: the elastic critical buckling resistance Pe (Section 8.2.3): flexural buckling (Eq. 8-39) for fully embedded piles, and for doubly symmetric open sections (H-piles) through water or air also torsional buckling (Eqs. 8-40 to 8-42), the lesser governing. Step 3: Pn by Eq. 8-43 if Pe/Po >= 0.44, else Eq. 8-44 (AASHTO Article 6.9.4.1).",
+      "key_points": [
+        "Eq. 8-34: Pr = phi_c Pn (Table 8-6)",
+        "Eq. 8-35: Po = Q Fy Ag; Q = 1.0 for non-slender piles",
+        "Eq. 8-36: bf/(2 tf) <= 0.64 sqrt(kc Est / Fy), 0.35 <= kc <= 0.76; Eq. 8-37: kc = 4 / sqrt(dw/tw)",
+        "Eq. 8-38: unfilled pipe D/t <= 0.11 Est / Fy",
+        "Eq. 8-39: Pe = pi^2 Est Ag / (K l / rs)^2 (flexural buckling)",
+        "Eq. 8-40: torsional buckling for H-piles through water or air; Eq. 8-41 Cw = Iy h^2/4; Eq. 8-42 G = 0.385 Est",
+        "Eq. 8-43: Pn = Po 0.658^(Po/Pe) if Pe/Po >= 0.44; Eq. 8-44: Pn = 0.877 Pe otherwise"
       ],
       "equations": [
-        {
-          "eq_id": "8-34",
-          "description": "Factored resistance in axial compression for steel piles",
-          "formula": "P_r = phi_c * P_n",
-          "variables": {
-            "P_r": "factored resistance in axial compression (kips)",
-            "phi_c": "resistance factor (Table 8-6)",
-            "P_n": "nominal resistance in axial compression (kips)"
-          },
-          "notes": "phi_c = 0.60 for H-piles (good conditions), 0.70 for pipe piles (good conditions).",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-35",
-          "description": "Equivalent nominal yield resistance for steel piles",
-          "formula": "P_o = Q * F_y * A_g",
-          "variables": {
-            "P_o": "equivalent nominal axial yield resistance (kips)",
-            "Q": "slender element reduction factor (dimensionless, 1.0 if non-slender)",
-            "F_y": "yield stress of steel (ksi, Table 8-1)",
-            "A_g": "gross cross-sectional area (in^2)"
-          },
-          "notes": "Q = 1.0 for non-slender elements. For slender elements, see AASHTO Article 6.9.4.2.2.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-36",
-          "description": "Slender element check for H-pile flanges",
-          "formula": "b_f / (2*t_f) <= 0.64 * sqrt(k_c * E_st / F_y)",
-          "variables": {
-            "b_f": "flange width (inches)",
-            "t_f": "flange thickness (inches)",
-            "k_c": "buckling coefficient (Eq. 8-37, 0.35 <= k_c <= 0.76)",
-            "E_st": "elastic modulus of steel (ksi)",
-            "F_y": "yield stress (ksi)"
-          },
-          "notes": "If satisfied, section is non-slender (Q=1.0).",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-37",
-          "description": "Buckling coefficient for H-pile web",
-          "formula": "k_c = 4 / sqrt(d_w / t_w)",
-          "variables": {
-            "k_c": "buckling coefficient (0.35 <= k_c <= 0.76)",
-            "d_w": "web depth (inches)",
-            "t_w": "web thickness (inches)"
-          },
-          "notes": "k_c is bounded between 0.35 and 0.76.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-38",
-          "description": "Slender element check for unfilled pipe piles",
-          "formula": "D/t <= 0.11 * E_st / F_y",
-          "variables": {
-            "D": "diameter of pipe (inches)",
-            "t": "wall thickness (inches)",
-            "E_st": "elastic modulus of steel (ksi)",
-            "F_y": "yield stress (ksi)"
-          },
-          "notes": "If satisfied, section is non-slender (Q=1.0).",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-39",
-          "description": "Elastic critical flexural buckling resistance",
-          "formula": "P_e = pi^2 * E_st * A_g / (K*l/r_s)^2",
-          "variables": {
-            "P_e": "elastic critical buckling resistance (kips)",
-            "E_st": "elastic modulus of steel (ksi)",
-            "A_g": "gross cross-sectional area (in^2)",
-            "K": "effective length factor (Figure 8-4, dimensionless)",
-            "l": "unbraced length (inches)",
-            "r_s": "radius of gyration about axis normal to plane of buckling (inches)"
-          },
-          "notes": "For fully embedded piles, flexural buckling mode used.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-40",
-          "description": "Elastic critical torsional buckling resistance for doubly symmetric open sections",
-          "formula": "P_e = (pi^2 * E_st * C_w / (K_z * l_z)^2 + G*J) * A_g / (I_x + I_y)",
-          "variables": {
-            "P_e": "elastic critical buckling resistance (kips)",
-            "E_st": "elastic modulus of steel (ksi)",
-            "C_w": "warping torsional constant (in^6)",
-            "K_z": "effective length for torsional buckling (dimensionless)",
-            "l_z": "unbraced length for torsional buckling (inches)",
-            "G": "shear modulus (ksi)",
-            "J": "St. Venant torsional constant (in^4)",
-            "A_g": "gross cross-sectional area (in^2)",
-            "I_x": "moment of inertia about major axis (in^4)",
-            "I_y": "moment of inertia about minor axis (in^4)"
-          },
-          "notes": "Required for H-piles extending through water or air. Critical failure mode is lesser of flexural and torsional buckling.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-41",
-          "description": "Warping torsional constant for H-sections",
-          "formula": "C_w = I_y * h^2 / 4",
-          "variables": {
-            "C_w": "warping torsional constant (in^6)",
-            "I_y": "moment of inertia about minor axis (in^4)",
-            "h": "distance between flange centroids (inches)"
-          },
-          "notes": null,
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-42",
-          "description": "Shear modulus of steel",
-          "formula": "G = 0.385 * E_st",
-          "variables": {
-            "G": "shear modulus (ksi)",
-            "E_st": "elastic modulus of steel (ksi)"
-          },
-          "notes": "For E_st = 29,000 ksi, G = 11,165 ksi.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-43",
-          "description": "Nominal resistance in axial compression (inelastic buckling)",
-          "formula": "P_n = P_o * 0.658^(P_o/P_e)",
-          "variables": {
-            "P_n": "nominal resistance in axial compression (kips)",
-            "P_o": "equivalent nominal yield resistance (kips, Eq. 8-35)",
-            "P_e": "elastic critical buckling resistance (kips, Eq. 8-39 or 8-40)"
-          },
-          "notes": "Applies when P_e/P_o >= 0.44.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-44",
-          "description": "Nominal resistance in axial compression (elastic buckling)",
-          "formula": "P_n = 0.877 * P_e",
-          "variables": {
-            "P_n": "nominal resistance in axial compression (kips)",
-            "P_e": "elastic critical buckling resistance (kips, Eq. 8-39 or 8-40)"
-          },
-          "notes": "Applies when P_e/P_o < 0.44.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-45",
-          "description": "Factored resistance in flexure for steel piles",
-          "formula": "M_r = phi_f * M_n",
-          "variables": {
-            "M_r": "factored resistance in flexure (kip-in)",
-            "phi_f": "resistance factor (Table 8-6, 1.0 for steel piles)",
-            "M_n": "nominal resistance in flexure (kip-in)"
-          },
-          "notes": null,
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-46",
-          "description": "Flange slenderness ratio for H-piles",
-          "formula": "lambda_f = b_f / (2 * t_f)",
-          "variables": {
-            "lambda_f": "slenderness ratio for flange",
-            "b_f": "flange width (inches)",
-            "t_f": "flange thickness (inches)"
-          },
-          "notes": null,
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-47",
-          "description": "Limiting slenderness ratio for compact flange",
-          "formula": "lambda_pf = 0.38 * sqrt(E_st / F_yf)",
-          "variables": {
-            "lambda_pf": "limiting slenderness ratio for compact flange",
-            "E_st": "elastic modulus of steel (ksi)",
-            "F_yf": "minimum yield strength of lower strength flange (ksi)"
-          },
-          "notes": null,
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-48",
-          "description": "Limiting slenderness ratio for non-compact flange",
-          "formula": "lambda_rf = 0.83 * sqrt(E_st / F_yf)",
-          "variables": {
-            "lambda_rf": "limiting slenderness ratio for non-compact flange",
-            "E_st": "elastic modulus of steel (ksi)",
-            "F_yf": "minimum yield strength of lower strength flange (ksi)"
-          },
-          "notes": null,
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-49",
-          "description": "Nominal flexural resistance for compact H-pile flanges (weak axis)",
-          "formula": "M_n = M_p",
-          "variables": {
-            "M_n": "nominal resistance in flexure (kip-in)",
-            "M_p": "plastic moment about weak axis (kip-in, Eq. 8-50)"
-          },
-          "notes": "Applies when lambda_f <= lambda_pf.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-50",
-          "description": "Plastic moment about weak axis for H-piles",
-          "formula": "M_p = 1.5 * F_y * S_y",
-          "variables": {
-            "M_p": "plastic moment about weak axis (kip-in)",
-            "F_y": "yield stress (ksi)",
-            "S_y": "elastic section modulus about weak axis (in^3)"
-          },
-          "notes": "For HP-sections about weak axis.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-51",
-          "description": "Nominal flexural resistance for non-compact H-pile flanges (weak axis)",
-          "formula": "M_n = [1 - (1 - S_y/Z_y) * ((lambda_f - lambda_pf) / (0.45*sqrt(E_st/F_yf)))] * f_yf * Z_y",
-          "variables": {
-            "M_n": "nominal resistance in flexure (kip-in)",
-            "S_y": "elastic section modulus about weak axis (in^3)",
-            "Z_y": "plastic section modulus about weak axis (in^3)",
-            "lambda_f": "slenderness ratio for flange (Eq. 8-46)",
-            "lambda_pf": "compact flange limit (Eq. 8-47)",
-            "E_st": "elastic modulus of steel (ksi)",
-            "F_yf": "minimum yield strength of flange (ksi)",
-            "f_yf": "yield strength of flange (ksi)"
-          },
-          "notes": "Applies when lambda_pf < lambda_f <= lambda_rf.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-52",
-          "description": "D/t ratio check for pipe pile flexural resistance",
-          "formula": "D/t <= 0.07 * E_st / F_y",
-          "variables": {
-            "D": "outside diameter (inches)",
-            "t": "pipe thickness (inches)",
-            "E_st": "elastic modulus of steel (ksi)",
-            "F_y": "yield stress (ksi)"
-          },
-          "notes": "If satisfied, plastic moment controls (Step 2a). Otherwise local buckling controls (Step 2b).",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-53",
-          "description": "Nominal flexural resistance by plastic moment for pipe piles",
-          "formula": "M_n = M_p = F_y * Z_y",
-          "variables": {
-            "M_n": "nominal resistance in flexure (kip-in)",
-            "M_p": "plastic moment (kip-in)",
-            "F_y": "yield strength (ksi)",
-            "Z_y": "plastic section modulus about weak axis (in^3)"
-          },
-          "notes": "Applies when D/t <= 0.07*E_st/F_y.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-54",
-          "description": "Nominal flexural resistance for pipe piles with moderate D/t",
-          "formula": "M_n = (0.021*E_st/(D/t) + F_y) * S_y",
-          "variables": {
-            "M_n": "nominal flexural resistance (kip-in)",
-            "E_st": "elastic modulus of steel (ksi)",
-            "D": "outside diameter (inches)",
-            "t": "pipe thickness (inches)",
-            "F_y": "yield strength (ksi)",
-            "S_y": "elastic section modulus about weak axis (in^3)"
-          },
-          "notes": "Applies when D/t <= 0.31*E_st/F_y.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-55",
-          "description": "Nominal flexural resistance for pipe piles limited by local buckling",
-          "formula": "M_n = f_cr * S_y",
-          "variables": {
-            "M_n": "nominal flexural resistance (kip-in)",
-            "f_cr": "elastic local buckling stress (ksi, Eq. 8-56)",
-            "S_y": "elastic section modulus (in^3)"
-          },
-          "notes": "Applies when D/t > 0.31*E_st/F_y.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-56",
-          "description": "Elastic local buckling stress for pipe piles",
-          "formula": "f_cr = 0.33 * E_st / (D/t)",
-          "variables": {
-            "f_cr": "elastic local buckling stress (ksi)",
-            "E_st": "elastic modulus of steel (ksi)",
-            "D": "outside diameter (inches)",
-            "t": "pipe wall thickness (inches)"
-          },
-          "notes": null,
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-57",
-          "description": "Combined axial and flexural interaction (low axial, Pu/Pr < 0.2)",
-          "formula": "P_u/(2.0*P_r) + (M_ux/M_rx + M_uy/M_ry) <= 1.0",
-          "variables": {
-            "P_u": "factored axial load (kips)",
-            "P_r": "factored resistance in compression (kips)",
-            "M_ux": "factored moment about x-axis (kip-ft)",
-            "M_rx": "factored resistance in flexure about x-axis (kip-ft)",
-            "M_uy": "factored moment about y-axis (kip-ft)",
-            "M_ry": "factored resistance in flexure about y-axis (kip-ft)"
-          },
-          "notes": "Applies when P_u/P_r < 0.2.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-58",
-          "description": "Combined axial and flexural interaction (high axial, Pu/Pr >= 0.2)",
-          "formula": "P_u/P_r + (8.0/9.0)*(M_ux/M_rx + M_uy/M_ry) <= 1.0",
-          "variables": {
-            "P_u": "factored axial load (kips)",
-            "P_r": "factored resistance in compression (kips)",
-            "M_ux": "factored moment about x-axis (kip-ft)",
-            "M_rx": "factored resistance in flexure about x-axis (kip-ft)",
-            "M_uy": "factored moment about y-axis (kip-ft)",
-            "M_ry": "factored resistance in flexure about y-axis (kip-ft)"
-          },
-          "notes": "Applies when P_u/P_r >= 0.2.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-59",
-          "description": "Factored resistance in shear for steel piles",
-          "formula": "V_r = phi_v * V_n",
-          "variables": {
-            "V_r": "factored resistance in shear (kips)",
-            "phi_v": "resistance factor (Table 8-6, 1.0 for steel)",
-            "V_n": "nominal resistance in shear (kips)"
-          },
-          "notes": null,
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-60",
-          "description": "Nominal resistance in shear for H-piles",
-          "formula": "V_n = C * V_p",
-          "variables": {
-            "V_n": "nominal resistance in shear (kips)",
-            "C": "ratio of shear-buckling resistance to shear yield strength (typically 1.0 for H-piles)",
-            "V_p": "plastic shear force (kips, Eq. 8-61)"
-          },
-          "notes": null,
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-61",
-          "description": "Plastic shear force for H-piles",
-          "formula": "V_p = 0.58 * F_yw * d_w * t_w",
-          "variables": {
-            "V_p": "plastic shear force (kips)",
-            "F_yw": "yield strength of web (ksi)",
-            "d_w": "web depth of pile section (inches)",
-            "t_w": "web thickness of pile section (inches)"
-          },
-          "notes": null,
-          "implemented_in": null
-        }
+        "Eq. 8-34: Pr = phi_c Pn; phi_c from Table 8-6 (p. 445)",
+        "Eq. 8-35: Po = Q Fy Ag; Po = equivalent nominal axial yield resistance (kips); Q = slender element reduction factor (1.0 for non-slender piles; AASHTO Article 6.9.4.2.2) (p. 446)",
+        "Eq. 8-36: bf / (2 tf) <= 0.64 sqrt(kc Est / Fy), with 0.35 <= kc <= 0.76, H-piles; bf = flange width; tf = flange thickness (in.); Est = elastic modulus of steel (ksi) (p. 446)",
+        "Eq. 8-37: kc = 4 / sqrt(dw / tw); dw = web depth; tw = web thickness (in.) (p. 446)",
+        "Eq. 8-38: D / t <= 0.11 Est / Fy, unfilled pipe piles; D = pipe diameter; t = wall thickness (in.) (p. 447)",
+        "Eq. 8-39: Pe = pi^2 Est Ag / (K l / rs)^2, flexural buckling; Pe = elastic critical buckling resistance (kips); K = effective length factor (Figure 8-4); l = unbraced length in the plane of buckling (in.); rs = radius of gyration about the axis normal to the plane of buckling (in.) (p. 447)",
+        "Eq. 8-40: Pe = [pi^2 Est Cw / (Kz lz)^2 + G J] Ag / (Ix + Iy), torsional buckling of doubly symmetric open sections; Cw = warping torsional constant (in^6); Kz, lz = effective length factor and unbraced length for torsional buckling; G = shear modulus (ksi); J = St. Venant torsional constant (in^4); Ix, Iy = major and minor axis moments of inertia (in^4) (p. 447)",
+        "Eq. 8-41: Cw = Iy h^2 / 4; h = distance between flange centroids (in.) (p. 448)",
+        "Eq. 8-42: G = 0.385 Est (p. 448)",
+        "Eq. 8-43: Pn = Po 0.658^(Po/Pe), if Pe/Po >= 0.44 (p. 448)",
+        "Eq. 8-44: Pn = 0.877 Pe, if Pe/Po < 0.44 (p. 448)"
       ],
       "figures": [],
       "tables": [],
-      "applicability": "Complete structural resistance calculations for steel H-piles and pipe piles per AASHTO (2014) Articles 6.9.4 and 6.12.2.2."
+      "applicability": "Axial compression resistance of steel H and pipe piles."
+    },
+    {
+      "section_id": "8.5.2.2",
+      "title": "Flexure",
+      "body": "(pp. 449-452) The factored flexural resistance is Eq. 8-45; the procedure covers H-piles (and I-sections) and pipe piles only (other sections: AASHTO Article 6.12.2.2). A. H-sections: Step 1, flange slenderness lambda_f (Eq. 8-46) and the compact and non-compact limits (Eqs. 8-47, 8-48); Step 2, Mn = Mp (Eq. 8-49) with Mp = 1.5 Fy Sy about the weak axis (Eq. 8-50) if lambda_f <= lambda_pf, or Eq. 8-51 if lambda_pf < lambda_f <= lambda_rf. B. Pipe piles: Step 1, if D/t <= 0.07 Est/Fy (Eq. 8-52) the plastic moment governs (Step 2a, Eq. 8-53), otherwise local buckling (Step 2b, the text says 'Equation 8-2' here): Eq. 8-54 if D/t <= 0.31 Est/Fy, else Eq. 8-55 with fcr from Eq. 8-56.",
+      "key_points": [
+        "Eq. 8-45: Mr = phi_f Mn (Table 8-6: phi_f = 1.00 for steel)",
+        "Eqs. 8-46 to 8-48: lambda_f = bf/(2 tf); lambda_pf = 0.38 sqrt(Est/Fyf); lambda_rf = 0.83 sqrt(Est/Fyf)",
+        "Eqs. 8-49, 8-50: compact flange Mn = Mp = 1.5 Fy Sy (weak axis)",
+        "Eq. 8-51: non-compact flange, Mn reduced linearly between Mp and the Sy term",
+        "Eq. 8-52: pipe D/t <= 0.07 Est/Fy, then Eq. 8-53 Mn = Mp = Fy Zy",
+        "Eq. 8-54: Mn = [0.021 Est/(D/t) + Fy] Sy for D/t <= 0.31 Est/Fy",
+        "Eqs. 8-55, 8-56: Mn = fcr Sy, fcr = 0.33 Est/(D/t) for D/t > 0.31 Est/Fy"
+      ],
+      "equations": [
+        "Eq. 8-45: Mr = phi_f Mn; phi_f from Table 8-6 (p. 449)",
+        "Eq. 8-46: lambda_f = bf / (2 tf); flange slenderness ratio (p. 449)",
+        "Eq. 8-47: lambda_pf = 0.38 sqrt(Est / Fyf); limiting slenderness ratio for a compact flange; Fyf = minimum yield strength of the lower strength flange (ksi) (p. 449)",
+        "Eq. 8-48: lambda_rf = 0.83 sqrt(Est / Fyf); limiting slenderness ratio for a non-compact flange (p. 449)",
+        "Eq. 8-49: Mn = Mp, if lambda_f <= lambda_pf (p. 450)",
+        "Eq. 8-50: Mp = 1.5 Fy Sy, HP-sections about the weak axis; Sy = elastic section modulus about the weak axis (in^3) (p. 450)",
+        "Eq. 8-51: Mn = [1 - (1 - Sy / Zy)((lambda_f - lambda_pf) / (0.45 sqrt(Est / Fyf)))] fyf Zy, if lambda_pf < lambda_f <= lambda_rf (weak axis); Zy = plastic section modulus about the weak axis (in^3) (p. 450)",
+        "Eq. 8-52: D / t <= 0.07 Est / Fy; if satisfied the plastic moment governs (Step 2a), otherwise local buckling (Step 2b) (p. 451)",
+        "Eq. 8-53: Mn = Mp = Fy Zy (p. 451)",
+        "Eq. 8-54: Mn = [0.021 Est / (D / t) + Fy] Sy, if D/t <= 0.31 Est / Fy (p. 452)",
+        "Eq. 8-55: Mn = fcr Sy, if D/t > 0.31 Est / Fy (p. 452)",
+        "Eq. 8-56: fcr = 0.33 Est / (D / t); fcr = elastic local buckling stress (ksi) (p. 452)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Flexural resistance of steel H and pipe piles."
+    },
+    {
+      "section_id": "8.5.2.3",
+      "title": "Combined Axial Compression and Flexure",
+      "body": "(pp. 452-453) Combined checks apply only to groups of vertical piles; AASHTO (2014) has no recommendation for battered piles. Eq. 8-57 applies if Pu/Pr < 0.2, Eq. 8-58 if Pu/Pr >= 0.2. Table 8-6 uses phi_c = 0.70 (H) and 0.80 (pipe) for combined axial and flexural loading of undamaged piles.",
+      "key_points": [
+        "Applies to groups of vertical piles; no AASHTO recommendation for battered piles",
+        "Eq. 8-57: Pu/(2.0 Pr) + (Mux/Mrx + Muy/Mry) <= 1.0 if Pu/Pr < 0.2",
+        "Eq. 8-58: Pu/Pr + (8.0/9.0)(Mux/Mrx + Muy/Mry) <= 1.0 if Pu/Pr >= 0.2",
+        "Combined loading: phi_c = 0.70 H-piles, 0.80 pipe piles (Table 8-6)"
+      ],
+      "equations": [
+        "Eq. 8-57: Pu / (2.0 Pr) + (Mux / Mrx + Muy / Mry) <= 1.0, if Pu/Pr < 0.2; Pu = factored axial load (kips); Pr from Section 8.5.2.1; Mux, Muy = factored moments and Mrx, Mry = factored flexural resistances about x and y (kip-ft) (p. 453)",
+        "Eq. 8-58: Pu / Pr + (8.0 / 9.0)(Mux / Mrx + Muy / Mry) <= 1.0, if Pu/Pr >= 0.2 (p. 453)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Combined axial and flexural check of steel piles."
+    },
+    {
+      "section_id": "8.5.2.4",
+      "title": "Shear",
+      "body": "(pp. 453-454) Bridge foundation piles are generally not used for high shear, since large lateral deflections hurt serviceability. The factored shear resistance is Eq. 8-59; for an H-pile Vn = C Vp (Eq. 8-60, C typically 1.0) with Vp = 0.58 Fyw dw tw (Eq. 8-61). Significant shear or other non-composite sections: see AASHTO (2014).",
+      "key_points": [
+        "Bridge piles generally not used to resist high shear (serviceability)",
+        "Eq. 8-59: Vr = phi_v Vn (phi_v = 1.00 steel)",
+        "Eq. 8-60: Vn = C Vp, C typically 1.0 for H-piles; Eq. 8-61: Vp = 0.58 Fyw dw tw"
+      ],
+      "equations": [
+        "Eq. 8-59: Vr = phi_v Vn; phi_v from Table 8-6 (p. 453)",
+        "Eq. 8-60: Vn = C Vp; C = ratio of shear-buckling resistance to shear yield strength, typically 1.0 for H-piles (p. 453)",
+        "Eq. 8-61: Vp = 0.58 Fyw dw tw; Vp = plastic shear force (kips); Fyw = web yield strength (ksi); dw = web depth; tw = web thickness (in.) (p. 453)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Shear resistance of steel H-piles."
     },
     {
       "section_id": "8.5.3",
       "title": "Example Calculations for H Pile Structural Resistance",
       "summary": "Worked example for HP14x117 pile (Fy=50 ksi, A=34.4 in^2, rs=3.59 in) with scour-induced unbraced length l=120 in (K=1.2). Non-slender check (Eq. 8-36) gives Q=1.0; Po=1720 kips, Pe=6120 kips, Pe/Po=3.56 >= 0.44 governs inelastic buckling; Pn=1529 kips, Pr=917 kips (phi_c=0.60). Flange slenderness lambda_f = 9.25 lies between lambda_pf = 9.15 (printed once as 9.25) and lambda_rf = 19.98, so Eq. 8-51 gives Mn = Mr = 4555 kip-in (phi_f = 1.0). Factored shear resistance Vr=332 kips.",
-      "body": "A worked example is provided for an HP 14x117 pile supporting an integral abutment with Fy = 50 ksi, Est = 29,000 ksi, rs = 3.59 inches, and unbraced length l = 120 inches due to scour. With K = 1.2 and good driving conditions, the calculations demonstrate: (1) non-slender element check via kc and Eq. 8-36 giving Q = 1.0, (2) equivalent yield resistance Po = 1720 kips, (3) elastic critical buckling Pe = 6120 kips, (4) nominal axial resistance Pn = 1529 kips via Eq. 8-43, (5) factored axial resistance Pr = 917 kips (phi_c=0.60), (6) flange slenderness lambda_f = 9.25 compared to lambda_pf = 9.25 and lambda_rf = 19.98, (7) nominal flexural resistance Mn = 4555 kip-in via Eq. 8-51, (8) factored flexural resistance Mr = 4555 kip-in (phi_f=1.0), and (9) factored shear resistance Vr = 332 kips.",
+      "body": "(pp. 454-458) An HP 14x117 for an integral abutment: Fy = 50 ksi, Est = 29,000 ksi, weak axis rs = 3.59 in. (Figure 8-2), unbraced length l = 120 in. for scour, rotation fixed and translation free at the head and both fixed at the toe, so K = 1.2 (Figure 8-4); Kl/r < 120. kc = 4/sqrt(14.2/0.805) = 0.952, limited to 0.76; Eq. 8-36: 14.9/(2 x 0.805) = 9.25 <= 13.44, so Q = 1.0. Po = 1.0 x 50 x 34.4 = 1720 kips; Pe = 6120 kips; Pe/Po = 3.56 >= 0.44, so Eq. 8-43 gives Pn = 1529 kips and, with phi_c = 0.60 (good driving, no toe protection; 0.70 in the combined equations), Pr = 917 kips. Flexure: lambda_f = 9.25; lambda_pf is printed as 9.25 when computed and as 9.15 in the comparison 9.15 < 9.25 <= 19.98 and in Eq. 8-51; lambda_rf = 19.98. The text says 'Equation 8-48 will be used' but applies Eq. 8-51 with Sy = 59.5 in^3 and Zy = 91.4 in^3: Mn = 4555 kip-in, Mr = 4555 kip-in (phi_f = 1.0). Shear: dw = 14.2 in., tw = 0.805 in., Vp = 0.58 x 50 x 14.2 x 0.805 = 332 kips = Vn = Vr (phi_v = 1.0).",
       "key_points": [
-        "HP14x117: Fy=50 ksi, A=34.4 in^2, rs=3.59 in, bf=14.9 in, tf=0.805 in",
-        "Unbraced length l=120 in (scour), K=1.2 (fixed rotation/free translation at head)",
-        "kc = 0.76 (bounded), non-slender element (Q=1.0)",
-        "Po = 1720 kips, Pe = 6120 kips, Pe/Po = 3.56 >= 0.44",
-        "Pn = 1529 kips (inelastic buckling), Pr = 917 kips (phi_c=0.60)",
-        "lambda_f = 9.25, lambda_pf = 9.25, lambda_rf = 19.98; use Eq. 8-51",
-        "Mn = 4555 kip-in, Mr = 4555 kip-in (phi_f=1.0)",
-        "Vp = 332 kips, Vn = 332 kips, Vr = 332 kips (phi_v=1.0)"
+        "HP 14x117: Fy = 50 ksi, Ag = 34.4 in^2, rs = 3.59 in., bf = 14.9 in., tf = 0.805 in., dw = 14.2 in.",
+        "l = 120 in. (scour), K = 1.2 (head rotation fixed, translation free)",
+        "kc = 0.952 limited to 0.76; 9.25 <= 13.44 so Q = 1.0",
+        "Po = 1720 kips; Pe = 6120 kips; Pe/Po = 3.56 >= 0.44",
+        "Pn = 1529 kips; Pr = 917 kips (phi_c = 0.60)",
+        "lambda_f = 9.25; lambda_pf printed 9.25, then 9.15 in the comparison and Eq. 8-51; lambda_rf = 19.98",
+        "Eq. 8-51 (text says Eq. 8-48) with Sy = 59.5 in^3, Zy = 91.4 in^3: Mn = Mr = 4555 kip-in",
+        "Vp = Vn = Vr = 332 kips (phi_v = 1.0)"
       ],
       "equations": [],
       "figures": [],
@@ -1153,14 +497,13 @@
       "section_id": "8.6",
       "title": "Concrete Piles",
       "summary": "Concrete piles are strong in compression; tensile strength is provided by reinforcing and prestressing steel. Nearly all concrete piles manufactured today are prestressed, enabling larger tensile stress capacity. Unlike steel and timber, concrete piles are susceptible to damage in both compression and tension during driving. Pile cushions are used to slow impact velocity and reduce peak dynamic forces. Driving stresses are applied to the gross concrete section area.",
-      "body": "Concrete is strong in compression while tensile strength is mainly derived from reinforcing steel and prestressed longitudinal rebar. The additional tensile strength from prestressing allows for larger tensile stresses and is featured in nearly all concrete piles manufactured today. Unlike timber and steel piles, concrete piles are susceptible to damage in both compression and tension under normal driving conditions. Pile cushions are employed to slow the impact velocity and reduce dynamic forces during driving.",
+      "body": "(p. 459) Concrete pile driving stresses are Section 8.6.1 and structural resistance 8.6.2 (axial compression, biaxial flexure).",
       "key_points": [
         "Concrete strong in compression; tensile strength from reinforcing/prestressing steel",
         "Nearly all concrete piles manufactured today are prestressed",
         "Susceptible to damage in both compression and tension during driving",
         "Pile cushions used to reduce dynamic forces during driving",
-        "Driving stresses applied to gross concrete area",
-        "FB-Pier software used for prestressed section analysis with moment interaction diagrams"
+        "Driving stresses applied to gross concrete area"
       ],
       "equations": [],
       "figures": [],
@@ -1169,345 +512,164 @@
     },
     {
       "section_id": "8.6.1",
-      "title": "Driving Stresses (Concrete)",
+      "title": "Driving Stresses",
       "summary": "Both compression and tension driving stresses must be checked for concrete piles per AASHTO (2014). Compression limit: sigma_dr = phi_da*(0.85*f'c - f_pe) (Eq. 8-62). Tension limit: sigma_dr = phi_da*(0.095*sqrt(f'c) + f_pe) (Eq. 8-63). Resistance factor phi_da = 1.0; effective prestress f_pe = 0.5 to 1.0 ksi typical for highway piles. In severe corrosive environments, tension is limited to the effective prestress after losses.",
-      "body": "AASHTO (2014) specifications limit nominal driving stresses for concrete piles in both compression and tension. Driving stress limits are applied to the gross concrete area. In severe corrosive environments, the nominal tension stress is limited to the effective prestress after losses. The resistance factor during driving phi_da = 1.0 for concrete piles.",
+      "body": "(p. 459) Concrete is strong in compression and relies on reinforcing and prestressing steel for tension; prestressing, used in nearly all U.S. concrete piles, allows larger tensile stresses. Unlike timber and steel, concrete piles can be damaged in compression or tension in normal driving; pile cushions (Chapter 15) slow impact velocity and reduce dynamic forces. Limits apply to the gross concrete area; in severely corrosive environments tension is limited to the effective prestress after losses. AASHTO (2014): Eq. 8-62 (compression) and Eq. 8-63 (tension), phi_da = 1.0. fpe (AASHTO Chapter 10 designation) is typically 0.5 to 1.0 ksi for highway piles and should certainly be less than f'c.",
       "key_points": [
         "Compression driving stress: sigma_dr = phi_da * (0.85*f'c - f_pe)",
         "Tension driving stress: sigma_dr = phi_da * (0.095*sqrt(f'c) + f_pe)",
         "phi_da = 1.0 for concrete piles (Table 8-5)",
         "f_pe = effective prestressing stress, typically 0.5 to 1.0 ksi for highway piles",
-        "f_pe must be less than f'c"
+        "f_pe must be less than f'c",
+        "Severe corrosive environments: tension limited to the effective prestress after losses"
       ],
       "equations": [
-        {
-          "eq_id": "8-62",
-          "description": "Compression driving stress limit for concrete piles",
-          "formula": "sigma_dr = phi_da * (0.85*f'_c - f_pe)",
-          "variables": {
-            "sigma_dr": "driving stress (ksi)",
-            "phi_da": "resistance factor during driving (1.0 for concrete, Table 8-5)",
-            "f_prime_c": "concrete compression strength at 28 days (ksi)",
-            "f_pe": "effective prestressing stress in concrete (ksi)"
-          },
-          "notes": "f_pe typically 0.5 to 1.0 ksi for highway projects.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-63",
-          "description": "Tension driving stress limit for concrete piles",
-          "formula": "sigma_dr = phi_da * (0.095*sqrt(f'_c) + f_pe)",
-          "variables": {
-            "sigma_dr": "driving stress (ksi)",
-            "phi_da": "resistance factor during driving (1.0 for concrete, Table 8-5)",
-            "f_prime_c": "concrete compression strength at 28 days (ksi)",
-            "f_pe": "effective prestressing stress in concrete (ksi)"
-          },
-          "notes": "In severe corrosive environments, tension limited to effective prestress after losses.",
-          "implemented_in": null
-        }
+        "Eq. 8-62: sigma_dr = phi_da (0.85 f'c - fpe), concrete compression driving stress limit; phi_da = 1.0 (Table 8-5); fpe = effective prestressing stress in concrete (ksi) (p. 459)",
+        "Eq. 8-63: sigma_dr = phi_da (0.095 sqrt(f'c) + fpe), concrete tension driving stress limit (p. 459)"
       ],
       "figures": [],
       "tables": [],
-      "applicability": "Driving stress evaluation for prestressed concrete pile installation."
+      "applicability": "Concrete pile driving stress limits."
     },
     {
       "section_id": "8.6.2",
-      "title": "Structural Resistance (Concrete)",
+      "title": "Structural Resistance",
       "summary": "Concrete pile structural resistance per AASHTO covers axial compression and biaxial flexure. Factored axial: Pr = phi_c*Pn (Eq. 8-64). Nominal axial with spiral reinforcement: 0.85 factor (Eq. 8-65); tie reinforcement: 0.80 factor (Eq. 8-66). Biaxial flexure: reciprocal method (Eq. 8-68) when Pu >= 0.10*phi*f'c*Ag; moment ratio (Eq. 8-70) when lower. Resistance factors: tension-controlled RC phi_c=0.90, PS compression phi_c=0.75, PS tension phi_c=1.00. FB-Pier generates 3D interaction failure surfaces.",
-      "body": "The structural resistance of concrete piles is evaluated for axial compression and biaxial flexure. For axial compression, the nominal resistance accounts for the concrete strength, reinforcing steel, and prestressing steel. Reduction factors of 0.85 (spiral reinforcement) or 0.80 (tie reinforcement) are applied to account for unintended eccentricity. Biaxial flexure resistance is evaluated using moment interaction diagrams, typically generated using FB-Pier software. The analysis uses stress-strain relationships for concrete and prestressing steel to construct a three-dimensional failure surface.",
+      "body": "(p. 460) Concrete pile structural resistance covers axial compression (8.6.2.1) and biaxial flexure (8.6.2.2).",
       "key_points": [
-        "Factored axial resistance: Pr = phi_c * Pn (Eq. 8-64)",
-        "Spiral reinforcement: Pn = 0.85[0.85*f'c*(Ag-Astr-Aps) + Fyr*Astr - Aps*(fpe - Est*ecu)]",
-        "Tie reinforcement: factor is 0.80 instead of 0.85",
-        "Biaxial flexure: Mr = phi_f * Mn (Eq. 8-67)",
-        "Interaction check for Pu >= 0.10*phi*f'c*Ag: 1/Prxy = 1/Prx + 1/Pry - 1/(phi*Po)",
-        "Interaction check for Pu < 0.10*phi*f'c*Ag: Mux/Mrx + Muy/Mry <= 1.0",
-        "FB-Pier generates 3D failure surface from stacked interaction diagrams",
-        "Resistance factors: tension controlled RC phi_c=0.90, PS phi_c=1.00, compression PS phi_c=0.75"
+        "Axial compression 8.6.2.1; biaxial flexure 8.6.2.2"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Concrete pile structural resistance."
+    },
+    {
+      "section_id": "8.6.2.1",
+      "title": "Axial Compression",
+      "body": "(p. 460) The factored resistance is Eq. 8-64. The nominal resistance is Eq. 8-65 for spiral reinforcement or Eq. 8-66 for ties; the 0.85 and 0.80 factors allow for unintended eccentricity (AASHTO commentary; details AASHTO Article 5.7.4.4).",
+      "key_points": [
+        "Eq. 8-64: Pr = phi_c Pn (Table 8-6)",
+        "Eq. 8-65: spiral Pn = 0.85 [0.85 f'c (Ag - Astr - Aps) + Fyr Astr - Aps (fpe - Est epsilon_cu)]",
+        "Eq. 8-66: ties, factor 0.80 in place of 0.85",
+        "Factors allow for unintended eccentricity (AASHTO Article 5.7.4.4)"
       ],
       "equations": [
-        {
-          "eq_id": "8-64",
-          "description": "Factored resistance in axial compression for concrete piles",
-          "formula": "P_r = phi_c * P_n",
-          "variables": {
-            "P_r": "factored resistance in axial compression (kips)",
-            "phi_c": "resistance factor (Table 8-6)",
-            "P_n": "nominal resistance in axial compression (kips)"
-          },
-          "notes": null,
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-65",
-          "description": "Nominal axial compression resistance for concrete piles with spiral reinforcement",
-          "formula": "P_n = 0.85 * [0.85*f'_c*(A_g - A_str - A_ps) + F_yr*A_str - A_ps*(f_pe - E_st*epsilon_cu)]",
-          "variables": {
-            "P_n": "nominal resistance in axial compression (kips)",
-            "f_prime_c": "concrete compression strength (ksi)",
-            "A_g": "gross cross-sectional area (in^2)",
-            "A_str": "area of longitudinal reinforcement (in^2)",
-            "A_ps": "area of prestressing steel (in^2)",
-            "F_yr": "yield stress of reinforcing steel (ksi)",
-            "f_pe": "effective prestress after losses (ksi)",
-            "E_st": "elastic modulus of prestressing steel (ksi)",
-            "epsilon_cu": "failure strain of concrete in compression (in/in)"
-          },
-          "notes": "0.85 factor for spiral reinforcement accounts for unintended eccentricity.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-66",
-          "description": "Nominal axial compression resistance for concrete piles with tie reinforcement",
-          "formula": "P_n = 0.80 * [0.85*f'_c*(A_g - A_str - A_ps) + F_yr*A_str - A_ps*(f_pe - E_st*epsilon_cu)]",
-          "variables": {
-            "P_n": "nominal resistance in axial compression (kips)",
-            "f_prime_c": "concrete compression strength (ksi)",
-            "A_g": "gross cross-sectional area (in^2)",
-            "A_str": "area of longitudinal reinforcement (in^2)",
-            "A_ps": "area of prestressing steel (in^2)",
-            "F_yr": "yield stress of reinforcing steel (ksi)",
-            "f_pe": "effective prestress after losses (ksi)",
-            "E_st": "elastic modulus of prestressing steel (ksi)",
-            "epsilon_cu": "failure strain of concrete in compression (in/in)"
-          },
-          "notes": "0.80 factor for tie reinforcement (more conservative than spiral).",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-67",
-          "description": "Factored resistance in flexure for concrete piles",
-          "formula": "M_r = phi_f * M_n",
-          "variables": {
-            "M_r": "factored resistance in flexure (kip-ft)",
-            "phi_f": "resistance factor (Table 8-6)",
-            "M_n": "nominal resistance in flexure (kip-ft)"
-          },
-          "notes": null,
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-68",
-          "description": "Biaxial flexure interaction (high axial load, Pu >= 0.10*phi*f'c*Ag)",
-          "formula": "1/P_rxy = 1/P_rx + 1/P_ry - 1/(phi*P_o) <= 1.0",
-          "variables": {
-            "P_rxy": "factored resistance with biaxial flexure (kips)",
-            "P_rx": "factored resistance with eccentricity e_y only (kips)",
-            "P_ry": "factored resistance with eccentricity e_x only (kips)",
-            "phi": "resistance factor (Table 8-6)",
-            "P_o": "nominal axial resistance without flexure (kips, Eq. 8-69)"
-          },
-          "notes": "Applies when P_u >= 0.10*phi*f'c*Ag.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-69",
-          "description": "Nominal axial resistance without flexure for interaction check",
-          "formula": "P_n = 0.85*f'_c*(A_g - A_str - A_ps) + F_yr*A_str - A_ps*(f_pe - E_st*epsilon_cu)",
-          "variables": {
-            "P_n": "nominal axial resistance (kips)"
-          },
-          "notes": "Used in Eq. 8-68 for biaxial flexure interaction.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-70",
-          "description": "Biaxial flexure interaction (low axial load, Pu < 0.10*phi*f'c*Ag)",
-          "formula": "M_ux/M_rx + M_uy/M_ry <= 1.0",
-          "variables": {
-            "M_ux": "factored moment about x-axis (kip-in)",
-            "M_rx": "factored resistance in flexure about x-axis (kip-in)",
-            "M_uy": "factored moment about y-axis (kip-in)",
-            "M_ry": "factored resistance in flexure about y-axis (kip-in)"
-          },
-          "notes": "Applies when P_u < 0.10*phi*f'c*Ag.",
-          "implemented_in": null
-        }
+        "Eq. 8-64: Pr = phi_c Pn; phi_c from Table 8-6 (p. 460)",
+        "Eq. 8-65: Pn = 0.85 [0.85 f'c (Ag - Astr - Aps) + Fyr Astr - Aps (fpe - Est epsilon_cu)], spiral reinforcement; fpe = effective stress in the prestressing steel after losses (ksi); Fyr = yield stress of reinforcing steel (ksi); Astr = longitudinal reinforcement area; Aps = prestressing steel area (in^2); Est = elastic modulus of prestressing steel; epsilon_cu = concrete failure strain in compression (p. 460)",
+        "Eq. 8-66: Pn = 0.80 [0.85 f'c (Ag - Astr - Aps) + Fyr Astr - Aps (fpe - Est epsilon_cu)], tie reinforcement (p. 460)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Axial compression resistance of prestressed and reinforced concrete piles."
+    },
+    {
+      "section_id": "8.6.2.2",
+      "title": "Biaxial Flexure",
+      "body": "(pp. 461-464) The factored flexural resistance is Eq. 8-67; biaxial checks (AASHTO Article 5.7.4.5) are Eq. 8-68 with Eq. 8-69 if Pu >= 0.10 phi f'c Ag, and Eq. 8-70 otherwise. The response of a prestressed section to axial load and two moments is complex; FB-Pier assumes stress-strain relationships with maximum concrete strength 0.85 f'c (all points reduced to 85 % for loading time), builds biaxial interaction diagrams for increasing axial loads up to axial failure (Figure 8-5: an 18 in. solid square pile, 16 strands, f'c = 8 ksi, effective prestress 1200 psi), and stacks them into a three dimensional failure surface; a load case is checked by whether its force vector (axial, Mx, My) falls inside. The program also handles steel piles and concrete filled pipe.",
+      "key_points": [
+        "Eq. 8-67: Mr = phi_f Mn",
+        "Eq. 8-68: 1/Prxy = 1/Prx + 1/Pry - 1/(phi Po) <= 1.0 if Pu >= 0.10 phi f'c Ag (Eq. 8-69 for the axial term)",
+        "Eq. 8-70: Mux/Mrx + Muy/Mry <= 1.0 if Pu < 0.10 phi f'c Ag",
+        "FB-Pier: stacked interaction diagrams form a 3-D failure surface; check whether the force vector lies inside",
+        "Figure 8-5: 18 in. solid square pile, 16 strands, f'c = 8 ksi, effective prestress 1200 psi"
+      ],
+      "equations": [
+        "Eq. 8-67: Mr = phi_f Mn; Mr, Mn in kip-ft; phi_f from Table 8-6 (p. 461)",
+        "Eq. 8-68: 1 / Prxy = 1 / Prx + 1 / Pry - 1 / (phi Po) <= 1.0, if Pu >= 0.10 phi f'c Ag; Prx, Pry = factored axial resistance with only ey or only ex present; Prxy = factored axial resistance with biaxial flexure (kips) (p. 461)",
+        "Eq. 8-69: Pn = 0.85 f'c (Ag - Astr - Aps) + Fyr Astr - Aps (fpe - Est epsilon_cu) (printed as Pn for the Po of Eq. 8-68) (p. 461)",
+        "Eq. 8-70: Mux / Mrx + Muy / Mry <= 1.0, if Pu < 0.10 phi f'c Ag; moments in kip-in (p. 461)"
       ],
       "figures": [
-        {
-          "figure_id": "8-5",
-          "title": "Moment interaction diagram",
-          "description": "Example moment interaction diagram for an 18-inch solid square prestressed concrete pile with 16 strands, f'c=8 ksi, effective prestress=1200 psi. Shows axial load vs bending moment curves for various slenderness ratios (h'/r = 0 to 200), with maximum phi*Pn limits for spiral and tied reinforcement.",
-          "page": 463
-        }
+        "Figure 8-5: Moment interaction diagram (p. 463)"
       ],
       "tables": [],
-      "applicability": "Structural resistance calculations for reinforced and prestressed concrete driven piles."
+      "applicability": "Biaxial flexure of prestressed concrete piles."
     },
     {
       "section_id": "8.7",
       "title": "Composite Piles",
       "summary": "Composite piles are defined as concrete-filled steel pipe piles per AASHTO (2014). Requirements: steel area >= 4% of total, concrete f'c = 3.0 to 8.0 ksi, reinforcing Fy <= 60 ksi. Driving stresses evaluated as non-composite steel (Section 8.5.1). Nominal axial resistance uses normalized slenderness factor lambda (Eq. 8-72): Pn = 0.66^lambda * Fe * Ast (Eq. 8-76) when lambda <= 2.25; Pn = 0.88*Fe*Ast/lambda (Eq. 8-77) when lambda > 2.25. Section properties Fe (Eq. 8-73) and Ee (Eq. 8-74) account for composite action.",
-      "body": "Composite piles for structural applications are defined as concrete filled steel pipe piles. Guidance for other composite pile types such as concrete piles with H-pile stingers is not provided in AASHTO (2014). For composite sections, driving stresses follow the non-composite steel section procedures (Section 8.5.1). The structural resistance is evaluated using a normalized column slenderness factor and composite section properties. AASHTO (2014) evaluation methods require: (1) steel area at least 4% of total area, (2) concrete compression strength between 3.0 and 8.0 ksi, and (3) reinforcing steel yield strength not exceeding 60.0 ksi.",
+      "body": "(p. 464) For structural purposes composite piles are concrete filled steel pipe piles; AASHTO (2014) gives no guidance for others (e.g., concrete with an H-pile stinger), whose resistance along each length should be evaluated for the primary material there. Driving stress is Section 8.7.1 and structural resistance 8.7.2.",
       "key_points": [
         "Composite piles = concrete filled steel pipe piles per AASHTO (2014)",
         "Driving stresses evaluated as non-composite steel section (Section 8.5.1)",
-        "Steel area must be at least 4% of total cross-sectional area",
-        "Concrete f'c must be between 3.0 and 8.0 ksi",
-        "Reinforcing steel yield strength cannot exceed 60.0 ksi",
-        "Nominal resistance uses normalized column slenderness factor lambda",
-        "If lambda <= 2.25: Pn = 0.66^lambda * Fe * Ast",
-        "If lambda > 2.25: Pn = 0.88 * Fe * Ast / lambda"
+        "Other composites (e.g., concrete with H-pile stinger): evaluate each length for its primary material"
       ],
-      "equations": [
-        {
-          "eq_id": "8-71",
-          "description": "Factored resistance in axial compression for composite piles",
-          "formula": "P_r = phi * P_n",
-          "variables": {
-            "P_r": "factored resistance in axial compression (kips)",
-            "phi": "resistance factor (Table 8-6)",
-            "P_n": "nominal resistance in axial compression (kips)"
-          },
-          "notes": null,
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-72",
-          "description": "Normalized column slenderness factor for composite piles",
-          "formula": "lambda = (K*l / (pi*r_s))^2 * (F_e / E_e)",
-          "variables": {
-            "lambda": "normalized column slenderness factor",
-            "K": "effective length factor (Figure 8-4)",
-            "l": "unbraced length (inches)",
-            "r_s": "radius of gyration about axis normal to plane of buckling (inches)",
-            "F_e": "nominal compression resistance of composite section (ksi, Eq. 8-73)",
-            "E_e": "modified elastic modulus of steel for composite column (ksi, Eq. 8-74)"
-          },
-          "notes": "lambda may be taken as 0 for fully embedded piles.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-73",
-          "description": "Nominal compression resistance of composite section",
-          "formula": "F_e = F_y + C_1*F_yr*(A_str/A_st) + C_2*f'_c*(A_c/A_st)",
-          "variables": {
-            "F_e": "nominal compression resistance (ksi)",
-            "F_y": "yield stress of steel (ksi)",
-            "C_1": "composite column constant 1 (1.00 for concrete filled pipes)",
-            "F_yr": "yield stress of reinforcing steel (ksi)",
-            "A_str": "area of longitudinal reinforcing steel (in^2)",
-            "A_st": "area of steel section (in^2)",
-            "C_2": "composite column constant 2 (0.85 for concrete filled pipes)",
-            "f_prime_c": "concrete compression strength (ksi)",
-            "A_c": "area of concrete (in^2)"
-          },
-          "notes": null,
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-74",
-          "description": "Modified elastic modulus for composite column",
-          "formula": "E_e = E_st * [1 + (C_3/n) * (A_c/A_st)]",
-          "variables": {
-            "E_e": "modified elastic modulus (ksi)",
-            "E_st": "elastic modulus of steel (ksi)",
-            "C_3": "composite column constant 3 (0.40 for concrete filled pipes)",
-            "n": "modular ratio E_st/E_c (Eq. 8-75)",
-            "A_c": "area of concrete (in^2)",
-            "A_st": "area of steel section (in^2)"
-          },
-          "notes": null,
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-75",
-          "description": "Modular ratio for composite sections",
-          "formula": "n = E_st / E_c",
-          "variables": {
-            "n": "modular ratio",
-            "E_st": "elastic modulus of steel (ksi)",
-            "E_c": "elastic modulus of concrete (ksi, Eq. 8-1)"
-          },
-          "notes": null,
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-76",
-          "description": "Nominal axial compression for composite piles (lambda <= 2.25)",
-          "formula": "P_n = 0.66^lambda * F_e * A_st",
-          "variables": {
-            "P_n": "nominal resistance in axial compression (kips)",
-            "lambda": "normalized column slenderness factor (Eq. 8-72)",
-            "F_e": "nominal compression resistance (ksi, Eq. 8-73)",
-            "A_st": "cross sectional area of steel (in^2)"
-          },
-          "notes": "Applies when lambda <= 2.25.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-77",
-          "description": "Nominal axial compression for composite piles (lambda > 2.25)",
-          "formula": "P_n = 0.88 * F_e * A_st / lambda",
-          "variables": {
-            "P_n": "nominal resistance in axial compression (kips)",
-            "lambda": "normalized column slenderness factor (Eq. 8-72)",
-            "F_e": "nominal compression resistance (ksi, Eq. 8-73)",
-            "A_st": "cross sectional area of steel (in^2)"
-          },
-          "notes": "Applies when lambda > 2.25.",
-          "implemented_in": null
-        }
-      ],
+      "equations": [],
       "figures": [],
       "tables": [],
       "applicability": "Structural design of concrete filled steel pipe piles per AASHTO (2014)."
     },
     {
+      "section_id": "8.7.1",
+      "title": "Driving Stress",
+      "body": "(p. 464) Concrete filled pipe piles are driven unfilled, so the non-composite steel driving stresses of Section 8.5.1 apply.",
+      "key_points": [
+        "Driven unfilled: use the steel driving stress limit (Section 8.5.1)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Driving stress of concrete filled pipe piles."
+    },
+    {
+      "section_id": "8.7.2",
+      "title": "Structural Resistance",
+      "body": "(p. 464) Composite structural resistance is treated as axial compression (Section 8.7.2.1).",
+      "key_points": [
+        "Axial compression of concrete filled pipe: Section 8.7.2.1"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Structural resistance of concrete filled pipe piles."
+    },
+    {
+      "section_id": "8.7.2.1",
+      "title": "Axial Compression",
+      "body": "(pp. 464-466) AASHTO (2014) composite methods apply if (1) steel is at least 4 % of the total area (otherwise treat as non-composite by Section 8.6), (2) f'c is between 3.0 and 8.0 ksi (lower limit to encourage good concrete), and (3) the longitudinal reinforcement yield strength used does not exceed 60.0 ksi. The factored resistance is Eq. 8-71. Step 1: lambda from Eq. 8-72 (taken as 0 if fully embedded) with Eqs. 8-73 to 8-75 (C1 = 1.00, C2 = 0.85, C3 = 0.40 for concrete filled pipe). Step 2: Pn by Eq. 8-76 if lambda <= 2.25 or Eq. 8-77 if lambda > 2.25 (the text says 'Equation 8-73 or Equation 8-74').",
+      "key_points": [
+        "Steel area >= 4 % of total, else non-composite (Section 8.6)",
+        "f'c between 3.0 and 8.0 ksi; reinforcement yield used <= 60.0 ksi",
+        "Eq. 8-71: Pr = phi Pn",
+        "Eq. 8-72: lambda = (K l/(pi rs))^2 (Fe/Ee); lambda = 0 if fully embedded",
+        "Eqs. 8-73 to 8-75: Fe, Ee and n = Est/Ec; C1 = 1.00, C2 = 0.85, C3 = 0.40",
+        "Eq. 8-76: Pn = 0.66^lambda Fe Ast (lambda <= 2.25); Eq. 8-77: Pn = 0.88 Fe Ast / lambda (lambda > 2.25)"
+      ],
+      "equations": [
+        "Eq. 8-71: Pr = phi Pn, concrete filled steel pipe; phi from Table 8-6 (p. 465)",
+        "Eq. 8-72: lambda = (K l / (pi rs))^2 (Fe / Ee); lambda = normalized column slenderness factor (may be taken as 0 for fully embedded piles) (p. 465)",
+        "Eq. 8-73: Fe = Fy + C1 Fyr (Astr / Ast) + C2 f'c (Ac / Ast); Fe = nominal compression resistance of the composite section (ksi); Ast = steel area; Ac = concrete area; Astr = longitudinal reinforcing area (in^2); C1 = 1.00 and C2 = 0.85 for concrete filled pipes (p. 465)",
+        "Eq. 8-74: Ee = Est [1 + (C3 / n)(Ac / Ast)]; Ee = modified elastic modulus of steel for the composite column (ksi); C3 = 0.40 for concrete filled pipes (p. 465)",
+        "Eq. 8-75: n = Est / Ec; Ec from Eq. 8-1 (p. 465)",
+        "Eq. 8-76: Pn = 0.66^lambda Fe Ast, if lambda <= 2.25 (p. 466)",
+        "Eq. 8-77: Pn = 0.88 Fe Ast / lambda, if lambda > 2.25 (p. 466)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Axial compression resistance of concrete filled steel pipe piles."
+    },
+    {
       "section_id": "8.8",
       "title": "Layout of Pile Groups",
       "summary": "Pile group layout begins with estimating pile count as factored axial load divided by single pile resistance, rounded up ~15% (Eq. 8-78). Minimum center-to-center spacing is 2.5 ft or 2.5D per AASHTO; 3.0D recommended. Trial layout is checked using the Rigid Cap Method (Eq. 8-79): Pui = (Puz+Wc+Ws)/n + Mux*y/sum(y^2) + Muy*x/sum(x^2). Maximum single pile load must not exceed factored structural resistance. Software (GROUP, FB-Pier) using t-z and p-y curves provides refined soil-structure interaction analysis.",
-      "body": "A group of piles is typically required to support large structural loads. An initial group layout must be determined to perform in-service stress checks. Pile group layouts can be determined using computer software such as GROUP or FB-Pier which utilize soil-structure interaction (t-z and p-y curves) to distribute loads and deflections. Alternatively, a hand calculation using the Rigid Cap Method may be performed. The procedure involves estimating the number of piles required, generating a trial configuration, and checking the maximum single pile factored axial load against the factored structural resistance.",
+      "body": "(pp. 467-469) Large loads need a pile group, whose initial layout is needed for in-service stress checks under the AASHTO Article 3.4 load combinations (loads in Figure 8-6). Software such as GROUP or FB-Pier distributes loads with t-z and p-y curves; alternatively the rigid cap method is done by hand. Step 1: estimate the number of piles (Eq. 8-78), dividing the factored axial load by the factored geotechnical resistance of one pile and rounding up (say by 15 % or more, by the moments and lateral loads); lateral or tension loads may govern and need more piles. Step 2: trial configuration; AASHTO (2014) minimum center-to-center spacing is the lesser of 2.5 ft or 2.5 diameters, but experience shows 3.0 diameters is a more practical minimum (CRSI Design Handbook 2002 has example layouts). Step 3: maximum single pile load by Eq. 8-79 for all factored load combinations, not just the largest axial; if it exceeds the factored structural resistance add piles or widen spacing and recompute; an unsymmetrical cap may suit unequal moments.",
       "key_points": [
-        "Number of piles estimated by dividing factored axial load by single pile resistance, rounded up ~15%",
-        "Minimum center-to-center spacing: 2.5 feet or 2.5 pile diameters per AASHTO, 3.0 diameters recommended",
-        "Rigid Cap Method used for hand calculation of pile forces (Eq. 8-79)",
-        "Maximum single pile load must not exceed factored structural resistance",
-        "Software (GROUP, FB-Pier) uses t-z and p-y curves for refined analysis",
-        "If moments in one direction are larger, unsymmetrical cap layout may be desirable",
-        "Critical load combination must be checked, not just the largest axial load"
+        "Use GROUP or FB-Pier (t-z, p-y) or the hand rigid cap method",
+        "Eq. 8-78: n ~= Pu / Rr, rounded up (say 15 % or more for moments and lateral loads)",
+        "Lateral or tension loads may govern and need more piles",
+        "AASHTO minimum spacing: lesser of 2.5 ft or 2.5 diameters; 3.0 diameters more practical",
+        "Eq. 8-79: Pui = (Puz + Wc + Ws)/n + Mux y/sum(y^2) + Muy x/sum(x^2)",
+        "Check every factored load combination, not just the largest axial load",
+        "If Pui exceeds the factored structural resistance, add piles or widen spacing"
       ],
       "equations": [
-        {
-          "eq_id": "8-78",
-          "description": "Estimated number of piles in group",
-          "formula": "P_u / R_r ~= n (round up)",
-          "variables": {
-            "P_u": "largest factored axial load of superstructure (kips)",
-            "R_r": "factored resistance of a single pile (geotechnical) (kips)",
-            "n": "number of piles in pile group"
-          },
-          "notes": "Round up by approximately 15% or more depending on moments and lateral loads.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-79",
-          "description": "Maximum single pile factored axial load (Rigid Cap Method)",
-          "formula": "P_ui = (P_uz + W_c + W_s)/n + M_ux*y/sum(y^2) + M_uy*x/sum(x^2)",
-          "variables": {
-            "P_ui": "maximum single pile factored axial load (kips)",
-            "P_uz": "factored axial load from superstructure/substructure on pile cap (kips)",
-            "W_c": "estimated weight of pile cap (kips)",
-            "W_s": "estimated weight of soil above pile cap (kips)",
-            "n": "number of piles in pile group",
-            "M_ux": "factored moment about x-axis on pile cap (kip-ft)",
-            "M_uy": "factored moment about y-axis on pile cap (kip-ft)",
-            "x": "distance along x-axis from center of column to each pile center (feet)",
-            "y": "distance along y-axis from center of column to each pile center (feet)"
-          },
-          "notes": "Assumes equal stiffness of all piles in the group. All factored load combinations should be checked.",
-          "implemented_in": null
-        }
+        "Eq. 8-78: Pu / Rr ~= n -> (number of piles, round up); Pu = largest factored axial load of the superstructure (kips); Rr = factored geotechnical resistance of a single pile (kips); n = number of piles in the group (p. 467)",
+        "Eq. 8-79: Pui = (Puz + Wc + Ws) / n + Mux y / sum(y^2) + Muy x / sum(x^2), rigid cap method with equal pile stiffness; Pui = maximum single pile factored axial load (kips); Puz = factored axial load on the cap (kips); Wc = cap weight; Ws = soil weight above the cap (kips); Mux, Muy = factored moments on the cap (kip-ft); x, y = distances from the column center to each pile (ft) (p. 468)"
       ],
       "figures": [
-        {
-          "figure_id": "8-6",
-          "title": "Pile group layout",
-          "description": "Plan and elevation views of a pile group with column-supported pile cap showing applied loads Puz, Pux, Puy, moments Mux, Muy, and coordinate system x, y, z. Column supported on pile cap not shown for clarity.",
-          "page": 469
-        }
+        "Figure 8-6: Pile group layout. (Note: Column supported on pile cap not shown for clarity) (p. 469)"
       ],
       "tables": [],
       "applicability": "Preliminary pile group layout and load distribution for driven pile foundations."
@@ -1516,314 +678,48 @@
       "section_id": "8.9",
       "title": "Preliminary Design of Pile Bent and Group Caps",
       "summary": "Preliminary pile cap sizing follows AASHTO LRFD concrete design. Estimated cap thickness: t_cap = Pui/12 + 30 inches (Eq. 8-80). Effective shear depth dv = tcap - dc - ds - df (Eq. 8-81), not less than max(0.9*ds, 0.72*h). Design checks include two-way punching shear around column (Eqs. 8-87/8-88) and individual piles, one-way beam shear (Eqs. 8-93/8-94), and cap flexural resistance (Eq. 8-97). Minimum pile embedment 12 inches; minimum spacing 30 inches or 2.5D; edge cover 9 inches.",
-      "body": "This section provides guidelines for developing a preliminary size of a pile cap for cost estimating purposes. The LRFD structural design of a concrete pile bent cap is similar to a concrete pier cap. Key design considerations include pile embedment into the cap, structural design depth, pile concrete cover requirements, pile misalignment tolerance, concrete pile anchorage, and minimum pile spacing. The procedure covers estimating cap thickness, determining effective shear depth, checking punching (two-way) shear around columns and individual piles, checking one-way beam shear, and verifying cap flexural resistance.",
+      "body": "(pp. 470-481) Guidelines for a preliminary cap size for cost estimating; full structural and seismic design is outside the manual. The CRSI Design Guide for Pile Caps (Mays 2015, following ACI (2014), piles with nominal loads up to 400 tons, with spreadsheets) helps develop a preliminary cap for AASHTO design. A bent cap is designed like a pier cap (Wilson et al. 2006), with added issues of pile embedment, structural depth, cover, misalignment tolerance, anchorage and spacing; design is iterative. Plan size per AASHTO Article 10.7.1.2: spacing at least 30.0 in. or 2.5 diameters and at least 9 in. from cap edge to pile side. Thickness is embedment plus clear space plus structural depth; piles project at least 12.0 in. into the cap after damaged material is removed, or 6.0 in. with embedded bars or strands. Shear failures: punching about one pile, a pair of piles, a pile at a corner, and the column. Step 1: trial thickness by Eq. 8-80 (including embedment and 3 in. clear space). Step 2: dv by Eq. 8-81 (not less than the greater of 0.9 ds or 0.72 h, AASHTO 5.8.2.9, and for preliminary sizing may be taken as that value; Figure 8-7) and the column punching perimeter bo (Eqs. 8-82 to 8-84). Step 3: two-way shear at dv/2 from and at the column face (Figure 8-8) and around piles (Figures 8-9, 8-10): Vu by Eq. 8-85 or 8-86, Vn by Eqs. 8-87 to 8-90 (AASHTO 5.13.3.6.3; the text cites Eqs. 8-84 and 8-85 here), Vr by Eq. 8-91, check Eq. 8-92. Step 4: one-way shear (AASHTO 5.13.3.6.2, 5.8.3.2; Figures 8-11, 8-12): Vu by Eq. 8-93, Vn the lesser of Eqs. 8-94 and 8-95 (the text says Eqs. 8-91 or 8-92), Vr = phi_v Vn, check Eq. 8-96. Step 5: bending, Eq. 8-97, with Mn from Eqs. 8-98 and 8-99 (after AASHTO 5.7.3.2.2-1); taking d - a/2 = 0.9d gives a preliminary steel area, refined by one more cycle; reinforcement should develop Mr of at least 1.33 times the factored moment (AASHTO 5.7.3.3.2). The step heading in the print repeats 'Layout of Pile Groups'.",
       "key_points": [
-        "Cap thickness estimated as t_cap = Pui/12 + 30 (inches)",
-        "Effective shear depth dv = max(0.9*ds, 0.72*h)",
-        "Minimum pile embedment: 12 inches after damaged material removal, or 6 inches with embedded bars/strands",
-        "Minimum center-to-center spacing: 30 inches or 2.5 pile diameters",
-        "Minimum edge of cap to side of pile: 9 inches",
-        "Two-way (punching) shear checked around column and individual/paired piles",
-        "One-way beam shear checked at critical sections from column face and pile face",
-        "Cap flexural resistance: Mu = sum(Rr*(x,y)) <= phi*Mn",
-        "Cap moment resistance for preliminary design using d-a/2 approximation"
+        "Preliminary cap size for cost estimating; CRSI Design Guide for Pile Caps (Mays 2015)",
+        "Spacing >= 30.0 in. or 2.5 diameters; >= 9 in. cap edge to pile side (AASHTO 10.7.1.2)",
+        "Embedment >= 12.0 in. after removing damaged material, or 6.0 in. with embedded bars or strands",
+        "Eq. 8-80: tcap = Pui/12 + 30 (in.), including embedment and 3 in. clear space",
+        "Eq. 8-81: dv = tcap - dc - ds - df, not less than the greater of 0.9 ds or 0.72 h; for preliminary sizing dv may be taken as that greater value",
+        "Eqs. 8-82 to 8-84: column punching perimeter bo (square, rectangular, circular)",
+        "Two-way shear: Vu (Eqs. 8-85, 8-86), Vn (Eqs. 8-87 to 8-90), Vr = 0.9 Vn (Eq. 8-91)",
+        "One-way shear: Vu = no Rr (Eq. 8-93); Vn lesser of Vc + Vs and 0.25 f'c bv dv (Eqs. 8-94, 8-95)",
+        "Bending: Mu = sum Rr (x, y) <= phi Mn (Eq. 8-97); Mn from Eqs. 8-98, 8-99",
+        "Reinforcement to develop Mr >= 1.33 Mu (AASHTO 5.7.3.3.2)"
       ],
       "equations": [
-        {
-          "eq_id": "8-80",
-          "description": "Estimated cap thickness",
-          "formula": "t_cap = P_ui/12 + 30",
-          "variables": {
-            "t_cap": "thickness of cap (inches)",
-            "P_ui": "maximum single pile factored axial load (kips)"
-          },
-          "notes": "Initial trial thickness to be refined by punching shear checks.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-81",
-          "description": "Effective shear depth to reinforcement",
-          "formula": "d_v = t_cap - d_c - d_s - d_f",
-          "variables": {
-            "d_v": "effective depth to reinforcement (inches)",
-            "t_cap": "thickness of cap (inches)",
-            "d_c": "clear space (inches)",
-            "d_s": "distance to center of steel (inches)",
-            "d_f": "pile embedment into cap (inches)"
-          },
-          "notes": "Per AASHTO Article 5.8.2.9, d_v need not be less than max(0.9*d_s, 0.72*h).",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-82",
-          "description": "Critical punching shear perimeter for square columns",
-          "formula": "b_o = 4*(b_c + d_v)",
-          "variables": {
-            "b_o": "critical punching shear perimeter (inches)",
-            "b_c": "column side for square columns (inches)",
-            "d_v": "effective shear depth (inches)"
-          },
-          "notes": null,
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-83",
-          "description": "Critical punching shear perimeter for rectangular columns",
-          "formula": "b_o = 2*(c_1 + c_2 + 2*d_v)",
-          "variables": {
-            "b_o": "critical punching shear perimeter (inches)",
-            "c_1": "small column side for rectangular columns (inches)",
-            "c_2": "large column side for rectangular columns (inches)",
-            "d_v": "effective shear depth (inches)"
-          },
-          "notes": null,
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-84",
-          "description": "Critical punching shear perimeter for circular columns",
-          "formula": "b_o = c_o + d_v",
-          "variables": {
-            "b_o": "critical punching shear perimeter (inches)",
-            "c_o": "column diameter (inches)",
-            "d_v": "effective shear depth (inches)"
-          },
-          "notes": "This is the perimeter at d_v/2 from the column face.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-85",
-          "description": "Factored shear force around column",
-          "formula": "V_u = P_u",
-          "variables": {
-            "V_u": "factored shear force (kips)",
-            "P_u": "factored axial load of superstructure (kips)"
-          },
-          "notes": null,
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-86",
-          "description": "Factored shear force around individual or pair of piles",
-          "formula": "V_u = gamma_i * Q_i = n_i * R_r",
-          "variables": {
-            "V_u": "factored shear force (kips)",
-            "R_r": "factored geotechnical axial resistance of a single pile (kips)",
-            "n_i": "number of piles whose centers lie inside the two-way shear critical section"
-          },
-          "notes": null,
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-87",
-          "description": "Nominal two-way shear resistance without transverse reinforcement",
-          "formula": "V_n = (0.063 + 0.126/beta_c) * sqrt(f'_c) * b_o * d_v <= 0.126*sqrt(f'_c)*b_o*d_v",
-          "variables": {
-            "V_n": "nominal shear resistance (kips)",
-            "beta_c": "ratio of long side to short side of loaded area",
-            "f_prime_c": "concrete compression strength (ksi)",
-            "b_o": "critical punching shear perimeter (inches)",
-            "d_v": "effective shear depth (inches)"
-          },
-          "notes": "Per AASHTO 5.13.3.6.3-1.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-88",
-          "description": "Nominal two-way shear resistance with transverse reinforcement",
-          "formula": "V_n = V_c + V_s <= 0.192*sqrt(f'_c)*b_o*d_v",
-          "variables": {
-            "V_n": "nominal shear resistance (kips)",
-            "V_c": "concrete contribution (kips, Eq. 8-89)",
-            "V_s": "steel reinforcement contribution (kips, Eq. 8-90)"
-          },
-          "notes": "Per AASHTO 5.13.3.6.3-2.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-89",
-          "description": "Concrete contribution to two-way shear resistance",
-          "formula": "V_c = 0.0632 * sqrt(f'_c) * b_o * d_v",
-          "variables": {
-            "V_c": "nominal shear resistance from concrete (kips)",
-            "f_prime_c": "concrete compression strength (ksi)",
-            "b_o": "critical punching shear perimeter (inches)",
-            "d_v": "effective shear depth (inches)"
-          },
-          "notes": "Per AASHTO 5.13.3.6.3-4.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-90",
-          "description": "Steel reinforcement contribution to two-way shear",
-          "formula": "V_s = A_stv * F_y * d_v / s",
-          "variables": {
-            "V_s": "nominal shear resistance from steel (kips)",
-            "A_stv": "area of transverse reinforcement within distance s (in^2)",
-            "F_y": "yield stress of reinforcement (ksi)",
-            "d_v": "effective shear depth (inches)",
-            "s": "spacing of transverse reinforcement (inches)"
-          },
-          "notes": null,
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-91",
-          "description": "Factored shear resistance (two-way)",
-          "formula": "V_r = phi_v * V_n",
-          "variables": {
-            "V_r": "factored shear resistance (kips)",
-            "phi_v": "resistance factor (0.9 for normal weight concrete shear)",
-            "V_n": "nominal shear resistance (kips)"
-          },
-          "notes": null,
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-92",
-          "description": "Two-way shear adequacy check",
-          "formula": "V_u < V_r",
-          "variables": {
-            "V_u": "factored shear load (kips)",
-            "V_r": "factored shear resistance (kips)"
-          },
-          "notes": "If not satisfied, increase shear reinforcement or effective shear depth.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-93",
-          "description": "One-way beam shear stress at critical section",
-          "formula": "V_u = gamma_i * Q_i = n_o * R_r",
-          "variables": {
-            "V_u": "factored shear stress (kips)",
-            "R_r": "factored nominal resistance of a single pile (kips)",
-            "n_o": "number of piles outside one-way critical shear section"
-          },
-          "notes": null,
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-94",
-          "description": "Nominal one-way shear resistance",
-          "formula": "V_n = V_c + V_s",
-          "variables": {
-            "V_n": "nominal shear resistance (kips)",
-            "V_c": "concrete contribution (kips)",
-            "V_s": "steel reinforcement contribution (kips)"
-          },
-          "notes": "Per AASHTO Article 5.8.3.3-2.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-95",
-          "description": "Upper limit on one-way nominal shear resistance",
-          "formula": "V_n = 0.25 * f'_c * b_v * d_v",
-          "variables": {
-            "V_n": "maximum nominal shear resistance (kips)",
-            "f_prime_c": "concrete compression strength (ksi)",
-            "b_v": "width of interface (inches)",
-            "d_v": "effective depth to reinforcement (inches)"
-          },
-          "notes": "Lesser of Eq. 8-94 and Eq. 8-95 governs.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-96",
-          "description": "One-way shear adequacy check",
-          "formula": "V_u < V_r",
-          "variables": {
-            "V_u": "factored shear force (kips)",
-            "V_r": "factored shear resistance (kips)"
-          },
-          "notes": null,
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-97",
-          "description": "Factored bending moment in cap",
-          "formula": "M_u = sum(R_r*(x,y)) <= phi*M_n",
-          "variables": {
-            "M_u": "factored moment load (kip-in)",
-            "R_r": "factored axial resistance of a single pile (kips)",
-            "x": "distance from edge of column to each pile in x direction (inches)",
-            "y": "distance from edge of column to each pile in y direction (inches)",
-            "phi": "resistance factor (0.9 for normal weight concrete)",
-            "M_n": "nominal flexural resistance (kip-in)"
-          },
-          "notes": "Checked for each direction of pile cap, from piles to edge of column.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-98",
-          "description": "Nominal flexural resistance of cap (rectangular section)",
-          "formula": "M_n = A_stt*f_st*(d_st - a/2) - A_stc*f_sc*(d_sc - a/2)",
-          "variables": {
-            "M_n": "nominal flexural resistance (kip-in)",
-            "A_stt": "area of tension reinforcement (in^2)",
-            "f_st": "stress in tension steel at nominal flexural resistance (ksi)",
-            "d_st": "distance from extreme compression fiber to centroid of tension steel (inches)",
-            "A_stc": "area of compression reinforcement (in^2)",
-            "f_sc": "stress in compression steel at nominal flexural resistance (ksi)",
-            "d_sc": "distance from extreme compression fiber to centroid of compression steel (inches)",
-            "a": "depth of equivalent stress block (inches, Eq. 8-99)"
-          },
-          "notes": "After AASHTO 5.7.3.2.2-1. For preliminary design, assume d-a/2 = 0.9d.",
-          "implemented_in": null
-        },
-        {
-          "eq_id": "8-99",
-          "description": "Depth of equivalent stress block for cap flexure",
-          "formula": "a = (A_s*f_s - A'_s*f'_s) / (0.85*f'_c*b)",
-          "variables": {
-            "a": "depth of equivalent stress block (inches)",
-            "A_s": "area of tension steel (in^2)",
-            "f_s": "stress in tension steel (ksi)",
-            "A_prime_s": "area of compression steel (in^2)",
-            "f_prime_s": "stress in compression steel (ksi)",
-            "f_prime_c": "concrete compression strength (ksi)",
-            "b": "width of compression face (inches)"
-          },
-          "notes": "Beta_1 factor cancels in the equation.",
-          "implemented_in": null
-        }
+        "Eq. 8-80: tcap = Pui / 12 + 30; tcap = trial total cap thickness including pile embedment and 3 in. clear space (in.); Pui = maximum single pile factored axial load (kips) (p. 471)",
+        "Eq. 8-81: dv = tcap - dc - ds - df; dv = effective shear depth (in.); dc = clear space; ds = distance to center of steel; df = pile embedment into cap (in.); need not be taken less than the greater of 0.9 ds or 0.72 h (AASHTO 5.8.2.9) (p. 471)",
+        "Eq. 8-82: bo = 4 (bc + dv), square columns; bo = critical punching shear perimeter (in.); bc = column side (in.) (p. 473)",
+        "Eq. 8-83: bo = 2 (c1 + c2 + 2 dv), rectangular columns; c1, c2 = small and large column sides (in.) (p. 473)",
+        "Eq. 8-84: bo = co + dv, circular columns (as printed); co = column diameter (in.) (p. 473)",
+        "Eq. 8-85: Vu = Pu, two-way shear around the column; Pu = factored axial load of the superstructure (kips) (p. 473)",
+        "Eq. 8-86: Vu = gamma_i Q_i = ni Rr, shear around individual or pairs of piles; Rr = factored geotechnical axial resistance of a single pile (kips); ni = number of piles whose centers lie inside the two-way critical section (p. 474)",
+        "Eq. 8-87: Vn = (0.063 + 0.126 / beta_c) sqrt(f'c) bo dv <= 0.126 sqrt(f'c) bo dv, without transverse reinforcement (AASHTO 5.13.3.6.3-1); beta_c = ratio of long side to short side of the load (p. 475)",
+        "Eq. 8-88: Vn = Vc + Vs <= 0.192 sqrt(f'c) bo dv, with transverse reinforcement (AASHTO 5.13.3.6.3-2) (p. 475)",
+        "Eq. 8-89: Vc = 0.0632 sqrt(f'c) bo dv (p. 475)",
+        "Eq. 8-90: Vs = Astv Fy dv / s; Astv = area of transverse reinforcement within distance s (in^2); s = spacing (in.) (p. 475)",
+        "Eq. 8-91: Vr = phi_v Vn; phi_v = 0.9 for normal weight concrete shear (p. 477)",
+        "Eq. 8-92: Vu < Vr; if not satisfied, increase shear reinforcement or the effective shear depth (p. 477)",
+        "Eq. 8-93: Vu = gamma_i Q_i = no Rr, one-way beam shear; no = number of piles outside the one-way critical section (p. 477)",
+        "Eq. 8-94: Vn = Vc + Vs; the lesser of Eqs. 8-94 and 8-95 governs (AASHTO 5.8.3.3-2) (p. 479)",
+        "Eq. 8-95: Vn = 0.25 f'c bv dv; bv = width of interface; dv = effective depth (in.) (p. 479)",
+        "Eq. 8-96: Vu < Vr, one-way shear (Vr = phi_v Vn, phi_v = 0.9) (p. 479)",
+        "Eq. 8-97: Mu = sum Rr (x, y) <= phi Mn; Mu = factored moment (kip-in); x, y = distances from the column edge to each pile (in.); phi = 0.9 (p. 480)",
+        "Eq. 8-98: Mn = Astt fst (dst - a/2) - Astc fsc (dsc - a/2), non-prestressed rectangular section (after AASHTO 5.7.3.2.2-1); Astt, Astc = tension and compression reinforcement areas (in^2); fst, fsc = steel stresses at nominal resistance (ksi); dst, dsc = depths from the extreme compression fiber to their centroids (in.) (p. 480)",
+        "Eq. 8-99: a = c beta1 = (As fs - A's f's) / (0.85 f'c b); a = depth of the equivalent stress block (in.); b = width of the compression face; beta1 cancels (p. 480)"
       ],
       "figures": [
-        {
-          "figure_id": "8-7",
-          "title": "Cap section and notation",
-          "description": "Cross section of pile cap showing thickness t_cap, structural depth h, clear space d_c, distance to center of steel d_s, pile embedment d_f, effective shear depth d_v, and neutral axis location.",
-          "page": 472
-        },
-        {
-          "figure_id": "8-8",
-          "title": "Critical punching (two-way) shear sections around column",
-          "description": "Plan view showing two-way shear critical section at d_v/2 from face of column on all sides.",
-          "page": 474
-        },
-        {
-          "figure_id": "8-9",
-          "title": "Critical section from overlapping critical perimeters",
-          "description": "Plan view showing how critical punching perimeters around two adjacent piles overlap, with notation for edge of footing, 0.5*d_v offset, pile diameter d_o, and probable critical section b_o. After AASHTO (2014).",
-          "page": 475
-        },
-        {
-          "figure_id": "8-10",
-          "title": "Pile punching shear configurations",
-          "description": "Four sub-figures showing two-way shear critical sections for: (a) circular pile, (b) rectangular H-pile, (c) circular pile near corner of cap, and (d) two nearby circular piles. Each showing d_v/2 offset perimeter.",
-          "page": 476
-        },
-        {
-          "figure_id": "8-11",
-          "title": "One-way beam shear critical sections from column",
-          "description": "Plan view showing one-way shear critical sections at d_v and at column face on all sides of a rectangular column within a pile cap.",
-          "page": 478
-        },
-        {
-          "figure_id": "8-12",
-          "title": "One-way beam shear critical sections from pile(s)",
-          "description": "Plan view of a 4-pile group showing one-way shear critical section lines at d_v from face of piles, with diagonal shear failure plane indicated.",
-          "page": 478
-        }
+        "Figure 8-7: Cap section and notation (p. 472)",
+        "Figure 8-8: Critical punching (two-way) shear sections around column (p. 474)",
+        "Figure 8-9: Critical section from overlapping critical perimeters (after AASHTO 2014) (p. 475)",
+        "Figure 8-10: Pile punching shear for: (a) circular pile; (b) rectangular H pile; (c) circular pile near corner of cap; and (d) two nearby circular piles (p. 476)",
+        "Figure 8-11: One-way beam shear critical sections from column (p. 478)",
+        "Figure 8-12: One-way beam shear critical sections from pile(s) (p. 478)"
       ],
       "tables": [],
       "applicability": "Preliminary sizing and structural adequacy checks for pile cap design including punching shear, beam shear, and flexure."
@@ -1832,7 +728,7 @@
       "section_id": "8.9.1",
       "title": "Cap Considerations for Large Pile Sizes",
       "summary": "For Large Diameter Open-Ended Piles (LDOEPs), the general pile cap design procedure from Section 8.9 applies. No strict AASHTO guidance exists for minimum spacing and embedment of large pile sizes; most state agencies lack standard plans. Case studies (Brown and Thompson 2014) show pile tops embedded approximately 3 feet into pier caps. Minimum center-to-center spacing of approximately 3 pile diameters is recommended, consistent with drilled shaft group layout guidelines.",
-      "body": "For Large Diameter Open-Ended Piles (LDOEPs), the general analysis steps from the preceding section should be followed. No strict guidance is available for minimum spacing and embedment into the pier cap for large pile sizes, as most state agencies do not currently have standard plans for these pile sizes. Case studies presented in Brown and Thompson (2014) show pile tops embedded approximately 3 feet into the pier cap for LDOEPs. Pile spacing considerations should reflect drilled shaft guidelines, with a minimum spacing on the order of 3 pile diameters (center to center), consistent with typical drilled shaft group layouts.",
+      "body": "(p. 481) For large diameter open-ended piles (LDOEPs) follow the general steps above; no strict guidance exists on spacing and embedment, and most agencies lack standard plans. Case studies in Brown and Thompson (2014 in the text; the references list 2015) embedded pile tops about 3 ft into the pier cap, more than for smaller piles. Spacing should follow drilled shaft guidance given comparable diameters; the plan in Brown and Thompson shows a minimum of about 3 diameters center to center, consistent with drilled shaft group layouts (Brown et al. 2010).",
       "key_points": [
         "LDOEPs: follow general pile cap design steps",
         "No strict guidance for LDOEP minimum spacing and embedment",
