@@ -9,38 +9,25 @@
       "section_id": "7.1",
       "title": "Introduction",
       "summary": "Static analysis methods for the nominal resistance of single piles and groups in axial compression, uplift and lateral loading, and the resulting deformations; they set pile type, number and length, and drivability is checked with the wave equation (Chapter 12) at design. Rr = phi_stat Rs + phi_stat Rp (Eq. 7-3), Rs = fs As (Eq. 7-4), Rp = qp Ap (Eq. 7-5). Static phi (Table 7-1): compression 0.35 (alpha), 0.45 (Nordlund), 0.50 (Schmertmann); tension 0.20-0.40. Field methods phi_dyn (Table 7-2): 0.10 (Engineering News) to 0.80. Groups of fewer than 3 piles: reduce by 20%.",
-      "body": "Chapter 7 presents the geotechnical aspects of driven pile foundation design following the AASHTO (2014) LRFD Bridge Design Specifications. This chapter is the most comprehensive in GEC-12 Volume 1, covering all four LRFD limit states as they apply to driven piles: strength, service, extreme event, and fatigue. The fundamental design equation requires factored resistance Rr = phi * Rn to exceed factored loads. The chapter addresses static analysis methods for axial compression, tension, and lateral resistance; pile group behavior; settlement evaluation; downdrag; drivability; and construction considerations. Eight static analysis methods are presented for single pile axial capacity, each with AASHTO-calibrated resistance factors.",
+      "body": "7.1 Introduction (pp. 211-212). Static analysis methods are analytical methods that use geomaterial strength and compressibility properties to determine nominal geotechnical resistance and deformation. The chapter focuses on methods for the nominal geotechnical resistance of single piles and pile groups in axial compression, uplift and lateral loading, and the resulting vertical and lateral deformations. Important considerations: (1) static analysis methods are an integral part of the design process, needed to determine the most cost effective pile type and to estimate the number of piles and the required pile lengths; the designer must know the design loads and project performance criteria. (2) Many methods are available; those presented are relatively simple methods that have provided reasonable agreement with full scale field results, and many are in AASHTO (2014); more sophisticated methods may be used and in some cases give better results; whatever the method, experience from its past field performance should be applied continually. (3) Designers should fully understand the basis, limitations and applicability of a chosen method, particularly computer solutions whose assumptions may not be apparent, and a method should have proven agreement with full scale field results. (4) Evaluation and confirmation of pile drivability is an integral part of limit state design: designs with fewer, larger pile sections of greater nominal resistance are more frequently used, and the ability of these piles to reach the penetration depths needed for all resistance and deformation requirements is a critical design check; a drivability analysis combines this chapter's geotechnical aspects with the wave equation procedures of Chapter 12 and should be performed by the engineer during design. Construction procedures can significantly influence pile behavior: the methods lead to successful designs only with appropriate construction techniques and construction monitoring, which should be integral to design and construction, and static load tests, wave equation analysis or dynamic monitoring for construction control should, whenever possible, confirm a static design. The chapter covers background, static analysis for compression, uplift and lateral loads, pile group settlement, special design events, limited guidance for liquefaction susceptible soils (detailed seismic design is beyond the manual's scope and is in GEC-3, Kavazanjian et al. 2011), and construction issues pertinent to static analysis, using AASHTO (2014) notation and load and resistance factors. Subsections: 7.1.1 Static Analysis Methods in Limit State Design; 7.1.2 Events During and After Pile Driving; 7.1.3 Load Transfer; 7.1.4 Effective Stress; 7.1.5 Resistance Factors; 7.1.6 Interdiscipline Communication and Coordination.",
       "key_points": [
-        "LRFD design: factored resistance Rr = phi * Rn must exceed factored loads",
-        "Four limit states covered: strength, service, extreme event, fatigue",
-        "Eight static analysis methods for axial capacity with AASHTO-calibrated resistance factors",
-        "Resistance factors are method-specific and condition-specific per AASHTO Table 10.5.5.2.3-1",
-        "phi = 0.25 to 0.50 for static analysis methods depending on method and soil type",
-        "phi = 0.65 to 0.80 for dynamic methods (wave equation, dynamic testing, load tests)",
-        "Pile impedance EA/C is the primary parameter controlling drivability",
-        "Soil setup and relaxation must be considered in design and construction"
+        "Static analysis methods use geomaterial strength and compressibility to determine nominal resistance and deformation",
+        "Covers single piles and groups in axial compression, uplift and lateral loading, and the resulting deformations",
+        "Static analyses select the most cost effective pile type and estimate the number and length of piles",
+        "Methods presented are relatively simple, with reasonable agreement with full scale field results; many are in AASHTO (2014)",
+        "Understand each method's basis, limitations and applicability, particularly in computer solutions",
+        "Drivability evaluation is an integral part of limit state design; perform a wave equation drivability analysis during design (Chapter 12)",
+        "Confirm static designs by static load tests, wave equation analysis or dynamic monitoring whenever possible",
+        "Detailed seismic design is outside the manual (GEC-3, Kavazanjian et al. 2011)"
       ],
-      "equations": [
-        "Eq 7-1: Rr = phi * Rn (factored geotechnical resistance)",
-        "Eq 7-2: Rn = Rs + Rp (nominal resistance = shaft + toe)",
-        "Eq 7-3: Rs = SUM(f_si * A_si) (shaft resistance from unit shaft resistance times surface area per layer)",
-        "Eq 7-4: Rp = q_p * A_t (toe resistance from unit toe resistance times toe area)",
-        "Eq 7-5: Rr = phi_stat * (Rs + Rp) (factored resistance using static analysis resistance factor)"
-      ],
-      "figures": [
-        "Figure 7-1: Soil displacement from driving in cohesionless soil (3-5 pile diameters influence zone)",
-        "Figure 7-2: Soil displacement from driving in cohesive soil (1-2 pile diameters disturbance zone)",
-        "Figure 7-3: Soil resistance components on a driven pile (shaft + toe)"
-      ],
-      "tables": [
-        "Table 7-1: AASHTO (2014) resistance factors for driven piles in compression (static and dynamic methods)",
-        "Table 7-2: AASHTO (2014) resistance factors for uplift on single piles"
-      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
       "cross_references": {
         "axial_pile": "Fundamental Rn = Rs + Rp equation (Eq 7-2 through 7-5) directly implemented in axial_pile module",
         "wave_equation": "Dynamic method resistance factors (phi = 0.65 for wave equation, 0.65-0.80 for dynamic testing)"
       },
-      "applicability": "Framework chapter establishing LRFD methodology for all subsequent driven pile geotechnical design calculations. Resistance factors in Tables 7-1 and 7-2 govern all axial capacity analyses.",
+      "applicability": "Introduction to static analysis for driven pile resistance and deformation; see the subsections for the methods.",
       "subsections": [
         {
           "section_id": "7.1.1",
@@ -138,19 +125,19 @@
       "section_id": "7.2",
       "title": "Strength Limit States",
       "summary": "Geotechnical strength checks: axial compression and uplift of single piles and groups, bearing stratum punching, and drivability. Seven static methods for piles in soil (7.2.1.3): Nordlund, alpha, API RP2A, effective stress beta, Brown (SPT), Eslami and Fellenius (CPT), Nottingham and Schmertmann (CPT); piles in soft rock and to hard rock (7.2.1.4). FHWA recommends Nordlund for cohesionless soils, alpha for cohesive soils, and API for large diameter pipe piles. Also: group compression, tension, setup and relaxation, lateral resistance, length estimates, groundwater, dewatering, scour, downdrag.",
-      "body": "This major section covers the strength limit state design of driven piles under axial compression, tension, and lateral loading. It presents seven static analysis methods for single piles in soil (Section 7.2.1.3) and methods for piles to rock (Section 7.2.1.4), pile group behavior in compression, axial tension resistance, time-dependent resistance changes (setup and relaxation), lateral resistance, pile length estimation, groundwater effects, scour, and downdrag. Each method includes step-by-step procedures, equations, design charts, and AASHTO-calibrated resistance factors.",
+      "body": "7.2 Strength Limit States (p. 227). The strength limit state ensures local and global strength and stability against statistically significant load combinations occurring during the structure design life. Strength limit state design includes an evaluation of the nominal geotechnical and structural resistances, as well as the loss of lateral and vertical support in the design flood event due to scour. Geotechnical aspects of strength limit state design include: axial compression resistance of single piles; axial compression resistance of pile groups; uplift resistance of single piles; uplift resistance of pile groups; bearing stratum punching failure; and constructability, including drivability. Subsections: 7.2.1 Determination of Nominal Resistance for Single Piles; 7.2.2 Resistance of Pile Groups in Axial Compression; 7.2.3 Design for Axial Tension Resistance; 7.2.4 Nominal Axial Resistance Changes after Pile Driving; 7.2.5 Nominal Lateral Resistance; 7.2.6 Pile Length Estimates for Contract Documents; 7.2.7 Groundwater Effects and Buoyancy; 7.2.8 Site Dewatering; 7.2.9 Scour; 7.2.10 Downdrag.",
       "key_points": [
-        "Seven static analysis methods for single piles in soil (7.2.1.3) plus piles to rock (7.2.1.4)",
-        "Nordlund method is the primary method for cohesionless soils",
-        "Alpha (Tomlinson) method is the primary method for cohesive soils",
-        "Group capacity is the lesser of sum of individual pile capacities and block failure capacity",
-        "Setup factors can increase long-term resistance 2-5x or more in some clays",
-        "Downdrag loads should be considered as additional load, not reduced resistance"
+        "Ensures local and global strength and stability for statistically significant load combinations over the design life",
+        "Evaluates nominal geotechnical and structural resistances and the loss of support from design flood scour",
+        "Axial compression resistance of single piles and of pile groups",
+        "Uplift resistance of single piles and of pile groups",
+        "Bearing stratum punching failure",
+        "Constructability, including drivability"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Core design section for driven pile axial and lateral capacity calculations under strength limit states per AASHTO LRFD.",
+      "applicability": "Strength limit state checks for driven piles; see the subsections for the methods.",
       "subsections": [
         {
           "section_id": "7.2.1",
@@ -688,18 +675,15 @@
       "section_id": "7.3",
       "title": "Service Limit States",
       "summary": "Service checks: settlement, horizontal movement, rotation, overall stability, and deformation with scour at the design flood (100-year), using Service I loads. Moulton's limiting angular distortion (Table 7-18): 0.004 multi-span, 0.005 simple-span (longitudinal only); lateral movement 1.5 in. The S-0 concept (Duncan and Tan 1991): one support may settle the computed amount while the next does not. Group settlement: elastic compression, Meyerhof SPT/CPT (cohesionless), equivalent footing (cohesive), Janbu tangent modulus, neutral plane; downdrag; p-y lateral deflection.",
-      "body": "This section addresses the service limit state design of driven pile foundations, focusing on deformation control. It covers tolerable deformations, load-settlement behavior (S-0 concept), construction point concept, pile group settlement estimation, downdrag-induced settlement, and lateral deflection analysis. Settlement methods include Meyerhof SPT/CPT methods for cohesionless soils, equivalent footing methods for cohesive soils, Janbu tangent modulus method, and the neutral plane method for downdrag.",
+      "body": "7.3 Service Limit States (p. 308). Service limit states for foundations include settlement, lateral movement, overall stability and scour at the design flood. Foundation movement should be limited to structural tolerances for both total and differential deformations; as AASHTO (2014) notes, the economics of limiting settlement, rotation and horizontal movement should be compared with the cost of designing the superstructure to tolerate the movement, including maintenance of structural or roadway elements. Deformations should be computed assuming scour will occur at the design flood. The service limit state provides limits on stress, deformation and cracking under regular service conditions; its geotechnical considerations for driven piles are vertical deformation (settlement), horizontal movements, rotation, overall stability, and deformations due to scour at the design flood (100 year event). Settlements should be determined with the Service I load combination, which includes normal operational factors only; for pile foundations in or on cohesive deposits subject to time dependent consolidation settlement, transient loads may be excluded from the settlement analysis (methods in Section 7.3.5). Load combinations for all applicable service limit states should be evaluated for horizontal movement and foundation rotation. Horizontal movement is measured at the foundation top and should be within structural limits based on column length and stiffness; sufficient geotechnical resistance and structural stiffness to resist shear and overturning loads should be checked (lateral loading in Section 7.3.7). Rotation is likewise measured at the foundation top and should be restricted. See AASHTO (2014) Articles 10.5.2.1 through 10.5.2.4 and commentary; all applicable service limit state load combinations must be evaluated. Subsections: 7.3.1 Tolerable Vertical Deformations and Angular Distortion; 7.3.2 S-0 Concept for Vertical Deformations; 7.3.3 Construction Point Concept; 7.3.4 Recommended Procedure for Vertical Deformation Analysis; 7.3.5 Pile Group Settlement; 7.3.6 Settlement Due to Downdrag; 7.3.7 Horizontal Pile Foundation Deflection; 7.3.8 Lateral Squeeze of Foundation Soil and Solutions; 7.3.9 Overall Stability.",
       "key_points": [
-        "Service limit state controls deformations to tolerable levels",
-        "Angular distortion limit typically 0.004-0.008 for bridges (Table 7-18)",
-        "S-0 concept: structural load-settlement behavior including elastic compression",
-        "Construction point concept accounts for settlement occurring before loads applied",
-        "Pile group settlement typically 1.5-3x single pile settlement",
-        "Meyerhof SPT/CPT methods for cohesionless group settlement",
-        "Equivalent footing method for cohesive soil group settlement",
-        "Janbu tangent modulus method as alternative settlement approach",
-        "Neutral plane method for downdrag settlement analysis",
-        "p-y method for lateral deflection with group effects (p-multipliers)"
+        "Service limit states: settlement, lateral movement, rotation, overall stability and design flood scour",
+        "Limit total and differential movement to structural tolerances",
+        "Weigh the cost of limiting movement against designing the superstructure to tolerate it (AASHTO 2014)",
+        "Compute deformations assuming scour at the design flood (100 year event)",
+        "Settlement with the Service I load combination; transient loads may be excluded for consolidating cohesive deposits",
+        "Horizontal movement and rotation at the foundation top, within structural limits",
+        "Evaluate all applicable service load combinations (AASHTO 2014 Articles 10.5.2.1 to 10.5.2.4)"
       ],
       "equations": [],
       "figures": [],
@@ -710,7 +694,7 @@
         "lateral_pile": "p-y method and p-multipliers for group lateral analysis implemented in lateral_pile module",
         "pile_group": "Group settlement and lateral group effects implemented in pile_group module"
       },
-      "applicability": "Deformation-controlled design ensuring pile foundation movements are within tolerable limits for the supported structure.",
+      "applicability": "Service limit state (deformation) checks for driven piles; see the subsections for the methods.",
       "subsections": [
         {
           "section_id": "7.3.1",
@@ -1116,13 +1100,13 @@
       "section_id": "7.4",
       "title": "Extreme Event Limit States",
       "summary": "Extreme events (low probability; protect against collapse): check flood scour (500-year; deeper scour prism, unfactored loads, phi = 1.0 for axial compression and lateral, 0.8 or less for uplift), vessel and vehicle collision, seismic loading (liquefaction, ground movement, seismic loads and drag force; detailed seismic design in GEC-3), ice and debris, and other site-specific events; combined extreme events in 7.4.4.",
-      "body": "This section addresses pile foundation design for extreme events including scour during the check flood, seismic loading, ice loads, and vessel collision. These are low probability, high consequence events with higher resistance factors than strength limit states. The section includes detailed seismic design procedures with site classification, spectral acceleration computation, and liquefaction assessment.",
+      "body": "7.4 Extreme Event Limit States (p. 376). Extreme event limit states involve events with a low probability of occurrence that can still harm the foundation and structure if not considered in design; as AASHTO (2014) notes, the extreme event limit state exists to protect against structural collapse and preserve life. AASHTO (2014) gives guidance on extreme event loading cases including ice loading and vehicle and vessel impacts; Arneson et al. (2012) details scour near bridge piers and abutments; Kavazanjian et al. (2011) discusses seismic events in depth; background on ice loads is in Montgomery et al. (1984); vessel impact design is in the AASHTO (2009) Guide Specifications and Commentary for Vessel Collision Design of Highway Bridges. Extreme event evaluations ensure structural survival of a bridge under unique major occurrences such as earthquakes, floods and vehicle or vessel collisions with return periods significantly greater than the bridge design life. Extreme event limit states for driven pile foundation design include: the check flood for scour; vessel collision; vehicle collision; seismic loading; ice and debris loading; and other site-specific situations determined by the design engineer. Subsections: 7.4.1 Extreme Event Scour During Check Flood; 7.4.2 Seismic and Seismic Induced Downdrag; 7.4.3 Ice and Collisions; 7.4.4 Combined Extreme Events.",
       "key_points": [
-        "Extreme events: check flood scour, seismic, ice, vessel collision",
-        "Higher resistance factors than strength limit states (phi = 1.0 for many cases)",
-        "Seismic design: site class, spectral acceleration, liquefaction assessment",
-        "Check flood (500-year) scour depth used for extreme event",
-        "Combined extreme events evaluated per AASHTO load combinations"
+        "Low probability events that can harm the foundation and structure; protect against collapse and preserve life",
+        "Return periods significantly greater than the bridge design life",
+        "Check flood for scour, vessel collision, vehicle collision, seismic loading, ice and debris loading",
+        "Other site-specific situations determined by the design engineer",
+        "References: Arneson et al. (2012) scour, Kavazanjian et al. (2011) seismic, Montgomery et al. (1984) ice, AASHTO (2009) vessel collision"
       ],
       "equations": [],
       "figures": [],
@@ -1130,7 +1114,7 @@
       "cross_references": {
         "seismic_geotech": "Site classification (Table 7-26) and seismic response analysis directly implemented in seismic_geotech module"
       },
-      "applicability": "Design for low-probability, high-consequence loading events per AASHTO extreme event limit state requirements.",
+      "applicability": "Extreme event limit state checks for driven piles; see the subsections.",
       "subsections": [
         {
           "section_id": "7.4.1",
@@ -1225,85 +1209,74 @@
     },
     {
       "section_id": "7.5",
-      "title": "Minimum Pile Penetration Requirements",
-      "summary": "Specify a minimum pile penetration only if needed; otherwise an estimated length suffices. Per AASHTO it is the toe elevation needed for: group settlement, lateral deflection, uplift, drag force from static settlement, liquefaction, axial and lateral resistance after scour, fixity for lateral loads (AASHTO does not define fixity), and extreme event uplift and lateral loads. A wave equation drivability analysis checks that it can be reached; if not, change the pile type or use installation aids.",
-      "body": "Discusses minimum pile penetration depth requirements to ensure adequate resistance, group behavior, and protection against scour and other adverse conditions. Minimum penetration may be controlled by lateral resistance requirements, scour protection, downdrag, or liquefaction zone penetration rather than axial capacity alone.",
+      "title": "Determination of Minimum Pile Penetration",
+      "summary": "Settlement and structure deformation must stay within tolerable limits (Section 7.3.1). After all limit state analyses, specify a minimum pile penetration only if needed; often an estimated length suffices. Per AASHTO (2014) it is the toe elevation needed for single pile and group settlement, lateral deflection, uplift, drag force from static settlement, liquefaction, axial and lateral resistance after scour, fixity for lateral loads (AASHTO is silent on how fixity is defined), and extreme event uplift and lateral loads. Check with a wave equation drivability analysis during design; if it cannot be reached, use another pile type or installation aids.",
+      "body": "7.5 Determination of Minimum Pile Penetration (pp. 388-389). Foundation settlement and the resulting structure deformation should be kept within tolerable limits (Section 7.3.1). Once all limit state analyses have been performed, minimum pile penetration depths should be specified, if necessary; they may be required to limit structure vertical or lateral deformations under applied loads. A minimum penetration should be specified only if needed: in many cases an estimated length alone is satisfactory, recognizing that once piles achieve their required nominal driving resistance, driving may be terminated shorter than the estimated length. The ability of an appropriately sized hammer to drive piles to the specified minimum penetration should be evaluated during design in a wave equation drivability analysis, which checks constructability and whether the depth can be achieved; an alternative pile type or installation aids may need to be specified if it is not obtainable by conventional driving. AASHTO (2014) states that the minimum pile penetration depth shall be the pile toe elevation needed to satisfy, as applicable: (a) single pile and pile group settlement (service, Section 7.3.5); (b) lateral deflection (service, Section 7.3.7); (c) uplift (strength, Section 7.2.3); (d) penetration into soils to accommodate drag forces from static settlement stresses (service, Section 7.3.6); (e) penetration due to liquefaction (strength and extreme event, Section 7.4.2); (f) penetration for adequate axial (compression and uplift) and lateral resistance after scour (strength, Section 7.2.9; extreme event, Section 7.4.1); (g) penetration to achieve fixity for resisting applied lateral loads (strength, Section 7.2.5; service, Section 7.3.7), noting that AASHTO is silent on the definition of fixity, which varies if defined by the deflection profile, the bending moment profile or the pile head deflection; and (h) axial uplift and lateral resistance for extreme event loads (Section 7.4).",
       "key_points": [
-        "Minimum penetration governed by lateral resistance, not just axial capacity",
-        "Must penetrate below scour depth to develop adequate resistance",
-        "Liquefaction zones: piles must penetrate through liquefiable layers into competent material",
-        "Soft/organic soils: penetrate through soft layers to bearing stratum",
-        "Frost heave: penetrate below frost depth in heave-susceptible soils",
-        "Minimum 10 feet into competent bearing stratum recommended",
-        "Seismic zones 3-4: penetrate through potentially liquefiable layers plus 3 pile diameters"
+        "Specify a minimum penetration after all limit state analyses, and only if needed",
+        "Often an estimated length suffices; driving may stop short of it once the required nominal driving resistance is reached",
+        "Check with a wave equation drivability analysis during design; otherwise another pile type or installation aids",
+        "AASHTO: toe elevation for single pile and group settlement (7.3.5), lateral deflection (7.3.7) and uplift (7.2.3)",
+        "Drag forces from static settlement (7.3.6) and liquefaction (7.4.2)",
+        "Axial and lateral resistance after scour (7.2.9, 7.4.1)",
+        "Fixity for lateral loads (7.2.5, 7.3.7); AASHTO is silent on how fixity is defined",
+        "Axial uplift and lateral resistance for extreme event loads (7.4)"
       ],
       "equations": [],
-      "figures": [
-        "Figure 7-66: Minimum penetration requirements for various conditions"
-      ],
+      "figures": [],
       "tables": [],
-      "applicability": "Setting minimum pile penetration depths for driven piles from all limit state requirements."
+      "applicability": "Deciding whether and where to specify a minimum pile toe elevation."
     },
     {
       "section_id": "7.6",
-      "title": "Determination of Rndr (Nominal Driving Resistance)",
+      "title": "Determination of Rndr to Establish Contract Driving Criteria",
       "summary": "Rndr, the required nominal driving resistance, sets the driving criteria and goes in the contract with the field verification method. It adds to Rn the resistance that will be lost: scourable or liquefiable layers (unfactored) and time-dependent loss such as relaxation (divided by phi_dyn). Example (Table 7-32): Q = 200 kips, phi_dyn = 0.65, Rn = Q/phi_dyn = 308 kips (Eq. 7-85); scour 50 kips; relaxation 100/0.65 = 154 kips; Rndr = 512 kips (Eq. 7-86). A minimum penetration may also be needed.",
-      "body": "Presents the methodology for determining the nominal driving resistance Rndr required to ensure adequate long-term static resistance. Rndr accounts for the difference between resistance at the time of driving (end of drive or restrike) and the long-term static resistance including setup and relaxation effects. The relationship between Rndr and the required nominal resistance depends on whether setup or relaxation is expected.",
+      "body": "7.6 Determination of Rndr to Establish Contract Driving Criteria (pp. 390-391). The required nominal driving resistance, Rndr, is used to establish the driving criteria and should be specified in the contract documents with the field method for resistance verification. It includes factors such as the axial compression loads, resistance from scourable or liquefiable layers, and time dependent soil strength changes; some conditions give a higher soil resistance at installation, so the pile should be driven to a higher nominal resistance to cover the future losses. Including Rndr with the factored load and field verification method can reduce the risk of contractor claims; a minimum penetration may also be required to satisfy uplift, lateral loading and/or serviceability. Example (Table 7-32): factored axial load Q = 200 kips in compression. Resistance lost in a scourable layer is determined by an appropriate static analysis method and is not factored (AASHTO 2014 Article 10.7.3.6): 50 kips. The pile is driven into a weathered shale that has historically lost toe resistance after initial driving; relaxation loss is factored by the verification method: an estimated 100 kips of toe resistance, which with dynamic testing and signal matching becomes 154 kips. Eqs. 7-85 and 7-86, simplified from AASHTO (2014): Rn = Q/phi_dyn = 200/0.65 = 308 kips; Rndr = Rn + Rscour + Rrelax = 308 + 50 + (100/0.65) = 512 kips. Rndr is considerably higher than the nominal resistance because of the scour and relaxation; load factors are in Table 2-3 (Chapter 2) and resistance factors in Table 7-2.",
       "key_points": [
-        "Rndr = nominal resistance to be verified during driving",
-        "Rndr accounts for setup (increases Rn over time) and relaxation (decreases Rn over time)",
-        "If no setup/relaxation: Rndr = Rn (driving resistance equals required nominal resistance)",
-        "With setup: Rndr < Rn (can accept lower driving resistance, long-term setup will increase capacity)",
-        "With relaxation: Rndr > Rn (need higher driving resistance, resistance will decrease over time)",
-        "AASHTO Table 10.5.5.2.3-1 provides resistance factors for driving with setup",
-        "Eq 7-85 and 7-86 relate Rndr to factored resistance requirements",
-        "Table 7-32 provides phi factors for Rndr determination by verification method"
+        "Rndr establishes the driving criteria; specify it in the contract with the field verification method",
+        "Rndr includes axial loads, resistance in scourable or liquefiable layers and time dependent strength changes",
+        "Drive to a higher resistance to cover future losses; this can reduce contractor claims",
+        "A minimum penetration may also be needed for uplift, lateral loads or serviceability",
+        "Scour zone resistance from a static analysis, not factored (AASHTO 2014 Article 10.7.3.6)",
+        "Relaxation loss factored by the verification method: 100 kips / 0.65 = 154 kips with dynamic testing and signal matching",
+        "Eq. 7-85: Rn = Q / phi_dyn = 200 / 0.65 = 308 kips",
+        "Eq. 7-86: Rndr = Rn + Rscour + Rrelax = 308 + 50 + 154 = 512 kips",
+        "Load factors in Table 2-3; resistance factors in Table 7-2"
       ],
       "equations": [
-        "Eq 7-85: R_r = phi * R_ndr + phi_setup * R_setup (factored resistance with setup)",
-        "Eq 7-86: R_ndr = (R_r - phi_setup * R_setup) / phi (required nominal driving resistance)"
+        "Eq. 7-85: Rn = Q / phi_dyn; example Rn = 200 / 0.65 = 308 kips (p. 391)",
+        "Eq. 7-86: Rndr = Rn + Rscour + Rrelax; example Rndr = 308 + 50 + (100 / 0.65) = 512 kips (p. 391)"
       ],
-      "figures": [
-        "Figure 7-67: Rndr determination flowchart",
-        "Figure 7-68: Relationship between Rndr, Rn, and setup"
-      ],
+      "figures": [],
       "tables": [
-        "Table 7-32: Resistance factors for Rndr by field verification method"
+        "Table 7-32: Summary of Load and Resistance Information (Q = 200 kips, phi_dyn = 0.65, Rn = 308 kips, Rscour = 50 kips, Rrelax = 154 kips, Rndr = 512 kips) (p. 390)"
       ],
       "cross_references": {
         "wave_equation": "Rndr is the target resistance for wave equation bearing graph analysis in the wave_equation module"
       },
-      "applicability": "Establishing the required nominal driving resistance (Rndr) to use in construction control."
+      "applicability": "Setting the required nominal driving resistance for contract driving criteria."
     },
     {
       "section_id": "7.7",
       "title": "Drivability Analysis",
-      "summary": "AASHTO Article 10.7.8 requires a drivability analysis at design; not evaluating it is one of the most common deficiencies in pile design. A pile needs the stiffness to transmit driving forces and the strength to survive them. Impedance EA/C controls: a heavier H-section or thicker pipe wall raises it without raising soil resistance; an inside-fitting shoe delays plugging. Methods in order of cost and reliability: wave equation analysis, dynamic testing and analysis, static load tests. Thin-walled closed end pipes are most at risk.",
-      "body": "This section covers the evaluation of pile drivability, which is one of the most important yet frequently overlooked aspects of driven pile design. A pile must have a drivability limit in excess of the soil resistance to be overcome during driving. The section discusses factors affecting drivability, methods for determining drivability, and the relationship between drivability and pile type. Three methods are presented: wave equation analysis, dynamic testing and analysis, and static load tests.",
+      "summary": "AASHTO (2014) Article 10.7.8: the engineer performs a drivability analysis during design; failure to evaluate drivability is one of the most common deficiencies in driven pile design. A pile needs the stiffness to transmit driving forces that overcome the soil resistance and the strength to withstand them. Impedance EA/C is the primary factor: a heavier H-pile section of the same size or a thicker pipe wall raises it without raising soil resistance; an inside-fitting shoe delays plugging of open pipes. Methods, in increasing cost and reliability: wave equation analysis, dynamic testing and analysis, static load tests. Particularly important for closed end steel pipe piles.",
+      "body": "7.7 Drivability Analysis (pp. 391-392). Greater pile penetration depths are increasingly required to satisfy minimum penetration requirements for extreme events such as scour, vessel impact, ice and debris loading and seismic events, so the ability to drive a pile to the required depth has become more important. AASHTO (2014) Article 10.7.8 states that a drivability analysis should be performed by the engineer during the design stage. Pile drivability is the ability of a pile to be driven to the required penetration depth and/or resistance within specified material strength limits; all static analyses are meaningless if the pile cannot be driven to the required depth and nominal resistance without damage. The limit of pile drivability is the maximum soil resistance a pile can overcome at a reasonable blow count without being damaged, driven by an appropriately sized and properly operating driving system. Pile type and length, soil conditions and installation method control nominal geotechnical resistance; because type, length and method can be specified it is often erroneously assumed the pile can be installed as designed, but a pile whose drivability limit does not exceed the soil resistance to be overcome will not reach the desired penetration. The failure to adequately evaluate pile drivability is one of the most common deficiencies in driven pile design practice. Evaluation should consider soil disturbance during installation and time dependent strength changes (setup and relaxation); for economical design the soil resistance at the time of driving must be matched with the pile impedance, pile material strength and driving equipment. Subsections: 7.7.1 Factors Affecting Drivability; 7.7.2 Methods for Determining Pile Drivability; 7.7.3 Drivability versus Pile Type.",
       "key_points": [
-        "Drivability evaluation is one of the most common deficiencies in driven pile design practice",
-        "Pile impedance EA/C is the primary controlling factor for drivability",
-        "Two drivability requirements: sufficient stiffness to transmit driving forces AND sufficient strength to withstand driving stresses",
-        "Three drivability evaluation methods: wave equation analysis, dynamic testing, static load tests",
-        "Wave equation is the most practical design-stage tool for drivability assessment",
-        "Must account for soil setup and relaxation effects during driving",
-        "For steel H-piles: increase flange width to improve impedance without increasing soil resistance",
-        "For pipe piles: increase wall thickness to improve impedance",
-        "Concrete piles: increasing area also increases soil resistance (solid cross section)",
-        "Inside-fitting cutting shoe for open-end pipe piles can improve drivability",
-        "AASHTO (2014) requires wave equation drivability analysis during design"
+        "Deeper penetration for scour, vessel impact, ice and debris and seismic events makes drivability more important",
+        "AASHTO (2014) Article 10.7.8: the engineer performs a drivability analysis during design",
+        "Drivability: driving to the required depth and/or resistance within specified material strength limits",
+        "Drivability limit: maximum soil resistance overcome at a reasonable blow count without damage by an appropriate driving system",
+        "Failure to evaluate drivability is one of the most common deficiencies in driven pile design practice",
+        "Consider installation disturbance, setup and relaxation",
+        "Match soil resistance at driving with pile impedance, material strength and driving equipment"
       ],
       "equations": [],
-      "figures": [
-        "Figure 7-69: Drivability analysis flowchart",
-        "Figure 7-70: Typical wave equation bearing graph for drivability assessment",
-        "Figure 7-71: Driving stress check against allowable stress limits"
-      ],
+      "figures": [],
       "tables": [],
       "cross_references": {
         "wave_equation": "Wave equation drivability analysis is directly implemented in the wave_equation module (bearing_graph and drivability functions)"
       },
-      "applicability": "Essential design check to verify that the selected pile section can be driven to the required penetration depth without structural damage and with available driving equipment.",
+      "applicability": "Requirement and basis for drivability analysis at the design stage; see the subsections for factors and methods.",
       "subsections": [
         {
           "section_id": "7.7.1",
@@ -1356,79 +1329,61 @@
       "section_id": "7.8",
       "title": "Considerations for Batter Pile Design and Construction",
       "summary": "Batter piles resist large static lateral loads with less deflection, but under dynamic or seismic loading their stiffness attracts larger forces; avoid them where significant drag forces are expected. Figure 7-80 shows how batter changes group response. In group analysis (Section 7.3.7.5, after Wilson et al. 2006) the horizontal component of each batter pile's axial load adds to or subtracts from resistance; a batter pile with no vertical load acts as a vertical pile. Check conflicts with nearby facilities; avoid batter angles greater than 1H:3V.",
-      "body": "Batter (inclined) piles are driven at an inclination from vertical to resist large static lateral loads or where structural rigidity is required. A battered pile can resist larger horizontal loads and experience less deflection than a vertical counterpart at the same loading level. However, under dynamic or seismic loading, the increased structural stiffness from batter piles generates larger forces. In seismic design, earthquake-induced displacements generate load proportional to stiffness, so batter piles attract more load. Where significant downdrag forces are expected, batter piles should be avoided due to increased bending moments. Figure 7-80 illustrates the variation in foundation response depending on group configuration and batter.",
+      "body": "7.8 Considerations for Batter Pile Design and Construction (pp. 395-397). Battered (inclined) piles are often considered where large static lateral loads are expected or structural rigidity is required; a battered pile can typically resist larger horizontal loads with less deflection than a vertical pile at the same load. Battered piles generally perform well under static loads, but under dynamic horizontal or seismic loads the stiffness benefit decreases: earthquake displacements generate load, and the added stiffness gives larger horizontal forces on the structure. Where significant drag forces are expected, battered piles should be avoided because of increased bending along the pile. Group response differs for all-vertical and mixed vertical and batter groups (Figure 7-80): in Case A a single pile rotates about a point below ground under the horizontal load and overturning moment; in Case B two vertical piles translate horizontally and displace downward; in Case C an outwardly battered lead pile with a trailing vertical pile translates horizontally and displaces upward, so batter must be considered in design. The horizontal component of a batter pile's axial load adds to or subtracts from the group's horizontal resistance depending on batter direction. Wilson et al. (2006) noted the analysis follows Section 7.3.7.5 except: (1) with a rigid cap, the vertical load at each pile head is resolved into axial load by the batter angle and its horizontal component computed; (2) the sum of horizontal components is compared with the applied horizontal load: any remainder is resisted by pile bending in a p-y analysis, and if the components are greater and opposite, the piles bend opposite to the load; (3) a batter pile receiving no vertical load from the cap has no axial load or horizontal component and behaves as a vertical pile in bending. Batter piles added to resist horizontal load are inefficient, and vertical piles could be more economical, if the batter pile receives no vertical load. Check batter angle and deviation for conflicts with adjacent foundations, cofferdams and excavation support, utilities, abandoned deep foundations, tunnels and other constraints; with an offshore lead and template, bending stresses from the hammer weight and the unsupported pile above the template add to axial driving stresses. For constructability, batter angles greater than 1H:3V should be avoided.",
       "key_points": [
-        "Batter piles driven at inclination from vertical to resist lateral loads",
-        "Effective under static lateral loads; problematic under seismic loading",
-        "Seismic design: increased stiffness attracts higher forces to the structure",
-        "Avoid batter piles where significant drag forces (downdrag) are expected",
-        "Batter angles greater than 1H:3V should be avoided for constructability",
-        "Horizontal component of axial load contributes to lateral resistance of the group",
-        "If no vertical load applied, batter pile has no horizontal component (behaves as vertical)",
-        "Figure 7-80: Foundation response for Cases A (single), B (two vertical), C (batter + vertical)",
-        "Group analysis with batter piles follows Section 7.3.7.5 procedures with modifications",
-        "Careful assessment of load direction relative to batter orientation is essential"
+        "Battered piles resist larger static horizontal loads with less deflection than vertical piles",
+        "Under dynamic or seismic loads the stiffness benefit decreases and the stiffness attracts larger forces",
+        "Avoid battered piles where significant drag forces are expected (added bending)",
+        "Figure 7-80: Case A single pile rotates; Case B two vertical piles translate and move down; Case C batter lead pile translates and moves up",
+        "Horizontal component of axial load adds to or subtracts from group resistance by batter direction",
+        "Analysis per Section 7.3.7.5 (Wilson et al. 2006); horizontal load not taken by batter components is resisted by bending (p-y)",
+        "A batter pile with no vertical load from the cap acts as a vertical pile; batter is then inefficient",
+        "Check conflicts with adjacent foundations, cofferdams, utilities, abandoned foundations and tunnels",
+        "Offshore lead and template: added bending from hammer weight and unsupported length",
+        "Avoid batter angles greater than 1H:3V"
       ],
       "equations": [],
       "figures": [
-        "Figure 7-80: Variation of foundation response with group configuration and batter (after Wilson et al. 2006)"
+        "Figure 7-80: Variation of foundation response depending on group configuration and batter (after Wilson et al. 2006) (p. 396)"
       ],
       "tables": [],
       "cross_references": {
         "pile_group": "Batter pile group analysis extends the rigid cap group analysis in pile_group module"
       },
-      "applicability": "Projects with battered (inclined) driven piles."
+      "applicability": "Design and construction checks for groups with batter piles."
     },
     {
       "section_id": "7.9",
       "title": "Corrosion and Deterioration",
-      "summary": "Steel piles: evaluate corrosion in fill soils, low pH soils, and marine environments (see Section 6.12). Concrete piles: sulfate, chloride, and acid attack. Timber piles: decay from wetting/drying cycles, marine borers, and insects. AASHTO requires minimum corrosion evaluation for steel in fill or marine conditions. Design life must account for section loss.",
-      "body": "Corrosion and deterioration of all pile types must be considered for the respective environmental conditions. Section 6.12 of Chapter 6 provides extensive design considerations for aggressive subsurface environments. AASHTO (2014) recommends at minimum an evaluation for steel corrosion particularly in fill soils, low pH soils, and marine environments. For concrete piles, sulfate, chloride, and acid attack should be evaluated. Timber piles are subject to decay from wetting and drying cycles as well as attack from marine borers and insects.",
+      "summary": "Corrosion and deterioration of all pile types must be considered for their environment (Chapter 6, Section 6.12). AASHTO (2014) recommends, at minimum, evaluating steel corrosion, particularly in fill soils, low pH soils and marine environments; for concrete piles, sulfate, chloride and acid attack; timber piles decay from wetting and drying cycles and are attacked by marine borers and insects (AASHTO 2014 Article 10.7.5).",
+      "body": "7.9 Corrosion and Deterioration (pp. 397-398; heading printed 'DETERIORATON'). Corrosion and deterioration of all pile types must be considered for the respective environmental conditions; Section 6.12 of Chapter 6 details design for aggressive subsurface environments. AASHTO (2014) recommends, at minimum, an evaluation for steel corrosion, particularly in fill soils, low pH soils and marine environments. For concrete piles, sulfate, chloride and acid attack should be evaluated. Timber piles are subject to decay from wetting and drying cycles and to attack from marine borers (printed 'marine bores') and insects. See AASHTO (2014) Article 10.7.5 and commentary.",
       "key_points": [
-        "Steel piles: evaluate corrosion in fill soils, low pH soils, and marine environments",
-        "Concrete piles: evaluate sulfate, chloride, and acid attack",
-        "Timber piles: evaluate decay from wetting/drying, marine borers, and insects",
-        "Refer to Chapter 6 Section 6.12 for detailed corrosion design guidance",
-        "AASHTO (2014) Article 10.7.5 addresses pile deterioration requirements"
+        "Consider corrosion and deterioration of all pile types for their environment (Section 6.12)",
+        "AASHTO (2014) recommends at minimum evaluating steel corrosion, particularly in fill, low pH soils and marine environments",
+        "Concrete piles: evaluate sulfate, chloride and acid attack",
+        "Timber piles: decay from wetting and drying cycles; marine borers and insects",
+        "AASHTO (2014) Article 10.7.5 and commentary"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Driven piles in environments that can corrode or deteriorate steel, concrete or timber piles."
+      "applicability": "Durability checks for steel, concrete and timber piles."
     },
     {
       "section_id": "7.10",
       "title": "Additional Design and Construction Considerations",
       "summary": "Minimum center-to-center pile spacing: 30 in. or 2.5 diameters (AASHTO); spacing under 3.0 diameters can cause construction difficulties and lower group resistance. Cap edge at least 9 in. from the nearest pile; pile head at least 12 in. into the cap (6 in. with embedded bars or strands). Other topics: large pile sizes, high rebound soils, soil and pile heave, piles through embankment fills, predrilling, jetting and vibratory installation, densification, and plugging of open sections, all of which affect the reliability of static analyses.",
-      "body": "This section covers additional practical design and construction considerations that influence the reliability of static analysis procedures and long-term pile resistance. Topics include minimum pile spacing and cap embedment, large pile size considerations, high rebound soils, soil and pile heave, embankment fill effects, predrilling and jetting effects, soil densification, and plugging of open pile sections. These issues bridge the gap between theoretical design calculations and actual construction performance.",
+      "body": "7.10 Additional Design and Construction Considerations (p. 398). The previous sections addressed typical geotechnical design and analysis procedures, but the designer should be aware of additional design and construction considerations that can influence the reliability of static analyses in estimating nominal resistance: the influence of time, predrilling or jetting, driving piles through embankments, soil densification, and plugging of open pile sections. Pile driving induced vibrations can also influence the final design and resistance calculations if potential vibration levels dictate changes in pile type or installation procedure. These sections fill the gaps between design and construction events that may influence long term resistance and/or construction procedures. Subsections: 7.10.1 Minimum Pile Spacing, Clearance, and Cap Embedment; 7.10.2 Identification of High Rebound Soils; 7.10.3 Soil and Pile Heave; 7.10.4 Piles Driven Through Embankment Fills; 7.10.5 Effect of Predrilling, Jetting and Vibratory Installation on Nominal Resistance; 7.10.6 Densification Effects on Nominal Resistance and Installation Conditions; 7.10.7 Plugging of Open Pile Sections.",
       "key_points": [
-        "Minimum pile spacing: 2.5 pile diameters or 30 inches (AASHTO)",
-        "Recommended spacing >= 3.0 diameters to avoid construction difficulties",
-        "Pile head extends minimum 12 inches into pile cap",
-        "Minimum 6 inches concrete cover on all sides of piles in cap",
-        "Predrilling/jetting reduces shaft resistance by 50-85% in treated zone",
-        "Vibratory installation produces lower resistance than impact driving",
-        "Densification can increase friction angle 3-4 degrees in loose to medium sands",
-        "Open pipe pile plugging begins at penetration/diameter ratio of 20-35 in dense sands",
-        "H-piles more likely to be plugged than pipe piles (smaller flange distance)",
-        "Soil heave procedure from Haggerty and Peck (1971) for cohesive soils",
-        "Piles through embankments: minimum 10 ft below original grade",
-        "Install piles center-out to reduce group densification effects"
+        "Additional considerations affect the reliability of static analyses of nominal resistance",
+        "Influence of time, predrilling or jetting, driving through embankments, densification, plugging of open sections",
+        "Vibration levels may dictate changes in pile type or installation procedure",
+        "These sections bridge design and construction events that affect long term resistance and procedures"
       ],
-      "equations": [
-        "Eq 7-87: L% = (D - d) / D (percentage of pile length resisting heaving soil)",
-        "Eq 7-88: R_n = f_so * A_so + q_p * A_pp (plugged condition resistance for open-end pipe)",
-        "Eq 7-89: R_n = f_so * A_so + f_si * A_si + q_p * A_p - W_p (unplugged condition resistance)",
-        "Eq 7-90: R_n = 0.8 * C_a * A_s + 4.5 * s_u * A_p (Tomlinson equation for open-end pipe in stiff clay)"
-      ],
-      "figures": [
-        "Figure 7-81: Balance of forces on pile subject to heave (after Haggerty and Peck 1971)",
-        "Figure 7-82: Variation in expected static resistance from APILE API method (plugged, unplugged, auto)",
-        "Figure 7-83: Plugging of open end pipe piles (open vs plugged toe condition, after Paikowsky and Whitman 1990)",
-        "Figure 7-84: Plugging of H-piles (after Tomlinson 1994)"
-      ],
+      "equations": [],
+      "figures": [],
       "tables": [],
-      "applicability": "Practical construction considerations that affect the reliability of design calculations and long-term pile performance. Essential for constructability review and specification preparation.",
+      "applicability": "Construction-related factors that affect static resistance estimates; see the subsections.",
       "subsections": [
         {
           "section_id": "7.10.1",
@@ -1474,6 +1429,12 @@
             "Eq 7-87: L% = (D-d)/D for pile length resisting heave",
             "Figure 7-81: Force balance diagram for pile heave estimation",
             "Consider low-displacement piles or predrilling to reduce heave"
+          ],
+          "equations": [
+            "Eq. 7-87: L% = (D - d) / D; L% = percentage of pile length resisting heaving soil (%), D = pile embedded length (ft), d = equilibrium depth (ft) (p. 401)"
+          ],
+          "figures": [
+            "Figure 7-81: Balance of forces on pile subject to heave (after Haggerty and Peck 1971) (p. 402)"
           ]
         },
         {
@@ -1535,6 +1496,11 @@
             "Figure 7-82: APILE API method comparison of plugged, unplugged, and auto plug",
             "Figure 7-83: Open toe vs plugged toe mechanisms (Paikowsky and Whitman 1990)",
             "Figure 7-84: H-pile plugging illustration (Tomlinson 1994)"
+          ],
+          "equations": [
+            "Eq. 7-88: Rn = fso Aso + qp App; plugged condition, open end pipe pile (Paikowsky and Whitman 1990) (p. 406)",
+            "Eq. 7-89: Rn = fso Aso + fsi Asi + qp Ap - Wp; unplugged condition, open end pipe pile (p. 406)",
+            "Eq. 7-90: Rn = 0.8 Ca As + 4.5 su Ap; open end pipe pile in stiff clay when a plug forms and is carried down (Tomlinson 1994); Ca from Figure 7-17, su average at the toe, Ap plugged toe area (p. 407)"
           ]
         }
       ]
