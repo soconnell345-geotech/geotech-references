@@ -10,58 +10,135 @@ using load tests; these tables provide preliminary capacity estimates.
 
 # ============================================================================
 # Table 5.4: P-Multipliers (Pm) for Design of Laterally Loaded Pile Groups
-# (Chapter 5, p. 112)
+# (Chapter 5, p. 112; Section 5.6.3, p. 111)
 #
-# Same conceptual values as AASHTO Table 10.7.2.4-1.  For CFA piles,
-# the recommended approach is the Pm method.
-# Applies to vertical piles only; center-to-center spacing in direction of loading.
-# Linear interpolation between 3B and 5B.
+# Every row as printed: soil type, test type, pile spacing (cent.-cent.),
+# Pm for rows 1, 2, 3+, reported lateral group efficiency, deflection (mm),
+# reference.  The table prints 3B rows for every soil and 5B rows only for
+# M. Dense Sand and Loose M. Sand.  Note (1): V = very, M = medium, F = fine.
 # ============================================================================
 
-_TABLE_5_4_SPACING = [3.0, 5.0]
+_TABLE_5_4_ROWS = [
+    ("stiff_clay", "Stiff Clay", "Field Study", 3.0, (0.70, 0.50, 0.40),
+     "N/A", "51", "Brown et al. (1987)"),
+    ("stiff_clay", "Stiff Clay", "Field Study", 3.0, (0.70, 0.60, 0.50),
+     "N/A", "30", "Brown et al. (1987)"),
+    ("medium_clay", "Medium Clay", "Scale Model (Cyclic Load)", 3.0,
+     (0.60, 0.45, 0.40), "N/A", "600 (at 50 cycles)", "Moss (1997)"),
+    ("clayey_silt", "Clayey Silt", "Field Study", 3.0, (0.60, 0.40, 0.40),
+     "N/A", "25-60", "Rollins et al. (1998)"),
+    ("very_dense_sand", "V. Dense Sand", "Field Study", 3.0,
+     (0.80, 0.40, 0.30), "75%", "25", "Brown et al. (1998)"),
+    ("medium_dense_sand", "M. Dense Sand", "Centrifuge Model", 3.0,
+     (0.80, 0.40, 0.30), "74%", "76", "McVay et al. (1995)"),
+    ("medium_dense_sand", "M. Dense Sand", "Centrifuge Model", 5.0,
+     (1.0, 0.85, 0.70), "95%", "76", "McVay et al. (1995)"),
+    ("loose_medium_sand", "Loose M. Sand", "Centrifuge Model", 3.0,
+     (0.65, 0.45, 0.35), "73%", "76", "McVay et al. (1995)"),
+    ("loose_medium_sand", "Loose M. Sand", "Centrifuge Model", 5.0,
+     (1.0, 0.85, 0.70), "92%", "76", "McVay et al. (1995)"),
+    ("loose_fine_sand", "Loose F. Sand", "Field Study", 3.0,
+     (0.80, 0.70, 0.30), "80%", "25-75", "Ruesta and Townsend (1997)"),
+]
 
-_TABLE_5_4 = {
-    # p-multipliers at [3B, 5B] spacing — row 1, 2, 3+ per Pando et al.
-    "lead_row": {"pm": [0.8, 1.0], "notes": "Lead (front) row"},
-    "2nd_row": {"pm": [0.4, 0.85], "notes": "Second row"},
-    "3rd_or_more_row": {"pm": [0.3, 0.7], "notes": "Third and subsequent rows"},
+_TABLE_5_4_ROW_INDEX = {"lead_row": 0, "2nd_row": 1, "3rd_or_more_row": 2}
+
+_TABLE_5_4_ROW_NAMES = {
+    "lead_row": "Front Row (row 1)",
+    "2nd_row": "Second Row (row 2)",
+    "3rd_or_more_row": "Third and Subsequent Rows (row 3+)",
+}
+
+_TABLE_5_4_SOIL_ALIASES = {
+    "v_dense_sand": "very_dense_sand", "v._dense_sand": "very_dense_sand",
+    "m_dense_sand": "medium_dense_sand", "m._dense_sand": "medium_dense_sand",
+    "loose_m_sand": "loose_medium_sand", "loose_m._sand": "loose_medium_sand",
+    "loose_f_sand": "loose_fine_sand", "loose_f._sand": "loose_fine_sand",
 }
 
 
-def table_5_4_p_multiplier(row_position: str, spacing_over_b: float) -> dict:
-    """P-multiplier Pm for CFA/DD pile group lateral analysis (Table 5.4).
+def _table_5_4_soil_pm(soil_rows: list, i_row: int, s: float) -> list:
+    """One soil's Table 5.4 Pm entries at spacing ``s`` (B multiples)."""
+    from geotech_references._interpolation import _linterp
 
-    Scales p-y resistance for each pile in a laterally loaded group:
-        p_group = Pm × p_single
+    def entry(row, pm, basis, efficiency=None):
+        return {"soil_type": row[1], "test_type": row[2], "pm": round(pm, 3),
+                "basis": basis,
+                "reported_lateral_group_efficiency": efficiency or row[5],
+                "deflection_mm": row[6], "reference": row[7]}
 
-    Values consistent with AASHTO (2002) and Hannigan et al. (2006).
-    Linear interpolation between 3B and 5B spacing.  Use Pm = 1.0 for
-    spacing ≥ 5B.
+    at_3b = [r for r in soil_rows if r[3] == 3.0]
+    at_5b = [r for r in soil_rows if r[3] == 5.0]
+    if at_5b:
+        r3, r5 = at_3b[0], at_5b[0]
+        pm = _linterp(s, [3.0, 5.0], [r3[4][i_row], r5[4][i_row]])
+        if s == 3.0:
+            return [entry(r3, pm, "printed at 3B")]
+        if s == 5.0:
+            return [entry(r5, pm, "printed at 5B")]
+        if s > 5.0:
+            return [entry(r5, pm, "printed at 5B; the table prints no wider "
+                                  "spacing, so the 5B row is held")]
+        return [entry(r3, pm, "linear between the printed 3B and 5B rows",
+                      f"{r3[5]} at 3B, {r5[5]} at 5B")]
+    basis = ("printed at 3B" if s == 3.0 else
+             "printed at 3B only; the table prints no wider spacing for this "
+             "soil, so the 3B row is held")
+    return [entry(r, r[4][i_row], basis) for r in at_3b]
+
+
+def table_5_4_p_multiplier(
+    row_position: str,
+    spacing_over_b: float,
+    soil_type: str = "",
+) -> dict:
+    """P-multiplier Pm for lateral analysis of CFA pile groups (GEC-8 Table 5.4).
+
+    The p-y soil resistance of each pile in a laterally loaded group is
+    multiplied by Pm (Section 5.6.3, p. 111).  Table 5.4 (p. 112) prints
+    Pm for rows 1, 2 and 3+ by soil type, from field studies, a scale
+    model and centrifuge models, for cyclic loading and static loading.
+    Every soil is printed at 3B spacing; M. Dense Sand and Loose M. Sand
+    are also printed at 5B (1.0, .85, .70), and between 3B and 5B their
+    Pm is taken linearly between the two printed rows.  A spacing wider
+    than a soil's printed rows holds its widest printed row, and every
+    value returned states its basis.
+
+    With no soil type, ``pm`` is the lowest Pm the table prints for the
+    row at that spacing, and ``rows`` lists every printed soil so a soil
+    can be chosen.  Stiff Clay has two printed rows (Brown et al. 1987, at
+    51 mm and 30 mm deflection); ``pm`` is the lower and both are listed.
 
     Parameters
     ----------
     row_position : str
         Row position: 'lead' (or '1st', 'front'), '2nd', '3rd' (or 'trail').
     spacing_over_b : float
-        Center-to-center spacing ÷ pile diameter.  Must be ≥ 3.0.
+        Center-to-center spacing ÷ pile diameter B.  Must be ≥ 3.0.
+    soil_type : str, optional
+        Table 5.4 soil type: 'stiff_clay', 'medium_clay', 'clayey_silt',
+        'very_dense_sand', 'medium_dense_sand', 'loose_medium_sand' or
+        'loose_fine_sand'.  Left empty (default), ``pm`` is the lowest Pm
+        Table 5.4 prints for the row at that spacing (the module's choice,
+        not a printed default) and ``rows`` lists every soil's row.
 
     Returns
     -------
     dict
-        {'row_position': str, 'spacing_over_b': float,
-         'pm': float, 'notes': str}
+        {'row_position': str, 'spacing_over_b': float, 'soil_type': str,
+         'pm': float, 'basis': str, 'rows': list, 'notes': str,
+         'source': str}
 
     Raises
     ------
     ValueError
-        If row_position is unrecognized or spacing_over_b < 3.0.
+        If row_position or soil_type is unrecognized, or
+        spacing_over_b < 3.0.
     """
-    from geotech_references._interpolation import _linterp
-
     if spacing_over_b < 3.0:
         raise ValueError(
             f"spacing_over_b={spacing_over_b} is below the minimum of 3.0 "
-            "(Table 5.4 applies for 3B ≤ spacing ≤ 5B; use Pm=1.0 beyond 5B)."
+            "(Table 5.4 prints no spacing closer than 3B)."
         )
 
     _aliases = {
@@ -82,14 +159,50 @@ def table_5_4_p_multiplier(row_position: str, spacing_over_b: float) -> dict:
             "Use: 'lead', '2nd', or '3rd' (or 'trail')."
         )
 
-    data = _TABLE_5_4[row_key]
-    pm = _linterp(spacing_over_b, _TABLE_5_4_SPACING, data["pm"])
+    soils = list(dict.fromkeys(r[0] for r in _TABLE_5_4_ROWS))
+    soil_key = ""
+    if soil_type and soil_type.strip():
+        soil_key = (soil_type.lower().strip().replace(" ", "_")
+                    .replace("-", "_"))
+        soil_key = _TABLE_5_4_SOIL_ALIASES.get(soil_key, soil_key)
+        if soil_key not in soils:
+            raise ValueError(
+                f"Unknown soil_type '{soil_type}'. Table 5.4 soil types: "
+                + ", ".join(soils) + "."
+            )
+
+    i_row = _TABLE_5_4_ROW_INDEX[row_key]
+    rows = []
+    for key in ([soil_key] if soil_key else soils):
+        soil_rows = [r for r in _TABLE_5_4_ROWS if r[0] == key]
+        rows.extend(_table_5_4_soil_pm(soil_rows, i_row, spacing_over_b))
+
+    lowest = min(rows, key=lambda e: e["pm"])
+    if len(rows) == 1:
+        basis = lowest["basis"]
+    elif soil_key:
+        basis = ("the lower of the soil's two printed rows ("
+                 + lowest["basis"] + ")")
+    else:
+        basis = ("no soil type given: the lowest Pm Table 5.4 prints for "
+                 "this row at this spacing (" + lowest["soil_type"] + ", "
+                 + lowest["reference"] + "); give soil_type for one soil")
 
     return {
         "row_position": row_key,
         "spacing_over_b": spacing_over_b,
-        "pm": round(pm, 3),
-        "notes": data["notes"],
+        "soil_type": lowest["soil_type"] if soil_key else "",
+        "pm": lowest["pm"],
+        "basis": basis,
+        "rows": rows,
+        "notes": (
+            _TABLE_5_4_ROW_NAMES[row_key] + ". Simplified approach (p. 113, "
+            "Brown and O'Neill 2003): a single Pm equal to the average of "
+            "all the pile row Pm in the group; analysing a single pile this "
+            "way, a 20% increase in the computed maximum bending moment is "
+            "recommended for design."
+        ),
+        "source": "GEC-8 Table 5.4, p. 112 (Section 5.6.3, pp. 111-113)",
     }
 
 
