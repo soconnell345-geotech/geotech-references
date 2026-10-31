@@ -195,6 +195,12 @@ These were noted, not fixed.
   subheadings. That is why 8.5.1-8.5.4 and 8.9.1-8.9.4 show as missing in
   GEC-5 ch 8 (`8.1-8.5`, `8.6-8.9`). Where the files are summaries, as in
   GEC-5, that text is not in the file either.
+- **Numbered outline lines read as headings.** A guide specification
+  printed as a numbered outline ("6.1. Drilling equipment", "4.1.
+  Mobilization - lump sum") is read off the page as headings, because each
+  line starts with a number and ends in a period. GEC-13 ch 7 (8, pp. 7-37
+  to 7-38) and ch 8 (31, pp. 8-128/129) show these as missing; they are
+  not headings.
 
 ## Chapters with no text file (not counted above)
 
@@ -499,3 +505,97 @@ numbers are Vol II's printed page numbers.
   double acting hydraulic hammers.
 
 Smaller typos are not listed.
+
+## GEC-13 written from the print
+
+GEC-13 (FHWA-NHI-16-027 and -028, 2017) was reworked on fix/ref52, one commit per
+chapter. Ch 1 (17 -> 77 sections) and ch 2 (9 -> 80) were rewritten from
+the print: the June 2026 files were not the chapters' text (see below).
+In ch 4, 6, 8, 9 and 10 the headings REF-25 had folded into their parents
+became their own sections, written from their printed pages: ch 4 22,
+ch 6 2, ch 8 78 (105 -> 183), ch 9 71 (168 -> 239), ch 10 24 (103 ->
+127). Ch 3 and 5 had no gaps. Each equation, figure and table sits in the
+section whose pages print it. Equations re-read off rendered pages, symbol
+by symbol: Eqs. 2-1 to 2-3 (new), 8-2 to 8-6 (unchanged). Figure 8-22
+takes its printed caption ("used in Swedish grouting practice"; it read
+"national").
+
+`check_section_numbers.py gec_13` now reads 1,136 printed, 1,097 matched
+(it was 771), 0 range and 39 missing. The 39 are outline lines (Checker
+quirks). The 3 misnumbered and 2 extra rows are print numbering slips,
+held:
+- ch 4: two headings printed 2.6.1.4 (Predicted and Actual Densification
+  Procedure, pp. 4-55/56); the first is 4.2.6.1.4.a.
+- ch 9: two printed 5.1.3.1 (Geotechnical and Environmental
+  Considerations, p. 9-74); Geotechnical is 9.5.1.3.1.a. 'Potential
+  Disadvantages' printed 8.2.1.2 under 8.1.2 (p. 9-114) is 9.8.1.2.2;
+  'Advantages' printed 9.2.1.1 under 9.1.2 (p. 9-130) is 9.9.1.2.1.
+- ch 10: 'Potential Disadvantages' printed 2.1.2.2 under 4.1.2 (p. 10-45)
+  is 10.4.1.2.2.
+
+tests/test_query_expansion.py: the "wick drain smear zone" case pinned
+2.4.3, the old file's "Smear Zone Effects"; printed 4.3 is Preliminary
+Spacing Design. It now expects 2.3.2.1 (printed 3.2.1, where the print
+discusses the smear zone), returned by the same, unchanged query.
+
+### Values the old files gave that the chapter does not print
+
+- ch 1: unit costs per cubic or linear meter (preloading $2-8/m3, PVDs
+  $3-6/m, deep mixing $60-150/m3 and others) and "savings of 25-50%
+  against deep foundations" (Table 1-6 gives November 2016 costs in $/lft,
+  $/yd2, $/yd3 and $/ft2); a 12-step list in another order (Table 1-7);
+  DDC limited to about 10 m, vibro-compaction fines below 12-15 %, stone
+  columns to 15-20 m (Table 1-2 gives DDC fines < 15 %, vibro < 15 % silt
+  and/or < 2 % clay, no depths); references the chapter does not list.
+- ch 2: SI values throughout (cv, spacings 1.0-2.5 m, mandrel 60 x 120
+  mm, blanket 0.5-1.0 m) where the print gives U.S. units (spacings 3-5 ft
+  in clays, blanket at least 1 ft, typically 1.5-3 ft); sand drains
+  patented by Moran in 1925 and first used in California in 1934 (print:
+  patent 1926, California tests from 1933); eight equations (combined
+  U = 1-(1-Uv)(1-Ur), Hansbo smear and well resistance, smear ratio 2-5,
+  kh/ks 2-10) where the print has three; de = 1.128S / 1.050S (print
+  1.13 / 1.05); case histories the chapter does not hold.
+
+### Print inconsistencies, kept as printed
+
+No reading was chosen. Page numbers are printed page numbers.
+- ch 1: Table 1-9's constructability row gives weighted rating 3 for
+  WF 3 x RR 2; Geotech B's weighted ratings sum to 68 against the printed
+  total 69. Step 12 (p. 1-48) takes WF "from Table 1-7" (the weight
+  factors are Table 1-8). Table 1-4 cites "Gransberg and Loukakis 2012"
+  against "Loulakis" in the text and references. Table 1-9 gives relative
+  ratings of 0 although Step 11 rates 1 to 4.
+- ch 2: "Considerations for Using Equation 2.1" (p. 2-35) calls Fs a
+  "sample disturbance factor" where Eq. 2-1 names it the soil disturbance
+  (smear) factor. Council Bluffs (p. 2-53): 438,077 lf installed against
+  690,750 estimated is "slightly less", and results are "well within the
+  design time of 6 months" where the design gave 3 to 5 months.
+  "Fellenious and Altace 1999" against "Altaee" in the list. Section 1.1
+  cites "Section 2.4 Limitations" (printed 2.4 is id 2.2.4).
+- ch 4: the mine spoil case cites Figure 4-25 for the SPT comparison,
+  4-26 for induced settlement and "Figure 24" for crater depths; the
+  captions are 4-24, 4-25 and 4-26. Table 4-3 Zone 2 gives "250 to 350
+  kJ/m3 (5,200 to 7,200 ft-lbf/ft2)". Landfill case: "(20%)(3 m) = 0.6 m
+  (1 feet)" (p. 4-62); "7 drops per phase" (p. 4-63) against "seven drops
+  at each drop point location" (p. 4-62).
+- ch 8: Landry et al. ranges printed "0.04 <= k <= 4 x 10-4" (falling
+  bounds). "Case History 3: Apache Trail" is set under 2.4.5.2 with no
+  number. Table 8-4 gives SVIF in m/s; Eq. 8-5 gives a percent. The bulk
+  void filling intro (p. 8-53) says the third and fourth case histories
+  describe "bituminous grout and cemented paste for mine backfill"
+  (bitumen is the second; neither uses cemented paste). Slabjacking grout
+  strength "in excess of 480 Pa" (p. 8-61); Case History 1 cites "Figure
+  8-36" for the injection system (p. 8-63). Rock fissure grouting: NR
+  "nearer 3 than 5" while the list gives NR > 5 consistently possible and
+  NR < 2 not possible (p. 8-78); the Lugeon "is defined as the
+  permeability of grout in the rock mass and is equal to 0.11 inch2/psi"
+  (p. 8-78); grout curtains "$25 and $80 per sq. feet" (p. 8-79) against
+  "$25 to $80 per square yard" (p. 8-85). Figures 8-14/8-15 credit "Bruce
+  and Chauqui 2012" against the heading's "Chuaqui".
+- ch 9: geotextile durability life "should be well in excess of 1000 yrs"
+  (p. 9-48). Fly ash "must meet ... ASTM C593 for Class C fly ash" (p.
+  9-92). A lime slurry of "1 ton of lime mixed with 500 gallons of water to
+  produce 600 tons of slurry" (p. 9-88).
+- ch 10: soil nailing lists "Weathered rock with adverse weakness planes"
+  as well suited and "with unfavorable weakness planes" as unfavorable,
+  and "Glacial till" in both lists (pp. 10-62/63).
