@@ -5,86 +5,942 @@
   "chapter_title": "Identification and Characterization of Problematic Soil and Rock",
   "sections": [
     {
-      "section_id": "5.1-5.4",
-      "title": "Collapsible, Expansive, and Organic Soils",
-      "summary": "Collapsible soils (typically ML/CL, low plasticity) undergo sudden volume decrease upon wetting; collapse potential CP = ΔH/Ho × 100% from single-oedometer test. Expansive soils (Activity > 1, LL > 35%, PI > 20%) swell on wetting and shrink on drying; swell potential from oedometer swell tests; shrinkage limit test. Organic soils and peats have high water content (>100% possible), high primary and secondary compression (Cα/Cc ≈ 0.05 for most clays, higher for organics), and possible high corrosion risk. Field vane shear (VST) useful for non-fibrous organic soils; avoid in fibrous peat.",
-      "body": "Collapsible soils: Typically non-plastic (ML or CL classification) with low dry density. Collapse is triggered by wetting under load. Identified by screening criteria including LI, dry density, porosity, and Atterberg limits (various methods). Collapse potential CP = ΔH/Ho × 100% from single-oedometer test at estimated overburden stress, inundated with water (Eq 5.2). Alternative double-oedometer method. Severity from Table 5-3. Commonly found in loess, alluvial fans, residual soils, and compacted fills dry of optimum. Hollow-stem auger suitable for sampling.\n\nExpansive soils: Typically high-plasticity clays (CH) with Activity > 1, LL > 35–50%, PI > 20–35%. Swell and shrink in active zone (top 1–3 m typically). Identification screening: liquid limit, plasticity index, activity (Table 5-4, Seed et al. 1962; Table 5-5, Raman 1967; Table 5-6, Altmeyer 1955), free swell test. Direct characterization by one-dimensional swell test (swell potential = swell % at constant stress; swell pressure from reload test).\n\nOrganic soils and peats: Classification by ash content and moisture content per Landva et al. (1983) (Table 5-9). High water content (>100% possible), primary compressibility (Cc from consolidation tests), and significant secondary compression (Cα). Organic soils avoided or removed when possible. VST for undrained shear strength in non-fibrous organics; standard tests may not apply to fibrous peat.",
+      "section_id": "5.1",
+      "title": "Problematic Soil and Rock Types",
+      "summary": "Fourteen problematic soil and rock types (collapsible, expansive, organic, dispersive, liquefiable, colluvium and talus, degradable rock, corrosive, cemented sands, sensitive clays, high sulfate, pyritic, unsaturated, permafrost) are summarized in Table 5-1. Indirect index methods screen; direct tests confirm.",
+      "body": "The most common problematic soil and rock types are: (1) collapsible soils; (2) expansive/shrinking soils; (3) organic soils and peat; (4) dispersive soils; (5) liquefiable soils; (6) colluvium and talus; (7) degradable rock; (8) corrosive soils; (9) cemented sands; (10) sensitive clays; (11) high sulfate soils; (12) pyritic/acid rock; (13) unsaturated soils; (14) permafrost, each with characteristics and challenges summarized in Table 5-1 (pp. 5-2 to 5-3). Indirect methods rely on index properties (Atterberg limits, grain size, composition, visual observation) and are approximate indicators; direct methods use special laboratory or field tests and are more reliable and quantitative (e.g., swelling measured by wetting under controlled conditions). Indirect measures should be screening tests whose indications are confirmed by direct measurements (p. 5-4). Identification rests on the geologic setting, known local problems, deliberate observation and investigation, and the project plans; since most problematic materials come from geologic processes, site and regional geology is critical, and further investigation is needed once a potential is identified. (pp. 5-1 to 5-4)",
       "key_points": [
-        "Collapsible soils: ML/CL, low density; CP = ΔH/Ho × 100% at overburden stress when inundated",
-        "Expansive soils: Activity > 1, LL > 35%, PI > 20%; swell potential from one-dimensional swell/swell pressure tests",
-        "Shrinkage limit identifies lower bound of volume change; active zone typically top 1–3 m",
-        "Organic soils: high wn, high primary and secondary compression; avoid or remove before construction"
+        "Fourteen problematic types (Table 5-1) (p. 5-1).",
+        "Indirect index methods screen; direct tests confirm (pp. 5-3 to 5-4).",
+        "Geology is critical to identification (p. 5-4)."
       ],
-      "equations": [
-        {
-          "equation_id": "5-2",
-          "description": "Collapse potential from single-oedometer test",
-          "latex": "CP = \\frac{\\Delta H}{H_o} \\times 100\\%",
-          "variables": {
-            "CP": "collapse potential (%)",
-            "Delta_H": "change in specimen height when inundated at prescribed vertical stress",
-            "H_o": "initial specimen height"
-          },
-          "implemented_in": null
-        }
-      ],
-      "figures": [
-        "Figure 5-2: Results from single-oedometer collapse test for southeast Iowa loess",
-        "Figure 5-3: Results of double oedometer collapse test",
-        "Figure 5-6: Classification of swelling potential by Seed et al. (1962) based on activity"
-      ],
+      "equations": [],
+      "figures": [],
       "tables": [
-        "Table 5-1: Characteristics of problematic soil and rock",
-        "Table 5-3: Alternative criteria for defining severity of collapse",
-        "Table 5-4: Characterization of swell severity from liquid limit",
-        "Table 5-5: Characterization of swell severity from Raman (1967)",
-        "Table 5-6: Characterization based on shrinkage limit (Altmeyer 1955)",
-        "Table 5-9: Organic soil and peat classification (Landva et al. 1983)"
+        "Table 5-1: Characteristics of problematic soil and rock - problematic soil, description, engineering characteristics, characterization challenges: collapsible soils (fine sand and silt, loose structure, weak bonds; irrecoverable collapse on inundation, highly erodible, low moisture and unit weight; response at design moisture, structure may collapse during sampling); expansive/shrinking soils (expansive clay minerals; large volume change, stiff and fissured, substantial undrained but low frictional strength; zone of seasonal moisture change, volume change characteristics); organic soils and peat (soft, highly compressible, high secondary compression, potentially corrosive, fibrous; hard to sample, in situ tests may overestimate strength); dispersive soils (low to medium plasticity, severe erosion and piping; hard to identify visually or by index tests); liquefiable soils (loose saturated coarse soils, low SPT blow counts; hard to sample undisturbed); colluvium and talus (thin weak lenses, talus near angle of repose, FOS = 1; mixed materials, thin layers, perched water); degradable rock (degrades when exposed, poor fill, anisotropic, low friction; rapid degradation after sampling); corrosive soils (special tests needed); cemented sands (strong but brittle, high penetration resistance, collapse if binder soluble; rock coring may be needed, drilling fluid may degrade cementation); sensitive clays (strength loss to almost liquid; extreme care sampling and testing); high sulfate soils (swell with lime or cement calcium; hard to identify); pyritic/acid rock (acidic runoff; unique sampling and testing); unsaturated soils (stronger and stiffer than saturated, in situ effective stress hard to predict; measures may not represent design condition); permafrost (stiffer, stronger, less permeable, creep governs; rotary coring, in situ tests and geophysics, creep properties)"
       ],
       "applicability": "Identification and characterization of collapsible, expansive, and organic soils for transportation projects"
     },
     {
-      "section_id": "5.5-5.7",
-      "title": "Dispersive, Liquefiable, and Colluvial Soils",
-      "summary": "Dispersive soils: high exchangeable sodium percentage (ESP) causes deflocculation in water, leading to internal erosion and piping; identified by Sherard et al. (1976) chart (TDS vs. ESP), pinhole test (ASTM D4647), and crumb test. Liquefiable soils: loose saturated cohesionless; susceptibility from SPT (N1)60 correction with CN = (pa/σ'vo)^0.5; CPT chart from Youd et al. (2001); Bq from CPTU. Colluvium/talus: heterogeneous granular deposits on slopes; test pits and trenches most suitable for characterization; compressibility from oedometer tests.",
-      "body": "Dispersive soils: Exchangeable sodium ions in clay fraction cause dispersion in water, leading to piping and internal erosion in embankments and slopes. ESP = exchangeable sodium / CEC × 100%. Identified by: (1) Sherard et al. (1976) chart using total dissolved solids (TDS) and ESP; (2) pinhole dispersion test (ASTM D4647) — water passed through hole in soil specimen, turbidity and hole diameter classify dispersiveness (Table 5-11); (3) crumb test — soil placed in distilled water; (4) double hydrometer test. High dispersiveness: high sodium content, high LL, certain clay minerals. Treatment: add calcium ions (lime, gypsum) or mechanical compaction at higher moisture content.\n\nLiquefiable soils: Loose, saturated coarse-grained soils; shear strain-induced excess pore pressure leads to near-zero effective stress and loss of strength. Liquefaction susceptibility screening: particle-size criteria (D50 < 2 mm, fines < 35%). SPT: (N1)60 = CN × N60 where CN = (pa/σ'vo)^0.5, limited to CN ≤ 1.7. CPT liquefaction resistance chart (Youd et al. 2001, Figure 5-20). Additional characterization of extent from soundings at regular intervals across site.\n\nColluvium and talus: Heterogeneous deposits formed by downslope movement and accumulation. Highly variable composition; potential for unstable conditions. Test pits and trenches most suitable for characterization. Compressibility from conventional consolidation tests.",
+      "section_id": "5.2",
+      "title": "Collapsible Soils",
+      "summary": "Collapsible (meta-stable) soils deform rapidly when inundated under load, their bonds (clay, carbonates, oxides, suction) failing; typically dry density < 90 pcf, low water content, ML or CL. Collapse needs an open partly saturated fabric, enough stress, a bond or suction, and added water.",
+      "body": "Collapsible soils can undergo rapid, dramatic deformation when inundated under constant load; bonds between particles or groups prevent rearrangement to a denser state: clay particles shared by larger grains, calcium or calcium/magnesium carbonate precipitates, oxides of iron, magnesium or manganese, and/or negative pore water pressure (matric suction), some water soluble or sensitive, some sensitive to disturbance (undisturbed specimens collapse less than disturbed ones at the same water content and density; Lutenegger, 2012). Collapse is a behavior, not a property (p. 5-5). Collapsible soils often have low dry density (usually less than 90 pcf) and low natural water content, little or no plasticity (ML or CL); some are very stiff but soften with water even without saturation; previously saturated soils are usually not collapsible though they may be compressible. Four conditions are necessary (Dudley, 1970; Barden, et al., 1973; Lawton, et al., 1989; Mitchell and Soga, 2005): an open, partially unstable, partially saturated fabric; sufficient total stress for a metastable structure; a bonding agent or suction stabilizing it; and added water reducing suction or softening the bond. Collapse decreases with increasing pre-collapse water content and dry density and decreasing overburden pressure; there appear to be a critical initial water content above which no collapse occurs and a critical initial degree of saturation above which collapse is negligible (Lawton, et al., 1989). (pp. 5-4 to 5-5)",
       "key_points": [
-        "Dispersive soils: identified by pinhole test (ASTM D4647), TDS-ESP chart, crumb test",
-        "Dispersive soils are particularly hazardous in embankment dam cores and slope fills",
-        "Liquefaction: (N1)60 = CN × N60; CN = (pa/σ'vo)^0.5; CPT chart from Youd et al. (2001)",
-        "Colluvium: heterogeneous, highly variable; test pits and trenches for characterization"
+        "Bonds: clay, carbonates, oxides, matric suction (p. 5-4).",
+        "Dry density usually < 90 pcf; low water content; ML or CL (p. 5-5).",
+        "Four conditions needed for collapse (p. 5-5).",
+        "Collapse decreases with higher water content and density, lower stress (p. 5-5)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identification and characterization of collapsible, expansive, and organic soils for transportation projects"
+    },
+    {
+      "section_id": "5.2.1",
+      "title": "Occurrence of Collapsible Soils",
+      "summary": "Collapsible deposits include loess, windblown desert sands, alluvial fans and mudflows in arid regions, colluvium and residual or lateritic soils; compacted soils (CL, CH, ML, SM, SC), especially dry of optimum, can also collapse when loaded and then saturated.",
+      "body": "Collapsible soils occur worldwide in transported and residual soils (Knight, 1963; Dudley, 1970; Rogers, et al., 1994): loess (windblown silt), windblown desert sands, alluvial flow deposits (fans, mudflows) in arid and semi-arid regions, colluvium (slopewash) and decomposed/weathered rock (residual and tropical lateritic soils). Compacted soils may collapse if loaded and then saturated, more so when compacted dry of optimum but also wet of optimum (Lim and Miller, 2004; p. 5-6), from fine-grained (CL, CH, ML) to mixed (SM, SC) soils (Lawton, et al., 1989, 1992; Alwail, et al., 1994; Jotisankasa, et al., 2007). (pp. 5-5 to 5-6)",
+      "key_points": [
+        "Loess, desert sands, alluvial fans, colluvium, residual soils (p. 5-5).",
+        "Compacted soils dry of optimum can collapse (pp. 5-5 to 5-6)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identification and characterization of collapsible, expansive, and organic soils for transportation projects"
+    },
+    {
+      "section_id": "5.2.2",
+      "title": "Indirect Identification of Collapsible Soils",
+      "summary": "Index criteria (Table 5-2: Denisov, Gibbs, Kassif and Henkin, Feda) and Gibbs and Bara's dry unit weight versus liquid limit line (Figure 5-1) screen for collapse, but are not direct indicators, may mislead and are local; they show when direct tests are needed.",
+      "body": "Soil surveys and geologic maps give preliminary indications; site-specific indirect identification is harder. Criteria based on initial dry density, liquid limit, void ratio and other indices are summarized in Table 5-2. Figure 5-1 (Gibbs and Bara, 1962, 1967, p. 5-7) plots dry unit weight against liquid limit: soils above the line are susceptible to collapse when wetted, below it likely to expand. Mock and Pawlak (1983) use dry density and fines content. None of the criteria directly indicates collapse or its amount; they may falsely indicate collapse potential because they ignore natural structure and cementation, and are often appropriate only for the deposits and areas where developed, but serve as screening tools for when direct laboratory tests are needed. (pp. 5-6 to 5-7)",
+      "key_points": [
+        "Table 5-2: index criteria for collapsible soils (p. 5-6).",
+        "Figure 5-1: above the Gibbs and Bara line collapses, below expands (p. 5-6).",
+        "Criteria are screening only, often local (pp. 5-6 to 5-7)."
       ],
       "equations": [],
       "figures": [
-        "Figure 5-17: Identification of dispersive soils from TDS and ESP (Sherard et al. 1976b)",
-        "Figure 5-18: Schematic of pinhole test for characterizing dispersive soil (ASTM D4647)",
-        "Figure 5-20: Liquefaction potential charts for CPT measurements (Youd et al. 2001)"
+        "Figure 5-1: Gibbs and Bara (1967) criterion for collapsible soils (Case I-collapse; Case III- expansion)"
       ],
       "tables": [
-        "Table 5-11: Criteria for classifying dispersive soils from pinhole test results"
+        "Table 5-2: Summary of criteria for identifying collapsible soils - Denisov (1951) coefficient of subsidence K = eL/eo: 0.5 <= K <= 0.75 highly collapsible soil, K = 1.0 non-collapsible loams, 1.5 <= K <= 2.0 non-collapsible soils; Gibbs (1961) collapse ratio R = wsat/LL: R > 1.0 soil subject to collapse; Kassif and Henkin (1967) product wo x rho_d: wo x rho_d > 15 minimal collapse; Feda (1964) K1 = wo/So - PL/PI: So < 100% and K1 > 0.85 \"subsident soils\"; eL = void ratio at LL, eo = in situ void ratio, wo = in situ moisture content, So = initial degree of saturation, wsat = saturated moisture content, rho_d = dry density (gm/cm3)"
+      ],
+      "applicability": "Identification and characterization of collapsible, expansive, and organic soils for transportation projects"
+    },
+    {
+      "section_id": "5.2.3",
+      "title": "Direct Characterization of Collapsible Soils",
+      "summary": "Collapse potential from the single-oedometer test (ASTM D5333, withdrawn 2012 but practical): CP = Delta_ec/(1 + eo) x 100 % (Eq. 5.1) or Delta_H/Ho x 100 % (Eq. 5.2), at field stress levels; double-oedometer tests give CP at several stresses; severity ratings in Table 5-3; field response-to-wetting tests.",
+      "body": "Undisturbed samples of suspect soils should be tested directly. The most accepted method (Lutenegger and Saber, 1988; ASTM D5333) loads a trimmed specimen in a one-dimensional consolidation apparatus to a prescribed vertical stress, inundates it and records height change: collapse potential CP by Eq. 5.1 (p. 5-7) or, without needing specific gravity, from compression by Eq. 5.2 (p. 5-8). ASTM D5333 (the \"single oedometer\" test) was withdrawn in July 2012 but remains practical and reliable; AASHTO T258 or ASTM D4546 is similar. Figure 5-2 (southeast Iowa loess, p. 5-9): compression to 2 ksf, a large collapse on wetting at 2 ksf, then consolidation (sometimes omitted). CP depends on the stress at inundation, so test at anticipated field stresses. The \"double-oedometer\" test loads one specimen at natural water content and an identical saturated one (Figure 5-3, eastern Nebraska loess); collapse strain is the difference at the same stress, giving CP over a range of stresses, though the saturated specimen is never wetted under load. Table 5-3 (p. 5-10) gives qualitative severity ratings, based on CP at different stresses and sometimes different definitions. Field \"response-to-wetting\" tests load a plate or small footing, wet the soil from the surface or boreholes and measure settlement, more representative of field loading. (pp. 5-7 to 5-10)",
+      "key_points": [
+        "CP = Delta_ec/(1 + eo) x 100 % (Eq. 5.1) (p. 5-7).",
+        "CP = Delta_H/Ho x 100 % (Eq. 5.2) (p. 5-8).",
+        "Test at anticipated field stress (p. 5-8).",
+        "Double oedometer gives CP at several stresses (p. 5-8).",
+        "Table 5-3: collapse severity ratings (p. 5-10)."
+      ],
+      "equations": [
+        "Eq. 5.1: CP = [Delta_ec / (1 + eo)] x 100%; CP = collapse potential, Delta_ec = change in void ratio upon wetting, eo = initial (natural) void ratio (p. 5-7)",
+        "Eq. 5.2: CP = (Delta_H / Ho) x 100%; Delta_H = change in specimen height when inundated at the prescribed vertical stress, Ho = initial specimen height (p. 5-8)"
+      ],
+      "figures": [
+        "Figure 5-2: Results from single-oedometer collapse test for southeast Iowa loess",
+        "Figure 5-3: Results of double oedometer collapse test for undisturbed Nebraska loess"
+      ],
+      "tables": [
+        "Table 5-3: Alternative criteria for defining severity of collapse - Mock and Pawlak (1983), collapse stress 0.5 tsf: CP 0-1 % no problem, 1-3 % low, 3-5 % moderate, > 5 % high; Jennings and Knight (1975), adopted by NAVFAC DM-7, 2 tsf: 0-1 % no problem, 1-5 % moderate trouble, 5-10 % trouble, 10-20 % severe trouble, > 20 % very severe trouble; Lutenegger and Saber (1988), 3 tsf, CP = Delta_e/(1 + e1) with e1 the void ratio at the beginning of wetting: 2.0 % slight, 6.0 % moderate, 10.0 % severe; ASTM D5333-03, 2 tsf: 0 none, 0.1-2.0 % slight, 2.1-6.0 % moderate, 6.1-10.0 % moderately severe, > 10 % severe"
+      ],
+      "applicability": "Identification and characterization of collapsible, expansive, and organic soils for transportation projects"
+    },
+    {
+      "section_id": "5.2.4",
+      "title": "Challenges for Subsurface Exploration in Collapsible Soils",
+      "summary": "Index samples can be disturbed, but collapse tests need minimal disturbance: block samples from pits shallow, thin-walled or Pitcher/Denison samplers deeper, dry drilling preferred. Monitor groundwater and water content; avoid in situ tests and their empirical transformations.",
+      "body": "Typical drilling and disturbed sampling serve index tests, but samples for collapse potential need minimal disturbance since collapse is sensitive to void ratio and bond disturbance: block samples from trenches or test pits at shallow depth; thin-walled samplers if the soil is not too stiff to push; Pitcher or Denison samplers in stiffer soils; dry drilling preferred (p. 5-11), and collapsible soils are usually shallow and above the water table where hollow-stem drilling and thin-walled sampling work. In situ water contents and their likely changes before wetting need careful groundwater monitoring and water content measurement, preferably over time. In situ tests should generally be avoided: they reflect current rather than wetted conditions, and common empirical transformations may not suit these unusual soils. (pp. 5-10 to 5-11)",
+      "key_points": [
+        "Minimal disturbance for collapse samples; blocks or thin-walled (p. 5-10).",
+        "Dry drilling preferred (pp. 5-10 to 5-11).",
+        "Avoid in situ tests in collapsible soils (p. 5-11)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identification and characterization of collapsible, expansive, and organic soils for transportation projects"
+    },
+    {
+      "section_id": "5.3",
+      "title": "Expansive/Shrinking Soils",
+      "summary": "Expansive clays swell when wetted and shrink when dried, mostly by expansive mineral content (montmorillonite more than kaolinite) and water content change; swell rises with lower initial water content and higher density. Problems concentrate in the seasonal active zone.",
+      "body": "Expansive soils are clays with large volume changes with water content: swelling as it increases, shrinking as it decreases, controlled mainly by the proportion of expansive clay minerals and the water content change (kaolinite less than montmorillonite/smectite). Volume change increases as initial water content decreases and initial dry density increases; disturbed or remolded soils swell more than undisturbed (Schmertmann, 1969; Lutenegger, 2008); compacted expansive soils also swell. Most problematic changes are shallow, in the \"active zone\" of seasonal water content change, evaluated from water contents in wet and dry seasons; the \"depth of seasonal moisture change\" is its lower limit (p. 5-12). Foundations should extend beneath it; deep foundation side resistance may be compromised within it; pavements and lightly loaded shallow foundations suffer. (pp. 5-11 to 5-12)",
+      "key_points": [
+        "Montmorillonite swells more than kaolinite (p. 5-11).",
+        "Swell increases with lower water content, higher density (p. 5-11).",
+        "Active zone = depth of seasonal moisture change (pp. 5-11 to 5-12).",
+        "Extend foundations below the active zone (p. 5-12)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identification and characterization of collapsible, expansive, and organic soils for transportation projects"
+    },
+    {
+      "section_id": "5.3.1",
+      "title": "Occurrence of Expansive Soils",
+      "summary": "Expansive soils occur throughout the continental U.S. (Figure 5-4), with damage most prevalent in California, Wyoming, Colorado and Texas; they are typically highly plastic, stiff, overconsolidated and fissured, with water content near or below the plastic limit (LI near or below zero).",
+      "body": "Expansive soils occur throughout the continental U.S. (Figure 5-4, from Olive, et al., 1989), damage being most prevalent in California, Wyoming, Colorado and Texas where extensive expansive clays meet a semi-arid climate. Most are highly plastic, stiff and overconsolidated with low natural water content and high dry unit weight; in situ water contents near or below the plastic limit give liquidity indices near zero or negative; many are fissured from repeated wetting and drying. (p. 5-12)",
+      "key_points": [
+        "Damage most prevalent in CA, WY, CO, TX (p. 5-12).",
+        "Water content near or below PL; LI near zero (p. 5-12)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-4: Distribution of expansive soils in the U.S. (from Olive, et al., 1989)"
+      ],
+      "tables": [],
+      "applicability": "Identification and characterization of collapsible, expansive, and organic soils for transportation projects"
+    },
+    {
+      "section_id": "5.3.2",
+      "title": "Identification and Characterization of Expansive Soils Using Indirect Methods",
+      "summary": "Screening: LL > 50, activity > 0.8, PI > 15, SSA > about 200 m2/g, CEC > about 25 meq/100 g or prevalent smectite suggest significant swell. Severity charts and tables (Tables 5-4 to 5-7, Figures 5-6 to 5-8); free swell index FSI = (Vf - Vo)/Vo x 100 % (Eq. 5.3).",
+      "body": "Desk studies (soil surveys, geologic maps) and site visits give initial indications (p. 5-13): large desiccation cracks, fissures and characteristic damage (Figure 5-5). Index tests on disturbed samples relate to mineralogy and clay fraction: liquid limit greater than 50, activity greater than 0.8 or plasticity index greater than 15, specific surface area greater than about 200 m2/g, cation exchange capacity greater than about 25 meq/100 g, or prevalent smectite indicate significant swell potential, as screening for direct tests (section 5.3.3). No standard severity classification exists: Dakshanamurthy and Raman (1973) by liquid limit (Table 5-4, p. 5-14); Seed et al. (1962) by activity and clay fraction (Figure 5-6); Van der Merwe (1964) by clay fraction and PI (Figure 5-7, p. 5-15); Holtz and Gibbs (1956) by PI, shrinkage limit and colloid (< 0.001 mm) fraction (Figure 5-8); Raman (1967) by PI and shrinkage index SI = LL - SL (Table 5-5, p. 5-16); Altmeyer (1955) by shrinkage limit and linear shrinkage (Table 5-6). The free swell test (Holtz and Gibbs, 1956): 10 g of oven-dry soil passing No. 40, dry volume in a 25 ml cylinder, slowly added to a 100 ml cylinder of distilled water, volume after 24 hours gives the free swell index FSI (Eq. 5.3); montmorillonite swells about three times kaolinite (Figure 5-9, p. 5-17); severity in Table 5-7. (pp. 5-12 to 5-17)",
+      "key_points": [
+        "LL > 50, A > 0.8, PI > 15 suggest significant swell (p. 5-13).",
+        "SSA > about 200 m2/g, CEC > about 25 meq/100 g, smectite (p. 5-13).",
+        "Table 5-4: swell by LL (Dakshanamurthy and Raman, 1973) (p. 5-14).",
+        "Tables 5-5, 5-6: by PI and SI; by SL and linear shrinkage (p. 5-16).",
+        "FSI = (Vf - Vo)/Vo x 100 % (Eq. 5.3); Table 5-7 severity (p. 5-16)."
+      ],
+      "equations": [
+        "Eq. 5.3: FSI = [(Vf - Vo) / Vo] x 100%; FSI = free swell index, Vo = initial (dry) volume of soil, Vf = final swelled volume (p. 5-16)"
+      ],
+      "figures": [
+        "Figure 5-5: Common cracking pattern in lightly loaded structures on expansive soils",
+        "Figure 5-6: Characterization of swell potential from clay-size fraction and activity (after Seed, et al., 1962)",
+        "Figure 5-7: Characterization of swell potential from clay-size fraction and plasticity index (after Van der Mere, 1964)",
+        "Figure 5-8: Characterization of swelling severity from Holtz and Gibbs (1956)",
+        "Figure 5-9: Final volume from free swell test for kaolinite (left) and montmorillonite (right)"
+      ],
+      "tables": [
+        "Table 5-4: Characterization of swell severity from Dakshanamurthy and Raman (1973) - LL 0 to 20 % non-swelling; 20 to 35 % low; 35 to 50 % medium; 50 to 70 % high; 70 to 90 % very high; > 90 % extra high swelling",
+        "Table 5-5: Characterization of swell severity from Raman (1967) - PI < 12 % and SI < 15 % low; PI 12 to 23, SI 15 to 30 medium; PI 23 to 32, SI 30 to 40 high; PI > 32, SI > 40 very high",
+        "Table 5-6: Characterization of swell severity from Altmeyer (1955) - shrinkage limit > 12 % and linear shrinkage < 5 % non-critical; SL 10 to 12, LS 5 to 8 marginal; SL < 10, LS > 8 critical",
+        "Table 5-7: Severity of swelling based on the free swell index, FSI (Holtz and Gibbs, 1956) - FSI < 50 % low; 50 to 100 % medium; 100 to 140 % high; > 140 % very high"
+      ],
+      "applicability": "Identification and characterization of collapsible, expansive, and organic soils for transportation projects"
+    },
+    {
+      "section_id": "5.3.3",
+      "title": "Characterization of Swell Potential Using Direct Methods",
+      "summary": "One-dimensional swell tests (AASHTO T258, ASTM D4546) on undisturbed or compacted specimens give swell potential SP = Delta_H/Ho x 100 % (Eq. 5.4), taking days to weeks; Table 5-8 (Peck et al., 1974) rates it; swell pressure stops swelling (7 ksf in the example; > 40 ksf possible).",
+      "body": "Where indirect measures suggest expansive soils that could affect construction or performance, one-dimensional swell tests (AASHTO T258; ASTM D4546) on representative undisturbed or compacted samples are the best direct method: a specimen at natural water content under a seating load or anticipated field stress (often overburden plus foundation stress) is wetted and swell recorded over time. Swell strain or swell potential SP is Eq. 5.4. Swelling is time dependent: a high plasticity clay from Mt. Union, Iowa (Figure 5-10, p. 5-18) swells rapidly at first but takes several days, some soils several weeks. Table 5-8 (Peck et al., 1974) describes severity; the example's SP of about 8.6 percent is \"high\". SP is greatest at zero vertical stress and decreases to zero at the \"swell pressure\"; reloading after the test (Figure 5-11, p. 5-19) needed 7 ksf to restore the original height, a reasonable estimate though not technically the swell pressure; swell pressures can exceed 40 ksf (Peck et al., 1974). Limitations: lateral swell and confinement are not simulated (unreliable for laterally unconfined structures such as abutments); laboratory swell rates do not reflect field water availability; long-term (\"secondary\") swell may need adding. (pp. 5-17 to 5-19)",
+      "key_points": [
+        "SP = Delta_H/Ho x 100 % (Eq. 5.4) (p. 5-17).",
+        "Swell takes days to weeks (p. 5-17).",
+        "Table 5-8: SP < 1.5 % low to > 25 % very high (Peck et al., 1974) (p. 5-18).",
+        "Swell pressure 7 ksf in the example; > 40 ksf possible (p. 5-18).",
+        "Lateral swell and field rates not simulated (p. 5-19)."
+      ],
+      "equations": [
+        "Eq. 5.4: SP = (Delta_H / Ho) x 100%; SP = swell potential (swell strain), Delta_H = change in specimen height, Ho = original specimen height (p. 5-17)"
+      ],
+      "figures": [
+        "Figure 5-10: Example measurements from one-dimensional swell test on highly plastic clay",
+        "Figure 5-11: Reloading test on specimen from Figure 5-10 to determine swell pressure"
+      ],
+      "tables": [
+        "Table 5-8: Descriptions for different levels of swell potential (from Peck, et al., 1974) - SP < 1.5 % low; 1.5 % < SP < 5 % medium; 5 % < SP < 25 % high; SP > 25 % very high volume change"
+      ],
+      "applicability": "Identification and characterization of collapsible, expansive, and organic soils for transportation projects"
+    },
+    {
+      "section_id": "5.3.4",
+      "title": "Swell “Sensitivity”",
+      "summary": "Swell sensitivity SS_FS = SP_remolded/SP_undisturbed (Eq. 5.5, Schmertmann, 1969) from zero-stress swell tests at the same water content and density; many clays show 2 to 4 (remolded soil swells 2 to 4 times as much); about 3.3 in Figure 5-12.",
+      "body": "Disturbance (remolding, compaction) destroys natural bonds and usually makes shrink and swell more problematic. Schmertmann (1969) termed the increase in swelling of remolded over undisturbed soil at the same water content and density \"swell sensitivity\", from one-dimensional swell tests at zero applied stress (also called \"free swell tests\", different from the test of section 5.3.2) by Eq. 5.5 (p. 5-19). Schmertmann (1969) and Lutenegger (2008) show many clays have swell sensitivity of about 2 to 4 (p. 5-20); for Figure 5-12, SS_FS is about 3.3. (pp. 5-19 to 5-20)",
+      "key_points": [
+        "SS_FS = SP_remolded/SP_undisturbed (Eq. 5.5) (p. 5-19).",
+        "Many clays 2 to 4 (p. 5-20).",
+        "Figure 5-12 example about 3.3 (p. 5-20)."
+      ],
+      "equations": [
+        "Eq. 5.5: SS_FS = SP_remolded / SP_undisturbed; SP_undisturbed = swell potential of an undisturbed specimen, SP_remolded = swell potential of a remolded specimen at the same initial water content and dry density (p. 5-19)"
+      ],
+      "figures": [
+        "Figure 5-12: Comparison of swell behavior between undisturbed and remolded soil"
+      ],
+      "tables": [],
+      "applicability": "Identification and characterization of collapsible, expansive, and organic soils for transportation projects"
+    },
+    {
+      "section_id": "5.3.5",
+      "title": "Characterization of Shrinkage",
+      "summary": "Shrinkage damage can equal swell damage. On the shrinkage curve (Figure 5-13) the traditional shrinkage limit is the intersection of the straight lines (Point E); the true limit is the tangent point (Point C). Single-point tests can err (11.2 vs about 18 percent); measure the whole curve.",
+      "body": "Most fine-grained soils that swell also shrink on drying. Figure 5-13 (p. 5-21) shows volume falling linearly from the liquid limit to below the plastic limit, then curving and flattening as the soil desaturates near the shrinkage limit. The shrinkage limit has traditionally been the intersection of the two straight portions (Point E), but many soils keep shrinking slightly below it as suction develops; the true shrinkage limit is the point of tangency of the curved and straight portions (Point C). The single-point test (withdrawn ASTM D427, or ASTM D4943) computes SL by Eq. 4.11 and may not give the true value (Cerato and Lutenegger, 2006): for the soil of Figure 5-14, ASTM D427 gave 11.2 percent while both shrinkage curves gave about 18 percent. Where accuracy matters, measure the entire shrinkage curve. (pp. 5-20 to 5-21)",
+      "key_points": [
+        "Traditional SL = intersection (Point E); true SL = tangent point (Point C) (p. 5-20).",
+        "ASTM D427 11.2 percent vs true about 18 percent (Figure 5-14) (p. 5-21).",
+        "Measure the entire shrinkage curve when accuracy matters (p. 5-21)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-13: Idealized shrinkage curve for an initially saturated soil"
+      ],
+      "tables": [],
+      "applicability": "Identification and characterization of collapsible, expansive, and organic soils for transportation projects"
+    },
+    {
+      "section_id": "5.3.6",
+      "title": "Linear Shrinkage Test",
+      "summary": "Linear shrinkage (e.g., Heidema, 1957): soil mixed slightly above the liquid limit dries in a semicircular brass trough; LS = (Lo - Lf)/Lo x 100 % = (1 - Lf/Lo) x 100 % (Eq. 5.6).",
+      "body": "The linear shrinkage test (e.g., Heidema, 1957) mixes soil to slightly above the liquid limit, places it in a lubricated semicircular brass trough and dries it in air then oven; linear shrinkage LS (Eq. 5.6) uses the initial and final (oven dry) lengths. Figure 5-14 (Cerato and Lutenegger, 2006, p. 5-22) compares shrinkage curves from the shrinkage limit dish and linear shrinkage mold. (pp. 5-21 to 5-22)",
+      "key_points": [
+        "LS = (Lo - Lf)/Lo x 100 % (Eq. 5.6) (p. 5-21).",
+        "Figure 5-14: dish and mold shrinkage curves (p. 5-22)."
+      ],
+      "equations": [
+        "Eq. 5.6: LS = [(Lo - Lf) / Lo] x 100% = (1 - Lf / Lo) x 100%; Lo = initial specimen length, Lf = final (oven dry) specimen length (p. 5-21)"
+      ],
+      "figures": [
+        "Figure 5-14: Measured shrinkage curves using shrinkage limit dish and linear shrinkage mold (from Cerato and Lutenegger, 2006)"
+      ],
+      "tables": [],
+      "applicability": "Identification and characterization of collapsible, expansive, and organic soils for transportation projects"
+    },
+    {
+      "section_id": "5.3.7",
+      "title": "Shrink Test",
+      "summary": "Shrinkage limit and linear shrinkage use remolded mixtures and cannot predict natural shrinkage; the shrink test (Briaud et al., 2003) slowly dries an undisturbed 3 in. disk, 0.75 to 1.0 in. high, measuring every 3 to 4 hours, then oven dries it for a volume versus water content curve.",
+      "body": "Both remolded-mixture tests are useful index tests but cannot predict the shrinkage of natural soil with structure and natural water content. The \"shrink test\" (Briaud et al., 2003) trims an undisturbed specimen into a 3 in. diameter disk 0.75 to 1.0 in. high, dries it slowly for several days measuring dimensions and mass about every 3 to 4 hours, then oven dries it for 24 hours; the measurements give a drying curve of volume change versus water content similar to Figure 5-14. (p. 5-22)",
+      "key_points": [
+        "Remolded tests cannot predict natural shrinkage (p. 5-22).",
+        "Shrink test on undisturbed 3 in. disk (Briaud et al., 2003) (p. 5-22)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identification and characterization of collapsible, expansive, and organic soils for transportation projects"
+    },
+    {
+      "section_id": "5.4",
+      "title": "Organic Soils",
+      "summary": "Organic soils and peats have low undrained strength, high compressibility and large secondary compression, and are a red flag (poor bearing, chronic settlement, corrosion); peat is usually avoided or removed and replaced; organic soils are generally unsuitable bearing material.",
+      "body": "Organic soils and peats share the challenges of soft silts and clays (low undrained shear strength, high compressibility), and organic silts and clays undergo significant secondary compression long after primary consolidation. Organic soils are a \"red flag\" associated with poor load bearing capacity, long-term chronic settlement and high corrosion potential, with documented failures (e.g., Gould, et al., 2002; p. 5-23). Peat is usually avoided or removed and replaced with engineered fill; organic soils are generally unsuitable bearing material even for lightly loaded structures, so identification and characterization are important. (pp. 5-22 to 5-23)",
+      "key_points": [
+        "Low strength, high compressibility, secondary compression (p. 5-22).",
+        "Peat usually removed and replaced (p. 5-23).",
+        "Generally unsuitable bearing material (p. 5-23)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identification and characterization of collapsible, expansive, and organic soils for transportation projects"
+    },
+    {
+      "section_id": "5.4.1",
+      "title": "Occurrence of Organic Soils",
+      "summary": "Highly organic soils occur in low, wet depressions with high water tables; peats and organic fines are found in glaciated regions of the upper Midwest and Canada and in alluvial, lacustrine and some marine deposits; Muskeg, an arctic peat, can reach 100 feet.",
+      "body": "Most highly organic soils occur in low topographic positions or depressions holding water, with very high water tables; above the water table organic matter has generally decayed. Peats and organic fine-grained soils are associated with previously glaciated regions of the upper Midwest and Canada and with alluvial, lacustrine and some marine deposits. Muskeg, a peat of arctic or northern climates, can reach depths of 100 feet. (p. 5-23)",
+      "key_points": [
+        "Low, wet depressions with high water tables (p. 5-23).",
+        "Muskeg can reach 100 feet (p. 5-23)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identification and characterization of collapsible, expansive, and organic soils for transportation projects"
+    },
+    {
+      "section_id": "5.4.2",
+      "title": "Identification of Organic Soils",
+      "summary": "Organic soils are dark, odorous, light, wet, possibly fibrous, oxidizing black to brown in minutes; CPT shows low tip resistance and high friction ratio, to be confirmed by samples; organic content by AASHTO T267 or ASTM D2974; Landva et al. (1983) classes Pt, PtO, O, MO, CO by ash content (Table 5-9).",
+      "body": "Peats are identified by dark brown to black color, organic odor and decaying plant matter; organic soils have low unit weight, high water content and may be fibrous, and oxidize quickly in air (black to brown in minutes). CPT may identify highly organic layers by low tip resistance and relatively high friction ratio, and CPTU and DMT charts exist, but in situ indications must be confirmed by samples since clayey and organic soils may respond similarly. Organic proportion is measured by AASHTO T267 or ASTM D2974; Landva et al. (1983) classify by ash content Ac (ASTM D2974), water content, specific gravity and fiber content (Table 5-9, p. 5-24) into peats (Pt), peaty organic soils (PtO), organic soils (O), and silts and clays with organic content (MO, CO). Oven-dried versus natural liquid limit is a qualitative indication (section 4.16.1). (pp. 5-23 to 5-24)",
+      "key_points": [
+        "Visual: dark, odor, plant matter; oxidizes quickly (p. 5-23).",
+        "CPT: low tip resistance, high friction ratio; confirm by samples (p. 5-23).",
+        "Table 5-9: Landva et al. (1983) Pt, PtO, O, MO/CO (p. 5-24)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 5-9: Organic soil and peat classification from Landva, et al. (1983) - class, ash content Ac, moisture content wn, specific gravity Gs, fiber content: Pt < 20 %, > 500 %, < 1.7, > 50 %; PtO 20 to 40 %, 150 to 800 %, 1.6 to 1.9, < 50 %; O 40 to 95 %, 100 to 500 %, > 1.7, insignificant; MO, CO 95 to 99 %, < 100 %, > 2.4, none"
+      ],
+      "applicability": "Identification and characterization of collapsible, expansive, and organic soils for transportation projects"
+    },
+    {
+      "section_id": "5.4.3",
+      "title": "Challenges for Subsurface Exploration of Organic Soils and Peat",
+      "summary": "Organic soils and amorphous peats are hard to sample undisturbed; thin-walled fixed piston samplers with sharp edges suit them; fibrous peats compress under sampler advance, so use block samples. Properties vary greatly over short distances, so sample and test more extensively.",
+      "body": "Organic soils and non-fibrous (amorphous) peats are weak and compressible from high water content and void ratio, so undisturbed samples for strength, compressibility and hydraulic conductivity are hard to obtain. Thin-walled fixed piston samplers are generally most suitable; in fibrous peats undisturbed sampling is extremely difficult as fibers compress during advance, so a sharp-edged sampler is critical and block sampling is preferred where possible; disturbed samples (auger cuttings) suffice for identification. Properties vary greatly spatially and with depth, even within a few feet, so investigations need more extensive sampling and testing than in inorganic soils. (p. 5-24)",
+      "key_points": [
+        "Thin-walled fixed piston samplers with sharp edges (p. 5-24).",
+        "Block samples for fibrous peats (p. 5-24).",
+        "More sampling and testing than inorganic sites (p. 5-24)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identification and characterization of collapsible, expansive, and organic soils for transportation projects"
+    },
+    {
+      "section_id": "5.4.4",
+      "title": "Shear Strength of Organic Soils and Peats",
+      "summary": "Undrained strength of organic soils is low; use triaxial tests on good samples, CPT with site-specific transformations, and vane tests in non-fibrous soils only (fibers reinforce). Fibrous peats are frictional and anisotropic and may need more than 20 percent axial strain to peak.",
+      "body": "Strength depends on effective stress and stress history; undrained strengths are commonly low (low unit weight, saturated, no significant stress history). Laboratory triaxial tests on good undisturbed samples should give design undrained strength; CPT and CPTU supplement them, but common transformations are unreliable except for preliminary estimates, so site-specific transformations against laboratory strengths should be developed. Field vane tests (VST) suit non-fibrous organic soils (p. 5-25), noting time-to-failure effects; fibers can reinforce and overstate vane strength, so VST is inappropriate in fibrous organic soils and peats. Drained parameters are easier to measure (less disturbance-sensitive): fibrous peats are almost entirely frictional with larger friction angles than expected (fibers as tensile reinforcement), possibly anisotropic (horizontal fibers), and may need more than 20 percent axial strain to mobilize peak strength. (pp. 5-24 to 5-25)",
+      "key_points": [
+        "Triaxial tests on good samples; CPT needs site-specific transformations (p. 5-24).",
+        "VST inappropriate in fibrous peats (p. 5-25).",
+        "Fibrous peats frictional, anisotropic; > 20 percent strain to peak (p. 5-25)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identification and characterization of collapsible, expansive, and organic soils for transportation projects"
+    },
+    {
+      "section_id": "5.4.5",
+      "title": "Compressibility of Organic Soils and Peats",
+      "summary": "Organic soils and peats are highly compressible (Cc often > 1.0; peat test at w = 341 %, Figure 5-15); primary consolidation is quick, so secondary compression dominates. Cc versus water content (Figure 5-16) scatters by a factor of 5; C_alpha/Cc about 0.05 +/- 0.01 organic clays and silts, 0.075 +/- 0.01 peats (Table 5-10).",
+      "body": "Compressibility deserves considerable effort where shallow foundations or embankments overlie organic soil or peat. Figure 5-15 (p. 5-26) shows a consolidation test on peat with initial water content 341 percent and dry unit weight 12.4 lbs/ft3 with large strains. Relatively high hydraulic conductivity makes primary settlement quick (days to months), so post-construction settlement is mostly secondary compression, requiring C_alpha as well as compression and recompression indices. High void ratios give Cc often exceeding 1.0; Cc relates to initial water content (Figure 5-16, Mesri, et al., 1997), but on log scales with scatter up to a factor of 5, so measure Cc where settlement matters (Chapter 6). C_alpha should come from consolidation tests on site-specific undisturbed specimens; the end of primary is hard to identify in peaty soils; C_alpha often increases just above sigma'p and decreases well above it, so test over the anticipated stress range (p. 5-27). C_alpha can also be estimated from Cc and C_alpha/Cc (Mesri and Godlewski, 1977; Mesri and Castro, 1987): often 0.05 +/- 0.01 for organic clays and silts and 0.075 +/- 0.01 for peats (Table 5-10). (pp. 5-25 to 5-27)",
+      "key_points": [
+        "Cc often > 1.0 (p. 5-25).",
+        "Secondary compression dominates post-construction settlement (p. 5-25).",
+        "Cc from water content scatters by a factor of 5 (Figure 5-16) (p. 5-25).",
+        "C_alpha peaks just above sigma'p (p. 5-26).",
+        "C_alpha/Cc 0.05 +/- 0.01 organic clays, 0.075 +/- 0.01 peats (p. 5-27)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-15: One-dimensional consolidation test measurements for peat from Pittsfield, MA",
+        "Figure 5-16: Values of natural water content and compression index for peats, clays, and silts (from Mesri, et al., 1997)"
+      ],
+      "tables": [
+        "Table 5-10: Values of ratio CαCc ⁄ for several organic soils (from Mesri and Godlewski, 1977) - organic clays and silts: Norfolk organic silt 0.05; calcareous organic silt 0.035 to 0.06; postglacial organic clay 0.05 to 0.07; organic clays and silts 0.04 to 0.06; New Haven organic clay silt 0.04 to 0.075; peats: amorphous and fibrous peat 0.035 to 0.083; Canadian muskeg 0.09 to 0.10; peat 0.075 to 0.085; peat 0.05 to 0.08; fibrous peat 0.06 to 0.085"
+      ],
+      "applicability": "Identification and characterization of collapsible, expansive, and organic soils for transportation projects"
+    },
+    {
+      "section_id": "5.5",
+      "title": "Dispersive Soils",
+      "summary": "Dispersive soils look like normal clays but erode and pipe readily: repulsive forces between clay particles exceed attractive forces (Bell and Maud, 1994), deflocculating them in relatively pure water.",
+      "body": "Dispersive soils often appear like normal clays but are highly susceptible to erosion and piping. Dispersion occurs when repulsive forces between clay particles exceed attractive forces (Bell and Maud, 1994), causing deflocculation in relatively pure water, the basis of the dispersing agent in hydrometer tests. Hazards to transportation infrastructure mostly come from surface or subsurface erosion (piping). (p. 5-27)",
+      "key_points": [
+        "Look normal but erode and pipe (p. 5-27).",
+        "Repulsion exceeds attraction (Bell and Maud, 1994) (p. 5-27)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identification and characterization of dispersive, liquefiable, and colluvial soils"
+    },
+    {
+      "section_id": "5.5.1",
+      "title": "Identification of Dispersive Soils Using Indirect Measurements",
+      "summary": "Index tests cannot distinguish dispersive soils; chemistry can: exchangeable sodium percentage ESP = ES/CEC x 100 % (Eq. 5.7), > about 10 suggesting dispersion; Sherard et al. (1976b) combine total dissolved salts with ESP (Figure 5-17, zones A dispersive, B non-dispersive, C potentially).",
+      "body": "Conventional index tests cannot differentiate dispersive soils, but chemical tests can (p. 5-28): exchangeable sodium is the main attribute, quantified by the exchangeable sodium percentage ESP (Eq. 5.7), ES and CEC both in meq/100 g. ESP alone is imperfect, but values greater than about 10 suggest potential dispersion. Sherard et al. (1976b) use total dissolved salts (TDS) with ESP (Figure 5-17, p. 5-29): Zone A dispersive, Zone B non-dispersive, Zone C potentially dispersive; Gerber and Von Maltitz Harmse (1987) give an alternative chart. (pp. 5-27 to 5-28)",
+      "key_points": [
+        "ESP = ES/CEC x 100 % (Eq. 5.7) (p. 5-28).",
+        "ESP > about 10: potentially dispersive (p. 5-28).",
+        "Figure 5-17: TDS and ESP zones (Sherard et al., 1976b) (p. 5-28)."
+      ],
+      "equations": [
+        "Eq. 5.7: ESP = (ES / CEC) x 100%; ES = exchangeable sodium, CEC = cation exchange capacity, both in meq/100 g (p. 5-28)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identification and characterization of dispersive, liquefiable, and colluvial soils"
+    },
+    {
+      "section_id": "5.5.2",
+      "title": "Identification of Dispersive Soils Using Direct Measurements",
+      "summary": "Double hydrometer test (ASTM D4221): % dispersion = A/B x 100 % (Eq. 5.8), A and B the fractions finer than 0.005 mm without and with dispersant; > 30 percent marks about 85 percent and > 60 percent about 95 percent of erodible soils. Pinhole test (ASTM D4647, Table 5-11): D1, D2 dispersive.",
+      "body": "The double hydrometer test (U.S. Soil Conservation Service, 1940s; Sherard, et al., 1976b) runs a standard hydrometer test with dispersing agent and agitation and a second on an identical sample without either; percent dispersion is Eq. 5.8, A being the fraction finer than 0.005 mm without dispersing agent and B with it; similar results mean a highly dispersive soil. Decker and Dunnigan (1977): about 85 percent of soils with dispersion greater than 30 percent and 95 percent with dispersion greater than 60 percent are subject to dispersive erosion. Standardized as ASTM D4221, it is simple and needs no special equipment. The pinhole dispersion test (ASTM D4647; Sherard et al., 1976a; p. 5-29) passes distilled water under a small gradient through a 1.0 mm hole in a compacted specimen (Figure 5-18, p. 5-30): highly dispersive outflow is dark and the hole enlarges quickly; moderately dispersive cloudy with stable hole and flow; non-dispersive clear. It works on intact specimens, with problems reported for highly sensitive clays (Dascal, et al., 1977). Table 5-11: D1 or D2 dispersive, ND3 or ND4 moderately or slightly dispersive, ND1 or ND2 non-dispersive. (pp. 5-28 to 5-30)",
+      "key_points": [
+        "% Dispersion = A/B x 100 % (Eq. 5.8) (p. 5-28).",
+        "> 30 percent: about 85 percent erodible; > 60 percent: 95 percent (Decker and Dunnigan, 1977) (p. 5-28).",
+        "Pinhole test ASTM D4647: 1.0 mm hole (p. 5-29).",
+        "Table 5-11: D1, D2 dispersive; ND1, ND2 non-dispersive (p. 5-29)."
+      ],
+      "equations": [
+        "Eq. 5.8: % Dispersion = (A / B) x 100%; A = fraction finer than 0.005 mm from the hydrometer test without dispersing agent, B = fraction finer than 0.005 mm with dispersing agent (p. 5-28)"
+      ],
+      "figures": [
+        "Figure 5-17: Identification of dispersive soils from TDS and ESP (from Sherard, et al., 1976b)",
+        "Figure 5-18: Schematic of pinhole test for characterizing dispersive soil (from ASTM D4647, 2013)"
+      ],
+      "tables": [
+        "Table 5-11: Criteria for classifying dispersive soils from pinhole test (from ASTM D4647, 2013) - classification, head (mm), test time (min), final flow rate (mL/s), cloudiness from side and top, hole size after test (mm): D1 50, 5, 1.0-1.4, dark, very dark, >= 2.0; D2 50, 10, 1.0-1.4, moderately dark, dark, > 1.5; ND4 50, 10, 0.8-1.0, slightly dark, moderately dark, <= 1.5; ND3 180 and 380, 5, 1.4-2.7 and 1.8-3.2, barely visible, slightly dark, >= 1.5; ND2 1020, 5, > 3.0, clear, barely, < 1.5; ND1 1020, 5, <= 3.0, perfectly clear, perfectly clear, 1.0; Method B: D 50, 10, slightly dark to dark, very dark to moderately dark, >= 1.5; SD 180-380, 5, barely visible, slightly dark, >= 1.5; ND 380, 5, clear, barely visible to clear, < 1.5"
       ],
       "applicability": "Identification and characterization of dispersive, liquefiable, and colluvial soils"
     },
     {
-      "section_id": "5.8-5.15",
-      "title": "Degradable Rock, Corrosive Soils, and Other Problematic Materials",
-      "summary": "Degradable rock (shale, clay-shale, coal): characterized by slake durability index ID(2) and jar slake index. Table 5-12 provides shale suitability for rock fill (ID(2) > 85% and jar slake > 3 for good fill). Corrosive soils: high corrosion risk when resistivity < 2000 ohm-cm; also from acid soils, organic soils, and soils with high sulfate/chloride content. Sensitive clays: St = su,undisturbed/su,remolded; St > 4 moderate, >8 high, >50 quick; Norwegian quick clays with LI > 1. Sulfate-bearing soils: sulfate-induced heave when lime/cement applied to soils with >1,000 ppm sulfates. Permafrost: permanently frozen ground; thaw on warming causes dramatic strength loss and settlement.",
-      "body": "Degradable rock: Shales, mudstones, and clay-shales may degrade rapidly when exposed to atmosphere. Classified by slake durability (ASTM D4644 — drum with wet steel rollers, ID(2) = mass retained after 2 cycles / initial mass × 100%) and jar slake index. Table 5-12: ID(2) > 90% and jar slake > 3 = low degradation potential; ID(2) < 75% or jar slake ≤ 1 = high degradation; requires special fill or disposal consideration.\n\nCorrosive soils (Table 5-13): Acid soils (pH < 5.5), soil with organic matter, soils in permanently saturated zones, soils with high sulfate or chloride. Resistivity < 2000 ohm-cm indicates corrosion risk. American Water Works Association criteria rate corrosion potential from resistivity, pH, chloride, sulfate, and sulfide measurements.\n\nCemented sands: Stronger than uncemented; cementation from carbonates, silica, iron oxides. Potential problems: cementing agents may dissolve; cemented material may collapse when disturbed; potential to mislead classification from SPT or CPT.\n\nSensitive quick clays: St = su,undisturbed / su,remolded (at same water content). High sensitivity (St > 8) indicates large strength loss when disturbed; quick clays (St > 50) are particularly hazardous. LI > 1 indicates sensitivity risk. Norwegian quick clays have high sensitivity due to leaching of salt from marine clays. Thin-walled large-diameter samplers needed for highly sensitive soils.\n\nSulfate-bearing soils: Addition of lime, fly ash, or cement to soils with sulfate content > 1000 ppm can cause sulfate-induced heave. Test for sulfate content before specifying lime/cement treatment.\n\nPermafrost: Permanently frozen for ≥ 2 consecutive years. Thaw on temperature increase causes dramatic settlement and strength loss. Identified by surface geomorphology (polygonal ground, stone nets, pingos, ice wedges). Core sampling required to assess ice content and structure.",
+      "section_id": "5.6",
+      "title": "Liquefiable Soils",
+      "summary": "Liquefaction: seismic pore pressure reduces effective stress until soil behaves like a liquid, losing strength and stiffness and causing slope failures, lateral spreads, reduced bearing resistance and settlement.",
+      "body": "Liquefiable soils are a significant seismic hazard: pore water pressure generated by shaking reduces effective stress until the soil behaves like a liquid, reducing strength and stiffness and commonly producing slope failures, lateral spreads, reduced foundation bearing resistance and vertical settlement. (p. 5-30)",
       "key_points": [
-        "Degradable rock (shale): slake durability ID(2) and jar slake index; ID(2) < 75% indicates high degradation",
-        "Corrosive soils: resistivity < 2000 ohm-cm indicates risk; also from pH, Cl, SO4, organic content",
-        "Sensitive quick clays: St = su,undisturbed/su,remolded; St > 50 = quick; LI > 1 indicates susceptibility",
-        "Sulfate-induced heave: do NOT use lime/cement on soils with >1000 ppm sulfate without testing",
-        "Permafrost: permanently frozen; thaw causes dramatic settlement; identified by surface geomorphology"
+        "Seismic pore pressure removes effective stress (p. 5-30).",
+        "Slope failures, lateral spreads, bearing loss, settlement (p. 5-30)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identification and characterization of dispersive, liquefiable, and colluvial soils"
+    },
+    {
+      "section_id": "5.6.1",
+      "title": "Occurrence of Liquefiable Soils",
+      "summary": "Liquefiable soils are saturated, loose, coarse-grained (sands, gravels, silty sands and gravels); key conditions: below the water table, typically less than about 20 percent fines, relative density less than about 40 percent, strong enough shaking; low-plasticity silts may also liquefy.",
+      "body": "Potentially liquefiable soils exist in virtually all regions; shaking characteristics are beyond the manual's scope, but ground characteristics must be characterized (p. 5-31). Liquefiable soils are generally saturated, loose, coarse-grained soils (sands, gravels, silty sand, silty gravel, gravelly sands). Key conditions: (1) saturated (below the water table); (2) predominantly coarse-grained (typically less than about 20 percent fines); (3) loose (relative density less than about 40 percent); (4) sufficiently strong ground motion. Some fine-grained soils, particularly silts with little or no plasticity, may also liquefy (Lutenegger and Hallberg, 1988; Guo and Prakash, 1999; Boulanger and Idriss, 2006). (pp. 5-30 to 5-31)",
+      "key_points": [
+        "Saturated, loose, coarse-grained soils (p. 5-31).",
+        "Typically < about 20 percent fines; Dr < about 40 percent (p. 5-31).",
+        "Low-plasticity silts may liquefy (p. 5-31)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identification and characterization of dispersive, liquefiable, and colluvial soils"
+    },
+    {
+      "section_id": "5.6.2",
+      "title": "Identification of Liquefiable Soils",
+      "summary": "Liquefaction potential from CSR or CRR charts against corrected in situ measures: SPT (N1)60 = N x CN x Em/(0.60Eff) with CN = sqrt(pa/sigma'vo) (Eqs. 5.9, 5.10, Figure 5-19), CPT qc1N (Eqs. 5.11, 5.12, Figure 5-20), Vs1 (Eq. 5.13, Figure 5-21). Fines: PI > 7 not liquefiable, or Bray and Sancio (2006).",
+      "body": "Required measurements: grain-size distribution, groundwater and a measure of relative density; since clean coarse soils are hard to sample, in situ tests are relied on. Charts (Figures 5-19 to 5-21) plot cyclic stress ratio CSR or cyclic resistance ratio CRR (measures of shaking) against corrected in situ measurements (indirect measures of density), the curves bounding conditions likely and unlikely to liquefy (Kramer, 1996). Most common: corrected SPT N-values, fines and Figure 5-19 (Youd, et al., 2001, p. 5-32), with N corrected for overburden and hammer energy by Eq. 5.9 (Kramer, 1996) and CN by Eq. 5.10 (Liao and Whitman, 1986; Youd, et al., 2001). CPT: Robertson and Wride (1998) chart (Figure 5-20, p. 5-33) with qc normalized by Eqs. 5.11 and 5.12, n varying from 0.5 to 1.0 with grain size (Youd, et al., 2001). Shear wave velocity: Andrus and Stokoe (2000) chart (Figure 5-21) with Vs corrected by Eq. 5.13. Fine-grained soils are debated: many adopt PI greater than 7 as not liquefiable (Boulanger and Idriss, 2006); others Bray and Sancio (2006), PI less than 12 and wn/LL greater than 0.85 possibly susceptible (p. 5-34); susceptible soils are then evaluated with Figures 5-19 to 5-21. (pp. 5-31 to 5-34)",
+      "key_points": [
+        "CSR or CRR vs corrected in situ measurement charts (p. 5-31).",
+        "(N1)60 = N x CN x Em/(0.60 Eff) (Eq. 5.9) (p. 5-31).",
+        "CN = sqrt(pa/sigma'vo) (Eq. 5.10) (p. 5-31).",
+        "qc1N = CQ(qc/pa), CQ = (pa/sigma'vo)^n, n 0.5 to 1.0 (Eqs. 5.11, 5.12) (p. 5-32).",
+        "Vs1 = Vs(pa/sigma'vo)^0.25 (Eq. 5.13) (p. 5-33).",
+        "PI > 7 not liquefiable; or PI < 12 and wn/LL > 0.85 susceptible (Bray and Sancio, 2006) (pp. 5-33 to 5-34)."
+      ],
+      "equations": [
+        "Eq. 5.9: (N1)60 = N x CN x Em / (0.60 Eff); N = measured SPT blow count, CN = overburden correction factor, Em = actual hammer energy, Eff = theoretical free-fall hammer energy (Kramer, 1996) (p. 5-31)",
+        "Eq. 5.10: CN = sqrt(pa / sigma'vo); sigma'vo = effective overburden stress at the test depth, pa = atmospheric pressure in the same units (p. 5-31)",
+        "Eq. 5.11: qc1N = CQ (qc / pa); CQ = normalization factor for overburden stress (Youd, et al., 2001) (p. 5-32)",
+        "Eq. 5.12: CQ = (pa / sigma'vo)^n; n = exponent from 0.5 to 1.0 depending on grain-size characteristics (p. 5-32)",
+        "Eq. 5.13: Vs1 = Vs (pa / sigma'vo)^0.25; Vs = measured shear wave velocity (p. 5-33)"
+      ],
+      "figures": [
+        "Figure 5-19: Liquefaction potential charts for SPT measurements (from Youd, et al., 2001)",
+        "Figure 5-20: Liquefaction potential charts for CPT measurements (from Youd, et al., 2001)",
+        "Figure 5-21: Liquefaction potential chart for shear wave velocity measurements (from Andrus and Stokoe, 2000)"
+      ],
+      "tables": [],
+      "applicability": "Identification and characterization of dispersive, liquefiable, and colluvial soils"
+    },
+    {
+      "section_id": "5.7",
+      "title": "Colluvium and Talus",
+      "summary": "Colluvium and talus are loose deposits at slope bases and in valleys and swales, formed by downslope migration and only marginally stable; cuts in them disturb equilibrium and need monitoring, maintenance or remediation.",
+      "body": "Colluvium (colluvial soil) and talus are often loose deposits near slope bases and in valleys, swales and other low-lying features. Colluvium results from in-place weathering of parent rock and downslope migration by creep and/or fluvial transport. Accumulations are associated with slope stability problems: formed by migration and sliding, they are often only marginally stable, so cut slopes disrupt their equilibrium and generally need careful monitoring, maintenance or remediation. (p. 5-34)",
+      "key_points": [
+        "Loose deposits at slope bases (p. 5-34).",
+        "Marginally stable; cuts need monitoring or remediation (p. 5-34)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identification and characterization of dispersive, liquefiable, and colluvial soils"
+    },
+    {
+      "section_id": "5.7.1",
+      "title": "Identification of Colluvium and Talus",
+      "summary": "In hilly or mountainous terrain, colluvium (rock fragments in a clayey to sandy matrix, temperate and humid climates) and talus (well-graded boulders to sand or silt with large voids, arid and semi-arid) reflect parent rock and climate.",
+      "body": "Colluvium and talus are most prevalent in hilly or mountainous terrain, their characteristics set by parent bedrock and climate. Colluvium commonly consists of rock fragments in a heterogeneous clayey to sandy matrix; talus of mechanically weathered to unweathered fragments of parent rock, commonly well-graded boulders to sand- or silt-size particles, possibly with large voids. Colluvium generally occurs in temperate and humid environments, talus predominantly in arid and semi-arid regions. (p. 5-34)",
+      "key_points": [
+        "Colluvium: fragments in clayey to sandy matrix (p. 5-34).",
+        "Talus: well-graded boulders to silt, large voids (p. 5-34)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identification and characterization of dispersive, liquefiable, and colluvial soils"
+    },
+    {
+      "section_id": "5.7.2",
+      "title": "Challenges for Subsurface Exploration and Testing in Colluvium",
+      "summary": "Colluvium can be drilled and sampled if fine-grained, but thin lenses are easily missed and rock fragments and steep access complicate work; test pits and trenches are economical and show thin lenses; inclinometers detect creep and piezometers water perched at the colluvium-rock interface.",
+      "body": "Typical drilling and sampling work in predominantly fine-grained colluvium. It may be massive (20 feet or more) or thin lenses (a few feet or less) easily drilled through unnoticed; large rock fragments may require changing methods within a boring; steep slopes and marginal stability make access difficult and costly. Test pits and trenches (p. 5-35), usually backhoe-excavated, sometimes by hand, are economical, show thin lenses, yield block samples or pushed tube samples from sidewalls, and reveal depth to bedrock and groundwater. Inclinometers socketed into bedrock show whether colluvium is creeping; piezometers, especially at the colluvium-bedrock interface, show groundwater: the interface often acts as a shallow aquitard, water accumulating in the colluvium, degrading the parent rock (especially poorly indurated shale or mudstone) and seeping along the interface, both reducing stability. (pp. 5-34 to 5-35)",
+      "key_points": [
+        "Thin colluvium lenses easily missed (p. 5-34).",
+        "Test pits and trenches economical (p. 5-35).",
+        "Colluvium-rock interface often a shallow aquitard (p. 5-35)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identification and characterization of dispersive, liquefiable, and colluvial soils"
+    },
+    {
+      "section_id": "5.7.3",
+      "title": "Challenges for Subsurface Exploration and Testing in Talus",
+      "summary": "Talus is extremely hard to explore: samples represent the matrix, not the mass, and penetration tests refuse on boulders; use desk studies, reconnaissance and geophysics (section 8.4.2), and found foundations in competent rock below.",
+      "body": "Talus particles range from silt and sand to boulders, so exploration is often extremely difficult: recovered fragments indicate the matrix, not the mass, global properties are extremely hard to characterize with conventional equipment, and penetration tests meet refusal on boulders. Talus is best identified from maps, aerial photographs and reconnaissance, and characterized by non-intrusive geophysics (section 8.4.2). Foundations are usually supported in competent rock below the talus, provided the talus slope is stable, so geophysics locating competent rock is particularly useful. (p. 5-35)",
+      "key_points": [
+        "Samples represent the matrix, not the mass (p. 5-35).",
+        "Geophysics; foundations in rock below talus (p. 5-35)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identification and characterization of dispersive, liquefiable, and colluvial soils"
+    },
+    {
+      "section_id": "5.7.4",
+      "title": "Compressibility of Colluvium and Talus",
+      "summary": "Colluvium compressibility from oedometer tests on undisturbed samples or from shear wave velocity and elastic theory; talus compressibility is hard to assess, its voids risk concrete overpours and grout loss, so foundations bypass talus to competent material.",
+      "body": "Colluvium compressibility can be assessed with standard oedometer tests on representative undisturbed samples, or settlements calculated from geophysical results and elastic theory, shear wave velocity giving the small-strain shear modulus (Chapter 8). Talus is often a loose mixture of granular material and boulders that may settle during construction; its scale and heterogeneity make compression properties hard to assess, and its voids risk large concrete overpours and lost grout in drilled shafts and anchors unless cased, so assumed side resistance may not be realized; foundations are generally founded in competent material below the talus. (p. 5-36)",
+      "key_points": [
+        "Oedometer or shear wave velocity for colluvium (p. 5-36).",
+        "Talus voids: overpours, grout loss; found below talus (p. 5-36)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identification and characterization of dispersive, liquefiable, and colluvial soils"
+    },
+    {
+      "section_id": "5.7.5",
+      "title": "Shear Strength of Colluvium and Talus",
+      "summary": "Colluvium strength from tests on undisturbed samples; the colluvium-rock interface may be much weaker, tested by direct shear on remolded material at in situ water content, at residual if previously displaced. Talus is often at the angle of repose (FS near 1.0); back-analysis is often the only method.",
+      "body": "Colluvium strength can be assessed by laboratory tests on undisturbed samples; the colluvium-rock interface may be much weaker because of accumulated water and can be evaluated by direct shear tests on remolded material at the expected in situ water content, evaluating residual conditions if the material may have displaced by sliding or creep. Alternatively, back-calculate a nearby failed or failing slope: unless underlying material governs, many talus slopes can be assumed at the angle of repose with a factor of safety near 1.0, varying cohesion and friction to achieve FS = 1.0. For talus, back-analysis is often the only method; it is non-unique and more reliable with thorough assessment of geometry, stratigraphy and groundwater. (p. 5-36)",
+      "key_points": [
+        "Interface strength by direct shear on remolded material; residual if displaced (p. 5-36).",
+        "Talus near angle of repose, FS about 1.0 (p. 5-36).",
+        "Back-analysis non-unique (p. 5-36)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identification and characterization of dispersive, liquefiable, and colluvial soils"
+    },
+    {
+      "section_id": "5.8",
+      "title": "Degradable Rock",
+      "summary": "Degradable rock (poorly indurated shales, claystones, siltstones, mudstones, some weak metamorphic rock) looks rock-like when exposed but softens, slakes or disintegrates in minutes to years, causing slope failures, rockfall from ledges, foundation capacity loss, scour and fill problems.",
+      "body": "Some rocks degrade when exposed to the atmosphere, stress relief, wet/dry and freeze/thaw cycles or other weathering, appearing rock-like at first but degrading within minutes or over years; poorly indurated shales, claystones, siltstones, mudstones and similar sedimentary rocks are particularly susceptible, as is poorly cemented metamorphic rock. Degradation includes softening, slaking and complete disintegration into soil-like material. It can cause slope instability from sloughing to catastrophic failure, rockfall from \"hanging\" ledges of durable rock over degradable beds, reduced shallow and deep foundation capacity, and scour (Keaton, et al., 2012); as fill, degradable rock causes problems unless characterized and placed or treated appropriately, or \"wasted\". (p. 5-37)",
+      "key_points": [
+        "Shales, claystones, siltstones, mudstones susceptible (p. 5-37).",
+        "Slope failures, rockfall, foundation loss, scour, fill problems (p. 5-37)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identification and design considerations for degradable rock, corrosive soils, sensitive clays, and permafrost"
+    },
+    {
+      "section_id": "5.8.1",
+      "title": "Identification of Degradable Materials",
+      "summary": "Identify degradable rock from desk study maps (weak rock map, Figure 5-22, Santi, 2006), nearby exposures, core slaking, popping or cracking and borehole sloughing on logs, then quantify by slake durability and jar slake tests (section 4.14), strength, hardness or XRD.",
+      "body": "Identification starts with the desk study: maps and historical records. Figure 5-22 (Santi, 2006, p. 5-38) maps large-scale weak rock in the U.S.; weak does not necessarily mean degradable, nor strong non-degradable, but strength and hardness correlate with durability as a first approximation, so smaller-scale maps and project records should be consulted. Site visits and field investigations add indications: condition of nearby exposures; degradation of core after extraction (slaking, popping, cracking) logged with the time taken; sloughing of borehole walls. Degradability of identified formations should then be quantified, most commonly by slake durability and jar slake tests (section 4.14); strength, hardness and XRD composition give indirect indications; Santi (2006) describes approaches including point load strength index tests. (pp. 5-37 to 5-38)",
+      "key_points": [
+        "Weak rock map (Figure 5-22, Santi, 2006) (p. 5-37).",
+        "Log core slaking, popping, cracking with time (p. 5-38).",
+        "Quantify by slake durability and jar slake tests (p. 5-38)."
       ],
       "equations": [],
       "figures": [
-        "Figure 5-22: Map of large-scale occurrences of weak rock in the U.S. (Santi 2006)"
+        "Figure 5-22: Map of large-scale occurrences of weak rock in the U.S. (from Santi, 2006)"
+      ],
+      "tables": [],
+      "applicability": "Identification and design considerations for degradable rock, corrosive soils, sensitive clays, and permafrost"
+    },
+    {
+      "section_id": "5.8.2",
+      "title": "Classification of Shale and Degradable Rock",
+      "summary": "Rock mass classifications (Chapter 9) suit weak rock poorly; Strohm et al. (1978) rate shale fill by Id(2) or IJ (Table 5-12: > 90 or 6 durable, 60 to 90 or 3 to 5 intermediate, < 60 or < 2 soil-like); Franklin's (1981) rating R (Figure 5-23) guides lift thickness, slopes and bearing.",
+      "body": "Common rock mass classifications (Chapter 9) are poorly suited to weak and degradable rock, so specific systems exist, especially for shales. Strohm et al. (1978) classify shale suitability for rock fill by slake durability index ID(2) or jar slake index IJ (Table 5-12, p. 5-40). Franklin (1981) gives a shale rating R from slake durability and plasticity index (more degradable shales) or point load strength index (less degradable) (Figure 5-23, from Walkinshaw and Santi, 1996), used for classification and for design and construction criteria such as lift thickness, slope angle, slope height and bearing capacity (Maerz, et al., 2010). (pp. 5-39 to 5-40)",
+      "key_points": [
+        "Chapter 9 rock mass systems poorly suited to weak rock (p. 5-39).",
+        "Table 5-12: shale fill suitability by Id(2) or IJ (Strohm et al., 1978) (p. 5-40).",
+        "Franklin's rating R (Figure 5-23) for design criteria (p. 5-39)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-23: Franklin’s shale rating system (from Walkinshaw and Santi, 1996)"
       ],
       "tables": [
-        "Table 5-12: Suitability of shale materials for rock fill (Strohm et al. 1978)",
-        "Table 5-13: Soil types with high corrosion potential (Elias et al. 2009)"
+        "Table 5-12: Suitability of shale materials for rock fill (after Strohm, et al., 1978) - ID(2) > 90, IJ = 6: durable rockfill materials, if minus gravel-size fraction less than 20 to 30 percent; ID(2) 60 to 90, IJ 3 to 5: hard, non-durable intermediate material; ID(2) < 60, IJ < 2: soft, non-durable materials treated as soil"
       ],
+      "applicability": "Identification and design considerations for degradable rock, corrosive soils, sensitive clays, and permafrost"
+    },
+    {
+      "section_id": "5.9",
+      "title": "Corrosive Soils",
+      "summary": "Corrosion is electrochemical: iron dissolves at anodes and forms rust; corrosive soils deteriorate buried steel (piles, sheet piles, anchors, MSE reinforcement, pipes), so identification matters, increasingly with geotechnical asset management.",
+      "body": "Corrosion results from electrochemical interaction between buried metal and the surrounding soil: potential differences on the metal set up anode and cathode sites; at the anode iron passes into solution, electrons travel to the cathode and form hydroxyls with oxygen and water, and metal is consumed forming ferrous and ferric hydroxide (rust). Corrosive soils promote this, deteriorating buried steel such as piles, sheet piles, soil anchors, MSE wall reinforcement and pipes, so identification matters for projects with buried steel, and is likely to become routine with geotechnical asset and performance management. (p. 5-40)",
+      "key_points": [
+        "Electrochemical corrosion of buried steel (p. 5-40).",
+        "Piles, anchors, MSE reinforcement at risk (p. 5-40)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identification and design considerations for degradable rock, corrosive soils, sensitive clays, and permafrost"
+    },
+    {
+      "section_id": "5.9.1",
+      "title": "Occurrence of Corrosive Soils",
+      "summary": "Corrosive soils include acid-sulfate, sodic, calcareous and organic soils and industrial fills (Table 5-13); corrosion is greatest above and within the zone of groundwater fluctuation where moisture and oxygen coexist, less below the water table with low gradients.",
+      "body": "Corrosive soils occur worldwide with regional variation (Table 5-13, adapted from Elias, et al., 2009, p. 5-41): naturally acidic or alkaline soils, organic soils (peat, marsh), and industrial fills and contaminated soils. Moisture and oxygen availability matter: groundwater fluctuations supply both, so corrosion rates are generally greater above the water table in the zone of fluctuation (Decker, et al., 2008); below the water table, low gradients mean less free oxygen and less corrosion than significant flow. (pp. 5-40 to 5-41)",
+      "key_points": [
+        "Table 5-13: corrosive soil types (Elias et al., 2009) (p. 5-41).",
+        "Greatest corrosion in the zone of groundwater fluctuation (p. 5-40)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 5-13: Soil types with high corrosion potential (adapted from Elias, et al., 2009) - acid-sulfate soils (Appalachian regions): pyritic, pH < 4.5, high sulfate and chloride; sodic soils (western states): pH > 9, high salt; calcareous soils (FL, TX, NM and western states): high carbonate, alkaline but pH < 8.5, mildly corrosive; organic soils (FL Everglades, GA, NC, MI, WI, MN): organic content > 1 %, microbial induced corrosion; industrial fills (slag, cinders, fly ash, mine tailings; nation wide): acidic or alkaline, may have high sulfate and chloride"
+      ],
+      "applicability": "Identification and design considerations for degradable rock, corrosive soils, sensitive clays, and permafrost"
+    },
+    {
+      "section_id": "5.9.2",
+      "title": "Identification of Corrosive Soils",
+      "summary": "Indirect indicators: resistivity (most accurate; AASHTO T288, ASTM G187, G57; significant corrosion below 2000 ohm-cm, Table 5-14), pH (< 4 or > 10 high; AASHTO < 5.5 corrosive), chlorides or sulfates > 500 ppm, and organic content (pitting).",
+      "body": "Direct measurement of corrosion potential is not practical; corrosion relates to soil type, moisture, oxygen, resistivity, pH, soluble salts (sulfate, sulfide, chloride), redox potential, CEC and microbial activity, of which resistivity, pH and soluble salts are most used; corrosion is worst in moist soils with low resistivity, extreme pH and high salts. Electrical resistivity is generally the most accurate indicator (Elias, et al., 2009): two-electrode laboratory tests (AASHTO T288, ASTM G187) or four-electrode Wenner array (ASTM G57). It depends on soluble salts and water content: ASTM G187 saturates the specimen; AASHTO T288 measures at several water contents and reports the minimum; field values should consider in situ water content. AASHTO (2014) indicates significant corrosion may occur below 2000 ohm-cm (p. 5-42); Table 5-14 (Roberge, 2000) grades corrosivity. pH (AASHTO T289, ASTM G51) supplements resistivity: pH less than 4 or greater than 10 indicates significant potential (Elias, et al., 2009); AASHTO LRFD indicates corrosive conditions below pH 5.5. Soluble salts (chlorides AASHTO T291, sulfates AASHTO T290, both ASTM D4327 per Elias et al., 2009): concentrations greater than 500 ppm indicate significant corrosion potential (AASHTO, 2014). Organic soils (AASHTO T267, ASTM D2974) can cause pitting corrosion. (pp. 5-41 to 5-42)",
+      "key_points": [
+        "Resistivity most accurate (Elias et al., 2009) (p. 5-41).",
+        "Significant corrosion below 2000 ohm-cm (AASHTO, 2014) (pp. 5-41 to 5-42).",
+        "Table 5-14: corrosivity by resistivity (Roberge, 2000) (p. 5-42).",
+        "pH < 4 or > 10 high; AASHTO pH < 5.5 corrosive (p. 5-42).",
+        "Chlorides or sulfates > 500 ppm (p. 5-42)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 5-14: Degree of soil corrosivity based on resistivity (from Roberge, 2000) - soil resistivity (ohm-cm): > 20,000 noncorrosive; 10,000 to 20,000 mildly corrosive; 5,000 to 10,000 moderately corrosive; 3000 to 5000 corrosive; 1,000 to 3,000 highly corrosive; < 1000 extremely corrosive"
+      ],
+      "applicability": "Identification and design considerations for degradable rock, corrosive soils, sensitive clays, and permafrost"
+    },
+    {
+      "section_id": "5.9.3",
+      "title": "Classification of Corrosive Soils",
+      "summary": "Corrosion rating systems: AWWA (cast iron pipe), AISI (galvanized pipe, pH and resistivity), and manufacturers' scores such as Earth Contact Products' sum of resistivity, pH and moisture points (Table 5-15) graded from unlikely (0 to 2) to severe (14 to 20) (Table 5-16).",
+      "body": "Rating systems include the American Water Works Association (AWWA) system for cast iron pipe (somewhat complicated, many factors) and the American Iron and Steel Institute (AISI) system for galvanized pipe from pH and resistivity; some steel pile manufacturers use similar approaches, e.g., Earth Contact Products, LLC's numerical corrosivity score (Table 5-15): points for resistivity, pH and soil water content are summed for a site and depth and graded by Table 5-16. (p. 5-43)",
+      "key_points": [
+        "AWWA and AISI rating systems (p. 5-43).",
+        "Table 5-15: points for resistivity, pH, moisture (p. 5-43).",
+        "Table 5-16: total score 0-2 unlikely to 14-20 severe (p. 5-43)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 5-15: Typical Numerical Corrosivity Scoring System - as printed: resistivity (ohm-cm) < 500 10, 500 to 999 8, 1,000 to 1,999 5, 2,000 to 4,999 2, 5,000 to 10,000 1, > 10,000 0; pH 2 to 4.5 6, 5 to 6 0, 7 to 9 6, 10.5 to 12 2; moisture: tidal or salt water 5, poor drainage - always wet 2, fair drainage - moist 1, good drainage - usually dry 0",
+        "Table 5-16: Soil Corrosion Potential Based on Corrosivity Score (Typical) - total corrosivity score 0 to 2 unlikely; 3 to 4 slight; 5 to 6 mild; 7 to 8 moderate; 9 to 13 aggressive; 14 to 20 severe"
+      ],
+      "applicability": "Identification and design considerations for degradable rock, corrosive soils, sensitive clays, and permafrost"
+    },
+    {
+      "section_id": "5.10",
+      "title": "Cemented Sands",
+      "summary": "Cemented sands are stronger than uncemented ones but the bond may be destroyed by sampling or construction, may be soluble or weak long term, and gives brittle response (Figure 5-24) and true cohesion, all to be assessed for design.",
+      "body": "Cemented sands have a cementing agent in the voids or at grain contacts and are usually \"stronger\" than uncemented sands (p. 5-44), but: (1) the agent may be destroyed during sampling, misrepresenting the deposit; (2) it may be damaged during construction; (3) it may be soluble or extremely weak, unreliable long term; (4) the response is brittle. Weak cementation forms from point-contact welding with aging or clay-silt binder in dune deposits; carbonate bonds can be strong enough to be weak sandstone. Cementation gives strong, stiff but brittle behavior (Figure 5-24) and \"true cohesion\" independent of confining pressure, to be carefully assessed for design. (pp. 5-43 to 5-44)",
+      "key_points": [
+        "Four problems: sampling, construction damage, solubility, brittleness (p. 5-43).",
+        "Brittle response and true cohesion (Figure 5-24) (p. 5-44)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identification and design considerations for degradable rock, corrosive soils, sensitive clays, and permafrost"
+    },
+    {
+      "section_id": "5.10.1",
+      "title": "Identification of Cemented Sands",
+      "summary": "Cemented sands are identified by brittle behavior, local experience, near-vertical exposed slopes, cemented pieces in cuttings, carbonates, anomalously high blow counts or poor core recovery, unit weight checks and immersion tests; multiple observations and judgment are needed.",
+      "body": "Cemented sands are most commonly identified by brittle load-deformation behavior and local experience, and also by careful observation: substantial vertical or near vertical slopes in excavations or natural cuts strongly indicate cementation; cemented pieces in cuttings; cementing agents such as carbonates (Chapter 4), though XRD or carbonate tests are seldom run without initial indications and several cementation types are common. \"Anomalous\" drilling and sampling behavior, uncharacteristically high blow counts or poor core recovery despite uniform drilling resistance, also indicates cementation but has other causes (p. 5-45). Unit weights of recovered samples show whether the soil is as dense as blow counts suggest; immersing a sample or adding water shows whether the cement is soluble or softens. Identification often requires multiple observations and sound judgment. (pp. 5-44 to 5-45)",
+      "key_points": [
+        "Near-vertical exposed slopes indicate cementation (p. 5-44).",
+        "High blow counts or poor recovery: possible, not reliable (pp. 5-44 to 5-45).",
+        "Check unit weight; immerse samples (p. 5-45)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-24: Typical stress-strain-volume change response for cemented sands: (a) stress-strain response, and (b) peak stress failure envelopes (from Clough, et al., 1981)"
+      ],
+      "tables": [],
+      "applicability": "Identification and design considerations for degradable rock, corrosive soils, sensitive clays, and permafrost"
+    },
+    {
+      "section_id": "5.10.2",
+      "title": "Challenges for Subsurface Exploration and Testing in Cemented Sands",
+      "summary": "Cemented sands resist thin-walled tubes; use block samples shallow and Pitcher or Denison samplers deeper, or coring with care. High SPT counts with uncemented-looking recovery may be misread as dense sand, conservative at low stress but unconservative at high stress. Do not trim specimens.",
+      "body": "Cemented sands are often too strong for thin-walled Shelby tubes: block sampling suits shallow depths, \"over coring\" Pitcher or Denison samplers deeper deposits; treated as soft rock, conventional coring may recover poorly from drilling disturbance and fluids. Weak cementation may go unrecognized: high SPT counts with recovered material appearing uncemented may be misinterpreted as dense uncemented sand (p. 5-46), often conservative at low working stresses but possibly unconservative at higher stresses, where dense uncemented sand may be stronger than loose cemented sand. In the laboratory extreme care is needed: weak cementation yields to fingertip pressure, so test at the as-recovered diameter without trimming; shave block samples carefully. (pp. 5-45 to 5-46)",
+      "key_points": [
+        "Block samples, Pitcher or Denison samplers (p. 5-45).",
+        "Misread as dense sand: unconservative at high stress (pp. 5-45 to 5-46).",
+        "Test at as-recovered diameter; do not trim (p. 5-46)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identification and design considerations for degradable rock, corrosive soils, sensitive clays, and permafrost"
+    },
+    {
+      "section_id": "5.10.3",
+      "title": "Interpretation of Laboratory and Field Testing Results in Cemented Sands",
+      "summary": "Use careful triaxial or direct shear tests and the pressuremeter; SPT and DMT need site calibration. Cementation dominates at low confinement (stiff then strain softening), fades at high confinement; test at service confining pressures and choose peak or large-displacement strength by expected strain.",
+      "body": "Laboratory triaxial or direct shear tests give strength and stiffness but must be carefully run and interpreted; the pressuremeter gives quantitative in situ strength and stiffness; SPT and dilatometer give useful qualitative results needing site calibration for quantitative estimates. At low confining pressure cementation dominates: initially stiff, then strain softening after bond rupture (Figure 5-24a); differences between peak and post-peak decrease with confinement, and high confining pressure may disrupt bonds, giving uncemented behavior, so test confining pressures should match service conditions. Since bonds break at low strain, judge whether peak or large-displacement strengths suit the anticipated working strains: large-displacement piles driven into calcium carbonate sands likely develop much less resistance than predicted from peak strengths of undisturbed samples (e.g., Murff, 1987). (p. 5-46)",
+      "key_points": [
+        "Pressuremeter for quantitative in situ values (p. 5-46).",
+        "Cementation dominates at low confinement (p. 5-46).",
+        "Match test confining pressure to service (p. 5-46).",
+        "Driven piles in carbonate sands below peak predictions (Murff, 1987) (p. 5-46)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identification and design considerations for degradable rock, corrosive soils, sensitive clays, and permafrost"
+    },
+    {
+      "section_id": "5.11",
+      "title": "Sensitive “Quick” Clays",
+      "summary": "Sensitivity St = su undisturbed / su remolded (Eq. 5.14); quick clays may exceed 500 (Rissa, Norway, 1978; Anchorage, 1964 landslides). Their metastable structure forms by fresh-water leaching of uplifted marine clays; water contents above the liquid limit, LI up to 2 or 3.",
+      "body": "Sensitive clays lose strength dramatically when disturbed or remolded; sensitivity St is Eq. 5.14, both strengths at the same water content. Practically all clays show some sensitivity; \"quick\" clays turn essentially to a viscous liquid when remolded, as in the 1978 Rissa, Norway and 1964 Anchorage, Alaska landslides, with sensitivities exceeding 500 in extreme cases. Their fragile, open \"metastable\" structure forms when marine clays are leached by fresh water after uplift (often from retreating glaciers); they have high void ratios and water contents, often well above the liquid limit, with LI up to 2 or 3. (p. 5-47)",
+      "key_points": [
+        "St = su-undisturbed / su-remolded (Eq. 5.14) (p. 5-47).",
+        "Quick clays: sensitivity can exceed 500 (p. 5-47).",
+        "Leached uplifted marine clays; LI up to 2 or 3 (p. 5-47)."
+      ],
+      "equations": [
+        "Eq. 5.14: St = su-undisturbed / su-remolded; undrained shear strengths undisturbed and completely remolded at the same water content (p. 5-47)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identification and design considerations for degradable rock, corrosive soils, sensitive clays, and permafrost"
+    },
+    {
+      "section_id": "5.11.1",
+      "title": "Occurrence of “Quick” Clays",
+      "summary": "Quick clays are rare, restricted to formerly glaciated regions uplifted isostatically: in North America along the St. Lawrence Seaway and in parts of Alaska; other U.S. sensitive soils usually fall well short of quick.",
+      "body": "Natural quick clays are rare, generally restricted to formerly glaciated regions with isostatic uplift after ice retreat; in North America mainly along the St. Lawrence Seaway in the northeast and portions of Alaska. Other highly sensitive U.S. soils usually have sensitivities well below those of quick clays. (p. 5-47)",
+      "key_points": [
+        "St. Lawrence Seaway and parts of Alaska (p. 5-47)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identification and design considerations for degradable rock, corrosive soils, sensitive clays, and permafrost"
+    },
+    {
+      "section_id": "5.11.2",
+      "title": "Identification of “Quick” Clays",
+      "summary": "Liquidity index is a simple, reliable indicator: LI > 1.0 suggests St > 5, quick clays often LI > 1.5 or 2 (Figure 5-25). Laboratory sensitivity is underestimated; field vane, lab vane or fall cone give better values; Skempton and Northey (1952) classes (Table 5-17).",
+      "body": "Highly sensitive clays are often easily identified: the liquidity index is simple and generally reliable, LI greater than 1.0 suggesting sensitivity greater than 5 (Figure 5-25, from Holtz and Kovacs, 1981, p. 5-48), highly sensitive or quick clays often greater than 1.5 or 2. Direct measurement compares undisturbed and remolded undrained strength at the same water content; laboratory values underestimate sensitivity because some disturbance is unavoidable; field vane tests, rotating the vane to large displacement for the remolded strength, are more accurate; miniature laboratory vanes and fall cone tests also serve. Skempton and Northey (1952) classification: Table 5-17. (pp. 5-47 to 5-48)",
+      "key_points": [
+        "LI > 1.0 suggests St > 5 (Figure 5-25) (p. 5-47).",
+        "Quick clays often LI > 1.5 or 2 (p. 5-47).",
+        "Field vane more accurate than laboratory (p. 5-48)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-25: Sensitivity of marine clays as related to liquidity index (from Holtz and Kovacs, 1981)"
+      ],
+      "tables": [],
+      "applicability": "Identification and design considerations for degradable rock, corrosive soils, sensitive clays, and permafrost"
+    },
+    {
+      "section_id": "5.11.3",
+      "title": "Challenges for Subsurface Exploration and Testing in Sensitive Clays",
+      "summary": "Sensitive clays need rapid thin-walled sampling, larger than 3 in. tubes, foil samplers or hand-carved blocks, and field vane tests; in the laboratory extrude onto the pedestal and do not consolidate above in situ stress (SHANSEP generally precluded). Skempton and Northey classes in Table 5-17.",
+      "body": "Conventional sampling and testing may disrupt the structure. Rapidly deployed thin-walled tubes may suit moderately sensitive soils; more sensitive soils need diameters greater than conventional 3-inch Shelby tubes (p. 5-49); rapid deployment reduces wall friction disturbance; extremely sensitive soils need foil-liner samplers; hand-carved block samples are excellent at shallow depth. Field vane tests are an excellent alternative or complement, portable and adaptable in vane size. In the laboratory, transport, handling and preparation need extreme care: extrude directly onto the pedestal, confine with thin membranes, and avoid consolidating to large effective stresses that destructure the soil, which generally precludes SHANSEP (Ladd and Foott, 1974; Chapter 7); do not exceed in situ effective stresses. (pp. 5-48 to 5-49)",
+      "key_points": [
+        "Larger than 3 in. thin-walled tubes; foil samplers; blocks (pp. 5-48 to 5-49).",
+        "Field vane tests excellent (p. 5-49).",
+        "Do not consolidate above in situ stress; SHANSEP generally precluded (p. 5-49).",
+        "Table 5-17: St < 1 insensitive to > 16 quick (p. 5-49)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 5-17: Classification of clay sensitivity (from Skempton and Northey, 1952) - St < 1.0 insensitive clays; St = 1 to 2 low sensitivity; 2 to 4 medium sensitivity; 4 to 8 sensitive; 8 to 16 extra-sensitive; St > 16 quick-clays"
+      ],
+      "applicability": "Identification and design considerations for degradable rock, corrosive soils, sensitive clays, and permafrost"
+    },
+    {
+      "section_id": "5.12",
+      "title": "High Sulfate Soils",
+      "summary": "Sulfate-rich fine-grained soils (gypsum, sodium sulfate) cause sulfate-induced heave when stabilized with lime, fly ash or cement (ettringite and thaumasite form and expand) and can attack Portland cement concrete.",
+      "body": "Fine-grained soils with high sulfate concentrations (gypsum CaSO4 2H2O, sodium sulfate Na2SO4) pose two hazards: \"sulfate-induced heave\" when lime, fly ash or cement are used to stabilize them, distressing pavements and slabs (Hunter, 1988; p. 5-50), as calcium reacts with sulfate to form expansive ettringite and thaumasite; and attack on Portland cement paste, cracking and weakening concrete foundations. (pp. 5-49 to 5-50)",
+      "key_points": [
+        "Sulfate-induced heave with lime or cement (p. 5-50).",
+        "Ettringite and thaumasite expand (p. 5-50).",
+        "Sulfates attack concrete (p. 5-50)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identification and design considerations for degradable rock, corrosive soils, sensitive clays, and permafrost"
+    },
+    {
+      "section_id": "5.12.1",
+      "title": "Occurrence of High Sulfate Soils",
+      "summary": "Sulfate soils are most prevalent in arid and semi-arid regions (in the U.S. Texas, Colorado, Kansas, Georgia, Nevada, Louisiana, California, New Mexico), concentrated in seams or pockets near the surface in low areas with little groundwater flow.",
+      "body": "Sulfate-rich soils occur worldwide, most prevalently in arid and semi-arid regions; in the U.S. documented in Texas, Colorado, Kansas, Georgia, Nevada, Louisiana, California and New Mexico (Puppala, et al., 2003). Sulfates are seldom uniform, occurring in concentrated seams or pockets, often near the surface; groundwater flow leaches them, so they persist where flow is small, often in low-lying areas. (p. 5-50)",
+      "key_points": [
+        "Arid and semi-arid regions; listed states (p. 5-50).",
+        "Seams and pockets near the surface (p. 5-50)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identification and design considerations for degradable rock, corrosive soils, sensitive clays, and permafrost"
+    },
+    {
+      "section_id": "5.12.2",
+      "title": "Identification of High Sulfate Soils",
+      "summary": "Measure sulfate by AASHTO T290, ASTM C1580 or D4327; swell thresholds range 300 to 25,000 ppm but heave is not significant below about 2,000 ppm; lime stabilization risk by Table 5-18; ACI exposure classes S0 to S3 for concrete (Table 5-19).",
+      "body": "Desk studies (soil surveys) can identify potential sulfate soils; sulfate content should then be measured by AASHTO T290, ASTM C1580 or ASTM D4327. Swell thresholds depend on composition and range from 300 to 25,000 ppm (Little and Nair, 2009; Talluri, et al., 2013), but field evidence suggests heave is not significant below about 2,000 ppm (Petry and Little, 1992; Harris, et al., 2004). Table 5-18 gives lime stabilization risk. ACI exposure classes for concrete in contact with sulfate-bearing soil or water (Table 5-19, p. 5-51) set mix-design criteria for cementitious materials. (pp. 5-50 to 5-51)",
+      "key_points": [
+        "Sulfate by AASHTO T290, ASTM C1580, D4327 (p. 5-50).",
+        "Heave not significant below about 2,000 ppm (p. 5-50).",
+        "Table 5-18: lime stabilization risk (Little and Nair, 2009) (p. 5-50).",
+        "Table 5-19: ACI exposure classes S0 to S3 (p. 5-51)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 5-18: Risk for lime stabilization of sulfate-bearing clays (from Little and Nair, 2009) - soluble sulfate < 3,000 ppm (< 0.3 %) low risk; 3,000 to 5,000 ppm (0.3 to 0.5 %) moderate; 5,000 to 8,000 ppm (0.5 to 0.8 %) moderate to high; > 8,000 ppm (> 0.8 %) high to unacceptable; > 10,000 ppm (> 1.0 %) unacceptable",
+        "Table 5-19: Severity of sulfate environment for concrete corrosion (after ACI, 2008) - water-soluble sulfates in soil (% by weight) and in water (ppm): class S0 not applicable < 0.10, < 150; S1 moderate 0.10 to 0.20, 150 to 1,500; S2 severe 0.20 to 2.00, 1,500 to 10,000; S3 very severe > 2.00, > 10,000"
+      ],
+      "applicability": "Identification and design considerations for degradable rock, corrosive soils, sensitive clays, and permafrost"
+    },
+    {
+      "section_id": "5.13",
+      "title": "Pyritic/Acid Rock",
+      "summary": "Pyritic shales and carbonaceous rocks oxidize (with bacteria) to gypsum and sulfuric acid: gypsum growth expands rock and damages underground structures, and acid runoff harms the environment and corrodes concrete and metal. Identify pyrite (fool's gold) visually; quantify by petrography and acid tests.",
+      "body": "Some formations, especially shales and carbonaceous sedimentary rock, contain enough pyrite to be hazardous: oxidized with autotrophic bacteria, it reacts with calcium in groundwater to form gypsum crystals and sulfuric acid, calcite also reacting with the acid; gypsum growth expands the rock and can severely distress underground structures (Quigley et al., 1973; Penner, et al., 1972; Lutenegger et al., 1979); acid runoff is an environmental problem and accelerates corrosion of concrete and metals. Pyrite is identified on samples as small cubic, brassy-yellow, metallic grains (\"fool's gold\"), gray when tarnished, with iron staining on exposures; geologic map explanations may mention it; bare or stunted vegetation in drainage areas may indicate it. Laboratory testing may estimate pyrite volume by visual inspection or thin sections, and chemical tests the acid potential. (p. 5-51)",
+      "key_points": [
+        "Pyrite oxidizes to gypsum and sulfuric acid (p. 5-51).",
+        "Gypsum growth expands rock; acid runoff (p. 5-51).",
+        "Identify visually; quantify by thin sections and chemical tests (p. 5-51)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identification and design considerations for degradable rock, corrosive soils, sensitive clays, and permafrost"
+    },
+    {
+      "section_id": "5.14",
+      "title": "Unsaturated Soils",
+      "summary": "Unsaturated soils are not problematic as such but complicate measurement: suction makes them stronger and stiffer, transiently. Design for drained conditions uses saturated parameters (conservative); total stress strengths depend on suction at sampling, so dry-season tests may be unconservative.",
+      "body": "Unsaturated soils seldom are hazards in themselves, but occasional desaturation complicates measurement and interpretation. They are generally stronger, stiffer and less permeable than similar saturated soils, largely from matric suction increasing effective confinement, but suction is transient and hard to predict. Design should consider the most critical conditions over the life of a feature, usually saturated, so practice relies on saturated parameters and pore pressures even if characterization occurs unsaturated. In situ properties are governed by suction and unsaturated mechanics, which may predict different strength, compressibility and conductivity (Lu and Likos, 2004; Fredlund, et al., 2012; Briaud, 2013). For drained analyses (long-term stability, settlement), effective stress parameters from saturated specimens with saturated steady-state seepage are straightforward and conservative if conditions are actually unsaturated (p. 5-53). Undrained total stress analyses are more complex: measured undrained strength reflects the effective stress at sampling and testing, so samples from dry summer months overstate strength after an extended wet period and wet-period samples understate dry-season strength; in situ tests likewise, so short-term designs may be conservative or unconservative. Actual performance reflects actual conditions, often better than the worst-case design conditions; actual conditions must be considered in back-analysis, empirical method development and in situ test correlations. (pp. 5-52 to 5-53)",
+      "key_points": [
+        "Suction makes soils stronger and stiffer, transiently (p. 5-52).",
+        "Design usually for saturated conditions (p. 5-52).",
+        "Drained design with saturated parameters conservative (p. 5-53).",
+        "Dry-season undrained strengths may be unconservative (p. 5-53).",
+        "Consider actual conditions in back-analysis and correlations (p. 5-53)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identification and design considerations for degradable rock, corrosive soils, sensitive clays, and permafrost"
+    },
+    {
+      "section_id": "5.15",
+      "title": "Permafrost",
+      "summary": "Permafrost is ground frozen for at least two years, stronger, stiffer and less permeable but prone to creep; the overlying active layer freezes and thaws (ice lenses, frost heave, thaw weakening), and impermeable permafrost traps water in it.",
+      "body": "Permafrost is permanently frozen ground, generally continuously frozen for at least two years, with highly variable ice, sometimes massive pure ice bodies. Frozen soils have greater strength and stiffness and lower hydraulic conductivity than unfrozen soils but are susceptible to long-term creep, particularly ice-filled. An overlying \"active layer\" freezes and thaws with substantial volume change: freezing grows \"ice lenses\" toward heat loss (usually upward) where water is available, producing frost heave; thawing loses volume and causes \"thaw weakening\", with pore pressure rise if thaw outpaces drainage. Effects resemble expansive soils but are more localized and variable, producing hummocky landscapes; practically impermeable permafrost makes water collect and move in the active layer, worsening freeze-thaw problems. (p. 5-54)",
+      "key_points": [
+        "Frozen at least two years; creep susceptible (p. 5-54).",
+        "Active layer: ice lenses, frost heave, thaw weakening (p. 5-54)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identification and design considerations for degradable rock, corrosive soils, sensitive clays, and permafrost"
+    },
+    {
+      "section_id": "5.15.1",
+      "title": "Occurrence of Permafrost",
+      "summary": "Permafrost follows the ground thermal regime: in the U.S. across much of Alaska and at high elevations in the mountain west; continuous and hundreds of feet thick at high latitudes and elevations, discontinuous and thinner lower, with thicker active layers (Figure 5-26).",
+      "body": "The ground thermal regime controls permafrost. In the U.S. it lies across much of Alaska and at high elevations in the mountain west from Washington to Arizona. At higher latitudes and elevations it is generally continuous and may be hundreds of feet thick; at lower latitudes and elevations discontinuous and much thinner (Figure 5-26), with a generally thicker active layer. (p. 5-54)",
+      "key_points": [
+        "Alaska and high mountain west elevations (p. 5-54).",
+        "Continuous and thick at high latitudes; discontinuous lower (p. 5-54)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Identification and design considerations for degradable rock, corrosive soils, sensitive clays, and permafrost"
+    },
+    {
+      "section_id": "5.15.2",
+      "title": "Identification of Permafrost",
+      "summary": "Permafrost shows in geomorphic features (polygonal ground, stone nets, solifluction sheets, thaw lakes, beaded drainage, ice wedges, pingos), geophysics (seismic refraction, galvanic and airborne electromagnetic resistivity), drilling resistance and temperatures of recovered samples.",
+      "body": "Permafrost can usually be identified by common methods: geomorphic features in aerial photographs and site visits (p. 5-55), including polygonal ground, stone nets, solifluction sheets, thaw lakes, beaded drainage, ice wedges and pingos; geophysics such as seismic refraction, galvanic resistivity and airborne electromagnetic resistivity; and borings where drilling resistance differs from surrounding ground, or temperature measurements on recovered samples where it does not. Figure 5-26 (Brown, 1970) shows continuous and discontinuous permafrost profiles. (pp. 5-54 to 5-55)",
+      "key_points": [
+        "Geomorphic features indicate permafrost (pp. 5-54 to 5-55).",
+        "Seismic refraction and resistivity surveys (p. 5-55).",
+        "Temperature of recovered samples (p. 5-55)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 5-26: Typical soil profiles in permafrost: continuous permafrost (left) and discontinuous permafrost (right) (from Brown, 1970)"
+      ],
+      "tables": [],
+      "applicability": "Identification and design considerations for degradable rock, corrosive soils, sensitive clays, and permafrost"
+    },
+    {
+      "section_id": "5.15.3",
+      "title": "Challenges with Subsurface Investigation and Testing for Permafrost",
+      "summary": "Keep samples at in situ thermal state: thawing or freezing disturbs them; coring with large barrels (trim thawed material) or blocks; PMT and mechanical CPT used; dense borings for ice pockets and thermistors or thermocouples to monitor the thermal regime over time.",
+      "body": "The main complication is temperature sensitivity of samples: permafrost resists mechanical disturbance, but thawing frozen soil or freezing unfrozen soil severely disturbs samples, so their in situ condition must be maintained (p. 5-56). Its strength usually requires coring, which may thaw parts of the core, so relatively large core barrels allow thawed material to be removed; block samples suit shallow depths; pressuremeter tests and mechanical cone penetration tests (Schmertmann, 1970a) avoid sample care issues or complement laboratory tests. Permafrost varies in space and time, needing relatively dense borings to find ice pockets or unfrozen zones, and the thermal regime is best monitored over time by thermocouples or thermistors at regular depths in boreholes, like piezometers for groundwater. (pp. 5-55 to 5-56)",
+      "key_points": [
+        "Maintain samples frozen or unfrozen as in situ (p. 5-55).",
+        "Large core barrels; block samples; PMT and mechanical CPT (p. 5-56).",
+        "Thermistors or thermocouples over time (p. 5-56)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
       "applicability": "Identification and design considerations for degradable rock, corrosive soils, sensitive clays, and permafrost"
     }
   ]
