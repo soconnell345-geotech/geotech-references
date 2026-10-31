@@ -136,11 +136,16 @@ Figure 7-1 to 7-84 and Table 7-1 to 7-32 sits in the section that prints it.
 
 ## Found but not fixed
 
-- GEC-12 7.2.3 repeats its subsections' Eqs 7-38 to 7-41 and Figures 7-32
-  to 7-34, plus Table 7-1 (also in 7.1.5); left as built.
-- `check_section_numbers.py` still calls 7.3.7.3 extra: the printed heading
-  is "7.3.7.3 p-y Method" (p. 356) and the checker misses it, likely for the
-  lowercase start.
+Nothing left from the ch 7 work. Fixed after 2a350c5:
+
+- `check_section_numbers.py` missed the printed "7.3.7.3 p-y Method"
+  (p. 356) because a title had to start with a capital; it now also takes a
+  lowercase curve name (5c92acd). Over all references this adds only GEC-12
+  7.3.7.3, DM7.2 6-6.4.2 "p-y Analyses" and GEC-5 8.10.2 "p-y Curves".
+- GEC-12 7.2.3 repeated its subsections' Eqs 7-38 to 7-41 and Figures 7-32
+  to 7-34, and Table 7-1 (printed in 7.1.5); removed (6f5f933).
+- GEC-12 ch 14 had no 14.2 heading; "14.2 Generic Driven Pile Specification"
+  (Vol II p. 284) now holds 14.2.1-14.2.8 (0916650).
 
 ## Chapters from the original build (8d48ece) or the same kind of build (unchecked)
 
@@ -250,8 +255,8 @@ reworked part of the chapter from the print, not that it was rebuilt whole.
 - `python scripts/audit_chapter_text.py <ref>`: gec_6, gec_7, gec_12, gec_13
   all exit 0 (0 errors).
 - `python scripts/check_section_numbers.py gec_7 gec_12 gec_6`: exit 0; the
-  flags left are gec_12 3.0 and 7.3.7.3 (see Found but not fixed) and gec_6
-  chapter "x.0" introductions and 4.3.3; 7.2.2.1 and 7.3.6.2 are fixed.
+  flags left are gec_12 3.0 and gec_6 chapter "x.0" introductions and
+  4.3.3; 7.2.2.1, 7.3.6.2 and 7.3.7.3 are fixed.
 - The app's `test_citations.py` (from the app branch, this library on
   PYTHONPATH): exit 0, 5 passed, after each ch 7 commit.
 - The retrieval eval's CPT question now searches "pile resistance from CPT
