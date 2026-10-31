@@ -54,40 +54,53 @@ class TestLossOfSupportValues:
 # ============================================================================
 
 class TestCompositeKSubbase:
-    """Anchors: Table 3.3 worked example (all rows at Dsb=6in) plus Figure
-    3.3's own standalone example (same Dsb/Esb/MR as the Table 3.3
-    June-Oct row, giving a second, slightly different read -- the guide's
-    own ~2.5% chart-reading noise floor). The Dsb=12/18in sensitivity
-    (dsb_scale read grid) has no printed anchor and is asserted only for
-    monotonicity plus its own documented read-grid values, at a wider
-    tolerance -- see the module's Figure 3.3 section docstring."""
+    """Figure 3.3 read off the printed chart (REF-58). Anchors: Figure
+    3.3's own example and the four Table 3.3 rows (pdf_page 132, printed
+    II-43), all at Dsb=6in; the guide's own two reads of one point (400 and
+    410 pci) differ by 2.5%, which sets the tolerance."""
 
     def test_figure_3_3_standalone_example(self):
         # Dsb=6in, Esb=20,000psi, MR=7,000psi -> printed k_inf=400 pci
         r = ck.composite_k_subbase(mr_psi=7000, esb_psi=20000, dsb_in=6.0)
-        assert r["k_inf_pci"] == pytest.approx(400, rel=0.10)
+        assert r["k_inf_pci"] == pytest.approx(400, rel=0.05)
         assert r["chart_read"] is True
+        assert "Figure 3.3" in r["reference"]
 
     def test_table_3_3_jan_row(self):
         r = ck.composite_k_subbase(mr_psi=20000, esb_psi=50000, dsb_in=6.0)
-        assert r["k_inf_pci"] == pytest.approx(1100, rel=0.03)
+        assert r["k_inf_pci"] == pytest.approx(1100, rel=0.05)
 
     def test_table_3_3_mar_row(self):
         r = ck.composite_k_subbase(mr_psi=2500, esb_psi=15000, dsb_in=6.0)
-        assert r["k_inf_pci"] == pytest.approx(160, rel=0.03)
+        assert r["k_inf_pci"] == pytest.approx(160, rel=0.05)
 
     def test_table_3_3_apr_row(self):
         r = ck.composite_k_subbase(mr_psi=4000, esb_psi=15000, dsb_in=6.0)
-        assert r["k_inf_pci"] == pytest.approx(230, rel=0.03)
+        assert r["k_inf_pci"] == pytest.approx(230, rel=0.05)
 
     def test_table_3_3_june_row(self):
         r = ck.composite_k_subbase(mr_psi=7000, esb_psi=20000, dsb_in=6.0)
-        assert r["k_inf_pci"] == pytest.approx(410, rel=0.06)
+        assert r["k_inf_pci"] == pytest.approx(410, rel=0.05)
+
+    def test_stiff_subbase_lands_between_drawn_diagonals(self):
+        # Esb 400,000 psi over MR 5,000 psi at Dsb 6in: the construction
+        # lands between the chart's 400 and 600 pci diagonals (the old
+        # power-law fit gave about 3,000 pci, beyond the chart's 2,000).
+        r = ck.composite_k_subbase(mr_psi=5000, esb_psi=400000, dsb_in=6.0)
+        assert 400 < r["k_inf_pci"] < 600
+        assert "note" not in r
 
     def test_monotonic_increasing_in_esb(self):
         prev = 0
         for esb in (15000, 30000, 50000, 100000, 300000):
             k = ck.composite_k_subbase(mr_psi=7000, esb_psi=esb, dsb_in=6.0)["k_inf_pci"]
+            assert k > prev
+            prev = k
+
+    def test_monotonic_increasing_in_mr(self):
+        prev = 0
+        for mr in (1000, 3000, 7000, 12000, 20000):
+            k = ck.composite_k_subbase(mr_psi=mr, esb_psi=30000, dsb_in=10.0)["k_inf_pci"]
             assert k > prev
             prev = k
 
@@ -98,37 +111,36 @@ class TestCompositeKSubbase:
             assert k > prev
             prev = k
 
-    def test_dsb_read_grid_matches_documented_scale_points(self):
-        # dsb_scale read grid: Dsb=6/12/18in -> 1.00/1.16/1.30 (chart reads,
-        # not a fitted exponent -- see composite_k.py Figure 3.3 docstring).
-        # Reproduce those exact grid nodes (not just monotonicity).
-        mr, esb = 7000.0, 20000.0
-        r_alone = mr / 19.4
-        for dsb, scale in ((6.0, 1.00), (12.0, 1.16), (18.0, 1.30)):
-            k = ck.composite_k_subbase(mr_psi=mr, esb_psi=esb, dsb_in=dsb)["k_inf_pci"]
-            expected = r_alone * (1 + 0.01750 * (esb / mr) ** 1.4650 * scale)
-            assert k == pytest.approx(expected, rel=1e-3)
+    def test_below_printed_dsb_raises(self):
+        # Below the 6in gridline the chart is not read (reading the 6in
+        # curves would overstate k).
+        with pytest.raises(ValueError, match="Dsb scale"):
+            ck.composite_k_subbase(mr_psi=7000, esb_psi=20000, dsb_in=4.0)
 
-    def test_below_range_dsb_clamps_to_dsb6_scale_not_bare_roadbed(self):
-        # dsb_scale is a clamped read grid (Dsb=6-18in digitized), not a
-        # smooth power law through the origin -- below Dsb=6in it holds
-        # the Dsb=6 scale (1.00) rather than decaying toward the bare
-        # k=MR/19.4 relation (that case is handled separately by
-        # effective_modulus_subgrade_reaction, which calls
-        # equations.modulus_subgrade_reaction_simple when no subbase is
-        # given, rather than calling this function with a tiny dsb_in).
-        r_tiny = ck.composite_k_subbase(mr_psi=7000, esb_psi=20000, dsb_in=0.01)
-        r_dsb6 = ck.composite_k_subbase(mr_psi=7000, esb_psi=20000, dsb_in=6.0)
-        assert r_tiny["k_inf_pci"] == pytest.approx(r_dsb6["k_inf_pci"], rel=1e-6)
-        assert "note" in r_tiny
+    def test_below_printed_esb_raises(self):
+        with pytest.raises(ValueError, match="lowest"):
+            ck.composite_k_subbase(mr_psi=7000, esb_psi=10000, dsb_in=6.0)
+
+    def test_below_printed_mr_raises(self):
+        with pytest.raises(ValueError, match="lowest"):
+            ck.composite_k_subbase(mr_psi=800, esb_psi=20000, dsb_in=6.0)
 
     def test_out_of_range_esb_flagged(self):
         r = ck.composite_k_subbase(mr_psi=7000, esb_psi=2000000, dsb_in=6.0)
         assert "note" in r
+        top = ck.composite_k_subbase(mr_psi=7000, esb_psi=1000000, dsb_in=6.0)
+        assert r["k_inf_pci"] == top["k_inf_pci"]
 
     def test_out_of_range_dsb_flagged(self):
         r = ck.composite_k_subbase(mr_psi=7000, esb_psi=20000, dsb_in=25.0)
         assert "note" in r
+        top = ck.composite_k_subbase(mr_psi=7000, esb_psi=20000, dsb_in=18.0)
+        assert r["k_inf_pci"] == top["k_inf_pci"]
+
+    def test_beyond_highest_diagonal_held_at_2000(self):
+        r = ck.composite_k_subbase(mr_psi=20000, esb_psi=1000000, dsb_in=18.0)
+        assert r["k_inf_pci"] == 2000.0
+        assert "2,000" in r["note"]
 
     def test_invalid_mr_raises(self):
         with pytest.raises(ValueError):
@@ -337,10 +349,9 @@ class TestEffectiveModulusSubgradeReaction:
     """Reproduces the guide's fully-worked Table 3.3 example (pdf_page 132,
     printed II-43): 6in granular subbase, depth to rigid foundation 5ft,
     projected slab thickness 9in, LS=1.0 -> printed effective k=540 pci,
-    LS-corrected k=170 pci. With Figure 3.4 now anchored to 4 exact Table
-    3.3 triples, the achieved tolerance tightened to ~3% (effective k
-    ~525.5, -2.7%; LS-corrected k ~166.3, -2.2%) -- remaining error traces
-    to composite_k_subbase's Esb/MR power law (~5% own-anchor tolerance)."""
+    LS-corrected k=170 pci. With Figure 3.4 anchored to 4 exact Table 3.3
+    triples and Figure 3.3 read off the chart, the remaining error (about
+    4%) traces to the Figure 3.3 reads (within 5% of the printed rows)."""
 
     # Table 3.3's 12 monthly (MR psi, Esb psi) pairs, in order.
     SEASONAL = [
@@ -367,7 +378,7 @@ class TestEffectiveModulusSubgradeReaction:
         # printed: sum(u_r)=7.25, avg=0.60 (0.6042); allow chart-reading tolerance
         assert r["ur_avg"] == pytest.approx(0.60, rel=0.05)
         # printed effective k=540 pci, LS-corrected k=170 pci; achieved
-        # tolerance is ~3% (see class docstring) -- assert with margin.
+        # tolerance is ~4% (see class docstring) -- assert with margin.
         assert r["effective_k_pci"] == pytest.approx(540, rel=0.05)
         assert r["k_corrected_for_loss_of_support_pci"] == pytest.approx(170, rel=0.05)
 
@@ -418,6 +429,23 @@ class TestEffectiveModulusSubgradeReaction:
         )
         # different esb per period -> different composite k despite same MR
         assert r["rows"][0]["composite_k_pci"] != r["rows"][1]["composite_k_pci"]
+
+    def test_figure_3_3_note_carried_to_row_and_result(self):
+        seasonal = [{"mr_psi": 7000, "esb_psi": 2000000},
+                    {"mr_psi": 7000, "esb_psi": 20000}]
+        r = ck.effective_modulus_subgrade_reaction(
+            seasonal=seasonal, slab_d_in=9.0, dsb_in=6.0,
+        )
+        assert "highest printed curve" in r["rows"][0]["note"]
+        assert "note" not in r["rows"][1]
+        assert r["notes"] == [r["rows"][0]["note"]]
+
+    def test_subbase_below_printed_curves_raises(self):
+        with pytest.raises(ValueError, match="Dsb scale"):
+            ck.effective_modulus_subgrade_reaction(
+                seasonal=[{"mr_psi": 7000, "esb_psi": 20000}],
+                slab_d_in=9.0, dsb_in=4.0,
+            )
 
     def test_empty_seasonal_raises(self):
         with pytest.raises(ValueError):

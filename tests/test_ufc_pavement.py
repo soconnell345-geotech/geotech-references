@@ -624,15 +624,85 @@ class TestDistressModes:
 
 
 class TestFrostClassification:
-    def test_ml_is_f4(self):
-        r = table_19_2_frost_classification("ML", 50)
-        assert r["frost_group"] == "F4"
+    """Table 19-2 (pdf_page 89, printed 70) as printed: a soil the table
+    does not list is refused, not given a group."""
 
-    def test_sm_low_fines_s2(self):
-        assert table_19_2_frost_classification("SM", 4.0)["frost_group"] == "S2"
+    @pytest.mark.parametrize("uscs,group,sub", [
+        ("ML", "F4", "a"), ("MH", "F4", "a"), ("CH", "F3", "c"),
+        ("CL", "F3", "c"), ("CL-ML", "F4", "c"),
+    ])
+    def test_fine_grained_rows(self, uscs, group, sub):
+        r = table_19_2_frost_classification(uscs)
+        assert (r["frost_group"], r["subgroup"]) == (group, sub)
+        assert r["listed_in_table"] is True
 
-    def test_gw_nfs(self):
-        assert table_19_2_frost_classification("GW", 1.0)["frost_group"] == "NFS"
+    def test_cl_lists_the_other_printed_rows(self):
+        # F3 (c) and F4 (c) both print "Clays, PI > 12"; F4 (d) varved.
+        r = table_19_2_frost_classification("CL")
+        assert r["also_printed"] == ["F4 (c)", "F4 (d)"]
+
+    @pytest.mark.parametrize("uscs,pct,group", [
+        ("GW", 1.0, "NFS"), ("GP", 2.0, "PFS"), ("GW", 4.0, "S1"),
+        ("SW", 2.0, "NFS"), ("SP", 8.0, "PFS"), ("SW-SM", 4.0, "S2"),
+        ("GP-GM", 5.0, "S1"), ("GM", 8.0, "F1"), ("GW-GM", 15.0, "F2"),
+        ("SM", 10.0, "F2"), ("SP-SM", 12.0, "F2"), ("GM", 25.0, "F3"),
+        ("SC", 20.0, "F3"), ("GC", 30.0, "F3"),
+    ])
+    def test_granular_rows(self, uscs, pct, group):
+        r = table_19_2_frost_classification(uscs, pct)
+        assert r["frost_group"] == group
+        assert r["listed_in_table"] is True
+
+    def test_bins_take_their_printed_upper_bound(self):
+        # "0-3" then "3-10": 3 % is the sands' NFS bin; a symbol's lowest
+        # printed range takes its lower bound (GM "6 to 10").
+        assert table_19_2_frost_classification("SW", 3.0)["frost_group"] == "NFS"
+        assert table_19_2_frost_classification("GM", 6.0)["frost_group"] == "F1"
+        assert table_19_2_frost_classification("GM", 20.0)["frost_group"] == "F2"
+
+    def test_sw_3_to_6_is_pfs_with_s2_also_printed(self):
+        r = table_19_2_frost_classification("SW", 5.0)
+        assert r["frost_group"] == "PFS"
+        assert r["also_printed"] == ["S2"]
+        assert "laboratory test" in r["note"]
+
+    def test_sm_over_15_is_f4_with_f3_also_printed(self):
+        r = table_19_2_frost_classification("SM", 20.0)
+        assert (r["frost_group"], r["subgroup"]) == ("F4", "b")
+        assert r["also_printed"] == ["F3 (b)"]
+
+    def test_gc_sc_below_their_rows_follow_para_19_2_2(self):
+        # Para 19-2.2 (pdf_page 87, printed 68): GC or SC "normally fall
+        # into the F3 category", occasionally F2.
+        r = table_19_2_frost_classification("SC", 10.0)
+        assert r["frost_group"] == "F3"
+        assert r["listed_in_table"] is False
+        assert "19-2.2" in r["note"]
+        assert table_19_2_frost_classification("GC")["frost_group"] == "F3"
+
+    @pytest.mark.parametrize("uscs", ["OL", "OH", "PT", "GW-GC", "SC-SM"])
+    def test_unlisted_symbols_refused(self, uscs):
+        with pytest.raises(ValueError, match="lists no frost group"):
+            table_19_2_frost_classification(uscs, 10.0)
+
+    @pytest.mark.parametrize("uscs,pct", [
+        ("SM", 4.0), ("SM", 0.0), ("GM", 4.0), ("GW", 8.0), ("SW", 12.0),
+        ("SW-SM", 20.0), ("GW-GM", 2.0),
+    ])
+    def test_percentages_outside_the_printed_rows_refused(self, uscs, pct):
+        with pytest.raises(ValueError, match="no row"):
+            table_19_2_frost_classification(uscs, pct)
+
+    def test_granular_without_percentage_refused(self):
+        with pytest.raises(ValueError, match="finer_than_0_02mm_pct"):
+            table_19_2_frost_classification("SW")
+
+    def test_given_frost_group_returned(self):
+        r = table_19_2_frost_classification("SW", 5.0, frost_group="s2")
+        assert r["frost_group"] == "S2"
+        assert "laboratory" in r["note"]
+        with pytest.raises(ValueError):
+            table_19_2_frost_classification("SW", 5.0, frost_group="F5")
 
 
 class TestFrostSupportIndex:
@@ -645,6 +715,11 @@ class TestFrostSupportIndex:
     def test_nfs_raises(self):
         with pytest.raises(ValueError, match="NFS"):
             table_19_3_frost_support_index("NFS")
+
+    def test_reference_page(self):
+        # Table 19-3 is on pdf_page 99, printed 80.
+        r = table_19_3_frost_support_index("F2")
+        assert "pdf_page 99, printed 80" in r["reference"]
 
 
 class TestFigure19_5:
@@ -727,32 +802,26 @@ class TestAggregateGradation:
 
 
 class TestFigureE1:
-    """figure_e1_flexible_thickness -- verified vs. multiple Appendix G points."""
+    """figure_e1_flexible_thickness, read along the printed curves; every
+    Appendix G read of Figure E-1 reproduced."""
 
     def test_g1_anchor_cbr3(self):
         # G-1: CBR=3, passes=1,000,000 -> 16.4 in
         r = figure_e1_flexible_thickness(3, 1_000_000)
         assert r["thickness_in"] == pytest.approx(16.4, abs=0.1)
 
-    def test_g3_anchor_cbr10(self):
-        # G-3.1: CBR=10, passes=5,000,000 -> 7.8 in
-        r = figure_e1_flexible_thickness(10, 5_000_000)
-        assert r["thickness_in"] == pytest.approx(7.8, abs=0.3)
+    def test_g1_anchor_cbr4(self):
+        # G-1: CBR=4, passes=1,395,400 -> 14 in
+        r = figure_e1_flexible_thickness(4, 1_395_400)
+        assert r["thickness_in"] == pytest.approx(14.0, abs=0.15)
 
-    def test_g3_anchor_cbr7(self):
-        # G-3.1: CBR=7, passes=5,000,000 -> 9.8 in
-        r = figure_e1_flexible_thickness(7, 5_000_000)
-        assert r["thickness_in"] == pytest.approx(9.8, abs=0.3)
-
-    def test_g3_anchor_cbr4(self):
-        # G-3.1: CBR=4, passes=5,000,000 -> 14.5 in
-        r = figure_e1_flexible_thickness(4, 5_000_000)
-        assert r["thickness_in"] == pytest.approx(14.5, abs=0.3)
-
-    def test_g3_anchor_cbr25(self):
-        # G-3.1: CBR=25, passes=5,000,000 -> 3.4 in
-        r = figure_e1_flexible_thickness(25, 5_000_000)
-        assert r["thickness_in"] == pytest.approx(3.4, abs=0.3)
+    @pytest.mark.parametrize("cbr,thickness", [
+        (10, 7.8), (7, 9.8), (4, 14.5), (25, 3.4),
+    ])
+    def test_g3_anchors(self, cbr, thickness):
+        # G-3: 5,000,000 passes
+        r = figure_e1_flexible_thickness(cbr, 5_000_000)
+        assert r["thickness_in"] == pytest.approx(thickness, abs=0.1)
 
     def test_higher_cbr_less_thickness(self):
         r_low = figure_e1_flexible_thickness(4, 1_000_000)
@@ -760,55 +829,69 @@ class TestFigureE1:
         assert r_high["thickness_in"] < r_low["thickness_in"]
 
     def test_more_passes_more_thickness(self):
-        r_few = figure_e1_flexible_thickness(10, 100)
-        r_many = figure_e1_flexible_thickness(10, 1_000_000)
-        assert r_many["thickness_in"] > r_few["thickness_in"]
+        # CBR 5 lies on every curve (the 10-pass curve meets the axis at
+        # CBR about 6).
+        prev = 0.0
+        for n in (10, 100, 1_000, 10_000, 100_000, 1_000_000, 10_000_000):
+            t = figure_e1_flexible_thickness(5, n)["thickness_in"]
+            assert t > prev
+            prev = t
+
+    def test_past_curve_end_is_zero_with_note(self):
+        r = figure_e1_flexible_thickness(40, 1_000_000)
+        assert r["thickness_in"] == 0.0
+        assert "no cover" in r["note"]
+
+    def test_cbr_below_axis_raises(self):
+        with pytest.raises(ValueError):
+            figure_e1_flexible_thickness(0.5, 1000)
 
     def test_negative_cbr_raises(self):
         with pytest.raises(ValueError):
             figure_e1_flexible_thickness(-1, 1000)
 
-    def test_zero_passes_raises(self):
+    @pytest.mark.parametrize("passes", [0, 5, 20_000_000])
+    def test_passes_outside_curves_raise(self, passes):
         with pytest.raises(ValueError):
-            figure_e1_flexible_thickness(10, 0)
+            figure_e1_flexible_thickness(10, passes)
 
 
 class TestFigureF1:
-    """figure_f1_rigid_thickness -- verified vs. two Appendix G worked
-    examples, plus read-grid anchor-grid / monotonicity checks."""
+    """figure_f1_rigid_thickness, read off the printed chart as para 13-3
+    works it; every Appendix G read of Figure F-1 reproduced."""
 
-    def test_g7_anchor_exact(self):
+    def test_g7_anchor(self):
         # G-7: flexural=650, k=100, passes=20,000,000 -> hd=8.1 in
         r = figure_f1_rigid_thickness(650, 100, 20_000_000)
-        assert r["thickness_in"] == pytest.approx(8.1, abs=0.05)
+        assert r["thickness_in"] == pytest.approx(8.1, abs=0.1)
 
-    def test_g8_11_anchor_exact(self):
+    def test_g8_11_anchor(self):
         # G-8.11: flexural=650, k=325, passes=1,200,000 -> 6.3 in
         r = figure_f1_rigid_thickness(650, 325, 1_200_000)
-        assert r["thickness_in"] == pytest.approx(6.3, abs=0.05)
+        assert r["thickness_in"] == pytest.approx(6.3, abs=0.1)
+
+    def test_g8_12_anchor(self):
+        # G-8.12: flexural=650, k=50, passes=1,200,000 -> "a pavement slab
+        # 8 in thick" (rounded up to the half inch)
+        r = figure_f1_rigid_thickness(650, 50, 1_200_000)
+        assert 7.5 < r["thickness_in"] <= 8.0
 
     def test_chart_read_flag_and_reference(self):
         r = figure_f1_rigid_thickness(650, 100, 20_000_000)
         assert r["chart_read"] is True
         assert "Figure F-1" in r["reference"]
         assert "tolerance" in r
+        assert r["below_chart"] is False
 
-    def test_anchor_tolerance_note_within_range(self):
-        # Both anchors sit inside the 1.2M-20M passes span they define.
-        r = figure_f1_rigid_thickness(650, 100, 20_000_000)
-        assert "+/-10%" in r["tolerance"]
-
-    def test_extrapolated_passes_gets_wider_tolerance_note(self):
-        # 500,000 passes is well below the 1.2M low anchor -> extrapolated.
-        r = figure_f1_rigid_thickness(650, 200, 500_000)
-        assert "+/-20-25%" in r["tolerance"]
+    def test_flexural_strength_moves_thickness(self):
+        # The chart's k curves fan out across the strength scale: 400 psi
+        # needs well over 2 in more slab than 900 psi at k 100, 1,000,000
+        # passes (the old two-anchor fit gave 0.4 in).
+        r_weak = figure_f1_rigid_thickness(400, 100, 1_000_000)
+        r_strong = figure_f1_rigid_thickness(900, 100, 1_000_000)
+        assert r_weak["thickness_in"] - r_strong["thickness_in"] > 2.0
 
     def test_all_eight_printed_passes_levels_monotonic(self):
-        # Sanity check across all 8 printed N-line levels at a representative
-        # (flexural,k): monotonic increase in thickness, all within the
-        # chart's printed 4-12in axis range. (The model interpolates/
-        # extrapolates log-linearly between the two Appendix G anchors, so
-        # this must hold for any single fixed (flexural,k).)
         levels = [1_000, 3_000, 10_000, 30_000, 100_000, 1_000_000,
                   10_000_000, 50_000_000]
         thicknesses = [figure_f1_rigid_thickness(650, 150, n)["thickness_in"]
@@ -821,49 +904,36 @@ class TestFigureF1:
         r_stiff = figure_f1_rigid_thickness(650, 400, 5_000_000)
         assert r_stiff["thickness_in"] < r_soft["thickness_in"]
 
-    def test_more_passes_more_thickness(self):
-        r_few = figure_f1_rigid_thickness(650, 100, 10_000)
-        r_many = figure_f1_rigid_thickness(650, 100, 50_000_000)
-        assert r_many["thickness_in"] > r_few["thickness_in"]
+    def test_k_above_500_taken_as_500(self):
+        # Table 10-1 note 2: a k of 500 psi/in is the maximum used for design
+        r_over = figure_f1_rigid_thickness(650, 800, 5_000_000)
+        r_500 = figure_f1_rigid_thickness(650, 500, 5_000_000)
+        assert r_over["thickness_in"] == r_500["thickness_in"]
+        assert "maximum used for design" in r_over["note"]
 
-    def test_higher_flexural_less_thickness(self):
-        r_weak = figure_f1_rigid_thickness(400, 100, 1_000_000)
-        r_strong = figure_f1_rigid_thickness(900, 100, 1_000_000)
-        assert r_strong["thickness_in"] < r_weak["thickness_in"]
+    def test_under_4_in_returned_as_4_flagged(self):
+        r = figure_f1_rigid_thickness(1000, 500, 1_000)
+        assert r["thickness_in"] == 4.0
+        assert r["below_chart"] is True
 
-    def test_anchor_grid_k_endpoints_reproduce_read_points(self):
-        # Sanity check on the k-family read-grid endpoints (25 and 500 pci)
-        # stay within the chart's printed 4-12 in axis range.
-        r_25 = figure_f1_rigid_thickness(500, 25, 10_000_000)
-        r_500 = figure_f1_rigid_thickness(500, 500, 10_000_000)
-        assert 4.0 <= r_25["thickness_in"] <= 12.0
-        assert 4.0 <= r_500["thickness_in"] <= 12.0
-        assert r_25["thickness_in"] > r_500["thickness_in"]
+    def test_k_below_25_raises(self):
+        with pytest.raises(ValueError, match="25"):
+            figure_f1_rigid_thickness(650, 20, 1_000_000)
 
-    def test_result_clamped_within_chart_axis_range(self):
-        # Extreme corner (softest k, weakest flexural, lowest passes) must
-        # still clamp into the chart's printed 4-12 in range, not go negative.
-        r = figure_f1_rigid_thickness(100, 25, 1_000)
-        assert 4.0 <= r["thickness_in"] <= 12.0
-
-    def test_k_and_flexural_clamp_at_chart_bounds(self):
-        # k and flexural far outside the chart's printed range clamp to the
-        # nearest printed line rather than extrapolating indefinitely.
-        r_k_over = figure_f1_rigid_thickness(650, 5000, 5_000_000)
-        r_k_at_bound = figure_f1_rigid_thickness(650, 500, 5_000_000)
-        assert r_k_over["thickness_in"] == r_k_at_bound["thickness_in"]
-
-    def test_negative_flexural_raises(self):
+    @pytest.mark.parametrize("flexural", [-1, 50, 1100])
+    def test_flexural_outside_scale_raises(self, flexural):
         with pytest.raises(ValueError):
-            figure_f1_rigid_thickness(-1, 100, 1_000_000)
+            figure_f1_rigid_thickness(flexural, 100, 1_000_000)
 
-    def test_negative_k_raises(self):
+    @pytest.mark.parametrize("passes", [0, 500, 60_000_000])
+    def test_passes_outside_lines_raise(self, passes):
         with pytest.raises(ValueError):
-            figure_f1_rigid_thickness(650, -1, 1_000_000)
+            figure_f1_rigid_thickness(650, 100, passes)
 
-    def test_zero_passes_raises(self):
-        with pytest.raises(ValueError):
-            figure_f1_rigid_thickness(650, 100, 0)
+    def test_k_curve_off_the_chart_raises(self):
+        # At 150 psi the 500 pci curve has left the chart's right edge.
+        with pytest.raises(ValueError, match="left Figure F-1"):
+            figure_f1_rigid_thickness(150, 500, 1_000_000)
 
 
 # ============================================================================
