@@ -1178,10 +1178,11 @@ Smaller typos are not listed.
 
 EN 1997-2:2007 (the BS EN copy, with the AC1 corrigendum marked) was
 rewritten from the print on fix/ref52: one commit per section (1 to 6,
-with Tables 2.1 to 2.3 in a commit of their own) and one for Annexes A
-to X (f153df5, with a page fix in 4fe7bc4). The text layer is OCR
-("requirenlents", "Salnpling"), so every heading, symbol, number,
-equation and table value was read off rendered pages. The standard's
+with Tables 2.1 to 2.3 in a commit of their own), reviewed and merged to
+refs main as 158e408 with the review fixes 74cf1b2, then one for
+Annexes A to X (f153df5, with a page fix in 4fe7bc4). The text layer
+is OCR ("requirenlents", "Salnpling"), so every heading, symbol,
+number, equation and table value was read off rendered pages. The standard's
 text is CEN copyright: bodies are paraphrased, and numbers, equations,
 symbols and table values are as printed. Page numbers below are printed
 page numbers (PDF page 3 is p. 1).
@@ -1238,30 +1239,25 @@ the annex files carry their letters.
 
 One retrieval gold entry named an old annex key and now names the
 printed clause: dr-n160 7.6.1 to F.1. No query was reworded. No old
-annex id appears in the app. Four gold entries name section 4 test
-headings that now carry no text of their own: cpt-def 4.3, spt-def 4.6,
-pmt-def 4.9 and dmt-def 4.10. As with GEC-8 3.2 they were left as they
-are. pmt-def names 4.9, the field vane test; the pressuremeter test is
-4.4.
+annex id appears in the app. The review of sections 1 to 6 (74cf1b2)
+moved pmt-def's gold from 4.9, the field vane test, to 4.4 and 4.4.1,
+and let cpt-def's gold accept 4.3.1. spt-def (4.6) and dmt-def (4.10)
+still name section 4 headings that carry no text of their own; their
+Objectives clauses are 4.6.1 and 4.10.1. They were left as they are.
 
-Ranks moved as follows from after GEC-8 to after the annexes (rerank,
-unless a mode is named):
-- spt-def 2 to 6 (off 4 to not in the top 10, fill 4 to 6, auto 2 to 6).
-- pmt-def 1 to 2, in all modes.
-- dmt-def 7 to 3 (auto 7 to 4).
-- cpt-def stays 1; off and fill not in the top 10 to 10.
+Ranks moved as follows from refs main 158e408 (sections 1 to 6 merged,
+with the review fixes) to after the annexes (rerank, unless a mode is
+named):
 - dr-n160 1 to 3 (fill 1 to 3; auto stays 1). The old key 7.6.1 was the
   whole of Annex F.1. F.1 now ranks under dm7_1 2-7.1.1 and eurocode_7_2
   4.6.4.2 (bearing resistance of spread foundations in sands).
-- n160-phi 3 to 2 (fill and auto 4 to 3); phi-cpt 7 to 6 (auto too).
-- ec7-bearing auto 5 to 7.
-- design-cbr 2 to 3, in all modes. Its gold is ufc_pavement; the EC7-2
-  5.10.3 CBR sections now rank above it.
+- n160-phi 3 to 2 (fill and auto 4 to 3).
+- cpt-def stays 1; off and fill 7 to 8.
 - stone-col-capacity 7 to 5 and ec7-compaction 10 to 9. Neither gold is
   in EC7-2.
 
-Rerank R@5 went from 34 to 35 of 54 and MRR@10 from 0.512 to 0.489; R@3
-(31) and R@10 (40) are unchanged. test_query_expansion and the
+Rerank R@5 went from 35 to 36 of 54 and MRR@10 from 0.523 to 0.515; R@3
+(32) and R@10 (40) are unchanged. test_query_expansion and the
 eurocode_7_2 tests passed after every commit, and the audit ends at 0
 errors.
 
