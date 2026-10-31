@@ -356,6 +356,31 @@ def _subtree(conn: sqlite3.Connection, rowid: int,
     return out
 
 
+#: How many of an OR-ed query's best BM25 hits are re-ordered by the
+#: concepts they hold (REF-48): the most one page shows. Hits past it keep
+#: their BM25 order, so every page of a search is cut from the same order.
+_BEST_MATCH_POOL = _MAX_LIMIT
+
+
+def _by_concepts_held(conn: sqlite3.Connection, rows: list,
+                      concepts: list[str]) -> list:
+    """The first :data:`_BEST_MATCH_POOL` of ``rows`` (each with its
+    ``rid``) re-ordered by how many of ``concepts`` (FTS5 expressions) each
+    holds, most first, keeping their order within a count; the rest after
+    them as they were."""
+    head, tail = rows[:_BEST_MATCH_POOL], rows[_BEST_MATCH_POOL:]
+    if len(head) < 2:
+        return rows
+    held = dict.fromkeys((r["rid"] for r in head), 0)
+    for concept in concepts:
+        for (rid,) in conn.execute(
+                "SELECT rowid FROM sections_fts WHERE sections_fts MATCH ?",
+                (concept,)):
+            if rid in held:
+                held[rid] += 1
+    return sorted(head, key=lambda r: -held[r["rid"]]) + tail
+
+
 def reference_search(
     query: str,
     reference: str | None = None,
@@ -376,8 +401,10 @@ def reference_search(
     ----------
     query : str
         FTS5 MATCH query. Plain words are AND-matched with porter
-        stemming. Use FTS5 operators (``"phrase"``, ``OR``, ``NEAR()``,
-        ``col:term``) for advanced queries.
+        stemming; when they are OR-ed because no section holds them all
+        (any expansion strategy but ``"off"``), the sections holding more
+        of them come first. Use FTS5 operators (``"phrase"``, ``OR``,
+        ``NEAR()``, ``col:term``) for advanced queries.
     reference : str, optional
         Restrict to a single reference id (e.g. ``"dm7_1"``).
     chapter : int, optional
@@ -420,10 +447,10 @@ def reference_search(
         else offset + limit + 1
     conn = _ro_connect()
     try:
-        def run(match_query: str) -> list[sqlite3.Row]:
+        def run(match_query: str, pool: int | None = None) -> list[sqlite3.Row]:
             sql = (
-                "SELECT s.reference, s.reference_title, s.chapter, "
-                "s.chapter_title, s.section_id, s.title, s.summary, "
+                "SELECT s.rowid AS rid, s.reference, s.reference_title, "
+                "s.chapter, s.chapter_title, s.section_id, s.title, s.summary, "
                 "s.parents_json "
                 "FROM sections_fts f JOIN sections s ON s.rowid = f.rowid "
                 "WHERE sections_fts MATCH ?"
@@ -436,8 +463,20 @@ def reference_search(
                 sql += " AND s.chapter = ?"
                 params.append(int(chapter))
             sql += " ORDER BY bm25(sections_fts) LIMIT ?"
-            params.append(want)
+            params.append(pool or want)
             return conn.execute(sql, params).fetchall()
+
+        def best_match(concepts: list[str]):
+            """``run`` for a query whose words are OR-ed (REF-48): the
+            sections that hold more of the query's concepts first, so a short
+            section holding four of six words densely no longer outranks one
+            holding five; BM25 orders the sections within a count."""
+            def run_or(match_query: str) -> list[sqlite3.Row]:
+                if len(concepts) < 2:
+                    return run(match_query)
+                rows = run(match_query, pool=max(want, _BEST_MATCH_POOL))
+                return _by_concepts_held(conn, rows, concepts)[:want]
+            return run_or
 
         strategy = _qe.EXPANSION_STRATEGY
 
@@ -455,7 +494,10 @@ def reference_search(
                 elif not literal:
                     # nothing to pin: the query with its terms swapped for
                     # their synonyms, then its words OR-ed with the synonyms
-                    rows = _qe.zero_literal_hits(q, run, want, key=lambda r: (r["reference"], r["section_id"]))
+                    rows = _qe.zero_literal_hits(
+                        q, run, want,
+                        key=lambda r: (r["reference"], r["section_id"]),
+                        run_or=best_match(_qe.query_concepts(q)))
                 else:
                     rows = _qe.merge_hits(
                         literal[:_qe.EXPANSION_PIN], run(combined), want,
@@ -481,12 +523,13 @@ def reference_search(
             # in 'off' — that strategy is the pure-literal anchor used by the
             # recall eval and the precision invariants.
             if not rows and strategy != "off":
-                fb = _qe.or_fallback(q)
+                fb, words = _qe.or_fallback(q), q
                 if not fb and relaxed:
                     # a query re-quoted by fts_safe_query: its words, OR-ed
-                    fb = _qe.or_fallback(plain_terms(q))
+                    words = plain_terms(q)
+                    fb = _qe.or_fallback(words)
                 if fb and fb != q:
-                    rows = run(fb)
+                    rows = best_match(_qe.query_concepts(words))(fb)
             return rows
 
         try:

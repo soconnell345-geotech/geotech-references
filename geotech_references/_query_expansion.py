@@ -231,14 +231,27 @@ def substituted_query(query: str) -> str | None:
     return " AND ".join(parts)
 
 
-def zero_literal_hits(query: str, run, want: int, key) -> list:
+def query_concepts(query: str) -> list[str]:
+    """The query's concepts as FTS5 expressions: a named term's whole group
+    and each other word (the AND-ed parts of :func:`substituted_query`), or
+    the query's words when no group fires."""
+    sub = substituted_query(query)
+    if sub:
+        return sub.split(" AND ")
+    fb = or_fallback(query)
+    return fb.split(" OR ") if fb else []
+
+
+def zero_literal_hits(query: str, run, want: int, key, run_or=None) -> list:
     """Hits for a query whose literal (AND) form matched nothing: first the
     query with its named terms swapped for their groups
     (:func:`substituted_query`), then the query's words OR-ed with the
     synonyms, each filling the slots the one before left. The words stay in
     the second query so a group that fires cannot crowd out the OR-of-words
     fallback the query would have had without it ("DSM column layout for
-    embankment support" keeps "layout" and "embankment")."""
+    embankment support" keeps "layout" and "embankment"). ``run_or``, when
+    given, runs that second, OR-ed query instead of ``run`` (the text search
+    ranks it by the concepts each hit holds)."""
     rows: list = []
     sub = substituted_query(query)
     if sub:
@@ -246,7 +259,8 @@ def zero_literal_hits(query: str, run, want: int, key) -> list:
     exp = expand_query(query)
     if exp and len(rows) < want:
         words = or_fallback(query)
-        rows = merge_hits(rows, run(f"{words} OR {exp}" if words else exp),
+        rows = merge_hits(rows,
+                          (run_or or run)(f"{words} OR {exp}" if words else exp),
                           want, key)
     return rows
 
