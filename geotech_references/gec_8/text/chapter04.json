@@ -5,32 +5,150 @@
   "chapter_title": "Construction Techniques and Materials",
   "sections": [
     {
+      "section_id": "4.1",
+      "title": "Introduction",
+      "summary": "Chapter 4 covers construction techniques, materials and recommended practice for CFA piles, written with the Chapter 8 performance-based specification in mind: the contractor selects equipment, materials and techniques, so proprietary systems hard to fit into design-bid-build can be considered.",
+      "body": "The chapter details construction techniques, materials and recommended practice for CFA piles on transportation projects. The Chapter 8 guide specification is performance-based, letting the contractor select equipment, materials and techniques to provide the required foundation capacity, and the chapter is written with it in mind. Many types of equipment are presented, some proprietary, which have been hard to fit into design-bid-build; a performance-based specification lets them be considered more often because the contractor bids the pile that meets the performance requirements at least cost, regardless of type. (p. 33)",
+      "key_points": [
+        "Chapter 8's guide specification is performance-based; the contractor selects equipment and methods (p. 33).",
+        "Performance specifications allow proprietary systems to compete (p. 33)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Scope of GEC-8 chapter 4 on CFA construction techniques and materials"
+    },
+    {
       "section_id": "4.2",
       "title": "Construction Equipment",
-      "summary": "Three classes of drilling rigs are used for CFA piles: crane-mounted (torque 20–120 kN-m, most common 27–50 kN-m; min 40 kN-m recommended for transportation projects), hydraulic (torque 90–400 kN-m, crowd up to 270 kN; used for DD piles and larger diameters), and low headroom (max 28 kN-m, 13 kN crowd; only for most favorable soil conditions). Auger type and pitch must match soil conditions — larger pitch for clay, smaller pitch for sand, displacement augers for DD piles. Grout pumps must be positive displacement capable of 2.4 MPa (350 psi); in-line magnetic flowmeters are preferred over stroke counters for volume monitoring.",
-      "body": "Crane-mounted rigs: The hydraulic gearbox drives the hollow-stem auger; downward force (crowd) from weight of gearbox and auger, typically 13–45 kN (3,000–10,000 lbs). Torque capacity: 20–120 kN-m (15,000–90,000 ft-lbs); 27–50 kN-m most common for private commercial work; diameters up to 450 mm most common, 600 mm possible at high torque. Minimum torque capacity of 40 kN-m (30,000 ft-lbs) recommended for transportation projects; may be relaxed for light-duty soundwalls or low headroom.\n\nHydraulic rigs: Torque 90–400 kN-m (66,000–300,000 ft-lbs), crowd up to 270 kN (60,000 lb); diameters 450–1,200 mm (600–900 mm most common in Europe). Lend themselves to computer monitoring/control via hydraulic pressure measurement. Used in the U.S. primarily for DD piles requiring high torque. Disadvantages: high cost, heavy weight requiring more stable working platform, slower drilling rate.\n\nLow headroom rigs: Use segmental auger sections; limited to 28 kN-m (21,000 ft-lbs) torque and 13 kN (3,000 lb) crowd; suitable only for most favorable soil conditions where soil mining risk is minimal.\n\nAugers: CFA augers have smaller pitch than DD augers; clay augers have larger pitch for cuttings removal; double-start cutting head helps maintain vertical alignment. Cutting teeth can be hardened for weak rock. DD systems include DeWaal (short screw below displacement bulge, sacrificial shoe), Omega (European screw pile system), Fundex (sacrificial shoe, full-length cage pre-placed), and various Berkel/Bauer partial displacement systems. Double rotary systems advance a full-length casing simultaneously with the auger, useful for secant pile walls.\n\nGrouting/concrete equipment: Positive displacement pump required, capable of 2.4 MPa (350 psi) maximum pressure; piston pump delivering 10–30 liters/stroke (0.4–1 ft³/stroke). Volume per stroke should correspond to about 100 mm (4 in.) of pile length or less. Two methods for real-time volume monitoring: stroke count (poor — inconsistent per stroke) and in-line magnetic flowmeter (preferred — measures conductivity, independent of viscosity or density). Pressure sensor in-line as near to auger as possible to monitor minimum positive pressure.",
+      "summary": "Section 4.2 describes drilling equipment for CFA and DD piles, tools and grouting/concrete equipment, with the advantages and limitations of rig types, particularly their torque capabilities.",
+      "body": "The section describes the types of drilling equipment used for CFA and DD piles and details tools and grouting/concrete equipment; advantages and limitations of rig types are discussed, particularly torque capability. (p. 33)",
       "key_points": [
-        "Crane-mounted rigs: torque 20–120 kN-m; min 40 kN-m (30,000 ft-lbs) recommended for transportation projects",
-        "Hydraulic rigs: torque 90–400 kN-m, crowd up to 270 kN; preferred for DD piles requiring high downforce",
-        "Low headroom rigs: max 28 kN-m, 13 kN crowd; suitable only in most favorable soil conditions",
-        "Auger pitch must match soil — larger pitch for clay; DD displacement systems are proprietary (DeWaal, Omega, Fundex)",
-        "Grout pump: positive displacement, max 2.4 MPa (350 psi); volume per stroke ≈ 100 mm of pile length",
-        "In-line magnetic flowmeter preferred over stroke counter for volume monitoring — stroke count is unreliable"
+        "Rig types compared mainly by torque capability (p. 33)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selection of drilling rigs, auger types, and pumping equipment for CFA and DD pile installation"
+    },
+    {
+      "section_id": "4.2.1",
+      "title": "Drilling Rigs",
+      "summary": "Crane-mounted rigs (Figures 4.1, 4.2): crowd only from gearbox and auger weight, 13 to 45 kN (3,000 to 10,000 lbs); torque 20 to 120 kN-m; a minimum 40 kN-m (30,000 ft-lbs) is suggested for transportation projects. Low headroom rigs are limited to about 28 kN-m and 13 kN. Hydraulic rigs give 90 to 400 kN-m and up to 270 kN crowd, with monitoring, but cost and weigh more.",
+      "body": "A typical crane-mounted CFA rig (Figures 4.1 and 4.2) drives the hollow-stem auger with a hydraulic gearbox at its top; the only downward force ('crowd' or 'downcrowd') is the weight of the gearbox, augers above ground and soil on the flights, typically 13 to 45 kN (3,000 to 10,000 lbs) and around 22 kN (5,000 lbs). Leads guide the auger, hanging from or fixed to the boom; a torque (stabilizing) arm near the ground absorbs torque; a hydraulic spotter may set batter piles; a swivel lets the auger rotate without disconnecting the grout line, so grouting can start immediately; grout, delivered by a piston pump, is more common than concrete with these rigs (p. 33). U.S. crane-attached rigs have torque capacities of 20 to 120 kN-m (15,000 to 90,000 ft-lbs), 27 to 50 kN-m (20,000 to 36,000 ft-lbs) being most common for commercial work, with augers up to 450 mm (18 in.), 600 mm (24 in.) possible at the high end. For transportation projects a suggested minimum torque capacity of 40 kN-m (30,000 ft-lbs) should be required, though it may not avoid mining for some lengths, diameters and soils; under a performance-based method the contractor selects the torque needed to install piles without mining, and the minimum may be relaxed for light duty work such as small soundwall piles or low headroom (p. 34). Low headroom rigs (Figure 4.3) avoid a crane mast and use segmental augers (Figure 4.4); torque and crowd are limited to about 28 kN-m (21,000 ft-lbs) and 13 kN (3,000 lb), so they should only be used in the most favorable soils with minimal risk of mining (p. 35). Hydraulic rigs, common in Europe and available in the United States, have 90 to 400 kN-m (66,000 to 300,000 ft-lbs) torque and up to 270 kN (60,000 lb) crowd (Figures 4.5 and 4.6); European diameters of 450 to 1,200 mm (18 to 48 in.) are possible, 600 to 900 mm (24 to 36 in.) most common, with lengths typically under 28 m (90 ft), longer with Kelly-bar extensions (p. 36). Their hydraulic pressure indicates torque and down force, suiting computer monitoring and control, and their torque and crowd allow larger piles and control of mining; they are used in the United States for DD piles. Disadvantages: high equipment cost, greater weight needing a more stable working platform, slower drilling and lack of 'reach' (the whole rig moves between piles), giving lower production than a crane rig (p. 37). (pp. 33 to 38)",
+      "key_points": [
+        "Crane-rig crowd only from self-weight, typically 13 to 45 kN (3,000 to 10,000 lbs) (p. 33).",
+        "Crane-attached rig torque 20 to 120 kN-m (15,000 to 90,000 ft-lbs) in U.S. practice (p. 34).",
+        "Suggested minimum torque capacity of 40 kN-m (30,000 ft-lbs) for transportation projects (p. 34).",
+        "Low headroom rigs limited to about 28 kN-m (21,000 ft-lbs) and 13 kN (3,000 lb) crowd (p. 35).",
+        "Hydraulic rigs: 90 to 400 kN-m torque, up to 270 kN (60,000 lb) crowd (p. 36).",
+        "Hydraulic rigs: costly, heavy, slower drilling and no reach (p. 37)."
       ],
       "equations": [],
       "figures": [
-        "Figure 4.1: Typical crane-mounted CFA rig schematic",
+        "Figure 4.1: Typical Crane-Mounted CFA Rig",
         "Figure 4.2: Photo of Crane-Attached CFA System",
-        "Figure 4.3: Low headroom CFA pile rig",
+        "Figure 4.3: Low Headroom CFA Pile Rig",
         "Figure 4.4: Low Headroom Rig with Segmental Augers",
-        "Figure 4.6: Soilmec Hydraulic CFA Rig with Kelly-Bar Extension",
-        "Figure 4.7: Augers for Different Soil Conditions (CFA and DD)",
-        "Figure 4.8: Auger for Use in Clay with Auger Cleaner Attachment",
-        "Figure 4.11: DeWaal drilled displacement pile",
-        "Figure 4.12: Omega screw pile",
-        "Figure 4.13: Fundex screw pile",
-        "Figure 4.16: Double rotary cased CFA piles",
+        "Figure 4.5: Hydraulic Rig Drilling on M25 Motorway in England",
+        "Figure 4.6: Soilmec Hydraulic CFA Rig with Kelly-Bar Extension"
+      ],
+      "tables": [],
+      "applicability": "Selection of drilling rigs, auger types, and pumping equipment for CFA and DD pile installation"
+    },
+    {
+      "section_id": "4.2.2",
+      "title": "Augers and Drilling Tools",
+      "summary": "Auger types (Figures 4.7 to 4.10): CFA pitch generally smaller than DD; clay augers larger pitch; too large a pitch can mine soil; double-start cutting heads keep alignment. Displacement tools (Figures 4.11 to 4.15: DeWaal, Omega, Fundex, Berkel, Bauer) are mostly proprietary and need more torque and downforce. Double rotary cased systems (Figures 4.16 to 4.18) suit secant walls.",
+      "body": "Auger types vary with the soil (Figures 4.7 to 4.10): the pitch for CFA piles is generally smaller than for DD piles (Figure 4.7); clay augers may have a larger pitch to remove cuttings (Figure 4.8); an excessively large pitch for the soil could mine soil around the pile (p. 38). The auger base is usually a double start that keeps vertical alignment better than a single cutting face but can pack with clay; teeth may have hardened points for weak rock (Figures 4.9 and 4.10) (p. 39). Tools for full or partial displacement piles (Figures 4.11 to 4.15) are virtually all proprietary; some allow reinforcement inside the tool before concreting, some leave a sacrificial shoe that may improve end bearing and reduce soft-toe risk. DD piles need more torque and downforce, which limits depth more than for CFA piles; at the same rig capacity partial displacement systems penetrate deeper, with soil removal depending on the operator's penetration rate. The DeWaal pile (Morris-Shea Bridge Co.) has a short screw below the displacement bulge, a sacrificial shoe knocked out with a full-length center bar and grout placed by gravity (Figure 4.11) (p. 40). The Omega screw pile (L.G. Barcus & Sons) has a short tapered screw into the bulge, with a small cage placed through the hollow auger before concreting (Figure 4.12) (p. 41). The Fundex screw pile (American Pile Driving) has an oversized sacrificial shoe, a full-length cage placed before gravity concreting and an oscillated pipe whose shoe roughens the hole (Figure 4.13) (pp. 42 to 43). Berkel's full displacement pile uses pressure grouting with reinforcement placed after grouting (Figure 4.14a); its partial displacement pile removes some soil to reach greater depth (Figure 4.14b); Bauer full and partial displacement tools are in Figure 4.15 (pp. 43 to 44). Double rotary rigs (Figures 4.16 to 4.18) advance a full-length casing with the auger, usually counter-rotating; they suit secant walls, giving stability without drilling fluid, better verticality and cutting of hard material and secondary concrete piles (p. 45). Movable independent drives (Figure 4.16a) leave a cased hole for pre-placed reinforcement and concrete, as for a cased drilled shaft, with water or fluid and a tremie if the base is in a water-bearing zone (p. 46); fixed twin drives (Figures 4.16b, 4.17) advance and withdraw auger and casing together while concrete is pumped, the auger rotating faster to flight the right amount of soil. A Kelly-bar extension lets the auger go deeper than the casing as a CFA pile (Figure 4.18) (p. 47). (pp. 38 to 47)",
+      "key_points": [
+        "CFA auger pitch generally smaller than for DD piles; too large a pitch can mine soil (p. 38).",
+        "Double-start cutting heads keep vertical alignment but can pack with clay (p. 39).",
+        "Displacement systems are virtually all proprietary and need more torque and downforce (p. 40).",
+        "Partial displacement systems penetrate deeper than full displacement at the same rig capacity (p. 40).",
+        "Double rotary cased systems suit secant walls: stable hole, better verticality (p. 45).",
+        "Fixed twin drive: the auger must rotate faster than the casing to flight soil (p. 47)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 4.7: Augers for Different Soil Conditions",
+        "Figure 4.8: Auger for Use in Clay, with Auger Cleaner Attachment",
+        "Figure 4.9: Cutter Heads for Hard Material (left) and Soil (right)",
+        "Figure 4.10: Hardened Cutting Head",
+        "Figure 4.11: DeWaal Drilled Displacement Pile",
+        "Figure 4.12: Omega Screw Pile",
+        "Figure 4.13: Fundex Screw Pile",
+        "Figure 4.14: Drilled Displacement Piles",
+        "Figure 4.15: Additional Drilled Displacement Piles",
+        "Figure 4.16: Double Rotary Cased CFA Piles",
+        "Figure 4.17: Double Rotary Fixed Drive System",
+        "Figure 4.18: Double Rotary System with Kelly-Bar Extension"
+      ],
+      "tables": [],
+      "applicability": "Selection of drilling rigs, auger types, and pumping equipment for CFA and DD pile installation"
+    },
+    {
+      "section_id": "4.2.3",
+      "title": "Equipment for Concrete/Grout and Reinforcement Placement",
+      "summary": "Grout or concrete from a ready-mix plant is pumped under pressure to the top of the auger string and through the auger to the base; some DD piles take concrete by gravity into the tool top. Most U.S. CFA piles use sand-cement grout, most European piles small-aggregate concrete; practices and equipment are similar.",
+      "body": "Concrete or grout is normally delivered from a ready-mix plant by truck and, for most CFA piles, pumped under pressure through pump lines to the top of the auger string and through the auger, giving positive pressure at the discharge point at its base; some DD piles take concrete into the top of the large tool without pressure (Figures 4.11 to 4.13). Most U.S. CFA piles use sand-cement grout and most European piles concrete of small aggregate; practices and equipment are similar, and 'grout' and 'concrete' are used interchangeably in this section. (p. 48)",
+      "key_points": [
+        "Grout or concrete pumped under pressure through the auger to its base (p. 48).",
+        "U.S. mostly sand-cement grout; Europe mostly small-aggregate concrete (p. 48)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selection of drilling rigs, auger types, and pumping equipment for CFA and DD pile installation"
+    },
+    {
+      "section_id": "4.2.3.1",
+      "title": "Auger Plug",
+      "summary": "The grout discharge point is at the auger bottom below the teeth, usually off the leading edge; plugs are cork or plastic (off-center) or steel (center). If the plug fails, the pile is abandoned and re-drilled. Compressed air drilling without a plug works in stiff clays but in clean sands halved the measured unit side shear in a Florida Statnamic comparison.",
+      "body": "The grout discharge point should be at the bottom of the auger below the cutting teeth (Figures 2.7 and 4.10), usually oriented away from the leading edge so ground pressure does not press on the plug; a centered plug allows a single bar through the auger before concreting. Grout pressure blows out the plug; a center plug is usually steel or other hard material, the normal off-center plug cork or plastic. If the plug ('bung') does not come out, or comes out early and the line fills with soil, pumping is impossible and the pile must be abandoned: the auger is reversed out leaving soil in the hole, the problem corrected and the pile re-drilled a short distance away if the layout allows, or in place with likely adverse effects from disturbance; the re-drilled pile may be accepted, deepened or supplemented by additional piles. Some contractors use an auger without a plug, pumping compressed air during drilling, which helps in stiff clays (Texas, northern Georgia) but may not suit soils prone to mining such as clean sands (p. 48). In northeast Florida, instrumented Statnamic tests on two 16.8 m (55 ft), 600 mm (24 in.) piles less than 3 m (10 ft) apart in clean, poorly graded fine sands tipped in loose to firm clayey sand showed the unit side shear of the pile installed with compressed air was about half that of the pile without. Under a performance specification a contractor could use air if a test pile is successfully load tested (p. 49). (pp. 48 to 49)",
+      "key_points": [
+        "Discharge point at the auger bottom below the cutting teeth (p. 48).",
+        "A failed plug means the pile is abandoned and re-drilled (p. 48).",
+        "Compressed air may not suit clean sands; in a Florida comparison it halved unit side shear (p. 49).",
+        "Air allowed under a performance specification if a test pile is successfully load tested (p. 49)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selection of drilling rigs, auger types, and pumping equipment for CFA and DD pile installation"
+    },
+    {
+      "section_id": "4.2.3.2",
+      "title": "Pumping Equipment",
+      "summary": "Use a positive displacement pump capable of 2.4 MPa (350 psi) at the pump, delivering per stroke about 100 mm (4 in.) of pile length or less. Volume should be monitored by an in-line magnetic flowmeter (preferred; stroke counting is now poor practice) and pressure by a sensor near the auger; the minimum pressure is displayed in real time and recorded.",
+      "body": "The grout pump should be a positive displacement pump capable of up to 2.4 MPa (350 psi) at the pump; the typical pump has reciprocating pistons each delivering around 10 to 30 liters (0.4 to 1 cubic foot) per stroke. Pumps (Figure 4.19) are usually near the rig with an operator, with grout lines of 63 to 100 mm (2.5 to 4 in.) extending 30 to 60 m (100 to 200 ft), sometimes mounted on the rig, or with a rotating drum holding about 8 cubic meters (10 cubic yards) on site. A pump should deliver per stroke a volume corresponding to around 100 mm (4 in.) of pile length or less: too large and the operator cannot pump steadily and build a uniform pile; too small and the work is slow. Volume and pressure must be instrumented. Stroke counting (automated by a pressure sensor or proximity switch) assumes a constant volume per stroke, which varies with valve efficiency, pressure and time, and counters miss or double count strokes (p. 49); it is now considered a poor quality control practice. The preferred method is an in-line magnetic flowmeter (Figure 4.20), which measures a voltage proportional to the average grout velocity, converted to volume by the flow area, sensitive only to conductivity, not density or viscosity (p. 50). A pressure sensor should be mounted in-line; a sensor at the auger base about 1 m (3 ft) above the tip (Figure 4.21) is best but hard to maintain and not widely used; more commonly it is in the line just above the swivel, the tip pressure differing by the head difference less small flow losses, and measurements should be as near the auger as possible. The minimum pressure during grouting should be displayed in real time for the operator and inspector, used to correct areas where pressure dropped, and recorded (p. 51). (pp. 49 to 51)",
+      "key_points": [
+        "Positive displacement pump capable of 2.4 MPa (350 psi) at the pump (p. 49).",
+        "Volume per stroke should correspond to about 100 mm (4 in.) of pile length or less (p. 49).",
+        "Stroke counting is now considered a poor quality control practice (p. 50).",
+        "In-line magnetic flowmeter is the preferred volume measurement (p. 50).",
+        "Pressure measured as near the auger as possible; minimum pressure displayed and recorded (p. 51)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 4.19: Typical Concrete/Grout Pumps",
         "Figure 4.20: In-Line Flowmeter"
+      ],
+      "tables": [],
+      "applicability": "Selection of drilling rigs, auger types, and pumping equipment for CFA and DD pile installation"
+    },
+    {
+      "section_id": "4.2.3.3",
+      "title": "Finishing the Top of the Pile",
+      "summary": "After grouting and auger withdrawal the pile top is finished before reinforcement: a small form or casing (sheet metal ductwork, column forms) around the top prevents fall-in and is required on public projects; the contaminated uppermost grout is scooped or screened out (Figure 4.22).",
+      "body": "After grout placement and auger withdrawal, workers finish the pile top before placing reinforcement. A small form or casing around the top is recommended to prevent fall-in; sheet metal ductwork or prefabricated column forms are often used (Figure 4.22). Not all contractors use it in private work, but the top form is required on public projects. The contaminated uppermost grout must also be scooped or shoveled out; in Figure 4.22c a folding circular screen removes soil contamination from the fluid grout. (pp. 51 to 52)",
+      "key_points": [
+        "A top form to prevent fall-in is required on public projects (p. 51).",
+        "Contaminated uppermost grout must be removed before reinforcement placement (p. 51)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 4.21: Sensor for Concrete Pressure at Auger Tip"
       ],
       "tables": [],
       "applicability": "Selection of drilling rigs, auger types, and pumping equipment for CFA and DD pile installation"
@@ -38,20 +156,199 @@
     {
       "section_id": "4.3",
       "title": "Construction Materials",
-      "summary": "CFA piles use either sand-cement grout (U.S. common) or small-aggregate concrete (European common), both with fly ash, pozzolans, water reducers, and fluidifiers. Target compressive strength: 27.6–34.5 MPa (4,000–5,000 psi). Concrete slump: 200 ± 25 mm (8 ± 1 in.); grout workability: flow cone efflux 10–25 seconds (modified 19 mm opening per ASTM C939). Grout performs worse than concrete in sulfate/acid environments. Rebar: ASTM A615 Grade 60; 75 mm (3 in.) min cover; cage length typically 10–15 m maximum. Steel pipe (ASTM A572 Gr. 50 or A252 Gr. 2) may be used for high-bending applications.",
-      "body": "Grout vs. concrete: Both have been successfully used. Grout (sand/cement, no coarse aggregate) is more fluid, easier to pump, and facilitates rebar insertion; concrete has lower unit cost, slightly higher elastic modulus, and is more stable in very soft soils. Grout is more susceptible to sulfate attack (University of Houston O'Neill et al. 1999): in sodium sulfate environments, calcium leaching was 5× higher for grout than concrete. For sulfate-aggressive environments, grout performs worse than concrete.\n\nMix ingredients: Portland cement Type I or I/II per ASTM C150/AASHTO M85. Fly ash (ASTM C618 Class C or F): typically 25–70 lbs/yd³, retards early strength (strength normal by 10–14 days). Silica fume and slag may also be used. Water: potable, low chloride/sulfate. Aggregate: round gravel preferred for workability; no coarse aggregate in grout. Water reducers (ASTM C494): Type D (low-range) or Type G (high-range/superplasticizer) preferred. Grout fluidifiers per ASTM C937. Retarders when temperature >20°C (68°F). Air entraining agents when freeze-thaw is possible (~5% air; much may be lost during pumping).\n\nStrength and workability testing: Compressive strength 27.6–34.5 MPa (4,000–5,000 psi) at 28 days; concrete cylinders 150 mm (6 in.) diameter; grout tested on 50 mm cubes (strength requirement 10% higher than cylinders) or 50/75 mm cylinders. Concrete slump: 200 ± 25 mm (8 ± 1 in.). Grout: flow cone efflux time 10–25 seconds (modified 19 mm opening). Workability and temperature check on every truck. Do not place grout/concrete below 4°C (40°F) or above 38°C (100°F).\n\nReinforcing steel: ASTM A615 Grade 60 longitudinal bars; ASTM A722 high-strength threaded bars (1,035 or 1,100 MPa) for tension applications. Steel pipe: ASTM A572 Grade 50 (Fy = 350 MPa / 50 ksi) or ASTM A252 Grade 2 (Fy = 420 MPa / 60 ksi) for high-bending applications. Minimum cover: 75 mm (3 in.); spacers at ≤3 m (10 ft) intervals (non-steel spacers only). Cage length typically 10–15 m feasible; shorter cages preferred where possible. Wire ties on all bars at every tie or spiral; welding permitted only if weldable reinforcement specified.",
+      "summary": "The component materials of a CFA pile are grout or concrete (4.3.1) and reinforcing steel (4.3.2).",
+      "body": "The component materials of a CFA pile are grout/concrete (4.3.1) and reinforcing steel (4.3.2). (p. 52)",
       "key_points": [
-        "Grout: more fluid, easier to pump, more susceptible to sulfate/acid attack vs. concrete",
-        "Target strength: 27.6–34.5 MPa (4,000–5,000 psi); slump 200 ± 25 mm (concrete); flow cone 10–25 sec (grout, modified 19 mm opening)",
-        "Fly ash retards early strength — mix design must show strength development vs. time; normal strength by 10–14 days",
-        "Rebar: ASTM A615 Gr. 60; 75 mm min cover; spacers at ≤3 m; cage length typically limited to 10–15 m",
-        "Steel pipe reinforcement (A572 Gr. 50 or A252 Gr. 2) for high-bending wall/slope stabilization applications",
-        "Do not place grout/concrete below 4°C (40°F) or above 38°C (100°F) without approved hot/cold weather procedures"
+        "Materials: grout/concrete and reinforcing steel (p. 52)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Material specifications for grout/concrete and reinforcing steel in CFA piles"
+    },
+    {
+      "section_id": "4.3.1",
+      "title": "Grout and Concrete",
+      "summary": "CFA grout is like concrete without coarse aggregate (not thin neat-cement grout); mixes contain cement, fly ash, water, aggregate and admixtures, must keep solids in suspension, pump easily, fill voids and accept reinforcement. Grout eases rebar insertion and pumping but costs more, has a slightly lower modulus and is less stable in very soft soils and in sulfate or acid environments.",
+      "body": "Grout and concrete have both been used successfully. CFA concrete is like wet-hole drilled shaft concrete; CFA grout is similar but with sand only, not coarse aggregate; thin cement-and-water grouts used in micropiles are not used. Mixes contain Portland cement, fly ash, water, aggregate and admixtures (water reducers in concrete, fluidifiers in grout, retarders to extend flowability). All solids must stay in suspension without excessive bleed water, and the mix must be pumpable, penetrate and fill open voids in the adjacent soil and allow insertion of reinforcement (pp. 52 to 53). Grout advantages: easier rebar insertion, greater fluidity and workability, easier pumping with existing grout pumps; disadvantages: higher unit cost, slightly lower elastic modulus and less stability when drilling through extremely soft soils (organic clays or silt) (p. 54). Grout is more sensitive to small water content variations (segregation, bleed); any highly workable mix needs more quality control. DD piles may induce excess pore pressures that let water intrude into a new pile; grout may be more susceptible, and special fluidifiers are added. The lower grout modulus has a small effect on CFA load-settlement, which is controlled mainly by pile-soil interaction because CFA piles are relatively short (Figure 4.23) (p. 54). A University of Houston study (O'Neill et al., 1999) over two years found auger grout gained over 3% weight in a sodium solution (concrete about 1% in 500 days), lost 2% weight in sulfate solutions in 180 to 270 days (concrete 0.2 to 0.3% in 500 days), leached about five times more calcium in sulfates and lost compressive strength in hydrochloric acid (pH 2 to 4) or sulfate solutions; sulfuric acid at pH 4 and 5 ppm sulfate had minimal effect. Auger grouts can be expected to perform worse than normal Portland cement concrete in aggressive soils with sulfates and acids (p. 55). (pp. 52 to 55)",
+      "key_points": [
+        "CFA grout contains sand but no coarse aggregate; thin neat-cement grouts are not used (p. 52).",
+        "Mix must stay in suspension, pump easily, fill voids and allow rebar insertion (pp. 52 to 53).",
+        "Grout: easier rebar insertion and pumping; higher cost, lower modulus, less stable in very soft soil (p. 54).",
+        "DD piles may induce pore pressures that let water intrude into new grout (p. 54).",
+        "Auger grout performs worse than concrete in sulfate and acid environments (p. 55)."
       ],
       "equations": [],
       "figures": [
-        "Figure 4.23: Sand-Cement Grout Mixes",
-        "Figure 4.24: Machine-Welded Reinforcement Cage",
+        "Figure 4.22: Completion of Pile Top Prior to Installation of Reinforcement",
+        "Figure 4.23: Sand-Cement Grout Mixes"
+      ],
+      "tables": [],
+      "applicability": "Material specifications for grout/concrete and reinforcing steel in CFA piles"
+    },
+    {
+      "section_id": "4.3.1.1",
+      "title": "Cement",
+      "summary": "Ordinary Type I or Type I/II Portland cement meeting ASTM C 150 or AASHTO M85 can normally be used; special sulfate resistant cements should be considered where sulfate in the geo-material or groundwater is extremely high.",
+      "body": "Ordinary Type I or Type I/II Portland cement can normally be used in CFA grout/concrete; it should meet ASTM C 150 or AASHTO M85. Special sulfate resistant cements should be considered where the sulfate content of the geo-material or groundwater is extremely high. (p. 55)",
+      "key_points": [
+        "Type I or I/II Portland cement to ASTM C 150 or AASHTO M85 (p. 55).",
+        "Sulfate resistant cement where sulfate content is extremely high (p. 55)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Material specifications for grout/concrete and reinforcing steel in CFA piles"
+    },
+    {
+      "section_id": "4.3.1.2",
+      "title": "Pozzolanic Additives",
+      "summary": "Fly ash (ASTM C 618), silica fume or slag lower permeability and retard set, extending workability, but probably severely retard early strength until about 10 to 14 days, so the mix design should show strength vs. time. Fly ash performance depends on source, not class alone; mixes should be developed for each site with local materials.",
+      "body": "Grout and concrete may contain pozzolanic additives, most commonly fly ash (ASTM C 618), also silica fume and blast furnace slag; they lower permeability and retard set, increasing workable time, but will probably severely retard early strength gain, typically until about 10 to 14 days; the submitted mix design should then include strength development vs. time so the design engineer can adjust (p. 55). Fly ash is widely available; ACI 232.2R-96 gives an overview; Class C and Class F are most common, but performance differs by source, e.g., ashes mixed with scrubber products containing free lime and calcium sulfates or sulfites have caused problems. CFA mix designs should be developed for the project site using locally available materials (p. 56). (pp. 55 to 56)",
+      "key_points": [
+        "Pozzolans lower permeability and retard set (p. 55).",
+        "They will probably severely retard early strength, typically until about 10 to 14 days (p. 55).",
+        "Mix design submittal should include strength development vs. time (p. 55).",
+        "Develop the mix for the site using local materials (p. 56)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Material specifications for grout/concrete and reinforcing steel in CFA piles"
+    },
+    {
+      "section_id": "4.3.1.3",
+      "title": "Water",
+      "summary": "Mixing water for CFA grout or concrete should be potable, free of organic contamination and deleterious material, with low chloride and sulfate contents.",
+      "body": "Water used for mixing should be potable (free of organic contamination and deleterious material) and have low chloride and sulfate contents. (p. 56)",
+      "key_points": [
+        "Mixing water potable with low chloride and sulfate (p. 56)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Material specifications for grout/concrete and reinforcing steel in CFA piles"
+    },
+    {
+      "section_id": "4.3.1.4",
+      "title": "Aggregate",
+      "summary": "Aggregate should meet the relevant specifications (ASTM C 33, C 87 and the alkali susceptibility tests). Rounded gravel is strongly preferred over crushed stone for pumping and placement; very workable concrete needs a greater fine to coarse ratio to limit segregation and bleeding.",
+      "body": "All aggregate should meet the appropriate specifications, e.g., ASTM C 33-93 (concrete aggregate), C 87-90 (organic impurities in fine aggregate) and C 227-90, C 289-94, C 295-90 and C 586-92 (alkali susceptibility). Rounded gravel is strongly preferred over crushed stone for workability in pumping and placement. Gradation depends on the mix design; concrete with extremely high workability needs a greater ratio of fine to coarse aggregate to minimize segregation and bleeding. (p. 56)",
+      "key_points": [
+        "Rounded gravel strongly preferred over crushed stone (p. 56).",
+        "Highly workable concrete needs a greater fine to coarse aggregate ratio (p. 56)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Material specifications for grout/concrete and reinforcing steel in CFA piles"
+    },
+    {
+      "section_id": "4.3.1.5",
+      "title": "Fluidifiers for Grout and Water Reducing Admixtures for Concrete",
+      "summary": "Water reducers (ASTM C 494; high-range also ASTM C 1017, slump increase of 90 mm or more): Type D preferred over A and Type G over F to limit slump loss; polycarboxylate superplasticizers keep slump longer than older naphthalene types. Grout fluidifiers (ASTM C937) offset bleeding, lower w/c and retard stiffening.",
+      "body": "Low- and high-range (superplasticizer) water reducers are routinely used in drilled shaft concrete. ASTM C 494 classifies an admixture as water reducing if it cuts water demand by 5%; high-range reducers may also be specified by ASTM C 1017, which requires a slump increase of 90 mm (3.5 in.) or more. Type D is preferred over Type A for piles (some retarding, less slump loss), and Type G is often preferred over Type F, though newer polycarboxylate superplasticizers maintain high slump for extended periods (p. 56). Low-range reducers give w/c of 0.40 to 0.45, high-range 0.3 or lower at high slump. Older naphthalene-based superplasticizers lost slump rapidly and could flash set, making them risky for cast-in-place foundations; polycarboxylates lose effectiveness slowly and act as mild retarders. High-slump mixes must be designed carefully against segregation and bleeding. Grout fluidifiers, specified by ASTM C937, offset bleeding, reduce w/c and retard stiffening; they typically contain a water reducer, a suspending agent, aluminum powder and a chemical buffer (p. 57). (pp. 56 to 57)",
+      "key_points": [
+        "Type D preferred over Type A; Type G often over Type F, to reduce slump loss (p. 56).",
+        "Low-range reducers w/c 0.40 to 0.45; high-range 0.3 or lower (p. 57).",
+        "Older naphthalene superplasticizers risky (rapid slump loss, flash set); polycarboxylates suitable (p. 57).",
+        "Grout fluidifier may be specified by ASTM C937 (p. 57)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Material specifications for grout/concrete and reinforcing steel in CFA piles"
+    },
+    {
+      "section_id": "4.3.1.6",
+      "title": "Retarders",
+      "summary": "Retarders (ASTM C494; Type D water-reducing, set-retarding) may be needed when placing in high temperatures, above 20 C (68 F), to reduce slump loss. They slow early strength development, which should approach unretarded concrete within eight days unless overdosed; overdosing can prevent set entirely.",
+      "body": "Retarders (ASTM C494-92) are lignosulfonic and hydroxycarboxylic acids, sugars and phosphates; many are also water reducing and classed as Type D water-reducing, set-retarding admixtures. They may be needed when placing in high temperatures [> 20 C (68 F)] to reduce slump loss during placement. Some slow early hydration, which then proceeds normally; some inorganic retarders coat cement particles and severely reduce reaction. Retarders slow early strength development; strength should approach that of unretarded concrete within eight days unless overdosed, and overdosing can prevent set entirely. (p. 57)",
+      "key_points": [
+        "Retarders may be needed above 20 C (68 F) (p. 57).",
+        "Strength should approach unretarded concrete within eight days unless overdosed (p. 57).",
+        "Overdosing retarder can prevent set entirely (p. 57)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Material specifications for grout/concrete and reinforcing steel in CFA piles"
+    },
+    {
+      "section_id": "4.3.1.7",
+      "title": "Air Entraining Agents",
+      "summary": "Air entraining agents (ASTM C 260) may be used where freeze-thaw deterioration is possible and improve workability and pumpability, but make the grout slightly more permeable to chemical attack; about 5% air is needed for pumpability, and much is lost by the time of set.",
+      "body": "Air entraining agents (ASTM C 260-94) can be used where freeze-thaw deterioration is possible; entrained air also improves workability and pumpability and reduces bleeding, but makes the grout/concrete slightly more permeable and more susceptible to chemical attack (e.g., chlorides). About 5% air is needed to improve pumpability; much of it is lost in mixing, pumping and placement by the time the mix sets. (p. 57)",
+      "key_points": [
+        "About 5% air needed to improve pumpability (p. 57).",
+        "Entrained air makes grout slightly more permeable to chemical attack (p. 57)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Material specifications for grout/concrete and reinforcing steel in CFA piles"
+    },
+    {
+      "section_id": "4.3.1.8",
+      "title": "Sampling and Testing",
+      "summary": "Sample grout/concrete at the site for temperature, workability (slump or flow cone) and strength; typical strengths 27.6 to 34.5 MPa (4,000 to 5,000 psi); grout cubes run about 10% above cylinders. Concrete slump 200 mm +/- 25 mm; grout flow cone with a 19 mm (0.75 in.) opening, efflux 10 to 25 s. Check every truck; place only between 4 C (40 F) and 38 C (100 F).",
+      "body": "Representative samples are taken at the site for QA/QC (Chapter 7); the parameters measured are temperature, workability (slump for concrete, flow cone for grout) and laboratory strength. Typical strength requirements are 27.6 to 34.5 MPa (4,000 to 5,000 psi). Concrete uses 150 mm (6 in.) cylinders; for grout some use 50 or 75 mm (2 or 3 in.) cylinders, most 50 mm (2 in.) cubes; cubes test slightly stronger than cylinders with a height to diameter ratio of 2, so the cube strength requirement is typically 10% higher. Ideally samples would be taken at discharge after pumping through lines and auger, but samples are typically taken where the mix discharges into the pump hopper; workability and temperature should be checked on every truck, and sampling must be quick. Concrete slump should typically be 200 mm +/- 25 mm (8 in. +/- 1 in.). Grout is tested with a flow cone (ASTM C939, CRD-C 611-94) modified from the standard 12 mm (0.5 in.) outlet to a 19 mm (0.75 in.) opening, as CFA grouts are too thick; suitable grouts have an efflux time of 10 to 25 seconds. Most mixes stay workable up to 2 hours when agitated in the truck; flow cone or slump tests should be done at placement, with more retarder for long cage placement or great depth (p. 58), and tests at the time of cage placement may evaluate workability then. Grout or concrete should not be placed below 4 C (40 F) or above 38 C (100 F) unless approved cold or hot weather procedures are followed (p. 59). (pp. 58 to 59)",
+      "key_points": [
+        "Typical strength requirements 27.6 to 34.5 MPa (4,000 to 5,000 psi) (p. 58).",
+        "Cube strength requirement typically 10% higher than for cylinders (p. 58).",
+        "Workability and temperature checked on every truck (p. 58).",
+        "Concrete slump 200 mm +/- 25 mm (8 in. +/- 1 in.) (p. 58).",
+        "Grout flow cone with 19 mm (0.75 in.) opening; efflux 10 to 25 s (p. 58).",
+        "Do not place below 4 C (40 F) or above 38 C (100 F) without approved procedures (p. 59)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Material specifications for grout/concrete and reinforcing steel in CFA piles"
+    },
+    {
+      "section_id": "4.3.2",
+      "title": "Reinforcing Steel",
+      "summary": "Heading for reinforcing steel: reinforcing steel materials (4.3.2.1) and the reinforcing cage or section (4.3.2.2).",
+      "body": "Heading for reinforcing steel: materials (4.3.2.1) and the reinforcing cage/section (4.3.2.2); it has no text of its own. (p. 59)",
+      "key_points": [
+        "See 4.3.2.1 and 4.3.2.2 (p. 59)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Material specifications for grout/concrete and reinforcing steel in CFA piles"
+    },
+    {
+      "section_id": "4.3.2.1",
+      "title": "Reinforcing Steel Materials",
+      "summary": "Reinforcing bars are typically ASTM A615 Grade 60; high-strength threaded bars (ASTM A722, 1,035 or 1,100 MPa) for large tension; ties or spirals as transverse steel. Steel pipe (ASTM A572 Grade 50, or ASTM A252 Grade 2 as printed) for large bending makes the pile a grout-filled steel element, designed with micropile guidelines.",
+      "body": "Reinforcing bars typically are ASTM A615 Grade 60, as for drilled shafts; occasionally high-strength threaded bars meeting ASTM A722 (1,035 or 1,100 MPa [150 or 160 ksi]) are used for large tensile loads. Transverse steel is circular ties or spirals. Steel pipe may be used for large bending, as in a wall: ASTM A572 Grade 50, nominal minimum yield 350 MPa (50 ksi), or ASTM A252 Grade 2, nominal minimum yield 420 MPa (60 ksi or Grade 60), as printed. With steel pipe the CFA pile is a concrete- or grout-filled steel element rather than a reinforced concrete member, and micropile design guidelines are appropriate. (p. 59)",
+      "key_points": [
+        "Bars typically ASTM A615 Grade 60 (p. 59).",
+        "High-strength threaded bars (ASTM A722) for large tensile loads (p. 59).",
+        "Steel pipe reinforcement: design as a grout-filled steel element by micropile guidelines (p. 59)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Material specifications for grout/concrete and reinforcing steel in CFA piles"
+    },
+    {
+      "section_id": "4.3.2.2",
+      "title": "Reinforcing Cage/Section",
+      "summary": "Cages must be tied at every tie or spiral to resist distortion (welding only with weldable bars, Figure 4.24); steel sections may provide flexure (Figure 4.25); 75 mm (3 in.) clear cover with plastic or cementitious spacers at no more than about 3 m (10 ft), never steel spacers; centralizers on single bars at no more than 3 m; avoid splices, mechanical splices preferred.",
+      "body": "Cages should be fabricated so lifting and handling do not cause permanent distortion or racking: wire ties on all longitudinal bars at every tie or spiral; welding only with weldable reinforcement (Figure 4.24), rare in U.S. practice; spliced cages or coupled threaded bars are often needed in low headroom. Where bending stresses are high (pile walls, slope stabilization), structural steel sections may be used, e.g., a steel pipe in a tangent wall (Figure 4.25). Cages are normally specified with 75 mm (3 in.) clear cover; plastic or cementitious spacers at intervals of no more than about 3 m (10 ft); steel spacers should not be permitted as they may accelerate corrosion; steel centering guides such as a wire 'basket' or 'football' at the base of single-rod reinforcement may be used; a cage may be tied to a 'point' at the bottom. On a batter, special provisions may be needed for cover (Figure 4.26: a continuous PVC pipe on the bottom side as cover and 'runner') (pp. 59 to 60). A single tensile bar needs centralizers at no more than 3 m (10 ft); bars placed through the hollow auger before grouting cannot have centralizers. Splices are better avoided but common for tension piles or single full-length center bars; mechanical splices are preferred, and high-strength threaded bars suit this (p. 61). (pp. 59 to 61)",
+      "key_points": [
+        "Wire ties on all longitudinal bars at every tie or spiral; weld only weldable bars (p. 59).",
+        "75 mm (3 in.) clear cover; plastic or cementitious spacers at no more than about 3 m (10 ft) (p. 59).",
+        "Steel spacers should not be permitted (corrosion) (p. 59).",
+        "Single tensile bars: centralizers at no more than 3 m (10 ft) (p. 61).",
+        "Avoid splices; prefer mechanical splices (p. 61)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 4.24: Machine-Welded Reinforcement Cage on Project Site in Germany",
         "Figure 4.25: Use of Steel Pipe to Reinforce a CFA Pile for a Wall",
         "Figure 4.26: Installation of Reinforcement Cage into Battered CFA Pile"
       ],
@@ -61,15 +358,16 @@
     {
       "section_id": "4.4",
       "title": "Summary of Recommended Practices",
-      "summary": "Key recommended practices: (1) rig must have adequate torque — performance requirement preferred over minimum spec; (2) maintain target penetration rate and monitor with automated systems; (3) grout/concrete: performance-based strength verification, workability tested every truck, maintained through rebar installation; (4) placement: automated volume/pressure monitoring; in-line flowmeter preferred; slow steady auger pull; (5) pile top: flush to surface, remove contaminated material, use top form; (6) rebar: mix must retain workability through cage installation; (7) submit installation plan; (8) verify by pre-production load tests.",
-      "body": "Drilling Rigs: Provide adequate torque capacity to install piles without excessive flighting. Performance requirement preferred over minimum spec — contractor must select appropriate rig for the project.\n\nDrilling: Target penetration rates must be established and maintained. Automated monitoring systems must provide feedback to the operator and verified records. Installation method for production piles must match that used for load test piles.\n\nCementitious Materials: Performance-based grout/concrete specs verified by strength tests. Workability and temperature checked on every truck. Mix proportions established from test/control piles and maintained throughout the project. Workability tested at time corresponding to rebar cage installation.\n\nGrout/Concrete Placement: Automated monitoring of volume and pressure as function of auger tip elevation is required. Slow, steady auger pull at rate appropriate for pump delivery. Auger must never rotate in place without drilling or pumping. In-line flowmeters are preferred for volume monitoring.\n\nPile Top Completion: Continue delivering appropriate volume when auger nears surface. Manually remove debris and contaminated grout before reinforcement. Use top form extending above grade. Flush grout/concrete to surface of working platform to remove questionable material.\n\nReinforcement: Mix must retain workability through entire duration from drilling to rebar installation. Anti-washout admixtures may be required in sandy soils. Design cages with fewer heavy bars, minimum necessary length, and ease of installation in mind. Tie cage to permit handling without distortion.\n\nInstallation Plan: Contractor must submit plan including equipment and methods. Load testing program must include pre-production static load tests, production load tests (static and/or rapid/dynamic), and post-installation integrity tests in sufficient quantities to demonstrate that piles meet load and deflection criteria.",
+      "summary": "Key practices: rigs with enough torque to avoid flighting (a performance requirement); target penetration rates controlled and monitored by automated systems; performance-based grout/concrete with workability and temperature checks on every truck; automated monitoring of volume and pressure with in-line flowmeters; never turn the auger in place; top forms; workable mix for cage placement; installation plan; test piles.",
+      "body": "Key components of good quality construction (Chapter 8 gives guidelines): drilling rigs with adequate torque to avoid excessive flighting, best set as a performance requirement, as torque and power govern depth and capacity (p. 61); drilling with target penetration rates established, controlled by the operator and monitored by automated systems, and production piles installed as the load test piles were; cementitious materials specified on performance verified by cube or cylinder strength, workability and temperature tested on each truck, proportions set from test piles, slump for concrete and flow cone with a 19 mm (0.75 in.) opening for grout, and workability kept through rebar installation; grout placement monitored by automated systems so adequate volume is pumped at positive pressure throughout withdrawal, with slow steady pulling (static or very slow rotation), the auger never turning in place without drilling or pumping, and in-line flowmeters preferred over stroke counters; completion of the pile top with continued delivery near the surface, manual removal of contaminated grout, a small form above grade, and for below-grade cutoff, completion to grade and later trimming (p. 62); reinforcement with a mix workable for the whole drilling, grouting and cage placement time (anti-washout admixtures if dewatering), cages of fewer heavy bars no longer than necessary, tied for handling; an installation plan submitted by the contractor; and a monitored test pile program of pre-production static load tests, production static, rapid or dynamic tests and post-installation integrity tests, with the demonstrated procedure followed for all production piles (p. 63). (pp. 61 to 63)",
       "key_points": [
-        "Performance-based rig selection preferred over minimum torque specification",
-        "Target penetration rates must be established and maintained; automated monitoring required",
-        "Workability tested every truck and at time of rebar installation; automated volume/pressure monitoring required during grouting",
-        "In-line flowmeter preferred over stroke counter for volume monitoring",
-        "Production pile installation method must match method used for load test piles exactly",
-        "Pre-production static load tests required; production load tests (static, rapid, or dynamic) and integrity tests to verify performance"
+        "Rig torque capability best set as a performance requirement (p. 61).",
+        "Target penetration rates established, controlled and monitored by automated systems (p. 62).",
+        "Workability and temperature tested on each truck; flow cone opening 19 mm (0.75 in.) (p. 62).",
+        "The auger should never turn in place without drilling or pumping (p. 62).",
+        "In-line flowmeters preferred over stroke counters (p. 62).",
+        "Cages: fewer heavy bars, no longer than necessary (p. 63).",
+        "Test pile program; the demonstrated procedure must be followed for all production piles (p. 63)."
       ],
       "equations": [],
       "figures": [],

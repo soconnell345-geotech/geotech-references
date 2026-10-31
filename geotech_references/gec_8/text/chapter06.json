@@ -5,71 +5,301 @@
   "chapter_title": "Recommended Design Method",
   "sections": [
     {
-      "section_id": "6.1-6.2",
-      "title": "Steps 1-2: Initial Considerations and Foundation Type Selection",
-      "summary": "Step 1 collects general structural foundation requirements (loads, geometry, scour depth, seismic zone, special events), site geology and subsurface conditions. Step 2 compares CFA and DD piles to alternative foundation types (driven piles, drilled shafts). Selection criteria from Table 6.1 address stratigraphy, groundwater, CFA-favorable conditions, geotechnical and project constraints. CFA piles are generally best when: soils are predominantly cohesive or cemented; no deep hard bearing stratum; speed and economy are important; vibration or noise constraints exist.",
-      "body": "Step 1 — Initial Design Considerations: Collect (a) general structural foundation requirements including loads, geometry, foundation layout, and code requirements; (b) site geology and subsurface conditions from the site investigation; (c) special design events such as seismic, scour, vessel impact, etc.; and (d) possible modifications to the structure and approximate foundation loads and deformation tolerances.\n\nStep 2 — Comparison and Selection of Deep Foundation Alternatives: Compare CFA and DD piles to alternative deep foundation types. Table 6.1 provides a structured comparison of CFA and DD piles for different stratigraphic conditions, groundwater locations, and other factors. Alternative deep foundation types are described in FHWA IF-99-025 (drilled shafts, O'Neill and Reese 1999) and FHWA NHI-132021 (driven piles, Hannigan et al. 2006). Key selection factors favoring CFA piles: predominantly cohesive or moderately granular soils without deep scour or hard rock; no significant design uplift, bending, or lateral requirements beyond the capacity of CFA piles; speed, economy, noise/vibration constraints.",
+      "section_id": "6.1",
+      "title": "Step 1: Initial Design Considerations",
+      "summary": "Step 1 of the five-step design method reviews the structure- and site-specific conditions needed for any foundation design, focusing on items that establish or preclude CFA piles: general structural foundation requirements (6.1.1) and site geology and subsurface conditions (6.1.2).",
+      "body": "The initial design considerations review the structure-specific and site-specific conditions necessary for any foundation design; this chapter focuses on items that establish or preclude the suitability of CFA piles. Step 1 is subdivided into the components below (6.1.1, 6.1.2). (p. 133)",
       "key_points": [
-        "Step 1: Collect loads, geometry, subsurface profile, special events (seismic, scour), deformation tolerances",
-        "Step 2: Compare CFA/DD vs. driven piles and drilled shafts using Table 6.1 criteria",
-        "Table 6.1: Favorable CFA conditions — cohesive/cemented soils, no deep hard bearing, no deep scour",
-        "Unfavorable for CFA: significant uplift, bending, or lateral demands; deep scour; liquefiable zones"
+        "Step 1 focuses on items that establish or preclude CFA piles (p. 133)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "CFA pile selection and comparison with alternative foundation types"
+    },
+    {
+      "section_id": "6.1.1",
+      "title": "General Structural Foundation Requirements",
+      "summary": "General structural requirements: project type (bridges, walls, signs: CFA piles may be considered for all), construction sequencing (neutral), layout and grades, surface conditions (a stable working platform is required), special design events (seismic, scour, vessel impact), possible structure changes, and approximate loads and deformation limits.",
+      "body": "The first step is to determine the general structural requirements for the foundation, including: project type (new, replacement or widened bridge, retaining wall, noise wall, sign or light standard; CFA piles may be considered for any of them); construction sequencing (phased or all at once; neither precludes nor favors CFA piles); general layout and approach grades; surficial site characteristics (a stable working platform is required for CFA construction) (p. 133); special design events such as seismic, scour or vessel impact, which affect the site investigation and can significantly affect the selection of CFA piles; possible desirable modifications to the structure; and approximate foundation loads and deformation limits (p. 134). (pp. 133 to 134)",
+      "key_points": [
+        "CFA piles may be considered for bridges, retaining walls, noise walls, signs and light standards (p. 133).",
+        "Construction sequencing neither precludes nor favors CFA piles (p. 133).",
+        "A stable working platform is required for CFA construction (p. 133).",
+        "Seismic, scour and vessel impact events can significantly affect selection of CFA piles (p. 134)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "CFA pile selection and comparison with alternative foundation types"
+    },
+    {
+      "section_id": "6.1.2",
+      "title": "Site Geology and Subsurface Conditions",
+      "summary": "Site characterization follows other FHWA documents (FHWA-HI-97-021, NHI soils and foundations, GEC-5); CFA piles need no special investigation beyond that for driven piles: stratigraphy, bearing formation, groundwater, variability, and cavities, boulders or hard layers. CPT soundings suit CFA and especially DD pile design and are recommended.",
+      "body": "Site characterization is covered by other FHWA publications (Subsurface Investigations, FHWA-HI-97-021; the NHI Soils and Foundations Workshop, FHWA-NHI-66-083 as printed; GEC No. 5, FHWA-IF-02-034, Sabatini et al., 2002): a review of geology and local foundation experience followed by a carefully planned exploration. CFA piles generally need no specialized techniques beyond those for driven piles; important items are stratigraphy and classification, depth and character of the likely bearing formation, groundwater, variability and unusual features such as solution cavities, boulders, lenses or hard rock layers. CPT is particularly well suited to CFA and especially DD pile design: a continuous strength record that correlates well with performance, feasible where these piles are considered and cost-effective over large areas; where CFA piles may be viable, CPT soundings are recommended and encouraged. (p. 134)",
+      "key_points": [
+        "CFA piles need no specialized investigation beyond that for driven piles (p. 134).",
+        "Key items: stratigraphy, bearing formation, groundwater, variability, cavities, boulders, hard layers (p. 134).",
+        "CPT soundings are recommended for CFA and especially DD pile design (p. 134)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "CFA pile selection and comparison with alternative foundation types"
+    },
+    {
+      "section_id": "6.2",
+      "title": "Step 2: Comparison and Selection of Deep Foundation Alternatives",
+      "summary": "Step 2 selects the foundation system from shallow foundations, ground improvement, driven piles, drilled shafts, micropiles and CFA or DD piles; Table 6.1 lists stratigraphic, structural, special and economic factors favoring or disfavoring CFA and DD piles, with approximate maximum ultimate lateral and axial loads by diameter. Alternatives are covered by other FHWA manuals.",
+      "body": "Step 1 information is evaluated to select a foundation system; shallow foundations, possibly with ground improvement, may be considered, and deep alternatives include driven piles, drilled shafts, micropiles and conventional CFA and DD piles. Selection involves multiple factors and the designer's experience and judgment; Table 6.1 outlines considerations for CFA piles (p. 134). The following steps are for CFA and DD piles; alternatives are covered by FHWA manuals for drilled shafts (FHWA-IF-99-025, O'Neill and Reese, 1999), driven piles (FHWA-NHI-132021, Hannigan et al., 2006) and micropiles (NHI-05-039, Sabatini et al., 2005) (p. 136). (pp. 134 to 136)",
+      "key_points": [
+        "Deep alternatives: driven piles, drilled shafts, micropiles, conventional CFA and DD piles (p. 134).",
+        "Predominantly clays favor CFA; sands favor DD; rock is not favorable for CFA or DD (Table 6.1) (p. 135).",
+        "Depth to competent material over 30 m (100 ft), boulders or rock lenses, artesian water: not favorable (p. 135).",
+        "Approximate maximum ultimate axial load: 400 kip (18 in.) to 1,500 kip (36 in.) (Table 6.1) (p. 135).",
+        "Close proximity to structures, obstructions, work over water: not favorable to CFA or DD (p. 135).",
+        "Small projects with few piles and many moves may not favor CFA or DD (p. 135)."
       ],
       "equations": [],
       "figures": [],
       "tables": [
-        "Table 6.1: Design Consideration for Foundation Selection of CFA and DD Piles"
+        "Table 6.1: Design Consideration for Foundation Selection of CFA and DD Piles - Stratigraphic (favorable ground conditions; type of profile; GWT location; other factors): predominantly clays favor CFA; very soft surface may be unfavorable (poor working platform); GWT below existing grade not much of a factor in clays; depth to competent material > 30 m (100 ft) not favorable. Sands favor DD; uniform or similar strata favorable; GWT depth > 3 m (10 ft) favorable; boulders, rock layers or lenses not favorable; highly variable drilling resistance not favorable; artesian conditions not favorable; a good working platform especially important for DD because DD rigs are usually heavier than CFA. Cemented soils, weak rock favor CFA; highly variable drilling resistance not favorable; artesian conditions not favorable; boulders, rock layers or lenses not favorable. Rock not favorable for CFA or DD. Structural: approximate maximum ultimate lateral loads per vertical pile vs. recommended diameter, soft or loose soil 12 kip 18 in., 20 kip 24 in., 30 kip 30 in., 45 kip 36 in.; stiff or dense soil 20 kip 18 in., 35 kip 24 in., 50 kip 30 in., 70 kip 36 in.; approximate maximum ultimate axial compressive loads per pile 400 kip 18 in., 700 kip 24 in., 1,000 kip 30 in., 1,500 kip 36 in.; other conditions: low headroom may favor CFA piles; close proximity to existing structures not favorable to CFA or DD (ground movements during construction); noise and vibration may favor CFA or DD vs. driven piles; potential obstructions below grade not favorable to CFA or DD. Special considerations: seismic lateral subsurface soil movements not favorable to CFA or DD; deep scour (high moments at depth) not favorable to CFA or DD; contaminated ground may favor DD (avoidance of spoils); work over water not favorable to CFA or DD. Economic: qualified local subcontractors necessary for CFA or DD; large numbers of piles favorable to CFA or DD; small project with few piles and many moves may not favor CFA or DD"
       ],
       "applicability": "CFA pile selection and comparison with alternative foundation types"
     },
     {
       "section_id": "6.3",
-      "title": "Step 3: Select Pile Length and Calculate Performance",
-      "summary": "ASD design: ΣQi ≤ R/SF. Typical safety factors: SF = 2.0–2.5 without load tests; SF = 2.0 with a complete pre-production static load test program. Service limit state settlement per AASHTO: angular distortion ≤ 0.008 for simple spans, ≤ 0.004 for continuous spans. Design procedure: (A) develop idealized subsurface profiles; (B) determine geotechnical parameters by layer; (C) determine design loads; (D) compute group effects; (E) check settlement and deformation; (F) design individual piles for axial and lateral loading; (G) optimize group layout and pile count.",
-      "body": "Limit states for design: The Geotechnical Ultimate Limit State (GULS) governs when the design must provide adequate pile capacity; the Structural Ultimate Limit State (SULS) governs when structural integrity of the pile controls; and the Serviceability Limit State (SLS) governs when deformations and settlements control.\n\nASD design equation: ΣQi ≤ R/SF, where Qi = service (unfactored) load, R = computed resistance at GULS, SF = factor of safety. CFA piles should generally be designed with SF = 2.0–2.5 where no load tests are performed. With a complete pre-production static load test program, SF = 2.0 is appropriate. Higher safety factors may be warranted for difficult construction conditions or especially critical structures.\n\nServiceability: Bridge structures per AASHTO Section 4.4.7.2.5. Angular distortions between adjacent foundations should generally not exceed 0.008 for simple spans and 0.004 for continuous spans. For approach embankments on soft soils, differential settlement between the pile-supported structure and the adjacent embankment may control.\n\nDesign procedures: (A) Develop idealized subsurface profiles at all foundation locations. (B) Develop geotechnical design parameters per layer (Su, φ', SPT N, CPT qc, etc.). (C) Determine design loads at foundation level. (D) Consider group effects on axial capacity and lateral resistance. (E) Check total and differential settlements. (F) Design individual piles — compute axial resistance (Chapter 5 methods), check lateral capacity and deflection (p-y analysis), design structural section (P-M interaction diagram). (G) Optimize group layout: pile size, length, spacing, and number of piles; the minimum group size that satisfies GULS, SULS, and SLS governs.",
+      "title": "Step 3: Select Pile Length and Calculate Performance Under Specified Loads",
+      "summary": "Step 3 selects pile length and calculates performance under specified loads: limit states for design (6.3.1) and design procedures (6.3.2).",
+      "body": "Heading for Step 3, select pile length and calculate performance under specified loads: limit states (6.3.1) and design procedures (6.3.2); it has no text of its own. (p. 136)",
       "key_points": [
-        "ASD: ΣQi ≤ R/SF; SF = 2.0–2.5 without load tests; SF = 2.0 with pre-production static load tests",
-        "Three limit states: GULS (capacity), SULS (structural), SLS (settlement/deformation)",
-        "Settlement: angular distortion ≤ 0.008 simple span; ≤ 0.004 continuous span (AASHTO)",
-        "Design sequence: idealize profile → parameters → loads → group effects → settlement → individual pile → optimize"
+        "See 6.3.1 and 6.3.2 (p. 136)."
       ],
-      "equations": [
-        {
-          "equation_id": "6-ASD",
-          "description": "ASD design check for CFA piles — service loads vs. allowable resistance",
-          "latex": "\\sum Q_i \\leq \\frac{R}{SF}",
-          "variables": {
-            "Q_i": "value of service (unfactored) load of type i",
-            "R": "computed resistance at the Geotechnical Ultimate Limit State (GULS)",
-            "SF": "factor of safety (2.0–2.5 without load tests; 2.0 with pre-production static load test program)"
-          },
-          "implemented_in": null
-        }
-      ],
-      "figures": [
-        "Figure 6.4: Five-Pile Footing Layout (design example)",
-        "Figure 6.5: Lateral load vs. deflection response (nonlinear and linear)"
-      ],
-      "tables": [
-        "Table 6.2: Pile Group Settlement Computation (design example)"
-      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
       "applicability": "ASD limit states and design procedure for CFA pile capacity, serviceability, and structural design"
     },
     {
-      "section_id": "6.4-6.5",
-      "title": "Steps 4-5: Constructability Review and Plans/Specifications",
-      "summary": "Step 4 reviews constructability: pile size and type appropriate for local contractors, sufficient torque capacity, ability to reach required depth, pile spacing allowing equipment access, risk of adjacent structure damage. Step 5 prepares plans, project special provisions, and performance specifications (from Chapter 8). QC/QA and load testing requirements are set at this stage. The guide spec from Chapter 8 is performance-based — the contractor is responsible for pile design submittals, installation plan, testing plan, and verifying performance through load tests.",
-      "body": "Step 4 — Constructability Review: An evaluation of constructability is an integral part of the design process. Items for review include: (1) Are pile sizes and types appropriate for the local contractor pool? Large diameter CFA piles may require high-torque hydraulic equipment that is less common among smaller regional contractors. (2) Can the rig generate sufficient torque and crowd to drill to required depth without soil mining? (3) Can required depths be achieved given site constraints (slope, headroom, access)? (4) Is the pile spacing sufficient to allow equipment access and prevent over-drilling of adjacent piles? (5) Are there risks of damage to adjacent structures from vibration or ground displacement? (6) Is the construction sequence feasible?\n\nStep 5 — Prepare Plans and Specifications: Develop project special provisions and plan notes incorporating guide construction specifications from Chapter 8. These are performance-based specifications that require: design submittals; pile installation plan; testing plan (pre-production and conformance tests); and as-built drawings upon completion. Setting QC/QA requirements includes specifying automated monitoring system requirements, data recording, inspector qualifications, and reporting.",
+      "section_id": "6.3.1",
+      "title": "Limit States for Design",
+      "summary": "Geotechnical design is ASD (LRFD factors not calibrated for CFA piles), structural design LRFD. Limit states: GULS at 5% of diameter in a static test (Davisson not appropriate), SLS (angular distortion 0.008 simple, 0.004 continuous; horizontal 25 or 38 mm) and SULS. SF at least 2.5; 2.0 with a static load test, automated monitoring, uniform geology and no difficult construction.",
+      "body": "The method uses Allowable Stress Design (ASD) for geotechnical conditions, a factor of safety applied to ultimate limit state resistance; LRFD resistance factors have not been calibrated for CFA geotechnical design, and structural design follows LRFD (AASHTO, 2004) as for other reinforced concrete. Three limit states apply. (1) Geotechnical ultimate limit state (GULS): resistance exceeding service loads by an adequate safety factor; for axial compression the resistance at a displacement of 5% of the diameter in a static load test (Figure 6.1); the Davisson criterion used for driven piles sometimes underestimates it and is not appropriate for CFA piles; for lateral loads a push-over failure or a deflection limit at which the structure may collapse; uplift and group behavior may also control; calculated for preliminary design and refined by load tests; 'capacity' or 'failure' are poor words since no collapse may exist at the GULS. (2) Service limit state (SLS): deformations at service loads within tolerable limits; short-term deformations follow mobilization of pile resistance (Figure 6.1), long-term dead load settlements follow group settlement (Chapter 5) (p. 136); for bridges, AASHTO (2002) 4.4.7.2.5: angular distortion between adjacent foundations not over 0.008 in simple spans and 0.004 in continuous spans (only post-construction settlement matters), horizontal movement limited to 25 mm (1 in.) where combined horizontal and vertical movements are possible and 38 mm (1.5 in.) where vertical movements are small. (3) Structural ultimate limit state (SULS): no structural yielding under combined axial and flexural loads (p. 137). With ASD, service loads must satisfy Eq. 6.1. CFA piles should generally have a factor of safety of at least 2.5; 2.0 may be used for axial loads if (1) at least one conventional static load test (ASTM D1143-81) is run to 50% above the computed ultimate or to a displacement of 5% of the diameter, whichever comes first, with more tests for long sites or significant geologic differences (dynamic or rapid tests may replace some); (2) automated monitoring verifies production piles match the test piles; (3) geology and soil properties are not highly variable (a higher factor may be assigned to a more variable part such as base resistance); and (4) construction is not difficult. Load testing and monitoring should be required on all transportation projects with CFA or DD piles, except perhaps soundwalls, signs and similar structures not controlled by axial resistance. These factors are minimums; site variability, lack of redundancy or difficult construction warrant higher values (p. 138), as may critical lifeline structures (p. 139). (pp. 136 to 139)",
       "key_points": [
-        "Constructability review: torque/crowd adequacy, local contractor capability, equipment access, adjacent structure risks",
-        "Performance-based specification (Chapter 8): contractor submits design, installation plan, testing plan",
-        "QC/QA requirements: automated monitoring (volume and pressure), pre-production and conformance testing",
-        "Load testing requirements set at this stage: type (static/rapid/dynamic), quantity, criteria for acceptance"
+        "Geotechnical design in ASD; LRFD resistance factors not calibrated for CFA piles (p. 136).",
+        "Axial GULS: resistance at a displacement of 5% of the diameter in a static load test (p. 136).",
+        "The Davisson criterion is not appropriate for CFA piles (p. 136).",
+        "SLS: angular distortion 0.008 (simple spans), 0.004 (continuous); horizontal 25 mm or 38 mm (p. 137).",
+        "Factor of safety generally at least 2.5 (p. 138).",
+        "SF 2.0 allowed with a static load test to 1.5 x computed ultimate or 5% D, monitoring, uniform geology (p. 138).",
+        "Load testing and monitoring should be required on all transportation CFA or DD projects (p. 138).",
+        "Cited factors are minimums; critical lifeline structures may warrant higher values (pp. 138 to 139)."
+      ],
+      "equations": [
+        "Eq. 6.1: sum of Q_i <= R/SF; Q_i = service (unfactored) load of type i, R = computed resistance at the GULS, SF = factor of safety (p. 138)"
+      ],
+      "figures": [
+        "Figure 6.1: GULS and Short-Term SLS for Axial Load on a Single CFA Pile"
+      ],
+      "tables": [],
+      "applicability": "ASD limit states and design procedure for CFA pile capacity, serviceability, and structural design"
+    },
+    {
+      "section_id": "6.3.2",
+      "title": "Design Procedures",
+      "summary": "Ultimate limit states usually control, so check them first. Lateral loads may set the diameter (soil resistance within about 10 diameters) and axial loads the length. Steps: A idealized profiles, B design parameters, C loadings, D safety factors, E trial group, F trial pile (lateral: skip under about 2 to 5 kips per pile; axial), G group capacity, H group settlement, I group lateral, J structural design.",
+      "body": "Static analyses set lengths and diameters for compression, lateral and uplift loads. For most routine projects ultimate limit states control rather than serviceability, so check them first, though large groups over a deep compressible stratum may be governed by settlement. Smaller, longer piles tend to be more economical than larger, shorter ones, but diameter is often set by lateral shear and moment; lateral loads almost never control length since the resisting soil lies within about 10 diameters, so with significant lateral loads first analyze lateral loading for diameter and the depth of negligible moment, then axial capacity for length. A range of diameters, lengths and group configurations may be considered, using the Chapter 5 procedures (p. 139). Procedure for a bridge foundation (signs or walls similar): A. develop idealized profiles by zones, possibly several per zone and several scour cases; B. develop strength (S_u, phi, N60, q_c), stiffness and index parameters, by judgment and experience (Sabatini et al., 2002); C. obtain axial and lateral load cases, including scour, extreme events, downdrag or expansive soil uplift; D. set safety factors per the previous section, larger for variable ground, difficult construction or a variable bearing stratum carrying much base resistance; E. select a trial group layout to set loads per pile (p. 140); F. trial pile: (a) lateral design, skipped where shear on vertical piles is under about 9 to 22 kN (2 to 5 kips) per pile for 460 to 915 mm (18 to 36 in.) piles; choose the diameter for lateral resistance and deflection, usually governed by structural flexure; high bending with unsupported length from scour or liquefaction may preclude CFA piles; batter piles via 3-D programs (GROUP, FB-Pier); (i) trial diameter, length (insensitive for L/D of 20 or more) and about 1% longitudinal steel; (ii) linear elastic push-over check at service loads times at least 2.5, with the group's average p-multiplier (p. 141); (iii) check reinforcement magnitude and depth (5.6.4) and constructibility (2.2.2.5); (iv) nonlinear pile for service deflections, revising diameter or layout, or using batter piles, pipe-reinforced piles or other foundations; (v) seismic ground movements may need pipe or H-section reinforcement or other systems; (b) axial design by Chapter 5 to set length, comparing allowable resistance (ultimate/SF) with service loads (p. 142); (c) review constructability and cost; G. group capacity by hand (5.5.2) or FB-Pier/GROUP; H. group settlement under sustained loads (5.5.3), noting DD piles' shallow capacity may be offset by settlement, and downdrag; I. group lateral behavior via p-multipliers with sensitivity to head fixity; J. final structural design of piles and cap (5.6.4), as for drilled shafts but with grout properties and partial-length cages (p. 143). (pp. 139 to 143)",
+      "key_points": [
+        "Ultimate limit states usually control; check them first, then serviceability (p. 139).",
+        "Lateral loads may set diameter but almost never length (soil within about 10 diameters) (p. 139).",
+        "Lateral analysis may be skipped under about 9 to 22 kN (2 to 5 kips) per pile for 18 to 36 in. piles (p. 141).",
+        "Trial longitudinal steel about 1% of the pile area (p. 141).",
+        "Push-over check at service loads times at least 2.5 with the group's average p-multiplier (pp. 141 to 142).",
+        "Scour or liquefaction with high bending may preclude CFA piles (p. 141).",
+        "DD piles' high shallow capacity may be offset by settlement of deeper compressible strata (p. 143)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "ASD limit states and design procedure for CFA pile capacity, serviceability, and structural design"
+    },
+    {
+      "section_id": "6.4",
+      "title": "Step 4: Constructability Review",
+      "summary": "Step 4 constructability review checklist: CFA diameters typically 0.4 to 0.6 m (16 to 24 in.), rarely over 0.9 m; lengths over 30 m (100 ft) undesirable; avoid hard bearing under mining-prone overburden and loose water-bearing sands (DD may be better); nearby structures; cages under about 12 m (40 ft); shallow cutoffs; no work over water; low headroom with 0.45 m piles or less.",
+      "body": "Constructability should already have influenced foundation selection; a final review uses the checklist below, special concerns being noted on plans and special provisions so bidders can address them in the installation plan. (a) Pile length and diameter: CFA diameters typically 0.4 to 0.6 m (16 to 24 in.), rarely over 0.9 m (36 in.); DD 0.4 to 0.6 m (16 to 24 in.); lengths over 30 m (100 ft) generally undesirable. (b) Bearing penetration: avoid designs needing hard material if overburden may mine or the stratum is too hard to drill. (c) Soil mining in loose water-bearing sands: avoid CFA; DD piles may be more effective. (d) Nearby structures: drilling close by risks subsidence. (e) Rebar cage under about 12 m (40 ft) preferable. (f) Pile cutoff: avoid more than a few feet below working grade; deeper cutoff needs casting to the surface and chipping down. (g) Construction sequence: access, existing structures, obstructions, cap footprint; avoid CFA or DD piles over water; a stable platform, especially for heavier DD rigs. (h) Low headroom: best avoided; otherwise smaller piles (usually 0.45 m [18 in.] or less) and smaller loads. (i) A plan for resolving construction questions before production. (p. 144)",
+      "key_points": [
+        "Typical CFA diameters 0.4 to 0.6 m (16 to 24 in.), rarely over 0.9 m (36 in.) (p. 144).",
+        "Lengths over 30 m (100 ft) generally undesirable (p. 144).",
+        "Avoid CFA in loose water-bearing sands (soil mining); DD may be more effective (p. 144).",
+        "Rebar cage length under about 12 m (40 ft) preferable (p. 144).",
+        "Avoid cutoff more than a few feet below working grade (p. 144).",
+        "Low headroom: piles usually 0.45 m (18 in.) or less with smaller loads (p. 144)."
       ],
       "equations": [],
       "figures": [],
       "tables": [],
       "applicability": "Final design review and specification preparation for CFA pile projects"
+    },
+    {
+      "section_id": "6.5",
+      "title": "Step 5: Prepare Plans and Construction Specifications, Set Field QC/QA and Load Testing Requirements",
+      "summary": "Step 5 reviews general specifications and develops special provisions and plan notes (guide specification in Chapter 8), and sets field QC/QA (minimal for soundwalls in favorable soils, extensive monitoring for bridges) and load testing consistent with the design factor of safety.",
+      "body": "General specifications are reviewed and project special provisions and plan notes developed as needed; Chapter 8 gives guide specifications. Field QC/QA requirements vary with project type (minimal for soundwall foundations in favorable soils, extensive monitoring for bridge foundations). Load testing requirements should be consistent with the design considerations and factor of safety. (p. 145)",
+      "key_points": [
+        "Guide construction specifications are in Chapter 8 (p. 145).",
+        "QC/QA varies: minimal for soundwalls in favorable soils, extensive for bridge foundations (p. 145).",
+        "Load testing consistent with the design factor of safety (p. 145)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Final design review and specification preparation for CFA pile projects"
+    },
+    {
+      "section_id": "6.6",
+      "title": "Example Problem",
+      "summary": "Heading for the example problem: introduction (6.6.1) and the five steps applied to one pier column (6.6.2 to 6.6.6).",
+      "body": "Heading for the example problem: 6.6.1 to 6.6.6; it has no text of its own. (p. 145)",
+      "key_points": [
+        "See 6.6.1 to 6.6.6 (p. 145)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Worked design example of a CFA pile group foundation for a bridge pier (ASD, five-step method)"
+    },
+    {
+      "section_id": "6.6.1",
+      "title": "Introduction",
+      "summary": "The example demonstrates the step-by-step CFA design method for the foundation of one column of one pier under a single load case, in English units; a real project would cover more locations, load cases and profiles.",
+      "body": "The example demonstrates the step-by-step design methodology; for brevity it covers the foundation of a single column of one pier for a single load case, whereas an actual project would cover various foundation locations, load cases and alternate profiles. It is in English units only. (p. 145)",
+      "key_points": [
+        "One column of one pier, single load case, English units (p. 145)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Worked design example of a CFA pile group foundation for a bridge pier (ASD, five-step method)"
+    },
+    {
+      "section_id": "6.6.2",
+      "title": "Step 1: Initial Design Considerations",
+      "summary": "Heading for Step 1 of the example: general structural foundation requirements (6.6.2.1) and site geology and subsurface conditions (6.6.2.2).",
+      "body": "Heading for Step 1 of the example (6.6.2.1, 6.6.2.2); it has no text of its own. (p. 145)",
+      "key_points": [
+        "See 6.6.2.1 and 6.6.2.2 (p. 145)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Worked design example of a CFA pile group foundation for a bridge pier (ASD, five-step method)"
+    },
+    {
+      "section_id": "6.6.2.1",
+      "title": "General Structural Foundation Requirements",
+      "summary": "New interchange bridges with good access, many foundations and ordinary axial and lateral loads; the working platform is relatively soft in places but suitable, perhaps with timber crane mats.",
+      "body": "The project is a series of new interchange bridges with relatively good access and a large number of foundations; loads per foundation are not unusually large; the working platform is relatively soft in some areas but suitable for equipment, timber crane mats perhaps being needed. (p. 145)",
+      "key_points": [
+        "Many foundations, ordinary loads, good access (p. 145).",
+        "Soft working platform in places; timber crane mats may be needed (p. 145)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Worked design example of a CFA pile group foundation for a bridge pier (ASD, five-step method)"
+    },
+    {
+      "section_id": "6.6.2.2",
+      "title": "Site Geology and Subsurface Conditions",
+      "summary": "Coastal plain site: soft to medium alluvial clay (Su 0.5 to 1 ksf) with silt and sand layers, 20 to 40 ft thick, groundwater at 6 to 10 ft, a desiccated crust in the upper 5 ft, over stiff to very stiff Pleistocene clay (Su 1.5 to 3 ksf) (Figure 6.2); deep foundations are required.",
+      "body": "The site is in the coastal plains with relatively soft to medium alluvial sediments at shallow depth, predominantly cohesive with frequent silt or sand layers; groundwater is at 6 to 10 ft, the upper 5 ft of cohesive soil having a stiffer desiccated crust; beneath lie older overconsolidated Pleistocene clays extending to depths of engineering significance (Figure 6.2: medium gray clay (CH), 20 to 40 ft, S_u = 0.5 to 1 ksf, w/c 35 to 50%, as printed; stiff to very stiff tan clay (CL to CH) with sand pockets, S_u = 1.5 to 3 ksf, w/c 25 to 35%) (p. 145). The low strength and high compressibility of the alluvium require deep foundations (p. 146). (pp. 145 to 146)",
+      "key_points": [
+        "Soft to medium alluvial clay over stiff overconsolidated Pleistocene clay (p. 145).",
+        "Groundwater at 6 to 10 ft; desiccated crust in the upper 5 ft (p. 145).",
+        "Alluvium's low strength and high compressibility require deep foundations (p. 146)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6.2: Typical Conditions at the Project Site"
+      ],
+      "tables": [],
+      "applicability": "Worked design example of a CFA pile group foundation for a bridge pier (ASD, five-step method)"
+    },
+    {
+      "section_id": "6.6.3",
+      "title": "Step 2: Comparison and Selection of Deep Foundation Alternatives",
+      "summary": "Predominantly clay with no strong bearing stratum favors side-shear piles: CFA piles are likely very cost-effective (prestressed piles feasible; drilled shafts would likely need slurry); DD piles are not favored in these clays. Concerns: soft organic layers (none substantial), large lateral loads in the soft stratum, and downdrag at abutments.",
+      "body": "Driven piles, drilled shafts and CFA piles may be considered. With predominantly clays and no strong bearing stratum, capacity will come mostly from side-shear, favoring CFA piles, though prestressed concrete piles may be feasible; drilled shafts are viable, but shallow groundwater and sand layers would likely require slurry drilling. CFA piles are likely very cost-effective and are considered further; DD piles are not favored because the cohesive soils neither gain strength from the process nor benefit from higher lateral stress. Possible difficulties: extremely soft organic layers could destabilize fluid grout (none more than a few feet thick were found); large lateral loads with the soft shallow stratum and limited flexural strength; downdrag at the abutments under fill, a concern for any deep foundation that does not preclude CFA piles. (p. 146)",
+      "key_points": [
+        "Clay profile without a strong bearing stratum favors CFA piles (side-shear) (p. 146).",
+        "Drilled shafts would likely need slurry because of shallow groundwater and sand layers (p. 146).",
+        "DD piles not favored in cohesive soils that do not improve with displacement (p. 146).",
+        "Concerns: soft organic layers, large lateral loads, downdrag at abutments (p. 146)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Worked design example of a CFA pile group foundation for a bridge pier (ASD, five-step method)"
+    },
+    {
+      "section_id": "6.6.4",
+      "title": "Step 3: Select Pile Length and Calculate Performance Under Specified Loads",
+      "summary": "Step 3 for a two-column bent (ASD, SF 2.0 with load tests): five 18 in. piles at 4.5 ft, 130 kips and 10 kips lateral per pile; LPILE gives about 0.2 in. and 700 in.-kips (6 #7 bars); 69 ft tip for 260 kips; block check 2,402 kips; settlement 0.36 + 0.04 = 0.40 in.; cage to about 25 ft; concrete shear 12.6 kips > 12 kips; #3 ties at 12 in. and a #9 center bar.",
+      "body": "One intermediate two-column bent, each column on a pile footing, designed by ASD. A: idealized profile (Figure 6.3), the Chapter 5 example profile. B: S_u from UU triaxial tests; cap base at 4 ft (pile top); deep stiff clay heavily overconsolidated, C_r = 0.015, void ratio about 0.6. C: per column, group vertical service load 500 kips, dead/live 2.5, wind 50 kips, overturning 250 ft-kips; post-construction settlement under dead load at most 0.5 in., cap deflection at most 0.25 in. D: extensive load testing, so SF 2.0. E: five 18 in. piles at 3 diameters (4.5 ft) (Figure 6.4) (p. 147): 100 kips/pile axial, moment 250/[4 x 4.5 cos 45 deg] = +/-20 kips/pile, cap 10 x 10 x 2.5 x 0.15 / 4 piles = 8 kips/pile as printed; total 128, use 130 kips/pile; lateral 10 kips/pile (p. 149). F(a): LPILE single pile, 40 ft for lateral analysis, fixed head, average p-multiplier 0.6 (0.4 to 0.8 at 3 diameters in clay), linear then nonlinear; 1% steel is 2.54 in.2, six #7 bars (3.6 in.2), f_y = 60 ksi, f'_c = 4,000 psi (p. 150); about 0.2 in. at 10 kips (Figure 6.5, cap contribution ignored) (p. 151); depths below 30 ft unaffected (Figure 6.6); design moment about 700 in.-kips (Figure 6.7), or 720 by the simplified method (600 plus 20%) (p. 152); ultimate moment 1,500 to 1,800 in.-kips (Figure 6.8) (p. 153). F(b): 130 kips x 2.0 = 260 kips needs a tip at 69 ft (Figure 6.9, Appendix B); the load test must reach at least 390 kips (3 times the design load) (p. 153). F(c): 69 ft is efficient; 24 in. piles (4-pile group) or six 18 in. piles are options; a 30 ft cage is easy; verify embedment into the Pleistocene clay by drilling resistance (p. 154). G: block width 2(4.5 cos 45 deg) + 1.5 = 7.9 ft, 40 ft in stiff clay, area 1,264 ft2, S_u 1.9 ksf, 2,402 kips, not controlling (block concept cited as 'Section 5.5.2.1.2') (p. 154). H: equivalent footing 2/3 into the stiff clay, printed '2/3 x (69 - 29 ft) = 0.67 x 40 = 56 ft, or 27 ft into the stiff clay', at 56 ft; sustained load 357 + 37.5 = 395 kips, 6.33 ksf; 6 ft layers, p_o = 3.55 ksf, Delta p = 3.32 ksf, S_1 = 72 (0.015/1.6) log(6.87/3.55) = 0.19 in. (p. 155); Table 6.2 total 0.36 in. (p. 156), plus elastic shortening (1/2) PL/AE = 0.04 in. (E = 3,000 ksi), about 0.40 in.; only the post-construction part affects the bridge (p. 157). I: lateral deflection under 0.2 in. with p-multipliers; 3-D programs optional. J: cage to the second zero of deflection, about 25 ft (pp. 157 to 158); 1% steel; r_ls = 9 - 3 - 0.44 = 5.56 in., A_v = 219 in.2, V_c = 68 psi at 100 kips (63 psi ignoring axial load), phi V_n = 0.85 x 68 x 219/1,000 = 12.6 kips > 12 kips, so no shear steel: #3 ties at 12 in.; a #9 full-length center bar (no uplift) through the cage (p. 158). (pp. 147 to 158)",
+      "key_points": [
+        "Five 18 in. piles at 4.5 ft; design 130 kips axial and 10 kips lateral per pile (p. 149).",
+        "Cap weight printed as 37.5 kips / 4 piles = 8 kips/pile (p. 149).",
+        "Lateral: about 0.2 in. at 10 kips; design moment about 700 in.-kips with six #7 bars (pp. 151 to 152).",
+        "Axial: 260 kips ultimate at a 69 ft tip; load test to at least 390 kips (p. 153).",
+        "Block side-shear 2,402 kips, far above five single piles: block does not control (p. 154).",
+        "Group settlement 0.36 in. consolidation + 0.04 in. elastic = 0.40 in. (pp. 156 to 157).",
+        "Cage to about 25 ft (second zero of deflection) (pp. 157 to 158).",
+        "Concrete shear 12.6 kips > 12 kips: #3 ties at 12 in.; #9 center bar full length (p. 158)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6.3: Idealized Soil Profile for Design",
+        "Figure 6.4: Five-Pile Footing Layout",
+        "Figure 6.5: Computed Lateral Load vs. Deflection Response. NL = nonlinear pile behavior, L.E. = linear elastic beam",
+        "Figure 6.6: Deflection and Bending Moments vs. Depth for Example Problem (lateral load = 10 kips)",
+        "Figure 6.7: Maximum Bending Moments as a Function of Pile Top Deflection",
+        "Figure 6.8: Bending Moment vs. Curvature for a 18-in. diameter Pile with 6 #7’s",
+        "Figure 6.9: Computed Axial Resistance vs. Depth"
+      ],
+      "tables": [
+        "Table 6.2: Pile Group Settlement Computation - layer, depth interval (ft), thickness (in.), p_o (ksf), Delta p (ksf), S (in.): 1, 56-62, 72, 3.55, 3.32, 0.19; 2, 62-68, 72, 3.9, 1.38, 0.09; 3, 68-74, 72, 4.24, 0.75, 0.05; 4, 74-80, 72, 4.59, 0.47, 0.03; total 0.36"
+      ],
+      "applicability": "Worked design example of a CFA pile group foundation for a bridge pier (ASD, five-step method)"
+    },
+    {
+      "section_id": "6.6.5",
+      "title": "Step 4: Constructability Review",
+      "summary": "Constructability answers for the example: 18 in. piles under 70 ft are normal; bearing strata can be penetrated; no nearby structure effects; cage appropriate; piles formed to the surface and cut down, or a temporary form if dipped; a stable, possibly stabilized working pad; no low headroom; a pre-construction meeting.",
+      "body": "Constructability, as questions and answers: (a) 18 in. diameter and under 70 ft embedment are normal sizes; (b) the bearing strata can be penetrated; (c) risk of soil mining in loose water-bearing sands: 'Yes, if soils are cohesive', as printed; (d) no effect on nearby structures; (e) the cage is appropriate; (f) cutoff: piles may be formed to the surface and cut down later, and a pile dipped down while fluid needs a temporary form against cave-ins; (g) sequence feasible, the working pad possibly needing stabilization (worth a plan note); (h) no low headroom; (i) resolve questions at a pre-construction meeting. (p. 159)",
+      "key_points": [
+        "18 in. diameter and under 70 ft embedment are normal sizes (p. 159).",
+        "Dipping a pile below grade while fluid needs a temporary form against cave-ins (p. 159).",
+        "Note on the plans that the working surface may be soft (p. 159)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Worked design example of a CFA pile group foundation for a bridge pier (ASD, five-step method)"
+    },
+    {
+      "section_id": "6.6.6",
+      "title": "Step 5: Prepare Plans and Construction Specifications, Set Field QC/QA and Load Testing Requirements",
+      "summary": "Plans and specifications follow general practice (Chapters 7 and 8 cover inspection, testing and specifications); a load testing program is required in the example because the design used the lower factor of safety and must be validated by site load tests.",
+      "body": "These items follow general practice for transportation deep foundation projects; the next two chapters cover inspection, testing and specifications for CFA projects. A load testing program is required for this example because the design relied on a lower factor of safety and must be validated by site-specific load test data. (p. 159)",
+      "key_points": [
+        "Load testing required because the design used the lower factor of safety (2.0) (p. 159)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Worked design example of a CFA pile group foundation for a bridge pier (ASD, five-step method)"
     }
   ]
 }
