@@ -5,7 +5,7 @@ Continuous Flight Auger Piles.
 
 ASD (not LRFD) design document.  This module implements:
 - DD pile side resistance (NeSmith 2002)
-- ASD axial capacity check (RT ≥ SF × Q_allow)
+- ASD axial capacity check (Eq. 6.1, ΣQi ≤ R / SF)
 - Grout volume factor check
 
 Conventional CFA pile capacity uses the FHWA 1999 method:
@@ -104,41 +104,61 @@ def dd_pile_side_resistance_MPa(
 
 def cfa_allowable_capacity_kN(
     ultimate_resistance_kN: float,
-    safety_factor: float = 2.0,
+    safety_factor: float = 2.5,
+    sf_2_conditions_met: bool = False,
 ) -> dict:
-    """ASD allowable axial resistance for CFA piles (GEC-8 Chapter 6).
+    """ASD allowable axial resistance for CFA piles (GEC-8 Section 6.3.1).
 
-    GEC-8 uses Allowable Stress Design (ASD).  The allowable resistance is:
+    GEC-8 compares the resistance computed at the geotechnical ultimate
+    limit state with the service loads (Eq. 6.1, p. 138)::
 
-        R_allow = R_ultimate / SF
+        ΣQi ≤ R / SF
 
-    Where the factor of safety is compared to the applied service load:
+    CFA piles should generally be designed with a factor of safety of at
+    least 2.5 (p. 138).  A factor of safety of 2.0 may be used for axial
+    loads only where all four conditions of p. 138 are met:
 
-        Q_applied ≤ R_allow
+    1. at least one conventional static load test (ASTM D1143-81) at the
+       site, to 50% over the computed ultimate or to a displacement of 5%
+       of the pile diameter, whichever comes first;
+    2. automated monitoring systems used on production piles;
+    3. site geology, stratigraphy and soil properties not highly variable;
+    4. site conditions not posing difficult construction conditions for
+       CFA piles.
 
-    Recommended safety factors (Section 6.3.2):
-    - SF = 2.0–2.5 without load tests
-    - SF = 2.0 with a complete pre-production static load test program
+    These are minimum values; a higher factor of safety is warranted for
+    site variability, lack of redundancy, difficult construction or an
+    especially critical (lifeline) structure (pp. 138-139).
 
     Parameters
     ----------
     ultimate_resistance_kN : float
-        Computed ultimate geotechnical axial resistance (kN).
-        RT = RS + RB (side shear + end bearing).
+        Computed ultimate geotechnical axial resistance R (kN).
     safety_factor : float, optional
-        Factor of safety.  Default 2.0 (with load tests).
-        Use 2.0–2.5 without load tests.
+        Factor of safety.  Default 2.5, GEC-8's general minimum.
+    sf_2_conditions_met : bool, optional
+        True only when all four conditions of p. 138 are met, so that
+        GEC-8 allows a factor of safety of 2.0: (1) at least one
+        conventional static load test (per ASTM Standard D1143-81) is
+        performed at the site, to a load exceeding the computed ultimate by
+        50% or to a load producing displacement equal to 5% of the pile
+        diameter, whichever comes first; (2) automated monitoring systems
+        are used on production piles; (3) the site geology, stratigraphy,
+        and soil properties are not highly variable; (4) the site
+        conditions do not pose difficult construction conditions for CFA
+        piles.  Default False.
 
     Returns
     -------
     dict
         {'ultimate_resistance_kN': float, 'safety_factor': float,
-         'allowable_resistance_kN': float, 'note': str}
+         'allowable_resistance_kN': float, 'minimum_safety_factor': float,
+         'meets_gec8_minimum': bool, 'note': str, 'source': str}
 
     Raises
     ------
     ValueError
-        If inputs are not positive.
+        If ultimate_resistance_kN is not positive or safety_factor < 1.0.
     """
     if ultimate_resistance_kN <= 0:
         raise ValueError(
@@ -148,32 +168,60 @@ def cfa_allowable_capacity_kN(
         raise ValueError(f"safety_factor must be >= 1.0, got {safety_factor}")
 
     r_allow = ultimate_resistance_kN / safety_factor
+    sf_min = 2.0 if sf_2_conditions_met else 2.5
+    meets = safety_factor >= sf_min
+
+    sf = float(safety_factor)
+    if meets:
+        note = (f"SF {sf} meets GEC-8's minimum of {sf_min}"
+                + (" (all four conditions of p. 138 stated as met)."
+                   if sf_2_conditions_met else "."))
+    elif sf_2_conditions_met:
+        note = (f"SF {sf} is below 2.0, the lowest factor of "
+                "safety GEC-8 allows (p. 138).")
+    else:
+        note = (f"SF {sf} is below GEC-8's minimum of 2.5; "
+                "2.0 may be used only where all four conditions of p. 138 "
+                "are met (static load test, automated monitoring of "
+                "production piles, site not highly variable, no difficult "
+                "construction conditions).")
 
     return {
         "ultimate_resistance_kN": ultimate_resistance_kN,
         "safety_factor": safety_factor,
         "allowable_resistance_kN": round(r_allow, 1),
-        "note": (
-            "GEC-8 ASD: SF = 2.0 with pre-production static load tests; "
-            "SF = 2.0–2.5 without load tests; "
-            "Q_service ≤ R_allow"
-        ),
+        "minimum_safety_factor": sf_min,
+        "meets_gec8_minimum": meets,
+        "note": note + " The factors are minimum values (pp. 138-139).",
+        "source": "GEC-8 Section 6.3.1, Eq. 6.1, pp. 138-139",
     }
 
 
 def cfa_grout_volume_factor(
     delivered_volume_L: float,
     nominal_pile_volume_L: float,
+    target_factor: float = 0.0,
 ) -> dict:
-    """Grout volume factor (GVF) for CFA pile construction QC (GEC-8 Chapter 7).
+    """Grout volume factor for CFA pile construction QC (GEC-8 Ch. 7 and 8).
 
-    The grout volume factor is the ratio of delivered grout volume to the
-    theoretical (nominal) pile volume.  GVF must exceed 1.0 at all times
-    during auger withdrawal.  A target overrun of 15–20% above theoretical
-    volume is required (GVF target: 1.15–1.20).
+    The grout factor is the ratio of the volume of grout/concrete used to
+    the theoretical volume for the specified pile size (p. 167).
 
-    Per GEC-8 Chapter 8 (guide specification), the GVF must remain within
-    7.5% of the target established in the Pile Installation Plan.
+    Guide specification (Chapter 8): the minimum oversupply (grout volume
+    factor) for the site is established during the pre-production test
+    pile program and maintained in production (p. 215), and the factor of
+    each pile shall be within 7.5% of the target volume factor established
+    in the Pile Installation Plan as modified by that program; piles
+    outside this range are unacceptable (p. 216).  Commentary (p. 215):
+    typical factors range from 1.15 to 1.2 (15% to 20% oversupply); 1.15
+    is in general considered a minimum; factors greater than 1.5 suggest
+    soil mining or other undesirable installation effects, though they may
+    be acceptable where integrity and proof tests show the pile meets the
+    performance requirements and pre-production piles showed similar
+    results.
+
+    With a target factor, ``acceptable`` is the specification's 7.5% band;
+    without one, it is the commentary's minimum of 1.15.
 
     Parameters
     ----------
@@ -181,18 +229,23 @@ def cfa_grout_volume_factor(
         Volume of grout/concrete delivered (liters).
     nominal_pile_volume_L : float
         Theoretical pile volume based on nominal diameter and depth (liters).
+    target_factor : float, optional
+        Target volume factor from the Pile Installation Plan as modified by
+        the pre-production test piles.  0 (default) when none is set.
 
     Returns
     -------
     dict
         {'delivered_volume_L': float, 'nominal_pile_volume_L': float,
-         'grout_volume_factor': float, 'acceptable': bool,
-         'target_min': float, 'note': str}
+         'grout_volume_factor': float, 'acceptable': bool, 'basis': str,
+         'target_min': float, 'typical_range': list,
+         'above_1_5': bool, 'target_factor': float,
+         'target_band': list or None, 'note': str, 'source': str}
 
     Raises
     ------
     ValueError
-        If inputs are not positive.
+        If the volumes are not positive or target_factor is negative.
     """
     if delivered_volume_L <= 0:
         raise ValueError(
@@ -203,17 +256,47 @@ def cfa_grout_volume_factor(
             f"nominal_pile_volume_L must be > 0, got {nominal_pile_volume_L}"
         )
 
+    if target_factor < 0:
+        raise ValueError(f"target_factor must be >= 0, got {target_factor}")
+
     gvf = delivered_volume_L / nominal_pile_volume_L
+    above_1_5 = gvf > 1.5
+
+    if target_factor > 0:
+        band = [round(target_factor * 0.925, 3), round(target_factor * 1.075, 3)]
+        acceptable = abs(gvf - target_factor) <= 0.075 * target_factor
+        basis = (f"within 7.5% of the target factor {target_factor:g} "
+                 f"({band[0]:g} to {band[1]:g}; p. 216)")
+    else:
+        band = None
+        acceptable = gvf >= 1.15
+        basis = ("no target factor given: the commentary's minimum of 1.15 "
+                 "(p. 215); the specification's test is 7.5% of the target "
+                 "set by the pre-production test piles (p. 216)")
+
+    note = ("Inadequate volume pumped over a depth interval of 5 ft (1.5 m) "
+            "is a basis for rejection of the pile (p. 215); the lowermost "
+            "0.9 to 1.8 m (3 to 6 ft) should be over-supplied by about twice "
+            "the theoretical volume (p. 173).")
+    if above_1_5:
+        note = ("A factor greater than 1.5 suggests soil mining or other "
+                "undesirable installation effects; it may be acceptable if "
+                "integrity and proof tests show the pile meets the "
+                "performance requirements and pre-production piles showed "
+                "similar results (p. 215). " + note)
 
     return {
         "delivered_volume_L": delivered_volume_L,
         "nominal_pile_volume_L": nominal_pile_volume_L,
         "grout_volume_factor": round(gvf, 3),
-        "acceptable": gvf >= 1.0,
+        "acceptable": acceptable,
+        "basis": basis,
         "target_min": 1.15,
-        "note": (
-            "GEC-8: GVF must exceed 1.0 continuously during withdrawal; "
-            "target 1.15–1.20 (15–20% overrun); "
-            "spec allows ±7.5% of target from Pile Installation Plan"
-        ),
+        "typical_range": [1.15, 1.2],
+        "above_1_5": above_1_5,
+        "target_factor": target_factor,
+        "target_band": band,
+        "note": note,
+        "source": ("GEC-8 Sections 7.3.5.1 (p. 167), 7.4.2 (p. 173) and "
+                   "8.3.6 (pp. 215-216)"),
     }

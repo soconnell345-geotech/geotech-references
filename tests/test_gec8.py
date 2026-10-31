@@ -73,19 +73,42 @@ class TestDDPileSideResistance:
 
 
 class TestCFAAllowableCapacity:
-    """cfa_allowable_capacity_kN."""
+    """cfa_allowable_capacity_kN: GEC-8 Section 6.3.1, p. 138."""
 
-    def test_basic_sf2(self):
+    def test_default_sf_2_5(self):
+        # p. 138: "a factor of safety of at least 2.5"
         r = cfa_allowable_capacity_kN(400.0)
-        assert r["allowable_resistance_kN"] == pytest.approx(200.0, abs=0.1)
+        assert r["safety_factor"] == 2.5
+        assert r["allowable_resistance_kN"] == pytest.approx(160.0, abs=0.1)
+        assert r["minimum_safety_factor"] == 2.5
+        assert r["meets_gec8_minimum"] is True
 
     def test_sf2_5(self):
         r = cfa_allowable_capacity_kN(500.0, safety_factor=2.5)
         assert r["allowable_resistance_kN"] == pytest.approx(200.0, abs=0.1)
 
-    def test_returns_safety_factor(self):
+    def test_sf2_without_conditions_flagged(self):
         r = cfa_allowable_capacity_kN(300.0, safety_factor=2.0)
         assert r["safety_factor"] == 2.0
+        assert r["allowable_resistance_kN"] == pytest.approx(150.0, abs=0.1)
+        assert r["meets_gec8_minimum"] is False
+        assert "four conditions" in r["note"]
+
+    def test_sf2_with_conditions_met(self):
+        r = cfa_allowable_capacity_kN(300.0, safety_factor=2.0,
+                                      sf_2_conditions_met=True)
+        assert r["minimum_safety_factor"] == 2.0
+        assert r["meets_gec8_minimum"] is True
+
+    def test_below_2_flagged_even_with_conditions(self):
+        r = cfa_allowable_capacity_kN(300.0, safety_factor=1.8,
+                                      sf_2_conditions_met=True)
+        assert r["meets_gec8_minimum"] is False
+        assert "below 2.0" in r["note"]
+
+    def test_cites_eq_6_1(self):
+        r = cfa_allowable_capacity_kN(300.0)
+        assert "6.3.1" in r["source"] and "Eq. 6.1" in r["source"]
 
     def test_zero_resistance_raises(self):
         with pytest.raises(ValueError, match="ultimate_resistance_kN"):
@@ -97,21 +120,49 @@ class TestCFAAllowableCapacity:
 
 
 class TestCFAGroutVolumeFactor:
-    """cfa_grout_volume_factor."""
+    """cfa_grout_volume_factor: GEC-8 pp. 167, 215-216."""
 
     def test_1_2_gvf(self):
         r = cfa_grout_volume_factor(120.0, 100.0)
         assert r["grout_volume_factor"] == pytest.approx(1.2, abs=0.001)
         assert r["acceptable"] is True
+        assert r["above_1_5"] is False
 
     def test_below_1_not_acceptable(self):
         r = cfa_grout_volume_factor(90.0, 100.0)
         assert r["grout_volume_factor"] < 1.0
         assert r["acceptable"] is False
 
+    def test_between_1_and_1_15_not_acceptable(self):
+        # p. 215 commentary: 1.15 "is considered to be a minimum value"
+        r = cfa_grout_volume_factor(110.0, 100.0)
+        assert r["acceptable"] is False
+        assert "1.15" in r["basis"]
+
     def test_target_min(self):
         r = cfa_grout_volume_factor(100.0, 100.0)
         assert r["target_min"] == 1.15
+        assert r["typical_range"] == [1.15, 1.2]
+
+    def test_above_1_5_flagged(self):
+        # p. 215: greater than 1.5 suggests soil mining
+        r = cfa_grout_volume_factor(160.0, 100.0)
+        assert r["above_1_5"] is True
+        assert "soil mining" in r["note"]
+
+    def test_target_band_inside(self):
+        # p. 216: within 7.5% of the target volume factor
+        r = cfa_grout_volume_factor(123.0, 100.0, target_factor=1.18)
+        assert r["target_band"] == pytest.approx([1.0915, 1.2685], abs=0.001)
+        assert r["acceptable"] is True
+
+    def test_target_band_outside(self):
+        r = cfa_grout_volume_factor(130.0, 100.0, target_factor=1.18)
+        assert r["acceptable"] is False
+
+    def test_negative_target_raises(self):
+        with pytest.raises(ValueError, match="target_factor"):
+            cfa_grout_volume_factor(120.0, 100.0, target_factor=-1.0)
 
     def test_zero_delivered_raises(self):
         with pytest.raises(ValueError, match="delivered_volume_L"):
@@ -123,36 +174,76 @@ class TestCFAGroutVolumeFactor:
 
 
 class TestTable54PMultiplier:
-    """table_5_4_p_multiplier."""
+    """table_5_4_p_multiplier: GEC-8 Table 5.4, p. 112, as printed."""
 
-    def test_lead_3b(self):
+    def test_m_dense_sand_lead_3b(self):
+        r = table_5_4_p_multiplier("lead", 3.0, "medium_dense_sand")
+        assert r["pm"] == pytest.approx(0.80, abs=0.001)
+        assert r["rows"][0]["reference"] == "McVay et al. (1995)"
+
+    def test_m_dense_sand_lead_5b(self):
+        r = table_5_4_p_multiplier("lead", 5.0, "M. Dense Sand")
+        assert r["pm"] == pytest.approx(1.0, abs=0.001)
+
+    def test_loose_m_sand_rows_3b(self):
+        pms = [table_5_4_p_multiplier(p, 3.0, "loose_medium_sand")["pm"]
+               for p in ("lead", "2nd", "3rd")]
+        assert pms == pytest.approx([0.65, 0.45, 0.35], abs=0.001)
+
+    def test_loose_f_sand_3b(self):
+        pms = [table_5_4_p_multiplier(p, 3.0, "loose_fine_sand")["pm"]
+               for p in ("lead", "2nd", "3rd")]
+        assert pms == pytest.approx([0.80, 0.70, 0.30], abs=0.001)
+
+    def test_medium_clay_3b(self):
+        r = table_5_4_p_multiplier("2nd", 3.0, "medium_clay")
+        assert r["pm"] == pytest.approx(0.45, abs=0.001)
+        assert r["rows"][0]["test_type"] == "Scale Model (Cyclic Load)"
+
+    def test_stiff_clay_two_rows_lower_returned(self):
+        r = table_5_4_p_multiplier("2nd", 3.0, "stiff_clay")
+        assert [e["pm"] for e in r["rows"]] == pytest.approx([0.50, 0.60])
+        assert r["pm"] == pytest.approx(0.50, abs=0.001)
+
+    def test_interpolation_only_between_printed_rows(self):
+        r = table_5_4_p_multiplier("lead", 4.0, "medium_dense_sand")
+        assert r["pm"] == pytest.approx(0.90, abs=0.001)
+        assert "linear" in r["basis"]
+
+    def test_3b_only_soil_held_wider(self):
+        r = table_5_4_p_multiplier("3rd", 5.0, "clayey_silt")
+        assert r["pm"] == pytest.approx(0.40, abs=0.001)
+        assert "held" in r["basis"]
+
+    def test_3b_only_soil_not_1_0_at_5b(self):
+        # The old summary returned an unprinted Pm = 1.0 at 5B for every soil.
+        r = table_5_4_p_multiplier("lead", 5.0, "very_dense_sand")
+        assert r["pm"] == pytest.approx(0.80, abs=0.001)
+
+    def test_no_soil_lists_every_soil_and_gives_lowest(self):
         r = table_5_4_p_multiplier("lead", 3.0)
-        assert r["pm"] == pytest.approx(0.8, abs=0.01)
+        # seven soils at 3B, Stiff Clay with two rows
+        assert len(r["rows"]) == 8
+        assert len({e["soil_type"] for e in r["rows"]}) == 7
+        assert r["pm"] == pytest.approx(0.60, abs=0.001)
+        assert "no soil type given" in r["basis"]
 
-    def test_lead_5b(self):
-        r = table_5_4_p_multiplier("lead", 5.0)
-        assert r["pm"] == pytest.approx(1.0, abs=0.01)
-
-    def test_2nd_row_3b(self):
-        r = table_5_4_p_multiplier("2nd", 3.0)
-        assert r["pm"] == pytest.approx(0.4, abs=0.01)
-
-    def test_3rd_row_3b(self):
-        r = table_5_4_p_multiplier("3rd", 3.0)
-        assert r["pm"] == pytest.approx(0.3, abs=0.01)
-
-    def test_3rd_row_5b(self):
-        r = table_5_4_p_multiplier("3rd", 5.0)
-        assert r["pm"] == pytest.approx(0.7, abs=0.01)
-
-    def test_interpolation(self):
-        r = table_5_4_p_multiplier("lead", 4.0)
-        assert 0.8 < r["pm"] < 1.0
+    def test_no_soil_wider_spacing_says_row_held(self):
+        # No soil is printed at 6B: the basis says the widest printed row is
+        # held, not that the table prints a value at this spacing.
+        r = table_5_4_p_multiplier("2nd", 6.0)
+        assert r["pm"] == pytest.approx(0.40, abs=0.001)
+        assert "held" in r["basis"]
+        assert "at this spacing" not in r["basis"]
 
     def test_lead_higher_than_trailing(self):
-        r1 = table_5_4_p_multiplier("lead", 3.0)
-        r2 = table_5_4_p_multiplier("3rd", 3.0)
+        r1 = table_5_4_p_multiplier("lead", 3.0, "very_dense_sand")
+        r2 = table_5_4_p_multiplier("3rd", 3.0, "very_dense_sand")
         assert r1["pm"] > r2["pm"]
+
+    def test_invalid_soil_raises(self):
+        with pytest.raises(ValueError, match="Unknown soil_type"):
+            table_5_4_p_multiplier("lead", 3.0, "gravel")
 
     def test_spacing_below_3_raises(self):
         with pytest.raises(ValueError, match="3.0"):

@@ -256,6 +256,13 @@ were not changed. The REF-40 sections of
 ch 10 (10.1, 10.2, 10.3.5 to 10.4), which match the 2018 print, were
 left as they were.
 
+A review then found objects these passes had not stored, added on
+fix/ref52-gec10 from the page that prints each: Figs 1-4, 1-5, 1-6, 1-8
+and 1-9 in 1.3; Figs 6-2 to 6-28 and Table 6-3 in the ch 6 sections that
+print them; Table 8-4, every row, in 8.1; the label Eq. 10-32 on the
+10.4 uplift equation; and 3.2's full printed title. Ch 2's four captions
+and table contents were paraphrases and now follow the print.
+
 `check_section_numbers.py gec_10` now reads 408 printed, 391 matched,
 17 missing and 1 extra (it was 122 with a section of their own and 284
 missing):
@@ -838,21 +845,28 @@ Four retrieval gold entries named old ranges and now name the printed
 sections (as in df580ff): cu-def 4.1-4.10 to 4.4.1, plasticity-chart
 4.16-4.17 to 4.16.1, liq-screen 5.5-5.7 to 5.6.1 and 5.6.2, and
 hoek-brown 9.5-9.8 to 9.8 (Eq. 9.29, p. 9-50). No query was reworded.
-Ranks moved as follows (rerank, unless a mode is named):
+py-method also accepts gec_5 8.10.2 "p-y Curves" (p. 8-30), new here:
+it defines p-y curves for laterally loaded deep foundations, and Table
+8-13 (p. 8-31) lists the p-y models by soil. Ranks moved as follows
+(rerank, unless a mode is named):
 - cu-def 2 to 1 and plasticity-chart 3 to 2, in all modes; hoek-brown
   stays 1.
 - liq-screen 1 to not in the top 10, in all modes. The top hits are
   gec_10 9.4.2.1 and gec_5 12.4.2 (seismic liquefaction screening, with
-  Table 12-5).
-- py-method 9 to not in the top 10, in all modes. gec_5 8.10.2 "p-y
-  Curves" is now first; the gold names gec_9 6.3 and dm7_2 6-6.4.2.
+  Table 12-5); neither prints a fines limit. 5.6.1, which prints "less
+  than about 20 percent fines" (p. 5-31), is not in the top 50, and
+  5.6.2 ranks 16: the print says "liquefiable" and "liquefy", where the
+  old range summary held the query's words (REF-54).
+- py-method 9 to 1, in all modes (gec_5 8.10.2 first; gec_9 6.3 went
+  from 9 to 11).
 - rqd-def 1 to 2 (fill and rerank); dmt-def 4 to 7 (auto 5 to 7; gec_5
   10.14.3 and 10.14 rank above); stone-col-capacity 7 to 5; spt-def 3 to
-  4 (off and fill); phi-cpt 6 to 7.
+  4 (off and fill); phi-cpt 6 to 7 (auto and rerank).
 
-Rerank R@10 went from 41 to 39 of 54 and MRR@10 from 0.510 to 0.491; the
-two cases lost are liq-screen and py-method. test_query_expansion and
-the gec_5 cases passed after every chapter.
+Rerank R@10 went from 41 to 40 of 54 and MRR@10 from 0.510 to 0.509
+(off 34 to 33, fill 39 to 38, auto 44 to 43); the case lost is
+liq-screen. test_query_expansion and the gec_5 cases passed after every
+chapter.
 
 ### What the old files held that the print does not
 
@@ -1033,20 +1047,26 @@ to 5.4.3 (static axial capacity of drilled displacement piles), 5.8 to
 
 One retrieval gold entry named an old range and now names the printed
 sections (as in df580ff): cfa-piles 5.2-5.3 to 5.2 and 5.3, beside dm7_2
-6-4.3. No query was reworded. Ranks moved as follows from before ch 1 to
-after ch 8 (rerank, unless a mode is named):
+6-4.3. auger-cast's gold, gec_8 3.2, is now a heading with no text of
+its own, so the gold also accepts the sections that print its advantages
+and limitations: 3.2.1 (p. 15), 3.2.2.1 (p. 16), 3.2.2.2 (p. 17) and
+3.2.3 (p. 20). No query was reworded. Ranks moved as follows from refs
+main before GEC-8 (39f779f, with the GEC-5 review fixes) to after ch 8
+(rerank, unless a mode is named):
 - cfa-piles 3 to 2 (off and fill 3 to 1, auto 4 to 1).
-- py-method not in the top 10 to 10, in all modes.
 - neutral-plane 2 to 1; nsf-def 2 to 1.
-- auger-cast 3 to 4. Its gold, gec_8 3.2, is now a heading with no text
-  of its own; the content sits in 3.2.1 to 3.2.3. The gold was left as
-  it is.
+- auger-cast 3 to 4, scored by dm7_2 6-4.3. GEC-8's own text left the
+  top 10: the best of 3.2.1 to 3.2.3 is 3.2.2.1 at 14. Their text says
+  "favorable" and "unfavorable", where the old 3.2 text also said
+  "advantages" and "limitations" (REF-54).
 - stone-col-capacity 5 to 7. The gold is gec_13 5.4.1.2.5; the top 8 are
   all gec_13 and dm7_2 sections, in a new order.
+- py-method stays 1 (gec_5 8.10.2).
 
-Rerank R@10 went from 39 to 40 of 54 and MRR@10 from 0.491 to 0.512;
-R@1 went from 32 to 31 and R@5 from 35 to 34. test_query_expansion and
-the gec_8 tests passed after every chapter.
+Rerank R@10 stays 40 of 54 and MRR@10 went from 0.509 to 0.528; R@3 went
+from 33 to 32 and R@5 from 36 to 35 (off, fill and auto R@10 unchanged
+at 33, 38 and 43). test_query_expansion and the gec_8 tests passed after
+every chapter.
 
 ### What the old files held that the print does not
 
