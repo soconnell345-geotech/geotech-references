@@ -1,114 +1,470 @@
 {
   "reference_id": "FHWA-NHI-16-009",
   "reference_title": "Design and Construction of Driven Pile Foundations",
+  "volume": 2,
   "chapter": 15,
   "chapter_title": "Pile Driving Equipment",
   "sections": [
     {
       "section_id": "15.1-15.7",
-      "title": "Cranes, Rigs, Leads, Templates, Helmets, and Cushions",
-      "summary": "Primary driving system components: crane (crawler preferred for mobility/stability; truck/rough-terrain cranes also used), leads (swinging most common — lightweight and flexible; fixed and semi-fixed leads provide better alignment), helmets (0.1-0.2 inch clearance over pile; two-piece with insert for multiple pile types), hammer cushions (proprietary man-made polymers; no hardwood, wire rope, asbestos, or highly elastic materials), pile cushions (plywood for concrete piles only — replaceable per ~1,500 blows). Templates required for offshore/swinging leads when pile head is below water or excavation.",
-      "body": "Cranes (Section 15.1): Crawler cranes are most common — good mobility, wide base stability, 360-degree hoisting radius. Must be trucked to site and assembled. Firm ground or crane mats required. Truck (mobile) cranes have good mobility but cannot walk with loads; outriggers used for stability. Rough terrain cranes set up quickly and have greater mobility in difficult terrain; restricted side lifting.\n\nDedicated and Universal Rigs (Section 15.2): Specialty rigs with attached telescoping leaders that transition hydraulically from transport to vertical driving position — fast setup without additional heavy equipment. Winch lines for pile offloading and lofting.\n\nLeads (Section 15.3): Maintain hammer-pile alignment for concentric blows. Types: swinging (most common — lightweight, low cost, flexible placement, largest crane radius), fixed, semi-fixed/vertical travel, and offshore. Stabbing guide at bottom of swinging leads aligns pile into leads. Offshore leads with templates used over water.\n\nTemplates (Section 15.4): Required to hold piles in position over water or excavations. Template top should be within 5 feet of cutoff elevation or water elevation, whichever is lower. Template batter pile locations must account for offset from template elevation to cutoff elevation (1H:4V batter = 15-inch offset per 5 feet of template height). Rollers preferred in templates, particularly for batter piles.\n\nHelmets (Section 15.5): Protect pile head during driving. Helmet or insert should fit loosely but maintain alignment — 0.1 to 0.2 inches larger than pile diameter. One-piece helmets manufactured for specific pile types; two-piece (base + insert) accommodates multiple pile types and sizes. Proper alignment is critical for precast concrete piles.\n\nHammer Cushions (Section 15.6): Absorb impact shock to protect hammer. Proprietary man-made materials (micarta, nylon, urethane, durable polymers). Cushion materials become compressed and stiffen with use — may require replacement. Proprietary cushions last up to 200 hours of driving. Prohibited materials: hardwood, small pieces of wood, wire rope, highly elastic materials, asbestos-containing materials.\n\nPile Cushions (Section 15.7): Required for concrete piles between helmet and pile head to prevent concrete pile damage. Typically plywood. Pile cushions deteriorate faster than hammer cushions. Should be replaced after approximately 1,500 hammer blows. New cushions change wave equation results and should not be replaced just before end of driving.",
+      "title": "Cranes, Dedicated and Universal Rigs, Leads, Templates, Helmets, Hammer Cushions, and Pile Cushions",
+      "summary": "Crane, leads, hammer and helmet are the primary driving system parts. Crawler cranes are most common; truck and rough terrain cranes have restricted side lifting. Swinging leads are the most widely used configuration and the historical penalty on them is not justified. Templates go within 5 ft of cutoff or water elevation. Helmets about 0.1 to 0.2 in. larger than the pile. Proprietary hammer cushions last up to 200 hours; wood pile cushions at least 4 in., new and dry for each pile.",
+      "body": "Chapter introduction (p. 333): the driving system is also a measuring instrument for nominal resistance. 15.1 (pp. 333-336): crawler cranes have good mobility, wide-base stability and a 360 degree hoisting radius, can carry the power pack or compressor as counterweight, are trucked in pieces and need firm ground or crane mats. Truck (mobile) cranes travel under their own power but cannot walk with heavy loads, use outriggers, cannot carry the power source and have restricted side lifting. Rough terrain cranes set up fast and are more mobile in difficult terrain but have very restricted side lifting. 15.2 (pp. 336-338): dedicated and universal rigs carry a telescoping leader raised hydraulically and winch lines to offload and loft piles. 15.3 (pp. 338-347): leads keep the blow concentric; the box lead is the most common type and the swinging lead the most widely used configuration (simple, light, low cost, largest operating radius); a stabbing guide and a pile gate at the bottom keep the pile aligned. Penalizing swinging leads is not justified; they suit excavations and water. Batter alignment is harder with swinging leads, more so with diesel hammers. Fixed leads (spotter or brace) attempt true alignment but take longer to reposition; semi-fixed (vertical travel) leads move vertically at their connections; side batter needs a moonbeam; offshore leads are a short section with a pile guide and need a template. 15.4 (pp. 348-349): templates over water or excavations, top within 5 ft of cutoff or water elevation, whichever is lower, preferably at or below cutoff; a 1H:4V batter pile set at plan location on a template 5 ft above cutoff is 15 in. out at cutoff (Figure 15-17); rollers preferred. 15.5 (pp. 349-351): one-piece helmets or a base helmet with inserts; fit loosely, about 0.1 to 0.2 in. larger than the pile; alignment is critical for precast concrete. 15.6 (pp. 352-353): proprietary cushions (micarta, nylon, urethane, aluminum laminates) last up to 200 hours; hardwood, small wood pieces, wire rope, highly elastic material and asbestos are not permitted (prohibited by AASHTO); many hammers need a specific cushion thickness for timing. 15.7 (pp. 353-354): wood pile cushions at least 4 in.; after replacing a cushion the first 100 blows are not used for acceptance; a wood cushion takes 1000 to 2000 blows; use a new, dry cushion for each pile.",
       "key_points": [
-        "Crawler cranes most common for pile driving; require crane mats in soft ground; 360-degree hoisting radius",
-        "Swinging leads: most common — lightweight, flexible, largest crane radius; stabbing guide for pile alignment",
-        "Template: top within 5 ft of cutoff or water elevation; account for batter pile offset at template elevation",
-        "Helmet clearance: 0.1-0.2 inches over pile diameter; two-piece (base + insert) for multiple pile types",
-        "Hammer cushion: proprietary polymers (micarta, nylon, urethane); lasts up to 200 hrs; no hardwood/wire rope/asbestos",
-        "Pile cushion (concrete piles): plywood; replace after ~1,500 blows; avoid replacement just before end of driving",
-        "Vibratory hammers do not require leads; hydraulic clamp connects directly to pile head"
+        "Crawler cranes: most common; 360 degree radius; need firm ground or crane mats",
+        "Truck and rough terrain cranes: outriggers, restricted side lifting, power source not crane mounted",
+        "Box lead is the most common lead type; swinging lead the most widely used configuration",
+        "Prohibiting swinging leads is not justified; an embedded lead bottom with a gate holds bottom alignment",
+        "Template top within 5 ft of cutoff or water elevation (lower); 1H:4V pile 15 in. out for a template 5 ft high",
+        "Helmets or inserts about 0.1 to 0.2 in. larger than the pile diameter",
+        "Proprietary hammer cushions last up to 200 hours; no hardwood, wire rope, highly elastic material or asbestos",
+        "Wood pile cushions at least 4 in. thick; new, dry cushion for each pile",
+        "After a cushion change, the first 100 blows are not used for pile acceptance",
+        "A wood pile cushion takes 1000 to 2000 blows in total"
       ],
       "equations": [],
-      "figures": [],
+      "figures": [
+        {
+          "figure_id": "15-1",
+          "title": "Crawler crane pile driving rig with lattice boom and swinging leads",
+          "description": "",
+          "page": 334
+        },
+        {
+          "figure_id": "15-2",
+          "title": "Truck crane pile driving rig with lattice boom and swinging leads",
+          "description": "",
+          "page": 335
+        },
+        {
+          "figure_id": "15-3",
+          "title": "Rough terrain pile driving rig with telescoping boom and offshore leads",
+          "description": "",
+          "page": 336
+        },
+        {
+          "figure_id": "15-4",
+          "title": "Dedicated pile driving system",
+          "description": "",
+          "page": 337
+        },
+        {
+          "figure_id": "15-5",
+          "title": "Universal rig setup for pile driving",
+          "description": "Courtesy Bauer-Pileco.",
+          "page": 338
+        },
+        {
+          "figure_id": "15-6",
+          "title": "Typical lead types",
+          "description": "After DFI Publication 1981.",
+          "page": 339
+        },
+        {
+          "figure_id": "15-7",
+          "title": "Swinging lead systems",
+          "description": "After DFI Publication 1981.",
+          "page": 340
+        },
+        {
+          "figure_id": "15-8",
+          "title": "Stabbing guide at bottom of box leads",
+          "description": "",
+          "page": 342
+        },
+        {
+          "figure_id": "15-9",
+          "title": "Pile gate with latch for use on truss lead",
+          "description": "Courtesy Berminghammer.",
+          "page": 342
+        },
+        {
+          "figure_id": "15-10",
+          "title": "Fixed lead systems",
+          "description": "After DFI Publication 1981.",
+          "page": 343
+        },
+        {
+          "figure_id": "15-11",
+          "title": "Fixed lead system with air compressor mounted as counterweight",
+          "description": "Courtesy FHWA Demo 66.",
+          "page": 344
+        },
+        {
+          "figure_id": "15-12",
+          "title": "Vertical travel lead system",
+          "description": "Courtesy Berminghammer.",
+          "page": 345
+        },
+        {
+          "figure_id": "15-13",
+          "title": "Lead configuration for batter piles",
+          "description": "After DFI publication 1981.",
+          "page": 346
+        },
+        {
+          "figure_id": "15-14",
+          "title": "Typical offshore lead configuration",
+          "description": "",
+          "page": 347
+        },
+        {
+          "figure_id": "15-15",
+          "title": "Offshore lead and pile guide (left) with pipe pile helmet (right)",
+          "description": "Courtesy Berminghammer.",
+          "page": 347
+        },
+        {
+          "figure_id": "15-16",
+          "title": "Template system",
+          "description": "",
+          "page": 348
+        },
+        {
+          "figure_id": "15-17",
+          "title": "Template elevation effects on batter piles",
+          "description": "After Passe 1994.",
+          "page": 349
+        },
+        {
+          "figure_id": "15-18",
+          "title": "Helmet components",
+          "description": "After DFI Publication 1981.",
+          "page": 350
+        },
+        {
+          "figure_id": "15-19",
+          "title": "Cross section of cracked helmet with striker plate and aluminum and micarta hammer cushion",
+          "description": "Courtesy of WKG2.",
+          "page": 350
+        },
+        {
+          "figure_id": "15-20",
+          "title": "One piece helmets for (a) concrete pile and (b) pipe pile",
+          "description": "",
+          "page": 351
+        },
+        {
+          "figure_id": "15-21",
+          "title": "Inserts for (a) H-pile and (b) varying pipe pile diameter and wall thickness",
+          "description": "",
+          "page": 351
+        },
+        {
+          "figure_id": "15-22",
+          "title": "Typical hammer cushion materials",
+          "description": "",
+          "page": 353
+        },
+        {
+          "figure_id": "15-23",
+          "title": "Plywood pile cushions: (left) used and (right) new",
+          "description": "",
+          "page": 354
+        }
+      ],
       "tables": [],
-      "applicability": "Description and selection guidance for crane types, lead systems, templates, helmets, hammer cushions, and pile cushions in driven pile installation."
+      "applicability": "Choosing and checking cranes, leads, templates, helmets and cushions for impact driving."
     },
     {
       "section_id": "15.8-15.16",
-      "title": "Impact Hammer Types",
-      "summary": "Impact hammers classified as: single-acting air/steam (7-1,800 ft-kips; 35-60 blows/min; versatile for all piles especially large concrete/pipe), double-acting air/steam (1-21 ft-kips; 95-300 blows/min; lighter, more productive), differential air/steam (15-50 ft-kips; less air volume than double-acting), open-end (single-acting) diesel (9-1,620 ft-kips; 40-60 blows/min; most common; stroke varies with resistance), closed-end (double-acting) diesel (5-73 ft-kips; 80-105 blows/min), single-acting hydraulic (25-2,162 ft-kips; 30-50 blows/min; variable energy), double-acting hydraulic (25-2,581 ft-kips; 40-90 blows/min; widest energy range). Table 15-1 provides full hammer characteristics.",
-      "body": "Table 15-1 presents characteristics and uses of all hammer types. Detailed descriptions follow:\n\nDrop Hammers (Section 15.9): 7-60 ft-kips; 4-8 blows/min; 23-33 ft/sec impact velocity. Lowest initial cost. Simple to operate. Not for concrete piles. Limited to Rn ≤ 120 kips unless wave equation approval obtained. Ram weight minimum 2.0 kips. Drop height maximum 12 ft. Ram weight ≥ helmet + pile weight. Requires hammer guides for concentric impact.\n\nSingle-Acting Air/Steam Hammers (Section 15.10): 7-1,800 ft-kips; 35-60 blows/min. Ram lifted by air/steam pressure and falls under gravity (single-acting). Versatile for any pile type, particularly large concrete and steel pipe piles. Requires external air compressor or steam plant. Energy = ram weight × stroke. Striking parts weight ≥ 1/3 of helmet + pile weight; ≥ 2.75 kips.\n\nDouble-Acting Air/Steam Hammers (Section 15.11): 1-21 ft-kips; 95-300 blows/min. Ram accelerates downward under air/steam pressure in addition to gravity. More productive than single-acting. Some models fully enclosed for underwater driving. Energy = (ram weight + effective piston area × fluid pressure) × stroke.\n\nDifferential Acting Air/Steam Hammers (Section 15.12): 15-50 ft-kips; 98-300 blows/min. Similar to double-acting but uses less air/steam volume. Lower impact velocity than double-acting.\n\nSingle-Acting (Open-End) Diesel Hammers (Section 15.13): 9-1,620 ft-kips; 40-60 blows/min. Most commonly used hammer type. Combustion gas from diesel ignition lifts the ram. Stroke varies with pile resistance — greater resistance produces higher strokes. Variable stroke a useful field indicator. Requires visible stroke measurement device (rings on ram); contractor provides stroke-to-blows/min chart; automatic stroke display device required.\n\nDouble-Acting (Closed-End) Diesel Hammers (Section 15.14): 5-73 ft-kips; 80-105 blows/min. Combustion in both directions. Bounce chamber pressure measured to determine energy. Contractor provides bounce chamber pressure-to-energy/stroke chart calibrated within 60 days.\n\nSingle-Acting Hydraulic Hammers (Section 15.15): 25-2,162 ft-kips; 30-50 blows/min. Fully variable energy over wide range. Suitable for all pile types. More complex than air/steam hammers. Kinetic energy or ram impact velocity automatically displayed.\n\nDouble-Acting Hydraulic Hammers (Section 15.16): 25-2,581 ft-kips; 40-90 blows/min. Widest rated energy range of all hammer types. Energy variable in both up and down ram travel.",
+      "title": "Hammers, Drop Hammers, Air/Steam Hammers, Diesel Hammers, and Hydraulic Hammers",
+      "summary": "Hammers are impact, vibratory or resonant (Table 15-1). Ratings are potential energy, but losses make kinetic energy smaller and transferred energy (ENTHRU) smaller again (Eqs 15-1, 15-2). Drop hammers are not recommended for foundation piles. Air/steam hammers lose energy to preadmission; double acting and differential types are now infrequent. Open end diesel stroke follows resistance (Eq 15-3); closed end diesels use a bounce chamber gauge. Hydraulic hammers need a built-in energy monitor.",
+      "body": "15.8 (pp. 355-357): impact hammers are the primary type; Table 15-1 compares types. 15.8.1 (pp. 358-359): ratings come from energy concepts; gravity hammers are rated w x h, double acting hammers by equivalent stroke; Eq 15-1 gives impact velocity and Eq 15-2 kinetic energy; friction, residual pressure, preadmission, gas compression and pre-ignition make kinetic energy less than potential; cushions and the pile head absorb more; transferred energy (ENTHRU) is the integral of force times velocity. 15.9 (pp. 359-360): drop hammers have low fall efficiency and high damage risk; limit the stroke; now mostly for sheet piles; not recommended for foundation piles. 15.10 (pp. 361-363): single acting air/steam strokes vary with pressure, volume and rebound; pressure re-enters about 2 in. before impact and a thin cushion causes preadmission; maximum stroke generally 3 to 5 ft. 15.11 (pp. 363-365): double acting hammers give comparable energy at up to about twice the blow rate, are slightly less efficient, may need reduced pressure against lift-off and are infrequent. 15.12 (pp. 366-367): differential hammers need 120 to 140 psi at the inlet (compressors give about 120 to 130 psi). 15.13 (pp. 368-370): no consensus on diesel ratings; stroke depends on fuel, rings, dampener, resistance and pile; pre-ignition; low resistance may stop the hammer; reduced fuel limits stresses; Eq 15-3 gives stroke from blow rate for single acting diesels only. 15.14 (pp. 371-373): the closed top bounce chamber shortens the stroke; fuel is reduced to avoid lift-off; energy from the bounce chamber gauge with the manufacturer's chart for the hose length. 15.15 (pp. 373-375): single acting hydraulic stroke, blow rate and dwell are adjustable; the built-in ram velocity monitor should be required. 15.16 (pp. 375-376): double acting hydraulic hammers are enclosed, so monitoring is essential; they work underwater and most have no conventional hammer cushion.",
       "key_points": [
-        "Most common: open-end single-acting diesel (9-1,620 ft-kips; 40-60 bpm); stroke varies with resistance",
-        "Single-acting air/steam (7-1,800 ft-kips): versatile for large concrete/pipe; requires external compressor",
-        "Double-acting air/steam (1-21 ft-kips): most productive at 95-300 bpm; some models underwater-capable",
-        "Drop hammers: Rn ≤ 120 kips; ram ≥ 2.0 kips; drop ≤ 12 ft; NOT for concrete piles",
-        "Hydraulic hammers: fully variable energy; kinetic energy or impact velocity displayed automatically",
-        "Open-end diesel: automatic stroke display device required; bounce chamber gauge not applicable",
-        "Closed-end diesel: bounce chamber pressure gauge and calibrated chart required within 60 days",
-        "Table 15-1: full comparison of hammer types — rated energy, blow rate, impact velocity, pile suitability"
+        "Hammer types: impact, vibratory and resonant; impact hammers are primary (Table 15-1)",
+        "Eq 15-1: Vi = sqrt(2gh); Eq 15-2: KE = (1/2) m Vi^2",
+        "Losses make kinetic energy less than potential; transferred energy ENTHRU = integral of force x velocity",
+        "Drop hammers: low efficiency, high damage risk; not recommended for foundation piles",
+        "Single acting air/steam: maximum stroke generally 3 to 5 ft; thin cushion causes preadmission",
+        "Double acting air/steam: similar energy at up to about twice the blow rate; now infrequent",
+        "Differential air/steam: needs 120 to 140 psi at the hammer inlet",
+        "Open end diesel: stroke depends on resistance; Eq 15-3 h = 4.01 (60/bpm)^2 - 0.3 for single acting diesels only",
+        "Closed end diesel: energy from bounce chamber pressure with the manufacturer's chart for the hose length",
+        "Hydraulic hammers: built-in ram velocity monitor should be required; essential on enclosed double acting models"
       ],
-      "equations": [],
-      "figures": [],
+      "equations": [
+        {
+          "eq_id": "15-1",
+          "description": "Impact velocity from equivalent maximum stroke",
+          "formula": "V_i = sqrt(2 * g * h)",
+          "variables": {
+            "V_i": "impact velocity (ft/s)",
+            "g": "acceleration due to gravity (32.17 ft/s^2)",
+            "h": "ram stroke (feet)"
+          },
+          "notes": "p. 358",
+          "implemented_in": null
+        },
+        {
+          "eq_id": "15-2",
+          "description": "Kinetic energy of the ram",
+          "formula": "KE = (1/2) * m * V_i^2",
+          "variables": {
+            "KE": "kinetic energy (ft-lbs)",
+            "V_i": "impact velocity (ft/s)",
+            "m": "ram mass (slugs/kips)"
+          },
+          "notes": "pp. 358-359. With no losses kinetic energy would equal potential energy.",
+          "implemented_in": null
+        },
+        {
+          "eq_id": "15-3",
+          "description": "Stroke of a single acting (open end) diesel hammer from blow rate",
+          "formula": "h = 4.01 * (60 / bpm)^2 - 0.3",
+          "variables": {
+            "h": "ram stroke (feet)",
+            "bpm": "blows per minute"
+          },
+          "notes": "p. 370. Only for single acting diesel hammers; not correct for other hammer types.",
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        {
+          "figure_id": "15-24",
+          "title": "Pile hammer classification",
+          "description": "",
+          "page": 355
+        },
+        {
+          "figure_id": "15-25",
+          "title": "Typical drop hammer",
+          "description": "",
+          "page": 360
+        },
+        {
+          "figure_id": "15-26",
+          "title": "Schematic of a single acting air/steam hammer",
+          "description": "",
+          "page": 362
+        },
+        {
+          "figure_id": "15-27",
+          "title": "(a) Single acting air, and (b) differential acting air hammers",
+          "description": "",
+          "page": 363
+        },
+        {
+          "figure_id": "15-28",
+          "title": "Schematic of a double acting air/steam hammer",
+          "description": "",
+          "page": 365
+        },
+        {
+          "figure_id": "15-29",
+          "title": "Schematic of a differential acting air/steam hammer",
+          "description": "",
+          "page": 367
+        },
+        {
+          "figure_id": "15-30",
+          "title": "Schematic of a single acting diesel hammer",
+          "description": "",
+          "page": 369
+        },
+        {
+          "figure_id": "15-31",
+          "title": "(a) Single acting diesel and, (b) double acting diesel hammers",
+          "description": "",
+          "page": 371
+        },
+        {
+          "figure_id": "15-32",
+          "title": "Schematic of a double acting diesel hammer",
+          "description": "",
+          "page": 372
+        },
+        {
+          "figure_id": "15-33",
+          "title": "Schematic of hydraulic hammers: (a) single acting and (b) double acting",
+          "description": "",
+          "page": 374
+        },
+        {
+          "figure_id": "15-34",
+          "title": "(a) Single acting hydraulic, and (b) double acting hydraulic hammers",
+          "description": "",
+          "page": 375
+        }
+      ],
       "tables": [
         {
           "table_id": "15-1",
-          "description": "Typical pile hammer characteristics and uses — rated energy (ft-kips), impact velocity (ft/sec), blow rate (blows/min), energy formula, lifting power, maintenance, pile suitability, advantages, disadvantages, and remarks for all hammer types (single/double-acting air/steam, differential, single/double-acting diesel, drop, single/double-acting hydraulic, vibratory, resonant)"
+          "title": "Typical Pile Hammer Characteristics and Uses",
+          "description": "Rated energy, impact velocity, blow rate, energy per blow, lifting power, maintenance, pile suitability, advantages, disadvantages and remarks for single acting, double acting and differential air/steam, open end and closed end diesel, drop, single and double acting hydraulic, vibratory and resonant hammers. Rated energy (ft-kips): 7-1800, 1-21, 15-50, 9-1620, 5-73, 7-60, 25-2162, 25-2581; vibratory 750-2,400 and resonant up to 10,800 vibrations/minute, rated by power, not energy.",
+          "page": 356
         }
       ],
-      "applicability": "Description, energy ranges, operating characteristics, and application guidance for all driven pile hammer types used in practice."
+      "applicability": "Understanding impact hammer types, energy ratings and losses, and reading diesel hammer stroke."
     },
     {
       "section_id": "15.17-15.18",
-      "title": "Vibratory and Resonant Hammers",
-      "summary": "Vibratory hammers use paired counter-rotating eccentric weights to produce sinusoidal axial force (750-2,400 vibrations/min). Most effective in granular soils; less effective in stiff-to-hard clays. Do not require leads. Suitable for H-piles, open-end pipes, sheet piles; not for precast concrete. No reliable method for nominal resistance estimation during vibratory installation — resistance must be confirmed by restrike with impact hammer. Variable moment vibratory hammers can be brought to full speed without eccentric moment, avoiding critical vibration frequencies.",
-      "body": "Vibratory Hammers (Section 15.17): Paired counter-rotating eccentric weights produce a sinusoidal axial force at 750-2,400 vibrations per minute (standard up to 1,600 RPM/26 Hz; variable moment up to 2,300-2,400 RPM/40 Hz; low frequency up to 1,200 RPM/20 Hz). Horizontal force components cancel; only vertical remains. Hydraulic clamp rigidly connects hammer to pile head. No leads required; templates used for sheet pile cells.\n\nVibratory hammers are most effective in granular soils, particularly when submerged. Also effective in silty or softer clays; less effective in stiff-to-hard clays. Suitable for: sheet piles, H-piles, and open-end pipe piles (non-displacement types). Not suitable for precast concrete piles due to tensile and bending stress concerns. Difficult for closed-end pipes and other displacement piles.\n\nVariable moment hammers can ramp up to operating speed with eccentric weights in neutral (no force), avoiding resonance with natural frequencies of nearby structures. Most important for startup and shutdown, which produce the greatest vibration effects.\n\nNo reliable nominal resistance estimation method during vibratory installation. Must confirm resistance by impact hammer restrike after installation. Some wave equation programs simulate vibratory driving and dynamic measurements have been made, but no validated approach exists.\n\nResonant Hammers (Section 15.18): Operate at very high vibration frequencies (up to 10,800 vibrations/minute). Designed to achieve resonance with the pile to maximize energy transmission. Limited commercial availability and use in practice.",
+      "title": "Vibratory Hammers and Resonant Hammers",
+      "summary": "Vibratory hammers use paired counter-rotating eccentric weights. Variable moment and high frequency models run up to 2300 to 2400 vibrations per minute (40 Hz), standard up to 1600 (26 Hz), low frequency about 1200 (20 Hz); start up and shut down cause most vibration concern. Best in granular soils; not for precast concrete. No reliable method estimates resistance during vibratory or resonant installation. Resonant hammers oscillate at up to 180 Hz.",
+      "body": "15.17 (pp. 375-378): paired counter-rotating eccentric weights give a sinusoidal axial force while the horizontal components cancel. Variable moment and high frequency hammers operate up to 2300 to 2400 vibrations per minute (40 Hz), standard hammers up to 1600 (26 Hz) and low frequency hammers up to about 1200 (20 Hz). The lower the rate, the greater the effect on soil and structures, so start up and shut down raise the most vibration concern; variable moment hammers reach speed with the eccentrics in neutral. Hydraulic clamps connect to the pile for installation or extraction; leads are usually not needed, though sheet pile cells often need templates. Rated by energy per second or driving force. Used for sheet piles, non-displacement H-piles and open end pipe piles; closed end and displacement piles are difficult; not for precast concrete (tensile and bending stresses). Most effective in granular soils, especially submerged; may work in silty or softer clays; less effective in stiff to hard clays. Some wave equation programs simulate vibratory driving, but no reliable technique estimates nominal resistance during installation, so it must be confirmed by other means. 15.18 (pp. 378-379): resonant hammers switch hydraulic oil across a piston at up to 180 Hz (10,800 vibrations per minute) with an algorithm that holds resonance; advantages are fast installation, very low ground vibration and reduced noise; resistance must be verified with an impact hammer and standard methods afterwards.",
       "key_points": [
-        "Vibratory hammers: 750-2,400 vpm; paired counter-rotating eccentric weights; horizontal components cancel",
-        "Most effective in granular soils (especially submerged); less effective in stiff-to-hard clays",
-        "Not for precast concrete piles (tensile/bending damage); suitable for H-piles, open-end pipe, sheet piles",
-        "No reliable nominal resistance estimation during vibratory driving — restrike with impact hammer required",
-        "Variable moment hammers: ramp to operating speed with eccentric moment neutral to avoid critical resonant frequencies",
-        "Startup/shutdown produce greatest vibration concerns for nearby structures",
-        "Resonant hammers: up to 10,800 vpm; very limited availability and use in practice"
+        "Vibratory: paired counter-rotating eccentric weights; horizontal components cancel",
+        "Variable moment and high frequency up to 2300-2400 vpm (40 Hz); standard up to 1600 (26 Hz); low frequency about 1200 (20 Hz)",
+        "Start up and shut down raise the most vibration concern; variable moment hammers start with eccentrics neutral",
+        "Rated by energy per second or driving force, not energy per blow",
+        "Best in granular soils, especially submerged; less effective in stiff to hard clays",
+        "Not for precast concrete piles; closed end and displacement piles are difficult",
+        "No reliable technique estimates nominal resistance during vibratory installation; confirm by other means",
+        "Resonant hammers: up to 180 Hz (10,800 vpm); fast, low vibration, less noise; verify with an impact hammer"
       ],
       "equations": [],
-      "figures": [],
+      "figures": [
+        {
+          "figure_id": "15-35",
+          "title": "Schematic of a vibratory hammer",
+          "description": "",
+          "page": 377
+        },
+        {
+          "figure_id": "15-36",
+          "title": "Vibratory hammer installing an H-pile",
+          "description": "Courtesy ICE.",
+          "page": 377
+        },
+        {
+          "figure_id": "15-37",
+          "title": "Resonant hammer installing an H-pile",
+          "description": "Courtesy of Resonance Technology.",
+          "page": 379
+        }
+      ],
       "tables": [],
-      "applicability": "Vibratory hammer operating characteristics, soil suitability, limitations for resistance estimation, and guidance on variable moment hammers to control construction vibrations."
+      "applicability": "Choosing vibratory or resonant installation and planning resistance verification afterwards."
     },
     {
       "section_id": "15.19-15.22",
-      "title": "Hammer Size Selection, Energy Monitoring, and Noise Suppression",
-      "summary": "Preliminary hammer size: ram weight 1-2% of nominal/driving resistance; Table 15-2 minimum rated energies (12,000-42,000 ft-lbs by Rn range). Wave equation analysis is the recommended selection method — dynamic formula approach not recommended. Kinetic energy monitoring devices (proximity switches, E-Saximeter) provide real-time ram velocity, energy, stroke, and blow rate. Impact driving noise: 80-130 dBa; optional manufacturer noise shrouds reduce by ~10 dBa. Underwater noise suppression: bubble curtain systems effective for marine environments.",
-      "body": "Impact Hammer Size Selection (Section 15.19): Use of dynamic pile formulas for hammer energy and size selection is not recommended — they assume desired nominal resistance is achieved and become increasingly inaccurate as hammer complexity and required Rn increase. Wave equation analysis is the recommended selection method.\n\nPreliminary sizing rule: ram weight = 1 to 2% of required nominal resistance or nominal driving resistance (whichever is greater) as a first estimate. Table 15-2 provides minimum manufacturer-rated energy by Rn range: Rn ≤ 180 kips: 12,000 ft-lbs; 181-300 kips: 21,000 ft-lbs; 301-415 kips: 28,800 ft-lbs; 416-540 kips: 37,600 ft-lbs; 541-600 kips: 42,000 ft-lbs. These are generalizations — modify for pile type, load, length, and local soils. For short piles to rock, smaller hammer may be more appropriate for stress control. Table 15-2 should not be used directly in a specification.\n\nHammer Kinetic Energy Monitoring (Section 15.20): Several hammers available with built-in kinetic energy readout from factory proximity switches. Measures: impact velocity, kinetic energy, blow rate, and (for single-acting diesel) hammer stroke. Existing hammers can be retrofitted with proximity switches (1.2-inch bore drill holes above combustion chamber for diesel hammers). Wireless E-Saximeter receives transmitter signal; can also function as a driving log. Particularly valuable on large projects or high-resistance piles to detect performance changes requiring criterion adjustment.\n\nNoise Suppression (Section 15.21): Impact pile driving: 80-130 dBa depending on hammer and pile type. Local ordinances may limit noise levels. Manufacturer noise shrouds available for some diesel and hydraulic hammers — reduce noise by approximately 10 dBa.\n\nUnderwater Noise Suppression (Section 15.22): Bubble curtain systems inject air through perforated hoses around the pile to create an air bubble barrier that attenuates underwater acoustic energy. Effective for protecting marine life in environmentally sensitive areas. Reinhall et al. (2014) evaluated acoustic shield approach for further attenuation.",
+      "title": "Impact Hammer Size Selection, Hammer Kinetic Energy Monitoring, Noise Suppression Equipment, and Underwater Noise Suppression Equipment",
+      "summary": "Dynamic formulas should not select hammers; the wave equation is recommended. A ram weight of 1 to 2% of the required nominal resistance or nominal driving resistance, whichever is greater, is a good first estimate; Table 15-2 gives preliminary minimum energies, not for specifications. Kinetic energy readouts use proximity switches. Driving noise is 80 to 130 dBa; shrouds cut about 10 dBa. Bubble curtains reduce underwater overpressure; over 4.4 psi has been found detrimental.",
+      "body": "15.19 (pp. 379-380): too small a hammer may not reach the resistance or need excessive blows; too large may damage the pile. Dynamic formulas should not be used to select hammer energy; results worsen as hammer complexity and resistance increase. The wave equation is recommended; a ram weight of 1 to 2% of the required nominal resistance or nominal driving resistance, whichever is greater, is a good first estimate; Table 15-2 gives approximate minimum energies, to be modified for pile type, loads, lengths and soils (a smaller hammer may suit short piles to rock); not for specifications (see Chapter 14). 15.20 (pp. 380-383): factory readouts time the ram between proximity switches for impact velocity, kinetic energy, blow rate and open end diesel stroke; any hammer can be retrofitted (diesels: two 1.2 in. bore holes above the combustion chamber) with a transmitter to a wireless E-Saximeter that can also keep the driving log; useful on large projects and high resistance piles. 15.21 (p. 384): noise 80 to 130 dBa; optional devices cut about 10 dBa; combined measures (cushion material, exhaust shroud, damping compound, impact area shroud) gave 20 to 25 dBa. 15.22 (pp. 385-386): overpressures over 4.4 psi found detrimental, varying with species, size and maturity; bubble rings around one pile, bubble walls with a damping curtain around a substructure; the curtain must fully surround the driving; containment helps in tides, currents or with batter piles; a bubble ring cut overpressure from over 22 psi to under 3 psi (Longmuir and Lively 2001); a mandrel-driven pipe with an air gap gave 21 to 23 dBa reduction against 3 to 6 dBa for a typical bubble curtain on 30 in. piles (Reinhall et al. 2014).",
       "key_points": [
-        "Preliminary hammer size: ram weight = 1-2% of required Rn or Rndr (whichever greater)",
-        "Table 15-2 minimum rated energy: 12,000 ft-lbs (Rn≤180 kips), 21,000 (181-300), 28,800 (301-415), 37,600 (416-540), 42,000 (541-600) — for preliminary screening only, not for specifications",
-        "Wave equation analysis is the recommended hammer selection method; dynamic formula not recommended",
-        "Kinetic energy monitoring: proximity switches measure impact velocity, energy, stroke; wireless E-Saximeter readout",
-        "Retrofittable on any hammer (1.2-inch bore holes in diesel cylinder above combustion chamber)",
-        "Impact driving noise: 80-130 dBa; manufacturer shrouds reduce by ~10 dBa",
-        "Bubble curtain systems: perforated hoses around pile inject air; protect marine life from underwater acoustic energy"
+        "Dynamic formulas should not be used to select hammer size; wave equation analysis is recommended",
+        "First estimate: ram weight 1 to 2% of required nominal resistance or Rndr, whichever is greater",
+        "Table 15-2 preliminary minimum rated energies: 12,000 to 42,000 ft-lbs for up to 600 kips; not for specifications",
+        "A smaller hammer may suit short piles to rock to control driving stresses",
+        "Kinetic energy readouts time the ram between proximity switches; any hammer can be retrofitted",
+        "Impact driving noise 80 to 130 dBa; manufacturer devices cut about 10 dBa; combined measures 20 to 25 dBa",
+        "Underwater overpressure over 4.4 psi found detrimental; bubble curtain must fully surround the pile",
+        "Bubble ring case: over 22 psi reduced to under 3 psi",
+        "Mandrel air gap: 21 to 23 dBa reduction against 3 to 6 dBa for a typical bubble curtain"
       ],
       "equations": [],
-      "figures": [],
+      "figures": [
+        {
+          "figure_id": "15-38",
+          "title": "IHC hydraulic hammer kinetic energy readout panel",
+          "description": "",
+          "page": 381
+        },
+        {
+          "figure_id": "15-39",
+          "title": "Proximity switch attachment for Berminghammer diesel hammer",
+          "description": "Courtesy Berminghammer.",
+          "page": 382
+        },
+        {
+          "figure_id": "15-40",
+          "title": "Proximity switches, readout device and driving log trigger switch for Berminghammer diesel hammer",
+          "description": "Courtesy Berminghammer.",
+          "page": 382
+        },
+        {
+          "figure_id": "15-41",
+          "title": "Proximity switches and transmitter on retrofitted diesel hammer",
+          "description": "",
+          "page": 383
+        },
+        {
+          "figure_id": "15-42",
+          "title": "E-Saximeter wireless kinetic energy readout device",
+          "description": "",
+          "page": 383
+        },
+        {
+          "figure_id": "15-43",
+          "title": "Noise shroud for IHC hydraulic hammer",
+          "description": "",
+          "page": 384
+        },
+        {
+          "figure_id": "15-44",
+          "title": "Bubble ring with containment device",
+          "description": "Courtesy of WSDOT.",
+          "page": 386
+        }
+      ],
       "tables": [
         {
           "table_id": "15-2",
-          "description": "Preliminary hammer energy requirements by nominal resistance — minimum manufacturer's rated energy (ft-lbs) for Rn ranges: ≤180 kips: 12,000; 181-300: 21,000; 301-415: 28,800; 416-540: 37,600; 541-600: 42,000; for preliminary equipment evaluation only, not for use in specifications"
+          "title": "Preliminary Hammer Energy Requirements",
+          "description": "Minimum manufacturer's rated energy for preliminary equipment evaluation: 180 kips and under 12,000 ft-lbs; 181 to 300 kips 21,000; 301 to 415 kips 28,800; 416 to 540 kips 37,600; 540 to 600 kips 42,000 (the print's last band starts at 540). Not for use in a specification.",
+          "page": 380
         }
       ],
-      "applicability": "Hammer size selection criteria, kinetic energy monitoring devices, and noise suppression equipment for driven pile projects, including preliminary energy estimates from Table 15-2."
+      "applicability": "Preliminary hammer sizing, hammer energy monitoring and noise mitigation."
     },
     {
       "section_id": "15.23-15.27",
       "title": "Followers, Jetting, Predrilling, Spudding, and Equipment Submittals",
-      "summary": "Followers transmit hammer blows below lead reach; follower stiffness should match equivalent pile length; energy losses estimated by wave equation or dynamic measurements. Jetting displaces soil with water/air — limited to end-bearing piles (not friction piles); final resistance must be obtained by impact driving; rarely used due to environmental restrictions. Predrilling for obstructions, embankments, or vibration reduction; diameter 4 inches less than pile diagonal (H-pile/square) or 1 inch less than pile diameter (round). Spudding opens hole in dense fill or debris without bringing cuttings to surface.",
-      "body": "Followers (Section 15.23): A follower is a structural member between hammer and pile head when pile head is below lead reach (below deck, underwater, or below grade). Maintains pile alignment is difficult for batter piles using followers. Energy loss in follower and connection reduces effective blow energy transmitted to pile — estimated by wave equation or dynamic measurements. Properly designed follower: stiffness (per unit length) approximately equal to equivalent pile length stiffness. Followers with significantly less stiffness should be avoided. Consider underwater-rated hammers as an alternative.\n\nJetting (Section 15.24): High-pressure water (or air + water) displaces soil to facilitate pile penetration. Jets may be inside or outside the pile. Most effective in loose-to-medium dense granular soils. Not recommended for friction piles (reduces frictional resistance). Should be avoided for laterally loaded piles. For end-bearing piles: final resistance must be obtained by driving (no jetting). Backfill open jetted holes after installation. Jetting greatly reduced due to environmental restrictions on disposal of jetted material and groundwater.\n\nPredrilling (Section 15.25): Soil augers or rotary drills used to: (1) penetrate obstructions (old timbers, boulders, riprap); (2) install piles through compacted embankments; (3) reduce heave from closely spaced displacement piles. Hole diameter guidance: 4 inches less than diagonal of square or H-piles; 1 inch less than diameter for round piles. Through very hard material: diameter may equal pile diagonal/diameter. In embankments: up to 6 inches larger than greatest pile dimension. Pile is driven with impact hammer after placement in predrilled hole.\n\nSpudding (Section 15.26): Short, strong member driven or dropped through dense fill/debris, then removed. Alternative to jetting or predrilling in miscellaneous fill/debris. Does not bring cuttings or groundwater to surface (environmental advantage). Risk: spud may not be removable if driven too deep. Requires written engineer approval per specification.\n\nEquipment Submittals (Section 15.27): Contractor submits all proposed equipment details and procedures prior to driving. Engineer uses submittal to perform wave equation analysis and provide preliminary/final driving criteria. Drive system submittal form (Figure 15-50): hammer components and accessories, pile type/section/splicing/toe details, plus jetting/predrilling/spudding equipment details as applicable.",
+      "summary": "Followers lose energy and make alignment hard; match the pile's stiffness per unit length and avoid them when possible. Jetting is not for friction piles or piles carrying substantial lateral load; end bearing piles reach final resistance by driving. Predrilled holes are typically 4 in. less than the diagonal of square or H-piles and 1 in. less than round pile diameters. Spudding keeps cuttings off the surface. Equipment submittals let the Engineer run wave equation analyses for driving criteria.",
+      "body": "15.23 (pp. 386-387): a follower transmits blows when the pile head is below the leads (under bridges, underwater, below grade); alignment, particularly of batter piles, is a problem; energy is lost in follower compression and connections, changing the blow count; losses estimated by thorough wave equation analysis or dynamic measurements; stiffness per unit length about equal to the pile's; much softer followers avoided; considerable maintenance; avoid when possible; an underwater hammer is an alternative. 15.24 (pp. 388-389): jetting with water or air, inside or outside the pile, most effective in loose to medium dense granular soils; not recommended for friction piles; avoided where substantial lateral resistance is needed; end bearing piles reach final resistance by driving without jetting; backfill open holes; separate pay item; rarely used now unless jetted material can be contained. 15.25 (pp. 389-390): predrilling through obstructions and embankments and to reduce heave of closely spaced displacement piles; hole size and depth in the contract documents; typically 4 in. less than the diagonal of square or H-piles and 1 in. less than round pile diameters; equal to the diagonal or diameter through very hard material; up to 6 in. larger than the greatest dimension in embankments; separate pay item. 15.26 (p. 390): spudding drives or drops a short strong member and removes it, useful in miscellaneous fill and debris; the spud may stick if driven too deep; cuttings and groundwater stay below ground. 15.27 (pp. 390-392): the contractor submits equipment and procedures and a Pile Installation Plan before driving; the Engineer runs wave equation analyses for preliminary or final criteria; Figure 15-50 is the drive system submittal form; without system details wave equation accuracy drops.",
       "key_points": [
-        "Follower stiffness should match equivalent length of pile — significantly softer followers not acceptable",
-        "Follower energy losses estimated by wave equation analysis or dynamic measurements; avoid when possible",
-        "Jetting: not for friction piles or laterally loaded piles; final resistance must come from impact driving; rarely used due to environmental restrictions",
-        "Predrilling: 4 inches less than pile diagonal (H-pile/square) or 1 inch less than pile diameter (round); up to 6 inches larger than pile in embankments",
-        "Predrilling stops ≥5 ft above plan pile toe elevation for non-end-bearing; may go to rock for end-bearing",
-        "Spudding: no cuttings to surface (environmental advantage); spud may become unremovable if driven too deep",
-        "Equipment submittal with wave equation analysis required before driving — provides basis for driving criterion"
+        "Followers: energy loss and alignment problems; stiffness per unit length about equal to the pile's; avoid when possible",
+        "Follower losses estimated by thorough wave equation analysis or dynamic measurements",
+        "Jetting: not for friction piles or substantial lateral resistance; end bearing piles finish by driving",
+        "Jetting is rarely used now unless jetted material can be contained",
+        "Predrill holes: 4 in. less than diagonal (square, H-piles); 1 in. less than diameter (round piles)",
+        "Predrill holes in embankments up to 6 in. larger than the greatest pile dimension",
+        "Separate pay items for jetting and predrilling when anticipated",
+        "Spudding keeps cuttings and groundwater below ground; the spud may stick if driven too deep",
+        "Equipment submittal and Pile Installation Plan let the Engineer set wave equation driving criteria"
       ],
       "equations": [],
-      "figures": [],
+      "figures": [
+        {
+          "figure_id": "15-45",
+          "title": "(a) Follower and (b) follower in use drving H-piles",
+          "description": "",
+          "page": 387
+        },
+        {
+          "figure_id": "15-46",
+          "title": "Dual jet system mounted on concrete pile",
+          "description": "Courtesy of Florida DOT.",
+          "page": 388
+        },
+        {
+          "figure_id": "15-47",
+          "title": "Jet/Punch system",
+          "description": "Courtesy of Florida DOT.",
+          "page": 389
+        },
+        {
+          "figure_id": "15-48",
+          "title": "Solid flight auger predrilling system",
+          "description": "",
+          "page": 390
+        },
+        {
+          "figure_id": "15-49",
+          "title": "(a) Pipe pile and (b) H-pile spuds",
+          "description": "",
+          "page": 391
+        },
+        {
+          "figure_id": "15-50",
+          "title": "Drive system submittal form",
+          "description": "",
+          "page": 392
+        }
+      ],
       "tables": [],
-      "applicability": "Guidance on followers, jetting, predrilling, and spudding installation aids for driven piles; equipment submittal requirements and their role in developing wave equation-based driving criteria."
+      "applicability": "Followers, jetting, predrilling and spudding as installation aids, and equipment submittals."
     }
   ]
 }
