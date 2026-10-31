@@ -68,20 +68,65 @@
       "section_id": "10.4",
       "title": "Corrosion Protection of HBSNs",
       "summary": "Under the same ground, HBSNs carry higher corrosion risk than solid bars: installation damages epoxy and zinc coatings (soil contact, outgoing cuttings, centralizer impact), so no Chapter 7 coating can be shown to protect them reliably. The only protection is a bare bar with sacrificial steel, from the Fishman and Withiam (2011) metal loss model: X(um) = 80 (um/yr) x tf^0.8 (Eq 7.1); dloss = dbar - 2X (Eq 7.2). HBSNs are not recommended in aggressive soil (Table 7.2); design life typically 50 to 75 years.",
-      "body": "10.4.1 Introduction (pp. 267-268): corrosion protection effectiveness is controversial because of abrasion and friction during installation. Samtani and Nowatzki (2010) reviewed HBSN corrosion parameters and practice. Under the same subsurface conditions HBSNs have higher corrosion risk than solid bars, because installation deteriorates their protection: epoxy and zinc coatings are damaged by contact with the soil mass, erosion from outgoing cuttings and impact with centralizers, severely shortening coating life. Fishman and Withiam (2011) developed metal loss models and modified LRFD resistance factors for corrosion exposure, mainly for MSE walls; the models can estimate HBSN metal loss. Since no Chapter 7 coating can be routinely shown to protect the tendons, the only protection currently available is a bare bar with sacrificial steel. 10.4.2 Sacrificial Steel (pp. 268-269): the manual uses Fishman and Withiam (2011), based on uncoated mild steel wire or strips buried in MSE reinforced zones (where fill aggressiveness is controlled), with reduction resistance factors for material variability and model accuracy. Eq 7.1 (plain steel): X(um) = 80 (um/yr) x tf^0.8, X = steel loss in micrometers, tf = service life in years; steel loss is taken twice from the diameter, Eq 7.2: dloss = dbar - 2X. Absent product-specific data, the reduced diameter gives the steel area for Chapter 6 bar design, with the Chapter 5 and 6 tension resistance factors. 10.4.3 Design Steps (p. 269): (1) select a trial HBSN size; (2) classify the soil as non-aggressive or aggressive with Table 7.2 from corrosion testing (Chapters 4 and 7); if aggressive, HBSNs are not recommended; (3) if non-aggressive, Class C protection (sacrificial steel) may be used; (4) Class C: nominal tendon diameter; design life (typically 50 to 75 years); sacrificial steel by Eq 7-1; new diameter; area with steel loss used as At in Eq 6-5 for the nominal tendon resistance; proceed per Chapter 6; (5) factored resistance by applying the resistance factor to the nominal tensile resistance with the reduced area; (6) compare the nominal resistance (as printed) with the tensile forces from design software (Chapter 6) and repeat as needed.",
+      "body": "10.4 Corrosion Protection of HBSNs (pp. 267-269). Subsections 10.4.1 Introduction to 10.4.3 Design Steps for Corrosion Protection of HBSNs.",
       "key_points": [
-        "Same ground: HBSNs have higher corrosion risk than solid bars",
-        "Installation damages epoxy and zinc coatings: soil contact, outgoing cuttings, centralizer impact",
-        "Only protection currently available: bare bar with sacrificial steel",
-        "Eq 7.1: X(um) = 80 (um/yr) x tf^0.8; Eq 7.2: dloss = dbar - 2X (Fishman and Withiam 2011)",
-        "HBSNs not recommended in aggressive soil (Table 7.2); Class C may be used in non-aggressive soil",
-        "Design life typically 50 to 75 years; reduced area used as At in Eq 6-5",
-        "Tension resistance factors from Chapters 5 and 6 apply"
+        "Bare bar with sacrificial steel is the only HBSN protection; not recommended in aggressive soil"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Corrosion protection (sacrificial steel) design of hollow bar soil nails."
+      "applicability": "Corrosion protection (sacrificial steel) design of hollow bar soil nails.",
+      "subsections": [
+        {
+          "section_id": "10.4.1",
+          "title": "Introduction",
+          "summary": "HBSN corrosion protection is controversial because the tendon is abraded during installation. Under the same ground, HBSNs carry higher corrosion risk than solid bars (Samtani and Nowatzki 2010): soil contact, outgoing cuttings and centralizer impact damage epoxy and zinc coatings, severely shortening their life. No Chapter 7 coating can be routinely shown to protect them, so a bare bar with sacrificial steel is the only method available; Fishman and Withiam (2011) metal loss models can estimate the loss.",
+          "body": "10.4.1 Introduction (pp. 267-268). One of the most controversial topics for HBSNs is the effectiveness of corrosion protection, because of the abrasion and friction on the tendon during installation. Samtani and Nowatzki (2010) evaluated parameters related to HBSN corrosion, summarized the protection practice of the time and gave guidance. Under the same subsurface conditions, HBSNs have higher corrosion risks than solid bars because their installation methods tend to deteriorate the protection: epoxy and zinc coatings are damaged by contact with the soil mass, erosion from the outgoing soil cuttings and impact with centralizers, so the effective service life of coatings may be severely shortened. Fishman and Withiam (2011) evaluated computational models for metal loss in soil reinforcement of retaining structures (mainly MSE walls), developed a methodology from improved models to predict performance over the service life, suggested changes to the AASHTO LRFD specifications, and introduced modified LRFD resistance factors for corrosion exposure; although focused on MSE walls, their models can estimate the time-rate of metal loss and future performance of HBSNs. Because of the damage to bar coatings during installation, it cannot be routinely demonstrated that any coating of Chapter 7 reliably protects the tendons; the only corrosion protection method currently available for HBSNs is a bare bar with sacrificial steel.",
+          "key_points": [
+            "Same ground: HBSNs have higher corrosion risk than solid bars (Samtani and Nowatzki 2010)",
+            "Installation damages epoxy and zinc coatings: soil contact, outgoing cuttings, centralizer impact",
+            "Fishman and Withiam (2011) metal loss models can estimate HBSN metal loss",
+            "Only protection currently available: bare bar with sacrificial steel"
+          ],
+          "equations": [],
+          "figures": [],
+          "tables": [],
+          "applicability": "Corrosion protection (sacrificial steel) design of hollow bar soil nails."
+        },
+        {
+          "section_id": "10.4.2",
+          "title": "Sacrificial Steel",
+          "summary": "Without soil nail specific studies, sacrificial steel for HBSNs follows the Fishman and Withiam (2011) metal loss model, built from uncoated mild steel wire and strips buried in MSE reinforced zones, where fill aggressiveness is controlled, with reduced tension resistance factors for material variability and model accuracy. Eq. 7.1: X(um) = 80 (um/yr) x tf^0.8; the loss is taken twice from the diameter, dloss = dbar - 2X (Eq. 7.2). The reduced diameter gives the steel area for Chapter 6 design, with the Chapter 5 and 6 tension resistance factors.",
+          "body": "10.4.2 Sacrificial Steel (pp. 268-269). In the absence of thorough studies specific to soil nail corrosion, the manual uses the metal loss models of Fishman and Withiam (2011) as the basis for the sacrificial steel thickness of HBSNs. Their work focused on MSE walls, where fill aggressiveness can be controlled by acceptance criteria; the model rests on extensive studies of corrosion rates of uncoated mild steel wire or strips buried in different soils in MSE reinforced zones, was intended to include passive reinforcement embedded in the ground (post-tensioned elements were evaluated separately), and reviewed the variability of steel properties and the accuracy of the models, expressed as reduced resistance factors for tension. As in Chapter 7, for plain steel elements X(um) = 80 (um/yr) x tf^0.8 (Eq. 7.1), with X the loss of steel in um and tf the service life in years; the steel loss is taken twice from the bar diameter, dloss = dbar - 2X (Eq. 7.2), with dloss the diameter after sacrificial steel and dbar the nominal diameter. In the absence of product-specific data these give the diameter reduction over the design life, which is used to calculate the steel area for bar design in Chapter 6; the resistance factors for steel in tension of Chapters 5 and 6 are used for the tendon tensile resistance.",
+          "key_points": [
+            "Fishman and Withiam (2011) metal loss model used for want of soil nail specific studies",
+            "Model from uncoated mild steel buried in MSE reinforced zones, where fill aggressiveness is controlled",
+            "Eq. 7.1 X(um) = 80 (um/yr) x tf^0.8; Eq. 7.2 dloss = dbar - 2X",
+            "Reduced area used in Chapter 6 bar design with the Chapter 5 and 6 tension resistance factors"
+          ],
+          "equations": [],
+          "figures": [],
+          "tables": [],
+          "applicability": "Sacrificial steel allowance for hollow bar soil nails."
+        },
+        {
+          "section_id": "10.4.3",
+          "title": "Design Steps for Corrosion Protection of HBSNs",
+          "summary": "HBSN corrosion design steps: select a trial size; classify the soil with Table 7.2 (HBSNs not recommended in aggressive soil); in non-aggressive soil use Class C (sacrificial steel): nominal diameter, design life (typically 50 to 75 years), sacrificial steel by Eq. 7-1, reduced diameter and area used as At in Eq. 6-5; apply the tension resistance factor to the nominal resistance; compare with the software's tensile forces and repeat as needed.",
+          "body": "10.4.3 Design Steps for Corrosion Protection of HBSNs (p. 269). The selection of corrosion protection for HBSNs uses these steps: (1) select an HBSN trial size; (2) use Table 7.2 to classify the soil as non-aggressive or aggressive, from corrosion testing as described in Chapters 4 and 7; if aggressive, the use of HBSNs is not recommended; (3) if non-aggressive, Class C protection (sacrificial steel) may be used; (4) select Class C: a. obtain the nominal tendon diameter; b. select the design life of the wall (typically 50 to 75 years); c. calculate sacrificial steel using Eq. 7-1 (as printed); d. calculate the new diameter with steel loss; e. use it to calculate the tendon area with steel loss; f. use that area as the tendon cross-sectional area At in Eq. 6-5 to calculate the nominal tendon resistance; g. proceed with the design according to Chapter 6; (5) calculate the factored resistance of the trial HBSN by applying the resistance factor to the nominal tensile resistance (Chapters 5 and 6) with the reduced steel area; (6) compare the nominal resistance (as printed) with the tensile forces from computer-based design software (Chapter 6) and repeat as needed.",
+          "key_points": [
+            "Select a trial HBSN size",
+            "Classify the soil with Table 7.2; HBSNs not recommended in aggressive soil",
+            "Non-aggressive soil: Class C (sacrificial steel), design life typically 50 to 75 years",
+            "Reduced area used as At in Eq. 6-5; factored resistance with the Chapter 5 and 6 factors",
+            "Compare with the software's tensile forces and iterate"
+          ],
+          "equations": [],
+          "figures": [],
+          "tables": [],
+          "applicability": "Corrosion design steps for hollow bar soil nails."
+        }
+      ]
     },
     {
       "section_id": "10.5",
