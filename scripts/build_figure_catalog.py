@@ -331,6 +331,11 @@ def _chapter_of(figure_number: str):
     return None
 
 
+def _chapter_key(figure_number: str) -> str:
+    """The chapter part of a figure number: "4" of "4-12", "A" of "A.17"."""
+    return re.split(r"[-.]", figure_number, maxsplit=1)[0]
+
+
 #: How alike a List of Figures caption and the caption printed on a figure's
 #: page must be (difflib ratio of the normalized text) for that page to be the
 #: figure's when the list words the caption differently: GEC-12 Vol I lists
@@ -380,8 +385,10 @@ def _resolve_pages(doc, figs: list[dict], body_start: int) -> dict:
 
     A figure whose List of Figures caption is not printed word for word on any
     page takes the page near its printed page whose caption is nearly the same,
-    and the caption as that page prints it (the figure's own page is the
-    record) unless the page's text spells a formula in math glyphs.
+    else the nearest page with a caption block under its label, and the
+    caption as that page prints it (the figure's own page is the record)
+    unless the page's text spells a formula in math glyphs. "Near" counts from
+    the printed page plus the page offset of the figure's own chapter.
 
     Returns a small stats dict.
     """
@@ -402,39 +409,60 @@ def _resolve_pages(doc, figs: list[dict], body_start: int) -> dict:
                     break
         f["pdf_page_index"] = idx
 
-    # Fallback 1: median printed->index offset for figures still unresolved.
-    offsets = [
-        f["pdf_page_index"] - f["printed_page"]
-        for f in figs
-        if f["pdf_page_index"] is not None and f["printed_page"]
-    ]
+    # Fallback 1: median printed->index offset for figures still unresolved,
+    # over the figure's own chapter: a list that prints chapter-page numbers
+    # ("4 - 17", the Micropile manual) restarts them in every chapter, so one
+    # offset over the whole list puts a figure chapters away.
+    by_chapter: dict[str, list[int]] = {}
+    for f in figs:
+        if f["pdf_page_index"] is not None and f["printed_page"]:
+            by_chapter.setdefault(_chapter_key(f["figure_number"]), []).append(
+                f["pdf_page_index"] - f["printed_page"])
+    offsets = [o for chap in by_chapter.values() for o in chap]
     offset = int(statistics.median(offsets)) if offsets else 0
 
+    def expected_page(f) -> int:
+        own = by_chapter.get(_chapter_key(f["figure_number"]))
+        return f["printed_page"] + (int(statistics.median(own)) if own else offset)
+
     # A list caption worded differently from the figure's page: the page near
-    # the predicted one whose printed caption is nearly the same.
+    # the predicted one whose printed caption is nearly the same, else the
+    # nearest one with a text block that opens with the figure's label and a
+    # caption (Micropile lists Figure 4-3 as "Small Track-mounted Rotary
+    # Hydraulic Drill Rig"; its page prints "Low Headroom Track-Mounted
+    # Rotary Hydraulic Drill Rig ...").
     near_resolved = 0
     for f in figs:
         if f["pdf_page_index"] is not None or not f["caption"] \
                 or not f["printed_page"]:
             continue
         want = _norm(f["caption"])
-        expected = f["printed_page"] + offset
-        for i in range(max(body_start, expected - NEAR_CAPTION_PAGES),
-                       min(doc.page_count, expected + NEAR_CAPTION_PAGES + 1)):
+        expected = expected_page(f)
+        window = range(max(body_start, expected - NEAR_CAPTION_PAGES),
+                       min(doc.page_count, expected + NEAR_CAPTION_PAGES + 1))
+        found = None
+        for i in window:
             cap = _page_caption(doc[i].get_text(), f["figure_number"])
             if cap and SequenceMatcher(None, want, _norm(cap)).ratio() \
                     >= NEAR_CAPTION_RATIO:
-                f["pdf_page_index"] = i
-                if not _MATH_ALNUM.search(cap):
-                    f["caption"] = cap
-                near_resolved += 1
+                found = (i, cap)
                 break
+        if found is None:
+            for i in sorted(window, key=lambda i: abs(i - expected)):
+                cap = _caption_block(doc[i], f["figure_number"])
+                if cap:
+                    found = (i, cap)
+                    break
+        if found:
+            f["pdf_page_index"], cap = found
+            if not _MATH_ALNUM.search(cap):
+                f["caption"] = cap
+            near_resolved += 1
 
     filled_offset = 0
     for f in figs:
         if f["pdf_page_index"] is None and f["printed_page"]:
-            f["pdf_page_index"] = max(0, min(doc.page_count - 1,
-                                             f["printed_page"] + offset))
+            f["pdf_page_index"] = max(0, min(doc.page_count - 1, expected_page(f)))
             f["page_estimated"] = True
             filled_offset += 1
 
@@ -597,6 +625,20 @@ def _block_caption(block_text: str, marker) -> "tuple[str, str] | None":
             or re.match(r"(?i)cont(?:inued|'?d\b|\.)", words):
         return None
     return _fig_id(m.group(1)), cap
+
+
+def _caption_block(page, figure_number: str) -> "str | None":
+    """The caption of the text block on ``page`` that opens with the label of
+    ``figure_number`` (see :func:`_block_caption`), or None."""
+    want = _fig_id(figure_number)
+    for block in page.get_text("dict")["blocks"]:
+        if "lines" not in block:
+            continue
+        for rows in _block_columns(block):
+            hit = _block_caption("\n".join(rows), _FIG_MARKER)
+            if hit and hit[0] == want:
+                return hit[1]
+    return None
 
 
 def _figs_from_body(doc, marker=None) -> list[dict]:

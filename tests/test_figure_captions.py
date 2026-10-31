@@ -212,6 +212,35 @@ def test_a_contents_page_does_not_place_a_figure(tmp_path):
     assert figs["9-2"]["pdf_page_index"] == 0
 
 
+def test_a_list_that_restarts_its_page_numbers_each_chapter():
+    """REF-51: a list printing chapter-page numbers ("2 - 2") puts a figure
+    near its own chapter's pages, and a figure the list words differently
+    takes the caption its page prints."""
+    fitz = pytest.importorskip("fitz")
+    doc = fitz.open()
+    printed = {2: "Figure 1-1. Plan of Site", 3: "Figure 1-2. Boring Log",
+               4: "Figure 1-3. Grain Size Curve", 10: "Figure 2-1. Pile Cap Detail",
+               11: "Figure 2-2. Low Headroom Drill Rig (after Smith, 1990)."}
+    for i in range(14):
+        page = doc.new_page()
+        if i in printed:
+            page.insert_text((72, 400), printed[i])
+    figs = [{"figure_number": n, "caption": c, "printed_page": p}
+            for n, c, p in (("1-1", "Plan of Site", 1), ("1-2", "Boring Log", 2),
+                            ("1-3", "Grain Size Curve", 3),
+                            ("2-1", "Pile Cap Detail", 1),
+                            ("2-2", "Small Drill Rig", 2))]
+    bfc._resolve_pages(doc, figs, body_start=1)
+    got = {f["figure_number"]: (f["pdf_page_index"], f.get("page_estimated", False))
+           for f in figs}
+    assert got == {"1-1": (2, False), "1-2": (3, False), "1-3": (4, False),
+                   "2-1": (10, False), "2-2": (11, False)}
+    assert figs[-1]["caption"] == "Low Headroom Drill Rig (after Smith, 1990)"
+    mp = _load(ROOT / "geotech_references" / "micropile" / "figures_catalog.json")
+    pages = {f["figure_number"]: f["pdf_page_index"] for f in mp["figures"]}
+    assert (pages["4-3"], pages["5-26"]) == (59, 166)
+
+
 def test_a_run_on_caption_is_flagged():
     catalog = {"figures": [
         {"figure_number": "1-3", "caption": "Work process. 1-28 Table 1-1. "
