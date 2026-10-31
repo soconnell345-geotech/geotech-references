@@ -7,243 +7,703 @@
     {
       "section_id": "6.1",
       "title": "Introduction",
-      "summary": "Introduces the two CASE 2 approaches for micropile slope stabilization. Approach 1: battered upslope/downslope micropile pairs connected by a concrete cap beam resist slope forces through axial, shear, and bending. Approach 2: closely spaced micropiles form a composite soil-pile gravity structure. Chapter covers a 13-step design method (Table 6-1) for Approach 1, the dominant practice.",
-      "body": "In addition to structural foundation support (CASE 1), micropiles are used for structural slope stabilization (CASE 2). Two approaches are used. Approach 1: battered micropiles are installed through the unstable slope to a specific depth below the potential slip surface and affixed at the ground surface to a concrete cap beam. Individual micropiles provide resisting forces through axial, shear, and bending resistance. Micropile spacing is evaluated based on the number of micropiles per lineal meter needed to provide the required stabilizing force. Approach 2: many more closely spaced micropiles are used, creating a coherent micropile-soil structure that acts like a gravity retaining wall; sliding resistance develops along the bottom of the group. This chapter presents a step-by-step design method (Table 6-1, 13 steps) for Approach 1. Micropiles are most cost-effective for slope stabilization when placed at approximately mid-height of the slope to resist unbalanced forces. The design method assumes that the portion below the potential slip surface 'ties' the slope mass above to the competent layer below.",
+      "summary": "Micropiles stabilize slopes by one of two approaches. Approach 1: battered micropiles through the unstable slope to below the potential slip surface, fixed at the surface to a concrete cap beam, each resisting by axial, shear and bending resistance (Figure 6-1). Approach 2: many more, closely spaced micropiles forming a coherent micropile-soil structure that acts like a gravity wall (Figure 6-2). The chapter gives a step-by-step method for Approach 1 (Table 6-1); Approach 2 concepts are in Appendix A.",
+      "body": "(pp. 6-1 to 6-3) In addition to structural foundation support, micropiles are used for structural slope stabilization, designed to provide the required restraining forces by one of two approaches. Approach 1: battered micropiles are installed through the unstable slope to a specific depth below the potential slip surface and affixed at the ground surface to a concrete cap beam (Figure 6-1); the individual micropiles provide resisting forces through the mobilization of axial, shear and bending resistance. Their spacing along the slope is evaluated from the number of micropiles needed (per lineal meter) to provide the minimum required stabilizing force, typically the force required to raise the slope to a prescribed minimum factor of safety. Approach 2: micropiles are installed similarly, but many more are used (Figure 6-2), close enough to create a coherent structure of micropiles and soil that behaves much like a gravity retaining wall, the restraining force coming from sliding resistance along the bottom of the micropile group; individual micropiles carry relatively small loads, and the group inscribes and internally reinforces the soil mass so it acts as a unit. The chapter presents a step-by-step design method for Approach 1 (Table 6-1), and Section 6.9 presents three case histories using Approach 1. A step-by-step method for Approach 2 cannot be developed at this time, since limited data are available to confirm a design method and the system has limited applicability in current US practice; design concepts for Approach 2 groups are in Appendix A.",
       "key_points": [
-        "Approach 1: battered micropile pairs with concrete cap beam — individual axial/shear/bending resistance",
-        "Approach 2: closely spaced micropiles forming composite gravity structure — sliding resistance",
-        "Chapter covers 13-step design method for Approach 1",
-        "Most cost-effective placement is at approximately mid-height of slope",
-        "Requires specialty geotechnical contractor; smaller work area than other retaining systems",
-        "Micropiles tie slope mass above slip surface to competent layer below"
+        "Approach 1: battered micropiles through the slip surface, fixed to a concrete cap beam; axial, shear and bending resistance of each micropile (Figure 6-1)",
+        "Approach 1 spacing: number of micropiles per lineal meter needed for the minimum stabilizing force, i.e., the force to reach the target factor of safety",
+        "Approach 2: many closely spaced micropiles form a micropile-soil block acting like a gravity wall, resisting by sliding along its base (Figure 6-2)",
+        "The chapter's step-by-step method is for Approach 1 (Table 6-1); Approach 2 concepts are in Appendix A (limited data, limited US use)",
+        "Table 6-1 steps 1-4: constraints and feasibility; performance requirements; available information and geotechnical data; factor of safety of the existing slope",
+        "Table 6-1 step 5: additional force for the target factor of safety (micropile location, model the restraining force, stability away from the micropile)",
+        "Table 6-1 steps 6-9: select cross section; estimate length; bending moment capacity and shear capacity of a single vertical micropile",
+        "Table 6-1 steps 10-13: shear capacity of the battered group; spacing for the required force; soil flow between micropiles; concrete cap beam design"
       ],
       "equations": [],
       "figures": [
-        "Figure 6-1: Micropile System in Approach 1",
-        "Figure 6-2: Micropile System in Approach 2"
+        "Figure 6-1: Micropile System in Approach 1 (concrete cap, road surface, approximate failure plane, reinforced micropile structure) (p. 6-1)",
+        "Figure 6-2: Micropile System in Approach 2 (micropile structures with cap beam under the roadway forming a composite block) (p. 6-2)"
       ],
       "tables": [
-        "Table 6-1: Design Steps for Micropiles for Soil Slope Stabilization (13 steps)"
+        "Table 6-1: Design Steps for Micropiles for Soil Slope Stabilization: 1. identify project specific constraints and evaluate feasibility; 2. identify performance requirements; 3. review available information and geotechnical data; 4. evaluate factor of safety of existing slope; 5. determine additional force required to obtain target factor of safety (choose a location for the single vertical micropile within the existing slope; model restraining force (micropile) and perform slope stability analysis; evaluate the stability of the slope away from micropile); 6. select micropile cross section; 7. estimate length of micropile; 8. evaluate bending moment capacity of single vertical micropile; 9. evaluate shear capacity of single vertical micropile; 10. evaluate shear capacity of battered micropile group (select batter angle for upslope and downslope micropile; determine maximum shear capacity of a single battered micropile; determine maximum shear capacity of battered micropile group); 11. calculate spacing required to provide required force to stabilize the slope; 12. check potential for soil flow between micropiles; 13. perform structural design of concrete cap beam (p. 6-3)"
       ],
-      "applicability": "CASE 2 micropile slope stabilization: landslides, embankment failures, unstable slopes in hilly or limited-access terrain."
+      "applicability": "Two approaches to slope stabilization with micropiles and the 13 design steps for Approach 1 (Table 6-1)."
     },
     {
       "section_id": "6.2",
-      "title": "Step 1: Identify Project Constraints and Evaluate Feasibility",
-      "summary": "Step 1 of the 13-step design process. Feasibility evaluation considers access restrictions, overhead obstructions, environmental constraints, right-of-way, landscape aesthetics, excavation disposal, and cost. Micropiles are compared to ground anchors, soil nail walls, driven piles, and drilled shafts. Advantages include small work area, access in hilly terrain, and reduced excavation versus retaining systems.",
-      "body": "The first step in the slope stabilization design process is to identify project-specific constraints and evaluate the feasibility of using micropiles. Key considerations include: (1) site access restrictions that may limit equipment; (2) overhead obstructions that restrict use of conventional equipment; (3) environmental constraints such as proximity to wetlands or sensitive habitats; (4) right-of-way limitations; (5) landscape aesthetics such as sensitivity to scars created by access road cuts or excavations; (6) disposal of rock or soil excavated as part of the stabilization method; and (7) cost of project. In assessing the use of micropiles for slope stabilization, micropiles will most often be compared to other structural slope stabilization measures such as ground anchors, soil nail walls, or driven pile or drilled shaft systems. Micropiles are favored when construction access is limited, such as for landslides in hilly, steep, or mountainous areas. Advantages include reduced excavation compared to earth retaining systems and the ability to install in limited headroom or access conditions. A specialty geotechnical contractor is still required.",
+      "title": "Step 1: Identify Project Specific Constraints and Evaluate Micropile Feasibility",
+      "summary": "Micropile slope stabilization is usually considered for remote sites or difficult access. Seven common constraints are listed. Micropiles compete with ground anchors, soil nail walls, driven piles and drilled shafts; they need a small work area, are buried and install in virtually any ground. First-order cost: $4,000 to $11,000 per lineal meter of slope. They are likely cost-effective only with a structure near mid-height of the slope, and the method requires a single well-defined slip surface (Figure 6-3).",
+      "body": "(pp. 6-3 to 6-6) Slope stabilization projects in which micropiles may be feasible are usually in remote areas or where difficult site access is a concern. Other common constraints: (1) space restrictions (limited ROW, on-site storage for materials, access for equipment, restrictions on traffic disruption); (2) interference with above-ground utilities and nearby structures; (3) working on an unstable slope (controlled cut/fill, excess seepage around the work area, soil or rock fall hazards); (4) environmental concerns (noise, vibration, transport of material, protection of animals and plants); (5) landscape aesthetics such as scars from access road cuts or excavations; (6) disposal of excavated rock or soil; and (7) cost. Micropiles will most often be compared with ground anchors, soil nail walls, or driven piles or drilled shafts. They have come into favor because construction is relatively simple, needs a small work area and suits limited equipment access (landslides in hilly, steep or mountainous areas), though a specialty geotechnical contractor is still required. Other advantages: reduced excavation compared with earth retaining systems (built top-down), improved aesthetics (the system is completely buried) and installation in virtually any ground type, important where an upper competent layer (colluvium or talus, difficult for driven piles or drilled shafts) overlies soft, wet soil resting on rock. Cost-effectiveness depends on the forces required: long landslides or deep slip surfaces may need restraining forces too large for micropiles, although battering mobilizes axial restraint, and in some cases additional restraint, usually ground anchors, is required. For first-order comparisons, micropiles for slope stabilization cost $4,000 to $11,000 per lineal meter of slope ($1,200 to $3,400 per lineal ft), the high end for long micropiles (more than 15 m (50 ft) to reach the top of the slide surface), low production (less than 90 m (300 ft) per day) and much rock drilling. Previous designs and contractor experience indicate micropiles will likely be cost-effective only if unbalanced slope forces can be resisted by a micropile structure at approximately mid-height of the slope; to limit movements of a roadway near the top of the slope a single structure would likely not suffice, since the slope could be unstable in front of it, and multiple structures may not be cost effective. The design method assumes the micropiles below the potential slip surface 'tie' the slope mass above to the more competent ground below (they serve as dowels) and that deformations concentrate at the slip surface, so maximum bending moments and shears occur near it. Instrumentation data on slope movements must be reviewed: the method requires movements at a well-defined critical potential slip surface, e.g., concentrated lateral movement at about 8 m (25 ft) depth at a landslide in Summit County, Ohio (Figure 6-3). Where movements are less localized or more than one potential slip surface may exist, other measures such as anchored walls should be considered.",
       "key_points": [
-        "Seven key feasibility factors: access, overhead obstructions, environment, ROW, aesthetics, spoil disposal, cost",
-        "Compare micropiles to: ground anchors, soil nail walls, driven piles, drilled shafts",
-        "Advantages: small work area, access in steep/mountainous terrain, reduced excavation",
-        "Requires specialty geotechnical contractor",
-        "Most cost-effective when placed at mid-slope to resist unbalanced forces",
-        "Multiple micropile structures may be needed if a single structure cannot stabilize the full slope"
+        "Micropile slope stabilization is usually considered for remote sites or where site access is difficult",
+        "Constraints: space and ROW, utilities and nearby structures, working on an unstable slope, environmental concerns, aesthetics, spoil disposal, cost",
+        "Usually compared with ground anchors, soil nail walls, or driven piles or drilled shafts; a specialty geotechnical contractor is required",
+        "Advantages: small work area, limited-access sites, top-down construction, fully buried, installs in virtually any ground (e.g., colluvium or talus over soft soil on rock)",
+        "Long landslides or deep slip surfaces may need forces too large for micropiles; battering mobilizes axial restraint; ground anchors may be added",
+        "First-order cost $4,000 to $11,000 per lineal meter of slope ($1,200 to $3,400 per lineal ft); high end for >15 m micropiles, <90 m/day production, much rock drilling",
+        "Likely cost-effective only if a micropile structure near mid-height of the slope can resist the unbalanced forces",
+        "Design assumes micropiles act as dowels tying the mass above the slip surface to competent ground below, with deformation concentrated at the slip surface",
+        "Method requires movement on a single well-defined slip surface (e.g., Figure 6-3, about 8 m depth, Summit County, Ohio); otherwise consider anchored walls"
       ],
       "equations": [],
-      "figures": [],
-      "tables": [
-        "Table 6-1: Design Steps for Micropiles for Soil Slope Stabilization"
+      "figures": [
+        "Figure 6-3: Concentrated Movements Recorded from Inclinometer at the Slip Surface (after (p. 6-6)"
       ],
-      "applicability": "Initial feasibility screening for micropile slope stabilization versus alternative methods."
+      "tables": [],
+      "applicability": "Project constraints, advantages, cost range and feasibility conditions for micropile slope stabilization (Design Step 1)."
     },
     {
       "section_id": "6.3",
       "title": "Step 2: Identify Performance Requirements",
-      "summary": "Step 2 establishes the target slope stability factor of safety. Typical static FS = 1.3 to 1.5 depending on structure sensitivity and data confidence; seismic pseudo-static target FS = 1.1. Additional performance requirements include corrosion protection level, permissible groundwater variation, maximum load test loads, and allowable stresses for steel and concrete. Slope design criteria are project-specific, not codified in AASHTO.",
-      "body": "The primary performance requirement for a slope stabilization project is for the stabilized slope to meet or exceed a target slope stability factor of safety with respect to static and seismic slope stability. Typical static factors of safety range from 1.3 to 1.5 depending on whether other structures are supported by the slope and whether only limited geotechnical data is available. For seismic slope stability analyses (based on pseudo-static analysis), a target value of 1.1 is typically used. Other performance and design requirements include: (1) prescribed level of corrosion protection for the micropiles; (2) permissible variation in groundwater levels during construction; (3) maximum loads that can be carried as part of load testing; and (4) allowable stresses for steel and concrete. It is noted that design of earth slopes and stabilization of slopes is not codified in, for example, AASHTO (2002). Design criteria for slopes are typically developed on a project-specific basis.",
+      "summary": "The primary requirement is that the stabilized slope meet or exceed a target factor of safety for static and seismic stability: typically 1.3 to 1.5 static (depending, e.g., on whether other structures are supported by the slope and on how limited the geotechnical data are) and 1.1 for pseudo-static seismic analysis. Other requirements: corrosion protection, permissible groundwater variation during construction, maximum test loads and allowable steel and concrete stresses. Slope design is not codified in AASHTO (2002).",
+      "body": "(pp. 6-6 to 6-7) The primary performance requirement for a slope stabilization project is for the stabilized slope to meet or exceed a target slope stability factor of safety with respect to static and seismic slope stability. Typical static factors of safety range from 1.3 to 1.5 depending on, for example, whether other structures are supported by the slope and whether only limited geotechnical data are available. For seismic slope stability analyses (based on pseudo-static analysis), a target value of 1.1 is typically used. Other performance (and/or design) requirements include: a prescribed level of corrosion protection for the micropiles; permissible variation in groundwater levels during construction; maximum loads that can be carried (as part of load testing); and allowable stresses for steel and concrete. Design of earth slopes (and stabilization of slopes) is not codified in, for example, AASHTO (2002); design criteria for slopes are typically developed on a project-specific basis.",
       "key_points": [
-        "Static target FS = 1.3 to 1.5 depending on sensitivity and data confidence",
-        "Seismic pseudo-static target FS = 1.1",
-        "Also specify: corrosion protection level, GW variation, load test maximums, allowable stresses",
-        "Slope design criteria are project-specific — not codified in AASHTO",
-        "Higher FS required when other structures are supported by the slope"
+        "Typical static target factor of safety 1.3 to 1.5, depending on whether other structures are supported and how limited the geotechnical data are",
+        "Seismic (pseudo-static) target factor of safety typically 1.1",
+        "Other requirements: corrosion protection level, permissible groundwater variation during construction, maximum load-test loads, allowable steel and concrete stresses",
+        "Slope design is not codified in AASHTO (2002); criteria are developed project by project"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Setting performance targets for slope stabilization projects before detailed design."
+      "applicability": "Target static and seismic factors of safety and other performance requirements (Design Step 2)."
     },
     {
       "section_id": "6.4",
       "title": "Step 3: Review Available Information and Geotechnical Data",
-      "summary": "Step 3 collects topography, stratigraphy, geotechnical parameters, groundwater conditions, and critical slip surface location. Back-analysis using residual drained friction angle (Figure 6-4, Stark and Eid 1994) is recommended when the slope has experienced prior movements. Iterative back-analysis adjusts c' and phi' until FS = 1.00. Refer to GEC No. 5 and the Manual on Subsurface Investigations (Mayne et al., 2001) for exploration guidance.",
-      "body": "The existing slope conditions should be assessed by review of available information and collection of geotechnical data through a focused subsurface exploration and laboratory testing program. The information gathering program should obtain: topography for cross-section development; stratigraphy and index properties; geotechnical parameters (shear strength, permeability, compressibility); groundwater conditions from borings, piezometers, and observation wells; and critical slip surface location from inclinometer data, boring logs, or stratigraphic analysis. Groundwater is often linked to the cause of slope movement through precipitation events increasing pore pressures. Where back-analysis is required to obtain strength properties, the residual drained friction angle may be used (c' = 0, phi'r) for materials that have undergone significant movement. Figure 6-4 (after Stark and Eid, 1994) provides phi'r as a function of clay content and liquid limit. Back-analysis involves: (i) estimating trial parameters; (ii) performing limit equilibrium analysis; (iii) adjusting parameters until FS = 1.00. References: Mayne et al. (2001) Manual on Subsurface Investigations; Sabatini et al. (2002) GEC No. 5.",
+      "summary": "Exploration and testing (Mayne et al., 2001; GEC No. 5, Sabatini et al., 2002) should establish: topography (survey if maps are old or the site was modified); lateral extent of the landslide; subsurface profile and groundwater, with borings into the competent material below the slip surface; pore pressures, including possible cutoff by the micropiles; soil and rock parameters (correlations from index data for preliminary design only); the critical slip surface, also needed for laterally loaded pile analyses; and site seismicity (pseudo-static analysis).",
+      "body": "(pp. 6-7 to 6-9) Existing slope conditions should be assessed by review of available information and a focused subsurface exploration and laboratory testing program (guidance: Manual on Subsurface Investigations, Mayne et al., 2001; GEC No. 5 'Evaluation of Soil and Rock Properties', Sabatini et al., 2002). The program should obtain: Topography of the area, used to develop cross sections for slope stability analysis; if recent maps are not available or site topography has been modified since the last survey, a ground surface survey should be performed, since accurate slope geometry is critical. Lateral extent of the landslide or potential landslide area, from site inspection and aerial photographs; usually multiple parallel cross sections are analyzed with 2-dimensional limit equilibrium methods to find the slip surface with the minimum factor of safety, and that cross section is used for design. Subsurface profile and groundwater conditions at the critical cross section from historical and new borings; for micropile-stabilized slopes, borings should be advanced into the competent materials below the potential slip surface that will serve as the micropile resistance zone. Groundwater from boring logs, piezometers and observation wells is used to model pore pressures; slope movements are often related to large precipitation events, and where back analysis is required, pore pressures at the time of instability must be developed. Design groundwater levels should consider the effect of the micropile structure; spacing is typically large enough that pore pressure buildup from a hydraulic cutoff effect is insignificant, but where close spacing or significant recharge is possible, the Owner should require seepage analyses considering spacing, installation methods (e.g., grout travel), precipitation and hydraulic conductivity; subsurface drainage may be required or the system designed for long-term seepage pressures. The importance of an accurate assessment of pore pressure conditions cannot be overemphasized. Soil and rock parameters (unit weights and shear strength) are needed for slope stability and for the structural capacity of micropiles (p-y analyses); where undisturbed sampling is difficult or impossible, collect index data (Atterberg limits, grain size, moisture content) and use correlations (GEC No. 5), primarily for preliminary design and not as a substitute for a comprehensive investigation. Critical slip surface: from inclinometer data where the slope has moved, boring logs and stratigraphy; it is often at the interface just above a competent soil or rock surface where water may be perched; it is also required for laterally loaded pile analyses, as the location of maximum lateral micropile movement. Site seismicity: seismically induced destabilizing forces are typically evaluated by pseudo-static slope stability analysis (Kavazanjian et al., 1997).",
       "key_points": [
-        "Collect: topography, stratigraphy, shear strength, permeability, GW conditions, slip surface location",
-        "Groundwater often causes slope movements through elevated pore pressures after precipitation events",
-        "Back-analysis uses residual friction angle (c'=0, phi'r) when slope has previously moved",
-        "Figure 6-4 (Stark and Eid, 1994): phi'r from clay content and liquid limit",
-        "Back-analysis: adjust c' and phi' iteratively until FS = 1.00",
-        "Slip surface often at interface above competent soil/rock where water perches"
+        "Guidance: Manual on Subsurface Investigations (Mayne et al., 2001) and GEC No. 5 (Sabatini et al., 2002)",
+        "Topography: survey if maps are old or the site was modified; accurate slope geometry is critical",
+        "Lateral extent: analyze multiple parallel 2-D cross sections to find the minimum factor of safety section used for design",
+        "Borings should extend into the competent material below the slip surface that forms the micropile resistance zone",
+        "Model pore pressures from boring logs, piezometers and wells; back analysis needs pore pressures at the time of failure",
+        "Consider hydraulic cutoff by the micropiles; seepage analyses where spacing is close or recharge significant",
+        "Correlations from index data are for preliminary design, not a substitute for a comprehensive investigation",
+        "Critical slip surface is often just above competent soil or rock where water perches; it sets the location of maximum lateral micropile movement",
+        "Seismic loading by pseudo-static slope stability analysis (Kavazanjian et al., 1997)"
       ],
       "equations": [],
-      "figures": [
-        "Figure 6-3: Concentrated Movements Recorded from Inclinometer at the Slip Surface",
-        "Figure 6-4: Residual Friction Angle for Clayey Soils (after Stark and Eid, 1994)"
-      ],
+      "figures": [],
       "tables": [],
-      "applicability": "Site investigation and geotechnical data collection phase for micropile slope stabilization design."
+      "applicability": "Information and site data needed for micropile slope stabilization design (Design Step 3)."
     },
     {
       "section_id": "6.5",
       "title": "Step 4: Evaluate Factor of Safety of Existing Slope",
-      "summary": "Step 4 performs limit equilibrium slope stability analysis to compute the existing minimum factor of safety. Programs such as XSTABL, SLIDE, or SLOPE/W are used with Simplified Janbu, Simplified Bishop, or Spencer methods. When the slope has previously moved, FS is assumed = 1.0 and back-analysis (Eqs. 6-13, 6-14) gives modified shear strength parameters for use in subsequent design steps.",
-      "body": "Using the information from Step 3, slope stability analysis methods are used to evaluate the current factor of safety of the slope. Computer programs such as XSTABL, SLIDE, or others can be used. When performing slope stability analyses, methods such as Simplified Janbu, Simplified Bishop, or Spencer are used. Because most slopes targeted for micropile stabilization have previously undergone movements, it is typically assumed that the existing factor of safety of the slope is 1.0. In this case, back-analysis is performed to obtain the shear strength parameters corresponding to FS = 1.00. Modified shear strength parameters are calculated by reducing the trial friction angle and cohesion by the factor of safety using: phi'(modified) = arctan(tan(phi'_trial) / FS_trial) (Eq. 6-13) and c'(modified) = c'(trial) / FS_trial (Eq. 6-14). These modified parameters are then used in subsequent slope stability analyses. The calculated critical failure surface should be compared against the observed critical failure surface in the field for verification.",
+      "summary": "Slope stability analyses give the minimum factor of safety (FSmin) and the critical slip surface for static and seismic cases. A slope that has failed is by definition at FS = 1.0 and is back-analyzed: (i) estimate trial strengths (residual, c' = 0 and phi'r from Figure 6-4, Stark and Eid, 1994); (ii) analyze several cross sections with conditions at the time of failure; (iii) adjust parameters until FS = 1.00, with a critical surface consistent with the field. Otherwise analyze circular and planar surfaces.",
+      "body": "(pp. 6-9 to 6-11) Using the information from Step 3, slope stability analyses evaluate the factor of safety of the slope to be stabilized, presumably about 1.0 (if the slope has undergone significant movements) or slightly higher. The minimum factor of safety (FSmin) and the location of the critical potential slip surface are evaluated, for the static and seismic cases, and compared with the target minimum factor of safety. A special case is a slope known to have failed or undergone significant downslope movement, which by definition is at FS = 1.0 at the time of failure; micropiles for slope stabilization have been used most commonly for such failures (landslides). Shear strength for this case is adjusted by back-analysis: i. Estimate analysis parameters. If the slope has moved sufficiently, the residual drained friction angle may be used (e.g., c' = 0, phi' = phi'r) for the material where movements occurred; Figure 6-4 relates phi'r of clayey landslide material to liquid limit and clay fraction (for example, clay content between 25 and 45 percent and liquid limit 60 give a residual friction angle of 18 degrees). These are the trial strengths (phi trial and c trial); parameters of the other materials are evaluated from available information and usually not adjusted. ii. Perform slope stability analysis for several cross sections with the best available pore pressures, shear strength, stratigraphy and topography at the time of failure; the failure surface location needs to be known with some certainty. iii. Adjust parameters until FS = 1.00. Shear strength is only one unknown; pore pressures and the critical surface at the time of failure, and their uncertainty, should also be considered. A back analysis that gives FS = 1.00 with a critical surface inconsistent with the field should not be relied upon. Where the existing slope has FS above 1.0 but below the target, shear strengths and groundwater are evaluated as in Design Step 3, the critical surface is estimated from available data, FSmin is evaluated with circular and planar slip surfaces, and stratigraphy is used to check the calculated slip surface.",
       "key_points": [
-        "Use XSTABL, SLIDE, SLOPE/W with Simplified Bishop, Janbu, or Spencer methods",
-        "For slopes with prior movement, assume existing FS = 1.0 and back-calculate strength",
-        "Eq. 6-13: phi'_mod = arctan(tan(phi'_trial) / FS_trial)",
-        "Eq. 6-14: c'_mod = c'_trial / FS_trial",
-        "Verify calculated failure surface matches observed field failure surface",
-        "Residual shear strength parameters (c'=0, phi'r) recommended for previously failed slopes"
+        "Analyses give FSmin and the critical potential slip surface for static and seismic cases, compared with the target",
+        "A slope that has failed is at FS = 1.0 at the time of failure; micropiles have been used most commonly for landslides",
+        "Back-analysis step i: trial strengths, residual c' = 0 and phi'r where the slope has moved (Figure 6-4, Stark and Eid, 1994)",
+        "Figure 6-4 example: clay fraction 25 to 45 percent with liquid limit 60 gives phi'r = 18 degrees",
+        "Back-analysis step ii: analyze several cross sections with pore pressures, strength, stratigraphy and topography at the time of failure",
+        "Back-analysis step iii: adjust parameters until FS = 1.00; pore pressures and failure surface are also uncertain",
+        "Do not rely on a back analysis whose critical surface is inconsistent with the field",
+        "If FS > 1.0 but below the target: estimate the critical surface from data and analyze circular and planar slip surfaces"
       ],
-      "equations": [
-        "Eq. 6-13: phi'(modified) = arctan(tan(phi'_trial) / FS_trial)",
-        "Eq. 6-14: c'(modified) = c'_trial / FS_trial"
-      ],
+      "equations": [],
       "figures": [
-        "Figure 6-25: FSmin Determined from Trial Shear Strength Parameters",
-        "Figure 6-26: FSmin of the Slope Based on Modified Shear Strength Parameters"
+        "Figure 6-4: Residual Friction Angle for Clayey Soils (after Stark and Eid, 1994): phi'r against liquid limit for clay fractions CF (percent finer than 0.002 mm) (p. 6-10)"
       ],
       "tables": [],
-      "applicability": "Establishing baseline slope stability condition before determining required micropile force."
+      "applicability": "Factor of safety of the existing slope and back-analysis of shear strength for a failed slope (Design Step 4)."
     },
     {
       "section_id": "6.6",
-      "title": "Design Concepts",
-      "summary": "Core technical section covering Steps 5-13 design concepts for CASE 2 micropiles. Hreq from slope stability analysis determines required restraining force. Micropile side resistance above slip surface (Eq. 6-1: Pult = alpha_bond * pi * d * Labove) governs pullout. Shear capacity is the maximum shear at ultimate bending moment Mult via LPILE p-y analysis using separate up/down analyses at slip surface. Battered pair capacity Hult from Eqs. 6-7/6-8 combining Q and axial P. Spacing Smax = Hult-pair / Hreq (Eq. 6-11); soil flow check via plastic flow analysis (Eq. 6-12).",
-      "body": "This section provides background on load transfer mechanisms and analysis methods for Design Steps 5 through 13. The required restraining force Hreq is determined by slope stability analysis at three stages: locate micropile, model as force in analysis, check stability away from micropile. The minimum-force location corresponds to approximately the mid-slope. The micropile side resistance above the slip surface (Pult) must resist uplift or compression forces below: Pult = alpha_bond-above * pi * d * Labove (Eq. 6-1). Micropiles resist slope forces through combined axial resistance and structural (shear and bending) resistance; maximum lateral movement is assumed at the slip surface elevation. The shear capacity of a single vertical micropile corresponds to the maximum shear force that produces Mult in the micropile, evaluated via the LPILE program (or similar soil-structure interaction software) through separate 'up' and 'down' analyses of the pile above and below the slip surface, each using adjusted p-y curves. The process is iterated for P=0 and P=Pult cases. The maximum lateral force Hult for an inclined (battered) micropile combines shear Q and axial resistance P using force equilibrium at the slip surface (Eqs. 6-7 and 6-8). Maximum micropile spacing Smax = Hult-pair / Hreq (Eq. 6-11). A plastic soil flow check (Eq. 6-12) confirms Smax does not allow soil to flow between piles above the slip surface. Step 13 involves structural design of the CIP concrete cap beam (typically 2m wide, 1m deep), providing 2-3 micropile diameter embedment.",
+      "title": "Design Concepts for Micropiles Used for Slope Stabilization",
+      "summary": "Design concepts for micropiles used for slope stabilization are treated under 6.6.1 Overview through 6.6.7 Potential for Soil Flow Between Micropiles; no text is printed under this heading.",
+      "body": "(p. 6-11) No text is printed under this heading; see 6.6.1 Overview, 6.6.2 Evaluating the Additional Force Required to Obtain Target Factor of Safety (6.6.2.1 to 6.6.2.3), 6.6.3 Load Transfer in Micropiles, 6.6.4 Bending Moment and Shear Capacity of Single Vertical Micropile (6.6.4.1, 6.6.4.2), 6.6.5 Shear Capacity of Battered Micropile Group, 6.6.6 Spacing Required to Provide Required Force to Stabilize the Slope and 6.6.7 Potential for Soil Flow Between Micropiles.",
       "key_points": [
-        "Hreq from slope stability analysis (model single vertical micropile as force, 3-stage process)",
-        "Optimal micropile location ≈ mid-slope where Hreq is minimized",
-        "Eq. 6-1: Pult = alpha_bond-above * pi * d * Labove (side resistance above slip surface governs pullout)",
-        "Shear capacity = maximum shear Q when bending moment reaches Mult (LPILE up/down analysis)",
-        "Separate up/down analyses at slip surface with adjusted p-y curves; iterate for P=0 and P=Pult",
-        "Eqs. 6-7/6-8: Hult for battered micropile combining Q and axial force at slip surface inclination angle psi",
-        "Eq. 6-11: Smax = Hult-pair / Hreq (micropile spacing)",
-        "Eq. 6-12: plastic flow check to prevent soil flowing between piles above slip surface",
-        "Cap beam: CIP concrete, typically 2m wide x 1m deep, 2-3 pile diameters embedment"
+        "Design concepts for Steps 5-13: required force, load transfer, single micropile bending and shear capacity, battered group capacity, spacing, soil flow (6.6.1-6.6.7)"
       ],
-      "equations": [
-        "Eq. 6-1: Pult = alpha_bond-above * pi * d * Labove (side resistance above slip surface)",
-        "Eq. 6-7: Hult for vertical micropile (P=0): Hult = Q (shear only)",
-        "Eq. 6-8: Hult for battered micropile (P=Pult): Hult = Q*cos(psi) + P*sin(psi)",
-        "Eq. 6-10: Hult-pair = Hult(psi_us) + Hult(psi_ds)",
-        "Eq. 6-11: Smax = Hult-pair / Hreq",
-        "Eq. 6-12: plastic flow resistance from Broms (1964) method"
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Pointer to the design concepts for Design Steps 5 to 13 (6.6.1 to 6.6.7)."
+    },
+    {
+      "section_id": "6.6.1",
+      "title": "Overview",
+      "summary": "At this stage the existing slope has been shown to be unstable or marginally stable, with a factor of safety below the target. The geotechnical and structural design of micropiles for slopes is outside typical practice for most geotechnical engineers, so 6.6 gives background on load transfer mechanisms and analysis methods for Design Steps 5 through 13; the complete design is demonstrated in Section 6.7.",
+      "body": "(pp. 6-11 to 6-12) At this stage in the design process, an existing slope has been shown to be either unstable or marginally stable, with a calculated slope stability factor of safety less than a target value. The remaining steps comprise designing a micropile system to improve or otherwise stabilize the slope. The steps specific to the geotechnical and structural design of micropiles used for slopes are outside the typical design practice for most geotechnical engineers; for this reason, this section provides background information on load transfer mechanisms and analysis methods used for Design Steps 5 through 13. The complete design of a micropile stabilized slope is demonstrated in Section 6.7.",
+      "key_points": [
+        "Existing slope is unstable or marginally stable, with factor of safety below the target",
+        "Section 6.6 gives load transfer mechanisms and analysis methods for Design Steps 5 to 13",
+        "The complete design is demonstrated in Section 6.7"
       ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Purpose of the design-concept section for Design Steps 5 to 13."
+    },
+    {
+      "section_id": "6.6.2",
+      "title": "Evaluating the Additional Force Required to Obtain Target Factor of Safety",
+      "summary": "Micropiles must provide the force required to raise the slope's factor of safety from its existing value to the target value (Hreq). Slope stability programs determine Hreq in three stages: (1) choose a location for the micropiles; (2) model the micropiles explicitly to find the required restraining force; (3) check the stability of the slope away from the micropile.",
+      "body": "(p. 6-12) Micropiles used for slopes are designed to prevent downward movement of the slope mass above the potential slip surface and must be capable of providing the force required to stabilize the slope, i.e., the force required to increase the factor of safety of the slope from an existing value to a target value. Slope stability analysis programs are used to determine this additional force (Hreq). The analyses are performed in three stages: (1) a location is chosen for the micropiles; (2) the micropiles are modeled explicitly in the slope stability analysis to determine the required restraining force; and (3) the stability of the slope away from the micropile is evaluated by additional slope stability analysis.",
+      "key_points": [
+        "Hreq: force required to raise the slope's factor of safety from the existing value to the target value",
+        "Stage 1: choose a location for the micropiles (6.6.2.1)",
+        "Stage 2: model the micropiles explicitly to find the required restraining force (6.6.2.2)",
+        "Stage 3: check slope stability away from the micropile (6.6.2.3)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Definition of Hreq and the three stages of slope stability analysis that find it (Design Step 5)."
+    },
+    {
+      "section_id": "6.6.2.1",
+      "title": "Micropile Location Within Slope Cross Section",
+      "summary": "Hreq varies with the micropile's location in the slope. In an example slope (Figure 6-5), a single micropile was moved across the section and its shear force increased until FSmin = 1.3 (Figure 6-6). Near the toe or the crest no force could reach the target (Figures 6-7 and 6-8): the most critical slip surface passes upslope or downslope of the micropile. The maximum benefit was for a structure near the middle of the slope.",
+      "body": "(pp. 6-12 to 6-16) The magnitude of Hreq varies with the location of the micropile within the slope, as demonstrated with the example slope geometry in Figure 6-5. Several analyses were performed with a single micropile at different locations in the cross section; at each location the shear force provided by the micropile was increased until a target factor of safety (FSmin) of 1.3 was achieved for the slope. The results (Figure 6-6) indicate that, for this example, a micropile structure at or near the toe or at or near the crest of the slope would be ineffective: regardless of the force the micropiles could develop, the target factor of safety (FSmin = 1.3) could never be achieved (see Figures 6-7 and 6-8 for the most critical slip surface). The maximum benefit from micropiles corresponds to a micropile structure placed in the vicinity of the middle of the slope.",
+      "key_points": [
+        "Hreq depends on where the micropile is placed in the slope cross section",
+        "Example (Figures 6-5, 6-6): micropile moved across the slope, shear force increased until FSmin = 1.3",
+        "Near the toe or crest the target FS = 1.3 could never be reached, whatever the micropile force (Figures 6-7, 6-8)",
+        "Maximum benefit: micropile structure near the middle of the slope"
+      ],
+      "equations": [],
       "figures": [
-        "Figure 6-5: Example Slope Geometry",
-        "Figure 6-6: Required Force for FS=1.3 vs. Micropile Location",
-        "Figure 6-9: Micropiles with Battered Upslope and Downslope Legs",
-        "Figure 6-10: Single Vertical Micropile Model",
-        "Figure 6-11: Hreq-to-Cohesive-Strength Relationship for Slope Stability Model",
-        "Figure 6-12: Slope Stability Search Limits Away from Micropile",
-        "Figure 6-14: Axial Force and Bending Moment Diagrams (Brown and Chancellor, 1997)",
-        "Figure 6-15: Micropile Resistance Length for Pullout Prevention",
-        "Figure 6-16/6-17: p-y Curves and Up/Down Analysis Adjustment",
-        "Figure 6-18: Calculated Bending Moment Diagrams for Up and Down Analyses",
-        "Figure 6-19: Forces on Vertical and Inclined Micropile at Slip Surface"
+        "Figure 6-5: Example Slope Geometry. (p. 6-13)",
+        "Figure 6-6: Relationship between Force Required For FS = 1.3 and Location of the Micropile (force in kN/m against distance in m; FS < 1.3 near the toe and the crest) (p. 6-14)",
+        "Figure 6-7: Effect of Micropile Placed Too Far Upslope (FSmin < 1.3). (p. 6-15)",
+        "Figure 6-8: Effect of Micropile Placed Too Far Downslope (FSmin < 1.3). (p. 6-15)"
       ],
       "tables": [],
-      "applicability": "Core design method for CASE 2 micropile slope stabilization: Steps 5-13 covering required force, shear capacity, spacing, and cap beam."
+      "applicability": "Effect of micropile location on the force required for the target factor of safety."
+    },
+    {
+      "section_id": "6.6.2.2",
+      "title": "Methods to Model Resisting Force from a Micropile",
+      "summary": "Although the structure will have battered upslope and downslope legs joined by a cap beam (Figure 6-9), it is modeled as a single vertical micropile from the cap beam into a competent layer (Figure 6-10). Approach 1: Hreq as a large cohesive strength in a thin (say 0.5 m) slice where the micropile crosses the slip surface (Figure 6-11: Hreq = c x L = c x w / cos alpha). Approach 2: input the restraining force directly where software allows. Vary c or the force until the target factor of safety is reached.",
+      "body": "(pp. 6-16 to 6-18) While micropile structures for slope stabilization typically include a battered upslope 'leg' and a battered downslope 'leg' connected at the ground surface by a concrete beam (Figure 6-9), the structure is modeled as a single vertical micropile from the ground surface (at the design cap beam location) to a sufficient depth into a competent layer (Figure 6-10). The shear capacity, inclination and number of micropiles required to resist Hreq are evaluated in subsequent design steps. The slope stability input files from Design Step 4 are typically modified in one of two ways. Approach 1: the shear resistance provided by the single vertical micropile, Hreq, is modeled as a relatively large cohesive shear strength assigned to the soil layer where the micropile crosses the potential slip surface; with a width of, say, 0.5 m, the program develops a single 0.5-m slice with that strength. The relationship between Hreq and cohesive strength is shown in Figure 6-11; Hreq is oriented at the same angle as the bottom of the slice. Repeat the analyses, changing the cohesive strength until the factor of safety equals the target value. Approach 2: some slope stability software packages accept a micropile restraining force directly at any location, so a thin layer of large cohesive strength is not needed; repeat the analyses, changing the restraining force until the factor of safety equals the target value.",
+      "key_points": [
+        "The battered upslope and downslope legs with cap beam (Figure 6-9) are modeled as one vertical micropile into a competent layer (Figure 6-10)",
+        "Approach 1: large cohesive strength c in a thin slice (say 0.5 m wide) where the micropile crosses the slip surface",
+        "Figure 6-11: Hreq = c x L = c x w x 1/cos(alpha), with w the slice width, L the slice base length, alpha the base angle",
+        "Hreq acts at the angle of the slice base",
+        "Approach 2: input the micropile restraining force directly where the software allows",
+        "In either approach, vary c or the force until the target factor of safety is reached"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-9: Micropiles with Battered Uplsope Leg and Battered Downslope Leg (modified after Hasenkamp, 1999) (caption as printed: 'Uplsope') (p. 6-17)",
+        "Figure 6-10: Single Vertical Micropile Model for Design Analyses (cap beam, unstable slope mass above the slip surface, micropile resistance length in competent soil or bedrock) (p. 6-17)",
+        "Figure 6-11: Relationship Between Hreq and Cohesive Strength for Micropile Analysis Model: Hreq = c x L and Hreq = c x w x 1/cos(alpha), where c = cohesive strength, w = width of the slice, L = length of the slice, alpha = angle of the slice base, Hreq = required shear force (p. 6-18)"
+      ],
+      "tables": [],
+      "applicability": "How a single vertical micropile is modeled in slope stability analysis to find Hreq."
+    },
+    {
+      "section_id": "6.6.2.3",
+      "title": "Evaluating Slope Stability Away From Micropile",
+      "summary": "Slip surfaces entirely upslope or entirely downslope of the micropile may have factors of safety below the target, so they are searched separately with the micropile ignored (Figure 6-12). The method does not allow for losing the soil in front of the micropiles: excavation there (Figure 6-13) could cause excessive deflection or structural failure. The Owner can require calculations of the maximum excavation in front (recommended regardless), or fence off and sign the area.",
+      "body": "(pp. 6-19 to 6-21) The previous analysis gives the location and the required restraining force for the target factor of safety, but slip surfaces away from the micropile may have factors of safety below the target, so additional analyses should be performed in which the micropile is ignored, with search limits set for slip surfaces entirely upslope and entirely downslope of the micropile (Figure 6-12). Downslope stability raises practical issues (Figure 6-13): a roadway at the toe could later be widened by excavation at the toe, or excavation may be part of long-term maintenance. Many earth retaining structures conservatively neglect passive resistance in front of the wall; for micropiles, the assumption of zero passive soil resistance in front of the micropile is not considered in the design method presented. If slope material in front of the micropile moved away through instability or were removed in maintenance, the structure would likely experience excessive deflection or structural failure of the downslope micropiles from loss of lateral support. Two approaches address this: as part of the design submittal the Owner can require calculations establishing the maximum excavation in front of the micropiles that keeps a minimum factor of safety and keeps the soil in front stable to support the front row (recommended to be performed and provided to the Owner regardless of whether the Contract Documents request it); or the Owner may fence off the area and post signs that excavation should not be performed.",
+      "key_points": [
+        "Search slip surfaces entirely upslope and entirely downslope of the micropile, ignoring it (Figure 6-12)",
+        "The method does not consider zero passive resistance in front of the micropile; losing that soil could cause excessive deflection or structural failure (Figure 6-13)",
+        "Toe excavation (road widening, maintenance) is the practical concern",
+        "Calculate the maximum excavation in front of the micropiles that keeps the minimum factor of safety; recommended even if not requested",
+        "Or fence off the area and post signs against excavation"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-12: Slope Stability Analysis Search Limits Away From Micropile Location. (p. 6-19)",
+        "Figure 6-13: Potential Instability Resulting from Future Excavation. (p. 6-20)"
+      ],
+      "tables": [],
+      "applicability": "Checking slip surfaces upslope and downslope of the micropile, and the effect of future excavation in front of it."
+    },
+    {
+      "section_id": "6.6.3",
+      "title": "Load Transfer in Micropiles",
+      "summary": "Micropiles resist by grout-to-ground axial resistance above and below the slip surface plus shear and bending; maximum lateral movement and maximum axial force occur near the slip surface (Figure 6-14). Battering adds axial tension (upslope leg) or compression (downslope leg). The ultimate side resistance above the slip surface (Eq. 6-1) must be resisted below it with FS = 2.0 (Eq. 6-2, Figure 6-15). Load testing is recommended (Chapter 7).",
+      "body": "(pp. 6-21 to 6-24) Micropiles resist unstable slope forces through axial resistance at the grout-to-ground interface both above and below the potential slip surface plus structural (shear and bending) resistance. The maximum lateral micropile movement is assumed to occur near the elevation of the critical potential slip surface, a reasonable assumption since micropiles are relatively flexible; Figure 6-14 shows axial force and bending moment diagrams for the legs at Littleville, Alabama (Brown and Chancellor, 1997). The capacity of individual micropiles can be increased significantly by battering them relative to the slip surface: slope movement then tends to pull the micropile away from the slip surface (axial tension) or push it towards it (axial compression), mobilized as side resistance at the grout-to-ground interface. For micropile structures without ground anchors, the upslope leg will typically be in tension and the downslope leg in compression. The maximum axial force occurs near the critical slip surface, similar to soil nails. The micropile must be embedded sufficiently below the slip surface to prevent pullout (tension) or failure by insufficient bearing capacity (compression): the side resistance below the slip surface must resist the axial forces developed above it (Figure 6-15). That axial force is assumed equal to the ultimate side resistance that could develop above the failure surface, Pult (Eq. 6-1), with alpha_bond-above the grout-to-ground ultimate bond strength above the critical slip surface (Table 5-3), Labove the length from the slip surface to the bottom of the cap beam and d the micropile diameter. Micropiles also develop flexural resistance; the objective is a system with enough structural capacity to resist the unbalanced slope force (Hreq) without structural failure in combined axial loading and bending. The required length below the slip surface, Lbelow, is given by Eq. 6-2, with alpha_bond-below from Table 5-3 and FS = 2.0. Load testing of slope stabilization micropiles is not commonplace and required side resistance has relied on contractor experience in similar ground; this document recommends load testing (Chapter 7).",
+      "key_points": [
+        "Resistance: grout-to-ground axial resistance above and below the slip surface plus shear and bending",
+        "Maximum lateral movement and maximum axial force are assumed near the critical slip surface (micropiles are flexible); see Figure 6-14",
+        "Battering raises capacity: without ground anchors the upslope leg is typically in tension and the downslope leg in compression",
+        "Eq. 6-1: Pult = alpha_bond-above x Labove x pi x d; Labove from the slip surface to the bottom of the cap beam; alpha from Table 5-3",
+        "Eq. 6-2: Lbelow = Pult / (alpha_bond-below x pi x d) x FS, with FS = 2.0 (Figure 6-15)",
+        "Design objective: resist Hreq without structural failure in combined axial load and bending",
+        "Load testing is recommended for slope micropiles (Chapter 7); practice has relied on contractor experience"
+      ],
+      "equations": [
+        "Eq. 6-1: Pult = alpha_bond-above x Labove x pi x d (p. 6-23)",
+        "Eq. 6-2: Lbelow = [Pult / (alpha_bond-below x pi x d)] x FS (FS = 2.0) (p. 6-23)"
+      ],
+      "figures": [
+        "Figure 6-14: Example Resultant Axial Force and Bending Moment Diagrams for (a) Downslope and (b) Upslope Micropile (after (p. 6-22)",
+        "Figure 6-15: (a) Micropile Resistance Length Not Sufficient to Prevent Pullout and (b) Micropile Resistance Length Sufficient to Prevent Pullout (p. 6-24)"
+      ],
+      "tables": [],
+      "applicability": "Axial and flexural load transfer in slope micropiles and the required length below the slip surface (Eqs. 6-1, 6-2)."
+    },
+    {
+      "section_id": "6.6.4",
+      "title": "Bending Moment and Shear Capacity of Single Vertical Micropile",
+      "summary": "Bending moment and shear capacity of a single vertical micropile are treated under 6.6.4.1 (bending moment capacity) and 6.6.4.2 (shear capacity); no text is printed under this heading.",
+      "body": "(p. 6-25) No text is printed under this heading; see 6.6.4.1 Evaluation of Bending Moment Capacity of Single Vertical Micropile and 6.6.4.2 Evaluation of Shear Capacity of Single Vertical Micropile.",
+      "key_points": [
+        "Single vertical micropile: Mult for P = 0 and P = Pult (6.6.4.1), then the shear force that produces Mult (6.6.4.2)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Pointer to the bending moment and shear capacity checks of a single vertical micropile (6.6.4.1, 6.6.4.2)."
+    },
+    {
+      "section_id": "6.6.4.1",
+      "title": "Evaluation of Bending Moment Capacity of Single Vertical Micropile",
+      "summary": "The shear resistance of a micropile is the maximum shear force that makes the maximum bending moment just equal to the ultimate bending moment Mult. Mult is evaluated with LPILE (2005) or another laterally loaded pile program, for P = 0 and for P = Pult (Eq. 6-1), since moment capacity varies with axial load. Where ground anchors may reverse axial loads, check P = Pult in both compression and tension and design for the lower Mult.",
+      "body": "(p. 6-25) The shear resistance of a micropile corresponds to the maximum shear force that can be applied to the micropile that results in a maximum bending moment within the micropile (at any location) just equal to the ultimate bending moment of the micropile. To evaluate it, the ultimate bending moment (Mult) of the single micropile is checked; it can be conveniently evaluated with the computer program LPILE (2005) or other soil-structure interaction programs for laterally loaded piles and shafts. Because micropiles are battered, they develop axial resistance through side friction between the grout and the ground, and since the bending moment capacity varies with the applied axial load, Mult is checked for two limiting axial load conditions: (1) P = 0; and (2) P = Pult (Eq. 6-1). The shear capacity corresponding to the ultimate bending moment is used (rationale in Section 6.8). Axial loads may be tension or compression: in general the uphill micropile is in tension and the downhill micropile in compression, but where ground anchors are incorporated the direction may change with anchor stressing and lock-off loads. Mult should therefore be evaluated for P = Pult applied in compression and in tension, and the design based on the case giving the lower Mult, and therefore the lower available shear resistance.",
+      "key_points": [
+        "Shear resistance = the shear force at which the maximum bending moment in the micropile just reaches Mult",
+        "Mult is evaluated with LPILE (2005) or another laterally loaded pile program",
+        "Check Mult for two axial loads: P = 0 and P = Pult (Eq. 6-1)",
+        "Uphill micropile generally in tension, downhill in compression; ground anchors may reverse this",
+        "Evaluate P = Pult in both compression and tension and design for the lower Mult"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Ultimate bending moment Mult of a single vertical micropile for the two limiting axial loads (Design Step 8)."
+    },
+    {
+      "section_id": "6.6.4.2",
+      "title": "Evaluation of Shear Capacity of Single Vertical Micropile",
+      "summary": "The shear capacity is the shear at the slip surface that makes the maximum moment equal Mult. It is found by separate laterally loaded pile analyses of the micropile above (up) and below (down) the slip surface with shifted p-y curves (Figures 6-16, 6-17), for P = 0 and then P = Pult. Criteria: same axial load and shear; boundary moments equal and opposite; same head slope at the slip surface; free head. Example (Figure 6-18): M = 87 kN-m matched slopes, Mmax = 161 kN-m = Mult.",
+      "body": "(pp. 6-25 to 6-29) The maximum shear force the micropile can carry is the shear force applied at the elevation of the slip surface that gives a calculated maximum bending moment equal to Mult; it depends on the stiffness (p-y response) of the ground above and below the slip surface and on the flexural rigidity of the micropile, and can be evaluated with laterally loaded pile analyses such as LPILE. The portion above the potential slip surface (the 'up' analysis) and the portion below (the 'down' analysis) are analyzed separately; for the up analysis the previously determined p-y curves are relocated relative to the top of the pile in the analysis (Figure 6-16 shows p-y curves for the entire length; Figure 6-17 shows the adjustment for the up and down analyses). The up and down analyses are performed as a set, first for minimum axial resistance (P = 0) and then for maximum axial resistance (P = Pult). The boundary shear forces and moments at the slip surface are internal forces, so the results must satisfy: the same axial load in both analyses; the same input shear force magnitude and direction at the slip surface; input bending moments equal in magnitude and opposite in sign; the same calculated slope of the micropile head at the slip surface; and the micropile head modeled as free. Figure 6-18 shows the iteration: for Analysis 1 a slip surface moment of 40 kN-m gave unequal slopes (a discontinuity, not possible); for Analysis 2 a moment of 87 kN-m gave equal head slopes, with a maximum moment of 161 kN-m below the slip surface, approximately equal to the ultimate bending moment of the section, so the analysis is complete. The procedure is demonstrated in Section 6.7.6.",
+      "key_points": [
+        "Shear capacity: shear at the slip surface that makes the calculated maximum moment equal Mult; depends on p-y stiffness and micropile flexural rigidity",
+        "Separate 'up' (above the slip surface) and 'down' (below) laterally loaded pile analyses, with p-y curves relocated (Figures 6-16, 6-17)",
+        "Run the set for P = 0 first, then for P = Pult",
+        "Same axial load and same shear (magnitude and direction) in the up and down analyses",
+        "Boundary moments equal in magnitude and opposite in sign; head slopes at the slip surface equal; head modeled as free",
+        "Figure 6-18 example: M = 40 kN-m gave unequal slopes; M = 87 kN-m matched slopes (-0.037) with Mmax = 161 kN-m, about Mult = 161.3 kN-m"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-16: An Example Distribution of p-y Curves with Depth Obtained from Laterally (p. 6-27)",
+        "Figure 6-17: Utilizing p-y Curves Obtained From Laterally Loaded Pile Analysis in: (a) Up Analysis and (b) Down Analysis (p. 6-28)",
+        "Figure 6-18: Example of Calculated Bending Moment Diagrams for Up and Down Analyses (Mult = 161.3 kN.m; Analysis 1: M = 40 kN.m, Mmax 162.98 kN.m, head slopes -0.064 up and -0.025 down; Analysis 2: M = 87 kN.m, Mmax 161.00 kN.m, head slopes -0.037 up and down) (p. 6-29)"
+      ],
+      "tables": [],
+      "applicability": "Up and down laterally loaded pile analyses to find the shear capacity of a single vertical micropile (Design Step 9)."
+    },
+    {
+      "section_id": "6.6.5",
+      "title": "Shear Capacity of Battered Micropile Group",
+      "summary": "Hult of an inclined micropile at the slip surface combines its shear Q and axial force P (Figure 6-19): H = Q cos psi + P sin psi (Eq. 6-5), psi measured from the normal to the slip surface (Figure 6-21). Following Poulos and Davis (1980), Pult develops at about 30 degrees: Hult = QP=0 for psi up to 10 degrees, QP=Pult cos psi + Pult sin psi for psi of 30 or more, interpolated between (Eqs. 6-6 to 6-9, Figure 6-20). The pair capacity is the sum for the two legs (Eq. 6-10).",
+      "body": "(pp. 6-30 to 6-33) This step evaluates the maximum lateral force (Hult) that an inclined (battered) single micropile can resist at the critical slip surface, including the effect of a non-horizontal slip surface; the value compared with Hreq is the sum of the Hult values of each battered micropile in the cross section. The assumed forces are shown in Figure 6-19 for a vertical micropile (axial resistance zero, P = 0) and an inclined micropile (axial resistance equal to the ultimate axial resistance from the ground above the slip surface, P = Pult); the inclination angle psi may be defined as the angle between the slip surface and the vertical axis of the pile. Summing the shear (Q) and axial (P) forces in the x and y directions gives Eqs. 6-3 and 6-4, which solved simultaneously give the lateral pile load along the slip surface (Eq. 6-5), coincident with the orientation of Hreq (Figure 6-11). Ultimate values of P and Q are used: the minimum axial resistance is zero and the maximum is assumed equal to Pult. According to Poulos and Davis (1980), Pult may be assumed to develop in a pile inclined at approximately 30 degrees, giving Eq. 6-6 (psi = 0) and Eq. 6-7 (psi of 30 degrees or more). Although axial resistance should be mobilized even at very small inclinations, it is conservative to assume it is not mobilized until a nominal inclination is reached, and relying on it at small angles implies a certainty in the slip surface angle that probably cannot be achieved by subsurface investigation. Therefore, for inclinations between 0 and 30 degrees: Hult = QP=0 for 0 < psi <= 10 degrees (Eq. 6-8), and Hult is interpolated for 10 < psi < 30 degrees (Eq. 6-9; Figure 6-20 shows the relationship for a specific micropile design, but Eqs. 6-7 to 6-9 can be used directly; see the example in Section 6.7.7). The inclination angle psi is the angle between the axis perpendicular to the slip surface and the micropile axis, or between the axis perpendicular to the micropile axis and the slip surface (Figure 6-21); solutions for positive and negative angles are identical for Eqs. 6-3 and 6-4 (Poulos and Davis, 1980), so psi is written as positive in Eq. 6-5 regardless of sign. The angle is assessed where each of the two micropiles crosses the slip surface, and the combined capacity of the upslope and downslope micropile is given by Eq. 6-10.",
+      "key_points": [
+        "Hult of a battered micropile combines shear Q and axial force P at the slip surface (Figure 6-19); the sum over the section is compared with Hreq",
+        "Eq. 6-3: Q = H cos psi - V sin psi; Eq. 6-4: P = V cos psi + H sin psi",
+        "Eq. 6-5: H = Q cos psi + P sin psi, along the slip surface in the direction of Hreq; psi taken positive",
+        "psi: angle between the normal to the slip surface and the micropile axis, assessed where each leg crosses the slip surface (Figure 6-21)",
+        "Pult assumed to develop at about 30 degrees inclination (Poulos and Davis, 1980)",
+        "Eqs. 6-6, 6-8: Hult = QP=0 for psi = 0 and for 0 < psi <= 10 degrees",
+        "Eq. 6-7: for psi >= 30 degrees, Hult = QP=Pult cos psi + Pult sin psi",
+        "Eq. 6-9: interpolate Hult for 10 < psi < 30 degrees (Figure 6-20); axial resistance at small angles is conservatively ignored",
+        "Eq. 6-10: Hult-pair = Hult(psi_us) + Hult(psi_ds) for the upslope and downslope legs"
+      ],
+      "equations": [
+        "Eq. 6-3: Q = H cos psi - V sin psi (p. 6-30)",
+        "Eq. 6-4: P = V cos psi + H sin psi (p. 6-30)",
+        "Eq. 6-5: H = Q cos psi + P sin psi (p. 6-30)",
+        "Eq. 6-6: For psi = 0 deg: P = 0 and Q = QP=0; therefore Hult = QP=0 (p. 6-30)",
+        "Eq. 6-7: For psi >= 30 deg: P = Pult and Q = QP=Pult; therefore Hult = QP=Pult cos psi + Pult sin psi (p. 6-30)",
+        "Eq. 6-8: For 0 < psi <= 10 deg: Hult = QP=0 (p. 6-32)",
+        "Eq. 6-9: For 10 < psi < 30 deg: Hult is interpolated (see Figure 6-20) (p. 6-32)",
+        "Eq. 6-10: Hult-pair = Hult(psi_us) + Hult(psi_ds) (p. 6-33)"
+      ],
+      "figures": [
+        "Figure 6-19: Forces Acting On (a) Vertical and (b) Inclined Micropile Along The Slip Surface ((a) P = 0, QP=0; (b) H, V, QP=Pult, P = Pult, inclination psi) (p. 6-31)",
+        "Figure 6-20: Relationship Between Adjusted Capacity of Individual Micropiles and Inclination Angle (Hult in kN against psi: P = 0 and Q = QP=0; P = Pult and Q = QP=Pult; interpolated between) (p. 6-32)",
+        "Figure 6-21: Definition of Inclination Angle When (a) Slip Surface is Horizontal and (b) Slip Surface is not Horizontal (p. 6-34)"
+      ],
+      "tables": [],
+      "applicability": "Lateral capacity Hult of a battered micropile at the slip surface and of the upslope-downslope pair (Eqs. 6-3 to 6-10; Design Step 10)."
+    },
+    {
+      "section_id": "6.6.6",
+      "title": "Spacing Required to Provide Required Force to Stabilize the Slope",
+      "summary": "The resisting force of the micropiles per unit length of cap beam must at least equal Hreq (Design Step 5), and the distance between individual micropiles along the cap beam (Soffset) must permit construction (Figure 6-22). With the leg capacities from Eq. 6-5 and the pair capacity from Eq. 6-10, the maximum spacing between two upslope (or two downslope) micropiles is Smax = Hult-pair / Hreq (Eq. 6-11).",
+      "body": "(pp. 6-33 to 6-35) Figure 6-22 shows a typical micropile layout at the cap beam. The resisting force provided by the micropiles per unit length of cap beam must be at least equal to Hreq (from the slope stability analysis in Design Step 5), and the distance between individual micropiles along the cap beam (Soffset) must be large enough to permit ease of construction. The shear capacities of the battered upslope micropile (Hult(psi_us)) and battered downslope micropile (Hult(psi_ds)) are evaluated using Eq. 6-5 and their combined capacity (Hult-pair) using Eq. 6-10; Smax, the spacing between two upslope or two downslope micropiles (Figure 6-22), is then evaluated by Eq. 6-11.",
+      "key_points": [
+        "Resisting force per unit length of cap beam must be at least Hreq",
+        "Soffset: spacing between the two micropiles of a pair along the cap beam, large enough for construction",
+        "Smax: spacing between two upslope (or two downslope) micropiles (Figure 6-22)",
+        "Eq. 6-11: Smax = Hult-pair / Hreq, with leg capacities from Eq. 6-5 and pair capacity from Eq. 6-10"
+      ],
+      "equations": [
+        "Eq. 6-11: Smax = Hult-pair / Hreq (p. 6-33)"
+      ],
+      "figures": [
+        "Figure 6-22: Spacing Between Micropiles (Soffset is the spacing between two micropiles; Smax is the spacing between two upslope or downslope micropiles; upslope and downslope legs in the pile cap) (p. 6-35)"
+      ],
+      "tables": [],
+      "applicability": "Maximum spacing of micropile pairs along the cap beam from Hult-pair and Hreq (Eq. 6-11; Design Step 11)."
+    },
+    {
+      "section_id": "6.6.7",
+      "title": "Potential for Soil Flow Between Micropiles",
+      "summary": "If micropiles are too far apart or the soil above the slip surface is very weak, soil may move between them (plastic flow, Figure 6-23). The lateral force per unit thickness q follows Ito and Matsui (1975) as given by Hassiotis et al. (1997) (Eq. 6-12). Integrated from the slip surface to the cap beam it gives Hult-soil/pile. If Hult-soil/pile is less than Hult-pair/2, reduce Smax and repeat; the design spacing must satisfy Hult-soil/pile >= Hult-pair/2.",
+      "body": "(pp. 6-35 to 6-37) If micropiles are spaced too far apart and/or the soil above the slip surface is very weak, soil may move between adjacent micropiles (Figure 6-23), a failure mechanism termed plastic flow. Ito and Matsui (1975) developed a theory to evaluate plastic flow between piles; the lateral force per unit thickness of soil acting on the micropile, q, is calculated by Eq. 6-12 (Hassiotis et al., 1997), where c = cohesion of the soil, phi = friction angle of soil, gamma = unit weight of soil, z = depth from ground surface, D1 = Smax (Eq. 6-11) and D2 = opening between micropiles (Figure 6-23: D2 = D1 - b, b = micropile diameter). The ultimate horizontal force on the micropile from soil moving between adjacent micropiles, Hult-soil/pile, is q integrated over the length of the micropile from the slip surface to the cap beam (spreadsheet example in Section 6.7.9). Hult-soil/pile is compared with the average resistance of the upslope and downslope pair (Hult-pair/2): if the plastic flow conditions are satisfied, Smax from Eq. 6-11 need not be reduced; if Hult-soil/pile < Hult-pair/2, plastic flow governs, Smax should be reduced and the plastic flow analysis repeated for the new spacing. The final design spacing is the spacing that satisfies Hult-soil/pile >= Hult-pair/2.",
+      "key_points": [
+        "Plastic flow: soil moving between micropiles that are too far apart or where soil above the slip surface is very weak (Figure 6-23)",
+        "Eq. 6-12: lateral force per unit thickness q from Ito and Matsui (1975), as given by Hassiotis et al. (1997)",
+        "Eq. 6-12 terms: c, phi, gamma, depth z; D1 = Smax; D2 = D1 - b, the opening between micropiles (b = diameter)",
+        "Hult-soil/pile: q integrated from the slip surface to the cap beam",
+        "If Hult-soil/pile < Hult-pair/2, plastic flow governs: reduce Smax and repeat",
+        "Design spacing must satisfy Hult-soil/pile >= Hult-pair/2"
+      ],
+      "equations": [
+        "Eq. 6-12: q = A x c x [ (1/(Nphi tan phi)) x {B - (2 x E) - 1} + F ] - c x (D1 x F - 2 x D2 x Nphi^(-1/2)) + (gamma z / Nphi) x {(A x B) - D2}; where Nphi = tan^2[(pi/4) + (phi/2)], A = D1 x (D1/D2)^(Nphi^(1/2) tan phi + Nphi - 1), B = exp[((D1 - D2)/D2) x Nphi tan phi tan(pi/8 + phi/4)], E = Nphi^(1/2) tan phi, F = [(2 x tan phi) + (2 Nphi^(1/2)) + Nphi^(-1/2)] / (E + Nphi - 1); c = cohesion, phi = friction angle, gamma = unit weight, z = depth from ground surface, D1 = Smax (Eq. 6-11), D2 = opening between micropiles (p. 6-36)"
+      ],
+      "figures": [
+        "Figure 6-23: Plastically Deforming Soil between Two Adjacent Micropiles (D1 = Smax; D2 = D1 - b; b = micropile diameter) (p. 6-36)"
+      ],
+      "tables": [],
+      "applicability": "Plastic flow of soil between micropiles (Ito and Matsui, 1975) and its effect on spacing (Eq. 6-12; Design Step 12)."
     },
     {
       "section_id": "6.7",
       "title": "Design Example for Slope Stabilization with Micropiles",
-      "summary": "Complete worked 13-step design example for a silty clay slope with siltstone bedrock. Back-analysis gives phi'=11 deg, c'=15 kPa; Hreq=650 kN/m at FS=1.3. Type A micropile: API-N80 casing OD=177.8mm, t=11.5mm, f'c_grout=27.6 MPa. LPILE gives Mult=161.3 kN.m (P=0) and 147.7 kN.m (P=Pult=475 kN). QP=0=365 kN, QP=Pult=330 kN. Hult-pair=815 kN, Smax=1.25m. Soil flow check confirms spacing adequate.",
-      "body": "This section provides a complete design example for micropiles used for slope stabilization, demonstrating all 13 design steps. The example slope has fill over residual silty clay over calcareous siltstone bedrock, with a critical slip surface at the soil-rock interface. Back-analysis gives modified parameters of phi'=11 degrees and c'=15 kPa (FS=1.0 before stabilization). A target FS=1.3 requires Hreq=650 kN/m of slope length (from SLIDE computer program). The selected micropile cross-section is Type A (gravity grouted) with API-N80 steel casing: OD_casing=177.8mm, wall thickness=11.5mm, Fy=552,000 kPa, grout f'c=27.6 MPa, 0.229m minimum drill hole. Total micropile length: Labove=10m, Lbelow=4.5m (Eq. 6-15: Ltotal=Labove+Lbelow). LPILE analysis provides Mult=161.3 kN.m (P=0) and 147.7 kN.m (P=Pult=475 kN). The up/down analysis yields shear capacities QP=0=365 kN and QP=Pult=330 kN. The upslope leg is battered at 3 degrees and the downslope leg at 21 degrees, giving Hult-pair=365+450=815 kN (Table 6-3). Required spacing Smax=815/650=1.25m. The plastic soil flow check confirms Hult-soil/pile=753 kN >= Hult-pair/2=407.5 kN, so spacing is adequate. Cap beam is 2m wide x 1m deep CIP concrete.",
+      "summary": "The example stabilizes an embankment that creeps, particularly in rainy periods (Figure 6-24): roadway surcharge 12 kPa; right-of-way rules out a berm; micropiles assumed the best solution. Silty clay (unit weight 21.2 kN/m3, liquid limit 60, up to 30 percent clay size) overlies calcareous siltstone (23.0 kN/m3; phi = 23 degrees, cohesion intercept 480 kPa). The critical slip surface came from a crest scarp, toe heave and preliminary analyses.",
+      "body": "(pp. 6-37 to 6-39) This section provides a complete design example for micropiles used for slope stabilization. The problem is stabilizing an embankment that exhibits creep movements, particularly during rainy periods; the cross section and subsurface information are shown in Figure 6-24. The roadway surcharge for design is 12 kPa; right-of-way limitations preclude a berm, and micropiles are assumed to have been determined to be the best solution. The slope consists of silty clay overlying calcareous siltstone. From laboratory tests, the unit weight of the silty clay is estimated at 21.2 kN/m3 (134.9 pcf) and of the calcareous siltstone at 23.0 kN/m3 (146.4 pcf). The silty clay has a liquid limit of 60 and hydrometer results indicate up to 30 percent clay size material. Shear strength tests on the bedrock indicate a friction angle of 23 degrees with a cohesion intercept of 480 kPa (69.65 psi). The critical slip surface was identified from surficial features (scarp at the embankment crest and heaving near the toe) and from preliminary slope stability analyses.",
       "key_points": [
-        "Back-analysis result: phi'=11 deg, c'=15 kPa (silty clay slope), FS=1.0 before stabilization",
-        "Target FS=1.3 requires Hreq=650 kN/m; micropile placed at mid-slope",
-        "Type A micropile: API-N80 OD=177.8mm, t=11.5mm, Fy=552 MPa, f'c_grout=27.6 MPa",
-        "Eq. 6-15: Ltotal = Labove + Lbelow = 10 + 4.5 = 14.5m",
-        "LPILE Mult: 161.3 kN.m (P=0), 147.7 kN.m (P=Pult=475 kN)",
-        "Shear capacities: QP=0=365 kN, QP=Pult=330 kN",
-        "Upslope batter 3 deg, downslope batter 21 deg: Hult-pair=815 kN",
-        "Smax = 815/650 = 1.25m; soil flow check: Hult-soil/pile=753 >= Hult-pair/2=408 (OK)",
-        "Cap beam: 2m wide x 1m deep CIP concrete"
+        "Embankment creeping, particularly in rainy periods; roadway surcharge 12 kPa; right-of-way precludes a berm",
+        "Silty clay: unit weight 21.2 kN/m3, liquid limit 60, up to 30 percent clay size",
+        "Calcareous siltstone bedrock: 23.0 kN/m3, friction angle 23 degrees, cohesion intercept 480 kPa",
+        "Critical slip surface from crest scarp, toe heave and preliminary slope stability analyses (Figure 6-24)"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-24: Slope Geometry and Subsurface Information for the Design Example (12 kPa surcharge, hard red and brown silty clay fill, stiff to hard red silty clay with boulders, calcareous siltstone bedrock, SPT N values, critical slip surface, right-of-way limits) (p. 6-38)"
+      ],
+      "tables": [],
+      "applicability": "Problem statement and site conditions for the micropile slope stabilization design example."
+    },
+    {
+      "section_id": "6.7.1",
+      "title": "Step 4: Evaluate Factor of Safety of Existing Slope",
+      "summary": "The slope had moved, so its existing factor of safety was taken as 1.0 and the silty clay was back-analyzed with SLIDE (Spencer's method). Trial strengths: phi'r = 18 degrees (Figure 6-4, LL = 60, 30 percent clay) and c = 25 kPa from experience gave FS = 1.67 (Figure 6-25). Eqs. 6-13 and 6-14 give phi' = 11 degrees and c' = 15 kPa, with FS = 1.0 and a slip surface consistent with the field (Figure 6-26). Use with caution; nonzero c' tends to reduce with deformation.",
+      "body": "(pp. 6-39 to 6-41) Slope stability analysis computes the minimum factor of safety of the slope (FSmin), with programs such as XSTABL or SLIDE and methods such as Simplified Janbu, Simplified Bishop or Spencer. Because the slope had previously moved, its existing factor of safety was assumed to be 1.0 and the silty clay shear strength corresponding to FS = 1.0 was back-analyzed. i. Estimate shear strength parameters: since the slope has moved sufficiently, the residual drained friction angle can be used (phi' = phi'r) as the trial strength; Figure 6-4 with LL = 60 and a clay fraction of 30 percent gives phi'r = 18 degrees (phi trial), and the cohesion was assumed to be 25 kPa (3.63 psi) (c trial) from previous experience with these materials. Analyses with SLIDE and Spencer's limit equilibrium method gave FS = 1.67 for the trial strengths (Figure 6-25). The trial parameters were modified using Eqs. 6-13 and 6-14, giving phi' (modified) = 11 degrees and c' (modified) = 15 kPa (2.18 psi). This back-analysis method should be used with caution: the calculated critical failure surface must be compared with the observed one, and a nonzero effective stress cohesion intercept should be used with caution since deformations tend to reduce it. With the modified parameters the computed FS = 1.0 (Figure 6-26) and the critical slip surface was reasonably consistent with the actual slip surface in the field.",
+      "key_points": [
+        "Existing slope had moved, so FS = 1.0 was assumed and the silty clay strength back-analyzed (SLIDE, Spencer's method)",
+        "Trial strengths: phi'r = 18 degrees from Figure 6-4 (LL = 60, 30 percent clay) and c = 25 kPa from experience; FS = 1.67 (Figure 6-25)",
+        "Eq. 6-13: phi(modified) = tan^-1[tan phi(trial) / FS_trial]; Eq. 6-14: c(modified) = c(trial) / FS_trial",
+        "Modified strengths: phi' = 11 degrees, c' = 15 kPa; FS = 1.0 with a slip surface consistent with the field (Figure 6-26)",
+        "Use with caution: compare with the observed failure surface; nonzero c' tends to be reduced by deformation"
       ],
       "equations": [
-        "Eq. 6-13: phi'_mod = arctan(tan(phi'_trial)/FS_trial) = 11 deg",
-        "Eq. 6-14: c'_mod = c'_trial/FS_trial = 15 kPa",
-        "Eq. 6-15: Ltotal = Labove + Lbelow",
-        "Eq. 6-11: Smax = Hult-pair / Hreq = 815/650 = 1.25m"
+        "Eq. 6-13: phi(modified) = tan^-1 [ tan{phi(trial)} / FS_trial ] (p. 6-40)",
+        "Eq. 6-14: c(modified) = c(trial) / FS_trial (p. 6-40)"
       ],
       "figures": [
-        "Figure 6-25: FSmin from Trial Shear Strength Parameters",
-        "Figure 6-29: Micropile Cross-Section for Design Example",
-        "Figure 6-30: Single Vertical Micropile Modeled in LPILE",
-        "Figure 6-34: Interpolation of Hult for Battered Downslope Micropile",
-        "Figure 6-36/6-37: Spreadsheet and Graphical Solution for Hult-soil/pile"
+        "Figure 6-25: FSmin Determined from Trial Shear Strength Parameters. (p. 6-40)",
+        "Figure 6-26: FSmin of the Slope Based on Modified Shear Strength Parameters. (p. 6-41)"
+      ],
+      "tables": [],
+      "applicability": "Back-analysis of the silty clay strength for the design example (Eqs. 6-13, 6-14)."
+    },
+    {
+      "section_id": "6.7.2",
+      "title": "Step 5: Evaluate Additional Force Required To Obtain Target Factor of Safety",
+      "summary": "With a target factor of safety of 1.3 and the micropile modeled near midslope in SLIDE (2004), the strength assigned to the micropile was varied until the target was reached (Figure 6-27): Hreq = 650 kN/m (44.54 k/ft) of slope length. Slip surfaces entirely upslope and downslope gave FSup = 1.30 and FSdown = 1.35 (Figure 6-28), not less than the target, so the location is appropriate; otherwise move it or add a micropile.",
+      "body": "(pp. 6-41 to 6-43) A target factor of safety (FStarget) of 1.3 was selected and the micropile was modeled using Approach 2 (see Section 6.6.2.2) with the computer program SLIDE (2004). Several analyses were performed with the micropile at approximately a midslope location, and the shear strength assigned to the micropile was varied until the target factor of safety was achieved (Figure 6-27). The additional force required from the micropile (Hreq) is 650 kN/m (44.54 k/ft) of slope length. Additional analyses confirmed acceptable factors of safety for slip surfaces upslope and downslope of the micropile (Figure 6-28): FSup = 1.30 and FSdown = 1.35, so the location is deemed appropriate. Had the factor of safety of the slope entirely downslope or entirely upslope of the micropile been less than FStarget, the location would need to be changed or an additional micropile would be required.",
+      "key_points": [
+        "Target factor of safety 1.3; micropile near midslope modeled in SLIDE (2004)",
+        "Hreq = 650 kN/m (44.54 k/ft) of slope length (Figure 6-27)",
+        "Away from the micropile: FSup = 1.30 and FSdown = 1.35 (Figure 6-28), so the location is acceptable",
+        "If slopes entirely upslope or downslope were below the target, move the micropile or add another"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-27: Slope Stability Analysis to Determine Additional Force to Obtain Target Factor (p. 6-42)",
+        "Figure 6-28: Stability of the (a) Upslope Away from the Micropile and (b) Downslope Away (p. 6-43)"
+      ],
+      "tables": [],
+      "applicability": "Required micropile force Hreq for FS = 1.3 and checks away from the micropile in the design example."
+    },
+    {
+      "section_id": "6.7.3",
+      "title": "Step 6: Select Micropile Cross Section",
+      "summary": "A Type A micropile with API-N80 casing (177.8 mm OD, 11.50 mm wall, Fy = 552,000 kPa) in grout (f'c = 27.6 MPa) in a drill hole of at least 0.229 m is used (Figure 6-29). The ground is considered nonaggressive, so no reduction of casing thickness is required.",
+      "body": "(pp. 6-43 to 6-44) The micropile cross section is selected as shown in Figure 6-29: a Type A micropile with API-N80 casing, outside diameter 177.8 mm, wall thickness 11.50 mm, Fy = 552,000 kPa, grout f'c = 27.6 MPa, drill hole 0.229 m minimum. The ground is considered nonaggressive and no reduction in steel casing thickness is required.",
+      "key_points": [
+        "Type A micropile: API-N80 casing, 177.8 mm OD, 11.50 mm wall, Fy = 552,000 kPa (Figure 6-29)",
+        "Grout f'c = 27.6 MPa; drill hole 0.229 m minimum",
+        "Nonaggressive ground: no reduction in casing thickness"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-29: Micropile Cross-Section for the Design Example (API-N80 casing, O.D. 177.8 mm, wall thickness 11.50 mm, Fy = 552,000 kPa; grout f'c = 27.6 MPa; drill hole 0.229 m minimum) (p. 6-44)"
+      ],
+      "tables": [],
+      "applicability": "Micropile cross section for the design example."
+    },
+    {
+      "section_id": "6.7.4",
+      "title": "Step 7: Estimate Length Of Micropile",
+      "summary": "Ltotal = Labove + Lbelow (Eq. 6-15). Labove is about 10 m (Figures 6-24, 6-27). Eq. 6-1 gives Pult = 66 kPa x 10 m x pi x 0.229 m = 475 kN (stiff silts and clays, Table 5-3). Eq. 6-2 with 515 kPa (hard shale, Table 5-3; siltstone is closer to shale) and FS = 2.0 gives Lbelow = 2.6 m. Preliminary LPILE runs showed 2.6 m did not give fixity, so Lbelow was increased to 4.5 m (15 ft).",
+      "body": "(pp. 6-44 to 6-45) The total length of the micropile is Ltotal = Labove + Lbelow (Eq. 6-15), where Labove is the length between the ground surface and the critical slip surface and Lbelow the length below the critical slip surface. In the example, Labove is approximately 10 m (printed '(3.28 ft)'), approximated from Figure 6-24 at the micropile location in Figure 6-27. Pult from Eq. 6-1: Pult = 66 kPa x 10 m x pi x 0.229 m = 475 kN (107 k); alpha_bond-above is within the range for Type A micropiles in relatively stiff silts and clays (Table 5-3). Lbelow from Eq. 6-2: 475 kN / (515 kPa x pi x 0.229 m) x 2.0 = 2.6 m (8.5 ft), with alpha_bond-below from Table 5-3 for hard shale (the siltstone is by definition closer to shale than sandstone or limestone) and FS = 2.0 for ultimate side resistance. Preliminary LPILE analyses showed this length was not sufficient to provide fixity below the slip surface, so for lateral loading Lbelow was increased from 2.6 m (8.5 ft) to 4.5 m (15 ft) based on further analysis.",
+      "key_points": [
+        "Eq. 6-15: Ltotal = Labove + Lbelow",
+        "Labove about 10 m from the slope section at the chosen micropile location",
+        "Pult = 66 kPa x 10 m x pi x 0.229 m = 475 kN (107 k), bond for Type A in stiff silts and clays (Table 5-3)",
+        "Lbelow = 475 / (515 x pi x 0.229) x 2.0 = 2.6 m, bond for hard shale (Table 5-3), FS = 2.0",
+        "Lbelow increased to 4.5 m (15 ft) because 2.6 m did not give lateral fixity in preliminary LPILE runs"
+      ],
+      "equations": [
+        "Eq. 6-15: Ltotal = Labove + Lbelow (p. 6-44)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Micropile length above and below the slip surface for the design example (Eq. 6-15)."
+    },
+    {
+      "section_id": "6.7.5",
+      "title": "Step 8: Evaluate Bending Capacity Of Single Vertical Micropile",
+      "summary": "Mult of the single vertical micropile (Figure 6-29) is evaluated with LPILE (model in Figure 6-30), with grout strength, casing yield strength and steel modulus; the profile is modeled with stiff clay p-y curves, Su conservatively from SPT N values. Using LPILE's nonlinear flexural rigidity option, Mult is the moment at which the grout inside the casing reaches a compressive strain of 0.003: 161.3 kN-m for P = 0 and 147.7 kN-m for P = Pult = 475 kN (Table 6-2).",
+      "body": "(pp. 6-45 to 6-47) The ultimate bending moment, Mult, of a single vertical micropile with the cross section in Figure 6-29 is evaluated with LPILE (model in Figure 6-30). Besides the section geometry, the analysis needs (1) grout compressive strength, (2) yield strength of the steel casing and (3) modulus of elasticity of the steel. The profile at the micropile was modeled with p-y curves for stiff clays; the undrained strength Su was conservatively estimated for the fill and residual soil from measured SPT N values, and modeling the bedrock as a stiff clay is also conservative (more accurate values could come from more sophisticated testing). Mult is calculated for P = 0 and for P = Pult = 475 kN (107 k), using the LPILE option for nonlinear flexural rigidity (bending stiffness reduces with increasing strain); Mult is taken as the bending moment at which the compressive strain in the grout inside the casing is 0.003. Results are in Table 6-2.",
+      "key_points": [
+        "LPILE model (Figure 6-30) needs grout compressive strength, casing yield strength and steel modulus",
+        "Stiff clay p-y curves; Su from SPT N values for fill and residual soil; bedrock as stiff clay (conservative)",
+        "Figure 6-30 layers: fill Su 120 kPa, gamma' 21.2, e50 0.0050; residual soil Su 168, 11.4, 0.0040; bedrock Su 480, 13.2, 0.0025",
+        "Mult = moment at which grout inside the casing reaches compressive strain 0.003, nonlinear flexural rigidity",
+        "Table 6-2: Mult = 161.3 kN-m (119.0 k-ft) for P = 0; 147.7 kN-m (108.9 k-ft) for P = Pult = 475 kN (107 k)"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-30: Single Vertical Micropile Modeled in LPILE (fill: phi 0, Su 120 kN/m2, gamma' 21.2 kN/m3, e50 0.0050; residual soil: phi 0, Su 168, gamma' 11.4, e50 0.0040; bedrock: phi 0, Su 480, gamma' 13.2, e50 0.0025) (p. 6-46)"
       ],
       "tables": [
-        "Table 6-2: Mult Values for Design Example (P=0: 161.3 kN.m; P=Pult: 147.7 kN.m)",
-        "Table 6-3: Hult for Various Batter Angles"
+        "Table 6-2: Mult Values for Design Example: P = 0 kN (0 k), Mult = 161.3 kN.m (119.0 k.ft); P = 475 kN (107 k), Mult = 147.7 kN.m (108.9 k.ft) (p. 6-47)"
       ],
-      "applicability": "Step-by-step reference for applying the Chapter 6 design method to a real project with back-analysis, LPILE p-y analysis, and battered micropile group design."
+      "applicability": "Ultimate bending moment of the example micropile from LPILE for P = 0 and P = Pult (Table 6-2)."
+    },
+    {
+      "section_id": "6.7.6",
+      "title": "Step 9: Evaluate Shear Capacity of Single Vertical Micropile",
+      "summary": "p-y curves from the Mult runs at depths above and below each layer change (Figure 6-31) are relocated for up (10 m) and down (4.5 m) analyses (Figures 6-33, 6-17). Trial Q and M are input (Q same in both, M negative up and positive down); M is adjusted until head slopes match, then Q until Mmax equals Mult (Figure 6-32), for P = 0 then P = Pult. Results: QP=0 = 365 kN (Mmax 161.3 kN-m) and QP=Pult = 330 kN (Mmax 147.7 kN-m), both equal to Mult.",
+      "body": "(pp. 6-47 to 6-51) The maximum shear capacity of a single vertical micropile (Q) is found iteratively by laterally loaded pile analyses. p-y curves may be generated within LPILE in the same analyses used for Mult, at various depths and specifically just below and above each transition between soil or rock layers (Figure 6-30); the depths chosen are shown in Figure 6-31. The capacity is calculated using (1) Mult from the P = 0 case and (2) Mult from the P = Pult case, with up and down analyses (process in Figure 6-32), for P = 0 first and then P = Pult. As printed: 1. Set up the up and down analyses with the micropile section, material properties, soil or rock parameters for each layer and p-y curves relocated relative to the slip surface (Figure 6-17). 2. Input a trial shear force Q (same magnitude and sign in both analyses) and a trial internal moment M (same magnitude, negative for the up and positive for the down analysis); the trial values are arbitrary, but if the initial Q exceeds the Q that ultimately corresponds to Mult the solution will not converge (head slopes diverge with each iteration). 3. Run both analyses and compare the head slopes; if unequal, change M and re-run; when equal, note Mmax from each analysis. 4. Compare Mmax (greater of the up and down values) with Mult for the corresponding axial load. 5. If Mmax is approximately equal to Mult, Q is determined; otherwise change Q and re-run. 6. Repeat for P = Pult, using its Mult. (The printed steps refer to M as set 'in Step 1', Q 'in Step 5', and repeating 'steps 1 through 4', comparing in 'step 3'.) Output is in Appendix B. The up analysis uses a pile length of 10 m (32.8 ft) and the down analysis 4.5 m (15 ft); p-y values determined at 10 m depth are assigned to 0 m in the up analysis (Figures 6-33, 6-17a). For P = 0, QP=0 = 365 kN (82 k) with Mmax = 161.3 kN-m (119.0 k-ft), equal to Mult (Table 6-2); for P = Pult, QP=Pult = 330 kN (74.2 k) with Mmax = 147.7 kN-m (108.9 k-ft), equal to Mult. Both are used in the next steps.",
+      "key_points": [
+        "p-y curves generated in the Mult runs, at depths just above and below each layer transition (Figures 6-30, 6-31)",
+        "Up analysis over 10 m and down analysis over 4.5 m, with p-y curves relocated (p-y at 10 m depth assigned to 0 m in the up analysis; Figure 6-33)",
+        "Trial Q same in both analyses; trial M negative in the up and positive in the down analysis",
+        "If the trial Q exceeds the Q that gives Mult, the head slopes diverge and the solution does not converge",
+        "Adjust M until the head slopes match, then adjust Q until Mmax (greater of up and down) equals Mult (Figure 6-32)",
+        "Run for P = 0 first, then P = Pult with its own Mult; LPILE output in Appendix B",
+        "Results: QP=0 = 365 kN (82 k), Mmax 161.3 kN-m; QP=Pult = 330 kN (74.2 k), Mmax 147.7 kN-m; both equal Mult"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-31: Depths Chosen for p-y Curves for Entire Length of the Micropile. (p. 6-48)",
+        "Figure 6-32: Process to Evaluate Shear Resistance (Q) of Single Vertical Micropile Using Up and Down Laterally Loaded Pile Analyses (inputs: p-y curves, estimated +Q, estimated -M (up) or +M (down), P = 0 or P = Pult; compare head slopes, change M if unequal; compare Mmax, the greater of Mmax up and down, with Mult, change Q if unequal; Q is obtained when Mmax equals Mult) (p. 6-49)",
+        "Figure 6-33: Modeling Soil Layers with Previously Determined p-y Curves. (p. 6-50)"
+      ],
+      "tables": [],
+      "applicability": "Iterative up and down LPILE analyses giving the example micropile's shear capacity for P = 0 and P = Pult."
+    },
+    {
+      "section_id": "6.7.7",
+      "title": "Step 10: Evaluate Shear Capacity of Battered Micropile Group",
+      "summary": "The upslope leg is battered 3 degrees and the downslope leg 21 degrees. Upslope: Hult = QP=0 = 365 kN (psi up to 10 degrees). Downslope: interpolated between 365 kN at 10 degrees and 523 kN at 30 degrees (Eq. 6-7) to 450 kN (Table 6-3, Figure 6-34). By Eq. 6-10, Hult-pair = 365 + 450 = 815 kN (183.2 k) at the critical slip surface.",
+      "body": "(pp. 6-51 to 6-52) This step evaluates the maximum lateral force the battered pair (upslope and downslope legs, Figure 6-9), Hult-pair, can resist at the critical slip surface (Section 6.6.5). The batter angle is 3 degrees for the upslope leg and 21 degrees for the downslope leg. For psi_us = 3 degrees, Hult(psi_us) = QP=0 = 365 kN (82 k). For psi_ds = 21 degrees, Hult(psi_ds) is interpolated: values for various batter angles are in Table 6-3 and the interpolation for 21 degrees is shown in Figure 6-34, giving 450 kN (101 k) (the print labels this value Hult(psi_us)). By Eq. 6-10, Hult-pair = Hult(psi_us) + Hult(psi_ds) = 365 + 450 = 815 kN (183.2 k), the maximum lateral force the pair can resist at the critical slip surface.",
+      "key_points": [
+        "Batter angles: upslope leg 3 degrees, downslope leg 21 degrees",
+        "Upslope leg: Hult = QP=0 = 365 kN (82 k), since psi <= 10 degrees (Eq. 6-8)",
+        "Table 6-3: Hult = 365 kN at 0 and 10 degrees (Eq. 6-8); 523 kN at 30 and 558 kN at 40 degrees (Eq. 6-7)",
+        "Downslope leg at 21 degrees: interpolated Hult = 450 kN (101 k) (Figure 6-34)",
+        "Eq. 6-10: Hult-pair = 365 + 450 = 815 kN (183.2 k)"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-34: Interpolation of Hult for Battered Downslope Micropile Leg (Hult in kN against psi; for psi_ds = 21 degrees, Hult(psi_ds) = 450 kN) (p. 6-53)"
+      ],
+      "tables": [
+        "Table 6-3: Hult(psi_ds) for Various Batter Angles: psi_ds = 0 degrees, 365 kN (82 k), and 10 degrees, 365 kN (82 k), by Eq. 6-8; 30 degrees, 523 kN (117.6 k), and 40 degrees, 558 kN (125.4 k), by Eq. 6-7 (p. 6-52)"
+      ],
+      "applicability": "Capacity of the example's battered upslope and downslope pair (Table 6-3)."
+    },
+    {
+      "section_id": "6.7.8",
+      "title": "Step 11: Calculate Spacing Required to Provide Force to Stabilize the Slope",
+      "summary": "With Hreq = 650 kN/m (44.5 k/ft) and Hult-pair = 815 kN (183.2 k), Eq. 6-11 gives Smax = 815 kN / 650 kN/m = 1.25 m between two upslope (or two downslope) micropiles (Figure 6-22).",
+      "body": "(pp. 6-52 to 6-53) The spacing between two upslope micropiles and two downslope micropiles is defined in Figure 6-22 and calculated with Eq. 6-11, Smax = Hult-pair / Hreq. In the design example, Hreq = 650 kN/m (44.5 k/ft) and Hult-pair = 815 kN (183.2 k), so Smax = 815 kN / 650 kN/m = 1.25 m.",
+      "key_points": [
+        "Eq. 6-11: Smax = Hult-pair / Hreq",
+        "Smax = 815 kN / 650 kN/m = 1.25 m between two upslope or two downslope micropiles"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Maximum micropile spacing for the design example (Eq. 6-11)."
+    },
+    {
+      "section_id": "6.7.9",
+      "title": "Step 12: Check Potential Soil Flow between Micropiles",
+      "summary": "Eq. 6-12 was set up in a spreadsheet (Figure 6-35; cell formulas in Figure 6-36) with Smax = 1.25 m, c = 168 kPa, gamma = 21.2 kN/m3, phi = 0.01 degrees (a very small value for phi = 0) and b = 0.1778 m (D2 = 1.07 m). Summing resistance from the ground surface to the 10-m slip surface gives Hult-soil/pile = 753 kN (169.3 k) (Figure 6-37), not less than Hult-pair/2 = 407.5 kN, so Smax need not be reduced.",
+      "body": "(pp. 6-53 to 6-54) This step compares the ultimate horizontal pile force from a plastic flow analysis (Hult-soil/pile) with the average resistance of the upslope and downslope pair (Hult-pair/2), to check that Smax prevents plastic soil flow between micropiles above the critical slip surface. Eq. 6-12 was developed in a spreadsheet (Figure 6-35), with the cell formulas in Figure 6-36. Inputs: Smax from Design Step 11 = 1.25 m, c = 168 kPa, gamma = 21.2 kN/m3, phi = 0.01 degrees (for phi = 0 conditions a very small value is input) and b = 0.1778 m, giving D2 = 1.07 m. The Hult-soil/pile column is the summation of soil resistance against plastic flow from the ground surface to the depth of the slip surface (also shown graphically in Figure 6-37). With the critical slip surface at 10 m, Hult-soil/pile = 753 kN (169.3 k). Since Hult-soil/pile = 753 kN >= Hult-pair/2 = 407.5 kN (91.6 k), plastic flow conditions are satisfied and Smax from Design Step 11 need not be reduced.",
+      "key_points": [
+        "Compare Hult-soil/pile (plastic flow, Eq. 6-12) with Hult-pair/2",
+        "Spreadsheet inputs: Smax 1.25 m, c 168 kPa, gamma 21.2 kN/m3, phi 0.01 degrees (small value for phi = 0), b 0.1778 m; D2 = 1.07 m",
+        "Figure 6-35 total resistance rises from 51 kPa at the surface to 89 kPa at 10 m",
+        "Hult-soil/pile summed to the 10-m slip surface = 753 kN (169.3 k) (Figure 6-37)",
+        "753 kN >= Hult-pair/2 = 407.5 kN (91.6 k): Smax = 1.25 m need not be reduced"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-35: Spreadsheet Calculations Based on Eq. 6-12 to Obtain Hult-soil/pile for the Example Problem (Smax = 1.25 m, c = 168 kPa, gamma = 21.2 kN/m3, phi = 0.01 degrees, b = 0.1778 m; D2 = 1.07 m; total resistance and Hult-soil/pile with depth, 753 at 10 m) (p. 6-55)",
+        "Figure 6-36: Equations Used in Each Cell in Figure 6-35. (p. 6-56)",
+        "Figure 6-37: Graphical Solution for Hult-soil/pile Based on Figure 6-36. (p. 6-57)"
+      ],
+      "tables": [],
+      "applicability": "Plastic flow check for the design example by a spreadsheet of Eq. 6-12 (Figures 6-35 to 6-37)."
+    },
+    {
+      "section_id": "6.7.10",
+      "title": "Step 13: Perform Structural Design of Concrete Cap Beam",
+      "summary": "The steel-reinforced CIP cap beam spans and anchors the micropiles at the surface, typically 2 m wide and 1 m deep, with at least two to three micropile diameters of embedment for fixity; design follows AASHTO (2002) Section 8. Consider anchor reactions, load transfer from fixity (soil-structure analysis for shallow slide planes) and differential settlement stresses. Example summary: 177.8-mm casing 4.5 m into bedrock, legs at 3 and 21 degrees, spacing at most 1.25 m, test loads 950 kN and 760 kN.",
+      "body": "(pp. 6-54 to 6-57) The steel-reinforced CIP concrete cap beam spans and anchors the micropile array at the ground surface. It is typically 2 m wide and 1 m deep, but in general should have sufficient height and width to allow at least two to three micropile diameters of embedment to promote fixity of the upslope and downslope micropiles. Structural design follows typical reinforced concrete methods (Section 8 of AASHTO (2002)). Specific considerations: where ground anchors are used, the cap beam provides their reaction for stressing and lock-off and must be designed for these forces; where anchors are not incorporated, axial loads transferred towards the surface should be small (particularly for a deep slide plane), but fixity of the group at the cap beam causes load transfer to the beam, and where the slide plane is relatively shallow, cap beam moments may be on the order of those at the slide plane, so soil-structure interaction analyses should be performed; relatively significant deflections may need consideration, since anchor stressing, non-uniform depth to competent material and/or compression of soil within the unstable mass may cause differential settlement along the beam, and the resulting bending and torsional stresses should be considered. Summary of the design example: Type A gravity-grouted micropiles of API-N80 casing (OD 177.8 mm) embedded 4.5 m (15 ft) into bedrock; upslope leg battered 3 degrees and downslope leg 21 degrees, the micropiles of each pair as close together as construction permits; spacing between two upslope and two downslope micropiles no more than 1.25 m; all micropiles connected at the surface by a concrete beam; verification load tests of micropiles with a 4.5-m (15-ft) bond length in rock to 950 kN (213 kips), i.e., 2.0 x the calculated axial resistance above the slip surface, and proof tests to 760 kN (printed '(171 kN)'), i.e., 1.6 x that resistance (Chapter 7).",
+      "key_points": [
+        "Cap beam: steel-reinforced CIP concrete, typically 2 m wide and 1 m deep",
+        "Embed micropiles at least two to three diameters into the cap beam for fixity; design per AASHTO (2002) Section 8",
+        "With ground anchors, the beam is the anchor reaction for stressing and lock-off",
+        "Fixity transfers load to the beam; for shallow slide planes beam moments may approach slide-plane moments: use soil-structure interaction analysis",
+        "Consider bending and torsion from differential settlement (anchor stressing, uneven depth to competent material, soil compression)",
+        "Example summary: API-N80 casing (OD 177.8 mm) 4.5 m into bedrock; legs battered 3 and 21 degrees; spacing no more than 1.25 m",
+        "Example test loads: verification 950 kN (213 kips) = 2.0 x Pult above the slip surface; proof 760 kN = 1.6 x Pult"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Structural design considerations for the concrete cap beam and the summary of the design example."
     },
     {
       "section_id": "6.8",
       "title": "Shear Capacity of Micropiles for Analysis",
-      "summary": "Explains the theoretical basis for equating micropile shear capacity to the shear force that produces ultimate bending moment Mult. For a slope at FS=1.0 (incipient failure), any additional resistance mobilized by the micropile must be attributed to the structure. Because significant movement is required to mobilize shear resistance, the shear capacity is defined as the force Q at which Mmax = Mult in the micropile cross-section.",
-      "body": "The shear load that an individual micropile provides is assumed to correspond to the maximum shear force in the micropile when the micropile has reached its ultimate bending capacity. A slope that has failed (FS = 1.0) with some movement observed implies that the shear resistance mobilized in the micropile must be attributed to the structural resistance of the micropile, not to additional soil resistance. Since significant movement is required to fully mobilize shear resistance in a micropile, the design approach conservatively defines shear capacity as the shear force Q at which the maximum bending moment in the micropile equals Mult. This is consistent with the assumption that large deformations are required to mobilize the full pile resistance. Conservatism may be incorporated through selection of soil properties, phreatic surface assumptions, target factor of safety, maximum micropile shear force, or combinations thereof. A probabilistic analysis (Duncan et al., 1999) can provide better understanding of the effects of material parameter variability on slope stability factor of safety.",
+      "summary": "A failed slope is at FS = 1.0 with loads and resistances known and equal; micropile shear is added to the resisting forces (not as a negative driving force) until the target, e.g., 1.3, is reached. In allowable stress terms the service load on the micropiles is zero, unlike a retaining wall; the ultimate shear is assumed mobilized at failure, as in reinforced slope design, without allowable-stress reductions (only corrosion loss). Conservatism can be added through properties, phreatic surface, target FS or maximum shear.",
+      "body": "(pp. 6-58 to 6-59) The shear load an individual micropile provides is assumed to correspond to the maximum shear force in the micropile when it has reached its ultimate bending capacity. Rationale: a slope that has failed (movement observed, possibly stopped, or continuous or intermittent movement measured) has a factor of safety equal to 1.0; since the design is predicated on good knowledge of the failure surface and the pore pressures at the time of failure, the loads and soil resistances are reasonably well known and equal in magnitude. The slope must now be stabilized to a target factor of safety (e.g., FS = 1.3): using the back-analyzed strengths, a micropile shear force is added until the target is calculated, and it is recommended that this force be added to the resisting forces (or moments) in the limit equilibrium calculations rather than treated as a negative driving force or moment. In an allowable stress design format, the service loads on the micropile are zero, since the slope is 'stable' at FS = 1.0; for a retaining wall, by contrast, the service loads at FS = 1.0 are not zero and may be full active earth pressure. Micropiles are added to increase the factor of safety, assuming that if their ultimate shear capacity were mobilized at a limit (failure) state the factor of safety would be 1.3. This is exactly consistent with reinforced slope design, where the design strength of the reinforcement at a specific design life, Tal, is used and slope stability analyses verify the target factor of safety; as there, no reduction to an allowable stress is used, but whereas reinforcement strength is reduced for creep, durability and construction damage, micropile strength may be reduced for potential steel loss from corrosion. Additional conservatism may be prudent where the failure surface and/or residual strength are not well understood or the soil may continue to creep, through soil properties, phreatic surface assumptions, the target factor of safety, the maximum micropile shear force, or a combination; probabilistic analysis (Duncan et al., 1999) can show the effect of ranges of material parameters.",
       "key_points": [
-        "Shear capacity = shear force Q at which Mmax = Mult (ultimate bending capacity governs)",
-        "Basis: for slope at FS=1.0, any pile resistance must come from structural action of the pile",
-        "Large deformations required to mobilize shear resistance — consistent with large-displacement design basis",
-        "Conservatism may be added through soil properties, phreatic surface, target FS, or maximum shear force",
-        "Probabilistic analysis (Duncan et al., 1999) recommended for sensitivity to parameter variability"
+        "Micropile shear used in design = maximum shear when the micropile reaches its ultimate bending capacity",
+        "A failed slope is at FS = 1.0 with known, equal loads and resistances (failure surface and pore pressures well known)",
+        "Add micropile shear to the resisting forces or moments, not as a negative driving force, until the target (e.g., 1.3) is reached",
+        "In allowable stress terms the micropile service load is zero at FS = 1.0, unlike a retaining wall under active pressure",
+        "Ultimate shear assumed mobilized at failure, consistent with reinforced slope design (Tal); no allowable-stress reduction, but allow for corrosion loss",
+        "Add conservatism through soil properties, phreatic surface, target FS or maximum micropile shear where uncertain",
+        "Probabilistic analysis (Duncan et al., 1999) can show the effect of parameter ranges"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Understanding the design basis for CASE 2 micropile shear capacity calculations."
+      "applicability": "Why the micropile shear used in design is the shear at its ultimate bending capacity, and where conservatism can be added."
     },
     {
       "section_id": "6.9",
       "title": "Case Histories",
-      "summary": "Three documented CASE 2 slope stabilization projects using Approach 1 micropiles. (1) Blue Trail Landslide, Wyoming (Hasenkamp, 1999): highway slope stabilized with 154 Type A micropiles + 41 ground anchors spaced 1.2-1.8m at 30-deg batter. (2) SUM-271 Project, Ohio (Liang, 2000): instrumented micropile wall with strain gauges and inclinometers showing max axial force near slip surface. (3) Littleville Landslide, Alabama (Brown and Chancellor, 1997): fill-over-shale slope, inclinometer data confirmed movement cessation after micropile installation.",
-      "body": "Three case histories document the performance of Approach 1 micropile slope stabilization systems. Case 1: Blue Trail Landslide, Wyoming (Hasenkamp, 1999). Located on US Highway 26/89 between Alpine Junction and Hoback Junction. The design used 154 Type A micropiles spaced 1.2-1.8m at 30 degrees from vertical, plus 41 ground anchors spaced 3.5m at 30 degrees from horizontal. The micropile wall used the design approach from Chapter 6. Instrumentation included slope inclinometers, survey monuments, tilt plates, strain gauges on micropile casings, load cells on ground anchors, and piezometers. Performance was acceptable; axial force directions in the lower wall were opposite to design assumptions due to ground anchor lock-off loads. Case 2: SUM-271 Project, Ohio (Liang, 2000). A reticulated micropile slope stabilization project with comprehensive instrumentation. Maximum axial forces occurred near the slip surface. Bending moments were near zero at the location of maximum axial force. Finite element analyses reasonably predicted measured bending moments. Case 3: Littleville Landslide, Alabama (Brown and Chancellor, 1997). US Route 43 slope in fill over weathered shale. Instrumentation data over two years confirmed slope movement cessation. Axial forces in micropiles were below estimated ultimate axial capacity.",
+      "summary": "Three case histories of slope stabilization with micropiles (Approach 1) are given under 6.9.1 Blue Trail Landslide, Wyoming; 6.9.2 SUM-271 Landslide, Ohio; and 6.9.3 Littleville Landslide, Alabama; no text is printed under this heading.",
+      "body": "(p. 6-59) No text is printed under this heading; see 6.9.1 Stabilization of Blue Trail Landslide Using Micropiles, Wyoming, 6.9.2 Stabilization of Sum-271 Landslide Using Micropiles, Ohio, and 6.9.3 Stabilization of Littleville Landslide using Micropiles, Alabama.",
       "key_points": [
-        "Blue Trail (WY): 154 Type A micropiles at 1.2-1.8m spacing + 41 ground anchors; micropiles alone insufficient",
-        "Blue Trail: lower wall axial directions reversed from design due to ground anchor lock-off loads",
-        "SUM-271 (OH): max axial force at slip surface depth; bending moments near zero at that location",
-        "SUM-271: FEM analyses reasonably predicted field bending moments",
-        "Littleville (AL): two years of monitoring confirmed slope movement cessation post-installation",
-        "Littleville: measured axial forces below estimated ultimate capacities"
-      ],
-      "equations": [],
-      "figures": [
-        "Figure 6-38: Extent of Blue Trail Landslide",
-        "Figure 6-39: Conceptual Design Drawing for Blue Trail (after Hasenkamp, 1999)",
-        "Figure 6-40: Typical Section of Micropile and Ground Anchor Wall at Blue Trail",
-        "Figure 6-41: Typical Section at SUM-271 (after Liang, 2000)",
-        "Figure 6-42: Axial Force Distribution, SUM-271",
-        "Figure 6-43: Bending Moment Comparison, SUM-271"
-      ],
-      "tables": [
-        "Table 6-4: Comparison of Actual vs. Design Loads, Blue Trail Landslide"
-      ],
-      "applicability": "Field performance validation of the Chapter 6 design method; three Approach 1 projects with instrumentation data."
-    },
-    {
-      "section_id": "6.10",
-      "title": "References",
-      "summary": "Chapter 6 reference list including Hasenkamp (1999) Blue Trail Landslide design, Liang (2000) SUM-271 instrumented micropile wall, Brown and Chancellor (1997) Littleville Landslide, Stark and Eid (1994) residual friction angle charts, Duncan et al. (1999) probabilistic slope stability, and Mayne et al. (2001) Manual on Subsurface Investigations.",
-      "body": "Key references cited in Chapter 6: Brown, D.A. and Chancellor, K. (1997), Instrumentation, Monitoring and Analysis of the Performance of an Unstable Slope Stabilized by Micropiles, Alabama Highway Research Center. Duncan, J.M., Brandon, T.L., Wright, S.G., and Vijayvergia, V. (1999), REAME — A program for reliability analysis of embankments. Hasenkamp, R. (1999), Design and monitoring of micropile retaining wall for Blue Trail Landslide. Kavazanjian et al. (1997), GEC No. 3 Geotechnical Earthquake Engineering. Liang, R.Y. (2000), Instrumentation and Monitoring of Reticulated Micropile Slope Stabilization at SUM-271 Project. Mayne, P.W., Christopher, B.R., and DeJong, J. (2001), Manual on Subsurface Investigations, NHI-01-031. Sabatini, P.J. et al. (2002), GEC No. 5 Evaluation of Soil and Rock Properties. Stark, T.D. and Eid, H.T. (1994), Drained residual strength of cohesive soils.",
-      "key_points": [
-        "Stark and Eid (1994): residual friction angle charts for cohesive soils (Figure 6-4)",
-        "Liang (2000): SUM-271 instrumented micropile wall monitoring report",
-        "Hasenkamp (1999): Blue Trail Landslide micropile and ground anchor wall design",
-        "Brown and Chancellor (1997): Littleville Landslide instrumentation results",
-        "Mayne et al. (2001): Manual on Subsurface Investigations (NHI-01-031) for exploration guidance"
+        "Case histories: Blue Trail (Wyoming), SUM-271 (Ohio), Littleville (Alabama) (6.9.1-6.9.3)"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Source references for the Chapter 6 design method and case histories."
+      "applicability": "Pointer to the three case histories of micropile slope stabilization (6.9.1 to 6.9.3)."
+    },
+    {
+      "section_id": "6.9.1",
+      "title": "Stabilization of Blue Trail Landslide Using Micropiles, Wyoming",
+      "summary": "US 26/89 beside the Snake River canyon (Figure 6-38) had moved since construction in 1955-1960; target FS 1.3. Micropiles beat regrading with a toe berm, a bridge and drilled shafts on cost, variable ground and access. Two micropile walls and an MSE wall were designed (Figure 6-39), a third wall added; ground anchors were enlarged after a higher seismic coefficient. Micropiles were battered 30 degrees, 19-34 m long (Figure 6-40); 478 micropiles and 40 anchors. Measured loads: Table 6-4.",
+      "body": "(pp. 6-59 to 6-62) The Blue Trail Landslide project is on U.S. Highway 26/89 between Alpine Junction and Hoback Junction, Wyoming, next to the canyon of the Snake River (Figure 6-38). The highway, built between 1955 and 1960, had experienced episodes of movement from the landslide. Alternatives reviewed to stabilize the slide to a desired factor of safety of 1.3 included regrading with a toe berm, a bridge over the entire slide, and drilled shafts near the toe (Hasenkamp, 1999); they were not cost effective. Micropiles were selected because they were less expensive and could be built in highly variable ground under restricted access, with traffic maintained and minimal environmental impact. The design followed the approach in this chapter. Originally two micropile walls (two sets of upslope and downslope micropiles) and an MSE wall were designed (Figure 6-39): the upper wall 3 m below the roadway and the lower wall between the road and the toe of the slide; a third wall was later added along the western edge about 12 m (39 ft) below the roadway. The original design had a single ground anchor at each wall location; early in construction the restraining force of the lower wall had to be increased significantly because a reviewing agency required a much higher seismic coefficient, which was done by significantly increasing the capacity of its ground anchors. Micropiles were battered 30 degrees from vertical and were 19 to 34 m (62 to 112 ft) long; ground anchors were installed at 30 degrees from horizontal (Figure 6-40). It was the first Wyoming project using micropiles and ground anchors for permanent landslide stabilization. Instrumentation: slope inclinometers, survey monuments, tilt plates, strain gauges on micropile casings, load cells on four anchors and piezometers, recording wall and slope movement, load transfer to micropiles and anchors, and pore pressures. Micropile walls were installed before the anchors, the lower wall first, the upper second and the middle last; 478 micropiles and 40 ground anchors were installed. Instrumentation showed movements were significantly reduced. Measured axial loads were less than assumed in design, and measured maximum moments were about 8 to 80 percent (average 30 percent) of the ultimate moment capacity of the steel pipe (Table 6-4), so performance was acceptable. In the lower wall, axial loads and moments were opposite to the design assumption because of large anchor lock-off loads; upper-wall micropiles were in compression in both directions, most likely from the surcharge of the MSE wall and roadway over the upper insert wall.",
+      "key_points": [
+        "US 26/89 beside the Snake River canyon, Wyoming; built 1955-1960; target factor of safety 1.3 (Figure 6-38)",
+        "Regrading with toe berm, a bridge and drilled shafts rejected on cost; micropiles suited variable ground and restricted access",
+        "Design: two micropile walls plus an MSE wall (Figure 6-39); a third wall added about 12 m below the roadway",
+        "Lower-wall ground anchors greatly increased after a reviewing agency required a higher seismic coefficient",
+        "Micropiles battered 30 degrees from vertical, 19 to 34 m long; anchors at 30 degrees from horizontal (Figure 6-40)",
+        "478 micropiles and 40 ground anchors; lower wall built first, then upper, then middle",
+        "Measured axial loads less than design; maximum moments about 8 to 80 percent (average 30 percent) of the ultimate moment capacity",
+        "Lower-wall loads and moments reversed by anchor lock-off loads; upper wall in compression from the MSE wall and roadway surcharge",
+        "Table 6-4: Mult-Design 35.2 kN-m for all eight gauged micropiles; measured moments 2.9 to 15.4 kN-m"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-38: Extent of Blue Trail Landslide (after Hasenkamp, 1999). (p. 6-60)",
+        "Figure 6-39: Conceptual Design Drawing of the MSE and NRM Walls for Blue Trail Landslide Project (after Hasenkamp, 1999) (p. 6-60)",
+        "Figure 6-40: Typical Section of Micropile and Ground Anchor Wall for Blue Trail Landslide Project (after Hasenkamp, 1999) (p. 6-61)"
+      ],
+      "tables": [
+        "Table 6-4: Comparison of Actual Loads to Design Loads for Blue Trail Landslide Project (after Hasenkamp, 1999) (negative values indicate compression): upper wall: micropile 62 upslope, L 23.8 m, PDesign 635 kN, PMeasured -686 kN, Mult-Design 35.2 kN-m, Mult-Measured 15.4 kN-m; 63 downslope, 33.5 m, -894, -566, 35.2, 3.3; 123 downslope, 27.7 m, -739, 153, 35.2, 4.0; 124 upslope, 23.8 m, 635, -302, 35.2, 14.6; lower wall: 326 downslope, 19.2 m, -717, 214, 35.2, 8.5; 327 upslope, 19.5 m, 728, -594, 35.2, 2.9; 402 downslope, 19.5 m, -728, 398, 35.2, 3.2; 403 upslope, 19.5 m, 728, -450, 35.2, 3.8 (p. 6-62)"
+      ],
+      "applicability": "Blue Trail Landslide micropile and ground anchor walls, US 26/89, Wyoming, and their measured performance (Table 6-4)."
+    },
+    {
+      "section_id": "6.9.2",
+      "title": "Stabilization of Sum-271 Landslide Using Micropiles, Ohio",
+      "summary": "I-271 northbound in Richfield Township, Summit County, Ohio: about 21 m of valley fill over thin weak normally consolidated lacustrine soils on strong overconsolidated lacustrine soils; movement caused pavement settlement and cracking. ODOT chose micropiles over regrading with toe berms (Liang, 2000); ground anchors were added. The wall had 154 Type A micropiles, 1.2-1.8 m apart, battered 30 degrees, and 41 anchors 3.5 m apart (Figure 6-41). Maximum axial force near the slip surface; moments near zero there.",
+      "body": "(pp. 6-62 to 6-65) The SUM-271 project is on Interstate 271 northbound in Richfield Township, Summit County, Ohio. About 21 m (70 ft) of valley fill overlies relatively thin, weak layers of normally consolidated fine-grained lacustrine soils with strong overconsolidated lacustrine soils beneath; slope movements caused pavement settlement and cracking. The alternatives were regrading with toe buttress berms or micropiles (Liang, 2000), and the Ohio Department of Transportation (ODOT) selected micropiles. The design followed the approach in this chapter; because micropiles could not completely develop the required resisting forces, ground anchors were added. The wall consisted of 154 Type A micropiles spaced 1.2 to 1.8 m (4 to 6 ft) apart and battered 30 degrees from vertical, and 41 ground anchors spaced 3.5 m (12 ft) apart and battered 30 degrees from horizontal (Figure 6-41). Inclinometers, strain gauges on the micropiles (axial loads and moments throughout construction) and high-capacity load cells on the anchors showed that the NRM wall and anchors arrested the slope movement. Detailed finite element analyses (Liang, 2000) simulated the construction stages (earthwork, pile cap, drilling and installation of micropiles, anchor stressing) and were compared with the monitoring data. Conclusions: 1. The maximum axial force in each micropile occurred near the slip surface (about 30 ft below the ground surface) (Figure 6-42), with directions and magnitudes consistent with the construction stages: the upslope micropile was initially in tension; after anchor tensioning a portion near its top remained in tension and the rest of the wall was in compression; compression in the downslope micropile was reduced by anchor tensioning, but no tension developed in it. 2. Bending moments were near zero where the maximum axial forces occurred (Figure 6-43); changes through construction were small, primarily due to the small stiffness of the micropiles, and the maximum moments were reasonably predicted by the finite element analyses.",
+      "key_points": [
+        "I-271 northbound, Summit County, Ohio: about 21 m of valley fill over thin weak lacustrine soils on strong overconsolidated lacustrine soils",
+        "ODOT chose micropiles over regrading with toe buttress berms (Liang, 2000); ground anchors added because micropiles alone could not develop the force",
+        "154 Type A micropiles, 1.2 to 1.8 m apart, battered 30 degrees from vertical; 41 ground anchors 3.5 m apart at 30 degrees from horizontal (Figure 6-41)",
+        "Inclinometers showed the wall and anchors arrested the slope movement",
+        "Maximum axial force near the slip surface, about 30 ft deep (Figure 6-42); no tension developed in the downslope micropile",
+        "Bending moments near zero where axial force was maximum (Figure 6-43); finite element analyses reasonably predicted maximum moments"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-41: Typical Section of Micropile and Ground Anchor Wall at SUM-271 (after Liang, 2000) (p. 6-63)",
+        "Figure 6-42: Comparison of Axial Loads for the SUM-271 Project (after Liang, 2000). (p. 6-64)",
+        "Figure 6-43: Comparison of Bending Moments for the SUM-271 Project (after Liang, 2000). (p. 6-65)"
+      ],
+      "tables": [],
+      "applicability": "SUM-271 micropile and ground anchor wall, Interstate 271, Ohio, with instrumentation and finite element results."
+    },
+    {
+      "section_id": "6.9.3",
+      "title": "Stabilization of Littleville Landslide using Micropiles, Alabama",
+      "summary": "US Route 43: fill of sandstone and shale over shale weathered at the top (the failure surface); slides since the 1950s road, worse after 1970s widening, until a micropile wall with ground anchors was built in 1997 (Brown and Chancellor, 1997). 114-mm casing (8-mm wall), 7 m long, battered 30 degrees; 432 micropiles and 44 anchors (Figure 6-44). Over two years movement ceased; axial forces about half the estimated ultimate; FS about 1.3; maximum moments 5 to 9 percent of capacity.",
+      "body": "(pp. 6-66 to 6-67) The Littleville landslide is on a section of US Route 43, Alabama, in fill of sandstone and shale cut from adjacent hillsides over shale weathered along its top surface, believed to be the failure surface. Soon after the 1950s highway was built the road surface dropped from slides in the fill; holes were filled and the road repaved; in the 1970s the roadway was widened and the slope flattened, but rainy periods brought more failures, and creep continued until a micropile wall with additional stabilization by ground anchors was built in 1997 (Brown and Chancellor, 1997). The design followed the approach in this chapter (typical section, Figure 6-44). The micropiles had 114-mm (4.5 in.) diameter steel casing with an 8-mm wall, design lengths of 7 m (23 ft), battered 30 degrees from vertical; 432 micropiles and 44 ground anchors were installed. Instrumentation over two years recorded slope movement (inclinometers), pore pressures and stresses in the micropiles and anchors. Water levels were relatively stable, fluctuating about two or three feet. Slope movement had effectively ceased, without approaching failure in the micropiles: mobilized axial forces were below the estimated ultimate axial load by a factor of about two, and the factor of safety was calculated to be about 1.3 as originally estimated. Upslope battered micropiles were in tension near the slide plane and downslope micropiles in compression; higher moments developed near the slide surface, with measured maximum moments about 5 to 9 percent of the ultimate moment capacity. Anchor loads decreased slightly over time, attributed to small movements in the uphill direction.",
+      "key_points": [
+        "US Route 43, Alabama: sandstone and shale fill over shale weathered at its top, the believed failure surface",
+        "Slides since the 1950s road and after 1970s widening; micropile wall with ground anchors built in 1997 (Brown and Chancellor, 1997)",
+        "114-mm (4.5 in.) casing, 8-mm wall, 7 m (23 ft) long, battered 30 degrees from vertical; 432 micropiles and 44 anchors (Figure 6-44)",
+        "Two years of monitoring: movement effectively ceased; piezometer levels fluctuated about two or three feet",
+        "Axial forces about half the estimated ultimate axial load; factor of safety about 1.3 as estimated",
+        "Upslope micropiles in tension and downslope in compression near the slide plane; maximum moments 5 to 9 percent of ultimate capacity",
+        "Anchor loads decreased slightly over time, attributed to small uphill movements"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-44: Typical Section of Micropile and Anchor Wall at Littleville, Alabama (after Brown and Chancellor, 1997) (p. 6-66)"
+      ],
+      "tables": [],
+      "applicability": "Littleville landslide micropile and anchor wall, US Route 43, Alabama, and two years of monitoring."
+    },
+    {
+      "section_id": "6.10",
+      "title": "References",
+      "summary": "References cited in Chapter 6: Brown and Chancellor (1997); Duncan, Navin and Patterson (1999); Hasenkamp (1999); Hassiotis, Chameau and Gunaratne (1997); Ito and Matsui (1975); Kavazanjian et al. (1997); Liang (2000); Mayne, Christopher and DeJong (2001); O'Neil and Reese (1999); Poulos and Davis (1980); Reese et al. (2005, LPILE); Sabatini et al. (2002); SLIDE (2004); Stark and Eid (1994).",
+      "body": "(pp. 6-67 to 6-68) Brown, D.A. and Chancellor, K. (1997), 'Instrumentation, Monitoring and Analysis of the Performance of a Type-A INSERT Wall, Littleville, Alabama', Highway Research Center, Auburn University, Alabama. Duncan, M.J., Navin, M. and Patterson, K., Manual for Geotechnical Engineering Calculations, Virginia Tech Center for Geotechnical Practice and Research, December 1999. Hasenkamp, R. N. (1999), 'Evaluation of a Micropile Reinforced Earth Retaining Structure, Blue Trail Landslide, Wyoming', Master Thesis, Department of Civil and Agricultural Engineering, University of Wyoming. Hassiotis, S., Chameau, J. L. and Gunaratne, M. (1997), 'Design Method for Stabilization of Slopes with Piles', Journal of Geotechnical and Geoenvironmental Engineering, Vol. 123, No. 4, pp. 314-323. Ito, T. and Matsui, T. (1975), 'Methods to Estimate Lateral Force Acting on Stabilizing Piles', Soil and Foundations, Vol. 15, No. 4. Kavazanjian, E. Jr., Matasovic, N., Hadj-Hamou, T. and Sabatini, P. J. (1997), Design Guidance: Geotechnical Earthquake Engineering for Highways, Geotechnical Engineering Circular No. 3, FHWA-SA-97-077. Liang, R.Y. (2000), 'Instrumentation and Monitoring of Reticulated Micropile Slope Stabilization at SUM-271 Project', submitted to the Federal Highway Administration, September 2000. Mayne, P. W., Christopher, B. R. and DeJong, J. (2001), Manual on Subsurface Investigations, NHI-01-031, FHWA. O'Neil, M. W. and Reese, L. C. (1999), 'Drilled Shafts: Construction Procedures and Design Methods', FHWA-IF-99-025. Poulos, H. G. and Davis, E. H. (1980), Pile Foundation Analysis and Design, John Wiley and Sons, 397 pages. Reese, L. C., Wang, S. T., Isenhower, W. M., Arrellaga, J. A. and Hendrix, J. (2005), 'A Program for Analysis of Single Piles Under Lateral Load', Version 5.0.18, Ensoft Inc., Austin, TX. Sabatini, P. J., Bachus, R. C., Mayne, P. W., Schneider, J. A. and Zettler, T. E. (2002), 'Evaluation of Soil and Rock Properties', Geotechnical Engineering Circular No. 5, FHWA-IF-02-034. SLIDE (2004), 'Slope Stability Analyses Program', Rocscience Inc., Ontario, Canada. Stark and Eid (1994), 'Drained Residual Strength of Cohesive Soils', Journal of Geotechnical Engineering, Vol. 120, No. 5.",
+      "key_points": [
+        "Case history sources: Hasenkamp (1999) Blue Trail; Liang (2000) SUM-271; Brown and Chancellor (1997) Littleville",
+        "Plastic flow: Ito and Matsui (1975); Hassiotis, Chameau and Gunaratne (1997)",
+        "Battered pile behavior: Poulos and Davis (1980); lateral analysis program LPILE (Reese et al., 2005); SLIDE (2004)",
+        "Site data and strength: Mayne et al. (2001), Sabatini et al. (2002, GEC No. 5), Stark and Eid (1994), Kavazanjian et al. (1997, GEC No. 3)",
+        "Probabilistic analysis: Duncan, Navin and Patterson (1999); drilled shafts: O'Neil and Reese (1999)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Sources cited in Chapter 6."
     }
   ]
 }

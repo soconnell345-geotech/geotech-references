@@ -6,100 +6,78 @@
   "sections": [
     {
       "section_id": "1.1",
-      "title": "Background",
-      "summary": "Introduces micropiles as small-diameter (typically 100 to 300 mm) drilled, grouted, reinforced replacement piles. Traces the technology to Dr. Fernando Lizzi's pali radice (root piles) developed in Italy in the early 1950s for postwar underpinning, through US adoption in the mid-1970s, to widespread transportation use since the early 1990s. Highlights the practical advantages that drive selection: installation in restricted-access and low-headroom conditions, low noise and vibration, and capacity to resist both axial and lateral loads.",
-      "body": "A micropile is a small-diameter (typically 100 to 300 mm), drilled and grouted replacement pile that is typically reinforced. Micropiles are installed by a combination of drilling and grouting, and can be installed in almost any type of ground. The original micropile system was a network of small-diameter (100 mm), drilled and grouted piles developed in Italy in the early 1950s by Dr. Fernando Lizzi to underpin historic buildings damaged during World War II. The Italian system was called 'pali radice' (root piles). Following the introduction of pali radice, research and development led to various adaptations including 'reticulated' root pile networks (reticolo di pali radice) for structural slope stabilization. In the United States, micropiles were first used in the mid-1970s. The use of micropiles in transportation projects has grown significantly since the early 1990s, driven by their ability to be installed in access-restricted and low-headroom conditions, their minimal noise and vibration during installation, and the ability to resist both axial and lateral loads.",
+      "title": "Purpose and Scope of Manual",
+      "summary": "Micropiles have been used since the 1950s, mainly as foundation support against static and seismic loads and less often as in-situ reinforcement of slopes and excavations. The 1993 FHWA state-of-the-practice review (FHWA, 1997) led to the 2000 Implementation Manual; this manual revises the 2001 Implementation Manual, with changes listed by chapter (sonic drilling, corrosion protection per DFI 2003, a design flowchart, FS for grout-ground bond reduced from 2.5 to 2.0, buckling, seismic design, slope design steps, PDA and Statnamic testing, costs).",
+      "body": "(pp. 1-1 to 1-3) The use of micropiles has grown significantly since their conception in the 1950s, and particularly since the mid-1980s. They have been used mainly as foundation support elements resisting static and seismic loads and, to a lesser extent, as in-situ reinforcement stabilizing slopes and excavations, many for transportation structures. In 1993 FHWA sponsored a review of the state of the practice by contractors, consultants, academics and owners; the resulting Drilled and Grouted Micropiles - State-of-the-Practice Review (FHWA, 1997) reviewed research, testing, design methods, construction, site observations and monitored case studies, evaluated limitations and uncertainties, and identified the need for a design and construction manual for highway agency geotechnical and structural engineers. FHWA then sponsored Micropile Design and Construction Guidelines, Implementation Manual (FHWA, 2000), a cooperative effort of FHWA, U.S. micropile specialty contractors and several state DOTs, intended as a practitioner-oriented document on design, construction specifications, inspection and testing, cost data and contracting methods. This manual revises the 2001 Implementation Manual. Major revisions: Chapter 3, updated and added case histories on evaluating micropile feasibility; Chapter 4, sonic drilling; Chapter 5, corrosion protection updated to current FHWA practice and the levels of protection of the DFI Guide to Drafting a Specification for High Capacity Drilled and Grouted Micropiles for Structural Support (DFI, 2003), a design flowchart covering the structural and geotechnical strength and service limit states, guidance on subsurface investigation (depth and spacing of borings), the factor of safety for grout-ground bond reduced from 2.5 to 2.0 to reflect current practice (with the rationale), geotechnical strength limit states (compression, uplift, downdrag), combined axial compression and bending, buckling, lateral loading and the capacity at a threaded connection, battered micropiles, group settlement and group lateral movement, and seismic design using FOREVER (2003) research and the Japanese Public Works Research Institute (2002) manual; Chapter 6, feasibility for slope stabilization with the geotechnical parameters needed and the method's limitations, three case histories, and a step-by-step method covering micropile location, passive resistance in front of the micropiles, axial load transfer, and the iterative analysis above and below the slip surface; Chapter 7, evaluations for a verification and proof testing program, PDA and Statnamic testing for quality assurance; Chapter 8, an inspector responsibilities checklist and an updated installation log; Chapter 10, updated cost estimating (steel, labor, load testing) and typical measurement and payment items.",
       "key_points": [
-        "Micropiles are small-diameter (100-300 mm) drilled and grouted replacement piles",
-        "Originated in Italy in the 1950s as 'pali radice' (root piles) by Dr. Fernando Lizzi",
-        "Originally developed for underpinning historic structures damaged in World War II",
-        "First used in the United States in the mid-1970s",
-        "Significant growth in transportation applications since the early 1990s",
-        "Can be installed in almost any ground type including access-restricted and low-headroom conditions",
-        "Minimal noise and vibration during installation compared to driven piles"
+        "Micropiles used since the 1950s, mainly as foundation support for static and seismic loads, less often as in-situ slope and excavation reinforcement",
+        "FHWA 1993 state-of-the-practice review published as FHWA (1997); Implementation Manual FHWA (2000)",
+        "This manual revises the 2001 Implementation Manual",
+        "Ch 5 revisions: DFI (2003) corrosion protection levels, design flowchart, boring depth and spacing guidance",
+        "Factor of safety for grout-ground bond reduced from 2.5 to 2.0 to reflect current practice",
+        "Ch 5 adds downdrag, combined compression and bending, buckling, lateral loading, threaded joints, group settlement and seismic design (FOREVER 2003; Japanese PWRI 2002)",
+        "Ch 6: slope stabilization feasibility, three case histories, step-by-step iterative design above and below the slip surface",
+        "Ch 7: verification and proof test programs, PDA and Statnamic testing; Ch 8: inspector checklist and installation log; Ch 10: costs, measurement and payment"
       ],
       "equations": [],
-      "figures": [
-        "Figure 1-1: Typical Micropile Details"
-      ],
+      "figures": [],
       "tables": [],
-      "applicability": "General introduction to micropile technology for transportation engineers evaluating deep foundation alternatives."
+      "applicability": "Background to the manual and what it revised; where the design, testing and cost guidance sits."
     },
     {
       "section_id": "1.2",
-      "title": "Micropile Definition",
-      "summary": "Formal definition of a micropile as a small-diameter (less than 300 mm), drilled and grouted non-displacement pile that is reinforced with steel casing, a center reinforcing bar, or both. Load is transferred to the ground principally through grout-to-ground bond along the bonded length. Installation uses rotary drilling that minimizes ground disturbance, with neat cement grout at a water-cement ratio of approximately 0.45 to 0.50. Distinguished from other pile types by both load transfer mechanism and installation method.",
-      "body": "A micropile is defined as a small-diameter (less than 300 mm), drilled and grouted non-displacement pile that is reinforced. The reinforcement may consist of a steel casing, a center reinforcing bar, or a combination of both. Load transfer to the ground is principally through the grout-to-ground bond developed along the bonded length of the micropile. Micropiles can be designed to carry axial loads (compression and tension) and/or lateral loads. They are typically installed using rotary drilling methods that minimize disturbance to the surrounding ground and adjacent structures. The grout used is typically a neat cement grout with a water-to-cement ratio of approximately 0.45 to 0.50. Micropiles are distinguished from other pile types by their method of transferring load to the ground (via grout-to-ground bond rather than tip bearing or friction along a driven surface) and by their drilling and grouting installation method.",
+      "title": "Micropile Definition and Description",
+      "summary": "A micropile is a small-diameter (typically less than 300 mm (12 in.)) drilled and grouted non-displacement pile, typically reinforced: drill, place steel, grout (Figure 1-1). It carries significant axial and moderate lateral loads, with minimal disturbance, in restricted access and all ground types, at any angle below horizontal. High-capacity steel resists most or all of the load; special drilling and grouting give high grout/ground bond; end bearing is generally neglected.",
+      "body": "(pp. 1-4 to 1-5) A micropile is a small-diameter (typically less than 300 mm (12 in.)), drilled and grouted non-displacement pile that is typically reinforced. It is constructed by drilling a borehole, placing steel reinforcement and grouting the hole (Figure 1-1). Micropiles can withstand relatively significant axial loads and moderate lateral loads, and may substitute for conventional driven piles or drilled shafts or act as one component of a composite soil/pile mass, depending on the design concept. They are installed by methods causing minimal disturbance to adjacent structures, soil and the environment, where access is restrictive, in all soil types and ground conditions, and at any angle below the horizontal with the equipment used for ground anchors and grouting. Because installation causes minimal vibration and noise and works in low headroom, micropiles are often used to underpin existing structures, often with specialized drilling equipment inside basements or other limited-headroom facilities. On conventional cast-in-place drilled or non-displacement piles most of the load is resisted by the reinforced concrete, and capacity rises with cross-sectional and surface area; micropile structural capacity instead relies on high-capacity steel elements resisting most or all of the load, occupying as much as one-half of the drillhole cross section. The special drilling and grouting methods allow high grout/ground bond values; the grout transfers load through friction from the reinforcement to the ground in the bond zone, much as in ground anchors. Because of the small diameter, any end-bearing contribution is generally neglected. The grout/ground bond strength depends primarily on the ground type and the grouting method (pressure grouting or gravity feed); the drilling method also matters, though it is less well quantified.",
       "key_points": [
-        "Diameter less than 300 mm; drilled, grouted, and non-displacement",
-        "Reinforced with steel casing, center reinforcing bar, or a combination of both",
-        "Load transfer is primarily through grout-to-ground bond along the bonded length",
-        "Can carry axial loads (compression and tension) and lateral loads",
-        "Installed using rotary drilling methods with minimal disturbance",
-        "Typical grout is neat cement with w/c ratio of 0.45 to 0.50",
-        "Distinguished from other piles by load transfer mechanism and installation method"
+        "Micropile: small-diameter (typically < 300 mm (12 in.)), drilled and grouted non-displacement pile, typically reinforced",
+        "Construction: drill a borehole, place steel reinforcement, grout (Figure 1-1)",
+        "Resists relatively significant axial loads and moderate lateral loads; substitute for driven piles or drilled shafts, or part of a soil/pile composite",
+        "Installed with minimal disturbance, in restricted access and low headroom, in all ground types, at any angle below horizontal",
+        "Structural capacity relies on high-capacity steel, which may occupy up to one-half of the drillhole cross section",
+        "Load transferred by grout/ground bond friction in the bond zone, as in ground anchors; end bearing generally neglected",
+        "Bond strength depends primarily on ground type and grouting method (pressure or gravity); drilling method also influential"
       ],
       "equations": [],
-      "figures": [],
+      "figures": [
+        "Figure 1-1: Micropile Construction Sequence (drill and install temporary casing, drill to depth, remove inner bit and rod, place reinforcement and tremie grout, withdraw casing injecting further grout under pressure as applicable, complete pile with casing possibly left through the compressible stratum) (p. 1-4)"
+      ],
       "tables": [],
-      "applicability": "Fundamental definition and identification of micropile elements for classification in foundation design."
+      "applicability": "Defining a micropile and how it carries load, when comparing it with driven piles or drilled shafts."
     },
     {
       "section_id": "1.3",
-      "title": "Historical Development",
-      "summary": "Historical evolution of micropile technology from 1950s Italian pali radice through reticulated network development in the 1960s-1970s, North American introduction in the mid-1970s, and capacity growth in the 1980s-1990s as drilling and grouting equipment improved. FHWA research starting in the 1990s and the FOREVER (Foundation Reinforcement and Verification) National Project in France provided the data base for modern design. Individual design loads exceeding 3000 kN are now achievable in favorable ground, compared with 100 to 200 kN for early pali radice.",
-      "body": "The development of micropile technology can be traced through several distinct phases. The initial development in the 1950s in Italy focused on underpinning applications using small-diameter root piles (pali radice). Through the 1960s and 1970s, research in Italy and elsewhere expanded the technology to include slope stabilization using reticulated micropile networks. The technology was introduced to North America in the early to mid-1970s, primarily for underpinning and seismic retrofitting applications. In the 1980s and 1990s, advances in drilling and grouting technology led to significant increases in individual micropile capacities. The FHWA initiated research into micropile performance beginning in the 1990s, including the FOREVER (FOundation Reinforcement and VERification) National Project in France, which provided substantial data on micropile group behavior and seismic performance. Modern micropiles can achieve individual design loads exceeding 3000 kN in favorable ground conditions, compared to early pali radice which were typically designed for loads of 100 to 200 kN.",
+      "title": "Historical Background",
+      "summary": "Micropiles were conceived in Italy in the early 1950s for underpinning historic buildings damaged over time and in World War II: Fondedile (technical director Dr. Fernando Lizzi) developed the palo radice (root pile) (Figure 1-2). Load tests exceeded 400 kN (90 kips) against design estimates under 100 kN (23 kips), with no grout/ground bond failures. Reticulated networks followed from 1957 (Figure 1-3). UK 1962, Germany 1965, North America 1973; U.S. growth from the mid-1980s.",
+      "body": "(pp. 1-5 to 1-8) Micropiles were conceived in Italy in the early 1950s in response to the demand for innovative underpinning of historic buildings and monuments damaged with time, especially during World War II; the system had to support structural loads with minimal movement and be installed in access-restrictive environments with minimal disturbance. The Italian specialty contractor Fondedile, whose technical director was Dr. Fernando Lizzi, developed the palo radice, or root pile: a small-diameter, drilled, cast-in-place, lightly reinforced, grouted pile (classic underpinning arrangement, Figure 1-2). Steel was scarce in postwar Europe but labor was inexpensive, abundant and skilled, encouraging these lightly reinforced elements, largely designed and installed by specialty contractors on a design-build basis. Load tests measured capacities in excess of 400 kN (90 kips), although contemporary bored pile methods suggested less than 100 kN (23 kips); full-scale load tests were cheap, so much test information was acquired and published, and no grout/ground bond failures were recorded in these early tests. Root piles spread in Italy through the 1950s; Fondedile introduced them in the United Kingdom in 1962 for underpinning historic structures, and by 1965 they were used in Germany on underground urban transportation projects, when for proprietary reasons 'micropile' replaced 'root pile'. Most early applications were structural underpinning in urban environments. Starting in 1957, reticoli di pali radice (reticulated root piles) were introduced: multiple vertical and inclined micropiles interlocked in a three-dimensional network forming a laterally confined soil/pile composite (Figure 1-3), used for slope stabilization, quay wall reinforcement, protection of buried structures and other soil and structure support. Other proprietary micropiles were developed in Switzerland and Germany and exported by branches or licensees; portions of Asia became a major market. Fondedile introduced micropiles in North America in 1973 with underpinning in the New York and Boston areas, but U.S. use grew rapidly only from the mid-1980s, when published case histories, specialty contractors and the needs of consultants and owners in old urban environments overcame the skepticism of the traditional East Coast piling market (Bruce, 1988).",
       "key_points": [
-        "1950s: Development of pali radice in Italy by Dr. Fernando Lizzi for underpinning",
-        "1960s-1970s: Expansion to slope stabilization using reticulated micropile networks",
-        "Mid-1970s: Introduction to North America for underpinning and seismic retrofit",
-        "1980s-1990s: Advances in drilling and grouting increased individual capacities significantly",
-        "FHWA research and the FOREVER National Project provided substantial performance data",
-        "Modern micropiles can achieve design loads exceeding 3000 kN versus early 100-200 kN",
-        "Technology growth driven by improvements in drilling equipment and grouting techniques"
+        "Conceived in Italy in the early 1950s for underpinning historic buildings and monuments (damage over time and in World War II)",
+        "Fondedile (technical director Dr. Fernando Lizzi) developed the palo radice (root pile): small-diameter, drilled, cast-in-place, lightly reinforced, grouted",
+        "Early load tests exceeded 400 kN (90 kips) against bored pile estimates under 100 kN (23 kips); no grout/ground bond failures recorded",
+        "Introduced in the UK in 1962 and Germany by 1965, when 'micropile' replaced 'root pile'",
+        "Reticulated root piles (reticoli di pali radice) from 1957: 3-D networks of vertical and inclined micropiles forming a confined soil/pile composite",
+        "Introduced in North America in 1973 (New York and Boston); U.S. growth from the mid-1980s (Bruce, 1988)"
       ],
       "equations": [],
-      "figures": [],
+      "figures": [
+        "Figure 1-2: Arrangement of Root Piles (pali radice) for Underpinning (p. 1-6)",
+        "Figure 1-3: Typical Network of Reticulated (reticolo di pali radice) Micropiles (p. 1-7)"
+      ],
       "tables": [],
-      "applicability": "Historical context for understanding the evolution and proven track record of micropile technology in geotechnical engineering."
+      "applicability": "Origin and development of micropiles (root piles and reticulated networks)."
     },
     {
       "section_id": "1.4",
-      "title": "FHWA Classification System Overview",
-      "summary": "Overview of the FHWA two-criterion classification system: (1) philosophy of behavior - CASE 1 (directly loaded as individual elements or small groups, the most common US application) versus CASE 2 (reticulated network reinforcing the soil mass, used for slope stabilization and earth retention), and (2) method of grouting - Type A (gravity only), Type B (pressure during casing withdrawal), Type C (primary plus one pressurized secondary injection), and Type D (multiple injections via tube-a-manchette). The grouting type significantly affects grout-to-ground bond strength and therefore geotechnical capacity.",
-      "body": "A classification system for micropiles has been adopted by FHWA that categorizes micropiles according to two criteria: (1) the philosophy of behavior or design application, and (2) the method of grouting. Under the first criterion, micropiles are classified as either CASE 1 or CASE 2 elements. CASE 1 micropiles are loaded directly and resist applied loads as individual structural elements or as a small group of elements. These are the most common micropile applications in the US and include foundation support for new and existing structures. CASE 2 micropiles are used as a reticulated network of elements that reinforce the soil mass. CASE 2 applications include slope stabilization and earth retention where the micropile group creates a reinforced soil composite. Under the second criterion, micropiles are classified by their method of grouting as Type A (gravity grout only), Type B (pressure grouting through the casing during casing withdrawal), Type C (primary gravity grout followed by one injection of grout under pressure through a grout tube), or Type D (primary gravity grout followed by multiple injections of grout through a tube-a-manchette). The grouting method significantly affects the grout-to-ground bond strength and therefore the geotechnical capacity.",
+      "title": "References",
+      "summary": "References cited in Chapter 1: Bruce (1988), Developments in Geotechnical Construction Processes for Urban Engineering, Civil Engineering Practice, Vol. 3, No. 1, pp. 49-97.",
+      "body": "(p. 1-8) Bruce, D. A. (1988), 'Developments in Geotechnical Construction Processes for Urban Engineering', Civil Engineering Practice, Vol. 3, No. 1, Spring, pp. 49-97.",
       "key_points": [
-        "FHWA classifies micropiles by: (1) philosophy of behavior and (2) method of grouting",
-        "CASE 1: directly loaded elements resisting applied loads individually or in small groups",
-        "CASE 2: reticulated network reinforcing the soil mass for slope stabilization or earth retention",
-        "Type A: gravity grout only placed under gravity head",
-        "Type B: pressure grouting through casing during withdrawal (0.5-1.0 MPa)",
-        "Type C: gravity grout followed by one pressure injection through grout tube (>1.0 MPa)",
-        "Type D: gravity grout followed by multiple injections through tube-a-manchette (2-8 MPa)",
-        "Grouting method directly affects grout-to-ground bond strength and geotechnical capacity"
+        "Bruce, D. A. (1988), Developments in Geotechnical Construction Processes for Urban Engineering, Civil Engineering Practice, Vol. 3, No. 1, pp. 49-97"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Classification framework for specifying and designing micropiles according to FHWA standards."
-    },
-    {
-      "section_id": "1.5",
-      "title": "Report Organization",
-      "summary": "Roadmap of the 10-chapter manual: Ch 1 introduction, Ch 2 FHWA classification system, Ch 3 applications and case histories, Ch 4 construction techniques and materials, Ch 5 design of CASE 1 structure foundations (the primary design chapter), Ch 6 design of CASE 2 slope stabilization, Ch 7 load testing, Ch 8 quality assurance and inspection, Ch 9 contracting approaches, and Ch 10 cost estimation. Appendices provide additional design information and sample problems.",
-      "body": "This reference manual is organized into 10 chapters. Chapter 1 provides an introduction and background. Chapter 2 presents the FHWA micropile classification system in detail. Chapter 3 provides an overview of micropile applications including structural support and in-situ reinforcement, with case histories. Chapter 4 covers construction techniques and materials including drilling, grouting, and reinforcing steel. Chapter 5 presents the design of micropiles for structure foundations (CASE 1), which is the primary design chapter covering structural design, geotechnical capacity, group effects, settlement, connections, corrosion, lateral loading, buckling, and seismic considerations. Chapter 6 addresses design of micropiles for soil slope stabilization (CASE 2). Chapter 7 covers load testing of micropiles. Chapter 8 discusses quality assurance and construction inspection. Chapter 9 addresses contracting approaches. Chapter 10 covers cost estimation. Appendices provide additional design information and sample problems.",
-      "key_points": [
-        "10 chapters covering classification through cost estimation",
-        "Chapter 5 is the primary design chapter for CASE 1 (structure foundations)",
-        "Chapter 6 addresses CASE 2 design (slope stabilization)",
-        "Chapter 7 covers micropile load testing procedures and interpretation",
-        "Chapter 8 addresses quality assurance and construction inspection",
-        "Appendices provide supplementary design information and sample problems"
-      ],
-      "equations": [],
-      "figures": [],
-      "tables": [],
-      "applicability": "Guide to navigating the reference manual based on the specific micropile design or construction need."
+      "applicability": "Source cited in Chapter 1."
     }
   ]
 }

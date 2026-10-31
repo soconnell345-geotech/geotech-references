@@ -7,109 +7,282 @@
     {
       "section_id": "3.1",
       "title": "Introduction",
-      "summary": "Sets up the application overview chapter, organized into structural support (CASE 1) and in-situ reinforcement (CASE 2) categories. Each subsequent section presents the design concept, advantages and limitations, and representative case histories. Notes that the versatility of micropiles - small size, all-ground installation capability, low noise and vibration, and access-restricted/low-headroom suitability - is what drives their selection over conventional deep foundations.",
-      "body": "Micropiles have been used successfully in a wide variety of geotechnical applications worldwide. This chapter provides an overview of the primary applications of micropiles, organized into two broad categories: (1) structural support applications (CASE 1) and (2) in-situ reinforcement applications (CASE 2). For each application category, the chapter describes the design concept, discusses advantages and limitations, and presents representative case histories from US and international practice. The versatility of micropiles stems from their small size, ability to be installed in virtually any ground condition, minimal noise and vibration during installation, and ability to work in access-restricted and low-headroom environments.",
+      "summary": "Micropiles are used for (1) structural support (new foundations, underpinning, seismic retrofitting, support of earth retaining structures) and (2) in-situ reinforcement (slope stabilization and earth retention, ground strengthening, settlement reduction, structural stability) (Figure 3-1). Table 3-1 relates each application to design behavior (CASE 1 or 2) and construction type: structural support is CASE 1, probably 95 percent of world applications.",
+      "body": "(p. 3-1) Micropiles are currently used in two general application areas: (1) structural support and (2) in-situ reinforcement (Figure 3-1). Structural support includes new foundations, underpinning of existing foundations, seismic retrofitting and foundation support for earth retaining structures. In-situ reinforcement is used for slope stabilization and earth retention, ground strengthening, settlement reduction and structural stability. Table 3-1 summarizes the typical design behavior and micropile construction type for each application. The chapter describes the factors influencing the choice of micropiles and example applications for structural support and in-situ reinforcement on transportation and other civil engineering projects.",
       "key_points": [
-        "Applications organized into structural support (CASE 1) and in-situ reinforcement (CASE 2)",
-        "Micropile versatility derives from small size and adaptable installation methods",
-        "Can be installed in virtually any ground condition",
-        "Minimal noise and vibration compared to driven piles",
-        "Suitable for access-restricted and low-headroom environments",
-        "Case histories from both US and international practice are presented"
+        "Two application areas: structural support and in-situ reinforcement (Figure 3-1)",
+        "Structural support: new foundations, underpinning, seismic retrofitting, support of earth retaining structures",
+        "In-situ reinforcement: slope stabilization and earth retention, ground strengthening, settlement reduction, structural stability",
+        "Table 3-1: structural support is CASE 1, Type A (bond in rock or stiff clays) or Types B, C, D in soil, probably 95 percent of world applications",
+        "Table 3-1: in-situ reinforcement is CASE 1 and/or CASE 2 with Types A and B in soil, 0 to 5 percent of use"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 3-1: Classification of Micropile Applications (structural support: foundations for new structures, underpinning of existing foundations, seismic retrofitting, earth retaining structure foundations, with repair or replacement, upgrading of capacity, arresting or prevention of movement and scour protection; in-situ reinforcement: slope stabilization and earth retention, ground strengthening, settlement reduction, structural stability) (p. 3-2)"
+      ],
+      "tables": [
+        "Table 3-1: Relationship Between Micropile Application, Design Behavior and Construction Type (modified after FHWA, 1997): structural support (underpinning of existing foundations, new foundations and seismic retrofitting), CASE 1, Type A (bond zones in rock or stiff clays) and Types B, C and D in soil, probably 95 percent of total world applications; in-situ earth reinforcement, together 0 to 5 percent: slope stabilization and earth retention, CASE 1 and CASE 2, Types A and B in soil; ground strengthening, CASE 2 with minor CASE 1, Types A and B in soil; settlement reduction, CASE 2, Type A in soil; structural stability, CASE 2, Type A in soil (p. 3-3)"
+      ],
+      "applicability": "Overview of micropile application areas and how application relates to design behavior and grouting type."
+    },
+    {
+      "section_id": "3.2",
+      "title": "Feasibility of Micropiles",
+      "summary": "Feasibility of micropiles is treated under 3.2.1 Overview through 3.2.7 Economics of Micropiles; no text is printed under this heading.",
+      "body": "(p. 3-1) No text is printed under this heading; see 3.2.1 Overview, 3.2.2 Physical Considerations, 3.2.3 Subsurface Conditions, 3.2.4 Environmental Conditions, 3.2.5 Existing Structure Adaptation, 3.2.6 Micropile Limitations and 3.2.7 Economics of Micropiles.",
+      "key_points": [
+        "Feasibility: physical, subsurface and environmental conditions, existing structure adaptation, limitations, economics (3.2.1-3.2.7)"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Overview of all micropile applications for engineers evaluating micropiles as a design alternative."
+      "applicability": "Pointer to the feasibility factors for micropiles (3.2.1 to 3.2.7)."
+    },
+    {
+      "section_id": "3.2.1",
+      "title": "Overview",
+      "summary": "Micropiles may be feasible where the project has restricted access or is remote, support must be close to existing structures, ground and drilling are difficult (karst, uncontrolled fills, boulders), pile driving would cause liquefaction, vibration or noise must be minimized, hazardous or contaminated spoil would be generated, or the support must be adapted to an existing structure.",
+      "body": "(pp. 3-1 to 3-3) Micropiles have specific advantages compared with more conventional support systems. In general they may be feasible under the following project-specific constraints: the project has restricted access or is located in a remote area; the support system needs to be in close pile proximity to existing structures; ground and drilling conditions are difficult (e.g., karstic areas, uncontrolled fills, boulders); pile driving would result in soil liquefaction; vibration or noise needs to be minimized; hazardous or contaminated spoil material will be generated during construction; and adaptation of the support system to an existing structure is required. Limitations and cost information are also presented in this section.",
+      "key_points": [
+        "Restricted access or remote site",
+        "Support needed close to existing structures",
+        "Difficult ground and drilling (karst, uncontrolled fills, boulders)",
+        "Pile driving would cause soil liquefaction",
+        "Vibration or noise must be minimized",
+        "Hazardous or contaminated spoil would be generated",
+        "Support system must be adapted to an existing structure"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Project constraints under which micropiles may be feasible compared with conventional support."
+    },
+    {
+      "section_id": "3.2.2",
+      "title": "Physical Considerations",
+      "summary": "Micropile drilling and grouting equipment is relatively small and can work in restrictive areas, low headroom (Figure 3-2), close to existing walls or foundations (with space for the drill head and a safe work zone, or by battering), under overhead power lines, up steep slopes and in remote locations; proper drilling and grouting procedures do not damage adjacent structures or ground.",
+      "body": "(p. 3-3) The drilling and grouting equipment used for micropile installation is relatively small and can be mobilized in restrictive areas that would prohibit conventional pile installation equipment; Figure 3-2 shows micropiles installed in low headroom. Micropiles can be installed in close proximity to existing walls or foundations, provided there is space above for the drill head and a safe work zone or the micropiles are battered to provide this space. Installation is not as affected by overhead power lines or other obstructions as conventional piling, and the equipment can be mobilized up steep slopes and in remote locations. Drilling and grouting for micropiles do not damage adjacent existing structures or affect adjacent ground conditions when proper drilling and grouting procedures are used.",
+      "key_points": [
+        "Small equipment works in restrictive areas and low headroom (Figure 3-2)",
+        "Can be installed close to existing walls or foundations if there is space for the drill head, or by battering",
+        "Less affected by overhead power lines; equipment can reach steep slopes and remote sites",
+        "Proper drilling and grouting procedures do not damage adjacent structures or ground"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 3-2: Low Headroom Micropile Installation (p. 3-4)"
+      ],
+      "tables": [],
+      "applicability": "Access, headroom and proximity advantages of micropile equipment."
+    },
+    {
+      "section_id": "3.2.3",
+      "title": "Subsurface Conditions",
+      "summary": "Micropiles can be installed in difficult, variable or unpredictable ground: cobbles and boulders, fills with buried utilities and debris, irregular lenses of competent and weak materials. Soft clays, running sands and high groundwater that hinder drilled shafts have minimal impact, and micropiles are commonly used in karstic limestone.",
+      "body": "(p. 3-4) Micropiles can be installed in areas of particularly difficult, variable or unpredictable geologic conditions, such as ground with cobbles and boulders, fills with buried utilities and miscellaneous debris, and irregular lenses of competent and weak materials. Soft clays, running sands and high groundwater not conducive to conventional drilled shafts cause minimal impacts to micropile installation. Micropiles are commonly used in karstic limestone formations.",
+      "key_points": [
+        "Suited to cobbles and boulders, fills with buried utilities and debris, irregular lenses of competent and weak materials",
+        "Soft clays, running sands and high groundwater have minimal impact (unlike drilled shafts)",
+        "Commonly used in karstic limestone formations"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Ground conditions in which micropiles can be installed where other systems struggle."
+    },
+    {
+      "section_id": "3.2.4",
+      "title": "Environmental Conditions",
+      "summary": "Micropiles suit hazardous and contaminated soils (little spoil; flush effluent contained). Grout can resist aggressive groundwater: a secant micropile screen with anti-acid mortar protected a Barcelona diaphragm wall from groundwater with pH as low as 1.7 (Bachy, 1992; Figure 3-3). Light equipment suits sensitive, swampy or soft areas; less noise and vibration than driven piles; installation need not open a conduit through a contaminated aquifer.",
+      "body": "(pp. 3-4 to 3-6) Micropiles can be installed in hazardous and contaminated soils: their small diameter produces less spoil than conventional drilled piles, and flush effluent can be controlled at the surface by containerization or lined pits, greatly reducing the potential for surface contamination and handling costs. Grout mixes can be designed to withstand chemically aggressive groundwater and soils, with special admixtures against acidic and corrosive environments. For example, a micropile 'screen' of overlapping (secant) micropiles was built beside the existing concrete diaphragm wall of an underground parking garage in Barcelona, Spain (Bachy, 1992), which was deteriorating from extremely aggressive groundwater (chlorides and sulfates, pH as low as 1.7) from an adjacent metallurgical plant (Figure 3-3); no trace of acid was detected in samples of the wall collected after the screen was built. Micropiles can be installed in environmentally sensitive areas, including fragile natural settings; the equipment is smaller and lighter than pile driving or shaft drilling equipment and can work in swampy or soft surface soils with minimal impact, and portable equipment is frequently used where access is restricted. Micropiles cause less noise and vibration than conventional piling, especially driven piles, whose vibration can be transferred through the soil to adjacent structures, so they can protect sensitive structures and equipment in old urban and industrial areas. Where a contaminated aquifer overlies the bearing strata, micropiles can be installed in a manner preventing contamination of lower aquifers, unlike driven piles that may form a vertical conduit for contaminant migration.",
+      "key_points": [
+        "Suitable in hazardous and contaminated soils: less spoil; flush effluent contained in containers or lined pits",
+        "Grout mixes and admixtures can resist chemically aggressive groundwater and soils",
+        "Barcelona example: secant micropile screen with anti-acid mortar protected a diaphragm wall from groundwater with pH as low as 1.7 (Bachy, 1992)",
+        "Lighter equipment suits environmentally sensitive, swampy or soft-surface areas",
+        "Less noise and vibration than conventional piling, especially driven piles",
+        "Can be installed without creating a conduit from a contaminated aquifer to lower aquifers"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 3-3: Protection of an Existing Diaphragm Wall with a Secant Micropile Screen using Anti-acid Mortar (after Bachy, 1992) (p. 3-5)"
+      ],
+      "tables": [],
+      "applicability": "Micropiles in contaminated, aggressive or sensitive environments and where noise, vibration or aquifer protection matter."
+    },
+    {
+      "section_id": "3.2.5",
+      "title": "Existing Structure Adaptation",
+      "summary": "Micropiles can be added to an existing pile cap, avoiding a larger footing, to resist added compression, tension and moment, where utilities or structures prevent enlarging the cap; the analysis must consider the relative stiffness of the micropiles and existing piles to estimate individual loads.",
+      "body": "(p. 3-6) Micropiles can be added to an existing pile cap, eliminating the need for an increased footing size, and effectively resist the additional compression, tension and moment from increased structural loads. Adjacent utilities and/or structures often prevent enlarging existing pile caps, eliminating more traditional piling systems. Design analyses then need to consider the relative stiffness of the micropiles and the existing piles to estimate individual loads.",
+      "key_points": [
+        "Micropiles can be added to an existing pile cap instead of enlarging the footing",
+        "They resist added compression, tension and moment from increased structural loads",
+        "Analyses must consider relative stiffness of micropiles and existing piles to estimate individual loads"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Adding micropiles to existing pile caps instead of enlarging footings."
+    },
+    {
+      "section_id": "3.2.6",
+      "title": "Micropile Limitations",
+      "summary": "Vertical micropiles may be limited in lateral capacity and cost effectiveness; inclined installation significantly enhances lateral capacity. Their high slenderness ratio may make them unacceptable for conventional seismic retrofitting where liquefaction may occur (buckling from loss of lateral support). Slope stabilization use is increasing, but performance data should be collected while design procedures evolve.",
+      "body": "(p. 3-6) Vertical micropiles may be limited in lateral capacity and cost effectiveness; the ability to install them on an incline, however, significantly enhances their lateral capacity. Because of their high slenderness ratio (length/diameter), micropiles may not be acceptable for conventional seismic retrofitting in areas where liquefaction may occur, because of concerns of buckling from loss of lateral support. The use of micropiles for slope stabilization continues to increase, but performance data should be collected on such projects as experience and detailed design procedures continue to evolve.",
+      "key_points": [
+        "Vertical micropiles may be limited in lateral capacity and cost effectiveness; inclined micropiles significantly enhance lateral capacity",
+        "High slenderness ratio: may be unacceptable for seismic retrofit where liquefaction may occur (buckling from loss of lateral support)",
+        "Collect performance data on slope stabilization projects while design procedures evolve"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Lateral capacity, buckling and slope stabilization limitations of micropiles."
+    },
+    {
+      "section_id": "3.2.7",
+      "title": "Economics of Micropiles",
+      "summary": "The lineal cost of micropiles usually exceeds that of conventional piling, especially driven piles (costs in Chapter 10). Micropiles are unlikely to compete on an open site with soft, clean, uniform soils and unrestricted access, but can be most cost-effective for delicate underpinning of a bridge pier in a busy old area. Compare total project cost, e.g., $/kN of axial capacity, including right-of-way, utilities, excavation and shoring, footings, hazardous materials, dewatering, erosion control, access, ground improvement and disruption.",
+      "body": "(pp. 3-6 to 3-7) The lineal cost of micropiles usually exceeds that of conventional piling systems, especially driven piles; costs are discussed in Chapter 10. Cost effectiveness depends on many factors and should be assessed from the physical, environmental and subsurface factors above: for an open site with soft, clean, uniform soils and unrestricted access micropiles will likely not be competitive, but for the delicate underpinning of an existing bridge pier in a heavily trafficked old industrial or residential area they can be the most cost-effective solution. The true final cost of a micropile solution should be defined from all related costs for the entire project, not just the unit cost of the piling; as with other piles it helps to compare micropile costs in $/kN of axial capacity when evaluating deep foundation alternatives. Related costs include right-of-way acquisition and agreements, utility realignment, excavation, shoring and backfill, footing construction, hazardous material handling, dewatering, erosion control, access restrictions, ground improvement, and owner and neighbor disruption.",
+      "key_points": [
+        "Lineal cost usually exceeds conventional piling, especially driven piles (costs in Chapter 10)",
+        "Unlikely to compete on an open site with soft, clean, uniform soils and unrestricted access",
+        "Can be most cost-effective for delicate underpinning of a bridge pier in a busy old industrial or residential area",
+        "Compare total project cost, e.g., $/kN of axial capacity, not just the unit piling cost",
+        "Include right-of-way, utilities, excavation/shoring/backfill, footings, hazardous material, dewatering, erosion control, access, ground improvement, disruption"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Cost comparison of micropiles with conventional piles and the project costs to include."
+    },
+    {
+      "section_id": "3.3",
+      "title": "Structural Support",
+      "summary": "Structural support applications are treated under 3.3.1 to 3.3.4; no text is printed under this heading.",
+      "body": "(p. 3-7) No text is printed under this heading; see 3.3.1 Overview, 3.3.2 New Foundations, 3.3.3 Underpinning of Existing Foundations and 3.3.4 Seismic Retrofit.",
+      "key_points": [
+        "Structural support: new foundations (3.3.2), underpinning (3.3.3), seismic retrofit (3.3.4)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Pointer to the structural support applications and case histories (3.3.1 to 3.3.4)."
+    },
+    {
+      "section_id": "3.3.1",
+      "title": "Overview",
+      "summary": "Micropile structural support applications include foundations for new structures, underpinning of existing structures, scour protection and seismic retrofitting, many on transportation projects; case histories follow.",
+      "body": "(p. 3-7) Micropile applications for structural support include foundations for new structures, underpinning of existing structures, scour protection and seismic retrofitting of existing structures. Many have been used for transportation projects, and case histories of these applications are given in this section.",
+      "key_points": [
+        "Structural support: new foundations, underpinning, scour protection, seismic retrofit",
+        "Case histories from transportation projects follow"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Scope of the structural support case histories."
     },
     {
       "section_id": "3.3.2",
-      "title": "Structural Support of New Foundations",
-      "summary": "Use of micropiles for structural support of new foundations on sites where conventional deep foundations are impractical or uneconomical. Favorable conditions include difficult ground (karstic limestone, boulders, highly variable profiles), vibration-sensitive surroundings, restricted access or low headroom (e.g., bridge widening within existing structures), and high-capacity foundations with minimal ground disturbance. Supports bridges, buildings, retaining walls, sound walls, and transmission towers; individual design loads typically range from 300 to 3000 kN depending on diameter, reinforcement, grouting Type, and ground.",
-      "body": "Micropiles are used for structural support of new foundations where conventional deep foundations are impractical or uneconomical. Specific situations favoring micropiles for new construction include: (1) sites with difficult ground conditions such as karstic limestone, boulders, or highly variable subsurface profiles; (2) sites requiring minimal construction vibration to protect adjacent structures or vibration-sensitive equipment; (3) sites with limited access or restricted headroom such as bridge widening within existing structures; and (4) sites where high-capacity foundations are needed with minimal ground disturbance. Micropiles can support a wide range of structures including bridges, buildings, retaining walls, sound walls, and transmission towers. Design loads for individual micropiles in new construction applications typically range from 300 to 3000 kN, depending on the micropile diameter, reinforcement, grouting type, and ground conditions.",
+      "title": "New Foundations",
+      "summary": "Micropiles suit new bridges needing deep foundations or in difficult ground (cobbles, boulders). I-78 over the Delaware River: Pier E-6 on karstic bedrock, micropiles chosen over drilled shafts for cost and speed after design-phase load tests (Bruce, 1988b). Mahoning Creek, PA: micropiles drilled through stone footings into sandstone, cheapest of three alternatives (Figure 3-4). Brooklyn-Queens Expressway: the only option under low headroom and vibration limits, casing left full length, traffic maintained. Typical uses, Figure 3-5.",
+      "body": "(pp. 3-7 to 3-9) Micropiles are applicable in new bridge construction where deep foundation alternatives are required or in difficult ground (cobble/boulder obstructions) where conventional piles or drilled shafts are very difficult and/or expensive. For the I-78 dual highway bridge over the Delaware River between Pennsylvania and New Jersey (Bruce, 1988b), all original piers were on driven piles or spread footings on rock except Pier E-6, where bedrock was deeper than anticipated and karstic; micropiles and drilled shafts were proposed, and micropiles were chosen for lower cost and faster installation in deep karst, after load testing during design (micropiles being fairly new in 1988) showed them feasible. Replacement of a two-span bridge over Mahoning Creek, Armstrong County, Pennsylvania (Pearlman and Wolosick, 1992) needed support for new abutments (Figure 3-4); the original stone abutment foundations, built in cofferdams, sat on erodible soils over competent sandstone; of anchored caisson walls, ground anchors and micropiles, micropiles were least expensive and could be drilled through the existing stone footings into the sandstone. Micropiles allow new bridge foundations under overhead restrictions while maintaining traffic: in the Brooklyn-Queens Expressway deck replacement, Brooklyn, New York (Bruce and Gemme, 1992), micropiles were the only alternative for the new center lane viaduct and ramps because of low headroom and stringent vibration limits; casing was left full length because of the low headroom, traffic flowed during construction, and variable fluvioglacial deposits did not slow installation. Other structural support uses include buildings, earth retaining structures and soundwalls; Figure 3-5 shows typical arrangements for transportation structures.",
       "key_points": [
-        "Used where conventional deep foundations are impractical or uneconomical",
-        "Ideal for karstic limestone, boulder-prone sites, and highly variable subsurface profiles",
-        "Minimal vibration protects adjacent structures and sensitive equipment",
-        "Suitable for limited access and restricted headroom conditions",
-        "Support bridges, buildings, retaining walls, sound walls, and transmission towers",
-        "Typical design loads range from 300 to 3000 kN per micropile",
-        "High-capacity foundations with minimal ground disturbance"
+        "Used for new bridges needing deep foundations or in difficult ground (cobble/boulder obstructions)",
+        "I-78 Delaware River, Pier E-6: karstic bedrock; micropiles chosen over drilled shafts for cost and speed after design-phase load tests (Bruce, 1988b)",
+        "Mahoning Creek, PA: micropiles through existing stone footings into sandstone; least expensive alternative (Pearlman and Wolosick, 1992)",
+        "Brooklyn-Queens Expressway: only alternative under low headroom and vibration limits; casing left full length; traffic maintained (Bruce and Gemme, 1992)",
+        "Other uses: buildings, earth retaining structures, soundwalls (Figure 3-5)"
       ],
       "equations": [],
       "figures": [
-        "Figure 3-1: Micropiles for New Bridge Foundation Support",
-        "Figure 3-2: Micropile Foundation for Building Construction"
+        "Figure 3-4: Micropiles Used Under New Abutments for Bridge Over Mahoning Creek, Armstrong County, PA (after Pearlman and Wolosick, 1992) (p. 3-8)",
+        "Figure 3-5: Micropiles for Foundation Support of Transportation Applications (a) bridge foundation support, (b) support for soft ground tunneling beneath existing structures, (c) support for cast-in-place reinforced concrete retaining walls, (d) support for highway soundwalls (p. 3-10)"
       ],
       "tables": [],
-      "applicability": "New construction projects with difficult ground conditions, access restrictions, or vibration sensitivity."
+      "applicability": "Micropiles for new bridge foundations in difficult ground or under overhead restrictions, with case histories."
     },
     {
       "section_id": "3.3.3",
-      "title": "Underpinning of Existing Structures",
-      "summary": "Underpinning of existing structures was the original micropile application and remains one of the most common. Used for settlement mitigation, increased loading from change of use or modifications, foundation deterioration, and protection from adjacent excavation, tunneling, or dewatering. Advantages over pit underpinning or jack-and-bracket systems include the ability to drill within existing structures with minimal disruption to operations. Connections are typically made by coring through the existing footing or pile cap and grouting the micropile into the cored hole.",
-      "body": "Underpinning is one of the most common applications of micropiles and was the original application for which micropile technology was developed. Micropile underpinning involves the installation of micropiles through or adjacent to existing foundations to provide additional support or to transfer loads to deeper, more competent strata. Common reasons for underpinning include: (1) settlement distress due to consolidation, poor original design, or adjacent construction activities; (2) increased loading requirements due to change in use or structural modifications; (3) deterioration or damage to existing foundations; and (4) protection against future settlement from tunneling, adjacent excavation, or dewatering. Micropile underpinning offers significant advantages over conventional underpinning methods such as pit underpinning or jack-and-bracket systems. The small size of drilling equipment allows work within existing structures, and installation causes minimal disturbance to ongoing operations. Connections between micropiles and existing foundations are typically made by drilling through the existing footing or pile cap and grouting the micropile into the drilled hole.",
+      "title": "Underpinning of Existing Foundations",
+      "summary": "Micropiles were developed for underpinning: arresting movement, upgrading capacity, repairing foundations, scour protection, raising settled foundations, transferring load deeper. They can be installed through and bonded within existing structures without new caps. Cases: West Emerson Street Viaduct, Seattle (Figure 3-6); Pocomoke River Bridge, scoured timber piles, preloaded micropiles (Bruce et al., 1990; Figure 3-7); Exton Square Mall, karstic dolomite, column loads up to 4,450 kN (1,000 kips) (Cadden et al., 2001).",
+      "body": "(pp. 3-9 to 3-12) Micropiles were originally developed for underpinning existing structures, which may be done to arrest and prevent structural movement, upgrade load-bearing capacity, repair or replace deteriorating or inadequate foundations, provide scour protection for erosion-sensitive foundations, raise previously settled foundations, and transfer loads to deeper strata. Micropiles can be installed through and bonded within existing structures, connecting directly to competent underlying strata without new pile caps while reinforcing the structure internally, and construction can proceed without reducing the existing foundation capacity. The West Emerson Street Viaduct in Seattle, Washington (Figure 3-6) needed added support, for tension and compression, at existing bents with tight access and low headroom; micropiles were chosen over low headroom caissons on five bents for their considerably lower cost. Structural movements can come from compressible ground beneath the foundation, dewatering, groundwater fluctuations, foundation deterioration, and adjacent deep excavation and tunneling; micropiles installed to deeper, more competent strata mitigate them. Increased capacity may be needed for added vertical, lateral or vibratory loads from expansion, larger loads or vibrating machinery. The 75-year-old Pocomoke River Bridge in Maryland was rehabilitated when river scour compromised the original wooden piles of the piers (Bruce et al., 1990); the new system, built mid-river, had to be preloaded before connection to prevent further settlement, and micropiles were selected over caissons and installed through the existing foundation (Figure 3-7). Expansion of the Exton Square Mall, Chester County, Pennsylvania (Cadden et al., 2001), on dolomitic limestone classed by the Pennsylvania Department of Environmental Resources as hazardous rock (solutioning, sinkholes), needed deep foundations for column loads up to 4,450 kN (1,000 kips); micropiles were chosen over drilled shafts and driven piles for tight access, low headroom, logistics (work while stores were open, interior work at night), irregular rock mass quality and high working loads, and driven piles would likely have been damaged.",
       "key_points": [
-        "Original and most common micropile application since the 1950s",
-        "Micropiles installed through or adjacent to existing foundations for additional support",
-        "Reasons: settlement distress, increased loading, deterioration, or protection against future settlement",
-        "Advantages over conventional underpinning: small equipment, minimal disruption",
-        "Work can proceed within existing structures during ongoing operations",
-        "Connections made by drilling through existing footings and grouting micropile into place",
-        "Suitable for protecting foundations from tunneling, excavation, or dewatering effects"
+        "Purposes: arrest movement, upgrade capacity, repair foundations, scour protection, raise settled foundations, transfer load deeper",
+        "Installed through and bonded within existing structures, without new pile caps, without reducing existing capacity",
+        "West Emerson Street Viaduct, Seattle: tension and compression support at five bents; cheaper than low headroom caissons (Figure 3-6)",
+        "Pocomoke River Bridge, MD: scour-damaged timber piles; micropiles preloaded before connection, installed through the existing foundation (Bruce et al., 1990)",
+        "Exton Square Mall, PA: karstic dolomitic limestone, column loads up to 4,450 kN (1,000 kips); driven piles would likely be damaged (Cadden et al., 2001)"
       ],
       "equations": [],
       "figures": [
-        "Figure 3-3: Micropile Underpinning of Existing Foundation",
-        "Figure 3-4: Micropile Underpinning Schematic"
+        "Figure 3-6: Underpinning of West Emerson Street Viaduct, Seattle, Washington (p. 3-11)",
+        "Figure 3-7: Underpinning Arrangement for Pocomoke River Bridge, Maryland (after Bruce et al., 1990; caption prints 'Underpining') (p. 3-12)"
       ],
       "tables": [],
-      "applicability": "Rehabilitation and strengthening of existing foundations experiencing settlement, increased loads, or deterioration."
+      "applicability": "Purposes of underpinning with micropiles and case histories."
     },
     {
       "section_id": "3.3.4",
-      "title": "Seismic Retrofit Applications",
-      "summary": "Seismic retrofit applications where existing foundations have insufficient capacity for design earthquake forces. Provides additional axial capacity for overturning, lateral resistance via battered or grouped vertical micropiles, uplift capacity for seismic tension, and reduced failure risk in liquefiable soils. Particularly suited because installation through and around existing structural elements is minimally disruptive. Used extensively for highway bridge retrofit in California, the Pacific Northwest, and the Central US (New Madrid Seismic Zone). FOREVER and Trinh et al. (2004) confirmed that battered groups can achieve fully ductile response with adequate pile cap reinforcement.",
-      "body": "Micropiles have been used extensively for seismic retrofit of existing foundations that have insufficient capacity to resist design earthquake forces. Seismic retrofit applications include: (1) providing additional axial capacity to resist increased vertical loads from overturning moments; (2) providing additional lateral resistance through battered micropiles or groups of vertical micropiles; (3) providing additional uplift capacity to resist tensile forces from seismic overturning; and (4) reducing the risk of foundation failure in liquefiable soils. Micropiles are particularly well-suited for seismic retrofit because they can be installed through and around existing structural elements with minimal disruption. In the United States, micropiles have been used for seismic retrofit of highway bridges in California, the Pacific Northwest, and the Central US (New Madrid Seismic Zone). Experience from the FOREVER project and the Trinh et al. (2004) study on inclined micropile foundations demonstrated that battered micropile groups can achieve fully ductile response under combined axial and lateral seismic loading when adequate pile cap reinforcement is provided.",
+      "title": "Seismic Retrofit",
+      "summary": "Micropiles are increasingly used for seismic retrofit, especially in California; their near-equal tension and compression capacities optimize added support (Bruce and Chu, 1995). They suit retrofits with limits on footing enlargement, vibration and noise, low headroom, difficult access, high tension and compression demand, difficult drilling or driving, or hazardous soils. Cases: I-110 North Connector, Los Angeles (Pearlman et al., 1993; Figure 3-8); Route 57 near Cairo, Illinois, 240 micropiles under the deck (New Madrid zone).",
+      "body": "(pp. 3-12 to 3-14) Micropiles are increasingly used for seismic retrofitting of existing highway structures, especially in California; they exhibit near-equal tension and compression capacities, optimizing the added foundation support elements (Bruce and Chu, 1995). They may be economically feasible for bridge foundation retrofits with one or more of: restrictions on footing enlargement; vibration and noise restrictions; low headroom; difficult access; high axial demands in both tension and compression; difficult drilling or driving conditions; and hazardous soil sites. In Caltrans' earthquake retrofit at I-110 in Los Angeles (Pearlman et al., 1993) micropiles were used at the north connector over-crossing (Figure 3-8); drilled shafts were first chosen, but buried concrete obstructions, water-bearing flowing sand layers, low overhead and limited right-of-way prohibited them, and micropiles, designed for tension and compression and connected to the existing structure, were chosen for lower cost and access. Micropiles upgraded existing foundations of a highway bridge on Route 57 near Cairo, Illinois, where seismicity is controlled by the New Madrid Seismic Source Zone, for lateral and vertical design earthquake forces; about 7.5 m (25 ft) of silty clay overlies sands, the existing foundations are short vertical and batter timber piles in the sands, and 240 micropiles were installed under the deck in low headroom, ten just outside each foundation, with reinforcing steel doweled into the existing footing and a new cap poured. Micropiles have also been used for earthquake retrofit of major bridges in the San Francisco Bay area and New York City.",
       "key_points": [
-        "Used to increase foundation capacity to resist design earthquake forces",
-        "Provides additional axial, lateral, and uplift capacity for seismic loads",
-        "Can reduce risk of foundation failure in liquefiable soils",
-        "Installed through and around existing structural elements with minimal disruption",
-        "Used in California, Pacific Northwest, and Central US seismic zones",
-        "FOREVER project demonstrated micropile performance under seismic loading",
-        "Battered micropile groups achieve ductile response with adequate cap reinforcement (Trinh et al., 2004)"
+        "Increasingly used for seismic retrofit, especially in California; near-equal tension and compression capacities (Bruce and Chu, 1995)",
+        "Feasible where footing enlargement is restricted, vibration/noise limited, low headroom, difficult access, high tension and compression demand, difficult drilling, hazardous soils",
+        "I-110 North Connector, Los Angeles: drilled shafts prevented by obstructions, flowing sands, low overhead, right-of-way; micropiles in tension and compression (Pearlman et al., 1993)",
+        "Route 57 near Cairo, IL (New Madrid zone): 240 micropiles under the deck, ten around each foundation, doweled into a new cap",
+        "Also used for retrofit of major bridges in the San Francisco Bay area and New York City"
       ],
       "equations": [],
       "figures": [
-        "Figure 3-5: Seismic Retrofit with Micropiles",
-        "Figure 3-6: Micropile Seismic Retrofit of Bridge Foundation"
+        "Figure 3-8: Seismic Retrofit of I-110, North Connector, Los Angeles, California (p. 3-13)"
       ],
       "tables": [],
-      "applicability": "Seismic retrofit projects requiring additional foundation capacity with minimal disruption to existing structures."
+      "applicability": "Micropiles for seismic retrofit of bridge foundations, with case histories."
     },
     {
       "section_id": "3.4",
-      "title": "Slope Stabilization and Earth Retention",
-      "summary": "Slope stabilization and earth retention as CASE 2 in-situ reinforcement applications. Approach 1 (more common in US practice) installs battered micropiles through the slope below the potential slip surface, connected at the surface by a concrete cap beam, with spacing chosen to deliver the stabilizing force per linear meter required for the target factor of safety. Approach 2 (primarily European) installs many closely spaced micropiles to form a reinforced soil mass that behaves like a gravity retaining wall, with sliding resistance along the base providing the restraining force. Earth retention and soil-nail-like applications are also discussed.",
-      "body": "Micropiles can be used for in-situ reinforcement of soil slopes (CASE 2 applications) using two general approaches. In Approach 1, battered micropiles are installed through the unstable slope to a depth below the potential slip surface and are connected at the ground surface by a concrete cap beam. The individual micropiles provide restoring forces through axial, shear, and bending resistance. The spacing of the micropiles along the slope is determined based on the stabilizing force required per lineal meter to achieve a target factor of safety. In Approach 2, a large number of micropiles are installed close together to create a coherent reinforced soil mass that behaves like a gravity retaining wall. The required restraining force is developed by sliding resistance along the base of the micropile group. Approach 1 is more commonly used in US practice, while Approach 2 has been applied primarily in European projects. Earth retention applications use micropiles in combination with structural elements to form retaining systems. Micropiles can also be used as soil nails in certain applications, although the design methodology differs from conventional soil nailing.",
+      "title": "In-Situ Reinforcement",
+      "summary": "Micropiles stabilize slopes in two ways: reticulated networks forming a reinforced-soil gravity wall (CASE 2; Lizzi, 1982), or groups of inclined micropiles tying the moving zone to the stable zone and resisting shear on the failure surface (Pearlman and Wolosick, 1992; Palmerton, 1984; Figure 3-9). In rocky, stiff or dense ground individual shear capacity governs (CASE 1); in loose ground the composite acts as a gravity wall (CASE 2). Cases: SR 4023, PA (about $1 million saved); SH 82 Aspen shoring; Portland Wall 600; Forest Highway 7.",
+      "body": "(pp. 3-14 to 3-19) Micropiles are used in two different ways to stabilize slopes. Lizzi (1982) suggests reticulated network systems (CASE 2), creating a stable, reinforced-soil 'gravity-retaining wall' in which the reinforced soil mass supplies the essential resisting force and the micropiles supply additional resistance to the tensile and shear forces acting on the 'wall'. Alternately, Pearlman and Wolosick (1992) and Palmerton (1984) suggest groups of individual inclined micropiles connecting the moving zone (above the failure surface) to the stable zone (below it), reinforcing against the shearing forces along the failure surface; typical inclined group configurations for slope stabilization and earth retention are shown in Figure 3-9. For rocky, stiff or dense materials the shear resistance of the micropiles across the failure surface (individual capacity) is critical (CASE 1); for loose materials the micropiles and soil are mutually reinforcing, creating a gravity wall, and individual capacities are less significant (CASE 2). State Road 4023, Armstrong County, Pennsylvania (Bruce, 1988a): a 75-m (250-ft) section of road and upslope railroad tracks was damaged by slope movement toward a river; rock anchors and tangent drilled shafts into rock were proposed, but alternative bidding allowed inclined micropile groups, accepted for savings of about $1 million against the lowest anchored drilled shaft bid; the wall had four rows of micropiles across the failure plane into competent rock (Figure 3-10). State Highway 82 near Aspen, Colorado (Macklin et al., 2004): micropiles gave temporary excavation support in loose to very dense silty to gravelly sand with cobbles and boulders (debris flow, sheet wash, colluvium) over dense alluvial sandy gravel; chosen over soil nails and tiebacks to improve schedule and phasing, the shoring was a hybrid of soldier beam and lagging and soil nailing (Figure 3-11) and let the contractor transition access road grades for each phase of bridge construction. Portland Westside Light-Rail, Oregon (Ueblacker, 1996): Wall 600, about 183 m (600 ft) long with cuts of 4 to 9.5 m (13 to 30 ft), replaced a counterfort wall on driven piles as a contractor-proposed value engineering alternate that fit the right-of-way, with vertical and inclined micropiles (Figure 3-12), temporary shotcrete and a permanent architectural cast-in-place facing. Forest Highway 7, Mendocino National Forest, California (Palmerton, 1984), an early reticulated slope stabilization and one of two reticulated micropile structures in the U.S. at the time, chosen as a demonstration although cantilever or anchored walls could have worked: a 94-m (305-ft) section of road across a rain-triggered landslide (Figures 3-13, 3-14). Feasibility is discussed further in Chapter 5 (structural support) and Chapter 6 (slope stabilization).",
       "key_points": [
-        "Two approaches: Approach 1 (battered piles with cap beam) and Approach 2 (coherent mass)",
-        "Approach 1: micropiles provide restoring forces through axial, shear, and bending resistance",
-        "Approach 2: many closely spaced micropiles create a gravity retaining wall effect",
-        "Approach 1 is more common in US practice",
-        "Spacing determined by required stabilizing force per lineal meter for target FOS",
-        "Earth retention applications combine micropiles with structural elements",
-        "Design methodology differs from conventional soil nailing"
+        "Two concepts: reticulated network forming a reinforced-soil gravity wall (CASE 2; Lizzi, 1982), or inclined micropile groups tying moving to stable zone (Pearlman and Wolosick, 1992; Palmerton, 1984)",
+        "Rocky, stiff or dense ground: individual micropile shear capacity across the failure surface is critical (CASE 1)",
+        "Loose ground: micropiles and soil mutually reinforce as a gravity wall; individual capacity less significant (CASE 2)",
+        "SR 4023, PA: four rows of inclined micropiles into rock; about $1 million saved against an anchored drilled shaft wall (Bruce, 1988a)",
+        "SH 82 near Aspen, CO: temporary micropile shoring, a hybrid of soldier beam and lagging and soil nailing (Macklin et al., 2004)",
+        "Portland Wall 600: about 183 m long, 4-9.5 m cuts; value engineering alternate within the right-of-way (Ueblacker, 1996)",
+        "Forest Highway 7, CA: 94-m reticulated micropile slope stabilization, a demonstration project (Palmerton, 1984)"
       ],
       "equations": [],
       "figures": [
-        "Figure 3-7: Micropile Slope Stabilization - Approach 1",
-        "Figure 3-8: Micropile Slope Stabilization - Approach 2",
-        "Figure 3-9: Reticulated Micropile Network for Earth Retention"
+        "Figure 3-9: Typical Configurations for Inclined Micropile Walls ((a) roadway slope, (b) slope above highway, (c) pile sections: steel reinforcing bar 28 to 63 mm typical, or steel pipe 100 to 175 mm O.D. typical, in 125 to 230 mm grout) (p. 3-15)",
+        "Figure 3-10: State Road 4023 Micropile Slope Stabilization, Armstrong County, Pennsylvania (after Bruce, 1988a) (p. 3-16)",
+        "Figure 3-11: Cross Section Showing Steep Canyon Slope and Temporary Micropile Shoring (after Macklin et al., 2004) (p. 3-17)",
+        "Figure 3-12: Wall 600 Permanent Earth Retention, Portland, Oregon (after Ueblacker, 1996) (p. 3-18)",
+        "Figure 3-13: Photo of Slope Stabilization at FH-7 Project in Mendocino National Forest, California (p. 3-18)",
+        "Figure 3-14: Schematic of Slope Stabilization at FH-7 Project in Mendocino National Forest, California (127-mm diameter reinforced piles, batters from vertical to 10:3.4, across an assumed failure plane) (p. 3-19)"
       ],
       "tables": [],
-      "applicability": "Slope stabilization and earth retention projects where micropile in-situ reinforcement (CASE 2) is being evaluated."
+      "applicability": "Micropiles for slope stabilization and earth retention: reticulated (CASE 2) and inclined group (CASE 1) concepts, with case histories."
+    },
+    {
+      "section_id": "3.5",
+      "title": "References",
+      "summary": "References cited in Chapter 3: Bachy (1992); Bruce (1988a, 1988b); Bruce, Pearlman and Clark (1990); Bruce and Gemme (1992); Bruce and Chu (1995); Cadden, Bruce and Ciampitti (2001); FHWA (1997); Lizzi (1982); Macklin et al. (2004); Palmerton (1984); Pearlman and Wolosick (1992); Pearlman, Campbell and Withiam (1992); Pearlman, Wolosick and Gronek (1993); Ueblacker (1996).",
+      "body": "(pp. 3-20 to 3-21) Bachy (1992), 'Interception of Pollution by Impervious Barrier', Sancho de Avila Car Park, Barcelona, Spain, promotional literature, Paris. Bruce, D. A. (1988a), 'Developments in Geotechnical Construction Processes for Urban Engineering', Civil Engineering Practice, Vol. 3, No. 1, pp. 49-97. Bruce, D. A. (1988b), 'Aspects of Minipiling Practice in the United States', Ground Engineering, Vol. 21, No. 8, pp. 20-33. Bruce, D. A., Pearlman, S. L. and Clark, J. H. (1990), 'Foundation Rehabilitation of the Pocomoke River Bridge, Maryland, Using High Capacity Preloaded Pinpiles', 7th Annual International Bridge Conference, Pittsburgh, Paper IBC-90-42. Bruce, D. A. and Gemme, R. (1992), 'Current Practice in Structural Underpinning Using Pinpiles', New York Met Section, ASCE Seminar. Bruce, D. A. and Chu, E. K. (1995), 'Micropiles for Seismic Retrofit', National Seismic Conference on Bridges and Highways, San Diego. Cadden, A. W., Bruce, D. A. and Ciampitti, L. M. (2001), 'Micropiles in Karst: A Case History of Difficulties and Success', ASCE GSP No. 113, pp. 204-215. FHWA (1997), Drilled and Grouted Micropiles, State-of-Practice Review, FHWA-RD-96-016/019, four volumes. Lizzi, F. (1982), 'The Pali Radice (Root Piles)', Symposium on Soil and Rock Improvement Techniques, Bangkok, Paper D1. Macklin, P. R., Berger, D., Zietlow, W., Herring, W. and Cullen, J. (2004), 'Case History: Micropile Use for Temporary Excavation Support', ASCE GSP No. 124, pp. 653-661. Palmerton, J. B. (1984), 'Stabilization of Moving Land Masses By Cast-In-Place Piles', USACOE Waterways Experiment Station, Final Report GL-84-4. Pearlman, S. L. and Wolosick, J. R. (1992), 'Pin Piles for Bridge Foundations', 9th Annual International Bridge Conference, Pittsburgh. Pearlman, S. L., Campbell, B. D. and Withiam, J. L. (1992), 'Slope Stabilization Using In-Situ Earth Reinforcements', ASCE Specialty Conference on Stability and Performance of Slopes and Embankments II, Berkeley. Pearlman, S. L., Wolosick, J. R. and Gronek, P. B. (1993), 'Pin Piles for Seismic Rehabilitation of Bridges', 9th International Bridge Conference, Pittsburgh. Ueblacker, G. (1996), 'Portland Westside Lightrail Corridor Project Micropile Retaining Wall', Foundation Drilling, November, pp. 8-12.",
+      "key_points": [
+        "Case history sources: Bruce (1988a, b), Bruce et al. (1990), Bruce and Gemme (1992), Bruce and Chu (1995), Cadden et al. (2001)",
+        "Slope stabilization sources: Lizzi (1982), Palmerton (1984), Pearlman and Wolosick (1992), Pearlman, Campbell and Withiam (1992), Macklin et al. (2004), Ueblacker (1996)",
+        "FHWA (1997) state-of-practice review, FHWA-RD-96-016/019; Bachy (1992); Pearlman, Wolosick and Gronek (1993)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Sources cited in Chapter 3."
     }
   ]
 }

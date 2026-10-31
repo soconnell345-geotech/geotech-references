@@ -7,168 +7,498 @@
     {
       "section_id": "7.1",
       "title": "Introduction",
-      "summary": "Introduces two load testing types: (1) verification load testing on pre-production micropiles to confirm bond zone strength and installation method adequacy before production begins; (2) proof load testing on selected production piles as ongoing QA. Verification tests load to 2.0-2.5x design load; proof tests to 160% design load. Both are specified in construction specifications. Testing is first order of work under the construction contract.",
-      "body": "On micropile foundation support projects and slope stabilization projects, verification load testing is performed on pre-production micropiles. The purpose of pre-production testing is to verify design assumptions concerning bond zone strength and the adequacy of the contractor's installation methods. This testing is usually performed as the first order of work under the construction contract. Production micropiles are approved only after design assumptions and installation method adequacy have been verified. On large projects, additional load testing may be performed during the design stage under a separate contract. The ability of the micropile to safely carry the design load in service is obtained through proof load testing on selected production micropiles, providing a quality assurance means to confirm installation procedures. Load testing criteria included in construction specifications typically require loading to a maximum test load including the factor of safety on the design grout-to-ground bond (verification test) and/or that which results in failure (ultimate test). If test results indicate faulty construction practice or insufficient grout-to-ground bond capacities, the contractor may be required to modify installation methods or redesign may be necessary.",
+      "summary": "Verification load tests on pre-production micropiles verify bond zone strength assumptions and the contractor's installation methods, usually as the first order of work; production micropiles are approved only after that. Proof tests on selected production micropiles confirm installation procedures (quality assurance). Tests follow conventional static procedures for driven piles and drilled shafts, loading incrementally (compression, tension or lateral, possibly cycled) to a maximum test load, displacement limit or creep threshold.",
+      "body": "(p. 7-1) On micropile foundation support and slope stabilization projects, 'verification' load testing is performed on pre-production micropiles to verify design assumptions about bond zone strength and the adequacy of the contractor's installation methods. It is usually the first order of work under the construction contract, and production micropiles are approved only after these have been verified; on large projects additional load testing may be performed during design under a separate contract. The ability of the micropile to safely carry the design load in service is obtained through 'proof' load testing on selected production micropiles, a quality assurance means to confirm installation procedures. Micropiles are tested individually with the same conventional static load testing procedures as driven piles and drilled shafts: incremental loading (in compression, tension or laterally, and possibly cycled, i.e., load/unload) until the micropile reaches the selected maximum test load, structural displacement limit, or ground creep (movement under constant load) threshold. The chapter describes verification and proof tests, typical equipment, load increment schedules and analysis of load-deformation data used to judge acceptance for payment.",
       "key_points": [
-        "Verification tests: pre-production, confirm bond zone strength and installation method",
-        "Proof tests: production QA on selected piles to confirm consistent installation",
-        "Verification test max load: 2.0-2.5x design axial load; 2.0x design lateral load",
-        "Proof test max load: 160% of design load",
-        "Testing is typically first order of work under the construction contract",
-        "If verification fails: contractor must modify methods or redesign"
+        "Verification tests on pre-production micropiles verify bond zone strength assumptions and the contractor's installation methods",
+        "Verification testing is usually the first order of work; production micropiles are approved only after it",
+        "On large projects, additional load testing may be done during design under a separate contract",
+        "Proof tests on selected production micropiles confirm installation procedures (quality assurance)",
+        "Conventional static load test procedures as for driven piles and drilled shafts: incremental, possibly cycled, compression, tension or lateral",
+        "Loading continues to the maximum test load, a structural displacement limit or a ground creep threshold"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Load testing framework for all micropile projects (foundation support and slope stabilization)."
+      "applicability": "Purpose of verification and proof load tests on micropiles and how they are run."
     },
     {
       "section_id": "7.2",
       "title": "Overview of Micropile Load Testing",
-      "summary": "Summarizes the overall load testing program framework: verification tests on pre-production sacrificial piles, proof tests on a percentage of production piles, and optional ultimate tests to failure. Differentiates failure criteria: inability to maintain constant load without excessive movement. Notes that load testing requirements, acceptance criteria, and interpretation methods are all specified in construction documents.",
-      "body": "The micropile load testing program consists of: (1) pre-production verification tests on sacrificial micropiles installed with the same equipment and procedures as production piles; (2) proof tests on selected production micropiles; and (3) in some cases, ultimate tests to load the pile to failure. The verification test maximum load typically represents 2.0 to 2.5 times the design axial (compression or tension) load, chosen to reflect the factor of safety used in design for the grout-to-ground bond. For lateral load tests, the maximum test load is 2.0 times the design lateral load. An ultimate test is defined as the load at which failure is reached — failure being the inability to maintain constant test load without excessive micropile movement. Load testing requirements are included in the construction specifications and include: maximum test load, load increment schedule, hold times, movement recording procedures, creep test criteria, and acceptance criteria. If ground conditions or installation procedures change from those used for the verification load testing program, additional testing is required.",
+      "summary": "Load tests verify design loads are carried without excessive movement and with adequate factor of safety, and check drilling, installation and grouting before (verification) and during (proof) production; production installation must match the test micropiles. Verification tests load to the bond factor of safety; ultimate tests to failure (research or very large projects). One or two verification tests are common, more per ground type. Proof tests are on production piles; creep tests are part of both.",
+      "body": "(pp. 7-1 to 7-2) Micropiles are load tested to verify that the required design loads can be carried without excessive movement and with an adequate factor of safety for the life of the structure, and to verify the contractor's drilling, installation and grouting before (verification testing) and during (proof testing) production. Ground conditions and the method, equipment and operator for production piles must therefore be similar to those for the test micropiles; if ground or installation procedures change, additional testing should be required. If results indicate faulty construction or grout-to-ground capacities less than required, the contractor may be required to modify installation methods, and if the required bond capacities are still not achievable, redesign may be necessary. Specifications typically include ultimate and/or verification tests: loading to a maximum test load that includes the factor of safety on the design grout-to-ground bond (verification test) and/or to failure, defined as the inability to maintain constant test load without excessive movement (ultimate test). Ultimate tests are usually specified only for research or very large projects where a design phase test program, which allows the design to be optimized, can be justified. On typical projects one or two verification tests are commonly conducted before production installation, and one or more more may be conducted in each significantly different ground type as construction proceeds; larger projects may specify more (minimum number in Section 7.6.2). Since ultimate and verification tests reach relatively high loads, these micropiles are often 'sacrificial'. During production, 'proof' tests are conducted on a specified number of production piles, which are incorporated into the structure provided the test loads are below those causing geotechnical or structural failure or damage (minimum numbers in Section 7.6.3). Creep tests, similar to those for ground anchors and soil nails, are part of verification and proof tests: movement is measured at constant load over a specified time to assess whether design loads can be carried throughout the service life; creep is primarily a concern in organic soils and in cohesive soils with liquid limit greater than 50 and plasticity index greater than 20.",
       "key_points": [
-        "Three testing levels: verification (pre-production), proof (production QA), ultimate (to failure)",
-        "Failure defined as inability to maintain constant load without excessive movement",
-        "Verification max load = 2.0-2.5x DL (compression/tension) or 2.0x DL (lateral)",
-        "If ground or installation procedures change, additional verification testing required",
-        "All testing criteria specified in construction specifications",
-        "Acceptance criteria based on load test results per Section 7.4.3"
+        "Load tests verify design loads are carried without excessive movement and with adequate factor of safety for the structure's life",
+        "Production piles must use ground, method, equipment and operator similar to the test micropiles; changes call for more testing",
+        "Poor results may require modified installation methods or, if bond capacity is still not achieved, redesign",
+        "Verification test: maximum load includes the factor of safety on the design grout-to-ground bond",
+        "Ultimate test: to failure (cannot hold constant load without excessive movement); research or very large projects",
+        "Typically one or two verification tests before production, plus more in significantly different ground; test piles are often sacrificial",
+        "Proof tests on production piles that stay in the structure if loads stay below failure and damage",
+        "Creep tests are part of verification and proof tests; creep matters mainly in organic soils and clays with LL > 50 and PI > 20"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Understanding the scope and structure of a micropile load testing program."
+      "applicability": "Types of micropile load test (ultimate, verification, proof, creep) and when each is used."
     },
     {
       "section_id": "7.3",
       "title": "Load Testing Equipment",
-      "summary": "Load testing equipment for micropiles follows the same ASTM standards as conventional pile testing: ASTM D1143 (compression), D3689 (tension), D3966 (lateral). Equipment includes hydraulic jack and pump, reaction beam anchored by micropiles/ground anchors/weighted platform, calibrated load cell, pressure gauge, dial gauges on independent reference frame, and wire-mirror-scale. Load cells are required for verification/ultimate tests but not proof tests (except for extended creep). Inclinometers in piles for lateral tests recommended to 10-20 pile diameters depth.",
-      "body": "Load testing equipment and methods for micropiles are the same as those used for conventional load testing of driven piles and drilled shafts, codified in ASTM D1143 for compression loading, ASTM D3689 for tension loading, and ASTM D3966 for lateral loading. Typical equipment includes: (1) hydraulic jack and pump; (2) reaction and reference beams; (3) pressure gauges and load cells; (4) dial gauges; and (5) wire with mirror and scale. For compression testing, the load is applied by hydraulically jacking against a beam anchored by piles, micropiles, or ground anchors, or by jacking against a weighted platform. For tension tests, the reaction is typically provided by the ground itself using threaded bars and bearing plates. Calibrated load cells are used to verify that load remains constant during hold periods. Load cells are not required for proof tests except for extended creep testing. Vertical and/or lateral movements are measured with dial gauges or electronic transducers mounted on an independent reference frame per ASTM requirements. For lateral load testing, an inclinometer installed to 10-20 pile diameters depth is recommended to measure lateral movement with depth. Strain gauge pairs can also be installed on micropile casings to evaluate bending moments.",
+      "summary": "Load testing equipment is treated under 7.3.1 General and 7.3.2 Load Testing Equipment; no text is printed under this heading.",
+      "body": "(p. 7-3) No text is printed under this heading; see 7.3.1 General and 7.3.2 Load Testing Equipment.",
       "key_points": [
-        "ASTM D1143 (compression), D3689 (tension), D3966 (lateral) govern micropile testing",
-        "Equipment: hydraulic jack, reaction beam, calibrated load cell, pressure gauge, dial gauges",
-        "Compression reaction: adjacent piles, micropiles, ground anchors, or weighted platform",
-        "Load cells required for verification/ultimate tests to maintain constant creep load; not required for proof tests",
-        "Dial gauges on independent reference frame per ASTM",
-        "Inclinometer in pile recommended for lateral tests: 10-20 pile diameters deep",
-        "Strain gauge pairs can assess bending moments with depth"
+        "Equipment and ASTM methods (7.3.1); jacks, reactions, gauges, load cells and instrumentation (7.3.2)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Pointer to micropile load testing equipment (7.3.1, 7.3.2)."
+    },
+    {
+      "section_id": "7.3.1",
+      "title": "General",
+      "summary": "Micropiles are tested with the same equipment and methods as driven piles and drilled shafts: ASTM D 1143 (compression), ASTM D 3689 (tension) and ASTM D 3966 (lateral); typical setups are in Figures 7-1 to 7-3. Equipment: hydraulic jack and pump; reaction and reference beams; pressure gauges and load cells; dial gauges; wire with mirror and scale.",
+      "body": "(p. 7-3) The equipment and load testing methods used for micropiles are the same as those for conventional load testing of driven piles and drilled shafts, as codified in ASTM D 1143 for compression loading, ASTM D 3689 for tension loading and ASTM D 3966 for lateral loading. Typical compression, tension and lateral setups are shown in Figures 7-1, 7-2 and 7-3. Typical load testing equipment includes: (1) hydraulic jack and pump; (2) reaction and reference beams; (3) pressure gauges and load cells; (4) dial gauges; and (5) wire with mirror and scale.",
+      "key_points": [
+        "Same equipment and methods as driven piles and drilled shafts",
+        "ASTM D 1143 compression, ASTM D 3689 tension, ASTM D 3966 lateral (Figures 7-1 to 7-3)",
+        "Equipment: hydraulic jack and pump, reaction and reference beams, pressure gauges and load cells, dial gauges, wire with mirror and scale"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "ASTM standards and typical equipment for micropile load tests."
+    },
+    {
+      "section_id": "7.3.2",
+      "title": "Load Testing Equipment",
+      "summary": "Loads are applied by a hydraulic jack against a reaction: a beam anchored by piles, micropiles or ground anchors, or a weighted platform (compression, Figure 7-4); a reaction frame on the test pile (tension, Figure 7-5); or between two piles (lateral, Figure 7-6). Pressure gauges give load; calibrate within 45 working days (Figure 7-7), keep a master gauge. Load cells hold constant load; not required for proof tests. Dial gauges read to 0.025 mm, at least 2.13 m from the pile, three averaged.",
+      "body": "(pp. 7-3 to 7-10) The most common system is a hydraulic jack and reaction arrangement. For compression, the load is applied by jacking against a beam anchored by piles, micropiles or ground anchors (Figure 7-4), or against a weighted platform. For tension, the jack is centered on a test beam (possibly supported on cribbing) and jacks against a reaction frame connected to the test micropile (Figure 7-5). For lateral tests, a jack acts against a reaction system or between two piles (Figure 7-6), allowing two lateral tests simultaneously. The standard load monitor is a pressure gauge on the jack pump, used for the absolute value of applied load; pressure gauges should be calibrated within 45 working days of the date they are submitted for approval, calibration certifications and graphs for gauges and load cells must be provided before use (example curve, Figure 7-7), and a second certified 'master' gauge should be kept on site to check the jack gauges. Calibrated load cells should be used to verify that load stays constant during the hold periods of an ultimate (and/or verification) test; they must be aligned with the axis of the micropile and jack, and are used mainly to detect small load changes so that a constant holding load is maintained (e.g., keeping a reading of '440' through jack pressure adjustments for the whole creep test). Load cells are not required for proof tests (except extended creep testing to judge acceptability). Head movement is measured with dial gauges and/or LVDTs on the reference beams, read to the nearest 0.025 mm (0.001 in); for axial tests the independent reference beam's supports are at five times the test micropile diameter, the minimum distance between gauges and test micropile is 2.13 m (7 ft) (Figures 7-1, 7-2), and three gauges placed equidistant around the pile are averaged to compensate for head rotation. A mirror and scale on the pile with a wire strung on a separate reference is a less sensitive backup only. Telltales (metal or fiberglass rods anchored in the grout, sheathed above) can measure axial displacement at discrete elevations, protected from damage by drill string rotation or grout in the sheath. Strain gauges (vibrating-wire type recommended) on the reinforcing steel give axial load distribution with depth, and diametrically opposite pairs on the casing give bending moments with depth (Figure 7-8). For lateral tests, an inclinometer installed to 10 to 20 micropile diameters (depth from the design lateral analyses) is recommended.",
+      "key_points": [
+        "Compression: jack against a beam anchored by piles, micropiles or ground anchors (Figure 7-4), or a weighted platform",
+        "Tension: jack on a test beam against a reaction frame connected to the test micropile (Figure 7-5)",
+        "Lateral: jack against a reaction system or between two piles, testing two micropiles at once (Figure 7-6)",
+        "Pressure gauges calibrated within 45 working days of submittal (Figure 7-7); certifications before use; master gauge kept on site",
+        "Load cells keep the hold load constant in ultimate and verification tests; not required for proof tests except extended creep tests",
+        "Dial gauges or LVDTs read to 0.025 mm (0.001 in); reference beam supports at five pile diameters; gauges at least 2.13 m (7 ft) from the pile",
+        "Average three gauges placed equidistant around the pile to allow for head rotation; mirror and scale only as backup",
+        "Telltales measure axial displacement at depth; vibrating-wire strain gauges give axial load and, in opposite pairs, bending moment (Figure 7-8)",
+        "Lateral tests: inclinometer in the micropile to 10 to 20 diameters"
       ],
       "equations": [],
       "figures": [
-        "Figure 7-1: Schematic of Compression Load Test Arrangement (ASTM D1143)",
-        "Figure 7-2: Schematic of Tension Load Test Arrangement (ASTM D3689)",
-        "Figure 7-3: Schematic of Lateral Load Test Arrangement",
-        "Figure 7-4: Compression Load Test Set-Up (photograph)",
-        "Figure 7-5: Tension Load Test Set-Up (photograph)",
-        "Figure 7-6: Lateral Load Test Set-Up (photograph)",
-        "Figure 7-7: Typical Pressure Gauge Calibration Curve",
-        "Figure 7-8: Strain Gauge Locations on Micropiles for SUM-271 Project"
+        "Figure 7-1: Schematic of Compression Load Test Arrangement (ASTM D1143) (reaction beam on reaction micropiles, load cell, hydraulic jack, test pile with top plate and stiffeners, dial gauges on an independent reference frame, 2.13 m (7 ft) typical) (p. 7-4)",
+        "Figure 7-2: Schematic of Tension Load Test Arrangement (ASTM D3689) (reaction beam on reaction micropiles, transition beam, thread bars, load cell, hydraulic jack, dial gauges on an independent reference frame, 2.13 m (7 ft) typical) (p. 7-4)",
+        "Figure 7-3: Schematic of Lateral Load Test Arrangement (hydraulic jack and steel jack chair between micropiles, reference beam, dial gauges) (p. 7-5)",
+        "Figure 7-4: Compression Load Test Set-Up. (p. 7-5)",
+        "Figure 7-5: Tension Load Test Set-Up. (p. 7-6)",
+        "Figure 7-6: Photograph of Lateral Load Test Set-Up (Note: Two micropiles are tested (p. 7-7)",
+        "Figure 7-7: Typical Pressure Gauge Calibration Curve. (p. 7-7)",
+        "Figure 7-8: Strain Gauge Locations on Micropiles for SUM-271 Project (after Liang, 2000). (p. 7-10)"
       ],
       "tables": [],
-      "applicability": "Equipment selection and setup for all types of micropile load tests."
+      "applicability": "Reaction systems, load measurement, gauge calibration, movement measurement and instrumentation for micropile load tests."
     },
     {
       "section_id": "7.4",
       "title": "Micropile Load Testing Procedures",
-      "summary": "Verification tests: incremental cyclic loading per Table 7-1 to 2.0-2.5x DL, recording total movement delta_t and residual movement delta_r at each cycle. Proof tests: monotonic loading per Table 7-2 to 1.6x DL. Acceptance: load-settlement slope <= 0.15 mm/kN at 2x DL (failure criterion); creep <= 1mm between 1-10 min at 1.3 DL; maximum pile head movement at design load per engineer. For failures: modify design, installation, bond length, or micropile type.",
-      "body": "Verification Test Procedures: Verification tests are conducted by incrementally loading and unloading the micropile in cycles per the schedule in Table 7-1, measuring pile head movement at each increment. Total movement (delta_t) and residual movement (delta_r) are recorded at each load increment and alignment load. Elastic movement is calculated as delta_e = delta_t - delta_r. The load schedule cycles from 0.15DL through 0.45, 0.60, 0.75, 0.90, 1.00, 1.15, 1.30, 1.45, and up to 2.0x or 2.5x DL, with hold times and creep test at key increments. Proof Test Procedures: Proof tests follow the simplified loading schedule in Table 7-2, loading to 160% DL. Failure load is defined as the load where the slope of the load vs. pile head settlement curve first exceeds 0.15 mm/kN (0.025 in/kip) at 2.0x DL. The Davisson criterion (used for driven piles/drilled shafts) is difficult to apply to micropiles due to varying axial stiffness along the cased and uncased lengths. Acceptance Criteria: (1) slope of load-settlement curve <= 0.15 mm/kN at 2.0x DL; (2) maximum pile head movement at design load per engineer's design-specific requirement; (3) creep: total movement at 1.3 DL <= 1mm between 1 and 10 minutes. For failed micropiles: contractor may install replacements, reduce design loads, modify installation, increase bond length, or change micropile type.",
+      "summary": "Load testing procedures are treated under 7.4.1 Verification Tests, 7.4.2 Proof Tests and 7.4.3 Micropile Acceptance Criteria; no text is printed under this heading.",
+      "body": "(p. 7-11) No text is printed under this heading; see 7.4.1 Verification Tests (7.4.1.1 to 7.4.1.3), 7.4.2 Proof Tests (7.4.2.1, 7.4.2.2) and 7.4.3 Micropile Acceptance Criteria (7.4.3.1 to 7.4.3.3).",
       "key_points": [
-        "Verification test: cyclic loading per Table 7-1 to 2.0-2.5x DL; record delta_t and delta_r",
-        "Elastic movement: delta_e = delta_t - delta_r",
-        "Proof test: monotonic loading per Table 7-2 to 160% DL",
-        "Failure criterion: load-settlement slope > 0.15 mm/kN (0.025 in/kip) at 2x DL",
-        "Davisson criterion not applicable to micropiles due to variable axial stiffness",
-        "Creep acceptance: <= 1mm movement between 1-10 min at 1.3 DL hold",
-        "Failed pile remedies: replacement piles, reduced capacity, modified installation, longer bond, or different type"
+        "Verification tests (7.4.1), proof tests (7.4.2), acceptance criteria (7.4.3)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Pointer to micropile load test procedures (7.4.1 to 7.4.3)."
+    },
+    {
+      "section_id": "7.4.1",
+      "title": "Verification Tests",
+      "summary": "Verification tests are treated under 7.4.1.1 General, 7.4.1.2 Procedures for Verification Test and 7.4.1.3 Recording of Verification Test Data; no text is printed under this heading.",
+      "body": "(p. 7-11) No text is printed under this heading; see 7.4.1.1 General, 7.4.1.2 Procedures for Verification Test and 7.4.1.3 Recording of Verification Test Data.",
+      "key_points": [
+        "Verification tests: general (7.4.1.1), procedure (7.4.1.2), recording (7.4.1.3)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Pointer to verification test general requirements, procedure and data recording (7.4.1.1 to 7.4.1.3)."
+    },
+    {
+      "section_id": "7.4.1.1",
+      "title": "General",
+      "summary": "Verification loads can be applied in compression, tension or laterally. The maximum compression or tension test load is typically set by the grout-to-ground bond factor of safety used in design, usually 2.0 to 2.5 times the design axial load; lateral tests go to 2.0 times the design lateral load. Acceptance criteria are in Section 7.4.3.",
+      "body": "(p. 7-11) For verification tests, loads can be applied in compression, tension or laterally. The maximum test load for a compression or tension test is typically defined by the grout-to-ground bond factor of safety used in design; for micropiles the maximum verification test load will usually be 2.0 to 2.5 times the design axial (compression or tension) load. Lateral load tests are performed to 2.0 times the design lateral load. Acceptance criteria based on load test results are provided in Section 7.4.3.",
+      "key_points": [
+        "Verification loads in compression, tension or laterally",
+        "Maximum axial test load set by the design grout-to-ground bond factor of safety: usually 2.0 to 2.5 times the design axial load",
+        "Lateral verification tests to 2.0 times the design lateral load"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Maximum test loads for verification tests."
+    },
+    {
+      "section_id": "7.4.1.2",
+      "title": "Procedures for Verification Test",
+      "summary": "The micropile is loaded and unloaded incrementally, reading head movement just after each load and again once stable, per the first three columns of Table 7-1 (DFI, 2004). An alignment load (AL, no more than 10 percent of design load) zeroes the gauges; cycles return to AL and rise to the test load. A hold of ten minutes (movement at 1, 2, 3, 4, 5, 6 and 10 minutes; load within 0.35 MPa) is the creep test, extended 50 minutes if creep exceeds the maximum.",
+      "body": "(p. 7-11) Verification testing incrementally loads and unloads the micropile and measures head movement at each increment, with a reading just after the load is applied and a second after the load has been held long enough for movement to stabilize. The load schedule is the first three columns of Table 7-1, consistent with DFI (2004). The first step applies a nominal alignment load (AL), typically no more than ten percent of the design load, to ensure the stressing and testing equipment are aligned; the displacement equipment is zeroed when the AL stabilizes (Figure 7-9). In the first cycle the load is raised to 15 percent of the design load (as printed) and the incremental movement recorded, then reduced back to the alignment load; this is repeated with the increments of Table 7-1 until the maximum test load is reached. At the test load a constant load is held for ten minutes before unloading; the load is taken as reasonably constant if the deviation from the test pressure does not exceed 0.35 MPa (50 psi). During the hold, movements are recorded at 1, 2, 3, 4, 5, 6 and 10 minutes to measure time-dependent (creep) movement; this portion is the creep test. If the total movement between 1 and 10 minutes exceeds the specified maximum creep movement, the load is held another 50 minutes and total movement recorded at 20, 30, 40, 50 and 60 minutes.",
+      "key_points": [
+        "Load and unload incrementally; read head movement just after each load and again when stable",
+        "Load schedule: first three columns of Table 7-1, consistent with DFI (2004)",
+        "Alignment load AL, no more than 10 percent of design load, zeroes the gauges (Figure 7-9)",
+        "Each cycle returns to AL; increments per Table 7-1 up to the test load",
+        "Creep hold of ten minutes with readings at 1, 2, 3, 4, 5, 6 and 10 minutes; load within 0.35 MPa (50 psi) of the test pressure",
+        "If movement between 1 and 10 minutes exceeds the maximum, hold 50 minutes more and read at 20, 30, 40, 50 and 60 minutes"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Cyclic loading procedure and creep hold of a micropile verification test."
+    },
+    {
+      "section_id": "7.4.1.3",
+      "title": "Recording of Verification Test Data",
+      "summary": "Load comes from the jack pressure gauge and load cell. Total movement (delta t) at each increment and at AL is split into residual movement (delta r, the irrecoverable movement on return to AL, including elongation and movement through the ground) and elastic movement (total at the cycle maximum minus the AL reading) (Figures 7-9, 7-10, Table 7-1). Residual movement is not used for acceptance but indicates bond zone behavior. Creep starts when 1.30 DL is applied: 1 to 10 minutes, or 6 to 60 minutes if extended.",
+      "body": "(pp. 7-12 to 7-14) The magnitude of each load is determined from the jack pressure gauge and the load cell. The load-deformation data for each increment are plotted as in Figure 7-10. The total movement (delta t) is recorded at each load increment and at the alignment load; it consists of elastic and residual movement. The residual movement for an increment is the net 'irrecoverable' movement after applying the increment and reducing the load to the alignment load (Figure 7-9, delta r4); it includes elongation of the micropile and movement of the entire micropile through the ground. Elastic movement is the arithmetic difference between the total movement at the maximum load of a cycle and the movement at the alignment load (Table 7-1). Residual movement is not used for acceptance, but indicates the stress-strain behavior of the ground-to-grout bond in the bond zone and should be collected for future testing or design in similar ground and loads. During the creep test, movements at 1, 2, 3, 4, 5, 6 and 10 minutes are recorded; the time at which 1.30 DL is applied (Figure 7-9) is the start time, and the movement from one to ten minutes after it is compared with the creep acceptance criterion. If the criterion is not satisfied, the load is held an additional 50 minutes and the total movement between 6 and 60 minutes is compared with the specified criteria.",
+      "key_points": [
+        "Load from the jack pressure gauge and the load cell",
+        "Total movement = elastic + residual; residual is the irrecoverable movement on return to the alignment load (Figure 7-9)",
+        "Elastic movement = total movement at the cycle maximum minus the movement at the alignment load (Table 7-1)",
+        "Residual movement is not an acceptance criterion but shows bond zone behavior; keep it for future design in similar ground",
+        "Creep start time is when 1.30 DL is applied; compare 1-10 minute movement with the criterion, or 6-60 minute movement if extended",
+        "Table 7-1 cycles: 0.15-0.45 DL; 0.15-1.00 DL; 0.15-1.45 DL with creep hold at 1.30 DL; 0.15-2.00 DL (10 min hold) then unload in steps to AL"
       ],
       "equations": [],
       "figures": [
-        "Figure 7-9: Load Displacement Curve of Verification Tests",
-        "Figure 7-10: Plotting Elastic and Residual Movement of Verification Test Data",
-        "Figure 7-11: Plotting of Proof Test Data"
+        "Figure 7-9: Load Displacement Curve of Verification Tests (movement against percent of design load: cycles to 45, 100, 145 and 200 percent, creep at 130 percent, delta t4, delta r4, delta e4) (p. 7-14)",
+        "Figure 7-10: Plotting Elastic and Residual Movement of Verification Test Data (elastic movement delta e and residual movement delta r against percent of design load for cycles 1 to 4) (p. 7-14)"
       ],
       "tables": [
-        "Table 7-1: Verification Test Load Schedule (after DFI, 2004)",
-        "Table 7-2: Proof Test Load Schedule (after DFI, 2004)"
+        "Table 7-1: Verification Test Load Schedule (after DFI, 2004) (applied load, hold time in min): step 1 apply AL 2.5; step 2 cycle 1: 0.15DL 2.5, 0.30DL 2.5, 0.45DL 2.5 (delta t1), AL 1 (delta r1), delta e1 = delta t1 - delta r1; step 3 cycle 2: 0.15DL 1, 0.45DL 1, 0.60DL 2.5, 0.75DL 2.5, 0.90DL 2.5, 1.00DL 2.5 (delta t2), AL 1 (delta r2); step 4 cycle 3: 0.15DL 1, 1.00DL 1, 1.15DL 2.5, 1.30DL (delta t3, zero reading for creep test); step 5 hold load at least 10 minutes recording movement at specified times, extended to a total of 60 minutes if the total movement during the hold exceeds the specified maximum; step 6 cycle 3 cont'd: 1.45DL 2.5, AL 1 (delta r3); step 7 cycle 4: 0.15DL 1, 1.45DL 1, 1.60DL 1, 1.75DL 2.5, 1.90DL 2.5, 2.00DL 10, 1.50DL 5, 1.00DL 5, 0.50DL 5, AL 5 (delta r4), delta e4 = delta t4 - delta r4; step 8 remove the load and compare results to acceptance criteria. AL = alignment load, DL = design load; total movement is the average of several dial gauges (p. 7-13)"
       ],
-      "applicability": "Step-by-step load testing procedures for both verification and proof tests on micropile projects."
+      "applicability": "Total, residual and elastic movement in verification test data, and creep readings (Table 7-1)."
+    },
+    {
+      "section_id": "7.4.2",
+      "title": "Proof Tests",
+      "summary": "Proof tests are treated under 7.4.2.1 General and 7.4.2.2 Proof Test Procedures and Recording and Analysis of Proof Test Data; no text is printed under this heading.",
+      "body": "(p. 7-15) No text is printed under this heading; see 7.4.2.1 General and 7.4.2.2 Proof Test Procedures and Recording and Analysis of Proof Test Data.",
+      "key_points": [
+        "Proof tests: general (7.4.2.1), procedure and data (7.4.2.2)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Pointer to proof test general requirements and procedure (7.4.2.1, 7.4.2.2)."
+    },
+    {
+      "section_id": "7.4.2.1",
+      "title": "General",
+      "summary": "Proof tests are run during construction on a percentage of production micropiles to verify that the construction procedure has stayed the same and that micropiles were not drilled and grouted in a soil zone the verification tests did not cover. Micropiles are proof tested to a load typically equal to 160 percent of the design load, in compression, tension or laterally.",
+      "body": "(p. 7-15) Proof tests are conducted during construction on a percentage of the total production micropiles installed. They are intended to verify that the contractor's construction procedure has remained constant and that the micropiles have not been drilled and grouted in a soil zone not tested by the verification testing. Micropiles are proof tested to a load typically equal to 160 percent of the design load; loads can be applied in compression, tension or laterally.",
+      "key_points": [
+        "Proof tests during construction on a percentage of production micropiles",
+        "They verify the construction procedure has not changed and no untested soil zone has been used",
+        "Proof test load typically 160 percent of the design load, in compression, tension or laterally"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Purpose and test load of proof tests on production micropiles."
+    },
+    {
+      "section_id": "7.4.2.2",
+      "title": "Proof Test Procedures and Recording and Analysis of Proof Test Data",
+      "summary": "The proof test follows the DFI (2004) schedule in Table 7-2: AL, then 0.15 DL steps to 1.30 DL (creep zero reading), a creep hold of at least 10 minutes (extended to 60 if needed), 1.45 and 1.60 DL, and unloading in steps to AL. Residual and elastic movements are calculated for the test load from the unload cycle, as for verification tests (Figure 7-11). Creep starts at 1.3 DL; creep movement is total movement minus the one-minute reading, and the 1-10 minute movement is compared with the criteria.",
+      "body": "(p. 7-15) The proof test loading schedule codified in DFI (2004) is outlined in Table 7-2, and results of an example proof test are plotted in Figure 7-11. The residual and elastic movements should be calculated for the test load from the unload cycle, as described for verification tests. During the creep test portion, movements at 1, 2, 3, 4, 5, 6 and 10 minutes are recorded; the time at which 1.3 DL is applied is the start time. The creep movement at any time is the difference between the total movement and the movement measured at one minute, and the creep rate is the slope of the curve per log cycle of time. The movement from one to ten minutes after the start is compared with the creep acceptance criteria.",
+      "key_points": [
+        "Proof test schedule per DFI (2004), Table 7-2",
+        "Table 7-2: AL; 0.15 to 1.15 DL in 0.15 DL steps of 2.5 min; 1.30 DL zero reading and creep hold of at least 10 minutes (to 60 if needed)",
+        "Table 7-2 continued: 1.45 and 1.60 DL for 2.5 min each; unload 1.30, 1.00, 0.75, 0.50, 0.25 DL and AL for 4 min each",
+        "Residual and elastic movement for the test load from the unload cycle (Figure 7-11)",
+        "Creep movement = total movement minus the one-minute reading; creep rate = slope per log cycle of time",
+        "Compare the 1-10 minute movement after 1.3 DL is applied with the creep criteria"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-11: Plotting of Proof Test Data (load against movement, with the creep test, delta e, delta r and delta t marked) (p. 7-17)"
+      ],
+      "tables": [
+        "Table 7-2: Proof Test Load Schedule (after DFI, 2004) (applied load, hold time in min): step 1 apply AL 2.5; step 2 load cycle: 0.15DL, 0.30DL, 0.45DL, 0.60DL, 0.75DL, 0.90DL, 1.00DL and 1.15DL at 2.5 each, 1.30DL (delta t, zero reading for creep test); step 3 hold load at least 10 minutes recording movement at specified times, extended to a total of 60 minutes if the total movement during the hold exceeds the specified maximum; step 4: 1.45DL 2.5, 1.60DL 2.5; step 5 unload cycle: 1.30DL, 1.00DL, 0.75DL, 0.50DL, 0.25DL and AL at 4 each (delta r at AL; delta e = delta t - delta r); step 6 remove the load and compare results to acceptance criteria. AL = alignment load, DL = design load; total movement is the average of several dial gauges (p. 7-16)"
+      ],
+      "applicability": "Proof test load schedule (Table 7-2), movement calculation and creep readings."
+    },
+    {
+      "section_id": "7.4.3",
+      "title": "Micropile Acceptance Criteria",
+      "summary": "Acceptance criteria are treated under 7.4.3.1 Acceptance of Verification Test, 7.4.3.2 Acceptance of Proof Test and 7.4.3.3 Consequences of Failure; no text is printed under this heading.",
+      "body": "(p. 7-15) No text is printed under this heading; see 7.4.3.1 Acceptance of Verification Test, 7.4.3.2 Acceptance of Proof Test and 7.4.3.3 Consequences of Failure.",
+      "key_points": [
+        "Acceptance: verification tests (7.4.3.1), proof tests (7.4.3.2), consequences of failure (7.4.3.3)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Pointer to acceptance criteria for verification and proof tests and consequences of failure (7.4.3.1 to 7.4.3.3)."
+    },
+    {
+      "section_id": "7.4.3.1",
+      "title": "Acceptance of Verification Test",
+      "summary": "Three criteria (DFI, 2004): (1) rate of head movement at the test load: the slope of load versus head settlement must not exceed 0.15 mm/kN (0.025 in/kip) at 2.0 times the design load (failure load = where it first exceeds that; the Davisson criterion, used for driven piles and drilled shafts, has not been evaluated for micropiles); (2) total head movement at the design load, a project-specific limit; (3) creep at 1.3 DL: not more than 1 mm between 1 and 10 minutes, or else not more than 2 mm between 6 and 60 minutes.",
+      "body": "(pp. 7-15 to 7-18) There are three primary acceptance criteria for a verification-tested micropile. Rate of Pile Head Movement at the Test Load: acceptance includes assessing whether failure has occurred at the test load (e.g., 2.0 times the design load). A plunging failure is typically not reached at this load, so failure may be defined by the rate of head movement per unit load: acceptance requires that the slope of the load versus micropile head settlement curve be less than or equal to 0.15 mm/kN (0.025 in/kip) at 2.0 times the design load (DFI, 2004); restated, the failure load is where that slope first exceeds 0.15 mm/kN (0.025 in/kip). Driven piles and drilled shafts use the Davisson criterion to define the failure load, but it is difficult to use for micropiles because axial stiffness changes along the length (cased and uncased lengths), and its use for micropiles has not been evaluated. Total Pile Head Movement at the Design Load: a maximum head movement for a single micropile at the design load, for compression, tension or lateral tests, selected by the design engineer from the movements the supported superstructure can tolerate on a project-specific basis. Total Pile Head Movement under Sustained Load (Creep): the measured total movement during the required hold at 1.3 DL should not exceed 1 mm (0.04 in.) between 1 and 10 minutes; if it does, the load is held another 50 minutes, and the micropile is acceptable with respect to creep if the movement does not exceed 2 mm (0.08 in.) between 6 and 60 minutes.",
+      "key_points": [
+        "Three criteria: rate of head movement at the test load, total head movement at the design load, and creep",
+        "Rate criterion: slope of load versus head settlement <= 0.15 mm/kN (0.025 in/kip) at 2.0 times the design load (DFI, 2004)",
+        "Failure load: where the load-settlement slope first exceeds 0.15 mm/kN; plunging failure is typically not reached",
+        "Davisson criterion (driven piles, drilled shafts) is hard to apply with cased and uncased lengths and has not been evaluated for micropiles",
+        "Total head movement at the design load: project-specific limit from the supported superstructure, for compression, tension or lateral tests",
+        "Creep at 1.3 DL: <= 1 mm (0.04 in.) between 1 and 10 minutes; otherwise hold 50 minutes more and accept if <= 2 mm (0.08 in.) between 6 and 60 minutes"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "The three acceptance criteria for a verification-tested micropile: rate of movement at the test load, total movement at design load and creep."
+    },
+    {
+      "section_id": "7.4.3.2",
+      "title": "Acceptance of Proof Test",
+      "summary": "The verification criteria for total head movement at the design load and under sustained load (creep) apply to proof-tested micropiles. The creep test is performed at 1.3 DL (printed as 'the maximum test load which is typically 1.3 DL'; Table 7-2 continues to 1.60 DL), evaluated as for verification tests. The creep criteria very rarely govern acceptance of load-tested micropiles.",
+      "body": "(p. 7-18) The acceptance criteria for verification tests for total pile head movement at the design load and for total pile head movement under sustained load are used for a proof-tested micropile. For a proof-tested micropile, the creep test is performed at what the print calls the maximum test load, typically 1.3 DL (Table 7-2 and Section 7.4.2.1 take the proof test to 1.60 DL, with the creep hold at 1.30 DL). Acceptable creep movements are evaluated as for verification-tested micropiles. The creep criteria very rarely govern the acceptance of load-tested micropiles.",
+      "key_points": [
+        "Proof tests use the verification criteria for total head movement at the design load and for creep",
+        "Proof test creep hold at 1.3 DL, judged as for verification tests",
+        "Creep criteria very rarely govern acceptance of load-tested micropiles"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Acceptance criteria applied to proof-tested micropiles."
+    },
+    {
+      "section_id": "7.4.3.3",
+      "title": "Consequences of Failure",
+      "summary": "If a verification micropile fails, the contractor can modify the micropile design and/or construction procedure: replacement micropiles, modified installation, longer bond length, regrouting through pre-placed tubes or a different micropile type, at the contractor's cost, with Owner review of any change to the structure. If a proof test fails, another nearby micropile is proof tested, and the design and/or procedure is modified for the failed and remaining micropiles (including reduced-capacity micropiles), at the contractor's expense.",
+      "body": "(pp. 7-18 to 7-19) If a micropile fails the acceptance criteria during verification testing of pre-production micropiles, the contractor can modify the design of the micropile and/or the construction procedure to provide the required capacity: installing replacement micropiles, modifying installation procedures, increasing the bond length, regrouting via pre-placed re-grout tubes, or changing the micropile type. Any modification requiring changes to the structure shall have prior review and acceptance by the Owner, and the cost of the changes should be incurred by the contractor. If failure occurs during proof testing of production piles, the contractor shall be directed to proof test another nearby micropile; for failed micropiles and further construction, the contractor shall modify the design, the construction procedure, or both: replacement micropiles, micropiles of reduced load capacity, modified installation methods, increased bond length, or a different micropile type. Any modification requiring changes to the structure shall have prior review and acceptance by the Owner and should be at the contractor's expense.",
+      "key_points": [
+        "Verification failure: contractor may modify micropile design and/or construction procedure",
+        "Remedies: replacement micropiles, modified installation, longer bond length, regrouting via pre-placed tubes, different micropile type",
+        "Proof test failure: proof test another nearby micropile, then modify design and/or procedure (reduced-capacity micropiles are an option)",
+        "Changes to the structure need prior Owner review and acceptance; costs are the contractor's"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Remedies when a verification or proof test micropile fails acceptance."
     },
     {
       "section_id": "7.5",
       "title": "Micropile Load Test Report",
-      "summary": "A load test report must be submitted to the Owner typically within 24-48 hours of test completion. Required contents include project description, site and subsurface conditions, comparison to exploration data near test location, test pile installation records, test setup details, load-deformation data plots (Figure 7-9 format), elastic and residual movement calculations, creep measurements, and compliance statement regarding acceptance criteria.",
-      "body": "For each load test, a report must be written and submitted to the Owner, typically within 24 to 48 hours of load test completion. The contents of this report should at minimum include: (1) brief project description; (2) description of site and subsurface conditions including information on the ground conditions at the test location and comparison to actual conditions encountered during installation; (3) installation records for the test pile including drilling and grouting logs; (4) description of the test setup including equipment and reference frame; (5) load-deformation data for each load increment presented in the format of Figure 7-9 (total movement vs. load) and Figure 7-10 (elastic and residual movement plots); (6) calculated elastic and residual movements at each cycle; (7) creep measurement data during load hold periods; (8) statement of compliance or non-compliance with the acceptance criteria; and (9) any deviations from specified testing procedures and their justification.",
+      "summary": "A report for each load test goes to the Owner, typically within 24 to 48 hours of completion. Minimum contents: project description; site and subsurface conditions at the test location compared with those encountered; key personnel (drill rig operator, superintendent, grout plant operator); installation data (cased and uncased lengths, bags of cement, casing and reinforcement, geology, drilling and grouting records); results with data sheets and figures; requirements and acceptance criteria and their comparison; summary; gauge and load cell calibrations; material certifications.",
+      "body": "(p. 7-19) For each load test, a report must be written and submitted to the Owner, typically within 24 to 48 hours of completion. It should include at least: a brief project description; site and subsurface conditions, including ground conditions at the test location and a comparison with actual conditions encountered; key personnel, including the drill rig operator, superintendent, grout plant operator and others involved in installing and testing the micropile; installation data, such as length (cased and uncased), number of bags of cement used, size and type of casing and reinforcement, geology encountered (soil, rock, water levels) and actual drilling and grouting records; load test results, including filled-out data sheets and data presentation figures; a statement of load test requirements and acceptance criteria; a comparison of the requirements and acceptance criteria; a summary statement on the results; the hydraulic jack pressure gauge and load cell calibration report; and material certification, including grout compressive strength tests (e.g., only 3-day results may be available) and steel mill certifications.",
       "key_points": [
-        "Report due to Owner within 24-48 hours of test completion",
-        "Include: project description, subsurface conditions, installation records, test setup",
-        "Plot load vs. total movement (Figure 7-9 format) and elastic/residual movement (Figure 7-10)",
-        "Report creep measurements at each load hold",
-        "Include explicit statement of compliance or non-compliance with acceptance criteria",
-        "Document any deviations from specified testing procedures"
+        "Submit a report for each load test to the Owner, typically within 24 to 48 hours",
+        "Project description; site and subsurface conditions at the test location compared with those encountered",
+        "Key personnel: drill rig operator, superintendent, grout plant operator and others",
+        "Installation data: cased and uncased lengths, bags of cement, casing and reinforcement, geology, drilling and grouting records",
+        "Results with data sheets and figures; requirements, acceptance criteria and comparison; summary statement",
+        "Jack gauge and load cell calibration report; grout strength (maybe only 3-day) and steel mill certifications"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Documentation requirements for micropile load test results submitted to the Owner."
+      "applicability": "Contents and timing of the micropile load test report."
     },
     {
       "section_id": "7.6",
       "title": "Evaluation of Project Load Testing Requirements",
-      "summary": "Design-phase planning for the load testing program scope. Factors: total production pile count, load type (compression/tension/lateral), structure sensitivity, subsurface variability, access, and contractor experience. Minimum 5% proof testing typical for production piles (Table 7-3); more for high variability sites. If critical loading is tension, tension proof tests may substitute for compression. Tension tests are preferred as reaction is provided by the ground. If same pile tested in both tension and compression, perform tension first.",
-      "body": "During the design phase, consideration should be given to the scope of the micropile load testing program. Factors to consider include: total number of production micropiles; magnitude and type of design loading (compression, tension, and/or lateral); sensitivity and importance of the supported structure; variance in ground subsurface conditions across the site; types of subsurface conditions; site access and headroom/installation constraints; and contractor experience. The project specification should include requirements for: number and location of pre-production verification load tests; type of loading for verification tests; number of proof tests required during production; and loading type for proof tests. A site map depicting all proposed structures and boring locations should be developed, and load testing should be performed near borings to correlate results with stratigraphy. A common requirement is to proof test 5% of production micropiles. This 'rule of thumb' may not be appropriate for all applications; Table 7-3 provides minimum proof testing recommendations. Tension tests are often less expensive since the ground can be used for reaction. If the same micropile is to be tested in both tension and compression, perform the tension test first to allow reseating during subsequent compression testing.",
+      "summary": "Project load testing requirements are treated under 7.6.1 Introduction through 7.6.5 Method of Load Application; no text is printed under this heading.",
+      "body": "(p. 7-20) No text is printed under this heading; see 7.6.1 Introduction, 7.6.2 Load Testing Program for Verification Tests, 7.6.3 Load Testing Program for Proof Tests, 7.6.4 Test Load Magnitude and 7.6.5 Method of Load Application.",
       "key_points": [
-        "Factors determining testing scope: pile count, load type, structure sensitivity, site variability, access, contractor experience",
-        "Perform load testing near borings for stratigraphic correlation",
-        "Minimum 5% proof testing typical; Table 7-3 for project-specific minimums",
-        "Tension tests less expensive (ground provides reaction) — may substitute for compression proof tests",
-        "If critical load is tension, all proof tests may be tension tests",
-        "If testing same pile in tension and compression: tension test first to allow reseating"
+        "Load test program: factors (7.6.1), verification (7.6.2), proof (7.6.3), test load magnitude (7.6.4), load application (7.6.5)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Pointer to planning the project load testing program (7.6.1 to 7.6.5)."
+    },
+    {
+      "section_id": "7.6.1",
+      "title": "Introduction",
+      "summary": "Scope the load testing program in design from: number of production micropiles; magnitude and type of design loading; sensitivity and importance of the structure; variability and types of subsurface conditions; access and headroom constraints; contractor experience. The specification should set the number and location of verification tests, number of proof tests, test load magnitudes, method of load application, load durations and acceptance criteria for maximum total and creep displacement.",
+      "body": "(p. 7-20) During design, consideration should be given to the scope of the micropile load testing program. Factors: total number of production micropiles; magnitude and type of design loading (compression, tension and/or lateral); sensitivity and importance of the supported structure; variance in subsurface conditions across the site; types of subsurface conditions; site access and headroom/installation constraints; and contractor experience. The project specification should include requirements for: the number and location of pre-production verification load tests; the number of production pile proof load tests; the magnitude of the test loads; the method of load application (single versus multiple cycles, order of testing); the duration for which test loads are applied; and acceptance criteria for maximum total displacement and maximum creep displacement at a specified load.",
+      "key_points": [
+        "Scope factors: number of production micropiles, load type and magnitude, structure importance, ground variability and type, access and headroom, contractor experience",
+        "Specify number and location of verification tests and number of proof tests",
+        "Specify test load magnitudes, method of load application (cycles, order), load durations",
+        "Specify acceptance criteria for maximum total and maximum creep displacement at a specified load"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Factors that set the scope of a micropile load testing program and what the specification must require."
+    },
+    {
+      "section_id": "7.6.2",
+      "title": "Load Testing Program for Verification Tests",
+      "summary": "At least one pre-production verification test is required on all projects, to at least 2.0 times the design load per Table 7-1, on a sacrificial or production pile; loading further may seek the ultimate capacity. Planning: test near borings; review critical load combinations (tension or lateral tests in seismic regions; tension may substitute for compression, but if compression is critical at least one compression test); identify bond zone strata and weak or compressible horizons; test each significantly different stratum; consider access and schedule.",
+      "body": "(pp. 7-20 to 7-21) At least one pre-production verification micropile load test is required on all projects, performed to at least 2.0 times the design load in accordance with Table 7-1; it may be a sacrificial (non-production) or a production pile, and loading beyond the required minimum may be conducted to determine the ultimate capacity. Developing the program: prepare a site map of all proposed structures (e.g., pile caps) and boring locations, and test close to a boring so results can be correlated with stratigraphy; review the critical load combinations for each substructure unit to identify the types of test (in highly seismic regions tension and/or lateral tests may be required; tension tests may substitute for compression tests, but if compression loading is critical at least one verification test should be in compression); review all subsurface information to identify the strata where bond zones will form at each structure, including overall variability, and identify all soil/rock support horizons that may be relatively weak or compressible, since micropiles are often used in mixed ground; select the total number of tests so that at least one is performed in each significantly different support stratum, considering access and construction schedule, and where access to a location is difficult consider whether appropriate information can be obtained where access is better.",
+      "key_points": [
+        "At least one verification test on every project, to at least 2.0 times the design load per Table 7-1",
+        "The verification pile may be sacrificial or a production pile; loading further may find the ultimate capacity",
+        "Locate tests close to borings to correlate results with stratigraphy",
+        "Seismic regions may need tension and/or lateral tests; if compression is critical, at least one verification test in compression",
+        "Identify bond zone strata and weak or compressible horizons in mixed ground",
+        "At least one verification test in each significantly different support stratum, considering access and schedule"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Minimum verification testing and how to plan the number and location of verification tests."
+    },
+    {
+      "section_id": "7.6.3",
+      "title": "Load Testing Program for Proof Tests",
+      "summary": "Proof tests confirm the contractor's procedures throughout the project; the Owner should give the number to be tested early and keep the right to add or relocate tests. Tension tests are usually cheaper (the ground gives the reaction), so proof tests may be tension only if tension is critical or correlates with the verification results. Testing 5 percent of production micropiles is a common rule of thumb that may not suit all applications; Table 7-3 gives minimum proof test frequencies.",
+      "body": "(pp. 7-21 to 7-22) Proof tests are performed primarily to confirm the contractor's construction procedures throughout the project. The Owner should provide the same information as for verification testing and give the Contractor the number of micropiles to be proof tested as early as possible during construction; the specifications should let the Owner request additional proof tests and relocate them for unacceptable results or varying ground. Proof testing may consist of compression and/or tension tests; tension tests are typically less expensive because the ground can provide the reaction instead of adjacent piles or tie-down anchors, so if the critical load condition is tension, or if production tension test results can be correlated with the pre-production tension and compression results, proof tests may consist of only tension tests. A common requirement is to test 5 percent of the production micropiles, similar to practice for driven piles for bridge foundations, but this 'rule of thumb' may not be appropriate for all applications; the recommendations in Table 7-3 should be used to evaluate minimum proof testing requirements.",
+      "key_points": [
+        "Proof tests confirm construction procedures throughout the project",
+        "Owner states the number of proof tests early and may add or relocate tests for poor results or varying ground",
+        "Tension tests are usually cheaper (ground provides the reaction); proof tests may be tension only if tension is critical or results correlate",
+        "Testing 5 percent of production micropiles is a common rule of thumb that may not suit all applications",
+        "Table 7-3: underpinning and seismic retrofit, 1 proof test per substructure unit",
+        "Table 7-3: new construction, 1 per substructure unit but not less than 5 percent of production micropiles",
+        "Table 7-3: slope stabilization, 2 percent of production micropiles to a test load of 2.0 times Pult (Eq. 6-1)"
       ],
       "equations": [],
       "figures": [],
       "tables": [
-        "Table 7-3: Recommendations on Minimum Number of Proof Tests"
+        "Table 7-3: Recommendations on Minimum Number of Test Micropiles for Proof Testing: underpinning applications, 1 micropile proof test per substructure unit; seismic retrofit, 1 micropile proof test per substructure unit; structural support of new construction, 1 micropile proof test per substructure unit but not less than 5 percent of total production micropiles; slope stabilization, 2 percent of total production micropiles to a test load of 2.0 times Pult (Pult defined in Eq. 6-1 in Chapter 6) (p. 7-22)"
       ],
-      "applicability": "Design-phase planning of load test program scope and proof testing frequency for micropile projects."
+      "applicability": "Number and type of proof tests, with the minimum frequencies of Table 7-3."
     },
     {
-      "section_id": "7.7",
-      "title": "Other Load Testing Techniques",
-      "summary": "Describes PDA (dynamic load testing) and Statnamic testing as potential supplementary methods for micropile proof testing, though neither is currently commonplace. PDA requires mobilizing a pile hammer; cannot perform creep test, tension, or lateral testing. Statnamic (Bermingham and James, 1989) uses rapid gas-pressure loading; also cannot perform creep or tension tests. Both have data interpretation challenges unique to micropiles. May offer cost advantages for large numbers of compression proof tests.",
-      "body": "This section presents information on Pile Driving Analyzer (PDA) and Statnamic testing as alternative quality control and assurance measures for micropile proof testing. Neither method is currently used on a regular basis for micropiles; however, both may be used increasingly as experience grows. Dynamic Load Testing (PDA): Although not common, PDA for micropile proof testing could provide advantages similar to driven pile testing, allowing a large number of production piles to be tested at relatively low cost. Since micropiles are not driven, a pile hammer must be mobilized to the site. CAPWAP analysis is used for data interpretation (FHWA-HI-97-xxx). Disadvantages: (1) creep test cannot be performed; (2) tension and lateral tests cannot be performed; (3) potential for structural damage from eccentric hammer loading; (4) data interpretation requires specialized expertise. Statnamic Testing: Developed by Bermingham and James (1989). Uses solid fuel burned in a pressure chamber to rapidly accelerate a reaction mass on the pile head, creating an impulse loading event. Used successfully for drilled shafts, driven piles, auger piles, and micropiles. Disadvantages: (1) creep test cannot be performed; (2) tension tests have not been performed; (3) limited access suitability; (4) data interpretation requires specialized expertise.",
+      "section_id": "7.6.4",
+      "title": "Test Load Magnitude",
+      "summary": "The test load is typically set by the desired geotechnical factor of safety, usually greater than the factor applied to ultimate structural capacity, so excess structural capacity may be needed to carry the test loads. For structural support applications the manual recommends verification tests to 2.0 x design load and proof tests to 1.6 x design load. Whether test pile reinforcement may be varied should be addressed in the specifications (see Chapter 5).",
+      "body": "(pp. 7-22 to 7-23) The test load magnitude is typically controlled by the desired geotechnical factor of safety, which is usually greater than the factors of safety applied for ultimate structural capacity, so excess structural capacity may be required for the micropile to support the test loads. For structural support applications this manual recommends: verification load testing to 2.0 x design load; proof load testing to 1.6 x design load. The geotechnical capacity of a micropile can affect the ultimate structural capacity, requiring the same factor of safety for both geotechnical and structural considerations. Whether the reinforcement can be varied for the test piles should be considered carefully and addressed in the project specifications; this issue is reviewed in Chapter 5.",
       "key_points": [
-        "PDA: requires pile hammer mobilization; CAPWAP data interpretation; cannot do creep, tension, or lateral",
-        "Statnamic (Bermingham and James, 1989): gas-pressure impulse loading; cannot do creep or tension",
-        "Both techniques may offer cost advantages for compression proof testing on large projects",
-        "Neither technique can replace the creep test, which is currently the key acceptance criterion",
-        "Data interpretation for both requires engineers with specialized knowledge of the methods",
-        "Both methods not yet widely used for micropiles; experience still being developed"
-      ],
-      "equations": [],
-      "figures": [
-        "Figure 7-12: Dynamic Test Set-Up for Micropile (after Gomez et al., 2004)",
-        "Figure 7-13: Statnamic Test Set-Up (courtesy AFT, Inc.)"
-      ],
-      "tables": [],
-      "applicability": "Evaluating supplementary dynamic testing methods as alternatives or supplements to static micropile proof testing."
-    },
-    {
-      "section_id": "7.8",
-      "title": "References",
-      "summary": "Chapter 7 reference list including ASTM D1143 (compression), D3689 (tension), D3966 (lateral) test standards; DFI (2004) Guide to Drafting a Specification for Micropiles; Bermingham and James (1989) Statnamic method; Gomez, Cadden, and Christopher (2004) dynamic testing of micropiles; and Mullins et al. (2001) Statnamic load testing reference.",
-      "body": "Key references cited in Chapter 7: ASTM D1143, Standard Test Method for Piles Under Static Axial Compressive Load. ASTM D3689, Standard Test Method for Individual Piles Under Static Axial Tensile Load. ASTM D3966, Standard Test Method for Piles Under Lateral Loads. Bermingham, P. and James, M. (1989), An Innovative Approach to Load Testing of High Capacity Piles, Proceedings of the International Conference on Piling and Deep Foundations. DFI (2004), Guide to Drafting a Specification for Micropiles, Deep Foundations Institute, The International Association of Foundation Drilling, 60 pages, New Jersey. Gomez, J., Cadden, A., and Christopher, B. (2004), Micropiles in Rock — Factors Affecting Design and Installation. Mullins, G., et al. (2001), Statnamic Load Testing.",
-      "key_points": [
-        "ASTM D1143: compression load test standard for piles",
-        "ASTM D3689: tension load test standard for piles",
-        "ASTM D3966: lateral load test standard for piles",
-        "DFI (2004): guide for drafting micropile specifications — basis for Table 7-1 and Table 7-2 load schedules",
-        "Bermingham and James (1989): original Statnamic method development paper"
+        "Test load is set by the desired geotechnical factor of safety, usually greater than the structural one",
+        "Excess structural capacity may be needed for the test micropile to carry the test load",
+        "Structural support: verification tests to 2.0 x design load; proof tests to 1.6 x design load",
+        "Whether test pile reinforcement may differ should be addressed in the specifications (Chapter 5)"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Source references for micropile load testing standards and procedures."
+      "applicability": "Recommended verification and proof test loads for structural support micropiles."
+    },
+    {
+      "section_id": "7.6.5",
+      "title": "Method of Load Application",
+      "summary": "If micropiles carry tension and compression, test both; testing the same micropile in both, do tension first so the pile reseats in compression. All micropiles must be usable for proof testing since proof tests are random. Testing an inclined micropile is usually unnecessary: inclination has little effect on construction or capacity (particularly cased-hole micropiles) but makes testing harder and costlier. Slope stabilization micropiles may be tested in tension.",
+      "body": "(p. 7-23) If micropiles are designed for tension and compression loads, both conditions should be tested. If the same micropile is tested in both, the tension test should be conducted first, allowing the pile to be reseated during compression testing if some net upward residual movement occurs. Because proof tests are performed on random micropiles, the Contractor shall assure that all micropiles can be used for load testing. It is usually not necessary to test an inclined micropile even if the project includes them: installing on an incline has little, if any, effect on difficulty of construction and capacity, particularly for micropiles installed by the cased hole method, while testing an inclined micropile can be difficult and costly, particularly in compression. For slope stabilization micropiles, tension tests may be used.",
+      "key_points": [
+        "Test both tension and compression if the micropiles are designed for both",
+        "Same micropile in both: tension test first so the pile reseats in compression",
+        "Proof tests are random, so all micropiles must be testable",
+        "Testing inclined micropiles is usually unnecessary; inclination has little effect on capacity, especially for cased-hole micropiles",
+        "Slope stabilization micropiles may be load tested in tension"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Order of tension and compression testing and testing of inclined micropiles."
+    },
+    {
+      "section_id": "7.7",
+      "title": "Other Load Testing Techniques",
+      "summary": "Other load testing techniques are treated under 7.7.1 General, 7.7.2 Dynamic Load Testing and 7.7.3 Statnamic Load Testing; no text is printed under this heading.",
+      "body": "(p. 7-23) No text is printed under this heading; see 7.7.1 General, 7.7.2 Dynamic Load Testing and 7.7.3 Statnamic Load Testing.",
+      "key_points": [
+        "Alternatives to static proof tests: dynamic (PDA) testing (7.7.2) and Statnamic testing (7.7.3)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Pointer to dynamic and Statnamic testing of micropiles (7.7.1 to 7.7.3)."
+    },
+    {
+      "section_id": "7.7.1",
+      "title": "General",
+      "summary": "Micropile proof tests currently use the same equipment and procedures as verification tests: cheaper (lower loads, shorter tests) but with the same set-up, a large part of the cost. Driven pile proof testing often uses a pile driving analyzer (PDA) correlated with project static tests, rapid and inexpensive; Statnamic testing can serve similarly alongside static tests. Neither is used regularly for micropiles yet, but use may increase with experience.",
+      "body": "(pp. 7-23 to 7-24) In current practice, micropile proof testing uses the same equipment and procedures as verification testing; it is less expensive because of lower maximum test loads and less time, but the test set-up, a significant part of the cost, is the same. For driven piles, 'proof' tests typically include dynamic testing with a pile driver analyzer (PDA), correlated with project-specific load tests and used as a quality control measure; PDA testing is rapid and inexpensive compared with full-scale static load testing, so it gives an approximate static capacity for a relatively large number of production piles at low cost. Statnamic testing may similarly be used for quality control and assurance together with full-scale static tests. Neither method is used on a regular basis for micropiles at this time, but they may be used increasingly as experience is gained.",
+      "key_points": [
+        "Micropile proof tests use the verification test set-up, a significant part of the cost",
+        "Driven piles often use PDA dynamic testing correlated with static tests for quality control",
+        "Statnamic testing may also be used with full-scale static tests",
+        "Neither is used regularly for micropiles yet; use may increase with experience"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Why dynamic and Statnamic tests are of interest for micropile proof testing."
+    },
+    {
+      "section_id": "7.7.2",
+      "title": "Dynamic Load Testing",
+      "summary": "PDA testing needs a mobilized pile hammer; CAPWAP methods are in FHWA-HI-97-014. In Northern Virginia, Gomez et al. (2004) found two of three static tests in karst could not reach twice the design load (contaminated, poorly flushed bond zone); PDA on 22 production micropiles, with rising hammer energy and a field cushion, matched the static tests (Figure 7-12). Drawbacks: no creep, tension or lateral tests; risk of structural damage from eccentric hammer blows; expert interpretation; rarely cheaper than tension tests.",
+      "body": "(pp. 7-24 to 7-25) Although not commonplace, PDA testing for micropile proof testing could offer the same advantages as for driven piles; since micropiles are not driven, a pile hammer must be mobilized. Details of the PDA and CAPWAP data interpretation are in FHWA-HI-97-014 (1996). There is not yet sufficient field experience to develop general procedures, but one case history is reviewed. On a recent Northern Virginia project, Gomez et al. (2004) used PDA to evaluate micropiles installed through karstic limestone to competent rock (Figure 7-12). Static load tests on two of three test micropiles could not reach the test loads (two times the design load); the causes were contamination of the grout-rock contact in the bond zone and difficulty cleaning the bond zone by flushing with water. The capacity of production micropiles already installed then had to be evaluated, and PDA testing was performed on 22 production micropiles of varying lengths. Because of their small cross section there was concern about structural damage from hammer strikes, while sufficient energy must be imparted to move the pile enough to estimate capacity; hammer energy was increased gradually and a cushioning system was fabricated in the field. PDA capacities were consistent with the three static load tests, and the authors concluded PDA could give reasonably accurate capacity estimates for the remaining production micropiles. PDA can give cost advantages over static compression proof tests (many tests per day), but: the creep test cannot be performed; tension and lateral tests cannot be performed; potential structural damage, especially from eccentric hammer loading, must be considered; data interpretation must be by an engineer with detailed knowledge of the method; and where tension tests suffice to evaluate bond zone capacity, PDA is unlikely to be more cost-effective (unless test loads are very high, needing substantial reaction beams).",
+      "key_points": [
+        "PDA testing of micropiles needs a mobilized pile hammer; PDA and CAPWAP details in FHWA-HI-97-014",
+        "Not enough field experience yet for general procedures",
+        "Gomez et al. (2004), Northern Virginia karst: two of three static tests failed to reach twice the design load (contaminated, poorly flushed bond zone)",
+        "PDA on 22 production micropiles with gradually increased hammer energy and a field-made cushion matched the static tests (Figure 7-12)",
+        "PDA cannot perform creep, tension or lateral tests",
+        "Risk of structural damage from eccentric hammer loading; interpretation needs an engineer who knows the method",
+        "Where tension tests suffice, PDA is unlikely to be cheaper unless test loads are very high"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-12: Dynamic Test Set-Up for Micropile (after Gomez et al., 2004). (p. 7-25)"
+      ],
+      "tables": [],
+      "applicability": "PDA dynamic testing of micropiles, a Northern Virginia case history, and the method's drawbacks."
+    },
+    {
+      "section_id": "7.7.3",
+      "title": "Statnamic Load Testing",
+      "summary": "Statnamic testing (Bermingham and Jane, 1989 in the text) burns solid fuel in a pressure chamber to accelerate a reaction mass upward, pushing the pile down, then vents. It needs a level area 3 to 4 m across and at least 8.5 m headroom (Figure 7-13). Advantages: no reaction piles, quicker set-up, about one quarter to one half the cost of a static test, suits lateral, battered and over-water tests, simpler analysis. Disadvantages: no creep test, no tension tests yet, tight access, expert interpretation.",
+      "body": "(pp. 7-26 to 7-27) The Statnamic method was developed by Bermingham and Jane (1989) (listed in the references as Bermingham and James) and is used to evaluate the capacity of drilled shafts, driven piles, augered cast-in-place piles, micropiles, stone columns and shallow foundations; its use for micropiles is increasing and several projects have been completed, though data are unpublished. Equipment, testing methods and data interpretation are in Mullins et al. (2001). Solid fuel burned within a pressure chamber rapidly accelerates the reaction mass on the pile head upward, with an equal and opposite force pushing down on the pile; loading rises to a maximum and unloads by venting the gas. The magnitude and duration of load and the loading rate are controlled by the piston and cylinder size, fuel mass and type, reaction mass and venting technique. The work area must typically be 3 to 4 m (10 to 13 ft) in diameter and level (Figure 7-13), with at least 8.5 m (28 ft) of headroom. Advantages: no reaction piles or reaction system and less preparation time than a static test; cost on the order of one quarter to one half that of an equivalent static load test, depending on load, site and labor; readily adapted to lateral tests, batter micropiles and axial tests on land or over water; and a load duration long enough to preclude stress wave formation, so the analysis is simpler than for dynamic tests. Disadvantages: the creep test cannot be performed; tension tests have not yet been performed with the device; it may not suit tight access unless the test pile can be relocated; and interpretation must be by an engineer with detailed knowledge of the method and current analysis methods.",
+      "key_points": [
+        "Statnamic: solid fuel in a pressure chamber accelerates a reaction mass upward, pushing the pile down; unloads by venting gas",
+        "Load magnitude, duration and rate set by piston and cylinder size, fuel mass and type, reaction mass and venting",
+        "Needs a level work area 3 to 4 m (10 to 13 ft) across and at least 8.5 m (28 ft) headroom (Figure 7-13)",
+        "Advantages: no reaction system, quicker set-up, about one quarter to one half the cost of an equivalent static test",
+        "Suits lateral tests, batter micropiles and over-water tests; no stress waves, so simpler analysis than dynamic tests",
+        "Disadvantages: no creep test, no tension tests yet, may not suit tight access, needs expert interpretation",
+        "References: Bermingham and Jane (1989) in the text (Bermingham and James in the list); Mullins et al. (2001)"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 7-13: Statnamic Test Set-Up (courtesy of Applied Foundation Testing (AFT), Inc.). (p. 7-27)"
+      ],
+      "tables": [],
+      "applicability": "Statnamic load testing of micropiles: method, set-up needs, advantages and disadvantages."
+    },
+    {
+      "section_id": "7.8",
+      "title": "References",
+      "summary": "References cited in Chapter 7: ASTM D1143 (compression), ASTM D3689 (tension) and ASTM D3966 (lateral) pile load test standards; Bermingham and James (1989); DFI (2004); Gomez, Cadden and Christopher (2004); Mullins, Lewis and Justason (2001).",
+      "body": "(p. 7-28) ASTM D1143, 'Standard Test Method for Piles Under Static Axial Compressive Load', American Society for Testing and Materials, pp. 104-114, New York. ASTM D3689, 'Standard Test Method for Individual Piles Under Static Axial Tensile Load', ASTM, pp. 416-426, New York. ASTM D3966, 'Standard Test Method for Piles Under Lateral Loads', ASTM, pp. 440-454, New York. Bermingham, P. and James, M. (1989), 'An Innovative Approach to Load Testing of High Capacity Piles', Proceedings of the International Conference on Piling and Deep Foundations, V. 1, J. B. Burland and J. M. Mitchell, pp. 409-413. DFI (2004), 'Guide to Drafting a Specification for Micropiles', Deep Foundations Institute, The International Association of Foundation Drilling, 60 pages, New Jersey. Gomez, J., Cadden, A. and Christopher, W. (2004), 'Micropile Foundations on Karst: Static and Dynamic Testing Variability', Proceedings of the Fifth International Conference on Case Histories in Geotechnical Engineering, April 13-17, New York. Mullins, G., Lewis, C. L. and Justason, M. D. (2001), 'Advancements in Statnamic Data Regression Techniques', Deep Foundations 2002: An International Perspective on Theory, Design, Construction, and Performance, ASCE Geo Institute, GSP No. 116, V. II, pp. 915-930.",
+      "key_points": [
+        "ASTM D1143 compression, D3689 tension and D3966 lateral pile load test standards",
+        "DFI (2004) Guide to Drafting a Specification for Micropiles: basis of the Table 7-1 and 7-2 load schedules",
+        "Gomez, Cadden and Christopher (2004): static and dynamic testing of micropiles in karst",
+        "Statnamic: Bermingham and James (1989); Mullins, Lewis and Justason (2001)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Sources cited in Chapter 7."
     }
   ]
 }
