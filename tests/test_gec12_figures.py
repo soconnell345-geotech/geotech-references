@@ -108,6 +108,12 @@ class TestKd:
         assert abs(kd_at - kd_below) < 0.05
         assert abs(kd_above - kd_at) < 0.05
 
+    def test_log_linear_in_V_between_columns(self):
+        """Step 3e (p. 243): log-linear in V. Between the printed 1.0 and
+        2.0 columns at phi 40: 3.00 + 1.30 log10(1.5) = 3.228 (a straight
+        line between the columns would give 3.195)."""
+        assert figure_7_10_to_13_kd(40, 1.5) == pytest.approx(3.228, abs=0.001)
+
 
 # ============================================================================
 # Figure 7-14: Correction Factor CF
@@ -115,6 +121,15 @@ class TestKd:
 
 class TestCF:
     """Tests for figure_7_14_correction_factor()."""
+
+    # Read off the printed figure (REF-49): each curve's centre line.
+    @pytest.mark.parametrize("phi, ratio, cf", [
+        (15, 0.2, 0.815), (30, 0.2, 0.580), (45, 0.2, 0.241),
+        (30, 0.4, 0.689), (45, 0.6, 0.620), (30, 0.8, 0.945),
+        (45, 0.8, 0.841), (45, 1.2, 1.120), (45, 1.4, 1.160),
+    ])
+    def test_measured_nodes(self, phi, ratio, cf):
+        assert figure_7_14_correction_factor(phi, ratio) == pytest.approx(cf, abs=0.001)
 
     def test_cf_delta_equals_phi(self):
         """When delta/phi = 1.0, CF = 1.0 at all phi."""
@@ -129,20 +144,21 @@ class TestCF:
             assert cf > cf_prev
             cf_prev = cf
 
-    def test_cf_low_ratio(self):
-        """CF at low delta/phi ratio is well below 1.0."""
-        cf = figure_7_14_correction_factor(30, 0.2)
-        assert cf < 0.25
+    def test_cf_falls_with_phi_below_one_and_rises_above(self):
+        """The delta/phi < 1 curves fall as phi rises; 1.2 and 1.4 rise."""
+        for ratio, sign in ((0.2, -1), (0.6, -1), (1.4, 1)):
+            cfs = [figure_7_14_correction_factor(p, ratio) for p in (15, 25, 35, 45)]
+            assert all(sign * (b - a) > 0 for a, b in zip(cfs, cfs[1:]))
 
-    def test_cf_high_ratio(self):
-        """CF at delta/phi = 1.4 is above 1.0."""
-        cf = figure_7_14_correction_factor(30, 1.4)
-        assert cf > 1.0
+    def test_interpolates_between_curves(self):
+        cf = figure_7_14_correction_factor(30, 0.7)
+        assert cf == pytest.approx((0.817 + 0.945) / 2, abs=0.001)
 
-    def test_cf_phi_out_of_range(self):
-        """phi outside 15-50 raises ValueError."""
-        with pytest.raises(ValueError):
-            figure_7_14_correction_factor(10, 1.0)
+    @pytest.mark.parametrize("phi", [10, 14.9, 45.1, 50])
+    def test_cf_phi_out_of_range(self, phi):
+        """The curves span about 15-45 deg."""
+        with pytest.raises(ValueError, match="outside Figure 7-14"):
+            figure_7_14_correction_factor(phi, 1.0)
 
     def test_cf_ratio_out_of_range(self):
         """delta/phi ratio outside 0.2-1.4 raises ValueError."""
@@ -192,10 +208,20 @@ class TestLimitingToeResistance:
 class TestAlphaT:
     """Tests for figure_7_16a_alpha_t()."""
 
+    # Read off the printed figure (REF-49); the curves start at 20 deg and
+    # merge at about 37 deg.
+    @pytest.mark.parametrize("phi, db, at", [
+        (20, 20, 0.365), (20, 30, 0.257), (20, 45, 0.178),
+        (30, 20, 0.580), (30, 30, 0.531), (30, 45, 0.491),
+        (37, 20, 0.707), (37, 45, 0.707), (45, 30, 0.800),
+    ])
+    def test_measured_nodes(self, phi, db, at):
+        assert figure_7_16a_alpha_t(phi, db) == pytest.approx(at, abs=0.001)
+
     def test_alpha_t_increases_with_phi(self):
         """alpha_t increases with friction angle."""
         at_prev = 0
-        for phi in [15, 20, 25, 30, 35, 40, 45]:
+        for phi in [20, 25, 30, 35, 40, 45]:
             at = figure_7_16a_alpha_t(phi, 30)
             assert at > at_prev
             at_prev = at
@@ -214,10 +240,11 @@ class TestAlphaT:
                 at = figure_7_16a_alpha_t(phi, db)
                 assert 0 < at < 1
 
-    def test_phi_out_of_range(self):
-        """phi outside 15-45 raises ValueError."""
-        with pytest.raises(ValueError):
-            figure_7_16a_alpha_t(10, 30)
+    @pytest.mark.parametrize("phi", [10, 15, 19.9, 45.1])
+    def test_phi_out_of_range(self, phi):
+        """The curves span 20-45 deg."""
+        with pytest.raises(ValueError, match="outside Figure 7-16"):
+            figure_7_16a_alpha_t(phi, 30)
 
     def test_db_out_of_range(self):
         """D/b outside 20-45 raises ValueError."""
@@ -232,13 +259,14 @@ class TestAlphaT:
 class TestNq:
     """Tests for figure_7_16b_nq()."""
 
-    def test_nq_at_phi_30(self):
-        """N'q at phi=30 is approximately 28."""
-        assert figure_7_16b_nq(30) == pytest.approx(28, rel=0.1)
-
-    def test_nq_at_phi_15(self):
-        """N'q at phi=15 is approximately 5."""
-        assert figure_7_16b_nq(15) == pytest.approx(5, rel=0.1)
+    # Read off the printed figure (REF-49) at every degree; the seven
+    # earlier nodes read 150 at 40 deg.
+    @pytest.mark.parametrize("phi, nq", [
+        (15, 4.83), (20, 8.18), (25, 15.00), (30, 30.1), (32, 40.0),
+        (35, 63.8), (40, 160.4), (44, 374.0), (45, 475.0),
+    ])
+    def test_measured_nodes(self, phi, nq):
+        assert figure_7_16b_nq(phi) == pytest.approx(nq, rel=1e-6)
 
     def test_nq_increases_with_phi(self):
         """N'q increases with phi (monotonic on log scale)."""
@@ -249,13 +277,10 @@ class TestNq:
             nq_prev = nq
 
     def test_nq_uses_log_interpolation(self):
-        """Interpolation is log-linear, not linear."""
-        nq_30 = figure_7_16b_nq(30)
-        nq_35 = figure_7_16b_nq(35)
-        nq_mid = figure_7_16b_nq(32.5)
-        # Log-linear midpoint should be geometric mean
-        geometric_mean = math.sqrt(nq_30 * nq_35)
-        assert abs(nq_mid - geometric_mean) / geometric_mean < 0.05
+        """Interpolation is log-linear, not linear: the half degree is the
+        geometric mean of the two nodes."""
+        nq_mid = figure_7_16b_nq(39.5)
+        assert nq_mid == pytest.approx(math.sqrt(130.9 * 160.4), rel=1e-6)
 
     def test_phi_out_of_range(self):
         """phi outside 15-45 raises ValueError."""
@@ -270,36 +295,52 @@ class TestNq:
 class TestDeltaPhiRatio:
     """Tests for figure_7_9_delta_phi_ratio()."""
 
-    def test_pipe_pile(self):
-        """Pipe pile has delta/phi around 0.70."""
-        result = figure_7_9_delta_phi_ratio("pipe_pile")
-        assert result["delta_phi_ratio"] == pytest.approx(0.70)
+    # Read off the printed figure (REF-49): delta/phi follows V on each
+    # pile type's curve.
+    @pytest.mark.parametrize("pile_type, V, ratio, curve", [
+        ("pipe_pile", 0.3, 0.344, "a"), ("pipe_pile", 1.0, 0.655, "a"),
+        ("timber", 1.9, 0.823, "b"), ("precast_concrete", 1.0, 0.767, "c"),
+        ("raymond_step_taper", 1.0, 0.873, "d"),
+        ("raymond_uniform_taper", 1.9, 1.270, "e"),
+        ("h_pile", 0.15, 0.791, "f"), ("monotube_tapered", 1.0, 0.914, "g"),
+    ])
+    def test_measured_nodes(self, pile_type, V, ratio, curve):
+        result = figure_7_9_delta_phi_ratio(pile_type, V)
+        assert result["delta_phi_ratio"] == pytest.approx(ratio, abs=0.001)
+        assert result["curve"] == curve
 
-    def test_h_pile(self):
-        """H-pile has lowest delta/phi ratio."""
-        result = figure_7_9_delta_phi_ratio("h_pile")
-        assert result["delta_phi_ratio"] < 0.70
+    def test_interpolates_along_the_curve(self):
+        result = figure_7_9_delta_phi_ratio("pipe_pile", 1.05)
+        assert result["delta_phi_ratio"] == pytest.approx((0.655 + 0.678) / 2, abs=0.001)
 
-    def test_precast_concrete(self):
-        """Precast concrete has delta/phi around 0.85."""
-        result = figure_7_9_delta_phi_ratio("precast_concrete")
-        assert result["delta_phi_ratio"] == pytest.approx(0.85)
+    def test_ratio_rises_with_V(self):
+        ratios = [figure_7_9_delta_phi_ratio("timber", V)["delta_phi_ratio"]
+                  for V in (0.3, 0.8, 1.3, 1.9)]
+        assert ratios == sorted(ratios)
+
+    @pytest.mark.parametrize("pile_type, V", [
+        ("pipe_pile", 0.2), ("pipe_pile", 2.0), ("h_pile", 0.05), ("h_pile", 0.6),
+    ])
+    def test_refuses_V_outside_the_curve(self, pile_type, V):
+        with pytest.raises(ValueError, match="outside Figure 7-9"):
+            figure_7_9_delta_phi_ratio(pile_type, V)
 
     def test_has_description(self):
         """Result includes a description string."""
-        result = figure_7_9_delta_phi_ratio("timber")
+        result = figure_7_9_delta_phi_ratio("timber", 1.0)
         assert "description" in result
         assert len(result["description"]) > 0
+        assert result["V_range"] == (0.3, 1.9)
 
     def test_unknown_pile_type(self):
         """Unknown pile type raises ValueError."""
         with pytest.raises(ValueError):
-            figure_7_9_delta_phi_ratio("unknown_pile")
+            figure_7_9_delta_phi_ratio("unknown_pile", 1.0)
 
     def test_partial_match(self):
         """Partial name matching works."""
-        result = figure_7_9_delta_phi_ratio("pipe")
-        assert "delta_phi_ratio" in result
+        result = figure_7_9_delta_phi_ratio("pipe", 1.0)
+        assert result["curve"] == "a"
 
 
 # ============================================================================
@@ -309,20 +350,29 @@ class TestDeltaPhiRatio:
 class TestAdhesion:
     """Tests for figure_7_17_adhesion()."""
 
-    def test_zero_su(self):
-        """Zero su gives zero adhesion."""
-        assert figure_7_17_adhesion(0.0) == pytest.approx(0.0, abs=0.01)
-
-    def test_concrete_d10(self):
-        """Concrete pile at D/b=10, su=1.0 ksf."""
-        ca = figure_7_17_adhesion(1.0, D_over_b=10.0, pile_surface="concrete")
-        assert 0.6 < ca < 0.8
+    # Read off the printed figure (REF-49): Ca peaks near su = 2 ksf.
+    @pytest.mark.parametrize("su, db, surface, ca", [
+        (1.0, 10, "concrete", 0.948), (2.0, 10, "concrete", 1.369),
+        (3.45, 10, "concrete", 0.827), (2.2, 40, "concrete", 1.819),
+        (3.45, 40, "concrete", 1.367), (2.0, 10, "steel", 1.170),
+        (2.2, 40, "steel", 1.581), (3.05, 40, "steel", 1.279),
+    ])
+    def test_measured_nodes(self, su, db, surface, ca):
+        assert figure_7_17_adhesion(su, db, surface) == pytest.approx(ca, abs=0.001)
 
     def test_concrete_d40(self):
         """Concrete pile at D/b=40 gives higher adhesion than D/b=10."""
         ca_d10 = figure_7_17_adhesion(1.5, D_over_b=10.0, pile_surface="concrete")
         ca_d40 = figure_7_17_adhesion(1.5, D_over_b=40.0, pile_surface="concrete")
         assert ca_d40 > ca_d10
+
+    def test_one_solid_curve_below_1_ksf(self):
+        """The solid D = 40b curve starts at su = 1.0 ksf."""
+        assert figure_7_17_adhesion(0.8, 40.0) == pytest.approx(
+            figure_7_17_adhesion(0.8, 10.0))
+
+    def test_ca_falls_past_the_peak(self):
+        assert figure_7_17_adhesion(3.0, 10.0) < figure_7_17_adhesion(2.0, 10.0)
 
     def test_steel_lower_than_concrete(self):
         """Steel piles give lower adhesion than concrete piles."""
@@ -336,15 +386,13 @@ class TestAdhesion:
         ca_10 = figure_7_17_adhesion(1.0, D_over_b=10.0)
         assert ca_5 == pytest.approx(ca_10)
 
-    def test_negative_su_raises(self):
-        """Negative su raises ValueError."""
-        with pytest.raises(ValueError):
-            figure_7_17_adhesion(-1.0)
-
-    def test_su_exceeds_range_raises(self):
-        """su > 4.0 raises ValueError."""
-        with pytest.raises(ValueError):
-            figure_7_17_adhesion(5.0)
+    @pytest.mark.parametrize("su, surface", [
+        (-1.0, "concrete"), (0.0, "concrete"), (0.2, "steel"),
+        (3.5, "concrete"), (3.1, "steel"), (5.0, "concrete"),
+    ])
+    def test_refuses_su_outside_the_curves(self, su, surface):
+        with pytest.raises(ValueError, match="outside Figure 7-17"):
+            figure_7_17_adhesion(su, pile_surface=surface)
 
     def test_unknown_surface_raises(self):
         """Unknown pile surface raises ValueError."""
@@ -359,16 +407,29 @@ class TestAdhesion:
 class TestAdhesionFactor:
     """Tests for figure_7_18_adhesion_factor()."""
 
-    def test_zero_su_gives_alpha_1(self):
-        """At su=0, alpha should be 1.0 for all cases."""
-        for case in ["sand_over_stiff_clay", "soft_over_stiff_clay", "stiff_clay_only"]:
-            alpha = figure_7_18_adhesion_factor(0.0, 20, case)
-            assert alpha == pytest.approx(1.0, abs=0.05)
+    # Read off the printed figure (REF-49).
+    @pytest.mark.parametrize("su, db, case, alpha", [
+        (2.0, 10, "sand_over_stiff_clay", 1.000),
+        (2.0, 20, "sand_over_stiff_clay", 0.955),
+        (2.0, 40, "sand_over_stiff_clay", 0.680),
+        (5.0, 40, "sand_over_stiff_clay", 0.390),
+        (2.0, 10, "soft_over_stiff_clay", 0.296),
+        (2.0, 20, "soft_over_stiff_clay", 0.674),
+        (2.0, 10, "stiff_clay_only", 0.691),
+        (2.0, 40, "stiff_clay_only", 0.902),
+        (5.0, 40, "stiff_clay_only", 0.300),
+    ])
+    def test_measured_nodes(self, su, db, case, alpha):
+        assert figure_7_18_adhesion_factor(su, db, case) == pytest.approx(alpha, abs=0.001)
+
+    def test_sand_case_starts_at_alpha_1(self):
+        for db in (10, 20, 40):
+            assert figure_7_18_adhesion_factor(0.0, db, "sand_over_stiff_clay") == 1.0
 
     def test_alpha_decreases_with_su(self):
         """Alpha decreases as su increases."""
-        alpha_1 = figure_7_18_adhesion_factor(1.0, 20, "sand_over_stiff_clay")
-        alpha_3 = figure_7_18_adhesion_factor(3.0, 20, "sand_over_stiff_clay")
+        alpha_1 = figure_7_18_adhesion_factor(1.0, 40, "sand_over_stiff_clay")
+        alpha_3 = figure_7_18_adhesion_factor(3.0, 40, "sand_over_stiff_clay")
         assert alpha_3 < alpha_1
 
     def test_case1_d10_highest(self):
@@ -383,22 +444,25 @@ class TestAdhesionFactor:
         alpha_d40 = figure_7_18_adhesion_factor(2.0, 40, "stiff_clay_only")
         assert alpha_d40 > alpha_d10
 
+    def test_linear_in_D_over_b_between_curves(self):
+        alpha = figure_7_18_adhesion_factor(2.0, 15, "soft_over_stiff_clay")
+        assert alpha == pytest.approx((0.296 + 0.674) / 2, abs=0.001)
+
     def test_alpha_range(self):
         """Alpha is between 0 and 1 for all valid inputs."""
-        for su in [0.5, 1.0, 2.0, 3.0, 5.0]:
+        for su in [0.6, 1.0, 2.0, 3.0, 4.5]:
             for case in ["sand_over_stiff_clay", "soft_over_stiff_clay", "stiff_clay_only"]:
                 alpha = figure_7_18_adhesion_factor(su, 20, case)
                 assert 0 <= alpha <= 1.0
 
-    def test_negative_su_raises(self):
-        """Negative su raises ValueError."""
-        with pytest.raises(ValueError):
-            figure_7_18_adhesion_factor(-1.0, 20, "sand_over_stiff_clay")
-
-    def test_su_exceeds_range_raises(self):
-        """su > 5.0 raises ValueError."""
-        with pytest.raises(ValueError):
-            figure_7_18_adhesion_factor(6.0, 20, "sand_over_stiff_clay")
+    @pytest.mark.parametrize("su, db, case", [
+        (-1.0, 20, "sand_over_stiff_clay"), (6.0, 20, "sand_over_stiff_clay"),
+        (0.3, 10, "soft_over_stiff_clay"), (4.7, 10, "soft_over_stiff_clay"),
+        (5.0, 20, "soft_over_stiff_clay"), (0.0, 10, "stiff_clay_only"),
+    ])
+    def test_refuses_su_outside_the_curves(self, su, db, case):
+        with pytest.raises(ValueError, match="outside Figure 7-18"):
+            figure_7_18_adhesion_factor(su, db, case)
 
     def test_unknown_stratigraphy_raises(self):
         """Unknown stratigraphy raises ValueError."""
