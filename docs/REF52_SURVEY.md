@@ -838,21 +838,28 @@ Four retrieval gold entries named old ranges and now name the printed
 sections (as in df580ff): cu-def 4.1-4.10 to 4.4.1, plasticity-chart
 4.16-4.17 to 4.16.1, liq-screen 5.5-5.7 to 5.6.1 and 5.6.2, and
 hoek-brown 9.5-9.8 to 9.8 (Eq. 9.29, p. 9-50). No query was reworded.
-Ranks moved as follows (rerank, unless a mode is named):
+py-method also accepts gec_5 8.10.2 "p-y Curves" (p. 8-30), new here:
+it defines p-y curves for laterally loaded deep foundations, and Table
+8-13 (p. 8-31) lists the p-y models by soil. Ranks moved as follows
+(rerank, unless a mode is named):
 - cu-def 2 to 1 and plasticity-chart 3 to 2, in all modes; hoek-brown
   stays 1.
 - liq-screen 1 to not in the top 10, in all modes. The top hits are
   gec_10 9.4.2.1 and gec_5 12.4.2 (seismic liquefaction screening, with
-  Table 12-5).
-- py-method 9 to not in the top 10, in all modes. gec_5 8.10.2 "p-y
-  Curves" is now first; the gold names gec_9 6.3 and dm7_2 6-6.4.2.
+  Table 12-5); neither prints a fines limit. 5.6.1, which prints "less
+  than about 20 percent fines" (p. 5-31), is not in the top 50, and
+  5.6.2 ranks 16: the print says "liquefiable" and "liquefy", where the
+  old range summary held the query's words (REF-54).
+- py-method 9 to 1, in all modes (gec_5 8.10.2 first; gec_9 6.3 went
+  from 9 to 11).
 - rqd-def 1 to 2 (fill and rerank); dmt-def 4 to 7 (auto 5 to 7; gec_5
   10.14.3 and 10.14 rank above); stone-col-capacity 7 to 5; spt-def 3 to
-  4 (off and fill); phi-cpt 6 to 7.
+  4 (off and fill); phi-cpt 6 to 7 (auto and rerank).
 
-Rerank R@10 went from 41 to 39 of 54 and MRR@10 from 0.510 to 0.491; the
-two cases lost are liq-screen and py-method. test_query_expansion and
-the gec_5 cases passed after every chapter.
+Rerank R@10 went from 41 to 40 of 54 and MRR@10 from 0.510 to 0.509
+(off 34 to 33, fill 39 to 38, auto 44 to 43); the case lost is
+liq-screen. test_query_expansion and the gec_5 cases passed after every
+chapter.
 
 ### What the old files held that the print does not
 
