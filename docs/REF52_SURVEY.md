@@ -630,10 +630,10 @@ suite.
 
 ### What the old files held that the print does not
 
-- Figure captions that are not the print's. In ch 12 all five listed
-  captions were wrong: for example, old "Figure 12-2: Strain gauge pair
-  placement" is printed as "Example of a one-way lateral load test set up
-  on a deep foundation". Figure 12-6 was missing.
+- Figure captions that are not the print's. Ch 12 held six captions;
+  12-1 to 12-5 were wrong and 12-6 was right. For example, old "Figure
+  12-2: Strain gauge pair placement" is printed as "Example of a one-way
+  lateral load test set up on a deep foundation".
 - Duplicated figures. Ch 6 listed Figure 6-6 twice, once captioned "Pile
   group interaction in SWM model". Old 10.4 listed Figure 2-11 again; it
   is now in ch 2 only.
