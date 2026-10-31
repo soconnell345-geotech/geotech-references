@@ -335,11 +335,12 @@ def test_substituted_query():
 
 def test_auto_zero_literal_keeps_the_words_the_groups_do_not_cover():
     # The literal AND query matches nothing; swapping "wick drain" for its
-    # group keeps "smear zone" in the query (FHWA-NHI-16-027 Sec. 2.4.3).
+    # group keeps "smear zone" in the query (FHWA-NHI-16-027 ch 2 Sec. 3.2.1,
+    # where the print discusses the smear zone).
     q = "wick drain smear zone"
     assert _literal(_retrieval_db.reference_search, q, limit=5) == []
     auto = _with_strategy("auto", _retrieval_db.reference_search, q, limit=5)
-    assert ("gec_13", "2.4.3") in [(h["reference"], h["section_id"]) for h in auto]
+    assert ("gec_13", "2.3.2.1") in [(h["reference"], h["section_id"]) for h in auto]
 
 
 def test_auto_zero_literal_a_fired_group_keeps_the_query_words():
