@@ -1550,47 +1550,43 @@
         {
           "section_id": "7.7.1",
           "title": "Factors Affecting Drivability",
-          "body": "The primary factors affecting pile drivability include pile impedance (EA/C), pile material strength, and driving equipment characteristics. Pile impedance is the primary controlling factor: once pile material and modulus are selected, only increasing cross-sectional area improves drivability. Pile material strength is a lesser factor since it does not alter impedance, but higher strength allows higher driving stresses. Driving system characteristics (ram weight, stroke, speed) and dynamic soil response (damping, quake) also affect drivability. Installation aids (predrilling, jetting, spudding) can assist in meeting penetration requirements but do not change pile section drivability.",
+          "body": "A pile must have enough stiffness to transmit driving forces large enough to overcome the soil resistance, and enough structural strength to withstand them without damage (pp. 392-393). The primary control on drivability is the pile impedance, EA/C: once the material, and so E and the wave speed C, is chosen, only a larger cross sectional area A improves drivability. A heavier H-pile section of the same size, or a thicker pipe wall, raises impedance without much change in soil resistance; an inside-fitting cutting shoe on an open end pipe delays plug formation and reduces the resistance to be overcome. Most concrete piles are solid, so a larger area usually brings more soil resistance too. Material strength has a lesser influence because it does not alter impedance, but a stronger pile tolerates higher driving stresses and may allow a larger hammer and a slightly higher resistance before refusal or damage. Other factors are the driving system (ram weight, stroke, speed and field performance) and the dynamic soil response: higher damping or soil elasticity than assumed reduces drivability (Chapters 10, 11 and 12). Predrilling, jetting and spudding can help meet penetration requirements but do not change the drivability of the section. A pile cannot be driven to a static nominal resistance as high as its structural resistance, because of the added dynamic resistance during driving; driving stress limits may cap the usable geotechnical resistance (Chapter 8).",
           "key_points": [
-            "Pile impedance EA/C is the primary controlling factor",
-            "E = elastic modulus, A = cross-sectional area, C = wave speed",
-            "Increasing area (for same pile type) is the most effective improvement",
-            "Steel H-piles: increase H-pile section size to increase impedance",
-            "Pipe piles: increase wall thickness to increase impedance",
-            "Pile material strength affects allowable driving stress but not impedance",
-            "Driving system: ram weight, stroke, and speed affect energy delivered",
-            "Installation aids (predrilling, jetting) assist penetration but do not change drivability",
-            "Dynamic soil response (damping, quake) can reduce drivability in some soils"
-          ]
+            "Pile impedance EA/C is the primary control; for a given material only a larger area A improves drivability",
+            "Heavier H-pile section of the same size or thicker pipe wall: more impedance, little more soil resistance",
+            "Material strength does not change impedance but allows higher driving stresses and possibly a larger hammer",
+            "Installation aids help reach penetration but do not change the section's drivability",
+            "Static nominal resistance cannot be driven as high as the structural resistance because of dynamic resistance"
+          ],
+          "equations": [],
+          "figures": [],
+          "tables": []
         },
         {
           "section_id": "7.7.2",
           "title": "Methods for Determining Pile Drivability",
-          "body": "Three methods are available for predicting and/or checking pile drivability, presented in order of increasing cost and reliability: (1) Wave equation analysis, (2) Dynamic testing and analysis, and (3) Static load tests. Wave equation analysis is a computer program that accounts for pile impedance and calculates estimated driving stresses as well as blow count versus nominal resistance. It is the most practical design-stage tool. Dynamic testing provides field measurements during driving to calculate driving stresses and estimate nominal resistance. Static load tests are the most accurate but most expensive method.",
+          "body": "Three methods predict or check drivability, listed in order of increasing cost and reliability (pp. 393-395). Wave equation analysis accounts for pile impedance and calculates driving stresses and the blow count versus nominal resistance (Goble and Rausche 1986); at design stage it needs assumptions on the hammer, its performance, the drive system and the soil response, so predictions vary from field behaviour, but it is a powerful tool that should be used to check drivability, design the pile section or specify driving equipment; AASHTO (2014) calls for a wave equation drivability analysis during design (Chapter 12). Dynamic testing and analysis measure driving stresses and nominal resistance at the time of driving, and restrikes show time dependent changes; signal matching gives soil parameters for a refined wave equation analysis, but a design-stage test program is required (Chapter 10). Static load tests on test piles driven to estimated lengths are the most accurate confirmation of drivability and nominal resistance (Kyfor et al. 1992), but need a design-stage program, cost time and money, do not show driving stresses or damage, and can mislead where conditions are highly variable (Chapter 9; rapid load tests, Chapter 11). The first two methods complement static load tests, can save material and reduce delays and claims, and can reduce the number of static load tests; restrike testing shows setup or relaxation.",
           "key_points": [
-            "Method 1: Wave equation analysis - design stage tool, most practical",
-            "Method 2: Dynamic testing - field verification during pile installation",
-            "Method 3: Static load tests - most accurate but requires test program during design",
-            "Wave equation: calculates blow count vs resistance and driving stresses",
-            "Dynamic testing: provides actual driving stresses and resistance estimates",
-            "Static load tests: confirms drivability and resistance by actually driving and loading test pile",
-            "Methods 1 and 2 can reduce number of static load tests needed",
-            "AASHTO (2014) requires wave equation analysis during design stage"
-          ]
+            "Wave equation analysis: drivability, driving stresses and blow count vs resistance; required during design (AASHTO 2014)",
+            "Dynamic testing: stresses and resistance during driving and restrike; needs a design-stage test program",
+            "Static load tests: most accurate confirmation, but costly, slow, silent on driving stresses, misleading in variable ground"
+          ],
+          "equations": [],
+          "figures": [],
+          "tables": []
         },
         {
           "section_id": "7.7.3",
           "title": "Drivability versus Pile Type",
-          "body": "Drivability should be checked during the design stage of all driven piles. It is particularly important for closed end steel pipe piles where the impedance of the steel casing may limit drivability. Thin wall pipe piles may lack the drivability to develop required nominal resistance or achieve necessary penetration depth. Steel H-piles, open pipe piles, prestressed concrete piles, and timber piles are also subject to drivability limitations, particularly as extreme events and the trend to larger nominal resistances require increased penetration depths. The drivability of long prestressed concrete piles can be limited by the pile's tensile strength.",
+          "body": "Drivability should be checked at design stage for all driven piles, and particularly for closed end steel pipe piles, where the casing impedance may limit drivability: a thin wall chosen to save material may not develop the required resistance or penetration (example in Section 12.5.8) (p. 395). Wave equation drivability analyses should select the section and wall thickness at design stage per AASHTO (2014); an example is in Section 12.5.3. Steel H-piles, open pipe piles, prestressed concrete and timber piles are also subject to drivability limits, particularly as extreme events and larger nominal resistances require deeper penetration; long prestressed concrete piles can be limited by their tensile strength.",
           "key_points": [
-            "Drivability check required for all pile types during design stage",
-            "Closed end pipe piles: steel casing impedance may limit drivability",
-            "Thin wall pipe piles: may lack drivability for required resistance or penetration",
-            "Wave equation analysis should be performed to select pile section and wall thickness",
-            "Prestressed concrete: drivability may be limited by tensile strength for long piles",
-            "Example drivability assessment presented in Section 12.5.3",
-            "Section 12.5.8 illustrates wave equation drivability for pipe pile wall thickness selection"
-          ]
+            "Check drivability at design stage for all driven piles, especially thin wall closed end pipe piles",
+            "Select section and wall thickness with a wave equation drivability analysis (AASHTO 2014)",
+            "Long prestressed concrete piles can be limited by tensile strength"
+          ],
+          "equations": [],
+          "figures": [],
+          "tables": []
         }
       ]
     },
