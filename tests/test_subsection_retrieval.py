@@ -55,8 +55,18 @@ def test_questions_span_references_beyond_gec_12():
     assert len(refs - {"gec_12"}) >= 4
 
 
-@pytest.mark.parametrize("q", evs.QUESTIONS,
-                         ids=[f"{q['ref']}:{q['target']}" for q in evs.QUESTIONS])
+def _question_params():
+    for q in evs.QUESTIONS:
+        qid = f"{q['ref']}:{q['target']}"
+        if sum((x["ref"], x["target"]) == (q["ref"], q["target"])
+               for x in evs.QUESTIONS) > 1:
+            qid += f":{q['query']}"
+        marks = ([pytest.mark.xfail(strict=True, reason=q["known_miss"])]
+                 if q.get("known_miss") else [])
+        yield pytest.param(q, marks=marks, id=qid)
+
+
+@pytest.mark.parametrize("q", list(_question_params()))
 def test_question_reaches_its_section(q, auto_expansion):
     tree = evs.section_tree(q["ref"])
     assert q["target"] in tree, "the answer's section is no longer in the file"

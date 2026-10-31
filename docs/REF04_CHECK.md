@@ -259,13 +259,17 @@ reworked part of the chapter from the print, not that it was rebuilt whole.
   4.3.3; 7.2.2.1, 7.3.6.2 and 7.3.7.3 are fixed.
 - The app's `test_citations.py` (from the app branch, this library on
   PYTHONPATH): exit 0, 5 passed, after each ch 7 commit.
-- The retrieval eval's CPT question now searches "pile resistance from CPT
-  effective cone tip resistance": the new 7.3.5.2.2 (CPT settlement) fairly
-  matched the old wording and pushed 7.2.1.3.6 from rank 5 to 6.
+- The retrieval eval's CPT question keeps its original search, "CPT pile
+  capacity effective cone resistance", as a strict xfail: the new short
+  7.3.5.2.2 (Meyerhof's CPT settlement of pile groups, not a capacity
+  method) ranks 3rd and pushes Eslami and Fellenius (7.2.1.3.6) to 6th (app
+  BACKLOG REF-48). A second case in the manual's wording, "pile resistance
+  from CPT effective cone tip resistance", reaches 7.2.1.3.6 and passes.
 - Targeted tests (GEC-6/7/12/13 text, figures and tables, retrieval,
   section numbers, subsections, result size, cover citations, figure
-  captions and ids, query expansion; 19 files): exit 0, 838 passed, 2
-  xfailed, on the final tree.
+  captions and ids, query expansion; 19 files): exit 0, 838 passed, 3
+  xfailed, on the final tree (the third xfail is the CPT question above;
+  the manual-wording case adds one test).
 - After the rebuild (f71bb95 and the catalog and notes commits): audits for
   gec_7 (10 chapters) and gec_12 (18 chapters) exit 0;
   `check_section_numbers.py gec_7 gec_12` exit 0, with gec_7 ch 1-5
