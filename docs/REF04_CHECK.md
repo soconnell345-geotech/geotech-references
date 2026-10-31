@@ -109,7 +109,23 @@ gec_12 from the rebuilt text, so the old claims no longer reach figure
 search. `_norm_fig_ref` in `scripts/build_figure_catalog.py` now reads the
 `figure_id` key the GEC-7 and GEC-12 Vol II chapters use; before, those
 citations were skipped (78 gec_7 and 328 gec_12 figures are enriched now,
-against 19 and 78).
+against 19 and 78). It now also walks nested subsections, which cite
+figures too (GEC-12 7.1.2.x, 7.10.3, 7.10.7): 392 gec_12 figures enriched.
+Only the gec_7 and gec_12 descriptions were regenerated; most other
+catalogs hold descriptions the builder did not write, so a rebuild there
+would replace them.
+
+Figures with less description text than at origin/main (ceeef53), all
+because main's longer text came from the old sections that cited them:
+
+- gec_7 2.3, 2.4, 3.1, 3.8, 5.8, 5.9, 5.13 (cited now by the rebuilt
+  sections, whose text is shorter).
+- gec_12 7-1, 7-2, 7-3 (now cited only by 7.1.2.1-7.1.2.3, which hold a
+  title and no key points) and 7-81 (7.10.3).
+- gec_12 7-66 to 7-71: empty. Main's 7.5-7.7 cited them wrongly; they are
+  printed in 7.3.7.2 (7-66 to 7-69) and 7.3.7.4 (7-70, 7-71), whose
+  figure lists are empty (the 7.3.7 figure lists need their own check
+  against the print).
 
 ## Found but not fixed
 

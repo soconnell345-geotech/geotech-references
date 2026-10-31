@@ -269,15 +269,20 @@ def _enrich_from_text(package: str, figs: list[dict], max_chars: int = 800) -> i
     if not text_dir.is_dir():
         return 0
 
+    def _walk(sections):
+        # Nested subsections cite figures too (e.g. GEC-12 7.3.7.x).
+        for sec in sections or []:
+            if isinstance(sec, dict):
+                yield sec
+                yield from _walk(sec.get("subsections"))
+
     ctx: dict[str, list[str]] = {}
     for jf in sorted(text_dir.glob("*.json")):
         try:
             data = json.loads(jf.read_text(encoding="utf-8"))
         except (OSError, json.JSONDecodeError):
             continue
-        for sec in data.get("sections", []):
-            if not isinstance(sec, dict):
-                continue
+        for sec in _walk(data.get("sections", [])):
             cited = sec.get("figures", []) or []
             if not cited:
                 continue
