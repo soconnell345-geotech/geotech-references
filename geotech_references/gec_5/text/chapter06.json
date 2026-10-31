@@ -5,70 +5,612 @@
   "chapter_title": "Measurement and Interpretation of Consolidation Properties of Soil",
   "sections": [
     {
-      "section_id": "6.1-6.5",
-      "title": "Consolidation Test Methods",
-      "summary": "Two main laboratory consolidation test types: (1) incremental load (IL) — load applied in increments with LIR ≈ 1 (doubling); each increment held 24 hours; ASTM D2435/AASHTO T216; (2) constant rate of strain (CRS) — continuous loading at constant axial strain rate; ASTM D4186; requires base pore pressure measurement. Both define σ'p, Cc, and Cr from e-log σ'v. Sampling disturbance: problematic in soft sensitive clays; fixed piston or Laval samplers preferred; block samples best. Schmertmann (1955) method corrects laboratory curve for disturbance.",
-      "body": "Incremental load (IL) consolidation test (ASTM D2435, AASHTO T216): Applies a series of vertical loads to a laterally confined specimen (typically 50-76 mm diameter, 20-25 mm height). Standard load schedule: LIR = 1 (doubling each increment). Each increment held for 24 hours (longer if secondary compression is significant). Measurements of vertical deformation vs. time for each load increment. Output: e-log σ'v or εv-log σ'v plot; preconsolidation stress σ'p; Cc (slope of normal consolidation line); Cr (recompression slope).\n\nConstant rate of strain (CRS) consolidation test (ASTM D4186): Applies continuous loading at constant axial strain rate (0.05% to 1% per hour typical). Requires pore pressure measurement at base. Strain rate selected to maintain ratio of excess pore pressure to total stress of ≤ 5–10%. Faster than IL tests; continuous data gives better-defined σ'p. Useful for soft to medium clays.\n\nSampling disturbance effects: Stress relief from excavation/extraction, mechanical disturbance, and gas exsolution can all degrade sample quality. Table 6-1 characterizes sample quality from consolidation test results. Block samples and fixed-piston samples produce least disturbance; Shelby tube samples may show significant disturbance for soft sensitive clays (Figure 6-4). Schmertmann (1955) method (Figure 6-18) corrects laboratory curve for disturbance effects to produce 'field consolidation curve'.",
+      "section_id": "6.1",
+      "title": "Fundamental Consolidation Concepts",
+      "summary": "Consolidation is time-dependent volume decrease as excess pore pressure dissipates. The e-log sigma'v curve shows recompression (Cr), the preconsolidation (yield) stress sigma'p and virgin compression (Cc); alternatives use strain (Ccε, Crε) or specific volume (lambda, kappa), related by Eqs. 6.1 to 6.4; OCR and OCD (Eqs. 6.5, 6.6).",
+      "body": "Consolidation is the time-dependent volume decrease from increased effective stress as excess pore pressures dissipate and load transfers to the soil skeleton. Gravels, sands and non-plastic silts consolidate rapidly and seldom cause settlement problems unless very loose, heavily loaded or tolerances are tight; plastic silts and clays consolidate slowly and may; soft silts and clays are especially compressible; organic soils are highly compressible with long secondary compression. Results are traditionally plotted as void ratio e versus log sigma'v (Figure 6-1, p. 6-2): elastic \"recompression\" up to the preconsolidation stress sigma'p, then plastic \"virgin\" compression; unloading gives rebound roughly parallel to recompression, with hysteresis. sigma'p is a yield stress in one-dimensional compression and generally the maximum past effective stress: overconsolidated below it, normally consolidated at or above (p. 6-3), with plastic hardening on virgin loading. Cr is the recompression slope, Cc the virgin slope; Cs (swelling) and Cur (unload-reload) are practically identical to Cr; each index is the change in void ratio per log cycle. Alternative plots (Figure 6-2, p. 6-4): vertical strain epsilon_v = Delta_e/(1 + eo) versus log stress (modified indices Crε and Ccε) or specific volume v = 1 + e versus ln stress (kappa, lambda); values from different plots are not interchangeable but are related by Eqs. 6.1 to 6.4 (the Cs-kappa approximation from Wood, 1990). OCR (Eq. 6.5) and OCD (Eq. 6.6, Olsen et al., 1986) express overconsolidation; other parameters: constrained modulus M = Delta_sigma_v/Delta_epsilon_v, cv and C_alpha. (pp. 6-1 to 6-4)",
       "key_points": [
-        "IL test (ASTM D2435): LIR = 1 (doubling); each increment held 24 hrs; measures e-log σ'v",
-        "CRS test (ASTM D4186): continuous loading at constant strain rate; requires base pore pressure measurement",
-        "Sampling disturbance overestimates σ'p and distorts Cc; block samples and fixed-piston samplers preferred",
-        "Schmertmann (1955) method corrects for disturbance to obtain field compression curve"
+        "sigma'p is a yield stress separating elastic and plastic response (p. 6-2).",
+        "Cr, Cs, Cur practically identical (p. 6-3).",
+        "Cc = Ccε(1 + eo); Cr = Crε(1 + eo) (Eqs. 6.1, 6.2) (p. 6-3).",
+        "Cc = 2.3 lambda; Cs = 2.3 kappa (Eqs. 6.3, 6.4) (p. 6-3).",
+        "OCR = sigma'p/sigma'vo; OCD = sigma'p - sigma'vo (Eqs. 6.5, 6.6) (p. 6-4)."
+      ],
+      "equations": [
+        "Eq. 6.1: Cc = Ccε (1 + eo); Ccε = modified compression index (compression ratio), eo = initial void ratio (p. 6-3)",
+        "Eq. 6.2: Cr = Crε (1 + eo); Crε = modified recompression index (recompression ratio) (p. 6-3)",
+        "Eq. 6.3: Cc = lambda x ln(10) = 2.3 lambda (approximately); lambda = slope of specific volume vs ln stress in virgin compression (p. 6-3)",
+        "Eq. 6.4: Cs = kappa x ln(10) = 2.3 kappa (approximately); kappa = slope of specific volume vs ln stress in recompression (p. 6-3)",
+        "Eq. 6.5: OCR = sigma'p / sigma'vo; sigma'vo = current in situ vertical effective stress (p. 6-4)",
+        "Eq. 6.6: OCD = sigma'p - sigma'vo; overconsolidation difference (p. 6-4)"
+      ],
+      "figures": [
+        "Figure 6-1: Idealized consolidation test plotted in terms of void ratio",
+        "Figure 6-2: Common alternative presentations for consolidation tests: (a) log of effective vertical stress vs. vertical strain, and (b) natural log of effective vertical stress vs. specific volume"
+      ],
+      "tables": [],
+      "applicability": "Laboratory consolidation testing methods and sampling requirements for compressibility parameter measurement"
+    },
+    {
+      "section_id": "6.2",
+      "title": "Boring and Sampling Requirements for Laboratory Consolidation Tests",
+      "summary": "Consolidation properties are sensitive to disturbance: for soft to medium clays use rotary wash or hollow-stem boring with heavy mud, thin-walled low area ratio samplers (at least 3-inch Shelby tubes, piston samplers better), keep tubes upright, cut specimens from tubes and test promptly.",
+      "body": "Laboratory consolidation properties are sensitive to disturbance, so boring, sampling, transport, preparation and testing need care. For soft to medium silts and clays: rotary wash or hollow-stem auger borings with heavy drilling mud to limit stress relief at the borehole base (Ladd and DeGroot, 2003); thin-walled, low area ratio samplers, at minimum nominal 3-inch Shelby tubes, fixed piston samplers more desirable; samples left in tubes and kept upright; specimens cut from tubes rather than extruded; prompt testing (Santagata and Germaine, 2002). Requirements can relax for stiff soils, but high area ratio samplers should be avoided in all soils. (p. 6-5)",
+      "key_points": [
+        "Heavy drilling mud; thin-walled low area ratio samplers (p. 6-5).",
+        "At least 3-inch Shelby tubes; piston samplers better (p. 6-5).",
+        "Cut specimens from tubes; test promptly (p. 6-5)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Laboratory consolidation testing methods and sampling requirements for compressibility parameter measurement"
+    },
+    {
+      "section_id": "6.3",
+      "title": "Selection of Samples for Laboratory Consolidation Testing",
+      "summary": "Select consolidation samples deliberately: sigma'p (or OCR) is perhaps the single most important property in fine-grained sites, so samples should define a sigma'p profile with depth (Figure 6-3) in each stratum; abandon obviously disturbed specimens.",
+      "body": "Consolidation tests are time consuming, costly and important, so sample selection should be deliberate. Preconsolidation stress (or OCR) is perhaps the single most important property at predominantly fine-grained sites, affecting settlement and undrained strength, so samples should be chosen to build a profile of sigma'p with depth (Figure 6-3), using stratigraphy, index properties and sigma'vo, with enough samples in each discrete stratum. Obviously disturbed or unrepresentative specimens should be abandoned and the test reassigned, and disturbance assessed from the test measurements (section 6.4). (p. 6-5)",
+      "key_points": [
+        "sigma'p perhaps the single most important property (p. 6-5).",
+        "Profile sigma'p with depth in each stratum (p. 6-5)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Laboratory consolidation testing methods and sampling requirements for compressibility parameter measurement"
+    },
+    {
+      "section_id": "6.4",
+      "title": "Effects of Sampling Disturbance",
+      "summary": "Disturbance raises Cr, lowers sigma'p and Cc (Figures 6-4, 6-5). Quantify by volumetric strain to reach sigma'vo: SQD A to E (Table 6-1, Terzaghi et al., 1996), soft clays at least B (< 2 percent); or Delta_e/eo (Table 6-2, Lunne et al., 1997). Gradual curves in silty or stiff soils are not disturbance.",
+      "body": "Even slight disturbance substantially errs consolidation properties, increasing the recompression index and reducing sigma'p and Cc, especially in soft clays. Bozozuk (1970) found 2-inch tube specimens of sensitive marine clay more rounded with less defined sigma'p than 5-inch tube specimens (Figure 6-4, p. 6-8); large tubes can still disturb (Lacasse et al., 1985); drilling method matters (Landon et al., 2007; Figure 6-5, Boston Blue Clay from fixed piston with mud, floating piston without mud, and blocks, p. 6-9). Disturbance is hard to see but can be quantified from volumetric strain on reconsolidation to sigma'vo (Andresen and Kolstad, 1979): the specimen quality designation SQD (Table 6-1, Terzaghi et al., 1996, p. 6-7) from A (best) to E; soft clay specimens should rate at least B, volumetric strain less than 2 percent. Lunne et al. (1997) use Delta_e/eo for OCR <= 4 (Table 6-2). High quality soft clays usually show a sharp break at sigma'p, but high-silt or very stiff non-structured soils show a gradual transition (Figure 6-6) without disturbance (Boone, 2010), adding uncertainty to sigma'p. (pp. 6-6 to 6-9)",
+      "key_points": [
+        "Disturbance raises Cr, lowers sigma'p and Cc (p. 6-6).",
+        "2-inch tubes more disturbed than 5-inch (Bozozuk, 1970; Figure 6-4) (p. 6-6).",
+        "Table 6-1: SQD from volumetric strain; soft clays at least B (< 2 percent) (p. 6-6).",
+        "Table 6-2: Delta_e/eo ratings (Lunne et al., 1997) (p. 6-6).",
+        "Gradual curves in stiff or silty soils not disturbance (p. 6-9)."
       ],
       "equations": [],
       "figures": [
-        "Figure 6-2: Alternative presentations for consolidation test results (log σ vs. strain; e-log σ)",
-        "Figure 6-3: Interpretation of preconsolidation stress from consolidation tests",
-        "Figure 6-4: Influence of sampling method on consolidation test results (Bozozuk 1971)",
-        "Figure 6-5: Comparison of consolidation tests for block, fixed-piston, and Shelby tube samples",
-        "Figure 6-10: Measured response from CRS consolidation test",
-        "Figure 6-18: Schmertmann (1955) method to obtain field consolidation curve for OC soils"
+        "Figure 6-3: Interpretation of preconsolidation stress from one-dimensional consolidation tests",
+        "Figure 6-4: Influence of sampling method on consolidation test results (Bozozuk, 1971)",
+        "Figure 6-5: Comparison of consolidation tests for specimens acquired from block samples, fixed piston samples for borings advanced using drilling mud, and free piston samples for borings advanced without drilling mud (from Landon, et al., 2007)"
       ],
       "tables": [
-        "Table 6-1: Characterization of sample quality from consolidation tests"
+        "Table 6-1: Characterization of sample quality from volumetric strain to reach the in situ vertical effective stress (from Terzaghi, et al., 1996) - volumetric strain (%) to reach sigma'vo: 1 (as printed) A; 1 to 2 B; 2 to 4 C; 4 to 8 D; > 8 E",
+        "Table 6-2: Characterization of sample quality from ∆ee0 ⁄ to reach the in situ vertical effective stress (from Lunne, et al., 1997) - Delta_e/eo for OCR 1 to 2 and OCR 2 to 4: < 0.04 and < 0.03 very good to excellent; 0.04 to 0.07 and 0.03 to 0.05 good to fair; 0.07 to 0.14 and 0.05 to 0.10 poor; > 0.14 and > 0.10 very poor"
       ],
       "applicability": "Laboratory consolidation testing methods and sampling requirements for compressibility parameter measurement"
     },
     {
-      "section_id": "6.6-6.12",
-      "title": "Preconsolidation Stress, Compression Parameters, and Rate of Consolidation",
-      "summary": "Preconsolidation stress σ'p from IL tests by: Casagrande method (tangent + bisector construction), strain energy method (more consistent per Grozic et al. 2003), or tangent modulus method. OCR = σ'p/σ'vo. Compression index Cc from slope of normal consolidation line (log-space); recompression index Cr = 0.1–0.25 Cc typically. cv from Casagrande log-time (T90 = 0.848) or Taylor square root of time method. In situ: σ'p from CPT (qt), CPTU (u2), DMT (KD), FVT (su-FV), PMT (pL), SPT (N60) — all with significant scatter. ch from CPTU dissipation tests (Terzaghi monotonic or Tflex method). Cα/Cc typically 0.04 for most inorganic clays.",
-      "body": "Preconsolidation stress σ'p from laboratory tests: (1) Casagrande method — graphical construction on e-log σ'v plot: tangent at point of maximum curvature, horizontal line, bisector, tangent to linear portion; σ'p at intersection. (2) Strain energy method (Becker et al. 1987) — σ'p at peak of strain energy vs. log σ'v plot; more objective and consistent (Figure 6-15). (3) Tangent modulus method — from CRS tests; σ'p at minimum of tangent modulus M.\n\nOCR = σ'p / σ'vo. Table of OCR interpretation from IL tests. Correlations for σ'p or OCR from in-situ tests (Table 6-5/6-6): qt (CPT), u2 (CPTU), KD (DMT), su-FV (FVT), pL (PMT), N60 (SPT). Scatter in correlations is substantial — use multiple methods when possible.\n\nCompression parameters: Cc = slope of normal consolidation line in e-log σ'v space. Cr = recompression slope (typically 0.1 to 0.25 Cc). Correlations of Cc with initial void ratio eo and LL (Table 6-12). Cr often from slope of unload-reload curve or from separate tests.\n\nCoefficient of consolidation cv: Casagrande log-time method: cv = T90 × d²/t90 where T90 = 0.848 (Eq 6 from ASTM D2435). d = drainage path length = H/2 for double drainage. Taylor square root of time method: t90 from modified intercept.\n\nch from CPTU dissipation tests: ch from time for u to dissipate to baseline (Robertson et al. 1992 chart; modified time factor T* method). Horizontal consolidation governs for wick drains and stone columns.\n\nSecondary compression: Cα = Cαε / (1+eo). Cα/Cc typically 0.04 for inorganic clays (Mesri and Godlewski 1977); higher for organic soils. Values for specific soils in Table 6-17.",
+      "section_id": "6.5",
+      "title": "Types of Laboratory Consolidation Tests",
+      "summary": "The incremental load (IL) test (ASTM D2435) is routine; the constant rate of strain (CRS) test (ASTM D4186) loads continuously measuring stress and pore pressure, cutting test time from 1 to 2 weeks to a few days or less.",
+      "body": "The incremental load (IL) consolidation test (ASTM D2435) is the most common laboratory method; the constant rate of strain (CRS) test (ASTM D4186), gaining popularity, loads continuously while measuring stress and pore water pressure, reducing test time from 1 to 2 weeks (IL) to a few days or less (p. 6-10). Figure 6-6 shows tests on stiff glacial till of varying quality (Holtz and Kovacs, 1981; after Soderman and Kim, 1970). (pp. 6-9 to 6-10)",
       "key_points": [
-        "Casagrande and strain energy methods for σ'p; strain energy more objective and consistent",
-        "Cc = slope of NC line (log-space); Cr ≈ 0.1–0.25 Cc; Cc correlates with eo and LL (Table 6-12)",
-        "cv (Casagrande): T90 × d²/t90; T90 = 0.848; d = H/2 for double drainage",
-        "ch from CPTU dissipation tests; Robertson et al. (1992) T*-based chart",
-        "Cα/Cc ≈ 0.04 for inorganic clays; higher for organic soils"
+        "IL test ASTM D2435 most common (p. 6-9).",
+        "CRS test ASTM D4186: days instead of 1 to 2 weeks (p. 6-10)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-6: Results from consolidation tests for samples of stiff glacial till of varying quality (from Holtz and Kovacs, 1981; after Soderman and Kim, 1970)"
+      ],
+      "tables": [],
+      "applicability": "Laboratory consolidation testing methods and sampling requirements for compressibility parameter measurement"
+    },
+    {
+      "section_id": "6.5.1",
+      "title": "Incremental Load Consolidation Test",
+      "summary": "IL test: load increments in an open laterally confining cell (Figure 6-7), each held to end of primary (often 24 hours); load ratio 1 (doubling); load well above sigma'p, smaller increments near it, and an unload-reload cycle past it. Automated IL devices shorten tests.",
+      "body": "In the IL test loads are applied incrementally to a laterally confined specimen in an open cell (Figure 6-7) by dead weights and lever, or pneumatic or hydraulic actuators; the time-deformation response of each increment combines into the consolidation curve (Figure 6-8, p. 6-11). Each increment is held to the end of primary consolidation, often 24 hours for convenience, the curve plotted at end of primary. Specimens should be loaded well beyond the estimated sigma'p; the standard schedule doubles the load (load increment ratio of 1); smaller increments help define sigma'p; an unload-reload cycle after sigma'p defines recompression better than initial loading. Automated IL devices apply the next increment when primary consolidation ends, reducing time while keeping traditional interpretation. (pp. 6-10 to 6-11)",
+      "key_points": [
+        "Each increment to end of primary, often 24 hours (p. 6-10).",
+        "Load increment ratio 1; load well above sigma'p (p. 6-11).",
+        "Unload-reload cycle after sigma'p (p. 6-11)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-7: Schematic of incremental load oedometer cell (from Germaine and Germaine, 2009)",
+        "Figure 6-8: Measured response from an incremental load consolidation test"
+      ],
+      "tables": [],
+      "applicability": "Laboratory consolidation testing methods and sampling requirements for compressibility parameter measurement"
+    },
+    {
+      "section_id": "6.5.2",
+      "title": "Constant Rate of Strain Consolidation Test",
+      "summary": "CRS test: sealed cell with pore pressure measurement and back pressure, constant axial rate; 24 to 48 hours, a practically continuous curve (Figure 6-10) consistent with IL tests (Sheahan and Watters, 1997), but costly equipment and generally no secondary compression.",
+      "body": "The CRS test (ASTM D4186) uses a sealed, laterally restraining cell with pore pressure measurement, one-end drainage and back pressure saturation (Figure 6-9), deformed at constant rate in a computer-controlled frame while time, deformation, force, chamber pressure and pore pressure are recorded. It often finishes in 24 to 48 hours versus several weeks for IL tests and gives a practically continuous curve (Figure 6-10, p. 6-13); responses are generally consistent with IL tests (Sheahan and Watters, 1997). Disadvantages: expensive equipment, slightly more complicated analysis, and generally no evaluation of secondary compression. (pp. 6-12 to 6-13)",
+      "key_points": [
+        "CRS completes in 24 to 48 hours (p. 6-12).",
+        "Consistent with IL tests (Sheahan and Watters, 1997) (p. 6-12).",
+        "No secondary compression from CRS (p. 6-12)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-9: Schematic of CRS oedometer cell (ASTM D4186, 2012)",
+        "Figure 6-10: Measured response from a CRS consolidation test"
+      ],
+      "tables": [],
+      "applicability": "Laboratory consolidation testing methods and sampling requirements for compressibility parameter measurement"
+    },
+    {
+      "section_id": "6.6",
+      "title": "Evaluation of Preconsolidation Stress from Laboratory Consolidation Tests",
+      "summary": "Establish sigma'p by a standard method rather than inspection; interpretations carry considerable uncertainty from judgment and log scales (Boone, 2010), and disturbance lowers the curve, so routine tests often underestimate sigma'p.",
+      "body": "sigma'p is commonly interpreted from one-dimensional consolidation tests, preferably by one of the standard methods. Interpretations carry considerable uncertainty from the judgment required and log-scale plots (Boone, 2010); disturbance increases it and \"lowers\" the e-log sigma'v curve relative to the field, so sigma'p is often underestimated in routine testing. (p. 6-13)",
+      "key_points": [
+        "Use standard methods for sigma'p (p. 6-13).",
+        "Routine tests often underestimate sigma'p (p. 6-13)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Interpretation of preconsolidation stress, compression indices, and consolidation rate from laboratory and in situ tests"
+    },
+    {
+      "section_id": "6.6.1",
+      "title": "Interpretation of Preconsolidation Stress Using Casagrande Method",
+      "summary": "Casagrande (1936) construction (Figure 6-11): tangent to the steepest virgin portion; horizontal and tangent lines at the point of maximum curvature; their bisector meets the first tangent at sigma'p. The maximum-curvature point needs judgment; consider a range.",
+      "body": "sigma'p is most commonly interpreted from the e-log sigma'v curve by the Casagrande (1936) technique (Figure 6-11), adequate for many clays and silts (other methods: Grozic, et al., 2003; Boone, 2010): (1) draw a tangent to the steepest portion in the normally consolidated range; (2) locate the point of maximum curvature where the slope turns from shallow to steep and draw a horizontal line from it (p. 6-14); (3) draw a tangent at that point; (4) bisect the angle between the horizontal and tangent lines; (5) the stress where the bisector meets the first tangent is sigma'p (8,000 psf in the example). Step 2 needs considerable judgment; where the point is unclear, consider alternatives to establish a range. (pp. 6-13 to 6-14)",
+      "key_points": [
+        "Five-step Casagrande construction (Figure 6-11) (pp. 6-13 to 6-14).",
+        "Maximum curvature point needs judgment; consider a range (p. 6-14)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-11: Illustration of Casagrande method for interpreting preconsolidation stress"
+      ],
+      "tables": [],
+      "applicability": "Interpretation of preconsolidation stress, compression indices, and consolidation rate from laboratory and in situ tests"
+    },
+    {
+      "section_id": "6.6.2",
+      "title": "Interpretation of Preconsolidation Stress Using Strain Energy Method",
+      "summary": "Strain-energy method (Becker et al., 1987): cumulative work Delta_W = [(sigma'f + sigma'i)/2](epsilon_f - epsilon_i) (Eq. 6.7) versus stress; sigma'p where low and high stress trend lines intersect (Figure 6-12); on an arithmetic scale, more consistent than Casagrande (Grozic et al., 2003). OCR terms in Table 6-3.",
+      "body": "Where sigma'p is not clear on the log plot, the strain-energy method (Becker, et al., 1987) plots cumulative strain energy (stress times strain) per load increment: (1) compute the work increment Delta_W by Eq. 6.7 (p. 6-15); (2) plot cumulative energy against the end-of-increment effective stress (Figure 6-12), with a noticeable slope change at sigma'p; (3) intersect trend lines through low-stress (slope 1) and high-stress (slope 2) data. It is somewhat subjective but uses an arithmetic scale that does not compound small differences, has given more consistent results than Casagrande (Grozic, et al., 2003; p. 6-16) and works better for rounded curves. Either method's sigma'p gives OCR and stress history terms (the text points to Table 6-2; the terms are in Table 6-3). (pp. 6-14 to 6-16)",
+      "key_points": [
+        "Delta_W = [(sigma'f + sigma'i)/2](epsilon_f - epsilon_i) (Eq. 6.7) (p. 6-15).",
+        "Intersect low- and high-stress trend lines (Figure 6-12) (p. 6-15).",
+        "More consistent than Casagrande (Grozic et al., 2003) (p. 6-16).",
+        "Table 6-3: NC, LOC 1-2, MOC 2-8, HOC > 8 (p. 6-16)."
       ],
       "equations": [
-        {
-          "equation_id": "6-cv",
-          "description": "Coefficient of consolidation from Casagrande log-time method",
-          "latex": "c_v = \\frac{T_{90} \\cdot d^2}{t_{90}}",
-          "variables": {
-            "c_v": "coefficient of vertical consolidation",
-            "T_90": "theoretical time factor for 90% consolidation = 0.848",
-            "d": "drainage path length = H/2 for double drainage, H for single drainage",
-            "t_90": "measured time for 90% primary consolidation from log-time plot"
-          },
-          "implemented_in": null
-        }
+        "Eq. 6.7: Delta_W = [(sigma'f + sigma'i) / 2] (epsilon_f - epsilon_i); sigma'i, sigma'f = stresses at the beginning and end of the load increment, epsilon_i, epsilon_f = strains (dimensionless) at the beginning and end (p. 6-15)"
       ],
       "figures": [
-        "Figure 6-13: Influence of strain rate on interpreted preconsolidation stress",
-        "Figure 6-24: Transformations from CPTU pore pressure to preconsolidation stress",
-        "Figure 6-36: Correlation between plasticity index and recompression and compression parameters",
-        "Figure 6-37: Correlation of coefficient of consolidation to liquid limit (NAVFAC 1986)",
-        "Figure 6-38: Typical relationship between Cαε and Cc",
-        "Figure 6-39: Generalized relationships between LI and preconsolidation stress"
+        "Figure 6-12: Illustration of strain-energy method for interpreting preconsolidation stress"
       ],
       "tables": [
-        "Table 6-5: Summary of in situ test methods for determining preconsolidation stress",
-        "Table 6-6: Summary of empirical transformations between preconsolidation stress and DMT KD",
-        "Table 6-12: Reported correlations between compression index Cc, initial void ratio eo, and LL",
-        "Table 6-17: Values of Cα/Cc for several soil types"
+        "Table 6-3: Soil terminology applied to stress history - OCR 1 normally consolidated (NC); 1 < OCR < 2 lightly overconsolidated (LOC); 2 < OCR < 8 moderately overconsolidated (MOC); OCR > 8 heavily overconsolidated (HOC)"
       ],
+      "applicability": "Interpretation of preconsolidation stress, compression indices, and consolidation rate from laboratory and in situ tests"
+    },
+    {
+      "section_id": "6.6.3",
+      "title": "Influence of Strain Rate and Temperature",
+      "summary": "sigma'p falls about 10 percent per log-cycle decrease in strain rate (Figure 6-13) and rises about 10 percent per 12 degree temperature drop (Figure 6-14, Laloui et al., 2008); laboratory rates and temperatures partly offset, so effects are usually neglected unless extreme.",
+      "body": "Like other fine-grained soil properties, sigma'p depends on strain rate and temperature (Figures 6-13 and 6-14): it decreases about 10 percent per log-cycle reduction in strain rate and increases about 10 percent per 12 degree drop in temperature (Laloui, et al., 2008). Normal laboratory temperatures give lower and normal laboratory strain rates higher sigma'p than the field, partly offsetting, so given the uncertainty these effects can often be neglected unless extreme rates or temperatures apply. (p. 6-16)",
+      "key_points": [
+        "About 10 percent per log cycle of strain rate (p. 6-16).",
+        "About 10 percent per 12 degree temperature drop (Laloui et al., 2008) (p. 6-16).",
+        "Effects partly offset; usually neglected (p. 6-16)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Interpretation of preconsolidation stress, compression indices, and consolidation rate from laboratory and in situ tests"
+    },
+    {
+      "section_id": "6.7",
+      "title": "Evaluation of Compression and Recompression Indices from Laboratory Consolidation Tests",
+      "summary": "Cc from a best-fit tangent to the virgin e-log curve (Ccε, lambda likewise); Cr preferably from rebound or, better, an unload-reload cycle, since initial reloading reflects disturbance (Leonards, 1976). Use SQD A or B specimens and high stresses, or the stress range of interest.",
+      "body": "Cc (or Ccε or lambda) is the best-fit tangent along the virgin compression portion of the e-log sigma'v (or epsilon_v-log, or v-ln) curve. Cr (or Crε or kappa) can be fitted to initial reloading, but that portion is often unrepresentative of in situ recompression because of disturbance (Leonards, 1976; p. 6-18), so Cr is preferably from the rebound slope or, even better, an unload-reload cycle. Disturbed specimens usually give lower Cc; samples with SQD A or B (Table 6-1) usually give reasonable Cc; loading well beyond sigma'p and fitting at high stresses limits disturbance effects; where that is impossible (heavily overconsolidated samples), use the slope for the range from sigma'p to the anticipated final stress. (pp. 6-16 to 6-18)",
+      "key_points": [
+        "Cc: best-fit tangent to virgin compression (p. 6-16).",
+        "Cr from rebound or unload-reload, not initial loading (pp. 6-17 to 6-18).",
+        "SQD A or B for reasonable Cc (p. 6-18)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-13: Influence of strain rate on interpreted preconsolidation stress for several clays (Soga and Mitchell, 1996)",
+        "Figure 6-14: Variation in preconsolidation stress with temperature for several clays (from Leroueil and Marques, 1996)"
+      ],
+      "tables": [],
+      "applicability": "Interpretation of preconsolidation stress, compression indices, and consolidation rate from laboratory and in situ tests"
+    },
+    {
+      "section_id": "6.8",
+      "title": "Tangent Modulus Method for Interpreting Consolidation Test Results",
+      "summary": "Tangent modulus method (Janbu, 1967, 1969): M = d sigma'v/d epsilon from arithmetic strain-stress plots; M = m pa (sigma'v/pa)^(1 - a) (Eq. 6.8) with a = 1, 0.5, 0 for elastic, elastic-plastic and plastic ranges (Eqs. 6.9a-c); sigma'p where M drops or starts rising linearly (Figure 6-16).",
+      "body": "The tangent modulus method (Janbu, 1967, 1969) plots strain against effective stress arithmetically (Figure 6-15); the inverse slope is the tangent (constrained) modulus M = d sigma'v/d epsilon, replotted against stress (Figure 6-16, p. 6-19). Janbu (1967) expressed M by Eq. 6.8, m being a modulus number, a a stress exponent and pa atmospheric pressure (printed as 100 kPa = 14.7 psi) in stress units; fitting a = 1, 0.5 or 0 represents the initial elastic portion, the elastic-plastic transition and the plastic portion (Eqs. 6.9a to 6.9c). The method uses familiar strain units without void ratio. On the M-stress plot, recompression shows a practically constant Mo, virgin compression an initially low ML increasing with stress; sigma'p is where M drops notably or begins to increase linearly with stress (p. 6-20), sometimes also visible on the stress-strain plot (Figure 6-15). (pp. 6-18 to 6-20)",
+      "key_points": [
+        "M = d sigma'v/d epsilon (constrained modulus) (p. 6-18).",
+        "M = m pa (sigma'v/pa)^(1 - a) (Eq. 6.8) (p. 6-19).",
+        "a = 1 elastic, 0.5 elastic-plastic, 0 plastic (Eqs. 6.9a-c) (p. 6-19).",
+        "sigma'p where M drops or rises linearly (Figure 6-16) (p. 6-20)."
+      ],
+      "equations": [
+        "Eq. 6.8: M = m x pa x (sigma'v / pa)^(1 - a); m = modulus number, a = stress exponent, pa = atmospheric pressure in stress units (Janbu, 1967) (p. 6-19)",
+        "Eq. 6.9a: M = m x pa = constant (elastic behavior, a = 1) (p. 6-19)",
+        "Eq. 6.9b: M = m x pa x sqrt(sigma'v / pa) (elastic-plastic behavior, a = 0.5) (p. 6-19)",
+        "Eq. 6.9c: M = m x pa x (sigma'v / pa) (plastic behavior, a = 0) (p. 6-19)"
+      ],
+      "figures": [
+        "Figure 6-15: Consolidation test measurements plotted as stress versus strain using: (a) logarithmic scale, and (b) arithmetic scale (adapted from Karlsrud and Hernandez-Martinez, 2013)",
+        "Figure 6-16: Tangent modulus vs. effective stress showing estimate for preconsolidation stress (adapted from Karlsrud and Hernandez-Martinez, 2013)"
+      ],
+      "tables": [],
+      "applicability": "Interpretation of preconsolidation stress, compression indices, and consolidation rate from laboratory and in situ tests"
+    },
+    {
+      "section_id": "6.9",
+      "title": "Adjustment of laboratory consolidation tests to obtain Field Consolidation Curve",
+      "summary": "Schmertmann (1955) corrects laboratory curves to field curves: NC soils, line from (eo, sigma'p) to the virgin curve at e = 0.42 eo (Figure 6-17); OC soils, from (eo, sigma'vo) parallel to the unload-reload curve to sigma'p, then to e = 0.42 eo (Figure 6-18).",
+      "body": "Even good laboratory tests are reloading tests, so the field curve differs. Schmertmann (1955) gives a simple graphical correction for some disturbance. Normally consolidated soils (Figure 6-17): (1) Casagrande sigma'p; (2) from eo draw a horizontal line to sigma'p (Point 1); (3) at e = 0.42 eo, a horizontal line meets the extended virgin curve (Point 2); (4) line F through Points 1 and 2 is the field virgin curve. Overconsolidated soils (Figure 6-18): (1) Casagrande sigma'p; (2) from eo a horizontal line to sigma'vo (Point 1); (3) from Point 1 a line parallel to the measured unload-reload curve to sigma'p (Point 2, p. 6-21); (4) at e = 0.42 eo meet the extended virgin curve (Point 3); (5) Points 1-2 give in situ recompression, 2-3 the field virgin curve. The unload-reload slope sets Cr because it represents recompression better than initial loading. (pp. 6-20 to 6-22)",
+      "key_points": [
+        "Laboratory test is a reloading test (p. 6-20).",
+        "NC: Point 1 (eo, sigma'p) to Point 2 at e = 0.42 eo (Figure 6-17) (p. 6-20).",
+        "OC: recompression parallel to unload-reload, then to e = 0.42 eo (Figure 6-18) (pp. 6-20 to 6-21)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-17: Schmertmann (1955) method to obtain field consolidation curve for normally consolidated soils (from Holtz, et al., 2011)",
+        "Figure 6-18: Schmertmann (1955) method to obtain field consolidation curve for overconsolidated soils (from Holtz, et al., 2011)"
+      ],
+      "tables": [],
+      "applicability": "Interpretation of preconsolidation stress, compression indices, and consolidation rate from laboratory and in situ tests"
+    },
+    {
+      "section_id": "6.10",
+      "title": "Evaluation of Coefficient of Consolidation from Laboratory Consolidation Tests",
+      "summary": "cv governs time rate for shallow foundations and fills, ch for driven pile dissipation and PVDs; laboratory tests give cv. Casagrande log time and Taylor square root of time (AASHTO T216, ASTM D2435) are most common; others in Table 6-4.",
+      "body": "Time rate is represented by the coefficient of vertical consolidation cv (shallow foundations, large fills) and horizontal ch (pore pressure dissipation around driven piles, prefabricated vertical drains). One-dimensional tests give cv; ch only if specimens are trimmed for horizontal drainage, rarely done. Graphical procedures from IL tests are historically used: Casagrande's logarithm of time and Taylor's square root of time methods, described in AASHTO T216 and ASTM D2435; others in Table 6-4 (p. 6-23) appear equally valid. (pp. 6-22 to 6-23)",
+      "key_points": [
+        "cv for shallow foundations and fills; ch for piles and PVDs (p. 6-22).",
+        "Casagrande log time and Taylor square root of time (p. 6-22).",
+        "Table 6-4: alternative methods (p. 6-23)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 6-4: Alternative methods for determining the coefficient of consolidation - Casagrande's log time method (Casagrande and Fadum, 1940); Taylor's square root of time method (Taylor, 1948; Robinson and Allam, 1996; Tewatia and Venkatachalam, 1997; Feng and Lee, 2001); inflection point method (Cour, 1971; Messi et al., 1999); velocity method (Parkin, 1978, 1981; Pandian et al., 1994; McKinley and Sivakumar, 2009); rectangular hyperbola method (Sridharan et al., 1987)"
+      ],
+      "applicability": "Interpretation of preconsolidation stress, compression indices, and consolidation rate from laboratory and in situ tests"
+    },
+    {
+      "section_id": "6.10.1",
+      "title": "Casagrande’s Log Time Method",
+      "summary": "Casagrande log time method (Figure 6-19): cv = T50 Hdr^2/t50 (Eq. 6.10), T50 = 0.197, Hdr half the average specimen thickness for double drainage; needs data well past 50 percent and a graphical zero reading.",
+      "body": "Casagrande's method plots deflection against log time (Figure 6-19) and uses the time for 50 percent primary consolidation t50 in Eq. 6.10, T50 being the theoretical time factor (0.197) and Hdr the drainage height, one-half the average specimen thickness during the increment for double drainage. A substantial portion of the curve after 50 percent is needed to approximate t50, and a graphical procedure gives the zero reading, which cannot be plotted on a log scale. (p. 6-23)",
+      "key_points": [
+        "cv = T50 Hdr^2/t50, T50 = 0.197 (Eq. 6.10) (p. 6-23).",
+        "Hdr = half the average thickness, double drainage (p. 6-23)."
+      ],
+      "equations": [
+        "Eq. 6.10: cv = T50 Hdr^2 / t50; T50 = theoretical time factor for 50 percent consolidation (0.197), Hdr = drainage height, t50 = time to 50 percent primary consolidation (p. 6-23)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Interpretation of preconsolidation stress, compression indices, and consolidation rate from laboratory and in situ tests"
+    },
+    {
+      "section_id": "6.10.2",
+      "title": "Taylor’s Square Root of Time Method",
+      "summary": "Taylor's method (Figure 6-20): line at 1.15 times the initial slope on the root-time plot gives t90; cv = T90 Hdr^2/t90 (Eq. 6.11), T90 = 0.848. Plot cv per increment against log stress (Figure 6-21); laboratory cv usually overpredicts field time; use the observational method.",
+      "body": "Taylor's method plots deflection against the square root of time (Figure 6-20); a line with 1.15 times the slope of the initial straight section meets the curve at t90, and cv follows from Eq. 6.11 with T90 = 0.848 (p. 6-24); the test need not go beyond t90. cv should be computed for each increment and plotted against log sigma'v (Figure 6-21, p. 6-25); the two methods give different values; high quality specimens show a sharp drop in cv near sigma'p, higher below and lowest above it. Where secondary compression distorts the curves, use several methods (Table 6-4). Scatter in the overconsolidated range comes from rapid consolidation and fissures in stiff clays; focus on reload and virgin increments; initial increments are often unreliable. Laboratory cv often differs from the field: time-rate analyses often overpredict field consolidation time, largely because permeable seams shorten drainage paths (p. 6-26), plus disturbance; where rates matter, monitor early field settlement and refine predictions (the observational method). (pp. 6-23 to 6-26)",
+      "key_points": [
+        "t90 from a line 1.15 times the initial slope (p. 6-23).",
+        "cv = T90 Hdr^2/t90, T90 = 0.848 (Eq. 6.11) (p. 6-23).",
+        "cv drops sharply near sigma'p (Figure 6-21) (p. 6-25).",
+        "Laboratory cv overpredicts field time; use the observational method (pp. 6-25 to 6-26)."
+      ],
+      "equations": [
+        "Eq. 6.11: cv = T90 Hdr^2 / t90; T90 = theoretical time factor for 90 percent consolidation (0.848), t90 = time to 90 percent primary consolidation (p. 6-23)"
+      ],
+      "figures": [
+        "Figure 6-19: Casagrande’s log time method for determining the coefficient of consolidation",
+        "Figure 6-20: Taylor’s square root of time method for determining the coefficient of consolidation",
+        "Figure 6-21: Coefficients of consolidation determined using the log time and square root time methods for different applied effective stress"
+      ],
+      "tables": [],
+      "applicability": "Interpretation of preconsolidation stress, compression indices, and consolidation rate from laboratory and in situ tests"
+    },
+    {
+      "section_id": "6.11",
+      "title": "Evaluation of Coefficient of Secondary Compression From laboratory Consolidation Tests",
+      "summary": "C_alpha = Delta_e/Delta_log t (Eq. 6.12) after primary (Figure 6-22), with increments held days to a week; largest above sigma'p: use the average overconsolidated value if final stress < about 0.8 sigma'p, else values at 1 to 2 sigma'p; use high quality specimens.",
+      "body": "Secondary compression is usually small but may be significant, especially in organic soils; it is estimated with C_alpha, measured in IL tests by extending increments beyond primary consolidation (Figure 6-22, p. 6-27) by Eq. 6.12 over times t1 and t2 after the end of primary (t100 or tp); C_alpha_epsilon likewise from strain. For soils with significant secondary settlement, increments may need several days or a week. C_alpha varies with stress history, maximum above sigma'p: if anticipated stresses are less than about 0.8 sigma'p, an average from the overconsolidated range is appropriate; if they exceed sigma'p, use measurements at 1 to 2 times sigma'p. Disturbed specimens give lower C_alpha in the normally consolidated range, so use high quality specimens. (pp. 6-26 to 6-27)",
+      "key_points": [
+        "C_alpha = Delta_e/Delta_log t (Eq. 6.12) (p. 6-26).",
+        "Extend increments days to a week (p. 6-26).",
+        "Final stress < 0.8 sigma'p: overconsolidated average; above sigma'p: 1 to 2 sigma'p values (pp. 6-26 to 6-27)."
+      ],
+      "equations": [
+        "Eq. 6.12: C_alpha = Delta_e / Delta_log t; Delta_e = change in void ratio over elapsed time t2 - t1, both after the end of primary consolidation (t100 or tp) (p. 6-26)"
+      ],
+      "figures": [
+        "Figure 6-22: Evaluation of Cα from time-deformation response for IL consolidation test increment"
+      ],
+      "tables": [],
+      "applicability": "Interpretation of preconsolidation stress, compression indices, and consolidation rate from laboratory and in situ tests"
+    },
+    {
+      "section_id": "6.12",
+      "title": "Evaluation of Preconsolidation Stress from In Situ Tests",
+      "summary": "CPT, CPTU, DMT, PMT, FVT and SPT estimate sigma'p or OCR quickly and in profile (Table 6-5); their transformations carry substantial uncertainty, reducible by site-specific transformations against laboratory tests, required where sigma'p matters for design.",
+      "body": "In situ tests (CPT, CPTU, DMT, PMT, FVT, SPT) estimate sigma'p or OCR at points or as profiles, quickly and cheaply, helping interpret complex stress histories (erosion, reloading, aging, cementation); Table 6-5 (p. 6-28) gives applicability by consistency. They are indirect, needing empirical or theoretical transformations with substantial uncertainty (Chapter 3), dramatically reduced by companion laboratory tests and local geology in \"site specific\" transformations, necessary where quantitative sigma'p matters; general transformations serve preliminary estimates, trends, or small projects where designing for greater uncertainty costs less. (pp. 6-27 to 6-28)",
+      "key_points": [
+        "Table 6-5: in situ tests for sigma'p by consistency (p. 6-28).",
+        "General transformations carry substantial uncertainty (p. 6-28).",
+        "Site-specific transformations needed for design (p. 6-28)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 6-5: Summary of in situ test methods for determining preconsolidation stress - very soft-soft, medium stiff, stiff, very stiff-hard: CPT/CPTU yes, yes, yes, no (highest quality interpretation; theoretical and empirical data base); DMT yes, yes, yes, no (high quality; empirical); FVT yes, yes, no, no (high quality; theoretical and empirical); PMT no, yes, yes, yes (medium quality; empirical); SPT no, yes, yes, yes (low quality, rough estimate only; empirical)"
+      ],
+      "applicability": "Interpretation of preconsolidation stress, compression indices, and consolidation rate from laboratory and in situ tests"
+    },
+    {
+      "section_id": "6.12.1",
+      "title": "CPT/CPTU",
+      "summary": "sigma'p (yield stress) from net cone resistance qt - sigma_vo (Mayne, 2014; Figure 6-23) scatters about an order of magnitude across soils, less for one soil type; CPTU excess pore pressure (Mayne, 2007; Figure 6-24) is somewhat more uncertain, fissured clays differing.",
+      "body": "Expressions relating sigma'p to corrected tip resistance qt and CPTU excess pore pressure date from the early 1980s, sometimes including rigidity index Ir = G/su, with little change in basic form. Figure 6-23 (Mayne, 2014) relates sigma'p (\"yield stress\" sigma'y) to net cone resistance qt - sigma_vo (p. 6-29): scatter across all soils spans about an order of magnitude, substantially less for a single soil type, and site-specific transformations reduce it further. Figure 6-24 (Mayne, 2007, p. 6-30) uses excess pore pressure (u1 or u2 minus uo, Type 1 or Type 2 piezocones) normalized by pa; uncertainty is somewhat greater than for clays in Figure 6-23, and fissured clays follow substantially different, more variable transformations. (pp. 6-28 to 6-30)",
+      "key_points": [
+        "sigma'p from qt - sigma_vo (Mayne, 2014; Figure 6-23) (p. 6-28).",
+        "Scatter about an order of magnitude across soil types (p. 6-29).",
+        "Pore pressure transformations (Figure 6-24); fissured clays differ (p. 6-29)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-23: Transformation from corrected net cone tip resistance to preconsolidation stress, or “yield stress” (from Mayne, 2014)",
+        "Figure 6-24: Transformations from measured CPTU pore pressure to preconsolidation stress for clays: (a) Type 1 piezocones, and (b) Type 2 piezocones (from Mayne, 2007)"
+      ],
+      "tables": [],
+      "applicability": "Interpretation of preconsolidation stress, compression indices, and consolidation rate from laboratory and in situ tests"
+    },
+    {
+      "section_id": "6.12.2",
+      "title": "DMT",
+      "summary": "DMT: OCR = (0.5 KD)^1.56 (Eq. 6.13, Marchetti, 1980), KD = (po - uo)/sigma'vo (Eq. 6.14), regional variants in Table 6-6; directly sigma'p = (po - uo)/alpha (Eq. 6.15), alpha 0.8 to 2.5, Mayne (1995) alpha = 2 (Eq. 6.16) for 24 intact clays (Figure 6-25).",
+      "body": "The flat dilatometer (ASTM D6635) correlates with laboratory sigma'p. Marchetti (1980) predicted OCR from the horizontal stress index KD (Eq. 6.13), KD from the corrected lift-off pressure po (Eq. 6.14), uo being in situ pore pressure and sigma'vo the effective vertical stress; regional variants of similar form are in Table 6-6 (p. 6-31). More directly, sigma'p = (po - uo)/alpha (Eq. 6.15), alpha an empirical factor ranging 0.8 to 2.5 for typical rigidity indices by elastic-plastic cylindrical cavity expansion; Mayne (1995) found alpha = 2 (Eq. 6.16) from 24 intact natural clays (Figure 6-25), slightly more variable than the CPT transformation for intact clays. DMT gives near-continuous sigma'p profiles at about 1 foot intervals. (pp. 6-30 to 6-31)",
+      "key_points": [
+        "OCR = (0.5 KD)^1.56 (Eq. 6.13, Marchetti, 1980) (p. 6-30).",
+        "KD = (po - uo)/sigma'vo (Eq. 6.14) (p. 6-30).",
+        "Table 6-6: regional KD-OCR transformations (p. 6-31).",
+        "sigma'p = (po - uo)/2 (Eq. 6.16, Mayne, 1995) (p. 6-31)."
+      ],
+      "equations": [
+        "Eq. 6.13: OCR = (0.5 x KD)^1.56; KD = DMT horizontal stress index (Marchetti, 1980) (p. 6-30)",
+        "Eq. 6.14: KD = (po - uo) / sigma'vo; po = corrected lift-off pressure, uo = in situ pore water pressure, sigma'vo = in situ effective vertical stress (p. 6-30)",
+        "Eq. 6.15: sigma'p = (po - uo) / alpha; alpha = empirical factor, 0.8 to 2.5 for a typical range of rigidity index for clays (p. 6-31)",
+        "Eq. 6.16: sigma'p = (po - uo) / 2; Mayne (1995), 24 intact natural clays (p. 6-31)"
+      ],
+      "figures": [],
+      "tables": [
+        "Table 6-6: Summary of empirical transformations between preconsolidation stress and DMT - OCR = (0.5 KD)^1.56 misc. clays (Marchetti, 1980); OCR = (0.372 KD)^1.40 Florida clays (Davidson and Boghrat, 1983); OCR = (0.24 KD)^1.32 stiff clays in UK (Powell and Uglow, 1988); OCR = (0.225 KD)^n, n 1.35 to 1.67, Norwegian sensitive clays (Lacasse and Lunne, 1988); OCR = 10(0.16 KD - 2.5) as printed, Swedish clays (Larsson and Eskilson, 1989); OCR = (0.5 KD)^0.84 Singapore marine clay (Chang, 1991); OCR = 0.34 KD^1.43 Japan soft clay (Kamei and Iwasaki, 1995); OCR = (0.3 KD)^1.36 Leda clay (Tanaka and Bauer, 1998)"
+      ],
+      "applicability": "Interpretation of preconsolidation stress, compression indices, and consolidation rate from laboratory and in situ tests"
+    },
+    {
+      "section_id": "6.12.3",
+      "title": "Field Vane Shear Test (FVT)",
+      "summary": "Field vane (AASHTO T223, ASTM D2573): sigma'p = alpha_FV su-FV (Eq. 6.17), from the su-OCR relation (Chapter 7); Figure 6-26 (Mayne and Mitchell, 1988) supports it and alpha_FV varies with plasticity index (Figure 6-27).",
+      "body": "Field vane undrained strengths (AASHTO T223; ASTM D2573) correlate with sigma'p through normalized strength and OCR (Chapter 7), so sigma'p = alpha_FV su-FV (Eq. 6.17), su-FV being the vane strength and alpha_FV an empirical factor. Figure 6-26 (Mayne and Mitchell, 1988, p. 6-33) shows supporting data for a wide range of soils with lines for different alpha_FV; alpha_FV varies with plasticity index (Figure 6-27). (pp. 6-31 to 6-32)",
+      "key_points": [
+        "sigma'p = alpha_FV su-FV (Eq. 6.17) (p. 6-31).",
+        "alpha_FV varies with PI (Figure 6-27) (p. 6-32)."
+      ],
+      "equations": [
+        "Eq. 6.17: sigma'p = alpha_FV x su-FV; su-FV = field vane undrained shear strength, alpha_FV = empirical factor (varies with plasticity index) (p. 6-31)"
+      ],
+      "figures": [
+        "Figure 6-25: Transformation from DMT po to preconsolidation stress (from Mayne, 1995)"
+      ],
+      "tables": [],
+      "applicability": "Interpretation of preconsolidation stress, compression indices, and consolidation rate from laboratory and in situ tests"
+    },
+    {
+      "section_id": "6.12.4",
+      "title": "Pressuremeter Test (PMT)",
+      "summary": "The pressuremeter (ASTM D4719), a point test best in stiff to very stiff soils, estimates sigma'p from limit pressure pL (Figure 6-28) or sigma'p = 0.76 (su/pa) ln Ir (Eq. 6.18, Figure 6-29); creep pressure py sometimes taken as sigma'p.",
+      "body": "The pressuremeter test (ASTM D4719) estimates sigma'p at points (not a profiling tool) and is often best in stiff to very stiff soils where other in situ tests cannot be used (Table 6-5). sigma'p is most commonly correlated with the limit pressure pL (Figure 6-28, self-boring PMT, Kulhawy and Mayne, 1990, p. 6-34) or estimated by Eq. 6.18 (Figure 6-29), Ir = G/su being the rigidity index; the creep pressure py is sometimes used directly as sigma'p. (pp. 6-32 to 6-34)",
+      "key_points": [
+        "PMT best in stiff to very stiff soils (p. 6-32).",
+        "sigma'p from pL (Figure 6-28) (p. 6-32).",
+        "sigma'p = 0.76 (su/pa) ln Ir (Eq. 6.18) (p. 6-32)."
+      ],
+      "equations": [
+        "Eq. 6.18: sigma'p = 0.76 (su / pa) ln Ir; su = undrained shear strength, pa = atmospheric pressure, Ir = G/su = rigidity index (as printed) (p. 6-32)"
+      ],
+      "figures": [
+        "Figure 6-26: Transformation from field vane shear strength to preconsolidation stress (from Mayne and Mitchell, 1988)",
+        "Figure 6-27: Relationship between αFV and plasticity index (from Mayne and Mitchell, 1988)",
+        "Figure 6-28: Transformation from self-boring PMT pL to preconsolidation stress (from Kulhawy and Mayne, 1990)",
+        "Figure 6-29: Transformation from PMT undrained shear strength and rigidity index to preconsolidation stress (from Kulhawy and Mayne, 1990)"
+      ],
+      "tables": [],
+      "applicability": "Interpretation of preconsolidation stress, compression indices, and consolidation rate from laboratory and in situ tests"
+    },
+    {
+      "section_id": "6.12.5",
+      "title": "Standard Penetration Test (SPT)",
+      "summary": "SPT N60 relates to sigma'p (Figure 6-30, Mayne, 1995) with the greatest scatter of all in situ transformations; use only for preliminary estimates or trends, never for quantitative sigma'p where it matters for design.",
+      "body": "SPT N60-values relate to sigma'p (Figure 6-30, Mayne, 1995) with the greatest scatter of the in situ transformations, partly from historical variations in equipment and procedures and in sample quality and laboratory interpretation. SPT should not be used for quantitative sigma'p where it matters for design, only for preliminary estimates or trends across a site. (p. 6-35)",
+      "key_points": [
+        "Greatest scatter of in situ transformations (p. 6-35).",
+        "Preliminary estimates or trends only (p. 6-35)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-30: Transformation from SPT N60 to σp′ (from Mayne, 1995)"
+      ],
+      "tables": [],
+      "applicability": "Interpretation of preconsolidation stress, compression indices, and consolidation rate from laboratory and in situ tests"
+    },
+    {
+      "section_id": "6.13",
+      "title": "Evaluation of Coefficient of Lateral Consolidation from In Situ Tests",
+      "summary": "ch is hard to measure in the laboratory but CPTU and DMT dissipation tests, dominated by horizontal flow, are among the best means, though smearing and remolding may give values below in situ.",
+      "body": "ch is difficult to measure in laboratory tests (section 6.10) but can be measured from piezocone or flat dilatometer dissipation tests; flow is not purely horizontal but is dominated by horizontal flow, so values are interpreted as horizontal. Smearing and remolding next to the device may give values below those in situ (p. 6-36); still, dissipation tests are among the best means available for ch. (pp. 6-35 to 6-36)",
+      "key_points": [
+        "CPTU and DMT dissipation tests give ch (p. 6-35).",
+        "Smearing may give low values (p. 6-35)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Interpretation of preconsolidation stress, compression indices, and consolidation rate from laboratory and in situ tests"
+    },
+    {
+      "section_id": "6.13.1",
+      "title": "CPTU Dissipation Tests",
+      "summary": "CPTU dissipation: ch = T* a^2 sqrt(Ir)/t (Eq. 6.19), with Teh and Houlsby (1991) time factors (Table 6-7, u1 or u2) for monotonic dissipation in soft soils, continued past 50 percent; Un = (ut - uo)/(ui - uo) (Eq. 6.20); Ir from Figure 6-33; Robertson et al. (1992) chart (Figure 6-34).",
+      "body": "CPTU dissipation tests are probably the most common means for ch: cone advance stops and pore pressure is monitored. \"Monotonic\" dissipation (Figure 6-31) is typical of soft NC to lightly OC soils; heavily OC soils may be \"dilative\" (pore pressure first rising), especially with Type 2 cones. ch is generally Eq. 6.19 (p. 6-36), T* being a modified time factor depending on cone type, Ir, Af and degree of dissipation, a the cone radius, Ir the rigidity index and t the elapsed time; most T* come from the strain path method (Mayne, 2007). Teh and Houlsby (1991) factors (Table 6-7, p. 6-37) are commonly used for soft soils with monotonic dissipation; accuracy improves greatly if tests reach at least 50 percent dissipation; Burns and Mayne (1998) suit stiff, dilative soils. The normalized excess pore pressure Un (Eq. 6.20; Figure 6-32, p. 6-38) uses the initial excess pore pressure ui, not the maximum; t50 is read at 50 percent; uo comes from piezometers, groundwater knowledge or equilibrium at the end of a long test. Ir can be measured (laboratory strength, seismic piezocone with su) or estimated from OCR and PI (Figure 6-33, p. 6-39). Robertson et al. (1992) relate ch to t50 for different Ir (Figure 6-34), usable only beyond 50 percent dissipation. (pp. 6-36 to 6-39)",
+      "key_points": [
+        "ch = T* a^2 sqrt(Ir)/t (Eq. 6.19) (p. 6-36).",
+        "Table 6-7: Teh and Houlsby (1991) T*; at 50 percent 0.118 (u1) and 0.245 (u2) (p. 6-37).",
+        "Continue to at least 50 percent dissipation (p. 6-37).",
+        "Un = (ut - uo)/(ui - uo) with initial, not maximum, ui (Eq. 6.20) (p. 6-37).",
+        "Ir from OCR and PI (Figure 6-33) (p. 6-38)."
+      ],
+      "equations": [
+        "Eq. 6.19: ch = T* a^2 sqrt(Ir) / t; T* = modified time factor, a = cone radius, Ir = rigidity index, t = elapsed time to the degree of dissipation consistent with T* (p. 6-36)",
+        "Eq. 6.20: Un = (ut - uo) / (ui - uo); ut = pore pressure at time t after stopping, uo = in situ pore pressure, ui = pore pressure at time zero (p. 6-37)"
+      ],
+      "figures": [
+        "Figure 6-31: Pore pressure dissipation measurements from CPTU in soft, clayey silt",
+        "Figure 6-32: Normalized pore pressure dissipation for measurements in Figure 6-31",
+        "Figure 6-33: Relation between rigidity index and OCR (from Mayne, 2007)",
+        "Figure 6-34: Robertson et al. (1992) chart for determining ch from t50 (from Schnaid, 2009)"
+      ],
+      "tables": [
+        "Table 6-7: Modified time factors, T∗, for analysis of CPTU dissipation tests (after Teh and Houlsby, 1991) - Un, degree of consolidation 1 - Un, T* Type 1 (u1, mid-face), T* Type 2 (u2, behind the tip): 0.8, 20 %, 0.014, 0.038; 0.7, 30 %, 0.032, 0.078; 0.6, 40 %, 0.063, 0.142; 0.5, 50 %, 0.118, 0.245; 0.4, 60 %, 0.226, 0.439; 0.3, 70 %, 0.463, 0.804; 0.2, 80 %, 1.04, 1.60"
+      ],
+      "applicability": "Interpretation of preconsolidation stress, compression indices, and consolidation rate from laboratory and in situ tests"
+    },
+    {
+      "section_id": "6.13.2",
+      "title": "DMT Dissipation Tests",
+      "summary": "DMTA test (Marchetti and Totani, 1989): ch = (5 to 10 cm2)/Tflex (Eq. 6.21) from the contraflexure of A versus log time, for OC soils (Table 6-8 rates speed); DMTC (C-reading) test: uF = P2 - uo (Eq. 6.22); treating the blade as a 7.5 mm cone with T50 = 25 gives Eq. 6.23.",
+      "body": "The DMTA dissipation test (Marchetti and Totani, 1989) records only the A-reading over time; A versus log time is S-shaped (Figure 6-35) and its contraflexure time Tflex gives ch by Eq. 6.21 (p. 6-40), appropriate for overconsolidated soils and to be adjusted for normally consolidated conditions; Table 6-8 rates consolidation speed. The DMTC (\"C-Reading\") test (p. 6-41) uses the recontact pressure P2 as an indication of excess pore pressure: start a stopwatch at penetration; take routine A, B and C readings noting the C time; repeat at intervals recording only C and time; continue to at least 50 percent dissipation (minutes to hours). Excess pore pressure is Eq. 6.22; the initial value, unmeasured (about 1 minute to the first P2), is extrapolated on a square-root-of-time plot (Schmertmann, 1988). ch then follows Eq. 6.19 with an equivalent radius: about 22 mm (same projected end area, Robertson et al., 1988) or 24 mm (Schmertmann, 1988); back-calculated radii ranged 5 to 40 mm (Kabir and Lutenegger, 1990), suggesting another technique. Error sources: blade apex 10 to 20 degrees versus 60 degrees for cones; measurement point about 7.6 blade thicknesses behind the wedge base and 12.7 behind the tip; different geometry. Alternatively treat the blade as a cone of radius 7.5 mm (half-thickness) with the time factor for an 18 degree cone measured 10 radii behind the tip, T50 = 25 (Gupta and Davidson, 1986; p. 6-42), giving Eq. 6.23, which needs only the time to 50 percent dissipation. (pp. 6-39 to 6-42)",
+      "key_points": [
+        "ch = (5 to 10 cm2)/Tflex (Eq. 6.21) (p. 6-40).",
+        "Table 6-8: Tflex < 10 min very fast to > 200 min very slow (p. 6-40).",
+        "uF = P2 - uo (Eq. 6.22) (p. 6-41).",
+        "Equivalent radius 22 or 24 mm; back-calculated 5 to 40 mm (p. 6-41).",
+        "ch from T50 = 25 and radius 7.5 mm (Eq. 6.23) (p. 6-42)."
+      ],
+      "equations": [
+        "Eq. 6.21: ch = (5 to 10 cm2) / Tflex; Tflex = time at the contraflexure of the A-reading versus log time curve (p. 6-40)",
+        "Eq. 6.22: uF = P2 - uo; P2 = DMT recontact (C-reading) pressure, uo = in situ pore pressure (p. 6-41)",
+        "Eq. 6.23: ch,DMT = (25)(7.5 mm)^2 / t50 = 14.06 mm2 / t50 (as printed); T50 = 25, blade half-thickness 7.5 mm, t50 = time to 50 percent dissipation (p. 6-42)"
+      ],
+      "figures": [
+        "Figure 6-35: Measurements from DMTA and DMTC dissipation tests in clay for two different depths"
+      ],
+      "tables": [
+        "Table 6-8: Rating of consolidation speed based on Tflex (Marchetti and Totani, 1989) - Tflex (min) < 10 very fast; 10 to 30 fast; 30 to 80 medium; 80 to 200 slow; > 200 very slow"
+      ],
+      "applicability": "Interpretation of preconsolidation stress, compression indices, and consolidation rate from laboratory and in situ tests"
+    },
+    {
+      "section_id": "6.14",
+      "title": "Estimation of Consolidation Parameters from Index Properties",
+      "summary": "Index-property correlations give preliminary consolidation estimates, reasonableness checks, or conservative design on small projects, but carry substantial uncertainty and are not substitutes for direct measurements; those given are examples, not the best.",
+      "body": "Preliminary estimates before detailed investigation inform early decisions (foundation type) and scoping; for small, less important projects designing conservatively from index correlations may cost less than testing (p. 6-43); correlations also check the reasonableness of measurements. All are indirect with substantial variability and uncertainty, reduced somewhat by restricting them to specific geology or regions, but much greater than direct measurements; they should not substitute for direct measurements or be relied on for final design without considering the uncertainty. Those presented are examples with some global applicability, not the best or preferred; regional ones may suit consistent conditions. (pp. 6-42 to 6-43)",
+      "key_points": [
+        "Preliminary estimates and reasonableness checks (p. 6-42).",
+        "Not substitutes for direct measurements (p. 6-43).",
+        "Examples, not preferred correlations (p. 6-43)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Interpretation of preconsolidation stress, compression indices, and consolidation rate from laboratory and in situ tests"
+    },
+    {
+      "section_id": "6.14.1",
+      "title": "Compression Index and Recompression Index",
+      "summary": "No universal Cc or Cr correlation fits all soils; Figure 6-36 relates Cr and Cc to PI (Cc = PI/73, Kulhawy and Mayne, 1990); Tables 6-9 to 6-16 list Cc correlations with LL (e.g., Cc = 0.009(LL - 10), Terzaghi and Peck, 1967), wn, eo and combinations.",
+      "body": "Many correlations relate Cc and Cr to index properties, e.g., Cr and PI (Figure 6-36, Kulhawy and Mayne, 1990, p. 6-44); none fits all fine-grained soils and different ones may give significantly different estimates. Tables 6-9 to 6-16 (pp. 6-43 to 6-45) list reported correlations between Cc and liquid limit, natural water content, initial void ratio, plasticity index and combinations of these. (pp. 6-43 to 6-45)",
+      "key_points": [
+        "No universal Cc correlation (p. 6-43).",
+        "Table 6-9: Cc from LL (p. 6-43).",
+        "Tables 6-10, 6-11: Cc from wn and eo (p. 6-44).",
+        "Tables 6-12 to 6-16: multi-parameter and PI correlations (p. 6-45)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-36: Correlation between plasticity index and recompression and compression parameters (from Kulhawy and Mayne, 1990)"
+      ],
+      "tables": [
+        "Table 6-9: Reported correlations between compression index, Cc, and liquid limit, LL - Cc = 0.007(LL - 10) remolded clays (Skempton, 1944); Cc = 0.009(LL - 10) undisturbed clays (Skempton, 1944); Cc = 0.009(LL - 10) NC clays (Terzaghi and Peck, 1967); Cc = 0.011(LL - 12) offshore marine clays (Herrmann, 1974); Cc = 0.006(LL - 9) all clays, LL < 100 (Azzouz et al., 1976); Cc = 0.0057(LL - 11) misc. clays (Krizek et al., 1977); Cc = (LL - 13)/109 all clays (Mayne, 1980); Cc = 0.005 LL clay till (Sauer et al., 1993)",
+        "Table 6-10: Reported correlations between compression index, Cc, and natural water content, ωn - Cc = 0.01 wn organic soils, peats and clays (Moran et al., 1958); Cc = 0.01(wn - 5) all clays (Azzouz et al., 1976); Cc = 0.0097(wn - 7) misc. clays (Krizek et al., 1977); Cc = 0.01 wn all clays (Koppula, 1981); Cc = 0.01(wn - 7.55) all clays (Rendon-Herrero, 1983)",
+        "Table 6-11: Reported correlations between compression index, Cc, and initial void ratio, eo - Cc = 0.54(eo - 0.35) all clays (Nishida, 1956); Cc = 0.29(eo - 0.27) inorganic cohesive soil, silty clay, clay (Hough, 1957); Cc = 0.35(eo - 0.50) organic fine-grained soil, organic clay (Hough, 1957); Cc = 0.75(eo - 0.55) residual soils (Sowers, 1963); Cc = 0.75(eo - 0.50) residual soils with low plasticity (Sowers, 1970); Cc = 0.34(eo - 0.3) offshore marine clays (Herrmann, 1974); Cc = 0.40(eo - 0.25) all clays (Azzouz et al., 1976); Cc = 0.3498(eo - 0.168) misc. clays (Krizek et al., 1977); Cc = 0.2577 eo + 0.0148 glacial till (Lutenegger et al., 1983); Cc = 0.39 eo all clays (Nagaraj and Srinivasa Murthy, 1986)",
+        "Table 6-12: Reported correlations between compression index, Cc, initial void ratio, eo, and liquid limit - Cc = 0.37(eo + 0.003 LL - 0.34) all clays (Azzouz et al., 1976); Cc = 0.2745 eo + 0.0019 LL - 0.0786 misc. clays (Krizek et al., 1977); Cc = 0.411 eo + 0.00058 LL - 0.156 all clays (Al-Khafaji and Andersland, 1992)",
+        "Table 6-13: Reported correlations between compression index, Cc, natural water content, ωn, and liquid limit, LL - Cc = 0.009 wn + 0.002 LL - 0.10 all clays (Azzouz et al., 1976); Cc = 0.0071 wn + 0.0024 LL - 0.0945 misc. clays (Krizek et al., 1977)",
+        "Table 6-14: Reported correlations between compression index, Cc, initial void ratio, eo, and natural water content, ωn - Cc = 0.40(eo + 0.001 wn - 0.025) all clays (Azzouz et al., 1976); Cc = 0.3075 eo + 0.0012 wn - 0.0615 misc. clays (Krizek et al., 1977)",
+        "Table 6-15: Reported correlations between compression index, Cc, and plasticity index, PI - Cc = (PI + 26)/138 all clays (Mayne, 1980); Cc = PI/73 all clays (Kulhawy and Mayne, 1990)",
+        "Table 6-16: Reported correlations between compression index, Cc, initial void ratio, eo, liquid limit, LL, and natural water content, wn - Cc = 0.37(eo + 0.003 LL + 0.004 wn - 0.34) all clays (Azzouz et al., 1976); Cc = 0.1907 eo + 0.0019 LL + 0.0024 wn - 0.0844 misc. clays (Krizek et al., 1977)"
+      ],
+      "applicability": "Interpretation of preconsolidation stress, compression indices, and consolidation rate from laboratory and in situ tests"
+    },
+    {
+      "section_id": "6.14.2",
+      "title": "Coefficient of Consolidation",
+      "summary": "cv correlates poorly with index properties; the NAVFAC (1986) liquid limit chart (Figure 6-37) only checks the reasonableness of measured cv and should not be used for design.",
+      "body": "The coefficient of consolidation correlates poorly with index properties, so index-based estimates are unreliable. Figure 6-37 (NAVFAC, 1986, p. 6-46) relates cv to liquid limit for judging the reasonableness of test values; values from it should not be used for design. (pp. 6-45 to 6-46)",
+      "key_points": [
+        "cv correlates poorly with index properties (p. 6-45).",
+        "Figure 6-37 for reasonableness only, not design (p. 6-45)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-37: Correlation of coefficient of consolidation to liquid limit (NAVFAC, 1986)"
+      ],
+      "tables": [],
+      "applicability": "Interpretation of preconsolidation stress, compression indices, and consolidation rate from laboratory and in situ tests"
+    },
+    {
+      "section_id": "6.14.3",
+      "title": "Coefficient of Secondary Compression",
+      "summary": "C_alpha/Cc is roughly constant for an NC soil: about 0.04 +/- 0.01 inorganic clays and silts, 0.05 +/- 0.01 organic, 0.06 +/- 0.01 peats (Tables 6-17, 5-10); use Cr instead of Cc if the final stress stays below sigma'p.",
+      "body": "For normally consolidated soils C_alpha/Cc (about equal to C_alpha_epsilon/Cc_epsilon) is relatively constant for a given soil (Figure 6-38, Mesri, et al., 1995, p. 6-47). Table 6-17 gives values for inorganic clays and silts, Table 5-10 for organic soils. Often C_alpha/Cc is about 0.04 +/- 0.01 for inorganic clays and silts, 0.05 +/- 0.01 for organic clays and silts and about 0.06 +/- 0.01 for peats (section 5.4.5 prints 0.075 +/- 0.01 for peats). These may estimate C_alpha where long-duration increments are unavailable, with considerable uncertainty, or check measurements; if the final effective stress is below sigma'p, estimate C_alpha from Cr instead of Cc. (pp. 6-46 to 6-47)",
+      "key_points": [
+        "C_alpha/Cc 0.04 +/- 0.01 inorganic; 0.05 +/- 0.01 organic; 0.06 +/- 0.01 peats (p. 6-46).",
+        "Table 6-17: inorganic clays and silts (Mesri and Godlewski, 1977) (p. 6-47).",
+        "Below sigma'p use Cr instead of Cc (p. 6-46)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 6-38: Typical relationship between Cαε and Cc for two clays (from Mesri, et al., 1995)"
+      ],
+      "tables": [
+        "Table 6-17: Values of Cα⁄Cc for several inorganic clays and silts (from Mesri and Godlewski, 1977) - Whangamarino clay 0.03 to 0.04; Leda clay 0.025 to 0.06; soft blue clay 0.026; Portland sensitive clay 0.025 to 0.055; San Francisco Bay mud 0.04 to 0.06; New Liskeard varved clay 0.03 to 0.06; silty clay 0.032; near-shore clays and silts 0.055 to 0.075; Mexico City clay 0.03 to 0.035; Hudson River silt 0.03 to 0.06"
+      ],
+      "applicability": "Interpretation of preconsolidation stress, compression indices, and consolidation rate from laboratory and in situ tests"
+    },
+    {
+      "section_id": "6.14.4",
+      "title": "Stress History",
+      "summary": "Liquidity index indicates stress history: LI >= 1 typically NC, LI <= 0 moderately to heavily OC; Stas and Kulhawy (1984), for sensitivity 1 to 10: sigma'p/pa = 10^(1.11 - 1.62 LI) (Eq. 6.24); NAVFAC (1986) chart (Figure 6-39) for preliminary use only.",
+      "body": "The liquidity index indirectly indicates stress history: soils with LI >= 1 are typically normally consolidated, LI <= 0 typically moderately to heavily overconsolidated. For soils with sensitivity between 1 and 10, Stas and Kulhawy (1984) related sigma'p to LI by Eq. 6.24. Figure 6-39 (NAVFAC, 1986, p. 6-48) relates LI and sigma'p by sensitivity; its reliability is unknown, so use it only for preliminary design or to evaluate measurements. (pp. 6-47 to 6-48)",
+      "key_points": [
+        "LI >= 1 typically NC; LI <= 0 OC (p. 6-47).",
+        "sigma'p/pa = 10^(1.11 - 1.62 LI) (Eq. 6.24, Stas and Kulhawy, 1984) (p. 6-47).",
+        "Figure 6-39 reliability unknown; preliminary only (p. 6-48)."
+      ],
+      "equations": [
+        "Eq. 6.24: sigma'p / pa = 10^(1.11 - 1.62 x LI); Stas and Kulhawy (1984), soils with sensitivity 1 to 10 (p. 6-47)"
+      ],
+      "figures": [
+        "Figure 6-39: Generalized relationship between preconsolidation stress and liquidity index (NAVFAC, 1986)"
+      ],
+      "tables": [],
       "applicability": "Interpretation of preconsolidation stress, compression indices, and consolidation rate from laboratory and in situ tests"
     }
   ]
