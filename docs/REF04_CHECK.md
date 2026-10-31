@@ -176,8 +176,9 @@ reworked part of the chapter from the print, not that it was rebuilt whole.
 
 ## Could not be verified
 
-- GEC-7 ch 6 Eqs 6.6-6.17, 6.20-6.25, 6.28-6.30 and 6.40-6.43 are cited by
-  number only; the file holds no formula for them to check.
+- GEC-7 ch 6 Eqs 6.6-6.17, 6.20-6.25, 6.28-6.30 and 6.40-6.43 were cited by
+  number only; REF-46 (below) read them off the rendered pages and stored
+  them.
 - GEC-12 Vol II appendices A-C (PDF 541-573: resource lists, standards list,
   hammer table) are not in the library and were not checked.
 
@@ -282,3 +283,77 @@ reworked part of the chapter from the print, not that it was rebuilt whole.
   independent spot-check reported 936 passed and 2 xfailed for its run;
   that is not what these 19 files collect at either commit here, so the two
   runs' file lists are worth comparing before quoting either number.
+
+## REF-46: GEC-7 ch 6, 7, 9 and 10 printed headings (branch `fix/ref46`)
+
+The 66 printed headings left without a section above, and the four ch 9
+ranges, now each have a section, nested under its parent as printed
+(x.y.z under x.y). Each body was written from its printed page (GEC-7
+printed = PDF - 40), with the page span in the body; summaries, key points
+and applicability come from the same page. Every equation, figure and table
+sits in the section that prints it. Lettered sub-headings (6.1.2a, 6.3.3a-e,
+7.4.2a-c, 9.4.1a-c, 9.5.4a-d and the like) stay in their parent's body, as in
+REF-04. A parent with no text of its own reads "Subsections x to y".
+
+| Chapter | Pages | Commit | Headings added | Sections | Notes |
+|---|---|---|---|---|---|
+| ch 6 Design of Soil Nail Walls | 143-204 | 764d372 | 38 | 50 | 6.1.1-6.12.2. The 25 equations cited by number only (Eqs 6.6-6.17, 6.20-6.25, 6.28-6.30, 6.40-6.43) were rendered and read symbol by symbol, then added in the sections that print them (facing flexure 6.6.5, punching shear 6.6.6, headed studs 6.6.7, Mononobe-Okabe 6.8.5). Figures 6.1-6.17 and Tables 6.1-6.9 moved from the parents to their subsections (Table 6.3 stays in 6.4, which has none). 6.3.2 gains the constructability sentence the file left out. |
+| ch 7 Corrosion Protection | 207-223 | 6b01e4d | 15 | 24 | 7.4.1-7.8.1. The file's bodies had compressed several subsections into one line each; each now reads as printed (stray currents, crack width, epoxy thickness range, encapsulation cover). Eqs 7.1 (p. 216) and 7.2 (p. 217) re-rendered; unchanged. |
+| ch 9 Construction Inspection and Performance Monitoring | 232-263 | 6476d89 | 19 | 25 | 9.2.1-9.5.4: the 10 missing headings plus the 9 inside the unprinted ranges 9.3.4-9.3.5, 9.3.6-9.3.7, 9.4.2-9.4.3 and 9.4.4-9.4.6, which are split; 9.3.3 was a sibling of 9.3 and is now nested. Eqs 9.1-9.8 re-rendered; unchanged. |
+| ch 10 Hollow Bar Soil Nails | 267-269 | 66073c3 | 3 | 8 | 10.4.1-10.4.3. Eqs 7.1 and 7.2, reprinted on p. 268, stay in ch 7 (7.6.6). |
+
+`check_section_numbers.py gec_7` now matches all 235 printed headings (it
+reported 160 matched, 4 ranges and 66 missing before). No test, retrieval
+gold case or app citation names a GEC-7 section id. The GEC-7 figure catalog
+(`figures_catalog.json`) was not touched; its section ids for ch 6, 7, 9 and
+10 figures name the old parents until it is rebuilt.
+
+### REF-46: print inconsistencies (kept as printed, noted in the body)
+
+- 6.5.1 (p. 156) takes bond strengths "developed in Step 3e"; Table 6.1 puts
+  them in Step 2e and Step 3 has only a and b. It also sends long nails back
+  to "the range of lengths listed in Step 4e"; the range is printed in Step
+  4b (6.3.3d).
+- Eq 6.6 prints 100 beside the fraction with no operator. Eq 6.12's caption
+  says "bending moment"; Eqs 6.9-6.11 say "bending resistance".
+- p. 170: "Assuming that avn = avm = and ahn = ahm = as" (a symbol is
+  missing); RFF for the initial facing is "calculated using Equations 6.15 or
+  6.17", but Eq 6.17 is given for the final facing (CF = 1.0).
+- Table 6.6 cites a note (5) that is not printed.
+- Eq 6.29 writes DH and DS; its variable list names DSH and DSC. Table 6.7b
+  writes hc = Ls - tH + tP; Eq 6.25 and the text use tSH.
+- 6.8.5: "As mentioned, the vertical component is disregarded" (not
+  mentioned earlier). Eq 6.41 uses phi_f; the Figure 6.10 text uses phi_s.
+- Figures 6.14 and 6.15 cite Byrne et al. (1988) and 6.3.3e cites Byrne et
+  al. (1996); the reference list has only Byrne et al. (1998).
+- Table 6.2 names Step 12 "Preparation of Construction Drawings and
+  Specifications"; the 6.12 heading reads "Step 12 Pre-Construction,
+  Construction, and Post-Construction".
+- 7.4.2a (p. 208): "over the typical design of at least 75 years" ("life"
+  missing). 7.5.2: "may be waved". 7.6.3 (p. 215): "regardless of the type
+  of epoxy encapsulation".
+- 7.8.1 and 10.4.3 cite "Eq. 7-1" and "Eq. 6-5"; the captions number them
+  Equation 7.1 and 6.5.
+- 9.3.7: "shotcrete rebound (i.e., shotcrete slump)".
+- 9.4.3 step (3): "If LB VT max < 10" (no unit). 9.4.4: the text before Eq
+  9.5 says "Grade 75 and other mild steel", the caption "Grades 60 and 75";
+  step (2) reads "Select LB PT max to be 10 ft or LB PT max, whichever is
+  smaller".
+- 9.5.3 (p. 259): "A more comprehensive monitoring plan soil nail wall
+  performance- may be established".
+- 10.4.3 step (6) compares "the nominal resistance" with the design forces
+  after step (5) computes the factored resistance.
+
+### REF-46: gates and retrieval
+
+On the final tree of `fix/ref46`:
+
+- `python scripts/audit_chapter_text.py gec_7`: exit 0 (10 chapters).
+- `python scripts/check_section_numbers.py gec_7`: exit 0; printed 235,
+  matched 235.
+- 21 targeted test files (the 19 above plus the Micropile figure and table
+  tests): exit 0, 1017 passed, 2 xfailed.
+- The app's `test_citations.py` (this library on PYTHONPATH): exit 0, 5
+  passed.
+- Retrieval gold eval against main 63fb31f: per-case results identical in
+  all four modes (no case moved; the gold set has no GEC-7 case).
