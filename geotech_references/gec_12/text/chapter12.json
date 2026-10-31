@@ -1,128 +1,499 @@
 {
   "reference_id": "FHWA-NHI-16-009",
   "reference_title": "Design and Construction of Driven Pile Foundations",
+  "volume": 2,
   "chapter": 12,
   "chapter_title": "Wave Equation Analysis",
   "sections": [
     {
       "section_id": "12.1-12.3",
-      "title": "Introduction, Wave Propagation, and Smith Model Methodology",
-      "summary": "Wave equation analysis (E.A.L. Smith 1960) simulates hammer-pile-soil interaction as a series of lumped mass-spring segments (~1 m each). Cushions modeled as springs with coefficient of restitution (COR = 0.50 for wood). Static soil resistance uses elasto-plastic springs (quake = elastic limit); dynamic resistance uses dashpots (Smith damping model). GRLWEAP (Pile Dynamics 2010) is the standard program. AASHTO phi = 0.50 for wave equation without dynamic measurements, with field hammer confirmation.",
-      "body": "Wave equation analysis eliminates many shortcomings of dynamic formulas by realistically simulating hammer impacts and pile penetration. The approach was developed by E.A.L. Smith (1960). FHWA sponsored development of the WEAP program (Goble and Rausche 1976) and the TTI program (Hirsch et al. 1976). The current proprietary version, GRLWEAP (Pile Dynamics, Inc. 2010), is the standard program. PDPWAVE (Bielefeld and Middendorp 1992) uses the method of characteristics rather than Smith's lumped mass model.\n\nAASHTO (2014) recommends a resistance factor of phi = 0.50 when wave equation analysis is used for nominal resistance determination without dynamic measurements or load test results but with field confirmation of hammer performance.\n\nWave Propagation (Section 12.2): After ram impact, a compressed force pulse propagates from the pile head to the pile toe at wave speed C, which depends on the pile's elastic modulus and mass density. The force pulse amplitude is reduced by shaft and toe soil resistance. Depending on soil resistance magnitude, the pulse reflects from the pile toe as tension or compression. Pile toe motion causes permanent set if combined energy and force overcome static and dynamic soil resistance.\n\nSmith Model Methodology (Section 12.3): The hammer, helmet, and pile are modeled as segments (~1 m length) of concentrated mass and weightless spring. Spring stiffness and mass are calculated from cross-sectional area, modulus of elasticity, and specific weight. Cushion materials are modeled as additional springs, with COR to model energy losses. COR = 1.0 (perfectly elastic, all energy preserved); COR = 0.0 (perfectly plastic, all deformation energy lost). Wood COR default = 0.50; worn softwood may require 0.25.\n\nStatic soil resistance is modeled by elasto-plastic springs: elastic behavior below the quake displacement, plastic (sliding) above it. Dynamic resistance is modeled by dashpots proportional to damping factor × pile velocity × static soil resistance (Smith damping model). The analysis computes acceleration, velocity, displacement, force, and stress of each segment at each time step. Analysis continues until pile toe rebounds.\n\nPermanent set = maximum pile toe displacement minus a weighted average of shaft and toe quakes. Penetration resistance (blow count, blows/ft) = 1/set. Bearing graph: plot nominal resistance vs. blow count by running analyses over a range of nominal resistances.\n\nResidual Stress Analysis (RSA): An optional GRLWEAP mode that analyzes several consecutive blows and determines set from pile top displacements. More accurate in concept but validated mainly for fluted and tapered piles.",
+      "title": "Wave Equation Analysis Introduction, Wave Propagation, and Wave Equation Methodology",
+      "summary": "Dynamic formulas give neither accurate resistance nor driving stresses; wave equation analysis (Smith 1960; TTI and WEAP programs, now GRLWEAP) simulates hammer, cushions, helmet, pile and soil. AASHTO (2014) gives phi = 0.50 for wave equation alone with field confirmation of hammer performance. Segments of about one meter; cushions as springs with a COR (wood 0.50, badly worn softwood 0.25); soil as elasto-plastic springs (quake) and Smith dashpots. Set = maximum toe displacement less weighted quakes; a bearing graph applies to one hammer, stroke, pile, soil profile and length.",
+      "body": "12.1 (pp. 153-154): dynamic formulas with observed blow counts do not predict nominal resistance acceptably and give no driving stresses (AASHTO C10.7.3.8.5, Chapter 13). The wave equation approach (E.A.L. Smith 1960) models hammer, cushions, helmet, pile and soil. FHWA sponsored the TTI program (Hirsch et al. 1976) and WEAP (Goble and Rausche 1976, updated to 1986), now the proprietary GRLWEAP (Pile Dynamics, Inc. 2010); PDPWAVE (Bielefeld and Middendorp 1992) uses the method of characteristics. AASHTO (2014) recommends phi = 0.50 for wave equation analysis without dynamic measurements or load tests but with field confirmation of hammer performance; the LRFD calibration used GRLWEAP. GRLWEAP is used for demonstration, not endorsement. 12.2 (pp. 154-155): after impact the force pulse travels down at wave speed C (from modulus and mass density), is reduced by static and dynamic soil resistance, and reflects from the toe as tension or compression; incident and reflected pulses give permanent set if they overcome the soil resistance (Figure 12-1). 12.3 (pp. 155-158): hammer, helmet and pile are segments of concentrated mass and weightless spring, about one meter long (shorter can improve accuracy, Rausche et al. 2004), from area, modulus and specific weight; cushions are springs with a COR (1.0 perfectly elastic, 0.0 perfectly plastic; wood default 0.50, badly worn softwood 0.25). Static resistance: elasto-plastic springs, elastic up to the quake; dynamic resistance: dashpots, with Smith damping proportional to damping factor times pile velocity times temporary static resistance (Figure 12-2). The nominal resistance (ultimate capacity, Rut) is distributed over shaft and toe; ram velocity comes from efficiency and stroke; forces, accelerations, velocities, displacements and stresses are stepped in time until the toe rebounds. Permanent set = maximum toe displacement minus a weighted average of shaft and toe quakes; the Residual Stress Analysis (RSA) option analyzes successive blows but has only been checked on fluted and tapered piles. Blow count is the inverse of set; analyses over a range of resistances give a bearing graph, unlike a formula graph tied to one driving system, stroke, pile type, soil profile and length, and including compression and tension stresses. The inspector's chart relates stroke or energy to blow count at one nominal resistance; the drivability analysis gives blow counts and stresses at up to 100 penetrations and a crude pure driving time.",
       "key_points": [
-        "Wave equation analysis simulates hammer-pile-soil system: Smith (1960) lumped mass-spring model; GRLWEAP (Pile Dynamics 2010) is standard program",
-        "AASHTO phi = 0.50 for wave equation only (no dynamic measurements), with field hammer performance confirmation",
-        "Pile/hammer segments ~1 m length; spring stiffness and mass from pile area, E, and unit weight",
-        "COR models cushion energy loss: COR = 0.50 for wood (default); 0.25 for worn softwood",
-        "Static soil resistance: elasto-plastic springs (quake = elastic-to-plastic threshold displacement)",
-        "Dynamic soil resistance: dashpots (Smith damping); Fs_dyn = Js * V * Fs_static",
-        "Bearing graph: nominal resistance vs. blow count from analyses at multiple Rn values",
-        "RSA (Residual Stress Analysis): multiple consecutive blows; more accurate but validated for fluted/tapered piles only"
+        "Dynamic formulas give inaccurate resistance and no driving stresses; wave equation simulates the hammer-pile-soil system",
+        "AASHTO (2014): phi = 0.50 for wave equation alone, with field confirmation of hammer performance",
+        "Smith model: segments of mass and spring about one meter long; cushions as springs with a COR",
+        "COR 1.0 perfectly elastic, 0.0 perfectly plastic; wood default 0.50, badly worn softwood 0.25",
+        "Static resistance: elasto-plastic springs, elastic up to the quake; dynamic: Smith damping = damping factor x velocity x static resistance",
+        "Permanent set = maximum toe displacement minus weighted shaft and toe quakes; blow count = 1/set",
+        "Bearing graph is specific to one driving system, stroke, pile type, soil profile and pile length",
+        "Inspector's chart: stroke or energy vs blow count at one resistance; drivability: up to 100 penetrations",
+        "RSA (successive blows) checked only against fluted and tapered piles"
       ],
       "equations": [],
       "figures": [
-        {"figure_id": "12-1", "description": "Wave propagation in a pile — force pulse traveling from head to toe and reflecting (adapted from Cheney and Chassie 2000)"},
-        {"figure_id": "12-2", "description": "Typical wave equation pile and soil model — masses, springs (pile and cushions), elasto-plastic shaft/toe springs, and dashpots"}
+        {
+          "figure_id": "12-1",
+          "title": "Wave propagation in a pile (adapted from Cheney and Chassie 2000)",
+          "description": "",
+          "page": 155
+        },
+        {
+          "figure_id": "12-2",
+          "title": "Typical wave equation pile and soil models",
+          "description": "",
+          "page": 157
+        }
       ],
       "tables": [],
-      "applicability": "Overview of wave equation analysis history, wave propagation mechanics, and the Smith lumped mass-spring model for driven pile driving simulation."
+      "applicability": "What a wave equation analysis models and what results it gives."
     },
     {
       "section_id": "12.4-12.5",
-      "title": "Wave Equation Applications and Examples",
-      "summary": "Wave equation analysis produces three primary outputs: (1) bearing graph — nominal resistance vs. blow count and driving stresses; (2) inspector's chart — blow count vs. hammer stroke at constant nominal resistance; (3) drivability analysis — blow count and stresses vs. penetration depth. Design-stage use: select pile section and material strength for drivability; construction-stage use: hammer approval, cushion design, contractor equipment selection. Blow count range for construction control: 30-120 blows/ft.",
-      "body": "Wave Equation Applications (Section 12.4): A bearing graph provides: (1) nominal resistance vs. penetration resistance (blow count) relationship; (2) driving stresses vs. blow count; and (3) hammer stroke vs. blow count for variable-stroke hammers. The bearing graph is specific to one driving system, hammer stroke, pile type, soil profile, and pile length — any change requires a new analysis.\n\nAn inspector's chart (constant capacity analysis) establishes the relationship between variable hammer energy or stroke and blow count at one specified nominal resistance. It allows the inspector to select a hammer stroke range that maintains acceptable blow counts and driving stresses.\n\nA drivability analysis calculates penetration resistances and stresses at up to 100 user-specified pile penetrations, revealing where refusal or dangerous stress levels might occur during installation. It also provides a crude driving time estimate.\n\nDesign-Stage Applications: (1) Design pile section for drivability — if a pile is too flexible (low impedance), the largest available hammer may not drive it to depth; a larger section or different pile type (e.g., H-pile, predrilling) may be needed. (2) Specify pile material strength based on expected driving stresses — higher-strength steel or higher-strength/higher-prestress concrete. (3) Evaluate alternative pile lengths, factored loads, and pile counts.\n\nConstruction-Stage Applications: (1) Construction engineer — hammer approval and cushion design. Softer cushions reduce stresses but increase blow counts. Hammer cushion material is relatively ineffective for limiting driving stresses. (2) Contractor — select economical driving system; estimate blow count and driving time. Maximum expected blow count must be below 120 blows/ft (exception: hard rock final seating at 5 blows/0.5 inch). Minimum blow count for accurate construction control: greater than 30 blows/ft.\n\nExample 1 — Bearing Graph (Section 12.5.1): 14-inch closed-end pipe pile (0.312-inch wall, 35 ksi), 65 ft long, Delmag D12-42 hammer. Nominal resistance = 350 kips, blow count = 99 blows/ft, maximum compression stress = 28.89 ksi (less than 90% × 35 ksi = 31.5 ksi). Table 12-1 shows nominal resistance, compression/tension stresses, blow count, hammer stroke, and transferred energy at multiple Rn values.",
+      "title": "Wave Equation Applications and Wave Equation Examples",
+      "summary": "Bearing graphs relate resistance to blow count, stresses and stroke. In design the wave equation sizes the pile and its material for drivability; in construction it serves hammer approval, cushion design and contractor equipment choice. Keep expected blow counts below 120 bl/ft (hard rock seating at 5 blows per 1/4 in. excepted), choose hammers reaching the resistance at 100 bl/ft or less, and above 30 bl/ft. Nine examples: bearing graph, inspector's chart, drivability, tension control, setup, hammer comparison, damage, wall thickness, vibratory driving.",
+      "body": "12.4 (pp. 159-161): a bearing graph relates nominal resistance to blow count (up to ten resistance values), driving stresses to blow count, and stroke or energy to blow count; graphs or inspector's charts for different lengths are used in the field. Design stage: (1) design the section for drivability (a thin-wall pipe may be too flexible, low impedance, for any hammer; a thicker wall, H-pile or predrilling may be needed); (2) select material strength (high strength steel; higher concrete strength or prestress); (3) support new penetration, factored load or pile count. Construction: engineers for hammer approval and cushion design (softer cushions raise blow counts; adding hammer cushion material is relatively ineffective for limiting stresses); expected blow count below 120 bl/ft, except piles through soft soils seated on hard rock at 5 blows per 1/4 in. (240 bl/ft equivalent); select hammers reaching the resistance at 100 bl/ft or less and above 30 bl/ft (blow count errors and over-prediction in easy driving), with exceptions; contractors for economy (blows, driving time, cushion cost; stiffer piles drive faster). 12.5 (pp. 162-202): examples use phi = 0.80 (static load test) unless stated; 0.65 with dynamic testing and signal matching; 0.50 for wave equation only; phi Rn must exceed factored loads plus resistance of unsuitable layers. Ex 1: 65 ft, 14 in. x 0.312 in. closed-end pipe (35 ksi) driven 62 ft in medium sand to 350 kips (phi 0.50, factored 175 kips), 52% shaft triangular; toe quake D/60 = 0.23 in., shaft damping 0.05 s/ft, defaults 0.10 in. and 0.15 s/ft; Delmag D12-42: 99 bl/ft at 8.8 ft stroke (strokes off by more than 10% need a new criterion), almost 29 ksi < 31.5 ksi; bending not included; reanalyze if driving differs. Ex 2: inspector's chart for 350 kips; points above the curve are acceptable (stroke over 8.2 ft at 90 bl/ft). Ex 3: river pier cofferdam (16.5 ft loose silt excavated, 13.5 ft extremely dense sand and gravel, medium dense sand, rock about 70 ft); Conmaco C 160 (16.25 kip ram, 48.75 ft-kips), 10 in. plywood (30 ksi new, 75 ksi used; plywood stiffens about 2.5 times, oak 1.5; nominal thickness entered); scour leaves a 14 in. concrete pile at 241 kips; 400 kips at 49 ft below excavation, 472 kips to drive; 158 bl/ft peak and 60 bl/ft final, but a 30% densification increase gives refusal (over 240 bl/ft) at 11 ft (579 kips); an HP 14x102 drives with at most 45 bl/ft and 32 ksi to rock. Ex 4: 14 in. prestressed pile (5.5 ksi, 0.70 ksi prestress; limits 4.1 and 0.92 ksi), Junttan HHK 3A: 3 in. cushion gives 1.47 ksi tension in easy driving, 6 in. 0.89 ksi, 1.75 ft stroke 0.90 ksi; full stroke at 58 ft gives 56 bl/ft (0.58 and 3.32 ksi); drive at 1.75 ft until 85 bl/ft, then 3.94 ft to at least 56 bl/ft. Ex 5: stiff clay, setup factor 1.36: drive to 225 kips SRD (43 bl/ft) instead of 300 kips (89 bl/ft), confirmed by restrike or load test. Ex 6: Vulcan 014 vs ICE 42-S, both 42 ft-kips: 94 vs 209 bl/ft with a 0.40 in. toe quake, 56 vs 99 with 0.12 in.; the heavy ram transfers about 20% more energy. Ex 7: HP 12x53 in rubble fill: Gates 46 bl/ft gives only 245 kips; 380 kips needs 104 bl/ft and 40 ksi at the toe (limit 32.4 ksi); load tests failed and pulled piles had rolled flanges; toe stiffness about 10% of normal matches; use driving shoes. Ex 8: 48 in. open-end pipe, 140 ft, 2000 kips on hard rock (toe quake 0.04 in.): 0.75 in. wall chosen (Table 12-5; limit 40.5 ksi; AASHTO (2010) 24-120 bl/ft); accept on less than 0.5 in. under 10 blows. Ex 9: ICE 815 vibratory on AZ18 pairs; 75% shaft loss in sands; doubled damping; up to almost 20 s/ft, under 5 s/ft at the end.",
       "key_points": [
-        "Bearing graph: nominal resistance vs. blow count + driving stresses — specific to one driving system, stroke, pile, soil, and length",
-        "Inspector's chart: blow count vs. hammer stroke at constant Rn — used for variable-stroke hammer field control",
-        "Drivability analysis: blow count and stresses vs. depth at up to 100 penetration depths",
-        "Construction control blow count range: 30-120 blows/ft; hard rock seating exception: 5 blows/0.5 inch (240 blows/ft equivalent)",
-        "Design: evaluate pile section impedance, material strength, pile length — wave equation checks drivability before field work",
-        "Hammer selection: target Rn at blow count not exceeding 100 blows/ft; select hammer able to achieve > 30 blows/ft",
-        "Cushion: softer reduces stresses but raises blow counts; hammer cushion material less effective than pile cushion for stress control",
-        "Table 12-1: example bearing graph results — nominal resistance, stresses, blow count, stroke, energy"
+        "Bearing graph: resistance, stresses and stroke vs blow count; inspector's charts for different lengths",
+        "Design: size section and material strength for drivability; low impedance piles may not be drivable",
+        "Expected blow count below 120 bl/ft; hard rock seating at 5 blows per 1/4 in. (240 bl/ft equivalent) excepted",
+        "Select hammers reaching the required resistance at 100 bl/ft or less, and above 30 bl/ft for control",
+        "Adding hammer cushion material is relatively ineffective for limiting driving stresses",
+        "Examples use phi 0.80 (static load test); 0.65 with dynamic testing and signal matching; 0.50 wave equation only",
+        "Ex 1: 350 kips at 99 bl/ft and 8.8 ft stroke; stroke off by more than 10% needs a new criterion",
+        "Ex 3: densification of later displacement piles can cause refusal; low displacement H-pile preferred",
+        "Ex 4: control tension in easy driving with cushion thickness or reduced stroke",
+        "Ex 6: equal potential energy, very different blow counts; energy alone does not assess drivability",
+        "Ex 7: wave equation at hammer submittal would have shown toe stresses above the limit; use driving shoes",
+        "Ex 8: hard rock criterion as penetration under 10 blows, not blows per foot"
       ],
       "equations": [],
       "figures": [
-        {"figure_id": "12-3", "description": "Example 1 problem profile — soil conditions, pile section, and wave equation input parameters"},
-        {"figure_id": "12-4", "description": "Typical wave equation bearing graph — top plot: driving stresses vs. blow count; bottom plot: nominal resistance and diesel stroke vs. blow count"}
+        {
+          "figure_id": "12-3",
+          "title": "Example 1 – Problem profile",
+          "description": "Per segment (top = 1 to toe = 12): maximum tension and compression force and stress, velocity, displacement and transferred energy at 380 kips; compression stress 32.40 ksi at the top and 39.61 ksi at the toe.",
+          "page": 163
+        },
+        {
+          "figure_id": "12-4",
+          "title": "Typical wave equation bearing graph. Top plot – driving stresses; bottom plot – nominal resistance and diesel hammer stroke",
+          "description": "Same quantities at refusal (500 kips nominal resistance); compression stress 37.80 ksi at the top and 42.68 ksi at the toe.",
+          "page": 165
+        },
+        {
+          "figure_id": "12-5",
+          "title": "Constant capacity analysis (inspector’s chart)",
+          "description": "Stroke, transferred energy, compression stress and blow count at 2000 kips for 48 in. pipe walls: 0.50 in. 9.1 ft, 93 ft-kips, 42.8 ksi, 127 bl/ft; 0.75 in. 8.7, 79, 34.2, 100; 1.00 in. 8.5, 71, 29.1, 90; 1.25 in. 8.6, 68, 25.4, 88.",
+          "page": 168
+        },
+        {
+          "figure_id": "12-6",
+          "title": "Example 3 – Problem profile",
+          "description": "Depth, unit shaft and toe resistance, quakes and damping: silt 0-16.5 ft (shaft to 0.283 ksf, toe to 22.7 ksf, quakes 0.20 in., damping 0.30 s/ft); very dense sand and gravel 16.5-29 ft (shaft 0.465-1.272 ksf, toe 250.6 ksf); dense sand and gravel 29-43 ft (0.274-0.453 ksf, toe 137.8 ksf); sands with quakes 0.10 in., shaft damping 0.10 s/ft, toe damping 0.30 s/ft.",
+          "page": 169
+        },
+        {
+          "figure_id": "12-7",
+          "title": "Nominal resistance, calculated blow count and stresses for before and after densification and nominal resistance for the after scour condition",
+          "description": "Depth 6 to 35 ft: nominal, shaft and toe resistance, penetration time and stresses; zero time at 6 ft (pile runs), up to 19.5 s/ft at 28 ft, 4.5-4.6 s/ft at 30-35 ft with 85.5-90.0 kips (28.1 kips toe); total drive time 4 minutes.",
+          "page": 173
+        },
+        {
+          "figure_id": "12-8",
+          "title": "Drivability results for H-pile with corresponding concrete pile results",
+          "description": "",
+          "page": 173
+        },
+        {
+          "figure_id": "12-9",
+          "title": "Example 4 – Problem profile",
+          "description": "",
+          "page": 174
+        },
+        {
+          "figure_id": "12-10",
+          "title": "Bearing graphs for easy driving condition, two pile cushion thicknesses",
+          "description": "",
+          "page": 176
+        },
+        {
+          "figure_id": "12-11",
+          "title": "Bearing graphs for early low energy and end of driving high energy driving condition",
+          "description": "",
+          "page": 178
+        },
+        {
+          "figure_id": "12-12",
+          "title": "Example 5 –- Problem profile",
+          "description": "",
+          "page": 180
+        },
+        {
+          "figure_id": "12-13",
+          "title": "Using a bearing graph with soil setup",
+          "description": "",
+          "page": 181
+        },
+        {
+          "figure_id": "12-14",
+          "title": "Example 6 – Problem profile",
+          "description": "",
+          "page": 183
+        },
+        {
+          "figure_id": "12-15",
+          "title": "Bearing graph – for two hammers with equivalent potential energy and large toe quake",
+          "description": "",
+          "page": 184
+        },
+        {
+          "figure_id": "12-16",
+          "title": "Bearing graph – for two hammers with equivalent potential energy and normal toe quake",
+          "description": "",
+          "page": 186
+        },
+        {
+          "figure_id": "12-17",
+          "title": "Example 7 –- Problem profile",
+          "description": "",
+          "page": 187
+        },
+        {
+          "figure_id": "12-18",
+          "title": "Wave equation bearing graph for proposed driving system",
+          "description": "",
+          "page": 189
+        },
+        {
+          "figure_id": "12-19",
+          "title": "Wave equation bearing graphs for damaged and undamaged pile",
+          "description": "",
+          "page": 192
+        },
+        {
+          "figure_id": "12-20",
+          "title": "Example 8 – Problem profile",
+          "description": "",
+          "page": 194
+        },
+        {
+          "figure_id": "12-21",
+          "title": "Bearing graphs for open end pipe piles with wall thicknesses of 0.50, 0.75, 1.00, and 1.25 inches",
+          "description": "",
+          "page": 196
+        },
+        {
+          "figure_id": "12-22",
+          "title": "Example 9 – Problem profile",
+          "description": "",
+          "page": 198
+        },
+        {
+          "figure_id": "12-23",
+          "title": "Nominal resistance and wave equation calculated penetration time for vibratory drivability analysis",
+          "description": "",
+          "page": 201
+        }
       ],
       "tables": [
         {
           "table_id": "12-1",
-          "description": "Example 1 bearing graph numerical results — nominal resistance (kips), max compression stress (ksi), max tension stress (ksi), blow count (bl/ft), hammer stroke (ft), transferred energy (ft-kips) at Rn from 50 to 500 kips"
+          "title": "Bearing Graph Numerical Results",
+          "description": "Nominal resistance (kips), maximum compression and tension stress (ksi), blow count (bl/ft), hammer stroke (ft) and transferred energy (ft-kips) for 50 to 500 kips in 50 kip steps; at 350 kips: 28.89 ksi, 2.18 ksi, 98.8 bl/ft, 8.82 ft, 17.3 ft-kips.",
+          "page": 164
+        },
+        {
+          "table_id": "12-2",
+          "title": "Example 6: Proposed Hammer and Driving Systems",
+          "description": "Vulcan 014 vs ICE 42S: ram weight 14 vs 4.09 kips; rated energy 42 ft-kips each; rated stroke 3.0 vs 10.3 ft; helmet 1.67 vs 2.05 kips; hammer cushion Nycast vs Blue Nylon, modulus 208 vs 175 ksi, area 234 vs 398 in2, thickness 6.0 vs 2.0 in., COR 0.91 vs 0.92.",
+          "page": 183
+        },
+        {
+          "table_id": "12-3",
+          "title": "Example 7 – Maxima of Forces, Stresses and Other Variables for Required Nominal Resistance of 380 kips",
+          "description": "Per segment (top = 1 to toe = 12): maximum tension and compression force and stress, velocity, displacement and transferred energy at 380 kips; compression stress 32.40 ksi at the top and 39.61 ksi at the toe.",
+          "page": 190
+        },
+        {
+          "table_id": "12-4",
+          "title": "Example 7 – Maxima of Forces, Stresses and Other Variables for at Refusal Driving Condition (Nominal Resistance of 500 kips)",
+          "description": "Same quantities at refusal (500 kips nominal resistance); compression stress 37.80 ksi at the top and 42.68 ksi at the toe.",
+          "page": 190
+        },
+        {
+          "table_id": "12-5",
+          "title": "Example 8 – Wave Equation Results for Four Potential Pipe Pile Wall Thicknesses at 2000 kip Nominal Resistance",
+          "description": "Stroke, transferred energy, compression stress and blow count at 2000 kips for 48 in. pipe walls: 0.50 in. 9.1 ft, 93 ft-kips, 42.8 ksi, 127 bl/ft; 0.75 in. 8.7, 79, 34.2, 100; 1.00 in. 8.5, 71, 29.1, 90; 1.25 in. 8.6, 68, 25.4, 88.",
+          "page": 195
+        },
+        {
+          "table_id": "12-6",
+          "title": "Soil Information for Vibratory Sheet Pile Driving in Example 9",
+          "description": "Depth, unit shaft and toe resistance, quakes and damping: silt 0-16.5 ft (shaft to 0.283 ksf, toe to 22.7 ksf, quakes 0.20 in., damping 0.30 s/ft); very dense sand and gravel 16.5-29 ft (shaft 0.465-1.272 ksf, toe 250.6 ksf); dense sand and gravel 29-43 ft (0.274-0.453 ksf, toe 137.8 ksf); sands with quakes 0.10 in., shaft damping 0.10 s/ft, toe damping 0.30 s/ft.",
+          "page": 199
+        },
+        {
+          "table_id": "12-7",
+          "title": "Nominal Resistance and Wave Equation Calculated Results for Vibratory Drivability Analysis. Total Drive Time – 4 Minutes",
+          "description": "Depth 6 to 35 ft: nominal, shaft and toe resistance, penetration time and stresses; zero time at 6 ft (pile runs), up to 19.5 s/ft at 28 ft, 4.5-4.6 s/ft at 30-35 ft with 85.5-90.0 kips (28.1 kips toe); total drive time 4 minutes.",
+          "page": 202
         }
       ],
-      "applicability": "Wave equation analysis applications for design-stage pile section selection, material specification, and construction-stage hammer approval, cushion design, and field driving criterion development."
+      "applicability": "Using bearing graphs, inspector's charts and drivability analyses in design and construction."
     },
     {
       "section_id": "12.6",
       "title": "Analysis Decisions for Wave Equation Modeling",
-      "summary": "Wave equation analysis requires informed input decisions on hammer type, soil resistance parameters, quake, and damping. Shaft damping defaults: 0.05 s/ft non-cohesive, 0.10 s/ft silty/clayey sands, 0.15 s/ft cohesive silts/sandy clays, 0.20 s/ft cohesive soils. Toe damping default: 0.15 s/ft. Shaft quake default: 0.10 inch. Toe quake default: D/60 to D/120 for displacement piles; 0.04 inch for hard rock. Damping factors may be twice as high for restrike analyses.",
-      "body": "Section 12.6.1 — Selecting the Proper Approach: Wave equation analysis does not replace static geotechnical analysis. It calculates a penetration resistance for an assumed nominal resistance, or assigns a nominal resistance to a field-observed blow count. A static analysis (Chapter 7) must precede wave equation analysis to estimate pile penetration and nominal resistance distribution. The static analysis must reflect resistance in the driving situation (remolded strength, before excavation/scour, etc.).\n\nBearing graph approach: gives nominal resistance for observed blow count at a depth; provides a driving criterion. Drivability approach: shows potential driving problems (refusal, excess stress) as a function of depth. Both approaches complement each other.\n\nSection 12.6.7 — Selection of Soil and Rock Parameters: The greatest errors in nominal resistance predictions result from improper soil resistance input — particularly confusing factored loads with nominal resistance (ultimate capacity in wave equation programs).\n\nRestrike testing: Soil resistance changes over time after driving (setup or relaxation). Restrike evaluates nominal resistance after time-dependent changes. For high blow counts (>10 blows/inch), measure penetration for 10 blows. For sensitive soils, measure individual blow penetrations at beginning of restrike.\n\nDamping factors: Shaft damping defaults by soil type:\n- Non-cohesive soils: 0.05 s/ft\n- Silty sands, clayey sands, sandy silts: 0.10 s/ft\n- Cohesive silts and sandy clays: 0.15 s/ft\n- Cohesive soils: 0.20 s/ft\nToe damping: 0.15 s/ft for most soils. For restrike analyses, damping factors may need to be approximately twice the above values. For hard rock: toe damping may be reduced to 0.05 s/ft.\n\nQuake values: Shaft quake default = 0.10 inch. Toe quake default range = D/60 to D/120 (pile diameter or width). Large toe quakes develop in saturated soils for displacement piles achieving capacity primarily through toe resistance — causing high penetration resistance and potentially damaging tension stress reflections in concrete piles. Heavier ram and lower strokes are preferred over softer cushions in these cases. For hard rock: toe quake = 0.04 inch.\n\nResistance distribution: Drivability analyses should use shaft resistances reduced by setup factors to match driving conditions rather than long-term static values. Only dynamic measurements can yield accurate site-specific quake and damping values.",
+      "summary": "A static analysis (Chapter 7) for driving conditions must precede the wave equation, which does not find resistance from borings. Hammer efficiency, diesel stroke and cushion stiffness govern results (plywood 30/75 ksi new/used, oak 60/90 ksi). Shaft damping 0.05 to 0.20 s/ft by soil, toe 0.15 s/ft, perhaps twice for restrike; shaft quake 0.10 in.; toe quake D/60 to D/120, often more in saturated soils; hard rock toe quake 0.04 in. Refined wave equation analysis matches measurements within 10%.",
+      "body": "Intro (p. 203): combine options (bearing graph and drivability; diesel and hydraulic hammers). 12.6.1 (pp. 203-205): the wave equation gives blow count for an assumed resistance or resistance for an observed blow count, not resistance from borings; a static analysis (Chapter 7) must precede it, evaluating resistance in the driving condition (remolded strength, before excavation, scour or fill). Bearing graphs give a criterion; drivability shows problems before target depth. Blow counts often differ, usually lower: e.g., factored load 182 kips, phi 0.65, 280 kips at 82 ft in clay with setup factor 2, so drive to 140 kips and restrike at 7 days. 12.6.2: efficiency (potential to kinetic ram energy before impact) too high overpredicts resistance; too low underpredicts stresses; reduce efficiency and stroke for batter unless ram energy is measured; hydraulic hammers with measured energy may use about 0.95. 12.6.3: diesel strokes converge iteratively; explain differences over 10%; preignition gives high stroke but low transferred energy and non-conservative blow counts; fuel settings 4, 3, 2, 1 roughly 100, 90, 81 and 73% of rated combustion pressure; measure stroke (Saximeter). 12.6.4: vibratory hammers near pile natural frequency are hard to predict; efficiency usually 100%, frequency uncertain; shaft resistance in submerged granular soils may almost vanish, so penetration rate means little. 12.6.5: batter piles risk bending; reduce stroke or efficiency. 12.6.6: wood chips never as hammer cushion; series stiffness 1/kc = 1/k1 + 1/k2; wood pile cushions burn after about 1500 blows; plywood 30 and 75 ksi, oak 60 and 90 ksi (new, used) with nominal thickness; for conservative resistance about 50% lower modulus and COR; direct drive stiffness may need more segments (default length/3.3 ft). 12.6.7: the biggest error is confusing factored loads with nominal resistance. Restrike: first 3 in.; over 10 blows/in. use smaller penetrations or ten blows; single blows in sensitive soils; site setup factor from test program, end of driving resistance = required resistance / setup factor. Shaft damping 0.05 s/ft non-cohesive, 0.10 silty or clayey sands and sandy silts, 0.15 cohesive silts and sandy clays, 0.20 cohesive; toe 0.15; restrike perhaps twice; too low is non-conservative. Shaft quake 0.10 in.; toe quake can exceed D/60 to D/120 in saturated soils, causing tension in concrete piles and high blow counts (heavier ram, lower stroke). Reduce shaft resistance by setup factors in drivability. Hard rock: toe quake 0.04 in., toe damping as low as 0.05 s/ft. RSA: no calibrated constants; use for long slender piles with large shaft resistance; not for early restrike. 12.6.8: dynamic modulus of concrete and timber exceeds static; steel up to 7% higher in large pipes; default 3.3 ft segments; numerical factor 1.6, raised to 3 or 5; followers, mandrels, composite piles need slacks; open-end pipes over 120 in. never plug, 30 in. or less generally plug (Brown and Thompson 2015). 12.6.9: compare stroke, energy and stresses at the gage segment; refined analysis (Rausche et al. 2009): (a) tabulate measurements, (b) model with CAPWAP resistance, (c, d) adjust efficiency, pressure and cushions to 10%, (e) efficiency at most 0.95 and at least 50% of standard, COR 0.10-1.0, (f) then damping and toe quake proportionally, or Smith-viscous.",
       "key_points": [
-        "Static analysis (Chapter 7) must precede wave equation analysis — wave equation does NOT determine Rn from boring data",
-        "Shaft damping (s/ft): 0.05 non-cohesive; 0.10 silty/clayey sands; 0.15 cohesive silts/sandy clays; 0.20 cohesive",
-        "Toe damping default: 0.15 s/ft; reduce to 0.05 s/ft for hard rock",
-        "Shaft quake default: 0.10 inch",
-        "Toe quake default: D/60 to D/120 for displacement piles; 0.04 inch for hard rock",
-        "Restrike damping: approximately twice end-of-drive values due to time-dependent behavior",
-        "Large toe quakes in saturated soils cause high blow counts + tension stress reflections; prefer heavier ram/lower stroke",
-        "Shaft resistance in drivability analyses should be reduced by setup factors to reflect driving conditions"
+        "Static analysis (Chapter 7) in driving conditions must precede the wave equation; it does not find resistance from borings",
+        "Efficiency too high overpredicts resistance; too low underpredicts stresses; reduce for batter",
+        "Diesel preignition: high stroke, low transferred energy, non-conservative blow counts",
+        "Fuel settings 4, 3, 2, 1 roughly 100, 90, 81, 73% of rated combustion pressure",
+        "Pile cushions: plywood 30/75 ksi, oak 60/90 ksi (new/used) with nominal thickness; burn after about 1500 blows",
+        "Shaft damping (s/ft): 0.05 non-cohesive, 0.10 silty/clayey sands, 0.15 cohesive silts/sandy clays, 0.20 cohesive; toe 0.15",
+        "Restrike damping perhaps twice the initial driving values",
+        "Shaft quake 0.10 in.; toe quake D/60-D/120, larger in saturated soils; hard rock 0.04 in. and toe damping 0.05 s/ft",
+        "End of driving criterion resistance = required resistance / site setup factor",
+        "Refined wave equation analysis: match energy, stresses and blow count within 10% (efficiency 0.95 max)"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Selection of wave equation analysis input parameters: soil resistance distribution, quake values, Smith damping factors, and considerations for restrike analysis vs. end-of-drive analysis."
+      "applicability": "Choosing wave equation inputs and checking them against field measurements."
     },
     {
       "section_id": "12.7-12.9",
-      "title": "Wave Equation Input, Output, and Plotting",
-      "summary": "Wave equation input includes: hammer properties (type, rated energy, stroke, efficiency, cushion), driving system (helmet, pile cushion), pile properties (section, length, material), and soil parameters (resistance distribution, quake, damping). Output tables include blow counts, driving stresses (compression and tension extrema), and hammer stroke per nominal resistance value. Plotting tools display bearing graphs, inspector's charts, and drivability analyses. GRLWEAP provides standard input data files for common hammer models.",
-      "body": "Wave Equation Input (Section 12.7): Input data requirements include:\n(1) Hammer system — hammer type (single-acting diesel, double-acting, hydraulic, drop), rated energy, stroke or maximum combustion pressure, ram weight, and efficiency. GRLWEAP includes an extensive library of common hammer models with default efficiency and cushion data. For unusual hammers, input data must be provided by the contractor or manufacturer.\n(2) Driving system — helmet weight, hammer cushion material (modulus, area, thickness, COR), pile cushion material for concrete piles (similar properties).\n(3) Pile properties — pile type (closed pipe, H-pile, precast concrete, timber), cross-sectional area, modulus of elasticity, specific weight, and total length. For concrete piles, prestress level affects tension resistance.\n(4) Soil parameters — resistance distribution (shaft vs. toe split, uniform or triangular shaft distribution), quake (shaft and toe), damping (shaft and toe). The program provides default values for initial runs; site-specific values should be derived from dynamic measurements where possible.\n\nWave Equation Output (Section 12.8): Output includes:\n- Bearing graph table: nominal resistance, maximum compression stress, maximum tension stress, penetration resistance (blow count), hammer stroke, and transferred energy at each Rn value.\n- Extrema tables: maximum stresses along the pile at each segment and each Rn — used to identify critical stress locations.\n- Drivability output: penetration resistance, maximum stresses, and driving time estimate vs. pile penetration depth.\n\nPlotting (Section 12.9): Standard plots include bearing graph (Rn vs. blow count with compression/tension stress curves), inspector's chart (blow count and stresses vs. hammer stroke at constant Rn), and drivability plot (blow count and stresses vs. depth). Plots are essential for practical application of wave equation results in the field.",
+      "title": "Wave Equation Analysis Input, Wave Equation Analysis Output and Interpretation, and Plotting of Wave Equation Results",
+      "summary": "Inputs come from plans, the contractor's Pile and Driving Equipment Data Form, borings and a static analysis; check the equipment actually used. GRLWEAP holds about 1000 hammers; analysis types are bearing graph, inspector's chart and drivability (unit resistances vs depth with gain/loss factors). Its ST and SA soil routines are simplified and never for design. Output: hammer and pile model pages, extrema tables and a summary; review it carefully. Give the bearing graph or chart to the engineer, inspector and contractor.",
+      "body": "12.7 (pp. 217-244): input from contract plans, the contractor's Pile and Driving Equipment Data Form (Figure 12-24), borings and a static analysis, plus follower drawings; confirm the equipment. GRLWEAP main input has 10 sections (Figure 12-25); the hammer file holds about 1000 hammers (OED, CED, ECH, VIB), assumed well maintained and unmodified. Analysis types: bearing graph with proportional shaft resistance (default), constant shaft resistance or constant end bearing; inspector's chart; drivability (unit shaft and toe resistance vs depth). Pile input: length in the leads (60 ft if 60 ft piles are driven where plans need 50), penetration, head area, modulus, specific weight (mass by 32.17 ft/s2); non-uniform piles in the P1 window. Hammer cushion: area, modulus, thickness, COR or stiffness; helmet weight includes all parts between hammer and pile; data from analyses, the manufacturer list or cushion material tables. ST soil input: layers of 10 ft or less, water table, overburden; granular uses fs = beta sigma'v and qp = Nt sigma'vt (Table 12-8), cohesive a modified alpha method from qu (Table 12-9); choosing cohesive for intermediate soils may be conservative (higher damping); results never for design; check toe area. One to ten resistance values. Drivability: up to five gain/loss factor pairs (1.0 no change, below 1.0 setup, above 1.0 relaxation; typically shaft 1 = 1/highest setup factor with toe 1.0, then 1.0 and 1.0); S1 form unit resistances, quakes, damping and setup factors; SA routine (N up to 60; effective stress; conservative limits may make drivability non-conservative; straight piles only; never the sole method); depths form (at least two depths, temporary length, wait time, stroke, efficiency, cushion stiffness factor 1.0 to 2.5). 12.7.1: analyze higher and lower efficiency for conservative stresses and blow counts; batter reductions; 3.3 ft segments (only smaller); splice slacks (not for sound welded or epoxy splices); critical index for multi-material piles; RSA; reduced gravity for buoyancy or inclination; Smith-viscous damping for RSA and vibratory hammers; pile damping 1, 2, 5 for steel, concrete, wood; diesel stroke options; the inspector's chart never raises combustion pressure above the data file. 12.8 (pp. 245-250): output options (Minimum, default for drivability, omits extrema tables; Normal; Debug); numeric output lists hammer and driving system, pile and soil model (impedance EA/C), extrema per segment (Table 12-10), and a summary of Rut, blow count, stroke, tension and compression stress, ENTHRU and blow rate; review inputs and warnings. 12.9 (p. 251): plots of one or two bearing graphs, inspector's chart, drivability vs depth and variables vs time.",
       "key_points": [
-        "Hammer input: type, rated energy, stroke/combustion pressure, ram weight, efficiency; GRLWEAP has built-in library for common hammers",
-        "Driving system input: helmet weight, hammer cushion (modulus, area, thickness, COR), pile cushion for concrete piles",
-        "Pile input: type, cross-sectional area, E, unit weight, total length; prestress level for concrete",
-        "Soil input: shaft/toe resistance split, distribution (uniform or triangular), shaft quake, toe quake, shaft damping, toe damping",
-        "Output bearing graph table: Rn, max compression stress, max tension stress, blow count, hammer stroke, transferred energy",
-        "Extrema tables: max stresses at each pile segment for each Rn — identifies critical stress location",
-        "Drivability output: blow count, stresses, driving time estimate vs. pile penetration depth",
-        "Three standard plots: bearing graph, inspector's chart, drivability plot"
+        "Input from plans, Pile and Driving Equipment Data Form, borings and static analysis; confirm actual equipment",
+        "GRLWEAP hammer file about 1000 hammers, assumed well maintained and unmodified",
+        "Bearing graph options: proportional shaft resistance (default), constant shaft, constant end bearing",
+        "Pile length is the total length in the leads, not the plan length",
+        "ST routine: granular fs = beta sigma'v, qp = Nt sigma'vt (Table 12-8); cohesive from qu (Table 12-9); never for design",
+        "Gain/loss factors: 1.0 no change, below 1.0 setup, above 1.0 relaxation",
+        "SA routine: straight piles only, never the sole static method; its limits may make drivability non-conservative",
+        "Pile cushion stiffness factor may rise from 1.0 to 2.5 with depth",
+        "Analyze higher and lower efficiencies for conservative stresses and blow counts",
+        "Extrema tables locate maximum stresses; review the printed output for input errors",
+        "Provide the bearing graph or inspector's chart to the resident engineer, inspector and contractor"
       ],
       "equations": [],
-      "figures": [],
-      "tables": [],
-      "applicability": "Wave equation program input data requirements, output interpretation, and standard plots for bearing graph, inspector's chart, and drivability analysis."
+      "figures": [
+        {
+          "figure_id": "12-24",
+          "title": "Pile driving and equipment data form",
+          "description": "",
+          "page": 218
+        },
+        {
+          "figure_id": "12-25",
+          "title": "GRLWEAP help window for main input form",
+          "description": "",
+          "page": 220
+        },
+        {
+          "figure_id": "12-26",
+          "title": "Job information window",
+          "description": "",
+          "page": 221
+        },
+        {
+          "figure_id": "12-27",
+          "title": "Select hammer window",
+          "description": "",
+          "page": 221
+        },
+        {
+          "figure_id": "12-28",
+          "title": "Analysis type window",
+          "description": "",
+          "page": 222
+        },
+        {
+          "figure_id": "12-29",
+          "title": "Pile input window",
+          "description": "",
+          "page": 223
+        },
+        {
+          "figure_id": "12-30",
+          "title": "Area calculator window",
+          "description": "",
+          "page": 225
+        },
+        {
+          "figure_id": "12-31",
+          "title": "Hammer cushion window",
+          "description": "",
+          "page": 226
+        },
+        {
+          "figure_id": "12-32",
+          "title": "(a) Soil profile input window for soil type based static soil analysis and (b) Soil parameter input window for bearing graph analysis",
+          "description": "",
+          "page": 228
+        },
+        {
+          "figure_id": "12-33",
+          "title": "Window for entering up to 10 nominal resistance values for bearing graph and inspector’s chart analyses",
+          "description": "",
+          "page": 230
+        },
+        {
+          "figure_id": "12-34",
+          "title": "Resistance gain/loss factors in main input form for drivability analysis",
+          "description": "",
+          "page": 232
+        },
+        {
+          "figure_id": "12-35",
+          "title": "S1 form for soil resistance vs. depth input",
+          "description": "",
+          "page": 233
+        },
+        {
+          "figure_id": "12-36",
+          "title": "New profile window for the SA static analysis",
+          "description": "",
+          "page": 235
+        },
+        {
+          "figure_id": "12-37",
+          "title": "Soil property input window for the SA static analysis",
+          "description": "",
+          "page": 236
+        },
+        {
+          "figure_id": "12-38",
+          "title": "Depths, modifiers input form",
+          "description": "",
+          "page": 237
+        },
+        {
+          "figure_id": "12-39",
+          "title": "Completed main input for a simple bearing graph",
+          "description": "",
+          "page": 238
+        },
+        {
+          "figure_id": "12-40",
+          "title": "Batter/Inclination input window",
+          "description": "",
+          "page": 239
+        },
+        {
+          "figure_id": "12-41",
+          "title": "Slack/Splice information input window",
+          "description": "",
+          "page": 240
+        },
+        {
+          "figure_id": "12-42",
+          "title": "Data entry screen for non-uniform piles",
+          "description": "",
+          "page": 241
+        },
+        {
+          "figure_id": "12-43",
+          "title": "Numeric options window",
+          "description": "",
+          "page": 242
+        },
+        {
+          "figure_id": "12-44",
+          "title": "Damping options window",
+          "description": "",
+          "page": 243
+        },
+        {
+          "figure_id": "12-45",
+          "title": "Stroke options window for diesel hammers",
+          "description": "",
+          "page": 244
+        },
+        {
+          "figure_id": "12-46",
+          "title": "Output options window",
+          "description": "",
+          "page": 246
+        },
+        {
+          "figure_id": "12-47",
+          "title": "Hammer model, hammer options, and driving system output",
+          "description": "",
+          "page": 247
+        },
+        {
+          "figure_id": "12-48",
+          "title": "Pile, soil, and analysis options",
+          "description": "",
+          "page": 249
+        },
+        {
+          "figure_id": "12-49",
+          "title": "Extrema table output",
+          "description": "",
+          "page": 250
+        },
+        {
+          "figure_id": "12-50",
+          "title": "Final summary for bearing graph analysis",
+          "description": "",
+          "page": 250
+        }
+      ],
+      "tables": [
+        {
+          "table_id": "12-8",
+          "title": "Soil Parameters in ST Analysis for Granular Soil Types",
+          "description": "GRLWEAP ST granular soils by SPT N: very loose (2) phi 25-30, 86 pcf, beta 0.203, Nt 12.1, max shaft 0.5 ksf, max end bearing 50 ksf; loose (7) 27-32, 102, 0.242, 18.1, 1.0, 100; medium (20) 30-35, 118, 0.313, 33.2, 1.5, 150; dense (40) 35-40, 125, 0.483, 86.0, 2.0, 200; very dense (50+) 38-43, 141, 0.627, 147.0, 4.0 (printed '4.o'), 400.",
+          "page": 229
+        },
+        {
+          "table_id": "12-9",
+          "title": "Soil Parameters in ST Analysis for Cohesive Soil Types",
+          "description": "GRLWEAP ST cohesive soils by SPT N: very soft (1) qu 0.25 ksf, 111 pcf, max shaft 0.07 ksf, max end bearing 1.1 ksf; soft (3) 0.75, 111, 0.23, 3.3; medium (6) 1.50, 118, 0.40, 6.7; stiff (12) 3.00, 131, 0.81, 14.0; very stiff (24) 6.00, 131, 1.30, 27.0; hard (32+) 8.00+, 121-140, 1.60, 36.0.",
+          "page": 229
+        },
+        {
+          "table_id": "12-10",
+          "title": "GRLWEAP Extrema Output",
+          "description": "Extrema table abbreviations: No (segment), mxTForce and mxCForce (kips), mxTStrss and mxCStrss (ksi), max V (ft/s), max D (inches), max Et (kip-ft); tension negative.",
+          "page": 248
+        }
+      ],
+      "applicability": "Preparing GRLWEAP input and reading its output."
     },
     {
       "section_id": "12.10-12.12",
-      "title": "Problem Solving, Advantages, Limitations, and Practical Considerations",
-      "summary": "Wave equation analysis is the best computational tool for hammer approval, pile section design, and cushion selection. Limitations: cannot determine Rn from boring data alone; may be conservative at low blow counts (<30 blows/ft) or unconservative at high counts (>120 blows/ft); open-end pipe/H-piles in granular profiles may show dynamic plug slip that overpredicts static toe resistance. Practical issues: wave equation-only construction control is practical only on small jobs with prior experience; restrike testing plus dynamic measurements is preferred for unfamiliar conditions.",
-      "body": "Problem Solving (Section 12.10): Table 12-11 summarizes field problems addressable by wave equation analysis: concrete pile spalling near head, horizontal cracks in easy or hard driving, steel pile head deformation, unexpectedly high or low blow counts, diesel hammer stroke anomalies. Table 12-12 covers program performance issues and corrective actions.\n\nAdvantages (Section 12.11): Wave equation analysis allows early evaluation of drivability and suitability of pile foundation design, enabling rational economic decisions on pile section selection. For contractors, it is the best method for equipment selection, determining need for installation aids (jetting, predrilling), and selecting cushion thickness. For engineers, it is the best method for hammer approval. Once input data are assembled (boring, driving system, foundation details), an analysis can be performed relatively quickly.\n\nDisadvantages and Limitations (Section 12.11): More information is required than for dynamic formulas (which need only hammer energy). The analyst needs knowledge of software, soil mechanics, and pile design. Limitations include:\n- Open-end pipe piles and H-piles in granular profiles may behave differently under dynamic vs. static loading (dynamic plug slip → additional dynamic shaft resistance; static plug → full toe area); wave equation may not correctly predict both.\n- Nominal resistance from wave equation can be unconservative (over-predicted) at low blow counts (less than 30 blows/ft) and overly conservative (under-predicted) at high blow counts (greater than 120 blows/ft).\n\nPractical Considerations (Section 12.12): Wave equation-only nominal resistance determination is practical only for small jobs with prior experience in similar conditions and without need for restrike testing. If restrike is needed, performing dynamic testing at the same time adds little cost and allows use of a higher resistance factor.\n\nWhen specifying blow count criteria: (1) If the hammer is very large, verify whether it can produce a blow count above 30 blows/ft — otherwise no accurate construction control is possible. (2) When driving to hard rock surface, specify maximum penetration under a fixed number of blows (e.g., not more than 0.25 inch under 10 hammer blows) rather than blows/foot. (3) For long concrete piles, plan pile cushion replacement after approximately 1,500 hammer blows in drivability analysis; schedule replacement well before final penetration to avoid inflated blow count from a new cushion.",
+      "title": "Suggestions for Problem Solving, Advantages, Disadvantages, and Limitations, and Practical Issues and Considerations",
+      "summary": "Tables 12-11 and 12-12 list field and program problems with remedies. The wave equation is the best method for hammer approval and early drivability checks but needs more input than a formula. Results can be unconservative below 30 bl/ft and overly conservative above 120 bl/ft. Wave equation-only acceptance suits small jobs with experience; replace pile cushions about every 1500 blows but not near the end; on hard rock specify at most 1/2 in. under 10 blows.",
+      "body": "12.10 (pp. 251-255): field problems from unexpected soil, hammer, driving system or pile conditions (Table 12-11) and program problems (Table 12-12); see PDI (2010) and program Help. 12.11 (pp. 255-256): advantages: early evaluation of drivability and economic section selection; for contractors one of the best methods for equipment selection, installation aids and pile cushion thickness; for engineers the best method for hammer approval; quick once boring, driving system and foundation details are in hand. Disadvantages: more information than a dynamic formula (hammer energy only, simpler but less accurate); the user needs knowledge of the software, soil mechanics and pile design and construction. Limitations: in some soils conservative estimates; open-end pipe and H-piles in granular soils may slip their plug in driving (extra shaft resistance) but plug fully under static load (larger toe area); the print says the wave equation model in this scenario 'may suitably predict the static behavior'. Results can be unconservative below 30 bl/ft and overly conservative above 120 bl/ft. 12.12 (pp. 256-257): too many analyses waste time and confuse. Soils with unknown long term behavior need restrike, and dynamic testing then adds little cost and earns a higher resistance factor, so wave equation-only acceptance is practical only on small jobs with experience in similar conditions, using the inspector's chart (with accurate stroke monitoring for open-end diesels; watch for overheating). Replace long concrete pile cushions after about 1500 blows, modeled as a stiffness change, not shortly before the end of driving. If a large hammer gives low final blow counts, check whether its energy can be reduced to give a criterion above 30 bl/ft; with setup the hammer may not give restrike blow counts below 120 bl/ft, so provide a larger hammer (e.g., a drop hammer) for restrike. On hard rock specify a maximum penetration under a number of blows, e.g., not more than 1/2 in. under 10 blows.",
       "key_points": [
-        "Wave equation is best tool for hammer approval; no other method matches its convenience and realism for dynamic simulation",
-        "Limitations: unconservative at < 30 blows/ft; overly conservative at > 120 blows/ft",
-        "Open-end pipe/H-piles in granular soils: plug behavior differs dynamically vs. statically — wave equation may not correctly predict toe resistance in both conditions",
-        "Wave equation-only construction control: practical only for small jobs with prior experience; restrike + dynamic testing preferred for unfamiliar conditions",
-        "Hard rock seating criterion: specify max penetration per N blows (e.g., ≤0.25 inch per 10 blows) rather than blows/ft",
-        "Long concrete piles: plan cushion replacement after ~1,500 blows; schedule well before end of driving",
-        "Table 12-11: field problem solutions (cracking, deformation, anomalous blow counts) via wave equation analysis",
-        "Table 12-12: program performance problems and corrective actions"
+        "Table 12-11: field problems (cracking, head damage, unexpected blow counts, diesel strokes) and remedies",
+        "Table 12-12: program problems (missing hammer, no acceptable hammer, unrealistic times) and remedies",
+        "Best method for hammer approval; good for equipment selection and pile cushion thickness",
+        "Needs more input and user knowledge than a dynamic formula",
+        "Unconservative below 30 bl/ft and overly conservative above 120 bl/ft",
+        "Plug slip in driving vs full plug under static load for open-end pipe and H-piles in granular soils",
+        "Wave equation-only acceptance practical only for small jobs with experience in similar conditions",
+        "Replace pile cushions after about 1500 blows, not shortly before end of driving",
+        "Restrike blow counts should be below 120 bl/ft; use a larger hammer for restrike if needed",
+        "Hard rock: not more than 1/2 in. under 10 hammer blows rather than blows per foot"
       ],
       "equations": [],
       "figures": [],
       "tables": [
         {
           "table_id": "12-11",
-          "description": "Suggested use of wave equation to solve field problems — problem (concrete spalling, cracks in easy/hard driving, steel head deformation, unexpected blow counts, diesel stroke anomalies) and recommended wave equation analysis approach"
+          "title": "Suggested Use of the Wave Equation to Solve Field Problems",
+          "description": "Field problems and wave equation remedies: concrete spalling near the head; complete horizontal cracks in easy driving (add cushion or reduce stroke) or hard driving (heavier ram, measure quakes); partial cracks (check alignment); steel head deformation or timber mushrooming; unexpectedly low blow counts (possible damage below grade); higher or lower blow counts than expected; diesel stroke more than 10% above, or below 90% of, the calculated stroke.",
+          "page": 252
         },
         {
           "table_id": "12-12",
-          "description": "Wave equation program performance problems and suggested solutions — unexpected or useless program output with corrective actions"
+          "title": "Wave Equation Analysis Problems",
+          "description": "Program problems and remedies: hammer not in the data file; no acceptable hammer within stress and blow count limits (increase impedance or strength, redesign, or use setup confirmed by testing); diesel analysis with little energy (try higher capacities); unknown energy setting or pile cushion; uneconomical cushion; unrealistic driving times; measurements hard to match (10% agreement sufficient).",
+          "page": 254
         }
       ],
-      "applicability": "Advantages, limitations, and practical implementation guidance for wave equation analysis on driven pile projects, including construction control criteria and conditions where alternative methods (dynamic testing + restrike) are preferred."
+      "applicability": "Troubleshooting wave equation results and setting practical driving criteria."
     }
   ]
 }
