@@ -85,7 +85,8 @@ _RUN_ON = re.compile(
     r"Figure\s+(?:[A-Z]{1,3}|\d+)\s*[-.]\s*\d+\s*[.:]\s+[A-Z]"
     r"|Table\s+\d+\s*[-.]\s*\d+\.\s+[A-Z]"
     r"|LIST OF (?:FIGURES|TABLES|SYMBOLS|APPENDICES)"
-    r"|FHWA[- ]NHI-\d\d-\d{3}\s+Chapter")
+    r"|FHWA[- ]NHI-\d\d-\d{3}(?:\s+(?:Chapter|Table of Contents|GEC ?\d)|\s*$)"
+    r"|TABLE OF CONTENTS \(continued\)|\bLOF-\d")
 # Smart quotes / dashes / replacement char -> ASCII (PyMuPDF emits these; the
 # Windows console renders them as the replacement glyph).
 _SMART = {0x201C: '"', 0x201D: '"', 0x2018: "'", 0x2019: "'",
@@ -110,30 +111,60 @@ def _is_lof_noise(line: str) -> bool:
         return True                                   # roman page no. ("i - xii")
     if re.match(r"(?i)^list of (figures|tables)$", s):
         return True
+    if re.match(r"^LOF-\d{1,2}$", s):                  # GEC-10's list page label
+        return True
     return False
 
 
 def _clean_caption(seg: str) -> tuple[str, int | None]:
     """Split a between-markers segment into (caption, printed_page)."""
+    cap, printed, _ = _split_entry(seg)
+    return cap, printed
+
+
+def _split_entry(seg: str) -> tuple[str, "int | None", "str | None"]:
+    """``(caption, printed_page, page_token)`` of a between-markers segment;
+    the token is the entry's page as the list prints it ("12-12", "306"),
+    None when the entry ends with no page."""
     seg = re.sub(r"\s+", " ", seg).strip()
-    printed = None
+    printed = token = None
     lm = _LEADER_PG.search(seg)
     if lm:
-        printed = int(lm.group(1))
+        printed, token = int(lm.group(1)), lm.group(1)
         seg = _LEADER_PG.sub("", seg)
     else:
         cm = _CHAPTER_PG.search(seg)
         tm = None if cm else _TRAIL_PG.search(seg)
         if cm:
-            printed = int(cm.group(1))
+            printed, token = int(cm.group(1)), re.sub(r"\s+", "", cm.group(0))
             seg = seg[:cm.start()]
         elif tm:
-            printed = int(tm.group(1))
+            printed, token = int(tm.group(1)), tm.group(1)
             seg = seg[:tm.start()]
     cap = re.sub(r"\.{2,}", "", seg).translate(_SMART)
     # Strip leading colon too: GEC entries read "Figure 2.1: <caption>".
     cap = re.sub(r"\s+", " ", cap).strip(" .-:")
-    return cap, printed
+    return cap, printed, token
+
+
+def prints_after_caption(text: str, figure_number: str, caption: str,
+                         token: str) -> bool:
+    """True when ``text`` (a figure's page) prints ``token`` right after the
+    last word of the figure's caption, on the same line ("Figure 7-31. ...
+    Example 7-3"): the number is the caption's own, not the list's page for
+    the figure."""
+    words = re.findall(r"[A-Za-z0-9]+", caption.translate(_SMART))
+    if not words or not token:
+        return False
+    text = text.translate(_SMART)
+    num = r"\s*[-.]\s*".join(re.escape(p) for p in re.split(r"[-.]", figure_number))
+    tok = r"[ \t]*-[ \t]*".join(re.escape(p) for p in re.split(r"\s*-\s*", token))
+    tail = re.compile(rf"(?i)(?<![A-Za-z0-9]){re.escape(words[-1])}[ \t.,:;)]*"
+                      rf"[ \t]{tok}(?!\d)")
+    for m in re.finditer(rf"(?i)Figure\s+{num}(?!\d)", text):
+        if tail.search(text, m.end(), m.end() + len(caption) + 200):
+            return True
+    return False
 
 
 def _running_lines(pages: list[list[str]]) -> set[str]:
@@ -159,7 +190,8 @@ def _parse_list_of_figures(doc) -> tuple[list[dict], "int | None"]:
     Segments the section text on figure markers (robust to entries glued
     inline and to header/footer noise across page breaks). Returns
     ``(figs, lof_last_page)``: a list of ``{figure_number, caption,
-    printed_page}`` dicts in document order, plus the last PDF page index the
+    printed_page, list_page}`` dicts in document order (``list_page`` is the
+    page token the entry ends with, as printed), plus the last PDF page index the
     figure list occupies (so body resolution can start after the front matter).
     ``lof_last_page`` is ``None`` when no list is found.
     """
@@ -215,9 +247,14 @@ def _parse_list_of_figures(doc) -> tuple[list[dict], "int | None"]:
             else:
                 break
         lof_pages = run
-        for i in run:
-            kept.extend(ln.strip() for ln in doc[i].get_text().splitlines()
-                        if not _is_lof_noise(ln))
+        whole = [[ln.translate(_SMART) for ln in doc[i].get_text().splitlines()]
+                 for i in run]
+        # GEC-11's running head ("FHWA NHI-10-024 / Table of Contents / ...
+        # November 2009") would join the last entry on each page (REF-51)
+        running = _running_lines(whole)
+        for lines in whole:
+            kept.extend(ln.strip() for ln in lines
+                        if not _is_lof_noise(ln) and _header_key(ln) not in running)
 
     blob = "\n".join(kept)
     # An entry starts a line or follows the previous entry's page number; a
@@ -228,10 +265,10 @@ def _parse_list_of_figures(doc) -> tuple[list[dict], "int | None"]:
     figs: list[dict] = []
     for k, m in enumerate(markers):
         end = markers[k + 1].start() if k + 1 < len(markers) else len(blob)
-        cap, printed = _clean_caption(blob[m.end():end])
+        cap, printed, token = _split_entry(blob[m.end():end])
         figs.append(
             {"figure_number": _fig_id(m.group(1)),
-             "caption": cap, "printed_page": printed}
+             "caption": cap, "printed_page": printed, "list_page": token}
         )
     return figs, (max(lof_pages) if lof_pages else None)
 
@@ -331,6 +368,11 @@ def _chapter_of(figure_number: str):
     return None
 
 
+def _chapter_key(figure_number: str) -> str:
+    """The chapter part of a figure number: "4" of "4-12", "A" of "A.17"."""
+    return re.split(r"[-.]", figure_number, maxsplit=1)[0]
+
+
 #: How alike a List of Figures caption and the caption printed on a figure's
 #: page must be (difflib ratio of the normalized text) for that page to be the
 #: figure's when the list words the caption differently: GEC-12 Vol I lists
@@ -380,15 +422,15 @@ def _resolve_pages(doc, figs: list[dict], body_start: int) -> dict:
 
     A figure whose List of Figures caption is not printed word for word on any
     page takes the page near its printed page whose caption is nearly the same,
-    and the caption as that page prints it (the figure's own page is the
-    record) unless the page's text spells a formula in math glyphs.
+    else the nearest page with a caption block under its label, and the
+    caption as that page prints it (the figure's own page is the record)
+    unless the page's text spells a formula in math glyphs. "Near" counts from
+    the printed page plus the page offset of the figure's own chapter.
 
     Returns a small stats dict.
     """
-    norm_pages = [
-        _norm(re.sub(r"\s+", " ", doc[i].get_text()))
-        for i in range(doc.page_count)
-    ]
+    texts = [doc[i].get_text() for i in range(doc.page_count)]
+    norm_pages = [_norm(re.sub(r"\s+", " ", t)) for t in texts]
 
     for f in figs:
         key = _norm(f"Figure {f['figure_number']}")
@@ -401,40 +443,67 @@ def _resolve_pages(doc, figs: list[dict], body_start: int) -> dict:
                     idx = i
                     break
         f["pdf_page_index"] = idx
+        # The number an entry ends with is its page unless the figure's own
+        # page prints it as the end of the caption (REF-51).
+        if idx is not None and f.get("list_page") and prints_after_caption(
+                texts[idx], f["figure_number"], f["caption"], f["list_page"]):
+            f["caption"] = f"{f['caption']} {f['list_page']}"
+            f["printed_page"] = None
 
-    # Fallback 1: median printed->index offset for figures still unresolved.
-    offsets = [
-        f["pdf_page_index"] - f["printed_page"]
-        for f in figs
-        if f["pdf_page_index"] is not None and f["printed_page"]
-    ]
+    # Fallback 1: median printed->index offset for figures still unresolved,
+    # over the figure's own chapter: a list that prints chapter-page numbers
+    # ("4 - 17", the Micropile manual) restarts them in every chapter, so one
+    # offset over the whole list puts a figure chapters away.
+    by_chapter: dict[str, list[int]] = {}
+    for f in figs:
+        if f["pdf_page_index"] is not None and f["printed_page"]:
+            by_chapter.setdefault(_chapter_key(f["figure_number"]), []).append(
+                f["pdf_page_index"] - f["printed_page"])
+    offsets = [o for chap in by_chapter.values() for o in chap]
     offset = int(statistics.median(offsets)) if offsets else 0
 
+    def expected_page(f) -> int:
+        own = by_chapter.get(_chapter_key(f["figure_number"]))
+        return f["printed_page"] + (int(statistics.median(own)) if own else offset)
+
     # A list caption worded differently from the figure's page: the page near
-    # the predicted one whose printed caption is nearly the same.
+    # the predicted one whose printed caption is nearly the same, else the
+    # nearest one with a text block that opens with the figure's label and a
+    # caption (Micropile lists Figure 4-3 as "Small Track-mounted Rotary
+    # Hydraulic Drill Rig"; its page prints "Low Headroom Track-Mounted
+    # Rotary Hydraulic Drill Rig ...").
     near_resolved = 0
     for f in figs:
         if f["pdf_page_index"] is not None or not f["caption"] \
                 or not f["printed_page"]:
             continue
         want = _norm(f["caption"])
-        expected = f["printed_page"] + offset
-        for i in range(max(body_start, expected - NEAR_CAPTION_PAGES),
-                       min(doc.page_count, expected + NEAR_CAPTION_PAGES + 1)):
+        expected = expected_page(f)
+        window = range(max(body_start, expected - NEAR_CAPTION_PAGES),
+                       min(doc.page_count, expected + NEAR_CAPTION_PAGES + 1))
+        found = None
+        for i in window:
             cap = _page_caption(doc[i].get_text(), f["figure_number"])
             if cap and SequenceMatcher(None, want, _norm(cap)).ratio() \
                     >= NEAR_CAPTION_RATIO:
-                f["pdf_page_index"] = i
-                if not _MATH_ALNUM.search(cap):
-                    f["caption"] = cap
-                near_resolved += 1
+                found = (i, cap)
                 break
+        if found is None:
+            for i in sorted(window, key=lambda i: abs(i - expected)):
+                cap = _caption_block(doc[i], f["figure_number"])
+                if cap:
+                    found = (i, cap)
+                    break
+        if found:
+            f["pdf_page_index"], cap = found
+            if not _MATH_ALNUM.search(cap):
+                f["caption"] = cap
+            near_resolved += 1
 
     filled_offset = 0
     for f in figs:
         if f["pdf_page_index"] is None and f["printed_page"]:
-            f["pdf_page_index"] = max(0, min(doc.page_count - 1,
-                                             f["printed_page"] + offset))
+            f["pdf_page_index"] = max(0, min(doc.page_count - 1, expected_page(f)))
             f["page_estimated"] = True
             filled_offset += 1
 
@@ -497,6 +566,25 @@ def _repo_relative_pdf_path(manifest: dict) -> str:
 CAPTION_BLOCK_LINES = 5
 
 
+#: The least gap (pt) before a label that opens a second caption on the same
+#: row; words of running text are a space apart.
+COLUMN_GAP = 18
+
+
+def _row_parts(block: dict) -> list[list[tuple]]:
+    """A text block's printed rows, each its lines as ``(left, right, text)``
+    left to right; lines whose bottoms are within 3 pt are one row."""
+    rows: list[list] = []
+    for line in block.get("lines", []):
+        text = "".join(s["text"] for s in line["spans"])
+        x0, x1, bottom = line["bbox"][0], line["bbox"][2], line["bbox"][3]
+        if rows and abs(rows[-1][0] - bottom) < 3:
+            rows[-1][1].append((x0, x1, text))
+        else:
+            rows.append([bottom, [(x0, x1, text)]])
+    return [sorted(parts) for _, parts in rows]
+
+
 def _block_rows(block: dict) -> list[str]:
     """A PyMuPDF ``dict`` text block as the rows it prints, left to right.
 
@@ -504,15 +592,39 @@ def _block_rows(block: dict) -> list[str]:
     "Figure " "6-18. " "Example " ...); lines whose bottoms are within 3 pt
     are one printed row.
     """
-    rows: list[list] = []
-    for line in block.get("lines", []):
-        text = "".join(s["text"] for s in line["spans"])
-        x, bottom = line["bbox"][0], line["bbox"][3]
-        if rows and abs(rows[-1][0] - bottom) < 3:
-            rows[-1][1].append((x, text))
-        else:
-            rows.append([bottom, [(x, text)]])
-    return [" ".join(t for _, t in sorted(parts)) for _, parts in rows]
+    return [" ".join(t for _, _, t in parts) for parts in _row_parts(block)]
+
+
+def _block_columns(block: dict, marker=None) -> list[list[str]]:
+    """A text block as the columns of rows it prints.
+
+    Two captions set side by side under two figures share a row
+    (FHWA-NHI-05-037: "Figure 8-8. Bulldozer (photo courtesy of Komatsu).
+    Figure 8-9. Motor grader" over "(photo courtesy of Caterpillar)"). A
+    label that opens :data:`COLUMN_GAP` or more after the text before it
+    starts a second column, which takes that row and the rows below it from
+    the label's left edge on.
+    """
+    marker = marker or _FIG_MARKER
+    split = None
+    cols: list[list] = [[], []]
+    for parts in _row_parts(block):
+        if split is None:
+            for j in range(1, len(parts)):
+                rest = " ".join(t for _, _, t in parts[j:]).translate(_SMART)
+                if parts[j][0] - parts[j - 1][1] >= COLUMN_GAP \
+                        and marker.match(rest.lstrip()):
+                    split = parts[j][0]
+                    break
+        if split is None:
+            cols[0].append(parts)
+            continue
+        for k, side in enumerate(([p for p in parts if p[0] < split - 2],
+                                  [p for p in parts if p[0] >= split - 2])):
+            if side:
+                cols[k].append(side)
+    return [[" ".join(t for _, _, t in parts) for parts in col]
+            for col in cols if col]
 
 
 def _block_caption(block_text: str, marker) -> "tuple[str, str] | None":
@@ -556,6 +668,20 @@ def _block_caption(block_text: str, marker) -> "tuple[str, str] | None":
     return _fig_id(m.group(1)), cap
 
 
+def _caption_block(page, figure_number: str) -> "str | None":
+    """The caption of the text block on ``page`` that opens with the label of
+    ``figure_number`` (see :func:`_block_caption`), or None."""
+    want = _fig_id(figure_number)
+    for block in page.get_text("dict")["blocks"]:
+        if "lines" not in block:
+            continue
+        for rows in _block_columns(block):
+            hit = _block_caption("\n".join(rows), _FIG_MARKER)
+            if hit and hit[0] == want:
+                return hit[1]
+    return None
+
+
 def _figs_from_body(doc, marker=None) -> list[dict]:
     """Extract figures by scanning the body for labeled captions — used when a
     reference has no parseable List of Figures (e.g. GEC-6, GEC-14). A figure's
@@ -579,18 +705,18 @@ def _figs_from_body(doc, marker=None) -> list[dict]:
         for block in page.get_text("dict")["blocks"]:
             if "lines" not in block:                        # an image block
                 continue
-            rows = _block_rows(block)
-            for row in rows:
-                lm = marker.match(row.translate(_SMART).lstrip())
-                if lm:
-                    labels_on_page.setdefault(i, set()).add(_fig_id(lm.group(1)))
-            hit = _block_caption("\n".join(rows), marker)
-            if hit:
-                order += 1
-                blocks.setdefault(hit[0], []).append(
-                    {"figure_number": hit[0], "caption": hit[1],
-                     "printed_page": None, "pdf_page_index": i,
-                     "page_estimated": False, "_order": order})
+            for rows in _block_columns(block, marker):
+                for row in rows:
+                    lm = marker.match(row.translate(_SMART).lstrip())
+                    if lm:
+                        labels_on_page.setdefault(i, set()).add(_fig_id(lm.group(1)))
+                hit = _block_caption("\n".join(rows), marker)
+                if hit:
+                    order += 1
+                    blocks.setdefault(hit[0], []).append(
+                        {"figure_number": hit[0], "caption": hit[1],
+                         "printed_page": None, "pdf_page_index": i,
+                         "page_estimated": False, "_order": order})
         text = page.get_text()
         for m in marker.finditer(text):
             num = _fig_id(m.group(1))
