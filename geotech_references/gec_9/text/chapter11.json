@@ -7,14 +7,13 @@
     {
       "section_id": "11.1",
       "title": "Overview",
-      "summary": "Chapter 11 provides structural design guidance for deep foundation elements once load effects from p-y and group analyses are determined. Design follows AASHTO LRFD Bridge Design Specifications (2014). Laterally loaded piles and drilled shafts experience simultaneous axial, bending, and shear effects and are designed as beam-columns. Force effects vary along the element length; transition zones between different design sections must use the more severe force combination. Covered materials: reinforced concrete (prestressed and conventional), structural steel (H-piles, pipe piles), and composite (concrete-filled pipe).",
-      "body": "This chapter provides general guidance for structural design of deep foundation elements once load effects from lateral and group analyses are determined. Design follows the AASHTO LRFD Bridge Design Specifications (AASHTO 2014). Laterally loaded piles and drilled shafts experience axial, bending, and shear load effects simultaneously and are designed to account for their interaction, i.e., as beam-columns. Load effects from applicable limit states (service, strength, or extreme events) per AASHTO load combinations are applied at the foundation head, analyzed per Chapters 6 and 7, and used to design the individual foundation elements. Force effects vary along the element length; transition zones between different design sections must be designed for the more severe force combination. Typical materials: reinforced concrete (prestressed or conventionally reinforced) per AASHTO Section 5, and structural steel per AASHTO Section 6. Detailing of the connection between the foundation element and the substructure must be consistent with the fixity assumptions used in the lateral analysis.",
+      "summary": "Structural design of deep foundation elements follows AASHTO (2014) once load effects are known; piles and shafts carry axial, bending and shear simultaneously. Force effects vary with depth, so sections may change along the element, transitions designed for the more severe effects; the head connection must match the fixity assumed.",
+      "body": "The chapter gives general guidance for structural design of deep foundation elements once the load effects on them have been determined by analysis, performed per the AASHTO LRFD Bridge Design Specifications (AASHTO 2014). Laterally loaded piles and drilled shafts experience axial, bending and shear load effects simultaneously and are designed for their interaction. Load effects come from load combinations on the superstructure and substructure transferred to the foundation, for each applicable limit state (service, strength, extreme events) per AASHTO (Chapter 4). With the force effects at the top of the foundation, the single element or group is analyzed (Chapters 6 and 7) for the force effects on the element being designed. Force effects vary along the element, which can be designed for the governing effects or have different designs along its length; transition zones should always be designed for the more severe combination. Typical elements are reinforced concrete (prestressed or conventionally reinforced) and structural steel (AASHTO 2014 Section 5, Concrete Structures, and Section 6, Steel Structures). The connection between element and substructure must be detailed consistently with the fixity assumed in analysis. Much of the chapter is extracted or adapted from Hannigan et al. (2016) for driven piles and Brown et al. (2010) for drilled shafts. (p. 142)",
       "key_points": [
-        "All structural design per AASHTO LRFD Bridge Design Specifications (2014)",
-        "Piles/shafts under lateral loads are beam-columns: combined axial, bending, and shear",
-        "Force effects vary along pile/shaft length — design each critical section",
-        "Transition zones between design sections: use the more severe force combination",
-        "Materials covered: reinforced/prestressed concrete, structural steel (H-pile, pipe), composite (concrete-filled pipe)"
+        "Structural design per AASHTO (2014) once load effects are determined (p. 142).",
+        "Axial, bending and shear act simultaneously and interact (p. 142).",
+        "Design may vary along the element; transitions take the more severe effects (p. 142).",
+        "Detail the head connection consistently with the assumed fixity (p. 142)."
       ],
       "equations": [],
       "figures": [],
@@ -23,242 +22,535 @@
     },
     {
       "section_id": "11.2",
-      "title": "General Structural Design Requirements, Effective Length, and Buckling",
-      "summary": "The basic LRFD design equation is Σ(ηi×γi×Qi) ≤ φ×Rn = Rr (Eq 11-1). Foundation elements are designed as beam-columns for combined axial-bending interaction; the axial load reduces bending capacity and vice versa. Bending stiffness EpIp may be assumed constant for preliminary analysis but must account for nonlinear cracking effects in concrete for detailed design. Effective length factor K for buckling varies from 0.65 (both ends fixed) to 2.0 (free top, fixed bottom) per Table 11-1. Depth to fixity for preliminary buckling checks: clay, df = 1.4×(EIw/Es)^0.25 (Eq 11-2/11-3); sand, df = 1.8×(EIw/nh)^0.2 (Eq 11-4). Full p-y software analysis makes depth-to-fixity concept unnecessary.",
-      "body": "The basic LRFD equation is Σ(ηi×γi×Qi) ≤ φ×Rn = Rr (Eq 11-1), where ηi = load modifier, γi = load factor, Qi = force effect, φ = resistance factor, Rn = nominal resistance, Rr = factored resistance. Foundation elements subject to lateral loads are designed as beam-columns for combined axial-bending interaction. A constant value of EpIp may be used if the purpose is to estimate preliminary moment and shear distribution, or if studying response under small deflections. However, when loading causes nonlinear concrete cracking or plastic hinge formation in steel, the variable EpIp must be computed as a function of applied loading. Effective length factor K for buckling (Table 11-1): fixed-fixed both ends, both fixed = 0.65 (design); fixed bottom, pin top = 0.80; pin-pin = 1.0; fixed bottom, free top rotation but fixed translation = 1.2; fixed bottom, free to rotate and translate at top = 2.1; free-free = 2.0. Buckling is generally of concern only when foundation elements extend through water or air, or in liquefaction zones. For preliminary calculations, depth to fixity in clays: df = 1.4×(E×Iw/Es)^0.25 (Eq 11-2), where Es = 0.465×su (Eq 11-3); in sands: df = 1.8×(E×Iw/nh)^0.2 (Eq 11-4). When full p-y analysis is performed, depth-to-fixity concept is not needed — most p-y software includes buckling analysis using the pile-soil model.",
+      "title": "Structural Design Considerations - General",
+      "summary": "Design satisfies Sum(eta_i gamma_i Q_i) <= phi Rn = Rr (Eq. 11-1) as a beam-column: axial with moment always interacts; ignoring axial-shear interaction is conservative. Iterate size with geotechnical design. Constant EpIp suits preliminary or small-deflection analysis; otherwise nonlinear EpIp with cracking or plastic hinges; concrete crushing strain up to about 0.0038.",
+      "body": "Structural design of foundation elements must satisfy the basic LRFD equation of AASHTO (2014) for all applicable limit states, Eq. 11-1 (p. 143). Elements under lateral load are designed for simultaneous shear, moment and axial load, as compression members with bending (beam-columns); interactions are axial load with moment and axial load with shear. Designing for shear without the simultaneous axial load is conservative; the interaction of axial load and moment must always be considered. Design is iterative: if factored load effects exceed the structural resistance, add reinforcement (concrete), use a heavier section (steel) and/or enlarge the element; if size increases, review the Geotechnical Strength Limit State, since the length may be reduced, which needs coordination between geotechnical and structural design. The beam-column's bending can sometimes be represented by a constant linear stiffness EpIp (Ep = modulus of elasticity, Ip = moment of inertia of the pile), avoiding cracking (concrete) or plastic hinge (steel) nonlinearity, sufficient for preliminary magnitude and distribution of moment and shear and preliminary reinforcement or steel size, or for small deflections. In many cases it cannot: where the response is nonlinear in bending, yield moments (plastic hinges) must be considered, EpIp at each section determined as a function of loading and the yield or ultimate moment Mult found, using general purpose structural software (p. 144). For nonlinear bending of concrete, cracks are assumed where net tension exceeds the concrete tensile strength; nonlinear stress-strain curves are used for steel and concrete; concrete fails in compression at a strain of up to approximately 0.0038 (printed \"approximately up to approximately\"); steel yields at fy/E. Driving stresses: GEC-12 (FHWA NHI-16-009). (pp. 142 to 144)",
       "key_points": [
-        "LRFD design equation: Σ(ηi×γi×Qi) ≤ φ×Rn (Eq 11-1)",
-        "Lateral load foundation element acts as a beam-column: axial + bending interaction must be checked",
-        "Constant EpIp is sufficient for preliminary analysis; nonlinear EpIp required when cracking or plastic hinges control",
-        "Buckling K factors from Table 11-1: 0.65 (fixed-fixed) to 2.0 (free top, fixed bottom)",
-        "Depth to fixity in clay: df = 1.4(EIw/Es)^0.25; in sand: df = 1.8(EIw/nh)^0.2",
-        "Full p-y software makes depth-to-fixity unnecessary — built-in buckling analysis"
+        "Basic LRFD equation Sum(eta_i gamma_i Q_i) <= phi Rn = Rr (Eq. 11-1) (p. 142).",
+        "Design as a beam-column; always consider axial-moment interaction (p. 143).",
+        "Ignoring axial-shear interaction is conservative (p. 143).",
+        "Constant EpIp for preliminary or small-deflection analysis; nonlinear otherwise (p. 143).",
+        "Concrete compressive failure strain up to approximately 0.0038 (p. 144)."
       ],
       "equations": [
-        {
-          "equation_id": "11-1",
-          "description": "AASHTO LRFD basic design equation for deep foundation structural design",
-          "latex": "\\sum \\eta_i \\gamma_i Q_i \\leq \\phi R_n = R_r",
-          "variables": {
-            "eta_i": "load modifier (ductility, redundancy, operational classification)",
-            "gamma_i": "load factor",
-            "Q_i": "force effect",
-            "phi": "resistance factor",
-            "R_n": "nominal resistance",
-            "R_r": "factored resistance = φ×Rn"
-          },
-          "implemented_in": null
-        },
-        {
-          "equation_id": "11-2",
-          "description": "Depth to fixity below ground surface for piles in clay (preliminary buckling check)",
-          "latex": "d_f = 1.4 \\left(\\frac{E \\cdot I_w}{E_s}\\right)^{0.25}",
-          "variables": {
-            "d_f": "depth to fixity below ground surface (ft)",
-            "E": "elastic modulus of foundation element material (ksi)",
-            "I_w": "weak axis moment of inertia of foundation element (ft^4)",
-            "E_s": "elastic modulus of clay = 0.465×su (Eq 11-3)"
-          },
-          "implemented_in": null
-        },
-        {
-          "equation_id": "11-3",
-          "description": "Elastic modulus of clay for depth-to-fixity calculations",
-          "latex": "E_s = 0.465 \\cdot s_u",
-          "variables": {
-            "E_s": "elastic modulus of clay soils",
-            "s_u": "undrained shear strength of clay (ksf)"
-          },
-          "implemented_in": null
-        },
-        {
-          "equation_id": "11-4",
-          "description": "Depth to fixity below ground surface for piles in sand (preliminary buckling check)",
-          "latex": "d_f = 1.8 \\left(\\frac{E \\cdot I_w}{n_h}\\right)^{0.2}",
-          "variables": {
-            "d_f": "depth to fixity below ground surface (ft)",
-            "E": "elastic modulus of foundation element material (ksi)",
-            "I_w": "weak axis moment of inertia (ft^4)",
-            "n_h": "rate of increase of soil modulus with depth (ksi/ft)"
-          },
-          "implemented_in": null
-        }
+        "Eq. 11-1: Sum(eta_i gamma_i Q_i) <= phi Rn = Rr; basic LRFD equation for structural design for all applicable limit states (AASHTO 2014), gamma_i = load factor, phi = resistance factor, eta_i = load modifier (ductility, redundancy, operational classification), Q_i = force effect, Rn = nominal resistance, Rr = factored resistance = phi Rn (p. 142)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Preliminary and detailed structural design of deep foundation elements as beam-columns under combined loading"
+    },
+    {
+      "section_id": "11.2.1",
+      "title": "Effective Length and Buckling",
+      "summary": "Portions above ground are unsupported unless braced; continuous lateral support starts below ground, above the point of fixity. Effective length factor K from Table 11-1 (design values 0.65 to 2.1). Buckling matters through water, air or liquefied soil; soft soils usually suffice. Preliminary depth to fixity: clays df = 1.4(EIw/Es)^0.25, Es = 0.465 su; sands df = 1.8(EIw/nh)^0.2.",
+      "body": "Elements are fully underground or project above ground; projecting portions are laterally unsupported unless braced. Element type, installation and ground set the depth below which the element is continuously supported, which fixes the unsupported length for buckling; the point of continuous lateral support is above the point of fixity. Structurally the elements act as columns, and an effective length factor K (Table 11-1) can be used in simplified frame analyses, the toe generally assumed fixed for translation and rotation (the print adds \"(pinned)\"). Without sufficient bracing (very soft soils, piles/shafts through water, large scour) the head may sway and rotate, so K follows the anticipated head restraint; e.g., a pile above ground in a rigid pier cap may have fixed rotation and free translation; a pile bent cap may allow rotation and translation perpendicular to its long axis but fixed rotation with free translation along it. For a rotationally fixed head, Rollins and Stenlund (2010) advise designing the cap connection (embedment and cap reinforcement) so its moment capacity exceeds the element's, rather than a rule-of-thumb embedment. Buckling is generally of concern through water or air or in liquefaction; very soft soils or peat are often thought insufficient, but Bethlehem Steel Corporation (1970) tests (p. 145) suggest even soft soils suffice: an H-pile through 31 feet of water and 29 feet of soft organic silt carried 200 tons with 0.63 inch gross settlement and no buckling, and Coduto et al. (2016) agree for axially loaded piles, especially with a cap. More conservatively, the critical buckling load can be found with software such as LPILE by incremental loading. The unbraced length l (AASHTO 2014) is the distance between braced points; for embedded elements it reflects scour and stickup; for preliminary flexural calculations the effective length is the total unsupported length plus an embedded depth to fixity; with p-y analysis (Chapter 6) depth to fixity is unnecessary and software can give buckling capacity. For preliminary calculations, depth to fixity follows Eqs. 11-2 to 11-4 (Chapter 6; the print cites Table 11-2 for nh; refer to GEC-12, FHWA NHI-16-009, and FHWA NHI-10-016 for nh) (p. 146). Table 11-1 (after AASHTO 2014), bottom rotation/bottom translation/top rotation/top translation, theoretical K, design K: fixed/fixed/fixed/fixed, 0.5, 0.65; fixed/fixed/free/fixed, 0.7, 0.80; free/fixed/free/fixed, 1.0, 1.0; fixed/fixed/fixed/free, 1.0, 1.2; fixed/fixed/free/free, 2.0, 2.1; free/fixed/fixed/free, 2.0, 2.0. (pp. 144 to 147)",
+      "key_points": [
+        "Above-ground portions are unsupported unless braced; support point is above fixity (p. 144).",
+        "Effective length factor K from Table 11-1; design values 0.65 to 2.1 (p. 146).",
+        "Design the head connection's moment capacity above the element's (Rollins and Stenlund 2010) (p. 144).",
+        "Soft soils generally prevent underground buckling (Bethlehem Steel 1970; Coduto et al. 2016) (p. 145).",
+        "Clays df = 1.4 (E Iw/Es)^0.25, Es = 0.465 su (Eqs. 11-2, 11-3) (p. 146).",
+        "Sands df = 1.8 (E Iw/nh)^0.2 (Eq. 11-4) (p. 146)."
+      ],
+      "equations": [
+        "Eq. 11-2: df = 1.4 (E Iw / Es)^0.25; depth to fixity below the ground for clays (ft), E = elastic modulus of the foundation element material (ksi), Iw = weak axis moment of inertia of the element (ft4), Es = elastic modulus of clay soils (p. 146)",
+        "Eq. 11-3: Es = 0.465 su; su = undrained shear strength of clay (ksf) (p. 146)",
+        "Eq. 11-4: df = 1.8 (E Iw / nh)^0.2; depth to fixity below the ground for sands, nh = rate of increase of soil modulus with depth (ksi/ft) (p. 146)"
       ],
       "figures": [],
       "tables": [
-        "Table 11-1: Effective length factors K for deep foundation elements (after AASHTO 2014) — 6 end-condition cases from K=0.65 to K=2.0"
+        "Table 11-1: Effective length factors, K (after AASHTO 2014)"
       ],
       "applicability": "Preliminary and detailed structural design of deep foundation elements as beam-columns under combined loading"
     },
     {
       "section_id": "11.3",
-      "title": "Structural Design of Reinforced Concrete Foundation Elements",
-      "summary": "Reinforced concrete foundation elements are designed per AASHTO Section 5. Concrete: f'c = 3.5–5.0 ksi; Ec = 1820√f'c (Eq 11-5). Longitudinal steel: Grade 60, max As/Ag = 8% (Eq 11-6, reduced to 6% seismic), min column ratio As×fy/(Ag×f'c) ≥ 0.135 (Eq 11-7). Seismic transverse steel to 3D below fixity: ρs ≥ max[0.45((Ag/Ac)-1)×f'c/fyh, 0.12f'c/fyh] (Eqs 11-8, 11-9). P-M interaction with factored Pr = φPn, Mr = φMn; φ = 0.75 compression-controlled to 0.90 tension-controlled. Nonlinear concrete uses parabolic-linear stress-strain model. Prestressed concrete improves bending stiffness and delays cracking.",
-      "body": "Reinforced concrete foundation elements — bored piles, drilled shafts, concrete cylinder piles, and reinforced concrete piles (conventional and prestressed) — must always be designed with minimum compression member reinforcement per AASHTO Section 5. Concrete: f'c = 3.5–5.0 ksi typical; minimum 2.4 ksi per AASHTO 5.4.2.1; Ec = 1820√f'c (Eq 11-5). Reinforcing steel: typically AASHTO M31 (ASTM A615) Grade 60 (fy = 60 ksi); Es = 29,000 ksi. For ductility or welding requirements, ASTM A706 should be considered. Permanent casings: ASTM A36 (fy = 36 ksi), A252 Grade 2 (fy = 36 ksi), A252 Grade 3 (fy = 45 ksi), A242 (fy = 42–50 ksi depending on thickness). Longitudinal steel limits (AASHTO 5.7.4.2): maximum As/Ag ≤ 0.08 (Eq 11-6); Seismic Zones 2-4: maximum 6%; typical range 1–2%; ≥ 4% is difficult to construct (tremie flow concern). In column regions, minimum: As×fy/(Ag×f'c) ≥ 0.135 (Eq 11-7) and ≥ 1% of Ag. Below column region: ≥ 0.5% Ag practical minimum. Bars must be at least 6 #5 bars, clear spacing ≥ 5× max aggregate size or 5.0 in (10× for tremie concrete shafts). Transverse steel in seismic zones 2-4 (to depth ≥ 3D below fixity): ρs ≥ max(0.45((Ag/Ac)-1)×f'c/fyh, 0.12f'c/fyh) (Eq 11-8, 11-9); maximum spiral pitch 4.0 in within 3D below fixity, 9.0 in below that. Minimum cover (Table 11-3): 2.0 in noncorrosive, 3.0 in corrosive environments; adjust for W/CM ratio. P-M interaction diagram defines failure combinations; factored interaction: Pr = φ×Pn (Eq 11-10), Mr = φ×Mn (Eq 11-11). Resistance factor φ: 0.9 tension-controlled (εt > 0.005), 0.75 compression-controlled (εt ≤ 0.003), interpolated per Eq 11-12: φ = 0.65 + 0.15×(dt/c - 1) for transition. Biaxial bending with high axial load: 1/Prxy = 1/Prx + 1/Pry - 1/(φP0) ≤ 1.0 (Eq 11-15); for low axial load: Mux/Mrx + Muy/Mry ≤ 1.0 (Eq 11-16). Nonlinear concrete stress-strain: parabolic to peak f''c = 0.85f'c then linear to εcu; Ec = 4730√f'c MPa (Eq 11-17 through 11-21). Prestressed concrete piles: initial compression reduces tensile stress from bending, improves service performance; must account for prestress loss from creep.",
+      "title": "Procedures for Reinforced Concrete Sections",
+      "summary": "Covers bored piles, drilled shafts, concrete cylinder piles and reinforced or prestressed concrete piles. Always provide AASHTO Section 5 minimum compression member reinforcement, even with little moment; detail per Section 5.",
+      "body": "This section covers structural design of reinforced concrete foundation elements: bored piles, drilled shafts, concrete cylinder piles and reinforced concrete piles (conventionally reinforced and prestressed). Even where zero or very low moment makes the reinforced-column approach unnecessary, concrete elements must always have the minimum reinforcement for compression members of AASHTO (2014) Section 5 because of possible unforeseen loading, with reinforcing and prestressing steel detailed per Section 5. Many commercial programs design concrete compression members. (p. 147)",
       "key_points": [
-        "Concrete Ec = 1820√f'c (ksi units, Eq 11-5); f'c = 3.5–5.0 ksi typical range",
-        "Longitudinal steel: max As/Ag = 8% (6% in seismic zones); min column region: As×fy/(Ag×f'c) ≥ 0.135",
-        "Transverse seismic: ρs ≥ max(0.45((Ag/Ac)-1)×f'c/fyh, 0.12f'c/fyh) to depth ≥ 3D below fixity",
-        "P-M interaction diagram with variable φ: 0.9 (tension), 0.75 (compression), interpolated at transition",
-        "Factored resistance: Pr = φ×Pn, Mr = φ×Mn (Eq 11-10/11-11)",
-        "Nonlinear concrete: parabolic-linear model; plane sections remain plane assumption for EpIp-M-P relationship"
+        "Covers drilled shafts, bored piles, cylinder piles, reinforced and prestressed piles (p. 147).",
+        "Always provide AASHTO Section 5 minimum compression member reinforcement (p. 147)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Structural design of reinforced concrete and prestressed concrete deep foundation elements under combined axial, bending, and shear"
+    },
+    {
+      "section_id": "11.3.1",
+      "title": "Material Properties - General",
+      "summary": "Unless otherwise noted, materials and material properties follow the current AASHTO LRFD Specifications (2014); their structural considerations follow in 11.3.2 to 11.3.4.",
+      "body": "Unless otherwise noted, materials and material properties should follow the current AASHTO LRFD Specifications (2014); their structural considerations are discussed in the following sections. (p. 147)",
+      "key_points": [
+        "Materials per the current AASHTO LRFD Specifications (2014) (p. 147)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Structural design of reinforced concrete and prestressed concrete deep foundation elements under combined axial, bending, and shear"
+    },
+    {
+      "section_id": "11.3.2",
+      "title": "Concrete",
+      "summary": "Concrete for foundation elements is normal weight with f'c generally 3.5 to 5.0 ksi; AASHTO 5.4.2.1 prohibits f'c below 2.4 ksi for structural use. Ec = 1820 sqrt(f'c) (Eq. 11-5).",
+      "body": "Concrete foundation elements are generally designed with specified compressive strength f'c of 3.5 ksi to 5.0 ksi; AASHTO (Section 5.4.2.1) prohibits concrete with specified strength below 2.4 ksi for structural applications, including foundation elements. Concrete shall be normal weight, with modulus of elasticity approximated by Eq. 11-5. See AASHTO (2014) Section 5.4.2 for additional requirements. (p. 147)",
+      "key_points": [
+        "f'c generally 3.5 to 5.0 ksi; not below 2.4 ksi (AASHTO 5.4.2.1) (p. 147).",
+        "Normal weight concrete; Ec = 1820 sqrt(f'c) (Eq. 11-5) (p. 147)."
       ],
       "equations": [
-        {
-          "equation_id": "11-5",
-          "description": "Modulus of elasticity for normal-weight concrete",
-          "latex": "E_c = 1820 \\sqrt{f'_c}",
-          "variables": {
-            "E_c": "modulus of elasticity of concrete (ksi)",
-            "f_prime_c": "specified compressive strength of concrete at 28 days (ksi)"
-          },
-          "implemented_in": null
-        },
-        {
-          "equation_id": "11-6",
-          "description": "Maximum longitudinal reinforcement ratio for concrete foundation element cross-section",
-          "latex": "\\frac{A_s}{A_g} \\leq 0.08",
-          "variables": {
-            "A_s": "area of longitudinal reinforcing steel (in^2)",
-            "A_g": "gross cross-sectional area (in^2)"
-          },
-          "implemented_in": null
-        },
-        {
-          "equation_id": "11-7",
-          "description": "Minimum longitudinal reinforcement in the column region of a concrete drilled shaft",
-          "latex": "\\frac{A_s f_y}{A_g f'_c} \\geq 0.135",
-          "variables": {
-            "A_s": "area of longitudinal reinforcing steel (in^2)",
-            "f_y": "yield strength of longitudinal steel bars (ksi)",
-            "A_g": "gross cross-sectional area (in^2)",
-            "f_prime_c": "concrete compressive strength at 28 days (ksi)"
-          },
-          "implemented_in": null
-        },
-        {
-          "equation_id": "11-8",
-          "description": "Minimum spiral/hoop transverse reinforcement ratio for seismic design (AASHTO 5.10.11.4)",
-          "latex": "\\rho_s \\geq 0.45 \\left(\\frac{A_g}{A_c} - 1\\right) \\frac{f'_c}{f_{yh}}",
-          "variables": {
-            "rho_s": "ratio of spiral or seismic hoop reinforcement to total volume of concrete core",
-            "A_g": "gross area of column section (in^2)",
-            "A_c": "area of concrete core to outside of spiral (in^2)",
-            "f_prime_c": "specified concrete strength at 28 days (ksi)",
-            "f_yh": "yield strength of spiral or hoop reinforcement (ksi)"
-          },
-          "implemented_in": null
-        },
-        {
-          "equation_id": "11-9",
-          "description": "Alternate minimum transverse reinforcement ratio for seismic design (governs when Eq 11-8 is non-controlling)",
-          "latex": "\\rho_s \\geq 0.12 \\frac{f'_c}{f_{yh}}",
-          "variables": {
-            "rho_s": "spiral or seismic hoop reinforcement ratio",
-            "f_prime_c": "concrete compressive strength at 28 days (ksi)",
-            "f_yh": "yield strength of spiral or hoop reinforcement (ksi)"
-          },
-          "implemented_in": null
-        }
+        "Eq. 11-5: Ec = 1820 sqrt(f'c); modulus of elasticity of normal weight concrete for foundation elements (p. 147)"
       ],
-      "figures": [
-        "Figure 11-1: Interaction diagram for a reinforced concrete column (points A through F with strain diagrams)",
-        "Figure 11-2: Nominal and factored interaction diagrams",
-        "Figure 11-3: Variation of φ with net tensile strain εt and dt/c for Grade 60 reinforcement",
-        "Figure 11-5: Assumed stress-strain relation for concrete (O'Neill and Reese 1999)",
-        "Figure 11-6: Assumed stress-strain curves for steel (O'Neill and Reese 1999)",
-        "Figure 11-7: Bending in a circular section"
+      "figures": [],
+      "tables": [],
+      "applicability": "Structural design of reinforced concrete and prestressed concrete deep foundation elements under combined axial, bending, and shear"
+    },
+    {
+      "section_id": "11.3.3",
+      "title": "Reinforcing Steel",
+      "summary": "Reinforcing steel is generally AASHTO M31 (ASTM A615) Grade 60, yield 60 ksi; lower grades only with owner approval. Consider ASTM A706 for ductility or welding. Es = 29,000 ksi (AASHTO 5.4.3).",
+      "body": "Reinforcing steel for concrete foundation elements will generally be AASHTO M31 (ASTM A615) Grade 60 with a minimum yield strength of 60 ksi; lower yield strengths are not recommended and should be used only with the owner's approval. ASTM A706 (Low Alloy Steel Deformed Bars for Concrete Reinforcement) should be considered where improved ductility is needed or welding is required. The modulus of elasticity Es can be taken as 29,000 ksi. See AASHTO (2014) Section 5.4.3. (p. 148)",
+      "key_points": [
+        "Grade 60 (AASHTO M31, ASTM A615), fy 60 ksi; lower only with owner approval (p. 148).",
+        "ASTM A706 where ductility or welding is needed (p. 148).",
+        "Es = 29,000 ksi (p. 148)."
       ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Structural design of reinforced concrete and prestressed concrete deep foundation elements under combined axial, bending, and shear"
+    },
+    {
+      "section_id": "11.3.4",
+      "title": "Casings",
+      "summary": "Permanent steel casings follow Table 11-2: ASTM A36 36 ksi; A242 50, 46 or 42 ksi by thickness; A252 Grade 2 36 ksi, Grade 3 45 ksi; E 29,000 ksi. Show thickness as minimum (reinforcement or installation, whichever greater); allow for corrosion with coating or extra thickness.",
+      "body": "Casings are sometimes required for elements built by drilling, such as drilled shafts; steel for permanent casings should generally meet Table 11-2: ASTM A36, 36 ksi; ASTM A242, 50 ksi for thickness <= 0.5 inch, 46 ksi for 0.75 inch < thickness <= 1.5 inch, 42 ksi for 1.5 inch < thickness <= 4 inches; ASTM A252 Grade 2, 36 ksi; ASTM A252 Grade 3, 45 ksi; E for steel casings 29,000 ksi. Casing thickness should be shown as \"minimum\" in the contract documents, the greater of that needed for reinforcement or for strength during installation (site conditions and installation method); AASHTO Specifications (2007) require the contractor to furnish thicker casings if needed for the chosen equipment. Permanent structural casings need protective coating and/or added thickness to keep the required structural thickness through the design life against corrosion. (p. 148)",
+      "key_points": [
+        "Table 11-2: A36 36 ksi; A242 50/46/42 ksi by thickness; A252 Gr 2 36 ksi, Gr 3 45 ksi (p. 148).",
+        "Show casing thickness as minimum: reinforcement or installation, whichever greater (p. 148).",
+        "Provide coating or extra thickness for corrosion (p. 148)."
+      ],
+      "equations": [],
+      "figures": [],
       "tables": [
-        "Table 11-2: Minimum yield strengths for permanent steel casing (ASTM A36, A242, A252)",
-        "Table 11-3: Minimum cover for unprotected main reinforcing steel (in) by element type and environment"
+        "Table 11-2: Minimum yield strengths for permanent steel casing"
       ],
       "applicability": "Structural design of reinforced concrete and prestressed concrete deep foundation elements under combined axial, bending, and shear"
     },
     {
-      "section_id": "11.4",
-      "title": "Structural Design of Steel Foundation Elements",
-      "summary": "Structural steel foundation elements (H-piles, pipe piles) are designed per AASHTO Section 6; E = 29,000 ksi. Axial compression: (1) yield resistance P0 = Q×Fy×Ag (Eq 11-26) with slenderness check; (2) elastic buckling Pe from flexural buckling (Eq 11-30) or torsional buckling for open sections through air/water (Eqs 11-31 to 11-33); (3) Pn = P0×0.658^(P0/Pe) when Pe/P0 ≥ 0.44 (Eq 11-34), or 0.877×Pe when Pe/P0 < 0.44 (Eq 11-35). H-pile: compact → Mn = 1.5×Fy×Sy (Eq 11-41). Pipe pile: plastic moment if D/t ≤ 0.07E/Fy; local buckling otherwise. Combined axial-flexure: biaxial interaction per Eqs 11-47 and 11-48.",
-      "body": "Steel foundation elements (H-piles, pipe piles, fabricated steel sections) are designed per AASHTO LRFD Section 6. E = 29,000 ksi for all structural steel grades. Axial compression design (three-step procedure): Step 1 — nominal yield resistance P0 = Q×Fy×Ag (Eq 11-26), where Q = slenderness reduction factor (Q = 1.0 for non-slender sections). H-pile non-slender check: bf/(2tf) ≤ 0.64√(kc×Est/Fy) (Eq 11-27), with kc = 4/√(dw/tw) (Eq 11-28). Pipe pile non-slender check: D/t ≤ 0.11×Est/Fy (Eq 11-29). Step 2 — elastic critical buckling resistance: flexural buckling Pe = π²×Est×Ag/(Kl/rs)² (Eq 11-30); torsional buckling (doubly symmetric open sections extending through air/water): Pe from Eq 11-31 to 11-33. Critical mode is the lesser Pe value. Step 3 — nominal compressive resistance: if Pe/P0 ≥ 0.44, Pn = P0×0.658^(P0/Pe) (Eq 11-34); if Pe/P0 < 0.44, Pn = 0.877×Pe (Eq 11-35). Factored compressive resistance: Pr = φc×Pn (Eq 11-25). Flexural resistance: Mr = φf×Mn (Eq 11-36). H-section step-by-step: (1) flange slenderness λf = bf/(2tf) (Eq 11-37); compact limit λpf = 0.38√(Est/Fyf) (Eq 11-38); noncompact limit λrf = 0.83√(Est/Fyf) (Eq 11-39); (2) if λf ≤ λpf, Mn = Mp = 1.5×Fy×Sy (Eq 11-41); if λpf < λf ≤ λrf, Mn from Eq 11-42. Pipe pile: if D/t ≤ 0.07×Est/Fy (Eq 11-43), Mn = Mp = Fy×Zy (Eq 11-44); if 0.07 < D/t ≤ 0.31×Est/Fy: Mn = (0.021Est/(D/t) + Fy)×Sy (Eq 11-45). Combined axial-bending (vertical piles): if Pu/Pr < 0.2: Pu/(2Pr) + (Mux/Mrx + Muy/Mry) ≤ 1.0 (Eq 11-47); if Pu/Pr ≥ 0.2: Pu/Pr + (8/9)(Mux/Mrx + Muy/Mry) ≤ 1.0 (Eq 11-48). Nonlinear H-pile: Mult = fy×Zx (Eq 11-49), with Pu = fy×A (Eq 11-50); axial load ≤ 20% Pu has negligible reduction on Mult. Pipe pile moment of inertia: Ip = π(do⁴-di⁴)/64 (Eq 11-51); Mult = fy×Zp (Eq 11-52); Zp = (do³-di³)/6 (Eq 11-53).",
+      "section_id": "11.3.5",
+      "title": "Minimum and Maximum Amount of Longitudinal Steel Reinforcement",
+      "summary": "Longitudinal steel As/Ag <= 0.08 (Eq. 11-6), not over 6 percent in Seismic Zones 2 to 4; typical 1 to 2 percent, over 4 percent difficult. In column portions As fy/(Ag f'c) >= 0.135 (Eq. 11-7) and at least 1 percent; 0.5 percent practical minimum below. At least 6 bars, No. 5 minimum; clear spacing 5 times aggregate or 5 in., 10 times for tremie.",
+      "body": "AASHTO Section 5.7.4.2 (2014) limits longitudinal reinforcement: the maximum area As is 8.0 percent of the gross area Ag (Eq. 11-6), and Sections 5.10.11.3 and 5.10.11.4.1 limit it to 6.0 percent for Seismic Zones 2, 3 and 4 (p. 149). Typical amounts are 1 to 2 percent, possibly over 3 percent in high seismic zones; above 4 percent is difficult (concrete flow through the cage to the outside faces) and should be avoided if possible (Brown et al. 2010). The minimum depends on steel and concrete strength: in portions acting as a column (above the depth of lateral support), Eq. 11-7, fy being the longitudinal bar yield strength, and not less than 1 percent of the gross concrete area; below, the moment demand typically governs, with 0.5 percent of the gross area suggested as a practical minimum. Bars should be evenly distributed, not fewer than 6 in a circle, minimum No. 5 (AASHTO 5.7.4.2). Per AASHTO 5.13.4.5.2 the clear distance between longitudinal bars shall be not less than 5 times the maximum aggregate size or 5.0 inches, whichever is greater; recent research indicates that for tremie concrete flow is assured only with clear spacing of at least 10 times the maximum aggregate size, bundling bars if necessary; for the dry method 5 times the aggregate size with a 5.0 inch minimum suffices. (pp. 148 to 149)",
       "key_points": [
-        "Steel axial compression: 3-step — yield resistance P0, buckling Pe (flexural or torsional), nominal Pn",
-        "Pn = P0×0.658^(P0/Pe) when Pe/P0 ≥ 0.44; Pn = 0.877×Pe when Pe/P0 < 0.44",
-        "H-pile flexure: compact section (λf ≤ λpf) → Mn = 1.5×Fy×Sy; noncompact → interpolated (Eq 11-42)",
-        "Pipe pile flexure: compact (D/t ≤ 0.07E/Fy) → Mn = Fy×Zy; local buckling governs at higher D/t",
-        "Combined axial-bending: biaxial interaction checks (Eq 11-47/11-48) — applies to vertical piles only",
-        "Torsional buckling check required for H-piles extending through air or water (open section, doubly symmetric)"
+        "Maximum As/Ag = 0.08 (Eq. 11-6); 6 percent in Seismic Zones 2 to 4 (pp. 148 to 149).",
+        "Typical 1 to 2 percent; avoid more than 4 percent (p. 149).",
+        "Column portions: As fy/(Ag f'c) >= 0.135 (Eq. 11-7) and at least 1 percent (p. 149).",
+        "0.5 percent practical minimum below the column portion (p. 149).",
+        "At least 6 bars, No. 5 minimum; clear spacing 10 times aggregate size for tremie concrete (p. 149)."
       ],
       "equations": [
-        {
-          "equation_id": "11-30",
-          "description": "Elastic critical buckling resistance for flexural buckling of steel pile",
-          "latex": "P_e = \\frac{\\pi^2 E_{st} A_g}{(Kl/r_s)^2}",
-          "variables": {
-            "P_e": "elastic critical buckling resistance (kips)",
-            "E_st": "elastic modulus of steel (ksi)",
-            "A_g": "gross cross-sectional area (in^2)",
-            "K": "effective length factor (from Table 11-1)",
-            "l": "unbraced length plus df (depth to fixity) (in)",
-            "r_s": "radius of gyration normal to buckling plane (in)"
-          },
-          "implemented_in": null
-        },
-        {
-          "equation_id": "11-34",
-          "description": "Nominal axial compressive resistance when elastic buckling governs (Pe/P0 ≥ 0.44)",
-          "latex": "P_n = P_0 \\cdot 0.658^{P_0/P_e}",
-          "variables": {
-            "P_n": "nominal compressive resistance (kips)",
-            "P_0": "equivalent nominal yield resistance = Q×Fy×Ag (kips)",
-            "P_e": "elastic critical buckling resistance (kips)"
-          },
-          "implemented_in": null
-        },
-        {
-          "equation_id": "11-35",
-          "description": "Nominal axial compressive resistance when slender behavior governs (Pe/P0 < 0.44)",
-          "latex": "P_n = 0.877 P_e",
-          "variables": {
-            "P_n": "nominal compressive resistance (kips)",
-            "P_e": "elastic critical buckling resistance (kips)"
-          },
-          "implemented_in": null
-        }
+        "Eq. 11-6: As / Ag <= 0.08; maximum longitudinal reinforcement (AASHTO 2014 Section 5.7.4.2), As = area of longitudinal reinforcing steel, Ag = gross cross-sectional area of the shaft (p. 148)",
+        "Eq. 11-7: (As fy) / (Ag f'c) >= 0.135; minimum longitudinal reinforcement in portions of the drilled shaft that behave as a column, fy = yield strength of the longitudinal bars (p. 149)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Structural design of reinforced concrete and prestressed concrete deep foundation elements under combined axial, bending, and shear"
+    },
+    {
+      "section_id": "11.3.6",
+      "title": "Minimum Amount of Transverse Steel Reinforcement",
+      "summary": "Transverse steel meets AASHTO 5.8 shear, 5.7.4.6 minimums and seismic confinement (Zone 3/4 rules also for Zone 2). From the top to 3 diameters below moment fixity, rho_s >= 0.45(Ag/Ac - 1) f'c/fyh (Eq. 11-8) and >= 0.12 f'c/fyh (Eq. 11-9). Pitch 4 in. (Zones 2 to 4) or 6 in. (Zone 1), then 9 or 12 in.; at least #3; clear spacing 5 in.",
+      "body": "Transverse reinforcement shall meet: shear design per AASHTO (2014) Article 5.8; minimum transverse reinforcement per Article 5.7.4.6, for all Seismic Zones; and minimum seismic confinement per Articles 5.10.11.4.1d, 5.10.11.4.1e and 5.13.4.6, the Zone 3 and 4 requirements also applying to Zone 2 (p. 150) per Article 5.10.11.3. For all seismic zones, from the top of the shaft to at least 3.0 diameters below the calculated depth of moment fixity, the minimum transverse reinforcement follows Eqs. 11-8 and 11-9. For Seismic Zones 2, 3 and 4 the maximum spiral pitch or seismic hoop spacing is 4.0 inches to at least 3.0 diameters below moment fixity and 9.0 inches below (AASHTO 5.13.4.6.2b); for Seismic Zone 1, 6.0 and 12.0 inches (AASHTO 5.13.4.5.2); spirals or hoops not smaller than #3 bars. Clear distance between transverse bars should be not less than five times the maximum aggregate size or 5.0 inches, whichever is greater (AASHTO 5.13.4.5.2); in seismic zones high steel ratios make this hard, and longitudinal bars should be bundled as needed to meet the 5-inch spacing. (pp. 149 to 150)",
+      "key_points": [
+        "Shear per AASHTO 5.8; minimum per 5.7.4.6; seismic confinement, Zone 3 and 4 rules also for Zone 2 (pp. 149 to 150).",
+        "Top to 3 diameters below moment fixity: Eqs. 11-8 and 11-9 (p. 150).",
+        "Maximum pitch 4.0 in. then 9.0 in. (Zones 2 to 4); 6.0 then 12.0 in. (Zone 1) (p. 150).",
+        "Spirals or hoops at least #3; clear spacing at least 5 in. or 5 times aggregate size (p. 150)."
+      ],
+      "equations": [
+        "Eq. 11-8: rho_s >= 0.45 (Ag/Ac - 1) f'c / fyh; minimum transverse reinforcement from the top of the shaft to at least 3.0 diameters below the depth of moment fixity, rho_s = ratio of spiral or seismic hoop reinforcement to total volume of concrete core, Ag = gross area of column section (in2), Ac = area of the concrete core measured to the outside diameter of the spiral (printed \"(in)\"), f'c = specified strength of concrete at 28 days (ksi), fyh = specified yield strength of spiral or hoop reinforcement (ksi) (p. 150)",
+        "Eq. 11-9: rho_s >= 0.12 f'c / fyh; minimum transverse reinforcement, same terms (p. 150)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Structural design of reinforced concrete and prestressed concrete deep foundation elements under combined axial, bending, and shear"
+    },
+    {
+      "section_id": "11.3.7",
+      "title": "Concrete Cover and Cage Centering Devices",
+      "summary": "Minimum cover to unprotected main steel (Table 11-3, from AASHTO Table 5.12.3-1): 2.0 in. noncorrosive and prestressed piles, 3.0 in. corrosive, cast-in-place shells 2.0 in., auger cast, tremie or slurry 3.0 in.; adjust by 1.2 for W/CM >= 0.50 and 0.8 for <= 0.40. Use centering devices on drilled cages.",
+      "body": "Recommended minimum concrete covers to unprotected main (longitudinal) reinforcement are in Table 11-3 (p. 151), from AASHTO (2014) Table 5.12.3-1: precast reinforced piles, noncorrosive environments 2.0 in., corrosive environments 3.0 in.; precast prestressed piles 2.0 in.; cast-in-place piles, noncorrosive environments 2.0 in.; corrosive environments, general 3.0 in., protected 3.0 in., shells 2.0 in., auger cast, tremie concrete or slurry construction 3.0 in. Cover for transverse reinforcement may be less than for longitudinal bars by no more than 0.5 inch, so transverse bars larger than 0.5 inch diameter need more cover than listed. The covers apply to water-to-cementitious ratios (W/CM) of 0.40 to 0.50; for W/CM >= 0.50 increase by a factor of 1.2, for W/CM <= 0.40 they may be decreased by 0.8, reflecting permeability, though low W/CM can impair flow through the cage. Centering devices, often plastic \"wheels\" on the transverse reinforcement oriented to roll along the borehole wall without scraping, must be used in drilled shafts and other drilled elements to keep cage alignment and cover. (pp. 150 to 151)",
+      "key_points": [
+        "Table 11-3 covers: 2.0 in. noncorrosive and prestressed; 3.0 in. corrosive (p. 151).",
+        "Auger cast, tremie or slurry construction: 3.0 in. (p. 151).",
+        "Factor 1.2 for W/CM >= 0.50; 0.8 allowed for W/CM <= 0.40 (p. 151).",
+        "Centering devices required on drilled element cages (p. 151)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 11-3: Minimum cover for unprotected main reinforcing steel (in)"
+      ],
+      "applicability": "Structural design of reinforced concrete and prestressed concrete deep foundation elements under combined axial, bending, and shear"
+    },
+    {
+      "section_id": "11.3.8",
+      "title": "Cases with Axial and Bending Moment (Linear Behavior)",
+      "summary": "Moment reduces axial resistance, shown by the interaction diagram (Figure 11-1): Po at A, balanced Mb, Pb at D, Mo at F; crushing strain 0.003. Factored diagram Pr = phi Pn, Mr = phi Mn (Eqs. 11-10, 11-11; Figure 11-2) with phi 0.9 tension-controlled (strain > 0.005), 0.75 compression-controlled, transition by Eq. 11-12 (Figure 11-3). Axial tension: phi 0.90.",
+      "body": "This follows the AASHTO LRFD (2014) design of concrete compression members for a circular section, adaptable to any section. A bending moment from any source decreases the axial resistance (Figure 11-1): the interaction diagram (Figure 11-1a) gives combinations of maximum axial load and moment at the Structural Limit State; points inside are sustainable, points on or outside define the limit state; programs generate diagrams for a section. The concepts apply equally to axial tension with bending. Figure 11-1b shows the circular section and parts (c) to (h) (p. 152) the strain distributions for points A to F. At A (axial load only, Po) a uniform strain ecu, the crushing strain (0.003), acts over the section; at B the top fiber reaches ecu and the bottom strain is reduced but may still be compressive; at C (p. 153) part of the section is in tension taken by steel, without yielding, failure still by crushing; at D, the balanced condition, ecu and the steel yield strain ey are reached together (Mb, Pb); between A and D the concrete crushes before the steel yields; along DF, with less axial load, the steel yields before crushing; at F (moment only, Mo) failure follows steel yielding. A set of diagrams is needed for each shaft section analyzed. The nominal diagram (solid lines, Figures 11-1, 11-2) should be obtained for all critical sections; the factored diagram (dashed, Figure 11-2, p. 154) bounds the factored force effects and is found by multiplying nominal axial and moment resistances by phi (Eqs. 11-10, 11-11). Phi depends on the strain at nominal strength: tension-controlled sections, extreme tensile steel strain greater than 0.005, phi 0.9; compression-controlled sections, net tensile strain et less than or equal to the compression controlled strain limit of 0.003 (as printed; AASHTO 5.7.2.1, C5.7.2.1), phi 0.75; between, linear interpolation (Figure 11-3) or Eq. 11-12. Axial tension with bending (p. 155) is analyzed the same way but is always tension-controlled, phi = 0.90. (pp. 151 to 155)",
+      "key_points": [
+        "Moment reduces axial resistance: interaction diagram (Figure 11-1) (p. 151).",
+        "Concrete crushing strain ecu = 0.003; balanced point Mb, Pb (pp. 152 to 153).",
+        "Factored diagram: Pr = phi Pn, Mr = phi Mn (Eqs. 11-10, 11-11; Figure 11-2) (p. 153).",
+        "phi 0.9 tension-controlled (strain > 0.005); 0.75 compression-controlled (p. 154).",
+        "Transition 0.75 <= phi = 0.65 + 0.15 (dt/c - 1) <= 0.9 (Eq. 11-12, Figure 11-3) (p. 154).",
+        "Axial tension with bending: always tension-controlled, phi = 0.90 (p. 155)."
+      ],
+      "equations": [
+        "Eq. 11-10: Pr = phi Pn; factored axial resistance, Pn = nominal axial resistance, phi = resistance factor (p. 153)",
+        "Eq. 11-11: Mr = phi Mn; factored moment resistance, Mn = nominal moment resistance (p. 153)",
+        "Eq. 11-12: 0.75 <= phi = 0.65 + 0.15 (dt/c - 1) <= 0.9; resistance factor for sections between compression-controlled and tension-controlled, c = distance from extreme compression fiber to the neutral axis (in), dt = distance from extreme compression fiber to the centroid of the extreme tensile element (in) (p. 154)"
+      ],
+      "figures": [
+        "Figure 11-1: Interaction diagram for a reinforced concrete column",
+        "Figure 11-2: Nominal and factored interaction diagrams",
+        "Figure 11-3: Variation of φ with net tensile strain, εt and dt/c for grade 60 reinforcement"
+      ],
+      "tables": [],
+      "applicability": "Structural design of reinforced concrete and prestressed concrete deep foundation elements under combined axial, bending, and shear"
+    },
+    {
+      "section_id": "11.3.9",
+      "title": "Axial Compression and Biaxial Bending for Non-Circular Members",
+      "summary": "Nominal axial resistance (AASHTO 5.7.4.4) with eccentricity reduction 0.85 for spirals (Eq. 11-13) and 0.80 for ties (Eq. 11-14). Biaxial flexure (AASHTO 5.7.4.5): if Pu >= 0.10 phi f'c Ag use the reciprocal load method (Eq. 11-15), otherwise Mux/Mrx + Muy/Mry <= 1.0 (Eq. 11-16). Prestressed sections use 3-D failure surfaces (Figure 11-4).",
+      "body": "For axial compression the factored Structural Limit State is as in Eqs. 11-10 and 11-11 (the print reads \"is taken. indicated\"). Nominal compressive resistance is computed for spiral or tie reinforcement, with reduction factors for unintended eccentricity (AASHTO 2014 commentary; Article 5.7.4.4): Eq. 11-13 for spirals and Eq. 11-14 (p. 156) for ties. Biaxial flexural resistance must satisfy (AASHTO 2014 Article 5.7.4.5): if Pu >= 0.10 phi f'c Ag, Eq. 11-15 with P0; if Pu < 0.10 phi f'c Ag, Eq. 11-16. The legends refer Mrx and Mry to \"AASHTO (2014) Section 8.5.2.3\" and phi_c to \"AASHTO (2014) Table 8-6\", and give units of in2 for Est, Ep and ecu (as printed). Analysis of a prestressed section under axial load and two orthogonal moments (p. 157) is complex: stress-strain relations are assumed, the maximum concrete strength taken as 0.85 f'c for loading time effects, all points of the curve reduced to 85 percent of short time values. Biaxial interaction diagrams (Figure 11-4, p. 158) are found for increasing axial loads up to axial failure, the maximum moment decreasing as axial load increases; stacked, they define a three-dimensional failure surface, fitted through the diagrams. A load level is checked by whether the force vector (axial, Mx, My) falls within the envelope, and the associated deformations give displacements. (pp. 155 to 158)",
+      "key_points": [
+        "Spirals: Pn = 0.85[...] (Eq. 11-13); ties: Pn = 0.80[...] (Eq. 11-14) (p. 155).",
+        "Biaxial, Pu >= 0.10 phi f'c Ag: 1/Prxy = 1/Prx + 1/Pry - 1/(phi P0) (Eq. 11-15) (p. 156).",
+        "Biaxial, Pu < 0.10 phi f'c Ag: Mux/Mrx + Muy/Mry <= 1.0 (Eq. 11-16) (p. 156).",
+        "Prestressed sections: 0.85 f'c and 3-D failure surfaces (Figure 11-4) (pp. 157 to 158)."
+      ],
+      "equations": [
+        "Eq. 11-13: Pn = 0.85 [0.85 f'c (Ag - Astr - Aps) + Fyr Astr - Aps (fpe - Est ecu)]; nominal compressive resistance for members with spiral reinforcement (kips), f'c = concrete compressive strength at 28 days (ksi), fpe = effective stress in the prestressing steel after losses (ksi), Fyr = yield stress of reinforcing steel (ksi), Ag = gross cross-sectional area (in2), Astr = area of longitudinal reinforcement (in2), Aps = area of prestressing steel (in2), Est = elastic modulus of prestressing steel (printed \"(in2)\"), ecu = failure strain of concrete in compression (in/in) (p. 155)",
+        "Eq. 11-14: Pn = 0.80 [0.85 f'c (Ag - Astr - Aps) + Fyr Astr - Aps (fpe - Est ecu)]; nominal compressive resistance for members with tie reinforcement (p. 155)",
+        "Eq. 11-15: 1/Prxy = 1/Prx + 1/Pry - 1/(phi P0) <= 1.0, in which P0 = 0.85 f'c (Ag - Astr - Aps) + Fyr Astr - Aps (fpe - Ep ecu); biaxial flexure check if Pu >= 0.10 phi f'c Ag, Prxy = factored axial resistance in biaxial flexure (kips), Prx = factored axial resistance with only eccentricity ey present (kips), Pry = factored axial resistance with only eccentricity ex present (kips), P0 = nominal axial resistance of a section at 0.0 eccentricity, Ep = elastic modulus of prestressing steel (p. 156)",
+        "Eq. 11-16: (Mux/Mrx + Muy/Mry) <= 1.0; biaxial flexure check if Pu < 0.10 phi f'c Ag, Pu = factored axial load, Mux, Muy = factored flexural moments about the x and y axes (kip-in), Mrx, Mry = factored flexural resistances about the x and y axes (kip-in) (p. 156)"
+      ],
+      "figures": [
+        "Figure 11-4: Moment interaction diagram"
+      ],
+      "tables": [],
+      "applicability": "Structural design of reinforced concrete and prestressed concrete deep foundation elements under combined axial, bending, and shear"
+    },
+    {
+      "section_id": "11.3.10",
+      "title": "Cases with Axial and Bending Moment (Non-Linear Behavior)",
+      "summary": "Cracking reduces EpIp; behavior depends on axial load and moment together. Program stress-strain curves (O'Neill and Reese 1999): concrete Figure 11-5, Eqs. 11-17 to 11-21 in MPa; steel Figure 11-6, ey = fy/E (Eq. 11-22). Equilibrium Eqs. 11-23, 11-24 (Figure 11-7) are solved iteratively for the neutral axis; EpIp = M/curvature.",
+      "body": "When moment produces tension on one side exceeding the concrete tensile strength, the section cracks and EpIp drops significantly there; a concentric compressive axial load adds uniform compression superimposed on the bending stresses, so behavior depends on both. Stress-strain curves used by some programs (O'Neill and Reese 1999) are in Figures 11-5 (concrete) and 11-6 (steel): concrete nearly linear at first, nonlinear to the peak (f'c), then a decreasing linear segment to the maximum strain. For Figure 11-5 (p. 159): Eqs. 11-17 to 11-21, with Ec, f'c, f\"c and fr in MPa (approximately 6.9 MPa = 1 ksi). For Figure 11-6: Eq. 11-22; most reinforcing steel in piles/shafts is Grade 420 (U.S. Grade 60), fy = 420 MPa (60 ksi). The relation of moment, axial load and EpIp (p. 160) assumes plane sections remain plane; under axial load Px and moment M the neutral axis shifts from the center of gravity, and equilibrium gives Eqs. 11-23 and 11-24 over horizontal bands of width b and thickness dy (Figure 11-7). EpIp may be taken as that of the gross section, but cracking reduces it significantly, and further as moment grows, which may matter if deflection controls. Program procedure (p. 161): select section dimensions and reinforcement; select the neutral axis and a strain gradient (curvature) Phi_e, constant in elastic or inelastic states, defining strain everywhere; compute stresses from the stress-strain relations; compute the resultant by Eq. 11-23 and move the neutral axis until it equals the applied Px; compute the moment by Eq. 11-24 about a convenient point; from beam theory EpIp = M/Phi_e, giving a unique Px, M, EpIp relation for the section, repeated for different Phi_e, giving EpIp for that axial load. (pp. 158 to 161)",
+      "key_points": [
+        "Cracking significantly reduces EpIp; axial load and moment act together (p. 158).",
+        "Concrete curve (Figure 11-5): Eqs. 11-17 to 11-21, units MPa (p. 159).",
+        "Steel (Figure 11-6): ey = fy/E, E = 200,000 MPa (29,000 ksi) (Eq. 11-22) (p. 159).",
+        "Px and M from integrating stress over the section (Eqs. 11-23, 11-24; Figure 11-7) (p. 160).",
+        "Iterate the neutral axis for each curvature; EpIp = M/Phi_e (p. 161)."
+      ],
+      "equations": [
+        "Eq. 11-17: f\"c = 0.85 f'c; peak stress of the concrete stress-strain curve (Figure 11-5) (MPa) (p. 159)",
+        "Eq. 11-18: Ec = 4,730 (f'c)^0.5; initial slope of the concrete stress-strain curve (MPa) (p. 159)",
+        "Eq. 11-19: fc = f\"c [2 (e/e0) - (e/e0)^2], for e < e0; concrete stress-strain curve (O'Neill and Reese 1999) (p. 159)",
+        "Eq. 11-20: e0 = 1.7 f'c / Ec; strain at peak stress (p. 159)",
+        "Eq. 11-21: fr = 0.62 (f'c)^0.5; concrete tensile (rupture) strength, MPa (p. 159)",
+        "Eq. 11-22: ey = fy / E, E = 200,000 MPa (or 29,000 ksi); steel yield strain (Figure 11-6), fy = steel yield strength (p. 159)",
+        "Eq. 11-23: Px = b integral from -h1 to h1 of sigma dy; axial load equilibrium of the section, sigma = normal stress in the section, b = band width (Figure 11-7) (p. 160)",
+        "Eq. 11-24: M = b integral from -h1 to h1 of sigma y dy; moment equilibrium, y = vertical coordinate from the center of gravity of the section (p. 160)"
+      ],
+      "figures": [
+        "Figure 11-5: Assumed stress-strain relation for concrete (from O’Neill and Reese 1999)",
+        "Figure 11-6: Assumed stress-strain curves for steel (from O’Neill and Reese 1999)",
+        "Figure 11-7: Bending in a circular section"
+      ],
+      "tables": [],
+      "applicability": "Structural design of reinforced concrete and prestressed concrete deep foundation elements under combined axial, bending, and shear"
+    },
+    {
+      "section_id": "11.3.11",
+      "title": "Pre-Stressed Concrete",
+      "summary": "Prestressed concrete piles replace longitudinal bars with prestressing strands in a spiral cage; precompression delays cracking, improving bending stiffness, protecting against driving tension and reducing service deflection, at some cost to compressive capacity. The designer must define the effective prestress after losses.",
+      "body": "Prestressed concrete piles are widely used where conditions suit driving. They resemble conventional reinforced piles except that prestressing steel, usually high-strength wire strands inside a spiral cage, replaces the longitudinal bars. Prestress creates an initial compression so the pile resists bending better, and prestressed piles can usually be lighter and longer than reinforced piles of the same size. Moment typically reduces compression rather than cracking the section, a significant improvement in bending stiffness; the precompression also protects against tension cracking during driving. Prestressing reduces the ability to resist compressive loads (the print reads \"ability of to resist\"), usually not critical for laterally loaded piles. Considerable moment can be applied before first cracking, so uncracked head deflection is substantially reduced and service performance improved. The designer must define the effective prestress after creep and other losses, which varies by manufacturer, region and pile geometry. (p. 162)",
+      "key_points": [
+        "Prestressing strands replace longitudinal bars (p. 162).",
+        "Precompression delays cracking: stiffer bending, less service deflection (p. 162).",
+        "Protects against driving tension; slightly reduces compressive capacity (p. 162).",
+        "Define effective prestress after losses (p. 162)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Structural design of reinforced concrete and prestressed concrete deep foundation elements under combined axial, bending, and shear"
+    },
+    {
+      "section_id": "11.4",
+      "title": "Procedures for Structural Steel Sections",
+      "summary": "Covers structural design of steel foundation elements: H-sections, pipe piles and fabricated steel sections.",
+      "body": "This section describes structural design considerations for foundation elements of structural steel: steel H-sections, steel pipe piles and fabricated steel sections. (p. 162)",
+      "key_points": [
+        "Covers steel H-sections, pipe piles and fabricated sections (p. 162)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Structural design of steel H-pile and pipe pile foundation elements under combined axial, bending, and shear loading"
+    },
+    {
+      "section_id": "11.4.1",
+      "title": "Material Properties - General",
+      "summary": "Unless otherwise noted, steel materials and properties follow the AASHTO LRFD Specifications (2014).",
+      "body": "Unless otherwise noted, materials and material properties should follow the AASHTO LRFD Specifications (2014); their structural considerations follow. (p. 162)",
+      "key_points": [
+        "Materials per the AASHTO LRFD Specifications (2014) (p. 162)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Structural design of steel H-pile and pipe pile foundation elements under combined axial, bending, and shear loading"
+    },
+    {
+      "section_id": "11.4.2",
+      "title": "Material Properties - Structural Steel",
+      "summary": "The modulus of elasticity of all grades of structural steel can be taken as 29,000 ksi; types, grades and uses are in AASHTO (2014) Section 6.",
+      "body": "The modulus of elasticity of all grades of structural steel can be taken as 29,000 ksi. Information on the type, grades and uses of structural steel is in Section 6 of AASHTO (2014). (p. 162)",
+      "key_points": [
+        "E = 29,000 ksi for all structural steel grades (p. 162).",
+        "Types and grades per AASHTO Section 6 (p. 162)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Structural design of steel H-pile and pipe pile foundation elements under combined axial, bending, and shear loading"
+    },
+    {
+      "section_id": "11.4.3",
+      "title": "Axial Compression",
+      "summary": "Pr = phi_c Pn (Eq. 11-25). Step 1: Po = Q Fy Ag (Eq. 11-26), local buckling limits Eq. 11-27 (H-piles, kc by Eq. 11-28) and Eq. 11-29 (unfilled pipes). Step 2: flexural buckling Pe (Eq. 11-30) and, above ground, torsional buckling of H-piles (Eqs. 11-31 to 11-33). Step 3: Pn by Eq. 11-34 if Pe/P0 >= 0.44, else 0.877 Pe (Eq. 11-35).",
+      "body": "For axial compression the factored Structural Limit State is Eq. 11-25 (p. 163). Pile strength and buckling are considered step by step. Step 1, equivalent nominal yield resistance Po, Eq. 11-26, a function of yield stress, area and slenderness reduction factor Q, 1.0 for non-slender piles; for slender piles local buckling limits the yield strength (Q per AASHTO 2014 Article 6.9.4.2.2). The local buckling limits are Eq. 11-27 for H-piles, with 0.35 <= kc <= 0.76 and kc from Eq. 11-28, and Eq. 11-29 (p. 164) for unfilled pipe piles. Step 2, elastic critical buckling resistance Pe: AASHTO (2014) requires flexural and torsional modes checked if applicable; fully embedded piles use flexural buckling, but doubly symmetric open sections (H-piles) through water or air must also be checked for torsional buckling, the lesser governing. Flexural buckling, Eq. 11-30; torsional buckling, Eq. 11-31 with Eqs. 11-32 and 11-33 (p. 165). Step 3, nominal axial resistance per AASHTO (2014) Article 6.9.4.1: if Pe/P0 >= 0.44, Eq. 11-34; if Pe/P0 < 0.44, Eq. 11-35. (pp. 162 to 165)",
+      "key_points": [
+        "Pr = phi_c Pn (Eq. 11-25) (p. 162).",
+        "Po = Q Fy Ag; Q = 1.0 for non-slender piles (Eq. 11-26) (p. 163).",
+        "Local buckling: bf/2tf <= 0.64 sqrt(kc Est/Fy) for H-piles; D/t <= 0.11 Est/Fy for pipes (pp. 163 to 164).",
+        "Flexural buckling Pe (Eq. 11-30); torsional buckling for H-piles through water or air (Eq. 11-31) (p. 164).",
+        "Pn by Eq. 11-34 if Pe/P0 >= 0.44; Pn = 0.877 Pe if Pe/P0 < 0.44 (Eq. 11-35) (p. 165)."
+      ],
+      "equations": [
+        "Eq. 11-25: Pr = phi_c Pn; factored compressive resistance of steel piles (kips), phi_c = resistance factor, Pn = nominal compressive resistance (kips) (p. 162)",
+        "Eq. 11-26: Po = Q Fy Ag; equivalent nominal axial yield resistance (kips), Q = slender element reduction factor, Fy = yield stress of steel, Ag = gross cross-sectional area (in2) (p. 163)",
+        "Eq. 11-27: bf / (2 tf) <= 0.64 sqrt(kc Est / Fy), and 0.35 <= kc <= 0.76; local buckling limit for H-piles, bf = flange width (in), tf = flange thickness (in), Fy = yield stress of steel (ksi), Est = elastic modulus of steel (ksi) (p. 163)",
+        "Eq. 11-28: kc = 4 / sqrt(dw / tw); dw = web depth (in), tw = web thickness (in) (p. 163)",
+        "Eq. 11-29: D / t <= 0.11 Est / Fy; local buckling limit for unfilled pipe piles, D = diameter of pipe (in), t = wall thickness (in) (p. 164)",
+        "Eq. 11-30: Pe = pi^2 Est Ag / (K l / rs)^2; elastic critical flexural buckling resistance (kips), K = effective length factor in the plane of buckling (Table 11-1), l = unbraced length in the plane of buckling, or laterally unsupported length plus df, the depth to fixity below the ground (in), rs = radius of gyration about the axis normal to the plane of buckling (in) (p. 164)",
+        "Eq. 11-31: Pe = [pi^2 Est Cw / (Kz Iz)^2 + G J] Ag / (Ix + Iy); elastic critical torsional buckling resistance (kips), Cw = warping torsional constant (in6), Kz = effective length factor for torsional buckling, Iz = unbraced length for torsional buckling (in), G = shear modulus (ksi), J = St. Venant torsional constant (in4), Ix, Iy = moments of inertia about the major and minor principal axes (in4) (p. 164)",
+        "Eq. 11-32: Cw = Iy h^2 / 4; warping torsional constant of doubly symmetric open sections, h = distance between flange centroids (printed \"between flange and centroids\") (in) (p. 165)",
+        "Eq. 11-33: G = 0.385 Es; shear modulus of steel (p. 165)",
+        "Eq. 11-34: Pn = P0 0.658 (P0 / Pe), the fraction P0/Pe printed on the line after 0.658 (as printed); nominal compressive resistance if Pe/P0 >= 0.44 (AASHTO 2014 Article 6.9.4.1), P0 = equivalent nominal yield resistance (Eq. 11-26), Pe = elastic critical buckling resistance (Eq. 11-30 or 11-31) (p. 165)",
+        "Eq. 11-35: Pn = 0.877 Pe; nominal compressive resistance if Pe/P0 < 0.44 (p. 165)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Structural design of steel H-pile and pipe pile foundation elements under combined axial, bending, and shear loading"
+    },
+    {
+      "section_id": "11.4.4",
+      "title": "Flexure",
+      "summary": "For flexure Mr = phi_f Mn (Eq. 11-36). Steel piles are mainly H-piles or pipes; H-piles and I-sections are treated alike (11.4.5.1); other sections see AASHTO (2014) Article 6.12.2.2.",
+      "body": "For flexure the factored Structural Limit State is Eq. 11-36 (p. 166). Nominal flexural resistance depends on pile shape and properties; steel piles are primarily H-piles or pipe piles, so the procedure covers only those, other sections being referred to AASHTO (2014) Article 6.12.2.2. Steel H-piles and I-sections are treated equally, so the H-section procedure (\"part A\") applies to both. (pp. 165 to 166)",
+      "key_points": [
+        "Mr = phi_f Mn (Eq. 11-36) (p. 166).",
+        "Procedures for H-piles (and I-sections) and pipe piles; others per AASHTO 6.12.2.2 (p. 166)."
+      ],
+      "equations": [
+        "Eq. 11-36: Mr = phi_f Mn; factored flexural resistance (kip-in), phi_f = resistance factor, Mn = nominal flexural resistance (kip-in) (p. 166)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Structural design of steel H-pile and pipe pile foundation elements under combined axial, bending, and shear loading"
+    },
+    {
+      "section_id": "11.4.5",
+      "title": "Step-by-Step Procedure for: “Nominal Flexural Resistance” for Linear Behavior",
+      "summary": "Heading for the step-by-step procedure for nominal flexural resistance with linear behavior: steel H-sections (11.4.5.1) and steel pipe piles (11.4.5.2).",
+      "body": "Heading for the step-by-step procedure for nominal flexural resistance with linear behavior: steel H-sections (11.4.5.1) and steel pipe piles (11.4.5.2); it has no text of its own. (p. 166)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Structural design of steel H-pile and pipe pile foundation elements under combined axial, bending, and shear loading"
+    },
+    {
+      "section_id": "11.4.5.1",
+      "title": "Steel H-Section",
+      "summary": "H-section weak axis flexure: flange slenderness lambda_f = bf/2tf (Eq. 11-37) against 0.38 sqrt(Est/Fyf) (Eq. 11-38) and 0.83 sqrt(Est/Fyf) (Eq. 11-39). If compact, Mn = Mp = 1.5 Fy Sy (Eqs. 11-40, 11-41); if noncompact, Mn by Eq. 11-42.",
+      "body": "Step 1, flange slenderness ratio and limits: Eqs. 11-37 to 11-39. Step 2, nominal flexural resistance: if the limiting ratio for a compact flange exceeds the slenderness ratio, the weak axis plastic moment governs; otherwise the noncompact expression applies (the print names Equations 11-37 and 11-39 for these two cases). If lambda_f <= lambda_pf (p. 167), Eq. 11-40 with Mp for HP-sections about the weak axis from Eq. 11-41; if lambda_pf < lambda_f <= lambda_rf, the weak axis nominal resistance is Eq. 11-42. (pp. 166 to 167)",
+      "key_points": [
+        "lambda_f = bf/(2 tf) (Eq. 11-37); lambda_pf = 0.38 sqrt(Est/Fyf); lambda_rf = 0.83 sqrt(Est/Fyf) (p. 166).",
+        "Compact flange: Mn = Mp = 1.5 Fy Sy about the weak axis (Eqs. 11-40, 11-41) (p. 167).",
+        "Noncompact flange: Mn by Eq. 11-42 (p. 167)."
+      ],
+      "equations": [
+        "Eq. 11-37: lambda_f = bf / (2 tf); slenderness ratio for flange, bf = flange width (in), tf = flange thickness (in) (p. 166)",
+        "Eq. 11-38: lambda_pf = 0.38 sqrt(Est / Fyf); limiting slenderness ratio for a compact flange, Est = elastic modulus of steel (ksi), Fyf = minimum yield strength of lower strength flange (ksi) (p. 166)",
+        "Eq. 11-39: lambda_rf = 0.83 sqrt(Est / Fyf); limiting slenderness ratio for a non-compact flange (p. 166)",
+        "Eq. 11-40: Mn = Mp; nominal flexural resistance if lambda_f <= lambda_pf, Mp = plastic moment about the weak axis (kip-in) (p. 167)",
+        "Eq. 11-41: Mp = 1.5 Fy Sy; plastic moment for HP-sections about the weak axis, Fy = yield stress of steel (ksi), Sy = elastic section modulus about weak axis (in3) (p. 167)",
+        "Eq. 11-42: Mn = [1 - (1 - Sy/Zy) ((lambda_f - lambda_pf) / (0.45 sqrt(Est/Fyf)))] fyf Zy; nominal flexural resistance about the weak axis if lambda_pf < lambda_f <= lambda_rf, Zy = plastic section modulus about weak axis (in3) (p. 167)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Structural design of steel H-pile and pipe pile foundation elements under combined axial, bending, and shear loading"
+    },
+    {
+      "section_id": "11.4.5.2",
+      "title": "Steel Pipe Piles",
+      "summary": "Pipe piles: if D/t <= 0.07 Est/Fy (Eq. 11-43) the plastic moment governs, Mn = Mp = Fy Zy (Eq. 11-44); otherwise local buckling: if D/t <= 0.31 Est/Fy, Mn = (0.021 Est/(D/t) + Fy) Sy (Eq. 11-45), with fcr = 0.33 Est/(D/t) (Eq. 11-46).",
+      "body": "Step 1, diameter to thickness ratio: if it is large, local buckling limits flexural resistance; if Eq. 11-43 is satisfied the plastic moment governs (Step 2a), otherwise local buckling (Step 2b). Step 2a (p. 168): Eq. 11-44. Step 2b: where local buckling limits resistance, if D/t <= 0.31 Est/Fy, Eq. 11-45, in which the elastic local buckling stress is Eq. 11-46. (pp. 167 to 168)",
+      "key_points": [
+        "Plastic moment governs if D/t <= 0.07 Est/Fy (Eq. 11-43) (p. 167).",
+        "Mn = Mp = Fy Zy (Eq. 11-44) (p. 168).",
+        "Local buckling, D/t <= 0.31 Est/Fy: Mn = (0.021 Est/(D/t) + Fy) Sy (Eq. 11-45) (p. 168).",
+        "fcr = 0.33 Est/(D/t) (Eq. 11-46) (p. 168)."
+      ],
+      "equations": [
+        "Eq. 11-43: D / t <= 0.07 Est / Fy; check whether the plastic moment governs pipe pile flexure, D = outside diameter of pipe (in), t = pipe thickness (in), Est = elastic modulus of steel (ksi), Fy = yield strength of steel (ksi) (p. 167)",
+        "Eq. 11-44: Mn = Mp = Fy Zy; nominal flexural resistance by plastic moment (kip-in), Zy = plastic section modulus about weak axis (in3) (p. 168)",
+        "Eq. 11-45: Mn = (0.021 Est / (D/t) + Fy) Sy; nominal flexural resistance limited by local buckling if D/t <= 0.31 Est/Fy, Sy = elastic section modulus about weak axis (in3) (p. 168)",
+        "Eq. 11-46: fcr = 0.33 Est / (D/t); elastic local buckling stress (ksi) (p. 168)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Structural design of steel H-pile and pipe pile foundation elements under combined axial, bending, and shear loading"
+    },
+    {
+      "section_id": "11.4.6",
+      "title": "Combined Flexure and Axial Compression",
+      "summary": "Combined checks apply only to vertical pile groups (AASHTO has no battered pile recommendation): if Pu/Pr < 0.2, Pu/(2.0 Pr) + (Mux/Mrx + Muy/Mry) <= 1.0 (Eq. 11-47); Eq. 11-48, Pu/Pr + (8.0/9.0)(Mux/Mrx + Muy/Mry) <= 1.0, is printed without its condition.",
+      "body": "Combined axial and flexure checks apply only to groups of vertical piles; AASHTO (2014) has no recommendation for battered piles. For combined flexure and compression of vertical piles AASHTO (2014) requires: if Pu/Pr < 0.2, Eq. 11-47; and Eq. 11-48, which the print gives directly after Eq. 11-47 without stating its own condition. Moments in these checks are in kip-ft. (p. 169)",
+      "key_points": [
+        "Applies only to vertical piles; no AASHTO recommendation for battered piles (p. 169).",
+        "Pu/Pr < 0.2: Pu/(2.0 Pr) + (Mux/Mrx + Muy/Mry) <= 1.0 (Eq. 11-47) (p. 169).",
+        "Eq. 11-48: Pu/Pr + (8.0/9.0)(Mux/Mrx + Muy/Mry) <= 1.0, printed without a condition (p. 169)."
+      ],
+      "equations": [
+        "Eq. 11-47: Pu / (2.0 Pr) + (Mux/Mrx + Muy/Mry) <= 1.0; combined flexure and axial compression of vertical steel piles if Pu/Pr < 0.2, Pu = factored axial compressive load (kips), Pr = factored compressive resistance (kips), Mux, Muy = factored moments about the x and y axes (kip-ft), Mrx, Mry = factored flexural resistances about the x and y axes (kip-ft) (p. 169)",
+        "Eq. 11-48: Pu / Pr + (8.0/9.0)(Mux/Mrx + Muy/Mry) <= 1.0; combined flexure and axial compression, printed without its condition (p. 169)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Structural design of steel H-pile and pipe pile foundation elements under combined axial, bending, and shear loading"
+    },
+    {
+      "section_id": "11.4.7",
+      "title": "Cases with Axial and Bending Moment (Non-Linear Behavior)",
+      "summary": "The H-section plastic moment Mult = fy Zx (Eq. 11-49; Figure 11-8). Axial load reduces it (Figure 11-9, Horne 1971; Pu = fy A, Eq. 11-50), only slightly when below about 20 percent of Pu, so a constant elastic bending stiffness and yield moment can be used for all normal loads.",
+      "body": "Steel design references tabulate the plastic modulus Zx for the plastic or yield moment Mult from the stress distribution of Figure 11-8 for an H-section, Eq. 11-49, fy being the yield strength and Zx the plastic modulus about the x-axis. Figure 11-9 (Horne 1971) (p. 170) shows the reduction of the ultimate moment with axial load: horizontal axis the axial load normalized by the concentric axial capacity Pu (Eq. 11-50, A = pile area), vertical axis the normalized yield moment. The relationship becomes slightly nonlinear for normalized yield moments above about 90 percent, so the reduction relative to a linear relationship is small when the axial load is about 20 percent of Pu or less. A constant elastic bending stiffness, and yield moment, can therefore be used for all normal loads without significant error (p. 171); the equations may be modified for nonlinearity, but reduced steel modulus affects the computed yield moment only slightly. (pp. 169 to 171)",
+      "key_points": [
+        "Mult = fy Zx for H-sections (Eq. 11-49; Figure 11-8) (p. 169).",
+        "Axial load reduces the plastic moment (Figure 11-9, Horne 1971); Pu = fy A (Eq. 11-50) (p. 170).",
+        "Reduction small at axial load about 20 percent of Pu or less (p. 170).",
+        "Constant elastic stiffness acceptable for all normal loads (p. 171)."
+      ],
+      "equations": [
+        "Eq. 11-49: Mult = fy Zx; plastic or yield moment of a steel H-section, fy = steel yield strength, Zx = plastic modulus for bending about the x-axis (p. 169)",
+        "Eq. 11-50: Pu = fy A; concentric compressive axial load capacity, A = cross-sectional area of pile (p. 170)"
       ],
       "figures": [
         "Figure 11-8: Sketch for computing plastic moment of steel H-section",
-        "Figure 11-9: Effect of axial loading on plastic moment in steel H-section (Horne 1971)",
-        "Figure 11-10: Effect of axial loading on plastic moment in steel pipe piles (Horne 1971)"
+        "Figure 11-9: Effect of axial loading on plastic moment in steel H-section"
+      ],
+      "tables": [],
+      "applicability": "Structural design of steel H-pile and pipe pile foundation elements under combined axial, bending, and shear loading"
+    },
+    {
+      "section_id": "11.4.8",
+      "title": "Steel Pipe Section",
+      "summary": "Pipe sections can also use elastic bending stiffness: Ip = pi(d0^4 - di^4)/64 (Eq. 11-51), Mult = fy Zp (Eq. 11-52), Zp = (d0^3 - di^3)/6 (Eq. 11-53). Axial load effect in Figure 11-10 (Horne 1971) for fy 235 MPa (34 ksi) and D/t 12 to 48.",
+      "body": "For steel pipe sections the elastic bending stiffness can also be used without much error, with the moment of inertia from Eq. 11-51, d0 and di being the outer and inner diameters. With the stress distribution as in Figure 11-8, the ultimate moment is Eq. 11-52 with Zp from Eq. 11-53. The influence of axial load on the yield moment is in Figure 11-10 (Horne 1971) for fy = 235 MPa (34 ksi; the figure note reads 234 MPa) and diameter to wall thickness ratios of 12 to 48, denoted b and t in the figure (p. 172). As for H-sections, the relation becomes nonlinear for smaller axial loads, reducing plastic moment capacity relative to a linear relationship. (pp. 171 to 172)",
+      "key_points": [
+        "Ip = pi (d0^4 - di^4)/64 (Eq. 11-51) (p. 171).",
+        "Mult = fy Zp; Zp = (d0^3 - di^3)/6 (Eqs. 11-52, 11-53) (p. 171).",
+        "Axial load effect: Figure 11-10 (Horne 1971), fy 235 MPa, D/t 12 to 48 (pp. 171 to 172)."
+      ],
+      "equations": [
+        "Eq. 11-51: Ip = pi (d0^4 - di^4) / 64; moment of inertia of a pipe section, d0, di = outer and inner diameters (p. 171)",
+        "Eq. 11-52: Mult = fy Zp; ultimate bending moment of a pipe section (p. 171)",
+        "Eq. 11-53: Zp = (1/6) (d0^3 - di^3); plastic modulus of a pipe section (p. 171)"
+      ],
+      "figures": [
+        "Figure 11-10: Effect of axial loading on plastic moment in steel pipe piles"
       ],
       "tables": [],
       "applicability": "Structural design of steel H-pile and pipe pile foundation elements under combined axial, bending, and shear loading"
     },
     {
       "section_id": "11.5",
-      "title": "Structural Design of Composite Section Foundation Elements",
-      "summary": "Composite sections (concrete-filled steel pipe piles) require: steel area ≥ 4% of total cross-section; f'c = 3.0–8.0 ksi; longitudinal reinforcement fy ≤ 60 ksi. Axial compression uses modified effective yield and elastic moduli (Fe, Ee) combining steel, reinforcement, and concrete contributions with constants C1=1.00, C2=0.85, C3=0.40 for concrete-filled pipes (Eq 11-55 to 11-57). Nominal compressive resistance: Pn = 0.66^λ×Fe×Ast for λ ≤ 2.25 (Eq 11-60), or Pn = 0.88×Fe×Ast/λ for λ > 2.25 (Eq 11-61). Fully embedded piles may use λ = 0.",
-      "body": "Composite sections are defined as concrete-filled steel pipe piles. Criteria for use of AASHTO composite design provisions: (1) steel cross-sectional area ≥ 4% of total cross-section (otherwise treat as non-composite reinforced concrete per Section 11.3); (2) concrete f'c = 3.0–8.0 ksi; (3) longitudinal reinforcement fy ≤ 60 ksi. Factored compressive resistance: Pr = φ×Pn (Eq 11-54). Normalized column slenderness factor λ = ((Kl)/(π×rs))²×Fe/Ee (Eq 11-55); fully embedded piles may take λ = 0. Modified effective strength: Fe = Fy + C1×Fyr×(Astr/Ast) + C2×f'c×(Ac/Ast) (Eq 11-56); modified elastic modulus: Ee = Est×[1 + (C3/n)×(Ac/Ast)] (Eq 11-57), where n = Est/Ec. For concrete-filled pipes: C1 = 1.00, C2 = 0.85, C3 = 0.40. Nominal compressive resistance: if λ ≤ 2.25, Pn = 0.66^λ×Fe×Ast (Eq 11-60); if λ > 2.25, Pn = 0.88×Fe×Ast/λ (Eq 11-61).",
+      "title": "Procedures for Structural Composite Sections",
+      "summary": "Composite piles here are concrete filled steel pipe piles; AASHTO (2014) gives no guidance for other composite types, which are evaluated by their primary section material.",
+      "body": "Composite piles for structural applications are defined as concrete filled steel pipe piles. AASHTO (2014) gives no guidance for other composite types, so their structural resistance along the length should be evaluated by the primary section material. (p. 172)",
       "key_points": [
-        "Composite section requires steel area ≥ 4% of total area; f'c = 3.0–8.0 ksi; rebar fy ≤ 60 ksi",
-        "Modified effective strength Fe combines Fy, Fyr, and f'c with constants C1=1.00, C2=0.85, C3=0.40",
-        "Pn = 0.66^λ×Fe×Ast for λ ≤ 2.25; Pn = 0.88×Fe×Ast/λ for λ > 2.25",
-        "Fully embedded piles: λ = 0 (no buckling concern in fully embedded condition)"
+        "Composite = concrete filled steel pipe piles (p. 172).",
+        "Other composite types: evaluate by the primary section material (p. 172)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Structural design of concrete-filled steel pipe pile composite deep foundation elements under axial loading"
+    },
+    {
+      "section_id": "11.5.1",
+      "title": "Structural Resistance",
+      "summary": "Heading for the structural resistance of composite sections: axial compression (11.5.1.1).",
+      "body": "Heading for the structural resistance of composite sections: axial compression (11.5.1.1); it has no text of its own. (p. 172)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Structural design of concrete-filled steel pipe pile composite deep foundation elements under axial loading"
+    },
+    {
+      "section_id": "11.5.1.1",
+      "title": "Axial Compression",
+      "summary": "AASHTO composite methods apply if steel is at least 4 percent of the total area (else treat as reinforced concrete, 11.3), f'c is 3.0 to 8.0 ksi and reinforcement yield does not exceed 60.0 ksi. Pr = phi Pn (Eq. 11-54).",
+      "body": "Composite sections behave differently from non-composite members, and AASHTO (2014) gives methods for their Strength Limit State provided: (1) the steel area is at least 4 percent of the total area, otherwise the pile is non-composite and evaluated as reinforced concrete (11.3); (2) concrete compressive strength is between 3.0 ksi and 8.0 ksi, the lower limit encouraging good quality concrete (AASHTO commentary); (3) the yield strength of longitudinal reinforcement used for compressive resistance does not exceed 60.0 ksi. For axial compression of concrete filled steel pipes the factored Structural Limit State is Eq. 11-54 (p. 173). (pp. 172 to 173)",
+      "key_points": [
+        "Steel area at least 4 percent of total, else design as reinforced concrete (p. 172).",
+        "f'c between 3.0 and 8.0 ksi; reinforcement fy not over 60.0 ksi (p. 172).",
+        "Pr = phi Pn (Eq. 11-54) (p. 173)."
       ],
       "equations": [
-        {
-          "equation_id": "11-55",
-          "description": "Normalized column slenderness factor for composite concrete-filled steel pipe pile",
-          "latex": "\\lambda = \\left(\\frac{Kl}{\\pi r_s}\\right)^2 \\frac{F_e}{E_e}",
-          "variables": {
-            "lambda": "normalized column slenderness factor (= 0 for fully embedded piles)",
-            "K": "effective length factor",
-            "l": "unbraced length (in)",
-            "r_s": "radius of gyration about buckling axis (in)",
-            "F_e": "modified effective strength from Eq 11-56 (ksi)",
-            "E_e": "modified elastic modulus from Eq 11-57 (ksi)"
-          },
-          "implemented_in": null
-        }
+        "Eq. 11-54: Pr = phi Pn; factored compressive resistance of concrete filled steel pipes (kips), phi = resistance factor, Pn = nominal compressive resistance (kips) (p. 173)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Structural design of concrete-filled steel pipe pile composite deep foundation elements under axial loading"
+    },
+    {
+      "section_id": "11.5.2",
+      "title": "Step-by-Step Procedure for: “Nominal Flexural Resistance”",
+      "summary": "Step 1: slenderness lambda = (K l/(pi rs))^2 Fe/Ee (Eq. 11-55; 0 if fully embedded), Fe by Eq. 11-56, Ee by Eq. 11-57, n = Est/Ec (Eq. 11-59; no Eq. 11-58 is printed); C1 1.00, C2 0.85, C3 0.40 for filled pipes. Step 2: Pn = 0.66^lambda Fe Ast if lambda <= 2.25 (Eq. 11-60), else 0.88 Fe Ast/lambda (Eq. 11-61).",
+      "body": "Step 1, normalized column slenderness factor (printed \"lambda lambda\"), Eq. 11-55, which may be taken as 0 if the pile is fully embedded (AASHTO 2014), with Fe from Eq. 11-56, Ee from Eq. 11-57 and n from Eq. 11-59 (the print numbers no Equation 11-58). Composite column constants (p. 174): C1 = 1.00, C2 = 0.85 and C3 = 0.40 for concrete filled pipes; the legend lists \"Et = Elastic modulus of steel\". Step 2, nominal axial compressive resistance: Eq. 11-60 if lambda <= 2.25, Eq. 11-61 if lambda > 2.25. (pp. 173 to 174)",
+      "key_points": [
+        "lambda = (K l/(pi rs))^2 Fe/Ee (Eq. 11-55); 0 if fully embedded (p. 173).",
+        "Fe = Fy + C1 Fyr (Astr/Ast) + C2 f'c (Ac/Ast) (Eq. 11-56) (p. 173).",
+        "Ee = Est [1 + (C3/n)(Ac/Ast)], n = Est/Ec (Eqs. 11-57, 11-59) (p. 173).",
+        "C1 = 1.00, C2 = 0.85, C3 = 0.40 for concrete filled pipes (p. 174).",
+        "Pn = 0.66^lambda Fe Ast (lambda <= 2.25) or 0.88 Fe Ast/lambda (Eqs. 11-60, 11-61) (p. 174)."
+      ],
+      "equations": [
+        "Eq. 11-55: lambda = (K l / (pi rs))^2 Fe / Ee; normalized column slenderness factor, K = effective length factor, l = unbraced length in the plane of buckling (in), rs = radius of gyration about the axis normal to the plane of buckling (in) (p. 173)",
+        "Eq. 11-56: Fe = Fy + C1 Fyr (Astr / Ast) + C2 f'c (Ac / Ast); nominal compressive resistance of the composite section (ksi), Fy = yield stress of steel (ksi), Fyr = yield stress of reinforcing steel (ksi), Astr = area of longitudinal reinforcing steel (in2), Ast = area of steel (in2), Ac = area of concrete (in2), f'c = concrete compressive strength at 28 days (ksi), C1 = 1.00 and C2 = 0.85 for concrete filled pipes (p. 173)",
+        "Eq. 11-57: Ee = Est [1 + (C3 / n)(Ac / Ast)]; modified elastic modulus of steel for the composite column (ksi), C3 = 0.40 for concrete filled pipes (p. 173)",
+        "Eq. 11-59: n = Est / Ec; modular ratio, Est = elastic modulus of steel (ksi), Ec = elastic modulus of concrete (ksi) (p. 173)",
+        "Eq. 11-60: Pn = 0.66^lambda Fe Ast; nominal compressive resistance (kips) if lambda <= 2.25 (p. 174)",
+        "Eq. 11-61: Pn = 0.88 Fe Ast / lambda; nominal compressive resistance (kips) if lambda > 2.25 (p. 174)"
       ],
       "figures": [],
       "tables": [],

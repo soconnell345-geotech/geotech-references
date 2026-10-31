@@ -6,16 +6,129 @@
   "sections": [
     {
       "section_id": "12.1",
-      "title": "Planning",
-      "summary": "Lateral load test planning encompasses purpose (design-phase tests develop site-specific p-y curves; construction-verification tests check assumptions after production begins), site selection (test site must represent production site geology and groundwater), test element design (replicate production diameter, materials, reinforcing, and installation method), and coordination with axial tests. Design-phase tests on sacrificial piles/shafts yield the most value but require early mobilization. Construction-verification tests are less expensive yet provide limited design benefit. Rock sockets require full-depth core borings at the test location prior to installation.",
-      "body": "Planning for a lateral load test program must establish the purpose of the test: (1) design tests performed during the design phase to develop site-specific p-y curves, calibrate analytical models, and reduce uncertainty in key design parameters; or (2) construction verification tests performed during construction to verify that the design assumptions for lateral resistance are met. Design-phase tests are typically performed on sacrificial test piles or shafts that are not incorporated into the permanent structure. They provide the greatest benefit for design but require early mobilization and may not be representative if production pile/shaft installation uses different means and methods. Construction verification tests come too late to inform design but are less expensive to execute since test elements may be incorporated into the structure.\n\nSubsurface characterization at the test site must be sufficient to characterize soil, rock, and groundwater conditions to the depth of the test element. The test site should be selected to be representative of the critical production foundation locations and to avoid site-specific anomalies that would limit applicability of the test results.\n\nFor test sites in rock, full-depth rock core borings must be completed at the test location prior to installation of the test element so that the actual rock depth and quality are known. The test element design should replicate the production foundation in diameter, material properties, and reinforcing layout. Installation methods for the test element must match those planned for production (same drilling method, slurry use, casing type, concrete mix, reinforcing cage tolerances). If lateral and axial load tests are planned at the same site, coordination of test setup, instrumentation, and scheduling is required to avoid interference.",
+      "title": "Consideration for Planning Lateral Load Tests",
+      "summary": "Lateral load tests give site-specific p-y curves, reduce design uncertainty and may lower cost. They serve design development, construction proof testing, and research. The chapter covers static tests of single full scale elements for the p-y method; group tests are rarely justified; Appendix D gives a guide specification.",
+      "body": "Deep foundation behavior under lateral load is often hard to predict accurately, especially with limited published material models that may not correlate well with local geologic materials. Lateral load tests give site-specific information to develop site-specific p-y curves, develop or verify a project design, and/or serve future designs in the same geologic formations; they reduce uncertainty and risk and may give more efficient (lower cost) foundations, and documenting and publishing the results benefits other practitioners and researchers. Lateral load tests fulfil three functions: (1) developing site specific parameters/p-y curves and investigating performance for the foundation design; (2) verifying the adequacy of the design during construction by proof testing; (3) research and documentation to further the state of practice. The chapter focuses on static lateral load testing of single full scale foundation elements for use by the designer: planning and execution, testing and monitoring, data reduction, and analysis and derivation of p-y curves for design. The p-y method is used for detailed analyses; simplified methods (i.e., Broms method) would not require full scale testing, and methods of similar or greater complexity (strain wedge method or numerical modeling) would be used in addition to the p-y method. Much of the discussion, especially test set-up and instrumentation, is based on individual driven piles and drilled shafts, but the principles apply to other deep foundations. Testing of pile groups under lateral load is rarely done, the significant costs not typically justified even on major projects, so it is not addressed in detail. A guide specification for lateral load testing of a single deep foundation element is in Appendix D. (p. 175)",
       "key_points": [
-        "Two test purposes: (1) design-phase tests to develop p-y parameters; (2) construction-verification tests to confirm design assumptions",
-        "Design-phase tests on sacrificial elements yield the greatest design value but require early mobilization",
-        "Construction verification tests come too late to improve design but cost less (test elements often incorporated into structure)",
-        "Test site subsurface conditions must represent the critical production foundation locations",
-        "Rock socket test sites require full-depth core borings before installation to know actual rock depth and quality",
-        "Test element design and installation method must replicate the production foundation exactly"
+        "Lateral load tests give site-specific p-y curves and reduce design uncertainty (p. 175).",
+        "Three functions: design development, construction proof testing, research (p. 175).",
+        "Focus: static tests of single full scale elements for the p-y method (p. 175).",
+        "Group lateral load tests rarely justified; not addressed in detail (p. 175).",
+        "Guide specification for single-element lateral load tests in Appendix D (p. 175)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Planning lateral load test programs for design-phase and construction-verification purposes"
+    },
+    {
+      "section_id": "12.1.1",
+      "title": "Lateral Load Tests for Design",
+      "summary": "A design-phase test measures load-deflection for the planned construction and site conditions; preliminary p-y analyses are needed to plan it. Tests can confirm deflection, minimum depth and maximum moment, and site-specific p-y curves may show higher capacity than standardized models. Weigh engineering, test, sacrificial element, reaction and exploration costs against potential savings.",
+      "body": "A lateral load test measures the load-deflection performance of a deep foundation element (pile or drilled shaft) for the anticipated construction means and methods and the site's ground and groundwater conditions. For tests during design, preliminary analyses with available data, including p-y curves, are needed to develop the program; planning needs subsurface conditions, element type, depth, planned test loads and loading intervals, performance criteria and expected performance. Where lateral loads govern, tests can investigate and confirm key issues or inputs such as deflection versus load, required minimum depth, and depth and magnitude of maximum bending moment for reinforcement design (p. 176). Site-specific p-y curves from the test may show higher lateral capacities than the \"standardized\" p-y models in published references or software, and different p-y curves may be developed for Service and Strength Limit State cases (different limiting deflections), refining the design. The decision to test should consider: engineering time and cost to plan and design the program, prepare contract documents, monitor the test(s) and reduce and evaluate results; cost of the program (mobilization, materials, instrumentation, test frame and set-up); cost of sacrificial elements (lateral tests are typically not on production piles or shafts, which are likely to be loaded beyond the service limit deflections and possibly beyond those defining the strength limit); cost of the reaction system, including reaction piles or shafts; costs of supervising and conducting the tests, instrumentation installation and monitoring, and the report; costs of supplemental subsurface exploration and in-situ testing at the test site to correlate with the derived p-y curves; and potential savings if the tests give stiffer p-y relationships than standardized ones (requiring assumptions about a reasonable increase in soil stiffness and analyses of the resulting savings in foundation arrangement and cost). (pp. 175 to 176)",
+      "key_points": [
+        "Measures load-deflection for the planned construction and site conditions (p. 175).",
+        "Preliminary analyses with available p-y curves are needed to plan the test (p. 175).",
+        "Confirms deflection, minimum depth and maximum moment depth and magnitude (p. 176).",
+        "Site-specific p-y curves may exceed standardized models; separate service and strength curves possible (p. 176).",
+        "Weigh program, sacrificial element, reaction and exploration costs against potential savings (p. 176)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Planning lateral load test programs for design-phase and construction-verification purposes"
+    },
+    {
+      "section_id": "12.1.2",
+      "title": "Lateral Load Tests in Construction to Verify the Design",
+      "summary": "Construction-phase tests verify the design and reduce risk where design parameters are uncertain, and are simpler to procure. If poor performance is a significant risk, require results before ordering production material and equipment; a design for less favorable rather than average conditions further reduces redesign risk.",
+      "body": "Lateral load tests may be required in construction to verify the adequacy of the design, reducing risk especially where design parameters are more uncertain. Testing in construction may be simpler to procure, especially for design-bid-build, as it needs no separate contract or expense during design. If inadequate foundation performance is a significant risk or possibility, the specifications should require testing and results within a set period before ordering or mobilizing material and additional equipment for production work, mitigating cost impacts of design changes. The risk of redesign during construction can be further mitigated by a more robust design that considers less favorable site conditions rather than average conditions. (p. 176)",
+      "key_points": [
+        "Construction tests verify the design and reduce risk (p. 176).",
+        "Simpler procurement, especially design-bid-build (p. 176).",
+        "Require results before ordering or mobilizing production material if performance risk is significant (p. 176).",
+        "Design for less favorable rather than average conditions to limit redesign (p. 176)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Planning lateral load test programs for design-phase and construction-verification purposes"
+    },
+    {
+      "section_id": "12.1.3",
+      "title": "Considerations regarding Subsurface Characterization for Lateral Load Test Program",
+      "summary": "Plan exploration per Chapter 3, focusing on near-surface soil and rock where most lateral resistance develops, without ignoring deeper strata (fixity; rock socket mass properties). Research tests need advanced in-situ and laboratory testing; project tests need enough exploration to show the test site is representative. Consider groundwater (saturate if practical) and planned site changes.",
+      "body": "Subsurface exploration and testing for a lateral load test program should follow Chapter 3, focusing on the ground profile and properties of the near surface soil (and rock), where most of the lateral resistance will be derived. Deeper strata cannot be ignored: they matter for the p-y response and foundation fixity, and for long foundations relying on rock sockets at depth the strength, stiffness and rock mass characteristics (e.g., RQD, orientation of discontinuities, nature of infill, clayey gouge, weak laminated inter-beds, anisotropy) are particularly important. For research tests, a detailed program of advanced in-situ and laboratory testing at the test site is recommended to correlate p-y responses to ground parameters (e.g., Simpson and Brown 2003); for project tests there must be adequate investigation at both the test and production locations to be sure the test site(s) are representative. Groundwater conditions likely during the structure's life must be considered: depending on the season of the test, groundwater may be lower than at other times or during floods, and it is desirable to saturate the soil at the test location before the test if practical; Dunnavant and O'Neill (1989), testing open-ended steel pipe piles and drilled shafts in the over-consolidated Beaumont Clay of Houston, Texas, flooded the test pits five months before installation and kept them submerged during the tests. Anticipated site changes at production locations (fill, cuts, removal and replacement of unsuitable soils) should be considered in the test program and, where practical, incorporated. (p. 177)",
+      "key_points": [
+        "Exploration per Chapter 3, focused on near-surface soil and rock (p. 177).",
+        "Deeper strata matter for fixity; rock mass characteristics for sockets (p. 177).",
+        "Research tests: advanced in-situ and laboratory testing (Simpson and Brown 2003) (p. 177).",
+        "Show the test site is representative of production locations (p. 177).",
+        "Consider seasonal groundwater; saturate if practical (Dunnavant and O'Neill 1989) (p. 177)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Planning lateral load test programs for design-phase and construction-verification purposes"
+    },
+    {
+      "section_id": "12.1.4",
+      "title": "Considerations for Test Pile Location",
+      "summary": "Locate tests in the less favorable ground and groundwater of production sites, emphasizing the upper 5 to 10 diameters (excluding disturbance or scour), where resistance and moments concentrate and data are usually sparse. Rock sockets should match less favorable rock and production socket lengths. Keep sacrificial tests and reactions clear of permanent foundations.",
+      "body": "Test locations should have a ground profile representative of the less favorable ground and groundwater conditions of the production piles/shafts, emphasizing the upper strata, say within 5 to 10 diameters of the ground surface, excluding any depth of possible disturbance or scour, where most lateral resistance develops and bending moments are likely highest. The uppermost layers are often the least sampled and tested and very variable, attention usually going to deeper bearing strata for axial capacity; exploration specifications should require near-surface sampling and laboratory testing for strength and stiffness, essential to correlate the test p-y response to the site. For rock socketed elements such as drilled shafts (p. 178), depth and quality of rock at the test location should represent the less favorable rock at production locations; testing more favorable rock (less weathered, stronger, higher quality, shallower) may give unconservative results; test socket lengths should be similar to production sockets. Since test piles or shafts will likely be sacrificial, locate them and the reaction system where they will not obstruct the permanent foundations, whose locations may not yet be known. (pp. 177 to 178)",
+      "key_points": [
+        "Test in the less favorable ground and groundwater conditions (p. 177).",
+        "Emphasize the upper 5 to 10 diameters, excluding disturbance or scour (p. 177).",
+        "Require near-surface sampling and testing to correlate p-y response (p. 177).",
+        "Rock sockets: less favorable rock, production socket lengths (p. 178).",
+        "Keep sacrificial tests and reactions clear of permanent foundations (p. 178)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Planning lateral load test programs for design-phase and construction-verification purposes"
+    },
+    {
+      "section_id": "12.1.5",
+      "title": "Considerations for the Design of the Test Pile/Shaft",
+      "summary": "Test length at least the production minimum, with extra length for driven piles; long enough to bend, not rotate (rigid response at L/D below about 10). Use production diameter (stiffness goes with diameter to the fourth power). Design-phase or research elements may get extra shear and moment capacity. Include coatings and other production features or assess the differences.",
+      "body": "Length may be governed by axial or lateral capacity; the test pile/shaft should be at least the minimum length estimated for production foundations, with additional length recommended for driven test piles in case they must be driven deeper for axial resistance; otherwise the lateral data may not represent production piles; the added length is a matter of judgment (overall length and size, depth to harder strata, cost). The element must be long enough to bend and not fail by rotation: short stiff piles or shafts (say length to diameter ratios less than 10) respond by rigid body rotation, quite different from long flexible elements. If axial capacity needs more length than lateral resistance, the test element may be designed for the lateral length, provided its lateral response equals that of the full-length element. The preferred approach is the same diameter as production piles/shafts, for consistent results, p-y interpretation and calibration; smaller diameter or prototype elements are more influenced by shallower soils and may lack stiffness to transfer stress to the depths a larger one would, flexural stiffness being proportional to the fourth power of diameter (Brown et al. 2010). For design-phase optimization or research tests (p. 179), a high shear and moment capacity, possibly above production, lets the element deflect enough to mobilize soil resistance without structural failure, particularly applicable to CFA piles, drilled shafts or micropiles with added reinforcement, though a stiffer element may deflect less at service load. Other production features, e.g. corrosion coatings that may affect frictional and shearing resistance, should be included; if not possible, assess the differences and risks and possibly address them through the resistance factor. (pp. 178 to 179)",
+      "key_points": [
+        "Length at least the production minimum; extra length for driven test piles (p. 178).",
+        "Long enough to bend rather than rotate; rigid response at L/D less than about 10 (p. 178).",
+        "Prefer production diameter; stiffness proportional to diameter to the fourth power (p. 178).",
+        "Design-phase or research elements: higher shear and moment capacity (p. 179).",
+        "Include coatings and other production features or assess differences (p. 179)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Planning lateral load test programs for design-phase and construction-verification purposes"
+    },
+    {
+      "section_id": "12.1.6",
+      "title": "Considerations for Test Pile Installation Methods",
+      "summary": "Install test elements by the same or similar methods as production, especially regarding disturbance (no pre-drilling or oversized casing unless production uses them). If design-phase or early design-build tests cannot match methods, defer testing, model the more adverse method, or restrict means and methods in the specifications.",
+      "body": "Test piles/shafts should ideally be installed by the same or similar means and methods as production elements, especially giving similar disturbance (or lack of it) around the element: driven piles may densify adjacent soils, so pre-drilling test piles should be avoided unless production piles need it, and oversized surface casing for a drilled test shaft avoided unless intended for production shafts. In a design-phase program, or early in a design-build contract before the contractor finalizes means and methods, the same methods may not be possible. Lateral analysis methods do not account for installation method, though it can significantly influence results. If the designer is comfortable that different methods will not alter subsurface behavior under lateral load, the data apply; if there is risk that production behavior differs, the test program may be deferred until methods are defined, planned to model the likely more adverse condition, or the specifications may restrict the contractor's means and methods. (p. 179)",
+      "key_points": [
+        "Same or similar installation methods as production, especially disturbance (p. 179).",
+        "Avoid pre-drilling or oversized casing unless used for production (p. 179).",
+        "Analysis methods do not account for installation method (p. 179).",
+        "Otherwise defer, model the more adverse condition, or restrict methods (p. 179)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Planning lateral load test programs for design-phase and construction-verification purposes"
+    },
+    {
+      "section_id": "12.1.7",
+      "title": "Coordination with Axial Load Tests",
+      "summary": "A lateral test can follow an axial test on the same element, never precede it, since its large deflections may change stress conditions and soil contact. Axial tests: Hannigan et al. (2016), Brown et al. (2010), Brown et al. (2007), Sabatini et al. (2005).",
+      "body": "Lateral load tests can be performed on an axial test element after the axial test is complete. The lateral test should not precede the axial test, as it may change stress conditions and soil contact around the element and so the axial resistance (the lateral test may need relatively high deflections to investigate the Strength Limit State). Axial load tests are discussed in Hannigan et al. (2016), Brown et al. (2010), Brown et al. (2007) and Sabatini et al. (2005) for driven piles, drilled shafts, CFA piles and micropiles, respectively. (p. 180)",
+      "key_points": [
+        "Lateral test after, not before, an axial test on the same element (p. 180).",
+        "Axial tests: Hannigan et al. 2016, Brown et al. 2010, Brown et al. 2007, Sabatini et al. 2005 (p. 180)."
       ],
       "equations": [],
       "figures": [],
@@ -24,19 +137,70 @@
     },
     {
       "section_id": "12.2",
-      "title": "Test Methods",
-      "summary": "Static lateral load tests per ASTM D3966 (Procedures A–H) are the standard method, using a reaction system (reaction piles/anchors or deadweight) to apply known horizontal loads incrementally while measuring deflection and rotation at the pile head. Rapid load tests (Statnamic-type) apply large short-duration dynamic forces using a gas-propelled projectile; data reduction requires correction for inertia and damping. Bi-directional (Osterberg-type) load tests use a sacrificial hydraulic jack near the tip to push segments apart; the setup avoids the need for a reaction system but requires careful instrumentation to separate upper and lower segment performance.",
-      "body": "Static lateral load tests per ASTM D3966 offer eight test procedures (A through H) that define variations in load application: monotonic loading, cyclic loading, sustained loading, reversed loading, etc. The test setup typically uses a reaction pile or reaction anchor system (for push-pull tests) or a deadweight reaction platform. Load is applied using a hydraulic jack. Measurements include lateral deflection (LVDTs, dial gauges, or survey), rotation at the pile head (inclinometers, tiltmeters), and applied load (load cells or jack pressure). Free-head conditions (no moment at pile head) are the most common. Fixed-head conditions require a rigid load frame connected to the top of the pile.\n\nRapid lateral load tests use a Statnamic device or similar projectile-based system to apply a large compressive force over a short duration (0.1–0.2 seconds). The force-velocity-time record from a transducer must be corrected for inertia and radiation damping effects before computing the equivalent static pile-head load. Rapid tests are considerably less expensive than static tests for large-diameter elements and are useful for production testing.\n\nBi-directional lateral load tests use a hydraulic jack (Osterberg cell) embedded within the test shaft near the tip to push the upper and lower segments of the shaft in opposite directions. This self-reacting approach eliminates the need for a surface reaction system. The test requires dedicated instrumentation (strain gauges, inclinometers) in both segments to separate load-displacement response. The approach is less common for lateral than for axial load testing.",
+      "title": "Lateral Load Test Methods",
+      "summary": "Static lateral load tests are the most common; others are the Rapid Load Test (Force Pulse) and bi-directional load cell tests.",
+      "body": "Static lateral load tests are the most common form in practice. Other types include the Rapid Load Test, also known as a Force Pulse lateral load test, and bi-directional load cell tests. (p. 180)",
       "key_points": [
-        "ASTM D3966 Procedures A–H: defines static test variations — monotonic, cyclic, sustained, reversed, and combined loading",
-        "Typical setup: hydraulic jack against reaction pile, deadweight, or anchor system; load cell and LVDTs/dial gauges measure load and deflection",
-        "Free-head test (no head moment) is most common; fixed-head requires a rigid connection frame",
-        "Rapid load test (Statnamic): dynamic force of short duration; requires inertia/damping correction for equivalent static response",
-        "Bi-directional test: embedded hydraulic jack self-reacts; eliminates surface reaction system but requires full internal instrumentation"
+        "Static tests most common (p. 180).",
+        "Also Rapid Load (Force Pulse) and bi-directional load cell tests (p. 180)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Lateral load test methods for driven piles and drilled shafts — static, rapid, and bi-directional"
+    },
+    {
+      "section_id": "12.2.1",
+      "title": "Static Lateral Load Tests",
+      "summary": "ASTM D3966 governs static tests: jack and reaction push or pull (Figures 12-1 to 12-3), swivel strut, adequate ram travel from preliminary analysis, shielded reference beam, independent load cell, spares. Procedure A loads to 200 percent of design load; B to 250 percent; C cyclic, D surge, E reverse, F reciprocal, G to a displacement, H combined axial and lateral. Avoid plastic hinges.",
+      "body": "ASTM D3966 (Standard Method of Testing Deep Foundations Under Lateral Load) gives alternative systems for applying lateral load and measuring movement, and reporting requirements. A conventional static test applies load by pushing or pulling with a jack and reaction system; Figure 12-1 (p. 181) shows a hydraulic jack and load cell against a drilled shaft head through a curved concrete \"saddle\" (or hemi-spherical steel plate) that distributes load and limits rotation and torsion; a reinforced concrete pad or pedestal may be used, and quick setting high strength grout between element and bearing plate limits stress concentrations. Figure 12-2 (p. 182) shows a one-way set-up: jack against steel channels, high tensile bars to the reaction, load cell between ram and plate, dial gauges on a reference beam, strain gauge cables and an inclinometer casing. With a strut between test and reaction pile, a pinned swivel joint (clevis) at one end avoids eccentric loading and parts dislodging or \"popping out\" (Figure 12-3). Jacks must work horizontally without leaks or piston malfunction; lateral loads are much less than axial but displacements (and ram travel) greater, so a preliminary analysis should estimate load and displacement to select jack, load cell, ram travel and external instrumentation (the print says \"see Section 12.6\"). Jacks may be air controlled or double acting for load reversal; electric winches, pulley blocks and turn buckles are alternatives. Shield the reference beam from sun, wind and frost (canopy, enclosure, heating above 50 deg F), monitor air temperature; the beam should be robust, painted white. The load measurement should be independent of the jack, its pressure gauge a backup. Combined axial and lateral tests (ASTM D3966 Procedure H, rarely done) need an anti-friction bearing (roller plates or PTFE on stainless steel) under the axial load. Require spares and on-site backup pumps, ram jacks and load cell (p. 183). Reaction piles from an axial test can be reused if planned; two adjacent elements can be tested together by pulling or pushing (Figure 12-3), giving two data sets. Cyclic tests address earthquake and wave loading, though cycle frequency cannot match earthquake motions; Rollins et al. (2001) tested during blast induced liquefaction at Treasure Island, San Francisco Bay (p. 184). ASTM D3966 is recommended absent owner requirements and has 8 loading schedules: Procedure A, load increments to 200 percent of the design lateral load then 4 decrements, holds 10 to 60 minutes; for non-production elements, loading should continue until the ultimate geotechnical resistance is approached; Procedure B allows excess loading to 250 percent of design load, but plastic hinges should be avoided; C cyclic; D surge loading (multiple cycles at any increment); E reverse (push then pull or vice versa); F reciprocal; G to a specified lateral displacement; H combined, axial load applied first and held constant. (pp. 180 to 184)",
+      "key_points": [
+        "Follow ASTM D3966 absent owner requirements (pp. 180, 184).",
+        "Jack and reaction set-ups push or pull (Figures 12-1 to 12-3); swivel strut connection (p. 181).",
+        "Preliminary analysis sizes jack, load cell, ram travel and gauges (p. 181).",
+        "Shield the reference beam; independent load cell; spares on site (pp. 182 to 183).",
+        "Procedure A to 200 percent of design load; B to 250 percent; avoid plastic hinges (p. 184).",
+        "Procedures C cyclic, D surge, E reverse, F reciprocal, G displacement, H combined (p. 184)."
       ],
       "equations": [],
       "figures": [
-        "Figure 12-1: Schematic lateral load test setup (push test against reaction pile)"
+        "Figure 12-1: Example of a two-way lateral load test set-up for a drilled shaft",
+        "Figure 12-2: Example of a one-way lateral load test set up on a deep foundation",
+        "Figure 12-3: Arrangement for two-way lateral loading (a) compression; (b) tension"
+      ],
+      "tables": [],
+      "applicability": "Lateral load test methods for driven piles and drilled shafts — static, rapid, and bi-directional"
+    },
+    {
+      "section_id": "12.2.2",
+      "title": "Rapid Load Test",
+      "summary": "The Rapid Load (Force Pulse) Test drives a reaction mass by fuel combustion for about 120 ms, over 1000 tons, axially or laterally on a sled; no reaction piles, 25 to 50 percent cheaper than static, suited to dynamic loads. Brown (2007): four increasing pulses, accelerometer strings, resistance strain gauges, about 1000 samples per second.",
+      "body": "The Rapid Load Test (Force Pulse test) uses controlled fuel combustion in a confined pressure chamber to propel a piston against the pile or drilled shaft (Bermingham and Janes 1989); a heavy reaction mass on the piston is forced to move and an equal and opposite reaction acts on the foundation, applied in around 120 milliseconds. A built-in load cell and laser sensors record load and displacement time histories; venting relieves the load. Loads over 1000 tons are possible, set by fuel amount and reaction mass. The test can be vertical or lateral (p. 185), a steel sled carrying the mass, sliding on a barge deck over water. Benefits are speed and no reaction piles, the mass being much smaller than a static load; as a dynamic load it may suit vessel impact, ice, wind and wave loading better than static tests, and may cost 25 to 50 percent less for a similar load. Brown (2007) gave an analysis considering inertia and rate effects, preferring four successive increasing pulses to capture nonlinear response, about an hour apart; double integration of accelerometer records gives deformation, a string of eight down-hole accelerometers in an inclinometer casing being adequate; resistance type strain gauges (not vibrating wire, for frequency) give bending moments; a high-speed data acquisition system at about 1000 samples per second is needed. (pp. 184 to 185)",
+      "key_points": [
+        "Combustion-driven reaction mass, about 120 ms; loads over 1000 tons (p. 184).",
+        "No reaction piles; 25 to 50 percent cheaper than static for similar load (p. 185).",
+        "Suited to dynamic loads: vessel impact, ice, wind, waves (p. 185).",
+        "Brown (2007): four increasing pulses; accelerometers; resistance strain gauges; about 1000 samples/s (p. 185)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Lateral load test methods for driven piles and drilled shafts — static, rapid, and bi-directional"
+    },
+    {
+      "section_id": "12.2.3",
+      "title": "Bi-directional Lateral Load Test",
+      "summary": "Bi-directional cells turned 90 degrees in a drilled shaft jack its halves apart; cell load over the test interval gives lateral load, embedded transducers the displacement. No head load, so no bending profile, but direct lateral resistance at depth: useful for shafts in water and p-y curves in rock sockets (Figure 12-4).",
+      "body": "Bi-directional testing has been applied to lateral load testing of drilled shafts (O'Neill et al. 1997; Brown et al. 2010), using conventional bi-directional (e.g., hydraulically activated) load cells embedded in the shaft instead of a top load frame; instead of being horizontal near the cage bottom as in axial tests, they are turned 90 degrees to jack the two halves of the shaft apart. Cell load divided by the test interval length gives the lateral load on the ground; displacements are measured by embedded linear displacement variable transducers (LDVTs). With no load at the top, the test cannot give the shaft's bending and deflection, but it evaluates directly the lateral resistance of a zone of soil or rock at depth, useful for shafts in water where the free length limits the displacement achievable below the mudline in a conventional test, and for p-y curves in rock sockets. Figure 12-4 (p. 186) shows two arrangements: a cell in a 6-ft diameter socket in sandstone about 100 ft deep, and a pair in an 8-ft diameter, 15-ft long socket in chalk about 60 ft below grade (Brown et al. 2010). (pp. 185 to 186)",
+      "key_points": [
+        "Embedded bi-directional cells turned 90 degrees jack the shaft halves apart (p. 185).",
+        "Lateral load = cell load / test interval length; embedded displacement transducers (p. 185).",
+        "No bending profile, but direct lateral resistance at depth (p. 185).",
+        "Useful for shafts in water and rock socket p-y curves (Figure 12-4) (pp. 185 to 186)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 12-4: Bi-directional Lateral Testing Apparatus Using Embedded Load Cells (from Brown et al. 2010)"
       ],
       "tables": [],
       "applicability": "Lateral load test methods for driven piles and drilled shafts — static, rapid, and bi-directional"
@@ -44,19 +208,48 @@
     {
       "section_id": "12.3",
       "title": "Instrumentation",
-      "summary": "External instrumentation measures pile-head response: LVDTs or dial gauges for lateral deflection at one or more elevations, tiltmeters for head rotation, and load cells for applied force. Internal instrumentation measures the distribution of response along the pile: vibrating wire (VW) strain gauge pairs at multiple elevations (converted to curvature and bending moment via Eq 12-2), inclinometer casings for deflection profiles by integration, and Shape Acceleration Arrays (SAAs) for continuous deflection profiling. Internal instrumentation is essential for back-calculating p-y curves from test data.",
-      "body": "External instrumentation provides measurements at the pile/shaft head and is relatively easy to install and monitor. Lateral displacement is measured using linear variable differential transformers (LVDTs) or dial gauges positioned at the point of load application and, if possible, at a second elevation to evaluate head rotation. A reference beam or survey monuments independent of the test setup are used to establish datum. Load cells measure the applied horizontal force directly. Tiltmeters measure rotation at the pile/shaft head.\n\nInternal instrumentation enables determination of the distribution of bending moment along the pile, which is required for derivation of p-y curves. Vibrating wire (VW) strain gauge pairs mounted on the reinforcing cage at intervals of approximately 1 to 3 shaft diameters provide discrete curvature measurements. Pairs of gauges at each elevation (diametrically opposed in the direction of loading) cancel axial strain so that only bending strains are measured; curvature φ is computed from the differential strain divided by the gauge separation. Bending moment M = E×I×φ (Eq 12-2), where E×I is the flexural rigidity of the pile or drilled shaft cross-section.\n\nInclinometer casings installed within the shaft or pile provide deflection profiles by integration of the measured inclination data along the element length. Slope Inclinometer Probes are lowered within the casing at specified time intervals. Shape Acceleration Arrays (SAAs) are multi-segment MEMS devices that provide near-continuous real-time deflection profiles without the need to insert a probe after each load step; they are more expensive but offer advantages for complex loading scenarios.\n\nFor temporary casing situations, if casing is left in place it will influence the section stiffness (EI) used in data reduction; this must be accounted for when computing bending moment from measured curvature.",
+      "summary": "Instrumentation verifies performance and develops design p-y curves; it is external or internal to the element.",
+      "body": "Instrumentation is required for lateral load tests to collect data to verify performance and develop design parameters (p-y curves). It can be external or internal to the foundation element. (p. 186)",
       "key_points": [
-        "External: LVDTs/dial gauges for head deflection (multiple elevations), load cells for applied force, tiltmeters for head rotation",
-        "VW strain gauge pairs (diametrically opposed) at ~1–3D intervals: curvature φ from differential bending strain",
-        "Bending moment from curvature: M = E×I×φ (Eq 12-2); E×I must account for temporary casing if left in place",
-        "Inclinometer casings: deflection profile from integrated inclination readings; requires separate probe insertion after each step",
-        "Shape Acceleration Arrays (SAAs): MEMS-based continuous real-time deflection profiling without probe insertion"
+        "Instrumentation verifies performance and develops p-y curves (p. 186).",
+        "External or internal to the element (p. 186)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Instrumentation planning for laterally loaded deep foundation tests — external and internal monitoring"
+    },
+    {
+      "section_id": "12.3.1",
+      "title": "External instrumentation",
+      "summary": "Head instruments: displacement transducers, potentiometers, dial gauges, tilt-meters, calibrated load cells and jack gauge, theodolite. Loads are smaller and displacements larger than axial tests: choose load cell range, ram and gauge travel from a preliminary analysis.",
+      "body": "External instrumentation includes linear displacement variable transducers (LDVTs), long travel potentiometers, dial gauges, tilt-meters, calibrated load cells, calibrated jack gauge and theodolite, located at the pile or shaft head to measure displacements (LVDTs, dial gauges, potentiometers, theodolite), rotations (tilt-meters) and load (calibrated load cell), the jack's hydraulic pressure gauge a backup if the load cell malfunctions. It is essentially that of an axial compression test (p. 187), but lateral loads are usually much smaller and displacements greater: select a load cell with appropriate accuracy and precision for the load range, and ram, dial gauge and LVDT travel for the anticipated displacement, using a preliminary analysis for the site, foundation type and loads. See Dunnicliff (1998) and Brown et al. (2010). (pp. 186 to 187)",
+      "key_points": [
+        "Displacement transducers, potentiometers, dial gauges, tilt-meters, load cells, jack gauge, theodolite (p. 186).",
+        "Jack pressure gauge as load cell backup (p. 186).",
+        "Size load cell range and gauge travel from a preliminary analysis (p. 187)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Instrumentation planning for laterally loaded deep foundation tests — external and internal monitoring"
+    },
+    {
+      "section_id": "12.3.2",
+      "title": "Internal instrumentation",
+      "summary": "Internal: vibrating wire sister bar strain gauge pairs on opposite sides in the load direction (Figure 12-5), levels about 5 to 10 ft apart; inclinometer casing with toe below zero deflection and grooves in the load direction, read at least at start, design load and maximum load; in-place inclinometers or shape arrays allow continuous readings.",
+      "body": "Internal instrumentation includes vibrating wire strain gauges, inclinometer casings, in-place inclinometer arrays (down-hole accelerometers) and shape accelerator arrays (SAAs). Strain gauges, typically vibrating wire \"sister bar\" type, are attached in pairs to drilled shaft longitudinal bars on either side of the cage in the load direction (Figure 12-5), one measuring compression, the other tension; micro strain versus load gives curvature with depth and bending moments (the print says \"see Section 12.7\"). On steel piles gauges are fixed to the face, protected by welded steel angles. Multiple levels of pairs are needed, typically 5 to 10 feet apart, closer preferred; cables routed and color-labeled, tied to longitudinal steel in the corner with the spiral (Hayes and Simmonds 2002). Grooved inclinometer casings (p. 188) are cost-effective: baseline readings from the bottom up, the toe below the deepest zero-deflection point or the top position surveyed, one groove set in the load direction, near the neutral axis. Readings after each increment may take 30 minutes to 1 hour each, so with 10 increments (Procedure A) test time grows greatly; if time is limited, read at least before the first increment, at the design (service limit) load or deflection, and at maximum load (strength limit deflection), in both A and B axes, with a spiral survey. The profile checks the strain gauge deflection shape, backs up failed gauges and locates maximum moment, important for reinforcement, though not accurate enough for p-y derivation (Pincus et al. 1994; Sinnreich and Ayithi 2014). In-place inclinometer arrays or accelerometer strings (p. 189) record continuously without stopping the test (the print reads \"for manual,\"). Shape Array Accelerometers (SAA), embedded in concrete or grouted in cross hole sonic logging tubes (Boeckmann et al. 2014, shale), measure tilt continuously, also improving safety. See Dunnicliff (1998) and Brown et al. (2010). (pp. 187 to 189)",
+      "key_points": [
+        "Sister bar strain gauge pairs on opposite sides in the load direction (Figure 12-5) (p. 187).",
+        "Gauge levels typically 5 to 10 ft apart; closer preferred (p. 187).",
+        "Inclinometer toe below zero deflection, grooves in the load direction (p. 188).",
+        "Read at least at start, design load and maximum load (p. 188).",
+        "Inclinometer data locate maximum moment but are not accurate enough for p-y (p. 188).",
+        "In-place arrays and SAAs read continuously (p. 189)."
       ],
       "equations": [],
       "figures": [
-        "Figure 12-2: Strain gauge pair placement on reinforcing cage for bending moment measurement",
-        "Figure 12-3: Inclinometer casing installation in drilled shaft"
+        "Figure 12-5: A pair of sister bar strain gauges attached to a reinforcement cage"
       ],
       "tables": [],
       "applicability": "Instrumentation planning for laterally loaded deep foundation tests — external and internal monitoring"
@@ -64,65 +257,71 @@
     {
       "section_id": "12.4",
       "title": "Data Analysis",
-      "summary": "Data analysis converts raw instrumentation records into deflections, bending moment profiles, net soil resistance (p), and p-y curves. Deflection is derived by double integration of curvature (Eq 12-1). Bending moment at each strain gauge pair is computed from Eq 12-2. Soil resistance p is the second derivative of the moment profile (Eq 12-3). The piecewise polynomial method (Dunnavant 1986) fits fifth-order polynomials (Eq 12-4) to successive five-point intervals; double differentiation at each midpoint yields p. At least five strain gauge pairs are required.",
-      "body": "Lateral deflection along the pile can be derived from internal strain gauge curvature data using double integration (Eq 12-1). The integration constants are established from boundary conditions: known deflection and slope at the pile head (from external gauges and tiltmeters) or known zero moment and zero shear at the pile tip. The deflection profile from curvature integration should be compared to independent measurements from inclinometer casings or SAAs as a consistency check.\n\nBending moment M at each strain gauge pair location is computed from curvature: M = E×I×φ (Eq 12-2), where φ is curvature derived from the differential strain across the gauge pair, and E×I is the section flexural rigidity. Care must be taken to use the correct composite E×I for reinforced concrete sections, taking into account the contribution of the steel reinforcing cage and any permanent or temporary casing.\n\nSoil resistance per unit length p is the second derivative of the bending moment profile with respect to depth z: p = −d²M/dz² (Eq 12-3). Because moment data are discrete and contain measurement scatter, direct numerical differentiation is impractical. Two approaches are used: (1) smooth polynomial fitting followed by analytical differentiation; or (2) piecewise polynomial fitting (Dunnavant 1986).\n\nThe piecewise polynomial method (Eq 12-4) fits a fifth-order polynomial φ = a + bz + cz² + dz³ + ez⁴ + fz⁵ to five consecutive curvature data points at a time using least-squares. As illustrated in Figure 12-6, successive overlapping five-point windows advance along the pile; the polynomial is differentiated twice to yield bending moment, which is then differentiated twice more (analytically) to yield soil resistance p at the center point of the five-point window. The upper three data points and lower three data points are obtained from the top five-point and bottom five-point polynomials, respectively. A zero-moment condition (or known moment) at the load application point or at the ground surface should be included. A minimum of five strain gauge pairs along the shaft is required; more pairs improves accuracy.",
+      "summary": "Strain gauge data give curvature (difference of pair strains over their spacing); deflection by double integration (Eq. 12-1), moment M = EI phi (Eq. 12-2), soil resistance p = -d2M/dz2 (Eq. 12-3). Double differentiation amplifies errors, so fit curves first; Yang and Liang (2006) recommend piecewise cubic polynomials.",
+      "body": "A key objective of instrumented tests is p-y relationships for design (also Appendix C), using numerical methods to turn strain gauge data into bending moment profiles and p-y curves (p. 190): plot bending curvature (phi) with depth, computed as the difference between compression and tensile strains of each gauge pair divided by their horizontal distance; (1) lateral deformation y by double integration of curvature, Eq. 12-1; (2) bending moment M by multiplying curvature by flexural stiffness, Eq. 12-2; (3) soil resistance per unit length p by double differentiation of the moment profile, Eq. 12-3. Double differentiation can amplify numerical errors, especially with few gauge pairs or inclinometer data, so a curve fitting procedure should be applied to the raw data and p-y curves developed from the \"smoothed\" relationship. Methods used include high order global polynomials (Reese and Welch 1975), piecewise polynomials (Matlock and Ripperger 1956), cubic splines (Dou and Byrne 1996), weighted residuals (Wilson 1998; Yang et al. 2005) and B-splines (de Sousa Coutinho 2006). Yang and Liang (2006) summarize them and recommend piecewise cubic polynomial fitting for p with depth, which accommodates nonlinear behavior and p-y response in layered profiles. (pp. 189 to 190)",
       "key_points": [
-        "Deflection profile: y = ∫∫φ dz² (double integration of curvature, Eq 12-1); constants from head boundary conditions",
-        "Bending moment: M = E×I×φ (Eq 12-2); composite EI must account for reinforcing cage and any permanent casing",
-        "Soil resistance: p = −d²M/dz² (Eq 12-3); direct numerical differentiation of sparse discrete data is impractical",
-        "Piecewise polynomial (Dunnavant 1986): 5th-order polynomial fit to five-point windows (Eq 12-4), double-differentiated analytically",
-        "Minimum five strain gauge pairs required for piecewise polynomial approach; more pairs improves p-y accuracy",
-        "Zero-moment at load application point (or known ground-line moment) should be imposed as a constraint"
+        "Curvature = difference of pair strains / horizontal gauge spacing (p. 190).",
+        "y by double integration of curvature (Eq. 12-1) (p. 190).",
+        "M = E I phi (Eq. 12-2) (p. 190).",
+        "p = -d2M/dz2 (Eq. 12-3); double differentiation amplifies errors (p. 190).",
+        "Fit curves first; piecewise cubic polynomials recommended (Yang and Liang 2006) (p. 190)."
       ],
       "equations": [
-        {
-          "equation_id": "12-1",
-          "description": "Lateral deflection at any depth derived by double integration of curvature along the pile",
-          "latex": "y = \\int\\int \\phi \\, dz^2",
-          "variables": {
-            "y": "lateral deflection at depth z",
-            "phi": "curvature at depth z (derived from strain gauge pair measurements)"
-          },
-          "implemented_in": null
-        },
-        {
-          "equation_id": "12-2",
-          "description": "Bending moment from curvature and flexural rigidity",
-          "latex": "M = E \\cdot I \\cdot \\phi",
-          "variables": {
-            "M": "bending moment at depth z",
-            "E": "elastic modulus of pile/shaft material",
-            "I": "moment of inertia of pile/shaft cross-section",
-            "phi": "curvature at depth z"
-          },
-          "implemented_in": null
-        },
-        {
-          "equation_id": "12-3",
-          "description": "Net soil resistance per unit length as second derivative of bending moment profile",
-          "latex": "p = -\\frac{d^2 M}{dz^2}",
-          "variables": {
-            "p": "net soil resistance per unit length at depth z",
-            "M": "bending moment at depth z",
-            "z": "depth below ground surface"
-          },
-          "implemented_in": null
-        },
-        {
-          "equation_id": "12-4",
-          "description": "Fifth-order polynomial used in piecewise curve fitting of curvature profile (Dunnavant 1986)",
-          "latex": "\\phi = a + bz + cz^2 + dz^3 + ez^4 + fz^5",
-          "variables": {
-            "phi": "curvature at depth z",
-            "a, b, c, d, e, f": "least-squares polynomial coefficients for each five-point window",
-            "z": "depth coordinate"
-          },
-          "implemented_in": null
-        }
+        "Eq. 12-1: y = integral(integral(phi dz)) dz; lateral deformation with depth by double integration of the bending curvature profile (curvature printed in the equation as the glyph Ø), z = depth below the top of pile or drilled shaft (p. 190)",
+        "Eq. 12-2: M = E I phi (printed EIØ); bending moment profile from curvature, E = Young's modulus of the reinforced concrete or steel element, I = second moment of area of the section (p. 190)",
+        "Eq. 12-3: p = - d2M / dz2; soil resistance per unit length of pile/shaft by double differentiation of the bending moment profile (p. 190)"
       ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Analysis of internal instrumentation data from lateral load tests to derive deflection, bending moment, and p-y curves"
+    },
+    {
+      "section_id": "12.4.1",
+      "title": "Deflections from Strain Gauge Data",
+      "summary": "Wilson (1998) fitted a fifth order polynomial to curvature (Eq. 12-4) by least squares; deflection by double integration with two boundary conditions: y0 and ytip = 0 for long shafts (L/D >= 10), y0 and yfixity = 0 for short shafts, or measured head tilt theta0. Measure head deflection at two heights; inclinometers or SAAs locate fixity.",
+      "body": "Wilson (1998) fitted a fifth order polynomial, Eq. 12-4, to strain gauge data to derive curvature (p. 191): a to f are constants fitted to the discrete curvature points by least squares; deflections y come from double integration of the fitted curvature, needing two boundary conditions (Yang 2005; Dunnavant 1986): (1) y0, ytip = 0 for a long drilled shaft (L/D >= 10); (2) y0, yfixity = 0 for a short shaft (L/D < 10); y0 = measured deflection at the ground line, ytip = deflection at the tip, yfixity = deflection at a \"fixity\" point where inclinometer data show approximately zero deflection. Without yfixity = 0, the measured tilt at the ground line theta0 can be used for a short shaft. Hence head deflection should be measured with dial gauges and/or LVDTs against a reference beam, two gauges one above the other giving the tilt, and an inclinometer or SAA may define the \"fixity\" depth. (pp. 190 to 191)",
+      "key_points": [
+        "Fifth order polynomial fitted to curvature by least squares (Wilson 1998; Eq. 12-4) (p. 190).",
+        "Long shafts (L/D >= 10): y0 and ytip = 0 (p. 191).",
+        "Short shafts (L/D < 10): y0 and yfixity = 0, or measured tilt theta0 (p. 191).",
+        "Two head gauges one above the other give tilt; inclinometer or SAA defines fixity (p. 191)."
+      ],
+      "equations": [
+        "Eq. 12-4: phi = a + b z + c z^2 + d z^3 + e z^4 + f z^5 (curvature printed as Ø); fifth order polynomial fitted to the bending curvature data from strain gauge pairs (Wilson 1998), a, b, c, d, e, f = constants found by least squares (p. 190)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Analysis of internal instrumentation data from lateral load tests to derive deflection, bending moment, and p-y curves"
+    },
+    {
+      "section_id": "12.4.2",
+      "title": "Bending Moment Profiles",
+      "summary": "Concrete flexural stiffness degrades nonlinearly after cracking (neutral axis moves toward compression), so moment from curvature must use nonlinear stiffness (Reese and Welch 1975), measured or from Wang and Reese (1993), allowing for actual concrete strength, cracked modulus, as-built diameter, cage offset, actual steel strength and casing.",
+      "body": "Reinforced concrete flexural stiffness in drilled shafts shows nonlinear strain degradation and is not constant, so moment profiles from curvature must account for it (Reese and Welch 1975): in an elastic beam, gauges equidistant from the centerline read equal and opposite strains at small strain, but once concrete cracks in bending the stiffness (printed \"sitffness\") is no longer constant and the neutral axis moves toward the compression side. Field moment-curvature relationships can come from instruments at and above the ground line, or published nonlinear relationships (Wang and Reese 1993). Also account for: concrete strength (mix, water cement ratio, age, curing); different cracked and uncracked modulus; as-constructed diameter differing from nominal; off-center cage; actual steel tensile strength usually above nominal grade; and (p. 192) temporary casing left in place affecting strength, stiffness and composite action. (pp. 191 to 192)",
+      "key_points": [
+        "Concrete flexural stiffness is nonlinear after cracking (Reese and Welch 1975) (p. 191).",
+        "Neutral axis moves toward compression after cracking (p. 191).",
+        "Field moment-curvature or Wang and Reese (1993) relationships (p. 191).",
+        "Allow for actual strength, cracked modulus, as-built diameter, cage offset, casing (pp. 191 to 192)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Analysis of internal instrumentation data from lateral load tests to derive deflection, bending moment, and p-y curves"
+    },
+    {
+      "section_id": "12.4.3",
+      "title": "Net Resistance (p) Using Piecewise Polynomial Curve Fitting",
+      "summary": "Piecewise cubic polynomials (Matlock and Ripperger 1956; Dunnavant 1986) are fitted by least squares to five consecutive moment points and differentiated twice for p at the middle point; end polynomials give the top and bottom three points (Figure 12-6). Include zero or known moment at the top; at least five gauge pairs needed.",
+      "body": "Matlock and Ripperger (1956) and Dunnavant (1986) fitted piecewise cubic polynomials to discrete moment data, mitigating scatter expected in layered nonlinear soils, then differentiated for net soil resistance p. Figure 12-6 shows the polynomial fitted to five-point intervals piecewise by least squares: every five consecutive moment points (from curvature at gauge pair locations) are fitted to one cubic, and double differentiation about the middle point gives p there; the top three and bottom three points use the top five and bottom five point polynomials. A zero moment at the load point or a known ground line moment should be included. The first polynomial M1 gives p at the 3 levels closest to the surface (including the loading level); others such as M2 at the group center point (as printed); the five points nearest the tip give p at the three lowest points. At least five strain gauge pairs are required; more pairs give more accurate curves and p-y relationships. (p. 192)",
+      "key_points": [
+        "Piecewise cubic fits to five consecutive moment points (Matlock and Ripperger 1956; Dunnavant 1986) (p. 192).",
+        "p at the middle point by double differentiation; end polynomials for top and bottom three points (p. 192).",
+        "Include zero or known moment at the top (p. 192).",
+        "At least five strain gauge pairs; more improves accuracy (Figure 12-6) (p. 192)."
+      ],
+      "equations": [],
       "figures": [
-        "Figure 12-4: Double integration of curvature profile for lateral deflection",
-        "Figure 12-5: Bending moment profile derived from strain gauge curvature data",
         "Figure 12-6: Piecewise polynomial curve fitting applied to moment profile (after Dunnavant 1986)"
       ],
       "tables": [],
@@ -131,13 +330,14 @@
     {
       "section_id": "12.5",
       "title": "Lateral Load Test Reports",
-      "summary": "Lateral load test programs must be documented in a report covering: project background, test objectives, site subsurface conditions, foundation construction details, test type and ASTM reference, instrumentation layout, data acquisition, test results and data reduction methods, and limitations on use of results. For large projects, separate site reports may be prepared before all testing is complete. A construction verification test may produce two reports — a factual data report by the testing contractor and an interpretive report by the designer.",
-      "body": "Lateral load testing programs should be documented in a report. Topics to be addressed in the documentation and reporting of lateral load tests include: (1) background information on the project; (2) objectives of the test program — design parameter development, construction stage verification, or research; (3) background on the site, including subsurface conditions and rationale for site selection; (4) details of the foundation construction — type, diameter, length, material strengths, reinforcing, and other details; (5) test type and detailed description of test set-up, including applicable ASTM references and deviations from standards; (6) instrumentation and monitoring details — layout, types, number, and locations of instruments; data acquisition procedures; calibration data; (7) test results and analyses — description of performance, numerical data, plots, and interpretation including methods for data reduction; (8) limitations of the tests or on the use of the test results and interpretations.\n\nFor large projects with multiple test sites, a separate report may be prepared for each site to allow work to proceed at one site before all testing is completed. In many cases, the test program will be prepared following specifications for a construction contract. Such a specification should require submittals of the proposed test set-up for approval prior to construction of the test foundation. The report may be divided into a factual data report (by the testing contractor) and an interpretive report (by the design engineer).",
+      "summary": "Report: project background, objectives, site (subsurface, selection), foundation construction details, test type and set-up (ASTM, deviations, photos, calculations, procedures), instrumentation (layout, acquisition, calibration), results and analyses, and limitations. Reports may be split among parties; approved submittals can serve as documentation.",
+      "body": "Lateral load testing programs should be documented in a report addressing (p. 193): (1) project background (bridge, wall, research program); (2) objectives (design parameters, construction verification, research); (3) site background: a. subsurface soil, rock and groundwater conditions at the test site, b. why the site was selected, if available; (4) foundation construction details (type, diameter or size, length, material strengths, reinforcing); (5) test type and set-up: a. applicable ASTM references and owner specifications, deviations or approved modifications, b. description with details and photographs and calculations for adequacy of the apparatus, c. test procedures; (6) instrumentation and monitoring: a. layout, types, numbers and locations with drawings and installation records, b. data acquisition procedures, c. calibration data; (7) results and analyses: a. overall performance, whether objectives were met, issues, b. numerical data and plots, c. interpretation and data reduction methods; (8) limitations of the tests or of the use of results. Reporting may be one comprehensive report (e.g., research) or several by different parties, e.g. the testing contractor reporting set-up and results and the design engineer the interpretation; large projects may report each test site separately. Where testing is specified in a construction contract, submittals of the proposed set-up should be required for approval, and the approved submittals with as-built changes can be included in the report. (pp. 192 to 193)",
       "key_points": [
-        "Eight required report sections: background, objectives, site conditions, construction details, test setup, instrumentation, results/analyses, limitations",
-        "For multi-site projects, separate reports per site may be prepared before all testing is complete",
-        "Construction verification test reports may be split: factual data report (testing contractor) and interpretive report (designer)",
-        "Pre-construction submittal of test setup for approval should be required by specification"
+        "Background, objectives, site and selection (p. 193).",
+        "Foundation details, test type and set-up, procedures (p. 193).",
+        "Instrumentation layout, acquisition and calibration (p. 193).",
+        "Results, interpretation and limitations (p. 193).",
+        "Require set-up submittals; approved submittals can document the test (p. 193)."
       ],
       "equations": [],
       "figures": [],
@@ -146,13 +346,13 @@
     },
     {
       "section_id": "12.6",
-      "title": "Publication of Lateral Load Test Results",
-      "summary": "Publicly sharing lateral load test results benefits the broader profession by enabling other designers to use local/regional data without repeating expensive test programs. Results can be published on DOT websites or contributed to databases such as FindAPile.com (collaborative effort of UC Irvine, DFI, and ADSC). To address concerns about misapplication, test reports can be split into a factual data report (publishable) and a proprietary interpretive report.",
-      "body": "The analysis and design of laterally loaded deep foundations is an evolving area of practice. When lateral load tests are performed for transportation projects, making the results publicly available provides potential benefit to local practice and the industry as a whole. High-quality lateral load and deformation data, together with subsurface information, enables other practitioners and researchers to benefit without incurring the significant cost of a full test program.\n\nTest reports could be published online on individual DOT websites or incorporated into larger industry databases. FindAPile.com is a collaborative database of full scale lateral load tests maintained by University of California, Irvine, the Deep Foundation Institute's (DFI) Seismic and Lateral Loads Committee, DFI's Drilled Shaft Committee, and the International Association of Foundation Drilling (ADSC). At the time of writing, the database contained records of over 30 lateral load tests from sites around the world over a 30-year period.\n\nTo address concerns regarding use of test data interpretation by designers for other projects, load test reports can be broken into a data report (factual data: subsurface conditions, instrumentation records) and an interpretive report (data analyses, p-y curves). The data report can be published for general use, while the interpretive report remains a project document.",
+      "title": "Publication of Lateral Load Tests Results",
+      "summary": "Publishing test results (with subsurface data) benefits local practice and industry, sparing others test costs. Reports could go on DOT websites or databases such as FindAPile.Com (over 30 tests over 30 years). Splitting data and interpretive reports lets the factual data be published.",
+      "body": "Analysis and design of laterally loaded deep foundations is evolving (printed \"design or laterally loaded\"), especially in LRFD, with new p-y curves for local and regional materials and LRFD resistance factors. Publishing lateral load tests from transportation projects, with subsurface information, could benefit local practice and the industry, letting others use high quality data without the significant cost of a test program; even with their own data reduction, smaller projects could save significant time and cost. Reports could be published on DOT websites or in industry databases, e.g. FindAPile.Com, a collaboration of the University of California, Irvine, DFI's Seismic and Lateral Loads Committee, DFI's Drilled Shaft Committee and the International Association of Foundation Drilling (ADSC), which at the time of writing held over 30 lateral load tests on reinforced concrete and steel piles and drilled shafts over 30 years worldwide, with varying detail; local or regional databases may exist. To address concerns about others using interpretations, reports can be split into a data report (subsurface conditions, instrumentation data), which can be published, and an interpretive report (analyses, p-y curves), which remains a project document, as happens when a testing specialist and the designer of record are different entities. (p. 194)",
       "key_points": [
-        "Sharing lateral load test data benefits industry by allowing use of local/regional data without repeating expensive programs",
-        "FindAPile.com database: collaborative effort of UC Irvine, DFI, and ADSC — over 30 tests at time of publication",
-        "Two-part report approach: factual data report (publishable) and interpretive report (project-specific) addresses liability concerns"
+        "Publishing results benefits local practice and the industry (p. 194).",
+        "DOT websites or databases such as FindAPile.Com (over 30 tests) (p. 194).",
+        "Publish the data report; keep the interpretive report as a project document (p. 194)."
       ],
       "equations": [],
       "figures": [],
@@ -162,15 +362,14 @@
     {
       "section_id": "12.7",
       "title": "Limitations of Lateral Load Tests",
-      "summary": "Key limitations of lateral load tests: (1) free-head test does not replicate fixed-head pile cap connection; (2) single-pile test does not replicate pile group behavior — p-multipliers still require judgment; (3) tests cannot model future scour condition; (4) construction-phase tests come too late for design; (5) design-phase tests may not be representative if production contractor uses different installation methods; (6) tests rarely combine axial and lateral loads simultaneously; (7) pile structural failure may precede full mobilization of soil p-y response; (8) tests may not be cost-effective when structural capacity governs.",
-      "body": "Lateral load tests are not without limitations, which need to be considered carefully when first considering the use of lateral load tests, during the planning of the test, and for applying the results in design. Limitations include: (1) Use of a free-head condition in a lateral load test does not replicate the behavior of a fixed-head condition that often represents the connection of piles/shafts to a pile cap. (2) A load test on a single pile or drilled shaft does not replicate the behavior of piles or shafts in a pile group; p-multipliers need to be selected using judgment and code provisions (e.g., AASHTO Table 10.7.2.4-1). Lateral load tests on pile groups are expensive and rarely performed in practice. (3) A lateral load test is unlikely to appropriately model a future scour condition; it is possible to model local scour with an isolation casing, but the reduction in effective overburden stress due to general scour cannot typically be modeled. (4) Lateral load tests performed during construction typically come too late to benefit foundation design and serve primarily as proof tests. (5) Tests performed during the design phase require costly mobilization and may not be representative if different means and methods are used during production installation. (6) Test piles/shafts rarely model axial loads in combination with lateral loads, yet combined loading is the in-service condition and results in different pile/shaft stiffness and p-delta effects. (7) Pile/shaft structural failure may precede full mobilization of soil resistance, particularly for large unsupported lengths or tall bridge bents. (8) Lateral load tests may not be cost-effective if lateral resistance is governed by structural capacity rather than geotechnical capacity.",
+      "summary": "Limitations: free head tests do not replicate fixed heads; single tests do not replicate groups (p-multipliers by judgment, AASHTO Table 10.7.2.4-1); scour hard to model; construction tests come too late; design-phase costs and different installers; variability; axial load rarely combined; structural control of long free lengths; insufficient deformation.",
+      "body": "Limitations to consider when deciding on, planning and applying lateral load tests: a \"free head\" test does not replicate a \"fixed head\" cap connection; a single pile or shaft test does not replicate group behavior, p-multipliers being selected by judgment and code provisions (e.g., AASHTO Table 10.7.2.4-1), group tests being expensive and rarely if ever done; a test is unlikely to model future scour (p. 195): local scour can be modeled with an isolation casing, but the overburden reduction from general and contraction scour typically cannot; construction tests typically come too late for design and serve as \"proof tests\" of parameters and construction methods; design-phase tests need costly mobilization for a few test elements, which may not be justified; design-phase tests may not be representative if production installation methods differ, the test contractor likely differing from the production contractor except in design-build; a few tests may not capture near-surface variability, especially with thick fill; tests rarely combine axial and lateral loads, the likely service condition affecting stiffness and p-delta effects; performance may be governed by structural properties rather than ground, especially with long unsupported or column lengths (tall bents, foundations through water); deformations may not define the full p-y curves (long unsupported elements may fail structurally first); and tests may not be cost effective or needed where structural rather than geotechnical capacity controls lateral resistance at the strength limit state. (pp. 194 to 195)",
       "key_points": [
-        "Free-head test condition does not replicate fixed-head pile cap connection — head fixity must be handled analytically",
-        "Single-pile test does not model pile group behavior — p-multipliers for group analysis still require AASHTO guidance and judgment",
-        "Cannot model general or contraction scour: reduction in overburden stress from scour cannot be replicated in test setup",
-        "Construction-phase tests come too late for design; design-phase tests may not represent production installation",
-        "Combined axial + lateral loading is rarely tested but governs in service (p-delta effects, stiffness change)",
-        "Structural failure may precede full soil mobilization for long unsupported piles in tall bents or deepwater"
+        "Free head tests do not replicate fixed head conditions (p. 194).",
+        "Single tests do not replicate groups; p-multipliers by judgment (AASHTO Table 10.7.2.4-1) (p. 194).",
+        "General and contraction scour typically cannot be modeled (p. 195).",
+        "Construction tests come too late for design; design-phase tests may use different methods (p. 195).",
+        "Axial load rarely combined; structural capacity may control (p. 195)."
       ],
       "equations": [],
       "figures": [],
@@ -180,13 +379,13 @@
     {
       "section_id": "12.8",
       "title": "Alternatives to Lateral Load Tests",
-      "summary": "Alternatives to lateral load tests include: (1) in-situ testing (pressuremeter, dilatometer, CPT) to develop site-specific p-y curves; (2) use of published p-y curves from other projects in similar geology; and (3) reliance on local experience and precedent for typical bridges. In-situ testing programs are significantly less expensive than full-scale load tests and can be performed during design. Using data from non-site-specific sources introduces uncertainty; designers should reduce input soil/rock properties to compensate for the additional risk.",
-      "body": "Lateral load tests may not be appropriate for all projects. For example, typical simply supported bridges with short spans may not require lateral load tests because lateral loads may not govern the design and the costs may not be justified for a small number of foundation elements. Alternatives to lateral load tests include the use of in-situ testing or available p-y curves from similar projects.\n\nIn-situ testing methods such as the pressuremeter, flat plate dilatometer, and CPT can be used to develop site-specific p-y curves. An extensive in-situ testing program may be significantly less expensive than a full-scale lateral load test, can be performed during design, and avoids the delay of construction-phase testing.\n\nLocal experience may provide precedent for typical bridges in similar ground conditions that have exhibited satisfactory service performance. Research programs and load tests from other projects in the same project area or geologic formations can be used if considered consistent with project conditions.\n\nWhen using p-y curves or data from other tests, locations, or geologic conditions, greater uncertainty is introduced. Even in-situ testing to develop p-y curves should be considered to carry greater uncertainty than a full-scale load test. Therefore, when using alternatives to lateral load tests, consideration should be given to using input soil/rock properties that are somewhat reduced compared to what would otherwise be used if lateral load tests were specified. This approach will generally result in a more robust design with little or no impact to the foundation arrangement or cost.",
+      "summary": "Tests may not suit short-span simply supported bridges. Alternatives: in-situ testing for site-specific p-y curves (Chapter 3), p-y curves from similar geology, local experience and research tests (Chapter 4), published case histories. These carry more uncertainty, so use lower input properties than with tests; often little cost impact.",
+      "body": "Lateral load tests may not suit all projects; e.g., typical short-span simply supported highway bridges may not need them, lateral loads possibly not governing and costs not justified for few elements. Alternatives include more in-depth investigation with in-situ testing or p-y curves from other projects in the same or similar geology. In-situ methods (Chapter 3) can develop site-specific p-y curves, an extensive program possibly much cheaper than full scale tests, available early in design and comparable with data from tested areas. Local experience with satisfactory performance of typical bridges may suffice if practice has a well-established basis (p. 196); research programs on drilled shafts in local conditions (Chapter 4) or other nearby tests can be used if consistent with project conditions, and case histories in similar conditions may help where local experience is limited. Using p-y curves or data from other tests, locations or geology, and even in-situ derived p-y curves, introduces more uncertainty than a full scale test, so input soil/rock properties should be less than would be used with tests verifying performance, by the designer's judgment of the materials and their variability, giving a more robust design, often with little or no impact on arrangement or cost. (pp. 195 to 196)",
       "key_points": [
-        "In-situ tests (pressuremeter, DMT, CPT) can develop site-specific p-y curves at lower cost than full-scale load tests",
-        "Published p-y curves from similar geologic settings may be used with judgment — introduce additional uncertainty",
-        "Local experience and precedent may eliminate need for load tests on typical short-span bridges",
-        "When using alternatives, reduce input soil/rock properties to compensate for greater uncertainty relative to load test"
+        "Tests may not be justified for short-span simply supported bridges (p. 195).",
+        "In-situ testing can develop site-specific p-y curves at lower cost (Chapter 3) (p. 195).",
+        "Local experience, research tests (Chapter 4) and case histories may be used (p. 196).",
+        "Alternatives carry more uncertainty: use lower input properties (p. 196)."
       ],
       "equations": [],
       "figures": [],
