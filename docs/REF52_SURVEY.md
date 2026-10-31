@@ -995,3 +995,161 @@ No reading was chosen. Page numbers are printed page numbers
     the text (p. 12-27).
 
 Smaller typos are not listed.
+
+## GEC-8 written from the print
+
+GEC-8 (FHWA-HIF-07-03, April 2007) was rewritten from the print on
+fix/ref52, one commit per chapter (ch 1 to 8). The June 2026 files held
+25 sections, 6 of them ranges such as 5.2-5.3 and 7.5-7.6. Every printed
+heading now has its own section, with its body read off its printed
+pages, 186 in all (ch 5 44, ch 8 42, ch 7 32, ch 4 22, ch 6 18, ch 3 14,
+ch 2 10, ch 1 4). Each equation, figure and table sits in the section
+whose pages print it. GEC-8 numbers equations, figures and tables with a
+point (Eq. 5.5, Figure 5.1, Table 5.1), and the files keep that.
+
+The accessible PDF lays alt text over every equation and figure, so a
+plain text read returns sentences such as "f sub s equals alpha times S
+sub U" and loses the equation tags and many captions. The text was read
+with the alt text ignored. Equations were read off rendered pages,
+symbol by symbol, 72 in all: Eqs. 5.1 to 5.64 (71 tags with the a and b
+variants) and Eq. 6.1. The other chapters print none. Tables 5.1 to 5.4,
+6.1, 6.2 and 7.1 carry their contents. The 115 figures carry the body
+captions; twelve that the automatic match missed or cut short were set
+by hand: Figures 2.5, 2.11, 2.12, 3.3, 3.6, 4.6, 4.9, 5.2, 5.4, 6.5, 6.6
+and 7.13.
+
+`check_section_numbers.py gec_8` now reads 184 printed and 184 matched,
+with 0 ranges and 0 missing (it was 19 matched, 6 ranges and 148
+missing). Two more printed headings have their own sections and show as
+extra: 7.3.4 Pile Installation Plan (p. 165) and 8.1.8 Construction
+Submittals (p. 201). On those two pages the text layer stores the first
+letters of each line apart from the rest, so the checker loses the
+numbers; the Table of Contents lists 186. 30 printed headings were in no
+old section at all: 2.3 (summary), 3.1, 4.1 and 7.1 (introductions), 5.4
+to 5.4.3 (static axial capacity of drilled displacement piles), 5.8 to
+5.8.2 (single-pile examples), 6.6 to 6.6.6 (the design example), 7.7 to
+7.7.6 (QC/QA checklists), 8.2 (materials), 8.4 (measurement) and 8.5
+(payment).
+
+One retrieval gold entry named an old range and now names the printed
+sections (as in df580ff): cfa-piles 5.2-5.3 to 5.2 and 5.3, beside dm7_2
+6-4.3. No query was reworded. Ranks moved as follows from before ch 1 to
+after ch 8 (rerank, unless a mode is named):
+- cfa-piles 3 to 2 (off and fill 3 to 1, auto 4 to 1).
+- py-method not in the top 10 to 10, in all modes.
+- neutral-plane 2 to 1; nsf-def 2 to 1.
+- auger-cast 3 to 4. Its gold, gec_8 3.2, is now a heading with no text
+  of its own; the content sits in 3.2.1 to 3.2.3. The gold was left as
+  it is.
+- stone-col-capacity 5 to 7. The gold is gec_13 5.4.1.2.5; the top 8 are
+  all gec_13 and dm7_2 sections, in a new order.
+
+Rerank R@10 went from 39 to 40 of 54 and MRR@10 from 0.491 to 0.512;
+R@1 went from 32 to 31 and R@5 from 35 to 34. test_query_expansion and
+the gec_8 tests passed after every chapter.
+
+### What the old files held that the print does not
+
+- Equation ids that are not the print's. The old files held 12
+  equations for the 72 printed, with hyphenated ids ("5-1", "5-2",
+  "5-20a") or descriptive ones ("5-DD-1", "5-group-eff",
+  "5-elastic-comp", "6-ASD").
+- Captions not the print's. Old Figure 2.3 "CFA piles in group with pile
+  cap form" is printed "Schematic of Typical Drilled Shaft vs. CFA
+  Foundation". Old Figure 3.11 "Subsurface profile at Krenek Road Bridge
+  site" is printed as a photograph, "CFA Piles at the Krenek Road Bridge
+  Site". Old Figures 5.17, 5.21 and 5.22 carried the captions of 5.14,
+  5.19 and 5.20. Several others were paraphrased.
+- Old Figure 2.6 sat in 2.1; it prints in 2.2.1.
+
+### Print inconsistencies, kept as printed
+
+No reading was chosen. Page numbers are printed page numbers (PDF page
+24 is p. 1).
+- ch 2: 2.2.2.1 lifts the auger "typically 150 to 300 mm (6 to 12 in.)"
+  to release the plug; 2.2.2.2 says the lift "must be limited to 150 mm
+  (6 in.)" (p. 9).
+- ch 3:
+  - 3.5 prints "$40 to $60 per linear meter ($12 to $20 per linear
+    foot)" (p. 31); $20 per foot is about $66 per meter.
+  - 3.2.3 gives secant walls up to 10 m (33 ft) high with piles under
+    1.2 m (4 ft) (p. 21); 3.4.3 gives diameters of about 1 m (40 in.)
+    and heights of about 12 m (40 ft) or less (p. 29).
+- ch 4:
+  - 4.3.1 sends fluidifiers to "Section 4.3.6" (p. 54); there is no
+    4.3.6 (they are in 4.3.1.5).
+  - 4.3.1.2 says fly ash, silica fume or slag "will probably severely
+    retard" early strength, to about 10 to 14 days (p. 55; 8.3.2 repeats
+    it, p. 207); 2.2.2.4 says they "tend to slightly retard" it (p. 12).
+- ch 5:
+  - Eq. 5.31 prints qp (MPa or tsf) = 0.19 N60 + WT (p. 84); the p. 84
+    comparison and the 5.8.2 example use 1.9 N60 tsf.
+  - Eq. 5.34 prints R_Block = 2 fs [D Z + B] + qp (Z B) (p. 92), adding
+    an area to a length inside the bracket.
+  - Eqs. 5.42 and 5.43 print p and e with a subscript sigma (p. 100);
+    the where-list defines eo and po.
+  - 5.6.2 gives the steel modulus as "200,000 MPa (2,900 ksi)" (p. 109);
+    200,000 MPa is about 29,000 ksi.
+  - 5.6.2 calls the axial stress "(Px x Area)" (p. 110).
+  - With no axial load Eq. 5.61a (psi) reduces to Vc = sqrt(f'c) and Eq.
+    5.61b (MPa) to 0.166 sqrt(f'c) (p. 118); they differ by a factor of
+    about 2.
+  - 5.3.3.2 limits the Florida limestone data to "approximately 9 and 8
+    MPa (94 to 84 tsf)" (p. 76); Figure 5.7's curves end near 9 and 8
+    tons/ft2.
+  - Figure 5.4's legend reads "Silts" and "Clays" (p. 74); the text
+    gives Eqs. 5.22 and 5.23 for silty and sandy soils.
+  - 5.1 puts the recommended methods in "Section 5.2" and the DD method
+    in "Section 5.3" (p. 64); they are 5.3 and 5.4.
+  - 5.5.2.1 cites "Section 5.5.2.1.2" (p. 93; 6.6.4 too, p. 154); there
+    is no such heading. 5.5.2.2 sends R_Block to "Section 5.5.3" (pp. 94
+    to 95); it is Eq. 5.34 in 5.5.2.1.
+  - 5.8 cites "section 6.7.4, part A" and "Part D" (p. 125); the example
+    is 6.6, with Step 3 at 6.6.4.
+  - The 5.8.2 DD example takes side shear "from Equation 5.31" (p. 131)
+    and end bearing "from Equation 5.33" (p. 132); the SPT relations are
+    Eqs. 5.29 and 5.31.
+- ch 6:
+  - 6.6.4 prints the cap weight as "10 ft x 10 ft x 2.5 ft x 0.15
+    kip/ft3 / 4 piles = 8 kips/pile" for a five-pile group (p. 149);
+    37.5/4 is 9.4 and 37.5/5 is 7.5.
+  - 6.6.4 prints "2/3 x (69 - 29 ft) = 0.67 x 40 = 56 ft, or 27 ft into
+    the stiff clay" (p. 155); 0.67 x 40 is 27 ft, and 56 ft is the depth
+    below the ground.
+  - 6.6.5 (c) asks about soil mining in loose water-bearing sands and
+    answers "Yes, if soils are cohesive." (p. 159).
+- ch 7:
+  - 7.3.5.2 sends the integrity test frequency to "Section 7.3.3" (p.
+    169); 7.3.3 is Design Submittals, and the frequency is in 7.5.1.
+  - 7.3.4 and 8.1.8.1 ask for a monitoring plan "as required in Section
+    3.1" (pp. 166, 202); 3.1 is the chapter 3 introduction.
+  - 7.4.4 gives "24 to 31 MPa (3,000 to 4,500 psi)" (p. 180); 24 MPa is
+    about 3,500 psi.
+  - 7.6.2 gives "around 5 MN, (450 tons)" (p. 189); 5 MN is about 560
+    short tons.
+  - 7.4.2 gives re-drilling 1.5 m (5 ft) below a pressure drop as common
+    practice (p. 173); 7.7.4 calls re-drilling less than the full length
+    "generally considered unacceptable" (p. 193).
+- ch 8:
+  - 8.1.7 sets geotechnical design by "Service Load Design (SLD)" per
+    chapters 5 and 6, and structural design not covered there by SLD per
+    the AASHTO Standard Specification, 17th Edition (p. 199); 6.3.1 uses
+    ASD for geotechnical and LRFD for structural design (p. 136).
+  - 8.1.4 and 8.3.11 name the circular "Augered Cast-in-Place and
+    Continuous Flight Auger Piles" (pp. 196, 219).
+  - 8.3.3 cites "Section 3.5" for soil drawn into the bore (p. 212); 3.5
+    is Construction Cost Evaluation.
+  - 8.2 bars "Type B fly ash" with Type II cement (p. 205); the fly ash
+    line above it lists ASTM C 618 Class C or F.
+  - 8.3.1.1 gives compaction "as specified by ASTM D 698 (AASHTO T 180)"
+    (p. 206); D 698 is the standard effort (T 99), T 180 the modified.
+  - 8.3.8 bars steel spacers, then allows steel centering guides such as
+    a wire "basket" or "football" (p. 217).
+  - 8.3.12 spaces access tubes at about one per 1 ft (0.3 m) of cage
+    diameter (p. 221); 7.5.3 spaces them about 0.3 m (1 ft) apart around
+    the cage (p. 186). 8.3.12 sets integrity tests on at least 20 % of
+    production piles (p. 221); 7.5.1 calls 10 % to 20 % typical (p. 183).
+  - 8.3.2.4 asks for six samples per "50 yd3 (38 m3)" (p. 211); 7.4.4
+    has "40 m3 (about 50 yd3)" (p. 180).
+
+Smaller typos are not listed.
