@@ -256,6 +256,13 @@ were not changed. The REF-40 sections of
 ch 10 (10.1, 10.2, 10.3.5 to 10.4), which match the 2018 print, were
 left as they were.
 
+A review then found objects these passes had not stored, added on
+fix/ref52-gec10 from the page that prints each: Figs 1-4, 1-5, 1-6, 1-8
+and 1-9 in 1.3; Figs 6-2 to 6-28 and Table 6-3 in the ch 6 sections that
+print them; Table 8-4, every row, in 8.1; the label Eq. 10-32 on the
+10.4 uplift equation; and 3.2's full printed title. Ch 2's four captions
+and table contents were paraphrases and now follow the print.
+
 `check_section_numbers.py gec_10` now reads 408 printed, 391 matched,
 17 missing and 1 extra (it was 122 with a section of their own and 284
 missing):
