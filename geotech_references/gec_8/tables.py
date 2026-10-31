@@ -118,7 +118,9 @@ def table_5_4_p_multiplier(
     soil_type : str, optional
         Table 5.4 soil type: 'stiff_clay', 'medium_clay', 'clayey_silt',
         'very_dense_sand', 'medium_dense_sand', 'loose_medium_sand' or
-        'loose_fine_sand'.  Empty (default) lists every soil.
+        'loose_fine_sand'.  Left empty (default), ``pm`` is the lowest Pm
+        Table 5.4 prints for the row at that spacing (the module's choice,
+        not a printed default) and ``rows`` lists every soil's row.
 
     Returns
     -------
