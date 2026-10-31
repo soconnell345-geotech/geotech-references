@@ -1,103 +1,379 @@
 {
   "reference_id": "FHWA-NHI-16-009",
   "reference_title": "Design and Construction of Driven Pile Foundations",
+  "volume": 2,
   "chapter": 16,
   "chapter_title": "Pile Accessories",
   "sections": [
     {
       "section_id": "16.1",
-      "title": "Timber Pile Accessories",
-      "summary": "Timber pile toe protection: steel boots (cover full toe without trimming) or steel points (require toe trimming). Head protection: heavy metal banding required when Rndr > 200 kips (AASHTO 2010). Splices not recommended for timber piles — virtually impossible to develop full bending strength. Longer piles should be ordered rather than splicing.",
-      "body": "Potential problems during timber pile driving include splitting and brooming at pile toe and head, splitting or bowing of the pile body, and pile breakage during driving. Protective attachments at toe and head minimize these problems.\n\nPile Toe Attachments (Section 16.1.1): Steel boots cover the entire pile toe without trimming. Steel points require trimming the toe to fit. Both are secured quickly in the field by placing the device over the pile toe, nailing shoe straps, and anchoring.\n\nAttachments at Pile Head (Section 16.1.2): American Wood Preservers Institute (Collin 2012) recommends banding timber piles with heavy metal strapping at the pile head prior to driving to prevent splitting. AASHTO (2010) requires collars, bands, or other anti-splitting devices when Rndr > 200 kips.\n\nSplices (Section 16.1.3): Timber pile splices are undesirable. It is virtually impossible to develop full bending strength of a spliced timber pile. AASHTO (2010) prohibits timber pile splices unless specified in the contract documents or directed in writing by the engineer. When lengths prove insufficient, longer piles should be ordered or the foundation redesigned with additional piles.",
+      "title": "Timber Piles",
+      "summary": "Accessories protect pile toes and make splicing easier but add cost and should be used only when needed. Timber piles can split, broom, bow or break. Toe protection is a steel boot (no trimming) or a point (toe trimmed to fit). Heads are banded with heavy metal strapping; AASHTO (2010) requires collars or bands above 200 kips nominal driving resistance. Timber splices are undesirable: order longer piles or redesign with more piles.",
+      "body": "Chapter introduction (p. 395): accessories for toe protection and splicing are often cost effective with heavier loads, sloping rock, obstructions or long piles, but add significant cost and should not be used unless needed; they must develop the required structural resistance during driving and under all loads. 16.1 (p. 395): problems are toe and head splitting and brooming, body splitting or bowing, and breakage. 16.1.1 (pp. 395-396): larger hammers and higher resistances raise the damage risk at obstructions; boots cover the whole toe without trimming; points need the toe trimmed; both are secured quickly in the field by nailing the straps. 16.1.2 (p. 397): the American Wood Preservers Institute (Collin 2012 in the text; the reference list gives 2002) recommends banding heads with heavy metal strapping before driving; AASHTO (2010) requires collars, bands or other devices when the required nominal driving resistance exceeds 200 kips. 16.1.3 (p. 397): full bending strength of a spliced timber pile is virtually impossible to develop; AASHTO (2010) says timber piles should not be spliced unless the contract documents or the engineer in writing allow it; if lengths prove short, order longer piles or redesign with additional piles of the furnished length.",
       "key_points": [
-        "Steel boots: full toe coverage, no trimming; steel points: require toe trimming",
-        "Head banding with heavy metal strapping recommended by AWPI; required by AASHTO when Rndr > 200 kips",
-        "Timber pile splices not recommended — impossible to develop full bending strength",
-        "AASHTO: timber piles shall not be spliced unless specified in contract documents or engineer directive",
-        "Preferred solution for insufficient pile length: order longer piles or redesign with additional piles"
+        "Accessories add significant cost; use them only when specifically needed",
+        "Timber toe protection: boots cover the whole toe without trimming; points need the toe trimmed",
+        "Heads banded with heavy metal strapping before driving (AWPI)",
+        "AASHTO (2010): collars or bands when required nominal driving resistance exceeds 200 kips",
+        "Timber pile splices are undesirable; full bending strength virtually impossible to develop",
+        "Short timber piles: order longer piles or redesign with additional piles"
       ],
       "equations": [],
-      "figures": [],
+      "figures": [
+        {
+          "figure_id": "16-1",
+          "title": "Timber pile toe attachments: (a) Pile boot and (b) Pile point",
+          "description": "Courtesy Skyline Steel.",
+          "page": 396
+        },
+        {
+          "figure_id": "16-2",
+          "title": "Timber pile with pile boot attached",
+          "description": "",
+          "page": 396
+        },
+        {
+          "figure_id": "16-3",
+          "title": "Banded timber pile head",
+          "description": "",
+          "page": 397
+        }
+      ],
       "tables": [],
-      "applicability": "Toe protection, head banding, and splicing guidance for timber pile installation — emphasis on avoiding splices."
+      "applicability": "Toe protection, head banding and splicing of timber piles."
     },
     {
       "section_id": "16.2",
-      "title": "Steel H-Pile Accessories",
-      "summary": "H-pile shoes recommended through dense gravels, boulders, fills, and to sloping rock; manufactured from cast steel ASTM A148/A148M Grade 90-60; attached with fillet welds (5/16 inch minimum) along exterior flanges. Pile toe plate reinforcement (welded plates to flanges/web) not recommended. H-pile splices: full penetration groove weld along web and both flanges, or commercially manufactured H-pile splicer. Full penetration welds required when full bending strength is needed.",
-      "body": "Pile Toe Attachments (Section 16.2.1): H-piles are generally easy to install but may develop toe damage through man-made fills, very dense gravel, or boulders. Damage includes deformation and separation of flanges and web. Commercially manufactured pile shoes minimize or prevent toe damage. Shoes also help distribute high localized contact stresses on rock, particularly on sloping rock surfaces.\n\nH-pile shoes manufactured to ASTM A148/A148M (Grade 90-60) cast steel. Attached with fillet welds along the outside of each flange — lower flanges beveled, 5/16 inch fillet weld (or greater depending on flange thickness). Multiple styles/shapes available — for a given set of conditions, shoes from different manufacturers are considered equivalent if manufactured from similar strength materials and fabrication techniques. Minor configuration differences given minimum importance unless a specific shape offers a definite advantage.\n\nNote: pile toe reinforcement consisting of steel plates welded to flanges and web is NOT recommended — does not provide protection or increased strength at the critical flange-to-web connection.\n\nSplices (Section 16.2.2): Full penetration groove weld along web and both flanges (preferred). Commercially manufactured H-pile splicers also used. Some agencies use a welded square or diamond backer plate detail with welded splice. H-pile splices must satisfy all structural resistance requirements for axial compression, tension, and bending under foundation loading. Full penetration weld preferred when full bending strength is required. H-pile splicers can be used for lower load conditions.",
+      "title": "Steel H-Piles",
+      "summary": "H-pile toes can deform and flanges separate from the web in fills, very dense gravel or boulders. Cast steel shoes (ASTM A148 Grade 90-60) prevent this and spread contact stress on hard or sloping rock; they are fillet welded along the outside of each flange, typically 5/16 in. or more. Welded plate toe reinforcement is not recommended. Splices are full penetration groove welds or manufactured splicers, chosen by the foundation loading and made by certified welders.",
+      "body": "16.2 (p. 398): H-piles penetrate hard upper layers to dense or hard bearing such as rock, often with splices. 16.2.1 (pp. 398-400): non-displacement piles drive easily, but unprotected toes in man-made fills, very dense gravel or boulders may deform and the flanges separate from the web (Figure 16-4, found after dynamic test records showed toe damage). Manufactured shoes minimize this and spread localized contact stress on hard rock, particularly sloping rock. Plates welded to the flanges and web are not recommended: they give neither protection nor strength at the flange-to-web connection. Shoes are cast steel to ASTM A148/A148M (Grade 90-60), attached by fillet welds along the outside of each flange; flanges are usually beveled and a 5/16 in. or larger fillet weld used. Shoes from different manufacturers are equivalent if of similar strength materials and fabrication; minor shape differences matter little except where a shape gives a definite advantage. 16.2.2 (pp. 400-403): splices are full penetration groove welds along the web and both flanges or manufactured H-pile splicers, sometimes with a welded square or diamond backer plate. Splices must meet compression, tension and bending demands; the detail is set by the foundation loading. Strength beyond driving is needed for bending and cyclic loading, so certified welders follow approved procedures. Splicer method: notch the driven pile web, slip the splicer over, 5/16 in. vertical fillet welds about 2.5 to 4 in. long at its corners; chamfer the add-on flanges at 45 degrees, weld the upper corners the same way, then a full or partial penetration groove weld along both flanges. H-piles are typically ASTM A572 Grade 50 or higher, and splicers should be the same steel.",
       "key_points": [
-        "H-pile shoes: cast steel ASTM A148/A148M Grade 90-60; attached with beveled fillet welds (5/16 inch min.) along exterior flanges",
-        "Shoe styles are considered equivalent across manufacturers if same material/fabrication — shape matters only for specific subsurface conditions",
-        "Welded plate toe reinforcement on flanges/web NOT recommended — no protection or strength at critical flange-web connection",
-        "H-pile splice: full penetration groove weld on web and both flanges — preferred when full bending strength required",
-        "H-pile splicer: alternative for lower load cases; must satisfy axial, tension, and bending strength requirements"
+        "Unprotected H-pile toes in fills, very dense gravel or boulders deform; flanges can separate from the web",
+        "Shoes also spread contact stress on hard and sloping rock",
+        "Welded plate toe reinforcement not recommended: no protection at the flange-to-web connection",
+        "Shoes: cast steel ASTM A148/A148M Grade 90-60; fillet welded along outside flanges, typically 5/16 in. or more",
+        "Shoes from different manufacturers equivalent if similar materials and fabrication",
+        "Splices: full penetration groove weld on web and both flanges, or a manufactured splicer; detail set by loading",
+        "Splicer fillet welds 5/16 in., about 2.5 to 4 in. long; add-on flanges chamfered 45 degrees",
+        "H-piles typically ASTM A572 Grade 50 or higher; splicers of the same steel; certified welders"
       ],
       "equations": [],
-      "figures": [],
+      "figures": [
+        {
+          "figure_id": "16-4",
+          "title": "Damaged H-pile driven without pile toe protection",
+          "description": "Courtesy Wisconsin DOT.",
+          "page": 399
+        },
+        {
+          "figure_id": "16-5",
+          "title": "Styles of H-pile driving shoes",
+          "description": "Courtesy Skyline Steel.",
+          "page": 399
+        },
+        {
+          "figure_id": "16-6",
+          "title": "Pile shoe welded to pile toe using fillet welds along exterior flanges",
+          "description": "",
+          "page": 400
+        },
+        {
+          "figure_id": "16-7",
+          "title": "Full penetration groove weld with backer bars",
+          "description": "",
+          "page": 401
+        },
+        {
+          "figure_id": "16-8",
+          "title": "H-pile splicer",
+          "description": "",
+          "page": 401
+        },
+        {
+          "figure_id": "16-9",
+          "title": "Partially completed splice using H-pile splicer",
+          "description": "",
+          "page": 402
+        }
+      ],
       "tables": [],
-      "applicability": "Pile shoe specifications and splice details for steel H-piles driven through obstructions, dense materials, or to rock."
+      "applicability": "Toe protection and splicing of steel H-piles."
     },
     {
       "section_id": "16.3",
-      "title": "Steel Pipe Pile Accessories",
-      "summary": "Closed-end pipe: flat closure plate (0.75-1.0 inch thick for OD ≤18 inch, 5/8 inch oversize with 5/16 inch fillet weld) or conical toe attachment (cast steel A148 Grade 90-60; rock crusher preferred for sloping bedrock). Open-end pipe: inside or outside flange cutting shoes (A148 Grade 90-60) through dense gravel or rock. Pipe splices: full penetration groove weld with backing ring (preferred when full bending strength needed) or friction drive-fit splicer. Constrictor plates used inside large-diameter open-end pipe (≥36 inch) to force plugged behavior.",
-      "body": "Pile Toe Attachments (Section 16.3.1): Closed-end pipe piles most frequently use a flat closure plate welded at pile toe. Plate thickness: 0.75-1.0 inch for OD ≤18 inch; thicker plates may be required for larger diameters. Closure plate diameter: typically 5/8 inch larger than pile OD (for 5/16 inch fillet weld) or same OD with beveled partial penetration weld. Plate material: ASTM A36/A36M or better.\n\nConical toe attachments (rounded or 60-degree point): cost more than flat plates; flat plates generally develop higher unit toe resistance. Conical attachments: full or partial penetration groove weld; ASTM A148/A148M (Grade 90-60) cast steel.\n\nRock crusher driving shoe: preferred for sloping bedrock; thick flat plate with heavy steel plates forming a 45-degree point.\n\nOpen-end pipe in dense gravel or to rock: cutting shoes protect against deformation and distribute contact stresses. Inside flange and outside flange types available. Outside flange increases perimeter diameter and can reduce shaft resistance. Both types from ASTM A148/A148M (Grade 90-60) cast steel.\n\nLarge diameter open-end pipe (≥36 inch): thicker wall toe section can function as inside cutting shoe with same OD as design pile — distributes stresses, reduces damage on boulders, sloping rock, or batter installations.\n\nSplices (Section 16.3.2): Full penetration groove welds with backing ring (preferred when full bending strength required). Backing ring: aids alignment, has pins to maintain gap for root pass. Friction drive-fit splicers: cast ASTM A27 (Grade 65-35) or A148/A148M (Grade 90-60); tapered frictional connection; 3/8 inch bearing at midpoint for load transfer. Friction splicers must be fully seated before fillet weld if full bending strength required; otherwise welding after seating may crack. Fillet welds to top and bottom pile sections required for full bending strength.\n\nConstrictor Plates (Section 16.3.3): Welded inside large-diameter open-end pipe piles to force plugged behavior at a targeted depth. Used to increase nominal resistance by engaging larger toe area. Research on LDOEP with constrictor plates ongoing.",
+      "title": "Steel Pipe Piles",
+      "summary": "Closed end pipes usually get a flat closure plate 0.75 to 1.0 in. thick (18 in. diameter or less), 5/8 in. oversize for a 5/16 in. fillet weld; conical points cost more and flat plates give higher unit toe resistance; rock crusher shoes suit sloping rock. Open end pipes use cutting shoes; piles 36 in. or more use a thicker wall over the lower two diameters. Splices: full penetration welds on backing rings, preferred when full bending strength is needed, or friction splicers. Constrictor plates force plugging.",
+      "body": "16.3 (p. 403): toe attachments limit toe damage and deflection; lengths are increased by welded or friction splices. 16.3.1 (pp. 403-408): closed end piles may deflect at obstructions and open end toes may deform in very dense material. Flat closure plates are 0.75 to 1.0 in. thick for 18 in. or smaller outside diameters (thicker for larger piles at the engineer's option), typically 5/8 in. larger in diameter for a 5/16 in. fillet weld, or the same diameter with a bevel and partial penetration weld; ASTM A36/A36M or better. Conical points (rounded or 60 degree) cost more, flat plates develop higher unit toe resistance, and a conical point may drive slightly longer for the same resistance; full or partial penetration groove weld; cast steel ASTM A148/A148M (Grade 90-60). A rock crusher shoe (thick plate with heavy plates forming a 45 degree point) is preferred on sloping bedrock. Open end cutting shoes (A148 Grade 90-60) have inside or outside flanges on a bearing ring; outside flanges ease drilling through the toe but enlarge the perimeter and can reduce shaft resistance, and are sometimes friction fit only. For open end piles 36 in. or larger, a thicker wall over the lower two diameters, with the same outside diameter, is the preferred protection. 16.3.2 (pp. 408-412): full penetration welds use a backing ring whose pins hold a root gap; friction (drive-fit) splicers, cast ASTM A27 (Grade 65-35) or A148 (Grade 90-60), are tapered with a 3/8 in. midpoint bearing; sections must be square (cut off damaged tops); without fillet welds to both sections full bending strength is not provided, the splicer must be fully seated before welding to avoid cracking, so full penetration welds are preferred for full bending strength; uplift suitability is the designer's call; spiral welded pipe often needs fillet welds to keep groundwater out. 16.3.3 (p. 413): constrictor plates welded inside large diameter open end piles force plugging at a target depth and a larger resistance (example: 60 in. pile); research is ongoing.",
       "key_points": [
-        "Closure plate: 0.75-1.0 inch thick for OD ≤18 inch; 5/8 inch oversize + 5/16 inch fillet weld; ASTM A36 or better",
-        "Conical toe (A148 Gr.90-60): rounded or 60-degree point; flat plates give higher unit toe resistance; rock crusher preferred on sloping bedrock",
-        "Cutting shoes for open-end pipe: inside or outside flange, A148 Gr.90-60; outside flange may reduce shaft resistance",
-        "Full penetration weld with backing ring: preferred for full bending strength; friction splicer (A27 or A148) for lower load cases",
-        "Friction splicer: must be fully seated before fillet weld to avoid cracking; fillet welds required for full bending strength",
-        "Constrictor plates (≥36 inch OD): welded inside pile to force plugged behavior and increase toe resistance"
+        "Closure plate 0.75 to 1.0 in. for 18 in. or smaller pipes; 5/8 in. oversize for a 5/16 in. fillet weld; A36 or better",
+        "Conical points cost more; flat plates give higher unit toe resistance; conical may drive slightly longer",
+        "Rock crusher shoe (45 degree point) preferred on sloping bedrock",
+        "Open end cutting shoes: A148 Grade 90-60; outside flange can reduce shaft resistance",
+        "Open end piles 36 in. or larger: thicker wall over the lower two diameters is the preferred toe protection",
+        "Full penetration weld on a backing ring preferred when full bending strength is required",
+        "Friction splicers: A27 or A148, 3/8 in. midpoint bearing; full bending strength only if fillet welded after full seating",
+        "Constrictor plates force plugging in large diameter open end piles; research ongoing"
       ],
       "equations": [],
-      "figures": [],
+      "figures": [
+        {
+          "figure_id": "16-10",
+          "title": "Closure plate typical of closed end steel pipe pile",
+          "description": "",
+          "page": 404
+        },
+        {
+          "figure_id": "16-11",
+          "title": "Conical toe attachments for closed end pipe piles: (a) Rounded (b) Pointed conical tip",
+          "description": "Courtesy Skyline Steel.",
+          "page": 405
+        },
+        {
+          "figure_id": "16-12",
+          "title": "Conical toe attachment welded on a closed end steel pipe pile",
+          "description": "",
+          "page": 405
+        },
+        {
+          "figure_id": "16-13",
+          "title": "Rock crusher driving shoe welded on a closed end steel pipe pile",
+          "description": "",
+          "page": 406
+        },
+        {
+          "figure_id": "16-14",
+          "title": "Cutting shoes for open end pipe piles: (a) Inside flange and (b) Outside flange",
+          "description": "Courtesy Skyline Steel.",
+          "page": 407
+        },
+        {
+          "figure_id": "16-15",
+          "title": "Inside flange cutting shoe welded to open end steel pipe pile",
+          "description": "",
+          "page": 407
+        },
+        {
+          "figure_id": "16-16",
+          "title": "Outside flange cutting shoe on open end steel pipe pile",
+          "description": "",
+          "page": 408
+        },
+        {
+          "figure_id": "16-17",
+          "title": "Splices for pipe piles",
+          "description": "",
+          "page": 409
+        },
+        {
+          "figure_id": "16-18",
+          "title": "Backing rings for pipe pile splicing (a) with pins (courtesy Skyline Steel) and (b) without",
+          "description": "",
+          "page": 409
+        },
+        {
+          "figure_id": "16-19",
+          "title": "Backing ring tack welded to bottom pile",
+          "description": "",
+          "page": 410
+        },
+        {
+          "figure_id": "16-20",
+          "title": "Welded pipe pile sections",
+          "description": "",
+          "page": 411
+        },
+        {
+          "figure_id": "16-21",
+          "title": "Drive-fit mechanical friction splicer for pipe pile",
+          "description": "Courtesy Skyline Steel.",
+          "page": 412
+        },
+        {
+          "figure_id": "16-22",
+          "title": "Drive-fit mechanical friction splicer on pipe pile",
+          "description": "",
+          "page": 412
+        },
+        {
+          "figure_id": "16-23",
+          "title": "Constrictor plate installed inside pipe pile",
+          "description": "",
+          "page": 413
+        }
+      ],
       "tables": [],
-      "applicability": "Toe protection and splicing for closed-end and open-end steel pipe piles, including material specifications, welding details, and constrictor plate use in large-diameter open-end piles."
+      "applicability": "Toe attachments, splices and constrictor plates for steel pipe piles."
     },
     {
       "section_id": "16.4",
-      "title": "Precast Concrete Pile Accessories",
-      "summary": "Concrete pile toe attachments not routinely used except in hard driving/rock conditions: flat cast steel shoe or Oslo/Rock Injector Point (3.5-inch hardened steel point; chisels into most rock types) — must be cast in, not field-attached. Embedded H-pile or pipe toe sections used where penetration depth is difficult. Splices: seven types evaluated (Table 16-1) — epoxy dowel, Kie-Lock mechanical, ICP welded, NU Chuck bolted, UF Tube grouted, GYA mechanical, Macalloy post-tensioned. Avoid splices whenever possible — prestress ends are not effectively prestressed due to development length.",
-      "body": "Pile Toe Attachments (Section 16.4.1): Concrete pile toes may be damaged in compression under hard driving. For hard driving conditions and toe bearing on rock, cast steel toe attachments are added during casting — not field-installed.\n\nFlat cast steel shoe: provides compression resistance. Oslo Point / Rock Injector Point: 3.5-inch diameter hardened steel point in steel casting; chisels into most rock types to ensure proper seating. All toe attachments must be cast into the pile — field attachment not possible.\n\nEmbedded H-pile or pipe section: not for toe protection but to facilitate penetration through very dense or hard materials. Section must be appropriately sized for concrete section, foundation loading, and subsurface conditions.\n\nSplices (Section 16.4.2): All prestressed concrete piles driven in the U.S. are prestressed. Pile ends are not effectively prestressed due to development length — special precautions required when splicing. Avoid splicing whenever possible by ordering sufficient pile lengths.\n\nTable 16-1 (after Mullins and Sen 2015) summarizes seven splice types on capacity, failure type, durability, installation difficulty, and U.S. production:\n- Epoxy Dowel: poor capacity; ductile failure; good durability; moderate/poor installation; U.S. produced\n- Kie-Lock Mechanical: good capacity; ductile failure; moderate durability; good installation; not U.S. produced\n- ICP Welded: good capacity; brittle failure; moderate durability; moderate installation; not U.S. produced\n- NU Chuck Bolted: good capacity; brittle failure; moderate durability; untested installation; U.S. produced\n- UF Tube Grouted: good capacity; ductile failure; good durability; poor installation; U.S. produced (voided piles)\n- GYA Mechanical: good capacity; ductile failure; moderate durability; good installation; not U.S. produced\n- Macalloy Post-Tensioned: good capacity; ductile failure; good durability; moderate/poor installation; not U.S. produced\n\nEpoxy dowel splice: holes cast or drilled in lower section; dowels protruding from top section; sheet metal form placed; epoxy poured; driving can resume 1-2 days after epoxy placement. Comparatively inexpensive but time consuming.",
+      "title": "Precast Concrete Piles",
+      "summary": "Concrete pile toe attachments are not routine; in hard driving or on rock a flat cast steel shoe or an Oslo (Rock Injector) point with a 3.5 in. hardened steel point is cast in, never added in the field. Embedded steel sections aid penetration. Prestressed pile ends are not effectively prestressed, so order full lengths. Splices are dowel, welded, mechanical or sleeve; Table 16-1 rates seven. A substitute splice needs field testing and equivalent strength.",
+      "body": "16.4.1 (pp. 414-415): toes may be damaged in compression under hard driving; for hard driving and toe bearing on rock, cast steel attachments are added during casting, but they are not routine. A flat cast steel shoe or an Oslo or Rock Injector point (3.5 in. hardened steel point in a casting) lets the pile be chiseled into most rock; all attachments are fitted during casting, not in the field. An H-pile or pipe section cast into the toe aids penetration of very dense or hard materials rather than protecting the toe, sized for the concrete section, loads and soils. 16.4.2 (pp. 416-421): virtually all U.S. concrete piles are prestressed, but ends are not effectively prestressed within the development length, so order sufficient length. Splice types: dowel, welded, mechanical and sleeve (Figure 16-27). Table 16-1 (Mullins and Sen 2015): capacity means meeting flexural and tensile demands; ductile failure is preferable; durability is corrosion resistance; foreign made splices need special exceptions on some Federal funded projects; UF Tube is for voided piles. Epoxy dowel splices (holes cast or field drilled, dowels in the top section, sheet metal form, epoxy) resume driving after one to two days, are inexpensive but slow and have limited flexural and tensile strength. Welded (ICP) splices weld cast-in fittings around the perimeter. Mechanical splices (Kie-Lock, Herkules, ABB) use cast-in steel castings locked by bars, wedges, pins or keys; expensive but fast and designed for tension. The FDOT post-tensioned splice restores full prestress across the joint. Sleeve splices are fast and reduce tension driving stresses but cannot take static uplift; Hawaiian can sleeves need length and strength for lateral load; the short Bruns ring has limited tensile and flexural strength. A substitute for a specified splice should have equivalent strength and be field tested on spliced test piles.",
       "key_points": [
-        "Oslo/Rock Injector Point: 3.5-inch hardened steel point cast into pile; chisels into rock for proper seating",
-        "All concrete pile toe attachments must be cast-in — no field attachment",
-        "Avoid splicing concrete piles — pile ends not effectively prestressed due to development length",
-        "Table 16-1: seven concrete pile splice types — only Kie-Lock, GYA, and Macalloy provide good capacity with ductile failure",
-        "ICP and NU Chuck: brittle failure mode — not preferred",
-        "Epoxy dowel splice: 1-2 day cure time before driving resumes; holes cast or field-drilled",
-        "UF Tube splice: voided piles only",
-        "Foreign-made splices (Kie-Lock, ICP, GYA, Macalloy) require special exceptions on federally funded projects"
+        "Concrete pile toe attachments are not routine; used for hard driving or toe bearing on rock",
+        "Oslo or Rock Injector point: 3.5 in. hardened steel point; all attachments cast in, not added in the field",
+        "Cast-in H-pile or pipe toe sections aid penetration of very dense or hard materials",
+        "Prestressed pile ends are not effectively prestressed; order lengths that avoid splices",
+        "Splice types: dowel, welded, mechanical and sleeve; Table 16-1 rates seven systems",
+        "Ductile failure preferable to brittle; ICP and NU Chuck rated brittle",
+        "Epoxy dowel: driving resumes after 1 to 2 days; inexpensive but limited flexural and tensile strength",
+        "Sleeve splices reduce tension driving stresses but cannot be used where static uplift is required",
+        "Foreign made splices need special exceptions on some Federal funded projects",
+        "A substitute splice needs equivalent strength and field testing on spliced test piles"
       ],
       "equations": [],
-      "figures": [],
+      "figures": [
+        {
+          "figure_id": "16-24",
+          "title": "Pile toe attachments on concrete pile: (a) Flat shoe (courtesy Titus Steel) and (b) Oslo point",
+          "description": "",
+          "page": 414
+        },
+        {
+          "figure_id": "16-25",
+          "title": "Oslo point for concrete pile",
+          "description": "",
+          "page": 415
+        },
+        {
+          "figure_id": "16-26",
+          "title": "Steel H-pile cast into toe of prestressed concrete pile",
+          "description": "",
+          "page": 415
+        },
+        {
+          "figure_id": "16-27",
+          "title": "Commonly used prestressed concrete pile splices",
+          "description": "After PCI 1993.",
+          "page": 417
+        },
+        {
+          "figure_id": "16-28",
+          "title": "Cement/Epoxy-dowel splice",
+          "description": "After Bruce and Herbert 1974.",
+          "page": 418
+        },
+        {
+          "figure_id": "16-29",
+          "title": "Epoxy-dowel splice: (a) pile with core holes and (b) splice in progress",
+          "description": "",
+          "page": 419
+        },
+        {
+          "figure_id": "16-30",
+          "title": "Welded ICP splice: (a) beveled steel fitting and (b) welded splice",
+          "description": "",
+          "page": 419
+        },
+        {
+          "figure_id": "16-31",
+          "title": "Kie-Lock splice",
+          "description": "",
+          "page": 420
+        },
+        {
+          "figure_id": "16-32",
+          "title": "Post-tensioned splice (a) splice joint and (b) post tensioning strands in upper section",
+          "description": "Courtesy University of South Florida.",
+          "page": 420
+        },
+        {
+          "figure_id": "16-33",
+          "title": "Sleeve splices: (a) Hawaiian can and (b) Bruns splice",
+          "description": "",
+          "page": 421
+        }
+      ],
       "tables": [
         {
           "table_id": "16-1",
-          "description": "Summary of precast concrete pile splices (after Mullins and Sen 2015) — name, type, capacity rating, failure type (ductile/brittle), durability, installation difficulty, and U.S. produced status for epoxy dowel, Kie-Lock, ICP, NU Chuck, UF Tube, GYA, and Macalloy splices"
+          "title": "Summary of Precast Concrete Pile Splices",
+          "description": "Splice type, capacity, failure type, durability, installation and U.S. production: Epoxy Dowel (dowel; poor; ductile; good; moderate/poor; yes), Kie-Lock (mechanical; good; ductile; moderate; good; no), ICP (welded; good; brittle; moderate; moderate; no), NU Chuck (bolted; good; brittle; moderate; untested/moderate; yes), UF Tube (grouted tube; good; ductile; good; poor; yes), GYA (mechanical; good; ductile; moderate; good; no), Macalloy (post tensioned; good; ductile; good; moderate/poor; no).",
+          "page": 416
         }
       ],
-      "applicability": "Toe attachments and splice options for precast prestressed concrete piles, including Oslo/rock points, embedded steel toe sections, and comparative evaluation of seven concrete pile splice systems."
+      "applicability": "Toe attachments and splice selection for precast prestressed concrete piles."
     },
     {
       "section_id": "16.5",
       "title": "Welded Splices and Toe Attachments",
-      "summary": "Field weld quality is critical — weld failure during driving most commonly traced to poor surface preparation, insufficient bevel or root opening, or non-compliance with approved procedures. Temperature requirements: preheat to 70°F within 3 inches of weld before welding; maintain ≥50°F during welding; no welding below 0°F ambient. H-pile full penetration weld: 45-degree bevel with 1/8 or 1/4 inch root opening. Driving shoes attached with partial penetration groove weld along full flange length (not spot welds).",
-      "body": "Field welding is required for many pile splices and toe attachments. Weld quality directly determines pile structural resistance. Michigan DOT 'Field Manual for Pile Welding' (2012) and NYSDOT 'Pile Driving Inspection Manual' (2012) provide detailed guidance, including minimum splice times as a function of pile section and splice type.\n\nCommon weld failure causes: poor pile surface preparation; insufficient bevel or root opening; non-compliance with approved welding procedures or splice details. Bending stresses during hammer-pile misalignment can crack pipe pile welds. Low-temperature welding without preheating can crack H-pile splices immediately after driving resumes.\n\nWelding Surface Preparation (Section 16.5.1): Joint area must be cleaned before welding. Bevels must be correct for full penetration — without appropriate bevel, weld penetration is reduced and full penetration groove weld is impossible. H-pile: typically 45-degree bevel with 1/8 or 1/4 inch root opening for full penetration weld. Section alignment and root opening must be verified before welding when H-pile splicers are used.\n\nTemperature Requirements (Section 16.5.2): When ambient temperature is below 32°F, preheat steel to minimum 70°F within 3 inches of the weld immediately prior to welding. Maintain minimum 50°F until welding is complete. No welding below 0°F ambient.\n\nWelding Pile Toe Accessories (Section 16.5.3): Toe attachments on H-piles and pipe piles must be welded following approved procedures by approved welders. Spot welds (one web + one flange corner) are insufficient — can result in loss of driving shoe during hard driving. Partial penetration groove weld along full length of H-pile flange greatly reduces risk of shoe loss or poor performance.",
+      "summary": "Weld quality governs pile strength. Failures trace to poor surface preparation, insufficient bevel or root opening, or ignoring approved procedures. H-pile add-on sections typically get a 45 degree bevel with a 1/8 or 1/4 in. root opening. Below 32 F ambient, preheat to at least 70 F within 3 in. of the weld and hold at least 50 F; no welding below 0 F. Shoes need a partial penetration groove weld along the full flange, not spot welds.",
+      "body": "16.5 (pp. 422-423): Michigan DOT's Field Manual for Pile Welding (2012) and NYSDOT's Pile Driving Inspection Manual (2012, with minimum splice times by section and splice type) give guidance. A pipe splice cracked from bending during hammer-pile alignment; an H-pile splice welded cold without preheat broke a few blows later. Problems trace to poor surface preparation, insufficient bevel or root opening, or non-compliance with approved procedures. 16.5.1 (pp. 423-426): clean the joint and preheat below 32 F; without the bevel a full penetration groove weld is impossible; add-on H-pile sections typically have a 45 degree bevel and a 1/8 or 1/4 in. root opening; check alignment and root opening before welding with H-pile splicers (an extracted pile left its splicer and lower section in the ground). 16.5.2 (pp. 426-427): below 32 F ambient, preheat to a minimum of 70 F within 3 in. of the weld immediately before welding and hold at least 50 F until complete; no welding below 0 F. 16.5.3 (pp. 427-428): approved welders and procedures; spot welds on the web and flange corners can lose the shoe; a partial penetration groove weld along the full flange length greatly reduces that risk (Figure 16-43 is captioned full groove weld). 16.5.4 (pp. 429-430), Michigan DOT checklist: certified welders, an approved Weld Procedure Specification, joints per plans, ground and cleaned surfaces, preheat below 32 F and maintain 70 degrees (16.5.2 says 50 F minimum), no welding below 0 F, a quality control plan; electrodes in a sealed container or hot box at 250 F minimum, used within two hours of exposure or redried two hours at 500 degrees minimum, wet or dropped electrodes discarded; tack welds not part of the final weld; clean between passes; back gouge before welding the back side; final inspection for slag, size, arc strikes, cracks, porosity, undercut, underfill, overlap, penetration and fusion, with repairs before acceptance.",
       "key_points": [
-        "Weld failures traced to: poor surface prep, insufficient bevel/root opening, non-compliance with procedures",
-        "H-pile weld: 45-degree bevel + 1/8 or 1/4 inch root opening required for full penetration",
-        "Pipe pile: verify section alignment and root opening before welding when using H-pile splicers",
-        "Temperature: preheat to 70°F within 3 inches; maintain ≥50°F during welding; no welding below 0°F",
-        "Toe shoe attachment: partial penetration groove weld along full flange length — spot welds insufficient (shoe loss risk)",
-        "Key references: Michigan DOT Field Manual for Pile Welding (2012); NYSDOT Pile Driving Inspection Manual (2012)"
+        "Welded splice problems: poor surface preparation, insufficient bevel or root opening, non-compliance with procedures",
+        "H-pile add-on section typically 45 degree bevel with 1/8 or 1/4 in. root opening for a full penetration weld",
+        "Check section alignment and root opening before welding when H-pile splicers are used",
+        "Below 32 F ambient: preheat to at least 70 F within 3 in. of the weld; hold at least 50 F until complete",
+        "No welding below 0 F ambient",
+        "Shoe attachment: partial penetration groove weld along the full flange length; spot welds can lose the shoe",
+        "Electrodes in a hot box at 250 F minimum; used within 2 hours or redried 2 hours at 500 degrees minimum",
+        "Tack welds not part of the final weld; back gouge full penetration welds before welding the back side"
       ],
       "equations": [],
-      "figures": [],
+      "figures": [
+        {
+          "figure_id": "16-34",
+          "title": "Cracked weld on pipe pile splice",
+          "description": "",
+          "page": 422
+        },
+        {
+          "figure_id": "16-35",
+          "title": "Broken weld on H-pile splice",
+          "description": "",
+          "page": 423
+        },
+        {
+          "figure_id": "16-36",
+          "title": "Beveled edges on pipe pile in preparation for weld",
+          "description": "",
+          "page": 424
+        },
+        {
+          "figure_id": "16-37",
+          "title": "Grinding edges of web and flange in preparation for weld",
+          "description": "",
+          "page": 424
+        },
+        {
+          "figure_id": "16-38",
+          "title": "H-pile splice preparation without adequate root opening or bevel",
+          "description": "",
+          "page": 425
+        },
+        {
+          "figure_id": "16-39",
+          "title": "Misalignment between pile sections and poor quality weld",
+          "description": "",
+          "page": 425
+        },
+        {
+          "figure_id": "16-40",
+          "title": "Extracted H-pile upper section. Weld cracked during driving and extracted section retrieved without H-pile splicer or lower pile section",
+          "description": "",
+          "page": 426
+        },
+        {
+          "figure_id": "16-41",
+          "title": "Heating pile splice location prior to welding",
+          "description": "",
+          "page": 427
+        },
+        {
+          "figure_id": "16-42",
+          "title": "Unsatisfactory spot welds used for shoe attachment",
+          "description": "",
+          "page": 428
+        },
+        {
+          "figure_id": "16-43",
+          "title": "Full groove weld between pile and toe attachment",
+          "description": "",
+          "page": 428
+        }
+      ],
       "tables": [],
-      "applicability": "Field welding requirements for pile splices and toe attachments, including surface preparation, temperature constraints, bevel requirements, and minimum weld details to prevent splice failure during driving."
+      "applicability": "Field welding of pile splices and toe attachments, and its inspection."
     }
   ]
 }
